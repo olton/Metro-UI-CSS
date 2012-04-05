@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link type="text/css" rel="stylesheet" href="css/metro.css" />
+
+    <title>Metro UI CSS Collections Demo</title>
+
+    <style type="text/css">
+        body {
+            background: #0D232E;
+            padding: 150px 0 20px 100px;
+        }
+        .start {
+            position: absolute;
+            top: 30px;
+        }
+        .demo-scene {
+            width: 100%;
+            float: left;
+            margin-right: 30px;
+            border-bottom: 1px #fff dashed;
+        }
+        .column {
+            width: 270px;
+            float: left;
+        }
+    </style>
+
+    <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="js/jquery.mousewheel.js"></script>
+    <script type="text/javascript" src="js/jquery.scrollTo.js"></script>
+    <script type="text/javascript" src="js/metro.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $(".metro").metro();
+        })
+    </script>
+</head>
+<body>
+    <div class="metro metro-theme-dark clearfix">
+
+        <h1 class="start">Metro UI CSS Images Collections Demo</h1>
+
+        <!-- .metro-image -->
+        <div class="demo-scene">
+            <h2>Images Collection (.metro-image)</h2>
+            <ul class="metro-images selectable">
+                <li class="metro-image selected">
+                    <b class="check"></b>
+                    <div class="image ">
+                        <img src="img/A.png" />
+                    </div>
+                </li>
+                <li class="metro-image">
+                    <b class="check"></b>
+                    <div class="image ">
+                        <img src="img/B.png" />
+                    </div>
+                </li>
+                <li class="metro-image">
+                    <b class="check"></b>
+                    <div class="image ">
+                        <img src="img/C.png" />
+                    </div>
+                </li>
+                <li class="metro-image">
+                    <b class="check"></b>
+                    <div class="image">
+                        <img src="img/D.png" />
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- .metro-image -->
+        <div class="demo-scene">
+            <h2>Images Collection with Internal Overlay (.metro-image)</h2>
+            <ul class="metro-images selectable">
+                <li class="metro-image no-hovered">
+                    <b class="check"></b>
+                    <div class="image stretch">
+                        <img src="img/1.jpg" />
+                    </div>
+                    <div class="overlay">
+                        <p class="text">Это оверлей</p>
+                    </div>
+                </li>
+                <li class="metro-image no-hovered">
+                    <b class="check"></b>
+                    <div class="image stretch">
+                        <img src="img/2.jpg" />
+                    </div>
+                    <div class="overlay double">
+                        <p class="text">Это двойной оверлей</p>
+                    </div>
+                </li>
+                <li class="metro-image no-hovered">
+                    <b class="check"></b>
+                    <div class="image stretch">
+                        <img src="img/3.jpg" />
+                    </div>
+                    <div class="overlay floatable">
+                        <p class="text">Это плавающий оверлей</p>
+                    </div>
+                </li>
+                <li class="metro-image no-hovered">
+                    <b class="check"></b>
+                    <div class="image stretch">
+                        <img src="img/5.jpg" />
+                    </div>
+                    <div class="overlay double floatable">
+                        <p class="text">Это двойной плавающий оверлей</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- .metro-image-overlay -->
+        <div class="demo-scene">
+            <h2>Images Collection with External Overlay Large (.metro-image-overlay)</h2>
+            <ul class="metro-images selectable">
+                <li class="metro-image-overlay">
+                    <b class="check"></b>
+                    <div class="image stretch">
+                        <img src="img/1.jpg" />
+                    </div>
+                    <div class="overlay">
+                        <p class="text">Это оверлей</p>
+                    </div>
+                </li>
+                <li class="metro-image-overlay">
+                    <b class="check"></b>
+                    <div class="image stretch">
+                        <img src="img/2.jpg" />
+                    </div>
+                    <div class="overlay">
+                        <p class="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                    </div>
+                </li>
+                <li class="metro-image-overlay">
+                    <b class="check"></b>
+                    <div class="image stretch">
+                        <img src="img/4.jpg" />
+                    </div>
+                    <div class="overlay">
+                        <p class="text">
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                            <small>Phasellus faucibus</small>
+                        </p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- .metro-icon-text -->
+        <div class="demo-scene">
+            <h2>Images Collection IconText (.metro-icon-text)</h2>
+            <div class="column">
+                <ul class="metro-images selectable">
+                    <li class="metro-icon-text-header">Microsoft Office</li>
+                    <li class="metro-icon-text">
+                        <b class="check"></b>
+                        <div class="image"><img src="img/Word.png"/></div>
+                        <div class="text">
+                            <div class="title">Microsoft Word</div>
+                            <div class="subtitle">Text processor</div>
+                        </div>
+                    </li>
+                    <li class="metro-icon-text">
+                        <b class="check"></b>
+                        <div class="image"><img src="img/Excel.png"/></div>
+                        <div class="text">
+                            <div class="title">Microsoft Excel</div>
+                            <div class="subtitle">Tables processor</div>
+                        </div>
+                    </li>
+                    <li class="metro-icon-text">
+                        <b class="check"></b>
+                        <div class="image"><img src="img/PowerPoint.png"/></div>
+                        <div class="text">
+                            <div class="title">Microsoft PowerPoint</div>
+                            <div class="subtitle">Presentation system</div>
+                        </div>
+                    </li>
+                    <li class="metro-icon-text">
+                        <b class="check"></b>
+                        <div class="image"><img src="img/Access.png"/></div>
+                        <div class="text">
+                            <div class="title">Microsoft Access</div>
+                            <div class="subtitle">Database system</div>
+                        </div>
+                    </li>
+                    <li class="metro-icon-text-header">Any Soft</li>
+                    <li class="metro-icon-text selected">
+                        <b class="check"></b>
+                        <div class="image"><img src="img/Messaging.png"/></div>
+                        <div class="text">
+                            <div class="title">Any text</div>
+                            <div class="subtitle">Database system</div>
+                        </div>
+                    </li>
+                    <li class="metro-icon-text">
+                        <b class="check"></b>
+                        <div class="image"></div>
+                        <div class="text">
+                            <div class="title">Empty image wrapper</div>
+                            <div class="subtitle">Database system</div>
+                        </div>
+                    </li>
+                    <li class="metro-icon-text">
+                        <b class="check"></b>
+                        <div class="text">
+                            <div class="title">No image</div>
+                            <div class="subtitle">Database system</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="column">
+                <ul class="metro-images selectable">
+                    <li class="metro-icon-text-header">System Application</li>
+                    <li class="metro-icon-text">
+                        <b class="check"></b>
+                        <div class="image"><img src="img/Bluetooth.png"/></div>
+                        <div class="text">
+                            <div class="title">Bluetooth</div>
+                            <div class="subtitle">Bluetooth settings</div>
+                        </div>
+                    </li>
+                    <li class="metro-icon-text">
+                        <b class="check"></b>
+                        <div class="image"><img src="img/Signal.png"/></div>
+                        <div class="text">
+                            <div class="title">WiFi</div>
+                            <div class="subtitle">WiFi settings</div>
+                        </div>
+                    </li>
+                    <li class="metro-icon-text">
+                        <b class="check"></b>
+                        <div class="image"><img src="img/Microphone%201.png"/></div>
+                        <div class="text">
+                            <div class="title">Microphone</div>
+                            <div class="subtitle">Misrophone settings</div>
+                        </div>
+                    </li>
+                    <li class="metro-icon-text">
+                        <b class="check"></b>
+                        <div class="image"><img src="img/Videos.png"/></div>
+                        <div class="text">
+                            <div class="title">Video</div>
+                            <div class="subtitle">Video codecs</div>
+                        </div>
+                    </li>
+                    <li class="metro-icon-text">
+                        <b class="check"></b>
+                        <div class="image"><img src="img/RegEdit.png"/></div>
+                        <div class="text">
+                            <div class="title">Registry</div>
+                            <div class="subtitle">Registry Editor</div>
+                        </div>
+                    </li>
+                    <li class="metro-icon-text">
+                        <b class="check"></b>
+                        <div class="image"><img src="img/Tune-Up%20Utilities.png"/></div>
+                        <div class="text">
+                            <div class="title">TuneUp Utils</div>
+                            <div class="subtitle">System utilities</div>
+                        </div>
+                    </li>
+                    <li class="metro-icon-text">
+                        <b class="check"></b>
+                        <div class="image"><img src="img/USB.png"/></div>
+                        <div class="text">
+                            <div class="title">USB Utils</div>
+                            <div class="subtitle">USB Devices</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="column">
+                <ul class="metro-images selectable">
+                    <li class="metro-icon-text-header"><a href="#">Adobe.com</a></li>
+                    <li class="metro-icon-text">
+                        <b class="check"></b>
+                        <div class="image"><img src="img/Adobe%20Acrobat%20Reader.png"/></div>
+                        <div class="text">
+                            <div class="title">Adobe Acrobat</div>
+                            <div class="subtitle"><a href="#">Adobe.com</a></div>
+                        </div>
+                    </li>
+                    <li class="metro-icon-text">
+                        <b class="check"></b>
+                        <div class="image"><img src="img/Adobe%20Audition.png"/></div>
+                        <div class="text">
+                            <div class="title">Adobe Audition</div>
+                            <div class="subtitle"><a href="#">Adobe.com</a></div>
+                        </div>
+                    </li>
+                    <li class="metro-icon-text">
+                        <b class="check"></b>
+                        <div class="image"><img src="img/Adobe%20Dreamweaver.png"/></div>
+                        <div class="text">
+                            <div class="title">Adobe Dreamweaver</div>
+                            <div class="subtitle"><a href="#">Adobe.com</a></div>
+                        </div>
+                    </li>
+                    <li class="metro-icon-text disabled">
+                        <b class="check"></b>
+                        <div class="image"><img src="img/Adobe%20Photoshop.png"/></div>
+                        <div class="text">
+                            <div class="title">Adobe Photoshop</div>
+                            <div class="subtitle">This is desabled element</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- .metro-icon-text -->
+        <div class="demo-scene">
+            <h2>Images Collection ImageText (.metro-image-text)</h2>
+            <ul class="metro-images selectable">
+                <li class="metro-image-text">
+                    <b class="check"></b>
+                    <div class="image"><img src="img/1.jpg"/></div>
+                    <div class="text">
+                        <div class="title">Lorem ipsum</div>
+                        <div class="subtitle">Dolor signutos</div>
+                        <div class="description">The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.</div>
+                    </div>
+                </li>
+                <li class="metro-image-text">
+                    <b class="check"></b>
+                    <div class="image"><img src="img/1.jpg"/></div>
+                    <div class="text">
+                        <div class="title">Lorem ipsum</div>
+                        <div class="subtitle">Dolor signutos</div>
+                        <div class="description">The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.</div>
+                    </div>
+                </li>
+                <li class="metro-image-text">
+                    <b class="check"></b>
+                    <div class="image"><img src="img/1.jpg"/></div>
+                    <div class="text">
+                        <div class="title">Lorem ipsum</div>
+                        <div class="subtitle">Dolor signutos</div>
+                        <div class="description">The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

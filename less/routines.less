@@ -1,0 +1,54 @@
+/*
+ * Metro UI CSS v 1.0.1
+ * Copyright 2012 Sergey Pimenov
+ * Licensed under the MIT Lilcense
+ */
+
+.place-left {float: left;}
+.place-right {float: right;}
+.pos-rel {position: relative;}
+.pos-abs {position: absolute;}
+.pos-fix {position: fixed;}
+.text-left {text-align: left;}
+.text-right {text-align: right;}
+.text-center {text-align: center;}
+.text-justify {text-align: justify;}
+.top-left {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.top-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.bottom-right {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+.bottom-left {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.clearfix:after {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+}
+.clearfix {
+    display: inline-block;
+    zoom: 1;
+}
+html[xmlns] .clearfix {
+    display: block;
+}
+* html .clearfix {
+    height: 1%;
+}

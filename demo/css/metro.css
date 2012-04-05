@@ -1,0 +1,1039 @@
+/*
+ * Metro UI CSS v 1.0.1
+ * Copyright 2012 Sergey Pimenov
+ * Licensed under the MIT Lilcense
+ */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+nav,
+section {
+  display: block;
+}
+audio, canvas, video {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+}
+audio:not([controls]) {
+  display: none;
+}
+html {
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+a:hover, a:active {
+  outline: 0;
+}
+sub, sup {
+  position: relative;
+  font-size: 75%;
+  line-height: 0;
+  vertical-align: baseline;
+}
+sup {
+  top: -0.5em;
+}
+sub {
+  bottom: -0.25em;
+}
+img {
+  max-width: 100%;
+  height: auto;
+  border: 0;
+  -ms-interpolation-mode: bicubic;
+}
+button,
+input,
+select,
+textarea {
+  margin: 0;
+  font-size: 100%;
+  vertical-align: middle;
+}
+button, input {
+  *overflow: visible;
+  line-height: normal;
+}
+button::-moz-focus-inner, input::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  cursor: pointer;
+  -webkit-appearance: button;
+}
+input[type="search"] {
+  -webkit-appearance: textfield;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
+input[type="search"]::-webkit-search-decoration, input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+}
+textarea {
+  overflow: auto;
+  vertical-align: top;
+}
+/*
+ * Metro UI CSS v 1.0.1
+ * Copyright 2012 Sergey Pimenov
+ * Licensed under the MIT Lilcense
+ */
+.bg-color-blue {
+  background-color: #2d89f0 !important;
+}
+.bg-color-blueDark {
+  background-color: #0064cd !important;
+}
+.bg-color-green {
+  background-color: #01a31c !important;
+}
+.bg-color-greenDark {
+  background-color: #005200 !important;
+}
+.bg-color-red {
+  background-color: #bc1c48 !important;
+}
+.bg-color-yellow {
+  background-color: #ffc40d !important;
+}
+.bg-color-orange {
+  background-color: #d44a26 !important;
+}
+.bg-color-pink {
+  background-color: #c3325f !important;
+}
+.bg-color-purple {
+  background-color: #603cba !important;
+}
+.bg-color-darken {
+  background-color: #1c1c1c !important;
+}
+/*
+ * Metro UI CSS v 1.0.1
+ * Copyright 2012 Sergey Pimenov
+ * Licensed under the MIT Lilcense
+ */
+.metro * {
+  font-family: Segoe UI, Tahoma, Arial, Verdana, sans-serif;
+}
+.metro h1,
+.metro h2,
+.metro h3,
+.metro h4,
+.metro h5 {
+  font-weight: lighter;
+  color: #fff;
+}
+/*
+ * Metro UI CSS v 1.0.1
+ * Copyright 2012 Sergey Pimenov
+ * Licensed under the MIT Lilcense
+ */
+.place-left {
+  float: left;
+}
+.place-right {
+  float: right;
+}
+.pos-rel {
+  position: relative;
+}
+.pos-abs {
+  position: absolute;
+}
+.pos-fix {
+  position: fixed;
+}
+.text-left {
+  text-align: left;
+}
+.text-right {
+  text-align: right;
+}
+.text-center {
+  text-align: center;
+}
+.text-justify {
+  text-align: justify;
+}
+.top-left {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.top-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.bottom-right {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+.bottom-left {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.clearfix:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+.clearfix {
+  display: inline-block;
+  zoom: 1;
+}
+html[xmlns] .clearfix {
+  display: block;
+}
+* html .clearfix {
+  height: 1%;
+}
+/*
+ * Metro UI CSS v 1.0.1
+ * Copyright 2012 Sergey Pimenov
+ * Licensed under the MIT Lilcense
+ */
+.metro .metro-sections {
+  height: auto;
+  position: relative;
+}
+.metro .metro-sections .metro-section {
+  float: left;
+  margin-right: 75px;
+  height: auto;
+  width: 960px;
+  position: relative;
+}
+.metro .metro-sections .metro-section .next-section {
+  position: absolute;
+  top: 0px;
+  right: -40px;
+  background: url(/img/next.png);
+  height: 24px;
+  width: 24px;
+}
+.metro .metro-sections .metro-section .next-section.back {
+  background: url(/img/back.png);
+}
+.metro .metro-sections .metro-section .tile {
+  display: block;
+  background-color: #2d89f0;
+  width: 150px;
+  height: 150px;
+  color: #fff;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  float: left;
+  box-shadow: inset 0px 0px 3px #fff;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  text-decoration: none;
+  padding-bottom: 1px;
+}
+.metro .metro-sections .metro-section .tile * {
+  font-family: Segoe UI, Tahoma, Arial, Verdana, sans-serif;
+}
+.metro .metro-sections .metro-section .tile .tile-icon-large {
+  margin-top: 20px;
+  margin-left: 0px;
+  display: table-cell;
+  vertical-align: middle !important;
+  text-align: center;
+  width: 150px;
+  padding-top: 20px;
+}
+.metro .metro-sections .metro-section .tile .tile-icon-large img {
+  width: 96px;
+  height: 96px;
+}
+.metro .metro-sections .metro-section .tile .tile-icon-cover {
+  margin-top: 20px;
+  margin-left: 0px;
+  display: table-cell;
+  vertical-align: middle !important;
+  text-align: center;
+  width: 150px;
+  padding-top: 30px;
+}
+.metro .metro-sections .metro-section .tile .tile-icon-cover img {
+  max-width: 90px;
+  height: 90px;
+}
+.metro .metro-sections .metro-section .tile .tile-icon {
+  position: absolute;
+  bottom: 10px;
+  left: 20px;
+  width: 32px;
+  height: 32px;
+}
+.metro .metro-sections .metro-section .tile .tile-label {
+  position: absolute;
+  bottom: 10px;
+  left: 20px;
+  font-size: 14px;
+  color: #fff;
+}
+.metro .metro-sections .metro-section .tile .tile-caption {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 130px;
+  padding: 2px 10px;
+  border-bottom: 1px #ff4500 solid;
+  background: #fff;
+  font-size: 14px;
+  color: #000;
+  font-size: 10px;
+  text-align: right;
+}
+.metro .metro-sections .metro-section .tile .tile-header {
+  font-size: 19px;
+  color: #7ac479;
+  text-align: left;
+  margin: 20px;
+}
+.metro .metro-sections .metro-section .tile .tile-counter {
+  position: absolute;
+  right: 20px;
+  bottom: 10px;
+  font-size: 14px;
+  font-weight: normal;
+}
+.metro .metro-sections .metro-section .tile .tile-text {
+  text-align: left;
+  margin-top: 20px;
+  margin-left: 20px;
+  font-size: 12px;
+}
+.metro .metro-sections .metro-section .tile .tile-image {
+  padding: 1px;
+}
+.metro .metro-sections .metro-section .tile .tile-image img {
+  max-height: 99%;
+  width: 100%;
+}
+.metro .metro-sections .metro-section .tile .tile-content-main {
+  height: 150px;
+  position: relative;
+  overflow: hidden;
+}
+.metro .metro-sections .metro-section .tile .tile-content-sub {
+  position: relative;
+  margin: 1px;
+  height: 50px;
+  max-height: 148px;
+  padding: 2px 5px;
+  overflow: hidden;
+  box-shadow-bottom: inset 0px 0px 3px #fff;
+}
+.metro .metro-sections .metro-section .tile.tile-double {
+  width: 310px;
+}
+.metro .metro-sections .metro-section .tile.tile-double .tile-icon-large {
+  margin-top: 20px;
+  margin-left: 107px;
+}
+.metro .metro-sections .metro-section .tile.tile-double .tile-icon-large img {
+  width: 96px;
+  height: 96px;
+}
+.metro .metro-sections .metro-section .tile.tile-double .tile-icon-cover, .metro .metro-sections .metro-section .tile.tile-double .tile-icon-large {
+  width: 310px;
+}
+/*
+ * Metro UI CSS v 1.0.1
+ * Copyright 2012 Sergey Pimenov
+ * Licensed under the MIT Lilcense
+ */
+.metro .metro-replies {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.metro .metro-replies .metro-reply {
+  width: 300px;
+  height: auto;
+  padding: 10px;
+  font-family: Segoe UI, Tahoma, Arial, Verdana, sans-serif;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  position: relative;
+  display: block;
+}
+.metro .metro-replies .metro-reply .avatar {
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+  display: table-cell;
+  vertical-align: middle !important;
+  background: #6e6e6e;
+  box-shadow-bottom: inset 0px 0px 3px #fff;
+}
+.metro .metro-replies .metro-reply .avatar img {
+  width: 100%;
+  height: 100%;
+  display: inline-block !important;
+  vertical-align: middle !important;
+}
+.metro .metro-replies .metro-reply .reply {
+  margin-left: 60px;
+  margin-top: -50px;
+}
+.metro .metro-replies .metro-reply .reply .date {
+  float: right;
+  font-size: 55%;
+  color: #ffffff;
+}
+.metro .metro-replies .metro-reply .reply .author {
+  color: #ffffff;
+}
+.metro .metro-replies .metro-reply .reply .text {
+  font-size: 12px;
+  color: #ffffff;
+}
+.metro .metro-replies .metro-reply .sticker {
+  width: 0;
+  height: 0;
+  border-top: 10px solid #ffffff;
+  position: absolute;
+  display: block;
+  z-index: 1000;
+}
+.metro .metro-replies .metro-reply .sticker.sticker-color-black {
+  border-top: 10px solid #000000 !important;
+}
+.metro .metro-replies .metro-reply .sticker.sticker-color-blue {
+  border-top: 10px solid #ffffff !important;
+}
+.metro .metro-replies .metro-reply .sticker.sticker-color-blueDark {
+  border-top: 10px solid #0064cd !important;
+}
+.metro .metro-replies .metro-reply .sticker.sticker-color-green {
+  border-top: 10px solid #01a31c !important;
+}
+.metro .metro-replies .metro-reply .sticker.sticker-color-greenDark {
+  border-top: 10px solid #005200 !important;
+}
+.metro .metro-replies .metro-reply .sticker.sticker-color-red {
+  border-top: 10px solid #bc1c48 !important;
+}
+.metro .metro-replies .metro-reply .sticker.sticker-color-yellow {
+  border-top: 10px solid #ffc40d !important;
+}
+.metro .metro-replies .metro-reply .sticker.sticker-color-orange {
+  border-top: 10px solid #d44a26 !important;
+}
+.metro .metro-replies .metro-reply .sticker.sticker-color-pink {
+  border-top: 10px solid #c3325f !important;
+}
+.metro .metro-replies .metro-reply .sticker.sticker-color-purple {
+  border-top: 10px solid #603cba !important;
+}
+.metro .metro-replies .metro-reply .sticker.sticker-color-darken {
+  border-top: 10px solid #1c1c1c !important;
+}
+.metro .metro-replies .metro-reply .sticker.sticker-left {
+  border-left: 20px solid transparent !important;
+  left: -20px;
+}
+.metro .metro-replies .metro-reply .sticker.sticker-right {
+  border-right: 20px solid transparent !important;
+  right: -20px;
+}
+.metro .metro-notices {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.metro .metro-notices .metro-notice {
+  width: 385px;
+  height: 90px;
+  display: block;
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 0px 0px 3px #fff;
+  margin-bottom: 10px;
+}
+.metro .metro-notices .metro-notice .header {
+  margin-top: 15px;
+  margin-right: 25px;
+  margin-left: 10px;
+  color: #fff;
+  font-family: Segoe UI, Tahoma, Arial, Verdana, sans-serif;
+  font-size: 13px;
+  font-weight: bolder;
+}
+.metro .metro-notices .metro-notice .text {
+  margin-right: 45px;
+  margin-left: 10px;
+  color: #fff;
+  font-family: Segoe UI, Tahoma, Arial, Verdana, sans-serif;
+  font-size: 12px;
+  font-weight: lighter;
+}
+.metro .metro-notices .metro-notice .icon {
+  position: absolute;
+  right: 10px;
+  bottom: 5px;
+}
+.metro .metro-notices .metro-notice .icon img {
+  width: 32px;
+  height: 32px;
+}
+.metro .metro-notices .metro-notice .image {
+  max-height: 48px;
+  width: 48px;
+  height: 48px;
+  margin: 20px 30px 20px 20px;
+  float: left;
+}
+.metro .metro-notices .metro-notice .image img {
+  width: 48px;
+  height: 48px;
+}
+.metro .metro-notices .metro-notice .close {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+  text-decoration: none;
+}
+.metro .metro-notices .metro-notice .close::before {
+  content: "\00d7";
+}
+.metro .metro-notices .metro-notice .image-large {
+  width: 88px;
+  height: 88px;
+  margin: 1px 10px 1px 1px;
+  overflow: hidden;
+  float: left;
+}
+.metro .metro-notices .metro-notice .image-large img {
+  width: 88px;
+  height: 88px;
+}
+/*
+ * Metro UI CSS v 1.0.1
+ * Copyright 2012 Sergey Pimenov
+ * Licensed under the MIT Lilcense
+ */
+.metro .metro-images {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.metro .metro-images .metro-image {
+  display: block;
+  float: left;
+  width: 190px;
+  height: 130px;
+  overflow: hidden;
+  border: 4px transparent solid;
+  margin: 0 10px 10px 0;
+  position: relative;
+  cursor: pointer;
+}
+.metro .metro-images .metro-image .image {
+  width: 190px;
+  height: 130px;
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  background: #6e6e6e;
+  z-index: 1;
+  overflow: hidden;
+}
+.metro .metro-images .metro-image .image img {
+  max-width: 190px;
+  max-height: 130px;
+  display: inline-block !important;
+  vertical-align: middle !important;
+}
+.metro .metro-images .metro-image:hover {
+  border: 4px #57d3d9 solid;
+}
+.metro .metro-images .metro-image:hover .overlay.floatable {
+  -webkit-transform: translate(0, -30px);
+  -ms-transform: translate(0, -30px);
+  -o-transform: translate(0, -30px);
+  -moz-transform: translate(0, -30px);
+  transform: translate(0, -30px);
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s easet;
+}
+.metro .metro-images .metro-image:hover .overlay.double.floatable {
+  -webkit-transform: translate(0, -60px);
+  -ms-transform: translate(0, -60px);
+  -o-transform: translate(0, -60px);
+  -moz-transform: translate(0, -60px);
+  transform: translate(0, -60px);
+}
+.metro .metro-images .metro-image .overlay {
+  z-index: 2;
+  position: absolute;
+  bottom: 0;
+  height: 30px;
+  width: 100%;
+  background: #262626;
+  overflow: hidden;
+  text-align: center;
+  display: block;
+  float: none;
+}
+.metro .metro-images .metro-image .overlay * {
+  margin: 0;
+  padding: 0;
+}
+.metro .metro-images .metro-image .overlay .text {
+  color: #ffffff;
+  font-size: 14px;
+  padding-top: 5px;
+}
+.metro .metro-images .metro-image .overlay.double {
+  height: 60px;
+}
+.metro .metro-images .metro-image .overlay.floatable {
+  bottom: -30px;
+}
+.metro .metro-images .metro-image .overlay.double.floatable {
+  bottom: -60px;
+}
+.metro .metro-images .metro-image-overlay {
+  display: block;
+  float: left;
+  width: 250px;
+  height: 250px;
+  overflow: hidden;
+  border: 4px transparent solid;
+  margin: 0 10px 10px 0;
+  position: relative;
+  cursor: pointer;
+}
+.metro .metro-images .metro-image-overlay .image {
+  width: 250px;
+  height: 160px;
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  background: #6e6e6e;
+  z-index: 1;
+  overflow: hidden;
+}
+.metro .metro-images .metro-image-overlay .image img {
+  max-width: 250px;
+  max-height: 160px;
+  display: inline-block !important;
+  vertical-align: middle !important;
+}
+.metro .metro-images .metro-image-overlay .overlay {
+  z-index: 2;
+  position: absolute;
+  bottom: 0;
+  height: 90px;
+  width: 100%;
+  background: #262626;
+  overflow: hidden;
+  text-align: center;
+  display: block;
+  float: none;
+}
+.metro .metro-images .metro-image-overlay .overlay * {
+  margin: 0;
+  padding: 0;
+}
+.metro .metro-images .metro-image-overlay .overlay .text {
+  color: #ffffff;
+  font-size: 14px;
+  text-align: left;
+  padding: 5px 20px;
+}
+.metro .metro-images .metro-image-overlay .overlay .text small {
+  font-size: 10px;
+  color: #909090;
+  display: block;
+  margin: 5px 0;
+}
+.metro .metro-images .metro-image-overlay:hover {
+  border: 4px #57d3d9 solid;
+}
+.metro .metro-images .metro-image .image.stretch img, .metro .metro-images .metro-image-overlay .image.stretch img {
+  width: 100% !important;
+  height: 100% !important;
+}
+.metro .metro-images .metro-image .image.stretchH img, .metro .metro-images .metro-image-overlay .image.stretchH img {
+  height: 100% !important;
+  max-width: auto !important;
+}
+.metro .metro-images .metro-image .image.stretchW img, .metro .metro-images .metro-image-overlay .image.stretchW img {
+  width: 100% !important;
+  max-height: auto !important;
+}
+.metro .metro-images .metro-image.no-hovered, .metro .metro-images .metro-image-overlay.no-hovered {
+  border: 4px transparent solid;
+}
+.metro .metro-images .metro-image.selected,
+.metro .metro-images .metro-image-overlay.selected,
+.metro .metro-images .metro-icon-text.selected,
+.metro .metro-images .metro-image-text.selected {
+  border: 4px #219297 solid;
+}
+.metro .metro-images .metro-image.selected b.check,
+.metro .metro-images .metro-image-overlay.selected b.check,
+.metro .metro-images .metro-icon-text.selected b.check,
+.metro .metro-images .metro-image-text.selected b.check {
+  width: 0;
+  height: 0;
+  border-top: 30px solid #219297;
+  border-left: 30px solid transparent;
+  position: absolute;
+  display: block;
+  right: 0;
+}
+.metro .metro-images .metro-image.selected b.check:after,
+.metro .metro-images .metro-image-overlay.selected b.check:after,
+.metro .metro-images .metro-icon-text.selected b.check:after,
+.metro .metro-images .metro-image-text.selected b.check:after {
+  position: absolute;
+  content: "\2713";
+  color: #fff;
+  top: -35px;
+  right: 0px;
+}
+.metro .metro-images .metro-icon-text.selected {
+  border: 0;
+  background: #219297;
+}
+.metro .metro-images .metro-icon-text.selected b.check:after {
+  right: 5px;
+  top: -30px;
+}
+.metro .metro-images .metro-icon-text-header {
+  text-decoration: none;
+  color: #fff;
+  margin: 20px 0;
+  text-decoration: none;
+}
+.metro .metro-images .metro-icon-text-header * {
+  color: #fff;
+  text-decoration: none;
+}
+.metro .metro-images .metro-icon-text.disabled * {
+  color: #696969 !important;
+}
+.metro .metro-images .metro-icon-text.disabled:hover {
+  background: transparent;
+}
+.metro .metro-images .metro-icon-text {
+  display: block;
+  width: 250px;
+  height: 60px;
+  overflow: hidden;
+  margin: 0 10px 10px 0;
+  position: relative;
+  cursor: pointer;
+  background: transparent;
+  padding-bottom: 10px;
+}
+.metro .metro-images .metro-icon-text .image {
+  margin: 10px 0 10px 10px;
+  background: #6e6e6e;
+  border: 4px #464646 solid;
+  width: 40px;
+  height: 40px;
+  float: left;
+}
+.metro .metro-images .metro-icon-text .image img {
+  width: 100%;
+  height: 100%;
+}
+.metro .metro-images .metro-icon-text .text {
+  margin: 15px 20px 10px 65px;
+}
+.metro .metro-images .metro-icon-text .text .title {
+  color: #fff;
+  font-size: 95%;
+  font-weight: bold;
+}
+.metro .metro-images .metro-icon-text .text .subtitle {
+  font-size: 75%;
+  color: #ccc;
+}
+.metro .metro-images .metro-icon-text:hover {
+  background: #219297;
+}
+.metro .metro-images .metro-image-text {
+  display: block;
+  width: 480px;
+  height: 110px;
+  margin: 0 10px 10px 0;
+  position: relative;
+  cursor: pointer;
+  background: transparent;
+  padding: 10px;
+  overflow: hidden;
+}
+.metro .metro-images .metro-image-text:hover {
+  background: #219297;
+}
+.metro .metro-images .metro-image-text:hover * {
+  color: #fff !important;
+}
+.metro .metro-images .metro-image-text .image {
+  margin: 10px;
+  width: 110px;
+  height: 110px;
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  background: #6e6e6e;
+  z-index: 1;
+  overflow: hidden;
+}
+.metro .metro-images .metro-image-text .image img {
+  max-width: 110px;
+  display: inline-block !important;
+  vertical-align: middle !important;
+}
+.metro .metro-images .metro-image-text .text {
+  margin-left: 120px;
+  margin-top: -115px;
+}
+.metro .metro-images .metro-image-text .text .title {
+  font-size: 100%;
+  color: #ffffff;
+}
+.metro .metro-images .metro-image-text .text .subtitle {
+  font-size: 75%;
+  color: #7b7b7b;
+}
+.metro .metro-images .metro-image-text .text .description {
+  font-size: 90%;
+  color: #ffffff;
+}
+.metro .metro-images .metro-image-text.selected {
+  border: 0;
+  background: #219297;
+}
+.metro .metro-images .metro-image-text.selected * {
+  color: #fff !important;
+}
+.metro .metro-images .metro-image-text.selected b.check:after {
+  right: 5px;
+  top: -40px;
+}
+/*
+ * Metro UI CSS v 1.0.1
+ * Copyright 2012 Sergey Pimenov
+ * Licensed under the MIT Lilcense
+ */
+.metro .metro-button {
+  text-decoration: none;
+  border: 2px #ffffff solid;
+  padding: 5px 20px;
+  float: left;
+  margin: 10px 10px 0 10px;
+  color: #ffffff;
+  background: #1d1d1d;
+  cursor: pointer;
+  min-width: 50px;
+  min-height: 22px;
+  display: inline-block;
+  position: relative;
+}
+.metro .metro-button:hover {
+  background: #3a3a3a;
+}
+.metro .metro-button:active {
+  background: #ffffff;
+  color: #1d1d1d;
+  top: 1px;
+  left: 1px;
+}
+.metro .metro-button.disabled,
+.metro .metro-button[disabled],
+.metro .metro-button.action.disabled,
+.metro .metro-command-button.disabled,
+.metro .metro-command-button[disabled] {
+  border-color: #3a3a3a;
+  color: #3a3a3a;
+  cursor: default;
+  background: #1d1d1d !important;
+}
+.metro .metro-button.disabled:hover,
+.metro .metro-button[disabled]:hover,
+.metro .metro-button.action.disabled:hover,
+.metro .metro-command-button.disabled:hover,
+.metro .metro-command-button[disabled]:hover {
+  background: #1d1d1d;
+}
+.metro .metro-button.disabled:active,
+.metro .metro-button[disabled]:active,
+.metro .metro-button.action.disabled:active,
+.metro .metro-command-button.disabled:active,
+.metro .metro-command-button[disabled]:active {
+  top: 0;
+  left: 0;
+}
+.metro input.metro-button, .metro button.metro-button {
+  min-width: 94px !important;
+}
+.metro .metro-button.cancel {
+  background: #898888;
+  color: #ffffff;
+}
+.metro .metro-button.cancel:active {
+  background: #898888;
+}
+.metro .metro-button.action {
+  background: #008287;
+}
+.metro .metro-button.action:active {
+  background: #fff;
+}
+.metro .metro-button.action.alert {
+  background: #bc1c48;
+}
+.metro .metro-button.action.alert:active {
+  background: #fff;
+}
+.metro .metro-button.action.info {
+  background: #2d89f0;
+}
+.metro .metro-button.action.info:active {
+  background: #fff;
+}
+.metro .metro-button.action.warning {
+  background: #d44a26;
+}
+.metro .metro-button.action.warning:active {
+  background: #fff;
+}
+.metro .metro-button.action.success {
+  background: #01a31c;
+}
+.metro .metro-button.action.success:active {
+  background: #fff;
+}
+.metro .metro-command-button {
+  text-decoration: none;
+  border: 2px #ffffff solid;
+  padding: 5px 20px 10px;
+  display: block;
+  width: 240px;
+  height: 40px;
+  background: #1d1d1d;
+  position: relative;
+  margin: 10px 10px 0 10px;
+}
+.metro .metro-command-button .title {
+  color: #fff;
+  display: block;
+}
+.metro .metro-command-button .subtitle {
+  color: #a1a1a1;
+  display: block;
+  font-size: 90%;
+}
+.metro .metro-command-button:hover {
+  background: #3a3a3a;
+}
+.metro .metro-command-button:active {
+  background: #ffffff;
+  top: 1px;
+  left: 1px;
+}
+.metro .metro-command-button:active * {
+  color: #000;
+}
+.metro .metro-command-button.action {
+  background: #008287;
+}
+.metro .metro-command-button.action:active {
+  background: #fff;
+}
+.metro button.metro-command-button {
+  text-align: left;
+  min-width: 285px !important;
+  min-height: 60px;
+}
+.metro .metro-command-button.disabled .title,
+.metro .metro-command-button[disabled] .title,
+.metro .metro-command-button.disabled .subtitle,
+.metro .metro-command-button[disabled] .subtitle {
+  color: #3a3a3a;
+}
+.metro .metro-command-button.disabled:active .title,
+.metro .metro-command-button[disabled]:active .title,
+.metro .metro-command-button.disabled:active .subtitle,
+.metro .metro-command-button[disabled]:active .subtitle {
+  color: #3a3a3a;
+}
+/*
+ * Metro UI CSS v 1.0.1
+ * Copyright 2012 Sergey Pimenov
+ * Licensed under the MIT Lilcense
+ */
+/*
+ * Metro UI CSS v 1.0.1
+ * Copyright 2012 Sergey Pimenov
+ * Licensed under the MIT Lilcense
+ */
+.metro.metro-theme-dark h1,
+.metro.metro-theme-dark h2,
+.metro.metro-theme-dark h3,
+.metro.metro-theme-dark h4,
+.metro.metro-theme-dark h5,
+.metro.metro-theme-dark h6 {
+  color: #fff !important;
+}
+.metro.metro-theme-dark .metro-replies .metro-reply {
+  background: #1c1c1c;
+}
+.metro.metro-theme-dark .metro-replies .metro-reply * {
+  color: #ffffff;
+}
+.metro.metro-theme-light h1,
+.metro.metro-theme-light h2,
+.metro.metro-theme-light h3,
+.metro.metro-theme-light h4,
+.metro.metro-theme-light h5,
+.metro.metro-theme-light h6 {
+  color: #1e1e1e;
+}
+.metro.metro-theme-light .metro-replies .metro-reply {
+  background: #2d89f0;
+}
+.metro.metro-theme-light .metro-replies .metro-reply * {
+  color: #1c1c1c;
+}
+.metro {
+  overflow: hidden;
+  width: 100%;
+}
+a {
+  color: #ff8c00;
+  text-decoration: none;
+}
