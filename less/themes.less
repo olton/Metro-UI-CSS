@@ -5,6 +5,8 @@
  */
 
 .metro.metro-theme-dark {
+    background: #0D232E;
+
     h1, h2, h3, h4, h5, h6 {
         color: #fff !important;
     }
@@ -25,6 +27,25 @@
         color: #1e1e1e;
     }
 
+    .tile {
+        .tile-caption {
+        }
+    }
+
+    .metro-section {
+        .next-section {
+            position: absolute;
+            top: 0px;
+            right: -40px;
+            background: url(/img/next-black.png);
+            height: 24px;
+            width: 24px;
+        }
+        .next-section.back {
+            background: url(/img/back-black.png);
+        }
+    }
+
     .metro-replies {
         .metro-reply {
             background: @blue;
@@ -33,5 +54,60 @@
                 color: @darken;
             }
         }
+    }
+
+    .metro-icon-text {
+        .text {
+            .title {
+                color: #000;
+            }
+            .subtitle {
+                color: @darken;
+            }
+        }
+    }
+    .metro-icon-text.selected {
+        .text {
+            .title {
+                color: #fff;
+            }
+            .subtitle {
+                color: #fff;
+            }
+        }
+    }
+    .metro-icon-text-header {
+        color: @darken;
+    }
+
+    .metro-image-text {
+        .text {
+            .title {
+                color: #000;
+            }
+            .subtitle {
+                color: @darken;
+            }
+            .description {
+                color: @darken;
+            }
+        }
+    }
+    .metro-icon-text.selected {
+        .text {
+            .title {
+                color: #fff;
+            }
+            .subtitle {
+                color: #fff;
+            }
+        }
+    }
+    .metro-icon-text-header {
+        color: @darken;
+    }
+
+    .metro-button, .metro-command-button {
+        border: #dddddd 2px solid;
     }
 }
