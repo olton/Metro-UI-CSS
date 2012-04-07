@@ -4,24 +4,45 @@
  * Licensed under the MIT Lilcense
  */
 
- // CSS Reset
- @import "reset.less";
+// CSS Reset
+@import "reset.less";
 
- @import "variables.less";
- @import "typography.less";
- @import "routines.less";
+@import "variables.less";
+@import "typography.less";
+@import "routines.less";
 
- @import "tiles.less";
- @import "notices.less";
- @import "images.less";
- @import "buttons.less";
- @import "form.less";
- @import "themes.less";
+@import "tiles.less";
+@import "notices.less";
+@import "images.less";
+@import "buttons.less";
+@import "form.less";
+@import "themes.less";
 
- .metro {
-     a {
+.metro {
+    background: #0D232E;
+
+    hr {
+        color: #fff;
+        background-color: #fff;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        color: #fff !important;
+    }
+
+    .metro-replies {
+        .metro-reply {
+            background: @darken;
+
+            * {
+                color: @white;
+            }
+        }
+    }
+    a {
         color: #ff8c00;
         text-decoration: none;
-     }
- }
+    }
+
+}
  

@@ -5,26 +5,18 @@
  */
 
 .metro.metro-theme-dark {
-    background: #0D232E;
-
-    h1, h2, h3, h4, h5, h6 {
-        color: #fff !important;
-    }
-
-    .metro-replies {
-        .metro-reply {
-            background: @darken;
-
-            * {
-                color: @white;
-            }
-        }
-    }
+    //this is default theme
 }
 
 .metro.metro-theme-light {
+    background: #fff;
+
+    a {
+        color: @blue;
+    }
+
     h1, h2, h3, h4, h5, h6 {
-        color: #1e1e1e;
+        color: #1e1e1e !important;
     }
 
     .tile {
@@ -65,18 +57,26 @@
                 color: @darken;
             }
         }
+        &:hover {
+            .text {
+                * {
+                    color: #fff;
+                }
+            }
+        }
     }
     .metro-icon-text.selected {
         .text {
-            .title {
-                color: #fff;
-            }
-            .subtitle {
+            * {
                 color: #fff;
             }
         }
     }
     .metro-icon-text-header {
+        color: @darken;
+    }
+
+    .metro-icon-text-header a {
         color: @darken;
     }
 
@@ -110,4 +110,5 @@
     .metro-button, .metro-command-button {
         border: #dddddd 2px solid;
     }
+
 }
