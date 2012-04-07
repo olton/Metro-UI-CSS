@@ -1,0 +1,44 @@
+@media (max-width: 480px) {
+    body {
+        padding-top: 70px;
+    }
+    #google-plus-one {
+        margin-top: 0 !important;
+    }
+}
+
+@media (min-width: 480px) and (max-width: 768px) {
+    #google-plus-one {
+        margin-top: 0 !important;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        padding-top: 0;
+    }
+    #google-plus-one {
+        margin-top: 0 !important;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 980px) {
+    body {
+        padding-top: 0;
+    }
+    #google-plus-one {
+        margin-top: 0 !important;
+    }
+}
+
+@media (max-width: 980px) {
+    .navbar-fixed-top .brand {
+        float: left;
+        margin-left: 0;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    #google-plus-one {
+        margin-top: 0 !important;
+    }
+}
