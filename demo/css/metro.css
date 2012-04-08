@@ -1000,6 +1000,40 @@ html[xmlns] .clearfix {
  * Copyright 2012 Sergey Pimenov
  * Licensed under the MIT Lilcense
  */
+.metro .metro-switch {
+  width: 43px;
+  height: 13px;
+  outline: 2px #777777 solid;
+  border: 1px #1c1c1c solid;
+  cursor: pointer;
+  background: #6c6c6c;
+  margin-left: 2px;
+  position: relative;
+  display: block;
+}
+.metro .metro-switch .switcher {
+  position: absolute;
+  top: -3px;
+  left: -4px;
+  width: 16px;
+  height: 19px;
+  background: #ffffff;
+  display: block;
+}
+.metro .metro-switch.state-on {
+  background: #008287;
+}
+.metro .metro-switch.state-on .switcher {
+  left: 31px !important;
+}
+.metro .metro-switch.disabled, .metro .metro-switch.state-on.disabled {
+  outline-color: #4a4a4a;
+  background: #383838;
+  cursor: default;
+}
+.metro .metro-switch.disabled .switcher, .metro .metro-switch.state-on.disabled .switcher {
+  background: #6c6c6c !important;
+}
 /*
  * Metro UI CSS v 1.0.1
  * Copyright 2012 Sergey Pimenov
@@ -1007,6 +1041,9 @@ html[xmlns] .clearfix {
  */
 .metro.metro-theme-light {
   background: #fff;
+}
+.metro.metro-theme-light * {
+  color: #1c1c1c;
 }
 .metro.metro-theme-light a {
   color: #2d89f0;
@@ -1018,6 +1055,9 @@ html[xmlns] .clearfix {
 .metro.metro-theme-light h5,
 .metro.metro-theme-light h6 {
   color: #1e1e1e !important;
+}
+.metro.metro-theme-light .tile * {
+  color: #ffffff;
 }
 .metro.metro-theme-light .metro-section .next-section {
   position: absolute;
@@ -1075,8 +1115,30 @@ html[xmlns] .clearfix {
 .metro.metro-theme-light .metro-button, .metro.metro-theme-light .metro-command-button {
   border: #dddddd 2px solid;
 }
+.metro.metro-theme-light .metro-switch {
+  outline: 2px #b5b5b5 solid;
+  border: 1px #fff solid;
+  background: #a6a6a6;
+}
+.metro.metro-theme-light .metro-switch .switcher {
+  background: #333333;
+}
+.metro.metro-theme-light .metro-switch.state-on {
+  background: #008287;
+}
+.metro.metro-theme-light .metro-switch.disabled, .metro.metro-theme-light .metro-switch.state-on.disabled {
+  outline-color: #d6d6d6;
+  background: #e0e0e0;
+  cursor: default;
+}
+.metro.metro-theme-light .metro-switch.disabled .switcher, .metro.metro-theme-light .metro-switch.state-on.disabled .switcher {
+  background: #a6a6a6 !important;
+}
 .metro {
-  background: #0D232E;
+  background: #1d1d1d;
+}
+.metro * {
+  color: #ffffff;
 }
 .metro hr {
   color: #fff;

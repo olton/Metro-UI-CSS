@@ -184,5 +184,12 @@
             })
         })
 
+        // Metro-Switchers
+        var switchers = $(".metro-switch");
+        switchers.bind("click", function(){
+            var el = $(this);
+            if (el.hasClass('disabled') || el.hasClass('static')) return false;
+            el.toggleClass("state-on");
+        })
     }
 })(jQuery)

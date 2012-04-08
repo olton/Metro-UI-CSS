@@ -11,6 +11,10 @@
 .metro.metro-theme-light {
     background: #fff;
 
+    * {
+        color: @darken;
+    }
+
     a {
         color: @blue;
     }
@@ -21,6 +25,10 @@
 
     .tile {
         .tile-caption {
+        }
+
+        * {
+            color: @white;
         }
     }
 
@@ -109,6 +117,32 @@
 
     .metro-button, .metro-command-button {
         border: #dddddd 2px solid;
+    }
+
+
+
+    .metro-switch {
+        outline: 2px #b5b5b5 solid;
+        border: 1px #fff solid;
+        background: #a6a6a6;
+
+        .switcher {
+            background: #333333;
+        }
+    }
+
+    .metro-switch.state-on {
+        background: #008287;
+    }
+
+    .metro-switch.disabled, .metro-switch.state-on.disabled {
+        outline-color: #d6d6d6;
+        background: #e0e0e0;
+        cursor: default;
+
+        .switcher {
+            background: #a6a6a6 !important;
+        }
     }
 
 }

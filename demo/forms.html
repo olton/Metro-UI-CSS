@@ -25,6 +25,7 @@
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/prettify.js"></script>
     <script type="text/javascript" src="js/metro.js"></script>
+    <script type="text/javascript" src="js/site.js"></script>
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -95,7 +96,7 @@
                         <li><a href="https://github.com/olton/Metro-UI-CSS"><i class="icon-github-sign"></i>Github</a></li>
                     </ul>
                     <ul class="nav pull-right">
-                        <li><div id="google-plus-one"><g:plusone size="small"></g:plusone></div></li>
+                        <li><a href="#" onclick="switchTheme()">Switch Theme</a></li>
                     </ul>
                 </div>
             </div>
@@ -105,7 +106,46 @@
     <div class="container">
         <div class="metro metro-theme-light">
             <h1 class="start">Форма и элементы ввода</h1>
-            
+            <h2>Переключатель</h2>
+
+            <div class="row">
+                <div class="span3">
+                    <h3>Выключен / Off</h3>
+                    <br />
+
+                    <div class="metro-switch static">
+                        <div class="switcher"></div>
+                    </div>
+                </div>
+                <div class="span3">
+                    <h3>Включен / On</h3>
+                    <br />
+
+                    <div class="metro-switch state-on static">
+                        <div class="switcher"></div>
+                    </div>
+                </div>
+                <div class="span3">
+                    <h3>Неактивен / Disabled</h3>
+                    <br />
+
+                    <div class="metro-switch disabled">
+                        <div class="switcher"></div>
+                    </div>
+                </div>
+                <div class="span3">
+                    <h3>Демо</h3>
+                    <br />
+
+                    <div class="metro-switch">
+                        <div class="switcher"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+            </div>
+            <br class=""/>
+            <br class=""/>
             <p>В процессе...</p>
         </div>
         <footer class="footer">
