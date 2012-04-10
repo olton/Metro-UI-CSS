@@ -246,7 +246,6 @@ html[xmlns] .clearfix {
   color: #fff;
   margin: 5px;
   float: left;
-  box-shadow: inset 0px 0px 3px #fff;
   position: relative;
   cursor: pointer;
   overflow: hidden;
@@ -329,11 +328,11 @@ html[xmlns] .clearfix {
   font-size: 12px;
 }
 .metro .metro-sections .metro-section .tile .tile-image {
-  padding: 1px;
+  padding: 0px;
 }
 .metro .metro-sections .metro-section .tile .tile-image img {
-  max-height: 99%;
-  width: 100%;
+  min-height: 100%;
+  min-width: 100%;
 }
 .metro .metro-sections .metro-section .tile .tile-content-main {
   height: 150px;
