@@ -235,14 +235,16 @@ html[xmlns] .clearfix {
 .metro .metro-sections .metro-section .next-section.back {
   background: url(/img/back.png);
 }
+.metro .metro-sections .metro-section .tile:hover {
+  outline: 3px #225a68 solid;
+}
 .metro .metro-sections .metro-section .tile {
   display: block;
   background-color: #2d89f0;
   width: 150px;
   height: 150px;
   color: #fff;
-  margin-right: 10px;
-  margin-bottom: 10px;
+  margin: 5px;
   float: left;
   box-shadow: inset 0px 0px 3px #fff;
   position: relative;
@@ -1135,7 +1137,7 @@ html[xmlns] .clearfix {
   background: #a6a6a6 !important;
 }
 .metro {
-  background: #1d1d1d;
+  background: #004050;
 }
 .metro * {
   color: #ffffff;

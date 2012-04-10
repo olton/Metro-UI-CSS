@@ -31,14 +31,17 @@
                 background: url(/img/back.png);
             }
 
+            .tile:hover {
+                outline: 3px #225a68 solid;
+            }
+
             .tile {
                 display: block;
                 background-color: @blue;
                 width: @tileSmall;
                 height: @tileSmall;
                 color: #fff;
-                margin-right: @tileMargin;
-                margin-bottom: @tileMargin;
+                margin: @tileMargin;
                 float: left;
                 box-shadow: inset 0px 0px 3px #fff;
                 position: relative;
