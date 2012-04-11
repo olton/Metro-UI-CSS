@@ -1037,45 +1037,55 @@ html[xmlns] .clearfix {
   background: #6c6c6c !important;
 }
 .metro .metro-form .metro-radio {
-  display: block;
+  cursor: pointer;
+  cursor: hand;
+}
+.metro .metro-form .metro-radio input[type=radio], .metro .metro-form .metro-radio input[type=radio] + span, .metro .metro-form .metro-radio input[type=radio] + span::before {
+  vertical-align: middle;
+  display: inline-block;
 }
 .metro .metro-form .metro-radio input[type=radio] {
-  height: 22px !important;
-  width: 22px !important;
-  cursor: pointer;
-  border: 0px #cfcfcf solid;
-  background: #cfcfcf;
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  -o-appearance: none;
-  appearance: none;
-  border-radius: 50%;
-  display: inline-block;
+  position: absolute;
+  filter: alpha(opacity=0);
+  -moz-opacity: 0;
+  opacity: 0;
 }
-.metro .metro-form .metro-radio input[type=radio]:hover {
-  border: 0px #fff solid;
+.metro .metro-form .metro-radio input[type=radio] + span {
+  font: normal 13px/14px "Segoe UI", Sans-serif;
+}
+.metro .metro-form .metro-radio:hover input[type=radio] + span::before {
   background: #fff;
+  border: 6px #fff solid;
 }
-.metro .metro-form .metro-radio input[type=radio]:disabled {
-  border: 0px #868686 solid;
+.metro .metro-form .metro-radio:hover input[type=radio]:checked + span::before {
+  border: 6px #e0e0e0 solid;
+}
+.metro .metro-form .metro-radio input[type=radio] + span::before {
+  content: "\2022";
+  text-indent: -9999px;
+  width: 12px;
+  height: 12px;
+  border: 6px #cfcfcf solid;
+  background: #cfcfcf;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.metro .metro-form .metro-radio input[type=radio]:checked + span::before {
+  background: #212121;
+  border: 6px #cfcfcf solid;
+}
+.metro .metro-form .metro-radio input[type=radio]:not(:checked):disabled + span::before {
+  cursor: default;
   background: #868686;
+  border: 6px #868686 solid;
+}
+.metro .metro-form .metro-radio input[type=radio]:disabled + span::before {
   cursor: default;
+  background: #484848;
+  border: 6px #868686 solid;
 }
-.metro .metro-form .metro-radio input[type=radio]:checked {
-  border: 5px #cfcfcf solid;
-  background: #000 !important;
-}
-.metro .metro-form .metro-radio input[type=radio]:checked:hover {
-  border: 5px #fff solid;
-  background: #000;
-}
-.metro .metro-form .metro-radio input[type=radio]:checked:disabled {
-  border: 5px #868686 solid;
-  background: #484848 !important;
-  cursor: default;
-}
-.metro .metro-form .metro-radio label {
-  display: inline-block;
+.metro .metro-form .metro-radio:hover input[type=radio]:disabled + span::before {
+  border: 6px #868686 solid;
 }
 /*
  * Metro UI CSS v 1.0.1

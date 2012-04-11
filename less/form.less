@@ -52,55 +52,68 @@
     .metro-form {
 
         .metro-radio {
-            display: block;
+            cursor: pointer;
+            cursor: hand;
+
+            input[type=radio],
+            input[type=radio] + span,
+            input[type=radio] + span::before {
+                vertical-align: middle;
+                display: inline-block;
+            }
 
             input[type=radio] {
-                height: 22px !important;
-                width: 22px !important;
-                cursor: pointer;
-                border: 0px #cfcfcf solid;
+                position: absolute;
+                filter: alpha(opacity=0);
+                -moz-opacity: 0;
+                opacity: 0;
+            }
+
+            input[type=radio] + span {
+                font: normal 13px/14px "Segoe UI", Sans-serif;
+            }
+
+            &:hover input[type=radio] + span::before {
+                background: #fff;
+                border: 6px #fff solid;
+            }
+
+            &:hover input[type=radio]:checked + span::before, {
+                border: 6px #e0e0e0 solid;
+            }
+
+            input[type=radio] + span::before {
+                content: "\2022";
+                text-indent: -9999px;
+                width: 12px;
+                height: 12px;
+                border: 6px #cfcfcf solid;
                 background: #cfcfcf;
-                -moz-appearance : none;
-                -webkit-appearance : none;
-                -o-appearance : none;
-                appearance : none;
                 border-radius: 50%;
-                display: inline-block;
-
-                &:hover {
-                    border: 0px #fff solid;
-                    background: #fff;
-                }
-
-                &:disabled {
-                    border: 0px #868686 solid;
-                    background: #868686;
-                    cursor: default;
-                }
-
-                &:checked {
-                    border: 5px #cfcfcf solid;
-                    background: #000 !important;
-
-                    &:hover {
-                        border: 5px #fff solid;
-                        background: #000;
-                    }
-
-                    &:disabled {
-                        border: 5px #868686 solid;
-                        background: #484848 !important;
-                        cursor: default;
-                    }
-                }
-
+                margin-right: 10px;
             }
 
-            label {
-                display: inline-block;
-                //font-size: 15pt;
+            input[type=radio]:checked + span::before {
+                background: #212121;
+                border: 6px #cfcfcf solid;
             }
+
+            input[type=radio]:not(:checked):disabled + span::before {
+                cursor: default;
+                background: #868686;
+                border: 6px #868686 solid;
+            }
+
+            input[type=radio]:disabled + span::before {
+                cursor: default;
+                background: #484848;
+                border: 6px #868686 solid;
+            }
+
+            &:hover input[type=radio]:disabled + span::before {
+                border: 6px #868686 solid;
+            }
+
         }
-
     }
 }
