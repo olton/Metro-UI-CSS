@@ -51,10 +51,12 @@
 
     .metro-form {
 
-        .metro-radio {
+        .metro-radio, .metro-check {
             cursor: pointer;
             cursor: hand;
+        }
 
+        .metro-radio {
             input[type=radio],
             input[type=radio] + span,
             input[type=radio] + span::before {
@@ -112,6 +114,79 @@
 
             &:hover input[type=radio]:disabled + span::before {
                 border: 6px #868686 solid;
+            }
+
+        }
+
+        .metro-check {
+            position: relative;
+            input[type=checkbox],
+            input[type=checkbox] + span,
+            input[type=checkbox] + span::before {
+                vertical-align: middle;
+                display: inline-block;
+            }
+
+            input[type=checkbox] {
+                position: absolute;
+                filter: alpha(opacity=0);
+                -moz-opacity: 0;
+                opacity: 0;
+            }
+
+            input[type=checkbox] + span {
+                font: normal 13px/14px "Segoe UI", Sans-serif;
+            }
+
+            &:hover input[type=checkbox] + span::before {
+                background: #fff;
+            }
+
+            &:hover input[type=checkbox]:checked + span::before {
+                background: #e1e1e1;
+            }
+
+            input[type=checkbox] + span::before {
+                content: "\2714";
+                text-indent: -9999px;
+                width: 22px;
+                height: 22px;
+                background: #d1d1d1;
+                margin-right: 10px;
+            }
+
+            input[type=checkbox]:checked + span::after {
+                position: absolute;
+                content: "\2713";
+                color: #202020;
+                z-index: 1000;
+                font-size: 20px;
+                font-weight: bold;
+                font-family: Tahoma;
+                left: 3px;
+                top: 4px;
+            }
+            input[type=checkbox]:checked + span::before {
+                background: #d1d1d1;
+            }
+
+            input[type=checkbox]:not(:checked):disabled + span::before {
+                cursor: default;
+                background: #767676;
+            }
+
+            input[type=checkbox]:disabled + span::before {
+                cursor: default;
+                background: #767676;
+            }
+
+            input[type=checkbox]:disabled + span::after {
+                color: #4c4c4c;
+            }
+
+            &:hover input[type=checkbox]:disabled + span::before {
+                cursor: default;
+                background: #767676;
             }
 
         }

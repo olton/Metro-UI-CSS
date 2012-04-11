@@ -108,90 +108,64 @@
     </div>
 
     <div class="container metro">
-        <div class="">
-            <h1 class="start">Форма и элементы ввода</h1>
-            <h2>Toggle Switch / Переключатель</h2>
-
-            <div class="row">
-                <div class="span3">
-                    <h3>Выключен / Off</h3>
-                    <br />
-
-                    <div class="metro-switch static">
-                        <div class="switcher"></div>
-                    </div>
-                </div>
-                <div class="span3">
-                    <h3>Включен / On</h3>
-                    <br />
-
-                    <div class="metro-switch state-on static">
-                        <div class="switcher"></div>
-                    </div>
-                </div>
-                <div class="span3">
-                    <h3>Неактивен / Disabled</h3>
-                    <br />
-
-                    <div class="metro-switch disabled">
-                        <div class="switcher"></div>
-                    </div>
-                </div>
-                <div class="span3">
-                    <h3>Демо / Demo</h3>
-                    <br />
-
-                    <div class="metro-switch">
-                        <div class="switcher"></div>
-                    </div>
-                </div>
+        <h1 class="start">Check and Radio controls</h1>
+        <div class="row">
+            <div class="span4">
+                <h2>Radio Button</h2><br />
+                <form class="metro-form">
+                    <label class="metro-radio">
+                        <input type="radio" name="rb" checked>
+                        <span>Checked</span>
+                    </label>
+                    <label class="metro-radio">
+                        <input type="radio" name="rb">
+                        <span>Unchecked</span>
+                    </label>
+                    <label class="metro-radio">
+                        <input type="radio" name="rb" disabled>
+                        <span>Disabled</span>
+                    </label>
+                    <label class="metro-radio">
+                        <input type="radio" name="rb2" checked disabled>
+                        <span>Disabled Checked</span>
+                    </label>
+                </form>
             </div>
-            <div class="row">
+            <div class="span4">
+                <h2>Checkbox Button</h2><br />
+                <form class="metro-form">
+                    <label class="metro-check">
+                        <input type="checkbox" name="cb1" checked>
+                        <span>Checked</span>
+                    </label>
+                    <label class="metro-check">
+                        <input type="checkbox" name="cb2">
+                        <span>Unchecked</span>
+                    </label>
+                    <label class="metro-check">
+                        <input type="checkbox" name="cb3" disabled>
+                        <span>Disabled</span>
+                    </label>
+                    <label class="metro-check">
+                        <input type="checkbox" name="cb4" checked disabled>
+                        <span>Disabled Checked</span>
+                    </label>
+                </form>
             </div>
-            <br class=""/>
-            <br class=""/>
-
-            <h2>Radio Button</h2><br />
-            <form class="metro-form">
-                <!--
-                <div class="metro-radio">
-                    <input type="radio" name="rb" value="1" checked/>
-                    <label class="metro-label">radio button 1</label>
+            <div class="span4">
+                <h2>Toggle Switch</h2><br />
+                <div class="metro-switch">
+                    <div class="switcher"></div>
                 </div>
-                <div class="metro-radio">
-                    <input type="radio" name="rb" value="2"/>
-                    <label class="metro-label">radio button 2</label>
+                <br />
+                <div class="metro-switch disabled">
+                    <div class="switcher"></div>
                 </div>
-                <div class="metro-radio">
-                    <input type="radio" name="rb" value="3" disabled/>
-                    <label class="metro-label">radio button 3</label>
-                </div>
-                <div class="metro-radio">
-                    <input type="radio" name="rb2" value="4" disabled checked/>
-                    <label class="metro-label">radio button 4</label>
-                </div>
-                -->
-                <label class="metro-radio">
-                    <input type="radio" name="rb" checked>
-                    <span>Checked Radio button</span>
-                </label>
-                <label class="metro-radio">
-                    <input type="radio" name="rb">
-                    <span>Unchecked Radio button</span>
-                </label>
-                <label class="metro-radio">
-                    <input type="radio" name="rb" disabled>
-                    <span>Disabled Radio button</span>
-                </label>
-                <label class="metro-radio">
-                    <input type="radio" name="rb2" checked disabled>
-                    <span>Disabled Checked Radio button</span>
-                </label>
-            </form>
-
-
-            <p>В процессе...</p>
+                <br />
+            </div>
         </div>
+
+        <p>В процессе...</p>
 
 
         <footer class="footer">

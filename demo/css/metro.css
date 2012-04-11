@@ -1036,7 +1036,7 @@ html[xmlns] .clearfix {
 .metro .metro-switch.disabled .switcher, .metro .metro-switch.state-on.disabled .switcher {
   background: #6c6c6c !important;
 }
-.metro .metro-form .metro-radio {
+.metro .metro-form .metro-radio, .metro .metro-form .metro-check {
   cursor: pointer;
   cursor: hand;
 }
@@ -1086,6 +1086,65 @@ html[xmlns] .clearfix {
 }
 .metro .metro-form .metro-radio:hover input[type=radio]:disabled + span::before {
   border: 6px #868686 solid;
+}
+.metro .metro-form .metro-check {
+  position: relative;
+}
+.metro .metro-form .metro-check input[type=checkbox], .metro .metro-form .metro-check input[type=checkbox] + span, .metro .metro-form .metro-check input[type=checkbox] + span::before {
+  vertical-align: middle;
+  display: inline-block;
+}
+.metro .metro-form .metro-check input[type=checkbox] {
+  position: absolute;
+  filter: alpha(opacity=0);
+  -moz-opacity: 0;
+  opacity: 0;
+}
+.metro .metro-form .metro-check input[type=checkbox] + span {
+  font: normal 13px/14px "Segoe UI", Sans-serif;
+}
+.metro .metro-form .metro-check:hover input[type=checkbox] + span::before {
+  background: #fff;
+}
+.metro .metro-form .metro-check:hover input[type=checkbox]:checked + span::before {
+  background: #e1e1e1;
+}
+.metro .metro-form .metro-check input[type=checkbox] + span::before {
+  content: "\2714";
+  text-indent: -9999px;
+  width: 22px;
+  height: 22px;
+  background: #d1d1d1;
+  margin-right: 10px;
+}
+.metro .metro-form .metro-check input[type=checkbox]:checked + span::after {
+  position: absolute;
+  content: "\2713";
+  color: #202020;
+  z-index: 1000;
+  font-size: 20px;
+  font-weight: bold;
+  font-family: Tahoma;
+  left: 3px;
+  top: 4px;
+}
+.metro .metro-form .metro-check input[type=checkbox]:checked + span::before {
+  background: #d1d1d1;
+}
+.metro .metro-form .metro-check input[type=checkbox]:not(:checked):disabled + span::before {
+  cursor: default;
+  background: #767676;
+}
+.metro .metro-form .metro-check input[type=checkbox]:disabled + span::before {
+  cursor: default;
+  background: #767676;
+}
+.metro .metro-form .metro-check input[type=checkbox]:disabled + span::after {
+  color: #4c4c4c;
+}
+.metro .metro-form .metro-check:hover input[type=checkbox]:disabled + span::before {
+  cursor: default;
+  background: #767676;
 }
 /*
  * Metro UI CSS v 1.0.1
