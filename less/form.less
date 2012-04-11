@@ -48,4 +48,59 @@
             background: #6c6c6c !important;
         }
     }
+
+    .metro-form {
+
+        .metro-radio {
+            display: block;
+
+            input[type=radio] {
+                height: 22px !important;
+                width: 22px !important;
+                cursor: pointer;
+                border: 0px #cfcfcf solid;
+                background: #cfcfcf;
+                -moz-appearance : none;
+                -webkit-appearance : none;
+                -o-appearance : none;
+                appearance : none;
+                border-radius: 50%;
+                display: inline-block;
+
+                &:hover {
+                    border: 0px #fff solid;
+                    background: #fff;
+                }
+
+                &:disabled {
+                    border: 0px #868686 solid;
+                    background: #868686;
+                    cursor: default;
+                }
+
+                &:checked {
+                    border: 5px #cfcfcf solid;
+                    background: #000 !important;
+
+                    &:hover {
+                        border: 5px #fff solid;
+                        background: #000;
+                    }
+
+                    &:disabled {
+                        border: 5px #868686 solid;
+                        background: #484848 !important;
+                        cursor: default;
+                    }
+                }
+
+            }
+
+            label {
+                display: inline-block;
+                //font-size: 15pt;
+            }
+        }
+
+    }
 }

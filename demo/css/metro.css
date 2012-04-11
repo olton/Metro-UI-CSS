@@ -473,7 +473,6 @@ html[xmlns] .clearfix {
   display: block;
   overflow: hidden;
   position: relative;
-  box-shadow: inset 0px 0px 3px #fff;
   margin-bottom: 10px;
 }
 .metro .metro-notices .metro-notice .header {
@@ -1037,6 +1036,47 @@ html[xmlns] .clearfix {
 .metro .metro-switch.disabled .switcher, .metro .metro-switch.state-on.disabled .switcher {
   background: #6c6c6c !important;
 }
+.metro .metro-form .metro-radio {
+  display: block;
+}
+.metro .metro-form .metro-radio input[type=radio] {
+  height: 22px !important;
+  width: 22px !important;
+  cursor: pointer;
+  border: 0px #cfcfcf solid;
+  background: #cfcfcf;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  border-radius: 50%;
+  display: inline-block;
+}
+.metro .metro-form .metro-radio input[type=radio]:hover {
+  border: 0px #fff solid;
+  background: #fff;
+}
+.metro .metro-form .metro-radio input[type=radio]:disabled {
+  border: 0px #868686 solid;
+  background: #868686;
+  cursor: default;
+}
+.metro .metro-form .metro-radio input[type=radio]:checked {
+  border: 5px #cfcfcf solid;
+  background: #000 !important;
+}
+.metro .metro-form .metro-radio input[type=radio]:checked:hover {
+  border: 5px #fff solid;
+  background: #000;
+}
+.metro .metro-form .metro-radio input[type=radio]:checked:disabled {
+  border: 5px #868686 solid;
+  background: #484848 !important;
+  cursor: default;
+}
+.metro .metro-form .metro-radio label {
+  display: inline-block;
+}
 /*
  * Metro UI CSS v 1.0.1
  * Copyright 2012 Sergey Pimenov
@@ -1058,6 +1098,9 @@ html[xmlns] .clearfix {
 .metro.metro-theme-light h5,
 .metro.metro-theme-light h6 {
   color: #1e1e1e !important;
+}
+.metro.metro-theme-light .tile:hover {
+  outline: 3px #cfcfcf solid !important;
 }
 .metro.metro-theme-light .tile * {
   color: #ffffff;
