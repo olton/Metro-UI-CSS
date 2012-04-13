@@ -123,29 +123,89 @@
         border: #dddddd 2px solid;
     }
 
+    .metro-radio {
+        input[type=radio] + span::before {
+            border: 2px #cfcfcf solid;
+            background: #fff;
+            height: 20px;
+            width: 20px;
+        }
 
+        input[type=radio]:disabled + span::before {
+            background: #e6e6e6;
+        }
 
-    .metro-switch {
-        outline: 2px #b5b5b5 solid;
-        border: 1px #fff solid;
-        background: #a6a6a6;
+        input[type=radio]:disabled:checked + span::after {
+            background: #8a8a8a;
+        }
 
-        .switcher {
-            background: #333333;
+        &:hover input[type=radio]:checked + span::before {
+            background: #ffffff;
+        }
+        &:hover input[type=radio]:disabled + span::before {
+            background: #e6e6e6;
+        }
+        &:hover input[type=radio]:disabled:checked + span::after {
+            background: #8a8a8a;
+        }
+        &:hover input[type=radio]:checked + span::after {
+            background: #212121;
         }
     }
 
-    .metro-switch.state-on {
-        background: #008287;
+    .metro-check {
+        input[type=checkbox] + span::before {
+            border: 2px #cfcfcf solid;
+            background: #fff;
+            height: 20px;
+            width: 20px;
+        }
+
+        input[type=checkbox]:disabled + span::before {
+            background: #e6e6e6;
+        }
+
+        input[type=checkbox]:disabled:checked + span::after {
+            color: #8a8a8a;
+        }
+
+        &:hover input[type=checkbox] + span::before {
+            background: #fff;
+        }
+
+        &:hover input[type=checkbox]:disabled + span::before {
+            background: #e6e6e6;
+        }
     }
 
-    .metro-switch.disabled, .metro-switch.state-on.disabled {
-        outline-color: #d6d6d6;
-        background: #e0e0e0;
-        cursor: default;
+    .metro-switch {
+        input[type=checkbox] + span::before {
+            border-color: #fff;
+            outline-color: #a6a6a6;
+        }
+        input[type=checkbox]:not(:checked) + span::before {
+            background: #b5b5b5;
+        }
+        input[type=checkbox] + span::after {
+            background: #333;
+        }
 
-        .switcher {
-            background: #a6a6a6 !important;
+        &:hover input[type=checkbox]:checked + span::before {
+            background: #25bbc4;
+        }
+        &:hover input[type=checkbox]:not(:checked) + span::before {
+            background: #b5b5b5;
+        }
+
+        input[type=checkbox]:disabled + span::before,
+        &:hover input[type=checkbox]:disabled + span::before {
+            background: #e0e0e0;
+            outline-color: #cccccc;
+        }
+
+        input[type=checkbox]:disabled + span::after,
+        &:hover input[type=checkbox]:disabled + span::after {
+            background: #a6a6a6;
         }
     }
 

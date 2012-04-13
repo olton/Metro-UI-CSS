@@ -1002,56 +1002,15 @@ html[xmlns] .clearfix {
  * Copyright 2012 Sergey Pimenov
  * Licensed under the MIT Lilcense
  */
-.metro {
-  /*
-    .metro-switch {
-        width: 43px;
-        height: 13px;
-        outline: 2px #777777 solid;
-        border: 1px @darken solid;
-        cursor: pointer;
-        background: #6c6c6c;
-        margin-left: 2px;
-        position: relative;
-        display: block;
-
-        .switcher {
-            position: absolute;
-            top: -3px;
-            left: -4px;
-            width: 16px;
-            height: 19px;
-            background: #ffffff;
-            display: block;
-        }
-    }
-
-    .metro-switch.state-on {
-        background: #008287;
-
-        .switcher {
-            left: 31px !important;
-        }
-    }
-
-    .metro-switch.disabled, .metro-switch.state-on.disabled {
-        outline-color: #4a4a4a;
-        background: #383838;
-        cursor: default;
-
-        .switcher {
-            background: #6c6c6c !important;
-        }
-    }
-*/
-
-}
 .metro .metro-radio, .metro .metro-check, .metro .metro-switch {
   cursor: pointer;
   cursor: hand;
   position: relative;
 }
-.metro .metro-radio input[type=radio], .metro .metro-radio input[type=radio] + span, .metro .metro-radio input[type=radio] + span::before {
+.metro .metro-radio input[type=radio],
+.metro .metro-radio input[type=radio] + span,
+.metro .metro-radio input[type=radio] + span::before,
+.metro .metro-radio input[type=radio] + span::after {
   vertical-align: middle;
   display: inline-block;
 }
@@ -1064,41 +1023,63 @@ html[xmlns] .clearfix {
 .metro .metro-radio input[type=radio] + span {
   font: normal 13px/14px "Segoe UI", Sans-serif;
 }
-.metro .metro-radio:hover input[type=radio] + span::before {
-  background: #fff;
-  border: 6px #fff solid;
-}
-.metro .metro-radio:hover input[type=radio]:checked + span::before {
-  border: 6px #e0e0e0 solid;
-}
 .metro .metro-radio input[type=radio] + span::before {
   content: "\2022";
   text-indent: -9999px;
+  width: 24px;
+  height: 24px;
+  background: #cfcfcf;
+  margin-right: 10px;
+  border-radius: 50%;
+}
+.metro .metro-radio input[type=radio]:checked + span::after {
+  text-indent: -9999px;
+  position: absolute;
+  content: "\2022";
+  background: #212121;
+  z-index: 1000;
   width: 12px;
   height: 12px;
-  border: 6px #cfcfcf solid;
-  background: #cfcfcf;
   border-radius: 50%;
-  margin-right: 10px;
+  left: 6px;
+  top: 6px;
 }
 .metro .metro-radio input[type=radio]:checked + span::before {
-  background: #212121;
-  border: 6px #cfcfcf solid;
+  background: #d1d1d1;
 }
 .metro .metro-radio input[type=radio]:not(:checked):disabled + span::before {
   cursor: default;
   background: #868686;
-  border: 6px #868686 solid;
 }
 .metro .metro-radio input[type=radio]:disabled + span::before {
   cursor: default;
+  background: #868686;
+}
+.metro .metro-radio input[type=radio]:disabled + span::after {
   background: #484848;
-  border: 6px #868686 solid;
 }
-.metro .metro-radio:hover input[type=radio]:disabled + span::before {
-  border: 6px #868686 solid;
+.metro .metro-radio:hover input[type=radio]:not(:checked):disabled + span::before {
+  background: #868686;
 }
-.metro .metro-check input[type=checkbox], .metro .metro-check input[type=checkbox] + span, .metro .metro-check input[type=checkbox] + span::before {
+.metro .metro-radio:hover input[type=radio]:not(:checked) + span::before {
+  background: #ffffff;
+}
+.metro .metro-radio:hover input[type=radio]:checked + span::before {
+  background: #dfdfdf;
+}
+.metro .metro-radio:hover input[type=radio]:checked:disabled + span::before {
+  background: #868686;
+}
+.metro .metro-radio:hover input[type=radio]:checked:disabled + span::after {
+  background: #484848;
+}
+.metro .metro-radio:hover input[type=radio]:checked + span::after {
+  background: #000000;
+}
+.metro .metro-check input[type=checkbox],
+.metro .metro-check input[type=checkbox] + span,
+.metro .metro-check input[type=checkbox] + span::before,
+.metro .metro-check input[type=checkbox] + span::after {
   vertical-align: middle;
   display: inline-block;
 }
@@ -1133,7 +1114,7 @@ html[xmlns] .clearfix {
   font-size: 20px;
   font-weight: bold;
   font-family: Tahoma;
-  left: 3px;
+  left: 4px;
   top: 4px;
 }
 .metro .metro-check input[type=checkbox]:checked + span::before {
@@ -1190,7 +1171,6 @@ html[xmlns] .clearfix {
   left: 35px;
   width: 13px;
   height: 19px;
-  -o-height: 17px;
   background: #ffffff;
   z-index: 200;
 }
@@ -1303,24 +1283,70 @@ html[xmlns] .clearfix {
 .metro.metro-theme-light .metro-button, .metro.metro-theme-light .metro-command-button {
   border: #dddddd 2px solid;
 }
-.metro.metro-theme-light .metro-switch {
-  outline: 2px #b5b5b5 solid;
-  border: 1px #fff solid;
-  background: #a6a6a6;
+.metro.metro-theme-light .metro-radio input[type=radio] + span::before {
+  border: 2px #cfcfcf solid;
+  background: #fff;
+  height: 20px;
+  width: 20px;
 }
-.metro.metro-theme-light .metro-switch .switcher {
-  background: #333333;
+.metro.metro-theme-light .metro-radio input[type=radio]:disabled + span::before {
+  background: #e6e6e6;
 }
-.metro.metro-theme-light .metro-switch.state-on {
-  background: #008287;
+.metro.metro-theme-light .metro-radio input[type=radio]:disabled:checked + span::after {
+  background: #8a8a8a;
 }
-.metro.metro-theme-light .metro-switch.disabled, .metro.metro-theme-light .metro-switch.state-on.disabled {
-  outline-color: #d6d6d6;
+.metro.metro-theme-light .metro-radio:hover input[type=radio]:checked + span::before {
+  background: #ffffff;
+}
+.metro.metro-theme-light .metro-radio:hover input[type=radio]:disabled + span::before {
+  background: #e6e6e6;
+}
+.metro.metro-theme-light .metro-radio:hover input[type=radio]:disabled:checked + span::after {
+  background: #8a8a8a;
+}
+.metro.metro-theme-light .metro-radio:hover input[type=radio]:checked + span::after {
+  background: #212121;
+}
+.metro.metro-theme-light .metro-check input[type=checkbox] + span::before {
+  border: 2px #cfcfcf solid;
+  background: #fff;
+  height: 20px;
+  width: 20px;
+}
+.metro.metro-theme-light .metro-check input[type=checkbox]:disabled + span::before {
+  background: #e6e6e6;
+}
+.metro.metro-theme-light .metro-check input[type=checkbox]:disabled:checked + span::after {
+  color: #8a8a8a;
+}
+.metro.metro-theme-light .metro-check:hover input[type=checkbox] + span::before {
+  background: #fff;
+}
+.metro.metro-theme-light .metro-check:hover input[type=checkbox]:disabled + span::before {
+  background: #e6e6e6;
+}
+.metro.metro-theme-light .metro-switch input[type=checkbox] + span::before {
+  border-color: #fff;
+  outline-color: #a6a6a6;
+}
+.metro.metro-theme-light .metro-switch input[type=checkbox]:not(:checked) + span::before {
+  background: #b5b5b5;
+}
+.metro.metro-theme-light .metro-switch input[type=checkbox] + span::after {
+  background: #333;
+}
+.metro.metro-theme-light .metro-switch:hover input[type=checkbox]:checked + span::before {
+  background: #25bbc4;
+}
+.metro.metro-theme-light .metro-switch:hover input[type=checkbox]:not(:checked) + span::before {
+  background: #b5b5b5;
+}
+.metro.metro-theme-light .metro-switch input[type=checkbox]:disabled + span::before, .metro.metro-theme-light .metro-switch:hover input[type=checkbox]:disabled + span::before {
   background: #e0e0e0;
-  cursor: default;
+  outline-color: #cccccc;
 }
-.metro.metro-theme-light .metro-switch.disabled .switcher, .metro.metro-theme-light .metro-switch.state-on.disabled .switcher {
-  background: #a6a6a6 !important;
+.metro.metro-theme-light .metro-switch input[type=checkbox]:disabled + span::after, .metro.metro-theme-light .metro-switch:hover input[type=checkbox]:disabled + span::after {
+  background: #a6a6a6;
 }
 .metro {
   background: #004050;
