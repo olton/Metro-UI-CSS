@@ -1170,6 +1170,68 @@ html[xmlns] .clearfix {
  * Copyright 2012 Sergey Pimenov
  * Licensed under the MIT Lilcense
  */
+.metro .metro-form .metro-form-control {
+  margin-bottom: 10px;
+}
+.metro .metro-form .metro-form-control label {
+  font-size: 11pt;
+}
+.metro .metro-form .metro-form-control .metro-text-box {
+  position: relative;
+  width: 100%;
+}
+.metro .metro-form .metro-form-control .metro-text-box input[type=text] {
+  background: #d2d2d2;
+  border: 2px #d2d2d2 solid;
+  color: #646464;
+  border-radius: 0;
+  font-size: 11pt;
+  padding: 5px 8px;
+  width: 100%;
+  outline: 0;
+  display: inline-block;
+}
+.metro .metro-form .metro-form-control .metro-text-box input[type=text]:focus {
+  background: #fff;
+  border-color: #fff;
+  color: #000;
+}
+.metro .metro-form .metro-form-control .metro-text-box input[type=text]:disabled {
+  background: #1d1d1d;
+  border: 2px #777777 solid;
+}
+.metro .metro-form .metro-form-control .metro-text-box input[type=text]:not(:focus):not(:disabled):hover {
+  background: #e2e2e2;
+}
+.metro .metro-form .metro-form-control .metro-text-box .helper {
+  cursor: pointer;
+  z-index: 100;
+}
+.metro .metro-form .metro-form-control .metro-text-box input[type=text] + .helper::before {
+  display: inline-block;
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background: #ccc;
+  top: 3px;
+  right: -17px;
+  visibility: hidden;
+  content: "\00d7";
+  font-size: 18pt;
+  font-weight: bold;
+  color: #000;
+  cursor: pointer;
+  padding: 2px 6px 9px 6px;
+}
+.metro .metro-form .metro-form-control .metro-text-box input[type=text]:focus + .helper::before {
+  visibility: visible;
+}
+.metro .metro-form .metro-form-control .metro-text-box:hover input[type=text] + .helper:before {
+  background: #dedede !important;
+}
+.metro .metro-form .metro-form-control .metro-text-box:action input[type=text] + .helper:before {
+  background: #000 !important;
+}
 /*
  * Metro UI CSS v 1.0.1
  * Copyright 2012 Sergey Pimenov
