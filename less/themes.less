@@ -120,7 +120,62 @@
     }
 
     .metro-button, .metro-command-button {
-        border: #dddddd 2px solid;
+        background: #cccccc;
+        border-color: #cccccc;
+        color: #1d1d1d !important;
+        .title, .subtitle {
+            color: #1d1d1d !important;
+        }
+
+        &:hover {
+            background: #d8d8d8;
+            border-color: #d8d8d8;
+        }
+
+        &.default {
+            background: #008287;
+            border-color: #008287;
+            color: #fff !important;
+            .title, .subtitle {
+                color: #fff !important;
+            }
+        }
+
+        &.default:hover {
+            background: #219297;
+            border-color: #219297;
+            color: #fff !important;
+        }
+
+        &:active {
+            background: #000;
+            border-color: #000;
+            color: #fff !important;
+        }
+
+        &.disabled {
+            background: #eaeaea !important;
+            border-color: #eaeaea !important;
+            color: #9b9b9b !important;
+            .title, .subtitle {
+                color: #9d9d9d !important;
+            }
+        }
+        &:disabled {
+            background: #eaeaea !important;
+            border-color: #eaeaea !important;
+            color: #9b9b9b !important;
+            .title, .subtitle {
+                color: #9d9d9d !important;
+            }
+        }
+    }
+
+    .metro-command-button {
+        &:active {
+            background: #ccc;
+            border-color: #ccc;
+        }
     }
 
     .metro-radio {
