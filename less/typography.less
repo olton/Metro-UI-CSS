@@ -4,14 +4,106 @@
  * Licensed under the MIT Lilcense
  */
 
+
+@baseFontRegular: "Segoe UI", Tahoma, Arial, Verdana, sans-serif;
+@baseFontLight: "Segoe UI Light", Tahoma, Arial, Verdana, sans-serif;
+@baseFontSemilight: "Segoe UI Semilight", Tahoma, Arial, Verdana, sans-serif;
+@baseFontSemibold: "Segoe UI Semibold", Tahoma, Arial, Verdana, sans-serif;
+@baseFontBold: "Segoe UI Bold", Tahoma, Arial, Verdana, sans-serif;
+
+@baseFontWeightLight: 200;
+@baseFontWeightSemilight: 300;
+@baseFontWeightRegular: 400;
+@baseFontWeightSemibold: 600;
+@baseFontWeightBold: 700;
+
+@baseFontColor: #fff;
+@baseFontColorGrayed: #A5A5A5;
+@baseFontColorDark: #1e1e1e;
+@baseFontColorHover: #44D1DA;
+@baseFontColorPresed: #52ECFF;
+@baseFontColorHoverDark: #44D1DA;
+@baseFontColorPresedDark: #52ECFF;
+
+@baseFontSize: 11pt;
+@baseFontSizeSuperLarge: 42pt;
+@baseFontSizeLarge: 20pt;
+@baseFontSizeLarged: 18pt;
+@baseFontSizeSmall: 9pt;
+
+
 .metro {
     * {
-        font-family: @baseFontFamily;
+        font-family: @baseFontRegular;
+        font-size: 11pt;
+        font-weight: @baseFontWeightRegular;
+        color: @baseFontColor;
     }
 
-    h1, h2, h3, h4, h5 {
-        font-weight: lighter;
-        color: #fff;
+    a, .link {
+        &:hover {
+            color: @baseFontColorHover;
+        }
+        &:active {
+            color: @baseFontColorPresed;
+        }
+    }
+
+    h1 {
+        color: @baseFontColor;
+        font-size: @baseFontSizeSuperLarge;
+        font-weight: @baseFontWeightRegular;
+        font-family: @baseFontLight;
+    }
+
+    h2 {
+        font-size: @baseFontSizeLarge;
+        font-weight: @baseFontWeightRegular;
+        color: @baseFontColorGrayed;
+        font-family: @baseFontLight;
+    }
+
+    h3 {
+        color: @baseFontColor;
+        font-size: @baseFontSizeLarged;
+        font-weight: @baseFontWeightSemibold;
+        font-family: @baseFontLight;
+    }
+
+    h4 {
+        font-size: @baseFontSize;
+        font-weight: @baseFontWeightSemibold;
+        color: @baseFontColorGrayed;
+    }
+
+    .navigation, .item-title, .item-header {
+        color: @baseFontColor;
+        font-size: @baseFontSize;
+        font-weight: @baseFontWeightRegular;
+    }
+
+    .body-text {
+        font-size: @baseFontSize;
+        font-weight: @baseFontWeightSemilight;
+        color: @baseFontColor;
+    }
+
+    .body-text-secondary {
+        font-size: @baseFontSize;
+        font-weight: @baseFontWeightRegular;
+        color: @baseFontColorGrayed;
+    }
+
+    a, .link {
+        font-size: @baseFontSize;
+        font-weight: @baseFontWeightSemilight;
+        color: @baseFontColorHover;
+    }
+
+    .tertiary-info, .tertiary-info-secondary {
+        font-size: @baseFontSizeSmall;
+        font-weight: @baseFontSize;
+        color: @baseFontColorGrayed;
     }
 }
 

@@ -15,7 +15,9 @@ nav,
 section {
   display: block;
 }
-audio, canvas, video {
+audio,
+canvas,
+video {
   display: inline-block;
   *display: inline;
   *zoom: 1;
@@ -28,10 +30,12 @@ html {
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
 }
-a:hover, a:active {
+a:hover,
+a:active {
   outline: 0;
 }
-sub, sup {
+sub,
+sup {
   position: relative;
   font-size: 75%;
   line-height: 0;
@@ -57,11 +61,13 @@ textarea {
   font-size: 100%;
   vertical-align: middle;
 }
-button, input {
+button,
+input {
   *overflow: visible;
   line-height: normal;
 }
-button::-moz-focus-inner, input::-moz-focus-inner {
+button::-moz-focus-inner,
+input::-moz-focus-inner {
   padding: 0;
   border: 0;
 }
@@ -78,7 +84,8 @@ input[type="search"] {
   -moz-box-sizing: content-box;
   box-sizing: content-box;
 }
-input[type="search"]::-webkit-search-decoration, input[type="search"]::-webkit-search-cancel-button {
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button {
   -webkit-appearance: none;
 }
 textarea {
@@ -126,15 +133,70 @@ textarea {
  * Licensed under the MIT Lilcense
  */
 .metro * {
-  font-family: Segoe UI, Tahoma, Arial, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Arial, Verdana, sans-serif;
+  font-size: 11pt;
+  font-weight: 400;
+  color: #ffffff;
 }
-.metro h1,
-.metro h2,
-.metro h3,
-.metro h4,
-.metro h5 {
-  font-weight: lighter;
-  color: #fff;
+.metro a:hover,
+.metro .link:hover {
+  color: #44d1da;
+}
+.metro a:active,
+.metro .link:active {
+  color: #52ecff;
+}
+.metro h1 {
+  color: #ffffff;
+  font-size: 42pt;
+  font-weight: 400;
+  font-family: "Segoe UI Light", Tahoma, Arial, Verdana, sans-serif;
+}
+.metro h2 {
+  font-size: 20pt;
+  font-weight: 400;
+  color: #a5a5a5;
+  font-family: "Segoe UI Light", Tahoma, Arial, Verdana, sans-serif;
+}
+.metro h3 {
+  color: #ffffff;
+  font-size: 18pt;
+  font-weight: 600;
+  font-family: "Segoe UI Light", Tahoma, Arial, Verdana, sans-serif;
+}
+.metro h4 {
+  font-size: 11pt;
+  font-weight: 600;
+  color: #a5a5a5;
+}
+.metro .navigation,
+.metro .item-title,
+.metro .item-header {
+  color: #ffffff;
+  font-size: 11pt;
+  font-weight: 400;
+}
+.metro .body-text {
+  font-size: 11pt;
+  font-weight: 300;
+  color: #ffffff;
+}
+.metro .body-text-secondary {
+  font-size: 11pt;
+  font-weight: 400;
+  color: #a5a5a5;
+}
+.metro a,
+.metro .link {
+  font-size: 11pt;
+  font-weight: 300;
+  color: #44d1da;
+}
+.metro .tertiary-info,
+.metro .tertiary-info-secondary {
+  font-size: 9pt;
+  font-weight: 11pt;
+  color: #a5a5a5;
 }
 /*
  * Metro UI CSS v 1.0.1
@@ -236,7 +298,7 @@ html[xmlns] .clearfix {
   background: url(/img/back.png);
 }
 .metro .metro-sections .metro-section .tile:hover {
-  outline: 3px #225a68 solid;
+  outline: 3px #225a68 solid !important;
 }
 .metro .metro-sections .metro-section .tile {
   display: block;
@@ -359,7 +421,8 @@ html[xmlns] .clearfix {
   width: 96px;
   height: 96px;
 }
-.metro .metro-sections .metro-section .tile.tile-double .tile-icon-cover, .metro .metro-sections .metro-section .tile.tile-double .tile-icon-large {
+.metro .metro-sections .metro-section .tile.tile-double .tile-icon-cover,
+.metro .metro-sections .metro-section .tile.tile-double .tile-icon-large {
   width: 310px;
 }
 /*
@@ -516,13 +579,14 @@ html[xmlns] .clearfix {
   position: absolute;
   top: 5px;
   right: 10px;
-  color: #fff;
   cursor: pointer;
   font-weight: bold;
   text-decoration: none;
+  color: #fff !important;
 }
 .metro .metro-notices .metro-notice .close::before {
   content: "\00d7";
+  color: #fff !important;
 }
 .metro .metro-notices .metro-notice .image-large {
   width: 88px;
@@ -683,19 +747,23 @@ html[xmlns] .clearfix {
 .metro .metro-images .metro-image-overlay:hover {
   border: 4px #57d3d9 solid;
 }
-.metro .metro-images .metro-image .image.stretch img, .metro .metro-images .metro-image-overlay .image.stretch img {
+.metro .metro-images .metro-image .image.stretch img,
+.metro .metro-images .metro-image-overlay .image.stretch img {
   width: 100% !important;
   height: 100% !important;
 }
-.metro .metro-images .metro-image .image.stretchH img, .metro .metro-images .metro-image-overlay .image.stretchH img {
+.metro .metro-images .metro-image .image.stretchH img,
+.metro .metro-images .metro-image-overlay .image.stretchH img {
   height: 100% !important;
   max-width: auto !important;
 }
-.metro .metro-images .metro-image .image.stretchW img, .metro .metro-images .metro-image-overlay .image.stretchW img {
+.metro .metro-images .metro-image .image.stretchW img,
+.metro .metro-images .metro-image-overlay .image.stretchW img {
   width: 100% !important;
   max-height: auto !important;
 }
-.metro .metro-images .metro-image.no-hovered, .metro .metro-images .metro-image-overlay.no-hovered {
+.metro .metro-images .metro-image.no-hovered,
+.metro .metro-images .metro-image-overlay.no-hovered {
   border: 4px transparent solid;
 }
 .metro .metro-images .metro-image.selected,
@@ -901,7 +969,8 @@ html[xmlns] .clearfix {
   top: 0;
   left: 0;
 }
-.metro input.metro-button, .metro button.metro-button {
+.metro input.metro-button,
+.metro button.metro-button {
   min-width: 94px !important;
 }
 .metro .metro-button.default {
@@ -968,7 +1037,9 @@ html[xmlns] .clearfix {
 .metro .metro-command-button:disabled:active .subtitle {
   color: #3a3a3a;
 }
-.metro .metro-radio, .metro .metro-check, .metro .metro-switch {
+.metro .metro-radio,
+.metro .metro-check,
+.metro .metro-switch {
   cursor: pointer;
   cursor: hand;
   position: relative;
@@ -1313,7 +1384,8 @@ html[xmlns] .clearfix {
 .metro.metro-theme-light .metro-icon-text-header {
   color: #1c1c1c;
 }
-.metro.metro-theme-light .metro-button, .metro.metro-theme-light .metro-command-button {
+.metro.metro-theme-light .metro-button,
+.metro.metro-theme-light .metro-command-button {
   background: #cccccc;
   border-color: #cccccc;
   color: #1d1d1d !important;
@@ -1324,11 +1396,13 @@ html[xmlns] .clearfix {
 .metro.metro-theme-light .metro-command-button .subtitle {
   color: #1d1d1d !important;
 }
-.metro.metro-theme-light .metro-button:hover, .metro.metro-theme-light .metro-command-button:hover {
+.metro.metro-theme-light .metro-button:hover,
+.metro.metro-theme-light .metro-command-button:hover {
   background: #d8d8d8;
   border-color: #d8d8d8;
 }
-.metro.metro-theme-light .metro-button.default, .metro.metro-theme-light .metro-command-button.default {
+.metro.metro-theme-light .metro-button.default,
+.metro.metro-theme-light .metro-command-button.default {
   background: #008287;
   border-color: #008287;
   color: #fff !important;
@@ -1339,17 +1413,20 @@ html[xmlns] .clearfix {
 .metro.metro-theme-light .metro-command-button.default .subtitle {
   color: #fff !important;
 }
-.metro.metro-theme-light .metro-button.default:hover, .metro.metro-theme-light .metro-command-button.default:hover {
+.metro.metro-theme-light .metro-button.default:hover,
+.metro.metro-theme-light .metro-command-button.default:hover {
   background: #219297;
   border-color: #219297;
   color: #fff !important;
 }
-.metro.metro-theme-light .metro-button:active, .metro.metro-theme-light .metro-command-button:active {
+.metro.metro-theme-light .metro-button:active,
+.metro.metro-theme-light .metro-command-button:active {
   background: #000;
   border-color: #000;
   color: #fff !important;
 }
-.metro.metro-theme-light .metro-button.disabled, .metro.metro-theme-light .metro-command-button.disabled {
+.metro.metro-theme-light .metro-button.disabled,
+.metro.metro-theme-light .metro-command-button.disabled {
   background: #eaeaea !important;
   border-color: #eaeaea !important;
   color: #9b9b9b !important;
@@ -1360,7 +1437,8 @@ html[xmlns] .clearfix {
 .metro.metro-theme-light .metro-command-button.disabled .subtitle {
   color: #9d9d9d !important;
 }
-.metro.metro-theme-light .metro-button:disabled, .metro.metro-theme-light .metro-command-button:disabled {
+.metro.metro-theme-light .metro-button:disabled,
+.metro.metro-theme-light .metro-command-button:disabled {
   background: #eaeaea !important;
   border-color: #eaeaea !important;
   color: #9b9b9b !important;
@@ -1433,15 +1511,17 @@ html[xmlns] .clearfix {
 .metro.metro-theme-light .metro-switch:hover input[type=checkbox]:not(:checked) + span::before {
   background: #b5b5b5;
 }
-.metro.metro-theme-light .metro-switch input[type=checkbox]:disabled + span::before, .metro.metro-theme-light .metro-switch:hover input[type=checkbox]:disabled + span::before {
+.metro.metro-theme-light .metro-switch input[type=checkbox]:disabled + span::before,
+.metro.metro-theme-light .metro-switch:hover input[type=checkbox]:disabled + span::before {
   background: #e0e0e0;
   outline-color: #cccccc;
 }
-.metro.metro-theme-light .metro-switch input[type=checkbox]:disabled + span::after, .metro.metro-theme-light .metro-switch:hover input[type=checkbox]:disabled + span::after {
+.metro.metro-theme-light .metro-switch input[type=checkbox]:disabled + span::after,
+.metro.metro-theme-light .metro-switch:hover input[type=checkbox]:disabled + span::after {
   background: #a6a6a6;
 }
 .metro {
-  background: #004050;
+  background: transparent;
 }
 .metro * {
   color: #ffffff;
@@ -1450,21 +1530,9 @@ html[xmlns] .clearfix {
   color: #fff;
   background-color: #fff;
 }
-.metro h1,
-.metro h2,
-.metro h3,
-.metro h4,
-.metro h5,
-.metro h6 {
-  color: #fff !important;
-}
 .metro .metro-replies .metro-reply {
   background: #1c1c1c;
 }
 .metro .metro-replies .metro-reply * {
   color: #ffffff;
-}
-.metro a {
-  color: #ff8c00;
-  text-decoration: none;
 }
