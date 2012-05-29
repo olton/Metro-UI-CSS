@@ -29,7 +29,8 @@
 @baseFontSizeSuperLarge: 42pt;
 @baseFontSizeLarge: 20pt;
 @baseFontSizeLarged: 18pt;
-@baseFontSizeSmall: 9pt;
+@baseFontSizeSmall: 10pt;
+@baseFontSizeSmaller: 9pt;
 
 
 .metro {
@@ -89,9 +90,9 @@
     }
 
     .body-text-secondary {
-        font-size: @baseFontSize;
+        font-size: @baseFontSizeSmall;
         font-weight: @baseFontWeightRegular;
-        color: @baseFontColorGrayed;
+        color: @baseFontColor;
     }
 
     a, .link {
@@ -104,6 +105,10 @@
         font-size: @baseFontSizeSmall;
         font-weight: @baseFontSize;
         color: @baseFontColorGrayed;
+    }
+
+    .tertiary-info-secondary {
+        font-size: @baseFontSizeSmaller;
     }
 }
 

@@ -35,6 +35,9 @@
     <script type="text/javascript" src="js/google-plusone.js"></script>
 
     <style type="text/css">
+        body {
+            background: transparent url(img/bgmetro1.png);
+        }
         .metro {
             width: 940px;
             overflow: hidden;
@@ -93,12 +96,9 @@
                         <li><a href="./notices.html">Notices</a></li>
                         <li><a href="./buttons.html">Buttons</a></li>
                         <li><a href="./forms.html">Form</a></li>
-                        <li><a href="./typography.html">Typography</a></li>
+                        <li class="active"><a href="./typography.html">Typography</a></li>
                         <li><a href="https://github.com/olton/Metro-UI-CSS"><i class="icon-github-sign"></i>Github</a></li>
                         <li><a href="https://github.com/olton/Metro-UI-CSS/zipball/master"><i class="icon-download"></i>Download</a></li>
-                    </ul>
-                    <ul class="nav pull-right">
-                        <li><div id="google-plus-one"><g:plusone size="small"></g:plusone></div></li>
                     </ul>
                 </div>
             </div>
@@ -106,11 +106,27 @@
     </div>
 
     <div class="container">
-        <div class="metro metro-theme-light">
-            <h1 class="start">Плитка | Tiles</h1>
+        <div class="metro">
+            <h1 class="start">Typography</h1>
+            <hr />
+            <div>
+                <br /><h1>Header1</h1>
+                <br /><h2>Header2</h2>
+                <br /><h3>Header3</h3>
+                <br /><h4>Header4</h4>
+                <br /><h5>Header5</h5>
+            </div>
+            <hr />
+            <div>
+                <br /><p class="navigation">.navigation</p>
+                <br /><p class="body-text">.body-text</p>
+                <br /><p class="body-text-secondary">.body-text-secondary</p>
+                <br /><p class="tertiary-info">.tertiary-info</p>
+                <br /><p class="tertiary-info-secondary">.tertiary-info-secondary</p>
+            </div>
         </div>
-        <footer class="footer">
-            <p class="pull-right"><a href="#">Наверх</a></p>
+        <footer class="footer metro">
+            <p class="pull-right"><a href="#">Top</a></p>
 
             <p>&copy; 2012 Сергей Пименов. Киев, Украина.</p>
             <p>Лицензия: MIT License</p>
