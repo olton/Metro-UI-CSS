@@ -157,6 +157,9 @@
 
             .tile.multi-content{}
 
+            .tile.tile-double, .tile.tile-double-vertical {
+            }
+
             .tile.tile-double {
                 width: @tileLarge;
 
@@ -171,6 +174,22 @@
                 }
                 .tile-icon-cover, .tile-icon-large {
                     width: @tileLarge;
+                }
+            }
+            .tile.tile-double-vertical {
+                height: @tileLarge;
+
+                .tile-icon-large {
+                    margin-top: 20px;
+                    margin-left: 107px;
+
+                    img {
+                        width: 96px;
+                        height: 96px;
+                    }
+                }
+                .tile-icon-cover, .tile-icon-large {
+                    height: @tileLarge;
                 }
             }
         }
