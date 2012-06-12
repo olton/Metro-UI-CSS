@@ -48,7 +48,7 @@
                 cursor: pointer;
                 overflow: hidden;
                 text-decoration: none;
-                padding-bottom: 1px;
+                //padding-bottom: 1px;
 
                 * {font-family: @baseFontFamily;}
 
@@ -161,35 +161,49 @@
             }
 
             .tile.tile-double {
-                width: @tileLarge;
+                width: @tileDouble;
 
                 .tile-icon-large {
                     margin-top: 20px;
                     margin-left: 107px;
-
-                    img {
-                        width: 96px;
-                        height: 96px;
-                    }
                 }
                 .tile-icon-cover, .tile-icon-large {
-                    width: @tileLarge;
+                    width: @tileDouble;
                 }
             }
             .tile.tile-double-vertical {
-                height: @tileLarge;
+                height: @tileDouble;
 
                 .tile-icon-large {
                     margin-top: 20px;
                     margin-left: 107px;
-
-                    img {
-                        width: 96px;
-                        height: 96px;
-                    }
                 }
                 .tile-icon-cover, .tile-icon-large {
-                    height: @tileLarge;
+                    height: @tileDouble;
+                }
+            }
+            .tile.tile-triple-vertical {
+                height: @tileTriple;
+                .tile-icon-large {
+                    padding-top: @tileTriple / 2 - 96 / 2;
+                }
+            }
+            .tile.tile-quadro-vertical {
+                height: @tileQuadro;
+                .tile-icon-large {
+                    padding-top: @tileQuadro / 2 - 96 / 2;
+                }
+            }
+            .tile.tile-triple {
+                width: @tileTriple;
+                .tile-icon-large {
+                    width: @tileTriple;
+                }
+            }
+            .tile.tile-quadro {
+                width: @tileQuadro;
+                .tile-icon-large {
+                    width: @tileQuadro;
                 }
             }
         }
