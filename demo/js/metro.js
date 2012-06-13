@@ -48,10 +48,10 @@
                 //console.log(mouse);
                 if (mouse.x < el.outerWidth() / 2) {
                     console.log("left");
-                    el.toggleClass("rotate-y-left");
+                    el.toggleClass("tile-active-left");
                 } else {
                     console.log("right");
-                    el.toggleClass("rotate-y-right");
+                    el.toggleClass("tile-active-right");
                 }
             }).mouseup(function(e){
                 var mouse = {
@@ -60,10 +60,10 @@
                 };
                 if (mouse.x < el.outerWidth() / 2) {
                     console.log("left");
-                    el.toggleClass("rotate-y-left");
+                    el.toggleClass("tile-active-left");
                 } else {
                     console.log("right");
-                    el.toggleClass("rotate-y-right");
+                    el.toggleClass("tile-active-right");
                 }
             }).mouseenter(function(){
                 if (el.hasClass("tile-multi-content")){

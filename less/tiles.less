@@ -19,6 +19,13 @@
             width: 960px;
             position: relative;
 
+            -moz-transform: perspective(600px);
+            -webkit-transform: perspective(600px);
+            -ms-transform: perspective(600px);
+            -o-transform: perspective(600px);
+            transform: perspective(600px);
+
+
             .next-section {
                 position: absolute;
                 top: 0px;
@@ -33,6 +40,22 @@
 
             .tile:hover {
                 outline: 3px #225a68 solid !important;
+            }
+
+            .tile.tile-active-right {
+                -ms-transform: perspective(600px) rotateY( 5deg );
+                -o-transform: perspective(600px) rotateY( 5deg );
+                -moz-transform: perspective(600px) rotateY( 5deg );
+                -webkit-transform: perspective(600px) rotateY( 5deg );
+                transform: perspective(600px) rotateY( 5deg );
+            }
+
+            .tile.tile-active-left {
+                -ms-transform: perspective(600px) rotateY( -5deg );
+                -o-transform: perspective(600px) rotateY( -5deg );
+                -moz-transform: perspective(600px) rotateY( -5deg );
+                -webkit-transform: perspective(600px) rotateY( -5deg );
+                transform: perspective(600px) rotateY( -5deg );
             }
 
             .tile {
