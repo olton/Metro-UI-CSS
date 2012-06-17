@@ -20,6 +20,7 @@
     <link rel="stylesheet" type="text/css" href="css/site.css">
 
     <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui-1.8.21.custom.min.js"></script>
     <script type="text/javascript" src="js/jquery.transit.js"></script>
     <script type="text/javascript" src="js/jquery.mousewheel.js"></script>
     <script type="text/javascript" src="js/jquery.scrollTo.js"></script>
@@ -40,8 +41,8 @@
             background: transparent url(img/bgmetro1.png);
         }
         .metro {
-            width: 940px;
-            overflow: hidden;
+            /*width: 940px;
+            overflow: hidden;*/
         }
         .metro-section {
             width: 810px !important;
@@ -52,16 +53,19 @@
 
         }
         #section3 {
-            width: 320px !important;
+            width: 320px ;
         }
         .metro-sections {
-            width: 10000px !important;
+            width: 10000px ;
         }
         .start {
             position: absolute;
             top: 60px;
         }
         #demo {
+            position: absolute;
+            left: 40px; top: 80px;
+            bottom: 0;
         }
     </style>
 
@@ -125,12 +129,10 @@
         </div>
     </div>
 
-    <div class="container" id="demo">
+    <div id="demo">
         <div  class="metro">
-            <div class="metro-sections">
-                <div class="metro-section" id="section1">
-
-                    <a data-next="#section2" data-prior="#section1" href="#" class="next-section"></a>
+            <div class="metro-sections unselectable">
+                <div class="metro-section">
 
                     <div class="tile tile-double tile-double-vertical bg-color-darken">
                         <div class="tile-icon-large">
@@ -226,12 +228,7 @@
                         </div>
                         <span class="tile-label">Internet Explorer</span>
                     </div>
-                </div>
-
-                <div class="metro-section" id="section2">
-
-                    <a data-next="#section3" data-prior="#section2" href="#" class="next-section"></a>
-
+                
                     <div class="tile tile-triple bg-color-purple">
                         <div class="tile-icon-large">
                             <img src="img/Music.png" />
@@ -271,9 +268,7 @@
 
                     <div class="tile bg-color-orange">
                     </div>
-                </div>
-
-                <div class="metro-section" id="section3">
+                
                     <div class="tile tile-double bg-color-blue">
                         <div class="tile-icon-large">
                             <img src="img/Live%20SkyDrive.png" />
@@ -306,13 +301,7 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <footer class="metro footer">
-            <p class="pull-right"><a href="#">Наверх</a></p>
-
-            <p class="body-text">&copy; 2012 Сергей Пименов. Киев, Украина.</p>
-            <p class="tertiary-info-secondary">Лицензия: MIT License</p>
-        </footer>
+        </div>        
     </div>
 
     <script type="text/javascript">
@@ -322,6 +311,61 @@
 
         $(".metro").metro();
 
+        $(window).resize(reflow);
+        
+        $(function(){
+            reflow();            
+        });
+
+        function sortable() {
+            $(".metro-section").sortable({
+                connectWith: ".metro-section",
+                revert: true,
+                tolerance: "pointer",
+                "opacity": 0.6,
+                helper: "clone",
+                stop: function (event, ui) {
+					reflow();
+                }
+            });
+        }
+
+        function reflow() {
+            var metroSectionHeight = $(window).height() - $(".metro-sections").offset().top;
+		
+            $(".tile").each(function(){
+                var tile = $(this);
+                var pos = tile.offset();
+
+                if (pos.top + tile.height() > metroSectionHeight)
+                {
+                    var mySection = tile.parents(".metro-section");
+                    var nextSection = mySection.next();
+
+                    tile.addClass("pushed");
+
+                    if (nextSection.length > 0)
+                    {
+                        nextSection.prepend(tile);
+                        return window.setTimeout(reflow, 100);
+                    }
+                    else
+                    {
+                        nextSection = $('<div class="metro-section" />');
+                        nextSection.appendTo(mySection.parent());
+                        nextSection.prepend(tile);
+                        return window.setTimeout(reflow, 100);
+                    }
+                }
+            });
+
+            sortable();
+
+            //var lastSection = $(".metro-section").last();
+            //$(".metro-sections").width(lastSection.offset().left + lastSection.width());
+        }
+
+		
     </script>
 </body>
 </html>
