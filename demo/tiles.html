@@ -20,7 +20,6 @@
     <link rel="stylesheet" type="text/css" href="css/site.css">
 
     <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
-    <script type="text/javascript" src="js/jquery-ui-1.8.21.custom.min.js"></script>
     <script type="text/javascript" src="js/jquery.transit.js"></script>
     <script type="text/javascript" src="js/jquery.mousewheel.js"></script>
     <script type="text/javascript" src="js/jquery.scrollTo.js"></script>
@@ -41,8 +40,8 @@
             background: transparent url(img/bgmetro1.png);
         }
         .metro {
-            /*width: 940px;
-            overflow: hidden;*/
+            width: 940px;
+            overflow: hidden;
         }
         .metro-section {
             width: 810px !important;
@@ -53,50 +52,21 @@
 
         }
         #section3 {
-            width: 320px ;
+            width: 320px !important;
         }
         .metro-sections {
-            width: 10000px ;
+            width: 10000px !important;
         }
         .start {
             position: absolute;
             top: 60px;
         }
         #demo {
-            position: absolute;
-            left: 40px; top: 80px;
-            bottom: 0;
         }
     </style>
 
 </head>
 <body>
-    <a href='http://hit.ua/?x=19154' target='_blank'>
-    <script language="javascript" type="text/javascript"><!--
-    Cd=document;Cr="&"+Math.random();Cp="&s=1";
-    Cd.cookie="b=b";if(Cd.cookie)Cp+="&c=1";
-    Cp+="&t="+(new Date()).getTimezoneOffset();
-    if(self!=top)Cp+="&f=1";
-    //--></script>
-    <script language="javascript1.1" type="text/javascript"><!--
-    if(navigator.javaEnabled())Cp+="&j=1";
-    //--></script>
-    <script language="javascript1.2" type="text/javascript"><!--
-    if(typeof(screen)!='undefined')Cp+="&w="+screen.width+"&h="+
-            screen.height+"&d="+(screen.colorDepth?screen.colorDepth:screen.pixelDepth);
-    //--></script>
-    <script language="javascript" type="text/javascript"><!--
-    Cd.write("<img src='http://c.hit.ua/hit?i=19154&g=0&x=2"+Cp+Cr+
-            "&r="+escape(Cd.referrer)+"&u="+escape(window.location.href)+
-            "' border='0' wi"+"dth='1' he"+"ight='1'/>");
-    //--></script>
-    <noscript>
-        <img src='http://c.hit.ua/hit?i=19154&amp;g=0&amp;x=2' border='0'/>
-    </noscript></a>
-    <!-- / hit.ua -->
-
-
-
     <div class="navbar navbar-fixed-top">
         <div class="navbar-inner">
             <div class="container-fluid">
@@ -113,6 +83,7 @@
                     <ul class="nav">
                         <li><a href="/">Main</a></li>
                         <li class="active"><a href="./tiles.html">Tiles</a></li>
+                        <li><a href="./tiles-1.html">Tiles 1</a></li>
                         <li><a href="./images.html">Images</a></li>
                         <li><a href="./notices.html">Notices</a></li>
                         <li><a href="./buttons.html">Buttons</a></li>
@@ -129,10 +100,12 @@
         </div>
     </div>
 
-    <div id="demo">
+    <div class="container" id="demo">
         <div  class="metro">
-            <div class="metro-sections unselectable">
-                <div class="metro-section">
+            <div class="metro-sections">
+                <div class="metro-section" id="section1">
+
+                    <a data-next="#section2" data-prior="#section1" href="#" class="next-section"></a>
 
                     <div class="tile tile-double tile-double-vertical bg-color-darken">
                         <div class="tile-icon-large">
@@ -228,7 +201,12 @@
                         </div>
                         <span class="tile-label">Internet Explorer</span>
                     </div>
-                
+                </div>
+
+                <div class="metro-section" id="section2">
+
+                    <a data-next="#section3" data-prior="#section2" href="#" class="next-section"></a>
+
                     <div class="tile tile-triple bg-color-purple">
                         <div class="tile-icon-large">
                             <img src="img/Music.png" />
@@ -268,7 +246,9 @@
 
                     <div class="tile bg-color-orange">
                     </div>
-                
+                </div>
+
+                <div class="metro-section" id="section3">
                     <div class="tile tile-double bg-color-blue">
                         <div class="tile-icon-large">
                             <img src="img/Live%20SkyDrive.png" />
@@ -301,7 +281,13 @@
                     </div>
                 </div>
             </div>
-        </div>        
+        </div>
+        <footer class="metro footer">
+            <p class="pull-right"><a href="#">Наверх</a></p>
+
+            <p class="body-text">&copy; 2012 Сергей Пименов. Киев, Украина.</p>
+            <p class="tertiary-info-secondary">Лицензия: MIT License</p>
+        </footer>
     </div>
 
     <script type="text/javascript">
@@ -311,61 +297,6 @@
 
         $(".metro").metro();
 
-        $(window).resize(reflow);
-        
-        $(function(){
-            reflow();            
-        });
-
-        function sortable() {
-            $(".metro-section").sortable({
-                connectWith: ".metro-section",
-                revert: true,
-                tolerance: "pointer",
-                "opacity": 0.6,
-                helper: "clone",
-                stop: function (event, ui) {
-					reflow();
-                }
-            });
-        }
-
-        function reflow() {
-            var metroSectionHeight = $(window).height() - $(".metro-sections").offset().top;
-		
-            $(".tile").each(function(){
-                var tile = $(this);
-                var pos = tile.offset();
-
-                if (pos.top + tile.height() > metroSectionHeight)
-                {
-                    var mySection = tile.parents(".metro-section");
-                    var nextSection = mySection.next();
-
-                    tile.addClass("pushed");
-
-                    if (nextSection.length > 0)
-                    {
-                        nextSection.prepend(tile);
-                        return window.setTimeout(reflow, 100);
-                    }
-                    else
-                    {
-                        nextSection = $('<div class="metro-section" />');
-                        nextSection.appendTo(mySection.parent());
-                        nextSection.prepend(tile);
-                        return window.setTimeout(reflow, 100);
-                    }
-                }
-            });
-
-            sortable();
-
-            //var lastSection = $(".metro-section").last();
-            //$(".metro-sections").width(lastSection.offset().left + lastSection.width());
-        }
-
-		
     </script>
 </body>
 </html>
