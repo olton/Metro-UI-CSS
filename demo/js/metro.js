@@ -7,10 +7,13 @@
         var maxSectionIndex = tilesSections.length - 1;
         var scrollTarget = $(".next-section")[currentSectionIndex];
         */
-        $(".metro-sections").mousewheel(function(event, delta, deltaX, deltaY){
-            var scrollNext = delta < 0;
-            return false;
-        });
+		
+		// OMAR: Disabling this because it prevents horizontal mouse scroll on touchpad
+		// and also slide on tablet.
+        // $(".metro-sections").mousewheel(function(event, delta, deltaX, deltaY){
+            // var scrollNext = delta < 0;
+            // return false;
+        // });
 
 
         $(".next-section").bind("click", function(){
@@ -41,6 +44,7 @@
             var el = $(this);
 
             el.mousedown(function(e){
+				el = $(this);	
                 var mouse = {
                     x: e.pageX - el.offset().left,
                     y: e.pageY - el.offset().top
@@ -54,9 +58,28 @@
                     el.toggleClass("tile-active-right");
                 }
             }).mouseup(function(e){
-                el.removeClass("tile-active-left");
-                el.removeClass("tile-active-right");
+				//el = $(this);
+                //var mouse = {
+
+                //    x: e.pageX - el.offset().left,
+                //    y: e.pageY - el.offset().top
+                //};
+
+                //if (mouse.x < el.outerWidth() / 2) {
+                //    console.log("left");
+                //    $(this).toggleClass("tile-active-left");
+                //} else {
+                //    console.log("right");
+                //    $(this).toggleClass("tile-active-right");
+                //}
+                $(this).removeClass("tile-active-right").removeClass("tile-active-left");
+			}).mousemove(function(e){
+				if (e.which > 0){
+					$(this).removeClass("tile-active-right").removeClass("tile-active-left");
+				}
+			
             }).mouseenter(function(){
+				el = $(this);
                 if (el.hasClass("tile-multi-content")){
                     var c_main = $(el.children(".tile-content-main"));
                     var c_sub = $(el.children(".tile-content-sub"));
@@ -65,6 +88,7 @@
                     c_sub.css("opacity", 1);
                 }
             }).mouseleave(function(){
+				el = $(this);
                 if (el.hasClass("tile-multi-content")){
                     var c_main = $(el.children(".tile-content-main"));
                     var c_sub = $(el.children(".tile-content-sub"));
@@ -73,8 +97,9 @@
                     c_sub.css("opacity", .1);
                 }
             }).mouseout(function(){
-                el.removeClass("tile-active-left");
-                el.removeClass("tile-active-right");
+                //if( el.data('metro').clicking ){
+                //   el.mouseup()
+                //}
             })
         })
 
