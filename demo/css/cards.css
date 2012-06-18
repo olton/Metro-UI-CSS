@@ -1,0 +1,128 @@
+.card {
+  width: 76px;
+  height: 106px;
+  border: 1px #f4f4f4 solid;
+  border-radius: 0px;
+  position: relative;
+  float: left;
+  display: block;
+  margin: 5px;
+  cursor: pointer;
+  background: #fff;
+  font-femaly: Tahoma;
+}
+.card:hover {
+  box-shadow: 1px 1px 1px #ccc;
+}
+.card .small-suit {
+  font-size: 22pt;
+}
+.card .suit {
+  font-size: 64pt;
+  position: absolute;
+  right: 5px;
+  bottom: 30px;
+}
+.card .small-suit:after {
+  top: 5px;
+  left: 10px;
+  position: absolute;
+}
+.card .small-suit:before {
+  top: 28px;
+  left: 10px;
+  position: absolute;
+}
+.card .suit:after {
+  position: relative;
+}
+.red {
+  color: red;
+}
+.black {
+  color: black;
+}
+.card.two .small-suit:after {
+  content: "2";
+}
+.card.three .small-suit:after {
+  content: "3";
+}
+.card.four .small-suit:after {
+  content: "4";
+}
+.card.five .small-suit:after {
+  content: "5";
+}
+.card.six .small-suit:after {
+  content: "6";
+}
+.card.seven .small-suit:after {
+  content: "7";
+}
+.card.eight .small-suit:after {
+  content: "8";
+}
+.card.nine .small-suit:after {
+  content: "9";
+}
+.card.ten .small-suit:after {
+  content: "10";
+  margin-left: -7px;
+}
+.card.jack .small-suit:after {
+  content: "J";
+}
+.card.dame .small-suit:after {
+  content: "Q";
+}
+.card.king .small-suit:after {
+  content: "K";
+}
+.card.ace .small-suit:after {
+  content: "A";
+}
+.card.spades .small-suit:after {
+  color: black;
+}
+.card.spades .small-suit:before {
+  content: "\2660";
+  color: black;
+}
+.card.spades .suit:after {
+  content: "\2660";
+  color: black;
+}
+.card.clubs .small-suit:after {
+  color: black;
+}
+.card.clubs .small-suit:before {
+  content: "\2663";
+  color: black;
+}
+.card.clubs .suit:after {
+  content: "\2663";
+  color: black;
+}
+.card.diamonds .small-suit:after {
+  color: red;
+}
+.card.diamonds .small-suit:before {
+  content: "\2666";
+  color: red;
+}
+.card.diamonds .suit:after {
+  content: "\2666";
+  color: red;
+}
+.card.hearts .small-suit:after {
+  color: red;
+}
+.card.hearts .small-suit:before {
+  content: "\2665";
+  color: red;
+}
+.card.hearts .suit:after {
+  content: "\2665";
+  color: red;
+}

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Metro UI CSS - это набор стилей для создания сайтов с интерфейсом, похожим на Windows 8 Metro UI. Набор стилей разрабатывается как дополнение к любому другому CSS фрейм ворку, например можно использовать в качестве основного twitter bootstrap, а Metro UI CSS как дополнение для посторения частей интерфейса" />
+    <meta data-annotation="Metro UI CSS - это набор стилей для создания сайтов с интерфейсом, похожим на Windows 8 Metro UI. Набор стилей разрабатывается как дополнение к любому другому CSS фрейм ворку, например можно использовать в качестве основного twitter bootstrap, а Metro UI CSS как дополнение для посторения частей интерфейса" />
+    <meta name="author" content="Сергей Пименов (ака olton)" />
+    <meta name="copyright" content="2012, Сергей Пименов" />
+    <meta name="license" content="Licensed under MIT License" />
+
+    <title>Metro UI CSS Framework Demo</title>
+
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <!--<link rel="stylesheet" type="text/css" href="css/bootstrap-responsive.min.css">-->
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="css/prettify.css">
+    <link rel="stylesheet" type="text/css" href="css/metro.css">
+    <link rel="stylesheet" type="text/css" href="css/cards.css">
+    <link rel="stylesheet" type="text/css" href="css/site.css">
+
+    <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="js/jquery.mousewheel.js"></script>
+    <script type="text/javascript" src="js/jquery.scrollTo.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/prettify.js"></script>
+    <script type="text/javascript" src="js/metro.js"></script>
+    <script type="text/javascript" src="js/site.js"></script>
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <script type="text/javascript" src="js/google-analytics.js"></script>
+
+    <style type="text/css">
+        body {
+            background: #004050;
+        }
+        .metro {
+            width: 940px;
+            overflow: hidden;
+        }
+        .start {
+            position: absolute;
+            top: 60px;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <a class="pull-left" style="margin-top: 7px; margin-right: 5px;" href="/">
+                    <img src="img/avatar474_2.gif" style="max-height: 16px;"/>
+                </a>
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                <a class="brand" href="/">Metro UI CSS</a>
+                <div class="nav-collapse">
+                    <ul class="nav">
+                        <li><a href="/">Main</a></li>
+                        <li><a href="./tiles.html">Tiles</a></li>
+                        <li><a href="./tiles-1.html">Tiles 1</a></li>
+                        <li><a href="./images.html">Images</a></li>
+                        <li><a href="./notices.html">Notices</a></li>
+                        <li><a href="./buttons.html">Buttons</a></li>
+                        <li><a href="./forms.html">Form</a></li>
+                        <li><a href="./typography.html">Typography</a></li>
+                        <li class="active"><a href="./bonus.html">Bonus</a></li>
+                        <li><a href="#" onclick="switchTheme()">Switch Theme</a></li>
+                    </ul>
+                    <ul class="nav pull-right">
+                        <li><a href="https://github.com/olton/Metro-UI-CSS"><i class="icon-github-sign"></i>Github</a></li>
+                        <li><a href="https://github.com/olton/Metro-UI-CSS/zipball/master"><i class="icon-download"></i>Download</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container metro">
+        <h1 class="start">Bonus - deck of cards (cards.less)</h1>
+        <br />
+        <br />
+        <div class="clearfix">
+            <div class="card two spades"><div class="small-suit"></div><div class="suit"></div></div>
+            <div class="card three spades"><div class="small-suit"></div><div class="suit"></div></div>
+            <div class="card four spades"><div class="small-suit"></div><div class="suit"></div></div>
+            <div class="card five spades"><div class="small-suit"></div><div class="suit"></div></div>
+            <div class="card six spades"><div class="small-suit"></div><div class="suit"></div></div>
+            <div class="card seven spades"><div class="small-suit"></div><div class="suit"></div></div>
+            <div class="card eight spades"><div class="small-suit"></div><div class="suit"></div></div>
+            <div class="card nine spades"><div class="small-suit"></div><div class="suit"></div></div>
+            <div class="card ten spades"><div class="small-suit"></div><div class="suit"></div></div>
+            <div class="card jack spades"><div class="small-suit"></div><div class="suit"></div></div>
+            <div class="card dame spades"><div class="small-suit"></div><div class="suit"></div></div>
+            <div class="card king spades"><div class="small-suit"></div><div class="suit"></div></div>
+            <div class="card ace spades"><div class="small-suit"></div><div class="suit"></div></div>
+
+            <div class="card two clubs"><div class="small-suit"></div><div class="suit"></div></div>
+            <div class="card three clubs"><div class="small-suit"></div><div class="suit"></div></div>
+            <div class="card four clubs"><div class="small-suit"></div><div class="suit"></div></div>
+            <div class="card five clubs"><div class="small-suit"></div><div class="suit"></div></div>
+            <div class="card six clubs"><div class="small-suit"></div><div class="suit"></div></div>
+            <div class="card seven clubs"><div class="small-suit"></div><div class="suit"></div></div>
+            <div class="card eight clubs"><div class="small-suit"></div><div class="suit"></div></div>
+            <div class="card nine clubs"><div class="small-suit"></div><div class="suit"></div></div>
+            <div class="card ten clubs"><div class="small-suit"></div><div class="suit"></div></div>
+            <div class="card jack clubs"><div class="small-suit"></div><div class="suit"></div></div>
+            <div class="card dame clubs"><div class="small-suit"></div><div class="suit"></div></div>
+            <div class="card king clubs"><div class="small-suit"></div><div class="suit"></div></div>
+            <div class="card ace clubs"><div class="small-suit"></div><div class="suit"></div></div>
+
+            <div class="card two diamonds"><div class="small-suit"></div><div class="suit"></div></div>
+            <div class="card three diamonds"><div class="small-suit"></div><div class="suit"></div></div>
+            <div class="card four diamonds"><div class="small-suit"></div><div class="suit"></div></div>
+            <div class="card five diamonds"><div class="small-suit"></div><div class="suit"></div></div>
+            <div class="card six diamonds"><div class="small-suit"></div><div class="suit"></div></div>
+            <div class="card seven diamonds"><div class="small-suit"></div><div class="suit"></div></div>
+            <div class="card eight diamonds"><div class="small-suit"></div><div class="suit"></div></div>
+            <div class="card nine diamonds"><div class="small-suit"></div><div class="suit"></div></div>
+            <div class="card ten diamonds"><div class="small-suit"></div><div class="suit"></div></div>
+            <div class="card jack diamonds"><div class="small-suit"></div><div class="suit"></div></div>
+            <div class="card dame diamonds"><div class="small-suit"></div><div class="suit"></div></div>
+            <div class="card king diamonds"><div class="small-suit"></div><div class="suit"></div></div>
+            <div class="card ace diamonds"><div class="small-suit"></div><div class="suit"></div></div>
+
+            <div class="card two hearts"><div class="small-suit"></div><div class="suit"></div></div>
+            <div class="card three hearts"><div class="small-suit"></div><div class="suit"></div></div>
+            <div class="card four hearts"><div class="small-suit"></div><div class="suit"></div></div>
+            <div class="card five hearts"><div class="small-suit"></div><div class="suit"></div></div>
+            <div class="card six hearts"><div class="small-suit"></div><div class="suit"></div></div>
+            <div class="card seven hearts"><div class="small-suit"></div><div class="suit"></div></div>
+            <div class="card eight hearts"><div class="small-suit"></div><div class="suit"></div></div>
+            <div class="card nine hearts"><div class="small-suit"></div><div class="suit"></div></div>
+            <div class="card ten hearts"><div class="small-suit"></div><div class="suit"></div></div>
+            <div class="card jack hearts"><div class="small-suit"></div><div class="suit"></div></div>
+            <div class="card dame hearts"><div class="small-suit"></div><div class="suit"></div></div>
+            <div class="card king hearts"><div class="small-suit"></div><div class="suit"></div></div>
+            <div class="card ace hearts"><div class="small-suit"></div><div class="suit"></div></div>
+        </div>
+
+        <footer class="footer">
+            <p class="pull-right"><a href="#">Наверх</a></p>
+
+            <p>&copy; 2012 Сергей Пименов. Киев, Украина.</p>
+            <p>Лицензия: MIT License</p>
+        </footer>
+    </div>
+
+    <script type="text/javascript">
+        $(".metro").metro();
+    </script>
+</body>
+</html>
