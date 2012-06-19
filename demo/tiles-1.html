@@ -46,6 +46,7 @@
         }
         .metro-section {
             width: 810px !important;
+            float: left !important;
         }
         #section1 {
         }
@@ -53,10 +54,10 @@
 
         }
         #section3 {
-            width: 320px ;
+            /*width: 320px ;*/
         }
         .metro-sections {
-            width: 10000px ;
+            width: 10000px !important;
         }
         .start {
             position: absolute;
@@ -87,7 +88,7 @@
                     <ul class="nav">
                         <li><a href="/">Main</a></li>
                         <li><a href="./tiles.html">Tiles</a></li>
-                        <li class="active"><a href="./tiles.html-1">Tiles 1</a></li>
+                        <li class="active"><a href="./tiles-1.html">Tiles 1</a></li>
                         <li><a href="./images.html">Images</a></li>
                         <li><a href="./notices.html">Notices</a></li>
                         <li><a href="./buttons.html">Buttons</a></li>
@@ -106,9 +107,11 @@
     </div>
 
     <div id="demo">
+
         <p style="color: #fff;">
             This demo created by first contributor of MetroUI CSS <a href="https://github.com/oazabir"><b>oazabir</b></a>. In this demo: sortable tiles and tiles flow continuous horizontally while fitting vertically on the browser.
         </p>
+
         <div  class="metro">
             <div class="metro-sections unselectable">
                 <div class="metro-section">
@@ -235,9 +238,9 @@
                         </div>
                         <span class="tile-label">Music</span>
                     </div>
--->
                     <div class="tile tile-quadro tile-triple-vertical bg-color-red">
                     </div>
+-->
 
                     <div class="tile bg-color-orange">
                     </div>
@@ -311,7 +314,7 @@
 
         function reflow() {
             var metroSectionHeight = $(window).height() - $(".metro-sections").offset().top;
-		
+		    //console.log(metroSectionHeight);
             $(".tile").each(function(){
                 var tile = $(this);
                 var pos = tile.offset();
@@ -321,15 +324,19 @@
                     var mySection = tile.parents(".metro-section");
                     var nextSection = mySection.next();
 
+                    //console.log(mySection.parent());
+
                     tile.addClass("pushed");
 
                     if (nextSection.length > 0)
                     {
+                        //console.log("test1");
                         nextSection.prepend(tile);
                         return window.setTimeout(reflow, 100);
                     }
                     else
                     {
+                        //console.log("test2");
                         nextSection = $('<div class="metro-section" />');
                         nextSection.appendTo(mySection.parent());
                         nextSection.prepend(tile);
