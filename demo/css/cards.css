@@ -9,7 +9,6 @@
   margin: 5px;
   cursor: pointer;
   background: #fff;
-  font-femaly: Tahoma;
 }
 .card:hover {
   box-shadow: 1px 1px 1px #ccc;
@@ -18,7 +17,7 @@
   font-size: 22pt;
 }
 .card .suit {
-  font-size: 64pt;
+  font-size: 84px;
   position: absolute;
   right: 5px;
   bottom: 30px;
