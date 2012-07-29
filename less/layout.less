@@ -1,0 +1,221 @@
+@sub-unit: 5px;
+@unit: 4 * @sub-unit;
+@quad-unit: 16 * @sub-unit;
+@baseFontRegular: 'Open Sans', sans-serif;
+
+.metro {
+    .layout {
+        position: relative;
+
+        .commands-list {
+            margin: 0;
+            padding: 0;
+            margin-top: 6 * @sub-unit;
+
+            list-style: none;
+
+            li {
+                display: inline-block;
+                float: left;
+                margin-right: 4 * @sub-unit;
+                margin-left: 4 * @sub-unit;
+
+                .command {
+                    display: block;
+                    text-align: center;
+                    float: left;
+                    cursor: pointer;
+                    text-decoration: none;
+
+                    img {
+                        height: 32px;
+                        width: 32px;
+                    }
+
+                    span {
+                        display: block;
+                        font-size: 9pt;
+                        font-family: @baseFontRegular;
+                    }
+                }
+
+                &.divider {
+                    width: 1px;
+                    border-right: 1px #c3c3c3 solid;
+                    height: 48px;
+                }
+
+            }
+
+            &.margin-10 {
+                li {
+                    margin-left: @sub-unit;
+                    margin-right: @sub-unit;
+                }
+            }
+            &.margin-20 {
+                li {
+                    margin-left: 2 * @sub-unit;
+                    margin-right: 2 * @sub-unit;
+                }
+            }
+            &.margin-30 {
+                li {
+                    margin-left: 3 * @sub-unit;
+                    margin-right: 3 * @sub-unit;
+                }
+            }
+            &.margin-40 {
+                li {
+                    margin-left: 4 * @sub-unit;
+                    margin-right: 4 * @sub-unit;
+                }
+            }
+        }
+
+        .commands-list.place-left {
+            margin-left: @unit;
+        }
+
+        .commands-list.place-right {
+            margin-right: @unit;
+        }
+
+        & > .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: block;
+            vertical-align: baseline;
+            min-height: 5 * @unit;
+            background: transparent;
+            padding-left: 6 * @unit;
+            //overflow: hidden;
+
+            h1 {
+                position: absolute;
+                left: 6 * @unit;
+                top: -@sub-unit;
+                font-size: 28pt;
+                text-decoration: none;
+                //color: #fff;
+
+                b:after {
+                    position: absolute;
+                    content: "\3009";
+                    display: inline-block;
+                    margin-left: 2*@sub-unit;
+                    font-size: 10pt;
+                    top: 30px;
+                    .rotate(90deg);
+                }
+            }
+
+            .command-back-wrapper {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 6 * @unit;
+
+                a {
+                    display: block;
+                    padding: 30px 34px;
+                    text-decoration: none;
+
+                    i {
+                        display: block;
+                        border: 2px #fff solid;
+                        border-radius: 100%;
+                        width: 32px;
+                        height: 32px;
+                        position: relative;
+
+                        &:before {
+                            content: "\2190";
+                            position: absolute;
+                            left: 9px;
+                            top: 7px;
+                        }
+                    }
+                }
+            }
+        }
+
+        .scrollable {
+            .clearfix();
+            width: 100%;
+            height: 100%;
+        }
+
+        .content {
+            margin-top: 7 * @unit;
+            margin-left: 6 * @unit;
+            display: block;
+            //border: 1px #000 dotted;
+            .frames {
+                width: 10000px;
+
+                .frame {
+                    display: block;
+                    float: left;
+                    margin-right: @unit;
+                    width: 840px;
+                    //border: 1px #000 dotted;
+
+                    &.size1 {
+                        width: 6 *@unit;
+                    }
+                    &.size2 {
+                        width: 6 * 2 * @unit;
+                    }
+                    &.size3 {
+                        width: 6 * 3 * @unit;
+                    }
+                    &.size4 {
+                        width: 6 * 4 * @unit;
+                    }
+                    &.size5 {
+                        width: 6 * 5 * @unit;
+                    }
+                    &.size6 {
+                        width: 6 * 6 * @unit;
+                    }
+                    &.size7 {
+                        width: 6 * 7 * @unit;
+                    }
+                    &.size8 {
+                        width: 6 * 8 * @unit;
+                    }
+                    &.size9 {
+                        width: 6 * 9 * @unit;
+                    }
+                    &.size10 {
+                        width: 6 * 10 * @unit;
+                    }
+                    &.size11 {
+                        width: 6 * 11 * @unit;
+                    }
+                    &.size12 {
+                        width: 6 * 12 * @unit;
+                    }
+                }
+
+            }
+        }
+
+        .commands {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: table-cell;
+            vertical-align: baseline;
+            min-height: 5 * @unit;
+            display: none;
+            z-index: 10000;
+            background: #1e1e1e;
+            //opacity: .9;
+        }
+    }
+}

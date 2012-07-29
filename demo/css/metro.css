@@ -51,10 +51,8 @@ textarea{overflow:auto;vertical-align:top;}
 .top-right{position:absolute;top:0;right:0;}
 .bottom-right{position:absolute;bottom:0;right:0;}
 .bottom-left{position:absolute;bottom:0;left:0;}
-.clearfix:after{content:".";display:block;clear:both;visibility:hidden;line-height:0;height:0;}
-.clearfix{display:inline-block;zoom:1;}
-html[xmlns] .clearfix{display:block;}
-* html .clearfix{height:1%;}
+.clearfix{*zoom:1;}.clearfix:before,.clearfix:after{display:table;content:"";}
+.clearfix:after{clear:both;}
 .metro .metro-sections{height:auto;position:relative;overflow:hidden;width:100%;}.metro .metro-sections .metro-section{float:left;margin-right:75px;height:auto;width:960px;position:relative;-moz-transform:perspective(600px);-webkit-transform:perspective(600px);-ms-transform:perspective(600px);-o-transform:perspective(600px);transform:perspective(600px);}.metro .metro-sections .metro-section .next-section{position:absolute;top:0px;right:-40px;background:url(/img/next.png);height:24px;width:24px;}
 .metro .metro-sections .metro-section .next-section.back{background:url(/img/back.png);}
 .metro .metro-sections .metro-section .tile:hover{outline:3px #225a68 solid !important;}
@@ -250,6 +248,9 @@ html[xmlns] .clearfix{display:block;}
 .metro.metro-theme-light .metro-switch input[type=checkbox]:disabled+span::before,.metro.metro-theme-light .metro-switch:hover input[type=checkbox]:disabled+span::before{background:#e0e0e0;outline-color:#cccccc;}
 .metro.metro-theme-light .metro-switch input[type=checkbox]:disabled+span::after,.metro.metro-theme-light .metro-switch:hover input[type=checkbox]:disabled+span::after{background:#a6a6a6;}
 .metro.metro-theme-light .card{border-color:#e1e1e1;}
+.metro .layout .header{display:table-cell;vertical-align:bottom;height:140px;padding-bottom:40px;}
+.metro .layout .content{margin-top:140px;margin-left:120px;display:block;*zoom:1;}.metro .layout .content:before,.metro .layout .content:after{display:table;content:"";}
+.metro .layout .content:after{clear:both;}
 .metro{background:transparent;}.metro *{color:#ffffff;}
 .metro hr{color:#fff;background-color:#fff;}
 .metro .metro-replies .metro-reply{background:#1c1c1c;}.metro .metro-replies .metro-reply *{color:#ffffff;}

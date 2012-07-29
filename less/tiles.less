@@ -10,9 +10,16 @@
         height: auto;
         position: relative;
         overflow: hidden;
-        width: 100%;
+        width: 10000px;
 
         .metro-section {
+
+            h2, .metro-section-title {color: #000; font-size: 18pt;}
+            &> a {text-decoration: none;}
+            &> a h2 {font-weight: 500; font-size: 22pt;}
+            &> a h2 small {margin-left: 10px; font-weight: normal; font-size: 12pt; color: #1e1e1e;}
+
+
             float: left;
             margin-right: 75px;
             height: auto;
@@ -39,7 +46,7 @@
             }
 
             .tile:hover {
-                outline: 3px #225a68 solid !important;
+                outline: 3px #225a68 solid;
             }
 
             .tile.tile-active-right {
@@ -176,6 +183,128 @@
                     //opacity: .1;
                 }
 
+                .tile-announce {
+                    .announce-content {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        width: 100%;
+                        height: 100%;
+                        min-height: 100%;
+                        overflow: hidden;
+
+                        img {
+                            width: 100%;
+                            height: 100%;
+                        }
+                    }
+                    .announce-description {
+                        position: absolute;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        height: 46px;
+
+                        .text {
+                            opacity: .8;
+                            background: #1e1e1e;
+                            padding: 10px;
+                            font-size: 8pt;
+                        }
+
+                        .label {
+                            display: inline;
+                            position: absolute;
+                            width: auto;
+                            padding: 4px 10px;
+                            top: -25px;
+                            left: 0;
+                            font-weight: bold;
+
+                            .stick {
+                                width: 0px;
+                                height: 0px;
+                                border-top: 10px solid #000;
+                                border-right: 10px solid transparent !important;
+                                position: absolute;
+                                display: block;
+                                z-index: 100000;
+                                top: 25px;
+                            }
+
+                            &.label-color-blue {
+                                background: @blue;
+                                .stick {
+                                    border-top:10px solid @blue !important;
+                                }
+                            }
+                            &.label-color-green {
+                                background: @green;
+                                .stick {
+                                    border-top:10px solid @green !important;
+                                }
+                            }
+                            &.label-color-greenDark {
+                                background: @greenDark;
+                                .stick {
+                                    border-top:10px solid @greenDark !important;
+                                }
+                            }
+                            &.label-color-red {
+                                background: @red;
+                                .stick {
+                                    border-top:10px solid @red !important;
+                                }
+                            }
+                            &.label-color-yellow {
+                                background: @yellow;
+                                .stick {
+                                    border-top:10px solid @yellow !important;
+                                }
+                            }
+                            &.label-color-orange {
+                                background: @orange;
+                                .stick {
+                                    border-top:10px solid @orange !important;
+                                }
+                            }
+                            &.label-color-pink {
+                                background: @pink;
+                                .stick {
+                                    border-top:10px solid @pink !important;
+                                }
+                            }
+                            &.label-color-purple {
+                                background: @purple;
+                                .stick {
+                                    border-top:10px solid @purple !important;
+                                }
+                            }
+                            &.label-color-white {
+                                background: @white;
+                                .stick {
+                                    border-top:10px solid @white !important;
+                                }
+                            }
+                            &.label-color-black {
+                                background: @black;
+                                .stick {
+                                    border-top:10px solid @black !important;
+                                }
+                            }
+                            &.label-color-darken {
+                                background: @darken;
+                                .stick {
+                                    border-top:10px solid @darken !important;
+                                }
+                            }
+
+                        }
+                    }
+                }
+
             }
 
             .tile.multi-content{}
@@ -192,6 +321,10 @@
                 }
                 .tile-icon-cover, .tile-icon-large {
                     width: @tileDouble;
+                    img {
+                        width: 310px;
+                        height: 310px;
+                    }
                 }
             }
             .tile.tile-double-vertical {
@@ -230,5 +363,12 @@
                 }
             }
         }
+
+        .metro-section.size1 {width: 160px !important;}
+        .metro-section.size2 {width: 320px !important;}
+        .metro-section.size3 {width: 480px !important;}
+        .metro-section.size4 {width: 640px !important;}
+        .metro-section.size5 {width: 800px !important;}
+        .metro-section.size6 {width: 960px !important;}
     }
 }

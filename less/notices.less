@@ -3,8 +3,6 @@
  * Copyright 2012 Sergey Pimenov
  * Licensed under the MIT Lilcense
  */
-
-
 .metro {
 
     .metro-replies {
@@ -107,7 +105,8 @@
             //box-shadow: inset 0px 0px 3px #fff;
             margin-bottom: 10px;
 
-            .header {
+            .notice-header, .header {
+                position: relative;
                 margin-top: 15px;
                 margin-right: 25px;
                 margin-left: 10px;
@@ -115,18 +114,21 @@
                 color: #fff;
                 font-family: @baseFontFamily;
                 font-size: 13px;
-                font-weight: bolder;
+                font-weight: bold;
+                background: transparent;
             }
-            .text {
+            .notice-text, .text {
+
+                position: relative;
                 margin-right: 45px;
                 margin-left: 10px;
                 color: #fff;
                 font-family: @baseFontFamily;
-                font-size: 12px;
+                font-size: @baseFontSizeSmaller;
                 font-weight: lighter;
             }
 
-            .icon {
+            .notice-icon, .icon {
                 position: absolute;
                 right: 10px;
                 bottom: 5px;
@@ -137,7 +139,7 @@
                 }
             }
 
-            .image {
+            .notice-image, .image {
                 max-height: 48px;
                 width: 48px;
                 height: 48px;
