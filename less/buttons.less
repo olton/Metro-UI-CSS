@@ -20,6 +20,7 @@
         position: relative;
         text-align: center;
         border-radius: 0;
+        font-family: @baseFontFamily;
 
         &:hover {
             background: #3a3a3a;
@@ -71,6 +72,7 @@
         height: 40px;
         background: #1d1d1d;
         position: relative;
+        font-family: @baseFontFamily;
         margin: 10px 10px 0 10px;
 
         .title {
@@ -122,161 +124,14 @@
         }
     }
 
-    .metro-radio, .metro-check, .metro-switch {
+
+    .metro-switch {
         cursor: pointer;
         cursor: hand;
         position: relative;
-    }
 
-    .metro-radio {
-        input[type=radio],
-        input[type=radio] + span,
-        input[type=radio] + span::before,
-        input[type=radio] + span::after, {
-            vertical-align: middle;
-            display: inline-block;
-        }
-
-        input[type=radio] {
-            position: absolute;
-            filter: alpha(opacity=0);
-            -moz-opacity: 0;
-            opacity: 0;
-        }
-
-        input[type=radio] + span {
-            font: normal 13px/14px "Segoe UI", Sans-serif;
-        }
-
-        input[type=radio] + span::before {
-            content: "\2022";
-            text-indent: -9999px;
-            width: 24px;
-            height: 24px;
-            background: #cfcfcf;
-            margin-right: 10px;
-            border-radius: 50%;
-        }
-
-        input[type=radio]:checked + span::after {
-            text-indent: -9999px;
-            position: absolute;
-            content: "\2022";
-            background: #212121;
-            z-index: 1000;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            left: 6px;
-            top: 4px;
-        }
-        input[type=radio]:checked + span::before {
-            background: #d1d1d1;
-        }
-
-        input[type=radio]:not(:checked):disabled + span::before {
-            cursor: default;
-            background: #868686;
-        }
-
-        input[type=radio]:disabled + span::before {
-            cursor: default;
-            background: #868686;
-        }
-
-        input[type=radio]:disabled + span::after {
-            background: #484848;
-        }
-
-        &:hover input[type=radio]:not(:checked):disabled + span::before {
-            background: #868686;
-        }
-        &:hover input[type=radio]:not(:checked) + span::before {
-            background: #ffffff;
-        }
-        &:hover input[type=radio]:checked + span::before {
-            background: #dfdfdf;
-        }
-        &:hover input[type=radio]:checked:disabled + span::before {
-            background: #868686;
-        }
-        &:hover input[type=radio]:checked:disabled + span::after {
-            background: #484848;
-        }
-        &:hover input[type=radio]:checked + span::after {
-            background: #000000;
-        }
-    }
-
-    .metro-check {
-        input[type=checkbox],
-        input[type=checkbox] + span,
-        input[type=checkbox] + span::before,
-        input[type=checkbox] + span::after, {
-            vertical-align: middle;
-            display: inline-block;
-        }
-
-        input[type=checkbox] {
-            position: absolute;
-            filter: alpha(opacity=0);
-            -moz-opacity: 0;
-            opacity: 0;
-        }
-
-        input[type=checkbox] + span {
-            font: normal 13px/14px "Segoe UI", Sans-serif;
-        }
-
-        &:hover input[type=checkbox] + span::before {
-            background: #fff;
-        }
-
-        &:hover input[type=checkbox]:checked + span::before {
-            background: #e1e1e1;
-        }
-
-        input[type=checkbox] + span::before {
-            content: "\2714";
-            text-indent: -9999px;
-            width: 22px;
-            height: 22px;
-            background: #d1d1d1;
-            margin-right: 10px;
-        }
-
-        input[type=checkbox]:checked + span::after {
-            position: absolute;
-            content: "\2713";
-            color: #202020;
-            z-index: 1000;
-            font-size: 20px;
-            font-weight: bold;
-            font-family: Tahoma;
-            left: 4px;
-            top: 2px;
-        }
-        input[type=checkbox]:checked + span::before {
-            background: #d1d1d1;
-        }
-
-        input[type=checkbox]:not(:checked):disabled + span::before {
-            cursor: default;
-            background: #767676;
-        }
-
-        input[type=checkbox]:disabled + span::before {
-            cursor: default;
-            background: #767676;
-        }
-
-        input[type=checkbox]:disabled + span::after {
-            color: #4c4c4c;
-        }
-
-        &:hover input[type=checkbox]:disabled + span::before {
-            cursor: default;
-            background: #767676;
+        span {
+            position: relative;
         }
 
     }
@@ -291,14 +146,14 @@
         }
 
         input[type=checkbox] {
-            position: absolute;
+            //position: absolute;
             filter: alpha(opacity=0);
             -moz-opacity: 0;
             opacity: 0;
         }
 
         input[type=checkbox] + span {
-            font: normal 13px/14px "Segoe UI", Sans-serif;
+            font: normal 13px/14px @baseFontFamily;
         }
 
         input[type=checkbox] + span::before {
@@ -318,12 +173,12 @@
         input[type=checkbox] + span::after {
             content: "";
             position: absolute;
-            top: 2px;
+            top: 0px;
             left: 35px;
             width: 13px;
             height: 19px;
             background: #ffffff;
-            z-index: 200;
+            z-index: 1000;
         }
 
         input[type=checkbox]:checked + span::before {
@@ -331,7 +186,7 @@
         }
 
         input[type=checkbox]:not(:checked) + span::after {
-            top: 2px;
+            top: 0px;
             left: 0px;
         }
 

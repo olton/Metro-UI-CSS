@@ -142,19 +142,13 @@
             }
         }
 
-        .scrollable {
-            .clearfix();
-            width: 100%;
-            height: 100%;
-        }
-
         .content {
             margin-top: 7 * @unit;
             margin-left: 6 * @unit;
             display: block;
             //border: 1px #000 dotted;
             .frames {
-                width: 10000px;
+                width: auto;
 
                 .frame {
                     display: block;
@@ -217,5 +211,22 @@
             background: #1e1e1e;
             //opacity: .9;
         }
+
+        .metro-scroll {
+        //.clearfix();
+            width: 100%;
+            height: 100%;
+
+            .frames {
+                width: 10000px;
+            }
+        }
+
+        .metro-scroll-vertical {
+        //.clearfix();
+            width: 100%;
+            height: 100%;
+        }
+
     }
 }
