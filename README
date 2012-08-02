@@ -1,8 +1,6 @@
-Special thanks for their participation in the project first contributor of MetroUI CSS oazabir (https://github.com/oazabir)
-
 // Readme file
 
-Demo available on http://metroui.org.ua
+Demo available on http://metroui.org.ua. Now works without any css frameworks.
 
 //
 
@@ -11,3 +9,8 @@ Sites and Projects inspired by Metro UI CSS:
 http://oazabir.github.com/Droptiles/
 http://aozora.github.com/metroui-web/
 http://forecast.org.ua
+
+//
+
+Special thanks:
+oazabir (https://github.com/oazabir)
