@@ -25,8 +25,13 @@
         })
     </script>
 
+    <script type="text/javascript" src="/js/github.info.js"></script>
+    <script type="text/javascript" src="/js/google-analytics.js"></script>
 </head>
 <body>
+
+<iframe src="counters.html" width="0" height="0"></iframe>
+
 <div class="metro">
     <div class="layout">
         <!-- Header -->
@@ -34,7 +39,12 @@
             <div class="command-back-wrapper no-display">
                 <a href="#"><img src="/img/left-32.png"/></a>
             </div>
-            <ul class="commands-list place-right margin-20">
+            <ul class="commands-list place-right margin-20 github-info" data-repo="olton/Metro-UI-CSS">
+                <li><a class="command" href="https://github.com/olton/Metro-UI-CSS/watchers"><img src="/img/view-32.png" title="GitHub Wathers"/></a></li>
+                <li><span style="font-size: 24pt;" class="github-watchers"></span></li>
+                <li><a class="command" href="https://github.com/olton/Metro-UI-CSS/network/members"><img src="/img/fork-32.png" title="GitHub Forks"/></a></li>
+                <li><span style="font-size: 24pt;" class="github-forks"></span></li>
+                <li>&nbsp;</li>
                 <li><a class="command" href="https://github.com/olton/Metro-UI-CSS/zipball/master"><img src="/img/download-32.png"/></a></li>
                 <li><a class="command" href="https://github.com/olton/Metro-UI-CSS"><img src="/img/github.png"/></a></li>
                 <li><a class="command" data-click="toggleCommands" onclick="toggleCommands()"><img src="/img/commands-32.png"/> </a></li>
@@ -46,6 +56,8 @@
                 </a>
 
                 <ul class="dropdown-menu">
+                    <li><a href="/">Home</a></li>
+                    <li class="divider"></li>
                     <li><a href="/about.html">About</a></li>
                     <li class="divider"></li>
                     <li><a href="/layout.html">Layout</a></li>
@@ -58,8 +70,6 @@
                     <li><a href="/cards.html">Deck of Cards</a></li>
                     <li><a href="/">More...</a></li>
                     <li class="divider"></li>
-                    <li><a href="/">Home</a></li>
-                    <li class="divider"></li>
                     <li><a href="/donate.html">Donate</a></li>
                 </ul>
             </div>
@@ -67,7 +77,7 @@
         </div>
 
         <!-- Scrollable content -->
-        <div id="scroll" class="scrollable">
+        <div id="scroll" class="metro-scroll">
             <div class="content clearfix" id="content">
                 <div class="metro-sections">
                     <div class="metro-section size4" id="section-general">
@@ -115,6 +125,14 @@
                                 </div>
                             </div>
                         </a>
+<!--
+                        <div class="tile tile-quadro bg-color-white" style="height: 70px">
+                            <div style="color: #1e1e1e; padding: 10px;font-size: 9pt">
+                                Metro UI CSS - это набор стилей для создания сайтов с интерфейсом, похожим на Windows 8 Metro UI.
+                                Набор стилей разрабатывается как самодостатоный однако может использоваться как дополнение к любому другому CSS фреймворку.
+                            </div>
+                        </div>
+-->
                     </div>
 
                     <div class="metro-section size2">
@@ -165,8 +183,12 @@
             </div>
         </div>
 
+        <div class="info" style="position: fixed; left: 120px; top: 70px; right:0px;padding:0;">
+            <h1 style=" margin: 0; padding: 0;font-size: 12pt;">Metro UI CSS - a framework for the development of sites in the style of Windows 8</h1>
+        </div>
+
         <div class="info bg-color-red text-center" style="position: fixed; left: 0; bottom:0; width: 100%;">
-            For scroll: press left mouse button and move, touch and move (must work, but not tested), use mouse wheel
+            For scroll: press left mouse button and move, touch and move (must work, but not tested), use mouse wheel, for access to additional volumes of demo - click on title
         </div>
 
         <!-- Commands -->

@@ -25,8 +25,16 @@
         })
     </script>
 
+    <style>
+        body {
+            background: #fff;
+        }
+    </style>
+
 </head>
 <body>
+<iframe src="counters.html" width="0" height="0"></iframe>
+
 <div class="metro" id="about">
     <div class="layout">
         <!-- Header -->
@@ -45,6 +53,8 @@
                 </a>
 
                 <ul class="dropdown-menu">
+                    <li><a href="/">Home</a></li>
+                    <li class="divider"></li>
                     <li><a href="/about.html">About</a></li>
                     <li class="divider"></li>
                     <li><a href="/layout.html">Layout</a></li>
@@ -57,8 +67,6 @@
                     <li><a href="/cards.html">Deck of Cards</a></li>
                     <li><a href="/">More...</a></li>
                     <li class="divider"></li>
-                    <li><a href="/">Home</a></li>
-                    <li class="divider"></li>
                     <li><a href="/donate.html">Donate</a></li>
                 </ul>
             </div>
@@ -68,27 +76,22 @@
         <!-- Scrollable content -->
         <div class="content clearfix" id="content">
             <h1 style="color: #1e1e1e;">Donate</h1>
-            <div id="scroll" class="scrollable">
+            <div id="scroll" class="metro-scroll">
                 <div class="frames">
                     <div class="frame size4">
                         <h2>Яндекс.Деньги</h2>
                         <iframe frameborder="0" allowtransparency="true" scrolling="no" src="https://money.yandex.ru/embed/donate.xml?uid=410011462459886&amp;default-sum=100&amp;targets=%d0%9d%d0%b0+%d1%80%d0%b0%d0%b7%d0%b2%d0%b8%d1%82%d0%b8%d0%b5+%d0%bf%d1%80%d0%be%d0%b5%d0%ba%d1%82%d0%b0&amp;target-visibility=on&amp;project-name=metro+ui+css&amp;project-site=http%3a%2f%2fmetroui.org.ua&amp;button-text=01&amp;hint=" width="450" height="133"></iframe>
                     </div>
-
-                    <div class="frame size1">
+                    <div class="frame size2">
                         <h2>PayPal</h2>
                         <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
                             <input type="hidden" name="cmd" value="_s-xclick">
                             <input type="hidden" name="hosted_button_id" value="CNLR7FDDXL8EJ">
-                            <input style="height: 25px;" type="image" src="http://metroui.org.ua/img/ico-paypal.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                            <input style="height: 128px" type="image" src="/img/PayPal-Button.jpg" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
                             <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
                         </form>
                     </div>
 
-                    <div class="frame size3">
-                        <h2>Pledgie.com</h2>
-                        <a href='http://www.pledgie.com/campaigns/17725'><img alt='Click here to lend your support to: Metro UI CSS and make a donation at www.pledgie.com !' src='http://www.pledgie.com/campaigns/17725.png?skin_name=chrome' border='0' /></a>
-                    </div>
                 </div>
             </div>
         </div>

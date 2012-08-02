@@ -81,12 +81,12 @@
 
         // Private method
         var setScrollable = function(){
-            $('.scrollable').mousedown(function (event) {
+            $('.metro-scroll').mousedown(function (event) {
                 $(this)
                     .data('down', true)
                     .data('x', event.clientX)
                     .data('scrollLeft', this.scrollLeft);
-                return false;
+                return $(this).hasClass("mouse-normal");
             }).mouseup(function (event) {
                 $(this).data('down', false);
             }).mousemove(function (event) {
@@ -95,6 +95,25 @@
                 }
             }).mousewheel(function (event, delta) {
                 this.scrollLeft -= (delta * 30);
+                //console.log(this.scrollLeft);
+            }).css({
+                'overflow' : 'hidden'
+            });
+
+            $('.metro-scroll-vertical').mousedown(function (event) {
+                $(this)
+                    .data('down', true)
+                    .data('y', event.clientY)
+                    .data('scrollTop', this.scrollTop);
+                return false;
+            }).mouseup(function (event) {
+                $(this).data('down', false);
+            }).mousemove(function (event) {
+                if ($(this).data('down') == true) {
+                    this.scrollTop = $(this).data('scrollTop') + $(this).data('y') - event.clientY;
+                }
+            }).mousewheel(function (event, delta) {
+                this.scrollTop -= (delta * 30);
                 //console.log(this.scrollLeft);
             }).css({
                 'overflow' : 'hidden'

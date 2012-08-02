@@ -16,10 +16,12 @@
     <script src="/js/jquery-1.7.2.min.js" type="text/javascript"></script>
     <script src="/js/jquery.mousewheel.min.js" type="text/javascript"></script>
     <script src="/js/jquery.cookie.js" type="text/javascript"></script>
-    <script src="/js/metroUI.js" type="text/javascript"></script>
+    <script src="/js/metroui.js" type="text/javascript"></script>
     <script src="/js/site.js" type="text/javascript"></script>
 </head>
 <body>
+<iframe src="counters.html" width="0" height="0"></iframe>
+
 <div class="metro" id="layout">
     <div class="layout">
         <!-- Header -->
@@ -38,6 +40,8 @@
                 </a>
 
                 <ul class="dropdown-menu">
+                    <li><a href="/">Home</a></li>
+                    <li class="divider"></li>
                     <li><a href="/about.html">About</a></li>
                     <li class="divider"></li>
                     <li><a href="/layout.html">Layout</a></li>
@@ -50,8 +54,6 @@
                     <li><a href="/cards.html">Deck of Cards</a></li>
                     <li><a href="/">More...</a></li>
                     <li class="divider"></li>
-                    <li><a href="/">Home</a></li>
-                    <li class="divider"></li>
                     <li><a href="/donate.html">Donate</a></li>
                 </ul>
             </div>
@@ -59,7 +61,7 @@
         </div>
 
         <!-- Scrollable content -->
-        <div id="scroll" class="scrollable">
+        <div id="scroll" class="metro-scroll">
             <div class="content clearfix" id="content">
                 <div class="frames">
                     <div class="frame size3">
