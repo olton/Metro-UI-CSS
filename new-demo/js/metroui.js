@@ -20,6 +20,7 @@
             setDropdown();
             setSelectable();
             setSwitchers();
+            setTileImageSliders();
         }
         /*
         plugin.foo_public_method = function() {
@@ -118,6 +119,11 @@
             }).css({
                 'overflow' : 'hidden'
             });
+        }
+
+        var setTileImageSliders = function(){
+            var speed = 2000;
+            var run = setInterval("$('.tile-image-slider img:last').after($('.tile-image-slider img:first'));", speed);
         }
 
         plugin.init();
