@@ -1,0 +1,39 @@
+@media screen and (max-width: 1024px) {
+    .metro .layout .header h1 {
+        font-size: 32pt;
+        width: 500px;
+    }
+
+    .metro .layout .header .commands-list li img {
+        width: 24px;
+        height: 24px;
+    }
+
+    .metro .layout .header .commands-list li span {
+        font-size: 18pt !important;
+    }
+    .metro .layout .header .command-back-wrapper a {
+        padding: 30px 45px;
+    }
+
+    .metro .layout .content {
+        margin-top: 100px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .metro .layout .header h1 {
+        font-size: 24pt;
+        width: 300px;
+    }
+    .metro .layout .header .commands-list li img {
+        width: 24px;
+        height: 24px;
+    }
+    .metro .layout .header .commands-list li span {
+        font-size: 18pt !important;
+    }
+    .metro .layout .header .command-back-wrapper a {
+        padding: 30px 45px;
+    }
+}
