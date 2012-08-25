@@ -61,6 +61,7 @@ textarea{overflow:auto;vertical-align:top;}
 .clearfix{display:inline-block;zoom:1;}
 html[xmlns] .clearfix{display:block;}
 * html .clearfix{height:1%;}
+.metro *,.metro *:after,.metro *:before{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;}
 .metro .layout{position:relative;}.metro .layout .commands-list{margin:0;padding:0;margin-top:30px;list-style:none;}.metro .layout .commands-list li{display:inline-block;float:left;margin-right:20px;margin-left:20px;}.metro .layout .commands-list li .command{display:block;text-align:center;float:left;cursor:pointer;text-decoration:none;}.metro .layout .commands-list li .command img{height:32px;width:32px;}
 .metro .layout .commands-list li .command span{display:block;font-size:9pt;font-family:'Open Sans',sans-serif;}
 .metro .layout .commands-list li.divider{width:1px;border-right:1px #c3c3c3 solid;height:48px;}
@@ -88,7 +89,7 @@ html[xmlns] .clearfix{display:block;}
 .metro .layout .commands{position:fixed;bottom:0;left:0;right:0;display:table-cell;vertical-align:baseline;min-height:100px;display:none;z-index:10000;background:#1e1e1e;}
 .metro .layout .metro-scroll{width:100%;height:100%;overflow:hidden;}.metro .layout .metro-scroll .frames{width:10000px;}
 .metro .layout .metro-scroll-vertical{width:100%;height:100%;}
-.metro .metro-sections{height:auto;position:relative;overflow:hidden;width:10000px;}.metro .metro-sections .metro-section{float:left;margin-right:75px;height:auto;width:960px;position:relative;-moz-transform:perspective(600px);-webkit-transform:perspective(600px);-ms-transform:perspective(600px);-o-transform:perspective(600px);transform:perspective(600px);}.metro .metro-sections .metro-section h2,.metro .metro-sections .metro-section .metro-section-title{color:#000;font-size:18pt;}
+.metro .metro-sections{height:auto;position:relative;overflow:hidden;width:10000px;}.metro .metro-sections .metro-section{float:left;margin-right:75px;height:auto;width:960px;position:relative;}.metro .metro-sections .metro-section h2,.metro .metro-sections .metro-section .metro-section-title{color:#000;font-size:18pt;}
 .metro .metro-sections .metro-section >a{text-decoration:none;}
 .metro .metro-sections .metro-section >a h2{font-weight:500;font-size:22pt;}
 .metro .metro-sections .metro-section >a h2 small{margin-left:10px;font-weight:normal;font-size:12pt;color:#1e1e1e;}
@@ -98,7 +99,7 @@ html[xmlns] .clearfix{display:block;}
 .metro .metro-sections .metro-section .tile:hover{outline:3px #225a68 solid;}
 .metro .metro-sections .metro-section .tile.tile-active-right{-ms-transform:perspective(600px) rotatey(5deg);-o-transform:perspective(600px) rotatey(5deg);-moz-transform:perspective(600px) rotatey(5deg);-webkit-transform:perspective(600px) rotatey(5deg);transform:perspective(600px) rotatey(5deg);}
 .metro .metro-sections .metro-section .tile.tile-active-left{-ms-transform:perspective(600px) rotatey(-5deg);-o-transform:perspective(600px) rotatey(-5deg);-moz-transform:perspective(600px) rotatey(-5deg);-webkit-transform:perspective(600px) rotatey(-5deg);transform:perspective(600px) rotatey(-5deg);}
-.metro .metro-sections .metro-section .tile{display:block;background-color:#2d89f0;width:150px;height:150px;color:#fff;margin:5px;float:left;position:relative;cursor:pointer;overflow:hidden;text-decoration:none;position:relative;}.metro .metro-sections .metro-section .tile *{font-family:'Open Sans',sans-serif;}
+.metro .metro-sections .metro-section .tile{display:block;background-color:#2d89f0;width:150px;height:150px;color:#fff;margin:5px;float:left;position:relative;cursor:pointer;overflow:hidden;text-decoration:none;position:relative;box-sizing:border-box;}.metro .metro-sections .metro-section .tile *{font-family:'Open Sans',sans-serif;}
 .metro .metro-sections .metro-section .tile .tile-icon-large{margin-top:20px;margin-left:0px;display:table-cell;vertical-align:middle !important;text-align:center;width:150px;padding-top:20px;}.metro .metro-sections .metro-section .tile .tile-icon-large img{width:96px;height:96px;}
 .metro .metro-sections .metro-section .tile .tile-icon-cover{margin-top:20px;margin-left:0px;display:table-cell;vertical-align:middle !important;text-align:center;width:150px;padding-top:30px;}.metro .metro-sections .metro-section .tile .tile-icon-cover img{max-width:90px;height:90px;}
 .metro .metro-sections .metro-section .tile .tile-icon{position:absolute;bottom:10px;left:20px;width:32px;height:32px;}
@@ -122,7 +123,7 @@ html[xmlns] .clearfix{display:block;}
 .metro .metro-sections .metro-section .tile .tile-image-slider{padding:0;margin:0;overflow:hidden;}.metro .metro-sections .metro-section .tile .tile-image-slider img{min-height:100%;min-width:100%;float:left;}
 .metro .metro-sections .metro-section .tile .tile-icon-title{text-align:left;padding-left:20px;padding-right:20px;padding-top:20px;}.metro .metro-sections .metro-section .tile .tile-icon-title img{float:left;margin-right:20px;width:96px;height:96px;}
 .metro .metro-sections .metro-section .tile .tile-icon-title span,.metro .metro-sections .metro-section .tile .tile-icon-title h2{font-size:40pt;display:block;float:left;margin-top:20px;font-weight:200;font-family:'Open Sans',sans-serif;color:#fff;}
-.metro .metro-sections .metro-section .tile .tile-overlay{position:absolute;height:50px;width:100%;z-index:1000;bottom:0;left:0px;}.metro .metro-sections .metro-section .tile .tile-overlay .tile-overlay-icon{position:absolute;left:10px;top:10px;}.metro .metro-sections .metro-section .tile .tile-overlay .tile-overlay-icon img{width:32px;height:32px;}
+.metro .metro-sections .metro-section .tile .tile-overlay{position:absolute;height:50px;width:100%;z-index:1000;bottom:0;left:0px;opacity:.8;}.metro .metro-sections .metro-section .tile .tile-overlay .tile-overlay-icon{position:absolute;left:10px;top:10px;}.metro .metro-sections .metro-section .tile .tile-overlay .tile-overlay-icon img{width:32px;height:32px;}
 .metro .metro-sections .metro-section .tile .tile-overlay .tile-overlay-text{font-size:10pt;margin:10px 50px;line-height:14px;font-family:Tahoma,sans-serif,serif;}
 .metro .metro-sections .metro-section .tile .tile-overlay .tile-overlay-counter{position:absolute;font-size:11pt;font-weight:bold;right:20px;bottom:10px;}
 .metro .metro-sections .metro-section .tile .tile-content-main{height:150px;position:relative;overflow:hidden;}

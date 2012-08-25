@@ -4,6 +4,12 @@
 @baseFontRegular: 'Open Sans', sans-serif;
 
 .metro {
+    *, *:after, *:before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    }
+
     .layout {
         position: relative;
 
@@ -216,7 +222,7 @@
         }
 
         .metro-scroll {
-        //.clearfix();
+            //.clearfix();
             width: 100%;
             height: 100%;
             overflow: hidden;

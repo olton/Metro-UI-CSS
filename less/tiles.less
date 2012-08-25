@@ -27,13 +27,6 @@
             width: 960px;
             position: relative;
 
-            -moz-transform: perspective(600px);
-            -webkit-transform: perspective(600px);
-            -ms-transform: perspective(600px);
-            -o-transform: perspective(600px);
-            transform: perspective(600px);
-
-
             .next-section {
                 position: absolute;
                 top: 0px;
@@ -81,6 +74,7 @@
                 text-decoration: none;
                 position: relative;
                 //padding-bottom: 1px;
+                box-sizing: border-box;
 
                 * {font-family: @baseFontFamily;}
 
@@ -328,6 +322,7 @@
                     z-index: 1000;
                     bottom: 0;
                     left: 0px;
+                    opacity: .8;
 
                     .tile-overlay-icon {
                         position: absolute;
