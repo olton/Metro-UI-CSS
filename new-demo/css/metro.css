@@ -276,7 +276,7 @@ html[xmlns] .clearfix{display:block;}
 .metro .metro-form .metro-form-control .metro-text-box input[type=text]:disabled{background:#1d1d1d;border:2px #777777 solid;}
 .metro .metro-form .metro-form-control .metro-text-box input[type=text]:not(:focus):not(:disabled):hover{background:#e2e2e2;}
 .metro .metro-form .metro-form-control .metro-text-box .helper{cursor:pointer;z-index:100;}
-.metro .metro-form .metro-form-control .metro-text-box input[type=text]+.helper::before{display:inline-block;position:absolute;width:16px;height:16px;background:#ccc;top:3px;right:-17px;visibility:hidden;content:"\00d7";font-size:18pt;font-weight:bold;color:#000;cursor:pointer;padding:2px 6px 9px 9px;}
+.metro .metro-form .metro-form-control .metro-text-box input[type=text]+.helper::before{display:inline-block;position:absolute;width:24px;height:24px;background:#ccc;top:3px;right:4px;visibility:hidden;content:"\00d7";font-size:15pt;font-weight:bold;color:#000;cursor:pointer;text-align:center;vertical-align:center;}
 .metro .metro-form .metro-form-control .metro-text-box input[type=text]:focus+.helper::before{visibility:visible;}
 .metro .metro-form .metro-form-control .metro-text-box:hover input[type=text]+.helper:before{background:#dedede !important;}
 .metro .metro-form .metro-form-control .metro-text-box:action input[type=text]+.helper:before{background:#000 !important;}

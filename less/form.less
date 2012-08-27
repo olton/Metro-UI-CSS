@@ -222,18 +222,19 @@
                 input[type=text] + .helper::before {
                     display: inline-block;
                     position: absolute;
-                    width: 16px;
-                    height: 16px;
+                    width: 24px;
+                    height: 24px;
                     background: #ccc;
                     top: 3px;
-                    right: -17px;
+                    right: 4px;
                     visibility: hidden;
                     content: "\00d7";
-                    font-size: 18pt;
+                    font-size: 15pt;
                     font-weight: bold;
                     color: #000;
                     cursor: pointer;
-                    padding: 2px 6px 9px 9px;
+                    text-align: center;
+                    vertical-align: center;
                 }
                 input[type=text]:focus + .helper::before {
                     visibility: visible;
