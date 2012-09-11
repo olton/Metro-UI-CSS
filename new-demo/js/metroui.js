@@ -122,6 +122,8 @@
 
         // Private method
         var setScrollable = function(){
+            var parallax = 10;
+
             $('.metro-scroll').mousedown(function (event) {
                 $(this)
                     .data('down', true)
@@ -139,6 +141,9 @@
                 //console.log(this.scrollLeft);
             }).css({
                 'overflow' : 'hidden'
+            }).scroll(function(e){
+                var bgpos = Math.floor((this.scrollLeft/parallax)*-1) + 'px 0px';
+                $('body').css('background-position', bgpos);
             });
 
             $('.metro-scroll-vertical').mousedown(function (event) {
