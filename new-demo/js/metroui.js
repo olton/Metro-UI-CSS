@@ -167,8 +167,13 @@
         }
 
         var setTileImageSliders = function(){
-            var speed = 2000;
-            var run = setInterval("$('.tile-image-slider img:last').after($('.tile-image-slider img:first'));", speed);
+            //var speed = 2000;
+            //var run = setInterval("$('.tile-image-slider img:last').after($('.tile-image-slider img:first'));", speed);
+            $(".tile-image-slider").each(function(){
+                var el = $(this);
+
+                el.cycle({fx: el.data('direction'), speed: el.data('speed')});
+            });
         }
 
         plugin.init();
