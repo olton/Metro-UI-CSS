@@ -1,0 +1,18 @@
+body {
+    background-color: #F1F1F1;
+}
+.page {
+    width: 984px !important;
+    margin: auto;
+    background-color: #fff;
+}
+.browsers-icons img {
+    float: left;
+    margin-right: 20px;
+}
+
+@media screen and (max-width: 800px) {
+    .page {
+        width: 768px !important;
+    }
+}

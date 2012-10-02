@@ -1,0 +1,121 @@
+/*
+ * Metro UI CSS v 0.1.1
+ * Copyright 2012 Sergey Pimenov
+ * Licensed under the MIT Lilcense
+ *
+ * images.less
+ *
+ */
+
+@back-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAP5SURBVGhD7ZdBSBRRGIB319VW8OBhAwMhgwIPQgpGHYoMDeoYeAkSDBKSEIw8BCUd7FahgZDQxZtBFw9BRkIGezA0FAo0EBIyCCrwILjq6vb9M/8uM7szu+7qaAvzweP9/3tv3vz//978703Ax8fHx2cvBLW2sbW11R4MBp+o6sjOzs7zioqKIVUPjZDWNjC+iqouV2FMNfWh4+hAKRFMJpNhtkxvKBS6iC6RF2oo9aboyrKWw2CNLfypvLx8KLi9vT2IE73aUWqMB4n+b/ZzVBtKCgKfCCYSiaTqJcmBO0DUVlnxacoK+/gn395x2uoo52iL6LBdc5AOvMHIZ+FwOIahCW1LQ18EW67Q9wC12WzNj+cOYNgKVQcZY8psyc/GxsYtVmYQZ1JZ0RWvHYiVlZVdw5A/qhtgYAPtjWwhSR6zODfPmDWz10THvEbMmc69dGAJA5pShskWweABym2XyE5hS3ckEllUPbC+vn6SLTfDeNdT35OTGGMTnC8SecP4zc3NZvQ52vtcjBdacHiOsX2qByorK5eoOkzNGU9WACNHMKZbZCJei/FfckUxE57p4aI4rGoAGz9QtZiaHU8cwPhjGPxL5Fwvd4OViuN0U2o7cdhKdnprdGbgxRaSNJkyvpOqIOMFno+w91+oGkCexCnbR57C1QEmGWIpLxDNE9bCRJfoG9FhWdAXU1Ei2apiwfDseYpxsDFngjJpdGTg9j8wjLF32YcSzWVrkXxOXzeTv9LhNmj/pqLM06hiwfCs3JIbVBVdzpMsHB0g8u9UdIUJHcfggPEi6jBV2oBi4DBLP49Nf1W04egAL5e/rpy4jcEx42ZLnWCM7QArFOvzOHNERRtuW+iR5G5Vs2Bp26jumZodSZsqyjzTKhYFH2/6eeu8VtwciOLxDIb+IJN8txZpo/89xfFA4rmzKso88yoWDNFf4fn0CiCfU9HGvp8DvHiNyB3lhXHkKPMvIBfzw3STeUZFiMfj9cgLRmsGjiuwFzC2ilWS/C+yRLBL5AIZTxkvkPnuqJiFJyexfHwYcAoHVkXnVB2g7aHRmZ950vRldT51oZNVlKyWxb6vgMDLohj9UlW5WvTjwFWKYy4X6JPD6iljz6SMpy1C9MfcjBe8vE5L5ujnMHysqhhUzfa6gZGnkSXLSSL4yrjP1BOMnZVxAv1hgjCG2G62OOOpAwLRGyUzdVFn/Ua6gfE1anzee5QnW8gKxnRizAKBMj7sXDA2wvlzXzIX6q4ugZ6vgBUMlL09wZb5yKrI9xCnVNNei95K3cZK5f0PtnKgDnhBCK8d79mlQoglS9/fS5DFEGmtByHGSuw6S/wnzJIcrqvs4+Pj41MMgcA/8Fr5zKgSl7AAAAAASUVORK5CYII%3D);
+@overlay-speed: .3s;
+
+.image-collection {
+    .pos-rel;
+    .unstyled;
+    .clearfix;
+
+    & > div, & > li {
+        width: 220px;
+        height: 121px;
+        overflow: hidden;
+        margin-right: 20px;
+        margin-bottom: 20px;
+        position: relative;
+        box-shadow: inset 0px 0px 1px #FFFFCC;
+        float: left;
+        background: #ccc @back-image 50% no-repeat;
+        display: table-cell;
+        vertical-align: middle !important;
+        text-align: center;
+
+        & > img {
+            width: 100%;
+            height : auto;
+            min-height: 100%;
+            max-width: 100%;
+        }
+
+        & > .overlay {
+            position: absolute;
+            width: 100%;
+            height: 55px;
+            overflow: hidden;
+            background-color: #1e1e1e;
+            color: #fff;
+            font-size: 8pt;
+            text-align: left;
+            line-height: 12px;
+            padding: 5px 10px;
+            opacity: .8;
+            bottom: -55px;
+        }
+
+        &:hover {
+            .overlay {
+                -webkit-transform: translate(0, -55px);
+                -ms-transform: translate(0, -55px);
+                -o-transform: translate(0, -55px);
+                -moz-transform: translate(0, -55px);
+                transform: translate(0, -55px);
+
+                -webkit-transition: all @overlay-speed ease;
+                -moz-transition: all @overlay-speed ease;
+                -o-transition: all @overlay-speed ease;
+                -ms-transition: all @overlay-speed ease;
+                transition: all @overlay-speed easet;
+            }
+        }
+    }
+
+    &.p16x9 {
+        & > div {
+            width: 220px;
+            height: 121px;
+        }
+    }
+    &.p4x3 {
+        & > div {
+            width: 220px;
+            height: 165px;
+        }
+    }
+}
+
+.image-container {
+    position: relative;
+    padding: 5px 5px 50px;
+    background-color: #1e1e1e;
+    .span3;
+    margin-right: 20px;
+    margin-bottom: 20px;
+
+    img {
+        width: 100%;
+        height: auto;
+    }
+
+    & > .overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 50px;
+        font-size: 8pt;
+        color: #fff;
+        line-height: 14px;
+        //text-align: center;
+        padding: 0 5px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    &.light {
+        background-color: #ccc;
+
+        & > .overlay {
+            color: #1e1e1e;
+        }
+    }
+
+}

@@ -1,0 +1,157 @@
+/*
+ * Metro UI CSS v 0.1.1
+ * Copyright 2012 Sergey Pimenov
+ * Licensed under the MIT Lilcense
+ *
+ * Tables.less
+ *
+ */
+
+table {
+    width: 100%;
+    border-collapse: separate;
+    margin: 20px 0;
+
+    thead {
+        tr {
+            th {
+                vertical-align: bottom;
+                padding-bottom: @subunit;
+                padding-top: @subunit * 2;
+                padding-left: @subunit;
+                border-bottom: 1px #ddd solid;
+                border-right: 1px #ddd solid;
+                border-left: 1px transparent solid;
+                border-top: 1px transparent solid;
+                .short-text();
+                .text-rest2-state();
+                text-align: left;
+
+                &.right {
+                    text-align: right;
+                    padding-right: @subunit * 2;
+                }
+
+                &.last {
+                    border-right: 1px transparent solid;
+                }
+
+                &:last-child {
+                    border-right: 1px transparent solid;
+                }
+            }
+        }
+    }
+
+    tbody {
+        tr {
+            border: 1px #fff solid;
+
+            td {
+                .short-text();
+                padding: 3px 10px;
+                border-right: 1px #ddd solid;
+                border-bottom: 1px #ddd solid;
+                box-sizing: border-box;
+
+                &.right {
+                    text-align: right;
+                }
+                &.center {
+                    text-align: center;
+                }
+                &.last {
+                    border-right: 1px transparent solid;
+                }
+                &:last-child {
+                    border-right: 1px transparent solid;
+                }
+            }
+
+            &.success {
+                .bg-color-green();
+            }
+            &.error {
+                .bg-color-red();
+            }
+            &.warning {
+                .bg-color-orange();
+            }
+            &.info {
+                .bg-color-blue();
+            }
+
+            &.selected-row {
+                background-color: rgba(28, 183, 236, 0.10) !important;
+                td:first-child {
+                    border-left: 1px #1c98cc solid;
+                }
+                td:last-child {
+                    border-right: 1px #1c98cc solid;
+                }
+                td {
+                    border-top: 1px #1c98cc solid;
+                    border-bottom: 1px #1c98cc solid;
+                }
+            }
+        }
+    }
+
+    tfoot {
+    }
+
+    &.stripped {
+        tbody {
+            tr:nth-child(odd) {
+                background-color: #f9f9f9;
+            }
+        }
+    }
+
+    &.hovered {
+        border-collapse: separate !important;
+        thead {
+            tr {
+                th {
+                    &:hover {
+                        border: 1px #1c98cc solid;
+                        background: rgba(28, 183, 236, 0.10);
+                    }
+                }
+            }
+        }
+
+        tbody {
+            tr {
+                &:hover {
+                    background-color: rgba(28, 183, 236, 0.10);
+                    td:first-child {
+                        border-left: 1px #1c98cc solid;
+                    }
+                    td:last-child {
+                        border-right: 1px #1c98cc solid;
+                    }
+                    td {
+                        border-top: 1px #1c98cc solid;
+                        border-bottom: 1px #1c98cc solid;
+                    }
+                }
+            }
+        }
+    }
+
+    &.bordered {
+        border-collapse: separate !important;
+        border: 1px #ccc solid !important;
+
+        tbody {
+            tr:last-child {
+                td {
+                    border-bottom: 0;
+                }
+            }
+        }
+    }
+
+}
+

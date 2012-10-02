@@ -1,0 +1,271 @@
+/*
+ * Metro UI CSS v 0.1.1
+ * Copyright 2012 Sergey Pimenov
+ * Licensed under the MIT Lilcense
+ *
+ * Layout.less
+ */
+
+
+*, *:after, *:before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.column-gap (@gap) {
+    -moz-column-gap: @gap;
+    -webkit-column-gap: @gap;
+    column-gap: @gap;
+}
+
+.columns (@columns) {
+    -moz-columns: @columns;
+    -webkit-columns: @columns;
+    columns: @columns;
+
+    .column-gap(20px);
+}
+
+.one-column {
+    .columns(1);
+}
+.two-columns {
+    .columns(2);
+}
+.three-columns {
+    .columns(3);
+}
+.four-columns {
+    .columns(4);
+}
+.five-columns {
+    .columns(5);
+}
+
+.header-bar {
+    width: 100%;
+    min-height: @unit * 2;
+    background: #464646;
+    z-index: 10000;
+
+    .header-bar-inner {
+        padding-top: @subunit;
+        padding-left: @subunit * 4;
+        padding-bottom: @subunit;
+        padding-right: @subunit * 4;
+        color: #fff;
+        font-size: 11pt;
+        margin: auto;
+    }
+
+    &.fixed-top {
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+    }
+
+    &.fixed-bottom {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+}
+
+.page {
+    position: relative;
+    height: 100%;
+    min-height: 100%;
+    width: 100%;
+    .clearfix();
+
+    .page-header {
+        width: 100%;
+        position: relative;
+        display: block;
+
+        .page-header-content {
+            height: @subunit * 20;
+            min-height: @unit * 5;
+            width: 100%;
+            position: relative;
+            display: block;
+
+            h1,h2,h3,h4,h5 {
+                position: absolute;
+                margin: 0;
+                padding: 0;
+                left: @unit * 6;
+                bottom: 0;
+            }
+            h1 small {
+                font-size: 12pt;
+                margin-left: @subunit * 1;
+            }
+
+            h1.sub-menu {
+                cursor: pointer;
+                &:after {
+                    position: absolute;
+                    content: "\3009";
+                    display: inline-block;
+                    font-size: 10pt;
+                    bottom: -5px;
+                    right: -15px;
+                    .rotate(90deg);
+                }
+            }
+
+            & > .page-back {
+                position: absolute;
+                top: 34px;
+                left: 44px;
+            }
+
+            .user-login {
+                float: right;
+                margin: 55px 44px 0 0;
+                cursor: pointer;
+
+                .avatar {
+                    float: right;
+                    border: 1px #ccc solid;
+                    width: 40px;
+                    height: 40px;
+                    img {
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+                .name {
+                    float: left;
+                    margin: 0px 10px;
+                    text-align: right;
+
+                    .first-name {
+                        font-family: "Open Sans", sans-serif, sans;
+                        font-size: 18pt;
+                        display: block;
+                        margin: 0;
+                    }
+                    .last-name {
+                        font-family: "Open Sans", sans-serif, sans;
+                        font-size: 10pt;
+                        display: block;
+                        margin: 0;
+                    }
+                }
+            }
+        }
+
+    }
+
+    .page-region {
+        display: block;
+
+        .page-region-content {
+            padding-top: @subunit * 2;
+            padding-left: @unit;
+            padding-right: @unit;
+            padding-bottom: @unit;
+            display: block;
+            height: 100%;
+            position: relative;
+        }
+    }
+
+    &.secondary {
+        .page-region {
+            .page-region-content {
+                padding-left: @unit * 6;
+            }
+        }
+    }
+
+    &.snapped {
+        width: 33.33%;
+        height: 100%;
+        float: left;
+        border-right: 1px #ccc solid;
+    }
+    &.fill{
+        width: 66.66%;
+        height: 100%;
+        float: right;
+        border-left: 1px #ccc solid;
+    }
+
+
+    &.snapped {
+        .page {
+            .page-header {
+                .page-header-content {
+                    h1,h2,h3,h4,h5 {
+                        margin-left: @unit;
+                    }
+                }
+            }
+
+            .page-region {
+                .page-region-content {
+                    padding-left: @unit;
+                }
+            }
+        }
+    }
+}
+
+.page.fixed-header {
+    .page-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+    }
+
+    .page-region {
+        padding-top: 140px;
+    }
+}
+
+.app-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    min-height: 100px;
+
+    .bg-color-darken();
+}
+
+.charms {
+    &.search {}
+    &.sharing{}
+    &.appsets{}
+    &.apphelp{}
+}
+
+.message-dialog {}
+.flyouts{}
+
+.error-bar, .warning-bar, .info-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 10px 20px;
+    color: #fff;
+    min-height: 100px;
+}
+.error-bar {
+    .bg-color-red();
+}
+.warning-bar {
+    .bg-color-yellow();
+}
+.info-bar {
+    .bg-color-blue();
+}
+

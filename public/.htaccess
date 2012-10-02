@@ -1,0 +1,11 @@
+Options +FollowSymLinks
+RewriteEngine on
+#RewriteCond %{HTTP_HOST} ^modernui\.org\.ua
+#RewriteRule ^(.*)$ http://metroui.org.ua/$1 [R=permanent,L]
+
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . index.php
+RewriteCond %{THE_REQUEST} ^GET\ .*/index\.(php|html)\ HTTP
+RewriteRule ^(.*)index\.(php|html)$ /$1 [R=301,L]

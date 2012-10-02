@@ -1,0 +1,50 @@
+/*
+ * Metro UI CSS v 0.1.1
+ * Copyright 2012 Sergey Pimenov
+ * Licensed under the MIT Lilcense
+ *
+ * Threme-dark.less
+ *
+ */
+
+.text-rest-state       {color: rgba(255, 255, 255, 1.0);}
+.text-rest2-state      {color: rgba(255, 255, 255, 0.6);}
+.text-hover-state      {color: rgba(255, 255, 255, 0.8);}
+.text-pressed-state    {color: rgba(255, 255, 255, 0.4);}
+
+.link-text {
+    color: rgba(148,102,255, 1.0);
+
+    &:hover {
+        color: rgba(148,102,255, 0.8);
+    }
+    &:active {
+        color: rgba(148,102,255, 0.6);
+    }
+}
+
+h1, h2, h3, h4, h5, h6 {
+    .text-rest-state;
+    &:hover  {
+        .text-hover-state;
+    }
+    &:active {
+        .text-pressed-state;
+    }
+}
+
+a, .link {
+    .link-text();
+}
+
+.page {
+    .page-header {
+        .page-header-content {
+            .user-login {
+                .name {
+                    color: #fff;
+                }
+            }
+        }
+    }
+}

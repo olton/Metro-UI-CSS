@@ -1,0 +1,428 @@
+/*
+ * Metro UI CSS v 0.1.1
+ * Copyright 2012 Sergey Pimenov
+ * Licensed under the MIT Lilcense
+ *
+ * Layout.less
+ */
+
+@textbox_pass_active_icon: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABcAAAAXCAYAAADgKtSgAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MzM2OTY1MjIwNkVGMTFFMjhDQkNEODZFQTYyRTI5MDciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MzM2OTY1MjMwNkVGMTFFMjhDQkNEODZFQTYyRTI5MDciPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDozMzU3NURCRDA2RUYxMUUyOENCQ0Q4NkVBNjJFMjkwNyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDozMzU3NURCRTA2RUYxMUUyOENCQ0Q4NkVBNjJFMjkwNyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PhJl5kAAAAEMSURBVHja7FXtEYIwDKVO0BE6AiPoBDICo7BBR9AVnMARcIOyAWxQk6PlakwC/uC888zdOwpJXl/SD0yMsdrLDtWO9h1yY4wDeEAARIKQfE7InQfY8xJgFnBB10ZgrCUc85N8rAHjB8QZmFNTcpNfoBQkvifl2SbAFXAjlZ8BLRN7Ar4HtmVRnoKo4o6Wy7SvYyqwL21hetxKpMwkLbMGS3sccfqtxMUEnnC4TO5pWSSxAYQiBscN06KRCkTrJdWJWNohjaK+X3ZNgSNJCAp50ITgN+2E2rQeklHf9MYh3YqJfNTuDsg10vFXlYMTlQwK97B6c61ssc0Lunq3KBOoW1EiN/8/0W+RPwUYACoftglrEejbAAAAAElFTkSuQmCC);
+@textbox_pass_inactive_icon: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABcAAAAXCAYAAADgKtSgAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MzM2OTY1MkEwNkVGMTFFMjhDQkNEODZFQTYyRTI5MDciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MzM2OTY1MkIwNkVGMTFFMjhDQkNEODZFQTYyRTI5MDciPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDozMzY5NjUyODA2RUYxMUUyOENCQ0Q4NkVBNjJFMjkwNyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDozMzY5NjUyOTA2RUYxMUUyOENCQ0Q4NkVBNjJFMjkwNyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Ps2lOfsAAAFMSURBVHjaYvz//z8DrQATAw0BTQ1nwSUxe/ZsBSCVD8QBQKyAJv0AiDcA8cTU1NQHuMxgRA9zoKECQKofiBOIdOACIC4EWvIBr+FAgw2A1H4gFiAxBEAGOwItuIDVcBwGf4C6bCOaYf5QnwngswBsODQo7qMpbgTiCdi8ixR8BUBcj2aBIkwPLEL70QxOBCpYgC8coAY0AC0BReh8qDAsvhJBHGZpaWkFqNdhAOTaTmID29jY+MK5c+dAhlpAhQyA/IVA8Q8s0OSG7K1GNO8HQF2jgJQMQaljA1oQIscByMxCUCZyQE5WyGEMNXg9WjoHsddD5ZCDCNn3DrAcaoAkiJ4q+vGECLrcQSS2Ad7sD00NCngMV8CS1vHnUDTD3xNIMYxkFVzQcHyAR+8DSkvFQjLlCBsOTW6BaK4EsQPRkiJxpeJoTTS0DQcIMACNJ32B6TbHUQAAAABJRU5ErkJggg%3D%3D);
+
+.radiobox, .checkbox, .switch {
+    cursor: pointer;
+    cursor: hand;
+    position: relative;
+
+    & > span {
+        position: relative;
+        //padding-top: 5px;
+    }
+
+}
+
+.checkbox {
+    input[type=checkbox],
+    input[type=checkbox] + span,
+    input[type=checkbox] + span::before,
+    input[type=checkbox] + span::after, {
+        vertical-align: middle;
+        display: inline-block;
+    }
+
+    input[type=checkbox] {
+        position: absolute;
+        opacity: 0;
+    }
+
+    input[type=checkbox] + span {
+        .regular-text;
+        line-height: 19px;
+    }
+
+    input[type=checkbox]:focus + span {
+        //outline: 1px #ccc dotted;
+    }
+
+    /* Checkbox border */
+    input[type=checkbox] + span::before {
+        content: "\2714";
+        text-indent: -9999px;
+        margin-right: 10px;
+        border: 2px #d9d9d9 solid;
+        background: #fff;
+        height: 21px;
+        width: 21px;
+        margin-top: -3px;
+    }
+
+    /* Checkbox marker */
+    input[type=checkbox]:checked + span::after {
+        position: absolute;
+        content: "\2713";
+        color: #1a1a1a;
+        z-index: 1;
+        font-size: 16px;
+        font-weight: bold;
+        left: 4px;
+        top: 0px;
+    }
+
+    input[type=checkbox]:checked + span::before {
+        background: #fff;
+    }
+
+    input[type=checkbox]:not(:checked):disabled + span::before {
+        cursor: default;
+        background: #e6e6e6;
+    }
+
+    input[type=checkbox]:disabled + span::before {
+        cursor: default;
+        background: #ebebeb;
+    }
+
+    input[type=checkbox]:disabled + span::after {
+        color: #8a8a8a;
+    }
+
+    &:hover input[type=checkbox]:disabled + span::before {
+        cursor: default;
+        background: #e6e6e6;
+    }
+
+    &:hover input[type=checkbox] + span::before {
+        background: #fff;
+        border: 2px #919191 solid;
+    }
+
+    &:hover input[type=checkbox]:disabled + span::before {
+        border: 2px #d9d9d9 solid;
+    }
+
+    &:active input[type=checkbox]:checked:not(:disabled) + span::after {
+        color: #fff;
+    }
+
+    &.intermediate {
+    /* Checkbox marker */
+        input[type=checkbox] + span::after {
+            position: absolute;
+            content: "";
+            color: #1a1a1a;
+            z-index: 1;
+            font-size: 16px;
+            font-weight: bold;
+            left: 5px;
+            top: 5px;
+            background-color: #1a1a1a;
+            width: 10px;
+            height: 10px;
+        }
+    }
+}
+
+.radiobox {
+    input[type=radio],
+    input[type=radio] + span,
+    input[type=radio] + span::before,
+    input[type=radio] + span::after, {
+        vertical-align: middle;
+        display: inline-block;
+    }
+
+
+    input[type=radio] {
+        position: absolute;
+        display: none;
+        //opacity: 0;
+    }
+
+    input[type=radio] + span {
+        .regular-text;
+    }
+
+    input[type=radio]:focus + span {
+        //outline: 1px #ccc dotted;
+    }
+
+    &:hover input[type=radio] + span::before {
+        background: #fff;
+        border: 2px #919191 solid;
+    }
+
+    &:hover input[type=radio]:disabled + span::before {
+        border: 2px #d9d9d9 solid;
+    }
+
+    &:active input[type=radio]:checked:not(:disabled) + span::after {
+        color: #fff;
+    }
+
+    /* Radio border*/
+    input[type=radio] + span::before {
+        content: "\2022";
+        text-indent: -9999px;
+        width: 24px;
+        height: 24px;
+        margin-right: 10px;
+        border-radius: 50%;
+
+        border: 2px #cfcfcf solid;
+        background: #fff;
+        margin-top: -3px;
+    }
+
+    /* Radio Marker*/
+    input[type=radio]:checked + span::after {
+        text-indent: -9999px;
+        position: absolute;
+        content: "\2022";
+        background: #212121;
+        z-index: 1000;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        left: 6px;
+        top: 5px;
+    }
+    input[type=radio]:checked + span::before {
+        background: #fff;
+    }
+
+    input[type=radio]:not(:checked):disabled + span::before {
+        cursor: default;
+        background: #e6e6e6;
+    }
+
+    input[type=radio]:disabled + span::before {
+        cursor: default;
+        background: #ebebeb;
+    }
+
+    input[type=radio]:disabled + span::after {
+        color: #8a8a8a;
+        background-color: #8a8a8a;
+    }
+
+    &:hover input[type=radio]:disabled + span::before {
+        cursor: default;
+        background: #e6e6e6;
+    }
+}
+
+.switch {
+    input[type=checkbox],
+    input[type=checkbox] + span,
+    input[type=checkbox] + span::before,
+    input[type=checkbox] + span::after, {
+        vertical-align: middle;
+        display: inline-block;
+    }
+
+    input[type=checkbox] {
+        position: absolute;
+        display: none;
+        //opacity: 0;
+    }
+
+    input[type=checkbox] + span {
+        .regular-text;
+    }
+
+    input[type=checkbox]:focus + span {
+        //outline: 1px #ccc dotted;
+    }
+
+    input[type=checkbox] + span::before {
+        content: "";
+        width: 43px;
+        height: 16px;
+        outline: 2px #a6a6a6 solid;
+        border: 1px #fff solid;
+        cursor: pointer;
+        background: #6c6c6c;
+        margin-left: 2px;
+        position: relative;
+        margin-right: 10px;
+        z-index: 100;
+    }
+
+    input[type=checkbox] + span::after {
+        content: "";
+        position: absolute;
+        top: 2px;
+        left: 34px;
+        width: 13px;
+        height: 20px;
+        background: #333;
+        z-index: 1000;
+    }
+
+    input[type=checkbox]:checked + span::before {
+        background: #008287;
+    }
+
+    input[type=checkbox]:not(:checked) + span::after {
+        top: 2px;
+        left: 0px;
+    }
+
+    input[type=checkbox]:not(:checked) + span::before {
+        background: #a6a6a6;
+    }
+
+    input[type=checkbox]:disabled + span::before {
+        cursor: default;
+        background: #e0e0e0;
+        outline: 2px #ccc solid;
+    }
+
+    input[type=checkbox]:disabled + span::after {
+        background: #a6a6a6;
+    }
+
+    &:hover input[type=checkbox]:not(:checked) + span::before {
+        background: #a6a6a6;
+    }
+
+    &:hover input[type=checkbox] + span::before {
+        background: #219297;
+    }
+
+    &:hover input[type=checkbox]:disabled + span::before {
+        cursor: default;
+        background: #e0e0e0;
+    }
+}
+
+
+.input-control > input[type=text], .input-control > input[type=password], .input-control > select, .input-control > textarea {
+    border: 2px #bababa solid;
+    width: 100%;
+    padding: 4px 32px 6px 5px;
+    .pos-rel;
+    background-color: #fff;
+    outline: 0;
+    margin-right: 32px;
+    width: 100%;
+
+    &:disabled {
+        background-color: #eaeaea;
+    }
+    &:focus {
+        border-color: #000;
+    }
+}
+
+.input-control > select {
+    padding-right: 5px;
+}
+
+.input-control > textarea {
+    padding-right: 5px;
+    min-height: 100px;
+}
+
+.input-control {
+    &.text, &.password {
+        input[type=text]:not(:focus) + .helper, input[type=password]:not(:focus) + .helper  {
+            display: none;
+        }
+        input[type=text]:focus + .helper, input[type=password]:focus + .helper {
+            display: block;
+        }
+        input[type=text]:not(:focus) + .helper:active, input[type=password]:not(:focus) + .helper:active {
+            display: block;
+        }
+    }
+}
+
+.input-control {
+    margin-right: 0px;
+    margin-bottom: 10px;
+    position: relative;
+
+    &.text, &.password {
+        .helper {
+            background: #fff;// @textbox_pass_inactive_icon 50% no-repeat;
+            right: 3px;
+            top: 2px;
+            width: 26px;
+            height: 26px;
+            cursor: pointer;
+            color: #000;
+            .pos-abs;
+
+            &:before {
+                font-size: 12pt;
+                .pos-abs;
+                .regular-text;
+                .bold-text;
+            }
+
+            &:hover {
+                background: #d9d9d9;// @textbox_pass_inactive_icon 50% no-repeat;
+            }
+
+            &:active {
+                background-color: #000;
+                &:before {
+                    color: #fff;
+                }
+            }
+        }
+    }
+
+    &.password {
+        .helper {
+            background: #fff @textbox_pass_inactive_icon 50% no-repeat;
+            &:hover {
+                background: #fff @textbox_pass_active_icon 50% no-repeat;
+            }
+        }
+    }
+    &.text {
+        .helper {
+            &:before {
+                content: "\2715";
+                left: 7px;
+                top: 4px;
+            }
+        }
+    }
+}
+
+label {
+    .regular-text;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+fieldset {
+    .pos-rel;
+    margin-top: 30px;
+    border: 2px #eaeaea solid;
+    padding: 10px;
+
+    legend {
+        padding-left: 10px;
+        padding-right: 10px;
+        .regular-text;
+        color: #cfcfcf;
+        .pos-abs;
+        top: -25px;
+        left: -10px;
+    }
+}
+
+input[type=button], input[type=reset], input[type=submit] {
+    .button;
+    border-radius: 0;
+}
+
+input[type=submit] {
+    .button.default;
+}
+
+

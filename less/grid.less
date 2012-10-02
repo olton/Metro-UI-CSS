@@ -1,0 +1,109 @@
+/*
+ * Metro UI CSS v 0.1.1
+ * Copyright 2012 Sergey Pimenov
+ * Licensed under the MIT Lilcense
+ *
+ * Grid.less
+ *
+ */
+
+.oh,.ot,.tt{float:left;margin:0 2% 2% 0;width:48%}.ot{width:31%}.tt{width:65%}.cl{clear:both}
+
+.item-padding{
+    //margin-left: 0;
+    margin-right: @unit;
+    margin-bottom: @subunit;
+}
+.column-padding {
+    margin: 0 @unit/2;
+}
+.group-padding {
+    margin: 0 @unit*2;
+}
+
+
+.span1 {width: @unit*3;}
+.span2 {width: @unit*6 + @subunit*4;}
+.span3 {width: @unit*9 + @subunit*8;}
+.span4 {width: @unit*12 + @subunit*12;}
+.span5 {width: @unit*15 + @subunit*16;}
+.span6 {width: @unit*18 + @subunit*20;}
+.span7 {width: @unit*21 + @subunit*24;}
+.span8 {width: @unit*24 + @subunit*28;}
+.span9 {width: @unit*27 + @subunit*32;}
+.span10 {width: @unit*30 + @subunit*36;}
+.span11 {width: @unit*33 + @subunit*40;}
+.span12 {width: @unit*36 + @subunit*44;}
+
+.offset1 {margin-left: @unit*3 + @unit;}
+.offset2 {margin-left: @unit*6 + @subunit*4 + @unit;}
+.offset3 {margin-left: @unit*9 + @subunit*8 + @unit;}
+.offset4 {margin-left: @unit*12 + @subunit*12 + @unit;}
+.offset5 {margin-left: @unit*15 + @subunit*16 + @unit;}
+.offset6 {margin-left: @unit*18 + @subunit*20 + @unit;}
+.offset7 {margin-left: @unit*21 + @subunit*24 + @unit;}
+.offset8 {margin-left: @unit*24 + @subunit*28 + @unit;}
+.offset9 {margin-left: @unit*27 + @subunit*32 + @unit;}
+.offset10{margin-left: @unit*30 + @subunit*36 + @unit;}
+.offset11{margin-left: @unit*33 + @subunit*40 + @unit;}
+.offset12 {margin-left: @unit*36 + @subunit*44 + @unit;}
+
+
+[class*="span"] {
+    float: none;
+    min-height: 1px;
+    .item-padding();
+    .clearfix();
+
+    &:last-child {
+        margin-right: 0;
+        //right: 0;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+        //max-height: 100%;
+    }
+}
+
+
+.grid {
+    margin: 0 0 20px;
+
+    &.no-margin {
+        margin: 0;
+    }
+    &.margin-row {
+        margin-bottom: @subunit;
+    }
+
+    & .grid {
+        margin-top: @subunit/2;
+        margin-bottom: @subunit/2;
+    }
+
+    .group {
+        margin-right: @unit * 4;
+        float: left;
+        width: auto;
+        height: auto;
+        min-height: 1px;
+    }
+
+    .row {
+        width: 100%;
+        .clearfix();
+        [class*="span"] {
+            float: left;
+        }
+    }
+
+    &.element-border {
+        [class*="span"] {
+            border: 1px #ccc dotted;
+        }
+    }
+
+    .clearfix();
+}

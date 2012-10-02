@@ -1,0 +1,220 @@
+/*
+ * Metro UI CSS v 0.1.1
+ * Copyright 2012 Sergey Pimenov
+ * Licensed under the MIT Lilcense
+ *
+ * Menus.less
+ *
+ */
+
+.popup-menu {
+    .unstyled();
+    position: absolute;
+    top: 100%;
+    left: -1px;
+    z-index: 1;
+    background-color: #fff;
+    display: none;
+    border: 1px #bababa solid;
+
+    li {
+        float: none;
+        display: block;
+        border:1px transparent solid !important;
+        min-width: 150px;
+
+        a {
+            display: block;
+            white-space: nowrap;
+            float: none;
+            height: auto;
+            .tertiary-text();
+            color: #1e1e1e;
+            padding: 5px  10px;
+
+            &:hover {
+                color: #fff;
+            }
+        }
+
+        &:hover {
+            background-color: #008287;
+        }
+
+        &.divider {
+            height: 1px !important;
+            line-height: 1px !important;
+            background-color: transparent !important;
+            border-top: 1px #bababa solid !important;
+
+            &:hover {
+                background-color: transparent !important;
+            }
+        }
+
+        &.sub-menu {
+            &:after {
+                position: absolute;
+                content: "\3009";
+                display: inline-block;
+                font-size: 10pt;
+                top: 5px;
+                right: 10px;
+                .rotate(0deg);
+            }
+        }
+    }
+}
+
+.horizontal-menu {
+    background-color: #F1F1F1;
+    padding: 0px;
+
+    & > ul {
+        .unstyled();
+
+        li {
+            float: left;
+            position: relative;
+            border: 1px transparent solid;
+            display: block;
+
+            &:hover {
+                border: 1px #bababa solid;
+                background-color: #fff;
+            }
+
+            &.sub-menu {
+                padding-right: 20px;
+                &:after {
+                    position: absolute;
+                    content: "\3009";
+                    display: inline-block;
+                    font-size: 10pt;
+                    top: 10px;
+                    right: 10px;
+                    .rotate(90deg);
+                }
+            }
+
+            a {
+                float: left;
+                padding: 5px  10px;
+                display: block;
+                z-index: 999;
+                .navigation-text();
+                .text-rest-state();
+
+                &:hover {
+                    .text-hover-state();
+                }
+                &:active {
+                    .text-pressed-state();
+                }
+
+            }
+
+            ul {
+                .popup-menu;
+            }
+
+            &:hover > ul {
+                display: block;
+            }
+
+            ul li ul {
+                position: absolute;
+                left: 100%;
+                top: -2px;
+            }
+        }
+    }
+
+    .clearfix();
+}
+
+.page {
+    .page-header {
+        .page-header-content {
+            h1.sub-menu {
+                ul {
+                    .popup-menu;
+                    display: none;
+                    border: 1px #ccc solid;
+                    margin-top: -10px;
+                }
+
+                &:hover {
+                    ul {
+                        display: block;
+                    }
+                }
+
+                ul.open {
+                    display: block;
+                }
+            }
+        }
+    }
+}
+
+.ribbon {
+    position: relative;
+
+    ul {
+        .unstyled;
+        .clearfix;
+        position: absolute;
+        z-index: 9000;
+
+        li:first-child {
+            //margin-left: 20px;
+        }
+
+        li {
+            float: left;
+            display: block;
+            text-align: center;
+
+            &.active {
+                border: 1px #ccc solid;
+                border-bottom: 0;
+                background-color: #fff;
+
+                span, a {
+                    color: @blue;
+                }
+            }
+
+            span, a {
+                text-decoration: none;
+                text-transform: uppercase;
+                display: block;
+                float: left;
+                padding: 5px 20px;
+                color: #1e1e1e;
+                .navigation-text;
+                cursor: pointer;
+            }
+        }
+    }
+
+    .frames {
+        margin-top: 30px;
+        width: 100%;
+        min-height: 50px;
+        border: 1px #ccc solid;
+
+        .frame {
+            width: 100%;
+            min-height: 100%;
+            height: auto;
+            display: none;
+            padding: 10px;
+
+            &.active {
+                display: block;
+            }
+        }
+    }
+}

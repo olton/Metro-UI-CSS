@@ -1,0 +1,48 @@
+/*
+ * Metro UI CSS v 0.1.1
+ * Copyright 2012 Sergey Pimenov
+ * Licensed under the MIT Lilcense
+ *
+ * Code.less
+ *
+ */
+
+code, pre {
+    padding: 0 3px 2px;
+    .normal-text;
+    font-size: 12pt;
+    color: @grayDark;
+}
+
+code {
+    padding: 2px 4px;
+    .tertiary-text;
+    color: #d14;
+    background-color: #f7f7f9;
+    border: 1px #e1e1e8 solid;
+}
+
+pre {
+    display: block;
+    padding: 10px;
+    margin: 0;
+    font-size: 10pt;
+    line-height: 14pt;
+    word-break: break-all;
+    word-wrap: break-word;
+    white-space: pre;
+    white-space: pre-wrap;
+    background-color: #f5f5f5;
+    border: 1px solid rgba(0,0,0,.15);
+
+    &.prettyprint {
+        margin-bottom: 10px;
+    }
+
+    code {
+        padding: 0;
+        color: inherit;
+        background-color: transparent;
+        border: 0;
+    }
+}

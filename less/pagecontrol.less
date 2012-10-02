@@ -1,0 +1,71 @@
+/*
+ * Metro UI CSS v 0.1.1
+ * Copyright 2012 Sergey Pimenov
+ * Licensed under the MIT Lilcense
+ *
+ * PageControl.less
+ *
+ */
+
+.page-control {
+    position: relative;
+    .clearfix;
+
+    & > ul {
+        .unstyled;
+        .clearfix;
+        position: absolute;
+        z-index: 9000;
+
+        li:first-child {
+        //margin-left: 20px;
+        }
+
+        li {
+            float: left;
+            display: block;
+            text-align: center;
+
+            &.active {
+                border: 1px #ccc solid;
+                border-bottom: 0;
+                background-color: #fff;
+
+                span, a {
+                    color: @blue;
+                }
+            }
+
+            span, a {
+                text-decoration: none;
+                //text-transform: uppercase;
+                display: block;
+                float: left;
+                padding: 5px 20px;
+                color: #1e1e1e;
+                .navigation-text;
+                cursor: pointer;
+                outline: 0;
+            }
+        }
+    }
+
+    .frames {
+        margin-top: 30px;
+        width: 100%;
+        min-height: 50px;
+        border: 1px #ccc solid;
+
+        .frame {
+            width: 100%;
+            min-height: 100%;
+            height: auto;
+            display: none;
+            padding: 20px;
+
+            &.active {
+                display: block;
+            }
+        }
+    }
+}
