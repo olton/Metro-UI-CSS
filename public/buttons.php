@@ -12,6 +12,7 @@
     <link href="js/google-code-prettify/prettify.css" rel="stylesheet" type="text/css">
 
     <script src="js/jquery-1.8.2.min.js"></script>
+    <script src="js/google-analytics.js"></script>
     <script src="js/google-code-prettify/prettify.js"></script>
 
     <title>Modern UI CSS</title>
@@ -42,7 +43,7 @@
                             <button class="default">Button</button>
                             <button disabled="">Button</button>
 
-                            <p><small>You can also change the color of the button by <br />adding bg-color-* class, on example:</small></p>
+                            <p><small>You can also change the color of the button by <br />adding bg-color-* class. Example:</small></p>
 
                             <button class="bg-color-orange">Button</button>
                             <button class="bg-color-red">Button</button>
@@ -84,8 +85,17 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="grid">
+                    <div class="row">
+                        <? include("adsense.php")?>
+                    </div>
+                </div>
+
+
             </div>
         </div>
+        <? include("footer.php")?>
     </div>
     <?php include("counter.php");?>
 

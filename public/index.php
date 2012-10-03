@@ -11,6 +11,8 @@
     <link href="css/site.css" rel="stylesheet" type="text/css">
 
     <script src="js/jquery-1.8.2.min.js"></script>
+    <script src="js/google-analytics.js"></script>
+    <script src="js/github.info.js"></script>
 
     <title>Metro UI CSS</title>
 
@@ -19,15 +21,23 @@
     <div class="page">
         <div class="header-bar">
             <div class="header-bar-inner">
-                <p class="place-right tertiary-info-secondary-text fg-color-white" style="margin-top: 10px;">Build in <a class="fg-color-blue" href="http://www.jetbrains.com/phpstorm/">JetBrains PhpStorm</a></p>
+                <ul class="unstyled place-right github-info" data-repo="olton/Metro-UI-CSS">
+                    <li><a href="https://github.com/olton/Metro-UI-CSS/watchers"><img src="images/view-32.png" title="GitHub Wathers"/></a></li>
+                    <li><span class="github-watchers"></span></li>
+                    <li><a href="https://github.com/olton/Metro-UI-CSS/network/members"><img src="images/fork-32.png" title="GitHub Forks"/></a></li>
+                    <li><span class="github-forks"></span></li>
+                    <li>&nbsp;</li>
+                    <li><a href="https://github.com/olton/Metro-UI-CSS/zipball/master"><img src="images/download-32.png"/></a></li>
+                    <li><a href="https://github.com/olton/Metro-UI-CSS"><img src="images/github.png"/></a></li>
+                </ul>
                 <a href="/"><span class="modern-ui-logo place-left"></span></a><h4 class="fg-color-white"> &nbsp;<a class="fg-color-white" href="/">Metro UI CSS</a> - Create site in Windows 8 style</h4>
             </div>
         </div>
 
         <div class="page-region">
             <div class="page-region-content">
-                <h6 class="place-right">this is a next revision of <a href="http://metroui.org.ua">Metro UI CSS</a></h6>
-                <h2>Welcome to Metro UI CSS <sup class="fg-color-red">beta</sup></h2>
+                <p class="place-right tertiary-info-secondary-text" style="margin-top: 10px;">Build in <a class="fg-color-blue" href="http://www.jetbrains.com/phpstorm/">JetBrains PhpStorm</a></p>
+                <h2>Welcome to Metro UI CSS <sup class="fg-color-red"> v 0.1.1</sup></h2>
 
                 <div class="horizontal-menu">
                     <ul>
@@ -92,10 +102,12 @@
                     <h2>Create site in Windows 8 style now!</h2>
 
                     <br />
-                    <p>Metro UI CSS allows quickly, without distractions <br />on routine tasks, create a Web site in the style of <br />Windows 8.</p>
-                    <h3>For use: include modern.css</h3>
+                    <p>Metro UI CSS allows to create a Web site in the style of
+                        Windows 8 quickly and without distractions
+                        on routine tasks.</p>
+                    <h3>To start: include modern.css</h3>
                     <p class="tertiary-info-text">
-                        &lt;link href="css/modern.css" rel="stylesheet"&gt;
+                        &lt;link href="modern.css" rel="stylesheet"&gt;
                     </p>
                     <br />
                     <p class="tertiary-info-secondary-text">
@@ -135,7 +147,7 @@
                                 <div class="row">
                                     <div class="span4">
                                         <p>
-                                            Metro UI CSS a set of styles to create a site with an interface similar to Windows 8 Metro UI. The set of styles developed as a self-contained solution.
+                                            Metro UI CSS a set of styles to create a site with an interface similar to Windows 8 Metro UI. This set of styles was developed as a self-contained solution.
                                         </p>
                                         <br />
                                         <p class="tertiary-info-text">
@@ -165,32 +177,52 @@
                                             <li><a href="https://github.com/sagarsane/abetterportfolio">Portfolio for Developers</a></li>
                                             <li><a href="http://oazabir.github.com/Droptiles/">Droptiles</a></li>
                                             <li><a href="http://aozora.github.com/metroui-web/">Metroui-Web</a></li>
+                                            <li><a href="http://aozora.github.com/bootmetro/">BootMetro</a></li>
                                         </ul>
                                         <br />
+                                        <br />
+                                        <div>
+                                            <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+                                                <input type="hidden" name="cmd" value="_s-xclick">
+                                                <input type="hidden" name="hosted_button_id" value="AVMB2NYSENK3A">
+                                                <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                                                <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+                                            </form>
+                                        </div>
+                                        <!--
                                         <br />
                                         <div class="">
                                             <form style="display:inline" method=POST action="https://liqpay.com/?do=clickNbuy">
                                                 <input type="hidden" name="preorder" value="c27a4aa9211f4e6735b739850e99d568422af6e7">
-                                                <input type="submit" value="Donate 10 USD for Metro UI CSS">
+                                                <button type="submit" class="span3 command-button default">Donate 10 USD<small>for Metro UI CSS [LiqPay]</small></button>
                                             </form>
                                         </div>
-
+                                        -->
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <? include("adsense.php")?>
+                        <div class="span3">
+                            <script type="text/javascript"><!--
+                            google_ad_client = "ca-pub-1632668592742327";
+                            /* Main block */
+                            google_ad_slot = "9714689347";
+                            google_ad_width = 180;
+                            google_ad_height = 150;
+                            //-->
+                            </script>
+                            <script type="text/javascript"
+                                    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+                            </script>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="header-bar">
-            <div class="header-bar-inner" style="padding-top: 10px;">
-
-                <p class="place-right tertiary-text fg-color-white">Windows 8 UI style Copyright by <a class="fg-color-blueLight" href="http://www.microsoft.com">Microsoft</a></p>
-                <p class="place-left tertiary-text fg-color-white">2012, Metro UI CSS Copyright by <a class="fg-color-blueLight" href="mailto:sergey@pimenov.com.ua">Sergey Pimenov</a></p>
-            </div>
-        </div>
-
+        <? include("footer.php")?>
     </div>
     <?php include("counter.php");?>
 

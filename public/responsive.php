@@ -11,6 +11,7 @@
     <link href="css/site.css" rel="stylesheet" type="text/css">
 
     <script src="js/jquery-1.8.2.min.js"></script>
+    <script src="js/google-analytics.js"></script>
 
     <title>Modern UI CSS</title>
 </head>
@@ -34,6 +35,8 @@
                 <h2>Now in progress...</h2>
             </div>
         </div>
+        <? include("footer.php")?>
+
     </div>
     <?php include("counter.php");?>
 

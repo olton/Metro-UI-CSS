@@ -11,6 +11,28 @@ body {
     margin-right: 20px;
 }
 
+
+.github-info {
+    margin-top: 10px;
+}
+
+.github-info li {
+    float: left;
+    margin-left: 10px;
+    width: auto;
+}
+
+.github-info li span{
+    text-align: center;
+    display: block;
+    border: 1px #ccc solid;
+    border-radius: 100%;
+    padding: 5px;
+    margin-top: -5px;
+}
+
+.github-info li a img {width: 24px;}
+
 @media screen and (max-width: 800px) {
     .page {
         width: 768px !important;

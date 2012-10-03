@@ -12,6 +12,7 @@
     <link href="js/google-code-prettify/prettify.css" rel="stylesheet" type="text/css">
 
     <script src="js/jquery-1.8.2.min.js"></script>
+    <script src="js/google-analytics.js"></script>
     <script src="js/google-code-prettify/prettify.js"></script>
 
     <title>Modern UI CSS</title>
@@ -150,7 +151,7 @@
                 </table>
 
                 <h2>Optional row classes</h2>
-                <p>For displaying optional rows you must be add one of next classes for <code>&lt;tr&gt;</code>:</p>
+                <p>For displaying optional rows you must add one of next classes for <code>&lt;tr&gt;</code>:</p>
                 <ul class="unstyled">
                     <li class="fg-color-red">error</li>
                     <li class="fg-color-green">success</li>
@@ -180,8 +181,19 @@
 
                     <tfoot></tfoot>
                 </table>
+
+                <div class="grid">
+                    <div class="row">
+                        <? include("adsense.php")?>
+                    </div>
+                </div>
+
             </div>
+
+
         </div>
+        <? include("footer.php")?>
+
     </div>
     <?php include("counter.php");?>
 

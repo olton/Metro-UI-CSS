@@ -12,6 +12,7 @@
     <link href="js/google-code-prettify/prettify.css" rel="stylesheet" type="text/css">
 
     <script src="js/jquery-1.8.2.min.js"></script>
+    <script src="js/google-analytics.js"></script>
     <script src="js/google-code-prettify/prettify.js"></script>
 
     <title>Modern UI CSS</title>
@@ -42,12 +43,12 @@
 </pre>
                 <h3>Set card value</h3>
                 <p class="span10">
-                    For set card value you can be use next subclasses: <code>.two</code>, <code>.three</code>, <code>.four</code>, <code>.five</code>, <code>.six</code>, <code>.seven</code>, <code>.eight</code>, <code>.nine</code>, <code>.ten</code>,
+                    To set card value you can be use next subclasses: <code>.two</code>, <code>.three</code>, <code>.four</code>, <code>.five</code>, <code>.six</code>, <code>.seven</code>, <code>.eight</code>, <code>.nine</code>, <code>.ten</code>,
                     <code>.jack</code>, <code>.dame</code>, <code>.king</code>, <code>.ace</code>.
                 </p>
                 <h3>Set card suit</h3>
                 <p class="span10">
-                    For set card suit you can be use next subclasses: <code>.spades</code>, <code>.clubs</code>, <code>.diamonds</code>, <code>.hearts</code>.
+                    To set card suit you can be use next subclasses: <code>.spades</code>, <code>.clubs</code>, <code>.diamonds</code>, <code>.hearts</code>.
                 </p>
                 <h3>Joker</h3>
 <pre class="prettyprint linenums span10">
@@ -156,8 +157,17 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="grid">
+                    <div class="row">
+                        <? include("adsense.php")?>
+                    </div>
+                </div>
+
             </div>
         </div>
+        <? include("footer.php")?>
+
     </div>
     <?php include("counter.php");?>
 

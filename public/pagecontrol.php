@@ -12,14 +12,9 @@
     <link href="js/google-code-prettify/prettify.css" rel="stylesheet" type="text/css">
 
     <script src="js/jquery-1.8.2.min.js"></script>
+    <script src="js/google-analytics.js"></script>
     <script src="js/google-code-prettify/prettify.js"></script>
     <script src="js/pagecontrol.js"></script>
-
-    <script>
-        $(function(){
-            //$(".page-control").PageControl();
-        })
-    </script>
 
     <title>Modern UI CSS</title>
 </head>
@@ -168,8 +163,18 @@
 </pre>
                 <h2>Javascript</h2>
                 <p>Include in head <code>pagecontrol.js</code></p>
+
+                <br />
+                <div class="grid">
+                    <div class="row">
+                        <? include("adsense.php")?>
+                    </div>
+                </div>
+
             </div>
         </div>
+        <? include("footer.php")?>
+
     </div>
     <?php include("counter.php");?>
 

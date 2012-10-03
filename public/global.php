@@ -12,6 +12,7 @@
     <link href="js/google-code-prettify/prettify.css" rel="stylesheet">
 
     <script src="js/jquery-1.8.2.min.js"></script>
+    <script src="js/google-analytics.js"></script>
     <script src="js/google-code-prettify/prettify.js"></script>
 
     <title>Modern UI CSS</title>
@@ -90,7 +91,7 @@
                     </div>
                     <div class="row">
                         <div class="span10">
-                            <p>For set background color use prefix <strong>bg</strong>, for set text color use prefix <strong>fg</strong></p>
+                            <p>To set background color use prefix <strong>bg</strong>, for set text color use prefix <strong>fg</strong></p>
 <pre class="prettyprint linenums">
     &lt;div class="bg-color-red"&gt;...&lt;/div&gt;
     &lt;span class="fg-color-blue"&gt;...&lt;/span&gt;
@@ -102,13 +103,22 @@
                         <div class="span10">
                             <h2>Fonts</h2>
                             <p class="span10">
-                                In Metro UI CSS i'm use <a href="http://www.google.com/webfonts#UsePlace:use/Collection:Open+Sans">Open Sans</a> font for UI and for text use Lucida Grande, Verdana or Arial (depending on the availability of the system).
+                                In Metro UI CSS i use <a href="http://www.google.com/webfonts#UsePlace:use/Collection:Open+Sans">Open Sans</a> font for UI and Lucida Grande, Verdana or Arial for text (depending on the availability in the system).
                             </p>
                         </div>
                     </div>
                 </div>
+
+                <div class="grid">
+                    <div class="row">
+                        <? include("adsense.php")?>
+                    </div>
+                </div>
+
             </div>
         </div>
+        <? include("footer.php")?>
+
     </div>
 
     <?php include("counter.php");?>

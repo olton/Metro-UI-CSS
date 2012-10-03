@@ -12,6 +12,7 @@
     <link href="js/google-code-prettify/prettify.css" rel="stylesheet" type="text/css">
 
     <script src="js/jquery-1.8.2.min.js"></script>
+    <script src="js/google-analytics.js"></script>
     <script src="js/google-code-prettify/prettify.js"></script>
 
     <title>Modern UI CSS</title>
@@ -44,7 +45,7 @@
                             <h2>General info</h2>
                             <p>
                                 Tiles are the representation of your app or sub module. The content shown on your tile can, and ideally should, change regularly, especially if your tile can communicate new, real-time information to your user. Tiles can show a combination of text and images, and a badge to show status.
-                                Tile is a block object and may be placed in any container.
+                                Tile is a block object and can be placed in any container.
                             </p>
 
                             <p>The default tile size is 150x150 pixels. Tile size may be increased with add the next subclasses for tile object: <code>.double(-vertical)</code>, <code>.triple(-vertical)</code>, <code>.quadro(-vertical)</code>.</p>
@@ -67,7 +68,7 @@
                             </div>
 
                             <h3>Tile content</h3>
-                            <p>Tile content may be placed in sub container with class <code>.tile-content</code>. Class .tile-content has padding 10px from top, bottom and 15px from left, right.</p>
+                            <p>Tile content can be placed in sub container with class <code>.tile-content</code>. Class .tile-content has padding 10px from top, bottom and 15px from left, right.</p>
 <pre class="prettyprint linenums">
     &lt;div class="tile"&gt;
         &lt;div class="tile-content"&gt;
@@ -115,7 +116,7 @@
                             </div>
 
                             <h3>Tiles content built-in subclasses</h3>
-                            <p>Tiles content may be organized with built-in subclasses: <code>.icon</code>, <code>.image</code>, <code>.image-set</code>.</p>
+                            <p>Tiles content can be organized with built-in subclasses: <code>.icon</code>, <code>.image</code>, <code>.image-set</code>.</p>
                             <div class="grid">
                                 <div class="row">
                                     <div class="span2">
@@ -167,7 +168,7 @@
                             </div>
 
                             <h3>Tile status</h3>
-                            <p>Tile status (branding info) may be placed in sub container with class <code>.brand</code> or <code>.tile-status</code>. Tile status background color may be changed, example with built-in classes <code>.bg-color-* </code></p>
+                            <p>Tile status (branding info) can be placed in sub container with class <code>.brand</code> or <code>.tile-status</code>. Tile status background color can be changed, example with built-in classes <code>.bg-color-* </code></p>
 <pre class="prettyprint linenums">
     &lt;div class="tile"&gt;
         &lt;div class="brand"&gt;
@@ -177,7 +178,7 @@
 </pre>
                             <h3>Tile status &gt; Bage</h3>
                             <p>
-                                A badge can display either a number from 1-99 or a status glyph. Bage placed in tile status container on the bottom right corner.
+                                A badge can display either a number from 1-99 or a status glyph. Bage is positioned in tile status container on the bottom right corner.
                                 Metro UI CSS support main Windows 8 bages: <span class="fg-color-blue">activity, alert, available, away, busy, newMessage, paused, playing, unavailable, error and attention</span> as built-in. Default bage background color is blue but may be changed, example with built-in classes <code>.bg-color-*</code>.
                             </p>
 <pre class="prettyprint linenums">
@@ -252,7 +253,7 @@
 
                             <h3>Tile status &gt; Branding info</h3>
                             <p>
-                                A branding info can display brand name or a brand glyph. Branding info placed in tile status container on the bottom left corner.
+                                A branding info can display brand name or a brand glyph. Branding info  is positioned in tile status container on the bottom left corner.
                             </p>
 <pre class="prettyprint linenums">
     &lt;div class="tile"&gt;
@@ -290,8 +291,8 @@
                     </div>
                 </div>
 
-                <div class="tiles">
-                    <h3>Any Tiles made with Metro UI CSS built-in</h3>
+                <div class="tiles clearfix">
+                    <h3>Examples of tiles made with Metro UI CSS</h3>
                     <div class="tile">
                         <div class="tile-content image">
                             <img src="images/myface.jpg" alt="">
@@ -436,8 +437,18 @@
                         </div>
                     </div>
                 </div>
+
+                <br />
+                <div class="grid">
+                    <div class="row">
+                        <? include("adsense.php")?>
+                    </div>
+                </div>
+
             </div>
         </div>
+        <? include("footer.php")?>
+
     </div>
     <?php include("counter.php");?>
 

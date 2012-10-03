@@ -12,6 +12,7 @@
     <link href="js/google-code-prettify/prettify.css" rel="stylesheet" type="text/css">
 
     <script src="js/jquery-1.8.2.min.js"></script>
+    <script src="js/google-analytics.js"></script>
     <script src="js/google-code-prettify/prettify.js"></script>
 
     <title>Modern UI CSS</title>
@@ -46,7 +47,7 @@
     &lt/div&gt;
 </pre>
                     <p>
-                        Grid no have max width value and fill on 100% parent container. Any cell have spanN class from span1 to span12. span1 has width 60px and margin left 20px and margin bottom 5px.
+                        Grid have no max width value and fill on 100% parent container. Any cells have spanN class from span1 to span12. Class spanN has margin left 20px and margin bottom 5px.
                     </p>
                     <h2>Cells dimention</h2>
                     <table class="stripped bordered">
@@ -72,7 +73,7 @@
                             <tr><td class="span1 center">12</td><td>span12</td><td class="right">940px</td></tr>
                         </tbody>
                     </table>
-                    <p>Class spanN may be used on any tags for setting width.</p>
+                    <p>Class spanN can be used on any tags for setting width.</p>
                 </div>
                 <h3>Example</h3>
                 <div class="grid element-border">
@@ -154,7 +155,7 @@
                 </div>
 
                 <h2>Grid in grid or nested rows</h2>
-                <p>You may be create grid in grid</p>
+                <p>You can create grid in grid</p>
 <pre class="prettyprint linenums span10">
     &lt;div class="grid"&gt;
         &lt;div class="row"&gt;
@@ -262,10 +263,19 @@
                         <tr><td class="span1 center">12</td><td>offset12</td><td class="right">960px</td></tr>
                         </tbody>
                     </table>
-                    <p>Class offsetN may be used on any tags for margin left.</p>
+                    <p>Class offsetN can be used on any tags for margin left.</p>
                 </div>
+
+                <div class="grid">
+                    <div class="row">
+                        <? include("adsense.php")?>
+                    </div>
+                </div>
+
             </div>
         </div>
+        <? include("footer.php")?>
+
     </div>
     <?php include("counter.php");?>
 

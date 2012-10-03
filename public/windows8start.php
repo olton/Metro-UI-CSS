@@ -11,6 +11,7 @@
     <link href="css/theme-dark.css" rel="stylesheet">
 
     <script src="js/jquery-1.8.2.min.js"></script>
+    <script src="js/google-analytics.js"></script>
     <script src="js/jquery.mousewheel.min.js"></script>
 
     <title>Modern UI CSS</title>
