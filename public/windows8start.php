@@ -13,6 +13,7 @@
     <script src="js/jquery-1.8.2.min.js"></script>
     <script src="js/google-analytics.js"></script>
     <script src="js/jquery.mousewheel.min.js"></script>
+    <script src="js/github.info.js"></script>
 
     <title>Modern UI CSS</title>
 

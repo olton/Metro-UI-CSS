@@ -19,21 +19,7 @@
 </head>
 <body class="modern-ui">
     <div class="page">
-        <div class="header-bar">
-            <div class="header-bar-inner">
-                <ul class="unstyled place-right github-info" data-repo="olton/Metro-UI-CSS">
-                    <li><a href="https://github.com/olton/Metro-UI-CSS/watchers"><img src="images/view-32.png" title="GitHub Wathers"/></a></li>
-                    <li><span class="github-watchers"></span></li>
-                    <li><a href="https://github.com/olton/Metro-UI-CSS/network/members"><img src="images/fork-32.png" title="GitHub Forks"/></a></li>
-                    <li><span class="github-forks"></span></li>
-                    <li>&nbsp;</li>
-                    <li><a href="https://github.com/olton/Metro-UI-CSS/zipball/master"><img src="images/download-32.png"/></a></li>
-                    <li><a href="https://github.com/olton/Metro-UI-CSS"><img src="images/github.png"/></a></li>
-                </ul>
-                <a href="/"><span class="modern-ui-logo place-left"></span></a><h4 class="fg-color-white"> &nbsp;<a class="fg-color-white" href="/">Metro UI CSS</a> - Create site in Windows 8 style</h4>
-            </div>
-        </div>
-
+        <? include("header.php")?>
         <div class="page-region">
             <div class="page-region-content">
                 <p class="place-right tertiary-info-secondary-text" style="margin-top: 10px;">Build in <a class="fg-color-blue" href="http://www.jetbrains.com/phpstorm/">JetBrains PhpStorm</a></p>

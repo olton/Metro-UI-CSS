@@ -13,6 +13,7 @@
 
     <script src="js/jquery-1.8.2.min.js"></script>
     <script src="js/google-analytics.js"></script>
+    <script src="js/github.info.js"></script>
     <script src="js/google-code-prettify/prettify.js"></script>
     <script src="js/pagecontrol.js"></script>
 
@@ -20,11 +21,7 @@
 </head>
 <body class="modern-ui" onload="prettyPrint()">
     <div class="page secondary">
-        <div class="header-bar">
-            <div class="header-bar-inner">
-                <a href="/"><span class="modern-ui-logo place-left"></span></a><h4 class="fg-color-white"> &nbsp;<a class="fg-color-white" href="/">Metro UI CSS</a> - Framework for build sites in Windows 8 style</h4>
-            </div>
-        </div>
+        <? include("header.php")?>
 
         <div class="page-header">
             <div class="page-header-content">
