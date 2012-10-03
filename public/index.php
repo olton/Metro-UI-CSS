@@ -20,6 +20,7 @@
 <body class="modern-ui">
     <div class="page">
         <? include("header.php")?>
+
         <div class="page-region">
             <div class="page-region-content">
                 <p class="place-right tertiary-info-secondary-text" style="margin-top: 10px;">Build in <a class="fg-color-blue" href="http://www.jetbrains.com/phpstorm/">JetBrains PhpStorm</a></p>
@@ -162,7 +163,6 @@
                                         <ul>
                                             <li><a href="https://github.com/sagarsane/abetterportfolio">Portfolio for Developers</a></li>
                                             <li><a href="http://oazabir.github.com/Droptiles/">Droptiles</a></li>
-                                            <li><a href="http://aozora.github.com/metroui-web/">Metroui-Web</a></li>
                                             <li><a href="http://aozora.github.com/bootmetro/">BootMetro</a></li>
                                         </ul>
                                         <br />
@@ -191,19 +191,6 @@
                     </div>
                     <div class="row">
                         <? include("adsense.php")?>
-                        <div class="span3">
-                            <script type="text/javascript"><!--
-                            google_ad_client = "ca-pub-1632668592742327";
-                            /* Main block */
-                            google_ad_slot = "9714689347";
-                            google_ad_width = 180;
-                            google_ad_height = 150;
-                            //-->
-                            </script>
-                            <script type="text/javascript"
-                                    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-                            </script>
-                        </div>
                     </div>
                 </div>
             </div>
