@@ -4,7 +4,8 @@ New version has many changes. See details of definition on http://metroui.org.ua
 
 //
 
-Demo available on http://metroui.org.ua. Now works without any css frameworks.
+Demo available on http://metroui.org.ua. Now work without any css frameworks.
+Demo source placed in public folder.
 
 //
 
@@ -17,7 +18,7 @@ Normalize.css is a project by Nicolas Gallagher and Jonathan Neal.
 Sites and Projects inspired by Metro UI CSS:
 
 http://oazabir.github.com/Droptiles/
-http://aozora.github.com/metroui-web/
+http://aozora.github.com/bootmetro/
 http://forecast.org.ua
 
 //
