@@ -1,7 +1,8 @@
+<div class="bg-color-red fg-color-white text-center">Project is looking for a Sponsor</div>
 <div class="header-bar">
     <div class="header-bar-inner">
         <ul class="unstyled place-right github-info" data-repo="olton/Metro-UI-CSS">
-            <li><a href="https://github.com/olton/Metro-UI-CSS/watchers"><img src="images/view-32.png" title="GitHub Wathers"/></a></li>
+            <li><a href="https://github.com/olton/Metro-UI-CSS/watchers"><img src="images/star32.png" title="GitHub Wathers"/></a></li>
             <li><span class="github-watchers"></span></li>
             <li><a href="https://github.com/olton/Metro-UI-CSS/network/members"><img src="images/fork-32.png" title="GitHub Forks"/></a></li>
             <li><span class="github-forks"></span></li>
