@@ -16,15 +16,26 @@
         .clearfix;
         position: absolute;
         z-index: 9000;
+        width: 100%;
+        background-color: rgba(217, 217, 217, 0.16);
+        height: 30px;
 
         li:first-child {
-        //margin-left: 20px;
+        margin-left: 20px;
         }
 
         li {
             float: left;
             display: block;
             text-align: center;
+
+            img {
+                float: left;
+                width: 16px;
+                height: 16px;
+                margin-right: 5px;
+                margin-top: 3px;
+            }
 
             &.active {
                 border: 1px #ccc solid;
@@ -41,11 +52,19 @@
                 //text-transform: uppercase;
                 display: block;
                 float: left;
-                padding: 5px 20px;
+                padding: 5px 10px;
                 color: #1e1e1e;
                 .navigation-text;
                 cursor: pointer;
                 outline: 0;
+            }
+        }
+    }
+
+    &.tabs-right {
+        & > ul {
+            li {
+                .place-right;
             }
         }
     }

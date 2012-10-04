@@ -129,64 +129,58 @@
                             <img src="images/author.jpg"/>
                             <p class="tertiary-info-secondary-text bg-color-grayDark" style="padding: 10px; color: #fff;">Hi! My name is Sergey Pimenov and i'm author of Metro UI CSS from <abbr title="The capital of Ukraine">Kiev</abbr>, <abbr title="The center of Europe">Ukraine</abbr>.</p>
                         </div>
-                        <div class="span8">
-                            <div class="grid">
-                                <div class="row">
-                                    <div class="span4">
-                                        <p>
-                                            Metro UI CSS a set of styles to create a site with an interface similar to Windows 8 Metro UI. This set of styles was developed as a self-contained solution.
-                                        </p>
-                                        <br />
-                                        <p class="tertiary-info-text">
-                                            Metro UI CSS is made with LESS. <a href="http://lesscss.org">LESS</a> a dynamic stylesheet language created by one good man, <a href="http://cloudhead.io/">Alexis Sellier</a>. It makes developing systems-based CSS faster, easier, and more fun.
-                                        </p>
-                                        <h3>Supported browsers:</h3>
-                                        <div class="browsers-icons clearfix">
-                                            <img src="images/ie.png" title="Internet Explorer 9+"/>
-                                            <img src="images/chrome.png" title="Google Chrome"/>
-                                            <img src="images/firefox.png" title="Firefox"/>
-                                            <img src="images/opera.png" title="Opera"/>
-                                        </div>
-                                        <br />
-                                        <p class="tertiary-info-secondary-text">* Internet Explorer supported on 9+</p>
-                                    </div>
-                                    <div class="span4">
-                                        <h2 style="margin-top: 0;">Immediate objectives:</h2>
-                                        <ol>
-                                            <li>Responsive design</li>
-                                            <li>Tiles animation effects</li>
-                                            <li>Additional components</li>
-                                            <li>Integration in Visual Studio</li>
-                                            <li>Much, much more...</li>
-                                        </ol>
-                                        <h2 style="margin-top: 0;">Inspired Projects:</h2>
-                                        <ul>
-                                            <li><a href="https://github.com/sagarsane/abetterportfolio">Portfolio for Developers</a></li>
-                                            <li><a href="http://oazabir.github.com/Droptiles/">Droptiles</a></li>
-                                            <li><a href="http://aozora.github.com/bootmetro/">BootMetro</a></li>
-                                        </ul>
-                                        <br />
-                                        <br />
-                                        <div>
-                                            <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
-                                                <input type="hidden" name="cmd" value="_s-xclick">
-                                                <input type="hidden" name="hosted_button_id" value="AVMB2NYSENK3A">
-                                                <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-                                                <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-                                            </form>
-                                        </div>
-                                        <!--
-                                        <br />
-                                        <div class="">
-                                            <form style="display:inline" method=POST action="https://liqpay.com/?do=clickNbuy">
-                                                <input type="hidden" name="preorder" value="c27a4aa9211f4e6735b739850e99d568422af6e7">
-                                                <button type="submit" class="span3 command-button default">Donate 10 USD<small>for Metro UI CSS [LiqPay]</small></button>
-                                            </form>
-                                        </div>
-                                        -->
-                                    </div>
-                                </div>
+                        <div class="span4">
+                            <p>
+                                Metro UI CSS a set of styles to create a site with an interface similar to Windows 8 Metro UI. This set of styles was developed as a self-contained solution.
+                            </p>
+                            <br />
+                            <p class="tertiary-info-text">
+                                Metro UI CSS is made with LESS. <a href="http://lesscss.org">LESS</a> a dynamic stylesheet language created by one good man, <a href="http://cloudhead.io/">Alexis Sellier</a>. It makes developing systems-based CSS faster, easier, and more fun.
+                            </p>
+                            <h3>Supported browsers:</h3>
+                            <div class="browsers-icons clearfix">
+                                <img src="images/ie.png" title="Internet Explorer 9+"/>
+                                <img src="images/chrome.png" title="Google Chrome"/>
+                                <img src="images/firefox.png" title="Firefox"/>
+                                <img src="images/opera.png" title="Opera"/>
                             </div>
+                            <br />
+                            <p class="tertiary-info-secondary-text">* Internet Explorer supported on 9+</p>
+                        </div>
+                        <div class="span4">
+                            <h2 style="margin-top: 0;">Immediate objectives:</h2>
+                            <ol>
+                                <li>Responsive design</li>
+                                <li>Tiles animation effects</li>
+                                <li>Additional components</li>
+                                <li>Integration in Visual Studio</li>
+                                <li>Much, much more...</li>
+                            </ol>
+                            <h2 style="margin-top: 0;">Inspired Projects:</h2>
+                            <ul>
+                                <li><a href="https://github.com/sagarsane/abetterportfolio">Portfolio for Developers</a></li>
+                                <li><a href="http://oazabir.github.com/Droptiles/">Droptiles</a></li>
+                                <li><a href="http://aozora.github.com/bootmetro/">BootMetro</a></li>
+                            </ul>
+                            <br />
+                            <br />
+                            <div>
+                                <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+                                    <input type="hidden" name="cmd" value="_s-xclick">
+                                    <input type="hidden" name="hosted_button_id" value="AVMB2NYSENK3A">
+                                    <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                                    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+                                </form>
+                            </div>
+                            <!--
+                            <br />
+                            <div class="">
+                                <form style="display:inline" method=POST action="https://liqpay.com/?do=clickNbuy">
+                                    <input type="hidden" name="preorder" value="c27a4aa9211f4e6735b739850e99d568422af6e7">
+                                    <button type="submit" class="span3 command-button default">Donate 10 USD<small>for Metro UI CSS [LiqPay]</small></button>
+                                </form>
+                            </div>
+                            -->
                         </div>
                     </div>
                     <div class="row">

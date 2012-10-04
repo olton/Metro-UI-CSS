@@ -3605,6 +3605,9 @@ pre code {
   *zoom: 1;
   position: absolute;
   z-index: 9000;
+  width: 100%;
+  background-color: rgba(217, 217, 217, 0.16);
+  height: 30px;
 }
 .page-control  > ul:before,
 .page-control  > ul:after {
@@ -3614,10 +3617,20 @@ pre code {
 .page-control  > ul:after {
   clear: both;
 }
+.page-control  > ul li:first-child {
+  margin-left: 20px;
+}
 .page-control  > ul li {
   float: left;
   display: block;
   text-align: center;
+}
+.page-control  > ul li img {
+  float: left;
+  width: 16px;
+  height: 16px;
+  margin-right: 5px;
+  margin-top: 3px;
 }
 .page-control  > ul li.active {
   border: 1px #ccc solid;
@@ -3633,7 +3646,7 @@ pre code {
   text-decoration: none;
   display: block;
   float: left;
-  padding: 5px 20px;
+  padding: 5px 10px;
   color: #1e1e1e;
   font-weight: 300;
   font-size: 11pt;
@@ -3651,6 +3664,10 @@ pre code {
 .page-control  > ul li span:active,
 .page-control  > ul li a:active {
   color: rgba(0, 0, 0, 0.4);
+}
+.page-control.tabs-right  > ul li {
+  float: right !important;
+  margin-left: 10px;
 }
 .page-control .frames {
   margin-top: 30px;
