@@ -55,6 +55,7 @@
                                 <li><a href="tiles.php">Tiles</a></li>
                                 <li><a href="menus.php">Menus</a></li>
                                 <li><a href="pagecontrol.php">Page control</a></li>
+                                <li><a href="accordion.php">Accordion</a></li>
                                 <li class="divider"></li>
                                 <li><a href="notices.php">Notices</a></li>
                                 <li class="divider"></li>
