@@ -83,7 +83,7 @@
                                         </p>
                                     </div>
                                     <div class="brand">
-                                        <div class="bage">12</div>
+                                        <div class="badge">12</div>
                                         <img class="icon" src="images/Mail128.png"/>
                                     </div>
                                 </div>
@@ -94,7 +94,7 @@
                                     </div>
                                     <div class="brand">
                                         <span class="name">Store</span>
-                                        <span class="bage">6</span>
+                                        <span class="badge">6</span>
                                     </div>
                                 </div>
                                 <div class="tile double bg-color-blueDark">
@@ -173,77 +173,77 @@
         &lt;/div&gt;
     &lt;/div&gt;
 </pre>
-                            <h3>Tile status &gt; Bage</h3>
+                            <h3>Tile status &gt; badge</h3>
                             <p>
-                                A badge can display either a number from 1-99 or a status glyph. Bage is positioned in tile status container on the bottom right corner.
-                                Metro UI CSS support main Windows 8 bages: <span class="fg-color-blue">activity, alert, available, away, busy, newMessage, paused, playing, unavailable, error and attention</span> as built-in. Default bage background color is blue but may be changed, example with built-in classes <code>.bg-color-*</code>.
+                                A badge can display either a number from 1-99 or a status glyph. badge is positioned in tile status container on the bottom right corner.
+                                Metro UI CSS support main Windows 8 badges: <span class="fg-color-blue">activity, alert, available, away, busy, newMessage, paused, playing, unavailable, error and attention</span> as built-in. Default badge background color is blue but may be changed, example with built-in classes <code>.bg-color-*</code>.
                             </p>
 <pre class="prettyprint linenums">
     &lt;div class="tile"&gt;
         &lt;div class="brand"&gt;
-            &lt;div class="bage activity"&gt;&lt;/div&gt;
+            &lt;div class="badge activity"&gt;&lt;/div&gt;
         &lt;/div&gt;
     &lt;/div&gt;
 </pre>
                             <div class="clearfix">
                                 <div class="tile">
                                     <div class="tile-status">
-                                        <div class="bage bg-color-blue">99</div>
+                                        <div class="badge bg-color-blue">99</div>
                                     </div>
                                 </div>
                                 <div class="tile">
                                     <div class="tile-status">
-                                        <div class="bage activity"></div>
+                                        <div class="badge activity"></div>
                                     </div>
                                 </div>
                                 <div class="tile">
                                     <div class="brand">
-                                        <div class="bage alert"></div>
+                                        <div class="badge alert"></div>
                                     </div>
                                 </div>
                                 <div class="tile">
                                     <div class="brand">
-                                        <div class="bage available"></div>
+                                        <div class="badge available"></div>
                                     </div>
                                 </div>
                                 <div class="tile">
                                     <div class="brand">
-                                        <div class="bage away"></div>
+                                        <div class="badge away"></div>
                                     </div>
                                 </div>
                                 <div class="tile">
                                     <div class="brand">
-                                        <div class="bage busy"></div>
+                                        <div class="badge busy"></div>
                                     </div>
                                 </div>
                                 <div class="tile">
                                     <div class="brand">
-                                        <div class="bage newMessage"></div>
+                                        <div class="badge newMessage"></div>
                                     </div>
                                 </div>
                                 <div class="tile">
                                     <div class="brand">
-                                        <div class="bage paused"></div>
+                                        <div class="badge paused"></div>
                                     </div>
                                 </div>
                                 <div class="tile">
                                     <div class="brand">
-                                        <div class="bage playing"></div>
+                                        <div class="badge playing"></div>
                                     </div>
                                 </div>
                                 <div class="tile">
                                     <div class="brand">
-                                        <div class="bage unavailable"></div>
+                                        <div class="badge unavailable"></div>
                                     </div>
                                 </div>
                                 <div class="tile">
                                     <div class="brand">
-                                        <div class="bage error"></div>
+                                        <div class="badge error"></div>
                                     </div>
                                 </div>
                                 <div class="tile">
                                     <div class="brand">
-                                        <div class="bage attention"></div>
+                                        <div class="badge attention"></div>
                                     </div>
                                 </div>
                             </div>
@@ -268,13 +268,13 @@
                             <div class="clearfix">
                                 <div class="tile">
                                     <div class="brand">
-                                        <div class="bage">10</div>
+                                        <div class="badge">10</div>
                                         <div class="name">Mail</div>
                                     </div>
                                 </div>
                                 <div class="tile double bg-color-green">
                                     <div class="brand">
-                                        <div class="bage">12</div>
+                                        <div class="badge">12</div>
                                         <img class="icon" src="images/Mail128.png"/>
                                     </div>
                                 </div>
@@ -301,7 +301,7 @@
                             <img src="images/Mail128.png"/>
                         </div>
                         <div class="brand">
-                            <div class="bage">10</div>
+                            <div class="badge">10</div>
                             <div class="name">Mail</div>
                         </div>
                     </div>
@@ -322,7 +322,7 @@
                         </div>
                         <div class="brand">
                             <span class="name">Pictures</span>
-                            <div class="bage bg-color-orange">5</div>
+                            <div class="badge bg-color-orange">5</div>
                         </div>
                     </div>
 
@@ -342,7 +342,7 @@
                         </div>
                         <div class="brand">
                             <span class="name">Store</span>
-                            <span class="bage">6</span>
+                            <span class="badge">6</span>
                         </div>
                     </div>
 
@@ -396,7 +396,7 @@
                             </p>
                         </div>
                         <div class="brand">
-                            <div class="bage">12</div>
+                            <div class="badge">12</div>
                             <img class="icon" src="images/Mail128.png"/>
                         </div>
                     </div>
@@ -408,7 +408,7 @@
                         <div class="brand bg-color-orange">
                             <img class="icon" src="images/Rss128.png"/>
                             <p class="text">This is a desert eagle. He is very hungry and angry bird.</p>
-                            <div class="bage">10</div>
+                            <div class="badge">10</div>
                         </div>
                     </div>
 

@@ -60,13 +60,13 @@
                     <tfoot></tfoot>
                 </table>
 
-                <h2>Stripped table</h2>
+                <h2>striped table</h2>
 <pre class="prettyprint linenums">
-    &lt;table class="stripped"&gt;
+    &lt;table class="striped"&gt;
         ...
     &lt;/table&gt;
 </pre>
-                <table class="stripped">
+                <table class="striped">
                     <thead>
                         <tr>
                             <th>Name</th>

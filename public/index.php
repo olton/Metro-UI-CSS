@@ -73,12 +73,7 @@
                                 -->
                             </ul>
                         </li>
-                        <li>
-                            <a href="#">Javascript</a>
-                            <ul>
-                                <!--<li><a href="#">Touch Devices</a></li>-->
-                            </ul>
-                        </li>
+                        <li><a href="javascript.php">Javascript</a></li>
                     </ul>
                 </div>
 
