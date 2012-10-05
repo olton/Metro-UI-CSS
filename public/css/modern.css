@@ -2736,10 +2736,16 @@ table.bordered tbody tr:last-child td {
   position: absolute;
   bottom: 0;
   right: 0;
+  right: 10px;
   margin-bottom: 0;
   color: #ffffff;
-  width: 36px;
-  height: 30px;
+  width: 30px;
+  height: 25px;
+  text-align: center;
+  font-weight: 400;
+  font-size: 9pt;
+  letter-spacing: 0.02em;
+  padding-top: 3px;
 }
 .tile .brand  > .badge.activity,
 .tile .tile-status  > .badge.activity {
@@ -2796,6 +2802,7 @@ table.bordered tbody tr:last-child td {
   font-weight: 400;
   font-size: 9pt;
   letter-spacing: 0.02em;
+  font-family: 'Open Sans', 'Lucida Grande', Verdana, Arial, Helvetica, sans-serif;
   color: #ffffff;
 }
 .tile .brand  > .name:hover,

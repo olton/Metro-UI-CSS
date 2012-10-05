@@ -201,10 +201,14 @@
 
         & > .badge {
             .bottom-right;
+            right: 10px;
             margin-bottom: 0;
             color: @white;
-            width: 36px;
-            height: 30px;
+            width: 30px;
+            height: 25px;
+            text-align: center;
+            .short-text;
+            padding-top: 3px;
 
             &.activity {
                 background: @blue @bage-activity-image 50% no-repeat;
@@ -246,6 +250,7 @@
             margin-bottom: 5px;
             margin-left: 15px;
             .tertiary-text;
+            font-family: @baseFontUI;
             color: @white;
             &:hover {
                 color: @white;
