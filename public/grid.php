@@ -8,6 +8,7 @@
     <meta name="keywords" content="windows 8, modern style, modern ui, style, modern, css, framework">
 
     <link href="css/modern.css" rel="stylesheet">
+    <link href="css/modern-responsive.css" rel="stylesheet">
     <link href="css/site.css" rel="stylesheet" type="text/css">
     <link href="js/google-code-prettify/prettify.css" rel="stylesheet" type="text/css">
 
@@ -232,7 +233,7 @@
                         <div class="span2 offset8">offset8</div>
                     </div>
                     <div class="row">
-                        <div class="span1 offset9">offset9</div>
+                        <div class="span1 offset9">offs9</div>
                     </div>
                 </div>
                 <h2>Offsets dimention</h2>

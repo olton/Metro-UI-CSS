@@ -8,6 +8,7 @@
     <meta name="keywords" content="windows 8, modern style, modern ui, style, modern, css, framework">
 
     <link href="css/modern.css" rel="stylesheet">
+    <link href="css/modern-responsive.css1" rel="stylesheet">
     <link href="css/theme-dark.css" rel="stylesheet">
 
     <script src="js/jquery-1.8.2.min.js"></script>
@@ -94,7 +95,7 @@
                         <img src="images/Mail128.png"/>
                     </div>
                     <div class="brand">
-                        <div class="bage">10</div>
+                        <div class="badge">10</div>
                         <div class="name">Mail</div>
                     </div>
                 </div>
@@ -115,7 +116,7 @@
                     </div>
                     <div class="brand">
                         <span class="name">Pictures</span>
-                        <div class="bage bg-color-orange">5</div>
+                        <div class="badge bg-color-orange">5</div>
                     </div>
                 </div>
 
@@ -135,7 +136,7 @@
                     </div>
                     <div class="brand">
                         <span class="name">Store</span>
-                        <span class="bage">6</span>
+                        <span class="badge">6</span>
                     </div>
                 </div>
 
@@ -181,7 +182,7 @@
                         </p>
                     </div>
                     <div class="brand">
-                        <div class="bage">12</div>
+                        <div class="badge">12</div>
                         <img class="icon" src="images/Mail128.png"/>
                     </div>
                 </div>
@@ -246,7 +247,7 @@
                     <div class="brand bg-color-orange">
                         <img class="icon" src="images/Rss128.png"/>
                         <p class="text">This is a desert eagle. He is very hungry and angry bird.</p>
-                        <div class="bage">10</div>
+                        <div class="badge">10</div>
                     </div>
                 </div>
 
@@ -295,7 +296,7 @@
                     <div class="brand bg-color-orange">
                         <img class="icon" src="images/Rss128.png"/>
                         <p class="text">This is a desert eagle. He is very hungry and angry bird.</p>
-                        <div class="bage">10</div>
+                        <div class="badge">10</div>
                     </div>
                 </div>
 

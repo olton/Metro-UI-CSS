@@ -8,6 +8,7 @@
     <meta name="keywords" content="windows 8, modern style, Metro UI, style, modern, css, framework">
 
     <link href="css/modern.css" rel="stylesheet">
+    <link href="css/modern-responsive.css" rel="stylesheet">
     <link href="css/site.css" rel="stylesheet" type="text/css">
 
     <script src="js/jquery-1.8.2.min.js"></script>

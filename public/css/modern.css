@@ -781,7 +781,7 @@ table {
   src: local('Open Sans'), local('OpenSans'), url(http://themes.googleusercontent.com/static/fonts/opensans/v6/K88pR3goAWT7BTt32Z01mz8E0i7KZn-EPnyo3HZu7kw.woff) format('woff');
 }
 .font-ui {
-  font-family: 'Open Sans', 'Lucida Grande', Verdana, Arial, Helvetica, sans-serif;
+  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
 }
 .font-text {
   font-family: 'Lucida Grande', Verdana, Arial, Helvetica, sans-serif;
@@ -844,7 +844,7 @@ table {
   letter-spacing: 0.02em;
 }
 .header-text {
-  font-family: 'Open Sans', 'Lucida Grande', Verdana, Arial, Helvetica, sans-serif;
+  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 200;
   font-size: 42pt;
   letter-spacing: 0.00em;
@@ -858,7 +858,7 @@ table {
   color: rgba(0, 0, 0, 0.4);
 }
 .subheader-text {
-  font-family: 'Open Sans', 'Lucida Grande', Verdana, Arial, Helvetica, sans-serif;
+  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 200;
   font-size: 20pt;
   letter-spacing: 0.01em;
@@ -872,7 +872,7 @@ table {
   color: rgba(0, 0, 0, 0.4);
 }
 .subheader-secondary-text {
-  font-family: 'Open Sans', 'Lucida Grande', Verdana, Arial, Helvetica, sans-serif;
+  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 200;
   font-size: 16pt;
   letter-spacing: 0.01em;
@@ -886,7 +886,7 @@ table {
   color: rgba(0, 0, 0, 0.4);
 }
 .small-subheader-text {
-  font-family: 'Open Sans', 'Lucida Grande', Verdana, Arial, Helvetica, sans-serif;
+  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 600;
   font-weight: 300;
   font-size: 11pt;
@@ -902,7 +902,7 @@ table {
   color: rgba(0, 0, 0, 0.4);
 }
 .small-subheader-secondary-text {
-  font-family: 'Open Sans', 'Lucida Grande', Verdana, Arial, Helvetica, sans-serif;
+  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 600;
   color: rgba(0, 0, 0, 0.6);
 }
@@ -974,7 +974,7 @@ h6 {
   padding: 0;
 }
 h1 {
-  font-family: 'Open Sans', 'Lucida Grande', Verdana, Arial, Helvetica, sans-serif;
+  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 200;
   font-size: 42pt;
   letter-spacing: 0.00em;
@@ -988,7 +988,7 @@ h1:active {
   color: rgba(0, 0, 0, 0.4);
 }
 h2 {
-  font-family: 'Open Sans', 'Lucida Grande', Verdana, Arial, Helvetica, sans-serif;
+  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 200;
   font-size: 20pt;
   letter-spacing: 0.01em;
@@ -1002,7 +1002,7 @@ h2:active {
   color: rgba(0, 0, 0, 0.4);
 }
 h3 {
-  font-family: 'Open Sans', 'Lucida Grande', Verdana, Arial, Helvetica, sans-serif;
+  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 200;
   font-size: 16pt;
   letter-spacing: 0.01em;
@@ -1016,7 +1016,7 @@ h3:active {
   color: rgba(0, 0, 0, 0.4);
 }
 h4 {
-  font-family: 'Open Sans', 'Lucida Grande', Verdana, Arial, Helvetica, sans-serif;
+  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 600;
   font-weight: 300;
   font-size: 11pt;
@@ -1032,7 +1032,7 @@ h4:active {
   color: rgba(0, 0, 0, 0.4);
 }
 h5 {
-  font-family: 'Open Sans', 'Lucida Grande', Verdana, Arial, Helvetica, sans-serif;
+  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 600;
   color: rgba(0, 0, 0, 0.6);
   line-height: 22px;
@@ -1044,7 +1044,7 @@ h5:active {
   color: rgba(0, 0, 0, 0.4);
 }
 h6 {
-  font-family: 'Open Sans', 'Lucida Grande', Verdana, Arial, Helvetica, sans-serif;
+  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 600;
   color: rgba(0, 0, 0, 0.6);
   line-height: 22px;
@@ -1852,6 +1852,7 @@ table.bordered tbody tr:last-child td {
   margin: 20px 0;
   padding: 20px;
   background-color: #f1f1f1;
+  width: 100%;
   *zoom: 1;
 }
 .hero-unit:before,
@@ -2425,7 +2426,7 @@ table.bordered tbody tr:last-child td {
 .notices  > a .header {
   position: relative;
   background: transparent;
-  font-family: 'Open Sans', 'Lucida Grande', Verdana, Arial, Helvetica, sans-serif;
+  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 200;
   font-size: 16pt;
   letter-spacing: 0.01em;
@@ -2825,7 +2826,7 @@ table.bordered tbody tr:last-child td {
   font-weight: 400;
   font-size: 9pt;
   letter-spacing: 0.02em;
-  font-family: 'Open Sans', 'Lucida Grande', Verdana, Arial, Helvetica, sans-serif;
+  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   color: #ffffff;
 }
 .tile .brand  > .name:hover,
@@ -3413,7 +3414,7 @@ input[type=submit] {
   margin-bottom: 10px;
   cursor: pointer;
   background: #fff;
-  font-family: 'Open Sans', 'Lucida Grande', Verdana, Arial, Helvetica, sans-serif;
+  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 200;
   font-size: 16pt;
   letter-spacing: 0.01em;
