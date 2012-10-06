@@ -31,6 +31,7 @@
     src: local('Open Sans'), local('OpenSans'), url(http://themes.googleusercontent.com/static/fonts/opensans/v6/K88pR3goAWT7BTt32Z01mz8E0i7KZn-EPnyo3HZu7kw.woff) format('woff');
 }
 
+/*
 @baseFontUI: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
 @baseFontText: 'Lucida Grande', Verdana, Arial, Helvetica, sans-serif;
 
@@ -42,151 +43,122 @@
 .regular-text          {font-weight: 400;}
 .semibold-text         {font-weight: 600;}
 .bold-text             {font-weight: 700;}
+*/
 
 .text-rest-state       {color: rgba(0, 0, 0, 1.0);}
 .text-rest2-state      {color: rgba(0, 0, 0, 0.6);}
 .text-hover-state      {color: rgba(0, 0, 0, 0.8);}
 .text-pressed-state    {color: rgba(0, 0, 0, 0.4);}
 
-.big-text {
-    .light-text();
-    font-size: 42pt;
-    letter-spacing: 0.00em;
-    line-height: 44pt;
-}
-
-.medium-text {
-    .light-text();
-    font-size: 20pt;
-    letter-spacing: 0.01em;
-    line-height: 24pt;
-}
-
-.medium-secondary-text {
-    .light-text();
-    font-size: 16pt;
-    letter-spacing: 0.01em;
-    line-height: 28pt;
-}
-
-.normal-text {
-    .semilight-text();
-    font-size: 11pt;
-    letter-spacing: 0.02em;
-    line-height: 20px;
-    font-family: 'Lucida Grande', Verdana, Arial, Helvetica, sans-serif;
-}
-
-.short-text {
-    .regular-text();
-    font-size: 9pt;
-    letter-spacing: 0.02em;
-}
-
-.header-text {
-    .font-ui();
-    .big-text();
-    .text-rest-state();
-
-    &:hover {
-      .text-hover-state();
+#font {
+    .header {
+        font-family: 'Segoe UI Light', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+        font-weight: 200;
+        font-size: 42pt;
+        letter-spacing: 0.00em;
+        line-height: 44pt;
     }
-    &:active {
-      .text-pressed-state();
-    }
-}
 
-.subheader-text {
-    .font-ui();
-    .medium-text();
-    .text-rest-state();
-
-    &:hover {
-      .text-hover-state();
+    .subheader, .subheader-secondary {
+        font-family: 'Segoe UI Light', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+        font-weight: 200;
+        font-size: 20pt;
+        letter-spacing: 0.01em;
+        line-height: 24pt;
     }
-    &:active {
-      .text-pressed-state();
-    }
-}
 
-.subheader-secondary-text {
-    .font-ui();
-    .medium-secondary-text;
-    .text-rest2-state();
-
-    &:hover {
-      .text-hover-state();
+    .subheader-smaller, .subheader-secondary-smaller {
+        .subheader;
+        font-size: 16pt;
     }
-    &:active {
-      .text-pressed-state();
+
+    .small-subheader, .small-subheader-secondary {
+        font-family: 'Segoe UI Semibold', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+        font-weight: 600;
+        font-size: 11pt;
+        letter-spacing: 0.01em;
+        line-height: 14pt;
+    }
+
+    .navigation {
+        font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+        font-weight: 400;
+        font-size: 11pt;
+        letter-spacing: 0.01em;
+        line-height: 14pt;
+    }
+
+    .body, .body-secondary, .normal {
+        font-family: 'Segoe UI Semilight', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+        font-weight: 300;
+        font-size: 11pt;
+        letter-spacing: 0.02em;
+        line-height: 20px;
+    }
+
+    .link {
+        font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+        font-weight: 400;
+        font-size: 11pt;
+    }
+
+    .tertiary, .tertiary-secondary {
+        font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+        font-weight: 400;
+        font-size: 9pt;
+    }
+
+    .control {
+        font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+        font-weight: 400;
+        font-size: 9pt;
+    }
+
+    .small {
+        font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+        font-weight: 300;
+        font-size: 8pt;
     }
 }
 
-.small-subheader-text {
-    .font-ui();
-    .semibold-text();
-    .normal-text();
-    .text-rest-state();
+#state {
+    .header, .subheader, .small-subheader, .navigation, .body, .tertiary {
+        .text-rest-state();
 
-    &:hover {
-      .text-hover-state();
+        &:hover {
+            .text-hover-state();
+        }
+        &:active {
+            .text-pressed-state();
+        }
     }
-    &:active {
-      .text-pressed-state();
+
+    .subheader-secondary, .subheader-secondary-smaller, .small-subheader, .small-subheader-secondary, .body-secondary, .tertiary-secondary {
+        .text-rest2-state();
+
+        &:hover {
+            .text-hover-state();
+        }
+        &:active {
+            .text-pressed-state();
+        }
     }
-}
 
-.small-subheader-secondary-text {
-    .font-ui();
-    .semibold-text();
-    .text-rest2-state();
+    .link {
+        color: rgba(79,26,203, 1.0);
 
-    &:hover {
-      .text-hover-state();
-    }
-    &:active {
-      .text-pressed-state();
-    }
-}
-
-.navigation-text {
-    .normal-text();
-    //.font-ui();
-    .text-rest2-state();
-
-    &:hover {
-      .text-hover-state();
-    }
-    &:active {
-      .text-pressed-state();
-    }
-}
-
-.body-text {
-    .normal-text();
-}
-
-.body-secondary-text {
-    .font-text();
-    .semilight-text();
-    .text-rest2-state();
-}
-
-.link-text {
-    .font-text();
-    .semilight-text();
-    color: rgba(79,26,203, 1.0);
-
-    &:hover {
-      color: rgba(79,26,203, 0.8);
-    }
-    &:active {
-      color: rgba(79,26,203, 0.6);
+        &:hover {
+            color: rgba(79,26,203, 0.8);
+        }
+        &:active {
+            color: rgba(79,26,203, 0.6);
+        }
     }
 }
 
 a, .link {
-    .link-text();
+    #font > .link;
+    #state > .link;
     text-decoration: none;
 }
 
@@ -196,34 +168,40 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-    .header-text();
+    #font > .header;
+    #state > .header;
 }
 
 h2 {
-    .subheader-text();
+    #font > .subheader;
+    #state > .subheader;
 }
 
 h3 {
-    .subheader-secondary-text();
+    #font > .subheader;
+    #state > .subheader-secondary;
+    font-size: 16pt;
 }
 
 h4 {
-    .small-subheader-text();
+    #font > .small-subheader();
+    #state > .small-subheader();
 }
 
 h5 {
-    .small-subheader-secondary-text();
-    line-height: 22px;
+    #font > .small-subheader-secondary;
+    #state > .small-subheader-secondary;
+    font-size: 90%;
 }
 
 h6 {
-    .small-subheader-secondary-text();
-    line-height: 22px;
-    font-weight: normal;
+    #font > .small-subheader-secondary;
+    #state > .small-subheader-secondary;
+    font-size: 80%;
 }
 
 body, p {
-    .body-text();
+    #font > .body;
 }
 
 p {
@@ -239,21 +217,13 @@ p.indent:first-letter {
     line-height: 26px;
 }
 
-.tertiary-info-text, .tertiary-text, .tertiary-info-secondary-text, .tertiary-secondary-text {
-    //.regular-text();
-    .text-rest-state();
-    .short-text();
-
-    &:hover {
-      .text-hover-state();
-    }
-    &:active {
-      .text-pressed-state();
-    }
+.tertiary-info-text, .tertiary-text {
+    #font > .tertiary;
+    #state > .tertiary;
 }
-
 .tertiary-info-secondary-text, .tertiary-secondary-text {
-    .text-rest2-state();
+    #font > .tertiary-secondary;
+    #state > .tertiary-secondary;
 }
 
 abbr.initialism {
@@ -268,7 +238,7 @@ abbr[title] {
 address {
     display: block;
     margin-bottom: @unit;
-    .body-text();
+    #font > .body;
     line-height: 20px;
     font-style: normal;
 }
@@ -286,7 +256,7 @@ blockquote {
 
     small:before {
         content: '\2014';
-        .text-pressed-state();
+        .text-pressed-state;
         margin-right: @subunit;
     }
 
@@ -303,7 +273,7 @@ blockquote {
             }
             &:after {
                 content: '\2014';
-                .text-pressed-state();
+                .text-pressed-state;
                 margin-left: @subunit;
             }
         }

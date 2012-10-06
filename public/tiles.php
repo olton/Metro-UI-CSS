@@ -101,7 +101,7 @@
                                 <div class="tile double bg-color-blueDark">
                                     <div class="tile-content">
                                         <img src="images/michael.jpg" class="place-right"/>
-                                        <h3 style="margin-bottom: 5px;">michael_angiulo</h3>
+                                        <h4 style="margin-bottom: 5px;">michael_angiulo</h4>
                                         <p>
                                             I just saw Thor last night. It was awesome! I think you'd love it.
                                         <h5>RT @julie_green</h5>

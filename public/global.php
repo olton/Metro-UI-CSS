@@ -101,7 +101,7 @@
                         <div class="span10">
                             <h2>Fonts</h2>
                             <p class="span10">
-                                In Metro UI CSS i use <a href="http://www.google.com/webfonts#UsePlace:use/Collection:Open+Sans">Open Sans</a> font for UI and Lucida Grande, Verdana or Arial for text (depending on the availability in the system).
+                                In Metro UI CSS i use Segoe UI, <a href="http://www.google.com/webfonts#UsePlace:use/Collection:Open+Sans">Open Sans</a> fonts (depending on the availability in the system).
                             </p>
                         </div>
                     </div>

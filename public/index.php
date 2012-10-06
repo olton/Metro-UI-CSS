@@ -82,7 +82,6 @@
                     <img src="images/windows-8-metro.jpg" class="place-left" style="margin-right: 40px;"/>
                     <h1 class="fg-color-blueLight">Metro UI CSS</h1>
 
-                    <br />
                     <h2>Create site in Windows 8 style now!</h2>
 
                     <br />
@@ -93,9 +92,10 @@
                     <p class="tertiary-info-text">
                         &lt;link href="modern.css" rel="stylesheet"&gt;
                     </p>
+
                     <br />
                     <p class="tertiary-info-secondary-text">
-                        * This site is made with Metro UI CSS.
+                        <span class="bg-color-greenDark fg-color-white" style="padding: 10px;">This site is made with Metro UI CSS.</span>
                     </p>
 
                     <a href="http://bizspark.com/"><img src="images/1005-BizSpark-261x230.jpg" class="bottom-right" style="width: 150px; padding: 10px 0 0 10px; background: #fff;"/></a>

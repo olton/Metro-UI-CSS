@@ -28,7 +28,7 @@
             white-space: nowrap;
             float: none;
             height: auto;
-            .tertiary-text();
+            #font > .tertiary;
             color: #1e1e1e;
             padding: 5px  10px;
 
@@ -102,16 +102,8 @@
                 padding: 5px  10px;
                 display: block;
                 z-index: 999;
-                .navigation-text();
-                .text-rest-state();
-
-                &:hover {
-                    .text-hover-state();
-                }
-                &:active {
-                    .text-pressed-state();
-                }
-
+                #font > .navigation;
+                #state > .navigation;
             }
 
             ul {
@@ -193,7 +185,7 @@
                 float: left;
                 padding: 5px 20px;
                 color: #1e1e1e;
-                .navigation-text;
+                #font > .navigation;
                 cursor: pointer;
             }
         }

@@ -726,7 +726,7 @@ table {
   width: 310px;
   height: 150px;
 }
-.bage {
+.badge {
   position: relative;
   margin: 0 10px 10px 0;
   display: block;
@@ -734,10 +734,9 @@ table {
   width: 35px;
   height: 30px;
   padding-top: 5px;
+  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 9pt;
-  letter-spacing: 0.02em;
-  font-weight: 600;
   color: #1d1d1d;
   text-align: center;
 }
@@ -780,27 +779,19 @@ table {
   font-weight: 400;
   src: local('Open Sans'), local('OpenSans'), url(http://themes.googleusercontent.com/static/fonts/opensans/v6/K88pR3goAWT7BTt32Z01mz8E0i7KZn-EPnyo3HZu7kw.woff) format('woff');
 }
-.font-ui {
-  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
-}
-.font-text {
-  font-family: 'Lucida Grande', Verdana, Arial, Helvetica, sans-serif;
-}
-.light-text {
-  font-weight: 200;
-}
-.semilight-text {
-  font-weight: 300;
-}
-.regular-text {
-  font-weight: 400;
-}
-.semibold-text {
-  font-weight: 600;
-}
-.bold-text {
-  font-weight: 700;
-}
+/*
+@baseFontUI: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+@baseFontText: 'Lucida Grande', Verdana, Arial, Helvetica, sans-serif;
+
+.font-ui          {font-family: @baseFontUI;}
+.font-text        {font-family: @baseFontText;}
+
+.light-text            {font-weight: 200;}
+.semilight-text        {font-weight: 300;}
+.regular-text          {font-weight: 400;}
+.semibold-text         {font-weight: 600;}
+.bold-text             {font-weight: 700;}
+*/
 .text-rest-state {
   color: #000000;
 }
@@ -813,146 +804,137 @@ table {
 .text-pressed-state {
   color: rgba(0, 0, 0, 0.4);
 }
-.big-text {
+#font .header {
+  font-family: 'Segoe UI Light', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 200;
   font-size: 42pt;
   letter-spacing: 0.00em;
   line-height: 44pt;
 }
-.medium-text {
+#font .subheader,
+#font .subheader-secondary {
+  font-family: 'Segoe UI Light', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 200;
   font-size: 20pt;
   letter-spacing: 0.01em;
   line-height: 24pt;
 }
-.medium-secondary-text {
+#font .subheader-smaller,
+#font .subheader-secondary-smaller {
+  font-family: 'Segoe UI Light', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 200;
-  font-size: 16pt;
+  font-size: 20pt;
   letter-spacing: 0.01em;
-  line-height: 28pt;
+  line-height: 24pt;
+  font-size: 16pt;
 }
-.normal-text {
+#font .small-subheader,
+#font .small-subheader-secondary {
+  font-family: 'Segoe UI Semibold', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 600;
+  font-size: 11pt;
+  letter-spacing: 0.01em;
+  line-height: 14pt;
+}
+#font .navigation {
+  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 11pt;
+  letter-spacing: 0.01em;
+  line-height: 14pt;
+}
+#font .body,
+#font .body-secondary,
+#font .normal {
+  font-family: 'Segoe UI Semilight', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 300;
   font-size: 11pt;
   letter-spacing: 0.02em;
   line-height: 20px;
-  font-family: 'Lucida Grande', Verdana, Arial, Helvetica, sans-serif;
 }
-.short-text {
+#font .link {
+  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 11pt;
+}
+#font .tertiary,
+#font .tertiary-secondary {
+  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 9pt;
-  letter-spacing: 0.02em;
 }
-.header-text {
+#font .control {
   font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
-  font-weight: 200;
-  font-size: 42pt;
-  letter-spacing: 0.00em;
-  line-height: 44pt;
+  font-weight: 400;
+  font-size: 9pt;
+}
+#font .small {
+  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 300;
+  font-size: 8pt;
+}
+#state .header,
+#state .subheader,
+#state .small-subheader,
+#state .navigation,
+#state .body,
+#state .tertiary {
   color: #000000;
 }
-.header-text:hover {
+#state .header:hover,
+#state .subheader:hover,
+#state .small-subheader:hover,
+#state .navigation:hover,
+#state .body:hover,
+#state .tertiary:hover {
   color: rgba(0, 0, 0, 0.8);
 }
-.header-text:active {
+#state .header:active,
+#state .subheader:active,
+#state .small-subheader:active,
+#state .navigation:active,
+#state .body:active,
+#state .tertiary:active {
   color: rgba(0, 0, 0, 0.4);
 }
-.subheader-text {
-  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
-  font-weight: 200;
-  font-size: 20pt;
-  letter-spacing: 0.01em;
-  line-height: 24pt;
-  color: #000000;
-}
-.subheader-text:hover {
-  color: rgba(0, 0, 0, 0.8);
-}
-.subheader-text:active {
-  color: rgba(0, 0, 0, 0.4);
-}
-.subheader-secondary-text {
-  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
-  font-weight: 200;
-  font-size: 16pt;
-  letter-spacing: 0.01em;
-  line-height: 28pt;
+#state .subheader-secondary,
+#state .subheader-secondary-smaller,
+#state .small-subheader,
+#state .small-subheader-secondary,
+#state .body-secondary,
+#state .tertiary-secondary {
   color: rgba(0, 0, 0, 0.6);
 }
-.subheader-secondary-text:hover {
+#state .subheader-secondary:hover,
+#state .subheader-secondary-smaller:hover,
+#state .small-subheader:hover,
+#state .small-subheader-secondary:hover,
+#state .body-secondary:hover,
+#state .tertiary-secondary:hover {
   color: rgba(0, 0, 0, 0.8);
 }
-.subheader-secondary-text:active {
+#state .subheader-secondary:active,
+#state .subheader-secondary-smaller:active,
+#state .small-subheader:active,
+#state .small-subheader-secondary:active,
+#state .body-secondary:active,
+#state .tertiary-secondary:active {
   color: rgba(0, 0, 0, 0.4);
 }
-.small-subheader-text {
-  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
-  font-weight: 600;
-  font-weight: 300;
-  font-size: 11pt;
-  letter-spacing: 0.02em;
-  line-height: 20px;
-  font-family: 'Lucida Grande', Verdana, Arial, Helvetica, sans-serif;
-  color: #000000;
-}
-.small-subheader-text:hover {
-  color: rgba(0, 0, 0, 0.8);
-}
-.small-subheader-text:active {
-  color: rgba(0, 0, 0, 0.4);
-}
-.small-subheader-secondary-text {
-  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
-  font-weight: 600;
-  color: rgba(0, 0, 0, 0.6);
-}
-.small-subheader-secondary-text:hover {
-  color: rgba(0, 0, 0, 0.8);
-}
-.small-subheader-secondary-text:active {
-  color: rgba(0, 0, 0, 0.4);
-}
-.navigation-text {
-  font-weight: 300;
-  font-size: 11pt;
-  letter-spacing: 0.02em;
-  line-height: 20px;
-  font-family: 'Lucida Grande', Verdana, Arial, Helvetica, sans-serif;
-  color: rgba(0, 0, 0, 0.6);
-}
-.navigation-text:hover {
-  color: rgba(0, 0, 0, 0.8);
-}
-.navigation-text:active {
-  color: rgba(0, 0, 0, 0.4);
-}
-.body-text {
-  font-weight: 300;
-  font-size: 11pt;
-  letter-spacing: 0.02em;
-  line-height: 20px;
-  font-family: 'Lucida Grande', Verdana, Arial, Helvetica, sans-serif;
-}
-.body-secondary-text {
-  font-family: 'Lucida Grande', Verdana, Arial, Helvetica, sans-serif;
-  font-weight: 300;
-  color: rgba(0, 0, 0, 0.6);
-}
-.link-text {
-  font-family: 'Lucida Grande', Verdana, Arial, Helvetica, sans-serif;
-  font-weight: 300;
+#state .link {
   color: #4f1acb;
 }
-.link-text:hover {
+#state .link:hover {
   color: rgba(79, 26, 203, 0.8);
 }
-.link-text:active {
+#state .link:active {
   color: rgba(79, 26, 203, 0.6);
 }
 a,
 .link {
-  font-family: 'Lucida Grande', Verdana, Arial, Helvetica, sans-serif;
-  font-weight: 300;
+  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 11pt;
   color: #4f1acb;
   text-decoration: none;
 }
@@ -974,7 +956,7 @@ h6 {
   padding: 0;
 }
 h1 {
-  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-family: 'Segoe UI Light', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 200;
   font-size: 42pt;
   letter-spacing: 0.00em;
@@ -988,7 +970,7 @@ h1:active {
   color: rgba(0, 0, 0, 0.4);
 }
 h2 {
-  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-family: 'Segoe UI Light', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 200;
   font-size: 20pt;
   letter-spacing: 0.01em;
@@ -1002,12 +984,13 @@ h2:active {
   color: rgba(0, 0, 0, 0.4);
 }
 h3 {
-  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-family: 'Segoe UI Light', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 200;
-  font-size: 16pt;
+  font-size: 20pt;
   letter-spacing: 0.01em;
-  line-height: 28pt;
+  line-height: 24pt;
   color: rgba(0, 0, 0, 0.6);
+  font-size: 16pt;
 }
 h3:hover {
   color: rgba(0, 0, 0, 0.8);
@@ -1016,14 +999,19 @@ h3:active {
   color: rgba(0, 0, 0, 0.4);
 }
 h4 {
-  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-family: 'Segoe UI Semibold', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 600;
-  font-weight: 300;
   font-size: 11pt;
-  letter-spacing: 0.02em;
-  line-height: 20px;
-  font-family: 'Lucida Grande', Verdana, Arial, Helvetica, sans-serif;
+  letter-spacing: 0.01em;
+  line-height: 14pt;
   color: #000000;
+  color: rgba(0, 0, 0, 0.6);
+}
+h4:hover {
+  color: rgba(0, 0, 0, 0.8);
+}
+h4:active {
+  color: rgba(0, 0, 0, 0.4);
 }
 h4:hover {
   color: rgba(0, 0, 0, 0.8);
@@ -1032,10 +1020,13 @@ h4:active {
   color: rgba(0, 0, 0, 0.4);
 }
 h5 {
-  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-family: 'Segoe UI Semibold', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 600;
+  font-size: 11pt;
+  letter-spacing: 0.01em;
+  line-height: 14pt;
   color: rgba(0, 0, 0, 0.6);
-  line-height: 22px;
+  font-size: 90%;
 }
 h5:hover {
   color: rgba(0, 0, 0, 0.8);
@@ -1044,11 +1035,13 @@ h5:active {
   color: rgba(0, 0, 0, 0.4);
 }
 h6 {
-  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-family: 'Segoe UI Semibold', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 600;
+  font-size: 11pt;
+  letter-spacing: 0.01em;
+  line-height: 14pt;
   color: rgba(0, 0, 0, 0.6);
-  line-height: 22px;
-  font-weight: normal;
+  font-size: 80%;
 }
 h6:hover {
   color: rgba(0, 0, 0, 0.8);
@@ -1058,11 +1051,11 @@ h6:active {
 }
 body,
 p {
+  font-family: 'Segoe UI Semilight', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 300;
   font-size: 11pt;
   letter-spacing: 0.02em;
   line-height: 20px;
-  font-family: 'Lucida Grande', Verdana, Arial, Helvetica, sans-serif;
 }
 p {
   margin: 0 0 10px;
@@ -1075,29 +1068,34 @@ p.indent:first-letter {
   line-height: 26px;
 }
 .tertiary-info-text,
-.tertiary-text,
-.tertiary-info-secondary-text,
-.tertiary-secondary-text {
-  color: #000000;
+.tertiary-text {
+  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 9pt;
-  letter-spacing: 0.02em;
+  color: #000000;
 }
 .tertiary-info-text:hover,
-.tertiary-text:hover,
-.tertiary-info-secondary-text:hover,
-.tertiary-secondary-text:hover {
+.tertiary-text:hover {
   color: rgba(0, 0, 0, 0.8);
 }
 .tertiary-info-text:active,
-.tertiary-text:active,
-.tertiary-info-secondary-text:active,
-.tertiary-secondary-text:active {
+.tertiary-text:active {
   color: rgba(0, 0, 0, 0.4);
 }
 .tertiary-info-secondary-text,
 .tertiary-secondary-text {
+  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 9pt;
   color: rgba(0, 0, 0, 0.6);
+}
+.tertiary-info-secondary-text:hover,
+.tertiary-secondary-text:hover {
+  color: rgba(0, 0, 0, 0.8);
+}
+.tertiary-info-secondary-text:active,
+.tertiary-secondary-text:active {
+  color: rgba(0, 0, 0, 0.4);
 }
 abbr.initialism {
   font-size: 90%;
@@ -1109,11 +1107,11 @@ abbr[title] {
 address {
   display: block;
   margin-bottom: 20px;
+  font-family: 'Segoe UI Semilight', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 300;
   font-size: 11pt;
   letter-spacing: 0.02em;
   line-height: 20px;
-  font-family: 'Lucida Grande', Verdana, Arial, Helvetica, sans-serif;
   line-height: 20px;
   font-style: normal;
 }
@@ -1475,7 +1473,9 @@ ol.unstyled,
 }
 button,
 .button {
+  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 400;
+  font-size: 9pt;
   min-width: 90px;
   min-height: 32px;
   background-color: #ccc;
@@ -1514,11 +1514,20 @@ button:focus,
   height: auto;
   color: #000;
   background-color: #ccc;
+  font-family: 'Segoe UI Semilight', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 300;
+  font-size: 11pt;
+  letter-spacing: 0.02em;
+  line-height: 20px;
 }
 .command-button  > small {
   display: block;
-  font-weight: 400;
+  font-family: 'Segoe UI Semilight', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 300;
   font-size: 11pt;
+  letter-spacing: 0.02em;
+  line-height: 20px;
+  font-size: 10pt;
   color: #505050;
 }
 .command-button.default  > small {
@@ -1569,9 +1578,11 @@ table thead tr th {
   border-right: 1px #ddd solid;
   border-left: 1px transparent solid;
   border-top: 1px transparent solid;
+  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 400;
-  font-size: 9pt;
-  letter-spacing: 0.02em;
+  font-size: 11pt;
+  letter-spacing: 0.01em;
+  line-height: 14pt;
   color: rgba(0, 0, 0, 0.6);
   text-align: left;
 }
@@ -1589,9 +1600,11 @@ table tbody tr {
   border: 1px #fff solid;
 }
 table tbody tr td {
-  font-weight: 400;
-  font-size: 9pt;
+  font-family: 'Segoe UI Semilight', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 300;
+  font-size: 11pt;
   letter-spacing: 0.02em;
+  line-height: 20px;
   padding: 3px 10px;
   border-right: 1px #ddd solid;
   border-bottom: 1px #ddd solid;
@@ -1893,18 +1906,11 @@ table.bordered tbody tr:last-child td {
   white-space: nowrap;
   float: none;
   height: auto;
-  color: #000000;
+  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 9pt;
-  letter-spacing: 0.02em;
   color: #1e1e1e;
   padding: 5px  10px;
-}
-.popup-menu li a:hover {
-  color: rgba(0, 0, 0, 0.8);
-}
-.popup-menu li a:active {
-  color: rgba(0, 0, 0, 0.4);
 }
 .popup-menu li a:hover {
   color: #fff;
@@ -1974,19 +1980,12 @@ table.bordered tbody tr:last-child td {
   padding: 5px  10px;
   display: block;
   z-index: 999;
-  font-weight: 300;
+  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 400;
   font-size: 11pt;
-  letter-spacing: 0.02em;
-  line-height: 20px;
-  font-family: 'Lucida Grande', Verdana, Arial, Helvetica, sans-serif;
-  color: rgba(0, 0, 0, 0.6);
+  letter-spacing: 0.01em;
+  line-height: 14pt;
   color: #000000;
-}
-.horizontal-menu  > ul li a:hover {
-  color: rgba(0, 0, 0, 0.8);
-}
-.horizontal-menu  > ul li a:active {
-  color: rgba(0, 0, 0, 0.4);
 }
 .horizontal-menu  > ul li a:hover {
   color: rgba(0, 0, 0, 0.8);
@@ -2016,18 +2015,11 @@ table.bordered tbody tr:last-child td {
   white-space: nowrap;
   float: none;
   height: auto;
-  color: #000000;
+  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 9pt;
-  letter-spacing: 0.02em;
   color: #1e1e1e;
   padding: 5px  10px;
-}
-.horizontal-menu  > ul li ul li a:hover {
-  color: rgba(0, 0, 0, 0.8);
-}
-.horizontal-menu  > ul li ul li a:active {
-  color: rgba(0, 0, 0, 0.4);
 }
 .horizontal-menu  > ul li ul li a:hover {
   color: #fff;
@@ -2098,18 +2090,11 @@ table.bordered tbody tr:last-child td {
   white-space: nowrap;
   float: none;
   height: auto;
-  color: #000000;
+  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 9pt;
-  letter-spacing: 0.02em;
   color: #1e1e1e;
   padding: 5px  10px;
-}
-.page .page-header .page-header-content h1.sub-menu ul li a:hover {
-  color: rgba(0, 0, 0, 0.8);
-}
-.page .page-header .page-header-content h1.sub-menu ul li a:active {
-  color: rgba(0, 0, 0, 0.4);
 }
 .page .page-header .page-header-content h1.sub-menu ul li a:hover {
   color: #fff;
@@ -2185,21 +2170,12 @@ table.bordered tbody tr:last-child td {
   float: left;
   padding: 5px 20px;
   color: #1e1e1e;
-  font-weight: 300;
+  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 400;
   font-size: 11pt;
-  letter-spacing: 0.02em;
-  line-height: 20px;
-  font-family: 'Lucida Grande', Verdana, Arial, Helvetica, sans-serif;
-  color: rgba(0, 0, 0, 0.6);
+  letter-spacing: 0.01em;
+  line-height: 14pt;
   cursor: pointer;
-}
-.ribbon ul li span:hover,
-.ribbon ul li a:hover {
-  color: rgba(0, 0, 0, 0.8);
-}
-.ribbon ul li span:active,
-.ribbon ul li a:active {
-  color: rgba(0, 0, 0, 0.4);
 }
 .ribbon .frames {
   margin-top: 30px;
@@ -2237,7 +2213,11 @@ table.bordered tbody tr:last-child td {
   float: none !important;
   width: 310px;
   height: 150px;
-  font-weight: 400;
+  font-family: 'Segoe UI Semilight', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 300;
+  font-size: 11pt;
+  letter-spacing: 0.02em;
+  line-height: 20px;
   height: auto;
   padding: 10px;
 }
@@ -2281,10 +2261,10 @@ table.bordered tbody tr:last-child td {
 .replies  > div .reply .text,
 .replies  > li .reply .text,
 .replies  > span .reply .text {
-  color: #000000;
+  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 9pt;
-  letter-spacing: 0.02em;
+  color: #000000;
   color: #ffffff;
   line-height: 16px;
 }
@@ -2426,36 +2406,14 @@ table.bordered tbody tr:last-child td {
 .notices  > a .header {
   position: relative;
   background: transparent;
-  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-family: 'Segoe UI Light', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 200;
-  font-size: 16pt;
+  font-size: 20pt;
   letter-spacing: 0.01em;
-  line-height: 28pt;
-  color: rgba(0, 0, 0, 0.6);
-  font-weight: 600;
+  line-height: 24pt;
   font-size: 12pt;
   margin-top: 5px;
   margin-left: 10px;
-}
-.notices  > div .notice-header:hover,
-.notices  > li .notice-header:hover,
-.notices  > span .notice-header:hover,
-.notices  > a .notice-header:hover,
-.notices  > div .header:hover,
-.notices  > li .header:hover,
-.notices  > span .header:hover,
-.notices  > a .header:hover {
-  color: rgba(0, 0, 0, 0.8);
-}
-.notices  > div .notice-header:active,
-.notices  > li .notice-header:active,
-.notices  > span .notice-header:active,
-.notices  > a .notice-header:active,
-.notices  > div .header:active,
-.notices  > li .header:active,
-.notices  > span .header:active,
-.notices  > a .header:active {
-  color: rgba(0, 0, 0, 0.4);
 }
 .notices  > div .notice-text,
 .notices  > li .notice-text,
@@ -2469,9 +2427,9 @@ table.bordered tbody tr:last-child td {
   margin-right: 50px;
   margin-left: 10px;
   color: #fff;
-  font-weight: 400;
-  font-size: 9pt;
-  letter-spacing: 0.02em;
+  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 300;
+  font-size: 8pt;
   margin-top: -5px;
   line-height: 16px;
 }
@@ -2588,7 +2546,11 @@ table.bordered tbody tr:last-child td {
   color: #ffffff;
   overflow: hidden;
   position: relative;
-  font-weight: 400;
+  font-family: 'Segoe UI Semilight', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 300;
+  font-size: 11pt;
+  letter-spacing: 0.02em;
+  line-height: 20px;
   margin: 0 10px 10px 0;
 }
 .tile * {
@@ -2602,10 +2564,10 @@ table.bordered tbody tr:last-child td {
   padding: 10px 15px;
   overflow: hidden;
   text-overflow: ellipsis;
-  color: #000000;
+  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 9pt;
-  letter-spacing: 0.02em;
+  color: #000000;
   color: #ffffff;
   line-height: 16px;
   overflow: hidden;
@@ -2641,10 +2603,10 @@ table.bordered tbody tr:last-child td {
   color: #ffffff;
 }
 .tile .tile-content p {
-  color: #000000;
+  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 9pt;
-  letter-spacing: 0.02em;
+  color: #000000;
   color: #ffffff;
   line-height: 16px;
   overflow: hidden;
@@ -2760,15 +2722,17 @@ table.bordered tbody tr:last-child td {
   position: absolute;
   bottom: 0;
   right: 0;
-  right: 10px;
+  right: 5px;
   margin-bottom: 0;
   color: #ffffff;
   width: 34px;
   height: 28px;
   text-align: center;
-  font-weight: 400;
-  font-size: 9pt;
-  letter-spacing: 0.02em;
+  font-family: 'Segoe UI Semibold', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 600;
+  font-size: 11pt;
+  letter-spacing: 0.01em;
+  line-height: 14pt;
   padding-top: 3px;
 }
 .tile .brand  > .badge.activity,
@@ -2822,20 +2786,10 @@ table.bordered tbody tr:last-child td {
   left: 0;
   margin-bottom: 5px;
   margin-left: 15px;
-  color: #000000;
+  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 9pt;
-  letter-spacing: 0.02em;
-  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   color: #ffffff;
-}
-.tile .brand  > .name:hover,
-.tile .tile-status  > .name:hover {
-  color: rgba(0, 0, 0, 0.8);
-}
-.tile .brand  > .name:active,
-.tile .tile-status  > .name:active {
-  color: rgba(0, 0, 0, 0.4);
 }
 .tile .brand  > .name:hover,
 .tile .tile-status  > .name:hover {
@@ -2858,10 +2812,10 @@ table.bordered tbody tr:last-child td {
   left: 60px;
   top: 5px;
   right: 50px;
-  color: #000000;
+  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 9pt;
-  letter-spacing: 0.02em;
+  color: #000000;
   color: #ffffff;
   line-height: 14px;
 }
@@ -2917,7 +2871,11 @@ table.bordered tbody tr:last-child td {
   opacity: 0;
 }
 .checkbox input[type=checkbox] + span {
-  font-weight: 400;
+  font-family: 'Segoe UI Semilight', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 300;
+  font-size: 11pt;
+  letter-spacing: 0.02em;
+  line-height: 20px;
   line-height: 19px;
 }
 .checkbox input[type=checkbox] + span::before {
@@ -3003,7 +2961,11 @@ table.bordered tbody tr:last-child td {
   display: none;
 }
 .radiobox input[type=radio] + span {
-  font-weight: 400;
+  font-family: 'Segoe UI Semilight', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 300;
+  font-size: 11pt;
+  letter-spacing: 0.02em;
+  line-height: 20px;
 }
 .radiobox:hover input[type=radio] + span::before {
   background: #fff;
@@ -3069,7 +3031,11 @@ table.bordered tbody tr:last-child td {
   display: none;
 }
 .switch input[type=checkbox] + span {
-  font-weight: 400;
+  font-family: 'Segoe UI Semilight', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 300;
+  font-size: 11pt;
+  letter-spacing: 0.02em;
+  line-height: 20px;
 }
 .switch input[type=checkbox] + span::before {
   content: "";
@@ -3192,8 +3158,11 @@ table.bordered tbody tr:last-child td {
 .input-control.password .helper:before {
   font-size: 12pt;
   position: absolute;
-  font-weight: 400;
-  font-weight: 700;
+  font-family: 'Segoe UI Semilight', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 300;
+  font-size: 11pt;
+  letter-spacing: 0.02em;
+  line-height: 20px;
 }
 .input-control.text .helper:hover,
 .input-control.password .helper:hover {
@@ -3219,7 +3188,11 @@ table.bordered tbody tr:last-child td {
   top: 4px;
 }
 label {
-  font-weight: 400;
+  font-family: 'Segoe UI Semilight', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 300;
+  font-size: 11pt;
+  letter-spacing: 0.02em;
+  line-height: 20px;
   margin-right: 10px;
   margin-bottom: 10px;
 }
@@ -3232,7 +3205,11 @@ fieldset {
 fieldset legend {
   padding-left: 10px;
   padding-right: 10px;
-  font-weight: 400;
+  font-family: 'Segoe UI Semilight', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 300;
+  font-size: 11pt;
+  letter-spacing: 0.02em;
+  line-height: 20px;
   color: #cfcfcf;
   position: absolute;
   top: -25px;
@@ -3241,7 +3218,9 @@ fieldset legend {
 input[type=button],
 input[type=reset],
 input[type=submit] {
+  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 400;
+  font-size: 9pt;
   min-width: 90px;
   min-height: 32px;
   background-color: #ccc;
@@ -3414,19 +3393,13 @@ input[type=submit] {
   margin-bottom: 10px;
   cursor: pointer;
   background: #fff;
-  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-family: 'Segoe UI Light', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 200;
-  font-size: 16pt;
+  font-size: 20pt;
   letter-spacing: 0.01em;
-  line-height: 28pt;
-  color: rgba(0, 0, 0, 0.6);
+  line-height: 24pt;
+  font-family: 'Lucida Grande', Verdana, Arial, Helvetica, sans-serif;
   line-height: 18pt;
-}
-.card:hover {
-  color: rgba(0, 0, 0, 0.8);
-}
-.card:active {
-  color: rgba(0, 0, 0, 0.4);
 }
 .card:hover {
   box-shadow: 1px 1px 1px #ccc;
@@ -3564,29 +3537,22 @@ input[type=submit] {
 code,
 pre {
   padding: 0 3px 2px;
+  font-family: 'Segoe UI Semilight', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 300;
   font-size: 11pt;
   letter-spacing: 0.02em;
   line-height: 20px;
-  font-family: 'Lucida Grande', Verdana, Arial, Helvetica, sans-serif;
   font-size: 12pt;
   color: #525252;
 }
 code {
   padding: 2px 4px;
-  color: #000000;
+  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 9pt;
-  letter-spacing: 0.02em;
   color: #d14;
   background-color: #f7f7f9;
   border: 1px #e1e1e8 solid;
-}
-code:hover {
-  color: rgba(0, 0, 0, 0.8);
-}
-code:active {
-  color: rgba(0, 0, 0, 0.4);
 }
 pre {
   display: block;
@@ -3679,29 +3645,20 @@ pre code {
   float: left;
   padding: 5px 10px;
   color: #1e1e1e;
-  font-weight: 300;
+  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 400;
   font-size: 11pt;
-  letter-spacing: 0.02em;
-  line-height: 20px;
-  font-family: 'Lucida Grande', Verdana, Arial, Helvetica, sans-serif;
-  color: rgba(0, 0, 0, 0.6);
+  letter-spacing: 0.01em;
+  line-height: 14pt;
   cursor: pointer;
   outline: 0;
-}
-.page-control  > ul li span:hover,
-.page-control  > ul li a:hover {
-  color: rgba(0, 0, 0, 0.8);
-}
-.page-control  > ul li span:active,
-.page-control  > ul li a:active {
-  color: rgba(0, 0, 0, 0.4);
 }
 .page-control.tabs-right  > ul li {
   float: right !important;
   margin-left: 10px;
 }
 .page-control .frames {
-  margin-top: 30px;
+  margin-top: 28px;
   width: 100%;
   min-height: 50px;
   border: 1px #ccc solid;
@@ -3741,18 +3698,11 @@ pre code {
   background-color: rgba(217, 217, 217, 0.16);
   padding-left: 36px;
   padding-top: 5px;
-  font-weight: 300;
+  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 400;
   font-size: 11pt;
-  letter-spacing: 0.02em;
-  line-height: 20px;
-  font-family: 'Lucida Grande', Verdana, Arial, Helvetica, sans-serif;
-  color: rgba(0, 0, 0, 0.6);
-}
-.accordion  > li  > a:hover {
-  color: rgba(0, 0, 0, 0.8);
-}
-.accordion  > li  > a:active {
-  color: rgba(0, 0, 0, 0.4);
+  letter-spacing: 0.01em;
+  line-height: 14pt;
 }
 .accordion  > li  > div {
   border: 1px #ccc dotted;

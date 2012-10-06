@@ -33,8 +33,44 @@ body {
 
 .github-info li a img {width: 24px;}
 
+.header-bar-inner > ul li a {font-size: 9pt;}
+.header-bar-inner > ul li span {width: 30px; height: 30px; font-size: 9pt; border: 0;}
+.header-bar-inner > ul li a img {width: 18px;}
+
+@media (min-width: 768px) and (max-width: 979px) {
+    .page {
+        width: 768px;
+    }
+}
+
+@media (max-width: 767px) {
+    .page {
+        width: 100%;
+    }
+
+    .hero-unit > img {
+        zoom: .6;
+    }
+}
+
 @media screen and (max-width: 800px) {
     .page {
-        width: 768px !important;
+        width: 768px;
     }
+
+    .hero-unit > img {
+        zoom: .6;
+    }
+
+}
+
+@media (max-width: 480px) {
+    .page {
+        width: 100%;
+    }
+
+    .hero-unit img {
+        display: none;
+    }
+
 }
