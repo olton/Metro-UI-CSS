@@ -98,6 +98,12 @@
   .hero-unit {
     margin-left: 0;
   }
+  table thead tr th {
+    font-size: 9pt;
+  }
+  table tbody tr td {
+    font-size: 10pt;
+  }
   h1 {
     font-size: 30pt;
   }
@@ -107,5 +113,11 @@
 }
 /* Landscape phones and down */
 @media (max-width: 480px) {
-  
+  table thead tr th {
+    font-size: 8pt;
+  }
+  table tbody tr td {
+    font-size: 9pt;
+    padding: 2px 5;
+  }
 }

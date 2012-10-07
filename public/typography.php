@@ -63,10 +63,22 @@
 
                 <h2>body-secondary-text</h2>
 <pre class="prettyprint linenums">
-    &lt;p class="body-secobdary-text"&gt;...&lt/p&gt;
+    &lt;p class="body-secondary-text"&gt;...&lt/p&gt;
 </pre>
                 <p class="body-secondary-text">
                     Pellentesque laoreet molestie lacus sit amet tempor. Quisque eget felis augue, non egestas
+                    dui. Curabitur id nulla tortor, nec tincidunt libero. Donec placerat diam sed massa commodo
+                    quis auctor mauris consectetur. In luctus pharetra rhoncus. Etiam tristique arcu eget neque
+                    dignissim suscipit. In hac habitasse platea dictumst.
+                </p>
+
+                <h2>long-text</h2>
+                <small>Use this class to display large amounts of text, such as the contents of books or magazines.</small>
+<pre class="prettyprint linenums">
+    &lt;p class="long-text"&gt;...&lt/p&gt;
+</pre>
+                <p class="long-text">
+                    Regular  Pellentesque laoreet molestie lacus sit amet tempor. Quisque eget felis augue, non egestas
                     dui. Curabitur id nulla tortor, nec tincidunt libero. Donec placerat diam sed massa commodo
                     quis auctor mauris consectetur. In luctus pharetra rhoncus. Etiam tristique arcu eget neque
                     dignissim suscipit. In hac habitasse platea dictumst.

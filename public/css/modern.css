@@ -756,6 +756,12 @@ table {
  *
  */
 @font-face {
+  font-family: 'PT Serif Caption';
+  font-style: normal;
+  font-weight: 400;
+  src: local('PT Serif Caption'), local('PTSerif-Caption'), url(http://themes.googleusercontent.com/static/fonts/ptserifcaption/v4/7xkFOeTxxO1GMC1suOUYWWhBabBbEjGd1iRmpyoZukE.woff) format('woff');
+}
+@font-face {
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 700;
@@ -872,6 +878,29 @@ table {
   font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 300;
   font-size: 8pt;
+}
+#font .long-text {
+  font-family: 'PT Serif Caption', sans-serif, serif !important;
+  font-weight: 300;
+  font-size: 10pt;
+  letter-spacing: 0.02em;
+  line-height: 20px;
+}
+#font .long-text-smaller {
+  font-family: 'PT Serif Caption', sans-serif, serif !important;
+  font-weight: 300;
+  font-size: 10pt;
+  letter-spacing: 0.02em;
+  line-height: 20px;
+  font-size: 9pt;
+}
+#font .long-text-lead {
+  font-family: 'PT Serif Caption', sans-serif, serif !important;
+  font-weight: 300;
+  font-size: 10pt;
+  letter-spacing: 0.02em;
+  line-height: 20px;
+  font-size: 20pt;
 }
 #state .header,
 #state .subheader,
@@ -1054,6 +1083,13 @@ p {
   font-family: 'Segoe UI Semilight', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 300;
   font-size: 11pt;
+  letter-spacing: 0.02em;
+  line-height: 20px;
+}
+p.long-text {
+  font-family: 'PT Serif Caption', sans-serif, serif !important;
+  font-weight: 300;
+  font-size: 10pt;
   letter-spacing: 0.02em;
   line-height: 20px;
 }
@@ -1330,7 +1366,7 @@ ol.unstyled,
 .page .page-header .page-header-content  > .page-back {
   position: absolute;
   top: 34px;
-  left: 44px;
+  left: 30px;
 }
 .page .page-header .page-header-content .user-login {
   float: right;
@@ -1446,8 +1482,8 @@ ol.unstyled,
  * Buttons.less
  */
 .modern-ui-logo {
-  height: 32px;
-  width: 32px;
+  height: 24px;
+  width: 24px;
   display: block;
   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGESURBVFhH7ZevTsNQFIfbZgKxB9gjIHgABAIcS0CSQIJE4LEIEgQCyQNMIiHhIRAgEAgECWKIySUTCEjLd3t/Cyml3em6DtMvOTn33PM3XdvbBU2SJMmKlssnjuNtZIisa2t50HQNmXAFEvQHsi9X89CzR8M31/wXZwppDpp0aX7v++XBd41q7r5Qg1I0YE8pQYixqbWFpzAMx1pnoPA5vlOZpdDzHdWPoujZGVX4c1iaH8pvhpwJshOpxtxQawM18JYdrlYXdbKIAa4o1pFphrxX8g5qD0CRPsUeZZogfkzeLjJaxAAjZIuit9oqhbgv4veQl+lGFQqfGHwdbqpLH1YMMUdK8WjfysxHlgbHyKfiM7B/obAf5LNiemfQyB1E6VkwBfsGlb9ZvduM+aVFQ3cgDV0S+gHlHrs8LqAC5gEcxLuD6c5pbeVJy9qpNECLCV1aK+lPwO86kD0TF5s2KqD2m7Au7QDtAO0A7QD/PsBcf0zIWWVdfMRmcd+M/vsvRxB8A6+/IU2N93KYAAAAAElFTkSuQmCC);
   -webkit-background-size: cover;

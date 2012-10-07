@@ -13,7 +13,7 @@ body {
 
 
 .github-info {
-    margin-top: 10px;
+    margin-top: 5px;
 }
 
 .github-info li {
@@ -37,6 +37,11 @@ body {
 .header-bar-inner > ul li span {width: 30px; height: 30px; font-size: 9pt; border: 0;}
 .header-bar-inner > ul li a img {width: 18px;}
 
+#brand-name {
+    line-height: 12px;
+    margin-top: 5px;  
+}
+
 @media (min-width: 768px) and (max-width: 979px) {
     .page {
         width: 724px;
@@ -55,9 +60,6 @@ body {
         zoom: .6;
     }
 
-    #brand-name {
-        display: none;
-    }
     .modern-ui-logo {
         width: 24px;
         height: 24px;
@@ -65,16 +67,13 @@ body {
     .github-info {
         margin-top: 5px;
     }
-    #jetbrains {
-        display: none;
-    }
 
     a, .link {
         font-size: 9pt;
     }
 
-    .prettyprint {
-        display: none;
+    h3 {
+        line-height: 11px;
     }
 }
 
@@ -83,4 +82,13 @@ body {
         display: none;
     }
 
+    .prettyprint {
+        display: none;
+    }
+    #jetbrains {
+        display: none;
+    }
+    #brand-name {
+        display: none;
+    }
 }

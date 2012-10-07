@@ -6,6 +6,16 @@
  * Typography.less
  *
  */
+
+// Cambria equals
+// font-family: 'PT Serif Caption', serif;
+@font-face {
+    font-family: 'PT Serif Caption';
+    font-style: normal;
+    font-weight: 400;
+    src: local('PT Serif Caption'), local('PTSerif-Caption'), url(http://themes.googleusercontent.com/static/fonts/ptserifcaption/v4/7xkFOeTxxO1GMC1suOUYWWhBabBbEjGd1iRmpyoZukE.woff) format('woff');
+}
+
 @font-face {
     font-family: 'Open Sans';
     font-style: normal;
@@ -119,6 +129,24 @@
         font-weight: 300;
         font-size: 8pt;
     }
+
+    .long-text {
+        //.body;
+        font-family: 'PT Serif Caption', sans-serif, serif !important;
+        font-weight: 300;
+        font-size: 10pt;
+        letter-spacing: 0.02em;
+        line-height: 20px;
+    }
+    .long-text-smaller {
+        .long-text;
+        font-size: 9pt;
+    }
+    .long-text-lead {
+        .long-text;
+        font-size: 20pt;
+    }
+
 }
 
 #state {
@@ -202,6 +230,10 @@ h6 {
 
 body, p {
     #font > .body;
+}
+
+p.long-text {
+    #font > .long-text;
 }
 
 p {
