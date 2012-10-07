@@ -1020,6 +1020,7 @@ h3 {
   line-height: 24pt;
   color: rgba(0, 0, 0, 0.6);
   font-size: 16pt;
+  line-height: 24px;
 }
 h3:hover {
   color: rgba(0, 0, 0, 0.8);

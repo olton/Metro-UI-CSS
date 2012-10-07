@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1.0, maximum-scale=1">
     <meta name="description" content="Metro UI CSS">
     <meta name="author" content="Sergey Pimenov">
     <meta name="keywords" content="windows 8, modern style, Metro UI, style, modern, css, framework">
@@ -153,8 +153,8 @@
                                 <li>Integration in Visual Studio</li>
                                 <li>Much, much more...</li>
                             </ol>
-                            <h2 style="margin-top: 0;">Inspired Projects:</h2>
-                            <ul>
+                            <h2 style="margin-top: 0;">Already Use:</h2>
+                            <ul class="unstyled">
                                 <li><a href="https://github.com/sagarsane/abetterportfolio">Portfolio for Developers</a></li>
                                 <li><a href="http://oazabir.github.com/Droptiles/">Droptiles</a></li>
                                 <li><a href="http://aozora.github.com/bootmetro/">BootMetro</a></li>
