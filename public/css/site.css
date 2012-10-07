@@ -1,8 +1,8 @@
 body {
-    background-color: #F1F1F1;
+    background-color: #fff;
 }
 .page {
-    width: 984px ;
+    width: 940px ;
     margin: auto;
     background-color: #fff;
 }
@@ -39,7 +39,10 @@ body {
 
 @media (min-width: 768px) and (max-width: 979px) {
     .page {
-        width: 768px;
+        width: 724px;
+    }
+    .hero-unit > img {
+        zoom: .6;
     }
 }
 
@@ -51,24 +54,31 @@ body {
     .hero-unit > img {
         zoom: .6;
     }
-}
 
-@media screen and (max-width: 800px) {
-    .page {
-        width: 768px;
+    #brand-name {
+        display: none;
+    }
+    .modern-ui-logo {
+        width: 24px;
+        height: 24px;
+    }
+    .github-info {
+        margin-top: 5px;
+    }
+    #jetbrains {
+        display: none;
     }
 
-    .hero-unit > img {
-        zoom: .6;
+    a, .link {
+        font-size: 9pt;
     }
 
+    .prettyprint {
+        display: none;
+    }
 }
 
 @media (max-width: 480px) {
-    .page {
-        width: 100%;
-    }
-
     .hero-unit img {
         display: none;
     }

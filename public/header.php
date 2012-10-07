@@ -10,6 +10,6 @@
             <li><a href="https://github.com/olton/Metro-UI-CSS/zipball/master"><img src="images/download-32.png"/></a></li>
             <li><a href="https://github.com/olton/Metro-UI-CSS"><img src="images/github.png"/></a></li>
         </ul>
-        <a href="/"><span class="modern-ui-logo place-left"></span></a><h4 class="fg-color-white"> &nbsp;<a class="fg-color-white" href="/">Metro UI CSS</a></h4>
+        <a href="/"><span class="modern-ui-logo place-left"></span></a><h4 class="fg-color-white" id="brand-name"> &nbsp;<a class="fg-color-white" href="/">Metro UI CSS</a></h4>
     </div>
 </div>

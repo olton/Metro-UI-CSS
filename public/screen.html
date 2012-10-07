@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Screen size</title>
+
+    <script src="js/jquery-1.8.2.min.js"></script>
+
+    <script>
+        function get_scr(){
+            $("#scr_width").html($(window).width());
+            $("#scr_height").html($(window).height());
+            $("#scr_cl_width").html($("body").width());
+            $("#scr_cl_height").html($("body").height());
+        }
+
+        $(function(){
+            get_scr();
+        })
+    </script>
+</head>
+<body onresize="get_scr()">
+    <div>Screen width: <span id="scr_width">0</span></div>
+    <div>Screen height: <span id="scr_height">0</span></div>
+    <div>Screen client width: <span id="scr_cl_width">0</span></div>
+    <div>Screen client height: <span id="scr_cl_height">0</span></div>
+</body>
+</html>

@@ -24,7 +24,7 @@
 
         <div class="page-region">
             <div class="page-region-content">
-                <p class="place-right tertiary-info-secondary-text" style="margin-top: 10px;">Build in <a class="fg-color-blue" href="http://www.jetbrains.com/phpstorm/">JetBrains PhpStorm</a></p>
+                <p id="jetbrains" class="place-right tertiary-info-secondary-text" style="margin-top: 10px;">Build in <a class="fg-color-blue" href="http://www.jetbrains.com/phpstorm/">JetBrains PhpStorm</a></p>
                 <h2>Welcome to Metro UI CSS <sup class="fg-color-red"> v 0.1.1</sup></h2>
 
                 <div class="horizontal-menu">
@@ -123,7 +123,7 @@
                 <div class="grid">
                     <div class="row">
                         <div class="span4">
-                            <img src="images/author.jpg"/>
+                            <img src="images/author.jpg" style="width:100%"/>
                             <p class="tertiary-info-secondary-text bg-color-grayDark" style="padding: 10px; color: #fff;">Hi! My name is Sergey Pimenov and i'm author of Metro UI CSS from <abbr title="The capital of Ukraine">Kiev</abbr>, <abbr title="The center of Europe">Ukraine</abbr>.</p>
                         </div>
                         <div class="span4">
