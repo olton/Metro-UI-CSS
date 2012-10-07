@@ -25,7 +25,7 @@
         <div class="page-region">
             <div class="page-region-content">
                 <p id="jetbrains" class="place-right tertiary-info-secondary-text" style="margin-top: 10px;">Build in <a class="fg-color-blue" href="http://www.jetbrains.com/phpstorm/">JetBrains PhpStorm</a></p>
-                <h2>Welcome to Metro UI CSS <sup class="fg-color-red"> v 0.1.1</sup></h2>
+                <h2>Welcome to Metro UI CSS <sup class="fg-color-red"> v 0.1.2</sup></h2>
 
                 <div class="horizontal-menu">
                     <ul>
