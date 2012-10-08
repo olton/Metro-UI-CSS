@@ -27,56 +27,6 @@
                 <p id="jetbrains" class="place-right tertiary-info-secondary-text" style="margin-top: 10px;">Build in <a class="fg-color-blue" href="http://www.jetbrains.com/phpstorm/">JetBrains PhpStorm</a></p>
                 <h2>Welcome to Metro UI CSS <sup class="fg-color-red"> v 0.1.2</sup></h2>
 
-                <div class="horizontal-menu">
-                    <ul>
-                        <li><a href="/">About</a></li>
-                        <li class="sub-menu">
-                            <a href="#">Scaffolding</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="global.php">Global styles</a></li>
-                                <li><a href="layout.php">Layout and templates</a></li>
-                                <li><a href="grid.php">Grid system</a></li>
-                                <li class="divider"></li>
-                                <li><a href="responsive.php">Responsive design</a></li>
-                            </ul>
-                        </li>
-                        <li class="sub-menu">
-                            <a href="#">Base CSS</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="typography.php">Typography</a></li>
-                                <li><a href="tables.php">Tables</a></li>
-                                <li><a href="forms.php">Forms</a></li>
-                                <li><a href="buttons.php">Buttons</a></li>
-                                <li><a href="images.php">Images</a></li>
-                            </ul>
-                        </li>
-                        <li class="sub-menu">
-                            <a href="#">Components</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="tiles.php">Tiles</a></li>
-                                <li><a href="menus.php">Menus</a></li>
-                                <li><a href="pagecontrol.php">Page control</a></li>
-                                <li><a href="accordion.php">Accordion</a></li>
-                                <li class="divider"></li>
-                                <li><a href="notices.php">Notices</a></li>
-                                <li class="divider"></li>
-                                <li><a href="cards.php">Deck of Cards</a></li>
-                                <!--
-                                <li><a href="listview.php">List view</a></li>
-                                <li><a href="pagecontrol.php">Page control</a></li>
-                                <li><a href="tabcontrol.php">Tab control</a></li>
-                                <li><a href="menus.php">Menus</a></li>
-                                <li><a href="progress.php">Progress bars</a></li>
-                                <li class="divider"></li>
-                                <li><a href="messages.php">Messages</a></li>
-                                <li class="divider"></li>
-                                <li><a href="misc.php">Misc</a></li>
-                                -->
-                            </ul>
-                        </li>
-                        <li><a href="javascript.php">Javascript</a></li>
-                    </ul>
-                </div>
 
                 <div class="hero-unit">
                     <img src="images/windows-8-metro.jpg" class="place-left" style="margin-right: 40px;"/>
