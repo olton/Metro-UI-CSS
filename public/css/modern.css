@@ -1978,7 +1978,7 @@ table.bordered tbody tr:last-child td {
   transform: rotate(0deg);
 }
 .horizontal-menu {
-  background-color: #F1F1F1;
+  background-color: #f1f1f1;
   padding: 0px;
   *zoom: 1;
 }
@@ -2004,7 +2004,8 @@ table.bordered tbody tr:last-child td {
   content: "\3009";
   display: inline-block;
   font-size: 10pt;
-  top: 10px;
+  font-family: sans;
+  top: 7px;
   right: 10px;
   -webkit-transform: rotate(90deg);
   -moz-transform: rotate(90deg);
@@ -2093,6 +2094,24 @@ table.bordered tbody tr:last-child td {
   position: absolute;
   left: 100%;
   top: -2px;
+}
+.horizontal-menu  > ul li.pull {
+  display: none;
+  float: right;
+  margin-right: 5px;
+  margin-top: 5px;
+}
+.horizontal-menu  > ul li.pull a {
+  width: 24px;
+  height: 20px;
+  background: url(../images/pull24-dark.png) no-repeat;
+  display: block;
+  text-decoration: none;
+  border: 0;
+  cursor: pointer;
+}
+.horizontal-menu  > ul li.pull:hover {
+  border: 1px transparent solid;
 }
 .horizontal-menu:before,
 .horizontal-menu:after {
@@ -3435,7 +3454,7 @@ input[type=submit] {
   font-size: 20pt;
   letter-spacing: 0.01em;
   line-height: 24pt;
-  font-family: 'Lucida Grande', Verdana, Arial, Helvetica, sans-serif;
+  font-family: 'PT Serif Caption', Helvetica, sans-serif;
   line-height: 18pt;
 }
 .card:hover {

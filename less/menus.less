@@ -67,7 +67,7 @@
 }
 
 .horizontal-menu {
-    background-color: #F1F1F1;
+    background-color: #f1f1f1;
     padding: 0px;
 
     & > ul {
@@ -91,7 +91,8 @@
                     content: "\3009";
                     display: inline-block;
                     font-size: 10pt;
-                    top: 10px;
+                    font-family: sans;
+                    top: 7px;
                     right: 10px;
                     .rotate(90deg);
                 }
@@ -118,6 +119,26 @@
                 position: absolute;
                 left: 100%;
                 top: -2px;
+            }
+        }
+
+        li.pull {
+            display: none;
+            float: right;
+            margin-right: 5px;
+            margin-top: 5px;
+            a {
+                width: 24px;
+                height: 20px;
+                background: url(../images/pull24-dark.png) no-repeat;
+                display: block;
+                text-decoration: none;
+                border: 0;
+                cursor: pointer;
+            }
+
+            &:hover {
+                border: 1px transparent solid;
             }
         }
     }

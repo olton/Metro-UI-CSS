@@ -25,7 +25,7 @@
 
         <div class="page-header">
             <div class="page-header-content">
-                <h1>Deck of Cards<small>demo</small></h1>
+                <h1>Cards<small>demo</small></h1>
                 <a href="/" class="back-button big page-back"></a>
             </div>
         </div>

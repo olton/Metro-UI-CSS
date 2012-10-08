@@ -130,9 +130,9 @@
                     facilisi. Praesent consequat sem commodo tortor facilisis quis consectetur urna varius.
                 </p>
 
-                <table class="bordered">
-                    <tr>
-                        <td>
+                <div class="grid">
+                    <div class="row">
+                        <div class="span3">
                             <h2>Small text</h2>
 <pre class="prettyprint linenums">
     &lt;small&gt;...&lt/small&gt;
@@ -140,8 +140,8 @@
                             <p>
                                 <small>This is a small text</small>.
                             </p>
-                        </td>
-                        <td>
+                        </div>
+                        <div class="span4">
                             <h2>Bold text</h2>
 <pre class="prettyprint linenums">
     &lt;strong&gt;...&lt/strong&gt;
@@ -149,8 +149,8 @@
                             <p>
                                 <strong>This is a strong text</strong>.
                             </p>
-                        </td>
-                        <td>
+                        </div>
+                        <div class="span3">
                             <h2>Italic text</h2>
 <pre class="prettyprint linenums">
     &lt;em&gt;...&lt/em&gt;
@@ -158,9 +158,9 @@
                             <p>
                                 <em>This is a italicized text</em>.
                             </p>
-                        </td>
-                    </tr>
-                </table>
+                        </div>
+                    </div>
+                </div>
 
                 <h2>Abbreviations</h2>
 <pre class="prettyprint linenums">

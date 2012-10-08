@@ -78,6 +78,66 @@
 
 /* Landscape phones and down */
 @media (max-width: 480px) {
+    .page.secondary {
+        .page-back {
+            width: 24px;
+            height: 24px;
+            left: 0px !important;
+        }
+
+        .page-header .page-header-content {
+            height: 60px;
+            min-height: 50px;
+
+            h1 {
+                left: 40px;
+
+            }
+        }
+        .page-region .page-region-content {
+            padding-left: 0 ;
+        }
+    }
+
+    .horizontal-menu {
+        height: auto;
+
+        & > ul {
+            width: 100%;
+            display: block;
+            height: auto;
+
+            & > li {
+                width: 100%;
+                float: none;
+                display: block;
+                position: relative;
+                border-bottom: 1px #1e1e1e solid;
+
+                &:last-child {
+                    border-bottom: 1px transparent solid;
+                }
+
+                a {
+                    width: 100%;
+                    float: none;
+                }
+            }
+
+
+            li ul {
+                position: relative;
+                width: 100%;
+                border: 0;
+                left: 10px;
+                //top: -2px;
+            }
+
+        }
+    }
+    .popup-menu {
+        position: relative;
+    }
 
     table {
         thead {
@@ -97,4 +157,9 @@
             }
         }
     }
+
+    h1 {font-size: 26pt; line-height: 18px;}
+    h2 {font-size: 16pt; line-height: 16px;}
+    h3 {font-size: 13pt; line-height: 16px;}
+    h3 {font-size: 13pt; line-height: 14px;}
 }
