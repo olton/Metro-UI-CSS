@@ -1,0 +1,196 @@
+/* Landscape phones and down */
+@tileSmall:             120px;
+@tileLarge:             250px;
+@tileMargin:            5px;
+@tileDouble:            @tileSmall * 2 + @tileMargin * 2;
+@tileTriple:            @tileSmall * 3 + @tileMargin * 4;
+@tileQuadro:            @tileSmall * 4 + @tileMargin * 6;
+
+@media (max-width: 480px) {
+
+    .page.secondary {
+        .page-back {
+            width: 24px;
+            height: 24px;
+            left: 0px !important;
+        }
+
+        .page-header .page-header-content {
+            height: 60px;
+            min-height: 50px;
+
+            h1 {
+                left: 40px;
+
+            }
+        }
+        .page-region .page-region-content {
+            padding-left: 0 ;
+        }
+    }
+
+    .page.fixed-header {
+        .page-header {
+            position: relative !important;
+        //display: none !important;
+            .page-header-content {
+                .user-login {
+                    float: right;
+                    margin: 35px 44px 0 0;
+                    cursor: pointer;
+
+                    .avatar {
+                        float: right;
+                        border: 1px #ccc solid;
+                        width: 40px;
+                        height: 40px;
+                        img {
+                            width: 100%;
+                            height: 100%;
+                        }
+                    }
+                    .name {
+                        float: left;
+                        margin: 0px 10px;
+                        text-align: right;
+
+                        .first-name {
+                            font-family: "Segoe UI Light", "Open Sans", sans-serif, sans;
+                            font-size: 14pt;
+                            display: block;
+                            margin: 0;
+                        }
+                        .last-name {
+                            font-family: "Open Sans", sans-serif, sans;
+                            font-size: 8pt;
+                            display: block;
+                            margin: 0;
+                        }
+                    }
+                }
+
+                h1 {
+                    left: 0;
+                }
+            }
+        }
+        .page-region {
+            padding-top: 20px;
+        }
+    }
+    .horizontal-menu {
+        height: auto;
+
+        & > ul {
+            width: 100%;
+            display: block;
+            height: auto;
+
+            & > li {
+                width: 100%;
+                float: none;
+                display: block;
+                position: relative;
+                border-bottom: 1px #1e1e1e solid;
+
+                &:last-child {
+                    border-bottom: 1px transparent solid;
+                }
+
+                a {
+                    width: 100%;
+                    float: none;
+                }
+            }
+
+
+            li ul {
+                position: relative;
+                width: 100%;
+                border: 0;
+                left: 10px;
+            //top: -2px;
+            }
+
+        }
+    }
+
+
+    .tile {
+        width: @tileSmall;
+        height: @tileSmall;
+
+        &.double {
+            width: @tileDouble;
+
+            & .tile-content {
+                width: @tileDouble;
+            }
+        }
+        &.triple {
+            width: @tileTriple;
+
+            & .tile-content {
+                width: @tileTriple;
+            }
+        }
+        &.quadro {
+            width: @tileQuadro;
+
+            & .tile-content {
+                width: @tileQuadro;
+            }
+        }
+        &.double-vertical {
+            height: @tileDouble;
+
+            & .tile-content {
+                height: @tileDouble - 40;
+            }
+        }
+        &.triple-vertical {
+            height: @tileTriple;
+
+            & .tile-content {
+                height: @tileTriple - 40;
+            }
+        }
+        &.quadro-vertical {
+            height: @tileQuadro;
+
+            & .tile-content {
+                height: @tileQuadro - 40;
+            }
+        }
+
+    }
+
+    .tile-group {
+        max-width: 400px;
+        float: none;
+    }
+
+    table {
+        thead {
+            tr {
+                th {
+                    font-size: 8pt;
+                }
+            }
+        }
+
+        tbody {
+            tr {
+                td {
+                    font-size: 9pt;
+                    padding: 2px 5px;
+                }
+            }
+        }
+    }
+
+    h1 {font-size: 26pt; line-height: 18px;}
+    h2 {font-size: 16pt; line-height: 16px;}
+    h3 {font-size: 13pt; line-height: 16px;}
+    h3 {font-size: 13pt; line-height: 14px;}
+}

@@ -8,7 +8,6 @@
     <meta name="keywords" content="windows 8, modern style, modern ui, style, modern, css, framework">
 
     <link href="css/modern.css" rel="stylesheet">
-    <link href="css/modern-responsive.css1" rel="stylesheet">
     <link href="css/theme-dark.css" rel="stylesheet">
 
     <script src="js/jquery-1.8.2.min.js"></script>
@@ -20,7 +19,7 @@
 
     <style>
         body {
-            background: url(images/windows8_metro_green_1920_1080.jpg);
+            background: #1d1d1d;
         }
     </style>
 
@@ -31,6 +30,7 @@
                 tiles_area += $(this).outerWidth() + 80;
 
             });
+
             $(".tiles").css("width", 120 + tiles_area + 20);
 
             $(".page").css({
@@ -117,15 +117,6 @@
                     <div class="brand">
                         <span class="name">Pictures</span>
                         <div class="badge bg-color-orange">5</div>
-                    </div>
-                </div>
-
-                <div class="tile double-vertical bg-color-yellow">
-                    <div class="tile-content icon">
-                        <img src="images/Calendar128.png" />
-                    </div>
-                    <div class="brand">
-                        <span class="name">Calendar</span>
                     </div>
                 </div>
 

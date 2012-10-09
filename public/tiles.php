@@ -34,7 +34,7 @@
             <div class="page-region-content">
                 <div class="grid">
                     <div class="row">
-                        <div style="width: 800px">
+                        <div class="span10">
                             <h2>Windows 8 Start Page Demo</h2>
                             <p>
                                 <a href="windows8start.php">Demo page</a>

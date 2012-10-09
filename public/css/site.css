@@ -13,25 +13,19 @@ body {
 
 
 .github-info {
-    margin-top: 5px;
 }
 
 .github-info li {
-    float: left;
-    margin-left: 10px;
-    width: auto;
 }
 
 .github-info li span{
     text-align: center;
     display: block;
-    border: 1px #ccc solid;
-    border-radius: 100%;
     padding: 5px;
     margin-top: -5px;
 }
 
-.github-info li a img {width: 24px;}
+.github-info li a img {width: 20px;}
 
 .header-bar-inner > ul li a {font-size: 9pt;}
 .header-bar-inner > ul li span {width: 30px; height: 30px; font-size: 9pt; border: 0;}

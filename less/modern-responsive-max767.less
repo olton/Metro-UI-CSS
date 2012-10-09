@@ -1,0 +1,38 @@
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) {
+    body {
+        padding-right: 10px;
+        padding-left: 10px !important; //TODO найти и уничтожить
+    }
+    [class*="span"], .hero-unit {
+        float: none;
+        display: block;
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    [class*="offset"], .hero-unit {
+        margin-left: 0;
+    }
+
+    table {
+        thead {
+            tr {
+                th {
+                    font-size: 9pt;
+                }
+            }
+        }
+
+        tbody {
+            tr {
+                td {
+                    font-size: 10pt;
+                }
+            }
+        }
+    }
+
+    h1 {font-size: 30pt;}
+    h2 {font-size: 16pt;}
+}

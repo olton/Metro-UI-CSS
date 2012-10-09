@@ -37,7 +37,7 @@
                         <div class="span10">
                             <h2>Enabling responsive features</h2>
                             <p>
-                                Turn on responsive CSS in your project by including the proper meta tag and additional stylesheet within the <code>&lt;head&gt;</code> of your document. If you've compiled Bootstrap from the Customize page, you need only include the meta tag.
+                                Turn on responsive CSS in your project by including the proper meta tag and additional stylesheet within the <code>&lt;head&gt;</code> of your document.
                             </p>
 <pre class="prettyprint linenums">
     &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;

@@ -829,7 +829,6 @@ table {
 #font .subheader-secondary-smaller {
   font-family: 'Segoe UI Light', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 200;
-  font-size: 20pt;
   letter-spacing: 0.01em;
   line-height: 24pt;
   font-size: 16pt;
@@ -1279,33 +1278,6 @@ ol.unstyled,
   -webkit-column-gap: 20px;
   column-gap: 20px;
 }
-.header-bar {
-  width: 100%;
-  min-height: 40px;
-  background: #464646;
-  z-index: 10000;
-}
-.header-bar .header-bar-inner {
-  padding-top: 5px;
-  padding-left: 20px;
-  padding-bottom: 5px;
-  padding-right: 20px;
-  color: #fff;
-  font-size: 11pt;
-  margin: auto;
-}
-.header-bar.fixed-top {
-  position: fixed;
-  left: 0;
-  right: 0;
-  top: 0;
-}
-.header-bar.fixed-bottom {
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
 .page {
   position: relative;
   height: 100%;
@@ -1341,7 +1313,7 @@ ol.unstyled,
   position: absolute;
   margin: 0;
   padding: 0;
-  left: 120px;
+  left: 20px;
   bottom: 0;
 }
 .page .page-header .page-header-content h1 small {
@@ -1413,6 +1385,17 @@ ol.unstyled,
   height: 100%;
   position: relative;
 }
+.page.secondary .page-header .page-header-content h1,
+.page.secondary .page-header .page-header-content h2,
+.page.secondary .page-header .page-header-content h3,
+.page.secondary .page-header .page-header-content h4,
+.page.secondary .page-header .page-header-content h5 {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  left: 120px;
+  bottom: 0;
+}
 .page.secondary .page-region .page-region-content {
   padding-left: 120px;
 }
@@ -1455,6 +1438,28 @@ ol.unstyled,
   min-height: 100px;
   background-color: #1d1d1d !important;
 }
+.charms {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  min-width: 200px;
+  width: auto;
+}
+.charms.place-left {
+  left: 0;
+  right: auto;
+}
+.message-dialog {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: auto;
+  min-height: 100px;
+  top: 30%;
+  padding: 10px 10px 0;
+}
 .error-bar,
 .warning-bar,
 .info-bar {
@@ -1482,9 +1487,10 @@ ol.unstyled,
  *
  * Buttons.less
  */
-.modern-ui-logo {
-  height: 24px;
-  width: 24px;
+.modern-ui-logo,
+.metro-ui-logo {
+  height: 28px;
+  width: 28px;
   display: block;
   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGESURBVFhH7ZevTsNQFIfbZgKxB9gjIHgABAIcS0CSQIJE4LEIEgQCyQNMIiHhIRAgEAgECWKIySUTCEjLd3t/Cyml3em6DtMvOTn33PM3XdvbBU2SJMmKlssnjuNtZIisa2t50HQNmXAFEvQHsi9X89CzR8M31/wXZwppDpp0aX7v++XBd41q7r5Qg1I0YE8pQYixqbWFpzAMx1pnoPA5vlOZpdDzHdWPoujZGVX4c1iaH8pvhpwJshOpxtxQawM18JYdrlYXdbKIAa4o1pFphrxX8g5qD0CRPsUeZZogfkzeLjJaxAAjZIuit9oqhbgv4veQl+lGFQqfGHwdbqpLH1YMMUdK8WjfysxHlgbHyKfiM7B/obAf5LNiemfQyB1E6VkwBfsGlb9ZvduM+aVFQ3cgDV0S+gHlHrs8LqAC5gEcxLuD6c5pbeVJy9qpNECLCV1aK+lPwO86kD0TF5s2KqD2m7Au7QDtAO0A7QD/PsBcf0zIWWVdfMRmcd+M/vsvRxB8A6+/IU2N93KYAAAAAElFTkSuQmCC);
   -webkit-background-size: cover;
@@ -1921,6 +1927,193 @@ table.bordered tbody tr:last-child td {
  * Menus.less
  *
  */
+.header-bar,
+.navigation-bar {
+  width: 100%;
+  min-height: 40px;
+  background: #464646;
+  z-index: 10000;
+}
+.header-bar .header-bar-inner,
+.navigation-bar .header-bar-inner,
+.header-bar .navigation-bar-inner,
+.navigation-bar .navigation-bar-inner {
+  padding: 5px 20px;
+  color: #fff;
+  font-size: 11pt;
+  margin: auto;
+}
+.header-bar .header-bar-inner  > .brand,
+.navigation-bar .header-bar-inner  > .brand,
+.header-bar .navigation-bar-inner  > .brand,
+.navigation-bar .navigation-bar-inner  > .brand {
+  float: left;
+  margin-right: 20px;
+  margin-top: 3px;
+}
+.header-bar .header-bar-inner  > .brand .icon,
+.navigation-bar .header-bar-inner  > .brand .icon,
+.header-bar .navigation-bar-inner  > .brand .icon,
+.navigation-bar .navigation-bar-inner  > .brand .icon {
+  width: 24px;
+  height: 24px;
+  float: left;
+  margin-right: 10px;
+  margin-top: 3px;
+}
+.header-bar .header-bar-inner  > .brand .name,
+.navigation-bar .header-bar-inner  > .brand .name,
+.header-bar .navigation-bar-inner  > .brand .name,
+.navigation-bar .navigation-bar-inner  > .brand .name {
+  font-family: 'Segoe UI Light', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 200;
+  font-size: 20pt;
+  letter-spacing: 0.01em;
+  line-height: 24pt;
+  font-size: 16pt;
+}
+.header-bar .header-bar-inner  > ul,
+.navigation-bar .header-bar-inner  > ul,
+.header-bar .navigation-bar-inner  > ul,
+.navigation-bar .navigation-bar-inner  > ul {
+  margin-left: 0;
+  list-style: none;
+  padding-top: 5px;
+}
+.header-bar .header-bar-inner  > ul  > li,
+.navigation-bar .header-bar-inner  > ul  > li,
+.header-bar .navigation-bar-inner  > ul  > li,
+.navigation-bar .navigation-bar-inner  > ul  > li {
+  display: inline-block;
+  line-height: 32px;
+  position: relative;
+}
+.header-bar .header-bar-inner  > ul  > li  > a,
+.navigation-bar .header-bar-inner  > ul  > li  > a,
+.header-bar .navigation-bar-inner  > ul  > li  > a,
+.navigation-bar .navigation-bar-inner  > ul  > li  > a {
+  color: #fff;
+  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 11pt;
+  letter-spacing: 0.01em;
+  line-height: 14pt;
+  padding: 5px 10px;
+}
+.header-bar .header-bar-inner  > ul  > li.active,
+.navigation-bar .header-bar-inner  > ul  > li.active,
+.header-bar .navigation-bar-inner  > ul  > li.active,
+.navigation-bar .navigation-bar-inner  > ul  > li.active,
+.header-bar .header-bar-inner  > ul  > li:hover,
+.navigation-bar .header-bar-inner  > ul  > li:hover,
+.header-bar .navigation-bar-inner  > ul  > li:hover,
+.navigation-bar .navigation-bar-inner  > ul  > li:hover {
+  background-color: #fff;
+}
+.header-bar .header-bar-inner  > ul  > li.active a,
+.navigation-bar .header-bar-inner  > ul  > li.active a,
+.header-bar .navigation-bar-inner  > ul  > li.active a,
+.navigation-bar .navigation-bar-inner  > ul  > li.active a,
+.header-bar .header-bar-inner  > ul  > li:hover a,
+.navigation-bar .header-bar-inner  > ul  > li:hover a,
+.header-bar .navigation-bar-inner  > ul  > li:hover a,
+.navigation-bar .navigation-bar-inner  > ul  > li:hover a {
+  color: #1e1e1e;
+}
+.header-bar .header-bar-inner  > ul  > li.pull,
+.navigation-bar .header-bar-inner  > ul  > li.pull,
+.header-bar .navigation-bar-inner  > ul  > li.pull,
+.navigation-bar .navigation-bar-inner  > ul  > li.pull {
+  float: right;
+  cursor: pointer;
+  margin-top: 5px;
+  display: none;
+}
+.header-bar .header-bar-inner  > ul  > li.pull  > a,
+.navigation-bar .header-bar-inner  > ul  > li.pull  > a,
+.header-bar .navigation-bar-inner  > ul  > li.pull  > a,
+.navigation-bar .navigation-bar-inner  > ul  > li.pull  > a {
+  display: block;
+  height: 24px;
+  width: 24px;
+  position: relative;
+  background: url(../images/row24.png) no-repeat;
+}
+.header-bar .header-bar-inner  > ul  > li.pull:hover,
+.navigation-bar .header-bar-inner  > ul  > li.pull:hover,
+.header-bar .navigation-bar-inner  > ul  > li.pull:hover,
+.navigation-bar .navigation-bar-inner  > ul  > li.pull:hover {
+  background: transparent;
+}
+.header-bar.fixed-top,
+.navigation-bar.fixed-top {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+}
+.header-bar.fixed-bottom,
+.navigation-bar.fixed-bottom {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.dropdown-menu {
+  position: absolute;
+  background-color: #fff;
+  margin-left: 0;
+  list-style: none;
+  top: 100%;
+  z-index: 1001;
+  float: left;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  min-width: 160px;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  display: none;
+}
+.dropdown-menu.place-right {
+  right: 0;
+  left: auto;
+}
+.dropdown-menu a {
+  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 11pt;
+  letter-spacing: 0.01em;
+  line-height: 14pt;
+  color: #000000;
+  display: block;
+  width: 100%;
+  padding: 3px 20px;
+  white-space: nowrap;
+  font-size: 14px;
+}
+.dropdown-menu a:hover {
+  color: rgba(0, 0, 0, 0.8);
+}
+.dropdown-menu a:active {
+  color: rgba(0, 0, 0, 0.4);
+}
+.dropdown-menu a:hover {
+  background-color: #2d89ef !important;
+  color: #ffffff !important;
+}
+.dropdown-menu li {
+  display: list-item;
+  line-height: 20px;
+}
+.dropdown-menu .divider {
+  height: 1px;
+  margin: 9px 1px;
+  overflow: hidden;
+  background-color: #e5e5e5;
+}
+.dropdown-menu.open {
+  display: block !important;
+}
 .popup-menu {
   margin-left: 0;
   list-style: none;
@@ -2121,133 +2314,25 @@ table.bordered tbody tr:last-child td {
 .horizontal-menu:after {
   clear: both;
 }
-.page .page-header .page-header-content h1.sub-menu ul {
-  margin-left: 0;
-  list-style: none;
-  position: absolute;
-  top: 100%;
-  left: -1px;
-  z-index: 1;
-  background-color: #fff;
-  display: none;
-  border: 1px #bababa solid;
-  display: none;
-  border: 1px #ccc solid;
+.page .page-header .page-header-content h1[data-role=dropdown] {
+  cursor: pointer;
+}
+.page .page-header .page-header-content h1[data-role=dropdown] .dropdown-menu {
   margin-top: -10px;
 }
-.page .page-header .page-header-content h1.sub-menu ul li {
-  float: none;
-  display: block;
-  border: 1px transparent solid !important;
-  min-width: 150px;
-}
-.page .page-header .page-header-content h1.sub-menu ul li a {
-  display: block;
-  white-space: nowrap;
-  float: none;
-  height: auto;
-  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
-  font-weight: 400;
-  font-size: 9pt;
-  color: #1e1e1e;
-  padding: 5px  10px;
-}
-.page .page-header .page-header-content h1.sub-menu ul li a:hover {
-  color: #fff;
-}
-.page .page-header .page-header-content h1.sub-menu ul li:hover {
-  background-color: #008287;
-}
-.page .page-header .page-header-content h1.sub-menu ul li.divider {
-  height: 1px !important;
-  line-height: 1px !important;
-  background-color: transparent !important;
-  border-top: 1px #bababa solid !important;
-}
-.page .page-header .page-header-content h1.sub-menu ul li.divider:hover {
-  background-color: transparent !important;
-}
-.page .page-header .page-header-content h1.sub-menu ul li.sub-menu:after {
+.page .page-header .page-header-content h1[data-role=dropdown]:after {
   position: absolute;
   content: "\3009";
   display: inline-block;
   font-size: 10pt;
-  top: 5px;
-  right: 10px;
-  -webkit-transform: rotate(0deg);
-  -moz-transform: rotate(0deg);
-  -ms-transform: rotate(0deg);
-  -o-transform: rotate(0deg);
-  transform: rotate(0deg);
-}
-.page .page-header .page-header-content h1.sub-menu:hover ul {
-  display: block;
-}
-.page .page-header .page-header-content h1.sub-menu ul.open {
-  display: block;
-}
-.ribbon {
-  position: relative;
-}
-.ribbon ul {
-  margin-left: 0;
-  list-style: none;
-  *zoom: 1;
-  position: absolute;
-  z-index: 9000;
-}
-.ribbon ul:before,
-.ribbon ul:after {
-  display: table;
-  content: "";
-}
-.ribbon ul:after {
-  clear: both;
-}
-.ribbon ul li {
-  float: left;
-  display: block;
-  text-align: center;
-}
-.ribbon ul li.active {
-  border: 1px #ccc solid;
-  border-bottom: 0;
-  background-color: #fff;
-}
-.ribbon ul li.active span,
-.ribbon ul li.active a {
-  color: #2d89ef;
-}
-.ribbon ul li span,
-.ribbon ul li a {
-  text-decoration: none;
-  text-transform: uppercase;
-  display: block;
-  float: left;
-  padding: 5px 20px;
-  color: #1e1e1e;
-  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
-  font-weight: 400;
-  font-size: 11pt;
-  letter-spacing: 0.01em;
-  line-height: 14pt;
-  cursor: pointer;
-}
-.ribbon .frames {
-  margin-top: 30px;
-  width: 100%;
-  min-height: 50px;
-  border: 1px #ccc solid;
-}
-.ribbon .frames .frame {
-  width: 100%;
-  min-height: 100%;
-  height: auto;
-  display: none;
-  padding: 10px;
-}
-.ribbon .frames .frame.active {
-  display: block;
+  left: 100%;
+  top: 20px;
+  margin-left: 5px;
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  transform: rotate(90deg);
 }
 /*
  * Metro UI CSS v 0.1.1
@@ -3454,7 +3539,7 @@ input[type=submit] {
   font-size: 20pt;
   letter-spacing: 0.01em;
   line-height: 24pt;
-  font-family: 'PT Serif Caption', Helvetica, sans-serif;
+  font-family: Tahoma, Arial, sans-serif;
   line-height: 18pt;
 }
 .card:hover {
@@ -3462,7 +3547,7 @@ input[type=submit] {
 }
 .card .suit {
   padding: 0;
-  font-size: 84px;
+  font-size: 80px;
   position: absolute;
   right: 5px;
   bottom: 30px;
@@ -3598,7 +3683,7 @@ pre {
   font-size: 11pt;
   letter-spacing: 0.02em;
   line-height: 20px;
-  font-size: 12pt;
+  font-size: 10pt;
   color: #525252;
 }
 code {

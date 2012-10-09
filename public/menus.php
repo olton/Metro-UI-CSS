@@ -25,21 +25,30 @@
 
         <div class="page-header">
             <div class="page-header-content">
-                <h1 class="sub-menu">Menus<small>demo</small>
-                    <ul>
-                        <li><a href="#">Item 1</a></li>
-                        <li><a href="#">Item 2</a></li>
-                        <li><a href="#">Item 3</a></li>
-                        <li><a href="#">Item 4</a></li>
-                        <li><a href="#">Item 5</a></li>
-                    </ul>
-                </h1>
+                <h1>Menus<small>demo</small></h1>
                 <a href="/" class="back-button big page-back"></a>
             </div>
         </div>
 
         <div class="page-region">
             <div class="page-region-content">
+                <div class="span10">
+                    <h2>Dropdown Menu</h2>
+                    <div class="clearfix">
+                        <ul class="dropdown-menu open" style="display: block; position: static; margin-bottom: 15px; margin-left: 0;">
+                            <li><a href="#">ItemName</a></li>
+                            <li><a href="#">ItemName</a></li>
+                            <li><a href="#">ItemName</a></li>
+                            <li><a href="#">ItemName</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">ItemName</a></li>
+                        </ul>
+                    </div>
+                    <p>
+                        Toggleable, contextual menu for displaying lists of links. Made interactive with the dropdown javascript plugin.
+                    </p>
+                </div>
+
                 <h2>Horizontal menu</h2>
                 <div class="span10">
                     <div class="horizontal-menu">
