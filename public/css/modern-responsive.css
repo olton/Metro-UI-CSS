@@ -102,8 +102,13 @@
   background-color: #525252 !important;
 }
 /* Large desktop */
-@media (min-width: 1200px) {
-  
+@media (min-width: 980px) {
+  .navigation-bar .navigation-bar-inner .menu-pull {
+    display: none;
+  }
+  .navigation-bar .navigation-bar-inner  > ul {
+    display: block !important;
+  }
 }
 /* Portrait tablet to landscape and desktop */
 @media (min-width: 768px) and (max-width: 979px) {
