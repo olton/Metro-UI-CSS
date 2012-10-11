@@ -1991,6 +1991,9 @@ table.bordered tbody tr:last-child td {
 .navigation-bar .navigation-bar-inner  > ul  > li:hover a {
   color: #1e1e1e;
 }
+.navigation-bar .navigation-bar-inner  > ul  > li  > .dropdown-menu {
+  border: 0;
+}
 .navigation-bar.fixed-top {
   position: fixed;
   left: 0;
