@@ -7,22 +7,27 @@
  *
  */
 
-.header-bar, .navigation-bar {
+.navigation-bar {
     width: 100%;
     min-height: 40px;
     background: #464646;
     z-index: 10000;
 
-    .header-bar-inner, .navigation-bar-inner {
+    .navigation-bar-inner {
         padding: 5px 20px;
         color: #fff;
         font-size: 11pt;
         margin: auto;
+        position: relative;
 
         & > .brand {
             float: left;
             margin-right: 20px;
-            margin-top: 3px;
+            margin-top: 0px;
+
+            &:hover {
+                background-color: transparent;
+            }
 
             .icon {
                 width: 24px;
@@ -35,6 +40,7 @@
             .name {
                 #font > .subheader;
                 font-size: 16pt;
+                color: #fff;
             }
         }
 
@@ -61,27 +67,7 @@
                     }
                 }
             }
-
-            & > li.pull {
-                float: right;
-                cursor: pointer;
-                margin-top: 5px;
-                display: none;
-
-                & > a {
-                    display: block;
-                    height: 24px;
-                    width: 24px;
-                    position: relative;
-                    background: url(../images/row24.png) no-repeat;
-                }
-
-                &:hover {
-                    background: transparent;
-                }
-            }
         }
-
     }
 
     &.fixed-top {
@@ -98,6 +84,21 @@
         bottom: 0;
     }
 
+}
+
+.menu-pull {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    display: none;
+    cursor: pointer;
+    z-index: 10001;
+    background: url(../images/row24.png) no-repeat;
+    background-size: cover;
+    height: 24px;
+    width: 24px;
+    margin: 0;
+    padding: 0;
 }
 
 .dropdown-menu {

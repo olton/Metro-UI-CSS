@@ -15,21 +15,6 @@ body {
 .github-info {
 }
 
-.github-info li {
-}
-
-.github-info li span{
-    text-align: center;
-    display: block;
-    padding: 5px;
-    margin-top: -5px;
-}
-
-.github-info li a img {width: 20px;}
-
-.header-bar-inner > ul li a {font-size: 9pt;}
-.header-bar-inner > ul li span {width: 30px; height: 30px; font-size: 9pt; border: 0;}
-.header-bar-inner > ul li a img {width: 18px;}
 
 #brand-name {
     line-height: 24px;

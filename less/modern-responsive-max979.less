@@ -30,4 +30,37 @@
         .span12;
     }
 
+    .navigation-bar {
+        .navigation-bar-inner {
+            .menu-pull {
+                display: block;
+            }
+            .brand {
+                float: none;
+                width: 100%;
+            }
+            & > ul {
+                display: none;
+                float: none;
+
+                & > li {
+                    display: block;
+                    float: none;
+                    width: 100%;
+                    margin-left: 0;
+                    padding-left: 0;
+
+                    &.brand {
+                        width: auto;
+                    }
+
+                    .dropdown-menu {
+                        position: relative;
+                        width: 100%;
+                        border: 0;
+                    }
+                }
+            }
+        }
+    }
 }

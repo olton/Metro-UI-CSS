@@ -1,3 +1,106 @@
+/*
+ * Metro UI CSS v 0.1.1
+ * Copyright 2012 Sergey Pimenov
+ * Licensed under the MIT Lilcense
+ *
+ * Variables.less
+ */
+.fg-color-blue {
+  color: #2d89ef !important;
+}
+.fg-color-blueLight {
+  color: #44a3aa !important;
+}
+.fg-color-blueDark {
+  color: #0a5ac2 !important;
+}
+.fg-color-green {
+  color: #00a300 !important;
+}
+.fg-color-greenLight {
+  color: #99b433 !important;
+}
+.fg-color-greenDark {
+  color: #005200 !important;
+}
+.fg-color-red {
+  color: #b91d47 !important;
+}
+.fg-color-yellow {
+  color: #ffc40d !important;
+}
+.fg-color-orange {
+  color: #e3a21a !important;
+}
+.fg-color-orangeDark {
+  color: #da532c !important;
+}
+.fg-color-pink {
+  color: #c3325f !important;
+}
+.fg-color-pinkDark {
+  color: #9f00a7 !important;
+}
+.fg-color-purple {
+  color: #603cba !important;
+}
+.fg-color-darken {
+  color: #1d1d1d !important;
+}
+.fg-color-white {
+  color: #ffffff !important;
+}
+.fg-color-grayDark {
+  color: #525252 !important;
+}
+.bg-color-blue {
+  background-color: #2d89ef !important;
+}
+.bg-color-blueLight {
+  background-color: #44a3aa !important;
+}
+.bg-color-blueDark {
+  background-color: #0a5ac2 !important;
+}
+.bg-color-green {
+  background-color: #00a300 !important;
+}
+.bg-color-greenLight {
+  background-color: #99b433 !important;
+}
+.bg-color-greenDark {
+  background-color: #005200 !important;
+}
+.bg-color-red {
+  background-color: #b91d47 !important;
+}
+.bg-color-yellow {
+  background-color: #ffc40d !important;
+}
+.bg-color-orange {
+  background-color: #e3a21a !important;
+}
+.bg-color-orangeDark {
+  background-color: #da532c !important;
+}
+.bg-color-pink {
+  background-color: #c3325f !important;
+}
+.bg-color-pinkDark {
+  background-color: #9f00a7 !important;
+}
+.bg-color-purple {
+  background-color: #603cba !important;
+}
+.bg-color-darken {
+  background-color: #1d1d1d !important;
+}
+.bg-color-white {
+  background-color: #ffffff !important;
+}
+.bg-color-grayDark {
+  background-color: #525252 !important;
+}
 /* Large desktop */
 @media (min-width: 1200px) {
   
@@ -79,6 +182,32 @@
   .hero-unit {
     width: 724px;
   }
+  .navigation-bar .navigation-bar-inner .menu-pull {
+    display: block;
+  }
+  .navigation-bar .navigation-bar-inner .brand {
+    float: none;
+    width: 100%;
+  }
+  .navigation-bar .navigation-bar-inner  > ul {
+    display: none;
+    float: none;
+  }
+  .navigation-bar .navigation-bar-inner  > ul  > li {
+    display: block;
+    float: none;
+    width: 100%;
+    margin-left: 0;
+    padding-left: 0;
+  }
+  .navigation-bar .navigation-bar-inner  > ul  > li.brand {
+    width: auto;
+  }
+  .navigation-bar .navigation-bar-inner  > ul  > li .dropdown-menu {
+    position: relative;
+    width: 100%;
+    border: 0;
+  }
 }
 /* Landscape phone to portrait tablet */
 @media (max-width: 767px) {
@@ -109,6 +238,32 @@
   }
   h2 {
     font-size: 16pt;
+  }
+  .navigation-bar .navigation-bar-inner .menu-pull {
+    display: block;
+  }
+  .navigation-bar .navigation-bar-inner .brand {
+    float: none;
+    width: 100%;
+  }
+  .navigation-bar .navigation-bar-inner  > ul {
+    display: none;
+    float: none;
+  }
+  .navigation-bar .navigation-bar-inner  > ul  > li {
+    display: block;
+    float: none;
+    width: 100%;
+    margin-left: 0;
+    padding-left: 0;
+  }
+  .navigation-bar .navigation-bar-inner  > ul  > li.brand {
+    width: auto;
+  }
+  .navigation-bar .navigation-bar-inner  > ul  > li .dropdown-menu {
+    position: relative;
+    width: 100%;
+    border: 0;
   }
 }
 /* Landscape phones and down */

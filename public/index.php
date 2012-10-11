@@ -24,9 +24,10 @@
 
         <div class="page-region">
             <div class="page-region-content">
+                <!--
                 <p id="jetbrains" class="place-right tertiary-info-secondary-text" style="margin-top: 10px;">Build in <a class="fg-color-blue" href="http://www.jetbrains.com/phpstorm/">JetBrains PhpStorm</a></p>
                 <h2>Welcome to Metro UI CSS <sup class="fg-color-red"> v 0.1.2</sup></h2>
-
+                -->
 
                 <div class="hero-unit">
                     <img src="images/windows-8-metro.jpg" class="place-left" style="margin-right: 40px;"/>
@@ -77,10 +78,11 @@
                             <p class="tertiary-info-secondary-text bg-color-grayDark" style="padding: 10px; color: #fff;">Hi! My name is Sergey Pimenov and i'm author of Metro UI CSS from <abbr title="The capital of Ukraine">Kiev</abbr>, <abbr title="The center of Europe">Ukraine</abbr>.</p>
                         </div>
                         <div class="span4">
+                            <h2>Welcome</h2>
                             <p>
                                 Metro UI CSS a set of styles to create a site with an interface similar to Windows 8 Metro UI. This set of styles was developed as a self-contained solution.
                             </p>
-                            <br />
+                            <h3>LESS</h3>
                             <p class="tertiary-info-text">
                                 Metro UI CSS is made with LESS. <a href="http://lesscss.org">LESS</a> a dynamic stylesheet language created by one good man, <a href="http://cloudhead.io/">Alexis Sellier</a>. It makes developing systems-based CSS faster, easier, and more fun.
                             </p>
@@ -92,10 +94,23 @@
                                 <img src="images/opera.png" title="Opera"/>
                             </div>
                             <br />
-                            <p class="tertiary-info-secondary-text">* Internet Explorer supported on 9+</p>
+                            <p class="tertiary-info-secondary-text">All modern browsers. Internet Explorer supported on 9+</p>
                         </div>
                         <div class="span4">
-                            <h2 style="margin-top: 0;">Immediate objectives:</h2>
+                            <h2>GitHub Project Info:</h2>
+                            <table class="bordered github-info" data-repo="olton/Metro-UI-CSS">
+                                <tbody>
+                                <tr>
+                                    <td>Starred:</td>
+                                    <td class="right"><span class="github-watchers"></span></td>
+                                </tr>
+                                <tr>
+                                    <td>Forks:</td>
+                                    <td class="right bg"><span class="github-forks"></span></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <h2>Immediate objectives:</h2>
                             <ol>
                                 <li>Responsive design</li>
                                 <li>Tiles animation effects</li>
@@ -103,13 +118,14 @@
                                 <li>Integration in Visual Studio</li>
                                 <li>Much, much more...</li>
                             </ol>
+                            <!--
                             <h2 style="margin-top: 0;">Already Use:</h2>
                             <ul class="unstyled">
                                 <li><a href="https://github.com/sagarsane/abetterportfolio">Portfolio for Developers</a></li>
                                 <li><a href="http://oazabir.github.com/Droptiles/">Droptiles</a></li>
                                 <li><a href="http://aozora.github.com/bootmetro/">BootMetro</a></li>
                             </ul>
-                            <br />
+                            -->
                             <br />
                             <div>
                                 <form action="https://www.paypal.com/cgi-bin/webscr" method="post">

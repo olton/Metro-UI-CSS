@@ -16,12 +16,12 @@
                   , target = $($a.parent('li').find("div"));
 
                 if ( $a.parent('li').hasClass('active') ) {
-                    target.hide();
+                    target.slideUp();
                     $(this).parent("li").removeClass("active");
                 } else {
-                    $frames.hide();
+                    $frames.slideUp();
                     $li.removeClass("active");
-                    target.show();
+                    target.slideDown();
                     $(this).parent("li").addClass("active");
                 }
             });

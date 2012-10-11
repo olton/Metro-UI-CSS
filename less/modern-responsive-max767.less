@@ -4,6 +4,7 @@
         padding-right: 10px;
         padding-left: 10px !important; //TODO найти и уничтожить
     }
+
     [class*="span"], .hero-unit {
         float: none;
         display: block;
@@ -11,6 +12,7 @@
         margin-left: 0;
         margin-right: 0;
     }
+
     [class*="offset"], .hero-unit {
         margin-left: 0;
     }
@@ -35,4 +37,38 @@
 
     h1 {font-size: 30pt;}
     h2 {font-size: 16pt;}
+
+    .navigation-bar {
+        .navigation-bar-inner {
+            .menu-pull {
+                display: block;
+            }
+            .brand {
+                float: none;
+                width: 100%;
+            }
+            & > ul {
+                display: none;
+                float: none;
+
+                & > li {
+                    display: block;
+                    float: none;
+                    width: 100%;
+                    margin-left: 0;
+                    padding-left: 0;
+
+                    &.brand {
+                        width: auto;
+                    }
+
+                    .dropdown-menu {
+                        position: relative;
+                        width: 100%;
+                        border: 0;
+                    }
+                }
+            }
+        }
+    }
 }
