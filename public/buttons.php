@@ -86,6 +86,56 @@
 
                     <div class="row">
                         <div class="span10">
+                            <h2>Toolbar</h2>
+                            <div class="toolbar">
+                                <button>1</button>
+                                <button>2</button>
+                                <button>3</button>
+                                <button>4</button>
+                                <button>5</button>
+                            </div>
+<pre class="prettyprint linenums">
+    &lt;div class="toolbar"&gt;
+        &lt;button /&gt;
+        ...
+        &lt;button /&gt;
+    &lt;/div&gt;
+</pre>
+                            <h2>Toolbar Vertical</h2>
+                            <div class="clearfix">
+                                <div class="toolbar-vertical">
+                                    <button>1</button>
+                                    <button>2</button>
+                                    <button>3</button>
+                                    <button>4</button>
+                                    <button>5</button>
+                                </div>
+                            </div>
+<pre class="prettyprint linenums">
+    &lt;div class="toolbar-vertical"&gt;
+        &lt;button /&gt;
+        ...
+        &lt;button /&gt;
+    &lt;/div&gt;
+</pre>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="span10">
+                            <h2>Image button</h2>
+                            <button class="image-button bg-color-darken fg-color-white">Download source<img class="bg-color-green" src="images/download-32.png"/></button>
+                            <button class="image-button bg-color-pink fg-color-white">Armor you computer<img class="bg-color-red" src="images/armor.png"/></button>
+<pre class="prettyprint linenums">
+    &lt;button class="image-button"&gt; Caption &lt;img/&gt; &lt;/button&gt;
+    ===================
+    &lt;button class="image-button bg-color-darken fg-color-white"&gt;Download&lt;img src="images/down.png"/&gt;&lt;/button&gt;
+</pre>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="span10">
                             <h2>Button set</h2>
                             <div class="button-set place-left" data-role="button-set">
                                 <button class="active">button 1</button>

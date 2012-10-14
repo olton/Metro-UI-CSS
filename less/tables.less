@@ -10,11 +10,12 @@
 table {
     width: 100%;
     border-collapse: separate;
-    margin: 20px 0;
+    margin: 0 0 20px;
 
     thead {
         tr {
-            th {
+            th, td {
+                display: table-cell;
                 vertical-align: bottom;
                 padding-bottom: @subunit;
                 padding-top: @subunit * 2;
@@ -112,7 +113,7 @@ table {
         border-collapse: separate !important;
         thead {
             tr {
-                th {
+                th,td {
                     &:hover {
                         border: 1px #1c98cc solid;
                         background: rgba(28, 183, 236, 0.10);

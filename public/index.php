@@ -98,7 +98,7 @@
                         </div>
                         <div class="span4">
                             <h2>GitHub Project Info:</h2>
-                            <table class="bordered github-info" data-repo="olton/Metro-UI-CSS">
+                            <table class="github-info" data-repo="olton/Metro-UI-CSS">
                                 <tbody>
                                 <tr>
                                     <td>Starred:</td>
@@ -107,6 +107,12 @@
                                 <tr>
                                     <td>Forks:</td>
                                     <td class="right bg"><span class="github-forks"></span></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" style="padding: 20px 0 0; border: 0;">
+                                        <button class="image-button bg-color-pink fg-color-white" onclick="document.location.href='https://github.com/olton/Metro-UI-CSS'">View on Github<img class="bg-color-red" src="images/github.png"/></button>
+                                        <button class="image-button bg-color-darken fg-color-white" onclick="document.location.href='https://github.com/olton/Metro-UI-CSS/zipball/master'">Download source<img class="bg-color-green" src="images/download-32.png"/></button>
+                                    </td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -118,14 +124,6 @@
                                 <li>Integration in Visual Studio</li>
                                 <li>Much, much more...</li>
                             </ol>
-                            <!--
-                            <h2 style="margin-top: 0;">Already Use:</h2>
-                            <ul class="unstyled">
-                                <li><a href="https://github.com/sagarsane/abetterportfolio">Portfolio for Developers</a></li>
-                                <li><a href="http://oazabir.github.com/Droptiles/">Droptiles</a></li>
-                                <li><a href="http://aozora.github.com/bootmetro/">BootMetro</a></li>
-                            </ul>
-                            -->
                             <br />
                             <div>
                                 <form action="https://www.paypal.com/cgi-bin/webscr" method="post">

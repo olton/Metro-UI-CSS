@@ -6,6 +6,9 @@
  * Threme-dark.less
  *
  */
+body {
+  background: #1d1d1d;
+}
 .text-rest-state {
   color: #ffffff;
 }

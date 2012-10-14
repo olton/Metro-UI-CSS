@@ -1521,18 +1521,21 @@ button,
   font-size: 9pt;
   min-width: 90px;
   min-height: 32px;
+  height: 32px;
   background-color: #ccc;
   border: 1px transparent solid;
   color: #353535;
   margin-right: 10px;
   margin-bottom: 10px;
   border-raduis: 0;
+  text-align: center;
+  vertical-align: middle;
 }
 button:active,
 .button:active,
 button.default:active,
 .button.default:active {
-  background-color: #000;
+  background-color: #000 !important;
   color: #fff;
 }
 button:disabled,
@@ -1581,16 +1584,81 @@ button:focus,
   min-height: 32px;
   width: 32px;
   height: 32px;
-  padding-top: 3px;
+  text-align: center;
+  position: relative;
+  padding: 0;
 }
 .tool-button img {
   width: 16px;
   height: 16px;
-  margin: 0;
+  position: absolute;
+  top: 8px;
+  left: 8px;
+}
+.toolbar button {
+  min-width: 32px;
+  min-height: 32px;
+  width: 32px;
+  height: 32px;
+  text-align: center;
+  position: relative;
   padding: 0;
-  display: inline;
-  float: none;
+  margin-right: 5px;
+}
+.toolbar button img {
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  top: 8px;
+  left: 8px;
+}
+.toolbar-vertical {
+  width: 33px;
+  float: left;
+  margin-right: 10px;
+  *zoom: 1;
+}
+.toolbar-vertical button {
+  min-width: 32px;
+  min-height: 32px;
+  width: 32px;
+  height: 32px;
+  text-align: center;
+  position: relative;
+  padding: 0;
+}
+.toolbar-vertical button img {
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  top: 8px;
+  left: 8px;
+}
+.toolbar-vertical:before,
+.toolbar-vertical:after {
+  display: table;
+  content: "";
+}
+.toolbar-vertical:after {
   clear: both;
+}
+.image-button {
+  position: relative;
+  border: 0;
+  padding-right: 38px;
+}
+.image-button img,
+.image-button:active img {
+  position: absolute;
+  right: 0;
+  margin-left: 32px;
+  padding: 5px;
+  height: 100%;
+  top: 0px;
+  margin-left: 0px;
+  box-sizing: border-box;
+  border: 1px transparent solid;
+  z-index: 1001;
 }
 .button-set button {
   margin-right: 0;
@@ -1610,9 +1678,11 @@ button:focus,
 table {
   width: 100%;
   border-collapse: separate;
-  margin: 20px 0;
+  margin: 0 0 20px;
 }
-table thead tr th {
+table thead tr th,
+table thead tr td {
+  display: table-cell;
   vertical-align: bottom;
   padding-bottom: 5px;
   padding-top: 10px;
@@ -1629,14 +1699,17 @@ table thead tr th {
   color: rgba(0, 0, 0, 0.6);
   text-align: left;
 }
-table thead tr th.right {
+table thead tr th.right,
+table thead tr td.right {
   text-align: right;
   padding-right: 10px;
 }
-table thead tr th.last {
+table thead tr th.last,
+table thead tr td.last {
   border-right: 1px transparent solid;
 }
-table thead tr th:last-child {
+table thead tr th:last-child,
+table thead tr td:last-child {
   border-right: 1px transparent solid;
 }
 table tbody tr {
@@ -1696,7 +1769,8 @@ table.striped tbody tr:nth-child(odd) {
 table.hovered {
   border-collapse: separate !important;
 }
-table.hovered thead tr th:hover {
+table.hovered thead tr th:hover,
+table.hovered thead tr td:hover {
   border: 1px #1c98cc solid;
   background: rgba(28, 183, 236, 0.1);
 }
@@ -3325,12 +3399,15 @@ input[type=submit] {
   font-size: 9pt;
   min-width: 90px;
   min-height: 32px;
+  height: 32px;
   background-color: #ccc;
   border: 1px transparent solid;
   color: #353535;
   margin-right: 10px;
   margin-bottom: 10px;
   border-raduis: 0;
+  text-align: center;
+  vertical-align: middle;
   border-radius: 0;
 }
 input[type=button]:active,
@@ -3339,7 +3416,7 @@ input[type=submit]:active,
 input[type=button].default:active,
 input[type=reset].default:active,
 input[type=submit].default:active {
-  background-color: #000;
+  background-color: #000 !important;
   color: #fff;
 }
 input[type=button]:disabled,
@@ -3660,7 +3737,6 @@ pre {
   display: block;
   padding: 10px;
   margin: 0;
-  font-size: 10pt;
   line-height: 14pt;
   word-break: break-all;
   word-wrap: break-word;

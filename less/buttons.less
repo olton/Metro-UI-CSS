@@ -44,15 +44,18 @@ button, .button {
     #font > .control;
     min-width: 90px;
     min-height: 32px;
+    height: 32px;
     background-color: #ccc;
     border: 1px transparent solid;
     color: #353535;
     margin-right: 10px;
     margin-bottom: 10px;
     border-raduis: 0;
+    text-align: center;
+    vertical-align: middle;
 
     &:active, &.default:active {
-        background-color: #000;
+        background-color: #000 !important;
         color: #fff;
     }
 
@@ -100,16 +103,52 @@ button, .button {
     min-height: 32px;
     width: 32px;
     height: 32px;
-    padding-top: 3px;
+    text-align: center;
+    position: relative;
+    padding: 0;
 
     img {
         width: 16px;
         height: 16px;
-        margin: 0;
-        padding: 0;
-        display: inline;
-        float: none;
-        clear: both;
+        position: absolute;
+        top: 8px;
+        left: 0px;
+    }
+}
+
+.toolbar {
+    button {
+        .tool-button;
+        margin-right: 5px;
+    }
+}
+.toolbar-vertical {
+    width: 33px;
+    float: left;
+    margin-right: 10px;
+
+    button {
+        .tool-button;
+    }
+    .clearfix;
+}
+
+.image-button {
+    position: relative;
+    border: 0;
+    padding-right: 38px;
+
+    img, &:active img {
+        position: absolute;
+        right: 0;
+        margin-left: 32px;
+        padding: 5px;
+        height: 100%;
+        top: 0px;
+        margin-left: 0px;
+        box-sizing: border-box;
+        border: 1px transparent solid;
+        z-index: 1001;
     }
 }
 

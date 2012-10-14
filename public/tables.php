@@ -32,6 +32,7 @@
 
         <div class="page-region">
             <div class="page-region-content">
+                <div class="span10">
                 <h2>Default table</h2>
 <pre class="prettyprint linenums">
     &lt;table&gt;
@@ -185,13 +186,10 @@
                         <? include("adsense.php")?>
                     </div>
                 </div>
-
             </div>
-
-
+            </div>
         </div>
         <? include("footer.php")?>
-
     </div>
     <?php include("counter.php");?>
 
