@@ -206,6 +206,20 @@
 </pre>
                         </div>
                     </div>
+
+                    <div class="row">
+                        <div class="span10">
+                            <h2>Any size of button</h2>
+                            <button class="mini">Mini button</button>
+                            <button>Default button</button>
+                            <button class="big">Big button</button>
+<pre class="prettyprint linenums">
+    &lt;button class="mini"&gt; Caption &lt;/button&gt;
+    &lt;button&gt; Caption &lt;/button&gt;
+    &lt;button class="big"&gt; Caption &lt;/button&gt;
+</pre>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="grid">

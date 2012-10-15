@@ -99,6 +99,32 @@
 
                     <div class="row">
                         <div class="span10">
+                            <p>To set border color use prefix <strong>border</strong></p>
+                            <div class="clearfix">
+                                <div class="span2 border-color-blue">
+                                    &nbsp;
+                                </div>
+                                <div class="span2 border-color-green">
+                                    &nbsp;
+                                </div>
+                                <div class="span2 border-color-red">
+                                    &nbsp;
+                                </div>
+                                <div class="span2 border-color-orange">
+                                    &nbsp;
+                                </div>
+                                <div class="span2 border-color-darken">
+                                    &nbsp;
+                                </div>
+                            </div>
+<pre class="prettyprint linenums">
+    &lt;div class="border-color-red"&gt;...&lt;/div&gt;
+</pre>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="span10">
                             <h2>Fonts</h2>
                             <p class="span10">
                                 In Metro UI CSS i use Segoe UI, <a href="http://www.google.com/webfonts#UsePlace:use/Collection:Open+Sans">Open Sans</a> fonts (depending on the availability in the system).

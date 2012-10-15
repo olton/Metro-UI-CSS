@@ -11,7 +11,7 @@
     })
 </script>
 
-<div style="position: fixed; height: 100px; width: 100px; padding: 10px; z-index: 10000;" class="bottom-right bg-color-darken fg-color-white">
+<div style="display: none; position: fixed; height: 100px; width: 100px; padding: 10px; z-index: 10000;" class="bottom-right bg-color-darken fg-color-white">
     Screen size:
     <div id="sizeX">0</div>
     <div id="sizeY">0</div>

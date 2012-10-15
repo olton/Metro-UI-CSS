@@ -687,6 +687,57 @@ table {
 .bg-color-grayDark {
   background-color: #525252 !important;
 }
+[class*=border-color] {
+  border: 2px solid;
+}
+.border-color-blue {
+  border-color: #2d89ef !important;
+}
+.border-color-blueLight {
+  border-color: #44a3aa !important;
+}
+.border-color-blueDark {
+  border-color: #0a5ac2 !important;
+}
+.border-color-green {
+  border-color: #00a300 !important;
+}
+.border-color-greenLight {
+  border-color: #99b433 !important;
+}
+.border-color-greenDark {
+  border-color: #005200 !important;
+}
+.border-color-red {
+  border-color: #b91d47 !important;
+}
+.border-color-yellow {
+  border-color: #ffc40d !important;
+}
+.border-color-orange {
+  border-color: #e3a21a !important;
+}
+.border-color-orangeDark {
+  border-color: #da532c !important;
+}
+.border-color-pink {
+  border-color: #c3325f !important;
+}
+.border-color-pinkDark {
+  border-color: #9f00a7 !important;
+}
+.border-color-purple {
+  border-color: #603cba !important;
+}
+.border-color-darken {
+  border-color: #1d1d1d !important;
+}
+.border-color-white {
+  border-color: #ffffff !important;
+}
+.border-color-grayDark {
+  border-color: #525252 !important;
+}
 /*
  * Metro UI CSS v 0.1.1
  * Copyright 2012 Sergey Pimenov
@@ -1558,6 +1609,18 @@ button:focus,
   outline: 0;
   border: 1px #353535 dotted;
 }
+button.mini,
+.button.mini {
+  min-height: 22px;
+  height: 22px;
+  font-size: 8pt;
+}
+button.big,
+.button.big {
+  min-height: 48px;
+  height: 48px;
+  font-size: 8pt;
+}
 a.button {
   padding: 5px 0;
 }
@@ -1631,6 +1694,16 @@ a.button {
   outline: 0;
   border: 1px #353535 dotted;
 }
+.tool-button.mini {
+  min-height: 22px;
+  height: 22px;
+  font-size: 8pt;
+}
+.tool-button.big {
+  min-height: 48px;
+  height: 48px;
+  font-size: 8pt;
+}
 .tool-button img {
   width: 16px;
   height: 16px;
@@ -1692,6 +1765,18 @@ a.button {
 .toolbar button:focus {
   outline: 0;
   border: 1px #353535 dotted;
+}
+.toolbar a.mini,
+.toolbar button.mini {
+  min-height: 22px;
+  height: 22px;
+  font-size: 8pt;
+}
+.toolbar a.big,
+.toolbar button.big {
+  min-height: 48px;
+  height: 48px;
+  font-size: 8pt;
 }
 .toolbar a img,
 .toolbar button img {
@@ -1774,6 +1859,18 @@ a.button {
 .toolbar-vertical button:focus {
   outline: 0;
   border: 1px #353535 dotted;
+}
+.toolbar-vertical a.mini,
+.toolbar-vertical button.mini {
+  min-height: 22px;
+  height: 22px;
+  font-size: 8pt;
+}
+.toolbar-vertical a.big,
+.toolbar-vertical button.big {
+  min-height: 48px;
+  height: 48px;
+  font-size: 8pt;
 }
 .toolbar-vertical a img,
 .toolbar-vertical button img {
@@ -3606,6 +3703,20 @@ input[type=reset]:focus,
 input[type=submit]:focus {
   outline: 0;
   border: 1px #353535 dotted;
+}
+input[type=button].mini,
+input[type=reset].mini,
+input[type=submit].mini {
+  min-height: 22px;
+  height: 22px;
+  font-size: 8pt;
+}
+input[type=button].big,
+input[type=reset].big,
+input[type=submit].big {
+  min-height: 48px;
+  height: 48px;
+  font-size: 8pt;
 }
 input[type=submit] {
   background-color: #008287;
