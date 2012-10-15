@@ -56,8 +56,8 @@
                             </p>
 
                             <a class="button">Button</a>
-                            <a class="button bg-color-blue">Button</a>
-                            <a class="button bg-color-pinkDark">Button</a>
+                            <a class="button default">Button</a>
+                            <a class="button disabled">Button</a>
                         </div>
                         <div class="span5">
                             <h2>Command Button</h2>
@@ -75,6 +75,7 @@
     &lt;button&gt;Button&lt;/button&gt;
     &lt;button class="default"&gt;Button&lt;/button&gt;
     &lt;button disabled&gt;Button&lt;/button&gt;
+    &lt;a class="button"&gt;Button&lt;/a&gt;
 </pre>
 
 
@@ -154,17 +155,9 @@
                             </div>
 <pre class="prettyprint linenums">
     &lt;div class="toolbar-vertical"&gt;
-        &lt;div class="toolbar-group"&gt;
-            &lt;button /&gt;
-            ...
-            &lt;button /&gt;
-        &lt;/div&gt;
+        &lt;button /&gt;
         ...
-        &lt;div class="toolbar-group"&gt;
-            &lt;button /&gt;
-            ...
-            &lt;button /&gt;
-        &lt;/div&gt;
+        &lt;button /&gt;
     &lt;/div&gt;
 </pre>
                             <h2>Toolbar Vertical with groups</h2>
@@ -184,11 +177,20 @@
                             </div>
 <pre class="prettyprint linenums">
     &lt;div class="toolbar-vertical"&gt;
-        &lt;button /&gt;
+        &lt;div class="toolbar-group"&gt;
+            &lt;button /&gt;
+            ...
+            &lt;button /&gt;
+        &lt;/div&gt;
         ...
-        &lt;button /&gt;
+        &lt;div class="toolbar-group"&gt;
+            &lt;button /&gt;
+            ...
+            &lt;button /&gt;
+        &lt;/div&gt;
     &lt;/div&gt;
 </pre>
+
                         </div>
                     </div>
 

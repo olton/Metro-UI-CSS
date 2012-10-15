@@ -1531,6 +1531,7 @@ button,
   display: inline-block;
   text-align: center;
   vertical-align: middle;
+  cursor: pointer;
 }
 button:active,
 .button:active,
@@ -1540,9 +1541,12 @@ button.default:active,
   color: #fff;
 }
 button:disabled,
-.button:disabled {
+.button:disabled,
+button.disabled,
+.button.disabled {
   background-color: #eaeaea;
   color: #bebebe;
+  cursor: not-allowed;
 }
 button.default,
 .button.default {
@@ -1599,6 +1603,7 @@ a.button {
   display: inline-block;
   text-align: center;
   vertical-align: middle;
+  cursor: pointer;
   min-width: 32px;
   min-height: 32px;
   width: 32px;
@@ -1612,9 +1617,11 @@ a.button {
   background-color: #000 !important;
   color: #fff;
 }
-.tool-button:disabled {
+.tool-button:disabled,
+.tool-button.disabled {
   background-color: #eaeaea;
   color: #bebebe;
+  cursor: not-allowed;
 }
 .tool-button.default {
   background-color: #008287;
@@ -1651,6 +1658,7 @@ a.button {
   display: inline-block;
   text-align: center;
   vertical-align: middle;
+  cursor: pointer;
   min-width: 32px;
   min-height: 32px;
   width: 32px;
@@ -1668,9 +1676,12 @@ a.button {
   color: #fff;
 }
 .toolbar a:disabled,
-.toolbar button:disabled {
+.toolbar button:disabled,
+.toolbar a.disabled,
+.toolbar button.disabled {
   background-color: #eaeaea;
   color: #bebebe;
+  cursor: not-allowed;
 }
 .toolbar a.default,
 .toolbar button.default {
@@ -1729,6 +1740,7 @@ a.button {
   display: inline-block;
   text-align: center;
   vertical-align: middle;
+  cursor: pointer;
   min-width: 32px;
   min-height: 32px;
   width: 32px;
@@ -1746,9 +1758,12 @@ a.button {
   color: #fff;
 }
 .toolbar-vertical a:disabled,
-.toolbar-vertical button:disabled {
+.toolbar-vertical button:disabled,
+.toolbar-vertical a.disabled,
+.toolbar-vertical button.disabled {
   background-color: #eaeaea;
   color: #bebebe;
+  cursor: not-allowed;
 }
 .toolbar-vertical a.default,
 .toolbar-vertical button.default {
@@ -3558,6 +3573,7 @@ input[type=submit] {
   display: inline-block;
   text-align: center;
   vertical-align: middle;
+  cursor: pointer;
   border-radius: 0;
 }
 input[type=button]:active,
@@ -3571,9 +3587,13 @@ input[type=submit].default:active {
 }
 input[type=button]:disabled,
 input[type=reset]:disabled,
-input[type=submit]:disabled {
+input[type=submit]:disabled,
+input[type=button].disabled,
+input[type=reset].disabled,
+input[type=submit].disabled {
   background-color: #eaeaea;
   color: #bebebe;
+  cursor: not-allowed;
 }
 input[type=button].default,
 input[type=reset].default,

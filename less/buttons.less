@@ -54,15 +54,17 @@ button, .button {
     display: inline-block;
     text-align: center;
     vertical-align: middle;
+    cursor: pointer;
 
     &:active, &.default:active {
         background-color: #000 !important;
         color: #fff;
     }
 
-    &:disabled {
+    &:disabled, &.disabled {
         background-color: #eaeaea;
         color: #bebebe;
+        cursor: not-allowed;
     }
 
     &.default {
@@ -195,3 +197,4 @@ a.button {
         color: #fff;
     }
 }
+
