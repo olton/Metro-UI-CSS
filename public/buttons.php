@@ -204,45 +204,13 @@
 </pre>
                         </div>
                     </div>
-
-                    <div class="row">
-                        <div class="span10">
-                            <h2>Button set</h2>
-                            <div class="button-set place-left" data-role="button-set">
-                                <button class="active">button 1</button>
-                                <button>button 2</button>
-                                <button>button 3</button>
-                            </div>
-                            <div class="button-set" data-role="button-set">
-                                <button class="tool-button active"><img src="images/bage-playing.png" /></button>
-                                <button class="tool-button"><img src="images/bage-paused.png" /></button>
-                                <button class="tool-button"><img src="images/bage-busy.png" /></button>
-                            </div>
-<pre class="prettyprint linenums">
-    &lt;div class="button-set" data-role="button-set"&gt;
-        &lt;button class="active"&gt; ... &lt;/button&gt;
-        &lt;button&gt; ... &lt;/button&gt;
-    &lt;/div&gt;
-    ------------
-    &lt;div class="button-set" data-role="button-set"&gt;
-        &lt;button class="tool-button active"&gt; ... &lt;/button&gt;
-        &lt;button class="tool-button"&gt; ... &lt;/button&gt;
-    &lt;/div&gt;
-</pre>
-                            <h3>Javascript</h3>
-                            <p>To activate button set include in head <code>buttonset.js</code></p>
-                        </div>
-                    </div>
                 </div>
-
-
 
                 <div class="grid">
                     <div class="row">
                         <? include("adsense.php")?>
                     </div>
                 </div>
-
 
             </div>
         </div>

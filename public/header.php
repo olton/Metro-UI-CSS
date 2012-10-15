@@ -62,6 +62,7 @@
                     <li><a href="menus.php">Menu and Navigation</a></li>
                     <li><a href="pagecontrol.php">Page control</a></li>
                     <li><a href="accordion.php">Accordion</a></li>
+                    <li><a href="buttons-set.php">Buttons set</a></li>
                     <li class="divider"></li>
                     <li><a href="notices.php">Notices and Replies</a></li>
                     <li class="divider"></li>
