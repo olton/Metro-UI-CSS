@@ -13,7 +13,7 @@
             triggers.on('click', function(e){
                 e.preventDefault();
                 var $a = $(this)
-                  , target = $($a.parent('li').find("div"));
+                  , target = $($a.parent('li').children("div"));
 
                 if ( $a.parent('li').hasClass('active') ) {
                     target.slideUp();
