@@ -51,6 +51,7 @@ button, .button {
     margin-right: 10px;
     margin-bottom: 10px;
     border-raduis: 0;
+    display: inline-block;
     text-align: center;
     vertical-align: middle;
 
@@ -73,6 +74,10 @@ button, .button {
         outline: 0;
         border: 1px #353535 dotted;
     }
+}
+
+a.button {
+    padding: 5px 0;
 }
 
 .command-button {
@@ -99,6 +104,7 @@ button, .button {
 }
 
 .tool-button {
+    .button;
     min-width: 32px;
     min-height: 32px;
     width: 32px;
@@ -112,14 +118,25 @@ button, .button {
         height: 16px;
         position: absolute;
         top: 8px;
-        left: 0px;
+        left: 8px;
     }
 }
 
 .toolbar {
-    button {
+    a, button {
         .tool-button;
-        margin-right: 5px;
+        margin-right: 0px;
+    }
+
+    a {
+        padding: 5px 0;
+    }
+    .clearfix;
+
+    .toolbar-group {
+        margin-right: 20px;
+        margin-bottom: 10px;
+        float: left;
     }
 }
 .toolbar-vertical {
@@ -127,11 +144,21 @@ button, .button {
     float: left;
     margin-right: 10px;
 
-    button {
+    a, button {
         .tool-button;
+        margin-bottom: 5px;
+    }
+
+    a {
+        padding: 5px 0;
     }
     .clearfix;
+
+    .toolbar-group {
+        margin-bottom: 20px;
+    }
 }
+
 
 .image-button {
     position: relative;
@@ -153,8 +180,15 @@ button, .button {
 }
 
 .button-set {
-    button {
+    a, button {
         margin-right: 0;
+        text-align: center;
+        img {
+            background-color: transparent;
+        }
+    }
+    a {
+        padding: 5px 0;
     }
     button.active {
         background-color: #008287;

@@ -50,6 +50,14 @@
                             <button class="bg-color-purple">Button</button>
                             <button class="bg-color-blue">Button</button>
                             <button class="bg-color-grayDark">Button</button>
+
+                            <p>
+                                <small>You can use tag <code>&lt;a&gt;</code> for creating button with class <code>.button</code></small>
+                            </p>
+
+                            <a class="button">Button</a>
+                            <a class="button bg-color-blue">Button</a>
+                            <a class="button bg-color-pinkDark">Button</a>
                         </div>
                         <div class="span5">
                             <h2>Command Button</h2>
@@ -93,6 +101,7 @@
                                 <button>3</button>
                                 <button>4</button>
                                 <button>5</button>
+                                <a href="#">A</a>
                             </div>
 <pre class="prettyprint linenums">
     &lt;div class="toolbar"&gt;
@@ -101,14 +110,76 @@
         &lt;button /&gt;
     &lt;/div&gt;
 </pre>
+                            <h2>Toolbar buttons group</h2>
+                            <div class="toolbar">
+                                <div class="toolbar-group">
+                                    <button>1</button>
+                                    <button>2</button>
+                                    <button>3</button>
+                                </div>
+                                <div class="toolbar-group">
+                                    <button>1</button>
+                                    <button>2</button>
+                                    <button>3</button>
+                                </div>
+                                <div class="toolbar-group">
+                                    <button>1</button>
+                                    <button>2</button>
+                                    <button>3</button>
+                                </div>
+                            </div>
+<pre class="prettyprint linenums">
+    &lt;div class="toolbar"&gt;
+        &lt;div class="toolbar-group"&gt;
+            &lt;button /&gt;
+            ...
+            &lt;button /&gt;
+        &lt;/div&gt;
+        ...
+        &lt;div class="toolbar-group"&gt;
+            &lt;button /&gt;
+            ...
+            &lt;button /&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+</pre>
+
                             <h2>Toolbar Vertical</h2>
                             <div class="clearfix">
                                 <div class="toolbar-vertical">
                                     <button>1</button>
                                     <button>2</button>
                                     <button>3</button>
-                                    <button>4</button>
-                                    <button>5</button>
+                                </div>
+                            </div>
+<pre class="prettyprint linenums">
+    &lt;div class="toolbar-vertical"&gt;
+        &lt;div class="toolbar-group"&gt;
+            &lt;button /&gt;
+            ...
+            &lt;button /&gt;
+        &lt;/div&gt;
+        ...
+        &lt;div class="toolbar-group"&gt;
+            &lt;button /&gt;
+            ...
+            &lt;button /&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+</pre>
+                            <h2>Toolbar Vertical with groups</h2>
+                            <div class="clearfix">
+                                <div class="toolbar-vertical">
+                                    <div class="toolbar-group">
+                                        <button>1</button>
+                                        <button>2</button>
+                                        <button>3</button>
+                                    </div>
+                                    <div class="toolbar-group">
+                                        <button>1</button>
+                                        <button>2</button>
+                                        <button>3</button>
+                                    </div>
                                 </div>
                             </div>
 <pre class="prettyprint linenums">

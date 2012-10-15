@@ -1528,6 +1528,7 @@ button,
   margin-right: 10px;
   margin-bottom: 10px;
   border-raduis: 0;
+  display: inline-block;
   text-align: center;
   vertical-align: middle;
 }
@@ -1552,6 +1553,9 @@ button:focus,
 .button:focus {
   outline: 0;
   border: 1px #353535 dotted;
+}
+a.button {
+  padding: 5px 0;
 }
 .command-button {
   width: 330px;
@@ -1580,6 +1584,21 @@ button:focus,
   color: #ccc;
 }
 .tool-button {
+  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 9pt;
+  min-width: 90px;
+  min-height: 32px;
+  height: 32px;
+  background-color: #ccc;
+  border: 1px transparent solid;
+  color: #353535;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  border-raduis: 0;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
   min-width: 32px;
   min-height: 32px;
   width: 32px;
@@ -1587,6 +1606,23 @@ button:focus,
   text-align: center;
   position: relative;
   padding: 0;
+}
+.tool-button:active,
+.tool-button.default:active {
+  background-color: #000 !important;
+  color: #fff;
+}
+.tool-button:disabled {
+  background-color: #eaeaea;
+  color: #bebebe;
+}
+.tool-button.default {
+  background-color: #008287;
+  color: #fff;
+}
+.tool-button:focus {
+  outline: 0;
+  border: 1px #353535 dotted;
 }
 .tool-button img {
   width: 16px;
@@ -1595,7 +1631,26 @@ button:focus,
   top: 8px;
   left: 8px;
 }
+.toolbar {
+  *zoom: 1;
+}
+.toolbar a,
 .toolbar button {
+  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 9pt;
+  min-width: 90px;
+  min-height: 32px;
+  height: 32px;
+  background-color: #ccc;
+  border: 1px transparent solid;
+  color: #353535;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  border-raduis: 0;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
   min-width: 32px;
   min-height: 32px;
   width: 32px;
@@ -1603,8 +1658,31 @@ button:focus,
   text-align: center;
   position: relative;
   padding: 0;
-  margin-right: 5px;
+  margin-right: 0px;
 }
+.toolbar a:active,
+.toolbar button:active,
+.toolbar a.default:active,
+.toolbar button.default:active {
+  background-color: #000 !important;
+  color: #fff;
+}
+.toolbar a:disabled,
+.toolbar button:disabled {
+  background-color: #eaeaea;
+  color: #bebebe;
+}
+.toolbar a.default,
+.toolbar button.default {
+  background-color: #008287;
+  color: #fff;
+}
+.toolbar a:focus,
+.toolbar button:focus {
+  outline: 0;
+  border: 1px #353535 dotted;
+}
+.toolbar a img,
 .toolbar button img {
   width: 16px;
   height: 16px;
@@ -1612,13 +1690,45 @@ button:focus,
   top: 8px;
   left: 8px;
 }
+.toolbar a {
+  padding: 5px 0;
+}
+.toolbar:before,
+.toolbar:after {
+  display: table;
+  content: "";
+}
+.toolbar:after {
+  clear: both;
+}
+.toolbar .toolbar-group {
+  margin-right: 20px;
+  margin-bottom: 10px;
+  float: left;
+}
 .toolbar-vertical {
   width: 33px;
   float: left;
   margin-right: 10px;
   *zoom: 1;
 }
+.toolbar-vertical a,
 .toolbar-vertical button {
+  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 9pt;
+  min-width: 90px;
+  min-height: 32px;
+  height: 32px;
+  background-color: #ccc;
+  border: 1px transparent solid;
+  color: #353535;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  border-raduis: 0;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
   min-width: 32px;
   min-height: 32px;
   width: 32px;
@@ -1626,13 +1736,40 @@ button:focus,
   text-align: center;
   position: relative;
   padding: 0;
+  margin-bottom: 5px;
 }
+.toolbar-vertical a:active,
+.toolbar-vertical button:active,
+.toolbar-vertical a.default:active,
+.toolbar-vertical button.default:active {
+  background-color: #000 !important;
+  color: #fff;
+}
+.toolbar-vertical a:disabled,
+.toolbar-vertical button:disabled {
+  background-color: #eaeaea;
+  color: #bebebe;
+}
+.toolbar-vertical a.default,
+.toolbar-vertical button.default {
+  background-color: #008287;
+  color: #fff;
+}
+.toolbar-vertical a:focus,
+.toolbar-vertical button:focus {
+  outline: 0;
+  border: 1px #353535 dotted;
+}
+.toolbar-vertical a img,
 .toolbar-vertical button img {
   width: 16px;
   height: 16px;
   position: absolute;
   top: 8px;
   left: 8px;
+}
+.toolbar-vertical a {
+  padding: 5px 0;
 }
 .toolbar-vertical:before,
 .toolbar-vertical:after {
@@ -1641,6 +1778,9 @@ button:focus,
 }
 .toolbar-vertical:after {
   clear: both;
+}
+.toolbar-vertical .toolbar-group {
+  margin-bottom: 20px;
 }
 .image-button {
   position: relative;
@@ -1660,8 +1800,17 @@ button:focus,
   border: 1px transparent solid;
   z-index: 1001;
 }
+.button-set a,
 .button-set button {
   margin-right: 0;
+  text-align: center;
+}
+.button-set a img,
+.button-set button img {
+  background-color: transparent;
+}
+.button-set a {
+  padding: 5px 0;
 }
 .button-set button.active {
   background-color: #008287;
@@ -3406,6 +3555,7 @@ input[type=submit] {
   margin-right: 10px;
   margin-bottom: 10px;
   border-raduis: 0;
+  display: inline-block;
   text-align: center;
   vertical-align: middle;
   border-radius: 0;
