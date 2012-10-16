@@ -31,7 +31,7 @@
     .page.fixed-header {
         .page-header {
             position: relative !important;
-        //display: none !important;
+
             .page-header-content {
                 .user-login {
                     float: right;
@@ -108,7 +108,6 @@
                 width: 100%;
                 border: 0;
                 left: 10px;
-            //top: -2px;
             }
 
         }
@@ -162,6 +161,52 @@
             }
         }
 
+    }
+
+    .tile {
+        .tile-content {
+            width: 120px;
+            height: 90px;
+            padding: 5px 10px;
+
+            &.icon {
+                padding-top: 20px;
+                display: table-cell !important;
+                vertical-align:middle !important;
+                text-align: center;
+
+                img {
+                    width: 48px;
+                    height: 48px;
+                }
+            }
+
+        }
+
+        .brand, .tile-status {
+            & > .badge {
+                width: 26px;
+                height: 28px;
+                right: 0;
+                font-size: 9pt;
+            }
+
+            & > .name {
+                margin-left: 10px;
+            }
+
+            & > .icon {
+                width: 24px;
+                height: 24px;
+                margin: 5px 10px;
+            }
+
+            & > .text {
+                left: 40px;
+                right: 40px;
+                font-size: 8pt; 
+            }
+        }
     }
 
     .tile-group {
