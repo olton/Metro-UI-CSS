@@ -42,8 +42,8 @@
 
 button, .button {
     #font > .control;
-    min-width: 90px;
-    min-height: 32px;
+    //min-width: 90px;
+    //min-height: 32px;
     height: 32px;
     background-color: #ccc;
     border: 1px transparent solid;
@@ -55,6 +55,12 @@ button, .button {
     text-align: center;
     vertical-align: middle;
     cursor: pointer;
+    padding: 4px 14px;
+
+    &.standart {
+        min-width: 90px;
+        min-height: 32px;
+    }
 
     &:active, &.default:active {
         background-color: #000 !important;
@@ -90,10 +96,15 @@ button, .button {
         height: 48px;
         font-size: 8pt;
     }
+
+    [class*=icon-]{
+        float: left;
+        margin-right: 3px;
+    }
 }
 
 a.button {
-    padding: 5px 0;
+    padding: 5px 14px;
 }
 
 .command-button {
@@ -135,6 +146,10 @@ a.button {
         position: absolute;
         top: 8px;
         left: 8px;
+    }
+
+    [class*=icon-] {
+        margin-left: 8px;
     }
 }
 
@@ -178,7 +193,7 @@ a.button {
 .image-button {
     position: relative;
     border: 0;
-    padding-right: 38px;
+    padding-right: 45px;
 
     img, &:active img {
         position: absolute;

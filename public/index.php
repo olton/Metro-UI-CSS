@@ -24,32 +24,36 @@
 
         <div class="page-region">
             <div class="page-region-content">
-                <!--
-                <p id="jetbrains" class="place-right tertiary-info-secondary-text" style="margin-top: 10px;">Build in <a class="fg-color-blue" href="http://www.jetbrains.com/phpstorm/">JetBrains PhpStorm</a></p>
-                <h2>Welcome to Metro UI CSS <sup class="fg-color-red"> v 0.1.2</sup></h2>
-                -->
+                <div class="grid">
+                    <div class="row">
+                        <div class="span8">
+                            <div class="hero-unit">
+                                <!--<img src="images/windows-8-metro.jpg" class="place-right" style="width: 210px;"/>-->
+                                <div style="">
+                                    <h1 class="fg-color-blueLight">Metro UI CSS</h1>
 
-                <div class="hero-unit">
-                    <img src="images/windows-8-metro.jpg" class="place-left" style="margin-right: 40px;"/>
-                    <h1 class="fg-color-blueLight">Metro UI CSS</h1>
+                                    <h2>Create site in Windows 8 style now!</h2>
 
-                    <h2>Create site in Windows 8 style now!</h2>
-
-                    <br />
-                    <p>Metro UI CSS allows to create a Web site in the style of
-                        Windows 8 quickly and without distractions
-                        on routine tasks.</p>
-                    <h3>To start: include modern.css</h3>
-                    <p class="tertiary-info-text">
-                        &lt;link href="modern.css" rel="stylesheet"&gt;
-                    </p>
-
-                    <br />
-                    <p class="tertiary-info-secondary-text">
-                        <span class="bg-color-greenDark fg-color-white" style="padding: 10px;">This site is made with Metro UI CSS.</span>
-                    </p>
-
-                    <a href="http://bizspark.com/"><img src="images/1005-BizSpark-261x230.jpg" class="bottom-right" style="width: 150px; padding: 10px 0 0 10px; background: #fff;"/></a>
+                                    <br />
+                                    <p>Metro UI CSS allows to create a Web site in the style of
+                                        Windows 8 quickly and without distractions
+                                        on routine tasks.</p>
+                                    <h3>To start: include modern.css</h3>
+                                    <p class="tertiary-info-text">
+                                        &lt;link href="modern.css" rel="stylesheet"&gt;
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="span4">
+                            <div class="span4 bg-color-red padding30 text-center place-left" style="height: auto;">
+                                <h2 class="fg-color-white">Sponsor ?</h2>
+                                <p class="fg-color-white">1000+ users every day</p>
+                            </div>
+                            <a class="span2 place-left" style="" href="http://bizspark.com/"><img src="images/1005-BizSpark-261x230.jpg" /></a>
+                            <a class="span2 place-left" style="padding-top: 25px;" href="http://jetbrains.com/"><img src="images/logo-jetbrains.jpg"/></a>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="grid">
@@ -59,7 +63,7 @@
                             <h2 class="fg-color-white">&nbsp;Simple</h2>
                         </div>
 
-                        <div class="span4 bg-color-pink">
+                        <div class="span4 bg-color-green">
                             <img src="images/grid.png" class="place-right" style="margin: 10px;"/>
                             <h2 class="fg-color-white">&nbsp;Sufficient</h2>
                         </div>
@@ -111,7 +115,7 @@
                                 <tr>
                                     <td colspan="2" style="padding: 20px 0 0; border: 0;">
                                         <button class="image-button bg-color-pink fg-color-white" onclick="document.location.href='https://github.com/olton/Metro-UI-CSS'">View on Github<img class="bg-color-red" src="images/github.png"/></button>
-                                        <button class="image-button bg-color-darken fg-color-white" onclick="document.location.href='https://github.com/olton/Metro-UI-CSS/zipball/master'">Download source<img class="bg-color-green" src="images/download-32.png"/></button>
+                                        <button class="image-button bg-color-darken fg-color-white" onclick="document.location.href='https://github.com/olton/Metro-UI-CSS/zipball/master'">Download Src<img class="bg-color-green" src="images/download-32.png"/></button>
                                     </td>
                                 </tr>
                                 </tbody>

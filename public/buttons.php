@@ -38,9 +38,9 @@
                         <div class="span5">
                             <h2>Push Button</h2>
 
-                            <button>Button</button>
-                            <button class="default">Button</button>
-                            <button disabled="">Button</button>
+                            <button class="standart">Button</button>
+                            <button class="standart default">Button</button>
+                            <button class="standart" disabled="">Button</button>
 
                             <p><small>You can also change the color of the button by <br />adding bg-color-* class. Example:</small></p>
 
@@ -97,12 +97,11 @@
                         <div class="span10">
                             <h2>Toolbar</h2>
                             <div class="toolbar">
-                                <button>1</button>
-                                <button>2</button>
-                                <button>3</button>
-                                <button>4</button>
-                                <button>5</button>
-                                <a href="#">A</a>
+                                <button><i class="icon-about"></i></button>
+                                <button><i class="icon-bookmark"></i></button>
+                                <button><i class="icon-vibrate"></i></button>
+                                <button><i class="icon-navigation-down"></i></button>
+                                <button><i class="icon-mail"></i></button>
                             </div>
 <pre class="prettyprint linenums">
     &lt;div class="toolbar"&gt;
@@ -217,6 +216,20 @@
     &lt;button class="mini"&gt; Caption &lt;/button&gt;
     &lt;button&gt; Caption &lt;/button&gt;
     &lt;button class="big"&gt; Caption &lt;/button&gt;
+</pre>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="span10">
+                            <h2>Button with icon</h2>
+                            <button><i class="icon-bookmark"></i>Button</button>
+                            <button><i class="icon-bookmark right"></i>Button</button>
+                            <button class="default"><i class="icon-bookmark white"></i>Button</button>
+<pre class="prettyprint linenums">
+    &lt;button&gt;&lt;i class="icon-*"&gt;&lt;/i&gt;Caption&lt;/button&gt;
+    &lt;button&gt;&lt;i class="icon-* right"&gt;&lt;/i&gt;Caption&lt;/button&gt;
+    &lt;button&gt;&lt;i class="icon-* white"&gt;&lt;/i&gt;Caption&lt;/button&gt;
 </pre>
                         </div>
                     </div>
