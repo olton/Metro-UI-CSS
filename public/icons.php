@@ -38,7 +38,7 @@
                     <div class="grid">
                         <div class="row">
                             <div class="span5">
-                                <ol class="unstyled">
+                                <ol class="unstyled sprite-details">
                                     <li><i class="icon-about place-left"></i>icon-about</li>
                                     <li><i class="icon-access place-left"></i>icon-access</li>
                                     <li><i class="icon-add place-left"></i>icon-add</li>
@@ -122,7 +122,7 @@
                                 </ol>
                             </div>
                             <div class="span5">
-                                <ol class="unstyled">
+                                <ol class="unstyled sprite-details">
                                     <li><i class="icon-hash place-left"></i>icon-hash</li>
                                     <li><i class="icon-history place-left"></i>icon-history</li>
                                     <li><i class="icon-import place-left"></i>icon-import</li>
@@ -211,7 +211,7 @@
                     <div class="grid">
                         <div class="row">
                             <div class="span5">
-                                <ol class="unstyled">
+                                <ol class="unstyled sprite-details">
                                     <li><i class="icon-add-1 place-left"></i>icon-add-1</li>
                                     <li><i class="icon-alarm-clock place-left"></i>icon-alarm-clock</li>
                                     <li><i class="icon-archive place-left"></i>icon-archive</li>
@@ -279,7 +279,7 @@
                                 </ol>
                             </div>
                             <div class="span5">
-                                <ol class="unstyled">
+                                <ol class="unstyled sprite-details">
                                     <li><i class="icon-media-player place-left"></i>icon-media-player</li>
                                     <li><i class="icon-message place-left"></i>icon-message</li>
                                     <li><i class="icon-messages place-left"></i>icon-messages</li>

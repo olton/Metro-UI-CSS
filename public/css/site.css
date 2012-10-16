@@ -21,12 +21,19 @@ body {
     margin-top: 2px;
 }
 
+.sprite-details li {
+    line-height: 24px;
+}
+
 @media (min-width: 768px) and (max-width: 979px) {
     .page {
         width: 724px;
     }
     .hero-unit > img {
         zoom: .6;
+    }
+    .browsers-icons img {
+        zoom: .8;
     }
 }
 
