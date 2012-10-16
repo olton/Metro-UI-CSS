@@ -106,11 +106,11 @@
                                 <tbody>
                                 <tr>
                                     <td>Starred:</td>
-                                    <td class="right"><span class="github-watchers"></span></td>
+                                    <td class="right"><span class="github-watchers">720</span></td>
                                 </tr>
                                 <tr>
                                     <td>Forks:</td>
-                                    <td class="right bg"><span class="github-forks"></span></td>
+                                    <td class="right bg"><span class="github-forks">149</span></td>
                                 </tr>
                                 <tr>
                                     <td colspan="2" style="padding: 20px 0 0; border: 0;">
