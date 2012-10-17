@@ -14,7 +14,7 @@
     z-index: 10000;
 
     .navigation-bar-inner {
-        padding: 5px 20px;
+        padding: 5px 20px 2px 20px;
         color: #fff;
         font-size: 11pt;
         margin: auto;
@@ -23,7 +23,7 @@
         & > .brand {
             float: left;
             margin-right: 20px;
-            margin-top: 0px;
+            margin-top: 3px;
 
             &:hover {
                 background-color: transparent;
@@ -47,16 +47,39 @@
         & > ul {
             .unstyled;
             padding-top: 5px;
+            margin-top: 2px;
 
             & > li {
                 display: inline-block;
                 line-height: 32px;
                 position: relative;
 
+                &.sub-menu {
+                    padding-right: 20px;
+                    &:after {
+                        position: absolute;
+                        content: "\3009";
+                        display: inline-block;
+                        font-size: 10pt;
+                        font-family: sans;
+                        top: 3px;
+                        right: 10px;
+                        .rotate(90deg);
+                        cursor: pointer;
+                    }
+
+                    &:hover {
+                        &:after {
+                            color: #1e1e1e;
+                        }
+                    }
+                }
+
                 & > a {
                     color: #fff;
                     #font > .navigation;
                     padding: 5px 10px;
+                    cursor: pointer;
                 }
 
                 &.active, &:hover {
@@ -132,6 +155,7 @@
         padding: 3px 20px;
         white-space: nowrap;
         font-size: 14px;
+        cursor: pointer;
 
         &:hover {
             .bg-color-blue;

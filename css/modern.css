@@ -2336,7 +2336,7 @@ table.bordered tbody tr:last-child td {
   z-index: 10000;
 }
 .navigation-bar .navigation-bar-inner {
-  padding: 5px 20px;
+  padding: 5px 20px 2px 20px;
   color: #fff;
   font-size: 11pt;
   margin: auto;
@@ -2345,7 +2345,7 @@ table.bordered tbody tr:last-child td {
 .navigation-bar .navigation-bar-inner  > .brand {
   float: left;
   margin-right: 20px;
-  margin-top: 0px;
+  margin-top: 3px;
 }
 .navigation-bar .navigation-bar-inner  > .brand:hover {
   background-color: transparent;
@@ -2370,11 +2370,33 @@ table.bordered tbody tr:last-child td {
   margin-left: 0;
   list-style: none;
   padding-top: 5px;
+  margin-top: 2px;
 }
 .navigation-bar .navigation-bar-inner  > ul  > li {
   display: inline-block;
   line-height: 32px;
   position: relative;
+}
+.navigation-bar .navigation-bar-inner  > ul  > li.sub-menu {
+  padding-right: 20px;
+}
+.navigation-bar .navigation-bar-inner  > ul  > li.sub-menu:after {
+  position: absolute;
+  content: "\3009";
+  display: inline-block;
+  font-size: 10pt;
+  font-family: sans;
+  top: 3px;
+  right: 10px;
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  transform: rotate(90deg);
+  cursor: pointer;
+}
+.navigation-bar .navigation-bar-inner  > ul  > li.sub-menu:hover:after {
+  color: #1e1e1e;
 }
 .navigation-bar .navigation-bar-inner  > ul  > li  > a {
   color: #fff;
@@ -2384,6 +2406,7 @@ table.bordered tbody tr:last-child td {
   letter-spacing: 0.01em;
   line-height: 14pt;
   padding: 5px 10px;
+  cursor: pointer;
 }
 .navigation-bar .navigation-bar-inner  > ul  > li.active,
 .navigation-bar .navigation-bar-inner  > ul  > li:hover {
@@ -2453,6 +2476,7 @@ table.bordered tbody tr:last-child td {
   padding: 3px 20px;
   white-space: nowrap;
   font-size: 14px;
+  cursor: pointer;
 }
 .dropdown-menu a:hover {
   color: rgba(0, 0, 0, 0.8);

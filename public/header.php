@@ -33,7 +33,7 @@
         <ul>
             <li><a href="/">Home</a></li>
 
-            <li data-role="dropdown">
+            <li data-role="dropdown" class="sub-menu">
                 <a href="#">Scaffolding</a>
                 <ul class="dropdown-menu">
                     <li><a href="global.php">Global styles</a></li>
@@ -44,7 +44,7 @@
                 </ul>
             </li>
 
-            <li data-role="dropdown">
+            <li data-role="dropdown" class="sub-menu">
                 <a href="#">Base CSS</a>
                 <ul class="dropdown-menu">
                     <li><a href="typography.php">Typography</a></li>
@@ -57,7 +57,7 @@
                 </ul>
             </li>
 
-            <li data-role="dropdown">
+            <li data-role="dropdown" class="sub-menu">
                 <a href="#">Components</a>
                 <ul class="dropdown-menu">
                     <li><a href="tiles.php">Tiles</a></li>

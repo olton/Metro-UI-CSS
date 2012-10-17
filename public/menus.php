@@ -45,9 +45,81 @@
                         </ul>
                     </div>
                     <p>
-                        Toggleable, contextual menu for displaying lists of links. Made interactive with the dropdown javascript plugin.
+                        Toggleable, contextual menu for displaying lists of links. Made interactive with the <code>dropdown</code> javascript plugin.
                     </p>
                 </div>
+
+                <h2>Navigation Bar</h2>
+                <div class="span10">
+                    <div class="navigation-bar">
+                        <div class="navigation-bar-inner">
+                            <div class="brand"><a class="name" href="#">Product Name</a></div>
+
+                            <ul class="place-right">
+                                <li data-role="dropdown" class="sub-menu">
+                                    <a>Right Menu</a>
+                                    <ul class="dropdown-menu place-right">
+                                        <li><a href="#">SubItem 1</a></li>
+                                        <li><a href="#">SubItem 2</a></li>
+                                        <li><a href="#">SubItem 3</a></li>
+                                        <li><a href="#">SubItem 4</a></li>
+                                        <li><a href="#">SubItem 5</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+
+                            <ul>
+                                <li data-role="dropdown" class="sub-menu">
+                                    <a>Item 1</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">SubItem 1</a></li>
+                                        <li><a href="#">SubItem 2</a></li>
+                                        <li><a href="#">SubItem 3</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#">SubItem 4</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">Item 2</a></li>
+                                <li><a href="#">Item 3</a></li>
+                                <li><a href="#">Item 4</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+<pre class="prettyprint linenums span10">
+    &lt;div class="navigation-bar"&gt;
+        &lt;div class="navigation-bar-inner"&gt;
+            &lt;div class="brand"&gt;
+                &lt;span class="name"&gt;Project Name&lt;/span&gt;
+            &lt;/div&gt;
+
+            &lt;ul class="place-right"&gt;
+                &lt;li data-role="dropdown" class="sub-menu"&gt;
+                    &lt;a&gt;Right Menu&lt;/a&gt;
+                    &lt;ul class="dropdown-menu place-right"&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;SubItem&lt;/a&gt;&lt;/li&gt;
+                        ...
+                        &lt;li&gt;&lt;a href="#"&gt;SubItem&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/li&gt;
+            &lt;/ul&gt;
+
+            &lt;ul&gt;
+                &lt;li data-role="dropdown" class="sub-menu"&gt;
+                    &lt;a href="#"&gt;Item 1&lt;/a&gt;
+                    &lt;ul class="dropdown-menu"&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;SubItem&lt;/a&gt;&lt;/li&gt;
+                        ...
+                        &lt;li&gt;&lt;a href="#"&gt;SubItem&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/li&gt;
+                &lt;li&gt;&lt;a /&gt;&lt;/li&gt;
+                &lt;li class="divider"&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a /&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+</pre>
 
                 <h2>Horizontal menu</h2>
                 <div class="span10">
