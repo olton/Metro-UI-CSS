@@ -22,7 +22,8 @@ body {
 }
 
 .sprite-details li {
-    line-height: 24px;
+    line-height: 16px;
+    margin-bottom: 10px;
 }
 
 @media (min-width: 768px) and (max-width: 979px) {

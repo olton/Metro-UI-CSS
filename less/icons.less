@@ -1,21 +1,28 @@
-[class*=icon-] {
-    background-image: url("../images/icons.png");
-    background-repeat: no-repeat;
-    display: block;
+@icons_black: url("../images/icons.png");
+@icons_white: url("../images/icons-white.png");
 
-    &.right {
-        float: right;
-        margin-left: 4px;
+[class*=icon-] {
+    background-image: @icons_black;
+    background-repeat: no-repeat;
+    display: inline-block;
+    float: left;
+    margin-right: 10px;
+    margin-left: 0;
+
+    &.right, &.place-right {
+        float: right !important;
+        margin-left: 10px;
+        margin-right: 0;
     }
 
     &.white {
-        background-image: url("../images/icons-white.png") !important;
+        background-image: @icons_white !important;
     }
 }
 
 button, .button, .tool-button {
     &:active [class*=icon-] {
-        background-image: url("../images/icons-white.png");
+        background-image: @icons_white;
     }
 }
 

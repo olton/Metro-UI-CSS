@@ -113,19 +113,19 @@
                             <h2>Toolbar buttons group</h2>
                             <div class="toolbar">
                                 <div class="toolbar-group">
-                                    <button>1</button>
-                                    <button>2</button>
-                                    <button>3</button>
+                                    <button></button>
+                                    <button></button>
+                                    <button></button>
                                 </div>
                                 <div class="toolbar-group">
-                                    <button>1</button>
-                                    <button>2</button>
-                                    <button>3</button>
+                                    <button></button>
+                                    <button></button>
+                                    <button></button>
                                 </div>
                                 <div class="toolbar-group">
-                                    <button>1</button>
-                                    <button>2</button>
-                                    <button>3</button>
+                                    <button class="big"></button>
+                                    <button class="big"></button>
+                                    <button class="big"></button>
                                 </div>
                             </div>
 <pre class="prettyprint linenums">
@@ -209,9 +209,21 @@
                     <div class="row">
                         <div class="span10">
                             <h2>Any size of button</h2>
-                            <button class="mini">Mini button</button>
-                            <button>Default button</button>
-                            <button class="big">Big button</button>
+                            <div>
+                                <button class="mini"><i class="icon-adobe"></i>Mini</button>
+                                <button class="mini"><i class="icon-adobe right"></i>Mini</button>
+                                <button class="mini">Mini</button>
+                            </div>
+                            <div>
+                                <button><i class="icon-adobe"></i>Default</button>
+                                <button><i class="icon-adobe right"></i>Default</button>
+                                <button>Default</button>
+                            </div>
+                            <div>
+                                <button class="big">Big button</button>
+                                <button class="big"><i class="icon-mail"></i>Big button</button>
+                                <button class="big"><i class="icon-mail right"></i>Big button</button>
+                            </div>
 <pre class="prettyprint linenums">
     &lt;button class="mini"&gt; Caption &lt;/button&gt;
     &lt;button&gt; Caption &lt;/button&gt;

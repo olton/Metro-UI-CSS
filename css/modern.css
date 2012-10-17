@@ -1584,7 +1584,7 @@ button,
   text-align: center;
   vertical-align: middle;
   cursor: pointer;
-  padding: 4px 14px;
+  padding: 4px 10px;
 }
 button.standart,
 .button.standart {
@@ -1616,25 +1616,47 @@ button:focus,
   outline: 0;
   border: 1px #353535 dotted;
 }
+button [class*=icon-],
+.button [class*=icon-],
+.tool-button [class*=icon-] {
+  background-size: cover;
+  zoom: 1;
+}
 button.mini,
-.button.mini {
-  min-height: 22px;
-  height: 22px;
-  font-size: 8pt;
+.button.mini,
+.tool-button.mini {
+  min-height: 24px;
+  height: 26px;
+  font-size: .8em;
 }
 button.big,
-.button.big {
+.button.big,
+.tool-button.big {
   min-height: 48px;
   height: 48px;
-  font-size: 8pt;
+  font-size: 1.2em;
 }
-button [class*=icon-],
-.button [class*=icon-] {
-  float: left;
-  margin-right: 3px;
+button.big [class*=icon-],
+.button.big [class*=icon-],
+.tool-button.big [class*=icon-] {
+  margin-top: 6px;
+  zoom: 1;
 }
-a.button {
-  padding: 5px 14px;
+.tool-button [class*=icon-] {
+  margin-top: 2px !important;
+  margin-left: 7px !important;
+}
+.tool-button.mini {
+  min-width: 22px;
+  width: 22px;
+}
+.tool-button.big {
+  min-width: 48px;
+  width: 48px;
+}
+.tool-button.big [class*=icon-] {
+  margin-top: 2px !important;
+  margin-left: 15px !important;
 }
 .command-button {
   width: 330px;
@@ -1677,7 +1699,7 @@ a.button {
   text-align: center;
   vertical-align: middle;
   cursor: pointer;
-  padding: 4px 14px;
+  padding: 4px 10px;
   min-width: 32px;
   min-height: 32px;
   width: 32px;
@@ -1709,19 +1731,23 @@ a.button {
   outline: 0;
   border: 1px #353535 dotted;
 }
+.tool-button [class*=icon-] {
+  background-size: cover;
+  zoom: 1;
+}
 .tool-button.mini {
-  min-height: 22px;
-  height: 22px;
-  font-size: 8pt;
+  min-height: 24px;
+  height: 26px;
+  font-size: .8em;
 }
 .tool-button.big {
   min-height: 48px;
   height: 48px;
-  font-size: 8pt;
+  font-size: 1.2em;
 }
-.tool-button [class*=icon-] {
-  float: left;
-  margin-right: 3px;
+.tool-button.big [class*=icon-] {
+  margin-top: 6px;
+  zoom: 1;
 }
 .tool-button:active [class*=icon-] {
   background-image: url("../images/icons-white.png");
@@ -1755,7 +1781,7 @@ a.button {
   text-align: center;
   vertical-align: middle;
   cursor: pointer;
-  padding: 4px 14px;
+  padding: 4px 10px;
   min-width: 32px;
   min-height: 32px;
   width: 32px;
@@ -1764,6 +1790,48 @@ a.button {
   position: relative;
   padding: 0;
   margin-right: 0px;
+}
+.toolbar a [class*=icon-],
+.toolbar button [class*=icon-] {
+  background-size: cover;
+  zoom: 1;
+}
+.toolbar a.mini,
+.toolbar button.mini {
+  min-height: 24px;
+  height: 26px;
+  font-size: .8em;
+}
+.toolbar a.big,
+.toolbar button.big {
+  min-height: 48px;
+  height: 48px;
+  font-size: 1.2em;
+}
+.toolbar a.big [class*=icon-],
+.toolbar button.big [class*=icon-] {
+  margin-top: 6px;
+  zoom: 1;
+}
+.toolbar a [class*=icon-],
+.toolbar button [class*=icon-] {
+  margin-top: 2px !important;
+  margin-left: 7px !important;
+}
+.toolbar a.mini,
+.toolbar button.mini {
+  min-width: 22px;
+  width: 22px;
+}
+.toolbar a.big,
+.toolbar button.big {
+  min-width: 48px;
+  width: 48px;
+}
+.toolbar a.big [class*=icon-],
+.toolbar button.big [class*=icon-] {
+  margin-top: 2px !important;
+  margin-left: 15px !important;
 }
 .toolbar a.standart,
 .toolbar button.standart {
@@ -1795,22 +1863,27 @@ a.button {
   outline: 0;
   border: 1px #353535 dotted;
 }
+.toolbar a [class*=icon-],
+.toolbar button [class*=icon-] {
+  background-size: cover;
+  zoom: 1;
+}
 .toolbar a.mini,
 .toolbar button.mini {
-  min-height: 22px;
-  height: 22px;
-  font-size: 8pt;
+  min-height: 24px;
+  height: 26px;
+  font-size: .8em;
 }
 .toolbar a.big,
 .toolbar button.big {
   min-height: 48px;
   height: 48px;
-  font-size: 8pt;
+  font-size: 1.2em;
 }
-.toolbar a [class*=icon-],
-.toolbar button [class*=icon-] {
-  float: left;
-  margin-right: 3px;
+.toolbar a.big [class*=icon-],
+.toolbar button.big [class*=icon-] {
+  margin-top: 6px;
+  zoom: 1;
 }
 .toolbar a:active [class*=icon-],
 .toolbar button:active [class*=icon-] {
@@ -1870,7 +1943,7 @@ a.button {
   text-align: center;
   vertical-align: middle;
   cursor: pointer;
-  padding: 4px 14px;
+  padding: 4px 10px;
   min-width: 32px;
   min-height: 32px;
   width: 32px;
@@ -1879,6 +1952,48 @@ a.button {
   position: relative;
   padding: 0;
   margin-bottom: 5px;
+}
+.toolbar-vertical a [class*=icon-],
+.toolbar-vertical button [class*=icon-] {
+  background-size: cover;
+  zoom: 1;
+}
+.toolbar-vertical a.mini,
+.toolbar-vertical button.mini {
+  min-height: 24px;
+  height: 26px;
+  font-size: .8em;
+}
+.toolbar-vertical a.big,
+.toolbar-vertical button.big {
+  min-height: 48px;
+  height: 48px;
+  font-size: 1.2em;
+}
+.toolbar-vertical a.big [class*=icon-],
+.toolbar-vertical button.big [class*=icon-] {
+  margin-top: 6px;
+  zoom: 1;
+}
+.toolbar-vertical a [class*=icon-],
+.toolbar-vertical button [class*=icon-] {
+  margin-top: 2px !important;
+  margin-left: 7px !important;
+}
+.toolbar-vertical a.mini,
+.toolbar-vertical button.mini {
+  min-width: 22px;
+  width: 22px;
+}
+.toolbar-vertical a.big,
+.toolbar-vertical button.big {
+  min-width: 48px;
+  width: 48px;
+}
+.toolbar-vertical a.big [class*=icon-],
+.toolbar-vertical button.big [class*=icon-] {
+  margin-top: 2px !important;
+  margin-left: 15px !important;
 }
 .toolbar-vertical a.standart,
 .toolbar-vertical button.standart {
@@ -1910,22 +2025,27 @@ a.button {
   outline: 0;
   border: 1px #353535 dotted;
 }
+.toolbar-vertical a [class*=icon-],
+.toolbar-vertical button [class*=icon-] {
+  background-size: cover;
+  zoom: 1;
+}
 .toolbar-vertical a.mini,
 .toolbar-vertical button.mini {
-  min-height: 22px;
-  height: 22px;
-  font-size: 8pt;
+  min-height: 24px;
+  height: 26px;
+  font-size: .8em;
 }
 .toolbar-vertical a.big,
 .toolbar-vertical button.big {
   min-height: 48px;
   height: 48px;
-  font-size: 8pt;
+  font-size: 1.2em;
 }
-.toolbar-vertical a [class*=icon-],
-.toolbar-vertical button [class*=icon-] {
-  float: left;
-  margin-right: 3px;
+.toolbar-vertical a.big [class*=icon-],
+.toolbar-vertical button.big [class*=icon-] {
+  margin-top: 6px;
+  zoom: 1;
 }
 .toolbar-vertical a:active [class*=icon-],
 .toolbar-vertical button:active [class*=icon-] {
@@ -2385,7 +2505,8 @@ table.bordered tbody tr:last-child td {
   content: "\3009";
   display: inline-block;
   font-size: 10pt;
-  font-family: sans;
+  font-family: Helvetica, sans-serif, sans;
+  letter-spacing: 0px;
   top: 3px;
   right: 10px;
   -webkit-transform: rotate(90deg);
@@ -3760,7 +3881,7 @@ input[type=submit] {
   text-align: center;
   vertical-align: middle;
   cursor: pointer;
-  padding: 4px 14px;
+  padding: 4px 10px;
   border-radius: 0;
 }
 input[type=button].standart,
@@ -3800,25 +3921,31 @@ input[type=submit]:focus {
   outline: 0;
   border: 1px #353535 dotted;
 }
+input[type=button] [class*=icon-],
+input[type=reset] [class*=icon-],
+input[type=submit] [class*=icon-] {
+  background-size: cover;
+  zoom: 1;
+}
 input[type=button].mini,
 input[type=reset].mini,
 input[type=submit].mini {
-  min-height: 22px;
-  height: 22px;
-  font-size: 8pt;
+  min-height: 24px;
+  height: 26px;
+  font-size: .8em;
 }
 input[type=button].big,
 input[type=reset].big,
 input[type=submit].big {
   min-height: 48px;
   height: 48px;
-  font-size: 8pt;
+  font-size: 1.2em;
 }
-input[type=button] [class*=icon-],
-input[type=reset] [class*=icon-],
-input[type=submit] [class*=icon-] {
-  float: left;
-  margin-right: 3px;
+input[type=button].big [class*=icon-],
+input[type=reset].big [class*=icon-],
+input[type=submit].big [class*=icon-] {
+  margin-top: 6px;
+  zoom: 1;
 }
 input[type=button]:active [class*=icon-],
 input[type=reset]:active [class*=icon-],
@@ -4295,11 +4422,16 @@ pre code {
 [class*=icon-] {
   background-image: url("../images/icons.png");
   background-repeat: no-repeat;
-  display: block;
+  display: inline-block;
+  float: left;
+  margin-right: 10px;
+  margin-left: 0;
 }
-[class*=icon-].right {
-  float: right;
-  margin-left: 4px;
+[class*=icon-].right,
+[class*=icon-].place-right {
+  float: right !important;
+  margin-left: 10px;
+  margin-right: 0;
 }
 [class*=icon-].white {
   background-image: url("../images/icons-white.png") !important;

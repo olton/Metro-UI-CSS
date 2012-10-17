@@ -42,8 +42,6 @@
 
 button, .button {
     #font > .control;
-    //min-width: 90px;
-    //min-height: 32px;
     height: 32px;
     background-color: #ccc;
     border: 1px transparent solid;
@@ -55,7 +53,7 @@ button, .button {
     text-align: center;
     vertical-align: middle;
     cursor: pointer;
-    padding: 4px 14px;
+    padding: 4px 10px;
 
     &.standart {
         min-width: 90px;
@@ -86,25 +84,55 @@ button, .button {
     &:hover {
     }
 
+}
+
+button, .button, .tool-button {
+    [class*=icon-] {
+        background-size: cover;
+        zoom: 1;
+    }
+
     &.mini {
-        min-height: 22px;
-        height: 22px;
-        font-size: 8pt;
+        min-height: 24px;
+        height: 26px;
+        font-size: .8em;
+
+        [class*=icon-] {
+            
+        }
     }
     &.big {
         min-height: 48px;
         height: 48px;
-        font-size: 8pt;
-    }
+        font-size: 1.2em;
 
-    [class*=icon-]{
-        float: left;
-        margin-right: 3px;
+        [class*=icon-] {
+            margin-top: 6px;
+            zoom: 1;
+        }
     }
 }
 
-a.button {
-    padding: 5px 14px;
+.tool-button {
+    [class*=icon-] {
+        margin-top: 2px !important;
+        margin-left: 7px !important;
+    }
+
+    &.mini {
+        min-width: 22px;
+        width: 22px;
+    }
+
+    &.big {
+        min-width: 48px;
+        width: 48px;
+
+        [class*=icon-] {
+            margin-top: 2px !important;
+            margin-left: 15px !important;
+        }
+    }
 }
 
 .command-button {
