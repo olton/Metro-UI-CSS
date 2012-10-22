@@ -3738,6 +3738,9 @@ table.bordered tbody tr:last-child td {
   background: #e0e0e0;
 }
 .input-control > input[type=text],
+.input-control > input[type=email],
+.input-control > input[type=url],
+.input-control > input[type=phone],
 .input-control > input[type=password],
 .input-control > select,
 .input-control > textarea {
@@ -3751,12 +3754,18 @@ table.bordered tbody tr:last-child td {
   width: 100%;
 }
 .input-control > input[type=text]:disabled,
+.input-control > input[type=email]:disabled,
+.input-control > input[type=url]:disabled,
+.input-control > input[type=phone]:disabled,
 .input-control > input[type=password]:disabled,
 .input-control > select:disabled,
 .input-control > textarea:disabled {
   background-color: #eaeaea;
 }
 .input-control > input[type=text]:focus,
+.input-control > input[type=email]:focus,
+.input-control > input[type=url]:focus,
+.input-control > input[type=phone]:focus,
 .input-control > input[type=password]:focus,
 .input-control > select:focus,
 .input-control > textarea:focus {
@@ -3772,19 +3781,37 @@ table.bordered tbody tr:last-child td {
 .input-control.text input[type=text]:not(:focus) + .helper,
 .input-control.password input[type=text]:not(:focus) + .helper,
 .input-control.text input[type=password]:not(:focus) + .helper,
-.input-control.password input[type=password]:not(:focus) + .helper {
+.input-control.password input[type=password]:not(:focus) + .helper,
+.input-control.text input[type=email]:not(:focus) + .helper,
+.input-control.password input[type=email]:not(:focus) + .helper,
+.input-control.text input[type=phone]:not(:focus) + .helper,
+.input-control.password input[type=phone]:not(:focus) + .helper,
+.input-control.text input[type=url]:not(:focus) + .helper,
+.input-control.password input[type=url]:not(:focus) + .helper {
   display: none;
 }
 .input-control.text input[type=text]:focus + .helper,
 .input-control.password input[type=text]:focus + .helper,
 .input-control.text input[type=password]:focus + .helper,
-.input-control.password input[type=password]:focus + .helper {
+.input-control.password input[type=password]:focus + .helper,
+.input-control.text input[type=email]:focus + .helper,
+.input-control.password input[type=email]:focus + .helper,
+.input-control.text input[type=phone]:focus + .helper,
+.input-control.password input[type=phone]:focus + .helper,
+.input-control.text input[type=url]:focus + .helper,
+.input-control.password input[type=url]:focus + .helper {
   display: block;
 }
 .input-control.text input[type=text]:not(:focus) + .helper:active,
 .input-control.password input[type=text]:not(:focus) + .helper:active,
 .input-control.text input[type=password]:not(:focus) + .helper:active,
-.input-control.password input[type=password]:not(:focus) + .helper:active {
+.input-control.password input[type=password]:not(:focus) + .helper:active,
+.input-control.text input[type=email]:not(:focus) + .helper:active,
+.input-control.password input[type=email]:not(:focus) + .helper:active,
+.input-control.text input[type=phone]:not(:focus) + .helper:active,
+.input-control.password input[type=phone]:not(:focus) + .helper:active,
+.input-control.text input[type=url]:not(:focus) + .helper:active,
+.input-control.password input[type=url]:not(:focus) + .helper:active {
   display: block;
 }
 .input-control {

@@ -173,7 +173,7 @@
                             </form>
 <pre class="prettyprint linenums">
     &lt;div class="input-control text"&gt;
-        &lt;input type="text" /&gt;
+        &lt;input type="text[email, phone, url]" /&gt;
         &lt;span class="helper"&gt;&lt;/span&gt;
     &lt;/div&gt;
 </pre>
@@ -209,6 +209,24 @@
 
                     <div class="row">
                         <div class="span10">
+                            <div class="input-control text">
+                                <input type="phone" placeholder="Enter phone" required="required"/>
+                                <span class="helper"></span>
+                            </div>
+                            <div class="input-control text">
+                                <input type="email" placeholder="Enter email" required="required" />
+                                <span class="helper"></span>
+                            </div>
+                            <div class="input-control text">
+                                <input type="url" placeholder="Enter url"  required="required"/>
+                                <span class="helper"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="span10">
+                            <h2>Select</h2>
                             <form>
                                 <div class="input-control select">
                                     <select>
@@ -244,6 +262,7 @@
     &lt;/div&gt;
 </pre>
 
+                                <h2>Textarea</h2>
                                 <div class="input-control textarea">
                                     <textarea></textarea>
                                 </div>
