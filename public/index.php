@@ -80,15 +80,14 @@
                         <div class="span4">
                             <img src="images/author.jpg" style="width:100%"/>
                             <p class="tertiary-info-secondary-text bg-color-grayDark" style="padding: 10px; color: #fff;">Hi! My name is Sergey Pimenov and i'm author of Metro UI CSS from <abbr title="The capital of Ukraine">Kiev</abbr>, <abbr title="The center of Europe">Ukraine</abbr>.</p>
-                            <div>
-                                <div class='pluso pluso-theme-color pluso-round pluso-small'><div class='pluso-more-container'><a class='pluso-more' href=''></a><ul class='pluso-counter-container'><li></li><li class='pluso-counter'></li><li></li></ul></div><a class='pluso-facebook'></a><a class='pluso-twitter'></a><br><a class='pluso-google'></a></div>
-                                <script type='text/javascript'>if(!window.pluso){pluso={version:'0.9.1',url:'http://share.pluso.ru/'};h=document.getElementsByTagName('head')[0];l=document.createElement('link');l.href=pluso.url+'pluso.css';l.type='text/css';l.rel='stylesheet';s=document.createElement('script');s.src=pluso.url+'pluso.js';s.charset='UTF-8';h.appendChild(l);h.appendChild(s)}</script>
-                            </div>
                         </div>
                         <div class="span4">
                             <h2>Welcome</h2>
                             <p>
                                 Metro UI CSS a set of styles to create a site with an interface similar to Windows 8 Metro UI. This set of styles was developed as a self-contained solution.
+                            </p>
+                            <p>
+                                Metro UI CSS contained two type of licenses: <a href="https://github.com/olton/Metro-UI-CSS/blob/master/LICENSE">MIT</a> and <a href="https://github.com/olton/Metro-UI-CSS/blob/master/LICENSE-FOR-COMMERCIAL-USE">Commercial</a>
                             </p>
                             <h3>LESS</h3>
                             <p class="tertiary-info-text">
@@ -105,6 +104,12 @@
                             <p class="tertiary-info-secondary-text">All modern browsers. Internet Explorer supported on 9+</p>
                         </div>
                         <div class="span4">
+                            <h2>Socialize</h2>
+                            <div>
+                                <div class='pluso pluso-theme-color pluso-round'><div class='pluso-more-container'><ul class='pluso-counter-container'><li></li><li class='pluso-counter'></li><li></li></ul></div><a class='pluso-facebook'></a><a class='pluso-twitter'></a><br><a class='pluso-google'></a></div>
+                                <script type='text/javascript'>if(!window.pluso){pluso={version:'0.9.1',url:'http://share.pluso.ru/'};h=document.getElementsByTagName('head')[0];l=document.createElement('link');l.href=pluso.url+'pluso.css';l.type='text/css';l.rel='stylesheet';s=document.createElement('script');s.src=pluso.url+'pluso.js';s.charset='UTF-8';h.appendChild(l);h.appendChild(s)}</script>
+                            </div>
+                            <br />
                             <h2>GitHub Project Info:</h2>
                             <table class="github-info" data-repo="olton/Metro-UI-CSS">
                                 <tbody>
@@ -124,6 +129,7 @@
                                 </tr>
                                 </tbody>
                             </table>
+                            <!--
                             <h2>Immediate objectives:</h2>
                             <ol>
                                 <li>Responsive design</li>
@@ -132,8 +138,9 @@
                                 <li>Integration in Visual Studio</li>
                                 <li>Much, much more...</li>
                             </ol>
+                            -->
                             <br />
-                            <div>
+                            <div class="text-center">
                                 <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
                                     <input type="hidden" name="cmd" value="_s-xclick">
                                     <input type="hidden" name="hosted_button_id" value="AVMB2NYSENK3A">
