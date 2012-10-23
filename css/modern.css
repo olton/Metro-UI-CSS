@@ -4451,14 +4451,11 @@ pre code {
   background-image: url("../images/icons.png");
   background-repeat: no-repeat;
   display: inline-block;
-  float: left;
-  margin-right: 10px;
   margin-left: 0;
 }
 [class*=icon-].right,
 [class*=icon-].place-right {
   float: right !important;
-  margin-left: 10px;
   margin-right: 0;
 }
 [class*=icon-].white {
