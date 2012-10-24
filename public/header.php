@@ -27,7 +27,7 @@
 
         <div class="brand">
             <a href="/"><span class="metro-ui-logo place-left"></span></a>
-            <a href="/"><span class="name">Metro UI CSS <sup class="fg-color-yellow tertiary-info-secondary-text"> v 0.1.3</sup></span></a>
+            <a href="/"><span class="name">Metro UI CSS <sup class="fg-color-yellow tertiary-info-secondary-text"> v 0.1.4</sup></span></a>
         </div>
 
         <ul>

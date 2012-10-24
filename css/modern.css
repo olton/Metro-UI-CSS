@@ -1,5 +1,5 @@
 /*
- * Metro UI CSS v 0.1.3
+ * Metro UI CSS v 0.1.4
  * Copyright 2012 Sergey Pimenov
  * Licensed under the MIT Lilcense
  */
@@ -450,7 +450,7 @@ table {
   border-spacing: 0;
 }
 /*
- * Metro UI CSS v 0.1.1
+ * Metro UI CSS v 0.1.4
  * Copyright 2012 Sergey Pimenov
  * Licensed under the MIT Lilcense
  *
@@ -588,7 +588,7 @@ table {
   z-index: 2000;
 }
 /*
- * Metro UI CSS v 0.1.1
+ * Metro UI CSS v 0.1.4
  * Copyright 2012 Sergey Pimenov
  * Licensed under the MIT Lilcense
  *
@@ -742,7 +742,7 @@ table {
   border-color: #525252 !important;
 }
 /*
- * Metro UI CSS v 0.1.1
+ * Metro UI CSS v 0.1.4
  * Copyright 2012 Sergey Pimenov
  * Licensed under the MIT Lilcense
  *
@@ -802,7 +802,7 @@ table {
   width: 20px;
 }
 /*
- * Metro UI CSS v 0.1.1
+ * Metro UI CSS v 0.1.4
  * Copyright 2012 Sergey Pimenov
  * Licensed under the MIT Lilcense
  *
@@ -1279,7 +1279,7 @@ ol.unstyled,
   list-style: none;
 }
 /*
- * Metro UI CSS v 0.1.1
+ * Metro UI CSS v 0.1.4
  * Copyright 2012 Sergey Pimenov
  * Licensed under the MIT Lilcense
  *
@@ -1535,7 +1535,7 @@ ol.unstyled,
   background-color: #2d89ef !important;
 }
 /*
- * Metro UI CSS v 0.1.1
+ * Metro UI CSS v 0.1.4
  * Copyright 2012 Sergey Pimenov
  * Licensed under the MIT Lilcense
  *
@@ -2116,7 +2116,7 @@ button.big [class*=icon-],
   color: #fff;
 }
 /*
- * Metro UI CSS v 0.1.1
+ * Metro UI CSS v 0.1.4
  * Copyright 2012 Sergey Pimenov
  * Licensed under the MIT Lilcense
  *
@@ -2243,7 +2243,7 @@ table.bordered tbody tr:last-child td {
   border-bottom: 0;
 }
 /*
- * Metro UI CSS v 0.1.1
+ * Metro UI CSS v 0.1.4
  * Copyright 2012 Sergey Pimenov
  * Licensed under the MIT Lilcense
  *
@@ -2418,7 +2418,7 @@ table.bordered tbody tr:last-child td {
   clear: both;
 }
 /*
- * Metro UI CSS v 0.1.1
+ * Metro UI CSS v 0.1.4
  * Copyright 2012 Sergey Pimenov
  * Licensed under the MIT Lilcense
  *
@@ -2442,7 +2442,7 @@ table.bordered tbody tr:last-child td {
   clear: both;
 }
 /*
- * Metro UI CSS v 0.1.1
+ * Metro UI CSS v 0.1.4
  * Copyright 2012 Sergey Pimenov
  * Licensed under the MIT Lilcense
  *
@@ -2843,7 +2843,7 @@ table.bordered tbody tr:last-child td {
   transform: rotate(90deg);
 }
 /*
- * Metro UI CSS v 0.1.1
+ * Metro UI CSS v 0.1.4
  * Copyright 2012 Sergey Pimenov
  * Licensed under the MIT Lilcense
  *
@@ -3168,7 +3168,7 @@ table.bordered tbody tr:last-child td {
   height: 88px;
 }
 /*
- * Metro UI CSS v 0.1.1
+ * Metro UI CSS v 0.1.4
  * Copyright 2012 Sergey Pimenov
  * Licensed under the MIT Lilcense
  *
@@ -3485,7 +3485,7 @@ table.bordered tbody tr:last-child td {
   outline: 3px #3a3a3a solid;
 }
 /*
- * Metro UI CSS v 0.1.1
+ * Metro UI CSS v 0.1.4
  * Copyright 2012 Sergey Pimenov
  * Licensed under the MIT Lilcense
  *
@@ -3985,7 +3985,7 @@ input[type=submit] {
   color: #fff;
 }
 /*
- * Metro UI CSS v 0.1.1
+ * Metro UI CSS v 0.1.4
  * Copyright 2012 Sergey Pimenov
  * Licensed under the MIT Lilcense
  *
@@ -4096,7 +4096,7 @@ input[type=submit] {
   color: #1e1e1e;
 }
 /*
- * Metro UI CSS v 0.1.1
+ * Metro UI CSS v 0.1.4
  * Copyright 2012 Sergey Pimenov
  * Licensed under the MIT Lilcense
  *
@@ -4249,7 +4249,7 @@ input[type=submit] {
   color: red;
 }
 /*
- * Metro UI CSS v 0.1.1
+ * Metro UI CSS v 0.1.4
  * Copyright 2012 Sergey Pimenov
  * Licensed under the MIT Lilcense
  *
@@ -4298,7 +4298,7 @@ pre code {
   border: 0;
 }
 /*
- * Metro UI CSS v 0.1.1
+ * Metro UI CSS v 0.1.4
  * Copyright 2012 Sergey Pimenov
  * Licensed under the MIT Lilcense
  *
@@ -4394,6 +4394,13 @@ pre code {
 .page-control .frames .frame.active {
   display: block;
 }
+/*
+ * Metro UI CSS v 0.1.4
+ * Copyright 2012 Sergey Pimenov
+ * Licensed under the MIT Lilcense
+ *
+ * Accordion.less
+ */
 .accordion {
   margin-left: 0;
   list-style: none;
@@ -4447,6 +4454,13 @@ pre code {
   background-color: #1e1e1e;
   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHpSURBVEhLtZavT8JRFMXBGQgEg5FAYNNgIBAMBhpsEowEIpFgYLMYMBsMFht/gRNHgRn8EzDoCBY2CAQ3g4GAAz/ncUW+ym++nu3swnn3nfu47/se32BgDobDYRie8DEFozAiHXRhB9aDwWAFvjl1CqYWkDGhSDwjykgmL8QW1LgK7cEMPIA3jF/MKzTGYDBIwLYxbfJMkHMIm/B9YT4JWdiDZVa5Y/JCkBtizqXNPTXZCwa0ciXkTFoZFEoyvw/Vuh8wEEZUS8omrQ28Svh8wO8HYiy2iUu3ZRbw2MarMV6srV6tWbihywLPOH5qVUy9z8FXG/MNeD7A8y0+6xBVnOov7mFKBaJ2iHwFns+EqApot90JnQR9XAk2bRItikRUYBt+OukfoAIdFqCLzAOqrwSbNokIvl1XAOri8hWY7xM6KlCH3qPtD45hTZV2eV51KBIjfXOo5fj1iHEn8OUaNhFCTtgQeD3Cqn11FfUrdJ9fmrQ28CjAPp7agx8gpqF+VtKklSFTPHST5k3ygoEiVPUS1PlYGszTymV+ZdJ0kJCxxAZFRps0B+RoQ9VzPSjTV/4bJEZgGeoa161YwCgpM+MRWh7eWU4Vzdtzw9zXFibGCFnoXls4sO5fCrPv15Ya2i18kv4XgcAXTr+7IYi7bgIAAAAASUVORK5CYII%3D);
 }
+/*
+ * Metro UI CSS v 0.1.4
+ * Copyright 2012 Sergey Pimenov
+ * Licensed under the MIT Lilcense
+ *
+ * Icons.less
+ */
 [class*=icon-] {
   background-image: url("../images/icons.png");
   background-repeat: no-repeat;
@@ -5905,11 +5919,11 @@ button:active [class*=icon-],
   height: 16px;
 }
 /*
- * Metro UI CSS v 0.1.3
+ * Metro UI CSS v 0.1.4
  * Copyright 2012 Sergey Pimenov
  * Licensed under the MIT Lilcense
  *
- * rating.
+ * rating.less
  */
 .static-rating {
   background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABsAAABOCAYAAADRl20RAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OUMwOUI4NjQxQ0Y1MTFFMjlGOThBQTVDRENEQURDNUQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OUMwOUI4NjUxQ0Y1MTFFMjlGOThBQTVDRENEQURDNUQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5QzAwNDIyNjFDRjUxMUUyOUY5OEFBNUNEQ0RBREM1RCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5QzAwNDIyNzFDRjUxMUUyOUY5OEFBNUNEQ0RBREM1RCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PmSPr8EAAASsSURBVHjavFlpiFNXFE6eMWaqcaGjMSOtrfpLrYpLcSqKqKh16kKeMg6jiFNLR4SCIEp/tBSFUmhBwQX/uNA/LpWWYq1iW1CxWLQVFRxkHNzTwaWdcamijsbvpCdwfd68d89N3hz4SPK27517z/Ldm2hVVVVEaFHgLeCy9EYnIrdK4G2L+6zIaCi6A73DJqPr0/x9QNhkfYGuiofRMMlUbxLA62GRdQFSmvkLhawfENOQOWGQ6QKiK8+jkcUEF6eKHB8IPDe4/xmRJYGh0sjyvEQq4JqHwCkiuwTcBcYA3SLlt1vAaeBpYc7+AY4BbWUmugicJKJ8OCeTycKJDuAGe9e7RJKn7M0Vb4CoRhN9DmgH3rGsnfdpfoD/dNGos2vAPWAsUCEg+hs4y6MkyjPyrklA1MFD12Gb1CkBWSyoVjoB51LC+UrbklUq7cTU+vsVB8fiLSlJzwCPNeeo7fTxG+dioqa/JneaOFLJbgLDNQWaXvJfiWc00XHl923gqEJE9oSj70+Pl2mpZ2klnM97SLzWyuWu4GUFV6B2E7Iok5E3Z1sbVz4yCIy8l+mt6ympR3BTfYUsqhGpPWmSQXI1IIq1PQyENPyDgAsmc0Zl6mqAFllRdEwbVz4BLmjnLJvN6l993TfFnjcF+ATY6DeuuufaVPWFwBDg3bBFKs1Hhr/Xhk02Q2msC6X3OxZDqGrGSWGRvQbM8RyrC4usBujhOeZKOoNjOYRqDZ1uvGSNrv16mmEX/oFbiNcOABsMnvGQHjIS+MqnKJsMb03ANSSEM9FcLkfVYjJ+7JUsEgR2EKh//tmqtvyc4csRfIxm9VouywHrgA+IKD9n5JlSD7txzfuoRCJaOywGyf6XAkQlU0g/xMdmy4UGNdsMiJqNQh8XbsPHROC6kIjmfTzQLM0z0uurBUTUB+uBB7ZJXSMg6xlUK/3IaL5mC4cxY0s2FehlQebYkLlFjh8CGlgZ6yRgtYgMoU+la64mdygl3gd2AMOAPYKXLOrZZM/y5xCvRLcrx+5wJ3BZiqtkUQmZq4TzMmCWT859z2p4N/9+k1eswfIbQ0gvMA84TESDqqtNEpu8rLt04sR3+NwCzOc8DfSM5PPnwEwfIu2I4PqCl4+1zVNXG8mG/Pp7MS9IBnwMbPJztWXahLKIVJIBy21agQ1ZLe91jQqbLMHB0ymKuIZ38QqaMdQ9YlXODfQrTaWSJTm5O0URz2EJrtoCXhx2iiJO8eLQTBEP/uW4iSKOsyKOa879GJTgbA9irBe/lAyHx+Zq2pHXaEfVzZcrlKapXLUrQ1DEP5GGRPlqd7iO/Rb5f0P6rzKS0NbFFxRYRPRKIYaHCRanDSUS0cPrQfJzYNUHaSMvg2wUMe0xuyBqMQp9XLiVpUFWSLQLeI8eIc2zP4BPBUS0UlkU0ex6h6GIaVNzgm0FSQjJSlLEMzS7A0HmRiz3iF2fJCV5d1tz7g1gnIgMoR/XLCooAJbw8W2sovZpbp8v9WxK5OU/fw6wIv5WOXaLW0ytx8uMlGyBUgmW0iLcJ+f2erwcXEwMOZohjHGjPMgP2WkQGF4vXVPP6K3WsASQVpCCl9r94xcCDACHgA63y6lwZwAAAABJRU5ErkJggg%3D%3D) top left repeat-x;
@@ -5981,6 +5995,13 @@ button:active [class*=icon-],
 .rating:after {
   clear: both;
 }
+/*
+ * Metro UI CSS v 0.1.4
+ * Copyright 2012 Sergey Pimenov
+ * Licensed under the MIT Lilcense
+ *
+ * Progress.less
+ */
 .progress-bar {
   height: 5px;
   width: 100%;

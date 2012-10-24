@@ -1,5 +1,12 @@
 /*
- * Metro UI CSS v 0.1.1
+ * Metro UI CSS v 0.1.4
+ * Copyright 2012 Sergey Pimenov
+ * Licensed under the MIT Lilcense
+ *
+ * responsive.less
+ */
+/*
+ * Metro UI CSS v 0.1.4
  * Copyright 2012 Sergey Pimenov
  * Licensed under the MIT Lilcense
  *
@@ -152,6 +159,13 @@
 .border-color-grayDark {
   border-color: #525252 !important;
 }
+/*
+ * Metro UI CSS v 0.1.4
+ * Copyright 2012 Sergey Pimenov
+ * Licensed under the MIT Lilcense
+ *
+ * responsive.less
+ */
 /* Large desktop */
 @media (min-width: 1200px) {
   
@@ -164,6 +178,13 @@
     display: block !important;
   }
 }
+/*
+ * Metro UI CSS v 0.1.4
+ * Copyright 2012 Sergey Pimenov
+ * Licensed under the MIT Lilcense
+ *
+ * responsive.less
+ */
 /* Portrait tablet to landscape and desktop */
 @media (min-width: 768px) and (max-width: 979px) {
   .span1 {
@@ -265,6 +286,13 @@
     border: 0;
   }
 }
+/*
+ * Metro UI CSS v 0.1.4
+ * Copyright 2012 Sergey Pimenov
+ * Licensed under the MIT Lilcense
+ *
+ * responsive.less
+ */
 /* Landscape phone to portrait tablet */
 @media (max-width: 767px) {
   body {
@@ -322,6 +350,13 @@
     border: 0;
   }
 }
+/*
+ * Metro UI CSS v 0.1.4
+ * Copyright 2012 Sergey Pimenov
+ * Licensed under the MIT Lilcense
+ *
+ * responsive.less
+ */
 /* Landscape phones and down */
 @media (max-width: 480px) {
   .page.secondary .page-back {
