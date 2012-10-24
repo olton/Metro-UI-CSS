@@ -65,6 +65,8 @@
                     <li><a href="pagecontrol.php">Page control</a></li>
                     <li><a href="accordion.php">Accordion</a></li>
                     <li><a href="buttons-set.php">Buttons set</a></li>
+                    <li><a href="rating.php">Rating</a></li>
+                    <li><a href="progress.php">Progress bars</a></li>
                     <li class="divider"></li>
                     <li><a href="notices.php">Notices and Replies</a></li>
                     <li class="divider"></li>
