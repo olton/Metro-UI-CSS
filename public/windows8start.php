@@ -14,6 +14,7 @@
     <script src="js/google-analytics.js"></script>
     <script src="js/jquery.mousewheel.min.js"></script>
     <script src="js/github.info.js"></script>
+    <script src="js/tile-image-slider.js"></script>
 
     <title>Modern UI CSS</title>
 
@@ -175,6 +176,15 @@
                     <div class="brand">
                         <div class="badge">12</div>
                         <img class="icon" src="images/Mail128.png"/>
+                    </div>
+                </div>
+                <div class="tile double" data-role="image-slider">
+                    <div class="tile-content image images-slider">
+                        <img src="images/1.jpg" alt="">
+                        <img src="images/2.jpg" alt="">
+                        <img src="images/3.jpg" alt="">
+                        <img src="images/4.jpg" alt="">
+                        <img src="images/5.jpg" alt="">
                     </div>
                 </div>
 

@@ -21,7 +21,7 @@
 
                 clearDropdown();
 
-                var $m = $(this).children(".dropdown-menu");
+                var $m = $(this).children(".dropdown-menu, .sidebar-dropdown-menu");
                 if ($m.css('display') == "block") {
                     $m.slideUp('fast');
                     $(this).removeClass("active");

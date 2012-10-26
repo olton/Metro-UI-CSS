@@ -106,9 +106,10 @@
                         <div class="span4">
                             <h2>Socialize</h2>
                             <div>
-                                <div class='pluso pluso-theme-color pluso-round'><div class='pluso-more-container'><ul class='pluso-counter-container'><li></li><li class='pluso-counter'></li><li></li></ul></div><a class='pluso-facebook'></a><a class='pluso-twitter'></a><br><a class='pluso-google'></a></div>
+                                <div class='pluso pluso-theme-color pluso-round pluso-plus'><div class='pluso-more-container'><a class='pluso-more' href=''></a><ul class='pluso-counter-container'><li></li><li class='pluso-counter'></li><li></li></ul></div><a class='pluso-facebook'></a><a class='pluso-twitter'></a><br><a class='pluso-google'></a></div>
                                 <script type='text/javascript'>if(!window.pluso){pluso={version:'0.9.1',url:'http://share.pluso.ru/'};h=document.getElementsByTagName('head')[0];l=document.createElement('link');l.href=pluso.url+'pluso.css';l.type='text/css';l.rel='stylesheet';s=document.createElement('script');s.src=pluso.url+'pluso.js';s.charset='UTF-8';h.appendChild(l);h.appendChild(s)}</script>
                             </div>
+                            <p>If you like the project, share it...</p>
                             <br />
                             <h2>GitHub Project Info:</h2>
                             <table class="github-info" data-repo="olton/Metro-UI-CSS">

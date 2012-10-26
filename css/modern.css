@@ -839,19 +839,6 @@ table {
   font-weight: 400;
   src: local('Open Sans'), local('OpenSans'), url(http://themes.googleusercontent.com/static/fonts/opensans/v6/K88pR3goAWT7BTt32Z01mz8E0i7KZn-EPnyo3HZu7kw.woff) format('woff');
 }
-/*
-@baseFontUI: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
-@baseFontText: 'Lucida Grande', Verdana, Arial, Helvetica, sans-serif;
-
-.font-ui          {font-family: @baseFontUI;}
-.font-text        {font-family: @baseFontText;}
-
-.light-text            {font-weight: 200;}
-.semilight-text        {font-weight: 300;}
-.regular-text          {font-weight: 400;}
-.semibold-text         {font-weight: 600;}
-.bold-text             {font-weight: 700;}
-*/
 .text-rest-state {
   color: #000000;
 }
@@ -1484,6 +1471,22 @@ ol.unstyled,
 .page.fixed-header .page-region {
   padding-top: 140px;
 }
+.page.with-sidebar .page-region {
+  margin-left: 220px;
+  width: auto;
+  *zoom: 1;
+}
+.page.with-sidebar .page-region .page-region-content {
+  padding-left: 20px;
+}
+.page.with-sidebar .page-region:before,
+.page.with-sidebar .page-region:after {
+  display: table;
+  content: "";
+}
+.page.with-sidebar .page-region:after {
+  clear: both;
+}
 .app-bar {
   position: absolute;
   bottom: 0;
@@ -2097,7 +2100,7 @@ button.big [class*=icon-],
   margin-left: 0px;
   box-sizing: border-box;
   border: 1px transparent solid;
-  z-index: 1001;
+  z-index: 2;
 }
 .button-set a,
 .button-set button {
@@ -2372,6 +2375,9 @@ table.bordered tbody tr:last-child td {
 }
 .grid {
   margin: 0 0 20px;
+  display: block;
+  height: auto;
+  width: 100%;
   *zoom: 1;
 }
 .grid.no-margin {
@@ -2841,6 +2847,148 @@ table.bordered tbody tr:last-child td {
   -ms-transform: rotate(90deg);
   -o-transform: rotate(90deg);
   transform: rotate(90deg);
+}
+/*
+ * Metro UI CSS v 0.1.4
+ * Copyright 2012 Sergey Pimenov
+ * Licensed under the MIT Lilcense
+ *
+ * Sidebar.less
+ */
+.page-sidebar {
+  display: block;
+  width: 213px;
+  float: left;
+  min-height: 100% !important;
+  height: auto;
+  background-color: #EBEBEB;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-top: 10px;
+  margin-left: 7px;
+}
+.page-sidebar a {
+  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 11pt;
+  letter-spacing: 0.01em;
+  line-height: 14pt;
+  color: #000000;
+  display: block;
+  width: 100%;
+  padding: 5px 20px 5px 10px;
+  white-space: nowrap;
+  font-size: 14px;
+  cursor: pointer;
+}
+.page-sidebar a:hover {
+  color: rgba(0, 0, 0, 0.8);
+}
+.page-sidebar a:active {
+  color: rgba(0, 0, 0, 0.4);
+}
+.page-sidebar a:hover {
+  background-color: #2d89ef !important;
+  color: #ffffff !important;
+}
+.page-sidebar li {
+  display: list-item;
+  line-height: 20px;
+  position: relative;
+}
+.page-sidebar  > ul > li > a {
+  font-size: 1.1em;
+}
+.page-sidebar  > ul > li a.lead,
+.page-sidebar  > ul > li.lead a,
+.page-sidebar  > ul > li.lead {
+  font-weight: bold;
+}
+.page-sidebar  > ul > li.sticker:before {
+  content: ".";
+  position: absolute;
+  width: 7px;
+  height: 28px;
+  left: -7px;
+  text-indent: -9999px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  background-color: #ebebeb;
+}
+.page-sidebar  > ul > li.sticker.sticker-color-blue:before {
+  background-color: #2d89ef;
+}
+.page-sidebar  > ul > li.sticker.sticker-color-blueLight:before {
+  background-color: #44a3aa;
+}
+.page-sidebar  > ul > li.sticker.sticker-color-blueDark:before {
+  background-color: #0a5ac2;
+}
+.page-sidebar  > ul > li.sticker.sticker-color-green:before {
+  background-color: #00a300 !important;
+}
+.page-sidebar  > ul > li.sticker.sticker-color-greenLight:before {
+  background-color: #99b433 !important;
+}
+.page-sidebar  > ul > li.sticker.sticker-color-greenDark:before {
+  background-color: #005200 !important;
+}
+.page-sidebar  > ul > li.sticker.sticker-color-red:before {
+  background-color: #b91d47 !important;
+}
+.page-sidebar  > ul > li.sticker.sticker-color-yellow:before {
+  background-color: #ffc40d !important;
+}
+.page-sidebar  > ul > li.sticker.sticker-color-orange:before {
+  background-color: #e3a21a !important;
+}
+.page-sidebar  > ul > li.sticker.sticker-color-orangeDark:before {
+  background-color: #da532c !important;
+}
+.page-sidebar  > ul > li.sticker.sticker-color-pink:before {
+  background-color: #c3325f !important;
+}
+.page-sidebar  > ul > li.sticker.sticker-color-pinkDark:before {
+  background-color: #9f00a7 !important;
+}
+.page-sidebar  > ul > li.sticker.sticker-color-purple:before {
+  background-color: #603cba !important;
+}
+.page-sidebar  > ul > li.sticker.sticker-color-darken:before {
+  background-color: #1d1d1d !important;
+}
+.page-sidebar  > ul > li.sticker.sticker-color-white:before {
+  background-color: #ffffff !important;
+}
+.page-sidebar  > ul > li.sticker.sticker-color-grayDark:before {
+  background-color: #525252 !important;
+}
+.page-sidebar .divider {
+  height: 1px;
+  margin: 9px 1px;
+  overflow: hidden;
+  background-color: #e5e5e5;
+}
+.page-sidebar ul {
+  margin-left: 0;
+  list-style: none;
+  background-color: #EBEBEB;
+}
+.page-sidebar ul.sub-menu {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.page-sidebar ul.sub-menu a {
+  padding: 5px 20px 5px 25px;
+}
+.page-sidebar ul.sub-menu.light {
+  background-color: #f9f9f9 !important;
+}
+.page-sidebar .sidebar-dropdown-menu {
+  display: none;
+}
+.page-sidebar .sidebar-dropdown-menu.open {
+  display: block;
 }
 /*
  * Metro UI CSS v 0.1.4

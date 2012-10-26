@@ -16,6 +16,7 @@
     <script src="js/google-analytics.js"></script>
     <script src="js/google-code-prettify/prettify.js"></script>
     <script src="js/github.info.js"></script>
+    <script src="js/tile-image-slider.js"></script>
 
     <title>Modern UI CSS</title>
 </head>
@@ -114,7 +115,7 @@
                             </div>
 
                             <h3>Tiles content built-in subclasses</h3>
-                            <p>Tiles content can be organized with built-in subclasses: <code>.icon</code>, <code>.image</code>, <code>.image-set</code>.</p>
+                            <p>Tiles content can be organized with built-in subclasses: <code>.icon</code>, <code>.image</code>, <code>.image-set</code>, <code>.image-slider</code>.</p>
                             <div class="grid">
                                 <div class="row">
                                     <div class="span2">
@@ -145,6 +146,18 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="span4">
+                                        <h5>Subclass .image-slider</h5>
+                                        <div class="tile double" data-role="image-slider">
+                                            <div class="tile-content image images-slider">
+                                                <img src="images/1.jpg" alt="">
+                                                <img src="images/2.jpg" alt="">
+                                                <img src="images/3.jpg" alt="">
+                                                <img src="images/4.jpg" alt="">
+                                                <img src="images/5.jpg" alt="">
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
 <pre class="prettyprint linenums">
     &lt;div class="tile"&gt;
@@ -152,6 +165,7 @@
             &lt;img /&gt;
         &lt;/div&gt;
     &lt;/div&gt;
+    ------------
     &lt;div class="tile"&gt;
         &lt;div class="tile-content image-set"&gt;
             &lt;img /&gt;
@@ -161,7 +175,18 @@
           &lt;img /&gt;
         &lt;/div&gt;
     &lt;/div&gt;
+    ------------
+    &lt;div class="tile" data-role="image-slider"&gt;
+        &lt;div class="tile-content image image-slider"&gt;
+            &lt;img /&gt;
+            ...
+            &lt;img /&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
 </pre>
+                                <p>
+                                    For use image-slider you mus include <code>tile-image-slider.js</code> in head of you page.
+                                </p>
 
                             </div>
 

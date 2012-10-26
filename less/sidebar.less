@@ -1,0 +1,115 @@
+/*
+ * Metro UI CSS v 0.1.4
+ * Copyright 2012 Sergey Pimenov
+ * Licensed under the MIT Lilcense
+ *
+ * Sidebar.less
+ */
+
+.page-sidebar {
+    display: block;
+    width: 213px;
+    float: left;
+    min-height: 100% !important;
+    height: auto;
+    background-color: #EBEBEB;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-top: 10px;
+    margin-left: 7px;
+
+    a {
+        #font > .navigation;
+        #state > .navigation;
+        display: block;
+        width: 100%;
+        padding: 5px 20px 5px 10px;
+        white-space: nowrap;
+        font-size: 14px;
+        cursor: pointer;
+
+        &:hover {
+            .bg-color-blue;
+            .fg-color-white;
+        }
+    }
+
+    li {
+        display: list-item;
+        line-height: 20px;
+        position: relative;
+    }
+
+    & > ul > li > a {
+        font-size: 1.1em;
+    }
+
+    & > ul > li a.lead, & > ul > li.lead a, & > ul > li.lead {
+        font-weight: bold;
+    }
+
+    & > ul > li.sticker {
+
+        &:before {
+            content: ".";
+            position: absolute;
+            width: 7px;
+            height: 28px;
+            left: -7px;
+            text-indent: -9999px;
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+            background-color: #ebebeb;
+        }
+
+        &.sticker-color-blue {&:before{background-color: @blue;}}
+        &.sticker-color-blueLight {&:before{background-color: @blueLight;}}
+        &.sticker-color-blueDark {&:before{background-color: @blueDark;}}
+        &.sticker-color-green {&:before{background-color: @green !important;}}
+        &.sticker-color-greenLight {&:before{background-color: @greenLight !important;}}
+        &.sticker-color-greenDark {&:before{background-color: @greenDark !important;}}
+        &.sticker-color-red {&:before{background-color: @red !important;}}
+        &.sticker-color-yellow {&:before{background-color: @yellow !important;}}
+        &.sticker-color-orange {&:before{background-color: @orange !important;}}
+        &.sticker-color-orangeDark {&:before{background-color: @orangeDark !important;}}
+        &.sticker-color-pink {&:before{background-color: @pink !important;}}
+        &.sticker-color-pinkDark {&:before{background-color: @pinkDark !important;}}
+        &.sticker-color-purple {&:before{background-color: @purple !important;}}
+        &.sticker-color-darken {&:before{background-color: @darken !important;}}
+        &.sticker-color-white {&:before{background-color: @white !important;}}
+        &.sticker-color-grayDark {&:before{background-color: @grayDark !important;}}
+    }
+
+    .divider {
+        height: 1px;
+        margin: 9px 1px;
+        overflow: hidden;
+        background-color: #e5e5e5;
+    }
+
+    & ul {
+        .unstyled;
+        background-color: #EBEBEB;
+    }
+
+    ul.sub-menu {
+        padding-top: 5px;
+        padding-bottom: 5px;
+
+        a {
+            padding: 5px 20px 5px 25px;
+        }
+
+        &.light {
+            background-color: #f9f9f9 !important;
+        }
+    }
+
+    .sidebar-dropdown-menu {
+        display: none;
+
+        &.open {
+            display: block;
+        }
+    }
+}
