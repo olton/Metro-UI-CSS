@@ -1,13 +1,24 @@
+# Welcome
+
+Metro UI CSS a set of styles to create a site with an interface similar to Windows 8 Metro UI. This set of styles was developed as a self-contained solution.
+
 Version 0.1.5
 
-// Readme file
-
-New version has many changes. See details of definition on http://metroui.org.ua
+See details of definition on http://metroui.org.ua
 
 //
 
-Demo available on http://metroui.org.ua. Now work without any css frameworks.
-Demo source placed in public folder.
+# Team
+
+## Sergey Pimenov
+Kiev, Ukraine.
+Project owner, team leader.
+CSS/LESS, HTML, Javascript.
+
+## Sergey Volkov
+Voljskiy, Russia.
+Project member.
+Javascript.
 
 //
 
