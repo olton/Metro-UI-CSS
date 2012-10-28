@@ -52,6 +52,7 @@
     .pos-rel;
     #font > .normal;
     margin: 0 10px 10px 0;
+    overflow: hidden;
 
 
     * {
@@ -59,19 +60,20 @@
     }
 
     .tile-content {
-        width: 150px;
-        height: 110px;
+        width: 100%;
+        height: 100%;
         padding: 0;
+        padding-bottom: 30px;
         vertical-align: top;
         padding: 10px 15px;
         overflow: hidden;
         text-overflow: ellipsis;
+        position: relative;
 
         .tertiary-text;
         color: @white;
         line-height: 16px;
-        overflow: hidden;
-        text-overflow: ellipsis;
+
         &:hover {
             color: @white;
         }
@@ -96,51 +98,58 @@
                 color: @white;
             }
         }
+    }
 
-        &.icon {
-            padding-top: 20px;
-            display: table-cell !important;
-            vertical-align:middle !important;
-            text-align: center;
+    &.icon {
+        & > .tile-content {
+            padding: 0;
 
-            img {
+            & > img {
+                position: absolute;
                 width: 64px;
                 height: 64px;
+                top: 50%;
+                left: 50%;
+                margin-left: -32px;
+                margin-top: -32px;
             }
         }
+    }
 
-        &.image {
+    &.image, &.image-slider {
+        & > .tile-content {
             padding: 0;
-            margin: 0;
-            height: 100%;
-            text-align: center;
 
-            img {
+            & > img {
                 width: 100%;
                 height : auto;
                 min-height: 100%;
                 max-width: 100%;
             }
         }
+    }
 
-        &.images-set {
-            padding: 0;
+    &.image-set {
+        & > .tile-content {
             margin: 0;
-            height: 100%;
-            max-height: 150px;
+            padding: 0;
+            width: 25% !important;
+            height: 50%;
+            float: left;
+            border: 1px #1e1e1e solid;
 
-            img {
-                width: 25%;
-                min-height: 50%;
-                float: left;
-                border: 1px #1e1e1e solid;
-            }
-
-            img:first-child {
-                float: left;
-                width: 50%;
+            & > img {
+                min-width: 100%;
+                width: 100%;
+                height : auto;
                 min-height: 100%;
             }
+        }
+
+        .tile-content:first-child {
+            width: 50% !important;
+            float: left;
+            height: 100%;
         }
     }
 

@@ -17,7 +17,7 @@
         var initSelectors = function(selectors){
             selectors.on('click', function(e){
                 e.stopPropagation();
-                $("[data-role=dropdown]").removeClass("active");
+                //$("[data-role=dropdown]").removeClass("active");
 
                 clearDropdown();
 

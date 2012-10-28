@@ -16,7 +16,7 @@
     <script src="js/google-analytics.js"></script>
     <script src="js/google-code-prettify/prettify.js"></script>
     <script src="js/github.info.js"></script>
-    <script src="js/tile-image-slider.js"></script>
+    <script src="js/tile-slider.js"></script>
 
     <title>Modern UI CSS</title>
 </head>
@@ -89,9 +89,9 @@
                                         <img class="icon" src="images/Mail128.png"/>
                                     </div>
                                 </div>
-                                <div class="tile bg-color-red">
+                                <div class="tile bg-color-red icon">
                                     <b class="check"></b>
-                                    <div class="tile-content icon">
+                                    <div class="tile-content">
                                         <img src="images/Market128.png"/>
                                     </div>
                                     <div class="brand">
@@ -120,75 +120,183 @@
                                 <div class="row">
                                     <div class="span2">
                                         <h5>Subclass .icon</h5>
-                                        <div class="tile">
-                                            <div class="tile-content icon">
+                                        <div class="tile icon">
+                                            <div class="tile-content">
                                                 <img src="images/armor.png" />
                                             </div>
                                         </div>
                                     </div>
                                     <div class="span4">
                                         <h5>Subclass .image</h5>
-                                        <div class="tile double">
-                                            <div class="tile-content image">
+                                        <div class="tile double image">
+                                            <div class="tile-content">
                                                 <img src="images/5.jpg" alt="" />
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="span4">
                                         <h5>Subclass .image-set</h5>
-                                        <div class="tile double">
-                                            <div class="tile-content images-set">
+                                        <div class="tile double image-set">
+                                            <div class="tile-content">
                                                 <img src="images/1.jpg" alt="">
-                                                <img src="images/2.jpg" alt="">
-                                                <img src="images/3.jpg" alt="">
-                                                <img src="images/4.jpg" alt="">
-                                                <img src="images/5.jpg" alt="">
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="span4">
-                                        <h5>Subclass .image-slider</h5>
-                                        <div class="tile double" data-role="image-slider">
-                                            <div class="tile-content image images-slider">
-                                                <img src="images/1.jpg" alt="">
+                                            <div class="tile-content">
                                                 <img src="images/2.jpg" alt="">
+                                            </div>
+                                            <div class="tile-content">
                                                 <img src="images/3.jpg" alt="">
+                                            </div>
+                                            <div class="tile-content">
                                                 <img src="images/4.jpg" alt="">
+                                            </div>
+                                            <div class="tile-content">
                                                 <img src="images/5.jpg" alt="">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 <pre class="prettyprint linenums">
-    &lt;div class="tile"&gt;
-        &lt;div class="tile-content icon(image)"&gt;
+    &lt;div class="tile icon(image)"&gt;
+        &lt;div class="tile-content"&gt;
             &lt;img /&gt;
         &lt;/div&gt;
     &lt;/div&gt;
     ------------
-    &lt;div class="tile"&gt;
-        &lt;div class="tile-content image-set"&gt;
+    &lt;div class="tile image-set"&gt;
+        &lt;div class="tile-content"&gt;
             &lt;img /&gt;
+        &lt;/div&gt;
+        &lt;div class="tile-content"&gt;
             &lt;img /&gt;
-          &lt;img /&gt;
-          &lt;img /&gt;
-          &lt;img /&gt;
+        &lt;/div&gt;
+        &lt;div class="tile-content"&gt;
+            &lt;img /&gt;
+        &lt;/div&gt;
+        &lt;div class="tile-content"&gt;
+            &lt;img /&gt;
+        &lt;/div&gt;
+        &lt;div class="tile-content"&gt;
+            &lt;img /&gt;
         &lt;/div&gt;
     &lt;/div&gt;
     ------------
-    &lt;div class="tile" data-role="image-slider"&gt;
-        &lt;div class="tile-content image image-slider"&gt;
+    &lt;div class="tile image-slider" data-role="image-slider"&gt;
+        &lt;div class="tile-content"&gt;
             &lt;img /&gt;
-            ...
+        &lt;/div&gt;
+        ...
+        &lt;div class="tile-content"&gt;
             &lt;img /&gt;
         &lt;/div&gt;
     &lt;/div&gt;
 </pre>
                                 <p>
-                                    For use image-slider you mus include <code>tile-image-slider.js</code> in head of you page.
+                                    For use <code>slider</code> you mus include <code>tile-slider.js</code> in head of you page and add attribute <code>data-role="slider"</code> to tile object.
+                                    To set specific parameters such as <code>direction</code>, <code>duration</code> and <code>period</code> you must add param <code>data-param-direction(duration, period)</code> to tile object.
                                 </p>
+                                <div class="tile double image-slider" data-role="slider">
+                                    <div class="tile-content">
+                                        <img src="images/1.jpg" alt="">
+                                    </div>
+                                    <div class="tile-content">
+                                        <img src="images/2.jpg" alt="">
+                                    </div>
+                                    <div class="tile-content">
+                                        <img src="images/3.jpg" alt="">
+                                    </div>
+                                    <div class="tile-content">
+                                        <img src="images/4.jpg" alt="">
+                                    </div>
+                                    <div class="tile-content">
+                                        <img src="images/5.jpg" alt="">
+                                    </div>
+                                </div>
+
+                                <div class="tile double image-slider" data-role="slider" data-param-direction="left" data-param-period="3000">
+                                    <div class="tile-content">
+                                        <img src="images/1.jpg" alt="">
+                                    </div>
+                                    <div class="tile-content">
+                                        <img src="images/2.jpg" alt="">
+                                    </div>
+                                    <div class="tile-content">
+                                        <img src="images/3.jpg" alt="">
+                                    </div>
+                                    <div class="tile-content">
+                                        <img src="images/4.jpg" alt="">
+                                    </div>
+                                    <div class="tile-content">
+                                        <img src="images/5.jpg" alt="">
+                                    </div>
+                                </div>
+
+                                <div class="tile double image-slider" data-role="slider" data-param-direction="down" data-param-period="3000">
+                                    <div class="tile-content">
+                                        <img src="images/1.jpg" alt="">
+                                    </div>
+                                    <div class="tile-content">
+                                        <img src="images/2.jpg" alt="">
+                                    </div>
+                                    <div class="tile-content">
+                                        <img src="images/3.jpg" alt="">
+                                    </div>
+                                    <div class="tile-content">
+                                        <img src="images/4.jpg" alt="">
+                                    </div>
+                                    <div class="tile-content">
+                                        <img src="images/5.jpg" alt="">
+                                    </div>
+                                </div>
+
+                                <div class="tile double image-slider" data-role="slider" data-param-direction="right" data-param-period="3000" data-param-duration="3000">
+                                    <div class="tile-content">
+                                        <img src="images/1.jpg" alt="">
+                                    </div>
+                                    <div class="tile-content">
+                                        <img src="images/2.jpg" alt="">
+                                    </div>
+                                    <div class="tile-content">
+                                        <img src="images/3.jpg" alt="">
+                                    </div>
+                                    <div class="tile-content">
+                                        <img src="images/4.jpg" alt="">
+                                    </div>
+                                    <div class="tile-content">
+                                        <img src="images/5.jpg" alt="">
+                                    </div>
+                                </div>
+
+                                <div class="tile double bg-color-green" data-role="slider" data-param-period="3000">
+                                    <div class="tile-content">
+                                        <h2>mattberg@live.com</h2>
+                                        <h5>Re: Wedding Annoucement!</h5>
+                                        <p>
+                                            Congratulations! I'm really excited to celebrate with you all. Thanks for...
+                                        </p>
+                                    </div>
+                                    <div class="tile-content">
+                                        <h2>tina@live.com</h2>
+                                        <h5>Re: Wedding Annoucement!</h5>
+                                        <p>
+                                            Huh! Waw!!! I'm really excited to celebrate with you all. Thanks for...
+                                        </p>
+                                    </div>
+                                    <div class="brand">
+                                        <div class="badge">12</div>
+                                        <img class="icon" src="images/Mail128.png"/>
+                                    </div>
+                                </div>
 
                             </div>
+                            <p>
+                                The default value of params:
+                                <ul>
+                                    <li>Duration - 1000ms </li>
+                                    <li>Period - 2000ms</li>
+                                    <li>Direction - "up"</li>
+                                </ul>
+                            </p>
 
                             <h3>Tile status</h3>
                             <p>Tile status (branding info) can be placed in sub container with class <code>.brand</code> or <code>.tile-status</code>. Tile status background color can be changed, example with built-in classes <code>.bg-color-* </code></p>
@@ -316,14 +424,14 @@
 
                 <div class="tiles clearfix">
                     <h3>Examples of tiles made with Metro UI CSS</h3>
-                    <div class="tile">
-                        <div class="tile-content image">
+                    <div class="tile image">
+                        <div class="tile-content">
                             <img src="images/myface.jpg" alt="">
                         </div>
                     </div>
 
-                    <div class="tile">
-                        <div class="tile-content icon">
+                    <div class="tile icon">
+                        <div class="tile-content">
                             <img src="images/Mail128.png"/>
                         </div>
                         <div class="brand">
@@ -332,9 +440,9 @@
                         </div>
                     </div>
 
-                    <div class="tile bg-color-orangeDark selected">
+                    <div class="tile bg-color-orangeDark icon selected">
                         <b class="check"></b>
-                        <div class="tile-content icon">
+                        <div class="tile-content">
                             <img src="images/Video128.png" alt="" />
                         </div>
                         <div class="brand">
@@ -342,8 +450,8 @@
                         </div>
                     </div>
 
-                    <div class="tile double">
-                        <div class="tile-content image">
+                    <div class="tile double image">
+                        <div class="tile-content">
                             <img src="images/5.jpg" alt="" />
                         </div>
                         <div class="brand">
@@ -352,8 +460,8 @@
                         </div>
                     </div>
 
-                    <div class="tile double-vertical bg-color-yellow">
-                        <div class="tile-content icon">
+                    <div class="tile double-vertical bg-color-yellow icon">
+                        <div class="tile-content">
                             <img src="images/Calendar128.png" />
                         </div>
                         <div class="brand">
@@ -361,9 +469,9 @@
                         </div>
                     </div>
 
-                    <div class="tile bg-color-green selected">
+                    <div class="tile bg-color-green icon selected">
                         <b class="check"></b>
-                        <div class="tile-content icon">
+                        <div class="tile-content">
                             <img src="images/Market128.png"/>
                         </div>
                         <div class="brand">
@@ -372,8 +480,8 @@
                         </div>
                     </div>
 
-                    <div class="tile bg-color-red selected">
-                        <div class="tile-content icon">
+                    <div class="tile bg-color-red icon selected">
+                        <div class="tile-content">
                             <img src="images/Music128.png" alt="" />
                         </div>
                         <div class="brand">
@@ -395,8 +503,8 @@
                         </div>
                     </div>
 
-                    <div class="tile bg-color-darken">
-                        <div class="tile-content icon">
+                    <div class="tile bg-color-darken icon">
+                        <div class="tile-content">
                             <img src="images/YouTube128.png" alt="" />
                         </div>
                         <div class="brand">
@@ -404,8 +512,8 @@
                         </div>
                     </div>
 
-                    <div class="tile">
-                        <div class="tile-content icon">
+                    <div class="tile icon">
+                        <div class="tile-content">
                             <img src="images/excel2013icon.png"/>
                         </div>
                         <div class="brand">
@@ -427,8 +535,8 @@
                         </div>
                     </div>
 
-                    <div class="tile double">
-                        <div class="tile-content image">
+                    <div class="tile double image">
+                        <div class="tile-content">
                             <img src="images/4.jpg" alt="" />
                         </div>
                         <div class="brand bg-color-orange">
@@ -438,12 +546,20 @@
                         </div>
                     </div>
 
-                    <div class="tile double">
-                        <div class="tile-content images-set">
+                    <div class="tile double image-set">
+                        <div class="tile-content">
                             <img src="images/1.jpg" alt="">
+                        </div>
+                        <div class="tile-content">
                             <img src="images/2.jpg" alt="">
+                        </div>
+                        <div class="tile-content">
                             <img src="images/3.jpg" alt="">
+                        </div>
+                        <div class="tile-content">
                             <img src="images/4.jpg" alt="">
+                        </div>
+                        <div class="tile-content">
                             <img src="images/5.jpg" alt="">
                         </div>
                         <div class="brand">
@@ -451,14 +567,15 @@
                         </div>
                     </div>
 
-                    <div class="tile bg-color-blue">
-                        <div class="tile-content icon">
+                    <div class="tile bg-color-blue icon">
+                        <div class="tile-content">
                             <img src="images/InternetExplorer128.png"/>
                         </div>
                         <div class="brand">
                             <span class="name">Internet Explorer</span>
                         </div>
                     </div>
+
                 </div>
 
                 <br />

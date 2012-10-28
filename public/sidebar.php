@@ -52,7 +52,7 @@
                 <li class="sticker sticker-color-orange"><a href="#"><i class="icon-shopping-bag"></i>Shopping</a></li>
                 <li class="sticker sticker-color-orangeDark"><a href="#"><i class="icon-clipboard"></i>Recipes</a></li>
                 <li class="sticker sticker-color-green"><a href="#"><i class="icon-history"></i>Hobbies</a></li>
-                <li class="sticker sticker-color-pink" data-role="dropdown">
+                <li class="sticker sticker-color-pink dropdown active" data-role="dropdown">
                     <a><i class="icon-tile-view"></i>To Do</a>
                     <ul class="sub-menu light sidebar-dropdown-menu open">
                         <li><a href="">Today</a></li>
@@ -95,7 +95,7 @@
 </pre>
                     <h2>Icons</h2>
                     <p>
-                        You can use <code>icon-*</code> class for add icon to the menu item
+                        You can use <code>icon-*</code> class to add icon on the menu item
                     </p>
 <pre class="prettyprint linenums">
     &lt;div class="page-sidebar"&gt;
@@ -118,7 +118,7 @@
     &lt;/div&gt;
 </pre>
                     <p>
-                    To colored sticker you can use colors classes with prefix <code>sticker-</code>. For Example: <code>sticker-color-blue</code>
+                    To color sticker you can use colors classes with prefix <code>sticker-</code>. For Example: <code>sticker-color-blue</code>
                     </p>
 <pre class="prettyprint linenums">
     &lt;div class="page-sidebar"&gt;
@@ -163,7 +163,7 @@
     &lt;/div&gt;
 </pre>
                     <p>
-                        For using dropdown menu you must add <code>dropdown.js</code> in head of you page.
+                        To use dropdown menu you must add <code>dropdown.js</code> in head of you page.
                     </p>
 
                     <h2>Lighting second level menu</h2>

@@ -484,19 +484,13 @@
     height: 470px;
   }
   .tile .tile-content {
-    width: 120px;
-    height: 90px;
     padding: 5px 10px;
   }
-  .tile .tile-content.icon {
-    padding-top: 20px;
-    display: table-cell !important;
-    vertical-align: middle !important;
-    text-align: center;
-  }
-  .tile .tile-content.icon img {
+  .tile.icon  > .tile-content img {
     width: 48px;
     height: 48px;
+    margin-left: -24px;
+    margin-top: -32px;
   }
   .tile .brand  > .badge,
   .tile .tile-status  > .badge {

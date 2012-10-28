@@ -6,6 +6,9 @@
  * Sidebar.less
  */
 
+@icons_black: url("../images/icons.png");
+@icons_white: url("../images/icons-white.png");
+
 .page-sidebar {
     display: block;
     width: 213px;
@@ -110,6 +113,27 @@
 
         &.open {
             display: block;
+        }
+    }
+
+    & > ul > li.dropdown {
+        position: relative;
+
+        &:after {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 6px;
+            left: 100%;
+            margin-left: -20px;
+            width: 16px;
+            height: 16px;
+            background: @icons_black no-repeat;
+            background-position: 0 -1586px;
+            z-index: 200;
+        }
+        &.active:after {
+            background-position: 0 -676px;
         }
     }
 }
