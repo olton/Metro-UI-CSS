@@ -20,6 +20,7 @@
                 //$("[data-role=dropdown]").removeClass("active");
 
                 clearDropdown();
+                $(this).parents("ul").css("overflow", "visible");
 
                 var $m = $(this).children(".dropdown-menu, .sidebar-dropdown-menu");
                 if ($m.css('display') == "block") {
