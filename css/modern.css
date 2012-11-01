@@ -6029,6 +6029,14 @@ pre code {
 .page-control .frames .frame.active {
   display: block;
 }
+.page-control ul {
+  display: block;
+  overflow: visible;
+}
+.page-control .menu-pull,
+.page-control .menu-pull-bar {
+  display: none;
+}
 /*
  * Metro UI CSS v 0.1.4
  * Copyright 2012 Sergey Pimenov

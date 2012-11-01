@@ -191,6 +191,7 @@
         &lt;/div&gt;
     &lt;/div&gt;
 </pre>
+                                <h2 id="tile-slider-plugin">Tile Slider Plugin</h2>
                                 <p>
                                     For use <code>slider</code> you mus include <code>tile-slider.js</code> in head of you page and add attribute <code>data-role="slider"</code> to tile object.
                                     To set specific parameters such as <code>direction</code>, <code>duration</code> and <code>period</code> you must add param <code>data-param-direction(duration, period)</code> to tile object.

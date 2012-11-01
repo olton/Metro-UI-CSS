@@ -35,6 +35,9 @@
             <div class="page-region-content">
 
                 <div class="page-control span10" data-role="page-control">
+                    <span class="menu-pull"></span>
+                    <div class="menu-pull-bar"></div>
+
                     <ul>
                         <li class="active"><a href="#page1">Page 1</a></li>
                         <li><a href="#page2">Page 2</a></li>
