@@ -404,6 +404,64 @@
   .page-control .frames {
     margin-top: 0px;
   }
+  .tile {
+    width: 120px;
+    height: 120px;
+  }
+  .tile.double {
+    width: 250px;
+  }
+  .tile.triple {
+    width: 380px;
+  }
+  .tile.quadro {
+    width: 510px;
+  }
+  .tile.double-vertical {
+    height: 250px;
+  }
+  .tile.triple-vertical {
+    height: 380px;
+  }
+  .tile.quadro-vertical {
+    height: 510px;
+  }
+  .tile .tile-content {
+    padding: 5px 10px;
+  }
+  .tile.icon  > .tile-content img {
+    width: 48px;
+    height: 48px;
+    margin-left: -24px;
+    margin-top: -24px;
+  }
+  .tile .brand  > .badge,
+  .tile .tile-status  > .badge {
+    width: 26px;
+    height: 28px;
+    right: 0;
+    font-size: 9pt;
+  }
+  .tile .brand  > .name,
+  .tile .tile-status  > .name {
+    margin-left: 10px;
+  }
+  .tile .brand  > .icon,
+  .tile .tile-status  > .icon {
+    width: 24px;
+    height: 24px;
+    margin: 5px 10px;
+  }
+  .tile .brand  > .text,
+  .tile .tile-status  > .text {
+    left: 40px;
+    right: 40px;
+    font-size: 8pt;
+  }
+  .tile-group {
+    max-width: 400px;
+    float: none;
+  }
 }
 /*
  * Metro UI CSS v 0.1.4
@@ -497,82 +555,6 @@
     width: 100%;
     border: 0;
     left: 10px;
-  }
-  .tile {
-    width: 120px;
-    height: 120px;
-  }
-  .tile.double {
-    width: 250px;
-  }
-  .tile.double .tile-content {
-    width: 250px;
-  }
-  .tile.triple {
-    width: 380px;
-  }
-  .tile.triple .tile-content {
-    width: 380px;
-  }
-  .tile.quadro {
-    width: 510px;
-  }
-  .tile.quadro .tile-content {
-    width: 510px;
-  }
-  .tile.double-vertical {
-    height: 250px;
-  }
-  .tile.double-vertical .tile-content {
-    height: 210px;
-  }
-  .tile.triple-vertical {
-    height: 380px;
-  }
-  .tile.triple-vertical .tile-content {
-    height: 340px;
-  }
-  .tile.quadro-vertical {
-    height: 510px;
-  }
-  .tile.quadro-vertical .tile-content {
-    height: 470px;
-  }
-  .tile .tile-content {
-    padding: 5px 10px;
-  }
-  .tile.icon  > .tile-content img {
-    width: 48px;
-    height: 48px;
-    margin-left: -24px;
-    margin-top: -24px;
-  }
-  .tile .brand  > .badge,
-  .tile .tile-status  > .badge {
-    width: 26px;
-    height: 28px;
-    right: 0;
-    font-size: 9pt;
-  }
-  .tile .brand  > .name,
-  .tile .tile-status  > .name {
-    margin-left: 10px;
-  }
-  .tile .brand  > .icon,
-  .tile .tile-status  > .icon {
-    width: 24px;
-    height: 24px;
-    margin: 5px 10px;
-  }
-  .tile .brand  > .text,
-  .tile .tile-status  > .text {
-    left: 40px;
-    right: 40px;
-    font-size: 8pt;
-  }
-  .tile-group {
-    max-width: 400px;
-    float: none;
   }
   table thead tr th {
     font-size: 8pt;
