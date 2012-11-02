@@ -124,7 +124,7 @@
                                 </tr>
                                 <tr>
                                     <td colspan="2" style="padding: 20px 0 0; border: 0;">
-                                        <button class="image-button bg-color-pink fg-color-white" onclick="document.location.href='https://github.com/olton/Metro-UI-CSS'">View on Github<img class="bg-color-red" src="images/github.png"/></button>
+                                        <button class="image-button bg-color-pink fg-color-white" onclick="document.location.href='https://github.com/olton/Metro-UI-CSS'">View on Github<img class="bg-color-pinkDark" src="images/github.png"/></button>
                                         <button class="image-button bg-color-darken fg-color-white" onclick="document.location.href='https://github.com/olton/Metro-UI-CSS/zipball/master'">Download<img class="bg-color-green" src="images/download-32.png"/></button>
                                     </td>
                                 </tr>
