@@ -67,7 +67,7 @@
                         </div>
 
                         <div class="span5">
-                            <div class="carousel span5" style="height: 300px;" data-role="carousel" data-param-effect="fade" data-param-direction="left" data-param-period="3000">
+                            <div class="carousel span5" style="height: 300px;" data-role="carousel" data-param-effect="fade" data-param-direction="left" data-param-period="3000" data-param-markers="off">
                                 <div class="slides">
                                     <div class="slide image" id="slide11">
                                         <img src="images/1.jpg" />
