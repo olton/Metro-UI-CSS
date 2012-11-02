@@ -1,0 +1,88 @@
+/*
+ * Metro UI CSS
+ * Copyright 2012 Sergey Pimenov
+ * Licensed under the MIT Lilcense
+ *
+ * ListView.less
+ * Version 1.0
+ */
+
+.listview {
+    .unstyled;
+
+    li {
+        margin-bottom: 10px;
+        margin-right: 20px;
+        border: 4px transparent solid;
+        padding: 10px;
+        width: 300px;
+        position: relative;
+        display: block;
+        cursor: pointer;
+
+        .icon {
+            width: 48px;
+            height: 48px;
+            float: left;
+
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+        .data {
+            margin-left: 55px;
+            h4 {
+                margin: 0;
+                padding: 0 0 2px 0;
+            }
+            p {
+                margin: 0;
+                font-size: 9pt;
+            }
+        }
+
+        &.selected {
+            border: 4px @blue solid;
+
+            &:after {
+                width: 0;
+                height: 0;
+                border-top: 40px solid @blue;
+                border-left: 40px solid transparent;
+                position: absolute;
+                display: block;
+                right: 0;
+                content:".";
+                text-indent: -9999px;
+                top: 0;
+                z-index: 1000;
+            }
+
+            &:before {
+                position: absolute;
+                content: "\2714";
+                color: #fff;
+                right: 5px;
+                top: 0;
+                font-family: Tahoma;
+                z-index: 2000;
+            }
+        }
+        &:hover {
+            outline: 3px #ccc solid;
+        }
+        &:active {
+            outline: 3px #3e3e3e solid;
+        }
+    }
+
+    &.fluid {
+        li {
+            float: left;
+        }
+    }
+
+    .clearfix;
+}

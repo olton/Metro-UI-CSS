@@ -62,8 +62,7 @@
                     <div class="markers">
                         <ul>
                             <li class="active"><a href="#slide1"></a></li>
-                            <li><a href="#slide2"></a></li>
-                            <li><a href="#slide3"></a></li>
+                            <li><a href="#slide2"></a></li><li><a href="#slide3"></a></li>
                         </ul>
                     </div>
                 </div>

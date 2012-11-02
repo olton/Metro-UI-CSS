@@ -601,7 +601,7 @@ table {
   color: #44a3aa !important;
 }
 .fg-color-blueDark {
-  color: #0a5ac2 !important;
+  color: #2b5797 !important;
 }
 .fg-color-green {
   color: #00a300 !important;
@@ -610,7 +610,7 @@ table {
   color: #99b433 !important;
 }
 .fg-color-greenDark {
-  color: #005200 !important;
+  color: #1e7145 !important;
 }
 .fg-color-red {
   color: #b91d47 !important;
@@ -625,10 +625,10 @@ table {
   color: #da532c !important;
 }
 .fg-color-pink {
-  color: #c3325f !important;
+  color: #9f00a7 !important;
 }
 .fg-color-pinkDark {
-  color: #9f00a7 !important;
+  color: #7e3878 !important;
 }
 .fg-color-purple {
   color: #603cba !important;
@@ -649,7 +649,7 @@ table {
   background-color: #44a3aa !important;
 }
 .bg-color-blueDark {
-  background-color: #0a5ac2 !important;
+  background-color: #2b5797 !important;
 }
 .bg-color-green {
   background-color: #00a300 !important;
@@ -658,7 +658,7 @@ table {
   background-color: #99b433 !important;
 }
 .bg-color-greenDark {
-  background-color: #005200 !important;
+  background-color: #1e7145 !important;
 }
 .bg-color-red {
   background-color: #b91d47 !important;
@@ -673,10 +673,10 @@ table {
   background-color: #da532c !important;
 }
 .bg-color-pink {
-  background-color: #c3325f !important;
+  background-color: #9f00a7 !important;
 }
 .bg-color-pinkDark {
-  background-color: #9f00a7 !important;
+  background-color: #7e3878 !important;
 }
 .bg-color-purple {
   background-color: #603cba !important;
@@ -700,7 +700,7 @@ table {
   border-color: #44a3aa !important;
 }
 .border-color-blueDark {
-  border-color: #0a5ac2 !important;
+  border-color: #2b5797 !important;
 }
 .border-color-green {
   border-color: #00a300 !important;
@@ -709,7 +709,7 @@ table {
   border-color: #99b433 !important;
 }
 .border-color-greenDark {
-  border-color: #005200 !important;
+  border-color: #1e7145 !important;
 }
 .border-color-red {
   border-color: #b91d47 !important;
@@ -724,10 +724,10 @@ table {
   border-color: #da532c !important;
 }
 .border-color-pink {
-  border-color: #c3325f !important;
+  border-color: #9f00a7 !important;
 }
 .border-color-pinkDark {
-  border-color: #9f00a7 !important;
+  border-color: #7e3878 !important;
 }
 .border-color-purple {
   border-color: #603cba !important;
@@ -4386,7 +4386,7 @@ table.bordered tbody tr:last-child td {
   background-color: #44a3aa;
 }
 .page-sidebar  > ul > li.sticker.sticker-color-blueDark:before {
-  background-color: #0a5ac2;
+  background-color: #2b5797;
 }
 .page-sidebar  > ul > li.sticker.sticker-color-green:before {
   background-color: #00a300 !important;
@@ -4395,7 +4395,7 @@ table.bordered tbody tr:last-child td {
   background-color: #99b433 !important;
 }
 .page-sidebar  > ul > li.sticker.sticker-color-greenDark:before {
-  background-color: #005200 !important;
+  background-color: #1e7145 !important;
 }
 .page-sidebar  > ul > li.sticker.sticker-color-red:before {
   background-color: #b91d47 !important;
@@ -4410,10 +4410,10 @@ table.bordered tbody tr:last-child td {
   background-color: #da532c !important;
 }
 .page-sidebar  > ul > li.sticker.sticker-color-pink:before {
-  background-color: #c3325f !important;
+  background-color: #9f00a7 !important;
 }
 .page-sidebar  > ul > li.sticker.sticker-color-pinkDark:before {
-  background-color: #9f00a7 !important;
+  background-color: #7e3878 !important;
 }
 .page-sidebar  > ul > li.sticker.sticker-color-purple:before {
   background-color: #603cba !important;
@@ -4586,7 +4586,7 @@ table.bordered tbody tr:last-child td {
 .replies  > div .sticker.sticker-color-blueDark,
 .replies  > li .sticker.sticker-color-blueDark,
 .replies  > span .sticker.sticker-color-blueDark {
-  border-color: #0a5ac2 !important;
+  border-color: #2b5797 !important;
 }
 .replies  > div .sticker.sticker-color-green,
 .replies  > li .sticker.sticker-color-green,
@@ -4601,7 +4601,7 @@ table.bordered tbody tr:last-child td {
 .replies  > div .sticker.sticker-color-greenDark,
 .replies  > li .sticker.sticker-color-greenDark,
 .replies  > span .sticker.sticker-color-greenDark {
-  border-color: #005200 !important;
+  border-color: #1e7145 !important;
 }
 .replies  > div .sticker.sticker-color-red,
 .replies  > li .sticker.sticker-color-red,
@@ -4626,12 +4626,12 @@ table.bordered tbody tr:last-child td {
 .replies  > div .sticker.sticker-color-pink,
 .replies  > li .sticker.sticker-color-pink,
 .replies  > span .sticker.sticker-color-pink {
-  border-color: #c3325f !important;
+  border-color: #9f00a7 !important;
 }
 .replies  > div .sticker.sticker-color-pinkDark,
 .replies  > li .sticker.sticker-color-pinkDark,
 .replies  > span .sticker.sticker-color-pinkDark {
-  border-color: #9f00a7 !important;
+  border-color: #7e3878 !important;
 }
 .replies  > div .sticker.sticker-color-purple,
 .replies  > li .sticker.sticker-color-purple,
@@ -6243,10 +6243,12 @@ pre code {
   position: absolute;
   top: 100%;
   left: 0;
-  mergin-top: 10px;
+  padding-top: 10px;
 }
 .carousel .markers li {
-  display: inline-block;
+  display: block;
+  float: left;
+  margin-right: 5px;
 }
 .carousel .markers li a {
   width: 32px;
@@ -6257,4 +6259,89 @@ pre code {
 }
 .carousel .markers li.active a {
   background-color: #1e1e1e;
+}
+/*
+ * Metro UI CSS
+ * Copyright 2012 Sergey Pimenov
+ * Licensed under the MIT Lilcense
+ *
+ * ListView.less
+ * Version 1.0
+ */
+.listview {
+  margin-left: 0;
+  list-style: none;
+  *zoom: 1;
+}
+.listview li {
+  margin-bottom: 10px;
+  margin-right: 20px;
+  border: 4px transparent solid;
+  padding: 10px;
+  width: 300px;
+  position: relative;
+  display: block;
+  cursor: pointer;
+}
+.listview li .icon {
+  width: 48px;
+  height: 48px;
+  float: left;
+}
+.listview li .icon img {
+  width: 100%;
+  height: 100%;
+}
+.listview li .data {
+  margin-left: 55px;
+}
+.listview li .data h4 {
+  margin: 0;
+  padding: 0 0 2px 0;
+}
+.listview li .data p {
+  margin: 0;
+  font-size: 9pt;
+}
+.listview li.selected {
+  border: 4px #2d89ef solid;
+}
+.listview li.selected:after {
+  width: 0;
+  height: 0;
+  border-top: 40px solid #2d89ef;
+  border-left: 40px solid transparent;
+  position: absolute;
+  display: block;
+  right: 0;
+  content: ".";
+  text-indent: -9999px;
+  top: 0;
+  z-index: 1000;
+}
+.listview li.selected:before {
+  position: absolute;
+  content: "\2714";
+  color: #fff;
+  right: 5px;
+  top: 0;
+  font-family: Tahoma;
+  z-index: 2000;
+}
+.listview li:hover {
+  outline: 3px #ccc solid;
+}
+.listview li:active {
+  outline: 3px #3e3e3e solid;
+}
+.listview.fluid li {
+  float: left;
+}
+.listview:before,
+.listview:after {
+  display: table;
+  content: "";
+}
+.listview:after {
+  clear: both;
 }

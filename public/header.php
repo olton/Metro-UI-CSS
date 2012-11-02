@@ -69,6 +69,7 @@
                     <li><a href="rating.php">Rating</a></li>
                     <li><a href="progress.php">Progress bars</a></li>
                     <li><a href="carousel.php">Carousel</a></li>
+                    <li><a href="listview.php">List view</a></li>
                     <li class="divider"></li>
                     <li><a href="notices.php">Notices and Replies</a></li>
                     <li class="divider"></li>
