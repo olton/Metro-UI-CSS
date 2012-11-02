@@ -19,7 +19,7 @@
   color: #44a3aa !important;
 }
 .fg-color-blueDark {
-  color: #0a5ac2 !important;
+  color: #2b5797 !important;
 }
 .fg-color-green {
   color: #00a300 !important;
@@ -28,7 +28,7 @@
   color: #99b433 !important;
 }
 .fg-color-greenDark {
-  color: #005200 !important;
+  color: #1e7145 !important;
 }
 .fg-color-red {
   color: #b91d47 !important;
@@ -43,10 +43,10 @@
   color: #da532c !important;
 }
 .fg-color-pink {
-  color: #c3325f !important;
+  color: #9f00a7 !important;
 }
 .fg-color-pinkDark {
-  color: #9f00a7 !important;
+  color: #7e3878 !important;
 }
 .fg-color-purple {
   color: #603cba !important;
@@ -67,7 +67,7 @@
   background-color: #44a3aa !important;
 }
 .bg-color-blueDark {
-  background-color: #0a5ac2 !important;
+  background-color: #2b5797 !important;
 }
 .bg-color-green {
   background-color: #00a300 !important;
@@ -76,7 +76,7 @@
   background-color: #99b433 !important;
 }
 .bg-color-greenDark {
-  background-color: #005200 !important;
+  background-color: #1e7145 !important;
 }
 .bg-color-red {
   background-color: #b91d47 !important;
@@ -91,10 +91,10 @@
   background-color: #da532c !important;
 }
 .bg-color-pink {
-  background-color: #c3325f !important;
+  background-color: #9f00a7 !important;
 }
 .bg-color-pinkDark {
-  background-color: #9f00a7 !important;
+  background-color: #7e3878 !important;
 }
 .bg-color-purple {
   background-color: #603cba !important;
@@ -118,7 +118,7 @@
   border-color: #44a3aa !important;
 }
 .border-color-blueDark {
-  border-color: #0a5ac2 !important;
+  border-color: #2b5797 !important;
 }
 .border-color-green {
   border-color: #00a300 !important;
@@ -127,7 +127,7 @@
   border-color: #99b433 !important;
 }
 .border-color-greenDark {
-  border-color: #005200 !important;
+  border-color: #1e7145 !important;
 }
 .border-color-red {
   border-color: #b91d47 !important;
@@ -142,10 +142,10 @@
   border-color: #da532c !important;
 }
 .border-color-pink {
-  border-color: #c3325f !important;
+  border-color: #9f00a7 !important;
 }
 .border-color-pinkDark {
-  border-color: #9f00a7 !important;
+  border-color: #7e3878 !important;
 }
 .border-color-purple {
   border-color: #603cba !important;
@@ -404,6 +404,64 @@
   .page-control .frames {
     margin-top: 0px;
   }
+  .tile {
+    width: 120px;
+    height: 120px;
+  }
+  .tile.double {
+    width: 250px;
+  }
+  .tile.triple {
+    width: 380px;
+  }
+  .tile.quadro {
+    width: 510px;
+  }
+  .tile.double-vertical {
+    height: 250px;
+  }
+  .tile.triple-vertical {
+    height: 380px;
+  }
+  .tile.quadro-vertical {
+    height: 510px;
+  }
+  .tile .tile-content {
+    padding: 5px 10px;
+  }
+  .tile.icon  > .tile-content img {
+    width: 48px;
+    height: 48px;
+    margin-left: -24px;
+    margin-top: -24px;
+  }
+  .tile .brand  > .badge,
+  .tile .tile-status  > .badge {
+    width: 26px;
+    height: 28px;
+    right: 0;
+    font-size: 9pt;
+  }
+  .tile .brand  > .name,
+  .tile .tile-status  > .name {
+    margin-left: 10px;
+  }
+  .tile .brand  > .icon,
+  .tile .tile-status  > .icon {
+    width: 24px;
+    height: 24px;
+    margin: 5px 10px;
+  }
+  .tile .brand  > .text,
+  .tile .tile-status  > .text {
+    left: 40px;
+    right: 40px;
+    font-size: 8pt;
+  }
+  .tile-group {
+    max-width: 400px;
+    float: none;
+  }
 }
 /*
  * Metro UI CSS v 0.1.4
@@ -497,82 +555,6 @@
     width: 100%;
     border: 0;
     left: 10px;
-  }
-  .tile {
-    width: 120px;
-    height: 120px;
-  }
-  .tile.double {
-    width: 250px;
-  }
-  .tile.double .tile-content {
-    width: 250px;
-  }
-  .tile.triple {
-    width: 380px;
-  }
-  .tile.triple .tile-content {
-    width: 380px;
-  }
-  .tile.quadro {
-    width: 510px;
-  }
-  .tile.quadro .tile-content {
-    width: 510px;
-  }
-  .tile.double-vertical {
-    height: 250px;
-  }
-  .tile.double-vertical .tile-content {
-    height: 210px;
-  }
-  .tile.triple-vertical {
-    height: 380px;
-  }
-  .tile.triple-vertical .tile-content {
-    height: 340px;
-  }
-  .tile.quadro-vertical {
-    height: 510px;
-  }
-  .tile.quadro-vertical .tile-content {
-    height: 470px;
-  }
-  .tile .tile-content {
-    padding: 5px 10px;
-  }
-  .tile.icon  > .tile-content img {
-    width: 48px;
-    height: 48px;
-    margin-left: -24px;
-    margin-top: -24px;
-  }
-  .tile .brand  > .badge,
-  .tile .tile-status  > .badge {
-    width: 26px;
-    height: 28px;
-    right: 0;
-    font-size: 9pt;
-  }
-  .tile .brand  > .name,
-  .tile .tile-status  > .name {
-    margin-left: 10px;
-  }
-  .tile .brand  > .icon,
-  .tile .tile-status  > .icon {
-    width: 24px;
-    height: 24px;
-    margin: 5px 10px;
-  }
-  .tile .brand  > .text,
-  .tile .tile-status  > .text {
-    left: 40px;
-    right: 40px;
-    font-size: 8pt;
-  }
-  .tile-group {
-    max-width: 400px;
-    float: none;
   }
   table thead tr th {
     font-size: 8pt;
