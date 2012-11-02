@@ -17,7 +17,7 @@
             // animation effect (fade, slide, switch)
             effect: 'slide',
             // animation direction (left, right) for some kinds of animation effect
-            direction: 'right',
+            direction: 'left',
             // markers below the carousel
             markers: 'on',
             // prev and next arrows
