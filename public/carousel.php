@@ -17,6 +17,8 @@
     <script src="js/github.info.js"></script>
     <script src="js/google-code-prettify/prettify.js"></script>
 
+    <script src="js/carousel.js"></script>
+
     <title>Modern UI CSS</title>
 </head>
 <body class="modern-ui" onload="prettyPrint()">
@@ -32,7 +34,7 @@
 
         <div class="page-region">
             <div class="page-region-content">
-                <div class="carousel span10" style="height: 500px;">
+                <div class="carousel span10" style="height: 500px;" data-role="carousel">
                     <div class="slides">
                         <div class="slide image" id="slide1">
                             <img src="images/1.jpg" />
@@ -58,13 +60,6 @@
                     <span class="control left">&#8249;</span>
                     <span class="control right">&#8250;</span>
 
-
-                    <div class="markers">
-                        <ul>
-                            <li class="active"><a href="#slide1"></a></li>
-                            <li><a href="#slide2"></a></li><li><a href="#slide3"></a></li>
-                        </ul>
-                    </div>
                 </div>
 
                 <br />
