@@ -68,6 +68,7 @@
                     <li><a href="buttons-set.php">Buttons set</a></li>
                     <li><a href="rating.php">Rating</a></li>
                     <li><a href="progress.php">Progress bars</a></li>
+                    <li><a href="carousel.php">Carousel</a></li>
                     <li class="divider"></li>
                     <li><a href="notices.php">Notices and Replies</a></li>
                     <li class="divider"></li>
@@ -80,21 +81,6 @@
         </ul>
 
     </div>
-</div>
-
-<br />
-<div class="span12 text-center">
-    <script type="text/javascript"><!--
-    google_ad_client = "ca-pub-1632668592742327";
-    /* 728x15-links */
-    google_ad_slot = "9149382337";
-    google_ad_width = 728;
-    google_ad_height = 15;
-    //-->
-    </script>
-    <script type="text/javascript"
-            src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-    </script>
 </div>
 
 <script src="js/dropdown.js"></script>

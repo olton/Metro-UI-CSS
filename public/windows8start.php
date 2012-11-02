@@ -359,6 +359,29 @@
                     </div>
                 </div>
             </div>
+
+            <div class="tile-group">
+                <div class="tile quadro double-vertical image-set">
+                    <div class="tile-content">
+                        <img src="images/1.jpg" alt="">
+                    </div>
+                    <div class="tile-content">
+                        <img src="images/2.jpg" alt="">
+                    </div>
+                    <div class="tile-content">
+                        <img src="images/3.jpg" alt="">
+                    </div>
+                    <div class="tile-content">
+                        <img src="images/4.jpg" alt="">
+                    </div>
+                    <div class="tile-content">
+                        <img src="images/5.jpg" alt="">
+                    </div>
+                    <div class="brand">
+                        <span class="name">Photos</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
