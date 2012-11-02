@@ -25,7 +25,7 @@
 
         <div class="page-header">
             <div class="page-header-content">
-                <h1>List View<small>demo</small></h1>
+                <h1>List view<small>demo</small></h1>
                 <a href="/" class="back-button big page-back"></a>
             </div>
         </div>
@@ -33,7 +33,7 @@
         <div class="page-region">
             <div class="page-region-content">
                 <div class="span10">
-                    <h2>List View</h2>
+                    <h2>List view</h2>
 
                     <ul class="listview">
                         <li class="bg-color-pinkDark fg-color-white">
@@ -109,7 +109,7 @@
     &lt;/ul&gt;
 </pre>
 
-                    <h2>List View Fluid</h2>
+                    <h2>List view Fluid</h2>
                     <ul class="listview fluid">
                         <li>
                             <div class="icon">
@@ -139,7 +139,7 @@
                             </div>
                         </li>
 
-                        <li class="bg-color-blueDark fg-color-white selected">
+                        <li class="bg-color-blueDark fg-color-white">
                             <div class="icon">
                                 <img src="images/word2013icon.png" />
                             </div>
@@ -170,6 +170,108 @@
 
 <pre class="prettyprint linenums span10">
     &lt;ul class="listview fluid"&gt;
+        ...
+    &lt;/ul&gt;
+</pre>
+                    <h2>ListView Image</h2>
+                    <ul class="listview image">
+                        <li>
+                            <div class="icon">
+                                <img src="images/myface.jpg" />
+                            </div>
+                            <div class="data">
+                                <h4>This is a my face</h4>
+                                <p>
+                                    Hi! My name is Sergey Pimenov and i'm author of Metro UI CSS from Kiev, Ukraine.
+                                </p>
+                                <a href="mailto:sergey@pimenov.com.ua">sergey@pimenov.com.ua</a>
+
+
+                            </div>
+                        </li>
+                        <li class="bg-color-red fg-color-white">
+                            <div class="icon">
+                                <img src="images/1.jpg" />
+                            </div>
+                            <div class="data">
+                                <h4 class="fg-color-white">Bear</h4>
+                                <p>
+                                    Bears are mammals of the family Ursidae. Bears are classified as caniforms, or doglike carnivorans, with the pinnipeds being their closest living relatives.
+                                </p>
+                            </div>
+                        </li>
+                        <li class="selected">
+                            <div class="icon">
+                                <img src="images/myface.jpg" />
+                            </div>
+                            <div class="data">
+                                <h4>This is a my face</h4>
+                                <div class="static-rating small">
+                                    <div class="rating-value" style="width: 100%"></div>
+                                </div>
+                                <p>
+                                    Hi! My name is Sergey Pimenov and i'm author of Metro UI CSS from Kiev, Ukraine.
+                                </p>
+                                <a href="mailto:sergey@pimenov.com.ua">sergey@pimenov.com.ua</a>
+                            </div>
+                        </li>
+                    </ul>
+
+<pre class="prettyprint linenums span10">
+    &lt;ul class="listview image"&gt;
+        ...
+    &lt;/ul&gt;
+</pre>
+
+                    <h2>ListView Image Fluid</h2>
+                    <ul class="listview image fluid">
+                        <li>
+                            <div class="icon">
+                                <img src="images/myface.jpg" />
+                            </div>
+                            <div class="data">
+                                <h4>This is a my face</h4>
+                                <p>
+                                    Hi! My name is Sergey Pimenov and i'm author of Metro UI CSS from Kiev, Ukraine.
+                                </p>
+                                <a href="mailto:sergey@pimenov.com.ua">sergey@pimenov.com.ua</a>
+
+
+                            </div>
+                        </li>
+                        <li class="bg-color-red fg-color-white">
+                            <div class="icon">
+                                <img src="images/myface.jpg" />
+                            </div>
+                            <div class="data">
+                                <h4 class="fg-color-white">This is a my face</h4>
+                                <p>
+                                    Hi! My name is Sergey Pimenov and i'm author of Metro UI CSS from Kiev, Ukraine.
+                                </p>
+
+                                <a class="fg-color-yellow" href="mailto:sergey@pimenov.com.ua">sergey@pimenov.com.ua</a>
+
+                            </div>
+                        </li>
+                        <li class="selected">
+                            <div class="icon">
+                                <img src="images/myface.jpg" />
+                            </div>
+                            <div class="data">
+                                <h4>This is a my face</h4>
+                                <div class="static-rating small">
+                                    <div class="rating-value" style="width: 100%"></div>
+                                </div>
+                                <p>
+                                    Hi! My name is Sergey Pimenov and i'm author of Metro UI CSS from Kiev, Ukraine.
+                                </p>
+                                <a href="mailto:sergey@pimenov.com.ua">sergey@pimenov.com.ua</a>
+                            </div>
+                        </li>
+                    </ul>
+
+<pre class="prettyprint linenums span10">
+    &lt;ul class="listview image fluid"&gt;
         ...
     &lt;/ul&gt;
 </pre>

@@ -130,16 +130,6 @@
                                 </tr>
                                 </tbody>
                             </table>
-                            <!--
-                            <h2>Immediate objectives:</h2>
-                            <ol>
-                                <li>Responsive design</li>
-                                <li>Tiles animation effects</li>
-                                <li>Additional components</li>
-                                <li>Integration in Visual Studio</li>
-                                <li>Much, much more...</li>
-                            </ol>
-                            -->
                             <br />
                             <div class="text-center">
                                 <form action="https://www.paypal.com/cgi-bin/webscr" method="post">

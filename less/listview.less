@@ -6,13 +6,11 @@
  * ListView.less
  * Version 1.0
  */
-
 .listview {
     .unstyled;
 
     li {
         margin-bottom: 10px;
-        margin-right: 20px;
         border: 4px transparent solid;
         padding: 10px;
         width: 300px;
@@ -41,47 +39,91 @@
                 margin: 0;
                 font-size: 9pt;
             }
-        }
 
-        &.selected {
-            border: 4px @blue solid;
-
-            &:after {
-                width: 0;
-                height: 0;
-                border-top: 40px solid @blue;
-                border-left: 40px solid transparent;
-                position: absolute;
-                display: block;
-                right: 0;
-                content:".";
-                text-indent: -9999px;
-                top: 0;
-                z-index: 1000;
-            }
-
-            &:before {
-                position: absolute;
-                content: "\2714";
-                color: #fff;
-                right: 5px;
-                top: 0;
-                font-family: Tahoma;
-                z-index: 2000;
+            .static-rating.small, .progress-bar {
+                margin-bottom: 3px;
             }
         }
+
         &:hover {
             outline: 3px #ccc solid;
         }
         &:active {
             outline: 3px #3e3e3e solid;
         }
+
+        .clearfix;
+    }
+
+    &.image {
+
+        li {
+            width: 380px;
+
+            .icon {
+                width: 100px;
+                height: 100px;
+                border: 1px #ccc solid;
+            }
+
+            .data {
+                margin-left: 110px;
+
+                h4 {
+                    margin-bottom: 4px;
+                }
+
+                p {
+                    line-height: 16px;
+                    font-size: 10pt;
+                    margin-bottom: 5px;
+                }
+
+                .static-rating.small, .progress-bar {
+                    margin-bottom: 10px;
+                }
+            }
+        }
     }
 
     &.fluid {
         li {
             float: left;
+            margin-right: 10px;
         }
+    }
+
+
+    & > li.selected {
+        border: 4px @blue solid;
+
+        &:after {
+            width: 0;
+            height: 0;
+            border-top: 40px solid @blue;
+            border-left: 40px solid transparent;
+            position: absolute;
+            display: block;
+            right: 0;
+            content:".";
+            text-indent: -9999px;
+            top: 0;
+            z-index: 1000;
+        }
+
+        &:before {
+            position: absolute;
+            content: "\2714";
+            color: #fff;
+            right: 5px;
+            top: 0;
+            font-family: Tahoma;
+            z-index: 2000;
+        }
+    }
+
+    &.image > li.selected {
+        //padding-bottom: 20px;
     }
 
     .clearfix;
