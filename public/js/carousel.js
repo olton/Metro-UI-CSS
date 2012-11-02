@@ -2,11 +2,6 @@
  * Carousel - jQuery plugin for MetroUiCss framework
  */
 
-/*$.easing.doubleSqrt = function(t, millisecondsSince, startValue, endValue, totalDuration) {
-    var res = Math.sqrt(Math.sqrt(t));
-    return res;
-};*/
-
 (function($) {
 
     $.Carousel = function(element, options) {
@@ -33,8 +28,7 @@
         // plugin settings
         plugin.settings = {};
 
-        var $element = $(element), // reference to the jQuery version of DOM element
-            element = element;    // reference to the actual DOM element
+        var $element = $(element); // reference to the jQuery version of DOM element
 
         var slides, // all slides DOM objects
             currentSlideIndex, // index of current slide
@@ -291,7 +285,7 @@
 
         plugin.init();
 
-    }
+    };
 
     $.fn.Carousel = function(options) {
         return this.each(function() {
@@ -300,7 +294,7 @@
                 $(this).data('Carousel', plugin);
             }
         });
-    }
+    };
 
 })(jQuery);
 
