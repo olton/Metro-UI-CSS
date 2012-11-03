@@ -275,6 +275,38 @@
         ...
     &lt;/ul&gt;
 </pre>
+                    <h2>ListView Iconic</h2>
+                    <ul class="listview iconic">
+                        <li>
+                            <div class="icon">
+                                <img src="images/excel2013icon.png" />
+                            </div>
+                            <div class="data">
+                                <h4>Excel 2013</h4>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="icon">
+                                <img src="images/word2013icon.png" />
+                            </div>
+                            <div class="data">
+                                <h4>Word 2013</h4>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="icon">
+                                <img src="images/onenote2013icon.png" />
+                            </div>
+                            <div class="data">
+                                <h4>OneNote 2013</h4>
+                            </div>
+                        </li>
+                    </ul>
+<pre class="prettyprint linenums span10">
+    &lt;ul class="listview iconic"&gt;
+        ...
+    &lt;/ul&gt;
+</pre>
 
                 </div>
             </div>
