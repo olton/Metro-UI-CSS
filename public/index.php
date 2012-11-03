@@ -14,6 +14,7 @@
     <script src="js/jquery-1.8.2.min.js"></script>
     <script src="js/google-analytics.js"></script>
     <script src="js/github.info.js"></script>
+    <script src="js/carousel.js"></script>
 
     <title>Metro UI CSS</title>
 
@@ -28,27 +29,47 @@
                     <div class="row">
                         <div class="span8">
                             <div class="hero-unit">
-                                <!--<img src="images/windows-8-metro.jpg" class="place-right" style="width: 210px;"/>-->
-                                <div style="">
-                                    <h1 class="fg-color-blueLight">Metro UI CSS</h1>
+                                <div class="carousel" data-role="carousel" style="height: 242px;">
+                                    <div class="slides">
+                                        
+                                        <div class="slide" id="slide1">
+                                            <h1 class="fg-color-blueLight">Metro UI CSS</h1>
 
-                                    <h2>Create site in Windows 8 style now!</h2>
+                                            <h2>Create site in Windows 8 style now!</h2>
 
-                                    <br />
-                                    <p>Metro UI CSS allows to create a Web site in the style of
-                                        Windows 8 quickly and without distractions
-                                        on routine tasks.</p>
-                                    <h3>To start: include modern.css</h3>
-                                    <p class="tertiary-info-text">
-                                        &lt;link href="modern.css" rel="stylesheet"&gt;
-                                    </p>
+                                            <br />
+                                            <p>Metro UI CSS allows to create a Web site in the style of
+                                                Windows 8 quickly and without distractions
+                                                on routine tasks.</p>
+                                            <h3>To start: include modern.css</h3>
+                                            <p class="tertiary-info-text">
+                                                &lt;link href="modern.css" rel="stylesheet"&gt;
+                                            </p>
+                                        </div>
+
+                                        <div class="slide" id="slide2">
+                                            <h1 class="fg-color-blueLight">Metro UI CSS</h1>
+                                            <p class="bg-color-pink padding20 fg-color-white">
+                                                Developed with the advice of Microsoft to build the user interface and <strong>include:</strong>
+                                            </p>
+                                            <ul class="unstyled sprite-details two-columns" style="margin-top: 20px;">
+                                                <li><i class="icon-swap-right"></i> General styles</li>
+                                                <li><i class="icon-swap-right"></i> Grid with Responsive</li>
+                                                <li><i class="icon-swap-right"></i> Layouts</li>
+                                                <li><i class="icon-swap-right"></i> Typography</li>
+                                                <li><i class="icon-swap-right"></i> Many components</li>
+                                                <li><i class="icon-swap-right"></i> 200+ built in icons</li>
+                                            </ul>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="span4">
                             <div class="span4 bg-color-red padding30 text-center place-left" style="height: auto;">
                                 <h2 class="fg-color-white">Sponsor ?</h2>
-                                <p class="fg-color-white">1000+ users every day</p>
+                                <p class="fg-color-white">1000+ <a class="fg-color-yellow" href="http://hit.ua/site_view/19154">users</a> every day</p>
+                                <p class="tertiary-text">this banner $250/month</p>
                             </div>
                             <a class="span2 place-left" style="" href="http://bizspark.com/"><img src="images/1005-BizSpark-261x230.jpg" /></a>
                             <a class="span2 place-left" style="padding-top: 25px;" href="http://jetbrains.com/"><img src="images/logo-jetbrains.jpg"/></a>
