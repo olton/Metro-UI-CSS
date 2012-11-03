@@ -14,14 +14,16 @@
             period: 6000,
             // animation duration
             duration: 1000,
-            // animation effect (fade, slide, switch)
+            // animation effect (fade, slide, switch, slowdown)
             effect: 'slide',
             // animation direction (left, right) for some kinds of animation effect
             direction: 'left',
             // markers below the carousel
             markers: 'on',
             // prev and next arrows
-            arrows: 'on'
+            arrows: 'on',
+            // stop sliding when cursor over the carousel
+            stop: 'on'
         };
 
         var plugin = this;
@@ -38,7 +40,8 @@
             parentHeight,
             animationInProgress,
             autoSlideTimer,
-            markers;
+            markers,
+            stopAutoSlide = false;
 
         // initialization
         plugin.init = function () {
@@ -97,6 +100,17 @@
             // enable auto slide
             if (plugin.settings.auto === true) {
                 startAutoSlide();
+
+                // stop sliding when cursor over the carousel
+                if (plugin.settings.stop === 'on') {
+                    $element.on('mouseenter', function () {
+                        stopAutoSlide = true;
+                    });
+                    $element.on('mouseleave', function () {
+                        stopAutoSlide = false;
+                        startAutoSlide();
+                    });
+                }
             }
         };
 
@@ -141,6 +155,9 @@
             clearInterval(autoSlideTimer);
             // start slide changer timer
             autoSlideTimer = setInterval(function () {
+                if (stopAutoSlide) {
+                    return;
+                }
                 changeSlide();
             }, plugin.settings.period);
         };
@@ -193,8 +210,8 @@
                 slideDirection = 1;
 
             effect = effect || plugin.settings.effect;
-            // correct slide direction, used for slide effect
-            if (effect === 'slide' && typeof direction !== 'undefined' && direction !== plugin.settings.direction) {
+            // correct slide direction, used for 'slide' and 'slowdown' effects
+            if ((effect === 'slide' || effect === 'slowdown') && typeof direction !== 'undefined' && direction !== plugin.settings.direction) {
                 slideDirection = -1;
             }
             if (direction === 'left') {
@@ -237,6 +254,9 @@
                 case 'fade':
                     changeSlideFade(outSlide, inSlide);
                     break;
+                case 'slowdown':
+                    changeSlideSlowdown(outSlide, inSlide, slideDirection);
+                    break;
             }
 
             currentSlideIndex = nextSlideIndex;
@@ -273,7 +293,30 @@
                 outSlide.animate(slideInPosition, duration);
                 inSlide.animate(unmovedPosition, duration);
             }
+        };
+        /**
+         * slowdown slide effect (custom easing 'doubleSqrt')
+         */
+        var changeSlideSlowdown = function (outSlide, inSlide, slideDirection) {
+            var unmovedPosition = {'left': 0},
+                options;
 
+            options = {
+                'duration': plugin.settings.duration,
+                'easing': 'doubleSqrt'
+            };
+
+            if (slideDirection !== -1) {
+                inSlide.css(slideInPosition);
+                inSlide.show();
+                outSlide.animate(slideOutPosition, options);
+                inSlide.animate(unmovedPosition, options);
+            } else {
+                inSlide.css(slideOutPosition);
+                inSlide.show();
+                outSlide.animate(slideInPosition, options);
+                inSlide.animate(unmovedPosition, options);
+            }
         };
         /**
          * fade effect
@@ -296,6 +339,12 @@
         });
     };
 
+    // easing effect for jquery animation
+    $.easing.doubleSqrt = function(t, millisecondsSince, startValue, endValue, totalDuration) {
+        var res = Math.sqrt(Math.sqrt(t));
+        return res;
+    };
+
 })(jQuery);
 
 
@@ -311,6 +360,7 @@ $(window).ready(function(){
         params.direction    = $carousel.data('paramDirection');
         params.markers      = $carousel.data('paramMarkers');
         params.arrows       = $carousel.data('paramArrows');
+        params.stop         = $carousel.data('paramStop');
 
         $carousel.Carousel(params);
     })

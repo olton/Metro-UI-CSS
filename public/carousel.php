@@ -136,10 +136,11 @@
                     <li><strong>auto</strong> - auto start carousel sliding (default: true)</li>
                     <li><strong>period</strong> - slide change period (default: 6000)</li>
                     <li><strong>duration</strong> - effect duration period (default: 1000)</li>
-                    <li><strong>effect</strong> - animation effect (default: slide)</li>
+                    <li><strong>effect</strong> - animation effect. available: <em>slide, fade, slowdown, switch</em> (default: slide)</li>
                     <li><strong>direction</strong> - animation direction (default: right)</li>
                     <li><strong>markers</strong> - on|off slide markers (default: on)</li>
                     <li><strong>arrows</strong> - on|off slide arrows (default: on)</li>
+                    <li><strong>stop</strong> - on|off slide animation on mouse over (default: on)</li>
                 </ul>
 
 <pre class="prettyprint linenums span10">
