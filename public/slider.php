@@ -40,12 +40,17 @@
                         <div class="marker" style="left: 45%"></div>
                     </div>
 
+                    <h3>Component definition</h3>
 <pre class="prettyprint linenums">
     &lt;div class="slider" data-role="slider"&gt;
         &lt;div class="complete" style="width: 45%"&gt;
         &lt;div class="marker" style="left: 45%"&gt;
     &lt;/div&gt;
 </pre>
+                    <h3>Javascript</h3>
+                    <p>
+                        To use slider component you must include <code>slider.js</code> in head of page.
+                    </p>
                 </div>
             </div>
         </div>
