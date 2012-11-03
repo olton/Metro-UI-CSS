@@ -37,7 +37,7 @@
                 <div class="grid">
                     <div class="row">
                         <div class="span5">
-                            <div class="carousel span5" style="height: 300px;" data-role="carousel" data-param-effect="slide" data-param-direction="left" data-param-duration="300">
+                            <div class="carousel span5" style="height: 300px;" data-role="carousel" data-param-effect="slowdown" data-param-direction="left" data-param-duration="1500" data-param-period="4000">
                                 <div class="slides">
                                     <div class="slide image" id="slide1">
                                         <img src="images/1.jpg" />
