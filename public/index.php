@@ -14,6 +14,7 @@
     <script src="js/jquery-1.8.2.min.js"></script>
     <script src="js/google-analytics.js"></script>
     <script src="js/github.info.js"></script>
+    <script src="js/sharrre/jquery.sharrre-1.3.4.min.js"></script>
     <script src="js/carousel.js"></script>
 
     <title>Metro UI CSS</title>
@@ -29,9 +30,9 @@
                     <div class="row">
                         <div class="span8">
                             <div class="hero-unit">
-                                <div class="carousel" data-role="carousel" style="height: 242px;">
+                                <div class="carousel" data-role="carousel" style="height: 242px;" data-param-duration="300">
                                     <div class="slides">
-                                        
+
                                         <div class="slide" id="slide1">
                                             <h1 class="fg-color-blueLight">Metro UI CSS</h1>
 
@@ -125,23 +126,47 @@
                             <p class="tertiary-info-secondary-text">All modern browsers. Internet Explorer supported on 9+</p>
                         </div>
                         <div class="span4">
-                            <h2>Socialize</h2>
-                            <div>
-                                <div class='pluso pluso-theme-color pluso-round pluso-plus'><div class='pluso-more-container'><a class='pluso-more' href=''></a><ul class='pluso-counter-container'><li></li><li class='pluso-counter'></li><li></li></ul></div><a class='pluso-facebook'></a><a class='pluso-twitter'></a><br><a class='pluso-google'></a></div>
-                                <script type='text/javascript'>if(!window.pluso){pluso={version:'0.9.1',url:'http://share.pluso.ru/'};h=document.getElementsByTagName('head')[0];l=document.createElement('link');l.href=pluso.url+'pluso.css';l.type='text/css';l.rel='stylesheet';s=document.createElement('script');s.src=pluso.url+'pluso.js';s.charset='UTF-8';h.appendChild(l);h.appendChild(s)}</script>
+                            <div id="social">
+                                <div id="shareme" data-url="http://metroui.org.ua/" data-text="" data-title="share this page"></div>
                             </div>
-                            <p>If you like the project, share it...</p>
+
+                            <script>
+                                $('#shareme').sharrre({
+                                    share: {
+                                        googlePlus: true
+                                        ,facebook: true
+                                        ,twitter: true
+                                        //,digg: true
+                                        ,delicious: true
+                                    },
+                                    enableTracking: true,
+                                    buttons: {
+                                        googlePlus: {size: 'tall'},
+                                        facebook: {layout: 'box_count'},
+                                        twitter: {count: 'vertical'},
+                                        digg: {type: 'DiggMedium'},
+                                        delicious: {size: 'tall'}
+                                    },
+                                    hover: function(api, options){
+                                        $(api.element).find('.buttons').show();
+                                    },
+                                    hide: function(api, options){
+                                        $(api.element).find('.buttons').hide();
+                                    }
+                                });
+                            </script>
+
                             <br />
                             <h2>GitHub Project Info:</h2>
                             <table class="github-info" data-repo="olton/Metro-UI-CSS">
                                 <tbody>
                                 <tr>
                                     <td>Starred:</td>
-                                    <td class="right"><span class="github-watchers">720</span></td>
+                                    <td class="right"><span class="github-watchers">982</span></td>
                                 </tr>
                                 <tr>
                                     <td>Forks:</td>
-                                    <td class="right bg"><span class="github-forks">149</span></td>
+                                    <td class="right bg"><span class="github-forks">215</span></td>
                                 </tr>
                                 <tr>
                                     <td colspan="2" style="padding: 20px 0 0; border: 0;">
