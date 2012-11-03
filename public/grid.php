@@ -47,7 +47,7 @@
                     <p>
                         Grid have no max width value and fill on 100% parent container. Any cells have spanN class from span1 to span12. Class spanN has margin left 20px and margin bottom 5px.
                     </p>
-                    <h2>Cells dimention</h2>
+                    <h2>Cells dimension</h2>
                     <table class="stripped bordered">
                         <thead>
                             <tr>
@@ -236,7 +236,7 @@
                         <div class="span1 offset9">offs9</div>
                     </div>
                 </div>
-                <h2>Offsets dimention</h2>
+                <h2>Offsets dimension</h2>
                 <div class="span10">
                     <table class="stripped bordered">
                         <thead>
