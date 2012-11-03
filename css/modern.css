@@ -6355,6 +6355,14 @@ pre code {
 .listview.image li .data .progress-bar {
   margin-bottom: 10px;
 }
+.listview.iconic li .icon {
+  width: 32px;
+  height: 32px;
+  border: 1px #ccc solid;
+}
+.listview.iconic li .data {
+  margin-left: 40px;
+}
 .listview.fluid li {
   float: left;
   margin-right: 10px;
