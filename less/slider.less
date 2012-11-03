@@ -1,0 +1,52 @@
+/*
+ * Metro UI CSS
+ * Copyright 2012 Sergey Pimenov
+ * Licensed under the MIT Lilcense
+ *
+ * Slider.less
+ *
+ */
+
+@slider-color: #c6c6c6;
+@slider-color-disabled: #dbdbdb;
+@slider-color-rest-state: #00828b;
+@slider-color-hover-state: #219297;
+@slider-color-active-state: #25bbc4;
+@slider-color-disabled-state: #bababa;
+@slider-marker-color: #000;
+@slider-marker-color-disabled: #a0a0a0;
+
+.slider {
+    height: 12px;
+    width: 100%;
+    position: relative;
+    background-color: @slider-color;
+    margin-bottom: 10px;
+
+    .marker {
+        height: 12px;
+        width: 12px;
+        cursor: pointer;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: @slider-marker-color;
+    }
+    .complete {
+        height: 100%;
+        width: auto;
+        background-color: @slider-color-rest-state;
+    }
+
+    &:hover {
+        .complete {
+            background-color: @slider-color-hover-state;
+        }
+    }
+
+    &:active, &:active + .marker:active {
+        .complete {
+            background-color: @slider-color-active-state;
+        }
+    }
+}

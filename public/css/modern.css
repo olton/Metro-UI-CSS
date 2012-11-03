@@ -450,7 +450,7 @@ table {
   border-spacing: 0;
 }
 /*
- * Metro UI CSS v 0.1.4
+ * Metro UI CSS
  * Copyright 2012 Sergey Pimenov
  * Licensed under the MIT Lilcense
  *
@@ -588,7 +588,7 @@ table {
   z-index: 2000;
 }
 /*
- * Metro UI CSS v 0.1.4
+ * Metro UI CSS
  * Copyright 2012 Sergey Pimenov
  * Licensed under the MIT Lilcense
  *
@@ -742,7 +742,7 @@ table {
   border-color: #525252 !important;
 }
 /*
- * Metro UI CSS v 0.1.4
+ * Metro UI CSS
  * Copyright 2012 Sergey Pimenov
  * Licensed under the MIT Lilcense
  *
@@ -2206,7 +2206,7 @@ button:active [class*=icon-],
   height: 16px;
 }
 /*
- * Metro UI CSS v 0.1.4
+ * Metro UI CSS
  * Copyright 2012 Sergey Pimenov
  * Licensed under the MIT Lilcense
  *
@@ -2266,7 +2266,7 @@ button:active [class*=icon-],
   width: 20px;
 }
 /*
- * Metro UI CSS v 0.1.4
+ * Metro UI CSS
  * Copyright 2012 Sergey Pimenov
  * Licensed under the MIT Lilcense
  *
@@ -2730,7 +2730,7 @@ ol.unstyled,
   list-style: none;
 }
 /*
- * Metro UI CSS v 0.1.4
+ * Metro UI CSS
  * Copyright 2012 Sergey Pimenov
  * Licensed under the MIT Lilcense
  *
@@ -3002,7 +3002,7 @@ ol.unstyled,
   background-color: #2d89ef !important;
 }
 /*
- * Metro UI CSS v 0.1.4
+ * Metro UI CSS
  * Copyright 2012 Sergey Pimenov
  * Licensed under the MIT Lilcense
  *
@@ -3583,7 +3583,7 @@ button.big [class*=icon-],
   color: #fff;
 }
 /*
- * Metro UI CSS v 0.1.4
+ * Metro UI CSS
  * Copyright 2012 Sergey Pimenov
  * Licensed under the MIT Lilcense
  *
@@ -3710,7 +3710,7 @@ table.bordered tbody tr:last-child td {
   border-bottom: 0;
 }
 /*
- * Metro UI CSS v 0.1.4
+ * Metro UI CSS
  * Copyright 2012 Sergey Pimenov
  * Licensed under the MIT Lilcense
  *
@@ -3888,7 +3888,7 @@ table.bordered tbody tr:last-child td {
   clear: both;
 }
 /*
- * Metro UI CSS v 0.1.4
+ * Metro UI CSS
  * Copyright 2012 Sergey Pimenov
  * Licensed under the MIT Lilcense
  *
@@ -3912,7 +3912,7 @@ table.bordered tbody tr:last-child td {
   clear: both;
 }
 /*
- * Metro UI CSS v 0.1.4
+ * Metro UI CSS
  * Copyright 2012 Sergey Pimenov
  * Licensed under the MIT Lilcense
  *
@@ -4313,7 +4313,7 @@ table.bordered tbody tr:last-child td {
   transform: rotate(90deg);
 }
 /*
- * Metro UI CSS v 0.1.4
+ * Metro UI CSS
  * Copyright 2012 Sergey Pimenov
  * Licensed under the MIT Lilcense
  *
@@ -4474,7 +4474,7 @@ table.bordered tbody tr:last-child td {
   background-position: 0 -676px;
 }
 /*
- * Metro UI CSS v 0.1.4
+ * Metro UI CSS
  * Copyright 2012 Sergey Pimenov
  * Licensed under the MIT Lilcense
  *
@@ -4799,7 +4799,7 @@ table.bordered tbody tr:last-child td {
   height: 88px;
 }
 /*
- * Metro UI CSS v 0.1.4
+ * Metro UI CSS
  * Copyright 2012 Sergey Pimenov
  * Licensed under the MIT Lilcense
  *
@@ -5102,7 +5102,7 @@ table.bordered tbody tr:last-child td {
   outline: 3px #3a3a3a solid;
 }
 /*
- * Metro UI CSS v 0.1.4
+ * Metro UI CSS
  * Copyright 2012 Sergey Pimenov
  * Licensed under the MIT Lilcense
  *
@@ -5602,7 +5602,7 @@ input[type=submit] {
   color: #fff;
 }
 /*
- * Metro UI CSS v 0.1.4
+ * Metro UI CSS
  * Copyright 2012 Sergey Pimenov
  * Licensed under the MIT Lilcense
  *
@@ -5713,7 +5713,7 @@ input[type=submit] {
   color: #1e1e1e;
 }
 /*
- * Metro UI CSS v 0.1.4
+ * Metro UI CSS
  * Copyright 2012 Sergey Pimenov
  * Licensed under the MIT Lilcense
  *
@@ -5866,7 +5866,7 @@ input[type=submit] {
   color: red;
 }
 /*
- * Metro UI CSS v 0.1.4
+ * Metro UI CSS
  * Copyright 2012 Sergey Pimenov
  * Licensed under the MIT Lilcense
  *
@@ -5915,7 +5915,7 @@ pre code {
   border: 0;
 }
 /*
- * Metro UI CSS v 0.1.4
+ * Metro UI CSS
  * Copyright 2012 Sergey Pimenov
  * Licensed under the MIT Lilcense
  *
@@ -6020,7 +6020,7 @@ pre code {
   display: none;
 }
 /*
- * Metro UI CSS v 0.1.4
+ * Metro UI CSS
  * Copyright 2012 Sergey Pimenov
  * Licensed under the MIT Lilcense
  *
@@ -6080,7 +6080,7 @@ pre code {
   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHpSURBVEhLtZavT8JRFMXBGQgEg5FAYNNgIBAMBhpsEowEIpFgYLMYMBsMFht/gRNHgRn8EzDoCBY2CAQ3g4GAAz/ncUW+ym++nu3swnn3nfu47/se32BgDobDYRie8DEFozAiHXRhB9aDwWAFvjl1CqYWkDGhSDwjykgmL8QW1LgK7cEMPIA3jF/MKzTGYDBIwLYxbfJMkHMIm/B9YT4JWdiDZVa5Y/JCkBtizqXNPTXZCwa0ciXkTFoZFEoyvw/Vuh8wEEZUS8omrQ28Svh8wO8HYiy2iUu3ZRbw2MarMV6srV6tWbihywLPOH5qVUy9z8FXG/MNeD7A8y0+6xBVnOov7mFKBaJ2iHwFns+EqApot90JnQR9XAk2bRItikRUYBt+OukfoAIdFqCLzAOqrwSbNokIvl1XAOri8hWY7xM6KlCH3qPtD45hTZV2eV51KBIjfXOo5fj1iHEn8OUaNhFCTtgQeD3Cqn11FfUrdJ9fmrQ28CjAPp7agx8gpqF+VtKklSFTPHST5k3ygoEiVPUS1PlYGszTymV+ZdJ0kJCxxAZFRps0B+RoQ9VzPSjTV/4bJEZgGeoa161YwCgpM+MRWh7eWU4Vzdtzw9zXFibGCFnoXls4sO5fCrPv15Ya2i18kv4XgcAXTr+7IYi7bgIAAAAASUVORK5CYII%3D);
 }
 /*
- * Metro UI CSS v 0.1.4
+ * Metro UI CSS
  * Copyright 2012 Sergey Pimenov
  * Licensed under the MIT Lilcense
  *
@@ -6159,7 +6159,7 @@ pre code {
   clear: both;
 }
 /*
- * Metro UI CSS v 0.1.4
+ * Metro UI CSS
  * Copyright 2012 Sergey Pimenov
  * Licensed under the MIT Lilcense
  *
@@ -6399,4 +6399,40 @@ pre code {
 }
 .listview:after {
   clear: both;
+}
+/*
+ * Metro UI CSS
+ * Copyright 2012 Sergey Pimenov
+ * Licensed under the MIT Lilcense
+ *
+ * Slider.less
+ *
+ */
+.slider {
+  height: 12px;
+  width: 100%;
+  position: relative;
+  background-color: #c6c6c6;
+  margin-bottom: 10px;
+}
+.slider .marker {
+  height: 12px;
+  width: 12px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #000000;
+}
+.slider .complete {
+  height: 100%;
+  width: auto;
+  background-color: #00828b;
+}
+.slider:hover .complete {
+  background-color: #219297;
+}
+.slider:active .complete,
+.slider:active + .marker:active .complete {
+  background-color: #25bbc4;
 }
