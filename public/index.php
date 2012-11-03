@@ -30,7 +30,7 @@
                     <div class="row">
                         <div class="span8">
                             <div class="hero-unit">
-                                <div class="carousel" data-role="carousel" style="height: 242px;">
+                                <div class="carousel" data-role="carousel" style="height: 242px;" data-param-duration="300">
                                     <div class="slides">
 
                                         <div class="slide" id="slide1">
