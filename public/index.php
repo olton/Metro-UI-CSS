@@ -139,12 +139,14 @@
                                         //,digg: true
                                         ,delicious: true
                                     },
-                                    enableTracking: true,
+                                    //enableTracking: true,
+                                    urlCurl: "js/sharrre/sharrre.php",
+                                    //shorterTotal: false,
                                     buttons: {
                                         googlePlus: {size: 'tall'},
                                         facebook: {layout: 'box_count'},
                                         twitter: {count: 'vertical'},
-                                        digg: {type: 'DiggMedium'},
+                                        //digg: {type: 'DiggMedium'},
                                         delicious: {size: 'tall'}
                                     },
                                     hover: function(api, options){
