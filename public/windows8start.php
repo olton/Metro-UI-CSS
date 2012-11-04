@@ -164,7 +164,7 @@
                     </div>
                 </div>
 
-                <div class="tile double bg-color-green" data-role="slider" data-param-period="3000">
+                <div class="tile double bg-color-green" data-role="tile-slider" data-param-period="3000">
                     <div class="tile-content">
                         <h2>mattberg@live.com</h2>
                         <h5>Re: Wedding Annoucement!</h5>
@@ -184,7 +184,7 @@
                         <img class="icon" src="images/Mail128.png"/>
                     </div>
                 </div>
-                <div class="tile double image-slider" data-role="slider" data-param-period="5000" data-param-direction="left">
+                <div class="tile double image-slider" data-role="tile-slider" data-param-period="5000" data-param-direction="left">
                     <div class="tile-content">
                         <img src="images/1.jpg" alt="">
                     </div>

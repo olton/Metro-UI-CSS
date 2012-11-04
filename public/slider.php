@@ -61,8 +61,8 @@
     &lt;/div&gt;
 
     &lt;div class="slider vertical" data-role="slider"&gt;
-        &lt;div class="complete" style="width: 45%"&gt;
-        &lt;div class="marker" style="left: 45%"&gt;
+        &lt;div class="complete" style="height: 45%"&gt;
+        &lt;div class="marker" style="top: 45%"&gt;
     &lt;/div&gt;
 </pre>
                     <h3>Javascript</h3>

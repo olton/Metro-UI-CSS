@@ -183,7 +183,7 @@ $.easing.doubleSqrt = function(t, millisecondsSince, startValue, endValue, total
 
 
 $(window).ready(function(){
-    var slidedTiles = $('[data-role=slider], .block-slider');
+    var slidedTiles = $('[data-role=tile-slider], .block-slider, .tile-slider');
     slidedTiles.each(function (index, tile) {
         var params = {};
         tile = $(tile);

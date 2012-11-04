@@ -193,10 +193,10 @@
 </pre>
                                 <h2 id="tile-slider-plugin">Tile Slider Plugin</h2>
                                 <p>
-                                    For use <code>slider</code> you mus include <code>tile-slider.js</code> in head of you page and add attribute <code>data-role="slider"</code> to tile object.
+                                    For use <code>tile-slider</code> you mus include <code>tile-slider.js</code> in head of you page and add attribute <code>data-role="tile-slider"</code> to tile object.
                                     To set specific parameters such as <code>direction</code>, <code>duration</code> and <code>period</code> you must add param <code>data-param-direction(duration, period)</code> to tile object.
                                 </p>
-                                <div class="tile double image-slider" data-role="slider">
+                                <div class="tile double image-slider" data-role="tile-slider">
                                     <div class="tile-content">
                                         <img src="images/1.jpg" alt="">
                                     </div>
@@ -214,7 +214,7 @@
                                     </div>
                                 </div>
 
-                                <div class="tile double image-slider" data-role="slider" data-param-direction="left" data-param-period="3000">
+                                <div class="tile double image-slider" data-role="tile-slider" data-param-direction="left" data-param-period="3000">
                                     <div class="tile-content">
                                         <img src="images/1.jpg" alt="">
                                     </div>
@@ -232,7 +232,7 @@
                                     </div>
                                 </div>
 
-                                <div class="tile double image-slider" data-role="slider" data-param-direction="down" data-param-period="3000">
+                                <div class="tile double image-slider" data-role="tile-slider" data-param-direction="down" data-param-period="3000">
                                     <div class="tile-content">
                                         <img src="images/1.jpg" alt="">
                                     </div>
@@ -250,7 +250,7 @@
                                     </div>
                                 </div>
 
-                                <div class="tile double image-slider" data-role="slider" data-param-direction="right" data-param-period="3000" data-param-duration="3000">
+                                <div class="tile double image-slider" data-role="tile-slider" data-param-direction="right" data-param-period="3000" data-param-duration="3000">
                                     <div class="tile-content">
                                         <img src="images/1.jpg" alt="">
                                     </div>
@@ -268,7 +268,7 @@
                                     </div>
                                 </div>
 
-                                <div class="tile double bg-color-green" data-role="slider" data-param-period="3000">
+                                <div class="tile double bg-color-green" data-role="tile-slider" data-param-period="3000">
                                     <div class="tile-content">
                                         <h2>mattberg@live.com</h2>
                                         <h5>Re: Wedding Annoucement!</h5>
