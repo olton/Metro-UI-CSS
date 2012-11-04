@@ -18,7 +18,7 @@
 
 .slider {
     height: 12px;
-    width: 100%;
+    width: auto;
     position: relative;
     background-color: @slider-color;
     margin-bottom: 10px;
@@ -36,6 +36,17 @@
         height: 100%;
         width: auto;
         background-color: @slider-color-rest-state;
+    }
+
+
+    &.vertical {
+        height: auto; 
+        width: 12px;
+
+        .complete {
+            height: auto;
+            width: 12px;
+        }
     }
 
     &:hover {

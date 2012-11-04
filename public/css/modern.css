@@ -6410,7 +6410,7 @@ pre code {
  */
 .slider {
   height: 12px;
-  width: 100%;
+  width: auto;
   position: relative;
   background-color: #c6c6c6;
   margin-bottom: 10px;
@@ -6428,6 +6428,14 @@ pre code {
   height: 100%;
   width: auto;
   background-color: #00828b;
+}
+.slider.vertical {
+  height: auto;
+  width: 12px;
+}
+.slider.vertical .complete {
+  height: auto;
+  width: 12px;
 }
 .slider:hover .complete {
   background-color: #219297;

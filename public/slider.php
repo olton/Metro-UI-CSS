@@ -32,17 +32,35 @@
 
         <div class="page-region">
             <div class="page-region-content">
-                <div class="span10">
-                    <h2>Slider</h2>
-
-                    <div class="slider">
-                        <div class="complete" style="width: 45%"></div>
-                        <div class="marker" style="left: 45%"></div>
+                <div class="grid">
+                    <div class="row">
+                        <div class="span5" style="height: 200px;">
+                            <h2>Horizontal Slider</h2>
+                            <div class="slider" style="margin-top: 100px">
+                                <div class="complete" style="width: 45%"></div>
+                                <div class="marker" style="left: 45%"></div>
+                            </div>
+                        </div>
+                        <div class="span5">
+                            <h2>Vertical Slider</h2>
+                            <div class="slider vertical" style="margin-left: 50%; height: 200px;">
+                                <div class="complete" style="height: 45%"></div>
+                                <div class="marker" style="top: 45%"></div>
+                            </div>
+                        </div>
                     </div>
+                </div>
+
+                <div class="span10">
 
                     <h3>Component definition</h3>
 <pre class="prettyprint linenums">
     &lt;div class="slider" data-role="slider"&gt;
+        &lt;div class="complete" style="width: 45%"&gt;
+        &lt;div class="marker" style="left: 45%"&gt;
+    &lt;/div&gt;
+
+    &lt;div class="slider vertical" data-role="slider"&gt;
         &lt;div class="complete" style="width: 45%"&gt;
         &lt;div class="marker" style="left: 45%"&gt;
     &lt;/div&gt;
