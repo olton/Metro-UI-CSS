@@ -151,7 +151,7 @@
                                         $(api.element).find('.buttons').show();
                                     },
                                     hide: function(api, options){
-                                        $(api.element).find('.buttons').hide();
+                                        //$(api.element).find('.buttons').hide();
                                     }
                                 });
                             </script>
