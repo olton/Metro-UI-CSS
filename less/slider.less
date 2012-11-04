@@ -31,11 +31,13 @@
         top: 0;
         left: 0;
         background-color: @slider-marker-color;
+        z-index: 3;
     }
     .complete {
         height: 100%;
         width: auto;
         background-color: @slider-color-rest-state;
+        z-index: 2;
     }
 
 
@@ -44,8 +46,10 @@
         width: 12px;
 
         .complete {
+            position: absolute;
             height: auto;
             width: 12px;
+            bottom: 0;
         }
     }
 

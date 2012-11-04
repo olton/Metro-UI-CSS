@@ -45,7 +45,7 @@
                             <h2>Vertical Slider</h2>
                             <div class="slider vertical" style="margin-left: 50%; height: 200px;">
                                 <div class="complete" style="height: 45%"></div>
-                                <div class="marker" style="top: 45%"></div>
+                                <div class="marker" style="top: 55%"></div>
                             </div>
                         </div>
                     </div>
@@ -62,7 +62,7 @@
 
     &lt;div class="slider vertical" data-role="slider"&gt;
         &lt;div class="complete" style="height: 45%"&gt;
-        &lt;div class="marker" style="top: 45%"&gt;
+        &lt;div class="marker" style="top: 55%"&gt;
     &lt;/div&gt;
 </pre>
                     <h3>Javascript</h3>

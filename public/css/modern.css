@@ -6423,19 +6423,23 @@ pre code {
   top: 0;
   left: 0;
   background-color: #000000;
+  z-index: 3;
 }
 .slider .complete {
   height: 100%;
   width: auto;
   background-color: #00828b;
+  z-index: 2;
 }
 .slider.vertical {
   height: auto;
   width: 12px;
 }
 .slider.vertical .complete {
+  position: absolute;
   height: auto;
   width: 12px;
+  bottom: 0;
 }
 .slider:hover .complete {
   background-color: #219297;
