@@ -101,7 +101,9 @@
                     <div class="row">
                         <div class="span4">
                             <img src="images/author.jpg" style="width:100%"/>
-                            <p class="tertiary-info-secondary-text bg-color-grayDark" style="padding: 10px; color: #fff;">Hi! My name is Sergey Pimenov and i'm author of Metro UI CSS from <abbr title="The capital of Ukraine">Kiev</abbr>, <abbr title="The center of Europe">Ukraine</abbr>.</p>
+                            <p class="tertiary-info-secondary-text bg-color-grayDark" style="padding: 10px; color: #fff;">
+                                Hi! My name is Sergey Pimenov and i'm author of Metro UI CSS from <abbr title="The capital of Ukraine">Kiev</abbr>, <abbr title="The center of Europe">Ukraine</abbr>.
+                            </p>
                         </div>
                         <div class="span4">
                             <h2>Welcome</h2>
@@ -136,24 +138,17 @@
                                         googlePlus: true
                                         ,facebook: true
                                         ,twitter: true
-                                        //,digg: true
                                         ,delicious: true
                                     },
-                                    //enableTracking: true,
                                     urlCurl: "js/sharrre/sharrre.php",
-                                    //shorterTotal: false,
                                     buttons: {
                                         googlePlus: {size: 'tall'},
                                         facebook: {layout: 'box_count'},
                                         twitter: {count: 'vertical'},
-                                        //digg: {type: 'DiggMedium'},
                                         delicious: {size: 'tall'}
                                     },
                                     hover: function(api, options){
                                         $(api.element).find('.buttons').show();
-                                    },
-                                    hide: function(api, options){
-                                        //$(api.element).find('.buttons').hide();
                                     }
                                 });
                             </script>
@@ -163,12 +158,12 @@
                             <table class="github-info" data-repo="olton/Metro-UI-CSS">
                                 <tbody>
                                 <tr>
-                                    <td>Starred:</td>
-                                    <td class="right"><span class="github-watchers">982</span></td>
+                                    <td><i class="icon-favorite"></i>Starred:</td>
+                                    <td class="right"><span class="github-watchers">1000</span></td>
                                 </tr>
                                 <tr>
-                                    <td>Forks:</td>
-                                    <td class="right bg"><span class="github-forks">215</span></td>
+                                    <td><i class="icon-node"></i>Forks:</td>
+                                    <td class="right bg"><span class="github-forks">220</span></td>
                                 </tr>
                                 <tr>
                                     <td colspan="2" style="padding: 20px 0 0; border: 0;">

@@ -9,6 +9,7 @@
 
     <link href="css/modern.css" rel="stylesheet">
     <link href="css/theme-dark.css" rel="stylesheet">
+    <link href="css/modern-responsive.css" rel="stylesheet">
 
     <script src="js/jquery-1.8.2.min.js"></script>
     <script src="js/google-analytics.js"></script>

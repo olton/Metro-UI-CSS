@@ -770,6 +770,10 @@ button:active [class*=icon-],
 .tool-button:active [class*=icon-] {
   background-image: url("../images/icons-white.png");
 }
+.sprite-details li {
+  line-height: 16px;
+  margin-bottom: 10px;
+}
 .icon-about {
   background-position: 0 0;
   width: 16px;
@@ -4009,6 +4013,9 @@ table.bordered tbody tr:last-child td {
 }
 .navigation-bar .navigation-bar-inner  > ul  > li  > .dropdown-menu {
   border: 0;
+}
+.navigation-bar .navigation-bar-inner  > ul  > li.no-hover:hover {
+  background-color: transparent;
 }
 .navigation-bar.fixed-top {
   position: fixed;
