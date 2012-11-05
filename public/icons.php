@@ -38,7 +38,10 @@
         <div class="page-region">
             <div class="page-region-content">
                 <div class="span10">
-                    <h2>333 Icon glyphs</h2>
+                    <h2>Icon glyphs</h2>
+                    <p>
+                        Now <code>333</code> icons in one font file. Icons support zoom (over css:font-size), colored (over css:color), css effects for text.
+                    </p>
 
                     <ol class="unstyled three-columns" id="icons-list">
                         <li><i class="icon-home"></i> icon-home</li>
@@ -289,7 +292,7 @@
                         <li><i class="icon-IE"></i> icon-IE</li>
                         <li><i class="icon-opera"></i> icon-opera</li>
                         <li><i class="icon-safari"></i> icon-safari</li>
-                        <li><i class="icon-icoMoon"></i> icon-IcoMoon</li>
+                        <li><i class="icon-IcoMoon"></i> icon-IcoMoon</li>
                         <li><i class="icon-sunrise"></i> icon-sunrise</li>
                         <li><i class="icon-sun"></i> icon-sun</li>
                         <li><i class="icon-moon"></i> icon-moon</li>
@@ -375,6 +378,22 @@
                         <li><i class="icon-compass-3"></i> icon-compass-3</li>
                         <li><i class="icon-keyboard"></i> icon-keyboard</li>
                     </ol>
+
+                    <br />
+                    <br />
+                    <div class="padding20 bg-color-pink fg-color-white">
+                        <h2 class="fg-color-white">License info:</h2>
+                        <br />Icon Set:	Broccolidry -- http://dribbble.com/shots/587469-Free-16px-Broccolidryiconsaniconsetitisfullof-icons
+                        <br />License:	Aribitrary -- http://licence.visualidiot.com/
+                        <br />
+
+                        <br />Icon Set:	Meteocons -- http://www.alessioatzeni.com/meteocons/
+                        <br />License:	Arbitrary -- http://www.alessioatzeni.com/meteocons/#about
+
+                        <br />
+                        <br />Icon Set:	IcoMoon - Free -- http://keyamoon.com/icomoon/
+                        <br />License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
+                    </div>
                 </div>
             </div>
         </div>
