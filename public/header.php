@@ -53,7 +53,7 @@
                     <li><a href="buttons.php">Buttons</a></li>
                     <li><a href="images.php">Images</a></li>
                     <li class="divider"></li>
-                    <li><a href="icons.php">Icons by Metro Studio</a></li>
+                    <li><a href="icons.php">Icons</a></li>
                 </ul>
             </li>
 

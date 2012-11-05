@@ -49,11 +49,11 @@
                     </ul>
                 </li>
 
-                <li class="sticker sticker-color-orange"><a href="#"><i class="icon-shopping-bag"></i>Shopping</a></li>
-                <li class="sticker sticker-color-orangeDark"><a href="#"><i class="icon-clipboard"></i>Recipes</a></li>
-                <li class="sticker sticker-color-green"><a href="#"><i class="icon-history"></i>Hobbies</a></li>
+                <li class="sticker sticker-color-orange"><a href="#"><i class="icon-cart"></i> Shopping</a></li>
+                <li class="sticker sticker-color-orangeDark"><a href="#"><i class="icon-clipboard"></i> Recipes</a></li>
+                <li class="sticker sticker-color-green"><a href="#"><i class="icon-history"></i> Hobbies</a></li>
                 <li class="sticker sticker-color-pink dropdown active" data-role="dropdown">
-                    <a><i class="icon-tile-view"></i>To Do</a>
+                    <a><i class="icon-list"></i> To Do</a>
                     <ul class="sub-menu light sidebar-dropdown-menu open">
                         <li><a href="">Today</a></li>
                         <li><a href="">To Do List</a></li>

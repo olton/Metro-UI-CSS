@@ -54,12 +54,12 @@
                                                 Developed with the advice of Microsoft to build the user interface and <strong>include:</strong>
                                             </p>
                                             <ul class="unstyled sprite-details two-columns" style="margin-top: 20px;">
-                                                <li><i class="icon-swap-right"></i> General styles</li>
-                                                <li><i class="icon-swap-right"></i> Grid with Responsive</li>
-                                                <li><i class="icon-swap-right"></i> Layouts</li>
-                                                <li><i class="icon-swap-right"></i> Typography</li>
-                                                <li><i class="icon-swap-right"></i> Many components</li>
-                                                <li><i class="icon-swap-right"></i> 200+ built in icons</li>
+                                                <li><i class="icon-arrow-right-3"></i> General styles</li>
+                                                <li><i class="icon-arrow-right-3"></i> Grid with Responsive</li>
+                                                <li><i class="icon-arrow-right-3"></i> Layouts</li>
+                                                <li><i class="icon-arrow-right-3"></i> Typography</li>
+                                                <li><i class="icon-arrow-right-3"></i> Many components</li>
+                                                <li><i class="icon-arrow-right-3"></i> 200+ built in icons</li>
                                             </ul>
                                         </div>
                                     </div>

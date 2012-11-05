@@ -97,10 +97,10 @@
                         <div class="span10">
                             <h2>Toolbar</h2>
                             <div class="toolbar">
-                                <button><i class="icon-about"></i></button>
+                                <button><i class="icon-home"></i></button>
                                 <button><i class="icon-bookmark"></i></button>
-                                <button><i class="icon-vibrate"></i></button>
-                                <button><i class="icon-navigation-down"></i></button>
+                                <button><i class="icon-phone"></i></button>
+                                <button><i class="icon-compass"></i></button>
                                 <button><i class="icon-mail"></i></button>
                             </div>
 <pre class="prettyprint linenums">
@@ -210,19 +210,19 @@
                         <div class="span10">
                             <h2>Any size of button</h2>
                             <div>
-                                <button class="mini"><i class="icon-adobe"></i>Mini</button>
-                                <button class="mini"><i class="icon-adobe right"></i>Mini</button>
+                                <button class="mini"><i class="icon-home"></i> Mini</button>
+                                <button class="mini">Mini <i class="icon-home"></i></button>
                                 <button class="mini">Mini</button>
                             </div>
                             <div>
-                                <button><i class="icon-adobe"></i>Default</button>
-                                <button><i class="icon-adobe right"></i>Default</button>
+                                <button><i class="icon-home"></i> Default</button>
+                                <button>Default <i class="icon-home"></i></button>
                                 <button>Default</button>
                             </div>
                             <div>
                                 <button class="big">Big button</button>
-                                <button class="big"><i class="icon-mail"></i>Big button</button>
-                                <button class="big"><i class="icon-mail right"></i>Big button</button>
+                                <button class="big"><i class="icon-mail"></i> Big button</button>
+                                <button class="big">Big button <i class="icon-mail"></i></button>
                             </div>
 <pre class="prettyprint linenums">
     &lt;button class="mini"&gt; Caption &lt;/button&gt;
@@ -235,13 +235,13 @@
                     <div class="row">
                         <div class="span10">
                             <h2>Button with icon</h2>
-                            <button><i class="icon-bookmark"></i>Button</button>
-                            <button><i class="icon-bookmark right"></i>Button</button>
-                            <button class="default"><i class="icon-bookmark white"></i>Button</button>
+                            <button><i class="icon-bookmark"></i> Button</button>
+                            <button>Button <i class="icon-bookmark"></i></button>
+                            <button class="default">Button <i class="icon-bookmark"></i></button>
 <pre class="prettyprint linenums">
     &lt;button&gt;&lt;i class="icon-*"&gt;&lt;/i&gt;Caption&lt;/button&gt;
-    &lt;button&gt;&lt;i class="icon-* right"&gt;&lt;/i&gt;Caption&lt;/button&gt;
-    &lt;button&gt;&lt;i class="icon-* white"&gt;&lt;/i&gt;Caption&lt;/button&gt;
+    &lt;button&gt;Caption&lt;i class="icon-*"&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;button class="default"&gt;&lt;i class="icon-*"&gt;&lt;/i&gt;Caption&lt;/button&gt;
 </pre>
                         </div>
                     </div>
