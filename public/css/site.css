@@ -72,6 +72,7 @@ hr {
 #shareme .button {
     float:left;
     max-width:50px;
+    min-width:10px;
     margin:0 15px 0 0;
     background-color: transparent;
 }
