@@ -38,7 +38,6 @@
 
                                             <h2>Create site in Windows 8 style now!</h2>
 
-                                            <br />
                                             <p>Metro UI CSS allows to create a Web site in the style of
                                                 Windows 8 quickly and without distractions
                                                 on routine tasks.</p>
@@ -53,14 +52,26 @@
                                             <p class="bg-color-pink padding20 fg-color-white">
                                                 Developed with the advice of Microsoft to build the user interface and <strong>include:</strong>
                                             </p>
-                                            <ul class="unstyled sprite-details two-columns" style="margin-top: 20px;">
-                                                <li><i class="icon-arrow-right-3"></i> General styles</li>
-                                                <li><i class="icon-arrow-right-3"></i> Grid with Responsive</li>
-                                                <li><i class="icon-arrow-right-3"></i> Layouts</li>
-                                                <li><i class="icon-arrow-right-3"></i> Typography</li>
-                                                <li><i class="icon-arrow-right-3"></i> Many components</li>
-                                                <li><i class="icon-arrow-right-3"></i> 200+ built in icons</li>
-                                            </ul>
+
+                                            <div class="grid">
+                                                <div class="row">
+                                                    <div class="span3">
+                                                        <ul class="unstyled sprite-details">
+                                                            <li><i class="icon-checkmark"></i> General styles</li>
+                                                            <li><i class="icon-checkmark"></i> Grid with Responsive</li>
+                                                            <li><i class="icon-checkmark"></i> Layouts</li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="span3">
+                                                        <ul class="unstyled sprite-details">
+                                                            <li><i class="icon-checkmark"></i> Typography</li>
+                                                            <li><i class="icon-checkmark"></i> Many components</li>
+                                                            <li><i class="icon-checkmark"></i> 300+ built in icons</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
