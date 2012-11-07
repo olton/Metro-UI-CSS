@@ -14,6 +14,7 @@
     <script src="js/jquery-1.8.2.min.js"></script>
     <script src="js/google-analytics.js"></script>
     <script src="js/github.info.js"></script>
+    <script src="js/slider.js"></script>
 
     <title>Modern UI CSS</title>
 
@@ -23,6 +24,26 @@
             line-height: 32px;
         }
     </style>
+
+    <script type="text/javascript">
+        $(function(){
+            $("#slider1").on("change", function(e, val){
+                color = 'green';
+                if (val > 30) {
+                    color = 'orange';
+                }
+                if (val > 70) {
+                    color = 'red';
+                }
+
+                $("#icon-resize-sample").css({
+                        "font-size": +val,
+                        "color": color
+                    });
+            });
+        })
+    </script>
+
 </head>
 <body class="modern-ui">
     <div class="page secondary">
@@ -38,11 +59,23 @@
         <div class="page-region">
             <div class="page-region-content">
                 <div class="span10">
-                    <h2>Icon glyphs</h2>
                     <p>
                         Now <code>333</code> icons in one font file. Icons support zoom (over css:font-size), colored (over css:color), css effects for text.
                     </p>
 
+                    <h3>Icons now resizable and colorable</h3>
+                    <div class="grid">
+                        <div class="row">
+                            <div class="span3" style="padding-top: 35px;">
+                                <div id="slider1" class="slider" data-role="slider" data-param-init-value="50"></div>
+                            </div>
+                            <div class="span3">
+                                <h1 id="icon-resize-sample" class="icon-compass"></h1>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3>Icons list</h3>
                     <ol class="unstyled three-columns" id="icons-list">
                         <li><i class="icon-home"></i> icon-home</li>
                         <li><i class="icon-newspaper"></i> icon-newspaper</li>
