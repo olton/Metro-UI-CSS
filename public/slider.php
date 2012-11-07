@@ -17,6 +17,8 @@
     <script src="js/github.info.js"></script>
     <script src="js/google-code-prettify/prettify.js"></script>
 
+    <script src="js/slider.js"></script>
+
     <title>Modern UI CSS</title>
 </head>
 <body class="modern-ui" onload="prettyPrint()">
@@ -36,16 +38,12 @@
                     <div class="row">
                         <div class="span5" style="height: 200px;">
                             <h2>Horizontal Slider</h2>
-                            <div class="slider" style="margin-top: 100px">
-                                <div class="complete" style="width: 45%"></div>
-                                <div class="marker" style="left: 45%"></div>
+                            <div class="slider" style="margin-top: 100px" data-param-accuracy="20" data-param-init-value="0">
                             </div>
                         </div>
                         <div class="span5">
                             <h2>Vertical Slider</h2>
-                            <div class="slider vertical" style="margin-left: 50%; height: 200px;">
-                                <div class="complete" style="height: 45%"></div>
-                                <div class="marker" style="top: 55%"></div>
+                            <div class="slider vertical" style="margin-left: 50%; height: 200px;" data-param-accuracy="0" data-param-init-value="30">
                             </div>
                         </div>
                     </div>
