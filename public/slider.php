@@ -67,11 +67,11 @@
     &lt;div class="slider vertical" data-role="slider"&gt;&lt;/div&gt;
 </pre>
                     <p class="bg-color-red fg-color-white padding5">
-                        For vertical slider you must set height manually.
+                        For use vertical slider you must set height attribute manually.
                     </p>
                     <h3>Params</h3>
                     <p>
-                        You can set params for slider: <code>data-param-init-value</code> (default: 0) and <code>data-param-accuracy</code> (default: 1). To set discrete mode of slider set accuracy parameter to value different of 1.
+                        You can set params for slider: <code>data-param-init-value</code> (default: 0) and <code>data-param-accuracy</code> (default: 1). To set discrete mode of slider set accuracy parameter to value different from 1.
                     </p>
                     <h3>Javascript</h3>
                     <p>
