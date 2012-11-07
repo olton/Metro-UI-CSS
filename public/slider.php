@@ -38,13 +38,18 @@
                     <div class="row">
                         <div class="span5" style="height: 200px;">
                             <h2>Horizontal Slider</h2>
-                            <div class="slider" style="margin-top: 100px" data-param-accuracy="20" data-param-init-value="0">
-                            </div>
+                            <div class="slider"  data-param-init-value="0"></div>
+
+                            <h4>init start value</h4>
+                            <div class="slider"  data-param-init-value="35"></div>
+
+                            <h4>discrete mode (accuracy = 20)</h4>
+                            <div class="slider"  data-param-accuracy="20" data-param-init-value="0"></div>
                         </div>
                         <div class="span5">
                             <h2>Vertical Slider</h2>
-                            <div class="slider vertical" style="margin-left: 50%; height: 200px;" data-param-accuracy="0" data-param-init-value="30">
-                            </div>
+                            <div class="slider vertical place-left" style="height: 200px;" data-param-accuracy="0" data-param-init-value="30"></div>
+                            <div class="slider vertical place-left" style="height: 200px;" data-param-accuracy="10" data-param-init-value="70"></div>
                         </div>
                     </div>
                 </div>
@@ -53,16 +58,21 @@
 
                     <h3>Component definition</h3>
 <pre class="prettyprint linenums">
-    &lt;div class="slider" data-role="slider"&gt;
-        &lt;div class="complete" style="width: 45%"&gt;
-        &lt;div class="marker" style="left: 45%"&gt;
-    &lt;/div&gt;
+    &lt;div class="slider" data-role="slider"&gt;&lt;/div&gt;
 
-    &lt;div class="slider vertical" data-role="slider"&gt;
-        &lt;div class="complete" style="height: 45%"&gt;
-        &lt;div class="marker" style="top: 55%"&gt;
-    &lt;/div&gt;
+    &lt;div class="slider" data-role="slider" data-param-init-value="35"&gt;&lt;/div&gt;
+
+    &lt;div class="slider" data-role="slider" data-param-accuracy="20"&gt;&lt;/div&gt;
+
+    &lt;div class="slider vertical" data-role="slider"&gt;&lt;/div&gt;
 </pre>
+                    <p class="bg-color-red fg-color-white padding5">
+                        For vertical slider you must set height manually.
+                    </p>
+                    <h3>Params</h3>
+                    <p>
+                        You can set params for slider: <code>data-param-init-value</code> (default: 0) and <code>data-param-accuracy</code> (default: 1). To set discrete mode of slider set accuracy parameter to value different of 1.
+                    </p>
                     <h3>Javascript</h3>
                     <p>
                         To use slider component you must include <code>slider.js</code> in head of page.
