@@ -75,7 +75,10 @@ $('.slider').data('value')
                 startMoveMarker();
             });
 
-
+            $element.on('click', function (event) {
+                initGeometry();
+                movingMarker(event);
+            });
 
         };
 
