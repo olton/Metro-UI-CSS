@@ -125,6 +125,29 @@
 
                     <div class="row">
                         <div class="span10">
+                            <p>To set outline color for components (such as tile, listView item, etc.) use prefix <strong>outline</strong></p>
+                            <div class="clearfix">
+                                <div class="tile outline-color-blue">
+                                    &nbsp;
+                                </div>
+                                <div class="tile outline-color-green">
+                                    &nbsp;
+                                </div>
+                                <div class="tile outline-color-red">
+                                    &nbsp;
+                                </div>
+                                <div class="tile outline-color-orange">
+                                    &nbsp;
+                                </div>
+                            </div>
+<pre class="prettyprint linenums">
+    &lt;div class="tile outline-color-red"&gt;...&lt;/div&gt;
+</pre>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="span10">
                             <h2>Fonts</h2>
                             <p class="span10">
                                 In Metro UI CSS i use Segoe UI, <a href="http://www.google.com/webfonts#UsePlace:use/Collection:Open+Sans">Open Sans</a> fonts (depending on the availability in the system).
