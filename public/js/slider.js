@@ -78,6 +78,7 @@ $('.slider').data('value')
             $element.on('click', function (event) {
                 initGeometry();
                 movingMarker(event);
+                $element.trigger('changed', [currentValuePerc]);
             });
 
         };
