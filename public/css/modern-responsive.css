@@ -159,6 +159,57 @@
 .border-color-grayDark {
   border-color: #525252 !important;
 }
+*:hover[class=outline-color] {
+  outline: 3px solid;
+}
+.outline-color-blue {
+  outline-color: #2d89ef !important;
+}
+.outline-color-blueLight {
+  outline-color: #44a3aa !important;
+}
+.outline-color-blueDark {
+  outline-color: #2b5797 !important;
+}
+.outline-color-green {
+  outline-color: #00a300 !important;
+}
+.outline-color-greenLight {
+  outline-color: #99b433 !important;
+}
+.outline-color-greenDark {
+  outline-color: #1e7145 !important;
+}
+.outline-color-red {
+  outline-color: #b91d47 !important;
+}
+.outline-color-yellow {
+  outline-color: #ffc40d !important;
+}
+.outline-color-orange {
+  outline-color: #e3a21a !important;
+}
+.outline-color-orangeDark {
+  outline-color: #da532c !important;
+}
+.outline-color-pink {
+  outline-color: #9f00a7 !important;
+}
+.outline-color-pinkDark {
+  outline-color: #7e3878 !important;
+}
+.outline-color-purple {
+  outline-color: #603cba !important;
+}
+.outline-color-darken {
+  outline-color: #1d1d1d !important;
+}
+.outline-color-white {
+  outline-color: #ffffff !important;
+}
+.outline-color-grayDark {
+  outline-color: #525252 !important;
+}
 /*
  * Metro UI CSS
  * Copyright 2012 Sergey Pimenov

@@ -86,7 +86,7 @@
     <div class="page-region">
         <div class="page-region-content tiles">
             <div class="tile-group">
-                <div class="tile image">
+                <div class="tile image outline-color-green">
                     <div class="tile-content">
                         <img src="images/myface.jpg" alt="">
                     </div>
