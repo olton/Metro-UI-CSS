@@ -7,6 +7,14 @@
  */
 
 /* Landscape phone to portrait tablet */
+@tileSmall:             120px;
+@tileLarge:             250px;
+@tileMargin:            5px;
+@tileDouble:            @tileSmall * 2 + @tileMargin * 2;
+@tileTriple:            @tileSmall * 3 + @tileMargin * 4;
+@tileQuadro:            @tileSmall * 4 + @tileMargin * 6;
+
+
 @media (max-width: 767px) {
     body {
         padding-right: 10px;
@@ -202,10 +210,4 @@
             }
         }
     }
-
-    .tile-group {
-        max-width: 400px;
-        float: none;
-    }
-
 }

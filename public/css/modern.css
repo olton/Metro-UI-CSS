@@ -3507,7 +3507,7 @@ table.bordered tbody tr:last-child td {
   *zoom: 1;
 }
 .navigation-bar .navigation-bar-inner  > .brand {
-  position: re;
+  position: relative;
   float: left;
   margin-right: 20px;
   margin-top: 3px;
@@ -4672,11 +4672,19 @@ table.bordered tbody tr:last-child td {
 .tile .tile-status  > .name:hover {
   color: #ffffff;
 }
+.tile .brand  > .name  > [class*=icon-],
+.tile .tile-status  > .name  > [class*=icon-] {
+  font-size: 24px;
+}
 .tile .brand  > .icon,
 .tile .tile-status  > .icon {
   margin: 5px 15px;
   width: 32px;
   height: 32px;
+}
+.tile .brand  > .icon  > [class*=icon-],
+.tile .tile-status  > .icon  > [class*=icon-] {
+  font-size: 32px;
 }
 .tile .brand  > .icon  > img,
 .tile .tile-status  > .icon  > img {
