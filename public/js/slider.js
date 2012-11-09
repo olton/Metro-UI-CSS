@@ -72,13 +72,12 @@ $('.slider').data('value')
             // init marker handler
             marker.on('mousedown', function (e) {
                 e.preventDefault();
-                startMoveMarker();
+                startMoveMarker(e);
             });
 
-            $element.on('click', function (event) {
-                initGeometry();
-                movingMarker(event);
-                $element.trigger('changed', [currentValuePerc]);
+            $element.on('mousedown', function (e) {
+                e.preventDefault();
+                startMoveMarker(e);
             });
 
         };
@@ -142,7 +141,7 @@ $('.slider').data('value')
         /**
          * when mousedown on marker
          */
-        var startMoveMarker = function () {
+        var startMoveMarker = function (e) {
             // register event handlers
             $(document).on('mousemove.sliderMarker', function (event) {
                 movingMarker(event);
@@ -155,6 +154,8 @@ $('.slider').data('value')
             });
 
             initGeometry();
+
+            movingMarker(e)
         };
 
         /**
@@ -217,6 +218,23 @@ $('.slider').data('value')
             $element.trigger('change', [currentValuePerc]);
         };
 
+        // public methods
+
+        /**
+         * if argument value is defined - correct it, store, place marker and return corrected value
+         * else just return current value
+         * you can use it like this: $('.slider').data('slider').val(38)
+         * @param value (percents)
+         */
+        plugin.val = function (value) {
+            if (typeof value !== 'undefined') {
+                currentValuePerc = correctValuePerc(value);
+                placeMarkerByPerc(currentValuePerc);
+                return currentValuePerc;
+            } else {
+                return currentValuePerc;
+            }
+        };
 
         plugin.init();
 
