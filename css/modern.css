@@ -3499,13 +3499,15 @@ table.bordered tbody tr:last-child td {
   z-index: 10000;
 }
 .navigation-bar .navigation-bar-inner {
-  padding: 5px 20px 2px 20px;
+  padding: 5px 20px 5px 20px;
   color: #fff;
   font-size: 11pt;
   margin: auto;
   position: relative;
+  *zoom: 1;
 }
 .navigation-bar .navigation-bar-inner  > .brand {
+  position: re;
   float: left;
   margin-right: 20px;
   margin-top: 3px;
@@ -3520,6 +3522,10 @@ table.bordered tbody tr:last-child td {
   margin-right: 10px;
   margin-top: 3px;
 }
+.navigation-bar .navigation-bar-inner  > .brand .icon img {
+  width: 100%;
+  height: 100%;
+}
 .navigation-bar .navigation-bar-inner  > .brand .name {
   font-family: 'Segoe UI Light', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 200;
@@ -3528,6 +3534,26 @@ table.bordered tbody tr:last-child td {
   line-height: 24pt;
   font-size: 16pt;
   color: #fff;
+}
+.navigation-bar .navigation-bar-inner  > .brand.sub-menu {
+  cursor: pointer;
+}
+.navigation-bar .navigation-bar-inner  > .brand.sub-menu .dropdown-menu {
+  margin-top: -10px;
+}
+.navigation-bar .navigation-bar-inner  > .brand.sub-menu:after {
+  position: absolute;
+  content: "\3009";
+  display: inline-block;
+  font-size: 10pt;
+  left: 100%;
+  top: 20px;
+  margin-left: 5px;
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  transform: rotate(90deg);
 }
 .navigation-bar .navigation-bar-inner  > ul {
   margin-left: 0;
@@ -3585,6 +3611,14 @@ table.bordered tbody tr:last-child td {
 }
 .navigation-bar .navigation-bar-inner  > ul  > li.no-hover:hover {
   background-color: transparent;
+}
+.navigation-bar .navigation-bar-inner:before,
+.navigation-bar .navigation-bar-inner:after {
+  display: table;
+  content: "";
+}
+.navigation-bar .navigation-bar-inner:after {
+  clear: both;
 }
 .navigation-bar.fixed-top {
   position: fixed;
