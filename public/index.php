@@ -169,11 +169,11 @@
                             <table class="github-info" data-repo="olton/Metro-UI-CSS">
                                 <tbody>
                                 <tr>
-                                    <td><i class="icon-favorite"></i>Starred:</td>
+                                    <td><i class="icon-star-4"></i> Starred:</td>
                                     <td class="right"><span class="github-watchers">1000</span></td>
                                 </tr>
                                 <tr>
-                                    <td><i class="icon-node"></i>Forks:</td>
+                                    <td><i class="icon-share-2"></i> Forks:</td>
                                     <td class="right bg"><span class="github-forks">220</span></td>
                                 </tr>
                                 <tr>

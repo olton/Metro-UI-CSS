@@ -509,10 +509,6 @@
     right: 40px;
     font-size: 8pt;
   }
-  .tile-group {
-    max-width: 400px;
-    float: none;
-  }
 }
 /*
  * Metro UI CSS
@@ -629,5 +625,9 @@
   h3 {
     font-size: 13pt;
     line-height: 14px;
+  }
+  .tile-group {
+    max-width: 400px;
+    float: none;
   }
 }
