@@ -544,7 +544,7 @@ table {
   clear: both;
 }
 .padding5 {
-  padding: 5px;
+  padding: 5px 5px 5px 5px;
 }
 .padding10 {
   padding: 10px;
@@ -553,7 +553,7 @@ table {
   padding: 15px;
 }
 .padding20 {
-  padding: 20px;
+  padding: 20px 20px 10px;
 }
 .padding30 {
   padding: 30px;
@@ -2077,29 +2077,29 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   color: rgba(0, 0, 0, 0.4);
 }
 #state .link {
-  color: #4f1acb;
+  color: #2e92cf;
 }
 #state .link:hover {
-  color: rgba(79, 26, 203, 0.8);
+  color: rgba(45, 173, 237, 0.8);
 }
 #state .link:active {
-  color: rgba(79, 26, 203, 0.6);
+  color: rgba(45, 173, 237, 0.6);
 }
 a,
 .link {
   font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 11pt;
-  color: #4f1acb;
+  color: #2e92cf;
   text-decoration: none;
 }
 a:hover,
 .link:hover {
-  color: rgba(79, 26, 203, 0.8);
+  color: rgba(45, 173, 237, 0.8);
 }
 a:active,
 .link:active {
-  color: rgba(79, 26, 203, 0.6);
+  color: rgba(45, 173, 237, 0.6);
 }
 h1,
 h2,
