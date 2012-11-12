@@ -245,6 +245,39 @@
 </pre>
                         </div>
                     </div>
+
+                    <div class="row">
+                        <div class="span10">
+                            <h2>Shortcuts with icon</h2>
+                            <button class="shortcut">
+                                <span class="icon">
+                                    <i class="icon-bookmark"></i>
+                                </span>
+                                <span class="label">
+                                    Bookmark
+                                </span>
+                            </button>
+                            <button class="shortcut">
+                                <span class="icon">
+                                    <i class="icon-user-3"></i>
+                                </span>
+                                <span class="label">
+                                    Users
+                                </span>
+                            </button>
+
+<pre class="prettyprint linenums">
+    &lt;button class="shortcut"&gt;
+        &lt;span class="icon"&gt;
+            &lt;i class="icon-*"&gt;&lt;/i&gt;
+        &lt;/span&gt;
+        &lt;span class="label"&gt;
+            Caption
+        &lt;/span&gt;
+    &lt;/button&gt;
+</pre>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="grid">

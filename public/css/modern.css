@@ -544,7 +544,7 @@ table {
   clear: both;
 }
 .padding5 {
-  padding: 5px 5px 5px 5px;
+  padding: 5px;
 }
 .padding10 {
   padding: 10px;
@@ -553,7 +553,7 @@ table {
   padding: 15px;
 }
 .padding20 {
-  padding: 20px 20px 10px;
+  padding: 20px;
 }
 .padding30 {
   padding: 30px;
@@ -2686,7 +2686,7 @@ button:active,
 .button:active,
 button.default:active,
 .button.default:active {
-  background-color: #000 !important;
+  background-color: #000;
   color: #fff;
 }
 button:disabled,
@@ -2801,7 +2801,7 @@ button.big [class*=icon-],
 }
 .tool-button:active,
 .tool-button.default:active {
-  background-color: #000 !important;
+  background-color: #000;
   color: #fff;
 }
 .tool-button:disabled,
@@ -2917,7 +2917,7 @@ button.big [class*=icon-],
 .toolbar button:active,
 .toolbar a.default:active,
 .toolbar button.default:active {
-  background-color: #000 !important;
+  background-color: #000;
   color: #fff;
 }
 .toolbar a:disabled,
@@ -3060,7 +3060,7 @@ button.big [class*=icon-],
 .toolbar-vertical button:active,
 .toolbar-vertical a.default:active,
 .toolbar-vertical button.default:active {
-  background-color: #000 !important;
+  background-color: #000;
   color: #fff;
 }
 .toolbar-vertical a:disabled,
@@ -3154,6 +3154,42 @@ button.big [class*=icon-],
 .button-set button.active {
   background-color: #008287;
   color: #fff;
+}
+.shortcuts {
+  margin-bottom: 10px;
+}
+.shortcut {
+  width: 92px;
+  height: 92px;
+  display: inline-block;
+  padding: 18px 0;
+  margin: 0 10px 10px 0;
+  vertical-align: top;
+  text-decoration: none;
+  background: #F3F3F3;
+  text-align: center;
+  cursor: pointer;
+  border: 0;
+  border-bottom: 2px transparent solid;
+}
+.shortcut:hover {
+  border-color: red;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+.shortcut:active {
+  box-shadow: none;
+  background: #F3F3F3;
+}
+.shortcut .icon {
+  margin-top: .25em;
+  margin-bottom: .25em;
+  font-size: 32px;
+  color: #888;
+}
+.shortcut .label {
+  display: block;
+  font-weight: 400;
+  color: #666;
 }
 /*
  * Metro UI CSS
@@ -5161,7 +5197,7 @@ input[type=submit]:active,
 input[type=button].default:active,
 input[type=reset].default:active,
 input[type=submit].default:active {
-  background-color: #000 !important;
+  background-color: #000;
   color: #fff;
 }
 input[type=button]:disabled,

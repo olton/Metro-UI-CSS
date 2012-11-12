@@ -63,7 +63,7 @@ button, .button {
     }
 
     &:active, &.default:active {
-        background-color: #000 !important;
+        background-color: #000;
         color: #fff;
     }
 
@@ -248,3 +248,48 @@ button, .button, .tool-button {
     }
 }
 
+.shortcuts {
+    margin-bottom: 10px;
+}
+
+.shortcut {
+    width: 92px;
+    height: 92px;
+    display: inline-block;
+    padding: 18px 0;
+    margin: 0 10px 10px 0;
+    vertical-align: top;
+    text-decoration: none;
+    background: #F3F3F3;
+    text-align: center;
+    cursor: pointer;
+    border: 0;
+    border-bottom: 2px transparent solid;
+
+    &:hover {
+        border-color: red;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+    &:active {
+        box-shadow: none;
+        //margin-top: -1px;
+        //margin-left: -1px;
+        background: #F3F3F3;
+    }
+
+    &:last-child {
+
+    }
+
+    .icon {
+        margin-top: .25em;
+        margin-bottom: .25em;
+        font-size: 32px;
+        color: #888;
+    }
+    .label {
+        display: block;
+        font-weight: 400;
+        color: #666;
+    }
+}
