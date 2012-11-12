@@ -249,6 +249,11 @@
                     <div class="row">
                         <div class="span10">
                             <h2>Shortcuts with icon</h2>
+                            <p>
+                                You can use any tags to create shortcut button. This may be <code>a</code>, <code>button</code>, <code>span</code>, etc. To set background or foreground color shortcut or badge in shortcut, you can use color classes.
+                            </p>
+
+
                             <button class="shortcut">
                                 <span class="icon">
                                     <i class="icon-bookmark"></i>
@@ -267,6 +272,17 @@
 
                                 <span class="badge">100</span>
                             </button>
+
+                            <a class="shortcut">
+                                <span class="icon">
+                                    <i class="icon-link"></i>
+                                </span>
+                                <span class="label">
+                                    Links
+                                </span>
+
+                                <span class="badge bg-color-red">100</span>
+                            </a>
 
 <pre class="prettyprint linenums">
     &lt;button class="shortcut"&gt;

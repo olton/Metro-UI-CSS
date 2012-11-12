@@ -3204,6 +3204,12 @@ button.big [class*=icon-],
   font-size: 9pt;
   color: #fff;
 }
+a.shortcut {
+  padding: 30px 0;
+}
+a.shortcut .label {
+  font-size: 9pt;
+}
 /*
  * Metro UI CSS
  * Copyright 2012 Sergey Pimenov
