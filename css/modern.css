@@ -817,6 +817,9 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   content: attr(data-icon);
   speak: none;
   font-weight: normal;
+  font-style: normal;
+  display: inline-block;
+  text-decoration: inherit;
   -webkit-font-smoothing: antialiased;
 }
 /* Use the following CSS code if you want to have a class per icon */
@@ -826,7 +829,30 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-style: normal;
   speak: none;
   font-weight: normal;
+  display: inline-block;
+  text-decoration: inherit;
   -webkit-font-smoothing: antialiased;
+}
+.icon-large:before {
+  vertical-align: middle;
+  font-size: 1.3333333333333332em;
+  margin-top: -8px;
+}
+button [class^="icon-"],
+.button [class^="icon-"],
+button [class*=" icon-"],
+.button [class*=" icon-"] {
+  font-size: 1em;
+}
+li [class^="icon-"],
+li [class*=" icon-"] {
+  display: inline-block;
+  width: 1.25em;
+  text-align: center;
+}
+li .icon-large:before,
+li .icon-large:before {
+  width: 1.875em;
 }
 .icon-home:before {
   content: "\21";
@@ -2705,6 +2731,10 @@ button:focus,
   outline: 0;
   border: 1px #353535 dotted;
 }
+a.button:hover,
+a.button:active {
+  color: inherit;
+}
 button.mini,
 .button.mini,
 .tool-button.mini {
@@ -2720,15 +2750,6 @@ button.big,
   height: 48px;
   font-size: 1.2em;
 }
-button.big [class*=icon-],
-.button.big [class*=icon-],
-.tool-button.big [class*=icon-] {
-  margin-top: 6px;
-  zoom: 1;
-}
-.tool-button [class*=icon-] {
-  margin-top: 2px !important;
-}
 .tool-button.mini {
   min-width: 22px;
   width: 22px;
@@ -2736,10 +2757,6 @@ button.big [class*=icon-],
 .tool-button.big {
   min-width: 48px;
   width: 48px;
-}
-.tool-button.big [class*=icon-] {
-  margin-top: 2px !important;
-  margin-left: 15px !important;
 }
 .command-button {
   width: 330px;
@@ -2794,6 +2811,10 @@ button.big [class*=icon-],
   position: relative;
   padding: 0;
 }
+.tool-button [class^="icon-"],
+.tool-button [class*=" icon-"] {
+  font-size: 1em;
+}
 .tool-button.standart {
   min-width: 90px;
   min-height: 32px;
@@ -2827,10 +2848,6 @@ button.big [class*=icon-],
   min-height: 48px;
   height: 48px;
   font-size: 1.2em;
-}
-.tool-button.big [class*=icon-] {
-  margin-top: 6px;
-  zoom: 1;
 }
 .tool-button img {
   width: 16px;
@@ -2884,15 +2901,6 @@ button.big [class*=icon-],
   height: 48px;
   font-size: 1.2em;
 }
-.toolbar a.big [class*=icon-],
-.toolbar button.big [class*=icon-] {
-  margin-top: 6px;
-  zoom: 1;
-}
-.toolbar a [class*=icon-],
-.toolbar button [class*=icon-] {
-  margin-top: 2px !important;
-}
 .toolbar a.mini,
 .toolbar button.mini {
   min-width: 22px;
@@ -2903,10 +2911,11 @@ button.big [class*=icon-],
   min-width: 48px;
   width: 48px;
 }
-.toolbar a.big [class*=icon-],
-.toolbar button.big [class*=icon-] {
-  margin-top: 2px !important;
-  margin-left: 15px !important;
+.toolbar a [class^="icon-"],
+.toolbar button [class^="icon-"],
+.toolbar a [class*=" icon-"],
+.toolbar button [class*=" icon-"] {
+  font-size: 1em;
 }
 .toolbar a.standart,
 .toolbar button.standart {
@@ -2950,11 +2959,6 @@ button.big [class*=icon-],
   min-height: 48px;
   height: 48px;
   font-size: 1.2em;
-}
-.toolbar a.big [class*=icon-],
-.toolbar button.big [class*=icon-] {
-  margin-top: 6px;
-  zoom: 1;
 }
 .toolbar a img,
 .toolbar button img {
@@ -3028,15 +3032,6 @@ button.big [class*=icon-],
   height: 48px;
   font-size: 1.2em;
 }
-.toolbar-vertical a.big [class*=icon-],
-.toolbar-vertical button.big [class*=icon-] {
-  margin-top: 6px;
-  zoom: 1;
-}
-.toolbar-vertical a [class*=icon-],
-.toolbar-vertical button [class*=icon-] {
-  margin-top: 2px !important;
-}
 .toolbar-vertical a.mini,
 .toolbar-vertical button.mini {
   min-width: 22px;
@@ -3047,10 +3042,11 @@ button.big [class*=icon-],
   min-width: 48px;
   width: 48px;
 }
-.toolbar-vertical a.big [class*=icon-],
-.toolbar-vertical button.big [class*=icon-] {
-  margin-top: 2px !important;
-  margin-left: 15px !important;
+.toolbar-vertical a [class^="icon-"],
+.toolbar-vertical button [class^="icon-"],
+.toolbar-vertical a [class*=" icon-"],
+.toolbar-vertical button [class*=" icon-"] {
+  font-size: 1em;
 }
 .toolbar-vertical a.standart,
 .toolbar-vertical button.standart {
@@ -3094,11 +3090,6 @@ button.big [class*=icon-],
   min-height: 48px;
   height: 48px;
   font-size: 1.2em;
-}
-.toolbar-vertical a.big [class*=icon-],
-.toolbar-vertical button.big [class*=icon-] {
-  margin-top: 6px;
-  zoom: 1;
 }
 .toolbar-vertical a img,
 .toolbar-vertical button img {
@@ -5205,6 +5196,14 @@ input[type=submit] {
   position: relative;
   border-radius: 0;
 }
+input[type=button] [class^="icon-"],
+input[type=reset] [class^="icon-"],
+input[type=submit] [class^="icon-"],
+input[type=button] [class*=" icon-"],
+input[type=reset] [class*=" icon-"],
+input[type=submit] [class*=" icon-"] {
+  font-size: 1em;
+}
 input[type=button].standart,
 input[type=reset].standart,
 input[type=submit].standart {
@@ -5256,12 +5255,6 @@ input[type=submit].big {
   min-height: 48px;
   height: 48px;
   font-size: 1.2em;
-}
-input[type=button].big [class*=icon-],
-input[type=reset].big [class*=icon-],
-input[type=submit].big [class*=icon-] {
-  margin-top: 6px;
-  zoom: 1;
 }
 input[type=submit] {
   background-color: #008287;

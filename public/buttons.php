@@ -123,7 +123,9 @@
                                     <button></button>
                                 </div>
                                 <div class="toolbar-group">
-                                    <button class="big"></button>
+                                    <button class="big">
+                                        <i class="icon-home"></i>
+                                    </button>
                                     <button class="big"></button>
                                     <button class="big"></button>
                                 </div>
@@ -221,8 +223,8 @@
                             </div>
                             <div>
                                 <button class="big">Big button</button>
-                                <button class="big"><i class="icon-mail"></i> Big button</button>
-                                <button class="big">Big button <i class="icon-mail"></i></button>
+                                <button class="big"><i class="icon-home icon-large"></i> Big button</button>
+                                <button class="big">Big button <i class="icon-mail icon-large"></i></button>
                             </div>
 <pre class="prettyprint linenums">
     &lt;button class="mini"&gt; Caption &lt;/button&gt;

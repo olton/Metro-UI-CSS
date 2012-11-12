@@ -28,6 +28,9 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 	content: attr(data-icon);
 	speak: none;
 	font-weight: normal;
+	font-style: normal;
+    display: inline-block;
+    text-decoration: inherit;
 	-webkit-font-smoothing: antialiased;
 }
 
@@ -37,9 +40,39 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 	font-style: normal;
 	speak: none;
 	font-weight: normal;
+    display: inline-block;
+    text-decoration: inherit;
 	-webkit-font-smoothing: antialiased;
 }
 
+.icon-large:before {
+    vertical-align: middle;
+    font-size: 4/3em;
+    margin-top: -8px;
+}
+
+button, .button {
+    [class^="icon-"],
+    [class*=" icon-"] {
+        font-size: 3/2em;
+    }
+}
+
+.tool-btn {
+}
+
+li {
+    [class^="icon-"],
+    [class*=" icon-"] {
+        display: inline-block;
+        width: 1.25em;
+        text-align: center;
+    }
+    .icon-large:before,
+    .icon-large:before {
+        width: 1.5*1.25em;
+    }
+}
 
 .icon-home:before {	content: "\21";}
 .icon-newspaper:before {	content: "\23";}
