@@ -1866,20 +1866,17 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   width: 310px;
   height: 150px;
 }
+/*
 .badge {
-  position: relative;
-  margin: 0 10px 10px 0;
-  display: block;
-  float: none !important;
-  width: 35px;
-  height: 30px;
-  padding-top: 5px;
-  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
-  font-weight: 400;
-  font-size: 9pt;
-  color: #1d1d1d;
-  text-align: center;
+    .brick;
+    width: @subunit*7;
+    height: @subunit*6;
+    padding-top: @subunit;
+    #font > .control;
+    color: @darken;
+    text-align: center;
 }
+*/
 .square {
   display: block;
   float: left;
@@ -2676,6 +2673,7 @@ button,
   vertical-align: middle;
   cursor: pointer;
   padding: 4px 10px;
+  position: relative;
 }
 button.standart,
 .button.standart {
@@ -2686,8 +2684,8 @@ button:active,
 .button:active,
 button.default:active,
 .button.default:active {
-  background-color: #000;
-  color: #fff;
+  top: 1px;
+  left: 1px;
 }
 button:disabled,
 .button:disabled,
@@ -2787,6 +2785,7 @@ button.big [class*=icon-],
   vertical-align: middle;
   cursor: pointer;
   padding: 4px 10px;
+  position: relative;
   min-width: 32px;
   min-height: 32px;
   width: 32px;
@@ -2801,8 +2800,8 @@ button.big [class*=icon-],
 }
 .tool-button:active,
 .tool-button.default:active {
-  background-color: #000;
-  color: #fff;
+  top: 1px;
+  left: 1px;
 }
 .tool-button:disabled,
 .tool-button.disabled {
@@ -2862,6 +2861,7 @@ button.big [class*=icon-],
   vertical-align: middle;
   cursor: pointer;
   padding: 4px 10px;
+  position: relative;
   min-width: 32px;
   min-height: 32px;
   width: 32px;
@@ -2917,8 +2917,8 @@ button.big [class*=icon-],
 .toolbar button:active,
 .toolbar a.default:active,
 .toolbar button.default:active {
-  background-color: #000;
-  color: #fff;
+  top: 1px;
+  left: 1px;
 }
 .toolbar a:disabled,
 .toolbar button:disabled,
@@ -3005,6 +3005,7 @@ button.big [class*=icon-],
   vertical-align: middle;
   cursor: pointer;
   padding: 4px 10px;
+  position: relative;
   min-width: 32px;
   min-height: 32px;
   width: 32px;
@@ -3060,8 +3061,8 @@ button.big [class*=icon-],
 .toolbar-vertical button:active,
 .toolbar-vertical a.default:active,
 .toolbar-vertical button.default:active {
-  background-color: #000;
-  color: #fff;
+  top: 1px;
+  left: 1px;
 }
 .toolbar-vertical a:disabled,
 .toolbar-vertical button:disabled,
@@ -3162,7 +3163,6 @@ button.big [class*=icon-],
   width: 92px;
   height: 92px;
   display: inline-block;
-  padding: 18px 0;
   margin: 0 10px 10px 0;
   vertical-align: top;
   text-decoration: none;
@@ -3171,25 +3171,38 @@ button.big [class*=icon-],
   cursor: pointer;
   border: 0;
   border-bottom: 2px transparent solid;
+  position: relative;
 }
 .shortcut:hover {
   border-color: red;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 .shortcut:active {
-  box-shadow: none;
   background: #F3F3F3;
+  top: 1px;
+  left: 1px;
 }
-.shortcut .icon {
+.shortcut  > .icon {
   margin-top: .25em;
   margin-bottom: .25em;
   font-size: 32px;
   color: #888;
 }
-.shortcut .label {
+.shortcut  > .label {
   display: block;
   font-weight: 400;
   color: #666;
+}
+.shortcut  > .badge {
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: #2d89ef;
+  padding: 5px;
+  margin: 0 !important;
+  text-align: center;
+  display: block;
+  font-size: 9pt;
+  color: #fff;
 }
 /*
  * Metro UI CSS
@@ -5183,6 +5196,7 @@ input[type=submit] {
   vertical-align: middle;
   cursor: pointer;
   padding: 4px 10px;
+  position: relative;
   border-radius: 0;
 }
 input[type=button].standart,
@@ -5197,8 +5211,8 @@ input[type=submit]:active,
 input[type=button].default:active,
 input[type=reset].default:active,
 input[type=submit].default:active {
-  background-color: #000;
-  color: #fff;
+  top: 1px;
+  left: 1px;
 }
 input[type=button]:disabled,
 input[type=reset]:disabled,

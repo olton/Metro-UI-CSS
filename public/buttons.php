@@ -264,6 +264,8 @@
                                 <span class="label">
                                     Users
                                 </span>
+
+                                <span class="badge">100</span>
                             </button>
 
 <pre class="prettyprint linenums">
@@ -274,6 +276,7 @@
         &lt;span class="label"&gt;
             Caption
         &lt;/span&gt;
+        &lt;span class="badge"&gt;100&lt;/span&gt;
     &lt;/button&gt;
 </pre>
                         </div>
