@@ -32,7 +32,7 @@
             <div class="page-region-content">
                 <div class="span10">
                     <p>
-                    Metro UI CSS is a dynamic framework for prototyping and building web sites with style of Windows 8.
+                    Metro UI CSS is a dynamic framework for prototyping and building web sites with Windows 8 style.
                     The framework is developed in fully accordance with the recommendations of Microsoft that explain how to design applications with style of Windows 8.
                     </p>
 
