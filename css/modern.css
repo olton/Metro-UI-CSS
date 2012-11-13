@@ -3222,6 +3222,31 @@ a.shortcut .label {
   position: relative;
 }
 .pagination  > ul li a {
+  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 9pt;
+  min-width: 90px;
+  min-height: 32px;
+  height: 32px;
+  background-color: #ccc;
+  border: 1px transparent solid;
+  color: #353535;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  border-raduis: 0;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  padding: 4px 10px;
+  position: relative;
+  min-width: 32px;
+  min-height: 32px;
+  width: 32px;
+  height: 32px;
+  text-align: center;
+  position: relative;
+  padding: 0;
   position: relative;
   display: block;
   float: left;
@@ -3230,13 +3255,75 @@ a.shortcut .label {
   min-width: 32px;
   height: 32px;
   text-align: center;
-  background-color: #fff;
   vertical-align: middle;
   cursor: pointer;
-  border: 1px #2d89ef solid;
+  margin-right: 1px;
+}
+.pagination  > ul li a.mini {
+  min-height: 24px;
+  min-width: 24px;
+  height: 26px;
+  font-size: .8em;
+}
+.pagination  > ul li a.big {
+  min-height: 48px;
+  height: 48px;
+  font-size: 1.2em;
+}
+.pagination  > ul li a.mini {
+  min-width: 22px;
+  width: 22px;
+}
+.pagination  > ul li a.big {
+  min-width: 48px;
+  width: 48px;
+}
+.pagination  > ul li a.mini {
+  font-size: .9em !important;
+}
+.pagination  > ul li a.standart {
+  min-width: 90px;
+  min-height: 32px;
+}
+.pagination  > ul li a:active,
+.pagination  > ul li a.default:active {
+  top: 1px;
+  left: 1px;
+}
+.pagination  > ul li a:disabled,
+.pagination  > ul li a.disabled {
+  background-color: #eaeaea;
+  color: #bebebe;
+  cursor: not-allowed;
+}
+.pagination  > ul li a.default {
+  background-color: #008287;
+  color: #fff;
+}
+.pagination  > ul li a:focus {
+  outline: 0;
+  border: 1px #353535 dotted;
+}
+.pagination  > ul li a.mini {
+  min-height: 24px;
+  min-width: 24px;
+  height: 26px;
+  font-size: .8em;
+}
+.pagination  > ul li a.big {
+  min-height: 48px;
+  height: 48px;
+  font-size: 1.2em;
+}
+.pagination  > ul li a img {
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  top: 8px;
+  left: 8px;
 }
 .pagination  > ul li a:hover {
-  background-color: #2d89ef;
+  background-color: #1d1d1d;
   color: #ffffff;
 }
 .pagination  > ul li a:active {
@@ -3275,13 +3362,13 @@ a.shortcut .label {
   margin-left: -10px;
 }
 .pagination  > ul li.active a {
-  background-color: #2d89ef;
+  background-color: #1d1d1d;
   color: #ffffff;
 }
 .pagination  > ul li.disabled a,
 .pagination  > ul li.spaces a {
-  background-color: #fefefe;
-  color: #1d1d1d;
+  background-color: #f2f2f2;
+  color: #1e1e1e;
   cursor: not-allowed;
 }
 .pagination  > ul li.disabled a:active,
@@ -3290,8 +3377,7 @@ a.shortcut .label {
   left: 0;
 }
 .pagination  > ul li.disabled a {
-  border-color: #d5e7ec;
-  color: #d3e6fc;
+  color: #1e1e1e;
 }
 .pagination  > ul li.spaces a {
   background-color: #ffffff;

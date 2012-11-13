@@ -315,6 +315,7 @@ a.shortcut {
             position: relative;
 
             a {
+                .tool-button;
                 position: relative;
                 display: block;
                 float: left;
@@ -323,13 +324,14 @@ a.shortcut {
                 min-width: 32px;
                 height: 32px;
                 text-align: center;
-                background-color: #fff;
+                //background-color: #fff;
                 vertical-align: middle;
                 cursor: pointer;
-                border: 1px @blue solid;
+                //border: 1px @blue solid;
+                margin-right: 1px;
 
                 &:hover {
-                    background-color: @blue;
+                    background-color: @darken;
                     color: @white;
                 }
 
@@ -388,14 +390,14 @@ a.shortcut {
 
             &.active {
                 a {
-                    background-color: @blue;
+                    background-color: @darken ;
                     color: @white;
                 }
             }
             &.disabled, &.spaces {
                 a {
-                    background-color: lighten(#e1e1e8, 10%);
-                    color: @darken;
+                    background-color: darken(@white, 5%);
+                    color: #1e1e1e;
                     cursor: not-allowed;
 
                     &:active {
@@ -406,8 +408,8 @@ a.shortcut {
             }
             &.disabled {
                 a {
-                    border-color: @lighten;
-                    color: lighten(@blue, 35%);
+                    //border-color: @lighten;
+                    color: #1e1e1e;
                 }
             }
 
