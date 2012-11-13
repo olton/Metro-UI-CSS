@@ -34,7 +34,7 @@
                                     <div class="slides">
 
                                         <div class="slide" id="slide1">
-                                            <h1 class="fg-color-blueLight">Metro UI CSS</h1>
+                                            <h1 class="fg-color-blue">Metro UI CSS</h1>
 
                                             <h2>Create site in Windows 8 style now!</h2>
 
