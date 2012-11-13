@@ -28,7 +28,8 @@
 
         var $element = $(element),
             starElements = [],
-            $starElements;
+            $starElements,
+            $innerElement; // for readOnly mode
 
         plugin.init = function() {
 
@@ -65,7 +66,7 @@
          */
         var readOnlyInit = function () {
 
-            var inner, percents, width,
+            var width,
                 settings = plugin.settings;
 
             $element.addClass('static-rating');
@@ -73,12 +74,11 @@
             width = ($element.hasClass('small') ? '14' : '27') * settings.stars;
             $element.css('width', width);
 
-            inner = $('<div class="rating-value"></div>');
+            $innerElement = $('<div class="rating-value"></div>');
 
-            percents = settings.rating / settings.stars * 100;
-            inner.css('width', percents + '%');
+            $innerElement.appendTo($element);
 
-            inner.appendTo($element);
+            setRating(settings.rating);
 
         };
 
@@ -125,6 +125,7 @@
          */
         var lightStars = function (starIndex, rated) {
             var class_ = rated ? 'rated' : 'hover';
+            starIndex = Math.round(starIndex);
             $starElements.removeClass(class_);
             $starElements.filter(':lt(' + starIndex + ')').addClass(class_);
         };
@@ -146,12 +147,19 @@
 
         /**
          * light stars and store rating
-         * !!! used only if readOnly === 'off'
          * @param rating
          */
         var setRating = function (rating) {
+            var settings = plugin.settings,
+                percents;
             storeRating(rating);
-            lightStars(rating, true);
+            if (settings.readOnly === 'on') {
+                percents = rating / settings.stars * 100;
+                $innerElement.css('width', percents + '%');
+            } else {
+                lightStars(rating, true);
+            }
+
         };
 
         plugin.init();
