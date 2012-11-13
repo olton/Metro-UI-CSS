@@ -42,6 +42,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 	font-weight: normal;
     display: inline-block;
     text-decoration: inherit;
+    margin: 0 2px;
 	-webkit-font-smoothing: antialiased;
 }
 
@@ -54,7 +55,11 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 button, .button {
     [class^="icon-"],
     [class*=" icon-"] {
-        font-size: 3/2em;
+        //font-size: 1.1em;
+    }
+
+    &.mini {
+        font-size: .9em !important;
     }
 }
 

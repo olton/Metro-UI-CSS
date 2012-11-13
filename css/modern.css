@@ -598,7 +598,7 @@ table {
   color: #2d89ef !important;
 }
 .fg-color-blueLight {
-  color: #44a3aa !important;
+  color: #eff4ff !important;
 }
 .fg-color-blueDark {
   color: #2b5797 !important;
@@ -636,6 +636,9 @@ table {
 .fg-color-darken {
   color: #1d1d1d !important;
 }
+.fg-color-lighten {
+  color: #d5e7ec !important;
+}
 .fg-color-white {
   color: #ffffff !important;
 }
@@ -646,7 +649,7 @@ table {
   background-color: #2d89ef !important;
 }
 .bg-color-blueLight {
-  background-color: #44a3aa !important;
+  background-color: #eff4ff !important;
 }
 .bg-color-blueDark {
   background-color: #2b5797 !important;
@@ -684,6 +687,9 @@ table {
 .bg-color-darken {
   background-color: #1d1d1d !important;
 }
+.bg-color-lighten {
+  background-color: #d5e7ec !important;
+}
 .bg-color-white {
   background-color: #ffffff !important;
 }
@@ -697,7 +703,7 @@ table {
   border-color: #2d89ef !important;
 }
 .border-color-blueLight {
-  border-color: #44a3aa !important;
+  border-color: #eff4ff !important;
 }
 .border-color-blueDark {
   border-color: #2b5797 !important;
@@ -735,6 +741,9 @@ table {
 .border-color-darken {
   border-color: #1d1d1d !important;
 }
+.border-color-lighten {
+  border-color: #d5e7ec !important;
+}
 .border-color-white {
   border-color: #ffffff !important;
 }
@@ -748,7 +757,7 @@ table {
   outline-color: #2d89ef !important;
 }
 .outline-color-blueLight {
-  outline-color: #44a3aa !important;
+  outline-color: #eff4ff !important;
 }
 .outline-color-blueDark {
   outline-color: #2b5797 !important;
@@ -785,6 +794,9 @@ table {
 }
 .outline-color-darken {
   outline-color: #1d1d1d !important;
+}
+.outline-color-lighten {
+  outline-color: #d5e7ec !important;
 }
 .outline-color-white {
   outline-color: #ffffff !important;
@@ -831,6 +843,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: normal;
   display: inline-block;
   text-decoration: inherit;
+  margin: 0 2px;
   -webkit-font-smoothing: antialiased;
 }
 .icon-large:before {
@@ -838,11 +851,9 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-size: 1.3333333333333332em;
   margin-top: -8px;
 }
-button [class^="icon-"],
-.button [class^="icon-"],
-button [class*=" icon-"],
-.button [class*=" icon-"] {
-  font-size: 1em;
+button.mini,
+.button.mini {
+  font-size: .9em !important;
 }
 li [class^="icon-"],
 li [class*=" icon-"] {
@@ -2811,9 +2822,8 @@ button.big,
   position: relative;
   padding: 0;
 }
-.tool-button [class^="icon-"],
-.tool-button [class*=" icon-"] {
-  font-size: 1em;
+.tool-button.mini {
+  font-size: .9em !important;
 }
 .tool-button.standart {
   min-width: 90px;
@@ -2911,11 +2921,9 @@ button.big,
   min-width: 48px;
   width: 48px;
 }
-.toolbar a [class^="icon-"],
-.toolbar button [class^="icon-"],
-.toolbar a [class*=" icon-"],
-.toolbar button [class*=" icon-"] {
-  font-size: 1em;
+.toolbar a.mini,
+.toolbar button.mini {
+  font-size: .9em !important;
 }
 .toolbar a.standart,
 .toolbar button.standart {
@@ -3042,11 +3050,9 @@ button.big,
   min-width: 48px;
   width: 48px;
 }
-.toolbar-vertical a [class^="icon-"],
-.toolbar-vertical button [class^="icon-"],
-.toolbar-vertical a [class*=" icon-"],
-.toolbar-vertical button [class*=" icon-"] {
-  font-size: 1em;
+.toolbar-vertical a.mini,
+.toolbar-vertical button.mini {
+  font-size: .9em !important;
 }
 .toolbar-vertical a.standart,
 .toolbar-vertical button.standart {
@@ -3200,6 +3206,96 @@ a.shortcut {
 }
 a.shortcut .label {
   font-size: 9pt;
+}
+.pagination {
+  width: auto;
+  margin-bottom: 10px;
+}
+.pagination  > ul {
+  margin-left: 0;
+  list-style: none;
+  margin: 0;
+}
+.pagination  > ul li {
+  display: inline-block;
+  margin-right: 1px;
+  position: relative;
+}
+.pagination  > ul li a {
+  position: relative;
+  display: block;
+  float: left;
+  font-size: 10pt;
+  padding: 5px;
+  min-width: 32px;
+  height: 32px;
+  text-align: center;
+  background-color: #fff;
+  vertical-align: middle;
+  cursor: pointer;
+  border: 1px #2d89ef solid;
+}
+.pagination  > ul li a:hover {
+  background-color: #2d89ef;
+  color: #ffffff;
+}
+.pagination  > ul li a:active {
+  top: 1px;
+  left: 1px;
+}
+.pagination  > ul li.first a,
+.pagination  > ul li.prev a,
+.pagination  > ul li.next a,
+.pagination  > ul li.last a {
+  font-size: 20pt;
+}
+.pagination  > ul li.first a:before,
+.pagination  > ul li.prev a:before,
+.pagination  > ul li.next a:before,
+.pagination  > ul li.last a:before {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  margin-left: -7px;
+  content: "\25C4";
+  font-size: 1.5em;
+}
+.pagination  > ul li.first a:before {
+  content: "\AB";
+  margin-left: -10px;
+}
+.pagination  > ul li.prev a:before {
+  content: "\2039";
+}
+.pagination  > ul li.next a:before {
+  content: "\203A";
+}
+.pagination  > ul li.last a:before {
+  content: "\BB";
+  margin-left: -10px;
+}
+.pagination  > ul li.active a {
+  background-color: #2d89ef;
+  color: #ffffff;
+}
+.pagination  > ul li.disabled a,
+.pagination  > ul li.spaces a {
+  background-color: #fefefe;
+  color: #1d1d1d;
+  cursor: not-allowed;
+}
+.pagination  > ul li.disabled a:active,
+.pagination  > ul li.spaces a:active {
+  top: 0;
+  left: 0;
+}
+.pagination  > ul li.disabled a {
+  border-color: #d5e7ec;
+  color: #d3e6fc;
+}
+.pagination  > ul li.spaces a {
+  background-color: #ffffff;
+  cursor: default;
 }
 /*
  * Metro UI CSS
@@ -4039,7 +4135,7 @@ table.bordered tbody tr:last-child td {
   background-color: #2d89ef;
 }
 .page-sidebar  > ul > li.sticker.sticker-color-blueLight:before {
-  background-color: #44a3aa;
+  background-color: #eff4ff;
 }
 .page-sidebar  > ul > li.sticker.sticker-color-blueDark:before {
   background-color: #2b5797;
@@ -4237,7 +4333,7 @@ table.bordered tbody tr:last-child td {
 .replies  > div .sticker.sticker-color-blueLight,
 .replies  > li .sticker.sticker-color-blueLight,
 .replies  > span .sticker.sticker-color-blueLight {
-  border-color: #44a3aa !important;
+  border-color: #eff4ff !important;
 }
 .replies  > div .sticker.sticker-color-blueDark,
 .replies  > li .sticker.sticker-color-blueDark,
@@ -5196,13 +5292,10 @@ input[type=submit] {
   position: relative;
   border-radius: 0;
 }
-input[type=button] [class^="icon-"],
-input[type=reset] [class^="icon-"],
-input[type=submit] [class^="icon-"],
-input[type=button] [class*=" icon-"],
-input[type=reset] [class*=" icon-"],
-input[type=submit] [class*=" icon-"] {
-  font-size: 1em;
+input[type=button].mini,
+input[type=reset].mini,
+input[type=submit].mini {
+  font-size: .9em !important;
 }
 input[type=button].standart,
 input[type=reset].standart,
