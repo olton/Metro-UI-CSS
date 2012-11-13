@@ -48,7 +48,7 @@
                                         </div>
 
                                         <div class="slide" id="slide2">
-                                            <h1 class="fg-color-blueLight">Metro UI CSS</h1>
+                                            <h1 class="fg-color-blue">Metro UI CSS</h1>
                                             <p class="bg-color-pink padding20 fg-color-white">
                                                 Developed with the advice of Microsoft to build the user interface and <strong>include:</strong>
                                             </p>
