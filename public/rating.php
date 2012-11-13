@@ -62,7 +62,7 @@
 </pre>
                             <h3>Rating</h3>
                             <div>
-                                <div class="rating" data-role="rating">
+                                <div class="rating" data-role="rating" id="rating1">
                                 </div>
                             </div>
 <br />

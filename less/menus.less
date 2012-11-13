@@ -352,6 +352,28 @@
     .clearfix();
 }
 
+
+.menu-holder {
+    cursor: pointer;
+    position: relative;
+    .dropdown-menu {
+    //margin-top: -3px;
+    }
+    &:after {
+        position: absolute;
+        content: "\3009";
+        display: inline-block;
+        font-size: 10pt;
+        left: 100%;
+        top: 100%;
+        margin-top: -17px;
+        margin-left: -5px;
+        color: #fff;
+        z-index: 10001;
+        .rotate(90deg);
+    }
+}
+
 /*
 .page {
     .page-header {

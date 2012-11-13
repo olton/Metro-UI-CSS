@@ -4130,27 +4130,30 @@ table.bordered tbody tr:last-child td {
 .horizontal-menu:after {
   clear: both;
 }
-.page .page-header .page-header-content h1[data-role=dropdown] {
-  cursor: pointer;
-}
-.page .page-header .page-header-content h1[data-role=dropdown] .dropdown-menu {
-  margin-top: -10px;
-}
-.page .page-header .page-header-content h1[data-role=dropdown]:after {
-  position: absolute;
-  content: "\3009";
-  display: inline-block;
-  font-size: 10pt;
-  left: 100%;
-  top: 20px;
-  margin-left: 5px;
-  -webkit-transform: rotate(90deg);
-  -moz-transform: rotate(90deg);
-  -ms-transform: rotate(90deg);
-  -o-transform: rotate(90deg);
-  transform: rotate(90deg);
-}
 /*
+.page {
+    .page-header {
+        .page-header-content {
+            h1[data-role=dropdown] {
+                cursor: pointer;
+                .dropdown-menu {
+                    margin-top: -10px;
+                }
+                &:after {
+                    position: absolute;
+                    content: "\3009";
+                    display: inline-block;
+                    font-size: 10pt;
+                    left: 100%;
+                    top: 20px;
+                    margin-left: 5px;
+                    .rotate(90deg);
+                }
+            }
+        }
+    }
+}
+*//*
  * Metro UI CSS
  * Copyright 2012 Sergey Pimenov
  * Licensed under the MIT Lilcense

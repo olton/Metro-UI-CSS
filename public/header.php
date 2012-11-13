@@ -80,6 +80,7 @@
 
             <!--<li><a href="javascript.php">Javascript</a></li>-->
             <li><a href="https://github.com/olton/Metro-UI-CSS">Get source</a></li>
+            <li><a href="sponsoring.php">Sponsoring</a></li>
         </ul>
 
     </div>
