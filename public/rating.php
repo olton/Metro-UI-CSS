@@ -41,68 +41,44 @@
 
                             <h3>Static</h3>
                             <div>
-                                <div class="static-rating">
-                                    <div class="rating-value" style="width: 70%"></div>
+                                <div class="rating" data-role="rating" data-param-read-only="on" data-param-rating="3.7">
                                 </div>
                             </div>
 <br />
 <pre class="prettyprint linenums span10">
-    &lt;div class="static-rating"&gt;
-        &lt;div class="rating-value" style="width: 70%"&gt;&lt;/div&gt;
+    &lt;div class="rating" data-role="rating" data-param-read-only="on" data-param-rating="3.7"&gt;
     &lt;/div&gt;
 </pre>
 
                             <h3>Static small</h3>
                             <div>
-                                <div class="static-rating small">
-                                    <div class="rating-value" style="width: 70%"></div>
+                                <div class="rating small" data-role="rating" data-param-read-only="on" data-param-rating="3" data-param-stars="6">
                                 </div>
                             </div>
 <br />
 <pre class="prettyprint linenums span10">
-    &lt;div class="static-rating"&gt;
-        &lt;div class="rating-value" style="width: 70%"&gt;&lt;/div&gt;
+    &lt;div class="rating small" data-role="rating" data-param-read-only="on" data-param-rating="3" data-param-stars="6"&gt;
     &lt;/div&gt;
 </pre>
                             <h3>Rating</h3>
                             <div>
-                                <div class="rating" data-role="rating" data-rating="2">
-                                    <a href="#"></a>
-                                    <a href="#"></a>
-                                    <a href="#"></a>
-                                    <a href="#"></a>
-                                    <a href="#"></a>
+                                <div class="rating" data-role="rating">
                                 </div>
                             </div>
 <br />
 <pre class="prettyprint linenums span10">
-    &lt;div class="rating" data-role="rating" data-rating="2"&gt;
-        &lt;a href="#"&gt;&lt;/a&gt;
-        &lt;a href="#"&gt;&lt;/a&gt;
-        &lt;a href="#"&gt;&lt;/a&gt;
-        &lt;a href="#"&gt;&lt;/a&gt;
-        &lt;a href="#"&gt;&lt;/a&gt;
+    &lt;div class="rating" data-role="rating"&gt;
     &lt;/div&gt;
 </pre>
 
                             <h3>Rating small</h3>
                             <div>
-                                <div class="rating small" data-role="rating" data-rating="4">
-                                    <a href="#"></a>
-                                    <a href="#"></a>
-                                    <a href="#"></a>
-                                    <a href="#"></a>
-                                    <a href="#"></a>
+                                <div class="rating small" data-role="rating" data-param-rating="4">
                                 </div>
                             </div>
 <br />
 <pre class="prettyprint linenums span10">
-    &lt;div class="rating small" data-role="rating" data-rating="4"&gt;
-        &lt;a href="#"&gt;&lt;/a&gt;
-        &lt;a href="#"&gt;&lt;/a&gt;
-        &lt;a href="#"&gt;&lt;/a&gt;
-        &lt;a href="#"&gt;&lt;/a&gt;
-        &lt;a href="#"&gt;&lt;/a&gt;
+    &lt;div class="rating small" data-role="rating" data-param-rating="4"&gt;
     &lt;/div&gt;
 </pre>
 
