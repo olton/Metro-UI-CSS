@@ -177,6 +177,33 @@
 
     };
 
+    /**
+     * get or set rating value to/from first element in set
+     */
+    $.fn.RatingValue = function(value) {
+        var ratingPlugin = $(this.get(0)).data('Rating');
+        if (typeof ratingPlugin !== 'undefined') {
+            if (typeof value !== 'undefined') {
+                return ratingPlugin.setRating(value);
+            } else {
+                return ratingPlugin.getRating();
+            }
+        }
+    };
+    /**
+     * get or set rating percents to/from first element in set
+     */
+    $.fn.RatingPercents = function(value) {
+        var ratingPlugin = $(this.get(0)).data('Rating');
+        if (typeof ratingPlugin !== 'undefined') {
+            if (typeof value !== 'undefined') {
+                return ratingPlugin.setRatingPercents(value);
+            } else {
+                return ratingPlugin.getRatingPercents();
+            }
+        }
+    };
+
 })(jQuery);
 
 $(function(){
