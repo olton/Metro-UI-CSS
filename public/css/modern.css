@@ -3362,7 +3362,7 @@ a.shortcut .label {
   margin-left: -10px;
 }
 .pagination  > ul li.active a {
-  background-color: #1d1d1d;
+  background-color: #008287 ;
   color: #ffffff;
 }
 .pagination  > ul li.disabled a,
@@ -4129,6 +4129,27 @@ table.bordered tbody tr:last-child td {
 }
 .horizontal-menu:after {
   clear: both;
+}
+.menu-holder {
+  cursor: pointer;
+  position: relative;
+}
+.menu-holder:after {
+  position: absolute;
+  content: "\3009";
+  display: inline-block;
+  font-size: 10pt;
+  left: 100%;
+  top: 100%;
+  margin-top: -17px;
+  margin-left: -5px;
+  color: #fff;
+  z-index: 10001;
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  transform: rotate(90deg);
 }
 /*
 .page {

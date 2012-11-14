@@ -17,10 +17,6 @@
     <div id="sizeY">0</div>
 </div>
 
-<div class="bg-color-red fg-color-white text-center">
-    !!! Project is looking for a Sponsor !!!
-</div>
-
 <div class="navigation-bar">
     <div class="navigation-bar-inner">
         <span class="menu-pull"></span>

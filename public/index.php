@@ -80,8 +80,8 @@
                         <div class="span4">
                             <div class="span4 bg-color-red padding30 text-center place-left" style="height: auto;">
                                 <h2 class="fg-color-white">Sponsor ?</h2>
-                                <p class="fg-color-white">1000+ <a class="fg-color-yellow" href="http://hit.ua/site_view/19154">users</a> every day</p>
-                                <p class="tertiary-text">this banner $250/month</p>
+                                <p class="fg-color-white">2000+ <a class="fg-color-yellow" href="http://hit.ua/site_view/19154">users</a> every day</p>
+                                <p class="tertiary-text"></p>
                             </div>
                             <a class="span2 place-left" style="" href="http://bizspark.com/"><img src="images/1005-BizSpark-261x230.jpg" /></a>
                             <a class="span2 place-left" style="padding-top: 25px;" href="http://jetbrains.com/"><img src="images/logo-jetbrains.jpg"/></a>
