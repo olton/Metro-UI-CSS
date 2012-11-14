@@ -6,7 +6,15 @@
  * available parameters (attributes):
  * data-role-stars="integer" stars count for this rating element (default 5)
  * data-role-rating="integer" current average rating (default 0)
- * data-role-read-only="string" ('on' or 'off') (default 'off')
+ * data-role-vote="string" ('on' or 'off') (default 'on')
+ *
+ * to control rating you can use:
+ * $('ratingID').RatingValue(float)                 - set rating
+ * $('ratingID').RatingValue()                      - return rating
+ * $('ratingID').RatingPercents(0 < float < 100)    - set rating by percents
+ * $('ratingID').RatingPercents()                   - return rating percents
+ * $('ratingID').RatingVote(true or 'on')           - set vote=on rating mode
+ * $('ratingID').RatingVote(false or 'off')         - set vote=off rating mode
  */
 (function($) {
 
@@ -17,8 +25,8 @@
             stars:      5,
             // init value
             rating:     0,
-            // read only
-            readOnly:   'off'
+            // voting mode
+            vote:       'on'
 
         };
 
@@ -29,16 +37,19 @@
         var $element = $(element),
             starElements = [],
             $starElements,
-            $innerElement; // for readOnly mode
+            $innerElement, // for vote=off mode
+            currentRating;
 
         plugin.init = function() {
 
             plugin.settings = $.extend({}, defaults, options);
 
-            if (plugin.settings.readOnly === 'on') {
-                readOnlyInit();
+            currentRating = plugin.settings.rating;
+
+            if (plugin.settings.vote === 'on') {
+                voteOnInit();
             } else {
-                clickableInit();
+                voteOffInit();
             }
 
         };
@@ -49,45 +60,64 @@
          */
         plugin.setRating = function (rating) {
             setRating(rating);
+            return rating;
         };
         plugin.setRatingPercents = function (ratingPercents) {
             setRating((ratingPercents / 100) * plugin.settings.stars);
+            return ratingPercents;
         };
         plugin.getRating = function () {
-            return getRating();
+            return currentRating;
         };
         plugin.getRatingPercents = function () {
-            return getRating() / plugin.settings.stars * 100;
+            return currentRating / plugin.settings.stars * 100;
+        };
+        /**
+         * public method for change vote mode
+         */
+        plugin.voteOn = function () {
+            plugin.settings.vote = 'on';
+            voteOnInit();
+        };
+        plugin.voteOff = function () {
+            plugin.settings.vote = 'off';
+            voteOffInit();
         };
 
 
         /**
-         * init read-only rating
+         * init vote=off mode rating
          */
-        var readOnlyInit = function () {
+        var voteOffInit = function () {
 
             var width,
                 settings = plugin.settings;
 
+            $element.empty();
+
+            // special class for vote=off mode
             $element.addClass('static-rating');
 
             width = ($element.hasClass('small') ? '14' : '27') * settings.stars;
             $element.css('width', width);
 
             $innerElement = $('<div class="rating-value"></div>');
-
             $innerElement.appendTo($element);
 
-            setRating(settings.rating);
+            setRating(currentRating);
 
         };
 
         /**
-         * init not-read-only rating
+         * init vote=on mode rating
          */
-        var clickableInit = function () {
+        var voteOnInit = function () {
             var settings = plugin.settings,
                 a, i;
+
+            $element.empty();
+            $element.removeClass('static-rating');
+
             // create stars (count starts from 1)
             for (i = 1; i <= settings.stars; i++) {
                 a = starElements[i] = $('<a href="javascript:void(0)"></a>');
@@ -95,7 +125,7 @@
                 a.appendTo($element);
             }
 
-            // event handlers
+            // event handlers for voting
             $starElements = $element.find('a');
 
             $starElements.on('mouseenter', function () {
@@ -106,15 +136,15 @@
             });
             $starElements.on('mouseleave', function () {
                 lightStars(0);
-                lightStars(getRating(), true);
+                lightStars(currentRating, true);
             });
             $starElements.on('click', function(){
                 var index = $(this).data('starIndex');
-                storeRating(index);
+                currentRating = index;
                 $element.trigger('rated', [index]);
             });
 
-            setRating(settings.rating);
+            setRating(currentRating);
         };
 
         /**
@@ -131,33 +161,18 @@
         };
 
         /**
-         * store rating to element.data
-         * @param rating
-         */
-        var storeRating = function (rating) {
-            $element.data('rating-val', rating);
-        };
-
-        /**
-         * retrieve rating from element.data
-         */
-        var getRating = function () {
-            return $element.data('rating-val');
-        };
-
-        /**
          * light stars and store rating
          * @param rating
          */
         var setRating = function (rating) {
             var settings = plugin.settings,
                 percents;
-            storeRating(rating);
-            if (settings.readOnly === 'on') {
+            currentRating = rating;
+            if (settings.vote === 'on') {
+                lightStars(rating, true);
+            } else {
                 percents = rating / settings.stars * 100;
                 $innerElement.css('width', percents + '%');
-            } else {
-                lightStars(rating, true);
             }
 
         };
@@ -204,6 +219,20 @@
         }
     };
 
+    /**
+     * changes rating mode
+     */
+    $.fn.RatingVote = function(vote) {
+        var ratingPlugin = $(this.get(0)).data('Rating');
+        if (typeof ratingPlugin !== 'undefined') {
+            if (vote === true || vote === 'on') {
+                ratingPlugin.voteOn();
+            } else if (vote === false || vote === 'off') {
+                ratingPlugin.voteOff();
+            }
+        }
+    };
+
 })(jQuery);
 
 $(function(){
@@ -213,7 +242,7 @@ $(function(){
         $rating = $(rating);
         params.stars        = $rating.data('paramStars');
         params.rating       = $rating.data('paramRating');
-        params.readOnly     = $rating.data('paramReadOnly');
+        params.vote         = $rating.data('paramVote');
 
         $rating.Rating(params);
     });

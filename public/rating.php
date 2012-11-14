@@ -41,28 +41,28 @@
 
                             <h3>Static</h3>
                             <div>
-                                <div class="rating" data-role="rating" data-param-read-only="on" data-param-rating="3.7">
+                                <div class="rating" data-role="rating" data-param-vote="off" data-param-rating="3.7" id="rating1">
                                 </div>
                             </div>
 <br />
 <pre class="prettyprint linenums span10">
-    &lt;div class="rating" data-role="rating" data-param-read-only="on" data-param-rating="3.7"&gt;
+    &lt;div class="rating" data-role="rating" data-param-vote="off" data-param-rating="3.7"&gt;
     &lt;/div&gt;
 </pre>
 
                             <h3>Static small</h3>
                             <div>
-                                <div class="rating small" data-role="rating" data-param-read-only="on" data-param-rating="3" data-param-stars="6">
+                                <div class="rating small" data-role="rating" data-param-vote="off" data-param-rating="3" data-param-stars="6" id="rating2">
                                 </div>
                             </div>
 <br />
 <pre class="prettyprint linenums span10">
-    &lt;div class="rating small" data-role="rating" data-param-read-only="on" data-param-rating="3" data-param-stars="6"&gt;
+    &lt;div class="rating small" data-role="rating" data-param-vote="off" data-param-rating="3" data-param-stars="6"&gt;
     &lt;/div&gt;
 </pre>
                             <h3>Rating</h3>
                             <div>
-                                <div class="rating" data-role="rating" id="rating1"></div>
+                                <div class="rating" data-role="rating" id="rating3"></div>
                             </div>
 <br />
 <pre class="prettyprint linenums span10">
@@ -72,7 +72,7 @@
 
                             <h3>Rating small</h3>
                             <div>
-                                <div class="rating small" data-role="rating" data-param-rating="4">
+                                <div class="rating small" data-role="rating" data-param-rating="4" id="rating4">
                                 </div>
                             </div>
 <br />
