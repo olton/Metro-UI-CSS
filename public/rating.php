@@ -85,6 +85,16 @@
                                 For use this rating you must include <code>rating.js</code> in <code>head</code> of you page
                             </p>
 
+                            <h3>Methods</h3>
+                            <ul class="unstyled">
+                                <li>$('#rating1').RatingValue(val) //set rating value</li>
+                                <li>$('#rating1').RatingValue() // get rating value</li>
+                                <li>$('#rating1').RatingPercents(val) // set rating value in percents</li>
+                                <li>$('#rating1').RatingPercents() // get rating value in precents</li>
+                                <li>$('#rating3').RatingVote('on') // set rating mode VOTE</li>
+                                <li>$('#rating3').RatingVote('off') // set rating mode READONLY</li>
+                            </ul>
+
                         </div>
                     </div>
                 </div>
