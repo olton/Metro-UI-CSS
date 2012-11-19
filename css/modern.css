@@ -3362,7 +3362,7 @@ a.shortcut .label {
   margin-left: -10px;
 }
 .pagination  > ul li.active a {
-  background-color: #1d1d1d;
+  background-color: #008287 ;
   color: #ffffff;
 }
 .pagination  > ul li.disabled a,
@@ -4130,20 +4130,21 @@ table.bordered tbody tr:last-child td {
 .horizontal-menu:after {
   clear: both;
 }
-.page .page-header .page-header-content h1[data-role=dropdown] {
+.menu-holder {
   cursor: pointer;
+  position: relative;
 }
-.page .page-header .page-header-content h1[data-role=dropdown] .dropdown-menu {
-  margin-top: -10px;
-}
-.page .page-header .page-header-content h1[data-role=dropdown]:after {
+.menu-holder:after {
   position: absolute;
   content: "\3009";
   display: inline-block;
   font-size: 10pt;
   left: 100%;
-  top: 20px;
-  margin-left: 5px;
+  top: 100%;
+  margin-top: -17px;
+  margin-left: -5px;
+  color: #fff;
+  z-index: 10001;
   -webkit-transform: rotate(90deg);
   -moz-transform: rotate(90deg);
   -ms-transform: rotate(90deg);
@@ -4151,6 +4152,29 @@ table.bordered tbody tr:last-child td {
   transform: rotate(90deg);
 }
 /*
+.page {
+    .page-header {
+        .page-header-content {
+            h1[data-role=dropdown] {
+                cursor: pointer;
+                .dropdown-menu {
+                    margin-top: -10px;
+                }
+                &:after {
+                    position: absolute;
+                    content: "\3009";
+                    display: inline-block;
+                    font-size: 10pt;
+                    left: 100%;
+                    top: 20px;
+                    margin-left: 5px;
+                    .rotate(90deg);
+                }
+            }
+        }
+    }
+}
+*//*
  * Metro UI CSS
  * Copyright 2012 Sergey Pimenov
  * Licensed under the MIT Lilcense
