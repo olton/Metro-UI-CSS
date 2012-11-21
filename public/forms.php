@@ -17,6 +17,8 @@
     <script src="js/github.info.js"></script>
     <script src="js/google-code-prettify/prettify.js"></script>
 
+    <script src="js/input-control.js"></script>
+
     <title>Modern UI CSS</title>
 </head>
 <body class="modern-ui" onload="prettyPrint()">
