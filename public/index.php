@@ -30,15 +30,13 @@
                     <div class="row">
                         <div class="span8">
                             <div class="hero-unit">
-                                <div class="carousel" data-role="carousel" style="height: 242px;" data-param-duration="300">
+                                <div id="carousel1" class="carousel" data-role="carousel" data-param-duration="300">
                                     <div class="slides">
 
                                         <div class="slide" id="slide1">
-                                            <h1 class="fg-color-blue">Metro UI CSS</h1>
-
                                             <h2>Create site in Windows 8 style now!</h2>
 
-                                            <p>Metro UI CSS allows to create a Web site in the style of
+                                            <p class="bg-color-blueDark padding20 fg-color-white">Metro UI CSS allows to create a Web site in the style of
                                                 Windows 8 quickly and without distractions
                                                 on routine tasks.</p>
                                             <h3>To start: include modern.css</h3>
@@ -48,28 +46,24 @@
                                         </div>
 
                                         <div class="slide" id="slide2">
-                                            <h1 class="fg-color-blue">Metro UI CSS</h1>
+                                            <h2 class="fg-color-darken">Metro UI CSS</h2>
                                             <p class="bg-color-pink padding20 fg-color-white">
                                                 Developed with the advice of Microsoft to build the user interface and <strong>include:</strong>
                                             </p>
 
-                                            <div class="grid">
-                                                <div class="row">
-                                                    <div class="span3">
-                                                        <ul class="unstyled sprite-details">
-                                                            <li><i class="icon-checkmark"></i> General styles</li>
-                                                            <li><i class="icon-checkmark"></i> Grid with Responsive</li>
-                                                            <li><i class="icon-checkmark"></i> Layouts</li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="span3">
-                                                        <ul class="unstyled sprite-details">
-                                                            <li><i class="icon-checkmark"></i> Typography</li>
-                                                            <li><i class="icon-checkmark"></i> Many components</li>
-                                                            <li><i class="icon-checkmark"></i> 300+ built in icons</li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
+                                            <div class="span3 place-left">
+                                                <ul class="unstyled sprite-details">
+                                                    <li><i class="icon-checkmark"></i> General styles</li>
+                                                    <li><i class="icon-checkmark"></i> Grid with Responsive</li>
+                                                    <li><i class="icon-checkmark"></i> Layouts</li>
+                                                </ul>
+                                            </div>
+                                            <div class="span3 place-left">
+                                                <ul class="unstyled sprite-details">
+                                                    <li><i class="icon-checkmark"></i> Typography</li>
+                                                    <li><i class="icon-checkmark"></i> Many components</li>
+                                                    <li><i class="icon-checkmark"></i> 300+ built in icons</li>
+                                                </ul>
                                             </div>
 
                                         </div>
@@ -83,8 +77,8 @@
                                 <p class="fg-color-white">2000+ <a class="fg-color-yellow" href="http://hit.ua/site_view/19154">users</a> every day</p>
                                 <p class="tertiary-text"></p>
                             </div>
-                            <a class="span2 place-left" style="" href="http://bizspark.com/"><img src="images/1005-BizSpark-261x230.jpg" /></a>
-                            <a class="span2 place-left" style="padding-top: 25px;" href="http://jetbrains.com/"><img src="images/logo-jetbrains.jpg"/></a>
+                            <a class="span2 place-left no-mobile" style="" href="http://bizspark.com/"><img src="images/1005-BizSpark-261x230.jpg" /></a>
+                            <a class="span2 place-left no-mobile" style="padding-top: 25px;" href="http://jetbrains.com/"><img src="images/logo-jetbrains.jpg"/></a>
                         </div>
                     </div>
                 </div>

@@ -62,8 +62,8 @@
 
                     <p>
                         <strong>Pricing:</strong>
-                        <br />a) without licensing management of Metro UI CSS - $ 10 000 per month. Minimum 1 year contract.
-                        <br />b) with the licensing management of Licensing Metro UI CSS - $ 20 000 per month. Minimum 1 year contract.
+                        <br />a) without licensing management of Metro UI CSS - $ 5 000 per month. Minimum 1 year contract.
+                        <br />b) with the licensing management of Licensing Metro UI CSS - $ 10 000 per month. Minimum 1 year contract.
                     </p>
 
                     <p>Prepayment for the first 3 months.</p>

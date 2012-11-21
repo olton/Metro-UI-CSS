@@ -80,6 +80,9 @@ hr {
     margin:0 4px 0 0;
 }
 
+#carousel1 {
+    height: 242px;
+}
 
 @media (min-width: 768px) and (max-width: 979px) {
     .page {
@@ -116,6 +119,14 @@ hr {
 
     h3 {
         line-height: 11px;
+    }
+
+    .no-mobile {
+        display: none;
+    }
+
+    #carousel1 {
+        height: 300px !important;
     }
 }
 
