@@ -336,9 +336,6 @@
     &lt;/div&gt;
 </pre>
 
-                            <div>
-                                <a href="/"><i class="icon-home"></i></a>
-                            </div>
                         </div>
                     </div>
                 </div>
