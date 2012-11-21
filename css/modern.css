@@ -857,6 +857,10 @@ button.mini,
 .button.mini {
   font-size: .9em !important;
 }
+a [class^="icon-"],
+a [class*=" icon-"] {
+  border: 1px transparent solid;
+}
 li [class^="icon-"],
 li [class*=" icon-"] {
   display: inline-block;
