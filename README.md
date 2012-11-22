@@ -2,7 +2,16 @@
 
 Metro UI CSS a set of styles to create a site with an interface similar to Windows 8 Metro UI. This set of styles was developed as a self-contained solution.
 
-Version 0.1.6
+### Version model
+x.x.x.x
+
+1) Major number
+2) Version of CSS
+3) Version of JS
+4) Fix
+
+# Current Version
+## 0.13.8.0
 
 See details of definition on [metroui.org.ua](http://metroui.org.ua)
 
