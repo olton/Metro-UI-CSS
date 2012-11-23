@@ -3,61 +3,9 @@
  * Copyright 2012 Sergey Pimenov
  * Licensed under the MIT Lilcense
  *
- * Menus.less
- * dropdown-menu, nav-bar
+ * navigation-bar.less [required menus.less]
+ *
  */
-
-.dropdown-menu {
-    position: absolute;
-    background-color: #fff;
-    .unstyled;
-    top: 100%;
-    z-index: 1101;
-    float: left;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-    min-width: 160px;
-    padding-bottom: 5px;
-    padding-top: 5px;
-    display: none;
-
-    &.place-right {
-        right: 0;
-        left: auto;
-    }
-
-    a {
-        #font > .navigation;
-        #state > .navigation;
-        display: block;
-        width: 100%;
-        padding: 3px 20px;
-        white-space: nowrap;
-        font-size: 14px;
-        cursor: pointer;
-
-        &:hover {
-            .bg-color-blue;
-            .fg-color-white;
-        }
-    }
-
-    li {
-        display: list-item;
-        line-height: 20px;
-    }
-
-    .divider {
-        height: 1px;
-        margin: 9px 1px;
-        overflow: hidden;
-        background-color: #e5e5e5;
-    }
-
-    &.open {
-        display: block !important;
-    }
-}
 
 .nav-bar {
     background-color: @blue;
@@ -106,7 +54,7 @@
                 }
 
                 ul.dropdown-menu {
-                //margin-top: 5px;
+                    //margin-top: 5px;
                     border: 0;
                     li {
 
@@ -225,4 +173,3 @@
         }
     }
 }
-

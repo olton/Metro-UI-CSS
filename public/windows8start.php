@@ -11,11 +11,11 @@
     <link href="css/theme-dark.css" rel="stylesheet">
     <link href="css/modern-responsive.css" rel="stylesheet">
 
-    <script src="js/jquery-1.8.2.min.js"></script>
-    <script src="js/google-analytics.js"></script>
-    <script src="js/jquery.mousewheel.min.js"></script>
-    <script src="js/github.info.js"></script>
-    <script src="js/tile-slider.js"></script>
+    <script src="js/assets/jquery-1.8.2.min.js"></script>
+    <script src="js/assets/google-analytics.js"></script>
+    <script src="js/assets/jquery.mousewheel.min.js"></script>
+    <script src="js/assets/github.info.js"></script>
+    <script src="js/modern/tile-slider.js"></script>
 
     <title>Modern UI CSS</title>
 
