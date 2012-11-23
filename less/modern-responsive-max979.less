@@ -34,28 +34,36 @@
     .offset11 {margin-left: 682px;}
     .offset12 {margin-left: 744px;}
 
-    .navigation-bar {
-        .navigation-bar-inner {
-            .menu-pull {
-                display: block;
+    .nav-bar {
+        .nav-bar-inner {
+            .pull-menu {
+                display: inline-block;
             }
-            .brand {
+
+            & > .divider {
+                display: none;
+            }
+
+            .element {
                 float: none;
-                width: 100%;
             }
-            & > ul {
+
+            & > ul.menu {
                 display: none;
                 float: none;
+                margin: 5px;
 
                 & > li {
                     display: block;
                     float: none;
                     width: 100%;
                     margin-left: 0;
-                    padding-left: 0;
+                    padding-left: 5px;
+                //border-bottom: 1px #ccc solid;
 
-                    &.brand {
-                        width: auto;
+                    a {
+                        display: block;
+                        float: none;
                     }
 
                     .dropdown-menu {
@@ -65,6 +73,24 @@
                     }
                 }
             }
+
+            [data-role=dropdown] {
+                margin-right: 20px !important;
+                & > a {
+                    cursor: pointer;
+                    &:before {
+                        position: absolute;
+                        content: "\203A";
+                        display: block;
+                        font-size: 1.4em;
+                        left: 100%;
+                        margin-left: -10px;
+                        top: 8px;
+                        .rotate(90deg);
+                    }
+                }
+            }
+
         }
     }
 

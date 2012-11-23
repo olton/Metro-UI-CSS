@@ -1,7 +1,53 @@
-<div class="navigation-bar">
-    <div class="navigation-bar-inner bg-color-darken">
-        <ul style="display: block">
-            <li class="no-hover">2012, Metro UI CSS &copy; by <a class="fg-color-blueLight" href="mailto:sergey@pimenov.com.ua">Sergey Pimenov</a></li>
-        </ul>
+    <div class="page">
+        <div class="nav-bar">
+            <div class="nav-bar-inner padding10">
+                <span class="element">
+                    2012, Metro UI CSS &copy; by <a class="fg-color-white" href="mailto:sergey@pimenov.com.ua">Sergey Pimenov</a>
+                </span>
+            </div>
+        </div>
     </div>
-</div>
+
+    <?php include("counter.php");?>
+
+    <script type="text/javascript" src="js/assets/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript" src="js/assets/jquery.mousewheel.min.js"></script>
+
+    <script type="text/javascript" src="js/modern/dropdown.js"></script>
+    <script type="text/javascript" src="js/modern/accordion.js"></script>
+    <script type="text/javascript" src="js/modern/buttonset.js"></script>
+    <script type="text/javascript" src="js/modern/carousel.js"></script>
+    <script type="text/javascript" src="js/modern/input-control.js"></script>
+    <script type="text/javascript" src="js/modern/pagecontrol.js"></script>
+    <script type="text/javascript" src="js/modern/rating.js"></script>
+    <script type="text/javascript" src="js/modern/slider.js"></script>
+    <script type="text/javascript" src="js/modern/tile-slider.js"></script>
+
+    <script type="text/javascript" src="js/assets/github.info.js"></script>
+    <script type="text/javascript" src="js/assets/google-analytics.js"></script>
+    <script type="text/javascript" src="js/google-code-prettify/prettify.js"></script>
+    <script src="js/sharrre/jquery.sharrre-1.3.4.min.js"></script>
+
+    <script>
+        $('#shareme').sharrre({
+            share: {
+                googlePlus: true
+                ,facebook: true
+                ,twitter: true
+                ,delicious: true
+            },
+            urlCurl: "js/sharrre/sharrre.php",
+            buttons: {
+                googlePlus: {size: 'tall'},
+                facebook: {layout: 'box_count'},
+                twitter: {count: 'vertical'},
+                delicious: {size: 'tall'}
+            },
+            hover: function(api, options){
+                $(api.element).find('.buttons').show();
+            }
+        });
+    </script>
+
+    </body>
+</html>

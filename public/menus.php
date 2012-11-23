@@ -1,28 +1,6 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/html">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1.0, maximum-scale=1">
-    <meta name="description" content="Modern UI CSS">
-    <meta name="author" content="Sergey Pimenov">
-    <meta name="keywords" content="windows 8, modern style, modern ui, style, modern, css, framework">
+<? include("header.php")?>
 
-    <link href="css/modern.css" rel="stylesheet">
-    <link href="css/modern-responsive.css" rel="stylesheet">
-    <link href="css/site.css" rel="stylesheet" type="text/css">
-    <link href="js/google-code-prettify/prettify.css" rel="stylesheet" type="text/css">
-
-    <script src="js/jquery-1.8.2.min.js"></script>
-    <script src="js/google-analytics.js"></script>
-    <script src="js/github.info.js"></script>
-    <script src="js/google-code-prettify/prettify.js"></script>
-
-    <title>Modern UI CSS</title>
-</head>
-<body class="modern-ui" onload="prettyPrint()">
     <div class="page secondary">
-        <? include("header.php")?>
-
         <div class="page-header">
             <div class="page-header-content">
                 <h1>Menus<small>demo</small></h1>
@@ -51,25 +29,13 @@
 
                 <h2>Navigation Bar</h2>
                 <div class="span10">
-                    <div class="navigation-bar">
-                        <div class="navigation-bar-inner">
-                            <div class="brand"><a class="name" href="#">Product Name</a></div>
+                    <div class="nav-bar">
+                        <div class="nav-bar-inner">
+                            <a href="#"><span class="element brand">Product Name</span></a>
+                            <span class="divider"></span>
 
-                            <ul class="place-right">
-                                <li data-role="dropdown" class="sub-menu">
-                                    <a>Right Menu</a>
-                                    <ul class="dropdown-menu place-right">
-                                        <li><a href="#">SubItem 1</a></li>
-                                        <li><a href="#">SubItem 2</a></li>
-                                        <li><a href="#">SubItem 3</a></li>
-                                        <li><a href="#">SubItem 4</a></li>
-                                        <li><a href="#">SubItem 5</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-
-                            <ul>
-                                <li data-role="dropdown" class="sub-menu">
+                            <ul class="menu">
+                                <li data-role="dropdown">
                                     <a>Item 1</a>
                                     <ul class="dropdown-menu">
                                         <li><a href="#">SubItem 1</a></li>
@@ -85,27 +51,106 @@
                             </ul>
                         </div>
                     </div>
-                </div>
-<pre class="prettyprint linenums span10">
-    &lt;div class="navigation-bar"&gt;
-        &lt;div class="navigation-bar-inner"&gt;
-            &lt;div class="brand"&gt;
-                &lt;span class="name"&gt;Project Name&lt;/span&gt;
-            &lt;/div&gt;
 
-            &lt;ul class="place-right"&gt;
-                &lt;li data-role="dropdown" class="sub-menu"&gt;
-                    &lt;a&gt;Right Menu&lt;/a&gt;
-                    &lt;ul class="dropdown-menu place-right"&gt;
-                        &lt;li&gt;&lt;a href="#"&gt;SubItem&lt;/a&gt;&lt;/li&gt;
-                        ...
-                        &lt;li&gt;&lt;a href="#"&gt;SubItem&lt;/a&gt;&lt;/li&gt;
-                    &lt;/ul&gt;
-                &lt;/li&gt;
-            &lt;/ul&gt;
+                    <br />
+                    <p>You can change color of the navigation bar. To set predefined color for navigation bar you can use bg-color-* classes.</p>
 
-            &lt;ul&gt;
-                &lt;li data-role="dropdown" class="sub-menu"&gt;
+                    <code>
+                        &lt;div class="nav-bar bg-color-darken"&gt;...&lt;/div&gt;
+                    </code>
+                    <div class="nav-bar bg-color-darken">
+                        <div class="nav-bar-inner">
+                            <a href="#"><span class="element brand">Product Name</span></a>
+                            <span class="divider"></span>
+
+                            <ul class="menu">
+                                <li data-role="dropdown">
+                                    <a>Item 1</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">SubItem 1</a></li>
+                                        <li><a href="#">SubItem 2</a></li>
+                                        <li><a href="#">SubItem 3</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#">SubItem 4</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">Item 2</a></li>
+                                <li><a href="#">Item 3</a></li>
+                                <li><a href="#">Item 4</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <br />
+                    <code>
+                        &lt;div class="nav-bar bg-color-green"&gt;...&lt;/div&gt;
+                    </code>
+                    <div class="nav-bar bg-color-green">
+                        <div class="nav-bar-inner">
+                            <a href="#"><span class="element brand">Product Name</span></a>
+                            <span class="divider"></span>
+
+                            <ul class="menu">
+                                <li data-role="dropdown">
+                                    <a>Item 1</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">SubItem 1</a></li>
+                                        <li><a href="#">SubItem 2</a></li>
+                                        <li><a href="#">SubItem 3</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#">SubItem 4</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">Item 2</a></li>
+                                <li><a href="#">Item 3</a></li>
+                                <li><a href="#">Item 4</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <br />
+                    <code>
+                        &lt;div class="nav-bar bg-color-pink"&gt;...&lt;/div&gt;
+                    </code>
+                    <div class="nav-bar bg-color-pink">
+                        <div class="nav-bar-inner">
+                            <a href="#"><span class="element brand">Product Name</span></a>
+                            <span class="divider"></span>
+
+                            <ul class="menu">
+                                <li data-role="dropdown">
+                                    <a>Item 1</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">SubItem 1</a></li>
+                                        <li><a href="#">SubItem 2</a></li>
+                                        <li><a href="#">SubItem 3</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#">SubItem 4</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">Item 2</a></li>
+                                <li><a href="#">Item 3</a></li>
+                                <li><a href="#">Item 4</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <br />
+                    <p>
+                        For additional colors see <a href="global.php">this page</a>.
+                    </p>
+
+                    <h2>Component definition</h2>
+<pre class="prettyprint linenums">
+    &lt;div class="nav-bar"&gt;
+        &lt;div class="nav-bar-inner"&gt;
+
+            &lt;span class="element"&gt;Product Name&lt;/span&gt;
+
+            &lt;span class="divider"&gt;&lt;/span&gt;
+
+            &lt;ul class="menu"&gt;
+                &lt;li data-role="dropdown"&gt;
                     &lt;a href="#"&gt;Item 1&lt;/a&gt;
                     &lt;ul class="dropdown-menu"&gt;
                         &lt;li&gt;&lt;a href="#"&gt;SubItem&lt;/a&gt;&lt;/li&gt;
@@ -121,123 +166,12 @@
     &lt;/div&gt;
 </pre>
 
-                <h2>Horizontal menu</h2>
-                <div class="span10">
-                    <div class="horizontal-menu">
-                        <ul>
-                            <li><a href="#">Item1</a></li>
-                            <li><a href="#">Item2</a></li>
-                            <li><a href="#">Item3</a></li>
-                            <li><a href="#">Item4</a></li>
-                            <li><a href="#">Item5</a></li>
-                        </ul>
-                    </div>
-                    <br />
-<pre class="prettyprint linenums">
-    &lt;div class="horizontal-menu"&gt;
-        &lt;ul&gt;
-            &lt;li&gt;&lt;a href="#"&gt;ItemName&lt;/a&gt;&lt;/li&gt;
-            ...
-            &lt;li&gt;&lt;a href="#"&gt;ItemName&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-    &lt;/div&gt;
-</pre>
+                    <p>
+                        For dropdown you must include in head <code>dropdown.js</code>
+                    </p>
                 </div>
-
-                <h2>Horizontal menu with submenu</h2>
-                <div class="span10">
-                    <div class="horizontal-menu">
-                        <ul>
-                            <li class="sub-menu"><a href="#">Item1</a>
-                                <ul>
-                                    <li class="sub-menu"><a href="#">SubItem1</a>
-                                        <ul>
-                                            <li><a href="#">SubItem1</a></li>
-                                            <li><a href="#">SubItem2</a></li>
-                                            <li><a href="#">SubItem3</a></li>
-                                            <li class="sub-menu"><a href="#">SubItem4</a>
-                                                <ul>
-                                                    <li><a href="#">SubItem1</a>
-                                                    </li>
-                                                    <li><a href="#">SubItem2</a></li>
-                                                    <li><a href="#">SubItem3</a></li>
-                                                    <li class="sub-menu"><a href="#">SubItem4</a>
-                                                        <ul>
-                                                            <li><a href="#">SubItem1</a>
-                                                            </li>
-                                                            <li><a href="#">SubItem2</a></li>
-                                                            <li><a href="#">SubItem3</a></li>
-                                                            <li><a href="#">SubItem4</a>
-                                                            </li>
-                                                        </ul>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">SubItem2</a></li>
-                                    <li><a href="#">SubItem3</a></li>
-                                    <li><a href="#">SubItem4</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                    <br />
-<pre class="prettyprint linenums">
-    &lt;div class="horizontal-menu"&gt;
-        &lt;ul&gt;
-            &lt;li class="sub-menu"&gt;&lt;a href="#"&gt;ItemName&lt;/a&gt;
-                &lt;ul&gt;
-                    &lt;li&gt;&lt;a href="#"&gt;ItemName&lt;/a&gt;&lt;/li&gt;
-                    ...
-                    &lt;li&gt;&lt;a href="#"&gt;ItemName&lt;/a&gt;&lt;/li&gt;
-                &lt;/ul&gt;
-            &lt;/li&gt;
-            ...
-            &lt;li&gt;&lt;a href="#"&gt;ItemName&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-    &lt;/div&gt;
-</pre>
-                    <!--
-                    <h2>Ribbon menu</h2>
-                    <div class="ribbon span10">
-                        <ul>
-                            <li><a data-frame="#frame1">File</a></li>
-                            <li class="active"><a data-frame="#frame2">Home</a></li>
-                            <li><a data-frame="#frame3">Insert</a></li>
-                            <li><a data-frame="#frame4">Design</a></li>
-                        </ul>
-
-                        <div class="frames">
-                            <div class="frame" id="frame1">
-                                frame 1
-                            </div>
-                            <div class="frame active" id="frame2">
-                                frame 2
-                            </div>
-                            <div class="frame" id="frame3">
-                                frame 3
-                            </div>
-                            <div class="frame" id="frame4">
-                                frame 4
-                            </div>
-                        </div>
-                    </div>
-                    -->
-                </div>
-
-                <div class="grid">
-                    <div class="row">
-                        <? include("adsense.php")?>
-                    </div>
-                </div>
-
             </div>
         </div>
-        <? include("footer.php")?>
-
     </div>
-    <?php include("counter.php");?>
 
-</body>
-</html>
+<? include("footer.php")?>

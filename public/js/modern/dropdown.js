@@ -88,7 +88,7 @@
     }
 
     $(function () {
-        $('.menu-pull').each(function () {
+        $('.pull-menu').each(function () {
             $(this).PullDown();
         })
     })
