@@ -70,7 +70,7 @@ table {
             }
 
             &.success {
-                .bg-color-green();
+                .bg-color-green;
             }
             &.error {
                 .bg-color-red();
@@ -80,6 +80,12 @@ table {
             }
             &.info {
                 .bg-color-blue();
+            }
+
+            &.info, &.warning, &.error, &.success {
+                td {
+                    .fg-color-white;
+                }
             }
 
             &.selected-row {
