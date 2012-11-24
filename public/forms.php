@@ -95,19 +95,19 @@
                         <div class="span10">
 
 <pre class="prettyprint linenums">
-    &lt;label class="checkbox"&gt;
+    &lt;label class="input-control checkbox"&gt;
         &lt;input type="checkbox"&gt;
-        &lt;span&gt;CheckBox Caption&lt;/span&gt;
+        &lt;span class="helper"&gt;CheckBox Caption&lt;/span&gt;
     &lt;/label&gt;
 
-    &lt;label class="radiobox"&gt;
+    &lt;label class="input-control radio"&gt;
         &lt;input type="radio"&gt;
-        &lt;span&gt;CheckBox Caption&lt;/span&gt;
+        &lt;span class="helper"&gt;CheckBox Caption&lt;/span&gt;
     &lt;/label&gt;
 
-    &lt;label class="switch"&gt;
+    &lt;label class="input-control switch"&gt;
         &lt;input type="checkbox"&gt;
-        &lt;span&gt;CheckBox Caption&lt;/span&gt;
+        &lt;span class="helper"&gt;CheckBox Caption&lt;/span&gt;
     &lt;/label&gt;
 </pre>
 
