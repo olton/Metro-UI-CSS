@@ -2409,6 +2409,12 @@ table tbody tr.warning {
 table tbody tr.info {
   background-color: #2d89ef !important;
 }
+table tbody tr.info td,
+table tbody tr.warning td,
+table tbody tr.error td,
+table tbody tr.success td {
+  color: #ffffff !important;
+}
 table tbody tr.selected-row {
   background-color: rgba(28, 183, 236, 0.1) !important;
 }
