@@ -15,51 +15,55 @@
                         <div class="span3">
                             <h2>Check box</h2>
                             <form>
-                                <label class="checkbox as-block" onclick="">
-                                    <input type="checkbox" checked="" value="1"/>
-                                    <span>Checked</span>
+                                <label class="input-control checkbox" onclick="">
+                                    <input type="checkbox" checked value="1"/>
+                                    <span class="helper">Checked box</span>
                                 </label>
 
-                                <label class="checkbox as-block" onclick="">
+                                <label class="input-control checkbox" onclick="">
                                     <input type="checkbox" />
-                                    <span>Unchecked</span>
+                                    <span class="helper">Unchecked</span>
                                 </label>
 
-                                <label class="checkbox intermediate as-block" onclick="">
-                                    <input type="checkbox"/>
-                                    <span>Intermediate</span>
-                                </label>
-
-                                <label class="checkbox as-block">
+                                <label class="input-control checkbox">
                                     <input type="checkbox" disabled=""/>
-                                    <span>Disabled Unchecked</span>
+                                    <span class="helper">Disabled Unchecked</span>
                                 </label>
 
-                                <label class="checkbox as-block">
+                                <label class="input-control checkbox">
                                     <input type="checkbox" disabled="" checked=""/>
-                                    <span>Disabled Checked</span>
+                                    <span class="helper">Disabled Checked</span>
                                 </label>
+
+                                <label class="input-control checkbox intermediate" onclick="">
+                                    <input type="checkbox"/>
+                                    <span class="helper">Intermediate</span>
+                                </label>
+
                             </form>
                         </div>
 
                         <div class="span3">
                             <h2>Radio box</h2>
                             <form>
-                                <label class="radiobox as-block" onclick="">
+                                <label class="input-control radio" onclick="">
                                     <input type="radio" name="r1"  checked=""/>
-                                    <span>Checked</span>
+                                    <span class="helper">Checked radio</span>
                                 </label>
-                                <label class="radiobox as-block" onclick="">
+
+                                <label class="input-control radio" onclick="">
                                     <input type="radio" name="r1" />
-                                    <span>Unchecked</span>
+                                    <span class="helper">Checked radio</span>
                                 </label>
-                                <label class="radiobox as-block" onclick="">
-                                    <input type="radio" name="r1" disabled=""/>
-                                    <span>Disabled Unchecked</span>
+
+                                <label class="input-control radio" onclick="">
+                                    <input type="radio" name="r1" disabled/>
+                                    <span class="helper">Checked radio</span>
                                 </label>
-                                <label class="radiobox as-block" onclick="">
+
+                                <label class="input-control radio" onclick="">
                                     <input type="radio" name="r2" disabled="" checked=""/>
-                                    <span>Disabled Checked</span>
+                                    <span class="helper">Disabled Checked</span>
                                 </label>
                             </form>
                         </div>
@@ -67,21 +71,21 @@
                         <div class="span3">
                             <h2>Switch Control</h2>
                             <form>
-                                <label class="switch as-block" onclick="">
+                                <label class="input-control switch" onclick="">
                                     <input type="checkbox" checked=""/>
-                                    <span>Switch is On</span>
+                                    <span class="helper">Switch is On</span>
                                 </label>
-                                <label class="switch as-block" onclick="">
+                                <label class="input-control switch" onclick="">
                                     <input type="checkbox" />
-                                    <span>Switch is Off</span>
+                                    <span class="helper">Switch is Off</span>
                                 </label>
-                                <label class="switch as-block" onclick="">
+                                <label class="input-control switch" onclick="">
                                     <input type="checkbox" disabled=""/>
-                                    <span>Off and Disabled</span>
+                                    <span class="helper">Off and Disabled</span>
                                 </label>
-                                <label class="switch as-block" onclick="">
+                                <label class="input-control switch" onclick="">
                                     <input type="checkbox" disabled="" checked=""/>
-                                    <span>On and Disabled</span>
+                                    <span class="helper">On and Disabled</span>
                                 </label>
                             </form>
                         </div>
