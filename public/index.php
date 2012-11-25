@@ -123,7 +123,7 @@
                         </div>
 
                         <br />
-                        <h2>GitHub Project Info:</h2>
+                        <h2><i class="icon-github-3"></i> GitHub Project Info:</h2>
                         <table class="github-info" data-repo="olton/Metro-UI-CSS">
                             <tbody>
                             <tr>

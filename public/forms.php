@@ -165,7 +165,7 @@
                             <h2>Password box</h2>
                             <form>
                                 <div class="input-control password">
-                                    <input type="password" autofocus/>
+                                    <input type="password" />
                                     <span class="helper"></span>
                                 </div>
                                 <div class="input-control password">
