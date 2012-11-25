@@ -165,7 +165,11 @@
                             <h2>Password box</h2>
                             <form>
                                 <div class="input-control password">
+<<<<<<< HEAD
                                     <input type="password" />
+=======
+                                    <input type="password"/>
+>>>>>>> hotfix/checkbox-fix-marker
                                     <span class="helper"></span>
                                 </div>
                                 <div class="input-control password">
