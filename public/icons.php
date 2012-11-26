@@ -1,4 +1,4 @@
-<? include("header.php")?>
+<?php include("header.php");?>
 
     <style>
         #icons-list li {
@@ -391,7 +391,7 @@
         </div>
     </div>
 
-<? include("footer.php")?>
+<?php include("footer.php");?>
 
     <script type="text/javascript">
         $(function(){

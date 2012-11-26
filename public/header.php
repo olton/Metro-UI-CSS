@@ -16,4 +16,4 @@
 </head>
 <body class="modern-ui" onload="prettyPrint()">
 
-<? include("navigation.php")?>
+<?php include("navigation.php");?>
