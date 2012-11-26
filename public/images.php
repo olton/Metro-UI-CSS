@@ -1,4 +1,4 @@
-<? include("header.php")?>
+<?php include("header.php");?>
 
     <div class="page secondary">
         <div class="page-header">
@@ -103,7 +103,7 @@
 
                 <div class="grid">
                     <div class="row">
-                        <? include("adsense.php")?>
+                        <?php include("adsense.php");?>
                     </div>
                 </div>
 
@@ -112,4 +112,4 @@
         </div>
     </div>
 
-<? include("footer.php")?>
+<?php include("footer.php");?>
