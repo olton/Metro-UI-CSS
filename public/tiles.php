@@ -400,7 +400,7 @@
                     </div>
                 </div>
 
-                <div class="tiles clearfix">
+                <div class="tiles clearfix tile-drag">
                     <h3>Examples of tiles made with Metro UI CSS</h3>
                     <div class="tile image">
                         <div class="tile-content">
