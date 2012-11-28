@@ -11,7 +11,7 @@ x.x.x.x
 4) Fix
 
 # Current Version
-## 0.15.8.3
+## 0.15.8.4
 
 See details of definition on [metroui.org.ua](http://metroui.org.ua)
 

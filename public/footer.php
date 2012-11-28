@@ -22,6 +22,7 @@
     <script type="text/javascript" src="js/modern/rating.js"></script>
     <script type="text/javascript" src="js/modern/slider.js"></script>
     <script type="text/javascript" src="js/modern/tile-slider.js"></script>
+    <script type="text/javascript" src="js/modern/tile-drag.js"></script>
 
     <script type="text/javascript" src="js/assets/github.info.js"></script>
     <script type="text/javascript" src="js/assets/google-analytics.js"></script>

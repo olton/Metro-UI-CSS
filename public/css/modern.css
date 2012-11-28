@@ -577,15 +577,15 @@ table {
   right: 0;
   content: ".";
   top: 0;
-  z-index: 1000;
+  z-index: 1001;
 }
 .selected:before {
   position: absolute;
-  content: "\2714";
+  content: "\e08a";
   color: #fff;
-  right: 5px;
-  font-family: Tahoma;
-  z-index: 2000;
+  right: 4px;
+  font-family: iconFont;
+  z-index: 1002;
 }
 .border {
   border: 1px #ccc solid;
@@ -2370,7 +2370,7 @@ ol ul {
 }
 ul {
   list-style-position: inside;
-  list-style-type: disc;
+  list-style-type: square;
 }
 ul ul {
   list-style-type: circle;
@@ -6021,19 +6021,19 @@ pre code {
   position: absolute;
   display: block;
   right: 0;
-  content: ".";
-  text-indent: -9999px;
+  content: "";
   top: 0;
-  z-index: 1000;
+  z-index: 1001;
 }
 .listview  > li.selected:before {
   position: absolute;
-  content: "\2714";
+  content: "\e08a";
   color: #fff;
-  right: 5px;
+  right: 4px;
   top: 0;
-  font-family: Tahoma;
-  z-index: 2000;
+  font-family: iconFont;
+  z-index: 1002;
+  display: block;
 }
 .listview:before,
 .listview:after {
