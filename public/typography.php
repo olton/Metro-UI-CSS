@@ -154,7 +154,7 @@
     &lt/address&gt;
 </pre>
                 <address>
-                    <strong>Twitter, Inc.</strong><br>
+                    <strong>Company, Inc.</strong><br>
                     795 Folsom Ave, Suite 600<br>
                     San Francisco, CA 94107<br>
                     <abbr title="Phone">P:</abbr> (123) 456-7890
@@ -199,10 +199,11 @@
                     <small>Someone famous <cite title="Source Title">Source Title</cite></small>
                 </blockquote>
 
-                <table class="bordered">
-                    <tr>
-                        <td style="vertical-align: top;">
-                            <h2>Unordered list</h2>
+                <h2>Lists</h2>
+                <div class="grid">
+                    <div class="row">
+                        <div class="span3">
+                            <h3>Unordered list</h3>
 <pre class="prettyprint linenums">
     &lt;ul&gt;
         &lt;li&gt;...&lt/li&gt;
@@ -217,7 +218,7 @@
                                     <ul>
                                         <li>Phasellus iaculis neque</li>
                                         <li>Purus sodales ultricies</li>
-                                        <li>Vestibulum laoreet porttitor sem</li>
+                                        <li>Vestibulum laoreet porttitor</li>
                                         <li>Ac tristique libero volutpat at</li>
                                     </ul>
                                 </li>
@@ -225,9 +226,10 @@
                                 <li>Aenean sit amet erat nunc</li>
                                 <li>Eget porttitor lorem</li>
                             </ul>
-                        </td>
-                        <td style="vertical-align: top;">
-                            <h2>Ordered list</h2>
+                        </div>
+
+                        <div class="span3">
+                            <h3>Ordered list</h3>
 <pre class="prettyprint linenums">
     &lt;ol&gt;
         &lt;li&gt;...&lt/li&gt;
@@ -243,9 +245,10 @@
                                 <li>Aenean sit amet erat nunc</li>
                                 <li>Eget porttitor lorem</li>
                             </ol>
-                        </td>
-                        <td style="vertical-align: top;">
-                            <h2>Unstyled list</h2>
+                        </div>
+
+                        <div class="span4">
+                            <h3>Unstyled list</h3>
 <pre class="prettyprint linenums">
     &lt;ul class="unstyled"&gt;
         &lt;li&gt;...&lt/li&gt;
@@ -260,7 +263,7 @@
                                     <ul>
                                         <li>Phasellus iaculis neque</li>
                                         <li>Purus sodales ultricies</li>
-                                        <li>Vestibulum laoreet porttitor sem</li>
+                                        <li>Vestibulum laoreet porttitor</li>
                                         <li>Ac tristique libero volutpat at</li>
                                     </ul>
                                 </li>
@@ -268,19 +271,10 @@
                                 <li>Aenean sit amet erat nunc</li>
                                 <li>Eget porttitor lorem</li>
                             </ul>
-                        </td>
-                    </tr>
-                </table>
-
-                <div class="grid">
-                    <div class="row">
-                        <? include("adsense.php")?>
+                        </div>
                     </div>
                 </div>
-
             </div>
-
-
         </div>
     </div>
 
