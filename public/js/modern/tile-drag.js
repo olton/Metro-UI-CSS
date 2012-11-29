@@ -1,11 +1,30 @@
 /**
  * jQuery plugin for drag'n'drop tiles
+ *
+ * to init plugin just add class 'tile-drag' to your tile-group element
+ * or add attribute data-role="tile-drag"
+ *
+ * to handle drag/drop events use next code
+
+$(function(){
+    $('#tile_group_id').on('drag', function(e, draggingTile, parentGroup){
+       ... your code ...
+    });
+    $('#tile_group_id').on('drop', function(e, draggingTile, targetGroup){
+        ... your code ...
+    });
+});
+
+ *
+ * if you want to use drag'n'drop between groups use attribute data-param-group="any_id" to link groups
  */
 (function($) {
 
     $.TileDrag = function(element, options) {
 
         var defaults = {
+            // if group sets and exists other same groups, it is possible to drag'n'drop from one group to another
+            group: null
         };
 
         var plugin = this;
@@ -13,8 +32,11 @@
         plugin.settings = {};
 
         var $element = $(element),
+            $groups,
+            settings,
             tiles,
             $draggingTile,
+            $parentGroup, // parent group for dragging tile
             draggingTileWidth,
             draggingTileHeight,
             $phantomTile,
@@ -28,14 +50,23 @@
             tileUnderCursorSide;
 
         plugin.init = function() {
-            plugin.settings = $.extend({}, defaults, options);
+            settings = plugin.settings = $.extend({}, defaults, options);
 
-            $element.css({
+            // if group is set
+            if (settings.group) {
+                // search other elements with same group
+                $groups = $('[data-role=tile-drag], .tile-drag').filter('[data-param-group=' + settings.group + ']');
+            } else {
+                $groups = $element;
+            }
+
+            // any tile-group must be relative
+            $groups.css({
                 'position': 'relative'
             });
 
             // select all tiles within group
-            tiles = $element.children('.tile');
+            tiles = $groups.children('.tile');
 
             tiles.on('mousedown', startDrag);
 
@@ -43,9 +74,6 @@
 
         var startDrag = function(event) {
             var $tile,
-                /*tileOffset,
-                tileOffsetX,
-                tileOffsetY,*/
                 tilePosition,
                 tilePositionX,
                 tilePositionY,
@@ -53,43 +81,57 @@
 
             event.preventDefault();
 
+            // currently dragging tile
             $draggingTile = $tile = $(this);
 
+            // search parent group
+            $parentGroup = $tile.parents('.tile-drag');
+
+            // dragging tile dimentions
             draggingTileWidth = $tile.outerWidth();
             draggingTileHeight = $tile.outerHeight();
 
+            // hidden tile to place it where dragging tile will dropped
             $phantomTile = $('<div></div>');
-            //$phantom.data('phantomTile', true);
             $phantomTile.css({
                 'background': 'none'
             });
             $phantomTile.addClass('tile');
             if ($tile.hasClass('double')) {
                 $phantomTile.addClass('double');
+            } else if ($tile.hasClass('triple')) {
+                $phantomTile.addClass('triple');
+            } else if ($tile.hasClass('quadro')) {
+                $phantomTile.addClass('quadro');
             } else if ($tile.hasClass('double-vertical')) {
                 $phantomTile.addClass('double-vertical');
+            } else if ($tile.hasClass('triple-vertical')) {
+                $phantomTile.addClass('triple-vertical');
+            } else if ($tile.hasClass('quadro-vertical')) {
+                $phantomTile.addClass('quadro-vertical');
             }
 
-            /*tileOffset = $tile.offset();
-            tileOffsetX = tileOffset.left;
-            tileOffsetY = tileOffset.top;*/
-
+            // dragging tile position within group
             tilePosition = $tile.position();
             tilePositionX = tilePosition.left;
             tilePositionY = tilePosition.top;
 
-            groupOffset = $element.offset();
+            // group element offset relate to document border
+            groupOffset = $parentGroup.offset();
             groupOffsetX = groupOffset.left;
             groupOffsetY = groupOffset.top;
 
+            // pixels count between cursor and dragging tile border
             tileDeltaX = event.pageX - groupOffsetX - tilePositionX;
             tileDeltaY = event.pageY - groupOffsetY - tilePositionY;
 
+            // place phantom tile instead dragging one
             $phantomTile.insertAfter($tile);
 
-            $tile.detach();
-            $tile.appendTo($element);
+            /*$tile.detach();
+            $tile.appendTo($parentGroup);*/
 
+            // still now it absolutely positioned
             $tile.css({
                 'position':     'absolute',
                 'left':         tilePositionX,
@@ -97,19 +139,29 @@
                 'z-index':      100000
             });
 
+            // store it for future
             $tile.data('dragging', true);
             storeTilesCoordinates();
 
+            // some necessary event handlers
             $(document).on('mousemove.tiledrag', dragTile);
             $(document).on('mouseup.tiledrag', dragStop);
+
+            // triggering event
+            $groups.trigger('drag', [$draggingTile, $parentGroup]);
         };
 
+        /**
+         * it function called on every mousemove event
+         */
         var dragTile = function (event) {
 
+            // all we need is index of tile under cursor (and under dragging tile) if it exists
             var findTileIndex;
 
             event.preventDefault();
 
+            // move dragging tile
             $draggingTile.css({
                 'left': event.pageX - groupOffsetX - tileDeltaX,
                 'top':  event.pageY - groupOffsetY - tileDeltaY
@@ -118,12 +170,16 @@
             findTileIndex = findTileUnderCursor(event);
             if (findTileIndex) {
                 clearPlaceForTile($(tiles[findTileIndex]));
-            } else {
-                return;
             }
         };
 
+        /**
+         * when this function called dragging tile dropping to clear place (instead phantom tile)
+         * removing events
+         * and some other necessary changes
+         */
         var dragStop = function (event) {
+            var targetGroup;
 
             event.preventDefault();
 
@@ -133,6 +189,7 @@
             $draggingTile.detach();
             $draggingTile.insertAfter($phantomTile);
 
+            targetGroup = $phantomTile.parents('.tile-drag');
             $phantomTile.remove();
 
             $draggingTile.css({
@@ -143,6 +200,8 @@
             });
 
             $draggingTile.data('dragging', false);
+
+            $groups.trigger('drop', [$draggingTile, targetGroup]);
         };
 
         /*
@@ -156,9 +215,12 @@
 
                 $tile = $(tile);
 
+                // we dont need dragging tile coordinates
                 if ($tile.data('dragging')) return;
 
                 offset = $tile.offset();
+                // it is not real coordinates related to document border
+                // but corrected for less computing during dragging (tile moving)
                 tilesCoordinates[index] = {
                     x1: offset.left + tileDeltaX - draggingTileWidth / 2,
                     y1: offset.top + tileDeltaY - draggingTileHeight / 2,
@@ -192,7 +254,7 @@
                 }
             }
 
-            // detect side of tile (left or right)
+            // detect side of tile (left or right) to clear place before or after tile
             if (tileIndex) {
                 if (event.pageX < coord.x1 + $(tiles[tileIndex]).outerWidth() / 2) {
                     tileSide = 'before';
@@ -209,37 +271,36 @@
             return tileIndex;
         };
 
+        /**
+         * just put phantom tile near tile under cursor (before or after)
+         * and remove previous phantom tile
+         */
         var clearPlaceForTile = function ($tileUnderCursor) {
-            var $oldPhantomTile;
+            var $oldPhantomTile,
+                groupOffset;
+
             $oldPhantomTile = $phantomTile;
             $phantomTile = $oldPhantomTile.clone();
 
-            /*$phantomTile.css({
-                'width':    0,
-                'height':   0
-            });*/
+            // before or after, this is question ...
             if (tileUnderCursorSide === 'before') {
                 $phantomTile.insertBefore($tileUnderCursor);
             } else {
                 $phantomTile.insertAfter($tileUnderCursor);
             }
 
-            /*$oldPhantomTile.animate({
-                'width':    0,
-                'height':   0
-            }, function () {
-                $oldPhantomTile.remove();
-            });
-
-            $phantomTile.animate({
-                'width':    draggingTileWidth,
-                'height':   draggingTileHeight
-            }, function () {
-                storeTilesCoordinates();
-            });*/
-
             $oldPhantomTile.remove();
+            // it is necessary to store new tile coordinates
             storeTilesCoordinates();
+            // and parent group coordinates
+            groupOffset = $parentGroup.offset();
+            groupOffsetX = groupOffset.left;
+            groupOffsetY = groupOffset.top;
+        };
+
+        // return all groups involved to this plugin
+        plugin.getGroups = function () {
+            return $groups;
         };
 
         plugin.init();
@@ -251,7 +312,8 @@
         return this.each(function() {
             if (undefined == $(this).data('TileDrag')) {
                 var plugin = new $.TileDrag(this, options);
-                $(this).data('TileDrag', plugin);
+                var $groups = plugin.getGroups();
+                $groups.data('TileDrag', plugin);
             }
         });
 
@@ -264,8 +326,7 @@ $(function(){
     allTileGroups.each(function (index, tileGroup) {
         var params = {};
         $tileGroup = $(tileGroup);
-        //params.vote         = $rating.data('paramVote');
-
+        params.group         = $tileGroup.data('paramGroup');
         $tileGroup.TileDrag(params);
     });
 });

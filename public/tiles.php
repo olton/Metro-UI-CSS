@@ -400,7 +400,7 @@
                     </div>
                 </div>
 
-                <div class="tiles clearfix tile-drag">
+                <div class="tiles clearfix tile-drag" data-param-group="1">
                     <h3>Examples of tiles made with Metro UI CSS</h3>
                     <div class="tile image">
                         <div class="tile-content">
@@ -554,6 +554,45 @@
                         </div>
                     </div>
 
+                </div>
+
+                <div class="tiles clearfix tile-drag" data-param-group="1">
+                    <h3>Examples of tiles made with Metro UI CSS</h3>
+                    <div class="tile image">
+                        <div class="tile-content">
+                            <img src="images/myface.jpg" alt="">
+                        </div>
+                    </div>
+
+                    <div class="tile icon">
+                        <div class="tile-content">
+                            <img src="images/Mail128.png"/>
+                        </div>
+                        <div class="brand">
+                            <div class="badge">10</div>
+                            <div class="name">Mail</div>
+                        </div>
+                    </div>
+
+                    <div class="tile bg-color-orangeDark icon selected">
+                        <b class="check"></b>
+                        <div class="tile-content">
+                            <img src="images/Video128.png" alt="" />
+                        </div>
+                        <div class="brand">
+                            <span class="name">Video</span>
+                        </div>
+                    </div>
+
+                    <div class="tile double image">
+                        <div class="tile-content">
+                            <img src="images/5.jpg" alt="" />
+                        </div>
+                        <div class="brand">
+                            <span class="name">Pictures</span>
+                            <div class="badge bg-color-orange">5</div>
+                        </div>
+                    </div>
                 </div>
 
                 <br />
