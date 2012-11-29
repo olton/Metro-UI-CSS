@@ -1,9 +1,15 @@
 # Changelog
 
+## 0.15.8.5
+
+Merge user pull request for fonts (Fix web font lead IE8 crash)
+
 ## 0.15.8.4
 
 Fixed outline for ListView on hover
+
 Change font-family for check icon for .selected class to icoFont
+
 Minor bug fixed
 
 ## 0.15.8.3
