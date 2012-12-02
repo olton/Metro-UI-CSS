@@ -35,8 +35,6 @@ Normalize.css is a project by Nicolas Gallagher and Jonathan Neal.
 
 Sites and Projects inspired by Metro UI CSS:
 
-* [Droptiles](http://oazabir.github.com/Droptiles/).
-* [bootmetro](http://aozora.github.com/bootmetro/).
 * [forecast.org.ua](http://forecast.org.ua).
 
 ## Special thanks
