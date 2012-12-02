@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.15.8.6
+
+Add animated images (preloaders) in windows 8 style. You can find them in folder images.
+
 ## 0.15.8.5
 
 Merge user pull request for fonts (Fix web font lead IE8 crash)
