@@ -19,7 +19,16 @@
             <div class="page-region-content">
                 <div class="span10">
                     <p>
-                        Now <code>333</code> icons in one font file. Icons support zoom (over css:font-size), colored (over css:color), css effects for text.
+                        In the "images" folder you can find animated preloaders in windows 8 style.
+                    </p>
+
+                    <div class="padding20">
+                        <img src="/images/preloader-w8-cycle-black.gif" />
+                        <img src="/images/preloader-w8-line-black.gif" />
+                    </div>
+
+                    <p>
+                        Also now <code>333</code> icons in one font file. Icons support zoom (over css:font-size), colored (over css:color), css effects for text.
                     </p>
 
                     <h3>Icons now resizable and colorable</h3>
