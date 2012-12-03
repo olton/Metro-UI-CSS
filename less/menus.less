@@ -59,6 +59,7 @@
     }
 }
 
+
 .nav-bar {
     background-color: @blue;
     position: relative;
@@ -69,7 +70,7 @@
     padding: 0;
 
     .nav-bar-inner {
-        .element {
+        .element, a .element {
             position: relative;
             margin: 5px;
             line-height: 20px;
@@ -77,13 +78,32 @@
             float: left;
             display: inline-block;
             padding: 0;
-            margin-right: 10px;
             font-weight: normal;
             font-size: 10pt;
             color: #fff;
 
             &.brand {
                 font-size: 1.15em;
+            }
+
+            img {
+                height: 100%;
+            }
+
+            a {
+                line-height: 20px;
+                height: 20px;
+                font-size: 10pt;
+                //color: #fff;
+            }
+
+            [class^="icon-"]:before, [class*=" icon-"]:before {
+                display: inline-block;
+                margin: 0;
+                padding: 0;
+                display: block;
+                float: left;
+                margin: 0 5px;
             }
         }
 
