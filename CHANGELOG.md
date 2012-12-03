@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.15.8.7
+
+Fix icons [icon-*] in nav-bar, minor bugs fixed
+
 ## 0.15.8.6
 
 Add animated images (preloaders) in windows 8 style. You can find them in folder images.
