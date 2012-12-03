@@ -3807,7 +3807,8 @@ table.bordered tbody tr:last-child td {
 .nav-bar .nav-bar-inner {
   *zoom: 1;
 }
-.nav-bar .nav-bar-inner .element {
+.nav-bar .nav-bar-inner .element,
+.nav-bar .nav-bar-inner a .element {
   position: relative;
   margin: 5px;
   line-height: 20px;
@@ -3815,13 +3816,34 @@ table.bordered tbody tr:last-child td {
   float: left;
   display: inline-block;
   padding: 0;
-  margin-right: 10px;
   font-weight: normal;
   font-size: 10pt;
   color: #fff;
 }
-.nav-bar .nav-bar-inner .element.brand {
+.nav-bar .nav-bar-inner .element.brand,
+.nav-bar .nav-bar-inner a .element.brand {
   font-size: 1.15em;
+}
+.nav-bar .nav-bar-inner .element img,
+.nav-bar .nav-bar-inner a .element img {
+  height: 100%;
+}
+.nav-bar .nav-bar-inner .element a,
+.nav-bar .nav-bar-inner a .element a {
+  line-height: 20px;
+  height: 20px;
+  font-size: 10pt;
+}
+.nav-bar .nav-bar-inner .element [class^="icon-"]:before,
+.nav-bar .nav-bar-inner a .element [class^="icon-"]:before,
+.nav-bar .nav-bar-inner .element [class*=" icon-"]:before,
+.nav-bar .nav-bar-inner a .element [class*=" icon-"]:before {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  display: block;
+  float: left;
+  margin: 0 5px;
 }
 .nav-bar .nav-bar-inner  > ul.menu {
   margin-left: 0;
@@ -3862,7 +3884,6 @@ table.bordered tbody tr:last-child td {
   float: left;
   display: inline-block;
   padding: 0;
-  margin-right: 10px;
   font-weight: normal;
   font-size: 10pt;
   color: #fff;
@@ -3873,6 +3894,27 @@ table.bordered tbody tr:last-child td {
 .nav-bar .nav-bar-inner  > .divider.brand,
 .nav-bar .nav-bar-inner  > ul.menu > li.divider.brand {
   font-size: 1.15em;
+}
+.nav-bar .nav-bar-inner  > .divider img,
+.nav-bar .nav-bar-inner  > ul.menu > li.divider img {
+  height: 100%;
+}
+.nav-bar .nav-bar-inner  > .divider a,
+.nav-bar .nav-bar-inner  > ul.menu > li.divider a {
+  line-height: 20px;
+  height: 20px;
+  font-size: 10pt;
+}
+.nav-bar .nav-bar-inner  > .divider [class^="icon-"]:before,
+.nav-bar .nav-bar-inner  > ul.menu > li.divider [class^="icon-"]:before,
+.nav-bar .nav-bar-inner  > .divider [class*=" icon-"]:before,
+.nav-bar .nav-bar-inner  > ul.menu > li.divider [class*=" icon-"]:before {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  display: block;
+  float: left;
+  margin: 0 5px;
 }
 .nav-bar .nav-bar-inner [data-role=dropdown] {
   margin-right: 20px !important;
