@@ -2758,6 +2758,9 @@ a.button:hover,
 a.button:active {
   color: inherit;
 }
+a.button.big {
+  padding: 14px 10px;
+}
 button.mini,
 .button.mini,
 .tool-button.mini {
