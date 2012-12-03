@@ -6,12 +6,15 @@ Metro UI CSS a set of styles to create a site with an interface similar to Windo
 x.x.x.x
 
 1) Major number
+
 2) Version of CSS
+
 3) Version of JS
+
 4) Fix
 
 # Current Version
-## 0.15.8.6
+## 0.15.8.7
 
 See details of definition on [metroui.org.ua](http://metroui.org.ua)
 
@@ -26,6 +29,10 @@ CSS/LESS, HTML, Javascript.
 Voljskiy, Russia.
 Project member.
 Javascript.
+
+# Pull requests
+
+Please create pull requests for develop branch. Requests in master branch can be ignored.
 
 # Credits
 
