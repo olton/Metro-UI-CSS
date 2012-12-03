@@ -14,11 +14,8 @@ x.x.x.x
 4) Fix
 
 # Current Version
-<<<<<<< HEAD
-## 0.15.8.6
-=======
+
 ## 0.15.8.7
->>>>>>> release/0.15.8.7
 
 See details of definition on [metroui.org.ua](http://metroui.org.ua)
 
