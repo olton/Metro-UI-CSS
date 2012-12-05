@@ -260,7 +260,13 @@
 
 //Input text, password, ...
 
-.input-control > input[type=text], .input-control > input[type=email], .input-control > input[type=url], .input-control > input[type=phone], .input-control > input[type=password], .input-control > select, .input-control > textarea {
+.input-control > input[type=text],
+.input-control > input[type=email],
+.input-control > input[type=url],
+.input-control > input[type=phone],
+.input-control > input[type=password],
+.input-control > select,
+.input-control > textarea {
     border: 2px #bababa solid;
     width: 100%;
     padding: 4px 32px 6px 5px;
@@ -270,6 +276,7 @@
     margin-right: 32px;
     width: 100%;
 
+
     &:disabled {
         background-color: #eaeaea;
     }
@@ -277,6 +284,17 @@
         border-color: #000;
     }
 }
+
+.input-control > input[type=text]::-ms-clear,
+.input-control > input[type=email]::-ms-clear,
+.input-control > input[type=url]::-ms-clear,
+.input-control > input[type=phone]::-ms-clear {
+    display: none;
+}
+.input-control > input[type=password]::-ms-reveal {
+    display: none;
+}
+
 
 .input-control > select {
     padding-right: 5px;
