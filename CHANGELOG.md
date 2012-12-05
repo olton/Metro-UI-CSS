@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.15.8.8
+
+Disable IE10 native clear and reveal buttons in input[text, password]
+
 ## 0.15.8.7
 
 Fix icons [icon-*] in nav-bar, minor bugs fixed

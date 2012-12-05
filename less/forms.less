@@ -260,7 +260,13 @@
 
 //Input text, password, ...
 
-.input-control > input[type=text], .input-control > input[type=email], .input-control > input[type=url], .input-control > input[type=phone], .input-control > input[type=password], .input-control > select, .input-control > textarea {
+.input-control > input[type=text],
+.input-control > input[type=email],
+.input-control > input[type=url],
+.input-control > input[type=phone],
+.input-control > input[type=password],
+.input-control > select,
+.input-control > textarea {
     border: 2px #bababa solid;
     width: 100%;
     padding: 4px 32px 6px 5px;
@@ -270,6 +276,7 @@
     margin-right: 32px;
     width: 100%;
 
+
     &:disabled {
         background-color: #eaeaea;
     }
@@ -277,6 +284,17 @@
         border-color: #000;
     }
 }
+
+.input-control > input[type=text]::-ms-clear,
+.input-control > input[type=email]::-ms-clear,
+.input-control > input[type=url]::-ms-clear,
+.input-control > input[type=phone]::-ms-clear {
+    display: none;
+}
+.input-control > input[type=password]::-ms-reveal {
+    display: none;
+}
+
 
 .input-control > select {
     padding-right: 5px;
@@ -309,19 +327,27 @@
     &.text, &.password {
         .helper {
             background: #fff;// @textbox_pass_inactive_icon 50% no-repeat;
-            right: 3px;
+            //right: 3px;
             top: 2px;
             width: 26px;
-            height: 26px;
+            height: 27px;
             cursor: pointer;
             color: #000;
-            .pos-abs;
+            position: absolute;
+            left: 100%;
+            margin-left: -28px;
+            display: block;
+            border: 1px #fff solid;
 
+            /*
             &:before {
+                //content: "";
                 font-size: 12pt;
-                .pos-abs;
+                position: absolute;
                 #font > .normal;
+                display: inline-block;
             }
+            */
 
             &:hover {
                 background: #d9d9d9;// @textbox_pass_inactive_icon 50% no-repeat;
@@ -329,9 +355,12 @@
 
             &:active {
                 background-color: #000;
+
+                /*
                 &:before {
                     color: #fff;
                 }
+                */
             }
         }
     }
@@ -346,11 +375,16 @@
     }
     &.text {
         .helper {
+            /*
             &:before {
-                content: "\2715";
+                font-family: iconFont;
+                font-size: 12px;
+                //content: "\2715";
+                //content: "\e089";
                 left: 7px;
-                top: 4px;
+                top: 3px;
             }
+            */
         }
     }
 }
