@@ -5088,6 +5088,15 @@ table.bordered tbody tr:last-child td {
 .input-control > textarea:focus {
   border-color: #000;
 }
+.input-control > input[type=text]::-ms-clear,
+.input-control > input[type=email]::-ms-clear,
+.input-control > input[type=url]::-ms-clear,
+.input-control > input[type=phone]::-ms-clear {
+  display: none;
+}
+.input-control > input[type=password]::-ms-reveal {
+  display: none;
+}
 .input-control > select {
   padding-right: 5px;
 }
