@@ -327,19 +327,27 @@
     &.text, &.password {
         .helper {
             background: #fff;// @textbox_pass_inactive_icon 50% no-repeat;
-            right: 3px;
+            //right: 3px;
             top: 2px;
             width: 26px;
-            height: 26px;
+            height: 27px;
             cursor: pointer;
             color: #000;
-            .pos-abs;
+            position: absolute;
+            left: 100%;
+            margin-left: -28px;
+            display: block;
+            border: 1px #fff solid;
 
+            /*
             &:before {
+                //content: "";
                 font-size: 12pt;
-                .pos-abs;
+                position: absolute;
                 #font > .normal;
+                display: inline-block;
             }
+            */
 
             &:hover {
                 background: #d9d9d9;// @textbox_pass_inactive_icon 50% no-repeat;
@@ -347,9 +355,12 @@
 
             &:active {
                 background-color: #000;
+
+                /*
                 &:before {
                     color: #fff;
                 }
+                */
             }
         }
     }
@@ -364,11 +375,16 @@
     }
     &.text {
         .helper {
+            /*
             &:before {
-                content: "\2715";
+                font-family: iconFont;
+                font-size: 12px;
+                //content: "\2715";
+                //content: "\e089";
                 left: 7px;
-                top: 4px;
+                top: 3px;
             }
+            */
         }
     }
 }
