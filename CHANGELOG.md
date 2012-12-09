@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.15.8.9
+
+Fixed collapse internal div's in accordion
+
 ## 0.15.8.8
 
 Disable IE10 native clear and reveal buttons in input[text, password]

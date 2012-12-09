@@ -6,14 +6,14 @@
         var $this = $(this)
             , $li = $this.children("li")
             , $triggers = $li.children("a")
-            , $frames = $this.find("li div")
+            , $frames = $li.children("div")
             ;
 
         var initTriggers = function(triggers){
             triggers.on('click', function(e){
                 e.preventDefault();
                 var $a = $(this)
-                  , target = $($a.parent('li').children("div"));
+                  , target = $a.parent('li').children("div");
 
                 if ( $a.parent('li').hasClass('active') ) {
                     target.slideUp();

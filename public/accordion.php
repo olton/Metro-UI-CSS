@@ -18,6 +18,9 @@
                         <div>
                             <h3>frame 1</h3>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur porta condimentum sem sed commodo.
+                            <p>
+                                subcontent 1
+                            </p>
                         </div>
                     </li>
                     <li class="active">
@@ -25,6 +28,9 @@
                         <div>
                             <h3>frame 2</h3>
                             Curabitur porta condimentum sem sed commodo. Praesent vestibulum, libero eget lacinia pretium, metus augue dapibus odio, nec placerat mauris justo non ante.
+                            <div>
+                                subcontent 2
+                            </div>
                         </div>
                     </li>
                     <li>

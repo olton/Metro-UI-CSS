@@ -15,7 +15,7 @@ x.x.x.x
 
 # Current Version
 
-## 0.15.8.8
+## 0.15.8.9
 
 See details of definition on [metroui.org.ua](http://metroui.org.ua)
 

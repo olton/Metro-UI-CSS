@@ -45,10 +45,11 @@
         function AddMouseWheel(){
             $("body").mousewheel(function(event, delta){
                 var scroll_value = delta * 50;
-                if (!jQuery.browser.chrome) {
-                    document.documentElement.scrollLeft -= scroll_value;
-                } else {
+                if (jQuery.browser.webkit) {
                     this.scrollLeft -= scroll_value;
+
+                } else {
+                    document.documentElement.scrollLeft -= scroll_value;
                 }
                 return false;
             });

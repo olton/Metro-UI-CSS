@@ -5169,6 +5169,8 @@ table.bordered tbody tr:last-child td {
   letter-spacing: 0.02em;
   line-height: 20px;
   display: inline-block;
+  height: 100%;
+  width: 100%;
 }
 .input-control.text .helper:hover,
 .input-control.password .helper:hover {
