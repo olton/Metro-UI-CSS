@@ -1,5 +1,38 @@
 # Changelog
 
+## 0.15.8.10
+
+Add new icons:
+
+* icon-award-fill
+* icon-award-stroke
+* icon-beaker-alt
+* icon-beaker
+* icon-move-vertical
+* icon-move-horizontal
+* icon-steering-wheel
+* icon-volume-3
+* icon-volume-mute
+* icon-play
+* icon-pause
+* icon-stop
+* icon-eject
+* icon-first
+* icon-last
+* icon-play-alt
+* icon-battery-empty
+* icon-battery-half
+* icon-battery-full
+* icon-battery-charging
+* icon-left-quote
+* icon-right-quote
+* icon-left-quote-alt
+* icon-right-quote-alt
+* icon-smiley
+* icon-umbrella
+* icon-info-2
+* icon-chart-alt
+
 ## 0.15.8.9
 
 Fixed collapse internal div's in accordion
