@@ -378,6 +378,34 @@
                         <li><i class="icon-stats"></i> icon-stats</li>
                         <li><i class="icon-compass-3"></i> icon-compass-3</li>
                         <li><i class="icon-keyboard"></i> icon-keyboard</li>
+                        <li><i class="icon-award-fill"></i> icon-award-fill</li>
+                        <li><i class="icon-award-stroke"></i> icon-award-stroke</li>
+                        <li><i class="icon-beaker-alt"></i> icon-beaker-alt</li>
+                        <li><i class="icon-beaker"></i> icon-beaker</li>
+                        <li><i class="icon-move-vertical"></i> icon-move-vertical</li>
+                        <li><i class="icon-move-horizontal"></i> icon-move-horizontal</li>
+                        <li><i class="icon-steering-wheel"></i> icon-steering-wheel</li>
+                        <li><i class="icon-volume-3"></i> icon-volume-3</li>
+                        <li><i class="icon-volume-mute"></i> icon-volume-mute</li>
+                        <li><i class="icon-play"></i> icon-play</li>
+                        <li><i class="icon-pause"></i> icon-pause</li>
+                        <li><i class="icon-stop"></i> icon-stop</li>
+                        <li><i class="icon-eject"></i> icon-eject</li>
+                        <li><i class="icon-first"></i> icon-first</li>
+                        <li><i class="icon-last"></i> icon-last</li>
+                        <li><i class="icon-play-alt"></i> icon-play-alt</li>
+                        <li><i class="icon-battery-empty"></i> icon-battery-empty</li>
+                        <li><i class="icon-battery-half"></i> icon-battery-half</li>
+                        <li><i class="icon-battery-full"></i> icon-battery-full</li>
+                        <li><i class="icon-battery-charging"></i> icon-battery-charging</li>
+                        <li><i class="icon-left-quote"></i> icon-left-quote</li>
+                        <li><i class="icon-right-quote"></i> icon-right-quote</li>
+                        <li><i class="icon-left-quote-alt"></i> icon-left-quote-alt</li>
+                        <li><i class="icon-right-quote-alt"></i> icon-right-quote-alt</li>
+                        <li><i class="icon-smiley"></i> icon-smiley</li>
+                        <li><i class="icon-umbrella"></i> icon-umbrella</li>
+                        <li><i class="icon-info-2"></i> icon-info-2</li>
+                        <li><i class="icon-chart-alt"></i> icon-chart-alt</li>
                     </ol>
 
                     <br />
@@ -394,6 +422,10 @@
                         <br />
                         <br />Icon Set:	IcoMoon - Free -- http://keyamoon.com/icomoon/
                         <br />License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
+
+                        <br />
+                        <br />Icon Set:	Iconic -- http://somerandomdude.com/work/iconic/
+                        <br />License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/us/
                     </div>
                 </div>
             </div>

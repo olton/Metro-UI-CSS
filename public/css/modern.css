@@ -1656,6 +1656,90 @@ li .icon-large:before {
 .icon-keyboard:before {
   content: "\e14c";
 }
+.icon-award-fill:before {
+  content: "\e14d";
+}
+.icon-award-stroke:before {
+  content: "\e14e";
+}
+.icon-beaker-alt:before {
+  content: "\e14f";
+}
+.icon-beaker:before {
+  content: "\e150";
+}
+.icon-move-vertical:before {
+  content: "\e151";
+}
+.icon-move-horizontal:before {
+  content: "\e153";
+}
+.icon-steering-wheel:before {
+  content: "\e152";
+}
+.icon-volume-3:before {
+  content: "\e154";
+}
+.icon-volume-mute:before {
+  content: "\e155";
+}
+.icon-play:before {
+  content: "\e156";
+}
+.icon-pause:before {
+  content: "\e157";
+}
+.icon-stop:before {
+  content: "\e158";
+}
+.icon-eject:before {
+  content: "\e159";
+}
+.icon-first:before {
+  content: "\e15a";
+}
+.icon-last:before {
+  content: "\e15b";
+}
+.icon-play-alt:before {
+  content: "\e15c";
+}
+.icon-battery-empty:before {
+  content: "\e15d";
+}
+.icon-battery-half:before {
+  content: "\e15e";
+}
+.icon-battery-full:before {
+  content: "\e15f";
+}
+.icon-battery-charging:before {
+  content: "\e160";
+}
+.icon-left-quote:before {
+  content: "\e161";
+}
+.icon-right-quote:before {
+  content: "\e162";
+}
+.icon-left-quote-alt:before {
+  content: "\e163";
+}
+.icon-right-quote-alt:before {
+  content: "\e164";
+}
+.icon-smiley:before {
+  content: "\e165";
+}
+.icon-umbrella:before {
+  content: "\e166";
+}
+.icon-info-2:before {
+  content: "\e167";
+}
+.icon-chart-alt:before {
+  content: "\e168";
+}
 /*
  * Metro UI CSS
  * Copyright 2012 Sergey Pimenov
@@ -5168,9 +5252,6 @@ table.bordered tbody tr:last-child td {
   font-size: 11pt;
   letter-spacing: 0.02em;
   line-height: 20px;
-  display: inline-block;
-  height: 100%;
-  width: 100%;
 }
 .input-control.text .helper:hover,
 .input-control.password .helper:hover {

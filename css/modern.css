@@ -1656,6 +1656,90 @@ li .icon-large:before {
 .icon-keyboard:before {
   content: "\e14c";
 }
+.icon-award-fill:before {
+  content: "\e14d";
+}
+.icon-award-stroke:before {
+  content: "\e14e";
+}
+.icon-beaker-alt:before {
+  content: "\e14f";
+}
+.icon-beaker:before {
+  content: "\e150";
+}
+.icon-move-vertical:before {
+  content: "\e151";
+}
+.icon-move-horizontal:before {
+  content: "\e153";
+}
+.icon-steering-wheel:before {
+  content: "\e152";
+}
+.icon-volume-3:before {
+  content: "\e154";
+}
+.icon-volume-mute:before {
+  content: "\e155";
+}
+.icon-play:before {
+  content: "\e156";
+}
+.icon-pause:before {
+  content: "\e157";
+}
+.icon-stop:before {
+  content: "\e158";
+}
+.icon-eject:before {
+  content: "\e159";
+}
+.icon-first:before {
+  content: "\e15a";
+}
+.icon-last:before {
+  content: "\e15b";
+}
+.icon-play-alt:before {
+  content: "\e15c";
+}
+.icon-battery-empty:before {
+  content: "\e15d";
+}
+.icon-battery-half:before {
+  content: "\e15e";
+}
+.icon-battery-full:before {
+  content: "\e15f";
+}
+.icon-battery-charging:before {
+  content: "\e160";
+}
+.icon-left-quote:before {
+  content: "\e161";
+}
+.icon-right-quote:before {
+  content: "\e162";
+}
+.icon-left-quote-alt:before {
+  content: "\e163";
+}
+.icon-right-quote-alt:before {
+  content: "\e164";
+}
+.icon-smiley:before {
+  content: "\e165";
+}
+.icon-umbrella:before {
+  content: "\e166";
+}
+.icon-info-2:before {
+  content: "\e167";
+}
+.icon-chart-alt:before {
+  content: "\e168";
+}
 /*
  * Metro UI CSS
  * Copyright 2012 Sergey Pimenov
@@ -5148,13 +5232,16 @@ table.bordered tbody tr:last-child td {
 .input-control.text .helper,
 .input-control.password .helper {
   background: #fff;
-  right: 3px;
   top: 2px;
   width: 26px;
-  height: 26px;
+  height: 27px;
   cursor: pointer;
   color: #000;
   position: absolute;
+  left: 100%;
+  margin-left: -28px;
+  display: block;
+  border: 1px #fff solid;
 }
 .input-control.text .helper:before,
 .input-control.password .helper:before {
@@ -5185,9 +5272,11 @@ table.bordered tbody tr:last-child td {
   background: #ffffff url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABcAAAAXCAYAAADgKtSgAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MzM2OTY1MjIwNkVGMTFFMjhDQkNEODZFQTYyRTI5MDciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MzM2OTY1MjMwNkVGMTFFMjhDQkNEODZFQTYyRTI5MDciPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDozMzU3NURCRDA2RUYxMUUyOENCQ0Q4NkVBNjJFMjkwNyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDozMzU3NURCRTA2RUYxMUUyOENCQ0Q4NkVBNjJFMjkwNyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PhJl5kAAAAEMSURBVHja7FXtEYIwDKVO0BE6AiPoBDICo7BBR9AVnMARcIOyAWxQk6PlakwC/uC888zdOwpJXl/SD0yMsdrLDtWO9h1yY4wDeEAARIKQfE7InQfY8xJgFnBB10ZgrCUc85N8rAHjB8QZmFNTcpNfoBQkvifl2SbAFXAjlZ8BLRN7Ar4HtmVRnoKo4o6Wy7SvYyqwL21hetxKpMwkLbMGS3sccfqtxMUEnnC4TO5pWSSxAYQiBscN06KRCkTrJdWJWNohjaK+X3ZNgSNJCAp50ITgN+2E2rQeklHf9MYh3YqJfNTuDsg10vFXlYMTlQwK97B6c61ssc0Lunq3KBOoW1EiN/8/0W+RPwUYACoftglrEejbAAAAAElFTkSuQmCC) 50% no-repeat;
 }
 .input-control.text .helper:before {
-  content: "\2715";
+  font-family: iconFont;
+  font-size: 12px;
+  content: "\e089";
   left: 7px;
-  top: 4px;
+  top: 3px;
 }
 label {
   font-family: 'Segoe UI Semilight', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
