@@ -1,10 +1,13 @@
 /**
- * jQuery plugin for drag'n'drop tiles
+ * drag'n'drop plugin
  *
- * to init plugin just add class 'tile-drag' to your tile-group element
- * or add attribute data-role="tile-drag"
+ * this plugin allows to drag tiles between groups
+ *
+ * this plugin auto enabled to 'tile-group' elements
+ * or elements with attribute data-role="tile-group"
  *
  * to handle drag/drop events use next code
+ *
 
 $(function(){
     $('#tile_group_id').on('drag', function(e, draggingTile, parentGroup){
@@ -16,16 +19,12 @@ $(function(){
 });
 
  *
- * if you want to use drag'n'drop between groups use attribute data-param-group="any_id" to link groups
  */
 (function($) {
 
     $.TileDrag = function(element, options) {
 
-        var defaults = {
-            // if group sets and exists other same groups, it is possible to drag'n'drop from one group to another
-            group: null
-        };
+        var defaults = {};
 
         var plugin = this;
 
@@ -47,18 +46,18 @@ $(function(){
             tilesCoordinates,
             tileSearchCount = 0, // uses for findTileUnderCursor function
             tileUnderCursorIndex,
-            tileUnderCursorSide;
+            tileUnderCursorSide,
+            newGroupsCoordinates,
+            newGroupSearchCount = 0,
+            newGroupPhantom,
+            targetType, // 'new' or 'existing' group
+            groupsMaxHeight;
 
         plugin.init = function() {
             settings = plugin.settings = $.extend({}, defaults, options);
 
-            // if group is set
-            if (settings.group) {
-                // search other elements with same group
-                $groups = $('[data-role=tile-drag], .tile-drag').filter('[data-param-group=' + settings.group + ']');
-            } else {
-                $groups = $element;
-            }
+            // search other 'tile-group' elements
+            $groups = $('[data-role=tile-group], .tile-group');
 
             // any tile-group must be relative
             $groups.css({
@@ -85,7 +84,7 @@ $(function(){
             $draggingTile = $tile = $(this);
 
             // search parent group
-            $parentGroup = $tile.parents('.tile-drag');
+            $parentGroup = $tile.parents('.tile-group');
 
             // dragging tile dimentions
             draggingTileWidth = $tile.outerWidth();
@@ -103,7 +102,8 @@ $(function(){
                 $phantomTile.addClass('triple');
             } else if ($tile.hasClass('quadro')) {
                 $phantomTile.addClass('quadro');
-            } else if ($tile.hasClass('double-vertical')) {
+            }
+            if ($tile.hasClass('double-vertical')) {
                 $phantomTile.addClass('double-vertical');
             } else if ($tile.hasClass('triple-vertical')) {
                 $phantomTile.addClass('triple-vertical');
@@ -127,6 +127,7 @@ $(function(){
 
             // place phantom tile instead dragging one
             $phantomTile.insertAfter($tile);
+            targetType = 'existing';
 
             /*$tile.detach();
             $tile.appendTo($parentGroup);*/
@@ -142,6 +143,7 @@ $(function(){
             // store it for future
             $tile.data('dragging', true);
             storeTilesCoordinates();
+            storeNewGroupsCoordinates();
 
             // some necessary event handlers
             $(document).on('mousemove.tiledrag', dragTile);
@@ -157,7 +159,8 @@ $(function(){
         var dragTile = function (event) {
 
             // all we need is index of tile under cursor (and under dragging tile) if it exists
-            var findTileIndex;
+            var findTileIndex,
+                findNewGroup;
 
             event.preventDefault();
 
@@ -170,6 +173,11 @@ $(function(){
             findTileIndex = findTileUnderCursor(event);
             if (findTileIndex) {
                 clearPlaceForTile($(tiles[findTileIndex]));
+            } else {
+                findNewGroup = findNewGroupUnderCursor(event);
+                if (findNewGroup) {
+                    showNewGroupPhantom(findNewGroup.group, findNewGroup.side);
+                }
             }
         };
 
@@ -187,10 +195,29 @@ $(function(){
             $(document).off('mouseup.tiledrag');
 
             $draggingTile.detach();
-            $draggingTile.insertAfter($phantomTile);
+            // it is two way now: drop to existing group or drop to new group
+            // first drop to existing group
+            if (targetType === 'existing') {
+                $draggingTile.insertAfter($phantomTile);
+                targetGroup = $phantomTile.parents('.tile-group');
+                $phantomTile.remove();
+            } else {
+                newGroupPhantom.css({
+                    'backgroundColor': '',
+                    'width': 'auto',
+                    'max-width': '322px',
+                    'height': ''
+                });
+                $draggingTile.appendTo(newGroupPhantom);
+                targetGroup = newGroupPhantom;
+                newGroupPhantom = undefined;
+                $groups = $('[data-role=tile-group], .tile-group')
+            }
 
-            targetGroup = $phantomTile.parents('.tile-drag');
-            $phantomTile.remove();
+            // remove parent group if it was a last tile there
+            if ($parentGroup.find('.tile').length === 0) {
+                $parentGroup.remove();
+            }
 
             $draggingTile.css({
                 'position': '',
@@ -227,6 +254,53 @@ $(function(){
                     x2: offset.left + $tile.outerWidth() + tileDeltaX - draggingTileWidth / 2,
                     y2: offset.top + $tile.outerHeight() + tileDeltaY - draggingTileHeight / 2
                 }
+            });
+        };
+
+        /**
+         * if tile dragging under this place it will creating new group there
+         */
+        var storeNewGroupsCoordinates = function () {
+            groupsMaxHeight = 0;
+            newGroupsCoordinates = [];
+            $groups.each(function(index){
+                var offset,
+                    width,
+                    height,
+                    $group;
+
+                $group = $(this);
+
+                offset = $group.offset();
+
+                width = $group.width();
+                height = $group.height();
+
+                // make it possible to insert new group before first one
+                if (index === 0) {
+                    newGroupsCoordinates.push({
+                        x1: offset.left - 70 + tileDeltaX - draggingTileWidth / 2,
+                        x2: offset.left + tileDeltaX - draggingTileWidth / 2,
+                        y1: offset.top + tileDeltaY - draggingTileHeight / 2,
+                        y2: offset.top + height + tileDeltaY - draggingTileHeight / 2,
+                        side: 'before',
+                        group: $group
+                    });
+                }
+
+                newGroupsCoordinates.push({
+                    x1: offset.left + width + tileDeltaX - draggingTileWidth / 2,
+                    x2: offset.left + width + 70 + tileDeltaX - draggingTileWidth / 2,
+                    y1: offset.top + tileDeltaY - draggingTileHeight / 2,
+                    y2: offset.top + height + tileDeltaY - draggingTileHeight / 2,
+                    side: 'after',
+                    group: $group
+                });
+
+                if (groupsMaxHeight < height) {
+                    groupsMaxHeight = height;
+                }
+
             });
         };
 
@@ -271,16 +345,42 @@ $(function(){
             return tileIndex;
         };
 
+        var findNewGroupUnderCursor = function (event) {
+            var i, coord, newGroup = false;
+
+            if (newGroupSearchCount < 10) {
+                newGroupSearchCount++;
+                return false;
+            }
+            newGroupSearchCount = 0;
+
+            for (i in newGroupsCoordinates) {
+                if (!newGroupsCoordinates.hasOwnProperty(i)) return;
+                coord = newGroupsCoordinates[i];
+                if (coord.x1 < event.pageX && event.pageX < coord.x2 && coord.y1 < event.pageY && event.pageY < coord.y2) {
+                    newGroup = coord;
+                    break;
+                }
+            }
+
+            if (!newGroup) {
+                return false;
+            } else {
+                return newGroup;
+            }
+        };
+
         /**
          * just put phantom tile near tile under cursor (before or after)
          * and remove previous phantom tile
          */
         var clearPlaceForTile = function ($tileUnderCursor) {
             var $oldPhantomTile,
-                groupOffset;
+                $newParentGroup;
 
             $oldPhantomTile = $phantomTile;
             $phantomTile = $oldPhantomTile.clone();
+            targetType = 'existing';
 
             // before or after, this is question ...
             if (tileUnderCursorSide === 'before') {
@@ -289,11 +389,65 @@ $(function(){
                 $phantomTile.insertAfter($tileUnderCursor);
             }
 
+            if (newGroupPhantom) {
+                newGroupPhantom.remove();
+            }
             $oldPhantomTile.remove();
-            // it is necessary to store new tile coordinates
+
+            // check if it was last tile in group and it drag out
+            if ($parentGroup.find('.tile').length === 1) {
+                $newParentGroup = $tileUnderCursor.parent('.tile-group');
+                if ($parentGroup[0] !== $newParentGroup[0]) {
+                    // and if it true, make parent group invisible
+                    $parentGroup.css({
+                        'width': 0,
+                        'margin': 0
+                    });
+                }
+            }
+
+            storeAllNecessaryCoordinates();
+        };
+
+        /**
+         * makes visible new group place
+         * @param relGroup relative group
+         * @param side 'after' or 'before'
+         */
+        var showNewGroupPhantom = function (relGroup, side) {
+            if ($phantomTile) {
+                $phantomTile.remove()
+            }
+            if (newGroupPhantom) {
+                newGroupPhantom.remove();
+            }
+
+            newGroupPhantom = $('<div class="tile-group"></div>');
+            newGroupPhantom.css({
+                'height': groupsMaxHeight,
+                'width': '70px',
+                'backgroundColor': '#333333',
+                'position': 'relative'
+            });
+            relGroup[side](newGroupPhantom);
+            targetType = 'new';
+
+            // check if it was last tile in group and it drag out
+            if ($parentGroup.find('.tile').length === 1) {
+                $parentGroup.css({
+                    'width': 0,
+                    'margin': 0
+                });
+            }
+
+            storeAllNecessaryCoordinates();
+        };
+
+        var storeAllNecessaryCoordinates = function () {
             storeTilesCoordinates();
-            // and parent group coordinates
-            groupOffset = $parentGroup.offset();
+            storeNewGroupsCoordinates();
+            // store parent group coordinates
+            var groupOffset = $parentGroup.offset();
             groupOffsetX = groupOffset.left;
             groupOffsetY = groupOffset.top;
         };
@@ -309,24 +463,22 @@ $(function(){
 
     $.fn.TileDrag = function(options) {
 
-        return this.each(function() {
-            if (undefined == $(this).data('TileDrag')) {
-                var plugin = new $.TileDrag(this, options);
-                var $groups = plugin.getGroups();
-                $groups.data('TileDrag', plugin);
-            }
-        });
+        //this.each(function() {
+        var group = $(this[0]);
+        if (undefined == group.data('TileDrag')) {
+            var plugin = new $.TileDrag(group, options);
+            var $groups = plugin.getGroups();
+            $groups.data('TileDrag', plugin);
+        }
+        //});
 
     };
 
 })(jQuery);
 
 $(function(){
-    var allTileGroups = $('[data-role=tile-drag], .tile-drag');
-    allTileGroups.each(function (index, tileGroup) {
-        var params = {};
-        $tileGroup = $(tileGroup);
-        params.group         = $tileGroup.data('paramGroup');
-        $tileGroup.TileDrag(params);
-    });
+    var allTileGroups = $('[data-role=tile-group], .tile-group');
+    if (allTileGroups.length > 0) {
+        $(allTileGroups).TileDrag({});
+    }
 });
