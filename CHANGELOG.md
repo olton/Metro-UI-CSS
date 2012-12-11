@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.15.8.11
+
+Fix helper button in input control click (change the span tag to button tag and fix plugin)
+
 ## 0.15.8.10
 
 Add new icons:

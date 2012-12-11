@@ -42,7 +42,7 @@
                 input = $element.children('input');
                 input.attr('value', '');
                 input.focus();
-            });
+            }).on('click', function(e){e.preventDefault(); return false;});
         };
 
         /**
@@ -67,14 +67,14 @@
                 password.hide();
                 text.insertAfter(password);
                 text.attr('value', password.attr('value'));
-            });
+            }).on('click', function(e){e.preventDefault(); return false;});
 
             // return password and remove text element
             $helper.on('mouseup, mouseout', function () {
                 text.detach();
                 password.show();
                 password.focus();
-            });
+            }).on('click', function(e){e.preventDefault(); return false;});
         };
 
         plugin.init();

@@ -3936,6 +3936,7 @@ table.bordered tbody tr:last-child td {
   margin-left: 0;
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 .nav-bar .nav-bar-inner  > ul.menu  > li {
   display: block;
@@ -5148,11 +5149,11 @@ table.bordered tbody tr:last-child td {
   border: 2px #bababa solid;
   width: 100%;
   padding: 4px 32px 6px 5px;
-  position: relative;
   background-color: #fff;
   outline: 0;
   margin-right: 32px;
-  width: 100%;
+  min-height: 32px;
+  position: relative;
 }
 .input-control > input[type=text]:disabled,
 .input-control > input[type=email]:disabled,
@@ -5233,8 +5234,10 @@ table.bordered tbody tr:last-child td {
 .input-control.password .helper {
   background: #fff;
   top: 2px;
-  width: 26px;
-  height: 27px;
+  width: 26px !important;
+  height: 27px !important;
+  min-width: 26px !important;
+  min-height: 27px !important;
   cursor: pointer;
   color: #000;
   position: absolute;
