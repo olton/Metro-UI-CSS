@@ -5231,7 +5231,9 @@ table.bordered tbody tr:last-child td {
   position: relative;
 }
 .input-control.text .helper,
-.input-control.password .helper {
+.input-control.password .helper,
+.input-control.text .btn-search,
+.input-control.password .btn-search {
   background: #fff;
   top: 2px;
   width: 26px !important;
@@ -5247,7 +5249,9 @@ table.bordered tbody tr:last-child td {
   border: 1px #fff solid;
 }
 .input-control.text .helper:before,
-.input-control.password .helper:before {
+.input-control.password .helper:before,
+.input-control.text .btn-search:before,
+.input-control.password .btn-search:before {
   font-size: 12pt;
   position: absolute;
   font-family: 'Segoe UI Semilight', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
@@ -5257,15 +5261,21 @@ table.bordered tbody tr:last-child td {
   line-height: 20px;
 }
 .input-control.text .helper:hover,
-.input-control.password .helper:hover {
+.input-control.password .helper:hover,
+.input-control.text .btn-search:hover,
+.input-control.password .btn-search:hover {
   background: #d9d9d9;
 }
 .input-control.text .helper:active,
-.input-control.password .helper:active {
+.input-control.password .helper:active,
+.input-control.text .btn-search:active,
+.input-control.password .btn-search:active {
   background-color: #000;
 }
 .input-control.text .helper:active:before,
-.input-control.password .helper:active:before {
+.input-control.password .helper:active:before,
+.input-control.text .btn-search:active:before,
+.input-control.password .btn-search:active:before {
   color: #fff;
 }
 .input-control.password .helper {
@@ -5278,6 +5288,13 @@ table.bordered tbody tr:last-child td {
   font-family: iconFont;
   font-size: 12px;
   content: "\e089";
+  left: 7px;
+  top: 3px;
+}
+.input-control.text .btn-search:before {
+  font-family: iconFont;
+  font-size: 12px;
+  content: "\e041";
   left: 7px;
   top: 3px;
 }

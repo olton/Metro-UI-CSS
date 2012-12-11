@@ -325,7 +325,7 @@
     position: relative;
 
     &.text, &.password {
-        .helper {
+        .helper, .btn-search {
             background: #fff;// @textbox_pass_inactive_icon 50% no-repeat;
             top: 2px;
             width: 26px !important;
@@ -377,8 +377,20 @@
             &:before {
                 font-family: iconFont;
                 font-size: 12px;
-                //content: "\2715";
                 content: "\e089";
+                left: 7px;
+                top: 3px;
+            }
+
+        }
+    }
+    &.text {
+        .btn-search {
+
+            &:before {
+                font-family: iconFont;
+                font-size: 12px;
+                content: "\e041";
                 left: 7px;
                 top: 3px;
             }

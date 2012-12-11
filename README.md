@@ -28,7 +28,7 @@ CSS/LESS, HTML, Javascript.
 
 ## Sergey Volkov
 Voljskiy, Russia.
-Project member.
+Team member.
 Javascript.
 
 # Pull requests

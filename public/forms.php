@@ -155,7 +155,7 @@
                             </form>
 <pre class="prettyprint linenums">
     &lt;div class="input-control text"&gt;
-        &lt;input type="text[email, phone, url]" /&gt;
+        &lt;input type="text" /&gt;
         &lt;button class="helper"&gt;&lt;/button&gt;
     &lt;/div&gt;
 </pre>
@@ -191,18 +191,48 @@
 
                     <div class="row">
                         <div class="span10">
+                            <form>
+                            <div class="input-control text">
+                                <input type="text" placeholder="Enter search phrase..." />
+                                <button class="btn-search"></button>
+                            </div>
+                            </form>
+<pre class="prettyprint linenums">
+    &lt;div class="input-control text"&gt;
+        &lt;input type="text" /&gt;
+        &lt;button class="btn-search"&gt;&lt;/button&gt;
+    &lt;/div&gt;
+</pre>
                             <div class="input-control text">
                                 <input type="phone" placeholder="Enter phone" required="required"/>
                                 <button class="helper"></button>
                             </div>
+<pre class="prettyprint linenums">
+    &lt;div class="input-control text"&gt;
+        &lt;input type="phone" /&gt;
+        &lt;button class="helper"&gt;&lt;/button&gt;
+    &lt;/div&gt;
+</pre>
                             <div class="input-control text">
                                 <input type="email" placeholder="Enter email" required="required" />
                                 <button class="helper"></button>
                             </div>
+<pre class="prettyprint linenums">
+    &lt;div class="input-control text"&gt;
+        &lt;input type="email" /&gt;
+        &lt;button class="helper"&gt;&lt;/button&gt;
+    &lt;/div&gt;
+</pre>
                             <div class="input-control text">
                                 <input type="url" placeholder="Enter url"  required="required"/>
                                 <button class="helper"></button>
                             </div>
+<pre class="prettyprint linenums">
+    &lt;div class="input-control text"&gt;
+        &lt;input type="url" /&gt;
+        &lt;button class="helper"&gt;&lt;/button&gt;
+    &lt;/div&gt;
+</pre>
                         </div>
                     </div>
 
