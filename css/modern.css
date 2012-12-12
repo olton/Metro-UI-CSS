@@ -4476,6 +4476,16 @@ table.bordered tbody tr:last-child td {
 .replies  > span .sticker.sticker-color-white {
   border-color: #ffffff !important;
 }
+.replies  > div .sticker.sticker-color-lighten,
+.replies  > li .sticker.sticker-color-lighten,
+.replies  > span .sticker.sticker-color-lighten {
+  border-color: #d5e7ec !important;
+}
+.replies  > div .sticker.sticker-color-grayDark,
+.replies  > li .sticker.sticker-color-grayDark,
+.replies  > span .sticker.sticker-color-grayDark {
+  border-color: #525252 !important;
+}
 .replies  > div .sticker.sticker-left,
 .replies  > li .sticker.sticker-left,
 .replies  > span .sticker.sticker-left {
