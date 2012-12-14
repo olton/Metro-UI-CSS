@@ -52,6 +52,10 @@
                                         <p><a href="http://bizspark.com">Join</a> the BizSpark Program now.</p>
                                     </div>
                                 </div>
+
+                                <span class="control left"><i class="icon-arrow-left-3"></i></span>
+                                <span class="control right"><i class="icon-arrow-right-3"></i></span>
+
                             </div>
                         </div>
                     </div>

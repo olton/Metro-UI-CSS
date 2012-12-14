@@ -88,6 +88,22 @@ hr {
     height: 300px;
 }
 
+.carousel .control {
+    top: auto;
+    left: auto;
+    bottom: -40px;
+}
+.carousel .control.left {
+    right: 100px;
+}
+.carousel .control.right {
+    right: 30px;
+}
+
+.charms, .app-bar, .message-dialog, .error-bar, .warning-bar, .info-bar {
+    position: absolute;
+}
+
 @media (min-width: 768px) and (max-width: 979px) {
     .page {
         width: 724px;
