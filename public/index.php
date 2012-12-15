@@ -1,6 +1,6 @@
 <? include("header.php")?>
 
-<div class="page">
+<div class="page" id="page-index">
     <div class="page-region">
         <div class="page-region-content">
             <div class="grid">
