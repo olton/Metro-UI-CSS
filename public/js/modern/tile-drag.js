@@ -9,7 +9,7 @@
  * to handle drag/drop events use next code
  *
 
-$(function(){
+ $(function(){
     $('#tile_group_id').on('drag', function(e, draggingTile, parentGroup){
        ... your code ...
     });
@@ -51,7 +51,8 @@ $(function(){
             newGroupSearchCount = 0,
             newGroupPhantom,
             targetType, // 'new' or 'existing' group
-            groupsMaxHeight;
+            groupsMaxHeight,
+            $overlay;
 
         plugin.init = function() {
             settings = plugin.settings = $.extend({}, defaults, options);
@@ -67,11 +68,26 @@ $(function(){
             // select all tiles within group
             tiles = $groups.children('.tile');
 
-            tiles.on('mousedown', startDrag);
+            tiles.on('mousedown', prepareToDrag);
+
+        };
+
+        /**
+         * just preparing to drag, called when mouse down
+         * it need to work tile-link (do not prevented click event)
+         */
+        var prepareToDrag = function () {
+            $draggingTile = $(this);
+
+            $(document).one('mousemove.readyToDrag', startDrag);
+            $(document).one('mouseup.readyToDrag', function(){
+                $(document).off('mousemove.readyToDrag');
+            });
 
         };
 
         var startDrag = function(event) {
+            console.log('start');
             var $tile,
                 tilePosition,
                 tilePositionX,
@@ -80,8 +96,20 @@ $(function(){
 
             event.preventDefault();
 
+            // create overlay to catch all events when dragging tile
+            $overlay = $('<div></div>');
+            $overlay.css({
+                position: 'fixed',
+                width: $(window).width(),
+                height: $(window).height(),
+                top: 0,
+                left: 0,
+                'z-index': 100001
+            });
+            $('body').append($overlay);
+
             // currently dragging tile
-            $draggingTile = $tile = $(this);
+            $tile = $draggingTile;
 
             // search parent group
             $parentGroup = $tile.parents('.tile-group');
@@ -130,7 +158,7 @@ $(function(){
             targetType = 'existing';
 
             /*$tile.detach();
-            $tile.appendTo($parentGroup);*/
+             $tile.appendTo($parentGroup);*/
 
             // still now it absolutely positioned
             $tile.css({
@@ -146,8 +174,8 @@ $(function(){
             storeNewGroupsCoordinates();
 
             // some necessary event handlers
-            $(document).on('mousemove.tiledrag', dragTile);
-            $(document).on('mouseup.tiledrag', dragStop);
+            $overlay.on('mousemove.tiledrag', dragTile);
+            $overlay.on('mouseup.tiledrag', dragStop);
 
             // triggering event
             $groups.trigger('drag', [$draggingTile, $parentGroup]);
@@ -157,7 +185,7 @@ $(function(){
          * it function called on every mousemove event
          */
         var dragTile = function (event) {
-
+            console.log('move');
             // all we need is index of tile under cursor (and under dragging tile) if it exists
             var findTileIndex,
                 findNewGroup;
@@ -187,12 +215,14 @@ $(function(){
          * and some other necessary changes
          */
         var dragStop = function (event) {
+            console.log('stop');
             var targetGroup;
 
             event.preventDefault();
 
-            $(document).off('mousemove.tiledrag');
-            $(document).off('mouseup.tiledrag');
+            $overlay.off('mousemove.tiledrag');
+            $overlay.off('mouseup.tiledrag');
+            $overlay.remove();
 
             $draggingTile.detach();
             // it is two way now: drop to existing group or drop to new group
