@@ -16,6 +16,7 @@
     <script src="js/assets/jquery.mousewheel.min.js"></script>
     <script src="js/assets/github.info.js"></script>
     <script src="js/modern/tile-slider.js"></script>
+    <script src="js/modern/start-menu.js"></script>
     <script src="js/modern/tile-drag.js"></script>
 
     <title>Modern UI CSS</title>
@@ -25,47 +26,9 @@
             background: #1d1d1d;
         }
     </style>
-
-    <script>
-        function Resize(){
-            var tiles_area = 0;
-            $(".tile-group").each(function(){
-                tiles_area += $(this).outerWidth() + 80;
-
-            });
-
-            $(".tiles").css("width", 120 + tiles_area + 20);
-
-            $(".page").css({
-                height: $(document).height() - 20,
-                width: $(document).width()
-            });
-        }
-
-        function AddMouseWheel(){
-            $("body").mousewheel(function(event, delta){
-                var scroll_value = delta * 50;
-                if (jQuery.browser.webkit) {
-                    this.scrollLeft -= scroll_value;
-
-                } else {
-                    document.documentElement.scrollLeft -= scroll_value;
-                }
-                return false;
-            });
-        }
-
-        $(function(){
-
-            Resize();
-            AddMouseWheel();
-
-        })
-
-
-    </script>
+    
 </head>
-<body class="modern-ui" onresize="Resize()">
+<body class="modern-ui">
 <div class="page secondary fixed-header">
     <div class="page-header ">
         <div class="page-header-content">
@@ -88,11 +51,11 @@
     <div class="page-region">
         <div class="page-region-content tiles">
             <div class="tile-group tile-drag">
-                <div class="tile image outline-color-green">
+                <a href="/" onclick="console.log('clicked')" class="tile image outline-color-green">
                     <div class="tile-content">
                         <img src="images/myface.jpg" alt="">
                     </div>
-                </div>
+                </a>
 
                 <div class="tile icon">
                     <div class="tile-content">
@@ -207,7 +170,7 @@
 
             </div>
 
-            <div class="tile-group tile-drag" style="width: 322px;">
+            <div class="tile-group tile-drag">
                 <div class="tile image outline-color-green">
                     <div class="tile-content">
                         <img src="images/myface.jpg" alt="">
@@ -215,7 +178,7 @@
                 </div>
             </div>
 
-            <div class="tile-group tile-drag" style="width: 322px;">
+            <div class="tile-group tile-drag">
                 <div class="tile bg-color-blue icon">
                     <div class="tile-content">
                         <img src="images/InternetExplorer128.png"/>
@@ -273,7 +236,7 @@
                 </div>
             </div>
 
-            <div class="tile-group" style="width: 322px;">
+            <div class="tile-group">
                 <div class="tile double image">
                     <div class="tile-content">
                         <img src="images/4.jpg" alt="" />
@@ -322,7 +285,7 @@
                 </div>
             </div>
 
-            <div class="tile-group tile-drag" style="width: 322px;">
+            <div class="tile-group tile-drag">
                 <div class="tile double image">
                     <div class="tile-content">
                         <img src="images/4.jpg" alt="" />
