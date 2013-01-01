@@ -5,6 +5,11 @@
         <div class="page-region-content">
             <div class="grid">
                 <div class="row">
+                    <div class="span12 padding10 fg-color-darken text-center">
+                        This is not a theme or clone for Twitter Bootstrap !!!
+                    </div>
+                </div>
+                <div class="row">
                     <div class="span8">
                         <div class="hero-unit">
                             <div id="carousel1" class="carousel" data-role="carousel" data-param-duration="300">
@@ -105,11 +110,11 @@
                             Metro UI CSS a set of styles to create a site with an interface similar to Windows 8 Metro UI. This set of styles was developed as a self-contained solution.
                         </p>
                         <p>
-                            Metro UI CSS contained two type of licenses: <a href="https://github.com/olton/Metro-UI-CSS/blob/master/LICENSE">MIT</a> and <a href="https://github.com/olton/Metro-UI-CSS/blob/master/LICENSE-FOR-COMMERCIAL-USE">Commercial</a>
+                            Metro UI CSS contained combined type of <a href="https://github.com/olton/Metro-UI-CSS/blob/master/LICENSE">license</a>: MIT and Commercial.
                         </p>
                         <h3>LESS</h3>
                         <p class="tertiary-info-text">
-                            Metro UI CSS is made with LESS. <a href="http://lesscss.org">LESS</a> a dynamic stylesheet language created by one good man, <a href="http://cloudhead.io/">Alexis Sellier</a>. It makes developing systems-based CSS faster, easier, and more fun.
+                            Metro UI CSS is made with <a href="http://lesscss.org"><abbr title="LESS a dynamic stylesheet language created by one good man Alexis Sellier">LESS</abbr></a>. It makes developing systems-based CSS faster, easier, and more fun.
                         </p>
                         <h3>Supported browsers:</h3>
                         <div class="browsers-icons clearfix">
@@ -146,26 +151,31 @@
                             </tr>
                             </tbody>
                         </table>
-                        <!--
+
                         <br />
-                        <div class="text-center">
+                        <div class="">
                             <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
                                 <input type="hidden" name="cmd" value="_s-xclick">
                                 <input type="hidden" name="hosted_button_id" value="AVMB2NYSENK3A">
-                                <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-                                <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+                                <!--<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">-->
+                                <!--<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">-->
+                                <button type="submit" class="command-button bg-color-blueDark fg-color-white" style="width: 100%;">
+                                    <i class="icon-arrow-right-3 place-right" style="font-size: 24pt; margin-top: 5px;"></i>
+                                    Donate <small class="fg-color-yellow">for Metro UI CSS [PayPal]</small>
+                                </button>
+
                             </form>
                         </div>
-                        -->
-                        <!--
-                        <br />
                         <div class="">
-                            <form style="display:inline" method=POST action="https://liqpay.com/?do=clickNbuy">
+                            <form method=POST action="https://liqpay.com/?do=clickNbuy">
                                 <input type="hidden" name="preorder" value="c27a4aa9211f4e6735b739850e99d568422af6e7">
-                                <button type="submit" class="span3 command-button default">Donate 10 USD<small>for Metro UI CSS [LiqPay]</small></button>
+                                <button type="submit" class="command-button default" style="width: 100%;">
+                                    <i class="icon-arrow-right-3 place-right" style="font-size: 24pt; margin-top: 5px;"></i>
+                                    Donate 10 USD<small>for Metro UI CSS [LiqPay]</small>
+                                </button>
                             </form>
                         </div>
-                        -->
+
                     </div>
                 </div>
                 <div class="row">
