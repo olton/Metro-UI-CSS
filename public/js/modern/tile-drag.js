@@ -51,7 +51,8 @@
             newGroupPhantom,
             targetType, // 'new' or 'existing' group
             groupsMaxHeight,
-            mouseMoved;
+            mouseMoved,
+            tileDragTimer;
 
         plugin.init = function() {
             settings = plugin.settings = $.extend({}, defaults, options);
@@ -151,10 +152,6 @@
          * it function called on every mousemove event
          */
         var dragTile = function (event) {
-            // all we need is index of tile under cursor (and under dragging tile) if it exists
-            var findTileIndex,
-                findNewGroup;
-
             mouseMoved = true;
 
             event.preventDefault();
@@ -164,6 +161,18 @@
                 'left': event.clientX - tileDeltaX,
                 'top':  event.clientY - tileDeltaY
             });
+
+            clearTimeout(tileDragTimer);
+            tileDragTimer = setTimeout(function(){
+                findPlace(event);
+            }, 50);
+        };
+
+        // finding place where put dragging tile
+        var findPlace = function (event) {
+            // all we need is index of tile under cursor (and under dragging tile) if it exists
+            var findTileIndex,
+                findNewGroup;
 
             findTileIndex = findTileUnderCursor(event);
             if (findTileIndex) {
@@ -193,6 +202,8 @@
                 event.preventDefault();
             }
 
+            clearTimeout(tileDragTimer);
+            findPlace(event);
 
             $draggingTile.detach();
             // it is two way now: drop to existing group or drop to new group
@@ -316,12 +327,6 @@
                 tileIndex = false,
                 tileSide;
 
-            if (tileSearchCount < 10) {
-                tileSearchCount++;
-                return false;
-            }
-            tileSearchCount = 0;
-
             for (i in tilesCoordinates) {
                 if (!tilesCoordinates.hasOwnProperty(i)) return;
                 coord = tilesCoordinates[i];
@@ -350,12 +355,6 @@
 
         var findNewGroupUnderCursor = function (event) {
             var i, coord, newGroup = false;
-
-            if (newGroupSearchCount < 10) {
-                newGroupSearchCount++;
-                return false;
-            }
-            newGroupSearchCount = 0;
 
             for (i in newGroupsCoordinates) {
                 if (!newGroupsCoordinates.hasOwnProperty(i)) return;
