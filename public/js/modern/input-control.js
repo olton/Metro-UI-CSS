@@ -37,8 +37,8 @@
 
             $helper = $(helper);
 
-            // clear text when clock on helper
-            $helper.on('click', function () {
+            // clear text when click on helper
+            $helper.on('mouseup', function () {
                 input = $element.children('input');
                 input.attr('value', '');
                 input.focus();
