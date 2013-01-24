@@ -40,6 +40,9 @@
             // clear text when click on helper
             $helper.on('click', function () {
                 input = $element.children('input');
+                if (input.prop('readonly')) {
+                    return;
+                }
                 input.val('');
                 input.focus();
             });
