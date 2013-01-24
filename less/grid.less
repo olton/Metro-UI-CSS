@@ -113,3 +113,13 @@
 
     .clearfix();
 }
+
+.grid > .row::before, .grid > .row::after {
+    content: normal;
+}
+
+td[class*="span"], th[class*="span"] {
+    display: table-cell !important;
+    float: none !important;
+    padding: 0 !important;
+}

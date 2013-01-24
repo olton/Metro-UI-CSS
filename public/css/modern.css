@@ -653,7 +653,7 @@ li [class*=" icon-"] {
   width: 1.25em;
   text-align: center;
 }
-li .icon-large:before,
+li .icon-large:after,
 li .icon-large:before {
   width: 1.875em;
 }
@@ -2070,6 +2070,7 @@ li .icon-large:before {
   font-size: 42pt;
   letter-spacing: 0.00em;
   line-height: 44pt;
+  font-smooth: always;
 }
 #font .subheader,
 #font .subheader-secondary {
@@ -2078,6 +2079,7 @@ li .icon-large:before {
   font-size: 20pt;
   letter-spacing: 0.01em;
   line-height: 24pt;
+  font-smooth: always;
 }
 #font .subheader-smaller,
 #font .subheader-secondary-smaller {
@@ -2086,6 +2088,7 @@ li .icon-large:before {
   letter-spacing: 0.01em;
   line-height: 24pt;
   font-size: 16pt;
+  font-smooth: always;
 }
 #font .small-subheader,
 #font .small-subheader-secondary {
@@ -2094,6 +2097,7 @@ li .icon-large:before {
   font-size: 11pt;
   letter-spacing: 0.01em;
   line-height: 14pt;
+  font-smooth: always;
 }
 #font .navigation {
   font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
@@ -2101,6 +2105,7 @@ li .icon-large:before {
   font-size: 11pt;
   letter-spacing: 0.01em;
   line-height: 14pt;
+  font-smooth: always;
 }
 #font .body,
 #font .body-secondary,
@@ -2110,27 +2115,32 @@ li .icon-large:before {
   font-size: 11pt;
   letter-spacing: 0.02em;
   line-height: 20px;
+  font-smooth: always;
 }
 #font .link {
   font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 11pt;
+  font-smooth: always;
 }
 #font .tertiary,
 #font .tertiary-secondary {
   font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 9pt;
+  font-smooth: always;
 }
 #font .control {
   font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 9pt;
+  font-smooth: always;
 }
 #font .small {
   font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 300;
   font-size: 8pt;
+  font-smooth: always;
 }
 #font .long-text {
   font-family: 'PT Serif Caption', sans-serif, serif !important;
@@ -2138,6 +2148,7 @@ li .icon-large:before {
   font-size: 10pt;
   letter-spacing: 0.02em;
   line-height: 20px;
+  font-smooth: always;
 }
 #font .long-text-smaller {
   font-family: 'PT Serif Caption', sans-serif, serif !important;
@@ -2145,6 +2156,7 @@ li .icon-large:before {
   font-size: 10pt;
   letter-spacing: 0.02em;
   line-height: 20px;
+  font-smooth: always;
   font-size: 9pt;
 }
 #font .long-text-lead {
@@ -2153,6 +2165,7 @@ li .icon-large:before {
   font-size: 10pt;
   letter-spacing: 0.02em;
   line-height: 20px;
+  font-smooth: always;
   font-size: 20pt;
 }
 #state .header,
@@ -2217,6 +2230,7 @@ a,
   font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 11pt;
+  font-smooth: always;
   color: #2e92cf;
   text-decoration: none;
 }
@@ -2243,6 +2257,7 @@ h1 {
   font-size: 42pt;
   letter-spacing: 0.00em;
   line-height: 44pt;
+  font-smooth: always;
   color: #000000;
 }
 h1:hover {
@@ -2257,6 +2272,7 @@ h2 {
   font-size: 20pt;
   letter-spacing: 0.01em;
   line-height: 24pt;
+  font-smooth: always;
   color: #000000;
 }
 h2:hover {
@@ -2271,6 +2287,7 @@ h3 {
   font-size: 20pt;
   letter-spacing: 0.01em;
   line-height: 24pt;
+  font-smooth: always;
   color: rgba(0, 0, 0, 0.6);
   font-size: 16pt;
   line-height: 24px;
@@ -2287,6 +2304,7 @@ h4 {
   font-size: 11pt;
   letter-spacing: 0.01em;
   line-height: 14pt;
+  font-smooth: always;
   color: #000000;
   color: rgba(0, 0, 0, 0.6);
 }
@@ -2308,6 +2326,7 @@ h5 {
   font-size: 11pt;
   letter-spacing: 0.01em;
   line-height: 14pt;
+  font-smooth: always;
   color: rgba(0, 0, 0, 0.6);
   font-size: 90%;
 }
@@ -2323,6 +2342,7 @@ h6 {
   font-size: 11pt;
   letter-spacing: 0.01em;
   line-height: 14pt;
+  font-smooth: always;
   color: rgba(0, 0, 0, 0.6);
   font-size: 80%;
 }
@@ -2339,6 +2359,7 @@ p {
   font-size: 11pt;
   letter-spacing: 0.02em;
   line-height: 20px;
+  font-smooth: always;
 }
 p.long-text {
   font-family: 'PT Serif Caption', sans-serif, serif !important;
@@ -2346,6 +2367,7 @@ p.long-text {
   font-size: 10pt;
   letter-spacing: 0.02em;
   line-height: 20px;
+  font-smooth: always;
 }
 p {
   margin: 0 0 10px;
@@ -2362,6 +2384,7 @@ p.indent:first-letter {
   font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 9pt;
+  font-smooth: always;
   color: #000000;
 }
 .tertiary-info-text:hover,
@@ -2377,6 +2400,7 @@ p.indent:first-letter {
   font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 9pt;
+  font-smooth: always;
   color: rgba(0, 0, 0, 0.6);
 }
 .tertiary-info-secondary-text:hover,
@@ -2402,6 +2426,7 @@ address {
   font-size: 11pt;
   letter-spacing: 0.02em;
   line-height: 20px;
+  font-smooth: always;
   line-height: 20px;
   font-style: normal;
 }
@@ -2792,6 +2817,7 @@ button,
   font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 9pt;
+  font-smooth: always;
   min-width: 90px;
   min-height: 32px;
   height: 32px;
@@ -2880,6 +2906,7 @@ button.big,
   font-size: 11pt;
   letter-spacing: 0.02em;
   line-height: 20px;
+  font-smooth: always;
 }
 .command-button  > small {
   display: block;
@@ -2888,6 +2915,7 @@ button.big,
   font-size: 11pt;
   letter-spacing: 0.02em;
   line-height: 20px;
+  font-smooth: always;
   font-size: 10pt;
   color: #505050;
 }
@@ -2898,6 +2926,7 @@ button.big,
   font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 9pt;
+  font-smooth: always;
   min-width: 90px;
   min-height: 32px;
   height: 32px;
@@ -2973,6 +3002,7 @@ button.big,
   font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 9pt;
+  font-smooth: always;
   min-width: 90px;
   min-height: 32px;
   height: 32px;
@@ -3102,6 +3132,7 @@ button.big,
   font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 9pt;
+  font-smooth: always;
   min-width: 90px;
   min-height: 32px;
   height: 32px;
@@ -3324,6 +3355,7 @@ a.shortcut .label {
   font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 9pt;
+  font-smooth: always;
   min-width: 90px;
   min-height: 32px;
   height: 32px;
@@ -3511,6 +3543,7 @@ table thead tr td {
   font-size: 11pt;
   letter-spacing: 0.01em;
   line-height: 14pt;
+  font-smooth: always;
   color: rgba(0, 0, 0, 0.6);
   text-align: left;
 }
@@ -3536,6 +3569,7 @@ table tbody tr td {
   font-size: 11pt;
   letter-spacing: 0.02em;
   line-height: 20px;
+  font-smooth: always;
   padding: 3px 10px;
   border-right: 1px #ddd solid;
   border-bottom: 1px #ddd solid;
@@ -3793,6 +3827,16 @@ table.bordered tbody tr:last-child td {
 .grid:after {
   clear: both;
 }
+.grid > .row::before,
+.grid > .row::after {
+  content: normal;
+}
+td[class*="span"],
+th[class*="span"] {
+  display: table-cell !important;
+  float: none !important;
+  padding: 0 !important;
+}
 /*
  * Metro UI CSS
  * Copyright 2012 Sergey Pimenov
@@ -3850,6 +3894,7 @@ table.bordered tbody tr:last-child td {
   font-size: 11pt;
   letter-spacing: 0.01em;
   line-height: 14pt;
+  font-smooth: always;
   color: #000000;
   display: block;
   width: 100%;
@@ -3977,7 +4022,6 @@ table.bordered tbody tr:last-child td {
   color: #fff;
   width: 1px;
   border-right: 1px #e6e6e6 solid;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 .nav-bar .nav-bar-inner  > .divider.brand,
 .nav-bar .nav-bar-inner  > ul.menu > li.divider.brand {
@@ -4140,6 +4184,33 @@ table.bordered tbody tr:last-child td {
   width: 940px;
   margin: auto;
 }
+.side-nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  margin-bottom: 20px;
+}
+.side-nav ul .title {
+  color: #4f4f4f;
+  font-family: Segoe UI, Arial, Verdana, Tahoma, sans-serif;
+  font-size: 12pt;
+  margin: 0 0 5px 0;
+  border-bottom: 1px #ccc solid;
+}
+.side-nav ul  > li > a {
+  display: block;
+  padding: 3px 10px 3px 0;
+  position: relative;
+  color: #014E85;
+  padding-left: 3px;
+  font-size: 10pt;
+}
+.side-nav ul.close  > li {
+  display: none;
+}
+.side-nav ul.close  > li[class^=title] {
+  display: list-item;
+}
 /*
  * Metro UI CSS
  * Copyright 2012 Sergey Pimenov
@@ -4165,6 +4236,7 @@ table.bordered tbody tr:last-child td {
   font-size: 11pt;
   letter-spacing: 0.01em;
   line-height: 14pt;
+  font-smooth: always;
   color: #000000;
   display: block;
   width: 100%;
@@ -4326,6 +4398,7 @@ table.bordered tbody tr:last-child td {
   font-size: 11pt;
   letter-spacing: 0.02em;
   line-height: 20px;
+  font-smooth: always;
   height: auto;
   padding: 10px;
 }
@@ -4372,6 +4445,7 @@ table.bordered tbody tr:last-child td {
   font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 9pt;
+  font-smooth: always;
   color: #000000;
   color: #ffffff;
   line-height: 16px;
@@ -4529,6 +4603,7 @@ table.bordered tbody tr:last-child td {
   font-size: 20pt;
   letter-spacing: 0.01em;
   line-height: 24pt;
+  font-smooth: always;
   font-size: 12pt;
   margin-top: 5px;
   margin-left: 10px;
@@ -4548,6 +4623,7 @@ table.bordered tbody tr:last-child td {
   font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 300;
   font-size: 8pt;
+  font-smooth: always;
   margin-top: -5px;
   line-height: 16px;
 }
@@ -4670,6 +4746,7 @@ table.bordered tbody tr:last-child td {
   font-size: 11pt;
   letter-spacing: 0.02em;
   line-height: 20px;
+  font-smooth: always;
   margin: 0 10px 10px 0;
   overflow: hidden;
 }
@@ -4689,6 +4766,7 @@ table.bordered tbody tr:last-child td {
   font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 9pt;
+  font-smooth: always;
   color: #000000;
   color: #ffffff;
   line-height: 16px;
@@ -4726,6 +4804,7 @@ table.bordered tbody tr:last-child td {
   font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 9pt;
+  font-smooth: always;
   color: #000000;
   color: #ffffff;
   line-height: 16px;
@@ -4838,6 +4917,7 @@ table.bordered tbody tr:last-child td {
   font-size: 11pt;
   letter-spacing: 0.01em;
   line-height: 14pt;
+  font-smooth: always;
   padding-top: 3px;
 }
 .tile .brand  > .badge.activity,
@@ -4894,6 +4974,7 @@ table.bordered tbody tr:last-child td {
   font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 9pt;
+  font-smooth: always;
   color: #ffffff;
 }
 .tile .brand  > .name:hover,
@@ -4928,6 +5009,7 @@ table.bordered tbody tr:last-child td {
   font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 9pt;
+  font-smooth: always;
   color: #000000;
   color: #ffffff;
   line-height: 14px;
@@ -5156,7 +5238,7 @@ table.bordered tbody tr:last-child td {
 .input-control > input[type=password],
 .input-control > select,
 .input-control > textarea {
-  border: 2px #bababa solid;
+  border: 1px #bababa solid;
   width: 100%;
   padding: 4px 32px 6px 5px;
   background-color: #fff;
@@ -5269,6 +5351,7 @@ table.bordered tbody tr:last-child td {
   font-size: 11pt;
   letter-spacing: 0.02em;
   line-height: 20px;
+  font-smooth: always;
 }
 .input-control.text .helper:hover,
 .input-control.password .helper:hover,
@@ -5314,6 +5397,7 @@ label {
   font-size: 11pt;
   letter-spacing: 0.02em;
   line-height: 20px;
+  font-smooth: always;
   margin-right: 10px;
   margin-bottom: 10px;
 }
@@ -5331,6 +5415,7 @@ fieldset legend {
   font-size: 11pt;
   letter-spacing: 0.02em;
   line-height: 20px;
+  font-smooth: always;
   color: #cfcfcf;
   position: absolute;
   top: -25px;
@@ -5342,6 +5427,7 @@ input[type=submit] {
   font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 9pt;
+  font-smooth: always;
   min-width: 90px;
   min-height: 32px;
   height: 32px;
@@ -5556,6 +5642,7 @@ input[type=submit] {
   font-size: 20pt;
   letter-spacing: 0.01em;
   line-height: 24pt;
+  font-smooth: always;
   font-family: Tahoma, Arial, sans-serif;
   line-height: 18pt;
 }
@@ -5700,6 +5787,7 @@ pre {
   font-size: 11pt;
   letter-spacing: 0.02em;
   line-height: 20px;
+  font-smooth: always;
   font-size: 10pt;
   color: #525252;
 }
@@ -5708,6 +5796,7 @@ code {
   font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 9pt;
+  font-smooth: always;
   color: #d14;
   background-color: #f7f7f9;
   border: 1px #e1e1e8 solid;
@@ -5807,6 +5896,7 @@ pre code {
   font-size: 11pt;
   letter-spacing: 0.01em;
   line-height: 14pt;
+  font-smooth: always;
   cursor: pointer;
   outline: 0;
 }
@@ -5875,6 +5965,7 @@ pre code {
   font-size: 11pt;
   letter-spacing: 0.01em;
   line-height: 14pt;
+  font-smooth: always;
 }
 .accordion  > li  > div {
   border: 1px #ccc dotted;
