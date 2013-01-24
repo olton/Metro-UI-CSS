@@ -1,0 +1,3 @@
+ - new color
+ - double-vertical tile in the middle of other
+ - tile-slider : shuffle
