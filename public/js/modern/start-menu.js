@@ -127,11 +127,7 @@
         var addMouseWheel = function (){
             $("body").mousewheel(function(event, delta){
                 var scroll_value = delta * 50;
-                if (jQuery.browser.webkit) {
-                    this.scrollLeft -= scroll_value;
-                } else {
-                    document.documentElement.scrollLeft -= scroll_value;
-                }
+                $(document).scrollLeft($(document).scrollLeft() - scroll_value);
                 return false;
             });
         };
