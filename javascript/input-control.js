@@ -26,55 +26,58 @@
          * initialize text input element behavior
          */
         var initTextInput = function () {
-            var helper,
-                $helper,
+            var $helper,
                 input;
-            helper = $element.children('.helper').get(0);
+            $helper = $element.children('.helper');
 
-            if (!helper) {
+            if (!$helper.get(0)) {
                 return;
             }
 
-            $helper = $(helper);
+            $helper.attr('tabindex', '-1');
+            $helper.attr('type', 'button');
 
-            // clear text when clock on helper
+            // clear text when click on helper
             $helper.on('click', function () {
                 input = $element.children('input');
-                input.attr('value', '');
+                if (input.prop('readonly')) {
+                    return;
+                }
+                input.val('');
                 input.focus();
-            }).on('click', function(e){e.preventDefault(); return false;});
+            });
         };
 
         /**
          * initialize password input element behavior
          */
         var initPasswordInput = function () {
-            var helper,
-                $helper,
+            var $helper,
                 password,
                 text;
-            helper = $element.children('.helper').get(0);
-            if (!helper) {
+            $helper = $element.children('.helper');
+            if (!$helper.get(0)) {
                 return;
             }
 
             text = $('<input type="text" />');
             password = $element.children('input');
-            $helper = $(helper);
+            $helper.attr('tabindex', '-1');
+            $helper.attr('type', 'button');
 
             // insert text element and hode password element when push helper
             $helper.on('mousedown', function () {
                 password.hide();
                 text.insertAfter(password);
-                text.attr('value', password.attr('value'));
-            }).on('click', function(e){e.preventDefault(); return false;});
+                text.val(password.val());
+            });
 
             // return password and remove text element
             $helper.on('mouseup, mouseout', function () {
                 text.detach();
                 password.show();
                 password.focus();
-            }).on('click', function(e){e.preventDefault(); return false;});
+            });
         };
 
         plugin.init();

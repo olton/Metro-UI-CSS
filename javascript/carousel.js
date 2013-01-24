@@ -112,6 +112,14 @@
                     });
                 }
             }
+
+            // u can use same code:
+            // $('#carusel').trigger('changeSlide', [{direction: 'left', effect: 'fade', index: 1}])
+            // any option not required
+            $element.on('changeSlide', function(event, options){
+                options = options || {};
+                changeSlide(options.direction, options.effect, options.index);
+            });
         };
 
         /**
@@ -220,7 +228,7 @@
 
             outSlide = $(slides[currentSlideIndex]);
 
-            nextSlideIndex = typeof slideIndex !== 'undefined' ? slideIndex : currentSlideIndex + delta;
+            nextSlideIndex = (typeof slideIndex !== 'undefined' && slideIndex !== currentSlideIndex) ? slideIndex : currentSlideIndex + delta;
             if (nextSlideIndex >= slides.length) {
                 nextSlideIndex = 0;
             }
@@ -322,6 +330,11 @@
          * fade effect
          */
         var changeSlideFade = function (outSlide, inSlide) {
+            inSlide.hide();
+            inSlide.css({
+                left: 0,
+                top: 0
+            });
             inSlide.fadeIn(plugin.settings.duration);
             outSlide.fadeOut(plugin.settings.duration);
         };
