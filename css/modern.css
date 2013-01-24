@@ -5063,7 +5063,7 @@ th[class*="span"] {
   top: 0;
   left: 0;
 }
-.input-control.checkbox input[type="checkbox"]:checked + .helper:after {
+.input-control.checkbox input[type="checkbox"]:checked ~ .helper:after {
   position: absolute;
   display: block;
   content: "\e08a";
@@ -5078,23 +5078,23 @@ th[class*="span"] {
   margin-left: 4px;
   font-family: iconFont;
 }
-.input-control.checkbox input[type="checkbox"]:not(:checked) + .helper:after {
+.input-control.checkbox input[type="checkbox"]:not(:checked) ~ .helper:after {
   display: none;
 }
-.input-control.checkbox input[type="checkbox"]:disabled + .helper:before {
+.input-control.checkbox input[type="checkbox"]:disabled ~ .helper:before {
   cursor: default;
   background: #e6e6e6;
 }
-.input-control.checkbox input[type=checkbox]:disabled + .helper:after {
+.input-control.checkbox input[type=checkbox]:disabled ~ .helper:after {
   color: #8a8a8a;
 }
-.input-control.checkbox:hover input:not(:disabled) + .helper:before {
+.input-control.checkbox:hover input[type=checkbox]:not(:disabled) ~ .helper:before {
   border-color: #919191;
 }
-.input-control.checkbox:active input:not(:disabled) + .helper:before {
+.input-control.checkbox:active input[type=checkbox]:not(:disabled) ~ .helper:before {
   border-color: #1e1e1e;
 }
-.input-control.intermediate input[type="checkbox"] + .helper:after {
+.input-control.intermediate input[type="checkbox"] ~ .helper:after {
   position: absolute !important;
   display: block !important;
   content: "" !important;
@@ -5110,7 +5110,7 @@ th[class*="span"] {
   width: 10px !important;
   height: 10px !important;
 }
-.input-control.intermediate input[type="checkbox"]:disabled + .helper:after {
+.input-control.intermediate input[type="checkbox"]:disabled ~ .helper:after {
   background-color: #9a9a9a !important;
 }
 .input-control.radio {
