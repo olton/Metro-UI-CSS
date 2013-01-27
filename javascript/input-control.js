@@ -96,6 +96,10 @@
 })(jQuery);
 
 $(function(){
+    ReactivateInputs();
+});
+
+function ReactivateInputs(){
     var allInputs = $('.input-control');
     allInputs.each(function (index, input) {
         var params = {};
@@ -103,4 +107,4 @@ $(function(){
 
         $input.Input(params);
     });
-});
+}
