@@ -10,7 +10,7 @@
 
     <?php include("counter.php");?>
 
-    <script type="text/javascript" src="js/assets/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript" src="js/assets/jquery-1.9.0.min.js"></script>
     <script type="text/javascript" src="js/assets/jquery.mousewheel.min.js"></script>
 
     <script type="text/javascript" src="js/modern/dropdown.js"></script>
