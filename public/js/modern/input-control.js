@@ -4,6 +4,9 @@
 (function($) {
 
     $.Input = function(element, options) {
+        if (!element) {
+            return $().Input();
+        }
 
         var defaults = {
         };
@@ -85,26 +88,19 @@
     };
 
     $.fn.Input = function(options) {
-        return this.each(function() {
+        var elements = this.length ? this : $('.input-control');
+        return elements.each(function() {
             if (undefined == $(this).data('Input')) {
                 var plugin = new $.Input(this, options);
                 $(this).data('Input', plugin);
             }
         });
+
     }
 
 })(jQuery);
 
+// autoinitialization of all inputs
 $(function(){
-    ReactivateInputs();
+    $.Input();
 });
-
-function ReactivateInputs(){
-    var allInputs = $('.input-control');
-    allInputs.each(function (index, input) {
-        var params = {};
-        $input = $(input);
-
-        $input.Input(params);
-    });
-}
