@@ -68,7 +68,7 @@
                         <div class="span4 padding30 text-center place-left bg-color-blueLight" id="sponsorBlock">
                             <br />
                             <br />
-                            <h2 class="">Sponsor ?</h2>
+                            <h2 class="fg-color-red">project is looking for a sponsor</h2>
                             <p class="">2000+ <a class="" href="http://hit.ua/site_view/19154">users</a> every day</p>
                             <br />
                             <a href="sponsoring.php"><h1><i class="icon-arrow-right-3 fg-color-red"></i></h1></a>
@@ -110,7 +110,7 @@
                             Metro UI CSS a set of styles to create a site with an interface similar to Windows 8 Metro UI. This set of styles was developed as a self-contained solution.
                         </p>
                         <p>
-                            Metro UI CSS contained combined type of <a href="https://github.com/olton/Metro-UI-CSS/blob/master/LICENSE">license</a>: MIT and Commercial.
+                            Metro UI CSS contained type of <a href="https://github.com/olton/Metro-UI-CSS/blob/master/LICENSE">license</a>: MIT.
                         </p>
                         <h3>LESS</h3>
                         <p class="tertiary-info-text">
@@ -118,10 +118,11 @@
                         </p>
                         <h3>Supported browsers:</h3>
                         <div class="browsers-icons clearfix">
-                            <img src="images/ie.png" title="Internet Explorer 9+"/>
-                            <img src="images/chrome.png" title="Google Chrome"/>
-                            <img src="images/firefox.png" title="Firefox"/>
-                            <img src="images/opera.png" title="Opera"/>
+                            <h2 class="place-left" title="Internet Explorer 9+"><i class="icon-IE"></i> </h2>
+                            <h2 class="place-left" title="Chrome"><i class="icon-chrome"></i> </h2>
+                            <h2 class="place-left" title="Firefox"><i class="icon-firefox"></i> </h2>
+                            <h2 class="place-left" title="Opera"><i class="icon-opera"></i> </h2>
+                            <h2 class="place-left" title="Safari"><i class="icon-safari"></i> </h2>
                         </div>
                         <br />
                         <p class="tertiary-info-secondary-text">All modern browsers. Internet Explorer supported on 9+</p>
