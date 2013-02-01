@@ -3,8 +3,14 @@
  */
 
 (function($) {
+    var pluginName = 'Carousel',
+        initAllSelector = '[data-role=carousel], .carousel',
+        paramKeys = ['Auto', 'Period', 'Duration', 'Effect', 'Direction', 'Markers', 'Arrows', 'Stop'];
 
-    $.Carousel = function(element, options) {
+    $[pluginName] = function(element, options) {
+        if (!element) {
+            return $()[pluginName]({initAll: true});
+        }
 
         // default settings
         var defaults = {
@@ -343,39 +349,30 @@
 
     };
 
-    $.fn.Carousel = function(options) {
-        return this.each(function() {
-            if (undefined == $(this).data('Carousel')) {
-                var plugin = new $.Carousel(this, options);
-                $(this).data('Carousel', plugin);
-            }
-        });
-    };
-
     // easing effect for jquery animation
     $.easing.doubleSqrt = function(t, millisecondsSince, startValue, endValue, totalDuration) {
         var res = Math.sqrt(Math.sqrt(t));
         return res;
     };
 
+    $.fn[pluginName] = function(options) {
+        var elements = options.initAll ? $(initAllSelector) : this;
+        return elements.each(function() {
+            var that = $(this),
+                params = {},
+                plugin;
+            if (undefined == that.data(pluginName)) {
+                $.each(paramKeys, function(index, key){
+                    params[key[0].toLowerCase() + key.slice(1)] = that.data('param' + key);
+                });
+                plugin = new $[pluginName](this, params);
+                that.data(pluginName, plugin);
+            }
+        });
+    };
+    // autoinit
+    $(function(){
+        $()[pluginName]({initAll: true});
+    });
+
 })(jQuery);
-
-
-$(window).ready(function(){
-    var allCarousels = $('[data-role=carousel], .carousel');
-    allCarousels.each(function (index, carousel) {
-        var params = {};
-        $carousel = $(carousel);
-        params.auto         = $carousel.data('paramAuto');
-        params.period       = $carousel.data('paramPeriod');
-        params.duration     = $carousel.data('paramDuration');
-        params.effect       = $carousel.data('paramEffect');
-        params.direction    = $carousel.data('paramDirection');
-        params.markers      = $carousel.data('paramMarkers');
-        params.arrows       = $carousel.data('paramArrows');
-        params.stop         = $carousel.data('paramStop');
-
-        $carousel.Carousel(params);
-    })
-
-});
