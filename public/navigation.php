@@ -47,6 +47,7 @@
                     <li><a href="carousel.php">Carousel</a></li>
                     <li><a href="listview.php">List view</a></li>
                     <li><a href="slider.php">Slider</a></li>
+                    <li><a href="dialog.php">Dialog box</a></li>
                     <li class="divider"></li>
                     <li><a href="notices.php">Notices and Replies</a></li>
                     <li class="divider"></li>
