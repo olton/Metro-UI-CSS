@@ -9,7 +9,7 @@
  * to handle drag/drop events use next code
  *
 
-$(function(){
+ $(function(){
     $('#tile_group_id').on('drag', function(e, draggingTile, parentGroup){
        ... your code ...
     });
@@ -31,6 +31,7 @@ $(function(){
         plugin.settings = {};
 
         var $element = $(element),
+            $startMenu,
             $groups,
             settings,
             tiles,
@@ -41,8 +42,6 @@ $(function(){
             $phantomTile,
             tileDeltaX,
             tileDeltaY,
-            groupOffsetX,
-            groupOffsetY,
             tilesCoordinates,
             tileSearchCount = 0, // uses for findTileUnderCursor function
             tileUnderCursorIndex,
@@ -51,18 +50,17 @@ $(function(){
             newGroupSearchCount = 0,
             newGroupPhantom,
             targetType, // 'new' or 'existing' group
-            groupsMaxHeight;
+            groupsMaxHeight,
+            mouseMoved,
+            tileDragTimer;
 
         plugin.init = function() {
             settings = plugin.settings = $.extend({}, defaults, options);
 
+            $startMenu = $('.tiles');
+
             // search other 'tile-group' elements
             $groups = $('[data-role=tile-group], .tile-group');
-
-            // any tile-group must be relative
-            $groups.css({
-                'position': 'relative'
-            });
 
             // select all tiles within group
             tiles = $groups.children('.tile');
@@ -75,16 +73,12 @@ $(function(){
             var $tile,
                 tilePosition,
                 tilePositionX,
-                tilePositionY,
-                groupOffset;
+                tilePositionY;
 
             event.preventDefault();
 
             // currently dragging tile
-            $draggingTile = $tile = $(this);
-
-            // search parent group
-            $parentGroup = $tile.parents('.tile-group');
+            $tile = $draggingTile = $(this);
 
             // dragging tile dimentions
             draggingTileWidth = $tile.outerWidth();
@@ -110,31 +104,30 @@ $(function(){
             } else if ($tile.hasClass('quadro-vertical')) {
                 $phantomTile.addClass('quadro-vertical');
             }
-
-            // dragging tile position within group
-            tilePosition = $tile.position();
-            tilePositionX = tilePosition.left;
-            tilePositionY = tilePosition.top;
-
-            // group element offset relate to document border
-            groupOffset = $parentGroup.offset();
-            groupOffsetX = groupOffset.left;
-            groupOffsetY = groupOffset.top;
-
-            // pixels count between cursor and dragging tile border
-            tileDeltaX = event.pageX - groupOffsetX - tilePositionX;
-            tileDeltaY = event.pageY - groupOffsetY - tilePositionY;
-
+            
             // place phantom tile instead dragging one
             $phantomTile.insertAfter($tile);
             targetType = 'existing';
+            
+            // search parent group
+            $parentGroup = $tile.parents('.tile-group');
 
-            /*$tile.detach();
-            $tile.appendTo($parentGroup);*/
+            // dragging tile position within group
+            tilePosition = $tile.offset();
+            tilePositionX = tilePosition.left - (event.pageX - event.clientX);
+            tilePositionY = tilePosition.top - (event.pageY - event.clientY);
 
-            // still now it absolutely positioned
+            // pixels count between cursor and dragging tile border
+            tileDeltaX = event.clientX - tilePositionX;
+            tileDeltaY = event.clientY - tilePositionY;
+
+            // move tile element to $draggingTileContainer
+            $tile.detach();
+            $tile.insertAfter($($groups.get(-1))); // it need for invalid IE z-index
+
+            // from now it fixed positioned
             $tile.css({
-                'position':     'absolute',
+                'position':     'fixed',
                 'left':         tilePositionX,
                 'top':          tilePositionY,
                 'z-index':      100000
@@ -147,7 +140,9 @@ $(function(){
 
             // some necessary event handlers
             $(document).on('mousemove.tiledrag', dragTile);
-            $(document).on('mouseup.tiledrag', dragStop);
+            $(document).one('mouseup.tiledrag', dragStop);
+
+            mouseMoved = false;
 
             // triggering event
             $groups.trigger('drag', [$draggingTile, $parentGroup]);
@@ -157,18 +152,27 @@ $(function(){
          * it function called on every mousemove event
          */
         var dragTile = function (event) {
-
-            // all we need is index of tile under cursor (and under dragging tile) if it exists
-            var findTileIndex,
-                findNewGroup;
+            mouseMoved = true;
 
             event.preventDefault();
 
             // move dragging tile
             $draggingTile.css({
-                'left': event.pageX - groupOffsetX - tileDeltaX,
-                'top':  event.pageY - groupOffsetY - tileDeltaY
+                'left': event.clientX - tileDeltaX,
+                'top':  event.clientY - tileDeltaY
             });
+
+            clearTimeout(tileDragTimer);
+            tileDragTimer = setTimeout(function(){
+                findPlace(event);
+            }, 50);
+        };
+
+        // finding place where put dragging tile
+        var findPlace = function (event) {
+            // all we need is index of tile under cursor (and under dragging tile) if it exists
+            var findTileIndex,
+                findNewGroup;
 
             findTileIndex = findTileUnderCursor(event);
             if (findTileIndex) {
@@ -188,11 +192,18 @@ $(function(){
          */
         var dragStop = function (event) {
             var targetGroup;
+            
+            if (!mouseMoved) {
+                // emulate default click behavior
+                if ($draggingTile.is('a')) {
+                    window.location.href = $draggingTile.attr('href');
+                }
+            } else {
+                event.preventDefault();
+            }
 
-            event.preventDefault();
-
-            $(document).off('mousemove.tiledrag');
-            $(document).off('mouseup.tiledrag');
+            clearTimeout(tileDragTimer);
+            findPlace(event);
 
             $draggingTile.detach();
             // it is two way now: drop to existing group or drop to new group
@@ -211,7 +222,6 @@ $(function(){
                 $draggingTile.appendTo(newGroupPhantom);
                 targetGroup = newGroupPhantom;
                 newGroupPhantom = undefined;
-                $groups = $('[data-role=tile-group], .tile-group')
             }
 
             // remove parent group if it was a last tile there
@@ -227,8 +237,12 @@ $(function(){
             });
 
             $draggingTile.data('dragging', false);
+            $(document).off('mousemove.tiledrag');
 
+            $groups = $('[data-role=tile-group], .tile-group');
             $groups.trigger('drop', [$draggingTile, targetGroup]);
+            
+            $startMenu.trigger('changed');
         };
 
         /*
@@ -313,12 +327,6 @@ $(function(){
                 tileIndex = false,
                 tileSide;
 
-            if (tileSearchCount < 10) {
-                tileSearchCount++;
-                return false;
-            }
-            tileSearchCount = 0;
-
             for (i in tilesCoordinates) {
                 if (!tilesCoordinates.hasOwnProperty(i)) return;
                 coord = tilesCoordinates[i];
@@ -347,12 +355,6 @@ $(function(){
 
         var findNewGroupUnderCursor = function (event) {
             var i, coord, newGroup = false;
-
-            if (newGroupSearchCount < 10) {
-                newGroupSearchCount++;
-                return false;
-            }
-            newGroupSearchCount = 0;
 
             for (i in newGroupsCoordinates) {
                 if (!newGroupsCoordinates.hasOwnProperty(i)) return;
@@ -395,7 +397,7 @@ $(function(){
             $oldPhantomTile.remove();
 
             // check if it was last tile in group and it drag out
-            if ($parentGroup.find('.tile').length === 1) {
+            if ($parentGroup.find('.tile').length === 0) {
                 $newParentGroup = $tileUnderCursor.parent('.tile-group');
                 if ($parentGroup[0] !== $newParentGroup[0]) {
                     // and if it true, make parent group invisible
@@ -405,7 +407,8 @@ $(function(){
                     });
                 }
             }
-
+            
+            $startMenu.trigger('changed');
             storeAllNecessaryCoordinates();
         };
 
@@ -433,23 +436,20 @@ $(function(){
             targetType = 'new';
 
             // check if it was last tile in group and it drag out
-            if ($parentGroup.find('.tile').length === 1) {
+            if ($parentGroup.find('.tile').length === 0) {
                 $parentGroup.css({
                     'width': 0,
                     'margin': 0
                 });
             }
 
+            $startMenu.trigger('changed');
             storeAllNecessaryCoordinates();
         };
 
         var storeAllNecessaryCoordinates = function () {
             storeTilesCoordinates();
             storeNewGroupsCoordinates();
-            // store parent group coordinates
-            var groupOffset = $parentGroup.offset();
-            groupOffsetX = groupOffset.left;
-            groupOffsetY = groupOffset.top;
         };
 
         // return all groups involved to this plugin

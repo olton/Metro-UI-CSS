@@ -12,6 +12,20 @@
     <link href="css/site.css" rel="stylesheet" type="text/css">
     <link href="js/google-code-prettify/prettify.css" rel="stylesheet" type="text/css">
 
+    <script type="text/javascript" src="js/assets/jquery-1.9.0.min.js"></script>
+    <script type="text/javascript" src="js/assets/jquery.mousewheel.min.js"></script>
+
+    <script type="text/javascript" src="js/modern/dropdown.js"></script>
+    <script type="text/javascript" src="js/modern/accordion.js"></script>
+    <script type="text/javascript" src="js/modern/buttonset.js"></script>
+    <script type="text/javascript" src="js/modern/carousel.js"></script>
+    <script type="text/javascript" src="js/modern/input-control.js"></script>
+    <script type="text/javascript" src="js/modern/pagecontrol.js"></script>
+    <script type="text/javascript" src="js/modern/rating.js"></script>
+    <script type="text/javascript" src="js/modern/slider.js"></script>
+    <script type="text/javascript" src="js/modern/tile-slider.js"></script>
+    <script type="text/javascript" src="js/modern/tile-drag.js"></script>
+
     <title>Metro UI CSS</title>
 </head>
 <body class="modern-ui" onload="prettyPrint()">
