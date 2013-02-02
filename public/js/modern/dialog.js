@@ -5,15 +5,15 @@
  *  Params:
  *      title - Title of the dialog box (HTML format)
  *      content - Content of the dialog box (HTML format)
- *      draggable - Set draggable to dialog box, values: true, false (default: false)
- *      overlay - Set the overlay of the page, values: true, false (default: true)
- *      closeButton - Enable or disable the close button, values: true, false (default: false)
- *      buttonsAlign - Align of the buttons, values: left, center, right (default: center)
+ *      draggable - Set draggable to dialog box, available: true, false (default: false)
+ *      overlay - Set the overlay of the page, available: true, false (default: true)
+ *      closeButton - Enable or disable the close button, available: true, false (default: false)
+ *      buttonsAlign - Align of the buttons, available: left, center, right (default: center)
  *      buttons - Set buttons in the action bar (JSON format)
  *          name - Text of the button (JSON format)
  *              action - Function to bind to the button
  *      position - Set the initial position of the dialog box (JSON format)
- *          zone - Zone of the dialog box, values: left, center, right (default: center)
+ *          zone - Zone of the dialog box, available: left, center, right (default: center)
  *          offsetY - Top offset pixels
  *          offsetX - Left offset pixels
  *      
@@ -30,7 +30,7 @@
             return false;
         }
 
-        params = $.extend({'position':{'zone':'center'}}, params);
+        params = $.extend({'position':{'zone':'center'},'overlay':true}, params);
 
         var buttonsHTML = '<div';
 
@@ -58,7 +58,7 @@
         var markup = [
             // If overlay is true, set it
 
-            (!params.overlay)?('<div id="dialogOverlay">'):(''),
+            '<div id="dialogOverlay">',
             '<div id="dialogBox" class="dialog">',
             '<div class="header">',
             params.title,
@@ -67,12 +67,14 @@
             '<div class="content">', params.content, '</div>',
             '<div class="action" id="dialogButtons">',
             buttonsHTML,
-            '</div></div>',
-            (!params.overlay)?('</div>'):('')
+            '</div></div></div>'
         ].join('');
 
-        $(markup).hide().appendTo('body').show();
+        $(markup).hide().appendTo('body').fadeIn();
 
+        if(!params.overlay) {
+            $('#dialogOverlay').css('background-color', 'rgba(255, 255, 255, 0)');
+        }
         
         // Setting initial position
         if(params.position.zone == "left")
