@@ -3936,6 +3936,7 @@ th[class*="span"] {
   display: block;
   margin: 0;
   padding: 0;
+  z-index: 1000;
   *zoom: 1;
 }
 .nav-bar .nav-bar-inner {
