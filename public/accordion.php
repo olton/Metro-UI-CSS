@@ -92,7 +92,7 @@
             &lt;div&gt; ...content... &lt;/div&gt;
         &lt;/li&gt;
     &lt;/ul&gt;
-    ==== Dark ===
+    &lt;!-- Dark theme --&gt;
     &lt;ul class="accordion dark" data-role="accordion"&gt;
         ...
     &lt;/ul&gt;

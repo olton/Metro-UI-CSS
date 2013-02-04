@@ -1,5 +1,33 @@
 # Changelog
 
+## 0.15.8.12
+
+Fixed checkbox, radiobutton and switch control focus (https://github.com/olton/Metro-UI-CSS/issues/79)
+Fixed checkbox, radiobutton and switch control sibiling selector (https://github.com/olton/Metro-UI-CSS/issues/116)
+Fixed right space for non-helper inputs !Note: you should now add class="with-helper" for icon inputs, check forms.php (https://github.com/olton/Metro-UI-CSS/issues/91)
+Updated forms.php for non-helper classes due to changes
+
+Updated dialog.php components usage and params
+
+Styled inputtype number and time (https://github.com/olton/Metro-UI-CSS/issues/108) (https://github.com/olton/Metro-UI-CSS/issues/109)
+
+Added possibilites to use icon font in listview icon space
+Added badges to listview (https://github.com/olton/Metro-UI-CSS/issues/107)
+Updated listview.php for badges
+
+Updated pagecontrols.php for responsive definition clarification and source commented info (https://github.com/olton/Metro-UI-CSS/issues/93)
+Updated accordion.php for source commented info
+
+Added z-index 1000 to .nav-bar (https://github.com/olton/Metro-UI-CSS/issues/82)
+
+Fixed height of notices and replies while text is short or small (https://github.com/olton/Metro-UI-CSS/issues/56)
+Updated notices.php for source commented info
+
+Fixed brand height while there are not images (https://github.com/olton/Metro-UI-CSS/issues/104)
+
+Added icon as background in tiles (https://github.com/olton/Metro-UI-CSS/issues/118)
+Update tiles.php for icons as background
+
 ## 0.15.8.11
 
 Fix helper button in input control click (change the span tag to button tag and fix plugin)
