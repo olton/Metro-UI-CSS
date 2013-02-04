@@ -1,7 +1,7 @@
 /*
  * Metro UI CSS
  * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT Lilcense
+ * Licensed under the MIT License
  *
  * ListView.less
  * Version 1.0
@@ -21,11 +21,16 @@
         .icon {
             width: 48px;
             height: 48px;
+            font-size: 40px;
             float: left;
 
             img {
                 width: 100%;
                 height: 100%;
+            }
+
+            i {
+                margin-top: 10px;
             }
         }
 
@@ -106,6 +111,32 @@
         }
     }
 
+    li div.badge {
+        position: absolute;
+        left: -4px;
+        top: -4px;
+        background-color: @blue;
+        padding: 5px;
+        margin: 0 !important;
+        text-align: center;
+        display: block;
+        font-size: 9pt;
+        color: @white;
+
+        &.strech {
+            padding: 0 5px;
+        }
+
+        &.right {
+            right: -4px;
+            left: auto;
+        }
+
+        &.bottom {
+            top: auto;
+            bottom: -4px;
+        }
+    }
 
     & > li.selected {
         border: 4px @blue solid;
