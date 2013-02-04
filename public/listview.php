@@ -286,6 +286,90 @@
     &lt;/ul&gt;
 </pre>
 
+                    <h2>List view with badges</h2>
+                    <p>
+                        You can use badges with any listview type. To set background or foreground color of badge, you can use color classes.<br />
+                        If you want to strech the badge, you need to add the class strech to the div badge.
+                    </p>
+                    <h3>Classes</h3>
+                    <p>
+                        <b>.strech</b> - Strech your badge dimension<br />
+                        <b>.right</b> - Set your badge to right (default: left)<br />
+                        <b>.bottom</b> - Set your badge to bottom (default: top)<br />
+                    </p>
+                    <br />
+
+                    <ul class="listview">
+                        <li>
+                            <div class="badge">1 new</div>
+
+                            <div class="icon">
+                                <i class="icon-mail"></i>
+                            </div>
+
+                            <div class="data">
+                                <h4>Mail from <a href="mailto:vabatta@gmail.com">vabatta@gmail.com</a></h4>
+                                <p>
+                                    Hey Sergey, your metro UI is awesome!<br />
+                                    Keep up the hard work!
+                                </p>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="badge strech">6 new documents</div>
+
+                            <div class="icon">
+                                <img src="images/word2013icon.png" />
+                            </div>
+
+                            <div class="data">
+                                <h4>Word 2013</h4>
+                                <div class="static-rating small">
+                                    <div class="rating-value" style="width: 75%"></div>
+                                </div>
+                                <p>1 RUB</p>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="badge bg-color-red right bottom">75% done</div>
+
+                            <div class="icon">
+                                <img src="images/firefox.png" />
+                            </div>
+
+                            <div class="data">
+                                <h4>Firefox</h4>
+                                <div class="progress-bar">
+                                    <div class="bar" style="width: 75%"></div>
+                                </div>
+                                <p>Download...</p>
+                            </div>
+                        </li>
+                    </ul>
+
+<pre class="prettyprint linenums span10">
+    &lt;ul class="listview"&gt;
+        &lt;li&gt;
+            &lt;div class="badge"&gt;
+                text
+            &lt;/div&gt;
+            ...
+        &lt;/li&gt;
+        ...
+    &lt;/ul&gt;
+    &lt;ul class="listview"&gt;
+        &lt;li&gt;
+            &lt;div class="badge strech"&gt;
+                text
+            &lt;/div&gt;
+            ...
+        &lt;/li&gt;
+        ...
+    &lt;/ul&gt;
+</pre>
+
                 </div>
             </div>
         </div>

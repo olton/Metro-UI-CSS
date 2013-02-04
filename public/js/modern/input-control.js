@@ -2,10 +2,13 @@
  * jQuery plugin for input elements for Metro UI CSS framework
  */
 (function($) {
+    var pluginName = 'Input',
+        initAllSelector = '.input-control',
+        paramKeys = [];
 
-    $.Input = function(element, options) {
+    $[pluginName] = function(element, options) {
         if (!element) {
-            return $().Input();
+            return $()[pluginName]({initAll: true});
         }
 
         var defaults = {
@@ -87,20 +90,24 @@
 
     };
 
-    $.fn.Input = function(options) {
-        var elements = this.length ? this : $('.input-control');
+    $.fn[pluginName] = function(options) {
+        var elements = options.initAll ? $(initAllSelector) : this;
         return elements.each(function() {
-            if (undefined == $(this).data('Input')) {
-                var plugin = new $.Input(this, options);
-                $(this).data('Input', plugin);
+            var that = $(this),
+                params = {},
+                plugin;
+            if (undefined == that.data(pluginName)) {
+                $.each(paramKeys, function(index, key){
+                    params[key[0].toLowerCase() + key.slice(1)] = that.data('param' + key);
+                });
+                plugin = new $[pluginName](this, params);
+                that.data(pluginName, plugin);
             }
         });
-
-    }
+    };
+    // autoinit
+    $(function(){
+        $()[pluginName]({initAll: true});
+    });
 
 })(jQuery);
-
-// autoinitialization of all inputs
-$(function(){
-    $.Input();
-});
