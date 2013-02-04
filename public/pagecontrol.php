@@ -45,13 +45,16 @@
                 <h2>Component definition</h2>
 <pre class="prettyprint linenums span10">
     &lt;div class="page-control" data-role="page-control"&gt;
-        === Tabs ===
+        &lt;!-- Responsive controls --&gt;
+        &lt;span class="menu-pull"&gt;&lt;/span&gt; 
+        &lt;div class="menu-pull-bar"&gt;&lt;/div&gt;
+        &lt;!-- Tabs --&gt;
         &lt;ul&gt;
             &lt;li class="active"&gt;&lt;a href="#frame1"&gt;Frame1&lt;/a&gt;&lt;/li&gt;
             ...
             &lt;li&gt;&lt;a href="#frameN"&gt;FrameN&lt;/a&gt;&lt;/li&gt;
         &lt;/ul&gt;
-        === Tabs content ===
+        &lt;!-- Tabs content --&gt;
         &lt;div class="frames"&gt;
             &lt;div class="frame active" id="frame1"&gt; ...frame content... &lt;/div&gt;
             ...

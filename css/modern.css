@@ -1,7 +1,7 @@
 /*
  * Metro UI CSS v 0.1.6
  * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT Lilcense
+ * Licensed under the MIT License
  */
 /*! normalize.css 2012-03-11T12:53 UTC - http://github.com/necolas/normalize.css */
 /* =============================================================================
@@ -62,8 +62,6 @@ html {
   /* 1 */
 
   -webkit-text-size-adjust: 100%;
-  /* 2 */
-
   -ms-text-size-adjust: 100%;
   /* 2 */
 
@@ -334,8 +332,6 @@ textarea {
   /* 2 */
 
   vertical-align: baseline;
-  /* 3 */
-
   *vertical-align: middle;
   /* 3 */
 
@@ -391,8 +387,6 @@ input[type="radio"] {
   /* 2 */
 
   *height: 13px;
-  /* 3 */
-
   *width: 13px;
   /* 3 */
 
@@ -452,7 +446,7 @@ table {
 /*
  * Metro UI CSS
  * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT Lilcense
+ * Licensed under the MIT License
  *
  * Routines.less
  */
@@ -636,7 +630,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 }
 .icon-large:before {
   vertical-align: middle;
-  font-size: 1.3333333333333332em;
+  font-size: 1.3333333333333333em;
   margin-top: -8px;
 }
 button.mini,
@@ -1743,7 +1737,7 @@ li .icon-large:before {
 /*
  * Metro UI CSS
  * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT Lilcense
+ * Licensed under the MIT License
  *
  * Variables.less
  */
@@ -1960,7 +1954,7 @@ li .icon-large:before {
 /*
  * Metro UI CSS
  * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT Lilcense
+ * Licensed under the MIT License
  *
  * Bricks.less
  *
@@ -2017,7 +2011,7 @@ li .icon-large:before {
 /*
  * Metro UI CSS
  * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT Lilcense
+ * Licensed under the MIT License
  *
  * Typography.less
  *
@@ -2425,7 +2419,6 @@ address {
   font-weight: 300;
   font-size: 11pt;
   letter-spacing: 0.02em;
-  line-height: 20px;
   font-smooth: always;
   line-height: 20px;
   font-style: normal;
@@ -2506,7 +2499,7 @@ ol.unstyled,
 /*
  * Metro UI CSS
  * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT Lilcense
+ * Licensed under the MIT License
  *
  * Layout.less
  */
@@ -2615,7 +2608,7 @@ ol.unstyled,
   -o-transform: rotate(90deg);
   transform: rotate(90deg);
 }
-.page .page-header .page-header-content  > .page-back {
+.page .page-header .page-header-content > .page-back {
   position: absolute;
   top: 34px;
   left: 30px;
@@ -2778,7 +2771,7 @@ ol.unstyled,
 /*
  * Metro UI CSS
  * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT Lilcense
+ * Licensed under the MIT License
  *
  * Buttons.less
  */
@@ -2908,7 +2901,7 @@ button.big,
   line-height: 20px;
   font-smooth: always;
 }
-.command-button  > small {
+.command-button > small {
   display: block;
   font-family: 'Segoe UI Semilight', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 300;
@@ -2919,7 +2912,7 @@ button.big,
   font-size: 10pt;
   color: #505050;
 }
-.command-button.default  > small {
+.command-button.default > small {
   color: #ccc;
 }
 .tool-button {
@@ -2928,8 +2921,6 @@ button.big,
   font-size: 9pt;
   font-smooth: always;
   min-width: 90px;
-  min-height: 32px;
-  height: 32px;
   background-color: #ccc;
   border: 1px transparent solid;
   color: #353535;
@@ -2937,11 +2928,9 @@ button.big,
   margin-bottom: 10px;
   border-raduis: 0;
   display: inline-block;
-  text-align: center;
   vertical-align: middle;
   cursor: pointer;
   padding: 4px 10px;
-  position: relative;
   min-width: 32px;
   min-height: 32px;
   width: 32px;
@@ -3004,8 +2993,6 @@ button.big,
   font-size: 9pt;
   font-smooth: always;
   min-width: 90px;
-  min-height: 32px;
-  height: 32px;
   background-color: #ccc;
   border: 1px transparent solid;
   color: #353535;
@@ -3013,11 +3000,9 @@ button.big,
   margin-bottom: 10px;
   border-raduis: 0;
   display: inline-block;
-  text-align: center;
   vertical-align: middle;
   cursor: pointer;
   padding: 4px 10px;
-  position: relative;
   min-width: 32px;
   min-height: 32px;
   width: 32px;
@@ -3134,8 +3119,6 @@ button.big,
   font-size: 9pt;
   font-smooth: always;
   min-width: 90px;
-  min-height: 32px;
-  height: 32px;
   background-color: #ccc;
   border: 1px transparent solid;
   color: #353535;
@@ -3143,11 +3126,9 @@ button.big,
   margin-bottom: 10px;
   border-raduis: 0;
   display: inline-block;
-  text-align: center;
   vertical-align: middle;
   cursor: pointer;
   padding: 4px 10px;
-  position: relative;
   min-width: 32px;
   min-height: 32px;
   width: 32px;
@@ -3308,18 +3289,18 @@ button.big,
   top: 1px;
   left: 1px;
 }
-.shortcut  > .icon {
+.shortcut > .icon {
   margin-top: .25em;
   margin-bottom: .25em;
   font-size: 32px;
   color: #888;
 }
-.shortcut  > .label {
+.shortcut > .label {
   display: block;
   font-weight: 400;
   color: #666;
 }
-.shortcut  > .badge {
+.shortcut > .badge {
   position: absolute;
   right: 0;
   top: 0;
@@ -3341,24 +3322,22 @@ a.shortcut .label {
   width: auto;
   margin-bottom: 10px;
 }
-.pagination  > ul {
+.pagination > ul {
   margin-left: 0;
   list-style: none;
   margin: 0;
 }
-.pagination  > ul li {
+.pagination > ul li {
   display: inline-block;
   margin-right: 1px;
   position: relative;
 }
-.pagination  > ul li a {
+.pagination > ul li a {
   font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 9pt;
   font-smooth: always;
   min-width: 90px;
-  min-height: 32px;
-  height: 32px;
   background-color: #ccc;
   border: 1px transparent solid;
   color: #353535;
@@ -3366,17 +3345,9 @@ a.shortcut .label {
   margin-bottom: 10px;
   border-raduis: 0;
   display: inline-block;
-  text-align: center;
-  vertical-align: middle;
-  cursor: pointer;
   padding: 4px 10px;
-  position: relative;
-  min-width: 32px;
   min-height: 32px;
   width: 32px;
-  height: 32px;
-  text-align: center;
-  position: relative;
   padding: 0;
   position: relative;
   display: block;
@@ -3390,87 +3361,87 @@ a.shortcut .label {
   cursor: pointer;
   margin-right: 1px;
 }
-.pagination  > ul li a.mini {
+.pagination > ul li a.mini {
   min-height: 24px;
   min-width: 24px;
   height: 26px;
   font-size: .8em;
 }
-.pagination  > ul li a.big {
+.pagination > ul li a.big {
   min-height: 48px;
   height: 48px;
   font-size: 1.2em;
 }
-.pagination  > ul li a.mini {
+.pagination > ul li a.mini {
   min-width: 22px;
   width: 22px;
 }
-.pagination  > ul li a.big {
+.pagination > ul li a.big {
   min-width: 48px;
   width: 48px;
 }
-.pagination  > ul li a.mini {
+.pagination > ul li a.mini {
   font-size: .9em !important;
 }
-.pagination  > ul li a.standart {
+.pagination > ul li a.standart {
   min-width: 90px;
   min-height: 32px;
 }
-.pagination  > ul li a:active,
-.pagination  > ul li a.default:active {
+.pagination > ul li a:active,
+.pagination > ul li a.default:active {
   top: 1px;
   left: 1px;
 }
-.pagination  > ul li a:disabled,
-.pagination  > ul li a.disabled {
+.pagination > ul li a:disabled,
+.pagination > ul li a.disabled {
   background-color: #eaeaea;
   color: #bebebe;
   cursor: not-allowed;
 }
-.pagination  > ul li a.default {
+.pagination > ul li a.default {
   background-color: #008287;
   color: #fff;
 }
-.pagination  > ul li a:focus {
+.pagination > ul li a:focus {
   outline: 0;
   border: 1px #353535 dotted;
 }
-.pagination  > ul li a.mini {
+.pagination > ul li a.mini {
   min-height: 24px;
   min-width: 24px;
   height: 26px;
   font-size: .8em;
 }
-.pagination  > ul li a.big {
+.pagination > ul li a.big {
   min-height: 48px;
   height: 48px;
   font-size: 1.2em;
 }
-.pagination  > ul li a img {
+.pagination > ul li a img {
   width: 16px;
   height: 16px;
   position: absolute;
   top: 8px;
   left: 8px;
 }
-.pagination  > ul li a:hover {
+.pagination > ul li a:hover {
   background-color: #1d1d1d;
   color: #ffffff;
 }
-.pagination  > ul li a:active {
+.pagination > ul li a:active {
   top: 1px;
   left: 1px;
 }
-.pagination  > ul li.first a,
-.pagination  > ul li.prev a,
-.pagination  > ul li.next a,
-.pagination  > ul li.last a {
+.pagination > ul li.first a,
+.pagination > ul li.prev a,
+.pagination > ul li.next a,
+.pagination > ul li.last a {
   font-size: 20pt;
 }
-.pagination  > ul li.first a:before,
-.pagination  > ul li.prev a:before,
-.pagination  > ul li.next a:before,
-.pagination  > ul li.last a:before {
+.pagination > ul li.first a:before,
+.pagination > ul li.prev a:before,
+.pagination > ul li.next a:before,
+.pagination > ul li.last a:before {
   position: absolute;
   left: 50%;
   top: 0;
@@ -3478,46 +3449,46 @@ a.shortcut .label {
   content: "\25C4";
   font-size: 1.5em;
 }
-.pagination  > ul li.first a:before {
+.pagination > ul li.first a:before {
   content: "\AB";
   margin-left: -10px;
 }
-.pagination  > ul li.prev a:before {
+.pagination > ul li.prev a:before {
   content: "\2039";
 }
-.pagination  > ul li.next a:before {
+.pagination > ul li.next a:before {
   content: "\203A";
 }
-.pagination  > ul li.last a:before {
+.pagination > ul li.last a:before {
   content: "\BB";
   margin-left: -10px;
 }
-.pagination  > ul li.active a {
+.pagination > ul li.active a {
   background-color: #008287 ;
   color: #ffffff;
 }
-.pagination  > ul li.disabled a,
-.pagination  > ul li.spaces a {
+.pagination > ul li.disabled a,
+.pagination > ul li.spaces a {
   background-color: #f2f2f2;
   color: #1e1e1e;
   cursor: not-allowed;
 }
-.pagination  > ul li.disabled a:active,
-.pagination  > ul li.spaces a:active {
+.pagination > ul li.disabled a:active,
+.pagination > ul li.spaces a:active {
   top: 0;
   left: 0;
 }
-.pagination  > ul li.disabled a {
+.pagination > ul li.disabled a {
   color: #1e1e1e;
 }
-.pagination  > ul li.spaces a {
+.pagination > ul li.spaces a {
   background-color: #ffffff;
   cursor: default;
 }
 /*
  * Metro UI CSS
  * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT Lilcense
+ * Licensed under the MIT License
  *
  * Tables.less
  *
@@ -3654,7 +3625,7 @@ table.bordered tbody tr:last-child td {
 /*
  * Metro UI CSS
  * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT Lilcense
+ * Licensed under the MIT License
  *
  * Grid.less
  *
@@ -3775,7 +3746,7 @@ table.bordered tbody tr:last-child td {
 [class*="span"]:last-child {
   margin-right: 0;
 }
-[class*="span"]  > img {
+[class*="span"] > img {
   max-width: 100%;
   height: auto;
 }
@@ -3842,7 +3813,7 @@ th[class*="span"] {
 /*
  * Metro UI CSS
  * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT Lilcense
+ * Licensed under the MIT License
  *
  * Hero.less
  *
@@ -3866,7 +3837,7 @@ th[class*="span"] {
 /*
  * Metro UI CSS
  * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT Lilcense
+ * Licensed under the MIT License
  *
  * Menus.less
  * dropdown-menu, nav-bar
@@ -3980,39 +3951,39 @@ th[class*="span"] {
   float: left;
   margin: 0 5px;
 }
-.nav-bar .nav-bar-inner  > ul.menu {
+.nav-bar .nav-bar-inner > ul.menu {
   margin-left: 0;
   list-style: none;
   padding: 0;
   margin: 0;
 }
-.nav-bar .nav-bar-inner  > ul.menu  > li {
+.nav-bar .nav-bar-inner > ul.menu > li {
   display: block;
   float: left;
   margin-right: 10px;
   position: relative;
   padding: 5px;
 }
-.nav-bar .nav-bar-inner  > ul.menu  > li a {
+.nav-bar .nav-bar-inner > ul.menu > li a {
   display: block;
   float: left;
   color: #ffffff;
   font-size: 10pt;
 }
-.nav-bar .nav-bar-inner  > ul.menu  > li ul.dropdown-menu {
+.nav-bar .nav-bar-inner > ul.menu > li ul.dropdown-menu {
   border: 0;
 }
-.nav-bar .nav-bar-inner  > ul.menu  > li ul.dropdown-menu li a {
+.nav-bar .nav-bar-inner > ul.menu > li ul.dropdown-menu li a {
   display: block;
   float: none;
   color: #1e1e1e;
   padding: 3px 20px;
 }
-.nav-bar .nav-bar-inner  > ul.menu.open {
+.nav-bar .nav-bar-inner > ul.menu.open {
   display: block !important;
 }
-.nav-bar .nav-bar-inner  > .divider,
-.nav-bar .nav-bar-inner  > ul.menu > li.divider {
+.nav-bar .nav-bar-inner > .divider,
+.nav-bar .nav-bar-inner > ul.menu > li.divider {
   position: relative;
   margin: 5px;
   line-height: 20px;
@@ -4026,24 +3997,24 @@ th[class*="span"] {
   width: 1px;
   border-right: 1px #e6e6e6 solid;
 }
-.nav-bar .nav-bar-inner  > .divider.brand,
-.nav-bar .nav-bar-inner  > ul.menu > li.divider.brand {
+.nav-bar .nav-bar-inner > .divider.brand,
+.nav-bar .nav-bar-inner > ul.menu > li.divider.brand {
   font-size: 1.15em;
 }
-.nav-bar .nav-bar-inner  > .divider img,
-.nav-bar .nav-bar-inner  > ul.menu > li.divider img {
+.nav-bar .nav-bar-inner > .divider img,
+.nav-bar .nav-bar-inner > ul.menu > li.divider img {
   height: 100%;
 }
-.nav-bar .nav-bar-inner  > .divider a,
-.nav-bar .nav-bar-inner  > ul.menu > li.divider a {
+.nav-bar .nav-bar-inner > .divider a,
+.nav-bar .nav-bar-inner > ul.menu > li.divider a {
   line-height: 20px;
   height: 20px;
   font-size: 10pt;
 }
-.nav-bar .nav-bar-inner  > .divider [class^="icon-"]:before,
-.nav-bar .nav-bar-inner  > ul.menu > li.divider [class^="icon-"]:before,
-.nav-bar .nav-bar-inner  > .divider [class*=" icon-"]:before,
-.nav-bar .nav-bar-inner  > ul.menu > li.divider [class*=" icon-"]:before {
+.nav-bar .nav-bar-inner > .divider [class^="icon-"]:before,
+.nav-bar .nav-bar-inner > ul.menu > li.divider [class^="icon-"]:before,
+.nav-bar .nav-bar-inner > .divider [class*=" icon-"]:before,
+.nav-bar .nav-bar-inner > ul.menu > li.divider [class*=" icon-"]:before {
   display: inline-block;
   margin: 0;
   padding: 0;
@@ -4054,10 +4025,10 @@ th[class*="span"] {
 .nav-bar .nav-bar-inner [data-role=dropdown] {
   margin-right: 20px !important;
 }
-.nav-bar .nav-bar-inner [data-role=dropdown]  > a {
+.nav-bar .nav-bar-inner [data-role=dropdown] > a {
   cursor: pointer;
 }
-.nav-bar .nav-bar-inner [data-role=dropdown]  > a:before {
+.nav-bar .nav-bar-inner [data-role=dropdown] > a:before {
   position: absolute;
   content: "\203A";
   display: block;
@@ -4200,7 +4171,7 @@ th[class*="span"] {
   margin: 0 0 5px 0;
   border-bottom: 1px #ccc solid;
 }
-.side-nav ul  > li > a {
+.side-nav ul > li > a {
   display: block;
   padding: 3px 10px 3px 0;
   position: relative;
@@ -4208,16 +4179,16 @@ th[class*="span"] {
   padding-left: 3px;
   font-size: 10pt;
 }
-.side-nav ul.close  > li {
+.side-nav ul.close > li {
   display: none;
 }
-.side-nav ul.close  > li[class^=title] {
+.side-nav ul.close > li[class^=title] {
   display: list-item;
 }
 /*
  * Metro UI CSS
  * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT Lilcense
+ * Licensed under the MIT License
  *
  * Sidebar.less
  */
@@ -4263,15 +4234,15 @@ th[class*="span"] {
   line-height: 20px;
   position: relative;
 }
-.page-sidebar  > ul > li > a {
+.page-sidebar > ul > li > a {
   font-size: 1.1em;
 }
-.page-sidebar  > ul > li a.lead,
-.page-sidebar  > ul > li.lead a,
-.page-sidebar  > ul > li.lead {
+.page-sidebar > ul > li a.lead,
+.page-sidebar > ul > li.lead a,
+.page-sidebar > ul > li.lead {
   font-weight: bold;
 }
-.page-sidebar  > ul > li.sticker:before {
+.page-sidebar > ul > li.sticker:before {
   content: ".";
   position: absolute;
   width: 7px;
@@ -4282,52 +4253,52 @@ th[class*="span"] {
   border-bottom-left-radius: 10px;
   background-color: #ebebeb;
 }
-.page-sidebar  > ul > li.sticker.sticker-color-blue:before {
+.page-sidebar > ul > li.sticker.sticker-color-blue:before {
   background-color: #2d89ef;
 }
-.page-sidebar  > ul > li.sticker.sticker-color-blueLight:before {
+.page-sidebar > ul > li.sticker.sticker-color-blueLight:before {
   background-color: #eff4ff;
 }
-.page-sidebar  > ul > li.sticker.sticker-color-blueDark:before {
+.page-sidebar > ul > li.sticker.sticker-color-blueDark:before {
   background-color: #2b5797;
 }
-.page-sidebar  > ul > li.sticker.sticker-color-green:before {
+.page-sidebar > ul > li.sticker.sticker-color-green:before {
   background-color: #00a300 !important;
 }
-.page-sidebar  > ul > li.sticker.sticker-color-greenLight:before {
+.page-sidebar > ul > li.sticker.sticker-color-greenLight:before {
   background-color: #99b433 !important;
 }
-.page-sidebar  > ul > li.sticker.sticker-color-greenDark:before {
+.page-sidebar > ul > li.sticker.sticker-color-greenDark:before {
   background-color: #1e7145 !important;
 }
-.page-sidebar  > ul > li.sticker.sticker-color-red:before {
+.page-sidebar > ul > li.sticker.sticker-color-red:before {
   background-color: #b91d47 !important;
 }
-.page-sidebar  > ul > li.sticker.sticker-color-yellow:before {
+.page-sidebar > ul > li.sticker.sticker-color-yellow:before {
   background-color: #ffc40d !important;
 }
-.page-sidebar  > ul > li.sticker.sticker-color-orange:before {
+.page-sidebar > ul > li.sticker.sticker-color-orange:before {
   background-color: #e3a21a !important;
 }
-.page-sidebar  > ul > li.sticker.sticker-color-orangeDark:before {
+.page-sidebar > ul > li.sticker.sticker-color-orangeDark:before {
   background-color: #da532c !important;
 }
-.page-sidebar  > ul > li.sticker.sticker-color-pink:before {
+.page-sidebar > ul > li.sticker.sticker-color-pink:before {
   background-color: #9f00a7 !important;
 }
-.page-sidebar  > ul > li.sticker.sticker-color-pinkDark:before {
+.page-sidebar > ul > li.sticker.sticker-color-pinkDark:before {
   background-color: #7e3878 !important;
 }
-.page-sidebar  > ul > li.sticker.sticker-color-purple:before {
+.page-sidebar > ul > li.sticker.sticker-color-purple:before {
   background-color: #603cba !important;
 }
-.page-sidebar  > ul > li.sticker.sticker-color-darken:before {
+.page-sidebar > ul > li.sticker.sticker-color-darken:before {
   background-color: #1d1d1d !important;
 }
-.page-sidebar  > ul > li.sticker.sticker-color-white:before {
+.page-sidebar > ul > li.sticker.sticker-color-white:before {
   background-color: #ffffff !important;
 }
-.page-sidebar  > ul > li.sticker.sticker-color-grayDark:before {
+.page-sidebar > ul > li.sticker.sticker-color-grayDark:before {
   background-color: #525252 !important;
 }
 .page-sidebar .divider {
@@ -4357,10 +4328,10 @@ th[class*="span"] {
 .page-sidebar .sidebar-dropdown-menu.open {
   display: block;
 }
-.page-sidebar  > ul > li.dropdown {
+.page-sidebar > ul > li.dropdown {
   position: relative;
 }
-.page-sidebar  > ul > li.dropdown:after {
+.page-sidebar > ul > li.dropdown:after {
   content: "";
   display: block;
   position: absolute;
@@ -4373,13 +4344,13 @@ th[class*="span"] {
   background-position: 0 -1586px;
   z-index: 200;
 }
-.page-sidebar  > ul > li.dropdown.active:after {
+.page-sidebar > ul > li.dropdown.active:after {
   background-position: 0 -676px;
 }
 /*
  * Metro UI CSS
  * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT Lilcense
+ * Licensed under the MIT License
  *
  * Notices.less
  */
@@ -4387,9 +4358,9 @@ th[class*="span"] {
   margin-left: 0;
   list-style: none;
 }
-.replies  > div,
-.replies  > li,
-.replies  > span {
+.replies > div,
+.replies > li,
+.replies > span {
   position: relative;
   margin: 0 10px 10px 0;
   display: block;
@@ -4403,11 +4374,12 @@ th[class*="span"] {
   line-height: 20px;
   font-smooth: always;
   height: auto;
+  min-height: 70px;
   padding: 10px;
 }
-.replies  > div .avatar,
-.replies  > li .avatar,
-.replies  > span .avatar {
+.replies > div .avatar,
+.replies > li .avatar,
+.replies > span .avatar {
   width: 50px;
   height: 50px;
   overflow: hidden;
@@ -4416,35 +4388,35 @@ th[class*="span"] {
   background: #6e6e6e;
   box-shadow-bottom: inset 0px 0px 3px #fff;
 }
-.replies  > div .avatar img,
-.replies  > li .avatar img,
-.replies  > span .avatar img {
+.replies > div .avatar img,
+.replies > li .avatar img,
+.replies > span .avatar img {
   width: 100%;
   height: 100%;
   display: inline-block !important;
   vertical-align: middle !important;
 }
-.replies  > div .reply,
-.replies  > li .reply,
-.replies  > span .reply {
+.replies > div .reply,
+.replies > li .reply,
+.replies > span .reply {
   margin-left: 60px;
   margin-top: -50px;
 }
-.replies  > div .reply .date,
-.replies  > li .reply .date,
-.replies  > span .reply .date {
+.replies > div .reply .date,
+.replies > li .reply .date,
+.replies > span .reply .date {
   float: right;
   font-size: 55%;
   color: #ffffff;
 }
-.replies  > div .reply .author,
-.replies  > li .reply .author,
-.replies  > span .reply .author {
+.replies > div .reply .author,
+.replies > li .reply .author,
+.replies > span .reply .author {
   color: #ffffff;
 }
-.replies  > div .reply .text,
-.replies  > li .reply .text,
-.replies  > span .reply .text {
+.replies > div .reply .text,
+.replies > li .reply .text,
+.replies > span .reply .text {
   font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 9pt;
@@ -4453,24 +4425,24 @@ th[class*="span"] {
   color: #ffffff;
   line-height: 16px;
 }
-.replies  > div .reply .text:hover,
-.replies  > li .reply .text:hover,
-.replies  > span .reply .text:hover {
+.replies > div .reply .text:hover,
+.replies > li .reply .text:hover,
+.replies > span .reply .text:hover {
   color: rgba(0, 0, 0, 0.8);
 }
-.replies  > div .reply .text:active,
-.replies  > li .reply .text:active,
-.replies  > span .reply .text:active {
+.replies > div .reply .text:active,
+.replies > li .reply .text:active,
+.replies > span .reply .text:active {
   color: rgba(0, 0, 0, 0.4);
 }
-.replies  > div .reply .text:hover,
-.replies  > li .reply .text:hover,
-.replies  > span .reply .text:hover {
+.replies > div .reply .text:hover,
+.replies > li .reply .text:hover,
+.replies > span .reply .text:hover {
   color: #ffffff;
 }
-.replies  > div .sticker,
-.replies  > li .sticker,
-.replies  > span .sticker {
+.replies > div .sticker,
+.replies > li .sticker,
+.replies > span .sticker {
   width: 0;
   height: 0;
   border-top: 10px solid #ffffff;
@@ -4478,100 +4450,100 @@ th[class*="span"] {
   display: block;
   z-index: 1000;
 }
-.replies  > div .sticker.sticker-color-blue,
-.replies  > li .sticker.sticker-color-blue,
-.replies  > span .sticker.sticker-color-blue {
+.replies > div .sticker.sticker-color-blue,
+.replies > li .sticker.sticker-color-blue,
+.replies > span .sticker.sticker-color-blue {
   border-color: #2d89ef !important;
 }
-.replies  > div .sticker.sticker-color-blueLight,
-.replies  > li .sticker.sticker-color-blueLight,
-.replies  > span .sticker.sticker-color-blueLight {
+.replies > div .sticker.sticker-color-blueLight,
+.replies > li .sticker.sticker-color-blueLight,
+.replies > span .sticker.sticker-color-blueLight {
   border-color: #eff4ff !important;
 }
-.replies  > div .sticker.sticker-color-blueDark,
-.replies  > li .sticker.sticker-color-blueDark,
-.replies  > span .sticker.sticker-color-blueDark {
+.replies > div .sticker.sticker-color-blueDark,
+.replies > li .sticker.sticker-color-blueDark,
+.replies > span .sticker.sticker-color-blueDark {
   border-color: #2b5797 !important;
 }
-.replies  > div .sticker.sticker-color-green,
-.replies  > li .sticker.sticker-color-green,
-.replies  > span .sticker.sticker-color-green {
+.replies > div .sticker.sticker-color-green,
+.replies > li .sticker.sticker-color-green,
+.replies > span .sticker.sticker-color-green {
   border-color: #00a300 !important;
 }
-.replies  > div .sticker.sticker-color-greenLight,
-.replies  > li .sticker.sticker-color-greenLight,
-.replies  > span .sticker.sticker-color-greenLight {
+.replies > div .sticker.sticker-color-greenLight,
+.replies > li .sticker.sticker-color-greenLight,
+.replies > span .sticker.sticker-color-greenLight {
   border-color: #99b433 !important;
 }
-.replies  > div .sticker.sticker-color-greenDark,
-.replies  > li .sticker.sticker-color-greenDark,
-.replies  > span .sticker.sticker-color-greenDark {
+.replies > div .sticker.sticker-color-greenDark,
+.replies > li .sticker.sticker-color-greenDark,
+.replies > span .sticker.sticker-color-greenDark {
   border-color: #1e7145 !important;
 }
-.replies  > div .sticker.sticker-color-red,
-.replies  > li .sticker.sticker-color-red,
-.replies  > span .sticker.sticker-color-red {
+.replies > div .sticker.sticker-color-red,
+.replies > li .sticker.sticker-color-red,
+.replies > span .sticker.sticker-color-red {
   border-color: #b91d47 !important;
 }
-.replies  > div .sticker.sticker-color-yellow,
-.replies  > li .sticker.sticker-color-yellow,
-.replies  > span .sticker.sticker-color-yellow {
+.replies > div .sticker.sticker-color-yellow,
+.replies > li .sticker.sticker-color-yellow,
+.replies > span .sticker.sticker-color-yellow {
   border-color: #ffc40d !important;
 }
-.replies  > div .sticker.sticker-color-orange,
-.replies  > li .sticker.sticker-color-orange,
-.replies  > span .sticker.sticker-color-orange {
+.replies > div .sticker.sticker-color-orange,
+.replies > li .sticker.sticker-color-orange,
+.replies > span .sticker.sticker-color-orange {
   border-color: #e3a21a !important;
 }
-.replies  > div .sticker.sticker-color-orangeDark,
-.replies  > li .sticker.sticker-color-orangeDark,
-.replies  > span .sticker.sticker-color-orangeDark {
+.replies > div .sticker.sticker-color-orangeDark,
+.replies > li .sticker.sticker-color-orangeDark,
+.replies > span .sticker.sticker-color-orangeDark {
   border-color: #da532c !important;
 }
-.replies  > div .sticker.sticker-color-pink,
-.replies  > li .sticker.sticker-color-pink,
-.replies  > span .sticker.sticker-color-pink {
+.replies > div .sticker.sticker-color-pink,
+.replies > li .sticker.sticker-color-pink,
+.replies > span .sticker.sticker-color-pink {
   border-color: #9f00a7 !important;
 }
-.replies  > div .sticker.sticker-color-pinkDark,
-.replies  > li .sticker.sticker-color-pinkDark,
-.replies  > span .sticker.sticker-color-pinkDark {
+.replies > div .sticker.sticker-color-pinkDark,
+.replies > li .sticker.sticker-color-pinkDark,
+.replies > span .sticker.sticker-color-pinkDark {
   border-color: #7e3878 !important;
 }
-.replies  > div .sticker.sticker-color-purple,
-.replies  > li .sticker.sticker-color-purple,
-.replies  > span .sticker.sticker-color-purple {
+.replies > div .sticker.sticker-color-purple,
+.replies > li .sticker.sticker-color-purple,
+.replies > span .sticker.sticker-color-purple {
   border-color: #603cba !important;
 }
-.replies  > div .sticker.sticker-color-darken,
-.replies  > li .sticker.sticker-color-darken,
-.replies  > span .sticker.sticker-color-darken {
+.replies > div .sticker.sticker-color-darken,
+.replies > li .sticker.sticker-color-darken,
+.replies > span .sticker.sticker-color-darken {
   border-color: #1d1d1d !important;
 }
-.replies  > div .sticker.sticker-color-white,
-.replies  > li .sticker.sticker-color-white,
-.replies  > span .sticker.sticker-color-white {
+.replies > div .sticker.sticker-color-white,
+.replies > li .sticker.sticker-color-white,
+.replies > span .sticker.sticker-color-white {
   border-color: #ffffff !important;
 }
-.replies  > div .sticker.sticker-color-lighten,
-.replies  > li .sticker.sticker-color-lighten,
-.replies  > span .sticker.sticker-color-lighten {
+.replies > div .sticker.sticker-color-lighten,
+.replies > li .sticker.sticker-color-lighten,
+.replies > span .sticker.sticker-color-lighten {
   border-color: #d5e7ec !important;
 }
-.replies  > div .sticker.sticker-color-grayDark,
-.replies  > li .sticker.sticker-color-grayDark,
-.replies  > span .sticker.sticker-color-grayDark {
+.replies > div .sticker.sticker-color-grayDark,
+.replies > li .sticker.sticker-color-grayDark,
+.replies > span .sticker.sticker-color-grayDark {
   border-color: #525252 !important;
 }
-.replies  > div .sticker.sticker-left,
-.replies  > li .sticker.sticker-left,
-.replies  > span .sticker.sticker-left {
+.replies > div .sticker.sticker-left,
+.replies > li .sticker.sticker-left,
+.replies > span .sticker.sticker-left {
   border-left: 20px solid transparent !important;
   left: -20px;
 }
-.replies  > div .sticker.sticker-right,
-.replies  > li .sticker.sticker-right,
-.replies  > span .sticker.sticker-right {
+.replies > div .sticker.sticker-right,
+.replies > li .sticker.sticker-right,
+.replies > span .sticker.sticker-right {
   border-right: 20px solid transparent !important;
   right: -20px;
 }
@@ -4580,10 +4552,10 @@ th[class*="span"] {
   margin: 0;
   padding: 0;
 }
-.notices  > div,
-.notices  > li,
-.notices  > span,
-.notices  > a {
+.notices > div,
+.notices > li,
+.notices > span,
+.notices > a {
   width: 100%;
   height: 90px;
   display: block;
@@ -4591,14 +4563,14 @@ th[class*="span"] {
   position: relative;
   margin-bottom: 10px;
 }
-.notices  > div .notice-header,
-.notices  > li .notice-header,
-.notices  > span .notice-header,
-.notices  > a .notice-header,
-.notices  > div .header,
-.notices  > li .header,
-.notices  > span .header,
-.notices  > a .header {
+.notices > div .notice-header,
+.notices > li .notice-header,
+.notices > span .notice-header,
+.notices > a .notice-header,
+.notices > div .header,
+.notices > li .header,
+.notices > span .header,
+.notices > a .header {
   position: relative;
   background: transparent;
   font-family: 'Segoe UI Light', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
@@ -4611,14 +4583,14 @@ th[class*="span"] {
   margin-top: 5px;
   margin-left: 10px;
 }
-.notices  > div .notice-text,
-.notices  > li .notice-text,
-.notices  > span .notice-text,
-.notices  > a .notice-text,
-.notices  > div .text,
-.notices  > li .text,
-.notices  > span .text,
-.notices  > a .text {
+.notices > div .notice-text,
+.notices > li .notice-text,
+.notices > span .notice-text,
+.notices > a .notice-text,
+.notices > div .text,
+.notices > li .text,
+.notices > span .text,
+.notices > a .text {
   position: relative;
   margin-right: 50px;
   margin-left: 10px;
@@ -4630,58 +4602,58 @@ th[class*="span"] {
   margin-top: -5px;
   line-height: 16px;
 }
-.notices  > div .notice-icon,
-.notices  > li .notice-icon,
-.notices  > span .notice-icon,
-.notices  > a .notice-icon,
-.notices  > div .icon,
-.notices  > li .icon,
-.notices  > span .icon,
-.notices  > a .icon {
+.notices > div .notice-icon,
+.notices > li .notice-icon,
+.notices > span .notice-icon,
+.notices > a .notice-icon,
+.notices > div .icon,
+.notices > li .icon,
+.notices > span .icon,
+.notices > a .icon {
   position: absolute;
   right: 10px;
   bottom: 5px;
 }
-.notices  > div .notice-icon img,
-.notices  > li .notice-icon img,
-.notices  > span .notice-icon img,
-.notices  > a .notice-icon img,
-.notices  > div .icon img,
-.notices  > li .icon img,
-.notices  > span .icon img,
-.notices  > a .icon img {
+.notices > div .notice-icon img,
+.notices > li .notice-icon img,
+.notices > span .notice-icon img,
+.notices > a .notice-icon img,
+.notices > div .icon img,
+.notices > li .icon img,
+.notices > span .icon img,
+.notices > a .icon img {
   width: 32px;
   height: 32px;
 }
-.notices  > div .notice-image,
-.notices  > li .notice-image,
-.notices  > span .notice-image,
-.notices  > a .notice-image,
-.notices  > div .image,
-.notices  > li .image,
-.notices  > span .image,
-.notices  > a .image {
+.notices > div .notice-image,
+.notices > li .notice-image,
+.notices > span .notice-image,
+.notices > a .notice-image,
+.notices > div .image,
+.notices > li .image,
+.notices > span .image,
+.notices > a .image {
   max-height: 48px;
   width: 48px;
   height: 48px;
   margin: 20px 20px 20px 20px;
   float: left;
 }
-.notices  > div .notice-image img,
-.notices  > li .notice-image img,
-.notices  > span .notice-image img,
-.notices  > a .notice-image img,
-.notices  > div .image img,
-.notices  > li .image img,
-.notices  > span .image img,
-.notices  > a .image img {
+.notices > div .notice-image img,
+.notices > li .notice-image img,
+.notices > span .notice-image img,
+.notices > a .notice-image img,
+.notices > div .image img,
+.notices > li .image img,
+.notices > span .image img,
+.notices > a .image img {
   width: 48px;
   height: 48px;
 }
-.notices  > div .close,
-.notices  > li .close,
-.notices  > span .close,
-.notices  > a .close {
+.notices > div .close,
+.notices > li .close,
+.notices > span .close,
+.notices > a .close {
   z-index: 2;
   position: absolute;
   top: 5px;
@@ -4691,34 +4663,34 @@ th[class*="span"] {
   text-decoration: none;
   color: #fff !important;
 }
-.notices  > div .close::before,
-.notices  > li .close::before,
-.notices  > span .close::before,
-.notices  > a .close::before {
+.notices > div .close::before,
+.notices > li .close::before,
+.notices > span .close::before,
+.notices > a .close::before {
   content: "\00d7";
   color: #fff !important;
 }
-.notices  > div .image-large,
-.notices  > li .image-large,
-.notices  > span .image-large,
-.notices  > a .image-large {
+.notices > div .image-large,
+.notices > li .image-large,
+.notices > span .image-large,
+.notices > a .image-large {
   width: 88px;
   height: 88px;
   margin: 1px 10px 1px 1px;
   overflow: hidden;
   float: left;
 }
-.notices  > div .image-large img,
-.notices  > li .image-large img,
-.notices  > span .image-large img,
-.notices  > a .image-large img {
+.notices > div .image-large img,
+.notices > li .image-large img,
+.notices > span .image-large img,
+.notices > a .image-large img {
   width: 88px;
   height: 88px;
 }
 /*
  * Metro UI CSS
  * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT Lilcense
+ * Licensed under the MIT License
  *
  * Tiles.less
  *
@@ -4742,7 +4714,6 @@ th[class*="span"] {
   box-shadow: inset 0px 0px 1px #FFFFCC;
   text-decoration: none;
   color: #ffffff;
-  overflow: hidden;
   position: relative;
   font-family: 'Segoe UI Semilight', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 300;
@@ -4823,10 +4794,10 @@ th[class*="span"] {
 .tile .tile-content p:hover {
   color: #ffffff;
 }
-.tile.icon  > .tile-content {
+.tile.icon > .tile-content {
   padding: 0;
 }
-.tile.icon  > .tile-content  > img {
+.tile.icon > .tile-content > img {
   position: absolute;
   width: 64px;
   height: 64px;
@@ -4835,18 +4806,22 @@ th[class*="span"] {
   margin-left: -32px;
   margin-top: -32px;
 }
-.tile.image  > .tile-content,
-.tile.image-slider  > .tile-content {
+.tile.icon > .tile-content > i {
+  font-size: 128px;
+  margin: 9px;
+}
+.tile.image > .tile-content,
+.tile.image-slider > .tile-content {
   padding: 0;
 }
-.tile.image  > .tile-content  > img,
-.tile.image-slider  > .tile-content  > img {
+.tile.image > .tile-content > img,
+.tile.image-slider > .tile-content > img {
   width: 100%;
   height: auto;
   min-height: 100%;
   max-width: 100%;
 }
-.tile.image-set  > .tile-content {
+.tile.image-set > .tile-content {
   margin: 0;
   padding: 0;
   width: 25% !important;
@@ -4854,7 +4829,7 @@ th[class*="span"] {
   float: left;
   border: 1px #1e1e1e solid;
 }
-.tile.image-set  > .tile-content  > img {
+.tile.image-set > .tile-content > img {
   min-width: 100%;
   width: 100%;
   height: auto;
@@ -4904,8 +4879,8 @@ th[class*="span"] {
 .tile .tile-status:after {
   clear: both;
 }
-.tile .brand  > .badge,
-.tile .tile-status  > .badge {
+.tile .brand > .badge,
+.tile .tile-status > .badge {
   position: absolute;
   bottom: 0;
   right: 0;
@@ -4923,52 +4898,52 @@ th[class*="span"] {
   font-smooth: always;
   padding-top: 3px;
 }
-.tile .brand  > .badge.activity,
-.tile .tile-status  > .badge.activity {
+.tile .brand > .badge.activity,
+.tile .tile-status > .badge.activity {
   background: #2d89ef url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGMSURBVDhPvZMtTwNBEIbv2mtScaICcQJRgSgJCQIEhqSiAlEHAlFRwU/ov0AgUEgUsrIkiJIgMOAQJFSQQAIJJBWIu95Hj2eGvXIpB3W8yWTn452Z3dld25pDmqZuFEWdcrm8jr6JK7Bt+wb9Ft85+vsXswBxHHdIfmFNi4TYG7InXAp6ss52kCTJIc6e6KzSVbrdYzrYDaSFXZU4uEQ8x3FW1ZpMJge5Tn3IdQ3kID5iw4zHTqIsUEP3TWCA7WhgDjRZg/eUFRCR3Fl3KYJjyfALIUU46jHcsSlQl8FdmQJnhrcQJFbJ6QZB0LDDMNyS4XBFo1Kp9Gw4/wi247GLHmvNuBaC47Y5gtzIQB1mBmMGdDSdTpfV+QdM8vfcsqkap6ClgQIQa+a4bXViPGRO5ILjuBqYAwk7yIfhXcNz9CljDFkkST6P4JGjnHA7d+gBxAY3tIve1Khljbi1beKvakHQp0uhfTrMjvOL9H3fX9FE8OM7yxAhdem4QWHZkSufSoTYaaVSkY9kYFmfXgyTciI3uacAAAAASUVORK5CYII%3D) 50% no-repeat;
 }
-.tile .brand  > .badge.alert,
-.tile .tile-status  > .badge.alert {
+.tile .brand > .badge.alert,
+.tile .tile-status > .badge.alert {
   background: #2d89ef url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFeSURBVDhPpZMtT8RAEIbb7YoTJ04gkQgQuBNIEpB4LD8AwQ9AkCCQhGAvQSAuKHCIE0gEP+DEISAhQYK4pE0/eWa65a7lSvh4k8nsvDv77sxs67UhSZLNNE0LZ3uO/gLj/J+hAkVRWI1+geqMCuR5fkKZoyiKViX+DuQu094wy7KhEmEYrkAk0qt4Nk5R77GszQCuE8fxIXxY8ZJjgiBY8n3/UcTwlsQDNifGmF29AcBtITyGOyan47gXXFfW2g/q+yi+VeptJhVgR1KRHp4HZI+bzknQlhYcvpQZuHRF8xmnCDyLL8MZEI9o4YkW3h1VB+o73DJp3to08l7xsw9Lng5i1EiSSV/Pcbdwzfk8MLcNqjIyye1STnHD5joln7lYcGWtXaP8gYsFfeJyHvR9waExt3wKsV74L3Brn/geu3OUDqiL1T7nNoEK8mLi9RUoZYqlsv4pqtf459/oeR8seozS7mDHCwAAAABJRU5ErkJggg%3D%3D) 50% no-repeat;
 }
-.tile .brand  > .badge.available,
-.tile .tile-status  > .badge.available {
+.tile .brand > .badge.available,
+.tile .tile-status > .badge.available {
   background: #2d89ef url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAAIGNIUk0AAHolAACAgwAA+f8AAIDoAABSCAABFVgAADqXAAAXb9daH5AAAAKvSURBVHjahJA/bJR1HMY/31977x33r2LuClc1LYM9TSAUr5gqtkVJjAkSFxYHE3VgaWRw0cUwOagxMZLApoXFBIwuHVSoQYkVMBXUpqSkMW9jaS25plh7/3rv+3scTIwixs/8PHn+2Bk/SVtN2mqxacYOKw13KfNiXtlneihmDONXqs0VVs/VXP1UqJvnc8qBeZoWYWf9JHXVqWkj2EX55G76X86R4W40aDHNzMdzLBwJLLEWm6fTI+o0knvZ+dkgO/cDfGczTNpl5gjxePrpY0SPMKwKT1A5nCe7Y4ofDgQEv/Ghn2AqunZabUmR9Fb8gQoaUVIVFTSiokaV0qDu0T694Y+rGbWktnQ5+nHiuP+IjrFjR4cqevj9wBK8beO87t6jiyzbKJAiIEWSreQxjAm7QGyeAwzRzb39i/7WFbdV2bGs0nxvs7zjxtlOgRwZPP6v7R5PmhQPUOKEneFLd4UECfqs51WXU/opDL6wb/mdDfJkEfrXgUKk2UKbiM/5BoD76d7reujOANwgJH9H8p14PDnSzBGySZsSReecDIAIDxj/jxH/LcQtW7UJ0E8f69RwuP+0Ohwb1CnTS0CCW6zK3Wb9a4AnNcgWktRoYHdpYhgtWvypfRSARVv5yVXd2smGWuzTHo7qeRZZpk7zH00cRos2ITd5yT/HQY0gPKGW3u0YPvZ06HB77tO2hx5jN5HFTNk11lgHRIs2VW5Tp8kRf5g3eYUUSa5y/eKsfn7NTvlPaCjqelwDF3bx4ADAeXeJc1xijpCYmDJ9jKrCIe0H4IaF81/56VGDJTvtPwV1IFmhTO/4AOWDSQIAWmwiRIokADEx08xeXGD5hUjxQp0GnQCdOAKS1RnNP7tO7VDOMmO9bB8qUQRghVVCW7raUOPEvH45W7IidRoA/DEAmmk0pL+n6f4AAAAASUVORK5CYII%3D) 50% no-repeat;
 }
-.tile .brand  > .badge.unavailable,
-.tile .tile-status  > .badge.unavailable {
+.tile .brand > .badge.unavailable,
+.tile .tile-status > .badge.unavailable {
   background: #2d89ef url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAAIGNIUk0AAHolAACAgwAA+f8AAIDoAABSCAABFVgAADqXAAAXb9daH5AAAAKASURBVHjalJK9axxXFMV/772ZzOysVqvRDgtaSSwpJYFwY3ATEpIm5KNLawgp3Ljz/5E2bu20CYQUBoMNNnaRMkUKqYiQtIgdCQ0TaVc7M29n3nspzC7GMYYcuMWFe7jnHI4YjUY453DOYYyh0+l8opT63vO8L8MwbAshqKqq0lo/c849rqrquXMOIcSbGY1GWGsxxny0urr6MI7jH5RSAFhrAZBSLvc8z3+dTqf3lFL/SCnxAIwxwdra2tP19fXPAC4vL8myjKIoAIiiiF6vR7/fJ0mS75RSH19dXX0hpbwWx8fHrKys/JwkyV1rLYeHh5yenuKc420lzjm2trbY3d3F8zzyPH8ynU6/ERcXF3fiOP7D930ODg44OjoiDMOl7AWstZRlyXA4ZH9/H2MM4/H4K+l53n3f98myjJOTE4Ig+A95kUMURZydnXF+fo5SiiiKHkjf9z9f+AaWst+HRfKL2yiKbssgCNrOOWaz2Xs/vwulFLPZjLquCcPwDcM5x//B2/dyPp9XC3/WWoQQHyQbY2i32/i+T1VVTtZ1/QogSZJlGz/02VpLkiQAlGX5l2ya5mHTNPT7fba3tynLctnAd8llWTIYDNjY2MBaS1EUP0qt9YvJZPI7wM7ODsPhEK01WmuapqFpGrTWVFXFYDBgb28PIQTX19ev67r+TYzHY7TW3W63+zKO41sAaZqSZRk3NzcAtNtter0em5ubAEwmk7/zPP9USjkWaZoyn89xziWdTudRt9v9etGFuq4B8H1/aSXP89dFUdx1zp065xBpmlLXNUIIjDG0Wq1vPc+7H4bhnVarhRCCsiwpiuJPY8xPRVH8EgQBxhistfw7ABpxTL93U9x/AAAAAElFTkSuQmCC) 50% no-repeat;
 }
-.tile .brand  > .badge.away,
-.tile .tile-status  > .badge.away {
+.tile .brand > .badge.away,
+.tile .tile-status > .badge.away {
   background: #2d89ef url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAAIGNIUk0AAHolAACAgwAA+f8AAIDoAABSCAABFVgAADqXAAAXb9daH5AAAAJ2SURBVHjajJI7iFVnFIW//d9zz52ZO2fG14gzJBgbp5JYKPh+NqKxsxWMRZoBCxu1sAuBKFaClj5KDUQhRXybCIqICjqNYjFDhtExN45e7/uc8y+L/yJGp3A1+2fDWv/ea23zlQvIp0gpRgfrWbZRNrhP0cAOopEyGGSvWmQz15zq59SeuC5LsAis0MJ85SLKG8jXY3pXnKb8/X6iBAB8KLhuzZtQf/gbrWc/WTGetSgnAg9qlCiv/pNk1RYAqz3A6jeg/SyoxMtReRNKNsLAhj24gWW0726H+B3+9Rmyd3fPp5KyXMpf/SqNL5KelEIdH5Ke9Ejj8+SnjyrLWkolZbX7f/jZk5h/e3WN7197j0I/NnMMN3MYoiXgBv6/g+rQmUJDR/Ajv4BP0eylnU5u/pgK/Vj9Ee6/411y8gm5a4b1Qfwt9uYUrnoTXBGLvzvoFCXbDLDaVcjfd38WX0JBRCnUroRW/M1qRzRSxgPt55+NPRc8FJJgbtaB4rBz+phRxtcj//hylr5s4YDScvDVT0KfCw7yGpRGIYohfS2H3v4NoL6tYL3BbWwOsoHawY3y1tDJpp46p8pp5U2UrEcLD0BnCtT4bBIXyJ0J/Pwf0eAu8ELtiROO5uQtazy9LMAvPoKGDoU00n/CSr4K2RTkFfyCMRj+OWg2Ht9RNv27+X/PId8cVN+62/SvWAngqtehdq17yjmURlHfZjRvdxi98fyFr/21GWfT5ivnkQehRfSOnqV35S4KpW4w7ZB/1NNNMYf6wzukk3ulbBI1iIJkBBZX1Bn/gby621wyRrx0DcXhQGzPYOnEY/nmKbVeXLTicNcn+DAArZ4503S5ZjkAAAAASUVORK5CYII%3D) 50% no-repeat;
 }
-.tile .brand  > .badge.busy,
-.tile .tile-status  > .badge.busy {
+.tile .brand > .badge.busy,
+.tile .tile-status > .badge.busy {
   background: #2d89ef url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAAIGNIUk0AAHolAACAgwAA+f8AAIDoAABSCAABFVgAADqXAAAXb9daH5AAAAKNSURBVHjajJI9a1RBGIWfGeLdmPXuKkR0Q0RTmFsFUxgQNcaPRonpbAW1sAlY2IhFfoCIVSDaaVImFhYWmkTxAwJBVgttNqTYQFAjAWPi7t3svXeOxeC3hQdeZpiZ887DmTFuchIlCUoSTLOJ6erqV7F4QYXCaTo68hgDHz82WFmZsbXauKrVWYUhBjCNBsZNTaF6HdVqAT09tzlw4BJhyD8Vx1Au36dSuWyC4LPJMlpwDur1HH19jzh48DiAefUK8+QJVCrgHHR3o2PHUH8/HD16jkKhi7m5UwTBF9zdu6RzcxOJpFRSduOG1N4u5XJ+3LlTam2Vtm+XGxlR2mgokZTOzz90o6PgpqcPpRsbP83GSKWSFEXS/v2+okjq7JRA7vp1pZLSZlPJ5OQZqx07hrVtG+b1a+zNm7B7N4ShR/8u56CtDfbswYyNYZ8+hS1bMPv2XbUKw5MGMNPTsLEBhQJIfwco+SZJAo8f+7XOzj5LR0cegIUFb/715j/lnKerVKDZhFLJWlnrN9OU/1aW/Zha8+FDA4Dublhfh+8N/yVr4etXiCIIAvj0SZa1tRcAOnECtm6FWg2M+dtsDGxu8uMsYJaX31q7unpbcYyOHEFXrsDyMtTrv5NY683VKu7iRTQ4CBKqVm/h7twhnZ9/kEhK41ju2jWpWJTa2qRdu3zl81I+r2x4WNnamv8H5fKLZHQU48bHURwXdfjwM3p6egHs7CzMzPi0swyiCA0MoKEhj76wsOiePx/AmPfGTUwgQFI7UXSP3t5BcjmPvrnp37+19Wf65fJLlpbOK02XqNdpAaClBYJgVe/enWV9fciE4TB79x6iVPLGlRVMtfpGcTymxcUpUyr5nIBvAwDWIWcndiwtQAAAAABJRU5ErkJggg%3D%3D) 50% no-repeat;
 }
-.tile .brand  > .badge.newMessage,
-.tile .tile-status  > .badge.newMessage {
+.tile .brand > .badge.newMessage,
+.tile .tile-status > .badge.newMessage {
   background: #2d89ef url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAC/SURBVDhP1ZE9DgIhFIQhobDYg1haWniMbSw9j0exsfMAeg9L7Sy2kPATnCFI2LgYtjJOMjx4vPkoED+X5OK934cQ+thpFOYvSqmdMMascVDOuQMcGn1GptNaL4W1dgBkMwOSw8jeBJszIKMwexFAN0A+wnQG0Lh4wv0EJIb5AO4fRX8MoDFAlZAyPJSztOSSfiYLAYeyxTcdURcIrqSUJ7iLA4UmAdQbgnqvhakqgEoQXQtTXwEtIuCa9n8pIV67VJf6AmhGmgAAAABJRU5ErkJggg%3D%3D) 50% no-repeat;
 }
-.tile .brand  > .badge.paused,
-.tile .tile-status  > .badge.paused {
+.tile .brand > .badge.paused,
+.tile .tile-status > .badge.paused {
   background: #2d89ef url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAArSURBVDhPY/j9+7fDnz9//mPBCQxQgE8NE1QN2WDUgFEDQGDUgIE3gIEBAArtNKc4HT7sAAAAAElFTkSuQmCC) 50% no-repeat;
 }
-.tile .brand  > .badge.playing,
-.tile .tile-status  > .badge.playing {
+.tile .brand > .badge.playing,
+.tile .tile-status > .badge.playing {
   background: #2d89ef url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEXSURBVDhPY4CBnz9/pvz+/dsFyiUaMEFpBiYmJhkgtf3v37/t////Z4GIEgZwA0CAkZGRBai5AmjIYSCtABXGC1AMQAIWf/78OQ/EEVA+ToDLAJBrBIDUcqBrZgNdwwMRxQQ4DYABoOYUoCGngYFsABVCAQQNgAINYCAf//XrVwGUDwfEGgDyEgfQkH5guGwGukoEKky8AUhA5sePH6DwAQOSDAC6YgIzM7MpJyfnHagQcQYAnfwGiD2BmguBhvyBCoMBMQbsYWFh0WVlZd0B5aMAnAYAbfzz79+/SqBmV6CtL6DCGACXAQ+ABliysbF1QPk4AYYBQI0rgH7VBWo+AxXCC+AGADV+AVKJQL9GAp0MYhMBGBgA8v5j1f90TA8AAAAASUVORK5CYII%3D) 50% no-repeat;
 }
-.tile .brand  > .badge.error,
-.tile .tile-status  > .badge.error {
+.tile .brand > .badge.error,
+.tile .tile-status > .badge.error {
   background: #2d89ef url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFiSURBVDhPjVM7TsNQELRjy8ISBQeIREtBEYnQUXCINFTkCCBxgNwAJI5AaejSpaCAEqRINBTcIQ1SbD9/mHmfZP3iSIw0ytt9O7O7thMGHpqmGVZVNQnD8AwcMde27RL8rOt6nqbpjy7sA4RTpdQKv20fcbcuy/IOZrGVbIHLpz7RHr52TJCYukuMeU+6WDBjdxej4UyLubMbm0KdBDyTzHWEyY01UEVRnA4Q8IEdaZVAFEW3yD/g+IzzFc6VuTFAHAPXO7vLKQi5q+suuOD+X15yx4ToEXON1QB3B6ZkC3Qd+q8Kaxzbo0TMCTLPefPAfPS8nTeOtnk1YEfMsf11pIm+y/P8BLusmaCZrevsLE1QO3F51FzopJyCQil2pAnFoLLxI7X6z8SxkVjgeMn4H/jGQz3Ht/BrY2MC85nrsI/sjNpDKzMTSODzHPELQ9EY1H9ndFqCHxC/JEnyrgs1guAPTvwreuY0IiIAAAAASUVORK5CYII%3D) 50% no-repeat;
 }
-.tile .brand  > .badge.attention,
-.tile .tile-status  > .badge.attention {
+.tile .brand > .badge.attention,
+.tile .tile-status > .badge.attention {
   background: #2d89ef url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEbSURBVDhPtZI9bsJAEIVZ7ANQ5gApEomChjoNBUUOkSJFivSUQE3JEThCCo4BkotcIVKKNEi2vP7hveVZrMFgKPJJo915szOzf51/Jc/zhbV2Jfc+kiR5QrLNsqzEMJJ8O0hcM1kWlWUZKtQOOo69ZGdpmn4ofB12QsI3k1BoRtP8F7Gell0GnT6rrpJ4HOfzUiU1ww7o9HepAGI2juNHyeegw7Ja3FRA9iW5jv9slSl0WqD2rEYjF7Hy68E7gCPNORpjpk44sg2CYAg969JTxVoywYIXmlyfAS77jRPDZ8PZN5j3KfiEYeh2yG07wQN5P4g/d9H9Hf5ZMkHM/QO5NbCzh6IoJgbVI/iNBdrALnY8An9X+w9rpLPbA/sADga+JgSiAAAAAElFTkSuQmCC) 50% no-repeat;
 }
-.tile .brand  > .name,
-.tile .tile-status  > .name {
+.tile .brand > .name,
+.tile .tile-status > .name {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -4980,33 +4955,39 @@ th[class*="span"] {
   font-smooth: always;
   color: #ffffff;
 }
-.tile .brand  > .name:hover,
-.tile .tile-status  > .name:hover {
+.tile .brand > .name:hover,
+.tile .tile-status > .name:hover {
   color: #ffffff;
 }
-.tile .brand  > .name  > [class*=icon-],
-.tile .tile-status  > .name  > [class*=icon-] {
+.tile .brand > .name > [class*=icon-],
+.tile .tile-status > .name > [class*=icon-] {
   font-size: 24px;
 }
-.tile .brand  > .icon,
-.tile .tile-status  > .icon {
+.tile .brand > .icon,
+.tile .tile-status > .icon {
   margin: 5px 15px;
   width: 32px;
   height: 32px;
 }
-.tile .brand  > .icon  > [class*=icon-],
-.tile .tile-status  > .icon  > [class*=icon-] {
+.tile .brand > .icon > [class*=icon-],
+.tile .tile-status > .icon > [class*=icon-] {
   font-size: 32px;
 }
-.tile .brand  > .icon  > img,
-.tile .tile-status  > .icon  > img {
+.tile .brand > .icon > img,
+.tile .tile-status > .icon > img {
   width: 100%;
   height: 100%;
 }
-.tile .brand  > .text,
-.tile .tile-status  > .text {
+.tile .brand > img ~ .text,
+.tile .tile-status > img ~ .text {
   position: absolute;
   left: 60px;
+  width: auto;
+}
+.tile .brand > .text,
+.tile .tile-status > .text {
+  position: relative;
+  left: 8px;
   top: 5px;
   right: 50px;
   font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
@@ -5016,17 +4997,18 @@ th[class*="span"] {
   color: #000000;
   color: #ffffff;
   line-height: 14px;
+  width: 60%;
 }
-.tile .brand  > .text:hover,
-.tile .tile-status  > .text:hover {
+.tile .brand > .text:hover,
+.tile .tile-status > .text:hover {
   color: rgba(0, 0, 0, 0.8);
 }
-.tile .brand  > .text:active,
-.tile .tile-status  > .text:active {
+.tile .brand > .text:active,
+.tile .tile-status > .text:active {
   color: rgba(0, 0, 0, 0.4);
 }
-.tile .brand  > .text:hover,
-.tile .tile-status  > .text:hover {
+.tile .brand > .text:hover,
+.tile .tile-status > .text:hover {
   color: #ffffff;
 }
 .tile:hover {
@@ -5035,7 +5017,7 @@ th[class*="span"] {
 /*
  * Metro UI CSS
  * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT Lilcense
+ * Licensed under the MIT License
  *
  * Layout.less
  */
@@ -5045,7 +5027,7 @@ th[class*="span"] {
   margin-bottom: 10px;
   cursor: pointer;
 }
-.input-control.checkbox  > input[type=checkbox] {
+.input-control.checkbox > input[type=checkbox] {
   position: absolute;
   opacity: 0;
 }
@@ -5091,6 +5073,9 @@ th[class*="span"] {
 .input-control.checkbox input[type=checkbox]:disabled ~ .helper:after {
   color: #8a8a8a;
 }
+.input-control.checkbox input[type=checkbox]:focus ~ .helper:before {
+  border-color: #919191;
+}
 .input-control.checkbox:hover input[type=checkbox]:not(:disabled) ~ .helper:before {
   border-color: #919191;
 }
@@ -5122,7 +5107,7 @@ th[class*="span"] {
   margin-bottom: 10px;
   cursor: pointer;
 }
-.input-control.radio  > input[type=radio] {
+.input-control.radio > input[type=radio] {
   position: absolute;
   opacity: 0;
 }
@@ -5144,7 +5129,7 @@ th[class*="span"] {
   left: 0;
   border-radius: 100%;
 }
-.input-control.radio input[type="radio"]:checked + .helper:after {
+.input-control.radio input[type="radio"]:checked ~ .helper:after {
   position: absolute;
   display: block;
   content: "";
@@ -5161,17 +5146,20 @@ th[class*="span"] {
   height: 10px;
   border-radius: 100%;
 }
-.input-control.radio input[type="radio"]:disabled + .helper:before {
+.input-control.radio input[type="radio"]:disabled ~ .helper:before {
   cursor: default;
   background: #e6e6e6;
 }
-.input-control.radio input[type="radio"]:disabled + .helper:after {
+.input-control.radio input[type="radio"]:disabled ~ .helper:after {
   background-color: #8a8a8a;
 }
-.input-control.radio:hover input:not(:disabled) + .helper:before {
+.input-control.radio input[type="radio"]:focus ~ .helper:before {
   border-color: #919191;
 }
-.input-control.radio:active input:not(:disabled) + .helper:before {
+.input-control.radio:hover input:not(:disabled) ~ .helper:before {
+  border-color: #919191;
+}
+.input-control.radio:active input:not(:disabled) ~ .helper:before {
   border-color: #1e1e1e;
 }
 .input-control.switch {
@@ -5181,7 +5169,7 @@ th[class*="span"] {
   cursor: pointer;
   position: relative;
 }
-.input-control.switch  > input[type=checkbox] {
+.input-control.switch > input[type=checkbox] {
   position: absolute;
   opacity: 0;
 }
@@ -5204,7 +5192,7 @@ th[class*="span"] {
   margin-left: 2px;
   z-index: 1;
 }
-.input-control.switch input[type="checkbox"] + .helper:after {
+.input-control.switch input[type="checkbox"] ~ .helper:after {
   position: absolute;
   left: 36px;
   top: 2px;
@@ -5218,18 +5206,21 @@ th[class*="span"] {
   background: #333;
   z-index: 2;
 }
-.input-control.switch input[type="checkbox"]:not(:checked) + .helper:after {
+.input-control.switch input[type="checkbox"]:not(:checked) ~ .helper:after {
   left: 2px !important;
 }
-.input-control.switch input[type="checkbox"]:not(:checked) + .helper:before {
+.input-control.switch input[type="checkbox"]:not(:checked) ~ .helper:before {
   background: #a6a6a6 !important;
 }
-.input-control.switch input[type="checkbox"]:disabled + .helper:after {
+.input-control.switch input[type="checkbox"]:disabled ~ .helper:after {
   background: #a6a6a6 !important;
   outline: 2px #a6a6a6 solid !important;
   border: 1px #a6a6a6 solid !important;
 }
-.input-control.switch input[type="checkbox"]:disabled + .helper:before {
+.input-control.switch input[type="checkbox"]:focus ~ .helper:before {
+  outline: 2px #747474 solid !important;
+}
+.input-control.switch input[type="checkbox"]:disabled ~ .helper:before {
   cursor: default !important;
   background: #e0e0e0 !important;
   outline: 2px #ccc solid !important;
@@ -5239,22 +5230,37 @@ th[class*="span"] {
 .input-control > input[type=url],
 .input-control > input[type=phone],
 .input-control > input[type=password],
+.input-control > input[type=number],
+.input-control > input[type=time],
 .input-control > select,
 .input-control > textarea {
   border: 1px #bababa solid;
   width: 100%;
-  padding: 4px 32px 6px 5px;
+  padding: 4px 6px 6px 5px;
   background-color: #fff;
   outline: 0;
   margin-right: 32px;
   min-height: 32px;
   position: relative;
 }
+.input-control > input[type=text].with-helper,
+.input-control > input[type=email].with-helper,
+.input-control > input[type=url].with-helper,
+.input-control > input[type=phone].with-helper,
+.input-control > input[type=password].with-helper,
+.input-control > input[type=number].with-helper,
+.input-control > input[type=time].with-helper,
+.input-control > select.with-helper,
+.input-control > textarea.with-helper {
+  padding: 4px 32px 6px 5px;
+}
 .input-control > input[type=text]:disabled,
 .input-control > input[type=email]:disabled,
 .input-control > input[type=url]:disabled,
 .input-control > input[type=phone]:disabled,
 .input-control > input[type=password]:disabled,
+.input-control > input[type=number]:disabled,
+.input-control > input[type=time]:disabled,
 .input-control > select:disabled,
 .input-control > textarea:disabled {
   background-color: #eaeaea;
@@ -5264,6 +5270,8 @@ th[class*="span"] {
 .input-control > input[type=url]:focus,
 .input-control > input[type=phone]:focus,
 .input-control > input[type=password]:focus,
+.input-control > input[type=number]:focus,
+.input-control > input[type=time]:focus,
 .input-control > select:focus,
 .input-control > textarea:focus {
   border-color: #000;
@@ -5271,7 +5279,9 @@ th[class*="span"] {
 .input-control > input[type=text]::-ms-clear,
 .input-control > input[type=email]::-ms-clear,
 .input-control > input[type=url]::-ms-clear,
-.input-control > input[type=phone]::-ms-clear {
+.input-control > input[type=phone]::-ms-clear,
+.input-control > input[type=number]::-ms-clear,
+.input-control > input[type=time]::-ms-clear {
   display: none;
 }
 .input-control > input[type=password]::-ms-reveal {
@@ -5284,40 +5294,40 @@ th[class*="span"] {
   padding-right: 5px;
   min-height: 100px;
 }
-.input-control.text input[type=text]:not(:focus) + .helper,
-.input-control.password input[type=text]:not(:focus) + .helper,
-.input-control.text input[type=password]:not(:focus) + .helper,
-.input-control.password input[type=password]:not(:focus) + .helper,
-.input-control.text input[type=email]:not(:focus) + .helper,
-.input-control.password input[type=email]:not(:focus) + .helper,
-.input-control.text input[type=phone]:not(:focus) + .helper,
-.input-control.password input[type=phone]:not(:focus) + .helper,
-.input-control.text input[type=url]:not(:focus) + .helper,
-.input-control.password input[type=url]:not(:focus) + .helper {
+.input-control.text input[type=text]:not(:focus) ~ .helper,
+.input-control.password input[type=text]:not(:focus) ~ .helper,
+.input-control.text input[type=password]:not(:focus) ~ .helper,
+.input-control.password input[type=password]:not(:focus) ~ .helper,
+.input-control.text input[type=email]:not(:focus) ~ .helper,
+.input-control.password input[type=email]:not(:focus) ~ .helper,
+.input-control.text input[type=phone]:not(:focus) ~ .helper,
+.input-control.password input[type=phone]:not(:focus) ~ .helper,
+.input-control.text input[type=url]:not(:focus) ~ .helper,
+.input-control.password input[type=url]:not(:focus) ~ .helper {
   display: none;
 }
-.input-control.text input[type=text]:focus + .helper,
-.input-control.password input[type=text]:focus + .helper,
-.input-control.text input[type=password]:focus + .helper,
-.input-control.password input[type=password]:focus + .helper,
-.input-control.text input[type=email]:focus + .helper,
-.input-control.password input[type=email]:focus + .helper,
-.input-control.text input[type=phone]:focus + .helper,
-.input-control.password input[type=phone]:focus + .helper,
-.input-control.text input[type=url]:focus + .helper,
-.input-control.password input[type=url]:focus + .helper {
+.input-control.text input[type=text]:focus ~ .helper,
+.input-control.password input[type=text]:focus ~ .helper,
+.input-control.text input[type=password]:focus ~ .helper,
+.input-control.password input[type=password]:focus ~ .helper,
+.input-control.text input[type=email]:focus ~ .helper,
+.input-control.password input[type=email]:focus ~ .helper,
+.input-control.text input[type=phone]:focus ~ .helper,
+.input-control.password input[type=phone]:focus ~ .helper,
+.input-control.text input[type=url]:focus ~ .helper,
+.input-control.password input[type=url]:focus ~ .helper {
   display: block;
 }
-.input-control.text input[type=text]:not(:focus) + .helper:active,
-.input-control.password input[type=text]:not(:focus) + .helper:active,
-.input-control.text input[type=password]:not(:focus) + .helper:active,
-.input-control.password input[type=password]:not(:focus) + .helper:active,
-.input-control.text input[type=email]:not(:focus) + .helper:active,
-.input-control.password input[type=email]:not(:focus) + .helper:active,
-.input-control.text input[type=phone]:not(:focus) + .helper:active,
-.input-control.password input[type=phone]:not(:focus) + .helper:active,
-.input-control.text input[type=url]:not(:focus) + .helper:active,
-.input-control.password input[type=url]:not(:focus) + .helper:active {
+.input-control.text input[type=text]:not(:focus) ~ .helper:active,
+.input-control.password input[type=text]:not(:focus) ~ .helper:active,
+.input-control.text input[type=password]:not(:focus) ~ .helper:active,
+.input-control.password input[type=password]:not(:focus) ~ .helper:active,
+.input-control.text input[type=email]:not(:focus) ~ .helper:active,
+.input-control.password input[type=email]:not(:focus) ~ .helper:active,
+.input-control.text input[type=phone]:not(:focus) ~ .helper:active,
+.input-control.password input[type=phone]:not(:focus) ~ .helper:active,
+.input-control.text input[type=url]:not(:focus) ~ .helper:active,
+.input-control.password input[type=url]:not(:focus) ~ .helper:active {
   display: block;
 }
 .input-control {
@@ -5512,7 +5522,7 @@ input[type=submit] {
 /*
  * Metro UI CSS
  * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT Lilcense
+ * Licensed under the MIT License
  *
  * images.less
  *
@@ -5531,8 +5541,8 @@ input[type=submit] {
 .image-collection:after {
   clear: both;
 }
-.image-collection  > div,
-.image-collection  > li {
+.image-collection > div,
+.image-collection > li {
   width: 220px;
   height: 121px;
   overflow: hidden;
@@ -5546,15 +5556,15 @@ input[type=submit] {
   vertical-align: middle !important;
   text-align: center;
 }
-.image-collection  > div  > img,
-.image-collection  > li  > img {
+.image-collection > div > img,
+.image-collection > li > img {
   width: 100%;
   height: auto;
   min-height: 100%;
   max-width: 100%;
 }
-.image-collection  > div  > .overlay,
-.image-collection  > li  > .overlay {
+.image-collection > div > .overlay,
+.image-collection > li > .overlay {
   position: absolute;
   width: 100%;
   height: 55px;
@@ -5568,8 +5578,8 @@ input[type=submit] {
   opacity: .8;
   bottom: -55px;
 }
-.image-collection  > div:hover .overlay,
-.image-collection  > li:hover .overlay {
+.image-collection > div:hover .overlay,
+.image-collection > li:hover .overlay {
   -webkit-transform: translate(0, -55px);
   -ms-transform: translate(0, -55px);
   -o-transform: translate(0, -55px);
@@ -5581,11 +5591,11 @@ input[type=submit] {
   -ms-transition: all 0.3s ease;
   transition: all 0.3s easet;
 }
-.image-collection.p16x9  > div {
+.image-collection.p16x9 > div {
   width: 220px;
   height: 121px;
 }
-.image-collection.p4x3  > div {
+.image-collection.p4x3 > div {
   width: 220px;
   height: 165px;
 }
@@ -5601,7 +5611,7 @@ input[type=submit] {
   width: 100%;
   height: auto;
 }
-.image-container  > .overlay {
+.image-container > .overlay {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -5617,13 +5627,13 @@ input[type=submit] {
 .image-container.light {
   background-color: #ccc;
 }
-.image-container.light  > .overlay {
+.image-container.light > .overlay {
   color: #1e1e1e;
 }
 /*
  * Metro UI CSS
  * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT Lilcense
+ * Licensed under the MIT License
  *
  * Cards.less
  *
@@ -5777,7 +5787,7 @@ input[type=submit] {
 /*
  * Metro UI CSS
  * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT Lilcense
+ * Licensed under the MIT License
  *
  * Code.less
  *
@@ -5828,7 +5838,7 @@ pre code {
 /*
  * Metro UI CSS
  * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT Lilcense
+ * Licensed under the MIT License
  *
  * PageControl.less
  *
@@ -5845,7 +5855,7 @@ pre code {
 .page-control:after {
   clear: both;
 }
-.page-control  > ul {
+.page-control > ul {
   margin-left: 0;
   list-style: none;
   *zoom: 1;
@@ -5855,40 +5865,40 @@ pre code {
   background-color: rgba(217, 217, 217, 0.16);
   height: 30px;
 }
-.page-control  > ul:before,
-.page-control  > ul:after {
+.page-control > ul:before,
+.page-control > ul:after {
   display: table;
   content: "";
 }
-.page-control  > ul:after {
+.page-control > ul:after {
   clear: both;
 }
-.page-control  > ul li:first-child {
+.page-control > ul li:first-child {
   margin-left: 20px;
 }
-.page-control  > ul li {
+.page-control > ul li {
   float: left;
   display: block;
   text-align: center;
 }
-.page-control  > ul li img {
+.page-control > ul li img {
   float: left;
   width: 16px;
   height: 16px;
   margin-right: 5px;
   margin-top: 3px;
 }
-.page-control  > ul li.active {
+.page-control > ul li.active {
   border: 1px #ccc solid;
   border-bottom: 0;
   background-color: #fff;
 }
-.page-control  > ul li.active span,
-.page-control  > ul li.active a {
+.page-control > ul li.active span,
+.page-control > ul li.active a {
   color: #2d89ef;
 }
-.page-control  > ul li span,
-.page-control  > ul li a {
+.page-control > ul li span,
+.page-control > ul li a {
   text-decoration: none;
   display: block;
   float: left;
@@ -5903,7 +5913,7 @@ pre code {
   cursor: pointer;
   outline: 0;
 }
-.page-control.tabs-right  > ul li {
+.page-control.tabs-right > ul li {
   float: right !important;
   margin-left: 10px;
 }
@@ -5934,7 +5944,7 @@ pre code {
 /*
  * Metro UI CSS
  * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT Lilcense
+ * Licensed under the MIT License
  *
  * Accordion.less
  */
@@ -5952,11 +5962,11 @@ pre code {
 .accordion:after {
   clear: both;
 }
-.accordion  > li {
+.accordion > li {
   margin-bottom: 5px;
   display: block;
 }
-.accordion  > li  > a {
+.accordion > li > a {
   display: block;
   height: 32px;
   background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAALnSURBVEhLrZY/aNNREMeTXzPYksHBQdoMGUxbSkXSpK2gULcKCnas0MEODoIOgqWrRcHJujpEonQQh2LrVKVCgxWEtMVABMFCW0iTDg4iqNikiZ/vy2vMX2v/fOHy7t293929e/fuxe36B7q6urwtLS1DhUJh0O12+xH5ihrXFpTK5/Ovkc8sLy9/LYprUdeBDDc3N9+BHcdACgczjuN8wuC69MjkqAP5ZcZu5o/hJ+o5qnHQ29sbxtBL8Ri9Ho/H54yiAXp6es6yLgp7EkdXq9c32dEgHA4PE8ksC1/lcrkrKysrSatqiEwmkwoEAk+2t7eP8+1kW1vbj3Q6/cGq/0KRh0KhXzgZsaJ9g+8vQFl2pdQZmB0o5x6P550iX1paumc0BwC7WW9tbW0iZQ99Pt/U5ubmd0cKe6CubDZ7W2M9sMNr7K4gIsq7VlwDr9d7n1Stco4mUEfRM47rQBOJxDcJD4NYLJbD1ihORoLB4ClHdU5qUntVy36ArY8MCzgadvA0CM0UVUcKVeOghx8/9NYKS1DOLWtAEOcsq4t2plpP1E8tu4sk34y7ObQ1mFFu4YJVGOgwLftfoPoqLm1/f79/Z2dnTSnyMM8VxUcPRwesNNl5CTieKCdE5ee0UEdfATqBD/mWok9BHUZaBlJWUevKOR8MiWeMVeurwZpOBe+o5TIpXe2jAiV6CQdzSpG23q1eVFQdHjpggr6I7WlHPRxG/XxqYGDgmF1zKFA9UWzO68KZ0qK3nEDwBScRHI6ZVQcEtm4yPIJOY+uz6aZ0wZ/08QQOJumG79UVJd8vMK6DfYGdW7wlbyQrPTg8Eqs4+Q37TC23vb19cWNjI1/U7g1Fbo1HMP7AimufTD0WVMBzFq6qK9rG1RD2xkZZfx66gfGIVRnUOBD6+vp86ud8MMx0EZqFkjxKJnX2EnWqFBlVLfOMY8q59OWo62AXpp/TcjGgjqumaP62wJu/LcznoOnGu3S5/gDwHX69fcclgQAAAABJRU5ErkJggg%3D%3D) 5px no-repeat;
@@ -5970,32 +5980,32 @@ pre code {
   line-height: 14pt;
   font-smooth: always;
 }
-.accordion  > li  > div {
+.accordion > li > div {
   border: 1px #ccc dotted;
   padding: 10px;
   margin-top: 5px;
   display: none;
 }
-.accordion  > li.active  > a {
+.accordion > li.active > a {
   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAKlSURBVEhLtZY/aNNREMeTXzOYkMGxJBkymDSGDua/QyFuERTULYJLBwdBB8HiXBSc7OxQCdJBHIqpUyodClYU8geFFBwCbSB/BJ0kKuavn3t5rX+S2D+JX7jce3fvd3fv3r17MZv+Ab/fb7fZbJd7vV7CbDa7Ebn6GtNHqNLtdteRp/P5/Oe+eBBDHYhhq9V6h+FdDFRwkDYMYxuDu6JHJo5mkF+EzzJ/xHhxmKMBB5FIJIyh5zLG6PVsNptRihEIBoNnWZdiOI2jq3+vn9JcIRwOJ4lkjYUv2u32pUKhUNSqkajX6xWPx/O42Wye5Nslp9P5tVarvdXqX5DIQ6HQd5xc06Ijg+/PQS12JalTUDuQnFssllcSeS6Xu6c0xwC72XU4HFOk7KHL5VqpVqtfDFHoAzW1Wq3bwseB3W6/T6pKnKMK1Kwr5hNerxx0oIcF6T6Dgyx02pA6JzWVSRkXYOsdbJOgkwbbSUDpvmqikGpMGPy48bSthZNEkcDdZspyh8E8t3BTKxSQ9/TwUKD6/ri0sVjM3el0diRFFubtvvg/gEjfjHO5RoELNwfV5R5UoBklnSDIjA9WMajVdSb7V3tSoHAuUEAZqSIp0VnpRX3V+JADJujz2F41pIczkH6+Eo/HT+g1Y4HqSWFzQy6c6kUYX4RNNxqNYze6PXCwN7E3By3IXHVTuuA3+vh7hEt0w9fSFUV+VGDcR+TPsHOLt+SlyPYfHB6JEk5+MHwiLdfr9W6Vy+VuX3swJHJtfBnjD7R48MmUx4IKeMrCEnxeN66R0Dc2xXpJyw2ML2uVwtBHPxqNuqSf80GS6Ra0BhV5lFTqeE5d6HxSinCplg34AgXzQfS/Y6iDPQQCgVMYSWJAOq4brv62MFZ/W5hnoNXRuzSZfgLYkUQRTJGc4wAAAABJRU5ErkJggg%3D%3D);
   background-color: #d9d9d9;
 }
-.accordion  > li.active  > div {
+.accordion > li.active > div {
   display: block;
 }
-.accordion.dark  > li  > a {
+.accordion.dark > li > a {
   background-color: #464646;
   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAIzSURBVEhLtZYhSENRFIb3HgaDwWA0LAgaBBcMggu2DTQYFwwG44JBsE6MBpOwIhO0iahYJgoqBoNhFjEqaDAIBsOCsvn99509mXub080f/t33/nPuOfedd+7d82ItUK1W++AslykYh4PSwTN8gsee5x3AF6dGIDKBAjMsMS4zKpCC3DI+QNmVaBjOwFGYx77SKlGISqUyDh+NaZObAp8JeAdff/THIQPLsMAq+03+Efj2MmfN5i6aXA8MWrkc5kz6NUg0xfx3qNJ9AUMfokpSMOnPIFaOOG+w1hCh+MjYtCzY5mENOZMbgK2HWKVwsQhavUrT8gXh11YCAXuCeCrVkM+N+vzJ9/1iYO4ctOsNwznM+PxoEx3AbuMQpjwe45KMm3Ar0APwZPN26cD9JD4Ldq2NpwAhIuZPwW21571uTA+B9ivYtBBIcekqUQ/8cOo/QCW6YtzgJe8EUgCS13UK92OUQQ2h63OuL5zBwP13/yTcVYl24arpTYFz220qEHMBXqtEx7B+a3cH07Do82hq0VGyjTu5C+AJ9d+RJvaeEugMz8NtDL1y6BTE0TFxSmxtOCcM8AQ6z9ec0AGIkYXvxBwxKQBiGpYxNOyJdqGgxNBJ6jZkAzAsQWXPQe2PtsE8rVzB102KBg4z5lgiScLkpsAnju8Z1OkZvfLvwHEQFqCO8ROYJZDOFm1/MYmmPt83nyO0+pobWn62MHGIIQPdZwtd4f6lCFb7bCmqFcNuaUAs9glLFQdwvFGvGQAAAABJRU5ErkJggg%3D%3D);
   color: #fff;
 }
-.accordion.dark  > li.active  > a {
+.accordion.dark > li.active > a {
   background-color: #1e1e1e;
   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHpSURBVEhLtZavT8JRFMXBGQgEg5FAYNNgIBAMBhpsEowEIpFgYLMYMBsMFht/gRNHgRn8EzDoCBY2CAQ3g4GAAz/ncUW+ym++nu3swnn3nfu47/se32BgDobDYRie8DEFozAiHXRhB9aDwWAFvjl1CqYWkDGhSDwjykgmL8QW1LgK7cEMPIA3jF/MKzTGYDBIwLYxbfJMkHMIm/B9YT4JWdiDZVa5Y/JCkBtizqXNPTXZCwa0ciXkTFoZFEoyvw/Vuh8wEEZUS8omrQ28Svh8wO8HYiy2iUu3ZRbw2MarMV6srV6tWbihywLPOH5qVUy9z8FXG/MNeD7A8y0+6xBVnOov7mFKBaJ2iHwFns+EqApot90JnQR9XAk2bRItikRUYBt+OukfoAIdFqCLzAOqrwSbNokIvl1XAOri8hWY7xM6KlCH3qPtD45hTZV2eV51KBIjfXOo5fj1iHEn8OUaNhFCTtgQeD3Cqn11FfUrdJ9fmrQ28CjAPp7agx8gpqF+VtKklSFTPHST5k3ygoEiVPUS1PlYGszTymV+ZdJ0kJCxxAZFRps0B+RoQ9VzPSjTV/4bJEZgGeoa161YwCgpM+MRWh7eWU4Vzdtzw9zXFibGCFnoXls4sO5fCrPv15Ya2i18kv4XgcAXTr+7IYi7bgIAAAAASUVORK5CYII%3D);
 }
 /*
  * Metro UI CSS
  * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT Lilcense
+ * Licensed under the MIT License
  *
  * rating.less
  */
@@ -6074,7 +6084,7 @@ pre code {
 /*
  * Metro UI CSS
  * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT Lilcense
+ * Licensed under the MIT License
  *
  * Progress.less
  */
@@ -6101,7 +6111,7 @@ pre code {
 /*
  * Metro UI CSS
  * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT Lilcense
+ * Licensed under the MIT License
  *
  * Carousel.less
  * Version: 1.0
@@ -6160,9 +6170,8 @@ pre code {
 .carousel .control:hover {
   opacity: 1;
 }
-.carousel .markers  > ul {
+.carousel .markers > ul {
   margin-left: 0;
-  list-style: none;
   list-style: none;
   position: absolute;
   top: 100%;
@@ -6187,7 +6196,7 @@ pre code {
 /*
  * Metro UI CSS
  * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT Lilcense
+ * Licensed under the MIT License
  *
  * ListView.less
  * Version 1.0
@@ -6210,11 +6219,15 @@ pre code {
 .listview li .icon {
   width: 48px;
   height: 48px;
+  font-size: 40px;
   float: left;
 }
 .listview li .icon img {
   width: 100%;
   height: 100%;
+}
+.listview li .icon i {
+  margin-top: 10px;
 }
 .listview li .data {
   margin-left: 55px;
@@ -6280,10 +6293,33 @@ pre code {
   float: left;
   margin-right: 10px;
 }
-.listview  > li.selected {
+.listview li div.badge {
+  position: absolute;
+  left: -4px;
+  top: -4px;
+  background-color: #2d89ef;
+  padding: 5px;
+  margin: 0 !important;
+  text-align: center;
+  display: block;
+  font-size: 9pt;
+  color: #ffffff;
+}
+.listview li div.badge.strech {
+  padding: 0 5px;
+}
+.listview li div.badge.right {
+  right: -4px;
+  left: auto;
+}
+.listview li div.badge.bottom {
+  top: auto;
+  bottom: -4px;
+}
+.listview > li.selected {
   border: 4px #2d89ef solid;
 }
-.listview  > li.selected:after {
+.listview > li.selected:after {
   width: 0;
   height: 0;
   border-top: 40px solid #2d89ef;
@@ -6295,7 +6331,7 @@ pre code {
   top: 0;
   z-index: 1001;
 }
-.listview  > li.selected:before {
+.listview > li.selected:before {
   position: absolute;
   content: "\e08a";
   color: #fff;
@@ -6316,7 +6352,7 @@ pre code {
 /*
  * Metro UI CSS
  * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT Lilcense
+ * Licensed under the MIT License
  *
  * Slider.less
  *
@@ -6361,6 +6397,13 @@ pre code {
 .slider:active + .marker:active .complete {
   background-color: #25bbc4;
 }
+/*
+ * Metro UI CSS
+ * Copyright 2012 Valerio Battaglia
+ * Licensed under the MIT License
+ *
+ * dialog.less
+ */
 .dialog {
   position: absolute;
   top: 40%;

@@ -21,7 +21,6 @@
                             $.Dialog({
                                 'title'      : 'My static dialog',
                                 'content'    : 'This content can be in HTML.<br />You can add custom function to your buttons!<br /><br /><b>Features:</b><ul><li>Easy to use!</li><li>Customizable</li><li>Powerful!</li></ul>',
-                                'overlay'    : false,
                                 'buttons'    : {
                                     'Ok'    : {
                                         'action': function(){}
@@ -70,6 +69,7 @@
                     });
                 </script>
                 <h2>Component usage</h2>
+                <p>You can have maximum one dialog box opened at once.</p>
 <pre class="prettyprint linenums span10">
     $(document).ready(function(){
         $.Dialog({
@@ -79,6 +79,9 @@
             'overlay'     : true,
             'closeButton' : true,
             'buttonsAlign': 'right',
+            'position'    : {
+                'zone'    : 'right'
+            },
             'buttons'     : {
                 'button1'     : {
                     'action': function(){}
@@ -95,7 +98,7 @@
                     <li><b>title</b> - Title of the dialog box (HTML format)</li>
                     <li><b>content</b> - Content of the dialog box (HTML format)</li>
                     <li><b>draggable</b> - Set draggable to dialog box, available: <i>true, false</i> (default: false)</li>
-                    <li><b>overlay</b> - Set the overlay of the page, available: <i>true, false</i> (default: true)</li>
+                    <li><b>overlay</b> - Set the overlay of the page (false will only remove the effect, not the div), available: <i>true, false</i> (default: true)</li>
                     <li><b>closeButton</b> - Enable or disable the close button, available: <i>true, false</i> (default: false)</li>
                     <li><b>buttonsAlign</b> - Align of the buttons, available: <i>left, center, right</i> (default: center)</li>
                     <li>
