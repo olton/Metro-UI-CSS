@@ -31,6 +31,11 @@ Voljskiy, Russia.
 Team member.
 Javascript.
 
+## Valerio Battaglia (vabatta)
+Ticino, Switzerland.
+Team member.
+CSS/LESS, HTML, Javascript.
+
 # Pull requests
 
 Please create pull requests for develop branch. Requests in master branch can be ignored.
