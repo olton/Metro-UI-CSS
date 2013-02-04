@@ -1,7 +1,7 @@
 /*
  * Metro UI CSS
  * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT Lilcense
+ * Licensed under the MIT License
  *
  * Layout.less
  */
@@ -71,6 +71,10 @@
 
         input[type=checkbox]:disabled ~ .helper:after {
             color: #8a8a8a;
+        }
+
+        input[type=checkbox]:focus ~ .helper:before {
+            border-color: #919191;
         }
 
         &:hover {
@@ -144,7 +148,7 @@
             border-radius: 100%;
         }
 
-        input[type="radio"]:checked + .helper:after {
+        input[type="radio"]:checked ~ .helper:after {
             position: absolute;
             display: block;
             content: "";
@@ -162,23 +166,27 @@
             border-radius: 100%;
         }
 
-        input[type="radio"]:disabled + .helper:before {
+        input[type="radio"]:disabled ~ .helper:before {
             cursor: default;
             background: #e6e6e6;
         }
 
-        input[type="radio"]:disabled + .helper:after {
+        input[type="radio"]:disabled ~ .helper:after {
             background-color: #8a8a8a;
         }
 
+        input[type="radio"]:focus ~ .helper:before {
+            border-color: #919191;
+        }
+
         &:hover {
-            input:not(:disabled) + .helper:before {
+            input:not(:disabled) ~ .helper:before {
                 border-color: #919191;
             }
         }
 
         &:active {
-            input:not(:disabled) + .helper:before {
+            input:not(:disabled) ~ .helper:before {
                 border-color: #1e1e1e;
             }
         }
@@ -220,7 +228,7 @@
             z-index: 1;
         }
 
-        input[type="checkbox"] + .helper:after {
+        input[type="checkbox"] ~ .helper:after {
             position: absolute;
             left: 36px;
             top: 2px;
@@ -235,21 +243,25 @@
             z-index: 2;
         }
 
-        input[type="checkbox"]:not(:checked) + .helper:after {
+        input[type="checkbox"]:not(:checked) ~ .helper:after {
             left: 2px !important;
         }
 
-        input[type="checkbox"]:not(:checked) + .helper:before {
+        input[type="checkbox"]:not(:checked) ~ .helper:before {
             background: #a6a6a6 !important;
         }
 
-        input[type="checkbox"]:disabled + .helper:after {
+        input[type="checkbox"]:disabled ~ .helper:after {
             background: #a6a6a6 !important;
             outline: 2px #a6a6a6 solid !important;
             border: 1px #a6a6a6 solid !important;
         }
 
-        input[type="checkbox"]:disabled + .helper:before {
+        input[type="checkbox"]:focus ~ .helper:before {
+            outline: 2px #747474 solid !important;
+        }
+
+        input[type="checkbox"]:disabled ~ .helper:before {
             cursor: default !important;
             background: #e0e0e0 !important;
             outline: 2px #ccc solid !important;
@@ -265,11 +277,13 @@
 .input-control > input[type=url],
 .input-control > input[type=phone],
 .input-control > input[type=password],
+.input-control > input[type=number],
+.input-control > input[type=time],
 .input-control > select,
 .input-control > textarea {
     border: 1px #bababa solid;
     width: 100%;
-    padding: 4px 32px 6px 5px;
+    padding: 4px 6px 6px 5px;
     background-color: #fff;
     outline: 0;
     margin-right: 32px;
@@ -278,7 +292,9 @@
     //-moz-appearance: none;
     .pos-rel;
 
-
+    &.with-helper {
+        padding: 4px 32px 6px 5px;
+    }
     &:disabled {
         background-color: #eaeaea;
     }
@@ -290,13 +306,14 @@
 .input-control > input[type=text]::-ms-clear,
 .input-control > input[type=email]::-ms-clear,
 .input-control > input[type=url]::-ms-clear,
-.input-control > input[type=phone]::-ms-clear {
+.input-control > input[type=phone]::-ms-clear,
+.input-control > input[type=number]::-ms-clear,
+.input-control > input[type=time]::-ms-clear {
     display: none;
 }
 .input-control > input[type=password]::-ms-reveal {
     display: none;
 }
-
 
 .input-control > select {
     padding-right: 5px;
@@ -309,13 +326,13 @@
 
 .input-control {
     &.text, &.password {
-        input[type=text]:not(:focus) + .helper, input[type=password]:not(:focus) + .helper, input[type=email]:not(:focus) + .helper, input[type=phone]:not(:focus) + .helper, input[type=url]:not(:focus) + .helper {
+        input[type=text]:not(:focus) ~ .helper, input[type=password]:not(:focus) ~ .helper, input[type=email]:not(:focus) ~ .helper, input[type=phone]:not(:focus) ~ .helper, input[type=url]:not(:focus) ~ .helper {
             display: none;
         }
-        input[type=text]:focus + .helper, input[type=password]:focus + .helper, input[type=email]:focus + .helper, input[type=phone]:focus + .helper, input[type=url]:focus + .helper {
+        input[type=text]:focus ~ .helper, input[type=password]:focus ~ .helper, input[type=email]:focus ~ .helper, input[type=phone]:focus ~ .helper, input[type=url]:focus ~ .helper {
             display: block;
         }
-        input[type=text]:not(:focus) + .helper:active, input[type=password]:not(:focus) + .helper:active, input[type=email]:not(:focus) + .helper:active, input[type=phone]:not(:focus) + .helper:active, input[type=url]:not(:focus) + .helper:active{
+        input[type=text]:not(:focus) ~ .helper:active, input[type=password]:not(:focus) ~ .helper:active, input[type=email]:not(:focus) ~ .helper:active, input[type=phone]:not(:focus) ~ .helper:active, input[type=url]:not(:focus) ~ .helper:active{
             display: block;
         }
     }

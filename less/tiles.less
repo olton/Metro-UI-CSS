@@ -1,7 +1,7 @@
 /*
  * Metro UI CSS
  * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT Lilcense
+ * Licensed under the MIT License
  *
  * Tiles.less
  *
@@ -112,6 +112,11 @@
                 left: 50%;
                 margin-left: -32px;
                 margin-top: -32px;
+            }
+ 
+            & > i {
+                font-size: 128px;
+                margin: 9px;
             }
         }
     }
@@ -260,14 +265,21 @@
             }
         }
 
-        & > .text {
+        & > img ~ .text {
             .pos-abs;
             left: 60px;
+            width: auto;
+        }
+
+        & > .text {
+            position: relative;
+            left: 8px;
             top: 5px;
             right: 50px;
             .tertiary-text;
             color: @white;
             line-height: 14px;
+            width: 60%;
 
             &:hover {
                 color: @white;

@@ -138,15 +138,15 @@
                             <h2>Text box</h2>
                             <form>
                                 <div class="input-control text">
-                                    <input type="text"  />
+                                    <input type="text" class="with-helper" />
                                     <button class="helper" onclick="return false"></button>
                                 </div>
                                 <div class="input-control text">
-                                    <input type="text" placeholder="Enter sample text"/>
+                                    <input type="text" class="with-helper" placeholder="Enter sample text"/>
                                     <button class="helper"></button>
                                 </div>
                                 <div class="input-control text disabled">
-                                    <input type="text" disabled="" value="disabled input"/>
+                                    <input type="text" class="with-helper" disabled="" value="disabled input"/>
                                     <button class="helper"></button>
                                 </div>
                                 <div class="input-control text disabled">
@@ -155,7 +155,7 @@
                             </form>
 <pre class="prettyprint linenums">
     &lt;div class="input-control text"&gt;
-        &lt;input type="text" /&gt;
+        &lt;input type="text" class="with-helper" /&gt;
         &lt;button class="helper"&gt;&lt;/button&gt;
     &lt;/div&gt;
 </pre>
@@ -165,15 +165,15 @@
                             <h2>Password box</h2>
                             <form>
                                 <div class="input-control password">
-                                    <input type="password"/>
+                                    <input type="password" class="with-helper" />
                                     <button class="helper"></button>
                                 </div>
                                 <div class="input-control password">
-                                    <input type="password" placeholder="Enter password"/>
+                                    <input type="password" class="with-helper" placeholder="Enter password" />
                                     <button class="helper"></button>
                                 </div>
                                 <div class="input-control password">
-                                    <input type="password" disabled=""/>
+                                    <input type="password" class="with-helper" disabled="" />
                                     <button class="helper"></button>
                                 </div>
                                 <div class="input-control password">
@@ -182,7 +182,7 @@
                             </form>
 <pre class="prettyprint linenums">
     &lt;div class="input-control password"&gt;
-        &lt;input type="password" /&gt;
+        &lt;input type="password" class="with-helper" /&gt;
         &lt;button class="helper"&gt;&lt;/button&gt;
     &lt;/div&gt;
 </pre>
@@ -193,43 +193,43 @@
                         <div class="span10">
                             <form>
                             <div class="input-control text">
-                                <input type="text" placeholder="Enter search phrase..." />
+                                <input type="text" class="with-helper" placeholder="Enter search phrase..." />
                                 <button class="btn-search"></button>
                             </div>
                             </form>
 <pre class="prettyprint linenums">
     &lt;div class="input-control text"&gt;
-        &lt;input type="text" /&gt;
+        &lt;input type="text" class="with-helper" /&gt;
         &lt;button class="btn-search"&gt;&lt;/button&gt;
     &lt;/div&gt;
 </pre>
                             <div class="input-control text">
-                                <input type="phone" placeholder="Enter phone" required="required"/>
+                                <input type="phone" class="with-helper" placeholder="Enter phone" required="required"/>
                                 <button class="helper"></button>
                             </div>
 <pre class="prettyprint linenums">
     &lt;div class="input-control text"&gt;
-        &lt;input type="phone" /&gt;
+        &lt;input type="phone" class="with-helper" /&gt;
         &lt;button class="helper"&gt;&lt;/button&gt;
     &lt;/div&gt;
 </pre>
                             <div class="input-control text">
-                                <input type="email" placeholder="Enter email" required="required" />
+                                <input type="email" class="with-helper" placeholder="Enter email" required="required" />
                                 <button class="helper"></button>
                             </div>
 <pre class="prettyprint linenums">
     &lt;div class="input-control text"&gt;
-        &lt;input type="email" /&gt;
+        &lt;input type="email" class="with-helper" /&gt;
         &lt;button class="helper"&gt;&lt;/button&gt;
     &lt;/div&gt;
 </pre>
                             <div class="input-control text">
-                                <input type="url" placeholder="Enter url"  required="required"/>
+                                <input type="url" class="with-helper" placeholder="Enter url"  required="required"/>
                                 <button class="helper"></button>
                             </div>
 <pre class="prettyprint linenums">
     &lt;div class="input-control text"&gt;
-        &lt;input type="url" /&gt;
+        &lt;input type="url" class="with-helper" /&gt;
         &lt;button class="helper"&gt;&lt;/button&gt;
     &lt;/div&gt;
 </pre>
@@ -318,58 +318,58 @@
                             <h2>Input with spanN class</h2>
 <pre class="prettyprint linenums">
     &lt;div class="input-control text spanN"&gt;
-        &lt;input type="text" /&gt;
+        &lt;input type="text" class="with-helper" /&gt;
         &lt;button class="helper"&gt;&lt;/button&gt;
     &lt;/div&gt;
 </pre>
                             <form>
                                 <div class="input-control text span1 as-block">
-                                    <input type="text" placeholder="s1"/>
+                                    <input type="text" class="with-helper" placeholder="s1"/>
                                     <button class="helper"></button>
                                 </div>
 
                                 <div class="input-control text span2 as-block">
-                                    <input type="text" placeholder="span2"/>
+                                    <input type="text" class="with-helper" placeholder="span2"/>
                                     <button class="helper"></button>
                                 </div>
 
                                 <div class="input-control text span3 as-block">
-                                    <input type="text" placeholder="span3"/>
+                                    <input type="text" class="with-helper" placeholder="span3"/>
                                     <button class="helper"></button>
                                 </div>
 
                                 <div class="input-control text span4 as-block">
-                                    <input type="text" placeholder="span4"/>
+                                    <input type="text" class="with-helper" placeholder="span4"/>
                                     <button class="helper"></button>
                                 </div>
 
                                 <div class="input-control text span5 as-block">
-                                    <input type="text" placeholder="span5"/>
+                                    <input type="text" class="with-helper" placeholder="span5"/>
                                     <button class="helper"></button>
                                 </div>
 
                                 <div class="input-control text span6 as-block">
-                                    <input type="text" placeholder="span6"/>
+                                    <input type="text" class="with-helper" placeholder="span6"/>
                                     <button class="helper"></button>
                                 </div>
 
                                 <div class="input-control text span7 as-block">
-                                    <input type="text" placeholder="span7"/>
+                                    <input type="text" class="with-helper" placeholder="span7"/>
                                     <button class="helper"></button>
                                 </div>
 
                                 <div class="input-control text span8 as-block">
-                                    <input type="text" placeholder="span8"/>
+                                    <input type="text" class="with-helper" placeholder="span8"/>
                                     <button class="helper"></button>
                                 </div>
 
                                 <div class="input-control text span9 as-block">
-                                    <input type="text" placeholder="span9"/>
+                                    <input type="text" class="with-helper" placeholder="span9"/>
                                     <button class="helper"></button>
                                 </div>
 
                                 <div class="input-control text span10 as-block">
-                                    <input type="text" placeholder="span10"/>
+                                    <input type="text" class="with-helper" placeholder="span10"/>
                                     <button class="helper"></button>
                                 </div>
 
