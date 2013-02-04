@@ -9,7 +9,7 @@ Updated forms.php for non-helper classes due to changes
 
 Updated dialog.php components usage and params
 
-Styled inputtype number and time (https://github.com/olton/Metro-UI-CSS/issues/108)(https://github.com/olton/Metro-UI-CSS/issues/109)
+Styled inputtype number and time (https://github.com/olton/Metro-UI-CSS/issues/108) (https://github.com/olton/Metro-UI-CSS/issues/109)
 
 Added possibilites to use icon font in listview icon space
 Added badges to listview (https://github.com/olton/Metro-UI-CSS/issues/107)
