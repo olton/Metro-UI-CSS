@@ -50,7 +50,7 @@
             &lt;/div&gt;
         &lt;/li&gt;
     &lt;/ul&gt;
-    =========================================================
+    &lt;!-- ========================================================= --&gt;
     &lt;div class="replies"&gt;
         &lt;div class="bg-color-*"&gt;
             &lt;div class="avatar"&gt;&lt;img/&gt;&lt;/div&gt;
