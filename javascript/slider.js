@@ -23,7 +23,14 @@ $('.slider').data('value')
 
 (function($) {
 
-    $.slider = function(element, options) {
+    var pluginName = 'slider',
+        initAllSelector = '[data-role=slider], .slider',
+        paramKeys = ['InitValue', 'Accuracy'];
+
+    $[pluginName] = function(element, options) {
+        if (!element) {
+            return $()[pluginName]({initAll: true});
+        }
 
         // default settings
         var defaults = {
@@ -240,27 +247,24 @@ $('.slider').data('value')
 
     };
 
-    $.fn.slider = function(options) {
-        return this.each(function() {
-            if (undefined == $(this).data('slider')) {
-                var plugin = new $.slider(this, options);
-                $(this).data('slider', plugin);
+    $.fn[pluginName] = function(options) {
+        var elements = options.initAll ? $(initAllSelector) : this;
+        return elements.each(function() {
+            var that = $(this),
+                params = {},
+                plugin;
+            if (undefined == that.data(pluginName)) {
+                $.each(paramKeys, function(index, key){
+                    params[key[0].toLowerCase() + key.slice(1)] = that.data('param' + key);
+                });
+                plugin = new $[pluginName](this, params);
+                that.data(pluginName, plugin);
             }
         });
     };
-
+    // autoinit
+    $(function(){
+        $()[pluginName]({initAll: true});
+    });
 
 })(jQuery);
-
-
-$(window).ready(function(){
-    var allsliders = $('[data-role=slider], .slider');
-    allsliders.each(function (index, slider) {
-        var params = {};
-        $slider = $(slider);
-        params.initValue        = $slider.data('paramInitValue');
-        params.accuracy       = $slider.data('paramAccuracy');
-
-        $slider.slider(params);
-    });
-});

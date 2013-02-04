@@ -237,7 +237,7 @@
   .nav-bar .nav-bar-inner .pull-menu {
     display: none;
   }
-  .nav-bar .nav-bar-inner > ul.menu {
+  .nav-bar .nav-bar-inner  > ul.menu {
     display: block !important;
   }
 }
@@ -325,29 +325,29 @@
   .nav-bar .nav-bar-inner .pull-menu {
     display: inline-block;
   }
-  .nav-bar .nav-bar-inner > .divider {
+  .nav-bar .nav-bar-inner  > .divider {
     float: none ;
   }
   .nav-bar .nav-bar-inner .element {
     float: none;
   }
-  .nav-bar .nav-bar-inner > ul.menu {
+  .nav-bar .nav-bar-inner  > ul.menu {
     display: none;
     float: none;
     margin: 5px;
   }
-  .nav-bar .nav-bar-inner > ul.menu > li {
+  .nav-bar .nav-bar-inner  > ul.menu  > li {
     display: block;
     float: none;
     width: 100%;
     margin-left: 0;
     padding-left: 5px;
   }
-  .nav-bar .nav-bar-inner > ul.menu > li a {
+  .nav-bar .nav-bar-inner  > ul.menu  > li a {
     display: block;
     float: none;
   }
-  .nav-bar .nav-bar-inner > ul.menu > li .dropdown-menu {
+  .nav-bar .nav-bar-inner  > ul.menu  > li .dropdown-menu {
     position: relative;
     width: 100%;
     border: 0;
@@ -355,10 +355,10 @@
   .nav-bar .nav-bar-inner [data-role=dropdown] {
     margin-right: 20px !important;
   }
-  .nav-bar .nav-bar-inner [data-role=dropdown] > a {
+  .nav-bar .nav-bar-inner [data-role=dropdown]  > a {
     cursor: pointer;
   }
-  .nav-bar .nav-bar-inner [data-role=dropdown] > a:before {
+  .nav-bar .nav-bar-inner [data-role=dropdown]  > a:before {
     position: absolute;
     content: "\203A";
     display: block;
@@ -554,29 +554,29 @@
   .nav-bar .nav-bar-inner .pull-menu {
     display: inline-block;
   }
-  .nav-bar .nav-bar-inner > .divider {
+  .nav-bar .nav-bar-inner  > .divider {
     float: none !important;
   }
   .nav-bar .nav-bar-inner .element {
     float: none;
   }
-  .nav-bar .nav-bar-inner > ul.menu {
+  .nav-bar .nav-bar-inner  > ul.menu {
     display: none;
     float: none;
     margin: 5px;
   }
-  .nav-bar .nav-bar-inner > ul.menu > li {
+  .nav-bar .nav-bar-inner  > ul.menu  > li {
     display: block;
     float: none;
     width: 100%;
     margin-left: 0;
     padding-left: 5px;
   }
-  .nav-bar .nav-bar-inner > ul.menu > li a {
+  .nav-bar .nav-bar-inner  > ul.menu  > li a {
     display: block;
     float: none;
   }
-  .nav-bar .nav-bar-inner > ul.menu > li .dropdown-menu {
+  .nav-bar .nav-bar-inner  > ul.menu  > li .dropdown-menu {
     position: relative;
     width: 100%;
     border: 0;
@@ -584,10 +584,10 @@
   .nav-bar .nav-bar-inner [data-role=dropdown] {
     margin-right: 20px !important;
   }
-  .nav-bar .nav-bar-inner [data-role=dropdown] > a {
+  .nav-bar .nav-bar-inner [data-role=dropdown]  > a {
     cursor: pointer;
   }
-  .nav-bar .nav-bar-inner [data-role=dropdown] > a:before {
+  .nav-bar .nav-bar-inner [data-role=dropdown]  > a:before {
     position: absolute;
     content: "\203A";
     display: block;
@@ -690,31 +690,31 @@
   .tile .tile-content {
     padding: 5px 10px;
   }
-  .tile.icon > .tile-content img {
+  .tile.icon  > .tile-content img {
     width: 48px;
     height: 48px;
     margin-left: -24px;
     margin-top: -24px;
   }
-  .tile .brand > .badge,
-  .tile .tile-status > .badge {
+  .tile .brand  > .badge,
+  .tile .tile-status  > .badge {
     width: 26px;
     height: 28px;
     right: 0;
     font-size: 9pt;
   }
-  .tile .brand > .name,
-  .tile .tile-status > .name {
+  .tile .brand  > .name,
+  .tile .tile-status  > .name {
     margin-left: 10px;
   }
-  .tile .brand > .icon,
-  .tile .tile-status > .icon {
+  .tile .brand  > .icon,
+  .tile .tile-status  > .icon {
     width: 24px;
     height: 24px;
     margin: 5px 10px;
   }
-  .tile .brand > .text,
-  .tile .tile-status > .text {
+  .tile .brand  > .text,
+  .tile .tile-status  > .text {
     left: 40px;
     right: 40px;
     font-size: 8pt;
@@ -788,26 +788,26 @@
   .horizontal-menu {
     height: auto;
   }
-  .horizontal-menu > ul {
+  .horizontal-menu  > ul {
     width: 100%;
     display: block;
     height: auto;
   }
-  .horizontal-menu > ul > li {
+  .horizontal-menu  > ul  > li {
     width: 100%;
     float: none;
     display: block;
     position: relative;
     border-bottom: 1px #1e1e1e solid;
   }
-  .horizontal-menu > ul > li:last-child {
+  .horizontal-menu  > ul  > li:last-child {
     border-bottom: 1px transparent solid;
   }
-  .horizontal-menu > ul > li a {
+  .horizontal-menu  > ul  > li a {
     width: 100%;
     float: none;
   }
-  .horizontal-menu > ul li ul {
+  .horizontal-menu  > ul li ul {
     position: relative;
     width: 100%;
     border: 0;
