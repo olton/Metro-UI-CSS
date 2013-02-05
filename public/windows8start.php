@@ -51,6 +51,17 @@
     <div class="page-region">
         <div class="page-region-content tiles">
             <div class="tile-group tile-drag">
+                <div class="tile icon">
+                    <div class="tile-content">
+                        <i class="icon-calculate"></i>
+                    </div>
+                    <div class="brand">
+                        <span class="name">Calculator</span>
+                    </div>
+                </div>
+
+
+
                 <a href="/" onclick="console.log('clicked')" class="tile image outline-color-green">
                     <div class="tile-content">
                         <img src="images/myface.jpg" alt="">

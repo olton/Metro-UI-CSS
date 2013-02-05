@@ -4837,8 +4837,14 @@ th[class*="span"] {
   margin-top: -32px;
 }
 .tile.icon  > .tile-content  > i {
-  font-size: 128px;
-  margin: 9px;
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  top: 50%;
+  left: 50%;
+  margin-left: -32px;
+  margin-top: -32px;
+  font-size: 64px;
 }
 .tile.image  > .tile-content,
 .tile.image-slider  > .tile-content {
