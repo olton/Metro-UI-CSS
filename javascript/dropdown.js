@@ -1,4 +1,4 @@
-(function($){
+(function(window, undefined){
     $.fn.Dropdown = function( options ){
         var defaults = {
         };
@@ -47,15 +47,15 @@
         });
     }
 
-    $(function () {
+    $(window).load(function () {
         $('[data-role="dropdown"]').each(function () {
             $(this).Dropdown();
         })
     })
-})(window.jQuery);
+})(window);
 
 
-(function($){
+(function(window, undefined){
     $.fn.PullDown = function( options ){
         var defaults = {
         };
@@ -87,9 +87,9 @@
         });
     }
 
-    $(function () {
+    $(window).load(function () {
         $('.pull-menu, .menu-pull').each(function () {
             $(this).PullDown();
         })
     })
-})(window.jQuery);
+})(window);
