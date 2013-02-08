@@ -40,8 +40,8 @@
                 return;
             }
 
-            $helper.attr('tabindex', '-1');
-            $helper.attr('type', 'button');
+            $helper.prop('tabindex', '-1');
+            $helper.prop('type', 'button');
 
             // clear text when click on helper
             $helper.on('click', function () {
@@ -68,8 +68,8 @@
 
             text = $('<input type="text" />');
             password = $element.children('input');
-            $helper.attr('tabindex', '-1');
-            $helper.attr('type', 'button');
+            $helper.prop('tabindex', '-1');
+            $helper.prop('type', 'button');
 
             // insert text element and hode password element when push helper
             $helper.on('mousedown', function () {
