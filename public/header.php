@@ -6,14 +6,15 @@
     <meta name="description" content="Metro UI CSS">
     <meta name="author" content="Sergey Pimenov">
     <meta name="keywords" content="windows 8, modern style, Metro UI, style, modern, css, framework">
+    
+    <title>Metro UI CSS</title>
 
     <link href="css/modern.css" rel="stylesheet">
     <link href="css/modern-responsive.css" rel="stylesheet">
-    <link href="css/site.css" rel="stylesheet" type="text/css">
-    <link href="js/google-code-prettify/prettify.css" rel="stylesheet" type="text/css">
-
-    <title>Metro UI CSS</title>
+    <link href="css/site.css" rel="stylesheet">
+    <link href="js/google-code-prettify/prettify.css" rel="stylesheet">
+    
 </head>
 <body class="modern-ui" onload="prettyPrint()">
 
-<? include("navigation.php")?>
+<?php include('navigation.php')?>
