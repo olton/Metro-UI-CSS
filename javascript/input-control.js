@@ -91,7 +91,7 @@
     };
 
     $.fn[pluginName] = function(options) {
-        var elements = options.initAll ? $(initAllSelector) : this;
+        var elements = options && options.initAll ? $(initAllSelector) : this;
         return elements.each(function() {
             var that = $(this),
                 params = {},
@@ -107,7 +107,7 @@
     };
     // autoinit
     $(function(){
-        $()[pluginName]({initAll: true});
+        //$()[pluginName]({initAll: true});
     });
 
 })(jQuery);
