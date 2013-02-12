@@ -62,7 +62,7 @@
 
 
 
-                <a href="/" onclick="console.log('clicked')" class="tile image outline-color-green">
+                <a target="_blank" id="qq" href="/" onclick="console.log('clicked')" class="tile image outline-color-green">
                     <div class="tile-content">
                         <img src="images/myface.jpg" alt="">
                     </div>

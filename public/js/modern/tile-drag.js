@@ -196,7 +196,11 @@
             if (!mouseMoved) {
                 // emulate default click behavior
                 if ($draggingTile.is('a')) {
-                    window.location.href = $draggingTile.attr('href');
+                    if ($draggingTile.prop('target') === '_blank') {
+                        window.open($draggingTile.attr('href'));
+                    } else {
+                        window.location.href = $draggingTile.attr('href');
+                    }
                 }
             } else {
                 event.preventDefault();
