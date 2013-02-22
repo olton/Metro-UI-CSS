@@ -6471,6 +6471,22 @@ pre code {
   min-height: 16px;
   height: 24px;
   width: 24px;
+  background:#2D89EF;
+}
+.dialog .header button:hover {
+  min-width: 16px;
+  min-height: 16px;
+  height: 24px;
+  width: 24px;
+  background:white;
+}
+.dialog .header button:active {
+  min-width: 16px;
+  min-height: 16px;
+  height: 24px;
+  width: 24px;
+  background:blue;
+  color:white;
 }
 .dialog .header button i {
   position: absolute;
