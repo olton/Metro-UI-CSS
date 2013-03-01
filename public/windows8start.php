@@ -28,7 +28,7 @@
     </style>
     
 </head>
-<body class="modern-ui">
+<body class="metrouicss">
 <div class="page secondary fixed-header">
     <div class="page-header ">
         <div class="page-header-content">
@@ -44,7 +44,7 @@
                 </a>
             </div>
 
-            <h1>Start</h1>
+            <h1 class="fg-color-white">Start</h1>
         </div>
     </div>
 
