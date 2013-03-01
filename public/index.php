@@ -6,7 +6,7 @@
             <div class="grid">
                 <div class="row">
                     <div class="span12 padding10 fg-color-darken text-center">
-                        This is not a theme or clone for Twitter Bootstrap !!!
+                        !!! This is not a Twitter Bootstrap !!!
                     </div>
                 </div>
                 <div class="row">
@@ -21,9 +21,9 @@
                                         <p class="bg-color-blueDark padding20 fg-color-white">Metro UI CSS allows to create a Web site in the style of
                                             Windows 8 quickly and without distractions
                                             on routine tasks.</p>
-                                        <h3>To start: include modern.css</h3>
+                                        <h3>To start: include <strong>modern.css</strong> in head of page</h3>
                                         <p class="tertiary-info-text">
-                                            &lt;link href="modern.css" rel="stylesheet"&gt;
+                                            &lt;link href="modern.css" rel="stylesheet"&gt; and add to metro container <strong>metrouicss</strong> class. Example: &lt;body class="metrouicss"&gt;...&lt;/body&gt;
                                         </p>
                                     </div>
 
@@ -109,14 +109,19 @@
                         <p>
                             Metro UI CSS a set of styles to create a site with an interface similar to Windows 8 Metro UI. This set of styles was developed as a self-contained solution.
                         </p>
+                        <p class="bg-color-blue fg-color-white padding10 tertiary-text">
+                            <a href="http://lesscss.org"><img src="http://lesscss.org/images/logo.png" title="Lesscss.org" class="place-left" style="width: 50px"/></a>
+                            Metro UI CSS is made with <a href="http://lesscss.org" class="fg-color-yellow"><abbr title="LESS a dynamic stylesheet language created by one good man Alexis Sellier">LESS</abbr></a>. It makes developing systems-based CSS faster, easier, and more fun.
+                        </p>
                         <p>
-                            Metro UI CSS contained type of <a href="https://github.com/olton/Metro-UI-CSS/blob/master/LICENSE">license</a>: MIT.
+                            <strong>Metro UI CSS is free if you placed back link to Metro UI CSS site.</strong>
+                            <br />
+                            Example:
+                            <br />
+                            <blockquote class="tertiary-text">
+                                Styled with &lt;a href="http://metroui.org.ua"&gt;Metro UI CSS&lt;/a&gt;
+                            </blockquote>
                         </p>
-                        <h3>LESS</h3>
-                        <p class="tertiary-info-text">
-                            Metro UI CSS is made with <a href="http://lesscss.org"><abbr title="LESS a dynamic stylesheet language created by one good man Alexis Sellier">LESS</abbr></a>. It makes developing systems-based CSS faster, easier, and more fun.
-                        </p>
-                        <h3>Supported browsers:</h3>
                         <div class="browsers-icons clearfix">
                             <h2 class="place-left" title="Internet Explorer 9+"><i class="icon-IE"></i> </h2>
                             <h2 class="place-left" title="Chrome"><i class="icon-chrome"></i> </h2>
@@ -124,16 +129,14 @@
                             <h2 class="place-left" title="Opera"><i class="icon-opera"></i> </h2>
                             <h2 class="place-left" title="Safari"><i class="icon-safari"></i> </h2>
                         </div>
-                        <br />
-                        <p class="tertiary-info-secondary-text">All modern browsers. Internet Explorer supported on 9+</p>
                     </div>
                     <div class="span4">
                         <div id="social">
-                            <div id="shareme" data-url="http://metroui.org.ua/" data-text="" data-title="share this page"></div>
+                            <div id="shareme" data-url="http://metroui.org.ua/" data-text="" data-title="share this"></div>
                         </div>
 
                         <br />
-                        <h2><i class="icon-github-3"></i> GitHub Project Info:</h2>
+                        <h2><i class="icon-github-3"></i> GitHub Info:</h2>
                         <table class="github-info" data-repo="olton/Metro-UI-CSS">
                             <tbody>
                             <tr>
@@ -153,7 +156,6 @@
                             </tbody>
                         </table>
 
-                        <br />
                         <div class="">
                             <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
                                 <input type="hidden" name="cmd" value="_s-xclick">
@@ -172,7 +174,7 @@
                                 <input type="hidden" name="preorder" value="c27a4aa9211f4e6735b739850e99d568422af6e7">
                                 <button type="submit" class="command-button default" style="width: 100%;">
                                     <i class="icon-arrow-right-3 place-right" style="font-size: 24pt; margin-top: 5px;"></i>
-                                    Donate 10 USD<small>for Metro UI CSS [LiqPay]</small>
+                                    Donate<small>for Metro UI CSS [LiqPay]</small>
                                 </button>
                             </form>
                         </div>

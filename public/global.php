@@ -22,6 +22,8 @@
       ...
     &lt;/html&gt;
 </pre>
+                            <h2>JavaScript</h2>
+                            <p>All javascript plugins required <a href="http://jquery.com/">jQuery</a>.</p>
                         </div>
                     </div>
                     <div class="row">

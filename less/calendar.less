@@ -1,0 +1,33 @@
+.calendar {
+    table {
+        border: 1px #ccc solid;
+        width: 100%;
+        border-collapse: collapse;
+    }
+    td, th {
+        padding: 4px;
+        width: 14.285% !important;
+        font-size: 10pt;
+        border: 1px #ccc solid !important;
+        text-align: center;
+    }
+
+    td {
+        cursor: pointer;
+    }
+
+    td:empty {
+        background: #ececf0;
+        cursor: default;
+    }
+
+    .weekdays td {
+        .bg-color-blueLight;
+        font-weight: bold !important;
+    }
+
+    .current-day {
+        .bg-color-green;
+        .fg-color-white;
+    }
+}

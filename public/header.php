@@ -25,9 +25,10 @@
     <script type="text/javascript" src="js/modern/slider.js"></script>
     <script type="text/javascript" src="js/modern/tile-slider.js"></script>
     <script type="text/javascript" src="js/modern/tile-drag.js"></script>
+    <script type="text/javascript" src="js/modern/calendar.js"></script>
 
     <title>Metro UI CSS</title>
 </head>
-<body class="modern-ui" onload="prettyPrint()">
+<body class="metrouicss" onload="prettyPrint()">
 
 <? include("navigation.php")?>

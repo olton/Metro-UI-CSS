@@ -1,7 +1,7 @@
 body {
     background-color: #fff;
 }
-.page {
+.metrouicss .page {
     width: 940px ;
     margin: auto;
     background-color: #fff;
@@ -100,65 +100,71 @@ hr {
     right: 30px;
 }
 
-.charms, .app-bar, .message-dialog, .error-bar, .warning-bar, .info-bar {
+.metrouicss .charms,
+.metrouicss .app-bar,
+.metrouicss .message-dialog,
+.metrouicss .error-bar,
+.metrouicss .warning-bar,
+.metrouicss .info-bar {
     position: absolute;
 }
 
 @media (min-width: 768px) and (max-width: 979px) {
-    .page {
+    .metrouicss .page {
         width: 724px;
     }
-    .hero-unit > img {
+    .metrouicss .hero-unit > img {
         zoom: .6;
     }
-    .browsers-icons img {
+    .metrouicss .browsers-icons img {
         zoom: .8;
     }
+
 }
 
 @media (max-width: 767px) {
-    .page {
+    .metrouicss .page {
         width: 100%;
     }
 
-    .hero-unit > img {
+    .metrouicss .hero-unit > img {
         zoom: .6;
     }
 
-    .modern-ui-logo {
+    .metrouicss .modern-ui-logo {
         width: 24px;
         height: 24px;
     }
-    .github-info {
+    .metrouicss .github-info {
         margin-top: 5px;
     }
 
-    a, .link {
+    .metrouicss a, .metrouicss .link {
         font-size: 9pt;
     }
 
-    h3 {
+    .metrouicss h3 {
         line-height: 11px;
     }
 
-    .no-mobile {
+    .metrouicss .no-mobile {
         display: none;
     }
 
-    #carousel1 {
+    .metrouicss #carousel1 {
         height: 300px !important;
     }
 }
 
 @media (max-width: 480px) {
-    .hero-unit img {
+    .metrouicss .hero-unit img {
         display: none;
     }
 
-    #jetbrains {
+    .metrouicss #jetbrains {
         display: none;
     }
-    #brand-name {
+    .metrouicss #brand-name {
         display: none;
     }
 }

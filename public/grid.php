@@ -30,11 +30,11 @@
                             <tr>
                                 <th class="text-center">N</th>
                                 <th>Cell class</th>
-                                <th class="right">Cell width</th>
+                                <th class="right" width="100">Cell width</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr><td class="span1 center">1</td><td>span1</td><td class="right span2">60px</td></tr>
+                            <tr><td class="span1 center">1</td><td>span1</td><td class="right">60px</td></tr>
                             <tr><td class="span1 center">2</td><td>span2</td><td class="right">140px</td></tr>
                             <tr><td class="span1 center">3</td><td>span3</td><td class="right">220px</td></tr>
                             <tr><td class="span1 center">4</td><td>span4</td><td class="right">300px</td></tr>
@@ -220,11 +220,11 @@
                         <tr>
                             <th class="text-center">N</th>
                             <th>Cell class</th>
-                            <th class="right">Cell width</th>
+                            <th class="right" width="100">Cell width</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr><td class="span1 center">1</td><td>offset1</td><td class="right span2">80px</td></tr>
+                        <tr><td class="span1 center">1</td><td>offset1</td><td class="right">80px</td></tr>
                         <tr><td class="span1 center">2</td><td>offset2</td><td class="right">160px</td></tr>
                         <tr><td class="span1 center">3</td><td>offset3</td><td class="right">240px</td></tr>
                         <tr><td class="span1 center">4</td><td>offset4</td><td class="right">320px</td></tr>

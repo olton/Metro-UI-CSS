@@ -54,6 +54,9 @@
 
                     <br />
                     <p>You can change color of the navigation bar. To set predefined color for navigation bar you can use bg-color-* classes.</p>
+                    <br />
+                    <br />
+                    <br />
 
                     <code>
                         &lt;div class="nav-bar bg-color-darken"&gt;...&lt;/div&gt;
@@ -80,6 +83,11 @@
                             </ul>
                         </div>
                     </div>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
 
                     <br />
                     <code>
@@ -107,6 +115,11 @@
                             </ul>
                         </div>
                     </div>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
 
                     <br />
                     <code>
@@ -134,6 +147,11 @@
                             </ul>
                         </div>
                     </div>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
 
                     <br />
                     <p>
