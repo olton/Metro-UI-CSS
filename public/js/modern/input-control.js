@@ -107,7 +107,7 @@
     };
     // autoinit
     $(function(){
-        //$()[pluginName]({initAll: true});
+        $()["Input"]({initAll: true});
     });
 
 })(jQuery);
