@@ -16,9 +16,13 @@
         cursor: pointer;
     }
 
-    td:empty {
+    .out {
         background: #ececf0;
         cursor: default;
+    }
+
+    .empty-day {
+        border: 0 !important;
     }
 
     .weekdays td {
@@ -28,6 +32,11 @@
 
     .current-day {
         .bg-color-green;
+        .fg-color-white;
+    }
+
+    .event {
+        .bg-color-blue;
         .fg-color-white;
     }
 }

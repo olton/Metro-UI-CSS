@@ -6584,9 +6584,12 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 .metrouicss .calendar td {
   cursor: pointer;
 }
-.metrouicss .calendar td:empty {
+.metrouicss .calendar .out {
   background: #ececf0;
   cursor: default;
+}
+.metrouicss .calendar .empty-day {
+  border: 0 !important;
 }
 .metrouicss .calendar .weekdays td {
   background-color: #eff4ff !important;
@@ -6594,5 +6597,9 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 }
 .metrouicss .calendar .current-day {
   background-color: #00a300 !important;
+  color: #ffffff !important;
+}
+.metrouicss .calendar .event {
+  background-color: #2d89ef !important;
   color: #ffffff !important;
 }
