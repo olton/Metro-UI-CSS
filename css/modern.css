@@ -5508,7 +5508,9 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 .metrouicss .input-control.text .helper,
 .metrouicss .input-control.password .helper,
 .metrouicss .input-control.text .btn-search,
-.metrouicss .input-control.password .btn-search {
+.metrouicss .input-control.password .btn-search,
+.metrouicss .input-control.text .btn-date,
+.metrouicss .input-control.password .btn-date {
   background: #fff;
   top: 2px;
   width: 26px !important;
@@ -5526,7 +5528,9 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 .metrouicss .input-control.text .helper:before,
 .metrouicss .input-control.password .helper:before,
 .metrouicss .input-control.text .btn-search:before,
-.metrouicss .input-control.password .btn-search:before {
+.metrouicss .input-control.password .btn-search:before,
+.metrouicss .input-control.text .btn-date:before,
+.metrouicss .input-control.password .btn-date:before {
   font-size: 12pt;
   position: absolute;
   font-family: 'Segoe UI Semilight', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
@@ -5539,19 +5543,25 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 .metrouicss .input-control.text .helper:hover,
 .metrouicss .input-control.password .helper:hover,
 .metrouicss .input-control.text .btn-search:hover,
-.metrouicss .input-control.password .btn-search:hover {
+.metrouicss .input-control.password .btn-search:hover,
+.metrouicss .input-control.text .btn-date:hover,
+.metrouicss .input-control.password .btn-date:hover {
   background: #d9d9d9;
 }
 .metrouicss .input-control.text .helper:active,
 .metrouicss .input-control.password .helper:active,
 .metrouicss .input-control.text .btn-search:active,
-.metrouicss .input-control.password .btn-search:active {
+.metrouicss .input-control.password .btn-search:active,
+.metrouicss .input-control.text .btn-date:active,
+.metrouicss .input-control.password .btn-date:active {
   background-color: #000;
 }
 .metrouicss .input-control.text .helper:active:before,
 .metrouicss .input-control.password .helper:active:before,
 .metrouicss .input-control.text .btn-search:active:before,
-.metrouicss .input-control.password .btn-search:active:before {
+.metrouicss .input-control.password .btn-search:active:before,
+.metrouicss .input-control.text .btn-date:active:before,
+.metrouicss .input-control.password .btn-date:active:before {
   color: #fff;
 }
 .metrouicss .input-control.password .helper {
@@ -5571,6 +5581,13 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-family: iconFont;
   font-size: 12px;
   content: "\e041";
+  left: 7px;
+  top: 3px;
+}
+.metrouicss .input-control.text .btn-date:before {
+  font-family: iconFont;
+  font-size: 12px;
+  content: "\e020";
   left: 7px;
   top: 3px;
 }
