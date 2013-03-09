@@ -6586,6 +6586,9 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   background-color: rgba(235, 235, 235, 0.5);
   z-index: 1;
 }
+.metrouicss .calendar {
+  background-color: #ffffff !important;
+}
 .metrouicss .calendar table {
   border: 1px #ccc solid;
   width: 100%;
@@ -6620,4 +6623,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 .metrouicss .calendar .event {
   background-color: #2d89ef !important;
   color: #ffffff !important;
+}
+.metrouicss .datepicker {
+  position: relative;
 }
