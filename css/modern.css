@@ -3088,6 +3088,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   width: 48px;
 }
 .metrouicss .command-button {
+  display: inline-block;
   width: 330px;
   text-align: left;
   padding: 10px 20px;
