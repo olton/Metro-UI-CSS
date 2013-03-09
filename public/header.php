@@ -14,6 +14,7 @@
 
     <script type="text/javascript" src="js/assets/jquery-1.9.0.min.js"></script>
     <script type="text/javascript" src="js/assets/jquery.mousewheel.min.js"></script>
+    <script type="text/javascript" src="js/assets/moment.js"></script>
 
     <script type="text/javascript" src="js/modern/dropdown.js"></script>
     <script type="text/javascript" src="js/modern/accordion.js"></script>
