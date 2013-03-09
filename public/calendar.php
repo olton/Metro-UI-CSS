@@ -12,9 +12,7 @@
             <div class="page-region-content">
                 <h2>Calendar</h2>
                 <p>This component in progress...</p>
-
-                <div class="calendar span4" data-role="calendar" data-param-lang="ru"></div>
-
+                <div class="calendar span4" data-role="calendar" data-param-lang="ru" data-param-init-date="1968-12-31"></div>
 <pre class="prettyprint linenums">
     &lt;div class="<b>calnedar</b>" data-role="<b>calendar</b>"&gt;&lt;/div&gt;
 </pre>
@@ -22,12 +20,10 @@
 
                 <h2>Date Picker</h2>
                 <p>This component in progress...</p>
-
-                <div class="input-control text datepicker span4">
+                <div class="input-control text datepicker span4" data-param-lang="ru">
                     <input type="text" />
                     <button class="btn-date"></button>
                 </div>
-
 <pre class="prettyprint linenums">
     &lt;div class="input-control text <b>datepicker</b>" data-role="<b>datepicker</b>"&gt;
         &lt;input type="text" /&gt;
