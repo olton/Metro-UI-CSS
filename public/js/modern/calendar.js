@@ -311,11 +311,13 @@
 
         function showCalendar (event) {
             var doc = $(document);
-            $calendar.css('top', '');
+            $calendar.css('bottom', '');
             var docHeight = doc.height();
             $calendar.show();
             var docHeightNew = doc.height();
-            $calendar.css('top', docHeight - docHeightNew);
+            if (docHeight < docHeightNew) {
+                $calendar.css('bottom', $element.height() + 10);
+            }
             $input.prop('disabled', true);
             $(document).one('mousedown.calendar', hideCalendar);
         }
