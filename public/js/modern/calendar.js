@@ -310,13 +310,16 @@
         };
 
         function showCalendar (event) {
+            if ($calendar.css('display') !== 'none') {
+                return;
+            }
             var doc = $(document);
             $calendar.css('bottom', '');
             var docHeight = doc.height();
             $calendar.show();
             var docHeightNew = doc.height();
             if (docHeight < docHeightNew) {
-                $calendar.css('bottom', $element.height() + 10);
+                $calendar.css('bottom', $element.height() + 11);
             }
             $input.prop('disabled', true);
             $(document).one('mousedown.calendar', hideCalendar);
