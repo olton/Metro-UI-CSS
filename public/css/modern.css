@@ -6593,6 +6593,10 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   border: 1px #ccc solid;
   width: 100%;
   border-collapse: collapse;
+  margin: 0;
+}
+.metrouicss .calendar tr:empty {
+  display: none;
 }
 .metrouicss .calendar td,
 .metrouicss .calendar th {
@@ -6611,6 +6615,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 }
 .metrouicss .calendar .empty-day {
   border: 0 !important;
+  display: none;
 }
 .metrouicss .calendar .weekdays td {
   background-color: #eff4ff !important;

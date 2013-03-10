@@ -12,8 +12,27 @@
             <div class="page-region-content">
                 <h2>Calendar</h2>
                 <p>This component in progress...</p>
-                <div class="calendar span4" data-role="calendar" data-param-lang="en" data-param-init-date="1968-12-31"></div>
-                <div class="calendar span4" data-role="calendar" data-param-lang="ru" data-param-init-date="1972-12-21"></div>
+
+                <div class="grid">
+                    <div class="row">
+                        <div class="span4">
+                            <div class="calendar span4" data-role="calendar" data-param-lang="en"></div>
+                            <p><code>data-param-lang="en"</code></p>
+                        </div>
+                        <div class="span4">
+                            <div class="calendar span4" data-role="calendar" data-param-lang="ru" data-param-init-date="1972-12-21"></div>
+                            <p>
+                                <code>data-param-lang="ru"</code>
+                                <br />
+                                <code>data-param-init-date="1972-12-21"</code>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
 <pre class="prettyprint linenums">
     &lt;div class="<b>calnedar</b>" data-role="<b>calendar</b>"&gt;&lt;/div&gt;
 </pre>

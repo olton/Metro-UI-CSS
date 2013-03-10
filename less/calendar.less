@@ -5,7 +5,13 @@
         border: 1px #ccc solid;
         width: 100%;
         border-collapse: collapse;
+        margin: 0;
     }
+
+    tr:empty {
+        display: none;
+    }
+
     td, th {
         padding: 4px;
         width: 14.285% !important;
@@ -25,6 +31,7 @@
 
     .empty-day {
         border: 0 !important;
+        display: none;
     }
 
     .weekdays td {
