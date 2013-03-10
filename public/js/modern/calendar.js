@@ -55,17 +55,22 @@
             $days = [],
             calMoment,
             lang,
-            dow;
+            dow,
+            selectedDateString;
 
         // initialization
         plugin.init = function () {
             plugin.settings = $.extend({}, defaults, options);
 
             lang = plugin.settings.lang;
+            var date = plugin.settings.initDate;
+
             dow = moment.langData(lang)._week.dow;
 
+            var selectedDateMoment = date ? moment(date) : moment();
+            selectedDateString = selectedDateMoment.format('YYYY-MM-D');
+
             renderCalendar();
-            var date = plugin.settings.initDate;
             plugin.setDate(date);
         };
 
@@ -131,6 +136,7 @@
                     }
                     calMoment = moment(date);
                     calMoment.lang(lang);
+                    selectedDateString = calMoment.format('YYYY-MM-D');
                     plugin.setDate(calMoment);
                     $element.trigger('date-selected', [date, calMoment]);
                 });
@@ -148,12 +154,12 @@
             var firstDayIndex = +firstDayMom.format('d') - dow; // it also day of week index
             firstDayIndex = firstDayIndex < 0 ? firstDayIndex + 7 : firstDayIndex;
             var lastDayIndex = firstDayIndex + daysInMonth;
-            var currentDate = +calMoment.format('D');
+            //var currentDate = calMoment.format('YYYY-MM-D');
             yearMonth = calMoment.format('YYYY-MM-');
             date = 1;
             for (dayIndex = firstDayIndex; dayIndex < lastDayIndex; dayIndex++) {
                 $days[dayIndex].text(date);
-                if (date === currentDate) {
+                if (yearMonth + date === selectedDateString) {
                     $days[dayIndex].prop('class', 'current-day');
                 } else {
                     $days[dayIndex].prop('class', 'current-month');
@@ -293,12 +299,6 @@
 
             $input.on('focus', showCalendar);
             $button.on('click', showCalendar);
-            /*$button.on('mousedown', function(event){
-                event.stopPropagation();
-            });
-            $input.on('mousedown', function(event){
-                event.stopPropagation();
-            });*/
             $element.on('mousedown', function(event){
                 event.stopPropagation();
             });
@@ -310,7 +310,12 @@
         };
 
         function showCalendar (event) {
+            var doc = $(document);
+            $calendar.css('top', '');
+            var docHeight = doc.height();
             $calendar.show();
+            var docHeightNew = doc.height();
+            $calendar.css('top', docHeight - docHeightNew);
             $input.prop('disabled', true);
             $(document).one('mousedown.calendar', hideCalendar);
         }
