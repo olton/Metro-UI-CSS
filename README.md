@@ -50,6 +50,8 @@ Sites and Projects with Metro UI CSS:
 
 * [forecast.org.ua](http://forecast.org.ua).
 * [pimenov.org.ua](http://pimenov.org.ua)
+* [vrconsultancy.be](http://www.vrconsultancy.be)
+* [heatlife.msk.ru](http://heatlife.msk.ru)
 
 ## Special thanks
 
