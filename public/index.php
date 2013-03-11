@@ -5,11 +5,6 @@
         <div class="page-region-content">
             <div class="grid">
                 <div class="row">
-                    <div class="span12 padding10 fg-color-darken text-center">
-                        !!! This is not a Twitter Bootstrap !!!
-                    </div>
-                </div>
-                <div class="row">
                     <div class="span8">
                         <div class="hero-unit">
                             <div id="carousel1" class="carousel" data-role="carousel" data-param-duration="300">
@@ -164,14 +159,14 @@
                                         <input type="hidden" name="hosted_button_id" value="AVMB2NYSENK3A">
                                         <!--<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">-->
                                         <!--<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">-->
-                                        <button type="submit" class="command-button1 bg-color-teal fg-color-white" style="width: 100%;">
-                                            PayPal <i class="icon-arrow-right place-right"></i>
+                                        <button type="submit" class="image-button bg-color-green fg-color-white" style="width: 100%;">
+                                            PayPal <i class="icon-heart bg-color-greenDark"></i>
                                         </button>
                                     </form>
                                 </div>
                                 <div class="span2">
-                                    <button type="submit" class="command-button1 bg-color-teal fg-color-white" style="width: 100%;" onclick="window.location.href='https://liqpay.com/?do=clickNbuy&button=i2970090512'">
-                                        LiqPay <i class="icon-arrow-right place-right"></i>
+                                    <button type="submit" class="image-button bg-color-green fg-color-white" style="width: 100%;" onclick="window.location.href='https://liqpay.com/?do=clickNbuy&button=i2970090512'">
+                                        LiqPay <i class="icon-heart bg-color-greenDark"></i>
                                     </button>
                                 </div>
                             </div>

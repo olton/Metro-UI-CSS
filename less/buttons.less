@@ -92,6 +92,7 @@ button, .button {
 }
 
 a.button {
+    padding: 8px 10px;
     &:hover, &:active {
         color: inherit;
     }
@@ -101,17 +102,44 @@ a.button {
 }
 
 button, .button, .tool-button {
+    [class^="icon-"], [class*=" icon-"] {
+        font-size: 16px;
+        height: 16px;
+        //width: 18px;
+        line-height: 16px;
+        //display: inline-block;
+        padding-top: 2px;
+        margin: 0;
+    }
 
     &.mini {
-        min-height: 24px;
-        min-width: 24px;
-        height: 26px;
-        font-size: .8em;
+        min-height: 20px;
+        min-width: 20px;
+        height: 14px;
+        font-size: 11px !important;
+        padding-top: 2px;
+
+        [class^="icon-"], [class*=" icon-"] {
+            font-size: 12px;
+            height: 12px;
+            width: 14px;
+            line-height: 12px;
+            padding: 0;
+        }
     }
     &.big {
         min-height: 48px;
         height: 48px;
         font-size: 1.2em;
+
+        [class^="icon-"], [class*=" icon-"] {
+            font-size: 26px;
+            height: 26px;
+            //width: 26px;
+            line-height: 26px;
+            margin-rigth: 5px;
+            padding-top: 2px;
+        }
     }
 }
 
@@ -124,6 +152,11 @@ button, .button, .tool-button {
     &.big {
         min-width: 48px;
         width: 48px;
+
+        [class^="icon-"], [class*=" icon-"] {
+            margin: 0;
+            padding: 0;
+        }
     }
 }
 
@@ -161,12 +194,16 @@ button, .button, .tool-button {
     position: relative;
     padding: 0;
 
-    img {
+    img, [class^="icon-"], [class*=" icon-"] {
         width: 16px;
         height: 16px;
-        position: absolute;
         top: 8px;
-        left: 8px;
+    }
+
+    [class^="icon-"], [class*=" icon-"] {
+        line-height: 16px;
+        font-size: 16px;
+        width: auto;
     }
 }
 
@@ -212,7 +249,7 @@ button, .button, .tool-button {
     border: 0;
     padding-right: 45px;
 
-    img, &:active img {
+    img, &:active img, [class^="icon-"], [class*=" icon-"] {
         position: absolute;
         right: 0;
         margin-left: 32px;
@@ -223,6 +260,11 @@ button, .button, .tool-button {
         box-sizing: border-box;
         border: 1px transparent solid;
         z-index: 2;
+    }
+
+    [class^="icon-"], [class*=" icon-"] {
+        margin: 0;
+        font-size: 16px;
     }
 }
 
@@ -280,8 +322,16 @@ button, .button, .tool-button {
     & > .icon {
         margin-top: .25em;
         margin-bottom: .25em;
-        font-size: 32px;
         color: #888;
+        display: block;
+        float: none;
+
+        [class^="icon-"], [class*=" icon-"] {
+            font-size: 32px;
+            line-height: 32px;
+            height: 32px;
+        }
+
     }
     & > .label {
         display: block;
@@ -304,7 +354,7 @@ button, .button, .tool-button {
 }
 
 a.shortcut {
-    padding: 30px 0;
+    padding: 12px 0;
     .label {
         font-size: 9pt;
     }

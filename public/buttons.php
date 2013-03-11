@@ -176,10 +176,17 @@
                             <h2>Image button</h2>
                             <button class="image-button bg-color-darken fg-color-white">Download source<img class="bg-color-green" src="images/download-32.png"/></button>
                             <button class="image-button bg-color-pink fg-color-white">Armor you computer<img class="bg-color-red" src="images/armor.png"/></button>
+                            <button class="image-button bg-color-blue fg-color-white">Alarm, alarm<i class="icon-alarm bg-color-red"></i></button>
+
 <pre class="prettyprint linenums">
     &lt;button class="image-button"&gt; Caption &lt;img/&gt; &lt;/button&gt;
     ===================
     &lt;button class="image-button bg-color-darken fg-color-white"&gt;Download&lt;img src="images/down.png"/&gt;&lt;/button&gt;
+    ===================
+    &lt;button class="image-button bg-color-blue fg-color-white"&gt;
+        Alarm, alarm
+        &lt;i class="icon-alarm bg-color-red"&gt;&lt;/i&gt;
+    &lt;/button&gt;
 </pre>
                         </div>
                     </div>
@@ -199,8 +206,8 @@
                             </div>
                             <div>
                                 <button class="big">Big button</button>
-                                <button class="big"><i class="icon-home icon-large"></i> Big button</button>
-                                <button class="big">Big button <i class="icon-mail icon-large"></i></button>
+                                <button class="big"><i class="icon-arrow-left-3"></i> Big button</button>
+                                <button class="big">Big button <i class="icon-arrow-right-3"></i></button>
                             </div>
 <pre class="prettyprint linenums">
     &lt;button class="mini"&gt; Caption &lt;/button&gt;
