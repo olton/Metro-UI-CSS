@@ -39,7 +39,8 @@
                         <span class="last-name">Pimenov</span>
                     </div>
                     <div class="avatar">
-                        <img src="images/myface.jpg"/>
+                        <!--<img src="images/myface.jpg"/>-->
+                        <i class="icon-user fg-color-white"></i>
                     </div>
                 </a>
             </div>
