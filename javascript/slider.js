@@ -6,7 +6,7 @@
  *
  * you may use this code to handle events:
 
- $(window).ready(function(){
+$(window).ready(function(){
     $('.slider').on('change', function(e, val){
         console.log('change to ' + val);
     }).on('changed', function(e, val){
@@ -16,7 +16,7 @@
 
  * and this, to retrieve value
 
- $('.slider').data('value')
+$('.slider').data('value')
 
  *
  */

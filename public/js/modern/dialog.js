@@ -62,7 +62,7 @@
             '<div id="dialogBox" class="dialog">',
             '<div class="header">',
             params.title,
-            (params.closeButton)?('<div><button><i class="icon-cancel-2"></i></button></div>'):(''),
+            (params.closeButton)?('<div><button class="tool-button"><i class="icon-cancel-2"></i></button></div>'):(''),
             '</div>',
             '<div class="content">', params.content, '</div>',
             '<div class="action" id="dialogButtons">',

@@ -16,7 +16,7 @@
                 e.preventDefault();
                 var $a = $(this);
                 if (!$a.parent('li').hasClass('active')) {
-                    $this.find(".frames .frame").hide();
+                    $frames.hide();
                     $ul.find("li").removeClass("active");
                     var target = $($a.attr("href"));
                     target.show();

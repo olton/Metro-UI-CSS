@@ -104,11 +104,11 @@
             } else if ($tile.hasClass('quadro-vertical')) {
                 $phantomTile.addClass('quadro-vertical');
             }
-
+            
             // place phantom tile instead dragging one
             $phantomTile.insertAfter($tile);
             targetType = 'existing';
-
+            
             // search parent group
             $parentGroup = $tile.parents('.tile-group');
 
@@ -192,7 +192,7 @@
          */
         var dragStop = function (event) {
             var targetGroup;
-
+            
             if (!mouseMoved) {
                 // emulate default click behavior
                 if ($draggingTile.is('a')) {
@@ -245,7 +245,7 @@
 
             $groups = $('[data-role=tile-group], .tile-group');
             $groups.trigger('drop', [$draggingTile, targetGroup]);
-
+            
             $startMenu.trigger('changed');
         };
 
@@ -411,7 +411,7 @@
                     });
                 }
             }
-
+            
             $startMenu.trigger('changed');
             storeAllNecessaryCoordinates();
         };
