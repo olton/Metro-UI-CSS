@@ -438,6 +438,491 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+/*
+ *
+ * Typography.less
+ *
+ */
+@font-face {
+  font-family: "PT Serif Caption";
+  font-style: normal;
+  font-weight: 400;
+  src: local("PT Serif Caption"), local("PTSerif-Caption"), url(https://themes.googleusercontent.com/static/fonts/ptserifcaption/v4/7xkFOeTxxO1GMC1suOUYWWhBabBbEjGd1iRmpyoZukE.woff) format('woff');
+}
+@font-face {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 700;
+  src: local("Open Sans Bold"), local("OpenSans-Bold"), url(https://themes.googleusercontent.com/static/fonts/opensans/v6/k3k702ZOKiLJc3WVjuplzJ1r3JsPcQLi8jytr04NNhU.woff) format('woff');
+}
+@font-face {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 300;
+  src: local("Open Sans Light"), local("OpenSans-Light"), url(https://themes.googleusercontent.com/static/fonts/opensans/v6/DXI1ORHCpsQm3Vp6mXoaTZ1r3JsPcQLi8jytr04NNhU.woff) format('woff');
+}
+@font-face {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 800;
+  src: local("Open Sans Extrabold"), local("OpenSans-Extrabold"), url(https://themes.googleusercontent.com/static/fonts/opensans/v6/EInbV5DfGHOiMmvb1Xr-hp1r3JsPcQLi8jytr04NNhU.woff) format('woff');
+}
+@font-face {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Open Sans"), local("OpenSans"), url(https://themes.googleusercontent.com/static/fonts/opensans/v6/K88pR3goAWT7BTt32Z01mz8E0i7KZn-EPnyo3HZu7kw.woff) format('woff');
+}
+.text-rest-state {
+  color: #000000;
+}
+.text-rest2-state {
+  color: rgba(0, 0, 0, 0.6);
+}
+.text-hover-state {
+  color: rgba(0, 0, 0, 0.8);
+}
+.text-pressed-state {
+  color: rgba(0, 0, 0, 0.4);
+}
+#font .header {
+  font-family: 'Segoe UI Light', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 200;
+  font-size: 42pt;
+  letter-spacing: 0.00em;
+  line-height: 44pt;
+  font-smooth: always;
+}
+#font .subheader,
+#font .subheader-secondary {
+  font-family: 'Segoe UI Light', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 200;
+  font-size: 20pt;
+  letter-spacing: 0.01em;
+  line-height: 24pt;
+  font-smooth: always;
+}
+#font .subheader-smaller,
+#font .subheader-secondary-smaller {
+  font-family: 'Segoe UI Light', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 200;
+  letter-spacing: 0.01em;
+  line-height: 24pt;
+  font-size: 16pt;
+  font-smooth: always;
+}
+#font .small-subheader,
+#font .small-subheader-secondary {
+  font-family: 'Segoe UI Semibold', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 600;
+  font-size: 11pt;
+  letter-spacing: 0.01em;
+  line-height: 14pt;
+  font-smooth: always;
+}
+#font .navigation {
+  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 11pt;
+  letter-spacing: 0.01em;
+  line-height: 14pt;
+  font-smooth: always;
+}
+#font .body,
+#font .body-secondary,
+#font .normal {
+  font-family: 'Segoe UI Semilight', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 300;
+  font-size: 11pt;
+  letter-spacing: 0.02em;
+  line-height: 20px;
+  font-smooth: always;
+}
+#font .link {
+  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 11pt;
+  font-smooth: always;
+}
+#font .tertiary,
+#font .tertiary-secondary {
+  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 9pt;
+  font-smooth: always;
+}
+#font .control {
+  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 9pt;
+  font-smooth: always;
+}
+#font .small {
+  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 300;
+  font-size: 8pt;
+  font-smooth: always;
+}
+#font .long-text {
+  font-family: 'PT Serif Caption', sans-serif, serif !important;
+  font-weight: 300;
+  font-size: 10pt;
+  letter-spacing: 0.02em;
+  line-height: 20px;
+  font-smooth: always;
+}
+#font .long-text-smaller {
+  font-family: 'PT Serif Caption', sans-serif, serif !important;
+  font-weight: 300;
+  font-size: 10pt;
+  letter-spacing: 0.02em;
+  line-height: 20px;
+  font-smooth: always;
+  font-size: 9pt;
+}
+#font .long-text-lead {
+  font-family: 'PT Serif Caption', sans-serif, serif !important;
+  font-weight: 300;
+  font-size: 10pt;
+  letter-spacing: 0.02em;
+  line-height: 20px;
+  font-smooth: always;
+  font-size: 20pt;
+}
+#state .header,
+#state .subheader,
+#state .small-subheader,
+#state .navigation,
+#state .body,
+#state .tertiary {
+  color: #000000;
+}
+#state .header:hover,
+#state .subheader:hover,
+#state .small-subheader:hover,
+#state .navigation:hover,
+#state .body:hover,
+#state .tertiary:hover {
+  color: rgba(0, 0, 0, 0.8);
+}
+#state .header:active,
+#state .subheader:active,
+#state .small-subheader:active,
+#state .navigation:active,
+#state .body:active,
+#state .tertiary:active {
+  color: rgba(0, 0, 0, 0.4);
+}
+#state .subheader-secondary,
+#state .subheader-secondary-smaller,
+#state .small-subheader,
+#state .small-subheader-secondary,
+#state .body-secondary,
+#state .tertiary-secondary {
+  color: rgba(0, 0, 0, 0.6);
+}
+#state .subheader-secondary:hover,
+#state .subheader-secondary-smaller:hover,
+#state .small-subheader:hover,
+#state .small-subheader-secondary:hover,
+#state .body-secondary:hover,
+#state .tertiary-secondary:hover {
+  color: rgba(0, 0, 0, 0.8);
+}
+#state .subheader-secondary:active,
+#state .subheader-secondary-smaller:active,
+#state .small-subheader:active,
+#state .small-subheader-secondary:active,
+#state .body-secondary:active,
+#state .tertiary-secondary:active {
+  color: rgba(0, 0, 0, 0.4);
+}
+#state .link {
+  color: #2e92cf;
+}
+#state .link:hover {
+  color: rgba(45, 173, 237, 0.8);
+}
+#state .link:active {
+  color: rgba(45, 173, 237, 0.6);
+}
+a,
+.link {
+  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 11pt;
+  font-smooth: always;
+  color: #2e92cf;
+  text-decoration: none;
+}
+a:hover,
+.link:hover {
+  color: rgba(45, 173, 237, 0.8);
+}
+a:active,
+.link:active {
+  color: rgba(45, 173, 237, 0.6);
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 10px 0;
+  padding: 0;
+}
+h1 {
+  font-family: 'Segoe UI Light', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 200;
+  font-size: 42pt;
+  letter-spacing: 0.00em;
+  line-height: 44pt;
+  font-smooth: always;
+  color: #000000;
+}
+h1:hover {
+  color: rgba(0, 0, 0, 0.8);
+}
+h1:active {
+  color: rgba(0, 0, 0, 0.4);
+}
+h2 {
+  font-family: 'Segoe UI Light', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 200;
+  font-size: 20pt;
+  letter-spacing: 0.01em;
+  line-height: 24pt;
+  font-smooth: always;
+  color: #000000;
+}
+h2:hover {
+  color: rgba(0, 0, 0, 0.8);
+}
+h2:active {
+  color: rgba(0, 0, 0, 0.4);
+}
+h3 {
+  font-family: 'Segoe UI Light', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 200;
+  font-size: 20pt;
+  letter-spacing: 0.01em;
+  line-height: 24pt;
+  font-smooth: always;
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 16pt;
+  line-height: 24px;
+}
+h3:hover {
+  color: rgba(0, 0, 0, 0.8);
+}
+h3:active {
+  color: rgba(0, 0, 0, 0.4);
+}
+h4 {
+  font-family: 'Segoe UI Semibold', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 600;
+  font-size: 11pt;
+  letter-spacing: 0.01em;
+  line-height: 14pt;
+  font-smooth: always;
+  color: #000000;
+  color: rgba(0, 0, 0, 0.6);
+}
+h4:hover {
+  color: rgba(0, 0, 0, 0.8);
+}
+h4:active {
+  color: rgba(0, 0, 0, 0.4);
+}
+h4:hover {
+  color: rgba(0, 0, 0, 0.8);
+}
+h4:active {
+  color: rgba(0, 0, 0, 0.4);
+}
+h5 {
+  font-family: 'Segoe UI Semibold', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 600;
+  font-size: 11pt;
+  letter-spacing: 0.01em;
+  line-height: 14pt;
+  font-smooth: always;
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 90%;
+}
+h5:hover {
+  color: rgba(0, 0, 0, 0.8);
+}
+h5:active {
+  color: rgba(0, 0, 0, 0.4);
+}
+h6 {
+  font-family: 'Segoe UI Semibold', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 600;
+  font-size: 11pt;
+  letter-spacing: 0.01em;
+  line-height: 14pt;
+  font-smooth: always;
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 80%;
+}
+h6:hover {
+  color: rgba(0, 0, 0, 0.8);
+}
+h6:active {
+  color: rgba(0, 0, 0, 0.4);
+}
+body,
+p {
+  font-family: 'Segoe UI Semilight', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 300;
+  font-size: 11pt;
+  letter-spacing: 0.02em;
+  line-height: 20px;
+  font-smooth: always;
+}
+p.long-text {
+  font-family: 'PT Serif Caption', sans-serif, serif !important;
+  font-weight: 300;
+  font-size: 10pt;
+  letter-spacing: 0.02em;
+  line-height: 20px;
+  font-smooth: always;
+}
+p {
+  margin: 0 0 10px;
+}
+p.indent:first-letter {
+  padding-left: 25px;
+}
+.lead {
+  font-size: 120%;
+  line-height: 26px;
+}
+.tertiary-info-text,
+.tertiary-text {
+  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 9pt;
+  font-smooth: always;
+  color: #000000;
+}
+.tertiary-info-text:hover,
+.tertiary-text:hover {
+  color: rgba(0, 0, 0, 0.8);
+}
+.tertiary-info-text:active,
+.tertiary-text:active {
+  color: rgba(0, 0, 0, 0.4);
+}
+.tertiary-info-secondary-text,
+.tertiary-secondary-text {
+  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 9pt;
+  font-smooth: always;
+  color: rgba(0, 0, 0, 0.6);
+}
+.tertiary-info-secondary-text:hover,
+.tertiary-secondary-text:hover {
+  color: rgba(0, 0, 0, 0.8);
+}
+.tertiary-info-secondary-text:active,
+.tertiary-secondary-text:active {
+  color: rgba(0, 0, 0, 0.4);
+}
+abbr.initialism {
+  font-size: 90%;
+  text-transform: uppercase !important;
+}
+abbr[title] {
+  cursor: help !important;
+}
+address {
+  display: block;
+  margin-bottom: 20px;
+  font-family: 'Segoe UI Semilight', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 300;
+  font-size: 11pt;
+  letter-spacing: 0.02em;
+  font-smooth: always;
+  line-height: 20px;
+  font-style: normal;
+}
+blockquote {
+  margin: 0;
+  padding: 5px 20px;
+  border-left: 4px #ccc solid;
+  display: block;
+  background-color: rgba(204, 204, 204, 0.1);
+}
+blockquote p {
+  margin-bottom: 0;
+}
+blockquote small:before {
+  content: '\2014';
+  color: rgba(0, 0, 0, 0.4);
+  margin-right: 5px;
+}
+blockquote.place-right {
+  float: none !important;
+  text-align: right;
+  border: 0;
+  border-right: 4px #ccc solid;
+}
+blockquote.place-right small {
+  text-align: right;
+}
+blockquote.place-right small:before {
+  content: "";
+}
+blockquote.place-right small:after {
+  content: '\2014';
+  color: rgba(0, 0, 0, 0.4);
+  margin-left: 5px;
+}
+ul,
+ol {
+  padding: 0;
+  margin: 0 0 10px 0px;
+  display: block;
+}
+ul:nth-child(1) {
+  margin-left: 25px;
+}
+ul ul,
+ul ol,
+ol ol,
+ol ul {
+  margin-bottom: 0 !important;
+}
+ul {
+  list-style-position: inside;
+  list-style-type: square;
+}
+ul ul {
+  list-style-type: circle;
+}
+ul,
+ol {
+  list-style-position: inside;
+}
+ul li,
+ol li {
+  display: list-item;
+  font-size: 14px;
+  line-height: 20px;
+}
+ol {
+  list-style-type: decimal;
+}
+ul.unstyled,
+ol.unstyled,
+.unstyled {
+  margin-left: 0;
+  list-style: none;
+}
 .metrouicss {
   /*
  * Metro UI CSS
@@ -492,15 +977,6 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
     text-align: center;
 }
 */
-
-  /*
- * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT Lilcense
- *
- * Typography.less
- *
- */
 
   /*
  * Metro UI CSS
@@ -2234,486 +2710,6 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   margin-right: 10px;
   height: 20px;
   width: 20px;
-}
-@font-face {
-  font-family: "PT Serif Caption";
-  font-style: normal;
-  font-weight: 400;
-  src: local("PT Serif Caption"), local("PTSerif-Caption"), url(https://themes.googleusercontent.com/static/fonts/ptserifcaption/v4/7xkFOeTxxO1GMC1suOUYWWhBabBbEjGd1iRmpyoZukE.woff) format('woff');
-}
-@font-face {
-  font-family: "Open Sans";
-  font-style: normal;
-  font-weight: 700;
-  src: local("Open Sans Bold"), local("OpenSans-Bold"), url(https://themes.googleusercontent.com/static/fonts/opensans/v6/k3k702ZOKiLJc3WVjuplzJ1r3JsPcQLi8jytr04NNhU.woff) format('woff');
-}
-@font-face {
-  font-family: "Open Sans";
-  font-style: normal;
-  font-weight: 300;
-  src: local("Open Sans Light"), local("OpenSans-Light"), url(https://themes.googleusercontent.com/static/fonts/opensans/v6/DXI1ORHCpsQm3Vp6mXoaTZ1r3JsPcQLi8jytr04NNhU.woff) format('woff');
-}
-@font-face {
-  font-family: "Open Sans";
-  font-style: normal;
-  font-weight: 800;
-  src: local("Open Sans Extrabold"), local("OpenSans-Extrabold"), url(https://themes.googleusercontent.com/static/fonts/opensans/v6/EInbV5DfGHOiMmvb1Xr-hp1r3JsPcQLi8jytr04NNhU.woff) format('woff');
-}
-@font-face {
-  font-family: "Open Sans";
-  font-style: normal;
-  font-weight: 400;
-  src: local("Open Sans"), local("OpenSans"), url(https://themes.googleusercontent.com/static/fonts/opensans/v6/K88pR3goAWT7BTt32Z01mz8E0i7KZn-EPnyo3HZu7kw.woff) format('woff');
-}
-.metrouicss .text-rest-state {
-  color: #000000;
-}
-.metrouicss .text-rest2-state {
-  color: rgba(0, 0, 0, 0.6);
-}
-.metrouicss .text-hover-state {
-  color: rgba(0, 0, 0, 0.8);
-}
-.metrouicss .text-pressed-state {
-  color: rgba(0, 0, 0, 0.4);
-}
-.metrouicss #font .header {
-  font-family: 'Segoe UI Light', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
-  font-weight: 200;
-  font-size: 42pt;
-  letter-spacing: 0.00em;
-  line-height: 44pt;
-  font-smooth: always;
-}
-.metrouicss #font .subheader,
-.metrouicss #font .subheader-secondary {
-  font-family: 'Segoe UI Light', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
-  font-weight: 200;
-  font-size: 20pt;
-  letter-spacing: 0.01em;
-  line-height: 24pt;
-  font-smooth: always;
-}
-.metrouicss #font .subheader-smaller,
-.metrouicss #font .subheader-secondary-smaller {
-  font-family: 'Segoe UI Light', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
-  font-weight: 200;
-  letter-spacing: 0.01em;
-  line-height: 24pt;
-  font-size: 16pt;
-  font-smooth: always;
-}
-.metrouicss #font .small-subheader,
-.metrouicss #font .small-subheader-secondary {
-  font-family: 'Segoe UI Semibold', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
-  font-weight: 600;
-  font-size: 11pt;
-  letter-spacing: 0.01em;
-  line-height: 14pt;
-  font-smooth: always;
-}
-.metrouicss #font .navigation {
-  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
-  font-weight: 400;
-  font-size: 11pt;
-  letter-spacing: 0.01em;
-  line-height: 14pt;
-  font-smooth: always;
-}
-.metrouicss #font .body,
-.metrouicss #font .body-secondary,
-.metrouicss #font .normal {
-  font-family: 'Segoe UI Semilight', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
-  font-weight: 300;
-  font-size: 11pt;
-  letter-spacing: 0.02em;
-  line-height: 20px;
-  font-smooth: always;
-}
-.metrouicss #font .link {
-  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
-  font-weight: 400;
-  font-size: 11pt;
-  font-smooth: always;
-}
-.metrouicss #font .tertiary,
-.metrouicss #font .tertiary-secondary {
-  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
-  font-weight: 400;
-  font-size: 9pt;
-  font-smooth: always;
-}
-.metrouicss #font .control {
-  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
-  font-weight: 400;
-  font-size: 9pt;
-  font-smooth: always;
-}
-.metrouicss #font .small {
-  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
-  font-weight: 300;
-  font-size: 8pt;
-  font-smooth: always;
-}
-.metrouicss #font .long-text {
-  font-family: 'PT Serif Caption', sans-serif, serif !important;
-  font-weight: 300;
-  font-size: 10pt;
-  letter-spacing: 0.02em;
-  line-height: 20px;
-  font-smooth: always;
-}
-.metrouicss #font .long-text-smaller {
-  font-family: 'PT Serif Caption', sans-serif, serif !important;
-  font-weight: 300;
-  font-size: 10pt;
-  letter-spacing: 0.02em;
-  line-height: 20px;
-  font-smooth: always;
-  font-size: 9pt;
-}
-.metrouicss #font .long-text-lead {
-  font-family: 'PT Serif Caption', sans-serif, serif !important;
-  font-weight: 300;
-  font-size: 10pt;
-  letter-spacing: 0.02em;
-  line-height: 20px;
-  font-smooth: always;
-  font-size: 20pt;
-}
-.metrouicss #state .header,
-.metrouicss #state .subheader,
-.metrouicss #state .small-subheader,
-.metrouicss #state .navigation,
-.metrouicss #state .body,
-.metrouicss #state .tertiary {
-  color: #000000;
-}
-.metrouicss #state .header:hover,
-.metrouicss #state .subheader:hover,
-.metrouicss #state .small-subheader:hover,
-.metrouicss #state .navigation:hover,
-.metrouicss #state .body:hover,
-.metrouicss #state .tertiary:hover {
-  color: rgba(0, 0, 0, 0.8);
-}
-.metrouicss #state .header:active,
-.metrouicss #state .subheader:active,
-.metrouicss #state .small-subheader:active,
-.metrouicss #state .navigation:active,
-.metrouicss #state .body:active,
-.metrouicss #state .tertiary:active {
-  color: rgba(0, 0, 0, 0.4);
-}
-.metrouicss #state .subheader-secondary,
-.metrouicss #state .subheader-secondary-smaller,
-.metrouicss #state .small-subheader,
-.metrouicss #state .small-subheader-secondary,
-.metrouicss #state .body-secondary,
-.metrouicss #state .tertiary-secondary {
-  color: rgba(0, 0, 0, 0.6);
-}
-.metrouicss #state .subheader-secondary:hover,
-.metrouicss #state .subheader-secondary-smaller:hover,
-.metrouicss #state .small-subheader:hover,
-.metrouicss #state .small-subheader-secondary:hover,
-.metrouicss #state .body-secondary:hover,
-.metrouicss #state .tertiary-secondary:hover {
-  color: rgba(0, 0, 0, 0.8);
-}
-.metrouicss #state .subheader-secondary:active,
-.metrouicss #state .subheader-secondary-smaller:active,
-.metrouicss #state .small-subheader:active,
-.metrouicss #state .small-subheader-secondary:active,
-.metrouicss #state .body-secondary:active,
-.metrouicss #state .tertiary-secondary:active {
-  color: rgba(0, 0, 0, 0.4);
-}
-.metrouicss #state .link {
-  color: #2e92cf;
-}
-.metrouicss #state .link:hover {
-  color: rgba(45, 173, 237, 0.8);
-}
-.metrouicss #state .link:active {
-  color: rgba(45, 173, 237, 0.6);
-}
-.metrouicss a,
-.metrouicss .link {
-  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
-  font-weight: 400;
-  font-size: 11pt;
-  font-smooth: always;
-  color: #2e92cf;
-  text-decoration: none;
-}
-.metrouicss a:hover,
-.metrouicss .link:hover {
-  color: rgba(45, 173, 237, 0.8);
-}
-.metrouicss a:active,
-.metrouicss .link:active {
-  color: rgba(45, 173, 237, 0.6);
-}
-.metrouicss h1,
-.metrouicss h2,
-.metrouicss h3,
-.metrouicss h4,
-.metrouicss h5,
-.metrouicss h6 {
-  margin: 10px 0;
-  padding: 0;
-}
-.metrouicss h1 {
-  font-family: 'Segoe UI Light', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
-  font-weight: 200;
-  font-size: 42pt;
-  letter-spacing: 0.00em;
-  line-height: 44pt;
-  font-smooth: always;
-  color: #000000;
-}
-.metrouicss h1:hover {
-  color: rgba(0, 0, 0, 0.8);
-}
-.metrouicss h1:active {
-  color: rgba(0, 0, 0, 0.4);
-}
-.metrouicss h2 {
-  font-family: 'Segoe UI Light', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
-  font-weight: 200;
-  font-size: 20pt;
-  letter-spacing: 0.01em;
-  line-height: 24pt;
-  font-smooth: always;
-  color: #000000;
-}
-.metrouicss h2:hover {
-  color: rgba(0, 0, 0, 0.8);
-}
-.metrouicss h2:active {
-  color: rgba(0, 0, 0, 0.4);
-}
-.metrouicss h3 {
-  font-family: 'Segoe UI Light', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
-  font-weight: 200;
-  font-size: 20pt;
-  letter-spacing: 0.01em;
-  line-height: 24pt;
-  font-smooth: always;
-  color: rgba(0, 0, 0, 0.6);
-  font-size: 16pt;
-  line-height: 24px;
-}
-.metrouicss h3:hover {
-  color: rgba(0, 0, 0, 0.8);
-}
-.metrouicss h3:active {
-  color: rgba(0, 0, 0, 0.4);
-}
-.metrouicss h4 {
-  font-family: 'Segoe UI Semibold', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
-  font-weight: 600;
-  font-size: 11pt;
-  letter-spacing: 0.01em;
-  line-height: 14pt;
-  font-smooth: always;
-  color: #000000;
-  color: rgba(0, 0, 0, 0.6);
-}
-.metrouicss h4:hover {
-  color: rgba(0, 0, 0, 0.8);
-}
-.metrouicss h4:active {
-  color: rgba(0, 0, 0, 0.4);
-}
-.metrouicss h4:hover {
-  color: rgba(0, 0, 0, 0.8);
-}
-.metrouicss h4:active {
-  color: rgba(0, 0, 0, 0.4);
-}
-.metrouicss h5 {
-  font-family: 'Segoe UI Semibold', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
-  font-weight: 600;
-  font-size: 11pt;
-  letter-spacing: 0.01em;
-  line-height: 14pt;
-  font-smooth: always;
-  color: rgba(0, 0, 0, 0.6);
-  font-size: 90%;
-}
-.metrouicss h5:hover {
-  color: rgba(0, 0, 0, 0.8);
-}
-.metrouicss h5:active {
-  color: rgba(0, 0, 0, 0.4);
-}
-.metrouicss h6 {
-  font-family: 'Segoe UI Semibold', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
-  font-weight: 600;
-  font-size: 11pt;
-  letter-spacing: 0.01em;
-  line-height: 14pt;
-  font-smooth: always;
-  color: rgba(0, 0, 0, 0.6);
-  font-size: 80%;
-}
-.metrouicss h6:hover {
-  color: rgba(0, 0, 0, 0.8);
-}
-.metrouicss h6:active {
-  color: rgba(0, 0, 0, 0.4);
-}
-.metrouicss body,
-.metrouicss p {
-  font-family: 'Segoe UI Semilight', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
-  font-weight: 300;
-  font-size: 11pt;
-  letter-spacing: 0.02em;
-  line-height: 20px;
-  font-smooth: always;
-}
-.metrouicss p.long-text {
-  font-family: 'PT Serif Caption', sans-serif, serif !important;
-  font-weight: 300;
-  font-size: 10pt;
-  letter-spacing: 0.02em;
-  line-height: 20px;
-  font-smooth: always;
-}
-.metrouicss p {
-  margin: 0 0 10px;
-}
-.metrouicss p.indent:first-letter {
-  padding-left: 25px;
-}
-.metrouicss .lead {
-  font-size: 120%;
-  line-height: 26px;
-}
-.metrouicss .tertiary-info-text,
-.metrouicss .tertiary-text {
-  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
-  font-weight: 400;
-  font-size: 9pt;
-  font-smooth: always;
-  color: #000000;
-}
-.metrouicss .tertiary-info-text:hover,
-.metrouicss .tertiary-text:hover {
-  color: rgba(0, 0, 0, 0.8);
-}
-.metrouicss .tertiary-info-text:active,
-.metrouicss .tertiary-text:active {
-  color: rgba(0, 0, 0, 0.4);
-}
-.metrouicss .tertiary-info-secondary-text,
-.metrouicss .tertiary-secondary-text {
-  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
-  font-weight: 400;
-  font-size: 9pt;
-  font-smooth: always;
-  color: rgba(0, 0, 0, 0.6);
-}
-.metrouicss .tertiary-info-secondary-text:hover,
-.metrouicss .tertiary-secondary-text:hover {
-  color: rgba(0, 0, 0, 0.8);
-}
-.metrouicss .tertiary-info-secondary-text:active,
-.metrouicss .tertiary-secondary-text:active {
-  color: rgba(0, 0, 0, 0.4);
-}
-.metrouicss abbr.initialism {
-  font-size: 90%;
-  text-transform: uppercase !important;
-}
-.metrouicss abbr[title] {
-  cursor: help !important;
-}
-.metrouicss address {
-  display: block;
-  margin-bottom: 20px;
-  font-family: 'Segoe UI Semilight', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
-  font-weight: 300;
-  font-size: 11pt;
-  letter-spacing: 0.02em;
-  font-smooth: always;
-  line-height: 20px;
-  font-style: normal;
-}
-.metrouicss blockquote {
-  margin: 0;
-  padding: 5px 20px;
-  border-left: 4px #ccc solid;
-  display: block;
-  background-color: rgba(204, 204, 204, 0.1);
-}
-.metrouicss blockquote p {
-  margin-bottom: 0;
-}
-.metrouicss blockquote small:before {
-  content: '\2014';
-  color: rgba(0, 0, 0, 0.4);
-  margin-right: 5px;
-}
-.metrouicss blockquote.place-right {
-  float: none !important;
-  text-align: right;
-  border: 0;
-  border-right: 4px #ccc solid;
-}
-.metrouicss blockquote.place-right small {
-  text-align: right;
-}
-.metrouicss blockquote.place-right small:before {
-  content: "";
-}
-.metrouicss blockquote.place-right small:after {
-  content: '\2014';
-  color: rgba(0, 0, 0, 0.4);
-  margin-left: 5px;
-}
-.metrouicss ul,
-.metrouicss ol {
-  padding: 0;
-  margin: 0 0 10px 0px;
-  display: block;
-}
-.metrouicss ul:nth-child(1) {
-  margin-left: 25px;
-}
-.metrouicss ul ul,
-.metrouicss ul ol,
-.metrouicss ol ol,
-.metrouicss ol ul {
-  margin-bottom: 0 !important;
-}
-.metrouicss ul {
-  list-style-position: inside;
-  list-style-type: square;
-}
-.metrouicss ul ul {
-  list-style-type: circle;
-}
-.metrouicss ul,
-.metrouicss ol {
-  list-style-position: inside;
-}
-.metrouicss ul li,
-.metrouicss ol li {
-  display: list-item;
-  font-size: 14px;
-  line-height: 20px;
-}
-.metrouicss ol {
-  list-style-type: decimal;
-}
-.metrouicss ul.unstyled,
-.metrouicss ol.unstyled,
-.metrouicss .unstyled {
-  margin-left: 0;
-  list-style: none;
 }
 .metrouicss *,
 .metrouicss *:after,
