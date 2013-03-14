@@ -1,225 +1,449 @@
-.metrouicss {
-  /*! normalize.css 2012-03-11T12:53 UTC - http://github.com/necolas/normalize.css */
-
-  /* =============================================================================
+/*! normalize.css 2012-03-11T12:53 UTC - http://github.com/necolas/normalize.css */
+/* =============================================================================
    HTML5 display definitions
    ========================================================================== */
-
-  /*
+/*
  * Corrects block display not defined in IE6/7/8/9 & FF3
  */
-
-  /*
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+nav,
+section,
+summary {
+  display: block;
+}
+/*
  * Corrects inline-block display not defined in IE6/7/8/9 & FF3
  */
-
-  /*
+audio,
+canvas,
+video {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+}
+/*
  * Prevents modern browsers from displaying 'audio' without controls
  * Remove excess height in iOS5 devices
  */
-
-  /*
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+/*
  * Addresses styling for 'hidden' attribute not present in IE7/8/9, FF3, S4
  * Known issue: no IE6 support
  */
-
-  /* =============================================================================
+[hidden] {
+  display: none;
+}
+/* =============================================================================
    Base
    ========================================================================== */
-
-  /*
+/*
  * 1. Corrects text resizing oddly in IE6/7 when body font-size is set using em units
  *    http://clagnut.com/blog/348/#c790
  * 2. Prevents iOS text size adjust after orientation change, without disabling user zoom
  *    www.456bereastreet.com/archive/201012/controlling_text_size_in_safari_for_ios_without_disabling_user_zoom/
  */
+html {
+  font-size: 100%;
+  /* 1 */
 
-  /*
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  /* 2 */
+
+}
+/*
  * Addresses font-family inconsistency between 'textarea' and other form elements.
  */
-
-  /*
+html,
+button,
+input,
+select,
+textarea {
+  font-family: sans-serif;
+}
+/*
  * Addresses margins handled incorrectly in IE6/7
  */
-
-  /* =============================================================================
+body {
+  margin: 0;
+}
+/* =============================================================================
    Links
    ========================================================================== */
-
-  /*
+/*
  * Addresses outline displayed oddly in Chrome
  */
-
-  /*
+a:focus {
+  outline: thin dotted;
+}
+/*
  * Improves readability when focused and also mouse hovered in all browsers
  * people.opera.com/patrickl/experiments/keyboard/test
  */
-
-  /* =============================================================================
+a:hover,
+a:active {
+  outline: 0;
+}
+/* =============================================================================
    Typography
    ========================================================================== */
-
-  /*
+/*
  * Addresses font sizes and margins set differently in IE6/7
  * Addresses font sizes within 'section' and 'article' in FF4+, Chrome, S5
  */
-
-  /*
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+h2 {
+  font-size: 1.5em;
+  margin: 0.83em 0;
+}
+h3 {
+  font-size: 1.17em;
+  margin: 1em 0;
+}
+h4 {
+  font-size: 1em;
+  margin: 1.33em 0;
+}
+h5 {
+  font-size: 0.83em;
+  margin: 1.67em 0;
+}
+h6 {
+  font-size: 0.75em;
+  margin: 2.33em 0;
+}
+/*
  * Addresses styling not present in IE7/8/9, S5, Chrome
  */
-
-  /*
+abbr[title] {
+  border-bottom: 1px dotted;
+}
+/*
  * Addresses style set to 'bolder' in FF3+, S4/5, Chrome
 */
-
-  /*
+b,
+strong {
+  font-weight: bold;
+}
+blockquote {
+  margin: 1em 40px;
+}
+/*
  * Addresses styling not present in S5, Chrome
  */
-
-  /*
+dfn {
+  font-style: italic;
+}
+/*
  * Addresses styling not present in IE6/7/8/9
  */
-
-  /*
+mark {
+  background: #ff0;
+  color: #000;
+}
+/*
+ * Addresses margins set differently in IE6/7
+ */
+p,
+pre {
+  margin: 1em 0;
+}
+/*
  * Corrects font family set oddly in IE6, S4/5, Chrome
  * en.wikipedia.org/wiki/User:Davidgothberg/Test59
  */
-
-  /*
+pre,
+code,
+kbd,
+samp {
+  font-family: monospace, serif;
+  _font-family: 'courier new', monospace;
+  font-size: 1em;
+}
+/*
  * Improves readability of pre-formatted text in all browsers
  */
-
-  /*
+pre {
+  white-space: pre;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+/*
  * 1. Addresses CSS quotes not supported in IE6/7
  * 2. Addresses quote property not supported in S4
  */
-
-  /* 1 */
-
-  /* 2 */
-
-  /*
+/* 1 */
+q {
+  quotes: none;
+}
+/* 2 */
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+small {
+  font-size: 75%;
+}
+/*
  * Prevents sub and sup affecting line-height in all browsers
  * gist.github.com/413930
  */
-
-  /* =============================================================================
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+sup {
+  top: -0.5em;
+}
+sub {
+  bottom: -0.25em;
+}
+/* =============================================================================
    Lists
    ========================================================================== */
-
-  /*
+/*
  * Addresses margins set differently in IE6/7
  */
-
-  /*
+dl,
+menu,
+ol,
+ul {
+  margin: 1em 0;
+}
+dd {
+  margin: 0 0 0 40px;
+}
+/*
  * Addresses paddings set differently in IE6/7
  */
-
-  /*
+menu,
+ol,
+ul {
+  padding: 0 0 0 40px;
+}
+/*
  * Corrects list images handled incorrectly in IE7
  */
-
-  /* =============================================================================
+nav ul,
+nav ol {
+  list-style: none;
+  list-style-image: none;
+}
+/* =============================================================================
    Embedded content
    ========================================================================== */
-
-  /*
+/*
  * 1. Removes border when inside 'a' element in IE6/7/8/9, FF3
  * 2. Improves image quality when scaled in IE7
  *    code.flickr.com/blog/2008/11/12/on-ui-quality-the-little-things-client-side-image-resizing/
  */
+img {
+  border: 0;
+  /* 1 */
 
-  /*
+  -ms-interpolation-mode: bicubic;
+  /* 2 */
+
+}
+/*
  * Corrects overflow displayed oddly in IE9
  */
-
-  /* =============================================================================
+svg:not(:root) {
+  overflow: hidden;
+}
+/* =============================================================================
    Figures
    ========================================================================== */
-
-  /*
+/*
  * Addresses margin not present in IE6/7/8/9, S5, O11
  */
-
-  /* =============================================================================
+figure {
+  margin: 0;
+}
+/* =============================================================================
    Forms
    ========================================================================== */
-
-  /*
+/*
  * Corrects margin displayed oddly in IE6/7
  */
-
-  /*
+form {
+  margin: 0;
+}
+/*
  * Define consistent border, margin, and padding
  */
-
-  /*
+fieldset {
+  border: 1px solid #c0c0c0;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em;
+}
+/*
  * 1. Corrects color not being inherited in IE6/7/8/9
  * 2. Corrects text not wrapping in FF3
  * 3. Corrects alignment displayed oddly in IE6/7
  */
+legend {
+  border: 0;
+  /* 1 */
 
-  /*
+  padding: 0;
+  white-space: normal;
+  /* 2 */
+
+  *margin-left: -7px;
+  /* 3 */
+
+}
+/*
  * 1. Corrects font size not being inherited in all browsers
  * 2. Addresses margins set differently in IE6/7, FF3+, S5, Chrome
  * 3. Improves appearance and consistency in all browsers
  */
+button,
+input,
+select,
+textarea {
+  font-size: 100%;
+  /* 1 */
 
-  /*
+  margin: 0;
+  /* 2 */
+
+  vertical-align: baseline;
+  *vertical-align: middle;
+  /* 3 */
+
+}
+/*
  * Addresses FF3/4 setting line-height on 'input' using !important in the UA stylesheet
  */
+button,
+input {
+  line-height: normal;
+  /* 1 */
 
-  /*
+}
+/*
  * 1. Improves usability and consistency of cursor style between image-type 'input' and others
  * 2. Corrects inability to style clickable 'input' types in iOS
  * 3. Removes inner spacing in IE7 without affecting normal text inputs
  *    Known issue: inner spacing remains in IE6
  */
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  cursor: pointer;
+  /* 1 */
 
-  /*
+  -webkit-appearance: button;
+  /* 2 */
+
+  *overflow: visible;
+  /* 3 */
+
+}
+/*
  * Re-set default cursor for disabled elements
  */
-
-  /*
+button[disabled],
+input[disabled] {
+  cursor: default;
+}
+/*
  * 1. Addresses box sizing set to content-box in IE8/9
  * 2. Removes excess padding in IE8/9
  * 3. Removes excess padding in IE7
       Known issue: excess padding remains in IE6
  */
+input[type="checkbox"],
+input[type="radio"] {
+  box-sizing: border-box;
+  /* 1 */
 
-  /*
+  padding: 0;
+  /* 2 */
+
+  *height: 13px;
+  *width: 13px;
+  /* 3 */
+
+}
+/*
  * 1. Addresses appearance set to searchfield in S5, Chrome
  * 2. Addresses box-sizing set to border-box in S5, Chrome (include -moz to future-proof)
  */
+input[type="search"] {
+  -webkit-appearance: textfield;
+  /* 1 */
 
-  /*
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  /* 2 */
+
+  box-sizing: content-box;
+}
+/*
  * Removes inner padding and search cancel button in S5, Chrome on OS X
  */
-
-  /*
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+}
+/*
  * Removes inner padding and border in FF3+
  * www.sitepen.com/blog/2008/05/14/the-devils-in-the-details-fixing-dojos-toolbar-buttons/
  */
-
-  /*
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+/*
  * 1. Removes default vertical scrollbar in IE6/7/8/9
  * 2. Improves readability and alignment in all browsers
  */
+textarea {
+  overflow: auto;
+  /* 1 */
 
-  /* =============================================================================
+  vertical-align: top;
+  /* 2 */
+
+}
+/* =============================================================================
    Tables
    ========================================================================== */
-
-  /*
+/*
  * Remove most spacing between table cells
  */
-<<<<<<< HEAD
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-/*
-=======
+.metrouicss {
+  /*
+ *
+ * Typography.less
+ *
+ */
 
   /*
  * Metro UI CSS
@@ -274,23 +498,6 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
     text-align: center;
 }
 */
-
-  /*
- * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT Lilcense
->>>>>>> 31bd1b7b3b2c70fe0a61d275dc4665d29506a0c9
- *
- * Typography.less
- *
- */
-<<<<<<< HEAD
-@font-face {
-  font-family: "PT Serif Caption";
-  font-style: normal;
-  font-weight: 400;
-  src: local("PT Serif Caption"), local("PTSerif-Caption"), url(https://themes.googleusercontent.com/static/fonts/ptserifcaption/v4/7xkFOeTxxO1GMC1suOUYWWhBabBbEjGd1iRmpyoZukE.woff) format('woff');
-=======
 
   /*
  * Metro UI CSS
@@ -466,281 +673,11 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
  */
 
 }
-.metrouicss article,
-.metrouicss aside,
-.metrouicss details,
-.metrouicss figcaption,
-.metrouicss figure,
-.metrouicss footer,
-.metrouicss header,
-.metrouicss hgroup,
-.metrouicss nav,
-.metrouicss section,
-.metrouicss summary {
-  display: block;
-}
-.metrouicss audio,
-.metrouicss canvas,
-.metrouicss video {
-  display: inline-block;
-  *display: inline;
-  *zoom: 1;
-}
-.metrouicss audio:not([controls]) {
-  display: none;
-  height: 0;
-}
-.metrouicss [hidden] {
-  display: none;
-}
-.metrouicss html {
-  font-size: 100%;
-  /* 1 */
-
-  -webkit-text-size-adjust: 100%;
-  -ms-text-size-adjust: 100%;
-  /* 2 */
-
-}
-.metrouicss html,
-.metrouicss button,
-.metrouicss input,
-.metrouicss select,
-.metrouicss textarea {
-  font-family: sans-serif;
-}
-.metrouicss body {
-  margin: 0;
-}
-.metrouicss a:focus {
-  outline: thin dotted;
-}
-.metrouicss a:hover,
-.metrouicss a:active {
-  outline: 0;
-}
-.metrouicss h1 {
-  font-size: 2em;
-  margin: 0.67em 0;
-}
-.metrouicss h2 {
-  font-size: 1.5em;
-  margin: 0.83em 0;
-}
-.metrouicss h3 {
-  font-size: 1.17em;
-  margin: 1em 0;
-}
-.metrouicss h4 {
-  font-size: 1em;
-  margin: 1.33em 0;
-}
-.metrouicss h5 {
-  font-size: 0.83em;
-  margin: 1.67em 0;
-}
-.metrouicss h6 {
-  font-size: 0.75em;
-  margin: 2.33em 0;
-}
-.metrouicss abbr[title] {
-  border-bottom: 1px dotted;
-}
-.metrouicss b,
-.metrouicss strong {
-  font-weight: bold;
-}
-.metrouicss blockquote {
-  margin: 1em 40px;
-}
-.metrouicss dfn {
-  font-style: italic;
-}
-.metrouicss mark {
-  background: #ff0;
-  color: #000;
-}
-.metrouicss p,
-.metrouicss pre {
-  margin: 1em 0;
-}
-.metrouicss pre,
-.metrouicss code,
-.metrouicss kbd,
-.metrouicss samp {
-  font-family: monospace, serif;
-  _font-family: 'courier new', monospace;
-  font-size: 1em;
-}
-.metrouicss pre {
-  white-space: pre;
-  white-space: pre-wrap;
-  word-wrap: break-word;
-}
-.metrouicss q {
-  quotes: none;
-}
-.metrouicss q:before,
-.metrouicss q:after {
-  content: '';
-  content: none;
-}
-.metrouicss small {
-  font-size: 75%;
-}
-.metrouicss sub,
-.metrouicss sup {
-  font-size: 75%;
-  line-height: 0;
-  position: relative;
-  vertical-align: baseline;
-}
-.metrouicss sup {
-  top: -0.5em;
-}
-.metrouicss sub {
-  bottom: -0.25em;
-}
-.metrouicss dl,
-.metrouicss menu,
-.metrouicss ol,
-.metrouicss ul {
-  margin: 1em 0;
-}
-.metrouicss dd {
-  margin: 0 0 0 40px;
-}
-.metrouicss menu,
-.metrouicss ol,
-.metrouicss ul {
-  padding: 0 0 0 40px;
-}
-.metrouicss nav ul,
-.metrouicss nav ol {
-  list-style: none;
-  list-style-image: none;
-}
-.metrouicss img {
-  border: 0;
-  /* 1 */
-
-  -ms-interpolation-mode: bicubic;
-  /* 2 */
-
-}
-.metrouicss svg:not(:root) {
-  overflow: hidden;
-}
-.metrouicss figure {
-  margin: 0;
-}
-.metrouicss form {
-  margin: 0;
-}
-.metrouicss fieldset {
-  border: 1px solid #c0c0c0;
-  margin: 0 2px;
-  padding: 0.35em 0.625em 0.75em;
-}
-.metrouicss legend {
-  border: 0;
-  /* 1 */
-
-  padding: 0;
-  white-space: normal;
-  /* 2 */
-
-  *margin-left: -7px;
-  /* 3 */
-
-}
-.metrouicss button,
-.metrouicss input,
-.metrouicss select,
-.metrouicss textarea {
-  font-size: 100%;
-  /* 1 */
-
-  margin: 0;
-  /* 2 */
-
-  vertical-align: baseline;
-  *vertical-align: middle;
-  /* 3 */
-
-}
-.metrouicss button,
-.metrouicss input {
-  line-height: normal;
-  /* 1 */
-
-}
-.metrouicss button,
-.metrouicss input[type="button"],
-.metrouicss input[type="reset"],
-.metrouicss input[type="submit"] {
-  cursor: pointer;
-  /* 1 */
-
-  -webkit-appearance: button;
-  /* 2 */
-
-  *overflow: visible;
-  /* 3 */
-
-}
-.metrouicss button[disabled],
-.metrouicss input[disabled] {
-  cursor: default;
-}
-.metrouicss input[type="checkbox"],
-.metrouicss input[type="radio"] {
-  box-sizing: border-box;
-  /* 1 */
-
-  padding: 0;
-  /* 2 */
-
-  *height: 13px;
-  *width: 13px;
-  /* 3 */
-
-}
-.metrouicss input[type="search"] {
-  -webkit-appearance: textfield;
-  /* 1 */
-
-  -moz-box-sizing: content-box;
-  -webkit-box-sizing: content-box;
-  /* 2 */
-
-  box-sizing: content-box;
-}
-.metrouicss input[type="search"]::-webkit-search-decoration,
-.metrouicss input[type="search"]::-webkit-search-cancel-button {
-  -webkit-appearance: none;
-}
-.metrouicss button::-moz-focus-inner,
-.metrouicss input::-moz-focus-inner {
-  border: 0;
-  padding: 0;
-}
-.metrouicss textarea {
-  overflow: auto;
-  /* 1 */
-
-  vertical-align: top;
-  /* 2 */
-
-}
-.metrouicss table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-.metrouicss .place-left {
-  float: left !important;
-  margin-right: 10px;
->>>>>>> 31bd1b7b3b2c70fe0a61d275dc4665d29506a0c9
+@font-face {
+  font-family: "PT Serif Caption";
+  font-style: normal;
+  font-weight: 400;
+  src: local("PT Serif Caption"), local("PTSerif-Caption"), url(https://themes.googleusercontent.com/static/fonts/ptserifcaption/v4/7xkFOeTxxO1GMC1suOUYWWhBabBbEjGd1iRmpyoZukE.woff) format('woff');
 }
 @font-face {
   font-family: "Open Sans";
@@ -766,19 +703,19 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 400;
   src: local("Open Sans"), local("OpenSans"), url(https://themes.googleusercontent.com/static/fonts/opensans/v6/K88pR3goAWT7BTt32Z01mz8E0i7KZn-EPnyo3HZu7kw.woff) format('woff');
 }
-.text-rest-state {
+.metrouicss .text-rest-state {
   color: #000000;
 }
-.text-rest2-state {
+.metrouicss .text-rest2-state {
   color: rgba(0, 0, 0, 0.6);
 }
-.text-hover-state {
+.metrouicss .text-hover-state {
   color: rgba(0, 0, 0, 0.8);
 }
-.text-pressed-state {
+.metrouicss .text-pressed-state {
   color: rgba(0, 0, 0, 0.4);
 }
-#font .header {
+.metrouicss #font .header {
   font-family: 'Segoe UI Light', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 200;
   font-size: 42pt;
@@ -786,8 +723,8 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   line-height: 44pt;
   font-smooth: always;
 }
-#font .subheader,
-#font .subheader-secondary {
+.metrouicss #font .subheader,
+.metrouicss #font .subheader-secondary {
   font-family: 'Segoe UI Light', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 200;
   font-size: 20pt;
@@ -795,8 +732,8 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   line-height: 24pt;
   font-smooth: always;
 }
-#font .subheader-smaller,
-#font .subheader-secondary-smaller {
+.metrouicss #font .subheader-smaller,
+.metrouicss #font .subheader-secondary-smaller {
   font-family: 'Segoe UI Light', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 200;
   letter-spacing: 0.01em;
@@ -804,8 +741,8 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-size: 16pt;
   font-smooth: always;
 }
-#font .small-subheader,
-#font .small-subheader-secondary {
+.metrouicss #font .small-subheader,
+.metrouicss #font .small-subheader-secondary {
   font-family: 'Segoe UI Semibold', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 600;
   font-size: 11pt;
@@ -813,7 +750,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   line-height: 14pt;
   font-smooth: always;
 }
-#font .navigation {
+.metrouicss #font .navigation {
   font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 11pt;
@@ -821,9 +758,9 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   line-height: 14pt;
   font-smooth: always;
 }
-#font .body,
-#font .body-secondary,
-#font .normal {
+.metrouicss #font .body,
+.metrouicss #font .body-secondary,
+.metrouicss #font .normal {
   font-family: 'Segoe UI Semilight', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 300;
   font-size: 11pt;
@@ -831,32 +768,32 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   line-height: 20px;
   font-smooth: always;
 }
-#font .link {
+.metrouicss #font .link {
   font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 11pt;
   font-smooth: always;
 }
-#font .tertiary,
-#font .tertiary-secondary {
+.metrouicss #font .tertiary,
+.metrouicss #font .tertiary-secondary {
   font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 9pt;
   font-smooth: always;
 }
-#font .control {
+.metrouicss #font .control {
   font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 9pt;
   font-smooth: always;
 }
-#font .small {
+.metrouicss #font .small {
   font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 300;
   font-size: 8pt;
   font-smooth: always;
 }
-#font .long-text {
+.metrouicss #font .long-text {
   font-family: 'PT Serif Caption', sans-serif, serif !important;
   font-weight: 300;
   font-size: 10pt;
@@ -864,7 +801,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   line-height: 20px;
   font-smooth: always;
 }
-#font .long-text-smaller {
+.metrouicss #font .long-text-smaller {
   font-family: 'PT Serif Caption', sans-serif, serif !important;
   font-weight: 300;
   font-size: 10pt;
@@ -873,7 +810,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-smooth: always;
   font-size: 9pt;
 }
-#font .long-text-lead {
+.metrouicss #font .long-text-lead {
   font-family: 'PT Serif Caption', sans-serif, serif !important;
   font-weight: 300;
   font-size: 10pt;
@@ -882,65 +819,65 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-smooth: always;
   font-size: 20pt;
 }
-#state .header,
-#state .subheader,
-#state .small-subheader,
-#state .navigation,
-#state .body,
-#state .tertiary {
+.metrouicss #state .header,
+.metrouicss #state .subheader,
+.metrouicss #state .small-subheader,
+.metrouicss #state .navigation,
+.metrouicss #state .body,
+.metrouicss #state .tertiary {
   color: #000000;
 }
-#state .header:hover,
-#state .subheader:hover,
-#state .small-subheader:hover,
-#state .navigation:hover,
-#state .body:hover,
-#state .tertiary:hover {
+.metrouicss #state .header:hover,
+.metrouicss #state .subheader:hover,
+.metrouicss #state .small-subheader:hover,
+.metrouicss #state .navigation:hover,
+.metrouicss #state .body:hover,
+.metrouicss #state .tertiary:hover {
   color: rgba(0, 0, 0, 0.8);
 }
-#state .header:active,
-#state .subheader:active,
-#state .small-subheader:active,
-#state .navigation:active,
-#state .body:active,
-#state .tertiary:active {
+.metrouicss #state .header:active,
+.metrouicss #state .subheader:active,
+.metrouicss #state .small-subheader:active,
+.metrouicss #state .navigation:active,
+.metrouicss #state .body:active,
+.metrouicss #state .tertiary:active {
   color: rgba(0, 0, 0, 0.4);
 }
-#state .subheader-secondary,
-#state .subheader-secondary-smaller,
-#state .small-subheader,
-#state .small-subheader-secondary,
-#state .body-secondary,
-#state .tertiary-secondary {
+.metrouicss #state .subheader-secondary,
+.metrouicss #state .subheader-secondary-smaller,
+.metrouicss #state .small-subheader,
+.metrouicss #state .small-subheader-secondary,
+.metrouicss #state .body-secondary,
+.metrouicss #state .tertiary-secondary {
   color: rgba(0, 0, 0, 0.6);
 }
-#state .subheader-secondary:hover,
-#state .subheader-secondary-smaller:hover,
-#state .small-subheader:hover,
-#state .small-subheader-secondary:hover,
-#state .body-secondary:hover,
-#state .tertiary-secondary:hover {
+.metrouicss #state .subheader-secondary:hover,
+.metrouicss #state .subheader-secondary-smaller:hover,
+.metrouicss #state .small-subheader:hover,
+.metrouicss #state .small-subheader-secondary:hover,
+.metrouicss #state .body-secondary:hover,
+.metrouicss #state .tertiary-secondary:hover {
   color: rgba(0, 0, 0, 0.8);
 }
-#state .subheader-secondary:active,
-#state .subheader-secondary-smaller:active,
-#state .small-subheader:active,
-#state .small-subheader-secondary:active,
-#state .body-secondary:active,
-#state .tertiary-secondary:active {
+.metrouicss #state .subheader-secondary:active,
+.metrouicss #state .subheader-secondary-smaller:active,
+.metrouicss #state .small-subheader:active,
+.metrouicss #state .small-subheader-secondary:active,
+.metrouicss #state .body-secondary:active,
+.metrouicss #state .tertiary-secondary:active {
   color: rgba(0, 0, 0, 0.4);
 }
-#state .link {
+.metrouicss #state .link {
   color: #2e92cf;
 }
-#state .link:hover {
+.metrouicss #state .link:hover {
   color: rgba(45, 173, 237, 0.8);
 }
-#state .link:active {
+.metrouicss #state .link:active {
   color: rgba(45, 173, 237, 0.6);
 }
-a,
-.link {
+.metrouicss a,
+.metrouicss .link {
   font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 11pt;
@@ -948,24 +885,24 @@ a,
   color: #2e92cf;
   text-decoration: none;
 }
-a:hover,
-.link:hover {
+.metrouicss a:hover,
+.metrouicss .link:hover {
   color: rgba(45, 173, 237, 0.8);
 }
-a:active,
-.link:active {
+.metrouicss a:active,
+.metrouicss .link:active {
   color: rgba(45, 173, 237, 0.6);
 }
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+.metrouicss h1,
+.metrouicss h2,
+.metrouicss h3,
+.metrouicss h4,
+.metrouicss h5,
+.metrouicss h6 {
   margin: 10px 0;
   padding: 0;
 }
-h1 {
+.metrouicss h1 {
   font-family: 'Segoe UI Light', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 200;
   font-size: 42pt;
@@ -974,13 +911,13 @@ h1 {
   font-smooth: always;
   color: #000000;
 }
-h1:hover {
+.metrouicss h1:hover {
   color: rgba(0, 0, 0, 0.8);
 }
-h1:active {
+.metrouicss h1:active {
   color: rgba(0, 0, 0, 0.4);
 }
-h2 {
+.metrouicss h2 {
   font-family: 'Segoe UI Light', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 200;
   font-size: 20pt;
@@ -989,13 +926,13 @@ h2 {
   font-smooth: always;
   color: #000000;
 }
-h2:hover {
+.metrouicss h2:hover {
   color: rgba(0, 0, 0, 0.8);
 }
-h2:active {
+.metrouicss h2:active {
   color: rgba(0, 0, 0, 0.4);
 }
-h3 {
+.metrouicss h3 {
   font-family: 'Segoe UI Light', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 200;
   font-size: 20pt;
@@ -1006,13 +943,13 @@ h3 {
   font-size: 16pt;
   line-height: 24px;
 }
-h3:hover {
+.metrouicss h3:hover {
   color: rgba(0, 0, 0, 0.8);
 }
-h3:active {
+.metrouicss h3:active {
   color: rgba(0, 0, 0, 0.4);
 }
-h4 {
+.metrouicss h4 {
   font-family: 'Segoe UI Semibold', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 600;
   font-size: 11pt;
@@ -1022,19 +959,19 @@ h4 {
   color: #000000;
   color: rgba(0, 0, 0, 0.6);
 }
-h4:hover {
+.metrouicss h4:hover {
   color: rgba(0, 0, 0, 0.8);
 }
-h4:active {
+.metrouicss h4:active {
   color: rgba(0, 0, 0, 0.4);
 }
-h4:hover {
+.metrouicss h4:hover {
   color: rgba(0, 0, 0, 0.8);
 }
-h4:active {
+.metrouicss h4:active {
   color: rgba(0, 0, 0, 0.4);
 }
-h5 {
+.metrouicss h5 {
   font-family: 'Segoe UI Semibold', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 600;
   font-size: 11pt;
@@ -1044,13 +981,13 @@ h5 {
   color: rgba(0, 0, 0, 0.6);
   font-size: 90%;
 }
-h5:hover {
+.metrouicss h5:hover {
   color: rgba(0, 0, 0, 0.8);
 }
-h5:active {
+.metrouicss h5:active {
   color: rgba(0, 0, 0, 0.4);
 }
-h6 {
+.metrouicss h6 {
   font-family: 'Segoe UI Semibold', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 600;
   font-size: 11pt;
@@ -1060,14 +997,14 @@ h6 {
   color: rgba(0, 0, 0, 0.6);
   font-size: 80%;
 }
-h6:hover {
+.metrouicss h6:hover {
   color: rgba(0, 0, 0, 0.8);
 }
-h6:active {
+.metrouicss h6:active {
   color: rgba(0, 0, 0, 0.4);
 }
-body,
-p {
+.metrouicss body,
+.metrouicss p {
   font-family: 'Segoe UI Semilight', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 300;
   font-size: 11pt;
@@ -1075,7 +1012,7 @@ p {
   line-height: 20px;
   font-smooth: always;
 }
-p.long-text {
+.metrouicss p.long-text {
   font-family: 'PT Serif Caption', sans-serif, serif !important;
   font-weight: 300;
   font-size: 10pt;
@@ -1083,56 +1020,56 @@ p.long-text {
   line-height: 20px;
   font-smooth: always;
 }
-p {
+.metrouicss p {
   margin: 0 0 10px;
 }
-p.indent:first-letter {
+.metrouicss p.indent:first-letter {
   padding-left: 25px;
 }
-.lead {
+.metrouicss .lead {
   font-size: 120%;
   line-height: 26px;
 }
-.tertiary-info-text,
-.tertiary-text {
+.metrouicss .tertiary-info-text,
+.metrouicss .tertiary-text {
   font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 9pt;
   font-smooth: always;
   color: #000000;
 }
-.tertiary-info-text:hover,
-.tertiary-text:hover {
+.metrouicss .tertiary-info-text:hover,
+.metrouicss .tertiary-text:hover {
   color: rgba(0, 0, 0, 0.8);
 }
-.tertiary-info-text:active,
-.tertiary-text:active {
+.metrouicss .tertiary-info-text:active,
+.metrouicss .tertiary-text:active {
   color: rgba(0, 0, 0, 0.4);
 }
-.tertiary-info-secondary-text,
-.tertiary-secondary-text {
+.metrouicss .tertiary-info-secondary-text,
+.metrouicss .tertiary-secondary-text {
   font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 9pt;
   font-smooth: always;
   color: rgba(0, 0, 0, 0.6);
 }
-.tertiary-info-secondary-text:hover,
-.tertiary-secondary-text:hover {
+.metrouicss .tertiary-info-secondary-text:hover,
+.metrouicss .tertiary-secondary-text:hover {
   color: rgba(0, 0, 0, 0.8);
 }
-.tertiary-info-secondary-text:active,
-.tertiary-secondary-text:active {
+.metrouicss .tertiary-info-secondary-text:active,
+.metrouicss .tertiary-secondary-text:active {
   color: rgba(0, 0, 0, 0.4);
 }
-abbr.initialism {
+.metrouicss abbr.initialism {
   font-size: 90%;
   text-transform: uppercase !important;
 }
-abbr[title] {
+.metrouicss abbr[title] {
   cursor: help !important;
 }
-address {
+.metrouicss address {
   display: block;
   margin-bottom: 20px;
   font-family: 'Segoe UI Semilight', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
@@ -1143,307 +1080,78 @@ address {
   line-height: 20px;
   font-style: normal;
 }
-blockquote {
+.metrouicss blockquote {
   margin: 0;
   padding: 5px 20px;
   border-left: 4px #ccc solid;
   display: block;
   background-color: rgba(204, 204, 204, 0.1);
 }
-blockquote p {
+.metrouicss blockquote p {
   margin-bottom: 0;
 }
-blockquote small:before {
+.metrouicss blockquote small:before {
   content: '\2014';
   color: rgba(0, 0, 0, 0.4);
   margin-right: 5px;
 }
-blockquote.place-right {
+.metrouicss blockquote.place-right {
   float: none !important;
   text-align: right;
   border: 0;
   border-right: 4px #ccc solid;
 }
-blockquote.place-right small {
+.metrouicss blockquote.place-right small {
   text-align: right;
 }
-blockquote.place-right small:before {
+.metrouicss blockquote.place-right small:before {
   content: "";
 }
-blockquote.place-right small:after {
+.metrouicss blockquote.place-right small:after {
   content: '\2014';
   color: rgba(0, 0, 0, 0.4);
   margin-left: 5px;
 }
-ul,
-ol {
+.metrouicss ul,
+.metrouicss ol {
   padding: 0;
   margin: 0 0 10px 0px;
   display: block;
 }
-ul:nth-child(1) {
+.metrouicss ul:nth-child(1) {
   margin-left: 25px;
 }
-ul ul,
-ul ol,
-ol ol,
-ol ul {
+.metrouicss ul ul,
+.metrouicss ul ol,
+.metrouicss ol ol,
+.metrouicss ol ul {
   margin-bottom: 0 !important;
 }
-ul {
+.metrouicss ul {
   list-style-position: inside;
   list-style-type: square;
 }
-ul ul {
+.metrouicss ul ul {
   list-style-type: circle;
 }
-ul,
-ol {
+.metrouicss ul,
+.metrouicss ol {
   list-style-position: inside;
 }
-ul li,
-ol li {
+.metrouicss ul li,
+.metrouicss ol li {
   display: list-item;
   font-size: 14px;
   line-height: 20px;
 }
-ol {
+.metrouicss ol {
   list-style-type: decimal;
 }
-ul.unstyled,
-ol.unstyled,
-.unstyled {
+.metrouicss ul.unstyled,
+.metrouicss ol.unstyled,
+.metrouicss .unstyled {
   margin-left: 0;
   list-style: none;
-}
-.metrouicss {
-  /*
- * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
- *
- * Routines.less
- */
-
-  /*
-Icon Set:	Broccolidry -- http://dribbble.com/shots/587469-Free-16px-Broccolidryiconsaniconsetitisfullof-icons
-License:	Aribitrary -- http://licence.visualidiot.com/
-
-
-Icon Set:	Meteocons -- http://www.alessioatzeni.com/meteocons/
-License:	Arbitrary -- http://www.alessioatzeni.com/meteocons/#about
-
-
-Icon Set:	IcoMoon - Free -- http://keyamoon.com/icomoon/
-License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
-*/
-
-  /* Use the following CSS code if you want to use data attributes for inserting your icons */
-
-  /* Use the following CSS code if you want to have a class per icon */
-
-  /*
- * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
- *
- * Variables.less
- */
-
-  /*
- * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
- *
- * Bricks.less
- *
- */
-
-  /*
-.badge {
-    .brick;
-    width: @subunit*7;
-    height: @subunit*6;
-    padding-top: @subunit;
-    #font > .control;
-    color: @darken;
-    text-align: center;
-}
-*/
-
-  /*
- * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
- *
- * Buttons.less
- */
-
-  /*
- * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
- *
- * Tables.less
- *
- */
-
-  /*
- * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
- *
- * Grid.less
- *
- */
-
-  /*
- * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
- *
- * Hero.less
- *
- */
-
-  /*
- * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
- *
- * Menus.less
- * dropdown-menu, nav-bar
- */
-
-  /*
- * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
- *
- * Sidebar.less
- */
-
-  /*
- * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
- *
- * Notices.less
- */
-
-  /*
- * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
- *
- * Tiles.less
- *
- */
-
-  /*
- * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
- *
- * Layout.less
- */
-
-  /*
- * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
- *
- * images.less
- *
- */
-
-  /*
- * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
- *
- * Cards.less
- *
- */
-
-  /*
- * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
- *
- * Code.less
- *
- */
-
-  /*
- * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
- *
- * PageControl.less
- *
- */
-
-  /*
- * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
- *
- * Accordion.less
- */
-
-  /*
- * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
- *
- * rating.less
- */
-
-  /*
- * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
- *
- * Progress.less
- */
-
-  /*
- * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
- *
- * Carousel.less
- * Version: 1.0
- *
- */
-
-  /*
- * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
- *
- * ListView.less
- * Version 1.0
- */
-
-  /*
- * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
- *
- * Slider.less
- *
- */
-
-  /*
- * Metro UI CSS
- * Copyright 2012 Valerio Battaglia
- * Licensed under the MIT License
- *
- * dialog.less
- */
-
 }
 .metrouicss .place-left {
   float: left !important;
@@ -4639,6 +4347,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   min-width: 160px;
   padding-bottom: 5px;
   padding-top: 5px;
+  padding-left: 0;
   display: none;
 }
 .metrouicss .dropdown-menu.place-right {
@@ -5546,6 +5255,14 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 .metrouicss .tile .tile-content h3,
 .metrouicss .tile .tile-content h4,
 .metrouicss .tile .tile-content h5,
+.metrouicss .tile .tile-content h6 {
+  font-size: 14pt;
+}
+.metrouicss .tile .tile-content h1,
+.metrouicss .tile .tile-content h2,
+.metrouicss .tile .tile-content h3,
+.metrouicss .tile .tile-content h4,
+.metrouicss .tile .tile-content h5,
 .metrouicss .tile .tile-content h6,
 .metrouicss .tile .tile-content p {
   padding: 0;
@@ -5791,6 +5508,8 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   color: #ffffff;
   line-height: 14px;
   width: 60%;
+  padding: 0;
+  margin: 0;
 }
 .metrouicss .tile .brand > .text:hover,
 .metrouicss .tile .tile-status > .text:hover {

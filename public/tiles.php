@@ -43,7 +43,7 @@
                                 <div class="tile bg-color-orange"></div>
                             </div>
 
-                            <h3>Tile content</h3>
+                            <h2>Tile content</h2>
                             <p>Tile content can be placed in sub container with class <code>.tile-content</code>. Class .tile-content has padding 10px from top, bottom and 15px from left, right.</p>
 <pre class="prettyprint linenums">
     &lt;div class="tile"&gt;
@@ -133,6 +133,7 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
 <pre class="prettyprint linenums">
     &lt;div class="tile icon(image)"&gt;
         &lt;div class="tile-content"&gt;
