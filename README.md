@@ -42,6 +42,13 @@ Sites and Projects with Metro UI CSS:
 * [vrconsultancy.be](http://www.vrconsultancy.be)
 * [heatlife.msk.ru](http://heatlife.msk.ru)
 * [alldomains.com.ua](https://alldomains.com.ua)
+* [srtd.fr](http://www.srtd.fr)
+* [bridgeuniversal.com](http://www.bridgeuniversal.com/)
+* [commissioningcommunity.co.uk](http://www.commissioningcommunity.co.uk/)
+* [comeinnkorea.com](http://comeinnkorea.com/)
+* [system3-consulting.de](http://www.system3-consulting.de/)
+* [cms.360ivr.com](http://cms.360ivr.com/home/)
+* [comp.unanleon.edu.ni](http://www.comp.unanleon.edu.ni/)
 
 ## Special thanks
 
