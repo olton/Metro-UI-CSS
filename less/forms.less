@@ -326,14 +326,41 @@
 
 .input-control {
     &.text, &.password {
-        input[type=text]:not(:focus) ~ .helper, input[type=password]:not(:focus) ~ .helper, input[type=email]:not(:focus) ~ .helper, input[type=phone]:not(:focus) ~ .helper, input[type=url]:not(:focus) ~ .helper {
-            display: none;
+        input[type=text]:not(:focus),
+        input[type=password]:not(:focus),
+        input[type=email]:not(:focus),
+        input[type=phone]:not(:focus),
+        input[type=number]:not(:focus),
+        input[type=time]:not(:focus),
+        input[type=url]:not(:focus) {
+            & ~ [class^="btn-clear"], & ~ [class*="btn-reveal"], & ~ .helper {
+                display: none;
+            }
         }
-        input[type=text]:focus ~ .helper, input[type=password]:focus ~ .helper, input[type=email]:focus ~ .helper, input[type=phone]:focus ~ .helper, input[type=url]:focus ~ .helper {
-            display: block;
+
+        input[type=text]:focus,
+        input[type=password]:focus,
+        input[type=email]:focus,
+        input[type=phone]:focus,
+        input[type=number]:focus,
+        input[type=time]:focus,
+        input[type=url]:focus {
+            & ~ [class^="btn-clear"], & ~ [class*="btn-reveal"], & ~ .helper {
+                display: block;
+            }
         }
-        input[type=text]:not(:focus) ~ .helper:active, input[type=password]:not(:focus) ~ .helper:active, input[type=email]:not(:focus) ~ .helper:active, input[type=phone]:not(:focus) ~ .helper:active, input[type=url]:not(:focus) ~ .helper:active{
-            display: block;
+
+
+        input[type=text]:not(:focus),
+        input[type=password]:not(:focus),
+        input[type=email]:not(:focus),
+        input[type=phone]:not(:focus),
+        input[type=number]:not(:focus),
+        input[type=time]:not(:focus),
+        input[type=url]:not(:focus) {
+            & ~ [class^="btn-clear"]:active, & ~ [class*="btn-reveal"]:active, & ~ .helper:active {
+                display: block;
+            }
         }
     }
 }
@@ -344,7 +371,11 @@
     position: relative;
 
     &.text, &.password {
-        .helper, .btn-search, .btn-date {
+        .helper,
+        .btn-search,
+        .btn-date,
+        .btn-clear,
+        .btn-reveal {
             background: #fff;// @textbox_pass_inactive_icon 50% no-repeat;
             top: 2px;
             width: 26px !important;
@@ -383,7 +414,7 @@
     }
 
     &.password {
-        .helper {
+        .helper, .btn-reveal {
             background: #fff @textbox_pass_inactive_icon 50% no-repeat;
             &:hover {
                 background: #fff @textbox_pass_active_icon 50% no-repeat;
@@ -391,7 +422,7 @@
         }
     }
     &.text {
-        .helper {
+        .helper, .btn-clear {
 
             &:before {
                 font-family: iconFont;

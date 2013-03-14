@@ -1,58 +1,499 @@
-/*! normalize.css 2012-03-11T12:53 UTC - http://github.com/necolas/normalize.css */
-/* =============================================================================
+.metrouicss {
+  /*! normalize.css 2012-03-11T12:53 UTC - http://github.com/necolas/normalize.css */
+
+  /* =============================================================================
    HTML5 display definitions
    ========================================================================== */
-/*
+
+  /*
  * Corrects block display not defined in IE6/7/8/9 & FF3
  */
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-nav,
-section,
-summary {
-  display: block;
-}
-/*
+
+  /*
  * Corrects inline-block display not defined in IE6/7/8/9 & FF3
  */
-audio,
-canvas,
-video {
-  display: inline-block;
-  *display: inline;
-  *zoom: 1;
-}
-/*
+
+  /*
  * Prevents modern browsers from displaying 'audio' without controls
  * Remove excess height in iOS5 devices
  */
-audio:not([controls]) {
-  display: none;
-  height: 0;
-}
-/*
+
+  /*
  * Addresses styling for 'hidden' attribute not present in IE7/8/9, FF3, S4
  * Known issue: no IE6 support
  */
-[hidden] {
-  display: none;
-}
-/* =============================================================================
+
+  /* =============================================================================
    Base
    ========================================================================== */
-/*
+
+  /*
  * 1. Corrects text resizing oddly in IE6/7 when body font-size is set using em units
  *    http://clagnut.com/blog/348/#c790
  * 2. Prevents iOS text size adjust after orientation change, without disabling user zoom
  *    www.456bereastreet.com/archive/201012/controlling_text_size_in_safari_for_ios_without_disabling_user_zoom/
  */
-html {
+
+  /*
+ * Addresses font-family inconsistency between 'textarea' and other form elements.
+ */
+
+  /*
+ * Addresses margins handled incorrectly in IE6/7
+ */
+
+  /* =============================================================================
+   Links
+   ========================================================================== */
+
+  /*
+ * Addresses outline displayed oddly in Chrome
+ */
+
+  /*
+ * Improves readability when focused and also mouse hovered in all browsers
+ * people.opera.com/patrickl/experiments/keyboard/test
+ */
+
+  /* =============================================================================
+   Typography
+   ========================================================================== */
+
+  /*
+ * Addresses font sizes and margins set differently in IE6/7
+ * Addresses font sizes within 'section' and 'article' in FF4+, Chrome, S5
+ */
+
+  /*
+ * Addresses styling not present in IE7/8/9, S5, Chrome
+ */
+
+  /*
+ * Addresses style set to 'bolder' in FF3+, S4/5, Chrome
+*/
+
+  /*
+ * Addresses styling not present in S5, Chrome
+ */
+
+  /*
+ * Addresses styling not present in IE6/7/8/9
+ */
+
+  /*
+ * Corrects font family set oddly in IE6, S4/5, Chrome
+ * en.wikipedia.org/wiki/User:Davidgothberg/Test59
+ */
+
+  /*
+ * Improves readability of pre-formatted text in all browsers
+ */
+
+  /*
+ * 1. Addresses CSS quotes not supported in IE6/7
+ * 2. Addresses quote property not supported in S4
+ */
+
+  /* 1 */
+
+  /* 2 */
+
+  /*
+ * Prevents sub and sup affecting line-height in all browsers
+ * gist.github.com/413930
+ */
+
+  /* =============================================================================
+   Lists
+   ========================================================================== */
+
+  /*
+ * Addresses margins set differently in IE6/7
+ */
+
+  /*
+ * Addresses paddings set differently in IE6/7
+ */
+
+  /*
+ * Corrects list images handled incorrectly in IE7
+ */
+
+  /* =============================================================================
+   Embedded content
+   ========================================================================== */
+
+  /*
+ * 1. Removes border when inside 'a' element in IE6/7/8/9, FF3
+ * 2. Improves image quality when scaled in IE7
+ *    code.flickr.com/blog/2008/11/12/on-ui-quality-the-little-things-client-side-image-resizing/
+ */
+
+  /*
+ * Corrects overflow displayed oddly in IE9
+ */
+
+  /* =============================================================================
+   Figures
+   ========================================================================== */
+
+  /*
+ * Addresses margin not present in IE6/7/8/9, S5, O11
+ */
+
+  /* =============================================================================
+   Forms
+   ========================================================================== */
+
+  /*
+ * Corrects margin displayed oddly in IE6/7
+ */
+
+  /*
+ * Define consistent border, margin, and padding
+ */
+
+  /*
+ * 1. Corrects color not being inherited in IE6/7/8/9
+ * 2. Corrects text not wrapping in FF3
+ * 3. Corrects alignment displayed oddly in IE6/7
+ */
+
+  /*
+ * 1. Corrects font size not being inherited in all browsers
+ * 2. Addresses margins set differently in IE6/7, FF3+, S5, Chrome
+ * 3. Improves appearance and consistency in all browsers
+ */
+
+  /*
+ * Addresses FF3/4 setting line-height on 'input' using !important in the UA stylesheet
+ */
+
+  /*
+ * 1. Improves usability and consistency of cursor style between image-type 'input' and others
+ * 2. Corrects inability to style clickable 'input' types in iOS
+ * 3. Removes inner spacing in IE7 without affecting normal text inputs
+ *    Known issue: inner spacing remains in IE6
+ */
+
+  /*
+ * Re-set default cursor for disabled elements
+ */
+
+  /*
+ * 1. Addresses box sizing set to content-box in IE8/9
+ * 2. Removes excess padding in IE8/9
+ * 3. Removes excess padding in IE7
+      Known issue: excess padding remains in IE6
+ */
+
+  /*
+ * 1. Addresses appearance set to searchfield in S5, Chrome
+ * 2. Addresses box-sizing set to border-box in S5, Chrome (include -moz to future-proof)
+ */
+
+  /*
+ * Removes inner padding and search cancel button in S5, Chrome on OS X
+ */
+
+  /*
+ * Removes inner padding and border in FF3+
+ * www.sitepen.com/blog/2008/05/14/the-devils-in-the-details-fixing-dojos-toolbar-buttons/
+ */
+
+  /*
+ * 1. Removes default vertical scrollbar in IE6/7/8/9
+ * 2. Improves readability and alignment in all browsers
+ */
+
+  /* =============================================================================
+   Tables
+   ========================================================================== */
+
+  /*
+ * Remove most spacing between table cells
+ */
+<<<<<<< HEAD
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+/*
+=======
+
+  /*
+ * Metro UI CSS
+ * Copyright 2012 Sergey Pimenov
+ * Licensed under the MIT License
+ *
+ * Routines.less
+ */
+
+  /*
+Icon Set:	Broccolidry -- http://dribbble.com/shots/587469-Free-16px-Broccolidryiconsaniconsetitisfullof-icons
+License:	Aribitrary -- http://licence.visualidiot.com/
+
+
+Icon Set:	Meteocons -- http://www.alessioatzeni.com/meteocons/
+License:	Arbitrary -- http://www.alessioatzeni.com/meteocons/#about
+
+
+Icon Set:	IcoMoon - Free -- http://keyamoon.com/icomoon/
+License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
+*/
+
+  /* Use the following CSS code if you want to use data attributes for inserting your icons */
+
+  /* Use the following CSS code if you want to have a class per icon */
+
+  /*
+ * Metro UI CSS
+ * Copyright 2012 Sergey Pimenov
+ * Licensed under the MIT License
+ *
+ * Variables.less
+ */
+
+  /*
+ * Metro UI CSS
+ * Copyright 2012 Sergey Pimenov
+ * Licensed under the MIT License
+ *
+ * Bricks.less
+ *
+ */
+
+  /*
+.badge {
+    .brick;
+    width: @subunit*7;
+    height: @subunit*6;
+    padding-top: @subunit;
+    #font > .control;
+    color: @darken;
+    text-align: center;
+}
+*/
+
+  /*
+ * Metro UI CSS
+ * Copyright 2012 Sergey Pimenov
+ * Licensed under the MIT Lilcense
+>>>>>>> 31bd1b7b3b2c70fe0a61d275dc4665d29506a0c9
+ *
+ * Typography.less
+ *
+ */
+<<<<<<< HEAD
+@font-face {
+  font-family: "PT Serif Caption";
+  font-style: normal;
+  font-weight: 400;
+  src: local("PT Serif Caption"), local("PTSerif-Caption"), url(https://themes.googleusercontent.com/static/fonts/ptserifcaption/v4/7xkFOeTxxO1GMC1suOUYWWhBabBbEjGd1iRmpyoZukE.woff) format('woff');
+=======
+
+  /*
+ * Metro UI CSS
+ * Copyright 2012 Sergey Pimenov
+ * Licensed under the MIT License
+ *
+ * Buttons.less
+ */
+
+  /*
+ * Metro UI CSS
+ * Copyright 2012 Sergey Pimenov
+ * Licensed under the MIT License
+ *
+ * Tables.less
+ *
+ */
+
+  /*
+ * Metro UI CSS
+ * Copyright 2012 Sergey Pimenov
+ * Licensed under the MIT License
+ *
+ * Grid.less
+ *
+ */
+
+  /*
+ * Metro UI CSS
+ * Copyright 2012 Sergey Pimenov
+ * Licensed under the MIT License
+ *
+ * Hero.less
+ *
+ */
+
+  /*
+ * Metro UI CSS
+ * Copyright 2012 Sergey Pimenov
+ * Licensed under the MIT License
+ *
+ * Menus.less
+ * dropdown-menu, nav-bar
+ */
+
+  /*
+ * Metro UI CSS
+ * Copyright 2012 Sergey Pimenov
+ * Licensed under the MIT License
+ *
+ * Sidebar.less
+ */
+
+  /*
+ * Metro UI CSS
+ * Copyright 2012 Sergey Pimenov
+ * Licensed under the MIT License
+ *
+ * Notices.less
+ */
+
+  /*
+ * Metro UI CSS
+ * Copyright 2012 Sergey Pimenov
+ * Licensed under the MIT License
+ *
+ * Tiles.less
+ *
+ */
+
+  /*
+ * Metro UI CSS
+ * Copyright 2012 Sergey Pimenov
+ * Licensed under the MIT License
+ *
+ * Layout.less
+ */
+
+  /*
+ * Metro UI CSS
+ * Copyright 2012 Sergey Pimenov
+ * Licensed under the MIT License
+ *
+ * images.less
+ *
+ */
+
+  /*
+ * Metro UI CSS
+ * Copyright 2012 Sergey Pimenov
+ * Licensed under the MIT License
+ *
+ * Cards.less
+ *
+ */
+
+  /*
+ * Metro UI CSS
+ * Copyright 2012 Sergey Pimenov
+ * Licensed under the MIT License
+ *
+ * Code.less
+ *
+ */
+
+  /*
+ * Metro UI CSS
+ * Copyright 2012 Sergey Pimenov
+ * Licensed under the MIT License
+ *
+ * PageControl.less
+ *
+ */
+
+  /*
+ * Metro UI CSS
+ * Copyright 2012 Sergey Pimenov
+ * Licensed under the MIT License
+ *
+ * Accordion.less
+ */
+
+  /*
+ * Metro UI CSS
+ * Copyright 2012 Sergey Pimenov
+ * Licensed under the MIT License
+ *
+ * rating.less
+ */
+
+  /*
+ * Metro UI CSS
+ * Copyright 2012 Sergey Pimenov
+ * Licensed under the MIT License
+ *
+ * Progress.less
+ */
+
+  /*
+ * Metro UI CSS
+ * Copyright 2012 Sergey Pimenov
+ * Licensed under the MIT License
+ *
+ * Carousel.less
+ * Version: 1.0
+ *
+ */
+
+  /*
+ * Metro UI CSS
+ * Copyright 2012 Sergey Pimenov
+ * Licensed under the MIT License
+ *
+ * ListView.less
+ * Version 1.0
+ */
+
+  /*
+ * Metro UI CSS
+ * Copyright 2012 Sergey Pimenov
+ * Licensed under the MIT License
+ *
+ * Slider.less
+ *
+ */
+
+  /*
+ * Metro UI CSS
+ * Copyright 2012 Valerio Battaglia
+ * Licensed under the MIT License
+ *
+ * dialog.less
+ */
+
+}
+.metrouicss article,
+.metrouicss aside,
+.metrouicss details,
+.metrouicss figcaption,
+.metrouicss figure,
+.metrouicss footer,
+.metrouicss header,
+.metrouicss hgroup,
+.metrouicss nav,
+.metrouicss section,
+.metrouicss summary {
+  display: block;
+}
+.metrouicss audio,
+.metrouicss canvas,
+.metrouicss video {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+}
+.metrouicss audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+.metrouicss [hidden] {
+  display: none;
+}
+.metrouicss html {
   font-size: 100%;
   /* 1 */
 
@@ -61,200 +502,125 @@ html {
   /* 2 */
 
 }
-/*
- * Addresses font-family inconsistency between 'textarea' and other form elements.
- */
-html,
-button,
-input,
-select,
-textarea {
+.metrouicss html,
+.metrouicss button,
+.metrouicss input,
+.metrouicss select,
+.metrouicss textarea {
   font-family: sans-serif;
 }
-/*
- * Addresses margins handled incorrectly in IE6/7
- */
-body {
+.metrouicss body {
   margin: 0;
 }
-/* =============================================================================
-   Links
-   ========================================================================== */
-/*
- * Addresses outline displayed oddly in Chrome
- */
-a:focus {
+.metrouicss a:focus {
   outline: thin dotted;
 }
-/*
- * Improves readability when focused and also mouse hovered in all browsers
- * people.opera.com/patrickl/experiments/keyboard/test
- */
-a:hover,
-a:active {
+.metrouicss a:hover,
+.metrouicss a:active {
   outline: 0;
 }
-/* =============================================================================
-   Typography
-   ========================================================================== */
-/*
- * Addresses font sizes and margins set differently in IE6/7
- * Addresses font sizes within 'section' and 'article' in FF4+, Chrome, S5
- */
-h1 {
+.metrouicss h1 {
   font-size: 2em;
   margin: 0.67em 0;
 }
-h2 {
+.metrouicss h2 {
   font-size: 1.5em;
   margin: 0.83em 0;
 }
-h3 {
+.metrouicss h3 {
   font-size: 1.17em;
   margin: 1em 0;
 }
-h4 {
+.metrouicss h4 {
   font-size: 1em;
   margin: 1.33em 0;
 }
-h5 {
+.metrouicss h5 {
   font-size: 0.83em;
   margin: 1.67em 0;
 }
-h6 {
+.metrouicss h6 {
   font-size: 0.75em;
   margin: 2.33em 0;
 }
-/*
- * Addresses styling not present in IE7/8/9, S5, Chrome
- */
-abbr[title] {
+.metrouicss abbr[title] {
   border-bottom: 1px dotted;
 }
-/*
- * Addresses style set to 'bolder' in FF3+, S4/5, Chrome
-*/
-b,
-strong {
+.metrouicss b,
+.metrouicss strong {
   font-weight: bold;
 }
-blockquote {
+.metrouicss blockquote {
   margin: 1em 40px;
 }
-/*
- * Addresses styling not present in S5, Chrome
- */
-dfn {
+.metrouicss dfn {
   font-style: italic;
 }
-/*
- * Addresses styling not present in IE6/7/8/9
- */
-mark {
+.metrouicss mark {
   background: #ff0;
   color: #000;
 }
-/*
- * Addresses margins set differently in IE6/7
- */
-p,
-pre {
+.metrouicss p,
+.metrouicss pre {
   margin: 1em 0;
 }
-/*
- * Corrects font family set oddly in IE6, S4/5, Chrome
- * en.wikipedia.org/wiki/User:Davidgothberg/Test59
- */
-pre,
-code,
-kbd,
-samp {
+.metrouicss pre,
+.metrouicss code,
+.metrouicss kbd,
+.metrouicss samp {
   font-family: monospace, serif;
   _font-family: 'courier new', monospace;
   font-size: 1em;
 }
-/*
- * Improves readability of pre-formatted text in all browsers
- */
-pre {
+.metrouicss pre {
   white-space: pre;
   white-space: pre-wrap;
   word-wrap: break-word;
 }
-/*
- * 1. Addresses CSS quotes not supported in IE6/7
- * 2. Addresses quote property not supported in S4
- */
-/* 1 */
-q {
+.metrouicss q {
   quotes: none;
 }
-/* 2 */
-q:before,
-q:after {
+.metrouicss q:before,
+.metrouicss q:after {
   content: '';
   content: none;
 }
-small {
+.metrouicss small {
   font-size: 75%;
 }
-/*
- * Prevents sub and sup affecting line-height in all browsers
- * gist.github.com/413930
- */
-sub,
-sup {
+.metrouicss sub,
+.metrouicss sup {
   font-size: 75%;
   line-height: 0;
   position: relative;
   vertical-align: baseline;
 }
-sup {
+.metrouicss sup {
   top: -0.5em;
 }
-sub {
+.metrouicss sub {
   bottom: -0.25em;
 }
-/* =============================================================================
-   Lists
-   ========================================================================== */
-/*
- * Addresses margins set differently in IE6/7
- */
-dl,
-menu,
-ol,
-ul {
+.metrouicss dl,
+.metrouicss menu,
+.metrouicss ol,
+.metrouicss ul {
   margin: 1em 0;
 }
-dd {
+.metrouicss dd {
   margin: 0 0 0 40px;
 }
-/*
- * Addresses paddings set differently in IE6/7
- */
-menu,
-ol,
-ul {
+.metrouicss menu,
+.metrouicss ol,
+.metrouicss ul {
   padding: 0 0 0 40px;
 }
-/*
- * Corrects list images handled incorrectly in IE7
- */
-nav ul,
-nav ol {
+.metrouicss nav ul,
+.metrouicss nav ol {
   list-style: none;
   list-style-image: none;
 }
-/* =============================================================================
-   Embedded content
-   ========================================================================== */
-/*
- * 1. Removes border when inside 'a' element in IE6/7/8/9, FF3
- * 2. Improves image quality when scaled in IE7
- *    code.flickr.com/blog/2008/11/12/on-ui-quality-the-little-things-client-side-image-resizing/
- */
-img {
+.metrouicss img {
   border: 0;
   /* 1 */
 
@@ -262,44 +628,21 @@ img {
   /* 2 */
 
 }
-/*
- * Corrects overflow displayed oddly in IE9
- */
-svg:not(:root) {
+.metrouicss svg:not(:root) {
   overflow: hidden;
 }
-/* =============================================================================
-   Figures
-   ========================================================================== */
-/*
- * Addresses margin not present in IE6/7/8/9, S5, O11
- */
-figure {
+.metrouicss figure {
   margin: 0;
 }
-/* =============================================================================
-   Forms
-   ========================================================================== */
-/*
- * Corrects margin displayed oddly in IE6/7
- */
-form {
+.metrouicss form {
   margin: 0;
 }
-/*
- * Define consistent border, margin, and padding
- */
-fieldset {
+.metrouicss fieldset {
   border: 1px solid #c0c0c0;
   margin: 0 2px;
   padding: 0.35em 0.625em 0.75em;
 }
-/*
- * 1. Corrects color not being inherited in IE6/7/8/9
- * 2. Corrects text not wrapping in FF3
- * 3. Corrects alignment displayed oddly in IE6/7
- */
-legend {
+.metrouicss legend {
   border: 0;
   /* 1 */
 
@@ -311,15 +654,10 @@ legend {
   /* 3 */
 
 }
-/*
- * 1. Corrects font size not being inherited in all browsers
- * 2. Addresses margins set differently in IE6/7, FF3+, S5, Chrome
- * 3. Improves appearance and consistency in all browsers
- */
-button,
-input,
-select,
-textarea {
+.metrouicss button,
+.metrouicss input,
+.metrouicss select,
+.metrouicss textarea {
   font-size: 100%;
   /* 1 */
 
@@ -331,25 +669,16 @@ textarea {
   /* 3 */
 
 }
-/*
- * Addresses FF3/4 setting line-height on 'input' using !important in the UA stylesheet
- */
-button,
-input {
+.metrouicss button,
+.metrouicss input {
   line-height: normal;
   /* 1 */
 
 }
-/*
- * 1. Improves usability and consistency of cursor style between image-type 'input' and others
- * 2. Corrects inability to style clickable 'input' types in iOS
- * 3. Removes inner spacing in IE7 without affecting normal text inputs
- *    Known issue: inner spacing remains in IE6
- */
-button,
-input[type="button"],
-input[type="reset"],
-input[type="submit"] {
+.metrouicss button,
+.metrouicss input[type="button"],
+.metrouicss input[type="reset"],
+.metrouicss input[type="submit"] {
   cursor: pointer;
   /* 1 */
 
@@ -360,21 +689,12 @@ input[type="submit"] {
   /* 3 */
 
 }
-/*
- * Re-set default cursor for disabled elements
- */
-button[disabled],
-input[disabled] {
+.metrouicss button[disabled],
+.metrouicss input[disabled] {
   cursor: default;
 }
-/*
- * 1. Addresses box sizing set to content-box in IE8/9
- * 2. Removes excess padding in IE8/9
- * 3. Removes excess padding in IE7
-      Known issue: excess padding remains in IE6
- */
-input[type="checkbox"],
-input[type="radio"] {
+.metrouicss input[type="checkbox"],
+.metrouicss input[type="radio"] {
   box-sizing: border-box;
   /* 1 */
 
@@ -386,11 +706,7 @@ input[type="radio"] {
   /* 3 */
 
 }
-/*
- * 1. Addresses appearance set to searchfield in S5, Chrome
- * 2. Addresses box-sizing set to border-box in S5, Chrome (include -moz to future-proof)
- */
-input[type="search"] {
+.metrouicss input[type="search"] {
   -webkit-appearance: textfield;
   /* 1 */
 
@@ -400,27 +716,16 @@ input[type="search"] {
 
   box-sizing: content-box;
 }
-/*
- * Removes inner padding and search cancel button in S5, Chrome on OS X
- */
-input[type="search"]::-webkit-search-decoration,
-input[type="search"]::-webkit-search-cancel-button {
+.metrouicss input[type="search"]::-webkit-search-decoration,
+.metrouicss input[type="search"]::-webkit-search-cancel-button {
   -webkit-appearance: none;
 }
-/*
- * Removes inner padding and border in FF3+
- * www.sitepen.com/blog/2008/05/14/the-devils-in-the-details-fixing-dojos-toolbar-buttons/
- */
-button::-moz-focus-inner,
-input::-moz-focus-inner {
+.metrouicss button::-moz-focus-inner,
+.metrouicss input::-moz-focus-inner {
   border: 0;
   padding: 0;
 }
-/*
- * 1. Removes default vertical scrollbar in IE6/7/8/9
- * 2. Improves readability and alignment in all browsers
- */
-textarea {
+.metrouicss textarea {
   overflow: auto;
   /* 1 */
 
@@ -428,26 +733,14 @@ textarea {
   /* 2 */
 
 }
-/* =============================================================================
-   Tables
-   ========================================================================== */
-/*
- * Remove most spacing between table cells
- */
-table {
+.metrouicss table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-/*
- *
- * Typography.less
- *
- */
-@font-face {
-  font-family: "PT Serif Caption";
-  font-style: normal;
-  font-weight: 400;
-  src: local("PT Serif Caption"), local("PTSerif-Caption"), url(https://themes.googleusercontent.com/static/fonts/ptserifcaption/v4/7xkFOeTxxO1GMC1suOUYWWhBabBbEjGd1iRmpyoZukE.woff) format('woff');
+.metrouicss .place-left {
+  float: left !important;
+  margin-right: 10px;
+>>>>>>> 31bd1b7b3b2c70fe0a61d275dc4665d29506a0c9
 }
 @font-face {
   font-family: "Open Sans";
@@ -3072,9 +3365,6 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 .metrouicss .button:focus {
   outline: 0;
   border: 1px #353535 dotted;
-}
-.metrouicss a.button {
-  padding: 8px 10px;
 }
 .metrouicss a.button:hover,
 .metrouicss a.button:active {
@@ -5790,6 +6080,34 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   padding-right: 5px;
   min-height: 100px;
 }
+.metrouicss .input-control.text input[type=text]:not(:focus) ~ [class^="btn-clear"],
+.metrouicss .input-control.password input[type=text]:not(:focus) ~ [class^="btn-clear"],
+.metrouicss .input-control.text input[type=password]:not(:focus) ~ [class^="btn-clear"],
+.metrouicss .input-control.password input[type=password]:not(:focus) ~ [class^="btn-clear"],
+.metrouicss .input-control.text input[type=email]:not(:focus) ~ [class^="btn-clear"],
+.metrouicss .input-control.password input[type=email]:not(:focus) ~ [class^="btn-clear"],
+.metrouicss .input-control.text input[type=phone]:not(:focus) ~ [class^="btn-clear"],
+.metrouicss .input-control.password input[type=phone]:not(:focus) ~ [class^="btn-clear"],
+.metrouicss .input-control.text input[type=number]:not(:focus) ~ [class^="btn-clear"],
+.metrouicss .input-control.password input[type=number]:not(:focus) ~ [class^="btn-clear"],
+.metrouicss .input-control.text input[type=time]:not(:focus) ~ [class^="btn-clear"],
+.metrouicss .input-control.password input[type=time]:not(:focus) ~ [class^="btn-clear"],
+.metrouicss .input-control.text input[type=url]:not(:focus) ~ [class^="btn-clear"],
+.metrouicss .input-control.password input[type=url]:not(:focus) ~ [class^="btn-clear"],
+.metrouicss .input-control.text input[type=text]:not(:focus) ~ [class*="btn-reveal"],
+.metrouicss .input-control.password input[type=text]:not(:focus) ~ [class*="btn-reveal"],
+.metrouicss .input-control.text input[type=password]:not(:focus) ~ [class*="btn-reveal"],
+.metrouicss .input-control.password input[type=password]:not(:focus) ~ [class*="btn-reveal"],
+.metrouicss .input-control.text input[type=email]:not(:focus) ~ [class*="btn-reveal"],
+.metrouicss .input-control.password input[type=email]:not(:focus) ~ [class*="btn-reveal"],
+.metrouicss .input-control.text input[type=phone]:not(:focus) ~ [class*="btn-reveal"],
+.metrouicss .input-control.password input[type=phone]:not(:focus) ~ [class*="btn-reveal"],
+.metrouicss .input-control.text input[type=number]:not(:focus) ~ [class*="btn-reveal"],
+.metrouicss .input-control.password input[type=number]:not(:focus) ~ [class*="btn-reveal"],
+.metrouicss .input-control.text input[type=time]:not(:focus) ~ [class*="btn-reveal"],
+.metrouicss .input-control.password input[type=time]:not(:focus) ~ [class*="btn-reveal"],
+.metrouicss .input-control.text input[type=url]:not(:focus) ~ [class*="btn-reveal"],
+.metrouicss .input-control.password input[type=url]:not(:focus) ~ [class*="btn-reveal"],
 .metrouicss .input-control.text input[type=text]:not(:focus) ~ .helper,
 .metrouicss .input-control.password input[type=text]:not(:focus) ~ .helper,
 .metrouicss .input-control.text input[type=password]:not(:focus) ~ .helper,
@@ -5798,10 +6116,42 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 .metrouicss .input-control.password input[type=email]:not(:focus) ~ .helper,
 .metrouicss .input-control.text input[type=phone]:not(:focus) ~ .helper,
 .metrouicss .input-control.password input[type=phone]:not(:focus) ~ .helper,
+.metrouicss .input-control.text input[type=number]:not(:focus) ~ .helper,
+.metrouicss .input-control.password input[type=number]:not(:focus) ~ .helper,
+.metrouicss .input-control.text input[type=time]:not(:focus) ~ .helper,
+.metrouicss .input-control.password input[type=time]:not(:focus) ~ .helper,
 .metrouicss .input-control.text input[type=url]:not(:focus) ~ .helper,
 .metrouicss .input-control.password input[type=url]:not(:focus) ~ .helper {
   display: none;
 }
+.metrouicss .input-control.text input[type=text]:focus ~ [class^="btn-clear"],
+.metrouicss .input-control.password input[type=text]:focus ~ [class^="btn-clear"],
+.metrouicss .input-control.text input[type=password]:focus ~ [class^="btn-clear"],
+.metrouicss .input-control.password input[type=password]:focus ~ [class^="btn-clear"],
+.metrouicss .input-control.text input[type=email]:focus ~ [class^="btn-clear"],
+.metrouicss .input-control.password input[type=email]:focus ~ [class^="btn-clear"],
+.metrouicss .input-control.text input[type=phone]:focus ~ [class^="btn-clear"],
+.metrouicss .input-control.password input[type=phone]:focus ~ [class^="btn-clear"],
+.metrouicss .input-control.text input[type=number]:focus ~ [class^="btn-clear"],
+.metrouicss .input-control.password input[type=number]:focus ~ [class^="btn-clear"],
+.metrouicss .input-control.text input[type=time]:focus ~ [class^="btn-clear"],
+.metrouicss .input-control.password input[type=time]:focus ~ [class^="btn-clear"],
+.metrouicss .input-control.text input[type=url]:focus ~ [class^="btn-clear"],
+.metrouicss .input-control.password input[type=url]:focus ~ [class^="btn-clear"],
+.metrouicss .input-control.text input[type=text]:focus ~ [class*="btn-reveal"],
+.metrouicss .input-control.password input[type=text]:focus ~ [class*="btn-reveal"],
+.metrouicss .input-control.text input[type=password]:focus ~ [class*="btn-reveal"],
+.metrouicss .input-control.password input[type=password]:focus ~ [class*="btn-reveal"],
+.metrouicss .input-control.text input[type=email]:focus ~ [class*="btn-reveal"],
+.metrouicss .input-control.password input[type=email]:focus ~ [class*="btn-reveal"],
+.metrouicss .input-control.text input[type=phone]:focus ~ [class*="btn-reveal"],
+.metrouicss .input-control.password input[type=phone]:focus ~ [class*="btn-reveal"],
+.metrouicss .input-control.text input[type=number]:focus ~ [class*="btn-reveal"],
+.metrouicss .input-control.password input[type=number]:focus ~ [class*="btn-reveal"],
+.metrouicss .input-control.text input[type=time]:focus ~ [class*="btn-reveal"],
+.metrouicss .input-control.password input[type=time]:focus ~ [class*="btn-reveal"],
+.metrouicss .input-control.text input[type=url]:focus ~ [class*="btn-reveal"],
+.metrouicss .input-control.password input[type=url]:focus ~ [class*="btn-reveal"],
 .metrouicss .input-control.text input[type=text]:focus ~ .helper,
 .metrouicss .input-control.password input[type=text]:focus ~ .helper,
 .metrouicss .input-control.text input[type=password]:focus ~ .helper,
@@ -5810,10 +6160,42 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 .metrouicss .input-control.password input[type=email]:focus ~ .helper,
 .metrouicss .input-control.text input[type=phone]:focus ~ .helper,
 .metrouicss .input-control.password input[type=phone]:focus ~ .helper,
+.metrouicss .input-control.text input[type=number]:focus ~ .helper,
+.metrouicss .input-control.password input[type=number]:focus ~ .helper,
+.metrouicss .input-control.text input[type=time]:focus ~ .helper,
+.metrouicss .input-control.password input[type=time]:focus ~ .helper,
 .metrouicss .input-control.text input[type=url]:focus ~ .helper,
 .metrouicss .input-control.password input[type=url]:focus ~ .helper {
   display: block;
 }
+.metrouicss .input-control.text input[type=text]:not(:focus) ~ [class^="btn-clear"]:active,
+.metrouicss .input-control.password input[type=text]:not(:focus) ~ [class^="btn-clear"]:active,
+.metrouicss .input-control.text input[type=password]:not(:focus) ~ [class^="btn-clear"]:active,
+.metrouicss .input-control.password input[type=password]:not(:focus) ~ [class^="btn-clear"]:active,
+.metrouicss .input-control.text input[type=email]:not(:focus) ~ [class^="btn-clear"]:active,
+.metrouicss .input-control.password input[type=email]:not(:focus) ~ [class^="btn-clear"]:active,
+.metrouicss .input-control.text input[type=phone]:not(:focus) ~ [class^="btn-clear"]:active,
+.metrouicss .input-control.password input[type=phone]:not(:focus) ~ [class^="btn-clear"]:active,
+.metrouicss .input-control.text input[type=number]:not(:focus) ~ [class^="btn-clear"]:active,
+.metrouicss .input-control.password input[type=number]:not(:focus) ~ [class^="btn-clear"]:active,
+.metrouicss .input-control.text input[type=time]:not(:focus) ~ [class^="btn-clear"]:active,
+.metrouicss .input-control.password input[type=time]:not(:focus) ~ [class^="btn-clear"]:active,
+.metrouicss .input-control.text input[type=url]:not(:focus) ~ [class^="btn-clear"]:active,
+.metrouicss .input-control.password input[type=url]:not(:focus) ~ [class^="btn-clear"]:active,
+.metrouicss .input-control.text input[type=text]:not(:focus) ~ [class*="btn-reveal"]:active,
+.metrouicss .input-control.password input[type=text]:not(:focus) ~ [class*="btn-reveal"]:active,
+.metrouicss .input-control.text input[type=password]:not(:focus) ~ [class*="btn-reveal"]:active,
+.metrouicss .input-control.password input[type=password]:not(:focus) ~ [class*="btn-reveal"]:active,
+.metrouicss .input-control.text input[type=email]:not(:focus) ~ [class*="btn-reveal"]:active,
+.metrouicss .input-control.password input[type=email]:not(:focus) ~ [class*="btn-reveal"]:active,
+.metrouicss .input-control.text input[type=phone]:not(:focus) ~ [class*="btn-reveal"]:active,
+.metrouicss .input-control.password input[type=phone]:not(:focus) ~ [class*="btn-reveal"]:active,
+.metrouicss .input-control.text input[type=number]:not(:focus) ~ [class*="btn-reveal"]:active,
+.metrouicss .input-control.password input[type=number]:not(:focus) ~ [class*="btn-reveal"]:active,
+.metrouicss .input-control.text input[type=time]:not(:focus) ~ [class*="btn-reveal"]:active,
+.metrouicss .input-control.password input[type=time]:not(:focus) ~ [class*="btn-reveal"]:active,
+.metrouicss .input-control.text input[type=url]:not(:focus) ~ [class*="btn-reveal"]:active,
+.metrouicss .input-control.password input[type=url]:not(:focus) ~ [class*="btn-reveal"]:active,
 .metrouicss .input-control.text input[type=text]:not(:focus) ~ .helper:active,
 .metrouicss .input-control.password input[type=text]:not(:focus) ~ .helper:active,
 .metrouicss .input-control.text input[type=password]:not(:focus) ~ .helper:active,
@@ -5822,6 +6204,10 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 .metrouicss .input-control.password input[type=email]:not(:focus) ~ .helper:active,
 .metrouicss .input-control.text input[type=phone]:not(:focus) ~ .helper:active,
 .metrouicss .input-control.password input[type=phone]:not(:focus) ~ .helper:active,
+.metrouicss .input-control.text input[type=number]:not(:focus) ~ .helper:active,
+.metrouicss .input-control.password input[type=number]:not(:focus) ~ .helper:active,
+.metrouicss .input-control.text input[type=time]:not(:focus) ~ .helper:active,
+.metrouicss .input-control.password input[type=time]:not(:focus) ~ .helper:active,
 .metrouicss .input-control.text input[type=url]:not(:focus) ~ .helper:active,
 .metrouicss .input-control.password input[type=url]:not(:focus) ~ .helper:active {
   display: block;
@@ -5836,7 +6222,11 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 .metrouicss .input-control.text .btn-search,
 .metrouicss .input-control.password .btn-search,
 .metrouicss .input-control.text .btn-date,
-.metrouicss .input-control.password .btn-date {
+.metrouicss .input-control.password .btn-date,
+.metrouicss .input-control.text .btn-clear,
+.metrouicss .input-control.password .btn-clear,
+.metrouicss .input-control.text .btn-reveal,
+.metrouicss .input-control.password .btn-reveal {
   background: #fff;
   top: 2px;
   width: 26px !important;
@@ -5856,7 +6246,11 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 .metrouicss .input-control.text .btn-search:before,
 .metrouicss .input-control.password .btn-search:before,
 .metrouicss .input-control.text .btn-date:before,
-.metrouicss .input-control.password .btn-date:before {
+.metrouicss .input-control.password .btn-date:before,
+.metrouicss .input-control.text .btn-clear:before,
+.metrouicss .input-control.password .btn-clear:before,
+.metrouicss .input-control.text .btn-reveal:before,
+.metrouicss .input-control.password .btn-reveal:before {
   font-size: 12pt;
   position: absolute;
   font-family: 'Segoe UI Semilight', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
@@ -5871,7 +6265,11 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 .metrouicss .input-control.text .btn-search:hover,
 .metrouicss .input-control.password .btn-search:hover,
 .metrouicss .input-control.text .btn-date:hover,
-.metrouicss .input-control.password .btn-date:hover {
+.metrouicss .input-control.password .btn-date:hover,
+.metrouicss .input-control.text .btn-clear:hover,
+.metrouicss .input-control.password .btn-clear:hover,
+.metrouicss .input-control.text .btn-reveal:hover,
+.metrouicss .input-control.password .btn-reveal:hover {
   background: #d9d9d9;
 }
 .metrouicss .input-control.text .helper:active,
@@ -5879,7 +6277,11 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 .metrouicss .input-control.text .btn-search:active,
 .metrouicss .input-control.password .btn-search:active,
 .metrouicss .input-control.text .btn-date:active,
-.metrouicss .input-control.password .btn-date:active {
+.metrouicss .input-control.password .btn-date:active,
+.metrouicss .input-control.text .btn-clear:active,
+.metrouicss .input-control.password .btn-clear:active,
+.metrouicss .input-control.text .btn-reveal:active,
+.metrouicss .input-control.password .btn-reveal:active {
   background-color: #000;
 }
 .metrouicss .input-control.text .helper:active:before,
@@ -5887,16 +6289,23 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 .metrouicss .input-control.text .btn-search:active:before,
 .metrouicss .input-control.password .btn-search:active:before,
 .metrouicss .input-control.text .btn-date:active:before,
-.metrouicss .input-control.password .btn-date:active:before {
+.metrouicss .input-control.password .btn-date:active:before,
+.metrouicss .input-control.text .btn-clear:active:before,
+.metrouicss .input-control.password .btn-clear:active:before,
+.metrouicss .input-control.text .btn-reveal:active:before,
+.metrouicss .input-control.password .btn-reveal:active:before {
   color: #fff;
 }
-.metrouicss .input-control.password .helper {
+.metrouicss .input-control.password .helper,
+.metrouicss .input-control.password .btn-reveal {
   background: #ffffff url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABcAAAAXCAYAAADgKtSgAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MzM2OTY1MkEwNkVGMTFFMjhDQkNEODZFQTYyRTI5MDciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MzM2OTY1MkIwNkVGMTFFMjhDQkNEODZFQTYyRTI5MDciPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDozMzY5NjUyODA2RUYxMUUyOENCQ0Q4NkVBNjJFMjkwNyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDozMzY5NjUyOTA2RUYxMUUyOENCQ0Q4NkVBNjJFMjkwNyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Ps2lOfsAAAFMSURBVHjaYvz//z8DrQATAw0BTQ1nwSUxe/ZsBSCVD8QBQKyAJv0AiDcA8cTU1NQHuMxgRA9zoKECQKofiBOIdOACIC4EWvIBr+FAgw2A1H4gFiAxBEAGOwItuIDVcBwGf4C6bCOaYf5QnwngswBsODQo7qMpbgTiCdi8ixR8BUBcj2aBIkwPLEL70QxOBCpYgC8coAY0AC0BReh8qDAsvhJBHGZpaWkFqNdhAOTaTmID29jY+MK5c+dAhlpAhQyA/IVA8Q8s0OSG7K1GNO8HQF2jgJQMQaljA1oQIscByMxCUCZyQE5WyGEMNXg9WjoHsddD5ZCDCNn3DrAcaoAkiJ4q+vGECLrcQSS2Ad7sD00NCngMV8CS1vHnUDTD3xNIMYxkFVzQcHyAR+8DSkvFQjLlCBsOTW6BaK4EsQPRkiJxpeJoTTS0DQcIMACNJ32B6TbHUQAAAABJRU5ErkJggg%3D%3D) 50% no-repeat;
 }
-.metrouicss .input-control.password .helper:hover {
+.metrouicss .input-control.password .helper:hover,
+.metrouicss .input-control.password .btn-reveal:hover {
   background: #ffffff url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABcAAAAXCAYAAADgKtSgAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MzM2OTY1MjIwNkVGMTFFMjhDQkNEODZFQTYyRTI5MDciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MzM2OTY1MjMwNkVGMTFFMjhDQkNEODZFQTYyRTI5MDciPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDozMzU3NURCRDA2RUYxMUUyOENCQ0Q4NkVBNjJFMjkwNyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDozMzU3NURCRTA2RUYxMUUyOENCQ0Q4NkVBNjJFMjkwNyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PhJl5kAAAAEMSURBVHja7FXtEYIwDKVO0BE6AiPoBDICo7BBR9AVnMARcIOyAWxQk6PlakwC/uC888zdOwpJXl/SD0yMsdrLDtWO9h1yY4wDeEAARIKQfE7InQfY8xJgFnBB10ZgrCUc85N8rAHjB8QZmFNTcpNfoBQkvifl2SbAFXAjlZ8BLRN7Ar4HtmVRnoKo4o6Wy7SvYyqwL21hetxKpMwkLbMGS3sccfqtxMUEnnC4TO5pWSSxAYQiBscN06KRCkTrJdWJWNohjaK+X3ZNgSNJCAp50ITgN+2E2rQeklHf9MYh3YqJfNTuDsg10vFXlYMTlQwK97B6c61ssc0Lunq3KBOoW1EiN/8/0W+RPwUYACoftglrEejbAAAAAElFTkSuQmCC) 50% no-repeat;
 }
-.metrouicss .input-control.text .helper:before {
+.metrouicss .input-control.text .helper:before,
+.metrouicss .input-control.text .btn-clear:before {
   font-family: iconFont;
   font-size: 12px;
   content: "\e089";
@@ -6902,15 +7311,160 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   top: 5px;
 }
 .metrouicss .dialog .header button {
-  min-width: 16px;
-  min-height: 16px;
-  height: 24px;
-  width: 24px;
+  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 9pt;
+  font-smooth: always;
+  min-width: 90px;
+  background-color: #ccc;
+  border: 1px transparent solid;
+  color: #353535;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  border-raduis: 0;
+  display: inline-block;
+  vertical-align: middle;
+  cursor: pointer;
+  padding: 4px 10px;
+  min-width: 32px;
+  min-height: 32px;
+  width: 32px;
+  height: 32px;
+  text-align: center;
+  position: relative;
+  padding: 0;
+  width: 24px !important;
+  height: 24px !important;
+  min-height: 24px;
+  min-width: 24px;
 }
-.metrouicss .dialog .header button i {
-  position: absolute;
-  left: 2px;
-  top: 4px;
+.metrouicss .dialog .header button [class^="icon-"],
+.metrouicss .dialog .header button [class*=" icon-"] {
+  font-size: 16px;
+  height: 16px;
+  line-height: 16px;
+  padding-top: 2px;
+  margin: 0;
+}
+.metrouicss .dialog .header button.mini {
+  min-height: 20px;
+  min-width: 20px;
+  height: 14px;
+  font-size: 11px !important;
+  padding-top: 2px;
+}
+.metrouicss .dialog .header button.mini [class^="icon-"],
+.metrouicss .dialog .header button.mini [class*=" icon-"] {
+  font-size: 12px;
+  height: 12px;
+  width: 14px;
+  line-height: 12px;
+  padding: 0;
+}
+.metrouicss .dialog .header button.big {
+  min-height: 48px;
+  height: 48px;
+  font-size: 1.2em;
+}
+.metrouicss .dialog .header button.big [class^="icon-"],
+.metrouicss .dialog .header button.big [class*=" icon-"] {
+  font-size: 26px;
+  height: 26px;
+  line-height: 26px;
+  margin-rigth: 5px;
+  padding-top: 2px;
+}
+.metrouicss .dialog .header button.mini {
+  min-width: 22px;
+  width: 22px;
+}
+.metrouicss .dialog .header button.big {
+  min-width: 48px;
+  width: 48px;
+}
+.metrouicss .dialog .header button.big [class^="icon-"],
+.metrouicss .dialog .header button.big [class*=" icon-"] {
+  margin: 0;
+  padding: 0;
+}
+.metrouicss .dialog .header button.mini {
+  font-size: .9em !important;
+}
+.metrouicss .dialog .header button.standart {
+  min-width: 90px;
+  min-height: 32px;
+}
+.metrouicss .dialog .header button:active,
+.metrouicss .dialog .header button.default:active {
+  top: 1px;
+  left: 1px;
+}
+.metrouicss .dialog .header button:disabled,
+.metrouicss .dialog .header button.disabled {
+  background-color: #eaeaea;
+  color: #bebebe;
+  cursor: not-allowed;
+}
+.metrouicss .dialog .header button.default {
+  background-color: #008287;
+  color: #fff;
+}
+.metrouicss .dialog .header button:focus {
+  outline: 0;
+  border: 1px #353535 dotted;
+}
+.metrouicss .dialog .header button [class^="icon-"],
+.metrouicss .dialog .header button [class*=" icon-"] {
+  font-size: 16px;
+  height: 16px;
+  line-height: 16px;
+  padding-top: 2px;
+  margin: 0;
+}
+.metrouicss .dialog .header button.mini {
+  min-height: 20px;
+  min-width: 20px;
+  height: 14px;
+  font-size: 11px !important;
+  padding-top: 2px;
+}
+.metrouicss .dialog .header button.mini [class^="icon-"],
+.metrouicss .dialog .header button.mini [class*=" icon-"] {
+  font-size: 12px;
+  height: 12px;
+  width: 14px;
+  line-height: 12px;
+  padding: 0;
+}
+.metrouicss .dialog .header button.big {
+  min-height: 48px;
+  height: 48px;
+  font-size: 1.2em;
+}
+.metrouicss .dialog .header button.big [class^="icon-"],
+.metrouicss .dialog .header button.big [class*=" icon-"] {
+  font-size: 26px;
+  height: 26px;
+  line-height: 26px;
+  margin-rigth: 5px;
+  padding-top: 2px;
+}
+.metrouicss .dialog .header button img,
+.metrouicss .dialog .header button [class^="icon-"],
+.metrouicss .dialog .header button [class*=" icon-"] {
+  width: 16px;
+  height: 16px;
+  top: 8px;
+}
+.metrouicss .dialog .header button [class^="icon-"],
+.metrouicss .dialog .header button [class*=" icon-"] {
+  line-height: 16px;
+  font-size: 16px;
+  width: auto;
+}
+.metrouicss .dialog .header button [class^="icon-"],
+.metrouicss .dialog .header button [class*=" icon-"] {
+  font-size: 11px;
 }
 .metrouicss .dialog .content {
   min-height: 85px;

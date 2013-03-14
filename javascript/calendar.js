@@ -12,7 +12,8 @@
  *
  * available options:
  * initDate: calendar start date - the instance of moment.js library, or the string like '2013-02-18', if undefined initDate = now date
- * lang: default 'en', see moment.js documentation #lang
+ * lang: string 'en', 'ru', 'de' etc. More see here - https://github.com/timrwood/moment/blob/develop/min/langs.js
+ *
  *
  * handling 'date-selected' event:
  * $('#calendar').on('date-selected', function(el, dateString, dateMoment){
@@ -52,14 +53,22 @@
             $nextMonthBtn,
             $header,
             $days = [],
-            calMoment;
+            calMoment,
+            lang,
+            dow,
+            selectedDateString;
 
         // initialization
         plugin.init = function () {
             plugin.settings = $.extend({}, defaults, options);
 
-            moment().lang(plugin.settings.lang);
-            var date = plugin.settings.initDate ? moment(plugin.settings.initDate) : moment();
+            lang = plugin.settings.lang;
+            var date = plugin.settings.initDate;
+
+            dow = moment.langData(lang)._week.dow;
+
+            var selectedDateMoment = date ? moment(date) : moment();
+            selectedDateString = selectedDateMoment.format('YYYY-MM-D');
 
             renderCalendar();
             plugin.setDate(date);
@@ -87,7 +96,7 @@
             tr.append(td);
             table.append(tr);
 
-            mom = moment().startOf('week');
+            mom = moment().lang(lang).startOf('week').add('day', dow);
             tr = $('<tr class="weekdays"></tr>');
             for (i = 0; i < 7; i++) {
                 tr.append('<td>' + mom.format('ddd') + '</td>');
@@ -108,21 +117,26 @@
             $element.append(table);
 
             // append events
-            $nextMonthBtn.on('click', function(){
+            $nextMonthBtn.on('mousedown', function(event){
+                event.stopPropagation();
                 calMoment.add('month', 1);
                 plugin.setDate(calMoment);
             });
-            $prevMonthBtn.on('click', function(){
+            $prevMonthBtn.on('mousedown', function(event){
+                event.stopPropagation();
                 calMoment.add('month', -1);
                 plugin.setDate(calMoment);
             });
             $days.forEach(function(day){
-                day.on('click', function(){
+                day.on('mousedown', function(event){
+                    event.stopPropagation();
                     var date = day.data('date');
                     if (!date) {
                         return;
                     }
                     calMoment = moment(date);
+                    calMoment.lang(lang);
+                    selectedDateString = calMoment.format('YYYY-MM-D');
                     plugin.setDate(calMoment);
                     $element.trigger('date-selected', [date, calMoment]);
                 });
@@ -137,14 +151,15 @@
             // this month
             var firstDayMom = calMoment.clone().startOf('month');
             var daysInMonth = calMoment.daysInMonth();
-            var firstDayIndex = +firstDayMom.format('d'); // it also day of week index
+            var firstDayIndex = +firstDayMom.format('d') - dow; // it also day of week index
+            firstDayIndex = firstDayIndex < 0 ? firstDayIndex + 7 : firstDayIndex;
             var lastDayIndex = firstDayIndex + daysInMonth;
-            var currentDate = +calMoment.format('D');
+            //var currentDate = calMoment.format('YYYY-MM-D');
             yearMonth = calMoment.format('YYYY-MM-');
             date = 1;
             for (dayIndex = firstDayIndex; dayIndex < lastDayIndex; dayIndex++) {
                 $days[dayIndex].text(date);
-                if (date === currentDate) {
+                if (yearMonth + date === selectedDateString) {
                     $days[dayIndex].prop('class', 'current-day');
                 } else {
                     $days[dayIndex].prop('class', 'current-month');
@@ -191,6 +206,7 @@
         // date - string ('YYYY-MM-DD') or instance of moment.js library
         plugin.setDate = function(date) {
             calMoment = date ? moment(date) : moment();
+            calMoment.lang(lang);
             $element.data('date', calMoment);
             fillCalendar();
         };
@@ -205,6 +221,124 @@
         if (typeof plugin !== 'undefined') {
             plugin.setDte(date);
         }
+    };
+
+    $.fn[pluginName] = function(options) {
+        var elements = options && options.initAll ? $(initAllSelector) : this;
+        return elements.each(function() {
+            var that = $(this),
+                params = {},
+                plugin;
+            if (undefined == that.data(pluginName)) {
+                $.each(paramKeys, function(index, key){
+                    params[key[0].toLowerCase() + key.slice(1)] = that.data('param' + key);
+                });
+                params = $.extend({}, params, options);
+                plugin = new $[pluginName](this, params);
+                that.data(pluginName, plugin);
+            }
+        });
+    };
+    // autoinit
+    $(function(){
+        $()[pluginName]({initAll: true});
+    });
+
+})(jQuery);
+
+
+/**
+ * datepicker plugin
+ *
+ *
+ */
+(function($) {
+
+    var pluginName = 'datepicker',
+        initAllSelector = '[data-role=datepicker], .datepicker';
+        paramKeys = ['InitDate', 'Lang'];
+
+    $[pluginName] = function(element, options) {
+
+        if (!element) {
+            return $()[pluginName]({initAll: true});
+        }
+
+        // default settings
+        var defaults = {
+            initDate: false,
+            lang: 'en'
+        };
+
+        var plugin = this;
+        plugin.settings = {};
+
+        var $element = $(element); // reference to the jQuery version of DOM element
+
+        var $calendar,
+            $input,
+            $button;
+
+        // initialization
+        plugin.init = function () {
+            var settings = plugin.settings = $.extend({}, defaults, options);
+
+            $input = $element.find('input');
+            $button = $element.find('button');
+
+            var $calendarWrap = $('<div class="span4" style="position:relative"></div>');
+            $calendar = $('<div class="calendar span4" style="position:absolute;display:none;z-index:10000"></div>');
+            $calendarWrap.append($calendar);
+            $element.after($calendarWrap);
+            $calendar.calendar({
+                initDate: settings.initDate,
+                lang: settings.lang
+            });
+
+            dateSelected(null, null, $calendar.data('date'));
+
+            $input.on('focus', showCalendar);
+            $button.on('click', showCalendar);
+            $element.on('mousedown', function(event){
+                event.stopPropagation();
+            });
+            $calendar.on('mousedown', function(event){
+                event.stopPropagation();
+            });
+
+            $calendar.on('date-selected', dateSelected);
+        };
+
+        function showCalendar (event) {
+            if ($calendar.css('display') !== 'none') {
+                return;
+            }
+            var doc = $(document);
+            $calendar.css('bottom', '');
+            var docHeight = doc.height();
+            $calendar.show();
+            var docHeightNew = doc.height();
+            if (docHeight < docHeightNew) {
+                $calendar.css('bottom', $element.height() + 11);
+            }
+            $input.prop('disabled', true);
+            $(document).one('mousedown.calendar', hideCalendar);
+        }
+
+        function hideCalendar () {
+            $calendar.hide();
+            $input.prop('disabled', false);
+            $(document).off('mousedown.calendar');
+            $input.blur();
+        }
+
+        function dateSelected (event, dateString, dateMoment) {
+            hideCalendar();
+            $input.val(dateMoment.format('ll'));
+        }
+
+        plugin.init();
+
     };
 
     $.fn[pluginName] = function(options) {

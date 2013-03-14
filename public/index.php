@@ -94,29 +94,53 @@
             <div class="grid">
                 <div class="row">
                     <div class="span4">
-                        <img src="images/author.jpg" style="width:100%"/>
-                        <p class="tertiary-info-secondary-text bg-color-grayDark" style="padding: 10px; color: #fff;">
-                            Hi! My name is Sergey Pimenov and i'm author of Metro UI CSS from <abbr title="The capital of Ukraine">Kiev</abbr>, <abbr title="The center of Europe">Ukraine</abbr>.
-                        </p>
+                        <div class="image-container bg-color-lighten" style="width: 100%">
+                            <div style="height: 200px; overflow: hidden"><img src="images/spface.jpg" /></div>
+                            <div class="overlay">
+                                <div class="padding10 fg-color-grayDark tertiary-text">Sergey Pimenov - Kiev, Ukraine. Author, project owner, team leader. CSS/LESS, HTML, Javascript.</div>
+                            </div>
+                        </div>
                     </div>
                     <div class="span4">
+                        <div class="image-container bg-color-lighten" style="width: 100%">
+                            <div style="height: 200px; overflow: hidden"><img src="images/svface.jpg" /></div>
+                            <div class="overlay">
+                                <div class="padding10 fg-color-grayDark tertiary-text">Sergey Volkov - Voljskiy, Russia. Team member. Javascript lead.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="span4">
+                        <div class="image-container bg-color-lighten" style="width: 100%">
+                            <div style="height: 200px; overflow: hidden"></div>
+                            <div class="overlay">
+                                <div class="padding10 fg-color-grayDark tertiary-text">Valerio Battaglia - Ticino, Switzerland. Team member. CSS/LESS, HTML, Javascript.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="span8">
                         <h2>Welcome</h2>
                         <p>
                             Metro UI CSS a set of styles to create a site with an interface similar to Windows 8 Metro UI. This set of styles was developed as a self-contained solution.
                         </p>
-                        <p class="bg-color-blue fg-color-white padding10 tertiary-text">
-                            <a href="http://lesscss.org"><img src="http://lesscss.org/images/logo.png" title="Lesscss.org" class="place-left" style="width: 50px"/></a>
-                            Metro UI CSS is made with <a href="http://lesscss.org" class="fg-color-yellow"><abbr title="LESS a dynamic stylesheet language created by one good man Alexis Sellier">LESS</abbr></a>. It makes developing systems-based CSS faster, easier, and more fun.
+
+                        <p class="bg-color-blueLight padding20 tertiary-text1">
+                            Metro UI CSS is made with <a href="http://lesscss.org" class="fg-color-blue"><abbr title="LESS a dynamic stylesheet language created by one good man Alexis Sellier">LESS</abbr></a>. It makes developing systems-based CSS faster, easier, and more fun.
                         </p>
+
                         <p>
                             <strong>Metro UI CSS is free if you placed back link to Metro UI CSS site.</strong>
                             <br />
                             Example:
                             <br />
-                            <blockquote class="tertiary-text">
-                                Styled with &lt;a href="http://metroui.org.ua"&gt;Metro UI CSS&lt;/a&gt;
-                            </blockquote>
                         </p>
+                        <blockquote class="tertiary-text">
+                            Styled with &lt;a href="http://metroui.org.ua"&gt;Metro UI CSS&lt;/a&gt;
+                        </blockquote>
+
+
+                        <h2>Browsers</h2>
                         <div class="browsers-icons clearfix">
                             <h2 class="place-left" title="Internet Explorer 9+"><i class="icon-IE"></i> </h2>
                             <h2 class="place-left" title="Chrome"><i class="icon-chrome"></i> </h2>
@@ -124,6 +148,10 @@
                             <h2 class="place-left" title="Opera"><i class="icon-opera"></i> </h2>
                             <h2 class="place-left" title="Safari"><i class="icon-safari"></i> </h2>
                         </div>
+
+                        <blockquote class="tertiary-text">
+                            Internet explorer supported from 9 version.
+                        </blockquote>
                     </div>
                     <div class="span4">
                         <div id="social">

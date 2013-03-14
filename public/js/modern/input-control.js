@@ -34,7 +34,7 @@
         var initTextInput = function () {
             var $helper,
                 input;
-            $helper = $element.children('.helper');
+            $helper = $element.children('.helper, .btn-clear');
 
             if (!$helper.get(0)) {
                 return;
@@ -61,7 +61,7 @@
             var $helper,
                 password,
                 text;
-            $helper = $element.children('.helper');
+            $helper = $element.children('.helper, .btn-reveal');
             if (!$helper.get(0)) {
                 return;
             }
