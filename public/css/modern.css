@@ -1,444 +1,219 @@
-/*! normalize.css 2012-03-11T12:53 UTC - http://github.com/necolas/normalize.css */
-/* =============================================================================
+.metrouicss {
+  /*! normalize.css 2012-03-11T12:53 UTC - http://github.com/necolas/normalize.css */
+
+  /* =============================================================================
    HTML5 display definitions
    ========================================================================== */
-/*
+
+  /*
  * Corrects block display not defined in IE6/7/8/9 & FF3
  */
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-nav,
-section,
-summary {
-  display: block;
-}
-/*
+
+  /*
  * Corrects inline-block display not defined in IE6/7/8/9 & FF3
  */
-audio,
-canvas,
-video {
-  display: inline-block;
-  *display: inline;
-  *zoom: 1;
-}
-/*
+
+  /*
  * Prevents modern browsers from displaying 'audio' without controls
  * Remove excess height in iOS5 devices
  */
-audio:not([controls]) {
-  display: none;
-  height: 0;
-}
-/*
+
+  /*
  * Addresses styling for 'hidden' attribute not present in IE7/8/9, FF3, S4
  * Known issue: no IE6 support
  */
-[hidden] {
-  display: none;
-}
-/* =============================================================================
+
+  /* =============================================================================
    Base
    ========================================================================== */
-/*
+
+  /*
  * 1. Corrects text resizing oddly in IE6/7 when body font-size is set using em units
  *    http://clagnut.com/blog/348/#c790
  * 2. Prevents iOS text size adjust after orientation change, without disabling user zoom
  *    www.456bereastreet.com/archive/201012/controlling_text_size_in_safari_for_ios_without_disabling_user_zoom/
  */
-html {
-  font-size: 100%;
-  /* 1 */
 
-  -webkit-text-size-adjust: 100%;
-  -ms-text-size-adjust: 100%;
-  /* 2 */
-
-}
-/*
+  /*
  * Addresses font-family inconsistency between 'textarea' and other form elements.
  */
-html,
-button,
-input,
-select,
-textarea {
-  font-family: sans-serif;
-}
-/*
+
+  /*
  * Addresses margins handled incorrectly in IE6/7
  */
-body {
-  margin: 0;
-}
-/* =============================================================================
+
+  /* =============================================================================
    Links
    ========================================================================== */
-/*
+
+  /*
  * Addresses outline displayed oddly in Chrome
  */
-a:focus {
-  outline: thin dotted;
-}
-/*
+
+  /*
  * Improves readability when focused and also mouse hovered in all browsers
  * people.opera.com/patrickl/experiments/keyboard/test
  */
-a:hover,
-a:active {
-  outline: 0;
-}
-/* =============================================================================
+
+  /* =============================================================================
    Typography
    ========================================================================== */
-/*
+
+  /*
  * Addresses font sizes and margins set differently in IE6/7
  * Addresses font sizes within 'section' and 'article' in FF4+, Chrome, S5
  */
-h1 {
-  font-size: 2em;
-  margin: 0.67em 0;
-}
-h2 {
-  font-size: 1.5em;
-  margin: 0.83em 0;
-}
-h3 {
-  font-size: 1.17em;
-  margin: 1em 0;
-}
-h4 {
-  font-size: 1em;
-  margin: 1.33em 0;
-}
-h5 {
-  font-size: 0.83em;
-  margin: 1.67em 0;
-}
-h6 {
-  font-size: 0.75em;
-  margin: 2.33em 0;
-}
-/*
+
+  /*
  * Addresses styling not present in IE7/8/9, S5, Chrome
  */
-abbr[title] {
-  border-bottom: 1px dotted;
-}
-/*
+
+  /*
  * Addresses style set to 'bolder' in FF3+, S4/5, Chrome
 */
-b,
-strong {
-  font-weight: bold;
-}
-blockquote {
-  margin: 1em 40px;
-}
-/*
+
+  /*
  * Addresses styling not present in S5, Chrome
  */
-dfn {
-  font-style: italic;
-}
-/*
+
+  /*
  * Addresses styling not present in IE6/7/8/9
  */
-mark {
-  background: #ff0;
-  color: #000;
-}
-/*
- * Addresses margins set differently in IE6/7
- */
-p,
-pre {
-  margin: 1em 0;
-}
-/*
+
+  /*
  * Corrects font family set oddly in IE6, S4/5, Chrome
  * en.wikipedia.org/wiki/User:Davidgothberg/Test59
  */
-pre,
-code,
-kbd,
-samp {
-  font-family: monospace, serif;
-  _font-family: 'courier new', monospace;
-  font-size: 1em;
-}
-/*
+
+  /*
  * Improves readability of pre-formatted text in all browsers
  */
-pre {
-  white-space: pre;
-  white-space: pre-wrap;
-  word-wrap: break-word;
-}
-/*
+
+  /*
  * 1. Addresses CSS quotes not supported in IE6/7
  * 2. Addresses quote property not supported in S4
  */
-/* 1 */
-q {
-  quotes: none;
-}
-/* 2 */
-q:before,
-q:after {
-  content: '';
-  content: none;
-}
-small {
-  font-size: 75%;
-}
-/*
+
+  /* 1 */
+
+  /* 2 */
+
+  /*
  * Prevents sub and sup affecting line-height in all browsers
  * gist.github.com/413930
  */
-sub,
-sup {
-  font-size: 75%;
-  line-height: 0;
-  position: relative;
-  vertical-align: baseline;
-}
-sup {
-  top: -0.5em;
-}
-sub {
-  bottom: -0.25em;
-}
-/* =============================================================================
+
+  /* =============================================================================
    Lists
    ========================================================================== */
-/*
+
+  /*
  * Addresses margins set differently in IE6/7
  */
-dl,
-menu,
-ol,
-ul {
-  margin: 1em 0;
-}
-dd {
-  margin: 0 0 0 40px;
-}
-/*
+
+  /*
  * Addresses paddings set differently in IE6/7
  */
-menu,
-ol,
-ul {
-  padding: 0 0 0 40px;
-}
-/*
+
+  /*
  * Corrects list images handled incorrectly in IE7
  */
-nav ul,
-nav ol {
-  list-style: none;
-  list-style-image: none;
-}
-/* =============================================================================
+
+  /* =============================================================================
    Embedded content
    ========================================================================== */
-/*
+
+  /*
  * 1. Removes border when inside 'a' element in IE6/7/8/9, FF3
  * 2. Improves image quality when scaled in IE7
  *    code.flickr.com/blog/2008/11/12/on-ui-quality-the-little-things-client-side-image-resizing/
  */
-img {
-  border: 0;
-  /* 1 */
 
-  -ms-interpolation-mode: bicubic;
-  /* 2 */
-
-}
-/*
+  /*
  * Corrects overflow displayed oddly in IE9
  */
-svg:not(:root) {
-  overflow: hidden;
-}
-/* =============================================================================
+
+  /* =============================================================================
    Figures
    ========================================================================== */
-/*
+
+  /*
  * Addresses margin not present in IE6/7/8/9, S5, O11
  */
-figure {
-  margin: 0;
-}
-/* =============================================================================
+
+  /* =============================================================================
    Forms
    ========================================================================== */
-/*
+
+  /*
  * Corrects margin displayed oddly in IE6/7
  */
-form {
-  margin: 0;
-}
-/*
+
+  /*
  * Define consistent border, margin, and padding
  */
-fieldset {
-  border: 1px solid #c0c0c0;
-  margin: 0 2px;
-  padding: 0.35em 0.625em 0.75em;
-}
-/*
+
+  /*
  * 1. Corrects color not being inherited in IE6/7/8/9
  * 2. Corrects text not wrapping in FF3
  * 3. Corrects alignment displayed oddly in IE6/7
  */
-legend {
-  border: 0;
-  /* 1 */
 
-  padding: 0;
-  white-space: normal;
-  /* 2 */
-
-  *margin-left: -7px;
-  /* 3 */
-
-}
-/*
+  /*
  * 1. Corrects font size not being inherited in all browsers
  * 2. Addresses margins set differently in IE6/7, FF3+, S5, Chrome
  * 3. Improves appearance and consistency in all browsers
  */
-button,
-input,
-select,
-textarea {
-  font-size: 100%;
-  /* 1 */
 
-  margin: 0;
-  /* 2 */
-
-  vertical-align: baseline;
-  *vertical-align: middle;
-  /* 3 */
-
-}
-/*
+  /*
  * Addresses FF3/4 setting line-height on 'input' using !important in the UA stylesheet
  */
-button,
-input {
-  line-height: normal;
-  /* 1 */
 
-}
-/*
+  /*
  * 1. Improves usability and consistency of cursor style between image-type 'input' and others
  * 2. Corrects inability to style clickable 'input' types in iOS
  * 3. Removes inner spacing in IE7 without affecting normal text inputs
  *    Known issue: inner spacing remains in IE6
  */
-button,
-input[type="button"],
-input[type="reset"],
-input[type="submit"] {
-  cursor: pointer;
-  /* 1 */
 
-  -webkit-appearance: button;
-  /* 2 */
-
-  *overflow: visible;
-  /* 3 */
-
-}
-/*
+  /*
  * Re-set default cursor for disabled elements
  */
-button[disabled],
-input[disabled] {
-  cursor: default;
-}
-/*
+
+  /*
  * 1. Addresses box sizing set to content-box in IE8/9
  * 2. Removes excess padding in IE8/9
  * 3. Removes excess padding in IE7
       Known issue: excess padding remains in IE6
  */
-input[type="checkbox"],
-input[type="radio"] {
-  box-sizing: border-box;
-  /* 1 */
 
-  padding: 0;
-  /* 2 */
-
-  *height: 13px;
-  *width: 13px;
-  /* 3 */
-
-}
-/*
+  /*
  * 1. Addresses appearance set to searchfield in S5, Chrome
  * 2. Addresses box-sizing set to border-box in S5, Chrome (include -moz to future-proof)
  */
-input[type="search"] {
-  -webkit-appearance: textfield;
-  /* 1 */
 
-  -moz-box-sizing: content-box;
-  -webkit-box-sizing: content-box;
-  /* 2 */
-
-  box-sizing: content-box;
-}
-/*
+  /*
  * Removes inner padding and search cancel button in S5, Chrome on OS X
  */
-input[type="search"]::-webkit-search-decoration,
-input[type="search"]::-webkit-search-cancel-button {
-  -webkit-appearance: none;
-}
-/*
+
+  /*
  * Removes inner padding and border in FF3+
  * www.sitepen.com/blog/2008/05/14/the-devils-in-the-details-fixing-dojos-toolbar-buttons/
  */
-button::-moz-focus-inner,
-input::-moz-focus-inner {
-  border: 0;
-  padding: 0;
-}
-/*
+
+  /*
  * 1. Removes default vertical scrollbar in IE6/7/8/9
  * 2. Improves readability and alignment in all browsers
  */
-textarea {
-  overflow: auto;
-  /* 1 */
 
-  vertical-align: top;
-  /* 2 */
-
-}
-/* =============================================================================
+  /* =============================================================================
    Tables
    ========================================================================== */
-/*
+
+  /*
  * Remove most spacing between table cells
  */
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-.metrouicss {
+
   /*
  * Metro UI CSS
  * Copyright 2012 Sergey Pimenov
@@ -675,6 +450,277 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
  * dialog.less
  */
 
+}
+.metrouicss article,
+.metrouicss aside,
+.metrouicss details,
+.metrouicss figcaption,
+.metrouicss figure,
+.metrouicss footer,
+.metrouicss header,
+.metrouicss hgroup,
+.metrouicss nav,
+.metrouicss section,
+.metrouicss summary {
+  display: block;
+}
+.metrouicss audio,
+.metrouicss canvas,
+.metrouicss video {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+}
+.metrouicss audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+.metrouicss [hidden] {
+  display: none;
+}
+.metrouicss html {
+  font-size: 100%;
+  /* 1 */
+
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  /* 2 */
+
+}
+.metrouicss html,
+.metrouicss button,
+.metrouicss input,
+.metrouicss select,
+.metrouicss textarea {
+  font-family: sans-serif;
+}
+.metrouicss body {
+  margin: 0;
+}
+.metrouicss a:focus {
+  outline: thin dotted;
+}
+.metrouicss a:hover,
+.metrouicss a:active {
+  outline: 0;
+}
+.metrouicss h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+.metrouicss h2 {
+  font-size: 1.5em;
+  margin: 0.83em 0;
+}
+.metrouicss h3 {
+  font-size: 1.17em;
+  margin: 1em 0;
+}
+.metrouicss h4 {
+  font-size: 1em;
+  margin: 1.33em 0;
+}
+.metrouicss h5 {
+  font-size: 0.83em;
+  margin: 1.67em 0;
+}
+.metrouicss h6 {
+  font-size: 0.75em;
+  margin: 2.33em 0;
+}
+.metrouicss abbr[title] {
+  border-bottom: 1px dotted;
+}
+.metrouicss b,
+.metrouicss strong {
+  font-weight: bold;
+}
+.metrouicss blockquote {
+  margin: 1em 40px;
+}
+.metrouicss dfn {
+  font-style: italic;
+}
+.metrouicss mark {
+  background: #ff0;
+  color: #000;
+}
+.metrouicss p,
+.metrouicss pre {
+  margin: 1em 0;
+}
+.metrouicss pre,
+.metrouicss code,
+.metrouicss kbd,
+.metrouicss samp {
+  font-family: monospace, serif;
+  _font-family: 'courier new', monospace;
+  font-size: 1em;
+}
+.metrouicss pre {
+  white-space: pre;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+.metrouicss q {
+  quotes: none;
+}
+.metrouicss q:before,
+.metrouicss q:after {
+  content: '';
+  content: none;
+}
+.metrouicss small {
+  font-size: 75%;
+}
+.metrouicss sub,
+.metrouicss sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+.metrouicss sup {
+  top: -0.5em;
+}
+.metrouicss sub {
+  bottom: -0.25em;
+}
+.metrouicss dl,
+.metrouicss menu,
+.metrouicss ol,
+.metrouicss ul {
+  margin: 1em 0;
+}
+.metrouicss dd {
+  margin: 0 0 0 40px;
+}
+.metrouicss menu,
+.metrouicss ol,
+.metrouicss ul {
+  padding: 0 0 0 40px;
+}
+.metrouicss nav ul,
+.metrouicss nav ol {
+  list-style: none;
+  list-style-image: none;
+}
+.metrouicss img {
+  border: 0;
+  /* 1 */
+
+  -ms-interpolation-mode: bicubic;
+  /* 2 */
+
+}
+.metrouicss svg:not(:root) {
+  overflow: hidden;
+}
+.metrouicss figure {
+  margin: 0;
+}
+.metrouicss form {
+  margin: 0;
+}
+.metrouicss fieldset {
+  border: 1px solid #c0c0c0;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em;
+}
+.metrouicss legend {
+  border: 0;
+  /* 1 */
+
+  padding: 0;
+  white-space: normal;
+  /* 2 */
+
+  *margin-left: -7px;
+  /* 3 */
+
+}
+.metrouicss button,
+.metrouicss input,
+.metrouicss select,
+.metrouicss textarea {
+  font-size: 100%;
+  /* 1 */
+
+  margin: 0;
+  /* 2 */
+
+  vertical-align: baseline;
+  *vertical-align: middle;
+  /* 3 */
+
+}
+.metrouicss button,
+.metrouicss input {
+  line-height: normal;
+  /* 1 */
+
+}
+.metrouicss button,
+.metrouicss input[type="button"],
+.metrouicss input[type="reset"],
+.metrouicss input[type="submit"] {
+  cursor: pointer;
+  /* 1 */
+
+  -webkit-appearance: button;
+  /* 2 */
+
+  *overflow: visible;
+  /* 3 */
+
+}
+.metrouicss button[disabled],
+.metrouicss input[disabled] {
+  cursor: default;
+}
+.metrouicss input[type="checkbox"],
+.metrouicss input[type="radio"] {
+  box-sizing: border-box;
+  /* 1 */
+
+  padding: 0;
+  /* 2 */
+
+  *height: 13px;
+  *width: 13px;
+  /* 3 */
+
+}
+.metrouicss input[type="search"] {
+  -webkit-appearance: textfield;
+  /* 1 */
+
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  /* 2 */
+
+  box-sizing: content-box;
+}
+.metrouicss input[type="search"]::-webkit-search-decoration,
+.metrouicss input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+}
+.metrouicss button::-moz-focus-inner,
+.metrouicss input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+.metrouicss textarea {
+  overflow: auto;
+  /* 1 */
+
+  vertical-align: top;
+  /* 2 */
+
+}
+.metrouicss table {
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 .metrouicss .place-left {
   float: left !important;
@@ -5791,6 +5837,34 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   padding-right: 5px;
   min-height: 100px;
 }
+.metrouicss .input-control.text input[type=text]:not(:focus) ~ [class^="btn-clear"],
+.metrouicss .input-control.password input[type=text]:not(:focus) ~ [class^="btn-clear"],
+.metrouicss .input-control.text input[type=password]:not(:focus) ~ [class^="btn-clear"],
+.metrouicss .input-control.password input[type=password]:not(:focus) ~ [class^="btn-clear"],
+.metrouicss .input-control.text input[type=email]:not(:focus) ~ [class^="btn-clear"],
+.metrouicss .input-control.password input[type=email]:not(:focus) ~ [class^="btn-clear"],
+.metrouicss .input-control.text input[type=phone]:not(:focus) ~ [class^="btn-clear"],
+.metrouicss .input-control.password input[type=phone]:not(:focus) ~ [class^="btn-clear"],
+.metrouicss .input-control.text input[type=number]:not(:focus) ~ [class^="btn-clear"],
+.metrouicss .input-control.password input[type=number]:not(:focus) ~ [class^="btn-clear"],
+.metrouicss .input-control.text input[type=time]:not(:focus) ~ [class^="btn-clear"],
+.metrouicss .input-control.password input[type=time]:not(:focus) ~ [class^="btn-clear"],
+.metrouicss .input-control.text input[type=url]:not(:focus) ~ [class^="btn-clear"],
+.metrouicss .input-control.password input[type=url]:not(:focus) ~ [class^="btn-clear"],
+.metrouicss .input-control.text input[type=text]:not(:focus) ~ [class*="btn-reveal"],
+.metrouicss .input-control.password input[type=text]:not(:focus) ~ [class*="btn-reveal"],
+.metrouicss .input-control.text input[type=password]:not(:focus) ~ [class*="btn-reveal"],
+.metrouicss .input-control.password input[type=password]:not(:focus) ~ [class*="btn-reveal"],
+.metrouicss .input-control.text input[type=email]:not(:focus) ~ [class*="btn-reveal"],
+.metrouicss .input-control.password input[type=email]:not(:focus) ~ [class*="btn-reveal"],
+.metrouicss .input-control.text input[type=phone]:not(:focus) ~ [class*="btn-reveal"],
+.metrouicss .input-control.password input[type=phone]:not(:focus) ~ [class*="btn-reveal"],
+.metrouicss .input-control.text input[type=number]:not(:focus) ~ [class*="btn-reveal"],
+.metrouicss .input-control.password input[type=number]:not(:focus) ~ [class*="btn-reveal"],
+.metrouicss .input-control.text input[type=time]:not(:focus) ~ [class*="btn-reveal"],
+.metrouicss .input-control.password input[type=time]:not(:focus) ~ [class*="btn-reveal"],
+.metrouicss .input-control.text input[type=url]:not(:focus) ~ [class*="btn-reveal"],
+.metrouicss .input-control.password input[type=url]:not(:focus) ~ [class*="btn-reveal"],
 .metrouicss .input-control.text input[type=text]:not(:focus) ~ .helper,
 .metrouicss .input-control.password input[type=text]:not(:focus) ~ .helper,
 .metrouicss .input-control.text input[type=password]:not(:focus) ~ .helper,
@@ -5799,10 +5873,42 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 .metrouicss .input-control.password input[type=email]:not(:focus) ~ .helper,
 .metrouicss .input-control.text input[type=phone]:not(:focus) ~ .helper,
 .metrouicss .input-control.password input[type=phone]:not(:focus) ~ .helper,
+.metrouicss .input-control.text input[type=number]:not(:focus) ~ .helper,
+.metrouicss .input-control.password input[type=number]:not(:focus) ~ .helper,
+.metrouicss .input-control.text input[type=time]:not(:focus) ~ .helper,
+.metrouicss .input-control.password input[type=time]:not(:focus) ~ .helper,
 .metrouicss .input-control.text input[type=url]:not(:focus) ~ .helper,
 .metrouicss .input-control.password input[type=url]:not(:focus) ~ .helper {
   display: none;
 }
+.metrouicss .input-control.text input[type=text]:focus ~ [class^="btn-clear"],
+.metrouicss .input-control.password input[type=text]:focus ~ [class^="btn-clear"],
+.metrouicss .input-control.text input[type=password]:focus ~ [class^="btn-clear"],
+.metrouicss .input-control.password input[type=password]:focus ~ [class^="btn-clear"],
+.metrouicss .input-control.text input[type=email]:focus ~ [class^="btn-clear"],
+.metrouicss .input-control.password input[type=email]:focus ~ [class^="btn-clear"],
+.metrouicss .input-control.text input[type=phone]:focus ~ [class^="btn-clear"],
+.metrouicss .input-control.password input[type=phone]:focus ~ [class^="btn-clear"],
+.metrouicss .input-control.text input[type=number]:focus ~ [class^="btn-clear"],
+.metrouicss .input-control.password input[type=number]:focus ~ [class^="btn-clear"],
+.metrouicss .input-control.text input[type=time]:focus ~ [class^="btn-clear"],
+.metrouicss .input-control.password input[type=time]:focus ~ [class^="btn-clear"],
+.metrouicss .input-control.text input[type=url]:focus ~ [class^="btn-clear"],
+.metrouicss .input-control.password input[type=url]:focus ~ [class^="btn-clear"],
+.metrouicss .input-control.text input[type=text]:focus ~ [class*="btn-reveal"],
+.metrouicss .input-control.password input[type=text]:focus ~ [class*="btn-reveal"],
+.metrouicss .input-control.text input[type=password]:focus ~ [class*="btn-reveal"],
+.metrouicss .input-control.password input[type=password]:focus ~ [class*="btn-reveal"],
+.metrouicss .input-control.text input[type=email]:focus ~ [class*="btn-reveal"],
+.metrouicss .input-control.password input[type=email]:focus ~ [class*="btn-reveal"],
+.metrouicss .input-control.text input[type=phone]:focus ~ [class*="btn-reveal"],
+.metrouicss .input-control.password input[type=phone]:focus ~ [class*="btn-reveal"],
+.metrouicss .input-control.text input[type=number]:focus ~ [class*="btn-reveal"],
+.metrouicss .input-control.password input[type=number]:focus ~ [class*="btn-reveal"],
+.metrouicss .input-control.text input[type=time]:focus ~ [class*="btn-reveal"],
+.metrouicss .input-control.password input[type=time]:focus ~ [class*="btn-reveal"],
+.metrouicss .input-control.text input[type=url]:focus ~ [class*="btn-reveal"],
+.metrouicss .input-control.password input[type=url]:focus ~ [class*="btn-reveal"],
 .metrouicss .input-control.text input[type=text]:focus ~ .helper,
 .metrouicss .input-control.password input[type=text]:focus ~ .helper,
 .metrouicss .input-control.text input[type=password]:focus ~ .helper,
@@ -5811,10 +5917,42 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 .metrouicss .input-control.password input[type=email]:focus ~ .helper,
 .metrouicss .input-control.text input[type=phone]:focus ~ .helper,
 .metrouicss .input-control.password input[type=phone]:focus ~ .helper,
+.metrouicss .input-control.text input[type=number]:focus ~ .helper,
+.metrouicss .input-control.password input[type=number]:focus ~ .helper,
+.metrouicss .input-control.text input[type=time]:focus ~ .helper,
+.metrouicss .input-control.password input[type=time]:focus ~ .helper,
 .metrouicss .input-control.text input[type=url]:focus ~ .helper,
 .metrouicss .input-control.password input[type=url]:focus ~ .helper {
   display: block;
 }
+.metrouicss .input-control.text input[type=text]:not(:focus) ~ [class^="btn-clear"]:active,
+.metrouicss .input-control.password input[type=text]:not(:focus) ~ [class^="btn-clear"]:active,
+.metrouicss .input-control.text input[type=password]:not(:focus) ~ [class^="btn-clear"]:active,
+.metrouicss .input-control.password input[type=password]:not(:focus) ~ [class^="btn-clear"]:active,
+.metrouicss .input-control.text input[type=email]:not(:focus) ~ [class^="btn-clear"]:active,
+.metrouicss .input-control.password input[type=email]:not(:focus) ~ [class^="btn-clear"]:active,
+.metrouicss .input-control.text input[type=phone]:not(:focus) ~ [class^="btn-clear"]:active,
+.metrouicss .input-control.password input[type=phone]:not(:focus) ~ [class^="btn-clear"]:active,
+.metrouicss .input-control.text input[type=number]:not(:focus) ~ [class^="btn-clear"]:active,
+.metrouicss .input-control.password input[type=number]:not(:focus) ~ [class^="btn-clear"]:active,
+.metrouicss .input-control.text input[type=time]:not(:focus) ~ [class^="btn-clear"]:active,
+.metrouicss .input-control.password input[type=time]:not(:focus) ~ [class^="btn-clear"]:active,
+.metrouicss .input-control.text input[type=url]:not(:focus) ~ [class^="btn-clear"]:active,
+.metrouicss .input-control.password input[type=url]:not(:focus) ~ [class^="btn-clear"]:active,
+.metrouicss .input-control.text input[type=text]:not(:focus) ~ [class*="btn-reveal"]:active,
+.metrouicss .input-control.password input[type=text]:not(:focus) ~ [class*="btn-reveal"]:active,
+.metrouicss .input-control.text input[type=password]:not(:focus) ~ [class*="btn-reveal"]:active,
+.metrouicss .input-control.password input[type=password]:not(:focus) ~ [class*="btn-reveal"]:active,
+.metrouicss .input-control.text input[type=email]:not(:focus) ~ [class*="btn-reveal"]:active,
+.metrouicss .input-control.password input[type=email]:not(:focus) ~ [class*="btn-reveal"]:active,
+.metrouicss .input-control.text input[type=phone]:not(:focus) ~ [class*="btn-reveal"]:active,
+.metrouicss .input-control.password input[type=phone]:not(:focus) ~ [class*="btn-reveal"]:active,
+.metrouicss .input-control.text input[type=number]:not(:focus) ~ [class*="btn-reveal"]:active,
+.metrouicss .input-control.password input[type=number]:not(:focus) ~ [class*="btn-reveal"]:active,
+.metrouicss .input-control.text input[type=time]:not(:focus) ~ [class*="btn-reveal"]:active,
+.metrouicss .input-control.password input[type=time]:not(:focus) ~ [class*="btn-reveal"]:active,
+.metrouicss .input-control.text input[type=url]:not(:focus) ~ [class*="btn-reveal"]:active,
+.metrouicss .input-control.password input[type=url]:not(:focus) ~ [class*="btn-reveal"]:active,
 .metrouicss .input-control.text input[type=text]:not(:focus) ~ .helper:active,
 .metrouicss .input-control.password input[type=text]:not(:focus) ~ .helper:active,
 .metrouicss .input-control.text input[type=password]:not(:focus) ~ .helper:active,
@@ -5823,6 +5961,10 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 .metrouicss .input-control.password input[type=email]:not(:focus) ~ .helper:active,
 .metrouicss .input-control.text input[type=phone]:not(:focus) ~ .helper:active,
 .metrouicss .input-control.password input[type=phone]:not(:focus) ~ .helper:active,
+.metrouicss .input-control.text input[type=number]:not(:focus) ~ .helper:active,
+.metrouicss .input-control.password input[type=number]:not(:focus) ~ .helper:active,
+.metrouicss .input-control.text input[type=time]:not(:focus) ~ .helper:active,
+.metrouicss .input-control.password input[type=time]:not(:focus) ~ .helper:active,
 .metrouicss .input-control.text input[type=url]:not(:focus) ~ .helper:active,
 .metrouicss .input-control.password input[type=url]:not(:focus) ~ .helper:active {
   display: block;
@@ -5837,7 +5979,11 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 .metrouicss .input-control.text .btn-search,
 .metrouicss .input-control.password .btn-search,
 .metrouicss .input-control.text .btn-date,
-.metrouicss .input-control.password .btn-date {
+.metrouicss .input-control.password .btn-date,
+.metrouicss .input-control.text .btn-clear,
+.metrouicss .input-control.password .btn-clear,
+.metrouicss .input-control.text .btn-reveal,
+.metrouicss .input-control.password .btn-reveal {
   background: #fff;
   top: 2px;
   width: 26px !important;
@@ -5857,7 +6003,11 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 .metrouicss .input-control.text .btn-search:before,
 .metrouicss .input-control.password .btn-search:before,
 .metrouicss .input-control.text .btn-date:before,
-.metrouicss .input-control.password .btn-date:before {
+.metrouicss .input-control.password .btn-date:before,
+.metrouicss .input-control.text .btn-clear:before,
+.metrouicss .input-control.password .btn-clear:before,
+.metrouicss .input-control.text .btn-reveal:before,
+.metrouicss .input-control.password .btn-reveal:before {
   font-size: 12pt;
   position: absolute;
   font-family: 'Segoe UI Semilight', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
@@ -5872,7 +6022,11 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 .metrouicss .input-control.text .btn-search:hover,
 .metrouicss .input-control.password .btn-search:hover,
 .metrouicss .input-control.text .btn-date:hover,
-.metrouicss .input-control.password .btn-date:hover {
+.metrouicss .input-control.password .btn-date:hover,
+.metrouicss .input-control.text .btn-clear:hover,
+.metrouicss .input-control.password .btn-clear:hover,
+.metrouicss .input-control.text .btn-reveal:hover,
+.metrouicss .input-control.password .btn-reveal:hover {
   background: #d9d9d9;
 }
 .metrouicss .input-control.text .helper:active,
@@ -5880,7 +6034,11 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 .metrouicss .input-control.text .btn-search:active,
 .metrouicss .input-control.password .btn-search:active,
 .metrouicss .input-control.text .btn-date:active,
-.metrouicss .input-control.password .btn-date:active {
+.metrouicss .input-control.password .btn-date:active,
+.metrouicss .input-control.text .btn-clear:active,
+.metrouicss .input-control.password .btn-clear:active,
+.metrouicss .input-control.text .btn-reveal:active,
+.metrouicss .input-control.password .btn-reveal:active {
   background-color: #000;
 }
 .metrouicss .input-control.text .helper:active:before,
@@ -5888,16 +6046,23 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 .metrouicss .input-control.text .btn-search:active:before,
 .metrouicss .input-control.password .btn-search:active:before,
 .metrouicss .input-control.text .btn-date:active:before,
-.metrouicss .input-control.password .btn-date:active:before {
+.metrouicss .input-control.password .btn-date:active:before,
+.metrouicss .input-control.text .btn-clear:active:before,
+.metrouicss .input-control.password .btn-clear:active:before,
+.metrouicss .input-control.text .btn-reveal:active:before,
+.metrouicss .input-control.password .btn-reveal:active:before {
   color: #fff;
 }
-.metrouicss .input-control.password .helper {
+.metrouicss .input-control.password .helper,
+.metrouicss .input-control.password .btn-reveal {
   background: #ffffff url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABcAAAAXCAYAAADgKtSgAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MzM2OTY1MkEwNkVGMTFFMjhDQkNEODZFQTYyRTI5MDciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MzM2OTY1MkIwNkVGMTFFMjhDQkNEODZFQTYyRTI5MDciPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDozMzY5NjUyODA2RUYxMUUyOENCQ0Q4NkVBNjJFMjkwNyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDozMzY5NjUyOTA2RUYxMUUyOENCQ0Q4NkVBNjJFMjkwNyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Ps2lOfsAAAFMSURBVHjaYvz//z8DrQATAw0BTQ1nwSUxe/ZsBSCVD8QBQKyAJv0AiDcA8cTU1NQHuMxgRA9zoKECQKofiBOIdOACIC4EWvIBr+FAgw2A1H4gFiAxBEAGOwItuIDVcBwGf4C6bCOaYf5QnwngswBsODQo7qMpbgTiCdi8ixR8BUBcj2aBIkwPLEL70QxOBCpYgC8coAY0AC0BReh8qDAsvhJBHGZpaWkFqNdhAOTaTmID29jY+MK5c+dAhlpAhQyA/IVA8Q8s0OSG7K1GNO8HQF2jgJQMQaljA1oQIscByMxCUCZyQE5WyGEMNXg9WjoHsddD5ZCDCNn3DrAcaoAkiJ4q+vGECLrcQSS2Ad7sD00NCngMV8CS1vHnUDTD3xNIMYxkFVzQcHyAR+8DSkvFQjLlCBsOTW6BaK4EsQPRkiJxpeJoTTS0DQcIMACNJ32B6TbHUQAAAABJRU5ErkJggg%3D%3D) 50% no-repeat;
 }
-.metrouicss .input-control.password .helper:hover {
+.metrouicss .input-control.password .helper:hover,
+.metrouicss .input-control.password .btn-reveal:hover {
   background: #ffffff url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABcAAAAXCAYAAADgKtSgAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MzM2OTY1MjIwNkVGMTFFMjhDQkNEODZFQTYyRTI5MDciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MzM2OTY1MjMwNkVGMTFFMjhDQkNEODZFQTYyRTI5MDciPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDozMzU3NURCRDA2RUYxMUUyOENCQ0Q4NkVBNjJFMjkwNyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDozMzU3NURCRTA2RUYxMUUyOENCQ0Q4NkVBNjJFMjkwNyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PhJl5kAAAAEMSURBVHja7FXtEYIwDKVO0BE6AiPoBDICo7BBR9AVnMARcIOyAWxQk6PlakwC/uC888zdOwpJXl/SD0yMsdrLDtWO9h1yY4wDeEAARIKQfE7InQfY8xJgFnBB10ZgrCUc85N8rAHjB8QZmFNTcpNfoBQkvifl2SbAFXAjlZ8BLRN7Ar4HtmVRnoKo4o6Wy7SvYyqwL21hetxKpMwkLbMGS3sccfqtxMUEnnC4TO5pWSSxAYQiBscN06KRCkTrJdWJWNohjaK+X3ZNgSNJCAp50ITgN+2E2rQeklHf9MYh3YqJfNTuDsg10vFXlYMTlQwK97B6c61ssc0Lunq3KBOoW1EiN/8/0W+RPwUYACoftglrEejbAAAAAElFTkSuQmCC) 50% no-repeat;
 }
-.metrouicss .input-control.text .helper:before {
+.metrouicss .input-control.text .helper:before,
+.metrouicss .input-control.text .btn-clear:before {
   font-family: iconFont;
   font-size: 12px;
   content: "\e089";

@@ -138,16 +138,16 @@
                             <h2>Text box</h2>
                             <form>
                                 <div class="input-control text">
-                                    <input type="text" class="with-helper" />
-                                    <button class="helper" onclick="return false"></button>
+                                    <input type="text" />
+                                    <button class="btn-clear" onclick="return false"></button>
                                 </div>
                                 <div class="input-control text">
-                                    <input type="text" class="with-helper" placeholder="Enter sample text"/>
-                                    <button class="helper"></button>
+                                    <input type="text" placeholder="Enter sample text"/>
+                                    <button class="btn-clear"></button>
                                 </div>
                                 <div class="input-control text disabled">
-                                    <input type="text" class="with-helper" disabled="" value="disabled input"/>
-                                    <button class="helper"></button>
+                                    <input type="text" disabled="" value="disabled input"/>
+                                    <button class="btn-clear"></button>
                                 </div>
                                 <div class="input-control text disabled">
                                     <input type="text" value="this input without helper"/>
@@ -155,8 +155,8 @@
                             </form>
 <pre class="prettyprint linenums">
     &lt;div class="input-control text"&gt;
-        &lt;input type="text" class="with-helper" /&gt;
-        &lt;button class="helper"&gt;&lt;/button&gt;
+        &lt;input type="text" /&gt;
+        &lt;button class="btn-clear"&gt;&lt;/button&gt;
     &lt;/div&gt;
 </pre>
                         </div>
@@ -165,16 +165,16 @@
                             <h2>Password box</h2>
                             <form>
                                 <div class="input-control password">
-                                    <input type="password" class="with-helper" />
-                                    <button class="helper"></button>
+                                    <input type="password" />
+                                    <button class="btn-reveal"></button>
                                 </div>
                                 <div class="input-control password">
-                                    <input type="password" class="with-helper" placeholder="Enter password" />
-                                    <button class="helper"></button>
+                                    <input type="password" placeholder="Enter password" />
+                                    <button class="btn-reveal"></button>
                                 </div>
                                 <div class="input-control password">
-                                    <input type="password" class="with-helper" disabled="" />
-                                    <button class="helper"></button>
+                                    <input type="password" disabled="" />
+                                    <button class="btn-reveal"></button>
                                 </div>
                                 <div class="input-control password">
                                     <input type="password" />
@@ -182,8 +182,8 @@
                             </form>
 <pre class="prettyprint linenums">
     &lt;div class="input-control password"&gt;
-        &lt;input type="password" class="with-helper" /&gt;
-        &lt;button class="helper"&gt;&lt;/button&gt;
+        &lt;input type="password" /&gt;
+        &lt;button class="btn-reveal"&gt;&lt;/button&gt;
     &lt;/div&gt;
 </pre>
                         </div>
@@ -193,44 +193,44 @@
                         <div class="span10">
                             <form>
                             <div class="input-control text">
-                                <input type="text" class="with-helper" placeholder="Enter search phrase..." />
+                                <input type="text" placeholder="Enter search phrase..." />
                                 <button class="btn-search"></button>
                             </div>
                             </form>
 <pre class="prettyprint linenums">
     &lt;div class="input-control text"&gt;
-        &lt;input type="text" class="with-helper" /&gt;
+        &lt;input type="text" /&gt;
         &lt;button class="btn-search"&gt;&lt;/button&gt;
     &lt;/div&gt;
 </pre>
                             <div class="input-control text">
-                                <input type="phone" class="with-helper" placeholder="Enter phone" required="required"/>
-                                <button class="helper"></button>
+                                <input type="phone" placeholder="Enter phone" required="required"/>
+                                <button class="btn-clear"></button>
                             </div>
 <pre class="prettyprint linenums">
     &lt;div class="input-control text"&gt;
-        &lt;input type="phone" class="with-helper" /&gt;
-        &lt;button class="helper"&gt;&lt;/button&gt;
+        &lt;input type="phone" /&gt;
+        &lt;button class="btn-clear"&gt;&lt;/button&gt;
     &lt;/div&gt;
 </pre>
                             <div class="input-control text">
-                                <input type="email" class="with-helper" placeholder="Enter email" required="required" />
-                                <button class="helper"></button>
+                                <input type="email" placeholder="Enter email" required="required" />
+                                <button class="btn-clear"></button>
                             </div>
 <pre class="prettyprint linenums">
     &lt;div class="input-control text"&gt;
-        &lt;input type="email" class="with-helper" /&gt;
-        &lt;button class="helper"&gt;&lt;/button&gt;
+        &lt;input type="email" /&gt;
+        &lt;button class="btn-clear"&gt;&lt;/button&gt;
     &lt;/div&gt;
 </pre>
                             <div class="input-control text">
-                                <input type="url" class="with-helper" placeholder="Enter url"  required="required"/>
-                                <button class="helper"></button>
+                                <input type="url" placeholder="Enter url"  required="required"/>
+                                <button class="btn-clear"></button>
                             </div>
 <pre class="prettyprint linenums">
     &lt;div class="input-control text"&gt;
-        &lt;input type="url" class="with-helper" /&gt;
-        &lt;button class="helper"&gt;&lt;/button&gt;
+        &lt;input type="url" /&gt;
+        &lt;button class="btn-clear"&gt;&lt;/button&gt;
     &lt;/div&gt;
 </pre>
                         </div>
@@ -276,12 +276,11 @@
 
                                 <h2>Textarea</h2>
                                 <div class="input-control textarea">
-                                    <textarea></textarea>
+                                    <textarea placeholder="Input text here..."></textarea>
                                 </div>
 <pre class="prettyprint linenums">
     &lt;div class="input-control textarea"&gt;
-        &lt;textarea&gt;
-        &lt;/textarea&gt;
+        &lt;textarea&gt;&lt;/textarea&gt;
     &lt;/div&gt;
 </pre>
 
