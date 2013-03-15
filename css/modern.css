@@ -445,30 +445,16 @@ table {
  *
  */
 
-  /*
- * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
- *
- * Routines.less
- */
+  /*************************************** Icons **************************************************/
 
   /*
 Icon Set:	Broccolidry -- http://dribbble.com/shots/587469-Free-16px-Broccolidryiconsaniconsetitisfullof-icons
 License:	Aribitrary -- http://licence.visualidiot.com/
-
-
 Icon Set:	Meteocons -- http://www.alessioatzeni.com/meteocons/
 License:	Arbitrary -- http://www.alessioatzeni.com/meteocons/#about
-
-
 Icon Set:	IcoMoon - Free -- http://keyamoon.com/icomoon/
 License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 */
-
-  /* Use the following CSS code if you want to use data attributes for inserting your icons */
-
-  /* Use the following CSS code if you want to have a class per icon */
 
   /*
  * Metro UI CSS
@@ -498,14 +484,6 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
     text-align: center;
 }
 */
-
-  /*
- * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
- *
- * Buttons.less
- */
 
   /*
  * Metro UI CSS
@@ -899,7 +877,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 .metrouicss h4,
 .metrouicss h5,
 .metrouicss h6 {
-  margin: 10px 0;
+  margin: 0 0 10px 0;
   padding: 0;
 }
 .metrouicss h1 {
@@ -1289,62 +1267,157 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   border: 1px #ccc solid;
 }
 @font-face {
-  font-family: 'iconFont';
+  font-family: "iconFont";
   src: url('../fonts/iconFont.eot');
   src: url('../fonts/iconFont.eot?#iefix') format('embedded-opentype'), url('../fonts/iconFont.svg#iconFont') format('svg'), url('../fonts/iconFont.woff') format('woff'), url('../fonts/iconFont.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
-.metrouicss [data-icon]:before {
-  font-family: 'iconFont';
-  content: attr(data-icon);
-  speak: none;
-  font-weight: normal;
-  font-style: normal;
-  display: inline-block;
-  text-decoration: inherit;
-  -webkit-font-smoothing: antialiased;
-  border: 1px transparent solid;
-}
 .metrouicss [class^="icon-"],
 .metrouicss [class*=" icon-"] {
+  font-family: "iconFont";
+  font-weight: normal;
+  font-style: normal;
+  text-decoration: inherit;
+  -webkit-font-smoothing: antialiased;
   display: inline-block;
-  margin-right: 5px;
+  width: auto;
+  height: auto;
+  line-height: normal;
+  vertical-align: baseline;
+  background-image: none;
+  background-position: 0% 0%;
+  background-repeat: repeat;
+  margin-top: 0;
+  position: relative;
 }
 .metrouicss [class^="icon-"]:before,
 .metrouicss [class*=" icon-"]:before {
-  font-family: 'iconFont';
-  font-style: normal;
-  speak: none;
-  font-weight: normal;
-  display: inline-block;
   text-decoration: inherit;
-  margin: 0 2px;
-  -webkit-font-smoothing: antialiased;
-  border: 1px transparent solid;
-}
-.metrouicss .icon-large:before {
-  vertical-align: middle;
-  font-size: 1.3333333333333333em;
-  margin-top: -8px;
-}
-.metrouicss button.mini,
-.metrouicss .button.mini {
-  font-size: .9em !important;
+  display: inline-block;
+  speak: none;
 }
 .metrouicss a [class^="icon-"],
 .metrouicss a [class*=" icon-"] {
-  border: 1px transparent solid;
+  display: inline-block;
+}
+.metrouicss .icon-large:before {
+  vertical-align: -10%;
+  font-size: 1.3333333333333333em;
+}
+.metrouicss button [class^="icon-"],
+.metrouicss .button [class^="icon-"],
+.metrouicss .page-control > ul > li [class^="icon-"],
+.metrouicss button [class*=" icon-"],
+.metrouicss .button [class*=" icon-"],
+.metrouicss .page-control > ul > li [class*=" icon-"] {
+  vertical-align: -10%;
+  font-size: 1.2em;
+  display: inline-block;
+}
+.metrouicss button [class^="icon-"].icon-large,
+.metrouicss .button [class^="icon-"].icon-large,
+.metrouicss .page-control > ul > li [class^="icon-"].icon-large,
+.metrouicss button [class*=" icon-"].icon-large,
+.metrouicss .button [class*=" icon-"].icon-large,
+.metrouicss .page-control > ul > li [class*=" icon-"].icon-large {
+  line-height: .9em;
+}
+.metrouicss button.big [class^="icon-"],
+.metrouicss .button.big [class^="icon-"],
+.metrouicss .page-control > ul > li.big [class^="icon-"],
+.metrouicss button.big [class*=" icon-"],
+.metrouicss .button.big [class*=" icon-"],
+.metrouicss .page-control > ul > li.big [class*=" icon-"] {
+  font-size: 1.3333333333333333em;
 }
 .metrouicss li [class^="icon-"],
 .metrouicss li [class*=" icon-"] {
   display: inline-block;
-  width: 1.25em;
+  width: 1.2em;
   text-align: center;
 }
-.metrouicss li .icon-large:after,
-.metrouicss li .icon-large:before {
-  width: 1.875em;
+.metrouicss li [class^="icon-"].icon-large,
+.metrouicss li [class*=" icon-"].icon-large {
+  width: 1.5625em;
+}
+.metrouicss ol.icons {
+  list-style-type: none;
+}
+.metrouicss ol.icons li {
+  line-height: 24px;
+}
+.metrouicss ol.icons li [class^="icon-"],
+.metrouicss ol.icons li [class*=" icon-"] {
+  vertical-align: -10%;
+  font-size: 1.2em;
+}
+.metrouicss .icon-muted {
+  color: #eeeeee;
+}
+.metrouicss .icon-border {
+  border: solid 1px #eeeeee;
+  padding: .2em .25em .15em;
+}
+.metrouicss .icon-2x {
+  font-size: 2em;
+}
+.metrouicss .icon-2x.icon-border {
+  border-width: 2px;
+}
+.metrouicss .icon-3x {
+  font-size: 3em;
+}
+.metrouicss .icon-3x.icon-border {
+  border-width: 3px;
+}
+.metrouicss .icon-4x {
+  font-size: 4em;
+}
+.metrouicss .icon-4x.icon-border {
+  border-width: 4px;
+}
+.metrouicss button [class^="icon-"],
+.metrouicss .button [class^="icon-"],
+.metrouicss .page-control > ul > li [class^="icon-"],
+.metrouicss button [class*=" icon-"],
+.metrouicss .button [class*=" icon-"],
+.metrouicss .page-control > ul > li [class*=" icon-"] {
+  margin-right: 5px;
+}
+.metrouicss button [class^="icon-"].right,
+.metrouicss .button [class^="icon-"].right,
+.metrouicss .page-control > ul > li [class^="icon-"].right,
+.metrouicss button [class*=" icon-"].right,
+.metrouicss .button [class*=" icon-"].right,
+.metrouicss .page-control > ul > li [class*=" icon-"].right {
+  margin-left: 5px;
+  margin-right: auto;
+}
+.metrouicss .toolbar [class^="icon-"],
+.metrouicss .toolbar [class*=" icon-"] {
+  margin: 0 !important;
+}
+.metrouicss .image-button [class^="icon-"],
+.metrouicss .image-button [class*=" icon-"] {
+  position: absolute;
+  right: 0;
+  margin-left: 32px;
+  padding: 5px;
+  height: 100%;
+  top: 0px;
+  box-sizing: border-box;
+  border: 1px transparent solid;
+  z-index: 2;
+  margin: 0;
+  font-size: 16px;
+}
+.metrouicss .shortcut > .icon [class^="icon-"],
+.metrouicss .shortcut > .icon [class*=" icon-"] {
+  font-size: 32px;
+  line-height: 32px;
+  height: 32px;
+  margin: 0 !important;
 }
 .metrouicss .icon-home:before {
   content: "\e000";
@@ -2429,6 +2502,9 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 .metrouicss .icon-chart-alt:before {
   content: "\e168";
 }
+.metrouicss .icon-save:before {
+  content: "\e169";
+}
 .metrouicss .fg-color-blue {
   color: #2d89ef !important;
 }
@@ -3029,6 +3105,12 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 400;
   font-size: 9pt;
   font-smooth: always;
+  font-size: 14px;
+  display: inline-block;
+  padding: 4px 12px;
+  line-height: 20px;
+  text-align: center;
+  vertical-align: middle !important;
   min-width: 90px;
   min-height: 32px;
   height: 32px;
@@ -3038,12 +3120,20 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   margin-right: 10px;
   margin-bottom: 10px;
   border-raduis: 0;
-  display: inline-block;
-  text-align: center;
-  vertical-align: middle;
   cursor: pointer;
-  padding: 4px 10px;
-  position: relative;
+  width: auto;
+  *zoom: 1;
+}
+.metrouicss button:before,
+.metrouicss .button:before,
+.metrouicss button:after,
+.metrouicss .button:after {
+  display: table;
+  content: "";
+}
+.metrouicss button:after,
+.metrouicss .button:after {
+  clear: both;
 }
 .metrouicss button.standart,
 .metrouicss .button.standart {
@@ -3082,38 +3172,14 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 .metrouicss a.button.big {
   padding: 14px 10px;
 }
-.metrouicss button [class^="icon-"],
-.metrouicss .button [class^="icon-"],
-.metrouicss .tool-button [class^="icon-"],
-.metrouicss button [class*=" icon-"],
-.metrouicss .button [class*=" icon-"],
-.metrouicss .tool-button [class*=" icon-"] {
-  font-size: 16px;
-  height: 16px;
-  line-height: 16px;
-  padding-top: 2px;
-  margin: 0;
-}
 .metrouicss button.mini,
 .metrouicss .button.mini,
 .metrouicss .tool-button.mini {
   min-height: 20px;
   min-width: 20px;
   height: 14px;
-  font-size: 11px !important;
-  padding-top: 2px;
-}
-.metrouicss button.mini [class^="icon-"],
-.metrouicss .button.mini [class^="icon-"],
-.metrouicss .tool-button.mini [class^="icon-"],
-.metrouicss button.mini [class*=" icon-"],
-.metrouicss .button.mini [class*=" icon-"],
-.metrouicss .tool-button.mini [class*=" icon-"] {
-  font-size: 12px;
-  height: 12px;
-  width: 14px;
-  line-height: 12px;
-  padding: 0;
+  font-size: .75em !important;
+  padding-top: 0px !important;
 }
 .metrouicss button.big,
 .metrouicss .button.big,
@@ -3122,18 +3188,6 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   height: 48px;
   font-size: 1.2em;
 }
-.metrouicss button.big [class^="icon-"],
-.metrouicss .button.big [class^="icon-"],
-.metrouicss .tool-button.big [class^="icon-"],
-.metrouicss button.big [class*=" icon-"],
-.metrouicss .button.big [class*=" icon-"],
-.metrouicss .tool-button.big [class*=" icon-"] {
-  font-size: 26px;
-  height: 26px;
-  line-height: 26px;
-  margin-rigth: 5px;
-  padding-top: 2px;
-}
 .metrouicss .tool-button.mini {
   min-width: 22px;
   width: 22px;
@@ -3141,11 +3195,6 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 .metrouicss .tool-button.big {
   min-width: 48px;
   width: 48px;
-}
-.metrouicss .tool-button.big [class^="icon-"],
-.metrouicss .tool-button.big [class*=" icon-"] {
-  margin: 0;
-  padding: 0;
 }
 .metrouicss .command-button {
   display: inline-block;
@@ -3181,6 +3230,11 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 400;
   font-size: 9pt;
   font-smooth: always;
+  font-size: 14px;
+  display: inline-block;
+  padding: 4px 12px;
+  line-height: 20px;
+  vertical-align: middle !important;
   min-width: 90px;
   background-color: #ccc;
   border: 1px transparent solid;
@@ -3188,10 +3242,9 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   margin-right: 10px;
   margin-bottom: 10px;
   border-raduis: 0;
-  display: inline-block;
-  vertical-align: middle;
   cursor: pointer;
-  padding: 4px 10px;
+  width: auto;
+  *zoom: 1;
   min-width: 32px;
   min-height: 32px;
   width: 32px;
@@ -3200,8 +3253,36 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   position: relative;
   padding: 0;
 }
-.metrouicss .tool-button.mini {
-  font-size: .9em !important;
+.metrouicss .tool-button [class^="icon-"],
+.metrouicss .tool-button [class*=" icon-"] {
+  vertical-align: -10%;
+  font-size: 1.2em;
+  display: inline-block;
+}
+.metrouicss .tool-button [class^="icon-"].icon-large,
+.metrouicss .tool-button [class*=" icon-"].icon-large {
+  line-height: .9em;
+}
+.metrouicss .tool-button.big [class^="icon-"],
+.metrouicss .tool-button.big [class*=" icon-"] {
+  font-size: 1.3333333333333333em;
+}
+.metrouicss .tool-button [class^="icon-"],
+.metrouicss .tool-button [class*=" icon-"] {
+  margin-right: 5px;
+}
+.metrouicss .tool-button [class^="icon-"].right,
+.metrouicss .tool-button [class*=" icon-"].right {
+  margin-left: 5px;
+  margin-right: auto;
+}
+.metrouicss .tool-button:before,
+.metrouicss .tool-button:after {
+  display: table;
+  content: "";
+}
+.metrouicss .tool-button:after {
+  clear: both;
 }
 .metrouicss .tool-button.standart {
   min-width: 90px;
@@ -3226,54 +3307,22 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   outline: 0;
   border: 1px #353535 dotted;
 }
-.metrouicss .tool-button [class^="icon-"],
-.metrouicss .tool-button [class*=" icon-"] {
-  font-size: 16px;
-  height: 16px;
-  line-height: 16px;
-  padding-top: 2px;
-  margin: 0;
-}
 .metrouicss .tool-button.mini {
   min-height: 20px;
   min-width: 20px;
   height: 14px;
-  font-size: 11px !important;
-  padding-top: 2px;
-}
-.metrouicss .tool-button.mini [class^="icon-"],
-.metrouicss .tool-button.mini [class*=" icon-"] {
-  font-size: 12px;
-  height: 12px;
-  width: 14px;
-  line-height: 12px;
-  padding: 0;
+  font-size: .75em !important;
+  padding-top: 0px !important;
 }
 .metrouicss .tool-button.big {
   min-height: 48px;
   height: 48px;
   font-size: 1.2em;
 }
-.metrouicss .tool-button.big [class^="icon-"],
-.metrouicss .tool-button.big [class*=" icon-"] {
-  font-size: 26px;
-  height: 26px;
-  line-height: 26px;
-  margin-rigth: 5px;
-  padding-top: 2px;
-}
-.metrouicss .tool-button img,
-.metrouicss .tool-button [class^="icon-"],
-.metrouicss .tool-button [class*=" icon-"] {
+.metrouicss .tool-button img {
   width: 16px;
   height: 16px;
   top: 8px;
-}
-.metrouicss .tool-button [class^="icon-"],
-.metrouicss .tool-button [class*=" icon-"] {
-  line-height: 16px;
-  font-size: 16px;
-  width: auto;
 }
 .metrouicss .toolbar {
   *zoom: 1;
@@ -3284,6 +3333,11 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 400;
   font-size: 9pt;
   font-smooth: always;
+  font-size: 14px;
+  display: inline-block;
+  padding: 4px 12px;
+  line-height: 20px;
+  vertical-align: middle !important;
   min-width: 90px;
   background-color: #ccc;
   border: 1px transparent solid;
@@ -3291,10 +3345,9 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   margin-right: 10px;
   margin-bottom: 10px;
   border-raduis: 0;
-  display: inline-block;
-  vertical-align: middle;
   cursor: pointer;
-  padding: 4px 10px;
+  width: auto;
+  *zoom: 1;
   min-width: 32px;
   min-height: 32px;
   width: 32px;
@@ -3304,49 +3357,19 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   padding: 0;
   margin-right: 0px;
 }
-.metrouicss .toolbar a [class^="icon-"],
-.metrouicss .toolbar button [class^="icon-"],
-.metrouicss .toolbar a [class*=" icon-"],
-.metrouicss .toolbar button [class*=" icon-"] {
-  font-size: 16px;
-  height: 16px;
-  line-height: 16px;
-  padding-top: 2px;
-  margin: 0;
-}
 .metrouicss .toolbar a.mini,
 .metrouicss .toolbar button.mini {
   min-height: 20px;
   min-width: 20px;
   height: 14px;
-  font-size: 11px !important;
-  padding-top: 2px;
-}
-.metrouicss .toolbar a.mini [class^="icon-"],
-.metrouicss .toolbar button.mini [class^="icon-"],
-.metrouicss .toolbar a.mini [class*=" icon-"],
-.metrouicss .toolbar button.mini [class*=" icon-"] {
-  font-size: 12px;
-  height: 12px;
-  width: 14px;
-  line-height: 12px;
-  padding: 0;
+  font-size: .75em !important;
+  padding-top: 0px !important;
 }
 .metrouicss .toolbar a.big,
 .metrouicss .toolbar button.big {
   min-height: 48px;
   height: 48px;
   font-size: 1.2em;
-}
-.metrouicss .toolbar a.big [class^="icon-"],
-.metrouicss .toolbar button.big [class^="icon-"],
-.metrouicss .toolbar a.big [class*=" icon-"],
-.metrouicss .toolbar button.big [class*=" icon-"] {
-  font-size: 26px;
-  height: 26px;
-  line-height: 26px;
-  margin-rigth: 5px;
-  padding-top: 2px;
 }
 .metrouicss .toolbar a.mini,
 .metrouicss .toolbar button.mini {
@@ -3358,16 +3381,49 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   min-width: 48px;
   width: 48px;
 }
+.metrouicss .toolbar a [class^="icon-"],
+.metrouicss .toolbar button [class^="icon-"],
+.metrouicss .toolbar a [class*=" icon-"],
+.metrouicss .toolbar button [class*=" icon-"] {
+  vertical-align: -10%;
+  font-size: 1.2em;
+  display: inline-block;
+}
+.metrouicss .toolbar a [class^="icon-"].icon-large,
+.metrouicss .toolbar button [class^="icon-"].icon-large,
+.metrouicss .toolbar a [class*=" icon-"].icon-large,
+.metrouicss .toolbar button [class*=" icon-"].icon-large {
+  line-height: .9em;
+}
 .metrouicss .toolbar a.big [class^="icon-"],
 .metrouicss .toolbar button.big [class^="icon-"],
 .metrouicss .toolbar a.big [class*=" icon-"],
 .metrouicss .toolbar button.big [class*=" icon-"] {
-  margin: 0;
-  padding: 0;
+  font-size: 1.3333333333333333em;
 }
-.metrouicss .toolbar a.mini,
-.metrouicss .toolbar button.mini {
-  font-size: .9em !important;
+.metrouicss .toolbar a [class^="icon-"],
+.metrouicss .toolbar button [class^="icon-"],
+.metrouicss .toolbar a [class*=" icon-"],
+.metrouicss .toolbar button [class*=" icon-"] {
+  margin-right: 5px;
+}
+.metrouicss .toolbar a [class^="icon-"].right,
+.metrouicss .toolbar button [class^="icon-"].right,
+.metrouicss .toolbar a [class*=" icon-"].right,
+.metrouicss .toolbar button [class*=" icon-"].right {
+  margin-left: 5px;
+  margin-right: auto;
+}
+.metrouicss .toolbar a:before,
+.metrouicss .toolbar button:before,
+.metrouicss .toolbar a:after,
+.metrouicss .toolbar button:after {
+  display: table;
+  content: "";
+}
+.metrouicss .toolbar a:after,
+.metrouicss .toolbar button:after {
+  clear: both;
 }
 .metrouicss .toolbar a.standart,
 .metrouicss .toolbar button.standart {
@@ -3399,33 +3455,13 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   outline: 0;
   border: 1px #353535 dotted;
 }
-.metrouicss .toolbar a [class^="icon-"],
-.metrouicss .toolbar button [class^="icon-"],
-.metrouicss .toolbar a [class*=" icon-"],
-.metrouicss .toolbar button [class*=" icon-"] {
-  font-size: 16px;
-  height: 16px;
-  line-height: 16px;
-  padding-top: 2px;
-  margin: 0;
-}
 .metrouicss .toolbar a.mini,
 .metrouicss .toolbar button.mini {
   min-height: 20px;
   min-width: 20px;
   height: 14px;
-  font-size: 11px !important;
-  padding-top: 2px;
-}
-.metrouicss .toolbar a.mini [class^="icon-"],
-.metrouicss .toolbar button.mini [class^="icon-"],
-.metrouicss .toolbar a.mini [class*=" icon-"],
-.metrouicss .toolbar button.mini [class*=" icon-"] {
-  font-size: 12px;
-  height: 12px;
-  width: 14px;
-  line-height: 12px;
-  padding: 0;
+  font-size: .75em !important;
+  padding-top: 0px !important;
 }
 .metrouicss .toolbar a.big,
 .metrouicss .toolbar button.big {
@@ -3433,33 +3469,11 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   height: 48px;
   font-size: 1.2em;
 }
-.metrouicss .toolbar a.big [class^="icon-"],
-.metrouicss .toolbar button.big [class^="icon-"],
-.metrouicss .toolbar a.big [class*=" icon-"],
-.metrouicss .toolbar button.big [class*=" icon-"] {
-  font-size: 26px;
-  height: 26px;
-  line-height: 26px;
-  margin-rigth: 5px;
-  padding-top: 2px;
-}
 .metrouicss .toolbar a img,
-.metrouicss .toolbar button img,
-.metrouicss .toolbar a [class^="icon-"],
-.metrouicss .toolbar button [class^="icon-"],
-.metrouicss .toolbar a [class*=" icon-"],
-.metrouicss .toolbar button [class*=" icon-"] {
+.metrouicss .toolbar button img {
   width: 16px;
   height: 16px;
   top: 8px;
-}
-.metrouicss .toolbar a [class^="icon-"],
-.metrouicss .toolbar button [class^="icon-"],
-.metrouicss .toolbar a [class*=" icon-"],
-.metrouicss .toolbar button [class*=" icon-"] {
-  line-height: 16px;
-  font-size: 16px;
-  width: auto;
 }
 .metrouicss .toolbar a {
   padding: 5px 0;
@@ -3489,6 +3503,11 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 400;
   font-size: 9pt;
   font-smooth: always;
+  font-size: 14px;
+  display: inline-block;
+  padding: 4px 12px;
+  line-height: 20px;
+  vertical-align: middle !important;
   min-width: 90px;
   background-color: #ccc;
   border: 1px transparent solid;
@@ -3496,10 +3515,9 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   margin-right: 10px;
   margin-bottom: 10px;
   border-raduis: 0;
-  display: inline-block;
-  vertical-align: middle;
   cursor: pointer;
-  padding: 4px 10px;
+  width: auto;
+  *zoom: 1;
   min-width: 32px;
   min-height: 32px;
   width: 32px;
@@ -3509,49 +3527,19 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   padding: 0;
   margin-bottom: 5px;
 }
-.metrouicss .toolbar-vertical a [class^="icon-"],
-.metrouicss .toolbar-vertical button [class^="icon-"],
-.metrouicss .toolbar-vertical a [class*=" icon-"],
-.metrouicss .toolbar-vertical button [class*=" icon-"] {
-  font-size: 16px;
-  height: 16px;
-  line-height: 16px;
-  padding-top: 2px;
-  margin: 0;
-}
 .metrouicss .toolbar-vertical a.mini,
 .metrouicss .toolbar-vertical button.mini {
   min-height: 20px;
   min-width: 20px;
   height: 14px;
-  font-size: 11px !important;
-  padding-top: 2px;
-}
-.metrouicss .toolbar-vertical a.mini [class^="icon-"],
-.metrouicss .toolbar-vertical button.mini [class^="icon-"],
-.metrouicss .toolbar-vertical a.mini [class*=" icon-"],
-.metrouicss .toolbar-vertical button.mini [class*=" icon-"] {
-  font-size: 12px;
-  height: 12px;
-  width: 14px;
-  line-height: 12px;
-  padding: 0;
+  font-size: .75em !important;
+  padding-top: 0px !important;
 }
 .metrouicss .toolbar-vertical a.big,
 .metrouicss .toolbar-vertical button.big {
   min-height: 48px;
   height: 48px;
   font-size: 1.2em;
-}
-.metrouicss .toolbar-vertical a.big [class^="icon-"],
-.metrouicss .toolbar-vertical button.big [class^="icon-"],
-.metrouicss .toolbar-vertical a.big [class*=" icon-"],
-.metrouicss .toolbar-vertical button.big [class*=" icon-"] {
-  font-size: 26px;
-  height: 26px;
-  line-height: 26px;
-  margin-rigth: 5px;
-  padding-top: 2px;
 }
 .metrouicss .toolbar-vertical a.mini,
 .metrouicss .toolbar-vertical button.mini {
@@ -3563,16 +3551,49 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   min-width: 48px;
   width: 48px;
 }
+.metrouicss .toolbar-vertical a [class^="icon-"],
+.metrouicss .toolbar-vertical button [class^="icon-"],
+.metrouicss .toolbar-vertical a [class*=" icon-"],
+.metrouicss .toolbar-vertical button [class*=" icon-"] {
+  vertical-align: -10%;
+  font-size: 1.2em;
+  display: inline-block;
+}
+.metrouicss .toolbar-vertical a [class^="icon-"].icon-large,
+.metrouicss .toolbar-vertical button [class^="icon-"].icon-large,
+.metrouicss .toolbar-vertical a [class*=" icon-"].icon-large,
+.metrouicss .toolbar-vertical button [class*=" icon-"].icon-large {
+  line-height: .9em;
+}
 .metrouicss .toolbar-vertical a.big [class^="icon-"],
 .metrouicss .toolbar-vertical button.big [class^="icon-"],
 .metrouicss .toolbar-vertical a.big [class*=" icon-"],
 .metrouicss .toolbar-vertical button.big [class*=" icon-"] {
-  margin: 0;
-  padding: 0;
+  font-size: 1.3333333333333333em;
 }
-.metrouicss .toolbar-vertical a.mini,
-.metrouicss .toolbar-vertical button.mini {
-  font-size: .9em !important;
+.metrouicss .toolbar-vertical a [class^="icon-"],
+.metrouicss .toolbar-vertical button [class^="icon-"],
+.metrouicss .toolbar-vertical a [class*=" icon-"],
+.metrouicss .toolbar-vertical button [class*=" icon-"] {
+  margin-right: 5px;
+}
+.metrouicss .toolbar-vertical a [class^="icon-"].right,
+.metrouicss .toolbar-vertical button [class^="icon-"].right,
+.metrouicss .toolbar-vertical a [class*=" icon-"].right,
+.metrouicss .toolbar-vertical button [class*=" icon-"].right {
+  margin-left: 5px;
+  margin-right: auto;
+}
+.metrouicss .toolbar-vertical a:before,
+.metrouicss .toolbar-vertical button:before,
+.metrouicss .toolbar-vertical a:after,
+.metrouicss .toolbar-vertical button:after {
+  display: table;
+  content: "";
+}
+.metrouicss .toolbar-vertical a:after,
+.metrouicss .toolbar-vertical button:after {
+  clear: both;
 }
 .metrouicss .toolbar-vertical a.standart,
 .metrouicss .toolbar-vertical button.standart {
@@ -3604,33 +3625,13 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   outline: 0;
   border: 1px #353535 dotted;
 }
-.metrouicss .toolbar-vertical a [class^="icon-"],
-.metrouicss .toolbar-vertical button [class^="icon-"],
-.metrouicss .toolbar-vertical a [class*=" icon-"],
-.metrouicss .toolbar-vertical button [class*=" icon-"] {
-  font-size: 16px;
-  height: 16px;
-  line-height: 16px;
-  padding-top: 2px;
-  margin: 0;
-}
 .metrouicss .toolbar-vertical a.mini,
 .metrouicss .toolbar-vertical button.mini {
   min-height: 20px;
   min-width: 20px;
   height: 14px;
-  font-size: 11px !important;
-  padding-top: 2px;
-}
-.metrouicss .toolbar-vertical a.mini [class^="icon-"],
-.metrouicss .toolbar-vertical button.mini [class^="icon-"],
-.metrouicss .toolbar-vertical a.mini [class*=" icon-"],
-.metrouicss .toolbar-vertical button.mini [class*=" icon-"] {
-  font-size: 12px;
-  height: 12px;
-  width: 14px;
-  line-height: 12px;
-  padding: 0;
+  font-size: .75em !important;
+  padding-top: 0px !important;
 }
 .metrouicss .toolbar-vertical a.big,
 .metrouicss .toolbar-vertical button.big {
@@ -3638,33 +3639,11 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   height: 48px;
   font-size: 1.2em;
 }
-.metrouicss .toolbar-vertical a.big [class^="icon-"],
-.metrouicss .toolbar-vertical button.big [class^="icon-"],
-.metrouicss .toolbar-vertical a.big [class*=" icon-"],
-.metrouicss .toolbar-vertical button.big [class*=" icon-"] {
-  font-size: 26px;
-  height: 26px;
-  line-height: 26px;
-  margin-rigth: 5px;
-  padding-top: 2px;
-}
 .metrouicss .toolbar-vertical a img,
-.metrouicss .toolbar-vertical button img,
-.metrouicss .toolbar-vertical a [class^="icon-"],
-.metrouicss .toolbar-vertical button [class^="icon-"],
-.metrouicss .toolbar-vertical a [class*=" icon-"],
-.metrouicss .toolbar-vertical button [class*=" icon-"] {
+.metrouicss .toolbar-vertical button img {
   width: 16px;
   height: 16px;
   top: 8px;
-}
-.metrouicss .toolbar-vertical a [class^="icon-"],
-.metrouicss .toolbar-vertical button [class^="icon-"],
-.metrouicss .toolbar-vertical a [class*=" icon-"],
-.metrouicss .toolbar-vertical button [class*=" icon-"] {
-  line-height: 16px;
-  font-size: 16px;
-  width: auto;
 }
 .metrouicss .toolbar-vertical a {
   padding: 5px 0;
@@ -3686,9 +3665,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   padding-right: 45px;
 }
 .metrouicss .image-button img,
-.metrouicss .image-button:active img,
-.metrouicss .image-button [class^="icon-"],
-.metrouicss .image-button [class*=" icon-"] {
+.metrouicss .image-button:active img {
   position: absolute;
   right: 0;
   margin-left: 32px;
@@ -3699,11 +3676,6 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   box-sizing: border-box;
   border: 1px transparent solid;
   z-index: 2;
-}
-.metrouicss .image-button [class^="icon-"],
-.metrouicss .image-button [class*=" icon-"] {
-  margin: 0;
-  font-size: 16px;
 }
 .metrouicss .button-set a,
 .metrouicss .button-set button {
@@ -3753,12 +3725,6 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   display: block;
   float: none;
 }
-.metrouicss .shortcut > .icon [class^="icon-"],
-.metrouicss .shortcut > .icon [class*=" icon-"] {
-  font-size: 32px;
-  line-height: 32px;
-  height: 32px;
-}
 .metrouicss .shortcut > .label {
   display: block;
   font-weight: 400;
@@ -3801,6 +3767,11 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 400;
   font-size: 9pt;
   font-smooth: always;
+  font-size: 14px;
+  display: inline-block;
+  padding: 4px 12px;
+  line-height: 20px;
+  vertical-align: middle !important;
   min-width: 90px;
   background-color: #ccc;
   border: 1px transparent solid;
@@ -3808,8 +3779,8 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   margin-right: 10px;
   margin-bottom: 10px;
   border-raduis: 0;
-  display: inline-block;
-  padding: 4px 10px;
+  width: auto;
+  *zoom: 1;
   min-height: 32px;
   width: 32px;
   padding: 0;
@@ -3825,41 +3796,17 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   cursor: pointer;
   margin-right: 1px;
 }
-.metrouicss .pagination > ul li a [class^="icon-"],
-.metrouicss .pagination > ul li a [class*=" icon-"] {
-  font-size: 16px;
-  height: 16px;
-  line-height: 16px;
-  padding-top: 2px;
-  margin: 0;
-}
 .metrouicss .pagination > ul li a.mini {
   min-height: 20px;
   min-width: 20px;
   height: 14px;
-  font-size: 11px !important;
-  padding-top: 2px;
-}
-.metrouicss .pagination > ul li a.mini [class^="icon-"],
-.metrouicss .pagination > ul li a.mini [class*=" icon-"] {
-  font-size: 12px;
-  height: 12px;
-  width: 14px;
-  line-height: 12px;
-  padding: 0;
+  font-size: .75em !important;
+  padding-top: 0px !important;
 }
 .metrouicss .pagination > ul li a.big {
   min-height: 48px;
   height: 48px;
   font-size: 1.2em;
-}
-.metrouicss .pagination > ul li a.big [class^="icon-"],
-.metrouicss .pagination > ul li a.big [class*=" icon-"] {
-  font-size: 26px;
-  height: 26px;
-  line-height: 26px;
-  margin-rigth: 5px;
-  padding-top: 2px;
 }
 .metrouicss .pagination > ul li a.mini {
   min-width: 22px;
@@ -3869,13 +3816,36 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   min-width: 48px;
   width: 48px;
 }
+.metrouicss .pagination > ul li a [class^="icon-"],
+.metrouicss .pagination > ul li a [class*=" icon-"] {
+  vertical-align: -10%;
+  font-size: 1.2em;
+  display: inline-block;
+}
+.metrouicss .pagination > ul li a [class^="icon-"].icon-large,
+.metrouicss .pagination > ul li a [class*=" icon-"].icon-large {
+  line-height: .9em;
+}
 .metrouicss .pagination > ul li a.big [class^="icon-"],
 .metrouicss .pagination > ul li a.big [class*=" icon-"] {
-  margin: 0;
-  padding: 0;
+  font-size: 1.3333333333333333em;
 }
-.metrouicss .pagination > ul li a.mini {
-  font-size: .9em !important;
+.metrouicss .pagination > ul li a [class^="icon-"],
+.metrouicss .pagination > ul li a [class*=" icon-"] {
+  margin-right: 5px;
+}
+.metrouicss .pagination > ul li a [class^="icon-"].right,
+.metrouicss .pagination > ul li a [class*=" icon-"].right {
+  margin-left: 5px;
+  margin-right: auto;
+}
+.metrouicss .pagination > ul li a:before,
+.metrouicss .pagination > ul li a:after {
+  display: table;
+  content: "";
+}
+.metrouicss .pagination > ul li a:after {
+  clear: both;
 }
 .metrouicss .pagination > ul li a.standart {
   min-width: 90px;
@@ -3900,54 +3870,22 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   outline: 0;
   border: 1px #353535 dotted;
 }
-.metrouicss .pagination > ul li a [class^="icon-"],
-.metrouicss .pagination > ul li a [class*=" icon-"] {
-  font-size: 16px;
-  height: 16px;
-  line-height: 16px;
-  padding-top: 2px;
-  margin: 0;
-}
 .metrouicss .pagination > ul li a.mini {
   min-height: 20px;
   min-width: 20px;
   height: 14px;
-  font-size: 11px !important;
-  padding-top: 2px;
-}
-.metrouicss .pagination > ul li a.mini [class^="icon-"],
-.metrouicss .pagination > ul li a.mini [class*=" icon-"] {
-  font-size: 12px;
-  height: 12px;
-  width: 14px;
-  line-height: 12px;
-  padding: 0;
+  font-size: .75em !important;
+  padding-top: 0px !important;
 }
 .metrouicss .pagination > ul li a.big {
   min-height: 48px;
   height: 48px;
   font-size: 1.2em;
 }
-.metrouicss .pagination > ul li a.big [class^="icon-"],
-.metrouicss .pagination > ul li a.big [class*=" icon-"] {
-  font-size: 26px;
-  height: 26px;
-  line-height: 26px;
-  margin-rigth: 5px;
-  padding-top: 2px;
-}
-.metrouicss .pagination > ul li a img,
-.metrouicss .pagination > ul li a [class^="icon-"],
-.metrouicss .pagination > ul li a [class*=" icon-"] {
+.metrouicss .pagination > ul li a img {
   width: 16px;
   height: 16px;
   top: 8px;
-}
-.metrouicss .pagination > ul li a [class^="icon-"],
-.metrouicss .pagination > ul li a [class*=" icon-"] {
-  line-height: 16px;
-  font-size: 16px;
-  width: auto;
 }
 .metrouicss .pagination > ul li a:hover {
   background-color: #1d1d1d;
@@ -6083,6 +6021,12 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 400;
   font-size: 9pt;
   font-smooth: always;
+  font-size: 14px;
+  display: inline-block;
+  padding: 4px 12px;
+  line-height: 20px;
+  text-align: center;
+  vertical-align: middle !important;
   min-width: 90px;
   min-height: 32px;
   height: 32px;
@@ -6092,18 +6036,67 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   margin-right: 10px;
   margin-bottom: 10px;
   border-raduis: 0;
-  display: inline-block;
-  text-align: center;
-  vertical-align: middle;
   cursor: pointer;
-  padding: 4px 10px;
-  position: relative;
+  width: auto;
+  *zoom: 1;
   border-radius: 0;
 }
-.metrouicss input[type=button].mini,
-.metrouicss input[type=reset].mini,
-.metrouicss input[type=submit].mini {
-  font-size: .9em !important;
+.metrouicss input[type=button] [class^="icon-"],
+.metrouicss input[type=reset] [class^="icon-"],
+.metrouicss input[type=submit] [class^="icon-"],
+.metrouicss input[type=button] [class*=" icon-"],
+.metrouicss input[type=reset] [class*=" icon-"],
+.metrouicss input[type=submit] [class*=" icon-"] {
+  vertical-align: -10%;
+  font-size: 1.2em;
+  display: inline-block;
+}
+.metrouicss input[type=button] [class^="icon-"].icon-large,
+.metrouicss input[type=reset] [class^="icon-"].icon-large,
+.metrouicss input[type=submit] [class^="icon-"].icon-large,
+.metrouicss input[type=button] [class*=" icon-"].icon-large,
+.metrouicss input[type=reset] [class*=" icon-"].icon-large,
+.metrouicss input[type=submit] [class*=" icon-"].icon-large {
+  line-height: .9em;
+}
+.metrouicss input[type=button].big [class^="icon-"],
+.metrouicss input[type=reset].big [class^="icon-"],
+.metrouicss input[type=submit].big [class^="icon-"],
+.metrouicss input[type=button].big [class*=" icon-"],
+.metrouicss input[type=reset].big [class*=" icon-"],
+.metrouicss input[type=submit].big [class*=" icon-"] {
+  font-size: 1.3333333333333333em;
+}
+.metrouicss input[type=button] [class^="icon-"],
+.metrouicss input[type=reset] [class^="icon-"],
+.metrouicss input[type=submit] [class^="icon-"],
+.metrouicss input[type=button] [class*=" icon-"],
+.metrouicss input[type=reset] [class*=" icon-"],
+.metrouicss input[type=submit] [class*=" icon-"] {
+  margin-right: 5px;
+}
+.metrouicss input[type=button] [class^="icon-"].right,
+.metrouicss input[type=reset] [class^="icon-"].right,
+.metrouicss input[type=submit] [class^="icon-"].right,
+.metrouicss input[type=button] [class*=" icon-"].right,
+.metrouicss input[type=reset] [class*=" icon-"].right,
+.metrouicss input[type=submit] [class*=" icon-"].right {
+  margin-left: 5px;
+  margin-right: auto;
+}
+.metrouicss input[type=button]:before,
+.metrouicss input[type=reset]:before,
+.metrouicss input[type=submit]:before,
+.metrouicss input[type=button]:after,
+.metrouicss input[type=reset]:after,
+.metrouicss input[type=submit]:after {
+  display: table;
+  content: "";
+}
+.metrouicss input[type=button]:after,
+.metrouicss input[type=reset]:after,
+.metrouicss input[type=submit]:after {
+  clear: both;
 }
 .metrouicss input[type=button].standart,
 .metrouicss input[type=reset].standart,
@@ -6142,38 +6135,14 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   outline: 0;
   border: 1px #353535 dotted;
 }
-.metrouicss input[type=button] [class^="icon-"],
-.metrouicss input[type=reset] [class^="icon-"],
-.metrouicss input[type=submit] [class^="icon-"],
-.metrouicss input[type=button] [class*=" icon-"],
-.metrouicss input[type=reset] [class*=" icon-"],
-.metrouicss input[type=submit] [class*=" icon-"] {
-  font-size: 16px;
-  height: 16px;
-  line-height: 16px;
-  padding-top: 2px;
-  margin: 0;
-}
 .metrouicss input[type=button].mini,
 .metrouicss input[type=reset].mini,
 .metrouicss input[type=submit].mini {
   min-height: 20px;
   min-width: 20px;
   height: 14px;
-  font-size: 11px !important;
-  padding-top: 2px;
-}
-.metrouicss input[type=button].mini [class^="icon-"],
-.metrouicss input[type=reset].mini [class^="icon-"],
-.metrouicss input[type=submit].mini [class^="icon-"],
-.metrouicss input[type=button].mini [class*=" icon-"],
-.metrouicss input[type=reset].mini [class*=" icon-"],
-.metrouicss input[type=submit].mini [class*=" icon-"] {
-  font-size: 12px;
-  height: 12px;
-  width: 14px;
-  line-height: 12px;
-  padding: 0;
+  font-size: .75em !important;
+  padding-top: 0px !important;
 }
 .metrouicss input[type=button].big,
 .metrouicss input[type=reset].big,
@@ -6181,18 +6150,6 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   min-height: 48px;
   height: 48px;
   font-size: 1.2em;
-}
-.metrouicss input[type=button].big [class^="icon-"],
-.metrouicss input[type=reset].big [class^="icon-"],
-.metrouicss input[type=submit].big [class^="icon-"],
-.metrouicss input[type=button].big [class*=" icon-"],
-.metrouicss input[type=reset].big [class*=" icon-"],
-.metrouicss input[type=submit].big [class*=" icon-"] {
-  font-size: 26px;
-  height: 26px;
-  line-height: 26px;
-  margin-rigth: 5px;
-  padding-top: 2px;
 }
 .metrouicss input[type=submit] {
   background-color: #008287;
@@ -7035,6 +6992,11 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 400;
   font-size: 9pt;
   font-smooth: always;
+  font-size: 14px;
+  display: inline-block;
+  padding: 4px 12px;
+  line-height: 20px;
+  vertical-align: middle !important;
   min-width: 90px;
   background-color: #ccc;
   border: 1px transparent solid;
@@ -7042,10 +7004,9 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   margin-right: 10px;
   margin-bottom: 10px;
   border-raduis: 0;
-  display: inline-block;
-  vertical-align: middle;
   cursor: pointer;
-  padding: 4px 10px;
+  width: auto;
+  *zoom: 1;
   min-width: 32px;
   min-height: 32px;
   width: 32px;
@@ -7058,41 +7019,17 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   min-height: 24px;
   min-width: 24px;
 }
-.metrouicss .dialog .header button [class^="icon-"],
-.metrouicss .dialog .header button [class*=" icon-"] {
-  font-size: 16px;
-  height: 16px;
-  line-height: 16px;
-  padding-top: 2px;
-  margin: 0;
-}
 .metrouicss .dialog .header button.mini {
   min-height: 20px;
   min-width: 20px;
   height: 14px;
-  font-size: 11px !important;
-  padding-top: 2px;
-}
-.metrouicss .dialog .header button.mini [class^="icon-"],
-.metrouicss .dialog .header button.mini [class*=" icon-"] {
-  font-size: 12px;
-  height: 12px;
-  width: 14px;
-  line-height: 12px;
-  padding: 0;
+  font-size: .75em !important;
+  padding-top: 0px !important;
 }
 .metrouicss .dialog .header button.big {
   min-height: 48px;
   height: 48px;
   font-size: 1.2em;
-}
-.metrouicss .dialog .header button.big [class^="icon-"],
-.metrouicss .dialog .header button.big [class*=" icon-"] {
-  font-size: 26px;
-  height: 26px;
-  line-height: 26px;
-  margin-rigth: 5px;
-  padding-top: 2px;
 }
 .metrouicss .dialog .header button.mini {
   min-width: 22px;
@@ -7102,13 +7039,36 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   min-width: 48px;
   width: 48px;
 }
+.metrouicss .dialog .header button [class^="icon-"],
+.metrouicss .dialog .header button [class*=" icon-"] {
+  vertical-align: -10%;
+  font-size: 1.2em;
+  display: inline-block;
+}
+.metrouicss .dialog .header button [class^="icon-"].icon-large,
+.metrouicss .dialog .header button [class*=" icon-"].icon-large {
+  line-height: .9em;
+}
 .metrouicss .dialog .header button.big [class^="icon-"],
 .metrouicss .dialog .header button.big [class*=" icon-"] {
-  margin: 0;
-  padding: 0;
+  font-size: 1.3333333333333333em;
 }
-.metrouicss .dialog .header button.mini {
-  font-size: .9em !important;
+.metrouicss .dialog .header button [class^="icon-"],
+.metrouicss .dialog .header button [class*=" icon-"] {
+  margin-right: 5px;
+}
+.metrouicss .dialog .header button [class^="icon-"].right,
+.metrouicss .dialog .header button [class*=" icon-"].right {
+  margin-left: 5px;
+  margin-right: auto;
+}
+.metrouicss .dialog .header button:before,
+.metrouicss .dialog .header button:after {
+  display: table;
+  content: "";
+}
+.metrouicss .dialog .header button:after {
+  clear: both;
 }
 .metrouicss .dialog .header button.standart {
   min-width: 90px;
@@ -7133,54 +7093,22 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   outline: 0;
   border: 1px #353535 dotted;
 }
-.metrouicss .dialog .header button [class^="icon-"],
-.metrouicss .dialog .header button [class*=" icon-"] {
-  font-size: 16px;
-  height: 16px;
-  line-height: 16px;
-  padding-top: 2px;
-  margin: 0;
-}
 .metrouicss .dialog .header button.mini {
   min-height: 20px;
   min-width: 20px;
   height: 14px;
-  font-size: 11px !important;
-  padding-top: 2px;
-}
-.metrouicss .dialog .header button.mini [class^="icon-"],
-.metrouicss .dialog .header button.mini [class*=" icon-"] {
-  font-size: 12px;
-  height: 12px;
-  width: 14px;
-  line-height: 12px;
-  padding: 0;
+  font-size: .75em !important;
+  padding-top: 0px !important;
 }
 .metrouicss .dialog .header button.big {
   min-height: 48px;
   height: 48px;
   font-size: 1.2em;
 }
-.metrouicss .dialog .header button.big [class^="icon-"],
-.metrouicss .dialog .header button.big [class*=" icon-"] {
-  font-size: 26px;
-  height: 26px;
-  line-height: 26px;
-  margin-rigth: 5px;
-  padding-top: 2px;
-}
-.metrouicss .dialog .header button img,
-.metrouicss .dialog .header button [class^="icon-"],
-.metrouicss .dialog .header button [class*=" icon-"] {
+.metrouicss .dialog .header button img {
   width: 16px;
   height: 16px;
   top: 8px;
-}
-.metrouicss .dialog .header button [class^="icon-"],
-.metrouicss .dialog .header button [class*=" icon-"] {
-  line-height: 16px;
-  font-size: 16px;
-  width: auto;
 }
 .metrouicss .dialog .header button [class^="icon-"],
 .metrouicss .dialog .header button [class*=" icon-"] {
