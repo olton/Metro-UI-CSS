@@ -44,7 +44,7 @@
                     </div>
 
                     <h3>Icons list</h3>
-                    <ol class="unstyled three-columns" id="icons-list">
+                    <ol class="unstyled three-columns icons" id="icons-list1">
                         <li><i class="icon-home"></i> icon-home</li>
                         <li><i class="icon-newspaper"></i> icon-newspaper</li>
                         <li><i class="icon-pencil"></i> icon-pencil</li>
@@ -406,6 +406,7 @@
                         <li><i class="icon-umbrella"></i> icon-umbrella</li>
                         <li><i class="icon-info-2"></i> icon-info-2</li>
                         <li><i class="icon-chart-alt"></i> icon-chart-alt</li>
+                        <li><i class="icon-save"></i> icon-save</li>
                     </ol>
 
                     <br />

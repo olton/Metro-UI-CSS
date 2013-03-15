@@ -417,13 +417,6 @@
  * responsive.less
  */
 /* Landscape phone to portrait tablet */
-/*
- * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
- *
- * Routines.less
- */
 .place-left {
   float: left !important;
   margin-right: 10px;

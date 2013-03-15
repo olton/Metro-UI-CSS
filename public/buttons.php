@@ -102,7 +102,7 @@
                                     <button class="big">
                                         <i class="icon-home"></i>
                                     </button>
-                                    <button class="big"></button>
+                                    <button class="big"><i class="icon-home"></i></button>
                                     <button class="big"></button>
                                 </div>
                             </div>
@@ -195,19 +195,19 @@
                         <div class="span10">
                             <h2>Any size of button</h2>
                             <div>
-                                <button class="mini"><i class="icon-home"></i> Mini</button>
-                                <button class="mini">Mini <i class="icon-home"></i></button>
+                                <button class="mini"><i class="icon-home"></i>Mini</button>
+                                <button class="mini">Mini<i class="icon-home right"></i></button>
                                 <button class="mini">Mini</button>
                             </div>
                             <div>
-                                <button><i class="icon-home"></i> Default</button>
-                                <button>Default <i class="icon-home"></i></button>
+                                <button><i class="icon-home"></i>Default</button>
+                                <button>Default<i class="icon-home right"></i></button>
                                 <button>Default</button>
                             </div>
                             <div>
                                 <button class="big">Big button</button>
-                                <button class="big"><i class="icon-arrow-left-3"></i> Big button</button>
-                                <button class="big">Big button <i class="icon-arrow-right-3"></i></button>
+                                <button class="big"><i class="icon-arrow-left-3"></i>Big button</button>
+                                <button class="big">Big button<i class="icon-arrow-right-3 right"></i></button>
                             </div>
 <pre class="prettyprint linenums">
     &lt;button class="mini"&gt; Caption &lt;/button&gt;
