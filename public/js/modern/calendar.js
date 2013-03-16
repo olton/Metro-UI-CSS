@@ -30,7 +30,7 @@
 
     var pluginName = 'calendar',
         initAllSelector = '[data-role=calendar], .calendar',
-        paramKeys = ['InitDate', 'Lang'];
+        paramKeys = ['InitDate', 'Lang', 'YearButtons'];
 
     $[pluginName] = function(element, options) {
 
@@ -41,7 +41,8 @@
         // default settings
         var defaults = {
             initDate: false,
-            lang: 'en'
+            lang: 'en',
+            yearButtons: false
         };
 
         var plugin = this;
@@ -51,6 +52,8 @@
 
         var $prevMonthBtn,
             $nextMonthBtn,
+            $prevYearBtn,
+            $nextYearBtn,
             $header,
             $days = [],
             calMoment,
@@ -68,7 +71,7 @@
             dow = moment.langData(lang)._week.dow;
 
             var selectedDateMoment = date ? moment(date) : moment();
-            selectedDateString = selectedDateMoment.format('YYYY-MM-D');
+            selectedDateString = selectedDateMoment.format('YYYY-MM-DD');
 
             renderCalendar();
             plugin.setDate(date);
@@ -79,21 +82,34 @@
          * moment - is an object of moment.js
          */
         function renderCalendar () {
-            var i, j, table, tr, td, mom;
+            var i, j, table, tr, td, mom,
+                yearBtns = plugin.settings.yearButtons;
 
             table = $('<table></table>');
 
             tr = $('<tr class="current-month"></tr>');
-            td = $('<th colspan="2"></th>');
+            if (yearBtns) {
+                td = $('<th></th>');
+                $prevYearBtn = $('<a href="javascript:void(0)" class="icon-arrow-left-3"></a>');
+                td.append($prevYearBtn);
+                tr.append(td);
+            }
+            td = $('<th ' + (yearBtns ? '' : 'colspan="2"') + '></th>');
             $prevMonthBtn = $('<a href="javascript:void(0)" class="icon-arrow-left-3"></a>');
             td.append($prevMonthBtn);
             tr.append(td);
             $header = $('<th colspan="3"></th>');
             tr.append($header);
-            td = $('<th colspan="2"></th>');
+            td = $('<th ' + (yearBtns ? '' : 'colspan="2"') + '></th>');
             $nextMonthBtn = $('<a href="javascript:void(0)" class="icon-arrow-right-3"></a>');
             td.append($nextMonthBtn);
             tr.append(td);
+            if (yearBtns) {
+                td = $('<th></th>');
+                $nextYearBtn = $('<a href="javascript:void(0)" class="icon-arrow-right-3"></a>');
+                td.append($nextYearBtn);
+                tr.append(td);
+            }
             table.append(tr);
 
             mom = moment().lang(lang).startOf('week').add('day', dow);
@@ -127,6 +143,18 @@
                 calMoment.add('month', -1);
                 plugin.setDate(calMoment);
             });
+            if (yearBtns) {
+                $nextYearBtn.on('mousedown', function(event){
+                    event.stopPropagation();
+                    calMoment.add('year', 1);
+                    plugin.setDate(calMoment);
+                });
+                $prevYearBtn.on('mousedown', function(event){
+                    event.stopPropagation();
+                    calMoment.add('year', -1);
+                    plugin.setDate(calMoment);
+                });
+            }
             $days.forEach(function(day){
                 day.on('mousedown', function(event){
                     event.stopPropagation();
@@ -136,7 +164,7 @@
                     }
                     calMoment = moment(date);
                     calMoment.lang(lang);
-                    selectedDateString = calMoment.format('YYYY-MM-D');
+                    selectedDateString = calMoment.format('YYYY-MM-DD');
                     plugin.setDate(calMoment);
                     $element.trigger('date-selected', [date, calMoment]);
                 });
@@ -144,60 +172,49 @@
         }
 
         function fillCalendar () {
-            var dayIndex, date, yearMonth;
+            var dayIndex, date, dateStr;
             // header
             $header.text(calMoment.format('MMM YYYY'));
 
             // this month
-            var firstDayMom = calMoment.clone().startOf('month');
+            var thisMonthMom = calMoment.clone().startOf('month');
             var daysInMonth = calMoment.daysInMonth();
-            var firstDayIndex = +firstDayMom.format('d') - dow; // it also day of week index
+            var firstDayIndex = +thisMonthMom.format('d') - dow; // it also day of week index
             firstDayIndex = firstDayIndex < 0 ? firstDayIndex + 7 : firstDayIndex;
             var lastDayIndex = firstDayIndex + daysInMonth;
-            //var currentDate = calMoment.format('YYYY-MM-D');
-            yearMonth = calMoment.format('YYYY-MM-');
-            date = 1;
             for (dayIndex = firstDayIndex; dayIndex < lastDayIndex; dayIndex++) {
+                date = thisMonthMom.format('D');
+                dateStr = thisMonthMom.format('YYYY-MM-DD');
                 $days[dayIndex].text(date);
-                if (yearMonth + date === selectedDateString) {
+                if (dateStr === selectedDateString) {
                     $days[dayIndex].prop('class', 'current-day');
                 } else {
                     $days[dayIndex].prop('class', 'current-month');
                 }
-                $days[dayIndex].data('date', yearMonth + date);
-                date++;
+                $days[dayIndex].data('date', dateStr);
+                thisMonthMom.add('day', 1);
             }
 
             // prev month
             var prevMonthMom = calMoment.clone().add('month', -1).endOf('month');
-            yearMonth = prevMonthMom.format('YYYY-MM-');
-            date = prevMonthMom.daysInMonth();
             for (dayIndex = firstDayIndex - 1; dayIndex >= 0; dayIndex--) {
+                date = prevMonthMom.format('D');
+                dateStr = prevMonthMom.format('YYYY-MM-DD');
                 $days[dayIndex].text(date);
                 $days[dayIndex].prop('class', 'out');
-                $days[dayIndex].data('date', yearMonth + date);
-                date--;
+                $days[dayIndex].data('date', dateStr);
+                prevMonthMom.add('day', -1);
             }
 
             // next month
             var nextMonthMom = calMoment.clone().add('month', 1);
-            yearMonth = nextMonthMom.format('YYYY-MM-');
-            var nextMonthDays = 7 - lastDayIndex % 7;
-            nextMonthDays = nextMonthDays === 7 ? 0 : nextMonthDays;
-            var nextMonthLastDayIndex = lastDayIndex + nextMonthDays;
-            date = 1;
-            for (dayIndex = lastDayIndex; dayIndex < nextMonthLastDayIndex; dayIndex++) {
+            for (dayIndex = lastDayIndex; dayIndex < 42; dayIndex++) {
+                date = nextMonthMom.format('D');
+                dateStr = nextMonthMom.format('YYYY-MM-DD');
                 $days[dayIndex].text(date);
                 $days[dayIndex].prop('class', 'out');
-                $days[dayIndex].data('date', yearMonth + date);
-                date++;
-            }
-
-            // empty rows
-            for (dayIndex = nextMonthLastDayIndex; dayIndex < $days.length; dayIndex++) {
-                $days[dayIndex].text('');
-                $days[dayIndex].prop('class', 'empty-day');
-                $days[dayIndex].data('date', false);
+                $days[dayIndex].data('date', dateStr);
+                nextMonthMom.add('day', 1);
             }
         }
 

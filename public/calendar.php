@@ -20,7 +20,7 @@
                             <p><code>data-param-lang="en"</code></p>
                         </div>
                         <div class="span4">
-                            <div class="calendar span4" data-role="calendar" data-param-lang="ru" data-param-init-date="1972-12-21"></div>
+                            <div class="calendar span4" data-role="calendar" data-param-lang="ru" data-param-init-date="1972-12-21" data-param-year-buttons="1"></div>
                             <p>
                                 <code>data-param-lang="ru"</code>
                                 <br />
