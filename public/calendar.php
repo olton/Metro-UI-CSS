@@ -16,11 +16,11 @@
                 <div class="grid">
                     <div class="row">
                         <div class="span4">
-                            <div class="calendar span4" data-role="calendar" data-param-lang="en"></div>
+                            <div class="calendar span4" id="cal1" data-role="calendar" data-param-lang="en"></div>
                             <p><code>data-param-lang="en"</code></p>
                         </div>
                         <div class="span4">
-                            <div class="calendar span4" data-role="calendar" data-param-lang="ru" data-param-init-date="1972-12-21"></div>
+                            <div class="calendar span4" data-role="calendar" data-param-lang="ru" data-param-init-date="1972-12-21" data-param-year-buttons="1"></div>
                             <p>
                                 <code>data-param-lang="ru"</code>
                                 <br />
@@ -40,7 +40,7 @@
 
                 <h2>Date Picker</h2>
                 <p>This component in progress...</p>
-                <div class="input-control text datepicker span4" data-param-lang="ru">
+                <div class="input-control text datepicker span4" id="picker1" data-param-lang="ru">
                     <input type="text" />
                     <button class="btn-date"></button>
                 </div>
