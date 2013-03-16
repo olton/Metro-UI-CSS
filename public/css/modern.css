@@ -1305,9 +1305,11 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   vertical-align: -10%;
   font-size: 1.3333333333333333em;
 }
+.metrouicss a [class^="icon-"],
 .metrouicss button [class^="icon-"],
 .metrouicss .button [class^="icon-"],
 .metrouicss .page-control > ul > li [class^="icon-"],
+.metrouicss a [class*=" icon-"],
 .metrouicss button [class*=" icon-"],
 .metrouicss .button [class*=" icon-"],
 .metrouicss .page-control > ul > li [class*=" icon-"] {
@@ -1315,17 +1317,21 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-size: 1.2em;
   display: inline-block;
 }
+.metrouicss a [class^="icon-"].icon-large,
 .metrouicss button [class^="icon-"].icon-large,
 .metrouicss .button [class^="icon-"].icon-large,
 .metrouicss .page-control > ul > li [class^="icon-"].icon-large,
+.metrouicss a [class*=" icon-"].icon-large,
 .metrouicss button [class*=" icon-"].icon-large,
 .metrouicss .button [class*=" icon-"].icon-large,
 .metrouicss .page-control > ul > li [class*=" icon-"].icon-large {
   line-height: .9em;
 }
+.metrouicss a.big [class^="icon-"],
 .metrouicss button.big [class^="icon-"],
 .metrouicss .button.big [class^="icon-"],
 .metrouicss .page-control > ul > li.big [class^="icon-"],
+.metrouicss a.big [class*=" icon-"],
 .metrouicss button.big [class*=" icon-"],
 .metrouicss .button.big [class*=" icon-"],
 .metrouicss .page-control > ul > li.big [class*=" icon-"] {
@@ -1377,17 +1383,21 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 .metrouicss .icon-4x.icon-border {
   border-width: 4px;
 }
+.metrouicss a [class^="icon-"],
 .metrouicss button [class^="icon-"],
 .metrouicss .button [class^="icon-"],
 .metrouicss .page-control > ul > li [class^="icon-"],
+.metrouicss a [class*=" icon-"],
 .metrouicss button [class*=" icon-"],
 .metrouicss .button [class*=" icon-"],
 .metrouicss .page-control > ul > li [class*=" icon-"] {
   margin-right: 5px;
 }
+.metrouicss a [class^="icon-"].right,
 .metrouicss button [class^="icon-"].right,
 .metrouicss .button [class^="icon-"].right,
 .metrouicss .page-control > ul > li [class^="icon-"].right,
+.metrouicss a [class*=" icon-"].right,
 .metrouicss button [class*=" icon-"].right,
 .metrouicss .button [class*=" icon-"].right,
 .metrouicss .page-control > ul > li [class*=" icon-"].right {
@@ -6467,7 +6477,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   z-index: 5;
   width: 100%;
   background-color: rgba(217, 217, 217, 0.16);
-  height: 30px;
+  height: 31px;
 }
 .metrouicss .page-control > ul:before,
 .metrouicss .page-control > ul:after {
@@ -6484,6 +6494,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   float: left;
   display: block;
   text-align: center;
+  height: 100%;
 }
 .metrouicss .page-control > ul li img {
   float: left;
@@ -6522,7 +6533,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   margin-left: 10px;
 }
 .metrouicss .page-control .frames {
-  margin-top: 28px;
+  margin-top: 30px;
   width: 100%;
   min-height: 50px;
   border: 1px #ccc solid;

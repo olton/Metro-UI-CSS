@@ -16,10 +16,10 @@
                     <div class="menu-pull-bar"></div>
 
                     <ul>
-                        <li class="active"><a href="#page1">Page 1</a></li>
+                        <li class="active"><a href="#page1"><i class="icon-equalizer"></i>Page 1</a></li>
                         <li><a href="#page2">Page 2</a></li>
                         <li><a href="#page3">Page 3</a></li>
-                        <li><a href="#page4">Page 4</a></li>
+                        <li class="place-right"><a href="#page4"><i class="icon-cog nrm"></i></a></li>
                     </ul>
 
                     <div class="frames">
