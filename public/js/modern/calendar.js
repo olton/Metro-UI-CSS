@@ -184,7 +184,7 @@
         }
 
         function fillCalendar () {
-            var dayIndex, date, dateStr;
+            var dayIndex, date, dateStr, html;
             // header
             $header.text(calMoment.format('MMM YYYY'));
 
@@ -197,7 +197,7 @@
             for (dayIndex = firstDayIndex; dayIndex < lastDayIndex; dayIndex++) {
                 date = thisMonthMom.format('D');
                 dateStr = thisMonthMom.format('YYYY-MM-DD');
-                $days[dayIndex].text(date);
+                html = date;
                 if (dateStr === selectedDateString) {
                     $days[dayIndex].prop('class', 'current-day');
                 } else {
@@ -205,7 +205,10 @@
                 }
                 if (calendarEvents[dateStr]) {
                     $days[dayIndex].addClass('event');
+                    $days[dayIndex].prop('title', calendarEvents[dateStr][0]);
+                    html += '<span>' + calendarEvents[dateStr].length + '</span>'
                 }
+                $days[dayIndex].html(html);
                 $days[dayIndex].data('date', dateStr);
                 thisMonthMom.add('day', 1);
             }
@@ -215,11 +218,14 @@
             for (dayIndex = firstDayIndex - 1; dayIndex >= 0; dayIndex--) {
                 date = prevMonthMom.format('D');
                 dateStr = prevMonthMom.format('YYYY-MM-DD');
-                $days[dayIndex].text(date);
+                html = date;
                 $days[dayIndex].prop('class', 'out');
                 if (calendarEvents[dateStr]) {
                     $days[dayIndex].addClass('event');
+                    $days[dayIndex].prop('title', calendarEvents[dateStr][0]);
+                    html += '<span>' + calendarEvents[dateStr].length + '</span>'
                 }
+                $days[dayIndex].html(html);
                 $days[dayIndex].data('date', dateStr);
                 prevMonthMom.add('day', -1);
             }
@@ -229,11 +235,14 @@
             for (dayIndex = lastDayIndex; dayIndex < 42; dayIndex++) {
                 date = nextMonthMom.format('D');
                 dateStr = nextMonthMom.format('YYYY-MM-DD');
-                $days[dayIndex].text(date);
+                html = date;
                 $days[dayIndex].prop('class', 'out');
                 if (calendarEvents[dateStr]) {
                     $days[dayIndex].addClass('event');
+                    $days[dayIndex].prop('title', calendarEvents[dateStr][0]);
+                    html += '<span>' + calendarEvents[dateStr].length + '</span>'
                 }
+                $days[dayIndex].html(html);
                 $days[dayIndex].data('date', dateStr);
                 nextMonthMom.add('day', 1);
             }
