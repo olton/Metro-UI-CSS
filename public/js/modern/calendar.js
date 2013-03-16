@@ -33,6 +33,7 @@
  * $('#calendar').calendarClearEvents('all') - will remove all events
  * $('#calendar').calendarClearEvents('2013-03-16') - will remove all events for specified date
  * $('#calendar').calendarClearEvents(['2013-03-16', '2013-03-17', ...]) - will remove all events for specified dates
+ * to get events of any date use $('#calendar').calendarGetEvents('2013-03-16')
  *
  */
 
@@ -261,6 +262,13 @@
             fillCalendar();
         };
 
+        // return array of events for specified date
+        plugin.getEvents = function (date) {
+            var mom = date ? moment(date) : moment();
+            var dateStr = mom.format('YYYY-MM-DD');
+            return calendarEvents[dateStr];
+        }
+
         // clearing events
         // dates:
         // - string - 'YYYY-MM-DD' - clearing events for this date
@@ -290,7 +298,6 @@
             plugin.setDate(date);
         }
     };
-
     // sets event
     $.fn[pluginName + 'SetEvent'] = function(event) {
         var plugin = $(this.get(0)).data(pluginName);
@@ -305,6 +312,13 @@
             $.each(events, function(i, event){
                 plugin.setEvent(event);
             });
+        }
+    };
+    // get events
+    $.fn[pluginName + 'GetEvents'] = function(date) {
+        var plugin = $(this.get(0)).data(pluginName);
+        if (typeof plugin !== 'undefined') {
+            return plugin.getEvents(date);
         }
     };
     // clear events for any date
@@ -374,6 +388,7 @@
  * $('#datepicker').datepickerClearEvents('all') - will remove all events
  * $('#datepicker').datepickerClearEvents('2013-03-16') - will remove all events for specified date
  * $('#datepicker').datepickerClearEvents(['2013-03-16', '2013-03-17', ...]) - will remove all events for specified dates
+ * to get events of any date use $('#datepicker').datepickerGetEvents('2013-03-16')
  *
  */
 (function($) {
@@ -463,12 +478,12 @@
         function dateSelected (event, dateString, dateMoment) {
             hideCalendar();
             $input.val(dateMoment.format('ll'));
-            $input.data('date', dateMoment);
+            $element.data('date', dateMoment);
             $input.trigger('date-selected', [dateString, dateMoment]);
         }
         function dateSetted (event, dateString, dateMoment) {
             $input.val(dateMoment.format('ll'));
-            $input.data('date', dateMoment);
+            $element.data('date', dateMoment);
         }
 
         plugin.init();
@@ -496,6 +511,13 @@
             $.each(events, function(i, event){
                 $calendar.calendarSetEvent(event);
             });
+        }
+    };
+    // get events
+    $.fn[pluginName + 'GetEvents'] = function(date) {
+        var $calendar = $(this.get(0)).data('calendar');
+        if (typeof $calendar !== 'undefined') {
+            return $calendar.calendarGetEvents(date);
         }
     };
     // clear events for any date
