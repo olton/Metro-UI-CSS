@@ -5748,34 +5748,20 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   padding-right: 5px;
   min-height: 100px;
 }
-.metrouicss .input-control.text input[type=text]:not(:focus) ~ [class^="btn-clear"],
-.metrouicss .input-control.password input[type=text]:not(:focus) ~ [class^="btn-clear"],
-.metrouicss .input-control.text input[type=password]:not(:focus) ~ [class^="btn-clear"],
-.metrouicss .input-control.password input[type=password]:not(:focus) ~ [class^="btn-clear"],
-.metrouicss .input-control.text input[type=email]:not(:focus) ~ [class^="btn-clear"],
-.metrouicss .input-control.password input[type=email]:not(:focus) ~ [class^="btn-clear"],
-.metrouicss .input-control.text input[type=phone]:not(:focus) ~ [class^="btn-clear"],
-.metrouicss .input-control.password input[type=phone]:not(:focus) ~ [class^="btn-clear"],
-.metrouicss .input-control.text input[type=number]:not(:focus) ~ [class^="btn-clear"],
-.metrouicss .input-control.password input[type=number]:not(:focus) ~ [class^="btn-clear"],
-.metrouicss .input-control.text input[type=time]:not(:focus) ~ [class^="btn-clear"],
-.metrouicss .input-control.password input[type=time]:not(:focus) ~ [class^="btn-clear"],
-.metrouicss .input-control.text input[type=url]:not(:focus) ~ [class^="btn-clear"],
-.metrouicss .input-control.password input[type=url]:not(:focus) ~ [class^="btn-clear"],
-.metrouicss .input-control.text input[type=text]:not(:focus) ~ [class*="btn-reveal"],
-.metrouicss .input-control.password input[type=text]:not(:focus) ~ [class*="btn-reveal"],
-.metrouicss .input-control.text input[type=password]:not(:focus) ~ [class*="btn-reveal"],
-.metrouicss .input-control.password input[type=password]:not(:focus) ~ [class*="btn-reveal"],
-.metrouicss .input-control.text input[type=email]:not(:focus) ~ [class*="btn-reveal"],
-.metrouicss .input-control.password input[type=email]:not(:focus) ~ [class*="btn-reveal"],
-.metrouicss .input-control.text input[type=phone]:not(:focus) ~ [class*="btn-reveal"],
-.metrouicss .input-control.password input[type=phone]:not(:focus) ~ [class*="btn-reveal"],
-.metrouicss .input-control.text input[type=number]:not(:focus) ~ [class*="btn-reveal"],
-.metrouicss .input-control.password input[type=number]:not(:focus) ~ [class*="btn-reveal"],
-.metrouicss .input-control.text input[type=time]:not(:focus) ~ [class*="btn-reveal"],
-.metrouicss .input-control.password input[type=time]:not(:focus) ~ [class*="btn-reveal"],
-.metrouicss .input-control.text input[type=url]:not(:focus) ~ [class*="btn-reveal"],
-.metrouicss .input-control.password input[type=url]:not(:focus) ~ [class*="btn-reveal"],
+.metrouicss .input-control.text input[type=text]:not(:focus) ~ [class^="btn-"],
+.metrouicss .input-control.password input[type=text]:not(:focus) ~ [class^="btn-"],
+.metrouicss .input-control.text input[type=password]:not(:focus) ~ [class^="btn-"],
+.metrouicss .input-control.password input[type=password]:not(:focus) ~ [class^="btn-"],
+.metrouicss .input-control.text input[type=email]:not(:focus) ~ [class^="btn-"],
+.metrouicss .input-control.password input[type=email]:not(:focus) ~ [class^="btn-"],
+.metrouicss .input-control.text input[type=phone]:not(:focus) ~ [class^="btn-"],
+.metrouicss .input-control.password input[type=phone]:not(:focus) ~ [class^="btn-"],
+.metrouicss .input-control.text input[type=number]:not(:focus) ~ [class^="btn-"],
+.metrouicss .input-control.password input[type=number]:not(:focus) ~ [class^="btn-"],
+.metrouicss .input-control.text input[type=time]:not(:focus) ~ [class^="btn-"],
+.metrouicss .input-control.password input[type=time]:not(:focus) ~ [class^="btn-"],
+.metrouicss .input-control.text input[type=url]:not(:focus) ~ [class^="btn-"],
+.metrouicss .input-control.password input[type=url]:not(:focus) ~ [class^="btn-"],
 .metrouicss .input-control.text input[type=text]:not(:focus) ~ .helper,
 .metrouicss .input-control.password input[type=text]:not(:focus) ~ .helper,
 .metrouicss .input-control.text input[type=password]:not(:focus) ~ .helper,
@@ -5792,34 +5778,20 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 .metrouicss .input-control.password input[type=url]:not(:focus) ~ .helper {
   display: none;
 }
-.metrouicss .input-control.text input[type=text]:focus ~ [class^="btn-clear"],
-.metrouicss .input-control.password input[type=text]:focus ~ [class^="btn-clear"],
-.metrouicss .input-control.text input[type=password]:focus ~ [class^="btn-clear"],
-.metrouicss .input-control.password input[type=password]:focus ~ [class^="btn-clear"],
-.metrouicss .input-control.text input[type=email]:focus ~ [class^="btn-clear"],
-.metrouicss .input-control.password input[type=email]:focus ~ [class^="btn-clear"],
-.metrouicss .input-control.text input[type=phone]:focus ~ [class^="btn-clear"],
-.metrouicss .input-control.password input[type=phone]:focus ~ [class^="btn-clear"],
-.metrouicss .input-control.text input[type=number]:focus ~ [class^="btn-clear"],
-.metrouicss .input-control.password input[type=number]:focus ~ [class^="btn-clear"],
-.metrouicss .input-control.text input[type=time]:focus ~ [class^="btn-clear"],
-.metrouicss .input-control.password input[type=time]:focus ~ [class^="btn-clear"],
-.metrouicss .input-control.text input[type=url]:focus ~ [class^="btn-clear"],
-.metrouicss .input-control.password input[type=url]:focus ~ [class^="btn-clear"],
-.metrouicss .input-control.text input[type=text]:focus ~ [class*="btn-reveal"],
-.metrouicss .input-control.password input[type=text]:focus ~ [class*="btn-reveal"],
-.metrouicss .input-control.text input[type=password]:focus ~ [class*="btn-reveal"],
-.metrouicss .input-control.password input[type=password]:focus ~ [class*="btn-reveal"],
-.metrouicss .input-control.text input[type=email]:focus ~ [class*="btn-reveal"],
-.metrouicss .input-control.password input[type=email]:focus ~ [class*="btn-reveal"],
-.metrouicss .input-control.text input[type=phone]:focus ~ [class*="btn-reveal"],
-.metrouicss .input-control.password input[type=phone]:focus ~ [class*="btn-reveal"],
-.metrouicss .input-control.text input[type=number]:focus ~ [class*="btn-reveal"],
-.metrouicss .input-control.password input[type=number]:focus ~ [class*="btn-reveal"],
-.metrouicss .input-control.text input[type=time]:focus ~ [class*="btn-reveal"],
-.metrouicss .input-control.password input[type=time]:focus ~ [class*="btn-reveal"],
-.metrouicss .input-control.text input[type=url]:focus ~ [class*="btn-reveal"],
-.metrouicss .input-control.password input[type=url]:focus ~ [class*="btn-reveal"],
+.metrouicss .input-control.text input[type=text]:focus ~ [class^="btn-"],
+.metrouicss .input-control.password input[type=text]:focus ~ [class^="btn-"],
+.metrouicss .input-control.text input[type=password]:focus ~ [class^="btn-"],
+.metrouicss .input-control.password input[type=password]:focus ~ [class^="btn-"],
+.metrouicss .input-control.text input[type=email]:focus ~ [class^="btn-"],
+.metrouicss .input-control.password input[type=email]:focus ~ [class^="btn-"],
+.metrouicss .input-control.text input[type=phone]:focus ~ [class^="btn-"],
+.metrouicss .input-control.password input[type=phone]:focus ~ [class^="btn-"],
+.metrouicss .input-control.text input[type=number]:focus ~ [class^="btn-"],
+.metrouicss .input-control.password input[type=number]:focus ~ [class^="btn-"],
+.metrouicss .input-control.text input[type=time]:focus ~ [class^="btn-"],
+.metrouicss .input-control.password input[type=time]:focus ~ [class^="btn-"],
+.metrouicss .input-control.text input[type=url]:focus ~ [class^="btn-"],
+.metrouicss .input-control.password input[type=url]:focus ~ [class^="btn-"],
 .metrouicss .input-control.text input[type=text]:focus ~ .helper,
 .metrouicss .input-control.password input[type=text]:focus ~ .helper,
 .metrouicss .input-control.text input[type=password]:focus ~ .helper,
@@ -5836,34 +5808,20 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 .metrouicss .input-control.password input[type=url]:focus ~ .helper {
   display: block;
 }
-.metrouicss .input-control.text input[type=text]:not(:focus) ~ [class^="btn-clear"]:active,
-.metrouicss .input-control.password input[type=text]:not(:focus) ~ [class^="btn-clear"]:active,
-.metrouicss .input-control.text input[type=password]:not(:focus) ~ [class^="btn-clear"]:active,
-.metrouicss .input-control.password input[type=password]:not(:focus) ~ [class^="btn-clear"]:active,
-.metrouicss .input-control.text input[type=email]:not(:focus) ~ [class^="btn-clear"]:active,
-.metrouicss .input-control.password input[type=email]:not(:focus) ~ [class^="btn-clear"]:active,
-.metrouicss .input-control.text input[type=phone]:not(:focus) ~ [class^="btn-clear"]:active,
-.metrouicss .input-control.password input[type=phone]:not(:focus) ~ [class^="btn-clear"]:active,
-.metrouicss .input-control.text input[type=number]:not(:focus) ~ [class^="btn-clear"]:active,
-.metrouicss .input-control.password input[type=number]:not(:focus) ~ [class^="btn-clear"]:active,
-.metrouicss .input-control.text input[type=time]:not(:focus) ~ [class^="btn-clear"]:active,
-.metrouicss .input-control.password input[type=time]:not(:focus) ~ [class^="btn-clear"]:active,
-.metrouicss .input-control.text input[type=url]:not(:focus) ~ [class^="btn-clear"]:active,
-.metrouicss .input-control.password input[type=url]:not(:focus) ~ [class^="btn-clear"]:active,
-.metrouicss .input-control.text input[type=text]:not(:focus) ~ [class*="btn-reveal"]:active,
-.metrouicss .input-control.password input[type=text]:not(:focus) ~ [class*="btn-reveal"]:active,
-.metrouicss .input-control.text input[type=password]:not(:focus) ~ [class*="btn-reveal"]:active,
-.metrouicss .input-control.password input[type=password]:not(:focus) ~ [class*="btn-reveal"]:active,
-.metrouicss .input-control.text input[type=email]:not(:focus) ~ [class*="btn-reveal"]:active,
-.metrouicss .input-control.password input[type=email]:not(:focus) ~ [class*="btn-reveal"]:active,
-.metrouicss .input-control.text input[type=phone]:not(:focus) ~ [class*="btn-reveal"]:active,
-.metrouicss .input-control.password input[type=phone]:not(:focus) ~ [class*="btn-reveal"]:active,
-.metrouicss .input-control.text input[type=number]:not(:focus) ~ [class*="btn-reveal"]:active,
-.metrouicss .input-control.password input[type=number]:not(:focus) ~ [class*="btn-reveal"]:active,
-.metrouicss .input-control.text input[type=time]:not(:focus) ~ [class*="btn-reveal"]:active,
-.metrouicss .input-control.password input[type=time]:not(:focus) ~ [class*="btn-reveal"]:active,
-.metrouicss .input-control.text input[type=url]:not(:focus) ~ [class*="btn-reveal"]:active,
-.metrouicss .input-control.password input[type=url]:not(:focus) ~ [class*="btn-reveal"]:active,
+.metrouicss .input-control.text input[type=text]:not(:focus) ~ [class^="btn-"]:active,
+.metrouicss .input-control.password input[type=text]:not(:focus) ~ [class^="btn-"]:active,
+.metrouicss .input-control.text input[type=password]:not(:focus) ~ [class^="btn-"]:active,
+.metrouicss .input-control.password input[type=password]:not(:focus) ~ [class^="btn-"]:active,
+.metrouicss .input-control.text input[type=email]:not(:focus) ~ [class^="btn-"]:active,
+.metrouicss .input-control.password input[type=email]:not(:focus) ~ [class^="btn-"]:active,
+.metrouicss .input-control.text input[type=phone]:not(:focus) ~ [class^="btn-"]:active,
+.metrouicss .input-control.password input[type=phone]:not(:focus) ~ [class^="btn-"]:active,
+.metrouicss .input-control.text input[type=number]:not(:focus) ~ [class^="btn-"]:active,
+.metrouicss .input-control.password input[type=number]:not(:focus) ~ [class^="btn-"]:active,
+.metrouicss .input-control.text input[type=time]:not(:focus) ~ [class^="btn-"]:active,
+.metrouicss .input-control.password input[type=time]:not(:focus) ~ [class^="btn-"]:active,
+.metrouicss .input-control.text input[type=url]:not(:focus) ~ [class^="btn-"]:active,
+.metrouicss .input-control.password input[type=url]:not(:focus) ~ [class^="btn-"]:active,
 .metrouicss .input-control.text input[type=text]:not(:focus) ~ .helper:active,
 .metrouicss .input-control.password input[type=text]:not(:focus) ~ .helper:active,
 .metrouicss .input-control.text input[type=password]:not(:focus) ~ .helper:active,
@@ -5880,6 +5838,10 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 .metrouicss .input-control.password input[type=url]:not(:focus) ~ .helper:active {
   display: block;
 }
+.metrouicss .input-control input[type=text] ~ .btn-search,
+.metrouicss .input-control input[type=text] ~ .btn-date {
+  display: block !important;
+}
 .metrouicss .input-control {
   margin-right: 0px;
   margin-bottom: 10px;
@@ -5887,14 +5849,9 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 }
 .metrouicss .input-control.text .helper,
 .metrouicss .input-control.password .helper,
-.metrouicss .input-control.text .btn-search,
-.metrouicss .input-control.password .btn-search,
-.metrouicss .input-control.text .btn-date,
-.metrouicss .input-control.password .btn-date,
-.metrouicss .input-control.text .btn-clear,
-.metrouicss .input-control.password .btn-clear,
-.metrouicss .input-control.text .btn-reveal,
-.metrouicss .input-control.password .btn-reveal {
+.metrouicss .input-control.text [class^="btn-"],
+.metrouicss .input-control.password [class^="btn-"] {
+  font-family: "iconFont" !important;
   background: #fff;
   top: 2px;
   width: 26px !important;
@@ -5911,57 +5868,31 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 }
 .metrouicss .input-control.text .helper:before,
 .metrouicss .input-control.password .helper:before,
-.metrouicss .input-control.text .btn-search:before,
-.metrouicss .input-control.password .btn-search:before,
-.metrouicss .input-control.text .btn-date:before,
-.metrouicss .input-control.password .btn-date:before,
-.metrouicss .input-control.text .btn-clear:before,
-.metrouicss .input-control.password .btn-clear:before,
-.metrouicss .input-control.text .btn-reveal:before,
-.metrouicss .input-control.password .btn-reveal:before {
-  font-size: 12pt;
+.metrouicss .input-control.text [class^="btn-"]:before,
+.metrouicss .input-control.password [class^="btn-"]:before {
+  font-size: 10pt !important;
   position: absolute;
-  font-family: 'Segoe UI Semilight', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
-  font-weight: 300;
-  font-size: 11pt;
-  letter-spacing: 0.02em;
-  line-height: 20px;
-  font-smooth: always;
+  color: #000 !important;
+  font-family: "iconFont" !important;
+  left: 6px;
+  top: 4px;
 }
 .metrouicss .input-control.text .helper:hover,
 .metrouicss .input-control.password .helper:hover,
-.metrouicss .input-control.text .btn-search:hover,
-.metrouicss .input-control.password .btn-search:hover,
-.metrouicss .input-control.text .btn-date:hover,
-.metrouicss .input-control.password .btn-date:hover,
-.metrouicss .input-control.text .btn-clear:hover,
-.metrouicss .input-control.password .btn-clear:hover,
-.metrouicss .input-control.text .btn-reveal:hover,
-.metrouicss .input-control.password .btn-reveal:hover {
+.metrouicss .input-control.text [class^="btn-"]:hover,
+.metrouicss .input-control.password [class^="btn-"]:hover {
   background: #d9d9d9;
 }
 .metrouicss .input-control.text .helper:active,
 .metrouicss .input-control.password .helper:active,
-.metrouicss .input-control.text .btn-search:active,
-.metrouicss .input-control.password .btn-search:active,
-.metrouicss .input-control.text .btn-date:active,
-.metrouicss .input-control.password .btn-date:active,
-.metrouicss .input-control.text .btn-clear:active,
-.metrouicss .input-control.password .btn-clear:active,
-.metrouicss .input-control.text .btn-reveal:active,
-.metrouicss .input-control.password .btn-reveal:active {
+.metrouicss .input-control.text [class^="btn-"]:active,
+.metrouicss .input-control.password [class^="btn-"]:active {
   background-color: #000;
 }
 .metrouicss .input-control.text .helper:active:before,
 .metrouicss .input-control.password .helper:active:before,
-.metrouicss .input-control.text .btn-search:active:before,
-.metrouicss .input-control.password .btn-search:active:before,
-.metrouicss .input-control.text .btn-date:active:before,
-.metrouicss .input-control.password .btn-date:active:before,
-.metrouicss .input-control.text .btn-clear:active:before,
-.metrouicss .input-control.password .btn-clear:active:before,
-.metrouicss .input-control.text .btn-reveal:active:before,
-.metrouicss .input-control.password .btn-reveal:active:before {
+.metrouicss .input-control.text [class^="btn-"]:active:before,
+.metrouicss .input-control.password [class^="btn-"]:active:before {
   color: #fff;
 }
 .metrouicss .input-control.password .helper,
@@ -5974,25 +5905,13 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 }
 .metrouicss .input-control.text .helper:before,
 .metrouicss .input-control.text .btn-clear:before {
-  font-family: iconFont;
-  font-size: 12px;
   content: "\e089";
-  left: 7px;
-  top: 3px;
 }
 .metrouicss .input-control.text .btn-search:before {
-  font-family: iconFont;
-  font-size: 12px;
   content: "\e041";
-  left: 7px;
-  top: 3px;
 }
 .metrouicss .input-control.text .btn-date:before {
-  font-family: iconFont;
-  font-size: 12px;
   content: "\e020";
-  left: 7px;
-  top: 3px;
 }
 .metrouicss label {
   font-family: 'Segoe UI Semilight', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
@@ -7170,6 +7089,9 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   border-collapse: collapse;
   margin: 0;
 }
+.metrouicss .calendar table tr {
+  height: 1px;
+}
 .metrouicss .calendar tr:empty {
   display: none;
 }
@@ -7183,6 +7105,18 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 }
 .metrouicss .calendar td {
   cursor: pointer;
+  position: relative;
+  height: 100%;
+}
+.metrouicss .calendar td span {
+  font-size: 8px !important;
+  line-height: 10px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 1px 3px;
+  background-color: #b91d47 !important;
+  color: #ffffff !important;
 }
 .metrouicss .calendar .out {
   background: #ececf0;

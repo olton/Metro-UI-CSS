@@ -33,7 +33,8 @@
 
 <script>
     $(function(){
-        $("#cal2").calendarSetEvent({date: '1972-12-22', text: 'Вах, вах,...'});
+        $("#cal2").calendarSetEvent({date: '1972-12-22', text: 'Event number one'});
+        $("#cal2").calendarSetEvent({date: '1972-12-22', text: 'Event number two'});
         //alert($("#cal2").calendarGetEvents('1972-12-22'));
     })
 </script>
