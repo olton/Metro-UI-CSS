@@ -102,7 +102,7 @@
             tr = $('<tr class="current-month"></tr>');
             if (yearBtns) {
                 td = $('<th></th>');
-                $prevYearBtn = $('<a href="javascript:void(0)" class="icon-arrow-left-3"></a>');
+                $prevYearBtn = $('<a href="javascript:void(0)" class="icon-arrow-left"></a>');
                 td.append($prevYearBtn);
                 tr.append(td);
             }
@@ -118,7 +118,7 @@
             tr.append(td);
             if (yearBtns) {
                 td = $('<th></th>');
-                $nextYearBtn = $('<a href="javascript:void(0)" class="icon-arrow-right-3"></a>');
+                $nextYearBtn = $('<a href="javascript:void(0)" class="icon-arrow-right"></a>');
                 td.append($nextYearBtn);
                 tr.append(td);
             }
