@@ -206,7 +206,6 @@
                 if (calendarEvents[dateStr]) {
                     $days[dayIndex].addClass('event');
                     $days[dayIndex].prop('title', calendarEvents[dateStr][0]);
-                    html += '<span>' + calendarEvents[dateStr].length + '</span>'
                 }
                 $days[dayIndex].html(html);
                 $days[dayIndex].data('date', dateStr);
@@ -223,7 +222,6 @@
                 if (calendarEvents[dateStr]) {
                     $days[dayIndex].addClass('event');
                     $days[dayIndex].prop('title', calendarEvents[dateStr][0]);
-                    html += '<span>' + calendarEvents[dateStr].length + '</span>'
                 }
                 $days[dayIndex].html(html);
                 $days[dayIndex].data('date', dateStr);
@@ -240,7 +238,6 @@
                 if (calendarEvents[dateStr]) {
                     $days[dayIndex].addClass('event');
                     $days[dayIndex].prop('title', calendarEvents[dateStr][0]);
-                    html += '<span>' + calendarEvents[dateStr].length + '</span>'
                 }
                 $days[dayIndex].html(html);
                 $days[dayIndex].data('date', dateStr);
