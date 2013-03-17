@@ -16,11 +16,11 @@
                 <div class="grid">
                     <div class="row">
                         <div class="span4">
-                            <div class="calendar span4" id="cal1" data-role="calendar" data-param-lang="en"></div>
+                            <div id="cal1" class="calendar span4" id="cal1" data-role="calendar" data-param-lang="en"></div>
                             <p><code>data-param-lang="en"</code></p>
                         </div>
                         <div class="span4">
-                            <div class="calendar span4" data-role="calendar" data-param-lang="ru" data-param-init-date="1972-12-21" data-param-year-buttons="1"></div>
+                            <div id="cal2" class="calendar span4" data-role="calendar" data-param-lang="ru" data-param-init-date="1972-12-21" data-param-year-buttons="1"></div>
                             <p>
                                 <code>data-param-lang="ru"</code>
                                 <br />
@@ -31,7 +31,12 @@
                 </div>
 
 
-
+<script>
+    $(function(){
+        $("#cal2").calendarSetEvent({date: '1972-12-22', text: 'Вах, вах,...'});
+        //alert($("#cal2").calendarGetEvents('1972-12-22'));
+    })
+</script>
 
 <pre class="prettyprint linenums">
     &lt;div class="<b>calnedar</b>" data-role="<b>calendar</b>"&gt;&lt;/div&gt;
