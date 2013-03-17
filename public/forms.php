@@ -138,16 +138,16 @@
                             <h2>Text box</h2>
                             <form>
                                 <div class="input-control text">
-                                    <input type="text" />
-                                    <button class="btn-clear" onclick="return false"></button>
+                                    <input type="text" autofocus/>
+                                    <button class="btn-clear" />
                                 </div>
                                 <div class="input-control text">
                                     <input type="text" placeholder="Enter sample text"/>
-                                    <button class="btn-clear"></button>
+                                    <button class="btn-clear" />
                                 </div>
                                 <div class="input-control text disabled">
                                     <input type="text" disabled="" value="disabled input"/>
-                                    <button class="btn-clear"></button>
+                                    <button class="btn-clear" />
                                 </div>
                                 <div class="input-control text disabled">
                                     <input type="text" value="this input without helper"/>

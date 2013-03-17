@@ -333,7 +333,7 @@
         input[type=number]:not(:focus),
         input[type=time]:not(:focus),
         input[type=url]:not(:focus) {
-            & ~ [class^="btn-clear"], & ~ [class*="btn-reveal"], & ~ .helper {
+            & ~ [class^="btn-"], & ~ .helper {
                 display: none;
             }
         }
@@ -345,7 +345,7 @@
         input[type=number]:focus,
         input[type=time]:focus,
         input[type=url]:focus {
-            & ~ [class^="btn-clear"], & ~ [class*="btn-reveal"], & ~ .helper {
+            & ~ [class^="btn-"], & ~ .helper {
                 display: block;
             }
         }
@@ -358,9 +358,14 @@
         input[type=number]:not(:focus),
         input[type=time]:not(:focus),
         input[type=url]:not(:focus) {
-            & ~ [class^="btn-clear"]:active, & ~ [class*="btn-reveal"]:active, & ~ .helper:active {
+            & ~ [class^="btn-"]:active, & ~ .helper:active {
                 display: block;
             }
+        }
+    }
+    input[type=text] {
+        & ~ .btn-search, & ~ .btn-date,  {
+            display: block !important;
         }
     }
 }
@@ -372,10 +377,8 @@
 
     &.text, &.password {
         .helper,
-        .btn-search,
-        .btn-date,
-        .btn-clear,
-        .btn-reveal {
+        [class^="btn-"] {
+            font-family: "iconFont" !important;
             background: #fff;// @textbox_pass_inactive_icon 50% no-repeat;
             top: 2px;
             width: 26px !important;
@@ -392,9 +395,12 @@
 
             &:before {
                 //content: "";
-                font-size: 12pt;
+                font-size: 10pt !important;
                 position: absolute;
-                #font > .normal;
+                color: #000 !important;
+                font-family: "iconFont" !important;
+                left: 6px;
+                top: 4px;
             }
 
 
@@ -423,37 +429,15 @@
     }
     &.text {
         .helper, .btn-clear {
-
             &:before {
-                font-family: iconFont;
-                font-size: 12px;
                 content: "\e089";
-                left: 7px;
-                top: 3px;
             }
-
         }
-    }
-    &.text {
-        .btn-search {
-            &:before {
-                font-family: iconFont;
-                font-size: 12px;
-                content: "\e041";
-                left: 7px;
-                top: 3px;
-            }
-
+        .btn-search:before {
+            content: "\e041";
         }
-        .btn-date {
-            &:before {
-                font-family: iconFont;
-                font-size: 12px;
-                content: "\e020";
-                left: 7px;
-                top: 3px;
-            }
-
+        .btn-date:before {
+            content: "\e020";
         }
     }
 }

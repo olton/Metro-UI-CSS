@@ -6,7 +6,11 @@
         width: 100%;
         border-collapse: collapse;
         margin: 0;
+        tr {
+            height: 1px;
+        }
     }
+
 
     tr:empty {
         display: none;
@@ -22,6 +26,19 @@
 
     td {
         cursor: pointer;
+        position: relative;
+        height: 100%;
+
+        span {
+            font-size: 8px !important;
+            line-height: 10px;
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 1px 3px;
+            .bg-color-red;
+            .fg-color-white;
+        }
     }
 
     .out {
