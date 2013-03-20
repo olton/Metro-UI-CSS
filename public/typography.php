@@ -273,7 +273,52 @@
                             </ul>
                         </div>
                     </div>
+
+                    <div class="row">
+                        <div class="span10">
+                        </div>
+                    </div>
                 </div>
+
+                <h2>Labels</h2>
+                <table class="bordered striped">
+                    <thead>
+                    <tr>
+                        <td>Label type</td>
+                        <td>Label definition</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td width="120"><span class="label">Default</span></td>
+                        <td><code>&lt;span class="label"&gt;Default&lt;/span&gt;</code></td>
+                    </tr>
+                    <tr>
+                        <td><span class="label success">Success</span></td>
+                        <td><code>&lt;span class="label success"&gt;Success&lt;/span&gt;</code></td>
+                    </tr>
+                    <tr>
+                        <td><span class="label warning">Warning</span></td>
+                        <td><code>&lt;span class="label warning"&gt;Warning&lt;/span&gt;</code></td>
+                    </tr>
+                    <tr>
+                        <td><span class="label important">Important</span></td>
+                        <td><code>&lt;span class="label important[error]"&gt;Important&lt;/span&gt;</code></td>
+                    </tr>
+                    <tr>
+                        <td><span class="label info">Info</span></td>
+                        <td><code>&lt;span class="label info"&gt;Info&lt;/span&gt;</code></td>
+                    </tr>
+                    <tr>
+                        <td><span class="label inverse">Inverse</span></td>
+                        <td><code>&lt;span class="label inverse"&gt;Inverse&lt;/span&gt;</code></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <p>
+                    <span class="label important">Lorem Ipsum</span> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
+                    been the industry's standard dummy text ever since the 1500s.
+                </p>
             </div>
         </div>
     </div>

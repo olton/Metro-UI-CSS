@@ -480,6 +480,21 @@
 .no-display {
   display: none;
 }
+.no-margin {
+  margin: 0;
+}
+.no-padding {
+  padding: 0;
+}
+.no-border {
+  border: 0;
+}
+.no-border-all {
+  border: 0;
+}
+.no-border-all * {
+  border: 0;
+}
 .as-block {
   display: block;
   float: none !important;

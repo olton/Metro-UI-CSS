@@ -399,7 +399,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
 
                 <div class="tiles clearfix">
                     <h3>Examples of tiles made with Metro UI CSS</h3>

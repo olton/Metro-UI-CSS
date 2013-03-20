@@ -26,7 +26,7 @@
                     </p>
                     <br />
 
-                    <h2><span class="bg-color-red padding5 fg-color-white">1</span> Major sponsor</h2>
+                    <h2><span class="label important">1</span> Major sponsor</h2>
 
                     <p><strong>You get:</strong></p>
 

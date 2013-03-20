@@ -1,4 +1,7 @@
 /*
+ * Metro UI CSS
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
  *
  * Typography.less
  *
@@ -62,7 +65,7 @@
         font-weight: 200;
         font-size: 20pt;
         letter-spacing: 0.01em;
-        line-height: 24pt;
+        line-height: 22pt;
         font-smooth:always;
     }
 
@@ -70,7 +73,7 @@
         font-family: 'Segoe UI Light', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
         font-weight: 200;
         letter-spacing: 0.01em;
-        line-height: 24pt;
+        line-height: 18pt;
         font-size: 16pt;
         font-smooth:always;
     }
@@ -80,7 +83,7 @@
         font-weight: 600;
         font-size: 11pt;
         letter-spacing: 0.01em;
-        line-height: 14pt;
+        line-height: 13pt;
         font-smooth:always;
     }
 
@@ -89,7 +92,7 @@
         font-weight: 400;
         font-size: 11pt;
         letter-spacing: 0.01em;
-        line-height: 14pt;
+        line-height: 13pt;
         font-smooth:always;
     }
 
@@ -98,7 +101,7 @@
         font-weight: 300;
         font-size: 11pt;
         letter-spacing: 0.02em;
-        line-height: 20px;
+        line-height: 14pt;
         font-smooth:always;
     }
 
@@ -107,6 +110,7 @@
         font-weight: 400;
         font-size: 11pt;
         font-smooth:always;
+        line-height: 13pt;
     }
 
     .tertiary, .tertiary-secondary {
@@ -114,6 +118,7 @@
         font-weight: 400;
         font-size: 9pt;
         font-smooth:always;
+        line-height: 11pt;
     }
 
     .control {
@@ -121,6 +126,7 @@
         font-weight: 400;
         font-size: 9pt;
         font-smooth:always;
+        line-height: 11pt;
     }
 
     .small {
@@ -128,6 +134,7 @@
         font-weight: 300;
         font-size: 8pt;
         font-smooth:always;
+        line-height: 10pt;
     }
 
     .long-text {
@@ -136,16 +143,18 @@
         font-weight: 300;
         font-size: 10pt;
         letter-spacing: 0.02em;
-        line-height: 20px;
+        line-height: 12pt;
         font-smooth:always;
     }
     .long-text-smaller {
         .long-text;
         font-size: 9pt;
+        line-height: 11pt;
     }
     .long-text-lead {
         .long-text;
         font-size: 20pt;
+        line-height: 22pt;
     }
 
 }
@@ -355,5 +364,34 @@ ul.unstyled, ol.unstyled, .unstyled {
     list-style: none;
 }
 
+.inline-tag, .label {
+    display: inline-block;
+    line-height: inherit;
+    font-size: .75em;
+    font-weight: bold;
+    padding: 2px 4px;
+    .bg-color-lighten;
+    color: lighten(#000, 30%);
+    vertical-align: 3%;
 
-
+    &.success {
+        .bg-color-green;
+        .fg-color-white;
+    }
+    &.warning {
+        .bg-color-orange;
+        .fg-color-white;
+    }
+    &.important, &.error {
+        .bg-color-red;
+        .fg-color-white;
+    }
+    &.info {
+        .bg-color-blue;
+        .fg-color-white;
+    }
+    &.inverse {
+        .bg-color-darken;
+        .fg-color-white;
+    }
+}
