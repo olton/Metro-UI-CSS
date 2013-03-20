@@ -223,10 +223,12 @@
                             <button><i class="icon-bookmark"></i> Button</button>
                             <button>Button <i class="icon-bookmark"></i></button>
                             <button class="default">Button <i class="icon-bookmark"></i></button>
+                            <a class="button">Button <i class="icon-bookmark"></i></a>
 <pre class="prettyprint linenums">
     &lt;button&gt;&lt;i class="icon-*"&gt;&lt;/i&gt;Caption&lt;/button&gt;
     &lt;button&gt;Caption&lt;i class="icon-*"&gt;&lt;/i&gt;&lt;/button&gt;
     &lt;button class="default"&gt;&lt;i class="icon-*"&gt;&lt;/i&gt;Caption&lt;/button&gt;
+    &lt;a class="button"&gt;&lt;i class="icon-*"&gt;&lt;/i&gt;Caption&lt;/a&gt;
 </pre>
                         </div>
                     </div>
