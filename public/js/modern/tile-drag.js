@@ -52,7 +52,8 @@
             targetType, // 'new' or 'existing' group
             groupsMaxHeight,
             mouseMoved,
-            tileDragTimer;
+            tileDragTimer,
+            tileStartDragTimer;
 
         plugin.init = function() {
             settings = plugin.settings = $.extend({}, defaults, options);
@@ -65,11 +66,21 @@
             // select all tiles within group
             tiles = $groups.children('.tile');
 
-            tiles.on('mousedown', startDrag);
+            tiles.on('mousedown', function(event) {
+                event.preventDefault();
+                clearTimeout(tileStartDragTimer);
+                var el = $(this);
+                tileStartDragTimer = setTimeout(function() {
+                    startDrag(el, event);
+                }, 1000);
+            }).on('mouseup mouseout', function() {
+                clearTimeout(tileStartDragTimer);
+            });
 
+            //tiles.on('mousedown', startDrag);
         };
 
-        var startDrag = function(event) {
+        var startDrag = function(el, event) {
             var $tile,
                 tilePosition,
                 tilePositionX,
@@ -78,7 +89,8 @@
             event.preventDefault();
 
             // currently dragging tile
-            $tile = $draggingTile = $(this);
+            $tile = $draggingTile = el;
+            //$tile.animate({"width": "-=20px", "height": "-=20px"}, "fast").animate({"width": "+=20px", "height": "+=20px"}, "fast");
 
             // dragging tile dimentions
             draggingTileWidth = $tile.outerWidth();
@@ -104,11 +116,11 @@
             } else if ($tile.hasClass('quadro-vertical')) {
                 $phantomTile.addClass('quadro-vertical');
             }
-            
+
             // place phantom tile instead dragging one
             $phantomTile.insertAfter($tile);
             targetType = 'existing';
-            
+
             // search parent group
             $parentGroup = $tile.parents('.tile-group');
 
@@ -192,7 +204,7 @@
          */
         var dragStop = function (event) {
             var targetGroup;
-            
+
             if (!mouseMoved) {
                 // emulate default click behavior
                 if ($draggingTile.is('a')) {
@@ -245,7 +257,7 @@
 
             $groups = $('[data-role=tile-group], .tile-group');
             $groups.trigger('drop', [$draggingTile, targetGroup]);
-            
+
             $startMenu.trigger('changed');
         };
 
@@ -411,7 +423,7 @@
                     });
                 }
             }
-            
+
             $startMenu.trigger('changed');
             storeAllNecessaryCoordinates();
         };

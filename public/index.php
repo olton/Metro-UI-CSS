@@ -1,4 +1,4 @@
-<? include("header.php")?>
+<?php include("header.php")?>
 
 <div class="page" id="page-index">
     <div class="page-region">
@@ -209,4 +209,4 @@
     </div>
 </div>
 
-<? include("footer.php")?>
+<?php include("footer.php")?>
