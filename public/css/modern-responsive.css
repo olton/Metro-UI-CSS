@@ -1,16 +1,18 @@
 /*
  * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
  *
- * responsive.less
+ * Responsive.less
+ *
  */
 /*
  * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
  *
- * Variables.less
+ * Colors.less
+ *
  */
 .fg-color-blue {
   color: #2d89ef !important;
@@ -260,10 +262,11 @@
 }
 /*
  * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
  *
- * responsive.less
+ * Responsive-1200.less
+ *
  */
 /* Large desktop */
 @media (min-width: 1200px) {
@@ -279,10 +282,11 @@
 }
 /*
  * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
  *
- * responsive.less
+ * Responsive-979.less
+ *
  */
 /* Portrait tablet to landscape and desktop */
 @media (min-width: 768px) and (max-width: 979px) {
@@ -411,12 +415,21 @@
 }
 /*
  * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
  *
- * responsive.less
+ * Responsive-767.less
+ *
  */
 /* Landscape phone to portrait tablet */
+/*
+ * Metro UI CSS
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
+ *
+ * Routines.less
+ *
+ */
 .place-left {
   float: left !important;
   margin-right: 10px;
@@ -766,10 +779,11 @@
 }
 /*
  * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
  *
- * responsive.less
+ * Responsive-480.less
+ *
  */
 /* Landscape phones and down */
 @media (max-width: 480px) {

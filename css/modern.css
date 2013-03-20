@@ -1,3 +1,8 @@
+/*
+ * Metro UI CSS
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
+ */
 /*! normalize.css 2012-03-11T12:53 UTC - http://github.com/necolas/normalize.css */
 /* =============================================================================
    HTML5 display definitions
@@ -440,8 +445,29 @@ table {
 }
 .metrouicss {
   /*
+ * Metro UI CSS
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
  *
  * Typography.less
+ *
+ */
+
+  /*
+ * Metro UI CSS
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
+ *
+ * Routines.less
+ *
+ */
+
+  /*
+ * Metro UI CSS
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
+ *
+ * Icons.less
  *
  */
 
@@ -458,16 +484,17 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 
   /*
  * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
  *
- * Variables.less
+ * Colors.less
+ *
  */
 
   /*
  * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
  *
  * Bricks.less
  *
@@ -487,8 +514,26 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 
   /*
  * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
+ *
+ * Layout.less
+ *
+ */
+
+  /*
+ * Metro UI CSS
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
+ *
+ * Butoons.less
+ *
+ */
+
+  /*
+ * Metro UI CSS
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
  *
  * Tables.less
  *
@@ -496,8 +541,8 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 
   /*
  * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
  *
  * Grid.less
  *
@@ -505,8 +550,8 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 
   /*
  * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
  *
  * Hero.less
  *
@@ -514,33 +559,35 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 
   /*
  * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
  *
  * Menus.less
- * dropdown-menu, nav-bar
- */
-
-  /*
- * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
  *
- * Sidebar.less
  */
 
   /*
  * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
+ *
+ * SideBar.less
+ *
+ */
+
+  /*
+ * Metro UI CSS
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
  *
  * Notices.less
+ *
  */
 
   /*
  * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
  *
  * Tiles.less
  *
@@ -548,25 +595,26 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 
   /*
  * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
  *
- * Layout.less
- */
-
-  /*
- * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
- *
- * images.less
+ * Forms.less
  *
  */
 
   /*
  * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
+ *
+ * Images.less
+ *
+ */
+
+  /*
+ * Metro UI CSS
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
  *
  * Cards.less
  *
@@ -574,8 +622,8 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 
   /*
  * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
  *
  * Code.less
  *
@@ -583,8 +631,8 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 
   /*
  * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
  *
  * PageControl.less
  *
@@ -592,62 +640,73 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 
   /*
  * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
  *
  * Accordion.less
- */
-
-  /*
- * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
  *
- * rating.less
  */
 
   /*
  * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
  *
- * Progress.less
+ * Rating.less
+ *
  */
 
   /*
  * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
+ *
+ * ProgressBar.less
+ *
+ */
+
+  /*
+ * Metro UI CSS
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
  *
  * Carousel.less
- * Version: 1.0
  *
  */
 
   /*
  * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
  *
  * ListView.less
- * Version 1.0
+ *
  */
 
   /*
  * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
  *
  * Slider.less
  *
  */
 
   /*
- * Metro UI CSS
+ * Component for Metro UI CSS
  * Copyright 2012 Valerio Battaglia
  * Licensed under the MIT License
  *
  * dialog.less
+ */
+
+  /*
+ * Metro UI CSS
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
+ *
+ * Calendar.less
+ *
  */
 
 }
@@ -707,7 +766,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 200;
   font-size: 20pt;
   letter-spacing: 0.01em;
-  line-height: 24pt;
+  line-height: 22pt;
   font-smooth: always;
 }
 .metrouicss #font .subheader-smaller,
@@ -715,7 +774,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-family: 'Segoe UI Light', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 200;
   letter-spacing: 0.01em;
-  line-height: 24pt;
+  line-height: 18pt;
   font-size: 16pt;
   font-smooth: always;
 }
@@ -725,7 +784,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 600;
   font-size: 11pt;
   letter-spacing: 0.01em;
-  line-height: 14pt;
+  line-height: 13pt;
   font-smooth: always;
 }
 .metrouicss #font .navigation {
@@ -733,7 +792,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 400;
   font-size: 11pt;
   letter-spacing: 0.01em;
-  line-height: 14pt;
+  line-height: 13pt;
   font-smooth: always;
 }
 .metrouicss #font .body,
@@ -743,7 +802,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 300;
   font-size: 11pt;
   letter-spacing: 0.02em;
-  line-height: 20px;
+  line-height: 14pt;
   font-smooth: always;
 }
 .metrouicss #font .link {
@@ -751,6 +810,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 400;
   font-size: 11pt;
   font-smooth: always;
+  line-height: 13pt;
 }
 .metrouicss #font .tertiary,
 .metrouicss #font .tertiary-secondary {
@@ -758,25 +818,28 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 400;
   font-size: 9pt;
   font-smooth: always;
+  line-height: 11pt;
 }
 .metrouicss #font .control {
   font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 9pt;
   font-smooth: always;
+  line-height: 11pt;
 }
 .metrouicss #font .small {
   font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 300;
   font-size: 8pt;
   font-smooth: always;
+  line-height: 10pt;
 }
 .metrouicss #font .long-text {
   font-family: 'PT Serif Caption', sans-serif, serif !important;
   font-weight: 300;
   font-size: 10pt;
   letter-spacing: 0.02em;
-  line-height: 20px;
+  line-height: 12pt;
   font-smooth: always;
 }
 .metrouicss #font .long-text-smaller {
@@ -784,18 +847,20 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 300;
   font-size: 10pt;
   letter-spacing: 0.02em;
-  line-height: 20px;
+  line-height: 12pt;
   font-smooth: always;
   font-size: 9pt;
+  line-height: 11pt;
 }
 .metrouicss #font .long-text-lead {
   font-family: 'PT Serif Caption', sans-serif, serif !important;
   font-weight: 300;
   font-size: 10pt;
   letter-spacing: 0.02em;
-  line-height: 20px;
+  line-height: 12pt;
   font-smooth: always;
   font-size: 20pt;
+  line-height: 22pt;
 }
 .metrouicss #state .header,
 .metrouicss #state .subheader,
@@ -860,6 +925,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 400;
   font-size: 11pt;
   font-smooth: always;
+  line-height: 13pt;
   color: #2e92cf;
   text-decoration: none;
 }
@@ -900,7 +966,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 200;
   font-size: 20pt;
   letter-spacing: 0.01em;
-  line-height: 24pt;
+  line-height: 22pt;
   font-smooth: always;
   color: #000000;
 }
@@ -915,7 +981,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 200;
   font-size: 20pt;
   letter-spacing: 0.01em;
-  line-height: 24pt;
+  line-height: 22pt;
   font-smooth: always;
   color: rgba(0, 0, 0, 0.6);
   font-size: 16pt;
@@ -932,7 +998,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 600;
   font-size: 11pt;
   letter-spacing: 0.01em;
-  line-height: 14pt;
+  line-height: 13pt;
   font-smooth: always;
   color: #000000;
   color: rgba(0, 0, 0, 0.6);
@@ -954,7 +1020,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 600;
   font-size: 11pt;
   letter-spacing: 0.01em;
-  line-height: 14pt;
+  line-height: 13pt;
   font-smooth: always;
   color: rgba(0, 0, 0, 0.6);
   font-size: 90%;
@@ -970,7 +1036,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 600;
   font-size: 11pt;
   letter-spacing: 0.01em;
-  line-height: 14pt;
+  line-height: 13pt;
   font-smooth: always;
   color: rgba(0, 0, 0, 0.6);
   font-size: 80%;
@@ -988,7 +1054,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 300;
   font-size: 11pt;
   letter-spacing: 0.02em;
-  line-height: 20px;
+  line-height: 14pt;
   font-smooth: always;
 }
 .metrouicss p.long-text {
@@ -996,7 +1062,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 300;
   font-size: 10pt;
   letter-spacing: 0.02em;
-  line-height: 20px;
+  line-height: 12pt;
   font-smooth: always;
 }
 .metrouicss p {
@@ -1015,6 +1081,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 400;
   font-size: 9pt;
   font-smooth: always;
+  line-height: 11pt;
   color: #000000;
 }
 .metrouicss .tertiary-info-text:hover,
@@ -1031,6 +1098,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 400;
   font-size: 9pt;
   font-smooth: always;
+  line-height: 11pt;
   color: rgba(0, 0, 0, 0.6);
 }
 .metrouicss .tertiary-info-secondary-text:hover,
@@ -1055,6 +1123,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 300;
   font-size: 11pt;
   letter-spacing: 0.02em;
+  line-height: 14pt;
   font-smooth: always;
   line-height: 20px;
   font-style: normal;
@@ -1132,6 +1201,44 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   margin-left: 0;
   list-style: none;
 }
+.metrouicss .inline-tag,
+.metrouicss .label {
+  display: inline-block;
+  line-height: inherit;
+  font-size: .75em;
+  font-weight: bold;
+  padding: 2px 4px;
+  background-color: #d5e7ec !important;
+  color: #4d4d4d;
+  vertical-align: 3%;
+}
+.metrouicss .inline-tag.success,
+.metrouicss .label.success {
+  background-color: #00a300 !important;
+  color: #ffffff !important;
+}
+.metrouicss .inline-tag.warning,
+.metrouicss .label.warning {
+  background-color: #e3a21a !important;
+  color: #ffffff !important;
+}
+.metrouicss .inline-tag.important,
+.metrouicss .label.important,
+.metrouicss .inline-tag.error,
+.metrouicss .label.error {
+  background-color: #b91d47 !important;
+  color: #ffffff !important;
+}
+.metrouicss .inline-tag.info,
+.metrouicss .label.info {
+  background-color: #2d89ef !important;
+  color: #ffffff !important;
+}
+.metrouicss .inline-tag.inverse,
+.metrouicss .label.inverse {
+  background-color: #1d1d1d !important;
+  color: #ffffff !important;
+}
 .metrouicss .place-left {
   float: left !important;
   margin-right: 10px;
@@ -1194,6 +1301,21 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 }
 .metrouicss .no-display {
   display: none;
+}
+.metrouicss .no-margin {
+  margin: 0;
+}
+.metrouicss .no-padding {
+  padding: 0;
+}
+.metrouicss .no-border {
+  border: 0;
+}
+.metrouicss .no-border-all {
+  border: 0;
+}
+.metrouicss .no-border-all * {
+  border: 0;
 }
 .metrouicss .as-block {
   display: block;
@@ -2943,7 +3065,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 200;
   font-size: 20pt;
   letter-spacing: 0.01em;
-  line-height: 24pt;
+  line-height: 22pt;
   font-smooth: always;
   display: block;
   margin: 0;
@@ -2953,6 +3075,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 400;
   font-size: 9pt;
   font-smooth: always;
+  line-height: 11pt;
   display: block;
   margin: 0;
 }
@@ -3115,6 +3238,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 400;
   font-size: 9pt;
   font-smooth: always;
+  line-height: 11pt;
   font-size: 14px;
   display: inline-block;
   padding: 4px 12px;
@@ -3218,7 +3342,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 300;
   font-size: 11pt;
   letter-spacing: 0.02em;
-  line-height: 20px;
+  line-height: 14pt;
   font-smooth: always;
 }
 .metrouicss .command-button > small {
@@ -3227,7 +3351,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 300;
   font-size: 11pt;
   letter-spacing: 0.02em;
-  line-height: 20px;
+  line-height: 14pt;
   font-smooth: always;
   font-size: 10pt;
   color: #505050;
@@ -3240,6 +3364,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 400;
   font-size: 9pt;
   font-smooth: always;
+  line-height: 11pt;
   font-size: 14px;
   display: inline-block;
   padding: 4px 12px;
@@ -3343,6 +3468,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 400;
   font-size: 9pt;
   font-smooth: always;
+  line-height: 11pt;
   font-size: 14px;
   display: inline-block;
   padding: 4px 12px;
@@ -3513,6 +3639,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 400;
   font-size: 9pt;
   font-smooth: always;
+  line-height: 11pt;
   font-size: 14px;
   display: inline-block;
   padding: 4px 12px;
@@ -3751,6 +3878,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   display: block;
   font-size: 9pt;
   color: #fff;
+  line-height: 11pt;
 }
 .metrouicss a.shortcut {
   padding: 12px 0;
@@ -3777,6 +3905,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 400;
   font-size: 9pt;
   font-smooth: always;
+  line-height: 11pt;
   font-size: 14px;
   display: inline-block;
   padding: 4px 12px;
@@ -3978,7 +4107,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 400;
   font-size: 11pt;
   letter-spacing: 0.01em;
-  line-height: 14pt;
+  line-height: 13pt;
   font-smooth: always;
   color: rgba(0, 0, 0, 0.6);
   text-align: left;
@@ -4004,7 +4133,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 300;
   font-size: 11pt;
   letter-spacing: 0.02em;
-  line-height: 20px;
+  line-height: 14pt;
   font-smooth: always;
   padding: 3px 10px;
   border-right: 1px #ddd solid;
@@ -4308,7 +4437,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 400;
   font-size: 11pt;
   letter-spacing: 0.01em;
-  line-height: 14pt;
+  line-height: 13pt;
   font-smooth: always;
   color: #000000;
   display: block;
@@ -4402,9 +4531,9 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 .metrouicss .nav-bar .nav-bar-inner > ul.menu > li {
   display: block;
   float: left;
-  margin-right: 10px;
+  margin-right: 5px;
   position: relative;
-  padding: 5px;
+  padding: 5px 15px 5px 5px;
 }
 .metrouicss .nav-bar .nav-bar-inner > ul.menu > li a {
   display: block;
@@ -4415,6 +4544,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 .metrouicss .nav-bar .nav-bar-inner > ul.menu > li ul.dropdown-menu {
   z-index: 1001;
   border: 0;
+  left: 0px;
 }
 .metrouicss .nav-bar .nav-bar-inner > ul.menu > li ul.dropdown-menu li a {
   display: block;
@@ -4477,7 +4607,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   display: block;
   font-size: 1.4em;
   left: 100%;
-  margin-left: 3px;
+  margin-left: -10px;
   top: 8px;
   -webkit-transform: rotate(90deg);
   -moz-transform: rotate(90deg);
@@ -4654,7 +4784,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 400;
   font-size: 11pt;
   letter-spacing: 0.01em;
-  line-height: 14pt;
+  line-height: 13pt;
   font-smooth: always;
   color: #000000;
   display: block;
@@ -4809,7 +4939,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 300;
   font-size: 11pt;
   letter-spacing: 0.02em;
-  line-height: 20px;
+  line-height: 14pt;
   font-smooth: always;
   height: auto;
   min-height: 70px;
@@ -4859,6 +4989,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 400;
   font-size: 9pt;
   font-smooth: always;
+  line-height: 11pt;
   color: #000000;
   color: #ffffff;
   line-height: 16px;
@@ -5030,7 +5161,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 200;
   font-size: 20pt;
   letter-spacing: 0.01em;
-  line-height: 24pt;
+  line-height: 22pt;
   font-smooth: always;
   font-size: 12pt;
   margin-top: 5px;
@@ -5052,6 +5183,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 300;
   font-size: 8pt;
   font-smooth: always;
+  line-height: 10pt;
   margin-top: -5px;
   line-height: 16px;
 }
@@ -5164,7 +5296,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 300;
   font-size: 11pt;
   letter-spacing: 0.02em;
-  line-height: 20px;
+  line-height: 14pt;
   font-smooth: always;
   margin: 0 10px 10px 0;
   overflow: hidden;
@@ -5186,6 +5318,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 400;
   font-size: 9pt;
   font-smooth: always;
+  line-height: 11pt;
   color: #000000;
   color: #ffffff;
   line-height: 16px;
@@ -5232,6 +5365,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 400;
   font-size: 9pt;
   font-smooth: always;
+  line-height: 11pt;
   color: #000000;
   color: #ffffff;
   line-height: 16px;
@@ -5353,7 +5487,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 600;
   font-size: 11pt;
   letter-spacing: 0.01em;
-  line-height: 14pt;
+  line-height: 13pt;
   font-smooth: always;
   padding-top: 3px;
 }
@@ -5412,6 +5546,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 400;
   font-size: 9pt;
   font-smooth: always;
+  line-height: 11pt;
   color: #ffffff;
 }
 .metrouicss .tile .brand > .name:hover,
@@ -5453,6 +5588,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 400;
   font-size: 9pt;
   font-smooth: always;
+  line-height: 11pt;
   color: #000000;
   color: #ffffff;
   line-height: 14px;
@@ -5918,7 +6054,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 300;
   font-size: 11pt;
   letter-spacing: 0.02em;
-  line-height: 20px;
+  line-height: 14pt;
   font-smooth: always;
   margin-right: 10px;
   margin-bottom: 10px;
@@ -5936,7 +6072,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 300;
   font-size: 11pt;
   letter-spacing: 0.02em;
-  line-height: 20px;
+  line-height: 14pt;
   font-smooth: always;
   color: #cfcfcf;
   position: absolute;
@@ -5950,6 +6086,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 400;
   font-size: 9pt;
   font-smooth: always;
+  line-height: 11pt;
   font-size: 14px;
   display: inline-block;
   padding: 4px 12px;
@@ -6203,7 +6340,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 200;
   font-size: 20pt;
   letter-spacing: 0.01em;
-  line-height: 24pt;
+  line-height: 22pt;
   font-smooth: always;
   font-family: Tahoma, Arial, sans-serif;
   line-height: 18pt;
@@ -6220,16 +6357,17 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 }
 .metrouicss .card .small-suit:after {
   top: 5px;
-  left: 10px;
+  left: 13px;
   position: absolute;
 }
 .metrouicss .card .small-suit:before {
-  top: 28px;
+  top: 22px;
   left: 10px;
   position: absolute;
 }
 .metrouicss .card .suit:after {
   position: relative;
+  bottom: 10px;
 }
 .metrouicss .red {
   color: red;
@@ -6293,44 +6431,56 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   color: black;
 }
 .metrouicss .card.spades .small-suit:before {
-  content: "\2660";
+  font-family: iconFont;
+  content: "\e009";
   color: black;
 }
 .metrouicss .card.spades .suit:after {
-  content: "\2660";
+  font-size: 40pt;
+  font-family: iconFont;
+  content: "\e009";
   color: black;
 }
 .metrouicss .card.clubs .small-suit:after {
   color: black;
 }
 .metrouicss .card.clubs .small-suit:before {
-  content: "\2663";
+  font-family: iconFont;
+  content: "\e00a";
   color: black;
 }
 .metrouicss .card.clubs .suit:after {
-  content: "\2663";
+  font-size: 40pt;
+  font-family: iconFont;
+  content: "\e00a";
   color: black;
 }
 .metrouicss .card.diamonds .small-suit:after {
   color: red;
 }
 .metrouicss .card.diamonds .small-suit:before {
-  content: "\2666";
+  font-family: iconFont;
+  content: "\e00b";
   color: red;
 }
 .metrouicss .card.diamonds .suit:after {
-  content: "\2666";
+  font-size: 40pt;
+  font-family: iconFont;
+  content: "\e00b";
   color: red;
 }
 .metrouicss .card.hearts .small-suit:after {
   color: red;
 }
 .metrouicss .card.hearts .small-suit:before {
-  content: "\2665";
+  font-family: iconFont;
+  content: "\e07f";
   color: red;
 }
 .metrouicss .card.hearts .suit:after {
-  content: "\2665";
+  font-size: 40pt;
+  font-family: iconFont;
+  content: "\e07f";
   color: red;
 }
 .metrouicss code,
@@ -6340,7 +6490,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 300;
   font-size: 11pt;
   letter-spacing: 0.02em;
-  line-height: 20px;
+  line-height: 14pt;
   font-smooth: always;
   font-size: 10pt;
   color: #525252;
@@ -6351,6 +6501,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 400;
   font-size: 9pt;
   font-smooth: always;
+  line-height: 11pt;
   color: #d14;
   background-color: #f7f7f9;
   border: 1px #e1e1e8 solid;
@@ -6442,7 +6593,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 400;
   font-size: 11pt;
   letter-spacing: 0.01em;
-  line-height: 14pt;
+  line-height: 13pt;
   font-smooth: always;
   cursor: pointer;
   outline: 0;
@@ -6504,7 +6655,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 400;
   font-size: 11pt;
   letter-spacing: 0.01em;
-  line-height: 14pt;
+  line-height: 13pt;
   font-smooth: always;
 }
 .metrouicss .accordion > li > div {
@@ -6899,7 +7050,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 200;
   font-size: 20pt;
   letter-spacing: 0.01em;
-  line-height: 24pt;
+  line-height: 22pt;
   font-smooth: always;
   width: auto;
   height: 35px;
@@ -6922,6 +7073,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 400;
   font-size: 9pt;
   font-smooth: always;
+  line-height: 11pt;
   font-size: 14px;
   display: inline-block;
   padding: 4px 12px;
@@ -7054,7 +7206,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 300;
   font-size: 11pt;
   letter-spacing: 0.02em;
-  line-height: 20px;
+  line-height: 14pt;
   font-smooth: always;
 }
 .metrouicss .dialog .action {
