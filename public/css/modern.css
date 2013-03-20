@@ -5280,11 +5280,11 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   position: absolute;
   width: 64px;
   height: 64px;
-  top: 40%;
+  top: 30%;
   left: 50%;
   margin-left: -32px;
   font-size: 64px;
-  -webkit-margin-before: -14px;
+  -webkit-margin-before: -6px;
 }
 .metrouicss .tile.image > .tile-content,
 .metrouicss .tile.image-slider > .tile-content {
