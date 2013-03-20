@@ -23,7 +23,7 @@ $('.slider').data('value')
 
 (function($) {
 
-    var pluginName = 'slider',
+    var pluginName = 'Slider',
         initAllSelector = '[data-role=slider], .slider',
         paramKeys = ['InitValue', 'Accuracy'];
 

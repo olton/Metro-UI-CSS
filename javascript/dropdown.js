@@ -23,6 +23,13 @@
                 $(this).parents("ul").css("overflow", "visible");
 
                 var $m = $(this).children(".dropdown-menu, .sidebar-dropdown-menu");
+                $(this).parents("ul").children(".dropdown").children(".dropdown-menu, .sidebar-dropdown-menu").each(function(){
+                    if(!$(this).hasClass("keepOpened") && !$m.hasClass("keepOpened")) {
+                        $(this).slideUp('fast');
+                        $(this).parents("li").removeClass("active");
+                    }
+                });
+                
                 if ($m.css('display') == "block") {
                     $m.slideUp('fast');
                     $(this).removeClass("active");

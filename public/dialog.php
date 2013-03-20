@@ -14,6 +14,8 @@
                 <button id="staticDialog">Static dialog</button>
                 <button id="draggableDialog">Draggable dialog</button>
                 <button id="positionedDialog">Positioned dialog</button>
+                <button id="keepDialog">Keep opened dialog</button>
+                <!--button id="setupDialog">Setup dialog</button-->
                 <script type="text/javascript" src="js/modern/dialog.js"></script>
                 <script type="text/javascript">
                     $(document).ready(function(){
@@ -23,10 +25,10 @@
                                 'content'    : 'This content can be in HTML.<br />You can add custom function to your buttons!<br /><br /><b>Features:</b><ul><li>Easy to use!</li><li>Customizable</li><li>Powerful!</li></ul>',
                                 'buttons'    : {
                                     'Ok'    : {
-                                        'action': function(){}
+                                        'action': function() {}
                                     },
                                     'Cancel'     : {
-                                        'action': function(){}
+                                        'action': function() {}
                                     }
                                 }
                             });
@@ -39,7 +41,7 @@
                                 'buttonsAlign': 'right',
                                 'buttons'    : {
                                     'Ok'    : {
-                                        'action': function(){}
+                                        'action': function() {}
                                     }
                                 }
                             });
@@ -55,17 +57,47 @@
                                 },
                                 'buttons'    : {
                                     'Ok'    : {
-                                        'action': function(){}
+                                        'action': function() {}
                                     },
                                     'Retry'     : {
-                                        'action': function(){}
+                                        'action': function() {}
                                     },
                                     'Cancel'     : {
-                                        'action': function(){}
+                                        'action': function() {}
                                     }
                                 }
                             });
                         });
+                        $('#keepDialog').click(function(e) {
+                            $.Dialog({
+                                'title'      : 'My opened dialog',
+                                'content'    : 'This content can be in HTML.<br />You can add custom function to your buttons!<br /><br /><b>Features:</b><ul><li>Easy to use!</li><li>Customizable</li><li>Powerful!</li></ul>',
+                                'draggable'  : true,
+                                'keepOpened' : true,
+                                'closeButton': true,
+                                'buttonsAlign': 'right',
+                                'buttons'    : {
+                                    'Ok'    : {
+                                        'action': function() {}
+                                    }
+                                }
+                            });
+                        });
+                        /*$('#setupDialog').click(function(e) {
+                            $.Dialog({
+                                'title'      : 'Step 1 - Dialog',
+                                'content'    : 'This content is the first step.<br /><br /><b>Steps:</b><ol><li>Customize</li><li>Check</li><li>Install!</li></ol>',
+                                'draggable'  : true,
+                                'keepOpened' : true,
+                                'closeButton': true,
+                                'buttonsAlign': 'right',
+                                'buttons'    : {
+                                    'Next'    : {
+                                        'action': function() {}
+                                    }
+                                }
+                            });
+                        });*/
                     });
                 </script>
                 <h2>Component usage</h2>
@@ -79,6 +111,7 @@
             'overlay'     : true,
             'closeButton' : true,
             'buttonsAlign': 'right',
+            'keepOpened'  : true,
             'position'    : {
                 'zone'    : 'right'
             },
@@ -101,8 +134,9 @@
                     <li><b>overlay</b> - Set the overlay of the page (false will only remove the effect, not the div), available: <i>true, false</i> (default: true)</li>
                     <li><b>closeButton</b> - Enable or disable the close button, available: <i>true, false</i> (default: false)</li>
                     <li><b>buttonsAlign</b> - Align of the buttons, available: <i>left, center, right</i> (default: center)</li>
+                    <li><b>keepOpened</b> - Keep the window opened after buttons click, available: <i>true, false</i> (default: false)</li>
                     <li>
-                    <b>buttons</b> - Set buttons in the action bar (JSON format)
+                        <b>buttons</b> - Set buttons in the action bar (JSON format)
                         <ul class="unstyled" style="margin-left: 20px;">
                         <li>
                             <b>name</b> - Text of the button (JSON format)
@@ -112,7 +146,7 @@
                         </ul>
                     </li>
                     <li>
-                    <b>position</b> - Set the initial position of the dialog box (JSON format)
+                        <b>position</b> - Set the initial position of the dialog box (JSON format)
                         <ul class="unstyled" style="margin-left: 20px;">
                             <li><b>zone</b> - Zone of the dialog box, available: <i>left, center, right</i> (default: center)</li>
                             <li><b>offsetY</b> - Top offset pixels</li>
@@ -120,10 +154,17 @@
                         </ul>
                     </li>
                 </ul>
+                <h2>API</h2>
+                <ul class="unstyled">
+                    <li><b>$.Dialog.content</b> - Getter or setter for the content of opened dialog (HTML format)</li>
+                    <li><b>$.Dialog.title</b> - Getter or setter for the title of opened dialog (HTML format)</li>
+                    <li><b>$.Dialog.buttons</b> - Setter for the buttons of opened dialog (JSON Format)</li>
+                    <li><b>$.Dialog.close</b> - Close, if any, current dialog box</li>
+                </ul>
                 <h2>Javascript</h2>
                 <p>Include in head <code>dialog.js</code></p>
             </div>
         </div>
     </div>
 
-<? include("footer.php")?>
+<?php include("footer.php")?>
