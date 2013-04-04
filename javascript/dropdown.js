@@ -18,6 +18,7 @@
             selectors.on('click', function(e){
                 //e.stopPropagation();
                 //$("[data-role=dropdown]").removeClass("active");
+            	if($(e.originalEvent.target).parent().is("[data-role]")) e.stopPropagation();
 
                 clearDropdown();
                 $(this).parents("ul").css("overflow", "visible");
