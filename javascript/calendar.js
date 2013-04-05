@@ -446,7 +446,11 @@
             dateSelected(null, null, $calendar.data('date'));
 
             $input.on('focus', showCalendar);
-            $button.on('click', showCalendar);
+            $button.on('click', function(event) {
+                // When inside a FORM tag, make sure it doesn't trigger submit process
+                event.preventDefault();
+                showCalendar(event);
+                });
             $element.on('mousedown', function(event){
                 event.stopPropagation();
             });
