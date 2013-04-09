@@ -16,8 +16,9 @@
 
         var initSelectors = function(selectors){
             selectors.on('click', function(e){
-                e.stopPropagation();
+                //e.stopPropagation();
                 //$("[data-role=dropdown]").removeClass("active");
+            	if($(e.originalEvent.target).parent().is("[data-role]")) e.stopPropagation();
 
                 clearDropdown();
                 $(this).parents("ul").css("overflow", "visible");
@@ -34,7 +35,8 @@
                 //$(this).children(".dropdown-menu").hide();
             });
             $('html').on("click", function(e){
-                clearDropdown();
+            	if($(e.originalEvent.target).parents('[data-role="dropdown"]').length == 0)
+            		clearDropdown();
             });
         }
 
