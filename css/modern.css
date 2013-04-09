@@ -3132,6 +3132,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   top: 0;
   left: 0;
   right: 0;
+  z-index: 10000;
 }
 .metrouicss .page.fixed-header .page-region {
   padding-top: 140px;
