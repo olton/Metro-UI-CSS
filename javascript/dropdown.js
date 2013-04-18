@@ -36,7 +36,7 @@
                 //$(this).children(".dropdown-menu").hide();
             });
             $('html').on("click", function(e){
-            	if($(e.originalEvent.target).parents('[data-role="dropdown"]').length == 0)
+            	if(e.originalEvent && $(e.originalEvent.target).parents('[data-role="dropdown"]').length == 0)
             		clearDropdown();
             });
         };
