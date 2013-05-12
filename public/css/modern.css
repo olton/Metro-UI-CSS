@@ -7293,3 +7293,9 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 .metrouicss .datepicker {
   position: relative;
 }
+.metrouicss .separator {
+  height:3px;
+  width:auto;
+  background-color:#0000CD;
+  opacity:0.1;
+}
