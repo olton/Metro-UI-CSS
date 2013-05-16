@@ -14,7 +14,7 @@
 	left: 40%;
 	min-width: 150px;
 	min-height: 155px;
-	z-index: 1000;
+	z-index: 1002;
 	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 
 	.header 
@@ -48,6 +48,13 @@
             [class^="icon-"], [class*=" icon-"] {
                 font-size: 11px;
             }
+
+            i
+			{
+				position: absolute;
+				left: 5px;
+				top: 6px;
+			}
         }
     }
 
@@ -67,6 +74,7 @@
 		bottom: 0;
 		width: auto;
 		height: 40px;
+		padding: 0 10px;
 		font-size: 18px;
 		text-align: center;
 		white-space: nowrap;
@@ -75,6 +83,16 @@
 		border-left: 1px solid rgba(0, 0, 0, 0.2);
 		border-right: 1px solid rgba(0, 0, 0, 0.2);
 		border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+
+		button
+		{
+			margin: 0 10px 0 0;
+		}
+
+		button:last-child
+		{
+			margin: 0;
+		}
 	}
 }
 
@@ -86,5 +104,5 @@
 	top: 0;
 	left: 0;
 	background-color: rgba(235, 235, 235, 0.5);
-	z-index: 1;
+	z-index: 1002;
 }

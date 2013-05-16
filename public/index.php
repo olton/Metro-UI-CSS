@@ -1,4 +1,4 @@
-<? include("header.php")?>
+<?php include("header.php")?>
 
 <div class="page" id="page-index">
     <div class="page-region">
@@ -111,7 +111,7 @@
                     </div>
                     <div class="span4">
                         <div class="image-container bg-color-lighten" style="width: 100%">
-                            <div style="height: 200px; overflow: hidden"></div>
+                            <div style="height: 200px; overflow: hidden"><img src="images/vbface.jpg" /></div>
                             <div class="overlay">
                                 <div class="padding10 fg-color-grayDark tertiary-text">Valerio Battaglia - Ticino, Switzerland. Team member. CSS/LESS, HTML, Javascript.</div>
                             </div>
@@ -209,4 +209,4 @@
     </div>
 </div>
 
-<? include("footer.php")?>
+<?php include("footer.php")?>
