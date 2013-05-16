@@ -7230,7 +7230,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   top: 0;
   left: 0;
   background-color: rgba(235, 235, 235, 0.5);
-  z-index: 1;
+  z-index: 9999;
 }
 .metrouicss .calendar {
   background-color: #ffffff !important;
