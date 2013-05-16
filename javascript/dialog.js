@@ -137,6 +137,7 @@
             buttons.eq(i++).click(function(){
                 // Calling function and hide the dialog   
 
+                //Get button return value
                 var result = obj.action();
                 if (result != false){
                     $.Dialog.hide();
