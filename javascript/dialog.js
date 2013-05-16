@@ -137,9 +137,11 @@
             buttons.eq(i++).click(function(){
                 // Calling function and hide the dialog   
 
-                obj.action();
-                $.Dialog.hide();
-                return false;
+                var result = obj.action();
+                if (result != false){
+                    $.Dialog.hide();
+                    return false;
+                }
             });
         });
     }
