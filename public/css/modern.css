@@ -1549,7 +1549,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-size: 32px;
   line-height: 32px;
   height: 32px;
-  margin: 0 !important;
+  margin: 10px 0 0 0 !important;
 }
 .metrouicss .icon-home:before {
   content: "\e000";
@@ -3866,6 +3866,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   display: block;
   font-weight: 400;
   color: #666;
+  background: transparent !important;
 }
 .metrouicss .shortcut > .badge {
   position: absolute;
