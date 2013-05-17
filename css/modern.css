@@ -4364,6 +4364,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 .metrouicss .grid .row {
   width: 100%;
   *zoom: 1;
+  clear: both;
 }
 .metrouicss .grid .row:before,
 .metrouicss .grid .row:after {
