@@ -97,7 +97,7 @@
                         <div class="image-container bg-color-lighten" style="width: 100%">
                             <div style="height: 200px; overflow: hidden"><img src="images/spface.jpg" /></div>
                             <div class="overlay">
-                                <div class="padding10 fg-color-grayDark tertiary-text">Sergey Pimenov - Kiev, Ukraine. Author, project owner, team leader. CSS/LESS, HTML, Javascript.</div>
+                                <div class="padding10 fg-color-grayDark tertiary-text">Sergey Pimenov (left) - Kiev, Ukraine. Author, team leader. CSS/LESS, HTML, Javascript.</div>
                             </div>
                         </div>
                     </div>
@@ -105,7 +105,7 @@
                         <div class="image-container bg-color-lighten" style="width: 100%">
                             <div style="height: 200px; overflow: hidden"><img src="images/svface.jpg" /></div>
                             <div class="overlay">
-                                <div class="padding10 fg-color-grayDark tertiary-text">Sergey Volkov - Voljskiy, Russia. Team member. Javascript lead.</div>
+                                <div class="padding10 fg-color-grayDark tertiary-text">Sergey Volkov - Voljskiy, Russia. Team member. Javascript leader.</div>
                             </div>
                         </div>
                     </div>

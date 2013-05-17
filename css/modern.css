@@ -1549,7 +1549,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-size: 32px;
   line-height: 32px;
   height: 32px;
-  margin: 0 !important;
+  margin: 10px 0 0 0 !important;
 }
 .metrouicss .icon-home:before {
   content: "\e000";
@@ -3132,6 +3132,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   top: 0;
   left: 0;
   right: 0;
+  z-index: 10000;
 }
 .metrouicss .page.fixed-header .page-region {
   padding-top: 140px;
@@ -3311,10 +3312,11 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 .metrouicss button.mini,
 .metrouicss .button.mini,
 .metrouicss .tool-button.mini {
-  min-height: 24px;
-  min-width: 24px;
-  height: 26px;
-  font-size: .8em;
+  min-height: 20px;
+  min-width: 20px;
+  height: 14px;
+  font-size: .75em !important;
+  padding-top: 0px !important;
 }
 .metrouicss button.big,
 .metrouicss .button.big,
@@ -3443,10 +3445,11 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   border: 1px #353535 dotted;
 }
 .metrouicss .tool-button.mini {
-  min-height: 24px;
-  min-width: 24px;
-  height: 26px;
-  font-size: .8em;
+  min-height: 20px;
+  min-width: 20px;
+  height: 14px;
+  font-size: .75em !important;
+  padding-top: 0px !important;
 }
 .metrouicss .tool-button.big {
   min-height: 48px;
@@ -3497,10 +3500,11 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 }
 .metrouicss .toolbar a.mini,
 .metrouicss .toolbar button.mini {
-  min-height: 24px;
-  min-width: 24px;
-  height: 26px;
-  font-size: .8em;
+  min-height: 20px;
+  min-width: 20px;
+  height: 14px;
+  font-size: .75em !important;
+  padding-top: 0px !important;
 }
 .metrouicss .toolbar a.big,
 .metrouicss .toolbar button.big {
@@ -3591,10 +3595,11 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 }
 .metrouicss .toolbar a.mini,
 .metrouicss .toolbar button.mini {
-  min-height: 24px;
-  min-width: 24px;
-  height: 26px;
-  font-size: .8em;
+  min-height: 20px;
+  min-width: 20px;
+  height: 14px;
+  font-size: .75em !important;
+  padding-top: 0px !important;
 }
 .metrouicss .toolbar a.big,
 .metrouicss .toolbar button.big {
@@ -3666,10 +3671,11 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 }
 .metrouicss .toolbar-vertical a.mini,
 .metrouicss .toolbar-vertical button.mini {
-  min-height: 24px;
-  min-width: 24px;
-  height: 26px;
-  font-size: .8em;
+  min-height: 20px;
+  min-width: 20px;
+  height: 14px;
+  font-size: .75em !important;
+  padding-top: 0px !important;
 }
 .metrouicss .toolbar-vertical a.big,
 .metrouicss .toolbar-vertical button.big {
@@ -3760,10 +3766,11 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 }
 .metrouicss .toolbar-vertical a.mini,
 .metrouicss .toolbar-vertical button.mini {
-  min-height: 24px;
-  min-width: 24px;
-  height: 26px;
-  font-size: .8em;
+  min-height: 20px;
+  min-width: 20px;
+  height: 14px;
+  font-size: .75em !important;
+  padding-top: 0px !important;
 }
 .metrouicss .toolbar-vertical a.big,
 .metrouicss .toolbar-vertical button.big {
@@ -3876,6 +3883,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   display: block;
   font-size: 9pt;
   color: #fff;
+  line-height: 11pt;
 }
 .metrouicss a.shortcut {
   padding: 12px 0;
@@ -3933,10 +3941,11 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   margin-right: 1px;
 }
 .metrouicss .pagination > ul li a.mini {
-  min-height: 24px;
-  min-width: 24px;
-  height: 26px;
-  font-size: .8em;
+  min-height: 20px;
+  min-width: 20px;
+  height: 14px;
+  font-size: .75em !important;
+  padding-top: 0px !important;
 }
 .metrouicss .pagination > ul li a.big {
   min-height: 48px;
@@ -4004,10 +4013,11 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   border: 1px #353535 dotted;
 }
 .metrouicss .pagination > ul li a.mini {
-  min-height: 24px;
-  min-width: 24px;
-  height: 26px;
-  font-size: .8em;
+  min-height: 20px;
+  min-width: 20px;
+  height: 14px;
+  font-size: .75em !important;
+  padding-top: 0px !important;
 }
 .metrouicss .pagination > ul li a.big {
   min-height: 48px;
@@ -6208,10 +6218,11 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 .metrouicss input[type=button].mini,
 .metrouicss input[type=reset].mini,
 .metrouicss input[type=submit].mini {
-  min-height: 24px;
-  min-width: 24px;
-  height: 26px;
-  font-size: .8em;
+  min-height: 20px;
+  min-width: 20px;
+  height: 14px;
+  font-size: .75em !important;
+  padding-top: 0px !important;
 }
 .metrouicss input[type=button].big,
 .metrouicss input[type=reset].big,
@@ -7106,10 +7117,11 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   min-width: 24px;
 }
 .metrouicss .dialog .header button.mini {
-  min-height: 24px;
-  min-width: 24px;
-  height: 26px;
-  font-size: .8em;
+  min-height: 20px;
+  min-width: 20px;
+  height: 14px;
+  font-size: .75em !important;
+  padding-top: 0px !important;
 }
 .metrouicss .dialog .header button.big {
   min-height: 48px;
@@ -7177,10 +7189,11 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   border: 1px #353535 dotted;
 }
 .metrouicss .dialog .header button.mini {
-  min-height: 24px;
-  min-width: 24px;
-  height: 26px;
-  font-size: .8em;
+  min-height: 20px;
+  min-width: 20px;
+  height: 14px;
+  font-size: .75em !important;
+  padding-top: 0px !important;
 }
 .metrouicss .dialog .header button.big {
   min-height: 48px;

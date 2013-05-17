@@ -156,10 +156,10 @@
                 </ul>
                 <h2>API</h2>
                 <ul class="unstyled">
-                    <li><b>$.Dialog.content</b> - Getter or setter for the content of opened dialog (HTML format)</li>
-                    <li><b>$.Dialog.title</b> - Getter or setter for the title of opened dialog (HTML format)</li>
-                    <li><b>$.Dialog.buttons</b> - Setter for the buttons of opened dialog (JSON Format)</li>
-                    <li><b>$.Dialog.close</b> - Close, if any, current dialog box</li>
+                    <li><b>$.Dialog.content()</b> - Getter or setter for the content of opened dialog (HTML format)</li>
+                    <li><b>$.Dialog.title()</b> - Getter or setter for the title of opened dialog (HTML format)</li>
+                    <li><b>$.Dialog.buttons()</b> - Setter for the buttons of opened dialog (JSON Format)</li>
+                    <li><b>$.Dialog.close()</b> - Close, if any, current dialog box</li>
                 </ul>
                 <h2>Javascript</h2>
                 <p>Include in head <code>dialog.js</code></p>

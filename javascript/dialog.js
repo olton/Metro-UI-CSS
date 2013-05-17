@@ -19,10 +19,10 @@
  *          offsetX - Left offset pixels
  *      
  *  API:
- *      $.Dialog.content - Getter or setter for the content of opened dialog (HTML format)
- *      $.Dialog.title - Getter or setter for the title of opened dialog (HTML format)
- *      $.Dialog.buttons - Setter for the buttons of opened dialog (JSON Format)
- *      $.Dialog.close - Close, if any, current dialog box
+ *      $.Dialog.content() - Getter or setter for the content of opened dialog (HTML format)
+ *      $.Dialog.title() - Getter or setter for the title of opened dialog (HTML format)
+ *      $.Dialog.buttons() - Setter for the buttons of opened dialog (JSON Format)
+ *      $.Dialog.close() - Close, if any, current dialog box
  *
  *   Goal for next versions:
  *      Add style param to set custom css to the dialog box controls
