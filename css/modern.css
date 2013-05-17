@@ -7301,10 +7301,6 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
     text-align: center;
 }
 
-    .metrouicss .pagelist .pageItem {
-        text-align: center;
-    }
-
     .metrouicss .pagelist .pagePrevious,
     .metrouicss .pagelist .pageNext,
     .metrouicss .pagelist .pageContent,
@@ -7317,7 +7313,6 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
         }
 
         .metrouicss .pagelist .pageJump div {
-            display: block;
             float: left;
             top: 22px;
             position: relative;
