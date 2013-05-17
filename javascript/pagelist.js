@@ -50,7 +50,7 @@
             this.pageMoreTemplate = '<span>...</span>';
             //Jump Template
             //Must have id="pageGoValue", id="pageGo"
-            this.pageJumpTemplate = '<div class="input-control number"><input type="text" id="pageGoValue" /></div><div><button class="tool-button" id="pageGo"></button><div>';
+            this.pageJumpTemplate = '<input type="text" id="pageGoValue" /><button class="tool-button" id="pageGo"></button>';
             //Ajax target , example : '#content'
             this.ajax = null;
             //Ajax success execute function
@@ -204,9 +204,9 @@
         }
         nextContent.append(next);
         if (jumpContent != null) {
-            var jump = $(pagelist.pageJumpTemplate);
-            var pageGoValue = jump.find("#pageGoValue");
-            var pageGo = jump.find("#pageGo");
+            jumpContent.html(pagelist.pageJumpTemplate);
+            var pageGoValue = jumpContent.find("#pageGoValue");
+            var pageGo = jumpContent.find("#pageGo");
             pageGo.html(pagelist.text.go);
             pageGo.click(function () {
                 var result = pagelist.navigateTo(pageGoValue.val());
@@ -231,7 +231,6 @@
                     });
                 }
             });
-            jumpContent.append(jump);
         }
     }
 
