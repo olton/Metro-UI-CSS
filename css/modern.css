@@ -4364,6 +4364,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 .metrouicss .grid .row {
   width: 100%;
   *zoom: 1;
+  clear: both;
 }
 .metrouicss .grid .row:before,
 .metrouicss .grid .row:after {
@@ -7294,3 +7295,46 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 .metrouicss .datepicker {
   position: relative;
 }
+
+.metrouicss .pagelist {
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+    .metrouicss .pagelist .pagePrevious,
+    .metrouicss .pagelist .pageNext,
+    .metrouicss .pagelist .pageContent,
+    .metrouicss .pagelist .pageJump {
+        display: inline-block;
+    }
+
+        .metrouicss .pagelist .pageJump .input-control {
+            width: 32px;
+        }
+
+        .metrouicss .pagelist .pageJump div {
+            float: left;
+            top: 22px;
+            position: relative;
+        }
+
+        .metrouicss .pagelist .pageContent a {
+            padding-top: 4px;
+        }
+
+    .metrouicss .pagelist .pagePrevious {
+        text-align: right;
+    }
+
+    .metrouicss .pagelist .pageNext {
+        text-align: left;
+    }
+
+    .metrouicss .pagelist a {
+        margin: 4px;
+        cursor: pointer;
+    }
+
+    .metrouicss .pagelist .pagecurrent {
+        font-weight: bold;
+    }
