@@ -7308,14 +7308,16 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
         display: inline-block;
     }
 
-        .metrouicss .pagelist .pageJump .input-control {
+        .metrouicss .pagelist .pageJump input {
             width: 32px;
+            height: 32px;
+            top: 1px;
+            position: relative;
+            border: 1px #bababa solid;
         }
 
-        .metrouicss .pagelist .pageJump div {
-            float: left;
-            top: 22px;
-            position: relative;
+        .metrouicss .pagelist .pageJump #pageGo {
+            margin: 0px;
         }
 
         .metrouicss .pagelist .pageContent a {
