@@ -33,4 +33,4 @@
 </head>
 <body class="metrouicss" onload="prettyPrint()">
 
-<? include("navigation.php")?>
+<?php include("navigation.php")?>

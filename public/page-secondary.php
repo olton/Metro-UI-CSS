@@ -1,4 +1,4 @@
-<? include("header.php")?>
+<?php include("header.php")?>
 
 <div class="page secondary">
     <? include("header.php")?>
@@ -16,4 +16,4 @@
     </div>
 </div>
 
-<? include("footer.php")?>
+<?php include("footer.php")?>

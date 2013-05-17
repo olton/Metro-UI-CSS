@@ -1,4 +1,4 @@
-<? include("header.php")?>
+<?php include("header.php")?>
 
     <div class="page secondary">
         <div class="page-header">
@@ -140,6 +140,11 @@
             &lt;img /&gt;
         &lt;/div&gt;
     &lt;/div&gt;
+    &lt;div class="tile icon"&gt;
+        &lt;div class="tile-content"&gt;
+            &lt;i class="icon-"&gt;&lt;i/&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
     ------------
     &lt;div class="tile image-set"&gt;
         &lt;div class="tile-content"&gt;
@@ -169,6 +174,54 @@
         &lt;/div&gt;
     &lt;/div&gt;
 </pre>
+                            <div class="grid">
+                                <div class="clearfix">
+                                    <div class="tile icon">
+                                        <div class="tile-content">
+                                            <img src="images/armor.png" />
+                                        </div>
+                                        <div class="brand bg-color-red">
+                                            <p class="text">Subclass .icon</p>
+                                        </div>
+                                    </div>
+                                    <div class="tile double image">
+                                        <div class="tile-content">
+                                            <img src="images/5.jpg" alt="" />
+                                        </div>
+                                        <div class="brand bg-color-red">
+                                            <p class="text">Subclass .image</p>
+                                        </div>
+                                    </div>
+                                    <div class="tile double image-set">
+                                        <div class="tile-content">
+                                            <img src="images/1.jpg" alt="">
+                                        </div>
+                                        <div class="tile-content">
+                                            <img src="images/2.jpg" alt="">
+                                        </div>
+                                        <div class="tile-content">
+                                            <img src="images/3.jpg" alt="">
+                                        </div>
+                                        <div class="tile-content">
+                                            <img src="images/4.jpg" alt="">
+                                        </div>
+                                        <div class="tile-content">
+                                            <img src="images/5.jpg" alt="">
+                                        </div>
+                                        <div class="brand bg-color-red">
+                                            <p class="text">Subclass .image-set</p>
+                                        </div>
+                                    </div>
+                                    <div class="tile icon">
+                                        <div class="tile-content">
+                                            <i class="icon-calculate"></i>
+                                        </div>
+                                        <div class="brand bg-color-red">
+                                            <p class="text">Tag &lt;i /&gt;</p>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <h2 id="tile-slider-plugin">Tile Slider Plugin</h2>
                                 <p>
                                     For use <code>tile-slider</code> you mus include <code>tile-slider.js</code> in head of you page and add attribute <code>data-role="tile-slider"</code> to tile object.
@@ -266,7 +319,7 @@
                                         <img class="icon" src="images/Mail128.png"/>
                                     </div>
                                 </div>
-
+                                </div>
                             </div>
                             <p>
                                 The default value of params:
@@ -559,7 +612,7 @@
                 <br />
                 <div class="grid">
                     <div class="row">
-                        <? include("adsense.php")?>
+                        <?php include("adsense.php")?>
                     </div>
                 </div>
 
@@ -567,4 +620,4 @@
         </div>
     </div>
 
-<? include("footer.php")?>
+<?php include("footer.php")?>
