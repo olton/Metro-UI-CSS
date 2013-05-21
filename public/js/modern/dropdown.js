@@ -12,17 +12,26 @@
                 $(this).slideUp('fast', function(){});
                 $(this).parent().removeClass("active");
             });
-        }
+        };
 
         var initSelectors = function(selectors){
-            selectors.on('click', function(e){
-                e.stopPropagation();
+        	selectors.off("click.dropdown");
+            selectors.on('click.dropdown', function(e){
+                //e.stopPropagation();
                 //$("[data-role=dropdown]").removeClass("active");
+            	if($(e.originalEvent.target).parent().is("[data-role]")) e.stopPropagation();
 
                 clearDropdown();
                 $(this).parents("ul").css("overflow", "visible");
 
                 var $m = $(this).children(".dropdown-menu, .sidebar-dropdown-menu");
+                $(this).parents("ul").children(".dropdown").children(".dropdown-menu, .sidebar-dropdown-menu").each(function(){
+                    if(!$(this).hasClass("keep-opened") && !$m.hasClass("keep-opened")) {
+                        $(this).slideUp('fast');
+                        $(this).parents("li").removeClass("active");
+                    }
+                });
+                
                 if ($m.css('display') == "block") {
                     $m.slideUp('fast');
                     $(this).removeClass("active");
@@ -34,24 +43,25 @@
                 //$(this).children(".dropdown-menu").hide();
             });
             $('html').on("click", function(e){
-                clearDropdown();
+            	if(e.originalEvent && $(e.originalEvent.target).parents('[data-role="dropdown"]').length == 0)
+            		clearDropdown();
             });
-        }
+        };
 
         return this.each(function(){
             if ( options ) {
-                $.extend(defaults, options)
+                $.extend(defaults, options);
             }
 
             initSelectors($this);
         });
-    }
+    };
 
     $(function () {
         $('[data-role="dropdown"]').each(function () {
             $(this).Dropdown();
-        })
-    })
+        });
+    });
 })(window.jQuery);
 
 
@@ -76,20 +86,20 @@
                 }
                 //$(this).toggleClass("active");
             });
-        }
+        };
 
         return this.each(function(){
             if ( options ) {
-                $.extend(defaults, options)
+                $.extend(defaults, options);
             }
 
             initSelectors($this);
         });
-    }
+    };
 
     $(function () {
         $('.pull-menu, .menu-pull').each(function () {
             $(this).PullDown();
-        })
-    })
+        });
+    });
 })(window.jQuery);

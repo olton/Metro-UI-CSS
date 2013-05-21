@@ -65,11 +65,14 @@ button, .button {
     color: #353535;
     margin-right: 10px;
     margin-bottom: 10px;
-    border-raduis: 0;
+    border-radius: 0;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
     cursor: pointer;
-    width: auto;
-
-    .clearfix;
+    padding: 4px 10px;
+    position: relative;
+    outline: none;
 
     &.standart {
         min-width: 90px;
@@ -77,6 +80,8 @@ button, .button {
     }
 
     &:active, &.default:active {
+        background: inherit;
+        color: inherit;
         top: 1px;
         left: 1px;
     }
@@ -92,6 +97,10 @@ button, .button {
         color: #fff;
     }
 
+    &:hover, &.default:hover {
+        color: inherit;
+    }
+
     &:focus {
         outline: 0;
         border: 1px #353535 dotted;
@@ -105,6 +114,9 @@ a.button {
     }
     &.big {
         padding: 14px 10px;
+    }
+    &.disabled:hover {
+        color: #bebebe;
     }
 }
 
@@ -172,7 +184,9 @@ button, .button, .tool-button {
     img {
         width: 16px;
         height: 16px;
+        position: absolute;
         top: 8px;
+        left: 8px;
     }
 }
 
@@ -286,6 +300,7 @@ button, .button, .tool-button {
     & > .icon {
         margin-top: .25em;
         margin-bottom: .25em;
+        font-size: 32px;
         color: #888;
         display: block;
         float: none;

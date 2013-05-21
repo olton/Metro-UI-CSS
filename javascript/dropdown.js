@@ -25,6 +25,13 @@
                 $(this).parents("ul").css("overflow", "visible");
 
                 var $m = $(this).children(".dropdown-menu, .sidebar-dropdown-menu");
+                $(this).parents("ul").children(".dropdown").children(".dropdown-menu, .sidebar-dropdown-menu").each(function(){
+                    if(!$(this).hasClass("keep-opened") && !$m.hasClass("keep-opened")) {
+                        $(this).slideUp('fast');
+                        $(this).parents("li").removeClass("active");
+                    }
+                });
+                
                 if ($m.css('display') == "block") {
                     $m.slideUp('fast');
                     $(this).removeClass("active");
@@ -95,4 +102,8 @@
             $(this).PullDown();
         });
     });
+<<<<<<< HEAD
 })(window.jQuery);
+=======
+})(window.jQuery);
+>>>>>>> 9b40cc7219d06ae3243a298144a9cf73d2b5a9a8
