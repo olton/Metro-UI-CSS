@@ -1,0 +1,762 @@
+<html xmlns="http://www.w3.org/1999/html">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="description" content="Modern UI CSS">
+    <meta name="author" content="Sergey Pimenov">
+    <meta name="keywords" content="windows 8, modern style, modern ui, style, modern, css, framework">
+    <link href="css/modern.css" rel="stylesheet">
+    <link href="css/theme-dark.css" rel="stylesheet">
+    <link href="css/modern-responsive.css" rel="stylesheet">
+    <script type="text/javascript" src="http://www.google-analytics.com/ga.js"></script>
+    <script src="js/assets/jquery-1.9.0.min.js"></script>
+    <script src="js/assets/google-analytics.js"></script>
+    <script src="js/assets/jquery.mousewheel.min.js"></script>
+    <script src="js/assets/github.info.js"></script>
+    <script src="js/modern/tile-slider.js"></script>
+    <script src="js/modern/start-menu.js"></script>
+    <script src="js/modern/tile-drag.js"></script>
+    <title>Search</title>
+    <style type="text/css">
+      body {
+        background: #1d1d1d;
+      }
+      #search {
+        position:fixed;
+        top:5%;
+        left:75%; 
+      }
+      </style>
+  </head>
+  <body class="metrouicss bg-color-blue" style="overflow-y:auto;overflow-x:scroll;width:315%;">
+    <div class="page" style="width: 4936px;">
+      <div class="page-header">
+        <div class="page-header-content">
+          <h1 style="left: 20px;" class="fg-color-white">Search</h1>
+          <div class="input-control text span5" id="search">
+            <input type="text" placeholder="Enter search phrase...">
+            <button class="btn-search"></button>
+          </div>
+        </div>
+      </div>
+      <div class="page-region fg-color-white">
+        <div class="page-region-content" style="padding-left: 40px;">
+          <div style="float:left;">
+            <div class="span4" style="float:left;">
+              <h1 style="color:#00BFFF;">
+                  0-9
+               </h1>
+              <div class="separator"></div>
+              <div class="results fg-color-white">
+                <ol>
+                  <li>first item</li>
+                  <li>
+                    
+                        second item     
+                        
+                    <ul>
+                      <li>second item first subitem</li>
+                      <li>second item second subitem</li>
+                      <li>second item third subitem</li>
+                    </ul>
+                  </li>
+                  <li>third item</li>
+                </ol>
+              </div>
+            </div>
+            <!-------------------------------->
+            <div class="span4">
+              <h1 style="color:#00BFFF;">
+                  A
+               </h1>
+              <div class="separator"></div>
+              <div class="results fg-color-white">
+                <ol>
+                  <li>first item</li>
+                  <li>
+                    
+                        second item     
+                        
+                    <ul>
+                      <li>second item first subitem</li>
+                      <li>second item second subitem</li>
+                      <li>second item third subitem</li>
+                    </ul>
+                  </li>
+                  <li>third item</li>
+                </ol>
+              </div>
+            </div>
+            <br>
+            <!-------------------------------->
+          </div>
+          <div style="float:left;">
+            <div class="span4" style="float:left;">
+              <h1 style="color:#00BFFF;">
+                  B
+               </h1>
+              <div class="separator"></div>
+              <div class="results fg-color-white">
+                <ol>
+                  <li>first item</li>
+                  <li>
+                    
+                        second item     
+                        
+                    <ul>
+                      <li>second item first subitem</li>
+                      <li>second item second subitem</li>
+                      <li>second item third subitem</li>
+                    </ul>
+                  </li>
+                  <li>third item</li>
+                </ol>
+              </div>
+            </div>
+            <!-------------------------------->
+            <div class="span4">
+              <h1 style="color:#00BFFF;">
+                  C
+               </h1>
+              <div class="separator"></div>
+              <div class="results fg-color-white">
+                <ol>
+                  <li>
+                    first item
+                  </li>
+                  <li>
+                    
+                        second item     
+                        
+                    <ul>
+                      <li>second item first subitem</li>
+                      <li>second item second subitem</li>
+                      <li>second item third subitem</li>
+                    </ul>
+                  </li>
+                  <li>third item</li>
+                </ol>
+              </div>
+            </div>
+            <br>
+            <!-------------------------------->
+          </div>
+          <div style="float:left;">
+            <div class="span4" style="float:left;">
+              <h1 style="color:#00BFFF;">
+                  D
+               </h1>
+              <div class="separator"></div>
+              <div class="results fg-color-white">
+                <ol>
+                  <li>first item</li>
+                  <li>
+                    
+                        second item     
+                        
+                    <ul>
+                      <li>second item first subitem</li>
+                      <li>second item second subitem</li>
+                      <li>second item third subitem</li>
+                    </ul>
+                  </li>
+                  <li>third item</li>
+                </ol>
+              </div>
+            </div>
+            <!-------------------------------->
+            <div class="span4">
+              <h1 style="color:#00BFFF;">
+                  E
+               </h1>
+              <div class="separator"></div>
+              <div class="results fg-color-white">
+                <ol>
+                  <li>first item</li>
+                  <li>
+                    
+                        second item     
+                        
+                    <ul>
+                      <li>second item first subitem</li>
+                      <li>second item second subitem</li>
+                      <li>second item third subitem</li>
+                    </ul>
+                  </li>
+                  <li>third item</li>
+                </ol>
+              </div>
+            </div>
+            <br>
+            <!-------------------------------->
+          </div>
+          <div style="float:left;">
+            <div class="span4" style="float:left;">
+              <h1 style="color:#00BFFF;">
+                  F
+               </h1>
+              <div class="separator"></div>
+              <div class="results fg-color-white">
+                <ol>
+                  <li>first item</li>
+                  <li>
+                    
+                        second item     
+                        
+                    <ul>
+                      <li>second item first subitem</li>
+                      <li>second item second subitem</li>
+                      <li>second item third subitem</li>
+                    </ul>
+                  </li>
+                  <li>third item</li>
+                </ol>
+              </div>
+            </div>
+            <!-------------------------------->
+            <div class="span4">
+              <h1 style="color:#00BFFF;">
+                  G
+               </h1>
+              <div class="separator"></div>
+              <div class="results fg-color-white">
+                <ol>
+                  <li>first item</li>
+                  <li>
+                    
+                        second item     
+                        
+                    <ul>
+                      <li>second item first subitem</li>
+                      <li>second item second subitem</li>
+                      <li>second item third subitem</li>
+                    </ul>
+                  </li>
+                  <li>third item</li>
+                </ol>
+              </div>
+            </div>
+            <br>
+            <!-------------------------------->
+          </div>
+          <div style="float:left;">
+            <div class="span4" style="float:left;">
+              <h1 style="color:#00BFFF;">
+                  H
+               </h1>
+              <div class="separator"></div>
+              <div class="results fg-color-white">
+                <ol>
+                  <li>first item</li>
+                  <li>
+                    
+                        second item     
+                        
+                    <ul>
+                      <li>second item first subitem</li>
+                      <li>second item second subitem</li>
+                      <li>second item third subitem</li>
+                    </ul>
+                  </li>
+                  <li>third item</li>
+                </ol>
+              </div>
+            </div>
+            <!-------------------------------->
+            <div class="span4">
+              <h1 style="color:#00BFFF;">
+                  I
+               </h1>
+              <div class="separator"></div>
+              <div class="results fg-color-white">
+                <ol>
+                  <li>first item</li>
+                  <li>
+                    
+                        second item     
+                        
+                    <ul>
+                      <li>second item first subitem</li>
+                      <li>second item second subitem</li>
+                      <li>second item third subitem</li>
+                    </ul>
+                  </li>
+                  <li>third item</li>
+                </ol>
+              </div>
+            </div>
+            <br>
+            <!-------------------------------->
+          </div>
+          <div style="float:left;">
+            <div class="span4" style="float:left;">
+              <h1 style="color:#00BFFF;">
+                  H
+               </h1>
+              <div class="separator"></div>
+              <div class="results fg-color-white">
+                <ol>
+                  <li>first item</li>
+                  <li>
+                    
+                        second item     
+                        
+                    <ul>
+                      <li>second item first subitem</li>
+                      <li>second item second subitem</li>
+                      <li>second item third subitem</li>
+                    </ul>
+                  </li>
+                  <li>third item</li>
+                </ol>
+              </div>
+            </div>
+            <!-------------------------------->
+            <div class="span4">
+              <h1 style="color:#00BFFF;">
+                  I
+               </h1>
+              <div class="separator"></div>
+              <div class="results fg-color-white">
+                <ol>
+                  <li>first item</li>
+                  <li>
+                    
+                        second item     
+                        
+                    <ul>
+                      <li>second item first subitem</li>
+                      <li>second item second subitem</li>
+                      <li>second item third subitem</li>
+                    </ul>
+                  </li>
+                  <li>third item</li>
+                </ol>
+              </div>
+            </div>
+            <br>
+            <!-------------------------------->
+          </div>
+          <div style="float:left;">
+            <div class="span4" style="float:left;">
+              <h1 style="color:#00BFFF;">
+                  J
+               </h1>
+              <div class="separator"></div>
+              <div class="results fg-color-white">
+                <ol>
+                  <li>first item</li>
+                  <li>
+                    
+                        second item     
+                        
+                    <ul>
+                      <li>second item first subitem</li>
+                      <li>second item second subitem</li>
+                      <li>second item third subitem</li>
+                    </ul>
+                  </li>
+                  <li>third item</li>
+                </ol>
+              </div>
+            </div>
+            <!-------------------------------->
+            <div class="span4">
+              <h1 style="color:#00BFFF;">
+                  K
+               </h1>
+              <div class="separator"></div>
+              <div class="results fg-color-white">
+                <ol>
+                  <li>first item</li>
+                  <li>
+                    
+                        second item     
+                        
+                    <ul>
+                      <li>second item first subitem</li>
+                      <li>second item second subitem</li>
+                      <li>second item third subitem</li>
+                    </ul>
+                  </li>
+                  <li>third item</li>
+                </ol>
+              </div>
+            </div>
+            <br>
+            <!-------------------------------->
+          </div>
+          <div style="float:left;">
+            <div class="span4" style="float:left;">
+              <h1 style="color:#00BFFF;">
+                  L
+               </h1>
+              <div class="separator"></div>
+              <div class="results fg-color-white">
+                <ol>
+                  <li>first item</li>
+                  <li>
+                    
+                        second item     
+                        
+                    <ul>
+                      <li>second item first subitem</li>
+                      <li>second item second subitem</li>
+                      <li>second item third subitem</li>
+                    </ul>
+                  </li>
+                  <li>third item</li>
+                </ol>
+              </div>
+            </div>
+            <!-------------------------------->
+            <div class="span4">
+              <h1 style="color:#00BFFF;">
+                  M
+               </h1>
+              <div class="separator"></div>
+              <div class="results fg-color-white">
+                <ol>
+                  <li>first item</li>
+                  <li>
+                    
+                        second item     
+                        
+                    <ul>
+                      <li>second item first subitem</li>
+                      <li>second item second subitem</li>
+                      <li>second item third subitem</li>
+                    </ul>
+                  </li>
+                  <li>third item</li>
+                </ol>
+              </div>
+            </div>
+            <br>
+            <!-------------------------------->
+          </div>
+          <div style="float:left;">
+            <div class="span4" style="float:left;">
+              <h1 style="color:#00BFFF;">
+                  O
+               </h1>
+              <div class="separator"></div>
+              <div class="results fg-color-white">
+                <ol>
+                  <li>first item</li>
+                  <li>
+                    
+                        second item     
+                        
+                    <ul>
+                      <li>second item first subitem</li>
+                      <li>second item second subitem</li>
+                      <li>second item third subitem</li>
+                    </ul>
+                  </li>
+                  <li>third item</li>
+                </ol>
+              </div>
+            </div>
+            <!-------------------------------->
+            <div class="span4">
+              <h1 style="color:#00BFFF;">
+                  P
+               </h1>
+              <div class="separator"></div>
+              <div class="results fg-color-white">
+                <ol>
+                  <li>first item</li>
+                  <li>
+                    
+                        second item     
+                        
+                    <ul>
+                      <li>second item first subitem</li>
+                      <li>second item second subitem</li>
+                      <li>second item third subitem</li>
+                    </ul>
+                  </li>
+                  <li>third item</li>
+                </ol>
+              </div>
+            </div>
+            <br>
+            <!-------------------------------->
+          </div>
+          <div style="float:left;">
+            <div class="span4" style="float:left;">
+              <h1 style="color:#00BFFF;">
+                  Q
+               </h1>
+              <div class="separator"></div>
+              <div class="results fg-color-white">
+                <ol>
+                  <li>first item</li>
+                  <li>
+                    
+                        second item     
+                        
+                    <ul>
+                      <li>second item first subitem</li>
+                      <li>second item second subitem</li>
+                      <li>second item third subitem</li>
+                    </ul>
+                  </li>
+                  <li>third item</li>
+                </ol>
+              </div>
+            </div>
+            <!-------------------------------->
+            <div class="span4">
+              <h1 style="color:#00BFFF;">
+                  R
+               </h1>
+              <div class="separator"></div>
+              <div class="results fg-color-white">
+                <ol>
+                  <li>first item</li>
+                  <li>
+                    
+                        second item     
+                        
+                    <ul>
+                      <li>second item first subitem</li>
+                      <li>second item second subitem</li>
+                      <li>second item third subitem</li>
+                    </ul>
+                  </li>
+                  <li>third item</li>
+                </ol>
+              </div>
+            </div>
+            <br>
+            <!-------------------------------->
+          </div>
+          <div style="float:left;">
+            <div class="span4" style="float:left;">
+              <h1 style="color:#00BFFF;">
+                  S
+               </h1>
+              <div class="separator"></div>
+              <div class="results fg-color-white">
+                <ol>
+                  <li>first item</li>
+                  <li>
+                    
+                        second item     
+                        
+                    <ul>
+                      <li>second item first subitem</li>
+                      <li>second item second subitem</li>
+                      <li>second item third subitem</li>
+                    </ul>
+                  </li>
+                  <li>third item</li>
+                </ol>
+              </div>
+            </div>
+            <!-------------------------------->
+            <div class="span4">
+              <h1 style="color:#00BFFF;">
+                  T
+               </h1>
+              <div class="separator"></div>
+              <div class="results fg-color-white">
+                <ol>
+                  <li>first item</li>
+                  <li>
+                    
+                        second item     
+                        
+                    <ul>
+                      <li>second item first subitem</li>
+                      <li>second item second subitem</li>
+                      <li>second item third subitem</li>
+                    </ul>
+                  </li>
+                  <li>third item</li>
+                </ol>
+              </div>
+            </div>
+            <br>
+            <!-------------------------------->
+          </div>
+          <div style="float:left;">
+            <div class="span4" style="float:left;">
+              <h1 style="color:#00BFFF;">
+                  U
+               </h1>
+              <div class="separator"></div>
+              <div class="results fg-color-white">
+                <ol>
+                  <li>first item</li>
+                  <li>
+                    
+                        second item     
+                        
+                    <ul>
+                      <li>second item first subitem</li>
+                      <li>second item second subitem</li>
+                      <li>second item third subitem</li>
+                    </ul>
+                  </li>
+                  <li>third item</li>
+                </ol>
+              </div>
+            </div>
+            <!-------------------------------->
+            <div class="span4">
+              <h1 style="color:#00BFFF;">
+                  V
+               </h1>
+              <div class="separator"></div>
+              <div class="results fg-color-white">
+                <ol>
+                  <li>first item</li>
+                  <li>
+                    
+                        second item     
+                        
+                    <ul>
+                      <li>second item first subitem</li>
+                      <li>second item second subitem</li>
+                      <li>second item third subitem</li>
+                    </ul>
+                  </li>
+                  <li>third item</li>
+                </ol>
+              </div>
+            </div>
+            <br>
+            <!-------------------------------->
+          </div>
+          <div style="float:left;">
+            <div class="span4" style="float:left;">
+              <h1 style="color:#00BFFF;">
+                  W
+               </h1>
+              <div class="separator"></div>
+              <div class="results fg-color-white">
+                <ol>
+                  <li>first item</li>
+                  <li>
+                    
+                        second item     
+                        
+                    <ul>
+                      <li>second item first subitem</li>
+                      <li>second item second subitem</li>
+                      <li>second item third subitem</li>
+                    </ul>
+                  </li>
+                  <li>third item</li>
+                </ol>
+              </div>
+            </div>
+            <!-------------------------------->
+            <div class="span4">
+              <h1 style="color:#00BFFF;">
+                  X
+               </h1>
+              <div class="separator"></div>
+              <div class="results fg-color-white">
+                <ol>
+                  <li>first item</li>
+                  <li>
+                    
+                        second item     
+                        
+                    <ul>
+                      <li>second item first subitem</li>
+                      <li>second item second subitem</li>
+                      <li>second item third subitem</li>
+                    </ul>
+                  </li>
+                  <li>third item</li>
+                </ol>
+              </div>
+            </div>
+            <br>
+            <!-------------------------------->
+          </div>
+          <div style="float:left;">
+            <div class="span4" style="float:left;">
+              <h1 style="color:#00BFFF;">
+                  Y
+               </h1>
+              <div class="separator"></div>
+              <div class="results fg-color-white">
+                <ol>
+                  <li>first item</li>
+                  <li>
+                    
+                        second item     
+                        
+                    <ul>
+                      <li>second item first subitem</li>
+                      <li>second item second subitem</li>
+                      <li>second item third subitem</li>
+                    </ul>
+                  </li>
+                  <li>third item</li>
+                </ol>
+              </div>
+            </div>
+            <!-------------------------------->
+            <div class="span4">
+              <h1 style="color:#00BFFF;">
+                  Z
+               </h1>
+              <div class="separator"></div>
+              <div class="results fg-color-white">
+                <ol>
+                  <li>first item</li>
+                  <li>
+                    
+                        second item     
+                        
+                    <ul>
+                      <li>second item first subitem</li>
+                      <li>second item second subitem</li>
+                      <li>second item third subitem</li>
+                    </ul>
+                  </li>
+                  <li>third item</li>
+                </ol>
+              </div>
+            </div>
+            <br>
+            <!-------------------------------->
+          </div>
+          <div style="float:left;">
+            <div class="span4" style="float:left;">
+              <h1 style="color:#00BFFF;">
+                  *!%^$%
+               </h1>
+              <div class="separator"></div>
+              <div class="results fg-color-white">
+                <ol>
+                  <li>first item</li>
+                  <li>
+                    
+                        second item     
+                        
+                    <ul>
+                      <li>second item first subitem</li>
+                      <li>second item second subitem</li>
+                      <li>second item third subitem</li>
+                    </ul>
+                  </li>
+                  <li>third item</li>
+                </ol>
+              </div>
+            </div>
+            <br>
+            <!-------------------------------->
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
