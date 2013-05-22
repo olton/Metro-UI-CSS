@@ -1,3 +1,8 @@
+/*
+ * Metro UI CSS
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
+ */
 /*! normalize.css 2012-03-11T12:53 UTC - http://github.com/necolas/normalize.css */
 /* =============================================================================
    HTML5 display definitions
@@ -440,8 +445,29 @@ table {
 }
 .metrouicss {
   /*
+ * Metro UI CSS
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
  *
  * Typography.less
+ *
+ */
+
+  /*
+ * Metro UI CSS
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
+ *
+ * Routines.less
+ *
+ */
+
+  /*
+ * Metro UI CSS
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
+ *
+ * Icons.less
  *
  */
 
@@ -458,16 +484,17 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 
   /*
  * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
  *
- * Variables.less
+ * Colors.less
+ *
  */
 
   /*
  * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
  *
  * Bricks.less
  *
@@ -487,8 +514,26 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 
   /*
  * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
+ *
+ * Layout.less
+ *
+ */
+
+  /*
+ * Metro UI CSS
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
+ *
+ * Butoons.less
+ *
+ */
+
+  /*
+ * Metro UI CSS
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
  *
  * Tables.less
  *
@@ -496,8 +541,8 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 
   /*
  * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
  *
  * Grid.less
  *
@@ -505,8 +550,8 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 
   /*
  * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
  *
  * Hero.less
  *
@@ -514,33 +559,35 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 
   /*
  * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
  *
  * Menus.less
- * dropdown-menu, nav-bar
- */
-
-  /*
- * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
  *
- * Sidebar.less
  */
 
   /*
  * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
+ *
+ * SideBar.less
+ *
+ */
+
+  /*
+ * Metro UI CSS
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
  *
  * Notices.less
+ *
  */
 
   /*
  * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
  *
  * Tiles.less
  *
@@ -548,25 +595,26 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 
   /*
  * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
  *
- * Layout.less
- */
-
-  /*
- * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
- *
- * images.less
+ * Forms.less
  *
  */
 
   /*
  * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
+ *
+ * Images.less
+ *
+ */
+
+  /*
+ * Metro UI CSS
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
  *
  * Cards.less
  *
@@ -574,8 +622,8 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 
   /*
  * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
  *
  * Code.less
  *
@@ -583,8 +631,8 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 
   /*
  * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
  *
  * PageControl.less
  *
@@ -592,62 +640,73 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 
   /*
  * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
  *
  * Accordion.less
- */
-
-  /*
- * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
  *
- * rating.less
  */
 
   /*
  * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
  *
- * Progress.less
+ * Rating.less
+ *
  */
 
   /*
  * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
+ *
+ * ProgressBar.less
+ *
+ */
+
+  /*
+ * Metro UI CSS
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
  *
  * Carousel.less
- * Version: 1.0
  *
  */
 
   /*
  * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
  *
  * ListView.less
- * Version 1.0
+ *
  */
 
   /*
  * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
  *
  * Slider.less
  *
  */
 
   /*
- * Metro UI CSS
+ * Component for Metro UI CSS
  * Copyright 2012 Valerio Battaglia
  * Licensed under the MIT License
  *
  * dialog.less
+ */
+
+  /*
+ * Metro UI CSS
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
+ *
+ * Calendar.less
+ *
  */
 
 }
@@ -707,7 +766,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 200;
   font-size: 20pt;
   letter-spacing: 0.01em;
-  line-height: 24pt;
+  line-height: 22pt;
   font-smooth: always;
 }
 .metrouicss #font .subheader-smaller,
@@ -715,7 +774,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-family: 'Segoe UI Light', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 200;
   letter-spacing: 0.01em;
-  line-height: 24pt;
+  line-height: 18pt;
   font-size: 16pt;
   font-smooth: always;
 }
@@ -725,7 +784,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 600;
   font-size: 11pt;
   letter-spacing: 0.01em;
-  line-height: 14pt;
+  line-height: 13pt;
   font-smooth: always;
 }
 .metrouicss #font .navigation {
@@ -733,7 +792,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 400;
   font-size: 11pt;
   letter-spacing: 0.01em;
-  line-height: 14pt;
+  line-height: 13pt;
   font-smooth: always;
 }
 .metrouicss #font .body,
@@ -743,7 +802,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 300;
   font-size: 11pt;
   letter-spacing: 0.02em;
-  line-height: 20px;
+  line-height: 14pt;
   font-smooth: always;
 }
 .metrouicss #font .link {
@@ -751,6 +810,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 400;
   font-size: 11pt;
   font-smooth: always;
+  line-height: 13pt;
 }
 .metrouicss #font .tertiary,
 .metrouicss #font .tertiary-secondary {
@@ -758,25 +818,28 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 400;
   font-size: 9pt;
   font-smooth: always;
+  line-height: 11pt;
 }
 .metrouicss #font .control {
   font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 9pt;
   font-smooth: always;
+  line-height: 11pt;
 }
 .metrouicss #font .small {
   font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 300;
   font-size: 8pt;
   font-smooth: always;
+  line-height: 10pt;
 }
 .metrouicss #font .long-text {
   font-family: 'PT Serif Caption', sans-serif, serif !important;
   font-weight: 300;
   font-size: 10pt;
   letter-spacing: 0.02em;
-  line-height: 20px;
+  line-height: 12pt;
   font-smooth: always;
 }
 .metrouicss #font .long-text-smaller {
@@ -784,18 +847,20 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 300;
   font-size: 10pt;
   letter-spacing: 0.02em;
-  line-height: 20px;
+  line-height: 12pt;
   font-smooth: always;
   font-size: 9pt;
+  line-height: 11pt;
 }
 .metrouicss #font .long-text-lead {
   font-family: 'PT Serif Caption', sans-serif, serif !important;
   font-weight: 300;
   font-size: 10pt;
   letter-spacing: 0.02em;
-  line-height: 20px;
+  line-height: 12pt;
   font-smooth: always;
   font-size: 20pt;
+  line-height: 22pt;
 }
 .metrouicss #state .header,
 .metrouicss #state .subheader,
@@ -860,6 +925,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 400;
   font-size: 11pt;
   font-smooth: always;
+  line-height: 13pt;
   color: #2e92cf;
   text-decoration: none;
 }
@@ -900,7 +966,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 200;
   font-size: 20pt;
   letter-spacing: 0.01em;
-  line-height: 24pt;
+  line-height: 22pt;
   font-smooth: always;
   color: #000000;
 }
@@ -915,7 +981,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 200;
   font-size: 20pt;
   letter-spacing: 0.01em;
-  line-height: 24pt;
+  line-height: 22pt;
   font-smooth: always;
   color: rgba(0, 0, 0, 0.6);
   font-size: 16pt;
@@ -932,7 +998,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 600;
   font-size: 11pt;
   letter-spacing: 0.01em;
-  line-height: 14pt;
+  line-height: 13pt;
   font-smooth: always;
   color: #000000;
   color: rgba(0, 0, 0, 0.6);
@@ -954,7 +1020,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 600;
   font-size: 11pt;
   letter-spacing: 0.01em;
-  line-height: 14pt;
+  line-height: 13pt;
   font-smooth: always;
   color: rgba(0, 0, 0, 0.6);
   font-size: 90%;
@@ -970,7 +1036,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 600;
   font-size: 11pt;
   letter-spacing: 0.01em;
-  line-height: 14pt;
+  line-height: 13pt;
   font-smooth: always;
   color: rgba(0, 0, 0, 0.6);
   font-size: 80%;
@@ -988,7 +1054,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 300;
   font-size: 11pt;
   letter-spacing: 0.02em;
-  line-height: 20px;
+  line-height: 14pt;
   font-smooth: always;
 }
 .metrouicss p.long-text {
@@ -996,7 +1062,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 300;
   font-size: 10pt;
   letter-spacing: 0.02em;
-  line-height: 20px;
+  line-height: 12pt;
   font-smooth: always;
 }
 .metrouicss p {
@@ -1015,6 +1081,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 400;
   font-size: 9pt;
   font-smooth: always;
+  line-height: 11pt;
   color: #000000;
 }
 .metrouicss .tertiary-info-text:hover,
@@ -1031,6 +1098,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 400;
   font-size: 9pt;
   font-smooth: always;
+  line-height: 11pt;
   color: rgba(0, 0, 0, 0.6);
 }
 .metrouicss .tertiary-info-secondary-text:hover,
@@ -1055,6 +1123,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 300;
   font-size: 11pt;
   letter-spacing: 0.02em;
+  line-height: 14pt;
   font-smooth: always;
   line-height: 20px;
   font-style: normal;
@@ -1132,6 +1201,44 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   margin-left: 0;
   list-style: none;
 }
+.metrouicss .inline-tag,
+.metrouicss .label {
+  display: inline-block;
+  line-height: inherit;
+  font-size: .75em;
+  font-weight: bold;
+  padding: 2px 4px;
+  background-color: #d5e7ec !important;
+  color: #4d4d4d;
+  vertical-align: 3%;
+}
+.metrouicss .inline-tag.success,
+.metrouicss .label.success {
+  background-color: #00a300 !important;
+  color: #ffffff !important;
+}
+.metrouicss .inline-tag.warning,
+.metrouicss .label.warning {
+  background-color: #e3a21a !important;
+  color: #ffffff !important;
+}
+.metrouicss .inline-tag.important,
+.metrouicss .label.important,
+.metrouicss .inline-tag.error,
+.metrouicss .label.error {
+  background-color: #b91d47 !important;
+  color: #ffffff !important;
+}
+.metrouicss .inline-tag.info,
+.metrouicss .label.info {
+  background-color: #2d89ef !important;
+  color: #ffffff !important;
+}
+.metrouicss .inline-tag.inverse,
+.metrouicss .label.inverse {
+  background-color: #1d1d1d !important;
+  color: #ffffff !important;
+}
 .metrouicss .place-left {
   float: left !important;
   margin-right: 10px;
@@ -1194,6 +1301,21 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 }
 .metrouicss .no-display {
   display: none;
+}
+.metrouicss .no-margin {
+  margin: 0;
+}
+.metrouicss .no-padding {
+  padding: 0;
+}
+.metrouicss .no-border {
+  border: 0;
+}
+.metrouicss .no-border-all {
+  border: 0;
+}
+.metrouicss .no-border-all * {
+  border: 0;
 }
 .metrouicss .as-block {
   display: block;
@@ -1427,7 +1549,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-size: 32px;
   line-height: 32px;
   height: 32px;
-  margin: 0 !important;
+  margin: 10px 0 0 0 !important;
 }
 .metrouicss .icon-home:before {
   content: "\e000";
@@ -2943,7 +3065,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 200;
   font-size: 20pt;
   letter-spacing: 0.01em;
-  line-height: 24pt;
+  line-height: 22pt;
   font-smooth: always;
   display: block;
   margin: 0;
@@ -2953,6 +3075,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 400;
   font-size: 9pt;
   font-smooth: always;
+  line-height: 11pt;
   display: block;
   margin: 0;
 }
@@ -3009,6 +3132,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   top: 0;
   left: 0;
   right: 0;
+  z-index: 10000;
 }
 .metrouicss .page.fixed-header .page-region {
   padding-top: 140px;
@@ -3115,11 +3239,10 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 400;
   font-size: 9pt;
   font-smooth: always;
+  line-height: 11pt;
   font-size: 14px;
-  display: inline-block;
   padding: 4px 12px;
   line-height: 20px;
-  text-align: center;
   vertical-align: middle !important;
   min-width: 90px;
   min-height: 32px;
@@ -3129,21 +3252,14 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   color: #353535;
   margin-right: 10px;
   margin-bottom: 10px;
-  border-raduis: 0;
+  border-radius: 0;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
   cursor: pointer;
-  width: auto;
-  *zoom: 1;
-}
-.metrouicss button:before,
-.metrouicss .button:before,
-.metrouicss button:after,
-.metrouicss .button:after {
-  display: table;
-  content: "";
-}
-.metrouicss button:after,
-.metrouicss .button:after {
-  clear: both;
+  padding: 4px 10px;
+  position: relative;
+  outline: none;
 }
 .metrouicss button.standart,
 .metrouicss .button.standart {
@@ -3170,6 +3286,12 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   background-color: #008287;
   color: #fff;
 }
+.metrouicss button:hover,
+.metrouicss .button:hover,
+.metrouicss button.default:hover,
+.metrouicss .button.default:hover {
+  color: inherit;
+}
 .metrouicss button:focus,
 .metrouicss .button:focus {
   outline: 0;
@@ -3181,6 +3303,9 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 }
 .metrouicss a.button.big {
   padding: 14px 10px;
+}
+.metrouicss a.button.disabled:hover {
+  color: #bebebe;
 }
 .metrouicss button.mini,
 .metrouicss .button.mini,
@@ -3218,7 +3343,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 300;
   font-size: 11pt;
   letter-spacing: 0.02em;
-  line-height: 20px;
+  line-height: 14pt;
   font-smooth: always;
 }
 .metrouicss .command-button > small {
@@ -3227,7 +3352,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 300;
   font-size: 11pt;
   letter-spacing: 0.02em;
-  line-height: 20px;
+  line-height: 14pt;
   font-smooth: always;
   font-size: 10pt;
   color: #505050;
@@ -3240,8 +3365,8 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 400;
   font-size: 9pt;
   font-smooth: always;
+  line-height: 11pt;
   font-size: 14px;
-  display: inline-block;
   padding: 4px 12px;
   line-height: 20px;
   vertical-align: middle !important;
@@ -3251,10 +3376,12 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   color: #353535;
   margin-right: 10px;
   margin-bottom: 10px;
-  border-raduis: 0;
+  border-radius: 0;
+  display: inline-block;
+  vertical-align: middle;
   cursor: pointer;
-  width: auto;
-  *zoom: 1;
+  padding: 4px 10px;
+  outline: none;
   min-width: 32px;
   min-height: 32px;
   width: 32px;
@@ -3286,14 +3413,6 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   margin-left: 5px;
   margin-right: auto;
 }
-.metrouicss .tool-button:before,
-.metrouicss .tool-button:after {
-  display: table;
-  content: "";
-}
-.metrouicss .tool-button:after {
-  clear: both;
-}
 .metrouicss .tool-button.standart {
   min-width: 90px;
   min-height: 32px;
@@ -3312,6 +3431,10 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 .metrouicss .tool-button.default {
   background-color: #008287;
   color: #fff;
+}
+.metrouicss .tool-button:hover,
+.metrouicss .tool-button.default:hover {
+  color: inherit;
 }
 .metrouicss .tool-button:focus {
   outline: 0;
@@ -3332,7 +3455,9 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 .metrouicss .tool-button img {
   width: 16px;
   height: 16px;
+  position: absolute;
   top: 8px;
+  left: 8px;
 }
 .metrouicss .toolbar {
   *zoom: 1;
@@ -3343,8 +3468,8 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 400;
   font-size: 9pt;
   font-smooth: always;
+  line-height: 11pt;
   font-size: 14px;
-  display: inline-block;
   padding: 4px 12px;
   line-height: 20px;
   vertical-align: middle !important;
@@ -3354,10 +3479,12 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   color: #353535;
   margin-right: 10px;
   margin-bottom: 10px;
-  border-raduis: 0;
+  border-radius: 0;
+  display: inline-block;
+  vertical-align: middle;
   cursor: pointer;
-  width: auto;
-  *zoom: 1;
+  padding: 4px 10px;
+  outline: none;
   min-width: 32px;
   min-height: 32px;
   width: 32px;
@@ -3424,17 +3551,6 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   margin-left: 5px;
   margin-right: auto;
 }
-.metrouicss .toolbar a:before,
-.metrouicss .toolbar button:before,
-.metrouicss .toolbar a:after,
-.metrouicss .toolbar button:after {
-  display: table;
-  content: "";
-}
-.metrouicss .toolbar a:after,
-.metrouicss .toolbar button:after {
-  clear: both;
-}
 .metrouicss .toolbar a.standart,
 .metrouicss .toolbar button.standart {
   min-width: 90px;
@@ -3460,6 +3576,12 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   background-color: #008287;
   color: #fff;
 }
+.metrouicss .toolbar a:hover,
+.metrouicss .toolbar button:hover,
+.metrouicss .toolbar a.default:hover,
+.metrouicss .toolbar button.default:hover {
+  color: inherit;
+}
 .metrouicss .toolbar a:focus,
 .metrouicss .toolbar button:focus {
   outline: 0;
@@ -3483,7 +3605,9 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 .metrouicss .toolbar button img {
   width: 16px;
   height: 16px;
+  position: absolute;
   top: 8px;
+  left: 8px;
 }
 .metrouicss .toolbar a {
   padding: 5px 0;
@@ -3513,8 +3637,8 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 400;
   font-size: 9pt;
   font-smooth: always;
+  line-height: 11pt;
   font-size: 14px;
-  display: inline-block;
   padding: 4px 12px;
   line-height: 20px;
   vertical-align: middle !important;
@@ -3524,10 +3648,12 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   color: #353535;
   margin-right: 10px;
   margin-bottom: 10px;
-  border-raduis: 0;
+  border-radius: 0;
+  display: inline-block;
+  vertical-align: middle;
   cursor: pointer;
-  width: auto;
-  *zoom: 1;
+  padding: 4px 10px;
+  outline: none;
   min-width: 32px;
   min-height: 32px;
   width: 32px;
@@ -3594,17 +3720,6 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   margin-left: 5px;
   margin-right: auto;
 }
-.metrouicss .toolbar-vertical a:before,
-.metrouicss .toolbar-vertical button:before,
-.metrouicss .toolbar-vertical a:after,
-.metrouicss .toolbar-vertical button:after {
-  display: table;
-  content: "";
-}
-.metrouicss .toolbar-vertical a:after,
-.metrouicss .toolbar-vertical button:after {
-  clear: both;
-}
 .metrouicss .toolbar-vertical a.standart,
 .metrouicss .toolbar-vertical button.standart {
   min-width: 90px;
@@ -3630,6 +3745,12 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   background-color: #008287;
   color: #fff;
 }
+.metrouicss .toolbar-vertical a:hover,
+.metrouicss .toolbar-vertical button:hover,
+.metrouicss .toolbar-vertical a.default:hover,
+.metrouicss .toolbar-vertical button.default:hover {
+  color: inherit;
+}
 .metrouicss .toolbar-vertical a:focus,
 .metrouicss .toolbar-vertical button:focus {
   outline: 0;
@@ -3653,7 +3774,9 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 .metrouicss .toolbar-vertical button img {
   width: 16px;
   height: 16px;
+  position: absolute;
   top: 8px;
+  left: 8px;
 }
 .metrouicss .toolbar-vertical a {
   padding: 5px 0;
@@ -3731,6 +3854,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 .metrouicss .shortcut > .icon {
   margin-top: .25em;
   margin-bottom: .25em;
+  font-size: 32px;
   color: #888;
   display: block;
   float: none;
@@ -3739,6 +3863,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   display: block;
   font-weight: 400;
   color: #666;
+  background: transparent !important;
 }
 .metrouicss .shortcut > .badge {
   position: absolute;
@@ -3751,6 +3876,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   display: block;
   font-size: 9pt;
   color: #fff;
+  line-height: 11pt;
 }
 .metrouicss a.shortcut {
   padding: 12px 0;
@@ -3777,8 +3903,8 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 400;
   font-size: 9pt;
   font-smooth: always;
+  line-height: 11pt;
   font-size: 14px;
-  display: inline-block;
   padding: 4px 12px;
   line-height: 20px;
   vertical-align: middle !important;
@@ -3788,9 +3914,10 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   color: #353535;
   margin-right: 10px;
   margin-bottom: 10px;
-  border-raduis: 0;
-  width: auto;
-  *zoom: 1;
+  border-radius: 0;
+  display: inline-block;
+  padding: 4px 10px;
+  outline: none;
   min-height: 32px;
   width: 32px;
   padding: 0;
@@ -3849,14 +3976,6 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   margin-left: 5px;
   margin-right: auto;
 }
-.metrouicss .pagination > ul li a:before,
-.metrouicss .pagination > ul li a:after {
-  display: table;
-  content: "";
-}
-.metrouicss .pagination > ul li a:after {
-  clear: both;
-}
 .metrouicss .pagination > ul li a.standart {
   min-width: 90px;
   min-height: 32px;
@@ -3875,6 +3994,10 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 .metrouicss .pagination > ul li a.default {
   background-color: #008287;
   color: #fff;
+}
+.metrouicss .pagination > ul li a:hover,
+.metrouicss .pagination > ul li a.default:hover {
+  color: inherit;
 }
 .metrouicss .pagination > ul li a:focus {
   outline: 0;
@@ -3895,7 +4018,9 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 .metrouicss .pagination > ul li a img {
   width: 16px;
   height: 16px;
+  position: absolute;
   top: 8px;
+  left: 8px;
 }
 .metrouicss .pagination > ul li a:hover {
   background-color: #1d1d1d;
@@ -3978,7 +4103,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 400;
   font-size: 11pt;
   letter-spacing: 0.01em;
-  line-height: 14pt;
+  line-height: 13pt;
   font-smooth: always;
   color: rgba(0, 0, 0, 0.6);
   text-align: left;
@@ -4004,7 +4129,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 300;
   font-size: 11pt;
   letter-spacing: 0.02em;
-  line-height: 20px;
+  line-height: 14pt;
   font-smooth: always;
   padding: 3px 10px;
   border-right: 1px #ddd solid;
@@ -4308,7 +4433,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 400;
   font-size: 11pt;
   letter-spacing: 0.01em;
-  line-height: 14pt;
+  line-height: 13pt;
   font-smooth: always;
   color: #000000;
   display: block;
@@ -4402,9 +4527,9 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 .metrouicss .nav-bar .nav-bar-inner > ul.menu > li {
   display: block;
   float: left;
-  margin-right: 10px;
+  margin-right: 5px;
   position: relative;
-  padding: 5px;
+  padding: 5px 15px 5px 5px;
 }
 .metrouicss .nav-bar .nav-bar-inner > ul.menu > li a {
   display: block;
@@ -4415,6 +4540,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 .metrouicss .nav-bar .nav-bar-inner > ul.menu > li ul.dropdown-menu {
   z-index: 1001;
   border: 0;
+  left: 0px;
 }
 .metrouicss .nav-bar .nav-bar-inner > ul.menu > li ul.dropdown-menu li a {
   display: block;
@@ -4477,7 +4603,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   display: block;
   font-size: 1.4em;
   left: 100%;
-  margin-left: 3px;
+  margin-left: -10px;
   top: 8px;
   -webkit-transform: rotate(90deg);
   -moz-transform: rotate(90deg);
@@ -4654,7 +4780,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 400;
   font-size: 11pt;
   letter-spacing: 0.01em;
-  line-height: 14pt;
+  line-height: 13pt;
   font-smooth: always;
   color: #000000;
   display: block;
@@ -4809,7 +4935,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 300;
   font-size: 11pt;
   letter-spacing: 0.02em;
-  line-height: 20px;
+  line-height: 14pt;
   font-smooth: always;
   height: auto;
   min-height: 70px;
@@ -4859,6 +4985,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 400;
   font-size: 9pt;
   font-smooth: always;
+  line-height: 11pt;
   color: #000000;
   color: #ffffff;
   line-height: 16px;
@@ -5030,7 +5157,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 200;
   font-size: 20pt;
   letter-spacing: 0.01em;
-  line-height: 24pt;
+  line-height: 22pt;
   font-smooth: always;
   font-size: 12pt;
   margin-top: 5px;
@@ -5052,6 +5179,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 300;
   font-size: 8pt;
   font-smooth: always;
+  line-height: 10pt;
   margin-top: -5px;
   line-height: 16px;
 }
@@ -5164,10 +5292,22 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 300;
   font-size: 11pt;
   letter-spacing: 0.02em;
-  line-height: 20px;
+  line-height: 14pt;
   font-smooth: always;
   margin: 0 10px 10px 0;
   overflow: hidden;
+}
+.metrouicss .tile .offset1tile {
+  margin-left: 160px;
+}
+.metrouicss .tile .upset1tile {
+  margin-top: -160px;
+}
+.metrouicss .tile .offset1tile {
+  margin-left: 320px;
+}
+.metrouicss .tile .upset1tile {
+  margin-top: -320px;
 }
 .metrouicss .tile * {
   color: #ffffff;
@@ -5186,6 +5326,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 400;
   font-size: 9pt;
   font-smooth: always;
+  line-height: 11pt;
   color: #000000;
   color: #ffffff;
   line-height: 16px;
@@ -5232,6 +5373,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 400;
   font-size: 9pt;
   font-smooth: always;
+  line-height: 11pt;
   color: #000000;
   color: #ffffff;
   line-height: 16px;
@@ -5263,11 +5405,11 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   position: absolute;
   width: 64px;
   height: 64px;
-  top: 50%;
+  top: 30%;
   left: 50%;
   margin-left: -32px;
-  margin-top: -32px;
   font-size: 64px;
+  -webkit-margin-before: -6px;
 }
 .metrouicss .tile.image > .tile-content,
 .metrouicss .tile.image-slider > .tile-content {
@@ -5353,7 +5495,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 600;
   font-size: 11pt;
   letter-spacing: 0.01em;
-  line-height: 14pt;
+  line-height: 13pt;
   font-smooth: always;
   padding-top: 3px;
 }
@@ -5412,6 +5554,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 400;
   font-size: 9pt;
   font-smooth: always;
+  line-height: 11pt;
   color: #ffffff;
 }
 .metrouicss .tile .brand > .name:hover,
@@ -5453,6 +5596,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 400;
   font-size: 9pt;
   font-smooth: always;
+  line-height: 11pt;
   color: #000000;
   color: #ffffff;
   line-height: 14px;
@@ -5918,7 +6062,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 300;
   font-size: 11pt;
   letter-spacing: 0.02em;
-  line-height: 20px;
+  line-height: 14pt;
   font-smooth: always;
   margin-right: 10px;
   margin-bottom: 10px;
@@ -5936,7 +6080,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 300;
   font-size: 11pt;
   letter-spacing: 0.02em;
-  line-height: 20px;
+  line-height: 14pt;
   font-smooth: always;
   color: #cfcfcf;
   position: absolute;
@@ -5950,11 +6094,10 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 400;
   font-size: 9pt;
   font-smooth: always;
+  line-height: 11pt;
   font-size: 14px;
-  display: inline-block;
   padding: 4px 12px;
   line-height: 20px;
-  text-align: center;
   vertical-align: middle !important;
   min-width: 90px;
   min-height: 32px;
@@ -5964,10 +6107,13 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   color: #353535;
   margin-right: 10px;
   margin-bottom: 10px;
-  border-raduis: 0;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
   cursor: pointer;
-  width: auto;
-  *zoom: 1;
+  padding: 4px 10px;
+  position: relative;
+  outline: none;
   border-radius: 0;
 }
 .metrouicss input[type=button] [class^="icon-"],
@@ -6013,20 +6159,6 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   margin-left: 5px;
   margin-right: auto;
 }
-.metrouicss input[type=button]:before,
-.metrouicss input[type=reset]:before,
-.metrouicss input[type=submit]:before,
-.metrouicss input[type=button]:after,
-.metrouicss input[type=reset]:after,
-.metrouicss input[type=submit]:after {
-  display: table;
-  content: "";
-}
-.metrouicss input[type=button]:after,
-.metrouicss input[type=reset]:after,
-.metrouicss input[type=submit]:after {
-  clear: both;
-}
 .metrouicss input[type=button].standart,
 .metrouicss input[type=reset].standart,
 .metrouicss input[type=submit].standart {
@@ -6057,6 +6189,14 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 .metrouicss input[type=submit].default {
   background-color: #008287;
   color: #fff;
+}
+.metrouicss input[type=button]:hover,
+.metrouicss input[type=reset]:hover,
+.metrouicss input[type=submit]:hover,
+.metrouicss input[type=button].default:hover,
+.metrouicss input[type=reset].default:hover,
+.metrouicss input[type=submit].default:hover {
+  color: inherit;
 }
 .metrouicss input[type=button]:focus,
 .metrouicss input[type=reset]:focus,
@@ -6203,7 +6343,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 200;
   font-size: 20pt;
   letter-spacing: 0.01em;
-  line-height: 24pt;
+  line-height: 22pt;
   font-smooth: always;
   font-family: Tahoma, Arial, sans-serif;
   line-height: 18pt;
@@ -6220,16 +6360,17 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 }
 .metrouicss .card .small-suit:after {
   top: 5px;
-  left: 10px;
+  left: 13px;
   position: absolute;
 }
 .metrouicss .card .small-suit:before {
-  top: 28px;
+  top: 22px;
   left: 10px;
   position: absolute;
 }
 .metrouicss .card .suit:after {
   position: relative;
+  bottom: 10px;
 }
 .metrouicss .red {
   color: red;
@@ -6293,44 +6434,56 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   color: black;
 }
 .metrouicss .card.spades .small-suit:before {
-  content: "\2660";
+  font-family: iconFont;
+  content: "\e009";
   color: black;
 }
 .metrouicss .card.spades .suit:after {
-  content: "\2660";
+  font-size: 40pt;
+  font-family: iconFont;
+  content: "\e009";
   color: black;
 }
 .metrouicss .card.clubs .small-suit:after {
   color: black;
 }
 .metrouicss .card.clubs .small-suit:before {
-  content: "\2663";
+  font-family: iconFont;
+  content: "\e00a";
   color: black;
 }
 .metrouicss .card.clubs .suit:after {
-  content: "\2663";
+  font-size: 40pt;
+  font-family: iconFont;
+  content: "\e00a";
   color: black;
 }
 .metrouicss .card.diamonds .small-suit:after {
   color: red;
 }
 .metrouicss .card.diamonds .small-suit:before {
-  content: "\2666";
+  font-family: iconFont;
+  content: "\e00b";
   color: red;
 }
 .metrouicss .card.diamonds .suit:after {
-  content: "\2666";
+  font-size: 40pt;
+  font-family: iconFont;
+  content: "\e00b";
   color: red;
 }
 .metrouicss .card.hearts .small-suit:after {
   color: red;
 }
 .metrouicss .card.hearts .small-suit:before {
-  content: "\2665";
+  font-family: iconFont;
+  content: "\e07f";
   color: red;
 }
 .metrouicss .card.hearts .suit:after {
-  content: "\2665";
+  font-size: 40pt;
+  font-family: iconFont;
+  content: "\e07f";
   color: red;
 }
 .metrouicss code,
@@ -6340,7 +6493,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 300;
   font-size: 11pt;
   letter-spacing: 0.02em;
-  line-height: 20px;
+  line-height: 14pt;
   font-smooth: always;
   font-size: 10pt;
   color: #525252;
@@ -6351,6 +6504,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 400;
   font-size: 9pt;
   font-smooth: always;
+  line-height: 11pt;
   color: #d14;
   background-color: #f7f7f9;
   border: 1px #e1e1e8 solid;
@@ -6442,7 +6596,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 400;
   font-size: 11pt;
   letter-spacing: 0.01em;
-  line-height: 14pt;
+  line-height: 13pt;
   font-smooth: always;
   cursor: pointer;
   outline: 0;
@@ -6504,7 +6658,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 400;
   font-size: 11pt;
   letter-spacing: 0.01em;
-  line-height: 14pt;
+  line-height: 13pt;
   font-smooth: always;
 }
 .metrouicss .accordion > li > div {
@@ -6891,7 +7045,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   left: 40%;
   min-width: 150px;
   min-height: 155px;
-  z-index: 1000;
+  z-index: 1002;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
 .metrouicss .dialog .header {
@@ -6899,7 +7053,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 200;
   font-size: 20pt;
   letter-spacing: 0.01em;
-  line-height: 24pt;
+  line-height: 22pt;
   font-smooth: always;
   width: auto;
   height: 35px;
@@ -6922,8 +7076,8 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 400;
   font-size: 9pt;
   font-smooth: always;
+  line-height: 11pt;
   font-size: 14px;
-  display: inline-block;
   padding: 4px 12px;
   line-height: 20px;
   vertical-align: middle !important;
@@ -6933,10 +7087,12 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   color: #353535;
   margin-right: 10px;
   margin-bottom: 10px;
-  border-raduis: 0;
+  border-radius: 0;
+  display: inline-block;
+  vertical-align: middle;
   cursor: pointer;
-  width: auto;
-  *zoom: 1;
+  padding: 4px 10px;
+  outline: none;
   min-width: 32px;
   min-height: 32px;
   width: 32px;
@@ -6992,14 +7148,6 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   margin-left: 5px;
   margin-right: auto;
 }
-.metrouicss .dialog .header button:before,
-.metrouicss .dialog .header button:after {
-  display: table;
-  content: "";
-}
-.metrouicss .dialog .header button:after {
-  clear: both;
-}
 .metrouicss .dialog .header button.standart {
   min-width: 90px;
   min-height: 32px;
@@ -7018,6 +7166,10 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 .metrouicss .dialog .header button.default {
   background-color: #008287;
   color: #fff;
+}
+.metrouicss .dialog .header button:hover,
+.metrouicss .dialog .header button.default:hover {
+  color: inherit;
 }
 .metrouicss .dialog .header button:focus {
   outline: 0;
@@ -7038,11 +7190,18 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 .metrouicss .dialog .header button img {
   width: 16px;
   height: 16px;
+  position: absolute;
   top: 8px;
+  left: 8px;
 }
 .metrouicss .dialog .header button [class^="icon-"],
 .metrouicss .dialog .header button [class*=" icon-"] {
   font-size: 11px;
+}
+.metrouicss .dialog .header button i {
+  position: absolute;
+  left: 5px;
+  top: 6px;
 }
 .metrouicss .dialog .content {
   min-height: 85px;
@@ -7054,7 +7213,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-weight: 300;
   font-size: 11pt;
   letter-spacing: 0.02em;
-  line-height: 20px;
+  line-height: 14pt;
   font-smooth: always;
 }
 .metrouicss .dialog .action {
@@ -7062,6 +7221,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   bottom: 0;
   width: auto;
   height: 40px;
+  padding: 0 10px;
   font-size: 18px;
   text-align: center;
   white-space: nowrap;
@@ -7071,6 +7231,12 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   border-right: 1px solid rgba(0, 0, 0, 0.2);
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
+.metrouicss .dialog .action button {
+  margin: 0 10px 0 0;
+}
+.metrouicss .dialog .action button:last-child {
+  margin: 0;
+}
 .metrouicss #dialogOverlay {
   width: 100%;
   height: 100%;
@@ -7078,7 +7244,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   top: 0;
   left: 0;
   background-color: rgba(235, 235, 235, 0.5);
-  z-index: 1;
+  z-index: 1002;
 }
 .metrouicss .calendar {
   background-color: #ffffff !important;

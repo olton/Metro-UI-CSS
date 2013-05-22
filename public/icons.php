@@ -1,4 +1,4 @@
-<? include("header.php")?>
+<?php include("header.php")?>
 
     <style>
         #icons-list li {

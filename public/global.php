@@ -1,4 +1,4 @@
-<? include("header.php")?>
+<?php include("header.php")?>
 
     <div class="page secondary">
         <div class="page-header">
@@ -41,6 +41,7 @@
                                 <li style="height: 40px;"><span class="square bg-color-green"></span>*-color-green</li>
                                 <li style="height: 40px;"><span class="square bg-color-greenDark"></span>*-color-greenDark</li>
                                 <li style="height: 40px;"><span class="square bg-color-greenLight"></span>*-color-greenLight</li>
+								<li style="height: 40px;"><span class="square bg-color-magenta"></span>*-color-magenta</li>
                                 <li style="height: 40px;"><span class="square bg-color-pink"></span>*-color-pink</li>
                                 <li style="height: 40px;"><span class="square bg-color-pinkDark"></span>*-color-pinkDark</li>
                             </ul>
@@ -51,6 +52,7 @@
                                 <li style="height: 40px;"><span class="square bg-color-yellow"></span>*-color-yellow</li>
                                 <li style="height: 40px;"><span class="square bg-color-darken"></span>*-color-darken</li>
                                 <li style="height: 40px;"><span class="square bg-color-purple"></span>*-color-purple</li>
+								<li style="height: 40px;"><span class="square bg-color-teal"></span>*-color-teal</li>
                                 <li style="height: 40px;"><span class="square bg-color-blue"></span>*-color-blue</li>
                                 <li style="height: 40px;"><span class="square bg-color-blueDark"></span>*-color-blueDark</li>
                             </ul>
@@ -62,6 +64,7 @@
                                 <li style="height: 40px;"><span class="square bg-color-orange"></span>*-color-orange</li>
                                 <li style="height: 40px;"><span class="square bg-color-orangeDark"></span>*-color-orangeDark</li>
                                 <li style="height: 40px;"><span class="square bg-color-red"></span>*-color-red</li>
+								<li style="height: 40px;"><span class="square bg-color-redLight"></span>*-color-redLight</li>
                                 <li style="height: 40px;"><span class="square bg-color-white"></span>*-color-white</li>
                             </ul>
                         </div>
@@ -137,7 +140,7 @@
 
                 <div class="grid">
                     <div class="row">
-                        <? include("adsense.php")?>
+                        <?php include("adsense.php")?>
                     </div>
                 </div>
 
@@ -146,4 +149,4 @@
     </div>
 
 
-<? include("footer.php")?>
+<?php include("footer.php")?>

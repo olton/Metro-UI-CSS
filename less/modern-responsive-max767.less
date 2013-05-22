@@ -1,9 +1,10 @@
 /*
  * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
  *
- * responsive.less
+ * Responsive-767.less
+ *
  */
 
 /* Landscape phone to portrait tablet */
@@ -217,11 +218,16 @@
 
         &.icon {
             & > .tile-content {
-                img {
+                & > img {
                     width: 48px;
                     height: 48px;
                     margin-left: -24px;
                     margin-top: -24px;
+                }
+
+                & > i {
+                    margin-left: -24px;
+                    font-size: 48px;
                 }
             }
         }
@@ -244,7 +250,7 @@
                 margin: 5px 10px;
             }
 
-            & > .text {
+            & > img ~ .text {
                 left: 40px;
                 right: 40px;
                 font-size: 8pt;

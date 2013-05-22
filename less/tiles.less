@@ -1,7 +1,7 @@
 /*
  * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
  *
  * Tiles.less
  *
@@ -54,6 +54,22 @@
     margin: 0 10px 10px 0;
     overflow: hidden;
 
+
+    .offset1tile {
+        margin-left: @tileSmall + @tileMargin *2;
+    }
+    
+    .upset1tile {
+        margin-top: -1 * (@tileSmall + @tileMargin *2);
+    }
+    
+    .offset1tile {
+        margin-left: @tileDouble + @tileMargin *2;
+    }
+    
+    .upset1tile {
+        margin-top: -1 * (@tileDouble + @tileMargin *2);
+    }
 
     * {
         color: @white;
@@ -121,11 +137,12 @@
                 position: absolute;
                 width: 64px;
                 height: 64px;
-                top: 50%;
+                top: 30%;
                 left: 50%;
                 margin-left: -32px;
-                margin-top: -32px;
+                //margin-top: -32px;
                 font-size: 64px;
+                -webkit-margin-before: -6px; // Workaround for webkit browsers
             }
         }
     }
