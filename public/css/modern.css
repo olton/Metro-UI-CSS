@@ -3270,8 +3270,6 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 .metrouicss .button:active,
 .metrouicss button.default:active,
 .metrouicss .button.default:active {
-  background: inherit;
-  color: inherit;
   top: 1px;
   left: 1px;
 }
@@ -3421,8 +3419,6 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 }
 .metrouicss .tool-button:active,
 .metrouicss .tool-button.default:active {
-  background: inherit;
-  color: inherit;
   top: 1px;
   left: 1px;
 }
@@ -3564,8 +3560,6 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 .metrouicss .toolbar button:active,
 .metrouicss .toolbar a.default:active,
 .metrouicss .toolbar button.default:active {
-  background: inherit;
-  color: inherit;
   top: 1px;
   left: 1px;
 }
@@ -3735,8 +3729,6 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 .metrouicss .toolbar-vertical button:active,
 .metrouicss .toolbar-vertical a.default:active,
 .metrouicss .toolbar-vertical button.default:active {
-  background: inherit;
-  color: inherit;
   top: 1px;
   left: 1px;
 }
@@ -3990,8 +3982,6 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 }
 .metrouicss .pagination > ul li a:active,
 .metrouicss .pagination > ul li a.default:active {
-  background: inherit;
-  color: inherit;
   top: 1px;
   left: 1px;
 }
@@ -6181,8 +6171,6 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 .metrouicss input[type=button].default:active,
 .metrouicss input[type=reset].default:active,
 .metrouicss input[type=submit].default:active {
-  background: inherit;
-  color: inherit;
   top: 1px;
   left: 1px;
 }
@@ -7166,8 +7154,6 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 }
 .metrouicss .dialog .header button:active,
 .metrouicss .dialog .header button.default:active {
-  background: inherit;
-  color: inherit;
   top: 1px;
   left: 1px;
 }
