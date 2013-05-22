@@ -1,3 +1,12 @@
+/*
+ * Metro UI CSS
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
+ *
+ * Routines.less
+ *
+ */
+
 .place-left {float: left !important; margin-right: 10px;}
 .place-right {float: right !important; margin-left: 10px;}
 
@@ -39,7 +48,15 @@
 
 .no-overflow {overflow: hidden;}
 .no-display {display: none;}
-.no-margin {margin: 0 !important;}
+.no-margin {margin: 0;}
+.no-padding {padding: 0;}
+.no-border {border: 0;}
+.no-border-all {
+    border: 0;
+    * {
+        border: 0;
+    }
+}
 .as-block {display: block; float: none !important;}
 .as-inline-block {display: inline-block;}
 

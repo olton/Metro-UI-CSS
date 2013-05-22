@@ -1,7 +1,7 @@
 /*
  * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
  *
  * Cards.less
  *
@@ -40,17 +40,18 @@
     }
     .small-suit:after {
         top: 5px;
-        left: 10px;
+        left: 13px;
         position: absolute;
     }
     .small-suit:before {
-        top: 28px;
+        top: 22px;
         left: 10px;
         position: absolute;
     }
 
     .suit:after {
         position: relative;
+        bottom: 10px;
     }
 }
 
@@ -87,27 +88,32 @@
 // Масти
 
 // Пики
+@spades: "\e009";
+@clubs: "\e00a";
+@diamonds: "\e00b";
+@hearts: "\e07f";
+
 .card.spades {
     .small-suit:after { .black(); }
-    .small-suit:before { content: "\2660"; .black(); }
-    .suit:after { content: "\2660"; .black(); }
+    .small-suit:before {font-family: iconFont; content: @spades; .black(); }
+    .suit:after {font-size: 40pt; font-family: iconFont; content: @spades; .black(); }
 }
 // Трефы
 .card.clubs {
     .small-suit:after { .black(); }
-    .small-suit:before { content: "\2663"; .black(); }
-    .suit:after { content: "\2663"; .black(); }
+    .small-suit:before {font-family: iconFont; content: @clubs; .black(); }
+    .suit:after {font-size: 40pt; font-family: iconFont; content: @clubs; .black(); }
 }
 // Бубны
 .card.diamonds {
     .small-suit:after { .red(); }
-    .small-suit:before { content: "\2666"; .red(); }
-    .suit:after { content: "\2666"; .red();}
+    .small-suit:before {font-family: iconFont; content: @diamonds; .red(); }
+    .suit:after {font-size: 40pt; font-family: iconFont; content: @diamonds; .red();}
 }
 // Червы
 .card.hearts {
     .small-suit:after { .red(); }
-    .small-suit:before { content: "\2665"; .red(); }
-    .suit:after { content: "\2665"; .red(); }
+    .small-suit:before {font-family: iconFont; content: @hearts; .red(); }
+    .suit:after {font-size: 40pt; font-family: iconFont; content: @hearts; .red(); }
 }
 

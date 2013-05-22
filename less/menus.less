@@ -1,10 +1,10 @@
 /*
  * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
  *
  * Menus.less
- * dropdown-menu, nav-bar
+ *
  */
 
 .dropdown-menu {
@@ -117,9 +117,9 @@
             & > li {
                 display: block;
                 float: left;
-                margin-right: 10px;
+                margin-right: 5px;
                 position: relative;
-                padding: 5px;
+                padding: 5px 15px 5px 5px;
 
                 a {
                     display: block;
@@ -128,9 +128,12 @@
                     font-size: 10pt;
                 }
 
+                //&.active {background: #fff; a {color: #000;}}
+
                 ul.dropdown-menu {
                     z-index: 1001;
                     border: 0;
+                    left: 0px;
                     li {
 
                         a {
@@ -167,7 +170,7 @@
                     display: block;
                     font-size: 1.4em;
                     left: 100%;
-                    margin-left: 3px;
+                    margin-left: -10px;
                     top: 8px;
                     .rotate(90deg);
                 }

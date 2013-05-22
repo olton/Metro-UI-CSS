@@ -12,6 +12,13 @@
             ;
 
         var initSelectors = function(selectors){
+            $.each(selectors, function(i, s){
+                if ($(s).parent("li").hasClass("active")) {
+                    var target = $(s).attr("href");
+                    $(target).show();
+                }
+            })
+
             selectors.on('click', function(e){
                 e.preventDefault();
                 var $a = $(this);

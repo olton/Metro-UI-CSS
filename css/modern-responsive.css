@@ -1,16 +1,18 @@
 /*
  * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
  *
- * responsive.less
+ * Responsive.less
+ *
  */
 /*
  * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
  *
- * Variables.less
+ * Colors.less
+ *
  */
 .fg-color-blue {
   color: #2d89ef !important;
@@ -260,10 +262,11 @@
 }
 /*
  * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
  *
- * responsive.less
+ * Responsive-1200.less
+ *
  */
 /* Large desktop */
 @media (min-width: 1200px) {
@@ -279,10 +282,11 @@
 }
 /*
  * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
  *
- * responsive.less
+ * Responsive-979.less
+ *
  */
 /* Portrait tablet to landscape and desktop */
 @media (min-width: 768px) and (max-width: 979px) {
@@ -411,12 +415,21 @@
 }
 /*
  * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
  *
- * responsive.less
+ * Responsive-767.less
+ *
  */
 /* Landscape phone to portrait tablet */
+/*
+ * Metro UI CSS
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
+ *
+ * Routines.less
+ *
+ */
 .place-left {
   float: left !important;
   margin-right: 10px;
@@ -479,6 +492,21 @@
 }
 .no-display {
   display: none;
+}
+.no-margin {
+  margin: 0;
+}
+.no-padding {
+  padding: 0;
+}
+.no-border {
+  border: 0;
+}
+.no-border-all {
+  border: 0;
+}
+.no-border-all * {
+  border: 0;
 }
 .as-block {
   display: block;
@@ -719,11 +747,15 @@
   .metrouicss .tile .tile-content {
     padding: 5px 10px;
   }
-  .metrouicss .tile.icon > .tile-content img {
+  .metrouicss .tile.icon > .tile-content > img {
     width: 48px;
     height: 48px;
     margin-left: -24px;
     margin-top: -24px;
+  }
+  .metrouicss .tile.icon > .tile-content > i {
+    margin-left: -24px;
+    font-size: 48px;
   }
   .metrouicss .tile .brand > .badge,
   .metrouicss .tile .tile-status > .badge {
@@ -742,8 +774,8 @@
     height: 24px;
     margin: 5px 10px;
   }
-  .metrouicss .tile .brand > .text,
-  .metrouicss .tile .tile-status > .text {
+  .metrouicss .tile .brand > img ~ .text,
+  .metrouicss .tile .tile-status > img ~ .text {
     left: 40px;
     right: 40px;
     font-size: 8pt;
@@ -751,10 +783,11 @@
 }
 /*
  * Metro UI CSS
- * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT License
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
  *
- * responsive.less
+ * Responsive-480.less
+ *
  */
 /* Landscape phones and down */
 @media (max-width: 480px) {
@@ -868,5 +901,9 @@
   .metrouicss .tile-group {
     max-width: 400px;
     float: none;
+  }
+  .metrouicss .page.with-sidebar .page-region {
+    margin-left: 0;
+    clear: both;
   }
 }
