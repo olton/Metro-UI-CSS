@@ -157,11 +157,11 @@
             buttons.eq(i++).click(function() {
                 // Calling function and close the dialog   
 
-                obj.action();
-                if(!params.keepOpened) {
+                var result = obj.action();
+                if(!params.keepOpened || result != false) {
                    $.Dialog.close();
+                   return false;
                 }
-                return false;
             });
         });
     }
