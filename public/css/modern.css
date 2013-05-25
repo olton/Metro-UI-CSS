@@ -7299,3 +7299,46 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   background-color:#0000CD;
   opacity:0.1;
 }
+
+.metrouicss .rightbar {
+background-color:#124;
+z-index:1001;
+position:fixed;
+top:0%;
+right:0%;
+bottom:0%;
+width:400px;
+list-style:none;
+}
+.metrouicss .rightbar nav ul div {
+padding-top:8px;
+padding-bottom:8px;
+padding-left:10px;
+width:auto;
+}
+.metrouicss .rightbar nav ul div:hover {
+background-color:rgb(33, 59, 101);
+
+
+}
+.metrouicss .inner-rightbar ul {
+
+margin-left:0 !important;
+}
+.metrouicss .rightbar nav ul div a{
+padding-left:20px;
+color: rgb(255,255,255) !important;
+}
+.metrouicss .rightbar nav ul div {
+margin-top:-8.5px;
+margin-bottom:-8.5px;
+
+}
+
+.metrouicss .rightbar h1 {
+  padding-left:2%;
+}
+.metrouicss .rightbar h2 {
+  padding-left:7%;
+}
+
