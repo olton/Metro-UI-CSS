@@ -7,6 +7,7 @@
 /* =============================================================================
    HTML5 display definitions
    ========================================================================== */
+   
 /*
  * Corrects block display not defined in IE6/7/8/9 & FF3
  */
@@ -474,7 +475,7 @@ table {
   /*************************************** Icons **************************************************/
 
   /*
-Icon Set:	Broccolidry -- http://dribbble.com/shots/587469-Free-16px-Broccolidryiconsaniconsetitisfullof-icons
+Icon Set:   Broccolidry -- http://dribbble.com/shots/587469-Free-16px-Broccolidryiconsaniconsetitisfullof-icons
 License:	Aribitrary -- http://licence.visualidiot.com/
 Icon Set:	Meteocons -- http://www.alessioatzeni.com/meteocons/
 License:	Arbitrary -- http://www.alessioatzeni.com/meteocons/#about
@@ -5827,6 +5828,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 .metrouicss .input-control > input[type=email],
 .metrouicss .input-control > input[type=url],
 .metrouicss .input-control > input[type=phone],
+.metrouicss .input-control > input[type=tel],
 .metrouicss .input-control > input[type=password],
 .metrouicss .input-control > input[type=number],
 .metrouicss .input-control > input[type=time],
@@ -5845,6 +5847,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 .metrouicss .input-control > input[type=email].with-helper,
 .metrouicss .input-control > input[type=url].with-helper,
 .metrouicss .input-control > input[type=phone].with-helper,
+.metrouicss .input-control > input[type=tel].with-helper,
 .metrouicss .input-control > input[type=password].with-helper,
 .metrouicss .input-control > input[type=number].with-helper,
 .metrouicss .input-control > input[type=time].with-helper,
@@ -5856,6 +5859,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 .metrouicss .input-control > input[type=email]:disabled,
 .metrouicss .input-control > input[type=url]:disabled,
 .metrouicss .input-control > input[type=phone]:disabled,
+.metrouicss .input-control > input[type=tel]:disabled,
 .metrouicss .input-control > input[type=password]:disabled,
 .metrouicss .input-control > input[type=number]:disabled,
 .metrouicss .input-control > input[type=time]:disabled,
@@ -5867,6 +5871,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 .metrouicss .input-control > input[type=email]:focus,
 .metrouicss .input-control > input[type=url]:focus,
 .metrouicss .input-control > input[type=phone]:focus,
+.metrouicss .input-control > input[type=tel]:focus,
 .metrouicss .input-control > input[type=password]:focus,
 .metrouicss .input-control > input[type=number]:focus,
 .metrouicss .input-control > input[type=time]:focus,
@@ -5878,6 +5883,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 .metrouicss .input-control > input[type=email]::-ms-clear,
 .metrouicss .input-control > input[type=url]::-ms-clear,
 .metrouicss .input-control > input[type=phone]::-ms-clear,
+.metrouicss .input-control > input[type=tel]::-ms-clear,
 .metrouicss .input-control > input[type=number]::-ms-clear,
 .metrouicss .input-control > input[type=time]::-ms-clear {
   display: none;
@@ -5900,6 +5906,8 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 .metrouicss .input-control.password input[type=email]:not(:focus) ~ [class^="btn-"],
 .metrouicss .input-control.text input[type=phone]:not(:focus) ~ [class^="btn-"],
 .metrouicss .input-control.password input[type=phone]:not(:focus) ~ [class^="btn-"],
+.metrouicss .input-control.text input[type=tel]:not(:focus) ~ [class^="btn-"],
+.metrouicss .input-control.password input[type=tel]:not(:focus) ~ [class^="btn-"],
 .metrouicss .input-control.text input[type=number]:not(:focus) ~ [class^="btn-"],
 .metrouicss .input-control.password input[type=number]:not(:focus) ~ [class^="btn-"],
 .metrouicss .input-control.text input[type=time]:not(:focus) ~ [class^="btn-"],
@@ -5914,6 +5922,8 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 .metrouicss .input-control.password input[type=email]:not(:focus) ~ .helper,
 .metrouicss .input-control.text input[type=phone]:not(:focus) ~ .helper,
 .metrouicss .input-control.password input[type=phone]:not(:focus) ~ .helper,
+.metrouicss .input-control.text input[type=tel]:not(:focus) ~ .helper,
+.metrouicss .input-control.password input[type=tel]:not(:focus) ~ .helper,
 .metrouicss .input-control.text input[type=number]:not(:focus) ~ .helper,
 .metrouicss .input-control.password input[type=number]:not(:focus) ~ .helper,
 .metrouicss .input-control.text input[type=time]:not(:focus) ~ .helper,
@@ -5930,6 +5940,8 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 .metrouicss .input-control.password input[type=email]:focus ~ [class^="btn-"],
 .metrouicss .input-control.text input[type=phone]:focus ~ [class^="btn-"],
 .metrouicss .input-control.password input[type=phone]:focus ~ [class^="btn-"],
+.metrouicss .input-control.text input[type=tel]:focus ~ [class^="btn-"],
+.metrouicss .input-control.password input[type=tel]:focus ~ [class^="btn-"],
 .metrouicss .input-control.text input[type=number]:focus ~ [class^="btn-"],
 .metrouicss .input-control.password input[type=number]:focus ~ [class^="btn-"],
 .metrouicss .input-control.text input[type=time]:focus ~ [class^="btn-"],
@@ -5944,6 +5956,8 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 .metrouicss .input-control.password input[type=email]:focus ~ .helper,
 .metrouicss .input-control.text input[type=phone]:focus ~ .helper,
 .metrouicss .input-control.password input[type=phone]:focus ~ .helper,
+.metrouicss .input-control.text input[type=tel]:focus ~ .helper,
+.metrouicss .input-control.password input[type=tel]:focus ~ .helper,
 .metrouicss .input-control.text input[type=number]:focus ~ .helper,
 .metrouicss .input-control.password input[type=number]:focus ~ .helper,
 .metrouicss .input-control.text input[type=time]:focus ~ .helper,
@@ -5960,6 +5974,8 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 .metrouicss .input-control.password input[type=email]:not(:focus) ~ [class^="btn-"]:active,
 .metrouicss .input-control.text input[type=phone]:not(:focus) ~ [class^="btn-"]:active,
 .metrouicss .input-control.password input[type=phone]:not(:focus) ~ [class^="btn-"]:active,
+.metrouicss .input-control.text input[type=tel]:not(:focus) ~ [class^="btn-"]:active,
+.metrouicss .input-control.password input[type=tel]:not(:focus) ~ [class^="btn-"]:active,
 .metrouicss .input-control.text input[type=number]:not(:focus) ~ [class^="btn-"]:active,
 .metrouicss .input-control.password input[type=number]:not(:focus) ~ [class^="btn-"]:active,
 .metrouicss .input-control.text input[type=time]:not(:focus) ~ [class^="btn-"]:active,
@@ -5974,6 +5990,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 .metrouicss .input-control.password input[type=email]:not(:focus) ~ .helper:active,
 .metrouicss .input-control.text input[type=phone]:not(:focus) ~ .helper:active,
 .metrouicss .input-control.password input[type=phone]:not(:focus) ~ .helper:active,
+.metrouicss .input-control.password input[type=tel]:not(:focus) ~ .helper:active,
 .metrouicss .input-control.text input[type=number]:not(:focus) ~ .helper:active,
 .metrouicss .input-control.password input[type=number]:not(:focus) ~ .helper:active,
 .metrouicss .input-control.text input[type=time]:not(:focus) ~ .helper:active,
@@ -7307,3 +7324,33 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 .metrouicss .datepicker {
   position: relative;
 }
+.contextmenu {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    z-index:1000;
+    position: absolute;
+    background-color:#FFFFFF;
+    border-radius:2px;
+    border: 2.5px solid rgb(42,42,42);
+    padding: 2px;
+}
+.item {
+    background-color:#FFFFFF;
+    padding-right:50px;
+    padding-left:5px;
+    width:auto;
+    padding: 12px;
+    margin:-2px;
+}
+.item:hover {
+    background-color:rgb(222,222,222);
+}
+.item:active {
+    background-color:rgb(0,0,0);
+    color:rgb(255,255,255);
+}
+
