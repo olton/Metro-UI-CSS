@@ -102,8 +102,5 @@
             $(this).PullDown();
         });
     });
-<<<<<<< HEAD
 })(window.jQuery);
-=======
-})(window.jQuery);
->>>>>>> 9b40cc7219d06ae3243a298144a9cf73d2b5a9a8
+
