@@ -157,20 +157,11 @@
             buttons.eq(i++).click(function() {
                 // Calling function and close the dialog   
 
-<<<<<<< HEAD
-                //Get button return value
-                var result = obj.action();
-                if (result != false){
-                    $.Dialog.hide();
-                    return false;
-                }
-=======
                 obj.action();
                 if(!params.keepOpened) {
                    $.Dialog.close();
                 }
                 return false;
->>>>>>> 9b40cc7219d06ae3243a298144a9cf73d2b5a9a8
             });
         });
     }
