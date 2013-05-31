@@ -1,0 +1,53 @@
+/*
+ * Metro UI CSS
+ * (c) 2012-2013 by Sergey Pimenov
+ * Licensed under the MIT License and Commercial
+ *
+ * Pagelist.less
+ *
+ */
+
+.pagelist {
+    padding-bottom: 10px;
+    text-align: center;
+
+    .pagePrevious,
+    .pageNext,
+    .pageContent,
+    .pageJump {
+        display: inline-block;
+
+        input {
+            width: 32px;
+            height: 32px;
+            top: 1px;
+            position: relative;
+            border: 1px #bababa solid;
+        }
+
+        #pageGo {
+            margin: 0px;
+        }
+    }
+
+    .pageContent a {
+        padding-top: 4px;
+    }
+
+    .pagePrevious {
+        text-align: right;
+    }
+
+    .pageNext {
+        text-align: left;
+    }
+
+    a {
+        margin: 4px;
+        cursor: pointer;
+    }
+
+    .pageCurrent {
+        font-weight: bold;
+    }
+}
