@@ -23,7 +23,7 @@
                 </script>
                 <h2>Component usage</h2>
                 <pre class="prettyprint linenums span10">
-                	var page = $("#page").pagelist();
+                    var page = $("#page").pagelist();
                     page.total = 10;  //Total pages
                     page.current = 1;  //Current page
                     page.showcount = 2;  //Default is 2
