@@ -1,6 +1,6 @@
 /*  Author: Kation
  *  Description: Function to create page list.
- *  Version: 0.1
+ *  Version: 0.1.1
  *
  *  Tutorial:
  *      var page = $("#page").pagelist();
@@ -45,7 +45,7 @@
             //Each Page Item Template, 1,2,3,4...
             this.pageItemTemplate = '<a class="tool-button">{page}</a>';
             //Current Page Item Template
-            this.pageCurrentTemplate = '<a class="pagecurrent tool-button">{page}</a>';
+            this.pageCurrentTemplate = '<a class="pageCurrent tool-button">{page}</a>';
             //'...' Template
             this.pageMoreTemplate = '<span>...</span>';
             //Jump Template

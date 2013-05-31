@@ -50,6 +50,7 @@
                     <li><a href="dialog.php">Dialog box</a></li>
                     <li><a href="ajax.php">Ajax reinit</a></li>
                     <li><a href="calendar.php">Calendar</a></li>
+                    <li><a href="pagelist.php">Calendar</a></li>
                     <li class="divider"></li>
                     <li><a href="notices.php">Notices and Replies</a></li>
                     <li class="divider"></li>
