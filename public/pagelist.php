@@ -8,7 +8,7 @@
         </div>
         <div class="page-region">
             <div class="page-region-content">
-  			<div id="pageContent">This is the page of 1</div>
+                <div id="pageContent">This is the page of 1</div>
                 <div id="pageDiv"></div>
                 <script type="text/javascript" src="js/modern/pagelist.js"></script>
                 <script type="text/javascript">
