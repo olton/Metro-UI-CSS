@@ -7310,4 +7310,39 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 .metrouicss .datepicker {
   position: relative;
 }
->>>>>>> d5a744fed11827773116666532f38bab2d7a7a81
+.metrouicss .pagelist {
+  padding-bottom: 10px;
+  text-align: center;
+}
+.metrouicss .pagelist .pagePrevious,
+.metrouicss .pagelist .pageNext,
+.metrouicss .pagelist .pageContent,
+.metrouicss .pagelist .pageJump {
+  display: inline-block;
+}
+.metrouicss .pagelist .pageJump input {
+  width: 32px;
+  height: 32px;
+  top: 1px;
+  position: relative;
+  border: 1px #bababa solid;
+}
+.metrouicss .pagelist .pageJump #pageGo {
+  margin: 0px;
+}
+.metrouicss .pagelist .pageContent a {
+  padding-top: 4px;
+}
+.metrouicss .pagelist .pagePrevious {
+  text-align: right;
+}
+.metrouicss .pagelist .pageNext {
+  text-align: left;
+}
+.metrouicss .pagelist a {
+  margin: 4px;
+  cursor: pointer;
+}
+.metrouicss .pagelist .pageCurrent {
+  font-weight: bold;
+}
