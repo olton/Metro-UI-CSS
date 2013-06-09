@@ -1,196 +1,231 @@
-$.easing.doubleSqrt = function(t, millisecondsSince, startValue, endValue, totalDuration) {
-    var res = Math.sqrt(Math.sqrt(t));
-    return res;
+/**
+ * TileSlider- jQuery plugin for MetroUiCss framework
+ */
+
+$.easing.doubleSqrt = function(t, millisecondsSince, startValue, endValue,
+		totalDuration) {
+	var res = Math.sqrt(Math.sqrt(t));
+	return res;
 };
+var globalSliderErrorLog = '';
 
 (function($) {
+	var pluginName = 'TileSlider', initAllSelector = '[data-role=tile-slider], .block-slider, .tile-slider', paramKeys = [
+			'Period', 'Duration', 'Direction' ];
 
-    $.tileBlockSlider = function(element, options) {
+	$[pluginName] = function(element, options) {
 
-        // настройки по умолчанию
-        var defaults = {
-            // период смены картинок
-            period: 2000,
-            // продолжительность анимации
-            duration: 1000,
-            // направление анимации (up, down, left, right)
-            direction: 'up'
-        };
-        // объект плагина
-        var plugin = this;
-        // настройки конкретного объекта
-        plugin.settings = {};
+		if (!element) {
+			return $()[pluginName]({
+				initAll : true
+			});
+		}
 
-        var $element = $(element), // reference to the jQuery version of DOM element
-            element = element;    // reference to the actual DOM element
+		// default settings
+		// TODO: expose defaults with a $.fn[pluginName].defaults ={} block;
+		var defaults = {
+			// the period for changing images
+			period : 2000,
+			// animation length
+			duration : 1000,
+			// direction of animation (up, down, left, right)
+			direction : 'up'
+		};
+		// object plugin
+		var plugin = this;
+		// plugin settings
+		plugin.settings = {};
 
-        var blocks, // все картинки
-            currentBlockIndex, // индекс текущего блока
-            slideInPosition, // стартовое положение блока перед началом появления
-            slideOutPosition, // финальное положение блока при скрытии
-            tileWidth, // размеры плитки
-            tileHeight;
+		var $element = $(element); // reference to the jQuery version of DOM element
 
-        // инициализируем
-        plugin.init = function () {
+		var blocks, //
+		currentBlockIndex, // the index of the current block
+		slideInPosition, // the start location of the block before the advent 
+		slideOutPosition, // the final location of the block when you hide 
+		tileWidth, // tile dimensions 
+		tileHeight;
 
-            plugin.settings = $.extend({}, defaults, options);
+		// initialize
+		plugin.init = function() {
 
-            // все блоки
-            blocks = $element.children(".tile-content");
+			plugin.settings = $.extend({}, defaults, options);
 
-            // если блок всего 1, то слайдинг не нужен
-            if (blocks.length <= 1) {
-                return;
-            }
+			// all blocks
+			blocks = $element.children(".tile-content");
 
-            // индекс активного в данный момент блока
-            currentBlockIndex = 0;
+			// Do nothing if only single content block
+			if (blocks.length <= 1) {
+				return;
+			}
 
-            // размеры текущей плитки
-            tileWidth = $element.innerWidth();
-            tileHeight = $element.innerHeight();
-            // положение блоков
-            slideInPosition = getSlideInPosition();
-            slideOutPosition = getSlideOutPosition();
+			// the index of the currently active block
+			currentBlockIndex = 0;
 
-            // подготавливаем блоки к анимации
-            blocks.each(function (index, block) {
-                block = $(block);
-                // блоки должны быть position:absolute
-                // возможно этот параметр задан через класс стилей
-                // проверяем, и добавляем если это не так
-                if (block.css('position') !== 'absolute') {
-                    block.css('position', 'absolute');
-                }
-                // скрываем все блоки кроме первого
-                if (index !== 0) {
-                    block.css('left', tileWidth);
-                }
-            });
+			// current tile dimensions
+			tileWidth = $element.innerWidth();
+			tileHeight = $element.innerHeight();
+			// block position
+			slideInPosition = getSlideInPosition();
+			slideOutPosition = getSlideOutPosition();
 
-            // запускаем интервал для смены блоков
-            setInterval(function () {
-                slideBlock();
-            }, plugin.settings.period);
-        };
+			// prepare the block animation
 
-        // смена блоков
-        var slideBlock = function() {
+			blocks.each(function(index, block) {
+				block = $(block);
+				// blocks should be position:absolute
+				// may be specified through style class
+				// check and add if it is not
+				if (block.css('position') !== 'absolute') {
+					block.css('position', 'absolute');
+				}
+				// hide all blocks except the first
+				// TODO: add random start option
+				if (index !== 0) {
+					block.css('left', tileWidth);
+				}
+			});
 
-            var slideOutBlock, // блок который надо скрыть
-                slideInBlock, // блок который надо показать
-                mainPosition = {'left': 0, 'top': 0},
-                options;
+			// Use setInterval to do the period run
+			// TODO: preserve return value of setInterval to handle a clean stop.
+			setInterval(function() {
+				slideBlock();
+			}, plugin.settings.period);
+		};
 
-            slideOutBlock = $(blocks[currentBlockIndex]);
+		// changing blocks
+		var slideBlock = function() {
 
-            currentBlockIndex++;
-            if (currentBlockIndex >= blocks.length) {
-                currentBlockIndex = 0;
-            }
-            slideInBlock = $(blocks[currentBlockIndex]);
+			var slideOutBlock, // the block that you want to hide
+			slideInBlock, // block to show
+			mainPosition = {
+				'left' : 0,
+				'top' : 0
+			}, options;
 
-            slideInBlock.css(slideInPosition);
+			slideOutBlock = $(blocks[currentBlockIndex]);
 
-            options = {
-                duration: plugin.settings.duration,
-                easing: 'doubleSqrt'
-            };
+			currentBlockIndex++;
+			if (currentBlockIndex >= blocks.length) {
+				currentBlockIndex = 0;
+			}
+			slideInBlock = $(blocks[currentBlockIndex]);
 
-            slideOutBlock.animate(slideOutPosition, options);
-            slideInBlock.animate(mainPosition, options);
-        };
+			slideInBlock.css(slideInPosition);
 
-        /**
-         * возвращает стартовую позицию для блока который должен появиться {left: xxx, top: yyy}
-         */
-        var getSlideInPosition = function () {
-            var pos;
-            if (plugin.settings.direction === 'left') {
-                pos = {
-                    'left': tileWidth,
-                    'top': 0
-                }
-            } else if (plugin.settings.direction === 'right') {
-                pos = {
-                    'left': -tileWidth,
-                    'top': 0
-                }
-            } else if (plugin.settings.direction === 'up') {
-                pos = {
-                    'left': 0,
-                    'top': tileHeight
-                }
-            } else if (plugin.settings.direction === 'down') {
-                pos = {
-                    'left': 0,
-                    'top': -tileHeight
-                }
-            }
-            return pos;
-        };
+			options = {
+				duration : plugin.settings.duration,
+				easing : 'doubleSqrt'
+			};
 
-        /**
-         * возвращает финальную позицию для блока который должен скрыться {left: xxx, top: yyy}
-         */
-        var getSlideOutPosition = function () {
-            var pos;
-            if (plugin.settings.direction === 'left') {
-                pos = {
-                    'left': -tileWidth,
-                    'top': 0
-                }
-            } else if (plugin.settings.direction === 'right') {
-                pos = {
-                    'left': tileWidth,
-                    'top': 0
-                }
-            } else if (plugin.settings.direction === 'up') {
-                pos = {
-                    'left': 0,
-                    'top': -tileHeight
-                }
-            } else if (plugin.settings.direction === 'down') {
-                pos = {
-                    'left': 0,
-                    'top': tileHeight
-                }
-            }
-            return pos;
-        };
+			slideOutBlock.animate(slideOutPosition, options);
+			slideInBlock.animate(mainPosition, options);
+		};
 
-        plugin.getParams = function() {
+		// TODO: Consider refactoring the two functions below into one, given that the return values of
+		// each are simply the negative of the twin (given that -0=0)
+		// would seem an opportunity to shrink code size - consider good function name and usage to not
+		// diminish the self-documentation value of the two functions.
 
-            // code goes here
+		/**
+		 * 
+		 * Returns the starting position for the block that you want to appear {left: xxx, top: yyy}
+		 */
+		var getSlideInPosition = function() {
+			var pos;
+			if (plugin.settings.direction === 'left') {
+				pos = {
+					'left' : tileWidth,
+					'top' : 0
+				}
+			} else if (plugin.settings.direction === 'right') {
+				pos = {
+					'left' : -tileWidth,
+					'top' : 0
+				}
+			} else if (plugin.settings.direction === 'up') {
+				pos = {
+					'left' : 0,
+					'top' : tileHeight
+				}
+			} else if (plugin.settings.direction === 'down') {
+				pos = {
+					'left' : 0,
+					'top' : -tileHeight
+				}
+			}
+			return pos;
+		};
 
-        }
+		/**
+		 * 
+		 * Returns the final position for the block to escape {left: xxx, top: yyy}
+		 */
+		var getSlideOutPosition = function() {
+			var pos;
+			if (plugin.settings.direction === 'left') {
+				pos = {
+					'left' : -tileWidth,
+					'top' : 0
+				}
+			} else if (plugin.settings.direction === 'right') {
+				pos = {
+					'left' : tileWidth,
+					'top' : 0
+				}
+			} else if (plugin.settings.direction === 'up') {
+				pos = {
+					'left' : 0,
+					'top' : -tileHeight
+				}
+			} else if (plugin.settings.direction === 'down') {
+				pos = {
+					'left' : 0,
+					'top' : tileHeight
+				}
+			}
+			return pos;
+		};
 
-        plugin.init();
+		plugin.getParams = function() {
 
-    }
+			// code goes here
 
-    $.fn.tileBlockSlider = function(options) {
-        return this.each(function() {
-            if (undefined == $(this).data('tileBlockSlider')) {
-                var plugin = new $.tileBlockSlider(this, options);
-                $(this).data('tileBlockSlider', plugin);
-            }
-        });
-    }
+		};
+
+		plugin.init();
+
+	};
+
+	$.fn[pluginName] = function(options) {
+		var elements = options && options.initAll ? $(initAllSelector) : this;
+		return elements.each(function() {
+			var that = $(this), params = {}, plugin;
+			if (undefined == that.data(pluginName)) {
+				$.each(paramKeys, function(index, key) {
+					// TODO: Look into IE10 issue
+					// added try/catch block as I was seeing "no such method .toLowerCase()" errors in IE10,
+					// although not in Chrome/Win (27.0.1453.94) Safari/Win (5.1.7) or Firefox/Win (21.0)
+					// interestingly, catching and ignoring the exeception has tiles in IE10 behave correctly, but
+					// throwing an "alert" into the catch will result in the tiles not having specified settings
+					// applied - only the defaults.
+					try {
+						params[key[0].toLowerCase() + key.slice(1)] = that
+								.data('param' + key);
+					} catch (e) {
+
+					}
+				});
+				plugin = new $[pluginName](this, params);
+				that.data(pluginName, plugin);
+			}
+		});
+	};
+
+	// autoinit
+	$(function() {
+		$()[pluginName]({
+			initAll : true
+		});
+	});
 
 })(jQuery);
-
-
-$(window).ready(function(){
-    var slidedTiles = $('[data-role=tile-slider], .block-slider, .tile-slider');
-    slidedTiles.each(function (index, tile) {
-        var params = {};
-        tile = $(tile);
-        params.direction = tile.data('paramDirection');
-        params.duration = tile.data('paramDuration');
-        params.period = tile.data('paramPeriod');
-        tile.tileBlockSlider(params);
-    })
-
-});
