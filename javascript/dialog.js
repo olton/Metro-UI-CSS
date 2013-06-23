@@ -41,30 +41,33 @@
         $.Dialog.settings = params;
 
         params = $.extend({ 'position': {'zone': 'center'}, 'overlay': true }, params);
+        
+        var buttonsHTML = '';
 
-        var buttonsHTML = '<div';
-
-        // Buttons position
-        if(params.buttonsAlign)
-        {
-            buttonsHTML += ' style=" float: ' + params.buttonsAlign + ';">';
-        } else {
-            buttonsHTML += '>';
-        }
-
-        $.each(params.buttons, function(name, obj) {
-            // Generating the markup for the buttons
-
-            buttonsHTML += '<button>' + name + '</button>';
-            
-            if(!obj.action) 
+        if (params.buttons) {
+            buttonsHTML += '<div class="action" id="dialogButtons"><div';
+            // Buttons position
+            if(params.buttonsAlign)
             {
-                obj.action = function() {};
+                buttonsHTML += ' style=" float: ' + params.buttonsAlign + ';">';
+            } else {
+                buttonsHTML += '>';
             }
-        });
 
-        buttonsHTML += '</div>';
+            $.each(params.buttons, function(name, obj) {
+                // Generating the markup for the buttons
 
+                buttonsHTML += '<button>' + name + '</button>';
+
+                if(!obj.action)
+                {
+                    obj.action = function() {};
+                }
+            });
+
+            buttonsHTML += '</div></div>';
+        }
+        
         var markup = [
             // If overlay is true, set it
 
@@ -75,9 +78,8 @@
             (params.closeButton)?('<div><button><i class="icon-cancel-2"></i></button></div>'):(''),
             '</div>',
             '<div class="content">', params.content, '</div>',
-            '<div class="action" id="dialogButtons">',
             buttonsHTML,
-            '</div></div></div>'
+            '</div></div>'
         ].join('');
 
         $(markup).hide().appendTo('body').fadeIn();
