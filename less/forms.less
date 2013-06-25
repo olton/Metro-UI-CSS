@@ -15,8 +15,7 @@
 
     &.checkbox {
         display: inline-block;
-        margin-right: 10px;
-        margin-bottom: 10px;
+        .SwapMargin(0, 10px, 10px, 0);
         cursor: pointer;
 
         & > input[type=checkbox] {
@@ -26,7 +25,7 @@
         & > span {}
 
         .helper {
-            padding-left: 23px;
+            .SwapPadding(0px, 0px, 0px, 23px);
             position: relative;
         }
 
@@ -41,7 +40,7 @@
             z-index: 1;
             opacity: 1;
             top: 0;
-            left: 0;
+            .DockItem("left", 0);
         }
 
 
@@ -50,14 +49,13 @@
             display: block;
             content: "\e08a";
             font-size: 10pt;
-            heigth: 14px;
+            height: 14px;
             width: 14px;
             line-height: 14px;
             z-index: 2;
             top: 50%;
-            margin-top: -6px;
-            left: 0;
-            margin-left: 4px;
+            .DockItem("left", 0);
+            .SwapMargin(-6, 0px, 0px, 4px);
             font-family: iconFont;
         }
 
@@ -101,8 +99,8 @@
             z-index: 2 !important;
             font-size: 16px !important;
             font-weight: bold !important;
-            left: 5px !important;
-            margin-left: 0 !important;
+            .DockItem("left", 5px) !important;
+            .MarginLeftOrRight("margin-left",0) !important; 
             top: 50% !important;
             margin-top: -5px !important;
             background-color: #1a1a1a !important;
@@ -119,8 +117,7 @@
 .input-control {
     &.radio {
         display: inline-block;
-        margin-right: 10px;
-        margin-bottom: 10px;
+        .SwapMargin(0px, 0px, 10px, 10px);
         cursor: pointer;
 
         & > input[type=radio] {
@@ -130,7 +127,7 @@
         & > span {}
 
         .helper {
-            padding-left: 23px;
+            .SwapPadding(0px, 0px, 0px, 23px);
             position: relative;
         }
 
@@ -145,7 +142,7 @@
             z-index: 1;
             opacity: 1;
             top: 0;
-            left: 0;
+            .DockItem("left", 0);
             border-radius: 100%;
         }
 
@@ -157,10 +154,9 @@
             z-index: 2;
             font-size: 16px;
             font-weight: bold;
-            left: 5px;
-            margin-left: 0;
+            .DockItem("left", 5px);
+            .SwapMargin(-5px, 0px, 0px, 0px);
             top: 50%;
-            margin-top: -5px;
             background-color: #1a1a1a;
             width: 10px;
             height: 10px;
@@ -198,8 +194,7 @@
 .input-control {
     &.switch {
         display: inline-block;
-        margin-right: 10px;
-        margin-bottom: 10px;
+        .SwapMargin(0px, 10px, 10px, 0px);
         cursor: pointer;
         position: relative;
 
@@ -209,13 +204,13 @@
         }
 
         .helper {
-            padding-left: 52px;
+            .SwapPadding(0px, 0px, 0px, 52px);
             position: relative;
         }
 
         .helper:before {
             position: absolute;
-            left: 0;
+            .DockItem("left", 0);
             top: 2px;
             display: block;
             content: "";
@@ -225,13 +220,13 @@
             border: 1px #fff solid;
             cursor: pointer;
             background: #008287;
-            margin-left: 2px;
+            .SwapMargin(0px, 0px, 0px, 2px);
             z-index: 1;
         }
 
         input[type="checkbox"] ~ .helper:after {
             position: absolute;
-            left: 36px;
+            .DockItem("left", 36px);
             top: 2px;
             display: block;
             content: "";
@@ -245,7 +240,7 @@
         }
 
         input[type="checkbox"]:not(:checked) ~ .helper:after {
-            left: 2px !important;
+            .DockItem("left", 2px) !important;
         }
 
         input[type="checkbox"]:not(:checked) ~ .helper:before {
@@ -277,7 +272,6 @@
 .input-control > input[type=email],
 .input-control > input[type=url],
 .input-control > input[type=phone],
-.input-control > input[type=tel],
 .input-control > input[type=password],
 .input-control > input[type=number],
 .input-control > input[type=time],
@@ -285,17 +279,17 @@
 .input-control > textarea {
     border: 1px #bababa solid;
     width: 100%;
-    padding: 4px 6px 6px 5px;
+    .SwapPadding(4px, 6px, 6px, 5px);
     background-color: #fff;
     outline: 0;
-    margin-right: 32px;
+    .SwapMargin(0px, 32px, 0px, 0px);
     min-height: 32px;
     //-webkit-appearance: none;
     //-moz-appearance: none;
     .pos-rel;
 
     &.with-helper {
-        padding: 4px 32px 6px 5px;
+        .SwapPadding(4px, 32px, 6px, 5px);
     }
     &:disabled {
         background-color: #eaeaea;
@@ -309,7 +303,6 @@
 .input-control > input[type=email]::-ms-clear,
 .input-control > input[type=url]::-ms-clear,
 .input-control > input[type=phone]::-ms-clear,
-.input-control > input[type=tel]::-ms-clear,
 .input-control > input[type=number]::-ms-clear,
 .input-control > input[type=time]::-ms-clear {
     display: none;
@@ -319,11 +312,11 @@
 }
 
 .input-control > select {
-    padding-right: 5px;
+    .SwapPadding(0px, 5px, 0px, 0px);
 }
 
 .input-control > textarea {
-    padding-right: 5px;
+    .SwapPadding(0px, 5px, 0px, 0px);
     min-height: 100px;
 }
 
@@ -333,7 +326,6 @@
         input[type=password]:not(:focus),
         input[type=email]:not(:focus),
         input[type=phone]:not(:focus),
-        input[type=tel]:not(:focus),
         input[type=number]:not(:focus),
         input[type=time]:not(:focus),
         input[type=url]:not(:focus) {
@@ -346,7 +338,6 @@
         input[type=password]:focus,
         input[type=email]:focus,
         input[type=phone]:focus,
-        input[type=tel]:focus,
         input[type=number]:focus,
         input[type=time]:focus,
         input[type=url]:focus {
@@ -360,7 +351,6 @@
         input[type=password]:not(:focus),
         input[type=email]:not(:focus),
         input[type=phone]:not(:focus),
-        input[type=tel]:not(:focus),
         input[type=number]:not(:focus),
         input[type=time]:not(:focus),
         input[type=url]:not(:focus) {
@@ -377,8 +367,7 @@
 }
 
 .input-control {
-    margin-right: 0px;
-    margin-bottom: 10px;
+    .SwapMargin(0px, 0px, 10px, 0px);
     position: relative;
 
     &.text, &.password {
@@ -394,8 +383,8 @@
             cursor: pointer;
             color: #000;
             position: absolute;
-            left: 100%;
-            margin-left: -28px;
+            .DockItem("left", 100%);
+            .SwapMargin(0px, 0px, 0px, -28px);
             display: block;
             border: 1px #fff solid;
 
@@ -405,7 +394,7 @@
                 position: absolute;
                 color: #000 !important;
                 font-family: "iconFont" !important;
-                left: 6px;
+                .DockItem("left", 6px);
                 top: 4px;
             }
 
@@ -450,8 +439,7 @@
 
 label {
     #font > .normal;
-    margin-right: 10px;
-    margin-bottom: 10px;
+    .SwapMargin(0px, 10px, 10px, 0px);
 }
 
 fieldset {
@@ -461,13 +449,13 @@ fieldset {
     padding: 10px;
 
     legend {
-        padding-left: 10px;
-        padding-right: 10px;
+        .PaddingLeftOrRight("padding-left", 10px);
+        .PaddingLeftOrRight("padding-right", 10px);
         #font > .normal;
         color: #cfcfcf;
         .pos-abs;
         top: -25px;
-        left: -10px;
+        .DockItem("left", -10px);
     }
 }
 
@@ -477,7 +465,7 @@ input[type=button], input[type=reset], input[type=submit] {
 }
 
 input[type=submit] {
-    .button.default;
+    //.button.default;
 }
 
 

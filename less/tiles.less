@@ -30,8 +30,8 @@
 
 .tile-group {
     margin: 0;
-    margin-right: @unit * 4;
-    float: left;
+    .MarginLeftOrRight("margin-right", @unit * 4);
+    .FloatItem("left");
     width: auto;
     height: auto;
     min-height: 1px;
@@ -40,7 +40,7 @@
 
 .tile {
     display: block;
-    float: left;
+    .FloatItem("left");
     background-color: @grayDark;
     width: @tileSmall;
     height: @tileSmall;
@@ -51,25 +51,9 @@
     .no-overflow;
     .pos-rel;
     #font > .normal;
-    margin: 0 10px 10px 0;
+    .SwapMargin(0, 10px, 10px, 0);
     overflow: hidden;
 
-
-    .offset1tile {
-        margin-left: @tileSmall + @tileMargin *2;
-    }
-    
-    .upset1tile {
-        margin-top: -1 * (@tileSmall + @tileMargin *2);
-    }
-    
-    .offset1tile {
-        margin-left: @tileDouble + @tileMargin *2;
-    }
-    
-    .upset1tile {
-        margin-top: -1 * (@tileDouble + @tileMargin *2);
-    }
 
     * {
         color: @white;
@@ -128,8 +112,8 @@
                 width: 64px;
                 height: 64px;
                 top: 50%;
-                left: 50%;
-                margin-left: -32px;
+                .DockItem("left", 50%);
+                .MarginLeftOrRight("margin-left", -32px);
                 margin-top: -32px;
             }
  
@@ -137,12 +121,11 @@
                 position: absolute;
                 width: 64px;
                 height: 64px;
-                top: 30%;
-                left: 50%;
-                margin-left: -32px;
-                //margin-top: -32px;
+                top: 50%;
+                .DockItem("left", 50%);
+                .MarginLeftOrRight("margin-left", -32px);
+                margin-top: -32px;
                 font-size: 64px;
-                -webkit-margin-before: -6px; // Workaround for webkit browsers
             }
         }
     }
@@ -166,7 +149,7 @@
             padding: 0;
             width: 25% !important;
             height: 50%;
-            float: left;
+            .FloatItem("left");
             border: 1px #1e1e1e solid;
 
             & > img {
@@ -179,7 +162,7 @@
 
         .tile-content:first-child {
             width: 50% !important;
-            float: left;
+            .FloatItem("left");
             height: 100%;
         }
     }
@@ -207,15 +190,15 @@
     .brand, .tile-status {
         .pos-abs;
         bottom: 0;
-        left: 0;
-        right: 0;
+        .DockItem("left", 0);
+        .DockItem("right", 0);
         min-height: 30px;
         background-color: transparent;
         .clearfix;
 
         & > .badge {
             .bottom-right;
-            right: 5px;
+            .DockItem("right", 5px);
             margin-bottom: 0;
             color: @white;
             width: 34px;
@@ -262,7 +245,7 @@
         & > .name {
             .bottom-left;
             margin-bottom: 5px;
-            margin-left: 15px;
+            .MarginLeftOrRight("margin-left", 15px);
             #font > .tertiary;
 
             color: @white;
@@ -293,15 +276,15 @@
 
         & > img ~ .text {
             .pos-abs;
-            left: 60px;
+            .DockItem("left", 60px);
             width: auto;
         }
 
         & > .text {
             position: relative;
-            left: 8px;
+            .DockItem("left", 8px);
             top: 5px;
-            right: 50px;
+            .DockItem("right", 50px);
             .tertiary-text;
             color: @white;
             line-height: 14px;

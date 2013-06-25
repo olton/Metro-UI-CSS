@@ -1,0 +1,133 @@
+
+@rtl:                                   rtl;
+@ltr:                                   ltr;
+
+// LTR : Left-to-Right
+@direction:                             @ltr;
+
+// RTL : Right-to-Left
+//@direction:                             @rtl;
+
+html {
+    direction: @direction;
+}
+
+body{
+    direction: @direction;
+}
+
+.FloatItem(@value) when (@value = "left") and (@direction = @ltr){
+    float: left;
+}
+
+.FloatItem(@value) when (@value = "right") and (@direction = @ltr){
+    float: right;
+}
+
+.FloatItem(@value) when (@value = "left") and (@direction = @rtl){
+    float: right;
+}
+
+.FloatItem(@value) when (@value = "right") and (@direction = @rtl){
+    float: left;
+}
+
+.TextAlignTo(@value) when (@value = "left") and (@direction = @ltr){
+    text-align: left;
+}
+
+.TextAlignTo(@value) when (@value = "right") and (@direction = @ltr){
+    text-align: right;
+}
+
+.TextAlignTo(@value) when (@value = "left") and (@direction = @rtl){
+    text-align: right;
+}
+
+.TextAlignTo(@value) when (@value = "right") and (@direction = @rtl){
+    text-align: left;
+}
+
+.DockItem(@location, @value) when (@location = "left") and (@direction = @ltr){
+    left: @value;
+}
+
+.DockItem(@location, @value) when (@location = "right") and (@direction = @ltr){
+    right: @value;
+}
+
+.DockItem(@location, @value) when (@location = "left") and (@direction = @rtl){
+    right: @value;
+}
+
+.DockItem(@location, @value) when (@location = "right") and (@direction = @rtl){
+    left: @value;
+}
+
+.SwapMargin(@topMargin, @rightMargin, @bottomMargin, @leftMargin) when (@direction = @ltr){
+    margin: @topMargin @rightMargin @bottomMargin @leftMargin;
+}
+
+.SwapMargin(@topMargin, @rightMargin, @bottomMargin, @leftMargin) when (@direction = @rtl){
+    margin: @topMargin @leftMargin @bottomMargin @rightMargin;
+}
+
+.MarginLeftOrRight(@command, @value) when (@command = "margin-left") and (@direction = @ltr){
+    margin-left: @value;
+}
+
+.MarginLeftOrRight(@command, @value) when (@command = "margin-right") and (@direction = @ltr){
+    margin-right: @value;
+}
+
+.MarginLeftOrRight(@command, @value) when (@command = "margin-left") and (@direction = @rtl){
+    margin-right: @value;
+}
+
+.MarginLeftOrRight(@command, @value) when (@command = "margin-right") and (@direction = @rtl){
+    margin-left: @value;
+}
+
+.SwapPadding(@topPadding, @rightPadding, @bottomPadding, @leftPadding) when (@direction = @ltr){
+    padding: @topPadding @rightPadding @bottomPadding @leftPadding;
+}
+
+.SwapPadding(@topPadding, @rightPadding, @bottomPadding, @leftPadding) when (@direction = @rtl){
+    padding: @topPadding @leftPadding @bottomPadding @rightPadding;
+}
+
+.PaddingLeftOrRight(@command, @value) when (@command = "padding-left") and (@direction = @ltr){
+    padding-left: @value;
+}
+
+.PaddingLeftOrRight(@command, @value) when (@command = "padding-right") and (@direction = @ltr){
+    padding-right: @value;
+}
+
+.PaddingLeftOrRight(@command, @value) when (@command = "padding-left") and (@direction = @rtl){
+    padding-right: @value;
+}
+
+.PaddingLeftOrRight(@command, @value) when (@command = "padding-right") and (@direction = @rtl){
+    padding-left: @value;
+}
+
+.BorderLeftOrRight(@command, @borderSize, @borderColor, @bordertype) when (@command = "border-left") and (@direction = @ltr){
+    border-left: @borderSize @borderColor @bordertype;
+}
+
+.BorderLeftOrRight(@command, @borderSize, @borderColor, @bordertype) when (@command = "border-right") and (@direction = @ltr){
+    border-right: @borderSize @borderColor @bordertype;
+}
+
+.BorderLeftOrRight(@command, @borderSize, @borderColor, @bordertype) when (@command = "border-left") and (@direction = @rtl){
+    border-right: @borderSize @borderColor @bordertype;
+}
+
+.BorderLeftOrRight(@command, @borderSize, @borderColor, @bordertype) when (@command = "border-right") and (@direction = @rtl){
+    border-left: @borderSize @borderColor @bordertype;
+}
+
+/*.RawMethod(@prop, @value) {
+    Ignore: ~"a;@{prop}:@{value}";
+}*/

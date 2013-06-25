@@ -286,7 +286,7 @@ ul {
 }
 
 dd {
-    margin: 0 0 0 40px;
+    .SwapMargin(0, 0, 0, 40px);
 }
 
 /*
@@ -296,7 +296,7 @@ dd {
 menu,
 ol,
 ul {
-    padding: 0 0 0 40px;
+    .SwapPadding(0px, 0px, 0px, 40px);
 }
 
 /*
@@ -379,7 +379,7 @@ legend {
     border: 0; /* 1 */
     padding: 0;
     white-space: normal; /* 2 */
-    *margin-left: -7px; /* 3 */
+    .MarginLeftOrRight("margin-left", -7px); /* 3 */
 }
 
 /*

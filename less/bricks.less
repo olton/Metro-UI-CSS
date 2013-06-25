@@ -8,13 +8,13 @@
  */
 
 .item-margin {
-    margin: 0 @subunit*2 @subunit*2 0;
+    .SwapMargin(0, @subunit*2, @subunit*2, 0);
 }
 .column-margin {
-    margin: 0 @unit @subunit*2 0;
+    .SwapMargin(0, @unit, @subunit*2, 0);
 }
 .group-margin {
-    margin: 0 @unit*4 @subunit*2 0;
+    .SwapMargin(0, @unit*4, @subunit*2, 0);
 }
 
 [class*="-brick"] {
@@ -52,8 +52,8 @@
 
 .square {
     display: block;
-    float: left;
-    margin-right: 10px;
+    .FloatItem("left");
+    .MarginLeftOrRight("margin-right", 10px);
     height: 20px;
     width: 20px;
 }

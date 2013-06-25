@@ -11,10 +11,10 @@
 {
   	position: absolute;
 	top: 40%;
-	left: 40%;
+	.DockItem("left", 40%);
 	min-width: 150px;
 	min-height: 155px;
-	z-index: 1002;
+	z-index: 1000;
 	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 
 	.header 
@@ -48,13 +48,6 @@
             [class^="icon-"], [class*=" icon-"] {
                 font-size: 11px;
             }
-
-            i
-			{
-				position: absolute;
-				left: 5px;
-				top: 6px;
-			}
         }
     }
 
@@ -63,8 +56,8 @@
 		min-height: 85px;
 		padding: 20px;
 		background-color: #FFFFFF;
-		border-left: 1px solid rgba(0, 0, 0, 0.2);
-		border-right: 1px solid rgba(0, 0, 0, 0.2);
+		.BorderLeftOrRight("border-left", 1px, rgba(0, 0, 0, 0.2), solid);
+		.BorderLeftOrRight("border-right", 1px, rgba(0, 0, 0, 0.2), solid);
         #font > .normal;
 	}
 
@@ -74,25 +67,14 @@
 		bottom: 0;
 		width: auto;
 		height: 40px;
-		padding: 0 10px;
 		font-size: 18px;
 		text-align: center;
 		white-space: nowrap;
 		overflow: hidden;
 		background-color: #FFFFFF;
-		border-left: 1px solid rgba(0, 0, 0, 0.2);
-		border-right: 1px solid rgba(0, 0, 0, 0.2);
+		.BorderLeftOrRight("border-left", 1px, rgba(0, 0, 0, 0.2), solid);
+		.BorderLeftOrRight("border-right", 1px, rgba(0, 0, 0, 0.2), solid);
 		border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-
-		button
-		{
-			margin: 0 10px 0 0;
-		}
-
-		button:last-child
-		{
-			margin: 0;
-		}
 	}
 }
 
@@ -102,7 +84,7 @@
 	height: 100%;
 	position: fixed;
 	top: 0;
-	left: 0;
+	.DockItem("left", 0);
 	background-color: rgba(235, 235, 235, 0.5);
-	z-index: 1002;
+	z-index: 1;
 }

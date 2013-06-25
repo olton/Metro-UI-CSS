@@ -252,7 +252,7 @@ p {
 }
 
 p.indent:first-letter {
-    padding-left: @subunit * 5;
+    .PaddingLeftOrRight("padding-left", @subunit * 5);
 }
 
 .lead {
@@ -289,7 +289,7 @@ address {
 blockquote {
     margin: 0;
     padding: @subunit @unit;
-    border-left: 4px #ccc solid;
+    .BorderLeftOrRight("border-left", 4px, #ccc, solid);
     display: block;
     background-color: rgba(204, 204, 204, 0.1);
 
@@ -300,24 +300,24 @@ blockquote {
     small:before {
         content: '\2014';
         .text-pressed-state;
-        margin-right: @subunit;
+        .MarginLeftOrRight("margin-right", @subunit);
     }
 
     &.place-right {
         float: none !important;
-        text-align: right;
+        .TextAlignTo("right");
         border: 0;
-        border-right: 4px #ccc solid;
+        .BorderLeftOrRight("border-right", 4px, #ccc, solid);
 
         small {
-            text-align: right;
+            .TextAlignTo("right");
             &:before {
                 content: "";
             }
             &:after {
                 content: '\2014';
                 .text-pressed-state;
-                margin-left: @subunit;
+                .MarginLeftOrRight("margin-left", @subunit);
             }
         }
     }
@@ -330,7 +330,7 @@ ul, ol {
 }
 
 ul:nth-child(1) {
-    margin-left: 25px;
+    .MarginLeftOrRight("margin-left", 25px);
 }
 
 ul ul, ul ol, ol ol, ol ul {
@@ -360,7 +360,7 @@ ol {
 }
 
 ul.unstyled, ol.unstyled, .unstyled {
-    margin-left: 0;
+    .MarginLeftOrRight("margin-left", 0);
     list-style: none;
 }
 

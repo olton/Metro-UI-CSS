@@ -8,7 +8,7 @@
  */
 
 @IconFontName:   "iconFont";
-@IconFontPath:   "../fonts";
+@IconFontPath:   "../../font";
 @borderColor:       #eee;
 @iconMuted:         #eee;
 
@@ -142,11 +142,11 @@ ol.icons {
 a, button, .button, .page-control > ul > li {
     [class^="icon-"],
     [class*=" icon-"] {
-        margin-right: 5px;
+        .MarginLeftOrRight("margin-right", 5px);
 
         &.right {
-            margin-left: 5px;
-            margin-right: auto;
+            .MarginLeftOrRight("margin-left", 5px);
+            .MarginLeftOrRight("margin-right", auto);
         }
 
     }
@@ -161,8 +161,8 @@ a, button, .button, .page-control > ul > li {
 .image-button {
     [class^="icon-"], [class*=" icon-"] {
         position: absolute;
-        right: 0;
-        margin-left: 32px;
+        .DockItem("right", 0);
+        .MarginLeftOrRight("margin-left", 32px);
         padding: 5px;
         height: 100%;
         top: 0px;
@@ -180,7 +180,7 @@ a, button, .button, .page-control > ul > li {
             font-size: 32px;
             line-height: 32px;
             height: 32px;
-            margin: 10px 0 0 0 !important;
+            margin: 0 !important;
         }
     }
 }

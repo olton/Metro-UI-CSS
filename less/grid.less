@@ -10,8 +10,8 @@
 .oh,.ot,.tt{float:left;margin:0 2% 2% 0;width:48%}.ot{width:31%}.tt{width:65%}.cl{clear:both}
 
 .item-padding{
-    //margin-left: 0;
-    margin-right: @unit;
+    //.MarginLeftOrRight("margin-left", 0);
+    .MarginLeftOrRight("margin-right", @unit);
     margin-bottom: @subunit;
 }
 .column-padding {
@@ -37,18 +37,18 @@
 .span11 {width: 860px;}
 .span12 {width: 940px;}
 
-.offset1 {margin-left: 80px;}
-.offset2 {margin-left: 160px;}
-.offset3 {margin-left: 240px;}
-.offset4 {margin-left: 320px;}
-.offset5 {margin-left: 400px;}
-.offset6 {margin-left: 480px;}
-.offset7 {margin-left: 560px;}
-.offset8 {margin-left: 640px;}
-.offset9 {margin-left: 720px;}
-.offset10{margin-left: 800px;}
-.offset11{margin-left: 880px;}
-.offset12 {margin-left: 960px;}
+.offset1 {.MarginLeftOrRight("margin-left", 80px);}
+.offset2 {.MarginLeftOrRight("margin-left", 160px);}
+.offset3 {.MarginLeftOrRight("margin-left", 240px);}
+.offset4 {.MarginLeftOrRight("margin-left", 320px);}
+.offset5 {.MarginLeftOrRight("margin-left", 400px);}
+.offset6 {.MarginLeftOrRight("margin-left", 480px);}
+.offset7 {.MarginLeftOrRight("margin-left", 560px);}
+.offset8 {.MarginLeftOrRight("margin-left", 640px);}
+.offset9 {.MarginLeftOrRight("margin-left", 720px);}
+.offset10{.MarginLeftOrRight("margin-left", 800px);}
+.offset11{.MarginLeftOrRight("margin-left", 880px);}
+.offset12 {.MarginLeftOrRight("margin-left", 960px);}
 
 
 [class*="span"] {
@@ -58,7 +58,7 @@
     .clearfix();
 
     &:last-child {
-        margin-right: 0;
+        .MarginLeftOrRight("margin-right", 0);
         //right: 0;
     }
 
@@ -89,8 +89,8 @@
     }
 
     .group {
-        margin-right: @unit * 4;
-        float: left;
+        .MarginLeftOrRight("margin-right", @unit * 4);
+        .FloatItem("left");
         width: auto;
         height: auto;
         min-height: 1px;
@@ -101,7 +101,7 @@
         .clearfix();
 
         [class*="span"] {
-            float: left;
+            .FloatItem("left");
         }
     }
 

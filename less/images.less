@@ -19,11 +19,11 @@
         width: 220px;
         height: 121px;
         overflow: hidden;
-        margin-right: 20px;
+        .MarginLeftOrRight("margin-right", 20px);
         margin-bottom: 20px;
         position: relative;
         box-shadow: inset 0px 0px 1px #FFFFCC;
-        float: left;
+        .FloatItem("left");
         background: #ccc @back-image 50% no-repeat;
         display: table-cell;
         vertical-align: middle !important;
@@ -44,7 +44,7 @@
             background-color: #1e1e1e;
             color: #fff;
             font-size: 8pt;
-            text-align: left;
+            .TextAlignTo("left");
             line-height: 12px;
             padding: 5px 10px;
             opacity: .8;
@@ -87,7 +87,7 @@
     padding: 5px 5px 50px;
     background-color: #1e1e1e;
     .span3;
-    margin-right: 20px;
+    .MarginLeftOrRight("margin-right", 20px);
     margin-bottom: 20px;
 
     img {
@@ -98,8 +98,8 @@
     & > .overlay {
         position: absolute;
         bottom: 0;
-        left: 0;
-        right: 0;
+        .DockItem("left", 0);
+        .DockItem("right", 0);
         height: 50px;
         font-size: 8pt;
         color: #fff;

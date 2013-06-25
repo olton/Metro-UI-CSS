@@ -23,7 +23,7 @@
             width: 48px;
             height: 48px;
             font-size: 40px;
-            float: left;
+            .FloatItem("left");
 
             img {
                 width: 100%;
@@ -36,10 +36,10 @@
         }
 
         .data {
-            margin-left: 55px;
+            .MarginLeftOrRight("margin-left", 55px);
             h4 {
                 margin: 0;
-                padding: 0 0 2px 0;
+                .SwapPadding(0px, 0px, 2px, 0px);
             }
             p {
                 margin: 0;
@@ -73,7 +73,7 @@
             }
 
             .data {
-                margin-left: 110px;
+                .MarginLeftOrRight("margin-left", 110px);
 
                 h4 {
                     margin-bottom: 4px;
@@ -100,21 +100,21 @@
                 border: 1px #ccc solid;
             }
             .data {
-                margin-left: 40px;
+                .MarginLeftOrRight("margin-left", 40px);
             }
         }
     }
 
     &.fluid {
         li {
-            float: left;
-            margin-right: 10px;
+            .FloatItem("left");
+            .MarginLeftOrRight("margin-right", 10px);
         }
     }
 
     li div.badge {
         position: absolute;
-        left: -4px;
+        .DockItem("left", -4px);
         top: -4px;
         background-color: @blue;
         padding: 5px;
@@ -129,8 +129,8 @@
         }
 
         &.right {
-            right: -4px;
-            left: auto;
+            .DockItem("right", -4px);
+            .DockItem("left", auto);
         }
 
         &.bottom {
@@ -146,10 +146,10 @@
             width: 0;
             height: 0;
             border-top: 40px solid @blue;
-            border-left: 40px solid transparent;
+            .BorderLeftOrRight("border-left", 40px, transparent, solid);
             position: absolute;
             display: block;
-            right: 0;
+            .DockItem("right", 0);
             content:"";
             top: 0;
             z-index: 1001;
@@ -159,7 +159,7 @@
             position: absolute;
             content: "\e08a";
             color: #fff;
-            right: 4px;
+            .DockItem("right", 4px);
             top: 0;
             font-family: iconFont;
             z-index: 1002;
