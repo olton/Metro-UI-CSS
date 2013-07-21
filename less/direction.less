@@ -117,7 +117,51 @@ body{
 .BorderLeftOrRight(@command, @borderSize, @borderColor, @bordertype) when (@command = "border-right") and (@direction = @rtl){
     border-left: @borderSize @borderColor @bordertype;
 }
-
-/*.RawMethod(@prop, @value) {
-    Ignore: ~"a;@{prop}:@{value}";
-}*/
+.BorderLeftOrRightColor(@value) when (@command = "border-left-color") and (@direction = @ltr) {
+border-left-color: @value;
+}
+.BorderLeftOrRightColor(@value) when (@command = "border-left-color") and (@direction = @rtl) {
+border-right-color: @value;
+}
+.BorderLeftOrRightColor(@value) when (@command = "border-right-color") and (@direction = @ltr) {
+border-right-color: @value;
+}
+.BorderLeftOrRightColor(@value) when (@command = "border-right-color") and (@direction = @rtl) {
+border-left-color: @value;
+}
+.BorderLeftOrRightWidth(@command, @value) when (@command = "border-left-width") and (@direction = @ltr) {
+border-left-width: @value;
+}
+.BorderLeftOrRightWidth(@command, @value) when (@command = "border-left-width") and (@direction = @rtl) {
+border-right-width: @value;
+}
+.BorderLeftOrRightWidth(@command, @value) when (@command = "border-right-width") and (@direction = @ltr) {
+border-right-width: @value;
+}
+.BorderLeftOrRightWidth(@command, @value) when (@command = "border-right-width") and (@direction = @rtl) {
+border-left-width: @value;
+}
+.BorderTopLeftOrRightRadius(@command, @value) when (@command = "border-top-left-radius") and (@direction = @ltr) {
+border-top-left-radius: @value;
+}
+.BorderTopLeftOrRightRadius(@command, @value) when (@command = "border-top-left-radius") and (@direction = @rtl) {
+border-top-right-radius: @value;
+}
+.BorderTopLeftOrRightRadius(@command, @value) when (@command = "border-top-right-radius") and (@direction = @ltr) {
+border-top-right-radius: @value;
+}
+.BorderTopLeftOrRightRadius(@command, @value) when (@command = "border-top-right-radius") and (@direction = @rtl) {
+border-top-left-radius: @value;
+}
+.BorderBottomLeftOrRightRadius(@command, @value) when (@command = "border-bottom-left-radius") and (@direction = @ltr) {
+border-bottom-left-radius: @value;
+}
+.BorderBottomLeftOrRightRadius(@command, @value) when (@command = "border-bottom-left-radius") and (@direction = @rtl) {
+border-bottom-right-radius: @value;
+}
+.BorderBottomLeftOrRightRadius(@command, @value) when (@command = "border-bottom-right-radius") and (@direction = @ltr) {
+border-bottom-right-radius: @value;
+}
+.BorderBottomLeftOrRightRadius(@command, @value) when (@command = "border-bottom-right-radius") and (@direction = @rtl) {
+border-bottom-left-radius: @value;
+}
