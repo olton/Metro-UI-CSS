@@ -10,18 +10,10 @@
 /* Landscape phone to portrait tablet */
 @import "routines.less";
 
-@tileSmall:             120px;
-@tileLarge:             250px;
-@tileMargin:            5px;
-@tileDouble:            @tileSmall * 2 + @tileMargin * 2;
-@tileTriple:            @tileSmall * 3 + @tileMargin * 4;
-@tileQuadro:            @tileSmall * 4 + @tileMargin * 6;
-
-
 @media (max-width: 767px) {
     body {
-        padding-right: 10px;
-        padding-left: 10px !important; //TODO найти и уничтожить
+        .PaddingLeftOrRight("padding-right", 10px);
+        .PaddingLeftOrRight("padding-left", 10px) !important; //TODO найти и уничтожить
     }
 
     .metrouicss {
@@ -30,12 +22,12 @@
         float: none;
         display: block;
         width: 100%;
-        margin-left: 0;
-        margin-right: 0;
+        .MarginLeftOrRight("margin-left", 0);
+        .MarginLeftOrRight("margin-right", 0);
     }
 
     [class*="offset"], .hero-unit {
-        margin-left: 0;
+        .MarginLeftOrRight("margin-left", 0);
     }
 
     table {
@@ -83,8 +75,8 @@
                     display: block;
                     float: none;
                     width: 100%;
-                    margin-left: 0;
-                    padding-left: 5px;
+                    .MarginLeftOrRight("margin-left", 0);
+                    .PaddingLeftOrRight("padding-left", 5px);
                     //border-bottom: 1px #ccc solid;
 
                     a {
@@ -101,7 +93,7 @@
             }
 
             [data-role=dropdown] {
-                margin-right: 20px !important;
+                .MarginLeftOrRight("margin-right", 20px) !important;
                 & > a {
                     cursor: pointer;
                     &:before {
@@ -109,8 +101,8 @@
                         content: "\203A";
                         display: block;
                         font-size: 1.4em;
-                        left: 100%;
-                        margin-left: -10px;
+                        .DockItem("left", 100%);
+                        .MarginLeftOrRight("margin-left", -10px);
                         top: 8px;
                         .rotate(90deg);
                     }
@@ -129,9 +121,9 @@
         display: block;
         width: 24px;
         height: 24px;
-        float: right;
+        .FloatItem("right");
         margin-top: 10px;
-        margin-right: 10px;
+        .MarginLeftOrRight("margin-right", 10px);
         cursor: pointer;
     }
     .page-control .menu-pull-bar {
@@ -141,7 +133,7 @@
         border: 1px solid #CCC;
         border-bottom: 0px;
         background-color: rgba(217, 217, 217, 0.16);
-        padding: 10px 0px 10px 20px;
+        .SwapPadding(10px, 0px, 10px, 20px);
         color: #2D89EF;
     }
     .page-control ul {
@@ -149,7 +141,7 @@
         height: auto;
         margin: 0px;
         position: relative;
-        padding: 0px 20px 10px 20px;
+        .SwapPadding(0px, 20px, 10px, 20px);
         border: 1px solid #CCC;
         border-bottom: 0px;
         border-top: 0px;
@@ -157,15 +149,15 @@
     }
     .page-control ul li {
         display: block;
-        float: left;
+        .FloatItem("left");
         width: 100%;
-        padding-left: 0;
+        .PaddingLeftOrRight("padding-left", 0);
         line-height: 32px;
         position: relative;
         height: auto;
     }
     .page-control ul li:first-child {
-        margin-left: 0px;
+        .MarginLeftOrRight("margin-left", 0px);
     }
     .page-control ul li.active {
         border: 0px;
@@ -176,7 +168,7 @@
     }
     .page-control ul li a {
         width: 100%;
-        text-align: left;
+        .TextAlignTo("left");
     }
     .page-control ul li a:hover {
         background: #464646;
@@ -218,16 +210,11 @@
 
         &.icon {
             & > .tile-content {
-                & > img {
+                img {
                     width: 48px;
                     height: 48px;
-                    margin-left: -24px;
+                    .MarginLeftOrRight("margin-left", -24px);
                     margin-top: -24px;
-                }
-
-                & > i {
-                    margin-left: -24px;
-                    font-size: 48px;
                 }
             }
         }
@@ -236,12 +223,12 @@
             & > .badge {
                 width: 26px;
                 height: 28px;
-                right: 0;
+                .DockItem("right", 0);
                 font-size: 9pt;
             }
 
             & > .name {
-                margin-left: 10px;
+                .MarginLeftOrRight("margin-left", 10px);
             }
 
             & > .icon {
@@ -250,9 +237,9 @@
                 margin: 5px 10px;
             }
 
-            & > img ~ .text {
-                left: 40px;
-                right: 40px;
+            & > .text {
+                .DockItem("left", 40px);
+                .DockItem("right", 40px);
                 font-size: 8pt;
             }
         }

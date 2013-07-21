@@ -25,18 +25,18 @@
     .span11 {width: 662px;}
     .span12 {width: 724px;}
 
-    .offset1  {margin-left: 62px; }
-    .offset2  {margin-left: 124px;}
-    .offset3  {margin-left: 186px;}
-    .offset4  {margin-left: 248px;}
-    .offset5  {margin-left: 310px;}
-    .offset6  {margin-left: 372px;}
-    .offset7  {margin-left: 434px;}
-    .offset8  {margin-left: 496px;}
-    .offset9  {margin-left: 558px;}
-    .offset10 {margin-left: 620px;}
-    .offset11 {margin-left: 682px;}
-    .offset12 {margin-left: 744px;}
+    .offset1  {.MarginLeftOrRight("margin-left", 62px);}
+    .offset2  {.MarginLeftOrRight("margin-left", 124px);}
+    .offset3  {.MarginLeftOrRight("margin-left", 186px);}
+    .offset4  {.MarginLeftOrRight("margin-left", 248px);}
+    .offset5  {.MarginLeftOrRight("margin-left", 310px);}
+    .offset6  {.MarginLeftOrRight("margin-left", 372px);}
+    .offset7  {.MarginLeftOrRight("margin-left", 434px);}
+    .offset8  {.MarginLeftOrRight("margin-left", 496px);}
+    .offset9  {.MarginLeftOrRight("margin-left", 558px);}
+    .offset10 {.MarginLeftOrRight("margin-left", 620px);}
+    .offset11 {.MarginLeftOrRight("margin-left", 682px);}
+    .offset12 {.MarginLeftOrRight("margin-left", 744px);}
 
     .nav-bar {
         .nav-bar-inner {
@@ -62,8 +62,8 @@
                     display: block;
                     float: none;
                     width: 100%;
-                    margin-left: 0;
-                    padding-left: 5px;
+                    .MarginLeftOrRight("margin-left", 0);
+                    .PaddingLeftOrRight("padding-left", 5px);
                 //border-bottom: 1px #ccc solid;
 
                     a {
@@ -80,7 +80,7 @@
             }
 
             [data-role=dropdown] {
-                margin-right: 20px !important;
+                .MarginLeftOrRight("margin-right", 20px) !important;
                 & > a {
                     cursor: pointer;
                     &:before {
@@ -88,8 +88,8 @@
                         content: "\203A";
                         display: block;
                         font-size: 1.4em;
-                        left: 100%;
-                        margin-left: -10px;
+                        .DockItem("left", 100%);
+                        .MarginLeftOrRight("margin-left", -10px);
                         top: 8px;
                         .rotate(90deg);
                     }

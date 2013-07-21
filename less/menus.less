@@ -13,18 +13,18 @@
     .unstyled;
     top: 100%;
     z-index: 11010;
-    float: left;
+    .FloatItem("left");
     border: 1px solid rgba(0, 0, 0, 0.2);
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
     min-width: 160px;
     padding-bottom: 5px;
     padding-top: 5px;
-    padding-left: 0;
+    .PaddingLeftOrRight("padding-left", 0);
     display: none;
 
     &.place-right {
-        right: 0;
-        left: auto;
+        .DockItem("right", 0);
+        .DockItem("left", auto);
     }
 
     a {
@@ -77,7 +77,7 @@
             margin: 5px;
             line-height: 20px;
             height: 20px;
-            float: left;
+            .FloatItem("left");
             display: inline-block;
             padding: 0;
             font-weight: normal;
@@ -104,7 +104,7 @@
                 margin: 0;
                 padding: 0;
                 display: block;
-                float: left;
+                .FloatItem("left");
                 margin: 0 5px;
             }
         }
@@ -116,14 +116,14 @@
 
             & > li {
                 display: block;
-                float: left;
-                margin-right: 5px;
+                .FloatItem("left");
+                .MarginLeftOrRight("margin-right", 5px);
                 position: relative;
-                padding: 5px 15px 5px 5px;
+                .SwapPadding(5px, 15px, 5px, 5px);
 
                 a {
                     display: block;
-                    float: left;
+                    .FloatItem("left");
                     color: @white;
                     font-size: 10pt;
                 }
@@ -133,7 +133,7 @@
                 ul.dropdown-menu {
                     z-index: 1001;
                     border: 0;
-                    left: 0px;
+                    .DockItem("left", 0px);
                     li {
 
                         a {
@@ -156,12 +156,12 @@
         & > .divider, & > ul.menu > li.divider {
             .element;
             width: 1px;
-            border-right: 1px darken(@white, 10%) solid;
+            .BorderLeftOrRight("border-right", 1px, darken(@white, 10%), solid);
             //box-shadow: 0 0 10px rgba(0,0,0,0.5);
         }
 
         [data-role=dropdown] {
-            margin-right: 20px !important;
+            .MarginLeftOrRight("margin-right", 20px) !important;
             & > a {
                 cursor: pointer;
                 &:before {
@@ -169,8 +169,8 @@
                     content: "\203A";
                     display: block;
                     font-size: 1.4em;
-                    left: 100%;
-                    margin-left: -10px;
+                    .DockItem("left", 100%);
+                    .MarginLeftOrRight("margin-left", -10px);
                     top: 8px;
                     .rotate(90deg);
                 }
@@ -179,11 +179,11 @@
 
         .pull-menu {
             display: none;
-            float: right;
+            .FloatItem("right");
             color: #fff;
             cursor: pointer;
             font: 1.8em sans-serif;
-            margin-right: 0px;
+            .MarginLeftOrRight("margin-right", 0px);
             position: relative;
             height: 20px;
             width: 20px;
@@ -194,7 +194,7 @@
                 position: absolute;
                 font-size: 20pt;
                 top: 5px;
-                left: 0;
+                .DockItem("left", 0);
             }
         }
 
@@ -233,7 +233,7 @@
     &.fixed-top, &.fixed-bottom {
         position: fixed;
         z-index: 10000;
-        left: 0;
+        .DockItem("left", 0);
     }
 
     &.fixed-top {
@@ -266,17 +266,17 @@
             color: #4f4f4f;
             font-family: Segoe UI,Arial,Verdana,Tahoma,sans-serif;
             font-size: 12pt;
-            margin: 0 0 5px 0;
+            .SwapMargin(0, 0, 5px, 0);
             border-bottom: 1px #ccc solid;
             //margin-top: 20px;
         }
 
         & > li > a {
             display: block;
-            padding: 3px 10px 3px 0;
+            .SwapPadding(3px, 10px, 3px, 0px);
             position: relative;
             color: #014E85;
-            padding-left: 3px;
+            .PaddingLeftOrRight("padding-left", 3px);
             font-size: 10pt;
         }
 

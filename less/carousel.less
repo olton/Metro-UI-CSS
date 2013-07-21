@@ -23,7 +23,7 @@
 
         .slide {
             position: absolute;
-            left: 0;
+            .DockItem("left", 0);
             top: 0;
             width: 100%;
             height: 100%;
@@ -37,8 +37,8 @@
 
             .description {
                 position: absolute;
-                left: 0;
-                right: 0;
+                .DockItem("left", 0);
+                .DockItem("right", 0);
                 bottom: 0;
                 padding: 10px;
                 background: rgba(0,0,0,.7);
@@ -50,7 +50,7 @@
     .control {
         position: absolute;
         top: 50%;
-        left: 15px;
+        .DockItem("left", 15px);
         width: 40px;
         height: 45px;
         margin-top: -20px;
@@ -64,7 +64,7 @@
 
         &.right {
             left: auto;
-            right: 15px;
+            .DockItem("right", 15px);
         }
 
         &:hover {
@@ -79,21 +79,21 @@
             list-style: none;
             position: absolute;
             top: 100%;
-            left: 0;
+            .DockItem("left", 0);
             padding-top: 10px;
         }
 
         li {
             display: block;
-            float: left;
-            margin-right: 5px;
+            .FloatItem("left");
+            .MarginLeftOrRight("margin-right", 5px);
 
             a {
                 width: 32px;
                 height: 6px;
                 background-color: red;
                 display: block;
-                float: left;
+                .FloatItem("left");
             }
 
             &.active a {

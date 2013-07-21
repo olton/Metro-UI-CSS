@@ -19,26 +19,26 @@ table {
                 vertical-align: bottom;
                 padding-bottom: @subunit;
                 padding-top: @subunit * 2;
-                padding-left: @subunit;
+                .PaddingLeftOrRight("padding-left", @subunit);
                 border-bottom: 1px #ddd solid;
-                border-right: 1px #ddd solid;
-                border-left: 1px transparent solid;
+                .BorderLeftOrRight("border-right", 1px, #ddd, solid);
+                .BorderLeftOrRight("border-left", 1px, transparent, solid);
                 border-top: 1px transparent solid;
                 #font > .navigation;
                 .text-rest2-state;
-                text-align: left;
+                .TextAlignTo("left");
 
                 &.right {
-                    text-align: right;
-                    padding-right: @subunit * 2;
+                    .TextAlignTo("right");
+                    .PaddingLeftOrRight("padding-right", @subunit * 2);
                 }
 
                 &.last {
-                    border-right: 1px transparent solid;
+                    .BorderLeftOrRight("border-right", 1px, transparent, solid);
                 }
 
                 &:last-child {
-                    border-right: 1px transparent solid;
+                    .BorderLeftOrRight("border-right", 1px, transparent, solid);
                 }
             }
         }
@@ -51,23 +51,23 @@ table {
             td {
                 #font > .normal;
                 padding: 3px 10px;
-                border-right: 1px #ddd solid;
+                .BorderLeftOrRight("border-right", 1px, #ddd, solid);
                 border-bottom: 1px #ddd solid;
-                border-left: 1px transparent solid;
+                .BorderLeftOrRight("border-left", 1px, transparent, solid);
                 border-top: 1px transparent solid;
                 box-sizing: border-box;
 
                 &.right {
-                    text-align: right;
+                    .TextAlignTo("right");
                 }
                 &.center {
                     text-align: center;
                 }
                 &.last {
-                    border-right: 1px transparent solid;
+                    .BorderLeftOrRight("border-right", 1px, transparent, solid);
                 }
                 &:last-child {
-                    border-right: 1px transparent solid;
+                    .BorderLeftOrRight("border-right", 1px, transparent, solid);
                 }
             }
 
@@ -93,10 +93,10 @@ table {
             &.selected-row {
                 background-color: rgba(28, 183, 236, 0.10) !important;
                 td:first-child {
-                    border-left: 1px #1c98cc solid;
+                    .BorderLeftOrRight("border-left", 1px, #1c98cc, solid);
                 }
                 td:last-child {
-                    border-right: 1px #1c98cc solid;
+                    .BorderLeftOrRight("border-right", 1px, #1c98cc, solid);
                 }
                 td {
                     border-top: 1px #1c98cc solid;
@@ -135,10 +135,10 @@ table {
                 &:hover {
                     background-color: rgba(28, 183, 236, 0.10);
                     td:first-child {
-                        border-left: 1px #1c98cc solid;
+                        .BorderLeftOrRight("border-left", 1px, #1c98cc, solid);
                     }
                     td:last-child {
-                        border-right: 1px #1c98cc solid;
+                        .BorderLeftOrRight("border-right", 1px, #1c98cc, solid);
                     }
                     td {
                         border-top: 1px #1c98cc solid;

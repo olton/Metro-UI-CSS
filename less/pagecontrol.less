@@ -21,20 +21,20 @@
         height: 31px;
 
         li:first-child {
-        margin-left: 20px;
+        .MarginLeftOrRight("margin-left", 20px);
         }
 
         li {
-            float: left;
+            .FloatItem("left");
             display: block;
             text-align: center;
             height: 100%;
 
             img {
-                float: left;
+                .FloatItem("left");
                 width: 16px;
                 height: 16px;
-                margin-right: 5px;
+                .MarginLeftOrRight("margin-right", 5px);
                 margin-top: 3px;
             }
 
@@ -52,7 +52,7 @@
                 text-decoration: none;
                 //text-transform: uppercase;
                 display: block;
-                float: left;
+                .FloatItem("left");
                 padding: 5px 10px;
                 color: #1e1e1e;
                 #font > .navigation;

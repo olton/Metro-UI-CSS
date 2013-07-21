@@ -7,9 +7,13 @@
  *
  */
 
-.place-left {float: left !important; margin-right: 10px;}
-.place-right {float: right !important; margin-left: 10px;}
-
+.place-left {.FloatItem("left") !important; .MarginLeftOrRight("margin-right", 10px);}
+.place-right {.FloatItem("right") !important; .MarginLeftOrRight("margin-left", 10px);}
+.place-center {
+    text-align: center;
+    -moz-text-align: center;
+    -webkit-text-align: center;
+}
 .scroll-y, .scroll-vertical {
     overflow-y: scroll;
 }
@@ -20,30 +24,30 @@
 .pos-rel {position: relative;}
 .pos-abs {position: absolute;}
 .pos-fix {position: fixed;}
-.text-left {text-align: left;}
-.text-right {text-align: right;}
+.text-left {.TextAlignTo("left");}
+.text-right {.TextAlignTo("right");}
 .text-center {text-align: center;}
 .text-justify {text-align: justify;}
 
 .top-left {
     position: absolute;
     top: 0;
-    left: 0;
+    .DockItem("left", 0);
 }
 .top-right {
     position: absolute;
     top: 0;
-    right: 0;
+    .DockItem("right", 0);
 }
 .bottom-right {
     position: absolute;
     bottom: 0;
-    right: 0;
+    .DockItem("right", 0);
 }
 .bottom-left {
     position: absolute;
     bottom: 0;
-    left: 0;
+    .DockItem("left", 0);
 }
 
 .no-overflow {overflow: hidden;}
@@ -60,8 +64,8 @@
 .as-block {display: block; float: none !important;}
 .as-inline-block {display: inline-block;}
 
-.nlm {margin-left: 0 !important;}
-.nrm {margin-right: 0 !important;}
+.nlm {.MarginLeftOrRight("margin-left", 0) !important;}
+.nrm {.MarginLeftOrRight("margin-right", 0) !important;}
 
 .clearfix {
     *zoom: 1;
@@ -90,10 +94,10 @@
         width: 0;
         height: 0;
         border-top: 40px solid @blue;
-        border-left: 40px solid transparent;
+        .BorderLeftOrRight("border-left", 40px, transparent, solid);
         position: absolute;
         display: block;
-        right: 0;
+        .DockItem("right", 0);
         content:".";
         top: 0;
         z-index: 1001;
@@ -103,7 +107,7 @@
         position: absolute;
         content: "\e08a";
         color: #fff;
-        right: 4px;
+        .DockItem("right", 4px);
         font-family: iconFont;
         z-index: 1002;
     }
