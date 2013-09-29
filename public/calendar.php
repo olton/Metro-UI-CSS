@@ -40,7 +40,7 @@
 </script>
 
 <pre class="prettyprint linenums">
-    &lt;div class="<b>calnedar</b>" data-role="<b>calendar</b>"&gt;&lt;/div&gt;
+    &lt;div class="<b>calendar</b>" data-role="<b>calendar</b>"&gt;&lt;/div&gt;
 </pre>
 
 
