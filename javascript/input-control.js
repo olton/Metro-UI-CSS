@@ -41,7 +41,6 @@
             }
 
             $helper.attr('tabindex', '-1');
-            $helper.attr('type', 'button');
 
             // clear text when click on helper
             $helper.on('click', function () {
@@ -49,8 +48,7 @@
                 if (input.prop('readonly')) {
                     return;
                 }
-                input.val('');
-                input.focus();
+                input.val('').focus();
             });
         };
 
@@ -69,20 +67,17 @@
             text = $('<input type="text" />');
             password = $element.children('input');
             $helper.attr('tabindex', '-1');
-            $helper.attr('type', 'button');
 
             // insert text element and hode password element when push helper
             $helper.on('mousedown', function () {
                 password.hide();
-                text.insertAfter(password);
-                text.val(password.val());
+                text.insertAfter(password).val(password.val());
             });
 
             // return password and remove text element
-            $helper.on('mouseup, mouseout', function () {
+            $helper.on('mouseup mouseout', function () {
                 text.detach();
-                password.show();
-                password.focus();
+                password.show().focus();
             });
         };
 
