@@ -57,8 +57,7 @@
 
             buttonsHTML += '<button>' + name + '</button>';
             
-            if(!obj.action) 
-            {
+            if(typeof obj.action != "function") {
                 obj.action = function() {};
             }
         });
@@ -89,29 +88,29 @@
         // Setting initial position
         if(params.position.zone == "left")
         {
-            $('#dialogBox').css("top", Math.max(0, (($(window).height() - $('#dialogBox').outerHeight()) / 3) + 
-                                                $(window).scrollTop()) + "px");
-            $('#dialogBox').css("left", 0);
+            $('#dialogBox').css({"top": Math.max(0, (($(window).height() - $('#dialogBox').outerHeight()) / 3) + 
+                                                $(window).scrollTop()) + "px",
+                                "left": 0});
         } 
         else if(params.position.zone == "right")
         {
-            $('#dialogBox').css("top", Math.max(0, (($(window).height() - $('#dialogBox').outerHeight()) / 3) + 
-                                                $(window).scrollTop()) + "px");
-            $('#dialogBox').css("left", Math.max(0, (($(window).width() - $('#dialogBox').outerWidth())) + 
-                                                            $(window).scrollLeft()) + "px");
+            $('#dialogBox').css({"top": Math.max(0, (($(window).height() - $('#dialogBox').outerHeight()) / 3) + 
+                                                $(window).scrollTop()) + "px",
+                                "left": Math.max(0, (($(window).width() - $('#dialogBox').outerWidth())) + 
+                                                            $(window).scrollLeft()) + "px"});
         } 
         else
         {
-            $('#dialogBox').css("top", (params.position.offsetY)?(params.position.offsetY):(Math.max(0, (($(window).height() - $('#dialogBox').outerHeight()) / 3) + 
-                                                                                                $(window).scrollTop()) + "px"));
-            $('#dialogBox').css("left", (params.position.offsetX)?(params.position.offsetX):(Math.max(0, (($(window).width() - $('#dialogBox').outerWidth()) / 2) + 
-                                                                                                $(window).scrollLeft()) + "px"));
+            $('#dialogBox').css({"top": (params.position.offsetY)?(params.position.offsetY):(Math.max(0, (($(window).height() - $('#dialogBox').outerHeight()) / 3) + 
+                                                                                                $(window).scrollTop()) + "px"),
+                                "left": (params.position.offsetX)?(params.position.offsetX):(Math.max(0, (($(window).width() - $('#dialogBox').outerWidth()) / 2) + 
+                                                                                                $(window).scrollLeft()) + "px")});
         }
 
         if(params.draggable) {
             // Make draggable the window
 
-            $('#dialogBox div.header').css('cursor', 'move').on("mousedown", function(e) {
+            $('#dialogBox .header').css('cursor', 'move').on("mousedown", function(e) {
                 var $drag = $(this).addClass('active-handle').parent().addClass('draggable');
 
                 var z_idx = $drag.css('z-index'),
@@ -143,14 +142,14 @@
             });
         }
 
-        $('#dialogBox .header button').click(function() { 
+        $('#dialogBox > .header button').click(function() { 
             // Bind close button to close dialog
 
             $.Dialog.close();
             return false;
         });
 
-        var buttons = $('#dialogBox .action button'),
+        var buttons = $('#dialogBox > .action button'),
             i = 0;
 
         $.each(params.buttons, function(name, obj) {
@@ -186,9 +185,9 @@
         }
 
         if(newTitle) {
-            $('#dialogBox .header span').html(newTitle);
+            $('#dialogBox > .header > span').html(newTitle);
         } else {
-            return $('#dialogBox .header span').html();
+            return $('#dialogBox > .header > span').html();
         }
     }
 
@@ -213,8 +212,7 @@
 
             buttonsHTML += '<button>' + name + '</button>';
             
-            if(!obj.action) 
-            {
+            if(typeof obj.action != "function") {
                 obj.action = function() {};
             }
         });
@@ -223,7 +221,7 @@
 
         $('#dialogButtons').html(buttonsHTML);
 
-        var buttons = $('#dialogBox .action button'),
+        var buttons = $('#dialogBox > .action button'),
             i = 0;
 
         $.each(newButtons, function(name, obj) {
