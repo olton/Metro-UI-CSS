@@ -14,41 +14,41 @@
     & > ul {
         .unstyled;
         .clearfix;
-        position: absolute;
-        z-index: 5;
-        width: 100%;
-        background-color: rgba(217, 217, 217, 0.16);
+        background-color: rgba(217, 217, 217, 0.16);        
         height: 31px;
+		position: absolute;
+		width: 100%;
+		z-index: 5;
 
-        li:first-child {
-        margin-left: 20px;
+        & > li:first-child {
+			margin-left: 20px;
         }
 
-        li {
-            float: left;
-            display: block;
-            text-align: center;
-            height: 100%;
+        & > li {
+			display: block;			
+			height: 100%;
+			float: left;
+			text-align: center;				
 
-            img {
-                float: left;
-                width: 16px;
-                height: 16px;
-                margin-right: 5px;
-                margin-top: 3px;
+            & > img {
+				float: left;				
+				height: 16px;
+				margin-right: 5px;
+				margin-top: 3px;
+				width: 16px;
             }
 
-            &.active {
+            & >.active {
                 border: 1px #ccc solid;
                 border-bottom: 0;
                 background-color: #fff;
 
-                span, a {
+                & > span, & > a {
                     color: @blue;
                 }
             }
 
-            span, a {
+            & > span, & > a {
                 text-decoration: none;
                 //text-transform: uppercase;
                 display: block;
@@ -62,21 +62,21 @@
         }
     }
 
-    &.tabs-right {
+    & > .tabs-right {
         & > ul {
-            li {
+            & > li {
                 .place-right;
             }
         }
     }
 
-    .frames {
+    & > .frames {
         margin-top: 30px;
         width: 100%;
         min-height: 50px;
         border: 1px #ccc solid;
 
-        .frame {
+        & >.frame {
             width: 100%;
             min-height: 100%;
             height: auto;
@@ -90,12 +90,12 @@
     }
 }
 
-.page-control ul {
+.page-control > ul {
     display: block;
     overflow: visible;
 }
 .page-control {
-    .menu-pull, .menu-pull-bar {
+    & >.menu-pull, & >.menu-pull-bar {
         display: none;
     }
 }
