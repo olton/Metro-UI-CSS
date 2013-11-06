@@ -1,0 +1,114 @@
+.hint {
+    position: absolute;
+    background-color: @hintColor;
+    color: @dark;
+    padding: 10px;
+    #font > .sans;
+    font-size: 12px;
+    width: auto;
+    max-width: 220px;
+    margin-top: 10px;
+    .border;
+    z-index: @zindexTooltip;
+    display: none;
+
+    .hint-title, .hint-text {
+        color: inherit;
+        text-align: left;
+    }
+
+    .hint-title {
+        font-size: 1.2em;
+        font-weight: bold;
+    }
+
+    .hint-text {
+    }
+}
+
+// hint bottom
+
+.hint {
+    &:before, &:after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 0;
+    }
+    &:before {
+        z-index: 2;
+    }
+    &:after {
+        z-index: 1;
+    }
+}
+
+.hint {
+    &.bottom {
+        &:before, &:after {
+            top: 1px;
+            left: 10px;
+            margin: -10px 0;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-bottom: 10px solid @hintColor;
+        }
+
+        &:after {
+            top: 0;
+            border-bottom: 10px solid @tableBorderColor;
+        }
+    }
+
+    &.top {
+        &:before, &:after {
+            top: 100%;
+            margin-top: -1px;
+            left: 10px;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-top: 10px solid @hintColor;
+        }
+
+        &:after {
+            margin-top: 1px;
+            border-top: 10px solid @tableBorderColor;
+        }
+    }
+
+    &.left {
+        &:before, &:after {
+            top: 10px;
+            left: 100%;
+            margin-left: -1px;
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+            border-left: 10px solid @hintColor;
+        }
+
+        &:after {
+            margin-left: 0;
+            border-left: 10px solid @tableBorderColor;
+        }
+    }
+
+    &.right {
+        &:before, &:after {
+            top: 10px;
+            left: -9px;
+            margin: 0;
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+            border-right: 10px solid @hintColor;
+        }
+
+        &:after {
+            left: -10px;
+            border-right: 10px solid @tableBorderColor;
+        }
+    }
+}
+
+.hint {
+}
+

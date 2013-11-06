@@ -1,81 +1,117 @@
-/*
- * Metro UI CSS
- * (c) 2012-2013 by Sergey Pimenov
- * Licensed under the MIT License and Commercial
- *
- * Calendar.less
- *
- */
-
 .calendar {
-    .bg-color-white;
+    width: 250px;
+    border: 1px @grayLighter solid;
+    font-size: 10pt;
 
     table {
-        border: 1px #ccc solid;
         width: 100%;
         border-collapse: collapse;
-        margin: 0;
-        tr {
-            height: 1px;
-        }
-    }
-
-
-    tr:empty {
-        display: none;
     }
 
     td, th {
-        padding: 4px;
-        width: 14.285% !important;
-        font-size: 10pt;
-        border: 1px #ccc solid !important;
-        text-align: center;
+        padding: 0;
+        width: 14.28%;
     }
 
     td {
-        cursor: pointer;
-        position: relative;
-        height: 100%;
-
-        span {
-            font-size: 8px !important;
-            line-height: 10px;
-            position: absolute;
-            top: 0;
-            right: 0;
-            padding: 1px 3px;
-            .bg-color-red;
-            .fg-color-white;
+        border: 1px  solid;
+        border-color: lighten(@cyan, 45%);
+        &:first-child {
+            border-left: 0;
         }
+        &:last-child {
+            border-right: 0;
+        }
+
     }
 
-    .out {
-        background: #ececf0;
+    tr:last-child td{
+        border-bottom: 0;
+    }
+
+    .day-of-week {
+        padding: @subunitSize;
         cursor: default;
     }
 
-    .empty-day {
-        border: 0 !important;
-        display: none;
+    a {
+        display: block;
+        padding: @subunitSize;
+
+        &:hover {
+            background-color: @grayLighter;
+            color: @dark;
+        }
     }
 
-    .weekdays td {
-        .bg-color-blueLight;
-        font-weight: bold !important;
+    .calendar-header {
+        background-color: @cyan;
+        color: @white;
+        td, th {
+            border: 0 !important;
+            a {
+                color: @white;
+                &:hover {
+                    background-color: @cyan;
+                    color: @white;
+                }
+            }
+        }
     }
 
-    .current-day {
-        .bg-color-green;
-        .fg-color-white;
+    .calendar-actions {
+        td, th {
+            padding: 10px;
+        }
     }
 
-    .event {
-        .bg-color-blue;
-        .fg-color-white;
+    .today {
+        a {
+            background-color: lighten(@green, 25%);
+            color: @dark;
+
+            &:hover {
+                background-color: @darkGreen;
+                color: @white;
+            }
+        }
     }
+
+    .day {
+
+        a {
+            display: block;
+            position: relative;
+            border: 2px transparent solid;
+        }
+
+        a.selected {
+            #element > .selected;
+            border-width: 1px;
+            &:after {
+                border-top-width: 12px;
+                border-left-width: 12px;
+            }
+            &:before {
+                //content: "";
+                font-size: 4pt;
+            }
+        }
+    }
+
+    .month, .year {
+        a {
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+    }
+
+    .empty {
+    }
+
 }
 
-.datepicker {
-    position: relative;
+.calendar-dropdown {
+    border: 0;
+    .shadow;
 }

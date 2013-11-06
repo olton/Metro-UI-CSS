@@ -1,125 +1,111 @@
-/*
- * Metro UI CSS
- * (c) 2012-2013 by Sergey Pimenov
- * Licensed under the MIT License and Commercial
- *
- * Grid.less
- *
- */
-
-.oh,.ot,.tt{float:left;margin:0 2% 2% 0;width:48%}.ot{width:31%}.tt{width:65%}.cl{clear:both}
-
-.item-padding{
-    //margin-left: 0;
-    margin-right: @unit;
-    margin-bottom: @subunit;
+.spanX(@index){
+    width: @gridColumnSize * @index + @gridGutterSize * (@index - 1) !important;
 }
-.column-padding {
-    margin: 0 @unit/2;
-}
-.group-padding {
-    margin: 0 @unit*2;
-}
-
-@cellSize: 60px;
-@cellMargin: 20px;
-
-.span1  {width: 60px;}
-.span2  {width: 140px;}
-.span3  {width: 220px;}
-.span4  {width: 300px;}
-.span5  {width: 380px;}
-.span6  {width: 460px;}
-.span7  {width: 540px;}
-.span8  {width: 620px;}
-.span9  {width: 700px;}
-.span10 {width: 780px;}
-.span11 {width: 860px;}
-.span12 {width: 940px;}
-
-.offset1 {margin-left: 80px;}
-.offset2 {margin-left: 160px;}
-.offset3 {margin-left: 240px;}
-.offset4 {margin-left: 320px;}
-.offset5 {margin-left: 400px;}
-.offset6 {margin-left: 480px;}
-.offset7 {margin-left: 560px;}
-.offset8 {margin-left: 640px;}
-.offset9 {margin-left: 720px;}
-.offset10{margin-left: 800px;}
-.offset11{margin-left: 880px;}
-.offset12 {margin-left: 960px;}
-
-
-[class*="span"] {
-    float: none;
-    min-height: 1px;
-    .item-padding();
-    .clearfix();
-
-    &:last-child {
-        margin-right: 0;
-        //right: 0;
+.offsetX(@index){
+    margin-left: @gridColumnSize * @index + (@gridGutterSize * (@index));
+    &:not(:first-child){
+        margin-left: @gridColumnSize * @index + (@gridGutterSize * (@index + 1));
     }
+}
 
-    & > img {
-        max-width: 100%;
-        //width: 100%;
-        height: auto;
-        //max-height: 100%;
+.fluid-spanX(@index){
+    width: @gridColumnSizeFluid * @index + (@gridGutterSizeFluid * (@index - 1)) !important;
+}
+.fluid-offsetX(@index){
+    margin-left: @gridColumnSizeFluid * @index + (@gridGutterSizeFluid * (@index));
+    &:not(:first-child){
+        margin-left: @gridColumnSizeFluid * @index + (@gridGutterSizeFluid * (@index + 1));
+    }
+}
+
+.span1 {.spanX(1)}
+.span2 {.spanX(2)}
+.span3 {.spanX(3)}
+.span4 {.spanX(4)}
+.span5 {.spanX(5)}
+.span6 {.spanX(6)}
+.span7 {.spanX(7)}
+.span8 {.spanX(8)}
+.span9 {.spanX(9)}
+.span10 {.spanX(10)}
+.span11 {.spanX(11)}
+.span12 {.spanX(12)}
+
+.offset1 {.offsetX(1) !important;}
+.offset2 {.offsetX(2) !important;}
+.offset3 {.offsetX(3) !important;}
+.offset4 {.offsetX(4) !important;}
+.offset5 {.offsetX(5) !important;}
+.offset6 {.offsetX(6) !important;}
+.offset7 {.offsetX(7) !important;}
+.offset8 {.offsetX(8) !important;}
+.offset9 {.offsetX(9) !important;}
+.offset10 {.offsetX(10) !important;}
+.offset11 {.offsetX(11) !important;}
+.offset12 {.offsetX(12) !important;}
+
+.grid {
+    margin-bottom: @gridGutterSize;
+
+    .row {
+        .clearfix;
+        display: block;
+        margin-top: @gridGutterSize;
+
+        [class*="span"] {
+            float: left;
+            min-height: 1px;
+            margin-left: @gridGutterSize;
+
+            &:first-child {
+                margin-left: 0;
+            }
+        }
     }
 }
 
 .grid {
-    margin: 0 0 20px;
-    display: block;
-    height: auto;
-    width: 100%;
-
-    &.no-margin {
-        margin: 0;
-    }
-    &.margin-row {
-        margin-bottom: @subunit;
-    }
-
-    & .grid {
-        margin-top: @subunit/2;
-        margin-bottom: @subunit/2;
-    }
-
-    .group {
-        margin-right: @unit * 4;
-        float: left;
-        width: auto;
-        height: auto;
-        min-height: 1px;
-    }
-
-    .row {
+    &.fluid {
         width: 100%;
-        .clearfix();
+        .row {
+            .span1 {.fluid-spanX(1)}
+            .span2 {.fluid-spanX(2)}
+            .span3 {.fluid-spanX(3)}
+            .span4 {.fluid-spanX(4)}
+            .span5 {.fluid-spanX(5)}
+            .span6 {.fluid-spanX(6)}
+            .span7 {.fluid-spanX(7)}
+            .span8 {.fluid-spanX(8)}
+            .span9 {.fluid-spanX(9)}
+            .span10 {.fluid-spanX(10)}
+            .span11 {.fluid-spanX(11)}
+            .span12 {.fluid-spanX(12)}
 
-        [class*="span"] {
-            float: left;
+            [class*="span"] {
+                margin-left: 2.127659%;
+                &:first-child {
+                    margin-left: 0;
+                }
+            }
+
+            .offset1 {.fluid-offsetX(1) !important;}
+            .offset2 {.fluid-offsetX(2) !important;}
+            .offset3 {.fluid-offsetX(3) !important;}
+            .offset4 {.fluid-offsetX(4) !important;}
+            .offset5 {.fluid-offsetX(5) !important;}
+            .offset6 {.fluid-offsetX(6) !important;}
+            .offset7 {.fluid-offsetX(7) !important;}
+            .offset8 {.fluid-offsetX(8) !important;}
+            .offset9 {.fluid-offsetX(9) !important;}
+            .offset10 {.fluid-offsetX(10) !important;}
+            .offset11 {.fluid-offsetX(11) !important;}
+            .offset12 {.fluid-offsetX(12) !important;}
         }
     }
+}
 
-    &.element-border {
-        [class*="span"] {
-            border: 1px #ccc dotted;
-        }
+.grid {
+    &.compact {
+
     }
-
-    .clearfix();
-}
-
-.grid > .row::before, .grid > .row::after {
-    content: normal;
-}
-
-td[class*="span"], th[class*="span"] {
-    display: table-cell !important;
-    float: none !important;
-    padding: 0 !important;
 }
