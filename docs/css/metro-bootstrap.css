@@ -1523,12 +1523,6 @@ a {
   z-index: 102;
   top: 0;
 }
-.metro .no-user-select {
-  -moz-user-select: none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
-  user-select: none;
-}
 .metro .rotate45 {
   -webkit-transform: rotate(45deg);
   -moz-transform: rotate(45deg);
@@ -4413,10 +4407,6 @@ a {
   background-color: #FFFFFF;
   border: 2.5px solid #2a2a2a;
   padding: 2px;
-  -moz-user-select: none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
-  user-select: none;
 }
 .metro .contextmenu .item:active {
   background-color: #000000;
@@ -5282,12 +5272,6 @@ a {
 }
 .metro [draggable] {
   cursor: default;
-}
-.metro .tile {
-  -moz-user-select: none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
-  user-select: none;
 }
 .metro .carousel {
   display: block;
