@@ -1,325 +1,419 @@
-/*
- * Metro UI CSS
- * (c) 2012-2013 by Sergey Pimenov
- * Licensed under the MIT License and Commercial
- *
- * Tiles.less
- *
- */
+@tile-badge-activity-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGMSURBVDhPvZMtTwNBEIbv2mtScaICcQJRgSgJCQIEhqSiAlEHAlFRwU/ov0AgUEgUsrIkiJIgMOAQJFSQQAIJJBWIu95Hj2eGvXIpB3W8yWTn452Z3dld25pDmqZuFEWdcrm8jr6JK7Bt+wb9Ft85+vsXswBxHHdIfmFNi4TYG7InXAp6ss52kCTJIc6e6KzSVbrdYzrYDaSFXZU4uEQ8x3FW1ZpMJge5Tn3IdQ3kID5iw4zHTqIsUEP3TWCA7WhgDjRZg/eUFRCR3Fl3KYJjyfALIUU46jHcsSlQl8FdmQJnhrcQJFbJ6QZB0LDDMNyS4XBFo1Kp9Gw4/wi247GLHmvNuBaC47Y5gtzIQB1mBmMGdDSdTpfV+QdM8vfcsqkap6ClgQIQa+a4bXViPGRO5ILjuBqYAwk7yIfhXcNz9CljDFkkST6P4JGjnHA7d+gBxAY3tIve1Khljbi1beKvakHQp0uhfTrMjvOL9H3fX9FE8OM7yxAhdem4QWHZkSufSoTYaaVSkY9kYFmfXgyTciI3uacAAAAASUVORK5CYII%3D');
+@tile-badge-alert-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFeSURBVDhPpZMtT8RAEIbb7YoTJ04gkQgQuBNIEpB4LD8AwQ9AkCCQhGAvQSAuKHCIE0gEP+DEISAhQYK4pE0/eWa65a7lSvh4k8nsvDv77sxs67UhSZLNNE0LZ3uO/gLj/J+hAkVRWI1+geqMCuR5fkKZoyiKViX+DuQu094wy7KhEmEYrkAk0qt4Nk5R77GszQCuE8fxIXxY8ZJjgiBY8n3/UcTwlsQDNifGmF29AcBtITyGOyan47gXXFfW2g/q+yi+VeptJhVgR1KRHp4HZI+bzknQlhYcvpQZuHRF8xmnCDyLL8MZEI9o4YkW3h1VB+o73DJp3to08l7xsw9Lng5i1EiSSV/Pcbdwzfk8MLcNqjIyye1STnHD5joln7lYcGWtXaP8gYsFfeJyHvR9waExt3wKsV74L3Brn/geu3OUDqiL1T7nNoEK8mLi9RUoZYqlsv4pqtf459/oeR8seozS7mDHCwAAAABJRU5ErkJggg%3D%3D');
+@tile-badge-attention-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEbSURBVDhPtZI9bsJAEIVZ7ANQ5gApEomChjoNBUUOkSJFivSUQE3JEThCCo4BkotcIVKKNEi2vP7hveVZrMFgKPJJo915szOzf51/Jc/zhbV2Jfc+kiR5QrLNsqzEMJJ8O0hcM1kWlWUZKtQOOo69ZGdpmn4ofB12QsI3k1BoRtP8F7Gell0GnT6rrpJ4HOfzUiU1ww7o9HepAGI2juNHyeegw7Ja3FRA9iW5jv9slSl0WqD2rEYjF7Hy68E7gCPNORpjpk44sg2CYAg969JTxVoywYIXmlyfAS77jRPDZ8PZN5j3KfiEYeh2yG07wQN5P4g/d9H9Hf5ZMkHM/QO5NbCzh6IoJgbVI/iNBdrALnY8An9X+w9rpLPbA/sADga+JgSiAAAAAElFTkSuQmCC');
+@tile-badge-available-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAAIGNIUk0AAHolAACAgwAA+f8AAIDoAABSCAABFVgAADqXAAAXb9daH5AAAAKvSURBVHjahJA/bJR1HMY/31977x33r2LuClc1LYM9TSAUr5gqtkVJjAkSFxYHE3VgaWRw0cUwOagxMZLApoXFBIwuHVSoQYkVMBXUpqSkMW9jaS25plh7/3rv+3scTIwixs/8PHn+2Bk/SVtN2mqxacYOKw13KfNiXtlneihmDONXqs0VVs/VXP1UqJvnc8qBeZoWYWf9JHXVqWkj2EX55G76X86R4W40aDHNzMdzLBwJLLEWm6fTI+o0knvZ+dkgO/cDfGczTNpl5gjxePrpY0SPMKwKT1A5nCe7Y4ofDgQEv/Ghn2AqunZabUmR9Fb8gQoaUVIVFTSiokaV0qDu0T694Y+rGbWktnQ5+nHiuP+IjrFjR4cqevj9wBK8beO87t6jiyzbKJAiIEWSreQxjAm7QGyeAwzRzb39i/7WFbdV2bGs0nxvs7zjxtlOgRwZPP6v7R5PmhQPUOKEneFLd4UECfqs51WXU/opDL6wb/mdDfJkEfrXgUKk2UKbiM/5BoD76d7reujOANwgJH9H8p14PDnSzBGySZsSReecDIAIDxj/jxH/LcQtW7UJ0E8f69RwuP+0Ohwb1CnTS0CCW6zK3Wb9a4AnNcgWktRoYHdpYhgtWvypfRSARVv5yVXd2smGWuzTHo7qeRZZpk7zH00cRos2ITd5yT/HQY0gPKGW3u0YPvZ06HB77tO2hx5jN5HFTNk11lgHRIs2VW5Tp8kRf5g3eYUUSa5y/eKsfn7NTvlPaCjqelwDF3bx4ADAeXeJc1xijpCYmDJ9jKrCIe0H4IaF81/56VGDJTvtPwV1IFmhTO/4AOWDSQIAWmwiRIokADEx08xeXGD5hUjxQp0GnQCdOAKS1RnNP7tO7VDOMmO9bB8qUQRghVVCW7raUOPEvH45W7IidRoA/DEAmmk0pL+n6f4AAAAASUVORK5CYII%3D');
+@tile-badge-away-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAAIGNIUk0AAHolAACAgwAA+f8AAIDoAABSCAABFVgAADqXAAAXb9daH5AAAAJ2SURBVHjajJI7iFVnFIW//d9zz52ZO2fG14gzJBgbp5JYKPh+NqKxsxWMRZoBCxu1sAuBKFaClj5KDUQhRXybCIqICjqNYjFDhtExN45e7/uc8y+L/yJGp3A1+2fDWv/ea23zlQvIp0gpRgfrWbZRNrhP0cAOopEyGGSvWmQz15zq59SeuC5LsAis0MJ85SLKG8jXY3pXnKb8/X6iBAB8KLhuzZtQf/gbrWc/WTGetSgnAg9qlCiv/pNk1RYAqz3A6jeg/SyoxMtReRNKNsLAhj24gWW0726H+B3+9Rmyd3fPp5KyXMpf/SqNL5KelEIdH5Ke9Ejj8+SnjyrLWkolZbX7f/jZk5h/e3WN7197j0I/NnMMN3MYoiXgBv6/g+rQmUJDR/Ajv4BP0eylnU5u/pgK/Vj9Ee6/411y8gm5a4b1Qfwt9uYUrnoTXBGLvzvoFCXbDLDaVcjfd38WX0JBRCnUroRW/M1qRzRSxgPt55+NPRc8FJJgbtaB4rBz+phRxtcj//hylr5s4YDScvDVT0KfCw7yGpRGIYohfS2H3v4NoL6tYL3BbWwOsoHawY3y1tDJpp46p8pp5U2UrEcLD0BnCtT4bBIXyJ0J/Pwf0eAu8ELtiROO5uQtazy9LMAvPoKGDoU00n/CSr4K2RTkFfyCMRj+OWg2Ht9RNv27+X/PId8cVN+62/SvWAngqtehdq17yjmURlHfZjRvdxi98fyFr/21GWfT5ivnkQehRfSOnqV35S4KpW4w7ZB/1NNNMYf6wzukk3ulbBI1iIJkBBZX1Bn/gby621wyRrx0DcXhQGzPYOnEY/nmKbVeXLTicNcn+DAArZ4503S5ZjkAAAAASUVORK5CYII%3D');
+@tile-badge-busy-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAAIGNIUk0AAHolAACAgwAA+f8AAIDoAABSCAABFVgAADqXAAAXb9daH5AAAAKNSURBVHjajJI9a1RBGIWfGeLdmPXuKkR0Q0RTmFsFUxgQNcaPRonpbAW1sAlY2IhFfoCIVSDaaVImFhYWmkTxAwJBVgttNqTYQFAjAWPi7t3svXeOxeC3hQdeZpiZ887DmTFuchIlCUoSTLOJ6erqV7F4QYXCaTo68hgDHz82WFmZsbXauKrVWYUhBjCNBsZNTaF6HdVqAT09tzlw4BJhyD8Vx1Au36dSuWyC4LPJMlpwDur1HH19jzh48DiAefUK8+QJVCrgHHR3o2PHUH8/HD16jkKhi7m5UwTBF9zdu6RzcxOJpFRSduOG1N4u5XJ+3LlTam2Vtm+XGxlR2mgokZTOzz90o6PgpqcPpRsbP83GSKWSFEXS/v2+okjq7JRA7vp1pZLSZlPJ5OQZqx07hrVtG+b1a+zNm7B7N4ShR/8u56CtDfbswYyNYZ8+hS1bMPv2XbUKw5MGMNPTsLEBhQJIfwco+SZJAo8f+7XOzj5LR0cegIUFb/715j/lnKerVKDZhFLJWlnrN9OU/1aW/Zha8+FDA4Dublhfh+8N/yVr4etXiCIIAvj0SZa1tRcAOnECtm6FWg2M+dtsDGxu8uMsYJaX31q7unpbcYyOHEFXrsDyMtTrv5NY683VKu7iRTQ4CBKqVm/h7twhnZ9/kEhK41ju2jWpWJTa2qRdu3zl81I+r2x4WNnamv8H5fKLZHQU48bHURwXdfjwM3p6egHs7CzMzPi0swyiCA0MoKEhj76wsOiePx/AmPfGTUwgQFI7UXSP3t5BcjmPvrnp37+19Wf65fJLlpbOK02XqNdpAaClBYJgVe/enWV9fciE4TB79x6iVPLGlRVMtfpGcTymxcUpUyr5nIBvAwDWIWcndiwtQAAAAABJRU5ErkJggg%3D%3D');
+@tile-badge-error-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFiSURBVDhPjVM7TsNQELRjy8ISBQeIREtBEYnQUXCINFTkCCBxgNwAJI5AaejSpaCAEqRINBTcIQ1SbD9/mHmfZP3iSIw0ytt9O7O7thMGHpqmGVZVNQnD8AwcMde27RL8rOt6nqbpjy7sA4RTpdQKv20fcbcuy/IOZrGVbIHLpz7RHr52TJCYukuMeU+6WDBjdxej4UyLubMbm0KdBDyTzHWEyY01UEVRnA4Q8IEdaZVAFEW3yD/g+IzzFc6VuTFAHAPXO7vLKQi5q+suuOD+X15yx4ToEXON1QB3B6ZkC3Qd+q8Kaxzbo0TMCTLPefPAfPS8nTeOtnk1YEfMsf11pIm+y/P8BLusmaCZrevsLE1QO3F51FzopJyCQil2pAnFoLLxI7X6z8SxkVjgeMn4H/jGQz3Ht/BrY2MC85nrsI/sjNpDKzMTSODzHPELQ9EY1H9ndFqCHxC/JEnyrgs1guAPTvwreuY0IiIAAAAASUVORK5CYII%3D');
+@tile-badge-newMessage-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAC/SURBVDhP1ZE9DgIhFIQhobDYg1haWniMbSw9j0exsfMAeg9L7Sy2kPATnCFI2LgYtjJOMjx4vPkoED+X5OK934cQ+thpFOYvSqmdMMascVDOuQMcGn1GptNaL4W1dgBkMwOSw8jeBJszIKMwexFAN0A+wnQG0Lh4wv0EJIb5AO4fRX8MoDFAlZAyPJSztOSSfiYLAYeyxTcdURcIrqSUJ7iLA4UmAdQbgnqvhakqgEoQXQtTXwEtIuCa9n8pIV67VJf6AmhGmgAAAABJRU5ErkJggg%3D%3D');
+@tile-badge-paused-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAArSURBVDhPY/j9+7fDnz9//mPBCQxQgE8NE1QN2WDUgFEDQGDUgIE3gIEBAArtNKc4HT7sAAAAAElFTkSuQmCC');
+@tile-badge-playing-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEXSURBVDhPY4CBnz9/pvz+/dsFyiUaMEFpBiYmJhkgtf3v37/t////Z4GIEgZwA0CAkZGRBai5AmjIYSCtABXGC1AMQAIWf/78OQ/EEVA+ToDLAJBrBIDUcqBrZgNdwwMRxQQ4DYABoOYUoCGngYFsABVCAQQNgAINYCAf//XrVwGUDwfEGgDyEgfQkH5guGwGukoEKky8AUhA5sePH6DwAQOSDAC6YgIzM7MpJyfnHagQcQYAnfwGiD2BmguBhvyBCoMBMQbsYWFh0WVlZd0B5aMAnAYAbfzz79+/SqBmV6CtL6DCGACXAQ+ABliysbF1QPk4AYYBQI0rgH7VBWo+AxXCC+AGADV+AVKJQL9GAp0MYhMBGBgA8v5j1f90TA8AAAAASUVORK5CYII%3D');
+@tile-badge-unavailable-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAAIGNIUk0AAHolAACAgwAA+f8AAIDoAABSCAABFVgAADqXAAAXb9daH5AAAAKASURBVHjalJK9axxXFMV/772ZzOysVqvRDgtaSSwpJYFwY3ATEpIm5KNLawgp3Ljz/5E2bu20CYQUBoMNNnaRMkUKqYiQtIgdCQ0TaVc7M29n3nspzC7GMYYcuMWFe7jnHI4YjUY453DOYYyh0+l8opT63vO8L8MwbAshqKqq0lo/c849rqrquXMOIcSbGY1GWGsxxny0urr6MI7jH5RSAFhrAZBSLvc8z3+dTqf3lFL/SCnxAIwxwdra2tP19fXPAC4vL8myjKIoAIiiiF6vR7/fJ0mS75RSH19dXX0hpbwWx8fHrKys/JwkyV1rLYeHh5yenuKc420lzjm2trbY3d3F8zzyPH8ynU6/ERcXF3fiOP7D930ODg44OjoiDMOl7AWstZRlyXA4ZH9/H2MM4/H4K+l53n3f98myjJOTE4Ig+A95kUMURZydnXF+fo5SiiiKHkjf9z9f+AaWst+HRfKL2yiKbssgCNrOOWaz2Xs/vwulFLPZjLquCcPwDcM5x//B2/dyPp9XC3/WWoQQHyQbY2i32/i+T1VVTtZ1/QogSZJlGz/02VpLkiQAlGX5l2ya5mHTNPT7fba3tynLctnAd8llWTIYDNjY2MBaS1EUP0qt9YvJZPI7wM7ODsPhEK01WmuapqFpGrTWVFXFYDBgb28PIQTX19ev67r+TYzHY7TW3W63+zKO41sAaZqSZRk3NzcAtNtter0em5ubAEwmk7/zPP9USjkWaZoyn89xziWdTudRt9v9etGFuq4B8H1/aSXP89dFUdx1zp065xBpmlLXNUIIjDG0Wq1vPc+7H4bhnVarhRCCsiwpiuJPY8xPRVH8EgQBxhistfw7ABpxTL93U9x/AAAAAElFTkSuQmCC');
 
-@badge-activity-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGMSURBVDhPvZMtTwNBEIbv2mtScaICcQJRgSgJCQIEhqSiAlEHAlFRwU/ov0AgUEgUsrIkiJIgMOAQJFSQQAIJJBWIu95Hj2eGvXIpB3W8yWTn452Z3dld25pDmqZuFEWdcrm8jr6JK7Bt+wb9Ft85+vsXswBxHHdIfmFNi4TYG7InXAp6ss52kCTJIc6e6KzSVbrdYzrYDaSFXZU4uEQ8x3FW1ZpMJge5Tn3IdQ3kID5iw4zHTqIsUEP3TWCA7WhgDjRZg/eUFRCR3Fl3KYJjyfALIUU46jHcsSlQl8FdmQJnhrcQJFbJ6QZB0LDDMNyS4XBFo1Kp9Gw4/wi247GLHmvNuBaC47Y5gtzIQB1mBmMGdDSdTpfV+QdM8vfcsqkap6ClgQIQa+a4bXViPGRO5ILjuBqYAwk7yIfhXcNz9CljDFkkST6P4JGjnHA7d+gBxAY3tIve1Khljbi1beKvakHQp0uhfTrMjvOL9H3fX9FE8OM7yxAhdem4QWHZkSufSoTYaaVSkY9kYFmfXgyTciI3uacAAAAASUVORK5CYII%3D);
-@badge-alert-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFeSURBVDhPpZMtT8RAEIbb7YoTJ04gkQgQuBNIEpB4LD8AwQ9AkCCQhGAvQSAuKHCIE0gEP+DEISAhQYK4pE0/eWa65a7lSvh4k8nsvDv77sxs67UhSZLNNE0LZ3uO/gLj/J+hAkVRWI1+geqMCuR5fkKZoyiKViX+DuQu094wy7KhEmEYrkAk0qt4Nk5R77GszQCuE8fxIXxY8ZJjgiBY8n3/UcTwlsQDNifGmF29AcBtITyGOyan47gXXFfW2g/q+yi+VeptJhVgR1KRHp4HZI+bzknQlhYcvpQZuHRF8xmnCDyLL8MZEI9o4YkW3h1VB+o73DJp3to08l7xsw9Lng5i1EiSSV/Pcbdwzfk8MLcNqjIyye1STnHD5joln7lYcGWtXaP8gYsFfeJyHvR9waExt3wKsV74L3Brn/geu3OUDqiL1T7nNoEK8mLi9RUoZYqlsv4pqtf459/oeR8seozS7mDHCwAAAABJRU5ErkJggg%3D%3D);
-@badge-attention-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEbSURBVDhPtZI9bsJAEIVZ7ANQ5gApEomChjoNBUUOkSJFivSUQE3JEThCCo4BkotcIVKKNEi2vP7hveVZrMFgKPJJo915szOzf51/Jc/zhbV2Jfc+kiR5QrLNsqzEMJJ8O0hcM1kWlWUZKtQOOo69ZGdpmn4ofB12QsI3k1BoRtP8F7Gell0GnT6rrpJ4HOfzUiU1ww7o9HepAGI2juNHyeegw7Ja3FRA9iW5jv9slSl0WqD2rEYjF7Hy68E7gCPNORpjpk44sg2CYAg969JTxVoywYIXmlyfAS77jRPDZ8PZN5j3KfiEYeh2yG07wQN5P4g/d9H9Hf5ZMkHM/QO5NbCzh6IoJgbVI/iNBdrALnY8An9X+w9rpLPbA/sADga+JgSiAAAAAElFTkSuQmCC);
-@badge-available-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAAIGNIUk0AAHolAACAgwAA+f8AAIDoAABSCAABFVgAADqXAAAXb9daH5AAAAKvSURBVHjahJA/bJR1HMY/31977x33r2LuClc1LYM9TSAUr5gqtkVJjAkSFxYHE3VgaWRw0cUwOagxMZLApoXFBIwuHVSoQYkVMBXUpqSkMW9jaS25plh7/3rv+3scTIwixs/8PHn+2Bk/SVtN2mqxacYOKw13KfNiXtlneihmDONXqs0VVs/VXP1UqJvnc8qBeZoWYWf9JHXVqWkj2EX55G76X86R4W40aDHNzMdzLBwJLLEWm6fTI+o0knvZ+dkgO/cDfGczTNpl5gjxePrpY0SPMKwKT1A5nCe7Y4ofDgQEv/Ghn2AqunZabUmR9Fb8gQoaUVIVFTSiokaV0qDu0T694Y+rGbWktnQ5+nHiuP+IjrFjR4cqevj9wBK8beO87t6jiyzbKJAiIEWSreQxjAm7QGyeAwzRzb39i/7WFbdV2bGs0nxvs7zjxtlOgRwZPP6v7R5PmhQPUOKEneFLd4UECfqs51WXU/opDL6wb/mdDfJkEfrXgUKk2UKbiM/5BoD76d7reujOANwgJH9H8p14PDnSzBGySZsSReecDIAIDxj/jxH/LcQtW7UJ0E8f69RwuP+0Ohwb1CnTS0CCW6zK3Wb9a4AnNcgWktRoYHdpYhgtWvypfRSARVv5yVXd2smGWuzTHo7qeRZZpk7zH00cRos2ITd5yT/HQY0gPKGW3u0YPvZ06HB77tO2hx5jN5HFTNk11lgHRIs2VW5Tp8kRf5g3eYUUSa5y/eKsfn7NTvlPaCjqelwDF3bx4ADAeXeJc1xijpCYmDJ9jKrCIe0H4IaF81/56VGDJTvtPwV1IFmhTO/4AOWDSQIAWmwiRIokADEx08xeXGD5hUjxQp0GnQCdOAKS1RnNP7tO7VDOMmO9bB8qUQRghVVCW7raUOPEvH45W7IidRoA/DEAmmk0pL+n6f4AAAAASUVORK5CYII%3D);
-@badge-away-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAAIGNIUk0AAHolAACAgwAA+f8AAIDoAABSCAABFVgAADqXAAAXb9daH5AAAAJ2SURBVHjajJI7iFVnFIW//d9zz52ZO2fG14gzJBgbp5JYKPh+NqKxsxWMRZoBCxu1sAuBKFaClj5KDUQhRXybCIqICjqNYjFDhtExN45e7/uc8y+L/yJGp3A1+2fDWv/ea23zlQvIp0gpRgfrWbZRNrhP0cAOopEyGGSvWmQz15zq59SeuC5LsAis0MJ85SLKG8jXY3pXnKb8/X6iBAB8KLhuzZtQf/gbrWc/WTGetSgnAg9qlCiv/pNk1RYAqz3A6jeg/SyoxMtReRNKNsLAhj24gWW0726H+B3+9Rmyd3fPp5KyXMpf/SqNL5KelEIdH5Ke9Ejj8+SnjyrLWkolZbX7f/jZk5h/e3WN7197j0I/NnMMN3MYoiXgBv6/g+rQmUJDR/Ajv4BP0eylnU5u/pgK/Vj9Ee6/411y8gm5a4b1Qfwt9uYUrnoTXBGLvzvoFCXbDLDaVcjfd38WX0JBRCnUroRW/M1qRzRSxgPt55+NPRc8FJJgbtaB4rBz+phRxtcj//hylr5s4YDScvDVT0KfCw7yGpRGIYohfS2H3v4NoL6tYL3BbWwOsoHawY3y1tDJpp46p8pp5U2UrEcLD0BnCtT4bBIXyJ0J/Pwf0eAu8ELtiROO5uQtazy9LMAvPoKGDoU00n/CSr4K2RTkFfyCMRj+OWg2Ht9RNv27+X/PId8cVN+62/SvWAngqtehdq17yjmURlHfZjRvdxi98fyFr/21GWfT5ivnkQehRfSOnqV35S4KpW4w7ZB/1NNNMYf6wzukk3ulbBI1iIJkBBZX1Bn/gby621wyRrx0DcXhQGzPYOnEY/nmKbVeXLTicNcn+DAArZ4503S5ZjkAAAAASUVORK5CYII%3D);
-@badge-busy-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAAIGNIUk0AAHolAACAgwAA+f8AAIDoAABSCAABFVgAADqXAAAXb9daH5AAAAKNSURBVHjajJI9a1RBGIWfGeLdmPXuKkR0Q0RTmFsFUxgQNcaPRonpbAW1sAlY2IhFfoCIVSDaaVImFhYWmkTxAwJBVgttNqTYQFAjAWPi7t3svXeOxeC3hQdeZpiZ887DmTFuchIlCUoSTLOJ6erqV7F4QYXCaTo68hgDHz82WFmZsbXauKrVWYUhBjCNBsZNTaF6HdVqAT09tzlw4BJhyD8Vx1Au36dSuWyC4LPJMlpwDur1HH19jzh48DiAefUK8+QJVCrgHHR3o2PHUH8/HD16jkKhi7m5UwTBF9zdu6RzcxOJpFRSduOG1N4u5XJ+3LlTam2Vtm+XGxlR2mgokZTOzz90o6PgpqcPpRsbP83GSKWSFEXS/v2+okjq7JRA7vp1pZLSZlPJ5OQZqx07hrVtG+b1a+zNm7B7N4ShR/8u56CtDfbswYyNYZ8+hS1bMPv2XbUKw5MGMNPTsLEBhQJIfwco+SZJAo8f+7XOzj5LR0cegIUFb/715j/lnKerVKDZhFLJWlnrN9OU/1aW/Zha8+FDA4Dublhfh+8N/yVr4etXiCIIAvj0SZa1tRcAOnECtm6FWg2M+dtsDGxu8uMsYJaX31q7unpbcYyOHEFXrsDyMtTrv5NY683VKu7iRTQ4CBKqVm/h7twhnZ9/kEhK41ju2jWpWJTa2qRdu3zl81I+r2x4WNnamv8H5fKLZHQU48bHURwXdfjwM3p6egHs7CzMzPi0swyiCA0MoKEhj76wsOiePx/AmPfGTUwgQFI7UXSP3t5BcjmPvrnp37+19Wf65fJLlpbOK02XqNdpAaClBYJgVe/enWV9fciE4TB79x6iVPLGlRVMtfpGcTymxcUpUyr5nIBvAwDWIWcndiwtQAAAAABJRU5ErkJggg%3D%3D);
-@badge-error-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFiSURBVDhPjVM7TsNQELRjy8ISBQeIREtBEYnQUXCINFTkCCBxgNwAJI5AaejSpaCAEqRINBTcIQ1SbD9/mHmfZP3iSIw0ytt9O7O7thMGHpqmGVZVNQnD8AwcMde27RL8rOt6nqbpjy7sA4RTpdQKv20fcbcuy/IOZrGVbIHLpz7RHr52TJCYukuMeU+6WDBjdxej4UyLubMbm0KdBDyTzHWEyY01UEVRnA4Q8IEdaZVAFEW3yD/g+IzzFc6VuTFAHAPXO7vLKQi5q+suuOD+X15yx4ToEXON1QB3B6ZkC3Qd+q8Kaxzbo0TMCTLPefPAfPS8nTeOtnk1YEfMsf11pIm+y/P8BLusmaCZrevsLE1QO3F51FzopJyCQil2pAnFoLLxI7X6z8SxkVjgeMn4H/jGQz3Ht/BrY2MC85nrsI/sjNpDKzMTSODzHPELQ9EY1H9ndFqCHxC/JEnyrgs1guAPTvwreuY0IiIAAAAASUVORK5CYII%3D);
-@badge-newMessage-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAC/SURBVDhP1ZE9DgIhFIQhobDYg1haWniMbSw9j0exsfMAeg9L7Sy2kPATnCFI2LgYtjJOMjx4vPkoED+X5OK934cQ+thpFOYvSqmdMMascVDOuQMcGn1GptNaL4W1dgBkMwOSw8jeBJszIKMwexFAN0A+wnQG0Lh4wv0EJIb5AO4fRX8MoDFAlZAyPJSztOSSfiYLAYeyxTcdURcIrqSUJ7iLA4UmAdQbgnqvhakqgEoQXQtTXwEtIuCa9n8pIV67VJf6AmhGmgAAAABJRU5ErkJggg%3D%3D);
-@badge-paused-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAArSURBVDhPY/j9+7fDnz9//mPBCQxQgE8NE1QN2WDUgFEDQGDUgIE3gIEBAArtNKc4HT7sAAAAAElFTkSuQmCC);
-@badge-playing-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEXSURBVDhPY4CBnz9/pvz+/dsFyiUaMEFpBiYmJhkgtf3v37/t////Z4GIEgZwA0CAkZGRBai5AmjIYSCtABXGC1AMQAIWf/78OQ/EEVA+ToDLAJBrBIDUcqBrZgNdwwMRxQQ4DYABoOYUoCGngYFsABVCAQQNgAINYCAf//XrVwGUDwfEGgDyEgfQkH5guGwGukoEKky8AUhA5sePH6DwAQOSDAC6YgIzM7MpJyfnHagQcQYAnfwGiD2BmguBhvyBCoMBMQbsYWFh0WVlZd0B5aMAnAYAbfzz79+/SqBmV6CtL6DCGACXAQ+ABliysbF1QPk4AYYBQI0rgH7VBWo+AxXCC+AGADV+AVKJQL9GAp0MYhMBGBgA8v5j1f90TA8AAAAASUVORK5CYII%3D);
-@badge-unavailable-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAAIGNIUk0AAHolAACAgwAA+f8AAIDoAABSCAABFVgAADqXAAAXb9daH5AAAAKASURBVHjalJK9axxXFMV/772ZzOysVqvRDgtaSSwpJYFwY3ATEpIm5KNLawgp3Ljz/5E2bu20CYQUBoMNNnaRMkUKqYiQtIgdCQ0TaVc7M29n3nspzC7GMYYcuMWFe7jnHI4YjUY453DOYYyh0+l8opT63vO8L8MwbAshqKqq0lo/c849rqrquXMOIcSbGY1GWGsxxny0urr6MI7jH5RSAFhrAZBSLvc8z3+dTqf3lFL/SCnxAIwxwdra2tP19fXPAC4vL8myjKIoAIiiiF6vR7/fJ0mS75RSH19dXX0hpbwWx8fHrKys/JwkyV1rLYeHh5yenuKc420lzjm2trbY3d3F8zzyPH8ynU6/ERcXF3fiOP7D930ODg44OjoiDMOl7AWstZRlyXA4ZH9/H2MM4/H4K+l53n3f98myjJOTE4Ig+A95kUMURZydnXF+fo5SiiiKHkjf9z9f+AaWst+HRfKL2yiKbssgCNrOOWaz2Xs/vwulFLPZjLquCcPwDcM5x//B2/dyPp9XC3/WWoQQHyQbY2i32/i+T1VVTtZ1/QogSZJlGz/02VpLkiQAlGX5l2ya5mHTNPT7fba3tynLctnAd8llWTIYDNjY2MBaS1EUP0qt9YvJZPI7wM7ODsPhEK01WmuapqFpGrTWVFXFYDBgb28PIQTX19ev67r+TYzHY7TW3W63+zKO41sAaZqSZRk3NzcAtNtter0em5ubAEwmk7/zPP9USjkWaZoyn89xziWdTudRt9v9etGFuq4B8H1/aSXP89dFUdx1zp065xBpmlLXNUIIjDG0Wq1vPc+7H4bhnVarhRCCsiwpiuJPY8xPRVH8EgQBxhistfw7ABpxTL93U9x/AAAAAElFTkSuQmCC);
+@tileMargin:            10px;
+@tileSize:              120px;
+@tilePart:              60px;
+@tileOutlineSize:       3px;
 
+@tileHalfSize:          @tileSize / 2 - @tileMargin / 2;
+@tileDoubleSize:        @tileSize * 2 + @tileMargin;
+@tileTripleSize:        @tileSize * 3 + @tileMargin * 2;
+@tileQuadroSize:        @tileSize * 4 + @tileMargin * 3;
 
-@tileSmall:             150px;
-@tileLarge:             310px;
-@tileMargin:            5px;
-@tileDouble:            @tileSmall * 2 + @tileMargin * 2;
-@tileTriple:            @tileSmall * 3 + @tileMargin * 4;
-@tileQuadro:            @tileSmall * 4 + @tileMargin * 6;
+@tileGroupMargin:       46px;
+@tileGroupSize:         @tileSize+@tileMargin;
+@tileGroupDoubleSize:   @tileDoubleSize+@tileMargin;
+@tileGroupTripleSize:   @tileTripleSize+@tileMargin;
+@tileGroupQuadroSize:   @tileQuadroSize+@tileMargin;
 
+@tileAreaDark:          @dark;
+@tileAreaDarkBrown:     @darkBrown;
+@tileAreaDarkCrimson:   @darkCrimson;
+@tileAreaDarkViolet:    @darkViolet;
+@tileAreaDarkMagenta:   @darkMagenta;
+@tileAreaDarkCyan:      @darkCyan;
+@tileAreaDarkCobalt:    @darkCobalt;
+@tileAreaDarkTeal:      @darkTeal;
+@tileAreaDarkEmerald:   @darkEmerald;
+@tileAreaDarkGreen:     @darkGreen;
+@tileAreaDarkOrange:    @darkOrange;
+@tileAreaDarkRed:       @darkRed;
+@tileAreaDarkPink:      @darkPink;
+@tileAreaDarkIndigo:    @darkIndigo;
+@tileAreaDarkBlue:      @darkBlue;
+@tileAreaLightBlue:     @lightBlue;
+@tileAreaLightTeal:     @lightTeal;
+@tileAreaLightOlive:    @lightOlive;
+@tileAreaLightOrange:   @lightOrange;
+@tileAreaLightPink:     @lightPink;
+@tileAreaGrayed:        @grayed;
+
+@tileSizeSmall: 80px;
+@tileSizeMeduim: 120px;
+@tileSizeLarge: 150px;
+
+@tileIconSize:  56px;
+@tileIconSizeFont:  48px;
+
+#tile {
+    .small-size {
+        .square(@tileSizeSmall);
+        margin: 0 (@tileMargin / 2) (@tileMargin / 2) 0;
+    }
+    .meduim-size {
+        .square(@tileSizeMeduim);
+        margin: 0 @tileMargin @tileMargin 0;
+    }
+    .large-size {
+        .square(@tileSizeLarge);
+        margin: 0 (@tileMargin * 1.5) (@tileMargin * 1.5) 0;
+    }
+}
+
+.tile-area (@background) {
+    min-width: 100%;
+    height: 100%;
+    background-color: @background !important;
+    padding: 10px 10px 0 10px;
+
+    .tile {
+        outline-color: lighten(@background, 10%) !important;
+    }
+    .clearfix;
+}
+
+.tile-area-dark {.tile-area(@dark)}
+.tile-area-darkBrown {.tile-area(@darkBrown)}
+.tile-area-darkCrimson {.tile-area(@darkCrimson)}
+.tile-area-darkViolet {.tile-area(@darkViolet)}
+.tile-area-darkMagenta {.tile-area(@darkMagenta)}
+.tile-area-darkCyan {.tile-area(@darkCyan)}
+.tile-area-darkCobalt {.tile-area(@darkCobalt)}
+.tile-area-darkTeal {.tile-area(@darkTeal)}
+.tile-area-darkEmerald {.tile-area(@darkEmerald)}
+.tile-area-darkGreen {.tile-area(@darkGreen)}
+.tile-area-darkOrange {.tile-area(@darkOrange)}
+.tile-area-darkRed {.tile-area(@darkRed)}
+.tile-area-darkPink {.tile-area(@darkPink)}
+.tile-area-darkIndigo {.tile-area(@darkIndigo)}
+.tile-area-darkBlue {.tile-area(@darkBlue)}
+.tile-area-lightBlue {.tile-area(@lightBlue)}
+.tile-area-lightTeal {.tile-area(@lightTeal)}
+.tile-area-lightOlive {.tile-area(@lightOlive)}
+.tile-area-lightOrange {.tile-area(@lightOrange)}
+.tile-area-lightPink {.tile-area(@lightPink)}
+.tile-area-grayed {.tile-area(@grayed)}
 
 .tile-group {
-    margin: 0;
-    margin-right: @unit * 4;
+    margin-right: @tileGroupMargin;
+    width: @tileGroupSize;
     float: left;
-    width: auto;
-    height: auto;
-    min-height: 1px;
-    width: 802px;
+    display: block;
+    padding-top: 40px;
+    position: relative;
+
+    &.two, &.double {
+        width: @tileGroupDoubleSize;
+    }
+    &.three, &.triple {
+        width: @tileGroupTripleSize;
+    }
+    &.four, &.quadro {
+        width: @tileGroupQuadroSize;
+    }
+    &.five {
+        width: @tileGroupDoubleSize + @tileGroupTripleSize;
+    }
+    &.six {
+        width: @tileGroupTripleSize * 2;
+    }
+    &.seven {
+        width: @tileGroupTripleSize * 2 + @tileGroupSize;
+    }
+}
+
+.tile-group {
+    color: @white;
+    .tile-group-title {
+        #font > .segoe-light;
+        font-size: 18px;
+        line-height: 20px;
+        position: absolute;
+        top: 10px;
+        left: 0;
+        color: inherit;
+    }
 }
 
 .tile {
+    position: relative;
+    overflow: hidden;
     display: block;
     float: left;
-    background-color: @grayDark;
-    width: @tileSmall;
-    height: @tileSmall;
+    margin: 0 @tileMargin @tileMargin 0;
+    padding: 0;
     cursor: pointer;
+    background-color: @grayLighter;
     box-shadow: inset 0px 0px 1px #FFFFCC;
-    text-decoration: none;
-    color: @white;
-    .no-overflow;
-    .pos-rel;
-    #font > .normal;
-    margin: 0 10px 10px 0;
-    overflow: hidden;
 
-
-    .offset1tile {
-        margin-left: @tileSmall + @tileMargin *2;
+    &:hover {
+        outline: @grayLight solid @tileOutlineSize;
     }
-    
-    .upset1tile {
-        margin-top: -1 * (@tileSmall + @tileMargin *2);
-    }
-    
-    .offset1tile {
-        margin-left: @tileDouble + @tileMargin *2;
-    }
-    
-    .upset1tile {
-        margin-top: -1 * (@tileDouble + @tileMargin *2);
+    &:active {
+        outline: 0;
     }
 
-    * {
-        color: @white;
+    &.no-outline {
+        outline-color: transparent;
     }
 
+}
+
+.tile {
+    #tile > .meduim-size;
+
+    &.half {
+        width: @tileHalfSize;
+        height: @tileHalfSize;
+    }
+    &.double {
+        width: @tileDoubleSize;
+    }
+    &.double-vertical {
+        height: @tileDoubleSize;
+    }
+    &.triple {
+        width: @tileTripleSize;
+    }
+    &.triple-vertical {
+        height: @tileTripleSize;
+    }
+    &.quadro {
+        width: @tileQuadroSize;
+    }
+    &.quadro-vertical {
+        height: @tileQuadroSize;
+    }
+}
+
+.tile {
+    &.selected {
+        #element > .selected;
+    }
+}
+
+// Tile Content
+.tile {
     .tile-content {
         width: 100%;
         height: 100%;
         padding: 0;
-        padding-bottom: 30px;
-        vertical-align: top;
-        padding: 10px 15px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        position: relative;
-
-        .tertiary-text;
-        color: @white;
-        line-height: 16px;
-
-        &:hover {
-            color: @white;
-        }
-
-        h1,h2,h3,h4,h5,h6 {
-            font-size: 14pt;
-        }
-        h1,h2,h3,h4,h5,h6,p {
-            padding: 0;
-            margin: 0;
-            line-height: 24px;
-
-            &:hover {
-                color: @white;
-            }
-        }
-
-        p {
-            .tertiary-text;
-            color: @white;
-            line-height: 16px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            &:hover {
-                color: @white;
-            }
-        }
-    }
-
-    &.icon {
-        & > .tile-content {
-            padding: 0;
-
-            & > img {
-                position: absolute;
-                width: 64px;
-                height: 64px;
-                top: 50%;
-                left: 50%;
-                margin-left: -32px;
-                margin-top: -32px;
-            }
- 
-            & > i {
-                position: absolute;
-                width: 64px;
-                height: 64px;
-                top: 30%;
-                left: 50%;
-                margin-left: -32px;
-                //margin-top: -32px;
-                font-size: 64px;
-                -webkit-margin-before: -6px; // Workaround for webkit browsers
-            }
-        }
-    }
-
-    &.image, &.image-slider {
-        & > .tile-content {
-            padding: 0;
-
-            & > img {
-                width: 100%;
-                height : auto;
-                min-height: 100%;
-                max-width: 100%;
-            }
-        }
-    }
-
-    &.image-set {
-        & > .tile-content {
-            margin: 0;
-            padding: 0;
-            width: 25% !important;
-            height: 50%;
-            float: left;
-            border: 1px #1e1e1e solid;
-
-            & > img {
-                min-width: 100%;
-                width: 100%;
-                height : auto;
-                min-height: 100%;
-            }
-        }
-
-        .tile-content:first-child {
-            width: 50% !important;
-            float: left;
-            height: 100%;
-        }
-    }
-
-    &.double {
-        width: @tileDouble;
-    }
-    &.triple {
-        width: @tileTriple;
-    }
-    &.quadro {
-        width: @tileQuadro;
-    }
-    &.double-vertical {
-        height: @tileDouble;
-    }
-    &.triple-vertical {
-        height: @tileTriple;
-    }
-    &.quadro-vertical {
-        height: @tileQuadro;
-    }
-
-
-    .brand, .tile-status {
-        .pos-abs;
-        bottom: 0;
+        margin: 0;
+        display: block;
+        position: absolute;
         left: 0;
-        right: 0;
-        min-height: 30px;
-        background-color: transparent;
-        .clearfix;
+        top: 0;
+        overflow: hidden;
 
-        & > .badge {
-            .bottom-right;
-            right: 5px;
-            margin-bottom: 0;
-            color: @white;
-            width: 34px;
-            height: 28px;
-            text-align: center;
-            #font > .small-subheader;
-            padding-top: 3px;
-
-            &.activity {
-                background: @blue @badge-activity-image 50% no-repeat;
-            }
-            &.alert {
-                background: @blue @badge-alert-image 50% no-repeat;
-            }
-            &.available {
-                background: @blue @badge-available-image 50% no-repeat;
-            }
-            &.unavailable {
-                background: @blue @badge-unavailable-image 50% no-repeat;
-            }
-            &.away {
-                background: @blue @badge-away-image 50% no-repeat;
-            }
-            &.busy {
-                background: @blue @badge-busy-image 50% no-repeat;
-            }
-            &.newMessage {
-                background: @blue @badge-newMessage-image 50% no-repeat;
-            }
-            &.paused {
-                background: @blue @badge-paused-image 50% no-repeat;
-            }
-            &.playing {
-                background: @blue @badge-playing-image 50% no-repeat;
-            }
-            &.error {
-                background: @blue @badge-error-image 50% no-repeat;
-            }
-            &.attention {
-                background: @blue @badge-attention-image 50% no-repeat;
-            }
+        &.padded {
+            padding: @subunitSize * 2;
         }
 
-        & > .name {
-            .bottom-left;
-            margin-bottom: 5px;
-            margin-left: 15px;
-            #font > .tertiary;
+        &.image {
+            width: 100%;
+            min-height: 100%;
+            max-height: 100%;
+        }
 
-            color: @white;
-            &:hover {
+        &.icon {
+            [class*="icon-"], img {
+                line-height: @tileIconSize;
+                height: @tileIconSize;
+                width: @tileIconSize;
+                position: relative;
+                font-size: @tileIconSizeFont;
                 color: @white;
+                text-align: center;
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                margin-top: -@tileIconSize/2;
+                margin-left: -@tileIconSize/2;
             }
-
-            & > [class*=icon-] {
-                font-size: 24px;
-            }
-
         }
 
-        & > .icon {
-            margin: 5px 15px;
-            width: 32px;
-            height: 32px;
-
-            & > [class*=icon-] {
-                font-size: 32px;
+        &.image-set {
+            img {
+                margin: 0;
+                padding: 0;
+                width: 25% !important;
+                height: 50%;
+                float: left;
+                border: 1px #1e1e1e solid;
             }
 
-            & > img {
-                width: 100%;
+            img:first-child {
+                width: 50% !important;
+                float: left;
                 height: 100%;
             }
         }
-
-        & > img ~ .text {
-            .pos-abs;
-            left: 60px;
-            width: auto;
-        }
-
-        & > .text {
-            position: relative;
-            left: 8px;
-            top: 5px;
-            right: 50px;
-            .tertiary-text;
-            color: @white;
-            line-height: 14px;
-            width: 60%;
-            padding: 0;
-          margin: 0;
-
-            &:hover {
-                color: @white;
-            }
-        }
     }
 
-    &:hover {
-        outline: 3px #3a3a3a solid;
+    .tile-content {
+        display: none;
+
+        &:first-child {
+            display: block;
+        }
     }
 }
 
-.tiles {
-    &.scale {}
+// Tile Brand
+.tile {
+    .brand, .tile-status {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        min-height: 29px;
+        margin: 0;
+        .clearfix;
+
+        &.opacity {
+            opacity: .7;
+        }
+
+        .name, .label, .text {
+            display: block;
+            font-size: 10pt;
+            margin: 5px 20px 2px 5px;
+            background: transparent;
+            color: @white;
+        }
+
+        .text {
+            margin: 4px 5px;
+            font-size: 8pt;
+            line-height: 10pt;
+        }
+
+        .badge {
+            position: absolute;
+            bottom: 0;
+            right: 10px;
+            width: 29px;
+            height: 29px;
+            text-align: center;
+            color: @white;
+            padding: 5px;
+            margin: 0;
+            vertical-align: middle !important;
+            display: block;
+            font-size: 10pt;
+
+            &.activity {
+                background: @tile-badge-activity-image 50% no-repeat;
+            }
+            &.alert {
+                background: @tile-badge-alert-image 50% no-repeat;
+            }
+            &.available {
+                background: @tile-badge-available-image 50% no-repeat;
+            }
+            &.unavailable {
+                background: @tile-badge-unavailable-image 50% no-repeat;
+            }
+            &.away {
+                background: @tile-badge-away-image 50% no-repeat;
+            }
+            &.busy {
+                background: @tile-badge-busy-image 50% no-repeat;
+            }
+            &.newMessage {
+                background: @tile-badge-newMessage-image 50% no-repeat;
+            }
+            &.paused {
+                background: @tile-badge-paused-image 50% no-repeat;
+            }
+            &.playing {
+                background: @tile-badge-playing-image 50% no-repeat;
+            }
+            &.error {
+                background: @tile-badge-error-image 50% no-repeat;
+            }
+            &.attention {
+                background: @tile-badge-attention-image 50% no-repeat;
+            }
+        }
+    }
+}
+
+.tile {
+    &.parts {
+        & > ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+
+            & > li {
+                display: block;
+                float: left;
+                height: @tilePart;
+                width: @tilePart;
+                margin: 0;
+            }
+        }
+
+        & > .part {
+            display: block;
+            float: left;
+            height: @tilePart;
+            width: @tilePart;
+            margin: 0;
+        }
+    }
+}
+
+.tile {
+    &.half {
+        .tile-content.icon {
+            [class*="icon-"], img {
+                line-height: @tileIconSize/1.5;
+                height: @tileIconSize/1.5;
+                width: @tileIconSize/1.5;
+                position: relative;
+                font-size: @tileIconSizeFont/1.5;
+                color: @white;
+                text-align: center;
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                margin-top: -@tileIconSize/3;
+                margin-left: -@tileIconSize/3;
+            }
+        }
+    }
+}
+
+// Typography
+.tile {
+    font-family: @segoeFontFamily;
+    * {
+        font-family: @segoeFontFamily;
+    }
+}
+
+.tile {
+    &.scale {
+        .scale(0.98);
+    }
+}
+
+[draggable] {
+    cursor: default;
+}
+
+.tile {
+    .no-user-select;
 }

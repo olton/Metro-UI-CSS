@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="product" content="Metro UI CSS Framework">
+    <meta name="description" content="Simple responsive css framework">
+    <meta name="author" content="Sergey S. Pimenov, Ukraine, Kiev">
+
+    <link href="css/metro-bootstrap.css" rel="stylesheet">
+    <link href="css/metro-bootstrap-responsive.css" rel="stylesheet">
+    <link href="css/docs.css" rel="stylesheet">
+    <link href="js/prettify/prettify.css" rel="stylesheet">
+
+    <!-- Load JavaScript Libraries -->
+    <script src="js/jquery/jquery.min.js"></script>
+    <script src="js/jquery/jquery.widget.min.js"></script>
+    <script src="js/jquery/jquery.mousewheel.js"></script>
+    <script src="js/prettify/prettify.js"></script>
+
+    <!-- Metro UI CSS JavaScript plugins -->
+    <script src="js/metro/metro-loader.js"></script>
+
+    <!-- Local JavaScript -->
+    <script src="js/docs.js"></script>
+    <script src="js/github.info.js"></script>
+
+    <title>Metro UI CSS : Metro Bootstrap CSS Library</title>
+</head>
+<body class="metro">
+    <header class="bg-dark" data-load="header.html"></header>
+    <div class="page">
+        <div class="page-region">
+            <div class="page-region-content">
+                <h1>
+                    <a href="/"><i class="icon-arrow-left-3 fg-darker smaller"></i></a>
+                    Slider<small class="on-right">component</small>
+                </h1>
+
+                <div class="example">
+                    <div class="slider" id="s1" data-role="slider" data-position="25" data-accuracy="0"></div>
+                    <div class="slider" id="slider_1" data-role="slider"></div>
+                    <div class="slider" data-role="slider" data-position="0" data-accuracy="0" data-colors="blue, red, yellow, green"></div>
+                    <script>
+                        $(function(){
+                            $("#slider_1").slider();
+                        });
+                    </script>
+                </div>
+
+                <div class="example clearfix">
+                    <div class="slider vertical place-left" data-role="slider" data-position="20" data-accuracy="0"></div>
+                    <div class="slider vertical place-left" data-role="slider" data-position="0" data-accuracy="20"></div>
+                    <div class="slider vertical place-left" data-role="slider" data-position="40" data-accuracy="0" data-color="green"></div>
+                    <div class="slider vertical place-left" data-role="slider" data-position="70" data-accuracy="0" data-color="#f00"></div>
+                    <div class="slider vertical place-left" data-role="slider" data-position="70" data-accuracy="0" data-color="black" data-complete-color="blue" data-marker-color="yellow"></div>
+                    <div class="slider vertical place-left hint-left" data-show-hint="true" data-role="slider" data-position="0" data-accuracy="0" data-colors="blue, red, yellow, green"></div>
+                    <div class="slider vertical place-left" data-role="slider" data-show-hint="true"></div>
+                    <div class="slider vertical place-left permanent-hint" data-role="slider" data-show-hint="true"></div>
+                </div>
+
+                <div class="example">
+                    <br />
+                    <div class="slider" data-role="slider" data-position="20" data-accuracy="0" data-show-hint="true"></div>
+                    <br />
+                    <div class="slider permanent-hint" data-role="slider" data-position="70" data-accuracy="0" data-show-hint="true"></div>
+                    <br />
+                    <br />
+                    <br />
+                    <div class="slider hint-bottom" data-role="slider" data-position="20" data-accuracy="0" data-show-hint="true"></div>
+                    <br />
+                    <div id="s2" class="slider permanent-hint hint-bottom" data-role="slider" data-position="20" data-accuracy="0" data-show-hint="true"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-footer">
+            <div class="page-footer-content">
+                <!--<div data-load="header.html"></div>-->
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+.com { color: #93a1a1 !important; }
+.lit { color: #195f91 !important; }
+.pun, .opn, .clo { color: #93a1a1 !important; }
+.fun { color: #dc322f !important; }
+.str, .atv { color: #D14 !important; }
+.kwd, .tag { color: #1e347b !important;}
+.typ, .atn, .dec, .var { color: teal !important; }
+.pln { color: #48484c !important; }
+
+.prettyprint {
+    padding: 8px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    margin: 0;
+    margin-bottom: 10px;
+    font-family: 'Courier New', monospace;
+    font-size: 11pt;
+    line-height: 12pt;
+}
+.prettyprint.linenums {
+    box-shadow: inset 40px 0 0 #eeeeee, inset 41px 0 0 #ececf0;
+}
+
+.prettyprint ol.linenums {
+    margin: 0;
+    padding-left: 35px;
+}
+.prettyprint ol.linenums li {
+    padding-left: 12px !important;
+    color: #999999;
+    line-height: 10pt;
+    text-shadow: 0 1px 0 #fff;
+    margin-bottom: 5px;
+}

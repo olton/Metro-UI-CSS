@@ -1,131 +1,266 @@
-/*
- * Metro UI CSS
- * (c) 2012-2013 by Sergey Pimenov
- * Licensed under the MIT License and Commercial
- *
- * Colors.less
- *
- */
+// Colors : background
+.bg-black {background-color: @black !important;}
+.bg-white {background-color: @white !important;}
+.bg-lime {background-color: @lime !important;}
+.bg-green {background-color: @green !important;}
+.bg-emerald {background-color: @emerald !important;}
+.bg-teal {background-color: @teal !important;}
+.bg-cyan {background-color: @cyan !important;}
+.bg-cobalt {background-color: @cobalt !important;}
+.bg-indigo {background-color: @indigo !important;}
+.bg-violet {background-color: @violet !important;}
+.bg-pink {background-color: @pink !important;}
+.bg-magenta {background-color: @magenta !important;}
+.bg-crimson {background-color: @crimson !important;}
+.bg-red {background-color: @red !important;}
+.bg-orange {background-color: @orange !important;}
+.bg-amber {background-color: @amber !important;}
+.bg-yellow {background-color: @yellow !important;}
+.bg-brown {background-color: @brown !important;}
+.bg-olive {background-color: @olive !important;}
+.bg-steel {background-color: @steel !important;}
+.bg-mauve {background-color: @mauve !important;}
+.bg-taupe {background-color: @taupe !important;}
+.bg-gray {background-color: @gray !important;}
+.bg-dark {background-color: @grayDark !important;}
+.bg-darker {background-color: @grayDarker !important;}
+.bg-transparent {background-color: transparent !important;}
+.bg-darkBrown {background-color: @darkBrown !important;}
+.bg-darkCrimson {background-color: @darkCrimson !important;}
+.bg-darkMagenta {background-color: @darkMagenta !important;}
+.bg-darkIndigo {background-color: @darkIndigo !important;}
+.bg-darkCyan {background-color: @darkCyan !important;}
+.bg-darkCobalt {background-color: @darkCobalt !important;}
+.bg-darkTeal {background-color: @darkTeal !important;}
+.bg-darkEmerald {background-color: @darkEmerald !important;}
+.bg-darkGreen {background-color: @darkGreen !important;}
+.bg-darkOrange {background-color: @darkOrange !important;}
+.bg-darkRed {background-color: @darkRed !important;}
+.bg-darkPink {background-color: @darkPink !important;}
+.bg-darkViolet {background-color: @darkViolet !important;}
+.bg-darkBlue {background-color: @darkBlue !important;}
+.bg-lightBlue {background-color: @lightBlue !important;}
+.bg-lighterBlue {background-color: @lighterBlue !important;}
+.bg-lightTeal {background-color: lighten(@teal, 30%) !important;}
+.bg-lightOlive {background-color: @lightOlive !important;}
+.bg-lightOrange {background-color: @lightOrange !important;}
+.bg-lightPink {background-color: @lightPink !important;}
+.bg-grayDark {background-color: @grayDark !important;}
+.bg-grayDarker {background-color: @grayDarker !important;}
+.bg-grayLight {background-color: @grayLight !important;}
+.bg-grayLighter {background-color: @grayLighter !important;}
 
-@unit: 20px;
-@subunit: 5px;
+// Colors : foreground
+.fg-black {color: @black !important;}
+.fg-white {color: @white !important;}
+.fg-lime {color: @lime !important;}
+.fg-green {color: @green !important;}
+.fg-emerald {color: @emerald !important;}
+.fg-teal {color: @teal !important;}
+.fg-cyan {color: @cyan !important;}
+.fg-cobalt {color: @cobalt !important;}
+.fg-indigo {color: @indigo !important;}
+.fg-violet {color: @violet !important;}
+.fg-pink {color: @pink !important;}
+.fg-magenta {color: @magenta !important;}
+.fg-crimson {color: @crimson !important;}
+.fg-red {color: @red !important;}
+.fg-orange {color: @orange !important;}
+.fg-amber {color: @amber !important;}
+.fg-yellow {color: @yellow !important;}
+.fg-brown {color: @brown !important;}
+.fg-olive {color: @olive !important;}
+.fg-steel {color: @steel !important;}
+.fg-mauve {color: @mauve !important;}
+.fg-taupe {color: @taupe !important;}
+.fg-gray {color: @gray !important;}
+.fg-dark {color: @grayDark !important;}
+.fg-darker {color: @grayDarker !important;}
+.fg-transparent {color: transparent !important;}
+.fg-darkBrown {color: @darkBrown !important;}
+.fg-darkCrimson {color: @darkCrimson !important;}
+.fg-darkMagenta {color: @darkMagenta !important;}
+.fg-darkIndigo {color: @darkIndigo !important;}
+.fg-darkCyan {color: @darkCyan !important;}
+.fg-darkCobalt {color: @darkCobalt !important;}
+.fg-darkTeal {color: @darkTeal !important;}
+.fg-darkEmerald {color: @darkEmerald !important;}
+.fg-darkGreen {color: @darkGreen !important;}
+.fg-darkOrange {color: @darkOrange !important;}
+.fg-darkRed {color: @darkRed !important;}
+.fg-darkPink {color: @darkPink !important;}
+.fg-darkViolet {color: @darkViolet !important;}
+.fg-darkBlue {color: @darkBlue !important;}
+.fg-lightBlue {color: @lightBlue !important;}
+.fg-lighterBlue {color: @lighterBlue !important;}
+.fg-lightTeal {color: lighten(@teal, 30%) !important;}
+.fg-lightOlive {color: @lightOlive !important;}
+.fg-lightOrange {color: @lightOrange !important;}
+.fg-lightPink {color: @lightPink !important;}
 
-// Color vars
-@white:                 #ffffff;
-@black:                 #000000;
-@blue:                  #2d89ef;
-@blueLight:             #EFF4FF;
-@blueDark:              #2B5797;
-@green:                 #00a300;
-@greenLight:            #99b433;
-@greenDark:             #1E7145;
-@red:                   #b91d47;
-@yellow:                #ffc40d;
-@orange:                #e3a21a;
-@orangeDark:            #da532c;
-@pinkDark:              #7E3878;
-@pink:                  #9f00a7;
-@purple:                #603cba;
-@darken:                #1d1d1d;
-@lighten:               #d5e7ec;
-@grayDark:              #525252;
-@magenta:               #FF0097;
-@teal:                  #00ABA9;
-@redLight:              #EE1111;
+.fg-grayDark {color: @grayDark !important;}
+.fg-grayDarker {color: @grayDarker !important;}
+.fg-grayLight {color: @grayLight !important;}
+.fg-grayLighter {color: @grayLighter !important;}
 
+// Colors : outline
+.ol-black {outline-color: @black !important;}
+.ol-white {outline-color: @white !important;}
+.ol-lime {outline-color: @lime !important;}
+.ol-green {outline-color: @green !important;}
+.ol-emerald {outline-color: @emerald !important;}
+.ol-teal {outline-color: @teal !important;}
+.ol-cyan {outline-color: @cyan !important;}
+.ol-cobalt {outline-color: @cobalt !important;}
+.ol-indigo {outline-color: @indigo !important;}
+.ol-violet {outline-color: @violet !important;}
+.ol-pink {outline-color: @pink !important;}
+.ol-magenta {outline-color: @magenta !important;}
+.ol-crimson {outline-color: @crimson !important;}
+.ol-red {outline-color: @red !important;}
+.ol-orange {outline-color: @orange !important;}
+.ol-amber {outline-color: @amber !important;}
+.ol-yellow {outline-color: @yellow !important;}
+.ol-brown {outline-color: @brown !important;}
+.ol-olive {outline-color: @olive !important;}
+.ol-steel {outline-color: @steel !important;}
+.ol-mauve {outline-color: @mauve !important;}
+.ol-taupe {outline-color: @taupe !important;}
+.ol-gray {outline-color: @gray !important;}
+.ol-dark {outline-color: @grayDark !important;}
+.ol-darker {outline-color: @grayDarker !important;}
+.ol-transparent {outline-color: transparent !important;}
+.ol-darkBrown {outline-color: @darkBrown !important;}
+.ol-darkCrimson {outline-color: @darkCrimson !important;}
+.ol-darkMagenta {outline-color: @darkMagenta !important;}
+.ol-darkIndigo {outline-color: @darkIndigo !important;}
+.ol-darkCyan {outline-color: @darkCyan !important;}
+.ol-darkCobalt {outline-color: @darkCobalt !important;}
+.ol-darkTeal {outline-color: @darkTeal !important;}
+.ol-darkEmerald {outline-color: @darkEmerald !important;}
+.ol-darkGreen {outline-color: @darkGreen !important;}
+.ol-darkOrange {outline-color: @darkOrange !important;}
+.ol-darkRed {outline-color: @darkRed !important;}
+.ol-darkPink {outline-color: @darkPink !important;}
+.ol-darkViolet {outline-color: @darkViolet !important;}
+.ol-darkBlue {outline-color: @darkBlue !important;}
+.ol-lightBlue {outline-color: @lightBlue !important;}
+.ol-lighterBlue {outline-color: @lighterBlue !important;}
+.ol-lightTeal {outline-color: lighten(@teal, 30%) !important;}
+.ol-lightOlive {outline-color: @lightOlive !important;}
+.ol-lightOrange {outline-color: @lightOrange !important;}
+.ol-lightPink {outline-color: @lightPink !important;}
 
-// Foregraund colors classes
-.fg-color-blue {color: @blue !important;}
-.fg-color-blueLight {color: @blueLight !important;}
-.fg-color-blueDark {color: @blueDark !important;}
-.fg-color-green {color: @green !important;}
-.fg-color-greenLight {color: @greenLight !important;}
-.fg-color-greenDark {color: @greenDark !important;}
-.fg-color-red {color: @red !important;}
-.fg-color-yellow {color: @yellow !important;}
-.fg-color-orange {color: @orange !important;}
-.fg-color-orangeDark {color: @orangeDark !important;}
-.fg-color-pink {color: @pink !important;}
-.fg-color-pinkDark {color: @pinkDark !important;}
-.fg-color-purple {color: @purple !important;}
-.fg-color-darken {color: @darken !important;}
-.fg-color-lighten {color: @lighten !important;}
-.fg-color-white {color: @white !important;}
-.fg-color-grayDark {color: @grayDark !important;}
-.fg-color-magenta {color: @magenta !important;}
-.fg-color-teal {color: @teal !important;}
-.fg-color-redLight {color: @redLight !important;}
+.ol-grayDark {outline-color: @grayDark !important;}
+.ol-grayDarker {outline-color: @grayDarker !important;}
+.ol-grayLight {outline-color: @grayLight !important;}
+.ol-grayLighter {outline-color: @grayLighter !important;}
 
-// Background colors classes
-.bg-color-blue {background-color: @blue !important;}
-.bg-color-blueLight {background-color: @blueLight !important;}
-.bg-color-blueDark {background-color: @blueDark !important;}
-.bg-color-green {background-color: @green !important;}
-.bg-color-greenLight {background-color: @greenLight !important;}
-.bg-color-greenDark {background-color: @greenDark !important;}
-.bg-color-red {background-color: @red !important;}
-.bg-color-yellow {background-color: @yellow !important;}
-.bg-color-orange {background-color: @orange !important;}
-.bg-color-orangeDark {background-color: @orangeDark !important;}
-.bg-color-pink {background-color: @pink !important;}
-.bg-color-pinkDark {background-color: @pinkDark !important;}
-.bg-color-purple {background-color: @purple !important;}
-.bg-color-darken {background-color: @darken !important;}
-.bg-color-lighten {background-color: @lighten !important;}
-.bg-color-white {background-color: @white !important;}
-.bg-color-grayDark {background-color: @grayDark !important;}
-.bg-color-magenta {background-color: @magenta !important;}
-.bg-color-teal {background-color: @teal !important;}
-.bg-color-redLight {background-color: @redLight !important;}
+// Colors : borders
+.bd-black {border-color: @black !important;}
+.bd-white {border-color: @white !important;}
+.bd-lime {border-color: @lime !important;}
+.bd-green {border-color: @green !important;}
+.bd-emerald {border-color: @emerald !important;}
+.bd-teal {border-color: @teal !important;}
+.bd-cyan {border-color: @cyan !important;}
+.bd-cobalt {border-color: @cobalt !important;}
+.bd-indigo {border-color: @indigo !important;}
+.bd-violet {border-color: @violet !important;}
+.bd-pink {border-color: @pink !important;}
+.bd-magenta {border-color: @magenta !important;}
+.bd-crimson {border-color: @crimson !important;}
+.bd-red {border-color: @red !important;}
+.bd-orange {border-color: @orange !important;}
+.bd-amber {border-color: @amber !important;}
+.bd-yellow {border-color: @yellow !important;}
+.bd-brown {border-color: @brown !important;}
+.bd-olive {border-color: @olive !important;}
+.bd-steel {border-color: @steel !important;}
+.bd-mauve {border-color: @mauve !important;}
+.bd-taupe {border-color: @taupe !important;}
+.bd-gray {border-color: @gray !important;}
+.bd-dark {border-color: @grayDark !important;}
+.bd-darker {border-color: @grayDarker !important;}
+.bd-transparent {border-color: transparent !important;}
+.bd-darkBrown {border-color: @darkBrown !important;}
+.bd-darkCrimson {border-color: @darkCrimson !important;}
+.bd-darkMagenta {border-color: @darkMagenta !important;}
+.bd-darkIndigo {border-color: @darkIndigo !important;}
+.bd-darkCyan {border-color: @darkCyan !important;}
+.bd-darkCobalt {border-color: @darkCobalt !important;}
+.bd-darkTeal {border-color: @darkTeal !important;}
+.bd-darkEmerald {border-color: @darkEmerald !important;}
+.bd-darkGreen {border-color: @darkGreen !important;}
+.bd-darkOrange {border-color: @darkOrange !important;}
+.bd-darkRed {border-color: @darkRed !important;}
+.bd-darkPink {border-color: @darkPink !important;}
+.bd-darkViolet {border-color: @darkViolet !important;}
+.bd-darkBlue {border-color: @darkBlue !important;}
+.bd-lightBlue {border-color: @lightBlue !important;}
+.bd-lightTeal {border-color: lighten(@teal, 30%) !important;}
+.bd-lightOlive {border-color: @lightOlive !important;}
+.bd-lightOrange {border-color: @lightOrange !important;}
+.bd-lightPink {border-color: @lightPink !important;}
 
-// Border colors classes
+.bd-grayDark {border-color: @grayDark !important;}
+.bd-grayDarker {border-color: @grayDarker !important;}
+.bd-grayLight {border-color: @grayLight !important;}
+.bd-grayLighter {border-color: @grayLighter !important;}
 
-[class*=border-color]{
-    border: 2px solid;
+.ribbed(@color: @white, @angle: -45deg, @size: 40px) {
+    background-color: @color;
+    background-image: -webkit-linear-gradient(@angle, rgba(255,255,255,.15) 25%, transparent 25%, transparent 50%, rgba(255,255,255,.15) 50%, rgba(255,255,255,.15) 75%, transparent 75%, transparent);
+    background-image: -moz-linear-gradient(@angle, rgba(255,255,255,.15) 25%, transparent 25%, transparent 50%, rgba(255,255,255,.15) 50%, rgba(255,255,255,.15) 75%, transparent 75%, transparent);
+    background-image: -ms-linear-gradient(@angle, rgba(255,255,255,.15) 25%, transparent 25%, transparent 50%, rgba(255,255,255,.15) 50%, rgba(255,255,255,.15) 75%, transparent 75%, transparent);
+    background-image: -o-linear-gradient(@angle, rgba(255,255,255,.15) 25%, transparent 25%, transparent 50%, rgba(255,255,255,.15) 50%, rgba(255,255,255,.15) 75%, transparent 75%, transparent);
+    background-image: linear-gradient(@angle, rgba(255,255,255,.15) 25%, transparent 25%, transparent 50%, rgba(255,255,255,.15) 50%, rgba(255,255,255,.15) 75%, transparent 75%, transparent);
+    background-size: @size @size;
 }
 
-.border-color-blue {border-color: @blue !important;}
-.border-color-blueLight {border-color: @blueLight !important;}
-.border-color-blueDark {border-color: @blueDark !important;}
-.border-color-green {border-color: @green !important;}
-.border-color-greenLight {border-color: @greenLight !important;}
-.border-color-greenDark {border-color: @greenDark !important;}
-.border-color-red {border-color: @red !important;}
-.border-color-yellow {border-color: @yellow !important;}
-.border-color-orange {border-color: @orange !important;}
-.border-color-orangeDark {border-color: @orangeDark !important;}
-.border-color-pink {border-color: @pink !important;}
-.border-color-pinkDark {border-color: @pinkDark !important;}
-.border-color-purple {border-color: @purple !important;}
-.border-color-darken {border-color: @darken !important;}
-.border-color-lighten {border-color: @lighten !important;}
-.border-color-white {border-color: @white !important;}
-.border-color-grayDark {border-color: @grayDark !important;}
-.border-color-magenta {border-color: @magenta !important;}
-.border-color-teal {border-color: @teal !important;}
-.border-color-redLight {border-color: @redLight !important;}
-
-
-*:hover[class=outline-color] {
-    outline: 3px solid;
-}
-.outline-color-blue {outline-color: @blue !important;}
-.outline-color-blueLight {outline-color: @blueLight !important;}
-.outline-color-blueDark {outline-color: @blueDark !important;}
-.outline-color-green {outline-color: @green !important;}
-.outline-color-greenLight {outline-color: @greenLight !important;}
-.outline-color-greenDark {outline-color: @greenDark !important;}
-.outline-color-red {outline-color: @red !important;}
-.outline-color-yellow {outline-color: @yellow !important;}
-.outline-color-orange {outline-color: @orange !important;}
-.outline-color-orangeDark {outline-color: @orangeDark !important;}
-.outline-color-pink {outline-color: @pink !important;}
-.outline-color-pinkDark {outline-color: @pinkDark !important;}
-.outline-color-purple {outline-color: @purple !important;}
-.outline-color-darken {outline-color: @darken !important;}
-.outline-color-lighten {outline-color: @lighten !important;}
-.outline-color-white {outline-color: @white !important;}
-.outline-color-grayDark {outline-color: @grayDark !important;}
-.outline-color-magenta {outline-color: @magenta !important;}
-.outline-color-teal {outline-color: @teal !important;}
-.outline-color-redLight {outline-color: @redLight !important;}
+.ribbed-black {.ribbed(@black);}
+.ribbed-white {.ribbed(@white);}
+.ribbed-lime {.ribbed(@lime);}
+.ribbed-green {.ribbed(@green);}
+.ribbed-emerald {.ribbed(@emerald);}
+.ribbed-teal {.ribbed(@teal);}
+.ribbed-cyan {.ribbed(@cyan);}
+.ribbed-cobalt {.ribbed(@cobalt);}
+.ribbed-indigo {.ribbed(@indigo);}
+.ribbed-violet {.ribbed(@violet);}
+.ribbed-pink {.ribbed(@pink);}
+.ribbed-magenta {.ribbed(@magenta);}
+.ribbed-crimson {.ribbed(@crimson);}
+.ribbed-red {.ribbed(@red);}
+.ribbed-orange {.ribbed(@orange);}
+.ribbed-amber {.ribbed(@amber);}
+.ribbed-yellow {.ribbed(@yellow);}
+.ribbed-brown {.ribbed(@brown);}
+.ribbed-olive {.ribbed(@olive);}
+.ribbed-steel {.ribbed(@steel);}
+.ribbed-mauve {.ribbed(@mauve);}
+.ribbed-taupe {.ribbed(@taupe);}
+.ribbed-dark {.ribbed(@dark);}
+.ribbed-darkBrown {.ribbed(@darkBrown);}
+.ribbed-darkCrimson {.ribbed(@darkCrimson);}
+.ribbed-darkMagenta {.ribbed(@darkMagenta);}
+.ribbed-darkIndigo {.ribbed(@darkIndigo);}
+.ribbed-darkCyan {.ribbed(@darkCyan);}
+.ribbed-darkCobalt {.ribbed(@darkCobalt);}
+.ribbed-darkTeal {.ribbed(@darkTeal);}
+.ribbed-darkEmerald {.ribbed(@darkEmerald);}
+.ribbed-darkGreen {.ribbed(@darkGreen);}
+.ribbed-darkOrange {.ribbed(@darkOrange);}
+.ribbed-darkRed {.ribbed(@darkRed);}
+.ribbed-darkPink {.ribbed(@darkPink);}
+.ribbed-darkViolet {.ribbed(@darkViolet);}
+.ribbed-darkBlue {.ribbed(@darkBlue);}
+.ribbed-lightTeal {.ribbed(@lightTeal);}
+.ribbed-lightOlive {.ribbed(@lightOlive);}
+.ribbed-lightOrange {.ribbed(@lightOrange);}
+.ribbed-lightPink {.ribbed(@lightPink);}
+.ribbed-grayed {.ribbed(@grayed);}
+.ribbed-grayDarker {.ribbed(@grayDarker);}
+.ribbed-gray {.ribbed(@gray);}
+.ribbed-grayLight {.ribbed(@grayLight);}
+.ribbed-grayLighter {.ribbed(@grayLighter);}

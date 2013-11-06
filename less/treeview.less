@@ -1,0 +1,83 @@
+.treeview {
+    color: @gray;
+    display: block;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    ul {
+        color: @gray;
+        display: block;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+            a {
+                padding: 0 0 0 15px;
+            }
+        }
+    }
+
+    a {
+        font-size: 12px;
+        color: inherit;
+        display: block;
+    }
+
+    .node {
+        & > a {
+            margin-bottom: 5px;
+            padding: 0 0 0 15px;
+            font-size: 14px;
+            position: relative;
+            &:before {
+                position: absolute;
+                display: block;
+                left: 5px;
+                top: 0;
+                content: '';
+
+                width: 0;
+                height: 0;
+                border-left: 7px solid transparent;
+                border-top: 7px solid transparent;
+                border-bottom: 7px solid black;
+            }
+        }
+        &.collapsed {
+            a:before {
+                .rotate(-45deg);
+                margin-left: -4px;
+            }
+
+            > ul {
+                //display: none;
+            }
+        }
+
+        &:not(:first-child) {
+            //margin-top: 20px;
+        }
+    }
+
+    .node ul {
+        padding-left: 1em;
+    }
+
+    li {
+        a:hover {
+            //background-color: @lwListBackgroundHoverColor;
+        }
+    }
+
+    .active {
+        font-weight: bold;
+    }
+
+    a {
+        .value {
+            color: #0067cb;
+        }
+    }
+}

@@ -1,0 +1,21 @@
+@media (min-width: 1200px) {
+  .tile {
+    width: 80px;
+    height: 80px;
+  }
+}
+@media (min-width: 980px) {
+  
+}
+@media (min-width: 768px) and (max-width: 979px) {
+  
+}
+@media (max-width: 767px) {
+  
+}
+@media (max-width: 480px) {
+  .tile {
+    width: 80px;
+    height: 80px;
+  }
+}

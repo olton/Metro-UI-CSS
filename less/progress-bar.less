@@ -1,0 +1,25 @@
+.progress-bar {
+    display: block;
+    position: relative;
+    height: 10px;
+    width: 100%;
+    margin-bottom: 10px;
+    background-color: @grayLighter;
+    .clearfix;
+
+    .bar {
+        position: relative;
+        display: block;
+        float: left;
+        width: 0;
+        background-color: @cyan;
+        height: 100%;
+    }
+
+    &.small {
+        height: 5px;
+    }
+    &.large {
+        height: 15px;
+    }
+}

@@ -1,0 +1,118 @@
+
+.breadcrumbs {
+    margin: 0.2em;
+
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        overflow: hidden;
+        width: 100%;
+
+        li {
+            float: left;
+            margin: 0 .2em 0 1em;
+        }
+
+        li:first-child {
+            margin-left: 0 !important;
+            a:before {
+                content: normal;
+            }
+        }
+
+        li:last-child {
+            background: none;
+            a {
+                color: @dark;
+            }
+            &:after, &:before {
+                content: normal;
+            }
+        }
+
+        a {
+            background: @inputRestState;
+            padding: .3em 1em;
+            float: left;
+            text-decoration: none;
+            color: @linkColor;
+            position: relative;
+
+            &:hover {
+                background: @cyan;
+                color: @white;
+
+                &:before {
+                    border-color: @cyan @cyan @cyan transparent;
+                }
+
+                &:after {
+                    border-left-color: @cyan;
+                }
+            }
+
+            &:before {
+                content: "";
+                position: absolute;
+                top: 50%;
+                margin-top: -1.5em;
+                border-width: 1.5em 0 1.5em 1em;
+                border-style: solid;
+                border-color: #ddd #ddd #ddd transparent;
+                left: -1em;
+                margin-left: 1px;
+            }
+
+            &:after {
+                content: "";
+                position: absolute;
+                top: 50%;
+                margin-top: -1.5em;
+                border-top: 1.5em solid transparent;
+                border-bottom: 1.5em solid transparent;
+                border-left: 1em solid #ddd;
+                right: -1em;
+                margin-right: 1px;
+            }
+        }
+
+        .active, .active:hover {
+            background: none;
+            a {
+                color: @dark;
+            }
+        }
+
+        .active:hover {
+            a {
+                color: @white;
+            }
+        }
+
+        .active {
+            &:after, &:before {
+                content: normal;
+            }
+        }
+    }
+
+    &.small {
+        li {
+            margin: 0 .2em 0 .8em;
+        }
+        a {
+            padding: .2em 1em;
+            font-size: 11.9px;
+        }
+    }
+    &.mini {
+        li {
+            margin: 0 .2em 0 .6em;
+        }
+        a {
+            padding: .1em 1em;
+            font-size: 10.5px;
+        }
+    }
+}

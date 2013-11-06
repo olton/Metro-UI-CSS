@@ -1,26 +1,8 @@
-/*
- * Metro UI CSS
- * (c) 2012-2013 by Sergey Pimenov
- * Licensed under the MIT License and Commercial
- *
- * Slider.less
- *
- */
-
-@slider-color: #c6c6c6;
-@slider-color-disabled: #dbdbdb;
-@slider-color-rest-state: #00828b;
-@slider-color-hover-state: #219297;
-@slider-color-active-state: #25bbc4;
-@slider-color-disabled-state: #bababa;
-@slider-marker-color: #000;
-@slider-marker-color-disabled: #a0a0a0;
-
 .slider {
     height: 12px;
     width: auto;
     position: relative;
-    background-color: @slider-color;
+    background-color: @sliderBackgroundColor;
     margin-bottom: 10px;
 
     .marker {
@@ -30,38 +12,95 @@
         position: absolute;
         top: 0;
         left: 0;
-        background-color: @slider-marker-color;
-        z-index: 3;
+        background-color: @sliderMarkerColor;
+        z-index: 2;
+
+        &:focus, &:active, &hover {
+            outline: 2px @red solid;
+        }
     }
+
     .complete {
         height: 100%;
         width: auto;
-        background-color: @slider-color-rest-state;
-        z-index: 2;
+        background-color: @sliderCompleteColor;
+        z-index: 1;
+        transition: background .3s ease;
     }
 
+    .hint {
+        background-color: @white;
+        display: block;
+        position: absolute;
+        z-index: 3;
+        border: 1px #ccc solid;
+        padding: 2px 4px;
+        top: -30px;
+        min-width: 30px;
+        text-align: center;
+        #font > .segoe-light;
+        font-size: 14px;
+        .shadow;
+        display: none;
+    }
+
+    &.permanent-hint {
+        .hint {
+            display: block;
+        }
+    }
+
+    &.hint-bottom {
+        .hint {
+            top: 100%;
+            margin-top: 5px;
+        }
+    }
 
     &.vertical {
-        height: auto;
+        height: 100px;
         width: 12px;
+
+        .marker {
+            left: 0 !important;
+        }
 
         .complete {
             position: absolute;
             height: auto;
-            width: 12px;
+            width: 100% !important;
             bottom: 0;
+            left: 0;
+        }
+
+        .hint {
+            left: 100%;
+            margin-left: 5px;
+        }
+
+        &.hint-left {
+            .hint {
+                left: -40px;
+            }
         }
     }
 
     &:hover {
         .complete {
-            background-color: @slider-color-hover-state;
+            background-color: @sliderCompleteHoverColor;
         }
     }
 
     &:active, &:active + .marker:active {
         .complete {
-            background-color: @slider-color-active-state;
+            background-color: @sliderCompleteHoverColor;
         }
+    }
+
+    &.place-left {
+        margin-right: 20px;
+    }
+    &.place-right {
+        margin-left: 20px;
     }
 }
