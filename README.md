@@ -18,6 +18,9 @@ Metro UI CSS now is a Microsoft BizSpark Startup
 Normalize.css is a project by Nicolas Gallagher and Jonathan Neal.
 Styles created using the [less](http://lesscss.org) preprocessor
 
-#License
+# License
 
 Metro UI CSS has MIT License
+
+## Old version
+Metro UI CSS 0.95 you can find in a branch [metrouicss-0.95](https://github.com/olton/Metro-UI-CSS/tree/metrouicss-0.95)
