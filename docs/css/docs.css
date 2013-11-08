@@ -44,7 +44,6 @@ header {
 header {
   height: 45px;
   position: relative;
-  z-index: 1;
 }
 .introduce {
   height: 170px;
