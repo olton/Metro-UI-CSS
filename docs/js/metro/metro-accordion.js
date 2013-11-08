@@ -31,6 +31,9 @@
 
                 if ($(a).hasClass("active")) {
                     $(content).show();
+                    $(a).removeClass("collapsed");
+                } else {
+                    $(a).addClass("collapsed");
                 }
 
                 a.on('click', function(e){
@@ -40,10 +43,12 @@
 
                     if ($(content).is(":hidden")) {
                         $(content).slideDown();
+                        $(this).removeClass("collapsed");
                         that._trigger("frame", event, {frame: frame});
                         that.options.open(frame);
                     } else {
                         $(content).slideUp();
+                        $(this).addClass("collapsed");
                     }
                     that.options.action(frame);
                 });
@@ -51,7 +56,7 @@
         },
 
         _closeFrames: function(){
-            this._frames.children(".content").slideUp();
+            this._frames.children(".content").slideUp().parent().children('.heading').addClass("collapsed");
         },
 
         _destroy: function(){},

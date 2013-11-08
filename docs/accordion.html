@@ -71,6 +71,50 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="accordion with-marker span3 place-left margin10" data-role="accordion" data-closeany="false">
+                                    <div class="accordion-frame">
+                                        <a class="heading" href="#">Item #1</a>
+                                        <div class="content">
+                                            <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.</p>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-frame">
+                                        <a class="heading" href="#">Item #2</a>
+                                        <div class="content">
+                                            <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut.</p>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-frame">
+                                        <a class="heading" href="#">Item #3</a>
+                                        <div class="content">
+                                            <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut.</p>
+                                            <button class="primary">Activate the account</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion with-marker span3 place-left margin10" data-role="accordion" data-closeany="false">
+                                    <div class="accordion-frame">
+                                        <a class="heading bg-lightBlue fg-white" href="#">Item #1</a>
+                                        <div class="content">
+                                            <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.</p>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-frame">
+                                        <a class="heading text-right ribbed-green fg-white" href="#">Item #2</a>
+                                        <div class="content">
+                                            <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut.</p>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-frame">
+                                        <a class="heading ribbed-red fg-white" href="#">Item #3</a>
+                                        <div class="content">
+                                            <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut.</p>
+                                            <button class="primary">Activate the account</button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="frame" id="tab2">tab2</div>
                         </div>
@@ -327,6 +371,7 @@
 </pre>
                 <p class="description">
                     If you want to activate a specific tab of accordion, you must add class <code>active</code> to <code>heading</code> of frame.
+                    If you want to use accordion with marker open/close, you must add class <code>with-marker</code> to <code>accordion</code>.
                 </p>
 <pre class="prettyprint linenums">
 &lt;div class="accordion" data-role="accordion"&gt;
@@ -344,6 +389,10 @@
         &lt;a href="#" class="heading"&gt;Frame heading&lt;/a&gt;
         &lt;div class="content"&gt;...&lt;/div&gt;
     &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="accordion with-marker" data-role="accordion"&gt;
+    ...
 &lt;/div&gt;
 </pre>
 
