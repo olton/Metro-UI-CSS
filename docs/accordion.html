@@ -42,8 +42,43 @@
                     This component required <code>metro-accordion.js</code>.
                 </p>
                 <div class="example">
+                    <div class="tab-control" data-role="tab-control">
+                        <ul class="tabs">
+                            <li class="active"><a href="#tab1">Tab1</a></li>
+                            <li><a href="#tab2">Tab2</a></li>
+                        </ul>
+
+                        <div class="frames">
+                            <div class="frame clearfix" id="tab1">
+                                <div class="accordion span3 place-left margin10" data-role="accordion" data-closeany="false">
+                                    <div class="accordion-frame">
+                                        <a class="heading" href="#">Item #1</a>
+                                        <div class="content">
+                                            <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.</p>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-frame">
+                                        <a class="heading" href="#">Item #2</a>
+                                        <div class="content">
+                                            <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut.</p>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-frame">
+                                        <a class="heading" href="#">Item #3</a>
+                                        <div class="content">
+                                            <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut.</p>
+                                            <button class="primary">Activate the account</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="frame" id="tab2">tab2</div>
+                        </div>
+                    </div>
+                    <br />
+
                     <div class="accordion" data-role="accordion" data-closeany="true">
-                        <div class="frame">
+                        <div class="accordion-frame">
                             <a class="active heading" href="#">Any components as content</a>
                             <div class="content">
                                 <div class="grid">
@@ -135,23 +170,23 @@
                             </div>
                         </div>
 
-                        <div class="frame">
+                        <div class="accordion-frame">
                             <a class="heading" href="#">Accordion in accordion</a>
                             <div class="content clearfix">
                                 <div class="accordion span3 place-left margin10" data-role="accordion" data-closeany="false">
-                                    <div class="frame">
+                                    <div class="accordion-frame">
                                         <a class="heading" href="#">Item #1</a>
                                         <div class="content">
                                             <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.</p>
                                         </div>
                                     </div>
-                                    <div class="frame">
+                                    <div class="accordion-frame">
                                         <a class="heading" href="#">Item #2</a>
                                         <div class="content">
                                             <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut.</p>
                                         </div>
                                     </div>
-                                    <div class="frame">
+                                    <div class="accordion-frame">
                                         <a class="heading" href="#">Item #3</a>
                                         <div class="content">
                                             <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut.</p>
@@ -161,19 +196,19 @@
                                 </div>
 
                                 <div class="accordion span3 place-left margin10" data-role="accordion">
-                                    <div class="frame">
+                                    <div class="accordion-frame">
                                         <a class="heading" href="#">Item #1</a>
                                         <div class="content">
                                             <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.</p>
                                         </div>
                                     </div>
-                                    <div class="frame">
+                                    <div class="accordion-frame">
                                         <a class="heading" href="#">Item #2</a>
                                         <div class="content">
                                             <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut.</p>
                                         </div>
                                     </div>
-                                    <div class="frame">
+                                    <div class="accordion-frame">
                                         <a class="heading" href="#">Item #3</a>
                                         <div class="content">
                                             <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut.</p>
@@ -183,19 +218,19 @@
                                 </div>
 
                                 <div class="accordion span3 place-left margin10" data-role="accordion">
-                                    <div class="frame">
+                                    <div class="accordion-frame">
                                         <a class="heading" href="#">Item #1</a>
                                         <div class="content">
                                             <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.</p>
                                         </div>
                                     </div>
-                                    <div class="frame">
+                                    <div class="accordion-frame">
                                         <a class="heading" href="#">Item #2</a>
                                         <div class="content">
                                             <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut.</p>
                                         </div>
                                     </div>
-                                    <div class="frame">
+                                    <div class="accordion-frame">
                                         <a class="heading" href="#">Item #3</a>
                                         <div class="content">
                                             <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut.</p>
@@ -207,23 +242,23 @@
                             </div>
                         </div>
 
-                        <div class="frame">
+                        <div class="accordion-frame">
                             <a class="heading" href="#">Custom accordion item heading</a>
                             <div class="content clearfix">
                                 <div class="accordion span3 place-left margin10" data-role="accordion">
-                                    <div class="frame">
+                                    <div class="accordion-frame">
                                         <a class="active heading bg-red fg-white" href="#">Item #1</a>
                                         <div class="content">
                                             <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.</p>
                                         </div>
                                     </div>
-                                    <div class="frame">
+                                    <div class="accordion-frame">
                                         <a class="heading bg-yellow fg-white" href="#">Item #2</a>
                                         <div class="content">
                                             <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut.</p>
                                         </div>
                                     </div>
-                                    <div class="frame">
+                                    <div class="accordion-frame">
                                         <a class="heading bg-green fg-white" href="#">Item #3</a>
                                         <div class="content">
                                             <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut.</p>
@@ -233,19 +268,19 @@
                                 </div>
 
                                 <div class="accordion span3 place-left margin10" data-role="accordion">
-                                    <div class="frame">
+                                    <div class="accordion-frame">
                                         <a class="heading bg-dark fg-white text-right" href="#">Item #1</a>
                                         <div class="content">
                                             <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.</p>
                                         </div>
                                     </div>
-                                    <div class="frame">
+                                    <div class="accordion-frame">
                                         <a class="active heading bg-dark fg-white text-right" href="#">Item #2</a>
                                         <div class="content">
                                             <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut.</p>
                                         </div>
                                     </div>
-                                    <div class="frame">
+                                    <div class="accordion-frame">
                                         <a class="heading bg-dark fg-white text-right" href="#">Item #3</a>
                                         <div class="content">
                                             <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut.</p>
@@ -255,19 +290,19 @@
                                 </div>
 
                                 <div class="accordion span3 place-left margin10" data-role="accordion">
-                                    <div class="frame">
+                                    <div class="accordion-frame">
                                         <a class="heading bg-cyan fg-white" href="#"><i class="icon-rocket"></i> Item #1</a>
                                         <div class="content">
                                             <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.</p>
                                         </div>
                                     </div>
-                                    <div class="frame">
+                                    <div class="accordion-frame">
                                         <a class="heading bg-cyan fg-white" href="#"><i class="icon-cog"></i> Item #2</a>
                                         <div class="content">
                                             <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut.</p>
                                         </div>
                                     </div>
-                                    <div class="frame">
+                                    <div class="accordion-frame">
                                         <a class="heading bg-cyan fg-white" href="#"><i class="icon-cart"></i> Item #3</a>
                                         <div class="content">
                                             <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut.</p>
@@ -282,12 +317,12 @@
                 </div>
 <pre class="prettyprint linenums">
 &lt;div class="accordion" data-role="accordion"&gt;
-    &lt;div class="frame"&gt;
+    &lt;div class="accordion-frame"&gt;
         &lt;a href="#" class="heading"&gt;Frame heading&lt;/a&gt;
         &lt;div class="content"&gt;...&lt;/div&gt;
     &lt;/div&gt;
-    &lt;div class="frame"&gt;...&lt;/div&gt;
-    &lt;div class="frame"&gt;...&lt;/div&gt;
+    &lt;div class="accordion-frame"&gt;...&lt;/div&gt;
+    &lt;div class="accordion-frame"&gt;...&lt;/div&gt;
 &lt;/div&gt;
 </pre>
                 <p class="description">
@@ -295,17 +330,17 @@
                 </p>
 <pre class="prettyprint linenums">
 &lt;div class="accordion" data-role="accordion"&gt;
-    &lt;div class="frame"&gt;
+    &lt;div class="accordion-frame"&gt;
         &lt;a href="#" class="heading"&gt;Frame heading&lt;/a&gt;
         &lt;div class="content"&gt;...&lt;/div&gt;
     &lt;/div&gt;
 
-    &lt;div class="frame"&gt;
+    &lt;div class="accordion-frame"&gt;
         &lt;a href="#" class="active heading"&gt;Frame heading&lt;/a&gt;
         &lt;div class="content"&gt;...&lt;/div&gt;
     &lt;/div&gt;
     
-    &lt;div class="frame"&gt;
+    &lt;div class="accordion-frame"&gt;
         &lt;a href="#" class="heading"&gt;Frame heading&lt;/a&gt;
         &lt;div class="content"&gt;...&lt;/div&gt;
     &lt;/div&gt;

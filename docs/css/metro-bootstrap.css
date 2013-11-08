@@ -6019,11 +6019,11 @@ a {
 .metro .sidebar > ul ul.open {
   display: block;
 }
-.metro .accordion > .frame {
+.metro .accordion > .accordion-frame {
   border: 1px #eaeaea solid;
   margin-bottom: 2px;
 }
-.metro .accordion > .frame > .heading {
+.metro .accordion > .accordion-frame > .heading {
   display: block;
   text-decoration: none;
   background-color: #eeeeee;
@@ -6031,10 +6031,10 @@ a {
   padding: 10px;
   width: 100%;
 }
-.metro .accordion > .frame > .content {
+.metro .accordion > .accordion-frame > .content {
   padding: 10px;
 }
-.metro .accordion > .frame > .content {
+.metro .accordion > .accordion-frame > .content {
   display: none;
 }
 .metro .calendar {
