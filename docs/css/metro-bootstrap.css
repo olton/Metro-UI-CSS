@@ -6028,14 +6028,36 @@ a {
   text-decoration: none;
   background-color: #eeeeee;
   color: #2e92cf;
-  padding: 10px;
+  padding: 10px 20px;
   width: 100%;
+  position: relative;
+  color: #1d1d1d;
 }
 .metro .accordion > .accordion-frame > .content {
   padding: 10px;
 }
 .metro .accordion > .accordion-frame > .content {
   display: none;
+}
+.metro .accordion.with-marker .heading:before {
+  position: absolute;
+  display: block;
+  left: 5px;
+  top: 12px;
+  content: '';
+  width: 0;
+  height: 0;
+  border-left: 7px solid transparent;
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid black;
+}
+.metro .accordion.with-marker .heading.collapsed:before {
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  margin-left: -4px;
 }
 .metro .calendar {
   width: 250px;

@@ -8,8 +8,11 @@
             text-decoration: none;
             background-color: @grayLighter;
             color: @linkColor;
-            padding: 10px;
+            padding: 10px 20px;
             width: 100%;
+            position: relative;
+            color: @dark;
+
         }
 
         & > .content {
@@ -25,6 +28,33 @@
         &:first-child {
             & > .content {
                 //display: block;
+            }
+        }
+    }
+}
+
+.accordion {
+    &.with-marker {
+        .heading {
+            &:before {
+                position: absolute;
+                display: block;
+                left: 5px;
+                top: 12px;
+                content: '';
+
+                width: 0;
+                height: 0;
+                border-left: 7px solid transparent;
+                border-top: 7px solid transparent;
+                border-bottom: 7px solid black;
+            }
+
+            &.collapsed {
+                &:before {
+                    .rotate(-45deg);
+                    margin-left: -4px;
+                }
             }
         }
     }
