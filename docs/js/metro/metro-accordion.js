@@ -16,7 +16,7 @@
 
             if (element.data('closeany') != undefined) this.options.closeAny = element.data('closeany');
 
-            this._frames = element.children(".frame");
+            this._frames = element.children(".accordion-frame");
 
             this.init();
         },
