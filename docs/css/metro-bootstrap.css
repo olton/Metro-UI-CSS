@@ -312,6 +312,12 @@ a {
 .metro .bg-lightBlue {
   background-color: #4390df !important;
 }
+.metro .bg-lightRed {
+  background-color: #ff2d19 !important;
+}
+.metro .bg-lightGreen {
+  background-color: #7ad61d !important;
+}
 .metro .bg-lighterBlue {
   background-color: #00ccff !important;
 }
@@ -477,6 +483,12 @@ a {
 .metro .fg-lightPink {
   color: #f472d0 !important;
 }
+.metro .fg-lightRed {
+  color: #ff2d19 !important;
+}
+.metro .fg-lightGreen {
+  color: #7ad61d !important;
+}
 .metro .fg-grayDark {
   color: #333333 !important;
 }
@@ -627,6 +639,12 @@ a {
 .metro .ol-lightPink {
   outline-color: #f472d0 !important;
 }
+.metro .ol-lightRed {
+  outline-color: #ff2d19 !important;
+}
+.metro .ol-lightGreen {
+  outline-color: #7ad61d !important;
+}
 .metro .ol-grayDark {
   outline-color: #333333 !important;
 }
@@ -773,6 +791,12 @@ a {
 }
 .metro .bd-lightPink {
   border-color: #f472d0 !important;
+}
+.metro .bd-lightRed {
+  border-color: #ff2d19 !important;
+}
+.metro .bd-lightGreen {
+  border-color: #7ad61d !important;
 }
 .metro .bd-grayDark {
   border-color: #333333 !important;
@@ -1148,6 +1172,24 @@ a {
 }
 .metro .ribbed-lightPink {
   background-color: #f472d0 !important;
+  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
+  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
+  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
+  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
+  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
+  background-size: 40px 40px !important;
+}
+.metro .ribbed-lightRed {
+  background-color: #ff2d19 !important;
+  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
+  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
+  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
+  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
+  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
+  background-size: 40px 40px !important;
+}
+.metro .ribbed-lightGreen {
+  background-color: #7ad61d !important;
   background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
@@ -6203,14 +6245,14 @@ a {
   z-index: 1;
   transition: background .3s ease;
 }
-.metro .slider .hint {
+.metro .slider > .hint {
   background-color: #ffffff;
   display: block;
   position: absolute;
   z-index: 3;
   border: 1px #ccc solid;
   padding: 2px 4px;
-  top: -30px;
+  top: -40px;
   min-width: 30px;
   text-align: center;
   font-family: 'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
@@ -6218,7 +6260,7 @@ a {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3), 0 3px 8px rgba(0, 0, 0, 0.2);
   display: none;
 }
-.metro .slider.permanent-hint .hint {
+.metro .slider.permanent-hint > .hint {
   display: block;
 }
 .metro .slider.hint-bottom .hint {
@@ -6242,6 +6284,7 @@ a {
 .metro .slider.vertical .hint {
   left: 100%;
   margin-left: 5px;
+  margin-top: 0;
 }
 .metro .slider.vertical.hint-left .hint {
   left: -40px;
@@ -7340,9 +7383,15 @@ a {
 .metro .stepper li:last-child {
   left: 10px;
 }
+.metro .stepper li:hover {
+  background-color: #ff2d19;
+}
 .metro .stepper li.complete {
   background-color: #60a917;
   border: 2px #128023 solid;
+}
+.metro .stepper li.complete:hover {
+  background-color: #7ad61d;
 }
 @font-face {
   font-family: 'iconFont';
