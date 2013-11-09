@@ -7316,6 +7316,34 @@ a {
   left: -20px;
   border-right: 20px solid #555555;
 }
+.metro .stepper {
+  list-style: none;
+  border-top: 1px #1d1d1d dotted;
+  position: relative;
+  padding: 0;
+  margin: 60px 0;
+}
+.metro .stepper li {
+  float: left;
+  width: 32px;
+  height: 32px;
+  border-radius: 100%;
+  margin-left: 20%;
+  margin-top: -16px;
+  background-color: #e51400;
+  border: 2px #9a1616 solid;
+  position: relative;
+}
+.metro .stepper li:first-child {
+  margin-left: 0;
+}
+.metro .stepper li:last-child {
+  left: 10px;
+}
+.metro .stepper li.complete {
+  background-color: #60a917;
+  border: 2px #128023 solid;
+}
 @font-face {
   font-family: 'iconFont';
   src: url('../fonts/iconFont.eot');

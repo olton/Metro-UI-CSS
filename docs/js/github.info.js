@@ -1,4 +1,6 @@
 $(function(){
+    if (document.location.host.indexOf('.dev') > -1) return;
+
     var repo = "olton/Metro-UI-CSS";
 
     $.ajax({
