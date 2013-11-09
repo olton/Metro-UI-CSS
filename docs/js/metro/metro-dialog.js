@@ -88,10 +88,14 @@
 
         _dialog = _window;
 
+
         _window
             .css("position", "fixed")
-            .css("top", (params.position.offsetY)?(params.position.offsetY):(Math.max(0, (($(window).height() - _window.outerHeight()) / 2) + $(window).scrollTop()) + "px"))
-            .css("left", (params.position.offsetX)?(params.position.offsetX):(Math.max(0, (($(window).width() - _window.outerWidth()) / 2) + $(window).scrollLeft()) + "px"));
+            .css("top", ($(window).height() - _dialog.outerHeight()) / 2 )
+            .css("left", ($(window).width() - _window.outerWidth()) / 2);
+
+
+        console.log( $(window).height());
 
         addTouchEvents(_window[0]);
 
@@ -183,15 +187,15 @@
         }
 
         var _content = _dialog.children(".content");
-
-        console.log(_content.width(), _content.height());
+        var top = ($(window).height() - _dialog.outerHeight()) / 2;
+        var left = ($(window).width() - _dialog.outerWidth()) / 2;
 
         _dialog.css({
             width: _content.width(),
             height: _content.height()+36
         })
-        .css("top", (Math.max(0, (($(window).height() - _dialog.outerHeight()) / 2) + $(window).scrollTop()) + "px"))
-        .css("left", (Math.max(0, (($(window).width() - _dialog.outerWidth()) / 2) + $(window).scrollLeft()) + "px"));
+        .css("top",  top)
+        .css("left", left);
 
     }
 
