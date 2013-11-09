@@ -24,9 +24,16 @@
             left: 10px;
         }
 
+        &:hover {
+            background-color: @lightRed;
+        }
+
         &.complete {
             background-color: @green;
             border: 2px @darkGreen solid;
+            &:hover {
+                background-color: @lightGreen;
+            }
         }
     }
 }
