@@ -1,5 +1,5 @@
 if (document.location.host.indexOf('.dev') > -1) {
-    console.log('local');
+    //console.log('local');
 }  else {
     if (document.location.host.indexOf('metroui') > -1) {
         //document.write("<img src='http://c.hit.ua/hit?i=98055&g=0&x=2"+"&r="+encodeURI(document.referrer)+"&u="+encodeURI(window.location.href)+"' border='0' width='1' height='1'/>");

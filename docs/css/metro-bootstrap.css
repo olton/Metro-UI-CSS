@@ -4755,6 +4755,7 @@ a {
 .metro .tile-area {
   position: relative;
   padding: 120px 80px 0 80px;
+  overflow: hidden;
 }
 .metro .tile-area .tile-area-title {
   position: fixed;
