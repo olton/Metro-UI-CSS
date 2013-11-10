@@ -70,11 +70,86 @@
     }
 }
 
+.tile-area {
+    position: relative;
+    padding: 120px 80px 0 80px;
+}
+
+.tile-area {
+    .tile-area-title {
+        position: absolute;
+        top: 20px;
+        left: 80px;
+    }
+
+    .user-id {
+        position: fixed;
+        right: 80px;
+        top: 40px;
+        display: inline-block;
+        padding: 8px;
+        background-color: transparent;
+        width: auto;
+        //min-width: 162px;
+        color: @white;
+        cursor: default;
+
+        .user-id-image {
+            width: 40px;
+            height: 40px;
+            float: right;
+            margin-left: 10px;
+            color: inherit;
+            background-color: #464646;
+            text-align: center;
+            vertical-align: middle;
+
+            img, [class*="icon-"] {
+                color: inherit;
+                font-size: 16pt;
+                line-height: 16pt;
+                width: 100%;
+                height: 100%;
+                text-align: center;
+                vertical-align: middle;
+            }
+
+            [class*="icon-"] {
+                padding: 10px;
+            }
+        }
+
+        .user-id-name {
+            float: right;
+            text-align: right;
+            margin: 0;
+            padding: 0;
+
+            .first-name, .last-name {
+                display: block;
+                color: inherit;
+                #font > .segoe-light;
+                line-height: 12pt;
+            }
+            .first-name {
+                font-size: 20pt;
+                line-height: 20pt;
+            }
+            .last-name {
+                font-size: 12pt;
+            }
+        }
+
+        &:hover {
+            background-color: #404040;
+        }
+    }
+}
+
 .tile-area (@background) {
     min-width: 100%;
     height: 100%;
     background-color: @background !important;
-    padding: 10px 10px 0 10px;
 
     .tile {
         outline-color: lighten(@background, 10%) !important;
@@ -129,6 +204,10 @@
     }
     &.seven {
         width: @tileGroupTripleSize * 2 + @tileGroupSize;
+    }
+
+    &:first-child {
+        margin-left: 80px;
     }
 }
 
