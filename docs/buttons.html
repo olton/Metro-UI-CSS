@@ -66,10 +66,10 @@
 
                             <h2 id="_push"><i class="icon-accessibility on-left"></i>Push button</h2>
                             <div class="example">
-                                <button class="large">Large</button>
-                                <button>Default</button>
-                                <button class="small">Small</button>
-                                <button class="mini">Mini</button>
+                                <button class="button large primary">Large</button>
+                                <button class="button success">Default</button>
+                                <button class="button small info">Small</button>
+                                <button class="button mini danger">Mini</button>
                             </div>
 <pre class="prettyprint linenums">
 &lt;button&gt;Button&lt;/button&gt;
@@ -91,14 +91,14 @@
                                 build-in color classes for background and foreground.
                             </p>
                             <div class="example">
-                                <button class="default">Default</button>
-                                <button class="primary">Primary</button>
-                                <button class="info">Info</button>
-                                <button class="success">Success</button>
-                                <button class="warning">Warning</button>
-                                <button class="danger">Danger</button>
-                                <button class="inverse">Inverse</button>
-                                <button class="link">Link</button>
+                                <button class="button default">Default</button>
+                                <button class="button primary">Primary</button>
+                                <button class="button info">Info</button>
+                                <button class="button success">Success</button>
+                                <button class="button warning">Warning</button>
+                                <button class="button danger">Danger</button>
+                                <button class="button inverse">Inverse</button>
+                                <button class="button link">Link</button>
                             </div>
 <pre class="prettyprint linenums">
 &lt;button class="primary"&gt;Button&lt;/button&gt;
@@ -108,8 +108,8 @@
                                 Also you can add icon to button with tag <code>&lt;i&gt;</code> and class <code>icon-*</code>.
                             </p>
                             <div class="example">
-                                <button><i class="icon-rocket on-left"></i>Rocket</button>
-                                <button>Rocket<i class="icon-rocket on-right"></i></button>
+                                <button class="button"><i class="icon-rocket on-left"></i>Rocket</button>
+                                <button class="button">Rocket<i class="icon-rocket on-right"></i></button>
                             </div>
 <pre class="prettyprint linenums">
 &lt;button&gt;&lt;i class="icon-rocket on-left"&gt;&lt;/i&gt;Button&lt;/button&gt;
@@ -734,5 +734,8 @@ $("#component_id").buttongroup().bind("buttongroupclick", function(event, btn, o
             </div>
         </div>
     </div>
+
+    <script src="js/hitua.js"></script>
+
 </body>
 </html>
