@@ -14,9 +14,9 @@ Please create pull requests to develop branch. Requests in master branch will be
 
 # Credits
 
-Metro UI CSS now is a Microsoft BizSpark Startup
-Normalize.css is a project by Nicolas Gallagher and Jonathan Neal.
-Styles created using the [less](http://lesscss.org) preprocessor
+- Metro UI CSS now is a Microsoft BizSpark Startup.
+- Normalize.css is a project by Nicolas Gallagher and Jonathan Neal.
+- Styles created using the [less](http://lesscss.org) preprocessor
 
 # License
 
