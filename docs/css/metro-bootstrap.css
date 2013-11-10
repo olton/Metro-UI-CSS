@@ -2575,7 +2575,6 @@ a {
   background-color: rgba(28, 183, 236, 0.1);
 }
 .metro .button {
-  display: inline-block;
   padding: 4px 12px;
   text-align: center;
   vertical-align: middle !important;
@@ -2585,10 +2584,11 @@ a {
   border-radius: 0;
   cursor: pointer;
   position: relative;
+  display: inline-block;
   outline: none;
   font-family: 'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
   font-size: 14px;
-  line-height: 20px;
+  line-height: 16px;
 }
 .metro .button.default {
   background-color: #008287;
@@ -2615,16 +2615,19 @@ a {
 .metro button.large {
   padding: 11px 19px;
   font-size: 17.5px;
+  line-height: 19.5px;
 }
 .metro .button.small,
 .metro button.small {
   padding: 2px 10px;
   font-size: 11.9px;
+  line-height: 13.9px;
 }
 .metro .button.mini,
 .metro button.mini {
   padding: 0px 6px;
   font-size: 10.5px;
+  line-height: 12.5px;
 }
 .metro .button.primary {
   background-color: #16499a !important;
@@ -2667,7 +2670,6 @@ a {
   text-decoration: none !important;
 }
 .metro button {
-  display: inline-block;
   padding: 4px 12px;
   text-align: center;
   vertical-align: middle !important;
@@ -2677,10 +2679,11 @@ a {
   border-radius: 0;
   cursor: pointer;
   position: relative;
+  display: inline-block;
   outline: none;
   font-family: 'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
   font-size: 14px;
-  line-height: 20px;
+  line-height: 16px;
 }
 .metro button.default {
   background-color: #008287;
@@ -2703,14 +2706,17 @@ a {
 .metro button.large {
   padding: 11px 19px;
   font-size: 17.5px;
+  line-height: 19.5px;
 }
 .metro button.small {
   padding: 2px 10px;
   font-size: 11.9px;
+  line-height: 13.9px;
 }
 .metro button.mini {
   padding: 0px 6px;
   font-size: 10.5px;
+  line-height: 12.5px;
 }
 .metro button.primary {
   background-color: #16499a !important;
@@ -2753,7 +2759,6 @@ a {
   text-decoration: none !important;
 }
 .metro .command-button {
-  display: inline-block;
   padding: 4px 12px;
   text-align: center;
   vertical-align: middle !important;
@@ -2763,10 +2768,11 @@ a {
   border-radius: 0;
   cursor: pointer;
   position: relative;
+  display: inline-block;
   outline: none;
   font-family: 'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
   font-size: 14px;
-  line-height: 20px;
+  line-height: 16px;
   text-align: left;
   font-size: 14pt;
   width: auto;
@@ -2792,14 +2798,17 @@ a {
 .metro .command-button.large {
   padding: 11px 19px;
   font-size: 17.5px;
+  line-height: 19.5px;
 }
 .metro .command-button.small {
   padding: 2px 10px;
   font-size: 11.9px;
+  line-height: 13.9px;
 }
 .metro .command-button.mini {
   padding: 0px 6px;
   font-size: 10.5px;
+  line-height: 12.5px;
 }
 .metro .command-button.primary {
   background-color: #16499a !important;
@@ -2853,7 +2862,7 @@ a {
 }
 .metro .command-button [class*="icon-"] {
   font-size: 1.7em;
-  margin-top: 2px;
+  margin-top: 0;
 }
 .metro .command-button [class*="icon-"].on-left {
   float: left;
@@ -2895,11 +2904,16 @@ a {
 .metro .toolbar button,
 .metro .toolbar .button {
   color: inherit;
-  padding: 2px 8px;
+  padding: 4px 8px;
   display: block;
   float: left;
   font-size: 12pt;
+  line-height: 12pt;
   margin-right: 2px;
+}
+.metro .toolbar button:last-child,
+.metro .toolbar .button:last-child {
+  margin-right: 0;
 }
 .metro .toolbar.no-spaces button,
 .metro .toolbar .toolbar-group.no-spaces button,
@@ -2919,9 +2933,9 @@ a {
 .metro .toolbar .divider {
   display: block;
   float: left;
-  height: 18px;
+  height: 12px;
   width: 1px;
-  margin: 8px;
+  margin: 8px 8px;
   background-color: #999999;
   vertical-align: middle !important;
 }
@@ -2950,7 +2964,7 @@ a {
 }
 .metro button.dropdown-toggle,
 .metro .button.dropdown-toggle {
-  padding-right: 24px;
+  padding-right: 16px;
   border: 0;
 }
 .metro button.dropdown-toggle:before,
@@ -2962,9 +2976,95 @@ a {
   z-index: 2;
 }
 .metro .image-button {
+  padding: 4px 12px;
+  text-align: center;
+  vertical-align: middle !important;
+  background-color: #d9d9d9;
+  border: 1px transparent solid;
+  color: #222222;
+  border-radius: 0;
+  cursor: pointer;
+  display: inline-block;
+  outline: none;
+  font-family: 'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  line-height: 16px;
   position: relative;
   border: 0;
   padding-right: 45px;
+}
+.metro .image-button.default {
+  background-color: #008287;
+  color: #fff;
+}
+.metro .image-button:active {
+  top: 1px;
+  left: 1px;
+}
+.metro .image-button:focus {
+  outline: 0;
+  border: 1px #353535 dotted;
+}
+.metro .image-button:disabled,
+.metro .image-button.disabled {
+  background-color: #eaeaea !important;
+  color: #bebebe !important;
+  cursor: not-allowed !important;
+}
+.metro .image-button.large {
+  padding: 11px 19px;
+  font-size: 17.5px;
+  line-height: 19.5px;
+}
+.metro .image-button.small {
+  padding: 2px 10px;
+  font-size: 11.9px;
+  line-height: 13.9px;
+}
+.metro .image-button.mini {
+  padding: 0px 6px;
+  font-size: 10.5px;
+  line-height: 12.5px;
+}
+.metro .image-button.primary {
+  background-color: #16499a !important;
+  color: #ffffff !important;
+}
+.metro .image-button.info {
+  background-color: #4390df !important;
+  color: #ffffff !important;
+}
+.metro .image-button.success {
+  background-color: #60a917 !important;
+  color: #ffffff !important;
+}
+.metro .image-button.warning {
+  background-color: #fa6800 !important;
+  color: #ffffff !important;
+}
+.metro .image-button.danger {
+  background-color: #9a1616 !important;
+  color: #ffffff !important;
+}
+.metro .image-button.inverse {
+  background-color: #1d1d1d !important;
+  color: #ffffff !important;
+}
+.metro .image-button.link {
+  background-color: transparent !important;
+  color: #2e92cf !important;
+}
+.metro .image-button.link:hover {
+  text-decoration: underline;
+}
+.metro .image-button.link:disabled,
+.metro .image-button.link.disabled {
+  background-color: transparent !important;
+  color: #bebebe !important;
+  cursor: not-allowed !important;
+}
+.metro .image-button.link [class*="icon-"] {
+  text-decoration: none !important;
 }
 .metro .image-button img,
 .metro .image-button:active img,
@@ -2980,10 +3080,12 @@ a {
   box-sizing: border-box;
   border: 1px transparent solid;
   z-index: 2;
+  text-align: center;
 }
 .metro .image-button [class*="icon-"] {
   vertical-align: middle !important;
-  font-size: 14pt;
+  font-size: 12pt;
+  line-height: 12pt;
   top: 0;
   right: 0;
 }
@@ -2997,6 +3099,9 @@ a {
   right: auto;
   left: 0;
 }
+.metro .image-button:focus {
+  border: 0;
+}
 .metro .shortcut {
   padding: 4px 12px;
   vertical-align: middle !important;
@@ -3009,7 +3114,7 @@ a {
   outline: none;
   font-family: 'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
   font-size: 14px;
-  line-height: 20px;
+  line-height: 16px;
   height: 92px;
   width: 92px;
   text-align: center;
@@ -3039,14 +3144,17 @@ a {
 .metro .shortcut.large {
   padding: 11px 19px;
   font-size: 17.5px;
+  line-height: 19.5px;
 }
 .metro .shortcut.small {
   padding: 2px 10px;
   font-size: 11.9px;
+  line-height: 13.9px;
 }
 .metro .shortcut.mini {
   padding: 0px 6px;
   font-size: 10.5px;
+  line-height: 12.5px;
 }
 .metro .shortcut.primary {
   background-color: #16499a !important;
@@ -3783,7 +3891,6 @@ a {
 .metro input[type="button"],
 .metro input[type="submit"],
 .metro input[type="reset"] {
-  display: inline-block;
   padding: 4px 12px;
   text-align: center;
   vertical-align: middle !important;
@@ -3793,10 +3900,11 @@ a {
   border-radius: 0;
   cursor: pointer;
   position: relative;
+  display: inline-block;
   outline: none;
   font-family: 'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
   font-size: 14px;
-  line-height: 20px;
+  line-height: 16px;
 }
 .metro input[type="button"].default,
 .metro input[type="submit"].default,
@@ -3831,18 +3939,21 @@ a {
 .metro input[type="reset"].large {
   padding: 11px 19px;
   font-size: 17.5px;
+  line-height: 19.5px;
 }
 .metro input[type="button"].small,
 .metro input[type="submit"].small,
 .metro input[type="reset"].small {
   padding: 2px 10px;
   font-size: 11.9px;
+  line-height: 13.9px;
 }
 .metro input[type="button"].mini,
 .metro input[type="submit"].mini,
 .metro input[type="reset"].mini {
   padding: 0px 6px;
   font-size: 10.5px;
+  line-height: 12.5px;
 }
 .metro input[type="button"].primary,
 .metro input[type="submit"].primary,
@@ -5526,7 +5637,6 @@ a {
   position: relative;
 }
 .metro .pagination > ul li a {
-  display: inline-block;
   padding: 4px 12px;
   text-align: center;
   vertical-align: middle !important;
@@ -5536,10 +5646,11 @@ a {
   border-radius: 0;
   cursor: pointer;
   position: relative;
+  display: inline-block;
   outline: none;
   font-family: 'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
   font-size: 14px;
-  line-height: 20px;
+  line-height: 16px;
   color: inherit;
   display: block;
   float: left;
@@ -5566,14 +5677,17 @@ a {
 .metro .pagination > ul li a.large {
   padding: 11px 19px;
   font-size: 17.5px;
+  line-height: 19.5px;
 }
 .metro .pagination > ul li a.small {
   padding: 2px 10px;
   font-size: 11.9px;
+  line-height: 13.9px;
 }
 .metro .pagination > ul li a.mini {
   padding: 0px 6px;
   font-size: 10.5px;
+  line-height: 12.5px;
 }
 .metro .pagination > ul li a.primary {
   background-color: #16499a !important;
