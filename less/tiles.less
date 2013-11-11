@@ -497,3 +497,45 @@
 .tile {
     .no-user-select;
 }
+
+.tile {
+    .tile-content {
+        &.email {
+            color: @white;
+            padding: 10px;
+
+            .email-image {
+                width: 64px;
+                height: 64px;
+                float: left;
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+            .email-data {
+                display: block;
+                color: inherit;
+                margin-left: 70px;
+                width: auto;
+                overflow: hidden;
+
+                .email-data-title, .email-data-subtitle, .email-data-text {
+                    color: inherit;
+                    display: block;
+                }
+
+                .email-data-title {
+                    font-size: 14pt;
+                }
+                .email-data-subtitle {
+                    font-size: 11pt;
+                }
+                .email-data-text {
+                    font-size: 10pt;
+                    .text-ellipsis;
+                }
+            }
+        }
+    }
+}
