@@ -89,7 +89,7 @@
                 background-color: @winCloseButtonActiveColor;
             }
             &:active {
-                background-color: lighten(@darkRed, 5%);
+                background-color: lighten(@darkRed, 5%) !important;
                 top: -8px;
                 right: 0;
                 left: auto;
@@ -117,7 +117,7 @@
                 }
             }
             &:active {
-                background-color: lighten(@darkCyan, 5%);
+                background-color: lighten(@darkCyan, 5%) !important;
                 color: #ffffff;
                 top: -8px;
                 right: 75px;
@@ -194,8 +194,8 @@
                     }
                 }
                 &:active {
-                    background-color: @winFlatSystemButtonActiveBackground;
-                    color: #ffffff;
+                    background-color: @winFlatSystemButtonActiveBackground !important;
+                    color: @white !important;
                 }
                 &:after {
                     border-color: @winFlatSystemButtonRestColor;
@@ -208,6 +208,11 @@
             }
             .btn-min {
                 right: 54px;
+            }
+            .btn-close {
+                &:after {
+                    margin-top: 2px;
+                }
             }
         }
         .content {
