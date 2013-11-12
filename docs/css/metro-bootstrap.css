@@ -2583,7 +2583,6 @@ a {
   color: #222222;
   border-radius: 0;
   cursor: pointer;
-  position: relative;
   display: inline-block;
   outline: none;
   font-family: 'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
@@ -2593,18 +2592,6 @@ a {
 .metro .button.default {
   background-color: #008287;
   color: #fff;
-}
-.metro .button:active {
-  top: 1px;
-  left: 1px;
-  /*
-        -webkit-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
-        -ms-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
-        -o-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
-        -moz-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
-        box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
-*/
-
 }
 .metro .button:focus {
   outline: 0;
@@ -2686,7 +2673,6 @@ a {
   color: #222222;
   border-radius: 0;
   cursor: pointer;
-  position: relative;
   display: inline-block;
   outline: none;
   font-family: 'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
@@ -2696,18 +2682,6 @@ a {
 .metro button.default {
   background-color: #008287;
   color: #fff;
-}
-.metro button:active {
-  top: 1px;
-  left: 1px;
-  /*
-        -webkit-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
-        -ms-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
-        -o-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
-        -moz-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
-        box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
-*/
-
 }
 .metro button:focus {
   outline: 0;
@@ -2774,6 +2748,11 @@ a {
 .metro button.link [class*="icon-"] {
   text-decoration: none !important;
 }
+.metro button:active {
+  background-color: #1d1d1d !important;
+  color: #ffffff !important;
+  border-color: transparent;
+}
 .metro .command-button {
   padding: 4px 12px;
   text-align: center;
@@ -2783,7 +2762,6 @@ a {
   color: #222222;
   border-radius: 0;
   cursor: pointer;
-  position: relative;
   display: inline-block;
   outline: none;
   font-family: 'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
@@ -2796,18 +2774,6 @@ a {
 .metro .command-button.default {
   background-color: #008287;
   color: #fff;
-}
-.metro .command-button:active {
-  top: 1px;
-  left: 1px;
-  /*
-        -webkit-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
-        -ms-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
-        -o-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
-        -moz-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
-        box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
-*/
-
 }
 .metro .command-button:focus {
   outline: 0;
@@ -2873,6 +2839,11 @@ a {
 }
 .metro .command-button.link [class*="icon-"] {
   text-decoration: none !important;
+}
+.metro .command-button:active {
+  background-color: #1d1d1d !important;
+  color: #ffffff !important;
+  border-color: transparent;
 }
 .metro .command-button small {
   display: block;
@@ -3021,18 +2992,6 @@ a {
   background-color: #008287;
   color: #fff;
 }
-.metro .image-button:active {
-  top: 1px;
-  left: 1px;
-  /*
-        -webkit-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
-        -ms-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
-        -o-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
-        -moz-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
-        box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
-*/
-
-}
 .metro .image-button:focus {
   outline: 0;
   border: 1px #353535 dotted;
@@ -3098,6 +3057,11 @@ a {
 .metro .image-button.link [class*="icon-"] {
   text-decoration: none !important;
 }
+.metro .image-button:active {
+  background-color: #1d1d1d !important;
+  color: #ffffff !important;
+  border-color: transparent;
+}
 .metro .image-button img,
 .metro .image-button:active img,
 .metro .image-button [class*="icon-"] {
@@ -3142,7 +3106,6 @@ a {
   color: #222222;
   border-radius: 0;
   cursor: pointer;
-  position: relative;
   outline: none;
   font-family: 'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
   font-size: 14px;
@@ -3158,18 +3121,6 @@ a {
 .metro .shortcut.default {
   background-color: #008287;
   color: #fff;
-}
-.metro .shortcut:active {
-  top: 1px;
-  left: 1px;
-  /*
-        -webkit-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
-        -ms-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
-        -o-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
-        -moz-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
-        box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
-*/
-
 }
 .metro .shortcut:focus {
   outline: 0;
@@ -3235,6 +3186,11 @@ a {
 }
 .metro .shortcut.link [class*="icon-"] {
   text-decoration: none !important;
+}
+.metro .shortcut:active {
+  background-color: #1d1d1d !important;
+  color: #ffffff !important;
+  border-color: transparent;
 }
 .metro .shortcut [class*="icon-"] {
   display: block;
@@ -3307,6 +3263,11 @@ a {
 .metro .button-set.transparent button.active {
   background-color: #555555;
   color: #ffffff;
+}
+.metro .button:active {
+  background-color: #1d1d1d !important;
+  color: #ffffff !important;
+  border-color: transparent;
 }
 .metro .breadcrumbs {
   margin: 0.2em;
@@ -3939,7 +3900,6 @@ a {
   color: #222222;
   border-radius: 0;
   cursor: pointer;
-  position: relative;
   display: inline-block;
   outline: none;
   font-family: 'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
@@ -3951,20 +3911,6 @@ a {
 .metro input[type="reset"].default {
   background-color: #008287;
   color: #fff;
-}
-.metro input[type="button"]:active,
-.metro input[type="submit"]:active,
-.metro input[type="reset"]:active {
-  top: 1px;
-  left: 1px;
-  /*
-        -webkit-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
-        -ms-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
-        -o-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
-        -moz-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
-        box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
-*/
-
 }
 .metro input[type="button"]:focus,
 .metro input[type="submit"]:focus,
@@ -4064,6 +4010,13 @@ a {
 .metro input[type="submit"].link [class*="icon-"],
 .metro input[type="reset"].link [class*="icon-"] {
   text-decoration: none !important;
+}
+.metro input[type="button"]:active,
+.metro input[type="submit"]:active,
+.metro input[type="reset"]:active {
+  background-color: #1d1d1d !important;
+  color: #ffffff !important;
+  border-color: transparent;
 }
 .metro img {
   max-width: 100%;
@@ -5780,7 +5733,6 @@ a {
   color: #222222;
   border-radius: 0;
   cursor: pointer;
-  position: relative;
   display: inline-block;
   outline: none;
   font-family: 'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
@@ -5794,18 +5746,6 @@ a {
 .metro .pagination > ul li a.default {
   background-color: #008287;
   color: #fff;
-}
-.metro .pagination > ul li a:active {
-  top: 1px;
-  left: 1px;
-  /*
-        -webkit-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
-        -ms-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
-        -o-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
-        -moz-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
-        box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
-*/
-
 }
 .metro .pagination > ul li a:focus {
   outline: 0;
@@ -5871,6 +5811,11 @@ a {
 }
 .metro .pagination > ul li a.link [class*="icon-"] {
   text-decoration: none !important;
+}
+.metro .pagination > ul li a:active {
+  background-color: #1d1d1d !important;
+  color: #ffffff !important;
+  border-color: transparent;
 }
 .metro .pagination > ul li.active a {
   background-color: #4390df;
