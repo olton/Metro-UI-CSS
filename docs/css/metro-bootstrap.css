@@ -2597,6 +2597,14 @@ a {
 .metro .button:active {
   top: 1px;
   left: 1px;
+  /*
+        -webkit-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
+        -ms-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
+        -o-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
+        -moz-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
+        box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
+*/
+
 }
 .metro .button:focus {
   outline: 0;
@@ -2692,6 +2700,14 @@ a {
 .metro button:active {
   top: 1px;
   left: 1px;
+  /*
+        -webkit-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
+        -ms-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
+        -o-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
+        -moz-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
+        box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
+*/
+
 }
 .metro button:focus {
   outline: 0;
@@ -2784,6 +2800,14 @@ a {
 .metro .command-button:active {
   top: 1px;
   left: 1px;
+  /*
+        -webkit-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
+        -ms-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
+        -o-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
+        -moz-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
+        box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
+*/
+
 }
 .metro .command-button:focus {
   outline: 0;
@@ -3000,6 +3024,14 @@ a {
 .metro .image-button:active {
   top: 1px;
   left: 1px;
+  /*
+        -webkit-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
+        -ms-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
+        -o-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
+        -moz-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
+        box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
+*/
+
 }
 .metro .image-button:focus {
   outline: 0;
@@ -3130,6 +3162,14 @@ a {
 .metro .shortcut:active {
   top: 1px;
   left: 1px;
+  /*
+        -webkit-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
+        -ms-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
+        -o-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
+        -moz-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
+        box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
+*/
+
 }
 .metro .shortcut:focus {
   outline: 0;
@@ -3917,6 +3957,14 @@ a {
 .metro input[type="reset"]:active {
   top: 1px;
   left: 1px;
+  /*
+        -webkit-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
+        -ms-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
+        -o-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
+        -moz-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
+        box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
+*/
+
 }
 .metro input[type="button"]:focus,
 .metro input[type="submit"]:focus,
@@ -5750,6 +5798,14 @@ a {
 .metro .pagination > ul li a:active {
   top: 1px;
   left: 1px;
+  /*
+        -webkit-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
+        -ms-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
+        -o-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
+        -moz-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
+        box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
+*/
+
 }
 .metro .pagination > ul li a:focus {
   outline: 0;
