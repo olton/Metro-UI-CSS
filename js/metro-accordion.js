@@ -29,7 +29,7 @@
                     a = $(this).children(".heading"),
                     content = $(this).children(".content");
 
-                if ($(a).hasClass("active")) {
+                if ($(a).hasClass("active") && !$(a).attr('disabled') && $(a).data('action') != 'none') {
                     $(content).show();
                     $(a).removeClass("collapsed");
                 } else {
@@ -38,6 +38,7 @@
 
                 a.on('click', function(e){
                     e.preventDefault();
+                    if ($(this).attr('disabled') || $(this).data('action') == 'none') return;
 
                     if (that.options.closeAny) that._closeFrames();
 
