@@ -312,6 +312,12 @@ a {
 .metro .bg-lightBlue {
   background-color: #4390df !important;
 }
+.metro .bg-lightRed {
+  background-color: #ff2d19 !important;
+}
+.metro .bg-lightGreen {
+  background-color: #7ad61d !important;
+}
 .metro .bg-lighterBlue {
   background-color: #00ccff !important;
 }
@@ -477,6 +483,12 @@ a {
 .metro .fg-lightPink {
   color: #f472d0 !important;
 }
+.metro .fg-lightRed {
+  color: #ff2d19 !important;
+}
+.metro .fg-lightGreen {
+  color: #7ad61d !important;
+}
 .metro .fg-grayDark {
   color: #333333 !important;
 }
@@ -627,6 +639,12 @@ a {
 .metro .ol-lightPink {
   outline-color: #f472d0 !important;
 }
+.metro .ol-lightRed {
+  outline-color: #ff2d19 !important;
+}
+.metro .ol-lightGreen {
+  outline-color: #7ad61d !important;
+}
 .metro .ol-grayDark {
   outline-color: #333333 !important;
 }
@@ -773,6 +791,12 @@ a {
 }
 .metro .bd-lightPink {
   border-color: #f472d0 !important;
+}
+.metro .bd-lightRed {
+  border-color: #ff2d19 !important;
+}
+.metro .bd-lightGreen {
+  border-color: #7ad61d !important;
 }
 .metro .bd-grayDark {
   border-color: #333333 !important;
@@ -1148,6 +1172,24 @@ a {
 }
 .metro .ribbed-lightPink {
   background-color: #f472d0 !important;
+  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
+  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
+  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
+  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
+  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
+  background-size: 40px 40px !important;
+}
+.metro .ribbed-lightRed {
+  background-color: #ff2d19 !important;
+  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
+  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
+  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
+  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
+  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
+  background-size: 40px 40px !important;
+}
+.metro .ribbed-lightGreen {
+  background-color: #7ad61d !important;
   background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
@@ -2533,7 +2575,6 @@ a {
   background-color: rgba(28, 183, 236, 0.1);
 }
 .metro .button {
-  display: inline-block;
   padding: 4px 12px;
   text-align: center;
   vertical-align: middle !important;
@@ -2543,10 +2584,11 @@ a {
   border-radius: 0;
   cursor: pointer;
   position: relative;
+  display: inline-block;
   outline: none;
   font-family: 'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
   font-size: 14px;
-  line-height: 20px;
+  line-height: 16px;
 }
 .metro .button.default {
   background-color: #008287;
@@ -2555,6 +2597,14 @@ a {
 .metro .button:active {
   top: 1px;
   left: 1px;
+  /*
+        -webkit-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
+        -ms-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
+        -o-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
+        -moz-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
+        box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
+*/
+
 }
 .metro .button:focus {
   outline: 0;
@@ -2573,16 +2623,19 @@ a {
 .metro button.large {
   padding: 11px 19px;
   font-size: 17.5px;
+  line-height: 19.5px;
 }
 .metro .button.small,
 .metro button.small {
   padding: 2px 10px;
   font-size: 11.9px;
+  line-height: 13.9px;
 }
 .metro .button.mini,
 .metro button.mini {
   padding: 0px 6px;
   font-size: 10.5px;
+  line-height: 12.5px;
 }
 .metro .button.primary {
   background-color: #16499a !important;
@@ -2625,7 +2678,6 @@ a {
   text-decoration: none !important;
 }
 .metro button {
-  display: inline-block;
   padding: 4px 12px;
   text-align: center;
   vertical-align: middle !important;
@@ -2635,10 +2687,11 @@ a {
   border-radius: 0;
   cursor: pointer;
   position: relative;
+  display: inline-block;
   outline: none;
   font-family: 'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
   font-size: 14px;
-  line-height: 20px;
+  line-height: 16px;
 }
 .metro button.default {
   background-color: #008287;
@@ -2647,6 +2700,14 @@ a {
 .metro button:active {
   top: 1px;
   left: 1px;
+  /*
+        -webkit-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
+        -ms-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
+        -o-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
+        -moz-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
+        box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
+*/
+
 }
 .metro button:focus {
   outline: 0;
@@ -2661,14 +2722,17 @@ a {
 .metro button.large {
   padding: 11px 19px;
   font-size: 17.5px;
+  line-height: 19.5px;
 }
 .metro button.small {
   padding: 2px 10px;
   font-size: 11.9px;
+  line-height: 13.9px;
 }
 .metro button.mini {
   padding: 0px 6px;
   font-size: 10.5px;
+  line-height: 12.5px;
 }
 .metro button.primary {
   background-color: #16499a !important;
@@ -2711,7 +2775,6 @@ a {
   text-decoration: none !important;
 }
 .metro .command-button {
-  display: inline-block;
   padding: 4px 12px;
   text-align: center;
   vertical-align: middle !important;
@@ -2721,10 +2784,11 @@ a {
   border-radius: 0;
   cursor: pointer;
   position: relative;
+  display: inline-block;
   outline: none;
   font-family: 'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
   font-size: 14px;
-  line-height: 20px;
+  line-height: 16px;
   text-align: left;
   font-size: 14pt;
   width: auto;
@@ -2736,6 +2800,14 @@ a {
 .metro .command-button:active {
   top: 1px;
   left: 1px;
+  /*
+        -webkit-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
+        -ms-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
+        -o-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
+        -moz-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
+        box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
+*/
+
 }
 .metro .command-button:focus {
   outline: 0;
@@ -2750,14 +2822,17 @@ a {
 .metro .command-button.large {
   padding: 11px 19px;
   font-size: 17.5px;
+  line-height: 19.5px;
 }
 .metro .command-button.small {
   padding: 2px 10px;
   font-size: 11.9px;
+  line-height: 13.9px;
 }
 .metro .command-button.mini {
   padding: 0px 6px;
   font-size: 10.5px;
+  line-height: 12.5px;
 }
 .metro .command-button.primary {
   background-color: #16499a !important;
@@ -2811,7 +2886,7 @@ a {
 }
 .metro .command-button [class*="icon-"] {
   font-size: 1.7em;
-  margin-top: 2px;
+  margin-top: 0;
 }
 .metro .command-button [class*="icon-"].on-left {
   float: left;
@@ -2853,11 +2928,16 @@ a {
 .metro .toolbar button,
 .metro .toolbar .button {
   color: inherit;
-  padding: 2px 8px;
+  padding: 4px 8px;
   display: block;
   float: left;
   font-size: 12pt;
+  line-height: 12pt;
   margin-right: 2px;
+}
+.metro .toolbar button:last-child,
+.metro .toolbar .button:last-child {
+  margin-right: 0;
 }
 .metro .toolbar.no-spaces button,
 .metro .toolbar .toolbar-group.no-spaces button,
@@ -2877,9 +2957,9 @@ a {
 .metro .toolbar .divider {
   display: block;
   float: left;
-  height: 18px;
+  height: 12px;
   width: 1px;
-  margin: 8px;
+  margin: 8px 8px;
   background-color: #999999;
   vertical-align: middle !important;
 }
@@ -2908,7 +2988,7 @@ a {
 }
 .metro button.dropdown-toggle,
 .metro .button.dropdown-toggle {
-  padding-right: 24px;
+  padding-right: 16px;
   border: 0;
 }
 .metro button.dropdown-toggle:before,
@@ -2920,9 +3000,103 @@ a {
   z-index: 2;
 }
 .metro .image-button {
+  padding: 4px 12px;
+  text-align: center;
+  vertical-align: middle !important;
+  background-color: #d9d9d9;
+  border: 1px transparent solid;
+  color: #222222;
+  border-radius: 0;
+  cursor: pointer;
+  display: inline-block;
+  outline: none;
+  font-family: 'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  line-height: 16px;
   position: relative;
   border: 0;
   padding-right: 45px;
+}
+.metro .image-button.default {
+  background-color: #008287;
+  color: #fff;
+}
+.metro .image-button:active {
+  top: 1px;
+  left: 1px;
+  /*
+        -webkit-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
+        -ms-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
+        -o-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
+        -moz-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
+        box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
+*/
+
+}
+.metro .image-button:focus {
+  outline: 0;
+  border: 1px #353535 dotted;
+}
+.metro .image-button:disabled,
+.metro .image-button.disabled {
+  background-color: #eaeaea !important;
+  color: #bebebe !important;
+  cursor: not-allowed !important;
+}
+.metro .image-button.large {
+  padding: 11px 19px;
+  font-size: 17.5px;
+  line-height: 19.5px;
+}
+.metro .image-button.small {
+  padding: 2px 10px;
+  font-size: 11.9px;
+  line-height: 13.9px;
+}
+.metro .image-button.mini {
+  padding: 0px 6px;
+  font-size: 10.5px;
+  line-height: 12.5px;
+}
+.metro .image-button.primary {
+  background-color: #16499a !important;
+  color: #ffffff !important;
+}
+.metro .image-button.info {
+  background-color: #4390df !important;
+  color: #ffffff !important;
+}
+.metro .image-button.success {
+  background-color: #60a917 !important;
+  color: #ffffff !important;
+}
+.metro .image-button.warning {
+  background-color: #fa6800 !important;
+  color: #ffffff !important;
+}
+.metro .image-button.danger {
+  background-color: #9a1616 !important;
+  color: #ffffff !important;
+}
+.metro .image-button.inverse {
+  background-color: #1d1d1d !important;
+  color: #ffffff !important;
+}
+.metro .image-button.link {
+  background-color: transparent !important;
+  color: #2e92cf !important;
+}
+.metro .image-button.link:hover {
+  text-decoration: underline;
+}
+.metro .image-button.link:disabled,
+.metro .image-button.link.disabled {
+  background-color: transparent !important;
+  color: #bebebe !important;
+  cursor: not-allowed !important;
+}
+.metro .image-button.link [class*="icon-"] {
+  text-decoration: none !important;
 }
 .metro .image-button img,
 .metro .image-button:active img,
@@ -2938,10 +3112,12 @@ a {
   box-sizing: border-box;
   border: 1px transparent solid;
   z-index: 2;
+  text-align: center;
 }
 .metro .image-button [class*="icon-"] {
   vertical-align: middle !important;
-  font-size: 14pt;
+  font-size: 12pt;
+  line-height: 12pt;
   top: 0;
   right: 0;
 }
@@ -2955,6 +3131,9 @@ a {
   right: auto;
   left: 0;
 }
+.metro .image-button:focus {
+  border: 0;
+}
 .metro .shortcut {
   padding: 4px 12px;
   vertical-align: middle !important;
@@ -2967,7 +3146,7 @@ a {
   outline: none;
   font-family: 'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
   font-size: 14px;
-  line-height: 20px;
+  line-height: 16px;
   height: 92px;
   width: 92px;
   text-align: center;
@@ -2983,6 +3162,14 @@ a {
 .metro .shortcut:active {
   top: 1px;
   left: 1px;
+  /*
+        -webkit-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
+        -ms-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
+        -o-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
+        -moz-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
+        box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
+*/
+
 }
 .metro .shortcut:focus {
   outline: 0;
@@ -2997,14 +3184,17 @@ a {
 .metro .shortcut.large {
   padding: 11px 19px;
   font-size: 17.5px;
+  line-height: 19.5px;
 }
 .metro .shortcut.small {
   padding: 2px 10px;
   font-size: 11.9px;
+  line-height: 13.9px;
 }
 .metro .shortcut.mini {
   padding: 0px 6px;
   font-size: 10.5px;
+  line-height: 12.5px;
 }
 .metro .shortcut.primary {
   background-color: #16499a !important;
@@ -3741,7 +3931,6 @@ a {
 .metro input[type="button"],
 .metro input[type="submit"],
 .metro input[type="reset"] {
-  display: inline-block;
   padding: 4px 12px;
   text-align: center;
   vertical-align: middle !important;
@@ -3751,10 +3940,11 @@ a {
   border-radius: 0;
   cursor: pointer;
   position: relative;
+  display: inline-block;
   outline: none;
   font-family: 'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
   font-size: 14px;
-  line-height: 20px;
+  line-height: 16px;
 }
 .metro input[type="button"].default,
 .metro input[type="submit"].default,
@@ -3767,6 +3957,14 @@ a {
 .metro input[type="reset"]:active {
   top: 1px;
   left: 1px;
+  /*
+        -webkit-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
+        -ms-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
+        -o-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
+        -moz-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
+        box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
+*/
+
 }
 .metro input[type="button"]:focus,
 .metro input[type="submit"]:focus,
@@ -3789,18 +3987,21 @@ a {
 .metro input[type="reset"].large {
   padding: 11px 19px;
   font-size: 17.5px;
+  line-height: 19.5px;
 }
 .metro input[type="button"].small,
 .metro input[type="submit"].small,
 .metro input[type="reset"].small {
   padding: 2px 10px;
   font-size: 11.9px;
+  line-height: 13.9px;
 }
 .metro input[type="button"].mini,
 .metro input[type="submit"].mini,
 .metro input[type="reset"].mini {
   padding: 0px 6px;
   font-size: 10.5px;
+  line-height: 12.5px;
 }
 .metro input[type="button"].primary,
 .metro input[type="submit"].primary,
@@ -4599,11 +4800,77 @@ a {
   height: 150px;
   margin: 0 15px 15px 0;
 }
+.metro .tile-area {
+  position: relative;
+  padding: 120px 80px 0 80px;
+  overflow: hidden;
+}
+.metro .tile-area .tile-area-title {
+  position: fixed;
+  top: 20px;
+  left: 80px;
+}
+.metro .tile-area .user-id {
+  position: fixed;
+  right: 40px;
+  top: 40px;
+  display: inline-block;
+  padding: 8px;
+  background-color: transparent;
+  width: auto;
+  color: #ffffff;
+  cursor: default;
+}
+.metro .tile-area .user-id .user-id-image {
+  width: 40px;
+  height: 40px;
+  float: right;
+  margin-left: 10px;
+  color: inherit;
+  background-color: #464646;
+  text-align: center;
+  vertical-align: middle;
+}
+.metro .tile-area .user-id .user-id-image img,
+.metro .tile-area .user-id .user-id-image [class*="icon-"] {
+  color: inherit;
+  font-size: 16pt;
+  line-height: 16pt;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  vertical-align: middle;
+}
+.metro .tile-area .user-id .user-id-image [class*="icon-"] {
+  padding: 10px;
+}
+.metro .tile-area .user-id .user-id-name {
+  float: right;
+  text-align: right;
+  margin: 0;
+  padding: 0;
+}
+.metro .tile-area .user-id .user-id-name .first-name,
+.metro .tile-area .user-id .user-id-name .last-name {
+  display: block;
+  color: inherit;
+  font-family: 'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
+  line-height: 12pt;
+}
+.metro .tile-area .user-id .user-id-name .first-name {
+  font-size: 20pt;
+  line-height: 20pt;
+}
+.metro .tile-area .user-id .user-id-name .last-name {
+  font-size: 12pt;
+}
+.metro .tile-area .user-id:hover {
+  background-color: #404040;
+}
 .metro .tile-area-dark {
   min-width: 100%;
   height: 100%;
   background-color: #1d1d1d !important;
-  padding: 10px 10px 0 10px;
 }
 .metro .tile-area-dark .tile {
   outline-color: #373737 !important;
@@ -4620,7 +4887,6 @@ a {
   min-width: 100%;
   height: 100%;
   background-color: #63362f !important;
-  padding: 10px 10px 0 10px;
 }
 .metro .tile-area-darkBrown .tile {
   outline-color: #86493f !important;
@@ -4637,7 +4903,6 @@ a {
   min-width: 100%;
   height: 100%;
   background-color: #640024 !important;
-  padding: 10px 10px 0 10px;
 }
 .metro .tile-area-darkCrimson .tile {
   outline-color: #970036 !important;
@@ -4654,7 +4919,6 @@ a {
   min-width: 100%;
   height: 100%;
   background-color: #57169a !important;
-  padding: 10px 10px 0 10px;
 }
 .metro .tile-area-darkViolet .tile {
   outline-color: #701cc7 !important;
@@ -4671,7 +4935,6 @@ a {
   min-width: 100%;
   height: 100%;
   background-color: #81003c !important;
-  padding: 10px 10px 0 10px;
 }
 .metro .tile-area-darkMagenta .tile {
   outline-color: #b40054 !important;
@@ -4688,7 +4951,6 @@ a {
   min-width: 100%;
   height: 100%;
   background-color: #1b6eae !important;
-  padding: 10px 10px 0 10px;
 }
 .metro .tile-area-darkCyan .tile {
   outline-color: #228ada !important;
@@ -4705,7 +4967,6 @@ a {
   min-width: 100%;
   height: 100%;
   background-color: #00356a !important;
-  padding: 10px 10px 0 10px;
 }
 .metro .tile-area-darkCobalt .tile {
   outline-color: #004e9d !important;
@@ -4722,7 +4983,6 @@ a {
   min-width: 100%;
   height: 100%;
   background-color: #004050 !important;
-  padding: 10px 10px 0 10px;
 }
 .metro .tile-area-darkTeal .tile {
   outline-color: #006983 !important;
@@ -4739,7 +4999,6 @@ a {
   min-width: 100%;
   height: 100%;
   background-color: #003e00 !important;
-  padding: 10px 10px 0 10px;
 }
 .metro .tile-area-darkEmerald .tile {
   outline-color: #007100 !important;
@@ -4756,7 +5015,6 @@ a {
   min-width: 100%;
   height: 100%;
   background-color: #128023 !important;
-  padding: 10px 10px 0 10px;
 }
 .metro .tile-area-darkGreen .tile {
   outline-color: #18ad2f !important;
@@ -4773,7 +5031,6 @@ a {
   min-width: 100%;
   height: 100%;
   background-color: #bf5a15 !important;
-  padding: 10px 10px 0 10px;
 }
 .metro .tile-area-darkOrange .tile {
   outline-color: #e77120 !important;
@@ -4790,7 +5047,6 @@ a {
   min-width: 100%;
   height: 100%;
   background-color: #9a1616 !important;
-  padding: 10px 10px 0 10px;
 }
 .metro .tile-area-darkRed .tile {
   outline-color: #c71c1c !important;
@@ -4807,7 +5063,6 @@ a {
   min-width: 100%;
   height: 100%;
   background-color: #9a165a !important;
-  padding: 10px 10px 0 10px;
 }
 .metro .tile-area-darkPink .tile {
   outline-color: #c71c74 !important;
@@ -4824,7 +5079,6 @@ a {
   min-width: 100%;
   height: 100%;
   background-color: #4b0096 !important;
-  padding: 10px 10px 0 10px;
 }
 .metro .tile-area-darkIndigo .tile {
   outline-color: #6400c9 !important;
@@ -4841,7 +5095,6 @@ a {
   min-width: 100%;
   height: 100%;
   background-color: #16499a !important;
-  padding: 10px 10px 0 10px;
 }
 .metro .tile-area-darkBlue .tile {
   outline-color: #1c5ec7 !important;
@@ -4858,7 +5111,6 @@ a {
   min-width: 100%;
   height: 100%;
   background-color: #4390df !important;
-  padding: 10px 10px 0 10px;
 }
 .metro .tile-area-lightBlue .tile {
   outline-color: #6faae6 !important;
@@ -4875,7 +5127,6 @@ a {
   min-width: 100%;
   height: 100%;
   background-color: #008e8e !important;
-  padding: 10px 10px 0 10px;
 }
 .metro .tile-area-lightTeal .tile {
   outline-color: #00c1c1 !important;
@@ -4892,7 +5143,6 @@ a {
   min-width: 100%;
   height: 100%;
   background-color: #78aa1c !important;
-  padding: 10px 10px 0 10px;
 }
 .metro .tile-area-lightOlive .tile {
   outline-color: #97d623 !important;
@@ -4909,7 +5159,6 @@ a {
   min-width: 100%;
   height: 100%;
   background-color: #c29008 !important;
-  padding: 10px 10px 0 10px;
 }
 .metro .tile-area-lightOrange .tile {
   outline-color: #f3b40a !important;
@@ -4926,7 +5175,6 @@ a {
   min-width: 100%;
   height: 100%;
   background-color: #f472d0 !important;
-  padding: 10px 10px 0 10px;
 }
 .metro .tile-area-lightPink .tile {
   outline-color: #f8a1e0 !important;
@@ -4943,7 +5191,6 @@ a {
   min-width: 100%;
   height: 100%;
   background-color: #585858 !important;
-  padding: 10px 10px 0 10px;
 }
 .metro .tile-area-grayed .tile {
   outline-color: #727272 !important;
@@ -4984,6 +5231,9 @@ a {
 }
 .metro .tile-group.seven {
   width: 910px;
+}
+.metro .tile-group:first-child {
+  margin-left: 80px;
 }
 .metro .tile-group {
   color: #ffffff;
@@ -5273,6 +5523,44 @@ a {
 .metro [draggable] {
   cursor: default;
 }
+.metro .tile .tile-content.email {
+  color: #ffffff;
+  padding: 10px;
+}
+.metro .tile .tile-content.email .email-image {
+  width: 64px;
+  height: 64px;
+  float: left;
+}
+.metro .tile .tile-content.email .email-image img {
+  width: 100%;
+  height: 100%;
+}
+.metro .tile .tile-content.email .email-data {
+  display: block;
+  color: inherit;
+  margin-left: 70px;
+  width: auto;
+  overflow: hidden;
+}
+.metro .tile .tile-content.email .email-data .email-data-title,
+.metro .tile .tile-content.email .email-data .email-data-subtitle,
+.metro .tile .tile-content.email .email-data .email-data-text {
+  color: inherit;
+  display: block;
+}
+.metro .tile .tile-content.email .email-data .email-data-title {
+  font-size: 14pt;
+}
+.metro .tile .tile-content.email .email-data .email-data-subtitle {
+  font-size: 11pt;
+}
+.metro .tile .tile-content.email .email-data .email-data-text {
+  font-size: 10pt;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
 .metro .carousel {
   display: block;
   position: relative;
@@ -5484,7 +5772,6 @@ a {
   position: relative;
 }
 .metro .pagination > ul li a {
-  display: inline-block;
   padding: 4px 12px;
   text-align: center;
   vertical-align: middle !important;
@@ -5494,10 +5781,11 @@ a {
   border-radius: 0;
   cursor: pointer;
   position: relative;
+  display: inline-block;
   outline: none;
   font-family: 'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
   font-size: 14px;
-  line-height: 20px;
+  line-height: 16px;
   color: inherit;
   display: block;
   float: left;
@@ -5510,6 +5798,14 @@ a {
 .metro .pagination > ul li a:active {
   top: 1px;
   left: 1px;
+  /*
+        -webkit-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
+        -ms-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
+        -o-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
+        -moz-box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
+        box-shadow: inset 0 1px 10px rgba(0,0,0,0.75);
+*/
+
 }
 .metro .pagination > ul li a:focus {
   outline: 0;
@@ -5524,14 +5820,17 @@ a {
 .metro .pagination > ul li a.large {
   padding: 11px 19px;
   font-size: 17.5px;
+  line-height: 19.5px;
 }
 .metro .pagination > ul li a.small {
   padding: 2px 10px;
   font-size: 11.9px;
+  line-height: 13.9px;
 }
 .metro .pagination > ul li a.mini {
   padding: 0px 6px;
   font-size: 10.5px;
+  line-height: 12.5px;
 }
 .metro .pagination > ul li a.primary {
   background-color: #16499a !important;
@@ -6203,14 +6502,14 @@ a {
   z-index: 1;
   transition: background .3s ease;
 }
-.metro .slider .hint {
+.metro .slider > .hint {
   background-color: #ffffff;
   display: block;
   position: absolute;
   z-index: 3;
   border: 1px #ccc solid;
   padding: 2px 4px;
-  top: -30px;
+  top: -40px;
   min-width: 30px;
   text-align: center;
   font-family: 'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
@@ -6218,7 +6517,7 @@ a {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3), 0 3px 8px rgba(0, 0, 0, 0.2);
   display: none;
 }
-.metro .slider.permanent-hint .hint {
+.metro .slider.permanent-hint > .hint {
   display: block;
 }
 .metro .slider.hint-bottom .hint {
@@ -6242,6 +6541,7 @@ a {
 .metro .slider.vertical .hint {
   left: 100%;
   margin-left: 5px;
+  margin-top: 0;
 }
 .metro .slider.vertical.hint-left .hint {
   left: -40px;
@@ -7315,6 +7615,40 @@ a {
 .metro .balloon.right:after {
   left: -20px;
   border-right: 20px solid #555555;
+}
+.metro .stepper {
+  list-style: none;
+  border-top: 1px #1d1d1d dotted;
+  position: relative;
+  padding: 0;
+  margin: 60px 0;
+}
+.metro .stepper li {
+  float: left;
+  width: 32px;
+  height: 32px;
+  border-radius: 100%;
+  margin-left: 20%;
+  margin-top: -16px;
+  background-color: #e51400;
+  border: 2px #9a1616 solid;
+  position: relative;
+}
+.metro .stepper li:first-child {
+  margin-left: 0;
+}
+.metro .stepper li:last-child {
+  left: 10px;
+}
+.metro .stepper li:hover {
+  background-color: #ff2d19;
+}
+.metro .stepper li.complete {
+  background-color: #60a917;
+  border: 2px #128023 solid;
+}
+.metro .stepper li.complete:hover {
+  background-color: #7ad61d;
 }
 @font-face {
   font-family: 'iconFont';
