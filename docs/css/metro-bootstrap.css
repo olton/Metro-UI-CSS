@@ -6091,6 +6091,7 @@ a {
   box-shadow: none;
   position: relative !important;
   background-color: #e5e5e5;
+  min-width: 100%;
 }
 .metro .sidebar > ul ul li {
   display: block;
@@ -6596,7 +6597,7 @@ a {
 .metro .window .caption .btn-close:active,
 .metro .window .caption .btn-min:active,
 .metro .window .caption .btn-max:active {
-  background-color: #b01919;
+  background-color: #b01919 !important;
   top: -8px;
   right: 0;
   left: auto;
@@ -6630,7 +6631,7 @@ a {
 }
 .metro .window .caption .btn-min:active,
 .metro .window .caption .btn-max:active {
-  background-color: #1e7cc4;
+  background-color: #1e7cc4 !important;
   color: #ffffff;
   top: -8px;
   right: 75px;
@@ -6708,8 +6709,8 @@ a {
 .metro .window.flat .caption .btn-close:active,
 .metro .window.flat .caption .btn-min:active,
 .metro .window.flat .caption .btn-max:active {
-  background-color: #92c0e0;
-  color: #ffffff;
+  background-color: #92c0e0 !important;
+  color: #ffffff !important;
 }
 .metro .window.flat .caption .btn-close:after,
 .metro .window.flat .caption .btn-min:after,
@@ -6723,6 +6724,9 @@ a {
 }
 .metro .window.flat .caption .btn-min {
   right: 54px;
+}
+.metro .window.flat .caption .btn-close:after {
+  margin-top: 2px;
 }
 .metro .window.flat .content {
   padding-top: 38px;
@@ -7268,7 +7272,7 @@ a {
 .metro .fluent-menu .fluent-button:active {
   top: 0;
   left: 0;
-  background-color: #75bae9;
+  background-color: #75bae9 !important;
 }
 .metro .fluent-menu .fluent-big-button {
   background-color: #ffffff;
@@ -7305,7 +7309,7 @@ a {
 .metro .fluent-menu .fluent-big-button:active {
   top: 0;
   left: 0;
-  background-color: #75bae9;
+  background-color: #75bae9 !important;
 }
 .metro .fluent-menu .fluent-big-button img,
 .metro .fluent-menu .fluent-big-button [class*="icon-"] {
@@ -7352,7 +7356,7 @@ a {
 .metro .fluent-menu .fluent-tool-button:active {
   top: 0;
   left: 0;
-  background-color: #75bae9;
+  background-color: #75bae9 !important;
 }
 .metro .fluent-menu .fluent-tool-button img,
 .metro .fluent-menu .fluent-tool-button [class*="icon-"] {
