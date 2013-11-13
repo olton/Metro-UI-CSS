@@ -245,6 +245,17 @@
             }
         },
 
+        value: function (value) {
+            if (typeof value !== 'undefined') {
+                this._placeMarker(parseInt(value));
+                this.options.position = parseInt(value);
+                this.options.change(Math.round(parseInt(value)), this.element);
+                return this;
+            } else {
+                return Math.round(this.options.position);
+            }
+        },
+
         _destroy: function(){},
 
         _setOption: function(key, value){
