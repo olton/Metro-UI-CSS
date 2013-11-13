@@ -4,9 +4,15 @@ Metro UI CSS a set of styles to create a site with an interface similar to Windo
 
 # Current Version
 
-## 2.0 Preview
+## 2.0.1
 
 See details of definition on [metroui.org.ua](http://metroui.org.ua)
+
+## NuGet
+
+Now you can use [NuGet package](https://www.nuget.org/packages/Metro.UI.CSS/).
+To install Metro UI CSS 2.0, run the following command in the Package Manager Console:
+__PM> Install-Package Metro.UI.CSS__
 
 # Pull requests
 
