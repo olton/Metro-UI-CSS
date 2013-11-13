@@ -14,15 +14,12 @@
     <language>en-US</language> 
     <copyright>Copyright 2012-2013, Sergey Pimenov</copyright>
     <tags>Windows Metro UI CSS Framework</tags>
-    <dependencies>
-      <dependency id="jQuery" version="2.0.0" />
-      <dependency id="jQuery.UI.Core.Widget" version="1.8.9" />
-    </dependencies>
   </metadata>
   <files>
     <file src="less\*.less" target="less" />
     <file src="docs\css\metro-bootstrap.css" target="css" />
     <file src="docs\css\metro-bootstrap-responsive.css" target="css" />
+    <file src="docs\js\jquery\*.js" target="js\jquery" />
     <file src="docs\js\metro\*.js" target="js\metro" />
     <file src="docs\fonts\*.*" target="fonts" />
   </files>
