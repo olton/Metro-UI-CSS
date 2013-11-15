@@ -1,4 +1,3 @@
-// Transformations
 .rotate(@degrees) {
     -webkit-transform: rotate(@degrees);
     -moz-transform: rotate(@degrees);
@@ -20,12 +19,33 @@
     -o-transform: rotateY(@degrees);
     transform: rotateY(@degrees);
 }
+.rotateZ(@degrees) {
+    -webkit-transform: rotateZ(@degrees);
+    -moz-transform: rotateZ(@degrees);
+    -ms-transform: rotateZ(@degrees);
+    -o-transform: rotateZ(@degrees);
+    transform: rotateZ(@degrees);
+}
 .scale(@ratio) {
     -webkit-transform: scale(@ratio);
     -moz-transform: scale(@ratio);
     -ms-transform: scale(@ratio);
     -o-transform: scale(@ratio);
     transform: scale(@ratio);
+}
+.scaleX(@ratio) {
+    -webkit-transform: scaleX(@ratio);
+    -moz-transform: scaleX(@ratio);
+    -ms-transform: scaleX(@ratio);
+    -o-transform: scaleX(@ratio);
+    transform: scaleX(@ratio);
+}
+.scaleY(@ratio) {
+    -webkit-transform: scaleY(@ratio);
+    -moz-transform: scaleY(@ratio);
+    -ms-transform: scaleY(@ratio);
+    -o-transform: scaleY(@ratio);
+    transform: scaleY(@ratio);
 }
 .translate(@x: 0, @y: 0) {
     -webkit-transform: translate(@x, @y);
@@ -47,6 +67,14 @@
     -ms-transform: translate(@x, @y, @z);
     -o-transform: translate(@x, @y, @z);
     transform: translate(@x, @y, @z);
+}
+
+.transformOrigin(@origin) {
+    -webkit-transform-origin: @origin;
+    -moz-transform-origin: @origin;
+    -ms-transform-origin: @origin;
+    -o-transform-origin: @origin;
+    transform-origin: @origin;
 }
 
 .rotate45 {.rotate(45deg);}
