@@ -45,17 +45,20 @@
             }
 
             .data {
-                float: left;
+                //float: left;
                 display: block;
                 padding: 0;
                 margin: 0;
+                margin-left: 66px;
                 min-width: 200px;
+                position: relative;
             }
 
             .list-title, .list-remark {
                 margin: 0;
                 padding: 0;
                 display: block;
+                .text-ellipsis;
             }
 
             .list-title {
@@ -86,14 +89,22 @@
                 display: block;
                 width: 32px;
                 height: 32px;
+                line-height: 14px;
                 font-size: 28px;
                 float: left;
                 margin-right: 10px;
             }
             [class*="icon-"] {
                 &.icon {
-                    padding: 8px;
+                    padding: 8px 0;
                 }
+                &.border {
+                    font-size: 22px;
+                    padding: 8px 4px;
+                }
+            }
+            .data {
+                margin-left: 40px;
             }
         }
     }
