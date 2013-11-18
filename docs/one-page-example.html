@@ -31,12 +31,53 @@
         .indent {
             height: 40px;
         }
+        .super-menu {
+            position: fixed;
+            top: 45px;
+            left: 0;
+            right: 0;
+            z-index: 100;
+        }
+        .page {
+            padding-top: 130px !important;
+        }
+        .super-menu li {
+        }
+        .super-menu a {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body class="metro">
 <header class="bg-dark border" data-load="header.html"></header>
-<div class="container">
-    <h2 class="fg-amber">Headings</h2>
+<div class="super-menu bg-grayLighter padding20">
+    <div class="container">
+        <ul class="inline">
+            <li><a href="#_headings">Headings</a></li>
+            <li><a href="#_text">Text</a></li>
+            <li><a href="#_lists">Lists</a></li>
+            <li><a href="#_description">Description</a></li>
+            <li><a href="#_table">Table</a></li>
+            <li><a href="#_buttons">Buttons</a></li>
+            <li><a href="#_images">Images</a></li>
+            <li><a href="#_tiles">Tiles</a></li>
+            <li><a href="#_icons">Icons</a></li>
+            <li><a href="#_forms">Forms &amp; Elements</a></li>
+            <li><a href="#_sidebar">Sidebar</a></li>
+            <li><a href="#_tab">Tab Control</a></li>
+            <li><a href="#_accordion">Accordion</a></li>
+            <li><a href="#_rating">Rating, Progree &amp; Slider</a></li>
+            <li><a href="#_carousel">Carousel</a></li>
+            <li><a href="#_treeview">TreeView &amp; ListView</a></li>
+            <li><a href="#_hint">Hint &amp; Balloon</a></li>
+            <li><a href="#_dates">Dates &amp; Times</a></li>
+            <li><a href="#_window">Window &amp; Dialog</a></li>
+            <li><a href="#_notify">Notifies</a></li>
+        </ul>
+    </div>
+</div>
+<div class="page container">
+    <h2 class="fg-amber" id="_headigns">Headings</h2>
     <div class="example">
         <h1>h1. Header 1</h1>
         <h2>h2. Header 2</h2>
@@ -46,7 +87,8 @@
         <h6>h6. Header 6</h6>
     </div>
     <div class="indent"></div>
-    <h2 class="fg-amber">Text</h2>
+
+    <h2 class="fg-amber" id="_text">Text</h2>
     <h3>Paragraph text</h3>
     <div class="example">
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean luctus lectus sit amet odio ullamcorper malesuada dignissim justo gravida. Pellentesque sagittis, tellus id sagittis accumsan, augue velit pretium urna, ac interdum dui nibh et orci. Quisque dapibus elit ut metus varius ac bibendum sem luctus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis sagittis lorem. Praesent ac eros quam.</p>
@@ -141,7 +183,8 @@
         </blockquote>
     </div>
     <div class="indent"></div>
-    <h2 class="fg-amber">Lists</h2>
+
+    <h2 class="fg-amber" id="_lists">Lists</h2>
     <h4>Unordered</h4>
     <div class="example">
         <ul>
@@ -219,7 +262,8 @@
         </ul>
     </div>
     <div class="indent"></div>
-    <h2 class="fg-amber">Description</h2>
+
+    <h2 class="fg-amber" id="_description">Description</h2>
     <div class="example">
         <dl>
             <dt>Description lists</dt>
@@ -246,7 +290,8 @@
         </dl>
     </div>
     <div class="indent"></div>
-    <h2 class="fg-amber">Tables</h2>
+
+    <h2 class="fg-amber" id="_table">Tables</h2>
     <h3>Default table styles</h3>
     <div class="example">
         <table class="table">
@@ -373,7 +418,8 @@
         </table>
     </div>
     <div class="indent"></div>
-    <h2 class="fg-amber">Buttons</h2>
+
+    <h2 class="fg-amber" id="_buttons">Buttons</h2>
     <div class="example">
         <button class="button default">Default</button>
         <button class="button primary">Primary</button>
@@ -654,7 +700,8 @@
         </nav>
     </div>
     <div class="indent"></div>
-    <h2 class="fg-amber">Images</h2>
+
+    <h2 class="fg-amber" id="_images">Images</h2>
     <h3>General</h3>
     <div class="example">
         <img src="js/holder/holder.js/120x120" class="rounded">
@@ -704,7 +751,8 @@
         </div>
     </div>
     <div class="indent"></div>
-    <h2 class="fg-amber">Tiles</h2>
+
+    <h2 class="fg-amber" id="_tiles">Tiles</h2>
     <div class="example">
         <div class="tiles">
             <div class="tile half"></div>
@@ -997,7 +1045,8 @@
         </div>
     </div>
     <div class="indent"></div>
-    <h2>Icons</h2>
+
+    <h2 id="_icons">Icons</h2>
     <div class="example">
         <h3><i class="icon-rocket on-left"></i>icon-rocket</h3>
     </div>
@@ -1458,7 +1507,8 @@
     <li><i class="icon-stats-3"></i> icon-stats-3</li>
     </ol>
     <div class="indent"></div>
-    <h2 class="fg-amber">Forms</h2>
+
+    <h2 class="fg-amber" id="_forms">Forms</h2>
     <div class="example">
         <form>
             <fieldset>
