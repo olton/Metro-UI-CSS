@@ -1,6 +1,14 @@
-.container {
-    width: 940px !important;
+.container, .container-desktop, .container-phone, .container-tablet, .container-large {
     margin: 0 auto;
+}
+
+.container-desktop {width: @containerDesktopSize !important;}
+.container-phone {width: @containerPhoneSize !important;}
+.container-tablet {width: @containerTabletSize !important;}
+.container-large {width: @containerLargeSize !important;}
+
+.container {
+    .container-desktop;
 }
 
 .page {
