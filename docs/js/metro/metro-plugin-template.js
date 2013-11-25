@@ -18,3 +18,7 @@
         }
     })
 })( jQuery );
+
+$(function () {
+    $('[data-role=name]').widget();
+});
