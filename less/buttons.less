@@ -42,24 +42,6 @@ a.button {
     }
 }
 
-.button, button {
-    &.large {
-        padding: 11px 19px;
-        font-size: 17.5px;
-        //line-height: 19.5px;
-    }
-    &.small {
-        padding: 2px 10px;
-        font-size: 11.9px;
-        //line-height: 13.9px;
-    }
-    &.mini {
-        padding: 0px 6px;
-        font-size: 10.5px;
-        //line-height: 12.5px;
-    }
-}
-
 .button {
     &.primary {
         background-color: @darkBlue !important;
@@ -361,5 +343,23 @@ a.shortcut {
     &:active {
         .button > .inverse;
         border-color: transparent;
+    }
+}
+
+.button, button {
+    &.large {
+        padding: 11px 19px;
+        font-size: 17.5px;
+        //line-height: 19.5px;
+    }
+    &.small {
+        padding: 2px 10px;
+        font-size: 11.9px;
+        //line-height: 13.9px;
+    }
+    &.mini {
+        padding: 0px 6px;
+        font-size: 10.5px;
+        //line-height: 12.5px;
     }
 }

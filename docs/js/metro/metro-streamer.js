@@ -11,7 +11,11 @@
                 interval: 20
             },
             slideToGroup: 1,
-            eventClick: function(event){}
+            slideToTime: "10:40",
+            slideSleep: 1000,
+            slideSpeed: 1000,
+            onClick: function(event){},
+            onLongClick: function(event){}
         },
 
         _create: function(){
@@ -25,26 +29,30 @@
 
 
             if (element.data('scrollBar') != undefined) o.scrollBar = element.data('scrollBar');
-            if (element.data('meterStart') != undefined) o.meter.start = element.data('meterStart');
-            if (element.data('meterStop') != undefined) o.meter.stop = element.data('meterStop');
+            if (element.data('meterStart') != undefined) o.meter.start = parseInt(element.data('meterStart'));
+            if (element.data('meterStop') != undefined) o.meter.stop = parseInt(element.data('meterStop'));
             if (element.data('meterInterval') != undefined) o.meter.interval = element.data('meterInterval');
-            if (element.data('slideToGroup') != undefined) o.slideToGroup = element.data('slideToGroup');
+            if (element.data('slideToGroup') != undefined) o.slideToGroup = parseInt(element.data('slideToGroup'));
+            if (element.data('slideSleep') != undefined) o.slideSleep = parseInt(element.data('slideSleep'));
+            if (element.data('slideSpeed') != undefined) o.slideSpeed = parseInt(element.data('slideSpeed'));
 
             element.data('streamSelect', -1);
 
             var meter = $("<ul/>").addClass("meter");
             var i, j, m, start = o.meter.start, stop = o.meter.stop, interval = o.meter.interval;
 
+            var _intervals = [];
             for (i = start; i<stop; i++) {
                 for (j = 0; j < 60; j+=interval) {
                     m = (i<10?"0"+i:i)+":"+(j<10?"0"+j:j);
-                    $("<li/>").html("<em>"+m+"</em>").appendTo(meter);
+                    $("<li/>").addClass("js-interval-"+ m.replace(":", "-")).html("<em>"+m+"</em>").appendTo(meter);
+                    _intervals.push(m);
                 }
             }
+            element.data("intervals", _intervals);
             meter.insertBefore(element.find(".events-grid"));
 
-            //console.log(meter);
-
+            //console.log(element.data("intervals"));
 
             // Re-Calc all event-stream width and set background for time
             element.find(".event-stream").each(function(i, s){
@@ -80,6 +88,10 @@
             events_area_width += ( (groups.length-1) * 2 ) + 10;
             events_area.css('width', events_area_width);
 
+            events.each(function(i, el){
+                addTouchEvents(el);
+            });
+
             events.mousedown(function(e){
                 if (e.altKey) {
                     $(this).toggleClass("selected");
@@ -94,7 +106,6 @@
 
             streams.each(function(i, s){
                 $(s).mousedown(function(e){
-
                     if (element.data('streamSelect') == i) {
                         events.removeClass('event-disable');
                         element.data('streamSelect', -1);
@@ -108,26 +119,82 @@
 
             events.on('click', function(e){
                 e.preventDefault();
-                o.eventClick($(this));
+                o.onClick($(this));
             });
 
-            this.slideToGroup(o.slideToGroup);
+            events.on('longclick', function(e){
+                $(this).toggleClass("selected");
+                e.preventDefault();
+                o.onLongClick($(this));
+            });
+
+            element.find(".js-go-previous-time").on('click', function(e){
+                var next_index = element.data("intervals").indexOf(element.data("current-time"));
+                if (next_index == 0) {
+                    return;
+                }
+                next_index--;
+                var new_time = element.data("intervals")[next_index];
+                that.slideToTime(new_time, 0, o.slideSpeed);
+            });
+
+            element.find(".js-go-next-time").on('click', function(e){
+                var next_index = element.data("intervals").indexOf(element.data("current-time"));
+                if (next_index == element.data("intervals").length - 1) {
+                    return;
+                }
+                next_index++;
+                var new_time = element.data("intervals")[next_index];
+                that.slideToTime(new_time, 0, o.slideSpeed);
+            });
+
+            element.find(".js-show-all-streams").on("click", function(e){
+                element.find(".event").removeClass("event-disable");
+                element.data('streamSelect', -1);
+                e.preventDefault();
+            });
+
+
+            element.find(".js-schedule-mode").on("click", function(e){
+                $(this).toggleClass("inverse");
+                element.data("schedule-mode", $(this).hasClass("inverse"));
+                e.preventDefault();
+            });
+
+            if (o.slideToTime) {
+                this.slideToTime(o.slideToTime, o.slideSleep, o.slideSpeed);
+            } else {
+                this.slideToGroup(o.slideToGroup, o.slideSleep, o.slideSpeed);
+            }
+
         },
 
-        slideToTime: function(time){
+        slideToTime: function(time, sleep, speed){
+            var that = this, element = this.element,
+                interval = element.find(".meter li.js-interval-"+time.replace(":", "-"))[0],
+                streams_width = element.find(".streams").outerWidth() + 2;
 
+            setTimeout(function(){
+                element.find(".events").animate({
+                    scrollLeft: "+="+ (interval.offsetLeft - streams_width)
+                }, speed, function(){
+                    that._afterSlide();
+                });
+            }, sleep);
+
+            element.data("current-time", time);
         },
 
-        slideToGroup: function(group){
+        slideToGroup: function(group, sleep, speed){
             var that = this, element = this.element, groups = element.find(".event-group"), streams_width = element.find(".streams").outerWidth() + 2;
 
             setTimeout(function(){
                 element.find(".events").animate({
                     scrollLeft: "+="+ (groups[group-1].offsetLeft - streams_width)
-                }, 1000, function(){
+                }, speed, function(){
                     that._afterSlide();
                 });
-            }, 1000);
+            }, sleep);
         },
 
         _afterSlide: function(){
