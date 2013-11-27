@@ -34,7 +34,7 @@
     }
 
     .streams {
-        width: 120px;
+        width: 142px;
         padding-top: 25px;
         position: absolute;
         left: 0;
@@ -59,8 +59,8 @@
 
             .stream-title {
                 #font > .segoe-light;
-                font-size: 14px;
-                line-height: 14px;
+                font-size: 12px;
+                line-height: 12px;
                 br {
 
                 }
@@ -82,7 +82,7 @@
     }
 
     .events {
-        padding-left: 122px;
+        padding-left: 143px;
         overflow: hidden;
         height: 100%;
         min-height: 100%;
@@ -239,10 +239,14 @@
                 &.selected {
                     .event-content-logo {
                         .time {
-                            padding: 5px 4px;
+                            //padding: 5px 4px;
                         }
                     }
                     #element > .selected;
+                    border-width: 1px;
+                    &:before {
+                        right: 3px;
+                    }
                 }
             }
         }
