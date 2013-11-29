@@ -82,7 +82,7 @@
         _window.appendTo(_overlay);
 
         if (params.width != 'auto') _window.css('min-width', params.width);
-        if (params.height != 'auto') _window.css('min-height', params.width);
+        if (params.height != 'auto') _window.css('min-height', params.height);
 
         _overlay.hide().appendTo('body').fadeIn('fast');
 

@@ -26,7 +26,7 @@
             if (element.data('duration') != undefined) {this.options.duration = element.data('duration');}
             if (element.data('easing') != undefined) {this.options.easing = element.data('easing');}
 
-            this._frames = element.children(".tile-content");
+            this._frames = element.children(".tile-content, .event-content");
 
             if (this._frames.length <= 1) return;
 
@@ -146,5 +146,5 @@
 })( jQuery );
 
 $(function () {
-    $('[data-role=live-tile]').livetile();
+    $('[data-role=live-tile], [data-role=live]').livetile();
 });

@@ -192,7 +192,7 @@ $(function () {
             var parent = element.parent();
 
             wrapper.appendTo(parent);
-            clone.appendTo(wrapper);
+            clone.val(element.val()).appendTo(wrapper);
 
             element.remove();
 
