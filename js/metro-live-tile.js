@@ -148,3 +148,7 @@
 $(function () {
     $('[data-role=live-tile], [data-role=live]').livetile();
 });
+
+function reinitLives(){
+    $('[data-role=live-tile], [data-role=live]').livetile();
+}

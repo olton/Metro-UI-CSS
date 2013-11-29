@@ -71,3 +71,7 @@
 $(function(){
     $('[data-role=accordion]').accordion();
 });
+
+function reinitAccordions(){
+    $('[data-role=accordion]').accordion();
+}

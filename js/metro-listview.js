@@ -53,3 +53,7 @@
 $(function () {
     $('[data-role=listview]').listview();
 });
+
+function reinitListViews(){
+    $('[data-role=listview]').listview();
+}

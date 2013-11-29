@@ -75,3 +75,7 @@
 $(function () {
     $('[data-hint]').hint();
 });
+
+function reinitHints(){
+    $('[data-hint]').hint();
+}

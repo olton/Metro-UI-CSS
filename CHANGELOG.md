@@ -1,3 +1,9 @@
+## Version 2.0.2
+
+### Changes:
+- fixed minor bugs
+- new component streamer (prototype)
+
 ## Version 2.0.1
 
 ### Changes:

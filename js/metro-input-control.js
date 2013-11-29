@@ -118,6 +118,10 @@ $(function () {
     $('[data-role=input-control], .input-control').inputControl();
 });
 
+function reinitInputs(){
+    $('[data-role=input-control], .input-control').inputControl();
+}
+
 (function( $ ) {
     $.widget("metro.inputTransform", {
 
@@ -375,3 +379,7 @@ $(function () {
 $(function () {
     $('[data-transform=input-control]').inputTransform();
 });
+
+function transformInputs(){
+    $('[data-transform=input-control]').inputTransform();
+}

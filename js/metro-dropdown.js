@@ -79,3 +79,7 @@
 $(function () {
     $('[data-role=dropdown]').dropdown();
 });
+
+function reinitDropdowns(){
+    $('[data-role=dropdown]').dropdown();
+}
