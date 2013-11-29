@@ -267,3 +267,7 @@
 $(function(){
     $('[data-role=slider]').slider();
 });
+
+function reinitSliders(){
+    $('[data-role=slider]').slider();
+}

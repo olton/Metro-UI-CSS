@@ -291,3 +291,7 @@
 $(function () {
     $('[data-role=carousel]').carousel();
 });
+
+function reinitCarousels(){
+    $('[data-role=carousel]').carousel();
+}

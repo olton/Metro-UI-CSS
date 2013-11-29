@@ -42,7 +42,6 @@ label {
         cursor: pointer;
         position: relative;
         margin-bottom: 7pt;
-
     }
 }
 
@@ -69,10 +68,16 @@ label {
             background-color: @white;
             border: 2px @inputRestState solid;
             padding: 0;
-            margin: 0;
+            margin: 0 5px 0 0;
             position: relative;
             display: inline-block;
             vertical-align: middle;
+        }
+
+        &.text-left {
+            .check {
+                margin: 0 0 0 5px;
+            }
         }
 
         &:hover {
@@ -89,13 +94,13 @@ label {
         }
 
         .check:after {
+            position: absolute;
             font-family: iconFont;
             font-size: 9pt;
             line-height: 9pt;
         }
 
         input[type="checkbox"]:checked ~ .check:after, input[type="radio"]:checked ~ .check:after {
-            position: absolute;
             content: "\e08a";
             margin: 2px;
             top: 0;
@@ -301,7 +306,7 @@ label {
             display: none;
         }
 
-        input:-moz-placeholder {color: @placeHolderText;}
+        input::-moz-placeholder {color: @placeHolderText;}
         input::-webkit-input-placeholder {color: @placeHolderText;}
     }
 }
