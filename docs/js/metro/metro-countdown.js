@@ -200,3 +200,7 @@
 $(function () {
     $('[data-role=countdown]').countdown();
 });
+
+function reinitCountdowns(){
+    $('[data-role=countdown]').countdown();
+}

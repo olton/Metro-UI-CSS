@@ -84,3 +84,7 @@
 $(function () {
     $('[data-role=progress-bar]').progressbar();
 });
+
+function reinitProgreeBars(){
+    $('[data-role=progress-bar]').progressbar();
+}

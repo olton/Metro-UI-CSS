@@ -397,3 +397,6 @@ $(function(){
     $('[data-role=calendar]').calendar();
 });
 
+function reinitCalendars(){
+    $('[data-role=calendar]').calendar();
+}

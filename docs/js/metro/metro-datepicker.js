@@ -129,3 +129,7 @@
 $(function(){
     $('[data-role=datepicker]').datepicker();
 });
+
+function reinitDatepickers(){
+    $('[data-role=datepicker]').datepicker();
+}
