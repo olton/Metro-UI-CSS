@@ -89,3 +89,8 @@ $(function(){
     $('[data-role=button-set]').buttonset();
     $('[data-role=button-group]').buttongroup();
 });
+
+function reinitButtonSets(){
+    $('[data-role=button-set]').buttonset();
+    $('[data-role=button-group]').buttongroup();
+}
