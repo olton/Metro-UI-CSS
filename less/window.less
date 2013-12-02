@@ -224,20 +224,25 @@
     }
 }
 
-.notify-wrapper {
+.notify-container {
     position: fixed;
-    background-color: @dark;
-    width: auto;
-    height: auto;
-    min-width: 250px;
-    color: @white;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: @zindexCharms;
+    //border: 1px #000 dotted;
+    //background-color: @dark;
 
     .notify {
+        background-color: @white;
+        //border: 1px @grayLight solid;
         display: block;
-        width: 100%;
+        position: relative;
+        min-width: 220px;
         #font > .segoe;
-        color: inherit;
-        padding: 20px;
+        color: @dark;
+        padding: 10px;
+        margin: 2px 2px 2px 0;
 
         .caption {
             font-size: 18px;
@@ -248,10 +253,16 @@
             font-size: 14px;
             line-height: 16px;
         }
-    }
 
-    &.light {
-        background-color: @white;
-        color: @dark;
     }
+}
+
+.notify-wrapper {
+    position: relative;
+    background-color: @dark;
+    width: auto;
+    height: auto;
+    min-width: 250px;
+    color: @white;
+
 }
