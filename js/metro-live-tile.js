@@ -26,7 +26,9 @@
             if (element.data('duration') != undefined) {this.options.duration = element.data('duration');}
             if (element.data('easing') != undefined) {this.options.easing = element.data('easing');}
 
-            this._frames = element.children(".tile-content, .event-content");
+            //this._frames = element.children(".tile-content, .event-content");
+            this._frames = element.children("[class*='-content']");
+            //console.log(this._frames);
 
             if (this._frames.length <= 1) return;
 
