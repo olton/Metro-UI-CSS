@@ -43,7 +43,7 @@
                         $(function(){
                             $('#notify_btn_1').on('click', function(){
                                 $.Notify({
-                                    shadow: false,
+                                    shadow: true,
                                     position: 'bottom-right',
                                     content: "Metro UI CSS is awesome!!!"
                                 });
@@ -115,11 +115,6 @@ $('#notify_btn_1').on('click', function(){
                         <td>style</td>
                         <td>{background: 'value', color: 'value'} or false</td>
                         <td>default false, you can set background and font color</td>
-                    </tr>
-                    <tr>
-                        <td>position</td>
-                        <td>string</td>
-                        <td>values: top-right, bottom-right, top-left, bottom-left</td>
                     </tr>
                     <tr>
                         <td>timeout</td>

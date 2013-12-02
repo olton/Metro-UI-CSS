@@ -11,7 +11,7 @@
                 interval: 20
             },
             slideToGroup: 1,
-            slideToTime: "10:40",
+            slideToTime: "10:20",
             slideSleep: 1000,
             slideSpeed: 1000,
             onClick: function(event){},
