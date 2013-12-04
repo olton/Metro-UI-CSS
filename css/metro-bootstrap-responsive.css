@@ -1,1 +1,38 @@
-.no-phone,.no-tablet,.no-desktop{display:none!important;visibility:hidden!important}
+.no-phone,
+.no-tablet,
+.no-desktop {
+  display: none;
+  visibility: hidden;
+}
+/* Phones landscape */
+@media only screen and (max-device-width: 480px) {
+  
+}
+/* Phones portrait */
+@media only screen and (max-device-width: 320px) and (orientation: portrait) {
+  
+}
+/* ipad, any tables, smaller screens, etc*/
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  
+}
+/* Large desktop */
+@media screen and (min-width: 1200px) {
+  
+}
+/* Retina */
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+  
+}
+/* Low density (ldpi) Android layouts */
+@media only screen and (-webkit-device-pixel-ratio: 0.75) {
+  
+}
+/* Medium density (mdpi) Android layouts */
+@media only screen and (-webkit-device-pixel-ratio: 1) {
+  
+}
+/* High density (hdpi) Android layouts */
+@media only screen and (-webkit-device-pixel-ratio: 1.5) {
+  
+}
