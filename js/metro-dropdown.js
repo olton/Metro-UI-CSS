@@ -1,4 +1,4 @@
-(function( $ ) {
+﻿(function( $ ) {
     $.widget("metro.dropdown", {
 
         version: "1.0.0",
@@ -49,13 +49,14 @@
             });
         },
 
-        _open: function(el){
+         _open: function(el){
             switch (this.options.effect) {
                 case 'fade': $(el).fadeIn('fast'); break;
                 case 'slide': $(el).slideDown('fast'); break;
                 default: $(el).hide();
             }
             this._trigger("onOpen", null, el);
+            this._toggleSelected(el);
         },
 
         _close: function(el){
@@ -65,6 +66,19 @@
                 default: $(el).hide();
             }
             this._trigger("onClose", null, el);
+            this._toggleSelected(el);
+        },
+
+        _toggleSelected: function(el) {
+            var parent = $(el).parent();
+            if (parent.data("invertSelected")) {
+                var selectedClasses = parent.data("selectedClasses");
+                if (parent.hasClass(selectedClasses)) {
+                    parent.removeClass(selectedClasses);
+                } else {
+                    parent.addClass(selectedClasses);
+                }
+            }
         },
 
         _destroy: function(){
