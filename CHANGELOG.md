@@ -1,3 +1,10 @@
+## Version 2.0.4
+
+### Changes:
+- change dropdown menu default style
+- add dropdown menu inverse style
+- fix any bugs
+
 ## Version 2.0.3
 
 ### Changes:

@@ -1,5 +1,5 @@
 /*!
- * Metro Bootstrap v 2.0.3
+ * Metro Bootstrap v 2.0.4
  *
  * Copyright 2012-2013 Sergey Pimenov
  * Licensed under the MIT License (MIT)
@@ -4446,8 +4446,7 @@ a {
   background: #ffffff;
   min-width: 220px;
   width: auto;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  border: 1px solid #dcddde;
 }
 .metro .dropdown-menu li {
   display: block;
@@ -4473,15 +4472,30 @@ a {
   color: inherit;
 }
 .metro .dropdown-menu li.title {
-  font-family: 'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
-  font-weight: 300;
-  color: #000000;
-  letter-spacing: 0.00em;
-  font-size: 20pt;
-  line-height: 24pt;
-  letter-spacing: 0.01em;
-  font-size: 30pt;
+  background-color: #f6f7f8;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 14px;
+  padding: 4px 8px;
+  border: 0;
+  border-bottom: 1px #dcddde solid;
+  border-top: 1px #dcddde solid;
+  color: #646464;
   margin-bottom: 20px;
+}
+.metro .dropdown-menu li.title:first-child {
+  margin: 0;
+  border-top-width: 0;
+}
+.metro .dropdown-menu li.title:first-child:hover {
+  border-top-width: 0;
+}
+.metro .dropdown-menu li.title:hover {
+  background-color: #f6f7f8;
+  cursor: default;
+  border: 0;
+  border-bottom: 1px #dcddde solid;
+  border-top: 1px #dcddde solid;
 }
 .metro .dropdown-menu.compact a {
   font-weight: normal;
@@ -4516,9 +4530,13 @@ a {
   line-height: 16px;
   color: inherit;
 }
+.metro .dropdown-menu.shadow {
+  box-shadow: 3px 3px 0 rgba(236, 236, 236, 0.7);
+}
 .metro .dropdown-menu li {
   margin: 5px 0 0;
   width: 100%;
+  border: 1px transparent solid;
 }
 .metro .dropdown-menu li:last-child {
   margin-bottom: 5px;
@@ -4543,8 +4561,8 @@ a {
   cursor: pointer;
 }
 .metro .dropdown-menu li:hover {
-  background: #1ba1e2;
-  color: #ffffff;
+  background: #edf4fc;
+  border-color: #a8d2fd;
 }
 .metro .dropdown-menu li.checked a:before,
 .metro .dropdown-menu li.checked-partial a:before {
@@ -4566,6 +4584,7 @@ a {
   margin: 9px 1px;
   overflow: hidden;
   background-color: #e5e5e5;
+  border-width: 0;
 }
 .metro .dropdown-menu .divider:hover {
   background: #e5e5e5;
@@ -4598,6 +4617,51 @@ a {
 .metro .dropdown-menu.drop-up {
   top: auto;
   bottom: 0;
+}
+.metro .dropdown-menu .menu-title {
+  background-color: #f6f7f8;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 14px;
+  padding: 4px 8px;
+  border: 0;
+  border-bottom: 1px #dcddde solid;
+  border-top: 1px #dcddde solid;
+  color: #646464;
+}
+.metro .dropdown-menu .menu-title:first-child {
+  margin: 0;
+  border-top-width: 0;
+}
+.metro .dropdown-menu .menu-title:first-child:hover {
+  border-top-width: 0;
+}
+.metro .dropdown-menu .menu-title:hover {
+  background-color: #f6f7f8;
+  cursor: default;
+  border: 0;
+  border-bottom: 1px #dcddde solid;
+  border-top: 1px #dcddde solid;
+}
+.metro .dropdown-menu.inverse {
+  border: 2px #3b3b3b solid;
+}
+.metro .dropdown-menu.inverse li {
+  border: 0;
+}
+.metro .dropdown-menu.inverse li a {
+  padding: 9px 32px !important;
+}
+.metro .dropdown-menu.inverse li:hover {
+  border: 0;
+  background-color: #e5e5e5;
+}
+.metro .dropdown-menu.inverse .menu-title:hover {
+  background-color: #f6f7f8;
+}
+.metro .dropdown-menu.inverse .divider {
+  margin-left: 0;
+  margin-right: 0;
 }
 .metro .dropdown-toggle:after {
   position: absolute;
@@ -6144,8 +6208,7 @@ a {
   background: #ffffff;
   min-width: 220px;
   width: auto;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  border: 1px solid #dcddde;
   box-shadow: none;
   position: relative !important;
   background-color: #e5e5e5;
@@ -6175,15 +6238,30 @@ a {
   color: inherit;
 }
 .metro .sidebar > ul ul li.title {
-  font-family: 'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
-  font-weight: 300;
-  color: #000000;
-  letter-spacing: 0.00em;
-  font-size: 20pt;
-  line-height: 24pt;
-  letter-spacing: 0.01em;
-  font-size: 30pt;
+  background-color: #f6f7f8;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 14px;
+  padding: 4px 8px;
+  border: 0;
+  border-bottom: 1px #dcddde solid;
+  border-top: 1px #dcddde solid;
+  color: #646464;
   margin-bottom: 20px;
+}
+.metro .sidebar > ul ul li.title:first-child {
+  margin: 0;
+  border-top-width: 0;
+}
+.metro .sidebar > ul ul li.title:first-child:hover {
+  border-top-width: 0;
+}
+.metro .sidebar > ul ul li.title:hover {
+  background-color: #f6f7f8;
+  cursor: default;
+  border: 0;
+  border-bottom: 1px #dcddde solid;
+  border-top: 1px #dcddde solid;
 }
 .metro .sidebar > ul ul.compact a {
   font-weight: normal;
@@ -6218,9 +6296,13 @@ a {
   line-height: 16px;
   color: inherit;
 }
+.metro .sidebar > ul ul.shadow {
+  box-shadow: 3px 3px 0 rgba(236, 236, 236, 0.7);
+}
 .metro .sidebar > ul ul li {
   margin: 5px 0 0;
   width: 100%;
+  border: 1px transparent solid;
 }
 .metro .sidebar > ul ul li:last-child {
   margin-bottom: 5px;
@@ -6245,8 +6327,8 @@ a {
   cursor: pointer;
 }
 .metro .sidebar > ul ul li:hover {
-  background: #1ba1e2;
-  color: #ffffff;
+  background: #edf4fc;
+  border-color: #a8d2fd;
 }
 .metro .sidebar > ul ul li.checked a:before,
 .metro .sidebar > ul ul li.checked-partial a:before {
@@ -6268,6 +6350,7 @@ a {
   margin: 9px 1px;
   overflow: hidden;
   background-color: #e5e5e5;
+  border-width: 0;
 }
 .metro .sidebar > ul ul .divider:hover {
   background: #e5e5e5;
@@ -6300,6 +6383,51 @@ a {
 .metro .sidebar > ul ul.drop-up {
   top: auto;
   bottom: 0;
+}
+.metro .sidebar > ul ul .menu-title {
+  background-color: #f6f7f8;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 14px;
+  padding: 4px 8px;
+  border: 0;
+  border-bottom: 1px #dcddde solid;
+  border-top: 1px #dcddde solid;
+  color: #646464;
+}
+.metro .sidebar > ul ul .menu-title:first-child {
+  margin: 0;
+  border-top-width: 0;
+}
+.metro .sidebar > ul ul .menu-title:first-child:hover {
+  border-top-width: 0;
+}
+.metro .sidebar > ul ul .menu-title:hover {
+  background-color: #f6f7f8;
+  cursor: default;
+  border: 0;
+  border-bottom: 1px #dcddde solid;
+  border-top: 1px #dcddde solid;
+}
+.metro .sidebar > ul ul.inverse {
+  border: 2px #3b3b3b solid;
+}
+.metro .sidebar > ul ul.inverse li {
+  border: 0;
+}
+.metro .sidebar > ul ul.inverse li a {
+  padding: 9px 32px !important;
+}
+.metro .sidebar > ul ul.inverse li:hover {
+  border: 0;
+  background-color: #e5e5e5;
+}
+.metro .sidebar > ul ul.inverse .menu-title:hover {
+  background-color: #f6f7f8;
+}
+.metro .sidebar > ul ul.inverse .divider {
+  margin-left: 0;
+  margin-right: 0;
 }
 .metro .sidebar > ul ul li {
   border: 0;
