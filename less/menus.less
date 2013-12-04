@@ -341,6 +341,33 @@
             border-top: 1px @menuBorder solid;
         }
     }
+
+    &.inverse {
+        border: 2px #3b3b3b solid;
+
+        li {
+            border: 0;
+            a {
+                padding: 9px 32px !important;
+            }
+        }
+
+        li:hover {
+            border: 0;
+            background-color: #e5e5e5;
+        }
+
+        .menu-title {
+            &:hover {
+                background-color: @menuItemTitleBackground;
+            }
+        }
+
+        .divider {
+            margin-left: 0;
+            margin-right: 0;
+        }
+    }
 }
 
 .dropdown-toggle {
