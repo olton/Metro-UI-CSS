@@ -167,24 +167,52 @@
                     Toggleable, contextual menu for displaying lists of links. Made interactive with the <code>metro-dropdown.js</code> JavaScript plugin.
                 </p>
                 <div class="example">
-                    <ul class="dropdown-menu open keep-open" style="position: relative; width: 200px; z-index: 1">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li>
-                            <a class="dropdown-toggle" href="#">Something else here</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Sublink 1</a></li>
-                                <li><a href="#">Sublink 2</a></li>
-                                <li><a href="#">Sublink 3</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">Sublink 3</a></li>
-                            </ul>
-                        </li>
-                        <li class="divider"></li>
-                        <li class="disabled"><a href="#">Separated link</a></li>
-                        <li class="divider"></li>
-                        <li class="checked"><a href="#">Checked link</a></li>
-                    </ul>
+                    <div class="grid fluid">
+                        <div class="row">
+                            <div class="span4">
+                                <h4>Default</h4>
+                                <ul class="dropdown-menu open keep-open" style="position: relative; width: 200px; z-index: 1">
+                                    <li class="menu-title">This is a title</li>
+                                    <li><a href="#">Action</a></li>
+                                    <li><a href="#">Another action</a></li>
+                                    <li class="menu-title">This is another title</li>
+                                    <li><a href="#">Something else here</a></li>
+                                    <li class="divider"></li>
+                                    <li class="disabled"><a href="#">Disabled link</a></li>
+                                    <li class="divider"></li>
+                                    <li class="checked"><a href="#">Checked link</a></li>
+                                </ul>
+                            </div>
+                            <div class="span4">
+                                <h4>With shadow</h4>
+                                <ul class="dropdown-menu shadow open keep-open" style="position: relative; width: 200px; z-index: 1">
+                                    <li class="menu-title">This is a title</li>
+                                    <li><a href="#">Action</a></li>
+                                    <li><a href="#">Another action</a></li>
+                                    <li class="menu-title">This is another title</li>
+                                    <li><a href="#">Something else here</a></li>
+                                    <li class="divider"></li>
+                                    <li class="disabled"><a href="#">Disabled link</a></li>
+                                    <li class="divider"></li>
+                                    <li class="checked"><a href="#">Checked link</a></li>
+                                </ul>
+                            </div>
+                            <div class="span4">
+                                <h4>Inverse</h4>
+                                <ul class="dropdown-menu inverse open keep-open" style="position: relative; width: 200px; z-index: 1">
+                                    <li class="menu-title">This is a title</li>
+                                    <li><a href="#">Action</a></li>
+                                    <li><a href="#">Another action</a></li>
+                                    <li class="menu-title">This is another title</li>
+                                    <li><a href="#">Something else here</a></li>
+                                    <li class="divider"></li>
+                                    <li class="disabled"><a href="#">Disabled link</a></li>
+                                    <li class="divider"></li>
+                                    <li class="checked"><a href="#">Checked link</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 <pre class="prettyprint linenums">
 &lt;ul class="dropdown-menu"&gt;
