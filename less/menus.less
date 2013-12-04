@@ -208,12 +208,17 @@
     background: @white;
     min-width: 220px;
     width: auto;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    border: 1px solid @menuBorder;
+    //box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+
+    &.shadow {
+        box-shadow: 3px 3px 0 @menuShadowA;
+    }
 
     li {
         margin: 5px 0 0;
         width: 100%;
+        border: 1px transparent solid;
 
         &:last-child {
             margin-bottom: @subunitSize;
@@ -240,8 +245,9 @@
     }
 
     li:hover {
-        background: @cyan;
-        color: @white;
+        background: @menuItemHoverBackground;
+        border-color: @menuItemHoverBorder;
+        //color: @white;
     }
 
     li.checked a, li.checked-partial a {
@@ -270,6 +276,7 @@
         margin: 9px 1px;
         overflow: hidden;
         background-color: #e5e5e5;
+        border-width: 0;
         &:hover {
             background: #e5e5e5;
         }
@@ -307,6 +314,32 @@
     &.drop-up {
         top: auto;
         bottom: 0;
+    }
+
+    .menu-title {
+        background-color: @menuItemTitleBackground;
+        font-size: 12px;
+        font-weight: bold;
+        line-height: 14px;
+        padding: 4px 8px;
+        border: 0;
+        border-bottom: 1px @menuBorder solid;
+        border-top: 1px @menuBorder solid;
+        color: #646464;
+        &:first-child {
+            margin: 0;
+            border-top-width: 0;
+            &:hover {
+                border-top-width: 0;
+            }
+        }
+        &:hover {
+            background-color: @menuItemTitleBackground;
+            cursor: default;
+            border: 0;
+            border-bottom: 1px @menuBorder solid;
+            border-top: 1px @menuBorder solid;
+        }
     }
 }
 
