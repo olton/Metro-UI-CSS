@@ -4643,6 +4643,26 @@ a {
   border-bottom: 1px #dcddde solid;
   border-top: 1px #dcddde solid;
 }
+.metro .dropdown-menu.inverse {
+  border: 2px #3b3b3b solid;
+}
+.metro .dropdown-menu.inverse li {
+  border: 0;
+}
+.metro .dropdown-menu.inverse li a {
+  padding: 9px 32px !important;
+}
+.metro .dropdown-menu.inverse li:hover {
+  border: 0;
+  background-color: #e5e5e5;
+}
+.metro .dropdown-menu.inverse .menu-title:hover {
+  background-color: #f6f7f8;
+}
+.metro .dropdown-menu.inverse .divider {
+  margin-left: 0;
+  margin-right: 0;
+}
 .metro .dropdown-toggle:after {
   position: absolute;
   margin-left: .45em;
@@ -6388,6 +6408,26 @@ a {
   border: 0;
   border-bottom: 1px #dcddde solid;
   border-top: 1px #dcddde solid;
+}
+.metro .sidebar > ul ul.inverse {
+  border: 2px #3b3b3b solid;
+}
+.metro .sidebar > ul ul.inverse li {
+  border: 0;
+}
+.metro .sidebar > ul ul.inverse li a {
+  padding: 9px 32px !important;
+}
+.metro .sidebar > ul ul.inverse li:hover {
+  border: 0;
+  background-color: #e5e5e5;
+}
+.metro .sidebar > ul ul.inverse .menu-title:hover {
+  background-color: #f6f7f8;
+}
+.metro .sidebar > ul ul.inverse .divider {
+  margin-left: 0;
+  margin-right: 0;
 }
 .metro .sidebar > ul ul li {
   border: 0;
