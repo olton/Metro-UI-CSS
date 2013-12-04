@@ -37,12 +37,12 @@ $(function() {
         if ($(window).scrollTop() > $('header').height()) {
             $("header > .navigation-bar")
                 .addClass("fixed-top")
-                .addClass("opacity shadow")
+                .addClass(" shadow")
             ;
         } else {
             $("header > .navigation-bar")
                 .removeClass("fixed-top")
-                .removeClass("opacity shadow")
+                .removeClass(" shadow")
             ;
         }
     });
