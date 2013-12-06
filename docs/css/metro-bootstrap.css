@@ -7306,6 +7306,7 @@ a {
   margin-top: 5px;
 }
 .metro .treeview {
+  background-color: #fdfdfd;
   color: #555555;
   display: block;
   list-style: none;
@@ -7330,22 +7331,39 @@ a {
 .metro .treeview .node > a {
   margin-bottom: 5px;
   padding: 0 0 0 15px;
-  font-size: 14px;
+  font-size: 12px;
   position: relative;
+  color: #000;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
-.metro .treeview .node > a:before {
+.metro .treeview .node:not(:first-child) {
+  margin-top: 0;
+}
+.metro .treeview .node-toggle {
+  display: inline-block;
+  position: relative;
+  float: left;
+  margin-right: 3px;
+  width: 10px;
+  height: 10px;
+}
+.metro .treeview .node-toggle:before {
   position: absolute;
   display: block;
-  left: 5px;
+  left: 2px;
   top: 0;
   content: '';
   width: 0;
   height: 0;
   border-left: 7px solid transparent;
   border-top: 7px solid transparent;
-  border-bottom: 7px solid black;
+  border-bottom: 7px #1d1d1d solid;
 }
-.metro .treeview .node.collapsed a:before {
+.metro .treeview .node-toggle:hover:before {
+  border-bottom-color: #0050ef;
+}
+.metro .treeview li.collapsed .node-toggle:before {
   -webkit-transform: rotate(-45deg);
   -moz-transform: rotate(-45deg);
   -ms-transform: rotate(-45deg);
@@ -7353,11 +7371,13 @@ a {
   transform: rotate(-45deg);
   margin-left: -4px;
 }
-.metro .treeview .node ul {
-  padding-left: 1em;
+.metro .treeview li a:hover {
+  background-color: #e6f2fa;
 }
 .metro .treeview .active {
+  background-color: #e1e1e1;
   font-weight: bold;
+  color: #dark;
 }
 .metro .treeview a .value {
   color: #0067cb;
@@ -8052,6 +8072,126 @@ a {
 }
 .metro .streamer .events .event-stream .event.selected:before {
   right: 3px;
+}
+.metro .scrollbar-button {
+  background-color: #ffffff;
+  border: 1px #ababab solid;
+}
+.metro .scrollbar {
+  position: relative;
+  overflow: hidden;
+}
+.metro .scrollbar-container {
+  position: relative;
+  overflow: hidden;
+}
+.metro .scrollbar-v,
+.metro .scrollbar-h {
+  position: absolute;
+  background: #f3f3f3;
+}
+.metro .scrollbar-v {
+  width: 15px;
+  height: 100%;
+  right: 0;
+  top: 0;
+}
+.metro .scrollbar-h {
+  height: 15px;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+}
+.metro .scrollbar-v-up,
+.metro .scrollbar-v-down,
+.metro .scrollbar-h-up,
+.metro .scrollbar-h-down,
+.metro .scrollbar-line-v-btn,
+.metro .scrollbar-line-h-btn {
+  cursor: pointer;
+  position: absolute;
+  background-color: #ffffff;
+  border: 1px #ababab solid;
+}
+.metro .scrollbar-v-up,
+.metro .scrollbar-h-up {
+  width: 15px;
+  height: 15px;
+  left: 0;
+  top: 0;
+}
+.metro .scrollbar-v-down,
+.metro .scrollbar-h-down {
+  width: 15px;
+  height: 15px;
+  left: 0;
+  bottom: 0;
+}
+.metro .scrollbar-h-down {
+  left: auto;
+  right: 0;
+}
+.metro .scrollbar-line-v,
+.metro .scrollbar-line-h {
+  position: absolute;
+  z-index: 3;
+}
+.metro .scrollbar-line-v {
+  width: 100%;
+  left: 0;
+  top: 15px;
+}
+.metro .scrollbar-line-h {
+  height: 15px;
+  left: 15px;
+  top: 0;
+}
+.metro .scrollbar-line-v-btn {
+  width: 100%;
+  left: 0 !important;
+  top: 0;
+}
+.metro .scrollbar-line-h-btn {
+  height: 100%;
+  left: 0;
+  top: 0 !important;
+}
+.metro .scrollbar-both {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  right: 0;
+  bottom: 0;
+}
+.metro .scrollbar-line-h,
+.metro .scrollbar-line-v,
+.metro .scrollbar-both {
+  background-color: #f3f3f3;
+}
+.metro .scrollbar-v-up:before,
+.metro .scrollbar-v-down:before,
+.metro .scrollbar-h-up:before,
+.metro .scrollbar-h-down:before {
+  position: absolute;
+  content: "";
+  font-family: iconFont;
+  font-size: 14px;
+  margin-top: -1px;
+}
+.metro .scrollbar-v-up:before {
+  content: "\e1ae";
+}
+.metro .scrollbar-v-down:before {
+  content: "\e1ad";
+}
+.metro .scrollbar-h-up:before {
+  content: "\e1ac";
+  margin-left: -1px;
+}
+.metro .scrollbar-h-down:before {
+  content: "\e1af";
+  margin-top: -1px;
+  margin-right: -1px;
 }
 @font-face {
   font-family: 'iconFont';
