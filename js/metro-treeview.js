@@ -4,7 +4,9 @@
         version: "1.0.0",
 
         options: {
-            onNodeClick: function(node){}
+            onNodeClick: function(node){},
+            onNodeCollapsed: function(node){},
+            onNodeExpanded: function(node){}
         },
 
         _create: function(){
@@ -21,8 +23,10 @@
 
                 if (node.hasClass('collapsed')) {
                     node.children('ul').fadeOut('fast');
+                    that.options.onNodeCollapsed(node);
                 } else {
                     node.children('ul').fadeIn('fast');
+                    that.options.onNodeExpanded(node);
                 }
 
                 that.options.onNodeClick(node);

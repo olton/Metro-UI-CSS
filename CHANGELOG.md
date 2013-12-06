@@ -1,3 +1,8 @@
+## Version 2.0.6
+
+### Changes:
+- upd treeview, add events for collapse and expand node
+
 ## Version 2.0.5
 
 ### Changes:
