@@ -1,7 +1,9 @@
 ## Version 2.0.5
 
 ### Changes:
-- add scroll bar component
+- init scroll bar component (prototype)
+- upd treeview
+- fix bugs
 
 ## Version 2.0.4
 

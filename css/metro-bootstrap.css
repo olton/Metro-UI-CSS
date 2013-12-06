@@ -7306,6 +7306,7 @@ a {
   margin-top: 5px;
 }
 .metro .treeview {
+  background-color: #fdfdfd;
   color: #555555;
   display: block;
   list-style: none;
@@ -7330,22 +7331,39 @@ a {
 .metro .treeview .node > a {
   margin-bottom: 5px;
   padding: 0 0 0 15px;
-  font-size: 14px;
+  font-size: 12px;
   position: relative;
+  color: #000;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
-.metro .treeview .node > a:before {
+.metro .treeview .node:not(:first-child) {
+  margin-top: 0;
+}
+.metro .treeview .node-toggle {
+  display: inline-block;
+  position: relative;
+  float: left;
+  margin-right: 3px;
+  width: 10px;
+  height: 10px;
+}
+.metro .treeview .node-toggle:before {
   position: absolute;
   display: block;
-  left: 5px;
+  left: 2px;
   top: 0;
   content: '';
   width: 0;
   height: 0;
   border-left: 7px solid transparent;
   border-top: 7px solid transparent;
-  border-bottom: 7px solid black;
+  border-bottom: 7px #1d1d1d solid;
 }
-.metro .treeview .node.collapsed a:before {
+.metro .treeview .node-toggle:hover:before {
+  border-bottom-color: #0050ef;
+}
+.metro .treeview li.collapsed .node-toggle:before {
   -webkit-transform: rotate(-45deg);
   -moz-transform: rotate(-45deg);
   -ms-transform: rotate(-45deg);
@@ -7353,11 +7371,13 @@ a {
   transform: rotate(-45deg);
   margin-left: -4px;
 }
-.metro .treeview .node ul {
-  padding-left: 1em;
+.metro .treeview li a:hover {
+  background-color: #e6f2fa;
 }
 .metro .treeview .active {
+  background-color: #e1e1e1;
   font-weight: bold;
+  color: #dark;
 }
 .metro .treeview a .value {
   color: #0067cb;
