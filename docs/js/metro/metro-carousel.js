@@ -302,7 +302,7 @@
 })( jQuery );
 
 $(function () {
-    $('[data-role=carousel]').carousel();
+    reinitCarousels();
 });
 
 function reinitCarousels(){
