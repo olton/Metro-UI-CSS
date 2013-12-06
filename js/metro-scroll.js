@@ -77,15 +77,15 @@
             var paddingBottom = 0;
             if(typeof this.options.axis != 'object') {
                 if(this.options.axis == 'x') {
-                    paddingBottom = 0;
+                    paddingBottom = 20;
                 }
                 else if(this.options.axis == 'y') {
                     paddingRight = 20;
                 }
             }
             else {
-                paddingBottom = (this.options.width<this.contentWidth) ? 20 : 0;
-                paddingRight = (this.options.height<this.contentHeight) ? 20 : 0;
+                paddingRight = (this.options.width<this.contentWidth) ? 20 : 0;
+                paddingBottom = (this.options.height<this.contentHeight) ? 20 : 0;
             }
 
             this.scrollbar.css({
@@ -95,7 +95,6 @@
             });
 
             this.options.width -= paddingRight;
-            this.options.height -= paddingBottom;
 
             if(this.options.width+paddingRight == this.contentWidth) {
                 this.contentWidth = this.options.width;
@@ -118,6 +117,11 @@
             if(this.options.axis == 'x') {
                 if(this.options.width<this.contentWidth) {
                     this._horizontalScrollbar();
+                }
+                else if(this.options.width==this.contentWidth) {
+                    this.scrollbar.css({
+                        height: this.options.height + paddingBottom
+                    });
                 }
             }
             else if(this.options.axis == 'y') {
@@ -538,5 +542,5 @@
 })( jQuery );
 
 $(function () {
-   // $('[data-role=scrollbar]').scrollbar();
+    $('[data-role=scrollbox]').scrollbar();
 });
