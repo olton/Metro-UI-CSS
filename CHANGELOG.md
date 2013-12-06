@@ -1,3 +1,8 @@
+## Version 2.0.5
+
+### Changes:
+- add scroll bar component
+
 ## Version 2.0.4
 
 ### Changes:

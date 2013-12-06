@@ -25,7 +25,8 @@ var plugins = [
     'treeview',
     'fluentmenu',
     'hint',
-    'streamer'
+    'streamer',
+    'scroll'
 
 
 ];
