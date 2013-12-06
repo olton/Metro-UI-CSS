@@ -26,9 +26,22 @@
         _outPosition: 0,
 
         _create: function(){
-            var that = this,
-                carousel = this.element,
+            var that = this, o = this.options,
+                element = carousel = this.element,
                 controls = carousel.find('.controls');
+
+            if (element.data('auto') != undefined) o.auto = element.data('auto');
+            if (element.data('period') != undefined) o.period = element.data('period');
+            if (element.data('duration') != undefined) o.duration = element.data('duration');
+            if (element.data('effect') != undefined) o.effect = element.data('effect');
+            if (element.data('direction') != undefined) o.direction = element.data('direction');
+            if (element.data('width') != undefined) o.width = element.data('width');
+            if (element.data('height') != undefined) o.height = element.data('height');
+            if (element.data('stop') != undefined) o.stop = element.data('stop');
+            if (element.data('controls') != undefined) o.controls = element.data('controls');
+            if (element.data('markersShow') != undefined) o.markers.show = element.data('markersShow');
+            if (element.data('markersType') != undefined) o.markers.type = element.data('markersType');
+            if (element.data('markersPosition') != undefined) o.markers.position = element.data('markersPosition');
 
             carousel.css({
                 'width': this.options.width,
