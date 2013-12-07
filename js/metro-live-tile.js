@@ -39,14 +39,18 @@
                 'height': element.height()
             };
 
-            this._start();
+            this.start();
         },
 
-        _start: function(){
+        start: function(){
             var that = this;
             this._interval = setInterval(function(){
                 that._animate();
             }, this.options.period);
+        },
+        
+        stop: function(){
+            clearInterval(this._interval);
         },
 
         _animate: function(){
@@ -150,7 +154,3 @@
 $(function () {
     $('[data-role=live-tile], [data-role=live]').livetile();
 });
-
-function reinitLives(){
-    $('[data-role=live-tile], [data-role=live]').livetile();
-}
