@@ -4,17 +4,23 @@
         version: "1.0.0",
 
         options: {
-            height: 'auto', /* 'auto'|int */
-            width: 'auto',  /* 'auto'|int */
+            height: '100%', /* '100%'|int */
+            width: '100%',  /* '100%'|int */
             axis: ['x','y'],      /* x|y|[x,y] */
             wheel: 55      /* step in px */
             //size: 'auto'    /* 'auto'|int */
         },
+        startSize: {
+            width: null,
+            height: null
+        },
+        elemPadding: false,
         bothScroll: false,
         scrollbar: null,
-        scrollbarContainer: null,
         contentHeight: 0,
         contentWidth: 0,
+        contentMinHeight: 0,
+        contentMinWidth: 0,
         dragElem: null,
         dragStart: false,
         startCoords: {
@@ -25,9 +31,11 @@
             x:0,
             y:0
         },
+        handlers: false,
 
         _create: function() {
             var elem = this.element;
+            var that = this;
             if(elem.data('scroll') != undefined) {
                 var dataScroll = elem.data('scroll');
                 if(dataScroll == 'vertical') {
@@ -50,118 +58,290 @@
                 this.options.wheel = elem.data('wheel');
             }
 
-            elem.wrap('<div class="scrollbar"><div class="scrollbar-container"></div></div>');
-
-            this.scrollbar = elem.parents('.scrollbar').first();
-            this.scrollbarContainer = elem.parents('.scrollbar-container').first();
-
-
-            var startWidth = this.options.width;
-            var startHeight = this.options.height;
-            this.options.width = (this.options.width == 'auto') ? this.scrollbar.width() : this.options.width;
-            this.options.height = (this.options.height == 'auto') ? this.scrollbar.height() : this.options.height;
-            this.scrollbar.css({
-                width: startWidth,
-                height: startHeight
+            elem.css({
+                position: 'relative'
             });
 
             var width = elem.outerWidth();
             var height = elem.outerHeight();
+
+            this.contentMinWidth = width;
+            this.contentMinHeight = height;
+
+            this.startSize.width = this.options.width;
+            this.startSize.height = this.options.height;
+            
+            var sw = (this.startSize.width == parseInt(this.startSize.width)) ? this.startSize.width+'px' : this.startSize.width;
+            var sh = (this.startSize.height == parseInt(this.startSize.height)) ? this.startSize.height+'px' : this.startSize.height;
+
+            elem.wrap('<div class="scrollbar" style="width: '+sw+'; height: '+sh+';"></div>');
+            this.scrollbar = elem.parents('.scrollbar').first();
+
+            this.scrollbar.parents().first().css({
+                overflow: 'hidden'
+            });
+
+            this._build(width,height);
+            
+            $(window).resize(function () {
+                that._resize();
+            });
+        },
+
+        _resize: function () {
+            var elem = this.element;
+
+            if( (!isNaN(parseInt(this.element.css('left'))) && parseInt(this.element.css('left')) != 0) || (!isNaN(parseInt(this.element.css('top'))) && parseInt(this.element.css('top')))  ) {
+                var l = Math.abs(parseInt(this.element.css('left')));
+                var t = Math.abs(parseInt(this.element.css('top')));
+
+                var w = this.scrollbar.width();
+                var h = this.scrollbar.height();
+
+                if(this.contentWidth - l < w) {
+                    l = l - (w-(this.contentWidth - l));
+                    if(l<0) {
+                        l = 0;
+                    }
+                    this.element.css('left',l*(-1));
+                }
+                this.element.css('left',l*(-1));
+                if(this.contentHeight - t < h) {
+                    t = t - (h-(this.contentHeight - t));
+                    if(t<0) {
+                        t = 0;
+                    }
+                    this.element.css('top',t*(-1));
+                }
+            }
+
+            this.options.width = this.startSize.width;
+            this.options.height = this.startSize.height;
+
+            this.scrollbar.css({
+                padding: 0
+            });
+            if(this.elemPadding) {
+                this.element.css({
+                    paddingRight: '-=5',
+                    paddingBottom: '-=5'
+                });
+                this.elemPadding = false;
+            }
+
+            if(this.scrollbar.find('.scrollbar-v').length>0) {
+                this.scrollbar.find('.scrollbar-v').remove();
+            }
+            if(this.scrollbar.find('.scrollbar-h').length>0) {
+                this.scrollbar.find('.scrollbar-h').remove();
+            }
+            if(this.scrollbar.find('.scrollbar-both').length>0) {
+                this.scrollbar.find('.scrollbar-both').remove();
+            }
+
+            var width = elem.outerWidth();
+            var height = elem.outerHeight();
+
+            this.contentWidth = width;
+            this.contentHeight = height;
+            this._removeHandlers();
+            this._build(width,height);
+        },
+        _build: function (width,height) {
+            var elem = this.element;
+
+            this.options.width = (this.options.width == '100%') ? this.scrollbar.outerWidth() : this.options.width;
+            this.options.height = (this.options.height == '100%') ? this.scrollbar.outerHeight() : this.options.height;
+            
+            this.scrollbar.css({
+                width: this.startSize.width,
+                height: this.startSize.height
+            });
+
             this.contentWidth = width;
             this.contentHeight = height;
 
-            this.scrollbarContainer.css({
-                width: width,
-                height: height
-            });
-            
-            
             if(this.options.axis == 'y') {
                 /* vertical */
-                this.contentWidth -= 20;
-                this.scrollbarContainer.css({
-                    width: this.contentWidth
-                });
-                var width = elem.outerWidth();
-                var height = elem.outerHeight();
-                this.scrollbarContainer.css({
-                    height: height
-                });
-                this.contentWidth = width;
-                this.contentHeight = height;
-
-                this._verticalScrollbar();
                 if(this.contentHeight>this.options.height) {
-                    this._startHandlers();
-                }
-
-            }
-            else if(this.options.axis == 'x') {
-                /* horizontal */
-                if(startHeight == 'auto') {
-                    this.contentHeight += 20;
-                    this.scrollbarContainer.css({
-                        height: this.contentHeight
+                    this.scrollbar.css({
+                        paddingRight: 20,
+                        paddingBottom: 0
                     });
                     var width = elem.outerWidth();
                     var height = elem.outerHeight();
                     this.contentWidth = width;
                     this.contentHeight = height;
+
+                    this._verticalScrollbar();
+                    this._startHandlers();
+                }
+                else {
+                    if(this.scrollbar.find('.scrollbar-v').length>0) {
+                        this.scrollbar.find('.scrollbar-v').hide();
+                    }
+                    this.scrollbar.css({
+                        paddingRight: 0,
+                        paddingBottom: 0
+                    });
                 }
 
-                this._horizontalScrollbar();
+            }
+            else if(this.options.axis == 'x') {
+                /* horizontal */
                 if(this.contentWidth>this.options.width) {
+                    if(this.startSize.height == '100%') {
+                        this.scrollbar.css({
+                            paddingBottom: 20,
+                            paddingRight: 0
+                        });
+                        var width = elem.outerWidth();
+                        var height = elem.outerHeight();
+                        this.contentWidth = width;
+                        this.contentHeight = height;
+                    }
+
+                    this._horizontalScrollbar();
                     this._startHandlers();
+                }
+                else {
+                    if(this.scrollbar.find('.scrollbar-h').length>0) {
+                        this.scrollbar.find('.scrollbar-h').hide();
+                    }
+                    this.scrollbar.css({
+                        paddingBottom: 0,
+                        paddingRight: 0
+                    });
                 }
             }
             else {
                 /* both */
-                this.contentWidth = width + 5;
-                this.contentHeight = height + 5;
-                this.scrollbarContainer.css({
-                    width: this.contentWidth,
-                    height: this.contentHeight
-                });
+                if(this.contentHeight>this.options.height && this.contentWidth>this.options.width) {
 
-                this.bothScroll = true;
-                this.scrollbar.append('<div class="scrollbar-both"></div>');
-                this._verticalScrollbar();
-                this._horizontalScrollbar();
-                if(this.contentHeight>this.options.height) {
+                    this.bothScroll = true;
+                    if(this.scrollbar.find('.scrollbar-both').length>0) {
+                        this.scrollbar.find('.scrollbar-both').show();
+                    }
+                    else {
+                        this.scrollbar.append('<div class="scrollbar-both"></div>');
+                    }
+
+                    if(!this.elemPadding) {
+                        this.element.css({
+                            paddingRight: '+=5',
+                            paddingBottom: '+=5'
+                        });
+                        this.elemPadding = true;
+                    }
+
+
+                    var width = elem.outerWidth();
+                    var height = elem.outerHeight();
+                    this.contentWidth = width;
+                    this.contentHeight = height;
+
+                    this._verticalScrollbar();
+                    this._horizontalScrollbar();
                     this._startHandlers();
+                }
+                else {
+                    this.bothScroll = false;
+                    if(this.scrollbar.find('.scrollbar-both').length>0) {
+                        this.scrollbar.find('.scrollbar-both').hide();
+                    }
+                    if(this.elemPadding) {
+                        this.element.css({
+                            paddingRight: '-=5',
+                            paddingBottom: '-=5'
+                        });
+                        this.elemPadding = false;
+                    }
+                    if(this.contentWidth>this.options.width) {
+                        if(this.startSize.height == '100%') {
+                            this.scrollbar.css({
+                                paddingBottom: 20,
+                                paddingRight: 0
+                            });
+                            var width = elem.outerWidth();
+                            var height = elem.outerHeight();
+                            this.contentWidth = width;
+                            this.contentHeight = height;
+                        }
+
+                        this._horizontalScrollbar();
+                        this._startHandlers();
+                    }
+                    else {
+                        if(this.scrollbar.find('.scrollbar-h').length>0) {
+                            this.scrollbar.find('.scrollbar-h').hide();
+                        }
+                        this.scrollbar.css({
+                            paddingBottom: 0,
+                            paddingRight: 0
+                        });
+                    }
+                    if(this.contentHeight>this.options.height) {
+                        this.scrollbar.css({
+                            paddingRight: 20,
+                            paddingBottom: 0
+                        });
+                        var width = elem.outerWidth();
+                        var height = elem.outerHeight();
+                        this.contentWidth = width;
+                        this.contentHeight = height;
+
+                        this._verticalScrollbar();
+                        this._startHandlers();
+                    }
+                    else {
+                        if(this.scrollbar.find('.scrollbar-v').length>0) {
+                            this.scrollbar.find('.scrollbar-v').hide();
+                        }
+                        this.scrollbar.css({
+                            paddingRight: 0,
+                            paddingBottom: 0
+                        });
+                    }
                 }
             }
         },
-
         _verticalScrollbar: function () {
-            var str = [];
-            str[str.length] = '<div class="scrollbar-v">';
-            str[str.length] = '<div class="scrollbar-v-up"></div>';
-            str[str.length] = '<div class="scrollbar-v-down"></div>';
-            str[str.length] = '<div class="scrollbar-line-v">';
-            str[str.length] = '<div class="scrollbar-line-v-btn"></div>';
-            str[str.length] = '</div>';
-            str[str.length] = '</div>';
-            str = str.join('');
+            if(this.scrollbar.find('.scrollbar-v').length<1) {
+                var str = [];
+                str[str.length] = '<div class="scrollbar-v">';
+                str[str.length] = '<div class="scrollbar-v-up"></div>';
+                str[str.length] = '<div class="scrollbar-v-down"></div>';
+                str[str.length] = '<div class="scrollbar-line-v">';
+                str[str.length] = '<div class="scrollbar-line-v-btn"></div>';
+                str[str.length] = '</div>';
+                str[str.length] = '</div>';
+                str = str.join('');
 
-            this.scrollbar.append(str);
+                this.scrollbar.append(str);
+            }
+            else {
+                this.scrollbar.find('.scrollbar-v').show();
+            }
 
             var line = this.scrollbar.find('.scrollbar-line-v');
             var btn =  this.scrollbar.find('.scrollbar-line-v-btn');
             var scrollBar = this.scrollbar.find('.scrollbar-v');
-
+            
             if(this.bothScroll) {
+                scrollBar.height(this.options.height);
                 var h = scrollBar.height()-15;
                 this.options.height = h;
                 scrollBar.height(h);
+            }
+            else {
+                scrollBar.height(this.options.height);
             }
 
             var height = this.options.height-32;
             var ratio = height/this.contentHeight;
 
             line.height(height);
-            
-            console.log(ratio,(this.contentHeight-32)/this.contentHeight);
+
             if(ratio>=(this.contentHeight-32)/this.contentHeight) {
                 btn.hide();
             }
@@ -171,44 +351,59 @@
             }
         },
         _horizontalScrollbar: function () {
-            var str = [];
-            str[str.length] = '<div class="scrollbar-h">';
-            str[str.length] = '<div class="scrollbar-h-up"></div>';
-            str[str.length] = '<div class="scrollbar-h-down"></div>';
-            str[str.length] = '<div class="scrollbar-line-h">';
-            str[str.length] = '<div class="scrollbar-line-h-btn"></div>';
-            str[str.length] = '</div>';
-            str[str.length] = '</div>';
-            str = str.join('');
+            if(this.scrollbar.find('.scrollbar-h').length<1) {
+                var str = [];
+                str[str.length] = '<div class="scrollbar-h">';
+                str[str.length] = '<div class="scrollbar-h-up"></div>';
+                str[str.length] = '<div class="scrollbar-h-down"></div>';
+                str[str.length] = '<div class="scrollbar-line-h">';
+                str[str.length] = '<div class="scrollbar-line-h-btn"></div>';
+                str[str.length] = '</div>';
+                str[str.length] = '</div>';
+                str = str.join('');
 
-            this.scrollbar.append(str);
+                this.scrollbar.append(str);
+            }
+            else {
+                this.scrollbar.find('.scrollbar-h').show();
+            }
 
             var line = this.scrollbar.find('.scrollbar-line-h');
             var btn =  this.scrollbar.find('.scrollbar-line-h-btn');
             var scrollBar = this.scrollbar.find('.scrollbar-h');
 
             if(this.bothScroll) {
+                scrollBar.width(this.options.width);
                 var w = scrollBar.width()-15;
                 this.options.width = w;
                 scrollBar.width(w);
+            }
+            else {
+                scrollBar.width(this.options.width);
             }
 
             var width = this.options.width-32;
             var ratio = width/this.contentWidth;
             var btnWidth = ratio*this.options.width;
-            
-            console.log(width,btnWidth,ratio);
+            var l = (!isNaN(parseInt(this.element.css('left')))) ? parseInt(this.element.css('left')) : 0;
+            var left = Math.abs(l)*ratio;
             
             line.width(width);
             if(ratio>=(this.contentWidth-32)/this.contentWidth) {
                 btn.hide();
             }
             else {
-                btn.show().width(btnWidth);
+                btn.show().width(btnWidth).css({
+                    left:left
+                });
             }
         },
 
         _startHandlers: function () {
+            if(this.handlers) {
+                return false;
+            }
+            this.handlers = true;
             var that = this;
             $(document).mousemove(function(e){
                 that._drag(e);
@@ -232,6 +427,23 @@
                 that._fixScroll(delta);
                 return false;
             });
+        },
+        _removeHandlers: function () {
+            if(!this.handlers) {
+                return false;
+            }
+            this.handlers = false;
+            var that = this;
+            $(document).mousemove(function(e){
+                return false;
+            });
+            $(document).mouseup(function(e){
+                return false;
+            });
+            this.scrollbar.find('.scrollbar-line-v-btn,.scrollbar-line-h-btn').off('mousedown');
+            this.scrollbar.find('.scrollbar-line-v,.scrollbar-line-h').off('click');
+            this.scrollbar.find('.scrollbar-v-up,.scrollbar-h-up').off('click');
+            this.scrollbar.find('.scrollbar-v-down,.scrollbar-h-down').off('click');
         },
 
         _clickPos: function (e,elem) {
@@ -279,10 +491,10 @@
         },
         _fixScroll: function (delta,elem) {
             var step = this.options.wheel;
-            if( (elem !== undefined && (elem.hasClass('scrollbar-h-up') || elem.hasClass('scrollbar-h-down'))) || this.options.axis == 'x') {
+            if( (elem !== undefined && (elem.hasClass('scrollbar-h-up') || elem.hasClass('scrollbar-h-down'))) || this.options.axis == 'x' || (this.options.axis != 'x' && this.options.axis != 'y' && this.scrollbar.find('.scrollbar-v').length<1)) {
                 var percent = step/this.contentWidth*100;
                 var barStep = (this.options.width-32)/100*percent;
-                var leftCss = parseInt(this.scrollbarContainer.css('left'));
+                var leftCss = parseInt(this.element.css('left'));
                 var pos = (!isNaN(leftCss)) ? Math.abs(leftCss) : 0;
 
                 var btn = this.scrollbar.find('.scrollbar-line-h-btn');
@@ -322,7 +534,7 @@
                     barLeft = parentsSize.width-dragElemSize.width;
                 }
 
-                this.scrollbarContainer.css({
+                this.element.css({
                     left: left*(-1)
                 });
                 btn.css({
@@ -332,7 +544,7 @@
             else {
                 var percent = step/this.contentHeight*100;
                 var barStep = (this.options.height-32)/100*percent;
-                var topCss = parseInt(this.scrollbarContainer.css('top'));
+                var topCss = parseInt(this.element.css('top'));
                 var pos = (!isNaN(topCss)) ? Math.abs(topCss) : 0;
 
                 var btn = this.scrollbar.find('.scrollbar-line-v-btn');
@@ -372,7 +584,7 @@
                     barTop = parentsSize.height-dragElemSize.height;
                 }
 
-                this.scrollbarContainer.css({
+                this.element.css({
                     top: top*(-1)
                 });
                 btn.css({
@@ -400,12 +612,10 @@
                     left = this.dragElem.parentWidth-this.dragElem.width;
                 }
 
-                
-                console.log(currLeft,left);
                 this.dragElem.elem.css({
                     left:left
                 });
-                this.scrollbarContainer.css({
+                this.element.css({
                     left: currLeft*(-1)
                 });
             }
@@ -431,7 +641,7 @@
                     top:top
                 });
 
-                this.scrollbarContainer.css({
+                this.element.css({
                     top: currTop*(-1)
                 });
             }
@@ -451,10 +661,8 @@
                 if(left>this.contentWidth-this.options.width) {
                     left = this.contentWidth-this.options.width;
                 }
-                
-                console.log(leftCurr/ratio,left,left>=this.contentWidth-this.options.width);
 
-                this.scrollbarContainer.css({
+                this.element.css({
                     left: left*(-1)
                 });
             }
@@ -472,7 +680,7 @@
                     top = this.contentHeight-this.options.height;
                 }
 
-                this.scrollbarContainer.css({
+                this.element.css({
                     top: top*(-1)
                 });
             }
@@ -512,8 +720,6 @@
                 if(left+this.dragElem.width>=this.dragElem.parentWidth) {
                     left = this.dragElem.parentWidth-this.dragElem.width;
                 }
-                
-                console.log(left,left+this.dragElem.width>this.dragElem.parentWidth);
                 
                 if(top<0) {
                     top = 0;
