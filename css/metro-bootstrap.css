@@ -7377,7 +7377,7 @@ a {
 .metro .treeview .active {
   background-color: #e1e1e1;
   font-weight: bold;
-  color: #dark;
+  color: #1d1d1d;
 }
 .metro .treeview a .value {
   color: #0067cb;
@@ -8112,6 +8112,10 @@ a {
   position: absolute;
   background-color: #ffffff;
   border: 1px #ababab solid;
+}
+.metro .scrollbar-line-v-btn:hover,
+.metro .scrollbar-line-h-btn:hover {
+  background-color: #f0f0f0;
 }
 .metro .scrollbar-v-up,
 .metro .scrollbar-h-up {
