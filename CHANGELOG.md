@@ -1,3 +1,9 @@
+## Version 2.0.7
+
+### Changes:
+- fix color error in treeview
+- add minfied js in one file: metro.min.js
+
 ## Version 2.0.6
 
 ### Changes:
