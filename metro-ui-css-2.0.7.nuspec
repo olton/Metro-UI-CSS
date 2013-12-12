@@ -20,6 +20,7 @@
     <file src="docs\css\metro-bootstrap.css" target="css" />
     <file src="docs\css\metro-bootstrap-responsive.css" target="css" />
     <file src="docs\js\metro\*.js" target="js\metro" />
+    <file src="docs\js\metro.min.js" target="js" />
     <file src="docs\fonts\*.*" target="fonts" />
   </files>
 </package>
