@@ -101,6 +101,3 @@ $(function () {
     $('[data-role=rating]').rating();
 });
 
-function reinitRatings(){
-    $('[data-role=rating]').rating();
-}

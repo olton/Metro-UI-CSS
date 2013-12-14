@@ -302,9 +302,6 @@
 })( jQuery );
 
 $(function () {
-    reinitCarousels();
+    $.Metro.initCarousels();
 });
 
-function reinitCarousels(){
-    $('[data-role=carousel]').carousel();
-}

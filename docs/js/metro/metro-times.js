@@ -191,6 +191,3 @@ $(function () {
     $('[data-role=times]').times();
 });
 
-function reinitTimes(){
-    $('[data-role=times]').times();
-}

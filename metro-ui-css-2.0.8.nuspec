@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Metro.UI.CSS</id>
-    <version>2.0.7</version>
+    <version>2.0.8</version>
     <title>Metro UI CSS 2.0</title>
     <authors>Sergey Pimenov</authors>
     <owners>Sergey Pimenov</owners>
@@ -17,10 +17,10 @@
   </metadata>
   <files>
     <file src="less\*.less" target="less" />
-    <file src="docs\css\metro-bootstrap.css" target="css" />
-    <file src="docs\css\metro-bootstrap-responsive.css" target="css" />
-    <file src="docs\js\metro\*.js" target="js\metro" />
-    <file src="docs\js\metro.min.js" target="js" />
-    <file src="docs\fonts\*.*" target="fonts" />
+    <file src="js\*.js" target="js/metro" />
+    <file src="css\*.css" target="css" />
+    <file src="fonts\*.*" target="fonts" />
+    <file src="min\*.css" target="css" />
+    <file src="min\*.js" target="js" />
   </files>
 </package>

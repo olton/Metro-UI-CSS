@@ -57,6 +57,3 @@ $(function(){
     $('[data-role=fluentmenu]').fluentmenu();
 });
 
-function reinitFluentMenus(){
-    $('[data-role=fluentmenu]').fluentmenu();
-}
