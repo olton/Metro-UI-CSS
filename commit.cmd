@@ -1,3 +1,4 @@
+@ECHO = OFF
 cls
 echo "Commiting changes..."
 IF %1=="" GOTO stop
@@ -19,5 +20,6 @@ git add .
 echo "Commit changes"
 git commit -am %1
 
+exit 0
 
 :stop
