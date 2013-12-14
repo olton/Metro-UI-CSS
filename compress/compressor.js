@@ -1,3 +1,10 @@
+/*
+* Compressor for Metro UI CSS
+* Require:
+* node.js
+* node-minify (https://github.com/srod/node-minify)
+* */
+
 var compressor = require('node-minify');
 var project_root = '/Projects/Metro-UI-CSS/',
     module_path = project_root+'docs/js/metro/',
