@@ -5,7 +5,7 @@ cp docs/js/metro/*.* js
 cp docs/css/metro-*.css css
 
 cd compress
-node compress.js
+node compressor.js
 
 cd ..
 cp min/metro.min.js docs/js
