@@ -78,3 +78,68 @@
         }
     }
 }
+
+.app-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    min-height: 100px;
+    background-color: @dark;
+    z-index: @zindexCharms;
+}
+
+.charms {
+    position: fixed;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    min-width: 200px;
+    width: auto;
+    z-index: @zindexCharms;
+
+    &.place-left {
+        left: 0;
+        right: auto;
+    }
+
+    &.search {}
+    &.sharing{}
+    &.appsets{}
+    &.apphelp{}
+}
+
+.message-dialog {
+    position: fixed;
+    left: 0;
+    right: 0;
+    height: auto;
+    min-height: 100px;
+    top: 30%;
+    padding: 10px 10px 0;
+    z-index: @zindexModal;
+}
+
+.flyouts{}
+
+.error-bar, .warning-bar, .info-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 10px 20px;
+    color: #fff;
+    min-height: 100px;
+    z-index: @zindexModal;
+}
+.error-bar {
+    .bg-darkRed;
+}
+.warning-bar {
+    .bg-darkOrange;
+}
+.info-bar {
+    .bg-lightBlue;
+}
+

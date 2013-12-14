@@ -2258,6 +2258,60 @@ a {
 .metro .page.secondary .page-header-content {
   padding-left: 80px;
 }
+.metro .app-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  min-height: 100px;
+  background-color: #1d1d1d;
+  z-index: 1060;
+}
+.metro .charms {
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  min-width: 200px;
+  width: auto;
+  z-index: 1060;
+}
+.metro .charms.place-left {
+  left: 0;
+  right: auto;
+}
+.metro .message-dialog {
+  position: fixed;
+  left: 0;
+  right: 0;
+  height: auto;
+  min-height: 100px;
+  top: 30%;
+  padding: 10px 10px 0;
+  z-index: 1050;
+}
+.metro .error-bar,
+.metro .warning-bar,
+.metro .info-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 10px 20px;
+  color: #fff;
+  min-height: 100px;
+  z-index: 1050;
+}
+.metro .error-bar {
+  background-color: #9a1616 !important;
+}
+.metro .warning-bar {
+  background-color: #bf5a15 !important;
+}
+.metro .info-bar {
+  background-color: #4390df !important;
+}
 .metro .span1,
 .metro .size1 {
   width: 60px !important;
