@@ -96,6 +96,3 @@ $(function(){
     $('[data-role=tab-control]').tabcontrol();
 });
 
-function reinitTabs(){
-    $('[data-role=tab-control]').tabcontrol();
-}

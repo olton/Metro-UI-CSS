@@ -64,6 +64,3 @@ $(function () {
     $('[data-role=treeview]').treeview();
 });
 
-function reinitTrees(){
-    $('[data-role=treeview]').treeview();
-}

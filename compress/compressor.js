@@ -47,7 +47,7 @@ new compressor.minify({
 new compressor.minify({
     type: 'yui-css',
     fileIn: css_path+'metro-bootstrap.css',
-    fileOut: css_compile_path+'metro.min.css',
+    fileOut: css_compile_path+'metro-bootstrap.min.css',
     callback: function(err, min){
         if (err) console.log(err); else console.log("main css compiled");
     }

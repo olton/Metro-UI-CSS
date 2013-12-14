@@ -1,6 +1,7 @@
 function reinit()
 {
-    $('.dropdown-menu').dropdown({effect: 'slide'});
+    //$('.dropdown-menu').dropdown({effect: 'slide'});
+    $.Metro.initDropdowns();
 }
 
 $(function(){
