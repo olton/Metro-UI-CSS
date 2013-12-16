@@ -7359,6 +7359,50 @@ a {
   margin-right: 10px;
   margin-top: 5px;
 }
+.metro .notice {
+  display: block;
+  min-width: 200px;
+  height: auto;
+  position: relative;
+  background-color: #4390df;
+  padding: 20px;
+}
+.metro .notice * {
+  color: inherit;
+}
+.metro .notice:before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  display: block;
+  position: absolute;
+  background-color: inherit;
+  left: -5px;
+  top: 50%;
+  margin-top: -5px;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.metro .notice.marker-on-top:before {
+  top: 0;
+  left: 50%;
+  margin-left: -5px;
+}
+.metro .notice.marker-on-right:before {
+  top: 50%;
+  margin-top: -5px;
+  left: 100%;
+  margin-left: -5px;
+}
+.metro .notice.marker-on-bottom:before {
+  top: 100%;
+  margin-left: -5px;
+  left: 50%;
+  margin-top: -5px;
+}
 .metro .treeview {
   background-color: #fdfdfd;
   color: #555555;
