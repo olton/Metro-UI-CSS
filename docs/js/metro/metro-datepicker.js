@@ -11,6 +11,8 @@
             effect: 'none',
             position: 'bottom',
             locale: $.Metro.currentLocale,
+            weekStart: 0, // 0 - Sunday, 1 - Monday
+            otherDays: false,
             selected: function(d, d0){},
             _calendar: undefined
         },
@@ -27,6 +29,8 @@
             if (element.data('effect') != undefined) this.options.effect = element.data('effect');
             if (element.data('position') != undefined) this.options.position = element.data('position');
             if (element.data('locale') != undefined) this.options.locale = element.data('locale');
+            if (element.data('weekStart') != undefined) this.options.weekStart = element.data('weekStart');
+            if (element.data('otherDays') != undefined) this.options.otherDays = element.data('otherDays');
 
             this._createCalendar(element, this.options.date);
 
@@ -75,6 +79,8 @@
                 format: that.options.format,
                 buttons: false,
                 locale: that.options.locale,
+                otherDays: that.options.otherDays,
+                weekStart: that.options.weekStart,
                 click: function(d, d0){
                     //console.log(d, d0);
                     _calendar.calendar('setDate', d0);

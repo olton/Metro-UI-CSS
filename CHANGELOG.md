@@ -1,3 +1,8 @@
+## Version 2.0.12
+
+### Changes:
+- upd datepicker for support calendar features
+
 ## Version 2.0.11
 
 ### Changes:
