@@ -10,6 +10,7 @@
             multiSelect: false,
             startMode: 'day', //year, month, day
             weekStart: 0, // 0 - Sunday, 1 - Monday
+            otherDays: false,
             date: new Date(),
             buttons: true,
             locale: $.Metro.currentLocale,
@@ -38,6 +39,7 @@
             if (element.data('locale') != undefined) this.options.locale = element.data("locale");
             if (element.data('startMode') != undefined) this.options.startMode = element.data('startMode');
             if (element.data('weekStart') != undefined) this.options.weekStart = element.data('weekStart');
+            if (element.data('otherDays') != undefined) this.options.otherDays = element.data('otherDays');
 
             this._year = this.options.date.getFullYear();
             this._distance = parseInt(this.options.date.getFullYear())-4;
@@ -87,21 +89,38 @@
             tr.addClass("calendar-header").appendTo(table);
 
             // Add day names
+            var j;
             tr = $("<tr/>");
             for(i = 0; i < 7; i++) {
-                td = $("<td/>").addClass("text-center day-of-week").html($.Metro.Locale[this.options.locale].days[i+7]).appendTo(tr);
+                if (!this.options.weekStart)
+                    td = $("<td/>").addClass("text-center day-of-week").html($.Metro.Locale[this.options.locale].days[i+7]).appendTo(tr);
+                else {
+                    j = i + 1;
+                    if (j == 7) j = 0;
+                    td = $("<td/>").addClass("text-center day-of-week").html($.Metro.Locale[this.options.locale].days[j+7]).appendTo(tr);
+
+                }
             }
             tr.addClass("calendar-subheader").appendTo(table);
 
             // Add empty days for previos month
+            var prevMonth = this._month - 1; if (prevMonth < 0) prevMonth = 11; var daysInPrevMonth = totalDays[prevMonth];
+            var _first_week_day = ((this.options.weekStart) ? first_week_day + 6 : first_week_day)%7;
+            var htmlPrevDay = "";
             tr = $("<tr/>");
-            for(i = 0; i < first_week_day; i++) {
-                td = $("<td/>").addClass("empty").html("").appendTo(tr);
+            for(i = 0; i < _first_week_day; i++) {
+                if (this.options.otherDays) htmlPrevDay = daysInPrevMonth - (_first_week_day - i - 1);
+                td = $("<td/>").addClass("empty").html("<small class='other-day'>"+htmlPrevDay+"</small>").appendTo(tr);
             }
 
-            var week_day = first_week_day;
+            var week_day = ((this.options.weekStart) ? first_week_day + 6 : first_week_day)%7;
+            //console.log(week_day, week_day%7);
+
             for (i = 1; i <= daysInMonth; i++) {
+                //console.log(week_day, week_day%7);
+
                 week_day %= 7;
+
                 if (week_day == 0) {
                     tr.appendTo(table);
                     tr = $("<tr/>");
@@ -121,8 +140,11 @@
                 week_day++;
             }
 
+            // next month other days
+            var htmlOtherDays = "";
             for (i = week_day+1; i<=7; i++){
-                td = $("<td/>").addClass("empty").html("").appendTo(tr);
+                if (this.options.otherDays) htmlOtherDays = i - week_day;
+                td = $("<td/>").addClass("empty").html("<small class='other-day'>"+htmlOtherDays+"</small>").appendTo(tr);
             }
 
             tr.appendTo(table);
