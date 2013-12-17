@@ -1,3 +1,9 @@
+## Version 2.0.11
+
+### Changes:
+- add start from monday for calendar
+- add show other days for calendar
+
 ## Version 2.0.10
 
 ### Changes:
