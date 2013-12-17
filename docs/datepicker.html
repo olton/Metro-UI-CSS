@@ -49,13 +49,13 @@
                     <div class="grid fluid">
                         <div class="row">
                             <div class="span3">
-                                <div class="input-control text" data-role="datepicker">
+                                <div class="input-control text" data-role="datepicker" data-week-start="1">
                                     <input type="text">
                                     <button class="btn-date"></button>
                                 </div>
                             </div>
                             <div class="span3">
-                                <div class="input-control text" data-role="datepicker" data-date="2013-11-13" data-effect="slide">
+                                <div class="input-control text" data-role="datepicker" data-date="2013-11-13" data-effect="slide" data-other-days="1">
                                     <input type="text">
                                     <button class="btn-date"></button>
                                 </div>
@@ -80,7 +80,13 @@
                     Init with data-* API:
                 </p>
 <pre class="prettyprint linenums">
-&lt;div class="input-control text" data-role="datepicker" data-locale='en | ru'&gt;
+&lt;div class="input-control text" data-role="datepicker"
+    data-date='set the initial date'
+    data-format='format output'
+    data-effect='slide | fade | none'
+    data-locale='en | fr | ua | ru'
+    data-week-start='0 | 1'
+    data-other-days='0 | 1'&gt;
     &lt;input type="text"&gt;
     &lt;button class="btn-date"&gt;&lt;/button&gt;
 &lt;/div&gt;
