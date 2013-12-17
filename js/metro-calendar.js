@@ -9,10 +9,7 @@
             format: "yyyy-mm-dd",
             multiSelect: false,
             startMode: 'day', //year, month, day
-            //months : ['January',' February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-            //monthsShort : ['Jan',' Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-            //weekDays: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-            //buttonsNames: ['Today', 'Clear'],
+            weekStart: 0, // 0 - Sunday, 1 - Monday
             date: new Date(),
             buttons: true,
             locale: $.Metro.currentLocale,
@@ -25,6 +22,7 @@
         _month: 0,
         _day: 0,
         _today: new Date(),
+        _event: '',
 
         _mode: 'day', // day, month, year
         _distance: 0,
@@ -38,9 +36,8 @@
             if (element.data('format') != undefined) this.options.format = element.data("format");
             if (element.data('date') != undefined) this.options.date = new Date(element.data("date"));
             if (element.data('locale') != undefined) this.options.locale = element.data("locale");
-            //if (element.data('months') != undefined) this.options.months = element.data('months');
-            //if (element.data('weekDays') != undefined) this.options.weekDays = element.data('weekDays');
             if (element.data('startMode') != undefined) this.options.startMode = element.data('startMode');
+            if (element.data('weekStart') != undefined) this.options.weekStart = element.data('weekStart');
 
             this._year = this.options.date.getFullYear();
             this._distance = parseInt(this.options.date.getFullYear())-4;
@@ -57,6 +54,7 @@
             var year = this._year,
                 month = this._month,
                 day = this._day,
+                event = this._event,
                 feb = 28;
 
             if (month == 1) {
@@ -81,8 +79,6 @@
             $("<td/>").addClass("text-center").html("<a class='btn-previous-year' href='#'><i class='icon-previous'></i></a>").appendTo(tr);
             $("<td/>").addClass("text-center").html("<a class='btn-previous-month' href='#'><i class='icon-arrow-left-4'></i></a>").appendTo(tr);
 
-            //$("<td/>").attr("colspan", 3).addClass("text-center").html("<a class='btn-select-month' href='#'>"+this.options.months[month]+' '+year+"</a>").appendTo(tr);
-            //console.log($.Metro.Locale[this.options.locale].months[month]);
             $("<td/>").attr("colspan", 3).addClass("text-center").html("<a class='btn-select-month' href='#'>"+ $.Metro.Locale[this.options.locale].months[month]+' '+year+"</a>").appendTo(tr);
 
             $("<td/>").addClass("text-center").html("<a class='btn-next-month' href='#'><i class='icon-arrow-right-4'></i></a>").appendTo(tr);
@@ -93,7 +89,6 @@
             // Add day names
             tr = $("<tr/>");
             for(i = 0; i < 7; i++) {
-                //td = $("<td/>").addClass("text-center day-of-week").html(this.options.weekDays[i]).appendTo(tr);
                 td = $("<td/>").addClass("text-center day-of-week").html($.Metro.Locale[this.options.locale].days[i+7]).appendTo(tr);
             }
             tr.addClass("calendar-subheader").appendTo(table);
@@ -142,6 +137,7 @@
             }
 
             table.appendTo(this.element);
+
             this.options.getDates(this.element.data('_storage'));
         },
 
@@ -239,6 +235,7 @@
                     that._renderCalendar();
                 });
                 table.find('.btn-previous-month').on('click', function(e){
+                    that._event = 'eventPrevious';
                     e.preventDefault();
                     e.stopPropagation();
                     that._month -= 1;
@@ -249,6 +246,7 @@
                     that._renderCalendar();
                 });
                 table.find('.btn-next-month').on('click', function(e){
+                    that._event = 'eventNext';
                     e.preventDefault();
                     e.stopPropagation();
                     that._month += 1;
@@ -259,18 +257,21 @@
                     that._renderCalendar();
                 });
                 table.find('.btn-previous-year').on('click', function(e){
+                    that._event = 'eventPrevious';
                     e.preventDefault();
                     e.stopPropagation();
                     that._year -= 1;
                     that._renderCalendar();
                 });
                 table.find('.btn-next-year').on('click', function(e){
+                    that._event = 'eventNext';
                     e.preventDefault();
                     e.stopPropagation();
                     that._year += 1;
                     that._renderCalendar();
                 });
                 table.find('.calendar-btn-today').on('click', function(e){
+                    that._event = 'eventNext';
                     e.preventDefault();
                     e.stopPropagation();
                     that.options.date = new Date();
@@ -314,6 +315,7 @@
                 });
             } else if (this._mode == 'month') {
                 table.find('.month a').on('click', function(e){
+                    that._event = 'eventNext';
                     e.preventDefault();
                     e.stopPropagation();
                     that._month = parseInt($(this).data('month'));
@@ -321,18 +323,21 @@
                     that._renderCalendar();
                 });
                 table.find('.btn-previous-year').on('click', function(e){
+                    that._event = 'eventPrevious';
                     e.preventDefault();
                     e.stopPropagation();
                     that._year -= 1;
                     that._renderCalendar();
                 });
                 table.find('.btn-next-year').on('click', function(e){
+                    that._event = 'eventNext';
                     e.preventDefault();
                     e.stopPropagation();
                     that._year += 1;
                     that._renderCalendar();
                 });
                 table.find('.btn-select-year').on('click', function(e){
+                    that._event = 'eventNext';
                     e.preventDefault();
                     e.stopPropagation();
                     that._mode = 'year';
@@ -340,6 +345,7 @@
                 });
             } else {
                 table.find('.year a').on('click', function(e){
+                    that._event = 'eventNext';
                     e.preventDefault();
                     e.stopPropagation();
                     that._year = parseInt($(this).data('year'));
@@ -347,12 +353,14 @@
                     that._renderCalendar();
                 });
                 table.find('.btn-previous-year').on('click', function(e){
+                    that._event = 'eventPrevious';
                     e.preventDefault();
                     e.stopPropagation();
                     that._distance -= 10;
                     that._renderCalendar();
                 });
                 table.find('.btn-next-year').on('click', function(e){
+                    that._event = 'eventNext';
                     e.preventDefault();
                     e.stopPropagation();
                     that._distance += 10;

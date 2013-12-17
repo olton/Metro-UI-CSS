@@ -1,5 +1,6 @@
 var plugins = [
     'core',
+    'locale',
     'touch-handler',
 
     'accordion',
