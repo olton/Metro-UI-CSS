@@ -97,7 +97,3 @@
     })
 })( jQuery );
 
-$(function () {
-    $('[data-role=rating]').rating();
-});
-

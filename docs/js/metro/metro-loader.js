@@ -12,7 +12,7 @@ var plugins = [
     'dropdown',
     'input-control',
     'live-tile',
-    //'drag-tile',
+
     'progressbar',
     'rating',
     'slider',
@@ -26,7 +26,11 @@ var plugins = [
     'fluentmenu',
     'hint',
     'streamer',
-    'scroll'
+    'stepper',
+    'drag-tile',
+    'scroll',
+
+    'initiator'
 
 
 ];

@@ -18,6 +18,9 @@
     <script src="js/prettify/prettify.js"></script>
 
     <!-- Metro UI CSS JavaScript plugins -->
+    <script>
+        //METRO_LOCALE = 'en';
+    </script>
     <script src="js/load-metro.js"></script>
 
     <!-- Local JavaScript -->
@@ -39,7 +42,7 @@
 
 
                 <p>
-                    THis component required <code>metro-calendar.js</code> and <code>metro-datepicker.js</code>
+                    This component required <code>metro-calendar.js</code> and <code>metro-datepicker.js</code>
                 </p>
                 <div class="example">
 
@@ -77,7 +80,7 @@
                     Init with data-* API:
                 </p>
 <pre class="prettyprint linenums">
-&lt;div class="input-control text" data-role="datepicker"&gt;
+&lt;div class="input-control text" data-role="datepicker" data-locale='en | ru'&gt;
     &lt;input type="text"&gt;
     &lt;button class="btn-date"&gt;&lt;/button&gt;
 &lt;/div&gt;
@@ -114,7 +117,8 @@
         date: "2013-01-01", // set init date
         format: "d/m/y", // set output format
         effect: "none", // none, slide, fade
-        position: "bottom", // top or bottom
+        position: "bottom", // top or bottom,
+        locale: ''en, // 'ru' or 'en', default is $.Metro.currentLocale
     });
 &lt;/script&gt;
 </pre>

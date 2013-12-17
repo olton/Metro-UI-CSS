@@ -301,7 +301,4 @@
     });
 })( jQuery );
 
-$(function () {
-    $.Metro.initCarousels();
-});
 

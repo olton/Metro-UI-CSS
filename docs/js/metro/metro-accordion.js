@@ -68,6 +68,3 @@
     })
 })( jQuery );
 
-$(function(){
-    $('[data-role=accordion]').accordion();
-});

@@ -60,7 +60,5 @@
     })
 })( jQuery );
 
-$(function () {
-    $('[data-role=treeview]').treeview();
-});
+
 

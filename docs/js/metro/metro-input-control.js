@@ -114,11 +114,6 @@
     });
 })( jQuery );
 
-$(function () {
-    $('[data-role=input-control], .input-control').inputControl();
-});
-
-
 
 (function( $ ) {
     $.widget("metro.inputTransform", {
@@ -373,8 +368,4 @@ $(function () {
         }
     })
 })( jQuery );
-
-$(function () {
-    $('[data-transform=input-control]').inputTransform();
-});
 

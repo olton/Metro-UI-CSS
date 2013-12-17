@@ -72,7 +72,5 @@
     })
 })( jQuery );
 
-$(function () {
-    $('[data-hint]').hint();
-});
+
 
