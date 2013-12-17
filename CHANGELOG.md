@@ -1,3 +1,8 @@
+## Version 2.0.10
+
+### Changes:
+- add langs to calendar: en, fr, ua, ru
+
 ## Version 2.0.9
 
 ### Changes:
