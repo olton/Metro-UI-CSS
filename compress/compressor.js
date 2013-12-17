@@ -14,6 +14,7 @@ var project_root = '/Projects/Metro-UI-CSS/',
 
 var modules = [
     module_path+'metro-core.js',
+    module_path+'metro-locale.js',
     module_path+'metro-touch-handler.js',
     module_path+'metro-accordion.js',
     module_path+'metro-button-set.js',

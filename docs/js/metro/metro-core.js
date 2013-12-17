@@ -1,47 +1,8 @@
-var METRO_LOCALE;
 
 (function($){
     $.Metro = function(params){
         params = $.extend({
         }, params);
-    };
-
-    $.Metro.currentLocale = 'en';
-
-    if (METRO_LOCALE != undefined)  $.Metro.currentLocale = METRO_LOCALE; else $.Metro.currentLocale = 'en';
-    //console.log(METRO_LOCALE, $.Metro.currentLocale);
-
-    $.Metro.Locale = {
-        'en': {
-            months: [
-                "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December",
-                "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
-            ],
-            days: [
-                "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday",
-                "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"
-            ],
-            buttons: [
-                "Today", "Clear"
-            ]
-        },
-        'ru': {
-            months: [
-                "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь",
-                "Янв", "Фев", "Мар", "Апр", "Май", "Июн", "Июл", "Авг", "Сен", "Окт", "Ноя", "Дек"
-            ],
-            days: [
-                "Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота",
-                "Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"
-            ],
-            buttons: [
-                "Сегодня", "Очистить"
-            ]
-        }
-    };
-
-    $.Metro.setLocale = function(locale, data){
-        $.Metro.Locale[locale] = data;
     };
 
     /*

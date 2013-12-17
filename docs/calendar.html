@@ -26,7 +26,7 @@
     <script src="js/github.info.js"></script>
 
     <script>
-        //METRO_LOCALE = 'en';
+        METRO_LOCALE = 'en';
     </script>
 
     <title>Metro UI CSS : Metro Bootstrap CSS Library</title>
@@ -49,7 +49,7 @@
                 <div class="example">
                     <div class="grid fluid">
                         <div class="row">
-                            <div class="span4"><div class="calendar small" data-role="calendar" ></div></div>
+                            <div class="span4"><div class="calendar small" data-role="calendar" data-week-start="1"></div></div>
                             <div class="span4"><div class="calendar small" data-role="calendar" data-start-mode="month"></div></div>
                             <div class="span4"><div class="calendar small" data-role="calendar" data-start-mode="year"></div></div>
                         </div>
@@ -158,6 +158,27 @@ $(function(){
     cal.calendar('unsetDate', '2013-07-2');
 })
 </pre>
+
+                <h3>Languages</h3>
+                <div class="example">
+                    <div class="grid fluid">
+                        <div class="row">
+                            <div class="span4"><h2>EN</h2><div class="calendar small" data-role="calendar" data-locale="en"></div></div>
+                            <div class="span4"><h2>FR</h2><div class="calendar small" data-role="calendar" data-locale="fr"></div></div>
+                            <div class="span4"><h2>UA</h2><div class="calendar small" data-role="calendar" data-locale="ua"></div></div>
+                        </div>
+                        <div class="row">
+                            <div class="span4"><h2>RU</h2><div class="calendar small" data-role="calendar" data-locale="ru"></div></div>
+                        </div>
+                    </div>
+                </div>
+<pre class="prettyprint linenums">
+&lt;div class="calendar small" data-role="calendar" data-locale="en"&gt;&lt;/div&gt;
+&lt;div class="calendar small" data-role="calendar" data-locale="fr"&gt;&lt;/div&gt;
+&lt;div class="calendar small" data-role="calendar" data-locale="ua"&gt;&lt;/div&gt;
+&lt;div class="calendar small" data-role="calendar" data-locale="ru"&gt;&lt;/div&gt;
+</pre>
+
 
             </div>
         </div>
