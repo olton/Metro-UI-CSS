@@ -147,7 +147,4 @@
     })
 })( jQuery );
 
-$(function () {
-    $('[data-role=live-tile], [data-role=live]').livetile();
-});
 

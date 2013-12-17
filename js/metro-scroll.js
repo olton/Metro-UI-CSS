@@ -754,6 +754,3 @@
     })
 })( jQuery );
 
-$(function () {
-    $('[data-role=scrollbox]').scrollbar();
-});

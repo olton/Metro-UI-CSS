@@ -25,6 +25,10 @@
     <script src="js/docs.js"></script>
     <script src="js/github.info.js"></script>
 
+    <script>
+        //METRO_LOCALE = 'en';
+    </script>
+
     <title>Metro UI CSS : Metro Bootstrap CSS Library</title>
 </head>
 <body class="metro">
@@ -45,7 +49,7 @@
                 <div class="example">
                     <div class="grid fluid">
                         <div class="row">
-                            <div class="span4"><div class="calendar small" data-role="calendar"></div></div>
+                            <div class="span4"><div class="calendar small" data-role="calendar" ></div></div>
                             <div class="span4"><div class="calendar small" data-role="calendar" data-start-mode="month"></div></div>
                             <div class="span4"><div class="calendar small" data-role="calendar" data-start-mode="year"></div></div>
                         </div>
@@ -64,7 +68,7 @@
                 </p>
                 <h4>Auto</h4>
 <pre class="prettyprint linenums">
-&lt;div class="calendar" data-role="calendar"&gt;&lt;/div&gt;
+&lt;div class="calendar" data-role="calendar" data-locale='en | ru'&gt;&lt;/div&gt;
 </pre>
                 <h4>Manually</h4>
 <pre class="prettyprint linenums">
@@ -78,8 +82,7 @@ $("component_id").calendar({
     multiSelect: boolean, //default true (multi select date)
     startMode: 'day', //year, month, day
     date: string, //the init calendar date (example: '2013-01-01' or '2012-01')
-    months: array, // array of month names from Jan to Dec
-    weekDays: array, // array of week day names from Sun to Sat
+    locale: ''en, // 'ru' or 'en', default is $.Metro.currentLocale
     getDates: function(d){...}, // see example below
     click: function(d){...}, // fired when user clicked on day, in "d" stored date
 });

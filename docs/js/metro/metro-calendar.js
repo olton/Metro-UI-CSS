@@ -9,12 +9,13 @@
             format: "yyyy-mm-dd",
             multiSelect: false,
             startMode: 'day', //year, month, day
-            months : ['January',' February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-            monthsShort : ['Jan',' Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-            weekDays: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-            buttonsNames: ['Today', 'Clear'],
+            //months : ['January',' February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+            //monthsShort : ['Jan',' Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            //weekDays: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+            //buttonsNames: ['Today', 'Clear'],
             date: new Date(),
             buttons: true,
+            locale: $.Metro.currentLocale,
             getDates: function(d){},
             click: function(d, d0){},
             _storage: []
@@ -36,8 +37,9 @@
             if (element.data('multiSelect') != undefined) this.options.multiSelect = element.data("multiSelect");
             if (element.data('format') != undefined) this.options.format = element.data("format");
             if (element.data('date') != undefined) this.options.date = new Date(element.data("date"));
-            if (element.data('months') != undefined) this.options.months = element.data('months');
-            if (element.data('weekDays') != undefined) this.options.weekDays = element.data('weekDays');
+            if (element.data('locale') != undefined) this.options.locale = element.data("locale");
+            //if (element.data('months') != undefined) this.options.months = element.data('months');
+            //if (element.data('weekDays') != undefined) this.options.weekDays = element.data('weekDays');
             if (element.data('startMode') != undefined) this.options.startMode = element.data('startMode');
 
             this._year = this.options.date.getFullYear();
@@ -78,7 +80,11 @@
 
             $("<td/>").addClass("text-center").html("<a class='btn-previous-year' href='#'><i class='icon-previous'></i></a>").appendTo(tr);
             $("<td/>").addClass("text-center").html("<a class='btn-previous-month' href='#'><i class='icon-arrow-left-4'></i></a>").appendTo(tr);
-            $("<td/>").attr("colspan", 3).addClass("text-center").html("<a class='btn-select-month' href='#'>"+this.options.months[month]+' '+year+"</a>").appendTo(tr);
+
+            //$("<td/>").attr("colspan", 3).addClass("text-center").html("<a class='btn-select-month' href='#'>"+this.options.months[month]+' '+year+"</a>").appendTo(tr);
+            //console.log($.Metro.Locale[this.options.locale].months[month]);
+            $("<td/>").attr("colspan", 3).addClass("text-center").html("<a class='btn-select-month' href='#'>"+ $.Metro.Locale[this.options.locale].months[month]+' '+year+"</a>").appendTo(tr);
+
             $("<td/>").addClass("text-center").html("<a class='btn-next-month' href='#'><i class='icon-arrow-right-4'></i></a>").appendTo(tr);
             $("<td/>").addClass("text-center").html("<a class='btn-next-year' href='#'><i class='icon-next'></i></a>").appendTo(tr);
 
@@ -87,7 +93,8 @@
             // Add day names
             tr = $("<tr/>");
             for(i = 0; i < 7; i++) {
-                td = $("<td/>").addClass("text-center day-of-week").html(this.options.weekDays[i]).appendTo(tr);
+                //td = $("<td/>").addClass("text-center day-of-week").html(this.options.weekDays[i]).appendTo(tr);
+                td = $("<td/>").addClass("text-center day-of-week").html($.Metro.Locale[this.options.locale].days[i+7]).appendTo(tr);
             }
             tr.addClass("calendar-subheader").appendTo(table);
 
@@ -127,7 +134,9 @@
 
             if (this.options.buttons) {
                 tr = $("<tr/>").addClass("calendar-actions");
-                td = $("<td/>").attr('colspan', 7).addClass("text-left").html("" + "<button class='button calendar-btn-today small success'>"+this.options.buttonsNames[0]+"</button>&nbsp;<button class='button calendar-btn-clear small warning'>"+this.options.buttonsNames[1]+"</button>");
+                td = $("<td/>").attr('colspan', 7).addClass("text-left").html("" +
+                    "<button class='button calendar-btn-today small success'>"+$.Metro.Locale[this.options.locale].buttons[0]+
+                    "</button>&nbsp;<button class='button calendar-btn-clear small warning'>"+$.Metro.Locale[this.options.locale].buttons[1]+"</button>");
                 td.appendTo(tr);
                 tr.appendTo(table);
             }
@@ -156,7 +165,8 @@
             j = 0;
             for (i=0;i<12;i++) {
 
-                td = $("<td/>").addClass("text-center month").html("<a href='#' data-month='"+i+"'>"+this.options.monthsShort[i]+"</a>");
+                //td = $("<td/>").addClass("text-center month").html("<a href='#' data-month='"+i+"'>"+this.options.monthsShort[i]+"</a>");
+                td = $("<td/>").addClass("text-center month").html("<a href='#' data-month='"+i+"'>"+$.Metro.Locale[this.options.locale].months[i+12]+"</a>");
 
                 if (this._month == i && (new Date()).getFullYear() == this._year) {
                     td.addClass("today");
@@ -282,7 +292,7 @@
                 table.find('.day a').on('click', function(e){
                     e.preventDefault();
                     e.stopPropagation();
-                    var d = (new Date(that._year, that._month, parseInt($(this).html()))).format(that.options.format);
+                    var d = (new Date(that._year, that._month, parseInt($(this).html()))).format(that.options.format,null);
                     var d0 = (new Date(that._year, that._month, parseInt($(this).html())));
 
                     if (that.options.multiSelect) {
@@ -393,7 +403,5 @@
     })
 })( jQuery );
 
-$(function(){
-    $('[data-role=calendar]').calendar();
-});
+
 

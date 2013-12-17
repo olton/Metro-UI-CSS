@@ -44,6 +44,3 @@
     })
 })( jQuery );
 
-$(function () {
-    $('.tile').dragtile();
-});

@@ -10,6 +10,7 @@
             date: undefined,
             effect: 'none',
             position: 'bottom',
+            locale: $.Metro.currentLocale,
             selected: function(d, d0){},
             _calendar: undefined
         },
@@ -25,6 +26,7 @@
             if (element.data('format') != undefined) this.options.format = element.data('format');
             if (element.data('effect') != undefined) this.options.effect = element.data('effect');
             if (element.data('position') != undefined) this.options.position = element.data('position');
+            if (element.data('locale') != undefined) this.options.locale = element.data('locale');
 
             this._createCalendar(element, this.options.date);
 
@@ -72,6 +74,7 @@
                 multiSelect: false,
                 format: that.options.format,
                 buttons: false,
+                locale: that.options.locale,
                 click: function(d, d0){
                     //console.log(d, d0);
                     _calendar.calendar('setDate', d0);
@@ -126,7 +129,4 @@
     })
 })( jQuery );
 
-$(function(){
-    $('[data-role=datepicker]').datepicker();
-});
 

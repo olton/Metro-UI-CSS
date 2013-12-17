@@ -19,6 +19,3 @@
     })
 })( jQuery );
 
-$(function () {
-    $('[data-role=stepper]').stepper();
-});

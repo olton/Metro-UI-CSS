@@ -25,6 +25,7 @@ var modules = [
     module_path+'metro-dropdown.js',
     module_path+'metro-input-control.js',
     module_path+'metro-live-tile.js',
+    module_path+'metro-drag-tile.js',
     module_path+'metro-progressbar.js',
     module_path+'metro-rating.js',
     module_path+'metro-slider.js',
@@ -38,7 +39,10 @@ var modules = [
     module_path+'metro-fluentmenu.js',
     module_path+'metro-hint.js',
     module_path+'metro-streamer.js',
-    module_path+'metro-scroll.js'
+    module_path+'metro-scroll.js',
+    module_path+'metro-stepper.js',
+    module_path+'metro-initiator.js'
+
 ];
 
 new compressor.minify({

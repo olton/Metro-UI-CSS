@@ -76,7 +76,4 @@
     });
 })( jQuery );
 
-$(function () {
-    $('[data-role=dropdown]').dropdown();
-});
 

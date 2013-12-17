@@ -211,7 +211,4 @@
     })
 })( jQuery );
 
-$(function () {
-    $('[data-role=streamer]').streamer();
-});
 

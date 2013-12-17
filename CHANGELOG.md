@@ -1,3 +1,9 @@
+## Version 2.0.9
+
+### Changes:
+- bugs fix
+- add locale support to calendar, datepicker and Date.format (to global set METRO_LOCALE = 'en' or 'ru', or use data-locale attribute)
+
 ## Version 2.0.8
 
 ### Changes:
