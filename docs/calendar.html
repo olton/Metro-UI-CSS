@@ -49,7 +49,7 @@
                 <div class="example">
                     <div class="grid fluid">
                         <div class="row">
-                            <div class="span4"><div class="calendar small" data-role="calendar" data-week-start="1"></div></div>
+                            <div class="span4"><div class="calendar small" data-role="calendar" ></div></div>
                             <div class="span4"><div class="calendar small" data-role="calendar" data-start-mode="month"></div></div>
                             <div class="span4"><div class="calendar small" data-role="calendar" data-start-mode="year"></div></div>
                         </div>
@@ -82,7 +82,9 @@ $("component_id").calendar({
     multiSelect: boolean, //default true (multi select date)
     startMode: 'day', //year, month, day
     date: string, //the init calendar date (example: '2013-01-01' or '2012-01')
-    locale: ''en, // 'ru' or 'en', default is $.Metro.currentLocale
+    locale: 'en', // 'ru', 'ua', 'fr' or 'en', default is $.Metro.currentLocale
+    otherDays: false, // show days for previous and next months,
+    weekStart: 0, //start week from sunday - 0 or monday - 1
     getDates: function(d){...}, // see example below
     click: function(d){...}, // fired when user clicked on day, in "d" stored date
 });
@@ -157,6 +159,19 @@ $(function(){
     // Remove date
     cal.calendar('unsetDate', '2013-07-2');
 })
+</pre>
+                <h3>Start from Monday, display other days</h3>
+                <div class="example">
+                    <div class="grid fluid">
+                        <div class="row">
+                            <div class="span4"><h2>Start from Monday</h2><div class="calendar small" data-role="calendar" data-locale="en" data-week-start="1"></div></div>
+                            <div class="span4"><h2>Show other days</h2><div class="calendar small" data-role="calendar" data-locale="en" data-other-days="1"></div></div>
+                        </div>
+                    </div>
+                </div>
+<pre class="prettyprint linenums">
+&lt;div class="calendar small" data-role="calendar" data-week-start="1"&gt;&lt;/div&gt;
+&lt;div class="calendar small" data-role="calendar" data-other-days="1"&gt;&lt;/div&gt;
 </pre>
 
                 <h3>Languages</h3>
