@@ -1,5 +1,3 @@
-var METRO_LOCALE;
-
 (function($){
     $.Metro.currentLocale = 'en';
 

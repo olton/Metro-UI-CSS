@@ -6969,13 +6969,13 @@ a {
 .metro .window.flat .content {
   padding-top: 38px;
 }
-.metro .notify-container {
+.metro.notify-container {
   position: fixed;
   right: 0;
   top: 0;
   z-index: 1060;
 }
-.metro .notify-container .notify {
+.metro.notify-container .notify {
   background-color: #ffffff;
   display: block;
   position: relative;
@@ -6985,12 +6985,12 @@ a {
   padding: 10px;
   margin: 2px 2px 2px 0;
 }
-.metro .notify-container .notify .caption {
+.metro.notify-container .notify .caption {
   font-size: 18px;
   line-height: 20px;
   margin-bottom: 5px;
 }
-.metro .notify-container .notify .content {
+.metro.notify-container .notify .content {
   font-size: 14px;
   line-height: 16px;
 }

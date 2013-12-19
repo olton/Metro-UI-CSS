@@ -1,3 +1,9 @@
+## Version 2.0.13
+
+### Changes:
+- add global param METRO_WEEK_START (to set calendar week start: 0 - Sunday (default), 1 - Monday)
+- fix show Notify when body no have class .metro
+
 ## Version 2.0.12
 
 ### Changes:

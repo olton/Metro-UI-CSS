@@ -1,4 +1,5 @@
 var plugins = [
+    'global',
     'core',
     'locale',
     'touch-handler',
