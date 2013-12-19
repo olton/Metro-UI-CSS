@@ -13,6 +13,7 @@ var project_root = '/Projects/Metro-UI-CSS/',
     css_compile_path = project_root+'min/';
 
 var modules = [
+    module_path+'metro-global.js',
     module_path+'metro-core.js',
     module_path+'metro-locale.js',
     module_path+'metro-touch-handler.js',

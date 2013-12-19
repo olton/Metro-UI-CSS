@@ -1,0 +1,2 @@
+var METRO_LOCALE;
+var METRO_WEEK_START;

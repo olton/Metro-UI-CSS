@@ -9,7 +9,7 @@
             format: "yyyy-mm-dd",
             multiSelect: false,
             startMode: 'day', //year, month, day
-            weekStart: 0, // 0 - Sunday, 1 - Monday
+            weekStart: (METRO_WEEK_START != undefined ? METRO_WEEK_START : 0), // 0 - Sunday, 1 - Monday
             otherDays: false,
             date: new Date(),
             buttons: true,
