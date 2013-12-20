@@ -1,3 +1,8 @@
+## Version 2.0.14
+
+### Changes:
+- fix issue 406 (data-transform)
+
 ## Version 2.0.13
 
 ### Changes:
