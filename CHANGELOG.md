@@ -1,3 +1,8 @@
+## Version 2.0.16
+
+### Changes:
+- add pause and resume the animations for live tiles
+
 ## Version 2.0.15
 
 ### Changes:
