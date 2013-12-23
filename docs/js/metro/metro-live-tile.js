@@ -39,14 +39,26 @@
                 'height': element.height()
             };
 
-            this._start();
+            element.on('mouseenter', function(){
+                that.stop();
+            });
+
+            element.on('mouseleave', function(){
+                that.start();
+            });
+
+            this.start();
         },
 
-        _start: function(){
+        start: function(){
             var that = this;
             this._interval = setInterval(function(){
                 that._animate();
             }, this.options.period);
+        },
+
+        stop: function(){
+            clearInterval(this._interval);
         },
 
         _animate: function(){
