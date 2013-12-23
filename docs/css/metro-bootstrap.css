@@ -4519,30 +4519,15 @@ a {
   color: inherit;
 }
 .metro .dropdown-menu li.title {
-  background-color: #f6f7f8;
-  font-size: 12px;
-  font-weight: bold;
-  line-height: 14px;
-  padding: 4px 8px;
-  border: 0;
-  border-bottom: 1px #dcddde solid;
-  border-top: 1px #dcddde solid;
-  color: #646464;
+  font-family: 'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 300;
+  color: #000000;
+  letter-spacing: 0.00em;
+  font-size: 20pt;
+  line-height: 24pt;
+  letter-spacing: 0.01em;
+  font-size: 30pt;
   margin-bottom: 20px;
-}
-.metro .dropdown-menu li.title:first-child {
-  margin: 0;
-  border-top-width: 0;
-}
-.metro .dropdown-menu li.title:first-child:hover {
-  border-top-width: 0;
-}
-.metro .dropdown-menu li.title:hover {
-  background-color: #f6f7f8;
-  cursor: default;
-  border: 0;
-  border-bottom: 1px #dcddde solid;
-  border-top: 1px #dcddde solid;
 }
 .metro .dropdown-menu.compact a {
   font-weight: normal;
@@ -6285,30 +6270,15 @@ a {
   color: inherit;
 }
 .metro .sidebar > ul ul li.title {
-  background-color: #f6f7f8;
-  font-size: 12px;
-  font-weight: bold;
-  line-height: 14px;
-  padding: 4px 8px;
-  border: 0;
-  border-bottom: 1px #dcddde solid;
-  border-top: 1px #dcddde solid;
-  color: #646464;
+  font-family: 'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 300;
+  color: #000000;
+  letter-spacing: 0.00em;
+  font-size: 20pt;
+  line-height: 24pt;
+  letter-spacing: 0.01em;
+  font-size: 30pt;
   margin-bottom: 20px;
-}
-.metro .sidebar > ul ul li.title:first-child {
-  margin: 0;
-  border-top-width: 0;
-}
-.metro .sidebar > ul ul li.title:first-child:hover {
-  border-top-width: 0;
-}
-.metro .sidebar > ul ul li.title:hover {
-  background-color: #f6f7f8;
-  cursor: default;
-  border: 0;
-  border-bottom: 1px #dcddde solid;
-  border-top: 1px #dcddde solid;
 }
 .metro .sidebar > ul ul.compact a {
   font-weight: normal;

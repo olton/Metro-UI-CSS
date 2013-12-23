@@ -1,3 +1,8 @@
+## Version 2.0.15
+
+### Changes:
+- add chinese language to calendar and datepicker (By NoGrief)
+
 ## Version 2.0.14
 
 ### Changes:
