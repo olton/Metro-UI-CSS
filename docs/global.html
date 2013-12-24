@@ -44,8 +44,8 @@
                     color classes, positioning classes, columns and much more.
                 </p>
 
-                <p class="description bg-lightBlue fg-white padding20">
-                    <strong>Reset styles: </strong> In Metro UI CSS used modified <a class="fg-yellow" href="http://github.com/necolas/normalize.css">Normalize.css</a> by <a class="fg-yellow" href="http://nicolasgallagher.com/">Nicolas Gallaher</a>.
+                <p class="description bg-grayLighter padding20">
+                    <strong>Reset styles: </strong> In Metro UI CSS used modified <a class="fg-cyan fg-hover-cobalt" href="http://github.com/necolas/normalize.css">Normalize.css</a> by <a class="fg-cyan fg-hover-cobalt" href="http://nicolasgallagher.com/">Nicolas Gallaher</a>.
                 </p>
 
                 <h2 id="_colors">Colors</h2>
@@ -101,13 +101,15 @@
                     <li><span class="square10 inline-block bg-lightRed on-left"></span>*-lightRed</li>
                     <li><span class="square10 inline-block bg-lightGreen on-left"></span>*-lightGreen</li>
                 </ul>
-                <div class="description">
+                <p class="description">
                     To set background color: use prefix <code>bg</code>, to set foreground color: use prefix <code>fg</code>, to set outline color: use prefix <code>ol</code>, to set border color: use prefix <code>bd</code>.
-                </div>
+                    Also you can set <strong>active, hover</strong> and <strong>focus</strong> colors with classes <code>bg(fg)-hover-*</code>, <code>bg(fg)-active-*</code> and <code>bg(fg)-focus-*</code>.
+                </p>
 <pre class="prettyprint linenums">
 &lt;div class="bg-darkPink"&gt;...&lt;/div&gt;
 &lt;span class="fg-white"&gt;...&lt;/span&gt;
 &lt;div class="tile ol-white"&gt;...&lt;/div&gt;
+&lt;a class="fg-cyan fg-hover-cobalt"&gt;...&lt;/a&gt;
 </pre>
 
                 <h4>Ribbed mixin</h4>
@@ -121,8 +123,7 @@
 &lt;div class="ribbed-cyan"&gt;...&lt;/div&gt;
 </pre>
 
-                <h2 id="_position">Positioning classes</h2>
-                <h2 id="_columns">Columns</h2>
+                <h2 id="_position">Mixin classes</h2>
             </div>
         </div>
 
