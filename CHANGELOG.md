@@ -1,3 +1,10 @@
+## Version 2.0.17
+
+### Changes:
+- remove !important from colors classes
+- add new colors bg(fg)-hover-*, bg(fg)-active-* and bg(fg)-focus-*
+- fix METRO_WEEK_START for datepicker
+
 ## Version 2.0.16
 
 ### Changes:
