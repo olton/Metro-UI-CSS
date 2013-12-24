@@ -1,220 +1,548 @@
+.set-bg-color (@color: transparent){background-color: @color;}
+.set-fg-color (@color: transparent){color: @color;}
+.set-ol-color (@color: transparent){outline-color: @color;}
+.set-bd-color (@color: transparent){border-color: @color;}
+
 // Colors : background
-.bg-black {background-color: @black !important;}
-.bg-white {background-color: @white !important;}
-.bg-lime {background-color: @lime !important;}
-.bg-green {background-color: @green !important;}
-.bg-emerald {background-color: @emerald !important;}
-.bg-teal {background-color: @teal !important;}
-.bg-cyan {background-color: @cyan !important;}
-.bg-cobalt {background-color: @cobalt !important;}
-.bg-indigo {background-color: @indigo !important;}
-.bg-violet {background-color: @violet !important;}
-.bg-pink {background-color: @pink !important;}
-.bg-magenta {background-color: @magenta !important;}
-.bg-crimson {background-color: @crimson !important;}
-.bg-red {background-color: @red !important;}
-.bg-orange {background-color: @orange !important;}
-.bg-amber {background-color: @amber !important;}
-.bg-yellow {background-color: @yellow !important;}
-.bg-brown {background-color: @brown !important;}
-.bg-olive {background-color: @olive !important;}
-.bg-steel {background-color: @steel !important;}
-.bg-mauve {background-color: @mauve !important;}
-.bg-taupe {background-color: @taupe !important;}
-.bg-gray {background-color: @gray !important;}
-.bg-dark {background-color: @grayDark !important;}
-.bg-darker {background-color: @grayDarker !important;}
-.bg-transparent {background-color: transparent !important;}
-.bg-darkBrown {background-color: @darkBrown !important;}
-.bg-darkCrimson {background-color: @darkCrimson !important;}
-.bg-darkMagenta {background-color: @darkMagenta !important;}
-.bg-darkIndigo {background-color: @darkIndigo !important;}
-.bg-darkCyan {background-color: @darkCyan !important;}
-.bg-darkCobalt {background-color: @darkCobalt !important;}
-.bg-darkTeal {background-color: @darkTeal !important;}
-.bg-darkEmerald {background-color: @darkEmerald !important;}
-.bg-darkGreen {background-color: @darkGreen !important;}
-.bg-darkOrange {background-color: @darkOrange !important;}
-.bg-darkRed {background-color: @darkRed !important;}
-.bg-darkPink {background-color: @darkPink !important;}
-.bg-darkViolet {background-color: @darkViolet !important;}
-.bg-darkBlue {background-color: @darkBlue !important;}
-.bg-lightBlue {background-color: @lightBlue !important;}
-.bg-lightRed {background-color: @lightRed !important;}
-.bg-lightGreen {background-color: @lightGreen !important;}
-.bg-lighterBlue {background-color: @lighterBlue !important;}
-.bg-lightTeal {background-color: lighten(@teal, 30%) !important;}
-.bg-lightOlive {background-color: @lightOlive !important;}
-.bg-lightOrange {background-color: @lightOrange !important;}
-.bg-lightPink {background-color: @lightPink !important;}
-.bg-grayDark {background-color: @grayDark !important;}
-.bg-grayDarker {background-color: @grayDarker !important;}
-.bg-grayLight {background-color: @grayLight !important;}
-.bg-grayLighter {background-color: @grayLighter !important;}
+.bg-black {.set-bg-color(@black)}
+.bg-white {.set-bg-color(@white)}
+.bg-lime {.set-bg-color(@lime)}
+.bg-green {.set-bg-color(@green)}
+.bg-emerald {.set-bg-color(@emerald)}
+.bg-teal {.set-bg-color(@teal)}
+.bg-cyan {.set-bg-color(@cyan)}
+.bg-cobalt {.set-bg-color(@cobalt)}
+.bg-indigo {.set-bg-color(@indigo)}
+.bg-violet {.set-bg-color(@violet)}
+.bg-pink {.set-bg-color(@pink)}
+.bg-magenta {.set-bg-color(@magenta)}
+.bg-crimson {.set-bg-color(@crimson)}
+.bg-red {.set-bg-color(@red)}
+.bg-orange {.set-bg-color(@orange)}
+.bg-amber {.set-bg-color(@amber)}
+.bg-yellow {.set-bg-color(@yellow)}
+.bg-brown {.set-bg-color(@brown)}
+.bg-olive {.set-bg-color(@olive)}
+.bg-steel {.set-bg-color(@steel)}
+.bg-mauve {.set-bg-color(@mauve)}
+.bg-taupe {.set-bg-color(@taupe)}
+.bg-gray {.set-bg-color(@gray)}
+.bg-dark {.set-bg-color(@grayDark)}
+.bg-darker {.set-bg-color(@grayDarker)}
+.bg-transparent {.set-bg-color(transparent)}
+.bg-darkBrown {.set-bg-color(@darkBrown)}
+.bg-darkCrimson {.set-bg-color(@darkCrimson)}
+.bg-darkMagenta {.set-bg-color(@darkMagenta)}
+.bg-darkIndigo {.set-bg-color(@darkIndigo)}
+.bg-darkCyan {.set-bg-color(@darkCyan)}
+.bg-darkCobalt {.set-bg-color(@darkCobalt)}
+.bg-darkTeal {.set-bg-color(@darkTeal)}
+.bg-darkEmerald {.set-bg-color(@darkEmerald)}
+.bg-darkGreen {.set-bg-color(@darkGreen)}
+.bg-darkOrange {.set-bg-color(@darkOrange)}
+.bg-darkRed {.set-bg-color(@darkRed)}
+.bg-darkPink {.set-bg-color(@darkPink)}
+.bg-darkViolet {.set-bg-color(@darkViolet)}
+.bg-darkBlue {.set-bg-color(@darkBlue)}
+.bg-lightBlue {.set-bg-color(@lightBlue)}
+.bg-lightRed {.set-bg-color(@lightRed)}
+.bg-lightGreen {.set-bg-color(@lightGreen)}
+.bg-lighterBlue {.set-bg-color(@lighterBlue)}
+.bg-lightTeal {.set-bg-color(@lightTeal)}
+.bg-lightOlive {.set-bg-color(@lightOlive)}
+.bg-lightOrange {.set-bg-color(@lightOrange)}
+.bg-lightPink {.set-bg-color(@lightPink)}
+.bg-grayDark {.set-bg-color(@grayDark)}
+.bg-grayDarker {.set-bg-color(@grayDarker)}
+.bg-grayLight {.set-bg-color(@grayLight)}
+.bg-grayLighter {.set-bg-color(@grayLighter)}
+.bg-blue {.set-bg-color(@blue)}
 
 // Colors : foreground
-.fg-black {color: @black !important;}
-.fg-white {color: @white !important;}
-.fg-lime {color: @lime !important;}
-.fg-green {color: @green !important;}
-.fg-emerald {color: @emerald !important;}
-.fg-teal {color: @teal !important;}
-.fg-cyan {color: @cyan !important;}
-.fg-cobalt {color: @cobalt !important;}
-.fg-indigo {color: @indigo !important;}
-.fg-violet {color: @violet !important;}
-.fg-pink {color: @pink !important;}
-.fg-magenta {color: @magenta !important;}
-.fg-crimson {color: @crimson !important;}
-.fg-red {color: @red !important;}
-.fg-orange {color: @orange !important;}
-.fg-amber {color: @amber !important;}
-.fg-yellow {color: @yellow !important;}
-.fg-brown {color: @brown !important;}
-.fg-olive {color: @olive !important;}
-.fg-steel {color: @steel !important;}
-.fg-mauve {color: @mauve !important;}
-.fg-taupe {color: @taupe !important;}
-.fg-gray {color: @gray !important;}
-.fg-dark {color: @grayDark !important;}
-.fg-darker {color: @grayDarker !important;}
-.fg-transparent {color: transparent !important;}
-.fg-darkBrown {color: @darkBrown !important;}
-.fg-darkCrimson {color: @darkCrimson !important;}
-.fg-darkMagenta {color: @darkMagenta !important;}
-.fg-darkIndigo {color: @darkIndigo !important;}
-.fg-darkCyan {color: @darkCyan !important;}
-.fg-darkCobalt {color: @darkCobalt !important;}
-.fg-darkTeal {color: @darkTeal !important;}
-.fg-darkEmerald {color: @darkEmerald !important;}
-.fg-darkGreen {color: @darkGreen !important;}
-.fg-darkOrange {color: @darkOrange !important;}
-.fg-darkRed {color: @darkRed !important;}
-.fg-darkPink {color: @darkPink !important;}
-.fg-darkViolet {color: @darkViolet !important;}
-.fg-darkBlue {color: @darkBlue !important;}
-.fg-lightBlue {color: @lightBlue !important;}
-.fg-lighterBlue {color: @lighterBlue !important;}
-.fg-lightTeal {color: lighten(@teal, 30%) !important;}
-.fg-lightOlive {color: @lightOlive !important;}
-.fg-lightOrange {color: @lightOrange !important;}
-.fg-lightPink {color: @lightPink !important;}
-.fg-lightRed {color: @lightRed !important;}
-.fg-lightGreen {color: @lightGreen !important;}
-
-.fg-grayDark {color: @grayDark !important;}
-.fg-grayDarker {color: @grayDarker !important;}
-.fg-grayLight {color: @grayLight !important;}
-.fg-grayLighter {color: @grayLighter !important;}
+.fg-black {.set-fg-color(@black);}
+.fg-white {.set-fg-color(@white);}
+.fg-lime {.set-fg-color(@lime);}
+.fg-green {.set-fg-color(@green);}
+.fg-emerald {.set-fg-color(@emerald);}
+.fg-teal {.set-fg-color(@teal);}
+.fg-cyan {.set-fg-color(@cyan);}
+.fg-cobalt {.set-fg-color(@cobalt);}
+.fg-indigo {.set-fg-color(@indigo);}
+.fg-violet {.set-fg-color(@violet);}
+.fg-pink {.set-fg-color(@pink);}
+.fg-magenta {.set-fg-color(@magenta);}
+.fg-crimson {.set-fg-color(@crimson);}
+.fg-red {.set-fg-color(@red);}
+.fg-orange {.set-fg-color(@orange);}
+.fg-amber {.set-fg-color(@amber);}
+.fg-yellow {.set-fg-color(@yellow);}
+.fg-brown {.set-fg-color(@brown);}
+.fg-olive {.set-fg-color(@olive);}
+.fg-steel {.set-fg-color(@steel);}
+.fg-mauve {.set-fg-color(@mauve);}
+.fg-taupe {.set-fg-color(@taupe);}
+.fg-gray {.set-fg-color(@gray);}
+.fg-dark {.set-fg-color(@grayDark);}
+.fg-darker {.set-fg-color(@grayDarker);}
+.fg-transparent {.set-fg-color(transparent);}
+.fg-darkBrown {.set-fg-color(@darkBrown);}
+.fg-darkCrimson {.set-fg-color(@darkCrimson);}
+.fg-darkMagenta {.set-fg-color(@darkMagenta);}
+.fg-darkIndigo {.set-fg-color(@darkIndigo);}
+.fg-darkCyan {.set-fg-color(@darkCyan);}
+.fg-darkCobalt {.set-fg-color(@darkCobalt);}
+.fg-darkTeal {.set-fg-color(@darkTeal);}
+.fg-darkEmerald {.set-fg-color(@darkEmerald);}
+.fg-darkGreen {.set-fg-color(@darkGreen);}
+.fg-darkOrange {.set-fg-color(@darkOrange);}
+.fg-darkRed {.set-fg-color(@darkRed);}
+.fg-darkPink {.set-fg-color(@darkPink);}
+.fg-darkViolet {.set-fg-color(@darkViolet);}
+.fg-darkBlue {.set-fg-color(@darkBlue);}
+.fg-lightBlue {.set-fg-color(@lightBlue);}
+.fg-lighterBlue {.set-fg-color(@lighterBlue);}
+.fg-lightTeal {.set-fg-color(@lightTeal);}
+.fg-lightOlive {.set-fg-color(@lightOlive);}
+.fg-lightOrange {.set-fg-color(@lightOrange);}
+.fg-lightPink {.set-fg-color(@lightPink);}
+.fg-lightRed {.set-fg-color(@lightRed);}
+.fg-lightGreen {.set-fg-color(@lightGreen);}
+.fg-grayDark {.set-fg-color(@grayDark);}
+.fg-grayDarker {.set-fg-color(@grayDarker);}
+.fg-grayLight {.set-fg-color(@grayLight);}
+.fg-grayLighter {.set-fg-color(@grayLighter);}
+.fg-blue {.set-fg-color(@blue);}
 
 // Colors : outline
-.ol-black {outline-color: @black !important;}
-.ol-white {outline-color: @white !important;}
-.ol-lime {outline-color: @lime !important;}
-.ol-green {outline-color: @green !important;}
-.ol-emerald {outline-color: @emerald !important;}
-.ol-teal {outline-color: @teal !important;}
-.ol-cyan {outline-color: @cyan !important;}
-.ol-cobalt {outline-color: @cobalt !important;}
-.ol-indigo {outline-color: @indigo !important;}
-.ol-violet {outline-color: @violet !important;}
-.ol-pink {outline-color: @pink !important;}
-.ol-magenta {outline-color: @magenta !important;}
-.ol-crimson {outline-color: @crimson !important;}
-.ol-red {outline-color: @red !important;}
-.ol-orange {outline-color: @orange !important;}
-.ol-amber {outline-color: @amber !important;}
-.ol-yellow {outline-color: @yellow !important;}
-.ol-brown {outline-color: @brown !important;}
-.ol-olive {outline-color: @olive !important;}
-.ol-steel {outline-color: @steel !important;}
-.ol-mauve {outline-color: @mauve !important;}
-.ol-taupe {outline-color: @taupe !important;}
-.ol-gray {outline-color: @gray !important;}
-.ol-dark {outline-color: @grayDark !important;}
-.ol-darker {outline-color: @grayDarker !important;}
-.ol-transparent {outline-color: transparent !important;}
-.ol-darkBrown {outline-color: @darkBrown !important;}
-.ol-darkCrimson {outline-color: @darkCrimson !important;}
-.ol-darkMagenta {outline-color: @darkMagenta !important;}
-.ol-darkIndigo {outline-color: @darkIndigo !important;}
-.ol-darkCyan {outline-color: @darkCyan !important;}
-.ol-darkCobalt {outline-color: @darkCobalt !important;}
-.ol-darkTeal {outline-color: @darkTeal !important;}
-.ol-darkEmerald {outline-color: @darkEmerald !important;}
-.ol-darkGreen {outline-color: @darkGreen !important;}
-.ol-darkOrange {outline-color: @darkOrange !important;}
-.ol-darkRed {outline-color: @darkRed !important;}
-.ol-darkPink {outline-color: @darkPink !important;}
-.ol-darkViolet {outline-color: @darkViolet !important;}
-.ol-darkBlue {outline-color: @darkBlue !important;}
-.ol-lightBlue {outline-color: @lightBlue !important;}
-.ol-lighterBlue {outline-color: @lighterBlue !important;}
-.ol-lightTeal {outline-color: lighten(@teal, 30%) !important;}
-.ol-lightOlive {outline-color: @lightOlive !important;}
-.ol-lightOrange {outline-color: @lightOrange !important;}
-.ol-lightPink {outline-color: @lightPink !important;}
-.ol-lightRed {outline-color: @lightRed !important;}
-.ol-lightGreen {outline-color: @lightGreen !important;}
-
-.ol-grayDark {outline-color: @grayDark !important;}
-.ol-grayDarker {outline-color: @grayDarker !important;}
-.ol-grayLight {outline-color: @grayLight !important;}
-.ol-grayLighter {outline-color: @grayLighter !important;}
+.ol-black {.set-ol-color(@black);}
+.ol-white {.set-ol-color(@white);}
+.ol-lime {.set-ol-color(@lime);}
+.ol-green {.set-ol-color(@green);}
+.ol-emerald {.set-ol-color(@emerald);}
+.ol-teal {.set-ol-color(@teal);}
+.ol-cyan {.set-ol-color(@cyan);}
+.ol-cobalt {.set-ol-color(@cobalt);}
+.ol-indigo {.set-ol-color(@indigo);}
+.ol-violet {.set-ol-color(@violet);}
+.ol-pink {.set-ol-color(@pink);}
+.ol-magenta {.set-ol-color(@magenta);}
+.ol-crimson {.set-ol-color(@crimson);}
+.ol-red {.set-ol-color(@red);}
+.ol-orange {.set-ol-color(@orange);}
+.ol-amber {.set-ol-color(@amber);}
+.ol-yellow {.set-ol-color(@yellow);}
+.ol-brown {.set-ol-color(@brown);}
+.ol-olive {.set-ol-color(@olive);}
+.ol-steel {.set-ol-color(@steel);}
+.ol-mauve {.set-ol-color(@mauve);}
+.ol-taupe {.set-ol-color(@taupe);}
+.ol-gray {.set-ol-color(@gray);}
+.ol-dark {.set-ol-color(@grayDark);}
+.ol-darker {.set-ol-color(@grayDarker);}
+.ol-transparent {.set-ol-color(transparent);}
+.ol-darkBrown {.set-ol-color(@darkBrown);}
+.ol-darkCrimson {.set-ol-color(@darkCrimson);}
+.ol-darkMagenta {.set-ol-color(@darkMagenta);}
+.ol-darkIndigo {.set-ol-color(@darkIndigo);}
+.ol-darkCyan {.set-ol-color(@darkCyan);}
+.ol-darkCobalt {.set-ol-color(@darkCobalt);}
+.ol-darkTeal {.set-ol-color(@darkTeal);}
+.ol-darkEmerald {.set-ol-color(@darkEmerald);}
+.ol-darkGreen {.set-ol-color(@darkGreen);}
+.ol-darkOrange {.set-ol-color(@darkOrange);}
+.ol-darkRed {.set-ol-color(@darkRed);}
+.ol-darkPink {.set-ol-color(@darkPink);}
+.ol-darkViolet {.set-ol-color(@darkViolet);}
+.ol-darkBlue {.set-ol-color(@darkBlue);}
+.ol-lightBlue {.set-ol-color(@lightBlue);}
+.ol-lighterBlue {.set-ol-color(@lighterBlue);}
+.ol-lightTeal {.set-ol-color(@lightTeal);}
+.ol-lightOlive {.set-ol-color(@lightOlive);}
+.ol-lightOrange {.set-ol-color(@lightOrange);}
+.ol-lightPink {.set-ol-color(@lightPink);}
+.ol-lightRed {.set-ol-color(@lightRed);}
+.ol-lightGreen {.set-ol-color(@lightGreen);}
+.ol-grayDark {.set-ol-color(@grayDark);}
+.ol-grayDarker {.set-ol-color(@grayDarker);}
+.ol-grayLight {.set-ol-color(@grayLight);}
+.ol-grayLighter {.set-ol-color(@grayLighter);}
+.ol-blue {.set-ol-color(@blue);}
 
 // Colors : borders
-.bd-black {border-color: @black !important;}
-.bd-white {border-color: @white !important;}
-.bd-lime {border-color: @lime !important;}
-.bd-green {border-color: @green !important;}
-.bd-emerald {border-color: @emerald !important;}
-.bd-teal {border-color: @teal !important;}
-.bd-cyan {border-color: @cyan !important;}
-.bd-cobalt {border-color: @cobalt !important;}
-.bd-indigo {border-color: @indigo !important;}
-.bd-violet {border-color: @violet !important;}
-.bd-pink {border-color: @pink !important;}
-.bd-magenta {border-color: @magenta !important;}
-.bd-crimson {border-color: @crimson !important;}
-.bd-red {border-color: @red !important;}
-.bd-orange {border-color: @orange !important;}
-.bd-amber {border-color: @amber !important;}
-.bd-yellow {border-color: @yellow !important;}
-.bd-brown {border-color: @brown !important;}
-.bd-olive {border-color: @olive !important;}
-.bd-steel {border-color: @steel !important;}
-.bd-mauve {border-color: @mauve !important;}
-.bd-taupe {border-color: @taupe !important;}
-.bd-gray {border-color: @gray !important;}
-.bd-dark {border-color: @grayDark !important;}
-.bd-darker {border-color: @grayDarker !important;}
-.bd-transparent {border-color: transparent !important;}
-.bd-darkBrown {border-color: @darkBrown !important;}
-.bd-darkCrimson {border-color: @darkCrimson !important;}
-.bd-darkMagenta {border-color: @darkMagenta !important;}
-.bd-darkIndigo {border-color: @darkIndigo !important;}
-.bd-darkCyan {border-color: @darkCyan !important;}
-.bd-darkCobalt {border-color: @darkCobalt !important;}
-.bd-darkTeal {border-color: @darkTeal !important;}
-.bd-darkEmerald {border-color: @darkEmerald !important;}
-.bd-darkGreen {border-color: @darkGreen !important;}
-.bd-darkOrange {border-color: @darkOrange !important;}
-.bd-darkRed {border-color: @darkRed !important;}
-.bd-darkPink {border-color: @darkPink !important;}
-.bd-darkViolet {border-color: @darkViolet !important;}
-.bd-darkBlue {border-color: @darkBlue !important;}
-.bd-lightBlue {border-color: @lightBlue !important;}
-.bd-lightTeal {border-color: lighten(@teal, 30%) !important;}
-.bd-lightOlive {border-color: @lightOlive !important;}
-.bd-lightOrange {border-color: @lightOrange !important;}
-.bd-lightPink {border-color: @lightPink !important;}
-.bd-lightRed {border-color: @lightRed !important;}
-.bd-lightGreen {border-color: @lightGreen !important;}
+.bd-black {.set-bd-color(@black);}
+.bd-white {.set-bd-color(@white);}
+.bd-lime {.set-bd-color(@lime);}
+.bd-green {.set-bd-color(@green);}
+.bd-emerald {.set-bd-color(@emerald);}
+.bd-teal {.set-bd-color(@teal);}
+.bd-cyan {.set-bd-color(@cyan);}
+.bd-cobalt {.set-bd-color(@cobalt);}
+.bd-indigo {.set-bd-color(@indigo);}
+.bd-violet {.set-bd-color(@violet);}
+.bd-pink {.set-bd-color(@pink);}
+.bd-magenta {.set-bd-color(@magenta);}
+.bd-crimson {.set-bd-color(@crimson);}
+.bd-red {.set-bd-color(@red);}
+.bd-orange {.set-bd-color(@orange);}
+.bd-amber {.set-bd-color(@amber);}
+.bd-yellow {.set-bd-color(@yellow);}
+.bd-brown {.set-bd-color(@brown);}
+.bd-olive {.set-bd-color(@olive);}
+.bd-steel {.set-bd-color(@steel);}
+.bd-mauve {.set-bd-color(@mauve);}
+.bd-taupe {.set-bd-color(@taupe);}
+.bd-gray {.set-bd-color(@gray);}
+.bd-dark {.set-bd-color(@grayDark);}
+.bd-darker {.set-bd-color(@grayDarker);}
+.bd-transparent {.set-bd-color(transparent);}
+.bd-darkBrown {.set-bd-color(@darkBrown);}
+.bd-darkCrimson {.set-bd-color(@darkCrimson);}
+.bd-darkMagenta {.set-bd-color(@darkMagenta);}
+.bd-darkIndigo {.set-bd-color(@darkIndigo);}
+.bd-darkCyan {.set-bd-color(@darkCyan);}
+.bd-darkCobalt {.set-bd-color(@darkCobalt);}
+.bd-darkTeal {.set-bd-color(@darkTeal);}
+.bd-darkEmerald {.set-bd-color(@darkEmerald);}
+.bd-darkGreen {.set-bd-color(@darkGreen);}
+.bd-darkOrange {.set-bd-color(@darkOrange);}
+.bd-darkRed {.set-bd-color(@darkRed);}
+.bd-darkPink {.set-bd-color(@darkPink);}
+.bd-darkViolet {.set-bd-color(@darkViolet);}
+.bd-darkBlue {.set-bd-color(@darkBlue);}
+.bd-lightBlue {.set-bd-color(@lightBlue);}
+.bd-lightTeal {.set-bd-color(@lightTeal);}
+.bd-lightOlive {.set-bd-color(@lightOlive);}
+.bd-lightOrange {.set-bd-color(@lightOrange);}
+.bd-lightPink {.set-bd-color(@lightPink);}
+.bd-lightRed {.set-bd-color(@lightRed);}
+.bd-lightGreen {.set-bd-color(@lightGreen);}
+.bd-grayDark {.set-bd-color(@grayDark);}
+.bd-grayDarker {.set-bd-color(@grayDarker);}
+.bd-grayLight {.set-bd-color(@grayLight);}
+.bd-grayLighter {.set-bd-color(@grayLighter);}
+.bd-blue {.set-bd-color(@blue);}
 
-.bd-grayDark {border-color: @grayDark !important;}
-.bd-grayDarker {border-color: @grayDarker !important;}
-.bd-grayLight {border-color: @grayLight !important;}
-.bd-grayLighter {border-color: @grayLighter !important;}
+// Hover Colors
+.bg-hover-black {&:hover{.set-bg-color(@black)}}
+.bg-hover-white {&:hover{.set-bg-color(@white)}}
+.bg-hover-lime {&:hover{.set-bg-color(@lime)}}
+.bg-hover-green {&:hover{.set-bg-color(@green)}}
+.bg-hover-emerald {&:hover{.set-bg-color(@emerald)}}
+.bg-hover-teal {&:hover{.set-bg-color(@teal)}}
+.bg-hover-cyan {&:hover{.set-bg-color(@cyan)}}
+.bg-hover-cobalt {&:hover{.set-bg-color(@cobalt)}}
+.bg-hover-indigo {&:hover{.set-bg-color(@indigo)}}
+.bg-hover-violet {&:hover{.set-bg-color(@violet)}}
+.bg-hover-pink {&:hover{.set-bg-color(@pink)}}
+.bg-hover-magenta {&:hover{.set-bg-color(@magenta)}}
+.bg-hover-crimson {&:hover{.set-bg-color(@crimson)}}
+.bg-hover-red {&:hover{.set-bg-color(@red)}}
+.bg-hover-orange {&:hover{.set-bg-color(@orange)}}
+.bg-hover-amber {&:hover{.set-bg-color(@amber)}}
+.bg-hover-yellow {&:hover{.set-bg-color(@yellow)}}
+.bg-hover-brown {&:hover{.set-bg-color(@brown)}}
+.bg-hover-olive {&:hover{.set-bg-color(@olive)}}
+.bg-hover-steel {&:hover{.set-bg-color(@steel)}}
+.bg-hover-mauve {&:hover{.set-bg-color(@mauve)}}
+.bg-hover-taupe {&:hover{.set-bg-color(@taupe)}}
+.bg-hover-gray {&:hover{.set-bg-color(@gray)}}
+.bg-hover-dark {&:hover{.set-bg-color(@grayDark)}}
+.bg-hover-darker {&:hover{.set-bg-color(@grayDarker)}}
+.bg-hover-transparent {&:hover{.set-bg-color(transparent)}}
+.bg-hover-darkBrown {&:hover{.set-bg-color(@darkBrown)}}
+.bg-hover-darkCrimson {&:hover{.set-bg-color(@darkCrimson)}}
+.bg-hover-darkMagenta {&:hover{.set-bg-color(@darkMagenta)}}
+.bg-hover-darkIndigo {&:hover{.set-bg-color(@darkIndigo)}}
+.bg-hover-darkCyan {&:hover{.set-bg-color(@darkCyan)}}
+.bg-hover-darkCobalt {&:hover{.set-bg-color(@darkCobalt)}}
+.bg-hover-darkTeal {&:hover{.set-bg-color(@darkTeal)}}
+.bg-hover-darkEmerald {&:hover{.set-bg-color(@darkEmerald)}}
+.bg-hover-darkGreen {&:hover{.set-bg-color(@darkGreen)}}
+.bg-hover-darkOrange {&:hover{.set-bg-color(@darkOrange)}}
+.bg-hover-darkRed {&:hover{.set-bg-color(@darkRed)}}
+.bg-hover-darkPink {&:hover{.set-bg-color(@darkPink)}}
+.bg-hover-darkViolet {&:hover{.set-bg-color(@darkViolet)}}
+.bg-hover-darkBlue {&:hover{.set-bg-color(@darkBlue)}}
+.bg-hover-lightBlue {&:hover{.set-bg-color(@lightBlue)}}
+.bg-hover-lightTeal {&:hover{.set-bg-color(@lightTeal)}}
+.bg-hover-lightOlive {&:hover{.set-bg-color(@lightOlive)}}
+.bg-hover-lightOrange {&:hover{.set-bg-color(@lightOrange)}}
+.bg-hover-lightPink {&:hover{.set-bg-color(@lightPink)}}
+.bg-hover-lightRed {&:hover{.set-bg-color(@lightRed)}}
+.bg-hover-lightGreen {&:hover{.set-bg-color(@lightGreen)}}
+.bg-hover-grayDark {&:hover{.set-bg-color(@grayDark)}}
+.bg-hover-grayDarker {&:hover{.set-bg-color(@grayDarker)}}
+.bg-hover-grayLight {&:hover{.set-bg-color(@grayLight)}}
+.bg-hover-grayLighter {&:hover{.set-bg-color(@grayLighter)}}
+.bg-hover-blue {&:hover{.set-bg-color(@blue)}}
+
+.fg-hover-black {&:hover{.set-fg-color(@black)}}
+.fg-hover-white {&:hover{.set-fg-color(@white)}}
+.fg-hover-lime {&:hover{.set-fg-color(@lime)}}
+.fg-hover-green {&:hover{.set-fg-color(@green)}}
+.fg-hover-emerald {&:hover{.set-fg-color(@emerald)}}
+.fg-hover-teal {&:hover{.set-fg-color(@teal)}}
+.fg-hover-cyan {&:hover{.set-fg-color(@cyan)}}
+.fg-hover-cobalt {&:hover{.set-fg-color(@cobalt)}}
+.fg-hover-indigo {&:hover{.set-fg-color(@indigo)}}
+.fg-hover-violet {&:hover{.set-fg-color(@violet)}}
+.fg-hover-pink {&:hover{.set-fg-color(@pink)}}
+.fg-hover-magenta {&:hover{.set-fg-color(@magenta)}}
+.fg-hover-crimson {&:hover{.set-fg-color(@crimson)}}
+.fg-hover-red {&:hover{.set-fg-color(@red)}}
+.fg-hover-orange {&:hover{.set-fg-color(@orange)}}
+.fg-hover-amber {&:hover{.set-fg-color(@amber)}}
+.fg-hover-yellow {&:hover{.set-fg-color(@yellow)}}
+.fg-hover-brown {&:hover{.set-fg-color(@brown)}}
+.fg-hover-olive {&:hover{.set-fg-color(@olive)}}
+.fg-hover-steel {&:hover{.set-fg-color(@steel)}}
+.fg-hover-mauve {&:hover{.set-fg-color(@mauve)}}
+.fg-hover-taupe {&:hover{.set-fg-color(@taupe)}}
+.fg-hover-gray {&:hover{.set-fg-color(@gray)}}
+.fg-hover-dark {&:hover{.set-fg-color(@grayDark)}}
+.fg-hover-darker {&:hover{.set-fg-color(@grayDarker)}}
+.fg-hover-transparent {&:hover{.set-fg-color(transparent)}}
+.fg-hover-darkBrown {&:hover{.set-fg-color(@darkBrown)}}
+.fg-hover-darkCrimson {&:hover{.set-fg-color(@darkCrimson)}}
+.fg-hover-darkMagenta {&:hover{.set-fg-color(@darkMagenta)}}
+.fg-hover-darkIndigo {&:hover{.set-fg-color(@darkIndigo)}}
+.fg-hover-darkCyan {&:hover{.set-fg-color(@darkCyan)}}
+.fg-hover-darkCobalt {&:hover{.set-fg-color(@darkCobalt)}}
+.fg-hover-darkTeal {&:hover{.set-fg-color(@darkTeal)}}
+.fg-hover-darkEmerald {&:hover{.set-fg-color(@darkEmerald)}}
+.fg-hover-darkGreen {&:hover{.set-fg-color(@darkGreen)}}
+.fg-hover-darkOrange {&:hover{.set-fg-color(@darkOrange)}}
+.fg-hover-darkRed {&:hover{.set-fg-color(@darkRed)}}
+.fg-hover-darkPink {&:hover{.set-fg-color(@darkPink)}}
+.fg-hover-darkViolet {&:hover{.set-fg-color(@darkViolet)}}
+.fg-hover-darkBlue {&:hover{.set-fg-color(@darkBlue)}}
+.fg-hover-lightBlue {&:hover{.set-fg-color(@lightBlue)}}
+.fg-hover-lightTeal {&:hover{.set-fg-color(@lightTeal)}}
+.fg-hover-lightOlive {&:hover{.set-fg-color(@lightOlive)}}
+.fg-hover-lightOrange {&:hover{.set-fg-color(@lightOrange)}}
+.fg-hover-lightPink {&:hover{.set-fg-color(@lightPink)}}
+.fg-hover-lightRed {&:hover{.set-fg-color(@lightRed)}}
+.fg-hover-lightGreen {&:hover{.set-fg-color(@lightGreen)}}
+.fg-hover-grayDark {&:hover{.set-fg-color(@grayDark)}}
+.fg-hover-grayDarker {&:hover{.set-fg-color(@grayDarker)}}
+.fg-hover-grayLight {&:hover{.set-fg-color(@grayLight)}}
+.fg-hover-grayLighter {&:hover{.set-fg-color(@grayLighter)}}
+.fg-hover-blue {&:hover{.set-fg-color(@blue)}}
+
+// Active Colors
+.bg-active-black {&:active{.set-bg-color(@black)}}
+.bg-active-white {&:active{.set-bg-color(@white)}}
+.bg-active-lime {&:active{.set-bg-color(@lime)}}
+.bg-active-green {&:active{.set-bg-color(@green)}}
+.bg-active-emerald {&:active{.set-bg-color(@emerald)}}
+.bg-active-teal {&:active{.set-bg-color(@teal)}}
+.bg-active-cyan {&:active{.set-bg-color(@cyan)}}
+.bg-active-cobalt {&:active{.set-bg-color(@cobalt)}}
+.bg-active-indigo {&:active{.set-bg-color(@indigo)}}
+.bg-active-violet {&:active{.set-bg-color(@violet)}}
+.bg-active-pink {&:active{.set-bg-color(@pink)}}
+.bg-active-magenta {&:active{.set-bg-color(@magenta)}}
+.bg-active-crimson {&:active{.set-bg-color(@crimson)}}
+.bg-active-red {&:active{.set-bg-color(@red)}}
+.bg-active-orange {&:active{.set-bg-color(@orange)}}
+.bg-active-amber {&:active{.set-bg-color(@amber)}}
+.bg-active-yellow {&:active{.set-bg-color(@yellow)}}
+.bg-active-brown {&:active{.set-bg-color(@brown)}}
+.bg-active-olive {&:active{.set-bg-color(@olive)}}
+.bg-active-steel {&:active{.set-bg-color(@steel)}}
+.bg-active-mauve {&:active{.set-bg-color(@mauve)}}
+.bg-active-taupe {&:active{.set-bg-color(@taupe)}}
+.bg-active-gray {&:active{.set-bg-color(@gray)}}
+.bg-active-dark {&:active{.set-bg-color(@grayDark)}}
+.bg-active-darker {&:active{.set-bg-color(@grayDarker)}}
+.bg-active-transparent {&:active{.set-bg-color(transparent)}}
+.bg-active-darkBrown {&:active{.set-bg-color(@darkBrown)}}
+.bg-active-darkCrimson {&:active{.set-bg-color(@darkCrimson)}}
+.bg-active-darkMagenta {&:active{.set-bg-color(@darkMagenta)}}
+.bg-active-darkIndigo {&:active{.set-bg-color(@darkIndigo)}}
+.bg-active-darkCyan {&:active{.set-bg-color(@darkCyan)}}
+.bg-active-darkCobalt {&:active{.set-bg-color(@darkCobalt)}}
+.bg-active-darkTeal {&:active{.set-bg-color(@darkTeal)}}
+.bg-active-darkEmerald {&:active{.set-bg-color(@darkEmerald)}}
+.bg-active-darkGreen {&:active{.set-bg-color(@darkGreen)}}
+.bg-active-darkOrange {&:active{.set-bg-color(@darkOrange)}}
+.bg-active-darkRed {&:active{.set-bg-color(@darkRed)}}
+.bg-active-darkPink {&:active{.set-bg-color(@darkPink)}}
+.bg-active-darkViolet {&:active{.set-bg-color(@darkViolet)}}
+.bg-active-darkBlue {&:active{.set-bg-color(@darkBlue)}}
+.bg-active-lightBlue {&:active{.set-bg-color(@lightBlue)}}
+.bg-active-lightTeal {&:active{.set-bg-color(@lightTeal)}}
+.bg-active-lightOlive {&:active{.set-bg-color(@lightOlive)}}
+.bg-active-lightOrange {&:active{.set-bg-color(@lightOrange)}}
+.bg-active-lightPink {&:active{.set-bg-color(@lightPink)}}
+.bg-active-lightRed {&:active{.set-bg-color(@lightRed)}}
+.bg-active-lightGreen {&:active{.set-bg-color(@lightGreen)}}
+.bg-active-grayDark {&:active{.set-bg-color(@grayDark)}}
+.bg-active-grayDarker {&:active{.set-bg-color(@grayDarker)}}
+.bg-active-grayLight {&:active{.set-bg-color(@grayLight)}}
+.bg-active-grayLighter {&:active{.set-bg-color(@grayLighter)}}
+.bg-active-blue {&:active{.set-bg-color(@blue)}}
+
+.fg-active-black {&:active{.set-fg-color(@black)}}
+.fg-active-white {&:active{.set-fg-color(@white)}}
+.fg-active-lime {&:active{.set-fg-color(@lime)}}
+.fg-active-green {&:active{.set-fg-color(@green)}}
+.fg-active-emerald {&:active{.set-fg-color(@emerald)}}
+.fg-active-teal {&:active{.set-fg-color(@teal)}}
+.fg-active-cyan {&:active{.set-fg-color(@cyan)}}
+.fg-active-cobalt {&:active{.set-fg-color(@cobalt)}}
+.fg-active-indigo {&:active{.set-fg-color(@indigo)}}
+.fg-active-violet {&:active{.set-fg-color(@violet)}}
+.fg-active-pink {&:active{.set-fg-color(@pink)}}
+.fg-active-magenta {&:active{.set-fg-color(@magenta)}}
+.fg-active-crimson {&:active{.set-fg-color(@crimson)}}
+.fg-active-red {&:active{.set-fg-color(@red)}}
+.fg-active-orange {&:active{.set-fg-color(@orange)}}
+.fg-active-amber {&:active{.set-fg-color(@amber)}}
+.fg-active-yellow {&:active{.set-fg-color(@yellow)}}
+.fg-active-brown {&:active{.set-fg-color(@brown)}}
+.fg-active-olive {&:active{.set-fg-color(@olive)}}
+.fg-active-steel {&:active{.set-fg-color(@steel)}}
+.fg-active-mauve {&:active{.set-fg-color(@mauve)}}
+.fg-active-taupe {&:active{.set-fg-color(@taupe)}}
+.fg-active-gray {&:active{.set-fg-color(@gray)}}
+.fg-active-dark {&:active{.set-fg-color(@grayDark)}}
+.fg-active-darker {&:active{.set-fg-color(@grayDarker)}}
+.fg-active-transparent {&:active{.set-fg-color(transparent)}}
+.fg-active-darkBrown {&:active{.set-fg-color(@darkBrown)}}
+.fg-active-darkCrimson {&:active{.set-fg-color(@darkCrimson)}}
+.fg-active-darkMagenta {&:active{.set-fg-color(@darkMagenta)}}
+.fg-active-darkIndigo {&:active{.set-fg-color(@darkIndigo)}}
+.fg-active-darkCyan {&:active{.set-fg-color(@darkCyan)}}
+.fg-active-darkCobalt {&:active{.set-fg-color(@darkCobalt)}}
+.fg-active-darkTeal {&:active{.set-fg-color(@darkTeal)}}
+.fg-active-darkEmerald {&:active{.set-fg-color(@darkEmerald)}}
+.fg-active-darkGreen {&:active{.set-fg-color(@darkGreen)}}
+.fg-active-darkOrange {&:active{.set-fg-color(@darkOrange)}}
+.fg-active-darkRed {&:active{.set-fg-color(@darkRed)}}
+.fg-active-darkPink {&:active{.set-fg-color(@darkPink)}}
+.fg-active-darkViolet {&:active{.set-fg-color(@darkViolet)}}
+.fg-active-darkBlue {&:active{.set-fg-color(@darkBlue)}}
+.fg-active-lightBlue {&:active{.set-fg-color(@lightBlue)}}
+.fg-active-lightTeal {&:active{.set-fg-color(@lightTeal)}}
+.fg-active-lightOlive {&:active{.set-fg-color(@lightOlive)}}
+.fg-active-lightOrange {&:active{.set-fg-color(@lightOrange)}}
+.fg-active-lightPink {&:active{.set-fg-color(@lightPink)}}
+.fg-active-lightRed {&:active{.set-fg-color(@lightRed)}}
+.fg-active-lightGreen {&:active{.set-fg-color(@lightGreen)}}
+.fg-active-grayDark {&:active{.set-fg-color(@grayDark)}}
+.fg-active-grayDarker {&:active{.set-fg-color(@grayDarker)}}
+.fg-active-grayLight {&:active{.set-fg-color(@grayLight)}}
+.fg-active-grayLighter {&:active{.set-fg-color(@grayLighter)}}
+.fg-active-blue {&:active{.set-fg-color(@blue)}}
+
+// Focus Colors
+.bg-focus-black {&:focus{.set-bg-color(@black)}}
+.bg-focus-white {&:focus{.set-bg-color(@white)}}
+.bg-focus-lime {&:focus{.set-bg-color(@lime)}}
+.bg-focus-green {&:focus{.set-bg-color(@green)}}
+.bg-focus-emerald {&:focus{.set-bg-color(@emerald)}}
+.bg-focus-teal {&:focus{.set-bg-color(@teal)}}
+.bg-focus-cyan {&:focus{.set-bg-color(@cyan)}}
+.bg-focus-cobalt {&:focus{.set-bg-color(@cobalt)}}
+.bg-focus-indigo {&:focus{.set-bg-color(@indigo)}}
+.bg-focus-violet {&:focus{.set-bg-color(@violet)}}
+.bg-focus-pink {&:focus{.set-bg-color(@pink)}}
+.bg-focus-magenta {&:focus{.set-bg-color(@magenta)}}
+.bg-focus-crimson {&:focus{.set-bg-color(@crimson)}}
+.bg-focus-red {&:focus{.set-bg-color(@red)}}
+.bg-focus-orange {&:focus{.set-bg-color(@orange)}}
+.bg-focus-amber {&:focus{.set-bg-color(@amber)}}
+.bg-focus-yellow {&:focus{.set-bg-color(@yellow)}}
+.bg-focus-brown {&:focus{.set-bg-color(@brown)}}
+.bg-focus-olive {&:focus{.set-bg-color(@olive)}}
+.bg-focus-steel {&:focus{.set-bg-color(@steel)}}
+.bg-focus-mauve {&:focus{.set-bg-color(@mauve)}}
+.bg-focus-taupe {&:focus{.set-bg-color(@taupe)}}
+.bg-focus-gray {&:focus{.set-bg-color(@gray)}}
+.bg-focus-dark {&:focus{.set-bg-color(@grayDark)}}
+.bg-focus-darker {&:focus{.set-bg-color(@grayDarker)}}
+.bg-focus-transparent {&:focus{.set-bg-color(transparent)}}
+.bg-focus-darkBrown {&:focus{.set-bg-color(@darkBrown)}}
+.bg-focus-darkCrimson {&:focus{.set-bg-color(@darkCrimson)}}
+.bg-focus-darkMagenta {&:focus{.set-bg-color(@darkMagenta)}}
+.bg-focus-darkIndigo {&:focus{.set-bg-color(@darkIndigo)}}
+.bg-focus-darkCyan {&:focus{.set-bg-color(@darkCyan)}}
+.bg-focus-darkCobalt {&:focus{.set-bg-color(@darkCobalt)}}
+.bg-focus-darkTeal {&:focus{.set-bg-color(@darkTeal)}}
+.bg-focus-darkEmerald {&:focus{.set-bg-color(@darkEmerald)}}
+.bg-focus-darkGreen {&:focus{.set-bg-color(@darkGreen)}}
+.bg-focus-darkOrange {&:focus{.set-bg-color(@darkOrange)}}
+.bg-focus-darkRed {&:focus{.set-bg-color(@darkRed)}}
+.bg-focus-darkPink {&:focus{.set-bg-color(@darkPink)}}
+.bg-focus-darkViolet {&:focus{.set-bg-color(@darkViolet)}}
+.bg-focus-darkBlue {&:focus{.set-bg-color(@darkBlue)}}
+.bg-focus-lightBlue {&:focus{.set-bg-color(@lightBlue)}}
+.bg-focus-lightTeal {&:focus{.set-bg-color(@lightTeal)}}
+.bg-focus-lightOlive {&:focus{.set-bg-color(@lightOlive)}}
+.bg-focus-lightOrange {&:focus{.set-bg-color(@lightOrange)}}
+.bg-focus-lightPink {&:focus{.set-bg-color(@lightPink)}}
+.bg-focus-lightRed {&:focus{.set-bg-color(@lightRed)}}
+.bg-focus-lightGreen {&:focus{.set-bg-color(@lightGreen)}}
+.bg-focus-grayDark {&:focus{.set-bg-color(@grayDark)}}
+.bg-focus-grayDarker {&:focus{.set-bg-color(@grayDarker)}}
+.bg-focus-grayLight {&:focus{.set-bg-color(@grayLight)}}
+.bg-focus-grayLighter {&:focus{.set-bg-color(@grayLighter)}}
+.bg-focus-blue {&:focus{.set-bg-color(@blue)}}
+
+.fg-focus-black {&:focus{.set-fg-color(@black)}}
+.fg-focus-white {&:focus{.set-fg-color(@white)}}
+.fg-focus-lime {&:focus{.set-fg-color(@lime)}}
+.fg-focus-green {&:focus{.set-fg-color(@green)}}
+.fg-focus-emerald {&:focus{.set-fg-color(@emerald)}}
+.fg-focus-teal {&:focus{.set-fg-color(@teal)}}
+.fg-focus-cyan {&:focus{.set-fg-color(@cyan)}}
+.fg-focus-cobalt {&:focus{.set-fg-color(@cobalt)}}
+.fg-focus-indigo {&:focus{.set-fg-color(@indigo)}}
+.fg-focus-violet {&:focus{.set-fg-color(@violet)}}
+.fg-focus-pink {&:focus{.set-fg-color(@pink)}}
+.fg-focus-magenta {&:focus{.set-fg-color(@magenta)}}
+.fg-focus-crimson {&:focus{.set-fg-color(@crimson)}}
+.fg-focus-red {&:focus{.set-fg-color(@red)}}
+.fg-focus-orange {&:focus{.set-fg-color(@orange)}}
+.fg-focus-amber {&:focus{.set-fg-color(@amber)}}
+.fg-focus-yellow {&:focus{.set-fg-color(@yellow)}}
+.fg-focus-brown {&:focus{.set-fg-color(@brown)}}
+.fg-focus-olive {&:focus{.set-fg-color(@olive)}}
+.fg-focus-steel {&:focus{.set-fg-color(@steel)}}
+.fg-focus-mauve {&:focus{.set-fg-color(@mauve)}}
+.fg-focus-taupe {&:focus{.set-fg-color(@taupe)}}
+.fg-focus-gray {&:focus{.set-fg-color(@gray)}}
+.fg-focus-dark {&:focus{.set-fg-color(@grayDark)}}
+.fg-focus-darker {&:focus{.set-fg-color(@grayDarker)}}
+.fg-focus-transparent {&:focus{.set-fg-color(transparent)}}
+.fg-focus-darkBrown {&:focus{.set-fg-color(@darkBrown)}}
+.fg-focus-darkCrimson {&:focus{.set-fg-color(@darkCrimson)}}
+.fg-focus-darkMagenta {&:focus{.set-fg-color(@darkMagenta)}}
+.fg-focus-darkIndigo {&:focus{.set-fg-color(@darkIndigo)}}
+.fg-focus-darkCyan {&:focus{.set-fg-color(@darkCyan)}}
+.fg-focus-darkCobalt {&:focus{.set-fg-color(@darkCobalt)}}
+.fg-focus-darkTeal {&:focus{.set-fg-color(@darkTeal)}}
+.fg-focus-darkEmerald {&:focus{.set-fg-color(@darkEmerald)}}
+.fg-focus-darkGreen {&:focus{.set-fg-color(@darkGreen)}}
+.fg-focus-darkOrange {&:focus{.set-fg-color(@darkOrange)}}
+.fg-focus-darkRed {&:focus{.set-fg-color(@darkRed)}}
+.fg-focus-darkPink {&:focus{.set-fg-color(@darkPink)}}
+.fg-focus-darkViolet {&:focus{.set-fg-color(@darkViolet)}}
+.fg-focus-darkBlue {&:focus{.set-fg-color(@darkBlue)}}
+.fg-focus-lightBlue {&:focus{.set-fg-color(@lightBlue)}}
+.fg-focus-lightTeal {&:focus{.set-fg-color(@lightTeal)}}
+.fg-focus-lightOlive {&:focus{.set-fg-color(@lightOlive)}}
+.fg-focus-lightOrange {&:focus{.set-fg-color(@lightOrange)}}
+.fg-focus-lightPink {&:focus{.set-fg-color(@lightPink)}}
+.fg-focus-lightRed {&:focus{.set-fg-color(@lightRed)}}
+.fg-focus-lightGreen {&:focus{.set-fg-color(@lightGreen)}}
+.fg-focus-grayDark {&:focus{.set-fg-color(@grayDark)}}
+.fg-focus-grayDarker {&:focus{.set-fg-color(@grayDarker)}}
+.fg-focus-grayLight {&:focus{.set-fg-color(@grayLight)}}
+.fg-focus-grayLighter {&:focus{.set-fg-color(@grayLighter)}}
+.fg-focus-blue {&:focus{.set-fg-color(@blue)}}
+
 
 .ribbed(@color: @white, @angle: -45deg, @size: 40px) {
     background-color: @color;
@@ -226,51 +554,52 @@
     background-size: @size @size;
 }
 
-.ribbed-black {.ribbed(@black) !important;}
-.ribbed-white {.ribbed(@white) !important;}
-.ribbed-lime {.ribbed(@lime) !important;}
-.ribbed-green {.ribbed(@green) !important;}
-.ribbed-emerald {.ribbed(@emerald) !important;}
-.ribbed-teal {.ribbed(@teal) !important;}
-.ribbed-cyan {.ribbed(@cyan) !important;}
-.ribbed-cobalt {.ribbed(@cobalt) !important;}
-.ribbed-indigo {.ribbed(@indigo) !important;}
-.ribbed-violet {.ribbed(@violet) !important;}
-.ribbed-pink {.ribbed(@pink) !important;}
-.ribbed-magenta {.ribbed(@magenta) !important;}
-.ribbed-crimson {.ribbed(@crimson) !important;}
-.ribbed-red {.ribbed(@red) !important;}
-.ribbed-orange {.ribbed(@orange) !important;}
-.ribbed-amber {.ribbed(@amber) !important;}
-.ribbed-yellow {.ribbed(@yellow) !important;}
-.ribbed-brown {.ribbed(@brown) !important;}
-.ribbed-olive {.ribbed(@olive) !important;}
-.ribbed-steel {.ribbed(@steel) !important;}
-.ribbed-mauve {.ribbed(@mauve) !important;}
-.ribbed-taupe {.ribbed(@taupe) !important;}
-.ribbed-dark {.ribbed(@dark) !important;}
-.ribbed-darkBrown {.ribbed(@darkBrown) !important;}
-.ribbed-darkCrimson {.ribbed(@darkCrimson) !important;}
-.ribbed-darkMagenta {.ribbed(@darkMagenta) !important;}
-.ribbed-darkIndigo {.ribbed(@darkIndigo) !important;}
-.ribbed-darkCyan {.ribbed(@darkCyan) !important;}
-.ribbed-darkCobalt {.ribbed(@darkCobalt) !important;}
-.ribbed-darkTeal {.ribbed(@darkTeal) !important;}
-.ribbed-darkEmerald {.ribbed(@darkEmerald) !important;}
-.ribbed-darkGreen {.ribbed(@darkGreen) !important;}
-.ribbed-darkOrange {.ribbed(@darkOrange) !important;}
-.ribbed-darkRed {.ribbed(@darkRed) !important;}
-.ribbed-darkPink {.ribbed(@darkPink) !important;}
-.ribbed-darkViolet {.ribbed(@darkViolet) !important;}
-.ribbed-darkBlue {.ribbed(@darkBlue) !important;}
-.ribbed-lightTeal {.ribbed(@lightTeal) !important;}
-.ribbed-lightOlive {.ribbed(@lightOlive) !important;}
-.ribbed-lightOrange {.ribbed(@lightOrange) !important;}
-.ribbed-lightPink {.ribbed(@lightPink) !important;}
-.ribbed-lightRed {.ribbed(@lightRed) !important;}
-.ribbed-lightGreen {.ribbed(@lightGreen) !important;}
-.ribbed-grayed {.ribbed(@grayed) !important;}
-.ribbed-grayDarker {.ribbed(@grayDarker) !important;}
-.ribbed-gray {.ribbed(@gray) !important;}
-.ribbed-grayLight {.ribbed(@grayLight) !important;}
-.ribbed-grayLighter {.ribbed(@grayLighter) !important;}
+.ribbed-black {.ribbed(@black) ;}
+.ribbed-white {.ribbed(@white) ;}
+.ribbed-lime {.ribbed(@lime) ;}
+.ribbed-green {.ribbed(@green) ;}
+.ribbed-emerald {.ribbed(@emerald) ;}
+.ribbed-teal {.ribbed(@teal) ;}
+.ribbed-cyan {.ribbed(@cyan) ;}
+.ribbed-cobalt {.ribbed(@cobalt) ;}
+.ribbed-indigo {.ribbed(@indigo) ;}
+.ribbed-violet {.ribbed(@violet) ;}
+.ribbed-pink {.ribbed(@pink) ;}
+.ribbed-magenta {.ribbed(@magenta) ;}
+.ribbed-crimson {.ribbed(@crimson) ;}
+.ribbed-red {.ribbed(@red) ;}
+.ribbed-orange {.ribbed(@orange) ;}
+.ribbed-amber {.ribbed(@amber) ;}
+.ribbed-yellow {.ribbed(@yellow) ;}
+.ribbed-brown {.ribbed(@brown) ;}
+.ribbed-olive {.ribbed(@olive) ;}
+.ribbed-steel {.ribbed(@steel) ;}
+.ribbed-mauve {.ribbed(@mauve) ;}
+.ribbed-taupe {.ribbed(@taupe) ;}
+.ribbed-dark {.ribbed(@dark) ;}
+.ribbed-darkBrown {.ribbed(@darkBrown) ;}
+.ribbed-darkCrimson {.ribbed(@darkCrimson) ;}
+.ribbed-darkMagenta {.ribbed(@darkMagenta) ;}
+.ribbed-darkIndigo {.ribbed(@darkIndigo) ;}
+.ribbed-darkCyan {.ribbed(@darkCyan) ;}
+.ribbed-darkCobalt {.ribbed(@darkCobalt) ;}
+.ribbed-darkTeal {.ribbed(@darkTeal) ;}
+.ribbed-darkEmerald {.ribbed(@darkEmerald) ;}
+.ribbed-darkGreen {.ribbed(@darkGreen) ;}
+.ribbed-darkOrange {.ribbed(@darkOrange) ;}
+.ribbed-darkRed {.ribbed(@darkRed) ;}
+.ribbed-darkPink {.ribbed(@darkPink) ;}
+.ribbed-darkViolet {.ribbed(@darkViolet) ;}
+.ribbed-darkBlue {.ribbed(@darkBlue) ;}
+.ribbed-lightTeal {.ribbed(@lightTeal) ;}
+.ribbed-lightOlive {.ribbed(@lightOlive) ;}
+.ribbed-lightOrange {.ribbed(@lightOrange) ;}
+.ribbed-lightPink {.ribbed(@lightPink) ;}
+.ribbed-lightRed {.ribbed(@lightRed) ;}
+.ribbed-lightGreen {.ribbed(@lightGreen) ;}
+.ribbed-grayed {.ribbed(@grayed) ;}
+.ribbed-grayDarker {.ribbed(@grayDarker) ;}
+.ribbed-gray {.ribbed(@gray) ;}
+.ribbed-grayLight {.ribbed(@grayLight) ;}
+.ribbed-grayLighter {.ribbed(@grayLighter) ;}
+.ribbed-blue {.ribbed(@blue) ;}

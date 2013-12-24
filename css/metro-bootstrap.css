@@ -182,1059 +182,6 @@ a {
     page-break-after: avoid;
   }
 }
-.metro .bg-black {
-  background-color: #000000 !important;
-}
-.metro .bg-white {
-  background-color: #ffffff !important;
-}
-.metro .bg-lime {
-  background-color: #a4c400 !important;
-}
-.metro .bg-green {
-  background-color: #60a917 !important;
-}
-.metro .bg-emerald {
-  background-color: #008a00 !important;
-}
-.metro .bg-teal {
-  background-color: #00aba9 !important;
-}
-.metro .bg-cyan {
-  background-color: #1ba1e2 !important;
-}
-.metro .bg-cobalt {
-  background-color: #0050ef !important;
-}
-.metro .bg-indigo {
-  background-color: #6a00ff !important;
-}
-.metro .bg-violet {
-  background-color: #aa00ff !important;
-}
-.metro .bg-pink {
-  background-color: #dc4fad !important;
-}
-.metro .bg-magenta {
-  background-color: #d80073 !important;
-}
-.metro .bg-crimson {
-  background-color: #a20025 !important;
-}
-.metro .bg-red {
-  background-color: #e51400 !important;
-}
-.metro .bg-orange {
-  background-color: #fa6800 !important;
-}
-.metro .bg-amber {
-  background-color: #f0a30a !important;
-}
-.metro .bg-yellow {
-  background-color: #e3c800 !important;
-}
-.metro .bg-brown {
-  background-color: #825a2c !important;
-}
-.metro .bg-olive {
-  background-color: #6d8764 !important;
-}
-.metro .bg-steel {
-  background-color: #647687 !important;
-}
-.metro .bg-mauve {
-  background-color: #76608a !important;
-}
-.metro .bg-taupe {
-  background-color: #87794e !important;
-}
-.metro .bg-gray {
-  background-color: #555555 !important;
-}
-.metro .bg-dark {
-  background-color: #333333 !important;
-}
-.metro .bg-darker {
-  background-color: #222222 !important;
-}
-.metro .bg-transparent {
-  background-color: transparent !important;
-}
-.metro .bg-darkBrown {
-  background-color: #63362f !important;
-}
-.metro .bg-darkCrimson {
-  background-color: #640024 !important;
-}
-.metro .bg-darkMagenta {
-  background-color: #81003c !important;
-}
-.metro .bg-darkIndigo {
-  background-color: #4b0096 !important;
-}
-.metro .bg-darkCyan {
-  background-color: #1b6eae !important;
-}
-.metro .bg-darkCobalt {
-  background-color: #00356a !important;
-}
-.metro .bg-darkTeal {
-  background-color: #004050 !important;
-}
-.metro .bg-darkEmerald {
-  background-color: #003e00 !important;
-}
-.metro .bg-darkGreen {
-  background-color: #128023 !important;
-}
-.metro .bg-darkOrange {
-  background-color: #bf5a15 !important;
-}
-.metro .bg-darkRed {
-  background-color: #9a1616 !important;
-}
-.metro .bg-darkPink {
-  background-color: #9a165a !important;
-}
-.metro .bg-darkViolet {
-  background-color: #57169a !important;
-}
-.metro .bg-darkBlue {
-  background-color: #16499a !important;
-}
-.metro .bg-lightBlue {
-  background-color: #4390df !important;
-}
-.metro .bg-lightRed {
-  background-color: #ff2d19 !important;
-}
-.metro .bg-lightGreen {
-  background-color: #7ad61d !important;
-}
-.metro .bg-lighterBlue {
-  background-color: #00ccff !important;
-}
-.metro .bg-lightTeal {
-  background-color: #45fffd !important;
-}
-.metro .bg-lightOlive {
-  background-color: #78aa1c !important;
-}
-.metro .bg-lightOrange {
-  background-color: #c29008 !important;
-}
-.metro .bg-lightPink {
-  background-color: #f472d0 !important;
-}
-.metro .bg-grayDark {
-  background-color: #333333 !important;
-}
-.metro .bg-grayDarker {
-  background-color: #222222 !important;
-}
-.metro .bg-grayLight {
-  background-color: #999999 !important;
-}
-.metro .bg-grayLighter {
-  background-color: #eeeeee !important;
-}
-.metro .fg-black {
-  color: #000000 !important;
-}
-.metro .fg-white {
-  color: #ffffff !important;
-}
-.metro .fg-lime {
-  color: #a4c400 !important;
-}
-.metro .fg-green {
-  color: #60a917 !important;
-}
-.metro .fg-emerald {
-  color: #008a00 !important;
-}
-.metro .fg-teal {
-  color: #00aba9 !important;
-}
-.metro .fg-cyan {
-  color: #1ba1e2 !important;
-}
-.metro .fg-cobalt {
-  color: #0050ef !important;
-}
-.metro .fg-indigo {
-  color: #6a00ff !important;
-}
-.metro .fg-violet {
-  color: #aa00ff !important;
-}
-.metro .fg-pink {
-  color: #dc4fad !important;
-}
-.metro .fg-magenta {
-  color: #d80073 !important;
-}
-.metro .fg-crimson {
-  color: #a20025 !important;
-}
-.metro .fg-red {
-  color: #e51400 !important;
-}
-.metro .fg-orange {
-  color: #fa6800 !important;
-}
-.metro .fg-amber {
-  color: #f0a30a !important;
-}
-.metro .fg-yellow {
-  color: #e3c800 !important;
-}
-.metro .fg-brown {
-  color: #825a2c !important;
-}
-.metro .fg-olive {
-  color: #6d8764 !important;
-}
-.metro .fg-steel {
-  color: #647687 !important;
-}
-.metro .fg-mauve {
-  color: #76608a !important;
-}
-.metro .fg-taupe {
-  color: #87794e !important;
-}
-.metro .fg-gray {
-  color: #555555 !important;
-}
-.metro .fg-dark {
-  color: #333333 !important;
-}
-.metro .fg-darker {
-  color: #222222 !important;
-}
-.metro .fg-transparent {
-  color: transparent !important;
-}
-.metro .fg-darkBrown {
-  color: #63362f !important;
-}
-.metro .fg-darkCrimson {
-  color: #640024 !important;
-}
-.metro .fg-darkMagenta {
-  color: #81003c !important;
-}
-.metro .fg-darkIndigo {
-  color: #4b0096 !important;
-}
-.metro .fg-darkCyan {
-  color: #1b6eae !important;
-}
-.metro .fg-darkCobalt {
-  color: #00356a !important;
-}
-.metro .fg-darkTeal {
-  color: #004050 !important;
-}
-.metro .fg-darkEmerald {
-  color: #003e00 !important;
-}
-.metro .fg-darkGreen {
-  color: #128023 !important;
-}
-.metro .fg-darkOrange {
-  color: #bf5a15 !important;
-}
-.metro .fg-darkRed {
-  color: #9a1616 !important;
-}
-.metro .fg-darkPink {
-  color: #9a165a !important;
-}
-.metro .fg-darkViolet {
-  color: #57169a !important;
-}
-.metro .fg-darkBlue {
-  color: #16499a !important;
-}
-.metro .fg-lightBlue {
-  color: #4390df !important;
-}
-.metro .fg-lighterBlue {
-  color: #00ccff !important;
-}
-.metro .fg-lightTeal {
-  color: #45fffd !important;
-}
-.metro .fg-lightOlive {
-  color: #78aa1c !important;
-}
-.metro .fg-lightOrange {
-  color: #c29008 !important;
-}
-.metro .fg-lightPink {
-  color: #f472d0 !important;
-}
-.metro .fg-lightRed {
-  color: #ff2d19 !important;
-}
-.metro .fg-lightGreen {
-  color: #7ad61d !important;
-}
-.metro .fg-grayDark {
-  color: #333333 !important;
-}
-.metro .fg-grayDarker {
-  color: #222222 !important;
-}
-.metro .fg-grayLight {
-  color: #999999 !important;
-}
-.metro .fg-grayLighter {
-  color: #eeeeee !important;
-}
-.metro .ol-black {
-  outline-color: #000000 !important;
-}
-.metro .ol-white {
-  outline-color: #ffffff !important;
-}
-.metro .ol-lime {
-  outline-color: #a4c400 !important;
-}
-.metro .ol-green {
-  outline-color: #60a917 !important;
-}
-.metro .ol-emerald {
-  outline-color: #008a00 !important;
-}
-.metro .ol-teal {
-  outline-color: #00aba9 !important;
-}
-.metro .ol-cyan {
-  outline-color: #1ba1e2 !important;
-}
-.metro .ol-cobalt {
-  outline-color: #0050ef !important;
-}
-.metro .ol-indigo {
-  outline-color: #6a00ff !important;
-}
-.metro .ol-violet {
-  outline-color: #aa00ff !important;
-}
-.metro .ol-pink {
-  outline-color: #dc4fad !important;
-}
-.metro .ol-magenta {
-  outline-color: #d80073 !important;
-}
-.metro .ol-crimson {
-  outline-color: #a20025 !important;
-}
-.metro .ol-red {
-  outline-color: #e51400 !important;
-}
-.metro .ol-orange {
-  outline-color: #fa6800 !important;
-}
-.metro .ol-amber {
-  outline-color: #f0a30a !important;
-}
-.metro .ol-yellow {
-  outline-color: #e3c800 !important;
-}
-.metro .ol-brown {
-  outline-color: #825a2c !important;
-}
-.metro .ol-olive {
-  outline-color: #6d8764 !important;
-}
-.metro .ol-steel {
-  outline-color: #647687 !important;
-}
-.metro .ol-mauve {
-  outline-color: #76608a !important;
-}
-.metro .ol-taupe {
-  outline-color: #87794e !important;
-}
-.metro .ol-gray {
-  outline-color: #555555 !important;
-}
-.metro .ol-dark {
-  outline-color: #333333 !important;
-}
-.metro .ol-darker {
-  outline-color: #222222 !important;
-}
-.metro .ol-transparent {
-  outline-color: transparent !important;
-}
-.metro .ol-darkBrown {
-  outline-color: #63362f !important;
-}
-.metro .ol-darkCrimson {
-  outline-color: #640024 !important;
-}
-.metro .ol-darkMagenta {
-  outline-color: #81003c !important;
-}
-.metro .ol-darkIndigo {
-  outline-color: #4b0096 !important;
-}
-.metro .ol-darkCyan {
-  outline-color: #1b6eae !important;
-}
-.metro .ol-darkCobalt {
-  outline-color: #00356a !important;
-}
-.metro .ol-darkTeal {
-  outline-color: #004050 !important;
-}
-.metro .ol-darkEmerald {
-  outline-color: #003e00 !important;
-}
-.metro .ol-darkGreen {
-  outline-color: #128023 !important;
-}
-.metro .ol-darkOrange {
-  outline-color: #bf5a15 !important;
-}
-.metro .ol-darkRed {
-  outline-color: #9a1616 !important;
-}
-.metro .ol-darkPink {
-  outline-color: #9a165a !important;
-}
-.metro .ol-darkViolet {
-  outline-color: #57169a !important;
-}
-.metro .ol-darkBlue {
-  outline-color: #16499a !important;
-}
-.metro .ol-lightBlue {
-  outline-color: #4390df !important;
-}
-.metro .ol-lighterBlue {
-  outline-color: #00ccff !important;
-}
-.metro .ol-lightTeal {
-  outline-color: #45fffd !important;
-}
-.metro .ol-lightOlive {
-  outline-color: #78aa1c !important;
-}
-.metro .ol-lightOrange {
-  outline-color: #c29008 !important;
-}
-.metro .ol-lightPink {
-  outline-color: #f472d0 !important;
-}
-.metro .ol-lightRed {
-  outline-color: #ff2d19 !important;
-}
-.metro .ol-lightGreen {
-  outline-color: #7ad61d !important;
-}
-.metro .ol-grayDark {
-  outline-color: #333333 !important;
-}
-.metro .ol-grayDarker {
-  outline-color: #222222 !important;
-}
-.metro .ol-grayLight {
-  outline-color: #999999 !important;
-}
-.metro .ol-grayLighter {
-  outline-color: #eeeeee !important;
-}
-.metro .bd-black {
-  border-color: #000000 !important;
-}
-.metro .bd-white {
-  border-color: #ffffff !important;
-}
-.metro .bd-lime {
-  border-color: #a4c400 !important;
-}
-.metro .bd-green {
-  border-color: #60a917 !important;
-}
-.metro .bd-emerald {
-  border-color: #008a00 !important;
-}
-.metro .bd-teal {
-  border-color: #00aba9 !important;
-}
-.metro .bd-cyan {
-  border-color: #1ba1e2 !important;
-}
-.metro .bd-cobalt {
-  border-color: #0050ef !important;
-}
-.metro .bd-indigo {
-  border-color: #6a00ff !important;
-}
-.metro .bd-violet {
-  border-color: #aa00ff !important;
-}
-.metro .bd-pink {
-  border-color: #dc4fad !important;
-}
-.metro .bd-magenta {
-  border-color: #d80073 !important;
-}
-.metro .bd-crimson {
-  border-color: #a20025 !important;
-}
-.metro .bd-red {
-  border-color: #e51400 !important;
-}
-.metro .bd-orange {
-  border-color: #fa6800 !important;
-}
-.metro .bd-amber {
-  border-color: #f0a30a !important;
-}
-.metro .bd-yellow {
-  border-color: #e3c800 !important;
-}
-.metro .bd-brown {
-  border-color: #825a2c !important;
-}
-.metro .bd-olive {
-  border-color: #6d8764 !important;
-}
-.metro .bd-steel {
-  border-color: #647687 !important;
-}
-.metro .bd-mauve {
-  border-color: #76608a !important;
-}
-.metro .bd-taupe {
-  border-color: #87794e !important;
-}
-.metro .bd-gray {
-  border-color: #555555 !important;
-}
-.metro .bd-dark {
-  border-color: #333333 !important;
-}
-.metro .bd-darker {
-  border-color: #222222 !important;
-}
-.metro .bd-transparent {
-  border-color: transparent !important;
-}
-.metro .bd-darkBrown {
-  border-color: #63362f !important;
-}
-.metro .bd-darkCrimson {
-  border-color: #640024 !important;
-}
-.metro .bd-darkMagenta {
-  border-color: #81003c !important;
-}
-.metro .bd-darkIndigo {
-  border-color: #4b0096 !important;
-}
-.metro .bd-darkCyan {
-  border-color: #1b6eae !important;
-}
-.metro .bd-darkCobalt {
-  border-color: #00356a !important;
-}
-.metro .bd-darkTeal {
-  border-color: #004050 !important;
-}
-.metro .bd-darkEmerald {
-  border-color: #003e00 !important;
-}
-.metro .bd-darkGreen {
-  border-color: #128023 !important;
-}
-.metro .bd-darkOrange {
-  border-color: #bf5a15 !important;
-}
-.metro .bd-darkRed {
-  border-color: #9a1616 !important;
-}
-.metro .bd-darkPink {
-  border-color: #9a165a !important;
-}
-.metro .bd-darkViolet {
-  border-color: #57169a !important;
-}
-.metro .bd-darkBlue {
-  border-color: #16499a !important;
-}
-.metro .bd-lightBlue {
-  border-color: #4390df !important;
-}
-.metro .bd-lightTeal {
-  border-color: #45fffd !important;
-}
-.metro .bd-lightOlive {
-  border-color: #78aa1c !important;
-}
-.metro .bd-lightOrange {
-  border-color: #c29008 !important;
-}
-.metro .bd-lightPink {
-  border-color: #f472d0 !important;
-}
-.metro .bd-lightRed {
-  border-color: #ff2d19 !important;
-}
-.metro .bd-lightGreen {
-  border-color: #7ad61d !important;
-}
-.metro .bd-grayDark {
-  border-color: #333333 !important;
-}
-.metro .bd-grayDarker {
-  border-color: #222222 !important;
-}
-.metro .bd-grayLight {
-  border-color: #999999 !important;
-}
-.metro .bd-grayLighter {
-  border-color: #eeeeee !important;
-}
-.metro .ribbed-black {
-  background-color: #000000 !important;
-  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-size: 40px 40px !important;
-}
-.metro .ribbed-white {
-  background-color: #ffffff !important;
-  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-size: 40px 40px !important;
-}
-.metro .ribbed-lime {
-  background-color: #a4c400 !important;
-  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-size: 40px 40px !important;
-}
-.metro .ribbed-green {
-  background-color: #60a917 !important;
-  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-size: 40px 40px !important;
-}
-.metro .ribbed-emerald {
-  background-color: #008a00 !important;
-  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-size: 40px 40px !important;
-}
-.metro .ribbed-teal {
-  background-color: #00aba9 !important;
-  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-size: 40px 40px !important;
-}
-.metro .ribbed-cyan {
-  background-color: #1ba1e2 !important;
-  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-size: 40px 40px !important;
-}
-.metro .ribbed-cobalt {
-  background-color: #0050ef !important;
-  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-size: 40px 40px !important;
-}
-.metro .ribbed-indigo {
-  background-color: #6a00ff !important;
-  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-size: 40px 40px !important;
-}
-.metro .ribbed-violet {
-  background-color: #aa00ff !important;
-  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-size: 40px 40px !important;
-}
-.metro .ribbed-pink {
-  background-color: #dc4fad !important;
-  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-size: 40px 40px !important;
-}
-.metro .ribbed-magenta {
-  background-color: #d80073 !important;
-  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-size: 40px 40px !important;
-}
-.metro .ribbed-crimson {
-  background-color: #a20025 !important;
-  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-size: 40px 40px !important;
-}
-.metro .ribbed-red {
-  background-color: #e51400 !important;
-  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-size: 40px 40px !important;
-}
-.metro .ribbed-orange {
-  background-color: #fa6800 !important;
-  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-size: 40px 40px !important;
-}
-.metro .ribbed-amber {
-  background-color: #f0a30a !important;
-  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-size: 40px 40px !important;
-}
-.metro .ribbed-yellow {
-  background-color: #e3c800 !important;
-  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-size: 40px 40px !important;
-}
-.metro .ribbed-brown {
-  background-color: #825a2c !important;
-  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-size: 40px 40px !important;
-}
-.metro .ribbed-olive {
-  background-color: #6d8764 !important;
-  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-size: 40px 40px !important;
-}
-.metro .ribbed-steel {
-  background-color: #647687 !important;
-  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-size: 40px 40px !important;
-}
-.metro .ribbed-mauve {
-  background-color: #76608a !important;
-  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-size: 40px 40px !important;
-}
-.metro .ribbed-taupe {
-  background-color: #87794e !important;
-  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-size: 40px 40px !important;
-}
-.metro .ribbed-dark {
-  background-color: #1d1d1d !important;
-  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-size: 40px 40px !important;
-}
-.metro .ribbed-darkBrown {
-  background-color: #63362f !important;
-  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-size: 40px 40px !important;
-}
-.metro .ribbed-darkCrimson {
-  background-color: #640024 !important;
-  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-size: 40px 40px !important;
-}
-.metro .ribbed-darkMagenta {
-  background-color: #81003c !important;
-  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-size: 40px 40px !important;
-}
-.metro .ribbed-darkIndigo {
-  background-color: #4b0096 !important;
-  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-size: 40px 40px !important;
-}
-.metro .ribbed-darkCyan {
-  background-color: #1b6eae !important;
-  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-size: 40px 40px !important;
-}
-.metro .ribbed-darkCobalt {
-  background-color: #00356a !important;
-  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-size: 40px 40px !important;
-}
-.metro .ribbed-darkTeal {
-  background-color: #004050 !important;
-  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-size: 40px 40px !important;
-}
-.metro .ribbed-darkEmerald {
-  background-color: #003e00 !important;
-  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-size: 40px 40px !important;
-}
-.metro .ribbed-darkGreen {
-  background-color: #128023 !important;
-  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-size: 40px 40px !important;
-}
-.metro .ribbed-darkOrange {
-  background-color: #bf5a15 !important;
-  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-size: 40px 40px !important;
-}
-.metro .ribbed-darkRed {
-  background-color: #9a1616 !important;
-  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-size: 40px 40px !important;
-}
-.metro .ribbed-darkPink {
-  background-color: #9a165a !important;
-  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-size: 40px 40px !important;
-}
-.metro .ribbed-darkViolet {
-  background-color: #57169a !important;
-  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-size: 40px 40px !important;
-}
-.metro .ribbed-darkBlue {
-  background-color: #16499a !important;
-  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-size: 40px 40px !important;
-}
-.metro .ribbed-lightTeal {
-  background-color: #008e8e !important;
-  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-size: 40px 40px !important;
-}
-.metro .ribbed-lightOlive {
-  background-color: #78aa1c !important;
-  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-size: 40px 40px !important;
-}
-.metro .ribbed-lightOrange {
-  background-color: #c29008 !important;
-  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-size: 40px 40px !important;
-}
-.metro .ribbed-lightPink {
-  background-color: #f472d0 !important;
-  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-size: 40px 40px !important;
-}
-.metro .ribbed-lightRed {
-  background-color: #ff2d19 !important;
-  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-size: 40px 40px !important;
-}
-.metro .ribbed-lightGreen {
-  background-color: #7ad61d !important;
-  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-size: 40px 40px !important;
-}
-.metro .ribbed-grayed {
-  background-color: #585858 !important;
-  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-size: 40px 40px !important;
-}
-.metro .ribbed-grayDarker {
-  background-color: #222222 !important;
-  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-size: 40px 40px !important;
-}
-.metro .ribbed-gray {
-  background-color: #555555 !important;
-  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-size: 40px 40px !important;
-}
-.metro .ribbed-grayLight {
-  background-color: #999999 !important;
-  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-size: 40px 40px !important;
-}
-.metro .ribbed-grayLighter {
-  background-color: #eeeeee !important;
-  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-size: 40px 40px !important;
-}
 .metro .box-sizing-border {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -2297,13 +1244,13 @@ a {
   z-index: 1050;
 }
 .metro .error-bar {
-  background-color: #9a1616 !important;
+  background-color: #9a1616;
 }
 .metro .warning-bar {
-  background-color: #bf5a15 !important;
+  background-color: #bf5a15;
 }
 .metro .info-bar {
-  background-color: #4390df !important;
+  background-color: #4390df;
 }
 .metro .span1,
 .metro .size1 {
@@ -2628,16 +1575,16 @@ a {
   background-color: rgba(28, 183, 236, 0.1);
 }
 .metro .table tr.success {
-  background-color: #60a917 !important;
+  background-color: #60a917;
 }
 .metro .table tr.error {
-  background-color: #e51400 !important;
+  background-color: #e51400;
 }
 .metro .table tr.warning {
-  background-color: #fa6800 !important;
+  background-color: #fa6800;
 }
 .metro .table tr.info {
-  background-color: #4390df !important;
+  background-color: #4390df;
 }
 .metro .table tr.info td,
 .metro .table tr.warning td,
@@ -2647,7 +1594,7 @@ a {
 .metro .table tr.warning td *,
 .metro .table tr.error td *,
 .metro .table tr.success td * {
-  color: #ffffff !important;
+  color: #ffffff;
 }
 .metro .table tr.selected {
   background-color: rgba(28, 183, 236, 0.1);
@@ -4519,15 +3466,30 @@ a {
   color: inherit;
 }
 .metro .dropdown-menu li.title {
-  font-family: 'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
-  font-weight: 300;
-  color: #000000;
-  letter-spacing: 0.00em;
-  font-size: 20pt;
-  line-height: 24pt;
-  letter-spacing: 0.01em;
-  font-size: 30pt;
+  background-color: #f6f7f8;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 14px;
+  padding: 4px 8px;
+  border: 0;
+  border-bottom: 1px #dcddde solid;
+  border-top: 1px #dcddde solid;
+  color: #646464;
   margin-bottom: 20px;
+}
+.metro .dropdown-menu li.title:first-child {
+  margin: 0;
+  border-top-width: 0;
+}
+.metro .dropdown-menu li.title:first-child:hover {
+  border-top-width: 0;
+}
+.metro .dropdown-menu li.title:hover {
+  background-color: #f6f7f8;
+  cursor: default;
+  border: 0;
+  border-bottom: 1px #dcddde solid;
+  border-top: 1px #dcddde solid;
 }
 .metro .dropdown-menu.compact a {
   font-weight: normal;
@@ -5233,10 +4195,10 @@ a {
 .metro .tile-area-lightTeal {
   min-width: 100%;
   height: 100%;
-  background-color: #008e8e !important;
+  background-color: #45fffd !important;
 }
 .metro .tile-area-lightTeal .tile {
-  outline-color: #00c1c1 !important;
+  outline-color: #78fffd !important;
 }
 .metro .tile-area-lightTeal:before,
 .metro .tile-area-lightTeal:after {
@@ -6270,15 +5232,30 @@ a {
   color: inherit;
 }
 .metro .sidebar > ul ul li.title {
-  font-family: 'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
-  font-weight: 300;
-  color: #000000;
-  letter-spacing: 0.00em;
-  font-size: 20pt;
-  line-height: 24pt;
-  letter-spacing: 0.01em;
-  font-size: 30pt;
+  background-color: #f6f7f8;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 14px;
+  padding: 4px 8px;
+  border: 0;
+  border-bottom: 1px #dcddde solid;
+  border-top: 1px #dcddde solid;
+  color: #646464;
   margin-bottom: 20px;
+}
+.metro .sidebar > ul ul li.title:first-child {
+  margin: 0;
+  border-top-width: 0;
+}
+.metro .sidebar > ul ul li.title:first-child:hover {
+  border-top-width: 0;
+}
+.metro .sidebar > ul ul li.title:hover {
+  background-color: #f6f7f8;
+  cursor: default;
+  border: 0;
+  border-bottom: 1px #dcddde solid;
+  border-top: 1px #dcddde solid;
 }
 .metro .sidebar > ul ul.compact a {
   font-weight: normal;
@@ -9746,4 +8723,2014 @@ a {
   border: 0;
   color: #eeeeee;
   background-color: #eeeeee;
+}
+.metro .bg-black {
+  background-color: #000000;
+}
+.metro .bg-white {
+  background-color: #ffffff;
+}
+.metro .bg-lime {
+  background-color: #a4c400;
+}
+.metro .bg-green {
+  background-color: #60a917;
+}
+.metro .bg-emerald {
+  background-color: #008a00;
+}
+.metro .bg-teal {
+  background-color: #00aba9;
+}
+.metro .bg-cyan {
+  background-color: #1ba1e2;
+}
+.metro .bg-cobalt {
+  background-color: #0050ef;
+}
+.metro .bg-indigo {
+  background-color: #6a00ff;
+}
+.metro .bg-violet {
+  background-color: #aa00ff;
+}
+.metro .bg-pink {
+  background-color: #dc4fad;
+}
+.metro .bg-magenta {
+  background-color: #d80073;
+}
+.metro .bg-crimson {
+  background-color: #a20025;
+}
+.metro .bg-red {
+  background-color: #e51400;
+}
+.metro .bg-orange {
+  background-color: #fa6800;
+}
+.metro .bg-amber {
+  background-color: #f0a30a;
+}
+.metro .bg-yellow {
+  background-color: #e3c800;
+}
+.metro .bg-brown {
+  background-color: #825a2c;
+}
+.metro .bg-olive {
+  background-color: #6d8764;
+}
+.metro .bg-steel {
+  background-color: #647687;
+}
+.metro .bg-mauve {
+  background-color: #76608a;
+}
+.metro .bg-taupe {
+  background-color: #87794e;
+}
+.metro .bg-gray {
+  background-color: #555555;
+}
+.metro .bg-dark {
+  background-color: #333333;
+}
+.metro .bg-darker {
+  background-color: #222222;
+}
+.metro .bg-transparent {
+  background-color: transparent;
+}
+.metro .bg-darkBrown {
+  background-color: #63362f;
+}
+.metro .bg-darkCrimson {
+  background-color: #640024;
+}
+.metro .bg-darkMagenta {
+  background-color: #81003c;
+}
+.metro .bg-darkIndigo {
+  background-color: #4b0096;
+}
+.metro .bg-darkCyan {
+  background-color: #1b6eae;
+}
+.metro .bg-darkCobalt {
+  background-color: #00356a;
+}
+.metro .bg-darkTeal {
+  background-color: #004050;
+}
+.metro .bg-darkEmerald {
+  background-color: #003e00;
+}
+.metro .bg-darkGreen {
+  background-color: #128023;
+}
+.metro .bg-darkOrange {
+  background-color: #bf5a15;
+}
+.metro .bg-darkRed {
+  background-color: #9a1616;
+}
+.metro .bg-darkPink {
+  background-color: #9a165a;
+}
+.metro .bg-darkViolet {
+  background-color: #57169a;
+}
+.metro .bg-darkBlue {
+  background-color: #16499a;
+}
+.metro .bg-lightBlue {
+  background-color: #4390df;
+}
+.metro .bg-lightRed {
+  background-color: #ff2d19;
+}
+.metro .bg-lightGreen {
+  background-color: #7ad61d;
+}
+.metro .bg-lighterBlue {
+  background-color: #00ccff;
+}
+.metro .bg-lightTeal {
+  background-color: #45fffd;
+}
+.metro .bg-lightOlive {
+  background-color: #78aa1c;
+}
+.metro .bg-lightOrange {
+  background-color: #c29008;
+}
+.metro .bg-lightPink {
+  background-color: #f472d0;
+}
+.metro .bg-grayDark {
+  background-color: #333333;
+}
+.metro .bg-grayDarker {
+  background-color: #222222;
+}
+.metro .bg-grayLight {
+  background-color: #999999;
+}
+.metro .bg-grayLighter {
+  background-color: #eeeeee;
+}
+.metro .bg-blue {
+  background-color: #00aff0;
+}
+.metro .fg-black {
+  color: #000000;
+}
+.metro .fg-white {
+  color: #ffffff;
+}
+.metro .fg-lime {
+  color: #a4c400;
+}
+.metro .fg-green {
+  color: #60a917;
+}
+.metro .fg-emerald {
+  color: #008a00;
+}
+.metro .fg-teal {
+  color: #00aba9;
+}
+.metro .fg-cyan {
+  color: #1ba1e2;
+}
+.metro .fg-cobalt {
+  color: #0050ef;
+}
+.metro .fg-indigo {
+  color: #6a00ff;
+}
+.metro .fg-violet {
+  color: #aa00ff;
+}
+.metro .fg-pink {
+  color: #dc4fad;
+}
+.metro .fg-magenta {
+  color: #d80073;
+}
+.metro .fg-crimson {
+  color: #a20025;
+}
+.metro .fg-red {
+  color: #e51400;
+}
+.metro .fg-orange {
+  color: #fa6800;
+}
+.metro .fg-amber {
+  color: #f0a30a;
+}
+.metro .fg-yellow {
+  color: #e3c800;
+}
+.metro .fg-brown {
+  color: #825a2c;
+}
+.metro .fg-olive {
+  color: #6d8764;
+}
+.metro .fg-steel {
+  color: #647687;
+}
+.metro .fg-mauve {
+  color: #76608a;
+}
+.metro .fg-taupe {
+  color: #87794e;
+}
+.metro .fg-gray {
+  color: #555555;
+}
+.metro .fg-dark {
+  color: #333333;
+}
+.metro .fg-darker {
+  color: #222222;
+}
+.metro .fg-transparent {
+  color: transparent;
+}
+.metro .fg-darkBrown {
+  color: #63362f;
+}
+.metro .fg-darkCrimson {
+  color: #640024;
+}
+.metro .fg-darkMagenta {
+  color: #81003c;
+}
+.metro .fg-darkIndigo {
+  color: #4b0096;
+}
+.metro .fg-darkCyan {
+  color: #1b6eae;
+}
+.metro .fg-darkCobalt {
+  color: #00356a;
+}
+.metro .fg-darkTeal {
+  color: #004050;
+}
+.metro .fg-darkEmerald {
+  color: #003e00;
+}
+.metro .fg-darkGreen {
+  color: #128023;
+}
+.metro .fg-darkOrange {
+  color: #bf5a15;
+}
+.metro .fg-darkRed {
+  color: #9a1616;
+}
+.metro .fg-darkPink {
+  color: #9a165a;
+}
+.metro .fg-darkViolet {
+  color: #57169a;
+}
+.metro .fg-darkBlue {
+  color: #16499a;
+}
+.metro .fg-lightBlue {
+  color: #4390df;
+}
+.metro .fg-lighterBlue {
+  color: #00ccff;
+}
+.metro .fg-lightTeal {
+  color: #45fffd;
+}
+.metro .fg-lightOlive {
+  color: #78aa1c;
+}
+.metro .fg-lightOrange {
+  color: #c29008;
+}
+.metro .fg-lightPink {
+  color: #f472d0;
+}
+.metro .fg-lightRed {
+  color: #ff2d19;
+}
+.metro .fg-lightGreen {
+  color: #7ad61d;
+}
+.metro .fg-grayDark {
+  color: #333333;
+}
+.metro .fg-grayDarker {
+  color: #222222;
+}
+.metro .fg-grayLight {
+  color: #999999;
+}
+.metro .fg-grayLighter {
+  color: #eeeeee;
+}
+.metro .fg-blue {
+  color: #00aff0;
+}
+.metro .ol-black {
+  outline-color: #000000;
+}
+.metro .ol-white {
+  outline-color: #ffffff;
+}
+.metro .ol-lime {
+  outline-color: #a4c400;
+}
+.metro .ol-green {
+  outline-color: #60a917;
+}
+.metro .ol-emerald {
+  outline-color: #008a00;
+}
+.metro .ol-teal {
+  outline-color: #00aba9;
+}
+.metro .ol-cyan {
+  outline-color: #1ba1e2;
+}
+.metro .ol-cobalt {
+  outline-color: #0050ef;
+}
+.metro .ol-indigo {
+  outline-color: #6a00ff;
+}
+.metro .ol-violet {
+  outline-color: #aa00ff;
+}
+.metro .ol-pink {
+  outline-color: #dc4fad;
+}
+.metro .ol-magenta {
+  outline-color: #d80073;
+}
+.metro .ol-crimson {
+  outline-color: #a20025;
+}
+.metro .ol-red {
+  outline-color: #e51400;
+}
+.metro .ol-orange {
+  outline-color: #fa6800;
+}
+.metro .ol-amber {
+  outline-color: #f0a30a;
+}
+.metro .ol-yellow {
+  outline-color: #e3c800;
+}
+.metro .ol-brown {
+  outline-color: #825a2c;
+}
+.metro .ol-olive {
+  outline-color: #6d8764;
+}
+.metro .ol-steel {
+  outline-color: #647687;
+}
+.metro .ol-mauve {
+  outline-color: #76608a;
+}
+.metro .ol-taupe {
+  outline-color: #87794e;
+}
+.metro .ol-gray {
+  outline-color: #555555;
+}
+.metro .ol-dark {
+  outline-color: #333333;
+}
+.metro .ol-darker {
+  outline-color: #222222;
+}
+.metro .ol-transparent {
+  outline-color: transparent;
+}
+.metro .ol-darkBrown {
+  outline-color: #63362f;
+}
+.metro .ol-darkCrimson {
+  outline-color: #640024;
+}
+.metro .ol-darkMagenta {
+  outline-color: #81003c;
+}
+.metro .ol-darkIndigo {
+  outline-color: #4b0096;
+}
+.metro .ol-darkCyan {
+  outline-color: #1b6eae;
+}
+.metro .ol-darkCobalt {
+  outline-color: #00356a;
+}
+.metro .ol-darkTeal {
+  outline-color: #004050;
+}
+.metro .ol-darkEmerald {
+  outline-color: #003e00;
+}
+.metro .ol-darkGreen {
+  outline-color: #128023;
+}
+.metro .ol-darkOrange {
+  outline-color: #bf5a15;
+}
+.metro .ol-darkRed {
+  outline-color: #9a1616;
+}
+.metro .ol-darkPink {
+  outline-color: #9a165a;
+}
+.metro .ol-darkViolet {
+  outline-color: #57169a;
+}
+.metro .ol-darkBlue {
+  outline-color: #16499a;
+}
+.metro .ol-lightBlue {
+  outline-color: #4390df;
+}
+.metro .ol-lighterBlue {
+  outline-color: #00ccff;
+}
+.metro .ol-lightTeal {
+  outline-color: #45fffd;
+}
+.metro .ol-lightOlive {
+  outline-color: #78aa1c;
+}
+.metro .ol-lightOrange {
+  outline-color: #c29008;
+}
+.metro .ol-lightPink {
+  outline-color: #f472d0;
+}
+.metro .ol-lightRed {
+  outline-color: #ff2d19;
+}
+.metro .ol-lightGreen {
+  outline-color: #7ad61d;
+}
+.metro .ol-grayDark {
+  outline-color: #333333;
+}
+.metro .ol-grayDarker {
+  outline-color: #222222;
+}
+.metro .ol-grayLight {
+  outline-color: #999999;
+}
+.metro .ol-grayLighter {
+  outline-color: #eeeeee;
+}
+.metro .ol-blue {
+  outline-color: #00aff0;
+}
+.metro .bd-black {
+  border-color: #000000;
+}
+.metro .bd-white {
+  border-color: #ffffff;
+}
+.metro .bd-lime {
+  border-color: #a4c400;
+}
+.metro .bd-green {
+  border-color: #60a917;
+}
+.metro .bd-emerald {
+  border-color: #008a00;
+}
+.metro .bd-teal {
+  border-color: #00aba9;
+}
+.metro .bd-cyan {
+  border-color: #1ba1e2;
+}
+.metro .bd-cobalt {
+  border-color: #0050ef;
+}
+.metro .bd-indigo {
+  border-color: #6a00ff;
+}
+.metro .bd-violet {
+  border-color: #aa00ff;
+}
+.metro .bd-pink {
+  border-color: #dc4fad;
+}
+.metro .bd-magenta {
+  border-color: #d80073;
+}
+.metro .bd-crimson {
+  border-color: #a20025;
+}
+.metro .bd-red {
+  border-color: #e51400;
+}
+.metro .bd-orange {
+  border-color: #fa6800;
+}
+.metro .bd-amber {
+  border-color: #f0a30a;
+}
+.metro .bd-yellow {
+  border-color: #e3c800;
+}
+.metro .bd-brown {
+  border-color: #825a2c;
+}
+.metro .bd-olive {
+  border-color: #6d8764;
+}
+.metro .bd-steel {
+  border-color: #647687;
+}
+.metro .bd-mauve {
+  border-color: #76608a;
+}
+.metro .bd-taupe {
+  border-color: #87794e;
+}
+.metro .bd-gray {
+  border-color: #555555;
+}
+.metro .bd-dark {
+  border-color: #333333;
+}
+.metro .bd-darker {
+  border-color: #222222;
+}
+.metro .bd-transparent {
+  border-color: transparent;
+}
+.metro .bd-darkBrown {
+  border-color: #63362f;
+}
+.metro .bd-darkCrimson {
+  border-color: #640024;
+}
+.metro .bd-darkMagenta {
+  border-color: #81003c;
+}
+.metro .bd-darkIndigo {
+  border-color: #4b0096;
+}
+.metro .bd-darkCyan {
+  border-color: #1b6eae;
+}
+.metro .bd-darkCobalt {
+  border-color: #00356a;
+}
+.metro .bd-darkTeal {
+  border-color: #004050;
+}
+.metro .bd-darkEmerald {
+  border-color: #003e00;
+}
+.metro .bd-darkGreen {
+  border-color: #128023;
+}
+.metro .bd-darkOrange {
+  border-color: #bf5a15;
+}
+.metro .bd-darkRed {
+  border-color: #9a1616;
+}
+.metro .bd-darkPink {
+  border-color: #9a165a;
+}
+.metro .bd-darkViolet {
+  border-color: #57169a;
+}
+.metro .bd-darkBlue {
+  border-color: #16499a;
+}
+.metro .bd-lightBlue {
+  border-color: #4390df;
+}
+.metro .bd-lightTeal {
+  border-color: #45fffd;
+}
+.metro .bd-lightOlive {
+  border-color: #78aa1c;
+}
+.metro .bd-lightOrange {
+  border-color: #c29008;
+}
+.metro .bd-lightPink {
+  border-color: #f472d0;
+}
+.metro .bd-lightRed {
+  border-color: #ff2d19;
+}
+.metro .bd-lightGreen {
+  border-color: #7ad61d;
+}
+.metro .bd-grayDark {
+  border-color: #333333;
+}
+.metro .bd-grayDarker {
+  border-color: #222222;
+}
+.metro .bd-grayLight {
+  border-color: #999999;
+}
+.metro .bd-grayLighter {
+  border-color: #eeeeee;
+}
+.metro .bd-blue {
+  border-color: #00aff0;
+}
+.metro .bg-hover-black:hover {
+  background-color: #000000;
+}
+.metro .bg-hover-white:hover {
+  background-color: #ffffff;
+}
+.metro .bg-hover-lime:hover {
+  background-color: #a4c400;
+}
+.metro .bg-hover-green:hover {
+  background-color: #60a917;
+}
+.metro .bg-hover-emerald:hover {
+  background-color: #008a00;
+}
+.metro .bg-hover-teal:hover {
+  background-color: #00aba9;
+}
+.metro .bg-hover-cyan:hover {
+  background-color: #1ba1e2;
+}
+.metro .bg-hover-cobalt:hover {
+  background-color: #0050ef;
+}
+.metro .bg-hover-indigo:hover {
+  background-color: #6a00ff;
+}
+.metro .bg-hover-violet:hover {
+  background-color: #aa00ff;
+}
+.metro .bg-hover-pink:hover {
+  background-color: #dc4fad;
+}
+.metro .bg-hover-magenta:hover {
+  background-color: #d80073;
+}
+.metro .bg-hover-crimson:hover {
+  background-color: #a20025;
+}
+.metro .bg-hover-red:hover {
+  background-color: #e51400;
+}
+.metro .bg-hover-orange:hover {
+  background-color: #fa6800;
+}
+.metro .bg-hover-amber:hover {
+  background-color: #f0a30a;
+}
+.metro .bg-hover-yellow:hover {
+  background-color: #e3c800;
+}
+.metro .bg-hover-brown:hover {
+  background-color: #825a2c;
+}
+.metro .bg-hover-olive:hover {
+  background-color: #6d8764;
+}
+.metro .bg-hover-steel:hover {
+  background-color: #647687;
+}
+.metro .bg-hover-mauve:hover {
+  background-color: #76608a;
+}
+.metro .bg-hover-taupe:hover {
+  background-color: #87794e;
+}
+.metro .bg-hover-gray:hover {
+  background-color: #555555;
+}
+.metro .bg-hover-dark:hover {
+  background-color: #333333;
+}
+.metro .bg-hover-darker:hover {
+  background-color: #222222;
+}
+.metro .bg-hover-transparent:hover {
+  background-color: transparent;
+}
+.metro .bg-hover-darkBrown:hover {
+  background-color: #63362f;
+}
+.metro .bg-hover-darkCrimson:hover {
+  background-color: #640024;
+}
+.metro .bg-hover-darkMagenta:hover {
+  background-color: #81003c;
+}
+.metro .bg-hover-darkIndigo:hover {
+  background-color: #4b0096;
+}
+.metro .bg-hover-darkCyan:hover {
+  background-color: #1b6eae;
+}
+.metro .bg-hover-darkCobalt:hover {
+  background-color: #00356a;
+}
+.metro .bg-hover-darkTeal:hover {
+  background-color: #004050;
+}
+.metro .bg-hover-darkEmerald:hover {
+  background-color: #003e00;
+}
+.metro .bg-hover-darkGreen:hover {
+  background-color: #128023;
+}
+.metro .bg-hover-darkOrange:hover {
+  background-color: #bf5a15;
+}
+.metro .bg-hover-darkRed:hover {
+  background-color: #9a1616;
+}
+.metro .bg-hover-darkPink:hover {
+  background-color: #9a165a;
+}
+.metro .bg-hover-darkViolet:hover {
+  background-color: #57169a;
+}
+.metro .bg-hover-darkBlue:hover {
+  background-color: #16499a;
+}
+.metro .bg-hover-lightBlue:hover {
+  background-color: #4390df;
+}
+.metro .bg-hover-lightTeal:hover {
+  background-color: #45fffd;
+}
+.metro .bg-hover-lightOlive:hover {
+  background-color: #78aa1c;
+}
+.metro .bg-hover-lightOrange:hover {
+  background-color: #c29008;
+}
+.metro .bg-hover-lightPink:hover {
+  background-color: #f472d0;
+}
+.metro .bg-hover-lightRed:hover {
+  background-color: #ff2d19;
+}
+.metro .bg-hover-lightGreen:hover {
+  background-color: #7ad61d;
+}
+.metro .bg-hover-grayDark:hover {
+  background-color: #333333;
+}
+.metro .bg-hover-grayDarker:hover {
+  background-color: #222222;
+}
+.metro .bg-hover-grayLight:hover {
+  background-color: #999999;
+}
+.metro .bg-hover-grayLighter:hover {
+  background-color: #eeeeee;
+}
+.metro .bg-hover-blue:hover {
+  background-color: #00aff0;
+}
+.metro .fg-hover-black:hover {
+  color: #000000;
+}
+.metro .fg-hover-white:hover {
+  color: #ffffff;
+}
+.metro .fg-hover-lime:hover {
+  color: #a4c400;
+}
+.metro .fg-hover-green:hover {
+  color: #60a917;
+}
+.metro .fg-hover-emerald:hover {
+  color: #008a00;
+}
+.metro .fg-hover-teal:hover {
+  color: #00aba9;
+}
+.metro .fg-hover-cyan:hover {
+  color: #1ba1e2;
+}
+.metro .fg-hover-cobalt:hover {
+  color: #0050ef;
+}
+.metro .fg-hover-indigo:hover {
+  color: #6a00ff;
+}
+.metro .fg-hover-violet:hover {
+  color: #aa00ff;
+}
+.metro .fg-hover-pink:hover {
+  color: #dc4fad;
+}
+.metro .fg-hover-magenta:hover {
+  color: #d80073;
+}
+.metro .fg-hover-crimson:hover {
+  color: #a20025;
+}
+.metro .fg-hover-red:hover {
+  color: #e51400;
+}
+.metro .fg-hover-orange:hover {
+  color: #fa6800;
+}
+.metro .fg-hover-amber:hover {
+  color: #f0a30a;
+}
+.metro .fg-hover-yellow:hover {
+  color: #e3c800;
+}
+.metro .fg-hover-brown:hover {
+  color: #825a2c;
+}
+.metro .fg-hover-olive:hover {
+  color: #6d8764;
+}
+.metro .fg-hover-steel:hover {
+  color: #647687;
+}
+.metro .fg-hover-mauve:hover {
+  color: #76608a;
+}
+.metro .fg-hover-taupe:hover {
+  color: #87794e;
+}
+.metro .fg-hover-gray:hover {
+  color: #555555;
+}
+.metro .fg-hover-dark:hover {
+  color: #333333;
+}
+.metro .fg-hover-darker:hover {
+  color: #222222;
+}
+.metro .fg-hover-transparent:hover {
+  color: transparent;
+}
+.metro .fg-hover-darkBrown:hover {
+  color: #63362f;
+}
+.metro .fg-hover-darkCrimson:hover {
+  color: #640024;
+}
+.metro .fg-hover-darkMagenta:hover {
+  color: #81003c;
+}
+.metro .fg-hover-darkIndigo:hover {
+  color: #4b0096;
+}
+.metro .fg-hover-darkCyan:hover {
+  color: #1b6eae;
+}
+.metro .fg-hover-darkCobalt:hover {
+  color: #00356a;
+}
+.metro .fg-hover-darkTeal:hover {
+  color: #004050;
+}
+.metro .fg-hover-darkEmerald:hover {
+  color: #003e00;
+}
+.metro .fg-hover-darkGreen:hover {
+  color: #128023;
+}
+.metro .fg-hover-darkOrange:hover {
+  color: #bf5a15;
+}
+.metro .fg-hover-darkRed:hover {
+  color: #9a1616;
+}
+.metro .fg-hover-darkPink:hover {
+  color: #9a165a;
+}
+.metro .fg-hover-darkViolet:hover {
+  color: #57169a;
+}
+.metro .fg-hover-darkBlue:hover {
+  color: #16499a;
+}
+.metro .fg-hover-lightBlue:hover {
+  color: #4390df;
+}
+.metro .fg-hover-lightTeal:hover {
+  color: #45fffd;
+}
+.metro .fg-hover-lightOlive:hover {
+  color: #78aa1c;
+}
+.metro .fg-hover-lightOrange:hover {
+  color: #c29008;
+}
+.metro .fg-hover-lightPink:hover {
+  color: #f472d0;
+}
+.metro .fg-hover-lightRed:hover {
+  color: #ff2d19;
+}
+.metro .fg-hover-lightGreen:hover {
+  color: #7ad61d;
+}
+.metro .fg-hover-grayDark:hover {
+  color: #333333;
+}
+.metro .fg-hover-grayDarker:hover {
+  color: #222222;
+}
+.metro .fg-hover-grayLight:hover {
+  color: #999999;
+}
+.metro .fg-hover-grayLighter:hover {
+  color: #eeeeee;
+}
+.metro .fg-hover-blue:hover {
+  color: #00aff0;
+}
+.metro .bg-active-black:active {
+  background-color: #000000;
+}
+.metro .bg-active-white:active {
+  background-color: #ffffff;
+}
+.metro .bg-active-lime:active {
+  background-color: #a4c400;
+}
+.metro .bg-active-green:active {
+  background-color: #60a917;
+}
+.metro .bg-active-emerald:active {
+  background-color: #008a00;
+}
+.metro .bg-active-teal:active {
+  background-color: #00aba9;
+}
+.metro .bg-active-cyan:active {
+  background-color: #1ba1e2;
+}
+.metro .bg-active-cobalt:active {
+  background-color: #0050ef;
+}
+.metro .bg-active-indigo:active {
+  background-color: #6a00ff;
+}
+.metro .bg-active-violet:active {
+  background-color: #aa00ff;
+}
+.metro .bg-active-pink:active {
+  background-color: #dc4fad;
+}
+.metro .bg-active-magenta:active {
+  background-color: #d80073;
+}
+.metro .bg-active-crimson:active {
+  background-color: #a20025;
+}
+.metro .bg-active-red:active {
+  background-color: #e51400;
+}
+.metro .bg-active-orange:active {
+  background-color: #fa6800;
+}
+.metro .bg-active-amber:active {
+  background-color: #f0a30a;
+}
+.metro .bg-active-yellow:active {
+  background-color: #e3c800;
+}
+.metro .bg-active-brown:active {
+  background-color: #825a2c;
+}
+.metro .bg-active-olive:active {
+  background-color: #6d8764;
+}
+.metro .bg-active-steel:active {
+  background-color: #647687;
+}
+.metro .bg-active-mauve:active {
+  background-color: #76608a;
+}
+.metro .bg-active-taupe:active {
+  background-color: #87794e;
+}
+.metro .bg-active-gray:active {
+  background-color: #555555;
+}
+.metro .bg-active-dark:active {
+  background-color: #333333;
+}
+.metro .bg-active-darker:active {
+  background-color: #222222;
+}
+.metro .bg-active-transparent:active {
+  background-color: transparent;
+}
+.metro .bg-active-darkBrown:active {
+  background-color: #63362f;
+}
+.metro .bg-active-darkCrimson:active {
+  background-color: #640024;
+}
+.metro .bg-active-darkMagenta:active {
+  background-color: #81003c;
+}
+.metro .bg-active-darkIndigo:active {
+  background-color: #4b0096;
+}
+.metro .bg-active-darkCyan:active {
+  background-color: #1b6eae;
+}
+.metro .bg-active-darkCobalt:active {
+  background-color: #00356a;
+}
+.metro .bg-active-darkTeal:active {
+  background-color: #004050;
+}
+.metro .bg-active-darkEmerald:active {
+  background-color: #003e00;
+}
+.metro .bg-active-darkGreen:active {
+  background-color: #128023;
+}
+.metro .bg-active-darkOrange:active {
+  background-color: #bf5a15;
+}
+.metro .bg-active-darkRed:active {
+  background-color: #9a1616;
+}
+.metro .bg-active-darkPink:active {
+  background-color: #9a165a;
+}
+.metro .bg-active-darkViolet:active {
+  background-color: #57169a;
+}
+.metro .bg-active-darkBlue:active {
+  background-color: #16499a;
+}
+.metro .bg-active-lightBlue:active {
+  background-color: #4390df;
+}
+.metro .bg-active-lightTeal:active {
+  background-color: #45fffd;
+}
+.metro .bg-active-lightOlive:active {
+  background-color: #78aa1c;
+}
+.metro .bg-active-lightOrange:active {
+  background-color: #c29008;
+}
+.metro .bg-active-lightPink:active {
+  background-color: #f472d0;
+}
+.metro .bg-active-lightRed:active {
+  background-color: #ff2d19;
+}
+.metro .bg-active-lightGreen:active {
+  background-color: #7ad61d;
+}
+.metro .bg-active-grayDark:active {
+  background-color: #333333;
+}
+.metro .bg-active-grayDarker:active {
+  background-color: #222222;
+}
+.metro .bg-active-grayLight:active {
+  background-color: #999999;
+}
+.metro .bg-active-grayLighter:active {
+  background-color: #eeeeee;
+}
+.metro .bg-active-blue:active {
+  background-color: #00aff0;
+}
+.metro .fg-active-black:active {
+  color: #000000;
+}
+.metro .fg-active-white:active {
+  color: #ffffff;
+}
+.metro .fg-active-lime:active {
+  color: #a4c400;
+}
+.metro .fg-active-green:active {
+  color: #60a917;
+}
+.metro .fg-active-emerald:active {
+  color: #008a00;
+}
+.metro .fg-active-teal:active {
+  color: #00aba9;
+}
+.metro .fg-active-cyan:active {
+  color: #1ba1e2;
+}
+.metro .fg-active-cobalt:active {
+  color: #0050ef;
+}
+.metro .fg-active-indigo:active {
+  color: #6a00ff;
+}
+.metro .fg-active-violet:active {
+  color: #aa00ff;
+}
+.metro .fg-active-pink:active {
+  color: #dc4fad;
+}
+.metro .fg-active-magenta:active {
+  color: #d80073;
+}
+.metro .fg-active-crimson:active {
+  color: #a20025;
+}
+.metro .fg-active-red:active {
+  color: #e51400;
+}
+.metro .fg-active-orange:active {
+  color: #fa6800;
+}
+.metro .fg-active-amber:active {
+  color: #f0a30a;
+}
+.metro .fg-active-yellow:active {
+  color: #e3c800;
+}
+.metro .fg-active-brown:active {
+  color: #825a2c;
+}
+.metro .fg-active-olive:active {
+  color: #6d8764;
+}
+.metro .fg-active-steel:active {
+  color: #647687;
+}
+.metro .fg-active-mauve:active {
+  color: #76608a;
+}
+.metro .fg-active-taupe:active {
+  color: #87794e;
+}
+.metro .fg-active-gray:active {
+  color: #555555;
+}
+.metro .fg-active-dark:active {
+  color: #333333;
+}
+.metro .fg-active-darker:active {
+  color: #222222;
+}
+.metro .fg-active-transparent:active {
+  color: transparent;
+}
+.metro .fg-active-darkBrown:active {
+  color: #63362f;
+}
+.metro .fg-active-darkCrimson:active {
+  color: #640024;
+}
+.metro .fg-active-darkMagenta:active {
+  color: #81003c;
+}
+.metro .fg-active-darkIndigo:active {
+  color: #4b0096;
+}
+.metro .fg-active-darkCyan:active {
+  color: #1b6eae;
+}
+.metro .fg-active-darkCobalt:active {
+  color: #00356a;
+}
+.metro .fg-active-darkTeal:active {
+  color: #004050;
+}
+.metro .fg-active-darkEmerald:active {
+  color: #003e00;
+}
+.metro .fg-active-darkGreen:active {
+  color: #128023;
+}
+.metro .fg-active-darkOrange:active {
+  color: #bf5a15;
+}
+.metro .fg-active-darkRed:active {
+  color: #9a1616;
+}
+.metro .fg-active-darkPink:active {
+  color: #9a165a;
+}
+.metro .fg-active-darkViolet:active {
+  color: #57169a;
+}
+.metro .fg-active-darkBlue:active {
+  color: #16499a;
+}
+.metro .fg-active-lightBlue:active {
+  color: #4390df;
+}
+.metro .fg-active-lightTeal:active {
+  color: #45fffd;
+}
+.metro .fg-active-lightOlive:active {
+  color: #78aa1c;
+}
+.metro .fg-active-lightOrange:active {
+  color: #c29008;
+}
+.metro .fg-active-lightPink:active {
+  color: #f472d0;
+}
+.metro .fg-active-lightRed:active {
+  color: #ff2d19;
+}
+.metro .fg-active-lightGreen:active {
+  color: #7ad61d;
+}
+.metro .fg-active-grayDark:active {
+  color: #333333;
+}
+.metro .fg-active-grayDarker:active {
+  color: #222222;
+}
+.metro .fg-active-grayLight:active {
+  color: #999999;
+}
+.metro .fg-active-grayLighter:active {
+  color: #eeeeee;
+}
+.metro .fg-active-blue:active {
+  color: #00aff0;
+}
+.metro .bg-focus-black:focus {
+  background-color: #000000;
+}
+.metro .bg-focus-white:focus {
+  background-color: #ffffff;
+}
+.metro .bg-focus-lime:focus {
+  background-color: #a4c400;
+}
+.metro .bg-focus-green:focus {
+  background-color: #60a917;
+}
+.metro .bg-focus-emerald:focus {
+  background-color: #008a00;
+}
+.metro .bg-focus-teal:focus {
+  background-color: #00aba9;
+}
+.metro .bg-focus-cyan:focus {
+  background-color: #1ba1e2;
+}
+.metro .bg-focus-cobalt:focus {
+  background-color: #0050ef;
+}
+.metro .bg-focus-indigo:focus {
+  background-color: #6a00ff;
+}
+.metro .bg-focus-violet:focus {
+  background-color: #aa00ff;
+}
+.metro .bg-focus-pink:focus {
+  background-color: #dc4fad;
+}
+.metro .bg-focus-magenta:focus {
+  background-color: #d80073;
+}
+.metro .bg-focus-crimson:focus {
+  background-color: #a20025;
+}
+.metro .bg-focus-red:focus {
+  background-color: #e51400;
+}
+.metro .bg-focus-orange:focus {
+  background-color: #fa6800;
+}
+.metro .bg-focus-amber:focus {
+  background-color: #f0a30a;
+}
+.metro .bg-focus-yellow:focus {
+  background-color: #e3c800;
+}
+.metro .bg-focus-brown:focus {
+  background-color: #825a2c;
+}
+.metro .bg-focus-olive:focus {
+  background-color: #6d8764;
+}
+.metro .bg-focus-steel:focus {
+  background-color: #647687;
+}
+.metro .bg-focus-mauve:focus {
+  background-color: #76608a;
+}
+.metro .bg-focus-taupe:focus {
+  background-color: #87794e;
+}
+.metro .bg-focus-gray:focus {
+  background-color: #555555;
+}
+.metro .bg-focus-dark:focus {
+  background-color: #333333;
+}
+.metro .bg-focus-darker:focus {
+  background-color: #222222;
+}
+.metro .bg-focus-transparent:focus {
+  background-color: transparent;
+}
+.metro .bg-focus-darkBrown:focus {
+  background-color: #63362f;
+}
+.metro .bg-focus-darkCrimson:focus {
+  background-color: #640024;
+}
+.metro .bg-focus-darkMagenta:focus {
+  background-color: #81003c;
+}
+.metro .bg-focus-darkIndigo:focus {
+  background-color: #4b0096;
+}
+.metro .bg-focus-darkCyan:focus {
+  background-color: #1b6eae;
+}
+.metro .bg-focus-darkCobalt:focus {
+  background-color: #00356a;
+}
+.metro .bg-focus-darkTeal:focus {
+  background-color: #004050;
+}
+.metro .bg-focus-darkEmerald:focus {
+  background-color: #003e00;
+}
+.metro .bg-focus-darkGreen:focus {
+  background-color: #128023;
+}
+.metro .bg-focus-darkOrange:focus {
+  background-color: #bf5a15;
+}
+.metro .bg-focus-darkRed:focus {
+  background-color: #9a1616;
+}
+.metro .bg-focus-darkPink:focus {
+  background-color: #9a165a;
+}
+.metro .bg-focus-darkViolet:focus {
+  background-color: #57169a;
+}
+.metro .bg-focus-darkBlue:focus {
+  background-color: #16499a;
+}
+.metro .bg-focus-lightBlue:focus {
+  background-color: #4390df;
+}
+.metro .bg-focus-lightTeal:focus {
+  background-color: #45fffd;
+}
+.metro .bg-focus-lightOlive:focus {
+  background-color: #78aa1c;
+}
+.metro .bg-focus-lightOrange:focus {
+  background-color: #c29008;
+}
+.metro .bg-focus-lightPink:focus {
+  background-color: #f472d0;
+}
+.metro .bg-focus-lightRed:focus {
+  background-color: #ff2d19;
+}
+.metro .bg-focus-lightGreen:focus {
+  background-color: #7ad61d;
+}
+.metro .bg-focus-grayDark:focus {
+  background-color: #333333;
+}
+.metro .bg-focus-grayDarker:focus {
+  background-color: #222222;
+}
+.metro .bg-focus-grayLight:focus {
+  background-color: #999999;
+}
+.metro .bg-focus-grayLighter:focus {
+  background-color: #eeeeee;
+}
+.metro .bg-focus-blue:focus {
+  background-color: #00aff0;
+}
+.metro .fg-focus-black:focus {
+  color: #000000;
+}
+.metro .fg-focus-white:focus {
+  color: #ffffff;
+}
+.metro .fg-focus-lime:focus {
+  color: #a4c400;
+}
+.metro .fg-focus-green:focus {
+  color: #60a917;
+}
+.metro .fg-focus-emerald:focus {
+  color: #008a00;
+}
+.metro .fg-focus-teal:focus {
+  color: #00aba9;
+}
+.metro .fg-focus-cyan:focus {
+  color: #1ba1e2;
+}
+.metro .fg-focus-cobalt:focus {
+  color: #0050ef;
+}
+.metro .fg-focus-indigo:focus {
+  color: #6a00ff;
+}
+.metro .fg-focus-violet:focus {
+  color: #aa00ff;
+}
+.metro .fg-focus-pink:focus {
+  color: #dc4fad;
+}
+.metro .fg-focus-magenta:focus {
+  color: #d80073;
+}
+.metro .fg-focus-crimson:focus {
+  color: #a20025;
+}
+.metro .fg-focus-red:focus {
+  color: #e51400;
+}
+.metro .fg-focus-orange:focus {
+  color: #fa6800;
+}
+.metro .fg-focus-amber:focus {
+  color: #f0a30a;
+}
+.metro .fg-focus-yellow:focus {
+  color: #e3c800;
+}
+.metro .fg-focus-brown:focus {
+  color: #825a2c;
+}
+.metro .fg-focus-olive:focus {
+  color: #6d8764;
+}
+.metro .fg-focus-steel:focus {
+  color: #647687;
+}
+.metro .fg-focus-mauve:focus {
+  color: #76608a;
+}
+.metro .fg-focus-taupe:focus {
+  color: #87794e;
+}
+.metro .fg-focus-gray:focus {
+  color: #555555;
+}
+.metro .fg-focus-dark:focus {
+  color: #333333;
+}
+.metro .fg-focus-darker:focus {
+  color: #222222;
+}
+.metro .fg-focus-transparent:focus {
+  color: transparent;
+}
+.metro .fg-focus-darkBrown:focus {
+  color: #63362f;
+}
+.metro .fg-focus-darkCrimson:focus {
+  color: #640024;
+}
+.metro .fg-focus-darkMagenta:focus {
+  color: #81003c;
+}
+.metro .fg-focus-darkIndigo:focus {
+  color: #4b0096;
+}
+.metro .fg-focus-darkCyan:focus {
+  color: #1b6eae;
+}
+.metro .fg-focus-darkCobalt:focus {
+  color: #00356a;
+}
+.metro .fg-focus-darkTeal:focus {
+  color: #004050;
+}
+.metro .fg-focus-darkEmerald:focus {
+  color: #003e00;
+}
+.metro .fg-focus-darkGreen:focus {
+  color: #128023;
+}
+.metro .fg-focus-darkOrange:focus {
+  color: #bf5a15;
+}
+.metro .fg-focus-darkRed:focus {
+  color: #9a1616;
+}
+.metro .fg-focus-darkPink:focus {
+  color: #9a165a;
+}
+.metro .fg-focus-darkViolet:focus {
+  color: #57169a;
+}
+.metro .fg-focus-darkBlue:focus {
+  color: #16499a;
+}
+.metro .fg-focus-lightBlue:focus {
+  color: #4390df;
+}
+.metro .fg-focus-lightTeal:focus {
+  color: #45fffd;
+}
+.metro .fg-focus-lightOlive:focus {
+  color: #78aa1c;
+}
+.metro .fg-focus-lightOrange:focus {
+  color: #c29008;
+}
+.metro .fg-focus-lightPink:focus {
+  color: #f472d0;
+}
+.metro .fg-focus-lightRed:focus {
+  color: #ff2d19;
+}
+.metro .fg-focus-lightGreen:focus {
+  color: #7ad61d;
+}
+.metro .fg-focus-grayDark:focus {
+  color: #333333;
+}
+.metro .fg-focus-grayDarker:focus {
+  color: #222222;
+}
+.metro .fg-focus-grayLight:focus {
+  color: #999999;
+}
+.metro .fg-focus-grayLighter:focus {
+  color: #eeeeee;
+}
+.metro .fg-focus-blue:focus {
+  color: #00aff0;
+}
+.metro .ribbed-black {
+  background-color: #000000;
+  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-size: 40px 40px;
+}
+.metro .ribbed-white {
+  background-color: #ffffff;
+  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-size: 40px 40px;
+}
+.metro .ribbed-lime {
+  background-color: #a4c400;
+  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-size: 40px 40px;
+}
+.metro .ribbed-green {
+  background-color: #60a917;
+  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-size: 40px 40px;
+}
+.metro .ribbed-emerald {
+  background-color: #008a00;
+  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-size: 40px 40px;
+}
+.metro .ribbed-teal {
+  background-color: #00aba9;
+  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-size: 40px 40px;
+}
+.metro .ribbed-cyan {
+  background-color: #1ba1e2;
+  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-size: 40px 40px;
+}
+.metro .ribbed-cobalt {
+  background-color: #0050ef;
+  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-size: 40px 40px;
+}
+.metro .ribbed-indigo {
+  background-color: #6a00ff;
+  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-size: 40px 40px;
+}
+.metro .ribbed-violet {
+  background-color: #aa00ff;
+  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-size: 40px 40px;
+}
+.metro .ribbed-pink {
+  background-color: #dc4fad;
+  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-size: 40px 40px;
+}
+.metro .ribbed-magenta {
+  background-color: #d80073;
+  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-size: 40px 40px;
+}
+.metro .ribbed-crimson {
+  background-color: #a20025;
+  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-size: 40px 40px;
+}
+.metro .ribbed-red {
+  background-color: #e51400;
+  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-size: 40px 40px;
+}
+.metro .ribbed-orange {
+  background-color: #fa6800;
+  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-size: 40px 40px;
+}
+.metro .ribbed-amber {
+  background-color: #f0a30a;
+  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-size: 40px 40px;
+}
+.metro .ribbed-yellow {
+  background-color: #e3c800;
+  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-size: 40px 40px;
+}
+.metro .ribbed-brown {
+  background-color: #825a2c;
+  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-size: 40px 40px;
+}
+.metro .ribbed-olive {
+  background-color: #6d8764;
+  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-size: 40px 40px;
+}
+.metro .ribbed-steel {
+  background-color: #647687;
+  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-size: 40px 40px;
+}
+.metro .ribbed-mauve {
+  background-color: #76608a;
+  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-size: 40px 40px;
+}
+.metro .ribbed-taupe {
+  background-color: #87794e;
+  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-size: 40px 40px;
+}
+.metro .ribbed-dark {
+  background-color: #1d1d1d;
+  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-size: 40px 40px;
+}
+.metro .ribbed-darkBrown {
+  background-color: #63362f;
+  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-size: 40px 40px;
+}
+.metro .ribbed-darkCrimson {
+  background-color: #640024;
+  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-size: 40px 40px;
+}
+.metro .ribbed-darkMagenta {
+  background-color: #81003c;
+  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-size: 40px 40px;
+}
+.metro .ribbed-darkIndigo {
+  background-color: #4b0096;
+  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-size: 40px 40px;
+}
+.metro .ribbed-darkCyan {
+  background-color: #1b6eae;
+  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-size: 40px 40px;
+}
+.metro .ribbed-darkCobalt {
+  background-color: #00356a;
+  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-size: 40px 40px;
+}
+.metro .ribbed-darkTeal {
+  background-color: #004050;
+  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-size: 40px 40px;
+}
+.metro .ribbed-darkEmerald {
+  background-color: #003e00;
+  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-size: 40px 40px;
+}
+.metro .ribbed-darkGreen {
+  background-color: #128023;
+  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-size: 40px 40px;
+}
+.metro .ribbed-darkOrange {
+  background-color: #bf5a15;
+  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-size: 40px 40px;
+}
+.metro .ribbed-darkRed {
+  background-color: #9a1616;
+  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-size: 40px 40px;
+}
+.metro .ribbed-darkPink {
+  background-color: #9a165a;
+  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-size: 40px 40px;
+}
+.metro .ribbed-darkViolet {
+  background-color: #57169a;
+  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-size: 40px 40px;
+}
+.metro .ribbed-darkBlue {
+  background-color: #16499a;
+  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-size: 40px 40px;
+}
+.metro .ribbed-lightTeal {
+  background-color: #45fffd;
+  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-size: 40px 40px;
+}
+.metro .ribbed-lightOlive {
+  background-color: #78aa1c;
+  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-size: 40px 40px;
+}
+.metro .ribbed-lightOrange {
+  background-color: #c29008;
+  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-size: 40px 40px;
+}
+.metro .ribbed-lightPink {
+  background-color: #f472d0;
+  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-size: 40px 40px;
+}
+.metro .ribbed-lightRed {
+  background-color: #ff2d19;
+  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-size: 40px 40px;
+}
+.metro .ribbed-lightGreen {
+  background-color: #7ad61d;
+  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-size: 40px 40px;
+}
+.metro .ribbed-grayed {
+  background-color: #585858;
+  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-size: 40px 40px;
+}
+.metro .ribbed-grayDarker {
+  background-color: #222222;
+  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-size: 40px 40px;
+}
+.metro .ribbed-gray {
+  background-color: #555555;
+  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-size: 40px 40px;
+}
+.metro .ribbed-grayLight {
+  background-color: #999999;
+  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-size: 40px 40px;
+}
+.metro .ribbed-grayLighter {
+  background-color: #eeeeee;
+  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-size: 40px 40px;
+}
+.metro .ribbed-blue {
+  background-color: #00aff0;
+  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-size: 40px 40px;
 }
