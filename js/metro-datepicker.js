@@ -11,7 +11,7 @@
             effect: 'none',
             position: 'bottom',
             locale: $.Metro.currentLocale,
-            weekStart: 0, // 0 - Sunday, 1 - Monday
+            weekStart: (METRO_WEEK_START != undefined ? METRO_WEEK_START : 0), // 0 - Sunday, 1 - Monday
             otherDays: false,
             selected: function(d, d0){},
             _calendar: undefined
