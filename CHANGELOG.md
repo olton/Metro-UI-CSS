@@ -1,4 +1,8 @@
-## Version 2.0.17
+## Version 2.0.18
+
+### Changes:
+- add light style for sidebar
+- minor bug fix for docs
 
 ### Changes:
 - remove !important from colors classes
