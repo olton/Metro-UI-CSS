@@ -5136,6 +5136,7 @@ a {
   display: block;
   border: 0;
   border-bottom: 1px #5c5c5c solid;
+  position: relative;
 }
 .metro .sidebar > ul li.title {
   padding: 20px 20px 10px 20px;
@@ -5176,11 +5177,11 @@ a {
   content: "";
   position: absolute;
   width: 7px;
-  height: 100%;
+  height: 40px;
   left: -7px;
   text-indent: -9999px;
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
   background-color: inherit;
 }
 .metro .sidebar > ul li.disabled a {
@@ -5443,6 +5444,42 @@ a {
 }
 .metro .sidebar > ul ul.open {
   display: block;
+}
+.metro .sidebar.light {
+  background-color: #ffffff;
+  border: 1px #eaeaea solid;
+}
+.metro .sidebar.light li {
+  border-bottom-color: #eeeeee;
+}
+.metro .sidebar.light li.title {
+  color: #1d1d1d;
+}
+.metro .sidebar.light li a {
+  color: #1d1d1d;
+  background-color: #ffffff;
+}
+.metro .sidebar.light li a:hover {
+  background-color: #00aff0;
+}
+.metro .sidebar.light li ul {
+  background-color: #ffffff;
+  border: 1px transparent solid;
+}
+.metro .sidebar.light li .divider {
+  background-color: #eeeeee;
+}
+.metro .sidebar.light li .divider:hover {
+  background-color: #eeeeee;
+}
+.metro .sidebar.light li.disabled a {
+  background-color: #ffffff;
+  cursor: default;
+  color: #999999;
+}
+.metro .sidebar.light li.active a {
+  background-color: #1ba1e2;
+  color: #ffffff;
 }
 .metro .accordion > .accordion-frame {
   border: 1px #eaeaea solid;
