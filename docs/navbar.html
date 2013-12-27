@@ -29,68 +29,66 @@
 <body class="metro">
     <header class="bg-dark" data-load="header.html"></header>
     <div class="page">
-        <div class="page-region">
-            <div class="page-region-content">
-                <h1>
-                    <a href="/"><i class="icon-arrow-left-3 fg-darker smaller"></i></a>
-                    Navigation Bar<small class="on-right">component</small>
-                </h1>
+        <h1>
+            <a href="/"><i class="icon-arrow-left-3 fg-darker smaller"></i></a>
+            Navigation Bar<small class="on-right">component</small>
+        </h1>
 
-                <p class="description">
-                    Navigation Bar is represented navigation component for creating menu.
-                </p>
+        <p class="description">
+            Navigation Bar is represented navigation component for creating menu.
+        </p>
 
-                <div class="example">
-                    <nav class="navigation-bar">
-                        <div class="navigation-bar-content">
+        <div class="example">
+            <nav class="navigation-bar">
+                <div class="navigation-bar-content">
 
-                            <div class="element">
-                                <a class="dropdown-toggle" href="#">METRO UI CSS</a>
-                                <ul class="dropdown-menu" data-role="dropdown">
-                                    <li><a href="#">Main</a></li>
-                                    <li><a href="#">File Open</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="#">Print...</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="#">Exit</a></li>
-                                </ul>
+                    <div class="element">
+                        <a class="dropdown-toggle" href="#">METRO UI CSS</a>
+                        <ul class="dropdown-menu" data-role="dropdown">
+                            <li><a href="#">Main</a></li>
+                            <li><a href="#">File Open</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Print...</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Exit</a></li>
+                        </ul>
+                    </div>
+
+                    <span class="element-divider"></span>
+                    <a class="element brand" href="#"><span class="icon-spin"></span></a>
+                    <a class="element brand" href="#"><span class="icon-printer"></span></a>
+                    <span class="element-divider"></span>
+
+                    <div class="element input-element">
+                        <form>
+                            <div class="input-control text">
+                                <input type="text" placeholder="Search...">
+                                <button class="btn-search"></button>
                             </div>
+                        </form>
+                    </div>
 
-                            <span class="element-divider"></span>
-                            <a class="element brand" href="#"><span class="icon-spin"></span></a>
-                            <a class="element brand" href="#"><span class="icon-printer"></span></a>
-                            <span class="element-divider"></span>
-
-                            <div class="element input-element">
-                                <form>
-                                    <div class="input-control text">
-                                        <input type="text" placeholder="Search...">
-                                        <button class="btn-search"></button>
-                                    </div>
-                                </form>
-                            </div>
-
-                            <div class="element place-right">
-                                <a class="dropdown-toggle" href="#">
-                                    <span class="icon-cog"></span>
-                                </a>
-                                <ul class="dropdown-menu place-right" data-role="dropdown">
-                                    <li><a href="#">Products</a></li>
-                                    <li><a href="#">Download</a></li>
-                                    <li><a href="#">Support</a></li>
-                                    <li><a href="#">Buy Now</a></li>
-                                </ul>
-                            </div>
-                            <span class="element-divider place-right"></span>
-                            <a class="element place-right" href="#"><span class="icon-locked-2"></span></a>
-                            <span class="element-divider place-right"></span>
-                            <button class="element image-button image-left place-right">
-                                Sergey Pimenov
-                                <img src="images/me.jpg"/>
-                            </button>
-                        </div>
-                    </nav>
+                    <div class="element place-right">
+                        <a class="dropdown-toggle" href="#">
+                            <span class="icon-cog"></span>
+                        </a>
+                        <ul class="dropdown-menu place-right" data-role="dropdown">
+                            <li><a href="#">Products</a></li>
+                            <li><a href="#">Download</a></li>
+                            <li><a href="#">Support</a></li>
+                            <li><a href="#">Buy Now</a></li>
+                        </ul>
+                    </div>
+                    <span class="element-divider place-right"></span>
+                    <a class="element place-right" href="#"><span class="icon-locked-2"></span></a>
+                    <span class="element-divider place-right"></span>
+                    <button class="element image-button image-left place-right">
+                        Sergey Pimenov
+                        <img src="images/me.jpg"/>
+                    </button>
                 </div>
+            </nav>
+        </div>
 <pre class="prettyprint linenums">
 &lt;nav class="navigation-bar dark"&gt;
     &lt;nav class="navigation-bar-content"&gt;
@@ -101,12 +99,12 @@
     &lt;/nav&gt;
 &lt;/nav&gt;
 </pre>
-                <p>
-                    Navigator Bar <strong>element</strong> can be: <code>&lt;a&gt;</code>, <code>&lt;div&gt;</code>,  <code>&lt;span&gt;</code>, etc.
-                    Complex element (example input-control) must be included in <code>div</code> with <code>.element</code> class.
-                    For creating divider you must add <code>span</code> with <code>.element-divider</code> class.
-                    For placing element right you must add class <code>.place-right</code> to element.
-                </p>
+        <p>
+            Navigator Bar <strong>element</strong> can be: <code>&lt;a&gt;</code>, <code>&lt;div&gt;</code>,  <code>&lt;span&gt;</code>, etc.
+            Complex element (example input-control) must be included in <code>div</code> with <code>.element</code> class.
+            For creating divider you must add <code>span</code> with <code>.element-divider</code> class.
+            For placing element right you must add class <code>.place-right</code> to element.
+        </p>
 <pre class="prettyprint linenums">
 &lt;nav class="navigation-bar"&gt;
     &lt;nav class="navigation-bar-content"&gt;
@@ -158,90 +156,135 @@
 &lt;/nav&gt;
 </pre>
 
-                <p>
-                    You can create fixed (top or bottom) navigation bar with built in subclasses <code>.fixed-top</code>, <code>.fixed-bottom</code>.
-                </p>
+        <p>
+            You can create fixed (top or bottom) navigation bar with built in subclasses <code>.fixed-top</code>, <code>.fixed-bottom</code>.
+        </p>
 <pre class="prettyprint linenums">
 &lt;nav class="navigation-bar fixed-top"&gt;...&lt;/nav&gt;
 &lt;nav class="navigation-bar fixed-bottom"&gt;...&lt;/nav&gt;
 </pre>
 
-                <h3>Additional color subclasses</h3>
-                <p>Navigation Bar with <code>dark</code> subclass</p>
-                <div class="example">
-                    <nav class="navigation-bar dark">
-                        <div class="navigation-bar-content">
-                            <a class="element brand" href="#">METRO UI CSS</a>
-                            <span class="element-divider"></span>
-                            <a class="element" href="#"><span class="icon-spin"></span></a>
-                            <a class="element" href="#"><span class="icon-printer"></span></a>
-                            <span class="element-divider"></span>
+        <h3>Themed navigation-bar</h3>
+        <div class="example">
+            <h3>Default</h3>
+            <nav class="navigation-bar">
+                <div class="navigation-bar-content">
+                    <a class="element brand" href="#">METRO UI CSS</a>
+                    <span class="element-divider"></span>
+                    <a class="element" href="#"><span class="icon-spin"></span></a>
+                    <a class="element" href="#"><span class="icon-printer"></span></a>
+                    <span class="element-divider"></span>
 
-                            <div class="element input-element">
-                                <form>
-                                    <div class="input-control text">
-                                        <input type="text" placeholder="Search...">
-                                        <button class="btn-search"></button>
-                                    </div>
-                                </form>
+                    <div class="element input-element">
+                        <form>
+                            <div class="input-control text">
+                                <input type="text" placeholder="Search...">
+                                <button class="btn-search"></button>
                             </div>
+                        </form>
+                    </div>
 
-                            <a class="element place-right" href="#"><span class="icon-cog"></span></a>
-                            <span class="element-divider place-right"></span>
-                            <a class="element place-right" href="#"><span class="icon-locked-2"></span></a>
-                            <span class="element-divider place-right"></span>
-                            <button class="element image-button image-left place-right">
-                                Sergey Pimenov
-                                <img src="images/me.jpg"/>
-                            </button>
-                        </div>
-                    </nav>
+                    <a class="element place-right" href="#"><span class="icon-cog"></span></a>
+                    <span class="element-divider place-right"></span>
+                    <a class="element place-right" href="#"><span class="icon-locked-2"></span></a>
+                    <span class="element-divider place-right"></span>
+                    <button class="element image-button image-left place-right">
+                        Sergey Pimenov
+                        <img src="images/me.jpg"/>
+                    </button>
                 </div>
+            </nav>
+            <h3>Dark</h3>
+            <nav class="navigation-bar dark">
+                <div class="navigation-bar-content">
+                    <a class="element brand" href="#">METRO UI CSS</a>
+                    <span class="element-divider"></span>
+                    <a class="element" href="#"><span class="icon-spin"></span></a>
+                    <a class="element" href="#"><span class="icon-printer"></span></a>
+                    <span class="element-divider"></span>
+
+                    <div class="element input-element">
+                        <form>
+                            <div class="input-control text">
+                                <input type="text" placeholder="Search...">
+                                <button class="btn-search"></button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <a class="element place-right" href="#"><span class="icon-cog"></span></a>
+                    <span class="element-divider place-right"></span>
+                    <a class="element place-right" href="#"><span class="icon-locked-2"></span></a>
+                    <span class="element-divider place-right"></span>
+                    <button class="element image-button image-left place-right">
+                        Sergey Pimenov
+                        <img src="images/me.jpg"/>
+                    </button>
+                </div>
+            </nav>
+            <h3>Light</h3>
+            <nav class="navigation-bar light">
+                <div class="navigation-bar-content">
+                    <a class="element brand" href="#">METRO UI CSS</a>
+                    <span class="element-divider"></span>
+                    <a class="element" href="#"><span class="icon-spin"></span></a>
+                    <a class="element" href="#"><span class="icon-printer"></span></a>
+                    <span class="element-divider"></span>
+
+                    <div class="element input-element">
+                        <form>
+                            <div class="input-control text">
+                                <input type="text" placeholder="Search...">
+                                <button class="btn-search"></button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <a class="element place-right" href="#"><span class="icon-cog"></span></a>
+                    <span class="element-divider place-right"></span>
+                    <a class="element place-right" href="#"><span class="icon-locked-2"></span></a>
+                    <span class="element-divider place-right"></span>
+                    <button class="element image-button image-left place-right">
+                        Sergey Pimenov
+                        <img src="images/me.jpg"/>
+                    </button>
+                </div>
+            </nav>
+            <h3>White</h3>
+            <nav class="navigation-bar white border">
+                <div class="navigation-bar-content">
+                    <a class="element brand" href="#">METRO UI CSS</a>
+                    <span class="element-divider"></span>
+                    <a class="element" href="#"><span class="icon-spin"></span></a>
+                    <a class="element" href="#"><span class="icon-printer"></span></a>
+                    <span class="element-divider"></span>
+
+                    <div class="element input-element">
+                        <form>
+                            <div class="input-control text">
+                                <input type="text" placeholder="Search...">
+                                <button class="btn-search"></button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <a class="element place-right" href="#"><span class="icon-cog"></span></a>
+                    <span class="element-divider place-right"></span>
+                    <a class="element place-right" href="#"><span class="icon-locked-2"></span></a>
+                    <span class="element-divider place-right"></span>
+                    <button class="element image-button image-left place-right">
+                        Sergey Pimenov
+                        <img src="images/me.jpg"/>
+                    </button>
+                </div>
+            </nav>
+        </div>
 <pre class="prettyprint linenums">
 &lt;nav class="navigation-bar dark"&gt;...&lt;/nav&gt;
-</pre>
-
-                <p>Navigation Bar with <code>light</code> subclass</p>
-                <div class="example">
-                    <nav class="navigation-bar light">
-                        <div class="navigation-bar-content">
-                            <a class="element brand" href="#">METRO UI CSS</a>
-                            <span class="element-divider"></span>
-                            <a class="element brand" href="#"><span class="icon-spin"></span></a>
-                            <a class="element brand" href="#"><span class="icon-printer"></span></a>
-                            <span class="element-divider"></span>
-
-                            <div class="element input-element">
-                                <form>
-                                    <div class="input-control text">
-                                        <input type="text" placeholder="Search...">
-                                        <button class="btn-search"></button>
-                                    </div>
-                                </form>
-                            </div>
-
-                            <a class="element place-right" href="#"><span class="icon-cog"></span></a>
-                            <span class="element-divider place-right"></span>
-                            <a class="element place-right" href="#"><span class="icon-locked-2"></span></a>
-                            <span class="element-divider place-right"></span>
-                            <button class="element image-button image-left place-right">
-                                Sergey Pimenov
-                                <img src="images/me.jpg"/>
-                            </button>
-                        </div>
-                    </nav>
-                </div>
-            </div>
-        </div>
-<pre class="prettyprint linenums">
 &lt;nav class="navigation-bar light"&gt;...&lt;/nav&gt;
+&lt;nav class="navigation-bar white"&gt;...&lt;/nav&gt;
 </pre>
 
-        <div class="page-footer">
-            <div class="page-footer-content">
-                <!--<div data-load="header.html"></div>-->
-            </div>
-        </div>
     </div>
 
     <script src="js/hitua.js"></script>

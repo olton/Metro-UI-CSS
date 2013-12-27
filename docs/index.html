@@ -2,177 +2,157 @@
 <html>
 <head>
     <meta charset="utf-8">
-
     <meta name="product" content="Metro UI CSS Framework">
-    <meta name="author" content="Sergey S. Pimenov, Ukraine, Kiev">
     <meta name="description" content="Simple responsive css framework">
-    <meta name="keywords" content="Metro, ui, responsive, css, framework, library">
+    <meta name="author" content="Sergey S. Pimenov, Ukraine, Kiev">
 
-    <link rel="stylesheet" href="css/metro-bootstrap.css">
-    <link rel="stylesheet" href="css/docs.css">
+    <link href="css/metro-bootstrap.css" rel="stylesheet">
+    <link href="css/metro-bootstrap-responsive.css" rel="stylesheet">
+    <link href="css/docs.css" rel="stylesheet">
     <link href="js/prettify/prettify.css" rel="stylesheet">
 
+    <!-- Load JavaScript Libraries -->
     <script src="js/jquery/jquery.min.js"></script>
     <script src="js/jquery/jquery.widget.min.js"></script>
+    <script src="js/jquery/jquery.mousewheel.js"></script>
     <script src="js/prettify/prettify.js"></script>
 
+    <!-- Metro UI CSS JavaScript plugins -->
     <script src="js/load-metro.js"></script>
 
+    <!-- Local JavaScript -->
     <script src="js/docs.js"></script>
     <script src="js/github.info.js"></script>
 
-    <title>Metro UI CSS - Bootstrap CSS library</title>
+    <title>Metro UI CSS : Metro Bootstrap CSS Library</title>
 </head>
-<body class="metro">
+<body class="metro" style="background-color: #efeae3">
     <header class="bg-dark" data-load="header.html"></header>
-    <div class="grid container">
-        <div class="row">
-            <div class="span8 bg-white">
-                <div class="padding20 introduce bg-amber">
-                    <h1 class="ntm fg-white">Metro UI CSS 2.0</h1>
-                    <p class="fg-white">Metro UI CSS a set of styles to create a site with an interface similar to Windows 8. This set of styles was developed as a self-contained solution.</p>
-                    <p class="fg-white item-title">Metro UI CSS is open source project with MIT licensing model.</p>
-                </div>
-            </div>
-            <div class="span4">
-                <div class="row no-margin">
-                    <div class="span4">
-                        <a href="https://github.com/olton/Metro-UI-CSS/archive/master.zip"
-                           class="span4 padding20 subheader text-center fg-white introduce_r download_link">Download&nbsp;&nbsp;
-                            <span class="icon-download-2"></span>
-                        </a>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="span4 pos-rel">
-                        <a href="https://www.nuget.org/packages/Metro.UI.CSS/" class="tertiary-text fg-yellow" style="position: absolute; top: 5px; right: 5px;">NuGet</a>
-                        <div class="item-title bg-lightBlue fg-white padding20" style="height: 75px; padding-top: 30px">
-                            PM&gt; Install-Package Metro.UI.CSS
-                        </div>
-                    </div>
-                </div>
+
+    <div class="">
+        <div style="background: url(images/b1.jpg) top left no-repeat; background-size: cover; height: 300px;">
+            <div class="container" style="padding: 50px 20px">
+                <h1 class="fg-white">Metro UI CSS 2.0</h1>
+                <h2 class="fg-white">
+                    Metro UI CSS a set of styles to create a site<br /> with an interface similar to Windows 8.
+                </h2>
+
+                <a href="https://github.com/olton/Metro-UI-CSS/archive/master.zip"
+                   class="button bg-darkRed bg-hover-red fg-white fg-hover-white bd-orange" style="margin-top: 10px">
+                    <h3>Download <span class="icon-download-2"></span></h3>
+                </a>
             </div>
         </div>
-        <div class="row border-top">
-            <div class="span12 padding20 bg-grayLighter">
-                <div class="place-right subheader-secondary clearfix" style="height: 75px">
-                    <span class="icon-IE on-left-more"></span>
-                    <span class="icon-chrome on-left-more"></span>
-                    <span class="icon-firefox on-left-more"></span>
-                    <span class="icon-opera on-left-more"></span>
-                    <span class="icon-safari"></span>
-                </div>
 
-                <h2 class="ntm">Quick start</h2>
-                <p>
-                    To use the Metro UI CSS, you have to follow the 5 simple rules:
-                </p>
-                <ol>
-                    <li>Create page with HTML5 DOCTYPE</li>
-                    <li>Include in head <code>metro-bootstrap.css</code></li>
-                    <li>For plugins usage: include in head jquery core, jquery widget factory and metro plugins</li>
-                    <li>Create container for Metro UI CSS component with class <code>.metro</code></li>
-                    <li>Use markup for components, as described in the pages of this site</li>
-                </ol>
+        <div class="container padding20">
+            <h2 class="ntm">Quick start</h2>
+            <p class="padding20 bg-lighterBlue fg-white subheader-secondary">
+                To use the Metro UI CSS, you have to follow the 5 simple rules:
+            </p>
+            <ol>
+                <li>Create page with HTML5 DOCTYPE</li>
+                <li>Include in head <code>metro-bootstrap.css</code></li>
+                <li>For plugins usage: include in head jquery core, jquery widget factory and metro plugins</li>
+                <li>Create container for Metro UI CSS component with class <code>.metro</code></li>
+                <li>Use markup for components, as described in the pages of this site</li>
+            </ol>
 <pre class="prettyprint linenums" style="">
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
     &lt;head&gt;
         &lt;link rel="stylesheet" href="css/metro-bootstrap.css"&gt;
-
         &lt;script src="js/jquery/jquery.min.js"&gt;&lt;/script&gt;
         &lt;script src="js/jquery/jquery.widget.min.js"&gt;&lt;/script&gt;
-
-        &lt;script src="js/metro/metro-*.js"&gt;&lt;/script&gt;
+        &lt;script src="js/metro/metro.min.js"&gt;&lt;/script&gt;
     &lt;/head&gt;
     &lt;body class="metro"&gt;
-
+        ... markup page ...
     &lt;/body&gt;
 &lt;/html&gt;
 </pre>
+        </div>
+
+        <div class="bg-steel">
+            <div class="container padding20 fg-white">
+                <div class="carousel bg-transparent no-overflow" id="carousel2">
+                    <div class="slide" style="display: block; left: 0;">
+                        <div class="place-right">
+                            <img src="http://modernui.org.ua/images/css-logo.png"
+                                 alt="" class="span3"/>
+                        </div>
+                        <h2 class="fg-white ntm">Developed with advice</h2>
+                        <p class="fg-white">Metro UI CSS developed with the advice of Microsoft to build the user interface and include: general styles, grid, layouts, typography, 20+ components, 300+ built-in icons.</p>
+                        <p class="fg-white">Metro UI CSS build with {LESS}. Metro UI CSS is open source and has MIT licensing model.</p>
+                    </div>
+
+                    <div class="slide" style="left: 0; display: none;">
+                        <div class="place-right padding20 ntp nrp nbp">
+                            <img src="http://modernui.org.ua/images/bizspark_b_2.png"
+                                 alt="" class="span3"/>
+                        </div>
+                        <h2 class="fg-white ntm">BizSpark Startup</h2>
+                        <p class="fg-white">Metro UI CSS is a BizSpark Startup. Microsoft BizSpark is a global program that helps software startups succeed by giving them access to software development tools, connecting them with key industry players, and providing marketing visibility.</p>
+                        <p class="fg-white">BizSpark provides free software, support, and visibility to help startups succeed. Join BizSpark and become part of a global community that has over 50,000 members in 100+ countries.</p>
+                        <a class="button small1 inverse" href="http://bizspark.com">Join the BizSpark Program now.</a>
+                    </div>
+
+                    <div class="slide" style="left: 0; display: none;">
+                        <div class="place-right">
+                            <img src="http://modernui.org.ua/images/phpstorm_7_eap.png"
+                                 alt="" class="span3"/>
+                        </div>
+                        <h2 class="fg-white ntm">Thanks to JetBrains</h2>
+                        <p class="fg-white">Thanks to the company JetBrains for supporting the project in the form of a license for a great product PhpStorm.</p>
+                        <a class="button small1 inverse" href="http://www.jetbrains.com/phpstorm/">Get PhpStorm now!</a>
+                    </div>
+                </div>
+                <script>
+                    $(function(){
+                        $("#carousel2").carousel({
+                            height: 210,
+                            period: 5000,
+                            duration: 1000,
+                            effect: 'fade',
+                            markers: {
+                                show: false
+                            }
+                        });
+                    })
+                </script>
             </div>
         </div>
-    </div>
-    <div class="bg-steel">
-        <div class="container padding20 fg-white">
-            <div class="carousel bg-transparent no-overflow" id="carousel2">
-                <div class="slide" style="display: block; left: 0;">
-                    <div class="place-right">
-                        <img src="http://modernui.org.ua/images/css-logo.png"
-                             alt="" class="span3"/>
-                    </div>
-                    <h2 class="fg-white ntm">Developed with advice</h2>
-                    <p class="fg-white">Metro UI CSS developed with the advice of Microsoft to build the user interface and include: general styles, grid, layouts, typography, 20+ components, 300+ built-in icons.</p>
-                    <p class="fg-white">Metro UI CSS build with {LESS}. Metro UI CSS is open source and has MIT licensing model.</p>
-                </div>
 
-                <div class="slide" style="left: 0; display: none;">
-                    <div class="place-right padding20 ntp nrp nbp">
-                        <img src="http://modernui.org.ua/images/bizspark_b_2.png"
-                             alt="" class="span3"/>
-                    </div>
-                    <h2 class="fg-white ntm">BizSpark Startup</h2>
-                    <p class="fg-white">Metro UI CSS is a BizSpark Startup. Microsoft BizSpark is a global program that helps software startups succeed by giving them access to software development tools, connecting them with key industry players, and providing marketing visibility.</p>
-                    <p class="fg-white">BizSpark provides free software, support, and visibility to help startups succeed. Join BizSpark and become part of a global community that has over 50,000 members in 100+ countries.</p>
-                    <a class="button small1 inverse" href="http://bizspark.com">Join the BizSpark Program now.</a>
-                </div>
+        <div class="bg-dark">
+            <div class="container">
+                <div class="grid no-margin">
+                    <div class="row no-margin">
+                        <div class="span8 padding20 nlp">
+                            <img src="http://metroui.net/images/spface.jpg" alt="" class="polaroid span3 place-left" style="margin-top: 10px"/>
+                            <div style="margin-left: 240px;">
+                                <h3 class="fg-white">About author</h3>
+                                <p class="fg-white">Hi! My name Sergey Pimenov and i'm author of Metro UI CSS from Kiev, Ukraine.</p>
 
-                <div class="slide" style="left: 0; display: none;">
-                    <div class="place-right">
-                        <img src="http://modernui.org.ua/images/phpstorm_7_eap.png"
-                             alt="" class="span3"/>
+                            </div>
+                        </div>
+                        <div class="span3 padding20 nrp">
+                            <ul class="unstyled">
+                                <li><a class="button danger span3 margin5" href="http://bizspark.com">Microsoft BizSpark</a></li>
+                                <li><a class="button success span3 margin5"  href="http://jetbrains.com">JetBrains</a></li>
+                                <li><a class="button info span3 margin5"  href="https://github.com/olton/Metro-UI-CSS">Github</a></li>
+                                <li><a class="button warning span3 margin5"  href="http://lesscss.org">{ Less }</a></li>
+                            </ul>
+                        </div>
                     </div>
-                    <h2 class="fg-white ntm">Thanks to JetBrains</h2>
-                    <p class="fg-white">Thanks to the company JetBrains for supporting the project in the form of a license for a great product PhpStorm.</p>
-                    <a class="button small1 inverse" href="http://www.jetbrains.com/phpstorm/">Get PhpStorm now!</a>
-                </div>
-            </div>
-            <script>
-                $(function(){
-                    $("#carousel2").carousel({
-                        height: 210,
-                        period: 5000,
-                        duration: 1000,
-                        effect: 'fade',
-                        markers: {
-                            show: false
-                        }
-                    });
-                })
-            </script>
-        </div>
-    </div>
-
-    <div class="bg-dark">
-        <div class="container">
-        <div class="grid no-margin">
-            <div class="row no-margin">
-                <div class="span8 padding20 nlp">
-                    <img src="http://metroui.net/images/spface.jpg" alt="" class="polaroid span3 place-left" style="margin-top: 10px"/>
-                    <div style="margin-left: 240px;">
-                        <h3 class="fg-white">About author</h3>
-                        <p class="fg-white">Hi! My name Sergey Pimenov and i'm author of Metro UI CSS from Kiev, Ukraine.</p>
-
-                    </div>
-                </div>
-                <div class="span3 padding20 nrp">
-                    <ul class="unstyled">
-                        <li><a class="button danger span3 margin5" href="http://bizspark.com">Microsoft BizSpark</a></li>
-                        <li><a class="button success span3 margin5"  href="http://jetbrains.com">JetBrains</a></li>
-                        <li><a class="button info span3 margin5"  href="https://github.com/olton/Metro-UI-CSS">Github</a></li>
-                        <li><a class="button warning span3 margin5"  href="http://lesscss.org">{ Less }</a></li>
-                    </ul>
                 </div>
             </div>
         </div>
-        </div>
-    </div>
 
-    <footer class="bg-dark no-margin">
-        <div class="container tertiary-text bg-dark fg-white">
-            2012-2013, Metro UI CSS &copy; by  <a href="mailto:sergey@pimenov.com.ua" class="fg-yellow">Sergey Pimenov</a>
-        </div>
-    </footer>
+        <footer class="bg-dark no-margin">
+            <div class="container tertiary-text bg-dark fg-white">
+                2012-2013, Metro UI CSS &copy; by  <a href="mailto:sergey@pimenov.com.ua" class="fg-yellow">Sergey Pimenov</a>
+            </div>
+        </footer>
+    </div>
 
     <script src="js/hitua.js"></script>
 
