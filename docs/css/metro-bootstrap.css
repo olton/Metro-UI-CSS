@@ -1594,7 +1594,7 @@ a {
 .metro .table tr.warning td *,
 .metro .table tr.error td *,
 .metro .table tr.success td * {
-  color: #ffffff;
+  color: #ffffff !important;
 }
 .metro .table tr.selected {
   background-color: rgba(28, 183, 236, 0.1);
@@ -1628,7 +1628,19 @@ a {
   color: #bebebe !important;
   cursor: not-allowed !important;
 }
+.metro .button * {
+  color: inherit;
+}
+.metro .button *:hover {
+  color: inherit;
+}
 .metro a.button:hover {
+  color: inherit;
+}
+.metro a.button * {
+  color: inherit;
+}
+.metro a.button *:hover {
   color: inherit;
 }
 .metro .button.primary {
@@ -1699,6 +1711,12 @@ a {
   background-color: #eaeaea !important;
   color: #bebebe !important;
   cursor: not-allowed !important;
+}
+.metro button * {
+  color: inherit;
+}
+.metro button *:hover {
+  color: inherit;
 }
 .metro button.primary {
   background-color: #16499a !important;
@@ -1788,6 +1806,12 @@ a {
   background-color: #eaeaea !important;
   color: #bebebe !important;
   cursor: not-allowed !important;
+}
+.metro .command-button * {
+  color: inherit;
+}
+.metro .command-button *:hover {
+  color: inherit;
 }
 .metro .command-button.primary {
   background-color: #16499a !important;
@@ -2003,6 +2027,12 @@ a {
   color: #bebebe !important;
   cursor: not-allowed !important;
 }
+.metro .image-button * {
+  color: inherit;
+}
+.metro .image-button *:hover {
+  color: inherit;
+}
 .metro .image-button.primary {
   background-color: #16499a !important;
   color: #ffffff !important;
@@ -2130,6 +2160,12 @@ a {
   background-color: #eaeaea !important;
   color: #bebebe !important;
   cursor: not-allowed !important;
+}
+.metro .shortcut * {
+  color: inherit;
+}
+.metro .shortcut *:hover {
+  color: inherit;
 }
 .metro .shortcut.primary {
   background-color: #16499a !important;
@@ -2983,6 +3019,16 @@ a {
   color: #bebebe !important;
   cursor: not-allowed !important;
 }
+.metro input[type="button"] *,
+.metro input[type="submit"] *,
+.metro input[type="reset"] * {
+  color: inherit;
+}
+.metro input[type="button"] *:hover,
+.metro input[type="submit"] *:hover,
+.metro input[type="reset"] *:hover {
+  color: inherit;
+}
 .metro input[type="button"].primary,
 .metro input[type="submit"].primary,
 .metro input[type="reset"].primary {
@@ -3696,11 +3742,13 @@ a {
   display: block;
   background-color: #1ba1e2;
   color: #ffffff;
+  height: 45px;
 }
 .metro .navigation-bar .navigation-bar-content {
   background-color: inherit;
   color: inherit;
   display: block;
+  height: 100%;
 }
 .metro .navigation-bar .navigation-bar-content .element,
 .metro .navigation-bar .navigation-bar-content .element-divider {
@@ -3708,6 +3756,7 @@ a {
   float: left;
   background-color: inherit;
   position: relative;
+  height: 100%;
 }
 .metro .navigation-bar .navigation-bar-content .element.place-right,
 .metro .navigation-bar .navigation-bar-content .element-divider.place-right {
@@ -3783,6 +3832,10 @@ a {
   margin: 0;
   top: -6px;
 }
+.metro .navigation-bar-content .button,
+.metro .navigation-bar-content .image-button {
+  background-color: transparent;
+}
 .metro .navigation-bar-content .button {
   margin-top: -14px;
   background-color: inherit;
@@ -3829,6 +3882,14 @@ a {
   background-color: #999999;
   color: #ffffff;
 }
+.metro .navigation-bar.white {
+  background-color: #ffffff;
+  color: #555555;
+}
+.metro .navigation-bar.white .element:hover {
+  background-color: #00aff0;
+  color: #ffffff;
+}
 .metro .navigation-bar.fixed-top,
 .metro .navigation-bar.fixed-bottom {
   position: fixed;
@@ -3843,14 +3904,11 @@ a {
   bottom: 0;
   top: auto;
 }
-.metro .navigation-bar:before,
 .metro .navigation-bar-content:before,
-.metro .navigation-bar:after,
 .metro .navigation-bar-content:after {
   display: table;
   content: "";
 }
-.metro .navigation-bar:after,
 .metro .navigation-bar-content:after {
   clear: both;
 }
@@ -4875,6 +4933,12 @@ a {
   background-color: #eaeaea !important;
   color: #bebebe !important;
   cursor: not-allowed !important;
+}
+.metro .pagination > ul li a * {
+  color: inherit;
+}
+.metro .pagination > ul li a *:hover {
+  color: inherit;
 }
 .metro .pagination > ul li a.primary {
   background-color: #16499a !important;
@@ -8921,163 +8985,163 @@ a {
   background-color: #00aff0;
 }
 .metro .fg-black {
-  color: #000000;
+  color: #000000 !important;
 }
 .metro .fg-white {
-  color: #ffffff;
+  color: #ffffff !important;
 }
 .metro .fg-lime {
-  color: #a4c400;
+  color: #a4c400 !important;
 }
 .metro .fg-green {
-  color: #60a917;
+  color: #60a917 !important;
 }
 .metro .fg-emerald {
-  color: #008a00;
+  color: #008a00 !important;
 }
 .metro .fg-teal {
-  color: #00aba9;
+  color: #00aba9 !important;
 }
 .metro .fg-cyan {
-  color: #1ba1e2;
+  color: #1ba1e2 !important;
 }
 .metro .fg-cobalt {
-  color: #0050ef;
+  color: #0050ef !important;
 }
 .metro .fg-indigo {
-  color: #6a00ff;
+  color: #6a00ff !important;
 }
 .metro .fg-violet {
-  color: #aa00ff;
+  color: #aa00ff !important;
 }
 .metro .fg-pink {
-  color: #dc4fad;
+  color: #dc4fad !important;
 }
 .metro .fg-magenta {
-  color: #d80073;
+  color: #d80073 !important;
 }
 .metro .fg-crimson {
-  color: #a20025;
+  color: #a20025 !important;
 }
 .metro .fg-red {
-  color: #e51400;
+  color: #e51400 !important;
 }
 .metro .fg-orange {
-  color: #fa6800;
+  color: #fa6800 !important;
 }
 .metro .fg-amber {
-  color: #f0a30a;
+  color: #f0a30a !important;
 }
 .metro .fg-yellow {
-  color: #e3c800;
+  color: #e3c800 !important;
 }
 .metro .fg-brown {
-  color: #825a2c;
+  color: #825a2c !important;
 }
 .metro .fg-olive {
-  color: #6d8764;
+  color: #6d8764 !important;
 }
 .metro .fg-steel {
-  color: #647687;
+  color: #647687 !important;
 }
 .metro .fg-mauve {
-  color: #76608a;
+  color: #76608a !important;
 }
 .metro .fg-taupe {
-  color: #87794e;
+  color: #87794e !important;
 }
 .metro .fg-gray {
-  color: #555555;
+  color: #555555 !important;
 }
 .metro .fg-dark {
-  color: #333333;
+  color: #333333 !important;
 }
 .metro .fg-darker {
-  color: #222222;
+  color: #222222 !important;
 }
 .metro .fg-transparent {
-  color: transparent;
+  color: transparent !important;
 }
 .metro .fg-darkBrown {
-  color: #63362f;
+  color: #63362f !important;
 }
 .metro .fg-darkCrimson {
-  color: #640024;
+  color: #640024 !important;
 }
 .metro .fg-darkMagenta {
-  color: #81003c;
+  color: #81003c !important;
 }
 .metro .fg-darkIndigo {
-  color: #4b0096;
+  color: #4b0096 !important;
 }
 .metro .fg-darkCyan {
-  color: #1b6eae;
+  color: #1b6eae !important;
 }
 .metro .fg-darkCobalt {
-  color: #00356a;
+  color: #00356a !important;
 }
 .metro .fg-darkTeal {
-  color: #004050;
+  color: #004050 !important;
 }
 .metro .fg-darkEmerald {
-  color: #003e00;
+  color: #003e00 !important;
 }
 .metro .fg-darkGreen {
-  color: #128023;
+  color: #128023 !important;
 }
 .metro .fg-darkOrange {
-  color: #bf5a15;
+  color: #bf5a15 !important;
 }
 .metro .fg-darkRed {
-  color: #9a1616;
+  color: #9a1616 !important;
 }
 .metro .fg-darkPink {
-  color: #9a165a;
+  color: #9a165a !important;
 }
 .metro .fg-darkViolet {
-  color: #57169a;
+  color: #57169a !important;
 }
 .metro .fg-darkBlue {
-  color: #16499a;
+  color: #16499a !important;
 }
 .metro .fg-lightBlue {
-  color: #4390df;
+  color: #4390df !important;
 }
 .metro .fg-lighterBlue {
-  color: #00ccff;
+  color: #00ccff !important;
 }
 .metro .fg-lightTeal {
-  color: #45fffd;
+  color: #45fffd !important;
 }
 .metro .fg-lightOlive {
-  color: #78aa1c;
+  color: #78aa1c !important;
 }
 .metro .fg-lightOrange {
-  color: #c29008;
+  color: #c29008 !important;
 }
 .metro .fg-lightPink {
-  color: #f472d0;
+  color: #f472d0 !important;
 }
 .metro .fg-lightRed {
-  color: #ff2d19;
+  color: #ff2d19 !important;
 }
 .metro .fg-lightGreen {
-  color: #7ad61d;
+  color: #7ad61d !important;
 }
 .metro .fg-grayDark {
-  color: #333333;
+  color: #333333 !important;
 }
 .metro .fg-grayDarker {
-  color: #222222;
+  color: #222222 !important;
 }
 .metro .fg-grayLight {
-  color: #999999;
+  color: #999999 !important;
 }
 .metro .fg-grayLighter {
-  color: #eeeeee;
+  color: #eeeeee !important;
 }
 .metro .fg-blue {
-  color: #00aff0;
+  color: #00aff0 !important;
 }
 .metro .ol-black {
   outline-color: #000000;
@@ -9551,160 +9615,160 @@ a {
   background-color: #00aff0;
 }
 .metro .fg-hover-black:hover {
-  color: #000000;
+  color: #000000 !important;
 }
 .metro .fg-hover-white:hover {
-  color: #ffffff;
+  color: #ffffff !important;
 }
 .metro .fg-hover-lime:hover {
-  color: #a4c400;
+  color: #a4c400 !important;
 }
 .metro .fg-hover-green:hover {
-  color: #60a917;
+  color: #60a917 !important;
 }
 .metro .fg-hover-emerald:hover {
-  color: #008a00;
+  color: #008a00 !important;
 }
 .metro .fg-hover-teal:hover {
-  color: #00aba9;
+  color: #00aba9 !important;
 }
 .metro .fg-hover-cyan:hover {
-  color: #1ba1e2;
+  color: #1ba1e2 !important;
 }
 .metro .fg-hover-cobalt:hover {
-  color: #0050ef;
+  color: #0050ef !important;
 }
 .metro .fg-hover-indigo:hover {
-  color: #6a00ff;
+  color: #6a00ff !important;
 }
 .metro .fg-hover-violet:hover {
-  color: #aa00ff;
+  color: #aa00ff !important;
 }
 .metro .fg-hover-pink:hover {
-  color: #dc4fad;
+  color: #dc4fad !important;
 }
 .metro .fg-hover-magenta:hover {
-  color: #d80073;
+  color: #d80073 !important;
 }
 .metro .fg-hover-crimson:hover {
-  color: #a20025;
+  color: #a20025 !important;
 }
 .metro .fg-hover-red:hover {
-  color: #e51400;
+  color: #e51400 !important;
 }
 .metro .fg-hover-orange:hover {
-  color: #fa6800;
+  color: #fa6800 !important;
 }
 .metro .fg-hover-amber:hover {
-  color: #f0a30a;
+  color: #f0a30a !important;
 }
 .metro .fg-hover-yellow:hover {
-  color: #e3c800;
+  color: #e3c800 !important;
 }
 .metro .fg-hover-brown:hover {
-  color: #825a2c;
+  color: #825a2c !important;
 }
 .metro .fg-hover-olive:hover {
-  color: #6d8764;
+  color: #6d8764 !important;
 }
 .metro .fg-hover-steel:hover {
-  color: #647687;
+  color: #647687 !important;
 }
 .metro .fg-hover-mauve:hover {
-  color: #76608a;
+  color: #76608a !important;
 }
 .metro .fg-hover-taupe:hover {
-  color: #87794e;
+  color: #87794e !important;
 }
 .metro .fg-hover-gray:hover {
-  color: #555555;
+  color: #555555 !important;
 }
 .metro .fg-hover-dark:hover {
-  color: #333333;
+  color: #333333 !important;
 }
 .metro .fg-hover-darker:hover {
-  color: #222222;
+  color: #222222 !important;
 }
 .metro .fg-hover-transparent:hover {
-  color: transparent;
+  color: transparent !important;
 }
 .metro .fg-hover-darkBrown:hover {
-  color: #63362f;
+  color: #63362f !important;
 }
 .metro .fg-hover-darkCrimson:hover {
-  color: #640024;
+  color: #640024 !important;
 }
 .metro .fg-hover-darkMagenta:hover {
-  color: #81003c;
+  color: #81003c !important;
 }
 .metro .fg-hover-darkIndigo:hover {
-  color: #4b0096;
+  color: #4b0096 !important;
 }
 .metro .fg-hover-darkCyan:hover {
-  color: #1b6eae;
+  color: #1b6eae !important;
 }
 .metro .fg-hover-darkCobalt:hover {
-  color: #00356a;
+  color: #00356a !important;
 }
 .metro .fg-hover-darkTeal:hover {
-  color: #004050;
+  color: #004050 !important;
 }
 .metro .fg-hover-darkEmerald:hover {
-  color: #003e00;
+  color: #003e00 !important;
 }
 .metro .fg-hover-darkGreen:hover {
-  color: #128023;
+  color: #128023 !important;
 }
 .metro .fg-hover-darkOrange:hover {
-  color: #bf5a15;
+  color: #bf5a15 !important;
 }
 .metro .fg-hover-darkRed:hover {
-  color: #9a1616;
+  color: #9a1616 !important;
 }
 .metro .fg-hover-darkPink:hover {
-  color: #9a165a;
+  color: #9a165a !important;
 }
 .metro .fg-hover-darkViolet:hover {
-  color: #57169a;
+  color: #57169a !important;
 }
 .metro .fg-hover-darkBlue:hover {
-  color: #16499a;
+  color: #16499a !important;
 }
 .metro .fg-hover-lightBlue:hover {
-  color: #4390df;
+  color: #4390df !important;
 }
 .metro .fg-hover-lightTeal:hover {
-  color: #45fffd;
+  color: #45fffd !important;
 }
 .metro .fg-hover-lightOlive:hover {
-  color: #78aa1c;
+  color: #78aa1c !important;
 }
 .metro .fg-hover-lightOrange:hover {
-  color: #c29008;
+  color: #c29008 !important;
 }
 .metro .fg-hover-lightPink:hover {
-  color: #f472d0;
+  color: #f472d0 !important;
 }
 .metro .fg-hover-lightRed:hover {
-  color: #ff2d19;
+  color: #ff2d19 !important;
 }
 .metro .fg-hover-lightGreen:hover {
-  color: #7ad61d;
+  color: #7ad61d !important;
 }
 .metro .fg-hover-grayDark:hover {
-  color: #333333;
+  color: #333333 !important;
 }
 .metro .fg-hover-grayDarker:hover {
-  color: #222222;
+  color: #222222 !important;
 }
 .metro .fg-hover-grayLight:hover {
-  color: #999999;
+  color: #999999 !important;
 }
 .metro .fg-hover-grayLighter:hover {
-  color: #eeeeee;
+  color: #eeeeee !important;
 }
 .metro .fg-hover-blue:hover {
-  color: #00aff0;
+  color: #00aff0 !important;
 }
 .metro .bg-active-black:active {
   background-color: #000000;
@@ -9863,160 +9927,160 @@ a {
   background-color: #00aff0;
 }
 .metro .fg-active-black:active {
-  color: #000000;
+  color: #000000 !important;
 }
 .metro .fg-active-white:active {
-  color: #ffffff;
+  color: #ffffff !important;
 }
 .metro .fg-active-lime:active {
-  color: #a4c400;
+  color: #a4c400 !important;
 }
 .metro .fg-active-green:active {
-  color: #60a917;
+  color: #60a917 !important;
 }
 .metro .fg-active-emerald:active {
-  color: #008a00;
+  color: #008a00 !important;
 }
 .metro .fg-active-teal:active {
-  color: #00aba9;
+  color: #00aba9 !important;
 }
 .metro .fg-active-cyan:active {
-  color: #1ba1e2;
+  color: #1ba1e2 !important;
 }
 .metro .fg-active-cobalt:active {
-  color: #0050ef;
+  color: #0050ef !important;
 }
 .metro .fg-active-indigo:active {
-  color: #6a00ff;
+  color: #6a00ff !important;
 }
 .metro .fg-active-violet:active {
-  color: #aa00ff;
+  color: #aa00ff !important;
 }
 .metro .fg-active-pink:active {
-  color: #dc4fad;
+  color: #dc4fad !important;
 }
 .metro .fg-active-magenta:active {
-  color: #d80073;
+  color: #d80073 !important;
 }
 .metro .fg-active-crimson:active {
-  color: #a20025;
+  color: #a20025 !important;
 }
 .metro .fg-active-red:active {
-  color: #e51400;
+  color: #e51400 !important;
 }
 .metro .fg-active-orange:active {
-  color: #fa6800;
+  color: #fa6800 !important;
 }
 .metro .fg-active-amber:active {
-  color: #f0a30a;
+  color: #f0a30a !important;
 }
 .metro .fg-active-yellow:active {
-  color: #e3c800;
+  color: #e3c800 !important;
 }
 .metro .fg-active-brown:active {
-  color: #825a2c;
+  color: #825a2c !important;
 }
 .metro .fg-active-olive:active {
-  color: #6d8764;
+  color: #6d8764 !important;
 }
 .metro .fg-active-steel:active {
-  color: #647687;
+  color: #647687 !important;
 }
 .metro .fg-active-mauve:active {
-  color: #76608a;
+  color: #76608a !important;
 }
 .metro .fg-active-taupe:active {
-  color: #87794e;
+  color: #87794e !important;
 }
 .metro .fg-active-gray:active {
-  color: #555555;
+  color: #555555 !important;
 }
 .metro .fg-active-dark:active {
-  color: #333333;
+  color: #333333 !important;
 }
 .metro .fg-active-darker:active {
-  color: #222222;
+  color: #222222 !important;
 }
 .metro .fg-active-transparent:active {
-  color: transparent;
+  color: transparent !important;
 }
 .metro .fg-active-darkBrown:active {
-  color: #63362f;
+  color: #63362f !important;
 }
 .metro .fg-active-darkCrimson:active {
-  color: #640024;
+  color: #640024 !important;
 }
 .metro .fg-active-darkMagenta:active {
-  color: #81003c;
+  color: #81003c !important;
 }
 .metro .fg-active-darkIndigo:active {
-  color: #4b0096;
+  color: #4b0096 !important;
 }
 .metro .fg-active-darkCyan:active {
-  color: #1b6eae;
+  color: #1b6eae !important;
 }
 .metro .fg-active-darkCobalt:active {
-  color: #00356a;
+  color: #00356a !important;
 }
 .metro .fg-active-darkTeal:active {
-  color: #004050;
+  color: #004050 !important;
 }
 .metro .fg-active-darkEmerald:active {
-  color: #003e00;
+  color: #003e00 !important;
 }
 .metro .fg-active-darkGreen:active {
-  color: #128023;
+  color: #128023 !important;
 }
 .metro .fg-active-darkOrange:active {
-  color: #bf5a15;
+  color: #bf5a15 !important;
 }
 .metro .fg-active-darkRed:active {
-  color: #9a1616;
+  color: #9a1616 !important;
 }
 .metro .fg-active-darkPink:active {
-  color: #9a165a;
+  color: #9a165a !important;
 }
 .metro .fg-active-darkViolet:active {
-  color: #57169a;
+  color: #57169a !important;
 }
 .metro .fg-active-darkBlue:active {
-  color: #16499a;
+  color: #16499a !important;
 }
 .metro .fg-active-lightBlue:active {
-  color: #4390df;
+  color: #4390df !important;
 }
 .metro .fg-active-lightTeal:active {
-  color: #45fffd;
+  color: #45fffd !important;
 }
 .metro .fg-active-lightOlive:active {
-  color: #78aa1c;
+  color: #78aa1c !important;
 }
 .metro .fg-active-lightOrange:active {
-  color: #c29008;
+  color: #c29008 !important;
 }
 .metro .fg-active-lightPink:active {
-  color: #f472d0;
+  color: #f472d0 !important;
 }
 .metro .fg-active-lightRed:active {
-  color: #ff2d19;
+  color: #ff2d19 !important;
 }
 .metro .fg-active-lightGreen:active {
-  color: #7ad61d;
+  color: #7ad61d !important;
 }
 .metro .fg-active-grayDark:active {
-  color: #333333;
+  color: #333333 !important;
 }
 .metro .fg-active-grayDarker:active {
-  color: #222222;
+  color: #222222 !important;
 }
 .metro .fg-active-grayLight:active {
-  color: #999999;
+  color: #999999 !important;
 }
 .metro .fg-active-grayLighter:active {
-  color: #eeeeee;
+  color: #eeeeee !important;
 }
 .metro .fg-active-blue:active {
-  color: #00aff0;
+  color: #00aff0 !important;
 }
 .metro .bg-focus-black:focus {
   background-color: #000000;
@@ -10175,160 +10239,160 @@ a {
   background-color: #00aff0;
 }
 .metro .fg-focus-black:focus {
-  color: #000000;
+  color: #000000 !important;
 }
 .metro .fg-focus-white:focus {
-  color: #ffffff;
+  color: #ffffff !important;
 }
 .metro .fg-focus-lime:focus {
-  color: #a4c400;
+  color: #a4c400 !important;
 }
 .metro .fg-focus-green:focus {
-  color: #60a917;
+  color: #60a917 !important;
 }
 .metro .fg-focus-emerald:focus {
-  color: #008a00;
+  color: #008a00 !important;
 }
 .metro .fg-focus-teal:focus {
-  color: #00aba9;
+  color: #00aba9 !important;
 }
 .metro .fg-focus-cyan:focus {
-  color: #1ba1e2;
+  color: #1ba1e2 !important;
 }
 .metro .fg-focus-cobalt:focus {
-  color: #0050ef;
+  color: #0050ef !important;
 }
 .metro .fg-focus-indigo:focus {
-  color: #6a00ff;
+  color: #6a00ff !important;
 }
 .metro .fg-focus-violet:focus {
-  color: #aa00ff;
+  color: #aa00ff !important;
 }
 .metro .fg-focus-pink:focus {
-  color: #dc4fad;
+  color: #dc4fad !important;
 }
 .metro .fg-focus-magenta:focus {
-  color: #d80073;
+  color: #d80073 !important;
 }
 .metro .fg-focus-crimson:focus {
-  color: #a20025;
+  color: #a20025 !important;
 }
 .metro .fg-focus-red:focus {
-  color: #e51400;
+  color: #e51400 !important;
 }
 .metro .fg-focus-orange:focus {
-  color: #fa6800;
+  color: #fa6800 !important;
 }
 .metro .fg-focus-amber:focus {
-  color: #f0a30a;
+  color: #f0a30a !important;
 }
 .metro .fg-focus-yellow:focus {
-  color: #e3c800;
+  color: #e3c800 !important;
 }
 .metro .fg-focus-brown:focus {
-  color: #825a2c;
+  color: #825a2c !important;
 }
 .metro .fg-focus-olive:focus {
-  color: #6d8764;
+  color: #6d8764 !important;
 }
 .metro .fg-focus-steel:focus {
-  color: #647687;
+  color: #647687 !important;
 }
 .metro .fg-focus-mauve:focus {
-  color: #76608a;
+  color: #76608a !important;
 }
 .metro .fg-focus-taupe:focus {
-  color: #87794e;
+  color: #87794e !important;
 }
 .metro .fg-focus-gray:focus {
-  color: #555555;
+  color: #555555 !important;
 }
 .metro .fg-focus-dark:focus {
-  color: #333333;
+  color: #333333 !important;
 }
 .metro .fg-focus-darker:focus {
-  color: #222222;
+  color: #222222 !important;
 }
 .metro .fg-focus-transparent:focus {
-  color: transparent;
+  color: transparent !important;
 }
 .metro .fg-focus-darkBrown:focus {
-  color: #63362f;
+  color: #63362f !important;
 }
 .metro .fg-focus-darkCrimson:focus {
-  color: #640024;
+  color: #640024 !important;
 }
 .metro .fg-focus-darkMagenta:focus {
-  color: #81003c;
+  color: #81003c !important;
 }
 .metro .fg-focus-darkIndigo:focus {
-  color: #4b0096;
+  color: #4b0096 !important;
 }
 .metro .fg-focus-darkCyan:focus {
-  color: #1b6eae;
+  color: #1b6eae !important;
 }
 .metro .fg-focus-darkCobalt:focus {
-  color: #00356a;
+  color: #00356a !important;
 }
 .metro .fg-focus-darkTeal:focus {
-  color: #004050;
+  color: #004050 !important;
 }
 .metro .fg-focus-darkEmerald:focus {
-  color: #003e00;
+  color: #003e00 !important;
 }
 .metro .fg-focus-darkGreen:focus {
-  color: #128023;
+  color: #128023 !important;
 }
 .metro .fg-focus-darkOrange:focus {
-  color: #bf5a15;
+  color: #bf5a15 !important;
 }
 .metro .fg-focus-darkRed:focus {
-  color: #9a1616;
+  color: #9a1616 !important;
 }
 .metro .fg-focus-darkPink:focus {
-  color: #9a165a;
+  color: #9a165a !important;
 }
 .metro .fg-focus-darkViolet:focus {
-  color: #57169a;
+  color: #57169a !important;
 }
 .metro .fg-focus-darkBlue:focus {
-  color: #16499a;
+  color: #16499a !important;
 }
 .metro .fg-focus-lightBlue:focus {
-  color: #4390df;
+  color: #4390df !important;
 }
 .metro .fg-focus-lightTeal:focus {
-  color: #45fffd;
+  color: #45fffd !important;
 }
 .metro .fg-focus-lightOlive:focus {
-  color: #78aa1c;
+  color: #78aa1c !important;
 }
 .metro .fg-focus-lightOrange:focus {
-  color: #c29008;
+  color: #c29008 !important;
 }
 .metro .fg-focus-lightPink:focus {
-  color: #f472d0;
+  color: #f472d0 !important;
 }
 .metro .fg-focus-lightRed:focus {
-  color: #ff2d19;
+  color: #ff2d19 !important;
 }
 .metro .fg-focus-lightGreen:focus {
-  color: #7ad61d;
+  color: #7ad61d !important;
 }
 .metro .fg-focus-grayDark:focus {
-  color: #333333;
+  color: #333333 !important;
 }
 .metro .fg-focus-grayDarker:focus {
-  color: #222222;
+  color: #222222 !important;
 }
 .metro .fg-focus-grayLight:focus {
-  color: #999999;
+  color: #999999 !important;
 }
 .metro .fg-focus-grayLighter:focus {
-  color: #eeeeee;
+  color: #eeeeee !important;
 }
 .metro .fg-focus-blue:focus {
-  color: #00aff0;
+  color: #00aff0 !important;
 }
 .metro .ribbed-black {
   background-color: #000000;

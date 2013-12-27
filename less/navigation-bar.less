@@ -3,17 +3,20 @@
     display: block;
     background-color: @cyan;
     color: @white;
+    height: 45px;
 
     .navigation-bar-content {
         background-color: inherit;
         color: inherit;
         display: block;
+        height: 100%;
 
         .element, .element-divider {
             display: block;
             float: left;
             background-color: inherit;
             position: relative;
+            height: 100%;
 
             &.place-right {
                 float: right;
@@ -104,6 +107,10 @@
         top: -6px;
     }
 
+    .button, .image-button {
+        background-color: transparent;
+    }
+
     .button {
         margin-top: -14px;
         background-color: inherit;
@@ -164,6 +171,15 @@
             color: @white;
         }
     }
+    &.white {
+        background-color: @white;
+        color: @gray;
+
+        .element:hover {
+            background-color: @blue;
+            color: @white;
+        }
+    }
 }
 
 .navigation-bar {
@@ -183,6 +199,9 @@
     }
 }
 
-.navigation-bar, .navigation-bar-content {
+.navigation-bar {
+}
+
+.navigation-bar-content {
     .clearfix;
 }
