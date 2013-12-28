@@ -3,9 +3,6 @@ body {
   margin: 0;
   padding: 0;
 }
-header {
-  height: 45px;
-}
 .metro .page {
   width: 980px;
   margin: 0 auto;
@@ -33,10 +30,6 @@ header {
   display: inline-block;
   vertical-align: middle;
 }
-.myClass thead tr {
-  background-color: #1ba1e2;
-  color: #ffffff;
-}
 .layout {
   min-height: 100%;
   position: relative;
@@ -44,24 +37,6 @@ header {
 header {
   height: 45px;
   position: relative;
-}
-.introduce {
-  height: 170px;
-}
-.introduce_r {
-  height: 75px;
-}
-.download_link {
-  background: #c75050 !important;
-}
-.download_link:hover {
-  background: #e04343 !important;
-}
-.download_link:active {
-  background: #b01919 !important;
-}
-.footer_spacer {
-  height: 40px;
 }
 footer {
   width: 100%;

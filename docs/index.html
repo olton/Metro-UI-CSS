@@ -5,6 +5,7 @@
     <meta name="product" content="Metro UI CSS Framework">
     <meta name="description" content="Simple responsive css framework">
     <meta name="author" content="Sergey S. Pimenov, Ukraine, Kiev">
+    <meta name="keywords" content="js, css, metro, framework, windows 8, metro ui">
 
     <link href="css/metro-bootstrap.css" rel="stylesheet">
     <link href="css/metro-bootstrap-responsive.css" rel="stylesheet">
@@ -25,6 +26,37 @@
     <script src="js/github.info.js"></script>
 
     <title>Metro UI CSS : Metro Bootstrap CSS Library</title>
+
+    <style>
+        ol.styled {
+            counter-reset:li;
+            margin-left:0;
+            padding-left:0;
+        }
+        ol.styled > li {
+            position:relative;
+            margin:0 0 6px 2em;
+            padding:4px 8px;
+            list-style:none;
+        }
+        ol.styled > li:before {
+            content:counter(li);
+            counter-increment:li;
+            position:absolute;
+            top:-2px;
+            left:-2em;
+            box-sizing:border-box;
+            width:2em;
+            margin-right:8px;
+            padding:4px;
+            border-top:2px solid #666;
+            color:#fff;
+            background:#666;
+            font-weight:bold;
+            font-family:"Helvetica Neue", Arial, sans-serif;
+            text-align:center;
+        }
+    </style>
 </head>
 <body class="metro" style="background-color: #efeae3">
     <header class="bg-dark" data-load="header.html"></header>
@@ -38,25 +70,77 @@
                 </h2>
 
                 <a href="https://github.com/olton/Metro-UI-CSS/archive/master.zip"
-                   class="button bg-darkRed bg-hover-red fg-white fg-hover-white bd-orange" style="margin-top: 10px">
-                    <h3>Download <span class="icon-download-2"></span></h3>
+                   class="place-left button bg-darkRed bg-hover-red fg-white fg-hover-white bd-orange" style="margin-top: 10px">
+                    <h3>Download <span class="icon-download-2 on-right"></span></h3>
                 </a>
+
+                <div class="place-left" style="margin: 25px 0 0 25px;">
+                    <!-- AddThis Button BEGIN -->
+                    <div class="addthis_toolbox addthis_default_style addthis_32x32_style" style="width: 150px;">
+                        <a class="addthis_button_facebook"></a>
+                        <a class="addthis_button_twitter"></a>
+                        <a class="addthis_button_google_plusone_share"></a>
+                        <a class="addthis_counter addthis_bubble_style no-display"></a>
+                    </div>
+                    <script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+                    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4fcc8dce6996baa7"></script>
+                    <!-- AddThis Button END -->
+                </div>
             </div>
         </div>
 
-        <div class="container padding20">
-            <h2 class="ntm">Quick start</h2>
-            <p class="padding20 bg-lighterBlue fg-white subheader-secondary">
-                To use the Metro UI CSS, you have to follow the 5 simple rules:
-            </p>
-            <ol>
-                <li>Create page with HTML5 DOCTYPE</li>
-                <li>Include in head <code>metro-bootstrap.css</code></li>
-                <li>For plugins usage: include in head jquery core, jquery widget factory and metro plugins</li>
-                <li>Create container for Metro UI CSS component with class <code>.metro</code></li>
-                <li>Use markup for components, as described in the pages of this site</li>
-            </ol>
-<pre class="prettyprint linenums" style="">
+        <div class="container">
+            <div class="grid fluid">
+                <div class="row">
+                    <div class="span4 bg-amber padding20 text-center">
+                        <h2 class="fg-white">easy to use</h2>
+                    </div>
+                    <div class="span4 bg-green padding20 text-center">
+                        <h2 class="fg-white">less source</h2>
+                    </div>
+                    <div class="span4 bg-red padding20 text-center">
+                        <h2 class="fg-white">mit license</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="clearfix no-display">
+                <div class="place-right subheader-secondary clearfix" style="height: 75px">
+                    <span class="icon-IE on-left-more"></span>
+                    <span class="icon-chrome on-left-more"></span>
+                    <span class="icon-firefox on-left-more"></span>
+                    <span class="icon-opera on-left-more"></span>
+                    <span class="icon-safari"></span>
+                </div>
+                <h2 class="ntm">Quick start</h2>
+            </div>
+
+            <div class="grid fluid no-margin">
+                <div class="row">
+                    <div class="span4">
+                        <div class=" notice marker-on-right bg-lighterBlue padding20 text-center">
+                            <h1 class="fg-white" style="font-size: 96pt">5</h1>
+                            <br />
+                            <p class="subheader-secondary fg-white">simple steps to you style</p>
+                        </div>
+                    </div>
+                    <div class="span8 padding10 nrp nlp">
+                        <ol class="styled readable-text no-margin">
+                            <li>Create page with HTML5 DOCTYPE</li>
+                            <li>Include <strong>metro-bootstrap.css</strong></li>
+                            <li>Include jquery core, jquery widget factory and metro plugins</li>
+                            <li>Create container for Metro UI CSS component with class <strong>.metro</strong></li>
+                            <li>Use markup for components, as described in the pages of this site</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+
+
+<pre class="prettyprint linenums" style="margin-top: 10px;">
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
     &lt;head&gt;
@@ -75,7 +159,7 @@
         <div class="bg-steel">
             <div class="container padding20 fg-white">
                 <div class="carousel bg-transparent no-overflow" id="carousel2">
-                    <div class="slide" style="display: block; left: 0;">
+                    <div class="slide">
                         <div class="place-right">
                             <img src="http://modernui.org.ua/images/css-logo.png"
                                  alt="" class="span3"/>
@@ -85,7 +169,7 @@
                         <p class="fg-white">Metro UI CSS build with {LESS}. Metro UI CSS is open source and has MIT licensing model.</p>
                     </div>
 
-                    <div class="slide" style="left: 0; display: none;">
+                    <div class="slide">
                         <div class="place-right padding20 ntp nrp nbp">
                             <img src="http://modernui.org.ua/images/bizspark_b_2.png"
                                  alt="" class="span3"/>
@@ -96,7 +180,7 @@
                         <a class="button small1 inverse" href="http://bizspark.com">Join the BizSpark Program now.</a>
                     </div>
 
-                    <div class="slide" style="left: 0; display: none;">
+                    <div class="slide">
                         <div class="place-right">
                             <img src="http://modernui.org.ua/images/phpstorm_7_eap.png"
                                  alt="" class="span3"/>
