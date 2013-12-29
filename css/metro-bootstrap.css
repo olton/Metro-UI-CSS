@@ -3738,6 +3738,50 @@ a {
   margin-left: 0;
   margin-right: 0;
 }
+.metro .dropdown-menu.dark {
+  background-color: #3b3b3b;
+  border: 2px #3b3b3b solid;
+  color: #ffffff;
+}
+.metro .dropdown-menu.dark li {
+  border: 0;
+  color: inherit;
+}
+.metro .dropdown-menu.dark li a {
+  padding: 9px 32px !important;
+  color: inherit;
+}
+.metro .dropdown-menu.dark li.disabled,
+.metro .dropdown-menu.dark li.disabled:hover {
+  cursor: default !important;
+  background: transparent !important;
+  color: #555555;
+}
+.metro .dropdown-menu.dark li.disabled a,
+.metro .dropdown-menu.dark li.disabled:hover a {
+  color: inherit;
+  cursor: inherit;
+  background: inherit;
+}
+.metro .dropdown-menu.dark li:hover {
+  border: 0;
+  background-color: #201a1a;
+  color: #ffffff;
+}
+.metro .dropdown-menu.dark .menu-title {
+  background-color: #3b3b3b;
+}
+.metro .dropdown-menu.dark .menu-title:hover {
+  background-color: #3b3b3b;
+}
+.metro .dropdown-menu.dark .divider {
+  margin-left: 0;
+  margin-right: 0;
+  background-color: #555555;
+}
+.metro .dropdown-menu.dark .divider:hover {
+  background: #555555;
+}
 .metro .dropdown-toggle:after {
   position: absolute;
   margin-left: .45em;
@@ -3798,7 +3842,6 @@ a {
   float: right;
 }
 .metro .navigation-bar .navigation-bar-content .element {
-  color: #1d1d1d;
   padding: 15px;
   line-height: 15px;
   color: inherit;
@@ -3897,10 +3940,12 @@ a {
 .metro .navigation-bar-content [class*="icon-"] {
   font-size: 16px !important;
 }
-.metro .input-element {
+.metro .input-element,
+.metro .element-input {
   padding-bottom: 0 !important;
 }
-.metro .input-element:hover {
+.metro .input-element:hover,
+.metro .element-input:hover {
   background-color: inherit !important;
 }
 .metro .navigation-bar.dark {
@@ -5522,6 +5567,50 @@ a {
 .metro .sidebar > ul ul.inverse .divider {
   margin-left: 0;
   margin-right: 0;
+}
+.metro .sidebar > ul ul.dark {
+  background-color: #3b3b3b;
+  border: 2px #3b3b3b solid;
+  color: #ffffff;
+}
+.metro .sidebar > ul ul.dark li {
+  border: 0;
+  color: inherit;
+}
+.metro .sidebar > ul ul.dark li a {
+  padding: 9px 32px !important;
+  color: inherit;
+}
+.metro .sidebar > ul ul.dark li.disabled,
+.metro .sidebar > ul ul.dark li.disabled:hover {
+  cursor: default !important;
+  background: transparent !important;
+  color: #555555;
+}
+.metro .sidebar > ul ul.dark li.disabled a,
+.metro .sidebar > ul ul.dark li.disabled:hover a {
+  color: inherit;
+  cursor: inherit;
+  background: inherit;
+}
+.metro .sidebar > ul ul.dark li:hover {
+  border: 0;
+  background-color: #201a1a;
+  color: #ffffff;
+}
+.metro .sidebar > ul ul.dark .menu-title {
+  background-color: #3b3b3b;
+}
+.metro .sidebar > ul ul.dark .menu-title:hover {
+  background-color: #3b3b3b;
+}
+.metro .sidebar > ul ul.dark .divider {
+  margin-left: 0;
+  margin-right: 0;
+  background-color: #555555;
+}
+.metro .sidebar > ul ul.dark .divider:hover {
+  background: #555555;
 }
 .metro .sidebar > ul ul li {
   border: 0;

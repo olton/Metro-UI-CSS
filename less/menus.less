@@ -368,6 +368,53 @@
             margin-right: 0;
         }
     }
+
+    &.dark {
+        background-color: #3b3b3b;
+        border: 2px #3b3b3b solid;
+        color: @white;
+
+        li {
+            border: 0;
+            color: inherit;
+            a {
+                padding: 9px 32px !important;
+                color: inherit;
+            }
+            &.disabled, &.disabled:hover {
+                cursor: default !important;
+                background: transparent !important;
+                color: @gray;
+                a {
+                    color: inherit;
+                    cursor: inherit;
+                    background: inherit;
+                }
+            }
+        }
+
+        li:hover {
+            border: 0;
+            background-color: saturate(@dark, 10%);
+            color: @white;
+        }
+
+        .menu-title {
+            background-color: #3b3b3b;
+            &:hover {
+                background-color: #3b3b3b;
+            }
+        }
+
+        .divider {
+            margin-left: 0;
+            margin-right: 0;
+            background-color: @gray;
+            &:hover {
+                background: @gray;
+            }
+        }
+    }
 }
 
 .dropdown-toggle {
