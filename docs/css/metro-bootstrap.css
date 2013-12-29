@@ -1052,6 +1052,41 @@ a {
 .metro ol li ol {
   padding-left: 25px;
 }
+.metro ol.styled {
+  counter-reset: li;
+  margin-left: 0;
+  padding-left: 0;
+  font-family: 'Cambria_', 'PT Serif Caption', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 14pt;
+  line-height: 16pt;
+}
+.metro ol.styled > li {
+  position: relative;
+  margin: 0 0 6px 2em;
+  padding: 4px 12px;
+  list-style: none;
+}
+.metro ol.styled > li:before {
+  content: counter(li);
+  counter-increment: li;
+  position: absolute;
+  top: -2px;
+  left: -2em;
+  box-sizing: border-box;
+  width: 2em;
+  margin-right: 8px;
+  padding: 4px;
+  color: #fff;
+  background: #666;
+  font-weight: bold;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  text-align: center;
+}
+.metro ol.styled.rounded > li:before {
+  border-radius: 100%;
+}
 .metro dl dt,
 .metro dl dd {
   line-height: 20px;
