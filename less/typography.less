@@ -310,6 +310,39 @@ ul, ol {
     }
 }
 
+ol.styled {
+    counter-reset:li;
+    margin-left:0;
+    padding-left:0;
+    .readable-text;
+}
+ol.styled > li {
+    position:relative;
+    margin:0 0 6px 2em;
+    padding:4px 12px;
+    list-style:none;
+}
+ol.styled > li:before {
+    content:counter(li);
+    counter-increment:li;
+    position:absolute;
+    top:-2px;
+    left: -2em;
+    box-sizing:border-box;
+    width: 2em;
+    margin-right:8px;
+    padding:4px;
+    color:#fff;
+    background:#666;
+    font-weight:bold;
+    font-family:"Helvetica Neue", Arial, sans-serif;
+    text-align:center;
+}
+
+ol.styled.rounded > li:before {
+    border-radius: 100%;
+}
+
 dl {
 
     dt, dd {
