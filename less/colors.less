@@ -1,7 +1,7 @@
-.set-bg-color (@color: transparent){background-color: @color;}
+.set-bg-color (@color: transparent){background-color: @color !important;}
 .set-fg-color (@color: transparent){color: @color !important;}
-.set-ol-color (@color: transparent){outline-color: @color;}
-.set-bd-color (@color: transparent){border-color: @color;}
+.set-ol-color (@color: transparent){outline-color: @color !important;}
+.set-bd-color (@color: transparent){border-color: @color !important;}
 
 // Colors : background
 .bg-black {.set-bg-color(@black)}
@@ -545,7 +545,7 @@
 
 
 .ribbed(@color: @white, @angle: -45deg, @size: 40px) {
-    background-color: @color;
+    background-color: @color !important;
     background-image: -webkit-linear-gradient(@angle, rgba(255,255,255,.15) 25%, transparent 25%, transparent 50%, rgba(255,255,255,.15) 50%, rgba(255,255,255,.15) 75%, transparent 75%, transparent);
     background-image: -moz-linear-gradient(@angle, rgba(255,255,255,.15) 25%, transparent 25%, transparent 50%, rgba(255,255,255,.15) 50%, rgba(255,255,255,.15) 75%, transparent 75%, transparent);
     background-image: -ms-linear-gradient(@angle, rgba(255,255,255,.15) 25%, transparent 25%, transparent 50%, rgba(255,255,255,.15) 50%, rgba(255,255,255,.15) 75%, transparent 75%, transparent);
