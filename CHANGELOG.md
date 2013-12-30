@@ -1,3 +1,9 @@
+## Version 2.0.19
+
+### Changes:
+- add dark style for dropdown menu
+- minor bugs fix
+
 ## Version 2.0.18
 
 ### Changes:
