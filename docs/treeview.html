@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="product" content="Metro UI CSS Framework">
     <meta name="description" content="Simple responsive css framework">
     <meta name="author" content="Sergey S. Pimenov, Ukraine, Kiev">
@@ -28,17 +29,12 @@
 </head>
 <body class="metro">
     <header class="bg-dark" data-load="header.html"></header>
-    <div class="page">
-        <div class="page-region">
-            <div class="page-region-content">
+    <div class="container">
                 <h1>
                     <a href="/"><i class="icon-arrow-left-3 fg-darker smaller"></i></a>
                     TreeView<small class="on-right">component</small>
                 </h1>
 
-                <div class="grid fluid">
-                    <div class="row">
-                        <div class="span4">
                             <div class="example">
                                 <ul class="treeview" data-role="treeview">
                                     <li class="node">
@@ -101,9 +97,6 @@
                             <p>
                                 This component required <code>metro-treevew.js</code>
                             </p>
-                        </div>
-
-                        <div class="span8">
 <pre class="prettyprint linenums">
 &lt;ul class="treeview" data-role="treeview"&gt;
     &lt;li class="node"&gt;
@@ -139,9 +132,6 @@
     &lt;/li&gt;
 &lt;/ul&gt;
 </pre>
-                        </div>
-                    </div>
-                </div> <!-- end of grid -->
 
                 <h3>Events</h3>
                 <table class="table border">
@@ -167,14 +157,7 @@ $(function(){
     });
 });
 </pre>
-            </div>
-        </div>
 
-        <div class="page-footer">
-            <div class="page-footer-content">
-                <!--<div data-load="header.html"></div>-->
-            </div>
-        </div>
     </div>
 
     <script src="js/hitua.js"></script>

@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="product" content="Metro UI CSS Framework">
     <meta name="description" content="Simple responsive css framework">
     <meta name="author" content="Sergey S. Pimenov, Ukraine, Kiev">
@@ -28,9 +29,7 @@
 </head>
 <body class="metro">
     <header class="bg-dark" data-load="header.html"></header>
-    <div class="page">
-        <div class="page-region">
-            <div class="page-region-content">
+    <div class="container">
                 <h1>
                     <a href="/"><i class="icon-arrow-left-3 fg-darker smaller"></i></a>
                     Icons<small class="on-right">font</small>
@@ -90,7 +89,11 @@ icon&lt;i class="icon-rocket fg-red on-right on-left"&gt;&lt;/i&gt;rocket
                     <h3>icon<i class="icon-rocket on-left on-right" style="background: red; color: white; padding: 10px; border-radius: 50%"></i>rocket</h3>
                 </div>
 <pre class="prettyprint linenums">
-icon&lt;i class="icon-rocket on-right on-left" style="background: red; color: white; padding: 10px; border-radius: 50%"&gt;&lt;/i&gt;rocket
+icon&lt;i class="icon-rocket on-right on-left"
+    style="background: red;
+           color: white;
+           padding: 10px;
+           border-radius: 50%"&gt;&lt;/i&gt;rocket
 </pre>
 
                 <h2>Icons</h2>
@@ -568,14 +571,6 @@ icon&lt;i class="icon-rocket on-right on-left" style="background: red; color: wh
                     <br />License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/us/
                 </div>
 
-            </div>
-        </div>
-
-        <div class="page-footer">
-            <div class="page-footer-content">
-                <!--<div data-load="header.html"></div>-->
-            </div>
-        </div>
     </div>
 
     <script src="js/hitua.js"></script>

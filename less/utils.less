@@ -1,12 +1,5 @@
 
 // Box-sizing
-.box-sizing(@type) {
-    -webkit-box-sizing: @type;
-    -moz-box-sizing: @type;
-    -ms-box-sizing: @type;
-    -o-box-sizing: @type;
-    box-sizing: @type;
-}
 .box-sizing-border {
     .box-sizing(border-box);
 }
@@ -44,9 +37,6 @@
 .border-top {border-top: 1px @tableBorderColor solid;}
 .border-bottom {border-bottom: 1px @tableBorderColor solid;}
 
-.collapse (@collapce) {
-    border-collapse: @collapce;
-}
 
 .collapse-separate { .collapse(separate)}
 .collapse-collapse { .collapse(collapse)}
@@ -100,25 +90,7 @@
 .no-overflow {overflow: hidden;}
 .overflow {overflow: scroll;}
 
-
 // Columns
-.column-gap (@gap) {
-    -moz-column-gap: @gap;
-    -webkit-column-gap: @gap;
-    -o-column-gap: @gap;
-    -ms-column-gap: @gap;
-    column-gap: @gap;
-}
-
-.columns (@columns) {
-    -moz-columns: @columns;
-    -webkit-columns: @columns;
-    -o-columns: @columns;
-    -ms-columns: @columns;
-    columns: @columns;
-    .column-gap(@unitSize);
-}
-
 .one-column {
     .columns(1);
 }
@@ -133,15 +105,6 @@
 }
 .five-columns {
     .columns(5);
-}
-
-
-.size(@height, @width) {
-    width: @width;
-    height: @height;
-}
-.square(@size) {
-    .size(@size, @size);
 }
 
 .square5 {.square(@subunitSize)};

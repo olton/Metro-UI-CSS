@@ -1,3 +1,9 @@
+html {
+  font-size: 62.5%;
+}
+body {
+  font-size: 1.4rem;
+}
 html,
 body {
   padding: 0;
@@ -32,11 +38,6 @@ video {
 }
 audio:not([controls]) {
   display: none;
-}
-html {
-  font-size: 100%;
-  -webkit-text-size-adjust: 100%;
-  -ms-text-size-adjust: 100%;
 }
 a:hover,
 a:active,
@@ -730,12 +731,12 @@ a {
   letter-spacing: 0.00em;
 }
 .metro .header {
-  font-size: 42pt;
-  line-height: 44pt;
+  font-size: 4.8rem;
+  line-height: 4.8rem;
 }
 .metro .subheader {
-  font-size: 20pt;
-  line-height: 24pt;
+  font-size: 2.5rem;
+  line-height: 2.5rem;
   letter-spacing: 0.01em;
 }
 .metro .subheader-secondary {
@@ -743,37 +744,39 @@ a {
   font-weight: 300;
   color: #000000;
   letter-spacing: 0.00em;
-  font-size: 20pt;
-  line-height: 24pt;
+  font-size: 2.5rem;
+  line-height: 2.5rem;
   letter-spacing: 0.01em;
   color: rgba(0, 0, 0, 0.6);
-  font-size: 16pt;
+  font-size: 2.2rem;
+  line-height: 2.2rem;
 }
 .metro .item-title {
   font-family: 'Segoe UI Semibold_', 'Open Sans Bold', Verdana, Arial, Helvetica, sans-serif;
   font-weight: bold;
   color: #000000;
-  font-size: 11pt;
-  line-height: 15pt;
+  font-size: 1.6rem;
+  line-height: 1.6rem;
   letter-spacing: 0.02em;
 }
 .metro .item-title-secondary {
   font-family: 'Segoe UI Semibold_', 'Open Sans Bold', Verdana, Arial, Helvetica, sans-serif;
   font-weight: bold;
   color: #000000;
-  font-size: 11pt;
-  line-height: 15pt;
+  font-size: 1.6rem;
+  line-height: 1.6rem;
   letter-spacing: 0.02em;
   color: rgba(0, 0, 0, 0.6);
-  font-size: 10pt;
+  font-size: 1.4rem;
+  line-height: 1.4rem;
 }
 .metro .navigation {
   font-family: 'Segoe UI_', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: normal;
   font-style: normal;
   color: rgba(0, 0, 0, 0.6);
-  font-size: 10pt;
-  line-height: 12pt;
+  font-size: 1.2rem;
+  line-height: 1.2rem;
   letter-spacing: 0.02em;
 }
 .metro .body-text {
@@ -798,15 +801,15 @@ a {
 .metro .tertiary-text {
   font-family: 'Segoe UI_', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   color: #000000;
-  font-size: 10pt !important;
-  line-height: 11pt !important;
+  font-size: 1.3rem;
+  line-height: 1.5rem;
   font-weight: normal !important;
 }
 .metro .tertiary-text-secondary {
   font-family: 'Segoe UI_', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   color: #000000;
-  font-size: 10pt !important;
-  line-height: 11pt !important;
+  font-size: 1.3rem;
+  line-height: 1.5rem;
   font-weight: normal !important;
   color: rgba(0, 0, 0, 0.6);
 }
@@ -814,41 +817,41 @@ a {
   font-family: 'Cambria_', 'PT Serif Caption', Verdana, Arial, Helvetica, sans-serif;
   font-weight: normal;
   font-style: normal;
-  font-size: 14pt;
-  line-height: 16pt;
+  font-size: 1.8rem;
+  line-height: 2rem;
 }
 .metro .menu-title {
   font-family: 'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 300;
   color: #000000;
   letter-spacing: 0.00em;
-  font-size: 20pt;
-  line-height: 24pt;
+  font-size: 2.5rem;
+  line-height: 2.5rem;
   letter-spacing: 0.01em;
-  font-size: 30pt;
+  font-size: 4rem;
 }
 .metro .menu-item {
   font-family: 'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 300;
   color: #000000;
   letter-spacing: 0.00em;
-  font-size: 20pt;
-  line-height: 24pt;
+  font-size: 2.5rem;
+  line-height: 2.5rem;
   letter-spacing: 0.01em;
   color: rgba(0, 0, 0, 0.6);
-  font-size: 16pt;
-  font-size: 14pt;
+  line-height: 2.2rem;
+  font-size: 2.2rem;
 }
 .metro .menu-item-secondary {
   font-family: 'Segoe UI Semibold_', 'Open Sans Bold', Verdana, Arial, Helvetica, sans-serif;
   font-weight: bold;
   color: #000000;
-  font-size: 11pt;
-  line-height: 15pt;
+  font-size: 1.6rem;
+  line-height: 1.6rem;
   letter-spacing: 0.02em;
   font-weight: normal;
   font-style: normal;
-  line-height: 16px;
+  line-height: 1.4rem;
 }
 .metro h1,
 .metro h2,
@@ -864,16 +867,16 @@ a {
   font-weight: 300;
   color: #000000;
   letter-spacing: 0.00em;
-  font-size: 42pt;
-  line-height: 44pt;
+  font-size: 4.8rem;
+  line-height: 4.8rem;
 }
 .metro h2 {
   font-family: 'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 300;
   color: #000000;
   letter-spacing: 0.00em;
-  font-size: 20pt;
-  line-height: 24pt;
+  font-size: 2.5rem;
+  line-height: 2.5rem;
   letter-spacing: 0.01em;
 }
 .metro h3 {
@@ -881,29 +884,31 @@ a {
   font-weight: 300;
   color: #000000;
   letter-spacing: 0.00em;
-  font-size: 20pt;
-  line-height: 24pt;
+  font-size: 2.5rem;
+  line-height: 2.5rem;
   letter-spacing: 0.01em;
   color: rgba(0, 0, 0, 0.6);
-  font-size: 16pt;
+  font-size: 2.2rem;
+  line-height: 2.2rem;
 }
 .metro h4 {
   font-family: 'Segoe UI Semibold_', 'Open Sans Bold', Verdana, Arial, Helvetica, sans-serif;
   font-weight: bold;
   color: #000000;
-  font-size: 11pt;
-  line-height: 15pt;
+  font-size: 1.6rem;
+  line-height: 1.6rem;
   letter-spacing: 0.02em;
 }
 .metro h5 {
   font-family: 'Segoe UI Semibold_', 'Open Sans Bold', Verdana, Arial, Helvetica, sans-serif;
   font-weight: bold;
   color: #000000;
-  font-size: 11pt;
-  line-height: 15pt;
+  font-size: 1.6rem;
+  line-height: 1.6rem;
   letter-spacing: 0.02em;
   color: rgba(0, 0, 0, 0.6);
-  font-size: 10pt;
+  font-size: 1.4rem;
+  line-height: 1.4rem;
 }
 .metro h6 {
   font-family: 'Segoe UI_', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
@@ -1059,8 +1064,8 @@ a {
   font-family: 'Cambria_', 'PT Serif Caption', Verdana, Arial, Helvetica, sans-serif;
   font-weight: normal;
   font-style: normal;
-  font-size: 14pt;
-  line-height: 16pt;
+  font-size: 1.8rem;
+  line-height: 2rem;
 }
 .metro ol.styled > li {
   position: relative;
@@ -1121,28 +1126,9 @@ a {
   font-size: .9em !important;
   line-height: 10pt;
 }
-.metro .container,
-.metro .container-desktop,
-.metro .container-phone,
-.metro .container-tablet,
-.metro .container-large {
-  margin: 0 auto;
-}
-.metro .container-desktop {
-  width: 940px !important;
-}
-.metro .container-phone {
-  width: 480px !important;
-}
-.metro .container-tablet {
-  width: 720px !important;
-}
-.metro .container-large {
-  width: 1140px !important;
-}
 .metro .container {
   margin: 0 auto;
-  width: 940px !important;
+  width: 940px;
 }
 .metro .page {
   width: 100%;
@@ -1180,8 +1166,8 @@ a {
   font-weight: 300;
   color: #000000;
   letter-spacing: 0.00em;
-  font-size: 20pt;
-  line-height: 24pt;
+  font-size: 2.5rem;
+  line-height: 2.5rem;
   letter-spacing: 0.01em;
   display: block;
 }
@@ -1189,11 +1175,12 @@ a {
   font-family: 'Segoe UI Semibold_', 'Open Sans Bold', Verdana, Arial, Helvetica, sans-serif;
   font-weight: bold;
   color: #000000;
-  font-size: 11pt;
-  line-height: 15pt;
+  font-size: 1.6rem;
+  line-height: 1.6rem;
   letter-spacing: 0.02em;
   color: rgba(0, 0, 0, 0.6);
-  font-size: 10pt;
+  font-size: 1.4rem;
+  line-height: 1.4rem;
   font-weight: normal;
   font-style: normal;
   font-family: 'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
@@ -1909,8 +1896,8 @@ a {
   display: block;
   font-family: 'Segoe UI_', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   color: #000000;
-  font-size: 10pt !important;
-  line-height: 11pt !important;
+  font-size: 1.3rem;
+  line-height: 1.5rem;
   font-weight: normal !important;
   color: rgba(0, 0, 0, 0.6);
   color: inherit;
@@ -3280,12 +3267,12 @@ a {
   font-weight: 300;
   color: #000000;
   letter-spacing: 0.00em;
-  font-size: 20pt;
-  line-height: 24pt;
+  font-size: 2.5rem;
+  line-height: 2.5rem;
   letter-spacing: 0.01em;
   color: rgba(0, 0, 0, 0.6);
-  font-size: 16pt;
-  font-size: 14pt;
+  line-height: 2.2rem;
+  font-size: 2.2rem;
   color: inherit;
 }
 .metro .vertical-menu li.title {
@@ -3293,10 +3280,10 @@ a {
   font-weight: 300;
   color: #000000;
   letter-spacing: 0.00em;
-  font-size: 20pt;
-  line-height: 24pt;
+  font-size: 2.5rem;
+  line-height: 2.5rem;
   letter-spacing: 0.01em;
-  font-size: 30pt;
+  font-size: 4rem;
   margin-bottom: 20px;
 }
 .metro .vertical-menu.compact a {
@@ -3310,8 +3297,8 @@ a {
   font-family: 'Segoe UI Semibold_', 'Open Sans Bold', Verdana, Arial, Helvetica, sans-serif;
   font-weight: bold;
   color: #000000;
-  font-size: 11pt;
-  line-height: 15pt;
+  font-size: 1.6rem;
+  line-height: 1.6rem;
   letter-spacing: 0.02em;
 }
 .metro .vertical-menu ul.secondary {
@@ -3324,12 +3311,12 @@ a {
   font-family: 'Segoe UI Semibold_', 'Open Sans Bold', Verdana, Arial, Helvetica, sans-serif;
   font-weight: bold;
   color: #000000;
-  font-size: 11pt;
-  line-height: 15pt;
+  font-size: 1.6rem;
+  line-height: 1.6rem;
   letter-spacing: 0.02em;
   font-weight: normal;
   font-style: normal;
-  line-height: 16px;
+  line-height: 1.4rem;
   color: inherit;
 }
 .metro .horizontal-menu {
@@ -3353,12 +3340,12 @@ a {
   font-weight: 300;
   color: #000000;
   letter-spacing: 0.00em;
-  font-size: 20pt;
-  line-height: 24pt;
+  font-size: 2.5rem;
+  line-height: 2.5rem;
   letter-spacing: 0.01em;
   color: rgba(0, 0, 0, 0.6);
-  font-size: 16pt;
-  font-size: 14pt;
+  line-height: 2.2rem;
+  font-size: 2.2rem;
   color: inherit;
   padding: 5px;
 }
@@ -3407,12 +3394,12 @@ a {
   font-weight: 300;
   color: #000000;
   letter-spacing: 0.00em;
-  font-size: 20pt;
-  line-height: 24pt;
+  font-size: 2.5rem;
+  line-height: 2.5rem;
   letter-spacing: 0.01em;
   color: rgba(0, 0, 0, 0.6);
-  font-size: 16pt;
-  font-size: 14pt;
+  line-height: 2.2rem;
+  font-size: 2.2rem;
   color: inherit;
 }
 .metro .side-menu li.title {
@@ -3420,10 +3407,10 @@ a {
   font-weight: 300;
   color: #000000;
   letter-spacing: 0.00em;
-  font-size: 20pt;
-  line-height: 24pt;
+  font-size: 2.5rem;
+  line-height: 2.5rem;
   letter-spacing: 0.01em;
-  font-size: 30pt;
+  font-size: 4rem;
   margin-bottom: 20px;
 }
 .metro .side-menu.compact a {
@@ -3437,8 +3424,8 @@ a {
   font-family: 'Segoe UI Semibold_', 'Open Sans Bold', Verdana, Arial, Helvetica, sans-serif;
   font-weight: bold;
   color: #000000;
-  font-size: 11pt;
-  line-height: 15pt;
+  font-size: 1.6rem;
+  line-height: 1.6rem;
   letter-spacing: 0.02em;
 }
 .metro .side-menu ul.secondary {
@@ -3451,12 +3438,12 @@ a {
   font-family: 'Segoe UI Semibold_', 'Open Sans Bold', Verdana, Arial, Helvetica, sans-serif;
   font-weight: bold;
   color: #000000;
-  font-size: 11pt;
-  line-height: 15pt;
+  font-size: 1.6rem;
+  line-height: 1.6rem;
   letter-spacing: 0.02em;
   font-weight: normal;
   font-style: normal;
-  line-height: 16px;
+  line-height: 1.4rem;
   color: inherit;
 }
 .metro .side-menu li {
@@ -3538,39 +3525,24 @@ a {
   font-weight: 300;
   color: #000000;
   letter-spacing: 0.00em;
-  font-size: 20pt;
-  line-height: 24pt;
+  font-size: 2.5rem;
+  line-height: 2.5rem;
   letter-spacing: 0.01em;
   color: rgba(0, 0, 0, 0.6);
-  font-size: 16pt;
-  font-size: 14pt;
+  line-height: 2.2rem;
+  font-size: 2.2rem;
   color: inherit;
 }
 .metro .dropdown-menu li.title {
-  background-color: #f6f7f8;
-  font-size: 12px;
-  font-weight: bold;
-  line-height: 14px;
-  padding: 4px 8px;
-  border: 0;
-  border-bottom: 1px #dcddde solid;
-  border-top: 1px #dcddde solid;
-  color: #646464;
+  font-family: 'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 300;
+  color: #000000;
+  letter-spacing: 0.00em;
+  font-size: 2.5rem;
+  line-height: 2.5rem;
+  letter-spacing: 0.01em;
+  font-size: 4rem;
   margin-bottom: 20px;
-}
-.metro .dropdown-menu li.title:first-child {
-  margin: 0;
-  border-top-width: 0;
-}
-.metro .dropdown-menu li.title:first-child:hover {
-  border-top-width: 0;
-}
-.metro .dropdown-menu li.title:hover {
-  background-color: #f6f7f8;
-  cursor: default;
-  border: 0;
-  border-bottom: 1px #dcddde solid;
-  border-top: 1px #dcddde solid;
 }
 .metro .dropdown-menu.compact a {
   font-weight: normal;
@@ -3583,8 +3555,8 @@ a {
   font-family: 'Segoe UI Semibold_', 'Open Sans Bold', Verdana, Arial, Helvetica, sans-serif;
   font-weight: bold;
   color: #000000;
-  font-size: 11pt;
-  line-height: 15pt;
+  font-size: 1.6rem;
+  line-height: 1.6rem;
   letter-spacing: 0.02em;
 }
 .metro .dropdown-menu ul.secondary {
@@ -3597,12 +3569,12 @@ a {
   font-family: 'Segoe UI Semibold_', 'Open Sans Bold', Verdana, Arial, Helvetica, sans-serif;
   font-weight: bold;
   color: #000000;
-  font-size: 11pt;
-  line-height: 15pt;
+  font-size: 1.6rem;
+  line-height: 1.6rem;
   letter-spacing: 0.02em;
   font-weight: normal;
   font-style: normal;
-  line-height: 16px;
+  line-height: 1.4rem;
   color: inherit;
 }
 .metro .dropdown-menu.shadow {
@@ -5291,11 +5263,12 @@ a {
   font-weight: 300;
   color: #000000;
   letter-spacing: 0.00em;
-  font-size: 20pt;
-  line-height: 24pt;
+  font-size: 2.5rem;
+  line-height: 2.5rem;
   letter-spacing: 0.01em;
   color: rgba(0, 0, 0, 0.6);
-  font-size: 16pt;
+  font-size: 2.2rem;
+  line-height: 2.2rem;
   color: #ffffff;
 }
 .metro .sidebar > ul li a {
@@ -5371,39 +5344,24 @@ a {
   font-weight: 300;
   color: #000000;
   letter-spacing: 0.00em;
-  font-size: 20pt;
-  line-height: 24pt;
+  font-size: 2.5rem;
+  line-height: 2.5rem;
   letter-spacing: 0.01em;
   color: rgba(0, 0, 0, 0.6);
-  font-size: 16pt;
-  font-size: 14pt;
+  line-height: 2.2rem;
+  font-size: 2.2rem;
   color: inherit;
 }
 .metro .sidebar > ul ul li.title {
-  background-color: #f6f7f8;
-  font-size: 12px;
-  font-weight: bold;
-  line-height: 14px;
-  padding: 4px 8px;
-  border: 0;
-  border-bottom: 1px #dcddde solid;
-  border-top: 1px #dcddde solid;
-  color: #646464;
+  font-family: 'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 300;
+  color: #000000;
+  letter-spacing: 0.00em;
+  font-size: 2.5rem;
+  line-height: 2.5rem;
+  letter-spacing: 0.01em;
+  font-size: 4rem;
   margin-bottom: 20px;
-}
-.metro .sidebar > ul ul li.title:first-child {
-  margin: 0;
-  border-top-width: 0;
-}
-.metro .sidebar > ul ul li.title:first-child:hover {
-  border-top-width: 0;
-}
-.metro .sidebar > ul ul li.title:hover {
-  background-color: #f6f7f8;
-  cursor: default;
-  border: 0;
-  border-bottom: 1px #dcddde solid;
-  border-top: 1px #dcddde solid;
 }
 .metro .sidebar > ul ul.compact a {
   font-weight: normal;
@@ -5416,8 +5374,8 @@ a {
   font-family: 'Segoe UI Semibold_', 'Open Sans Bold', Verdana, Arial, Helvetica, sans-serif;
   font-weight: bold;
   color: #000000;
-  font-size: 11pt;
-  line-height: 15pt;
+  font-size: 1.6rem;
+  line-height: 1.6rem;
   letter-spacing: 0.02em;
 }
 .metro .sidebar > ul ul ul.secondary {
@@ -5430,12 +5388,12 @@ a {
   font-family: 'Segoe UI Semibold_', 'Open Sans Bold', Verdana, Arial, Helvetica, sans-serif;
   font-weight: bold;
   color: #000000;
-  font-size: 11pt;
-  line-height: 15pt;
+  font-size: 1.6rem;
+  line-height: 1.6rem;
   letter-spacing: 0.02em;
   font-weight: normal;
   font-style: normal;
-  line-height: 16px;
+  line-height: 1.4rem;
   color: inherit;
 }
 .metro .sidebar > ul ul.shadow {
@@ -5868,7 +5826,6 @@ a {
 }
 .metro .slider > .hint {
   background-color: #ffffff;
-  display: block;
   position: absolute;
   z-index: 3;
   border: 1px #ccc solid;
@@ -8891,11 +8848,12 @@ a {
   font-family: 'Segoe UI Semibold_', 'Open Sans Bold', Verdana, Arial, Helvetica, sans-serif;
   font-weight: bold;
   color: #000000;
-  font-size: 11pt;
-  line-height: 15pt;
+  font-size: 1.6rem;
+  line-height: 1.6rem;
   letter-spacing: 0.02em;
   color: rgba(0, 0, 0, 0.6);
-  font-size: 10pt;
+  font-size: 1.4rem;
+  line-height: 1.4rem;
   -webkit-transform: rotate(-90deg);
   -moz-transform: rotate(-90deg);
   -ms-transform: rotate(-90deg);

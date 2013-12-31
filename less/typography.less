@@ -93,43 +93,39 @@
 }
 
 .header {
-    font-size: 42pt;
-    line-height: 44pt;
+    .font-height(4.8rem);
 }
 
 .subheader {
-    font-size: 20pt;
-    line-height: 24pt;
+    .font-height(2.5rem);
     letter-spacing: 0.01em;
 }
 
 .subheader-secondary {
     .subheader;
     .text-rest2-state;
-    font-size: 16pt;
+    .font-height(2.2rem);
 }
 
 .item-title {
     #font > .segoe-bold;
     #font > .bold;
     .text-rest-state;
-    font-size: 11pt;
-    line-height: 15pt;
+    .font-height(1.6rem);
     letter-spacing: 0.02em;
 }
 
 .item-title-secondary {
     .item-title;
     .text-rest2-state;
-    font-size: 10pt;
+    .font-height(1.4rem);
 }
 
 .navigation {
     #font > .segoe;
     #font > .normal;
     .text-rest2-state;
-    font-size: 10pt;
-    line-height: 12pt;
+    .font-height(1.2rem);
     letter-spacing: 0.02em;
 }
 
@@ -150,8 +146,8 @@
 .tertiary-text {
     #font > .segoe;
     .text-rest-state;
-    font-size: 10pt !important;
-    line-height: 11pt !important;
+    .font-size(1.3rem);
+    .line-height(1.5rem);
     font-weight: normal !important;
 }
 
@@ -163,24 +159,26 @@
 .readable-text {
     #font > .cambria;
     #font > .normal;
-    font-size: 14pt;
-    line-height: 16pt;
+    .font-size(1.8rem);
+    .line-height(2rem);
 }
 
 .menu-title {
     .subheader;
-    font-size: 30pt;
+    //font-size: 30pt;
+    .font-size(4.0rem);
 }
 
 .menu-item {
     .subheader-secondary;
-    font-size: 14pt;
+    //font-size: 14pt;
+    .font-size(2.2rem);
 }
 
 .menu-item-secondary {
     .item-title;
     #font > .normal;
-    line-height: 16px;
+    .line-height(1.4rem);
 }
 
 h1, h2, h3, h4, h5, h6 {
