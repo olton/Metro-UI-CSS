@@ -2,11 +2,13 @@
 <html>
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="product" content="Metro UI CSS Framework">
     <meta name="description" content="Simple responsive css framework">
     <meta name="author" content="Sergey S. Pimenov, Ukraine, Kiev">
 
     <link href="css/metro-bootstrap.css" rel="stylesheet">
+    <link href="css/metro-bootstrap-responsive.css" rel="stylesheet">
     <link href="css/docs.css" rel="stylesheet">
     <link href="js/prettify/prettify.css" rel="stylesheet">
 
@@ -30,9 +32,8 @@
 </head>
 <body class="metro">
     <header class="bg-dark" data-load="header.html"></header>
-    <div class="page" id="typography-demo">
-        <div class="page-region">
-            <div class="page-region-content">
+
+    <div class="container">
                 <h1>
                     <a href="/"><i class="icon-arrow-left-3 fg-darker smaller"></i></a>
                     Typography
@@ -40,7 +41,7 @@
 
                 <div class="grid">
                     <div class="row">
-                        <div class="span3">
+                        <div class="span3 no-tablet-portrait">
                             <nav>
                                 <ul class="side-menu">
                                     <li><a href="#_general">General</a></li>
@@ -74,6 +75,12 @@
                                 <h4>h4. Header 4</h4>
                                 <h5>h5. Header 5</h5>
                                 <h6>h6. Header 6</h6>
+                                <br />
+                                <p class="header">Header</p>
+                                <p class="subheader">Class Subheader</p>
+                                <p class="subheader-secondary">Sub secondary</p>
+                                <p class="item-title">Item title</p>
+                                <p class="item-title-secondary">Title sec</p>
                             </div>
 
                             <br />
@@ -482,8 +489,6 @@ An abbreviation of the word attribute is &lt;abbr title="attribute description"&
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
     </div>
 
     <script src="js/hitua.js"></script>

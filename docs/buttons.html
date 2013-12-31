@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="product" content="Metro UI CSS Framework">
     <meta name="description" content="Simple responsive css framework">
     <meta name="author" content="Sergey S. Pimenov, Ukraine, Kiev">
@@ -30,9 +31,7 @@
 <body class="metro">
     <header class="bg-dark" data-load="header.html"></header>
 
-    <div class="page">
-        <div class="page-region">
-            <div class="page-region-content">
+    <div class="container">
                 <h1>
                     <a href="/"><i class="icon-arrow-left-3 fg-darker smaller"></i></a>
                     Buttons<small class="on-right">definition</small>
@@ -40,7 +39,7 @@
 
                 <div class="grid">
                     <div class="row">
-                        <div class="span3">
+                        <div class="span3 no-tablet-portrait">
                             <nav>
                                 <ul class="side-menu">
                                     <li><a href="#_push">Push button</a></li>
@@ -725,14 +724,6 @@ $("#component_id").buttongroup().bind("buttongroupclick", function(event, btn, o
                     </div>
                 </div>
 
-            </div>
-        </div>
-
-        <div class="page-footer">
-            <div class="page-footer-content">
-                <!--<div data-load="header.html"></div>-->
-            </div>
-        </div>
     </div>
 
     <script src="js/hitua.js"></script>

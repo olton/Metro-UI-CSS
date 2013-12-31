@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="product" content="Metro UI CSS Framework">
     <meta name="description" content="Simple responsive css framework">
     <meta name="author" content="Sergey S. Pimenov, Ukraine, Kiev">
@@ -28,16 +29,14 @@
 </head>
 <body class="metro">
     <header class="bg-dark" data-load="header.html"></header>
-    <div class="page">
-        <div class="page-region">
-            <div class="page-region-content">
+    <div class="container">
                 <h1>
                     <a href="/"><i class="icon-arrow-left-3 fg-darker smaller"></i></a>
                     ListView<small class="on-right">component</small>
                 </h1>
 
-                <div class="example">
-                    <div class="grid fluid">
+                <div class="example1">
+                    <div class="grid ">
                         <div class="row">
                             <div class="span5">
                                 <div class="listview">
@@ -112,29 +111,6 @@
                                             </div>
                                         </div>
                                     </a>
-
-                                    <a href="#" class="list small bg-pink fg-white">
-                                        <div class="list-content">
-                                            <span class="icon icon-camera border"></span>
-                                            <div class="data">
-                                                <span class="list-title">Quite long list title, even longer and longer</span>
-                                                <div class="rating small no-margin" data-score="4" data-role="rating" data-stars="5"></div>
-                                                <span class="list-remark">Price: $1</span>
-                                            </div>
-                                        </div>
-                                    </a>
-
-
-                                    <a href="#" class="list small bg-pink fg-white">
-                                        <div class="list-content">
-                                            <span class="icon icon-camera "></span>
-                                            <div class="data">
-                                                <span class="list-title">Quite long list title</span>
-                                                <div class="rating small no-margin" data-score="4" data-role="rating" data-stars="5"></div>
-                                            </div>
-                                        </div>
-                                    </a>
-
                                 </div>
                             </div>
 
@@ -170,7 +146,8 @@
             &lt;img src="images/excel2013icon.png" class="icon"&gt;
             &lt;div class="data"&gt;
                 &lt;span class="list-title"&gt;Excel 2013&lt;/span&gt;
-                &lt;div class="rating small no-margin" data-role="rating" data-stars="5"&gt;&lt;/div&gt;
+                &lt;div class="rating small no-margin" data-role="rating"
+                        data-stars="5"&gt;&lt;/div&gt;
                 &lt;span class="list-remark"&gt;Price: $1&lt;/span&gt;
             &lt;/div&gt;
         &lt;/div&gt;
@@ -181,7 +158,8 @@
             &lt;span class="icon icon-location fg-lightBlue"&gt;&lt;/span&gt;
             &lt;div class="data"&gt;
                 &lt;span class="list-title"&gt;You location&lt;/span&gt;
-                &lt;div class="rating small no-margin fg-dark" data-score="4" data-role="rating" data-stars="5"&gt;&lt;/div&gt;
+                &lt;div class="rating small no-margin fg-dark" data-score="4"
+                        data-role="rating" data-stars="5"&gt;&lt;/div&gt;
                 &lt;span class="list-remark"&gt;Price: $1&lt;/span&gt;
             &lt;/div&gt;
         &lt;/div&gt;
@@ -192,7 +170,8 @@
             &lt;img src="images/onenote2013icon.png" class="icon"&gt;
             &lt;div class="data"&gt;
                 &lt;span class="list-title"&gt;Word 2013&lt;/span&gt;
-                &lt;div class="progress-bar small" data-role="progress-bar" data-value="75"&gt;&lt;/div&gt;
+                &lt;div class="progress-bar small" data-role="progress-bar"
+                        data-value="75"&gt;&lt;/div&gt;
                 &lt;span class="list-remark"&gt;Download...75%&lt;/span&gt;
             &lt;/div&gt;
         &lt;/div&gt;
@@ -201,10 +180,10 @@
 </pre>
 
                 <h2>List with Outlook 2013 style</h2>
-                <div class="example">
-                    <div class="grid fluid">
+                <div class="example1">
+                    <div class="grid ">
                         <div class="row">
-                            <div class="span5">
+                            <div class="span6">
                                 <h2>Simple list</h2>
                                 <div class="listview-outlook" data-role="listview">
                                     <a class="list marked" href="#">
@@ -245,9 +224,7 @@
                                 </div>
                             </div>
 
-                            <div class="span1"></div>
-
-                            <div class="span5">
+                            <div class="span6">
                                 <h2>Grouped list</h2>
                                 <div class="listview-outlook" data-role="listview">
                                     <div class="list-group ">
@@ -351,14 +328,6 @@
             </p>
 
 
-            </div>
-        </div>
-
-        <div class="page-footer">
-            <div class="page-footer-content">
-                <!--<div data-load="header.html"></div>-->
-            </div>
-        </div>
     </div>
 
     <script src="js/hitua.js"></script>

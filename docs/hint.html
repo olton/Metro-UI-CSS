@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="product" content="Metro UI CSS Framework">
     <meta name="description" content="Simple responsive css framework">
     <meta name="author" content="Sergey S. Pimenov, Ukraine, Kiev">
@@ -28,9 +29,7 @@
 </head>
 <body class="metro">
     <header class="bg-dark" data-load="header.html"></header>
-    <div class="page">
-        <div class="page-region">
-            <div class="page-region-content">
+    <div class="container">
                 <h1>
                     <a href="/"><i class="icon-arrow-left-3 fg-darker smaller"></i></a>
                     Hint<small class="on-right">plugin</small>
@@ -71,14 +70,18 @@
 &lt;/a&gt;
 </pre>
 
-            </div>
-        </div>
+                <div class="example">
+                    <h3>In table</h3>
+                    <table class="table border">
+                        <tr>
+                            <td data-hint="test1" data-hint-position="top">Test 1</td>
+                            <td data-hint="test2" data-hint-position="bottom">Test 2</td>
+                            <td data-hint="test3" data-hint-position="right">Test 3</td>
+                            <td data-hint="test4" data-hint-position="left">Test 4</td>
+                        </tr>
+                    </table>
+                </div>
 
-        <div class="page-footer">
-            <div class="page-footer-content">
-                <!--<div data-load="header.html"></div>-->
-            </div>
-        </div>
     </div>
 
     <script src="js/hitua.js"></script>
