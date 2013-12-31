@@ -76,4 +76,43 @@
     });
 })( jQuery );
 
+(function($){
+    $.fn.PullDown = function( options ){
+        var defaults = {
+        };
 
+        var $this = $(this)
+            ;
+
+        var initSelectors = function(selectors){
+
+            addTouchEvents(selectors[0]);
+
+            selectors.on('mousedown', function(e){
+                e.preventDefault();
+                e.stopPropagation();
+                var $m = $this.parent().find(".element-menu");
+                //console.log($m);
+                if ($m.css('display') == "block") {
+                    $m.slideUp('fast');
+                } else {
+                    $m.slideDown('fast');
+                }
+            });
+        };
+
+        return this.each(function(){
+            if ( options ) {
+                $.extend(defaults, options);
+            }
+
+            initSelectors($this);
+        });
+    };
+
+    $(function () {
+        $('.pull-menu, .menu-pull').each(function () {
+            $(this).PullDown();
+        });
+    });
+})(window.jQuery);

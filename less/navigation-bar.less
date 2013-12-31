@@ -1,11 +1,11 @@
-.navigation-bar {
+.navigation-bar, .navbar {
     width: 100%;
     display: block;
     background-color: @cyan;
     color: @white;
     height: 45px;
 
-    .navigation-bar-content {
+    .navigation-bar-content, .navbar-content {
         background-color: inherit;
         color: inherit;
         display: block;
@@ -72,7 +72,7 @@
     }
 }
 
-.navigation-bar-content {
+.navigation-bar-content, .navbar-content {
     .brand {
         font-size: 18px;
     }
@@ -153,7 +153,7 @@
     }
 }
 
-.navigation-bar {
+.navigation-bar, .navbar {
     .element-menu {
         margin: 0;
         padding: 0;
@@ -162,9 +162,7 @@
         & > li {
             display: block;
             float: left;
-            //margin-left: 20px;
             position: relative;
-            //border: 1px #fff dashed;
 
             & > a {
                 display: block;
@@ -175,7 +173,6 @@
                 color: inherit;
                 font-family: @segoeLightFontFamily;
                 font-size: 14px;
-                //transition: background .3s ease;
 
                 &.dropdown-toggle {
                     color: inherit;
@@ -186,12 +183,7 @@
                         margin-left: -20px;
                         top: 50%;
                         margin-top: -16px;
-                        //content: "";
                     }
-                }
-
-                &:hover {
-                    //background-color: saturate(@cyan, 30%);
                 }
             }
 
@@ -204,16 +196,44 @@
                     left: auto;
                 }
             }
+        }
 
+        &.responsive {}
+    }
+
+    .pull-menu {
+        display: none;
+        float: right !important;
+        color: #fff;
+        cursor: pointer;
+        font: 1.8em sans-serif;
+        position: relative;
+        height: 100%;
+        width: 40px;
+        line-height: 20px;
+        margin: 0;
+
+        &:before {
+            content: "\2261";
+            position: absolute;
+            font-size: 20pt;
+            top: 10px;
+            left: 10px;
+        }
+
+        input[type="checkbox"] {
+            width: 0;
+            height: 0;
+            opacity: 0;
         }
     }
 }
 
-.navigation-bar-content {
+.navigation-bar-content, .navbar-content {
     .clearfix;
 }
 
-.navigation-bar {
+.navigation-bar, .navbar {
     &.fixed-top, &.fixed-bottom {
         position: fixed;
         z-index: 10000;

@@ -173,6 +173,43 @@
   .grid:not(.fluid) > .row .row .span11:nth-child(even) {
     margin-left: 0 !important;
   }
+  .navigation-bar .pull-menu,
+  .navbar .pull-menu {
+    display: block !important;
+  }
+  .navigation-bar .element-menu,
+  .navbar .element-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    display: none;
+    width: 100%;
+    background-color: inherit;
+    z-index: 1000;
+  }
+  .navigation-bar .element-menu li,
+  .navbar .element-menu li {
+    display: block !important;
+    float: none !important;
+  }
+  .navigation-bar .element-menu li a,
+  .navbar .element-menu li a {
+    display: block !important;
+    float: none !important;
+  }
+  .navigation-bar .element-menu li .dropdown-menu,
+  .navbar .element-menu li .dropdown-menu {
+    position: relative !important;
+    left: 0;
+  }
+  .navigation-bar .pull-menu input:not(:checked) + .element-menu,
+  .navbar .pull-menu input:not(:checked) + .element-menu {
+    display: none ;
+  }
+  .navigation-bar .pull-menu input:not( :not(:checked)) + .element-menu,
+  .navbar .pull-menu input:not( :not(:checked)) + .element-menu {
+    display: block !important;
+  }
 }
 /* Phones landscape*/
 @media only screen and (max-width: 640px) {
