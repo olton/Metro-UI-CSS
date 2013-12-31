@@ -1,3 +1,6 @@
+var device_width = 0;
+var device_height = 0;
+
 function reinit()
 {
     //$('.dropdown-menu').dropdown({effect: 'slide'});
@@ -56,3 +59,23 @@ $(function(){
 $(window).scroll(function(){
     headerPosition();
 });
+
+function getDeviceSize(){
+    device_width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+    //device_height = (window.innerHeight > 0) ? window.innerHeight : screen.height;
+    $("#device_width").html(device_width);
+    //$("#device_height").html(device_height);
+}
+
+$(function(){
+    $("<div/>").addClass("padding20 bg-dark fg-white border bd-white no-display").css({
+        position: "fixed",
+        top: 0,
+        right: 0
+    }).html('<span id="device_width">0</span>').appendTo("body");
+    getDeviceSize();
+})
+
+$(window).resize(function(){
+    getDeviceSize();
+})
