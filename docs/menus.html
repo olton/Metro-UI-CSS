@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="product" content="Metro UI CSS Framework">
     <meta name="description" content="Simple responsive css framework">
     <meta name="author" content="Sergey S. Pimenov, Ukraine, Kiev">
@@ -29,9 +30,7 @@
 </head>
 <body class="metro">
     <header class="bg-dark" data-load="header.html"></header>
-    <div class="page">
-        <div class="page-region">
-            <div class="page-region-content">
+    <div class="container">
                 <h1>
                     <a href="/"><i class="icon-arrow-left-3 fg-darker smaller"></i></a>
                     Menu<small class="on-right">components</small>
@@ -166,7 +165,7 @@
                 <p class="description">
                     Toggleable, contextual menu for displaying lists of links. Made interactive with the <code>metro-dropdown.js</code> JavaScript plugin.
                 </p>
-                <div class="example">
+
                     <div class="grid fluid">
                         <div class="row">
                             <div class="span4">
@@ -213,7 +212,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+
 <pre class="prettyprint linenums">
 &lt;ul class="dropdown-menu" data-role="dropdown"&gt;
     &lt;li class="menu-title"&gt;This is a title&lt;/li&gt;
@@ -297,7 +296,7 @@
                         <ul>
                             <li>
                                 <a class="dropdown-toggle" href="#">Demo dropdown</a>
-                                <ul class="dropdown-menu" data-show="hover">
+                                <ul class="dropdown-menu" data-show="hover" data-role="dropdown">
                                     <li>
                                         <a class="dropdown-toggle" href="#">Right dropdown</a>
                                         <ul class="dropdown-menu" data-show="hover">
@@ -310,7 +309,7 @@
                                     </li>
                                     <li>
                                         <a class="dropdown-toggle" href="#">Left dropdown</a>
-                                        <ul class="dropdown-menu drop-left" data-show="hover">
+                                        <ul class="dropdown-menu " data-show="hover">
                                             <li><a href="#">Sublink 1</a></li>
                                             <li><a href="#">Sublink 2</a></li>
                                             <li><a href="#">Sublink 3</a></li>
@@ -320,7 +319,7 @@
                                     </li>
                                     <li>
                                         <a class="dropdown-toggle" href="#">Drop Up</a>
-                                        <ul class="dropdown-menu drop-up" data-show="hover">
+                                        <ul class="dropdown-menu " data-show="hover">
                                             <li><a href="#">Sublink 1</a></li>
                                             <li><a href="#">Sublink 2</a></li>
                                             <li><a href="#">Sublink 3</a></li>
@@ -362,14 +361,6 @@ $("#menu").dropdown({
 </pre>
 
 
-            </div>
-        </div>
-
-        <div class="page-footer">
-            <div class="page-footer-content">
-                <!--<div data-load="header.html"></div>-->
-            </div>
-        </div>
     </div>
 
     <script src="js/hitua.js"></script>

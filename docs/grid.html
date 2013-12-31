@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="product" content="Metro UI CSS Framework">
     <meta name="description" content="Simple responsive css framework">
     <meta name="author" content="Sergey S. Pimenov, Ukraine, Kiev">
@@ -31,10 +32,8 @@
 </head>
 <body class="metro">
     <header class="bg-dark" data-load="header.html"></header>
-    <div class="page">
+    <div class="container">
 
-        <div class="page-region">
-            <div class="page-region-content">
 
                 <h1>
                     <a href="/"><i class="icon-arrow-left-3 fg-darker smaller"></i></a>
@@ -46,36 +45,33 @@
                     With the responsive CSS file added, the grid adapts to be 724px and 1170px wide depending on your viewport.
                     Below 767px viewports, the columns become fluid and stack vertically.
                 </p>
-                <div class="example">
+
                     <div class="grid show-grid">
                         <div class="row">
-                            <div class="span1">1</div>
-                            <div class="span1"></div>
-                            <div class="span1"></div>
-                            <div class="span1"></div>
-                            <div class="span1"></div>
-                            <div class="span1"></div>
-                            <div class="span1"></div>
-                            <div class="span1"></div>
-                            <div class="span1"></div>
+                            <div class="span1">span1</div>
+                            <div class="span1">span1</div>
+                            <div class="span1">span1</div>
+                            <div class="span1">span1</div>
+                            <div class="span1">span1</div>
+                            <div class="span1">span1</div>
+                            <div class="span1">span1</div>
+                            <div class="span1">span1</div>
+                            <div class="span1">span1</div>
+                            <div class="span1">span1</div>
+                            <div class="span1">span1</div>
+                            <div class="span1">span1</div>
                         </div>
 
                         <div class="row">
-                            <div class="span2">2</div>
-                            <div class="span3">3</div>
-                            <div class="span4">4</div>
+                            <div class="span2">span2</div>
+                            <div class="span3">span3</div>
+                            <div class="span7">span7</div>
                         </div>
 
                         <div class="row">
-                            <div class="span4">4</div>
-                            <div class="span5">5</div>
-                        </div>
-
-                        <div class="row">
-                            <div class="span9">9</div>
+                            <div class="span12">span12</div>
                         </div>
                     </div>
-                </div>
 
                 <h3 id="_basic">Basic grid HTML</h3>
                 <p>
@@ -103,18 +99,20 @@
                     For example, <code>.offset4</code> moves <code>.span4</code> over four columns.
                 </p>
 
-                <div class="example">
                     <div class="grid show-grid">
                         <div class="row">
-                            <div class="span1"></div>
-                            <div class="span1"></div>
-                            <div class="span1"></div>
-                            <div class="span1"></div>
-                            <div class="span1"></div>
-                            <div class="span1"></div>
-                            <div class="span1"></div>
-                            <div class="span1"></div>
-                            <div class="span1"></div>
+                            <div class="span1">span1</div>
+                            <div class="span1">span1</div>
+                            <div class="span1">span1</div>
+                            <div class="span1">span1</div>
+                            <div class="span1">span1</div>
+                            <div class="span1">span1</div>
+                            <div class="span1">span1</div>
+                            <div class="span1">span1</div>
+                            <div class="span1">span1</div>
+                            <div class="span1">span1</div>
+                            <div class="span1">span1</div>
+                            <div class="span1">span1</div>
                         </div>
                         <div class="row">
                             <div class="span4">4</div>
@@ -128,7 +126,6 @@
                             <div class="span6 offset3">6 offset 3</div>
                         </div>
                     </div>
-                </div>
 
                 <h3 id="_nesting">Nesting columns</h3>
                 <p>
@@ -136,19 +133,18 @@
                     Nested rows should include a set of columns that add up to the number of columns of its parent.
                 </p>
 
-                <div class="example">
                     <div class="grid show-grid">
                         <div class="row">
-                            <div class="span9">
+                            <div class="span12">
                                 level 1 column
                                 <div class="row">
+                                    <div class="span2">level 2</div>
                                     <div class="span6">level 2</div>
-                                    <div class="span3">level 2</div>
+                                    <div class="span4">level 2</div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
 <pre class="prettyprint linenums">
  &lt;div class="grid"&gt;
@@ -206,14 +202,6 @@
 &lt;/div&gt;
 </pre>
 
-            </div> <!-- End page-region-content -->
-        </div> <!-- End page-region -->
-
-        <div class="page-footer">
-            <div class="page-footer-content">
-                
-            </div>
-        </div>
     </div>
 
     <script src="js/hitua.js"></script>

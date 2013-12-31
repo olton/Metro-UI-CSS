@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="product" content="Metro UI CSS Framework">
     <meta name="description" content="Simple responsive css framework">
     <meta name="author" content="Sergey S. Pimenov, Ukraine, Kiev">
@@ -78,33 +79,24 @@
         </div>
 
         <div class="container">
-            <div class="clearfix no-display">
-                <div class="place-right subheader-secondary clearfix" style="height: 75px">
-                    <span class="icon-IE on-left-more"></span>
-                    <span class="icon-chrome on-left-more"></span>
-                    <span class="icon-firefox on-left-more"></span>
-                    <span class="icon-opera on-left-more"></span>
-                    <span class="icon-safari"></span>
-                </div>
-                <h2 class="ntm">Quick start</h2>
-            </div>
-
-            <div class="grid fluid no-margin">
+            <div class="grid no-margin">
                 <div class="row">
-                    <div class="span4">
-                        <div class=" notice marker-on-right bg-lighterBlue padding20 text-center">
-                            <h1 class="fg-white" style="font-size: 96pt">5</h1>
-                            <br />
+                    <div class="span4 no-tablet-portrait">
+                        <div class="notice marker-on-right bg-lighterBlue padding20 text-center" style="height: 200px">
+                            <h1 class="fg-white" style="font-size: 120px; line-height: 80px; margin-bottom: 30px">5</h1>
                             <p class="subheader-secondary fg-white">simple steps to you style</p>
                         </div>
                     </div>
-                    <div class="span8 padding10 nrp nlp">
-                        <ol class="styled no-margin">
-                            <li>Create page with <strong>HTML5 DOCTYPE</strong></li>
-                            <li>Include <strong>metro-bootstrap.css</strong></li>
-                            <li>Include jquery.js, jquery.widget.js and <strong>metro.min.js</strong></li>
-                            <li>Create container for components with class <strong>.metro</strong></li>
-                            <li>Use markup, as described in the pages of this site</li>
+                    <div class="span8">
+                        <div class="no-desktop padding10 bg-lighterBlue text-center">
+                            <p class="subheader-secondary fg-white no-margin">5 simple steps to you style</p>
+                        </div>
+                        <ol class="styled">
+                            <li style="width: 90%">Create page with <strong>HTML5 DOCTYPE</strong></li>
+                            <li style="width: 90%">Include <strong>metro-bootstrap.css</strong></li>
+                            <li style="width: 90%">Include <strong>metro.min.js</strong> (jquery.js required)</li>
+                            <li style="width: 90%">Create main container with class <strong>.metro</strong></li>
+                            <li style="width: 90%">Use markup, as described in the pages of this site</li>
                         </ol>
                     </div>
                 </div>
@@ -112,7 +104,7 @@
 
 
 
-<pre class="prettyprint linenums" style="margin-top: 10px;">
+<pre class="prettyprint linenums no-phone" style="margin-top: 10px;">
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
     &lt;head&gt;
@@ -128,7 +120,7 @@
 </pre>
         </div>
 
-        <div class="bg-steel">
+        <div class="bg-steel no-tablet-portrait">
             <div class="container padding20 fg-white">
                 <div class="carousel bg-transparent no-overflow" id="carousel2">
                     <div class="slide">
@@ -179,35 +171,31 @@
         </div>
 
         <div class="bg-dark">
-            <div class="container">
+            <div class="container" style="padding: 10px 0;">
+
                 <div class="grid no-margin">
                     <div class="row no-margin">
-                        <div class="span9 padding20 nlp">
-                            <img src="http://metroui.net/images/spface.jpg" alt="" class="polaroid span3 place-left" style="margin-top: 10px"/>
-                            <div style="margin-left: 240px;">
-                                <h3 class="fg-white">About author</h3>
-                                <p class="fg-white">Hi! My name Sergey Pimenov and i'm author of Metro UI CSS from Kiev, Ukraine.</p>
-
-                            </div>
+                        <div class="span3 padding10">
+                            <img src="http://metroui.net/images/spface.jpg" alt="" class="polaroid"/>
                         </div>
-                        <div class="span3 padding20 nrp">
-                            <ul class="unstyled">
-                                <li><a class="place-right button danger size3 margin5" href="http://bizspark.com">Microsoft BizSpark</a></li>
-                                <li><a class="place-right button success size3 margin5"  href="http://jetbrains.com">JetBrains</a></li>
-                                <li><a class="place-right button info size3 margin5"  href="https://github.com/olton/Metro-UI-CSS">Github</a></li>
-                                <li><a class="place-right button warning size3 margin5"  href="http://lesscss.org">{ Less }</a></li>
-                            </ul>
+                        <div class="span6 padding10">
+                            <h3 class="fg-white">About author</h3>
+                            <p class="fg-white">Hi! My name Sergey Pimenov and i'm author of Metro UI CSS from Kiev, Ukraine.</p>
+                        </div>
+                        <div class="span3 padding10">
+                            <a class="button danger " style="width: 100%; margin-bottom: 5px" href="http://bizspark.com">Microsoft BizSpark</a>
+                            <a class="button success " style="width: 100%; margin-bottom: 5px"  href="http://jetbrains.com">JetBrains</a>
+                            <a class="button info " style="width: 100%; margin-bottom: 5px"  href="https://github.com/olton/Metro-UI-CSS">Github</a>
+                            <a class="button warning " style="width: 100%; margin-bottom: 5px;"  href="http://lesscss.org">{ Less }</a>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <footer class="bg-dark no-margin">
-            <div class="container tertiary-text bg-dark fg-white">
+            <div class="container tertiary-text bg-dark fg-white" style="padding: 10px">
                 2012-2013, Metro UI CSS &copy; by  <a href="mailto:sergey@pimenov.com.ua" class="fg-yellow">Sergey Pimenov</a>
             </div>
-        </footer>
+        </div>
     </div>
 
     <script src="js/hitua.js"></script>

@@ -17,6 +17,13 @@
 
             if (element.data('hintPosition') != undefined) o.position = element.data('hintPosition');
 
+            //console.log(element[0].tagName);
+            if (element[0].tagName == 'TD' || element[0].tagName == 'TH') {
+                var wrp = $("<div/>").css("display", "inline-block").html(element.html());
+                element.html(wrp);
+                element = wrp;
+            }
+
             var hint_title = hint.length > 1 ? hint[0] : false;
             var hint_text = hint.length > 1 ? hint[1] : hint[0];
 
@@ -51,12 +58,12 @@
             }
 
             element.on('mouseenter', function(e){
-                _hint.fadeIn();
+                _hint.stop().fadeIn();
                 e.preventDefault();
             });
 
             element.on('mouseleave', function(e){
-                _hint.fadeOut();
+                _hint.stop().fadeOut();
                 e.preventDefault();
             });
 

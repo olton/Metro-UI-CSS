@@ -2,6 +2,7 @@
 <html  lang="en">
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
     <meta name="product" content="Metro UI CSS Framework">
     <meta name="description" content="Simple responsive css framework">
@@ -35,9 +36,7 @@
 <body class="metro">
     <header class="bg-dark" data-load="header.html"></header>
 
-    <div class="page">
-        <div class="page-region">
-            <div class="page-region-content">
+    <div class="container">
                 <h1>
                     <a href="/"><i class="icon-arrow-left-3 fg-darker smaller"></i></a>
                     Calendar<small class="on-right">component</small>
@@ -47,8 +46,8 @@
                     This component required: <code>metro-global.js</code>, <code>metro-locale.js</code> and <code>metro-calendar.js</code>.
                 </p>
 
-                <div class="example">
-                    <div class="grid fluid">
+                <div class="example1">
+                    <div class="grid">
                         <div class="row">
                             <div class="span4"><div class="calendar small" data-role="calendar" ></div></div>
                             <div class="span4"><div class="calendar small" data-role="calendar" data-start-mode="month"></div></div>
@@ -92,7 +91,7 @@ $("component_id").calendar({
 </pre>
 
                 <h3>Events &amp; Methods</h3>
-                <div class="example">
+                <div class="example1">
                     <div class="grid">
                         <div class="row">
                             <div class="span4">
@@ -162,8 +161,8 @@ $(function(){
 })
 </pre>
                 <h3>Start from Monday, display other days</h3>
-                <div class="example">
-                    <div class="grid fluid">
+                <div class="example1">
+                    <div class="grid ">
                         <div class="row">
                             <div class="span4"><h2>Start from Monday</h2><div class="calendar small" data-role="calendar" data-locale="en" data-week-start="1"></div></div>
                             <div class="span4"><h2>Show other days</h2><div class="calendar small" data-role="calendar" data-locale="en" data-other-days="1"></div></div>
@@ -176,8 +175,8 @@ $(function(){
 </pre>
 
                 <h3>Languages</h3>
-                <div class="example">
-                    <div class="grid fluid">
+                <div class="example1">
+                    <div class="grid ">
                         <div class="row">
                             <div class="span4"><h2>EN</h2><div class="calendar small" data-role="calendar" data-locale="en"></div></div>
                             <div class="span4"><h2>FR</h2><div class="calendar small" data-role="calendar" data-locale="fr"></div></div>
@@ -198,14 +197,6 @@ $(function(){
 </pre>
 
 
-            </div>
-        </div>
-
-        <div class="page-footer">
-            <div class="page-footer-content">
-                <!--<div data-load="header.html"></div>-->
-            </div>
-        </div>
     </div>
 
     <script src="js/hitua.js"></script>

@@ -1,8 +1,3 @@
-.set-bg-color (@color: transparent){background-color: @color !important;}
-.set-fg-color (@color: transparent){color: @color !important;}
-.set-ol-color (@color: transparent){outline-color: @color !important;}
-.set-bd-color (@color: transparent){border-color: @color !important;}
-
 // Colors : background
 .bg-black {.set-bg-color(@black)}
 .bg-white {.set-bg-color(@white)}
@@ -542,17 +537,6 @@
 .fg-focus-grayLight {&:focus{.set-fg-color(@grayLight)}}
 .fg-focus-grayLighter {&:focus{.set-fg-color(@grayLighter)}}
 .fg-focus-blue {&:focus{.set-fg-color(@blue)}}
-
-
-.ribbed(@color: @white, @angle: -45deg, @size: 40px) {
-    background-color: @color !important;
-    background-image: -webkit-linear-gradient(@angle, rgba(255,255,255,.15) 25%, transparent 25%, transparent 50%, rgba(255,255,255,.15) 50%, rgba(255,255,255,.15) 75%, transparent 75%, transparent);
-    background-image: -moz-linear-gradient(@angle, rgba(255,255,255,.15) 25%, transparent 25%, transparent 50%, rgba(255,255,255,.15) 50%, rgba(255,255,255,.15) 75%, transparent 75%, transparent);
-    background-image: -ms-linear-gradient(@angle, rgba(255,255,255,.15) 25%, transparent 25%, transparent 50%, rgba(255,255,255,.15) 50%, rgba(255,255,255,.15) 75%, transparent 75%, transparent);
-    background-image: -o-linear-gradient(@angle, rgba(255,255,255,.15) 25%, transparent 25%, transparent 50%, rgba(255,255,255,.15) 50%, rgba(255,255,255,.15) 75%, transparent 75%, transparent);
-    background-image: linear-gradient(@angle, rgba(255,255,255,.15) 25%, transparent 25%, transparent 50%, rgba(255,255,255,.15) 50%, rgba(255,255,255,.15) 75%, transparent 75%, transparent);
-    background-size: @size @size;
-}
 
 .ribbed-black {.ribbed(@black) ;}
 .ribbed-white {.ribbed(@white) ;}

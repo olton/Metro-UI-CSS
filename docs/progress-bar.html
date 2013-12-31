@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="product" content="Metro UI CSS Framework">
     <meta name="description" content="Simple responsive css framework">
     <meta name="author" content="Sergey S. Pimenov, Ukraine, Kiev">
@@ -28,9 +29,7 @@
 </head>
 <body class="metro">
     <header class="bg-dark" data-load="header.html"></header>
-    <div class="page">
-        <div class="page-region">
-            <div class="page-region-content">
+    <div class="container">
                 <h1>
                     <a href="/"><i class="icon-arrow-left-3 fg-darker smaller"></i></a>
                     Progress Bar<small class="on-right">component</small>
@@ -48,10 +47,8 @@
                 </div>
 <pre class="prettyprint linenums">
 &lt;div class="progress-bar" data-role="progress-bar" data-value="10"&gt;&lt;/div&gt;
-&lt;div class="progress-bar" data-role="progress-bar" data-value="20" data-color="bg-green"&gt;&lt;/div&gt;
-&lt;div class="progress-bar" data-role="progress-bar" data-value="50" data-color="bg-red"&gt;&lt;/div&gt;
-&lt;div class="progress-bar" data-role="progress-bar" data-value="75" data-color="bg-pink"&gt;&lt;/div&gt;
-&lt;div class="progress-bar" data-role="progress-bar" data-value="100" data-color="#ccc"&gt;&lt;/div&gt;
+&lt;div class="progress-bar" data-role="progress-bar" data-color="bg-green"&gt;&lt;/div&gt;
+&lt;div class="progress-bar" data-role="progress-bar" data-color="#ccc"&gt;&lt;/div&gt;
 </pre>
                 <h3>Any size for progress bar</h3>
                 <div class="example">
@@ -60,9 +57,9 @@
                     <div class="progress-bar large" data-role="progress-bar" data-value="50"></div>
                 </div>
 <pre class="prettyprint linenums">
-&lt;div class="progress-bar small" data-role="progress-bar" data-value="10"&gt;&lt;/div&gt;
-&lt;div class="progress-bar" data-role="progress-bar" data-value="20" data-color="bg-green"&gt;&lt;/div&gt;
-&lt;div class="progress-bar large" data-role="progress-bar" data-value="50"&gt;&lt;/div&gt;
+&lt;div class="progress-bar small"&gt;&lt;/div&gt;
+&lt;div class="progress-bar"&gt;&lt;/div&gt;
+&lt;div class="progress-bar large"&gt;&lt;/div&gt;
 </pre>
 
                 <p class="description">
@@ -113,17 +110,12 @@ var pb = $("#componennt_id").progressbar();
 
                 <h4>Activate widget with API</h4>
 <pre class="prettyprint linenums">
-&lt;div class="progress-bar" data-role="progress-bar" data-value="75" data-color="bg-pink"&gt;&lt;/div&gt;
+&lt;div class="progress-bar"
+    data-role="progress-bar"
+    data-value="75"
+    data-color="bg-pink"&gt;&lt;/div&gt;
 </pre>
 
-            </div>
-        </div>
-
-        <div class="page-footer">
-            <div class="page-footer-content">
-                <!--<div data-load="header.html"></div>-->
-            </div>
-        </div>
     </div>
 
     <script src="js/hitua.js"></script>
