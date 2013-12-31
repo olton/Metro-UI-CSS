@@ -70,6 +70,19 @@
             buttons: [
                 "今日", "清除"
             ]
+        },
+        'it': {
+            months: [
+                'Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre',
+                'Gen',' Feb', 'Mar', 'Apr', 'Mag', 'Giu', 'Lug', 'Ago', 'Set', 'Ott', 'Nov', 'Dic'
+            ],
+            days: [
+                'Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato', 'Domenica',
+                'Lun', 'Mar', 'Mer', 'Gio', 'Ven', 'Sab', 'Dom'
+            ],
+            buttons: [
+                "Oggi", "Cancella"
+            ]
         }
     };
 
