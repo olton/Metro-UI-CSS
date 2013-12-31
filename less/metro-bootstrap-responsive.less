@@ -150,6 +150,43 @@
             }
         }
     }
+
+    .navigation-bar, .navbar {
+        .pull-menu {
+            display: block !important;
+        }
+
+        .element-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            display: none;
+            width: 100%;
+            background-color: inherit;
+            z-index: @zindexDropdown;
+
+            li {
+                display: block !important;
+                float: none !important;
+
+                a {
+                    display: block !important;
+                    float: none !important;
+                }
+
+                .dropdown-menu {
+                    position: relative !important;
+                    left: 0;
+                }
+            }
+        }
+        .pull-menu input:not(:checked) + .element-menu {
+            display: none ;
+        }
+        .pull-menu input:not(:not(:checked)) + .element-menu {
+            display: block !important;
+        }
+    }
 }
 
 /* Phones landscape*/
@@ -226,3 +263,4 @@
         #responsive-utils > .container-phone4;
     }
 }
+

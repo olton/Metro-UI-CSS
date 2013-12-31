@@ -36,6 +36,10 @@
 
     $.Metro.initDropdowns = function(){
         $('[data-role=dropdown]').dropdown();
+
+        $('.pull-menu, .menu-pull').each(function () {
+            $(this).PullDown();
+        });
     };
 
     $.Metro.initFluentMenus = function(){
@@ -108,3 +112,11 @@
 })(jQuery);
 
 
+$(window).resize(function(){
+    var device_width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+    if (device_width > 768) {
+        $(".element-menu").show();
+    } else {
+        $(".element-menu").hide();
+    }
+});
