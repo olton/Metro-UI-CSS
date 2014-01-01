@@ -750,7 +750,6 @@ a {
   color: rgba(0, 0, 0, 0.6);
   font-size: 2.2rem;
   line-height: 2.2rem;
-  font-weight: bold;
 }
 .metro .item-title {
   font-family: 'Segoe UI Semibold_', 'Open Sans Bold', Verdana, Arial, Helvetica, sans-serif;
@@ -841,7 +840,6 @@ a {
   letter-spacing: 0.01em;
   color: rgba(0, 0, 0, 0.6);
   line-height: 2.2rem;
-  font-weight: bold;
   font-size: 2.2rem;
 }
 .metro .menu-item-secondary {
@@ -3275,7 +3273,6 @@ a {
   letter-spacing: 0.01em;
   color: rgba(0, 0, 0, 0.6);
   line-height: 2.2rem;
-  font-weight: bold;
   font-size: 2.2rem;
   color: inherit;
 }
@@ -3349,7 +3346,6 @@ a {
   letter-spacing: 0.01em;
   color: rgba(0, 0, 0, 0.6);
   line-height: 2.2rem;
-  font-weight: bold;
   font-size: 2.2rem;
   color: inherit;
   padding: 5px;
@@ -3404,7 +3400,6 @@ a {
   letter-spacing: 0.01em;
   color: rgba(0, 0, 0, 0.6);
   line-height: 2.2rem;
-  font-weight: bold;
   font-size: 2.2rem;
   color: inherit;
 }
@@ -3536,7 +3531,6 @@ a {
   letter-spacing: 0.01em;
   color: rgba(0, 0, 0, 0.6);
   line-height: 2.2rem;
-  font-weight: bold;
   font-size: 2.2rem;
   color: inherit;
 }
@@ -3991,12 +3985,14 @@ a {
   margin: 0;
   padding: 0;
   list-style: none;
+  color: inherit;
 }
 .metro .navigation-bar .element-menu > li,
 .metro .navbar .element-menu > li {
   display: block;
   float: left;
   position: relative;
+  color: inherit;
 }
 .metro .navigation-bar .element-menu > li > a,
 .metro .navbar .element-menu > li > a {
@@ -4031,6 +4027,10 @@ a {
 .metro .navbar .element-menu > li > .dropdown-menu.place-right {
   right: 0;
   left: auto;
+}
+.metro .navigation-bar .element-menu > li > .dropdown-menu .dropdown-menu,
+.metro .navbar .element-menu > li > .dropdown-menu .dropdown-menu {
+  border: 0 !important;
 }
 .metro .navigation-bar .pull-menu,
 .metro .navbar .pull-menu {
@@ -4109,6 +4109,9 @@ a {
   background-color: #999999;
   color: #ffffff;
 }
+.metro .navigation-bar.light .pull-menu {
+  color: #1d1d1d;
+}
 .metro .navigation-bar.white {
   background-color: #ffffff;
   color: #555555;
@@ -4117,6 +4120,9 @@ a {
 .metro .navigation-bar.white .element-menu > li:hover {
   background-color: #00aff0;
   color: #ffffff;
+}
+.metro .navigation-bar.white .pull-menu {
+  color: #1d1d1d;
 }
 .metro #tile .small-size {
   width: 80px;
@@ -5420,7 +5426,6 @@ a {
   color: rgba(0, 0, 0, 0.6);
   font-size: 2.2rem;
   line-height: 2.2rem;
-  font-weight: bold;
   color: #ffffff;
 }
 .metro .sidebar > ul li a {
@@ -5501,7 +5506,6 @@ a {
   letter-spacing: 0.01em;
   color: rgba(0, 0, 0, 0.6);
   line-height: 2.2rem;
-  font-weight: bold;
   font-size: 2.2rem;
   color: inherit;
 }

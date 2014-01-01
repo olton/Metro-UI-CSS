@@ -3,8 +3,8 @@ var device_height = 0;
 
 function reinit()
 {
-    //$('.dropdown-menu').dropdown({effect: 'slide'});
     $.Metro.initDropdowns();
+    $.Metro.initPulls();
 }
 
 $(function(){

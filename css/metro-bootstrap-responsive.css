@@ -183,9 +183,7 @@
   }
   .navigation-bar .element,
   .navbar .element {
-    display: block;
     float: none !important;
-    width: 90%;
   }
   .navigation-bar .element-divider,
   .navbar .element-divider {
@@ -198,6 +196,7 @@
     display: none;
     width: 100% !important;
     background-color: inherit;
+    z-index: 1000;
   }
   .navigation-bar .element-menu li,
   .navbar .element-menu li {

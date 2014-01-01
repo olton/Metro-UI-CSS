@@ -36,10 +36,6 @@
 
     $.Metro.initDropdowns = function(){
         $('[data-role=dropdown]').dropdown();
-
-        $('.pull-menu, .menu-pull').each(function () {
-            $(this).PullDown();
-        });
     };
 
     $.Metro.initFluentMenus = function(){
@@ -109,10 +105,8 @@
     $.Metro.initDragTiles = function(){
         $('[data-role=drag-drop]').dragtile();
     };
+
+    $.Metro.initPulls = function(){
+        $('[data-role=pull-menu], .pull-menu').pullmenu();
+    };
 })(jQuery);
-
-
-$(window).resize(function(){
-    var device_width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
-    if (device_width > 768) {$(".element-menu").show();} else {$(".element-menu").hide();}
-});
