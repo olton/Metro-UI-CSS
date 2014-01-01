@@ -51,6 +51,7 @@
             top: 100%;
             left: 0;
 
+
             &.place-right {
                 right: 0;
                 left: auto;
@@ -158,11 +159,13 @@
         margin: 0;
         padding: 0;
         list-style: none;
+        color: inherit;
 
         & > li {
             display: block;
             float: left;
             position: relative;
+            color: inherit;
 
             & > a {
                 display: block;
@@ -190,10 +193,17 @@
             & > .dropdown-menu {
                 top: 100%;
                 left: 0;
+                //background-color: inherit;
+                //border: 0 !important;
 
                 &.place-right {
                     right: 0;
                     left: auto;
+                }
+
+                .dropdown-menu {
+                    //background-color: inherit !important;
+                    border: 0 !important;
                 }
             }
         }
@@ -273,6 +283,9 @@
             background-color: @grayLight;
             color: @white;
         }
+        .pull-menu {
+            color: @dark;
+        }
     }
     &.white {
         background-color: @white;
@@ -281,6 +294,10 @@
         .element:hover, .element-menu > li:hover {
             background-color: @blue;
             color: @white;
+        }
+
+        .pull-menu {
+            color: @dark;
         }
     }
 }

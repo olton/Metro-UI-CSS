@@ -22,4 +22,5 @@ $(function(){
     $.Metro.initSteppers();
     $.Metro.initStreamers();
     $.Metro.initDragTiles();
+    $.Metro.initPulls();
 });

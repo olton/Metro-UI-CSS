@@ -31,6 +31,7 @@ var plugins = [
     'stepper',
     'drag-tile',
     'scroll',
+    'pull',
 
     'initiator'
 

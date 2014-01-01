@@ -76,6 +76,7 @@
     });
 })( jQuery );
 
+/*
 (function($){
     $.fn.PullDown = function( options ){
         var defaults = {
@@ -88,16 +89,16 @@
 
             addTouchEvents(selectors[0]);
 
-            selectors.on('mousedown', function(e){
-                e.preventDefault();
-                e.stopPropagation();
-                var $m = $this.parent().find(".element-menu");
-                //console.log($m);
+            selectors.on('click', function(e){
+                var $m = $this.parent().children(".element-menu");
+                console.log($m);
                 if ($m.css('display') == "block") {
                     $m.slideUp('fast');
                 } else {
                     $m.slideDown('fast');
                 }
+                e.preventDefault();
+                e.stopPropagation();
             });
         };
 
@@ -116,3 +117,4 @@
         });
     });
 })(window.jQuery);
+*/
