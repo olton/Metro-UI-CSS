@@ -1,3 +1,9 @@
+## Version 2.0.21
+
+### Changes:
+- upd responsive (container, grid, typography)
+- fix navigation bar > element-menu responsive feature
+
 ## Version 2.0.20
 
 ### Changes:

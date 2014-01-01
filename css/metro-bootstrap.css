@@ -3797,7 +3797,6 @@ a {
   display: block;
   background-color: #1ba1e2;
   color: #ffffff;
-  height: 45px;
 }
 .metro .navigation-bar .navigation-bar-content,
 .metro .navbar .navigation-bar-content,
@@ -3806,7 +3805,6 @@ a {
   background-color: inherit;
   color: inherit;
   display: block;
-  height: 100%;
 }
 .metro .navigation-bar .navigation-bar-content .element,
 .metro .navbar .navigation-bar-content .element,
@@ -3820,7 +3818,7 @@ a {
   float: left;
   background-color: inherit;
   position: relative;
-  height: 100%;
+  height: 45px;
 }
 .metro .navigation-bar .navigation-bar-content .element.place-right,
 .metro .navbar .navigation-bar-content .element.place-right,
@@ -4034,8 +4032,10 @@ a {
   color: #fff;
   cursor: pointer;
   font: 1.8em sans-serif;
-  position: relative;
-  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 45px;
   width: 40px;
   line-height: 20px;
   margin: 0;

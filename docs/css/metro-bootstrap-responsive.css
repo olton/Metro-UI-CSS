@@ -173,42 +173,67 @@
   .grid:not(.fluid) > .row .row .span11:nth-child(even) {
     margin-left: 0 !important;
   }
+  .navigation-bar,
+  .navbar {
+    position: relative !important;
+  }
   .navigation-bar .pull-menu,
   .navbar .pull-menu {
     display: block !important;
   }
+  .navigation-bar .element,
+  .navbar .element {
+    display: block;
+    float: none !important;
+    width: 90%;
+  }
+  .navigation-bar .element-divider,
+  .navbar .element-divider {
+    display: none !important;
+  }
   .navigation-bar .element-menu,
   .navbar .element-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
+    position: relative;
+    float: none;
     display: none;
-    width: 100%;
+    width: 100% !important;
     background-color: inherit;
-    z-index: 1000;
   }
   .navigation-bar .element-menu li,
   .navbar .element-menu li {
     display: block !important;
     float: none !important;
+    width: 100%;
   }
   .navigation-bar .element-menu li a,
   .navbar .element-menu li a {
     display: block !important;
     float: none !important;
+    width: 100%;
   }
   .navigation-bar .element-menu li .dropdown-menu,
   .navbar .element-menu li .dropdown-menu {
     position: relative !important;
     left: 0;
   }
-  .navigation-bar .pull-menu input:not(:checked) + .element-menu,
-  .navbar .pull-menu input:not(:checked) + .element-menu {
-    display: none ;
+  .navigation-bar .element-menu .dropdown-toggle,
+  .navbar .element-menu .dropdown-toggle {
+    color: inherit;
+    position: relative;
   }
-  .navigation-bar .pull-menu input:not( :not(:checked)) + .element-menu,
-  .navbar .pull-menu input:not( :not(:checked)) + .element-menu {
-    display: block !important;
+  .navigation-bar .element-menu .dropdown-toggle:after,
+  .navbar .element-menu .dropdown-toggle:after {
+    position: absolute;
+    left: 100% !important;
+    margin-left: -15px;
+  }
+  .navigation-bar .element-menu .dropdown-menu .dropdown-toggle:after,
+  .navbar .element-menu .dropdown-menu .dropdown-toggle:after {
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    transform: rotate(90deg);
   }
 }
 /* Phones landscape*/

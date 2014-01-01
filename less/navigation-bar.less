@@ -3,20 +3,20 @@
     display: block;
     background-color: @cyan;
     color: @white;
-    height: 45px;
+    //height: 45px;
 
     .navigation-bar-content, .navbar-content {
         background-color: inherit;
         color: inherit;
         display: block;
-        height: 100%;
+        //height: 100%;
 
         .element, .element-divider {
             display: block;
             float: left;
             background-color: inherit;
             position: relative;
-            height: 100%;
+            height: 45px;
 
             &.place-right {
                 float: right;
@@ -202,13 +202,16 @@
     }
 
     .pull-menu {
+
         display: none;
         float: right !important;
         color: #fff;
         cursor: pointer;
         font: 1.8em sans-serif;
-        position: relative;
-        height: 100%;
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 45px;
         width: 40px;
         line-height: 20px;
         margin: 0;
