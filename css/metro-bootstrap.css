@@ -750,6 +750,7 @@ a {
   color: rgba(0, 0, 0, 0.6);
   font-size: 2.2rem;
   line-height: 2.2rem;
+  font-weight: bold;
 }
 .metro .item-title {
   font-family: 'Segoe UI Semibold_', 'Open Sans Bold', Verdana, Arial, Helvetica, sans-serif;
@@ -840,6 +841,7 @@ a {
   letter-spacing: 0.01em;
   color: rgba(0, 0, 0, 0.6);
   line-height: 2.2rem;
+  font-weight: bold;
   font-size: 2.2rem;
 }
 .metro .menu-item-secondary {
@@ -890,6 +892,7 @@ a {
   color: rgba(0, 0, 0, 0.6);
   font-size: 2.2rem;
   line-height: 2.2rem;
+  font-weight: bold;
 }
 .metro h4 {
   font-family: 'Segoe UI Semibold_', 'Open Sans Bold', Verdana, Arial, Helvetica, sans-serif;
@@ -3272,6 +3275,7 @@ a {
   letter-spacing: 0.01em;
   color: rgba(0, 0, 0, 0.6);
   line-height: 2.2rem;
+  font-weight: bold;
   font-size: 2.2rem;
   color: inherit;
 }
@@ -3345,6 +3349,7 @@ a {
   letter-spacing: 0.01em;
   color: rgba(0, 0, 0, 0.6);
   line-height: 2.2rem;
+  font-weight: bold;
   font-size: 2.2rem;
   color: inherit;
   padding: 5px;
@@ -3399,6 +3404,7 @@ a {
   letter-spacing: 0.01em;
   color: rgba(0, 0, 0, 0.6);
   line-height: 2.2rem;
+  font-weight: bold;
   font-size: 2.2rem;
   color: inherit;
 }
@@ -3530,6 +3536,7 @@ a {
   letter-spacing: 0.01em;
   color: rgba(0, 0, 0, 0.6);
   line-height: 2.2rem;
+  font-weight: bold;
   font-size: 2.2rem;
   color: inherit;
 }
@@ -5413,6 +5420,7 @@ a {
   color: rgba(0, 0, 0, 0.6);
   font-size: 2.2rem;
   line-height: 2.2rem;
+  font-weight: bold;
   color: #ffffff;
 }
 .metro .sidebar > ul li a {
@@ -5493,6 +5501,7 @@ a {
   letter-spacing: 0.01em;
   color: rgba(0, 0, 0, 0.6);
   line-height: 2.2rem;
+  font-weight: bold;
   font-size: 2.2rem;
   color: inherit;
 }
