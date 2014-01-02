@@ -246,6 +246,45 @@ $("#createWindow").on('click', function(){
     });
 });
 </pre>
+                <h4>Any components in dialog</h4>
+                <p>
+                    If you a used any Metro UI CSS components in dialog and this components required init from javascript you must re init components with <code>$.Metro.init*</code> functions.
+                </p>
+<pre class="prettyprint linenums">
+$("#createFlatWindow").on('click', function(){
+    $.Dialog({
+        overlay: true,
+        shadow: true,
+        flat: true,
+        icon: '&lt;img src="images/excel2013icon.png">',
+        title: 'Flat window',
+        content: '',
+        padding: 10,
+        onShow: function(_dialog){
+            var content = '&lt;form&gt;' +
+                '&lt;label&gt;Login&lt;/label&gt;' +
+                '&lt;div class="input-control text"&gt;&lt;input type="text" name="login"&gt;
+                &lt;button class="btn-clear"&gt;&lt;/button&gt;&lt;/div&gt; ' +
+                '&lt;label&gt;Password&lt;/label&gt;' +
+                '&lt;div class="input-control password"&gt;
+                &lt;input type="password" name="password"&gt;
+                &lt;button class="btn-reveal"&gt;&lt;/button&gt;&lt;/div&gt; ' +
+                '&lt;div class="input-control checkbox"&gt;
+                &lt;label&gt;&lt;input type="checkbox" name="c1" checked/&gt;
+                &lt;span class="check"&gt;&lt;/span&gt;Check me out&lt;/label&gt;&lt;/div&gt;'+
+                '&lt;div class="form-actions"&gt;' +
+                '&lt;button class="button primary"&gt;Login to...&lt;/button&gt;&nbsp;'+
+                '&lt;button class="button" type="button" onclick="$.Dialog.close()"&gt;Cancel&lt;/button&gt; '+
+                '&lt;/div&gt;'+
+                '&lt;/form&gt;';
+
+            $.Dialog.title("User login");
+            $.Dialog.content(content);
+            $.Metro.initInputs();
+        }
+    });
+});
+</pre>
 
     </div>
 
