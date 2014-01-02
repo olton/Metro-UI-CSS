@@ -9,12 +9,12 @@
  * max 320
  */
 #responsive-utils .hide-element {
-  display: none;
-  visibility: hidden;
+  display: none !important;
+  visibility: hidden !important;
 }
 #responsive-utils .show-element {
-  display: block;
-  visibility: visible;
+  display: block !important;
+  visibility: visible !important;
 }
 #responsive-utils .full-size {
   float: none !important;
@@ -53,18 +53,18 @@
 /* Desktop */
 @media screen and (min-width: 800px) {
   .no-desktop {
-    display: none;
-    visibility: hidden;
+    display: none !important;
+    visibility: hidden !important;
   }
 }
 @media screen and (min-width: 1024px) {
   .no-desktop {
-    display: none;
-    visibility: hidden;
+    display: none !important;
+    visibility: hidden !important;
   }
   .on-desktop {
-    display: block;
-    visibility: visible;
+    display: block !important;
+    visibility: visible !important;
   }
   .container {
     width: 940px !important;
@@ -76,12 +76,12 @@
     font-size: 70%;
   }
   .no-large {
-    display: none;
-    visibility: hidden;
+    display: none !important;
+    visibility: hidden !important;
   }
   .on-large {
-    display: block;
-    visibility: visible;
+    display: block !important;
+    visibility: visible !important;
   }
   .container {
     width: 1140px !important;
@@ -91,12 +91,12 @@
 @media only screen and (max-width: 1024px) {
   .no-tablet-landscape,
   .no-tablet {
-    display: none;
-    visibility: hidden;
+    display: none !important;
+    visibility: hidden !important;
   }
   .on-tablet {
-    display: block;
-    visibility: visible;
+    display: block !important;
+    visibility: visible !important;
   }
   .container {
     width: 940px !important;
@@ -109,12 +109,12 @@
   }
   .no-tablet-portrait,
   .no-tablet {
-    display: none;
-    visibility: hidden;
+    display: none !important;
+    visibility: hidden !important;
   }
   .on-tablet {
-    display: block;
-    visibility: visible;
+    display: block !important;
+    visibility: visible !important;
   }
   .container {
     width: 720px !important;
@@ -248,12 +248,12 @@
   }
   .no-phone-landscape,
   .no-phone {
-    display: none;
-    visibility: hidden;
+    display: none !important;
+    visibility: hidden !important;
   }
   .on-phone {
-    display: block;
-    visibility: visible;
+    display: block !important;
+    visibility: visible !important;
   }
   .container {
     width: 100% !important;
@@ -295,8 +295,8 @@
   }
   .no-phone-landscape,
   .no-phone {
-    display: none;
-    visibility: hidden;
+    display: none !important;
+    visibility: hidden !important;
   }
   .container {
     width: 100% !important;
@@ -308,8 +308,8 @@
   }
   .no-phone-portrait,
   .no-phone {
-    display: none;
-    visibility: hidden;
+    display: none !important;
+    visibility: hidden !important;
   }
   .container {
     width: 100% !important;
@@ -321,8 +321,8 @@
   }
   .no-phone-portrait,
   .no-phone {
-    display: none;
-    visibility: hidden;
+    display: none !important;
+    visibility: hidden !important;
   }
   .container {
     width: 100% !important;
