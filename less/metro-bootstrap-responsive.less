@@ -53,7 +53,7 @@
 
 
 /* Desktop */
-@media screen and (min-width: 769px) {
+@media screen and (min-width: 800px) {
     .no-desktop {
         #responsive-utils > .hide-element;
     }
@@ -99,7 +99,7 @@
 }
 
 /* tablet portrait */
-@media only screen and (min-width: 768px) and (max-width: 800px) {
+@media only screen and (max-width: 800px) {
     html {font-size: 60%;}
     .no-tablet-portrait, .no-tablet {
         #responsive-utils > .hide-element;
@@ -215,8 +215,16 @@
     }
 }
 
+@media only screen and (max-width: 800px) {
+    .navigation-bar, .navbar {
+        .pull-menu {
+            display: block !important;
+        }
+    }
+}
+
 /* Phones landscape*/
-@media only screen and (min-width: 480px) and (max-width: 640px) {
+@media only screen and (max-width: 640px) {
     html {font-size: 60%;}
     .no-phone-landscape, .no-phone {
         #responsive-utils > .hide-element;

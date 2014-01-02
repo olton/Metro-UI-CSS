@@ -51,7 +51,7 @@
   padding: 0 10px;
 }
 /* Desktop */
-@media screen and (min-width: 769px) {
+@media screen and (min-width: 800px) {
   .no-desktop {
     display: none;
     visibility: hidden;
@@ -103,7 +103,7 @@
   }
 }
 /* tablet portrait */
-@media only screen and (min-width: 768px) and (max-width: 800px) {
+@media only screen and (max-width: 800px) {
   html {
     font-size: 60%;
   }
@@ -235,8 +235,14 @@
     transform: rotate(90deg);
   }
 }
+@media only screen and (max-width: 800px) {
+  .navigation-bar .pull-menu,
+  .navbar .pull-menu {
+    display: block !important;
+  }
+}
 /* Phones landscape*/
-@media only screen and (min-width: 480px) and (max-width: 640px) {
+@media only screen and (max-width: 640px) {
   html {
     font-size: 60%;
   }
