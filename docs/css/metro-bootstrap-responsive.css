@@ -50,23 +50,6 @@
 #responsive-utils .container-phone {
   padding: 0 10px;
 }
-/* Large desktop */
-@media screen and (min-width: 1200px) {
-  html {
-    font-size: 70%;
-  }
-  .no-large {
-    display: none;
-    visibility: hidden;
-  }
-  .on-large {
-    display: block;
-    visibility: visible;
-  }
-  .container {
-    width: 1140px !important;
-  }
-}
 /* Desktop */
 @media screen and (min-width: 769px) {
   .no-desktop {
@@ -87,6 +70,23 @@
     width: 940px !important;
   }
 }
+/* Large desktop */
+@media screen and (min-width: 1200px) {
+  html {
+    font-size: 70%;
+  }
+  .no-large {
+    display: none;
+    visibility: hidden;
+  }
+  .on-large {
+    display: block;
+    visibility: visible;
+  }
+  .container {
+    width: 1140px !important;
+  }
+}
 /* tablet landscape*/
 @media only screen and (max-width: 1024px) {
   .no-tablet-landscape,
@@ -103,7 +103,7 @@
   }
 }
 /* tablet portrait */
-@media only screen and (max-width: 768px) {
+@media only screen and (min-width: 768px) and (max-width: 800px) {
   html {
     font-size: 60%;
   }
@@ -236,7 +236,7 @@
   }
 }
 /* Phones landscape*/
-@media only screen and (max-width: 640px) {
+@media only screen and (min-width: 480px) and (max-width: 640px) {
   html {
     font-size: 60%;
   }

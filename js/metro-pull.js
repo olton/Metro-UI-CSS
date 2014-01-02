@@ -34,5 +34,5 @@
 
 $(window).resize(function(){
     var device_width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
-    if (device_width > 768) {$(".element-menu").show();} else {$(".element-menu").hide();}
+    if (device_width > 800) {$(".element-menu").show();} else {$(".element-menu").hide();}
 });
