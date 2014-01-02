@@ -88,13 +88,13 @@
                                             '<div class="input-control checkbox"><label><input type="checkbox" name="c1" checked/><span class="check"></span>Check me out</label></div>'+
                                             '<div class="form-actions">' +
                                             '<button class="button primary">Login to...</button>&nbsp;'+
-                                            '<button class="button" type="button">Cancel</button> '+
+                                            '<button class="button" type="button" onclick="$.Dialog.close()">Cancel</button> '+
                                             '</div>'+
                                             '</form>';
 
                                     $.Dialog.title("User login");
                                     $.Dialog.content(content);
-                                    reinitInputs();
+                                    $.Metro.initInputs();
                                 }
                             });
                         });
