@@ -136,6 +136,8 @@
             this.options.position = percents;
 
             this.options.change(Math.round(percents), this.element);
+            this.element.trigger('change', [percents]);
+
         },
 
         _placeMarker: function (value) {
