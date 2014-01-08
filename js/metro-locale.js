@@ -83,7 +83,7 @@
             buttons: [
                 "Oggi", "Cancella"
             ]
-        },       
+        },
         'de': {
             months: [
                 "Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember",
@@ -95,6 +95,20 @@
             ],
             buttons: [
                 "Heute", "zurücksetzten"
+            ]
+        },
+        /** By Javier Rodríguez (javier.rodriguez at fjrodriguez.com) */
+        'es': {
+            months: [
+                "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre",
+                "Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sept", "Oct", "Nov", "Dic"
+            ],
+            days: [
+                "Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado",
+                "Do", "Lu", "Mar", "Mié", "Jue", "Vi", "Sáb"
+            ],
+            buttons: [
+               "Hoy", "Limpiar"
             ]
         }
     };

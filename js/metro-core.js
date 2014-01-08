@@ -5,6 +5,33 @@
         }, params);
     };
 
+    $.Metro.getOffset = function(element) {
+        var f1 = function(element){
+            var box = element.getBoundingClientRect()
+            var body = document.body
+            var docElem = document.documentElement
+            var scrollTop = window.pageYOffset || docElem.scrollTop || body.scrollTop
+            var scrollLeft = window.pageXOffset || docElem.scrollLeft || body.scrollLeft
+            var clientTop = docElem.clientTop || body.clientTop || 0
+            var clientLeft = docElem.clientLeft || body.clientLeft || 0
+            var top  = box.top +  scrollTop - clientTop
+            var left = box.left + scrollLeft - clientLeft
+            return { top: Math.round(top), left: Math.round(left) }
+        }
+
+        var f2 = function(element){
+            var top=0, left=0
+            while(element) {
+                top = top + parseInt(element.offsetTop)
+                left = left + parseInt(element.offsetLeft)
+                element = element.offsetParent
+            }
+            return {top: top, left: left}
+        }
+
+        return element.getBoundingClientRect() ? f1(element) : f2(element);
+    }
+
     /*
     * Init or ReInit components
     * */

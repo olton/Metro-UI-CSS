@@ -24,6 +24,8 @@
                 element = wrp;
             }
 
+            console.log($.Metro.getOffset(element[0]), element.offset());
+
             var hint_title = hint.length > 1 ? hint[0] : false;
             var hint_text = hint.length > 1 ? hint[1] : hint[0];
 
