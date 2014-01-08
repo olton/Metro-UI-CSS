@@ -83,7 +83,21 @@
             buttons: [
                 "Oggi", "Cancella"
             ]
-        }
+        },
+ +      /** By Javier Rodríguez (javier.rodriguez at fjrodriguez.com) */
+ +      'es': {
+ +          months: [
+ +            "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre",
+ +            "Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sept", "Oct", "Nov", "Dic"
+ +          ],
+ +          days: [
+ +              "Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado",
+ +              "Do", "Lu", "Mar", "Mié", "Jue", "Vi", "Sáb"
+ +          ],
+ +          buttons: [
+ +              "Hoy", "Limpiar"
+ +          ]
+         }
     };
 
     $.Metro.setLocale = function(locale, data){
