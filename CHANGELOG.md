@@ -1,3 +1,11 @@
+## Version 2.0.22
+
+### Changes:
+- add german locale
+- add spanish locale
+- bug fixed
+- bug added
+
 ## Version 2.0.21
 
 ### Changes:
