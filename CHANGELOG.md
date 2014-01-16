@@ -1,3 +1,12 @@
+## Version 2.0.23
+
+### Changes:
+- fix dialog with form for mobile webkit (issue 424)
+- upd nuspec (issue 445)
+- fix memory leak (issue 441)
+- fix docs for incorrect labels (issue 442)
+- fix input control transform email style (issue 444)
+
 ## Version 2.0.22
 
 ### Changes:

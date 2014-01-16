@@ -2639,7 +2639,9 @@ a {
 }
 .metro .input-control.text,
 .metro .input-control.password,
-.metro .input-control.file {
+.metro .input-control.file,
+.metro .input-control.email,
+.metro .input-control.tel {
   display: inline-block;
   cursor: pointer;
   position: relative;
@@ -2651,18 +2653,28 @@ a {
 .metro .input-control.text .btn-clear,
 .metro .input-control.password .btn-clear,
 .metro .input-control.file .btn-clear,
+.metro .input-control.email .btn-clear,
+.metro .input-control.tel .btn-clear,
 .metro .input-control.text .btn-reveal,
 .metro .input-control.password .btn-reveal,
 .metro .input-control.file .btn-reveal,
+.metro .input-control.email .btn-reveal,
+.metro .input-control.tel .btn-reveal,
 .metro .input-control.text .btn-date,
 .metro .input-control.password .btn-date,
 .metro .input-control.file .btn-date,
+.metro .input-control.email .btn-date,
+.metro .input-control.tel .btn-date,
 .metro .input-control.text .btn-file,
 .metro .input-control.password .btn-file,
 .metro .input-control.file .btn-file,
+.metro .input-control.email .btn-file,
+.metro .input-control.tel .btn-file,
 .metro .input-control.text .btn-search,
 .metro .input-control.password .btn-search,
-.metro .input-control.file .btn-search {
+.metro .input-control.file .btn-search,
+.metro .input-control.email .btn-search,
+.metro .input-control.tel .btn-search {
   background-color: #F0F0F0;
   position: absolute;
   top: 5px;
@@ -2680,145 +2692,217 @@ a {
 .metro .input-control.text .btn-clear:after,
 .metro .input-control.password .btn-clear:after,
 .metro .input-control.file .btn-clear:after,
+.metro .input-control.email .btn-clear:after,
+.metro .input-control.tel .btn-clear:after,
 .metro .input-control.text .btn-reveal:after,
 .metro .input-control.password .btn-reveal:after,
 .metro .input-control.file .btn-reveal:after,
+.metro .input-control.email .btn-reveal:after,
+.metro .input-control.tel .btn-reveal:after,
 .metro .input-control.text .btn-date:after,
 .metro .input-control.password .btn-date:after,
 .metro .input-control.file .btn-date:after,
+.metro .input-control.email .btn-date:after,
+.metro .input-control.tel .btn-date:after,
 .metro .input-control.text .btn-file:after,
 .metro .input-control.password .btn-file:after,
 .metro .input-control.file .btn-file:after,
+.metro .input-control.email .btn-file:after,
+.metro .input-control.tel .btn-file:after,
 .metro .input-control.text .btn-search:after,
 .metro .input-control.password .btn-search:after,
-.metro .input-control.file .btn-search:after {
+.metro .input-control.file .btn-search:after,
+.metro .input-control.email .btn-search:after,
+.metro .input-control.tel .btn-search:after {
   font-family: iconFont;
   font-size: 10pt;
 }
 .metro .input-control.text .btn-clear:not(:disabled):active,
 .metro .input-control.password .btn-clear:not(:disabled):active,
 .metro .input-control.file .btn-clear:not(:disabled):active,
+.metro .input-control.email .btn-clear:not(:disabled):active,
+.metro .input-control.tel .btn-clear:not(:disabled):active,
 .metro .input-control.text .btn-reveal:not(:disabled):active,
 .metro .input-control.password .btn-reveal:not(:disabled):active,
 .metro .input-control.file .btn-reveal:not(:disabled):active,
+.metro .input-control.email .btn-reveal:not(:disabled):active,
+.metro .input-control.tel .btn-reveal:not(:disabled):active,
 .metro .input-control.text .btn-date:not(:disabled):active,
 .metro .input-control.password .btn-date:not(:disabled):active,
 .metro .input-control.file .btn-date:not(:disabled):active,
+.metro .input-control.email .btn-date:not(:disabled):active,
+.metro .input-control.tel .btn-date:not(:disabled):active,
 .metro .input-control.text .btn-file:not(:disabled):active,
 .metro .input-control.password .btn-file:not(:disabled):active,
 .metro .input-control.file .btn-file:not(:disabled):active,
+.metro .input-control.email .btn-file:not(:disabled):active,
+.metro .input-control.tel .btn-file:not(:disabled):active,
 .metro .input-control.text .btn-search:not(:disabled):active,
 .metro .input-control.password .btn-search:not(:disabled):active,
-.metro .input-control.file .btn-search:not(:disabled):active {
+.metro .input-control.file .btn-search:not(:disabled):active,
+.metro .input-control.email .btn-search:not(:disabled):active,
+.metro .input-control.tel .btn-search:not(:disabled):active {
   background-color: #1d1d1d;
   color: #ffffff;
 }
 .metro .input-control.text .btn-clear:active,
 .metro .input-control.password .btn-clear:active,
 .metro .input-control.file .btn-clear:active,
+.metro .input-control.email .btn-clear:active,
+.metro .input-control.tel .btn-clear:active,
 .metro .input-control.text .btn-reveal:active,
 .metro .input-control.password .btn-reveal:active,
 .metro .input-control.file .btn-reveal:active,
+.metro .input-control.email .btn-reveal:active,
+.metro .input-control.tel .btn-reveal:active,
 .metro .input-control.text .btn-date:active,
 .metro .input-control.password .btn-date:active,
 .metro .input-control.file .btn-date:active,
+.metro .input-control.email .btn-date:active,
+.metro .input-control.tel .btn-date:active,
 .metro .input-control.text .btn-file:active,
 .metro .input-control.password .btn-file:active,
 .metro .input-control.file .btn-file:active,
+.metro .input-control.email .btn-file:active,
+.metro .input-control.tel .btn-file:active,
 .metro .input-control.text .btn-search:active,
 .metro .input-control.password .btn-search:active,
-.metro .input-control.file .btn-search:active {
+.metro .input-control.file .btn-search:active,
+.metro .input-control.email .btn-search:active,
+.metro .input-control.tel .btn-search:active {
   left: auto;
 }
 .metro .input-control.text .btn-clear:focus,
 .metro .input-control.password .btn-clear:focus,
 .metro .input-control.file .btn-clear:focus,
+.metro .input-control.email .btn-clear:focus,
+.metro .input-control.tel .btn-clear:focus,
 .metro .input-control.text .btn-reveal:focus,
 .metro .input-control.password .btn-reveal:focus,
 .metro .input-control.file .btn-reveal:focus,
+.metro .input-control.email .btn-reveal:focus,
+.metro .input-control.tel .btn-reveal:focus,
 .metro .input-control.text .btn-date:focus,
 .metro .input-control.password .btn-date:focus,
 .metro .input-control.file .btn-date:focus,
+.metro .input-control.email .btn-date:focus,
+.metro .input-control.tel .btn-date:focus,
 .metro .input-control.text .btn-file:focus,
 .metro .input-control.password .btn-file:focus,
 .metro .input-control.file .btn-file:focus,
+.metro .input-control.email .btn-file:focus,
+.metro .input-control.tel .btn-file:focus,
 .metro .input-control.text .btn-search:focus,
 .metro .input-control.password .btn-search:focus,
-.metro .input-control.file .btn-search:focus {
+.metro .input-control.file .btn-search:focus,
+.metro .input-control.email .btn-search:focus,
+.metro .input-control.tel .btn-search:focus {
   outline: 1px #ccc dotted ;
 }
 .metro .input-control.text input:focus ~ .btn-clear,
 .metro .input-control.password input:focus ~ .btn-clear,
 .metro .input-control.file input:focus ~ .btn-clear,
+.metro .input-control.email input:focus ~ .btn-clear,
+.metro .input-control.tel input:focus ~ .btn-clear,
 .metro .input-control.text input:focus ~ .btn-reveal,
 .metro .input-control.password input:focus ~ .btn-reveal,
-.metro .input-control.file input:focus ~ .btn-reveal {
+.metro .input-control.file input:focus ~ .btn-reveal,
+.metro .input-control.email input:focus ~ .btn-reveal,
+.metro .input-control.tel input:focus ~ .btn-reveal {
   display: block;
 }
 .metro .input-control.text input:not(:focus) ~ .btn-clear:active,
 .metro .input-control.password input:not(:focus) ~ .btn-clear:active,
 .metro .input-control.file input:not(:focus) ~ .btn-clear:active,
+.metro .input-control.email input:not(:focus) ~ .btn-clear:active,
+.metro .input-control.tel input:not(:focus) ~ .btn-clear:active,
 .metro .input-control.text input:not(:focus) ~ .btn-reveal:active,
 .metro .input-control.password input:not(:focus) ~ .btn-reveal:active,
-.metro .input-control.file input:not(:focus) ~ .btn-reveal:active {
+.metro .input-control.file input:not(:focus) ~ .btn-reveal:active,
+.metro .input-control.email input:not(:focus) ~ .btn-reveal:active,
+.metro .input-control.tel input:not(:focus) ~ .btn-reveal:active {
   display: block;
 }
 .metro .input-control.text .btn-clear:after,
 .metro .input-control.password .btn-clear:after,
-.metro .input-control.file .btn-clear:after {
+.metro .input-control.file .btn-clear:after,
+.metro .input-control.email .btn-clear:after,
+.metro .input-control.tel .btn-clear:after {
   content: "\e089";
 }
 .metro .input-control.text .btn-reveal:after,
 .metro .input-control.password .btn-reveal:after,
-.metro .input-control.file .btn-reveal:after {
+.metro .input-control.file .btn-reveal:after,
+.metro .input-control.email .btn-reveal:after,
+.metro .input-control.tel .btn-reveal:after {
   content: "\e000";
 }
 .metro .input-control.text .btn-search:after,
 .metro .input-control.password .btn-search:after,
-.metro .input-control.file .btn-search:after {
+.metro .input-control.file .btn-search:after,
+.metro .input-control.email .btn-search:after,
+.metro .input-control.tel .btn-search:after {
   content: "\e041";
 }
 .metro .input-control.text .btn-date:after,
 .metro .input-control.password .btn-date:after,
-.metro .input-control.file .btn-date:after {
+.metro .input-control.file .btn-date:after,
+.metro .input-control.email .btn-date:after,
+.metro .input-control.tel .btn-date:after {
   content: "\e020";
 }
 .metro .input-control.text .btn-file:after,
 .metro .input-control.password .btn-file:after,
-.metro .input-control.file .btn-file:after {
+.metro .input-control.file .btn-file:after,
+.metro .input-control.email .btn-file:after,
+.metro .input-control.tel .btn-file:after {
   content: "\e012";
 }
 .metro .input-control.text .btn-search,
 .metro .input-control.password .btn-search,
-.metro .input-control.file .btn-search {
+.metro .input-control.file .btn-search,
+.metro .input-control.email .btn-search,
+.metro .input-control.tel .btn-search {
   display: block;
 }
 .metro .input-control.text .btn-date,
 .metro .input-control.password .btn-date,
-.metro .input-control.file .btn-date {
+.metro .input-control.file .btn-date,
+.metro .input-control.email .btn-date,
+.metro .input-control.tel .btn-date {
   display: block;
 }
 .metro .input-control.text .btn-file,
 .metro .input-control.password .btn-file,
-.metro .input-control.file .btn-file {
+.metro .input-control.file .btn-file,
+.metro .input-control.email .btn-file,
+.metro .input-control.tel .btn-file {
   display: block;
 }
 .metro .input-control.text [class*="btn-"],
 .metro .input-control.password [class*="btn-"],
-.metro .input-control.file [class*="btn-"] {
+.metro .input-control.file [class*="btn-"],
+.metro .input-control.email [class*="btn-"],
+.metro .input-control.tel [class*="btn-"] {
   background-color: transparent;
 }
 .metro .input-control.text input::-ms-reveal,
 .metro .input-control.password input::-ms-reveal,
 .metro .input-control.file input::-ms-reveal,
+.metro .input-control.email input::-ms-reveal,
+.metro .input-control.tel input::-ms-reveal,
 .metro .input-control.text input::-ms-clear,
 .metro .input-control.password input::-ms-clear,
-.metro .input-control.file input::-ms-clear {
+.metro .input-control.file input::-ms-clear,
+.metro .input-control.email input::-ms-clear,
+.metro .input-control.tel input::-ms-clear {
   display: none;
 }
 .metro .input-control.text input,
 .metro .input-control.password input,
-.metro .input-control.file input {
+.metro .input-control.file input,
+.metro .input-control.email input,
+.metro .input-control.tel input {
   border: 1px #d9d9d9 solid;
   width: 100%;
   height: 100%;
@@ -2828,31 +2912,43 @@ a {
 }
 .metro .input-control.text input:focus,
 .metro .input-control.password input:focus,
-.metro .input-control.file input:focus {
+.metro .input-control.file input:focus,
+.metro .input-control.email input:focus,
+.metro .input-control.tel input:focus {
   outline: 0;
   border-color: #919191;
 }
 .metro .input-control.text input:disabled,
 .metro .input-control.password input:disabled,
-.metro .input-control.file input:disabled {
+.metro .input-control.file input:disabled,
+.metro .input-control.email input:disabled,
+.metro .input-control.tel input:disabled {
   padding-right: 5px;
 }
 .metro .input-control.text input:disabled ~ .btn-clear,
 .metro .input-control.password input:disabled ~ .btn-clear,
 .metro .input-control.file input:disabled ~ .btn-clear,
+.metro .input-control.email input:disabled ~ .btn-clear,
+.metro .input-control.tel input:disabled ~ .btn-clear,
 .metro .input-control.text input:disabled ~ .btn-reveal,
 .metro .input-control.password input:disabled ~ .btn-reveal,
-.metro .input-control.file input:disabled ~ .btn-reveal {
+.metro .input-control.file input:disabled ~ .btn-reveal,
+.metro .input-control.email input:disabled ~ .btn-reveal,
+.metro .input-control.tel input:disabled ~ .btn-reveal {
   display: none;
 }
 .metro .input-control.text input::-moz-placeholder,
 .metro .input-control.password input::-moz-placeholder,
-.metro .input-control.file input::-moz-placeholder {
+.metro .input-control.file input::-moz-placeholder,
+.metro .input-control.email input::-moz-placeholder,
+.metro .input-control.tel input::-moz-placeholder {
   color: #999999;
 }
 .metro .input-control.text input::-webkit-input-placeholder,
 .metro .input-control.password input::-webkit-input-placeholder,
-.metro .input-control.file input::-webkit-input-placeholder {
+.metro .input-control.file input::-webkit-input-placeholder,
+.metro .input-control.email input::-webkit-input-placeholder,
+.metro .input-control.tel input::-webkit-input-placeholder {
   color: #999999;
 }
 .metro .input-control.select,
@@ -2892,16 +2988,22 @@ a {
 .metro .input-control.select.warning-state input,
 .metro .input-control.textarea.warning-state input,
 .metro .input-control.file.warning-state input,
+.metro .input-control.email.warning-state input,
+.metro .input-control.tel.warning-state input,
 .metro .input-control.text.warning-state select,
 .metro .input-control.password.warning-state select,
 .metro .input-control.select.warning-state select,
 .metro .input-control.textarea.warning-state select,
 .metro .input-control.file.warning-state select,
+.metro .input-control.email.warning-state select,
+.metro .input-control.tel.warning-state select,
 .metro .input-control.text.warning-state textarea,
 .metro .input-control.password.warning-state textarea,
 .metro .input-control.select.warning-state textarea,
 .metro .input-control.textarea.warning-state textarea,
-.metro .input-control.file.warning-state textarea {
+.metro .input-control.file.warning-state textarea,
+.metro .input-control.email.warning-state textarea,
+.metro .input-control.tel.warning-state textarea {
   border-color: #fa6800;
 }
 .metro .input-control.text.error-state input,
@@ -2909,16 +3011,22 @@ a {
 .metro .input-control.select.error-state input,
 .metro .input-control.textarea.error-state input,
 .metro .input-control.file.error-state input,
+.metro .input-control.email.error-state input,
+.metro .input-control.tel.error-state input,
 .metro .input-control.text.error-state select,
 .metro .input-control.password.error-state select,
 .metro .input-control.select.error-state select,
 .metro .input-control.textarea.error-state select,
 .metro .input-control.file.error-state select,
+.metro .input-control.email.error-state select,
+.metro .input-control.tel.error-state select,
 .metro .input-control.text.error-state textarea,
 .metro .input-control.password.error-state textarea,
 .metro .input-control.select.error-state textarea,
 .metro .input-control.textarea.error-state textarea,
-.metro .input-control.file.error-state textarea {
+.metro .input-control.file.error-state textarea,
+.metro .input-control.email.error-state textarea,
+.metro .input-control.tel.error-state textarea {
   border-color: #e51400;
 }
 .metro .input-control.text.info-state input,
@@ -2926,16 +3034,22 @@ a {
 .metro .input-control.select.info-state input,
 .metro .input-control.textarea.info-state input,
 .metro .input-control.file.info-state input,
+.metro .input-control.email.info-state input,
+.metro .input-control.tel.info-state input,
 .metro .input-control.text.info-state select,
 .metro .input-control.password.info-state select,
 .metro .input-control.select.info-state select,
 .metro .input-control.textarea.info-state select,
 .metro .input-control.file.info-state select,
+.metro .input-control.email.info-state select,
+.metro .input-control.tel.info-state select,
 .metro .input-control.text.info-state textarea,
 .metro .input-control.password.info-state textarea,
 .metro .input-control.select.info-state textarea,
 .metro .input-control.textarea.info-state textarea,
-.metro .input-control.file.info-state textarea {
+.metro .input-control.file.info-state textarea,
+.metro .input-control.email.info-state textarea,
+.metro .input-control.tel.info-state textarea {
   border-color: #4390df;
 }
 .metro .input-control.text.success-state input,
@@ -2943,51 +3057,67 @@ a {
 .metro .input-control.select.success-state input,
 .metro .input-control.textarea.success-state input,
 .metro .input-control.file.success-state input,
+.metro .input-control.email.success-state input,
+.metro .input-control.tel.success-state input,
 .metro .input-control.text.success-state select,
 .metro .input-control.password.success-state select,
 .metro .input-control.select.success-state select,
 .metro .input-control.textarea.success-state select,
 .metro .input-control.file.success-state select,
+.metro .input-control.email.success-state select,
+.metro .input-control.tel.success-state select,
 .metro .input-control.text.success-state textarea,
 .metro .input-control.password.success-state textarea,
 .metro .input-control.select.success-state textarea,
 .metro .input-control.textarea.success-state textarea,
-.metro .input-control.file.success-state textarea {
+.metro .input-control.file.success-state textarea,
+.metro .input-control.email.success-state textarea,
+.metro .input-control.tel.success-state textarea {
   border-color: #60a917;
 }
 .metro .input-control.text input[data-state="warning"],
 .metro .input-control.password input[data-state="warning"],
 .metro .input-control.select input[data-state="warning"],
 .metro .input-control.textarea input[data-state="warning"],
-.metro .input-control.file input[data-state="warning"] {
+.metro .input-control.file input[data-state="warning"],
+.metro .input-control.email input[data-state="warning"],
+.metro .input-control.tel input[data-state="warning"] {
   border-color: #fa6800;
 }
 .metro .input-control.text input[data-state="error"],
 .metro .input-control.password input[data-state="error"],
 .metro .input-control.select input[data-state="error"],
 .metro .input-control.textarea input[data-state="error"],
-.metro .input-control.file input[data-state="error"] {
+.metro .input-control.file input[data-state="error"],
+.metro .input-control.email input[data-state="error"],
+.metro .input-control.tel input[data-state="error"] {
   border-color: #e51400;
 }
 .metro .input-control.text input[data-state="info"],
 .metro .input-control.password input[data-state="info"],
 .metro .input-control.select input[data-state="info"],
 .metro .input-control.textarea input[data-state="info"],
-.metro .input-control.file input[data-state="info"] {
+.metro .input-control.file input[data-state="info"],
+.metro .input-control.email input[data-state="info"],
+.metro .input-control.tel input[data-state="info"] {
   border-color: #4390df;
 }
 .metro .input-control.text input[data-state="success"],
 .metro .input-control.password input[data-state="success"],
 .metro .input-control.select input[data-state="success"],
 .metro .input-control.textarea input[data-state="success"],
-.metro .input-control.file input[data-state="success"] {
+.metro .input-control.file input[data-state="success"],
+.metro .input-control.email input[data-state="success"],
+.metro .input-control.tel input[data-state="success"] {
   border-color: #60a917;
 }
 .metro .input-control.text[class*="span"],
 .metro .input-control.password[class*="span"],
 .metro .input-control.select[class*="span"],
 .metro .input-control.textarea[class*="span"],
-.metro .input-control.file[class*="span"] {
+.metro .input-control.file[class*="span"],
+.metro .input-control.email[class*="span"],
+.metro .input-control.tel[class*="span"] {
   margin-left: 0;
 }
 .metro .input-control.file {

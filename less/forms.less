@@ -220,7 +220,7 @@ label {
 }
 
 .input-control {
-    &.text, &.password, &.file {
+    &.text, &.password, &.file, &.email, &.tel {
         display: inline-block;
         cursor: pointer;
         position: relative;
@@ -336,7 +336,7 @@ label {
 }
 
 .input-control {
-    &.text, &.password, &.select, &.textarea, &.file {
+    &.text, &.password, &.select, &.textarea, &.file, &.email, &.tel {
         &.warning-state {
             input, select, textarea {
                 border-color: @orange;
@@ -380,7 +380,7 @@ label {
 }
 
 .input-control {
-    &.text, &.password, &.select, &.textarea, &.file {
+    &.text, &.password, &.select, &.textarea, &.file, &.email, &.tel {
         &[class*="span"] {
             margin-left: 0;
         }
