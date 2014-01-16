@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Metro.UI.CSS</id>
-    <version>2.0.22</version>
+    <version>2.0.23</version>
     <title>Metro UI CSS 2.0</title>
     <authors>Sergey Pimenov</authors>
     <owners>Sergey Pimenov</owners>
@@ -16,11 +16,11 @@
     <tags>Windows Metro UI CSS Framework</tags>
   </metadata>
   <files>
-    <file src="less\*.less" target="less" />
-    <file src="js\*.js" target="js/metro" />
-    <file src="css\*.css" target="css" />
-    <file src="fonts\*.*" target="fonts" />
-    <file src="min\*.css" target="css" />
-    <file src="min\*.js" target="js" />
+    <file src="less\*.less" target="content\less" />
+    <file src="js\*.js" target="content\js\metro" />
+    <file src="css\*.css" target="content\css" />
+    <file src="fonts\*.*" target="content\fonts" />
+    <file src="min\*.css" target="content\css" />
+    <file src="min\*.js" target="content\js" />
   </files>
 </package>
