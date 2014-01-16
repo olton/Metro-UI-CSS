@@ -32,6 +32,8 @@
         return element.getBoundingClientRect() ? f1(element) : f2(element);
     }
 
+    //$.Metro.Dialog = false;
+
     /*
     * Init or ReInit components
     * */
@@ -137,3 +139,27 @@
         $('[data-role=pull-menu], .pull-menu').pullmenu();
     };
 })(jQuery);
+
+$(function(){
+    $('html').on('click', function(e){
+        //e.preventDefault();
+        $('.dropdown-menu').each(function(i, el){
+            if (!$(el).hasClass('keep-open') && $(el).css('display')=='block') {
+                $(el).hide();
+                /* Почему то срабатывает трижды */
+            }
+        });
+    });
+});
+
+$(function(){
+    $(window).on('resize', function(){
+        if (METRO_DIALOG) {
+            var top = ($(window).height() - METRO_DIALOG.outerHeight()) / 2;
+            var left = ($(window).width() - METRO_DIALOG.outerWidth()) / 2;
+            METRO_DIALOG.css({
+                top: top, left: left
+            });
+        }
+    });
+});

@@ -3,8 +3,8 @@ var device_height = 0;
 
 function reinit()
 {
-    $.Metro.initDropdowns();
-    $.Metro.initPulls();
+    $.Metro.initDropdowns('header');
+    $.Metro.initPulls('header');
 }
 
 $(function(){
@@ -60,6 +60,7 @@ $(window).scroll(function(){
     headerPosition();
 });
 
+/*
 function getDeviceSize(){
     device_width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
     //device_height = (window.innerHeight > 0) ? window.innerHeight : screen.height;
@@ -79,3 +80,4 @@ $(function(){
 $(window).resize(function(){
     getDeviceSize();
 })
+*/

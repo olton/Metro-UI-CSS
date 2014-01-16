@@ -38,15 +38,6 @@
                 e.preventDefault();
             });
 
-            $('html').on('click', function(e){
-                //e.preventDefault();
-                $('.dropdown-menu').each(function(i, el){
-                    if (!$(el).hasClass('keep-open') && $(el).css('display')=='block') {
-                        that._close(el);
-                        /* Почему то срабатывает трижды */
-                    }
-                });
-            });
         },
 
         _open: function(el){

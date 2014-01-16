@@ -43,9 +43,36 @@
                     <button class="button" id="createFlatWindow">Create Flat Window</button>
                     <button class="button" id="createWindowYoutube">Youtube Video</button>
                     <button class="button" id="createWindowDraggable">Create Draggable Window</button>
+                    <button class="button" id="createSysEventsWindow">SysBtn Events</button>
                 </div>
                 <script>
                     $(function(){
+                        $("#createSysEventsWindow").on('click', function(){
+                            $.Dialog({
+                                shadow: true,
+                                overlay: false,
+                                icon: '',
+                                title: 'Title',
+                                width: 500,
+                                padding: 10,
+                                content: 'Window content here',
+                                draggable: true,
+                                sysButtons: {
+                                    btnMin: true,
+                                    btnMax: true,
+                                    btnClose: true
+                                },
+                                sysBtnCloseClick: function(e){
+                                    alert('Close button click');
+                                },
+                                sysBtnMinClick: function(e){
+                                    alert('Min button click');
+                                },
+                                sysBtnMaxClick: function(e){
+                                    alert('Max button click');
+                                }
+                            });
+                        });
                         $("#createWindow").on('click', function(){
                             $.Dialog({
                                 shadow: true,
@@ -66,25 +93,13 @@
                                 title: 'Draggable window',
                                 width: 500,
                                 padding: 10,
-                                content: 'This Window is draggable by caption.'
-                            });
-                        });
-                        $("#createFlatWindow").on('click', function(){
-                            $.Dialog({
-                                overlay: true,
-                                shadow: true,
-                                flat: true,
-                                icon: '<img src="images/excel2013icon.png">',
-                                title: 'Flat window',
-                                content: '',
-                                padding: 10,
-                                onShow: function(_dialog){
-                                    var content = '<form>' +
+                                content: 'This Window is draggable by caption.',
+                                onShow: function(){
+                                    var content = '<form id="login-form-1">' +
                                             '<label>Login</label>' +
-                                            '<div class="input-control text"><input type="text" name="login"><button class="btn-clear"></button></div> ' +
-                                            '<label>Password</label>' +
-                                            '<div class="input-control password"><input type="password" name="password"><button class="btn-reveal"></button></div> ' +
-
+                                            '<div class="input-control text"><input type="text" name="login"><button class="btn-clear"></button></div>' +
+                                            '<label>Password</label>'+
+                                            '<div class="input-control password"><input type="password" name="password"><button class="btn-reveal"></button></div>' +
                                             '<div class="input-control checkbox"><label><input type="checkbox" name="c1" checked/><span class="check"></span>Check me out</label></div>'+
                                             '<div class="form-actions">' +
                                             '<button class="button primary">Login to...</button>&nbsp;'+
@@ -94,7 +109,37 @@
 
                                     $.Dialog.title("User login");
                                     $.Dialog.content(content);
-                                    $.Metro.initInputs();
+                                    $.Metro.initInputs('#login-form-1');
+                                }
+
+                            });
+                        });
+                        $("#createFlatWindow").on('click', function(){
+                            $.Dialog({
+                                overlay: true,
+                                shadow: true,
+                                flat: true,
+                                draggable: true,
+                                icon: '<img src="images/excel2013icon.png">',
+                                title: 'Flat window',
+                                content: '',
+                                padding: 10,
+                                onShow: function(_dialog){
+                                    var content = '<form class="user-input">' +
+                                            '<label>Login</label>' +
+                                            '<div class="input-control text"><input type="text" name="login"><button class="btn-clear"></button></div>' +
+                                            '<label>Password</label>'+
+                                            '<div class="input-control password"><input type="password" name="password"><button class="btn-reveal"></button></div>' +
+                                            '<div class="input-control checkbox"><label><input type="checkbox" name="c1" checked/><span class="check"></span>Check me out</label></div>'+
+                                            '<div class="form-actions">' +
+                                            '<button class="button primary">Login to...</button>&nbsp;'+
+                                            '<button class="button" type="button" onclick="$.Dialog.close()">Cancel</button> '+
+                                            '</div>'+
+                                            '</form>';
+
+                                    $.Dialog.title("User login");
+                                    $.Dialog.content(content);
+                                    $.Metro.initInputs('.user-input');
                                 }
                             });
                         });
