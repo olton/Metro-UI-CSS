@@ -2592,7 +2592,6 @@ a {
   margin: 0 5px;
 }
 .metro .input-control.switch .check {
-  background-color: transparent;
   position: relative;
   width: 45px;
   height: 18px;
@@ -2643,10 +2642,10 @@ a {
 .metro .input-control.file {
   display: inline-block;
   cursor: pointer;
+  position: relative;
   background-color: #fff;
   outline: 0;
   height: 34px;
-  position: relative;
   width: 100%;
 }
 .metro .input-control.text .btn-clear,
@@ -2667,7 +2666,6 @@ a {
   background-color: #F0F0F0;
   position: absolute;
   top: 5px;
-  right: 5px;
   z-index: 2;
   border: 0;
   right: 4px;
@@ -2826,6 +2824,7 @@ a {
   height: 100%;
   padding: 5px;
   z-index: 1;
+  -webkit-appearance: none;
 }
 .metro .input-control.text input:focus,
 .metro .input-control.password input:focus,
@@ -6036,7 +6035,7 @@ a {
 .metro .slider.place-right {
   margin-left: 20px;
 }
-.metro .window-overlay {
+.metro.window-overlay {
   position: fixed;
   left: 0;
   top: 0;

@@ -13,7 +13,7 @@
             if (control.hasClass('text')) {
                 this.initTextInput(control, that);
             } else if (control.hasClass('password')) {
-                this.initPasswordInput();
+                this.initPasswordInput(control, that);
             } else if (control.hasClass('checkbox') || control.hasClass('radio') || control.hasClass('switch')) {
                 this.initCheckboxInput(control, that);
             } else if (control.hasClass('file')) {
@@ -48,9 +48,11 @@
         },
 
         initTextInput: function(el, that){
-            var button, input;
+            var button = el.children('.btn-clear'),
+                input = el.children('input[type=text]');
 
-            button = el.children('.btn-clear');
+            //console.log(button.length);
+            //button = el.children('.btn-clear');
 
             if (button.length == 0) return;
 
@@ -64,12 +66,14 @@
                 input.focus();
                 that._trigger("onClear", null, el);
             });
+
+            if (!input.attr("disabled")) input.on('click', function(){$(this).focus();});
         },
 
-        initPasswordInput: function(){
-            var button = this.element.children('.btn-reveal'),
-                input = this.element.children('input[type=password]'),
-                wrapper, that = this;
+        initPasswordInput: function(el, that){
+            var button = el.children('.btn-reveal'),
+                input = el.children('input[type=password]');
+            var wrapper;
 
             if (button.length == 0) return;
 
@@ -79,29 +83,28 @@
             button.on('mousedown', function(e){
                 input.attr('type', 'text');
                 //e.preventDefault();
-                /*
-                wrapper = $('<input type="text" />');
 
-                input.hide();
-                wrapper.appendTo(that.element);
-                wrapper.val(input.val());
-
-                that._trigger("onPasswordShow", null, that.element);
-                $(this).css('display', 'block');
-                */
+//                wrapper = el.find(".__wrapper__").length == 0 ? $('<input type="text" class="__wrapper__" />') : el.find(".__wrapper__");
+//
+//                input.hide();
+//                wrapper.appendTo(that.element);
+//                wrapper.val(input.val());
+//
+//                that._trigger("onPasswordShow", null, that.element);
             });
 
-            button.on('mouseup, mouseleave', function(e){
+            button.on('mouseup, mouseleave, blur', function(e){
                 input.attr('type', 'password').focus();
                 //e.preventDefault();
-                /*
-                console.log("mouseup");
-                input.show().focus();
-                wrapper.remove();
 
-                that._trigger("onPasswordHide", null, that.element);
-                */
+
+//                input.show().focus();
+//                wrapper.remove();
+//
+//                that._trigger("onPasswordHide", null, that.element);
             });
+
+            if (!input.attr("disabled")) input.on('click', function(){$(this).focus();});
         },
 
         _destroy: function(){
