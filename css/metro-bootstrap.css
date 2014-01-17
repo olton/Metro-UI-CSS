@@ -6391,39 +6391,6 @@ a {
 .metro .window.flat .content {
   padding-top: 38px;
 }
-.metro.notify-container {
-  position: fixed;
-  right: 0;
-  top: 0;
-  z-index: 1060;
-}
-.metro.notify-container .notify {
-  background-color: #ffffff;
-  display: block;
-  position: relative;
-  min-width: 220px;
-  font-family: 'Segoe UI_', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
-  color: #1d1d1d;
-  padding: 10px;
-  margin: 2px 2px 2px 0;
-}
-.metro.notify-container .notify .caption {
-  font-size: 18px;
-  line-height: 20px;
-  margin-bottom: 5px;
-}
-.metro.notify-container .notify .content {
-  font-size: 14px;
-  line-height: 16px;
-}
-.metro .notify-wrapper {
-  position: relative;
-  background-color: #1d1d1d;
-  width: auto;
-  height: auto;
-  min-width: 250px;
-  color: #ffffff;
-}
 .metro .listview .list {
   border: 4px transparent solid;
   width: 300px;
@@ -7154,8 +7121,12 @@ a {
   background-color: #cde6f7;
   color: #444444;
 }
+.metro p [data-hint] {
+  border-bottom: 1px #373737 dotted;
+  white-space: nowrap;
+}
 .metro .hint {
-  position: absolute;
+  position: fixed;
   background-color: #fffcc0;
   color: #1d1d1d;
   padding: 10px;
@@ -7164,9 +7135,10 @@ a {
   width: auto;
   max-width: 220px;
   margin-top: 10px;
-  border: 1px #eaeaea solid;
   z-index: 1030;
   display: none;
+  border: 1px #eaeaea solid;
+  border-color: #6a6a6a;
 }
 .metro .hint .hint-title,
 .metro .hint .hint-text {
@@ -7189,6 +7161,7 @@ a {
 }
 .metro .hint:after {
   z-index: 1;
+  border-color: inherit;
 }
 .metro .hint.bottom:before,
 .metro .hint.bottom:after {
@@ -7201,7 +7174,7 @@ a {
 }
 .metro .hint.bottom:after {
   top: 0;
-  border-bottom: 10px solid #eaeaea;
+  border-bottom: 10px solid;
 }
 .metro .hint.top:before,
 .metro .hint.top:after {
@@ -7214,11 +7187,11 @@ a {
 }
 .metro .hint.top:after {
   margin-top: 1px;
-  border-top: 10px solid #eaeaea;
+  border-top: 10px solid;
 }
 .metro .hint.left:before,
 .metro .hint.left:after {
-  top: 10px;
+  top: 5px;
   left: 100%;
   margin-left: -1px;
   border-top: 5px solid transparent;
@@ -7227,11 +7200,11 @@ a {
 }
 .metro .hint.left:after {
   margin-left: 0;
-  border-left: 10px solid #eaeaea;
+  border-left: 10px solid;
 }
 .metro .hint.right:before,
 .metro .hint.right:after {
-  top: 10px;
+  top: 5px;
   left: -9px;
   margin: 0;
   border-top: 5px solid transparent;
@@ -7240,7 +7213,7 @@ a {
 }
 .metro .hint.right:after {
   left: -10px;
-  border-right: 10px solid #eaeaea;
+  border-right: 10px solid;
 }
 .metro .balloon {
   display: block;
@@ -7714,6 +7687,39 @@ a {
   content: "\e1af";
   margin-top: -1px;
   margin-right: -1px;
+}
+.metro.notify-container {
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 1060;
+}
+.metro.notify-container .notify {
+  background-color: #ffffff;
+  display: block;
+  position: relative;
+  min-width: 220px;
+  font-family: 'Segoe UI_', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  color: #1d1d1d;
+  padding: 10px;
+  margin: 2px 2px 2px 0;
+}
+.metro.notify-container .notify .caption {
+  font-size: 18px;
+  line-height: 20px;
+  margin-bottom: 5px;
+}
+.metro.notify-container .notify .content {
+  font-size: 14px;
+  line-height: 16px;
+}
+.metro .notify-wrapper {
+  position: relative;
+  background-color: #1d1d1d;
+  width: auto;
+  height: auto;
+  min-width: 250px;
+  color: #ffffff;
 }
 @font-face {
   font-family: 'iconFont';

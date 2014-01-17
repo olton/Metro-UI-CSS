@@ -24,7 +24,7 @@
                 element = wrp;
             }
 
-            console.log($.Metro.getOffset(element[0]), element.offset());
+            console.log($.Metro.getOffset(element[0]), element.offset(), element.position());
 
             var hint_title = hint.length > 1 ? hint[0] : false;
             var hint_text = hint.length > 1 ? hint[1] : hint[0];
@@ -39,23 +39,23 @@
 
             if (o.position == 'top') {
                 _hint.css({
-                    top: element.position().top - _hint.outerHeight() - 20,
-                    left: element.position().left
+                    top: element.offset().top - _hint.outerHeight() - 20,
+                    left: element.offset().left
                 });
             } else if (o.position == 'bottom') {
                 _hint.css({
-                    top: element.position().top + element.outerHeight(),
-                    left: element.position().left
+                    top: element.offset().top + element.outerHeight(),
+                    left: element.offset().left
                 });
             } else if (o.position == 'right') {
                 _hint.css({
-                    top: element.position().top - 10,
-                    left: element.position().left + element.outerWidth() + 10
+                    top: element.offset().top - 10,
+                    left: element.offset().left + element.outerWidth() + 10
                 });
             } else if (o.position == 'left') {
                 _hint.css({
-                    top: element.position().top - 10,
-                    left: element.position().left - _hint.outerWidth() - 10
+                    top: element.offset().top - 10,
+                    left: element.offset().left - _hint.outerWidth() - 10
                 });
             }
 
