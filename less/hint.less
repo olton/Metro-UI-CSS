@@ -1,5 +1,10 @@
+p [data-hint]{
+    border-bottom: 1px #373737 dotted;
+    white-space: nowrap;
+}
+
 .hint {
-    position: absolute;
+    position: fixed;
     background-color: @hintColor;
     color: @dark;
     padding: 10px;
@@ -8,9 +13,11 @@
     width: auto;
     max-width: 220px;
     margin-top: 10px;
-    .border;
     z-index: @zindexTooltip;
     display: none;
+//    .shadow;
+    .border;
+    border-color: lighten(#373737, 20%);
 
     .hint-title, .hint-text {
         color: inherit;
@@ -40,6 +47,7 @@
     }
     &:after {
         z-index: 1;
+        border-color: inherit;
     }
 }
 
@@ -56,7 +64,7 @@
 
         &:after {
             top: 0;
-            border-bottom: 10px solid @tableBorderColor;
+            border-bottom: 10px solid;
         }
     }
 
@@ -72,13 +80,13 @@
 
         &:after {
             margin-top: 1px;
-            border-top: 10px solid @tableBorderColor;
+            border-top: 10px solid;
         }
     }
 
     &.left {
         &:before, &:after {
-            top: 10px;
+            top: 5px;
             left: 100%;
             margin-left: -1px;
             border-top: 5px solid transparent;
@@ -88,13 +96,13 @@
 
         &:after {
             margin-left: 0;
-            border-left: 10px solid @tableBorderColor;
+            border-left: 10px solid;
         }
     }
 
     &.right {
         &:before, &:after {
-            top: 10px;
+            top: 5px;
             left: -9px;
             margin: 0;
             border-top: 5px solid transparent;
@@ -104,7 +112,7 @@
 
         &:after {
             left: -10px;
-            border-right: 10px solid @tableBorderColor;
+            border-right: 10px solid;
         }
     }
 }
