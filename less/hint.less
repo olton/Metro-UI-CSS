@@ -5,7 +5,6 @@ p [data-hint]{
 
 .hint {
     position: fixed;
-    background-color: @hintColor;
     color: @dark;
     padding: 10px;
     #font > .sans;
@@ -15,8 +14,7 @@ p [data-hint]{
     margin-top: 10px;
     z-index: @zindexTooltip;
     display: none;
-//    .shadow;
-    .border;
+    border: 1px solid;
     border-color: lighten(#373737, 20%);
 
     .hint-title, .hint-text {
@@ -55,7 +53,7 @@ p [data-hint]{
     &.bottom {
         &:before, &:after {
             top: 1px;
-            left: 10px;
+            left: 5px;
             margin: -10px 0;
             border-left: 5px solid transparent;
             border-right: 5px solid transparent;
@@ -72,7 +70,7 @@ p [data-hint]{
         &:before, &:after {
             top: 100%;
             margin-top: -1px;
-            left: 10px;
+            left: 5px;
             border-left: 5px solid transparent;
             border-right: 5px solid transparent;
             border-top: 10px solid @hintColor;

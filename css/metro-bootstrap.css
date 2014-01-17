@@ -7127,7 +7127,6 @@ a {
 }
 .metro .hint {
   position: fixed;
-  background-color: #fffcc0;
   color: #1d1d1d;
   padding: 10px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -7137,7 +7136,7 @@ a {
   margin-top: 10px;
   z-index: 1030;
   display: none;
-  border: 1px #eaeaea solid;
+  border: 1px solid;
   border-color: #6a6a6a;
 }
 .metro .hint .hint-title,
@@ -7166,7 +7165,7 @@ a {
 .metro .hint.bottom:before,
 .metro .hint.bottom:after {
   top: 1px;
-  left: 10px;
+  left: 5px;
   margin: -10px 0;
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
@@ -7180,7 +7179,7 @@ a {
 .metro .hint.top:after {
   top: 100%;
   margin-top: -1px;
-  left: 10px;
+  left: 5px;
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
   border-top: 10px solid #fffcc0;
