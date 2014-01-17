@@ -20,7 +20,7 @@
 
         var _container = _notify_container || $("<div/>").addClass("metro notify-container").appendTo('body'); _notify_container = _container;
 
-        console.log(_container);
+        //console.log(_container);
 
         if (params.content == '' || params.content == undefined) return;
 
