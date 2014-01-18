@@ -207,7 +207,7 @@
                     <ul class="element-menu">
                         <li>
                             <a class="dropdown-toggle" href="#">Base CSS</a>
-                            <ul class="dropdown-menu" data-role="dropdown">
+                            <ul class="dropdown-menu " data-role="dropdown">
                                 <li><a href="requirements.html">Requirements</a></li>
                                 <li>
                                     <a href="#" class="dropdown-toggle">General CSS</a>
@@ -519,6 +519,68 @@
 &lt;nav class="navigation-bar light"&gt;...&lt;/nav&gt;
 &lt;nav class="navigation-bar white"&gt;...&lt;/nav&gt;
 </pre>
+
+        <h3 id="drop-up-menu">Drop-up menu</h3>
+        <p>
+            For navigation bar, located at the bottom of the page may need to disclose the possibility of up menu.
+            Metro UI CSS gives you this opportunity. To do this you need to add to the <code>element-menu</code> class <code>drop-up</code>
+        </p>
+<pre class="prettyprint linenums">
+&lt;nav class="navigation-bar fixed-bottom"&gt;
+    &lt;ul class="element-menu drop-up"&gt;
+        ...
+    &lt;/ul&gt;
+&lt;/nav&gt;
+</pre>
+
+        <div class="example">
+            <div class="navigation-bar">
+                <div class="navigation-bar-content">
+                    <a href="/" class="element"><span class="icon-grid-view"></span> METRO UI CSS <sup>2.0</sup></a>
+                    <span class="element-divider"></span>
+
+                    <a class="pull-menu" href="#"></a>
+                    <ul class="element-menu drop-up">
+                        <li>
+                            <a class="dropdown-toggle" href="#">Base CSS</a>
+                            <ul class="dropdown-menu " data-role="dropdown">
+                                <li><a href="requirements.html">Requirements</a></li>
+                                <li>
+                                    <a href="#" class="dropdown-toggle">General CSS</a>
+                                    <ul class="dropdown-menu" data-role="dropdown">
+                                        <li><a href="global.html">Global styles</a></li>
+                                        <li><a href="grid.html">Grid system</a></li>
+                                        <div class="divider"></div>
+                                        <li><a href="typography.html">Typography</a></li>
+                                        <li><a href="tables.html">Tables</a></li>
+                                        <li><a href="forms.html">Forms</a></li>
+                                        <li><a href="buttons.html">Buttons</a></li>
+                                        <li><a href="images.html">Images</a></li>
+                                    </ul>
+                                </li>
+                                <li class="divider"></li>
+                                <li><a href="responsive.html">Responsive</a></li>
+                                <li class="disabled"><a href="layouts.html">Layouts and templates</a></li>
+                                <li class="divider"></li>
+                                <li><a href="icons.html">Icons</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="dropdown-toggle"  href="#">Community</a>
+                            <ul class="dropdown-menu" data-role="dropdown">
+                                <li class="disabled"><a href="http://blog.metroui.net">Blog</a></li>
+                                <li class="disabled"><a href="http://forum.metroui.net">Community Forum</a></li>
+                                <li class="divider"></li>
+                                <li><a href="https://github.com/olton/Metro-UI-CSS">Github</a></li>
+                                <li class="divider"></li>
+                                <li><a href="https://github.com/olton/Metro-UI-CSS/blob/master/LICENSE">License</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
 
     </div>
 
