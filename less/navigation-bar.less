@@ -203,12 +203,25 @@
 
                 .dropdown-menu {
                     //background-color: inherit !important;
-                    border: 0 !important;
+                    //border: 0 !important;
                 }
             }
         }
 
         &.responsive {}
+    }
+
+    .element-menu {
+        &.drop-up {
+            & li > .dropdown-menu {
+                top: auto;
+                bottom: 45px;
+
+                .dropdown-menu {
+                    bottom: 0;
+                }
+            }
+        }
     }
 
     .pull-menu {

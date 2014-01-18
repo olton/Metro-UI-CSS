@@ -4156,9 +4156,14 @@ a {
   right: 0;
   left: auto;
 }
-.metro .navigation-bar .element-menu > li > .dropdown-menu .dropdown-menu,
-.metro .navbar .element-menu > li > .dropdown-menu .dropdown-menu {
-  border: 0 !important;
+.metro .navigation-bar .element-menu.drop-up li > .dropdown-menu,
+.metro .navbar .element-menu.drop-up li > .dropdown-menu {
+  top: auto;
+  bottom: 45px;
+}
+.metro .navigation-bar .element-menu.drop-up li > .dropdown-menu .dropdown-menu,
+.metro .navbar .element-menu.drop-up li > .dropdown-menu .dropdown-menu {
+  bottom: 0;
 }
 .metro .navigation-bar .pull-menu,
 .metro .navbar .pull-menu {
