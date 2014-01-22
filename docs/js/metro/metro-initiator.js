@@ -230,5 +230,14 @@
 })(jQuery);
 
 $(function(){
-    $.Metro.initAll();
+//    $.Metro.initAll();
+});
+
+
+$(function(){
+    if (METRO_AUTO_REINIT) {
+        $(".metro").bind('DOMSubtreeModified', function(){
+            $.Metro.initAll();
+        });
+    }
 });
