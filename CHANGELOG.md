@@ -1,3 +1,8 @@
+## Version 2.0.25
+
+### Changes:
+-- critical upd auto reinit for js components when DOM changed (see issue 447)
+
 ## Version 2.0.24
 
 ### Changes:
