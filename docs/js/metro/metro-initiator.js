@@ -236,8 +236,18 @@ $(function(){
 
 $(function(){
     if (METRO_AUTO_REINIT) {
-        $(".metro").bind('DOMSubtreeModified', function(){
-            $.Metro.initAll();
-        });
+        //$(".metro").bind('DOMSubtreeModified', function(){            $.Metro.initAll();        });
+        var originalDOM = $('.metro').html(),
+            actualDOM;
+
+        setInterval(function () {
+            actualDOM = $('.metro').html();
+
+            if (originalDOM !== actualDOM) {
+                originalDOM = actualDOM;
+
+                $.Metro.initAll();
+            }
+        }, 1000);
     }
 });
