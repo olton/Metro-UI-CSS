@@ -1,3 +1,12 @@
+## Version 2.0.24
+
+### Changes:
+- add auto reinit for js components when DOM changed (see issue 447)
+- upd compressor.js (pull request 450)
+- upd stepper (currently in develop)
+- fix bugs
+- add bugs
+
 ## Version 2.0.23
 
 ### Changes:
