@@ -43,9 +43,8 @@ var modules = [
     module_path+'metro-streamer.js',
     module_path+'metro-scroll.js',
     module_path+'metro-stepper.js',
+    module_path+'metro-pull.js',
     module_path+'metro-initiator.js',
-    module_path+'metro-pull.js'
-
 ];
 
 new compressor.minify({
