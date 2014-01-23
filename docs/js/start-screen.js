@@ -5,6 +5,8 @@
         plugin.init = function(){
             setTilesAreaSize();
             addMouseWheel();
+            // start the new height function
+            tileGroupHeight();
         };
 
         var setTilesAreaSize = function(){
@@ -25,6 +27,32 @@
                 return false;
             });
         };
+        
+        //function to set the overall page DIV height so the vertical scrollbar displays
+        var tileGroupHeight = function(){
+            // get all the DIV's with the class tile-group
+        	var groupheight = $(".tile-group");
+        	// create a var to have the max found height of a DIV
+        	var theheight = 0;
+        	// a foreach loop to go through each DIV class
+        	$.each(groupheight, function(i, t){
+        	    //if the current DIV height is more than the VAR then
+        		if ($(t).outerHeight() > theheight)
+        		{ 
+        		    // set the VAR to the current DIV height
+        			theheight = $(t).outerHeight();
+        			// set the page's main DIV height to the new height + 135px to account for the header
+        			$(".tile-area").css({
+        				height: theheight + 135
+					});
+        		}
+        		else
+        		{
+        			// otherwise
+        		}
+        	});
+        };
+
 
         plugin.init();
     }
