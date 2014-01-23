@@ -6751,50 +6751,6 @@ a {
   margin-right: 10px;
   margin-top: 5px;
 }
-.metro .notice {
-  display: block;
-  min-width: 200px;
-  height: auto;
-  position: relative;
-  background-color: #4390df;
-  padding: 20px;
-}
-.metro .notice * {
-  color: inherit;
-}
-.metro .notice:before {
-  content: "";
-  width: 10px;
-  height: 10px;
-  display: block;
-  position: absolute;
-  background-color: inherit;
-  left: -5px;
-  top: 50%;
-  margin-top: -5px;
-  -webkit-transform: rotate(45deg);
-  -moz-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  -o-transform: rotate(45deg);
-  transform: rotate(45deg);
-}
-.metro .notice.marker-on-top:before {
-  top: 0;
-  left: 50%;
-  margin-left: -5px;
-}
-.metro .notice.marker-on-right:before {
-  top: 50%;
-  margin-top: -5px;
-  left: 100%;
-  margin-left: -5px;
-}
-.metro .notice.marker-on-bottom:before {
-  top: 100%;
-  margin-left: -5px;
-  left: 50%;
-  margin-top: -5px;
-}
 .metro .treeview {
   background-color: #fdfdfd;
   color: #555555;
@@ -7296,37 +7252,51 @@ a {
   border-right: 20px solid #555555;
 }
 .metro .stepper {
-  list-style: none;
+  counter-reset: li;
   border-top: 1px #1d1d1d dotted;
   position: relative;
   padding: 0;
   margin: 60px 0;
+  width: 100%;
 }
 .metro .stepper li {
+  list-style: none;
   float: left;
-  width: 32px;
-  height: 32px;
+  width: 2em;
+  height: 2em;
+  margin-top: -1em;
+  position: absolute;
+  left: 0;
+}
+.metro .stepper li:before {
+  content: counter(li);
+  counter-increment: li;
+  position: absolute;
+  box-sizing: border-box;
+  width: 2em;
+  padding: 4px;
+  color: #fff;
+  background: #666;
+  font-weight: bold;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 1.5rem;
+  text-align: center;
   border-radius: 100%;
-  margin-left: 20%;
-  margin-top: -16px;
-  background-color: #e51400;
-  border: 2px #9a1616 solid;
-  position: relative;
 }
-.metro .stepper li:first-child {
-  margin-left: 0;
-}
-.metro .stepper li:last-child {
-  left: 10px;
-}
-.metro .stepper li:hover {
-  background-color: #ff2d19;
+.metro .stepper li:hover:before {
+  background-color: #999999;
 }
 .metro .stepper li.complete {
-  background-color: #60a917;
-  border: 2px #128023 solid;
+  -webkit-transform: scale(1.3);
+  -moz-transform: scale(1.3);
+  -ms-transform: scale(1.3);
+  -o-transform: scale(1.3);
+  transform: scale(1.3);
 }
-.metro .stepper li.complete:hover {
+.metro .stepper li.complete:before {
+  background-color: #60a917;
+}
+.metro .stepper li.complete:hover:before {
   background-color: #7ad61d;
 }
 .metro .streamer {
@@ -7724,6 +7694,50 @@ a {
   height: auto;
   min-width: 250px;
   color: #ffffff;
+}
+.metro .notice {
+  display: block;
+  min-width: 200px;
+  height: auto;
+  position: relative;
+  background-color: #4390df;
+  padding: 20px;
+}
+.metro .notice * {
+  color: inherit;
+}
+.metro .notice:before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  display: block;
+  position: absolute;
+  background-color: inherit;
+  left: -5px;
+  top: 50%;
+  margin-top: -5px;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.metro .notice.marker-on-top:before {
+  top: 0;
+  left: 50%;
+  margin-left: -5px;
+}
+.metro .notice.marker-on-right:before {
+  top: 50%;
+  margin-top: -5px;
+  left: 100%;
+  margin-left: -5px;
+}
+.metro .notice.marker-on-bottom:before {
+  top: 100%;
+  margin-left: -5px;
+  left: 50%;
+  margin-top: -5px;
 }
 @font-face {
   font-family: 'iconFont';
