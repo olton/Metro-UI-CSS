@@ -1,3 +1,8 @@
+## Version 2.0.27
+
+### Changes:
+- upd Nuget package
+
 ## Version 2.0.26
 
 ### Changes:
