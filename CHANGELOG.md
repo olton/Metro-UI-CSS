@@ -1,15 +1,15 @@
 ## Version 2.0.26
 
 ### Changes:
--- upd interval for auto reinit js components
--- add stepper to public
--- fix bugs
--- add any bugs
+- upd interval for auto reinit js components
+- add stepper to public
+- fix bugs
+- add any bugs
 
 ## Version 2.0.25
 
 ### Changes:
--- critical upd auto reinit for js components when DOM changed (see issue 447)
+- critical upd auto reinit for js components when DOM changed (see issue 447)
 
 ## Version 2.0.24
 
