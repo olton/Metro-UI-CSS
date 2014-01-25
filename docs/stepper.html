@@ -29,32 +29,40 @@
 </head>
 <body class="metro">
     <header class="bg-dark" data-load="header.html"></header>
-    <div class="page">
-        <div class="page-region">
-            <div class="page-region-content">
-                <h1>
-                    <a href="/"><i class="icon-arrow-left-3 fg-darker smaller"></i></a>
-                    Stepper<small class="on-right">component</small>
-                </h1>
 
-                <div class="example">
-                    <ul class="stepper" data-role="stepper">
-                        <li class="complete" data-action="Step 1" data-description="Create document with HTML5 DOCTYPE"></li>
-                        <li class="" data-action="Step 2" data-description="Include <strong>metro-bootstrap.css</strong> in document head"></li>
-                        <li class="" data-action="Step 3" data-description="Include <strong>jquery.js, jquery.widget.js and metro-*.js</strong> in document head"></li>
-                        <li class="" data-action="Step 4" data-description="Create container with class <strong>metro</strong> for Metro UI CSS components"></li>
-                        <li class="" data-action="Step 5" data-description="Use markup for components, as described in the pages of this site"></li>
-                        <li class="" data-action="Step 6" data-description="The End"></li>
-                    </ul>
-                </div>
+    <div class="container">
+        <h1>
+            <a href="/"><i class="icon-arrow-left-3 fg-darker smaller"></i></a>
+            Stepper<small class="on-right">component</small>
+        </h1>
+
+        <div class="example">
+            <h2>Simple</h2>
+            <div class="stepper" data-role="stepper" data-steps="5" data-start="3"></div>
+        </div>
+        <h3>Markup</h3>
+<pre class="prettyprint linenums">
+&lt;div class="stepper" data-steps="5" data-role="stepper" data-start="3"&gt;&lt;/div&gt;
+</pre>
+
+        <div class="example">
+            <h2>Methods</h2>
+            <div class="stepper" data-role="stepper" data-steps="5" id="demo_stepper_methods"></div>
+
+            <div class="actions">
+                <button class="button" onclick="$('#demo_stepper_methods').stepper('next')">Next</button>
+                <button class="button" onclick="$('#demo_stepper_methods').stepper('prior')">Prior</button>
+                <button class="button" onclick="$('#demo_stepper_methods').stepper('first')">First</button>
+                <button class="button" onclick="$('#demo_stepper_methods').stepper('last')">Last</button>
             </div>
         </div>
+<pre class="prettyprint linenums">
+&lt;button class="button" onclick="$('#steppe').stepper('next')"&gt;Next&lt;/button&gt;
+&lt;button class="button" onclick="$('#stepper').stepper('prior')"&gt;Prior&lt;/button&gt;
+&lt;button class="button" onclick="$('#stepper').stepper('first')"&gt;First&lt;/button&gt;
+&lt;button class="button" onclick="$('#stepper').stepper('last')"&gt;Last&lt;/button&gt;
+</pre>
 
-        <div class="page-footer">
-            <div class="page-footer-content">
-                <!--<div data-load="header.html"></div>-->
-            </div>
-        </div>
     </div>
 
     <script src="js/hitua.js"></script>
