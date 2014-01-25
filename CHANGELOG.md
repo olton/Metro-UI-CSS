@@ -1,3 +1,11 @@
+## Version 2.0.26
+
+### Changes:
+-- upd interval for auto reinit js components
+-- add stepper to public
+-- fix bugs
+-- add any bugs
+
 ## Version 2.0.25
 
 ### Changes:
