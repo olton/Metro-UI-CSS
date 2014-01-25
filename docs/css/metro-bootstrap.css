@@ -7260,14 +7260,25 @@ a {
   border-right: 20px solid #555555;
 }
 .metro .stepper {
+  margin: 10px 0;
+}
+.metro .stepper:before,
+.metro .stepper:after {
+  display: table;
+  content: "";
+}
+.metro .stepper:after {
+  clear: both;
+}
+.metro .stepper > ul {
   counter-reset: li;
   border-top: 1px #1d1d1d dotted;
   position: relative;
   padding: 0;
-  margin: 60px 0;
+  margin: 30px 0;
   width: 100%;
 }
-.metro .stepper li {
+.metro .stepper > ul li {
   list-style: none;
   float: left;
   width: 2em;
@@ -7276,7 +7287,7 @@ a {
   position: absolute;
   left: 0;
 }
-.metro .stepper li:before {
+.metro .stepper > ul li:before {
   content: counter(li);
   counter-increment: li;
   position: absolute;
@@ -7291,20 +7302,37 @@ a {
   text-align: center;
   border-radius: 100%;
 }
-.metro .stepper li:hover:before {
+.metro .stepper > ul li:hover:before {
   background-color: #999999;
 }
-.metro .stepper li.complete {
+.metro .stepper > ul li.current,
+.metro .stepper > ul li.complete {
+  transition: all 0.2s ease;
+}
+.metro .stepper > ul li.current {
+  -webkit-transform: scale(1.5);
+  -moz-transform: scale(1.5);
+  -ms-transform: scale(1.5);
+  -o-transform: scale(1.5);
+  transform: scale(1.5);
+}
+.metro .stepper > ul li.current:before {
+  background-color: #1ba1e2;
+}
+.metro .stepper > ul li.current:hover:before {
+  background-color: #00ccff;
+}
+.metro .stepper > ul li.complete {
   -webkit-transform: scale(1.3);
   -moz-transform: scale(1.3);
   -ms-transform: scale(1.3);
   -o-transform: scale(1.3);
   transform: scale(1.3);
 }
-.metro .stepper li.complete:before {
+.metro .stepper > ul li.complete:before {
   background-color: #60a917;
 }
-.metro .stepper li.complete:hover:before {
+.metro .stepper > ul li.complete:hover:before {
   background-color: #7ad61d;
 }
 .metro .streamer {
