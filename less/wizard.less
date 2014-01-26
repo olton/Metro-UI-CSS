@@ -1,0 +1,53 @@
+.wizard {
+    .steps {
+        margin: 10px 0;
+        padding: 20px;
+        border: 1px @grayLighter solid;
+        position: relative;
+
+        .step {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: none;
+
+            &:first-child {
+                display: block;
+            }
+        }
+    }
+
+    .actions {
+        .group-right {
+            float: right;
+        }
+        .group-left {
+            float: left;
+        }
+
+        button {
+            .button;
+            margin-right: 2px;
+
+            &:last-child {
+                margin-right: 0;
+            }
+
+            &.btn-help {
+            }
+
+            &.btn-prior, &.btn-next {
+            }
+
+            &.btn-finish {
+                background-color: @green;
+                color: @white;
+
+            }
+
+            &:disabled {
+                background-color: lighten(@gray, 10%) !important;
+            }
+        }
+    }
+}
