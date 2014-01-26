@@ -230,7 +230,7 @@
 })(jQuery);
 
 $(function(){
-//    $.Metro.initAll();
+    $.Metro.initAll();
 });
 
 

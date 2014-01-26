@@ -29,7 +29,6 @@
                 li = $("<li/>").appendTo(ul);
             }
             ul.appendTo(element);
-            console.log(element[0]);
         },
 
         _positioningSteps: function(){
