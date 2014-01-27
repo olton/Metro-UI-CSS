@@ -37,12 +37,15 @@
         </h1>
 
         <div class="example">
-            <h2>Simple</h2>
+            <h2>Default</h2>
             <div class="stepper" data-role="stepper" data-steps="5" data-start="3"></div>
+            <h2>Rounded</h2>
+            <div class="stepper rounded" data-role="stepper" data-steps="5" data-start="3"></div>
         </div>
         <h3>Markup</h3>
 <pre class="prettyprint linenums">
 &lt;div class="stepper" data-steps="5" data-role="stepper" data-start="3"&gt;&lt;/div&gt;
+&lt;div class="stepper rounded" data-steps="5" data-role="stepper" data-start="3"&gt;&lt;/div&gt;
 </pre>
 
         <div class="example">
@@ -57,7 +60,7 @@
             </div>
         </div>
 <pre class="prettyprint linenums">
-&lt;button class="button" onclick="$('#steppe').stepper('next')"&gt;Next&lt;/button&gt;
+&lt;button class="button" onclick="$('#stepper').stepper('next')"&gt;Next&lt;/button&gt;
 &lt;button class="button" onclick="$('#stepper').stepper('prior')"&gt;Prior&lt;/button&gt;
 &lt;button class="button" onclick="$('#stepper').stepper('first')"&gt;First&lt;/button&gt;
 &lt;button class="button" onclick="$('#stepper').stepper('last')"&gt;Last&lt;/button&gt;

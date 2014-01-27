@@ -7300,7 +7300,6 @@ a {
   font-family: "Helvetica Neue", Arial, sans-serif;
   font-size: 1.5rem;
   text-align: center;
-  border-radius: 100%;
 }
 .metro .stepper > ul li:hover:before {
   background-color: #999999;
@@ -7334,6 +7333,9 @@ a {
 }
 .metro .stepper > ul li.complete:hover:before {
   background-color: #7ad61d;
+}
+.metro .stepper.rounded li:before {
+  border-radius: 100%;
 }
 .metro .streamer {
   position: relative;
