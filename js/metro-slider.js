@@ -1,7 +1,7 @@
 (function( $ ) {
     $.widget("metro.slider", {
 
-        version: "1.0.1",
+        version: "1.0.0",
 
         options: {
             position: 0,
@@ -13,8 +13,6 @@
             showHint: false,
             change: function(value, slider){},
             changed: function(value, slider){},
-			min: 0,
-			max: 100,
 
             _slider: {
                 vertical: false,
@@ -39,7 +37,7 @@
                 o.accuracy = element.data('accuracy') > 0 ? element.data('accuracy') : 0;
             }
             if (element.data('position') != undefined) {
-                o.position = this._correctValue(element.data('position') > this.options.min ? (element.data('position') > this.options.max ? this.options.max : element.data('position')) : this.options.min);
+                o.position = this._correctValue(element.data('position') > 0 ? (element.data('position') > 100 ? 100 : element.data('position')) : 0);
             }
             if (element.data('color') != undefined) {
                 o.color = element.data('color');
@@ -55,15 +53,6 @@
             }
             if (element.data('showHint') != undefined) {
                 o.showHint = element.data('showHint');
-            }
-			if (element.data('showHint') != undefined) {
-                o.showHint = element.data('showHint');
-            }
-			if (element.data('min') != undefined) {
-                o.showHint = element.data('min');
-            }
-			if (element.data('max') != undefined) {
-                o.showHint = element.data('max');
             }
 
             s.vertical = element.hasClass("vertical");
@@ -200,23 +189,15 @@
 
         _correctValue: function (value) {
             var accuracy = this.options.accuracy;
-			var max = this.options.max;
-			var min = this.options.min;
             if (accuracy === 0) {
                 return value;
             }
-            if (value === max) {
-                return max;
-            }
-			if (value === min) {
-                return min;
+            if (value === 100) {
+                return 100;
             }
             value = Math.floor(value / accuracy) * accuracy + Math.round(value % accuracy / accuracy) * accuracy;
-            if (value > max) {
-                return max;
-            }
-			if (value < min) {
-                return min;
+            if (value > 100) {
+                return 100;
             }
             return value;
         },
@@ -234,7 +215,7 @@
                 s.marker = element.children('.marker').width();
             }
 
-            s.ppp = this.options.max / (s.length - s.marker);
+            s.ppp = 100 / (s.length - s.marker);
             s.start = s.marker / 2;
             s.stop = s.length - s.marker / 2;
         },
