@@ -13,24 +13,25 @@
 
         _create: function(){
             var that = this,
-                element = this.element;
+                element = this.element,
+				o = this.options;
 
             if (element.data('value') != undefined) {
                 this.value(element.data('value')+'%');
             }
 
             if (element.data('color') != undefined) {
-                this.options.color = element.data('color');
+                o.color = element.data('color');
             }
 
             if (element.data('animate') != undefined) {
-                this.options.animate = element.data('animate');
+                o.animate = element.data('animate');
             }
 			
 			if (element.data('max') != undefined) {
-                this.options.max = element.data('max');
+                o.max = element.data('max');
             }
-			this.options.max = this.options.max > 100 ? 100 : this.options.max;
+			o.max = o.max > 100 ? 100 : o.max;
 
             this._showBar();
         },
