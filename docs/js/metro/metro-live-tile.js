@@ -1,7 +1,7 @@
 (function( $ ) {
     $.widget("metro.livetile", {
 
-        version: "1.0.0",
+        version: "1.0.1",
 
         options: {
             effect: 'slideLeft',
@@ -99,11 +99,11 @@
             };
 
             $(currentFrame)
-                .animate({top: -_out}, options);
+                .transit({top: -_out}, options);
             $(nextFrame)
                 .css({top: _out})
                 .show()
-                .animate({top: 0}, options);
+                .transit({top: 0}, options);
         },
 
         _effectSlideDown: function(currentFrame, nextFrame){
@@ -114,11 +114,11 @@
             };
 
             $(currentFrame)
-                .animate({top: _out}, options);
+                .transit({top: _out}, options);
             $(nextFrame)
                 .css({top: -_out})
                 .show()
-                .animate({top: 0}, options);
+                .transit({top: 0}, options);
         },
 
         _effectSlideLeft: function(currentFrame, nextFrame){
@@ -129,11 +129,11 @@
             };
 
             $(currentFrame)
-                .animate({left: _out * -1}, options);
+                .transit({left: _out * -1}, options);
             $(nextFrame)
                 .css({left: _out})
                 .show()
-                .animate({left: 0}, options);
+                .transit({left: 0}, options);
         },
 
         _effectSlideRight: function(currentFrame, nextFrame){
@@ -144,11 +144,11 @@
             };
 
             $(currentFrame)
-                .animate({left: _out}, options);
+                .transit({left: _out}, options);
             $(nextFrame)
                 .css({left: -_out})
                 .show()
-                .animate({left: 0}, options);
+                .transit({left: 0}, options);
         },
 
         _destroy: function(){},

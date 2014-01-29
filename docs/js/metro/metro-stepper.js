@@ -1,7 +1,7 @@
 (function( $ ) {
     $.widget("metro.stepper", {
 
-        version: "1.0.0",
+        version: "1.0.1",
 
         options: {
             steps: 3,
@@ -41,7 +41,7 @@
 
             $.each(steps, function(i, step){
                 var left = i == 0 ? 0 : (element_width - step_width)/steps_length * i;
-                $(step).animate({
+                $(step).transit({
                     left: left
                 });
             });
