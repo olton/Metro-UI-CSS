@@ -1,7 +1,7 @@
 (function( $ ) {
     $.widget("metro.carousel", {
 
-        version: "1.0.0",
+        version: "1.0.1",
 
         options: {
             auto: true,
@@ -250,11 +250,11 @@
 
         _effectSlide: function(currentSlide, nextSlide, duration){
             $(currentSlide)
-                .animate({left: this._outPosition}, duration);
+                .transit({left: this._outPosition}, duration);
             $(nextSlide)
                 .css('left', this._outPosition * -1)
                 .show()
-                .animate({left: 0}, duration);
+                .transit({left: 0}, duration);
         },
 
         _effectSlowdown: function(currentSlide, nextSlide, duration){
@@ -267,14 +267,14 @@
             };
 
             $(currentSlide)
-                .animate({left: this._outPosition}, options);
+                .transit({left: this._outPosition}, options);
 
 
             //$(nextSlide).find('.subslide').hide();
             $(nextSlide)
                 .css('left', this._outPosition * -1)
                 .show()
-                .animate({left: 0}, options);
+                .transit({left: 0}, options);
 
             //setTimeout(function(){
             //    $(nextSlide).find('.subslide').fadeIn();
