@@ -62,9 +62,11 @@
 			if (element.data('min') != undefined) {
                 o.showHint = element.data('min');
             }
+			this.options.min = this.options.min < 0 ? 0 : this.options.min;
 			if (element.data('max') != undefined) {
                 o.showHint = element.data('max');
             }
+			this.options.max = this.options.max > 100 ? 100 : this.options.max;
 
             s.vertical = element.hasClass("vertical");
 
