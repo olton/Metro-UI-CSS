@@ -1,7 +1,7 @@
 (function( $ ) {
     $.widget("metro.progressbar", {
 
-        version: "1.0.0",
+        version: "1.0.1",
 
         options: {
             value: 0,
@@ -28,14 +28,17 @@
             }
 			
 			if (element.data('max') != undefined) {
-                this.options.animate = element.data('max');
+                this.options.max = element.data('max');
             }
 
             this._showBar();
         },
 
-        _showBar: function(){
-            var element = this.element;
+        _showBar: function(newVal){
+			//Default parameters
+			newVal = newVal || this.options.value;
+            
+			var element = this.element;
 
             element.html('');
 
@@ -48,9 +51,9 @@
             }
             bar.appendTo(element);
             if (this.options.animate) {
-                bar.animate({width: this.value()+'%'});
+				bar.css('width', this.value() + '%').transit({ width: newVal + '%' });
             } else {
-                bar.css('width', this.value()+'%');
+                bar.css('width', newVal + '%');
             }
 
             this.options.onchange(this.value());
@@ -59,10 +62,10 @@
         value: function(val){
             if (val != undefined) {
 				var parsedVal = parseInt(val);
-				parsedVal = parsedVal > max ? max : parsedVal;
+				parsedVal = parsedVal > this.max ? this.max : parsedVal;
 				parsedVal = parsedVal < 0 ? 0 : parsedVal;
+				this._showBar(parsedVal);
                 this.options.value = parsedVal;
-                this._showBar();
             } else {
                 return parseInt(this.options.value);
             }
