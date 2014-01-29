@@ -51,7 +51,7 @@
             }
             bar.appendTo(element);
             if (this.options.animate) {
-				bar.css('width', this.value() + '%').transit({ width: newVal + '%' });
+				bar.css('width', this.value() + '%').animate({ width: newVal + '%' });
             } else {
                 bar.css('width', newVal + '%');
             }
