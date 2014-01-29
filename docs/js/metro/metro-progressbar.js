@@ -7,6 +7,7 @@
             value: 0,
             color: "bg-cyan",
             animate: false,
+			max: 100,
             onchange: function(val){}
         },
 
@@ -24,6 +25,10 @@
 
             if (element.data('animate') != undefined) {
                 this.options.animate = element.data('animate');
+            }
+			
+			if (element.data('max') != undefined) {
+                this.options.animate = element.data('max');
             }
 
             this._showBar();
@@ -54,7 +59,7 @@
         value: function(val){
             if (val != undefined) {
 				var parsedVal = parseInt(val);
-				parsedVal = parsedVal > 100 ? 100 : parsedVal;
+				parsedVal = parsedVal > max ? max : parsedVal;
 				parsedVal = parsedVal < 0 ? 0 : parsedVal;
                 this.options.value = parsedVal;
                 this._showBar();
