@@ -30,6 +30,7 @@
 			if (element.data('max') != undefined) {
                 this.options.max = element.data('max');
             }
+			this.options.max = this.options.max > 100 ? 100 : this.options.max;
 
             this._showBar();
         },
