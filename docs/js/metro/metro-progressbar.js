@@ -53,7 +53,10 @@
 
         value: function(val){
             if (val != undefined) {
-                this.options.value = parseInt(val);
+				var parsedVal = parseInt(val);
+				parsedVal = parsedVal > 100 ? 100 : parsedVal;
+				parsedVal = parsedVal < 0 ? 0 : parsedVal;
+                this.options.value = parsedVal;
                 this._showBar();
             } else {
                 return parseInt(this.options.value);
