@@ -31,6 +31,7 @@
 			if (element.data('max') != undefined) {
                 o.max = element.data('max');
             }
+			o.max = o.max < 0 ? 0 : o.max;
 			o.max = o.max > 100 ? 100 : o.max;
 
             this._showBar();
