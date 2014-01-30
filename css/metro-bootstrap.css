@@ -8098,6 +8098,43 @@ a {
 .metro .wizard .actions button:disabled {
   background-color: #6f6f6f !important;
 }
+.metro .panel {
+  border: 1px #eaeaea solid;
+}
+.metro .panel .panel-header {
+  padding: 10px;
+  background-color: #eeeeee;
+  width: 100%;
+  font-family: 'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 300;
+  color: #000000;
+  letter-spacing: 0.00em;
+  font-size: 2.5rem;
+  line-height: 2.5rem;
+  letter-spacing: 0.01em;
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 2.2rem;
+  line-height: 2.2rem;
+  color: #1d1d1d;
+  cursor: default;
+}
+.metro .panel .panel-content {
+  width: 100%;
+  height: auto;
+  padding: 10px;
+}
+.metro [data-role=panel] .panel-header {
+  cursor: pointer;
+}
+.metro [data-role=panel] .panel-header:after {
+  font-family: iconFont;
+  content: "\e1b1";
+  float: right;
+  color: inherit;
+}
+.metro [data-role=panel].collapsed .panel-header:after {
+  content: "\e1b3";
+}
 @font-face {
   font-family: 'iconFont';
   src: url('../fonts/iconFont.eot');
