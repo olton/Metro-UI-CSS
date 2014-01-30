@@ -201,6 +201,14 @@
         }
     };
 
+    $.Metro.initPanels = function(area){
+        if (area != undefined) {
+            $(area).find('[data-role=panel]').panel();
+        } {
+            $('[data-role=panel]').panel();
+        }
+    };
+
     $.Metro.initAll = function(area) {
         $.Metro.initAccordions(area);
         $.Metro.initButtonSets(area);
@@ -226,6 +234,7 @@
         $.Metro.initStreamers(area);
         $.Metro.initDragTiles(area);
         $.Metro.initPulls(area);
+        $.Metro.initPanels(area);
     }
 })(jQuery);
 

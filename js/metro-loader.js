@@ -33,6 +33,7 @@ var plugins = [
     'scroll',
     'pull',
     'wizard',
+    'panel',
 
     'initiator'
 

@@ -1892,15 +1892,65 @@
             </div>
         </div>
 
-        <h2>Stepper</h2>
+        <h2 id="__stepper__">Stepper</h2>
         <div class="example">
-            <div class="stepper" data-role="stepper" data-steps="5" id="demo_stepper_methods"></div>
+            <h3>Default</h3>
+            <div class="stepper" data-role="stepper" data-steps="5" data-start="3"></div>
+            <h3>Rounded</h3>
+            <div class="stepper rounded" data-role="stepper" data-steps="5" data-start="3"></div>
+            <h3>Diamond</h3>
+            <div class="stepper diamond" data-role="stepper" data-steps="5" data-start="3"></div>
 
+            <h3>Events</h3>
+            <div class="stepper" data-role="stepper" data-steps="5" id="demo_stepper_methods"></div>
             <div class="actions">
                 <button class="button" onclick="$('#demo_stepper_methods').stepper('next')">Next</button>
                 <button class="button" onclick="$('#demo_stepper_methods').stepper('prior')">Prior</button>
                 <button class="button" onclick="$('#demo_stepper_methods').stepper('first')">First</button>
                 <button class="button" onclick="$('#demo_stepper_methods').stepper('last')">Last</button>
+            </div>
+        </div>
+
+        <h2 id="__panel__">Panels</h2>
+        <div class="example">
+            <div class="grid fluid">
+                <div class="row">
+                    <div class="span4">
+                        <h3>Default</h3>
+                        <div class="panel">
+                            <div class="panel-header">
+                                Lorem Ipsum
+                            </div>
+                            <div class="panel-content">
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="span4">
+                        <h3>Custom color</h3>
+                        <div class="panel">
+                            <div class="panel-header bg-lightBlue fg-white">
+                                Lorem Ipsum
+                            </div>
+                            <div class="panel-content">
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="span4">
+                        <h3>Collapsible</h3>
+                        <div class="panel" data-role="panel">
+                            <div class="panel-header bg-darkRed fg-white">
+                                Lorem Ipsum
+                            </div>
+                            <div class="panel-content">
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
