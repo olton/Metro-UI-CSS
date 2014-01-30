@@ -16,7 +16,7 @@ __PM> Install-Package Metro.UI.CSS__
 
 ### Pull requests
 
-Please create pull requests to develop branch. Requests in master branch will be ignored.
+Please create pull requests to SANDBOX branch. Requests in master branch will be ignored.
 
 ### Credits
 
