@@ -38,6 +38,16 @@
             if (element.data('accuracy') != undefined) {
                 o.accuracy = element.data('accuracy') > 0 ? element.data('accuracy') : 0;
             }
+			if (element.data('min') != undefined) {
+                o.min = element.data('min');
+            }
+			o.min = o.min < 0 ? 0 : o.min;
+			o.min = o.min > o.max ? o.max : o.min;
+			if (element.data('max') != undefined) {
+                o.max = element.data('max');
+            }
+			o.max = o.max > 100 ? 100 : o.max;
+			o.max = o.max < o.min ? o.min : o.max;
             if (element.data('position') != undefined) {
                 o.position = this._correctValue(element.data('position') > this.options.min ? (element.data('position') > this.options.max ? this.options.max : element.data('position')) : this.options.min);
             }
@@ -55,15 +65,6 @@
             }
             if (element.data('showHint') != undefined) {
                 o.showHint = element.data('showHint');
-            }
-			if (element.data('showHint') != undefined) {
-                o.showHint = element.data('showHint');
-            }
-			if (element.data('min') != undefined) {
-                o.showHint = element.data('min');
-            }
-			if (element.data('max') != undefined) {
-                o.showHint = element.data('max');
             }
 
             s.vertical = element.hasClass("vertical");
