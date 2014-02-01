@@ -89,15 +89,15 @@
         _startMoveMarker: function(e){
             var element = this.element, o = this.options, that = this, hint = element.children('.hint');
 
-            $(element).on('mousemove', function (event) {
+            $(document).mousemove(function (event) {
                 that._movingMarker(event);
                 if (!element.hasClass('permanent-hint')) {
                     hint.css('display', 'block');
                 }
             });
-            $(element).on('mouseup', function () {
-                $(element).off('mousemove');
-                element.off('mouseup');
+            $(document).mouseup(function () {
+                $(document).off('mousemove');
+                $(document).off('mouseup');
                 element.data('value', that.options.position);
                 element.trigger('changed', that.options.position);
                 o.changed(that.options.position, element);
