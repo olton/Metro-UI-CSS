@@ -1,7 +1,7 @@
 (function( $ ) {
     $.widget("metro.countdown", {
 
-        version: "1.0.0",
+        version: "1.0.1",
 
         options: {
             style: {
@@ -184,13 +184,13 @@
             digit
                 .before(replacement)
                 .removeClass('static')
-                .animate({top:'2.5em'},'fast',function(){
+                .transit({top:'2.5em'},'fast',function(){
                     digit.remove();
                 });
 
             replacement
                 .delay(100)
-                .animate({top:0,opacity:1},'fast');
+                .transit({top:0,opacity:1},'fast');
 
             return true;
         }
