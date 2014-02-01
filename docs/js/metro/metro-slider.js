@@ -89,15 +89,15 @@
         _startMoveMarker: function(e){
             var element = this.element, o = this.options, that = this, hint = element.children('.hint');
 
-            $(element).on('mousemove', function (event) {
+            $(document).mousemove(function (event) {
                 that._movingMarker(event);
                 if (!element.hasClass('permanent-hint')) {
                     hint.css('display', 'block');
                 }
             });
-            $(element).on('mouseup', function () {
-                $(element).off('mousemove');
-                element.off('mouseup');
+            $(document).mouseup(function () {
+                $(document).off('mousemove');
+                $(document).off('mouseup');
                 element.data('value', that.options.position);
                 element.trigger('changed', that.options.position);
                 o.changed(that.options.position, element);
@@ -154,16 +154,19 @@
             var size, size2, o = this.options, colorParts = 0, colorIndex = 0, colorDelta = 0,
                 marker = this.element.children('.marker'),
                 complete = this.element.children('.complete'),
-                hint = this.element.children('.hint');
+                hint = this.element.children('.hint'),
+				oldPos = this._percToPix(this.options.position);
 
             colorParts = o.colors.length;
             colorDelta = o._slider.length / colorParts;
 
             if (this.options._slider.vertical) {
+				var oldSize = this._percToPix(this.options.position) + this.options._slider.marker,
+					oldSize2 = this.options._slider.length - oldSize;
                 size = this._percToPix(value) + this.options._slider.marker;
                 size2 = this.options._slider.length - size;
-                marker.css('top', size2);
-                complete.css('height', size);
+                marker.stop(true).css('top', oldSize2).transit({top: size2});
+                complete.stop(true).css('height', oldSize).transit({height: size});
                 if (colorParts) {
                     colorIndex = Math.round(size / colorDelta)-1;
                     complete.css('background-color', o.colors[colorIndex<0?0:colorIndex]);
@@ -173,14 +176,14 @@
                 }
             } else {
                 size = this._percToPix(value);
-                marker.css('left', size);
-                complete.css('width', size);
+                marker.stop(true).css('left', oldPos).transit({left: size});
+                complete.stop(true).css('width', oldPos).transit({width: size});
                 if (colorParts) {
                     colorIndex = Math.round(size / colorDelta)-1;
                     complete.css('background-color', o.colors[colorIndex<0?0:colorIndex]);
                 }
                 if (o.showHint) {
-                    hint.html(Math.round(value)).css('left', size - hint.width()/2);
+                    hint.html(Math.round(value)).stop(true).css('left', oldPos - hint.width()/2).transit({left: size - hint.width()/2});
                 }
             }
 
