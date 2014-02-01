@@ -1,7 +1,7 @@
 (function( $ ) {
     $.widget("metro.slider", {
 
-        version: "1.0.1",
+        version: "1.0.2",
 
         options: {
             position: 0,
@@ -15,6 +15,7 @@
             changed: function(value, slider){},
 			min: 0,
 			max: 100,
+			animate: true,
 
             _slider: {
                 vertical: false,
@@ -37,6 +38,9 @@
 
             if (element.data('accuracy') != undefined) {
                 o.accuracy = element.data('accuracy') > 0 ? element.data('accuracy') : 0;
+            }
+			if (element.data('animate') != undefined) {
+                o.animate = element.data('animate');
             }
 			if (element.data('min') != undefined) {
                 o.min = element.data('min');
@@ -165,8 +169,8 @@
 					oldSize2 = this.options._slider.length - oldSize;
                 size = this._percToPix(value) + this.options._slider.marker;
                 size2 = this.options._slider.length - size;
-                marker.stop(true).css('top', oldSize2).animate({top: size2});
-                complete.stop(true).css('height', oldSize).animate({height: size});
+                this._animate(marker.css('top', oldSize2),{top: size2});
+                this._animate(complete.css('height', oldSize),{height: size});
                 if (colorParts) {
                     colorIndex = Math.round(size / colorDelta)-1;
                     complete.css('background-color', o.colors[colorIndex<0?0:colorIndex]);
@@ -176,18 +180,24 @@
                 }
             } else {
                 size = this._percToPix(value);
-                marker.stop(true).css('left', oldPos).animate({left: size});
-                complete.stop(true).css('width', oldPos).animate({width: size});
+                this._animate(marker.css('left', oldPos),{left: size});
+                this._animate(complete.css('width', oldPos),{width: size});
                 if (colorParts) {
                     colorIndex = Math.round(size / colorDelta)-1;
                     complete.css('background-color', o.colors[colorIndex<0?0:colorIndex]);
                 }
                 if (o.showHint) {
-                    hint.html(Math.round(value)).stop(true).css('left', oldPos - hint.width()/2).animate({left: size - hint.width()/2});
+                    this._animate(hint.html(Math.round(value)).css('left', oldPos - hint.width() / 2), {left: size - hint.width() / 2});
                 }
             }
 
         },
+		
+		_animate: function (obj, val) {
+			if(this.options.animate) {
+				obj.stop(true).animate(val);
+			}
+		},
 
         _pixToPerc: function (valuePix) {
             var valuePerc;
