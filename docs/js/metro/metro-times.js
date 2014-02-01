@@ -1,7 +1,7 @@
 (function( $ ) {
     $.widget("metro.times", {
 
-        version: "1.0.1",
+        version: "1.0.0",
 
         options: {
             style: {
@@ -174,13 +174,13 @@
             digit
                 .before(replacement)
                 .removeClass('static')
-                .transit({top:'2.5em',opacity:0},'fast',function(){
+                .animate({top:'2.5em',opacity:0},'fast',function(){
                     digit.remove();
                 });
 
             replacement
                 .delay(100)
-                .transit({top:0,opacity:1},'fast');
+                .animate({top:0,opacity:1},'fast');
 
             return true;
         }
