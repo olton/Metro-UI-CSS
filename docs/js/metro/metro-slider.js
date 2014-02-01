@@ -196,6 +196,8 @@
 		_animate: function (obj, val) {
 			if(this.options.animate) {
 				obj.stop(true).animate(val);
+			} else {
+				obj.css(val);
 			}
 		},
 
