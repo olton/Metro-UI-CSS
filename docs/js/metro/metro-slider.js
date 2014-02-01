@@ -165,8 +165,8 @@
 					oldSize2 = this.options._slider.length - oldSize;
                 size = this._percToPix(value) + this.options._slider.marker;
                 size2 = this.options._slider.length - size;
-                marker.stop(true).css('top', oldSize2).transit({top: size2});
-                complete.stop(true).css('height', oldSize).transit({height: size});
+                marker.stop(true).css('top', oldSize2).animate({top: size2});
+                complete.stop(true).css('height', oldSize).animate({height: size});
                 if (colorParts) {
                     colorIndex = Math.round(size / colorDelta)-1;
                     complete.css('background-color', o.colors[colorIndex<0?0:colorIndex]);
@@ -176,14 +176,14 @@
                 }
             } else {
                 size = this._percToPix(value);
-                marker.stop(true).css('left', oldPos).transit({left: size});
-                complete.stop(true).css('width', oldPos).transit({width: size});
+                marker.stop(true).css('left', oldPos).animate({left: size});
+                complete.stop(true).css('width', oldPos).animate({width: size});
                 if (colorParts) {
                     colorIndex = Math.round(size / colorDelta)-1;
                     complete.css('background-color', o.colors[colorIndex<0?0:colorIndex]);
                 }
                 if (o.showHint) {
-                    hint.html(Math.round(value)).stop(true).css('left', oldPos - hint.width()/2).transit({left: size - hint.width()/2});
+                    hint.html(Math.round(value)).stop(true).css('left', oldPos - hint.width()/2).animate({left: size - hint.width()/2});
                 }
             }
 
