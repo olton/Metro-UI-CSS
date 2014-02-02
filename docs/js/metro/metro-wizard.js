@@ -14,11 +14,12 @@
                 next: true,
                 finish: true
             },
-            onCancel: function(page){},
-            onHelp: function(page){},
-            onPrior: function(page){return true;},
-            onNext: function(page){return true;},
-            onFinish: function(page){}
+            onCancel: function(page, wiz){},
+            onHelp: function(page, wiz){},
+            onPrior: function(page, wiz){return true;},
+            onNext: function(page, wiz){return true;},
+            onFinish: function(page, wiz){},
+            onPage: function(page, wiz){}
         },
 
         _stepper: undefined,
@@ -40,6 +41,7 @@
             if (element.data('locale') != undefined) o.locale = element.data('locale');
 
             this._createEvents();
+            this.options.onPage(this._currentStep + 1, element);
         },
 
         _createStepper: function(steps){
@@ -96,6 +98,7 @@
             this._steps.hide();
             $(this._steps[new_step]).show();
 
+            this.options.onPage(this._currentStep + 1, this.element);
             this._stepper.stepper('next');
 
             var finish = parseInt(this.options.finishStep == 'default' ? this._steps.length - 1 : this.options.finishStep);
@@ -116,6 +119,7 @@
             this._steps.hide();
             $(this._steps[new_step]).show();
 
+            this.options.onPage(this._currentStep + 1, this.element);
             this._stepper.stepper('prior');
 
             var finish = parseInt(this.options.finishStep == 'default' ? this._steps.length - 1 : this.options.finishStep);

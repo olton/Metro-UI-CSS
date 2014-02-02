@@ -1582,6 +1582,18 @@ a {
 .metro .table.condensed td {
   padding: 4px 5px;
 }
+.metro .table.condensed th .input-control,
+.metro .table.condensed td .input-control {
+  margin: 0;
+}
+.metro .table.super-condensed th,
+.metro .table.super-condensed td {
+  padding: 2px;
+}
+.metro .table.super-condensed th .input-control,
+.metro .table.super-condensed td .input-control {
+  margin: 0;
+}
 .metro .table.striped tbody tr:nth-child(odd) {
   background: #eeeeee;
 }
