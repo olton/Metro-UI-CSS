@@ -1,36 +1,47 @@
 (function( $ ) {
     $.widget("metro.progressbar", {
 
-        version: "1.0.0",
+        version: "1.0.1",
 
         options: {
             value: 0,
             color: "bg-cyan",
             animate: false,
+			max: 100,
             onchange: function(val){}
         },
 
         _create: function(){
             var that = this,
-                element = this.element;
+                element = this.element,
+				o = this.options;
 
             if (element.data('value') != undefined) {
                 this.value(element.data('value')+'%');
             }
 
             if (element.data('color') != undefined) {
-                this.options.color = element.data('color');
+                o.color = element.data('color');
             }
 
             if (element.data('animate') != undefined) {
-                this.options.animate = element.data('animate');
+                o.animate = element.data('animate');
             }
+			
+			if (element.data('max') != undefined) {
+                o.max = element.data('max');
+            }
+			o.max = o.max < 0 ? 0 : o.max;
+			o.max = o.max > 100 ? 100 : o.max;
 
             this._showBar();
         },
 
-        _showBar: function(){
-            var element = this.element;
+        _showBar: function(newVal){
+			//Default parameters
+			newVal = newVal || this.options.value;
+            
+			var element = this.element;
 
             element.html('');
 
@@ -43,9 +54,9 @@
             }
             bar.appendTo(element);
             if (this.options.animate) {
-                bar.animate({width: this.value()+'%'});
+				bar.css('width', this.value() + '%').animate({ width: newVal + '%' });
             } else {
-                bar.css('width', this.value()+'%');
+                bar.css('width', newVal + '%');
             }
 
             this.options.onchange(this.value());
@@ -53,8 +64,11 @@
 
         value: function(val){
             if (val != undefined) {
-                this.options.value = parseInt(val);
-                this._showBar();
+				var parsedVal = parseInt(val);
+				parsedVal = parsedVal > this.max ? this.max : parsedVal;
+				parsedVal = parsedVal < 0 ? 0 : parsedVal;
+				this._showBar(parsedVal);
+                this.options.value = parsedVal;
             } else {
                 return parseInt(this.options.value);
             }
