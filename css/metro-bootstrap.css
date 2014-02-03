@@ -4697,7 +4697,8 @@ a {
 }
 .metro .tile-group {
   margin-right: 46px;
-  width: 130px;
+  min-width: 130px;
+  width: auto;
   float: left;
   display: block;
   padding-top: 40px;
