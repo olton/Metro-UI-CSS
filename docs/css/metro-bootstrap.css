@@ -4704,6 +4704,9 @@ a {
   padding-top: 40px;
   position: relative;
 }
+.metro .tile-group.one {
+  width: 130px;
+}
 .metro .tile-group.two,
 .metro .tile-group.double {
   width: 260px;
