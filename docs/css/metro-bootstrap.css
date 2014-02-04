@@ -4836,7 +4836,6 @@ a {
   line-height: 56px;
   height: 56px;
   width: 56px;
-  position: relative;
   font-size: 48px;
   color: #ffffff;
   text-align: center;
@@ -4990,7 +4989,6 @@ a {
   line-height: 37.333333333333336px;
   height: 37.333333333333336px;
   width: 37.333333333333336px;
-  position: relative;
   font-size: 32px;
   color: #ffffff;
   text-align: center;
@@ -5053,6 +5051,97 @@ a {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+.metro [class*=tile-transform-] {
+  -webkit-transition: all 0.22s;
+  transition: all 0.22s;
+}
+.metro .tile-transform-right {
+  -webkit-transform-origin: left 50%;
+  -moz-transform-origin: left 50%;
+  -ms-transform-origin: left 50%;
+  -o-transform-origin: left 50%;
+  transform-origin: left 50%;
+  -webkit-transform: perspective(500px) rotateY(0.138372rad);
+  -moz-transform: perspective(500px) rotateY(0.138372rad);
+  -ms-transform: perspective(500px) rotateY(0.138372rad);
+  -o-transform: perspective(500px) rotateY(0.138372rad);
+  transform: perspective(500px) rotateY(0.138372rad);
+}
+.metro .tile.double.tile-transform-right {
+  -webkit-transform: perspective(500px) rotateY(0.066716rad);
+  -moz-transform: perspective(500px) rotateY(0.066716rad);
+  -ms-transform: perspective(500px) rotateY(0.066716rad);
+  -o-transform: perspective(500px) rotateY(0.066716rad);
+  transform: perspective(500px) rotateY(0.066716rad);
+}
+.metro .tile.triple.tile-transform-right {
+  -webkit-transform: perspective(500px) rotateY(0.046124rad);
+  -moz-transform: perspective(500px) rotateY(0.046124rad);
+  -ms-transform: perspective(500px) rotateY(0.046124rad);
+  -o-transform: perspective(500px) rotateY(0.046124rad);
+  transform: perspective(500px) rotateY(0.046124rad);
+}
+.metro .tile.quadro.tile-transform-right {
+  -webkit-transform: perspective(500px) rotateY(0.034593rad);
+  -moz-transform: perspective(500px) rotateY(0.034593rad);
+  -ms-transform: perspective(500px) rotateY(0.034593rad);
+  -o-transform: perspective(500px) rotateY(0.034593rad);
+  transform: perspective(500px) rotateY(0.034593rad);
+}
+.metro .tile.half.tile-transform-right {
+  -webkit-transform: perspective(500px) rotateY(0.276744rad);
+  -moz-transform: perspective(500px) rotateY(0.276744rad);
+  -ms-transform: perspective(500px) rotateY(0.276744rad);
+  -o-transform: perspective(500px) rotateY(0.276744rad);
+  transform: perspective(500px) rotateY(0.276744rad);
+}
+.metro .tile-transform-left {
+  -webkit-transform-origin: right 50%;
+  -moz-transform-origin: right 50%;
+  -ms-transform-origin: right 50%;
+  -o-transform-origin: right 50%;
+  transform-origin: right 50%;
+  -webkit-transform: perspective(500px) rotateY(-0.138372rad);
+  -moz-transform: perspective(500px) rotateY(-0.138372rad);
+  -ms-transform: perspective(500px) rotateY(-0.138372rad);
+  -o-transform: perspective(500px) rotateY(-0.138372rad);
+  transform: perspective(500px) rotateY(-0.138372rad);
+}
+.metro .tile.double.tile-transform-left {
+  -webkit-transform: perspective(500px) rotateY(-0.066716rad);
+  -moz-transform: perspective(500px) rotateY(-0.066716rad);
+  -ms-transform: perspective(500px) rotateY(-0.066716rad);
+  -o-transform: perspective(500px) rotateY(-0.066716rad);
+  transform: perspective(500px) rotateY(-0.066716rad);
+}
+.metro .tile.triple.tile-transform-left {
+  -webkit-transform: perspective(500px) rotateY(-0.046124rad);
+  -moz-transform: perspective(500px) rotateY(-0.046124rad);
+  -ms-transform: perspective(500px) rotateY(-0.046124rad);
+  -o-transform: perspective(500px) rotateY(-0.046124rad);
+  transform: perspective(500px) rotateY(-0.046124rad);
+}
+.metro .tile.triple.tile-transform-left {
+  -webkit-transform: perspective(500px) rotateY(-0.046124rad);
+  -moz-transform: perspective(500px) rotateY(-0.046124rad);
+  -ms-transform: perspective(500px) rotateY(-0.046124rad);
+  -o-transform: perspective(500px) rotateY(-0.046124rad);
+  transform: perspective(500px) rotateY(-0.046124rad);
+}
+.metro .tile.quadro.tile-transform-left {
+  -webkit-transform: perspective(500px) rotateY(-0.034593rad);
+  -moz-transform: perspective(500px) rotateY(-0.034593rad);
+  -ms-transform: perspective(500px) rotateY(-0.034593rad);
+  -o-transform: perspective(500px) rotateY(-0.034593rad);
+  transform: perspective(500px) rotateY(-0.034593rad);
+}
+.metro .tile.half.tile-transform-left {
+  -webkit-transform: perspective(500px) rotateY(-0.276744rad);
+  -moz-transform: perspective(500px) rotateY(-0.276744rad);
+  -ms-transform: perspective(500px) rotateY(-0.276744rad);
+  -o-transform: perspective(500px) rotateY(-0.276744rad);
+  transform: perspective(500px) rotateY(-0.276744rad);
 }
 .metro .carousel {
   display: block;

@@ -94,7 +94,7 @@
                 "So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"
             ],
             buttons: [
-                "Heute", "zurücksetzten", "Cancel", "Help", "Prior", "Next", "Finish"
+                "Heute", "Zurücksetzen", "Abbrechen", "Hilfe", "Früher", "Später", "Fertig"
             ]
         },
         /** By Javier Rodríguez (javier.rodriguez at fjrodriguez.com) */

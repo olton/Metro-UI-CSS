@@ -254,7 +254,6 @@
                 line-height: @tileIconSize;
                 height: @tileIconSize;
                 width: @tileIconSize;
-                position: relative;
                 font-size: @tileIconSizeFont;
                 color: @white;
                 text-align: center;
@@ -406,7 +405,6 @@
                 line-height: @tileIconSize/1.5;
                 height: @tileIconSize/1.5;
                 width: @tileIconSize/1.5;
-                position: relative;
                 font-size: @tileIconSizeFont/1.5;
                 color: @white;
                 text-align: center;
@@ -482,4 +480,70 @@
             }
         }
     }
+}
+
+
+@rotate: 0.138372rad;
+@rotate-double: 0.066716rad;
+@rotate-triple: 0.046124rad;
+@rotate-quadro: 0.034593rad;
+@rotate-half: 0.276744rad;
+
+[class*=tile-transform-] {
+    -webkit-transition: all 0.22s;
+    transition: all 0.22s;
+}
+
+.trans(@perspective: 500px, @rot: @rotate){
+    -webkit-transform: perspective( @perspective ) rotateY( @rot );
+    -moz-transform: perspective( @perspective ) rotateY( @rot );
+    -ms-transform: perspective( @perspective ) rotateY( @rot );
+    -o-transform: perspective( @perspective ) rotateY( @rot );
+    transform: perspective( @perspective ) rotateY( @rot );
+}
+
+.tile-transform-right {
+    .transformOrigin(left 50%);
+    .trans(500px, @rotate);
+}
+
+.tile.double.tile-transform-right {
+    .trans(500px, @rotate-double);
+}
+
+.tile.triple.tile-transform-right {
+    .trans(500px, @rotate-triple);
+}
+
+.tile.quadro.tile-transform-right {
+    .trans(500px, @rotate-quadro);
+}
+
+.tile.half.tile-transform-right {
+    .trans(500px, @rotate-half);
+}
+
+.tile-transform-left {
+    .transformOrigin(right 50%);
+    .trans(500px, -@rotate);
+}
+
+.tile.double.tile-transform-left {
+    .trans(500px, -@rotate-double);
+}
+
+.tile.triple.tile-transform-left {
+    .trans(500px, -@rotate-triple);
+}
+
+.tile.triple.tile-transform-left {
+    .trans(500px, -@rotate-triple);
+}
+
+.tile.quadro.tile-transform-left {
+    .trans(500px, -@rotate-quadro);
+}
+
+.tile.half.tile-transform-left {
+    .trans(500px, -@rotate-half);
 }
