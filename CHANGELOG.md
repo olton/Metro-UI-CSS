@@ -1,3 +1,12 @@
+## Version 2.0.28
+
+### Changes:
+- bugs fixed
+- add request #464
+- init templates
+- add news portal template
+- upd Nuget package
+
 ## Version 2.0.27
 
 ### Changes:

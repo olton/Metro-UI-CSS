@@ -19,34 +19,24 @@
             position: absolute;
             //border: 1px red dotted;
             left: 0;
+            background:#666;
+            cursor: pointer;
 
             &:before {
                 content:counter(li);
                 counter-increment:li;
                 position:absolute;
                 box-sizing:border-box;
-                width: 2em;
-                padding:4px;
+                padding:.3em 10px;
                 color:#fff;
-                background:#666;
                 font-weight:bold;
                 font-family:"Helvetica Neue", Arial, sans-serif;
                 font-size: 1.5rem;
                 text-align:center;
-                border-radius: 100%;
-            }
-
-            &:first-child {
-            }
-
-            &:last-child {
             }
 
             &:hover {
-                &:before {
-                    background-color: @grayLight;
-                }
-
+                background-color: @grayLight;
             }
 
             &.current, &.complete {
@@ -54,29 +44,37 @@
             }
 
             &.current {
-                .scale(1.5);
-                &:before {
-                    background-color: @cyan;
-                }
+                background-color: @cyan;
+                //.scale(1.5);
 
                 &:hover {
-                    &:before {
-                        background-color: @lighterBlue;
-                    }
+                    background-color: @lighterBlue;
                 }
             }
             &.complete {
-                .scale(1.3);
+                background-color: @green;
+
                 &:before {
-                    background-color: @green;
                 }
 
                 &:hover {
-                    &:before {
-                        background-color: @lightGreen;
-                    }
+                    background-color: @lightGreen;
                 }
             }
         }
+    }
+    &.rounded {
+        li {
+            border-radius: 100%;
+        }
+    }
+    &.diamond {
+        li {
+            .rotate(45deg);
+            &:before {
+                .rotate(-45deg);
+            }
+        }
+
     }
 }

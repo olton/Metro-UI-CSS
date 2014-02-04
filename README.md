@@ -4,7 +4,7 @@ Metro UI CSS a set of styles to create a site with an interface similar to Windo
 
 ## Current Version
 
-### 2.0.27
+### 2.0.28
 
 See details of definition on [metroui.org.ua](http://metroui.org.ua)
 
@@ -16,7 +16,7 @@ __PM> Install-Package Metro.UI.CSS__
 
 ### Pull requests
 
-Please create pull requests to develop branch. Requests in master branch will be ignored.
+Please create pull requests to SANDBOX branch. Requests in master branch will be ignored.
 
 ### Credits
 

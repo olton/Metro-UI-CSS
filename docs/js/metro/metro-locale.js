@@ -15,7 +15,7 @@
                 "Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"
             ],
             buttons: [
-                "Today", "Clear"
+                "Today", "Clear", "Cancel", "Help", "Prior", "Next", "Finish"
             ]
         },
         'fr': {
@@ -28,7 +28,7 @@
                 "Sn", "Ln", "Md", "Mc", "Ju", "Vn", "Sm"
             ],
             buttons: [
-                "Aujourd", "Effacer"
+                "Aujourd", "Effacer", "Cancel", "Help", "Prior", "Next", "Finish"
             ]
         },
         'ua': {
@@ -41,7 +41,7 @@
                 "Нд", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"
             ],
             buttons: [
-                "Сьогодні", "Очистити"
+                "Сьогодні", "Очистити", "Скасувати", "Допомога", "Назад", "Вперед", "Готово"
             ]
         },
         'ru': {
@@ -54,7 +54,7 @@
                 "Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"
             ],
             buttons: [
-                "Сегодня", "Очистить"
+                "Сегодня", "Очистить", "Отменить", "Помощь", "Назад", "Вперед", "Готово"
             ]
         },
         /** By NoGrief (nogrief@gmail.com) */
@@ -68,7 +68,7 @@
                 "日", "一", "二", "三", "四", "五", "六"
             ],
             buttons: [
-                "今日", "清除"
+                "今日", "清除", "Cancel", "Help", "Prior", "Next", "Finish"
             ]
         },
         'it': {
@@ -81,7 +81,7 @@
                 'Lun', 'Mar', 'Mer', 'Gio', 'Ven', 'Sab', 'Dom'
             ],
             buttons: [
-                "Oggi", "Cancella"
+                "Oggi", "Cancella", "Cancel", "Help", "Prior", "Next", "Finish"
             ]
         },
         'de': {
@@ -94,7 +94,7 @@
                 "So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"
             ],
             buttons: [
-                "Heute", "zurücksetzten"
+                "Heute", "zurücksetzten", "Cancel", "Help", "Prior", "Next", "Finish"
             ]
         },
         /** By Javier Rodríguez (javier.rodriguez at fjrodriguez.com) */
@@ -108,7 +108,7 @@
                 "Do", "Lu", "Mar", "Mié", "Jue", "Vi", "Sáb"
             ],
             buttons: [
-               "Hoy", "Limpiar"
+               "Hoy", "Limpiar", "Cancel", "Help", "Prior", "Next", "Finish"
             ]
         }
     };
