@@ -209,6 +209,14 @@
         }
     };
 
+    $.Metro.initTileTransform = function(area){
+        if (area != undefined) {
+            $(area).find('[data-click=transform]').tileTransform();
+        } {
+            $('[data-click=transform]').tileTransform();
+        }
+    };
+
     $.Metro.initAll = function(area) {
         $.Metro.initAccordions(area);
         $.Metro.initButtonSets(area);
@@ -235,6 +243,7 @@
         $.Metro.initDragTiles(area);
         $.Metro.initPulls(area);
         $.Metro.initPanels(area);
+        $.Metro.initTileTransform(area);
     }
 })(jQuery);
 

@@ -90,6 +90,13 @@
 }
 
 // Transform functions
+.perspective(@perspective) {
+    -webkit-transform: perspective(@perspective);
+    -moz-transform: perspective(@perspective);
+    -ms-transform: perspective(@perspective);
+    -o-transform: perspective(@perspective);
+    transform: perspective(@perspective);
+}
 .rotate(@degrees) {
     -webkit-transform: rotate(@degrees);
     -moz-transform: rotate(@degrees);
