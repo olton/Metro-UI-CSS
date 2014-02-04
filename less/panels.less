@@ -1,0 +1,36 @@
+.panel {
+    .border;
+    .panel-header {
+        padding: 10px;
+        background-color: @grayLighter;
+        width: 100%;
+        .subheader-secondary;
+        color: @dark;
+        cursor: default;
+    }
+    .panel-content {
+        width: 100%;
+        height: auto;
+        padding: 10px;
+    }
+}
+
+[data-role=panel] {
+    .panel-header {
+        cursor: pointer;
+        &:after {
+            font-family: iconFont;
+            content: "\e1b1";
+            float: right;
+            color: inherit;
+        }
+    }
+
+    &.collapsed {
+        .panel-header {
+            &:after {
+                content: "\e1b3";
+            }
+        }
+    }
+}
