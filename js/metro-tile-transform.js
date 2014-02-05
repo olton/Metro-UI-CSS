@@ -10,6 +10,13 @@
             var element = this.element;
             var dim = {w: element.width(), h: element.height()};
 
+            element.on('click', function(e){
+//                e.preventDefault();
+//                if (element[0].tagName == 'A' && element.attr('href')) {
+//                    document.location.href = element.attr('href');
+//                }
+            });
+
             element.on('mousedown', function(e){
                 var X = e.pageX - $(this).offset().left, Y = e.pageY - $(this).offset().top;
                 var transform = 'top';
@@ -23,6 +30,12 @@
                 }
 
                 $(this).addClass("tile-transform-"+transform);
+
+                if (element[0].tagName == 'A' && element.attr('href')) {
+                    setTimeout(function(){
+                        document.location.href = element.attr('href');
+                    }, 500);
+                }
             });
 
             element.on('mouseup', function(){

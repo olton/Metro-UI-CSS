@@ -632,33 +632,29 @@
 
                 <h3>Tile click transform</h3>
                 <p class="description">
-                    You can set effect with <code>data-click="transform"</code> attribute and tiles can be placed inside in <code>tile-group</code> layer.
+                    You can set effect with <code>data-click="transform"</code> attribute.
                 </p>
 
                 <div class="example">
-                    <div class="tile-group no-margin">
-                        <div class="tile half bg-darkRed ol-transparent" data-click="transform">
-                            <div class="tile-content icon">
-                                <i class="icon-rocket"></i>
-                            </div>
-                        </div>
-                        <div class="tile bg-green ol-transparent" data-click="transform">
-                            <div class="tile-content icon">
-                                <img src="images/excel2013icon.png">
-                            </div>
-                        </div>
-                        <div class="tile double ol-transparent" data-click="transform">
-                            <div class="tile-content image">
-                                <img src="images/1.jpg">
-                            </div>
+                    <div class="tile half bg-darkRed ol-transparent" data-click="transform">
+                        <div class="tile-content icon">
+                            <i class="icon-rocket"></i>
                         </div>
                     </div>
+                    <div class="tile bg-green ol-transparent" data-click="transform">
+                        <div class="tile-content icon">
+                            <img src="images/excel2013icon.png">
+                        </div>
+                    </div>
+                    <a class="tile double ol-transparent" data-click="transform">
+                        <div class="tile-content image">
+                            <img src="images/1.jpg">
+                        </div>
+                    </a>
                 </div>
 <pre class="prettyprint linenums">
-&lt;div class="tile-group"&gt;
-    &lt;div class="tile" data-click="transform"&gt;
-        ...
-    &lt;/div&gt;
+&lt;div class="tile" data-click="transform"&gt;
+    ...
 &lt;/div&gt;
 </pre>
 
