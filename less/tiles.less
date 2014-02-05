@@ -488,17 +488,13 @@
 
 
 @rotate: 0.138372rad;
-@rotate-double: 0.066716rad;
-@rotate-triple: 0.046124rad;
-@rotate-quadro: 0.034593rad;
-@rotate-half: 0.276744rad;
 
 [class*=tile-transform-] {
     -webkit-transition: all 0.22s;
     transition: all 0.22s;
 }
 
-.trans(@perspective: 500px, @rot: @rotate){
+.transY(@perspective: 500px, @rot: @rotate){
     -webkit-transform: perspective( @perspective ) rotateY( @rot );
     -moz-transform: perspective( @perspective ) rotateY( @rot );
     -ms-transform: perspective( @perspective ) rotateY( @rot );
@@ -506,48 +502,98 @@
     transform: perspective( @perspective ) rotateY( @rot );
 }
 
+.transX(@perspective: 500px, @rot: @rotate){
+    -webkit-transform: perspective( @perspective ) rotateX( @rot );
+    -moz-transform: perspective( @perspective ) rotateX( @rot );
+    -ms-transform: perspective( @perspective ) rotateX( @rot );
+    -o-transform: perspective( @perspective ) rotateX( @rot );
+    transform: perspective( @perspective ) rotateX( @rot );
+}
+
+// right
 .tile-transform-right {
     .transformOrigin(left 50%);
-    .trans(500px, @rotate);
+    .transY(500px, @rotate);
 }
 
 .tile.double.tile-transform-right {
-    .trans(500px, @rotate-double);
+    .transY(500px, @rotate/2);
 }
 
 .tile.triple.tile-transform-right {
-    .trans(500px, @rotate-triple);
+    .transY(500px, @rotate/3);
 }
 
 .tile.quadro.tile-transform-right {
-    .trans(500px, @rotate-quadro);
+    .transY(500px, @rotate/4);
 }
 
 .tile.half.tile-transform-right {
-    .trans(500px, @rotate-half);
+    .transY(500px, @rotate*2);
 }
 
+// left
 .tile-transform-left {
     .transformOrigin(right 50%);
-    .trans(500px, -@rotate);
+    .transY(500px, -@rotate);
 }
 
 .tile.double.tile-transform-left {
-    .trans(500px, -@rotate-double);
+    .transY(500px, -@rotate/2);
 }
 
 .tile.triple.tile-transform-left {
-    .trans(500px, -@rotate-triple);
-}
-
-.tile.triple.tile-transform-left {
-    .trans(500px, -@rotate-triple);
+    .transY(500px, -@rotate/3);
 }
 
 .tile.quadro.tile-transform-left {
-    .trans(500px, -@rotate-quadro);
+    .transY(500px, -@rotate/4);
 }
 
 .tile.half.tile-transform-left {
-    .trans(500px, -@rotate-half);
+    .transY(500px, -@rotate*2);
+}
+
+// top
+.tile-transform-top {
+    .transformOrigin(50% bottom);
+    .transX(500px, @rotate);
+}
+
+.tile.double.tile-transform-top {
+    .transX(500px, @rotate/2);
+}
+
+.tile.triple.tile-transform-top {
+    .transX(500px, @rotate/3);
+}
+
+.tile.quadro.tile-transform-top {
+    .transX(500px, @rotate/4);
+}
+
+.tile.half.tile-transform-top {
+    .transX(500px, @rotate*2);
+}
+
+// bottom
+.tile-transform-bottom {
+    .transformOrigin(50% top);
+    .transX(500px, -@rotate);
+}
+
+.tile.double.tile-transform-bottom {
+    .transX(500px, -@rotate/2);
+}
+
+.tile.triple.tile-transform-bottom {
+    .transX(500px, -@rotate/3);
+}
+
+.tile.quadro.tile-transform-bottom {
+    .transX(500px, -@rotate/4);
+}
+
+.tile.half.tile-transform-bottom {
+    .transX(500px, -@rotate*2);
 }

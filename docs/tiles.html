@@ -37,29 +37,6 @@
                     Tile<small class="on-right">component</small>
                 </h1>
 
-                <!-- Tiles drag-drop -->
-<!--
-                <h2>Tiles drag-drop feature</h2>
-                <div class="example">
-                    <div class="tile-area tile-area-dark">
-                        <div class="tile-group double">
-                            <span class="tile-group-title">Group 1</span>
-
-                            <div class="tile bg-pink"></div>
-                            <div class="tile bg-lightBlue"></div>
-                            <div class="tile double bg-amber"></div>
-                        </div>
-                        <div class="tile-group double">
-                            <span class="tile-group-title">Group 2</span>
-
-                            <div class="tile double bg-green"></div>
-                            <div class="tile double bg-orange"></div>
-                        </div>
-                    </div>
-                </div>
--->
-                <!-- End tiles drag-drop -->
-
                 <h2>General info</h2>
                 <p class="description">
                     Tiles are the representation of your app or sub module. The content shown on your tile can, and ideally should, change regularly, especially if your tile can communicate new, real-time information to your user. Tiles can show a combination of text and images, and a badge to show status. Tile is a block object and can be placed in any container.
@@ -368,7 +345,7 @@
 
                 <h3>Live Tile</h3>
                 <p class="description">
-                    This feature required <code>metro-live-tile.js</code>. You can set effect with <code>data-effect</code> attribute.
+                    You can set effect with <code>data-effect</code> attribute.
                 </p>
                 <div class="example">
                     <div class="tile double live" data-role="live-tile">
@@ -650,6 +627,38 @@
 &lt;div class="tile live" data-role="live-tile" data-effect="..." data-easing="..."&gt;
     &lt;div class="tile-content"&gt;...&lt;/div&gt;
     &lt;div class="tile-content"&gt;...&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+
+                <h3>Tile click transform</h3>
+                <p class="description">
+                    You can set effect with <code>data-click="transform"</code> attribute and tiles can be placed inside in <code>tile-group</code> layer.
+                </p>
+
+                <div class="example">
+                    <div class="tile-group no-margin">
+                        <div class="tile half bg-darkRed ol-transparent" data-click="transform">
+                            <div class="tile-content icon">
+                                <i class="icon-rocket"></i>
+                            </div>
+                        </div>
+                        <div class="tile bg-green ol-transparent" data-click="transform">
+                            <div class="tile-content icon">
+                                <img src="images/excel2013icon.png">
+                            </div>
+                        </div>
+                        <div class="tile double ol-transparent" data-click="transform">
+                            <div class="tile-content image">
+                                <img src="images/1.jpg">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+<pre class="prettyprint linenums">
+&lt;div class="tile-group"&gt;
+    &lt;div class="tile" data-click="transform"&gt;
+        ...
+    &lt;/div&gt;
 &lt;/div&gt;
 </pre>
 
