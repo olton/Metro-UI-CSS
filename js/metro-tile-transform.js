@@ -12,10 +12,17 @@
 
             element.on('mousedown', function(e){
                 var X = e.pageX - $(this).offset().left, Y = e.pageY - $(this).offset().top;
-                if (X <= dim.w/2)
-                    $(this).addClass("tile-transform-left");
-                else
-                    $(this).addClass("tile-transform-right");
+                var transform = 'top';
+
+                if (X < dim.w * 1/3 && (Y < dim.h * 1/2 || Y > dim.h * 1/2 )) {
+                    transform = 'left';
+                } else if (X > dim.w * 2/3 && (Y < dim.h * 1/2 || Y > dim.h * 1/2 )) {
+                    transform = 'right'
+                } else if (X > dim.w*1/3 && X<dim.w*2/3 && Y > dim.h/2) {
+                    transform = 'bottom';
+                }
+
+                $(this).addClass("tile-transform-"+transform);
             });
 
             element.on('mouseup', function(){
