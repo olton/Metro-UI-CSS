@@ -65,25 +65,40 @@
                     </script>
                 </div>
 <pre class="prettyprint linenums">
-//with parameters sets
+// By setting parameters
 $('#notify_btn_1').on('click', function(){
-    $.Notify({
-        content: "Metro UI CSS is awesome!!!"
+    var not = $.Notify({
+    	caption: "Try it"
+        content: "Metro UI CSS is awesome!!!",
+        timeout: 10000 // 10 seconds
     });
 });
 
-// alternate with default parameters
+// Alternatively with default parameters
 $('#notify_btn_1').on('click', function(){
-    $.Notify.show("Metro UI CSS is awesome!!!");
-    $.Notify.show("Metro UI CSS is awesome!!!", "Info...");
+    var not2 = $.Notify.show("Metro UI CSS is awesome!!!");
+    var not3 = $.Notify.show("Metro UI CSS is awesome!!!", "Info...");
 });
+
+// Cancel timeout
+not.clear();
+
+// Reset timeout
+not.close(1000);
+
+// Close the notification immediately
+not.close();
+
+// Close all notifications and open a new one
+// Do not close notifications which have already been closed
+not2.closeAll().init({caption:"Done", content:"Finally"});
 </pre>
                 <h3>Parameters:</h3>
                 <table class="table border striped">
                     <tr>
                         <td>icon</td>
                         <td></td>
-                        <td></td>
+                        <td>Not yet implemented</td>
                     </tr>
                     <tr>
                         <td>caption</td>
@@ -118,7 +133,7 @@ $('#notify_btn_1').on('click', function(){
                     <tr>
                         <td>timeout</td>
                         <td>int</td>
-                        <td>milliseconds to hide notify, default 3000</td>
+                        <td>milliseconds to hide notify, default 3000, null to disable timeout</td>
                     </tr>
                 </table>
 
