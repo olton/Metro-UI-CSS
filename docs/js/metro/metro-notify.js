@@ -58,6 +58,7 @@
 		},
 		
 		close: function(timeout) {
+			this.clear();
 			if(timeout == parseInt(timeout)) {
 				var self = this
 				this._timer = setTimeout(function() {
