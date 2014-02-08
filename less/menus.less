@@ -250,7 +250,7 @@
         //color: @white;
     }
 
-    li.checked a, li.checked-partial a {
+    li.checked a, li.checked-partial a, li.unchecked-partial a, li.unchecked a {
         &:before {
             position: absolute;
             left: 10px;
@@ -262,6 +262,12 @@
     li.checked-partial a {
         &:before {
             content: "\e0a8";
+        }
+    }
+	
+	li.unchecked-partial a, li.unchecked a {
+        &:before {
+            content: "\e0a7";
         }
     }
 
