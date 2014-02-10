@@ -220,7 +220,7 @@ label {
 }
 
 .input-control {
-    &.text, &.password, &.file, &.email, &.tel {
+    &.text, &.password, &.file, &.email, &.tel, &.number {
         display: inline-block;
         cursor: pointer;
         position: relative;
@@ -336,7 +336,7 @@ label {
 }
 
 .input-control {
-    &.text, &.password, &.select, &.textarea, &.file, &.email, &.tel {
+    &.text, &.password, &.select, &.textarea, &.file, &.email, &.tel, &.number {
         &.warning-state {
             input, select, textarea {
                 border-color: @orange;
@@ -380,7 +380,7 @@ label {
 }
 
 .input-control {
-    &.text, &.password, &.select, &.textarea, &.file, &.email, &.tel {
+    &.text, &.password, &.select, &.textarea, &.file, &.email, &.tel, &.number {
         &[class*="span"] {
             margin-left: 0;
         }
@@ -407,3 +407,7 @@ input[type="button"], input[type="submit"], input[type="reset"] {
     .button;
 }
 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
