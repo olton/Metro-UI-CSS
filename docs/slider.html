@@ -147,11 +147,14 @@
 </pre>
 <pre class="prettyprint linenums">
 $(function(){
-    $("#slider").slider({
+    var slider = $("#slider").slider({
         position: 10,
         accuracy: 1
     });
 });
+
+// Short method to set position
+slider.slider('value', 15);
 </pre>
                 <p>This component required <code>metro-slider.js</code></p>
     </div>
