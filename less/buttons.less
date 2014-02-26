@@ -21,7 +21,7 @@
 
     &:active {
 //        top: 1px;
-//        left: 1px;
+//        .DockItem("left", 1px);
     }
 
     &:focus {
@@ -110,7 +110,7 @@ button {
 
 .command-button {
     .button;
-    text-align: left;
+    .TextAlignTo("left");
     font-size: 14pt;
     width: auto;
     small {
@@ -123,16 +123,16 @@ button {
         margin-top: 0;
     }
     [class*="icon-"] {
-        &.on-left {float: left;}
-        &.on-right {float: right;}
+        &.on-left {.FloatItem("left");}
+        &.on-right {.FloatItem("right");}
     }
 
     [class*="icon-"] {
         &.on-left + small {
-            margin-left: 40px;
+            .MarginLeftOrRight("margin-left", 40px);
         }
         &.on-right + small {
-            margin-right: 40px;
+            .MarginLeftOrRight("margin-right", 40px);
         }
     }
 }
@@ -157,31 +157,31 @@ button {
         color: inherit;
         padding: 4px 8px;
         display: block;
-        float: left;
+        .FloatItem("left");
         font-size: 12pt;
         line-height: 12pt;
-        margin-right: 2px;
+        .MarginLeftOrRight("margin-right", 2px);
 
         &:last-child {
-            margin-right: 0;
+            .MarginLeftOrRight("margin-right", 0);
         }
     }
 
     &.no-spaces, .toolbar-group.no-spaces {
         button, .button {
-            margin-right: 0;
+            .MarginLeftOrRight("margin-right", 0);
             &:active {
                 background-color: @dark;
                 color: @white;
                 top: auto;
-                left: auto;
+                .DockItem("left", auto);
             }
         }
     }
 
     .divider {
         display: block;
-        float: left;
+        .FloatItem("left");
         height: 12px;
         width: 1px;
         margin: 8px 8px;
@@ -193,7 +193,7 @@ button {
         padding: 0;
         margin: 0;
         display: inline-block;
-        margin-right: 10px;
+        .MarginLeftOrRight("margin-right", 10px);
         color: inherit;
         .clearfix;
     }
@@ -204,19 +204,19 @@ button {
     display: inline-block;
 
     .dropdown-menu.place-right {
-        right: 0;
-        left: auto;
+        .DockItem("right", 0);
+        .DockItem("left", auto);
     }
 }
 
 button.dropdown-toggle, .button.dropdown-toggle {
-    padding-right: 16px;
+    .PaddingLeftOrRight("padding-right", 16px);
     border: 0;
     &:before {
         position: absolute;
         font-family: iconFont;
         font-size: 14px;
-        right: 1px;
+        .DockItem("right", 1px);
         z-index: 2;
     }
 }
@@ -225,17 +225,17 @@ button.dropdown-toggle, .button.dropdown-toggle {
     .button;
     position: relative;
     border: 0;
-    padding-right: 45px;
+    .PaddingLeftOrRight("padding-right", 45px);
 
     img, &:active img, [class*="icon-"] {
         display: block;
         position: absolute;
-        float: right;
-        right: 0;
+        .FloatItem("right");
+        .DockItem("right", 0);
         top: 0;
         padding: 5px;
         height: 100%;
-        margin-left: 0px;
+        .MarginLeftOrRight("margin-left", 0px);
         box-sizing: border-box;
         border: 1px transparent solid;
         z-index: 2;
@@ -246,15 +246,15 @@ button.dropdown-toggle, .button.dropdown-toggle {
         font-size: 12pt;
         line-height: 12pt;
         top: 0;
-        right: 0;
+        .DockItem("right", 0);
     }
     &.image-left {
-        padding-right: 12px;
-        padding-left: 45px;
+        .PaddingLeftOrRight("padding-right", 12px);
+        .PaddingLeftOrRight("padding-left", 45px);
 
         img, &:active img, [class*="icon-"] {
-            right: auto;
-            left: 0;
+            .DockItem("right", auto);
+            .DockItem("left", 0);
         }
     }
 
@@ -284,7 +284,7 @@ button.dropdown-toggle, .button.dropdown-toggle {
         display: block;
         position: absolute;
         top: 0;
-        right: 0;
+        .DockItem("right", 0);
         padding: 2px 4px;
         min-height: 10px;
         min-width: 10px;
@@ -318,8 +318,8 @@ a.shortcut {
 
     .button, button {
         display: block;
-        float: left;
-        margin-right: 2px;
+        .FloatItem("left");
+        .MarginLeftOrRight("margin-right", 2px);
 
 
         &.active {
@@ -334,9 +334,9 @@ a.shortcut {
                 background-color: @dark;
                 color: @white;
                 top: auto;
-                left: auto;
+                .DockItem("left", auto);
             }
-            margin-right: 0 !important;
+            .MarginLeftOrRight("margin-right", 0) !important;
         }
     }
 
