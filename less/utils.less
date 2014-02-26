@@ -14,8 +14,8 @@
 }
 
 // Text aligment
-.text-left {text-align: left;}
-.text-right {text-align: right;}
+.text-left {.TextAlignTo("left");}
+.text-right {.TextAlignTo("right");}
 .text-center {text-align: center;}
 .text-justify {text-align: justify;}
 .text-ellipsis {
@@ -32,8 +32,8 @@
 // Border
 .no-border {border: 0 !important;}
 .border {border: 1px @tableBorderColor solid;}
-.border-left {border-left: 1px @tableBorderColor solid;}
-.border-right {border-right: 1px @tableBorderColor solid;}
+.border-left {.BorderLeftOrRight("border-left", 1px, @tableBorderColor, solid);}
+.border-right {.BorderLeftOrRight("border-right", 1px, @tableBorderColor, solid);}
 .border-top {border-top: 1px @tableBorderColor solid;}
 .border-bottom {border-bottom: 1px @tableBorderColor solid;}
 
@@ -45,16 +45,16 @@
 .pos-abs {position: absolute;}
 .pos-rel {position: relative;}
 .pos-fix {position: fixed;}
-.place-left {float: left;}
-.place-right {float: right;}
-.place-top-left {position: absolute; top: 0; left: 0;}
-.place-top-right {position: absolute; top: 0; right: 0;}
-.place-bottom-left {position: absolute; bottom: 0; left: 0;}
-.place-bottom-right {position: absolute; bottom: 0; right: 0;}
-.on-left {margin-right: @subunitSize;}
-.on-right {margin-left: @subunitSize;}
-.on-left-more {margin-right: @subunitSize * 2;}
-.on-right-more {margin-left: @subunitSize * 2;}
+.place-left {.FloatItem("left");}
+.place-right {.FloatItem("right");}
+.place-top-left {position: absolute; top: 0; .DockItem("left",  0);}
+.place-top-right {position: absolute; top: 0; .DockItem("right", 0);}
+.place-bottom-left {position: absolute; bottom: 0; .DockItem("left", 0);}
+.place-bottom-right {position: absolute; bottom: 0; .DockItem("right",  0);}
+.on-left {.MarginLeftOrRight("margin-right", @subunitSize);}
+.on-right {.MarginLeftOrRight("margin-left", @subunitSize);}
+.on-left-more {.MarginLeftOrRight("margin-right", @subunitSize * 2);}
+.on-right-more {.MarginLeftOrRight("margin-left", @subunitSize * 2);}
 
 .padding5 {padding: @subunitSize;}
 .padding10 {padding: @subunitSize * 2;}
@@ -66,19 +66,19 @@
 .margin15 {margin: @subunitSize * 3;}
 .margin20 {margin: @subunitSize * 4;}
 
-.nlm {margin-left: 0 !important;}
-.nrm {margin-right: 0 !important;}
+.nlm {.MarginLeftOrRight("margin-left", 0) !important;}
+.nrm {.MarginLeftOrRight("margin-right", 0) !important;}
 .ntm {margin-top: 0 !important;}
 .nbm {margin-bottom: 0 !important}
-.nlp {padding-left: 0 !important;}
-.nrp {padding-right: 0 !important;}
+.nlp {.PaddingLeftOrRight("padding-left", 0) !important;}
+.nrp {.PaddingLeftOrRight("padding-right", 0) !important;}
 .ntp {padding-top: 0 !important;}
 .nbp {padding-bottom: 0 !important;}
 .no-margin {margin: 0  !important;}
 .no-padding {padding: 0  !important;}
-.no-float {float: none !important;}
+.no-float {.FloatItem("none") !important;}
 
-.block {display: block !important; float: none !important;}
+.block {display: block !important; .FloatItem("none") !important;}
 .inline-block {display: inline-block !important;}
 .hide, .no-display {display: none !important;}
 .no-visible {visibility: hidden !important;}
@@ -150,8 +150,8 @@
             position: absolute;
             display: block;
             border-top: 28px solid @lightBlue;
-            border-left: 28px solid transparent;
-            right: 0;
+            .BorderLeftOrRight("border-left", 28px, transparent, solid);
+            .DockItem("right", 0);
             content:"";
             top: 0;
             z-index: 101;
@@ -162,7 +162,7 @@
             display: block;
             content: "\e08a";
             color: #fff;
-            right: 0;
+            .DockItem("right", 0);
             font-family: iconFont;
             font-size: 9pt;
             font-weight: normal;
