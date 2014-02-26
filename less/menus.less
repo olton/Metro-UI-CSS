@@ -67,7 +67,7 @@
 
     & ul.secondary {
         #menu > .init;
-        margin-left: 15px;
+        .MarginLeftOrRight("margin-left", 15px);
         li {
             a {
                 .menu-item-secondary;
@@ -101,7 +101,7 @@
 
     &.compact {
         li {
-            margin-left: 5px;
+            .MarginLeftOrRight("margin-left", 5px);
         }
         a {
             //.menu-item-secondary;
@@ -117,7 +117,7 @@
     }
 
     li:first-child {
-        margin-left: 0px;
+        .MarginLeftOrRight("margin-left", 0px);
     }
 
     li:hover > .dropdown-menu[data-show="hover"] {
@@ -166,13 +166,13 @@
     }
 
     .dropdown-menu {
-        left: 100%;
+        .DockItem("left", 100%);
         top: -10%;
     }
 
     &.left {
         .dropdown-menu {
-            left: -100%;
+            .DockItem("left", -100%);
         }
     }
 
@@ -186,7 +186,7 @@
             font-family: iconFont;
             font-size: .8em;
             content: "\e156";
-            left: 85%;
+            .DockItem("left", 85%);
             top: .75em;
             .rotate(0deg);
         }
@@ -194,7 +194,7 @@
 
     &.text-right {
         li {
-            text-align: right;
+            .TextAlignTo("right");
         }
     }
 }
@@ -253,7 +253,7 @@
     li.checked a, li.checked-partial a, li.unchecked a {
         &:before {
             position: absolute;
-            left: 10px;
+            .DockItem("left", 10px);
             content: "\e0a6";
             font-family: iconFont;
         }
@@ -272,8 +272,8 @@
     }
 
     &.place-right {
-        right: -15px;
-        left: auto;
+        .DockItem("right", -15px);
+        .DockItem("left", auto);
     }
 
     .divider {
@@ -293,7 +293,7 @@
     }
 
     .dropdown-menu {
-        left: 100%;
+        .DockItem("left", 100%);
         top: -10%;
     }
 
@@ -307,15 +307,15 @@
             font-family: iconFont;
             font-size: .7em;
             content: "\e1b3";
-            left: 85%;
+            .DockItem("left", 85%);
             top: .85em;
             .rotate(0deg);
         }
     }
 
     &.drop-left {
-        left: -100%;
-        //right: auto;
+        .DockItem("left", -100%);
+        //.DockItem("right", auto);
     }
     &.drop-up {
         top: auto;
@@ -370,8 +370,8 @@
         }
 
         .divider {
-            margin-left: 0;
-            margin-right: 0;
+            .MarginLeftOrRight("margin-left", 0);
+            .MarginLeftOrRight("margin-right", 0);
         }
     }
 
@@ -417,8 +417,8 @@
         }
 
         .divider {
-            margin-left: 0;
-            margin-right: 0;
+            .MarginLeftOrRight("margin-left", 0);
+            .MarginLeftOrRight("margin-right", 0);
             background-color: @gray;
             &:hover {
                 background: @gray;
@@ -430,7 +430,7 @@
 .dropdown-toggle {
     &:after {
         position: absolute;
-        margin-left: .45em;
+        .MarginLeftOrRight("margin-left", .45em);
         bottom: 0;
         content: '\203A';
         .rotate(90deg);
