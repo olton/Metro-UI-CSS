@@ -33,12 +33,12 @@
         margin-top: @gridGutterSize;
 
         [class*="span"] {
-            float: left;
+            .FloatItem("left");
             min-height: 1px;
-            margin-left: @gridGutterSize;
+            .MarginLeftOrRight("margin-left", @gridGutterSize);
 
             &:first-child {
-                margin-left: 0;
+                .MarginLeftOrRight("margin-left", 0);
             }
         }
     }
@@ -62,9 +62,9 @@
             .span12 {.fluid-spanX(12)}
 
             [class*="span"] {
-                margin-left: 2.127659%;
+                .MarginLeftOrRight("margin-left", 2.127659%);
                 &:first-child {
-                    margin-left: 0;
+                    .MarginLeftOrRight("margin-left", 0);
                 }
             }
 
