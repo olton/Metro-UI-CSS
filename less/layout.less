@@ -1,6 +1,6 @@
 .container {
     margin: 0 auto;
-//    width: @containerDesktopSize;
+    width: @containerDesktopSize;
 }
 
 .page {
@@ -14,14 +14,14 @@
 
         .page-header-content {
             .clearfix;
-            //min-height: @unitSize * 5;
+            min-height: @unitSize * 5;
             min-height: auto;
 
             .branding {
                 display: inline-block;
                 width: auto;
                 padding: 10px 0;
-                margin-right: 20px;
+                .MarginLeftOrRight("margin-right", 20px);
 
                 .brand-title {
                     .subheader;
@@ -66,7 +66,7 @@
 .page {
     &.secondary {
         .page-region-content, .page-header-content {
-            padding-left: @unitSize * 4;
+            .PaddingLeftOrRight("padding-left", @unitSize * 4);
         }
     }
 }
@@ -74,8 +74,8 @@
 .app-bar {
     position: fixed;
     bottom: 0;
-    left: 0;
-    right: 0;
+    .DockItem("left", 0);
+    .DockItem("right", 0);
     min-height: 100px;
     background-color: @dark;
     z-index: @zindexCharms;
@@ -83,7 +83,7 @@
 
 .charms {
     position: fixed;
-    right: 0;
+    .DockItem("right", 0);
     top: 0;
     bottom: 0;
     height: 100%;
@@ -92,8 +92,8 @@
     z-index: @zindexCharms;
 
     &.place-left {
-        left: 0;
-        right: auto;
+        .DockItem("left", 0);
+        .DockItem("right", auto);
     }
 
     &.search {}
@@ -104,8 +104,8 @@
 
 .message-dialog {
     position: fixed;
-    left: 0;
-    right: 0;
+    .DockItem("left", 0);
+    .DockItem("right", 0);
     height: auto;
     min-height: 100px;
     top: 30%;
@@ -118,8 +118,8 @@
 .error-bar, .warning-bar, .info-bar {
     position: fixed;
     top: 0;
-    left: 0;
-    right: 0;
+    .DockItem("left", 0);
+    .DockItem("right", 0);
     padding: 10px 20px;
     color: #fff;
     min-height: 100px;
