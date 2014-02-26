@@ -1,8 +1,8 @@
 &.window-overlay {
     position: fixed;
-    left: 0;
+    .DockItem("left", 0);
     top: 0;
-    right: 0;
+    .DockItem("right", 0);
     bottom: 0;
     background-color: rgba(255,255,255,0);
     z-index: @zindexModal - 1;
@@ -31,24 +31,24 @@
             height: 16px;
             font-size: 16px;
             margin-top: 0;
-            margin-left: 0px;
-            margin-right: 5px;
+            .MarginLeftOrRight("margin-left", 0px);
+            .MarginLeftOrRight("margin-right", 5px);
             position: relative;
-            float: left;
+            .FloatItem("left");
         }
 
         .title {
             font-size: 14px;
             margin-top: -2px;
-            margin-left: 4px;
+            .MarginLeftOrRight("margin-left", 4px);
             position: relative;
-            float: left;
+            .FloatItem("left");
         }
 
         .super-title {
             position: absolute;
             top: 6px;
-            left: 0;
+            .DockItem("left", 0);
             display: block;
             width: 100%;
             text-align: center;
@@ -73,7 +73,7 @@
             color: @white;
             position: absolute;
             top: -8px;
-            right: 0;
+            .DockItem("right", 0);
             width: 48px;
             height: 24px;
             min-height: 24px;
@@ -82,7 +82,7 @@
             #font > .cambria;
             font-size: 16pt;
             font-weight: normal;
-            padding: 0 0 10px 0;
+            .SwapPadding(0, 0, 10px, 0);
             z-index: 3;
             outline: none;
             &:hover {
@@ -91,21 +91,21 @@
             &:active {
                 background-color: lighten(@darkRed, 5%) !important;
                 top: -8px;
-                right: 0;
-                left: auto;
+                .DockItem("right", 0);
+                .DockItem("left", auto);
             }
             &:after {
                 content: '\D7';
                 position: absolute;
-                left: 50%;
+                .DockItem("left", 50%);
                 top: 0;
-                margin-left: -.30em;
+                .MarginLeftOrRight("margin-left", -.30em);
             }
         }
         .btn-min, .btn-max {
             background-color: transparent;
             color: #000;
-            right: 75px;
+            .DockItem("right", 75px);
             width: 24px;
             padding-bottom: 10px;
             font-weight: bold;
@@ -120,8 +120,8 @@
                 background-color: lighten(@darkCyan, 5%) !important;
                 color: #ffffff;
                 top: -8px;
-                right: 75px;
-                left: auto;
+                .DockItem("right", 75px);
+                .DockItem("left", auto);
             }
             &:after {
                 display: block;
@@ -132,16 +132,16 @@
                 border-bottom-width: 2px;
                 content: ' ';
                 bottom: 6px;
-                left: 50%;
-                margin-left: -6px;
+                .DockItem("left", 50%);
+                .MarginLeftOrRight("margin-left", -6px);
                 top: auto;
             }
         }
 
         .btn-max {
-            right: 50px;
+            .DockItem("right", 50px);
             &:active {
-                right: 50px;
+                .DockItem("right", 50px);
             }
             &:after {
                 height: 6px;
@@ -185,7 +185,7 @@
                 color: @winFlatSystemButtonRestColor;
                 width: 24px;
                 top: 4px;
-                right: 4px;
+                .DockItem("right", 4px);
                 &:hover {
                     background-color: @winFlatSystemButtonHoverBackground;
                     color: @winFlatSystemButtonActiveColor;
@@ -204,10 +204,10 @@
                 }
             }
             .btn-max {
-                right: 29px;
+                .DockItem("right", 29px);
             }
             .btn-min {
-                right: 54px;
+                .DockItem("right", 54px);
             }
             .btn-close {
                 &:after {
