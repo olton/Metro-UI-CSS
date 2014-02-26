@@ -68,7 +68,7 @@ label {
             background-color: @white;
             border: 2px @inputRestState solid;
             padding: 0;
-            margin: 0 5px 0 0;
+            .SwapMargin(0, 5px, 0, 0);
             position: relative;
             display: inline-block;
             vertical-align: middle;
@@ -76,7 +76,7 @@ label {
 
         &.text-left {
             .check {
-                margin: 0 0 0 5px;
+                .SwapMargin(0, 0, 0, 5px);
             }
         }
 
@@ -182,7 +182,7 @@ label {
 
         .check:after {
             position: absolute;
-            left: -1px;
+            .DockItem("left", -1px);
             top: -1px;
             display: block;
             content: "";
@@ -202,8 +202,8 @@ label {
         input[type="checkbox"]:checked ~ .check {
             background: #008287;
             &:after {
-                left: auto;
-                right: -1px;
+                .DockItem("left", auto);
+                .DockItem("right", -1px);
             }
         }
 
@@ -235,7 +235,7 @@ label {
             top: 5px;
             z-index: 2;
             border: 0;
-            right: 4px;
+            .DockItem("right", 4px);
             .square(24px);
             min-height: 1px;
             min-width: 1px;
@@ -251,7 +251,7 @@ label {
                 color: @white;
             }
             &:active {
-                left: auto;
+                .DockItem("left", auto);
             }
 
             &:focus {
@@ -291,13 +291,13 @@ label {
             padding: 5px;
             z-index: 1;
             -webkit-appearance: none;
-            //padding-right: 30px;
+            //.PaddingLeftOrRight("padding-right", 30px);
             &:focus {
                 outline: 0;
                 border-color: @inputFocusState;
             }
             &:disabled {
-                padding-right: 5px;
+                .PaddingLeftOrRight("padding-right", 5px);
             }
         }
 
@@ -325,7 +325,7 @@ label {
                 border-color: @inputFocusState;
             }
             &:disabled {
-                padding-right: 5px;
+                .PaddingLeftOrRight("padding-right", 5px);
             }
         }
 
@@ -382,7 +382,7 @@ label {
 .input-control {
     &.text, &.password, &.select, &.textarea, &.file, &.email, &.tel, &.number {
         &[class*="span"] {
-            margin-left: 0;
+            .MarginLeftOrRight("margin-left", 0);
         }
         &.block {
         }
@@ -398,7 +398,7 @@ label {
             width: 1px;
             height: 1px;
             bottom: 0;
-            right: 0;
+            .DockItem("right", 0);
         }
     }
 }
