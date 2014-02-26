@@ -1,106 +1,158 @@
-.slider {
-    height: 12px;
-    width: auto;
-    position: relative;
-    background-color: @sliderBackgroundColor;
-    margin-bottom: 10px;
+.sidebar {
+    margin: 0;
+    padding: 0;
+    background-color: #3D3D3D;
+    width: 100%;
+    height: 100%;
 
-    .marker {
-        height: 12px;
-        width: 12px;
-        cursor: pointer;
-        position: absolute;
-        top: 0;
-        left: 0;
-        background-color: @sliderMarkerColor;
-        z-index: 2;
+    & > ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
 
-        &:focus, &:active, &hover {
-            outline: 2px @red solid;
-        }
-    }
-
-    .complete {
-        height: 100%;
-        width: auto;
-        background-color: @sliderCompleteColor;
-        z-index: 1;
-        transition: background .3s ease;
-    }
-
-    &>.hint {
-        background-color: @white;
-        position: absolute;
-        z-index: 3;
-        border: 1px #ccc solid;
-        padding: 2px 4px;
-        top: -40px;
-        min-width: 30px;
-        text-align: center;
-        #font > .segoe-light;
-        font-size: 14px;
-        .shadow;
-        display: none;
-    }
-
-    &.permanent-hint {
-        & > .hint {
+        li {
             display: block;
+            border: 0;
+            border-bottom: 1px #5c5c5c solid;
+            position: relative;
+
+            &.title {
+                .SwapPadding(20px, 20px, 10px, 20px);
+                .subheader-secondary;
+                color: @white;
+            }
+
+            a {
+                display: block;
+                position: relative;
+                padding: 10px 20px;
+                text-decoration: none;
+                color: @grayLighter;
+                background-color: #3D3D3D;
+
+                &:hover {
+                    background-color: #262626;
+                    color: @white;
+                }
+
+                &.dropdown-toggle {
+                    &:after {
+                        .DockItem("right", 10px);
+                        bottom: 5px;
+                    }
+                }
+
+                [class*="icon-"] {
+                    .MarginLeftOrRight("margin-right", 15px);
+                }
+            }
+
+            &.stick {
+                position: relative;
+                &:before {
+                    content: "";
+                    position: absolute;
+                    width: 7px;
+                    height: 40px;
+                    .DockItem("left", -7px);
+                    text-indent: -9999px;
+                    .BorderTopLeftOrRightRadius("border-top-left-radius", 5px);
+                    .BorderBottomLeftOrRightRadius("border-bottom-left-radius", 5px);
+                    background-color: inherit;
+                }
+            }
+            &.disabled {
+                a {
+                    background-color: lighten(#3D3D3D, 30%);
+                    cursor: default;
+                    color: @gray;
+                }
+            }
+            &.active {
+                a {
+                    background-color: @darkRed;
+                    color: @white;
+                }
+            }
         }
-    }
 
-    &.hint-bottom {
-        .hint {
-            top: 100%;
-            margin-top: 5px;
-        }
-    }
+        ul {
+            .dropdown-menu;
+            box-shadow: none;
+            position: relative !important;
+            background-color: lighten(#262626, 75%);
+            min-width: 100%;
+            li {
+                border: 0;
+                a {
+                    background-color: lighten(#262626, 75%);
+                }
+                &.divider {
+                    background-color: lighten(#5c5c5c, 40%);
+                    &:hover {
+                        background-color: lighten(#5c5c5c, 40%);
+                    }
+                }
+                &.disabled {
+                    a {
+                        color: @grayLight;
+                        &:hover {
+                            color: @grayLight;
+                        }
+                    }
+                }
+            }
 
-    &.vertical {
-        height: 100px;
-        width: 12px;
-
-        .marker {
-            left: 0 !important;
-        }
-
-        .complete {
-            position: absolute;
-            height: auto;
-            width: 100% !important;
-            bottom: 0;
-            left: 0;
-        }
-
-        .hint {
-            left: 100%;
-            margin-left: 5px;
-            margin-top: 0;
-        }
-
-        &.hint-left {
-            .hint {
-                left: -40px;
+            &.open {
+                display: block;
             }
         }
     }
+}
 
-    &:hover {
-        .complete {
-            background-color: @sliderCompleteHoverColor;
+.sidebar.light {
+    background-color: @white;
+    .border;
+    li {
+        border-bottom-color: @grayLighter;
+
+        &.title {
+            color: @dark;
         }
-    }
 
-    &:active, &:active + .marker:active {
-        .complete {
-            background-color: @sliderCompleteHoverColor;
+        a {
+            color: @dark;
+            background-color: @white;
+
+            &:hover {
+                background-color: @blue;
+            }
         }
-    }
 
-    &.place-left {
-        margin-right: 20px;
-    }
-    &.place-right {
-        margin-left: 20px;
+        ul {
+            background-color: @white;
+            border: 1px transparent solid;
+        }
+
+        .divider {
+            background-color: @grayLighter;
+            &:hover {
+                background-color: @grayLighter;
+            }
+        }
+
+        &.disabled {
+            a {
+                background-color: @white;
+                cursor: default;
+                color: @grayLight;
+            }
+        }
+        &.active {
+            a {
+                background-color: @cyan;
+                color: @white;
+            }
+        }
     }
 }
