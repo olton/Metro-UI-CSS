@@ -247,8 +247,8 @@ address {
 blockquote {
     margin: 0;
     padding: 0;
-    border-left: 4px @grayLight solid;
-    padding-left: @unitSize / 2;
+    .BorderLeftOrRight("border-left", 4px, @grayLight, solid);
+    .PaddingLeftOrRight("padding-left", @unitSize / 2);
 
     small {
         color: @grayLight;
@@ -260,8 +260,8 @@ blockquote {
 
     &.place-right {
         border: 0;
-        border-right: 4px @grayLight solid;
-        padding-right: @unitSize / 2;
+        .BorderLeftOrRight("border-right", 4px, @grayLight, solid);
+        .PaddingLeftOrRight("padding-right", @unitSize / 2);
         .text-right;
 
         small {
@@ -276,12 +276,12 @@ blockquote {
 }
 
 .unstyled {
-    padding-left: 0;
+    .PaddingLeftOrRight("padding-left", 0);
     list-style: none;
     li {
         & ul, & ol {
             list-style: none;
-            padding-left: 25px;
+            .PaddingLeftOrRight("padding-left", 25px);
         }
     }
 }
@@ -290,29 +290,29 @@ blockquote {
     list-style: none;
     li {
         display: inline-block;
-        padding-left: 5px;
-        padding-right: 5px;
+        .PaddingLeftOrRight("padding-left", 5px);
+        .PaddingLeftOrRight("padding-right", 5px);
     }
 }
 
 ul, ol {
-    margin-left: 5px;
-    padding-left: 15px;
+    .MarginLeftOrRight("margin-left", 5px);
+    .PaddingLeftOrRight("padding-left", 15px);
     .body-text;
 
     li {
         line-height: 20px;
 
         & ul, & ol {
-            padding-left: 25px;
+            .PaddingLeftOrRight("padding-left", 25px);
         }
     }
 }
 
 ol.styled {
     counter-reset:li;
-    margin-left:0;
-    padding-left:0;
+    .MarginLeftOrRight("margin-left", 0);
+    .PaddingLeftOrRight("padding-left", 0);
     .readable-text;
 }
 ol.styled > li {
@@ -326,10 +326,10 @@ ol.styled > li:before {
     counter-increment:li;
     position:absolute;
     top:-2px;
-    left: -2em;
+    .DockItem("left", -2em);
     box-sizing:border-box;
     width: 2em;
-    margin-right:8px;
+    .MarginLeftOrRight("margin-right", 8px);
     padding:4px;
     color:#fff;
     background:#666;
@@ -353,22 +353,22 @@ dl {
     }
 
     dd {
-        margin-left: 15px;
+        .MarginLeftOrRight("margin-left", 15px);
     }
 
     &.horizontal {
         dt {
-            float: left;
+            .FloatItem("left");
             width: 160px;
             overflow: hidden;
             clear: left;
-            text-align: right;
+            .TextAlignTo("right");
             text-overflow: ellipsis;
             white-space: nowrap;
         }
 
         dd {
-            margin-left: 180px;
+            .MarginLeftOrRight("margin-left", 180px);
         }
     }
 }
