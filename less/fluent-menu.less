@@ -13,13 +13,13 @@
 
         li {
             display: block;
-            float: left;
-            margin-right: 5px;
+            .FloatItem("left");
+            .MarginLeftOrRight("margin-right", 5px);
             background-color: #ffffff;
 
             a {
                 display: block;
-                float: left;
+                .FloatItem("left");
                 padding: 4px 15px;
                 text-transform: uppercase;
                 font-size: .8em;
@@ -31,7 +31,7 @@
             }
 
             &:first-child {
-                margin-left: 0px;
+                .MarginLeftOrRight("margin-left", 0px);
             }
 
             &.active {
@@ -73,15 +73,15 @@
                 height: 100%;
                 position: relative;
                 display: block;
-                float: left;
+                .FloatItem("left");
                 padding: 0 5px;
-                //margin-right: 5px;
+                //.MarginLeftOrRight("margin-right", 5px);
                 //background-color: #ccc;
-                border-right: 1px @fmBorderColor solid;
+                .BorderLeftOrRight("border-right", 1px, @fmBorderColor, solid);
 
                 &:last-child {
-                    margin-right: 0;
-                    //border-right: 0;
+                    .MarginLeftOrRight("margin-right", 0);
+                    //.BorderRight(0);
                 }
             }
 
@@ -92,8 +92,8 @@
                 display: block;
                 position: absolute;
                 bottom: 0px;
-                right: 0;
-                left: 0;
+                .DockItem("right", 0);
+                .DockItem("left", 0);
                 white-space: nowrap;
             }
 
@@ -103,7 +103,7 @@
 
             .tab-content-segment {
                 display: block;
-                float: left;
+                .FloatItem("left");
                 position: relative;
             }
 
@@ -129,8 +129,8 @@
         }
         img {
             display: block;
-            float: left;
-            margin-right: 5px;
+            .FloatItem("left");
+            .MarginLeftOrRight("margin-right", 5px);
             width: 16px;
             height: 16px;
         }
@@ -147,7 +147,7 @@
 
         &:active {
             top: 0;
-            left: 0;
+            .DockItem("left", 0);
             background-color: darken(@fmElementHoverBackground, 20%) !important;
         }
     }
@@ -159,7 +159,7 @@
         text-align: center;
         white-space: normal;
         line-height: 12px;
-        float: left;
+        .FloatItem("left");
         position: relative;
 
         img, [class*="icon-"] {
@@ -167,7 +167,7 @@
             width: 40px;
             height: 40px;
             font-size: 40px;
-            float: none;
+            .FloatItem("none");
             text-align: center;
             margin: 5px auto 5px;
         }
@@ -188,11 +188,11 @@
             width: 16px;
             height: 16px;
             font-size: 16px;
-            float: none;
+            .FloatItem("none");
             text-align: center;
         }
         img {
-            margin-right: 0;
+            .MarginLeftOrRight("margin-right", 0);
         }
     }
 
@@ -201,7 +201,7 @@
             content: "";
         }
         .button-label {
-            padding-right: 5px;
+            .PaddingLeftOrRight("padding-right", 5px);
             &:before, &:after {
                 content: "";
             }
@@ -209,7 +209,7 @@
                 content: "\e1ad";
                 font-family: iconFont;
                 position: absolute;
-                right: 0px;
+                .DockItem("right", 0px);
                 bottom: 3px;
                 font-size: .8em;
             }
