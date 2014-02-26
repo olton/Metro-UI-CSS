@@ -19,7 +19,7 @@ p [data-hint]{
 
     .hint-title, .hint-text {
         color: inherit;
-        text-align: left;
+        .TextAlignTo("left");
     }
 
     .hint-title {
@@ -53,10 +53,10 @@ p [data-hint]{
     &.bottom {
         &:before, &:after {
             top: 1px;
-            left: 5px;
+            .DockItem("left", 5px);
             margin: -10px 0;
-            border-left: 5px solid transparent;
-            border-right: 5px solid transparent;
+            .BorderLeftOrRight("border-left", 5px, transparent, solid);
+            .BorderLeftOrRight("border-right", 5px, transparent, solid);
             border-bottom: 10px solid @hintColor;
         }
 
@@ -70,9 +70,9 @@ p [data-hint]{
         &:before, &:after {
             top: 100%;
             margin-top: -1px;
-            left: 5px;
-            border-left: 5px solid transparent;
-            border-right: 5px solid transparent;
+            .DockItem("left", 5px);
+            .BorderLeftOrRight("border-left", 5px, transparent, solid);
+            .BorderLeftOrRight("border-right", 5px, transparent, solid);
             border-top: 10px solid @hintColor;
         }
 
@@ -85,32 +85,34 @@ p [data-hint]{
     &.left {
         &:before, &:after {
             top: 5px;
-            left: 100%;
-            margin-left: -1px;
+            .DockItem("left", 100%);
+            .MarginLeftOrRight("margin-left", -1px);
             border-top: 5px solid transparent;
             border-bottom: 5px solid transparent;
-            border-left: 10px solid @hintColor;
+            .BorderLeftOrRight("border-left", 10px, @hintColor, solid);
         }
 
         &:after {
-            margin-left: 0;
-            border-left: 10px solid;
+            .MarginLeftOrRight("margin-left", 0);
+            .BorderLeft(10px);
+            border-style: solid;
         }
     }
 
     &.right {
         &:before, &:after {
             top: 5px;
-            left: -9px;
+            .DockItem("left", -9px);
             margin: 0;
             border-top: 5px solid transparent;
             border-bottom: 5px solid transparent;
-            border-right: 10px solid @hintColor;
+            .BorderLeftOrRight("border-right", 10px, @hintColor, solid);
         }
 
         &:after {
-            left: -10px;
-            border-right: 10px solid;
+            .DockItem("left", -10px);
+            .BorderRight(10px);
+            border-style: solid;
         }
     }
 }
