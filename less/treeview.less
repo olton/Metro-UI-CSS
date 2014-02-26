@@ -15,7 +15,7 @@
 
         li {
             a {
-                padding: 0 0 0 15px;
+                .SwapPadding(0, 0, 0, 15px);
             }
         }
     }
@@ -29,7 +29,7 @@
     .node {
         & > a {
             margin-bottom: 5px;
-            padding: 0 0 0 15px;
+            .SwapPadding( 0, 0, 0, 15px);
             font-size: 12px;
             position: relative;
             color: #000;
@@ -45,20 +45,20 @@
     .node-toggle {
         display: inline-block;
         position: relative;
-        float: left;
-        margin-right: 3px;
+        .FloatItem("left");
+        .MarginLeftOrRight("margin-right", 3px);
         width: 10px;
         height: 10px;
         &:before {
             position: absolute;
             display: block;
-            left: 2px;
+            .DockItem("left", 2px);
             top: 0;
             content: '';
 
             width: 0;
             height: 0;
-            border-left: 7px solid transparent;
+            .BorderLeftOrRight("border-left", 7px, transparent, solid);
             border-top: 7px solid transparent;
             border-bottom: 7px @dark solid;
         }
@@ -72,7 +72,7 @@
     li.collapsed {
         .node-toggle:before {
             .rotate(-45deg);
-            margin-left: -4px;
+            .MarginLeftOrRight("margin-left", -4px);
         }
     }
 

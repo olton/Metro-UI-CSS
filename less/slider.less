@@ -11,7 +11,7 @@
         cursor: pointer;
         position: absolute;
         top: 0;
-        left: 0;
+        .DockItem("left", 0);
         background-color: @sliderMarkerColor;
         z-index: 2;
 
@@ -61,7 +61,7 @@
         width: 12px;
 
         .marker {
-            left: 0 !important;
+            .DockItem("left", 0) !important;
         }
 
         .complete {
@@ -69,18 +69,18 @@
             height: auto;
             width: 100% !important;
             bottom: 0;
-            left: 0;
+            .DockItem("left", 0);
         }
 
         .hint {
-            left: 100%;
-            margin-left: 5px;
+            .DockItem("left", 100%);
+            .MarginLeftOrRight("margin-left", 5px);
             margin-top: 0;
         }
 
         &.hint-left {
             .hint {
-                left: -40px;
+                .DockItem("left", -40px);
             }
         }
     }
@@ -98,9 +98,9 @@
     }
 
     &.place-left {
-        margin-right: 20px;
+        .MarginLeftOrRight("margin-right", 20px);
     }
     &.place-right {
-        margin-left: 20px;
+        .MarginLeftOrRight("margin-left", 20px);
     }
 }

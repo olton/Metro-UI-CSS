@@ -73,9 +73,9 @@
     width: @gridColumnSize * @index + @gridGutterSize * (@index - 1) !important;
 }
 .offsetX(@index){
-    margin-left: @gridColumnSize * @index + (@gridGutterSize * (@index));
+    .MarginLeftOrRight("margin-left", @gridColumnSize * @index + (@gridGutterSize * (@index)));
     &:not(:first-child){
-        margin-left: @gridColumnSize * @index + (@gridGutterSize * (@index + 1));
+        .MarginLeftOrRight("margin-left", @gridColumnSize * @index + (@gridGutterSize * (@index + 1)));
     }
 }
 
@@ -83,9 +83,9 @@
     width: @gridColumnSizeFluid * @index + (@gridGutterSizeFluid * (@index - 1)) !important;
 }
 .fluid-offsetX(@index){
-    margin-left: @gridColumnSizeFluid * @index + (@gridGutterSizeFluid * (@index));
+    .MarginLeftOrRight("margin-left", @gridColumnSizeFluid * @index + (@gridGutterSizeFluid * (@index)));
     &:not(:first-child){
-        margin-left: @gridColumnSizeFluid * @index + (@gridGutterSizeFluid * (@index + 1));
+        .MarginLeftOrRight("margin-left", @gridColumnSizeFluid * @index + (@gridGutterSizeFluid * (@index + 1)));
     }
 }
 

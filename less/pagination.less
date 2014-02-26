@@ -9,16 +9,16 @@
 
         li {
             display: block;
-            float: left;
-            margin-right: 1px;
+            .FloatItem("left");
+            .MarginLeftOrRight("margin-right", 1px);
             position: relative;
 
             a {
                 .button;
                 color: inherit;
                 display: block;
-                float: left;
-                margin-right: 1px;
+                .FloatItem("left");
+                .MarginLeftOrRight("margin-right", 1px);
             }
 
             &.first, &.prev, &.next, &.last {
@@ -41,7 +41,7 @@
 
                     &:active {
                         top: 0;
-                        left: 0;
+                        .DockItem("left", 0);
                     }
                 }
             }

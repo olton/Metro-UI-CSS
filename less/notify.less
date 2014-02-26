@@ -1,7 +1,7 @@
 
 &.notify-container {
     position: fixed;
-    right: 0;
+    .DockItem("right", 0);
     top: 0;
     //bottom: 0;
     z-index: @zindexCharms;
@@ -17,7 +17,7 @@
         #font > .segoe;
         color: @dark;
         padding: 10px;
-        margin: 2px 2px 2px 0;
+        .SwapMargin(2px, 2px, 2px, 0);
 
         .caption {
             font-size: 18px;

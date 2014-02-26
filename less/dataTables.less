@@ -8,8 +8,8 @@
             &:after {
                 font-family: iconFont;
                 position: relative;
-                float: right;
-                right: 0;
+                .FloatItem("right");
+                .DockItem("right", 0);
                 color: @grayLight;
             }
         }
@@ -62,7 +62,7 @@
     }
 
     .dataTables_length {
-        float: left;
+        .FloatItem("left");
 
         select {
             margin: 0 5px;
@@ -71,23 +71,23 @@
     }
 
     .dataTables_filter {
-        float: right;
+        .FloatItem("right");
 
         input {
-            margin-left: 5px;
+            .MarginLeftOrRight("margin-left", 5px);
         }
     }
 
     .dataTables_paginate {
-        float: right;
-        text-align: right;
+        .FloatItem("right");
+        .TextAlignTo("right");
 
         .paginate_button {
             .button;
             color: inherit;
             display: block;
-            float: left;
-            margin-right: 1px;
+            .FloatItem("left");
+            .MarginLeftOrRight("margin-right", 1px);
 
             &.current {
                 background-color: @lightBlue ;
@@ -97,7 +97,7 @@
     }
 
     .dataTables_info {
-        float: left;
+        .FloatItem("left");
     }
 
     .dataTables_scrollHeadInner {
@@ -109,8 +109,8 @@
     .dataTables_processing {
         position: absolute;
         top: 50%;
-        left: 50%;
-        margin-left: -100px;
+        .DockItem("left", 50%);
+        .MarginLeftOrRight("margin-left", -100px);
         margin-top: -2em;
         width: 200px;
         padding: 20px;

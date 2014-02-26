@@ -18,13 +18,13 @@ table {
 
         &[class*="span"] {
             display: table-cell !important;
-            float: none !important;
+            .FloatItem("none") !important;
             margin: 0;
         }
     }
 
     th {
-        //text-align: left;
+        //.TextAlignTo("left");
     }
 
     thead {
@@ -90,9 +90,9 @@ table {
 
     &.bordered {
         border: 1px @tableBorderColor solid;
-        border-left: 0;
+        .BorderLeft(0);
         td, th {
-            border-left: 1px @tableBorderColor solid;
+            .BorderLeftOrRight("border-left", 1px, @tableBorderColor, solid);
             border-bottom: 1px @tableBorderColor solid;
         }
     }
@@ -117,10 +117,10 @@ table {
                 &:hover {
                     background-color: rgba(28, 183, 236, 0.10);
                     td:first-child {
-                        //border-left: 1px #1c98cc solid ;
+                        //.BorderLeftOrRight("border-left", 1px, #1c98cc, solid);
                     }
                     td:last-child {
-                        //border-right: 1px #1c98cc solid ;
+                        //.BorderLeftOrRight("border-right", 1px, #1c98cc, solid);
                     }
                     td {
                         //border-top: 1px #1c98cc solid ;
@@ -156,10 +156,10 @@ table {
         &.selected {
             background-color: rgba(28, 183, 236, 0.10);
             td:first-child {
-                //border-left: 1px #1c98cc solid;
+                //.BorderLeftOrRight("border-left", 1px, #1c98cc, solid);
             }
             td:last-child {
-                //border-right: 1px #1c98cc solid;
+                //.BorderLeftOrRight("border-right", 1px, #1c98cc, solid);
             }
             td {
                 //border-top: 1px #1c98cc solid;

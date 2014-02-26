@@ -24,11 +24,11 @@
     }
 
     .full-size {
-        float: none !important;
+        .FloatItem("none") !important;
         display: block !important;
         width: 100% !important;
-        margin-left: 0 !important;
-        margin-right: 0 !important;
+        .MarginLeftOrRight("margin-left", 0) !important;
+        .MarginLeftOrRight("margin-right", 0) !important;
     }
 
     .half-size {
@@ -120,16 +120,16 @@
         margin: 0;
         & > [class*="span"] {
             width: @gridColumnSize !important;
-            margin-left: 0 !important;
+            .MarginLeftOrRight("margin-left", 0) !important;
             margin-bottom: @gridGutterSize;
             &:nth-child(even) {
-                margin-left: @gridGutterSize !important;
+                .MarginLeftOrRight("margin-left", @gridGutterSize) !important;
             }
         }
         .span12, .span7, .span8, .span9, .span10, .span11 {
             width: @gridSize !important;
             &:nth-child(even) {
-                margin-left: 0 !important;
+                .MarginLeftOrRight("margin-left", 0) !important;
             }
         }
 
@@ -137,16 +137,16 @@
             margin: 0;
             [class*="span"] {
                 width: @gridColumnSize !important;
-                margin-left: 0 !important;
+                .MarginLeftOrRight("margin-left", 0) !important;
                 margin-bottom: @gridGutterSize;
                 &:nth-child(even) {
-                    margin-left: @gridGutterSize !important;
+                    .MarginLeftOrRight("margin-left", @gridGutterSize) !important;
                 }
             }
             .span12, .span7, .span8, .span9, .span10, .span11 {
                 width: @gridSize !important;
                 &:nth-child(even) {
-                    margin-left: 0 !important;
+                    .MarginLeftOrRight("margin-left", 0) !important;
                 }
             }
         }
@@ -161,7 +161,7 @@
 
         .element {
             //display: inline-block !important;
-            float: none !important;
+            .FloatItem("none") !important;
             //width: 90%;
         }
 
@@ -171,7 +171,7 @@
 
         .element-menu {
             position: relative;
-            float: none;
+            .FloatItem("none");
             display: none;
             width: 100% !important;
             background-color: inherit;
@@ -179,18 +179,18 @@
 
             li {
                 display: block !important;
-                float: none !important;
+                .FloatItem("none") !important;
                 width: 100%;
 
                 a {
                     display: block !important;
-                    float: none !important;
+                    .FloatItem("none") !important;
                     width: 100%;
                 }
 
                 .dropdown-menu {
                     position: relative !important;
-                    left: 0;
+                    .DockItem("left", 0);
                 }
             }
             .dropdown-toggle {
@@ -198,8 +198,8 @@
                 position: relative;
                 &:after {
                     position: absolute;
-                    left: 100% !important;
-                    margin-left: -15px;
+                    .DockItem("left", 100%) !important;
+                    .MarginLeftOrRight("margin-left", -15px);
                     //content: "";
                 }
             }
@@ -244,7 +244,7 @@
             margin: 0 !important;
             margin-bottom: 5px !important;
             &:nth-child(even) {
-                margin-left: 0 !important;
+                .MarginLeftOrRight("margin-left", 0) !important;
             }
         }
         .span12 {
@@ -257,7 +257,7 @@
                 margin: 0 !important;
                 margin-bottom: 5px !important;
                 &:nth-child(even) {
-                    margin-left: 0 !important;
+                    .MarginLeftOrRight("margin-left", 0) !important;
                 }
             }
             .span12 {

@@ -17,7 +17,7 @@
             position: relative;
 
             &.title {
-                padding: 20px 20px 10px 20px;
+                .SwapPadding(20px, 20px, 10px, 20px);
                 .subheader-secondary;
                 color: @white;
             }
@@ -37,13 +37,13 @@
 
                 &.dropdown-toggle {
                     &:after {
-                        right: 10px;
+                        .DockItem("right", 10px);
                         bottom: 5px;
                     }
                 }
 
                 [class*="icon-"] {
-                    margin-right: 15px;
+                    .MarginLeftOrRight("margin-right", 15px);
                 }
             }
 
@@ -54,10 +54,10 @@
                     position: absolute;
                     width: 7px;
                     height: 40px;
-                    left: -7px;
+                    .DockItem("left", -7px);
                     text-indent: -9999px;
-                    border-top-left-radius: 5px;
-                    border-bottom-left-radius: 5px;
+                    .BorderTopLeftOrRightRadius("border-top-left-radius", 5px);
+                    .BorderBottomLeftOrRightRadius("border-bottom-left-radius", 5px);
                     background-color: inherit;
                 }
             }

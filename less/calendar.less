@@ -17,10 +17,10 @@
         border: 1px  solid;
         border-color: lighten(@cyan, 45%);
         &:first-child {
-            border-left: 0;
+            .BorderLeft(0);
         }
         &:last-child {
-            border-right: 0;
+            .BorderRight(0);
         }
 
     }
@@ -90,7 +90,7 @@
             border-width: 1px;
             &:after {
                 border-top-width: 12px;
-                border-left-width: 12px;
+                .BorderLeftWidth(12px);
             }
             &:before {
                 //content: "";

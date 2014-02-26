@@ -20,14 +20,14 @@
 .scrollbar-v {
     width: 15px;
     height: 100%;
-    right: 0;
+    .DockItem("right", 0);
     top: 0;
 }
 
 .scrollbar-h {
     height: 15px;
     width: 100%;
-    left: 0;
+    .DockItem("left", 0);
     bottom: 0;
 }
 
@@ -46,20 +46,20 @@
 .scrollbar-v-up, .scrollbar-h-up  {
     width: 15px;
     height: 15px;
-    left: 0;
+    .DockItem("left", 0);
     top: 0;
 }
 
 .scrollbar-v-down, .scrollbar-h-down {
     width: 15px;
     height: 15px;
-    left: 0;
+    .DockItem("left", 0);
     bottom: 0;
 }
 
 .scrollbar-h-down {
-    left: auto;
-    right: 0;
+    .DockItem("left", auto);
+    .DockItem("right", 0);
 }
 
 .scrollbar-line-v, .scrollbar-line-h {
@@ -69,25 +69,25 @@
 
 .scrollbar-line-v {
     width: 100%;
-    left: 0;
+    .DockItem("left", 0);
     top: 15px;
 }
 
 .scrollbar-line-h {
     height: 15px;
-    left: 15px;
+    .DockItem("left", 15px);
     top: 0;
 }
 
 .scrollbar-line-v-btn {
     width: 100%;
-    left: 0 !important;
+    .DockItem("left", 0) !important;
     top: 0;
 }
 
 .scrollbar-line-h-btn {
     height: 100%;
-    left: 0;
+    .DockItem("left", 0);
     top: 0 !important;
 }
 
@@ -95,7 +95,7 @@
     position: absolute;
     width: 15px;
     height: 15px;
-    right: 0;
+    .DockItem("right", 0);
     bottom: 0;
 }
 
@@ -124,18 +124,16 @@
         content: "\e1ad";
     }
 }
-
 .scrollbar-h-up {
     &:before {
         content: "\e1ac";
-        margin-left: -1px;
+        .MarginLeftOrRight("margin-left", -1px);
     }
 }
-
 .scrollbar-h-down {
     &:before {
         content: "\e1af";
         margin-top: -1px;
-        margin-right: -1px;
+        .MarginLeftOrRight("margin-right", -1px);
     }
 }

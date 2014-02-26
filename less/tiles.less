@@ -1,21 +1,21 @@
 #tile {
     .small-size {
         .square(@tileSizeSmall);
-        margin: 0 (@tileMargin / 2) (@tileMargin / 2) 0;
+        .SwapMargin( 0, (@tileMargin / 2), (@tileMargin / 2), 0);
     }
     .meduim-size {
         .square(@tileSizeMeduim);
-        margin: 0 @tileMargin @tileMargin 0;
+        .SwapMargin( 0, @tileMargin, @tileMargin, 0);
     }
     .large-size {
         .square(@tileSizeLarge);
-        margin: 0 (@tileMargin * 1.5) (@tileMargin * 1.5) 0;
+        .SwapMargin( 0, (@tileMargin * 1.5), (@tileMargin * 1.5), 0);
     }
 }
 
 .tile-area {
     position: relative;
-    padding: 120px 80px 0 80px;
+    .SwapPadding(120px, 80px, 0, 80px);
     overflow: hidden;
 }
 
@@ -23,12 +23,12 @@
     .tile-area-title {
         position: fixed;
         top: 20px;
-        left: 80px;
+        .DockItem("left", 80px);
     }
 
     .user-id {
         position: fixed;
-        right: 40px;
+        .DockItem("right", 40px);
         top: 40px;
         display: inline-block;
         padding: 8px;
@@ -41,8 +41,8 @@
         .user-id-image {
             width: 40px;
             height: 40px;
-            float: right;
-            margin-left: 10px;
+            .FloatItem("right");
+            .MarginLeftOrRight("margin-left", 10px);
             color: inherit;
             background-color: #464646;
             text-align: center;
@@ -64,8 +64,8 @@
         }
 
         .user-id-name {
-            float: right;
-            text-align: right;
+            .FloatItem("right");
+            .TextAlignTo("right");
             margin: 0;
             padding: 0;
 
@@ -124,10 +124,10 @@
 .tile-area-grayed {.tile-area(@grayed)}
 
 .tile-group {
-    margin-right: @tileGroupMargin;
+    .MarginLeftOrRight("margin-right", @tileGroupMargin);
     min-width: @tileGroupSize;
     width: auto;
-    float: left;
+    .FloatItem("left");
     display: block;
     padding-top: 40px;
     position: relative;
@@ -156,7 +156,7 @@
     }
 
     &:first-child {
-        margin-left: 80px;
+        .MarginLeftOrRight("margin-left", 80px);
     }
 }
 
@@ -168,7 +168,7 @@
         line-height: 20px;
         position: absolute;
         top: 10px;
-        left: 0;
+        .DockItem("left", 0);
         color: inherit;
     }
 }
@@ -177,8 +177,8 @@
     position: relative;
     overflow: hidden;
     display: block;
-    float: left;
-    margin: 0 @tileMargin @tileMargin 0;
+    .FloatItem("left");
+    .SwapMargin( 0, @tileMargin, @tileMargin, 0);
     padding: 0;
     cursor: pointer;
     background-color: @grayLighter;
@@ -239,7 +239,7 @@
         margin: 0;
         display: block;
         position: absolute;
-        left: 0;
+        .DockItem("left", 0);
         top: 0;
         overflow: hidden;
 
@@ -262,10 +262,10 @@
                 color: @white;
                 text-align: center;
                 position: absolute;
-                left: 50%;
+                .DockItem("left", 50%);
                 top: 50%;
                 margin-top: -@tileIconSize/2;
-                margin-left: -@tileIconSize/2;
+                .MarginLeftOrRight("margin-left", -@tileIconSize/2);
             }
         }
 
@@ -275,13 +275,13 @@
                 padding: 0;
                 width: 25% !important;
                 height: 50%;
-                float: left;
+                .FloatItem("left");
                 border: 1px #1e1e1e solid;
             }
 
             img:first-child {
                 width: 50% !important;
-                float: left;
+                .FloatItem("left");
                 height: 100%;
             }
         }
@@ -301,8 +301,8 @@
     .brand, .tile-status {
         position: absolute;
         bottom: 0;
-        left: 0;
-        right: 0;
+        .DockItem("left", 0);
+        .DockItem("right", 0);
         min-height: 29px;
         margin: 0;
         .clearfix;
@@ -314,7 +314,7 @@
         .name, .label, .text {
             display: block;
             font-size: 10pt;
-            margin: 5px 20px 2px 5px;
+            .SwapMargin( 5px, 20px, 2px, 5px);
             background: transparent;
             color: @white;
         }
@@ -328,7 +328,7 @@
         .badge {
             position: absolute;
             bottom: 0;
-            right: 10px;
+            .DockItem("right", 10px);
             width: 29px;
             height: 29px;
             text-align: center;
@@ -385,7 +385,7 @@
 
             & > li {
                 display: block;
-                float: left;
+                .FloatItem("left");
                 height: @tilePart;
                 width: @tilePart;
                 margin: 0;
@@ -394,7 +394,7 @@
 
         & > .part {
             display: block;
-            float: left;
+            .FloatItem("left");
             height: @tilePart;
             width: @tilePart;
             margin: 0;
@@ -413,10 +413,10 @@
                 color: @white;
                 text-align: center;
                 position: absolute;
-                left: 50%;
+                .DockItem("left", 50%);
                 top: 50%;
                 margin-top: -@tileIconSize/3;
-                margin-left: -@tileIconSize/3;
+                .MarginLeftOrRight("margin-left", -@tileIconSize/3);
             }
         }
     }
@@ -453,7 +453,7 @@
             .email-image {
                 width: 64px;
                 height: 64px;
-                float: left;
+                .FloatItem("left");
                 img {
                     width: 100%;
                     height: 100%;
@@ -462,7 +462,7 @@
             .email-data {
                 display: block;
                 color: inherit;
-                margin-left: 70px;
+                .MarginLeftOrRight("margin-left", 70px);
                 width: auto;
                 overflow: hidden;
 

@@ -7,7 +7,7 @@
         display: block;
         cursor: pointer;
         color: inherit;
-        margin: 0 0 10px 0;
+        .SwapMargin(0, 0, 10px, 0);
 
         .list-content {
             padding: 10px;
@@ -35,8 +35,8 @@
                 width: 56px;
                 height: 56px;
                 font-size: 40px;
-                float: left;
-                margin-right: 10px;
+                .FloatItem("left");
+                .MarginLeftOrRight("margin-right", 10px);
             }
             [class*="icon-"] {
                 &.icon {
@@ -45,11 +45,11 @@
             }
 
             .data {
-                //float: left;
+                //.FloatItem("left");
                 display: block;
                 padding: 0;
                 margin: 0;
-                margin-left: 66px;
+                .MarginLeftOrRight("margin-left", 66px);
                 min-width: 200px;
                 position: relative;
             }
@@ -70,7 +70,7 @@
                 line-height: 12px;
             }
             [class*="span"] {
-                float: none;
+                .FloatItem("none");
             }
             .rating {
                 color: inherit;
@@ -91,8 +91,8 @@
                 height: 32px;
                 line-height: 14px;
                 font-size: 28px;
-                float: left;
-                margin-right: 10px;
+                .FloatItem("left");
+                .MarginLeftOrRight("margin-right", 10px);
             }
             [class*="icon-"] {
                 &.icon {
@@ -104,7 +104,7 @@
                 }
             }
             .data {
-                margin-left: 40px;
+                .MarginLeftOrRight("margin-left", 40px);
             }
         }
     }
@@ -136,7 +136,7 @@
             #font > .segoe;
             font-size: @lwFontSize;
             color: inherit;
-            border-left: 3px transparent solid;
+            .BorderLeftOrRight("border-left", 3px, transparent, solid);
 
             .list-title, .list-subtitle, .list-remark {
                 width: 100%;
@@ -167,7 +167,7 @@
     .list {
         &.marked {
             .list-content {
-                border-left: 3px @lwMarkerColor solid !important;
+                .BorderLeftOrRight("border-left", 3px, @lwMarkerColor, solid) !important;
             }
         }
 
@@ -181,7 +181,7 @@
             background-color: @lwListBackgroundHoverColor;
             outline: none;
             .list-content {
-                border-left: 3px @lwMarkerInactiveColor solid;
+                .BorderLeftOrRight("border-left", 3px, @lwMarkerInactiveColor, solid);
             }
         }
     }
@@ -201,18 +201,18 @@
             font-size: @lwSubtitleSize;
             font-weight: bold;
             color: @grayDark;
-            padding-left: 24px;
+            .PaddingLeftOrRight("padding-left", 24px);
 
             &:before {
                 position: absolute;
                 display: block;
-                left: 10px;
+                .DockItem("left", 10px);
                 top: 1px;
                 content: '';
 
                 width: 0;
                 height: 0;
-                border-left: 7px solid transparent;
+                .BorderLeftOrRight("border-left", 7px, transparent, solid);
                 border-top: 7px solid transparent;
                 border-bottom: 7px solid black;
             }
@@ -226,7 +226,7 @@
             .group-title {
                 &:before {
                     .rotate(-45deg);
-                    margin-left: -4px;
+                    .MarginLeftOrRight("margin-left",-4px);
                 }
             }
 
@@ -248,10 +248,10 @@
 .listview-outlook {
     .list-content {
         .list-icon {
-            float: left;
+            .FloatItem("left");
             width: 48px;
             max-height: 48px;
-            margin-right: 10px;
+            .MarginLeftOrRight("margin-right", 10px);
             margin-top: 5px;
         }
     }

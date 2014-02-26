@@ -18,7 +18,7 @@
         display: block;
         position: absolute;
         background-color: inherit;
-        left: -5px;
+        .DockItem("left", -5px);
         top: 50%;
         margin-top: -5px;
         .rotate(45deg);
@@ -27,8 +27,8 @@
     &.marker-on-top {
         &:before {
             top: 0;
-            left: 50%;
-            margin-left: -5px;
+            .DockItem("left", 50%);
+            .MarginLeftOrRight("margin-left", -5px);
         }
     }
 
@@ -36,16 +36,16 @@
         &:before {
             top: 50%;
             margin-top: -5px;
-            left: 100%;
-            margin-left: -5px;
+            .DockItem("left", 100%);
+            .MarginLeftOrRight("margin-left", -5px);
         }
     }
 
     &.marker-on-bottom {
         &:before {
             top: 100%;
-            margin-left: -5px;
-            left: 50%;
+            .MarginLeftOrRight("margin-left", -5px);
+            .DockItem("left", 50%);
             margin-top: -5px;
         }
     }

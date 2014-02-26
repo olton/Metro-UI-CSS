@@ -1,16 +1,16 @@
 .example {
     .clearfix;
-    padding: 20px 40px 20px 60px;
+    .SwapPadding(20px, 40px, 20px, 60px);
     border: 1px #ccc solid;
     position: relative;
-    margin: 0 0 10px 0;
+    .SwapMargin(0, 0, 10px, 0);
     background-color: lighten(@gray, 66%) !important;
     min-height: 100px;
 
     &:before {
         position: absolute;
         content: "example";
-        left: -21px;
+        .DockItem("left", -21px);
         top: 30px;
         //background: @grayLighter;
         color: @grayLight !important;

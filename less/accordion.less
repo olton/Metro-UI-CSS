@@ -13,7 +13,7 @@
             color: @dark;
 
             [class*="icon-"] {
-                margin-right: 10px;
+                .MarginLeftOrRight("margin-right", 10px);
             }
 
         }
@@ -42,13 +42,13 @@
             &:before {
                 position: absolute;
                 display: block;
-                left: 5px;
+                .DockItem("left", 5px);
                 top: 12px;
                 content: '';
 
                 width: 0;
                 height: 0;
-                border-left: 7px solid transparent;
+                .BorderLeftOrRight("border-left", 7px, transparent, solid);
                 border-top: 7px solid transparent;
                 border-bottom: 7px solid black;
             }
@@ -56,7 +56,7 @@
             &.collapsed {
                 &:before {
                     .rotate(-45deg);
-                    margin-left: -4px;
+                    .MarginLeftOrRight("margin-left", -4px);
                 }
             }
         }

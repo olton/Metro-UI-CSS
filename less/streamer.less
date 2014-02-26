@@ -17,7 +17,7 @@
 
         li {
             display: block;
-            float: left;
+            .FloatItem("left");
             width: 213px;
             padding: 2px 3px;
             background: url("/images/meter-210.png") top left repeat-x;
@@ -33,7 +33,7 @@
         width: 142px;
         padding-top: 25px;
         position: absolute;
-        left: 0;
+        .DockItem("left", 0);
         top: 0;
         z-index: 2;
         background-color: rgba(255,255,255, 1);
@@ -48,7 +48,7 @@
             display: block;
             width: 100%;
             height: 75px;
-            margin: 0 2px 2px 0;
+            .SwapMargin( 0, 2px, 2px, 0);
             padding: 5px;
             color: @white;
             cursor: pointer;
@@ -64,7 +64,7 @@
 
             .stream-number {
                 position: absolute;
-                left: 5px;
+                .DockItem("left", 5px);
                 bottom: 5px;
                 #font > .segoe-light;
                 font-size: 11px;
@@ -78,7 +78,7 @@
     }
 
     .events {
-        padding-left: 143px;
+        .PaddingLeftOrRight("padding-left", 143px);
         overflow: hidden;
         height: 100%;
         min-height: 100%;
@@ -113,8 +113,8 @@
             height: @eventHeight * 6 + @eventMargin * 5;
             //min-height: 100%;
             min-width: @eventWidth;
-            margin: 0 @eventMargin @eventMargin 0;
-            float: left;
+            .SwapMargin( 0, @eventMargin, @eventMargin, 0);
+            .FloatItem("left");
         }
 
         .event-super {
@@ -129,16 +129,16 @@
             .event {
                 min-width: @eventWidth;
                 height: @eventHeight;
-                float: left;
+                .FloatItem("left");
                 display: block;
-                margin: 0 @eventMargin @eventMargin 0;
+                .SwapMargin( 0, @eventMargin, @eventMargin, 0);
                 cursor: pointer;
                 position: relative;
                 overflow: hidden;
                 .border;
 
                 &:last-child {
-                    margin-right: 0;
+                    .MarginLeftOrRight("margin-right", 0);
                 }
 
                 &.event-disable {
@@ -151,7 +151,7 @@
                     padding: 0;
                     margin: 0;
                     position: absolute;
-                    left: 0;
+                    .DockItem("left", 0);
                     top: 0;
                     overflow: hidden;
                     display: none;
@@ -163,8 +163,8 @@
 
                 .event-content-logo {
                     display: block;
-                    float: left;
-                    margin-right: 5px;
+                    .FloatItem("left");
+                    .MarginLeftOrRight("margin-right", 5px);
                     padding: 3px;
 
                     .icon {
@@ -194,7 +194,7 @@
                     padding: 0;
                     margin: 0;
                     position: relative;
-                    margin-left: 50px;
+                    .MarginLeftOrRight("margin-left", 50px);
 
                     .title {
                         position: relative;
@@ -219,7 +219,7 @@
                         position: absolute;
                         display: block;
                         top: 36px;
-                        margin-right: 4px;
+                        .MarginLeftOrRight("margin-right", 4px);
                         #font > .segoe;
                         font-size: 11px;
                         line-height: 11px;
@@ -241,7 +241,7 @@
                     #element > .selected;
                     border-width: 1px;
                     &:before {
-                        right: 3px;
+                        .DockItem("right", 3px);
                     }
                 }
             }
