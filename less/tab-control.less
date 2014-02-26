@@ -7,18 +7,18 @@
         & > li {
             background-color: @white;
             display: block;
-            float: left;
-            margin-left: 5px;
+            .FloatItem("left");
+            .MarginLeftOrRight("margin-left", 5px);
             position: relative;
 
             & > a {
                 border: 1px @grayLighter solid;
                 display: block;
-                float: left;
+                .FloatItem("left");
                 padding: 5px 10px;
                 z-index: 10;
                 top: 0;
-                left: 0;
+                .DockItem("left", 0);
                 color: inherit;
                 background-color: @grayLighter;
             }
@@ -46,15 +46,15 @@
             }
 
             &.place-right {
-                float: right;
-                margin-right: 5px;
-                margin-left: auto;
+                .FloatItem("right");
+                .MarginLeftOrRight("margin-right", 5px);
+                .MarginLeftOrRight("margin-left", auto);
             }
         }
 
         &.no-spaces {
             & > li {
-                margin-left: 0;
+                .MarginLeftOrRight("margin-left", 0);
             }
         }
         z-index: 2;
