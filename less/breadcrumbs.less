@@ -10,12 +10,12 @@
         width: 100%;
 
         li {
-            float: left;
-            margin: 0 .2em 0 1em;
+            .FloatItem("left");
+            .SwapMargin(0, .2em, 0, 1em);
         }
 
         li:first-child {
-            margin-left: 0 !important;
+            .MarginLeftOrRight("margin-left", 0) !important;
             a:before {
                 content: normal;
             }
@@ -34,7 +34,7 @@
         a {
             background: @inputRestState;
             padding: .3em 1em;
-            float: left;
+            .FloatItem("left");
             text-decoration: none;
             color: @linkColor;
             position: relative;
@@ -48,7 +48,7 @@
                 }
 
                 &:after {
-                    border-left-color: @cyan;
+                    .BorderLeftColor(@cyan);
                 }
             }
 
@@ -60,8 +60,8 @@
                 border-width: 1.5em 0 1.5em 1em;
                 border-style: solid;
                 border-color: #ddd #ddd #ddd transparent;
-                left: -1em;
-                margin-left: 1px;
+                .DockItem("left", -1em);
+                .MarginLeftOrRight("margin-left", 1px);
             }
 
             &:after {
@@ -71,9 +71,9 @@
                 margin-top: -1.5em;
                 border-top: 1.5em solid transparent;
                 border-bottom: 1.5em solid transparent;
-                border-left: 1em solid #ddd;
-                right: -1em;
-                margin-right: 1px;
+                .BorderLeftOrRight("border-left", 1em, #ddd, solid);
+                .DockItem("right", -1em);
+                .MarginLeftOrRight("margin-right", 1px);
             }
         }
 
@@ -99,7 +99,7 @@
 
     &.small {
         li {
-            margin: 0 .2em 0 .8em;
+            .SwapMargin(0, .2em, 0, .8em);
         }
         a {
             padding: .2em 1em;
@@ -108,7 +108,7 @@
     }
     &.mini {
         li {
-            margin: 0 .2em 0 .6em;
+            .SwapMargin(0, .2em, 0, .6em);
         }
         a {
             padding: .1em 1em;
