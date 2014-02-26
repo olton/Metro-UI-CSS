@@ -19,18 +19,18 @@
 
     .actions {
         .group-right {
-            float: right;
+            .FloatItem("right");
         }
         .group-left {
-            float: left;
+            .FloatItem("left");
         }
 
         button {
             .button;
-            margin-right: 2px;
+            .MarginLeftOrRight("margin-right", 2px);
 
             &:last-child {
-                margin-right: 0;
+                .MarginLeftOrRight("margin-right", 0);
             }
 
             &.btn-help {
