@@ -281,6 +281,8 @@
         },
 
         value: function (value) {
+			value = value > this.options.max ? this.options.max : value;
+			value = value < this.options.min ? this.options.min : value;
             if (typeof value !== 'undefined') {
                 this._placeMarker(parseInt(value));
                 this.options.position = parseInt(value);
