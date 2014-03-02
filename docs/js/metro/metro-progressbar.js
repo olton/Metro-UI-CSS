@@ -84,6 +84,11 @@
             }
             this._showBar();
         },
+		
+		option: function (newOpts) {
+			$.extend(this.options, newOpts);
+			this._create();
+		},
 
         _destroy: function(){
 
