@@ -28,7 +28,7 @@
                 "Di", "Lu", "Ma", "Me", "Je", "Ve", "Sa"
             ],
             buttons: [
-                "Aujourd'hui", "Effacer", "Annuler", "Aide", "Précedent", "Suivant", "Fin"
+                "Aujourd'hui", "Effacer", "Annuler", "Aide", "Précédent", "Suivant", "Fin"
             ]
         },
          'nl': {
