@@ -292,6 +292,14 @@
                 return Math.round(this.options.position);
             }
         },
+		
+		option: function (newOpts) {
+			var slider = this.options._slider;
+			$.extend(this.options, newOpts);
+			this.options._slider = slider;
+			this._initPoints();
+			this.value(this.options.position);
+		},
 
         _destroy: function(){},
 
