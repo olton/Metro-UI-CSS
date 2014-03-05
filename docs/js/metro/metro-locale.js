@@ -20,15 +20,28 @@
         },
         'fr': {
             months: [
-                "Janvier", "Février", "Mars", "Avril", "Peut", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre",
-                "Jan", "Fév", "Mar", "Avr", "Peu", "Jun", "Jul", "Aoû", "Sep", "Oct", "Nov", "Déc"
+                "Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre",
+                "Jan", "Fév", "Mars", "Avr", "Mai", "Juin", "Juil", "Août", "Sept", "Oct", "Nov", "Déc"
             ],
             days: [
-                "Sunday", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi",
-                "Sn", "Ln", "Md", "Mc", "Ju", "Vn", "Sm"
+                "Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi",
+                "Di", "Lu", "Ma", "Me", "Je", "Ve", "Sa"
             ],
             buttons: [
-                "Aujourd", "Effacer", "Cancel", "Help", "Prior", "Next", "Finish"
+                "Aujourd'hui", "Effacer", "Annuler", "Aide", "Précedent", "Suivant", "Fin"
+            ]
+        },
+        'nl': {
+            months: [
+                "Januari", "Februari", "Maart", "April", "Mei", "Juni", "Juli", "Augustus", "September", "Oktober", "November", "December",
+                "Jan", "Feb", "Mrt", "Apr", "Mei", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dec"
+            ],
+            days: [
+                "Zondag", "Maandag", "Dinsdag", "Woensdag", "Donderdag", "Vrijdag", "Zaterdag",
+                "Zo", "Ma", "Di", "Wo", "Do", "Vr", "Za"
+            ],
+            buttons: [
+                "Vandaag", "Verwijderen", "Annuleren", "Hulp", "Vorige", "Volgende", "Einde"
             ]
         },
         'ua': {
