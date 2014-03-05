@@ -1655,7 +1655,6 @@ a {
   font-family: 'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
   font-size: 14px;
   line-height: 16px;
-  margin: 10px auto;
 }
 .metro .button.default {
   background-color: #008287;
@@ -1740,7 +1739,6 @@ a {
   font-family: 'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
   font-size: 14px;
   line-height: 16px;
-  margin: 10px auto;
 }
 .metro button.default {
   background-color: #008287;
@@ -1833,7 +1831,6 @@ a {
   font-family: 'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
   font-size: 14px;
   line-height: 16px;
-  margin: 10px auto;
   text-align: left;
   font-size: 14pt;
   width: auto;
@@ -2054,7 +2051,6 @@ a {
   font-family: 'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
   font-size: 14px;
   line-height: 16px;
-  margin: 10px auto;
   position: relative;
   border: 0;
   padding-right: 45px;
@@ -2184,7 +2180,6 @@ a {
   font-family: 'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
   font-size: 14px;
   line-height: 16px;
-  margin: 10px auto;
   height: 92px;
   width: 92px;
   text-align: center;
@@ -2303,9 +2298,6 @@ a {
 }
 .metro a.shortcut:hover {
   color: inherit;
-}
-.metro .button-set {
-  margin: 10px auto;
 }
 .metro .button-set:before,
 .metro .button-set:after {
@@ -3245,7 +3237,6 @@ a {
   font-family: 'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
   font-size: 14px;
   line-height: 16px;
-  margin: 10px auto;
 }
 .metro input[type="button"].default,
 .metro input[type="submit"].default,
@@ -5534,7 +5525,6 @@ a {
   font-family: 'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
   font-size: 14px;
   line-height: 16px;
-  margin: 10px auto;
   color: inherit;
   display: block;
   float: left;
@@ -8130,7 +8120,6 @@ a {
   font-family: 'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
   font-size: 14px;
   line-height: 16px;
-  margin: 10px auto;
   color: inherit;
   display: block;
   float: left;
@@ -8281,7 +8270,6 @@ a {
   font-family: 'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
   font-size: 14px;
   line-height: 16px;
-  margin: 10px auto;
   margin-right: 2px;
 }
 .metro .wizard .actions button.default {
