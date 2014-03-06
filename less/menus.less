@@ -183,7 +183,7 @@
     & > li > a.dropdown-toggle {
 
         &:after {
-            font-family: iconFont;
+            font-family: @sysIconFontName;
             font-size: .8em;
             content: "\e156";
             left: 85%;
@@ -252,22 +252,22 @@
 
     li.checked a, li.checked-partial a, li.unchecked a {
         &:before {
+            font-family: @sysIconFontName;
             position: absolute;
             left: 10px;
-            content: "\e0a6";
-            font-family: iconFont;
+            content: "\e004";
         }
     }
 
     li.checked-partial a {
         &:before {
-            content: "\e0a8";
+            content: "\e005";
         }
     }
 	
 	li.unchecked a {
         &:before {
-            content: "\e0a7";
+            content: "\e005";
         }
     }
 
@@ -304,12 +304,13 @@
     & > li > a.dropdown-toggle {
 
         &:after {
-            font-family: iconFont;
+            font-family: @sysIconFontName;
             font-size: .7em;
-            content: "\e1b3";
-            left: 85%;
-            top: .85em;
-            .rotate(0deg);
+            content: "\e001";
+            left: 90%;
+            top: 50%;
+            margin-top: -1.4em;
+            .rotate(-90deg);
         }
     }
 
@@ -325,7 +326,7 @@
     .menu-title {
         background-color: @menuItemTitleBackground;
         font-size: 12px;
-        font-weight: bold;
+        //font-weight: bold;
         line-height: 14px;
         padding: 4px 8px;
         border: 0;
@@ -432,8 +433,9 @@
         position: absolute;
         margin-left: .45em;
         bottom: 0;
-        content: '\203A';
-        .rotate(90deg);
+        font-family: @sysIconFontName;
+        font-size: .7em;
+        content: '\e001';
     }
 
     &.no-marker {
