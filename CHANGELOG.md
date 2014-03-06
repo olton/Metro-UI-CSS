@@ -1,6 +1,12 @@
 ## Version 2.0.30
 
 ### Changes:
+- move icons styles to standalone file
+- add small metroSysIcons.* font for system images
+
+## Version 2.0.30
+
+### Changes:
 - add fr locale
 - add nl locale
 
