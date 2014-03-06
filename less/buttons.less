@@ -14,6 +14,7 @@
     font-size: 14px;
     line-height: 16px;
 	//margin: @inputMargin auto;
+    margin: auto;
 
     &.default {
         background-color: #008287;
@@ -215,8 +216,8 @@ button.dropdown-toggle, .button.dropdown-toggle {
     border: 0;
     &:before {
         position: absolute;
-        font-family: iconFont;
-        font-size: 14px;
+        font-family: @sysIconFontName;
+        font-size: 12px;
         right: 1px;
         z-index: 2;
     }
@@ -380,6 +381,3 @@ a.shortcut {
     }
 }
 
-.button + .button, button + button {
-	margin-left: @inputMargin;
-}

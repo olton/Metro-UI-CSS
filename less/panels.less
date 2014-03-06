@@ -19,17 +19,19 @@
     .panel-header {
         cursor: pointer;
         &:after {
-            font-family: iconFont;
-            content: "\e1b1";
+            font-family: @sysIconFontName;
+            content: "\e000";
             float: right;
             color: inherit;
+            .rotate(180deg);
         }
     }
 
     &.collapsed {
         .panel-header {
             &:after {
-                content: "\e1b3";
+                content: "\e000";
+                .rotate(90deg);
             }
         }
     }

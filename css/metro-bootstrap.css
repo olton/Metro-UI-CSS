@@ -497,10 +497,10 @@ a {
 .metro #element .selected:before {
   position: absolute;
   display: block;
-  content: "\e08a";
+  content: "\e003";
   color: #fff;
   right: 0;
-  font-family: iconFont;
+  font-family: 'metroSysIcons';
   font-size: 9pt;
   font-weight: normal;
   z-index: 102;
@@ -1655,6 +1655,7 @@ a {
   font-family: 'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
   font-size: 14px;
   line-height: 16px;
+  margin: auto;
 }
 .metro .button.default {
   background-color: #008287;
@@ -1739,6 +1740,7 @@ a {
   font-family: 'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
   font-size: 14px;
   line-height: 16px;
+  margin: auto;
 }
 .metro button.default {
   background-color: #008287;
@@ -1831,6 +1833,7 @@ a {
   font-family: 'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
   font-size: 14px;
   line-height: 16px;
+  margin: auto;
   text-align: left;
   font-size: 14pt;
   width: auto;
@@ -2032,8 +2035,8 @@ a {
 .metro button.dropdown-toggle:before,
 .metro .button.dropdown-toggle:before {
   position: absolute;
-  font-family: iconFont;
-  font-size: 14px;
+  font-family: metroSysIcons;
+  font-size: 12px;
   right: 1px;
   z-index: 2;
 }
@@ -2051,6 +2054,7 @@ a {
   font-family: 'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
   font-size: 14px;
   line-height: 16px;
+  margin: auto;
   position: relative;
   border: 0;
   padding-right: 45px;
@@ -2180,6 +2184,7 @@ a {
   font-family: 'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
   font-size: 14px;
   line-height: 16px;
+  margin: auto;
   height: 92px;
   width: 92px;
   text-align: center;
@@ -2358,10 +2363,6 @@ a {
 .metro button.mini {
   padding: 0px 6px;
   font-size: 10.5px;
-}
-.metro .button + .button,
-.metro button + button {
-  margin-left: 10px;
 }
 .metro .breadcrumbs {
   margin: 0.2em;
@@ -2551,7 +2552,7 @@ a {
 .metro .input-control.checkbox .check:after,
 .metro .input-control.radio .check:after {
   position: absolute;
-  font-family: iconFont;
+  font-family: metroSysIcons;
   font-size: 9pt;
   line-height: 9pt;
 }
@@ -2559,7 +2560,7 @@ a {
 .metro .input-control.radio input[type="checkbox"]:checked ~ .check:after,
 .metro .input-control.checkbox input[type="radio"]:checked ~ .check:after,
 .metro .input-control.radio input[type="radio"]:checked ~ .check:after {
-  content: "\e08a";
+  content: "\e003";
   margin: 2px;
   top: 0;
   color: #1d1d1d;
@@ -2750,8 +2751,8 @@ a {
 .metro .input-control.email .btn-search:after,
 .metro .input-control.tel .btn-search:after,
 .metro .input-control.number .btn-search:after {
-  font-family: iconFont;
-  font-size: 10pt;
+  font-family: metroSysIcons;
+  font-size: 1em;
 }
 .metro .input-control.text .btn-clear:not(:disabled):active,
 .metro .input-control.password .btn-clear:not(:disabled):active,
@@ -2884,7 +2885,7 @@ a {
 .metro .input-control.email .btn-clear:after,
 .metro .input-control.tel .btn-clear:after,
 .metro .input-control.number .btn-clear:after {
-  content: "\e089";
+  content: "\e00d";
 }
 .metro .input-control.text .btn-reveal:after,
 .metro .input-control.password .btn-reveal:after,
@@ -2892,7 +2893,7 @@ a {
 .metro .input-control.email .btn-reveal:after,
 .metro .input-control.tel .btn-reveal:after,
 .metro .input-control.number .btn-reveal:after {
-  content: "\e000";
+  content: "\e007";
 }
 .metro .input-control.text .btn-search:after,
 .metro .input-control.password .btn-search:after,
@@ -2900,7 +2901,7 @@ a {
 .metro .input-control.email .btn-search:after,
 .metro .input-control.tel .btn-search:after,
 .metro .input-control.number .btn-search:after {
-  content: "\e041";
+  content: "\e00e";
 }
 .metro .input-control.text .btn-date:after,
 .metro .input-control.password .btn-date:after,
@@ -2908,7 +2909,7 @@ a {
 .metro .input-control.email .btn-date:after,
 .metro .input-control.tel .btn-date:after,
 .metro .input-control.number .btn-date:after {
-  content: "\e020";
+  content: "\e013";
 }
 .metro .input-control.text .btn-file:after,
 .metro .input-control.password .btn-file:after,
@@ -2916,7 +2917,7 @@ a {
 .metro .input-control.email .btn-file:after,
 .metro .input-control.tel .btn-file:after,
 .metro .input-control.number .btn-file:after {
-  content: "\e012";
+  content: "\e008";
 }
 .metro .input-control.text .btn-search,
 .metro .input-control.password .btn-search,
@@ -3237,6 +3238,7 @@ a {
   font-family: 'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
   font-size: 14px;
   line-height: 16px;
+  margin: auto;
 }
 .metro input[type="button"].default,
 .metro input[type="submit"].default,
@@ -3441,10 +3443,10 @@ a {
 .metro .image-container.selected:before {
   position: absolute;
   display: block;
-  content: "\e08a";
+  content: "\e003";
   color: #fff;
   right: 0;
-  font-family: iconFont;
+  font-family: 'metroSysIcons';
   font-size: 9pt;
   font-weight: normal;
   z-index: 102;
@@ -3708,7 +3710,7 @@ a {
   display: block;
 }
 .metro .side-menu > li > a.dropdown-toggle:after {
-  font-family: iconFont;
+  font-family: metroSysIcons;
   font-size: .8em;
   content: "\e156";
   left: 85%;
@@ -3838,16 +3840,16 @@ a {
 .metro .dropdown-menu li.checked a:before,
 .metro .dropdown-menu li.checked-partial a:before,
 .metro .dropdown-menu li.unchecked a:before {
+  font-family: metroSysIcons;
   position: absolute;
   left: 10px;
-  content: "\e0a6";
-  font-family: iconFont;
+  content: "\e004";
 }
 .metro .dropdown-menu li.checked-partial a:before {
-  content: "\e0a8";
+  content: "\e005";
 }
 .metro .dropdown-menu li.unchecked a:before {
-  content: "\e0a7";
+  content: "\e005";
 }
 .metro .dropdown-menu.place-right {
   right: -15px;
@@ -3875,16 +3877,17 @@ a {
   display: block;
 }
 .metro .dropdown-menu > li > a.dropdown-toggle:after {
-  font-family: iconFont;
+  font-family: metroSysIcons;
   font-size: .7em;
-  content: "\e1b3";
-  left: 85%;
-  top: .85em;
-  -webkit-transform: rotate(0deg);
-  -moz-transform: rotate(0deg);
-  -ms-transform: rotate(0deg);
-  -o-transform: rotate(0deg);
-  transform: rotate(0deg);
+  content: "\e001";
+  left: 90%;
+  top: 50%;
+  margin-top: -1.4em;
+  -webkit-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+  transform: rotate(-90deg);
 }
 .metro .dropdown-menu.drop-left {
   left: -100%;
@@ -3896,7 +3899,6 @@ a {
 .metro .dropdown-menu .menu-title {
   background-color: #f6f7f8;
   font-size: 12px;
-  font-weight: bold;
   line-height: 14px;
   padding: 4px 8px;
   border: 0;
@@ -3989,12 +3991,9 @@ a {
   position: absolute;
   margin-left: .45em;
   bottom: 0;
-  content: '\203A';
-  -webkit-transform: rotate(90deg);
-  -moz-transform: rotate(90deg);
-  -ms-transform: rotate(90deg);
-  -o-transform: rotate(90deg);
-  transform: rotate(90deg);
+  font-family: metroSysIcons;
+  font-size: .7em;
+  content: '\e001';
 }
 .metro .dropdown-toggle.no-marker:after {
   content: "";
@@ -4240,10 +4239,10 @@ a {
 .metro .navigation-bar .element-menu > li > a.dropdown-toggle:after,
 .metro .navbar .element-menu > li > a.dropdown-toggle:after {
   position: absolute;
-  left: 100%;
-  margin-left: -20px;
+  left: 95%;
   top: 50%;
-  margin-top: -16px;
+  margin-left: -7px;
+  margin-top: -5px;
 }
 .metro .navigation-bar .element-menu > li > .dropdown-menu,
 .metro .navbar .element-menu > li > .dropdown-menu {
@@ -4885,10 +4884,10 @@ a {
 .metro .tile.selected:before {
   position: absolute;
   display: block;
-  content: "\e08a";
+  content: "\e003";
   color: #fff;
   right: 0;
-  font-family: iconFont;
+  font-family: 'metroSysIcons';
   font-size: 9pt;
   font-weight: normal;
   z-index: 102;
@@ -5407,7 +5406,7 @@ a {
   display: block;
   width: auto;
   margin: 0 10px 10px 0;
-  height: 24px;
+  height: 28px;
 }
 .metro .rating:before,
 .metro .rating:after {
@@ -5437,22 +5436,22 @@ a {
   display: block;
   float: left;
   position: relative;
-  font-family: iconFont;
-  font-size: 24px;
-  line-height: 24px;
+  font-family: metroSysIcons;
+  font-size: 28px;
+  line-height: 28px;
   color: inherit;
 }
 .metro .rating ul li:before {
-  content: '\e07c';
+  content: '\e014';
 }
 .metro .rating ul li.rated:before {
-  content: '\e07e';
+  content: '\e016';
 }
 .metro .rating ul li.rated.half:before {
-  content: '\e07d';
+  content: '\e015';
 }
 .metro .rating ul li.half:before {
-  content: '\e07d';
+  content: '\e015';
 }
 .metro .rating .score-hint {
   display: block;
@@ -5460,24 +5459,24 @@ a {
   color: #1d1d1d;
 }
 .metro .rating.active ul:hover > li:before {
-  content: '\e07e';
+  content: '\e016';
 }
 .metro .rating.active ul li:hover ~ li:before {
-  content: '\e07c' !important;
+  content: '\e014' !important;
 }
 .metro .rating.active ul li:hover:before {
-  content: '\e07e' !important;
+  content: '\e016' !important;
 }
 .metro .rating.small li {
-  font-size: 16px;
-  line-height: 16px;
+  font-size: 18.66666667px;
+  line-height: 18.66666667px;
 }
 .metro .rating.small .score-hint {
   margin-top: -5px;
-  font-size: 10px;
+  font-size: 12px;
 }
 .metro .rating.large li {
-  font-size: 36px;
+  font-size: 42px;
 }
 .metro .rating.large .score-hint {
   margin-top: 10px;
@@ -5525,6 +5524,7 @@ a {
   font-family: 'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
   font-size: 14px;
   line-height: 16px;
+  margin: auto;
   color: inherit;
   display: block;
   float: left;
@@ -5988,16 +5988,16 @@ a {
 .metro .sidebar > ul ul li.checked a:before,
 .metro .sidebar > ul ul li.checked-partial a:before,
 .metro .sidebar > ul ul li.unchecked a:before {
+  font-family: metroSysIcons;
   position: absolute;
   left: 10px;
-  content: "\e0a6";
-  font-family: iconFont;
+  content: "\e004";
 }
 .metro .sidebar > ul ul li.checked-partial a:before {
-  content: "\e0a8";
+  content: "\e005";
 }
 .metro .sidebar > ul ul li.unchecked a:before {
-  content: "\e0a7";
+  content: "\e005";
 }
 .metro .sidebar > ul ul.place-right {
   right: -15px;
@@ -6025,16 +6025,17 @@ a {
   display: block;
 }
 .metro .sidebar > ul ul > li > a.dropdown-toggle:after {
-  font-family: iconFont;
+  font-family: metroSysIcons;
   font-size: .7em;
-  content: "\e1b3";
-  left: 85%;
-  top: .85em;
-  -webkit-transform: rotate(0deg);
-  -moz-transform: rotate(0deg);
-  -ms-transform: rotate(0deg);
-  -o-transform: rotate(0deg);
-  transform: rotate(0deg);
+  content: "\e001";
+  left: 90%;
+  top: 50%;
+  margin-top: -1.4em;
+  -webkit-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+  transform: rotate(-90deg);
 }
 .metro .sidebar > ul ul.drop-left {
   left: -100%;
@@ -6046,7 +6047,6 @@ a {
 .metro .sidebar > ul ul .menu-title {
   background-color: #f6f7f8;
   font-size: 12px;
-  font-weight: bold;
   line-height: 14px;
   padding: 4px 8px;
   border: 0;
@@ -6324,10 +6324,10 @@ a {
 .metro .calendar .day a.selected:before {
   position: absolute;
   display: block;
-  content: "\e08a";
+  content: "\e003";
   color: #fff;
   right: 0;
-  font-family: iconFont;
+  font-family: 'metroSysIcons';
   font-size: 9pt;
   font-weight: normal;
   z-index: 102;
@@ -6778,10 +6778,10 @@ a {
 .metro .listview .list.selected:before {
   position: absolute;
   display: block;
-  content: "\e08a";
+  content: "\e003";
   color: #fff;
   right: 0;
-  font-family: iconFont;
+  font-family: 'metroSysIcons';
   font-size: 9pt;
   font-weight: normal;
   z-index: 102;
@@ -6904,10 +6904,10 @@ a {
 .metro .listview-outlook .list.selected:before {
   position: absolute;
   display: block;
-  content: "\e08a";
+  content: "\e003";
   color: #fff;
   right: 0;
-  font-family: iconFont;
+  font-family: 'metroSysIcons';
   font-size: 9pt;
   font-weight: normal;
   z-index: 102;
@@ -7332,8 +7332,8 @@ a {
   content: "";
 }
 .metro .fluent-menu .dropdown-toggle .button-label:after {
-  content: "\e1ad";
-  font-family: iconFont;
+  content: "\e012";
+  font-family: metroSysIcons;
   position: absolute;
   right: 0px;
   bottom: 3px;
@@ -7825,10 +7825,10 @@ a {
 .metro .streamer .events .event-stream .event.selected:before {
   position: absolute;
   display: block;
-  content: "\e08a";
+  content: "\e003";
   color: #fff;
   right: 0;
-  font-family: iconFont;
+  font-family: 'metroSysIcons';
   font-size: 9pt;
   font-weight: normal;
   z-index: 102;
@@ -7942,24 +7942,32 @@ a {
 .metro .scrollbar-h-down:before {
   position: absolute;
   content: "";
-  font-family: iconFont;
+  font-family: metroSysIcons;
   font-size: 14px;
-  margin-top: -1px;
 }
 .metro .scrollbar-v-up:before {
-  content: "\e1ae";
+  content: "\e010";
 }
 .metro .scrollbar-v-down:before {
-  content: "\e1ad";
+  content: "\e012";
 }
 .metro .scrollbar-h-up:before {
-  content: "\e1ac";
-  margin-left: -1px;
+  content: "\e010";
+  margin-top: -1px;
+  -webkit-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+  transform: rotate(-90deg);
 }
 .metro .scrollbar-h-down:before {
-  content: "\e1af";
+  content: "\e010";
   margin-top: -1px;
-  margin-right: -1px;
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  transform: rotate(90deg);
 }
 .metro.notify-container {
   position: fixed;
@@ -8049,20 +8057,20 @@ a {
 .metro .dataTable thead .sorting_asc:after,
 .metro .dataTable thead .sorting_desc:after,
 .metro .dataTable thead .sorting:after {
-  font-family: iconFont;
+  font-family: metroSysIcons;
   position: relative;
   float: right;
   right: 0;
   color: #999999;
 }
 .metro .dataTable thead .sorting:after {
-  content: "\e0a0";
+  content: "\e011";
 }
 .metro .dataTable thead .sorting_asc:after {
-  content: "\e1ae";
+  content: "\e010";
 }
 .metro .dataTable thead .sorting_desc:after {
-  content: "\e1ad";
+  content: "\e012";
 }
 .metro .dataTable thead .sorting_asc:after,
 .metro .dataTable thead .sorting_desc:after {
@@ -8120,6 +8128,7 @@ a {
   font-family: 'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
   font-size: 14px;
   line-height: 16px;
+  margin: auto;
   color: inherit;
   display: block;
   float: left;
@@ -8270,6 +8279,7 @@ a {
   font-family: 'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
   font-size: 14px;
   line-height: 16px;
+  margin: auto;
   margin-right: 2px;
 }
 .metro .wizard .actions button.default {
@@ -8388,1405 +8398,29 @@ a {
   cursor: pointer;
 }
 .metro [data-role=panel] .panel-header:after {
-  font-family: iconFont;
-  content: "\e1b1";
+  font-family: metroSysIcons;
+  content: "\e000";
   float: right;
   color: inherit;
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  transform: rotate(180deg);
 }
 .metro [data-role=panel].collapsed .panel-header:after {
-  content: "\e1b3";
+  content: "\e000";
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  transform: rotate(90deg);
 }
 @font-face {
-  font-family: 'iconFont';
-  src: url('../fonts/iconFont.eot');
-  src: url('../fonts/iconFont.eot?#iefix') format('embedded-opentype'), url('../fonts/iconFont.woff') format('woff'), url('../fonts/iconFont.ttf') format('truetype'), url('../fonts/iconFont.svg#iconFont') format('svg');
+  font-family: 'metroSysIcons';
+  src: url('../fonts/metroSysIcons.woff') format('woff'), url('../fonts/metroSysIcons.ttf') format('truetype'), url('../fonts/metroSysIcons.svg#metroSysIcons') format('svg');
   font-weight: normal;
   font-style: normal;
-}
-.metro [data-icon]:before {
-  font-family: 'iconFont';
-  content: attr(data-icon);
-  speak: none;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-}
-.metro [class*="icon-"] {
-  font-family: 'iconFont';
-  speak: none;
-  font-style: normal;
-  font-weight: normal !important;
-  font-variant: normal;
-  text-transform: none;
-  text-decoration: inherit;
-  line-height: 1;
-  display: inline-block;
-  vertical-align: -8%;
-  -webkit-font-smoothing: antialiased;
-  font-size: inherit;
-}
-.metro [class*="icon-"].smaller {
-  font-size: .7em;
-  vertical-align: 6%;
-}
-.metro [class*="icon-"].large {
-  font-size: 1.2em;
-  vertical-align: -10%;
-}
-.metro .icon-newspaper:before {
-  content: "\e001";
-}
-.metro .icon-pencil:before {
-  content: "\e002";
-}
-.metro .icon-droplet:before {
-  content: "\e003";
-}
-.metro .icon-pictures:before {
-  content: "\e004";
-}
-.metro .icon-camera:before {
-  content: "\e005";
-}
-.metro .icon-music:before {
-  content: "\e006";
-}
-.metro .icon-film:before {
-  content: "\e007";
-}
-.metro .icon-camera-2:before {
-  content: "\e008";
-}
-.metro .icon-spades:before {
-  content: "\e009";
-}
-.metro .icon-clubs:before {
-  content: "\e00a";
-}
-.metro .icon-diamonds:before {
-  content: "\e00b";
-}
-.metro .icon-broadcast:before {
-  content: "\e00c";
-}
-.metro .icon-mic:before {
-  content: "\e00d";
-}
-.metro .icon-book:before {
-  content: "\e00e";
-}
-.metro .icon-file:before {
-  content: "\e00f";
-}
-.metro .icon-new:before {
-  content: "\e010";
-}
-.metro .icon-copy:before {
-  content: "\e011";
-}
-.metro .icon-folder:before {
-  content: "\e012";
-}
-.metro .icon-folder-2:before {
-  content: "\e013";
-}
-.metro .icon-tag:before {
-  content: "\e014";
-}
-.metro .icon-cart:before {
-  content: "\e015";
-}
-.metro .icon-basket:before {
-  content: "\e016";
-}
-.metro .icon-calculate:before {
-  content: "\e017";
-}
-.metro .icon-support:before {
-  content: "\e018";
-}
-.metro .icon-phone:before {
-  content: "\e019";
-}
-.metro .icon-mail:before {
-  content: "\e01a";
-}
-.metro .icon-location:before {
-  content: "\e01b";
-}
-.metro .icon-compass:before {
-  content: "\e01c";
-}
-.metro .icon-history:before {
-  content: "\e01d";
-}
-.metro .icon-clock:before {
-  content: "\e01e";
-}
-.metro .icon-bell:before {
-  content: "\e01f";
-}
-.metro .icon-calendar:before {
-  content: "\e020";
-}
-.metro .icon-printer:before {
-  content: "\e021";
-}
-.metro .icon-mouse:before {
-  content: "\e022";
-}
-.metro .icon-screen:before {
-  content: "\e023";
-}
-.metro .icon-laptop:before {
-  content: "\e024";
-}
-.metro .icon-mobile:before {
-  content: "\e025";
-}
-.metro .icon-cabinet:before {
-  content: "\e026";
-}
-.metro .icon-drawer:before {
-  content: "\e027";
-}
-.metro .icon-drawer-2:before {
-  content: "\e028";
-}
-.metro .icon-box:before {
-  content: "\e029";
-}
-.metro .icon-box-add:before {
-  content: "\e02a";
-}
-.metro .icon-box-remove:before {
-  content: "\e02b";
-}
-.metro .icon-download:before {
-  content: "\e02c";
-}
-.metro .icon-upload:before {
-  content: "\e02d";
-}
-.metro .icon-database:before {
-  content: "\e02e";
-}
-.metro .icon-flip:before {
-  content: "\e02f";
-}
-.metro .icon-flip-2:before {
-  content: "\e030";
-}
-.metro .icon-undo:before {
-  content: "\e031";
-}
-.metro .icon-redo:before {
-  content: "\e032";
-}
-.metro .icon-forward:before {
-  content: "\e033";
-}
-.metro .icon-reply:before {
-  content: "\e034";
-}
-.metro .icon-reply-2:before {
-  content: "\e035";
-}
-.metro .icon-comments:before {
-  content: "\e036";
-}
-.metro .icon-comments-2:before {
-  content: "\e037";
-}
-.metro .icon-comments-3:before {
-  content: "\e038";
-}
-.metro .icon-comments-4:before {
-  content: "\e039";
-}
-.metro .icon-comments-5:before {
-  content: "\e03a";
-}
-.metro .icon-user:before {
-  content: "\e03b";
-}
-.metro .icon-user-2:before {
-  content: "\e03c";
-}
-.metro .icon-user-3:before {
-  content: "\e03d";
-}
-.metro .icon-busy:before {
-  content: "\e03e";
-}
-.metro .icon-loading:before {
-  content: "\e03f";
-}
-.metro .icon-loading-2:before {
-  content: "\e040";
-}
-.metro .icon-search:before {
-  content: "\e041";
-}
-.metro .icon-zoom-in:before {
-  content: "\e042";
-}
-.metro .icon-zoom-out:before {
-  content: "\e043";
-}
-.metro .icon-key:before {
-  content: "\e044";
-}
-.metro .icon-key-2:before {
-  content: "\e045";
-}
-.metro .icon-locked:before {
-  content: "\e046";
-}
-.metro .icon-unlocked:before {
-  content: "\e047";
-}
-.metro .icon-wrench:before {
-  content: "\e048";
-}
-.metro .icon-equalizer:before {
-  content: "\e049";
-}
-.metro .icon-cog:before {
-  content: "\e04a";
-}
-.metro .icon-pie:before {
-  content: "\e04b";
-}
-.metro .icon-bars:before {
-  content: "\e04c";
-}
-.metro .icon-stats-up:before {
-  content: "\e04d";
-}
-.metro .icon-gift:before {
-  content: "\e04e";
-}
-.metro .icon-trophy:before {
-  content: "\e04f";
-}
-.metro .icon-diamond:before {
-  content: "\e050";
-}
-.metro .icon-coffee:before {
-  content: "\e051";
-}
-.metro .icon-rocket:before {
-  content: "\e052";
-}
-.metro .icon-meter-slow:before {
-  content: "\e053";
-}
-.metro .icon-meter-medium:before {
-  content: "\e054";
-}
-.metro .icon-meter-fast:before {
-  content: "\e055";
-}
-.metro .icon-dashboard:before {
-  content: "\e056";
-}
-.metro .icon-fire:before {
-  content: "\e057";
-}
-.metro .icon-lab:before {
-  content: "\e058";
-}
-.metro .icon-remove:before {
-  content: "\e059";
-}
-.metro .icon-briefcase:before {
-  content: "\e05a";
-}
-.metro .icon-briefcase-2:before {
-  content: "\e05b";
-}
-.metro .icon-cars:before {
-  content: "\e05c";
-}
-.metro .icon-bus:before {
-  content: "\e05d";
-}
-.metro .icon-cube:before {
-  content: "\e05e";
-}
-.metro .icon-cube-2:before {
-  content: "\e05f";
-}
-.metro .icon-puzzle:before {
-  content: "\e060";
-}
-.metro .icon-glasses:before {
-  content: "\e061";
-}
-.metro .icon-glasses-2:before {
-  content: "\e062";
-}
-.metro .icon-accessibility:before {
-  content: "\e063";
-}
-.metro .icon-accessibility-2:before {
-  content: "\e064";
-}
-.metro .icon-target:before {
-  content: "\e065";
-}
-.metro .icon-target-2:before {
-  content: "\e066";
-}
-.metro .icon-lightning:before {
-  content: "\e067";
-}
-.metro .icon-power:before {
-  content: "\e068";
-}
-.metro .icon-power-2:before {
-  content: "\e069";
-}
-.metro .icon-clipboard:before {
-  content: "\e06a";
-}
-.metro .icon-clipboard-2:before {
-  content: "\e06b";
-}
-.metro .icon-playlist:before {
-  content: "\e06c";
-}
-.metro .icon-grid-view:before {
-  content: "\e06d";
-}
-.metro .icon-tree-view:before {
-  content: "\e06e";
-}
-.metro .icon-cloud:before {
-  content: "\e06f";
-}
-.metro .icon-cloud-2:before {
-  content: "\e070";
-}
-.metro .icon-download-2:before {
-  content: "\e071";
-}
-.metro .icon-upload-2:before {
-  content: "\e072";
-}
-.metro .icon-upload-3:before {
-  content: "\e073";
-}
-.metro .icon-link:before {
-  content: "\e074";
-}
-.metro .icon-link-2:before {
-  content: "\e075";
-}
-.metro .icon-flag:before {
-  content: "\e076";
-}
-.metro .icon-flag-2:before {
-  content: "\e077";
-}
-.metro .icon-attachment:before {
-  content: "\e078";
-}
-.metro .icon-eye:before {
-  content: "\e079";
-}
-.metro .icon-bookmark:before {
-  content: "\e07a";
-}
-.metro .icon-bookmark-2:before {
-  content: "\e07b";
-}
-.metro .icon-star:before {
-  content: "\e07c";
-}
-.metro .icon-star-2:before {
-  content: "\e07d";
-}
-.metro .icon-star-3:before {
-  content: "\e07e";
-}
-.metro .icon-heart:before {
-  content: "\e07f";
-}
-.metro .icon-heart-2:before {
-  content: "\e080";
-}
-.metro .icon-thumbs-up:before {
-  content: "\e081";
-}
-.metro .icon-thumbs-down:before {
-  content: "\e082";
-}
-.metro .icon-plus:before {
-  content: "\e083";
-}
-.metro .icon-minus:before {
-  content: "\e084";
-}
-.metro .icon-help:before {
-  content: "\e085";
-}
-.metro .icon-help-2:before {
-  content: "\e086";
-}
-.metro .icon-blocked:before {
-  content: "\e087";
-}
-.metro .icon-cancel:before {
-  content: "\e088";
-}
-.metro .icon-cancel-2:before {
-  content: "\e089";
-}
-.metro .icon-checkmark:before {
-  content: "\e08a";
-}
-.metro .icon-minus-2:before {
-  content: "\e08b";
-}
-.metro .icon-plus-2:before {
-  content: "\e08c";
-}
-.metro .icon-enter:before {
-  content: "\e08d";
-}
-.metro .icon-exit:before {
-  content: "\e08e";
-}
-.metro .icon-loop:before {
-  content: "\e08f";
-}
-.metro .icon-arrow-up-left:before {
-  content: "\e090";
-}
-.metro .icon-arrow-up:before {
-  content: "\e091";
-}
-.metro .icon-arrow-up-right:before {
-  content: "\e092";
-}
-.metro .icon-arrow-right:before {
-  content: "\e093";
-}
-.metro .icon-arrow-down-right:before {
-  content: "\e094";
-}
-.metro .icon-arrow-down:before {
-  content: "\e095";
-}
-.metro .icon-arrow-down-left:before {
-  content: "\e096";
-}
-.metro .icon-arrow-left:before {
-  content: "\e097";
-}
-.metro .icon-arrow-up-2:before {
-  content: "\e098";
-}
-.metro .icon-arrow-right-2:before {
-  content: "\e099";
-}
-.metro .icon-arrow-down-2:before {
-  content: "\e09a";
-}
-.metro .icon-arrow-left-2:before {
-  content: "\e09b";
-}
-.metro .icon-arrow-up-3:before {
-  content: "\e09c";
-}
-.metro .icon-arrow-right-3:before {
-  content: "\e09d";
-}
-.metro .icon-arrow-down-3:before {
-  content: "\e09e";
-}
-.metro .icon-arrow-left-3:before {
-  content: "\e09f";
-}
-.metro .icon-menu:before {
-  content: "\e0a0";
-}
-.metro .icon-enter-2:before {
-  content: "\e0a1";
-}
-.metro .icon-backspace:before {
-  content: "\e0a2";
-}
-.metro .icon-backspace-2:before {
-  content: "\e0a3";
-}
-.metro .icon-tab:before {
-  content: "\e0a4";
-}
-.metro .icon-tab-2:before {
-  content: "\e0a5";
-}
-.metro .icon-checkbox:before {
-  content: "\e0a6";
-}
-.metro .icon-checkbox-unchecked:before {
-  content: "\e0a7";
-}
-.metro .icon-checkbox-partial:before {
-  content: "\e0a8";
-}
-.metro .icon-radio-checked:before {
-  content: "\e0a9";
-}
-.metro .icon-radio-unchecked:before {
-  content: "\e0aa";
-}
-.metro .icon-font:before {
-  content: "\e0ab";
-}
-.metro .icon-paragraph-left:before {
-  content: "\e0ac";
-}
-.metro .icon-paragraph-center:before {
-  content: "\e0ad";
-}
-.metro .icon-paragraph-right:before {
-  content: "\e0ae";
-}
-.metro .icon-paragraph-justify:before {
-  content: "\e0af";
-}
-.metro .icon-left-to-right:before {
-  content: "\e0b0";
-}
-.metro .icon-right-to-left:before {
-  content: "\e0b1";
-}
-.metro .icon-share:before {
-  content: "\e0b2";
-}
-.metro .icon-new-tab:before {
-  content: "\e0b3";
-}
-.metro .icon-new-tab-2:before {
-  content: "\e0b4";
-}
-.metro .icon-embed:before {
-  content: "\e0b5";
-}
-.metro .icon-code:before {
-  content: "\e0b6";
-}
-.metro .icon-bluetooth:before {
-  content: "\e0b7";
-}
-.metro .icon-share-2:before {
-  content: "\e0b8";
-}
-.metro .icon-share-3:before {
-  content: "\e0b9";
-}
-.metro .icon-mail-2:before {
-  content: "\e0ba";
-}
-.metro .icon-google:before {
-  content: "\e0bb";
-}
-.metro .icon-google-plus:before {
-  content: "\e0bc";
-}
-.metro .icon-google-drive:before {
-  content: "\e0bd";
-}
-.metro .icon-facebook:before {
-  content: "\e0be";
-}
-.metro .icon-instagram:before {
-  content: "\e0bf";
-}
-.metro .icon-twitter:before {
-  content: "\e0c0";
-}
-.metro .icon-feed:before {
-  content: "\e0c1";
-}
-.metro .icon-youtube:before {
-  content: "\e0c2";
-}
-.metro .icon-vimeo:before {
-  content: "\e0c3";
-}
-.metro .icon-flickr:before {
-  content: "\e0c4";
-}
-.metro .icon-picassa:before {
-  content: "\e0c5";
-}
-.metro .icon-dribbble:before {
-  content: "\e0c6";
-}
-.metro .icon-deviantart:before {
-  content: "\e0c7";
-}
-.metro .icon-github:before {
-  content: "\e0c8";
-}
-.metro .icon-github-2:before {
-  content: "\e0c9";
-}
-.metro .icon-github-3:before {
-  content: "\e0ca";
-}
-.metro .icon-github-4:before {
-  content: "\e0cb";
-}
-.metro .icon-github-5:before {
-  content: "\e0cc";
-}
-.metro .icon-git:before {
-  content: "\e0cd";
-}
-.metro .icon-github-6:before {
-  content: "\e0ce";
-}
-.metro .icon-wordpress:before {
-  content: "\e0cf";
-}
-.metro .icon-joomla:before {
-  content: "\e0d0";
-}
-.metro .icon-blogger:before {
-  content: "\e0d1";
-}
-.metro .icon-tumblr:before {
-  content: "\e0d2";
-}
-.metro .icon-yahoo:before {
-  content: "\e0d3";
-}
-.metro .icon-amazon:before {
-  content: "\e0d4";
-}
-.metro .icon-tux:before {
-  content: "\e0d5";
-}
-.metro .icon-apple:before {
-  content: "\e0d6";
-}
-.metro .icon-finder:before {
-  content: "\e0d7";
-}
-.metro .icon-android:before {
-  content: "\e0d8";
-}
-.metro .icon-windows:before {
-  content: "\e0d9";
-}
-.metro .icon-soundcloud:before {
-  content: "\e0da";
-}
-.metro .icon-skype:before {
-  content: "\e0db";
-}
-.metro .icon-reddit:before {
-  content: "\e0dc";
-}
-.metro .icon-linkedin:before {
-  content: "\e0dd";
-}
-.metro .icon-lastfm:before {
-  content: "\e0de";
-}
-.metro .icon-delicious:before {
-  content: "\e0df";
-}
-.metro .icon-stumbleupon:before {
-  content: "\e0e0";
-}
-.metro .icon-pinterest:before {
-  content: "\e0e1";
-}
-.metro .icon-xing:before {
-  content: "\e0e2";
-}
-.metro .icon-flattr:before {
-  content: "\e0e3";
-}
-.metro .icon-foursquare:before {
-  content: "\e0e4";
-}
-.metro .icon-paypal:before {
-  content: "\e0e5";
-}
-.metro .icon-yelp:before {
-  content: "\e0e6";
-}
-.metro .icon-libreoffice:before {
-  content: "\e0e7";
-}
-.metro .icon-file-pdf:before {
-  content: "\e0e8";
-}
-.metro .icon-file-openoffice:before {
-  content: "\e0e9";
-}
-.metro .icon-file-word:before {
-  content: "\e0ea";
-}
-.metro .icon-file-excel:before {
-  content: "\e0eb";
-}
-.metro .icon-file-powerpoint:before {
-  content: "\e0ec";
-}
-.metro .icon-file-zip:before {
-  content: "\e0ed";
-}
-.metro .icon-file-xml:before {
-  content: "\e0ee";
-}
-.metro .icon-file-css:before {
-  content: "\e0ef";
-}
-.metro .icon-html5:before {
-  content: "\e0f0";
-}
-.metro .icon-html5-2:before {
-  content: "\e0f1";
-}
-.metro .icon-css3:before {
-  content: "\e0f2";
-}
-.metro .icon-chrome:before {
-  content: "\e0f3";
-}
-.metro .icon-firefox:before {
-  content: "\e0f4";
-}
-.metro .icon-IE:before {
-  content: "\e0f5";
-}
-.metro .icon-opera:before {
-  content: "\e0f6";
-}
-.metro .icon-safari:before {
-  content: "\e0f7";
-}
-.metro .icon-IcoMoon:before {
-  content: "\e0f8";
-}
-.metro .icon-sunrise:before {
-  content: "\e0f9";
-}
-.metro .icon-sun:before {
-  content: "\e0fa";
-}
-.metro .icon-moon:before {
-  content: "\e0fb";
-}
-.metro .icon-sun-2:before {
-  content: "\e0fc";
-}
-.metro .icon-windy:before {
-  content: "\e0fd";
-}
-.metro .icon-wind:before {
-  content: "\e0fe";
-}
-.metro .icon-snowflake:before {
-  content: "\e0ff";
-}
-.metro .icon-cloudy:before {
-  content: "\e100";
-}
-.metro .icon-cloud-3:before {
-  content: "\e101";
-}
-.metro .icon-weather:before {
-  content: "\e102";
-}
-.metro .icon-weather-2:before {
-  content: "\e103";
-}
-.metro .icon-weather-3:before {
-  content: "\e104";
-}
-.metro .icon-lines:before {
-  content: "\e105";
-}
-.metro .icon-cloud-4:before {
-  content: "\e106";
-}
-.metro .icon-lightning-2:before {
-  content: "\e107";
-}
-.metro .icon-lightning-3:before {
-  content: "\e108";
-}
-.metro .icon-rainy:before {
-  content: "\e109";
-}
-.metro .icon-rainy-2:before {
-  content: "\e10a";
-}
-.metro .icon-windy-2:before {
-  content: "\e10b";
-}
-.metro .icon-windy-3:before {
-  content: "\e10c";
-}
-.metro .icon-snowy:before {
-  content: "\e10d";
-}
-.metro .icon-snowy-2:before {
-  content: "\e10e";
-}
-.metro .icon-snowy-3:before {
-  content: "\e10f";
-}
-.metro .icon-weather-4:before {
-  content: "\e110";
-}
-.metro .icon-cloudy-2:before {
-  content: "\e111";
-}
-.metro .icon-cloud-5:before {
-  content: "\e112";
-}
-.metro .icon-lightning-4:before {
-  content: "\e113";
-}
-.metro .icon-sun-3:before {
-  content: "\e114";
-}
-.metro .icon-moon-2:before {
-  content: "\e115";
-}
-.metro .icon-cloudy-3:before {
-  content: "\e116";
-}
-.metro .icon-cloud-6:before {
-  content: "\e117";
-}
-.metro .icon-cloud-7:before {
-  content: "\e118";
-}
-.metro .icon-lightning-5:before {
-  content: "\e119";
-}
-.metro .icon-rainy-3:before {
-  content: "\e11a";
-}
-.metro .icon-rainy-4:before {
-  content: "\e11b";
-}
-.metro .icon-windy-4:before {
-  content: "\e11c";
-}
-.metro .icon-windy-5:before {
-  content: "\e11d";
-}
-.metro .icon-snowy-4:before {
-  content: "\e11e";
-}
-.metro .icon-snowy-5:before {
-  content: "\e11f";
-}
-.metro .icon-weather-5:before {
-  content: "\e120";
-}
-.metro .icon-cloudy-4:before {
-  content: "\e121";
-}
-.metro .icon-lightning-6:before {
-  content: "\e122";
-}
-.metro .icon-thermometer:before {
-  content: "\e123";
-}
-.metro .icon-compass-2:before {
-  content: "\e124";
-}
-.metro .icon-none:before {
-  content: "\e125";
-}
-.metro .icon-Celsius:before {
-  content: "\e126";
-}
-.metro .icon-Fahrenheit:before {
-  content: "\e127";
-}
-.metro .icon-forrst:before {
-  content: "\e128";
-}
-.metro .icon-headphones:before {
-  content: "\e129";
-}
-.metro .icon-bug:before {
-  content: "\e12a";
-}
-.metro .icon-cart-2:before {
-  content: "\e12b";
-}
-.metro .icon-earth:before {
-  content: "\e12c";
-}
-.metro .icon-battery:before {
-  content: "\e12d";
-}
-.metro .icon-list:before {
-  content: "\e12e";
-}
-.metro .icon-grid:before {
-  content: "\e12f";
-}
-.metro .icon-alarm:before {
-  content: "\e130";
-}
-.metro .icon-location-2:before {
-  content: "\e131";
-}
-.metro .icon-pointer:before {
-  content: "\e132";
-}
-.metro .icon-diary:before {
-  content: "\e133";
-}
-.metro .icon-eye-2:before {
-  content: "\e134";
-}
-.metro .icon-console:before {
-  content: "\e135";
-}
-.metro .icon-location-3:before {
-  content: "\e136";
-}
-.metro .icon-move:before {
-  content: "\e137";
-}
-.metro .icon-gift-2:before {
-  content: "\e138";
-}
-.metro .icon-monitor:before {
-  content: "\e139";
-}
-.metro .icon-mobile-2:before {
-  content: "\e13a";
-}
-.metro .icon-switch:before {
-  content: "\e13b";
-}
-.metro .icon-star-4:before {
-  content: "\e13c";
-}
-.metro .icon-address-book:before {
-  content: "\e13d";
-}
-.metro .icon-shit:before {
-  content: "\e13e";
-}
-.metro .icon-cone:before {
-  content: "\e13f";
-}
-.metro .icon-credit-card:before {
-  content: "\e140";
-}
-.metro .icon-type:before {
-  content: "\e141";
-}
-.metro .icon-volume:before {
-  content: "\e142";
-}
-.metro .icon-volume-2:before {
-  content: "\e143";
-}
-.metro .icon-locked-2:before {
-  content: "\e144";
-}
-.metro .icon-warning:before {
-  content: "\e145";
-}
-.metro .icon-info:before {
-  content: "\e146";
-}
-.metro .icon-filter:before {
-  content: "\e147";
-}
-.metro .icon-bookmark-3:before {
-  content: "\e148";
-}
-.metro .icon-bookmark-4:before {
-  content: "\e149";
-}
-.metro .icon-stats:before {
-  content: "\e14a";
-}
-.metro .icon-compass-3:before {
-  content: "\e14b";
-}
-.metro .icon-keyboard:before {
-  content: "\e14c";
-}
-.metro .icon-award-fill:before {
-  content: "\e14d";
-}
-.metro .icon-award-stroke:before {
-  content: "\e14e";
-}
-.metro .icon-beaker-alt:before {
-  content: "\e14f";
-}
-.metro .icon-beaker:before {
-  content: "\e150";
-}
-.metro .icon-move-vertical:before {
-  content: "\e151";
-}
-.metro .icon-move-horizontal:before {
-  content: "\e152";
-}
-.metro .icon-steering-wheel:before {
-  content: "\e153";
-}
-.metro .icon-volume-3:before {
-  content: "\e154";
-}
-.metro .icon-volume-mute:before {
-  content: "\e155";
-}
-.metro .icon-play:before {
-  content: "\e156";
-}
-.metro .icon-pause:before {
-  content: "\e157";
-}
-.metro .icon-stop:before {
-  content: "\e158";
-}
-.metro .icon-eject:before {
-  content: "\e159";
-}
-.metro .icon-first:before {
-  content: "\e15a";
-}
-.metro .icon-last:before {
-  content: "\e15b";
-}
-.metro .icon-play-alt:before {
-  content: "\e15c";
-}
-.metro .icon-battery-charging:before {
-  content: "\e160";
-}
-.metro .icon-left-quote:before {
-  content: "\e161";
-}
-.metro .icon-right-quote:before {
-  content: "\e162";
-}
-.metro .icon-left-quote-alt:before {
-  content: "\e163";
-}
-.metro .icon-right-quote-alt:before {
-  content: "\e164";
-}
-.metro .icon-smiley:before {
-  content: "\e165";
-}
-.metro .icon-umbrella:before {
-  content: "\e166";
-}
-.metro .icon-info-2:before {
-  content: "\e167";
-}
-.metro .icon-chart-alt:before {
-  content: "\e168";
-}
-.metro .icon-at:before {
-  content: "\e169";
-}
-.metro .icon-hash:before {
-  content: "\e16a";
-}
-.metro .icon-pilcrow:before {
-  content: "\e16b";
-}
-.metro .icon-fullscreen-alt:before {
-  content: "\e16c";
-}
-.metro .icon-fullscreen-exit-alt:before {
-  content: "\e16d";
-}
-.metro .icon-layers-alt:before {
-  content: "\e16e";
-}
-.metro .icon-layers:before {
-  content: "\e16f";
-}
-.metro .icon-floppy:before {
-  content: "\e170";
-}
-.metro .icon-rainbow:before {
-  content: "\e000";
-}
-.metro .icon-air:before {
-  content: "\e171";
-}
-.metro .icon-home:before {
-  content: "\e172";
-}
-.metro .icon-spin:before {
-  content: "\e173";
-}
-.metro .icon-auction:before {
-  content: "\e174";
-}
-.metro .icon-dollar:before {
-  content: "\e175";
-}
-.metro .icon-dollar-2:before {
-  content: "\e176";
-}
-.metro .icon-coins:before {
-  content: "\e177";
-}
-.metro .icon-file-2:before {
-  content: "\e186";
-}
-.metro .icon-file-3:before {
-  content: "\e187";
-}
-.metro .icon-file-4:before {
-  content: "\e188";
-}
-.metro .icon-files:before {
-  content: "\e189";
-}
-.metro .icon-phone-2:before {
-  content: "\e18a";
-}
-.metro .icon-tablet:before {
-  content: "\e18b";
-}
-.metro .icon-monitor-2:before {
-  content: "\e18c";
-}
-.metro .icon-window:before {
-  content: "\e18d";
-}
-.metro .icon-tv:before {
-  content: "\e18e";
-}
-.metro .icon-camera-3:before {
-  content: "\e18f";
-}
-.metro .icon-image:before {
-  content: "\e190";
-}
-.metro .icon-open:before {
-  content: "\e191";
-}
-.metro .icon-sale:before {
-  content: "\e192";
-}
-.metro .icon-direction:before {
-  content: "\e193";
-}
-.metro .icon-medal:before {
-  content: "\e194";
-}
-.metro .icon-medal-2:before {
-  content: "\e195";
-}
-.metro .icon-satellite:before {
-  content: "\e196";
-}
-.metro .icon-discout:before {
-  content: "\e197";
-}
-.metro .icon-barcode:before {
-  content: "\e198";
-}
-.metro .icon-ticket:before {
-  content: "\e199";
-}
-.metro .icon-shipping:before {
-  content: "\e19a";
-}
-.metro .icon-globe:before {
-  content: "\e19b";
-}
-.metro .icon-anchor:before {
-  content: "\e19c";
-}
-.metro .icon-pop-out:before {
-  content: "\e19d";
-}
-.metro .icon-pop-in:before {
-  content: "\e19e";
-}
-.metro .icon-resize:before {
-  content: "\e178";
-}
-.metro .icon-battery-2:before {
-  content: "\e179";
-}
-.metro .icon-battery-3:before {
-  content: "\e17a";
-}
-.metro .icon-battery-4:before {
-  content: "\e17b";
-}
-.metro .icon-battery-5:before {
-  content: "\e17c";
-}
-.metro .icon-tools:before {
-  content: "\e17d";
-}
-.metro .icon-alarm-2:before {
-  content: "\e17e";
-}
-.metro .icon-alarm-cancel:before {
-  content: "\e17f";
-}
-.metro .icon-alarm-clock:before {
-  content: "\e180";
-}
-.metro .icon-chronometer:before {
-  content: "\e181";
-}
-.metro .icon-ruler:before {
-  content: "\e182";
-}
-.metro .icon-lamp:before {
-  content: "\e183";
-}
-.metro .icon-lamp-2:before {
-  content: "\e184";
-}
-.metro .icon-scissors:before {
-  content: "\e185";
-}
-.metro .icon-volume-4:before {
-  content: "\e19f";
-}
-.metro .icon-volume-5:before {
-  content: "\e1a0";
-}
-.metro .icon-volume-6:before {
-  content: "\e1a1";
-}
-.metro .icon-battery-full:before {
-  content: "\e15f";
-}
-.metro .icon-battery-empty:before {
-  content: "\e15d";
-}
-.metro .icon-battery-half:before {
-  content: "\e15e";
-}
-.metro .icon-zip:before {
-  content: "\e1a2";
-}
-.metro .icon-zip-2:before {
-  content: "\e1a3";
-}
-.metro .icon-play-2:before {
-  content: "\e1a4";
-}
-.metro .icon-pause-2:before {
-  content: "\e1a5";
-}
-.metro .icon-record:before {
-  content: "\e1a6";
-}
-.metro .icon-stop-2:before {
-  content: "\e1a7";
-}
-.metro .icon-next:before {
-  content: "\e1a8";
-}
-.metro .icon-previous:before {
-  content: "\e1a9";
-}
-.metro .icon-first-2:before {
-  content: "\e1aa";
-}
-.metro .icon-last-2:before {
-  content: "\e1ab";
-}
-.metro .icon-arrow-left-4:before {
-  content: "\e1ac";
-}
-.metro .icon-arrow-down-4:before {
-  content: "\e1ad";
-}
-.metro .icon-arrow-up-4:before {
-  content: "\e1ae";
-}
-.metro .icon-arrow-right-4:before {
-  content: "\e1af";
-}
-.metro .icon-arrow-left-5:before {
-  content: "\e1b0";
-}
-.metro .icon-arrow-down-5:before {
-  content: "\e1b1";
-}
-.metro .icon-arrow-up-5:before {
-  content: "\e1b2";
-}
-.metro .icon-arrow-right-5:before {
-  content: "\e1b3";
-}
-.metro .icon-cc:before {
-  content: "\e1b4";
-}
-.metro .icon-cc-by:before {
-  content: "\e1b5";
-}
-.metro .icon-cc-nc:before {
-  content: "\e1b6";
-}
-.metro .icon-cc-nc-eu:before {
-  content: "\e1b7";
-}
-.metro .icon-cc-nc-jp:before {
-  content: "\e1b8";
-}
-.metro .icon-cc-sa:before {
-  content: "\e1b9";
-}
-.metro .icon-cc-nd:before {
-  content: "\e1ba";
-}
-.metro .icon-cc-pd:before {
-  content: "\e1bb";
-}
-.metro .icon-cc-zero:before {
-  content: "\e1bc";
-}
-.metro .icon-cc-share:before {
-  content: "\e1bd";
-}
-.metro .icon-cc-share-2:before {
-  content: "\e1be";
-}
-.metro .icon-cycle:before {
-  content: "\e1bf";
-}
-.metro .icon-stop-3:before {
-  content: "\e1c0";
-}
-.metro .icon-stats-2:before {
-  content: "\e1c1";
-}
-.metro .icon-stats-3:before {
-  content: "\e1c2";
 }
 .metro .example {
   padding: 20px 40px 20px 60px;
