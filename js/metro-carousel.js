@@ -124,7 +124,7 @@
             // don't calculate transition for null, it will just be a show()
             if (this.slideIndex() !== null)
                 // If slideIndex is out of bounds continue to scroll cyclically
-                if ((newIndex > this.slideIndex() || newIndex < 0) && newIndex < this._slides.length) {
+                if (newIndex > this.slideIndex()) {
                     outPosition = -this.element.width();
                 } else {
                     outPosition = this.element.width();
