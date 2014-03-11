@@ -168,9 +168,10 @@
 
         slideIndex: function (index) {
             if (index !== undefined) {
+                var trigger = index !== this._slideIndex;
                 this._slideIndex = this._slideToSlide(index);
-                if (index === this._slideIndex) return;
-                this.element.trigger('slidechange', this._slideIndex);
+                if (trigger)
+                    this.element.trigger('slidechange', this._slideIndex);
             }
             else
                 return this._slideIndex;
