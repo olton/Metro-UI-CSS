@@ -88,7 +88,7 @@
 			if(this._notify != undefined) {
 				var self = this;
         	   		this._notify.hide('slow', function() {
-					self.remove();
+					$(this).remove();
 					_notifies.splice(_notifies.indexOf(self._notify), 1);
 				});
 				return this;
