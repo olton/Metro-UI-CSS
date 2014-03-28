@@ -83,6 +83,50 @@
     .container {
         #responsive-utils > .container-large;
     }
+
+    @gridSize:          @containerLargeSize;
+    @columnSize:        (@gridSize - 11*24) / 12;
+    @gutterSize:        24px;
+
+    .metro .grid {
+
+      margin-bottom: @gutterSize !important;
+
+      .row {
+        margin-top: @gutterSize !important;
+        &:first-child {
+          margin-top: 0 !important;
+        }
+        [class*="span"] {
+            margin-left: @gutterSize !important;
+        }
+        .span1, .size1 {.spanX(1, @columnSize, @gutterSize) !important;}
+        .span2, .size2 {.spanX(2, @columnSize, @gutterSize) !important;}
+        .span3, .size3 {.spanX(3, @columnSize, @gutterSize) !important;}
+        .span4, .size4 {.spanX(4, @columnSize, @gutterSize) !important;}
+        .span5, .size5 {.spanX(5, @columnSize, @gutterSize) !important;}
+        .span6, .size6 {.spanX(6, @columnSize, @gutterSize) !important;}
+        .span7, .size7 {.spanX(7, @columnSize, @gutterSize) !important;}
+        .span8, .size8 {.spanX(8, @columnSize, @gutterSize) !important;}
+        .span9, .size9 {.spanX(9, @columnSize, @gutterSize) !important;}
+        .span10, .size10 {.spanX(10, @columnSize, @gutterSize) !important;}
+        .span11, .size11 {.spanX(11, @columnSize, @gutterSize) !important;}
+        .span12, .size12 {.spanX(12, @columnSize, @gutterSize) !important;}
+
+        .offset1 {.offsetX(1, @columnSize, @gutterSize) !important;}
+        .offset2 {.offsetX(2, @columnSize, @gutterSize) !important;}
+        .offset3 {.offsetX(3, @columnSize, @gutterSize) !important;}
+        .offset4 {.offsetX(4, @columnSize, @gutterSize) !important;}
+        .offset5 {.offsetX(5, @columnSize, @gutterSize) !important;}
+        .offset6 {.offsetX(6, @columnSize, @gutterSize) !important;}
+        .offset7 {.offsetX(7, @columnSize, @gutterSize) !important;}
+        .offset8 {.offsetX(8, @columnSize, @gutterSize) !important;}
+        .offset9 {.offsetX(9, @columnSize, @gutterSize) !important;}
+        .offset10 {.offsetX(10, @columnSize, @gutterSize) !important;}
+        .offset11 {.offsetX(11, @columnSize, @gutterSize) !important;}
+        .offset12 {.offsetX(12, @columnSize, @gutterSize) !important;}
+      }
+    }
 }
 
 /* tablet landscape*/
