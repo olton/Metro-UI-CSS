@@ -83,12 +83,13 @@
 		},
 		
 		_hide: function() {
-			this.clear();
+		    this.clear();
 		
-			if(this._notify != undefined) {
-        	   	this._notify.hide('slow', function() {
-					this.remove();
-					_notifies.splice(_notifies.indexOf(this._notify), 1);
+		    if (this._notify != undefined) {
+		        var notifyIndex = _notifies.indexOf(this._notify);
+			    this._notify.hide('slow', function () {
+			                _notifies[notifyIndex].remove();
+					_notifies.splice(notifyIndex, 1);
 				});
 				return this;
 			} else {
