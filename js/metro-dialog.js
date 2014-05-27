@@ -110,6 +110,7 @@
 
         _caption.appendTo(_window);
         _content.appendTo(_window);
+        _footer.appendTo(_window);
         _window.appendTo(_overlay);
 
         if (params.width != 'auto') _window.css('min-width', params.width);
