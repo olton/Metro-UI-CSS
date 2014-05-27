@@ -1,2 +1,6 @@
 .idea
+.zip
 *id_rsa*
+*.nupkg
+
+node_modules

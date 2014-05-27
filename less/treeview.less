@@ -1,0 +1,96 @@
+.treeview {
+    background-color: #fdfdfd;
+    color: @gray;
+    display: block;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    ul {
+        color: @gray;
+        display: block;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+            a {
+                padding: 0 0 0 15px;
+            }
+        }
+    }
+
+    a {
+        font-size: 12px;
+        color: inherit;
+        display: block;
+    }
+
+    .node {
+        & > a {
+            margin-bottom: 5px;
+            padding: 0 0 0 15px;
+            font-size: 12px;
+            position: relative;
+            color: #000;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        &:not(:first-child) {
+            margin-top: 0;
+        }
+    }
+
+    .node-toggle {
+        display: inline-block;
+        position: relative;
+        float: left;
+        margin-right: 3px;
+        width: 10px;
+        height: 10px;
+        &:before {
+            position: absolute;
+            display: block;
+            left: 2px;
+            top: 0;
+            content: '';
+
+            width: 0;
+            height: 0;
+            border-left: 7px solid transparent;
+            border-top: 7px solid transparent;
+            border-bottom: 7px @dark solid;
+        }
+        &:hover {
+            &:before {
+                border-bottom-color: @cobalt;
+            }
+        }
+    }
+
+    li.collapsed {
+        .node-toggle:before {
+            .rotate(-45deg);
+            margin-left: -4px;
+        }
+    }
+
+    li {
+        a:hover {
+            background-color: @lwListBackgroundHoverColor;
+        }
+    }
+
+    .active {
+        background-color: #e1e1e1;
+        font-weight: bold;
+        color: @dark;
+    }
+
+    a {
+        .value {
+            color: #0067cb;
+        }
+    }
+}

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="product" content="Metro UI CSS Framework">
+    <meta name="description" content="Simple responsive css framework">
+    <meta name="author" content="Sergey S. Pimenov, Ukraine, Kiev">
+
+    <link href="css/metro-bootstrap.css" rel="stylesheet">
+    <link href="css/metro-bootstrap-responsive.css" rel="stylesheet">
+    <link href="css/iconFont.css" rel="stylesheet">
+    <link href="css/docs.css" rel="stylesheet">
+    <link href="js/prettify/prettify.css" rel="stylesheet">
+
+    <!-- Load JavaScript Libraries -->
+    <script src="js/jquery/jquery.min.js"></script>
+    <script src="js/jquery/jquery.widget.min.js"></script>
+    <script src="js/jquery/jquery.mousewheel.js"></script>
+    <script src="js/prettify/prettify.js"></script>
+
+    <!-- Metro UI CSS JavaScript plugins -->
+    <script src="js/load-metro.js"></script>
+
+    <!-- Local JavaScript -->
+    <script src="js/docs.js"></script>
+    <script src="js/github.info.js"></script>
+
+    <title>Metro UI CSS : Metro Bootstrap CSS Library</title>
+</head>
+<body class="metro">
+    <header class="bg-dark" data-load="header.html"></header>
+    <div class="container">
+                <h1>
+                    <a href="/"><i class="icon-arrow-left-3 fg-darker smaller"></i></a>
+                    TreeView<small class="on-right">component</small>
+                </h1>
+
+                            <div class="example">
+                                <ul class="treeview" data-role="treeview">
+                                    <li class="node">
+
+                                        <a href="#"><span class="node-toggle"></span>sergey@pimenov.com.ua</a>
+                                        <ul>
+                                            <li><a href="#">Inbox</a></li>
+                                            <li><a href="#">Outbox</a></li>
+                                            <li><a href="#">Drafts</a></li>
+                                            <li><a href="#">Rss-channels</a></li>
+                                            <li><a href="#">Trash <span class="value">[5]</span></a></li>
+                                            <li class="node">
+
+                                                <a href="#"><span class="node-toggle"></span>subnode</a>
+                                                <ul>
+                                                    <li><a href="#">Inbox</a></li>
+                                                    <li><a href="#">Outbox</a></li>
+                                                    <li><a href="#">Drafts</a></li>
+                                                    <li><a href="#">Rss-channels</a></li>
+                                                    <li><a href="#">Trash</a></li>
+                                                    <li class="node">
+
+                                                        <a href="#"><span class="node-toggle"></span>subnode 2</a>
+                                                        <ul>
+                                                            <li><a href="#">Inbox</a></li>
+                                                            <li><a href="#">Outbox</a></li>
+                                                            <li><a href="#">Drafts</a></li>
+                                                            <li><a href="#">Rss-channels</a></li>
+                                                            <li><a href="#">Trash</a></li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="node">
+
+                                        <a href="#"><span class="node-toggle"></span>support@metroui.net</a>
+                                        <ul>
+                                            <li><a href="#">Inbox</a></li>
+                                            <li><a href="#">Outbox</a></li>
+                                            <li><a href="#">Drafts</a></li>
+                                            <li><a href="#">Rss-channels</a></li>
+                                            <li><a href="#">Trash</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="node collapsed">
+
+                                        <a href="#"><span class="node-toggle"></span>info@metroui.net</a>
+                                        <ul>
+                                            <li><a href="#">Inbox</a></li>
+                                            <li><a href="#">Outbox</a></li>
+                                            <li><a href="#">Drafts</a></li>
+                                            <li><a href="#">Rss-channels</a></li>
+                                            <li><a href="#">Trash</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                            <p>
+                                This component required <code>metro-treevew.js</code>
+                            </p>
+<pre class="prettyprint linenums">
+&lt;ul class="treeview" data-role="treeview"&gt;
+    &lt;li class="node"&gt;
+        &lt;a href="#"&gt;&lt;span class="node-toggle"&gt;&lt;/span&gt;sergey@pimenov.com.ua&lt;/a&gt;
+        &lt;ul&gt;
+            &lt;li&gt;&lt;a href="#"&gt;Inbox&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="#"&gt;Outbox&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="#"&gt;Drafts&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="#"&gt;Rss-channels&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="#"&gt;Trash &lt;span class="value"&gt;[5]&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li class="node"&gt;
+                &lt;&lt;span class="node-toggle"&gt;&lt;/span&gt;a href="#"&gt;subnode&lt;/a&gt;
+                &lt;ul&gt;
+                    &lt;li&gt;&lt;a href="#"&gt;Inbox&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="#"&gt;Outbox&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="#"&gt;Drafts&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="#"&gt;Rss-channels&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="#"&gt;Trash&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/li&gt;
+
+    &lt;li class="node collapsed"&gt;
+        &lt;a href="#"&gt;&lt;span class="node-toggle"&gt;&lt;/span&gt;info@metroui.net&lt;/a&gt;
+        &lt;ul&gt;
+            &lt;li&gt;&lt;a href="#"&gt;Inbox&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="#"&gt;Outbox&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="#"&gt;Drafts&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="#"&gt;Rss-channels&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="#"&gt;Trash&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
+</pre>
+
+                <h3>Events</h3>
+                <table class="table border">
+                    <tr>
+                        <td><strong>onNodeClick</strong></td>
+                        <td>this event fired when user click on node</td>
+                    </tr>
+                    <tr>
+                        <td><strong>onNodeCollapsed</strong></td>
+                        <td>this event fired when node collapsed</td>
+                    </tr>
+                    <tr>
+                        <td><strong>onNodeExpanded</strong></td>
+                        <td>this event fired when node expanded</td>
+                    </tr>
+                </table>
+<pre class="prettyprint linenums">
+$(function(){
+    $("#tree1").treeview({
+        onNodeClick: function(node){
+            console.log(node);
+        }
+    });
+});
+</pre>
+
+    </div>
+
+    <script src="js/hitua.js"></script>
+
+</body>
+</html>

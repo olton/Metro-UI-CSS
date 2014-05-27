@@ -1,0 +1,134 @@
+.dataTable {
+    clear: both;
+
+    thead {
+        .sorting_asc, .sorting_desc, .sorting {
+            cursor: pointer;
+
+            &:after {
+                font-family: @sysIconFontName;
+                position: relative;
+                float: right;
+                right: 0;
+                color: @grayLight;
+            }
+        }
+
+        .sorting {
+            &:after {
+                content: "\e011";
+            }
+        }
+
+        .sorting_asc {
+            &:after {
+                content: "\e010";
+            }
+        }
+
+        .sorting_desc {
+            &:after {
+                content: "\e012";
+            }
+        }
+
+        .sorting_asc, .sorting_desc {
+            &:after {
+                color: @dark;
+            }
+        }
+    }
+}
+
+.dataTables_wrapper {
+    .dataTables_filter, .dataTables_length {
+        label {
+            vertical-align: middle;
+        }
+
+        input, select {
+            border: 1px @inputRestState solid;
+            width: auto;
+            height: 100%;
+            padding: 5px;
+            z-index: 1;
+            position: relative;
+
+            &:focus {
+                outline: 0;
+                border-color: @inputFocusState;
+            }
+        }
+    }
+
+    .dataTables_length {
+        float: left;
+
+        select {
+            margin: 0 5px;
+        }
+
+    }
+
+    .dataTables_filter {
+        float: right;
+
+        input {
+            margin-left: 5px;
+        }
+    }
+
+    .dataTables_paginate {
+        float: right;
+        text-align: right;
+
+        .paginate_button {
+            .button;
+            color: inherit;
+            display: block;
+            float: left;
+            margin-right: 1px;
+
+            &.current {
+                background-color: @lightBlue ;
+                color: @white;
+            }
+        }
+    }
+
+    .dataTables_info {
+        float: left;
+    }
+
+    .dataTables_scrollHeadInner {
+        table {
+            margin: 0 !important;
+        }
+    }
+
+    .dataTables_processing {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-left: -100px;
+        margin-top: -2em;
+        width: 200px;
+        padding: 20px;
+        text-align: center;
+        font-size: 1.2rem;
+        background-color: @white;
+        .shadow;
+    }
+}
+
+.dataTables_wrapper .dataTables_scroll {
+    clear: both;
+}
+
+.dataTables_wrapper:after {
+    visibility: hidden;
+    display: block;
+    content: "";
+    clear: both;
+    height: 0;
+}

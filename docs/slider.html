@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="product" content="Metro UI CSS Framework">
+    <meta name="description" content="Simple responsive css framework">
+    <meta name="author" content="Sergey S. Pimenov, Ukraine, Kiev">
+
+    <link href="css/metro-bootstrap.css" rel="stylesheet">
+    <link href="css/metro-bootstrap-responsive.css" rel="stylesheet">
+    <link href="css/iconFont.css" rel="stylesheet">
+    <link href="css/docs.css" rel="stylesheet">
+    <link href="js/prettify/prettify.css" rel="stylesheet">
+
+    <!-- Load JavaScript Libraries -->
+    <script src="js/jquery/jquery.min.js"></script>
+    <script src="js/jquery/jquery.widget.min.js"></script>
+    <script src="js/jquery/jquery.mousewheel.js"></script>
+    <script src="js/prettify/prettify.js"></script>
+
+    <!-- Metro UI CSS JavaScript plugins -->
+    <script src="js/load-metro.js"></script>
+
+    <!-- Local JavaScript -->
+    <script src="js/docs.js"></script>
+    <script src="js/github.info.js"></script>
+
+    <title>Metro UI CSS : Metro Bootstrap CSS Library</title>
+</head>
+<body class="metro">
+    <header class="bg-dark" data-load="header.html"></header>
+    <div class="container">
+                <h1>
+                    <a href="/"><i class="icon-arrow-left-3 fg-darker smaller"></i></a>
+                    Slider<small class="on-right">component</small>
+                </h1>
+
+                <p>
+                    Metro UI CSS provides a component for creating slider.
+                </p>
+                <div class="example">
+                    <div class="slider" id="s1" data-role="slider" data-position="25" data-accuracy="0"></div>
+                    <div class="slider" id="slider_1" data-role="slider"></div>
+                    <div class="slider" data-role="slider" data-position="0" data-accuracy="0" data-colors="blue, red, yellow, green"></div>
+                    <script>
+                        $(function(){
+                            $("#slider_1").slider();
+                        });
+                    </script>
+                </div>
+
+                <div class="example clearfix">
+                    <div class="slider vertical place-left" data-role="slider" data-position="20" data-accuracy="0"></div>
+                    <div class="slider vertical place-left" data-role="slider" data-position="0" data-accuracy="20"></div>
+                    <div class="slider vertical place-left" data-role="slider" data-position="40" data-accuracy="0" data-color="green"></div>
+                    <div class="slider vertical place-left" data-role="slider" data-position="70" data-accuracy="0" data-color="#f00"></div>
+                    <div class="slider vertical place-left" data-role="slider" data-position="70" data-accuracy="0" data-color="black" data-complete-color="blue" data-marker-color="yellow"></div>
+                    <div class="slider vertical place-left hint-left" data-show-hint="true" data-role="slider" data-position="0" data-accuracy="0" data-colors="blue, red, yellow, green"></div>
+                    <div class="slider vertical place-left" data-role="slider" data-show-hint="true"></div>
+                    <div class="slider vertical place-left permanent-hint" data-role="slider" data-show-hint="true"></div>
+                </div>
+
+                <div class="example">
+                    <br />
+                    <div class="slider" data-role="slider" data-position="20" data-accuracy="0" data-show-hint="true"></div>
+                    <br />
+                    <div class="slider permanent-hint" data-role="slider" data-position="70" data-accuracy="0" data-show-hint="true"></div>
+                    <br />
+                    <br />
+                    <br />
+                    <div class="slider hint-bottom" data-role="slider" data-position="20" data-accuracy="0" data-show-hint="true"></div>
+                    <br />
+                    <div id="s2" class="slider permanent-hint hint-bottom" data-role="slider" data-position="20" data-accuracy="0" data-show-hint="true"></div>
+                </div>
+
+                <h4>HTML</h4>
+                <p>
+                    To create <strong>slider</strong> you can use next <strong>html</strong> structure:
+                </p>
+<pre class="prettyprint linenums">
+&lt;div class="slider" data-role="slider"&gt;&lt;/div&gt;
+&lt;div class="slider vertical" data-role="slider"&gt;&lt;/div&gt;
+</pre>
+
+                <h4>Options</h4>
+                <p>
+                    Slider supported next options:
+                </p>
+                <table class="table border">
+                    <tr>
+                        <td class="text-bold">position</td>
+                        <td class="text-bold">data-position</td>
+                        <td>determines the starting position of marker</td>
+                    </tr>
+                    <tr>
+                        <td class="text-bold">accuracy</td>
+                        <td class="text-bold">data-accuracy</td>
+                        <td>determines the accuracy of the marker (from 1 to 100)</td>
+                    </tr>
+                    <tr>
+                        <td class="text-bold">color</td>
+                        <td class="text-bold">data-color</td>
+                        <td>determines the color of the slider</td>
+                    </tr>
+                    <tr>
+                        <td class="text-bold">completeColor</td>
+                        <td class="text-bold">data-complete-color</td>
+                        <td>determines the complete color of the slider</td>
+                    </tr>
+                    <tr>
+                        <td class="text-bold">markerColor</td>
+                        <td class="text-bold">data-marker-color</td>
+                        <td>determines the marker color</td>
+                    </tr>
+                    <tr>
+                        <td class="text-bold">colors</td>
+                        <td class="text-bold">data-colors</td>
+                        <td>defines a set of colors that will be applied uniformly to complete color when marker is moving</td>
+                    </tr>
+                    <tr>
+                        <td class="text-bold">showHint</td>
+                        <td class="text-bold">data-show-hint</td>
+                        <td>show or hide hint for value of marker position</td>
+                    </tr>
+                    <tr>
+                        <td class="text-bold">min</td>
+                        <td class="text-bold">data-min</td>
+                        <td>Set the minimum value for the slider.</td>
+                    </tr>
+                    <tr>
+                        <td class="text-bold">max</td>
+                        <td class="text-bold">data-max</td>
+                        <td>Set the maximum value for the slider.</td>
+                    </tr>
+                    <tr>
+                        <td class="text-bold">animate</td>
+                        <td class="text-bold">data-animate</td>
+                        <td>Animate slider movements for fluent movements.</td>
+                    </tr>
+                </table>
+
+                <p>
+                    You can sets options over javascript or data-* api.
+                </p>
+<pre class="prettyprint linenums">
+&lt;div class="slider" data-role="slider" data-position="0" data-accuracy="0" data-colors="blue, red, yellow, green"&gt;&lt;/div&gt;
+</pre>
+<pre class="prettyprint linenums">
+$(function(){
+    var slider = $("#slider").slider({
+        position: 10,
+        accuracy: 1
+    });
+});
+
+// Short method to set position
+slider.slider('value', 15);
+</pre>
+                <p>This component required <code>metro-slider.js</code></p>
+    </div>
+
+    <script src="js/hitua.js"></script>
+
+</body>
+</html>

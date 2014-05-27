@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="product" content="Metro UI CSS Framework">
+    <meta name="description" content="Simple responsive css framework">
+    <meta name="author" content="Sergey S. Pimenov, Ukraine, Kiev">
+
+    <link href="css/metro-bootstrap.css" rel="stylesheet">
+    <link href="css/metro-bootstrap-responsive.css" rel="stylesheet">
+    <link href="css/iconFont.css" rel="stylesheet">
+    <link href="css/docs.css" rel="stylesheet">
+    <link href="js/prettify/prettify.css" rel="stylesheet">
+
+    <!-- Load JavaScript Libraries -->
+    <script src="js/jquery/jquery.min.js"></script>
+    <script src="js/jquery/jquery.widget.min.js"></script>
+    <script src="js/jquery/jquery.mousewheel.js"></script>
+    <script src="js/prettify/prettify.js"></script>
+
+    <!-- Metro UI CSS JavaScript plugins -->
+    <script src="js/load-metro.js"></script>
+
+    <!-- Local JavaScript -->
+    <script src="js/docs.js"></script>
+    <script src="js/github.info.js"></script>
+
+    <title>Metro UI CSS : Metro Bootstrap CSS Library</title>
+</head>
+<body class="metro">
+    <header class="bg-dark" data-load="header.html"></header>
+
+    <div class="container">
+        <h1>
+            <a href="#" class="history-back"><i class="icon-arrow-left-3 fg-darker smaller"></i></a>
+            Requirements
+        </h1>
+
+        <h3>Folder structure</h3>
+<pre class="prettyprint linenums">
+css
+  -- metro-bootstrap.css (required)
+  -- metro-bootstrap-responsive.css
+  -- iconFont.css
+fonts
+  -- iconFont.*
+  -- metroSysIcons.* (required)
+js
+  -- jquery.min.js (required)
+  -- jquery.widget.min.js (required)
+  -- jquery.mousewheel.js (required for mouse wheel support)
+  -- metro.min.js (required)
+
+index.html
+</pre>
+
+        <h3 id="_doctype">Doctype</h3>
+        <p class="description">
+            Metro UI CSS makes use of certain HTML elements and CSS properties that require the use of the HTML5 doctype.
+            Include it at the beginning of all your projects.
+        </p>
+<pre class="prettyprint linenums">
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+...
+&lt;/html&gt;
+</pre>
+
+        <h3 id="_javascript">Javascript</h3>
+        <p class="description">
+            All javascript plugins required <a href="http://jquery.com/">jQuery 2.0</a> or above and <a href="http://jqueryui.com/">jQuery UI widget factory</a> 1.9 or above.
+        </p>
+
+        <h3 id="_namespace">Namespace</h3>
+        <p class="description">
+            Metro UI CSS used self namespace <code>.metro</code>. You must add class <code>.metro</code> to main container.
+        </p>
+        <pre class="prettyprint linenums">&lt;body class="metro"&gt;...&lt;/body&gt;</pre>
+    </div>
+
+
+    <script src="js/hitua.js"></script>
+
+</body>
+</html>

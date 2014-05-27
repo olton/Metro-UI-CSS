@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="product" content="Metro UI CSS Framework">
+    <meta name="description" content="Simple responsive css framework">
+    <meta name="author" content="Sergey S. Pimenov, Ukraine, Kiev">
+
+    <link href="css/metro-bootstrap.css" rel="stylesheet">
+    <link href="css/metro-bootstrap-responsive.css" rel="stylesheet">
+    <link href="css/iconFont.css" rel="stylesheet">
+    <link href="css/docs.css" rel="stylesheet">
+    <link href="js/prettify/prettify.css" rel="stylesheet">
+
+    <!-- Load JavaScript Libraries -->
+    <script src="js/jquery/jquery.min.js"></script>
+    <script src="js/jquery/jquery.widget.min.js"></script>
+    <script src="js/jquery/jquery.mousewheel.js"></script>
+    <script src="js/prettify/prettify.js"></script>
+
+    <!-- Metro UI CSS JavaScript plugins -->
+    <script src="js/load-metro.js"></script>
+
+    <!-- Local JavaScript -->
+    <script src="js/docs.js"></script>
+    <script src="js/github.info.js"></script>
+
+    <title>Metro UI CSS : Metro Bootstrap CSS Library</title>
+</head>
+<body class="metro">
+    <header class="bg-dark" data-load="header.html"></header>
+    <div class="container">
+                <h1>
+                    <a href="/"><i class="icon-arrow-left-3 fg-darker smaller"></i></a>
+                    Forms<small class="on-right">definition</small>
+                </h1>
+
+                <div class="grid">
+                    <div class="row">
+                        <div class="span3 no-tablet-portrait">
+                            <nav>
+                                <ul class="side-menu">
+                                    <li><a href="#_checkbox">Checkboxes</a></li>
+                                    <li><a href="#_radio">Radio buttons</a></li>
+                                    <li><a href="#_switch">Switch control</a></li>
+                                    <li><a href="#_input">Input controls</a></li>
+                                    <li><a href="#_validation">Validation states</a></li>
+                                    <li><a href="#_search">Search form</a></li>
+                                    <li><a href="#_plugin">Input control plugin</a></li>
+                                    <li><a href="#_transform">Input Transform</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+
+                        <div class="span9">
+                            <p class="description">
+                                Metro UI CSS provides styling for <code>form</code> and <code>form elements</code>.
+                            </p>
+
+                            <h2 id="_default"><i class="icon-accessibility on-left"></i>Default styles</h2>
+                            <div class="example">
+                                <form>
+                                    <fieldset>
+                                        <legend>Legend</legend>
+                                        <label>Label name</label>
+                                        <div class="input-control text" data-role="input-control">
+                                            <input type="text" placeholder="type text">
+                                            <button class="btn-clear" tabindex="-1"></button>
+                                        </div>
+                                        <label>Label name</label>
+                                        <div class="input-control password" data-role="input-control">
+                                            <input type="password" placeholder="type password" autofocus>
+                                            <button class="btn-reveal" tabindex="-1"></button>
+                                        </div>
+                                        <div class="input-control checkbox" data-role="input-control">
+                                            <label>
+                                                <input type="checkbox" checked />
+                                                <span class="check"></span>
+                                                Check me out
+                                            </label>
+                                        </div>
+
+                                        <div>
+                                            <div class="input-control radio default-style" data-role="input-control">
+                                                <label>
+                                                    <input type="radio" name="r1" checked />
+                                                    <span class="check"></span>
+                                                    R1
+                                                </label>
+                                            </div>
+                                            <div class="input-control radio  default-style" data-role="input-control">
+                                                <label>
+                                                    <input type="radio" name="r1" />
+                                                    <span class="check"></span>
+                                                    R2
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <input type="submit" value="Submit">
+                                    </fieldset>
+                                </form>
+                            </div>
+
+
+
+                            <h2 id="_checkbox"><i class="icon-accessibility on-left"></i>Checkboxes</h2>
+                            <p class="description">
+
+                            </p>
+                            <div class="example">
+                                <div class="input-control checkbox margin10" data-role="input-control">
+                                    <label>
+                                        <input type="checkbox" />
+                                        <span class="check"></span>
+                                        Check me out
+                                    </label>
+                                </div>
+
+                                <div class="input-control checkbox margin10" data-role="input-control">
+                                    <label>
+                                        <input type="checkbox" checked/>
+                                        <span class="check"></span>
+                                        Check me out
+                                    </label>
+                                </div>
+
+                                <div class="input-control checkbox margin10" data-role="input-control">
+                                    <label>
+                                        Check me out
+                                        <input type="checkbox" disabled/>
+                                        <span class="check"></span>
+                                    </label>
+                                </div>
+
+                                <div class="input-control checkbox margin10" data-role="input-control">
+                                    <label>
+                                        Check me out
+                                        <input type="checkbox" disabled checked/>
+                                        <span class="check"></span>
+                                    </label>
+                                </div>
+
+                                <div class="input-control checkbox margin10" data-role="input-control">
+                                    <label>
+                                        Intermediate
+                                        <input type="checkbox" data-show="intermediate"/>
+                                        <span class="check"></span>
+                                    </label>
+                                </div>
+
+                                <div class="input-control checkbox margin10" data-role="input-control">
+                                    <label>
+                                        Intermediate
+                                        <input type="checkbox" data-show="intermediate" disabled/>
+                                        <span class="check"></span>
+                                    </label>
+                                </div>
+                            </div>
+<pre class="prettyprint linenums">
+&lt;div class="input-control checkbox"&gt;
+    &lt;label&gt;
+        &lt;input type="checkbox" /&gt;
+        &lt;span class="check"&gt;&lt;/span&gt;
+        Check me out
+    &lt;/label&gt;
+&lt;/div&gt;
+
+&lt;div class="input-control checkbox"&gt;
+    &lt;label&gt;
+        &lt;input type="checkbox" data-show="intermediate" /&gt;
+        &lt;span class="check"&gt;&lt;/span&gt;
+        Check me out
+    &lt;/label&gt;
+&lt;/div&gt;
+</pre>
+
+                            <h2 id="_radio"><i class="icon-accessibility on-left"></i>Radio buttons</h2>
+                            <div class="example">
+                                <div class="input-control radio margin10" data-role="input-control">
+                                    <label>
+                                        Check me out
+                                        <input type="radio" name="r1" checked />
+                                        <span class="check"></span>
+                                    </label>
+                                </div>
+                                <div class="input-control radio margin10" data-role="input-control">
+                                    <label>
+                                        Check me out
+                                        <input type="radio" name="r1" />
+                                        <span class="check"></span>
+                                    </label>
+                                </div>
+                                <div class="input-control radio margin10" data-role="input-control">
+                                    <label>
+                                        Check me out
+                                        <input type="radio" name="r1" disabled/>
+                                        <span class="check"></span>
+                                    </label>
+                                </div>
+                                <div class="input-control radio margin10" data-role="input-control">
+                                    <label>
+                                        Check me out
+                                        <input type="radio" name="r2" disabled checked />
+                                        <span class="check"></span>
+                                    </label>
+                                </div>
+
+                                <div class="input-control radio default-style margin10" data-role="input-control">
+                                    <label>
+                                        Check me out
+                                        <input type="radio" name="r3" checked />
+                                        <span class="check"></span>
+                                    </label>
+                                </div>
+                                <div class="input-control radio default-style margin10" data-role="input-control">
+                                    <label>
+                                        Check me out
+                                        <input type="radio" name="r3" />
+                                        <span class="check"></span>
+                                    </label>
+                                </div>
+                                <div class="input-control radio default-style margin10" data-role="input-control">
+                                    <label>
+                                        Check me out
+                                        <input type="radio" name="r3" disabled/>
+                                        <span class="check"></span>
+                                    </label>
+                                </div>
+                                <div class="input-control radio default-style margin10" data-role="input-control">
+                                    <label>
+                                        Check me out
+                                        <input type="radio" name="r4" disabled checked />
+                                        <span class="check"></span>
+                                    </label>
+                                </div>
+                            </div>
+<pre class="prettyprint linenums">
+&lt;div class="input-control radio"&gt;
+    &lt;label&gt;
+        &lt;input type="radio" /&gt;
+        &lt;span class="check"&gt;&lt;/span&gt;
+        Check me out
+    &lt;/label&gt;
+&lt;/div&gt;
+
+&lt;div class="input-control radio default-style"&gt;
+    &lt;label&gt;
+        &lt;input type="radio" /&gt;
+        &lt;span class="check"&gt;&lt;/span&gt;
+        Check me out
+    &lt;/label&gt;
+&lt;/div&gt;
+</pre>
+
+                            <h2 id="_switch"><i class="icon-accessibility on-left"></i>Switch control</h2>
+                            <div class="example">
+                                <div class="input-control switch margin10" data-role="input-control">
+                                    <label>
+                                        Switch me
+                                        <input type="checkbox" checked/>
+                                        <span class="check"></span>
+                                    </label>
+                                </div>
+
+                                <div class="input-control switch margin10" data-role="input-control">
+                                    <label>
+                                        Switch me
+                                        <input type="checkbox"/>
+                                        <span class="check"></span>
+                                    </label>
+                                </div>
+
+                                <div class="input-control switch margin10" data-role="input-control">
+                                    <label>
+                                        Switch me
+                                        <input type="checkbox" disabled/>
+                                        <span class="check"></span>
+                                    </label>
+                                </div>
+
+                                <div class="input-control switch margin10" data-role="input-control">
+                                    <label>
+                                        Switch me
+                                        <input type="checkbox" disabled checked/>
+                                        <span class="check"></span>
+                                    </label>
+                                </div>
+                            </div>
+<pre class="prettyprint linenums">
+&lt;div class="input-control switch"&gt;
+    &lt;label&gt;
+        &lt;input type="checkbox" /&gt;
+        &lt;span class="check"&gt;&lt;/span&gt;
+    &lt;/label&gt;
+&lt;/div&gt;
+</pre>
+
+                            <h2 id="_input"><i class="icon-accessibility on-left"></i>Input controls</h2>
+                            <h3>Input text</h3>
+                            <div class="example">
+                                <form>
+                                    <div class="input-control text" data-role="input-control">
+                                        <input type="text" value="" placeholder="input text"/>
+                                        <button class="btn-clear"></button>
+                                    </div>
+                                    <br />
+                                    <div class="input-control text" data-role="input-control">
+                                        <input type="text" value="disabled input" disabled/>
+                                        <button class="btn-clear"></button>
+                                    </div>
+                                </form>
+                            </div>
+<pre class="prettyprint linenums">
+&lt;div class="input-control text"&gt;
+    &lt;input type="text" value="" placeholder="input text"/&gt;
+    &lt;button class="btn-clear"&gt;&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;div class="input-control text"&gt;
+    &lt;input type="text" value="" placeholder="input text" disabled/&gt;
+    &lt;button class="btn-clear"&gt;&lt;/button&gt;
+&lt;/div&gt;
+</pre>
+                            <p class="description">
+                                Metro UI CSS also supported one style for all types of input controls, such as <code>tel</code>, <code>email</code>, <code>url</code>, ...
+                            </p>
+
+                            <h3>Input password</h3>
+                            <div class="example">
+                                <form>
+                                    <div class="input-control password" data-role="input-control">
+                                        <input type="password" value="" placeholder="input password"/>
+                                        <button class="btn-reveal"></button>
+                                    </div>
+                                </form>
+                            </div>
+<pre class="prettyprint linenums">
+&lt;div class="input-control password"&gt;
+    &lt;input type="password" value="" placeholder="input password"/&gt;
+    &lt;button class="btn-reveal"&gt;&lt;/button&gt;
+&lt;/div&gt;
+</pre>
+
+                            <h3>Select</h3>
+                            <div class="example">
+                                <form>
+                                    <div class="input-control select" data-role="input-control">
+                                        <select>
+                                            <option>Value 1</option>
+                                            <option>Value 2</option>
+                                            <option>Value 3</option>
+                                        </select>
+                                    </div>
+                                    <br />
+                                    <div class="input-control select" data-role="input-control">
+                                        <select multiple>
+                                            <option>Value 1</option>
+                                            <option>Value 2</option>
+                                            <option>Value 3</option>
+                                            <option>Value 3</option>
+                                        </select>
+                                    </div>
+                                </form>
+                            </div>
+<pre class="prettyprint linenums">
+&lt;div class="input-control select"&gt;
+    &lt;select&gt;
+        &lt;option&gt;Value 1&lt;/option&gt;
+        &lt;option&gt;Value 2&lt;/option&gt;
+        &lt;option&gt;Value 3&lt;/option&gt;
+    &lt;/select&gt;
+&lt;/div&gt;
+
+&lt;div class="input-control select"&gt;
+    &lt;select multiple&gt;
+        &lt;option&gt;Value 1&lt;/option&gt;
+        &lt;option&gt;Value 2&lt;/option&gt;
+        &lt;option&gt;Value 3&lt;/option&gt;
+    &lt;/select&gt;
+&lt;/div&gt;
+</pre>
+
+                            <h3>Textarea</h3>
+                            <div class="example">
+                                <form>
+                                    <div class="input-control textarea" data-role="input-control">
+                                        <textarea></textarea>
+                                    </div>
+                                </form>
+                            </div>
+<pre class="prettyprint linenums">
+&lt;div class="input-control textarea"&gt;
+    &lt;textarea&gt;...&lt;/textarea&gt;
+&lt;/div&gt;
+</pre>
+
+                            <h3>Input with sizeN class</h3>
+                            <p class="description">
+                                Use <code>.size1</code> to <code>.size12</code> for <code>.input-control</code> that match the same sizes of the grid columns.
+                            </p>
+                            <div class="example">
+                                <form class="clearfix">
+                                    <h4>As block</h4>
+                                    <div class="input-control text size1 block" data-role="input-control">
+                                        <input type="text" placeholder="size1">
+                                    </div>
+                                    <div class="input-control text size2 block" data-role="input-control">
+                                        <input type="text" placeholder="size2">
+                                    </div>
+                                    <div class="input-control text size3 block" data-role="input-control">
+                                        <input type="text" placeholder="size3">
+                                    </div>
+                                    <div class="input-control text size4 block" data-role="input-control">
+                                        <input type="text" placeholder="size3">
+                                    </div>
+
+                                    <h4>As inline-block</h4>
+                                    <div class="input-control text size1" data-role="input-control">
+                                        <input type="text" placeholder="size1">
+                                    </div>
+                                    <div class="input-control text size2" data-role="input-control">
+                                        <input type="text" placeholder="size2">
+                                    </div>
+                                    <div class="input-control text size3" data-role="input-control">
+                                        <input type="text" placeholder="size3">
+                                    </div>
+                                </form>
+
+                                <form class="no-display">
+                                    <h4>In grid</h4>
+                                    <div class="grid">
+                                        <div class="row">
+                                            <div class="span2">
+                                                <div class="input-control text size2" data-role="input-control">
+                                                    <input type="text" placeholder="size2">
+                                                </div>
+                                            </div>
+                                            <div class="span2">
+                                                <div class="input-control text size2" data-role="input-control">
+                                                    <input type="text" placeholder="size2">
+                                                </div>
+                                            </div>
+                                            <div class="span2">
+                                                <div class="input-control text size2" data-role="input-control">
+                                                    <input type="text" placeholder="size2">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+<pre class="prettyprint linenums">
+&lt;div class="input-control text size2"&gt;
+    &lt;input type="text" /&gt;
+&lt;/div&gt;
+</pre>
+
+                            <h3 id="_validation">Input validation states</h3>
+                            <p class="description">
+                                You can set validation state for input with build-in classes as additional class for <code>.input-control</code>: <code>.warning-state</code>, <code>.error-state</code>, <code>.info-state</code>, <code>.success-state</code>.
+                                <br />Also, you can set <code>data-state</code> attribute for <code>input</code>, <code>select</code> or <code>textarea</code> with next values: <code>warning</code>, <code>error</code>, <code>info</code> and <code>success</code>.
+                            </p>
+                            <div class="example">
+                                <form>
+                                    <h3>Inputs</h3>
+                                    <div class="input-control text warning-state" data-role="input-control">
+                                        <input type="text" value="warning state">
+                                    </div>
+
+                                    <div class="input-control text error-state" data-role="input-control">
+                                        <input type="text" value="error state">
+                                    </div>
+
+                                    <div class="input-control text info-state" data-role="input-control">
+                                        <input type="text" value="info state">
+                                    </div>
+
+                                    <div class="input-control text" data-role="input-control">
+                                        <input type="text" value="success state" data-state="success">
+                                    </div>
+
+                                    <h3>Select, file, textarea</h3>
+                                    <div class="input-control select error-state" data-role="input-control">
+                                        <select name="s1">
+                                            <option value="1">Value 1</option>
+                                            <option value="2">Value 2</option>
+                                            <option value="3">Value 3</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="input-control file info-state" data-role="input-control">
+                                        <input type="file">
+                                        <button class="btn-file"></button>
+                                    </div>
+
+                                    <div class="input-control textarea success-state" data-role="input-control">
+                                        <textarea></textarea>
+                                    </div>
+                                </form>
+                            </div>
+<pre class="prettyprint linenums">
+&lt;div class="input-control text warning-state"&gt;
+    &lt;input type="text" /&gt;
+&lt;/div&gt;
+
+&lt;div class="input-control text"&gt;
+    &lt;input type="text" data-state="success"/&gt;
+&lt;/div&gt;
+</pre>
+
+                            <!--
+                            <h3>Invalid input</h3>
+                            <p class="description">
+                                Style inputs via default browser functionality with <code>:invalid</code>. Specify a type, add the <code>required</code> attribute if the field is not optional, and (if applicable) specify a <code>pattern</code>.
+                            </p>
+                            <p class="description tertiary-text fg-red">
+                                This is not available in versions of Internet Explorer < 10 due to lack of support for CSS pseudo selectors.
+                            </p>
+                            <div class="example">
+                                <form>
+                                    <div class="input-control text" data-role="input-control">
+                                        <input type="email" placeholder="test@example.com" required>
+                                    </div>
+                                </form>
+                            </div>
+<pre class="prettyprint linenums">
+&lt;div class="input-control text"&gt;
+    &lt;input type="email" required /&gt;
+&lt;/div&gt;
+</pre>
+                            <p class="description">
+                                You can combine functionality <code>:invalid</code> with <code>state classes</code>.
+                            </p>
+                            <div class="example">
+                                <form>
+                                    <div class="input-control text success-state" data-role="input-control">
+                                        <input type="email" placeholder="test@example.com" required>
+                                    </div>
+                                </form>
+                            </div>
+<pre class="prettyprint linenums">
+&lt;div class="input-control text success-state"&gt;
+    &lt;input type="email" required /&gt;
+&lt;/div&gt;
+</pre>
+-->
+                            <h3 id="_search">Search form</h3>
+                            <div class="example">
+                                <form>
+                                    <div class="input-control text" data-role="input-control">
+                                        <input type="text">
+                                        <button class="btn-search"></button>
+                                    </div>
+                                </form>
+                            </div>
+<pre class="prettyprint linenums">
+&lt;div class="input-control text"&gt;
+    &lt;input type="text" /&gt;
+    &lt;button class="btn-search"&gt;&lt;/button&gt;
+&lt;/div&gt;
+</pre>
+
+                            <h3 id="_file">Input file</h3>
+                            <div class="example">
+                                <form>
+                                    <div class="input-control file" data-role="input-control">
+                                        <input type="file">
+                                        <button class="btn-file"></button>
+                                    </div>
+                                </form>
+                            </div>
+<pre class="prettyprint linenums">
+&lt;div class="input-control file"&gt;
+    &lt;input type="file" /&gt;
+    &lt;button class="btn-file"&gt;&lt;/button&gt;
+&lt;/div&gt;
+</pre>
+
+                            <h2 id="_plugin">Input control plugin</h2>
+                            <p class="description">
+                                Input control plugin <code>metro-input-control.js</code> provides functionality for clearing inputs, show password and input file.
+                            </p>
+
+                            <h2 id="_transform">Input Auto Transform</h2>
+                            <p class="description">
+                                Now input control plugin contains widget for form input <strong>auto</strong> transformation.
+                            </p>
+<pre class="prettyprint linenums">
+from:
+&lt;input type="file" data-transform="input-control" /&gt;
+
+to:
+&lt;div class="input-control file"&gt;
+    &lt;input type="file" /&gt;
+    &lt;button class="btn-file"&gt;&lt;/button&gt;
+&lt;/div&gt;
+</pre>
+                        <p>Now supported:</p>
+<pre class="prettyprint linenums">
+&lt;input type="text" data-transform="input-control" /&gt;
+&lt;input type="password" data-transform="input-control" /&gt;
+&lt;input type="file" data-transform="input-control" /&gt;
+&lt;input type="email" data-transform="input-control" /&gt;
+&lt;input type="tel" data-transform="input-control" /&gt;
+&lt;input type="checkbox" data-transform="input-control" /&gt;
+&lt;input type="checkbox" data-transform="input-control" data-transform-type="switch" /&gt;
+&lt;input type="radio" data-transform="input-control" /&gt;
+&lt;select data-transform="input-control" /&gt;
+&lt;textarea data-transform="input-control" /&gt;
+</pre>
+
+                        </div>
+                    </div>
+                </div>
+    </div>
+
+    <script src="js/hitua.js"></script>
+
+</body>
+</html>

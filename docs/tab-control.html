@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="product" content="Metro UI CSS Framework">
+    <meta name="description" content="Simple responsive css framework">
+    <meta name="author" content="Sergey S. Pimenov, Ukraine, Kiev">
+
+    <link href="css/metro-bootstrap.css" rel="stylesheet">
+    <link href="css/metro-bootstrap-responsive.css" rel="stylesheet">
+    <link href="css/iconFont.css" rel="stylesheet">
+    <link href="css/docs.css" rel="stylesheet">
+    <link href="js/prettify/prettify.css" rel="stylesheet">
+
+    <!-- Load JavaScript Libraries -->
+    <script src="js/jquery/jquery.min.js"></script>
+    <script src="js/jquery/jquery.widget.min.js"></script>
+    <script src="js/jquery/jquery.mousewheel.js"></script>
+    <script src="js/prettify/prettify.js"></script>
+
+    <!-- Metro UI CSS JavaScript plugins -->
+    <script src="js/load-metro.js"></script>
+
+    <!-- Local JavaScript -->
+    <script src="js/docs.js"></script>
+    <script src="js/github.info.js"></script>
+
+    <title>Metro UI CSS : Metro Bootstrap CSS Library</title>
+</head>
+<body class="metro">
+    <header class="bg-dark" data-load="header.html"></header>
+    <div class="container">
+
+                <h1>
+                    <a href="/"><i class="icon-arrow-left-3 fg-darker smaller"></i></a>
+                    Tab Control<small class="on-right">component</small>
+                </h1>
+
+                <p class="description">
+                    Bring your tabs to life with a simple plugin to toggle between content via tabs. This component required <code>metro-tab-control.js</code>.
+                </p>
+                <h2>Definition</h2>
+                <p>
+                    To make tabs tabbable, create a <code>.tab-control</code> with <strong>unique ID</strong> for every tab and wrap them in <code>.frame</code>.
+                </p>
+                <div class="example">
+                    <div class="tab-control" data-role="tab-control">
+                        <ul class="tabs">
+                            <li class="active"><a href="#_page_1">Tab 1</a></li>
+                            <li><a href="#_page_2">Other Tab</a></li>
+                            <li><a href="#_page_3"><i class="icon-rocket"></i></a></li>
+                            <li class="place-right"><a href="#_page_5"><i class="icon-heart"></i></a></li>
+                            <li class="place-right"><a href="#_page_4"><i class="icon-cog"></i></a></li>
+                        </ul>
+
+                        <div class="frames">
+                            <div class="frame" id="_page_1">
+                                <p>First Tab</p>
+                            </div>
+                            <div class="frame" id="_page_2">
+                                <p>Second Tab</p>
+                            </div>
+                            <div class="frame" id="_page_3">
+                                <p>Rocket Tab</p>
+                            </div>
+                            <div class="frame" id="_page_4">
+                                <p>This tab placed right</p>
+                            </div>
+                            <div class="frame" id="_page_5">
+                                <p>This tab also placed right</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+<pre class="prettyprint linenums">
+&lt;div class="tab-control" data-role="tab-control"&gt;
+    &lt;ul class="tabs"&gt;
+        &lt;li class="active"&gt;&lt;a href="#_page_1"&gt;Tab 1&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#_page_2"&gt;Other Tab&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#_page_3"&gt;&lt;i class="icon-rocket"&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+        &lt;li class="place-right"&gt;&lt;a href="#_page_4"&gt;&lt;i class="icon-cog"&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;div class="frames"&gt;
+        &lt;div class="frame" id="_page_1"&gt;...&lt;/div&gt;
+        &lt;div class="frame" id="_page_2"&gt;...&lt;/div&gt;
+        &lt;div class="frame" id="_page_3"&gt;...&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</pre>
+
+                <h3>Tab in Tab</h3>
+                <p>Now you can create tab control in tab control.</p>
+                <div class="example">
+                    <div class="tab-control" data-role="tab-control">
+                        <ul class="tabs">
+                            <li class="active"><a href="#_page_2_1">Tab 1</a></li>
+                            <li><a href="#_page_2_2">Other Tab</a></li>
+                            <li><a href="#_page_2_3"><i class="icon-rocket"></i></a></li>
+                        </ul>
+
+                        <div class="frames">
+                            <div class="frame" id="_page_2_1">
+                                <p>
+                                    The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
+                                </p>
+                                <div class="tab-control" data-role="tab-control">
+                                    <ul class="tabs">
+                                        <li><a href="#_page_2_1_1">Tab 2.1</a></li>
+                                        <li><a href="#_page_2_2_1">Other Tab 2.1</a></li>
+                                        <li class="active"><a href="#_page_2_3_1"><i class="icon-globe"></i></a></li>
+                                    </ul>
+
+                                    <div class="frames">
+                                        <div class="frame" id="_page_2_1_1">
+                                            <h2>Content Tab 1</h2>
+                                            <ul>
+                                                <li>Nam tempus lectus ac dignissim feugiat.</li>
+                                                <li>Nam consectetur sem ut lectus venenatis, at facilisis lectus cursus.</li>
+                                                <li>Fusce varius massa a erat sollicitudin cursus.</li>
+                                            </ul>
+                                        </div>
+                                        <div class="frame" id="_page_2_2_1">
+                                            <h2>Other Tab Content</h2>
+                                            <p>
+                                                Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
+                                            </p>
+                                        </div>
+                                        <div class="frame" id="_page_2_3_1">
+                                            <p>
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus quis mollis arcu. Nam nibh nisi, tincidunt non tristique ut, venenatis quis sapien. Proin at sagittis magna, non pharetra nisi.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="frame" id="_page_2_2">
+                                <h2>Other Tab Content</h2>
+                                <p>
+                                    The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
+                                </p>
+                            </div>
+                            <div class="frame" id="_page_2_3">
+                                <h2>Rocket Page</h2>
+                                <p>
+                                    The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h4>Usage</h4>
+                <p class="description">
+                    To activate tab-control with data-api you can add attribute <code>data-role="tab-control"</code> to component.
+                </p>
+<pre class="prettyprint linenums">
+&lt;div class="tab-control" data-role="tab-control"&gt;...&lt;/div&gt;
+</pre>
+
+                <p class="description">
+                    Call tab control manually with:
+                </p>
+<pre class="prettyprint linenums">
+$('.tab-control').tabcontrol();
+</pre>
+
+                <h4>Tab content showing effect</h4>
+                <p class="description">
+                    You can add tab content showing effect with <code>effect</code> parameter.
+                </p>
+                <div class="example">
+                    <div class="tab-control" data-effect="fade" data-role="tab-control">
+                        <ul class="tabs">
+                            <li class="active"><a href="#___1">Tab 1</a></li>
+                            <li class=""><a href="#___2">Tab 2</a></li>
+                            <li class=""><a href="#___3">Tab 3</a></li>
+                        </ul>
+
+                        <div class="frames">
+                            <div class="frame" id="___1">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus quis mollis arcu. Nam nibh nisi, tincidunt non tristique ut, venenatis quis sapien. Proin at sagittis magna, non pharetra nisi. Pellentesque consectetur tellus metus, in feugiat risus pulvinar ut. Suspendisse magna enim, ornare vitae augue non, elementum feugiat arcu.
+                            </div>
+                            <div class="frame" id="___2">
+                                Aliquam ornare libero eget leo imperdiet varius. Aenean fringilla orci volutpat enim lobortis, id elementum lectus consectetur. Integer id ante nec ligula consectetur rutrum imperdiet vel tellus. Nam a lectus placerat, pretium risus ut, rutrum orci.
+                            </div>
+                            <div class="frame" id="___3">
+                                Duis malesuada, dolor eu sollicitudin sagittis, leo sapien vehicula nunc, lobortis ornare tellus augue ac augue. Suspendisse sagittis sit amet ante ac suscipit. Duis ligula metus, auctor ut risus et, blandit suscipit lectus. Pellentesque cursus adipiscing tortor at malesuada.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h5>Effect with data-api:</h5>
+<pre class="prettyprint linenums">
+&lt;div class="tab-control" data-effect="fade[slide]"&gt;...&lt;/div&gt;
+</pre>
+                <h5>Effect with javascript:</h5>
+<pre class="prettyprint linenums">
+$('.tab-control').tabcontrol({
+    effect: 'fade' // or 'slide'
+});
+</pre>
+
+                <h4>Events</h4>
+                <p class="description">
+                    When tab switched, tab control triggered event <code>change</code>. You can bind this event to additional manipulating with tab content.
+                </p>
+<pre class="prettyprint linenums">
+$('.tab-control').tabcontrol().bind("tabcontrolchange", function(event, frame){...});
+</pre>
+
+                <div class="example">
+                    <div class="tab-control" id="tab-with-event">
+                        <ul class="tabs">
+                            <li class="active"><a href="#__1">Tab 1</a></li>
+                            <li><a href="#__2">Tab 2</a></li>
+                            <li><a href="#__3">Tab 3</a></li>
+                        </ul>
+
+                        <div class="frames">
+                            <div class="frame" id="__1">Click on tabs</div>
+                            <div class="frame" id="__2"></div>
+                            <div class="frame" id="__3"></div>
+                        </div>
+                    </div>
+                    <script>
+                        $(function(){
+                            $("#tab-with-event").tabcontrol().bind("tabcontrolchange", function(event, frame){
+                                var id = $(frame).attr("id");
+                                $(frame).html("Show in time " + (new Date()).getTime() + " frame id:"+id);
+                            })
+                        })
+                    </script>
+                </div>
+<pre class="prettyprint linenums">
+&lt;script&gt
+    $(function(){
+        $("#tab-with-event").tabcontrol().bind("tabcontrolchange", function(event, frame){
+            var id = $(frame).attr("id");
+            $(frame).html("Show in time " + (new Date()).getTime() + " frame id:"+id);
+        })
+    })
+&lt;/script&gt;
+</pre>
+
+
+    </div>
+
+    <script src="js/hitua.js"></script>
+
+</body>
+</html>

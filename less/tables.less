@@ -1,160 +1,48 @@
-/*
- * Metro UI CSS
- * (c) 2012-2013 by Sergey Pimenov
- * Licensed under the MIT License and Commercial
- *
- * Tables.less
- *
- */
-
 table {
+    max-width: 100%;
+    background-color: @white;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.table {
     width: 100%;
-    border-collapse: separate;
-    margin: 0 0 20px;
+    margin-bottom: @baseLineHeight;
+
+    th, td {
+        padding: @tableCellPadding;
+        font-size: 14px;
+        line-height: @baseLineHeight;
+        vertical-align: top;
+        border-bottom: 1px @tableBorderColor solid;
+
+        &[class*="span"] {
+            display: table-cell !important;
+            float: none !important;
+            margin: 0;
+        }
+    }
+
+    th {
+        //text-align: left;
+    }
 
     thead {
-        tr {
-            th, td {
-                display: table-cell;
-                vertical-align: bottom;
-                padding-bottom: @subunit;
-                padding-top: @subunit * 2;
-                padding-left: @subunit;
-                border-bottom: 1px #ddd solid;
-                border-right: 1px #ddd solid;
-                border-left: 1px transparent solid;
-                border-top: 1px transparent solid;
-                #font > .navigation;
-                .text-rest2-state;
-                text-align: left;
+        tr:last-child {
+        }
 
-                &.right {
-                    text-align: right;
-                    padding-right: @subunit * 2;
-                }
+        th {
+            vertical-align: bottom;
+        }
 
-                &.last {
-                    border-right: 1px transparent solid;
-                }
-
-                &:last-child {
-                    border-right: 1px transparent solid;
-                }
-            }
+        th, td {
+            border-bottom: 1px solid #111111;
         }
     }
 
     tbody {
         tr {
-            border: 1px #fff solid;
-
-            td {
-                #font > .normal;
-                padding: 3px 10px;
-                border-right: 1px #ddd solid;
-                border-bottom: 1px #ddd solid;
-                border-left: 1px transparent solid;
-                border-top: 1px transparent solid;
-                box-sizing: border-box;
-
-                &.right {
-                    text-align: right;
-                }
-                &.center {
-                    text-align: center;
-                }
-                &.last {
-                    border-right: 1px transparent solid;
-                }
-                &:last-child {
-                    border-right: 1px transparent solid;
-                }
-            }
-
-            &.success {
-                .bg-color-green;
-            }
-            &.error {
-                .bg-color-red();
-            }
-            &.warning {
-                .bg-color-orange();
-            }
-            &.info {
-                .bg-color-blue();
-            }
-
-            &.info, &.warning, &.error, &.success {
-                td {
-                    .fg-color-white;
-                }
-            }
-
-            &.selected-row {
-                background-color: rgba(28, 183, 236, 0.10) !important;
-                td:first-child {
-                    border-left: 1px #1c98cc solid;
-                }
-                td:last-child {
-                    border-right: 1px #1c98cc solid;
-                }
-                td {
-                    border-top: 1px #1c98cc solid;
-                    border-bottom: 1px #1c98cc solid;
-                }
-            }
-        }
-    }
-
-    tfoot {
-    }
-
-    &.striped {
-        tbody {
-            tr:nth-child(odd) {
-                background-color: #f9f9f9;
-            }
-        }
-    }
-
-    &.hovered {
-        border-collapse: separate !important;
-        thead {
-            tr {
-                th,td {
-                    &:hover {
-                        border: 1px #1c98cc solid;
-                        background: rgba(28, 183, 236, 0.10);
-                    }
-                }
-            }
-        }
-
-        tbody {
-            tr {
-                &:hover {
-                    background-color: rgba(28, 183, 236, 0.10);
-                    td:first-child {
-                        border-left: 1px #1c98cc solid;
-                    }
-                    td:last-child {
-                        border-right: 1px #1c98cc solid;
-                    }
-                    td {
-                        border-top: 1px #1c98cc solid;
-                        border-bottom: 1px #1c98cc solid;
-                    }
-                }
-            }
-        }
-    }
-
-    &.bordered {
-        border-collapse: separate !important;
-        border: 1px #ccc solid !important;
-
-        tbody {
-            tr:last-child {
+            &:last-child {
                 td {
                     border-bottom: 0;
                 }
@@ -162,5 +50,121 @@ table {
         }
     }
 
+    tbody + tbody {
+        border-top: 2px solid @tableBorderColor;
+    }
+
+    tfoot {
+        th, td {
+            border-top: 1px solid #111111;
+        }
+    }
+
+    .table {
+        background-color: darken(@white, 25%);
+    }
+
+    &.condensed {
+        th, td {
+            padding: 4px 5px;
+            .input-control {
+                margin: 0;
+            }
+        }
+    }
+
+    &.super-condensed {
+        th, td {
+            padding: 2px;
+            .input-control {
+                margin: 0;
+            }
+        }
+    }
+
+    &.striped {
+        tbody tr:nth-child(odd) {
+            background: @tableOddColor;
+        }
+    }
+
+    &.bordered {
+        border: 1px @tableBorderColor solid;
+        border-left: 0;
+        td, th {
+            border-left: 1px @tableBorderColor solid;
+            border-bottom: 1px @tableBorderColor solid;
+        }
+    }
+
+    &.no-border {
+        td, th {
+            border: 0;
+        }
+    }
+
+    &.border {
+        border: 1px @tableBorderColor solid !important;
+        td, th {
+            //border-color: transparent;
+        }
+    }
+
+    &.hovered {
+        //border-collapse: separate;
+        tbody {
+            tr {
+                &:hover {
+                    background-color: rgba(28, 183, 236, 0.10);
+                    td:first-child {
+                        //border-left: 1px #1c98cc solid ;
+                    }
+                    td:last-child {
+                        //border-right: 1px #1c98cc solid ;
+                    }
+                    td {
+                        //border-top: 1px #1c98cc solid ;
+                        //border-bottom: 1px #1c98cc solid;
+                    }
+                }
+            }
+        }
+    }
 }
 
+.table {
+    tr {
+        &.success {
+            .bg-green;
+        }
+        &.error {
+            .bg-red;
+        }
+        &.warning {
+            .bg-orange;
+        }
+        &.info {
+            .bg-lightBlue;
+        }
+
+        &.info, &.warning, &.error, &.success {
+            td, td * {
+                .fg-white;
+            }
+        }
+
+        &.selected {
+            background-color: rgba(28, 183, 236, 0.10);
+            td:first-child {
+                //border-left: 1px #1c98cc solid;
+            }
+            td:last-child {
+                //border-right: 1px #1c98cc solid;
+            }
+            td {
+                //border-top: 1px #1c98cc solid;
+                //border-bottom: 1px #1c98cc solid;
+            }
+        }
+    }
+}

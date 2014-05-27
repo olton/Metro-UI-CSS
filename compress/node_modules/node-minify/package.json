@@ -1,0 +1,38 @@
+{
+  "name": "node-minify",
+  "version": "0.8.1",
+  "description": "Javascript / CSS minifier based on YUI Compressor / Google Closure Compiler / UglifyJS2 / Sqwish",
+  "homepage": "https://github.com/srod/node-minify",
+  "author": {
+    "name": "Rodolphe Stoclin",
+    "email": "rodolphe@2clics.net",
+    "url": "http://2clics.net"
+  },
+  "main": "index",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/srod/node-minify.git"
+  },
+  "dependencies": {
+    "uglify-js": "*",
+    "sqwish": "*"
+  },
+  "keywords": [
+    "compressor",
+    "minify",
+    "minifier",
+    "yui",
+    "gcc",
+    "google",
+    "closure",
+    "compiler",
+    "uglifyjs",
+    "uglifyjs2",
+    "windows",
+    "sqwish"
+  ],
+  "readme": "# Node-minify\n\n  A very light minifier NodeJS module.\n\n  Support:\n\n  - YUI Compressor --version 2.4.8\n\n  - Google Closure Compiler --version v20130411\n\n  - UglifyJS2\n\n  - Sqwish\n\n  It allow you to compress JavaScript and CSS files.\n\n  I recommend to execute it at boot time for production use.\n\n  See `server.js` in `examples/`.\n\n## Installation\n\n```bash\nnpm install node-minify\n```\n\n## Quick Start\n\n```js\nvar compressor = require('node-minify');\n\n// Using Google Closure with jQuery 2.0\nnew compressor.minify({\n\ttype: 'gcc',\n\tlanguage: 'ECMASCRIPT5',\n\tfileIn: 'public/js/jquery-2.0.0.js',\n\tfileOut: 'public/js/jquery-2.0.0-gcc.js',\n\tcallback: function(err, min){\n\t\tconsole.log('GCC jquery 2.0');\n\t\tconsole.log(err);\n//        console.log(min);\n\t}\n});\n\n// Using Google Closure\nnew compressor.minify({\n\ttype: 'gcc',\n\tfileIn: 'public/js/base.js',\n\tfileOut: 'public/js/base-min-gcc.js',\n\tcallback: function(err, min){\n\t\tconsole.log(err);\n//        console.log(min);\n\t}\n});\n\n// Array\nnew compressor.minify({\n\ttype: 'gcc',\n\tfileIn: ['public/js/base.js', 'public/js/base2.js'],\n\tfileOut: 'public/js/base-onefile-gcc.js',\n\tcallback: function(err, min){\n\t\tconsole.log(err);\n//        console.log(min);\n\t}\n});\n\n// Only concatenation of files (no compression)\nnew compressor.minify({\n    type: 'no-compress',\n    fileIn: ['public/js/base.js', 'public/js/base2.js'],\n    fileOut: 'public/js/base-onefile-gcc.js',\n    callback: function(err, min){\n\t\tconsole.log(err);\n//        console.log(min);\n    }\n});\n\n// Using YUI Compressor for CSS\nnew compressor.minify({\n\ttype: 'yui-css',\n\tfileIn: 'public/css/base.css',\n\tfileOut: 'public/css/base-min-yui.css',\n\tcallback: function(err, min){\n\t\tconsole.log(err);\n//        console.log(min);\n\t}\n});\n\n// Using YUI Compressor for JS\nnew compressor.minify({\n\ttype: 'yui-js',\n\tfileIn: 'public/js/base.js',\n\tfileOut: 'public/js/base-min-yui.js',\n\tcallback: function(err, min){\n\t\tconsole.log(err);\n//        console.log(min);\n\t}\n});\n\n// Using UglifyJS for JS\nnew compressor.minify({\n\ttype: 'uglifyjs',\n\tfileIn: 'public/js/base.js',\n\tfileOut: 'public/js/base-onefile-uglify.js',\n\tcallback: function(err, min){\n\t\tconsole.log(err);\n//        console.log(min);\n\t}\n});\n\n// Using Sqwish for CSS\nnew compressor.minify({\n    type: 'sqwish',\n\tfileIn: ['public/css/base.css', 'public/css/base2.css'],\n\tfileOut: 'public/css/base-min-sqwish.css',\n    callback: function(err, min){\n\t\tconsole.log('Sqwish');\n\t\tconsole.log(err);\n//        console.log(min);\n    }\n});\n\n// Using public folder option\nnew compressor.minify({\n    type: 'yui-js',\n    publicFolder: 'public/js/',\n    fileIn: 'base.js',\n    fileOut: 'public/js/base-min-yui-publicfolder.js',\n    callback: function(err, min){\n\t\tconsole.log('YUI JS with publicFolder option');\n        console.log(err);\n//        console.log(min);\n    }\n});\n\nnew compressor.minify({\n    type: 'yui-js',\n    publicFolder: 'public/js/',\n    fileIn: ['base.js', 'base2.js'],\n    fileOut: 'public/js/base-min-yui-publicfolder-array.js',\n    callback: function(err, min){\n\t\tconsole.log('YUI JS with publicFolder option and array');\n        console.log(err);\n//        console.log(min);\n    }\n});\n```\n\n## Concatenate Files\n\nIn order to concatenate files, simply pass in an array with the file paths to `fileIn`.\n\n```js\nfileIn: ['public/js/base.js', 'public/js/base2.js', ...]\n```\n\n## Max Buffer Size\n\nIn some cases you might need a bigger max buffer size (for example when minifying really large files).\nBy default the buffer is `1000 * 1024` which should be enough. If you however need more buffer, you can simply pass in the desired buffer size as an argument to `compressor.minify` like so:\n\n```js\nnew compressor.minify({\n\ttype: 'uglifyjs',\n\tfileIn: './public/css/base.css',\n\tfileOut: './public/css/base-min-uglifyjs.css',\n\tbuffer: 1000 * 1024,\n\tcallback: function(err){\n\t\tconsole.log(err);\n\t}\n});\n```\n\n## Temp Path\n\nYou can define a temporary folder where temporary files will be generated :\n\n```js\nnew compressor.minify({\n\ttype: 'yui-js',\n\tfileIn: 'public/js/base.js',\n\tfileOut: 'public/js/base-min-yui.js',\n\ttempPath: '/tmp',\n\tcallback: function(err){\n\t\tconsole.log(err);\n\t}\n});\n```\n\n## YUI Compressor\n\n  Yahoo Compressor can compress both JavaScript and CSS files.\n\n  http://developer.yahoo.com/yui/compressor/\n\n## Google Closure Compiler\n\n  Google Closure Compiler can compress only JavaScript files.\n\n  It will throw an error if you try with CSS files.\n\n  http://code.google.com/closure/compiler\n\n## UglifyJS\n\n  UglifyJS can compress only JavaScript files.\n\n  It will throw an error if you try with CSS files.\n\n  https://github.com/mishoo/UglifyJS\n\n## Sqwish\n\n  Sqwish can compress only CSS files.\n\n  https://github.com/ded/sqwish\n\n## Warning\n\n  It assumes you have Java installed on your environment for both GCC and YUI Compressor. To check, run:\n\n```bash\njava -version\n```\n\n## Windows support\n\n  Since v0.5.0, a windows support is available for the no-compress option and uglify-js (thanks to pieces029 and benpusherhq)\n\n## MIT License\n\nCopyright (c) 2013 Rodolphe Stoclin\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in\nall copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN\nTHE SOFTWARE.",
+  "readmeFilename": "Readme.md",
+  "_id": "node-minify@0.8.1",
+  "_from": "node-minify@"
+}

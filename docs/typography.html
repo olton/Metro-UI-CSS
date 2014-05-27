@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="product" content="Metro UI CSS Framework">
+    <meta name="description" content="Simple responsive css framework">
+    <meta name="author" content="Sergey S. Pimenov, Ukraine, Kiev">
+
+    <link href="css/metro-bootstrap.css" rel="stylesheet">
+    <link href="css/metro-bootstrap-responsive.css" rel="stylesheet">
+    <link href="css/iconFont.css" rel="stylesheet">
+    <link href="css/docs.css" rel="stylesheet">
+    <link href="js/prettify/prettify.css" rel="stylesheet">
+
+    <script src="js/prettify/prettify.js"></script>
+
+
+    <!-- Load JavaScript Libraries -->
+    <script src="js/jquery/jquery.min.js"></script>
+    <script src="js/jquery/jquery.widget.min.js"></script>
+    <script src="js/jquery/jquery.mousewheel.js"></script>
+    <script src="js/prettify/prettify.js"></script>
+
+    <!-- Metro UI CSS JavaScript plugins -->
+    <script src="js/load-metro.js"></script>
+
+    <!-- Local JavaScript -->
+    <script src="js/docs.js"></script>
+    <script src="js/github.info.js"></script>
+
+    <title>Metro Bootstrap : Typography</title>
+</head>
+<body class="metro">
+    <header class="bg-dark" data-load="header.html"></header>
+
+    <div class="container">
+                <h1>
+                    <a href="/"><i class="icon-arrow-left-3 fg-darker smaller"></i></a>
+                    Typography
+                </h1>
+
+                <div class="grid">
+                    <div class="row">
+                        <div class="span3 no-tablet-portrait">
+                            <nav>
+                                <ul class="side-menu">
+                                    <li><a href="#_general">General</a></li>
+                                    <li><a href="#_heading">Headings</a></li>
+                                    <li><a href="#_text">Text</a></li>
+                                    <li><a href="#_emphasis">Emphasis</a></li>
+                                    <li><a href="#_alignment">Alignment classes</a></li>
+                                    <li><a href="#_abbreviation">Abbreviation</a></li>
+                                    <li><a href="#_address">Addresses</a></li>
+                                    <li><a href="#_blockquote">Blockquote</a></li>
+                                    <li><a href="#_list">Lists</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+
+                        <div class="span9">
+                            <p class="description padding20 bg-grayLighter" id="_general">
+                                The signature user interface font of Metro UI CSS, <strong>Open Sans</strong> and <strong>PT Serif Caption</strong>.
+                                It's a sans serif design drawn in the tradition of signage and way-finding typefaces.
+                            </p>
+
+                            <h2 id="_heading"><i class="icon-accessibility on-left"></i>Headings</h2>
+                            <div class="description">
+                                <p>All HTML heading, h1-h6 are available.</p>
+                            </div>
+
+                            <div class="example">
+                                <h1>h1. Header 1</h1>
+                                <h2>h2. Header 2</h2>
+                                <h3>h3. Header 3</h3>
+                                <h4>h4. Header 4</h4>
+                                <h5>h5. Header 5</h5>
+                                <h6>h6. Header 6</h6>
+                                <br />
+                                <p class="header">Header</p>
+                                <p class="subheader">Class Subheader</p>
+                                <p class="subheader-secondary">Sub secondary</p>
+                                <p class="item-title">Item title</p>
+                                <p class="item-title-secondary">Title sec</p>
+                            </div>
+
+                            <br />
+                            <p>
+                                You can set the heading styles for all items using built-in classes:
+                                <code>.header</code>, <code>.subheader</code>, <code>.subheader-secondary</code>, <code>.item-title</code>, <code>.item-title-secondary</code>.
+                            </p>
+
+                            <br />
+                            <h2 id="_text"><i class="icon-accessibility on-left"></i>Text</h2>
+
+                            <h3>Paragraph text</h3>
+                            <p class="description">
+                                Metro UI CSS global default font-size is <strong>11pt</strong>, with a <code>line-height</code> of <strong>15pt</strong>.
+                                This is applied to the <code>&lt;div&gt;</code>, <code>&lt;span&gt;</code> and all paragraphs.
+                                In addition, <code>&lt;p&gt;</code> (paragraphs) receive a bottom margin <strong>7pt</strong>.
+                            </p>
+                            <div class="example">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean luctus lectus sit amet odio ullamcorper malesuada dignissim justo gravida. Pellentesque sagittis, tellus id sagittis accumsan, augue velit pretium urna, ac interdum dui nibh et orci. Quisque dapibus elit ut metus varius ac bibendum sem luctus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis sagittis lorem. Praesent ac eros quam.</p>
+                                <p>Praesent molestie bibendum consequat. Suspendisse a felis eu augue venenatis egestas nec ac lectus. Nam nec felis lorem. Maecenas luctus est et nulla cursus vestibulum. Curabitur suscipit adipiscing dui eget sollicitudin. Sed accumsan tincidunt enim, in feugiat ligula ornare et.</p>
+                                <p>Nullam libero odio, lacinia vel dignissim sed, consequat ac nisi. Ut at mauris sit amet sem dapibus pretium sit amet sed orci. Quisque tincidunt sodales sollicitudin. Ut purus odio, imperdiet ut laoreet ac, placerat vel ante. Nulla tincidunt sapien in metus tincidunt imperdiet. Vestibulum a dui nisi. Morbi vestibulum nulla lacinia enim tempus ullamcorper.</p>
+                            </div>
+                            <pre class="prettyprint linenums">&lt;p&gt;...&lt;/p&gt;</pre>
+
+                            <h3>Readable text</h3>
+                            <p class="description">
+                                For big text you can use <code>.readable-text</code> class.
+                            </p>
+                            <div class="example">
+                                <p class="readable-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean luctus lectus sit amet odio ullamcorper malesuada dignissim justo gravida. Pellentesque sagittis, tellus id sagittis accumsan, augue velit pretium urna, ac interdum dui nibh et orci. Quisque dapibus elit ut metus varius ac bibendum sem luctus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis sagittis lorem. Praesent ac eros quam.</p>
+                                <p class="readable-text">Praesent molestie bibendum consequat. Suspendisse a felis eu augue venenatis egestas nec ac lectus. Nam nec felis lorem. Maecenas luctus est et nulla cursus vestibulum. Curabitur suscipit adipiscing dui eget sollicitudin. Sed accumsan tincidunt enim, in feugiat ligula ornare et.</p>
+                                <p class="readable-text">Nullam libero odio, lacinia vel dignissim sed, consequat ac nisi. Ut at mauris sit amet sem dapibus pretium sit amet sed orci. Quisque tincidunt sodales sollicitudin. Ut purus odio, imperdiet ut laoreet ac, placerat vel ante. Nulla tincidunt sapien in metus tincidunt imperdiet. Vestibulum a dui nisi. Morbi vestibulum nulla lacinia enim tempus ullamcorper.</p>
+                            </div>
+                            <pre class="prettyprint linenums">&lt;p&gt;...&lt;/p&gt;</pre>
+
+                            <h3>Tertiary and tertiary secondary text</h3>
+                            <p class="description">
+                                For tertiary text you can set class <code>.tertiary-text</code> and <code>.tertiary-text-secondary</code>.
+                            </p>
+                            <div class="example">
+                                <p class="tertiary-text">Tertiary text: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean luctus lectus sit amet odio ullamcorper malesuada dignissim justo gravida. Pellentesque sagittis, tellus id sagittis accumsan, augue velit pretium urna, ac interdum dui nibh et orci. Quisque dapibus elit ut metus varius ac bibendum sem luctus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis sagittis lorem. Praesent ac eros quam.</p>
+                                <p class="tertiary-text-secondary">Tertiary secondary text: Praesent molestie bibendum consequat. Suspendisse a felis eu augue venenatis egestas nec ac lectus. Nam nec felis lorem. Maecenas luctus est et nulla cursus vestibulum. Curabitur suscipit adipiscing dui eget sollicitudin. Sed accumsan tincidunt enim, in feugiat ligula ornare et.</p>
+                            </div>
+<pre class="prettyprint linenums">
+&lt;p class="tertiary-text"&gt;...&lt;/p&gt;
+&lt;p class="tertiary-text-secondary"&gt;...&lt;/p&gt;
+</pre>
+
+                            <h3>Code text</h3>
+                            <p class="description">
+                                For code text you can set class <code>.code-text</code>. This class use mono fonts.
+                            </p>
+                            <div class="example">
+                                <p class="code-text">Code text: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean luctus lectus sit amet odio ullamcorper malesuada dignissim justo gravida. Pellentesque sagittis, tellus id sagittis accumsan, augue velit pretium urna, ac interdum dui nibh et orci. Quisque dapibus elit ut metus varius ac bibendum sem luctus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis sagittis lorem. Praesent ac eros quam.</p>
+                            </div>
+<pre class="prettyprint linenums">
+&lt;p class="code-text"&gt;...&lt;/p&gt;
+</pre>
+
+                            <br />
+                            <h2 id="_emphasis"><i class="icon-accessibility on-left"></i>Emphasis</h2>
+                            <p class="description">
+                                Make use of HTML's default emphasis tags with lightweight styles.
+                            </p>
+
+                            <h4>Small</h4>
+                            <p>
+                                For de-emphasizing inline or blocks of text, use the <code>&lt;small&gt;</code> tag.
+                            </p>
+                            <div class="example">
+                                This is a normal text, and the <small>text is reduced</small>.
+                            </div>
+                            <pre class="prettyprint linenums">&lt;p&gt;This is a normal text, and the &lt;small&gt;text is reduced&lt;/small&gt;.&lt;/p&gt;</pre>
+
+                            <h4>Bold</h4>
+                            <p>
+                                For emphasizing inline or blocks of text, use the <code>&lt;strong&gt;</code> tag.
+                            </p>
+                            <div class="example">
+                                This is a normal text, and the <strong>text is strong</strong>.
+                            </div>
+                            <pre class="prettyprint linenums">&lt;p&gt;This is a normal text, and the &lt;strong&gt;text is strong&lt;/strong&gt;.&lt;/p&gt;</pre>
+
+                            <h4>Italic</h4>
+                            <p>
+                                For emphasizing a snippet of text with italics use <code>&lt;em&gt;</code> tag.
+                            </p>
+                            <div class="example">
+                                This is a normal text, and the <em>text is italics</em>.
+                            </div>
+                            <pre class="prettyprint linenums">&lt;p&gt;This is a normal text, and the &lt;em&gt;text is italics&lt;/em&gt;.&lt;/p&gt;</pre>
+
+                            <p>
+                                <br />
+                                <span class="label info">Heads up!</span> Feel free to use <code>&lt;b&gt;</code> and <code>&lt;i&gt;</code> in HTML5. <code>&lt;b&gt;</code> is meant to highlight words or phrases without conveying additional importance while <code>&lt;i&gt;</code> is mostly for voice, technical terms, etc.
+                            </p>
+
+                            <br />
+                            <h2 id="_alignment"><i class="icon-accessibility on-left"></i>Alignment classes</h2>
+                            <p class="description">
+                                Easily realign text to components with text alignment classes.
+                            </p>
+
+                            <div class="example">
+                                <p class="text-left">Left aligned text</p>
+                                <p class="text-center">Center aligned text</p>
+                                <p class="text-right">Right aligned text</p>
+                            </div>
+<pre class="prettyprint linenums">
+&lt;p class="text-left"&gt;Left aligned text.&lt;p&gt;
+&lt;p class="text-center"&gt;Left aligned text.&lt;p&gt;
+&lt;p class="text-right"&gt;Left aligned text.&lt;p&gt;
+&lt;p class="text-justify"&gt;Justify aligned text.&lt;p&gt;
+</pre>
+
+                            <br />
+                            <h2 id="_emphasis-classes"><i class="icon-accessibility on-left"></i>Emphasis classes</h2>
+                            <p class="description">
+                                Convey meaning through color with a handful of emphasis utility classes.
+                            </p>
+                            <div class="example">
+                                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit (muted).</p>
+                                <p class="text-info">Lorem ipsum dolor sit amet, consectetur adipiscing elit (info).</p>
+                                <p class="text-alert">Lorem ipsum dolor sit amet, consectetur adipiscing elit (alert).</p>
+                                <p class="text-warning">Lorem ipsum dolor sit amet, consectetur adipiscing elit (warning).</p>
+                                <p class="text-success">Lorem ipsum dolor sit amet, consectetur adipiscing elit (success).</p>
+                            </div>
+<pre class="prettyprint linenums">
+&lt;p class="text-muted"&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit.&lt;/p&gt;
+&lt;p class="text-info"&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit.&lt;/p&gt;
+&lt;p class="text-alert"&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit.&lt;/p&gt;
+&lt;p class="text-warning"&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit.&lt;/p&gt;
+&lt;p class="text-success"&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit.&lt;/p&gt;
+</pre>
+
+                            <br />
+                            <h2 id="_abbreviation"><i class="icon-accessibility on-left"></i>Abbreviations</h2>
+                            <p class="description">
+                                Stylized implementation of HTML's <code>&lt;abbr&gt;</code> element for abbreviations and acronyms to show the expanded version on hover.
+                                Abbreviations with a <code>title</code> attribute have a light dotted bottom border and a help cursor on hover, providing additional context on hover.
+                            </p>
+                            <h4>&lt;abbr&gt;</h4>
+                            <p class="description">
+                                For expanded text on long hover of an abbreviation, include the <code>title</code> attribute.
+                            </p>
+                            <div class="example">
+                                An abbreviation of the word attribute is <abbr title="attribute description">attr</abbr>.
+                            </div>
+<pre class="prettyprint linenums">
+An abbreviation of the word attribute is &lt;abbr title="attribute description"&gt;attr&lt;/abbr&gt;.
+</pre>
+
+                            <br />
+                            <h2 id="_address"><i class="icon-accessibility on-left"></i>Addresses</h2>
+                            <p class="description">
+                                Present contact information for the nearest ancestor or the entire body of work.
+                            </p>
+                            <h4>&lt;address&gt;</h4>
+                            <p class="description">
+                                Preserve formatting by ending all lines with <code>&lt;br&gt;</code>.
+                            </p>
+                            <div class="example">
+                                <address>
+                                    <strong>Metro UI CSS</strong><br />
+                                    Khreschatyk str, Suite 1<br>
+                                    Kiev, Ukraine 01001<br>
+                                    <abbr title="Phone">P:</abbr> (123) 456-7890
+                                </address>
+
+                                <address>
+                                    <strong>Full Name</strong><br>
+                                    <a href="mailto:#">first.last@example.com</a>
+                                </address>
+                            </div>
+<pre class="prettyprint linenums">
+&lt;address&gt;
+    &lt;strong&gt;Metro UI CSS&lt;/strong&gt;&lt;br /&gt;
+    Khreschatyk str, Suite 1&lt;br&gt;
+    Kiev, Ukraine 01001&lt;br&gt;
+    &lt;abbr title="Phone"&gt;P:&lt;/abbr&gt; (123) 456-7890
+&lt;/address&gt;
+
+&lt;address&gt;
+    &lt;strong&gt;Full Name&lt;/strong&gt;&lt;br&gt;
+    &lt;a href="mailto:#"&gt;first.last@example.com&lt;/a&gt;
+&lt;/address&gt;
+</pre>
+
+                            <br />
+                            <h2 id="_blockquote"><i class="icon-accessibility on-left"></i>Blockquotes</h2>
+                            <p class="description">
+                                For quoting blocks of content from another source within your document.
+                            </p>
+                            <h4>Default blockquote</h4>
+                            <p class="description">
+                                Wrap <code>&lt;blockquote&gt;</code> around any HTML as the quote. For straight quotes we recommend a <code>&lt;p&gt;</code>.
+                            </p>
+                            <div class="example">
+                                <blockquote>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                                </blockquote>
+                            </div>
+<pre class="prettyprint linenums">
+&lt;blockquote&gt;
+    &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit.&lt;/p&gt;
+&lt;/blockquote&gt;
+</pre>
+                            <h4>Naming a source</h4>
+                            <p class="description">
+                                Add <code>&lt;small&gt;</code> tag for identifying the source. Wrap the name of the source work in <code>&lt;cite&gt;</code>.
+                            </p>
+                            <div class="example">
+                                <blockquote>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                                    <small>Someone famous <cite title="Source Title">Source Title</cite></small>
+                                </blockquote>
+                            </div>
+<pre class="prettyprint linenums">
+&lt;blockquote&gt;
+    &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit.&lt;/p&gt;
+    &lt;small&gt;Someone famous &lt;cite title="Source Title"&gt;Source Title&lt;/cite&gt;&lt;/small&gt;
+&lt;/blockquote&gt;
+</pre>
+                            <h4>Alternate displays</h4>
+                            <p class="description">
+                                Use <code>.place-right</code> for a floated, <strong>right-aligned</strong> blockquote.
+                            </p>
+                            <div class="example">
+                                <blockquote class="place-right">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                                    <small>Someone famous <cite title="Source Title">Source Title</cite></small>
+                                </blockquote>
+                            </div>
+<pre class="prettyprint linenums">
+&lt;blockquote class="place-right"&gt;
+    &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit.&lt;/p&gt;
+    &lt;small&gt;Someone famous &lt;cite title="Source Title"&gt;Source Title&lt;/cite&gt;&lt;/small&gt;
+&lt;/blockquote&gt;
+</pre>
+
+                            <br />
+                            <h2 id="_list"><i class="icon-accessibility on-left"></i>Lists</h2>
+                            <h4>Unordered</h4>
+                            <p class="description">
+                                A list of items in which the order does not explicitly matter.
+                            </p>
+                            <div class="example">
+                                <ul>
+                                    <li>Lorem ipsum dolor sit amet</li>
+                                    <li>Consectetur adipiscing elit</li>
+                                    <li>Integer molestie lorem at massa</li>
+                                    <li>Facilisis in pretium nisl aliquet</li>
+                                    <li>Nulla volutpat aliquam velit
+                                        <ul>
+                                            <li>Phasellus iaculis neque</li>
+                                            <li>Purus sodales ultricies</li>
+                                            <li>Vestibulum laoreet porttitor sem</li>
+                                            <li>Ac tristique libero volutpat at
+                                                <ul>
+                                                    <li>Phasellus iaculis neque</li>
+                                                    <li>Purus sodales ultricies</li>
+                                                    <li>Vestibulum laoreet porttitor sem</li>
+                                                    <li>Ac tristique libero volutpat at</li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>Faucibus porta lacus fringilla vel</li>
+                                    <li>Aenean sit amet erat nunc</li>
+                                    <li>Eget porttitor lorem</li>
+                                </ul>
+                            </div>
+<pre class="prettyprint linenums">
+&lt;ul&gt;
+    &lt;li&gt;...&lt;/li&gt;
+&lt;/ul&gt;
+</pre>
+
+                            <h4>Ordered</h4>
+                            <p class="description">
+                                A list of items in which the order explicitly matter.
+                            </p>
+                            <div class="example">
+                                <ol>
+                                    <li>Lorem ipsum dolor sit amet</li>
+                                    <li>Consectetur adipiscing elit</li>
+                                    <li>Integer molestie lorem at massa</li>
+                                    <li>Facilisis in pretium nisl aliquet</li>
+                                    <li>Nulla volutpat aliquam velit</li>
+                                    <li>Faucibus porta lacus fringilla vel</li>
+                                    <li>Aenean sit amet erat nunc</li>
+                                    <li>Eget porttitor lorem</li>
+                                </ol>
+                            </div>
+<pre class="prettyprint linenums">
+&lt;ol&gt;
+    &lt;li&gt;...&lt;/li&gt;
+&lt;/ol&gt;
+</pre>
+
+                            <h4>Unstyled</h4>
+                            <p class="description">
+                                Remove the default <code>list-style</code> and left padding on list items (immediate children only).
+                            </p>
+                            <div class="example">
+                                <ul class="unstyled">
+                                    <li>Lorem ipsum dolor sit amet</li>
+                                    <li>Consectetur adipiscing elit</li>
+                                    <li>Integer molestie lorem at massa</li>
+                                    <li>Facilisis in pretium nisl aliquet</li>
+                                    <li>Nulla volutpat aliquam velit
+                                        <ul>
+                                            <li>Phasellus iaculis neque</li>
+                                            <li>Purus sodales ultricies</li>
+                                            <li>Vestibulum laoreet porttitor sem</li>
+                                            <li>Ac tristique libero volutpat at
+                                                <ul>
+                                                    <li>Phasellus iaculis neque</li>
+                                                    <li>Purus sodales ultricies</li>
+                                                    <li>Vestibulum laoreet porttitor sem</li>
+                                                    <li>Ac tristique libero volutpat at</li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>Faucibus porta lacus fringilla vel</li>
+                                    <li>Aenean sit amet erat nunc</li>
+                                    <li>Eget porttitor lorem</li>
+                                </ul>
+                            </div>
+<pre class="prettyprint linenums">
+&lt;ul class="unstyled"&gt;
+    &lt;li&gt;...&lt;/li&gt;
+&lt;/ul&gt;
+</pre>
+
+                            <h4>Inline</h4>
+                            <p class="description">
+                                Place all list items on a single line with inline-block and some light padding.
+                            </p>
+                            <div class="example">
+                                <ul class="inline">
+                                    <li>Lorem</li>
+                                    <li>Consectetur</li>
+                                    <li>Integer</li>
+                                    <li>Facilisis</li>
+                                </ul>
+                            </div>
+<pre class="prettyprint linenums">
+&lt;ul class="inline"&gt;
+    &lt;li&gt;...&lt;/li&gt;
+&lt;/ul&gt;
+</pre>
+
+                            <br />
+                            <h2 id="_description"><i class="icon-accessibility on-left"></i>Description</h2>
+                            <p class="description">
+                                A list of terms with their associated descriptions.
+                            </p>
+                            <div class="example">
+                                <dl>
+                                    <dt>Description lists</dt>
+                                    <dd>A description list is perfect for defining terms.</dd>
+                                    <dt>Euismod</dt>
+                                    <dd>Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.</dd>
+                                    <dd>Donec id elit non mi porta gravida at eget metus.</dd>
+                                    <dt>Malesuada porta</dt>
+                                    <dd>Etiam porta sem malesuada magna mollis euismod.</dd>
+                                </dl>
+                            </div>
+<pre class="prettyprint linenums">
+&lt;dl&gt;
+  &lt;dt&gt;...&lt;/dt&gt;
+  &lt;dd&gt;...&lt;/dd&gt;
+&lt;/dl&gt;
+</pre>
+                            <h4>Horizontal description</h4>
+                            <p class="description">
+                                Make terms and descriptions in <code>&lt;dl&gt;</code> line up side-by-side.
+                            </p>
+                            <div class="example">
+                                <dl class="horizontal">
+                                    <dt>Description lists</dt>
+                                    <dd>A description list is perfect for defining terms.</dd>
+                                    <dt>Euismod</dt>
+                                    <dd>Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.</dd>
+                                    <dd>Donec id elit non mi porta gravida at eget metus.</dd>
+                                    <dt>Malesuada porta</dt>
+                                    <dd>Etiam porta sem malesuada magna mollis euismod.</dd>
+                                    <dt>Felis euismod semper eget lacinia</dt>
+                                    <dd>Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</dd>
+                                </dl>
+                            </div>
+<pre class="prettyprint linenums">
+&lt;dl class="horizontal"&gt;
+  &lt;dt&gt;...&lt;/dt&gt;
+  &lt;dd&gt;...&lt;/dd&gt;
+&lt;/dl&gt;
+</pre>
+
+                            <br />
+                            <p>
+                                <span class="label info">Heads up!</span>
+                                Horizontal description lists will truncate terms that are too long to fit in the left column fix <code>text-overflow</code>. In narrower viewports, they will change to the default stacked layout.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+    </div>
+
+    <script src="js/hitua.js"></script>
+
+</body>
+</html>

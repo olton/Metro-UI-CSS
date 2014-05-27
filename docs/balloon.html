@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="product" content="Metro UI CSS Framework">
+    <meta name="description" content="Simple responsive css framework">
+    <meta name="author" content="Sergey S. Pimenov, Ukraine, Kiev">
+
+    <link href="css/metro-bootstrap.css" rel="stylesheet">
+    <link href="css/metro-bootstrap-responsive.css" rel="stylesheet">
+    <link href="css/iconFont.css" rel="stylesheet">
+    <link href="css/docs.css" rel="stylesheet">
+    <link href="js/prettify/prettify.css" rel="stylesheet">
+
+    <!-- Load JavaScript Libraries -->
+    <script src="js/jquery/jquery.min.js"></script>
+    <script src="js/jquery/jquery.widget.min.js"></script>
+    <script src="js/jquery/jquery.mousewheel.js"></script>
+    <script src="js/prettify/prettify.js"></script>
+
+    <!-- Metro UI CSS JavaScript plugins -->
+    <script src="js/load-metro.js"></script>
+
+    <!-- Local JavaScript -->
+    <script src="js/docs.js"></script>
+    <script src="js/github.info.js"></script>
+
+    <title>Metro UI CSS : Metro Bootstrap CSS Library</title>
+</head>
+<body class="metro">
+    <header class="bg-dark" data-load="header.html"></header>
+    <div class="container">
+                <h1>
+                    <a href="/"><i class="icon-arrow-left-3 fg-darker smaller"></i></a>
+                    Balloon<small class="on-right">component</small>
+                </h1>
+
+                <div class="example">
+                    <div class="balloon left">
+                        <div class="padding20">
+                            Balloon is represent to create information or dialog UI. You can put inside any of elements.
+                        </div>
+                    </div>
+
+                    <div class="balloon right">
+                        <div class="tab-control padding20" data-role="tab-control">
+                            <p class="place-right tertiary-text">Comments are parsed with <a href="https://help.github.com/articles/github-flavored-markdown">GitHub Flavored Markdown</a></p>
+                            <ul class="tabs">
+                                <li class="active"><a href="#write">Write</a></li>
+                                <li><a href="#preview">Preview</a></li>
+                            </ul>
+
+                            <div class="frames">
+                                <div id="write" class="frame">
+                                    <textarea data-transform="input-control" placeholder="leave a comment"></textarea>
+                                </div>
+                                <div id="preview" class="frame">
+                                    This is preview :)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="balloon bottom">
+                        <div class="padding20">
+                            Balloon is represent to create information or dialog UI. You can put inside any of elements.
+                        </div>
+                    </div>
+
+                    <div class="balloon top">
+                        <div class="padding20">
+                            Balloon is represent to create information or dialog UI. You can put inside any of elements.
+                        </div>
+                    </div>
+                </div>
+
+<pre class="prettyprint linenums">
+&lt;div class="balloon"&gt;...&lt;/div&gt;
+&lt;div class="balloon left"&gt;...&lt;/div&gt;
+&lt;div class="balloon right"&gt;...&lt;/div&gt;
+&lt;div class="balloon top"&gt;...&lt;/div&gt;
+&lt;div class="balloon bottom"&gt;...&lt;/div&gt;
+</pre>
+
+    </div>
+
+    <script src="js/hitua.js"></script>
+
+</body>
+</html>

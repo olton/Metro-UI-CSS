@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="product" content="Metro UI CSS Framework">
+    <meta name="description" content="Simple responsive css framework">
+    <meta name="author" content="Sergey S. Pimenov, Ukraine, Kiev">
+
+    <link href="css/metro-bootstrap.css" rel="stylesheet">
+    <link href="css/metro-bootstrap-responsive.css" rel="stylesheet">
+    <link href="css/iconFont.css" rel="stylesheet">
+    <link href="css/docs.css" rel="stylesheet">
+    <link href="js/prettify/prettify.css" rel="stylesheet">
+
+
+    <!-- Load JavaScript Libraries -->
+    <script src="js/jquery/jquery.min.js"></script>
+    <script src="js/jquery/jquery.widget.min.js"></script>
+    <script src="js/jquery/jquery.mousewheel.js"></script>
+    <script src="js/prettify/prettify.js"></script>
+
+    <!-- Metro UI CSS JavaScript plugins -->
+    <script src="js/load-metro.js"></script>
+
+    <!-- Local JavaScript -->
+    <script src="js/docs.js"></script>
+    <script src="js/github.info.js"></script>
+
+    <title>Metro UI CSS : Metro Bootstrap CSS Library</title>
+</head>
+<body class="metro">
+    <header class="bg-dark" data-load="header.html"></header>
+
+    <div class="container">
+                <h1>
+                    <a href="/"><i class="icon-arrow-left-3 fg-darker smaller"></i></a>
+                    Buttons<small class="on-right">definition</small>
+                </h1>
+
+                <div class="grid">
+                    <div class="row">
+                        <div class="span3 no-tablet-portrait">
+                            <nav>
+                                <ul class="side-menu">
+                                    <li><a href="#_push">Push button</a></li>
+                                    <li><a href="#_command">Command button</a></li>
+                                    <li><a href="#_toolbar">Tool bar</a></li>
+                                    <li><a href="#_ibutton">Image button</a></li>
+                                    <li><a href="#_shortcut">Shortcuts</a></li>
+                                    <li><a href="#_dropdown-btn">Button dropdown</a></li>
+                                    <li><a href="#_pagination">Pagination</a></li>
+                                    <li><a href="#_set">Button Set/Group</a></li>
+                                    <li><a href="#_breadcrumbs">Breadcrumbs</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+
+                        <div class="span9">
+                            <p class="description">
+                                With the Metro UI CSS you can easily create different types of buttons, stylized to Windows 8.
+                                Button styles can be applied to anything with the <code>.button</code> class applied.
+                                However, typically you'll want to apply these to only <code>&lt;a&gt;</code> and <code>&lt;button&gt;</code> elements for the best rendering.
+                            </p>
+
+
+                            <h2 id="_push"><i class="icon-accessibility on-left"></i>Push button</h2>
+                            <div class="example">
+                                <button class="button large primary">Large</button>
+                                <button class="button success">Default</button>
+                                <button class="button small info">Small</button>
+                                <button class="button mini danger">Mini</button>
+                            </div>
+<pre class="prettyprint linenums">
+&lt;button&gt;Button&lt;/button&gt;
+&lt;a class="button"&gt;Button&lt;/a&gt;
+</pre>
+                            <p class="description">
+                                To change size of button you can use build-in classes: <code>large</code>, <code>small</code> and <code>mini</code>.
+                            </p>
+<pre class="prettyprint linenums">
+&lt;button&gt;Button&lt;/button&gt;
+&lt;button class="large"&gt;Button&lt;/button&gt;
+&lt;button class="small"&gt;Button&lt;/button&gt;
+&lt;button class="mini"&gt;Button&lt;/button&gt;
+&lt;a class="button small"&gt;Button&lt;/a&gt;
+</pre>
+
+                            <p class="description">
+                                For additional styling button you can use predefined button subclasses: <code>.default</code>, <code>.primary</code>, <code>.info</code>, <code>.success</code>, <code>.warning</code>, <code>.danger</code>, <code>.inverse</code> and <code>.link</code> or
+                                build-in color classes for background and foreground.
+                            </p>
+                            <div class="example">
+                                <button class="button default">Default</button>
+                                <button class="button primary">Primary</button>
+                                <button class="button info">Info</button>
+                                <button class="button success">Success</button>
+                                <button class="button warning">Warning</button>
+                                <button class="button danger">Danger</button>
+                                <button class="button inverse">Inverse</button>
+                                <button class="button link">Link</button>
+                            </div>
+<pre class="prettyprint linenums">
+&lt;button class="primary"&gt;Button&lt;/button&gt;
+&lt;button class="bg-darkRed fg-white"&gt;Button&lt;/button&gt;
+</pre>
+                            <p class="description">
+                                Also you can add icon to button with tag <code>&lt;i&gt;</code> and class <code>icon-*</code>.
+                            </p>
+                            <div class="example">
+                                <button class="button"><i class="icon-rocket on-left"></i>Rocket</button>
+                                <button class="button">Rocket<i class="icon-rocket on-right"></i></button>
+                            </div>
+<pre class="prettyprint linenums">
+&lt;button&gt;&lt;i class="icon-rocket on-left"&gt;&lt;/i&gt;Button&lt;/button&gt;
+&lt;button&gt;Button&lt;i class="icon-rocket on-right"&gt;&lt;/i&gt;&lt;/button&gt;
+</pre>
+
+                            <h2 id="_command"><i class="icon-accessibility on-left"></i>Command button</h2>
+                            <p class="description">
+                                A command button is the extension of a push button.
+                            </p>
+                            <div class="example">
+                                <button class="command-button ">
+                                    <i class="icon-share-2 on-left"></i>
+                                    Yes, share and connect
+                                    <small>Use this option for home or work</small>
+                                </button>
+                                <button class="command-button">
+                                    <i class="icon-share-3 on-right"></i>
+                                    Yes, share and connect
+                                    <small>Use this option for home or work</small>
+                                </button>
+                            </div>
+<pre class="prettyprint linenums">
+&lt;button class="command-button"&gt;
+    &lt;i class="icon-share-2 on-left"&gt;&lt;/i&gt;
+    Yes, share and connect
+    &lt;small&gt;Use this option for home or work&lt;/small&gt;
+&lt;/button&gt;
+
+&lt;button class="command-button"&gt;
+    &lt;i class="icon-share-3 on-right"&gt;&lt;/i&gt;
+    Yes, share and connect
+    &lt;small&gt;Use this option for home or work&lt;/small&gt;
+&lt;/button&gt;
+</pre>
+                            <p class="description">
+                                For additional styling button you can use predefined button subclasses: <code>.default</code>, <code>.primary</code>, <code>.info</code>, <code>.success</code>, <code>.warning</code>, <code>.danger</code>, <code>.inverse</code> and <code>.link</code> or
+                                build-in color classes for background and foreground.
+                            </p>
+                            <div class="example">
+                                <button class="command-button primary">
+                                    <i class="icon-share-2 on-left"></i>
+                                    Yes, share and connect
+                                    <small>Use this option for home or work</small>
+                                </button>
+                                <button class="command-button inverse">
+                                    <i class="icon-share-3 on-right"></i>
+                                    Yes, share and connect
+                                    <small>Use this option for home or work</small>
+                                </button>
+                            </div>
+<pre class="prettyprint linenums">
+&lt;button class="command-button primary"&gt;
+    &lt;i class="icon-share-2 on-left"&gt;&lt;/i&gt;
+    Yes, share and connect
+    &lt;small&gt;Use this option for home or work&lt;/small&gt;
+&lt;/button&gt;
+
+&lt;button class="command-button inverse"&gt;
+    &lt;i class="icon-share-3 on-right"&gt;&lt;/i&gt;
+    Yes, share and connect
+    &lt;small&gt;Use this option for home or work&lt;/small&gt;
+&lt;/button&gt;
+</pre>
+
+                            <h2 id="_toolbar"><i class="icon-accessibility on-left"></i>Toolbar</h2>
+
+                            <h3>Default toolbar</h3>
+                            <div class="example">
+                                <div class="toolbar">
+                                    <div class="toolbar-group">
+                                        <button>1</button>
+                                        <button>2</button>
+                                        <button>3</button>
+                                    </div>
+                                    <div class="toolbar-group no-spaces">
+                                        <button>1</button>
+                                        <button>2</button>
+                                        <button>3</button>
+                                    </div>
+                                </div>
+                            </div>
+<pre class="prettyprint linenums">
+&lt;div class="toolbar"&gt;
+    &lt;button&gt;...&lt;/button&gt;
+    &lt;button&gt;...&lt;/button&gt;
+    &lt;button&gt;...&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;div class="toolbar no-spaces"&gt;
+    &lt;button&gt;...&lt;/button&gt;
+    &lt;button&gt;...&lt;/button&gt;
+    &lt;button&gt;...&lt;/button&gt;
+&lt;/div&gt;
+</pre>
+
+                            <h3>Transparent toolbar</h3>
+                            <div class="example">
+                                <div class="toolbar transparent">
+                                    <button><i class="icon-folder-2 on-left"></i>Open</button>
+                                    <button><i class="icon-floppy on-left"></i>Save</button>
+                                    <button><i class="icon-spin on-left"></i>Refresh</button>
+                                    <span class="divider"></span>
+                                    <button><i class="icon-undo"></i></button>
+                                    <button><i class="icon-redo"></i></button>
+                                    <span class="divider"></span>
+                                    <button><i class="icon-paragraph-left"></i></button>
+                                    <button><i class="icon-paragraph-center"></i></button>
+                                    <button><i class="icon-paragraph-right"></i></button>
+                                    <button><i class="icon-paragraph-justify"></i></button>
+                                </div>
+                            </div>
+<pre class="prettyprint linenums">
+&lt;div class="toolbar transparent"&gt;
+    &lt;button&gt;&lt;i class="icon-folder-2 on-left"&gt;&lt;/i&gt;Open&lt;/button&gt;
+    &lt;button&gt;&lt;i class="icon-floppy on-left"&gt;&lt;/i&gt;Save&lt;/button&gt;
+    &lt;button&gt;&lt;i class="icon-spin on-left"&gt;&lt;/i&gt;Refresh&lt;/button&gt;
+    &lt;span class="divider"&gt;&lt;/span&gt;
+    &lt;button&gt;&lt;i class="icon-undo"&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;button&gt;&lt;i class="icon-redo"&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;span class="divider"&gt;&lt;/span&gt;
+    &lt;button&gt;&lt;i class="icon-paragraph-left"&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;button&gt;&lt;i class="icon-paragraph-center"&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;button&gt;&lt;i class="icon-paragraph-right"&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;button&gt;&lt;i class="icon-paragraph-justify"&gt;&lt;/i&gt;&lt;/button&gt;
+&lt;/div&gt;
+</pre>
+
+                            <h3>Colorize icon &amp; captions</h3>
+                            <div class="example">
+                                <div class="toolbar fg-red">
+                                    <div class="toolbar-group">
+                                        <button><i class="icon-folder-2"></i></button>
+                                        <button><i class="icon-floppy"></i></button>
+                                        <button><i class="icon-spin"></i></button>
+                                    </div>
+                                    <div class="toolbar-group">
+                                        <button><i class="icon-undo"></i></button>
+                                        <button><i class="icon-redo"></i></button>
+                                    </div>
+                                    <div class="toolbar-group">
+                                        <button><i class="icon-paragraph-left"></i></button>
+                                        <button><i class="icon-paragraph-center"></i></button>
+                                        <button><i class="icon-paragraph-right"></i></button>
+                                        <button><i class="icon-paragraph-justify"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+<pre class="prettyprint linenums">
+&lt;div class="toolbar fg-red"&gt;
+    &lt;button&gt;...&lt;/button&gt;
+    &lt;button&gt;...&lt;/button&gt;
+    &lt;button&gt;...&lt;/button&gt;
+&lt;/div&gt;
+</pre>
+
+                            <h3>Toolbar groups</h3>
+                            <div class="example">
+                                <div class="toolbar fg-red">
+                                    <div class="toolbar-group">
+                                        <button><i class="icon-folder-2"></i></button>
+                                        <button><i class="icon-floppy"></i></button>
+                                        <button><i class="icon-spin"></i></button>
+                                    </div>
+                                    <div class="toolbar-group fg-green">
+                                        <button><i class="icon-undo"></i></button>
+                                        <button><i class="icon-redo"></i></button>
+                                    </div>
+                                    <div class="toolbar-group fg-darkTeal transparent">
+                                        <button><i class="icon-paragraph-left"></i></button>
+                                        <button><i class="icon-paragraph-center"></i></button>
+                                        <button><i class="icon-paragraph-right"></i></button>
+                                        <button><i class="icon-paragraph-justify"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+<pre class="prettyprint linenums">
+&lt;div class="toolbar fg-red"&gt;
+    &lt;div class="toolbar-group"&gt;
+        &lt;button&gt;&lt;i class="icon-folder-2"&gt;&lt;/i&gt;&lt;/button&gt;
+        &lt;button&gt;&lt;i class="icon-floppy"&gt;&lt;/i&gt;&lt;/button&gt;
+        &lt;button&gt;&lt;i class="icon-spin"&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class="toolbar-group fg-green"&gt;
+        &lt;button&gt;&lt;i class="icon-undo"&gt;&lt;/i&gt;&lt;/button&gt;
+        &lt;button&gt;&lt;i class="icon-redo"&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class="toolbar-group fg-darkTeal transparent"&gt;
+        &lt;button&gt;&lt;i class="icon-paragraph-left"&gt;&lt;/i&gt;&lt;/button&gt;
+        &lt;button&gt;&lt;i class="icon-paragraph-center"&gt;&lt;/i&gt;&lt;/button&gt;
+        &lt;button&gt;&lt;i class="icon-paragraph-right"&gt;&lt;/i&gt;&lt;/button&gt;
+        &lt;button&gt;&lt;i class="icon-paragraph-justify"&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</pre>
+
+                            <h2 id="_ibutton"><i class="icon-accessibility on-left"></i>Image button</h2>
+                            <div class="example">
+                                <button class="image-button primary">
+                                    Download
+                                    <img src="images/download-32.png" class="bg-cobalt">
+                                </button>
+                                <button class="image-button danger">
+                                    GitHub
+                                    <i class="icon-github bg-red"></i>
+                                </button>
+                                <button class="image-button bg-darkGreen fg-white image-left">
+                                    Windows
+                                    <i class="icon-windows bg-green fg-white"></i>
+                                </button>
+                                <button class="image-button warning image-left">
+                                    Fork
+                                    <img src="images/fork-32.png" class="bg-cobalt">
+                                </button>
+                            </div>
+<pre class="prettyprint linenums">
+&lt;button class="image-button primary"&gt;
+    Download
+    &lt;img src="images/download-32.png" class="bg-cobalt"&gt;
+&lt;/button&gt;
+&lt;button class="image-button danger"&gt;
+    GitHub
+    &lt;i class="icon-github bg-red"&gt;&lt;/i&gt;
+&lt;/button&gt;
+&lt;button class="image-button bg-darkGreen fg-white image-left"&gt;
+    Windows
+    &lt;i class="icon-windows bg-green fg-white"&gt;&lt;/i&gt;
+&lt;/button&gt;
+&lt;button class="image-button warning image-left"&gt;
+    Download
+    &lt;img src="images/download-32.png" class="bg-cobalt"&gt;
+&lt;/button&gt;
+</pre>
+
+
+                            <h2 id="_shortcut"><i class="icon-accessibility on-left"></i>Shortcuts</h2>
+                            <div class="example">
+                                <button class="shortcut">
+                                    <i class="icon-rocket"></i>
+                                    Rocket
+                                </button>
+                                <button class="shortcut">
+                                    <i class="icon-rocket"></i>
+                                    Rocket
+                                    <small class="bg-cobalt fg-white">10</small>
+                                </button>
+                            </div>
+<pre class="linenums prettyprint">
+&lt;button class="shortcut"&gt;
+    &lt;i class="icon-rocket"&gt;&lt;/i&gt;
+    Rocket
+&lt;/button&gt;
+&lt;button class="shortcut"&gt;
+    &lt;i class="icon-rocket"&gt;&lt;/i&gt;
+    Rocket
+    &lt;small class="bg-cobalt fg-white"&gt;10&lt;/small&gt;
+&lt;/button&gt;
+</pre>
+                            <p class="description">
+                                Also you can use build-in classes for button to additional quick styling:
+                                <code>.primary</code>, <code>.info</code>, <code>.success</code>,
+                                <code>.warning</code>, <code>.danger</code>, <code>.inverse</code>, <code>.link</code>.
+                            </p>
+                            <div class="example">
+                                <button class="shortcut primary">
+                                    <i class="icon-rocket"></i>
+                                    Rocket
+                                    <small class="bg-lightBlue fg-white">10</small>
+                                </button>
+                                <button class="shortcut danger">
+                                    <i class="icon-rocket"></i>
+                                    Rocket
+                                    <small class="bg-red fg-white">10</small>
+                                </button>
+                                <button class="shortcut link">
+                                    <i class="icon-rocket"></i>
+                                    Rocket
+                                    <small class="bg-cobalt fg-white">10</small>
+                                </button>
+                            </div>
+
+
+                            <h2 id="_dropdown-btn"><i class="icon-accessibility on-left"></i>Button Dropdown</h2>
+                            <p class="description">
+                                Button dropdown required <code>metro-dropdown.js</code> widget.
+                            </p>
+                            <div class="example">
+                                <div class="button-dropdown place-right">
+                                    <button class="dropdown-toggle">Click Me</button>
+                                    <ul class="dropdown-menu place-right" data-role="dropdown">
+                                        <li><a href="#">Action</a></li>
+                                        <li><a href="#">Another action</a></li>
+                                        <li>
+                                            <a class="dropdown-toggle" href="#">Something else here</a>
+                                            <ul class="dropdown-menu drop-left" data-role="dropdown">
+                                                <li><a href="#">Sublink 1</a></li>
+                                                <li><a href="#">Sublink 2</a></li>
+                                                <li><a href="#">Sublink 3</a></li>
+                                                <li class="divider"></li>
+                                                <li><a href="#">Sublink 3</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li class="disabled"><a href="#">Separated link</a></li>
+                                        <li class="divider"></li>
+                                        <li class="checked"><a href="#">Checked link</a></li>
+                                    </ul>
+                                </div>
+                                <div class="button-dropdown">
+                                    <button class="dropdown-toggle">Click Me</button>
+                                    <ul class="dropdown-menu" data-role="dropdown">
+                                        <li><a href="#">Action</a></li>
+                                        <li><a href="#">Another action</a></li>
+                                        <li>
+                                            <a class="dropdown-toggle" href="#">Something else here</a>
+                                            <ul class="dropdown-menu" data-role="dropdown">
+                                                <li><a href="#">Sublink 1</a></li>
+                                                <li><a href="#">Sublink 2</a></li>
+                                                <li><a href="#">Sublink 3</a></li>
+                                                <li class="divider"></li>
+                                                <li><a href="#">Sublink 3</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li class="disabled"><a href="#">Separated link</a></li>
+                                        <li class="divider"></li>
+                                        <li class="checked"><a href="#">Checked link</a></li>
+                                    </ul>
+                                </div>
+                                <!--
+                                -->
+                            </div>
+<pre class="linenums prettyprint">
+&lt;div class="button-dropdown"&gt;
+    &lt;button class="dropdown-toggle"&gt;Click Me&lt;/button&gt;
+    &lt;ul class="dropdown-menu" data-role="dropdown"&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Item 1&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Item 2&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Item 3&lt;/a&gt;&lt;/li&gt;
+        &lt;li class="divider"&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Item 4&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div class="button-dropdown"&gt;
+    &lt;button class="dropdown-toggle"&gt;Click Me&lt;/button&gt;
+    &lt;ul class="dropdown-menu place-right"&gt;
+        ...
+    &lt;/ul&gt;
+&lt;/div&gt;
+</pre>
+                            <p class="description">
+                                You can change button color with build in classes.
+                            </p>
+                            <div class="example">
+                                <div class="button-dropdown">
+                                    <button class="dropdown-toggle primary">Primary</button>
+                                </div>
+                                <div class="button-dropdown">
+                                    <button class="dropdown-toggle info">Info</button>
+                                </div>
+                                <div class="button-dropdown">
+                                    <button class="dropdown-toggle success">Success</button>
+                                </div>
+                                <div class="button-dropdown">
+                                    <button class="dropdown-toggle warning">Warning</button>
+                                </div>
+                                <div class="button-dropdown">
+                                    <button class="dropdown-toggle danger">Danger</button>
+                                </div>
+                                <div class="button-dropdown">
+                                    <button class="dropdown-toggle inverse">Inverse</button>
+                                </div>
+                                <div class="button-dropdown">
+                                    <button class="dropdown-toggle link">Link</button>
+                                </div>
+                            </div>
+<pre class="prettyprint linenums">
+&lt;div class="button-dropdown"&gt;
+    &lt;button class="dropdown-toggle primary"&gt;Primary&lt;/button&gt;
+&lt;/div&gt;
+&lt;div class="button-dropdown"&gt;
+    &lt;button class="dropdown-toggle info"&gt;Info&lt;/button&gt;
+&lt;/div&gt;
+&lt;div class="button-dropdown"&gt;
+    &lt;button class="dropdown-toggle success"&gt;Success&lt;/button&gt;
+&lt;/div&gt;
+&lt;div class="button-dropdown"&gt;
+    &lt;button class="dropdown-toggle warning"&gt;Warning&lt;/button&gt;
+&lt;/div&gt;
+&lt;div class="button-dropdown"&gt;
+    &lt;button class="dropdown-toggle danger"&gt;Danger&lt;/button&gt;
+&lt;/div&gt;
+&lt;div class="button-dropdown"&gt;
+    &lt;button class="dropdown-toggle inverse"&gt;Inverse&lt;/button&gt;
+&lt;/div&gt;
+&lt;div class="button-dropdown"&gt;
+    &lt;button class="dropdown-toggle link"&gt;Link&lt;/button&gt;
+&lt;/div&gt;
+</pre>
+
+
+                            <h2 id="_pagination"><i class="icon-accessibility on-left"></i>Pagination</h2>
+                            <p class="description">
+                                Metro UI CSS provides pagination buttons.
+                            </p>
+                            <div class="example">
+                                <div class="pagination">
+                                    <ul>
+                                        <li class="first"><a><i class="icon-first-2"></i></a></li>
+                                        <li class="prev"><a><i class="icon-previous"></i></a></li>
+                                        <li><a>1</a></li>
+                                        <li><a>2</a></li>
+                                        <li class="active"><a>3</a></li>
+                                        <li class="spaces"><a>...</a></li>
+                                        <li class="disabled"><a>4</a></li>
+                                        <li><a>500</a></li>
+                                        <li class="next"><a><i class="icon-next"></i></a></li>
+                                        <li class="last"><a><i class="icon-last-2"></i></a></li>
+                                    </ul>
+                                </div>
+                                <div class="pagination small">
+                                    <ul>
+                                        <li class="first"><a><i class="icon-first-2"></i></a></li>
+                                        <li class="prev"><a><i class="icon-previous"></i></a></li>
+                                        <li><a>1</a></li>
+                                        <li><a>2</a></li>
+                                        <li class="active"><a>3</a></li>
+                                        <li class="spaces"><a>...</a></li>
+                                        <li class="disabled"><a>4</a></li>
+                                        <li><a>500</a></li>
+                                        <li class="next"><a><i class="icon-next"></i></a></li>
+                                        <li class="last"><a><i class="icon-last-2"></i></a></li>
+                                    </ul>
+                                </div>
+                                <div class="pagination mini">
+                                    <ul>
+                                        <li class="first"><a><i class="icon-first-2"></i></a></li>
+                                        <li class="prev"><a><i class="icon-previous"></i></a></li>
+                                        <li><a>1</a></li>
+                                        <li><a>2</a></li>
+                                        <li class="active"><a>3</a></li>
+                                        <li class="spaces"><a>...</a></li>
+                                        <li class="disabled"><a>4</a></li>
+                                        <li><a>500</a></li>
+                                        <li class="next"><a><i class="icon-next"></i></a></li>
+                                        <li class="last"><a><i class="icon-last-2"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+<pre class="linenums prettyprint">
+&lt;div class="pagination"&gt;...&lt;/div&gt;
+&lt;div class="pagination small"&gt;...&lt;/div&gt;
+&lt;div class="pagination mini"&gt;...&lt;/div&gt;
+</pre>
+<pre class="linenums prettyprint">
+&lt;div class="pagination"&gt;
+    &lt;ul&gt;
+        &lt;li class="first"&gt;&lt;a&gt;&lt;i class="icon-first-2"&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+        &lt;li class="prev"&gt;&lt;a&gt;&lt;i class="icon-previous"&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a&gt;1&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a&gt;2&lt;/a&gt;&lt;/li&gt;
+        &lt;li class="active"&gt;&lt;a&gt;3&lt;/a&gt;&lt;/li&gt;
+        &lt;li class="spaces"&gt;&lt;a&gt;...&lt;/a&gt;&lt;/li&gt;
+        &lt;li class="disabled"&gt;&lt;a&gt;4&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a&gt;500&lt;/a&gt;&lt;/li&gt;
+        &lt;li class="next"&gt;&lt;a&gt;&lt;i class="icon-next"&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+        &lt;li class="last"&gt;&lt;a&gt;&lt;i class="icon-last-2"&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+</pre>
+
+                            <h2 id="_set"><i class="icon-accessibility on-left"></i>Button Set</h2>
+                            <p>
+                                This component required <code>metro-button-set.js</code>.
+                            </p>
+                            <div class="example">
+                                <div class="button-set" data-role="button-set">
+                                    <button>One</button>
+                                    <button>Two</button>
+                                    <button>Three</button>
+                                    <button>Four</button>
+                                    <button>Five</button>
+                                </div>
+                            </div>
+<pre class="prettyprint linenums">
+&lt;div class="button-set"&gt;
+    &lt;button class="active"&gt;One&lt;/button&gt;
+    &lt;button&gt;Two&lt;/button&gt;
+    &lt;button&gt;Three&lt;/button&gt;
+    &lt;button&gt;Four&lt;/button&gt;
+    &lt;button&gt;Five&lt;/button&gt;
+&lt;/div&gt;
+</pre>
+                            <h3>Using</h3>
+                            <p>
+                                You can activate component manually or with <code>data-role</code> attribute.
+                            </p>
+                            <h4>Activate with data-*</h4>
+<pre class="prettyprint linenums">
+&lt;div class="button-set" data-role="button-set"&gt;...&lt;/div&gt;
+</pre>
+                            <h4>Activate with manually javascript</h4>
+<pre class="prettyprint linenums">
+$("#component_id").buttonset();
+</pre>
+                            <p>
+                                When user press button, component fired event <code>click</code>.
+                                You can set handler for this event.
+                            </p>
+<pre class="prettyprint linenums">
+$("#component_id").buttonset({
+    click: function(btn, on){...}
+});
+// or
+$("#component_id").buttonset().bind("buttonsetclick", function(event, btn, on){...});
+
+// where btn is a $(current_button)
+// and on - state of current button (pressed: true, not-pressed: false)
+</pre>
+
+                            <h2 id="_grp"><i class="icon-accessibility on-left"></i>Button Group</h2>
+                            <p>
+                                This component required <code>metro-button-set.js</code>.
+                            </p>
+                            <div class="example">
+                                <div class="button-set" data-role="button-group">
+                                    <button class="active">One</button>
+                                    <button>Two</button>
+                                    <button>Three</button>
+                                    <button>Four</button>
+                                    <button>Five</button>
+                                </div>
+                            </div>
+<pre class="prettyprint linenums">
+&lt;div class="button-set"&gt;
+    &lt;button class="active"&gt;One&lt;/button&gt;
+    &lt;button&gt;Two&lt;/button&gt;
+    &lt;button&gt;Three&lt;/button&gt;
+    &lt;button&gt;Four&lt;/button&gt;
+    &lt;button&gt;Five&lt;/button&gt;
+&lt;/div&gt;
+</pre>
+                            <h3>Using</h3>
+                            <p>
+                                You can activate component manually or with <code>data-role</code> attribute.
+                            </p>
+                            <h4>Activate with data-*</h4>
+<pre class="prettyprint linenums">
+&lt;div class="button-set" data-role="button-group"&gt;...&lt;/div&gt;
+</pre>
+                            <h4>Activate with manually javascript</h4>
+<pre class="prettyprint linenums">
+$("#component_id").buttongroup();
+</pre>
+                            <p>
+                                When user press button, component fired event <code>click</code>.
+                                You can set handler for this event.
+                            </p>
+<pre class="prettyprint linenums">
+$("#component_id").buttongroup({
+    click: function(btn, on){...}
+});
+// or
+$("#component_id").buttongroup().bind("buttongroupclick", function(event, btn, on){...});
+
+// where btn is a $(current_button)
+// and on - state of current button (pressed: true, not-pressed: false)
+</pre>
+
+                            <h2 id="_breadcrumbs"><i class="icon-accessibility on-left"></i>Breadcrumbs</h2>
+                            <div class="example">
+                                <nav class="breadcrumbs">
+                                    <ul>
+                                        <li><a href="#"><i class="icon-home"></i></a></li>
+                                        <li><a href="#">Home</a></li>
+                                        <li><a href="#">Library</a></li>
+                                        <li class="active"><a href="#">Data</a></li>
+                                    </ul>
+                                </nav>
+                                <nav class="breadcrumbs small">
+                                    <ul>
+                                        <li><a href="#"><i class="icon-home"></i></a></li>
+                                        <li><a href="#">Home</a></li>
+                                        <li><a href="#">Library</a></li>
+                                        <li class="active"><a href="#">Data</a></li>
+                                    </ul>
+                                </nav>
+                                <nav class="breadcrumbs mini">
+                                    <ul>
+                                        <li><a href="#"><i class="icon-home"></i></a></li>
+                                        <li><a href="#">Home</a></li>
+                                        <li><a href="#">Library</a></li>
+                                        <li class="active"><a href="#">Data</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+<pre class="prettyprint linenums">
+&lt;nav class="breadcrumbs"&gt;
+    &lt;ul&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Library&lt;/a&gt;&lt;/li&gt;
+        &lt;li class="active"&gt;&lt;a href="#"&gt;Data&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;
+
+&lt;nav class="breadcrumbs small"&gt;...&lt;/nav&gt;
+&lt;nav class="breadcrumbs mini"&gt;...&lt;/nav&gt;
+
+</pre>
+
+                        </div>
+                    </div>
+                </div>
+
+    </div>
+
+    <script src="js/hitua.js"></script>
+
+</body>
+</html>

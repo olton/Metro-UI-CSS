@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="product" content="Metro UI CSS Framework">
+<meta name="description" content="Simple responsive css framework">
+<meta name="author" content="Sergey S. Pimenov, Ukraine, Kiev">
+<link href="css/metro-bootstrap.css" rel="stylesheet">
+<link href="css/metro-bootstrap-responsive.css" rel="stylesheet">
+    <link href="css/iconFont.css" rel="stylesheet">
+<link href="css/docs.css" rel="stylesheet">
+<link href="js/prettify/prettify.css" rel="stylesheet">
+
+<!-- Load JavaScript Libraries -->
+<script src="js/jquery/jquery.min.js"></script>
+<script src="js/jquery/jquery.widget.min.js"></script>
+<script src="js/jquery/jquery.mousewheel.js"></script>
+<script src="js/prettify/prettify.js"></script>
+
+<!-- Metro UI CSS JavaScript plugins -->
+<script src="js/load-metro.js"></script>
+
+<!-- Local JavaScript -->
+<script src="js/docs.js"></script>
+<script src="js/github.info.js"></script>
+<title>Metro UI CSS : Metro Bootstrap CSS Library</title>
+</head>
+<body class="metro">
+<header class="bg-dark" data-load="header.html"></header>
+<div class="container">
+  <h1> <a href="/"><i class="icon-arrow-left-3 fg-darker smaller"></i></a> Progress Bar<small class="on-right">component</small> </h1>
+  <p class="description"> This component require <code>metro-progressbar.js</code>. </p>
+  <div class="example">
+    <div class="progress-bar" data-role="progress-bar" data-value="10"></div>
+    <div class="progress-bar" data-role="progress-bar" data-value="20" data-color="bg-green"></div>
+    <div class="progress-bar" data-role="progress-bar" data-value="50" data-color="bg-red"></div>
+    <div class="progress-bar" data-role="progress-bar" data-value="75" data-color="bg-pink"></div>
+    <div class="progress-bar" data-role="progress-bar" data-value="100" data-color="#ccc"></div>
+  </div>
+  <pre class="prettyprint linenums">
+&lt;div class="progress-bar" data-role="progress-bar" data-value="10"&gt;&lt;/div&gt;
+&lt;div class="progress-bar" data-role="progress-bar" data-color="bg-green"&gt;&lt;/div&gt;
+&lt;div class="progress-bar" data-role="progress-bar" data-color="#ccc"&gt;&lt;/div&gt;
+</pre>
+  <h3>Any size for progress bar</h3>
+  <div class="example">
+    <div class="progress-bar small" data-role="progress-bar" data-value="10"></div>
+    <div class="progress-bar" data-role="progress-bar" data-value="20" data-color="bg-green"></div>
+    <div class="progress-bar large" data-role="progress-bar" data-value="50"></div>
+  </div>
+  <pre class="prettyprint linenums">
+&lt;div class="progress-bar small"&gt;&lt;/div&gt;
+&lt;div class="progress-bar"&gt;&lt;/div&gt;
+&lt;div class="progress-bar large"&gt;&lt;/div&gt;
+</pre>
+  <p class="description"> You can activate widget manually or auto with <code>data-*</code> api. </p>
+  <h4>Activate widget with Javascript</h4>
+  <pre class="linenums prettyprint">
+$("#componennt_id").progressbar({
+    value: int // progress value, default 0
+    color: string, // existing class (bg-*) or color schema (#NNNNNN)
+    onchange: function(val){...}
+});
+</pre>
+  <h4>Set value with Javascript</h4>
+  <div class="example">
+    <div class="progress-bar small" data-role="progress-bar" id="pb1"></div>
+    <button class="button success" id="pb_start_btn">Start</button>
+    <button class="button " id="pb_reset_btn">Reset</button>
+    <script>
+                        $(function(){
+                            var pb = $('#pb1').progressbar();
+                            var progress = 0;
+                            $("#pb_start_btn").on('click', function(){
+                                var interval = setInterval(
+                                        function(){
+                                            pb.progressbar('value', (++progress));
+                                            if (progress == 100) window.clearInterval(interval);
+                                        }, 100);
+                            });
+
+                            $("#pb_reset_btn").on('click', function(){
+                                progress = 0;
+                                pb.progressbar('value', progress);
+                            });
+                        });
+                    </script> 
+  </div>
+  <pre class="linenums prettyprint">
+var pb = $("#componennt_id").progressbar();
+    pb.progressbar('value', 75);
+</pre>
+  <h4>Set color with Javascript</h4>
+  <pre class="linenums prettyprint">
+var pb = $("#componennt_id").progressbar();
+    pb.progressbar('color', '#000');
+</pre>
+  <h4>Activate widget with API</h4>
+  <pre class="prettyprint linenums">
+&lt;div class="progress-bar"
+    data-role="progress-bar"
+    data-value="75"
+    data-color="bg-pink"&gt;&lt;/div&gt;
+</pre>
+  <h4>Options</h4>
+  <p> Slider supported next options: </p>
+  <table class="table border">
+    <tr>
+      <td class="text-bold">value</td>
+      <td class="text-bold">data-value</td>
+      <td>Set a new position and progress of the progress bar.</td>
+    </tr>
+    <tr>
+      <td class="text-bold">color</td>
+      <td class="text-bold">data-color</td>
+      <td>Set the color of the progress bar.</td>
+    </tr>
+    <tr>
+      <td class="text-bold">animate</td>
+      <td class="text-bold">data-animate</td>
+      <td>Animate progress value changes of the progress bar.</td>
+    </tr>
+	<tr>
+      <td class="text-bold">max</td>
+      <td class="text-bold">data-max</td>
+      <td>Optionally set the maximum value of the progress bar to be below 100.</td>
+    </tr>
+  </table>
+  <p> You can sets options over javascript or data-* api. </p>
+</div>
+<script src="js/hitua.js"></script>
+</body>
+</html>

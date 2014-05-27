@@ -1,0 +1,83 @@
+.pagination {
+    width: auto;
+    margin-bottom: 10px;
+
+    & > ul {
+        .unstyled;
+        margin: 0;
+        .clearfix;
+
+        li {
+            display: block;
+            float: left;
+            margin-right: 1px;
+            position: relative;
+
+            a {
+                .button;
+                color: inherit;
+                display: block;
+                float: left;
+                margin-right: 1px;
+            }
+
+            &.first, &.prev, &.next, &.last {
+                a {
+                    //font-size: 20pt;
+                }
+            }
+
+            &.active {
+                a {
+                    background-color: @lightBlue ;
+                    color: @white;
+                }
+            }
+            &.disabled, &.spaces {
+                a {
+                    background-color: darken(@white, 5%);
+                    color: #1e1e1e;
+                    cursor: not-allowed;
+
+                    &:active {
+                        top: 0;
+                        left: 0;
+                    }
+                }
+            }
+            &.disabled {
+                a {
+                    color: #1e1e1e;
+                }
+            }
+
+            &.spaces {
+                a {
+                    background-color: @white;
+                    cursor: default;
+                }
+            }
+        }
+    }
+
+    &.small {
+        ul {
+            li {
+                a {
+                    padding: 2px 10px;
+                    font-size: 11.9px;
+                }
+            }
+        }
+    }
+    &.mini {
+        ul {
+            li {
+                a {
+                    padding: 0px 6px;
+                    font-size: 10.5px;
+                }
+            }
+        }
+    }
+}

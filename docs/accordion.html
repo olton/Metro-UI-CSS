@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="product" content="Metro UI CSS Framework">
+    <meta name="description" content="Simple responsive css framework">
+    <meta name="author" content="Sergey S. Pimenov, Ukraine, Kiev">
+
+    <link href="css/metro-bootstrap.css" rel="stylesheet">
+    <link href="css/metro-bootstrap-responsive.css" rel="stylesheet">
+    <link href="css/iconFont.css" rel="stylesheet">
+    <link href="css/docs.css" rel="stylesheet">
+    <link href="js/prettify/prettify.css" rel="stylesheet">
+
+
+    <!-- Load JavaScript Libraries -->
+    <script src="js/jquery/jquery.min.js"></script>
+    <script src="js/jquery/jquery.widget.min.js"></script>
+    <script src="js/jquery/jquery.mousewheel.js"></script>
+    <script src="js/prettify/prettify.js"></script>
+
+    <!-- Metro UI CSS JavaScript plugins -->
+    <script src="js/load-metro.js"></script>
+
+    <!-- Local JavaScript -->
+    <script src="js/docs.js"></script>
+    <script src="js/github.info.js"></script>
+
+    <title>Metro UI CSS : Metro Bootstrap CSS Library</title>
+</head>
+<body class="metro">
+    <header class="bg-dark" data-load="header.html"></header>
+
+    <div class="container">
+                <h1>
+                    <a href="/"><i class="icon-arrow-left-3 fg-darker smaller"></i></a>
+                    Accordion<small class="on-right">component</small>
+                </h1>
+
+                <p class="description">
+                    This component required <code>metro-accordion.js</code>.
+                </p>
+                <div class="example">
+                    <div class="tab-control" data-role="tab-control">
+                        <ul class="tabs">
+                            <li class="active"><a href="#tab1">Tab1</a></li>
+                            <li><a href="#tab2">Tab2</a></li>
+                        </ul>
+
+                        <div class="frames">
+                            <div class="frame clearfix" id="tab1">
+                                <div class="accordion span3 place-left margin10" data-role="accordion" data-closeany="false">
+                                    <div class="accordion-frame">
+                                        <a class="heading active" href="#" data-action="none" >Item #1</a>
+                                        <div class="content">
+                                            <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.</p>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-frame">
+                                        <a class="heading active" href="#">Item #2</a>
+                                        <div class="content">
+                                            <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut.</p>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-frame">
+                                        <a class="heading" href="#">Item #3</a>
+                                        <div class="content">
+                                            <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut.</p>
+                                            <button class="primary">Activate the account</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion with-marker span3 place-left margin10" data-role="accordion" data-closeany="false">
+                                    <div class="accordion-frame">
+                                        <a class="heading" href="#">Item #1</a>
+                                        <div class="content">
+                                            <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.</p>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-frame">
+                                        <a class="heading" href="#">Item #2</a>
+                                        <div class="content">
+                                            <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut.</p>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-frame">
+                                        <a class="heading" href="#">Item #3</a>
+                                        <div class="content">
+                                            <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut.</p>
+                                            <button class="primary">Activate the account</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion with-marker span3 place-left margin10" data-role="accordion" data-closeany="false">
+                                    <div class="accordion-frame">
+                                        <a class="heading bg-lightBlue fg-white" href="#">Item #1</a>
+                                        <div class="content">
+                                            <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.</p>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-frame">
+                                        <a class="heading text-right ribbed-green fg-white" href="#">Item #2</a>
+                                        <div class="content">
+                                            <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut.</p>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-frame">
+                                        <a class="heading ribbed-red fg-white" href="#">Item #3</a>
+                                        <div class="content">
+                                            <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut.</p>
+                                            <button class="primary">Activate the account</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="frame" id="tab2">tab2</div>
+                        </div>
+                    </div>
+                    <br />
+
+                    <div class="accordion" data-role="accordion" data-closeany="true">
+                        <div class="accordion-frame">
+                            <a class="active heading" href="#">Any components as content</a>
+                            <div class="content">
+                                <div class="grid">
+                                    <div class="row">
+                                        <div class="span3">
+                                            <p>Duis autem vel eum iriure dolor in hendrerit in vulputate. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut.</p>
+                                            <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.</p>
+                                            <ul>
+                                                <li>Item 1</li>
+                                                <li>Item 2</li>
+                                                <li>Item 3</li>
+                                            </ul>
+                                            <a href="http://microsoft.com">Microsoft.com</a>
+                                        </div>
+                                        <div class="span3">
+                                            <form>
+                                                <fieldset>
+                                                    <legend>Legend</legend>
+                                                    <lable>Label name</lable>
+                                                    <div class="input-control text" data-role="input-control">
+                                                        <input type="text" placeholder="type text">
+                                                        <button class="btn-clear" tabindex="-1"></button>
+                                                    </div>
+                                                    <lable>Label name</lable>
+                                                    <div class="input-control password" data-role="input-control">
+                                                        <input type="password" placeholder="type password" autofocus>
+                                                        <button class="btn-reveal" tabindex="-1"></button>
+                                                    </div>
+                                                    <div class="input-control checkbox" data-role="input-control">
+                                                        <label>
+                                                            <input type="checkbox" checked />
+                                                            <span class="check"></span>
+                                                            Check me out
+                                                        </label>
+                                                    </div>
+
+                                                    <div>
+                                                        <div class="input-control radio default-style" data-role="input-control">
+                                                            <label>
+                                                                <input type="radio" name="r1" checked />
+                                                                <span class="check"></span>
+                                                                R1
+                                                            </label>
+                                                        </div>
+                                                        <div class="input-control radio  default-style" data-role="input-control">
+                                                            <label>
+                                                                <input type="radio" name="r1" />
+                                                                <span class="check"></span>
+                                                                R2
+                                                            </label>
+                                                        </div>
+                                                    </div>
+
+                                                    <input type="submit" value="Submit">
+                                                </fieldset>
+                                            </form>
+                                        </div>
+                                        <div class="span4">
+                                            <div class="tab-control" data-role="tab-control">
+                                                <ul class="tabs">
+                                                    <li class="active"><a href="#_page_1">Tab 1</a></li>
+                                                    <li><a href="#_page_2">Other Tab</a></li>
+                                                    <li><a href="#_page_3"><i class="icon-rocket"></i></a></li>
+                                                    <li class="place-right"><a href="#_page_5"><i class="icon-heart"></i></a></li>
+                                                    <li class="place-right"><a href="#_page_4"><i class="icon-cog"></i></a></li>
+                                                </ul>
+
+                                                <div class="frames">
+                                                    <div class="frame" id="_page_1">
+                                                        <p>First Tab</p>
+                                                    </div>
+                                                    <div class="frame" id="_page_2">
+                                                        <p>Second Tab</p>
+                                                    </div>
+                                                    <div class="frame" id="_page_3">
+                                                        <p>Rocket Tab</p>
+                                                    </div>
+                                                    <div class="frame" id="_page_4">
+                                                        <p>This tab placed right</p>
+                                                    </div>
+                                                    <div class="frame" id="_page_5">
+                                                        <p>This tab also placed right</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-frame">
+                            <a class="heading" href="#">Accordion in accordion</a>
+                            <div class="content clearfix">
+                                <div class="accordion span3 place-left margin10" data-role="accordion" data-closeany="false">
+                                    <div class="accordion-frame">
+                                        <a class="heading" href="#">Item #1</a>
+                                        <div class="content">
+                                            <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.</p>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-frame">
+                                        <a class="heading" href="#">Item #2</a>
+                                        <div class="content">
+                                            <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut.</p>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-frame">
+                                        <a class="heading" href="#">Item #3</a>
+                                        <div class="content">
+                                            <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut.</p>
+                                            <button class="primary">Activate the account</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion span3 place-left margin10" data-role="accordion">
+                                    <div class="accordion-frame">
+                                        <a class="heading" href="#">Item #1</a>
+                                        <div class="content">
+                                            <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.</p>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-frame">
+                                        <a class="heading" href="#">Item #2</a>
+                                        <div class="content">
+                                            <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut.</p>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-frame">
+                                        <a class="heading" href="#">Item #3</a>
+                                        <div class="content">
+                                            <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut.</p>
+                                            <button class="primary">Activate the account</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion span3 place-left margin10" data-role="accordion">
+                                    <div class="accordion-frame">
+                                        <a class="heading" href="#">Item #1</a>
+                                        <div class="content">
+                                            <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.</p>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-frame">
+                                        <a class="heading" href="#">Item #2</a>
+                                        <div class="content">
+                                            <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut.</p>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-frame">
+                                        <a class="heading" href="#">Item #3</a>
+                                        <div class="content">
+                                            <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut.</p>
+                                            <button class="primary">Activate the account</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="accordion-frame">
+                            <a class="heading" href="#">Custom accordion item heading</a>
+                            <div class="content clearfix">
+                                <div class="accordion span3 place-left margin10" data-role="accordion">
+                                    <div class="accordion-frame">
+                                        <a class="active heading bg-red fg-white" href="#">Item #1</a>
+                                        <div class="content">
+                                            <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.</p>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-frame">
+                                        <a class="heading bg-yellow fg-white" href="#">Item #2</a>
+                                        <div class="content">
+                                            <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut.</p>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-frame">
+                                        <a class="heading bg-green fg-white" href="#">Item #3</a>
+                                        <div class="content">
+                                            <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut.</p>
+                                            <button class="primary">Activate the account</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion span3 place-left margin10" data-role="accordion">
+                                    <div class="accordion-frame">
+                                        <a class="heading bg-dark fg-white text-right" href="#">Item #1</a>
+                                        <div class="content">
+                                            <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.</p>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-frame">
+                                        <a class="active heading bg-dark fg-white text-right" href="#">Item #2</a>
+                                        <div class="content">
+                                            <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut.</p>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-frame">
+                                        <a class="heading bg-dark fg-white text-right" href="#">Item #3</a>
+                                        <div class="content">
+                                            <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut.</p>
+                                            <button class="primary">Activate the account</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion span3 place-left margin10" data-role="accordion">
+                                    <div class="accordion-frame">
+                                        <a class="heading bg-cyan fg-white" href="#"><i class="icon-rocket"></i> Item #1</a>
+                                        <div class="content">
+                                            <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.</p>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-frame">
+                                        <a class="heading bg-cyan fg-white" href="#"><i class="icon-cog"></i> Item #2</a>
+                                        <div class="content">
+                                            <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut.</p>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-frame">
+                                        <a class="heading bg-cyan fg-white" href="#"><i class="icon-cart"></i> Item #3</a>
+                                        <div class="content">
+                                            <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut.</p>
+                                            <button class="primary">Activate the account</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+<pre class="prettyprint linenums">
+&lt;div class="accordion" data-role="accordion"&gt;
+    &lt;div class="accordion-frame"&gt;
+        &lt;a href="#" class="heading"&gt;Frame heading&lt;/a&gt;
+        &lt;div class="content"&gt;...&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="accordion-frame"&gt;...&lt;/div&gt;
+    &lt;div class="accordion-frame"&gt;...&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+                <p class="description">
+                    If you want to activate a specific tab of accordion, you must add class <code>active</code> to <code>heading</code> of frame.
+                    If you want to use accordion with marker open/close, you must add class <code>with-marker</code> to <code>accordion</code>.
+                </p>
+<pre class="prettyprint linenums">
+&lt;div class="accordion" data-role="accordion"&gt;
+    &lt;div class="accordion-frame"&gt;
+        &lt;a href="#" class="heading"&gt;Frame heading&lt;/a&gt;
+        &lt;div class="content"&gt;...&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class="accordion-frame"&gt;
+        &lt;a href="#" class="active heading"&gt;Frame heading&lt;/a&gt;
+        &lt;div class="content"&gt;...&lt;/div&gt;
+    &lt;/div&gt;
+    
+    &lt;div class="accordion-frame"&gt;
+        &lt;a href="#" class="heading"&gt;Frame heading&lt;/a&gt;
+        &lt;div class="content"&gt;...&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="accordion with-marker" data-role="accordion"&gt;
+    ...
+&lt;/div&gt;
+</pre>
+
+                <h3>Using</h3>
+                <p class="description">
+                    You can activate component manually or auto with <code>data-*</code> api.
+                </p>
+                <h4>Activate component with Javascript</h4>
+<pre class="linenums prettyprint">
+$("#componennt_id").accordion({
+    closeAny: boolean, //true or false. if true other frames (when current opened) will be closed
+    open: function(frame){}, // when current frame opened this function will be fired
+    action: function(frame){} // when any frame opened this function will be fired
+});
+</pre>
+                <h4>Activate component with data-api</h4>
+<pre class="linenums prettyprint">
+&lt;div class="accordion" data-role="accordion" data-closeany="..."&gt;...&lt;/div&gt;
+</pre>
+
+
+
+    </div>
+
+    <script src="js/hitua.js"></script>
+
+</body>
+</html>

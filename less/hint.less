@@ -1,0 +1,120 @@
+p [data-hint]{
+    border-bottom: 1px #373737 dotted;
+    white-space: nowrap;
+}
+
+.hint {
+    position: fixed;
+    color: @dark;
+    padding: 10px;
+    #font > .sans;
+    font-size: 12px;
+    width: auto;
+    max-width: 220px;
+    margin-top: 10px;
+    z-index: @zindexTooltip;
+    display: none;
+    border: 1px solid;
+    border-color: lighten(#373737, 20%);
+
+    .hint-title, .hint-text {
+        color: inherit;
+        text-align: left;
+    }
+
+    .hint-title {
+        font-size: 1.2em;
+        font-weight: bold;
+    }
+
+    .hint-text {
+    }
+}
+
+// hint bottom
+
+.hint {
+    &:before, &:after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 0;
+    }
+    &:before {
+        z-index: 2;
+    }
+    &:after {
+        z-index: 1;
+        border-color: inherit;
+    }
+}
+
+.hint {
+    &.bottom {
+        &:before, &:after {
+            top: 1px;
+            left: 5px;
+            margin: -10px 0;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-bottom: 10px solid @hintColor;
+        }
+
+        &:after {
+            top: 0;
+            border-bottom: 10px solid;
+        }
+    }
+
+    &.top {
+        &:before, &:after {
+            top: 100%;
+            margin-top: -1px;
+            left: 5px;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-top: 10px solid @hintColor;
+        }
+
+        &:after {
+            margin-top: 1px;
+            border-top: 10px solid;
+        }
+    }
+
+    &.left {
+        &:before, &:after {
+            top: 5px;
+            left: 100%;
+            margin-left: -1px;
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+            border-left: 10px solid @hintColor;
+        }
+
+        &:after {
+            margin-left: 0;
+            border-left: 10px solid;
+        }
+    }
+
+    &.right {
+        &:before, &:after {
+            top: 5px;
+            left: -9px;
+            margin: 0;
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+            border-right: 10px solid @hintColor;
+        }
+
+        &:after {
+            left: -10px;
+            border-right: 10px solid;
+        }
+    }
+}
+
+.hint {
+}
+

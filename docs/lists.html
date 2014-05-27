@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="product" content="Metro UI CSS Framework">
+    <meta name="description" content="Simple responsive css framework">
+    <meta name="author" content="Sergey S. Pimenov, Ukraine, Kiev">
+
+    <link href="css/metro-bootstrap.css" rel="stylesheet">
+    <link href="css/metro-bootstrap-responsive.css" rel="stylesheet">
+    <link href="css/iconFont.css" rel="stylesheet">
+    <link href="css/docs.css" rel="stylesheet">
+    <link href="js/prettify/prettify.css" rel="stylesheet">
+
+    <!-- Load JavaScript Libraries -->
+    <script src="js/jquery/jquery.min.js"></script>
+    <script src="js/jquery/jquery.widget.min.js"></script>
+    <script src="js/jquery/jquery.mousewheel.js"></script>
+    <script src="js/prettify/prettify.js"></script>
+
+    <!-- Metro UI CSS JavaScript plugins -->
+    <script src="js/load-metro.js"></script>
+
+    <!-- Local JavaScript -->
+    <script src="js/docs.js"></script>
+    <script src="js/github.info.js"></script>
+
+    <title>Metro UI CSS : Metro Bootstrap CSS Library</title>
+</head>
+<body class="metro">
+    <header class="bg-dark" data-load="header.html"></header>
+    <div class="container">
+                <h1>
+                    <a href="/"><i class="icon-arrow-left-3 fg-darker smaller"></i></a>
+                    ListView<small class="on-right">component</small>
+                </h1>
+
+                <div class="example1">
+                    <div class="grid ">
+                        <div class="row">
+                            <div class="span5">
+                                <div class="listview">
+                                    <a href="#" class="list">
+                                        <div class="list-content">
+                                            <img src="images/excel2013icon.png" class="icon">
+                                            <div class="data">
+                                                <span class="list-title">Excel 2013</span>
+                                                <div class="rating small no-margin" data-role="rating" data-stars="5"></div>
+                                                <span class="list-remark">Price: $1</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="list bg-lightBlue fg-white">
+                                        <div class="list-content">
+                                            <img src="images/word2013icon.png" class="icon">
+                                            <div class="data">
+                                                <span class="list-title">Word 2013</span>
+                                                <div class="rating small no-margin fg-yellow" data-score="4" data-role="rating" data-stars="5"></div>
+                                                <span class="list-remark">Price: $1</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="list selected">
+                                        <div class="list-content">
+                                            <img src="images/onenote2013icon.png" class="icon">
+                                            <div class="data">
+                                                <span class="list-title">Word 2013</span>
+                                                <div class="progress-bar small" data-role="progress-bar" data-value="75"></div>
+                                                <span class="list-remark">Download...75%</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="span5">
+                                <div class="listview small">
+                                    <a href="#" class="list">
+                                        <div class="list-content">
+                                            <img src="images/excel2013icon.png" class="icon">
+                                            <div class="data">
+                                                <span class="list-title">Excel 2013</span>
+                                                <div class="rating small no-margin" data-role="rating" data-stars="5"></div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="list bg-lightBlue fg-white">
+                                        <div class="list-content">
+                                            <img src="images/word2013icon.png" class="icon">
+                                            <div class="data">
+                                                <span class="list-title">Word 2013</span>
+                                                <div class="rating small no-margin fg-yellow" data-score="4" data-role="rating" data-stars="5"></div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="list selected">
+                                        <div class="list-content">
+                                            <img src="images/onenote2013icon.png" class="icon">
+                                            <div class="data">
+                                                <span class="list-title">Word 2013</span>
+                                                <div class="progress-bar small" data-role="progress-bar" data-value="75"></div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="list shadow">
+                                        <div class="list-content">
+                                            <img src="images/excel2013icon.png" class="icon">
+                                            <div class="data">
+                                                <span class="list-title">Excel 2013</span>
+                                                <div class="rating small no-margin" data-role="rating" data-stars="5"></div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="span4">
+                            </div>
+
+                        </div>
+                    </div>
+                </div> <!-- End example-->
+
+                <h4>General definition</h4>
+<pre class="prettyprint linenums">
+&lt;div class="listview"&gt;
+    &lt;a href="#" class="list"&gt;
+        &lt;div class="list-content"&gt;...&lt;/div&gt;
+    &lt;/a&gt;
+    ...
+&lt;/div&gt;
+
+&lt;div class="listview small"&gt;
+    &lt;a href="#" class="list"&gt;
+        &lt;div class="list-content"&gt;...&lt;/div&gt;
+    &lt;/a&gt;
+    ...
+&lt;/div&gt;
+</pre>
+
+                <h4>Examples of</h4>
+<pre class="prettyprint linenums">
+&lt;div class="listview"&gt;
+    &lt;a href="#" class="list"&gt;
+        &lt;div class="list-content"&gt;
+            &lt;img src="images/excel2013icon.png" class="icon"&gt;
+            &lt;div class="data"&gt;
+                &lt;span class="list-title"&gt;Excel 2013&lt;/span&gt;
+                &lt;div class="rating small no-margin" data-role="rating"
+                        data-stars="5"&gt;&lt;/div&gt;
+                &lt;span class="list-remark"&gt;Price: $1&lt;/span&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/a&gt;
+
+    &lt;a href="#" class="list shadow"&gt;
+        &lt;div class="list-content"&gt;
+            &lt;span class="icon icon-location fg-lightBlue"&gt;&lt;/span&gt;
+            &lt;div class="data"&gt;
+                &lt;span class="list-title"&gt;You location&lt;/span&gt;
+                &lt;div class="rating small no-margin fg-dark" data-score="4"
+                        data-role="rating" data-stars="5"&gt;&lt;/div&gt;
+                &lt;span class="list-remark"&gt;Price: $1&lt;/span&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/a&gt;
+
+    &lt;a href="#" class="list selected"&gt;
+        &lt;div class="list-content"&gt;
+            &lt;img src="images/onenote2013icon.png" class="icon"&gt;
+            &lt;div class="data"&gt;
+                &lt;span class="list-title"&gt;Word 2013&lt;/span&gt;
+                &lt;div class="progress-bar small" data-role="progress-bar"
+                        data-value="75"&gt;&lt;/div&gt;
+                &lt;span class="list-remark"&gt;Download...75%&lt;/span&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/a&gt;
+&lt;/div&gt;
+</pre>
+
+                <h2>List with Outlook 2013 style</h2>
+                <div class="example1">
+                    <div class="grid ">
+                        <div class="row">
+                            <div class="span6">
+                                <h2>Simple list</h2>
+                                <div class="listview-outlook" data-role="listview">
+                                    <a class="list marked" href="#">
+                                        <div class="list-content">
+                                            <span class="list-title">subscribe@metroui.net</span>
+                                            <span class="list-subtitle">MetroUI: News on 26/10/2013</span>
+                                            <span class="list-remark">Hello friend! Newest for Metro UI CSS</span>
+                                        </div>
+                                    </a>
+                                    <a class="list" href="#">
+                                        <div class="list-content">
+                                            <span class="list-title">subscribe@metroui.net</span>
+                                            <span class="list-subtitle">MetroUI: News on 26/10/2013</span>
+                                            <span class="list-remark">Hello friend! Newest for Metro UI CSS</span>
+                                        </div>
+                                    </a>
+                                    <a class="list" href="#">
+                                        <div class="list-content">
+                                            <span class="list-title">subscribe@metroui.net</span>
+                                            <span class="list-subtitle">MetroUI: News on 26/10/2013</span>
+                                            <span class="list-remark">Hello friend! Newest for Metro UI CSS</span>
+                                        </div>
+                                    </a>
+                                    <a class="list" href="#">
+                                        <div class="list-content">
+                                            <span class="list-title">subscribe@metroui.net</span>
+                                            <span class="list-subtitle">MetroUI: News on 26/10/2013</span>
+                                            <span class="list-remark">Hello friend! Newest for Metro UI CSS</span>
+                                        </div>
+                                    </a>
+                                    <a class="list" href="#">
+                                        <div class="list-content">
+                                            <span class="list-title">subscribe@metroui.net</span>
+                                            <span class="list-subtitle">MetroUI: News on 26/10/2013</span>
+                                            <span class="list-remark">Hello friend! Newest for Metro UI CSS</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="span6">
+                                <h2>Grouped list</h2>
+                                <div class="listview-outlook" data-role="listview">
+                                    <div class="list-group ">
+                                        <a href="" class="group-title">Today</a>
+                                        <div class="group-content">
+                                            <a class="list marked" href="#">
+                                                <div class="list-content">
+                                                    <span class="list-title">subscribe@metroui.net</span>
+                                                    <span class="list-subtitle">MetroUI: News on 26/10/2013</span>
+                                                    <span class="list-remark">Hello friend! Newest for Metro UI CSS</span>
+                                                </div>
+                                            </a>
+                                            <a class="list" href="#">
+                                                <div class="list-content">
+                                                    <span class="list-title">subscribe@metroui.net</span>
+                                                    <span class="list-subtitle">MetroUI: News on 26/10/2013</span>
+                                                    <span class="list-remark">Hello friend! Newest for Metro UI CSS</span>
+                                                </div>
+                                            </a>
+                                            <a class="list active" href="#">
+                                                <div class="list-content">
+                                                    <span class="list-title">subscribe@metroui.net</span>
+                                                    <span class="list-subtitle">MetroUI: News on 26/10/2013</span>
+                                                    <span class="list-remark">Hello friend! Newest for Metro UI CSS</span>
+                                                </div>
+                                            </a>
+                                            <a class="list" href="#">
+                                                <div class="list-content">
+                                                    <span class="list-title">subscribe@metroui.net</span>
+                                                    <span class="list-subtitle">MetroUI: News on 26/10/2013</span>
+                                                    <span class="list-remark">Hello friend! Newest for Metro UI CSS</span>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="list-group collapsed">
+                                        <a href="" class="group-title">Yesterday</a>
+                                        <div class="group-content">
+                                            <a class="list" href="#">
+                                                <div class="list-content">
+                                                    <span class="list-title"><span class="place-right icon-flag-2 fg-red smaller"></span>subscribe@metroui.net</span>
+                                                    <span class="list-subtitle"><span class="place-right">1:51</span>MetroUI: News on 26/10/2013</span>
+                                                    <span class="list-remark">Hello friend! Newest for Metro UI CSS</span>
+                                                </div>
+                                            </a>
+                                            <a class="list" href="#">
+                                                <div class="list-content">
+                                                    <span class="list-title"><span class="place-right icon-flag-2 fg-green smaller"></span>subscribe@metroui.net</span>
+                                                    <span class="list-subtitle"><span class="place-right">1:51</span>MetroUI: News on 26/10/2013</span>
+                                                    <span class="list-remark">Hello friend! Newest for Metro UI CSS</span>
+                                                </div>
+                                            </a>
+                                            <a class="list" href="#">
+                                                <div class="list-content">
+                                                    <span class="list-title">subscribe@metroui.net</span>
+                                                    <span class="list-subtitle"><span class="place-right">1:51</span>MetroUI: News on 26/10/2013</span>
+                                                    <span class="list-remark">Hello friend! Newest for Metro UI CSS</span>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+<pre class="prettyprint linenums">
+// Simple
+&lt;div class="listview-outlook"&gt;
+    &lt;a href="#" class="list"&gt;
+        &lt;div class="list-content"&gt;...&lt;/div&gt;
+    &lt;/a&gt;
+    ...
+&lt;/div&gt;
+
+// With group
+&lt;div class="listview-outlook" data-role="listview"&gt;
+    &lt;div class="list-group"&gt;
+        &lt;a href="" class="group-title"&gt;Group name&lt;/a&gt;
+        &lt;div class="group-content"&gt;
+            &lt;a href="#" class="list"&gt;
+                &lt;div class="list-content"&gt;...&lt;/div&gt;
+            &lt;/a&gt;
+            ...
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="list-group collapsed"&gt;
+        &lt;a href="" class="group-title"&gt;Group name&lt;/a&gt;
+        &lt;div class="group-content"&gt;
+            &lt;a href="#" class="list"&gt;
+                &lt;div class="list-content"&gt;...&lt;/div&gt;
+            &lt;/a&gt;
+            ...
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</pre>
+            <p>
+                List with group required <code>metro-listview.js</code>
+            </p>
+
+
+    </div>
+
+    <script src="js/hitua.js"></script>
+
+</body>
+</html>

@@ -2,56 +2,35 @@
 
 Metro UI CSS a set of styles to create a site with an interface similar to Windows 8 Metro UI. This set of styles was developed as a self-contained solution.
 
-# Current Version
+## Current Version
 
-## 0.95-a
+### 2.0.31
 
 See details of definition on [metroui.org.ua](http://metroui.org.ua)
 
-# Team
+#### NuGet
 
-## Sergey Pimenov
-Kiev, Ukraine.
-Project owner, team leader.
-CSS/LESS, HTML, Javascript.
+Now you can use [NuGet package](https://www.nuget.org/packages/Metro.UI.CSS/).
+To install Metro UI CSS 2.0, run the following command in the Package Manager Console:
+__PM> Install-Package Metro.UI.CSS__
 
-## Sergey Volkov
-Voljskiy, Russia.
-Team member.
-Javascript.
+### Pull requests
 
-## Valerio Battaglia (vabatta)
-Ticino, Switzerland.
-Team member.
-CSS/LESS, HTML, Javascript.
+Please create pull requests to SANDBOX branch. Requests in master branch will be ignored.
 
-# Pull requests
+### Credits
 
-Please create pull requests for develop branch. Requests in master branch can be ignored.
+- Metro UI CSS now is a Microsoft BizSpark Startup.
+- Normalize.css is a project by Nicolas Gallagher and Jonathan Neal.
+- Styles created using the [less](http://lesscss.org) preprocessor
 
-# Credits
+### Browser Compatibility
 
-Metro UI CSS now is a Microsoft BizSpark Startup
+IE9+, Chrome, Firefox, Opera, Safari
 
-Normalize.css is a project by Nicolas Gallagher and Jonathan Neal.
+# License
 
-Sites and Projects with Metro UI CSS:
+Metro UI CSS has MIT License
 
-* [forecast.org.ua](http://forecast.org.ua).
-* [pimenov.org.ua](http://pimenov.org.ua)
-* [vrconsultancy.be](http://www.vrconsultancy.be)
-* [heatlife.msk.ru](http://heatlife.msk.ru)
-* [alldomains.com.ua](https://alldomains.com.ua)
-* [srtd.fr](http://www.srtd.fr)
-* [bridgeuniversal.com](http://www.bridgeuniversal.com/)
-* [commissioningcommunity.co.uk](http://www.commissioningcommunity.co.uk/)
-* [comeinnkorea.com](http://comeinnkorea.com/)
-* [system3-consulting.de](http://www.system3-consulting.de/)
-* [cms.360ivr.com](http://cms.360ivr.com/home/)
-* [comp.unanleon.edu.ni](http://www.comp.unanleon.edu.ni/)
-* [odotnet.ru](http://odotnet.ru/)
-
-## Special thanks
-
-* [@oazabir](https://github.com/oazabir)
-* [@sagarsane](https://github.com/sagarsane)
+## Old version
+Metro UI CSS 0.95 you can find in a branch [metrouicss-0.95](https://github.com/olton/Metro-UI-CSS/tree/metrouicss-0.95)

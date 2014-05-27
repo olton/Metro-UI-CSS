@@ -1,137 +1,158 @@
-/*
- * Metro UI CSS
- * (c) 2012-2013 by Sergey Pimenov
- * Licensed under the MIT License and Commercial
- *
- * SideBar.less
- *
- */
+.sidebar {
+    margin: 0;
+    padding: 0;
+    background-color: #3D3D3D;
+    width: 100%;
+    height: 100%;
 
-.page-sidebar {
-    display: block;
-    width: 213px;
-    float: left;
-    min-height: 100% !important;
-    height: auto;
-    background-color: #EBEBEB;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    margin-top: 10px;
-    margin-left: 7px;
+    & > ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
 
-    a {
-        #font > .navigation;
-        #state > .navigation;
-        display: block;
-        width: 100%;
-        padding: 5px 20px 5px 10px;
-        white-space: nowrap;
-        font-size: 14px;
-        cursor: pointer;
+        li {
+            display: block;
+            border: 0;
+            border-bottom: 1px #5c5c5c solid;
+            position: relative;
 
-        &:hover {
-            .bg-color-blue;
-            .fg-color-white;
+            &.title {
+                padding: 20px 20px 10px 20px;
+                .subheader-secondary;
+                color: @white;
+            }
+
+            a {
+                display: block;
+                position: relative;
+                padding: 10px 20px;
+                text-decoration: none;
+                color: @grayLighter;
+                background-color: #3D3D3D;
+
+                &:hover {
+                    background-color: #262626;
+                    color: @white;
+                }
+
+                &.dropdown-toggle {
+                    &:after {
+                        right: 10px;
+                        bottom: 5px;
+                    }
+                }
+
+                [class*="icon-"] {
+                    margin-right: 15px;
+                }
+            }
+
+            &.stick {
+                position: relative;
+                &:before {
+                    content: "";
+                    position: absolute;
+                    width: 7px;
+                    height: 40px;
+                    left: -7px;
+                    text-indent: -9999px;
+                    border-top-left-radius: 5px;
+                    border-bottom-left-radius: 5px;
+                    background-color: inherit;
+                }
+            }
+            &.disabled {
+                a {
+                    background-color: lighten(#3D3D3D, 30%);
+                    cursor: default;
+                    color: @gray;
+                }
+            }
+            &.active {
+                a {
+                    background-color: @darkRed;
+                    color: @white;
+                }
+            }
+        }
+
+        ul {
+            .dropdown-menu;
+            box-shadow: none;
+            position: relative !important;
+            background-color: lighten(#262626, 75%);
+            min-width: 100%;
+            li {
+                border: 0;
+                a {
+                    background-color: lighten(#262626, 75%);
+                }
+                &.divider {
+                    background-color: lighten(#5c5c5c, 40%);
+                    &:hover {
+                        background-color: lighten(#5c5c5c, 40%);
+                    }
+                }
+                &.disabled {
+                    a {
+                        color: @grayLight;
+                        &:hover {
+                            color: @grayLight;
+                        }
+                    }
+                }
+            }
+
+            &.open {
+                display: block;
+            }
         }
     }
+}
 
+.sidebar.light {
+    background-color: @white;
+    .border;
     li {
-        display: list-item;
-        line-height: 20px;
-        position: relative;
-    }
+        border-bottom-color: @grayLighter;
 
-    & > ul > li > a {
-        font-size: 1.1em;
-    }
-
-    & > ul > li a.lead, & > ul > li.lead a, & > ul > li.lead {
-        font-weight: bold;
-    }
-
-    & > ul > li.sticker {
-
-        &:before {
-            content: ".";
-            position: absolute;
-            width: 7px;
-            height: 28px;
-            left: -7px;
-            text-indent: -9999px;
-            border-top-left-radius: 10px;
-            border-bottom-left-radius: 10px;
-            background-color: #ebebeb;
+        &.title {
+            color: @dark;
         }
-
-        &.sticker-color-blue {&:before{background-color: @blue;}}
-        &.sticker-color-blueLight {&:before{background-color: @blueLight;}}
-        &.sticker-color-blueDark {&:before{background-color: @blueDark;}}
-        &.sticker-color-green {&:before{background-color: @green !important;}}
-        &.sticker-color-greenLight {&:before{background-color: @greenLight !important;}}
-        &.sticker-color-greenDark {&:before{background-color: @greenDark !important;}}
-        &.sticker-color-red {&:before{background-color: @red !important;}}
-        &.sticker-color-yellow {&:before{background-color: @yellow !important;}}
-        &.sticker-color-orange {&:before{background-color: @orange !important;}}
-        &.sticker-color-orangeDark {&:before{background-color: @orangeDark !important;}}
-        &.sticker-color-pink {&:before{background-color: @pink !important;}}
-        &.sticker-color-pinkDark {&:before{background-color: @pinkDark !important;}}
-        &.sticker-color-purple {&:before{background-color: @purple !important;}}
-        &.sticker-color-darken {&:before{background-color: @darken !important;}}
-        &.sticker-color-white {&:before{background-color: @white !important;}}
-        &.sticker-color-grayDark {&:before{background-color: @grayDark !important;}}
-    }
-
-    .divider {
-        height: 1px;
-        margin: 9px 1px;
-        overflow: hidden;
-        background-color: #e5e5e5;
-    }
-
-    & ul {
-        .unstyled;
-        background-color: #EBEBEB;
-    }
-
-    ul.sub-menu {
-        padding-top: 5px;
-        padding-bottom: 5px;
 
         a {
-            padding: 5px 20px 5px 25px;
+            color: @dark;
+            background-color: @white;
+
+            &:hover {
+                background-color: @blue;
+            }
         }
 
-        &.light {
-            background-color: #f9f9f9 !important;
+        ul {
+            background-color: @white;
+            border: 1px transparent solid;
         }
-    }
 
-    .sidebar-dropdown-menu {
-        display: none;
-
-        &.open {
-            display: block;
+        .divider {
+            background-color: @grayLighter;
+            &:hover {
+                background-color: @grayLighter;
+            }
         }
-    }
 
-    & > ul > li.dropdown {
-        position: relative;
-
-        &:after {
-            content: "";
-            display: block;
-            position: absolute;
-            top: 6px;
-            left: 100%;
-            margin-left: -20px;
-            width: 16px;
-            height: 16px;
-            background: no-repeat;
-            background-position: 0 -1586px;
-            z-index: 200;
+        &.disabled {
+            a {
+                background-color: @white;
+                cursor: default;
+                color: @grayLight;
+            }
         }
-        &.active:after {
-            background-position: 0 -676px;
+        &.active {
+            a {
+                background-color: @cyan;
+                color: @white;
+            }
         }
     }
 }

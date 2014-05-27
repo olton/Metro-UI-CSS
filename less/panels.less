@@ -1,0 +1,38 @@
+.panel {
+    .border;
+    .panel-header {
+        padding: 10px;
+        background-color: @grayLighter;
+        width: 100%;
+        .subheader-secondary;
+        color: @dark;
+        cursor: default;
+    }
+    .panel-content {
+        width: 100%;
+        height: auto;
+        padding: 10px;
+    }
+}
+
+[data-role=panel] {
+    .panel-header {
+        cursor: pointer;
+        &:after {
+            font-family: @sysIconFontName;
+            content: "\e000";
+            float: right;
+            color: inherit;
+            .rotate(180deg);
+        }
+    }
+
+    &.collapsed {
+        .panel-header {
+            &:after {
+                content: "\e000";
+                .rotate(90deg);
+            }
+        }
+    }
+}

@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="product" content="Metro UI CSS Framework">
+    <meta name="description" content="Simple responsive css framework">
+    <meta name="author" content="Sergey S. Pimenov, Ukraine, Kiev">
+
+    <link href="css/metro-bootstrap.css" rel="stylesheet">
+    <link href="css/metro-bootstrap-responsive.css" rel="stylesheet">
+    <link href="css/iconFont.css" rel="stylesheet">
+    <link href="css/docs.css" rel="stylesheet">
+    <link href="js/prettify/prettify.css" rel="stylesheet">
+
+
+    <!-- Load JavaScript Libraries -->
+    <script src="js/jquery/jquery.min.js"></script>
+    <script src="js/jquery/jquery.widget.min.js"></script>
+    <script src="js/jquery/jquery.mousewheel.js"></script>
+    <script src="js/prettify/prettify.js"></script>
+
+    <!-- Metro UI CSS JavaScript plugins -->
+    <script src="js/load-metro.js"></script>
+
+    <!-- Local JavaScript -->
+    <script src="js/docs.js"></script>
+    <script src="js/github.info.js"></script>
+
+    <title>Metro UI CSS : Metro Bootstrap CSS Library</title>
+</head>
+<body class="metro">
+    <header class="bg-dark" data-load="header.html"></header>
+    <div class="container">
+                <h1>
+                    <a href="/"><i class="icon-arrow-left-3 fg-darker smaller"></i></a>
+                    Menu<small class="on-right">components</small>
+                </h1>
+
+                <h2 id="_horizontal">Horizontal Menu</h2>
+                <p class="description">
+
+                </p>
+                <h4>Default</h4>
+                <div class="example">
+                    <nav class="horizontal-menu">
+                        <ul>
+                            <li><a href="#">Products</a></li>
+                            <li><a href="#">Download</a></li>
+                            <li><a href="#">Support</a></li>
+                            <li><a href="#">Buy Now</a></li>
+                        </ul>
+                    </nav>
+                </div>
+<pre class="prettyprint linenums">
+&lt;nav class="horizontal-menu"&gt;
+    &lt;ul&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Products&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Download&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Support&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Buy Now&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;
+</pre>
+
+                <h4>Compact</h4>
+                <div class="example">
+                    <nav class="horizontal-menu compact">
+                        <ul>
+                            <li><a href="#">Products</a></li>
+                            <li><a href="#">Download</a></li>
+                            <li><a href="#">Support</a></li>
+                            <li><a href="#">Buy Now</a></li>
+                        </ul>
+                    </nav>
+                </div>
+<pre class="prettyprint linenums">
+&lt;nav class="horizontal-menu compact"&gt;
+    ...
+&lt;/nav&gt;
+</pre>
+
+                <h4>Horizontal menu with dropdown</h4>
+                <div class="example">
+                    <nav class="horizontal-menu">
+                        <ul>
+                            <li>
+                                <a class="dropdown-toggle" href="#">Products</a>
+                                <ul class="dropdown-menu" data-role="dropdown">
+                                    <li><a href="#">Windows 8</a></li>
+                                    <li><a href="#">Skype</a></li>
+                                    <li><a href="#">Internet Explorer</a></li>
+                                    <li><a href="#">Office</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Download</a></li>
+                            <li><a href="#">Support</a></li>
+                            <li><a href="#">Buy Now</a></li>
+                        </ul>
+                    </nav>
+                </div>
+<pre class="prettyprint linenums">
+&lt;nav class="horizontal-menu"&gt;
+    &lt;ul&gt;
+        &lt;li&gt;
+            &lt;a class="dropdown-toggle" href="#"&gt;Products&lt;/a&gt;
+            &lt;ul class="dropdown-menu" data-role="dropdown"&gt;
+                &lt;li&gt;&lt;a href="#"&gt;Windows 8&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#"&gt;Skype&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#"&gt;Internet Explorer&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#"&gt;Office&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/li&gt;
+        ...
+    &lt;/ul&gt;
+&lt;/nav&gt;
+</pre>
+
+                <h2 id="_vertical">Vertical Menu</h2>
+                <p class="description">
+
+                </p>
+                <h4>Default</h4>
+                <div class="example">
+                    <nav class="vertical-menu">
+                        <ul>
+                            <li class="title">Discover</li>
+                            <li><a href="#">Windows</a></li>
+                            <li><a href="#">Office</a></li>
+                            <li><a href="#">Surface</a></li>
+                            <li><a href="#">Windows Phone</a></li>
+                        </ul>
+                    </nav>
+                </div>
+<pre class="prettyprint linenums">
+&lt;nav class="vertical-menu"&gt;
+    &lt;ul&gt;
+        &lt;li class="title"&gt;Discover&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Windows&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Office&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Surface&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Windows Phone&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;
+</pre>
+
+                <h4>Compact</h4>
+                <div class="example">
+                    <nav class="vertical-menu compact">
+                        <ul>
+                            <li class="title">Download</li>
+                            <li><a href="#">Windows</a></li>
+                            <li><a href="#">Office</a></li>
+                            <li><a href="#">Internet Explorer</a></li>
+                            <li><a href="#">Skype</a></li>
+                        </ul>
+                    </nav>
+                </div>
+<pre class="prettyprint linenums">
+&lt;nav class="vertical-menu compact"&gt;
+    ...
+&lt;/nav&gt;
+</pre>
+
+                <h2 id="_dropdown">Dropdown Menu</h2>
+                <p class="description">
+                    Toggleable, contextual menu for displaying lists of links. Made interactive with the <code>metro-dropdown.js</code> JavaScript plugin.
+                </p>
+
+                    <div class="grid fluid">
+                        <div class="row">
+                            <div class="span4">
+                                <h4>Default</h4>
+                                <ul class="dropdown-menu open keep-open" style="position: relative; width: 200px; z-index: 1">
+                                    <li class="menu-title">This is a title</li>
+                                    <li><a href="#">Action</a></li>
+                                    <li><a href="#">Another action</a></li>
+                                    <li class="menu-title">This is another title</li>
+                                    <li><a href="#">Something else here</a></li>
+                                    <li class="divider"></li>
+                                    <li class="disabled"><a href="#">Disabled link</a></li>
+                                    <li class="divider"></li>
+                                    <li class="checked"><a href="#">Checked link</a></li>
+									<li class="unchecked"><a href="#">Unchecked link</a></li>
+                                </ul>
+                            </div>
+                            <div class="span4">
+                                <h4>Inverse</h4>
+                                <ul class="dropdown-menu inverse open keep-open" style="position: relative; width: 200px; z-index: 1">
+                                    <li class="menu-title">This is a title</li>
+                                    <li><a href="#">Action</a></li>
+                                    <li><a href="#">Another action</a></li>
+                                    <li class="menu-title">This is another title</li>
+                                    <li><a href="#">Something else here</a></li>
+                                    <li class="divider"></li>
+                                    <li class="disabled"><a href="#">Disabled link</a></li>
+                                    <li class="divider"></li>
+                                    <li class="checked"><a href="#">Checked link</a></li>
+									<li class="unchecked"><a href="#">Unchecked link</a></li>
+                                </ul>
+                            </div>
+                            <div class="span4">
+                                <h4>Dark</h4>
+                                <ul class="dropdown-menu dark open keep-open" style="position: relative; width: 200px; z-index: 1">
+                                    <li class="menu-title">This is a title</li>
+                                    <li><a href="#">Action</a></li>
+                                    <li><a href="#">Another action</a></li>
+                                    <li class="menu-title">This is another title</li>
+                                    <li><a href="#">Something else here</a></li>
+                                    <li class="divider"></li>
+                                    <li class="disabled"><a href="#">Disabled link</a></li>
+                                    <li class="divider"></li>
+                                    <li class="checked"><a href="#">Checked link</a></li>
+									<li class="unchecked"><a href="#">Unchecked link</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+<pre class="prettyprint linenums">
+&lt;ul class="dropdown-menu" data-role="dropdown"&gt;
+    &lt;li class="menu-title"&gt;This is a title&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#"&gt;Action&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#"&gt;Another action&lt;/a&gt;&lt;/li&gt;
+    &lt;li class="menu-title"&gt;This is another title&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#"&gt;Something else here&lt;/a&gt;&lt;/li&gt;
+    &lt;li class="divider"&gt;&lt;/li&gt;
+    &lt;li class="disabled"&gt;&lt;a href="#"&gt;Disabled link&lt;/a&gt;&lt;/li&gt;
+    &lt;li class="divider"&gt;&lt;/li&gt;
+    &lt;li class="checked"&gt;&lt;a href="#"&gt;Checked link&lt;/a&gt;&lt;/li&gt;
+	&lt;li class="unchecked"&gt;&lt;a href="#"&gt;Unchecked link&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul class="dropdown-menu" data-role="dropdown"&gt;...&lt;/ul&gt;
+&lt;ul class="dropdown-menu inverse" data-role="dropdown"&gt;...&lt;/ul&gt;
+&lt;ul class="dropdown-menu dark" data-role="dropdown"&gt;...&lt;/ul&gt;
+&lt;ul class="dropdown-menu shadow" data-role="dropdown"&gt;...&lt;/ul&gt;
+</pre>
+                <h4>Dropdowns position</h4>
+                <div class="example" style="height: 220px;">
+                    <nav class="horizontal-menu">
+                        <ul>
+                            <li>
+                                <a class="dropdown-toggle no-marker" href="#">Drop positions Demo</a>
+                                <ul class="dropdown-menu open keep-open" style="">
+                                    <li>
+                                        <a class="dropdown-toggle" href="#">Right dropdown</a>
+                                        <ul class="dropdown-menu" data-role="dropdown">
+                                            <li><a href="#">Sublink 1</a></li>
+                                            <li><a href="#">Sublink 2</a></li>
+                                            <li><a href="#">Sublink 3</a></li>
+                                            <li class="divider"></li>
+                                            <li><a href="#">Sublink 3</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-toggle" href="#">Left dropdown</a>
+                                        <ul class="dropdown-menu drop-left" data-role="dropdown">
+                                            <li><a href="#">Sublink 1</a></li>
+                                            <li><a href="#">Sublink 2</a></li>
+                                            <li><a href="#">Sublink 3</a></li>
+                                            <li class="divider"></li>
+                                            <li><a href="#">Sublink 3</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-toggle" href="#">Drop Up</a>
+                                        <ul class="dropdown-menu drop-up" data-role="dropdown">
+                                            <li><a href="#">Sublink 1</a></li>
+                                            <li><a href="#">Sublink 2</a></li>
+                                            <li><a href="#">Sublink 3</a></li>
+                                            <li class="divider"></li>
+                                            <li><a href="#">Sublink 3</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+<pre class="prettyprint linenums">
+&lt;ul class="dropdown-menu" data-role="dropdown"&gt;
+    ...
+&lt;/ul&gt;
+
+&lt;ul class="dropdown-menu drop-left" data-role="dropdown"&gt;
+    ...
+&lt;/ul&gt;
+
+&lt;ul class="dropdown-menu drop-up" data-role="dropdown"&gt;
+    ...
+&lt;/ul&gt;
+</pre>
+
+                <h4>Dropdown without javascript</h4>
+                <p class="description">
+                    You can use dropdown without javascript. For activating this feature add attribute <code>data-show='hover'</code> to dropdown menu.
+                </p>
+                <div class="example" style="height: 220px">
+                    <nav class="horizontal-menu">
+                        <ul>
+                            <li>
+                                <a class="dropdown-toggle" href="#">Demo dropdown</a>
+                                <ul class="dropdown-menu" data-show="hover" data-role="dropdown">
+                                    <li>
+                                        <a class="dropdown-toggle" href="#">Right dropdown</a>
+                                        <ul class="dropdown-menu" data-show="hover">
+                                            <li><a href="#">Sublink 1</a></li>
+                                            <li><a href="#">Sublink 2</a></li>
+                                            <li><a href="#">Sublink 3</a></li>
+                                            <li class="divider"></li>
+                                            <li><a href="#">Sublink 3</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-toggle" href="#">Left dropdown</a>
+                                        <ul class="dropdown-menu " data-show="hover">
+                                            <li><a href="#">Sublink 1</a></li>
+                                            <li><a href="#">Sublink 2</a></li>
+                                            <li><a href="#">Sublink 3</a></li>
+                                            <li class="divider"></li>
+                                            <li><a href="#">Sublink 3</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-toggle" href="#">Drop Up</a>
+                                        <ul class="dropdown-menu " data-show="hover">
+                                            <li><a href="#">Sublink 1</a></li>
+                                            <li><a href="#">Sublink 2</a></li>
+                                            <li><a href="#">Sublink 3</a></li>
+                                            <li class="divider"></li>
+                                            <li><a href="#">Sublink 3</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+<pre class="prettyprint linenums">
+&lt;ul class="dropdown-menu" data-show="hover"&gt;
+    ...
+&lt;/ul&gt;
+</pre>
+
+                <h4>Dropdown with javascript</h4>
+                <p class="description">You must add <code>metro-dropdown.js</code> to page.</p>
+
+                <h5>Auto</h5>
+                <p class="description">
+                    Add attribute <code>data-role='dropdown'</code> and <code>data-effect='...'</code> to dropdown menu. You can set next values for effect: <code>'fade'</code>, <code>'slide'</code> or <code>'none'</code>
+                </p>
+<pre class="prettyprint linenums">
+&lt;ul class="dropdown-menu" data-role="dropdown" data-effect='fade'&gt;
+    ...
+&lt;/ul&gt;
+</pre>
+
+                <h5>Manual</h5>
+<pre class="prettyprint linenums">
+$("#menu").dropdown();
+    or
+$("#menu").dropdown({
+    effect: 'fade'
+});
+</pre>
+
+
+    </div>
+
+    <script src="js/hitua.js"></script>
+
+</body>
+</html>

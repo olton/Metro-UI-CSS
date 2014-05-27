@@ -1,0 +1,258 @@
+.listview {
+    .list {
+        border: 4px transparent solid;
+        width: 300px;
+        height: auto;
+        position: relative;
+        display: block;
+        cursor: pointer;
+        color: inherit;
+        margin: 0 0 10px 0;
+
+        .list-content {
+            padding: 10px;
+            position: relative;
+            display: block;
+            color: inherit;
+            .clearfix;
+        }
+
+        &:hover {
+            outline: 3px #ccc solid;
+        }
+        &:active {
+            outline: 3px #3e3e3e solid;
+        }
+    }
+}
+
+.listview {
+    .list {
+        .border;
+        .list-content {
+            .icon {
+                display: block;
+                width: 56px;
+                height: 56px;
+                font-size: 40px;
+                float: left;
+                margin-right: 10px;
+            }
+            [class*="icon-"] {
+                &.icon {
+                    padding: 8px;
+                }
+            }
+
+            .data {
+                //float: left;
+                display: block;
+                padding: 0;
+                margin: 0;
+                margin-left: 66px;
+                min-width: 200px;
+                position: relative;
+            }
+
+            .list-title, .list-remark {
+                margin: 0;
+                padding: 0;
+                display: block;
+                .text-ellipsis;
+            }
+
+            .list-title {
+                font-size: 14px;
+                line-height: 16px;
+            }
+            .list-remark {
+                font-size: 11px;
+                line-height: 12px;
+            }
+            [class*="span"] {
+                float: none;
+            }
+            .rating {
+                color: inherit;
+            }
+            .progress-bar {
+                margin: 5px 0;
+            }
+        }
+    }
+}
+
+.listview {
+    &.small {
+        .list-content {
+            .icon {
+                display: block;
+                width: 32px;
+                height: 32px;
+                line-height: 14px;
+                font-size: 28px;
+                float: left;
+                margin-right: 10px;
+            }
+            [class*="icon-"] {
+                &.icon {
+                    padding: 8px 0;
+                }
+                &.border {
+                    font-size: 22px;
+                    padding: 8px 4px;
+                }
+            }
+            .data {
+                margin-left: 40px;
+            }
+        }
+    }
+}
+
+.listview {
+    .list.selected {#element > .selected;}
+}
+
+.listview-outlook {
+    position: relative;
+    display: block;
+    .listview;
+
+    .list {
+        display: block;
+        width: 100%;
+        //min-height: 50px;
+        border: 0;
+        border-bottom: 1px @lwListBorderColor solid;
+        padding: 2px 0;
+        color: @gray;
+        margin-bottom: 0;
+
+        .list-content {
+            //padding: @lwListContentPadding !important;
+            margin: 2px 0;
+            padding: 2px 20px;
+            #font > .segoe;
+            font-size: @lwFontSize;
+            color: inherit;
+            border-left: 3px transparent solid;
+
+            .list-title, .list-subtitle, .list-remark {
+                width: 100%;
+                display: block;
+                color: inherit;
+                .text-ellipsis;
+            }
+
+            .list-title {
+                font-size: @lwFontSize;
+                line-height: @lwFontSize+4;
+            }
+            .list-subtitle, .list-remark {
+                font-size: @lwSubtitleSize;
+                font-weight: normal;
+                line-height: @lwSubtitleSize+4;
+                color: @dark;
+            }
+            .list-subtitle {
+                font-weight: bold;
+                color: #0067cb;
+            }
+        }
+    }
+}
+
+.listview-outlook {
+    .list {
+        &.marked {
+            .list-content {
+                border-left: 3px @lwMarkerColor solid !important;
+            }
+        }
+
+        &:active, &:focus, &.active {
+            background-color: @lwListBackgroundActiveColor !important;
+            outline: 1px @grayLight dotted;
+            color: @gray !important;
+        }
+
+        &:hover {
+            background-color: @lwListBackgroundHoverColor;
+            outline: none;
+            .list-content {
+                border-left: 3px @lwMarkerInactiveColor solid;
+            }
+        }
+    }
+}
+
+.listview-outlook {
+    .list-group {
+        display: block;
+        position: relative;
+
+        .group-title {
+            display: block;
+            margin-bottom: 2px;
+            background-color: #f0f0f0;
+            padding: 4px 20px;
+            #font > .segoe;
+            font-size: @lwSubtitleSize;
+            font-weight: bold;
+            color: @grayDark;
+            padding-left: 24px;
+
+            &:before {
+                position: absolute;
+                display: block;
+                left: 10px;
+                top: 1px;
+                content: '';
+
+                width: 0;
+                height: 0;
+                border-left: 7px solid transparent;
+                border-top: 7px solid transparent;
+                border-bottom: 7px solid black;
+            }
+        }
+
+        .group-content {
+            display: block;
+        }
+
+        &.collapsed {
+            .group-title {
+                &:before {
+                    .rotate(-45deg);
+                    margin-left: -4px;
+                }
+            }
+
+            .group-content {
+            }
+        }
+
+        .group-title {
+            &:hover {
+                &:before {
+                    border-bottom-color: #0067cb;
+                }
+            }
+        }
+
+    }
+}
+
+.listview-outlook {
+    .list-content {
+        .list-icon {
+            float: left;
+            width: 48px;
+            max-height: 48px;
+            margin-right: 10px;
+            margin-top: 5px;
+        }
+    }
+}

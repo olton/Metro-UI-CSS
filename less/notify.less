@@ -1,0 +1,43 @@
+
+&.notify-container {
+    position: fixed;
+    right: 0;
+    top: 0;
+    //bottom: 0;
+    z-index: @zindexCharms;
+    //border: 1px #000 dotted;
+    //background-color: @dark;
+
+    .notify {
+        background-color: @white;
+        //border: 1px @grayLight solid;
+        display: block;
+        position: relative;
+        min-width: 220px;
+        #font > .segoe;
+        color: @dark;
+        padding: 10px;
+        margin: 2px 2px 2px 0;
+
+        .caption {
+            font-size: 18px;
+            line-height: 20px;
+            margin-bottom: 5px;
+        }
+        .content {
+            font-size: 14px;
+            line-height: 16px;
+        }
+
+    }
+}
+
+.notify-wrapper {
+    position: relative;
+    background-color: @dark;
+    width: auto;
+    height: auto;
+    min-width: 250px;
+    color: @white;
+
+}

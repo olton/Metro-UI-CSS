@@ -1,0 +1,180 @@
+
+// Box-sizing
+.box-sizing-border {
+    .box-sizing(border-box);
+}
+.box-sizing-content {
+    .box-sizing(content-box);
+}
+
+.text-overflow() {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+// Text aligment
+.text-left {text-align: left;}
+.text-right {text-align: right;}
+.text-center {text-align: center;}
+.text-justify {text-align: justify;}
+.text-ellipsis {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+// Text styling
+.text-bold {font-weight: bold;}
+.text-normal {font-weight: normal;}
+.text-italic {font-style: italic;}
+
+// Border
+.no-border {border: 0 !important;}
+.border {border: 1px @tableBorderColor solid;}
+.border-left {border-left: 1px @tableBorderColor solid;}
+.border-right {border-right: 1px @tableBorderColor solid;}
+.border-top {border-top: 1px @tableBorderColor solid;}
+.border-bottom {border-bottom: 1px @tableBorderColor solid;}
+
+
+.collapse-separate { .collapse(separate)}
+.collapse-collapse { .collapse(collapse)}
+
+// Position
+.pos-abs {position: absolute;}
+.pos-rel {position: relative;}
+.pos-fix {position: fixed;}
+.place-left {float: left;}
+.place-right {float: right;}
+.place-top-left {position: absolute; top: 0; left: 0;}
+.place-top-right {position: absolute; top: 0; right: 0;}
+.place-bottom-left {position: absolute; bottom: 0; left: 0;}
+.place-bottom-right {position: absolute; bottom: 0; right: 0;}
+.on-left {margin-right: @subunitSize;}
+.on-right {margin-left: @subunitSize;}
+.on-left-more {margin-right: @subunitSize * 2;}
+.on-right-more {margin-left: @subunitSize * 2;}
+
+.padding5 {padding: @subunitSize;}
+.padding10 {padding: @subunitSize * 2;}
+.padding15 {padding: @subunitSize * 3;}
+.padding20 {padding: @subunitSize * 4;}
+
+.margin5 {margin: @subunitSize;}
+.margin10 {margin: @subunitSize * 2;}
+.margin15 {margin: @subunitSize * 3;}
+.margin20 {margin: @subunitSize * 4;}
+
+.nlm {margin-left: 0 !important;}
+.nrm {margin-right: 0 !important;}
+.ntm {margin-top: 0 !important;}
+.nbm {margin-bottom: 0 !important}
+.nlp {padding-left: 0 !important;}
+.nrp {padding-right: 0 !important;}
+.ntp {padding-top: 0 !important;}
+.nbp {padding-bottom: 0 !important;}
+.no-margin {margin: 0  !important;}
+.no-padding {padding: 0  !important;}
+.no-float {float: none !important;}
+
+.block {display: block !important; float: none !important;}
+.inline-block {display: inline-block !important;}
+.hide, .no-display {display: none !important;}
+.no-visible {visibility: hidden !important;}
+.visible {visibility: visible !important;}
+
+// Scroll
+.scroll-y, .scroll-vertical {overflow-y: scroll;}
+.scroll-x, .scroll-horizontal {overflow-x: scroll;}
+.no-overflow {overflow: hidden;}
+.overflow {overflow: scroll;}
+
+// Columns
+.one-column {
+    .columns(1);
+}
+.two-columns {
+    .columns(2);
+}
+.three-columns {
+    .columns(3);
+}
+.four-columns {
+    .columns(4);
+}
+.five-columns {
+    .columns(5);
+}
+
+.square5 {.square(@subunitSize)};
+.square10 {.square(@subunitSize * 2)};
+.square15 {.square(@subunitSize * 3)};
+.square20 {.square(@subunitSize * 4)};
+
+.shadow {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3), 0 3px 8px rgba(0, 0, 0, .2);
+}
+.text-shadow {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.opacity {
+    opacity: .9;
+}
+.half-opacity {
+    opacity: .5;
+}
+.hi-opacity {
+    opacity: .2;
+}
+
+// Clearfix
+.clearfix {
+    //*zoom: 1;
+    &:before,
+    &:after {
+        display: table;
+        content: "";
+    }
+    &:after {
+        clear: both;
+    }
+}
+
+#element {
+    .selected {
+        border: 4px @lightBlue solid;
+
+        &:after {
+            position: absolute;
+            display: block;
+            border-top: 28px solid @lightBlue;
+            border-left: 28px solid transparent;
+            right: 0;
+            content:"";
+            top: 0;
+            z-index: 101;
+        }
+
+        &:before {
+            position: absolute;
+            display: block;
+            content: "\e003";
+            color: #fff;
+            right: 0;
+            font-family: 'metroSysIcons';
+            font-size: 9pt;
+            font-weight: normal;
+            z-index: 102;
+            top: 0;
+        }
+    }
+}
+
+.no-user-select {
+//    -moz-user-select: none;
+//    -khtml-user-select: none;
+//    -webkit-user-select: none;
+//    user-select: none;
+}

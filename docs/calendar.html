@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html  lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <meta name="product" content="Metro UI CSS Framework">
+    <meta name="description" content="Simple responsive css framework">
+    <meta name="author" content="Sergey S. Pimenov, Ukraine, Kiev">
+
+    <link href="css/metro-bootstrap.css" rel="stylesheet">
+    <link href="css/metro-bootstrap-responsive.css" rel="stylesheet">
+    <link href="css/iconFont.css" rel="stylesheet">
+    <link href="css/docs.css" rel="stylesheet">
+    <link href="js/prettify/prettify.css" rel="stylesheet">
+
+    <!-- Load JavaScript Libraries -->
+    <script src="js/jquery/jquery.min.js"></script>
+    <script src="js/jquery/jquery.widget.min.js"></script>
+    <script src="js/jquery/jquery.mousewheel.js"></script>
+    <script src="js/prettify/prettify.js"></script>
+
+    <!-- Metro UI CSS JavaScript plugins -->
+    <script src="js/load-metro.js"></script>
+
+    <!-- Local JavaScript -->
+    <script src="js/docs.js"></script>
+    <script src="js/github.info.js"></script>
+
+    <script>
+        METRO_LOCALE = 'en';
+        METRO_WEEK_START = 1;
+    </script>
+
+    <title>Metro UI CSS : Metro Bootstrap CSS Library</title>
+</head>
+<body class="metro">
+    <header class="bg-dark" data-load="header.html"></header>
+
+    <div class="container">
+                <h1>
+                    <a href="/"><i class="icon-arrow-left-3 fg-darker smaller"></i></a>
+                    Calendar<small class="on-right">component</small>
+                </h1>
+
+                <p>
+                    This component required: <code>metro-global.js</code>, <code>metro-locale.js</code> and <code>metro-calendar.js</code>.
+                </p>
+
+                <div class="example1">
+                    <div class="grid">
+                        <div class="row">
+                            <div class="span4"><div class="calendar small" data-role="calendar" ></div></div>
+                            <div class="span4"><div class="calendar small" data-role="calendar" data-start-mode="month"></div></div>
+                            <div class="span4"><div class="calendar small" data-role="calendar" data-start-mode="year"></div></div>
+                        </div>
+                    </div>
+                </div>
+<pre class="prettyprint linenums">
+&lt;div class="calendar"&gt;&lt;/div&gt;
+&lt;div class="calendar" data-start-mode="month"&gt;&lt;/div&gt;
+&lt;div class="calendar" data-start-mode="year"&gt;&lt;/div&gt;
+</pre>
+
+
+                <h3>Using</h3>
+                <p>
+                    You can activate calendar manually (with javascript) or auto with <strong>data-role</strong>.
+                </p>
+                <h4>Auto</h4>
+<pre class="prettyprint linenums">
+&lt;div class="calendar" data-role="calendar" data-locale='en | ru'&gt;&lt;/div&gt;
+</pre>
+                <h4>Manually</h4>
+<pre class="prettyprint linenums">
+$("component_id").calendar();
+</pre>
+
+                <h4>Manually with options</h4>
+<pre class="prettyprint linenums">
+$("component_id").calendar({
+    format: string, //default 'yyyy-mm-dd'
+    multiSelect: boolean, //default true (multi select date)
+    startMode: 'day', //year, month, day
+    date: string, //the init calendar date (example: '2013-01-01' or '2012-01')
+    locale: 'en', // 'ru', 'ua', 'fr' or 'en', default is $.Metro.currentLocale
+    otherDays: false, // show days for previous and next months,
+    weekStart: 0, //start week from sunday - 0 or monday - 1
+    getDates: function(d){...}, // see example below
+    click: function(d){...}, // fired when user clicked on day, in "d" stored date
+});
+</pre>
+
+                <h3>Events &amp; Methods</h3>
+                <div class="example1">
+                    <div class="grid">
+                        <div class="row">
+                            <div class="span4">
+                                <div class="calendar" id="cal-events"></div>
+                            </div>
+                            <div class="span5">
+                                <h3 class="no-margin">Output for getDates</h3>
+                                <hr />
+                                <div id="calendar-output"></div>
+
+                                <br />
+                                <h3 class="no-margin">Output for click</h3>
+                                <hr />
+                                <div id="calendar-output2"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <script>
+                        $(function(){
+                            var cal = $("#cal-events").calendar({
+                                multiSelect: true,
+                                getDates: function(data){
+                                    var r = "", out = $("#calendar-output").html("");
+                                    $.each(data, function(i, d){
+                                        r += d + "<br />";
+                                    });
+
+                                    out.html(r);
+                                },
+
+                                click: function(d){
+                                    var out = $("#calendar-output2").html("");
+                                    out.html(d);
+                                }
+
+
+                            });
+
+                            cal.calendar('setDate', '2013-10-21');
+                            cal.calendar('setDate', '2013-10-2');
+                        })
+                    </script>
+                </div>
+<pre class="prettyprint linenums">
+$(function(){
+    var cal = $(".calendar").calendar({
+        multiSelect: true,
+        getDates: function(data){
+            var r = "", out = $("#calendar-output").html("");
+            $.each(data, function(i, d){
+                r += d + "&lt;br /&gt;";
+            });
+            out.html(r);
+        },
+        click: function(d){
+            var out = $("#calendar-output2").html("");
+            out.html(d);
+        }
+    });
+
+    // Add date
+    cal.calendar('setDate', '2013-7-21');
+    cal.calendar('setDate', '2013-07-2');
+
+    // Remove date
+    cal.calendar('unsetDate', '2013-07-2');
+})
+</pre>
+                <h3>Start from Monday, display other days</h3>
+                <div class="example1">
+                    <div class="grid ">
+                        <div class="row">
+                            <div class="span4"><h2>Start from Monday</h2><div class="calendar small" data-role="calendar" data-locale="en" data-week-start="1"></div></div>
+                            <div class="span4"><h2>Show other days</h2><div class="calendar small" data-role="calendar" data-locale="en" data-other-days="1"></div></div>
+                        </div>
+                    </div>
+                </div>
+<pre class="prettyprint linenums">
+&lt;div class="calendar small" data-role="calendar" data-week-start="1"&gt;&lt;/div&gt;
+&lt;div class="calendar small" data-role="calendar" data-other-days="1"&gt;&lt;/div&gt;
+</pre>
+
+                <h3>Languages</h3>
+                <div class="example1">
+                    <div class="grid ">
+                        <div class="row">
+                            <div class="span4"><h2>EN</h2><div class="calendar small" data-role="calendar" data-locale="en"></div></div>
+                            <div class="span4"><h2>FR</h2><div class="calendar small" data-role="calendar" data-locale="fr"></div></div>
+                            <div class="span4"><h2>UA</h2><div class="calendar small" data-role="calendar" data-locale="ua"></div></div>
+                        </div>
+                        <div class="row">
+                            <div class="span4"><h2>RU</h2><div class="calendar small" data-role="calendar" data-locale="ru"></div></div>
+                            <div class="span4"><h2>zhCN</h2><div class="calendar small" data-role="calendar" data-locale="zhCN"></div></div>
+                            <div class="span4"><h2>IT</h2><div class="calendar small" data-role="calendar" data-locale="it"></div></div>
+                        </div>
+                    </div>
+                </div>
+<pre class="prettyprint linenums">
+&lt;div class="calendar small" data-role="calendar" data-locale="en"&gt;&lt;/div&gt;
+&lt;div class="calendar small" data-role="calendar" data-locale="fr"&gt;&lt;/div&gt;
+&lt;div class="calendar small" data-role="calendar" data-locale="ua"&gt;&lt;/div&gt;
+&lt;div class="calendar small" data-role="calendar" data-locale="ru"&gt;&lt;/div&gt;
+&lt;div class="calendar small" data-role="calendar" data-locale="zhCN"&gt;&lt;/div&gt;
+</pre>
+
+
+    </div>
+
+    <script src="js/hitua.js"></script>
+
+</body>
+</html>

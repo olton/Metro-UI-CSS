@@ -1,0 +1,225 @@
+&.window-overlay {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255,255,255,0);
+    z-index: @zindexModal - 1;
+}
+
+.window {
+    border: @winBorderSize @winBorderColor solid;
+    position: relative;
+    background-color: @white;
+    min-height: 200px;
+    min-width: 200px;
+    border-top: 0;
+
+    .caption {
+        position: absolute;
+        top: 0;
+        height: 32px;
+        width: 100%;
+        background-color: @winBorderColor;
+        cursor: default;
+        z-index: 2;
+        border-top: @winBorderSize @winBorderColor solid;
+
+        .icon {
+            width: 16px;
+            height: 16px;
+            font-size: 16px;
+            margin-top: 0;
+            margin-left: 0px;
+            margin-right: 5px;
+            position: relative;
+            float: left;
+        }
+
+        .title {
+            font-size: 14px;
+            margin-top: -2px;
+            margin-left: 4px;
+            position: relative;
+            float: left;
+        }
+
+        .super-title {
+            position: absolute;
+            top: 6px;
+            left: 0;
+            display: block;
+            width: 100%;
+            text-align: center;
+            z-index: 0;
+        }
+
+    }
+
+    .content {
+        position: relative;
+        padding: 32px 0;
+        width: auto;
+        height: auto;
+        .box-sizing-content;
+    }
+}
+
+.window {
+    .caption {
+        .btn-close, .btn-min, .btn-max {
+            background-color: @winCloseButtonColor;
+            color: @white;
+            position: absolute;
+            top: -8px;
+            right: 0;
+            width: 48px;
+            height: 24px;
+            min-height: 24px;
+            text-align: center;
+            vertical-align: middle;
+            #font > .cambria;
+            font-size: 16pt;
+            font-weight: normal;
+            padding: 0 0 10px 0;
+            z-index: 3;
+            outline: none;
+            &:hover {
+                background-color: @winCloseButtonActiveColor;
+            }
+            &:active {
+                background-color: lighten(@darkRed, 5%) !important;
+                top: -8px;
+                right: 0;
+                left: auto;
+            }
+            &:after {
+                content: '\D7';
+                position: absolute;
+                left: 50%;
+                top: 0;
+                margin-left: -.30em;
+            }
+        }
+        .btn-min, .btn-max {
+            background-color: transparent;
+            color: #000;
+            right: 75px;
+            width: 24px;
+            padding-bottom: 10px;
+            font-weight: bold;
+            &:hover {
+                background-color: @darkCyan;
+                color: #ffffff;
+                &:after {
+                    border-color: #fff;
+                }
+            }
+            &:active {
+                background-color: lighten(@darkCyan, 5%) !important;
+                color: #ffffff;
+                top: -8px;
+                right: 75px;
+                left: auto;
+            }
+            &:after {
+                display: block;
+                position: absolute;
+                width: 10px;
+                height: 10px;
+                border: 0px #000 solid;
+                border-bottom-width: 2px;
+                content: ' ';
+                bottom: 6px;
+                left: 50%;
+                margin-left: -6px;
+                top: auto;
+            }
+        }
+
+        .btn-max {
+            right: 50px;
+            &:active {
+                right: 50px;
+            }
+            &:after {
+                height: 6px;
+                border: 1px #000 solid;
+                border-top-width: 2px;
+            }
+        }
+    }
+}
+
+.window {
+    &.inactive {
+        border-color: @winBorderColorInactive;
+        .caption {
+            background-color: @winBorderColorInactive;
+            border-top: @winBorderSize @winBorderColorInactive solid;
+
+        }
+        .content {
+            border-color: @winBorderColorInactive;
+        }
+        .btn-close {
+            background-color: @winCloseButtonInActiveColor;
+        }
+    }
+}
+
+.window {
+    &.flat {
+        background-color: @winFlatBackgroundColor;
+        border: 1px @winFlatBorderColor solid;
+        .caption {
+            height: 32px;
+            background-color: @winFlatBackgroundColor;
+            padding: 7px 5px;
+            border-bottom: 1px @winFlatBorderColor solid;
+            border-top: 0;
+
+            .btn-close, .btn-min, .btn-max {
+                background-color: @winFlatBackgroundColor;
+                color: @winFlatSystemButtonRestColor;
+                width: 24px;
+                top: 4px;
+                right: 4px;
+                &:hover {
+                    background-color: @winFlatSystemButtonHoverBackground;
+                    color: @winFlatSystemButtonActiveColor;
+                    &:after {
+                        border-color: @winFlatSystemButtonActiveColor;
+                    }
+                }
+                &:active {
+                    background-color: @winFlatSystemButtonActiveBackground !important;
+                    color: @white !important;
+                }
+                &:after {
+                    border-color: @winFlatSystemButtonRestColor;
+                    width: 10px !important;
+                    height: 6px !important;
+                }
+            }
+            .btn-max {
+                right: 29px;
+            }
+            .btn-min {
+                right: 54px;
+            }
+            .btn-close {
+                &:after {
+                    margin-top: 2px;
+                }
+            }
+        }
+        .content {
+            //border-color: @winFlatBorderColor;
+            //border-width: 1px;
+            //border-top-width: 0;
+            padding-top: 38px;
+        }
+    }
+}

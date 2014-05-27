@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="product" content="Metro UI CSS Framework">
+    <meta name="description" content="Simple responsive css framework">
+    <meta name="author" content="Sergey S. Pimenov, Ukraine, Kiev">
+
+    <link href="css/metro-bootstrap.css" rel="stylesheet">
+    <link href="css/metro-bootstrap-responsive.css" rel="stylesheet">
+    <link href="css/iconFont.css" rel="stylesheet">
+    <link href="css/docs.css" rel="stylesheet">
+    <link href="js/prettify/prettify.css" rel="stylesheet">
+
+    <!-- Load JavaScript Libraries -->
+    <script src="js/jquery/jquery.min.js"></script>
+    <script src="js/jquery/jquery.widget.min.js"></script>
+    <script src="js/jquery/jquery.mousewheel.js"></script>
+    <script src="js/prettify/prettify.js"></script>
+
+    <!-- Metro UI CSS JavaScript plugins -->
+    <script src="js/load-metro.js"></script>
+
+    <!-- Local JavaScript -->
+    <script src="js/docs.js"></script>
+    <script src="js/github.info.js"></script>
+
+    <title>Metro UI CSS : Metro Bootstrap CSS Library</title>
+</head>
+<body class="metro">
+    <header class="bg-dark" data-load="header.html"></header>
+    <div class="container">
+                <h1>
+                    <a href="/"><i class="icon-arrow-left-3 fg-darker smaller"></i></a>
+                    Notices<small class="on-right">component</small>
+                </h1>
+
+                <div class="example">
+                    <div class="grid fluid">
+                        <div class="row">
+                            <div class="span3">
+                                <div class="notice">
+                                    <div class="fg-white">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
+                                </div>
+                            </div>
+                            <div class="span3">
+                                <div class="notice marker-on-top bg-amber">
+                                    <div class="fg-white">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
+                                </div>
+                            </div>
+                            <div class="span3">
+                                <div class="notice marker-on-right bg-pink">
+                                    <div class="fg-white">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
+                                </div>
+                            </div>
+                            <div class="span3">
+                                <div class="notice marker-on-bottom bg-darkRed fg-white">
+                                    <div class="">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+<pre class="prettyprint linenums">
+&lt;div class="notice"&gt;
+    ... content ...
+&lt;/div&gt;
+
+&lt;div class="notice marker-on-top"&gt;
+    ... content ...
+&lt;/div&gt;
+
+&lt;div class="notice marker-on-right"&gt;
+    ... content ...
+&lt;/div&gt;
+
+&lt;div class="notice marker-on-bottom"&gt;
+    ... content ...
+&lt;/div&gt;
+</pre>
+                <p>
+                    To set background color you can use predefined colors <code>bg-*</code>. To set color you can use predefined colors <code>fg-*</code>.
+                </p>
+<pre class="prettyprint linenums">
+&lt;div class="notice bg-amber fg-white"&gt;
+    ... content ...
+&lt;/div&gt;
+</pre>
+
+    </div>
+
+    <script src="js/hitua.js"></script>
+
+</body>
+</html>

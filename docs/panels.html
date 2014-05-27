@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="product" content="Metro UI CSS Framework">
+    <meta name="description" content="Simple responsive css framework">
+    <meta name="author" content="Sergey S. Pimenov, Ukraine, Kiev">
+
+    <link href="css/metro-bootstrap.css" rel="stylesheet">
+    <link href="css/metro-bootstrap-responsive.css" rel="stylesheet">
+    <link href="css/iconFont.css" rel="stylesheet">
+    <link href="css/docs.css" rel="stylesheet">
+    <link href="js/prettify/prettify.css" rel="stylesheet">
+
+    <!-- Load JavaScript Libraries -->
+    <script src="js/jquery/jquery.min.js"></script>
+    <script src="js/jquery/jquery.widget.min.js"></script>
+    <script src="js/jquery/jquery.mousewheel.js"></script>
+    <script src="js/prettify/prettify.js"></script>
+
+    <!-- Metro UI CSS JavaScript plugins -->
+    <script src="js/load-metro.js"></script>
+
+    <!-- Local JavaScript -->
+    <script src="js/docs.js"></script>
+    <script src="js/github.info.js"></script>
+
+    <title>Metro UI CSS : Metro Bootstrap CSS Library</title>
+</head>
+<body class="metro">
+    <header class="bg-dark" data-load="header.html"></header>
+    <div class="container">
+        <h1>
+            <a href="/"><i class="icon-arrow-left-3 fg-darker smaller"></i></a>
+            Panel<small class="on-right">component</small>
+        </h1>
+
+        <div class="example">
+
+            <div class="grid fluid">
+                <div class="row">
+                    <div class="span4">
+                        <h3>Default</h3>
+                        <div class="panel">
+                            <div class="panel-header">
+                                Lorem Ipsum
+                            </div>
+                            <div class="panel-content">
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="span4">
+                        <h3>Custom color</h3>
+                        <div class="panel">
+                            <div class="panel-header bg-lightBlue fg-white">
+                                Lorem Ipsum
+                            </div>
+                            <div class="panel-content">
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="span4">
+                        <h3>Collapsible</h3>
+                        <div class="panel" data-role="panel">
+                            <div class="panel-header bg-darkRed fg-white">
+                                Lorem Ipsum
+                            </div>
+                            <div class="panel-content">
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+<pre class="prettyprint linenums">
+Default
+&lt;div class="panel"&gt;
+    &lt;div class="panel-header"&gt;
+        ...
+    &lt;/div&gt;
+    &lt;div class="panel-content"&gt;
+        ...
+    &lt;/div&gt;
+&lt;/div&gt;
+
+Colorize
+&lt;div class="panel"&gt;
+    &lt;div class="panel-header bg-lightBlue fg-white"&gt;
+        ...
+    &lt;/div&gt;
+    &lt;div class="panel-content"&gt;
+        ...
+    &lt;/div&gt;
+&lt;/div&gt;
+
+Collapsible
+&lt;div class="panel" data-role="panel"&gt;
+    &lt;div class="panel-header"&gt;
+        ...
+    &lt;/div&gt;
+    &lt;div class="panel-content"&gt;
+        ...
+    &lt;/div&gt;
+&lt;/div&gt;
+</pre>
+
+
+    </div>
+
+    <script src="js/hitua.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,231 @@
+.fluent-menu {
+    font-size: 14px;
+    //overflow: hidden;
+
+    .tabs-holder {
+        list-style: none;
+        position: relative;
+        margin: 0;
+        padding: 0;
+        display: block;
+        z-index: 2;
+        .clearfix;
+
+        li {
+            display: block;
+            float: left;
+            margin-right: 5px;
+            background-color: #ffffff;
+
+            a {
+                display: block;
+                float: left;
+                padding: 4px 15px;
+                text-transform: uppercase;
+                font-size: .8em;
+                color: @fmTabRestColor;
+
+                &:hover {
+                    color: @fmTabActiveColor;
+                }
+            }
+
+            &:first-child {
+                margin-left: 0px;
+            }
+
+            &.active {
+                border: 1px @fmBorderColor solid;
+                border-bottom-color: @white;
+                a {
+                    color: @fmTabActiveColor;
+                }
+            }
+            &.special {
+                border: 1px @fmTabActiveColor solid;
+                background-color: @fmTabActiveColor;
+                a {
+                    color: @white;
+                    &:hover {
+                        color: @white;
+                    }
+                }
+            }
+        }
+    }
+
+    .tabs-content {
+        z-index: 1;
+        position: relative;
+        margin-top: -1px;
+        border: 1px @fmBorderColor solid;
+        background-color: #ffffff;
+        height: 120px;
+        //overflow: hidden;
+
+        .tab-panel {
+            display: block;
+            height: 100%;
+            padding: 5px 0 2px;
+
+
+            .tab-panel-group {
+                height: 100%;
+                position: relative;
+                display: block;
+                float: left;
+                padding: 0 5px;
+                //margin-right: 5px;
+                //background-color: #ccc;
+                border-right: 1px @fmBorderColor solid;
+
+                &:last-child {
+                    margin-right: 0;
+                    //border-right: 0;
+                }
+            }
+
+            .tab-group-caption {
+                font-size: 10px;
+                margin: 2px 0;
+                text-align: center;
+                display: block;
+                position: absolute;
+                bottom: 0px;
+                right: 0;
+                left: 0;
+                white-space: nowrap;
+            }
+
+            .tab-group-content {
+
+            }
+
+            .tab-content-segment {
+                display: block;
+                float: left;
+                position: relative;
+            }
+
+            .tab-content-composit {
+
+            }
+        }
+    }
+}
+
+// Buttons
+
+.fluent-menu {
+    .fluent-button {
+        background-color: @white;
+        padding: 5px 5px;
+        font-size: 14px;
+        line-height: 14px;
+        display: block;
+        cursor: default;
+        &:hover {
+            background-color: @fmElementHoverBackground;
+        }
+        img {
+            display: block;
+            float: left;
+            margin-right: 5px;
+            width: 16px;
+            height: 16px;
+        }
+        [class*="icon-"] {
+            color: @fmTabRestColor;
+        }
+
+        .button-label {
+            //padding: 0 5px;
+            display: inline-block;
+            color: inherit;
+            font: inherit;
+        }
+
+        &:active {
+            top: 0;
+            left: 0;
+            background-color: darken(@fmElementHoverBackground, 20%) !important;
+        }
+    }
+
+    .fluent-big-button {
+        .fluent-button;
+
+        padding: 7px 5px;
+        text-align: center;
+        white-space: normal;
+        line-height: 12px;
+        float: left;
+        position: relative;
+
+        img, [class*="icon-"] {
+            display: block;
+            width: 40px;
+            height: 40px;
+            font-size: 40px;
+            float: none;
+            text-align: center;
+            margin: 5px auto 5px;
+        }
+
+        br {
+            line-height: 4px;
+            height: 4px;
+            font-size: 4px;
+        }
+
+    }
+
+    .fluent-tool-button {
+        .fluent-button;
+        padding: 4px;
+        img, [class*="icon-"] {
+            display: block;
+            width: 16px;
+            height: 16px;
+            font-size: 16px;
+            float: none;
+            text-align: center;
+        }
+        img {
+            margin-right: 0;
+        }
+    }
+
+    .dropdown-toggle {
+        &:before, &:after {
+            content: "";
+        }
+        .button-label {
+            padding-right: 5px;
+            &:before, &:after {
+                content: "";
+            }
+            &:after {
+                content: "\e012";
+                font-family: @sysIconFontName;
+                position: absolute;
+                right: 0px;
+                bottom: 3px;
+                font-size: .8em;
+            }
+        }
+    }
+
+    .dropdown-menu {
+        position: absolute;
+        top: 100%;
+        z-index: 100;
+        a {
+            font-size: 10pt !important;
+            &:hover {
+                background-color: @fmElementHoverBackground;
+                color: @fmTabRestColor;
+            }
+        }
+    }
+}

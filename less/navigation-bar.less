@@ -1,0 +1,317 @@
+.navigation-bar, .navbar {
+    width: 100%;
+    display: block;
+    background-color: @cyan;
+    color: @white;
+    //height: 45px;
+
+    .navigation-bar-content, .navbar-content {
+        background-color: inherit;
+        color: inherit;
+        display: block;
+        //height: 100%;
+
+        .element, .element-divider {
+            display: block;
+            float: left;
+            background-color: inherit;
+            position: relative;
+            height: 45px;
+
+            &.place-right {
+                float: right;
+            }
+        }
+
+        .element {
+            padding: @subunitSize*3;
+            line-height: @subunitSize * 3;
+            color: inherit;
+            font-family: @segoeLightFontFamily;
+            font-size: 14px;
+            //transition: background .3s ease;
+
+            &:hover {
+                background-color: saturate(@cyan, 30%);
+            }
+
+        }
+
+        .element > a.dropdown-toggle {
+            color: inherit;
+            position: relative;
+            &:after {
+                position: absolute;
+                left: 100%;
+                //content: "";
+            }
+        }
+
+        .element > .dropdown-menu {
+            top: 100%;
+            left: 0;
+
+
+            &.place-right {
+                right: 0;
+                left: auto;
+            }
+        }
+
+        .element-divider {
+            padding: @subunitSize*3 0;
+            line-height: @subunitSize * 3;
+            width: 1px !important;
+            border-left: 1px #ccc solid;
+            opacity: .3;
+            position: relative;
+            &:before {
+                content: "|";
+                visibility: hidden;
+            }
+        }
+    }
+}
+
+.navigation-bar-content, .navbar-content {
+    .brand {
+        font-size: 18px;
+    }
+
+    form {
+        margin: 0;
+        padding-bottom: 0 !important;
+        position: relative;
+    }
+
+    .element  .input-control.text, .element  .input-control.password {
+        width: auto;
+        height: auto;
+        position: relative;
+        margin: 0;
+        top: -6px;
+
+        [class*='btn-'] {
+            top: 2px;
+            right: 2px;
+        }
+
+        input[type='text'] {
+            font-size: 12px;
+        }
+    }
+
+    .input-control.checkbox,  .input-control.radio{
+        position: relative;
+        margin: 0;
+        top: -6px;
+    }
+
+    .button, .image-button {
+        background-color: transparent;
+    }
+
+    .button {
+        margin-top: -14px;
+        background-color: inherit;
+        &.small {
+
+        }
+    }
+
+    .image-button {
+        padding-right: @subunitSize * 8 ;
+        padding-left: @subunitSize;
+        background-color: inherit;
+
+        &:active {
+            left: auto;
+            right: auto;
+            top: auto;
+        }
+
+        img {
+            width: @unitSize * 2;
+            height: @unitSize * 2;
+            margin-top: @subunitSize/2;
+        }
+
+        &.image-left {
+            padding-right: @subunitSize;
+            padding-left: @subunitSize * 8;
+        }
+    }
+
+    [class*="icon-"] {
+        font-size: 16px !important;
+    }
+}
+
+.input-element, .element-input {
+    padding-bottom: 0 !important;
+    &:hover {
+        background-color: inherit !important;
+    }
+}
+
+.navigation-bar, .navbar {
+    .element-menu {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        color: inherit;
+
+        & > li {
+            display: block;
+            float: left;
+            position: relative;
+            color: inherit;
+
+            & > a {
+                display: block;
+                float: left;
+                width: 100%;
+                padding: @subunitSize*3;
+                line-height: @subunitSize * 3;
+                color: inherit;
+                font-family: @segoeLightFontFamily;
+                font-size: 14px;
+
+                &.dropdown-toggle {
+                    //padding-right: 10px;
+                    color: inherit;
+                    position: relative;
+                    &:after {
+                        position: absolute;
+                        left: 95%;
+                        top: 50%;
+                        margin-left: -7px;
+                        margin-top: -5px;
+                    }
+                }
+            }
+
+            & > .dropdown-menu {
+                top: 100%;
+                left: 0;
+                //background-color: inherit;
+                //border: 0 !important;
+
+                &.place-right {
+                    right: 0;
+                    left: auto;
+                }
+
+                .dropdown-menu {
+                    //background-color: inherit !important;
+                    //border: 0 !important;
+                }
+            }
+        }
+
+        &.responsive {}
+    }
+
+    .element-menu {
+        &.drop-up {
+            & li > .dropdown-menu {
+                top: auto;
+                bottom: 45px;
+
+                .dropdown-menu {
+                    bottom: 0;
+                }
+            }
+        }
+    }
+
+    .pull-menu {
+
+        display: none;
+        float: right !important;
+        color: #fff;
+        cursor: pointer;
+        font: 1.8em sans-serif;
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 45px;
+        width: 40px;
+        line-height: 20px;
+        margin: 0;
+
+        &:before {
+            content: "\2261";
+            position: absolute;
+            font-size: 20pt;
+            top: 10px;
+            left: 10px;
+        }
+
+        input[type="checkbox"] {
+            width: 0;
+            height: 0;
+            opacity: 0;
+        }
+    }
+}
+
+.navigation-bar-content, .navbar-content {
+    .clearfix;
+}
+
+.navigation-bar, .navbar {
+    &.fixed-top, &.fixed-bottom {
+        position: fixed;
+        z-index: @zindexFixedNavbar;
+        left: 0;
+    }
+
+    &.fixed-top {
+        top: 0;
+        bottom: auto;
+    }
+    &.fixed-bottom {
+        bottom: 0;
+        top: auto;
+    }
+}
+
+
+.navigation-bar {
+    &.dark {
+        background-color: @grayDark;
+        .element-menu > li > a {
+            color: @white;
+        }
+
+        .element:hover, .element-menu > li:hover {
+            background-color: saturate(@dark, 10%);
+        }
+    }
+    &.light {
+        background-color: @grayLighter;
+        color: @gray;
+
+        .element:hover, .element-menu > li:hover {
+            background-color: @grayLight;
+            color: @white;
+        }
+        .pull-menu {
+            color: @dark;
+        }
+    }
+    &.white {
+        background-color: @white;
+        color: @gray;
+
+        .element:hover, .element-menu > li:hover {
+            background-color: @blue;
+            color: @white;
+        }
+
+        .pull-menu {
+            color: @dark;
+        }
+    }
+}

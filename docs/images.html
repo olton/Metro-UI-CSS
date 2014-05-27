@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="product" content="Metro UI CSS Framework">
+    <meta name="description" content="Simple responsive css framework">
+    <meta name="author" content="Sergey S. Pimenov, Ukraine, Kiev">
+
+    <link href="css/metro-bootstrap.css" rel="stylesheet">
+    <link href="css/metro-bootstrap-responsive.css" rel="stylesheet">
+    <link href="css/iconFont.css" rel="stylesheet">
+    <link href="css/docs.css" rel="stylesheet">
+    <link href="js/prettify/prettify.css" rel="stylesheet">
+
+    <!-- Load JavaScript Libraries -->
+    <script src="js/jquery/jquery.min.js"></script>
+    <script src="js/jquery/jquery.widget.min.js"></script>
+    <script src="js/jquery/jquery.mousewheel.js"></script>
+    <script src="js/prettify/prettify.js"></script>
+    <script src="js/holder/holder.js"></script>
+
+    <!-- Metro UI CSS JavaScript plugins -->
+    <script src="js/load-metro.js"></script>
+
+    <!-- Local JavaScript -->
+    <script src="js/docs.js"></script>
+    <script src="js/github.info.js"></script>
+
+    <title>Metro UI CSS : Metro Bootstrap CSS Library</title>
+</head>
+<body class="metro">
+    <header class="bg-dark" data-load="header.html"></header>
+
+    <div class="container">
+                <h1>
+                    <a href="/"><i class="icon-arrow-left-3 fg-darker smaller"></i></a>
+                    Images<small class="on-right"></small>
+                </h1>
+
+                <h3>General</h3>
+                <p>Add classes to an <code>&lt;img&gt;</code> element to easily style images in any project.</p>
+                <div class="example">
+                    <img src="js/holder/holder.js/120x120" class="rounded">
+                    <img src="js/holder/holder.js/120x120" class="cycle">
+                    <img src="js/holder/holder.js/120x120" class="polaroid">
+                    <img src="js/holder/holder.js/120x120" class="rounded polaroid">
+                    <img src="js/holder/holder.js/120x120" class="cycle polaroid">
+                    <img src="js/holder/holder.js/120x120" class="shadow">
+                </div>
+<pre class="prettyprint linenums">
+&lt;img src="..." class="rounded"&gt;
+&lt;img src="..." class="cycle"&gt;
+&lt;img src="..." class="polaroid"&gt;
+&lt;img src="..." class="rounded polaroid"&gt;
+&lt;img src="..." class="cycle polaroid"&gt;
+&lt;img src="..." class="shadow"&gt;
+</pre>
+                <h4>Border color</h4>
+                <p>You can change border color with build-in classes <code>bd-*</code></p>
+                <div class="example">
+                    <img src="js/holder/holder.js/120x120" class="rounded bd-amber">
+                    <img src="js/holder/holder.js/120x120" class="cycle bd-cobalt">
+                    <img src="js/holder/holder.js/120x120" class="polaroid bd-red">
+                    <img src="js/holder/holder.js/120x120" class="polaroid bd-white shadow">
+                    <img src="js/holder/holder.js/120x120" class="polaroid bd-red bg-lightPink">
+                </div>
+<pre class="prettyprint linenums">
+&lt;img src="..." class="rounded bd-amber"&gt;
+&lt;img src="..." class="polaroid bd-white shadow"&gt;
+&lt;img src="..." class="polaroid bd-red bg-pink"&gt;
+</pre>
+
+                <h4>Background color</h4>
+                <p>You can change background color for polaroid style with build-in classes <code>bg-*</code></p>
+                <div class="example">
+                    <img src="js/holder/holder.js/120x120" class="polaroid bg-cobalt">
+                    <img src="js/holder/holder.js/120x120" class="polaroid bg-red">
+                    <img src="js/holder/holder.js/120x120" class="polaroid bg-steel">
+                    <img src="js/holder/holder.js/120x120" class="polaroid bg-lightBlue bd-white shadow">
+                </div>
+<pre class="prettyprint linenums">
+&lt;img src="..." class="rounded bg-cobalt"&gt;
+&lt;img src="..." class="polaroid bg-amber bd-white shadow"&gt;
+&lt;img src="..." class="polaroid bg-lightBlue bd-white shadow"&gt;
+</pre>
+
+                <h4>Image size</h4>
+                <p>Also you can set width of image with <code>&lt;span1&gt;...&lt;span12&gt;</code> classes.</p>
+                <div class="example">
+                    <img src="images/2.jpg" class="span2">
+                    <img src="images/2.jpg" class="span3">
+                    <img src="images/2.jpg" class="span4">
+                </div>
+<pre class="prettyprint linenums">
+&lt;img src="..." class="span2"&gt;
+&lt;img src="..." class="span3"&gt;
+&lt;img src="..." class="span4"&gt;
+</pre>
+
+                <h3>Image container</h3>
+                <p class="description">
+                    You can use class <code>.image-container</code> to create additional image presentation.
+                </p>
+                <div class="example">
+                    <div class="image-container">
+                        <img src="images/2.jpg">
+                        <div class="overlay">
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                        </div>
+                    </div>
+                    <div class="image-container shadow">
+                        <img src="images/2.jpg">
+                        <div class="overlay-fluid">
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                        </div>
+                    </div>
+                    <div class="image-container selected">
+                        <img src="images/2.jpg">
+                    </div>
+                </div>
+<pre class="prettyprint linenums">
+&lt;div class="image-container"&gt;
+    &lt;img src="..."&gt;
+    &lt;div class="overlay"&gt;
+        ...
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="image-container shadow"&gt;
+    &lt;img src="..."&gt;
+    &lt;div class="overlay-fluid"&gt;
+        ...
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="image-container selected"&gt;
+    &lt;img src="..."&gt;
+&lt;/div&gt;
+</pre>
+
+    </div>
+
+    <script src="js/hitua.js"></script>
+
+</body>
+</html>

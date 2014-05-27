@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="product" content="Metro UI CSS Framework">
+    <meta name="description" content="Simple responsive css framework">
+    <meta name="author" content="Sergey S. Pimenov, Ukraine, Kiev">
+
+    <link href="css/metro-bootstrap.css" rel="stylesheet">
+    <link href="css/metro-bootstrap-responsive.css" rel="stylesheet">
+    <link href="css/iconFont.css" rel="stylesheet">
+    <link href="css/docs.css" rel="stylesheet">
+    <link href="js/prettify/prettify.css" rel="stylesheet">
+
+    <!-- Load JavaScript Libraries -->
+    <script src="js/jquery/jquery.min.js"></script>
+    <script src="js/jquery/jquery.widget.min.js"></script>
+    <script src="js/jquery/jquery.mousewheel.js"></script>
+    <script src="js/prettify/prettify.js"></script>
+
+    <!-- Metro UI CSS JavaScript plugins -->
+    <script src="js/load-metro.js"></script>
+
+    <!-- Local JavaScript -->
+    <script src="js/docs.js"></script>
+    <script src="js/github.info.js"></script>
+
+    <title>Metro UI CSS : Metro Bootstrap CSS Library</title>
+</head>
+<body class="metro">
+    <header class="bg-dark" data-load="header.html"></header>
+    <div class="container">
+                <h1>
+                    <a href="/"><i class="icon-arrow-left-3 fg-darker smaller"></i></a>
+                    Rating<small class="on-right">component</small>
+                </h1>
+
+                <p class="description">
+                    Rating is a component that generates a customizable star rating. This component required <code>metro-rating.js</code>.
+                </p>
+                <div class="example">
+                    <div class="rating large" data-static="false" data-score="3" data-stars="5" data-role="rating" data-show-score="true" data-score-hint="Rating: "></div>
+                    <div id="rating_1" class="fg-green"></div>
+                    <div class="rating small fg-red" data-static="false" data-score="3" data-stars="5" data-role="rating" data-show-score="true" data-score-hint="Value: "></div>
+                    <script>
+                        $(function(){
+                            $("#rating_1").rating({
+                                static: false,
+                                score: 2,
+                                stars: 5,
+                                showHint: true,
+                                showScore: true,
+                                click: function(value, rating){
+                                    //alert("Rating clicked with value " + value);
+                                    rating.rate(value);
+                                }
+                            });
+                        });
+                    </script>
+                </div>
+
+                <h4>Component structure</h4>
+<pre class="prettyprint linenums">
+&lt;div class="rating"&gt;
+    &lt;ul&gt;
+        &lt;li class="rated"&gt;&lt;/li&gt;
+        &lt;li class="rated"&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;span class="score-hint"&gt;&lt;/span&gt;
+&lt;/div&gt;
+</pre>
+
+                <h4>Component definition</h4>
+<pre class="prettyprint linenums">
+&lt;div class="rating"&gt;&lt;/div&gt;
+</pre>
+
+                <p>
+                    You can activate widget manually or auto with <code>data-*</code> api.
+                </p>
+                <h4>
+                    Activate with API on DATA-ROLE attribute.
+                </h4>
+<pre class="prettyprint linenums">
+&lt;div class="rating"
+    data-role="rating"
+    data-static="false"
+    data-score="3"
+    data-stars="5"
+    data-show-score="true"
+    data-score-hint="Value: "&gt;
+&lt;/div&gt;
+</pre>
+
+                <h4>
+                    Activate with javascript.
+                </h4>
+<pre class="prettyprint linenums">
+$(function(){
+    $("#rating_1").rating({
+        static: false,
+        score: 2,
+        stars: 5,
+        showHint: true,
+        hints: ['bad', 'poor', 'regular', 'good', 'gorgeous'],
+        showScore: true,
+        scoreHint: "Current score: ",
+    });
+});
+</pre>
+                <h4>Event handlers</h4>
+                <div class="example">
+                    <div id="rating_2" class="large fg-green"></div>
+                    <script>
+                        $(function(){
+                            $("#rating_2").rating({
+                                static: false,
+                                score: 2,
+                                stars: 5,
+                                showHint: true,
+                                showScore: true,
+                                click: function(value, rating){
+                                    rating.rate(value);
+                                }
+                            });
+                        });
+                    </script>
+                </div>
+<pre class="prettyprint linenums">
+$(function(){
+    $("#rating_2").rating({
+        click: function(value, rating){
+            rating.rate(value);
+        }
+    });
+});
+</pre>
+
+                <h4>Change Rating color</h4>
+                <p class="description">
+                    To change color of rating you can use built-in color classes <code>fg-*</code> (see colors on <a href="global.html">Global styles</a> page). Also you can change <code>color</code> style for rating element.
+                </p>
+<pre class="prettyprint linenums">
+&lt;div class="rating fg-green"&gt;&lt;/div&gt;
+&lt;div class="rating" style="color: #2784A7"&gt;&lt;/div&gt;
+</pre>
+
+                <h4>Change Rating size</h4>
+                <p class="description">
+                    To change size of rating you can use built-in classes <code>large</code> or <code>small</code>.
+                </p>
+<pre class="prettyprint linenums">
+&lt;div class="rating"&gt;&lt;/div&gt;
+&lt;div class="rating large"&gt;&lt;/div&gt;
+&lt;div class="rating small"&gt;&lt;/div&gt;
+</pre>
+
+    </div>
+
+    <script src="js/hitua.js"></script>
+
+</body>
+</html>
