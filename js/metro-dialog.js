@@ -41,7 +41,7 @@
             }
         }, params);
 
-        var _overlay, _window, _caption, _content, _fotter;
+        var _overlay, _window, _caption, _content, _footer;
 
         _overlay = $("<div/>").addClass("metro window-overlay");
 
