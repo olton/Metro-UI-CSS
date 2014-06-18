@@ -23,7 +23,7 @@
 
         init: function(){
             var that = this;
-
+            this._frames = this.element.children(".accordion-frame");
             this._frames.each(function(){
                 var frame = this,
                     a = $(this).children(".heading"),
