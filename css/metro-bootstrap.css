@@ -681,7 +681,7 @@ a {
   color: #000000;
 }
 .metro .text-rest2-state {
-  color: rgba(0, 0, 0, 0.6);
+  color: #000000;
 }
 .metro .text-hover-state {
   color: rgba(0, 0, 0, 0.8);
@@ -742,12 +742,11 @@ a {
 .metro .subheader-secondary {
   font-family: 'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 300;
-  color: #000000;
   letter-spacing: 0.00em;
   font-size: 2.5rem;
   line-height: 2.5rem;
   letter-spacing: 0.01em;
-  color: rgba(0, 0, 0, 0.6);
+  color: #000000;
   font-size: 2.2rem;
   line-height: 2.2rem;
 }
@@ -762,11 +761,10 @@ a {
 .metro .item-title-secondary {
   font-family: 'Segoe UI Semibold_', 'Open Sans Bold', Verdana, Arial, Helvetica, sans-serif;
   font-weight: bold;
-  color: #000000;
   font-size: 1.6rem;
   line-height: 1.6rem;
   letter-spacing: 0.02em;
-  color: rgba(0, 0, 0, 0.6);
+  color: #000000;
   font-size: 1.4rem;
   line-height: 1.4rem;
 }
@@ -774,7 +772,7 @@ a {
   font-family: 'Segoe UI_', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: normal;
   font-style: normal;
-  color: rgba(0, 0, 0, 0.6);
+  color: #000000;
   font-size: 1.2rem;
   line-height: 1.2rem;
   letter-spacing: 0.02em;
@@ -807,11 +805,10 @@ a {
 }
 .metro .tertiary-text-secondary {
   font-family: 'Segoe UI_', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
-  color: #000000;
   font-size: 1.3rem;
   line-height: 1.5rem;
   font-weight: normal !important;
-  color: rgba(0, 0, 0, 0.6);
+  color: #000000;
 }
 .metro .readable-text {
   font-family: 'Cambria_', 'PT Serif Caption', Verdana, Arial, Helvetica, sans-serif;
@@ -833,12 +830,11 @@ a {
 .metro .menu-item {
   font-family: 'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 300;
-  color: #000000;
   letter-spacing: 0.00em;
   font-size: 2.5rem;
   line-height: 2.5rem;
   letter-spacing: 0.01em;
-  color: rgba(0, 0, 0, 0.6);
+  color: #000000;
   line-height: 2.2rem;
   font-size: 2.2rem;
 }
@@ -882,12 +878,11 @@ a {
 .metro h3 {
   font-family: 'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 300;
-  color: #000000;
   letter-spacing: 0.00em;
   font-size: 2.5rem;
   line-height: 2.5rem;
   letter-spacing: 0.01em;
-  color: rgba(0, 0, 0, 0.6);
+  color: #000000;
   font-size: 2.2rem;
   line-height: 2.2rem;
   font-weight: bold;
@@ -903,11 +898,10 @@ a {
 .metro h5 {
   font-family: 'Segoe UI Semibold_', 'Open Sans Bold', Verdana, Arial, Helvetica, sans-serif;
   font-weight: bold;
-  color: #000000;
   font-size: 1.6rem;
   line-height: 1.6rem;
   letter-spacing: 0.02em;
-  color: rgba(0, 0, 0, 0.6);
+  color: #000000;
   font-size: 1.4rem;
   line-height: 1.4rem;
 }
@@ -1174,11 +1168,10 @@ a {
 .metro .page .page-header .page-header-content .branding .brand-slogan {
   font-family: 'Segoe UI Semibold_', 'Open Sans Bold', Verdana, Arial, Helvetica, sans-serif;
   font-weight: bold;
-  color: #000000;
   font-size: 1.6rem;
   line-height: 1.6rem;
   letter-spacing: 0.02em;
-  color: rgba(0, 0, 0, 0.6);
+  color: #000000;
   font-size: 1.4rem;
   line-height: 1.4rem;
   font-weight: normal;
@@ -1918,11 +1911,10 @@ a {
 .metro .command-button small {
   display: block;
   font-family: 'Segoe UI_', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
-  color: #000000;
   font-size: 1.3rem;
   line-height: 1.5rem;
   font-weight: normal !important;
-  color: rgba(0, 0, 0, 0.6);
+  color: #000000;
   color: inherit;
 }
 .metro .command-button [class*="icon-"] {
@@ -3491,12 +3483,11 @@ a {
   text-decoration: none;
   font-family: 'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 300;
-  color: #000000;
   letter-spacing: 0.00em;
   font-size: 2.5rem;
   line-height: 2.5rem;
   letter-spacing: 0.01em;
-  color: rgba(0, 0, 0, 0.6);
+  color: #000000;
   line-height: 2.2rem;
   font-size: 2.2rem;
   color: inherit;
@@ -3564,12 +3555,11 @@ a {
   text-decoration: none;
   font-family: 'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 300;
-  color: #000000;
   letter-spacing: 0.00em;
   font-size: 2.5rem;
   line-height: 2.5rem;
   letter-spacing: 0.01em;
-  color: rgba(0, 0, 0, 0.6);
+  color: #000000;
   line-height: 2.2rem;
   font-size: 2.2rem;
   color: inherit;
@@ -3618,12 +3608,11 @@ a {
   text-decoration: none;
   font-family: 'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 300;
-  color: #000000;
   letter-spacing: 0.00em;
   font-size: 2.5rem;
   line-height: 2.5rem;
   letter-spacing: 0.01em;
-  color: rgba(0, 0, 0, 0.6);
+  color: #000000;
   line-height: 2.2rem;
   font-size: 2.2rem;
   color: inherit;
@@ -3749,12 +3738,11 @@ a {
   text-decoration: none;
   font-family: 'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 300;
-  color: #000000;
   letter-spacing: 0.00em;
   font-size: 2.5rem;
   line-height: 2.5rem;
   letter-spacing: 0.01em;
-  color: rgba(0, 0, 0, 0.6);
+  color: #000000;
   line-height: 2.2rem;
   font-size: 2.2rem;
   color: inherit;
@@ -5816,12 +5804,11 @@ a {
   padding: 20px 20px 10px 20px;
   font-family: 'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 300;
-  color: #000000;
   letter-spacing: 0.00em;
   font-size: 2.5rem;
   line-height: 2.5rem;
   letter-spacing: 0.01em;
-  color: rgba(0, 0, 0, 0.6);
+  color: #000000;
   font-size: 2.2rem;
   line-height: 2.2rem;
   color: #ffffff;
@@ -5897,12 +5884,11 @@ a {
   text-decoration: none;
   font-family: 'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 300;
-  color: #000000;
   letter-spacing: 0.00em;
   font-size: 2.5rem;
   line-height: 2.5rem;
   letter-spacing: 0.01em;
-  color: rgba(0, 0, 0, 0.6);
+  color: #000000;
   line-height: 2.2rem;
   font-size: 2.2rem;
   color: inherit;
@@ -8378,12 +8364,11 @@ a {
   width: 100%;
   font-family: 'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 300;
-  color: #000000;
   letter-spacing: 0.00em;
   font-size: 2.5rem;
   line-height: 2.5rem;
   letter-spacing: 0.01em;
-  color: rgba(0, 0, 0, 0.6);
+  color: #000000;
   font-size: 2.2rem;
   line-height: 2.2rem;
   color: #1d1d1d;
@@ -8447,11 +8432,10 @@ a {
   margin: 5px 10px;
   font-family: 'Segoe UI Semibold_', 'Open Sans Bold', Verdana, Arial, Helvetica, sans-serif;
   font-weight: bold;
-  color: #000000;
   font-size: 1.6rem;
   line-height: 1.6rem;
   letter-spacing: 0.02em;
-  color: rgba(0, 0, 0, 0.6);
+  color: #000000;
   font-size: 1.4rem;
   line-height: 1.4rem;
   -webkit-transform: rotate(-90deg);
