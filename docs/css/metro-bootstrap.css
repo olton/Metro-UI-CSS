@@ -3975,9 +3975,12 @@ a {
 .metro .dropdown-menu.dark .divider:hover {
   background: #555555;
 }
+.metro .dropdown-toggle {
+  padding-right: 20px !important;
+}
 .metro .dropdown-toggle:after {
   position: absolute;
-  margin-left: .45em;
+  margin-left: .25em;
   bottom: 0;
   font-family: metroSysIcons;
   font-size: .7em;
@@ -3985,6 +3988,9 @@ a {
 }
 .metro .dropdown-toggle.no-marker:after {
   content: "";
+}
+.metro .dropdown-toggle.without-icon:after {
+  content: "" !important;
 }
 .metro .contextmenu {
   z-index: 1000;
@@ -4054,6 +4060,7 @@ a {
   color: inherit;
   font-family: 'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
   font-size: 14px;
+  position: relative;
 }
 .metro .navigation-bar .navigation-bar-content .element:hover,
 .metro .navbar .navigation-bar-content .element:hover,
@@ -4067,6 +4074,8 @@ a {
 .metro .navbar .navbar-content .element > a.dropdown-toggle {
   color: inherit;
   position: relative;
+  padding-right: 5px !important;
+  margin-right: 5px;
 }
 .metro .navigation-bar .navigation-bar-content .element > a.dropdown-toggle:after,
 .metro .navbar .navigation-bar-content .element > a.dropdown-toggle:after,
@@ -4074,6 +4083,7 @@ a {
 .metro .navbar .navbar-content .element > a.dropdown-toggle:after {
   position: absolute;
   left: 100%;
+  margin-left: 0;
 }
 .metro .navigation-bar .navigation-bar-content .element > .dropdown-menu,
 .metro .navbar .navigation-bar-content .element > .dropdown-menu,
@@ -4229,7 +4239,7 @@ a {
   position: absolute;
   left: 95%;
   top: 50%;
-  margin-left: -7px;
+  margin-left: -12px;
   margin-top: -5px;
 }
 .metro .navigation-bar .element-menu > li > .dropdown-menu,
@@ -4241,6 +4251,10 @@ a {
 .metro .navbar .element-menu > li > .dropdown-menu.place-right {
   right: 0;
   left: auto;
+}
+.metro .navigation-bar .element-menu > li:hover,
+.metro .navbar .element-menu > li:hover {
+  background-color: #00aafd;
 }
 .metro .navigation-bar .element-menu.drop-up li > .dropdown-menu,
 .metro .navbar .element-menu.drop-up li > .dropdown-menu {

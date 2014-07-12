@@ -429,9 +429,10 @@
 }
 
 .dropdown-toggle {
+    padding-right: 20px !important;
     &:after {
         position: absolute;
-        margin-left: .45em;
+        margin-left: .25em;
         bottom: 0;
         font-family: @sysIconFontName;
         font-size: .7em;
@@ -441,6 +442,12 @@
     &.no-marker {
         &:after {
             content: "";
+        }
+    }
+
+    &.without-icon {
+        &:after {
+            content: "" !important;
         }
     }
 }
