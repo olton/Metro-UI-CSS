@@ -23,35 +23,34 @@
 
             this.init(tabs, frames);
 
-            tabs.each(function(){
+            element.on("click", ".tabs > li > a", function(e){
+                e.preventDefault();
+                e.stopPropagation();
 
-                var tab = $(this).children("a");
+                that.options.tabclick(this);
 
-                tab.on('click', function(e){
-                    e.preventDefault();
+                if ($(this).parent().hasClass('disabled')) {
+                    return false;
+                }
 
-                    that.options.tabclick(this);
+                element.children(".tabs").children("li").removeClass("active");
+                element.children(".frames").children(".frame").hide();
 
-                    if ($(this).parent().hasClass('disabled')) {
-                        return false;
-                    }
+                $(this).parent().addClass("active");
 
-                    tabs.removeClass("active");
-                    tab.parent("li").addClass("active");
+                var current_frame = $($(this).attr("href"));
+                switch (that.options.effect) {
+                    case 'slide': current_frame.slideDown(); break;
+                    case 'fade': current_frame.fadeIn(); break;
+                    default: current_frame.show();
+                }
 
-                    frames.hide();
-                    var current_frame = $(tab.attr("href"));
-                    switch (that.options.effect) {
-                        case 'slide': current_frame.slideDown(); break;
-                        case 'fade': current_frame.fadeIn(); break;
-                        default: current_frame.show();
-                    }
+                that._trigger('change', null, current_frame);
+                that.options.tabchange(this);
 
-                    that._trigger('change', null, current_frame);
-                    that.options.tabchange(this);
+                if (element_id != undefined) window.localStorage.setItem(element_id+"-current-tab", $(this).attr("href"));
 
-                    if (element_id != undefined) window.localStorage.setItem(element_id+"-current-tab", $(this).attr("href"));
-                });
+                return true;
             });
 
             if (this.options.activateStoredTab) this._activateStoredTab(tabs);
