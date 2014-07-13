@@ -29,7 +29,10 @@
                     that.options.onGroupExpand(group);
                 }
 
-                e.preventDefault();
+                // In this way u can click if u want!
+                if (!$(this).hasClass('clickAble')) {
+                    e.preventDefault();
+                };
             });
 
             element.find('.list').on('click', function(e){
