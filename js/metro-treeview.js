@@ -29,7 +29,6 @@
                     that.options.onNodeExpanded(node);
                 }
 
-                that.options.onNodeClick(node);
                 e.preventDefault();
                 e.stopPropagation();
             });
