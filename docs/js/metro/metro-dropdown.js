@@ -45,7 +45,7 @@
             switch (this.options.effect) {
                 case 'fade': $(el).fadeIn('fast'); break;
                 case 'slide': $(el).slideDown('fast'); break;
-                default: $(el).hide();
+                default: $(el).show();
             }
             this._trigger("onOpen", null, el);
         },
