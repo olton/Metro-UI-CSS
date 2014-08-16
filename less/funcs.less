@@ -69,13 +69,13 @@
 }
 
 // Grid functions
-.spanX(@index){
-    width: @gridColumnSize * @index + @gridGutterSize * (@index - 1) !important;
+.spanX(@index, @columnSize: @gridColumnSize, @gutterSize: @gridGutterSize){
+    width: @columnSize * @index + @gutterSize * (@index - 1) !important;
 }
-.offsetX(@index){
-    margin-left: @gridColumnSize * @index + (@gridGutterSize * (@index));
+.offsetX(@index, @columnSize: @gridColumnSize, @gutterSize: @gridGutterSize){
+    margin-left: @columnSize * @index + (@gutterSize * (@index));
     &:not(:first-child){
-        margin-left: @gridColumnSize * @index + (@gridGutterSize * (@index + 1));
+        margin-left: @columnSize * @index + (@gutterSize * (@index + 1));
     }
 }
 

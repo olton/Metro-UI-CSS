@@ -32,6 +32,10 @@
         display: block;
         margin-top: @gridGutterSize;
 
+        &:first-child {
+          margin-top: 0;
+        }
+
         [class*="span"] {
             float: left;
             min-height: 1px;
