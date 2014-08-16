@@ -31,6 +31,7 @@
             if (element.data('locale') != undefined) this.options.locale = element.data('locale');
             if (element.data('weekStart') != undefined) this.options.weekStart = element.data('weekStart');
             if (element.data('otherDays') != undefined) this.options.otherDays = element.data('otherDays');
+	    if (element.data('startMode') != undefined) this.options.startMode = element.data('startMode');
 
             this._createCalendar(element, this.options.date);
 
@@ -81,6 +82,7 @@
                 locale: that.options.locale,
                 otherDays: that.options.otherDays,
                 weekStart: that.options.weekStart,
+		startMode: that.options.startMode,
                 click: function(d, d0){
                     //console.log(d, d0);
                     _calendar.calendar('setDate', d0);
