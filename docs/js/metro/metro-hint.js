@@ -18,6 +18,7 @@
 
 
             this.element.on('mouseenter', function(e){
+                $(".hint, .hint2").remove();
                 that.createHint();
                 //o._hint.stop().fadeIn();
                 o._hint.show();
