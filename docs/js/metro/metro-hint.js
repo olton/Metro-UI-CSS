@@ -79,7 +79,7 @@
             //console.log(_hint);
 
             if (o.position == 'top') {
-                console.log(element.offset().top - $(window).scrollTop()  - 20);
+                //console.log(element.offset().top - $(window).scrollTop()  - 20);
                 _hint.css({
                     top: element.offset().top - $(window).scrollTop() - _hint.outerHeight() - 20,
                     left: o.mode == 2 ? element.offset().left + element.outerWidth()/2 - _hint.outerWidth()/2  - $(window).scrollLeft(): element.offset().left - $(window).scrollLeft()
