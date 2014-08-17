@@ -7444,6 +7444,150 @@ a {
   left: -10px;
   border-right: 10px solid;
 }
+.metro .hint2 {
+  position: fixed;
+  color: #1d1d1d;
+  padding: 10px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  width: auto;
+  max-width: 220px;
+  margin-top: 10px;
+  z-index: 1030;
+  display: none;
+  border: 1px solid;
+  border-color: #6a6a6a;
+}
+.metro .hint2 .hint-title,
+.metro .hint2 .hint-text {
+  color: inherit;
+  text-align: left;
+}
+.metro .hint2 .hint-title {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+.metro .hint2:before,
+.metro .hint2:after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+.metro .hint2:before {
+  z-index: 2;
+}
+.metro .hint2:after {
+  z-index: 1;
+  border-color: inherit;
+}
+.metro .hint2.bottom:before,
+.metro .hint2.bottom:after {
+  top: 1px;
+  left: 5px;
+  margin: -10px 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 10px solid #fffcc0;
+}
+.metro .hint2.bottom:after {
+  top: 0;
+  border-bottom: 10px solid;
+}
+.metro .hint2.top:before,
+.metro .hint2.top:after {
+  top: 100%;
+  margin-top: -1px;
+  left: 5px;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 10px solid #fffcc0;
+}
+.metro .hint2.top:after {
+  margin-top: 1px;
+  border-top: 10px solid;
+}
+.metro .hint2.left:before,
+.metro .hint2.left:after {
+  top: 5px;
+  left: 100%;
+  margin-left: -1px;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 10px solid #fffcc0;
+}
+.metro .hint2.left:after {
+  margin-left: 0;
+  border-left: 10px solid;
+}
+.metro .hint2.right:before,
+.metro .hint2.right:after {
+  top: 5px;
+  left: -9px;
+  margin: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-right: 10px solid #fffcc0;
+}
+.metro .hint2.right:after {
+  left: -10px;
+  border-right: 10px solid;
+}
+.metro .hint2.bottom:before,
+.metro .hint2.bottom:after {
+  top: 1px;
+  left: 50%;
+  margin: -10px 0 0 -5px;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 10px solid #fffcc0;
+}
+.metro .hint2.bottom:after {
+  top: 0;
+  border-bottom: 10px solid;
+}
+.metro .hint2.top:before,
+.metro .hint2.top:after {
+  top: 100%;
+  margin-top: -1px;
+  left: 50%;
+  margin-left: -5px;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 10px solid #fffcc0;
+}
+.metro .hint2.top:after {
+  margin-top: 1px;
+  border-top: 10px solid;
+}
+.metro .hint2.left:before,
+.metro .hint2.left:after {
+  top: 50%;
+  margin-top: -5px;
+  left: 100%;
+  margin-left: -1px;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 10px solid #fffcc0;
+}
+.metro .hint2.left:after {
+  margin-left: 0;
+  border-left: 10px solid;
+}
+.metro .hint2.right:before,
+.metro .hint2.right:after {
+  top: 50%;
+  margin: 0;
+  margin-top: -5px;
+  left: -9px;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-right: 10px solid #fffcc0;
+}
+.metro .hint2.right:after {
+  left: -10px;
+  border-right: 10px solid;
+}
 .metro .balloon {
   display: block;
   width: auto;
