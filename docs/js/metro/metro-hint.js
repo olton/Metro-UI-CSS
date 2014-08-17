@@ -81,12 +81,12 @@
             if (o.position == 'top') {
                 _hint.css({
                     top: element.offset().top - $(window).scrollTop() - _hint.outerHeight() - 20,
-                    left: o.mode == 2 ? element.offset().left + element.outerWidth()/2 - _hint.outerWidth()/2 : element.offset().left - $(window).scrollLeft()
+                    left: o.mode == 2 ? element.offset().left + element.outerWidth()/2 - _hint.outerWidth()/2  - $(window).scrollLeft(): element.offset().left - $(window).scrollLeft()
                 });
             } else if (o.position == 'bottom') {
                 _hint.css({
                     top: element.offset().top - $(window).scrollTop() + element.outerHeight(),
-                    left: o.mode == 2 ? element.offset().left + element.outerWidth()/2 - _hint.outerWidth()/2 : element.offset().left - $(window).scrollLeft()
+                    left: o.mode == 2 ? element.offset().left + element.outerWidth()/2 - _hint.outerWidth()/2  - $(window).scrollLeft(): element.offset().left - $(window).scrollLeft()
                 });
             } else if (o.position == 'right') {
                 _hint.css({
