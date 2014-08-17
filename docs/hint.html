@@ -41,6 +41,7 @@
                 </p>
 
                 <div class="example">
+                    <h2>default hint</h2>
                     <p>
                         Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                         <span data-hint="Hint|Hint test. It was popularised in the 1960s with the release" data-hint-position="top" class="fg-red">Top hint</span> has been the industry's standard dummy text ever since the 1500s,
@@ -54,6 +55,21 @@
                 </div>
 
                 <div class="example">
+                    <h2>data-hint-mode="2"</h2>
+                    <p>
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                        <span data-hint="Hint|Hint test. It was popularised in the 1960s with the release" data-hint-mode="2" data-hint-position="top" class="fg-red">Top hint</span> has been the industry's standard dummy text ever since the 1500s,
+                        when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                        It has <span data-hint="Hint|Hint test. It was popularised in the 1960s with the release" data-hint-mode="2" data-hint-position="bottom" class="fg-red">bottom hint</span> not only five centuries, but also the leap into electronic typesetting,
+                        remaining essentially unchanged. It was popularised in the 1960s with the release of
+                        <span data-hint="Hint|Hint test. It was popularised in the 1960s with the release" data-hint-mode="2" data-hint-position="left" class="fg-red">Left hint</span> sheets containing Lorem Ipsum
+                        <span data-hint="Hint|Hint test. It was popularised in the 1960s with the release" data-hint-mode="2" data-hint-position="right" class="fg-red">Right hint</span>, and more recently with desktop publishing
+                        software like Aldus PageMaker including versions of.
+                    </p>
+                </div>
+
+                <div class="example">
+                    <h2>default hint in grid</h2>
                     <div class="grid fluid">
                         <div class="row">
                             <div class="span3">
@@ -67,6 +83,26 @@
                             </div>
                             <div class="span3">
                                 <div class="text-center padding10 border" data-hint-position="left" data-hint="Title|This is a hint for element. Hint can be written as html.">Hint on left</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="example">
+                    <h2>data-hint-mode="2" in grid</h2>
+                    <div class="grid fluid">
+                        <div class="row">
+                            <div class="span3">
+                                <div class="text-center padding10 border" data-hint-mode="2" data-hint="Title|This is a hint for element. Hint can be written as html.">Hint on bottom</div>
+                            </div>
+                            <div class="span3">
+                                <div class="text-center padding10 border" data-hint-mode="2" data-hint-position="top" data-hint="Title|This is a hint for element. Hint can be written as html.">Hint on top</div>
+                            </div>
+                            <div class="span3">
+                                <div class="text-center padding10 border" data-hint-mode="2" data-hint-position="right" data-hint="Title|This is a hint for element. Hint can be written as html.">Hint on right</div>
+                            </div>
+                            <div class="span3">
+                                <div class="text-center padding10 border" data-hint-mode="2" data-hint-position="left" data-hint="Title|This is a hint for element. Hint can be written as html.">Hint on left</div>
                             </div>
                         </div>
                     </div>
@@ -86,13 +122,25 @@
 </pre>
 
                 <div class="example">
-                    <h3>In table</h3>
+                    <h2>default hint in table</h2>
                     <table class="table border">
                         <tr>
                             <td data-hint="To change hint position you can add attribute <code>data-hint-position</code>" data-hint-position="top">Test 1</td>
                             <td data-hint="To change hint position you can add attribute <code>data-hint-position</code>" data-hint-position="bottom">Test 2</td>
                             <td data-hint="To change hint position you can add attribute <code>data-hint-position</code>" data-hint-position="right">Test 3</td>
                             <td data-hint="To change hint position you can add attribute <code>data-hint-position</code>" data-hint-position="left">Test 4</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="example">
+                    <h2>data-hint-mode="2" in table</h2>
+                    <table class="table border">
+                        <tr>
+                            <td data-hint-mode="2" data-hint="To change hint position you can add attribute <code>data-hint-position</code>" data-hint-position="top">Test 1</td>
+                            <td data-hint-mode="2" data-hint="To change hint position you can add attribute <code>data-hint-position</code>" data-hint-position="bottom">Test 2</td>
+                            <td data-hint-mode="2" data-hint="To change hint position you can add attribute <code>data-hint-position</code>" data-hint-position="right">Test 3</td>
+                            <td data-hint-mode="2" data-hint="To change hint position you can add attribute <code>data-hint-position</code>" data-hint-position="left">Test 4</td>
                         </tr>
                     </table>
                 </div>
