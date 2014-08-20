@@ -4,8 +4,9 @@
         version: "1.0.1",
 
         options: {
-            effect: 'slide',
-			toggleElement: false
+        	show: 'none',
+        	effect: 'slide',
+		toggleElement: false
         },
 
         _create: function(){
@@ -17,6 +18,10 @@
 
             if (menu.data('effect') != undefined) {
                 this.options.effect = menu.data('effect');
+            }
+            
+            if (menu.data('show') != undefined) {
+            	this.options.show = menu.data('show');
             }
 
             toggle.on('click.'+name, function(e){
@@ -42,21 +47,25 @@
         },
 
         _open: function(el){
-            switch (this.options.effect) {
-                case 'fade': $(el).fadeIn('fast'); break;
-                case 'slide': $(el).slideDown('fast'); break;
-                default: $(el).show();
-            }
-            this._trigger("onOpen", null, el);
+        	if (this.options.show != 'hover') {
+			switch (this.options.effect) {
+				case 'fade': $(el).fadeIn('fast'); break;
+				case 'slide': $(el).slideDown('fast'); break;
+        			default: $(el).show();
+        		}
+        		this._trigger("onOpen", null, el);
+        	}
         },
 
         _close: function(el){
-            switch (this.options.effect) {
-                case 'fade': $(el).fadeOut('fast'); break;
-                case 'slide': $(el).slideUp('fast'); break;
-                default: $(el).hide();
-            }
-            this._trigger("onClose", null, el);
+        	if (this.options.show != 'hover') {
+        		switch (this.options.effect) {
+        			case 'fade': $(el).fadeOut('fast'); break;
+				case 'slide': $(el).slideUp('fast'); break;
+				default: $(el).hide();
+			}
+			this._trigger("onClose", null, el);
+        	}
         },
 
         _destroy: function(){
