@@ -404,7 +404,7 @@
         setDate: function(d){
             var r;
             d = new Date(d);
-            r = (new Date(d.getFullYear()+"/"+ (d.getMonth()+1)+"/"+ d.getDate())).format('yyyy-mm-dd');
+            r = (new Date(d.getFullYear()+"/"+ (d.getMonth()+1)+"/"+ d.getDate())).format('yyyy,mm,dd');
             this._addDate(r);
             this._renderCalendar();
         },
