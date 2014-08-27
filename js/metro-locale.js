@@ -110,7 +110,7 @@
                 "Heute", "Zurücksetzen", "Abbrechen", "Hilfe", "Früher", "Später", "Fertig"
             ]
         },
-        /** By Javier Rodríguez (javier.rodriguez at fjrodriguez.com) */
+        /** By Javier Rodríguez (javier.rodriguez at fjrodriguez.com) and Agustin Ferrario (agustin.ferrario at hotmail.com.ar)*/
         'es': {
             months: [
                 "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre",
@@ -118,10 +118,10 @@
             ],
             days: [
                 "Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado",
-                "Do", "Lu", "Mar", "Mié", "Jue", "Vi", "Sáb"
+                "Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"
             ],
             buttons: [
-               "Hoy", "Limpiar", "Cancel", "Help", "Prior", "Next", "Finish"
+               "Hoy", "Limpiar", "Cancelar", "Ayuda", "Anterior", "Siguiente", "Finalizar"
             ]
         }
     };
