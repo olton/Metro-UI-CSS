@@ -136,7 +136,21 @@
             buttons: [
                "Hoje", "Limpar", "Cancelar", "Ajuda", "Anterior", "Próx", "Finalizar"
             ]
-        }
+        },
+        /** By Mindaugas Rimkus (mindaugas.rimkus@live.com) */
+        'lt': {
+            months: [
+                "Sausis", "Vasaris", "Kovas", "Balandis", "Gegužė", "Birželis", "Liepa", "Rugpjūtis", "Rugsėjis", "Spalis", "Lapkritis", "Gruodis",
+                "Sau", "Vas", "Kov", "Bal", "Geg", "Bir", "Lie", "Rgp", "Rgs", "Spa", "Lap", "Gru"
+            ],
+            days: [
+                "Sekmadienis", "Pirmadienis", "Antradienis", "Trečiadienis", "Ketvirtadienis", "Penktadienis", "Šeštadienis",
+                "Se", "Pi", "An", "Tr", "Ke", "Pe", "Še"
+            ],
+            buttons: [
+                "Šiandien", "Išvalyti", "Atšaukti", "Pagalba", "Pirmenybė", "Kitas", "Atlikta"
+            ]
+       }
     };
 
     $.Metro.setLocale = function(locale, data){

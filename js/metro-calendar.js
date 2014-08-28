@@ -12,6 +12,8 @@
             weekStart: (METRO_WEEK_START != undefined ? METRO_WEEK_START : 0), // 0 - Sunday, 1 - Monday
             otherDays: false,
             date: new Date(),
+            minDate: 0,
+            maxDate: 0,
             buttons: true,
             locale: $.Metro.currentLocale,
             getDates: function(d){},
@@ -22,6 +24,8 @@
         _year: 0,
         _month: 0,
         _day: 0,
+        _maxDate: 0,
+        _minDate: 0,
         _today: new Date(),
         _event: '',
 
@@ -40,6 +44,8 @@
             if (element.data('startMode') != undefined) this.options.startMode = element.data('startMode');
             if (element.data('weekStart') != undefined) this.options.weekStart = element.data('weekStart');
             if (element.data('otherDays') != undefined) this.options.otherDays = element.data('otherDays');
+            if (element.data('maxDate') != undefined) this.options.maxDate = element.data('maxDate');
+            if (element.data('minDate') != undefined) this.options.minDate = element.data('minDate');
 
             this._year = this.options.date.getFullYear();
             this._distance = parseInt(this.options.date.getFullYear())-4;
@@ -58,6 +64,23 @@
                 day = this._day,
                 event = this._event,
                 feb = 28;
+
+            // max and min dates
+            var maxDay, maxMonth, maxYear;
+            if (this.options.minDate) {
+                var maxDate = new Date(this.options.maxDate.replace(/\-/g,","));
+                maxDay = maxDate.getDate();
+                maxMonth = maxDate.getMonth();
+                maxYear = maxDate.getFullYear();
+            }
+
+            var minDay, minMonth, minYear;
+            if (this.options.minDate) {
+                var minDate = new Date(this.options.minDate.replace(/\-/g,","));
+                minDay = minDate.getDate();
+                minMonth = minDate.getMonth();
+                minYear = minDate.getFullYear();
+            }
 
             if (month == 1) {
                 if ((year%100!=0) && (year%4==0) || (year%400==0)) {
@@ -124,14 +147,42 @@
                 if (week_day == 0) {
                     tr.appendTo(table);
                     tr = $("<tr/>");
+                }   
+
+                var isDisabled = false;
+                // minDate
+                if (minYear && minMonth && minDay) {
+                    if (year < minYear) {
+                        isDisabled = true;
+                    } else if (year == minYear && month < minMonth) {
+                        isDisabled = true;
+                    } else if (year == minYear && month == minMonth && i < minDay) {
+                        isDisabled = true;
+                    }
                 }
 
-                td = $("<td/>").addClass("text-center day").html("<a href='#'>"+i+"</a>");
+                // maxDate
+                if (maxYear && maxMonth && maxDay) {
+                    if (year > maxYear) {
+                        isDisabled = true;
+                    } else if (year == maxYear && month > maxMonth) {
+                        isDisabled = true;
+                    } else if (year == maxYear && month == maxMonth && i > maxDay) {
+                        isDisabled = true;
+                    }
+                }
+
+                if (isDisabled == true) {
+                   td = $("<td/>").addClass("day-disabled").html(i);
+                } else {
+                    td = $("<td/>").addClass("text-center day").html("<a href='#'>"+i+"</a>");
+                }
+
                 if (year == this._today.getFullYear() && month == this._today.getMonth() && this._today.getDate() == i) {
                     td.addClass("today");
                 }
 
-                var d = (new Date(this._year, this._month, i)).format('yyyy-mm-dd');
+                var d = (new Date(this._year, this._month, i)).format('yyyy,mm,dd');
                 if (this.element.data('_storage').indexOf(d)>=0) {
                     td.find("a").addClass("selected");
                 }
