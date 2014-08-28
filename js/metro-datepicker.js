@@ -7,6 +7,8 @@
 
         options: {
             format: "dd.mm.yyyy",
+            maxDate: 0,
+            minDate: 0,
             date: undefined,
             effect: 'none',
             position: 'bottom',
@@ -31,6 +33,8 @@
             if (element.data('locale') != undefined) this.options.locale = element.data('locale');
             if (element.data('weekStart') != undefined) this.options.weekStart = element.data('weekStart');
             if (element.data('otherDays') != undefined) this.options.otherDays = element.data('otherDays');
+            if (element.data('maxDate') != undefined) this.options.maxDate = element.data('maxDate');
+            if (element.data('minDate') != undefined) this.options.minDate = element.data('minDate');
 
             this._createCalendar(element, this.options.date);
 
@@ -81,6 +85,8 @@
                 locale: that.options.locale,
                 otherDays: that.options.otherDays,
                 weekStart: that.options.weekStart,
+                minDate: that.options.minDate,
+                maxDate: that.options.maxDate,
                 click: function(d, d0){
                     //console.log(d, d0);
                     _calendar.calendar('setDate', d0);

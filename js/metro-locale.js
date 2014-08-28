@@ -123,7 +123,34 @@
             buttons: [
                "Hoy", "Limpiar", "Cancel", "Help", "Prior", "Next", "Finish"
             ]
-        }
+        },
+        'pt': {
+            months: [
+                "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro",
+                "Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"
+            ],
+            days: [
+                "Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado",
+                "Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"
+            ],
+            buttons: [
+               "Hoje", "Limpar", "Cancelar", "Ajuda", "Anterior", "Próx", "Finalizar"
+            ]
+        },
+        /** By Mindaugas Rimkus (mindaugas.rimkus@live.com) */
+        'lt': {
+            months: [
+                "Sausis", "Vasaris", "Kovas", "Balandis", "Gegužė", "Birželis", "Liepa", "Rugpjūtis", "Rugsėjis", "Spalis", "Lapkritis", "Gruodis",
+                "Sau", "Vas", "Kov", "Bal", "Geg", "Bir", "Lie", "Rgp", "Rgs", "Spa", "Lap", "Gru"
+            ],
+            days: [
+                "Sekmadienis", "Pirmadienis", "Antradienis", "Trečiadienis", "Ketvirtadienis", "Penktadienis", "Šeštadienis",
+                "Se", "Pi", "An", "Tr", "Ke", "Pe", "Še"
+            ],
+            buttons: [
+                "Šiandien", "Išvalyti", "Atšaukti", "Pagalba", "Pirmenybė", "Kitas", "Atlikta"
+            ]
+       }
     };
 
     $.Metro.setLocale = function(locale, data){
