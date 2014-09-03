@@ -18,6 +18,19 @@
                 "Today", "Clear", "Cancel", "Help", "Prior", "Next", "Finish"
             ]
         },
+        'cs': {
+            months: [
+                "Leden", "Únor", "Březen", "Duben", "Květen", "Červen", "Červenec", "Srpen", "Září", "Říjen", "Listopad", "Prosinec",
+                "Led", "Ún", "Bř", "Dub", "Kvě", "Če", "Čer", "Srp", "Zá", "Ří", "Li", "Pro"
+            ],
+            days: [
+                "Neděle", "Pondělí", "Úterý", "Středa", "Čtvrtek", "Pátek", "Sobota",
+                "Ne", "Po", "Út", "St", "Čt", "Pá", "So"
+            ],
+            buttons: [
+                "Dnes", "Vyčistit", "Zrušit", "Pomoc", "Předešlý", "Další", "Dokončit"
+            ]
+        },
         'fr': {
             months: [
                 "Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre",
