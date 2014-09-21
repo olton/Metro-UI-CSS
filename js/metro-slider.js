@@ -95,6 +95,7 @@
 
             $(document).mousemove(function (event) {
                 that._movingMarker(event);
+                element.trigger('changed', that.options.position);
                 if (!element.hasClass('permanent-hint')) {
                     hint.css('display', 'block');
                 }
