@@ -6,7 +6,7 @@
 * */
 
 var compressor = require('node-minify');
-var project_root = '/Projects/Metro-UI-CSS/',
+var project_root = '/GitHub/Metro-UI-CSS/',
     module_path = project_root+'docs/js/metro/',
     css_path = project_root+'docs/css/',
     js_compile_path = project_root+'min/',
