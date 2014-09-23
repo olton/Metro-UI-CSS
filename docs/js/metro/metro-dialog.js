@@ -30,10 +30,17 @@
             onShow: function(_dialog){},
             sysBtnCloseClick: function(event){},
             sysBtnMinClick: function(event){},
-            sysBtnMaxClick: function(event){}
+            sysBtnMaxClick: function(event){},
+            sysBtnCancelClick: function(event){
+                $.Dialog.close();
+            },
+            sysBtnOKClick: function(event){
+                $.Dialog.close();
+            }
         }, params);
 
         var _overlay, _window, _caption, _content;
+        var _overlay, _window, _caption, _content, _footer;
 
         _overlay = $("<div/>").addClass("metro window-overlay");
 
@@ -54,7 +61,7 @@
             paddingRight: params.padding,
             paddingBottom: params.padding
         });
-
+        _footer = $("<div/>").addClass('footer').addClass('button-set');
         if (params.sysButtons) {
             if (params.sysButtons.btnClose) {
                 $("<button/>").addClass("btn-close").on('click', function(e){
@@ -78,6 +85,20 @@
                     params.sysBtnMinClick(e);
                 }).appendTo(_caption);
             }
+            if (params.sysButtons.btnOK) {
+                $("<button>OK</button>").on('click', function(e){
+                    e.preventDefault();
+                    e.stopPropagation();
+                    params.sysBtnOKClick(e);
+                }).appendTo(_footer);
+            }
+            if (params.sysButtons.btnCancel) {
+                $("<button>Cancel</button>").on('click', function(e){
+                    e.preventDefault();
+                    e.stopPropagation();
+                    params.sysBtnCancelClick(e);
+                }).appendTo(_footer);
+            }
         }
 
         if (params.icon) $(params.icon).addClass("icon").appendTo(_caption);
@@ -87,6 +108,7 @@
 
         _caption.appendTo(_window);
         _content.appendTo(_window);
+        _footer.appendTo(_window);
         _window.appendTo(_overlay);
 
         if (params.width != 'auto') _window.css('min-width', params.width);

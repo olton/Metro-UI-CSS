@@ -29,9 +29,9 @@ $(function(){
 $(function(){
     $(window).on('resize', function(){
         if (METRO_DIALOG) {
-            var top = ($(window).height() - METRO_DIALOG.outerHeight()) / 2;
-            var left = ($(window).width() - METRO_DIALOG.outerWidth()) / 2;
-            METRO_DIALOG.css({
+            var top = ($(window).height() - $(this).outerHeight()) / 2;
+            var left = ($(window).width() - $(this).outerWidth()) / 2;
+            $(this).css({
                 top: top, left: left
             });
         }

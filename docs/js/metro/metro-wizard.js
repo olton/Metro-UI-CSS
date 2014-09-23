@@ -109,8 +109,15 @@
             var finish = parseInt(this.options.finishStep == 'default' ? this._steps.length - 1 : this.options.finishStep);
             if (new_step == finish) {
                 this.element.find('.btn-finish').attr('disabled', false);
+                this.element.find('.btn-next').attr('disabled', true); // disable 'Next' button since we're on the last step
             } else {
                 this.element.find('.btn-finish').attr('disabled', true);
+                this.element.find('.btn-next').attr('disabled', false); // otherwise, enable 'Next' button
+            }
+            if (new_step < 1) {
+                this.element.find('.btn-prior').attr('disabled', true);
+            } else {
+                this.element.find('.btn-prior').attr('disabled', false);
             }
 
             return true;
@@ -120,6 +127,7 @@
             var new_step = this._currentStep - 1;
 
             if (new_step < 0) return false;
+           
             this._currentStep = new_step;
             this._steps.hide();
             $(this._steps[new_step]).show();
@@ -132,6 +140,12 @@
                 this.element.find('.btn-finish').attr('disabled', false);
             } else {
                 this.element.find('.btn-finish').attr('disabled', true);
+                this.element.find('.btn-next').attr('disabled', false); // make sure the 'Next' button is enabled
+            }
+            if (new_step < 1) {
+                this.element.find('.btn-prior').attr('disabled', true);
+            } else {
+                this.element.find('.btn-prior').attr('disabled', false);
             }
 
             return true;
