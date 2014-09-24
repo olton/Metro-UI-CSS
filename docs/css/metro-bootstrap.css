@@ -6350,6 +6350,15 @@ a {
   text-align: center;
   color: #999999;
 }
+.metro .calendar .disabled a { 
+  background: #ccc;
+  text-align: center;
+  color: #eee;
+  cursor: default;
+}
+.metro .calendar .disabled a:hover { 
+  background: #ccc;
+}
 .metro .calendar-dropdown {
   border: 0;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3), 0 3px 8px rgba(0, 0, 0, 0.2);

@@ -16,7 +16,8 @@
             locale: $.Metro.currentLocale,
             getDates: function(d){},
             click: function(d, d0){},
-            _storage: []
+            _storage: [],
+            _disabledDates:[]
         },
 
         _year: 0,
@@ -48,6 +49,7 @@
             this._mode = this.options.startMode;
 
             element.data("_storage", []);
+            element.data("_disabledDates", []);
 
             this._renderCalendar();
         },
@@ -129,7 +131,10 @@
                 td = $("<td/>").addClass("text-center day").html("<a href='#'>"+i+"</a>");
                 if (year == this._today.getFullYear() && month == this._today.getMonth() && this._today.getDate() == i) {
                     td.addClass("today");
-                }
+                } 
+                if (this._isDisabledDate(year,month,i)){
+                    td.addClass("disabled");
+                } 
 
                 var d = (new Date(this._year, this._month, i)).format('yyyy-mm-dd');
                 if (this.element.data('_storage').indexOf(d)>=0) {
@@ -244,7 +249,28 @@
             }
             this._initButtons();
         },
-
+        _isDisabledDate: function  (year,month,day) { 
+            var testingDate = new Date(year+'-'+(month+1)+'-'+day+' 0:0');
+            var disabledDates = this.element.data('_disabledDates'); 
+            for (var i = 0; i < disabledDates.length; i++) {
+                var dateRange = disabledDates[i];
+                    
+                if(dateRange.from && dateRange.to){ 
+                    if (testingDate >= dateRange.from && testingDate <= dateRange.to) { 
+                        return true;
+                    } 
+                } else if(dateRange.from){
+                    if (testingDate >= dateRange.from) { 
+                        return true;
+                    } 
+                } else if(dateRange.to){
+                    if (testingDate <= dateRange.to) { 
+                        return true;
+                    } 
+                }
+            }
+            return false;
+        },
         _initButtons: function(){
             // Add actions
             var that = this, table = this.element.find('table');
@@ -315,6 +341,8 @@
                 table.find('.day a').on('click', function(e){
                     e.preventDefault();
                     e.stopPropagation();
+                    if($(e.target).closest('.day').hasClass('disabled'))
+                        return;
                     var d = (new Date(that._year, that._month, parseInt($(this).html()))).format(that.options.format,null);
                     var d0 = (new Date(that._year, that._month, parseInt($(this).html())));
 
@@ -412,6 +440,23 @@
         getDate: function(index){
             return new Date(index != undefined ? this.element.data('_storage')[index] : this.element.data('_storage')[0]).format(this.options.format);
         },
+
+        setDisabledDates: function(dateStrs){
+            var disabledDates = this.element.data('_disabledDates');
+            disabledDates.length = 0; 
+            for (var i = 0; i < dateStrs.length; i++) {
+                var dateStr = dateStrs[i];
+                var matches = dateStr.match(/^([0-9]{4}-[0-9]{1,2}-[0-9]{1,2})?(,)?([0-9]{4}-[0-9]{1,2}-[0-9]{1,2})?$/);
+                if(matches !== null){ 
+                    var disabledDateRange = {from:matches[1] && new Date(matches[1]+' 0:0'), to:matches[3] && new Date(matches[3]+' 0:0') || !matches[2] && matches[1] && new Date(matches[1]+' 0:0')}; 
+                    if((disabledDateRange.from && disabledDateRange.to && disabledDateRange.from <= disabledDateRange.to) || disabledDateRange.from || disabledDateRange.to){  
+                        var index = this.element.data('_disabledDates').indexOf(disabledDateRange);
+                        if (index < 0) this.element.data('_disabledDates').push(disabledDateRange); 
+                    }
+                }
+            } 
+            this._renderCalendar();
+        }, 
 
         getDates: function(){
             return this.element.data('_storage');

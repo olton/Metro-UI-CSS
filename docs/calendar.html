@@ -133,6 +133,7 @@ $("component_id").calendar({
 
                             cal.calendar('setDate', '2013-10-21');
                             cal.calendar('setDate', '2013-10-2');
+                            cal.calendar('setDisabledDates', ['2014-09-1','2014-09-10,2014-9-13',',2014-8-14']);
                         })
                     </script>
                 </div>
@@ -156,6 +157,7 @@ $(function(){
     // Add date
     cal.calendar('setDate', '2013-7-21');
     cal.calendar('setDate', '2013-07-2');
+    cal.calendar('setDisabledDates', ['2014-09-1','2014-09-10,2014-9-13',',2014-8-14','2014-10-14,']);
 
     // Remove date
     cal.calendar('unsetDate', '2013-07-2');
