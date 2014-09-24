@@ -9,6 +9,7 @@
 
     <link href="css/metro-bootstrap.css" rel="stylesheet">
     <link href="css/metro-bootstrap-responsive.css" rel="stylesheet">
+    <link href="css/iconFont.css" rel="stylesheet">
     <link href="css/docs.css" rel="stylesheet">
     <link href="js/prettify/prettify.css" rel="stylesheet">
 
@@ -49,15 +50,16 @@
 
                         <div class="frames">
                             <div class="frame clearfix" id="tab1">
+
                                 <div class="accordion span3 place-left margin10" data-role="accordion" data-closeany="false">
                                     <div class="accordion-frame">
-                                        <a class="heading active" href="#" data-action="none" >Item #1</a>
+                                        <a class="heading" href="#" data-action="none" >Item #1 (inactive)</a>
                                         <div class="content">
                                             <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.</p>
                                         </div>
                                     </div>
-                                    <div class="accordion-frame">
-                                        <a class="heading active" href="#">Item #2</a>
+                                    <div class="accordion-frame active">
+                                        <a class="heading" href="#">Item #2</a>
                                         <div class="content">
                                             <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut.</p>
                                         </div>
@@ -121,8 +123,8 @@
                     <br />
 
                     <div class="accordion" data-role="accordion" data-closeany="true">
-                        <div class="accordion-frame">
-                            <a class="active heading" href="#">Any components as content</a>
+                        <div class="accordion-frame active ">
+                            <a class="heading" href="#">Any components as content</a>
                             <div class="content">
                                 <div class="grid">
                                     <div class="row">
@@ -289,8 +291,8 @@
                             <a class="heading" href="#">Custom accordion item heading</a>
                             <div class="content clearfix">
                                 <div class="accordion span3 place-left margin10" data-role="accordion">
-                                    <div class="accordion-frame">
-                                        <a class="active heading bg-red fg-white" href="#">Item #1</a>
+                                    <div class="accordion-frame active ">
+                                        <a class="heading bg-red fg-white" href="#">Item #1</a>
                                         <div class="content">
                                             <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.</p>
                                         </div>
@@ -317,8 +319,8 @@
                                             <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.</p>
                                         </div>
                                     </div>
-                                    <div class="accordion-frame">
-                                        <a class="active heading bg-dark fg-white text-right" href="#">Item #2</a>
+                                    <div class="accordion-frame active ">
+                                        <a class="heading bg-dark fg-white text-right" href="#">Item #2</a>
                                         <div class="content">
                                             <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut.</p>
                                         </div>
@@ -369,21 +371,19 @@
 &lt;/div&gt;
 </pre>
                 <p class="description">
-                    If you want to activate a specific tab of accordion, you must add class <code>active</code> to <code>heading</code> of frame.
+                    If you want to activate a specific tab of accordion, you must add class <code>active</code> to <code>accordion-frame</code> of frame.
                     If you want to use accordion with marker open/close, you must add class <code>with-marker</code> to <code>accordion</code>.
                 </p>
 <pre class="prettyprint linenums">
 &lt;div class="accordion" data-role="accordion"&gt;
-    &lt;div class="accordion-frame"&gt;
+
+    // opened frame
+    &lt;div class="accordion-frame active"&gt;
         &lt;a href="#" class="heading"&gt;Frame heading&lt;/a&gt;
         &lt;div class="content"&gt;...&lt;/div&gt;
     &lt;/div&gt;
 
-    &lt;div class="accordion-frame"&gt;
-        &lt;a href="#" class="active heading"&gt;Frame heading&lt;/a&gt;
-        &lt;div class="content"&gt;...&lt;/div&gt;
-    &lt;/div&gt;
-    
+    // closed frame
     &lt;div class="accordion-frame"&gt;
         &lt;a href="#" class="heading"&gt;Frame heading&lt;/a&gt;
         &lt;div class="content"&gt;...&lt;/div&gt;

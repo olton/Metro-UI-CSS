@@ -6,7 +6,7 @@
             cursor: pointer;
 
             &:after {
-                font-family: iconFont;
+                font-family: @sysIconFontName;
                 position: relative;
                 float: right;
                 right: 0;
@@ -16,19 +16,19 @@
 
         .sorting {
             &:after {
-                content: "\e0a0";
+                content: "\e011";
             }
         }
 
         .sorting_asc {
             &:after {
-                content: "\e1ae";
+                content: "\e010";
             }
         }
 
         .sorting_desc {
             &:after {
-                content: "\e1ad";
+                content: "\e012";
             }
         }
 

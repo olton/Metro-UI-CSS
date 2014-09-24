@@ -226,14 +226,6 @@
     left: 100% !important;
     margin-left: -15px;
   }
-  .navigation-bar .element-menu .dropdown-menu .dropdown-toggle:after,
-  .navbar .element-menu .dropdown-menu .dropdown-toggle:after {
-    -webkit-transform: rotate(90deg);
-    -moz-transform: rotate(90deg);
-    -ms-transform: rotate(90deg);
-    -o-transform: rotate(90deg);
-    transform: rotate(90deg);
-  }
 }
 @media only screen and (max-width: 800px) {
   .navigation-bar .pull-menu,

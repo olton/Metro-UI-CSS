@@ -115,6 +115,74 @@ p [data-hint]{
     }
 }
 
-.hint {
+.hint2 {
+    .hint;
+
+    &.bottom {
+        &:before, &:after {
+            top: 1px;
+            left: 50%;
+            margin: -10px 0 0 -5px;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-bottom: 10px solid @hintColor;
+        }
+
+        &:after {
+            top: 0;
+            border-bottom: 10px solid;
+        }
+    }
+
+    &.top {
+        &:before, &:after {
+            top: 100%;
+            margin-top: -1px;
+            left: 50%;
+            margin-left: -5px;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-top: 10px solid @hintColor;
+        }
+
+        &:after {
+            margin-top: 1px;
+            border-top: 10px solid;
+        }
+    }
+
+    &.left {
+        &:before, &:after {
+            top: 50%;
+            margin-top: -5px;
+            left: 100%;
+            margin-left: -1px;
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+            border-left: 10px solid @hintColor;
+        }
+
+        &:after {
+            margin-left: 0;
+            border-left: 10px solid;
+        }
+    }
+
+    &.right {
+        &:before, &:after {
+            top: 50%;
+            margin: 0;
+            margin-top: -5px;
+            left: -9px;
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+            border-right: 10px solid @hintColor;
+        }
+
+        &:after {
+            left: -10px;
+            border-right: 10px solid;
+        }
+    }
 }
 

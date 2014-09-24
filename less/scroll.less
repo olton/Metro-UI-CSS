@@ -107,35 +107,35 @@
     &:before {
         position: absolute;
         content: "";
-        font-family: iconFont;
+        font-family: @sysIconFontName;
         font-size: 14px;
-        margin-top: -1px;
     }
 }
 
 .scrollbar-v-up {
     &:before {
-        content: "\e1ae";
+        content: "\e010";
     }
 }
 
 .scrollbar-v-down {
     &:before {
-        content: "\e1ad";
+        content: "\e012";
     }
 }
 
 .scrollbar-h-up {
     &:before {
-        content: "\e1ac";
-        margin-left: -1px;
+        content: "\e010";
+        margin-top: -1px;
+        .rotate(-90deg);
     }
 }
 
 .scrollbar-h-down {
     &:before {
-        content: "\e1af";
+        content: "\e010";
         margin-top: -1px;
-        margin-right: -1px;
+        .rotate(90deg);
     }
 }

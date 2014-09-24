@@ -1,3 +1,15 @@
+## Version 2.0.32
+
+### Changes:
+- fix bugs
+- merge pull requests
+
+## Version 2.0.30
+
+### Changes:
+- move icons styles to standalone file
+- add small metroSysIcons.* font for system images
+
 ## Version 2.0.30
 
 ### Changes:
