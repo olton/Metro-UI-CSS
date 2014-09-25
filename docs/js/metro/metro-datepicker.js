@@ -132,6 +132,10 @@
 
         _setOption: function(key, value){
             this._super('_setOption', key, value);
+        },
+
+        setDisabledDates: function (dateStrs) {
+             this.options._calendar.calendar('setDisabledDates', dateStrs);
         }
     })
 })( jQuery );

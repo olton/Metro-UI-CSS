@@ -128,7 +128,35 @@
     });
 &lt;/script&gt;
 </pre>
+<p>To set disabled dates:</p>
+                <div class="example1">
 
+                    <div class="grid ">
+                        <div class="row">
+                            <div class="span3">
+                                <div class="input-control text" id="disabledDatePicker">
+                                    <input type="text">
+                                    <button class="btn-date"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+                <script type="text/javascript">
+                    $(function  () {
+                        var input = $("#disabledDatePicker").datepicker();
+                        input.datepicker('setDisabledDates',['2014-09-13,2014-09-15','2014-09-23',',2014-9-3','2014-10-14,']); 
+                    });
+                </script>
+<pre class="prettyprint linenums"> 
+// Javascript
+&lt;script&gt;
+    $(function  () {
+        var input = $("#disabledDatePicker").datepicker();
+        input.datepicker('setDisabledDates',['2014-09-13,2014-09-15','2014-09-23',',2014-9-3','2014-10-14,']); 
+    });
+&lt;/script&gt;
+</pre>
     </div>
 
     <script src="js/hitua.js"></script>
