@@ -85,6 +85,7 @@
                     //console.log(d, d0);
                     _calendar.calendar('setDate', d0);
                     to.children("input[type=text]").val(d);
+                    that.element.data('date', d0);
                     that.options.selected(d, d0);
                     that._hide();
                 }
