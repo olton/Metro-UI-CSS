@@ -124,6 +124,20 @@
                "Hoy", "Limpiar", "Cancel", "Help", "Prior", "Next", "Finish"
             ]
         }
+        /** By Paulo Silva (paulo@paesis.com) */
+        'pt': {
+            months: [
+                "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro",
+                "Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"
+            ],
+            days: [
+                "Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado",
+                "Do", "Se", "Ter", "Qua", "Qui", "Sex", "Sáb"
+            ],
+            buttons: [
+               "Hoje", "Limpar", "Cancelar", "Ajuda", "Anterior", "Próximo", "Finalizar"
+            ]
+        }        
     };
 
     $.Metro.setLocale = function(locale, data){
