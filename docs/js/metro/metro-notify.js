@@ -87,7 +87,7 @@
 		
 			if(this._notify != undefined) {
         	   	this._notify.hide('slow', function() {
-					this.remove();
+					$(this).remove();
 					_notifies.splice(_notifies.indexOf(this._notify), 1);
 				});
 				return this;

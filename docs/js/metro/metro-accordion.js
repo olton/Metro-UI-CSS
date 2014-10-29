@@ -16,48 +16,62 @@
 
             if (element.data('closeany') != undefined) this.options.closeAny = element.data('closeany');
 
-            this._frames = element.children(".accordion-frame");
-
             this.init();
         },
 
         init: function(){
             var that = this;
 
-            this._frames.each(function(){
+            that.element.on('click', '.accordion-frame > .heading', function(e){
+                e.preventDefault();
+                e.stopPropagation();
+
+                if ($(this).attr('disabled') || $(this).data('action') == 'none') return;
+
+                if (that.options.closeAny) that._closeFrames();
+
+                var frame = $(this).parent(), content = frame.children('.content');
+                console.log(this);
+
+                if ($(content).is(":hidden")) {
+                    $(content).slideDown();
+                    $(this).removeClass("collapsed");
+                    that._trigger("frame", e, {frame: frame});
+                    that.options.open(frame);
+                } else {
+                    $(content).slideUp();
+                    $(this).addClass("collapsed");
+                }
+                that.options.action(frame);
+            });
+
+            var frames = this.element.children('.accordion-frame');
+
+
+            frames.each(function(){
                 var frame = this,
                     a = $(this).children(".heading"),
                     content = $(this).children(".content");
 
-                if ($(a).hasClass("active") && !$(a).attr('disabled') && $(a).data('action') != 'none') {
+                if ($(frame).hasClass("active") && !$(frame).attr('disabled') && $(frame).data('action') != 'none') {
                     $(content).show();
                     $(a).removeClass("collapsed");
                 } else {
                     $(a).addClass("collapsed");
                 }
-
-                a.on('click', function(e){
-                    e.preventDefault();
-                    if ($(this).attr('disabled') || $(this).data('action') == 'none') return;
-
-                    if (that.options.closeAny) that._closeFrames();
-
-                    if ($(content).is(":hidden")) {
-                        $(content).slideDown();
-                        $(this).removeClass("collapsed");
-                        that._trigger("frame", e, {frame: frame});
-                        that.options.open(frame);
-                    } else {
-                        $(content).slideUp();
-                        $(this).addClass("collapsed");
-                    }
-                    that.options.action(frame);
-                });
             });
+
+
         },
 
         _closeFrames: function(){
-            this._frames.children(".content").slideUp().parent().children('.heading').addClass("collapsed");
+            var frames = this.element.children('.accordion-frame');
+            $.each(frames, function(){
+                var frame = $(this);
+                frame.children('.heading').addClass('collapsed');
+                frame.children('.content').slideUp();
+            });
+            //this._frames.children(".content").slideUp().parent().children('.heading').addClass("collapsed");
         },
 
         _destroy: function(){},

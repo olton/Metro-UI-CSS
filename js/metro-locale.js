@@ -123,6 +123,46 @@
             buttons: [
                "Hoy", "Limpiar", "Cancel", "Help", "Prior", "Next", "Finish"
             ]
+        },
+        'pt': {
+            months: [
+                'Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro',
+                'Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'
+            ],
+            days: [
+                'Domingo','Segunda-feira','Terça-feira','Quarta-feira','Quinta-feira','Sexta-feira','Sabado',
+                'Dom','Seg','Ter','Qua','Qui','Sex','Sab'
+            ],
+            buttons: [
+                "Hoje", "Limpar", "Cancelar", "Ajuda", "Anterior", "Seguinte", "Terminar"
+            ]
+        },
+        'cs': {
+            months: [
+                "Leden", "Únor", "Březen", "Duben", "Květen", "Červen", "Červenec", "Srpen", "Září", "Říjen", "Listopad", "Prosinec",
+                "Led", "Ún", "Bř", "Dub", "Kvě", "Če", "Čer", "Srp", "Zá", "Ří", "Li", "Pro"
+            ],
+            days: [
+                "Neděle", "Pondělí", "Úterý", "Středa", "Čtvrtek", "Pátek", "Sobota",
+                "Ne", "Po", "Út", "St", "Čt", "Pá", "So"
+            ],
+            buttons: [
+                "Dnes", "Vyčistit", "Zrušit", "Pomoc", "Předešlý", "Další", "Dokončit"
+            ]
+        },
+        /** By Satit Rianpit <siteslave@msn.com> **/
+        'th': {
+            months: [
+                "มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม",
+                "ม.ค.", "ก.พ.", "มี.ค.", "เม.ย.", "พ.ค.", "มิ.ย.", "ก.ค.", "ส.ค.", "ก.ย.", "ต.ค.", "พ.ย.", "ธ.ค."
+            ],
+            days: [
+                "อาทิตย์", "จันทร์", "อังคาร", "พุธ", "พฤหัสบดี", "ศุกร์", "เสาร์",
+                "อา.", "จ.", "อ.", "พ.", "พฤ.", "ศ.", "ส."
+            ],
+            buttons: [
+                "วันนี้", "ล้าง", "ยกเลิก", "ช่วยเหลือ", "กลับ", "ต่อไป", "เสร็จ"
+            ]
         }
     };
 

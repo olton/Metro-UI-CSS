@@ -1,6 +1,3 @@
-@ECHO = OFF
-cls
-
 cp docs/js/metro/*.* js
 cp docs/css/metro-*.css css
 
