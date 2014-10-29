@@ -1,6 +1,6 @@
 {
   "name": "Metro-UI-CSS",
-  "version": "2.0.19",
+  "version": "2.0.32",
   "main": [
     "./css/metro-bootstrap.css",
     "./css/metro-bootstrap-responsive.css",

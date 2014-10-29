@@ -95,13 +95,13 @@ label {
 
         .check:after {
             position: absolute;
-            font-family: iconFont;
+            font-family: @sysIconFontName;
             font-size: 9pt;
             line-height: 9pt;
         }
 
         input[type="checkbox"]:checked ~ .check:after, input[type="radio"]:checked ~ .check:after {
-            content: "\e08a";
+            content: "\e003";
             margin: 2px;
             top: 0;
             color: @dark;
@@ -243,8 +243,8 @@ label {
             margin: 0;
             display: none;
             &:after {
-                font-family: iconFont;
-                font-size: 10pt;
+                font-family: @sysIconFontName;
+                font-size: 1em;
             }
             &:not(:disabled):active {
                 background-color: @dark;
@@ -267,11 +267,11 @@ label {
             display: block;
         }
 
-        .btn-clear:after {content: "\e089";}
-        .btn-reveal:after {content: "\e000";}
-        .btn-search:after {content: "\e041";}
-        .btn-date:after {content: "\e020";}
-        .btn-file:after {content: "\e012";}
+        .btn-clear:after {content: "\e00d";}
+        .btn-reveal:after {content: "\e007";}
+        .btn-search:after {content: "\e00e";}
+        .btn-date:after {content: "\e013";}
+        .btn-file:after {content: "\e008";}
         .btn-search {display: block;}
         .btn-date {display: block;}
         .btn-file {display: block;}

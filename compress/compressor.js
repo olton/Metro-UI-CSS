@@ -77,3 +77,12 @@ new compressor.minify({
         if (err) console.log(err); else console.log("responsive css compiled");
     }
 });
+
+new compressor.minify({
+    type: 'yui-css',
+    fileIn: css_path+'iconFont.css',
+    fileOut: css_compile_path+'iconFont.min.css',
+    callback: function(err, min){
+        if (err) console.log(err); else console.log("icon font css compiled");
+    }
+});
