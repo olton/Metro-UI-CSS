@@ -41,10 +41,10 @@
             if (element.data('weekStart') != undefined) this.options.weekStart = element.data('weekStart');
             if (element.data('otherDays') != undefined) this.options.otherDays = element.data('otherDays');
 
-            this._year = this.options.date.getFullYear();
-            this._distance = parseInt(this.options.date.getFullYear())-4;
-            this._month = this.options.date.getMonth();
-            this._day = this.options.date.getDate();
+            this._year = this.options.date.getUTCFullYear();
+            this._distance = parseInt(this.options.date.getUTCFullYear())-4;
+            this._month = this.options.date.getUTCMonth();
+            this._day = this.options.date.getUTCDate();
             this._mode = this.options.startMode;
 
             element.data("_storage", []);
@@ -67,7 +67,7 @@
 
             var totalDays = ["31", ""+feb+"","31","30","31","30","31","31","30","31","30","31"];
             var daysInMonth = totalDays[month];
-            var first_week_day = new Date(year, month, 1).getDay();
+            var first_week_day = new Date(year, month, 1).getUTCDay();
 
             var table, tr, td, i;
 
@@ -404,7 +404,7 @@
         setDate: function(d){
             var r;
             d = new Date(d);
-            r = (new Date(d.getFullYear()+"/"+ (d.getMonth()+1)+"/"+ d.getDate())).format('yyyy-mm-dd');
+            r = (new Date(d.getUTCFullYear()+"/"+ (d.getUTCMonth()+1)+"/"+ d.getUTCDate())).format('yyyy-mm-dd');
             this._addDate(r);
             this._renderCalendar();
         },
@@ -420,7 +420,7 @@
         unsetDate: function(d){
             var r;
             d = new Date(d);
-            r = (new Date(d.getFullYear()+"-"+ (d.getMonth()+1)+"-"+ d.getDate())).format('yyyy-mm-dd');
+            r = (new Date(d.getUTCFullYear()+"-"+ (d.getUTCMonth()+1)+"-"+ d.getUTCDate())).format('yyyy-mm-dd');
             this._removeDate(r);
             this._renderCalendar();
         },
