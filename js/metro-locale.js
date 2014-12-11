@@ -132,7 +132,7 @@
             ],
             days: [
                 "Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado",
-                "Do", "Se", "Ter", "Qua", "Qui", "Sex", "Sáb"
+                "Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"
             ],
             buttons: [
                "Hoje", "Limpar", "Cancelar", "Ajuda", "Anterior", "Próximo", "Finalizar"
