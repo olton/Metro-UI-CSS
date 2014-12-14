@@ -9,6 +9,7 @@
         } else {
             $('[data-role=accordion]').accordion();
         }
+        return this;
     };
 
     $.Metro.initButtonSets = function(area){
@@ -19,6 +20,7 @@
             $('[data-role=button-set]').buttonset();
             $('[data-role=button-group]').buttongroup();
         }
+        return this;
     };
 
     $.Metro.initCalendars = function(area){
@@ -27,6 +29,7 @@
         } else {
             $('[data-role=calendar]').calendar();
         }
+        return this;
     };
 
     $.Metro.initCarousels = function(area){
@@ -35,6 +38,7 @@
         } else {
             $('[data-role=carousel]').carousel();
         }
+        return this;
     };
 
     $.Metro.initCountdowns = function(area){
@@ -43,6 +47,7 @@
         } else {
             $('[data-role=countdown]').countdown();
         }
+        return this;
     };
 
     $.Metro.initDatepickers = function(area){
@@ -51,6 +56,7 @@
         } else {
             $('[data-role=datepicker]').datepicker();
         }
+        return this;
     };
 
     $.Metro.initDropdowns = function(area){
@@ -59,6 +65,7 @@
         } else {
             $('[data-role=dropdown]').dropdown();
         }
+        return this;
     };
 
     $.Metro.initFluentMenus = function(area){
@@ -67,6 +74,7 @@
         } else {
             $('[data-role=fluentmenu]').fluentmenu();
         }
+        return this;
     };
 
     $.Metro.initHints = function(area){
@@ -83,6 +91,7 @@
         } else {
             $('[data-role=input-control], .input-control').inputControl();
         }
+        return this;
     };
 
     $.Metro.transformInputs = function(area){
@@ -91,6 +100,7 @@
         } else {
             $('[data-transform=input-control]').inputTransform();
         }
+        return this;
     };
 
     $.Metro.initListViews = function(area){
@@ -99,6 +109,7 @@
         } else {
             $('[data-role=listview]').listview();
         }
+        return this;
     };
 
     $.Metro.initLives = function(area){
@@ -107,6 +118,7 @@
         } else {
             $('[data-role=live-tile], [data-role=live]').livetile();
         }
+        return this;
     };
 
     $.Metro.initProgreeBars = function(area){
@@ -115,6 +127,7 @@
         } else {
             $('[data-role=progress-bar]').progressbar();
         }
+        return this;
     };
 
     $.Metro.initRatings = function(area){
@@ -123,6 +136,7 @@
         } else {
             $('[data-role=rating]').rating();
         }
+        return this;
     };
 
     $.Metro.initScrolls = function(area){
@@ -131,6 +145,7 @@
         } else {
             $('[data-role=scrollbox]').scrollbar();
         }
+        return this;
     };
 
     $.Metro.initSliders = function(area){
@@ -139,6 +154,7 @@
         } else {
             $('[data-role=slider]').slider();
         }
+        return this;
     };
 
     $.Metro.initTabs = function(area){
@@ -147,6 +163,7 @@
         } else {
             $('[data-role=tab-control]').tabcontrol();
         }
+        return this;
     };
 
     $.Metro.initTimes = function(area){
@@ -155,6 +172,7 @@
         } else {
             $('[data-role=times]').times();
         }
+        return this;
     };
 
     $.Metro.initTrees = function(area){
@@ -163,6 +181,7 @@
         } else {
             $('[data-role=treeview]').treeview();
         }
+        return this;
     };
 
     /*
@@ -175,6 +194,7 @@
         } else {
             $('[data-role=stepper]').stepper();
         }
+        return this;
     };
 
     $.Metro.initStreamers = function(area){
@@ -183,6 +203,7 @@
         } else {
             $('[data-role=streamer]').streamer();
         }
+        return this;
     };
 
     $.Metro.initDragTiles = function(area){
@@ -191,6 +212,7 @@
         } else {
             $('[data-role=drag-drop]').dragtile();
         }
+        return this;
     };
 
     $.Metro.initPulls = function(area){
@@ -199,6 +221,7 @@
         } {
             $('[data-role=pull-menu], .pull-menu').pullmenu();
         }
+        return this;
     };
 
     $.Metro.initPanels = function(area){
@@ -207,6 +230,7 @@
         } {
             $('[data-role=panel]').panel();
         }
+        return this;
     };
 
     $.Metro.initTileTransform = function(area){
@@ -215,35 +239,37 @@
         } {
             $('[data-click=transform]').tileTransform();
         }
+        return this;
     };
 
     $.Metro.initAll = function(area) {
-        $.Metro.initAccordions(area);
-        $.Metro.initButtonSets(area);
-        $.Metro.initCalendars(area);
-        $.Metro.initCarousels(area);
-        $.Metro.initCountdowns(area);
-        $.Metro.initDatepickers(area);
-        $.Metro.initDropdowns(area);
-        $.Metro.initFluentMenus(area);
-        $.Metro.initHints(area);
-        $.Metro.initInputs(area);
-        $.Metro.transformInputs(area);
-        $.Metro.initListViews(area);
-        $.Metro.initLives(area);
-        $.Metro.initProgreeBars(area);
-        $.Metro.initRatings(area);
-        $.Metro.initScrolls(area);
-        $.Metro.initSliders(area);
-        $.Metro.initTabs(area);
-        $.Metro.initTimes(area);
-        $.Metro.initTrees(area);
-        $.Metro.initSteppers(area);
-        $.Metro.initStreamers(area);
-        $.Metro.initDragTiles(area);
-        $.Metro.initPulls(area);
-        $.Metro.initPanels(area);
-        $.Metro.initTileTransform(area);
+        $.Metro
+            .initAccordions(area)
+            .initButtonSets(area)
+            .initCalendars(area)
+            .initCarousels(area)
+            .initCountdowns(area)
+            .initDatepickers(area)
+            .initDropdowns(area)
+            .initFluentMenus(area)
+            .initHints(area)
+            .initInputs(area)
+            .transformInputs(area)
+            .initListViews(area)
+            .initLives(area)
+            .initProgreeBars(area)
+            .initRatings(area)
+            .initScrolls(area)
+            .initSliders(area)
+            .initTabs(area)
+            .initTimes(area)
+            .initTrees(area)
+            .initSteppers(area)
+            .initStreamers(area)
+            .initDragTiles(area)
+            .initPulls(area)
+            .initPanels(area)
+            .initTileTransform(area);
     }
 })(jQuery);
 
