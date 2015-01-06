@@ -48,7 +48,7 @@
             <script>
                 $(function(){
                     $('#wizard').wizard({
-                        locale: 'ru',
+                        locale: 'en',
                         onCancel: function(){
                             $.Dialog({
                                 title: 'Wizard',
@@ -77,6 +77,47 @@
                 });
             </script>
         </div>
+
+        <h3>Html definition</h3>
+
+<pre class="prettyprint linenums">
+&lt;div class="wizard" id="wizard"&gt;
+    &lt;div class="steps"&gt;
+        &lt;div class="step"&gt;Page 1&lt;/div&gt;
+        &lt;div class="step"&gt;Page 2&lt;/div&gt;
+        &lt;div class="step"&gt;Page 3&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</pre>
+
+        <h3>JavaScript</h3>
+<pre class="prettyprint linenums">
+$(function(){
+    $('#wizard').wizard({
+            stepper: true, // show stepper, see http://metroui.org.ua/stepper.html
+            stepperType: 'default', // stepper type, see http://metroui.org.ua/stepper.html
+            locale: $.Metro.currentLocale, //'en', 'ua', 'ru', ... more languages defined in metro-locale.js
+            finishStep: 'default', // 'default' - last page or int - number of page
+            buttons: { //show or hide buttons
+                cancel: true,
+                help: true,
+                prior: true,
+                next: true,
+                finish: true
+            },
+
+            // Buttons click methods, page change events
+            onCancel: function(page, wiz){...},
+            onHelp: function(page, wiz){...},
+            onPrior: function(page, wiz){...},
+            onNext: function(page, wiz){...},
+            onFinish: function(page, wiz){...},
+            onPage: function(page, wiz){...}
+    });
+});
+</pre>
+
+
     </div>
 
     <script src="js/hitua.js"></script>

@@ -10,7 +10,7 @@
             finishStep: 'default',
             buttons: {
                 cancel: true,
-                help: false,
+                help: true,
                 prior: true,
                 next: true,
                 finish: true
