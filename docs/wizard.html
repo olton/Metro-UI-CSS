@@ -49,6 +49,7 @@
                 $(function(){
                     $('#wizard').wizard({
                         locale: 'en',
+                        startPage: 2,
                         onCancel: function(){
                             $.Dialog({
                                 title: 'Wizard',
@@ -96,6 +97,7 @@ $(function(){
     $('#wizard').wizard({
             stepper: true, // show stepper, see http://metroui.org.ua/stepper.html
             stepperType: 'default', // stepper type, see http://metroui.org.ua/stepper.html
+            startPage: 'default', // if this value ne 'default' wizard started from this page
             locale: $.Metro.currentLocale, //'en', 'ua', 'ru', ... more languages defined in metro-locale.js
             finishStep: 'default', // 'default' - last page or int - number of page
             buttons: { //show or hide buttons

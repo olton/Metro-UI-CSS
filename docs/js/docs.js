@@ -50,4 +50,4 @@ $(window).scroll(function(){
     headerPosition();
 });
 
-METRO_AUTO_REINIT = true;
+//METRO_AUTO_REINIT = true;
