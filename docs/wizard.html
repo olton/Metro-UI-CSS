@@ -37,6 +37,7 @@
         </h1>
 
         <div class="example">
+            <h4>Default initialize </h4>
             <div class="wizard" id="wizard">
                 <div class="steps">
                     <div class="step">Page 1</div>
@@ -49,7 +50,7 @@
                 $(function(){
                     $('#wizard').wizard({
                         locale: 'en',
-                        startPage: 2,
+                        //startPage: 2,
                         onCancel: function(){
                             $.Dialog({
                                 title: 'Wizard',
@@ -74,6 +75,28 @@
                                 padding: 10
                             });
                         }
+                    });
+                });
+            </script>
+        </div>
+
+        <div class="example">
+            <h4>This wizard started from page number 3</h4>
+            <div class="wizard" id="wizard2">
+                <div class="steps">
+                    <div class="step">Page 1</div>
+                    <div class="step">Page 2</div>
+                    <div class="step">Page 3</div>
+                    <div class="step">Page 4</div>
+                    <div class="step">Page 5</div>
+                </div>
+            </div>
+
+            <script>
+                $(function(){
+                    $('#wizard2').wizard({
+                        locale: 'en',
+                        startPage: 3
                     });
                 });
             </script>
