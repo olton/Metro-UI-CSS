@@ -6,6 +6,7 @@
         options: {
             stepper: true,
             stepperType: 'default',
+            startPage: 'default',
             locale: $.Metro.currentLocale,
             finishStep: 'default',
             buttons: {
@@ -36,13 +37,20 @@
             this._steps = steps;
 
             if (o.stepper) {
-                this._stepper = this._createStepper(steps.length).insertBefore(element.find('.steps'));
+                this._stepper = this._createStepper(steps.length).insertBefore(element.find('.steps')).stepper();
             }
 
             if (element.data('locale') != undefined) o.locale = element.data('locale');
 
             this._createEvents();
+
+            if (o.startPage != 'default' && parseInt(o.startPage) > 1) {
+                //if (this._stepper != undefined) this._stepper.stepper('stepTo', o.startPage);
+                this.stepTo(o.startPage);
+            }
+
             this.options.onPage(this._currentStep + 1, element);
+
         },
 
         _createStepper: function(steps){
@@ -104,7 +112,7 @@
             $(this._steps[new_step]).show();
 
             this.options.onPage(this._currentStep + 1, this.element);
-            this._stepper.stepper('next');
+            this._stepper.stepper('stepTo', this._currentStep + 1);
 
             var finish = parseInt(this.options.finishStep == 'default' ? this._steps.length - 1 : this.options.finishStep);
             if (new_step == finish) {
@@ -125,7 +133,7 @@
             $(this._steps[new_step]).show();
 
             this.options.onPage(this._currentStep + 1, this.element);
-            this._stepper.stepper('prior');
+            this._stepper.stepper('stepTo', this._currentStep + 1);
 
             var finish = parseInt(this.options.finishStep == 'default' ? this._steps.length - 1 : this.options.finishStep);
             if (new_step == finish) {
@@ -135,6 +143,31 @@
             }
 
             return true;
+        },
+
+        stepTo: function(step){
+            var new_step = step - 1;
+
+            if (new_step < 0) return false;
+            this._currentStep = new_step;
+            this._steps.hide();
+            $(this._steps[new_step]).show();
+
+            this.options.onPage(this._currentStep + 1, this.element);
+            if (this._stepper != undefined) this._stepper.stepper('stepTo', step);
+
+            var finish = parseInt(this.options.finishStep == 'default' ? this._steps.length - 1 : this.options.finishStep);
+            if (new_step == finish) {
+                this.element.find('.btn-finish').attr('disabled', false);
+            } else {
+                this.element.find('.btn-finish').attr('disabled', true);
+            }
+
+            return true;
+        },
+
+        stepper: function(){
+            return this._stepper;
         },
 
         _destroy: function(){

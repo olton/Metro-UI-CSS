@@ -61,6 +61,10 @@
             });
         },
 
+        stepTo: function(step){
+            this._stepTo(step);
+        },
+
         first: function(){
             var o = this.options;
             o.start = 1;
