@@ -6,7 +6,9 @@
         options: {
             steps: 3,
             start: 1,
-            onStep: function(index, step){}
+            clickable: true,
+            onStep: function(index, step){},
+            onStepClick: function(index, step){}
         },
 
         _create: function(){
@@ -16,8 +18,18 @@
             if (element.data('start') != undefined) o.start = element.data('start');
 
             this._createStepper();
+            if (o.clickable) this._createEvents();
             this._positioningSteps();
             this._stepTo(o.start);
+        },
+
+        _createEvents: function(){
+            var that = this, element = this.element, o= this.options;
+            element.on('click', 'li', function(e){
+                var step = $(this).data('step');
+                o.onStepClick(step - 1, step);
+                element.trigger("stepclick", step);
+            });
         },
 
         _createStepper: function(){
@@ -26,7 +38,7 @@
 
             ul = $("<ul/>");
             for(i=0;i< o.steps;i++) {
-                li = $("<li/>").appendTo(ul);
+                li = $("<li/>").data('step', i + 1).appendTo(ul);
             }
             ul.appendTo(element);
         },
@@ -99,6 +111,7 @@
         },
 
         _destroy: function(){
+            this._stepper.remove();
         },
 
         _setOption: function(key, value){
