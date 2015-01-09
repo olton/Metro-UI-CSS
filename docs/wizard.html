@@ -130,6 +130,58 @@
             </script>
         </div>
 
+        <div class="example">
+            <h4>Customize buttons</h4>
+            <div class="wizard" id="wizard4">
+                <div class="steps">
+                    <div class="step">Page 1</div>
+                    <div class="step">Page 2</div>
+                    <div class="step">Page 3</div>
+                </div>
+            </div>
+
+            <script>
+                $(function(){
+                    $('#wizard4').wizard({
+                        locale: 'en',
+                        stepperClickable: false,
+                        buttons: {
+                            cancel: {
+                                show: true,
+                                title: "Cancel wizard",
+                                cls: "warning",
+                                group: "right"
+                            },
+                            help: {
+                                show: true,
+                                title: "Help Me!",
+                                cls: "button primary",
+                                group: "right"
+                            },
+                            prior: {
+                                show: true,
+                                title: "Previous page",
+                                group: "left",
+                                cls: "info"
+                            },
+                            next: {
+                                show: true,
+                                title: "Next page",
+                                group: "left",
+                                cls: "info"
+                            },
+                            finish: {
+                                show: true,
+                                title: "Finish step and Go!",
+                                group: "left",
+                                cls: "danger"
+                            }
+                        }
+                    });
+                });
+            </script>
+        </div>
+
         <h3>Html definition</h3>
 
 <pre class="prettyprint linenums">
@@ -168,6 +220,46 @@ $(function(){
             onFinish: function(page, wiz){...},
             onPage: function(page, wiz){...},
             onStepClick: function(step){...}
+    });
+});
+</pre>
+
+        <h3>Customize buttons</h3>
+<pre class="prettyprint linenums">
+$(function(){
+    $('#wizard').wizard({
+        buttons: {
+            cancel: {
+                show: true,
+                title: "Cancel wizard",
+                cls: "warning",
+                group: "right"
+            },
+            help: {
+                show: true,
+                title: "Help Me!",
+                cls: "button primary",
+                group: "right"
+            },
+            prior: {
+                show: true,
+                title: "Previous page",
+                group: "left",
+                cls: "info"
+            },
+            next: {
+                show: true,
+                title: "Next page",
+                group: "left",
+                cls: "info"
+            },
+            finish: {
+                show: true,
+                title: "Finish step and Go!",
+                group: "left",
+                cls: "danger"
+            }
+        }
     });
 });
 </pre>
