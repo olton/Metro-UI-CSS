@@ -62,6 +62,8 @@
                         </div>
                     </div>
                 </div>
+
+
 <pre class="prettyprint linenums">
 &lt;div class="notice"&gt;
     ... content ...
@@ -86,6 +88,76 @@
 &lt;div class="notice bg-amber fg-white"&gt;
     ... content ...
 &lt;/div&gt;
+</pre>
+
+
+        <div class="example">
+            <h5>Notice by Click</h5>
+            <div>
+                <button class="button" data-popover="popover" data-popover-mode="click" data-popover-shadow="true" data-popover-position="top" data-popover-text="Button clicked" data-popover-background="bg-cyan" data-popover-color="fg-white">Click Me</button>
+                <button class="button" data-popover="popover" data-popover-mode="click" data-popover-position="bottom" data-popover-text="Button clicked" data-popover-background="bg-orange" data-popover-color="fg-white">Click Me</button>
+                <button class="button" data-popover="popover" data-popover-mode="click" data-popover-position="left" data-popover-text="Button clicked" data-popover-background="bg-pink" data-popover-color="fg-white">Click Me</button>
+                <button class="button" data-popover="popover" data-popover-mode="click" data-popover-position="right" data-popover-text="Button clicked" data-popover-background="bg-red" data-popover-color="fg-white">Click Me</button>
+            </div>
+
+            <div>
+                <br />
+                <div class="input-control text" style="width: 200px">
+                    <label>Popover by Focus</label>
+                    <input type="text" placeholder="put cursor" data-popover="popover" data-popover-position="right" data-popover-text="Please, input you data here" data-popover-background="bg-red" data-popover-color="fg-white" data-popover-mode="focus">
+                </div>
+            </div>
+
+            <div>
+                <br />
+                <div class="input-control text" style="width: 200px">
+                    <label>Popover by script</label>
+                    <input id="popover_by_script" type="text" placeholder="click button on right" data-popover="popover" data-popover-position="bottom" data-popover-text="You can click button" data-popover-background="bg-green" data-popover-color="fg-white">
+                </div>
+                <button class="button" onclick="$('#popover_by_script').popover('show')">Click me</button>
+            </div>
+        </div>
+
+        <h3>Data-* attributes fro popover</h3>
+        <div>
+            <ul>
+                <li><strong>data-popover="popover"</strong> - required for popover handling</li>
+                <li><strong>data-popover-mode="click | focus | none | mouseenter"</strong> - when popover handling</li>
+                <li><strong>data-popover-position="top | bottom | left | right"</strong> - position over element</li>
+                <li><strong>data-popover-text="..."</strong> - Text for popover</li>
+                <li><strong>data-popover-background="..."</strong> - CSS class for background</li>
+                <li><strong>data-popover-color="..."</strong> - CSS class for text color</li>
+                <li><strong>data-popover-shadow="true | false"</strong> - Shadow for popover object</li>
+                <li><strong>data-popover-timeout="3000"</strong> - Milliseconds for showing</li>
+            </ul>
+        </div>
+<pre class="prettyprint linenums">
+    &lt;button class="button"
+            data-popover="popover"
+            data-popover-mode="click"
+            data-popover-shadow="true"
+            data-popover-position="top"
+            data-popover-text="Button clicked"
+            data-popover-background="bg-cyan"
+            data-popover-color="fg-white"&gt;Click Me&lt;/button&gt;
+
+    &lt;input type="text"
+           placeholder="put cursor here"
+           data-popover="popover"
+           data-popover-position="right"
+           data-popover-text="Please, input you data here"
+           data-popover-background="bg-red"
+           data-popover-color="fg-white"
+           data-popover-mode="focus"&gt;
+
+    &lt;input type="text" id="popover_by_script"
+           placeholder="Click button on right"
+           data-popover="popover"
+           data-popover-position="right"
+           data-popover-text="Please, input you data here"
+           data-popover-background="bg-red"
+           data-popover-color="fg-white"&gt;
+    &lt;button class="button" onclick="$('#popover_by_script').popover('show')"&gt;Click me&lt;/button&gt;
 </pre>
 
     </div>
