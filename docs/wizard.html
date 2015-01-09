@@ -50,7 +50,7 @@
                 $(function(){
                     $('#wizard').wizard({
                         locale: 'en',
-                        //startPage: 2,
+                        stepperClickable: false,
                         onCancel: function(){
                             $.Dialog({
                                 title: 'Wizard',
@@ -96,7 +96,35 @@
                 $(function(){
                     $('#wizard2').wizard({
                         locale: 'en',
-                        startPage: 3
+                        startPage: 3,
+                        stepperClickable: false
+                    });
+                });
+            </script>
+        </div>
+
+        <div class="example">
+            <h4>Switch page over click on stepper steps</h4>
+            <div class="wizard" id="wizard3">
+                <div class="steps">
+                    <div class="step">Page 1</div>
+                    <div class="step">Page 2</div>
+                    <div class="step">Page 3</div>
+                    <div class="step">Page 4</div>
+                    <div class="step">Page 5</div>
+                    <div class="step">Page 6</div>
+                    <div class="step">Page 7</div>
+                </div>
+            </div>
+
+            <script>
+                $(function(){
+                    $('#wizard3').wizard({
+                        locale: 'en',
+                        stepperClickable: true,
+                        onStepClick: function(step){
+                            // stepper steps click handler
+                        }
                     });
                 });
             </script>
@@ -120,6 +148,7 @@ $(function(){
     $('#wizard').wizard({
             stepper: true, // show stepper, see http://metroui.org.ua/stepper.html
             stepperType: 'default', // stepper type, see http://metroui.org.ua/stepper.html
+            stepperClickable: false, // set to true if you can switch page over click on stepper
             startPage: 'default', // if this value ne 'default' wizard started from this page
             locale: $.Metro.currentLocale, //'en', 'ua', 'ru', ... more languages defined in metro-locale.js
             finishStep: 'default', // 'default' - last page or int - number of page
@@ -137,7 +166,8 @@ $(function(){
             onPrior: function(page, wiz){...},
             onNext: function(page, wiz){...},
             onFinish: function(page, wiz){...},
-            onPage: function(page, wiz){...}
+            onPage: function(page, wiz){...},
+            onStepClick: function(step){...}
     });
 });
 </pre>

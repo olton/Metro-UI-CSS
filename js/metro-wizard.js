@@ -6,6 +6,7 @@
         options: {
             stepper: true,
             stepperType: 'default',
+            stepperClickable: true,
             startPage: 'default',
             locale: $.Metro.currentLocale,
             finishStep: 'default',
@@ -21,7 +22,8 @@
             onPrior: function(page, wiz){return true;},
             onNext: function(page, wiz){return true;},
             onFinish: function(page, wiz){},
-            onPage: function(page, wiz){}
+            onPage: function(page, wiz){},
+            onStepClick: function(step){}
         },
 
         _stepper: undefined,
@@ -37,7 +39,14 @@
             this._steps = steps;
 
             if (o.stepper) {
-                this._stepper = this._createStepper(steps.length).insertBefore(element.find('.steps')).stepper();
+                this._stepper = this._createStepper(steps.length)
+                    .insertBefore(element.find('.steps'))
+                    .stepper({
+                        clickable: o.stepperClickable
+                    }).on('stepclick', function(e, s){
+                        that.stepTo(s);
+                        o.onStepClick(s);
+                    });
             }
 
             if (element.data('locale') != undefined) o.locale = element.data('locale');
@@ -45,7 +54,6 @@
             this._createEvents();
 
             if (o.startPage != 'default' && parseInt(o.startPage) > 1) {
-                //if (this._stepper != undefined) this._stepper.stepper('stepTo', o.startPage);
                 this.stepTo(o.startPage);
             }
 
@@ -112,7 +120,7 @@
             $(this._steps[new_step]).show();
 
             this.options.onPage(this._currentStep + 1, this.element);
-            this._stepper.stepper('stepTo', this._currentStep + 1);
+            if (this._stepper != undefined) this._stepper.stepper('stepTo', this._currentStep + 1);
 
             var finish = parseInt(this.options.finishStep == 'default' ? this._steps.length - 1 : this.options.finishStep);
             if (new_step == finish) {
@@ -133,7 +141,7 @@
             $(this._steps[new_step]).show();
 
             this.options.onPage(this._currentStep + 1, this.element);
-            this._stepper.stepper('stepTo', this._currentStep + 1);
+            if (this._stepper != undefined) this._stepper.stepper('stepTo', this._currentStep + 1);
 
             var finish = parseInt(this.options.finishStep == 'default' ? this._steps.length - 1 : this.options.finishStep);
             if (new_step == finish) {
