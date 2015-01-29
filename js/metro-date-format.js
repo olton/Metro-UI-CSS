@@ -50,7 +50,7 @@ var dateFormat = function () {
 
         //console.log(locale);
 
-        locale = $.Metro.currentLocale;
+        locale = jQuery.Metro.currentLocale;
 
         var	_ = utc ? "getUTC" : "get",
             d = date[_ + "Date"](),
@@ -65,12 +65,12 @@ var dateFormat = function () {
             flags = {
                 d:    d,
                 dd:   pad(d),
-                ddd:  $.Metro.Locale[locale].days[D],
-                dddd: $.Metro.Locale[locale].days[D + 7],
+                ddd:  jQuery.Metro.Locale[locale].days[D],
+                dddd: jQuery.Metro.Locale[locale].days[D + 7],
                 m:    m + 1,
                 mm:   pad(m + 1),
-                mmm: $.Metro.Locale[locale].months[m],
-                mmmm: $.Metro.Locale[locale].months[m + 12],
+                mmm: jQuery.Metro.Locale[locale].months[m],
+                mmmm: jQuery.Metro.Locale[locale].months[m + 12],
                 yy:   String(y).slice(2),
                 yyyy: y,
                 h:    H % 12 || 12,
