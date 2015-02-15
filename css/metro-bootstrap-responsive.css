@@ -87,6 +87,24 @@
     width: 1140px !important;
   }
 }
+/* Very Large desktop  */
+@media screen and (min-width: 1400px) {
+  .container {
+    width: 1340px !important;
+  }
+}
+/* Very Very Large desktop */
+@media screen and (min-width: 1600px) {
+  .container {
+    width: 1540px !important;
+  }
+}
+/* Very Very Very Large desktop */
+@media screen and (min-width: 1800px) {
+  .container {
+    width: 1740px !important;
+  }
+}
 /* tablet landscape*/
 @media only screen and (max-width: 1024px) {
   .no-tablet-landscape,
