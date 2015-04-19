@@ -48,7 +48,7 @@ var modules = [
     module_path+'metro-panel.js',
     module_path+'metro-tile-transform.js',
     module_path+'metro-popover.js',
-    module_path+'metro-initiator.js',
+    module_path+'metro-initiator.js'
 ];
 
 new compressor.minify({
