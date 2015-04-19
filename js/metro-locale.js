@@ -123,45 +123,6 @@
             buttons: [
                "Hoy", "Limpiar", "Cancel", "Help", "Prior", "Next", "Finish"
             ]
-        },
-        'pt': {
-            months: [
-                'Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro',
-                'Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'
-            ],
-            days: [
-                'Domingo','Segunda-feira','Terça-feira','Quarta-feira','Quinta-feira','Sexta-feira','Sabado',
-                'Dom','Seg','Ter','Qua','Qui','Sex','Sab'
-            ],
-            buttons: [
-                "Hoje", "Limpar", "Cancelar", "Ajuda", "Anterior", "Seguinte", "Terminar"
-            ]
-        },
-        'pl': {
-            months: [
-                "Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień",
-                "Sty", "Lut", "Mar", "Kwi", "Maj", "Cze", "Lip", "Sie", "Wrz", "Paź", "Lis", "Gru"
-            ],
-            days: [
-                "Niedziela", "Poniedziałek", "Wtorek", "Środa", "Czwartek", "Piątek", "Sobota",
-                "Nd", "Pon", "Wt", "Śr", "Czw", "Pt", "Sob"
-            ],
-            buttons: [
-                "Dzisiaj", "Wyczyść", "Anuluj", "Pomoc", "Poprzedni", "Następny", "Koniec"
-            ]
-        },
-        'cs': {
-            months: [
-                "Leden", "Únor", "Březen", "Duben", "Květen", "Červen", "Červenec", "Srpen", "Září", "Říjen", "Listopad", "Prosinec",
-                "Led", "Ún", "Bř", "Dub", "Kvě", "Če", "Čer", "Srp", "Zá", "Ří", "Li", "Pro"
-            ],
-            days: [
-                "Neděle", "Pondělí", "Úterý", "Středa", "Čtvrtek", "Pátek", "Sobota",
-                "Ne", "Po", "Út", "St", "Čt", "Pá", "So"
-            ],
-            buttons: [
-                "Dnes", "Vyčistit", "Zrušit", "Pomoc", "Předešlý", "Další", "Dokončit"
-            ]
         }
     };
 

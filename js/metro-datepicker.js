@@ -35,7 +35,6 @@
             this._createCalendar(element, this.options.date);
 
             input.attr('readonly', true);
-            button.attr('type', 'button');
 
             button.on('click', function(e){
                 e.stopPropagation();

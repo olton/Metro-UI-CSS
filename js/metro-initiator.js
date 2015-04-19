@@ -219,9 +219,9 @@
 
     $.Metro.initPopover = function(area){
         if (area != undefined) {
-            $(area).find('[data-popover=popover]').popover();
+            $(area).find('[data-role=popover]').tileTransform();
         } {
-            $('[data-popover=popover]').popover();
+            $('[data-role=popover]').tileTransform();
         }
     };
 
