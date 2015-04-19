@@ -35,6 +35,7 @@ var plugins = [
     'wizard',
     'panel',
     'tile-transform',
+    'popover',
 
     'initiator'
 

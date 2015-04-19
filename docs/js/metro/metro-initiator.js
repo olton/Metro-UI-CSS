@@ -217,6 +217,14 @@
         }
     };
 
+    $.Metro.initPopover = function(area){
+        if (area != undefined) {
+            $(area).find('[data-role=popover]').tileTransform();
+        } {
+            $('[data-role=popover]').tileTransform();
+        }
+    };
+
     $.Metro.initAll = function(area) {
         $.Metro.initAccordions(area);
         $.Metro.initButtonSets(area);
@@ -244,6 +252,7 @@
         $.Metro.initPulls(area);
         $.Metro.initPanels(area);
         $.Metro.initTileTransform(area);
+        $.Metro.initPopover(area);
     }
 })(jQuery);
 
