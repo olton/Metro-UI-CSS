@@ -38,10 +38,9 @@ var plugins = [
     'popover',
 
     'initiator'
-
-
 ];
 
 $.each(plugins, function(i, plugin){
     $("<script/>").attr('src', 'js/metro/metro-'+plugin+'.js').appendTo($('head'));
+    if (plugin == 'popover') {console.log('popover loaded')}
 });
