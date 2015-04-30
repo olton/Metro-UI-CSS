@@ -2,11 +2,11 @@
 <package >
   <metadata>
     <id>Metro.UI.CSS</id>
-    <version>3.0.0</version>
-    <title>Metro UI CSS 3.0</title>
+    <version>3.0.2</version>
+    <title>Metro UI CSS</title>
     <authors>Sergey Pimenov</authors>
     <owners>Sergey Pimenov</owners>
-    <licenseUrl>https://github.com/olton/Metro/blob/master/LICENSE</licenseUrl>
+    <licenseUrl>http://metroui.org.ua/license.html</licenseUrl>
     <projectUrl>http://metroui.org.ua/</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Metro UI CSS a set of styles to create a site with an interface similar to Windows 8</description>
@@ -16,8 +16,8 @@
     <tags>Windows Metro UI CSS Framework</tags>
   </metadata>
   <files>
-    <file src="build\js\*.js" target="Scripts" />
-    <file src="build\css\*.css" target="Content" />
-    <file src="fonts\*.*" target="Fonts" />
+    <file src="build\js\*.js" target="Content\Scripts" />
+    <file src="build\css\*.css" target="Content\Content" />
+    <file src="fonts\*.*" target="Content\Fonts" />
   </files>
 </package>
