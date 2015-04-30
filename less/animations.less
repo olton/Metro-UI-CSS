@@ -1,0 +1,117 @@
+@import (once) "transform";
+
+.animate(@params){
+	animation: @params;
+}
+
+@keyframes swinging{
+	0% { .rotate(0deg); }
+	5% { .rotate(10deg); }
+	10% { .rotate(-9deg); }
+	15% { .rotate(8deg); }
+	20% { .rotate(-7deg); }
+	25% { .rotate(6deg); }
+	30% { .rotate(-5deg); }
+	35% { .rotate(4deg); }
+	40% { .rotate(-3deg); }
+	45% { .rotate(2deg); }
+	50% { .rotate(0deg); }
+	100% { .rotate(0deg); }
+}
+
+@keyframes scaleout {
+	0% {
+		.scale(0.0);
+	}
+	100% {
+		.scale(1.0);
+		opacity: 0;
+	}
+}
+
+@keyframes cubemove {
+	25% {
+		transform: translateX(10px) rotate(-90deg);
+	}
+	50% {
+		transform: translateX(10px) translateY(10px) rotate(-179deg);
+	}
+	50.1% {
+		transform: translateX(10px) translateY(10px) rotate(-180deg);
+	}
+	75% {
+		transform: translateX(0px) translateY(10px) rotate(-270deg);
+	}
+	100% {
+		transform: rotate(-360deg);
+	}
+}
+
+@keyframes orbit {
+	0% {
+		opacity: 1;
+		animation-timing-function: ease-out;
+		.rotate(225deg);
+	}
+
+	7% {
+		.rotate(345deg);
+		animation-timing-function: linear;
+	}
+
+	35% {
+		.rotate(495deg);
+		animation-timing-function: ease-in-out;
+	}
+
+	42% {
+		.rotate(690deg);
+		animation-timing-function: linear;
+	}
+
+	70% {
+		opacity: 1;
+		.rotate(835deg);
+		animation-timing-function: linear;
+	}
+
+	76% {
+		opacity: 1;
+	}
+
+	77% {
+		.rotate(955deg);
+		animation-timing-function: ease-in;
+	}
+
+	78% {
+		.rotate(955deg);
+		opacity: 0;
+	}
+
+	100% {
+		.rotate(955deg);
+		opacity: 0;
+	}
+}
+
+@keyframes metro-slide {
+	0% {
+		left: -50%;
+	}
+	100% {
+		left: 150%;
+	}
+}
+
+@keyframes metro-opacity {
+	0% {
+		opacity: 0;
+	}
+	50% {
+		opacity: .5;
+	}
+	100% {
+		opacity: 1;
+	}
+}

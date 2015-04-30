@@ -1,0 +1,37 @@
+@import (once) "variables";
+@import (once) "utils";
+
+.charm {
+	display: block;
+	position: fixed;
+	z-index: @zindexCharms;
+	background: @dark;
+	color: @grayLighter;
+}
+
+.charm {
+	&.right-side {
+		width: auto;
+		right: 0;
+		top: 0;
+		bottom: 0;
+	}
+	&.left-side {
+		width: auto;
+		left: 0;
+		top: 0;
+		bottom: 0;
+	}
+	&.top-side {
+		height: auto;
+		left: 0;
+		right: 0;
+		top: 0;
+	}
+	&.top-side {
+		height: auto;
+		left: 0;
+		right: 0;
+		bottom: 0;
+	}
+}

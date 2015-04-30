@@ -1,103 +1,156 @@
+@import (once) "variables";
+@import (once) "transform";
+
 .rating {
-    color: #2784a7;
-    cursor: pointer;
-    display: block;
-    width: auto;
-    margin: 0 10px 10px 0;
-    height: @ratingSize;
-    .clearfix;
+	cursor: pointer;
+	display: inline-block;
+	.clear-float;
 
-    ul {
-        list-style: none;
-        color: inherit;
-        display: block;
-        margin: 0;
-        padding: 0;
-        margin-bottom: 5px;
-        .clearfix;
+	.star {
+		cursor: pointer;
+		display: block;
+		float: left;
+		color: @gray;
+		font-size: 20px;
+		z-index: 1;
+		position: relative;
+		width: 20px;
+		height: 24px;
+		vertical-align: middle;
+		line-height: 22px;
 
-        li {
-            display: block;
-            float: left;
-            position: relative;
-            font-family: @sysIconFontName;
-            font-size: @ratingSize;
-            line-height: @ratingSize;
-            color: inherit;
+		&:before, &:after  {
+			position: absolute;
+			content: '\2605';
+			display: block;
+			z-index: 2;
+			top: 0 !important;
+			left: 0;
+			vertical-align: middle;
+		}
 
-            &:before {
-                content: @ratingNo;
-            }
+		&.on {
+			color: gold;
 
-            &.rated {
-                &:before {
-                    content: @ratingRated;
-                }
-                &.half {
-                    &:before {
-                        content: @ratingHalf;
-                    }
-                }
-            }
+			&.half {
+				color: @gray;
+				&:after {
+					color: gold;
+				}
+			}
+		}
 
-            &.half {
-                &:before {
-                    content: @ratingHalf;
-                }
-            }
-        }
-    }
-    .score-hint {
-        display: block;
-        font-size: 12px;
-        color: @dark;
-    }
-}
+		&.half {
+			&:after {
+				z-index: 3;
+				width: 8px;
+				overflow: hidden;
+			}
+		}
+	}
 
-.rating.active {
-    ul {
-        &:hover > li:before {
-            content: @ratingRated;
-        }
+	&:not(.static) {
+		&:hover > .star, &:hover > .star:after {
+			color: gold !important;
+		}
 
-        li {
-            &:hover ~ li {
-                &:before {
-                    content: @ratingNo !important;
-                }
-            }
+		.star:hover ~ .star, .star:hover ~ .star:after {
+			color: gray !important;
+		}
 
-            &:hover {
-                &:before {
-                    content: @ratingRated !important;
-                }
-            }
+		.star:hover {
+			color: gold !important;
+		}
+	}
 
-        }
-    }
 }
 
 .rating {
-    &.small {
-        li {
-            font-size: @ratingSize / 1.5;
-            line-height: @ratingSize / 1.5;
-        }
+	&.poor {
+		.star.on {
+			color: @red;
 
-        .score-hint {
-            margin-top: -5px;
-            font-size: 12px;
-        }
-    }
+			&.half {
+				color: @gray;
+				&:after {
+					color: @red;
+				}
+			}
+		}
+	}
+	&.regular {
+		.star.on {
+			color: gold;
 
-    &.large {
-        li {
-            font-size: @ratingSize * 1.5;
-        }
+			&.half {
+				color: @gray;
+				&:after {
+					color: gold;
+				}
+			}
+		}
+	}
+	&.good {
+		.star.on {
+			color: @green;
 
-        .score-hint {
-            margin-top: 10px;
-            font-size: 16px;
-        }
-    }
+			&.half {
+				color: @gray;
+				&:after {
+					color: @green;
+				}
+			}
+		}
+	}
+}
+
+.rating {
+	&.small {
+		.star {
+			width: 14px;
+			height: 16px;
+			font-size: 14px;
+			line-height: 14px;
+
+			&.half {
+				&:after {
+					width: 6px;
+				}
+			}
+		}
+	}
+
+	&.large {
+		.star {
+			width: 28px;
+			height: 30px;
+			font-size: 32px;
+			line-height: 24px;
+
+			&.half {
+				&:after {
+					width: 13px;
+				}
+			}
+		}
+	}
+}
+
+.rating {
+	.score {
+		display: block;
+		font-size: .8rem;
+	}
+
+	&.small {
+		.score {
+			font-size: .6rem;
+		}
+	}
+
+	&.large {
+		.score {
+			font-size: 1rem;
+		}
+	}
 }

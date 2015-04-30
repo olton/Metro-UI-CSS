@@ -1,0 +1,303 @@
+@import (once) "variables";
+@import (once) "utils";
+
+@appBarBackground: #0072C6;
+@appBarBackgroundActive: #005696;
+@appBarDividerColor: #4C9CD7;
+
+.app-bar {
+	display: block;
+	width: 100%;
+	position: relative;
+	background-color: @appBarBackground;
+	color: @white;
+	height: 3.125rem;
+	.no-user-select;
+	.clear-float;
+
+	.app-bar-element {
+		line-height: 3.125rem;
+		padding: 0 .625rem;
+		font-size: 1rem;
+		cursor: pointer;
+		color: inherit;
+		display: block;
+		float: left;
+		position: relative;
+		vertical-align: middle !important;
+		height: 3.125rem;
+
+		&:hover, &:active {
+			background-color: @appBarBackgroundActive;
+		}
+
+		&.branding {
+			padding-left: 1rem;
+			padding-right: 1rem;
+		}
+	}
+
+	.app-bar-divider {
+		display: block;
+		float: left;
+		line-height: 3.125rem;
+		height: 3.125rem;
+		width: 1px;
+		background-color: @appBarDividerColor;
+		padding: 0;
+	}
+
+	.dropdown-toggle {
+		padding-right: 1.5rem !important;
+		&:before {
+			border-color: @white;
+		}
+	}
+
+	.app-bar-menu {
+		display: block;
+		float: left;
+		margin: 0;
+		padding: 0;
+
+		& > li, & > li > a {
+			.app-bar > .app-bar-element;
+		}
+
+		& > li .d-menu {
+			top: 100%;
+			border: 2px solid @appBarBackgroundActive;
+			li:not(.disabled):hover {
+				background-color: #eee;
+				& > a {
+					color: @dark;
+				}
+			}
+
+			.d-menu {
+				top: -.625rem;
+				left: 100%;
+			}
+			.dropdown-toggle {
+				&:before {
+					border-color: @dark;
+				}
+			}
+		}
+	}
+
+	.app-bar-pull {
+		display: none;
+		float: right !important;
+		color: #fff;
+		cursor: pointer;
+		font: 2rem sans-serif;
+		position: absolute;
+		top: 0;
+		right: 0;
+		height: 3.125rem;
+		width: 3.125rem;
+		line-height: 1.25rem;
+		vertical-align: middle;
+		text-align: center;
+		margin: 0;
+
+		&:before {
+			content: "\2261";
+			position: absolute;
+			top: .875rem;
+			left: .875rem;
+		}
+	}
+}
+
+.app-bar {
+	.app-bar-drop-container {
+		position: absolute;
+		top: 100%;
+		left: 0;
+		margin-top: 10px;
+		border: 2px solid @appBarBackgroundActive;
+
+		&:before {
+			content: '';
+			position: absolute;
+			background-color: @white;
+			width: 10px;
+			height: 10px;
+			border: 2px @appBarBackgroundActive solid;
+			top: 1px;
+			left: 1rem;
+			margin: -8px 0;
+			border-bottom: none;
+			border-right: none;
+			.rotate(45deg);
+		}
+		&:before {
+			z-index: 0;
+		}
+
+		&.place-right {
+			right: 0;
+			left: auto;
+
+			&:before {
+				left: auto;
+				right: 1rem;
+			}
+		}
+	}
+}
+
+// Form Elements
+.app-bar {
+	.app-bar-element {
+		.clear-float;
+		& > .input-control.text {
+			margin-top: .55rem;
+			font-size: .875rem;
+			line-height: 1.8rem;
+			display: block;
+
+			input {
+				border-color: @transparent !important;
+			}
+		}
+
+		& > .button {
+			margin-top: -.15rem;
+		}
+
+		& > .image-button {
+			margin: 0;
+			background-color: @transparent;
+			color: @white;
+			font-size: inherit;
+			img.icon {
+				padding: 0;
+			}
+		}
+	}
+}
+
+.app-bar {
+	&.drop-up {
+		.app-bar-drop-container {
+			top: auto;
+			bottom: 3.75rem;
+
+			&:before {
+				top: auto;
+				bottom: 1px;
+				.rotate(225deg);
+			}
+		}
+
+		.app-bar-menu {
+			& > li > .d-menu {
+				top: auto;
+				bottom: 3.125rem;
+			}
+		}
+
+		.d-menu {
+			.d-menu {
+				top: auto !important;
+				bottom: 0 !important;
+			}
+		}
+
+	}
+}
+
+.app-bar {
+	&.fixed-top, &.fixed-bottom {
+		z-index: @zindexFixedNavbar;
+		position: fixed;
+	}
+
+	&.fixed-top {
+		top: 0;
+	}
+	&.fixed-bottom {
+		bottom: 0;
+	}
+}
+
+// Media options
+.app-bar:not(.no-responsive-future) {
+	@media screen and (max-width : 800px) {
+		overflow: visible;
+		height: auto;
+
+		.app-bar-pull {
+			display: block !important;
+		}
+		.app-bar-menu {
+			width: 100%;
+			border-top: 1px solid @appBarDividerColor;
+			position: relative;
+			float: none;
+			z-index: @zindexDropdown;
+			background-color: @appBarBackgroundActive;
+			display: none;
+			clear: both;
+			& > li, & > li > a {
+				float: none;
+			}
+
+			& > li {
+				height: auto;
+			}
+
+			li:hover {
+				background-color: @appBarBackground !important;
+				a {
+					background-color: @appBarBackground !important;
+					color: @white !important;
+				}
+			}
+
+			.d-menu {
+				border: 0 !important;
+				border-top: 1px solid @appBarDividerColor !important;
+				clear: both;
+				float: none !important;
+				width: 100% !important;
+				position: relative !important;
+				left: 0 !important;
+				box-shadow: none;
+				max-width: 100%;
+				background-color: @appBarBackgroundActive !important;
+
+				li {
+					width: 100% !important;
+					background-color: inherit;
+
+					a {
+						padding-left: 20px;
+						padding-right: 0;
+						background-color: inherit;
+						width: 100%;
+						color: @white;
+					}
+				}
+
+				.dropdown-toggle {
+					&:before {
+						border-color: @white !important;
+						.rotate(-45deg);
+					}
+				}
+
+				.divider {
+					background-color: @appBarDividerColor;
+				}
+
+				.d-menu {
+					top: 0 !important;
+				}
+			}
+		}
+	}
+}

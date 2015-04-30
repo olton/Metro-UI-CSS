@@ -1,0 +1,109 @@
+@import (once) "variables";
+@import (once) "utils";
+
+.dialog-overlay {
+	background-color: @transparent;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	min-height: 100%;
+	min-width: 100%;
+	z-index: @zindexModal - 1;
+}
+
+.dialog {
+	position: fixed;
+	display: block;
+	width: auto;
+	height: auto;
+	float: left;
+	background-color: @white;
+	color: @dark;
+	z-index: @zindexModal;
+
+	.block-shadow;
+
+	.dialog-close-button {
+		position: absolute;
+		height: 1.5rem;
+		width: 1.5rem;
+		min-height: 1.5rem;
+		text-align: center;
+		vertical-align: middle;
+		font-size: 1rem;
+		font-weight: normal;
+		padding: .125rem 0 .625rem 0;
+		z-index: 3;
+		outline: none;
+		cursor: pointer;
+
+		background-color: @winFlatBackgroundColor;
+		color: @winFlatSystemButtonRestColor;
+		top: .25rem;
+		right: .25rem;
+
+		&:hover {
+			background-color: @winFlatSystemButtonHoverBackground;
+			color: @winFlatSystemButtonActiveColor;
+			&:after {
+				border-color: @winFlatSystemButtonActiveColor;
+			}
+		}
+		&:active {
+			background-color: @winFlatSystemButtonActiveBackground;
+			color: @white !important;
+		}
+		&:after {
+			border-color: @winFlatSystemButtonRestColor;
+			content: '\D7';
+			line-height: 1;
+		}
+	}
+
+	&.success {
+		.success;
+		.dialog-close-button {
+			background-color: @lightGreen;
+			color: @white;
+
+			&:active {
+				background-color: @darkGreen;
+			}
+		}
+	}
+	&.warning {
+		.warning;
+		.dialog-close-button {
+			background-color: @lightOrange;
+			color: @white;
+
+			&:active {
+				background-color: @darkOrange;
+			}
+		}
+	}
+	&.alert {
+		.alert;
+		.dialog-close-button {
+			background-color: @lightRed;
+			color: @white;
+
+			&:active {
+				background-color: @darkRed;
+			}
+		}
+	}
+	&.info {
+		.info;
+		.dialog-close-button {
+			background-color: @lightCyan;
+			color: @white;
+
+			&:active {
+				background-color: @darkCyan;
+			}
+		}
+	}
+}

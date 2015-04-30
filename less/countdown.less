@@ -1,57 +1,89 @@
-.countdown, .times{
-    width: auto;
-    margin:0 auto;
-    font: 20px/1.5 'Open Sans Condensed',sans-serif;
-    text-align:center;
-    letter-spacing:-3px;
+@import (once) "variables";
+@import (once) "utils";
 
-    .digit-wrapper{
-        display: inline-block;
-        height: 1.6em;
-        overflow: hidden;
-        position: relative;
-        width: 1.05em;
+.countdown {
+	display: inline-block;
+	font-weight: 700;
+	font-size: 1rem;
+	margin: .1em 0 1.2em;
 
-        .digit{
-            position:absolute;
-            display:block;
-            width:1em;
-            text-align:center;
-            vertical-align: middle;
-            letter-spacing:-1px;
+	.part {
+		display: inline-block;
+		position: relative;
 
-            &.stop {
-                background-color: @red;
-            }
-        }
-    }
+		&.days, &.hours, &.minutes, &.seconds {
+			&:after {
+				position: absolute;
+				content: attr(data-day-text);
+				text-align: center;
+				top: 100%;
+				left: 0;
+				width: 100%;
+				font-size: .6em;
+				color: inherit;
+			}
+		}
 
-    .divider{
-        display :inline-block;
-        width: 16px;
-        height: 1.5em;
-        position :relative;
-        font-weight: bold;
+		&.disabled {
+			.digit {
+				opacity: .3;
+				box-shadow: none;
+			}
+		}
+	}
 
-        &:before {
-            width: 100%;
-            height:1.5em;
-            position: absolute;
-            content: ":";
-            color: inherit;
-            font-size: inherit;
-            vertical-align: middle;
-            text-align: center;
-            left: -20%;
-            top: -15%;
-        }
-    }
+	.digit, .divider {
+		display: inline-block;
+		padding: .3125em .625em;
+		background-color: @cyan;
+		color: @white;
+		cursor: default;
+		.block-shadow;
+		.text-shadow;
+		.transition(.5s);
+	}
 
-    &.inverse {
-        .digit {
-            color: @grayDark !important;
-            background-color: @grayLighter !important;
-        }
-    }
+	.digit, .divider {
+		margin-left: 4px;
+	}
+
+	.divider {
+		padding: .125em .25em;
+		color: @dark;
+		background-color: transparent;
+		box-shadow: none;
+	}
+
+	&.tick {
+		.divider {
+			opacity: 0 !important;
+		}
+	}
+
+	&.labels-top {
+		margin: 1.2em 0 .1em;
+
+		.part {
+			&.days, &.hours, &.minutes, &.seconds {
+				&:after {
+					top: 0;
+					left: 0;
+					margin-top: -1.5em;
+				}
+			}
+		}
+	}
+
+	&.rounded {
+		.part {
+			.digit {
+				border-radius: .5em;
+			}
+		}
+	}
+
+	.digit.scaleIn {
+		.transition(.5s);
+		.scale(1.1);
+	}
 }
-

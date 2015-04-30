@@ -1,0 +1,57 @@
+@import (once) "utils";
+
+.popover {
+	display: block;
+	min-width: 12.5rem;
+	height: auto;
+	position: relative;
+	background-color: @grayLighter;
+	padding: 1.25rem;
+
+	* {
+		color: inherit;
+	}
+
+	&.popover-shadow {
+		box-shadow: 0 0 10px 0 rgba(0,0,0,.4);
+	}
+
+	&:before {
+		content: "";
+		width: .625rem;
+		height: .625rem;
+		display: block;
+		position: absolute;
+		background-color: inherit;
+		left: -.3125rem;
+		top: 50%;
+		margin-top: -.3125rem;
+		.rotate(45deg);
+	}
+
+	&.marker-on-top {
+		&:before {
+			top: 0;
+			left: 50%;
+			margin-left: -.3125rem;
+		}
+	}
+
+	&.marker-on-right {
+		&:before {
+			top: 50%;
+			margin-top: -.3125rem;
+			left: 100%;
+			margin-left: -.3125rem;
+		}
+	}
+
+	&.marker-on-bottom {
+		&:before {
+			top: 100%;
+			margin-left: -.3125rem;
+			left: 50%;
+			margin-top: -.3125rem;
+		}
+	}
+}

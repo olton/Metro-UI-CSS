@@ -1,0 +1,343 @@
+@import (once) "variables";
+@import (once) "utils";
+@import (once) "typography";
+
+.listview {
+	display: block;
+	width: 100%;
+	height: auto;
+	.clear-float;
+
+	.list-group {
+		display: block;
+		width: 100%;
+		height: auto;
+		position: relative;
+
+		.clear-float;
+
+		.list-group-toggle {
+			display: block;
+			padding-left: 16px;
+			cursor: pointer;
+			position: relative;
+			margin-top: 10px;
+
+			&:before {
+				position: absolute;
+				display: block;
+				left: 0;
+				top: -3px;
+				height: 0;
+				content: '';
+				width: 0;
+				border-left: 7px solid transparent;
+				border-top: 7px solid transparent;
+				border-bottom: 7px @cyan solid;
+			}
+		}
+
+		.list-group-content {
+			display: block;
+			width: 100%;
+			height: auto;
+			margin-top: 1rem;
+			.clear-float;
+		}
+
+		&.collapsed {
+			& > .list-group-toggle {
+				&:before {
+					left: -4px;
+					.rotate-45;
+					border-bottom-color: @grayLight;
+				}
+			}
+
+			&:hover {
+				& > .list-group-toggle {
+					&:before {
+						border-bottom-color: @darkCyan;
+					}
+				}
+			}
+		}
+
+	}
+
+	.list {
+		display: block;
+		width: 100%;
+		padding: 8px 8px 4px 48px;
+		border: 1px @transparent solid;
+		cursor: pointer;
+		height: 50px;
+		border-bottom-color: @grayLighter;
+		position: relative;
+
+		&:last-child {
+			border-bottom-color: @transparent;
+		}
+	}
+
+	.list {
+		.list-icon {
+			position: absolute;
+			left: 0; top: 0;
+			margin: 8px;
+			width: 32px;
+			height: 32px;
+			font-size: 32px;
+			text-align: center;
+		}
+
+		.list-title {
+		}
+
+		.list-data {
+			display: block;
+			margin: 4px 0;
+		}
+	}
+
+	&.list-type-icons {
+		.list {
+			display: block;
+			float: left;
+			padding: 0;
+			width: 105px;
+			height: 116px;
+			border-color: @transparent;
+			margin: .625rem;
+			text-align: center;
+
+			.list-title {
+				position: absolute;
+				left: 0;
+				right: 0;
+				bottom: 4px;
+				height: auto;
+				text-align: center;
+			}
+
+			.list-icon {
+				width: 80px;
+				height: 80px;
+				font-size: 80px;
+				text-align: center;
+				left: 50%;
+				margin-left: -40px;
+			}
+
+			.list-data {
+				display: none;
+			}
+		}
+	}
+
+	&.list-type-tiles {
+		.list {
+			display: block;
+			float: left;
+			padding: 8px 8px 4px 48px;
+			width: 250px;
+			height: 52px;
+			border-color: @transparent;
+			margin: .625rem;
+
+			.list-title {
+				margin-top: 8px;
+				display: block;
+			}
+
+			.list-icon {
+				width: 48px;
+				height: 48px;
+				font-size: 48px;
+				text-align: center;
+				top: 0;
+				left: 0;
+				margin: 2px;
+			}
+
+			.list-data {
+				display: none;
+			}
+		}
+	}
+
+	&.list-type-listing {
+		.list {
+			display: block;
+			float: left;
+			padding: 4px 2px 4px 24px;
+			width: auto;
+			height: auto;
+			border-color: @transparent;
+			margin: 1px;
+
+			.list-title {
+				display: block;
+			}
+
+			.list-icon {
+				width: 20px;
+				height: 20px;
+				font-size: 20px;
+				text-align: center;
+				top: 0;
+				left: 0;
+				margin: 1px;
+			}
+
+			.list-data {
+				display: none;
+			}
+		}
+	}
+
+	.list {
+		&.active {
+			background-color: rgba(209, 232, 255, 1);
+			border-color: #64b4db;
+		}
+	}
+
+	.list {
+		&:hover {
+			background-color: rgba(229, 243, 251, 1);
+			border-color: #64b4db;
+		}
+	}
+}
+
+.listview-outlook {
+	display: block;
+	width: 100%;
+	height: auto;
+	.clear-float;
+
+	.list {
+		display: block;
+		width: 100%;
+		border: 0;
+		border-bottom: 1px @grayLighter solid;
+		padding: 2px 0;
+		color: @gray;
+		margin-bottom: 0;
+
+		.list-content {
+			margin: 2px 0;
+			padding: 2px 20px;
+			font-size: 1rem;
+			color: inherit;
+			border-left: 3px transparent solid;
+
+			.list-title, .list-subtitle, .list-remark {
+				width: 100%;
+				display: block;
+				color: inherit;
+				.text-ellipsis;
+			}
+
+			.list-title {
+				line-height: 1;
+			}
+
+			.list-subtitle {
+				font-size: .75rem;
+				line-height: 1.2;
+				font-weight: 500;
+				color: #0067cb;
+			}
+
+			.list-remark {
+				font-weight: normal;
+				line-height: 1.2;
+				font-size: .625rem;
+				color: @grayLight;
+			}
+		}
+	}
+}
+
+.listview-outlook {
+	.list {
+		&.marked {
+			.list-content {
+				border-left: 3px @darkCyan solid !important;
+			}
+		}
+
+		&:active, &:focus, &.active {
+			background-color: #cde6f7 !important;
+			outline: 1px @grayLight dotted;
+			color: @gray !important;
+		}
+
+		&:hover {
+			background-color: @grayLighter;
+			outline: none;
+			.list-content {
+				border-left: 3px @transparent solid;
+			}
+		}
+	}
+}
+
+.listview-outlook {
+	.list-group {
+		display: block;
+		position: relative;
+
+		.list-group-toggle {
+			display: block;
+			margin-bottom: 2px;
+			background-color: #f0f0f0;
+			padding: 4px 20px 4px 24px;
+			font-size: .875rem;
+			font-weight: 500;
+			color: @grayDark;
+			cursor: pointer;
+
+			&:before {
+				position: absolute;
+				display: block;
+				left: 10px;
+				top: 2px;
+				content: '';
+
+				width: 0;
+				height: 0;
+				border-left: 7px solid transparent;
+				border-top: 7px solid transparent;
+				border-bottom: 7px solid black;
+			}
+		}
+
+		.list-group-content {
+			display: block;
+		}
+
+		&.collapsed {
+			.list-group-toggle {
+				&:before {
+					.rotate(-45deg);
+					margin-left: -4px;
+				}
+			}
+
+			.list-group-content {
+			}
+		}
+
+		.list-group-toggle {
+			&:hover {
+				&:before {
+					border-bottom-color: #0067cb;
+				}
+			}
+		}
+
+	}
+}

@@ -1,3 +1,11 @@
+@import (once) "variables";
+@import (once) "utils";
+
+
+@eventWidth: 211px;
+@eventHeight: 75px;
+@eventMargin: 2px;
+
 .streamer {
     position: relative;
     display: block;
@@ -6,6 +14,20 @@
 }
 
 .streamer {
+	.streamer-toolbar {
+		.toolbar-button {
+			display: block;
+			float: left;
+			width: .625rem;
+			height: 1.5rem;
+
+			&.active {
+				background-color: @gray;
+				color: @white;
+			}
+		}
+	}
+
     .meter {
         height: 25px;
         width: auto;
@@ -20,7 +42,7 @@
             float: left;
             width: 213px;
             padding: 2px 3px;
-            background: url("/images/meter-210.png") top left repeat-x;
+			background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAANUAAAAUCAYAAAAa9HiSAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAHlJREFUeNrs2csJgDAQQMFE7Gj77yA9+UNswOwewgwI3hYTngrpY4yjAb9FRH9u7qguLfuqmFP1PKutm/2Zu36b9wvMJSoQFYgKRAWICkQFq9qrBn0HY4neM4pl5lSyP75U4PcPRAWICkQFogJEBaICUQGigjynAAMAqEOFksZmC3MAAAAASUVORK5CYII=') top left repeat-x;
 
             em {
                 font-size: 10px;
@@ -54,9 +76,8 @@
             cursor: pointer;
 
             .stream-title {
-                #font > .segoe-light;
-                font-size: 12px;
-                line-height: 12px;
+                font-size: .75rem;
+                line-height: 1;
                 br {
 
                 }
@@ -66,9 +87,8 @@
                 position: absolute;
                 left: 5px;
                 bottom: 5px;
-                #font > .segoe-light;
-                font-size: 11px;
-                line-height: 11px;
+                font-size: .6875rem;
+                line-height: 1;
             }
 
             &:hover {
@@ -96,17 +116,30 @@
             width: @eventWidth * 4 + @eventMargin * 3;
         }
 
+		.margin-one {
+			margin-left: @eventWidth + @eventMargin !important;
+		}
+		.margin-double {
+			margin-left: @eventWidth * 2 + @eventMargin * 2  !important;
+		}
+		.margin-triple {
+			margin-left: @eventWidth * 3 + @eventMargin * 3 !important;
+		}
+		.margin-quadro {
+			margin-left: @eventWidth * 4 + @eventMargin * 4 !important;
+		}
+
         .events-area {
             height: 100%;
             min-height: 100%;
             overflow: hidden;
-            .clearfix;
+            .clear-float;
         }
 
         .events-grid {
             height: 100%;
             min-height: 100%;
-            .clearfix;
+            .clear-float;
         }
 
         .event-group {
@@ -120,7 +153,7 @@
         .event-super {
             height: 100%;
             min-height: 100%;
-            .border;
+            .set-border;
         }
 
         .event-stream {
@@ -135,7 +168,8 @@
                 cursor: pointer;
                 position: relative;
                 overflow: hidden;
-                .border;
+				.no-user-select;
+                .set-border;
 
                 &:last-child {
                     margin-right: 0;
@@ -182,10 +216,9 @@
                         position: relative;
                         width: 39px;
                         padding: 8px 4px;
-                        #font > .segoe;
-                        font-size: 12px;
+                        font-size: .75rem;
                         color: @white;
-                        line-height: 12px;
+                        line-height: 1;
                     }
                 }
 
@@ -198,18 +231,16 @@
 
                     .title {
                         position: relative;
-                        #font > .segoe-bold;
-                        font-size: 14px;
-                        line-height: 14px;
+                        font-size: .875rem;
+                        line-height: 1;
                         margin: 3px 0 0;
                         padding: 0;
                     }
 
                     .subtitle {
                         position: relative;
-                        #font > .segoe;
-                        font-size: 10px;
-                        line-height: 10px;
+                        font-size: .625rem;
+                        line-height: 1;
                         margin: 0;
                         padding: 0;
                         margin-bottom: 10px;
@@ -220,9 +251,8 @@
                         display: block;
                         top: 36px;
                         margin-right: 4px;
-                        #font > .segoe;
-                        font-size: 11px;
-                        line-height: 11px;
+                        font-size: .6875rem;
+                        line-height: 1;
                         //font-style: italic;
                         color: @grayLight;
                     }
@@ -238,8 +268,8 @@
                             //padding: 5px 4px;
                         }
                     }
-                    #element > .selected;
-                    border-width: 1px;
+					.element-selected;
+                    border-width: 1px !important;
                     &:before {
                         right: 3px;
                     }
