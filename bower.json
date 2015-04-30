@@ -15,7 +15,7 @@
     "homepage": "http://metroui.org.ua",
     "repository": {
         "type": "git",
-        "url": "git://bitbucket.org:olton/metro.git"
+        "url": "git://github.com:olton/metro.git"
     },
     "main": [
         "build/css/metro.css",
