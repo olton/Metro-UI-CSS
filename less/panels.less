@@ -1,38 +1,106 @@
+@import (once) "variables";
+@import (once) "typography";
+@import (once) "utils";
+
 .panel {
-    .border;
-    .panel-header {
-        padding: 10px;
-        background-color: @grayLighter;
-        width: 100%;
-        .subheader-secondary;
-        color: @dark;
-        cursor: default;
-    }
-    .panel-content {
-        width: 100%;
-        height: auto;
-        padding: 10px;
-    }
-}
+	display: block;
+	position: relative;
+	background-color: @white;
 
-[data-role=panel] {
-    .panel-header {
-        cursor: pointer;
-        &:after {
-            font-family: @sysIconFontName;
-            content: "\e000";
-            float: right;
-            color: inherit;
-            .rotate(180deg);
-        }
-    }
+	& > .heading, & > .content {
+		display: block;
+		position: relative;
+		color: @dark;
+	}
 
-    &.collapsed {
-        .panel-header {
-            &:after {
-                content: "\e000";
-                .rotate(90deg);
-            }
-        }
-    }
+	& > .heading {
+		padding: .625rem 0 ;
+		color: @white;
+		background-color: @cyan;
+		cursor: default;
+		vertical-align: middle;
+		z-index: 2;
+		height: 42px;
+		.bottom-shadow;
+
+		.sub-header;
+		.no-user-select;
+
+		& > .title {
+			margin-left: .625rem;
+		}
+
+		& > .icon + .title {
+			margin-left: 3.625rem;
+		}
+
+		& > .icon {
+			position: absolute;
+			background-color: @darkCyan;
+			top: 0;
+			left: 0;
+			bottom: 0;
+			vertical-align: middle;
+			line-height: 42px;
+			height: 42px;
+			width: 42px;
+			text-align: center;
+			padding: .625rem;
+		}
+	}
+
+	& > .content {
+		padding: .625rem;
+		background-color: #e8f1f4;
+		z-index: 1;
+		.text-default;
+	}
+
+	&.collapsible {
+		& > .heading {
+			cursor: pointer;
+
+			&:before {
+				content: "\2212";
+				display: block;
+				position: absolute;
+				top: 50%;
+				margin-top: -1.3rem;
+				right: .625rem;
+				color: inherit;
+				vertical-align: middle;
+				font-size: 2rem;
+			}
+		}
+	}
+
+	&.collapsed {
+		& > .heading {
+			&:before {
+				content: "\002b";
+			}
+		}
+
+		& > .content {
+			display: none;
+		}
+	}
+
+	&.alert, &.error, &.danger {
+		& > .heading {
+			background-color: @red;
+		}
+	}
+
+	&.warning {
+		& > .heading {
+			background-color: @orange;
+		}
+	}
+
+	&.success {
+		& > .heading {
+			background-color: @green;
+		}
+	}
 }

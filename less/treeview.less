@@ -1,96 +1,122 @@
+@import (once) "variables";
+@import (once) "utils";
+
+// leaf
+// node
+
 .treeview {
-    background-color: #fdfdfd;
-    color: @gray;
-    display: block;
-    list-style: none;
-    margin: 0;
-    padding: 0;
+	margin: 0;
+	padding: 0;
+	display: block;
+	font-size: .75rem;
 
-    ul {
-        color: @gray;
-        display: block;
-        list-style: none;
-        margin: 0;
-        padding: 0;
+	ul {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		width: 100%;
+		font-size: inherit;
+	}
 
-        li {
-            a {
-                padding: 0 0 0 15px;
-            }
-        }
-    }
+	li {
+		font-size: inherit;
+		padding: 2px 16px;
+		cursor: pointer;
+		position: relative;
+		color: @gray;
+		vertical-align: middle;
+		.no-user-select;
 
-    a {
-        font-size: 12px;
-        color: inherit;
-        display: block;
-    }
+		&.active > .leaf {
+			font-weight: bold;
+		}
 
-    .node {
-        & > a {
-            margin-bottom: 5px;
-            padding: 0 0 0 15px;
-            font-size: 12px;
-            position: relative;
-            color: #000;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-        }
+		&.disabled {
+			cursor: default;
+			color: @grayLight;
 
-        &:not(:first-child) {
-            margin-top: 0;
-        }
-    }
+			&:hover > .leaf {
+				color: @grayLight !important;
+			}
+		}
+	}
 
-    .node-toggle {
-        display: inline-block;
-        position: relative;
-        float: left;
-        margin-right: 3px;
-        width: 10px;
-        height: 10px;
-        &:before {
-            position: absolute;
-            display: block;
-            left: 2px;
-            top: 0;
-            content: '';
+	li {
+		.input-control {
+			margin: 0 .3125rem 0 0;
+			height: 1rem;
+			line-height: .625rem;
 
-            width: 0;
-            height: 0;
-            border-left: 7px solid transparent;
-            border-top: 7px solid transparent;
-            border-bottom: 7px @dark solid;
-        }
-        &:hover {
-            &:before {
-                border-bottom-color: @cobalt;
-            }
-        }
-    }
+			.check {
+				line-height: 1rem;
+			}
+		}
+	}
 
-    li.collapsed {
-        .node-toggle:before {
-            .rotate(-45deg);
-            margin-left: -4px;
-        }
-    }
+	ul > li > .leaf {
+		&:hover {
+			color: @dark;
+		}
+	}
 
-    li {
-        a:hover {
-            background-color: @lwListBackgroundHoverColor;
-        }
-    }
+	.leaf {
+		vertical-align: middle;
+		display: inline-block;
+		color: inherit;
+	}
 
-    .active {
-        background-color: #e1e1e1;
-        font-weight: bold;
-        color: @dark;
-    }
+	.leaf {
+		.icon {
+			width: 1rem;
+			height: 1rem;
+			text-align: center;
+		}
+	}
 
-    a {
-        .value {
-            color: #0067cb;
-        }
-    }
+	.node-toggle {
+		position: absolute;
+		left: 0;
+		top: 8px;
+		width: 8px;
+		height: 8px;
+
+		&:before {
+			position: absolute;
+			display: block;
+			left: 0;
+			top: -3px;
+			height: 0;
+			content: '';
+			width: 0;
+			border-left: 7px solid transparent;
+			border-top: 7px solid transparent;
+			border-bottom: 7px @cyan solid;
+		}
+	}
+
+	li:hover > .node-toggle {
+		&:before {
+			border-bottom-color: @darkCyan;
+		}
+	}
+
+	.node {
+		&.collapsed {
+			& > .node-toggle {
+				&:before {
+					left: -4px;
+					.rotate-45;
+					border-bottom-color: @grayLight;
+				}
+			}
+
+			&:hover {
+				& > .node-toggle {
+					&:before {
+						border-bottom-color: @darkCyan;
+					}
+				}
+			}
+		}
+	}
 }

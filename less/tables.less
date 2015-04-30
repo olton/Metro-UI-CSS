@@ -1,170 +1,191 @@
-table {
-    max-width: 100%;
-    background-color: @white;
-    border-collapse: collapse;
-    border-spacing: 0;
-}
+@import (once) "variables";
+@import (once) "typography";
+@import (once) "utils";
+
 
 .table {
-    width: 100%;
-    margin-bottom: @baseLineHeight;
+	width: 100%;
+	margin: .625rem 0;
 
-    th, td {
-        padding: @tableCellPadding;
-        font-size: 14px;
-        line-height: @baseLineHeight;
-        vertical-align: top;
-        border-bottom: 1px @tableBorderColor solid;
+	th, td {
+		padding: 0.625rem;
+	}
 
-        &[class*="span"] {
-            display: table-cell !important;
-            float: none !important;
-            margin: 0;
-        }
-    }
+	thead {
+		border-bottom: 4px solid @grayLight;
 
-    th {
-        //text-align: left;
-    }
+		tr:last-child {
+		}
 
-    thead {
-        tr:last-child {
-        }
+		th, td {
+			cursor: default;
+			color: @textColor2;
+			border-color: transparent;
+			.align-left;
+			.text-bold;
+			line-height: 100%;
+		}
+	}
 
-        th {
-            vertical-align: bottom;
-        }
+	tfoot {
+		border-top: 4px solid @grayLight;
 
-        th, td {
-            border-bottom: 1px solid #111111;
-        }
-    }
+		tr:last-child {
+		}
 
-    tbody {
-        tr {
-            &:last-child {
-                td {
-                    border-bottom: 0;
-                }
-            }
-        }
-    }
+		th, td {
+			cursor: default;
+			color: @textColor2;
+			border-color: transparent;
+			.align-left;
+			.text-bold;
+			line-height: 100%;
+		}
+	}
 
-    tbody + tbody {
-        border-top: 2px solid @tableBorderColor;
-    }
+	tbody {
+		td {
+			padding: 0.625rem 0.85rem;
+		}
+	}
 
-    tfoot {
-        th, td {
-            border-top: 1px solid #111111;
-        }
-    }
+	.sortable-column {
+		position: relative;
+		cursor: pointer;
+		.no-user-select;
+		&:after {
+			position: absolute;
+			content: "";
+			width: 1rem;
+			height: 1rem;
+			left: 100%;
+			margin-left: -20px;
+			top: 50%;
+			margin-top: -.5rem;
+			color: inherit;
+			font-size: 1rem;
+			line-height: 1;
+		}
 
-    .table {
-        background-color: darken(@white, 25%);
-    }
+		&.sort-asc, &.sort-desc {
+			background-color: @grayLighter;
+			&:after {
+				color: @dark;
+			}
+		}
 
-    &.condensed {
-        th, td {
-            padding: 4px 5px;
-            .input-control {
-                margin: 0;
-            }
-        }
-    }
+		&.sort-asc {
+			&:after {
+				content: "\2191";
+			}
+		}
 
-    &.super-condensed {
-        th, td {
-            padding: 2px;
-            .input-control {
-                margin: 0;
-            }
-        }
-    }
+		&.sort-desc {
+			&:after {
+				content: "\2193";
+			}
+		}
+	}
 
-    &.striped {
-        tbody tr:nth-child(odd) {
-            background: @tableOddColor;
-        }
-    }
+	&.sortable-markers-on-left {
+		.sortable-column {
+			padding-left: 30px;
+			&:before, &:after {
+				left: 0;
+				margin-left: 10px;
+			}
+		}
+	}
 
-    &.bordered {
-        border: 1px @tableBorderColor solid;
-        border-left: 0;
-        td, th {
-            border-left: 1px @tableBorderColor solid;
-            border-bottom: 1px @tableBorderColor solid;
-        }
-    }
+	tr.selected {
+		td {background-color: rgba(28, 183, 236, 0.10);}
+	}
 
-    &.no-border {
-        td, th {
-            border: 0;
-        }
-    }
+	td.selected {
+		background-color: rgba(28, 183, 236, 0.30);
+	}
 
-    &.border {
-        border: 1px @tableBorderColor solid !important;
-        td, th {
-            //border-color: transparent;
-        }
-    }
+	&.striped {
+		tbody tr:nth-child(odd) {
+			background: @grayLighter;
+		}
+	}
 
-    &.hovered {
-        //border-collapse: separate;
-        tbody {
-            tr {
-                &:hover {
-                    background-color: rgba(28, 183, 236, 0.10);
-                    td:first-child {
-                        //border-left: 1px #1c98cc solid ;
-                    }
-                    td:last-child {
-                        //border-right: 1px #1c98cc solid ;
-                    }
-                    td {
-                        //border-top: 1px #1c98cc solid ;
-                        //border-bottom: 1px #1c98cc solid;
-                    }
-                }
-            }
-        }
-    }
-}
+	&.hovered {
+		tbody {
+			tr {
+				&:hover {
+					background-color: rgba(28, 183, 236, 0.10);
+				}
+			}
+		}
+	}
 
-.table {
-    tr {
-        &.success {
-            .bg-green;
-        }
-        &.error {
-            .bg-red;
-        }
-        &.warning {
-            .bg-orange;
-        }
-        &.info {
-            .bg-lightBlue;
-        }
+	&.cell-hovered {
+		tbody {
+			td {
+				&:hover {
+					background-color: rgba(28, 183, 236, 0.30);
+				}
+			}
+		}
+	}
 
-        &.info, &.warning, &.error, &.success {
-            td, td * {
-                .fg-white;
-            }
-        }
+	&.border {
+		border: 1px @grayLight solid;
+	}
 
-        &.selected {
-            background-color: rgba(28, 183, 236, 0.10);
-            td:first-child {
-                //border-left: 1px #1c98cc solid;
-            }
-            td:last-child {
-                //border-right: 1px #1c98cc solid;
-            }
-            td {
-                //border-top: 1px #1c98cc solid;
-                //border-bottom: 1px #1c98cc solid;
-            }
-        }
-    }
+	&.bordered {
+		th, td {
+			border: 1px @grayLight solid;
+		}
+
+		thead {
+			tr:first-child {
+				th, td {
+					border-top: none;
+
+					&:first-child {
+						border-left: none;
+					}
+					&:last-child {
+						border-right: none;
+					}
+				}
+			}
+		}
+
+		tbody {
+			tr {
+
+				&:first-child {
+					td {
+						border-top: none;
+					}
+				}
+
+				td {
+					&:first-child {
+						border-left: none;
+					}
+					&:last-child {
+						border-right: none;
+					}
+				}
+
+				&:last-child {
+					td {
+						border-bottom: none;
+					}
+				}
+			}
+		}
+	}
+
+	.condensed {
+		th, td {padding: .3125rem;}
+	}
+	.super-condensed {
+		th, td {padding: .125rem;}
+	}
 }

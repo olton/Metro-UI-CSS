@@ -1,0 +1,41 @@
+{
+  "author": "Sergey Pimenov",
+  "name": "metro",
+  "version": "3.0.0",
+  "description": "The front-end framework for developing responsive, mobile projects on the web in Windows Metro Style.",
+  "keywords": [
+    "css",
+    "less",
+    "mobile-first",
+    "responsive",
+    "front-end",
+    "framework",
+    "web"
+  ],
+  "homepage": "http://metroui.org.ua",
+  "style": "build/css/metro.css",
+  "mif": "build/css/metro-icons.css",
+  "repository": {
+    "type": "git",
+    "url": "https://bitbucket.com/olton/metro.git"
+  },
+  "bugs": {
+    "url": "https://bitbucket.com/olton/metro/issues"
+  },
+  "license": {
+    "type": "MIT",
+    "url": "http://metroui.org.ua/license.html"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-concat": "^0.5.1",
+    "grunt-contrib-copy": "^0.8.0",
+    "grunt-contrib-cssmin": "^0.12.2",
+    "grunt-contrib-less": "^1.0.0",
+    "grunt-contrib-uglify": "^0.8.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-postcss": "^0.3.0",
+    "load-grunt-tasks": "^3.1.0"
+  }
+}

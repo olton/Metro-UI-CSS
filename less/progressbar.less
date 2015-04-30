@@ -1,0 +1,39 @@
+@import (once) "variables";
+@import (once) "utils";
+
+.progress, .progress-bar {
+	display: block;
+	position: relative;
+	width: 100%;
+	height: auto;
+	margin: .625rem 0;
+	background: @grayLighter;
+	overflow: hidden;
+	.clear-float;
+
+	.bar {
+		position: relative;
+		display: block;
+		float: left;
+		width: 0;
+		background-color: @cyan;
+		z-index: 1;
+		text-align: center;
+		height: .625rem;
+		line-height: .625rem;
+		color: @white;
+	}
+
+	&.small > .bar {
+		height: .3125rem;
+	}
+	&.large > .bar {
+		height: 1rem;
+	}
+
+	&.gradient-bar {
+		.bar {
+			background: linear-gradient(to right, #4cd964, #5ac8fa, #007aff, #34aadc, #5856d6, #ff2d55);
+		}
+	}
+}

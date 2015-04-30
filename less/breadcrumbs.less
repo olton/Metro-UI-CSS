@@ -1,118 +1,85 @@
+@import (once) "variables";
+@import (once) "typography";
+@import (once) "utils";
 
 .breadcrumbs {
-    margin: 0.2em;
+	.flush-list;
+	background-color: @white;
+	color: #999;
+	padding: 1rem;
 
-    ul {
-        margin: 0;
-        padding: 0;
-        list-style: none;
-        overflow: hidden;
-        width: 100%;
+	& > li {
+		display: inline-block;
+		color: inherit;
+		margin: 0 1rem 0 0;
+		position: relative;
+		vertical-align: middle;
 
-        li {
-            float: left;
-            margin: 0 .2em 0 1em;
-        }
+		&:before, &:after {
+			display: block;
+			position: absolute;
+			vertical-align: middle;
+			color: transparent;
+			font-size: 0;
+			content: "";
+			height: 1px;
+			width: .375rem;
+			background-color: @dark;
+			top: 50%;
+			left: 100%;
+			margin-left: .5rem;
+		}
 
-        li:first-child {
-            margin-left: 0 !important;
-            a:before {
-                content: normal;
-            }
-        }
+		&:before {
+			.rotate(45deg);
+			margin-top: -.125rem;
+		}
 
-        li:last-child {
-            background: none;
-            a {
-                color: @dark;
-            }
-            &:after, &:before {
-                content: normal;
-            }
-        }
+		&:after {
+			.rotate(-45deg);
+			margin-top: .125rem;
+		}
 
-        a {
-            background: @inputRestState;
-            padding: .3em 1em;
-            float: left;
-            text-decoration: none;
-            color: @linkColor;
-            position: relative;
+		& > a {
+			color: inherit;
+			display: inline-block;
+			line-height: 1;
+		}
 
-            &:hover {
-                background: @cyan;
-                color: @white;
+		&:last-child {
+			color: @dark;
+			font-weight: bolder;
+			a {cursor: default;}
+			&:before, &:after {
+				background-color: @transparent;
+			}
+		}
 
-                &:before {
-                    border-color: @cyan @cyan @cyan transparent;
-                }
+		&:hover {
+			color: @dark;
+		}
+	}
 
-                &:after {
-                    border-left-color: @cyan;
-                }
-            }
+	img, .icon {
+		display: inline-block;
+		line-height: .8;
+		height: 1rem;
+		width: 1rem;
+		font-size: 1rem;
+		vertical-align: -15%;
+	}
 
-            &:before {
-                content: "";
-                position: absolute;
-                top: 50%;
-                margin-top: -1.5em;
-                border-width: 1.5em 0 1.5em 1em;
-                border-style: solid;
-                border-color: @inputRestState @inputRestState @inputRestState transparent;
-                left: -1em;
-                margin-left: 1px;
-            }
+	&.dark {
+		background-color: #393832;
 
-            &:after {
-                content: "";
-                position: absolute;
-                top: 50%;
-                margin-top: -1.5em;
-                border-top: 1.5em solid transparent;
-                border-bottom: 1.5em solid transparent;
-                border-left: 1em solid @inputRestState;
-                right: -1em;
-                margin-right: 1px;
-            }
-        }
+		& > li {
+			&:hover, &:last-child {
+				color: @white;
+			}
 
-        .active, .active:hover {
-            background: none;
-            a {
-                color: @dark;
-            }
-        }
-
-        .active:hover {
-            a {
-                color: @white;
-            }
-        }
-
-        .active {
-            &:after, &:before {
-                content: normal;
-            }
-        }
-    }
-
-    &.small {
-        li {
-            margin: 0 .2em 0 .8em;
-        }
-        a {
-            padding: .2em 1em;
-            font-size: 11.9px;
-        }
-    }
-    &.mini {
-        li {
-            margin: 0 .2em 0 .6em;
-        }
-        a {
-            padding: .1em 1em;
-            font-size: 10.5px;
-        }
-    }
+			&:before, &:after {
+				background-color: @white;
+			}
+		}
+	}
 }

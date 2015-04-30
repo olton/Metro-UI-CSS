@@ -1,123 +1,201 @@
+@import (once) "variables";
+@import (once) "colors";
+@import (once) "utils";
+
 .calendar {
-    width: 250px;
+    min-width: 15.625rem;
     border: 1px @grayLighter solid;
-    font-size: 10pt;
+    font-size: .75rem;
+	padding: .3125rem;
+	background-color: @white;
 
-    table {
-        width: 100%;
-        border-collapse: collapse;
-    }
+	.calendar-grid {
+		margin: 0;
+		padding: 0;
+	}
 
-    td, th {
-        padding: 0;
-        width: 14.28%;
-    }
+	.calendar-row {
+		margin: 0 0 .3125rem;
+		width: 100%;
+		.clear-float;
 
-    td {
-        border: 1px  solid;
-        border-color: lighten(@cyan, 45%);
-        &:first-child {
-            border-left: 0;
-        }
-        &:last-child {
-            border-right: 0;
-        }
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
 
-    }
+	.calendar-cell {
+		width: 12.46201429%;
+		margin: 0 0 0 2.12765%;
+		display: block;
+		float: left;
 
-    tr:last-child td{
-        border-bottom: 0;
-    }
+		&:first-child {
+			margin-left: 0;
+		}
+
+		&.sel-month {
+			width: 41.64134286%;
+		}
+
+		&.sel-year {
+			width: 48.936175%;
+		}
+
+		&.sel-plus, &.sel-minus {
+			width: 23.4042625%;
+		}
+
+		&.month-cell, &.year-cell {
+			width: 23.4042625%;
+		}
+	}
+
+	.calendar-actions {
+		.button {
+			margin: .15625rem;
+		}
+	}
 
     .day-of-week {
-        padding: @subunitSize;
+        padding: .3125rem;
         cursor: default;
     }
 
     a {
         display: block;
-        padding: @subunitSize;
+        padding: .3125rem;
 
         &:hover {
-            background-color: @grayLighter;
-            color: @dark;
+            background-color: lighten(@cyan, 20%);
+            color: @white;
+			border-radius: inherit;
         }
     }
 
     .calendar-header {
-        background-color: @cyan;
+        background-color: @lightCyan;
         color: @white;
-        td, th {
-            border: 0 !important;
-            a {
-                color: @white;
-                &:hover {
-                    background-color: @cyan;
-                    color: @white;
-                }
-            }
-        }
+
+		a {
+			color: @white;
+			padding: .325rem;
+			&:hover {
+				background-color: lighten(@cyan, 10%);
+				color: @white;
+			}
+		}
     }
 
+	.week-days {
+//		background-color: @brown;
+//		color: @white;
+	}
+
     .calendar-actions {
-        td, th {
-            padding: 10px;
-        }
+		.clear-float;
     }
 
     .today {
         a {
-            background-color: lighten(@green, 25%);
-            color: @dark;
-
-            &:hover {
-                background-color: @darkGreen;
-                color: @white;
-            }
+            background-color: @green;
+            color: @white;
+			.text-shadow;
         }
     }
 
     .day {
 
+		border: 1px @borderColor solid;
+
         a {
             display: block;
             position: relative;
-            border: 2px transparent solid;
+            //border: 2px transparent solid;
         }
 
         a.selected {
-            #element > .selected;
-            border-width: 1px;
-            &:after {
-                border-top-width: 12px;
-                border-left-width: 12px;
-            }
-            &:before {
-                //content: "";
-                font-size: 4pt;
-            }
+
         }
     }
 
     .month, .year {
+		border: 1px @borderColor solid;
+
         a {
-            padding-top: 20px;
-            padding-bottom: 20px;
+            padding-top: 1.3125rem;
+            padding-bottom: 1.3125rem;
         }
     }
 
     .empty {
+		cursor: default;
     }
 
     .other-day {
         display: block;
         text-align: center;
         color: @grayLight;
+		padding: .325rem;
+		background-color: @grayLighter;
+		border: 1px @borderColor solid;
     }
 
+	.selected {
+		background-color: @lightCyan;
+		a {
+			background-color: @lightCyan;
+			color: @white;
+		}
+	}
+	.exclude {
+		background-color: @red;
+		a {
+			cursor: not-allowed;
+			background-color: @red;
+			color: @white;
+		}
+	}
+}
+
+.calendar {
+	&.rounded {
+		button {
+			border-radius: @borderRadius;
+		}
+
+		.day, .month, .year, .other-day, .today, .calendar-header, .selected {
+			border-radius: @borderRadius;
+		}
+
+		.today a, .selected a, .exclude a {
+			border-radius: @borderRadius;
+		}
+
+		.calendar-header {
+			a {
+				&:hover {
+					border-radius: @borderRadius;
+				}
+			}
+		}
+	}
+}
+
+.calendar {
+	&.no-border {
+
+		.day, .month, .year, .other-day, .today, .calendar-header {
+			border: 0;
+		}
+
+		.today a {
+			border: 0;
+		}
+	}
 }
 
 .calendar-dropdown {
     border: 0;
-    .shadow;
+    .block-shadow;
 }

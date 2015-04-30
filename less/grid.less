@@ -1,91 +1,178 @@
-.span1, .size1 {.spanX(1)}
-.span2, .size2 {.spanX(2)}
-.span3, .size3 {.spanX(3)}
-.span4, .size4 {.spanX(4)}
-.span5, .size5 {.spanX(5)}
-.span6, .size6 {.spanX(6)}
-.span7, .size7 {.spanX(7)}
-.span8, .size8 {.spanX(8)}
-.span9, .size9 {.spanX(9)}
-.span10, .size10 {.spanX(10)}
-.span11, .size11 {.spanX(11)}
-.span12, .size12 {.spanX(12)}
+@import (once) "variables";
+@import (once) "utils";
+@import (once) "transform";
 
-.offset1 {.offsetX(1) !important;}
-.offset2 {.offsetX(2) !important;}
-.offset3 {.offsetX(3) !important;}
-.offset4 {.offsetX(4) !important;}
-.offset5 {.offsetX(5) !important;}
-.offset6 {.offsetX(6) !important;}
-.offset7 {.offsetX(7) !important;}
-.offset8 {.offsetX(8) !important;}
-.offset9 {.offsetX(9) !important;}
-.offset10 {.offsetX(10) !important;}
-.offset11 {.offsetX(11) !important;}
-.offset12 {.offsetX(12) !important;}
 
 .grid {
-    margin-bottom: @gridGutterSize;
+	display: block;
+	position: relative;
+	margin: .625rem 0;
+	.clear-float;
 
-    .row {
-        .clearfix;
-        display: block;
-        margin-top: @gridGutterSize;
+	.row {
+		width: 100%;
+		display: block;
+		.margin(0, 0, @gridMargin, 0);
+		.clear-float;
 
-        [class*="span"] {
-            float: left;
-            min-height: 1px;
-            margin-left: @gridGutterSize;
+		&:last-child {
+			margin-bottom: 0;
+		}
 
-            &:first-child {
-                margin-left: 0;
-            }
-        }
-    }
+		& > .cell {
+			display: block;
+			float: left;
+			width: 100%;
+			min-height: 10px;
+			.margin(0, 0, 0, @gridMargin);
+			&:first-child {
+				margin-left: 0;
+			}
+		}
+
+		.generate-cell(@gridColumns);
+
+		.generate-cell(@n, @i: 2) when (@i =< @n){
+			@width: 0% + ( 100 - (@i - 1) * @gridMargin ) / @i;
+
+			&.cells@{i} {
+				& > .cell {
+					width: (@width);
+
+					.generate-colspan(@i);
+
+					.generate-colspan(@j, @k: 2) when (@k =< @j){
+						&.colspan@{k} {
+							width: @width * @k + ((@k - 1) * @gridMargin);
+						}
+
+						.generate-colspan(@j, (@k + 1));
+					}
+				}
+			}
+
+			.generate-cell(@n, (@i + 1));
+		}
+	}
+
+	.row:empty {
+		display: none;
+	}
+
+	&:not(.no-responsive-future) {
+		@media screen and (max-width: 768px) {
+			.row {
+				margin: 0;
+			}
+
+			.row {
+				& > .cell, & > .cell[class*=colspan] {
+					width: 48.936175% ;
+					margin-bottom: 10px;
+
+					&:nth-child(odd) {
+						margin-left: 0;
+					}
+				}
+			}
+		}
+
+		@media only screen and (max-width: 640px) {
+			.row {
+				margin: 0;
+			}
+
+			.row {
+				& > .cell, & > .cell[class*=colspan] {
+					width: 100%;
+					margin: .3125rem 0;
+				}
+			}
+		}
+	}
 }
 
-.grid {
-    &.fluid {
-        width: 100%;
-        .row {
-            .span1 {.fluid-spanX(1)}
-            .span2 {.fluid-spanX(2)}
-            .span3 {.fluid-spanX(3)}
-            .span4 {.fluid-spanX(4)}
-            .span5 {.fluid-spanX(5)}
-            .span6 {.fluid-spanX(6)}
-            .span7 {.fluid-spanX(7)}
-            .span8 {.fluid-spanX(8)}
-            .span9 {.fluid-spanX(9)}
-            .span10 {.fluid-spanX(10)}
-            .span11 {.fluid-spanX(11)}
-            .span12 {.fluid-spanX(12)}
+.grid.condensed {
+	display: block;
+	position: relative;
+	margin: .625rem 0;
+	.clear-float;
 
-            [class*="span"] {
-                margin-left: 2.127659%;
-                &:first-child {
-                    margin-left: 0;
-                }
-            }
+	.row {
+		width: 100%;
+		display: block;
+		.margin(0, 0, @gridMarginCondensed, 0);
+		.clear-float;
 
-            .offset1 {.fluid-offsetX(1) !important;}
-            .offset2 {.fluid-offsetX(2) !important;}
-            .offset3 {.fluid-offsetX(3) !important;}
-            .offset4 {.fluid-offsetX(4) !important;}
-            .offset5 {.fluid-offsetX(5) !important;}
-            .offset6 {.fluid-offsetX(6) !important;}
-            .offset7 {.fluid-offsetX(7) !important;}
-            .offset8 {.fluid-offsetX(8) !important;}
-            .offset9 {.fluid-offsetX(9) !important;}
-            .offset10 {.fluid-offsetX(10) !important;}
-            .offset11 {.fluid-offsetX(11) !important;}
-            .offset12 {.fluid-offsetX(12) !important;}
-        }
-    }
-}
+		&:last-child {
+			margin-bottom: 0;
+		}
 
-.grid {
-    &.compact {
+		& > .cell {
+			display: block;
+			float: left;
+			width: 100%;
+			min-height: 10px;
+			.margin(0, 0, 0, @gridMarginCondensed);
+			&:first-child {
+				margin-left: 0;
+			}
+		}
 
-    }
+		.generate-cell(@gridColumns);
+
+		.generate-cell(@n, @i: 2) when (@i =< @n){
+			@width: 0% + ( 100 - (@i - 1) * @gridMarginCondensed ) / @i;
+
+			&.cells@{i} {
+				& > .cell {
+					width: (@width);
+
+					.generate-colspan(@i);
+
+					.generate-colspan(@j, @k: 2) when (@k =< @j){
+						&.colspan@{k} {
+							width: @width * @k + ((@k - 1) * @gridMarginCondensed);
+						}
+
+						.generate-colspan(@j, (@k + 1));
+					}
+				}
+			}
+
+			.generate-cell(@n, (@i + 1));
+		}
+	}
+
+	&:not(.no-responsive-future) {
+		@media screen and (max-width: 768px) {
+			.row {
+				margin: 0;
+			}
+
+			.row {
+				& > .cell, & > .cell[class*=colspan] {
+					width: 50% ;
+					margin-bottom: 10px ;
+
+					&:nth-child(odd) {
+						margin-left: 0;
+					}
+				}
+			}
+		}
+
+		@media only screen and (max-width: 640px) {
+			.row {
+				margin: 0;
+			}
+
+			.row {
+				& > .cell, & > .cell[class*=colspan] {
+					width: 100%;
+					margin: .3125rem 0;
+				}
+			}
+		}
+	}
 }

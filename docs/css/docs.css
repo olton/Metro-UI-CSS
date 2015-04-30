@@ -1,50 +1,47 @@
 body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
+
 }
-.metro .page {
-  width: 980px;
-  margin: 0 auto;
-  padding: 0 20px;
+
+.page-content {
+    padding-top: 48px;
 }
-.description {
-  margin: 10px 0;
+
+.color-list li {
+    display: inline-block;
+    padding: 10px;
+    width: 14.2857%;
 }
-.show-grid .row [class*="span"] {
-  line-height: 40px;
-  background: rgba(193, 179, 123, 0.52);
-  text-align: center;
-  min-height: 10px !important;
+
+.prettyprint {
+    background-color: #eeeeee;
+    border: 0 !important;
+    border-width: 1px !important;
+    border-color: #eeeeee !important;
+    border-left: 8px #555555 solid !important;
 }
-.color-stack li,
-#icon-list li {
-  margin-bottom: 5px;
+
+.prettyprint ol {
+    background-color: transparent !important;
 }
-.example > img {
-  margin: 5px;
-  display: inline-block;
+
+.prettyprint li {background-color: white !important; list-style-type: decimal !important; padding-left: 1em; border-bottom: 1px #eee solid;}
+.prettyprint li:last-child{border-bottom: 0;}
+.prettyprint code .tag {
+    font-size: .7rem;
 }
-.example .image-container {
-  margin: 10px;
-  display: inline-block;
-  vertical-align: middle;
+
+
+@media screen and (max-width: 800px) {
+    .app-bar.fixed-top {
+        position: relative !important;
+    }
+    .page-content {
+        padding-top: 0 !important;
+    }
 }
-.layout {
-  min-height: 100%;
-  position: relative;
-}
-header {
-  height: 45px;
-  position: relative;
-}
-footer {
-  width: 100%;
-  height: 25px;
-}
-@media only screen and (max-width: 640px) {
-  .prettyprint,
-  .example {
-    display: none;
-  }
+
+@media screen and (max-width: 640px) {
+    .page-content {
+        padding-top: 32px;
+    }
 }

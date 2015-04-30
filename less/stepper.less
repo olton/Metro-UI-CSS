@@ -1,6 +1,9 @@
+@import (once) "variables";
+@import (once) "utils";
+
 .stepper {
     margin: 10px 0;
-    .clearfix;
+    .clear-float;
 
     & > ul {
         counter-reset:li;
@@ -17,10 +20,10 @@
             height: 2em;
             margin-top: -1em;
             position: absolute;
-            //border: 1px red dotted;
             left: 0;
             background:#666;
             cursor: pointer;
+			font-size: .875rem;
 
             &:before {
                 content:counter(li);
@@ -31,7 +34,7 @@
                 color:#fff;
                 font-weight:bold;
                 font-family:"Helvetica Neue", Arial, sans-serif;
-                font-size: 1.5rem;
+                font-size: .9em;
                 text-align:center;
             }
 
@@ -63,9 +66,9 @@
             }
         }
     }
-    &.rounded {
+    &.cycle {
         li {
-            border-radius: 100%;
+            border-radius: 50%;
         }
     }
     &.diamond {

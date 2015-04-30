@@ -1,0 +1,27 @@
+@import (once) "transform";
+@import (once) "animations";
+
+.mif-ani-spin {
+	.animate( mif-ani-spin 1s infinite linear );
+}
+.mif-ani-pulse {
+	.animate( mif-ani-pulse 1s infinite );
+}
+
+@keyframes mif-ani-spin {
+	0% {
+		.rotate(0deg);
+	}
+	100% {
+		.rotate(359deg);
+	}
+}
+
+@keyframes mif-ani-pulse {
+	0% {
+		.rotate(0deg);
+	}
+	100% {
+		.rotate(359deg);
+	}
+}
