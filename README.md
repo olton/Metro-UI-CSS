@@ -13,7 +13,6 @@ This set of styles was developed as a self-contained solution.
 - framework itself monitors components, pressure via ajax
 - create cool page without knowledge of javascript
 
-
  Documentation and Demo: [metroui.org.ua](http://metroui.org.ua/).   
  Documentation and Demo for V2: [metroui.org.ua/v2](http://metroui.org.ua/v2).   
  Community Forum: [forum.metroui.org.ua](http://forum.metroui.org.ua).  
