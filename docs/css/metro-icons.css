@@ -10,7 +10,7 @@
   display: inline-block;
   font: normal normal normal 1.5em/1;
   font-family: metro, "Segoe UI", "Open Sans", serif;
-  line-height: 1 !important;
+  line-height: 1 ;
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

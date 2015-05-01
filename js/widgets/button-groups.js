@@ -1,7 +1,7 @@
 (function ( $ ) {
     "use strict";
 
-    $.widget( "metro.buttonGroup" , {
+    $.widget( "metro.group" , {
 
         version: "3.0.0",
 
@@ -59,7 +59,7 @@
                 }
             });
 
-            element.data('buttonGroup', this);
+            element.data('group', this);
 
         },
 

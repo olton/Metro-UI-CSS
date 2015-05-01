@@ -8,7 +8,7 @@
 	padding: 0 1rem;
 	height: 2.125rem;
 	text-align: center;
-	vertical-align: middle !important;
+	vertical-align: middle;
 	background-color: @defaultBGColor;
 	border: 1px @borderColorButton solid;
 	color: @textColor;
@@ -32,7 +32,7 @@
 	&:active {
 		background: @grayLighter;
 		color: @textColor;
-		box-shadow: none !important;
+		box-shadow: none;
 	}
 
 	&:focus {
@@ -40,9 +40,9 @@
 	}
 
 	&:disabled, &.disabled {
-		background-color: #eaeaea !important;
-		color: #bebebe !important;
-		cursor: default !important;
+		background-color: #eaeaea;
+		color: #bebebe;
+		cursor: default;
 		border-color: transparent;
 	}
 
@@ -57,12 +57,8 @@
 		border-radius: .325rem;
 	}
 
-	&.no-border {
-		border: 0 !important;
-	}
-
 	& > [class*=mif-] {
-		vertical-align: middle !important;
+		vertical-align: middle;
 	}
 }
 
@@ -82,8 +78,8 @@
 	.button;
 	width: 2.125rem;
 	min-width: 2.125rem;
-	padding: 0 !important;
-	border-radius: 50% !important;
+	padding: 0 ;
+	border-radius: 50%;
 	text-align: center;
 	text-decoration:none;
 	vertical-align: middle;
@@ -109,7 +105,7 @@
 }
 
 .square-button {
-	border-radius: 0 !important;
+	border-radius: 0;
 }
 
 a.button, a.round-button, a.square-button {
@@ -243,7 +239,7 @@ a.button, a.round-button, a.square-button {
 
 		.icon {
 			right: 0;
-			left: auto !important;
+			left: auto;
 		}
 	}
 }
@@ -415,7 +411,7 @@ a.shortcut-button {
 		padding: 0 1rem 0 .625rem;
 		height: 2.125rem;
 		text-align: center;
-		vertical-align: middle !important;
+		vertical-align: middle ;
 		background-color: @defaultBGColor;
 		border: 1px @borderColorButton solid;
 		color: @textColor;
@@ -613,10 +609,10 @@ a.shortcut-button {
 }
 a, span, div {
 	&.button, &.round-button, &.cycle-button, &.square-button  {
-		padding-top: .53125rem !important;
+		padding-top: .53125rem;
 
 		&.big-button {
-			padding-top: .78125rem !important;
+			padding-top: .78125rem;
 		}
 	}
 }
