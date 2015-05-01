@@ -77,7 +77,7 @@
 				}
 			}
 
-			.d-menu {
+			& > .d-menu {
 				top: -.625rem;
 				left: 100%;
 			}
@@ -156,14 +156,14 @@
 .app-bar {
 	.app-bar-element {
 		.clear-float;
-		& > .input-control.text {
+		& > .input-control.text, & > .input-control.password {
 			margin-top: .55rem;
 			font-size: .875rem;
 			line-height: 1.8rem;
 			display: block;
 
 			input {
-				border-color: @transparent !important;
+				border-color: @transparent;
 			}
 		}
 
@@ -205,8 +205,8 @@
 
 		.d-menu {
 			.d-menu {
-				top: auto !important;
-				bottom: 0 !important;
+				top: auto ;
+				bottom: 0 ;
 			}
 		}
 
