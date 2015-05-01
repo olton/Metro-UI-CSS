@@ -3853,15 +3853,19 @@ a.tag {
   clear: both;
 }
 .app-bar .app-bar-menu > li > .input-control.text,
-.app-bar .app-bar-menu > li > a > .input-control.text {
+.app-bar .app-bar-menu > li > a > .input-control.text,
+.app-bar .app-bar-menu > li > .input-control.password,
+.app-bar .app-bar-menu > li > a > .input-control.password {
   margin-top: .55rem;
   font-size: .875rem;
   line-height: 1.8rem;
   display: block;
 }
 .app-bar .app-bar-menu > li > .input-control.text input,
-.app-bar .app-bar-menu > li > a > .input-control.text input {
-  border-color: transparent !important;
+.app-bar .app-bar-menu > li > a > .input-control.text input,
+.app-bar .app-bar-menu > li > .input-control.password input,
+.app-bar .app-bar-menu > li > a > .input-control.password input {
+  border-color: transparent;
 }
 .app-bar .app-bar-menu > li > .button,
 .app-bar .app-bar-menu > li > a > .button {
@@ -3892,7 +3896,7 @@ a.tag {
 .app-bar .app-bar-menu > li .d-menu li:not(.disabled):hover > a {
   color: #1d1d1d;
 }
-.app-bar .app-bar-menu > li .d-menu .d-menu {
+.app-bar .app-bar-menu > li .d-menu > .d-menu {
   top: -0.625rem;
   left: 100%;
 }
@@ -3962,14 +3966,16 @@ a.tag {
 .app-bar .app-bar-element:after {
   clear: both;
 }
-.app-bar .app-bar-element > .input-control.text {
+.app-bar .app-bar-element > .input-control.text,
+.app-bar .app-bar-element > .input-control.password {
   margin-top: .55rem;
   font-size: .875rem;
   line-height: 1.8rem;
   display: block;
 }
-.app-bar .app-bar-element > .input-control.text input {
-  border-color: transparent !important;
+.app-bar .app-bar-element > .input-control.text input,
+.app-bar .app-bar-element > .input-control.password input {
+  border-color: transparent;
 }
 .app-bar .app-bar-element > .button {
   margin-top: -0.15rem;
@@ -3998,8 +4004,8 @@ a.tag {
   bottom: 3.125rem;
 }
 .app-bar.drop-up .d-menu .d-menu {
-  top: auto !important;
-  bottom: 0 !important;
+  top: auto ;
+  bottom: 0 ;
 }
 .app-bar.fixed-top,
 .app-bar.fixed-bottom {
