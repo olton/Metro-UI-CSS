@@ -24,7 +24,7 @@
 			content: '\2605';
 			display: block;
 			z-index: 2;
-			top: 0 !important;
+			top: 0 ;
 			left: 0;
 			vertical-align: middle;
 		}
@@ -49,59 +49,78 @@
 		}
 	}
 
+    &.poor {
+        .star.on {
+            color: @red;
+
+            &.half {
+                color: @gray;
+                &:after {
+                    color: @red;
+                }
+            }
+        }
+    }
+    &.regular {
+        .star.on {
+            color: gold;
+
+            &.half {
+                color: @gray;
+                &:after {
+                    color: gold;
+                }
+            }
+        }
+    }
+    &.good {
+        .star.on {
+            color: @green;
+
+            &.half {
+                color: @gray;
+                &:after {
+                    color: @green;
+                }
+            }
+        }
+    }
+
 	&:not(.static) {
+
+
+        .star:hover {
+            color: gold ;
+            &.half, &.on.half {
+                color:gold;
+                &:after {
+                    color:gold;
+                }
+            }
+        }
+
 		&:hover > .star, &:hover > .star:after {
-			color: gold !important;
+			color: gold ;
+            &.half, &.on.half {
+                color:gold;
+                &:after {
+                    color:gold;
+                }
+            }
 		}
 
-		.star:hover ~ .star, .star:hover ~ .star:after {
-			color: gray !important;
-		}
+        .star:hover ~ .star, .star:hover ~ .star:after {
+            color: gray ;
+            &.half, &.on.half {
+                color:gray;
+                &:after {
+                    color:gray;
+                }
+            }
+        }
 
-		.star:hover {
-			color: gold !important;
-		}
 	}
 
-}
-
-.rating {
-	&.poor {
-		.star.on {
-			color: @red;
-
-			&.half {
-				color: @gray;
-				&:after {
-					color: @red;
-				}
-			}
-		}
-	}
-	&.regular {
-		.star.on {
-			color: gold;
-
-			&.half {
-				color: @gray;
-				&:after {
-					color: gold;
-				}
-			}
-		}
-	}
-	&.good {
-		.star.on {
-			color: @green;
-
-			&.half {
-				color: @gray;
-				&:after {
-					color: @green;
-				}
-			}
-		}
-	}
 }
 
 .rating {
