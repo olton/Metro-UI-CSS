@@ -547,70 +547,70 @@ a.shortcut-button {
 	font-size: 1.2rem;
 	line-height: 1;
 }
+.button {
+    &.primary {
+        background: @linkColor;
+        color: @white;
+        border-color: @linkColor;
 
-.primary {
-	background: @linkColor;
-	color: @white;
-	border-color: @linkColor;
+        &:active {
+            background: @darkCyan;
+            color: @white;
+        }
+    }
+    &.success {
+        background: @green;
+        color: @white;
+        border-color: @green;
 
-	&:active {
-		background: @darkCyan;
-		color: @white;
-	}
+        &:active {
+            background: @darkGreen;
+            color: @white;
+        }
+    }
+    &.danger, &.alert {
+        background: @red;
+        color: @white;
+        border-color: @red;
+
+        &:active {
+            background: @darkRed;
+            color: @white;
+        }
+    }
+    &.info {
+        background: @lightCyan;
+        color: @white;
+        border-color: @lightCyan;
+
+        &:active {
+            background: @cyan;
+            color: @white;
+        }
+    }
+    &.warning {
+        background: @orange;
+        color: @white;
+        border-color: @orange;
+
+        &:active {
+            background: @darkOrange;
+            color: @white;
+        }
+    }
+    &.link {
+        background: @transparent;
+        color: @linkColor;
+        border-color: @transparent;
+        text-decoration: underline;
+
+        &:hover, &:active {
+            background: @transparent;
+            color: darken(@linkVisitedColor, 20%);
+            border-color: @transparent;
+        }
+    }
 }
-.success {
-	background: @green;
-	color: @white;
-	border-color: @green;
-
-	&:active {
-		background: @darkGreen;
-		color: @white;
-	}
-}
-.danger, .alert {
-	background: @red;
-	color: @white;
-	border-color: @red;
-
-	&:active {
-		background: @darkRed;
-		color: @white;
-	}
-}
-.info {
-	background: @lightCyan;
-	color: @white;
-	border-color: @lightCyan;
-
-	&:active {
-		background: @cyan;
-		color: @white;
-	}
-}
-.warning {
-	background: @orange;
-	color: @white;
-	border-color: @orange;
-
-	&:active {
-		background: @darkOrange;
-		color: @white;
-	}
-}
-.link {
-	background: @transparent;
-	color: @linkColor;
-	border-color: @transparent;
-	text-decoration: underline;
-
-	&:hover, &:active {
-		background: @transparent;
-		color: darken(@linkVisitedColor, 20%);
-		border-color: @transparent;
-	}
-}
-
 a, span, div {
 	&.button, &.round-button, &.cycle-button, &.square-button  {
 		padding-top: .53125rem !important;

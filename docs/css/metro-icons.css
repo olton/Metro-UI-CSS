@@ -2105,6 +2105,9 @@
 .no-overflow {
   overflow: hidden !important;
 }
+.no-wrap {
+  white-space: nowrap !important;
+}
 .place-right {
   float: right !important;
 }
