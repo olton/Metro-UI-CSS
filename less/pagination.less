@@ -16,9 +16,10 @@
 		border: 1px @grayLighter solid;
 		text-align: center;
 		font-size: .875rem;
+        color: @dark;
 
 		&:first-child {
-			margin-left: 0 !important;
+			margin-left: 0 ;
 		}
 
 		&.current, &.active {
@@ -44,9 +45,10 @@
 		&.spaces {
 			border: 0;
 			cursor: default;
+            color: @dark ;
 			&:hover {
-				background-color: inherit !important;
-				color: inherit !important;
+				background-color: inherit ;
+				color: @dark;
 			}
 		}
 	}
@@ -73,7 +75,7 @@
 
 			&:hover {
 				color: @lightCyan;
-				background-color: transparent !important;
+				background-color: transparent ;
 			}
 
 			&:disabled, &.disabled {
@@ -86,9 +88,9 @@
 			&.current, &.active {
 				//border-radius: 50%;
 				&:hover {
-					background-color: lighten(@cyan, 20%) !important;
-					border-color: lighten(@cyan, 20%) !important;
-					color: @white !important;
+					background-color: lighten(@cyan, 20%) ;
+					border-color: lighten(@cyan, 20%) ;
+					color: @white ;
 				}
 			}
 		}

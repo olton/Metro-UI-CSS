@@ -97,7 +97,7 @@
 		}
 
 		.title {
-			display: none !important;
+			display: none ;
 		}
 
 		.counter {
@@ -134,7 +134,8 @@
 		}
 
 		&.disabled {
-			&:hover {border-top: 1px @grayLighter solid !important;}
+            background-color: inherit;
+			&:hover {border-top: 1px @grayLighter solid;}
 		}
 
 		a {
@@ -143,7 +144,7 @@
 			white-space: normal;
 
 			.icon {
-				color: inherit !important;
+				color: inherit ;
 			}
 		}
 	}
@@ -181,10 +182,15 @@
 		&:hover {
 			a {background-color: #7cc1de;}
 		}
+        &.disabled {
+            &:hover a {
+                background-color: inherit;
+            }
+        }
 	}
 
 	li li:not(:hover) {
-		color: @dark !important;
+		color: @dark ;
 
 		a {
 			background-color: @white;
@@ -220,7 +226,10 @@
 
 		li.disabled {
 			&:hover {
-				border-top-color: #5c5c5c !important;
+				border-top-color: #5c5c5c ;
+                a {
+                    background-color: #3D3D3D;
+                }
 			}
 
 			a {
