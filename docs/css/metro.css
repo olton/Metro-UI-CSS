@@ -3896,7 +3896,7 @@ a.tag {
 .app-bar .app-bar-menu > li .d-menu li:not(.disabled):hover > a {
   color: #1d1d1d;
 }
-.app-bar .app-bar-menu > li .d-menu > .d-menu {
+.app-bar .app-bar-menu > li .d-menu .d-menu {
   top: -0.625rem;
   left: 100%;
 }
@@ -9599,8 +9599,8 @@ input[type="submit"].link:active {
   clear: both;
 }
 .tabcontrol .tabs li {
-  display: inline-block;
-  margin: 0 0 -4px -4px;
+  display: block;
+  float: left;
   position: relative;
   white-space: nowrap;
 }
@@ -9637,11 +9637,17 @@ input[type="submit"].link:active {
   display: none;
 }
 .tabcontrol .tabs li.non-visible-tabs.dropdown-toggle {
-  height: 100% !important;
+  height: 100% ;
 }
 .tabcontrol.tabs-bottom .tabs {
   border-bottom: none;
   border-top: 2px #1ba1e2 solid;
+}
+.tabcontrol.tabs-bottom .tabs li.disabled {
+  top: 0;
+}
+.tabcontrol.tabs-bottom .tabs li:hover {
+  top: 0;
 }
 .tabcontrol .frames {
   width: 100%;
@@ -9678,8 +9684,8 @@ input[type="submit"].link:active {
   clear: both;
 }
 .tabcontrol2 .tabs li {
-  display: inline-block;
-  margin: 0 0 -4px -4px;
+  display: block;
+  float: left;
   position: relative;
   white-space: nowrap;
 }
@@ -9716,11 +9722,17 @@ input[type="submit"].link:active {
   display: none;
 }
 .tabcontrol2 .tabs li.non-visible-tabs.dropdown-toggle {
-  height: 100% !important;
+  height: 100% ;
 }
 .tabcontrol2.tabs-bottom .tabs {
   border-bottom: none;
   border-top: 2px #1ba1e2 solid;
+}
+.tabcontrol2.tabs-bottom .tabs li.disabled {
+  top: 0;
+}
+.tabcontrol2.tabs-bottom .tabs li:hover {
+  top: 0;
 }
 .tabcontrol2 .frames {
   width: 100%;
@@ -9740,9 +9752,9 @@ input[type="submit"].link:active {
   z-index: 2;
 }
 .tabcontrol2 .tabs li {
-  margin: 0 2px -3px;
   padding-top: 2px;
   overflow: visible;
+  margin: 0 2px;
 }
 .tabcontrol2 .tabs li:after {
   content: "";
@@ -9764,7 +9776,7 @@ input[type="submit"].link:active {
 .tabcontrol2 .tabs li a {
   background-color: #eeeeee;
   padding-top: .3125rem;
-  text-shadow: none !important;
+  text-shadow: none ;
 }
 .tabcontrol2 .tabs li.active {
   padding-top: 0;
@@ -9790,9 +9802,8 @@ input[type="submit"].link:active {
   padding: 0;
 }
 .tabcontrol2.tabs-bottom .tabs li:after {
-  top: 0 !important;
+  top: -1px /*!important*/;
   background-color: #ffffff;
-  margin-top: -2px;
 }
 .tabcontrol2.tabs-bottom .tabs li.active {
   padding-bottom: 0;
@@ -12317,6 +12328,7 @@ input[type="submit"].link:active {
   padding: 2px 0;
   color: #555555;
   margin-bottom: 0;
+  background-color: transparent;
 }
 .listview-outlook .list .list-content {
   margin: 2px 0;
@@ -12350,22 +12362,22 @@ input[type="submit"].link:active {
   font-size: .625rem;
   color: #999999;
 }
-.listview-outlook .list.marked .list-content {
-  border-left: 3px #1b6eae solid !important;
-}
-.listview-outlook .list:active,
-.listview-outlook .list:focus,
-.listview-outlook .list.active {
-  background-color: #cde6f7 !important;
-  outline: 1px #999999 dotted;
-  color: #555555 !important;
-}
 .listview-outlook .list:hover {
   background-color: #eeeeee;
   outline: none;
 }
 .listview-outlook .list:hover .list-content {
   border-left: 3px transparent solid;
+}
+.listview-outlook .list.marked .list-content {
+  border-left: 3px #1b6eae solid;
+}
+.listview-outlook .list:active,
+.listview-outlook .list:focus,
+.listview-outlook .list.active {
+  background-color: #cde6f7;
+  outline: 1px #999999 dotted;
+  color: #555555;
 }
 .listview-outlook .list-group {
   display: block;

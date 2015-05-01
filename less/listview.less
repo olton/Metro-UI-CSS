@@ -225,6 +225,7 @@
 		padding: 2px 0;
 		color: @gray;
 		margin-bottom: 0;
+        background-color: @transparent;
 
 		.list-content {
 			margin: 2px 0;
@@ -263,25 +264,26 @@
 
 .listview-outlook {
 	.list {
+        &:hover {
+            background-color: @grayLighter;
+            outline: none;
+            .list-content {
+                border-left: 3px @transparent solid;
+            }
+        }
+
 		&.marked {
 			.list-content {
-				border-left: 3px @darkCyan solid !important;
+				border-left: 3px @darkCyan solid;
 			}
 		}
 
 		&:active, &:focus, &.active {
-			background-color: #cde6f7 !important;
+            background-color: #cde6f7;
 			outline: 1px @grayLight dotted;
-			color: @gray !important;
+			color: @gray;
 		}
 
-		&:hover {
-			background-color: @grayLighter;
-			outline: none;
-			.list-content {
-				border-left: 3px @transparent solid;
-			}
-		}
 	}
 }
 
