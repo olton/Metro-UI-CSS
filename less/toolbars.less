@@ -31,9 +31,11 @@
 	}
 }
 
-.toolbar-button {
-	.square-button;
-	margin: 0;
+.toolbar {
+    .toolbar-button {
+        .square-button;
+        margin: 0;
+    }
 }
 
 .toolbar-group, .toolbar-section {
@@ -50,7 +52,6 @@
 }
 
 .toolbar-group {
-
 	&-check {
 		.toolbar-button {
 			&.checked {
@@ -60,6 +61,7 @@
 			}
 		}
 	}
+
 	&-radio {
 		.toolbar-button {
 			&.checked {
@@ -73,13 +75,13 @@
 
 .toolbar {
 	&.rounded {
-		.toolbar-button {
-			border-radius: .3125rem !important;
+		& > .toolbar-button, & > .toolbar-section .toolbar-button {
+			border-radius: .3125rem /*!important*/;
 		}
 
 		.toolbar-section {
 			&:before {
-				border-radius: .3125rem !important;
+				border-radius: .3125rem;
 			}
 		}
 	}

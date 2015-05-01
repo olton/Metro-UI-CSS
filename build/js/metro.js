@@ -1440,7 +1440,7 @@ function touch2Mouse(e)
 (function ( $ ) {
     "use strict";
 
-    $.widget( "metro.buttonGroup" , {
+    $.widget( "metro.group" , {
 
         version: "3.0.0",
 
@@ -1498,7 +1498,7 @@ function touch2Mouse(e)
                 }
             });
 
-            element.data('buttonGroup', this);
+            element.data('group', this);
 
         },
 
