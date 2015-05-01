@@ -2238,6 +2238,21 @@ span {
 .no-wrap {
   white-space: nowrap !important;
 }
+.no-border-left {
+  border-left: none !important;
+}
+.no-border-right {
+  border-right: none !important;
+}
+.no-border-top {
+  border-top: none !important;
+}
+.no-border-bottom {
+  border-bottom: none !important;
+}
+.transparent-border {
+  border-color: transparent !important;
+}
 @media screen and (max-width: 640px) {
   .no-phone {
     display: none !important;
@@ -2453,24 +2468,6 @@ span {
 }
 .set-border.large-border {
   border-width: 16px;
-}
-.no-border {
-  border: none !important;
-}
-.no-border-left {
-  border-left: none !important;
-}
-.no-border-right {
-  border-right: none !important;
-}
-.no-border-top {
-  border-top: none !important;
-}
-.no-border-bottom {
-  border-bottom: none !important;
-}
-.transparent-border {
-  border-color: transparent !important;
 }
 /* transform functions */
 .rotate45 {
@@ -4151,8 +4148,7 @@ a.tag {
   outline: none;
   text-decoration: none;
   padding: 1.125rem 1.625rem;
-  border: 0 !important;
-  border: none !important;
+  border: none;
 }
 .h-menu > li > a:hover {
   background-color: #59cde2;
@@ -4201,8 +4197,7 @@ a.tag {
   position: relative;
   white-space: nowrap;
   min-width: 12.5rem;
-  border: 0 !important;
-  border: none !important;
+  border: none;
 }
 .v-menu li a img,
 .v-menu li a .icon {
@@ -4347,8 +4342,7 @@ a.tag {
   position: relative;
   white-space: nowrap;
   min-width: 12.5rem;
-  border: 0 !important;
-  border: none !important;
+  border: none;
 }
 .d-menu li a img,
 .d-menu li a .icon {
@@ -4546,8 +4540,7 @@ a.tag {
   outline: none;
   text-decoration: none;
   padding: 1rem 1.625rem;
-  border: 0 !important;
-  border: none !important;
+  border: none;
 }
 .m-menu > li > a:hover,
 .m-menu .m-menu-item > a:hover {
@@ -6242,8 +6235,7 @@ div.square-button.big-button {
   width: .325rem;
   height: 100%;
   left: 0;
-  background: #eeeeee linear-gradient(90deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-size: 0.325rem 0.325rem !important;
+  background-color: #eeeeee;
   cursor: move;
 }
 .toolbar .toolbar-button {
@@ -9361,8 +9353,7 @@ input[type="submit"].link:active {
   position: relative;
   white-space: nowrap;
   min-width: 12.5rem;
-  border: 0 !important;
-  border: none !important;
+  border: none;
 }
 .sidebar2 li a img,
 .sidebar2 li a .icon {
