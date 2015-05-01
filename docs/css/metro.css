@@ -6455,7 +6455,7 @@ div.square-button.big-button {
 }
 .toolbar.rounded > .toolbar-button,
 .toolbar.rounded > .toolbar-section .toolbar-button {
-  border-radius: 0.3125rem /*!important*/;
+  border-radius: .3125rem;
 }
 .toolbar.rounded .toolbar-section:before {
   border-radius: .3125rem;
@@ -6664,7 +6664,7 @@ div.square-button.big-button {
 }
 .v-toolbar.rounded > .toolbar-button,
 .v-toolbar.rounded > .toolbar-section .toolbar-button {
-  border-radius: 0.3125rem /*!important*/;
+  border-radius: .3125rem;
 }
 .v-toolbar.rounded .toolbar-section:before {
   border-radius: .3125rem;
@@ -13046,18 +13046,6 @@ p [data-hint] {
 .streamer .events .quadro {
   width: 850px;
 }
-.streamer .events .margin-one {
-  margin-left: 213px !important;
-}
-.streamer .events .margin-double {
-  margin-left: 426px !important;
-}
-.streamer .events .margin-triple {
-  margin-left: 639px !important;
-}
-.streamer .events .margin-quadro {
-  margin-left: 852px !important;
-}
 .streamer .events .events-area {
   height: 100%;
   min-height: 100%;
@@ -13204,7 +13192,7 @@ p [data-hint] {
 }
 .streamer .events .event-stream .event.selected {
   border: 4px #4390df solid;
-  border-width: 1px !important;
+  border-width: 1px;
 }
 .streamer .events .event-stream .event.selected:after {
   position: absolute;
@@ -13234,6 +13222,20 @@ p [data-hint] {
 }
 .streamer .events .event-stream .event.selected:before {
   right: 3px;
+  top: 3px;
+  color: #ffffff;
+}
+.streamer .events .event-stream .event.margin-one {
+  margin-left: 213px;
+}
+.streamer .events .event-stream .event.margin-double {
+  margin-left: 426px;
+}
+.streamer .events .event-stream .event.margin-triple {
+  margin-left: 639px;
+}
+.streamer .events .event-stream .event.margin-quadro {
+  margin-left: 852px;
 }
 .select2-container {
   box-sizing: border-box;
