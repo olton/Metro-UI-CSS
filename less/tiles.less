@@ -32,37 +32,6 @@
 	}
 }
 
-.tile-area (@background) {
-	background-color: @background !important;
-
-	[class*=tile] {
-		outline-color: lighten(@background, 10%) !important;
-	}
-}
-
-
-.tile-area-scheme-dark {.tile-area(@dark)}
-.tile-area-scheme-darkBrown {.tile-area(@darkBrown)}
-.tile-area-scheme-darkCrimson {.tile-area(@darkCrimson)}
-.tile-area-scheme-darkViolet {.tile-area(@darkViolet)}
-.tile-area-scheme-darkMagenta {.tile-area(@darkMagenta)}
-.tile-area-scheme-darkCyan {.tile-area(@darkCyan)}
-.tile-area-scheme-darkCobalt {.tile-area(@darkCobalt)}
-.tile-area-scheme-darkTeal {.tile-area(@darkTeal)}
-.tile-area-scheme-darkEmerald {.tile-area(@darkEmerald)}
-.tile-area-scheme-darkGreen {.tile-area(@darkGreen)}
-.tile-area-scheme-darkOrange {.tile-area(@darkOrange)}
-.tile-area-scheme-darkRed {.tile-area(@darkRed)}
-.tile-area-scheme-darkPink {.tile-area(@darkPink)}
-.tile-area-scheme-darkIndigo {.tile-area(@darkIndigo)}
-.tile-area-scheme-darkBlue {.tile-area(@darkBlue)}
-.tile-area-scheme-lightBlue {.tile-area(@lightBlue)}
-.tile-area-scheme-lightTeal {.tile-area(@lightTeal)}
-.tile-area-scheme-lightOlive {.tile-area(@lightOlive)}
-.tile-area-scheme-lightOrange {.tile-area(@lightOrange)}
-.tile-area-scheme-lightPink {.tile-area(@lightPink)}
-.tile-area-scheme-grayed {.tile-area(@grayed)}
-
 .tile-group {
 	margin-left: @tileGroupMargin;
 	min-width: @tileHalfSize + @tileMargin * 2;
@@ -306,16 +275,16 @@
 		& > img, & > .image-container {
 			margin: 0;
 			padding: 0;
-			width: 25% !important;
-			height: 50% !important;
+			width: 25% ;
+			height: 50% ;
 			float: left;
 			border: 1px #1e1e1e solid;
 		}
 
 		& > img:first-child, & > .image-container:first-child {
-			width: 50% !important;
+			width: 50% ;
 			float: left;
-			height: 100% !important;
+			height: 100% ;
 		}
 	}
 
@@ -542,7 +511,7 @@
 }
 
 .tile-small, .tile, .tile-square, .tile-wide, .tile-large, .tile-big, .tile-super {
-	.perspective(1000px);
+	///.perspective(1000px);
 	overflow: visible;
 
 	.tile-content.flipVertical {
@@ -656,25 +625,20 @@
 }
 
 .transY(@perspective: 500px, @rot: @rotate){
-	-webkit-transform: perspective( @perspective ) rotateY( @rot );
-	-moz-transform: perspective( @perspective ) rotateY( @rot );
-	-ms-transform: perspective( @perspective ) rotateY( @rot );
-	-o-transform: perspective( @perspective ) rotateY( @rot );
 	transform: perspective( @perspective ) rotateY( @rot );
 }
 
 .transX(@perspective: 500px, @rot: @rotate){
-	-webkit-transform: perspective( @perspective ) rotateX( @rot );
-	-moz-transform: perspective( @perspective ) rotateX( @rot );
-	-ms-transform: perspective( @perspective ) rotateX( @rot );
-	-o-transform: perspective( @perspective ) rotateX( @rot );
 	transform: perspective( @perspective ) rotateX( @rot );
 }
 
 // right
 .tile-transform-right {
-	.transformOrigin(left 50%) !important;
-	.transY(@perspective, @rotate) !important;
+    .transformOrigin(left 50%);
+}
+
+.tile.tile-transform-right {
+	.transY(@perspective, @rotate)  !important;
 }
 
 .tile-wide.tile-transform-right {
@@ -699,8 +663,11 @@
 
 // left
 .tile-transform-left {
-	.transformOrigin(right 50%) !important;
-	.transY(@perspective, -@rotate) !important;
+	.transformOrigin(right 50%);
+}
+
+.tile.tile-transform-left {
+    .transY(@perspective, -@rotate) !important;
 }
 
 .tile-wide.tile-transform-left {
@@ -725,7 +692,10 @@
 
 // top
 .tile-transform-top {
-	.transformOrigin(50% bottom) !important;
+    .transformOrigin(50% bottom);
+}
+
+.tile.tile-transform-top {
 	.transX(@perspective, @rotate) !important;
 }
 
@@ -751,7 +721,10 @@
 
 // bottom
 .tile-transform-bottom {
-	.transformOrigin(50% top) !important;
+    .transformOrigin(50% top);
+}
+
+.tile.tile-transform-bottom {
 	.transX(@perspective, -@rotate) !important;
 }
 
@@ -774,6 +747,38 @@
 .tile-small.tile-transform-bottom {
 	.transX(@perspective, -@rotate*2) !important;
 }
+
+
+.tile-area (@background) {
+  background-color: @background ;
+
+  [class*=tile] {
+    outline-color: lighten(@background, 10%);
+  }
+}
+
+
+.tile-area-scheme-dark {.tile-area(@dark)}
+.tile-area-scheme-darkBrown {.tile-area(@darkBrown)}
+.tile-area-scheme-darkCrimson {.tile-area(@darkCrimson)}
+.tile-area-scheme-darkViolet {.tile-area(@darkViolet)}
+.tile-area-scheme-darkMagenta {.tile-area(@darkMagenta)}
+.tile-area-scheme-darkCyan {.tile-area(@darkCyan)}
+.tile-area-scheme-darkCobalt {.tile-area(@darkCobalt)}
+.tile-area-scheme-darkTeal {.tile-area(@darkTeal)}
+.tile-area-scheme-darkEmerald {.tile-area(@darkEmerald)}
+.tile-area-scheme-darkGreen {.tile-area(@darkGreen)}
+.tile-area-scheme-darkOrange {.tile-area(@darkOrange)}
+.tile-area-scheme-darkRed {.tile-area(@darkRed)}
+.tile-area-scheme-darkPink {.tile-area(@darkPink)}
+.tile-area-scheme-darkIndigo {.tile-area(@darkIndigo)}
+.tile-area-scheme-darkBlue {.tile-area(@darkBlue)}
+.tile-area-scheme-lightBlue {.tile-area(@lightBlue)}
+.tile-area-scheme-lightTeal {.tile-area(@lightTeal)}
+.tile-area-scheme-lightOlive {.tile-area(@lightOlive)}
+.tile-area-scheme-lightOrange {.tile-area(@lightOrange)}
+.tile-area-scheme-lightPink {.tile-area(@lightPink)}
+.tile-area-scheme-grayed {.tile-area(@grayed)}
 
 // Media
 

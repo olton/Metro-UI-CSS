@@ -24,7 +24,7 @@
 		display: block;
 		float: left;
 		position: relative;
-		vertical-align: middle !important;
+		vertical-align: middle;
 		height: 3.125rem;
 
 		&:hover, &:active {
@@ -48,7 +48,6 @@
 	}
 
 	.dropdown-toggle {
-		padding-right: 1.5rem !important;
 		&:before {
 			border-color: @white;
 		}
@@ -62,6 +61,10 @@
 
 		& > li, & > li > a {
 			.app-bar > .app-bar-element;
+
+            &.dropdown-toggle {
+                padding-right: 1.5rem;
+            }
 		}
 
 		& > li .d-menu {
@@ -88,7 +91,7 @@
 
 	.app-bar-pull {
 		display: none;
-		float: right !important;
+		float: right;
 		color: #fff;
 		cursor: pointer;
 		font: 2rem sans-serif;
@@ -231,7 +234,7 @@
 		height: auto;
 
 		.app-bar-pull {
-			display: block !important;
+			display: block;
 		}
 		.app-bar-menu {
 			width: 100%;

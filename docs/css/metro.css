@@ -94,10 +94,8 @@ input[type="checkbox"] {
   cursor: pointer;
 }
 input[type="search"] {
-  -webkit-appearance: textfield;
-  -ms-box-sizing: content-box;
-  -o-box-sizing: content-box;
   box-sizing: content-box;
+  appearance: textfield;
 }
 input[type="search"]::-webkit-search-decoration,
 input[type="search"]::-webkit-search-cancel-button {
@@ -130,12 +128,6 @@ span {
   position: relative;
 }
 @media print {
-  * {
-    text-shadow: none !important;
-    color: #000 !important;
-    background: transparent !important;
-    box-shadow: none !important;
-  }
   a,
   a:visited {
     text-decoration: underline;
@@ -164,7 +156,7 @@ span {
     page-break-inside: avoid;
   }
   img {
-    max-width: 100% !important;
+    max-width: 100%;
   }
   p,
   h2,
@@ -3796,7 +3788,7 @@ a.tag {
   display: block;
   float: left;
   position: relative;
-  vertical-align: middle !important;
+  vertical-align: middle;
   height: 3.125rem;
 }
 .app-bar .app-bar-element:hover,
@@ -3815,9 +3807,6 @@ a.tag {
   width: 1px;
   background-color: #4c9cd7;
   padding: 0;
-}
-.app-bar .dropdown-toggle {
-  padding-right: 1.5rem !important;
 }
 .app-bar .dropdown-toggle:before {
   border-color: #ffffff;
@@ -3838,7 +3827,7 @@ a.tag {
   display: block;
   float: left;
   position: relative;
-  vertical-align: middle !important;
+  vertical-align: middle;
   height: 3.125rem;
 }
 .app-bar .app-bar-menu > li:hover,
@@ -3889,6 +3878,10 @@ a.tag {
 .app-bar .app-bar-menu > li > a > .image-button img.icon {
   padding: 0;
 }
+.app-bar .app-bar-menu > li.dropdown-toggle,
+.app-bar .app-bar-menu > li > a.dropdown-toggle {
+  padding-right: 1.5rem;
+}
 .app-bar .app-bar-menu > li .d-menu {
   top: 100%;
   border: 2px solid #005696;
@@ -3908,7 +3901,7 @@ a.tag {
 }
 .app-bar .app-bar-pull {
   display: none;
-  float: right !important;
+  float: right;
   color: #fff;
   cursor: pointer;
   font: 2rem sans-serif;
@@ -4025,7 +4018,7 @@ a.tag {
     height: auto;
   }
   .app-bar:not(.no-responsive-future) .app-bar-pull {
-    display: block !important;
+    display: block;
   }
   .app-bar:not(.no-responsive-future) .app-bar-menu {
     width: 100%;
@@ -9696,132 +9689,6 @@ input[type="submit"].dropdown-toggle.drop-marker-light:after {
   font-size: 42px;
   line-height: 1.1;
 }
-.tile-area-scheme-dark {
-  background-color: #1d1d1d !important;
-}
-.tile-area-scheme-dark [class*=tile] {
-  outline-color: #373737 !important;
-}
-.tile-area-scheme-darkBrown {
-  background-color: #63362f !important;
-}
-.tile-area-scheme-darkBrown [class*=tile] {
-  outline-color: #86493f !important;
-}
-.tile-area-scheme-darkCrimson {
-  background-color: #640024 !important;
-}
-.tile-area-scheme-darkCrimson [class*=tile] {
-  outline-color: #970036 !important;
-}
-.tile-area-scheme-darkViolet {
-  background-color: #57169a !important;
-}
-.tile-area-scheme-darkViolet [class*=tile] {
-  outline-color: #701cc7 !important;
-}
-.tile-area-scheme-darkMagenta {
-  background-color: #81003c !important;
-}
-.tile-area-scheme-darkMagenta [class*=tile] {
-  outline-color: #b40054 !important;
-}
-.tile-area-scheme-darkCyan {
-  background-color: #1b6eae !important;
-}
-.tile-area-scheme-darkCyan [class*=tile] {
-  outline-color: #228ada !important;
-}
-.tile-area-scheme-darkCobalt {
-  background-color: #00356a !important;
-}
-.tile-area-scheme-darkCobalt [class*=tile] {
-  outline-color: #004e9d !important;
-}
-.tile-area-scheme-darkTeal {
-  background-color: #004050 !important;
-}
-.tile-area-scheme-darkTeal [class*=tile] {
-  outline-color: #006983 !important;
-}
-.tile-area-scheme-darkEmerald {
-  background-color: #003e00 !important;
-}
-.tile-area-scheme-darkEmerald [class*=tile] {
-  outline-color: #007100 !important;
-}
-.tile-area-scheme-darkGreen {
-  background-color: #128023 !important;
-}
-.tile-area-scheme-darkGreen [class*=tile] {
-  outline-color: #18ad2f !important;
-}
-.tile-area-scheme-darkOrange {
-  background-color: #bf5a15 !important;
-}
-.tile-area-scheme-darkOrange [class*=tile] {
-  outline-color: #e77120 !important;
-}
-.tile-area-scheme-darkRed {
-  background-color: #9a1616 !important;
-}
-.tile-area-scheme-darkRed [class*=tile] {
-  outline-color: #c71c1c !important;
-}
-.tile-area-scheme-darkPink {
-  background-color: #9a165a !important;
-}
-.tile-area-scheme-darkPink [class*=tile] {
-  outline-color: #c71c74 !important;
-}
-.tile-area-scheme-darkIndigo {
-  background-color: #4b0096 !important;
-}
-.tile-area-scheme-darkIndigo [class*=tile] {
-  outline-color: #6400c9 !important;
-}
-.tile-area-scheme-darkBlue {
-  background-color: #16499a !important;
-}
-.tile-area-scheme-darkBlue [class*=tile] {
-  outline-color: #1c5ec7 !important;
-}
-.tile-area-scheme-lightBlue {
-  background-color: #4390df !important;
-}
-.tile-area-scheme-lightBlue [class*=tile] {
-  outline-color: #6faae6 !important;
-}
-.tile-area-scheme-lightTeal {
-  background-color: #45fffd !important;
-}
-.tile-area-scheme-lightTeal [class*=tile] {
-  outline-color: #78fffd !important;
-}
-.tile-area-scheme-lightOlive {
-  background-color: #78aa1c !important;
-}
-.tile-area-scheme-lightOlive [class*=tile] {
-  outline-color: #97d623 !important;
-}
-.tile-area-scheme-lightOrange {
-  background-color: #c29008 !important;
-}
-.tile-area-scheme-lightOrange [class*=tile] {
-  outline-color: #f3b40a !important;
-}
-.tile-area-scheme-lightPink {
-  background-color: #f472d0 !important;
-}
-.tile-area-scheme-lightPink [class*=tile] {
-  outline-color: #f8a1e0 !important;
-}
-.tile-area-scheme-grayed {
-  background-color: #585858 !important;
-}
-.tile-area-scheme-grayed [class*=tile] {
-  outline-color: #727272 !important;
-}
 .tile-group {
   margin-left: 80px;
   min-width: 80px;
@@ -9942,8 +9809,6 @@ input[type="submit"].dropdown-toggle.drop-marker-light:after {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
-  -webkit-transform: perspective(1000px);
-          transform: perspective(1000px);
   overflow: visible;
 }
 .tile-square:hover {
@@ -10078,8 +9943,6 @@ input[type="submit"].dropdown-toggle.drop-marker-light:after {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
-  -webkit-transform: perspective(1000px);
-          transform: perspective(1000px);
   overflow: visible;
   width: 70px;
   height: 70px;
@@ -10215,8 +10078,6 @@ input[type="submit"].dropdown-toggle.drop-marker-light:after {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
-  -webkit-transform: perspective(1000px);
-          transform: perspective(1000px);
   overflow: visible;
   width: 310px;
   height: 150px;
@@ -10353,8 +10214,6 @@ input[type="submit"].dropdown-toggle.drop-marker-light:after {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
-  -webkit-transform: perspective(1000px);
-          transform: perspective(1000px);
   overflow: visible;
   width: 310px;
   height: 310px;
@@ -10491,8 +10350,6 @@ input[type="submit"].dropdown-toggle.drop-marker-light:after {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
-  -webkit-transform: perspective(1000px);
-          transform: perspective(1000px);
   overflow: visible;
   width: 470px;
   height: 470px;
@@ -10629,8 +10486,6 @@ input[type="submit"].dropdown-toggle.drop-marker-light:after {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
-  -webkit-transform: perspective(1000px);
-          transform: perspective(1000px);
   overflow: visible;
   width: 630px;
   height: 630px;
@@ -10834,16 +10689,16 @@ input[type="submit"].dropdown-toggle.drop-marker-light:after {
 .tile-content.image-set > .image-container {
   margin: 0;
   padding: 0;
-  width: 25% !important;
-  height: 50% !important;
+  width: 25% ;
+  height: 50% ;
   float: left;
   border: 1px #1e1e1e solid;
 }
 .tile-content.image-set > img:first-child,
 .tile-content.image-set > .image-container:first-child {
-  width: 50% !important;
+  width: 50% ;
   float: left;
-  height: 100% !important;
+  height: 100% ;
 }
 .tile-content.slide-up > .slide,
 .tile-content.slide-down > .slide,
@@ -11041,8 +10896,6 @@ input[type="submit"].dropdown-toggle.drop-marker-light:after {
 .tile-large,
 .tile-big,
 .tile-super {
-  -webkit-transform: perspective(1000px);
-          transform: perspective(1000px);
   overflow: visible;
 }
 .tile-small .tile-content.flipVertical,
@@ -11247,108 +11100,242 @@ input[type="submit"].dropdown-toggle.drop-marker-light:after {
   transition: all 0.22s ease;
 }
 .tile-transform-right {
-  -webkit-transform-origin: left 50% !important;
-          transform-origin: left 50% !important;
+  -webkit-transform-origin: left 50%;
+          transform-origin: left 50%;
+}
+.tile.tile-transform-right {
   -webkit-transform: perspective(500px) rotateY(0.138372rad) !important;
-  transform: perspective(500px) rotateY(0.138372rad) !important;
+          transform: perspective(500px) rotateY(0.138372rad) !important;
 }
 .tile-wide.tile-transform-right {
   -webkit-transform: perspective(500px) rotateY(0.069186rad) !important;
-  transform: perspective(500px) rotateY(0.069186rad) !important;
+          transform: perspective(500px) rotateY(0.069186rad) !important;
 }
 .tile-large.tile-transform-right {
   -webkit-transform: perspective(500px) rotateY(0.069186rad) !important;
-  transform: perspective(500px) rotateY(0.069186rad) !important;
+          transform: perspective(500px) rotateY(0.069186rad) !important;
 }
 .tile-big.tile-transform-right {
   -webkit-transform: perspective(500px) rotateY(0.046124rad) !important;
-  transform: perspective(500px) rotateY(0.046124rad) !important;
+          transform: perspective(500px) rotateY(0.046124rad) !important;
 }
 .tile-super.tile-transform-right {
   -webkit-transform: perspective(500px) rotateY(0.034593rad) !important;
-  transform: perspective(500px) rotateY(0.034593rad) !important;
+          transform: perspective(500px) rotateY(0.034593rad) !important;
 }
 .tile-small.tile-transform-right {
   -webkit-transform: perspective(500px) rotateY(0.276744rad) !important;
-  transform: perspective(500px) rotateY(0.276744rad) !important;
+          transform: perspective(500px) rotateY(0.276744rad) !important;
 }
 .tile-transform-left {
-  -webkit-transform-origin: right 50% !important;
-          transform-origin: right 50% !important;
+  -webkit-transform-origin: right 50%;
+          transform-origin: right 50%;
+}
+.tile.tile-transform-left {
   -webkit-transform: perspective(500px) rotateY(-0.138372rad) !important;
-  transform: perspective(500px) rotateY(-0.138372rad) !important;
+          transform: perspective(500px) rotateY(-0.138372rad) !important;
 }
 .tile-wide.tile-transform-left {
   -webkit-transform: perspective(500px) rotateY(-0.069186rad) !important;
-  transform: perspective(500px) rotateY(-0.069186rad) !important;
+          transform: perspective(500px) rotateY(-0.069186rad) !important;
 }
 .tile-large.tile-transform-left {
   -webkit-transform: perspective(500px) rotateY(-0.069186rad) !important;
-  transform: perspective(500px) rotateY(-0.069186rad) !important;
+          transform: perspective(500px) rotateY(-0.069186rad) !important;
 }
 .tile-big.tile-transform-left {
   -webkit-transform: perspective(500px) rotateY(-0.046124rad) !important;
-  transform: perspective(500px) rotateY(-0.046124rad) !important;
+          transform: perspective(500px) rotateY(-0.046124rad) !important;
 }
 .tile-super.tile-transform-left {
   -webkit-transform: perspective(500px) rotateY(-0.034593rad) !important;
-  transform: perspective(500px) rotateY(-0.034593rad) !important;
+          transform: perspective(500px) rotateY(-0.034593rad) !important;
 }
 .tile-small.tile-transform-left {
   -webkit-transform: perspective(500px) rotateY(-0.276744rad) !important;
-  transform: perspective(500px) rotateY(-0.276744rad) !important;
+          transform: perspective(500px) rotateY(-0.276744rad) !important;
 }
 .tile-transform-top {
-  -webkit-transform-origin: 50% bottom !important;
-          transform-origin: 50% bottom !important;
+  -webkit-transform-origin: 50% bottom;
+          transform-origin: 50% bottom;
+}
+.tile.tile-transform-top {
   -webkit-transform: perspective(500px) rotateX(0.138372rad) !important;
-  transform: perspective(500px) rotateX(0.138372rad) !important;
+          transform: perspective(500px) rotateX(0.138372rad) !important;
 }
 .tile-wide.tile-transform-top {
   -webkit-transform: perspective(500px) rotateX(0.069186rad) !important;
-  transform: perspective(500px) rotateX(0.069186rad) !important;
+          transform: perspective(500px) rotateX(0.069186rad) !important;
 }
 .tile-large.tile-transform-top {
   -webkit-transform: perspective(500px) rotateX(0.069186rad) !important;
-  transform: perspective(500px) rotateX(0.069186rad) !important;
+          transform: perspective(500px) rotateX(0.069186rad) !important;
 }
 .tile-big.tile-transform-top {
   -webkit-transform: perspective(500px) rotateX(0.046124rad) !important;
-  transform: perspective(500px) rotateX(0.046124rad) !important;
+          transform: perspective(500px) rotateX(0.046124rad) !important;
 }
 .tile-super.tile-transform-top {
   -webkit-transform: perspective(500px) rotateX(0.034593rad) !important;
-  transform: perspective(500px) rotateX(0.034593rad) !important;
+          transform: perspective(500px) rotateX(0.034593rad) !important;
 }
 .tile-small.tile-transform-top {
   -webkit-transform: perspective(500px) rotateX(0.276744rad) !important;
-  transform: perspective(500px) rotateX(0.276744rad) !important;
+          transform: perspective(500px) rotateX(0.276744rad) !important;
 }
 .tile-transform-bottom {
-  -webkit-transform-origin: 50% top !important;
-          transform-origin: 50% top !important;
+  -webkit-transform-origin: 50% top;
+          transform-origin: 50% top;
+}
+.tile.tile-transform-bottom {
   -webkit-transform: perspective(500px) rotateX(-0.138372rad) !important;
-  transform: perspective(500px) rotateX(-0.138372rad) !important;
+          transform: perspective(500px) rotateX(-0.138372rad) !important;
 }
 .tile-wide.tile-transform-bottom {
   -webkit-transform: perspective(500px) rotateX(-0.069186rad) !important;
-  transform: perspective(500px) rotateX(-0.069186rad) !important;
+          transform: perspective(500px) rotateX(-0.069186rad) !important;
 }
 .tile-large.tile-transform-bottom {
   -webkit-transform: perspective(500px) rotateX(-0.069186rad) !important;
-  transform: perspective(500px) rotateX(-0.069186rad) !important;
+          transform: perspective(500px) rotateX(-0.069186rad) !important;
 }
 .tile-big.tile-transform-bottom {
   -webkit-transform: perspective(500px) rotateX(-0.046124rad) !important;
-  transform: perspective(500px) rotateX(-0.046124rad) !important;
+          transform: perspective(500px) rotateX(-0.046124rad) !important;
 }
 .tile-super.tile-transform-bottom {
   -webkit-transform: perspective(500px) rotateX(-0.034593rad) !important;
-  transform: perspective(500px) rotateX(-0.034593rad) !important;
+          transform: perspective(500px) rotateX(-0.034593rad) !important;
 }
 .tile-small.tile-transform-bottom {
   -webkit-transform: perspective(500px) rotateX(-0.276744rad) !important;
-  transform: perspective(500px) rotateX(-0.276744rad) !important;
+          transform: perspective(500px) rotateX(-0.276744rad) !important;
+}
+.tile-area-scheme-dark {
+  background-color: #1d1d1d;
+}
+.tile-area-scheme-dark [class*=tile] {
+  outline-color: #373737;
+}
+.tile-area-scheme-darkBrown {
+  background-color: #63362f;
+}
+.tile-area-scheme-darkBrown [class*=tile] {
+  outline-color: #86493f;
+}
+.tile-area-scheme-darkCrimson {
+  background-color: #640024;
+}
+.tile-area-scheme-darkCrimson [class*=tile] {
+  outline-color: #970036;
+}
+.tile-area-scheme-darkViolet {
+  background-color: #57169a;
+}
+.tile-area-scheme-darkViolet [class*=tile] {
+  outline-color: #701cc7;
+}
+.tile-area-scheme-darkMagenta {
+  background-color: #81003c;
+}
+.tile-area-scheme-darkMagenta [class*=tile] {
+  outline-color: #b40054;
+}
+.tile-area-scheme-darkCyan {
+  background-color: #1b6eae;
+}
+.tile-area-scheme-darkCyan [class*=tile] {
+  outline-color: #228ada;
+}
+.tile-area-scheme-darkCobalt {
+  background-color: #00356a;
+}
+.tile-area-scheme-darkCobalt [class*=tile] {
+  outline-color: #004e9d;
+}
+.tile-area-scheme-darkTeal {
+  background-color: #004050;
+}
+.tile-area-scheme-darkTeal [class*=tile] {
+  outline-color: #006983;
+}
+.tile-area-scheme-darkEmerald {
+  background-color: #003e00;
+}
+.tile-area-scheme-darkEmerald [class*=tile] {
+  outline-color: #007100;
+}
+.tile-area-scheme-darkGreen {
+  background-color: #128023;
+}
+.tile-area-scheme-darkGreen [class*=tile] {
+  outline-color: #18ad2f;
+}
+.tile-area-scheme-darkOrange {
+  background-color: #bf5a15;
+}
+.tile-area-scheme-darkOrange [class*=tile] {
+  outline-color: #e77120;
+}
+.tile-area-scheme-darkRed {
+  background-color: #9a1616;
+}
+.tile-area-scheme-darkRed [class*=tile] {
+  outline-color: #c71c1c;
+}
+.tile-area-scheme-darkPink {
+  background-color: #9a165a;
+}
+.tile-area-scheme-darkPink [class*=tile] {
+  outline-color: #c71c74;
+}
+.tile-area-scheme-darkIndigo {
+  background-color: #4b0096;
+}
+.tile-area-scheme-darkIndigo [class*=tile] {
+  outline-color: #6400c9;
+}
+.tile-area-scheme-darkBlue {
+  background-color: #16499a;
+}
+.tile-area-scheme-darkBlue [class*=tile] {
+  outline-color: #1c5ec7;
+}
+.tile-area-scheme-lightBlue {
+  background-color: #4390df;
+}
+.tile-area-scheme-lightBlue [class*=tile] {
+  outline-color: #6faae6;
+}
+.tile-area-scheme-lightTeal {
+  background-color: #45fffd;
+}
+.tile-area-scheme-lightTeal [class*=tile] {
+  outline-color: #78fffd;
+}
+.tile-area-scheme-lightOlive {
+  background-color: #78aa1c;
+}
+.tile-area-scheme-lightOlive [class*=tile] {
+  outline-color: #97d623;
+}
+.tile-area-scheme-lightOrange {
+  background-color: #c29008;
+}
+.tile-area-scheme-lightOrange [class*=tile] {
+  outline-color: #f3b40a;
+}
+.tile-area-scheme-lightPink {
+  background-color: #f472d0;
+}
+.tile-area-scheme-lightPink [class*=tile] {
+  outline-color: #f8a1e0;
+}
+.tile-area-scheme-grayed {
+  background-color: #585858;
+}
+.tile-area-scheme-grayed [class*=tile] {
+  outline-color: #727272;
 }
 @media screen and (max-width: 640px) {
   .tile-area:not(.no-responsive-future) {
