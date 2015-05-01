@@ -2125,7 +2125,7 @@ span {
   content: "";
   height: 5px;
   width: 5px;
-  background-color: transparent !important;
+  background-color: transparent;
   border-left: 1px solid;
   border-bottom: 1px solid;
   border-color: #1d1d1d;
@@ -2398,7 +2398,7 @@ span {
   opacity: .2;
 }
 .element-selected {
-  border: 4px #4390df solid !important;
+  border: 4px #4390df solid;
 }
 .element-selected:after {
   position: absolute;
@@ -2415,7 +2415,7 @@ span {
   display: block;
   content: "";
   background-color: transparent;
-  border-color: #ffffff !important;
+  border-color: #ffffff;
   border-left: 2px solid;
   border-bottom: 2px solid;
   height: .25rem;
@@ -12583,7 +12583,7 @@ p [data-hint] {
   border-color: #999999;
 }
 .streamer .events .event-stream .event.selected {
-  border: 4px #4390df solid !important;
+  border: 4px #4390df solid;
   border-width: 1px !important;
 }
 .streamer .events .event-stream .event.selected:after {
@@ -12601,7 +12601,7 @@ p [data-hint] {
   display: block;
   content: "";
   background-color: transparent;
-  border-color: #ffffff !important;
+  border-color: #ffffff;
   border-left: 2px solid;
   border-bottom: 2px solid;
   height: .25rem;
