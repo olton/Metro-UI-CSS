@@ -8601,7 +8601,6 @@ input[type="submit"].link:active {
   }
 }
 .calendar {
-  min-width: 15.625rem;
   border: 1px #eeeeee solid;
   font-size: .75rem;
   padding: .3125rem;
