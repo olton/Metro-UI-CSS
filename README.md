@@ -6,6 +6,12 @@ This set of styles was developed as a self-contained solution.
 
 ### 3.0.0
 
+#### Install with bower
+bower install metro
+#### Install with nuget
+Package-Install Metro.UI.CSS
+
+
 ### Whats new in 3.0
 - compatible with AngularJS
 - full code refactoring
