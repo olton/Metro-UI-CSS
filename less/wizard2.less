@@ -44,10 +44,10 @@
 		&.prev {
 			border-left: 24px solid @grayLighter;
 			border-right: 1px solid darken(@grayLighter, 3%);
-			width: 0 !important;
+			width: 0 ;
 
 			&:before {
-				left: 0 !important;
+				left: 0 ;
 				margin-left: -24px;
 				color: @dark;
 			}
@@ -56,11 +56,10 @@
 		&.next {
 			border-left: 1px solid darken(@grayLighter, 3%);
 			border-right: 24px solid @cyan;
-			width: 0 !important;
+			width: 0;
 
 			&:before {
 				left: 100%;
-				//margin-left: .4rem;
 				color: @white;
 			}
 		}
@@ -100,8 +99,8 @@
 
 	.step.prev, .step.next {
 		.step-content {
-			width: 0 !important;
-			padding: 0 !important;
+			width: 0 ;
+			padding: 0 ;
 		}
 	}
 }
