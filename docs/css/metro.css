@@ -6424,7 +6424,7 @@ div.square-button.big-button {
 .input-control.number .prepend-icon ~ input,
 .input-control.email .prepend-icon ~ input,
 .input-control.tel .prepend-icon ~ input {
-  padding-left: 30px !important;
+  padding-left: 30px;
 }
 .input-control input,
 .input-control textarea,
@@ -6458,7 +6458,7 @@ div.square-button.big-button {
   border-color: #787878;
 }
 .input-control textarea {
-  position: relative !important;
+  position: relative;
   min-height: 6.25rem;
   font-family: "Segoe UI", "Open Sans", serif;
 }
@@ -6469,7 +6469,7 @@ div.square-button.big-button {
   position: relative;
 }
 .input-control.select select {
-  padding-right: 20px !important;
+  padding-right: 20px;
 }
 .input-control.rounded input,
 .input-control.rounded textarea,
@@ -6481,13 +6481,13 @@ div.square-button.big-button {
 }
 .input-control.big-input input {
   font-size: 1.875rem;
-  padding-left: 1.25rem !important;
+  padding-left: 1.25rem ;
 }
 .input-control.big-input .button {
   height: 3.25rem;
   top: 50%;
   margin-top: -1.625rem;
-  right: 0.3125rem !important;
+  right: 0.3125rem;
   font-size: 1.125rem;
   font-weight: bold;
   padding-left: 1.875rem;
@@ -6496,7 +6496,7 @@ div.square-button.big-button {
 .input-control.error input,
 .input-control.error textarea,
 .input-control.error select {
-  border-color: #ce352c !important;
+  border-color: #ce352c;
 }
 .input-control.error.neon input,
 .input-control.error.neon textarea,
@@ -6506,7 +6506,7 @@ div.square-button.big-button {
 .input-control.warning input,
 .input-control.warning textarea,
 .input-control.warning select {
-  border-color: #e3c800 !important;
+  border-color: #e3c800;
 }
 .input-control.warning.neon input,
 .input-control.warning.neon textarea,
@@ -6516,7 +6516,7 @@ div.square-button.big-button {
 .input-control.success input,
 .input-control.success textarea,
 .input-control.success select {
-  border-color: #60a917 !important;
+  border-color: #60a917;
 }
 .input-control.success.neon input,
 .input-control.success.neon textarea,
@@ -6526,7 +6526,7 @@ div.square-button.big-button {
 .input-control.info input,
 .input-control.info textarea,
 .input-control.info select {
-  border-color: #1ba1e2 !important;
+  border-color: #1ba1e2;
 }
 .input-control.info.neon input,
 .input-control.info.neon textarea,
@@ -6536,7 +6536,7 @@ div.square-button.big-button {
 .input-control.required input,
 .input-control.required textarea,
 .input-control.required select {
-  border: 1px dashed #1ba1e2 !important;
+  border: 1px dashed #1ba1e2;
 }
 .input-control.required.neon input,
 .input-control.required.neon textarea,
@@ -6578,8 +6578,8 @@ div.square-button.big-button {
   float: left;
   margin: 0;
 }
-.input-control > [class*=helper-button],
-.input-control > .button-group > [class*=helper-button] {
+.input-control > .helper-button,
+.input-control > .button-group > .helper-button {
   visibility: hidden;
   margin: 0;
   border: 0;
@@ -6588,26 +6588,26 @@ div.square-button.big-button {
   z-index: 100;
   font-size: .75rem;
 }
-.input-control > .helper-button {
-  margin: 2px 2px 0 !important;
+.input-control > .button.helper-button {
+  margin: 2px 2px 0;
 }
-.input-control > .button-group > .helper-button {
-  margin: 2px 0 !important;
+.input-control > .button-group > .button.helper-button {
+  margin: 2px 0 ;
 }
-.input-control > .button-group > .helper-button:last-child {
-  margin-right: 2px !important;
+.input-control > .button-group > .button.helper-button:last-child {
+  margin-right: 2px ;
 }
-.input-control input:focus ~ [class*=helper-button],
-.input-control input:focus ~ .button-group > [class*=helper-button] {
+.input-control input:focus ~ .helper-button,
+.input-control input:focus ~ .button-group > .helper-button {
   visibility: visible;
 }
-.input-control input ~ [class*=helper-button]:active,
-.input-control input ~ .button-group > [class*=helper-button]:active {
+.input-control input ~ .helper-button:active,
+.input-control input ~ .button-group > .helper-button:active {
   visibility: visible;
 }
-.input-control input:disabled ~ [class*=helper-button],
-.input-control input:disabled ~ .button-group > [class*=helper-button] {
-  display: none !important;
+.input-control input:disabled ~ .helper-button,
+.input-control input:disabled ~ .button-group > .helper-button {
+  display: none ;
 }
 .input-control.modern {
   position: relative;
@@ -6718,28 +6718,28 @@ div.square-button.big-button {
 }
 .input-control.modern.error .informer,
 .input-control.modern.error .label {
-  color: #ce352c !important;
+  color: #ce352c;
 }
 .input-control.modern.success input {
   border-bottom-color: #60a917;
 }
 .input-control.modern.success .informer,
 .input-control.modern.success .label {
-  color: #60a917 !important;
+  color: #60a917;
 }
 .input-control.modern.warning input {
   border-bottom-color: #e3c800;
 }
 .input-control.modern.warning .informer,
 .input-control.modern.warning .label {
-  color: #e3c800 !important;
+  color: #e3c800;
 }
 .input-control.modern.info input {
   border-bottom-color: #1ba1e2;
 }
 .input-control.modern.info .informer,
 .input-control.modern.info .label {
-  color: #1ba1e2 !important;
+  color: #1ba1e2;
 }
 .input-control.modern input:disabled {
   border-bottom-style: dotted;
@@ -6811,7 +6811,7 @@ div.square-button.big-button {
 }
 .input-control.checkbox input[type=radio] ~ .check:before,
 .input-control.radio input[type=radio] ~ .check:before {
-  border-color: transparent !important;
+  border-color: transparent;
 }
 .input-control.checkbox input[type="checkbox"]:checked ~ .check:before,
 .input-control.radio input[type="checkbox"]:checked ~ .check:before,
@@ -6862,7 +6862,7 @@ div.square-button.big-button {
 .input-control.radio input[type="checkbox"]:indeterminate ~ .check:after {
   position: absolute;
   display: block;
-  content: "" !important;
+  content: "";
   background-color: #1d1d1d;
   height: .875rem;
   width: .875rem;
@@ -6886,7 +6886,7 @@ div.square-button.big-button {
 .input-control.radio .check:before {
   position: absolute;
   display: block;
-  content: "" !important;
+  content: "";
   background-color: #1d1d1d;
   height: .5624rem;
   width: .5624rem;
@@ -6901,9 +6901,12 @@ div.square-button.big-button {
 .input-control.radio input[type="radio"]:not(:checked) ~ .check:before {
   background-color: transparent;
 }
+.input-control.radio input[type="radio"]:disabled ~ .check:before {
+  border-color: transparent;
+}
 .input-control.small-check .check {
-  width: 1rem !important;
-  height: 1rem !important;
+  width: 1rem;
+  height: 1rem;
 }
 .input-control.small-check .check:before {
   width: 6px;
@@ -7189,7 +7192,7 @@ input[type="submit"].dropdown-toggle.drop-marker-light:after {
   transition: all 0.2s linear;
 }
 .switch-original input[type="checkbox"]:focus ~ .check {
-  outline: 1px #999999 dotted !important;
+  outline: 1px #999999 dotted;
 }
 .switch-original input[type="checkbox"]:checked ~ .check {
   background: #008287;

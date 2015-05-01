@@ -53,7 +53,7 @@
 		}
 
 		.prepend-icon ~ input {
-			padding-left: 30px !important;
+			padding-left: 30px;
 		}
 	}
 
@@ -82,7 +82,7 @@
 	}
 
 	textarea {
-		position: relative !important;
+		position: relative;
 		min-height: 6.25rem;
 		font-family: @fontName;
 	}
@@ -93,7 +93,7 @@
 
 	&.select {
 		select {
-			padding-right: 20px !important;
+			padding-right: 20px;
 		}
 
 		position: relative;
@@ -111,14 +111,14 @@
 
 		input {
 			font-size: 1.875rem;
-			padding-left: 1.25rem !important;
+			padding-left: 1.25rem ;
 		}
 
 		.button {
 			height: 3.25rem;
 			top: 50%;
 			margin-top: -1.625rem;
-			right: 0.3125rem !important;
+			right: 0.3125rem;
 			font-size: 1.125rem;
 			font-weight: bold;
 			padding-left: 1.875rem;
@@ -128,7 +128,7 @@
 
 	&.error {
 		input, textarea, select {
-			border-color: @red !important;
+			border-color: @red ;
 		}
 
 		&.neon {
@@ -139,7 +139,7 @@
 	}
 	&.warning {
 		input, textarea, select {
-			border-color: @yellow !important;
+			border-color: @yellow ;
 		}
 		&.neon {
 			input, textarea, select {
@@ -149,7 +149,7 @@
 	}
 	&.success {
 		input, textarea, select {
-			border-color: @green !important;
+			border-color: @green ;
 		}
 		&.neon {
 			input, textarea, select {
@@ -159,7 +159,7 @@
 	}
 	&.info {
 		input, textarea, select {
-			border-color: @cyan !important;
+			border-color: @cyan ;
 		}
 		&.neon {
 			input, textarea, select {
@@ -169,7 +169,7 @@
 	}
 	&.required {
 		input, textarea, select {
-			border: 1px dashed @cyan !important;
+			border: 1px dashed @cyan ;
 		}
 		&.neon {
 			input, textarea, select {
@@ -220,7 +220,7 @@
 }
 
 .input-control {
-	& > [class*=helper-button], & > .button-group > [class*=helper-button] {
+	& > .helper-button, & > .button-group > .helper-button {
 		visibility: hidden;
 		margin: 0;
 		border: 0;
@@ -230,26 +230,26 @@
 		font-size: .75rem;
 	}
 
-	& > .helper-button {
-		margin: 2px 2px 0 !important;
+	& > .button.helper-button {
+		margin: 2px 2px 0;
 	}
 
-	& > .button-group > .helper-button {
-		margin: 2px 0 !important;
+	& > .button-group > .button.helper-button {
+		margin: 2px 0 ;
 		&:last-child {
-			margin-right: 2px !important;
+			margin-right: 2px ;
 		}
 	}
 
-	input:focus ~ [class*=helper-button], input:focus ~ .button-group > [class*=helper-button] {
+	input:focus ~ .helper-button, input:focus ~ .button-group > .helper-button {
 		visibility: visible;
 	}
-	input ~ [class*=helper-button]:active, input ~ .button-group > [class*=helper-button]:active {
+	input ~ .helper-button:active, input ~ .button-group > .helper-button:active {
 		visibility: visible;
 	}
 
-	input:disabled ~ [class*=helper-button], input:disabled ~ .button-group > [class*=helper-button] {
-		display: none !important;
+	input:disabled ~ .helper-button, input:disabled ~ .button-group > .helper-button {
+		display: none ;
 	}
 }
 
@@ -381,7 +381,7 @@
 		}
 
 		.informer, .label {
-			color: @red !important;
+			color: @red;
 		}
 	}
 
@@ -391,7 +391,7 @@
 		}
 
 		.informer, .label {
-			color: @green !important;
+			color: @green;
 		}
 	}
 
@@ -401,7 +401,7 @@
 		}
 
 		.informer, .label {
-			color: @yellow !important;
+			color: @yellow;
 		}
 	}
 
@@ -411,7 +411,7 @@
 		}
 
 		.informer, .label {
-			color: @cyan !important;
+			color: @cyan;
 		}
 	}
 
@@ -492,7 +492,7 @@
 		}
 
 		input[type=radio] ~ .check:before {
-			border-color: transparent !important;
+			border-color: transparent;
 		}
 
 		input[type="checkbox"]:checked ~ .check, input[type="radio"]:checked ~ .check {
@@ -531,7 +531,7 @@
 			&:after {
 				position: absolute;
 				display: block;
-				content: "" !important;
+				content: "";
 				background-color: @dark;
 				height: .875rem;
 				width: .875rem;
@@ -562,7 +562,7 @@
 			&:before {
 				position: absolute;
 				display: block;
-				content: "" !important;
+				content: "" ;
 				background-color: @dark;
 				height: .5624rem;
 				width: .5624rem;
@@ -578,12 +578,16 @@
 		input[type="radio"]:not(:checked) ~ .check:before {
 			background-color: @transparent;
 		}
+
+		input[type="radio"]:disabled ~ .check:before {
+			border-color: @transparent;
+		}
 	}
 
 
 	&.small-check {
 		.check {
-			.square(1rem) !important;
+			.square(1rem) ;
 
 			&:before {
 				width: 6px;
@@ -736,7 +740,7 @@ input[type="button"], input[type="reset"], input[type="submit"] {
 	}
 
 	input[type="checkbox"]:focus ~ .check {
-		outline: 1px @grayLight dotted !important;
+		outline: 1px @grayLight dotted ;
 	}
 
 	input[type="checkbox"]:checked ~ .check {
