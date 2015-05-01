@@ -17,9 +17,9 @@
 		.clear-float;
 
 		li {
-			display: inline-block;
-			margin: 0 0 -4px -4px;
-			//float: left;
+			display: block;
+			//margin: 0 0 -4px -4px;
+			float: left;
 			position: relative;
 			white-space: nowrap;
 
@@ -71,7 +71,7 @@
 				}
 
 				&.dropdown-toggle {
-					height: 100% !important;
+					height: 100% ;
 				}
 			}
 		}
@@ -81,6 +81,13 @@
 		.tabs {
 			border-bottom: none;
 			border-top: 2px @cyan solid;
+
+            li.disabled {
+                top: 0;
+            }
+            li:hover {
+                top: 0;
+            }
 		}
 	}
 
@@ -108,10 +115,9 @@
 		z-index: 2;
 
 		li {
-			//margin: 0 2px;
-			margin: 0 2px -3px;
 			padding-top: 2px;
 			overflow: visible;
+            margin: 0 2px;
 
 			&:after {
 				content: "";
@@ -139,7 +145,7 @@
 			a {
 				background-color: @grayLighter;
 				padding-top: .3125rem;
-				text-shadow: none !important;
+				text-shadow: none ;
 			}
 
 			&.active {
@@ -174,9 +180,8 @@
 				padding: 0;
 
 				&:after {
-					top: 0 !important;
+					top: -1px /*!important*/;
 					background-color: @white;
-					margin-top: -2px;
 				}
 
 				&.active {
@@ -191,15 +196,7 @@
 				&:not(.active) {
 					margin-bottom: 0;
 					&:after {
-						//margin-top: -2px;
 						background-color: @grayLighter;
-						//height: 4px;
-					}
-
-					&:hover {
-						&:after {
-							//background-color: darken(@grayLighter, 5%);
-						}
 					}
 				}
 			}
