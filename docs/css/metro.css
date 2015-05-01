@@ -9802,7 +9802,7 @@ input[type="submit"].link:active {
   padding: 0;
 }
 .tabcontrol2.tabs-bottom .tabs li:after {
-  top: -1px /*!important*/;
+  top: -1px;
   background-color: #ffffff;
 }
 .tabcontrol2.tabs-bottom .tabs li.active {
@@ -10129,7 +10129,7 @@ input[type="submit"].link:active {
   content: '\2605';
   display: block;
   z-index: 2;
-  top: 0 !important;
+  top: 0 ;
   left: 0;
   vertical-align: middle;
 }
@@ -10146,17 +10146,6 @@ input[type="submit"].link:active {
   z-index: 3;
   width: 8px;
   overflow: hidden;
-}
-.rating:not(.static):hover > .star,
-.rating:not(.static):hover > .star:after {
-  color: gold !important;
-}
-.rating:not(.static) .star:hover ~ .star,
-.rating:not(.static) .star:hover ~ .star:after {
-  color: gray !important;
-}
-.rating:not(.static) .star:hover {
-  color: gold !important;
 }
 .rating.poor .star.on {
   color: #ce352c;
@@ -10184,6 +10173,49 @@ input[type="submit"].link:active {
 }
 .rating.good .star.on.half:after {
   color: #60a917;
+}
+.rating:not(.static) .star:hover {
+  color: gold ;
+}
+.rating:not(.static) .star:hover.half,
+.rating:not(.static) .star:hover.on.half {
+  color: gold;
+}
+.rating:not(.static) .star:hover.half:after,
+.rating:not(.static) .star:hover.on.half:after {
+  color: gold;
+}
+.rating:not(.static):hover > .star,
+.rating:not(.static):hover > .star:after {
+  color: gold ;
+}
+.rating:not(.static):hover > .star.half,
+.rating:not(.static):hover > .star:after.half,
+.rating:not(.static):hover > .star.on.half,
+.rating:not(.static):hover > .star:after.on.half {
+  color: gold;
+}
+.rating:not(.static):hover > .star.half:after,
+.rating:not(.static):hover > .star:after.half:after,
+.rating:not(.static):hover > .star.on.half:after,
+.rating:not(.static):hover > .star:after.on.half:after {
+  color: gold;
+}
+.rating:not(.static) .star:hover ~ .star,
+.rating:not(.static) .star:hover ~ .star:after {
+  color: gray ;
+}
+.rating:not(.static) .star:hover ~ .star.half,
+.rating:not(.static) .star:hover ~ .star:after.half,
+.rating:not(.static) .star:hover ~ .star.on.half,
+.rating:not(.static) .star:hover ~ .star:after.on.half {
+  color: gray;
+}
+.rating:not(.static) .star:hover ~ .star.half:after,
+.rating:not(.static) .star:hover ~ .star:after.half:after,
+.rating:not(.static) .star:hover ~ .star.on.half:after,
+.rating:not(.static) .star:hover ~ .star:after.on.half:after {
+  color: gray;
 }
 .rating.small .star {
   width: 14px;
