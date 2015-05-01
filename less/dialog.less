@@ -53,7 +53,7 @@
 		}
 		&:active {
 			background-color: @winFlatSystemButtonActiveBackground;
-			color: @white !important;
+			color: @white;
 		}
 		&:after {
 			border-color: @winFlatSystemButtonRestColor;
@@ -63,7 +63,8 @@
 	}
 
 	&.success {
-		.success;
+		background-color: @green;
+        color: @white;
 		.dialog-close-button {
 			background-color: @lightGreen;
 			color: @white;
@@ -74,7 +75,8 @@
 		}
 	}
 	&.warning {
-		.warning;
+		background-color: @orange;
+        color: @white;
 		.dialog-close-button {
 			background-color: @lightOrange;
 			color: @white;
@@ -85,7 +87,8 @@
 		}
 	}
 	&.alert {
-		.alert;
+		background-color: @red;
+        color: @white;
 		.dialog-close-button {
 			background-color: @lightRed;
 			color: @white;
@@ -96,7 +99,8 @@
 		}
 	}
 	&.info {
-		.info;
+		background-color: @cyan;
+        color: @white;
 		.dialog-close-button {
 			background-color: @lightCyan;
 			color: @white;

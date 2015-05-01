@@ -54,6 +54,7 @@
 	.btn-close, .btn-min, .btn-max {
 		position: absolute;
 		height: 1.5rem;
+		width: 1.5rem;
 		min-height: 1.5rem;
 		text-align: center;
 		vertical-align: middle;
@@ -63,10 +64,10 @@
 		z-index: 3;
 		outline: none;
 		cursor: pointer;
+        display: block;
 
 		background-color: @winFlatBackgroundColor;
 		color: @winFlatSystemButtonRestColor;
-		width: 1.5rem;
 		top: .25rem;
 		right: .25rem;
 		&:hover {
@@ -77,14 +78,11 @@
 			}
 		}
 		&:active {
-			background-color: @winFlatSystemButtonActiveBackground !important;
-			color: @white !important;
+			background-color: @winFlatSystemButtonActiveBackground;
+			color: @white;
 		}
 		&:after {
 			border-color: @winFlatSystemButtonRestColor;
-			width: .625rem !important;
-			height: .375rem !important;
-
 			content: '\D7';
 			position: absolute;
 			left: 50%;
