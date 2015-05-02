@@ -2108,6 +2108,36 @@
 .no-wrap {
   white-space: nowrap !important;
 }
+.no-border-left {
+  border-left: none !important;
+}
+.no-border-right {
+  border-right: none !important;
+}
+.no-border-top {
+  border-top: none !important;
+}
+.no-border-bottom {
+  border-bottom: none !important;
+}
+.transparent-border {
+  border-color: transparent !important;
+}
+@media screen and (max-width: 640px) {
+  .no-phone {
+    display: none !important;
+  }
+}
+@media screen and (max-width: 800px) {
+  .no-tablet {
+    display: none !important;
+  }
+}
+@media screen and (min-width: 900px) {
+  .no-pc {
+    display: none !important;
+  }
+}
 .place-right {
   float: right !important;
 }
@@ -2308,24 +2338,6 @@
 }
 .set-border.large-border {
   border-width: 16px;
-}
-.no-border {
-  border: none !important;
-}
-.no-border-left {
-  border-left: none !important;
-}
-.no-border-right {
-  border-right: none !important;
-}
-.no-border-top {
-  border-top: none !important;
-}
-.no-border-bottom {
-  border-bottom: none !important;
-}
-.transparent-border {
-  border-color: transparent !important;
 }
 /* transform functions */
 .rotate45 {

@@ -1,5 +1,5 @@
 /*!
- * Metro UI CSS v3.0.0 (http://metroui.org.ua)
+ * Metro UI CSS v3.0.2 (http://metroui.org.ua)
  * Copyright 2012-2015 Sergey Pimenov
  * Licensed under MIT (http://metroui.org.ua/license.html)
  */
@@ -1440,7 +1440,7 @@ function touch2Mouse(e)
 (function ( $ ) {
     "use strict";
 
-    $.widget( "metro.buttonGroup" , {
+    $.widget( "metro.group" , {
 
         version: "3.0.0",
 
@@ -1498,7 +1498,7 @@ function touch2Mouse(e)
                 }
             });
 
-            element.data('buttonGroup', this);
+            element.data('group', this);
 
         },
 
