@@ -16,7 +16,8 @@ module.exports = function(grunt) {
 
         clean: {
             build: ['build'],
-            docs: ['docs/css/metro*.css', 'docs/js/metro*.js']
+            docs: ['docs/css/metro*.css', 'docs/js/metro*.js'],
+            compiled_html: ['.compiled_html']
         },
 
         concat: {
@@ -98,6 +99,30 @@ module.exports = function(grunt) {
             }
         },
 
+        replace: {
+            dist: {
+                options: {
+                    patterns: [
+                        {
+                            match: 'adsense',
+                            replacement: '<%= grunt.file.read(".replace/google-adsense-block.txt") %>'
+                        },
+                        {
+                            match: 'hit',
+                            replacement: '<%= grunt.file.read(".replace/hit-ua-counter.txt") %>'
+                        }
+                    ]
+                },
+                files: [
+                    {
+                        expand: true,
+                        flatten: true,
+                        src: ['docs/*.html'], dest: '.compiled_html/'
+                    }
+                ]
+            }
+        },
+
         watch: {
             scripts: {
                 files: ['js/*.js', 'js/utils/*.js', 'js/widgets/*js'],
@@ -107,7 +132,7 @@ module.exports = function(grunt) {
     });
 
     grunt.registerTask('default', [
-        'clean', 'concat', 'uglify', 'less', 'postcss', 'cssmin', 'copy', 'watch'
+        'clean', 'concat', 'uglify', 'less', 'postcss', 'cssmin', 'copy', 'replace', 'watch'
     ]);
 
 };
