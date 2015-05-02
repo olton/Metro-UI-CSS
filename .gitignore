@@ -17,6 +17,7 @@
 .cache
 .DS_Store
 .idea
+.replace
 .project
 .settings
 .tmproj

@@ -36,6 +36,7 @@
     "grunt-contrib-uglify": "^0.8.0",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-postcss": "^0.3.0",
+    "grunt-replace": "^0.9.1",
     "load-grunt-tasks": "^3.1.0"
   }
 }
