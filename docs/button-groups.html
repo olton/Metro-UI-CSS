@@ -54,18 +54,18 @@
             <h5>Group type check (multi state)</h5>
 
             <div class="toolbar">
-                <div class="toolbar-section condensed" data-role="buttonGroup" data-group-type="multi-state">
-                    <button class="button">One</button>
-                    <button class="button active">Two</button>
-                    <button class="button">Three</button>
-                    <button class="button" disabled>Four</button>
+                <div class="toolbar-section condensed" data-role="group" data-group-type="multi-state">
+                    <button class="toolbar-button">1</button>
+                    <button class="toolbar-button active">2</button>
+                    <button class="toolbar-button">3</button>
+                    <button class="toolbar-button" disabled>4</button>
                 </div>
-                <div class="toolbar-section condensed" data-role="buttonGroup" data-group-type="multi-state">
+                <div class="toolbar-section condensed" data-role="group" data-group-type="multi-state">
                     <button class="toolbar-button active"><span class="mif-facebook"></span></button>
                     <button class="toolbar-button"><span class="mif-twitter"></span></button>
                     <button class="toolbar-button active"><span class="mif-google-plus"></span></button>
                 </div>
-                <div class="toolbar-section" data-role="buttonGroup" data-group-type="multi-state">
+                <div class="toolbar-section" data-role="group" data-group-type="multi-state">
                     <button class="toolbar-button"><span class="mif-facebook"></span></button>
                     <button class="toolbar-button"><span class="mif-twitter"></span></button>
                     <button class="toolbar-button"><span class="mif-google-plus"></span></button>
@@ -75,18 +75,18 @@
             <h5>Group type radio (one state)</h5>
 
             <div class="toolbar">
-                <div class="toolbar-section condensed" data-role="buttonGroup" data-group-type="one-state">
-                    <button class="button">One</button>
-                    <button class="button">Two</button>
-                    <button class="button" disabled>Three</button>
-                    <button class="button">Four</button>
+                <div class="toolbar-section" data-role="group" data-group-type="one-state">
+                    <button class="toolbar-button">1</button>
+                    <button class="toolbar-button">2</button>
+                    <button class="toolbar-button" disabled>3</button>
+                    <button class="toolbar-button">4</button>
                 </div>
-                <div class="toolbar-section condensed" data-role="buttonGroup" data-group-type="one-state">
+                <div class="toolbar-section" data-role="group" data-group-type="one-state">
                     <button class="toolbar-button"><span class="mif-facebook"></span></button>
                     <button class="toolbar-button"><span class="mif-twitter"></span></button>
                     <button class="toolbar-button"><span class="mif-google-plus"></span></button>
                 </div>
-                <div class="toolbar-section" data-role="buttonGroup" data-group-type="one-state">
+                <div class="toolbar-section" data-role="group" data-group-type="one-state">
                     <button class="toolbar-button"><span class="mif-facebook"></span></button>
                     <button class="toolbar-button"><span class="mif-twitter"></span></button>
                     <button class="toolbar-button"><span class="mif-google-plus"></span></button>
@@ -94,7 +94,7 @@
             </div>
 
             <h5>Own style buttons</h5>
-            <div class="toolbar-section condensed" data-role="buttonGroup" data-group-type="multi-state" data-button-style="my-button-state">
+            <div class="toolbar-section condensed" data-role="group" data-group-type="multi-state" data-button-style="my-button-state">
                 <button class="button">One</button>
                 <button class="button active">Two</button>
                 <button class="button">Three</button>
@@ -106,40 +106,40 @@
         <div class="example" data-text="code">
             <h5>Declarative style</h5>
             <pre class="prettyprint linenums"><code>
-                &lt;div data-role="buttonGroup" data-group-type="multi-state" data-button-style="class"&gt;
-                    &lt;button class="button"&gt;One&lt;/button&gt;
-                    &lt;button class="button"&gt;Two&lt;/button&gt;
-                    &lt;button class="button"&gt;Three&lt;/button&gt;
+                &lt;div data-role="group" data-group-type="multi-state" data-button-style="class"&gt;
+                    &lt;button class="button"&gt;1&lt;/button&gt;
+                    &lt;button class="button"&gt;2&lt;/button&gt;
+                    &lt;button class="button"&gt;3&lt;/button&gt;
                 &lt;/div&gt;
 
-                &lt;div data-role="buttonGroup" data-group-type="one-state"&gt;
-                    &lt;button class="button"&gt;One&lt;/button&gt;
-                    &lt;button class="button"&gt;Two&lt;/button&gt;
-                    &lt;button class="button"&gt;Three&lt;/button&gt;
+                &lt;div data-role="group" data-group-type="one-state"&gt;
+                    &lt;button class="button"&gt;1&lt;/button&gt;
+                    &lt;button class="button"&gt;2&lt;/button&gt;
+                    &lt;button class="button"&gt;3&lt;/button&gt;
                 &lt;/div&gt;
             </code></pre>
 
             <h5>JavaScript style</h5>
             <pre class="prettyprint linenums"><code>
                 &lt;div id="button-group-1"&gt;
-                    &lt;button class="button"&gt;One&lt;/button&gt;
-                    &lt;button class="button"&gt;Two&lt;/button&gt;
-                    &lt;button class="button"&gt;Three&lt;/button&gt;
+                    &lt;button class="button"&gt;1&lt;/button&gt;
+                    &lt;button class="button"&gt;2&lt;/button&gt;
+                    &lt;button class="button"&gt;3&lt;/button&gt;
                 &lt;/div&gt;
 
                 &lt;div id="button-group-2"&gt;
-                    &lt;button class="button"&gt;One&lt;/button&gt;
-                    &lt;button class="button"&gt;Two&lt;/button&gt;
-                    &lt;button class="button"&gt;Three&lt;/button&gt;
+                    &lt;button class="button"&gt;1&lt;/button&gt;
+                    &lt;button class="button"&gt;2&lt;/button&gt;
+                    &lt;button class="button"&gt;3&lt;/button&gt;
                 &lt;/div&gt;
 
                 &lt;script&gt;
                     $(function(){
-                        $("#button-group-1").buttonGroup({
+                        $("#button-group-1").group({
                             groupType: 'multi-state'
                         });
 
-                        $("#button-group-2").buttonGroup({
+                        $("#button-group-2").group({
                             groupType: 'one-state'
                         });
                     });
