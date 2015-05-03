@@ -4154,6 +4154,10 @@ a.tag {
   background-color: #59cde2;
   color: #ffffff;
 }
+.h-menu > li .input-control,
+.h-menu > li .button {
+  margin-top: 10px;
+}
 .h-menu > li.active a {
   background-color: #59cde2;
   color: #ffffff;
