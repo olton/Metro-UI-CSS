@@ -29,9 +29,110 @@
 
         @@adsense
 
+        <h3>Main demo</h3>
+        <p>
+            Switch on to enable Metro UI CSS table.
+        </p>
+        <div class="padding20 bg-grayLighter">
+            <label class="switch-original padding10">
+                <input type="checkbox" onchange="$('#main_table_demo').toggleClass('table'); $('#main_table_demo_keys').toggleClass('no-display')">
+                <span class="caption"> Off </span>
+                <span class="check"></span>
+                <span class="caption"> On </span>
+            </label>
+
+            <div class="inline-block no-display" id="main_table_demo_keys">
+                <label class="input-control checkbox small-check no-margin">
+                    <input type="checkbox" onchange="$('#main_table_demo').toggleClass('striped')">
+                    <span class="check"></span>
+                    <span class="caption">striped</span>
+                </label>
+                <label class="input-control checkbox small-check no-margin">
+                    <input type="checkbox" onchange="$('#main_table_demo').toggleClass('hovered')">
+                    <span class="check"></span>
+                    <span class="caption">hovered</span>
+                </label>
+                <label class="input-control checkbox small-check no-margin">
+                    <input type="checkbox" onchange="$('#main_table_demo').toggleClass('cell-hovered')">
+                    <span class="check"></span>
+                    <span class="caption">cell-hovered</span>
+                </label>
+                <label class="input-control checkbox small-check no-margin">
+                    <input type="checkbox" onchange="$('#main_table_demo').toggleClass('border')">
+                    <span class="check"></span>
+                    <span class="caption">border</span>
+                </label>
+                <label class="input-control checkbox small-check no-margin">
+                    <input type="checkbox" onchange="$('#main_table_demo').toggleClass('bordered')">
+                    <span class="check"></span>
+                    <span class="caption">bordered</span>
+                </label>
+            </div>
+        </div>
+        <br />
+
+        <div class="example" data-text="table">
+            <table class="" id="main_table_demo">
+                <thead>
+                <tr>
+                    <th>Header 1</th>
+                    <th>Header 2</th>
+                    <th>Header 3</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>a</td>
+                    <td>b</td>
+                    <td>c</td>
+                </tr>
+                <tr>
+                    <td>a</td>
+                    <td>b</td>
+                    <td>c</td>
+                </tr>
+                <tr>
+                    <td>a</td>
+                    <td>b</td>
+                    <td>c</td>
+                </tr>
+                <tr>
+                    <td>a</td>
+                    <td>b</td>
+                    <td>c</td>
+                </tr>
+                <tr>
+                    <td>a</td>
+                    <td>b</td>
+                    <td>c</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h5>Main class</h5>
+        <p>
+            To enable Metro UI CSS table style, you must add class <span class="tag info">table</span> to you table element.
+        </p>
+        <div class="example" data-text="code">
+            <pre class="prettyprint linenums"><code>
+                &lt;table class="table"&gt;...&lt;/table&gt;
+            </code></pre>
+        </div>
+        <h5>Additional classes</h5>
+        <p>
+            To enable any futures you can add sub-classes: <span class="tag">striped</span>, <span class="tag">hovered</span>, <span class="tag">cell-hovered</span>, <span class="tag">border</span>, <span class="tag">bordered</span>,  to you table element.
+        </p>
+        <div class="example" data-text="code">
+            <pre class="prettyprint linenums"><code>
+                &lt;table class="table striped hovered cell-hovered border bordered"&gt;...&lt;/table&gt;
+            </code></pre>
+        </div>
+
+        <h3>Sortable styling</h3>
+
         <div class="example" data-text="example">
-            <h5>All classes are included (sort marker on left)</h5>
-            <table class="table hovered cell-hovered striped border bordered sortable-markers-on-left">
+            <table class="table border bordered sortable-markers-on-left">
                 <thead>
                 <tr>
                     <th class="sortable-column ">Header 1</th>
@@ -45,21 +146,6 @@
                     <td>b</td>
                     <td>c</td>
                 </tr>
-                <tr class="selected">
-                    <td>a</td>
-                    <td>b</td>
-                    <td>c</td>
-                </tr>
-                <tr>
-                    <td>a</td>
-                    <td>b</td>
-                    <td>c</td>
-                </tr>
-                <tr>
-                    <td>a</td>
-                    <td>b</td>
-                    <td class="selected">c</td>
-                </tr>
                 <tr>
                     <td>a</td>
                     <td>b</td>
@@ -68,8 +154,7 @@
                 </tbody>
             </table>
 
-            <h5>All classes are included (sort marker on right)</h5>
-            <table class="table hovered cell-hovered striped bordered border">
+            <table class="table border bordered">
                 <thead>
                 <tr>
                     <th class="sortable-column sort-asc">Header 1 (sort-asc)</th>
@@ -83,21 +168,6 @@
                     <td>b</td>
                     <td>c</td>
                 </tr>
-                <tr class="selected">
-                    <td>a</td>
-                    <td>b</td>
-                    <td>c</td>
-                </tr>
-                <tr>
-                    <td>a</td>
-                    <td>b</td>
-                    <td>c</td>
-                </tr>
-                <tr>
-                    <td>a</td>
-                    <td>b</td>
-                    <td class="selected">c</td>
-                </tr>
                 <tr>
                     <td>a</td>
                     <td>b</td>
@@ -105,191 +175,36 @@
                 </tr>
                 </tbody>
             </table>
-
-            <h5>.table</h5>
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>Header 1</th>
-                    <th>Header 2</th>
-                    <th>Header 3</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>a</td>
-                    <td>b</td>
-                    <td>c</td>
-                </tr>
-                <tr>
-                    <td>a</td>
-                    <td>b</td>
-                    <td>c</td>
-                </tr>
-                </tbody>
-            </table>
-
-            <h5>& .striped</h5>
-            <table class="table striped">
-                <thead>
-                <tr>
-                    <th>Header 1</th>
-                    <th>Header 2</th>
-                    <th>Header 3</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>a</td>
-                    <td>b</td>
-                    <td>c</td>
-                </tr>
-                <tr>
-                    <td>a</td>
-                    <td>b</td>
-                    <td>c</td>
-                </tr>
-                <tr>
-                    <td>a</td>
-                    <td>b</td>
-                    <td>c</td>
-                </tr>
-                <tr>
-                    <td>a</td>
-                    <td>b</td>
-                    <td>c</td>
-                </tr>
-                <tr>
-                    <td>a</td>
-                    <td>b</td>
-                    <td>c</td>
-                </tr>
-                </tbody>
-            </table>
-
-            <h5>& .hovered</h5>
-            <table class="table hovered">
-                <thead>
-                <tr>
-                    <th>Header 1</th>
-                    <th>Header 2</th>
-                    <th>Header 3</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>a</td>
-                    <td>b</td>
-                    <td>c</td>
-                </tr>
-                <tr>
-                    <td>a</td>
-                    <td>b</td>
-                    <td>c</td>
-                </tr>
-                <tr>
-                    <td>a</td>
-                    <td>b</td>
-                    <td>c</td>
-                </tr>
-                <tr>
-                    <td>a</td>
-                    <td>b</td>
-                    <td>c</td>
-                </tr>
-                <tr>
-                    <td>a</td>
-                    <td>b</td>
-                    <td>c</td>
-                </tr>
-                </tbody>
-            </table>
-
-            <h5>& .cell-hovered</h5>
-            <table class="table cell-hovered">
-                <thead>
-                <tr>
-                    <th>Header 1</th>
-                    <th>Header 2</th>
-                    <th>Header 3</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>a</td>
-                    <td>b</td>
-                    <td>c</td>
-                </tr>
-                <tr>
-                    <td>a</td>
-                    <td>b</td>
-                    <td>c</td>
-                </tr>
-                <tr>
-                    <td>a</td>
-                    <td>b</td>
-                    <td>c</td>
-                </tr>
-                <tr>
-                    <td>a</td>
-                    <td>b</td>
-                    <td>c</td>
-                </tr>
-                <tr>
-                    <td>a</td>
-                    <td>b</td>
-                    <td>c</td>
-                </tr>
-                </tbody>
-            </table>
-
-            <h5>& .border</h5>
-            <table class="table border">
-                <thead>
-                <tr>
-                    <th>Header 1</th>
-                    <th>Header 2</th>
-                    <th>Header 3</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>a</td>
-                    <td>b</td>
-                    <td>c</td>
-                </tr>
-                <tr>
-                    <td>a</td>
-                    <td>b</td>
-                    <td>c</td>
-                </tr>
-                </tbody>
-            </table>
-
-            <h5>& .bordered</h5>
-            <table class="table bordered">
-                <thead>
-                <tr>
-                    <th>Header 1</th>
-                    <th>Header 2</th>
-                    <th>Header 3</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>a</td>
-                    <td>b</td>
-                    <td>c</td>
-                </tr>
-                <tr>
-                    <td>a</td>
-                    <td>b</td>
-                    <td>c</td>
-                </tr>
-                </tbody>
-            </table>
-
         </div>
+
+        <div class="example" data-text="code">
+            <h5>Sortable marker right</h5>
+            <pre class="prettyprint linenums"><code>
+                &lt;table class="table"&gt;
+                    &lt;thead>
+                        &lt;tr&gt;
+                            &lt;th class="sortable-column"&gt;Column&lt;/th&gt;
+                            &lt;th class="sortable-column sort-asc"&gt;Column&lt;/th&gt;
+                            &lt;th class="sortable-column sort-desc"&gt;Column&lt;/th&gt;
+                        &lt;/tr&gt;
+                    &lt;/thead&gt;
+                &lt;/table&gt;
+            </code></pre>
+
+            <h5>Sortable marker left</h5>
+            <pre class="prettyprint linenums"><code>
+                &lt;table class="table sortable-markers-on-left"&gt;
+                    &lt;thead>
+                        &lt;tr&gt;
+                            &lt;th class="sortable-column"&gt;Column&lt;/th&gt;
+                            &lt;th class="sortable-column sort-asc"&gt;Column&lt;/th&gt;
+                            &lt;th class="sortable-column sort-desc"&gt;Column&lt;/th&gt;
+                        &lt;/tr&gt;
+                    &lt;/thead&gt;
+                &lt;/table&gt;
+            </code></pre>
+        </div>
+
     </div>
 
     @@hit
