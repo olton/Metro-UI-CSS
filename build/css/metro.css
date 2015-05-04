@@ -13628,6 +13628,7 @@ p [data-hint] {
 .dataTable {
   width: 100%;
   margin: .625rem 0;
+  clear: both;
 }
 .dataTable th,
 .dataTable td {
