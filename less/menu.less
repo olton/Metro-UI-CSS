@@ -677,6 +677,12 @@
 	}
 }
 
+.horizontal-menu, .h-menu, .m-menu {
+    & > li > .d-menu {
+        left: auto;
+    }
+}
+
 [data-role="dropdown"] {
 	&:not(.open), &:not(.keep-open) {
 		display: none;
