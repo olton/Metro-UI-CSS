@@ -5,41 +5,32 @@
 .presenter {
 	width: 100%;
 	height: 200px;
+    min-height: 200px;
 	position: relative;
-	.debug;
+    display: block;
 }
 
-.presenter {
-	.presenter-area {
-		position: relative;
-		width: 80%;
-		height: 100%;
-		margin: 0 auto;
-		.debug;
-	}
-
-	&.controls-inside {
-		.presenter-area {
-			width: 100%;
-			margin: 0;
-		}
-	}
+.scene {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    display: block;
 }
 
-.presenter {
-	.presenter-slide {
-
-	}
+.act {
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: relative;
+    padding: 10px ;
+    .clear-float;
 }
 
-.presenter {
-	.presenter-bullets {
-
-	}
+.actor {
+    position: absolute;
+    margin-right: 10px;
 }
 
-.presenter {
-	.presenter-controls {
-
-	}
-}

@@ -4704,6 +4704,9 @@ a.tag {
   font-size: .9rem;
   line-height: .9rem;
 }
+.vertical-menu > li > .d-menu {
+  left: auto;
+}
 .vertical-menu > li {
   float: none;
 }
@@ -4911,6 +4914,11 @@ a.tag {
   margin-left: .3125rem ;
   top: 0 ;
   float: left;
+}
+.horizontal-menu > li > .d-menu,
+.h-menu > li > .d-menu,
+.m-menu > li > .d-menu {
+  left: auto;
 }
 [data-role="dropdown"]:not(.open),
 [data-role="dropdown"]:not(.keep-open) {
@@ -12163,19 +12171,37 @@ input[type="submit"].link:active {
 .presenter {
   width: 100%;
   height: 200px;
+  min-height: 200px;
   position: relative;
-  border: 1px dashed red;
+  display: block;
 }
-.presenter .presenter-area {
+.scene {
   position: relative;
-  width: 80%;
-  height: 100%;
-  margin: 0 auto;
-  border: 1px dashed red;
-}
-.presenter.controls-inside .presenter-area {
   width: 100%;
+  height: 100%;
   margin: 0;
+  padding: 0;
+  overflow: hidden;
+  display: block;
+}
+.act {
+  width: 100%;
+  height: 100%;
+  display: block;
+  position: relative;
+  padding: 10px ;
+}
+.act:before,
+.act:after {
+  display: table;
+  content: "";
+}
+.act:after {
+  clear: both;
+}
+.actor {
+  position: absolute;
+  margin-right: 10px;
 }
 .listview {
   display: block;

@@ -1,6 +1,11 @@
 # Changelog 
 
 ## 3.0.3
+* New widget [Presenter](http://metroui.org.ua/presenter.html)
+* Datepicker - Triggered change event when date is changed. [#761](https://github.com/olton/Metro-UI-CSS/pull/761)
+* upd demo for table
+* upd demo for menus
+* fix small bugs
 
 ## 3.0.2
 * Optimize important use

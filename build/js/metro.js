@@ -30,7 +30,13 @@ String.prototype.isColor = function(){
 
 window.uniqueId = function (prefix){
     "use strict";
-    return (prefix || 'id') + ((new Date()).getTime());
+    var d = new Date().getTime();
+    var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        var r = (d + Math.random()*16)%16 | 0;
+        d = Math.floor(d/16);
+        return (c=='x' ? r : (r&0x3|0x8)).toString(16);
+    });
+    return uuid;
 };
 
 
@@ -2970,6 +2976,7 @@ window.METRO_LOCALES = {
                     //console.log(d, d0);
                     _calendar.calendar('setDate', d0);
                     that.element.children("input[type=text]").val(d);
+                    that.element.children("input[type=text]").trigger('change', d0);
                     that.options.selected(d, d0);
                     that._hide();
                 }
@@ -4294,8 +4301,22 @@ window.METRO_LOCALES = {
         version: "3.0.0",
 
         options: {
-            someValue: null
+            height: '200',
+            width: '100%',
+            effect: 'random',
+            duration: 1000,
+            timeout: 2000,
+            sceneTimeout: 2000,
+            easing: 'swing'
         },
+
+        _acts: undefined,
+        _currentAct: 0,
+        _actDone: true,
+        _interval: undefined,
+        _effects: ['top', 'bottom', 'left', 'right'],
+        _actor_positions: [],
+
 
         _create: function () {
             var that = this, element = this.element, o = this.options;
@@ -4310,7 +4331,148 @@ window.METRO_LOCALES = {
                 }
             });
 
+            this._createPresenter();
+            this._showScene();
+
             element.data('presenter', this);
+
+        },
+
+        _createPresenter: function (){
+            var that = this, element = this.element, o = this.options;
+            var acts = element.find('.act');
+
+            acts.hide();
+
+            this._acts = acts;
+
+            element.css({
+                height: o.height,
+                width: o.width
+            });
+        },
+
+        _showScene: function(){
+            var that = this, element = this.element, o = this.options;
+
+            this._interval = setInterval(function(){
+                if (that._actDone) {
+                    that._currentAct++;
+
+                    if (that._currentAct == that._acts.length) {
+                        that._currentAct = 0;
+                    }
+
+                    //that._closeAct();
+                    that._showAct();
+                }
+            }, 500);
+        },
+
+        _closeAct: function(){
+            var that = this, element = this.element, o = this.options;
+            var index = this._currentAct;
+            setTimeout(function(){
+                if (that._acts[index] !== undefined) $(that._acts[index]).fadeOut(1000, function(){
+                    that._actDone = true;
+                });
+            }, o.sceneTimeout);
+        },
+
+        _showAct: function(){
+            var that = this, element = this.element, o = this.options;
+
+            var act = $(this._acts[this._currentAct]);
+            var actors = act.find('.actor');
+            var i;
+
+            this._actDone = false;
+
+            act.fadeIn(1000);
+
+            actors.css({
+                opacity: 0,
+                position: 'absolute',
+                display: 'none'
+            });
+
+            i = 0;
+            $.each(actors, function(){
+                var actor = $(this), pos = {top: actor.data('position').split(",")[0], left: actor.data('position').split(",")[1]};//that._actor_positions[$(that._acts[that._currentAct]).attr('id')][actor.attr('id')];
+                var actor_effect, actor_duration, actor_timeout, actor_easing;
+
+                actor_effect = actor.data('effect') !== undefined ? actor.data('effect') : o.effect;
+                if (actor_effect === 'random') {
+                    actor_effect = that._effects[Math.floor(Math.random() * that._effects.length)];
+                }
+                actor_duration = actor.data('duration') !== undefined ? actor.data('duration') : o.duration;
+                actor_timeout = actor.data('timeout') !== undefined ? actor.data('timeout') : o.timeout;
+                actor_easing = actor.data('easing') !== undefined ? actor.data('easing') : o.easing;
+
+                if (actor_effect === 'top') {
+                    setTimeout(function(){
+                        actor.css({
+                            top: - (element.height()),
+                            left: pos.left,
+                            display: 'block'
+                        }).animate({
+                            top: pos.top,
+                            left: pos.left,
+                            opacity: 1
+                        }, actor_duration, actor_easing, function(){if (actor[0] == actors[actors.length-1]) that._closeAct();});
+                    }, i * actor_timeout);
+                } else if (actor_effect === 'bottom') {
+                    setTimeout(function(){
+                        actor.css({
+                            top: element.height(),
+                            left: pos.left,
+                            display: 'block'
+                        }).animate({
+                            top: pos.top,
+                            left: pos.left,
+                            opacity: 1
+                        }, actor_duration, actor_easing, function(){if (actor[0] == actors[actors.length-1]) that._closeAct();});
+                    }, i * actor_timeout);
+                } else if (actor_effect === 'left') {
+                    setTimeout(function(){
+                        actor.css({
+                            left: - element.width(),
+                            top: pos.top,
+                            display: 'block'
+                        }).animate({
+                            top: pos.top,
+                            left: pos.left,
+                            opacity: 1
+                        }, actor_duration, actor_easing, function(){if (actor[0] == actors[actors.length-1]) that._closeAct();});
+                    }, i * actor_timeout);
+                } else if (actor_effect === 'right') {
+                    setTimeout(function(){
+                        actor.css({
+                            left: element.width(),
+                            top: pos.top,
+                            display: 'block'
+                        }).animate({
+                            top: pos.top,
+                            left: pos.left,
+                            opacity: 1
+                        }, actor_duration, actor_easing, function(){if (actor[0] == actors[actors.length-1]) that._closeAct();});
+                    }, i * actor_timeout);
+                } else { //fade
+                    setTimeout(function(){
+                        actor.css({
+                            top: pos.top,
+                            left: pos.left,
+                            display: 'block'
+                        }).animate({
+                            top: pos.top,
+                            left: pos.left,
+                            opacity: 1
+                        }, actor_duration, 'swing', function(){if (actor[0] == actors[actors.length-1]) that._closeAct();});
+                    }, i * actor_timeout);
+                }
+
+                i++;
+            });
 
         },
 
