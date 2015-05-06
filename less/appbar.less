@@ -15,6 +15,9 @@
 	.no-user-select;
 	.clear-float;
 
+        li.hiddenflex {
+            display: none;
+        }
 	.app-bar-element {
 		line-height: 3.125rem;
 		padding: 0 .625rem;
@@ -236,7 +239,7 @@
 		.app-bar-pull {
 			display: block;
 		}
-		.app-bar-menu {
+		.app-bar-menu:not(.flexible) {
 			width: 100%;
 			border-top: 1px solid @appBarDividerColor;
 			position: relative;
@@ -252,7 +255,7 @@
 			& > li {
 				height: auto;
 			}
-
+                        
 			li:hover {
 				background-color: @appBarBackground !important;
 				a {

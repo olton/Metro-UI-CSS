@@ -40,14 +40,14 @@
                 appBarElemsWidth += $(this).outerWidth();
             });
 
-            //if only one element left we do no care about the
+            //if only one element left we can flex a little bit earlier
             var lastVisibleFlex = that.flexMenu.children(":visible").last();
             if (that.flexMenu.children().length - that.flexMenu.children(":visible").length === 1) {
 
-                
+                //do not do it, if we are over last child
                 if (!(($(that.pull).offset().left) < $(lastVisibleFlex).offset().left + $(lastVisibleFlex).outerWidth())) {
                     appBarElemsWidth -= $(that.pull).outerWidth();
-                    
+
                 }
             }
 
@@ -106,11 +106,19 @@
             //init calculations of flexmenu
             that.flexMenu = $(element).find('.app-bar-menu.flexible');
             if (that.flexMenu.length > 0) {
-
+                //higher z-index für d-menu
+                that.flexMenu.find(".d-menu").css({
+                    zIndex: parseInt(that.flexMenu.find(".d-menu").css("z-index")) + 10
+                });
+                
+                
                 //Make a copy of the normal menu
                 that.flexMenuToggle = that.flexMenu.clone().removeClass("flexible");
                 that.flexMenuToggle.css("display", "none").children().css("display", "none");
                 $(element).append(that.flexMenuToggle);
+                //TODO: Check if there is a better way to init the widgets of the cloned element
+                $.Metro.initWidgets();
+                
                 that.menu = that.menu.add(that.flexMenuToggle);
 
                 element.data('appbar', that);
@@ -135,17 +143,18 @@
                     } else {
                         $(".app-bar:not(.no-responsive-future) .app-bar-menu:not(.flexible)").hide();
                     }
+                    if (that.flexMenu.length > 0) {
+                        //flexmenu works also while resizing
+                        $(".app-bar:not(.no-responsive-future):has(.app-bar-menu.flexible)").each(function () {
+                            that = $(this).data("appbar");
+                            that._checkFlexMenus();
 
-                    //flexmenu works also while resizing
-                    $(".app-bar:not(.no-responsive-future):has(.app-bar-menu.flexible)").each(function () {
-                        that = $(this).data("appbar");
-                        that._checkFlexMenus();
-
-                    });
-
+                        });
+                    }
                 });
             }
 
+            element.data('appbar', that);
         },
         _destroy: function () {
         },
