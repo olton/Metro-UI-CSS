@@ -3,10 +3,11 @@
 
 @keySize: 32px;
 @keyMargin: 1px;
+@keyBorder: 1px;
 
 .keypad {
     position: relative;
-    width: @keySize * 3 + @keyMargin * 3 + 7;
+    width: @keySize * 3 + @keyMargin * 8 + @keyBorder * 2;
     padding: @keyMargin;
     border: 1px @grayLighter solid;
     vertical-align: middle;
