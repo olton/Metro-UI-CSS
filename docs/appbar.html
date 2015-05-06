@@ -135,7 +135,60 @@
                 &lt;/div&gt;
             </code></pre>
         </div>
+        
+        <h3>Flex Pull down</h3>
+        <p>
+            To create a flexible pull-down add an element as you do with the pull down but add the class <span class="tag">flexible</span> to <span class="tag">app-bar-menu</span> class. 
+            Menu entries which have not enough space go into the appbar menu icon. The rest stays where it is as long there is enough space.
+        </p>
+        
+        <div class="example" data-text="example">
 
+            <div class="app-bar" data-role="appbar">
+
+                <a class="app-bar-element branding">Metro UI CSS</a>
+
+                <ul class="app-bar-menu flexible">
+                    <li><a href="">Home</a></li>
+                    <li>
+                        <a href="#" class="dropdown-toggle">Products</a>
+                        <ul class="d-menu" data-role="dropdown">
+                            <li><a href="">Windows 10</a></li>
+                            <li><a href="">Spartan</a></li>
+                            <li><a href="">Outlook</a></li>
+                            <li><a href="">Office 2015</a></li>
+                            <li class="divider"></li>
+                            <li><a href="" class="dropdown-toggle">Other Products</a>
+                                <ul class="d-menu" data-role="dropdown">
+                                    <li><a href="">Internet Explorer 10</a></li>
+                                    <li><a href="">Skype</a></li>
+                                    <li><a href="">Surface</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="">Support</a></li>
+                    <li><a href="">Help</a></li>
+                </ul>
+
+                <span class="app-bar-pull"></span>
+
+            </div>
+        </div>
+        <div class="example" data-text="code">
+            <h5>Create app-bar elements</h5>
+            <pre class="prettyprint linenums"><code>
+                ...
+                    &lt;ul class="app-bar-menu flexible"&gt;
+                        &lt;li&gt;&lt;a href=""&gt;Home&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href=""&gt;Support&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href=""&gt;Help&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                ...
+            </code></pre>
+        </div>
+        
+        
         <h4>Drop container</h4>
 
         <p>
