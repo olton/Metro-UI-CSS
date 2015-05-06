@@ -41,11 +41,11 @@
             });
 
             //if only one element left we do no care about the
-
+            var lastVisibleFlex = that.flexMenu.children(":visible").last();
             if (that.flexMenu.children().length - that.flexMenu.children(":visible").length === 1) {
 
                 
-                if (!(($(that.pull).offset().left) < that.flexMenu.children(":visible").last().offset().left + that.flexMenu.children(":visible").last().outerWidth())) {
+                if (!(($(that.pull).offset().left) < $(lastVisibleFlex).offset().left + $(lastVisibleFlex).outerWidth())) {
                     appBarElemsWidth -= $(that.pull).outerWidth();
                     
                 }
@@ -54,7 +54,7 @@
 
 
             if (appBarWidth < appBarElemsWidth) { //running out of space
-                var menuEntryIndex = that.flexMenu.children(":visible").last().index();
+                var menuEntryIndex = $(lastVisibleFlex).index();
 
                 //hide the last element of flexmenu
                 that.flexMenu.children(":eq(" + menuEntryIndex + ")").css("display", "none");
@@ -69,7 +69,7 @@
             } else {
                 //if we have enough space we show it to the user
 
-                var menuEntryIndex = that.flexMenu.children(":visible").last().index() + 1; //+1 is the next hidden one
+                var menuEntryIndex = $(lastVisibleFlex).index() + 1; //+1 is the next hidden one
 
                 var nextVisible = that.flexMenu.children(":eq(" + menuEntryIndex + ")");
 
