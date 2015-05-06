@@ -13327,6 +13327,49 @@ p [data-hint] {
 .streamer .events .event-stream .event.margin-quadro {
   margin-left: 852px;
 }
+.keypad {
+  position: relative;
+  width: 106px;
+  padding: 1px;
+  border: 1px #eeeeee solid;
+  vertical-align: middle;
+  background-color: #ffffff;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.keypad:before,
+.keypad:after {
+  display: table;
+  content: "";
+}
+.keypad:after {
+  clear: both;
+}
+.keypad .key {
+  width: 32px;
+  height: 32px;
+  display: block;
+  float: left;
+  margin: 1px;
+  border: 1px #eeeeee solid;
+  vertical-align: middle;
+  text-align: center;
+  cursor: pointer;
+  font-size: .875rem;
+  line-height: 32px;
+}
+.keypad .key:hover {
+  background-color: #eeeeee;
+}
+.keypad .key:active {
+  background-color: #555555;
+  color: #ffffff;
+}
+.keypad.shadow {
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3);
+}
 .select2-container {
   box-sizing: border-box;
   display: inline-block;
