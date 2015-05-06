@@ -3,6 +3,7 @@
 ## 3.0.4
 * fixed float for dataTables
 * add keypad widget
+* return from v2 breadcrumbs type
 
 ## 3.0.3
 * New widget [Presenter](http://metroui.org.ua/presenter.html)

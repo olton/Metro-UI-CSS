@@ -6100,7 +6100,7 @@ window.METRO_LOCALES = {
 
                 $(this).addClass("tile-transform-"+transform);
 
-                console.log(transform);
+                //console.log(transform);
 
                 if (element[0].tagName === 'A' && element.attr('href')) {
                     setTimeout(function(){
