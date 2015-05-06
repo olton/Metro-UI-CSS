@@ -31,9 +31,47 @@
         _initBar: function(){
             var that = this, element = this.element, o = this.options;
             var pull = $(element).find('.app-bar-pull');
-            var menu = $(element).find('.app-bar-menu');
+            var menu = $(element).find('.app-bar-menu').not(".flexible");
+            
+            
+            var flexMenu = $(element).find('.app-bar-menu.flexible');
+            
+            if(flexMenu.length > 0) {
+              //Make a copy of the normal menu
+              var flexMenuToggle = flexMenu.clone().removeClass("flexible");
+              flexMenuToggle.css("display", "none").children().css("display", "none");
+              $(element).append(flexMenuToggle);
+              menu = menu.add(flexMenuToggle);
+              
+              //get the base data for calculation
+              var appBarWidth = $(element).width();
+                      
+              
+              /* calculation: appBarWidth - all visible children */
+              var checkVisibleFlexMenus = function() {
+                var appBarElemsWidth = 0;
+                //get the width of all visible children
+                $(element).children(":visible").each(function() {
+                  appBarElemsWidth += $(this).outerWidth(true);
+                });
 
-            if (menu.length === 0) {
+                if(appBarWidth < appBarElemsWidth) { //running out of space
+
+                  //hide the last element of flexmenu
+                  var menuEntryIndex = flexMenu.children(":visible").last().index();
+                  flexMenu.children(":eq(" + menuEntryIndex + ")").css("display", "none");
+                  //show the element in the hidden app bar menu
+                  flexMenuToggle.children(":eq(" + menuEntryIndex + ")").css("display", "");
+                  
+                  //do it again, for the case that the menu does not fit already
+                  checkVisibleFlexMenus();
+                }
+              };
+              checkVisibleFlexMenus();
+            }
+            
+            
+            if (menu.length === 0 || flexMenu.children().not(":visible").length === 0) {
                 pull.hide();
             }
 
@@ -49,9 +87,9 @@
                 $(window).resize(function(){
                     var device_width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
                     if (device_width > 800) {
-                        $(".app-bar:not(.no-responsive-future) .app-bar-menu").show();
+                        $(".app-bar:not(.no-responsive-future) .app-bar-menu:not(.flexible)").show();
                     } else {
-                        $(".app-bar:not(.no-responsive-future) .app-bar-menu").hide();
+                        $(".app-bar:not(.no-responsive-future) .app-bar-menu:not(.flexible)").hide();
                     }
                 });
             }
