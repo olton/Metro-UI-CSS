@@ -21,100 +21,19 @@
     <script src="js/prettify/run_prettify.js"></script>
 
     <script>
+        function setNameRoome(str){
+            console.log(str.innerHTML);
+            document.getElementById('RoomName').innerText = str.innerText + " Первый этаж";
+        }
     </script>
 </head>
 <body onload="init()">
     <div class="container page-content">
         <h1>Test page</h1>
 
-    </div>
+        <h5>Min, max Date</h5>
+        <div style="width: 300px" data-role="calendar" data-week-start="1" data-min-date="2015-05-08" data-max-date="2015-05-20"></div>
 
-    <div class="app-bar fixed-bottom drop-up no-responsive-future">
-        <div class="app-bar-element">
-            <div class="input-control text">
-                <input type="text">
-            </div>
-        </div>
-        <a class="app-bar-element">
-            <span id="toggle-tiles-dropdown" class="mif-apps mif-2x"></span>
-            <div class="app-bar-drop-container" data-role="dropdown" data-toggle-element="#toggle-tiles-dropdown" data-no-close="false" style="width: 324px;">
-                <div class="tile-container bg-white">
-                    <div class="tile-small bg-cyan">
-                        <div class="tile-content iconic">
-                            <span class="icon mif-onedrive"></span>
-                        </div>
-                    </div>
-                    <div class="tile-small bg-yellow">
-                        <div class="tile-content iconic">
-                            <span class="icon mif-google"></span>
-                        </div>
-                    </div>
-                    <div class="tile-small bg-red">
-                        <div class="tile-content iconic">
-                            <span class="icon mif-facebook"></span>
-                        </div>
-                    </div>
-                    <div class="tile-small bg-green">
-                        <div class="tile-content iconic">
-                            <span class="icon mif-twitter"></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </a>
-
-        <div class="app-bar-divider"></div>
-
-        <ul class="app-bar-menu">
-            <li><a href="">Home</a></li>
-            <li>
-                <a href="" class="dropdown-toggle">Products</a>
-                <ul class="d-menu" data-role="dropdown">
-                    <li><a href="">Windows 10</a></li>
-                    <li><a href="">Spartan</a></li>
-                    <li><a href="">Outlook</a></li>
-                    <li><a href="">Office 2015</a></li>
-                    <li class="divider"></li>
-                    <li><a href="" class="dropdown-toggle">Other Products</a>
-                        <ul class="d-menu" data-role="dropdown">
-                            <li><a href="">Internet Explorer 10</a></li>
-                            <li><a href="">Skype</a></li>
-                            <li><a href="">Surface</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-            <li><a href="">Support</a></li>
-            <li><a href="">Help</a></li>
-        </ul>
-
-        <div class="app-bar-element place-right">
-            <a class="dropdown-toggle fg-white"><span class="mif-enter"></span> Enter</a>
-            <div class="app-bar-drop-container bg-white fg-dark place-right" data-role="dropdown" data-no-close="true">
-                <div class="padding20">
-                    <form>
-                        <h4 class="text-light">Login to service...</h4>
-                        <div class="input-control text">
-                            <span class="mif-user prepend-icon"></span>
-                            <input type="text">
-                        </div>
-                        <div class="input-control text">
-                            <span class="mif-lock prepend-icon"></span>
-                            <input type="password">
-                        </div>
-                        <label class="input-control checkbox small-check">
-                            <input type="checkbox">
-                            <span class="check"></span>
-                            <span class="caption">Remember me</span>
-                        </label>
-                        <div class="form-actions">
-                            <button class="button">Login</button>
-                            <button class="button link">Cancel</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
     </div>
 </body>
 </html>

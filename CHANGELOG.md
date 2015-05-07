@@ -4,6 +4,7 @@
 * fixed float for dataTables
 * add keypad widget
 * return from v2 breadcrumbs type
+* add maxDate for calendar widget
 
 ## 3.0.3
 * New widget [Presenter](http://metroui.org.ua/presenter.html)
