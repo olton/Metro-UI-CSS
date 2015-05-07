@@ -6868,6 +6868,102 @@ div.square-button.big-button {
 .breadcrumbs.dark > li:after {
   background-color: #ffffff;
 }
+.breadcrumbs2 {
+  margin: 0.625rem 0;
+  padding: 0;
+  list-style: none;
+  overflow: hidden;
+  width: 100%;
+}
+.breadcrumbs2 li {
+  float: left;
+  margin: 0 .2em 0 1em;
+}
+.breadcrumbs2 a {
+  background: #d9d9d9;
+  padding: .3em 1em;
+  float: left;
+  text-decoration: none;
+  color: #2086bf;
+  position: relative;
+}
+.breadcrumbs2 a:hover {
+  background: #1ba1e2;
+  color: #ffffff;
+}
+.breadcrumbs2 a:hover:before {
+  border-color: #1ba1e2 #1ba1e2 #1ba1e2 transparent;
+}
+.breadcrumbs2 a:hover:after {
+  border-left-color: #1ba1e2;
+}
+.breadcrumbs2 a:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  margin-top: -1.5em;
+  border-width: 1.5em 0 1.5em 1em;
+  border-style: solid;
+  border-color: #d9d9d9 #d9d9d9 #d9d9d9 transparent;
+  left: -1em;
+  margin-left: 1px;
+}
+.breadcrumbs2 a:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  margin-top: -1.5em;
+  border-top: 1.5em solid transparent;
+  border-bottom: 1.5em solid transparent;
+  border-left: 1em solid #d9d9d9;
+  right: -1em;
+  margin-right: 1px;
+}
+.breadcrumbs2 > li:first-child {
+  margin-left: 0;
+}
+.breadcrumbs2 > li:first-child a:before {
+  content: normal;
+}
+.breadcrumbs2 > li:last-child {
+  background: none;
+}
+.breadcrumbs2 > li:last-child a {
+  color: #1d1d1d;
+}
+.breadcrumbs2 > li:last-child:after,
+.breadcrumbs2 > li:last-child:before {
+  content: normal;
+}
+.breadcrumbs2 > li:last-child:hover a {
+  color: #ffffff;
+}
+.breadcrumbs2 .active,
+.breadcrumbs2 .active:hover {
+  background: none;
+}
+.breadcrumbs2 .active a,
+.breadcrumbs2 .active:hover a {
+  color: #1d1d1d;
+}
+.breadcrumbs2 .active:hover a {
+  color: #ffffff;
+}
+.breadcrumbs2 .active:after,
+.breadcrumbs2 .active:before {
+  content: normal;
+}
+.breadcrumbs2.small a {
+  padding: .2em 1em;
+  font-size: 11.9px;
+}
+.breadcrumbs2.mini a {
+  padding: .1em 1em;
+  font-size: 10.5px;
+}
+.breadcrumbs2 > li > a > [class*=mif] {
+  vertical-align: -10%;
+}
 .input-control {
   display: inline-block;
   min-height: 2.125rem;

@@ -175,6 +175,7 @@ window.METRO_LOCALES = {
             otherDays: true,
             date: new Date(),
             minDate: false,
+            maxDate: false,
             preset: false,
             exclude: false,
             buttons: true,
@@ -219,12 +220,14 @@ window.METRO_LOCALES = {
             }
 
             if (o.minDate !== false && typeof  o.minDate === 'string') {
-                o.minDate = new Date(o.minDate);
+                o.minDate = new Date(o.minDate+'T00:00:00Z') - 24*60*60*1000;
+            }
+
+            if (o.maxDate !== false && typeof  o.maxDate === 'string') {
+                o.maxDate = new Date(o.maxDate+'T00:00:00Z');
             }
 
             this.locales = window.METRO_LOCALES;
-
-            //console.log(o.date);
 
             this._year = o.date.getFullYear();
             this._distance = o.date.getFullYear()-4;
@@ -364,7 +367,8 @@ window.METRO_LOCALES = {
 
                 td = $("<div/>").addClass("calendar-cell align-center day");
                 div = $("<div/>").appendTo(td);
-                if (o.minDate !== false && (new Date(year, month, i) < o.minDate)) {
+
+                if (o.minDate !== false && (new Date(year, month, i) < o.minDate) || o.maxDate !== false && (new Date(year, month, i) > o.maxDate)) {
                     td.removeClass("day");
                     div.addClass("other-day");
                     d_html = i;
