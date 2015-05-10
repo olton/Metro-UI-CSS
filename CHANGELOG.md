@@ -1,8 +1,8 @@
 # Changelog 
 
 ## 3.0.4
+* New widget [Keypad](http://metroui.org.ua/keypad.html)
 * fixed float for dataTables
-* add keypad widget
 * return from v2 breadcrumbs type
 * add maxDate for calendar widget
 
