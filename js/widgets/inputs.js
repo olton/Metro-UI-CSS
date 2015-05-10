@@ -45,6 +45,13 @@
                     placeholder.css({display: "block"});
                 }
             });
+            input.on("focus", function(){
+                if (input.val() !== "") {
+                    placeholder.css({display: "none"});
+                } else {
+                    placeholder.css({display: "block"});
+                }
+            });
         },
 
         _createInputFile: function(){

@@ -112,6 +112,7 @@
                     _calendar.calendar('setDate', d0);
                     that.element.children("input[type=text]").val(d);
                     that.element.children("input[type=text]").trigger('change', d0);
+                    that.element.children("input[type=text]").blur();
                     that.options.selected(d, d0);
                     that._hide();
                 }
