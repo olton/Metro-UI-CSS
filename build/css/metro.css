@@ -8765,7 +8765,7 @@ input[type="submit"].link:active {
 }
 .calendar a {
   display: block;
-  padding: .3125rem;
+  padding: .3125rem 0;
 }
 .calendar a:hover {
   background-color: #75c7ee;
@@ -8799,10 +8799,12 @@ input[type="submit"].link:active {
 }
 .calendar .day {
   border: 1px #bcd9e2 solid;
+  text-align: center;
 }
 .calendar .day a {
   display: block;
   position: relative;
+  text-align: center;
 }
 .calendar .month,
 .calendar .year {

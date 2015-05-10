@@ -3003,6 +3003,7 @@ window.METRO_LOCALES = {
                     _calendar.calendar('setDate', d0);
                     that.element.children("input[type=text]").val(d);
                     that.element.children("input[type=text]").trigger('change', d0);
+                    that.element.children("input[type=text]").blur();
                     that.options.selected(d, d0);
                     that._hide();
                 }
@@ -3672,6 +3673,13 @@ window.METRO_LOCALES = {
             var placeholder = element.find(".placeholder");
 
             input.on("blur", function(){
+                if (input.val() !== "") {
+                    placeholder.css({display: "none"});
+                } else {
+                    placeholder.css({display: "block"});
+                }
+            });
+            input.on("focus", function(){
                 if (input.val() !== "") {
                     placeholder.css({display: "none"});
                 } else {
