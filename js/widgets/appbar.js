@@ -1,3 +1,9 @@
+/*
+ * flexible appbar, which automatically collapse if not enough space avaiable
+ * @author Daniel Milbrandt, xiphe.com
+ * 
+ * PS: You are doing great work Sergey!
+ */
 (function ($) {
 
     "use strict";
@@ -119,7 +125,7 @@
 
 
                 //find out in which menubar we are located in
-                var topMenuBar = $(nextToHide).parent();
+                var topMenuBar = $(nextToHide).parent(); //this is only the appbar-menu-bar not the appbar itself
                 //find out where we have to go
                 var topMenuBarIndex = $(that.flexVisibles).index($(nextToHide).parent());
                 var pullMenuBar = $(that.pullMenu).find(".app-bar-menu").eq(topMenuBarIndex); //TODO: Make the class app-bar-menu configurable - perhaps sidebar
@@ -132,15 +138,21 @@
                 //the menubar is initiated with the hidden class, so we do not see empty pullmenubars, we must unhide them
                 //it does not matter, if we see it already, we do it always:
                 $(pullMenuBar).removeClass("hidden");
-                
+
+                //in case there are no more entries in the top menu bar we can hide it
+                if($(topMenuBar).children().length === 0) {
+                    $(topMenuBar).addClass("hidden");
+                }
+
+
                 //we show the pullbutton now
                 $(that.pullButton).show();
 
                 return nextToHide;
                 
             } else if (direction === "fromPullMenu") {
-                //get next candidate which could be moved to the appbar standard menu, in fact the first which have a mark as pullmenu-entry
-                var nextToShow = $(that.allMenuEntries).not(".app-bar-pullmenu-entry").last();
+                //get next candidate which could be moved to the topbar menu, in fact the first which is still marked as pullmenu-entry
+                var nextToShow = $(that.allMenuEntries).filter(".app-bar-pullmenu-entry").first();
 
                 if (nextToShow.length === 0) {
                     //nothing left, we have nothing to do
