@@ -4811,6 +4811,7 @@ window.METRO_LOCALES = {
         },
 
         _value: 0,
+        _values: [],
 
         _create: function () {
             var element = this.element, o = this.options;
@@ -4826,6 +4827,9 @@ window.METRO_LOCALES = {
             });
 
             this._value = parseFloat(o.value);
+            this._values[0] = Math.ceil(o.stars * 1 / 3);
+            this._values[1] = Math.ceil(o.stars * 2 / 3);
+            this._values[2] = o.stars;
 
             this._createRating();
             this._createEvents();
@@ -4909,9 +4913,9 @@ window.METRO_LOCALES = {
 
             if (o.colorRate) {
                 element.removeClass('poor regular good');
-                if (this._value <= 2) {element.addClass('poor');}
-                else if (this._value > 2 && this._value <=4) {element.addClass('regular');}
-                else if (this._value > 4) {element.addClass('good');}
+                if (this._value <= this._values[0]) {element.addClass('poor');}
+                else if (this._value > this._values[0] && this._value <= this._values[1]) {element.addClass('regular');}
+                else if (this._value > this._values[1]) {element.addClass('good');}
             }
         },
 
@@ -4925,6 +4929,7 @@ window.METRO_LOCALES = {
 
         value: function(value){
             if (value !== undefined) {
+                this._value = value;
                 this._setValue();
                 this._setScore();
             } else {
