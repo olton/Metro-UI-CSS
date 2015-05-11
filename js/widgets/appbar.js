@@ -39,7 +39,7 @@
             menusParentWidth = $(that.menusParent).width();
 
             //get the width of all visible children
-            children = $(that.menusParent).children(":visible");
+            children = $(that.menusParent).children(":visible").not(".app-bar-pullmenu");
 
 
             //margin support: because there could be margins between elements, we do not summarize the width up with a one liner
@@ -165,7 +165,7 @@
                 //find out where we have to go
                 var topMenuBarIndex = $(pullMenuBar).index(); //it is the same structur as that.flexVisibles, so we can use the simple index
                 var topMenu = $(that.flexVisibles).eq(topMenuBarIndex);
-                //mark the entry as a entry of the pullmenu and move it to the pullmenu
+                //remove the mark as a entry of the pullmenu and move it to the normal top menu
                 $(nextToShow)
                         .removeClass("app-bar-pullmenu-entry")
                         .appendTo(topMenu);
@@ -177,8 +177,8 @@
                 }
 
                 //in case we have no more menus in the pullbar area, we hide the pullbar thing
-                if ($(that.pullMenu).children(".app-bar-pullmenubar").length === 0) {
-                    $(pullMenuBar).addClass("hidden");
+                if ($(that.pullMenu).children(".app-bar-pullmenubar").not(".hidden").length === 0) {
+                    $(that.pullMenu).addClass("hidden");
                 }
 
                 return nextToShow;
@@ -204,8 +204,8 @@
                     } else {
                         //we moved successfully, perhaps we can hide more entries, we recheck the appbar, 
                         //remember, we are in a endless loop, which checks this for us
-                        continue;
-                    }
+                            continue;
+                        }
 
                 } else {
                     //we have space here, we try to get more entries there
@@ -214,7 +214,7 @@
                     //check if there is something to do
 
 
-                }
+                        }
 
                 //we continue manually. if we reach the end of the loop we end this better so we do not produce infinite loop accidentally
                 break;
@@ -283,7 +283,7 @@
                     }
 
                     //create a pullmenu 
-                    that.pullMenu = $('<nav class="app-bar-pullmenu" />');
+                    that.pullMenu = $('<nav class="app-bar-pullmenu hidden" />');
 
                     //create menubars within the pullmenu
                     that.flexVisibles.each(function () {
@@ -308,11 +308,12 @@
 
                         //we show /hide the pullmenu
                         if ($(that.pullMenu).is(":hidden")) {
-                            $(that.pullMenu).show();
-                            $(that.pullMenu).find(".app-bar-pullmenubar").slideDown("fast");            //TODO: make the animation effect configurable
+                            $(that.pullMenu).removeClass("hidden");
+                            $(that.pullMenu).find(".app-bar-pullmenubar").not(".hidden")
+                                    .slideDown("fast");            //TODO: make the animation effect configurable
                         } else {
                             $(that.pullMenu).find(".app-bar-pullmenubar").slideUp("fast", function () {  //TODO: make the animation effect configurable
-                                $(that.pullMenu).hide();
+                                $(that.pullMenu).addClass("hidden");
                             });
                         }
                     });
