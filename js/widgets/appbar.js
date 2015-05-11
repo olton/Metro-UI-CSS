@@ -137,7 +137,7 @@
 
                 //the menubar is initiated with the hidden class, so we do not see empty pullmenubars, we must unhide them
                 //it does not matter, if we see it already, we do it always:
-                $(pullMenuBar).removeClass("hidden");
+                $(pullMenuBar).removeClass("hidden").slideDown("fast");
 
                 //in case there are no more entries in the top menu bar we can hide it
                 if ($(topMenuBar).children().length === 0) {
@@ -186,6 +186,9 @@
         },
         _checkMenuEntries: function () {
             var that = this, element = this.element, o = this.options;
+            
+            var forceEndLoop=false;
+            
             while (true) {
 
                 //calculate the empty space within the appbar we can use for hidden children
@@ -204,17 +207,26 @@
                     } else {
                         //we moved successfully, perhaps we can hide more entries, we recheck the appbar, 
                         //remember, we are in a endless loop, which checks this for us
+                        
+                        if(!forceEndLoop) {
                             continue;
                         }
+                    }
 
                 } else {
                     //we have space here, we try to get more entries there
 
-                    //this._moveMenuEntry("fromPullMenu");
                     //check if there is something to do
+                    if (!(that._moveMenuEntry("fromPullMenu"))) {
+                        //nothing left to show
+                        break;
+                    } else {
+                        forceEndLoop = true;
+                        console.log("adding")
+                        continue;
+                    }
 
-
-                        }
+                }
 
                 //we continue manually. if we reach the end of the loop we end this better so we do not produce infinite loop accidentally
                 break;
@@ -222,6 +234,7 @@
         },
         resize: function () {
             var that = this, element = this.element, o = this.options;
+            
             if (that.initiatedAsFlex) {
                 this._checkMenuEntries();
             }
