@@ -137,13 +137,13 @@
 
                 //the menubar is initiated with the hidden class, so we do not see empty pullmenubars, we must unhide them
                 //it does not matter, if we see it already, we do it always:
-                $(pullMenuBar).removeClass("hidden").slideDown("fast");
-
+                $(pullMenuBar).removeClass("hidden");
+                
                 //in case there are no more entries in the top menu bar we can hide it
                 if ($(topMenuBar).children().length === 0) {
-                    //$(topMenuBar).addClass("hidden");
+                    $(topMenuBar).addClass("hidden");
                 }
-
+                
 
                 //we show the pullbutton now
                 $(that.pullButton).show();
@@ -161,10 +161,12 @@
 
                 //find out in which pullmenu we are located in
                 var pullMenuBar = $(nextToShow).parent(); //only one single menu, not the whole thing
-
+                
                 //find out where we have to go
                 var topMenuBarIndex = $(pullMenuBar).index(); //it is the same structur as that.flexVisibles, so we can use the simple index
                 var topMenu = $(that.flexVisibles).eq(topMenuBarIndex);
+                
+                $(topMenu).removeClass("hidden");
                 //remove the mark as a entry of the pullmenu and move it to the normal top menu
                 $(nextToShow)
                         .removeClass("app-bar-pullmenu-entry")
@@ -173,12 +175,13 @@
 
                 //in case there are no more entries left, we can hide the pullbar menu from this entry
                 if ($(pullMenuBar).children().length === 0) {
-                    //$(pullMenuBar).addClass("hidden");
+                    $(pullMenuBar).addClass("hidden").hide();
                 }
 
                 //in case we have no more menus in the pullbar area, we hide the pullbar thing
                 if ($(that.pullMenu).children(".app-bar-pullmenubar").not(".hidden").length === 0) {
-                    //$(that.pullMenu).addClass("hidden");
+                    $(that.pullMenu).addClass("hidden");
+                    $(that.pullButton).hide();
                 }
 
                 return nextToShow;
@@ -189,7 +192,7 @@
             
             var forceEndLoop=false;
             
-            while (true) {
+            for (var maxLoop=0, maxLoopLen = that.allMenuEntries.length; maxLoop < maxLoopLen; maxLoop++) {  //we do nothing with this, we could use while(true) but there is a danger of infinite loops
 
                 //calculate the empty space within the appbar we can use for hidden children
                 that._calculateFreeSpace();
