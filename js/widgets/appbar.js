@@ -141,7 +141,7 @@
 
                 //in case there are no more entries in the top menu bar we can hide it
                 if ($(topMenuBar).children().length === 0) {
-                    $(topMenuBar).addClass("hidden");
+                    //$(topMenuBar).addClass("hidden");
                 }
 
 
@@ -173,12 +173,12 @@
 
                 //in case there are no more entries left, we can hide the pullbar menu from this entry
                 if ($(pullMenuBar).children().length === 0) {
-                    $(pullMenuBar).addClass("hidden");
+                    //$(pullMenuBar).addClass("hidden");
                 }
 
                 //in case we have no more menus in the pullbar area, we hide the pullbar thing
                 if ($(that.pullMenu).children(".app-bar-pullmenubar").not(".hidden").length === 0) {
-                    $(that.pullMenu).addClass("hidden");
+                    //$(that.pullMenu).addClass("hidden");
                 }
 
                 return nextToShow;
