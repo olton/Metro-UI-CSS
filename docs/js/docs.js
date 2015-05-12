@@ -7,8 +7,9 @@ var metro_colors = [
     'darkGreen', 'darkOrange', 'darkRed', 'darkPink', 'darkViolet', 'darkBlue',
     'lightBlue', 'lightRed', 'lightGreen', 'lighterBlue', 'lightTeal', 'lightOlive',
     'lightOrange', 'lightPink', 'grayDark', 'grayDarker', 'grayLight', 'grayLighter'
-
 ];
+
+var adBlock = false;
 
 function init(){
     "use strict";
@@ -46,9 +47,17 @@ if (window.location.hostname !== 'localhost') {
 }
 
 $(function(){
-    if (window.location.hostname == 'localhost') {
-        setTimeout(function(){
-            $("div[data-text='sponsor']").remove();
-        }, 100);
+    var gb = $('.adsbygoogle');
+    $.each(gb, function(){
+        var block = $(this);
+        if (block.css('display') == 'none' || block.css('height') == 0) {
+            adBlock = true;
+        }
+    });
+    if (adBlock) {
+        var b = $("<div/>").addClass('padding10 bg-red fg-white text-accent');
+        b.html('Advertising on the website of the project allows the project to evolve. Support the project, please disable ad blocker.');
+        var target = window.location.pathname == '/' ? $('.metro-title') : $('.page-content > h1:nth-child(1)');
+        b.insertAfter(target);
     }
 });

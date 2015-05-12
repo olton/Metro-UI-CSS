@@ -5,6 +5,8 @@
 * fixed float for dataTables
 * return from v2 breadcrumbs type
 * add maxDate for calendar widget
+* fixed set value method for rating
+* upd demo for rating
 
 ## 3.0.3
 * New widget [Presenter](http://metroui.org.ua/presenter.html)

@@ -8826,19 +8826,27 @@ input[type="submit"].link:active {
   background-color: #eeeeee;
   border: 1px #bcd9e2 solid;
 }
-.calendar .selected {
-  background-color: #59cde2;
-}
-.calendar .selected a {
-  background-color: #59cde2;
-  color: #ffffff;
-}
 .calendar .exclude {
   background-color: #ce352c;
 }
 .calendar .exclude a {
   cursor: not-allowed;
   background-color: #ce352c;
+  color: #ffffff;
+}
+.calendar .stored {
+  background-color: #f472d0;
+}
+.calendar .stored a {
+  cursor: pointer;
+  background-color: #f472d0;
+  color: #ffffff;
+}
+.calendar .selected {
+  background-color: #59cde2;
+}
+.calendar .selected a {
+  background-color: #59cde2;
   color: #ffffff;
 }
 .calendar.rounded button {
