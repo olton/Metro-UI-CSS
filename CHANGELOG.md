@@ -7,6 +7,8 @@
 * add maxDate for calendar widget
 * fixed set value method for rating
 * upd demo for rating
+* upd calendar, add pre-stored days
+* upd datepicker for pre-stored days
 
 ## 3.0.3
 * New widget [Presenter](http://metroui.org.ua/presenter.html)
