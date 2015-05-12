@@ -1,5 +1,11 @@
 # Changelog 
 
+## 3.0.4
+* New widget [Keypad](http://metroui.org.ua/keypad.html)
+* fixed float for dataTables
+* return from v2 breadcrumbs type
+* add maxDate for calendar widget
+
 ## 3.0.3
 * New widget [Presenter](http://metroui.org.ua/presenter.html)
 * Datepicker - Triggered change event when date is changed. [#761](https://github.com/olton/Metro-UI-CSS/pull/761)

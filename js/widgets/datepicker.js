@@ -10,6 +10,7 @@
             format: "yyyy.mm.dd",
             preset: false,
             minDate: false,
+            maxDate: false,
             effect: 'fade',
             position: 'bottom',
             locale: window.METRO_CURRENT_LOCALE,
@@ -105,11 +106,13 @@
                 exclude: o.exclude,
                 date: o.preset ? o.preset : new Date(),
                 minDate: o.minDate,
+                maxDate: o.maxDate,
                 dayClick: function(d, d0){
                     //console.log(d, d0);
                     _calendar.calendar('setDate', d0);
                     that.element.children("input[type=text]").val(d);
                     that.element.children("input[type=text]").trigger('change', d0);
+                    that.element.children("input[type=text]").blur();
                     that.options.selected(d, d0);
                     that._hide();
                 }

@@ -6868,6 +6868,102 @@ div.square-button.big-button {
 .breadcrumbs.dark > li:after {
   background-color: #ffffff;
 }
+.breadcrumbs2 {
+  margin: 0.625rem 0;
+  padding: 0;
+  list-style: none;
+  overflow: hidden;
+  width: 100%;
+}
+.breadcrumbs2 li {
+  float: left;
+  margin: 0 .2em 0 1em;
+}
+.breadcrumbs2 a {
+  background: #d9d9d9;
+  padding: .3em 1em;
+  float: left;
+  text-decoration: none;
+  color: #2086bf;
+  position: relative;
+}
+.breadcrumbs2 a:hover {
+  background: #1ba1e2;
+  color: #ffffff;
+}
+.breadcrumbs2 a:hover:before {
+  border-color: #1ba1e2 #1ba1e2 #1ba1e2 transparent;
+}
+.breadcrumbs2 a:hover:after {
+  border-left-color: #1ba1e2;
+}
+.breadcrumbs2 a:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  margin-top: -1.5em;
+  border-width: 1.5em 0 1.5em 1em;
+  border-style: solid;
+  border-color: #d9d9d9 #d9d9d9 #d9d9d9 transparent;
+  left: -1em;
+  margin-left: 1px;
+}
+.breadcrumbs2 a:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  margin-top: -1.5em;
+  border-top: 1.5em solid transparent;
+  border-bottom: 1.5em solid transparent;
+  border-left: 1em solid #d9d9d9;
+  right: -1em;
+  margin-right: 1px;
+}
+.breadcrumbs2 > li:first-child {
+  margin-left: 0;
+}
+.breadcrumbs2 > li:first-child a:before {
+  content: normal;
+}
+.breadcrumbs2 > li:last-child {
+  background: none;
+}
+.breadcrumbs2 > li:last-child a {
+  color: #1d1d1d;
+}
+.breadcrumbs2 > li:last-child:after,
+.breadcrumbs2 > li:last-child:before {
+  content: normal;
+}
+.breadcrumbs2 > li:last-child:hover a {
+  color: #ffffff;
+}
+.breadcrumbs2 .active,
+.breadcrumbs2 .active:hover {
+  background: none;
+}
+.breadcrumbs2 .active a,
+.breadcrumbs2 .active:hover a {
+  color: #1d1d1d;
+}
+.breadcrumbs2 .active:hover a {
+  color: #ffffff;
+}
+.breadcrumbs2 .active:after,
+.breadcrumbs2 .active:before {
+  content: normal;
+}
+.breadcrumbs2.small a {
+  padding: .2em 1em;
+  font-size: 11.9px;
+}
+.breadcrumbs2.mini a {
+  padding: .1em 1em;
+  font-size: 10.5px;
+}
+.breadcrumbs2 > li > a > [class*=mif] {
+  vertical-align: -10%;
+}
 .input-control {
   display: inline-block;
   min-height: 2.125rem;
@@ -8669,7 +8765,7 @@ input[type="submit"].link:active {
 }
 .calendar a {
   display: block;
-  padding: .3125rem;
+  padding: .3125rem 0;
 }
 .calendar a:hover {
   background-color: #75c7ee;
@@ -8703,10 +8799,12 @@ input[type="submit"].link:active {
 }
 .calendar .day {
   border: 1px #bcd9e2 solid;
+  text-align: center;
 }
 .calendar .day a {
   display: block;
   position: relative;
+  text-align: center;
 }
 .calendar .month,
 .calendar .year {
@@ -13327,6 +13425,49 @@ p [data-hint] {
 .streamer .events .event-stream .event.margin-quadro {
   margin-left: 852px;
 }
+.keypad {
+  position: relative;
+  width: 106px;
+  padding: 1px;
+  border: 1px #eeeeee solid;
+  vertical-align: middle;
+  background-color: #ffffff;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.keypad:before,
+.keypad:after {
+  display: table;
+  content: "";
+}
+.keypad:after {
+  clear: both;
+}
+.keypad .key {
+  width: 32px;
+  height: 32px;
+  display: block;
+  float: left;
+  margin: 1px;
+  border: 1px #eeeeee solid;
+  vertical-align: middle;
+  text-align: center;
+  cursor: pointer;
+  font-size: .875rem;
+  line-height: 32px;
+}
+.keypad .key:hover {
+  background-color: #eeeeee;
+}
+.keypad .key:active {
+  background-color: #555555;
+  color: #ffffff;
+}
+.keypad.shadow {
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3);
+}
 .select2-container {
   box-sizing: border-box;
   display: inline-block;
@@ -13628,6 +13769,7 @@ p [data-hint] {
 .dataTable {
   width: 100%;
   margin: .625rem 0;
+  clear: both;
 }
 .dataTable th,
 .dataTable td {

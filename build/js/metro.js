@@ -28,6 +28,26 @@ String.prototype.isColor = function(){
     return /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(this);
 };
 
+Array.prototype.shuffle = function(){
+    var currentIndex = this.length, temporaryValue, randomIndex ;
+
+    while (0 !== currentIndex) {
+
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+
+        temporaryValue = this[currentIndex];
+        this[currentIndex] = this[randomIndex];
+        this[randomIndex] = temporaryValue;
+    }
+
+    return this;
+};
+
+Array.prototype.clone = function(){
+    return this.slice(0);
+};
+
 window.uniqueId = function (prefix){
     "use strict";
     var d = new Date().getTime();
@@ -1694,6 +1714,7 @@ window.METRO_LOCALES = {
             otherDays: true,
             date: new Date(),
             minDate: false,
+            maxDate: false,
             preset: false,
             exclude: false,
             buttons: true,
@@ -1738,12 +1759,14 @@ window.METRO_LOCALES = {
             }
 
             if (o.minDate !== false && typeof  o.minDate === 'string') {
-                o.minDate = new Date(o.minDate);
+                o.minDate = new Date(o.minDate+'T00:00:00Z') - 24*60*60*1000;
+            }
+
+            if (o.maxDate !== false && typeof  o.maxDate === 'string') {
+                o.maxDate = new Date(o.maxDate+'T00:00:00Z');
             }
 
             this.locales = window.METRO_LOCALES;
-
-            //console.log(o.date);
 
             this._year = o.date.getFullYear();
             this._distance = o.date.getFullYear()-4;
@@ -1883,7 +1906,8 @@ window.METRO_LOCALES = {
 
                 td = $("<div/>").addClass("calendar-cell align-center day");
                 div = $("<div/>").appendTo(td);
-                if (o.minDate !== false && (new Date(year, month, i) < o.minDate)) {
+
+                if (o.minDate !== false && (new Date(year, month, i) < o.minDate) || o.maxDate !== false && (new Date(year, month, i) > o.maxDate)) {
                     td.removeClass("day");
                     div.addClass("other-day");
                     d_html = i;
@@ -2877,6 +2901,7 @@ window.METRO_LOCALES = {
             format: "yyyy.mm.dd",
             preset: false,
             minDate: false,
+            maxDate: false,
             effect: 'fade',
             position: 'bottom',
             locale: window.METRO_CURRENT_LOCALE,
@@ -2972,11 +2997,13 @@ window.METRO_LOCALES = {
                 exclude: o.exclude,
                 date: o.preset ? o.preset : new Date(),
                 minDate: o.minDate,
+                maxDate: o.maxDate,
                 dayClick: function(d, d0){
                     //console.log(d, d0);
                     _calendar.calendar('setDate', d0);
                     that.element.children("input[type=text]").val(d);
                     that.element.children("input[type=text]").trigger('change', d0);
+                    that.element.children("input[type=text]").blur();
                     that.options.selected(d, d0);
                     that._hide();
                 }
@@ -3652,6 +3679,13 @@ window.METRO_LOCALES = {
                     placeholder.css({display: "block"});
                 }
             });
+            input.on("focus", function(){
+                if (input.val() !== "") {
+                    placeholder.css({display: "none"});
+                } else {
+                    placeholder.css({display: "block"});
+                }
+            });
         },
 
         _createInputFile: function(){
@@ -3728,6 +3762,160 @@ window.METRO_LOCALES = {
             this._super('_setOption', key, value);
         }
     });
+})( jQuery );
+(function ( $ ) {
+
+    "use strict";
+
+    $.widget( "metro.keypad" , {
+
+        version: "3.0.0",
+
+        options: {
+            target: false,
+            shuffle: false,
+            length: false,
+            keys: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
+        },
+
+        //_keys: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'],
+
+        _create: function () {
+            var that = this, element = this.element, o = this.options;
+
+            $.each(element.data(), function(key, value){
+                if (key in o) {
+                    try {
+                        o[key] = $.parseJSON(value);
+                    } catch (e) {
+                        o[key] = value;
+                    }
+                }
+            });
+
+            if (typeof o.keys === 'string') {
+                o.keys = o.keys.split(",");
+            }
+
+            this._createKeypad();
+
+            element.data('keypad', this);
+
+        },
+
+        _shuffleKeys: function(keypad){
+            var that = this, element = this.element, o = this.options;
+            var keys = o.keys.slice(0);
+            var keypad = this._keypad;
+            var keys_length = keys.length + 2;
+
+            if (o.shuffle) {
+                keys = keys.shuffle();
+            }
+
+            keypad.html('').css({
+                width: keys_length / 4 * 32 + (keys_length / 4 + 1) * 2 + 2
+            });
+
+            keys.map(function(i){
+                $("<div/>").addClass('key').html(i).data('key', i).appendTo(keypad);
+            });
+
+            $("<div/>").addClass('key').html('&larr;').data('key', '&larr;').appendTo(keypad);
+            $("<div/>").addClass('key').html('&times;').data('key', '&times;').appendTo(keypad);
+        },
+
+        _createKeypad: function(){
+            var that = this, element = this.element, o = this.options;
+            var keypad;
+
+            if (element.hasClass('input-control')) {
+
+                keypad = $("<div/>").addClass('keypad keypad-dropdown').css({
+                    position: 'absolute',
+                    'z-index': 1000,
+                    display: 'none'
+                }).appendTo(element);
+
+                o.target = element.find('input');
+
+                element.on('click', function(e){
+                    if (keypad.css('display') === 'none') {
+                        keypad.show();
+                    } else {
+                        keypad.hide();
+                    }
+
+                    var opened_pads = $(".keypad.keypad-dropdown");
+                    $.each(opened_pads, function(){
+                        if (!$(this).is(keypad)) {
+                            $(this).hide();
+                        }
+                    });
+
+                    e.stopPropagation();
+                });
+
+                $('html').on('click', function(){
+                    $(".keypad.keypad-dropdown").hide();
+                });
+            } else {
+                keypad = element;
+                keypad.addClass('keypad');
+            }
+
+            if (o.target !== false) {
+                $(o.target).attr('readonly', true);
+            }
+
+            if (keypad.parent().data('role') === 'dropdown') {
+                keypad.parent().css({
+                    top: '100%'
+                });
+            }
+
+            this._keypad = keypad;
+
+            this._shuffleKeys();
+
+            keypad.on('click', '.key', function(e){
+                var key = $(this);
+
+                if (o.target) {
+
+                    if (key.data('key') !== '&larr;' && key.data('key') !== '&times;') {
+                        if (o.length && $(o.target).val().length === o.length) {
+                            return false;
+                        }
+                        $(o.target).val($(o.target).val() + '' + key.data('key'));
+                    } else {
+                        if (key.data('key') === '&times;') {
+                            $(o.target).val('');
+                        }
+                        if (key.data('key') === '&larr;') {
+                            var val = $(o.target).val();
+                            $(o.target).val(val.substring(0, val.length - 1))
+                        }
+                    }
+                }
+
+                if (o.shuffle) {
+                    that._shuffleKeys();
+                }
+
+                e.preventDefault();
+                e.stopPropagation();
+            });
+        },
+
+        _destroy: function () {
+        },
+
+        _setOption: function ( key, value ) {
+            this._super('_setOption', key, value);
+        }
+    });
+
 })( jQuery );
 (function ( $ ) {
 
@@ -4623,6 +4811,7 @@ window.METRO_LOCALES = {
         },
 
         _value: 0,
+        _values: [],
 
         _create: function () {
             var element = this.element, o = this.options;
@@ -4638,6 +4827,9 @@ window.METRO_LOCALES = {
             });
 
             this._value = parseFloat(o.value);
+            this._values[0] = Math.ceil(o.stars * 1 / 3);
+            this._values[1] = Math.ceil(o.stars * 2 / 3);
+            this._values[2] = o.stars;
 
             this._createRating();
             this._createEvents();
@@ -4721,9 +4913,9 @@ window.METRO_LOCALES = {
 
             if (o.colorRate) {
                 element.removeClass('poor regular good');
-                if (this._value <= 2) {element.addClass('poor');}
-                else if (this._value > 2 && this._value <=4) {element.addClass('regular');}
-                else if (this._value > 4) {element.addClass('good');}
+                if (this._value <= this._values[0]) {element.addClass('poor');}
+                else if (this._value > this._values[0] && this._value <= this._values[1]) {element.addClass('regular');}
+                else if (this._value > this._values[1]) {element.addClass('good');}
             }
         },
 
@@ -4737,6 +4929,7 @@ window.METRO_LOCALES = {
 
         value: function(value){
             if (value !== undefined) {
+                this._value = value;
                 this._setValue();
                 this._setScore();
             } else {
@@ -5926,7 +6119,7 @@ window.METRO_LOCALES = {
 
                 $(this).addClass("tile-transform-"+transform);
 
-                console.log(transform);
+                //console.log(transform);
 
                 if (element[0].tagName === 'A' && element.attr('href')) {
                     setTimeout(function(){

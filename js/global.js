@@ -19,6 +19,26 @@ String.prototype.isColor = function(){
     return /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(this);
 };
 
+Array.prototype.shuffle = function(){
+    var currentIndex = this.length, temporaryValue, randomIndex ;
+
+    while (0 !== currentIndex) {
+
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+
+        temporaryValue = this[currentIndex];
+        this[currentIndex] = this[randomIndex];
+        this[randomIndex] = temporaryValue;
+    }
+
+    return this;
+};
+
+Array.prototype.clone = function(){
+    return this.slice(0);
+};
+
 window.uniqueId = function (prefix){
     "use strict";
     var d = new Date().getTime();

@@ -1,0 +1,43 @@
+@import (once) "variables";
+@import (once) "utils";
+
+@keySize: 32px;
+@keyMargin: 1px;
+@keyBorder: 1px;
+
+.keypad {
+    position: relative;
+    width: @keySize * 3 + @keyMargin * 8 + @keyBorder * 2;
+    padding: @keyMargin;
+    border: 1px @grayLighter solid;
+    vertical-align: middle;
+    background-color: @white;
+    .clear-float;
+    .no-user-select;
+
+    .key {
+        width: @keySize;
+        height: @keySize;
+        display: block;
+        float: left;
+        margin: @keyMargin;
+        border: 1px @grayLighter solid;
+        vertical-align: middle;
+        text-align: center;
+        cursor: pointer;
+        font-size: .875rem;
+        line-height: @keySize;
+
+        &:hover {
+            background-color: @grayLighter;
+        }
+        &:active {
+            background-color: @gray;
+            color: @white;
+        }
+    }
+
+    &.shadow {
+        .block-shadow;
+    }
+}
