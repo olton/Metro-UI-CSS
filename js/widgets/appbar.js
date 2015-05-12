@@ -130,6 +130,7 @@
                 var topMenuBarIndex = $(that.flexVisibles).index($(nextToHide).parent());
                 var pullMenuBar = $(that.pullMenu).find(".app-bar-menu").eq(topMenuBarIndex); //TODO: Make the class app-bar-menu configurable - perhaps sidebar
 
+                
                 //mark the entry as a entry of the pullmenu and move it to the pullmenu
                 $(nextToHide)
                         .prependTo(pullMenuBar)
@@ -137,7 +138,7 @@
 
                 //the menubar is initiated with the hidden class, so we do not see empty pullmenubars, we must unhide them
                 //it does not matter, if we see it already, we do it always:
-                $(pullMenuBar).removeClass("hidden");
+                $(pullMenuBar).removeClass("hidden").show();
                 
                 //in case there are no more entries in the top menu bar we can hide it
                 if ($(topMenuBar).children().length === 0) {
@@ -154,10 +155,6 @@
                 //get next candidate which could be moved to the topbar menu, in fact the first which is still marked as pullmenu-entry
                 var nextToShow = $(that.allMenuEntries).filter(".app-bar-pullmenu-entry").first();
 
-                if (nextToShow.length === 0) {
-                    //nothing left, we have nothing to do
-                    return false;
-                }
 
                 //find out in which pullmenu we are located in
                 var pullMenuBar = $(nextToShow).parent(); //only one single menu, not the whole thing
@@ -183,7 +180,11 @@
                     $(that.pullMenu).addClass("hidden");
                     $(that.pullButton).hide();
                 }
-
+                
+                if (nextToShow.length === 0) {
+                    //nothing left, we have nothing to do
+                    return false;
+                }
                 return nextToShow;
             }
         },
