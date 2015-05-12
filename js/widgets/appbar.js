@@ -226,14 +226,14 @@
             var forceEndLoop = false;
 
             for (var maxLoop = 0, maxLoopLen = that.allMenuEntries.length; maxLoop < maxLoopLen; maxLoop++) {  //we do nothing with this, we could use while(true) but there is a danger of infinite loops
-
+            
                 //calculate the empty space within the appbar we can use for hidden children
                 that._calculateFreeSpace();
                 var freeSpace = that.freeSpace;
 
                 console.log("freeSpace: " + freeSpace);
 
-                if (freeSpace < 3) { //3px is tolerance and to be faster than the wrapping. TODO: make this configurable
+                if (that.cleanMode || freeSpace < 3) { //3px is tolerance and to be faster than the wrapping. TODO: make this configurable
                     //no space left, we hide a menu entry now
 
                     //move the menu entry to the pullbar and check if there are more menuentries left
@@ -279,10 +279,14 @@
             var that = this, element = this.element, o = this.options;
 
             that.lastFlexAction = undefined;
+            
             console.log("------")
             that.pullButton = $(element).find('.app-bar-pullbutton');
             var menus = $(element).find('.app-bar-menu');
-            that.initiatedAsFlex = false;
+            
+            that.initiatedAsFlex = false;   //we change it later in the code - conditionally
+            that.cleanMode = $(element).is("[data-flexclean='true']");
+            
             var flexVisible, menuEntries; //temporarly used vars
 
             that.flexVisibles = $();    //the menus which are directly in the appbar
@@ -336,7 +340,7 @@
                     // === create a pull down button + pull menu ===
                     //check if a pulldown button already exists, if not we create one
                     if (!(that.pullButton.length > 0)) {
-                        //DOC: We can create a invisible button, if we want to force to not show a pull button
+                        //DOC: We can create a display:none button, if we want to force to not show a pull button
                         that.pullButton = $('<div class="app-bar-pullbutton automatic"></div>');
                         $(that.menusParent).append(that.pullButton);
                     }
