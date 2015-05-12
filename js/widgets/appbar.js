@@ -165,9 +165,34 @@
 
                 $(topMenu).removeClass("hidden");
                 //remove the mark as a entry of the pullmenu and move it to the normal top menu
-                $(nextToShow)
-                        .removeClass("app-bar-pullmenu-entry")
-                        .appendTo(topMenu);
+                $(nextToShow).removeClass("app-bar-pullmenu-entry");
+
+                //cosider the flexorder
+
+                //walk trough the children in topMenu and find out what we must do
+
+                //find all children which are lower than we
+                var flexChildren = $(topMenu).children().filter(function () {
+                    return parseInt($(this).attr("data-flexorder")) < parseInt($(nextToShow).attr("data-flexorder"));
+                });
+
+                if (flexChildren.length > 0) {
+                    //because we are greater, we set it after the childern which are lower
+                    $(flexChildren).last().after(nextToShow);
+                } else {
+                    //find all children which are greater than we
+                    flexChildren = $(topMenu).children().filter(function () {
+                        return parseInt($(this).attr("data-flexorder")) > parseInt($(nextToShow).attr("data-flexorder"));
+                    });
+                    if (flexChildren.length > 0) {
+                        //because we are lower, we set us before the childern which are greater
+                        $(flexChildren).first().before(nextToShow);
+                    } else {
+                        //we have no children, just append it
+                        $(topMenu).append(nextToShow);
+                    }
+                }
+
 
 
                 //in case there are no more entries left, we can hide the pullbar menu from this entry
@@ -279,7 +304,7 @@
                         flexVisible = this;
 
                         menuEntries = $(flexVisible).children();
-                        
+
                         //give  all menuEntries a flexorder which have not one
                         $(menuEntries).not("[data-flexorder]").each(function () {
                             $(this).attr("data-flexorder", $(this).index() + 1);
@@ -290,7 +315,7 @@
                             var bValue = parseInt($(b).data("flexorder"));
                             return aValue - bValue;
                         });
-                        
+
                         $.merge(that.allMenuEntries, $(menuEntries).not(".no-flexible")); //strip off all .no-flexible elements
                     });
 

@@ -241,21 +241,10 @@
     .app-bar-pullbutton {
         display: none;
     }   //are invisible by default
-    .app-bar-pullmenu.hidden {
+    .app-bar-pullmenu {
         display: none;
     }
 
-    .app-bar-pullmenubar {
-        display:none;
-        &.hidden {
-            display: none;
-        }
-    }
-    .app-bar-menu {
-        &.hidden {
-            display: none;
-        }
-    }
     .app-bar-pullmenu {
 
         .app-bar-menu {
@@ -263,6 +252,7 @@
             border-top: 1px solid @appBarDividerColor;
             position: relative;
             float: none;
+            display: none;
             z-index: @zindexDropdown +1; //+1 because we want to see it, even if pullmenu is open
             background-color: @appBarBackgroundActive;
             display: none;
