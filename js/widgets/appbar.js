@@ -278,15 +278,20 @@
                     $(that.flexVisibles).each(function () {
                         flexVisible = this;
 
-                        menuEntries = $(flexVisible).children().not(".no-flexible")  //strip off all .no-flexible elements
-                        menuEntries.sort(function (a, b) {
-                            var aValue = (parseInt($(a).data("flexorder")) || $(a).index() + 1);
-                            var bValue = (parseInt($(b).data("flexorder")) || $(b).index() + 1);
-                            return aValue - bValue;
+                        menuEntries = $(flexVisible).children();
+                        
+                        //give  all menuEntries a flexorder which have not one
+                        $(menuEntries).not("[data-flexorder]").each(function () {
+                            $(this).attr("data-flexorder", $(this).index() + 1);
                         });
 
-
-                        $.merge(that.allMenuEntries, menuEntries);
+                        menuEntries.sort(function (a, b) {
+                            var aValue = parseInt($(a).data("flexorder"));
+                            var bValue = parseInt($(b).data("flexorder"));
+                            return aValue - bValue;
+                        });
+                        
+                        $.merge(that.allMenuEntries, $(menuEntries).not(".no-flexible")); //strip off all .no-flexible elements
                     });
 
                     //find the parent, which contains all menus
