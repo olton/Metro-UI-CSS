@@ -233,9 +233,8 @@
     overflow: visible;
     height: auto;
     .app-bar-pullbutton {
-        display: block;
-        height: 3.125rem;
-        width: 3.125rem;
+        .app-bar .app-bar-element;
+        float: right;
     }
 
     .app-bar-pullbutton {
@@ -244,16 +243,31 @@
     .app-bar-pullmenu {
         display: none;
     }
-
     .app-bar-pullmenu {
+        //special stylings - overwrite for sidebar2 as  pullmenu
+        &.flexstyle-sidebar2 {
+            position: absolute;
+            right: 0;
+            z-index: @zindexDropdown;
 
+            .app-bar-pullmenubar {
+                float: right;
+            }
+            .dropdown-toggle {
+                &:before {
+                    border-color: #323232; //TODO: make this as variable as soon the sidebar colors are styled with variables
+                }
+            }
+        }
+
+        //default style of the pullmenu
         .app-bar-menu {
             width: 100%;
             border-top: 1px solid @appBarDividerColor;
             position: relative;
             float: none;
             display: none;
-            z-index: @zindexDropdown +1; //+1 because we want to see it, even if pullmenu is open
+            z-index: @zindexDropdown +1; //+1 because we want see it, even if pullmenu is open
             background-color: @appBarBackgroundActive;
             display: none;
             clear: both;
