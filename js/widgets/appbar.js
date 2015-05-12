@@ -116,25 +116,31 @@
 
             if (direction === "toPullMenu") {
                 //get next candidate which could be moved to the pullmenu, in fact the last which not have a mark as pullmenu-entry
+                
                 var nextToHide = $(that.allMenuEntries).not(".app-bar-pullmenu-entry").last();
 
                 if (nextToHide.length === 0) {
                     //nothing left, we have nothing to do
                     return false;
                 }
-
+                
 
                 //find out in which menubar we are located in
-                var topMenuBar = $(nextToHide).parent(); //this is only a appbar-menu not the appbar itself
+                var topMenu = $(nextToHide).parent(); //this is only a appbar-menu not the appbar itself
                 //find out where we have to go
-                var topMenuBarIndex = $(that.flexVisibles).index($(nextToHide).parent());
-                var pullMenuBar = $(that.pullMenu).find(".app-bar-menu").eq(topMenuBarIndex); //TODO: Make the class app-bar-menu configurable - perhaps sidebar
-
-
-                //mark the entry as a entry of the pullmenu and move it to the pullmenu
-                $(nextToHide)
-                        .prependTo(pullMenuBar)
-                        .addClass("app-bar-pullmenu-entry");
+                var topMenuIndex = $(that.flexVisibles).index($(nextToHide).parent());
+                var pullMenuBar = $(that.pullMenu).find(".app-bar-menu").eq(topMenuIndex); //TODO: Make the class app-bar-menu configurable - perhaps sidebar
+                
+                
+                //move it to the pullmenu
+                if($(topMenu).is("[data-flexdirection='reverse']")) {//data-flexdirection="reverse" support 
+                    $(nextToHide).appendTo(pullMenuBar);
+                } else {                                             //normal way
+                    $(nextToHide).prependTo(pullMenuBar);
+                }
+                
+                //mark the entry as a entry of the pullmenu
+                $(nextToHide).addClass("app-bar-pullmenu-entry");
 
                 //the menubar is initiated with the hidden class, so we do not see empty pullmenubars, we must unhide them
                 //it does not matter, if we see it already, we do it always:
@@ -142,8 +148,8 @@
                         .show();
 
                 //in case there are no more entries in the top menu bar we can hide it
-                if ($(topMenuBar).children().length === 0) {
-                    $(topMenuBar).addClass("hidden");
+                if ($(topMenu).children().length === 0) {
+                    $(topMenu).addClass("hidden");
                 }
 
                 //we show the pullbutton now
@@ -160,8 +166,8 @@
                 var pullMenuBar = $(nextToShow).parent(); //only one single menu, not the whole thing
 
                 //find out where we have to go
-                var topMenuBarIndex = $(pullMenuBar).index(); //it is the same structur as that.flexVisibles, so we can use the simple index
-                var topMenu = $(that.flexVisibles).eq(topMenuBarIndex);
+                var topMenuIndex = $(pullMenuBar).index(); //it is the same structur as that.flexVisibles, so we can use the simple index
+                var topMenu = $(that.flexVisibles).eq(topMenuIndex);
 
                 $(topMenu).removeClass("hidden");
                 //remove the mark as a entry of the pullmenu and move it to the normal top menu
@@ -315,7 +321,12 @@
                             var bValue = parseInt($(b).data("flexorder"));
                             return aValue - bValue;
                         });
-
+                        
+                        //data-flexdirection="reverse" support 
+                        if($(flexVisible).is("[data-flexdirection='reverse']")) {
+                            menuEntries.reverse();
+                        }
+                
                         $.merge(that.allMenuEntries, $(menuEntries).not(".no-flexible")); //strip off all .no-flexible elements
                     });
 
