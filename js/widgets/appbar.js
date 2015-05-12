@@ -233,7 +233,7 @@
 
                 console.log("freeSpace: " + freeSpace);
 
-                if (that.cleanMode || freeSpace < 3) { //3px is tolerance and to be faster than the wrapping. TODO: make this configurable
+                if (that.flexclean || freeSpace < 3) { //3px is tolerance and to be faster than the wrapping. TODO: make this configurable
                     //no space left, we hide a menu entry now
 
                     //move the menu entry to the pullbar and check if there are more menuentries left
@@ -285,7 +285,7 @@
             var menus = $(element).find('.app-bar-menu');
             
             that.initiatedAsFlex = false;   //we change it later in the code - conditionally
-            that.cleanMode = $(element).is("[data-flexclean='true']");
+            that.flexclean = $(element).is("[data-flexclean='true']");
             
             var flexVisible, menuEntries; //temporarly used vars
 
