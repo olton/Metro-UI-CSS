@@ -48,6 +48,18 @@ Array.prototype.clone = function(){
     return this.slice(0);
 };
 
+Array.prototype.unique = function() {
+    var a = this.concat();
+    for(var i=0; i<a.length; ++i) {
+        for(var j=i+1; j<a.length; ++j) {
+            if(a[i] === a[j])
+                a.splice(j--, 1);
+        }
+    }
+
+    return a;
+};
+
 window.uniqueId = function (prefix){
     "use strict";
     var d = new Date().getTime();
@@ -1717,6 +1729,7 @@ window.METRO_LOCALES = {
             maxDate: false,
             preset: false,
             exclude: false,
+            stored: false,
             buttons: true,
             buttonToday: true,
             buttonClear: true,
@@ -1776,6 +1789,7 @@ window.METRO_LOCALES = {
 
             element.data("_storage", []);
             element.data("_exclude", []);
+            element.data("_stored", []);
             if (!element.hasClass('calendar')) {element.addClass('calendar');}
 
             var re, dates;
@@ -1793,6 +1807,14 @@ window.METRO_LOCALES = {
                 dates = o.exclude.split(re);
                 $.each(dates, function(){
                     if (new Date(this) !== undefined) {that.setDateExclude(this);}
+                });
+            }
+
+            if (o.stored) {
+                re = /\s*,\s*/;
+                dates = o.stored.split(re);
+                $.each(dates, function(){
+                    if (new Date(this) !== undefined) {that.setDateStored(this);}
                 });
             }
 
@@ -1934,6 +1956,11 @@ window.METRO_LOCALES = {
                 if (this.element.data('_exclude').indexOf(d)>=0) {
                     a = td.find("a");
                     a.parent().parent().addClass("exclude");
+                }
+
+                if (this.element.data('_stored').indexOf(d)>=0) {
+                    a = td.find("a");
+                    a.parent().parent().addClass("stored");
                 }
 
                 td.appendTo(tr);
@@ -2240,9 +2267,19 @@ window.METRO_LOCALES = {
             if (index < 0) {this.element.data('_exclude').push(d);}
         },
 
+        _addDateStored: function(d){
+            var index = this.element.data('_stored').indexOf(d);
+            if (index < 0) {this.element.data('_stored').push(d);}
+        },
+
         _removeDateExclude: function(d){
             var index = this.element.data('_exclude').indexOf(d);
             this.element.data('_exclude').splice(index, 1);
+        },
+
+        _removeDateStored: function(d){
+            var index = this.element.data('_stored').indexOf(d);
+            this.element.data('_stored').splice(index, 1);
         },
 
         setDate: function(d){
@@ -2261,12 +2298,22 @@ window.METRO_LOCALES = {
             this._renderCalendar();
         },
 
+        setDateStored: function(d){
+            var r;
+            d = new Date(d);
+            r = (new Date(d.getFullYear()+"/"+ (d.getMonth()+1)+"/"+ d.getDate())).format('yyyy-mm-dd');
+            this._addDateStored(r);
+            this._renderCalendar();
+        },
+
         getDate: function(index){
             return new Date(index !== undefined ? this.element.data('_storage')[index] : this.element.data('_storage')[0]).format(this.options.format);
         },
 
         getDates: function(){
-            return this.element.data('_storage');
+            var res;
+            res = $.merge($.merge([], this.element.data('_storage')), this.element.data('_stored'));
+            return res.unique();
         },
 
         unsetDate: function(d){
@@ -2282,6 +2329,14 @@ window.METRO_LOCALES = {
             d = new Date(d);
             r = (new Date(d.getFullYear()+"-"+ (d.getMonth()+1)+"-"+ d.getDate())).format('yyyy-mm-dd');
             this._removeDateExclude(r);
+            this._renderCalendar();
+        },
+
+        unsetDateStored: function(d){
+            var r;
+            d = new Date(d);
+            r = (new Date(d.getFullYear()+"-"+ (d.getMonth()+1)+"-"+ d.getDate())).format('yyyy-mm-dd');
+            this._removeDateStored(r);
             this._renderCalendar();
         },
 
