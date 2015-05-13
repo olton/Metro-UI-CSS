@@ -10,17 +10,18 @@
     "responsive",
     "front-end",
     "framework",
-    "web"
+    "web",
+    "metro"
   ],
   "homepage": "http://metroui.org.ua",
   "style": "build/css/metro.css",
   "mif": "build/css/metro-icons.css",
   "repository": {
     "type": "git",
-    "url": "https://bitbucket.com/olton/metro.git"
+    "url": "https://github.com/olton/Metro-UI-CSS.git"
   },
   "bugs": {
-    "url": "https://bitbucket.com/olton/metro/issues"
+    "url": "http://forum.metroui.org.ua"
   },
   "license": {
     "type": "MIT",

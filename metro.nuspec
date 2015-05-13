@@ -13,7 +13,7 @@
     <releaseNotes></releaseNotes>
     <language>en-US</language>
     <copyright>Copyright 2012-2015, Sergey Pimenov</copyright>
-    <tags>Windows Metro UI CSS Framework</tags>
+    <tags>Windows Metro UI CSS Framework LESS</tags>
   </metadata>
   <files>
     <file src="build\js\*.js" target="Content\Scripts" />
