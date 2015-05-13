@@ -9,6 +9,7 @@
 * upd demo for rating
 * upd calendar, add pre-stored days
 * upd datepicker for pre-stored days
+* add flexible to appbar by [Daniel Milbrandt](http://xiphe.com)
 
 ## 3.0.3
 * New widget [Presenter](http://metroui.org.ua/presenter.html)
