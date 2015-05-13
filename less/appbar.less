@@ -6,301 +6,352 @@
 @appBarDividerColor: #4C9CD7;
 
 .app-bar {
-	display: block;
-	width: 100%;
-	position: relative;
-	background-color: @appBarBackground;
-	color: @white;
-	height: 3.125rem;
-	.no-user-select;
-	.clear-float;
+    display: block;
+    width: 100%;
+    position: relative;
+    background-color: @appBarBackground;
+    color: @white;
+    height: 3.125rem;
+    .no-user-select;
+    .clear-float;
 
-	.app-bar-element {
-		line-height: 3.125rem;
-		padding: 0 .625rem;
-		font-size: 1rem;
-		cursor: pointer;
-		color: inherit;
-		display: block;
-		float: left;
-		position: relative;
-		vertical-align: middle;
-		height: 3.125rem;
+    .app-bar-element {
+        line-height: 3.125rem;
+        padding: 0 .625rem;
+        font-size: 1rem;
+        cursor: pointer;
+        color: inherit;
+        display: block;
+        float: left;
+        position: relative;
+        vertical-align: middle;
+        height: 3.125rem;
 
-		&:hover, &:active {
-			background-color: @appBarBackgroundActive;
-		}
+        &:hover, &:active {
+            background-color: @appBarBackgroundActive;
+        }
 
-		&.branding {
-			padding-left: 1rem;
-			padding-right: 1rem;
-		}
-	}
+        &.branding {
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+    }
 
-	.app-bar-divider {
-		display: block;
-		float: left;
-		line-height: 3.125rem;
-		height: 3.125rem;
-		width: 1px;
-		background-color: @appBarDividerColor;
-		padding: 0;
-	}
+    .app-bar-divider {
+        display: block;
+        float: left;
+        line-height: 3.125rem;
+        height: 3.125rem;
+        width: 1px;
+        background-color: @appBarDividerColor;
+        padding: 0;
+    }
 
-	.dropdown-toggle {
-		&:before {
-			border-color: @white;
-		}
-	}
+    .dropdown-toggle {
+        &:before {
+            border-color: @white;
+        }
+    }
 
-	.app-bar-menu {
-		display: block;
-		float: left;
-		margin: 0;
-		padding: 0;
+    .app-bar-menu {
+        display: block;
+        float: left;
+        margin: 0;
+        padding: 0;
 
-		& > li, & > li > a {
-			.app-bar > .app-bar-element;
+        & > li, & > li > a {
+            .app-bar > .app-bar-element;
 
             &.dropdown-toggle {
                 padding-right: 1.5rem;
             }
-		}
+        }
 
-		& > li .d-menu {
-			top: 100%;
-			border: 2px solid @appBarBackgroundActive;
-			li:not(.disabled):hover {
-				background-color: #eee;
-				& > a {
-					color: @dark;
-				}
-			}
+        & > li .d-menu {
+            top: 100%;
+            border: 2px solid @appBarBackgroundActive;
+            li:not(.disabled):hover {
+                background-color: #eee;
+                & > a {
+                    color: @dark;
+                }
+            }
 
-			.d-menu {
-				top: -.625rem;
-				left: 100%;
-			}
-			.dropdown-toggle {
-				&:before {
-					border-color: @dark;
-				}
-			}
-		}
-	}
+            .d-menu {
+                top: -.625rem;
+                left: 100%;
+            }
+            .dropdown-toggle {
+                &:before {
+                    border-color: @dark;
+                }
+            }
+        }
+    }
 
-	.app-bar-pull {
-		display: none;
-		float: right;
-		color: #fff;
-		cursor: pointer;
-		font: 2rem sans-serif;
-		position: absolute;
-		top: 0;
-		right: 0;
-		height: 3.125rem;
-		width: 3.125rem;
-		line-height: 1.25rem;
-		vertical-align: middle;
-		text-align: center;
-		margin: 0;
+    .app-bar-pullbutton {
+        float: right;
+        &.automatic {
+            display: none;
+            float: right;
+            color: #fff;
+            cursor: pointer;
+            font: 2rem sans-serif;
+            height: 3.125rem;
+            width: 3.125rem;
+            line-height: 1.25rem;
+            vertical-align: middle;
+            text-align: center;
+            margin: 0;
 
-		&:before {
-			content: "\2261";
-			position: absolute;
-			top: .875rem;
-			left: .875rem;
-		}
-	}
+            &:before {
+                content: "\2261";
+                position: absolute;
+                top: .875rem;
+                left: .875rem;
+            }
+        }
+    }
 }
 
 .app-bar {
-	.app-bar-drop-container {
-		position: absolute;
-		top: 100%;
-		left: 0;
-		margin-top: 10px;
-		border: 2px solid @appBarBackgroundActive;
+    .app-bar-drop-container {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        margin-top: 10px;
+        border: 2px solid @appBarBackgroundActive;
 
-		&:before {
-			content: '';
-			position: absolute;
-			background-color: @white;
-			width: 10px;
-			height: 10px;
-			border: 2px @appBarBackgroundActive solid;
-			top: 1px;
-			left: 1rem;
-			margin: -8px 0;
-			border-bottom: none;
-			border-right: none;
-			.rotate(45deg);
-		}
-		&:before {
-			z-index: 0;
-		}
+        &:before {
+            content: '';
+            position: absolute;
+            background-color: @white;
+            width: 10px;
+            height: 10px;
+            border: 2px @appBarBackgroundActive solid;
+            top: 1px;
+            left: 1rem;
+            margin: -8px 0;
+            border-bottom: none;
+            border-right: none;
+            .rotate(45deg);
+        }
+        &:before {
+            z-index: 0;
+        }
 
-		&.place-right {
-			right: 0;
-			left: auto;
+        &.place-right {
+            right: 0;
+            left: auto;
 
-			&:before {
-				left: auto;
-				right: 1rem;
-			}
-		}
-	}
+            &:before {
+                left: auto;
+                right: 1rem;
+            }
+        }
+    }
 }
 
 // Form Elements
 .app-bar {
-	.app-bar-element {
-		.clear-float;
-		& > .input-control.text, & > .input-control.password {
-			margin-top: .55rem;
-			font-size: .875rem;
-			line-height: 1.8rem;
-			display: block;
+    .app-bar-element {
+        .clear-float;
+        & > .input-control.text, & > .input-control.password {
+            margin-top: .55rem;
+            font-size: .875rem;
+            line-height: 1.8rem;
+            display: block;
 
-			input {
-				border-color: @transparent;
-			}
-		}
+            input {
+                border-color: @transparent;
+            }
+        }
 
-		& > .button {
-			margin-top: -.15rem;
-		}
+        & > .button {
+            margin-top: -.15rem;
+        }
 
-		& > .image-button {
-			margin: 0;
-			background-color: @transparent;
-			color: @white;
-			font-size: inherit;
-			img.icon {
-				padding: 0;
-			}
-		}
-	}
+        & > .image-button {
+            margin: 0;
+            background-color: @transparent;
+            color: @white;
+            font-size: inherit;
+            img.icon {
+                padding: 0;
+            }
+        }
+    }
 }
 
 .app-bar {
-	&.drop-up {
-		.app-bar-drop-container {
-			top: auto;
-			bottom: 3.75rem;
+    &.drop-up {
+        .app-bar-drop-container {
+            top: auto;
+            bottom: 3.75rem;
 
-			&:before {
-				top: auto;
-				bottom: 1px;
-				.rotate(225deg);
-			}
-		}
+            &:before {
+                top: auto;
+                bottom: 1px;
+                .rotate(225deg);
+            }
+        }
 
-		.app-bar-menu {
-			& > li > .d-menu {
-				top: auto;
-				bottom: 3.125rem;
-			}
-		}
+        .app-bar-menu {
+            & > li > .d-menu {
+                top: auto;
+                bottom: 3.125rem;
+            }
+        }
 
-		.d-menu {
-			.d-menu {
-				top: auto ;
-				bottom: 0 ;
-			}
-		}
+        .d-menu {
+            .d-menu {
+                top: auto ;
+                bottom: 0 ;
+            }
+        }
 
-	}
+    }
 }
 
 .app-bar {
-	&.fixed-top, &.fixed-bottom {
-		z-index: @zindexFixedNavbar;
-		position: fixed;
-	}
+    &.fixed-top, &.fixed-bottom {
+        z-index: @zindexFixedNavbar;
+        position: fixed;
+    }
 
-	&.fixed-top {
-		top: 0;
-	}
-	&.fixed-bottom {
-		bottom: 0;
-	}
+    &.fixed-top {
+        top: 0;
+    }
+    &.fixed-bottom {
+        bottom: 0;
+    }
 }
 
-// Media options
-.app-bar:not(.no-responsive-future) {
-	@media screen and (max-width : 800px) {
-		overflow: visible;
-		height: auto;
+//flexible
+.app-bar {
 
-		.app-bar-pull {
-			display: block;
-		}
-		.app-bar-menu {
-			width: 100%;
-			border-top: 1px solid @appBarDividerColor;
-			position: relative;
-			float: none;
-			z-index: @zindexDropdown;
-			background-color: @appBarBackgroundActive;
-			display: none;
-			clear: both;
-			& > li, & > li > a {
-				float: none;
-			}
+    overflow: visible;
+    height: auto;
+    .app-bar-pullbutton {
+        .app-bar .app-bar-element;
+        float: right;
+    }
 
-			& > li {
-				height: auto;
-			}
+    .app-bar-pullbutton {
+        display: none;
+    }   //are invisible by default
+    .app-bar-pullmenu {
+        display: none;
+    }
+    .app-bar-pullmenu {
+        //special stylings - overwrite for sidebar2 as  pullmenu
+        &.flexstyle-sidebar2 {
+            position: absolute;
+            right: 0;
+            z-index: @zindexDropdown;
 
-			li:hover {
-				background-color: @appBarBackground !important;
-				a {
-					background-color: @appBarBackground !important;
-					color: @white !important;
-				}
-			}
+            .app-bar-pullmenubar {
+                float: right;
+            }
+            .dropdown-toggle {
+                &:before {
+                    border-color: #323232; //TODO: make this as variable as soon the sidebar colors are styled with variables
+                }
+            }
+            .sidebar2 {
+                li {
+                    &:hover {
+                        background-color: @appBarBackground;
+                    }
+                    .input-control {
+                        text-align: center;
+                        display: block;
+                        margin: 0.325rem;
+                    }
+                }
 
-			.d-menu {
-				border: 0 !important;
-				border-top: 1px solid @appBarDividerColor !important;
-				clear: both;
-				float: none !important;
-				width: 100% !important;
-				position: relative !important;
-				left: 0 !important;
-				box-shadow: none;
-				max-width: 100%;
-				background-color: @appBarBackgroundActive !important;
+                li {
+                    &:hover {
+                        a {background-color: @appBarBackground;}
+                    }
+                }
+                li li:not(:hover) {
+                    color: @dark ;
 
-				li {
-					width: 100% !important;
-					background-color: inherit;
+                    a {
+                        background-color: @white;
+                    }
+                }
+            }
+        }
 
-					a {
-						padding-left: 20px;
-						padding-right: 0;
-						background-color: inherit;
-						width: 100%;
-						color: @white;
-					}
-				}
+        //default style of the pullmenu
+        .app-bar-menu {
+            width: 100%;
+            border-top: 1px solid @appBarDividerColor;
+            position: relative;
+            float: none;
+            display: none;
+            z-index: @zindexDropdown +1; //+1 because we want see it, even if pullmenu is open
+            background-color: @appBarBackgroundActive;
+            display: none;
+            clear: both;
+            & > li, & > li > a {
+                float: none;
+            }
 
-				.dropdown-toggle {
-					&:before {
-						border-color: @white !important;
-						.rotate(-45deg);
-					}
-				}
+            & > li {
+                height: auto;
+            }
 
-				.divider {
-					background-color: @appBarDividerColor;
-				}
+            li:hover {
+                background-color: @appBarBackground !important;
+                a {
+                    background-color: @appBarBackground !important;
+                    color: @white !important;
+                }
+            }
 
-				.d-menu {
-					top: 0 !important;
-				}
-			}
-		}
-	}
+            .d-menu {
+                border: 0 !important;
+                border-top: 1px solid @appBarDividerColor !important;
+                clear: both;
+                float: none !important;
+                width: 100% !important;
+                position: relative !important;
+                left: 0 !important;
+                box-shadow: none;
+                max-width: 100%;
+                background-color: @appBarBackgroundActive !important;
+
+                li {
+                    width: 100% !important;
+                    background-color: inherit;
+
+                    a {
+                        padding-left: 20px;
+                        padding-right: 0;
+                        background-color: inherit;
+                        width: 100%;
+                        color: @white;
+                    }
+                }
+
+                .dropdown-toggle {
+                    &:before {
+                        border-color: @white !important;
+                        .rotate(-45deg);
+                    }
+                }
+
+                .divider {
+                    background-color: @appBarDividerColor;
+                }
+
+                .d-menu {
+                    top: 0 !important;
+                }
+            }
+        }
+    }
 }
