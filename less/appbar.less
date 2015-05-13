@@ -258,6 +258,31 @@
                     border-color: #323232; //TODO: make this as variable as soon the sidebar colors are styled with variables
                 }
             }
+            .sidebar2 {
+                li {
+                    &:hover {
+                        background-color: @appBarBackground;
+                    }
+                    .input-control {
+                        text-align: center;
+                        display: block;
+                        margin: 0.325rem;
+                    }
+                }
+
+                li {
+                    &:hover {
+                        a {background-color: @appBarBackground;}
+                    }
+                }
+                li li:not(:hover) {
+                    color: @dark ;
+
+                    a {
+                        background-color: @white;
+                    }
+                }
+            }
         }
 
         //default style of the pullmenu
