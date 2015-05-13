@@ -1901,214 +1901,267 @@ span {
   color: #00aff0 !important;
 }
 .ribbed-black {
+  background: #000000 -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #000000 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
 .ribbed-white {
+  background: #ffffff -webkit-linear-gradient(135deg, rgba(0, 0, 0, 0.15) 25%, transparent 25%, transparent 50%, rgba(0, 0, 0, 0.15) 50%, rgba(0, 0, 0, 0.15) 75%, transparent 75%, transparent) !important;
   background: #ffffff linear-gradient(-45deg, rgba(0, 0, 0, 0.15) 25%, transparent 25%, transparent 50%, rgba(0, 0, 0, 0.15) 50%, rgba(0, 0, 0, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
 .ribbed-lime {
+  background: #a4c400 -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #a4c400 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
 .ribbed-green {
+  background: #60a917 -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #60a917 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
 .ribbed-emerald {
+  background: #008a00 -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #008a00 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
 .ribbed-teal {
+  background: #00aba9 -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #00aba9 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
 .ribbed-cyan {
+  background: #1ba1e2 -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #1ba1e2 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
 .ribbed-cobalt {
+  background: #0050ef -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #0050ef linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
 .ribbed-indigo {
+  background: #6a00ff -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #6a00ff linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
 .ribbed-violet {
+  background: #aa00ff -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #aa00ff linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
 .ribbed-pink {
+  background: #dc4fad -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #dc4fad linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
 .ribbed-magenta {
+  background: #d80073 -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #d80073 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
 .ribbed-crimson {
+  background: #a20025 -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #a20025 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
 .ribbed-red {
+  background: #ce352c -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #ce352c linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
 .ribbed-orange {
+  background: #fa6800 -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #fa6800 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
 .ribbed-amber {
+  background: #f0a30a -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #f0a30a linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
 .ribbed-yellow {
+  background: #e3c800 -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #e3c800 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
 .ribbed-brown {
+  background: #825a2c -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #825a2c linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
 .ribbed-olive {
+  background: #6d8764 -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #6d8764 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
 .ribbed-steel {
+  background: #647687 -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #647687 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
 .ribbed-mauve {
+  background: #76608a -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #76608a linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
 .ribbed-taupe {
+  background: #87794e -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #87794e linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
 .ribbed-dark {
+  background: #222222 -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #222222 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
 .ribbed-darker {
+  background: #1d1d1d -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #1d1d1d linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
 .ribbed-darkBrown {
+  background: #63362f -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #63362f linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
 .ribbed-darkCrimson {
+  background: #640024 -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #640024 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
 .ribbed-darkMagenta {
+  background: #81003c -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #81003c linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
 .ribbed-darkIndigo {
+  background: #4b0096 -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #4b0096 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
 .ribbed-darkCyan {
+  background: #1b6eae -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #1b6eae linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
 .ribbed-darkCobalt {
+  background: #00356a -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #00356a linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
 .ribbed-darkTeal {
+  background: #004050 -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #004050 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
 .ribbed-darkEmerald {
+  background: #003e00 -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #003e00 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
 .ribbed-darkGreen {
+  background: #128023 -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #128023 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
 .ribbed-darkOrange {
+  background: #bf5a15 -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #bf5a15 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
 .ribbed-darkRed {
+  background: #9a1616 -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #9a1616 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
 .ribbed-darkPink {
+  background: #9a165a -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #9a165a linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
 .ribbed-darkViolet {
+  background: #57169a -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #57169a linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
 .ribbed-darkBlue {
+  background: #16499a -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #16499a linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
 .ribbed-lightBlue {
+  background: #4390df -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #4390df linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
 .ribbed-lightTeal {
+  background: #45fffd -webkit-linear-gradient(135deg, rgba(0, 0, 0, 0.15) 25%, transparent 25%, transparent 50%, rgba(0, 0, 0, 0.15) 50%, rgba(0, 0, 0, 0.15) 75%, transparent 75%, transparent) !important;
   background: #45fffd linear-gradient(-45deg, rgba(0, 0, 0, 0.15) 25%, transparent 25%, transparent 50%, rgba(0, 0, 0, 0.15) 50%, rgba(0, 0, 0, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
 .ribbed-lightOlive {
+  background: #78aa1c -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #78aa1c linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
 .ribbed-lightOrange {
+  background: #c29008 -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #c29008 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
 .ribbed-lightPink {
+  background: #f472d0 -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #f472d0 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
 .ribbed-lightRed {
+  background: #da5a53 -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #da5a53 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
 .ribbed-lightGreen {
+  background: #7ad61d -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #7ad61d linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
 .ribbed-lighterBlue {
+  background: #00ccff -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #00ccff linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
 .ribbed-grayed {
+  background: #585858 -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #585858 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
 .ribbed-grayDark {
+  background: #333333 -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #333333 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
 .ribbed-grayDarker {
+  background: #222222 -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #222222 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
 .ribbed-gray {
+  background: #555555 -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #555555 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
 .ribbed-grayLight {
+  background: #999999 -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #999999 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
 .ribbed-grayLighter {
+  background: #eeeeee -webkit-linear-gradient(135deg, rgba(0, 0, 0, 0.15) 25%, transparent 25%, transparent 50%, rgba(0, 0, 0, 0.15) 50%, rgba(0, 0, 0, 0.15) 75%, transparent 75%, transparent) !important;
   background: #eeeeee linear-gradient(-45deg, rgba(0, 0, 0, 0.15) 25%, transparent 25%, transparent 50%, rgba(0, 0, 0, 0.15) 50%, rgba(0, 0, 0, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
 .ribbed-blue {
+  background: #00aff0 -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #00aff0 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
@@ -3915,15 +3968,15 @@ a.tag {
 .app-bar .app-bar-menu > li .d-menu .dropdown-toggle:before {
   border-color: #1d1d1d;
 }
-.app-bar .app-bar-pull {
+.app-bar .app-bar-pullbutton {
+  float: right;
+}
+.app-bar .app-bar-pullbutton.automatic {
   display: none;
   float: right;
   color: #fff;
   cursor: pointer;
   font: 2rem sans-serif;
-  position: absolute;
-  top: 0;
-  right: 0;
   height: 3.125rem;
   width: 3.125rem;
   line-height: 1.25rem;
@@ -3931,7 +3984,7 @@ a.tag {
   text-align: center;
   margin: 0;
 }
-.app-bar .app-bar-pull:before {
+.app-bar .app-bar-pullbutton.automatic:before {
   content: "\2261";
   position: absolute;
   top: .875rem;
@@ -4030,72 +4083,153 @@ a.tag {
 .app-bar.fixed-bottom {
   bottom: 0;
 }
-@media screen and (max-width: 800px) {
-  .app-bar:not(.no-responsive-future) {
-    overflow: visible;
-    height: auto;
-  }
-  .app-bar:not(.no-responsive-future) .app-bar-pull {
-    display: block;
-  }
-  .app-bar:not(.no-responsive-future) .app-bar-menu {
-    width: 100%;
-    border-top: 1px solid #4c9cd7;
-    position: relative;
-    float: none;
-    z-index: 1000;
-    background-color: #005696;
-    display: none;
-    clear: both;
-  }
-  .app-bar:not(.no-responsive-future) .app-bar-menu > li,
-  .app-bar:not(.no-responsive-future) .app-bar-menu > li > a {
-    float: none;
-  }
-  .app-bar:not(.no-responsive-future) .app-bar-menu > li {
-    height: auto;
-  }
-  .app-bar:not(.no-responsive-future) .app-bar-menu li:hover {
-    background-color: #0072c6 !important;
-  }
-  .app-bar:not(.no-responsive-future) .app-bar-menu li:hover a {
-    background-color: #0072c6 !important;
-    color: #ffffff !important;
-  }
-  .app-bar:not(.no-responsive-future) .app-bar-menu .d-menu {
-    border: 0 !important;
-    border-top: 1px solid #4c9cd7 !important;
-    clear: both;
-    float: none !important;
-    width: 100% !important;
-    position: relative !important;
-    left: 0 !important;
-    box-shadow: none;
-    max-width: 100%;
-    background-color: #005696 !important;
-  }
-  .app-bar:not(.no-responsive-future) .app-bar-menu .d-menu li {
-    width: 100% !important;
-    background-color: inherit;
-  }
-  .app-bar:not(.no-responsive-future) .app-bar-menu .d-menu li a {
-    padding-left: 20px;
-    padding-right: 0;
-    background-color: inherit;
-    width: 100%;
-    color: #ffffff;
-  }
-  .app-bar:not(.no-responsive-future) .app-bar-menu .d-menu .dropdown-toggle:before {
-    border-color: #ffffff !important;
-    -webkit-transform: rotate(-45deg);
-            transform: rotate(-45deg);
-  }
-  .app-bar:not(.no-responsive-future) .app-bar-menu .d-menu .divider {
-    background-color: #4c9cd7;
-  }
-  .app-bar:not(.no-responsive-future) .app-bar-menu .d-menu .d-menu {
-    top: 0 !important;
-  }
+.app-bar {
+  overflow: visible;
+  height: auto;
+}
+.app-bar .app-bar-pullbutton {
+  line-height: 3.125rem;
+  padding: 0 .625rem;
+  font-size: 1rem;
+  cursor: pointer;
+  color: inherit;
+  display: block;
+  float: left;
+  position: relative;
+  vertical-align: middle;
+  height: 3.125rem;
+  float: right;
+}
+.app-bar .app-bar-pullbutton:hover,
+.app-bar .app-bar-pullbutton:active {
+  background-color: #005696;
+}
+.app-bar .app-bar-pullbutton.branding {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.app-bar .app-bar-pullbutton:before,
+.app-bar .app-bar-pullbutton:after {
+  display: table;
+  content: "";
+}
+.app-bar .app-bar-pullbutton:after {
+  clear: both;
+}
+.app-bar .app-bar-pullbutton > .input-control.text,
+.app-bar .app-bar-pullbutton > .input-control.password {
+  margin-top: .55rem;
+  font-size: .875rem;
+  line-height: 1.8rem;
+  display: block;
+}
+.app-bar .app-bar-pullbutton > .input-control.text input,
+.app-bar .app-bar-pullbutton > .input-control.password input {
+  border-color: transparent;
+}
+.app-bar .app-bar-pullbutton > .button {
+  margin-top: -0.15rem;
+}
+.app-bar .app-bar-pullbutton > .image-button {
+  margin: 0;
+  background-color: transparent;
+  color: #ffffff;
+  font-size: inherit;
+}
+.app-bar .app-bar-pullbutton > .image-button img.icon {
+  padding: 0;
+}
+.app-bar .app-bar-pullbutton {
+  display: none;
+}
+.app-bar .app-bar-pullmenu {
+  display: none;
+}
+.app-bar .app-bar-pullmenu.flexstyle-sidebar2 {
+  position: absolute;
+  right: 0;
+  z-index: 1000;
+}
+.app-bar .app-bar-pullmenu.flexstyle-sidebar2 .app-bar-pullmenubar {
+  float: right;
+}
+.app-bar .app-bar-pullmenu.flexstyle-sidebar2 .dropdown-toggle:before {
+  border-color: #323232;
+}
+.app-bar .app-bar-pullmenu.flexstyle-sidebar2 .sidebar2 li:hover {
+  background-color: #0072c6;
+}
+.app-bar .app-bar-pullmenu.flexstyle-sidebar2 .sidebar2 li .input-control {
+  text-align: center;
+  display: block;
+  margin: 0.325rem;
+}
+.app-bar .app-bar-pullmenu.flexstyle-sidebar2 .sidebar2 li:hover a {
+  background-color: #0072c6;
+}
+.app-bar .app-bar-pullmenu.flexstyle-sidebar2 .sidebar2 li li:not(:hover) {
+  color: #1d1d1d;
+}
+.app-bar .app-bar-pullmenu.flexstyle-sidebar2 .sidebar2 li li:not(:hover) a {
+  background-color: #ffffff;
+}
+.app-bar .app-bar-pullmenu .app-bar-menu {
+  width: 100%;
+  border-top: 1px solid #4c9cd7;
+  position: relative;
+  float: none;
+  z-index: 1000 1;
+  background-color: #005696;
+  display: none;
+  clear: both;
+}
+.app-bar .app-bar-pullmenu .app-bar-menu > li,
+.app-bar .app-bar-pullmenu .app-bar-menu > li > a {
+  float: none;
+}
+.app-bar .app-bar-pullmenu .app-bar-menu > li {
+  height: auto;
+}
+.app-bar .app-bar-pullmenu .app-bar-menu li:hover {
+  background-color: #0072c6 !important;
+}
+.app-bar .app-bar-pullmenu .app-bar-menu li:hover a {
+  background-color: #0072c6 !important;
+  color: #ffffff !important;
+}
+.app-bar .app-bar-pullmenu .app-bar-menu .d-menu {
+  border: 0 !important;
+  border-top: 1px solid #4c9cd7 !important;
+  clear: both;
+  float: none !important;
+  width: 100% !important;
+  position: relative !important;
+  left: 0 !important;
+  box-shadow: none;
+  max-width: 100%;
+  background-color: #005696 !important;
+}
+.app-bar .app-bar-pullmenu .app-bar-menu .d-menu li {
+  width: 100% !important;
+  background-color: inherit;
+}
+.app-bar .app-bar-pullmenu .app-bar-menu .d-menu li a {
+  padding-left: 20px;
+  padding-right: 0;
+  background-color: inherit;
+  width: 100%;
+  color: #ffffff;
+}
+.app-bar .app-bar-pullmenu .app-bar-menu .d-menu .dropdown-toggle:before {
+  border-color: #ffffff !important;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+}
+.app-bar .app-bar-pullmenu .app-bar-menu .d-menu .divider {
+  background-color: #4c9cd7;
+}
+.app-bar .app-bar-pullmenu .app-bar-menu .d-menu .d-menu {
+  top: 0 !important;
 }
 .h-menu li:hover > .dropdown-toggle:before,
 .v-menu li:hover > .dropdown-toggle:before,
@@ -5949,7 +6083,8 @@ a.shortcut-button {
   background: #1d1d1d;
   -webkit-transform: rotate(0);
           transform: rotate(0);
-  transition: all 0.3s linear;
+  -webkit-transition: all 0.3s linear;
+          transition: all 0.3s linear;
 }
 .nav-button span:before,
 .nav-button span:after {
@@ -5962,7 +6097,8 @@ a.shortcut-button {
   background: #1d1d1d;
   -webkit-transform: rotate(0);
           transform: rotate(0);
-  transition: all 0.3s linear;
+  -webkit-transition: all 0.3s linear;
+          transition: all 0.3s linear;
 }
 .nav-button span:after {
   top: .5rem;
@@ -6868,6 +7004,102 @@ div.square-button.big-button {
 .breadcrumbs.dark > li:after {
   background-color: #ffffff;
 }
+.breadcrumbs2 {
+  margin: 0.625rem 0;
+  padding: 0;
+  list-style: none;
+  overflow: hidden;
+  width: 100%;
+}
+.breadcrumbs2 li {
+  float: left;
+  margin: 0 .2em 0 1em;
+}
+.breadcrumbs2 a {
+  background: #d9d9d9;
+  padding: .3em 1em;
+  float: left;
+  text-decoration: none;
+  color: #2086bf;
+  position: relative;
+}
+.breadcrumbs2 a:hover {
+  background: #1ba1e2;
+  color: #ffffff;
+}
+.breadcrumbs2 a:hover:before {
+  border-color: #1ba1e2 #1ba1e2 #1ba1e2 transparent;
+}
+.breadcrumbs2 a:hover:after {
+  border-left-color: #1ba1e2;
+}
+.breadcrumbs2 a:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  margin-top: -1.5em;
+  border-width: 1.5em 0 1.5em 1em;
+  border-style: solid;
+  border-color: #d9d9d9 #d9d9d9 #d9d9d9 transparent;
+  left: -1em;
+  margin-left: 1px;
+}
+.breadcrumbs2 a:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  margin-top: -1.5em;
+  border-top: 1.5em solid transparent;
+  border-bottom: 1.5em solid transparent;
+  border-left: 1em solid #d9d9d9;
+  right: -1em;
+  margin-right: 1px;
+}
+.breadcrumbs2 > li:first-child {
+  margin-left: 0;
+}
+.breadcrumbs2 > li:first-child a:before {
+  content: normal;
+}
+.breadcrumbs2 > li:last-child {
+  background: none;
+}
+.breadcrumbs2 > li:last-child a {
+  color: #1d1d1d;
+}
+.breadcrumbs2 > li:last-child:after,
+.breadcrumbs2 > li:last-child:before {
+  content: normal;
+}
+.breadcrumbs2 > li:last-child:hover a {
+  color: #ffffff;
+}
+.breadcrumbs2 .active,
+.breadcrumbs2 .active:hover {
+  background: none;
+}
+.breadcrumbs2 .active a,
+.breadcrumbs2 .active:hover a {
+  color: #1d1d1d;
+}
+.breadcrumbs2 .active:hover a {
+  color: #ffffff;
+}
+.breadcrumbs2 .active:after,
+.breadcrumbs2 .active:before {
+  content: normal;
+}
+.breadcrumbs2.small a {
+  padding: .2em 1em;
+  font-size: 11.9px;
+}
+.breadcrumbs2.mini a {
+  padding: .1em 1em;
+  font-size: 10.5px;
+}
+.breadcrumbs2 > li > a > [class*=mif] {
+  vertical-align: -10%;
+}
 .input-control {
   display: inline-block;
   min-height: 2.125rem;
@@ -7169,14 +7401,16 @@ div.square-button.big-button {
   opacity: 0;
   top: 16px;
   left: 0;
-  transition: all 0.3s linear;
+  -webkit-transition: all 0.3s linear;
+          transition: all 0.3s linear;
 }
 .input-control.modern .informer {
   opacity: 0;
   bottom: .75rem;
   color: #C8C8C8;
   font-size: .8rem;
-  transition: all 0.3s linear;
+  -webkit-transition: all 0.3s linear;
+          transition: all 0.3s linear;
 }
 .input-control.modern .placeholder {
   font-size: 1rem;
@@ -7186,7 +7420,8 @@ div.square-button.big-button {
   left: 0;
   z-index: 1;
   opacity: 1;
-  transition: all 0.3s linear;
+  -webkit-transition: all 0.3s linear;
+          transition: all 0.3s linear;
 }
 .input-control.modern .helper-button {
   top: 8px;
@@ -7205,7 +7440,8 @@ div.square-button.big-button {
   margin-top: -0.5rem;
   display: block;
   opacity: .2;
-  transition: all 0.3s linear;
+  -webkit-transition: all 0.3s linear;
+          transition: all 0.3s linear;
 }
 .input-control.modern.iconic .icon img {
   width: 100%;
@@ -7217,23 +7453,27 @@ div.square-button.big-button {
   opacity: 1;
   -webkit-transform: translateY(-18px);
           transform: translateY(-18px);
-  transition: all 0.3s linear;
+  -webkit-transition: all 0.3s linear;
+          transition: all 0.3s linear;
 }
 .input-control.modern input:focus ~ .placeholder {
   opacity: 0;
   -webkit-transform: translateX(200px);
           transform: translateX(200px);
-  transition: all 0.3s linear;
+  -webkit-transition: all 0.3s linear;
+          transition: all 0.3s linear;
 }
 .input-control.modern input:focus ~ .informer {
   opacity: 1;
   color: #1d1d1d;
   bottom: -0.75rem;
-  transition: all 0.3s linear;
+  -webkit-transition: all 0.3s linear;
+          transition: all 0.3s linear;
 }
 .input-control.modern input:focus ~ .icon {
   opacity: 1;
-  transition: all 0.3s linear;
+  -webkit-transition: all 0.3s linear;
+          transition: all 0.3s linear;
 }
 .input-control.modern.error input {
   border-bottom-color: #ce352c;
@@ -7329,7 +7569,8 @@ div.square-button.big-button {
   display: block;
   -webkit-transform: rotate(-45deg);
           transform: rotate(-45deg);
-  transition: all 0.2s linear;
+  -webkit-transition: all 0.2s linear;
+          transition: all 0.2s linear;
 }
 .input-control.checkbox input[type=radio] ~ .check:before,
 .input-control.radio input[type=radio] ~ .check:before {
@@ -7340,7 +7581,8 @@ div.square-button.big-button {
 .input-control.checkbox input[type="radio"]:checked ~ .check:before,
 .input-control.radio input[type="radio"]:checked ~ .check:before {
   border-color: #555555;
-  transition: all 0.2s linear;
+  -webkit-transition: all 0.2s linear;
+          transition: all 0.2s linear;
 }
 .input-control.checkbox input[type="checkbox"]:disabled ~ .caption,
 .input-control.radio input[type="checkbox"]:disabled ~ .caption,
@@ -7750,7 +7992,8 @@ input[type="submit"].link:active {
 }
 .switch input:not(:checked) ~ .check:before {
   background-color: #ffffff;
-  transition: all 0.2s linear;
+  -webkit-transition: all 0.2s linear;
+          transition: all 0.2s linear;
 }
 .switch input:checked ~ .check {
   background-color: #008287;
@@ -7758,7 +8001,8 @@ input[type="submit"].link:active {
 .switch input:checked ~ .check:before {
   -webkit-transform: translateX(22px);
           transform: translateX(22px);
-  transition: all 0.2s linear;
+  -webkit-transition: all 0.2s linear;
+          transition: all 0.2s linear;
 }
 .switch input:disabled ~ .check {
   background-color: #D5D5D5;
@@ -7794,7 +8038,8 @@ input[type="submit"].link:active {
   cursor: pointer;
   background: #333;
   z-index: 2;
-  transition: all 0.2s linear;
+  -webkit-transition: all 0.2s linear;
+          transition: all 0.2s linear;
 }
 .switch-original input[type="checkbox"]:focus ~ .check {
   outline: 1px #999999 dotted;
@@ -7806,7 +8051,8 @@ input[type="submit"].link:active {
   left: auto;
   -webkit-transform: translateX(2rem);
           transform: translateX(2rem);
-  transition: all 0.2s linear;
+  -webkit-transition: all 0.2s linear;
+          transition: all 0.2s linear;
 }
 .switch-original input[type="checkbox"]:disabled ~ .check {
   background-color: #e6e6e6;
@@ -7861,6 +8107,7 @@ input[type="submit"].link:active {
 }
 .progress.gradient-bar .bar,
 .progress-bar.gradient-bar .bar {
+  background: -webkit-linear-gradient(left, #4cd964, #5ac8fa, #007aff, #34aadc, #5856d6, #ff2d55);
   background: linear-gradient(to right, #4cd964, #5ac8fa, #007aff, #34aadc, #5856d6, #ff2d55);
 }
 .popover {
@@ -8170,7 +8417,8 @@ input[type="submit"].link:active {
   color: #ffffff;
   text-align: center;
   border-radius: inherit;
-  transition: all 0.65s ease;
+  -webkit-transition: all 0.65s ease;
+          transition: all 0.65s ease;
 }
 .image-container .image-overlay:hover {
   opacity: 1;
@@ -8195,7 +8443,8 @@ input[type="submit"].link:active {
   border-radius: inherit;
   -webkit-transform: scale(1.5);
           transform: scale(1.5);
-  transition: all 0.65s ease;
+  -webkit-transition: all 0.65s ease;
+          transition: all 0.65s ease;
 }
 .image-container .image-overlay:after {
   border-left: none;
@@ -8826,7 +9075,8 @@ input[type="submit"].link:active {
 }
 .stepper > ul li.current,
 .stepper > ul li.complete {
-  transition: all 0.2s ease;
+  -webkit-transition: all 0.2s ease;
+          transition: all 0.2s ease;
 }
 .stepper > ul li.current {
   background-color: #1ba1e2;
@@ -9201,7 +9451,8 @@ input[type="submit"].link:active {
   cursor: default;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3);
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
-  transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+          transition: all 0.5s ease;
 }
 .countdown .digit,
 .countdown .divider {
@@ -9231,7 +9482,8 @@ input[type="submit"].link:active {
   border-radius: .5em;
 }
 .countdown .digit.scaleIn {
-  transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+          transition: all 0.5s ease;
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
 }
@@ -9305,11 +9557,13 @@ input[type="submit"].link:active {
   color: #323232;
 }
 .sidebar {
-  transition: all 0.2s ease;
+  -webkit-transition: all 0.2s ease;
+          transition: all 0.2s ease;
 }
 .sidebar.compact {
   width: 52px;
-  transition: all 0.2s ease;
+  -webkit-transition: all 0.2s ease;
+          transition: all 0.2s ease;
 }
 .sidebar.compact a {
   padding-right: 0;
@@ -9652,6 +9906,7 @@ input[type="submit"].link:active {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 }
 .tabcontrol .tabs li.disabled a {
+  background: #eeeeee -webkit-linear-gradient(135deg, rgba(0, 0, 0, 0.15) 25%, transparent 25%, transparent 50%, rgba(0, 0, 0, 0.15) 50%, rgba(0, 0, 0, 0.15) 75%, transparent 75%, transparent) !important;
   background: #eeeeee linear-gradient(-45deg, rgba(0, 0, 0, 0.15) 25%, transparent 25%, transparent 50%, rgba(0, 0, 0, 0.15) 50%, rgba(0, 0, 0, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
   color: #999999 !important;
@@ -9737,6 +9992,7 @@ input[type="submit"].link:active {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 }
 .tabcontrol2 .tabs li.disabled a {
+  background: #eeeeee -webkit-linear-gradient(135deg, rgba(0, 0, 0, 0.15) 25%, transparent 25%, transparent 50%, rgba(0, 0, 0, 0.15) 50%, rgba(0, 0, 0, 0.15) 75%, transparent 75%, transparent) !important;
   background: #eeeeee linear-gradient(-45deg, rgba(0, 0, 0, 0.15) 25%, transparent 25%, transparent 50%, rgba(0, 0, 0, 0.15) 50%, rgba(0, 0, 0, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
   color: #999999 !important;
@@ -9876,7 +10132,8 @@ input[type="submit"].link:active {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
-  transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease;
+          transition: all 0.3s ease;
 }
 .accordion > .frame > .heading:before {
   position: absolute;
@@ -9891,7 +10148,8 @@ input[type="submit"].link:active {
   border-bottom: 6px solid black;
   -webkit-transform: rotate(-45deg);
           transform: rotate(-45deg);
-  transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease;
+          transition: all 0.3s ease;
 }
 .accordion > .frame > .heading:hover {
   background-color: #eeeeee;
@@ -9912,7 +10170,8 @@ input[type="submit"].link:active {
   color: #ffffff;
   box-shadow: -1px 6px 6px -6px rgba(0, 0, 0, 0.35);
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
-  transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease;
+          transition: all 0.3s ease;
 }
 .accordion > .frame.active > .heading .icon {
   color: #ffffff;
@@ -9920,7 +10179,8 @@ input[type="submit"].link:active {
 .accordion > .frame.active > .heading:before {
   left: 8px;
   border-bottom-color: #ffffff;
-  transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease;
+          transition: all 0.3s ease;
   -webkit-transform: rotate(0deg);
           transform: rotate(0deg);
   -webkit-transform-origin: 50% 50%;
@@ -9937,6 +10197,7 @@ input[type="submit"].link:active {
 }
 .accordion > .frame.disabled > .heading {
   cursor: default;
+  background: #ffffff -webkit-linear-gradient(135deg, rgba(0, 0, 0, 0.15) 25%, transparent 25%, transparent 50%, rgba(0, 0, 0, 0.15) 50%, rgba(0, 0, 0, 0.15) 75%, transparent 75%, transparent) !important;
   background: #ffffff linear-gradient(-45deg, rgba(0, 0, 0, 0.15) 25%, transparent 25%, transparent 50%, rgba(0, 0, 0, 0.15) 50%, rgba(0, 0, 0, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
@@ -10300,7 +10561,8 @@ input[type="submit"].link:active {
   width: auto;
   background-color: #00aba9;
   z-index: 1;
-  transition: background .3s ease;
+  -webkit-transition: background .3s ease;
+          transition: background .3s ease;
 }
 .slider > .slider-hint {
   background-color: #ffffff;
@@ -10571,7 +10833,8 @@ input[type="submit"].link:active {
 .tile-square .tile-content.flipVertical {
   -webkit-transform-style: preserve-3d;
           transform-style: preserve-3d;
-  transition: all 0.6s ease;
+  -webkit-transition: all 0.6s ease;
+          transition: all 0.6s ease;
 }
 .tile-square .tile-content.flipVertical .slide,
 .tile-square .tile-content.flipVertical .slide-over {
@@ -10606,7 +10869,8 @@ input[type="submit"].link:active {
 .tile-square .tile-content.flipHorizontal {
   -webkit-transform-style: preserve-3d;
           transform-style: preserve-3d;
-  transition: all 0.6s ease;
+  -webkit-transition: all 0.6s ease;
+          transition: all 0.6s ease;
 }
 .tile-square .tile-content.flipHorizontal .slide,
 .tile-square .tile-content.flipHorizontal .slide-over {
@@ -10707,7 +10971,8 @@ input[type="submit"].link:active {
 .tile-small .tile-content.flipVertical {
   -webkit-transform-style: preserve-3d;
           transform-style: preserve-3d;
-  transition: all 0.6s ease;
+  -webkit-transition: all 0.6s ease;
+          transition: all 0.6s ease;
 }
 .tile-small .tile-content.flipVertical .slide,
 .tile-small .tile-content.flipVertical .slide-over {
@@ -10742,7 +11007,8 @@ input[type="submit"].link:active {
 .tile-small .tile-content.flipHorizontal {
   -webkit-transform-style: preserve-3d;
           transform-style: preserve-3d;
-  transition: all 0.6s ease;
+  -webkit-transition: all 0.6s ease;
+          transition: all 0.6s ease;
 }
 .tile-small .tile-content.flipHorizontal .slide,
 .tile-small .tile-content.flipHorizontal .slide-over {
@@ -10842,7 +11108,8 @@ input[type="submit"].link:active {
 .tile-wide .tile-content.flipVertical {
   -webkit-transform-style: preserve-3d;
           transform-style: preserve-3d;
-  transition: all 0.6s ease;
+  -webkit-transition: all 0.6s ease;
+          transition: all 0.6s ease;
 }
 .tile-wide .tile-content.flipVertical .slide,
 .tile-wide .tile-content.flipVertical .slide-over {
@@ -10877,7 +11144,8 @@ input[type="submit"].link:active {
 .tile-wide .tile-content.flipHorizontal {
   -webkit-transform-style: preserve-3d;
           transform-style: preserve-3d;
-  transition: all 0.6s ease;
+  -webkit-transition: all 0.6s ease;
+          transition: all 0.6s ease;
 }
 .tile-wide .tile-content.flipHorizontal .slide,
 .tile-wide .tile-content.flipHorizontal .slide-over {
@@ -10978,7 +11246,8 @@ input[type="submit"].link:active {
 .tile-large .tile-content.flipVertical {
   -webkit-transform-style: preserve-3d;
           transform-style: preserve-3d;
-  transition: all 0.6s ease;
+  -webkit-transition: all 0.6s ease;
+          transition: all 0.6s ease;
 }
 .tile-large .tile-content.flipVertical .slide,
 .tile-large .tile-content.flipVertical .slide-over {
@@ -11013,7 +11282,8 @@ input[type="submit"].link:active {
 .tile-large .tile-content.flipHorizontal {
   -webkit-transform-style: preserve-3d;
           transform-style: preserve-3d;
-  transition: all 0.6s ease;
+  -webkit-transition: all 0.6s ease;
+          transition: all 0.6s ease;
 }
 .tile-large .tile-content.flipHorizontal .slide,
 .tile-large .tile-content.flipHorizontal .slide-over {
@@ -11114,7 +11384,8 @@ input[type="submit"].link:active {
 .tile-big .tile-content.flipVertical {
   -webkit-transform-style: preserve-3d;
           transform-style: preserve-3d;
-  transition: all 0.6s ease;
+  -webkit-transition: all 0.6s ease;
+          transition: all 0.6s ease;
 }
 .tile-big .tile-content.flipVertical .slide,
 .tile-big .tile-content.flipVertical .slide-over {
@@ -11149,7 +11420,8 @@ input[type="submit"].link:active {
 .tile-big .tile-content.flipHorizontal {
   -webkit-transform-style: preserve-3d;
           transform-style: preserve-3d;
-  transition: all 0.6s ease;
+  -webkit-transition: all 0.6s ease;
+          transition: all 0.6s ease;
 }
 .tile-big .tile-content.flipHorizontal .slide,
 .tile-big .tile-content.flipHorizontal .slide-over {
@@ -11250,7 +11522,8 @@ input[type="submit"].link:active {
 .tile-super .tile-content.flipVertical {
   -webkit-transform-style: preserve-3d;
           transform-style: preserve-3d;
-  transition: all 0.6s ease;
+  -webkit-transition: all 0.6s ease;
+          transition: all 0.6s ease;
 }
 .tile-super .tile-content.flipVertical .slide,
 .tile-super .tile-content.flipVertical .slide-over {
@@ -11285,7 +11558,8 @@ input[type="submit"].link:active {
 .tile-super .tile-content.flipHorizontal {
   -webkit-transform-style: preserve-3d;
           transform-style: preserve-3d;
-  transition: all 0.6s ease;
+  -webkit-transition: all 0.6s ease;
+          transition: all 0.6s ease;
 }
 .tile-super .tile-content.flipHorizontal .slide,
 .tile-super .tile-content.flipHorizontal .slide-over {
@@ -11445,7 +11719,8 @@ input[type="submit"].link:active {
 .tile-content.slide-right-2 > .slide {
   top: 0;
   z-index: 1;
-  transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease;
+          transition: all 0.3s ease;
 }
 .tile-content.slide-up:hover > .slide,
 .tile-content.slide-down:hover > .slide,
@@ -11457,123 +11732,146 @@ input[type="submit"].link:active {
 .tile-content.slide-right-2:hover > .slide {
   -webkit-transform: scale(1.5);
           transform: scale(1.5);
-  transition: all 0.6s ease;
+  -webkit-transition: all 0.6s ease;
+          transition: all 0.6s ease;
 }
 .tile-content.slide-up > .slide-over {
   top: 100%;
   z-index: 2;
   height: 75%;
-  transition: all 0.6s ease;
+  -webkit-transition: all 0.6s ease;
+          transition: all 0.6s ease;
 }
 .tile-content.slide-up:hover > .slide-over {
   top: 25%;
-  transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease;
+          transition: all 0.3s ease;
 }
 .tile-content.slide-up-2 > .slide-over {
   top: 100%;
   z-index: 2;
   height: 100%;
-  transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease;
+          transition: all 0.3s ease;
 }
 .tile-content.slide-up-2:hover > .slide {
   -webkit-transform: scale(1);
           transform: scale(1);
   top: -100%;
-  transition: all 0.4s ease;
+  -webkit-transition: all 0.4s ease;
+          transition: all 0.4s ease;
 }
 .tile-content.slide-up-2:hover > .slide-over {
   top: 0;
-  transition: all 0.4s ease;
+  -webkit-transition: all 0.4s ease;
+          transition: all 0.4s ease;
 }
 .tile-content.slide-down > .slide-over {
   top: -100%;
   z-index: 2;
   height: 75%;
-  transition: all 0.6s ease;
+  -webkit-transition: all 0.6s ease;
+          transition: all 0.6s ease;
 }
 .tile-content.slide-down:hover > .slide-over {
   top: 0;
-  transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease;
+          transition: all 0.3s ease;
 }
 .tile-content.slide-down-2 > .slide-over {
   top: -100%;
   z-index: 2;
   height: 100%;
-  transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease;
+          transition: all 0.3s ease;
 }
 .tile-content.slide-down-2:hover > .slide {
   -webkit-transform: scale(1);
           transform: scale(1);
   top: 100%;
-  transition: all 0.4s ease;
+  -webkit-transition: all 0.4s ease;
+          transition: all 0.4s ease;
 }
 .tile-content.slide-down-2:hover > .slide-over {
   top: 0;
-  transition: all 0.4s ease;
+  -webkit-transition: all 0.4s ease;
+          transition: all 0.4s ease;
 }
 .tile-content.slide-left > .slide-over {
   left: -100%;
   z-index: 2;
   width: 75%;
   height: 100%;
-  transition: all 0.6s ease;
+  -webkit-transition: all 0.6s ease;
+          transition: all 0.6s ease;
 }
 .tile-content.slide-left:hover > .slide-over {
   left: 0;
-  transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease;
+          transition: all 0.3s ease;
 }
 .tile-content.slide-left-2 > .slide {
   left: 0;
-  transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease;
+          transition: all 0.3s ease;
 }
 .tile-content.slide-left-2 > .slide-over {
   left: -100%;
   z-index: 2;
   width: 100%;
   height: 100%;
-  transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease;
+          transition: all 0.3s ease;
 }
 .tile-content.slide-left-2:hover > .slide {
   -webkit-transform: scale(1);
           transform: scale(1);
   left: 100%;
-  transition: all 0.4s ease;
+  -webkit-transition: all 0.4s ease;
+          transition: all 0.4s ease;
 }
 .tile-content.slide-left-2:hover > .slide-over {
   left: 0;
-  transition: all 0.4s ease;
+  -webkit-transition: all 0.4s ease;
+          transition: all 0.4s ease;
 }
 .tile-content.slide-right > .slide-over {
   left: 100%;
   z-index: 2;
   width: 75%;
   height: 100%;
-  transition: all 0.6s ease;
+  -webkit-transition: all 0.6s ease;
+          transition: all 0.6s ease;
 }
 .tile-content.slide-right:hover > .slide-over {
   left: 25%;
-  transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease;
+          transition: all 0.3s ease;
 }
 .tile-content.slide-right-2 > .slide {
   left: 0;
-  transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease;
+          transition: all 0.3s ease;
 }
 .tile-content.slide-right-2 > .slide-over {
   left: 100%;
   z-index: 2;
   width: 100%;
   height: 100%;
-  transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease;
+          transition: all 0.3s ease;
 }
 .tile-content.slide-right-2:hover > .slide {
   -webkit-transform: scale(1);
           transform: scale(1);
   left: -100%;
-  transition: all 0.4s ease;
+  -webkit-transition: all 0.4s ease;
+          transition: all 0.4s ease;
 }
 .tile-content.slide-right-2:hover > .slide-over {
   left: 0;
-  transition: all 0.4s ease;
+  -webkit-transition: all 0.4s ease;
+          transition: all 0.4s ease;
 }
 .tile-content.zooming .slide {
   box-shadow: inset 0 0 1px #FFFFCC;
@@ -11581,12 +11879,14 @@ input[type="submit"].link:active {
   height: 100%;
   display: block;
   position: relative;
-  transition: all 0.6s ease;
+  -webkit-transition: all 0.6s ease;
+          transition: all 0.6s ease;
 }
 .tile-content.zooming .slide:hover {
   -webkit-transform: scale(1.5);
           transform: scale(1.5);
-  transition: all 0.6s ease;
+  -webkit-transition: all 0.6s ease;
+          transition: all 0.6s ease;
 }
 .tile-content.zooming-out .slide {
   width: 100%;
@@ -11595,12 +11895,14 @@ input[type="submit"].link:active {
   position: relative;
   -webkit-transform: scale(1.5);
           transform: scale(1.5);
-  transition: all 0.6s ease;
+  -webkit-transition: all 0.6s ease;
+          transition: all 0.6s ease;
 }
 .tile-content.zooming-out .slide:hover {
   -webkit-transform: scale(1);
           transform: scale(1);
-  transition: all 0.6s ease;
+  -webkit-transition: all 0.6s ease;
+          transition: all 0.6s ease;
 }
 .tile-small,
 .tile,
@@ -11655,7 +11957,8 @@ input[type="submit"].link:active {
 .tile-super .tile-content.flipVertical {
   -webkit-transform-style: preserve-3d;
           transform-style: preserve-3d;
-  transition: all 0.6s ease;
+  -webkit-transition: all 0.6s ease;
+          transition: all 0.6s ease;
 }
 .tile-small .tile-content.flipVertical .slide,
 .tile .tile-content.flipVertical .slide,
@@ -11744,7 +12047,8 @@ input[type="submit"].link:active {
 .tile-super .tile-content.flipHorizontal {
   -webkit-transform-style: preserve-3d;
           transform-style: preserve-3d;
-  transition: all 0.6s ease;
+  -webkit-transition: all 0.6s ease;
+          transition: all 0.6s ease;
 }
 .tile-small .tile-content.flipHorizontal .slide,
 .tile .tile-content.flipHorizontal .slide,
@@ -11810,7 +12114,8 @@ input[type="submit"].link:active {
   height: 100%;
 }
 [class*=tile-transform-] {
-  transition: all 0.22s ease;
+  -webkit-transition: all 0.22s ease;
+          transition: all 0.22s ease;
 }
 .tile-transform-right {
   -webkit-transform-origin: left 50%;
