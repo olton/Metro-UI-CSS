@@ -103,14 +103,14 @@ module.exports = function(grunt) {
             dist: {
                 options: {
                     patterns: [
-//                        {
-//                            match: 'adsense',
-//                            replacement: '<%= grunt.file.read(".replace/google-adsense-block.txt") %>'
-//                        },
-//                        {
-//                            match: 'hit',
-//                            replacement: '<%= grunt.file.read(".replace/hit-ua-counter.txt") %>'
-//                        }
+                        {
+                            match: 'adsense',
+                            replacement: '<%= grunt.file.read(".replace/google-adsense-block.txt") %>'
+                        },
+                        {
+                            match: 'hit',
+                            replacement: '<%= grunt.file.read(".replace/hit-ua-counter.txt") %>'
+                        }
                     ]
                 },
                 files: [
