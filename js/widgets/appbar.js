@@ -262,7 +262,6 @@
                         break;
                     } else {
                         forceEndLoop = true;
-                        console.log("adding")
                         continue;
                     }
 
@@ -284,7 +283,6 @@
 
             that.lastFlexAction = undefined;
 
-            console.log("------")
             that.pullButton = $(element).find('.app-bar-pullbutton');
             var menus = $(element).find('.app-bar-menu');
 
