@@ -23,7 +23,8 @@
             _slides: {},
             _currentIndex: 0,
             _interval: 0,
-            _outPosition: 0
+            _outPosition: 0,
+            _animating: false
         },
 
 
@@ -181,10 +182,18 @@
 
             if (o._slides.length > 1) {
                 prev.on('click', function(){
-                    that._slideTo('prior');
+                    if (o._animating === false) {
+                        that._slideTo('prior');
+                        o._animating = true;
+                        setTimeout({o._animating = false;}, o.duration);
+                    }
                 });
                 next.on('click', function(){
-                    that._slideTo('next');
+                    if (o._animating === false) {
+                        that._slideTo('next');
+                        o._animating = true;
+                        setTimeout({o._animating = false;}, o.duration);
+                    }
                 });
             } else {
                 next.hide();
