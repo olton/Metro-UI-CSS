@@ -102,7 +102,7 @@
 
             if (helper_clear) {
                 helper_clear.on('click', function(){
-                    input.val('').focus();
+                    input.val('').trigger('change').focus();
                 });
             }
             if (helper_reveal && element.hasClass('password')) {
