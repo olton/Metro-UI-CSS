@@ -1,5 +1,5 @@
 /*!
- * Metro UI CSS v3.0.3 (http://metroui.org.ua)
+ * Metro UI CSS v3.0.5 (http://metroui.org.ua)
  * Copyright 2012-2015 Sergey Pimenov
  * Licensed under MIT (http://metroui.org.ua/license.html)
  */
@@ -4163,7 +4163,7 @@ window.METRO_LOCALES = {
 
             if (helper_clear) {
                 helper_clear.on('click', function(){
-                    input.val('').focus();
+                    input.val('').trigger('change').focus();
                 });
             }
             if (helper_reveal && element.hasClass('password')) {
