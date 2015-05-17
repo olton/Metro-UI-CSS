@@ -1,6 +1,7 @@
 # Changelog 
 
 ## 3.0.5
+* fix triggering for input when clear button clicked
  
 ## 3.0.4
 * New widget [Keypad](http://metroui.org.ua/keypad.html)

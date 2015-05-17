@@ -2742,7 +2742,8 @@ window.METRO_LOCALES = {
             _slides: {},
             _currentIndex: 0,
             _interval: 0,
-            _outPosition: 0
+            _outPosition: 0,
+            _animating: false
         },
 
 
@@ -2900,10 +2901,18 @@ window.METRO_LOCALES = {
 
             if (o._slides.length > 1) {
                 prev.on('click', function(){
-                    that._slideTo('prior');
+                    if (o._animating === false) {
+                        that._slideTo('prior');
+                        o._animating = true;
+                        setTimeout(function(){o._animating = false;}, o.duration);
+                    }
                 });
                 next.on('click', function(){
-                    that._slideTo('next');
+                    if (o._animating === false) {
+                        that._slideTo('next');
+                        o._animating = true;
+                        setTimeout(function(){o._animating = false;}, o.duration);
+                    }
                 });
             } else {
                 next.hide();
@@ -3023,6 +3032,7 @@ window.METRO_LOCALES = {
         }
     });
 })( jQuery );
+
 (function ( $ ) {
 
     "use strict";

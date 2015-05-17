@@ -185,14 +185,14 @@
                     if (o._animating === false) {
                         that._slideTo('prior');
                         o._animating = true;
-                        setTimeout({o._animating = false;}, o.duration);
+                        setTimeout(function(){o._animating = false;}, o.duration);
                     }
                 });
                 next.on('click', function(){
                     if (o._animating === false) {
                         that._slideTo('next');
                         o._animating = true;
-                        setTimeout({o._animating = false;}, o.duration);
+                        setTimeout(function(){o._animating = false;}, o.duration);
                     }
                 });
             } else {
