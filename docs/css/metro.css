@@ -10170,6 +10170,10 @@ input[type="submit"].link:active {
   position: absolute;
   display: block;
   z-index: 999;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 .carousel .carousel-bullets {
   left: 0;
