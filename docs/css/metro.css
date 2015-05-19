@@ -7196,6 +7196,7 @@ div.square-button.big-button {
 .input-control.error textarea,
 .input-control.error select {
   border-color: #ce352c;
+  border-style: solid;
 }
 .input-control.error.neon input,
 .input-control.error.neon textarea,
@@ -7206,6 +7207,7 @@ div.square-button.big-button {
 .input-control.warning textarea,
 .input-control.warning select {
   border-color: #e3c800;
+  border-style: solid;
 }
 .input-control.warning.neon input,
 .input-control.warning.neon textarea,
@@ -7216,6 +7218,7 @@ div.square-button.big-button {
 .input-control.success textarea,
 .input-control.success select {
   border-color: #60a917;
+  border-style: solid;
 }
 .input-control.success.neon input,
 .input-control.success.neon textarea,
@@ -7226,6 +7229,7 @@ div.square-button.big-button {
 .input-control.info textarea,
 .input-control.info select {
   border-color: #1ba1e2;
+  border-style: solid;
 }
 .input-control.info.neon input,
 .input-control.info.neon textarea,
@@ -7241,6 +7245,31 @@ div.square-button.big-button {
 .input-control.required.neon textarea,
 .input-control.required.neon select {
   box-shadow: 0 0 25px 0 rgba(89, 205, 226, 0.7);
+}
+input.error,
+select.error,
+textarea.error {
+  border: 1px solid #ce352c;
+}
+input.warning,
+select.warning,
+textarea.warning {
+  border: 1px solid #e3c800;
+}
+input.info,
+select.info,
+textarea.info {
+  border: 1px solid #1ba1e2;
+}
+input.success,
+select.success,
+textarea.success {
+  border: 1px solid #60a917;
+}
+input.required,
+select.required,
+textarea.required {
+  border: 1px dashed #1ba1e2;
 }
 .input-control.file input[type=file] {
   position: absolute;
@@ -13011,6 +13040,15 @@ p [data-hint] {
   border-top: none;
   border-right: none;
 }
+.hint2.no-border {
+  border: none;
+}
+.hint2.no-border:before {
+  border: none;
+}
+.hint2.no-border.right:before {
+  left: -7px;
+}
 .hint2.bottom:before {
   top: 1px;
   left: 50%;
@@ -13040,6 +13078,18 @@ p [data-hint] {
   left: -9px;
   border-top: none;
   border-right: none;
+}
+.hint.no-border,
+.hint2.no-border {
+  border: none;
+}
+.hint.no-border:before,
+.hint2.no-border:before {
+  border: none;
+}
+.hint.no-border.right:before,
+.hint2.no-border.right:before {
+  left: -7px;
 }
 .preloader-ring {
   position: relative;

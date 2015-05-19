@@ -12,6 +12,7 @@
             hintColor: '#000000',
             hintMaxSize: 200,
             hintMode: 'default',
+            hintShadow: false,
 
             _hint: undefined
         },
@@ -128,7 +129,6 @@
                     top: element.offset().top - $(window).scrollTop() + element.outerHeight(),
                     left: o.hintMode === 2 ? element.offset().left + element.outerWidth()/2 - _hint.outerWidth()/2  - $(window).scrollLeft(): element.offset().left - $(window).scrollLeft()
                 });
-                console.log(element.offset().left);
             }
 
             o._hint = _hint;

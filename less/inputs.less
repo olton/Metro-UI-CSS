@@ -129,6 +129,7 @@
 	&.error {
 		input, textarea, select {
 			border-color: @red ;
+            border-style: solid;
 		}
 
 		&.neon {
@@ -140,6 +141,7 @@
 	&.warning {
 		input, textarea, select {
 			border-color: @yellow ;
+            border-style: solid;
 		}
 		&.neon {
 			input, textarea, select {
@@ -150,6 +152,7 @@
 	&.success {
 		input, textarea, select {
 			border-color: @green ;
+            border-style: solid;
 		}
 		&.neon {
 			input, textarea, select {
@@ -160,6 +163,7 @@
 	&.info {
 		input, textarea, select {
 			border-color: @cyan ;
+            border-style: solid;
 		}
 		&.neon {
 			input, textarea, select {
@@ -177,6 +181,14 @@
 			}
 		}
 	}
+}
+
+input, select, textarea {
+    &.error {border: 1px solid @red;}
+    &.warning {border: 1px solid @yellow;}
+    &.info {border: 1px solid @cyan;}
+    &.success {border: 1px solid @green;}
+    &.required {border: 1px dashed @cyan;}
 }
 
 .input-control {
