@@ -9,7 +9,7 @@
     <meta name="author" content="Sergey Pimenov and Metro UI CSS contributors">
 
     <link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
-    <title>Metro UI CSS - The front-end framework for developing projects on the web in Windows Metro Style</title>
+    <title>Form Validator :: Metro UI CSS - The front-end framework for developing projects on the web in Windows Metro Style</title>
 
     <link href="css/metro.css" rel="stylesheet">
     <link href="css/metro-icons.css" rel="stylesheet">
@@ -20,16 +20,10 @@
     <script src="js/docs.js"></script>
     <script src="js/prettify/run_prettify.js"></script>
 
-    <script>
-        function setNameRoome(str){
-            console.log(str.innerHTML);
-            document.getElementById('RoomName').innerText = str.innerText + " Первый этаж";
-        }
-    </script>
 </head>
 <body onload="init()">
     <div class="container page-content">
-        <h1>Test page</h1>
+        <h1><a href="index.html" class="nav-button transform"><span></span></a>&nbsp;Form validator</h1>
 
         <form data-role="validator" data-show-required-state="false" data-hint-easing="easeOutExpo">
             <div class="grid">
