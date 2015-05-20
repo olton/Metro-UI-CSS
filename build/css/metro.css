@@ -7192,49 +7192,70 @@ div.square-button.big-button {
   padding-left: 1.875rem;
   padding-right: 1.875rem;
 }
+.input-control [class*=input-state-] {
+  position: absolute;
+  display: none;
+  top: 50%;
+  right: 8px;
+  z-index: 3;
+  font-size: 1rem;
+  margin-top: -0.5rem;
+}
 .input-control.error input,
 .input-control.error textarea,
 .input-control.error select {
-  border-color: #ce352c;
-  border-style: solid;
+  border: 1px solid #ce352c;
 }
 .input-control.error.neon input,
 .input-control.error.neon textarea,
 .input-control.error.neon select {
   box-shadow: 0 0 25px 0 rgba(128, 0, 0, 0.7);
 }
+.input-control.error .input-state-error {
+  display: block;
+  color: #ce352c;
+}
 .input-control.warning input,
 .input-control.warning textarea,
 .input-control.warning select {
-  border-color: #e3c800;
-  border-style: solid;
+  border: 1px solid #e3c800;
 }
 .input-control.warning.neon input,
 .input-control.warning.neon textarea,
 .input-control.warning.neon select {
   box-shadow: 0 0 25px 0 rgba(255, 165, 0, 0.7);
 }
+.input-control.warning .input-state-warning {
+  display: block;
+  color: #e3c800;
+}
 .input-control.success input,
 .input-control.success textarea,
 .input-control.success select {
-  border-color: #60a917;
-  border-style: solid;
+  border: 1px solid #60a917;
 }
 .input-control.success.neon input,
 .input-control.success.neon textarea,
 .input-control.success.neon select {
   box-shadow: 0 0 25px 0 rgba(0, 128, 0, 0.7);
 }
+.input-control.success .input-state-success {
+  display: block;
+  color: #60a917;
+}
 .input-control.info input,
 .input-control.info textarea,
 .input-control.info select {
-  border-color: #1ba1e2;
-  border-style: solid;
+  border: 1px solid #1ba1e2;
 }
 .input-control.info.neon input,
 .input-control.info.neon textarea,
 .input-control.info.neon select {
   box-shadow: 0 0 25px 0 rgba(89, 205, 226, 0.7);
+}
+.input-control.info .input-state-success {
+  display: block;
+  color: #1ba1e2;
 }
 .input-control.required input,
 .input-control.required textarea,
@@ -7245,6 +7266,10 @@ div.square-button.big-button {
 .input-control.required.neon textarea,
 .input-control.required.neon select {
   box-shadow: 0 0 25px 0 rgba(89, 205, 226, 0.7);
+}
+.input-control.required .input-state-required {
+  display: block;
+  color: #1ba1e2;
 }
 input.error,
 select.error,
