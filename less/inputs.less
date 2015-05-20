@@ -126,50 +126,73 @@
 		}
 	}
 
+    [class*=input-state-] {
+        position: absolute;
+        display: none;
+        top: 50%;
+        right: 8px;
+        z-index: 3;
+        font-size: 1rem;
+        margin-top: -.5rem;
+    }
+
 	&.error {
 		input, textarea, select {
-			border-color: @red ;
-            border-style: solid;
-		}
+            border: 1px solid @red;
+        }
 
 		&.neon {
 			input, textarea, select {
 				.block-shadow-error;
 			}
 		}
+
+        .input-state-error {
+            display: block;
+            color: @red;
+        }
 	}
 	&.warning {
 		input, textarea, select {
-			border-color: @yellow ;
-            border-style: solid;
-		}
+            border: 1px solid @yellow;
+        }
 		&.neon {
 			input, textarea, select {
 				.block-shadow-warning;
 			}
 		}
+        .input-state-warning {
+            display: block;
+            color: @yellow;
+        }
 	}
 	&.success {
 		input, textarea, select {
-			border-color: @green ;
-            border-style: solid;
-		}
+            border: 1px solid @green;
+        }
 		&.neon {
 			input, textarea, select {
 				.block-shadow-success;
 			}
 		}
+        .input-state-success {
+            display: block;
+            color: @green;
+        }
 	}
 	&.info {
 		input, textarea, select {
-			border-color: @cyan ;
-            border-style: solid;
-		}
+            border: 1px solid @cyan;
+        }
 		&.neon {
 			input, textarea, select {
 				.block-shadow-info;
 			}
 		}
+        .input-state-success {
+            display: block;
+            color: @cyan;
+        }
 	}
 	&.required {
 		input, textarea, select {
@@ -180,6 +203,10 @@
 				.block-shadow-info;
 			}
 		}
+        .input-state-required {
+            display: block;
+            color: @cyan;
+        }
 	}
 }
 
