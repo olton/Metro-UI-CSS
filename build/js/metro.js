@@ -4156,7 +4156,9 @@ window.METRO_LOCALES = {
             var input = element.find('input');
             var helpers = element.find('.helper-button');
             var buttons = element.find('.button');
+            var states = element.find('.input-state-error, .input-state-warning, .input-state-info, .input-state-success, .input-state-required');
             var padding = 0;
+
 
             $.each(buttons, function(){
                 var b = $(this);
@@ -4165,6 +4167,10 @@ window.METRO_LOCALES = {
 
             input.css({
                 'padding-right': padding + 5
+            });
+
+            states.css({
+                'right': padding + 8
             });
 
             helpers
@@ -6900,16 +6906,20 @@ window.METRO_LOCALES = {
         options: {
             showErrorState: true,
             showErrorHint: true,
-            hintSize: 200,
-            hintBackground: '#FFFCC0',
-            hintColor: '#000000',
             showRequiredState: true,
             showSuccessState: true,
+            hintSize: 0,
+            hintBackground: '#FFFCC0',
+            hintColor: '#000000',
             hideError: 2000,
             hideHint: 5000,
             hintEasing: 'easeInQuad',
             hintEasingTime: 400,
-            onBeforeSubmit: function(form){}
+            hintMode: 'hint', // hint, line
+            hintPosition: 'right',
+            focusInput: true,
+            onBeforeSubmit: function(form, result){return true;},
+            onErrorInput: function(input){}
         },
 
         funcs: {
@@ -6992,6 +7002,10 @@ window.METRO_LOCALES = {
                 }
             });
 
+            if (o.hintMode !== 'line') {
+                o.hintMode = 'hint2';
+            }
+
             this._createValidator();
 
             element.data('validator', this);
@@ -7000,14 +7014,16 @@ window.METRO_LOCALES = {
 
         _createValidator: function(){
             var that = this, element = this.element, o = this.options;
-            var inputs;
+            var inputs = element.find("[data-validate-func]");
 
             element.attr('novalidate', 'novalidate');
 
             if (o.showRequiredState) {
-                inputs = element.find("[data-validate-func]");
                 inputs.addClass('required');
             }
+
+            inputs.on('focus', function(){
+            });
 
             element.submit = this._submit();
         },
@@ -7032,7 +7048,15 @@ window.METRO_LOCALES = {
                     var input = $(v);
                     var func = input.data('validateFunc'), arg = input.data('validateArg');
                     var this_result = that.funcs[func](input.val(), arg);
-                    //console.log(func, input.val(), arg, this_result);
+
+                    if (!this_result) {
+                        if (typeof o.onErrorInput === 'string') {
+                            window[o.onErrorInput](input);
+                        } else {
+                            o.onErrorInput(input);
+                        }
+                    }
+
                     if (!this_result && o.showErrorState) {
                         that._showError(input);
                     }
@@ -7045,13 +7069,16 @@ window.METRO_LOCALES = {
                     if (this_result && o.showSuccessState) {
                         that._showSuccess(input);
                     }
+                    if (!this_result && i == 0 && o.focusInput) {
+                        input.focus();
+                    }
                     result += !this_result ? 1 : 0;
                 });
 
                 if (typeof o.onBeforeSubmit === 'string') {
-                    window[o.onBeforeSubmit](element);
+                    result += !window[o.onBeforeSubmit](element, result) ? 1 : 0;
                 } else {
-                    o.onBeforeSubmit(element);
+                    result += !o.onBeforeSubmit(element, result) ? 1 : 0;
                 }
 
                 //return false;
@@ -7068,7 +7095,7 @@ window.METRO_LOCALES = {
         },
 
         _showError: function(input){
-            var o = this.options, msg = input.data('validateMessage');
+            var o = this.options;
 
             if (input.parent().hasClass('input-control')) {
                 input.parent().addClass('error');
@@ -7084,13 +7111,13 @@ window.METRO_LOCALES = {
         },
 
         _showErrorHint: function(input){
-            var o = this.options, msg = input.data('validateMessage'), pos = input.data('validateMessagePos') || 'right';
-            var hint;
+            var o = this.options, msg = input.data('validateMessage'), pos = input.data('validateMessagePos') || o.hintPosition;
+            var hint, top, left;
 
-            hint = $("<div/>").addClass('hint2 validator-hint').appendTo('body');
+            hint = $("<div/>").addClass(o.hintMode+' validator-hint').appendTo(input.parent());
             hint.html(this._format(msg, input.val()));
             hint.css({
-                'max-width': o.hintSize
+                'min-width': o.hintSize
             });
 
             if (o.hintBackground.isColor()) {
@@ -7106,20 +7133,48 @@ window.METRO_LOCALES = {
             }
 
             // Position
-            var left = input.offset().left + input.outerWidth() + 15 - $(window).scrollLeft();
+            if (o.hintMode === 'line') {
 
-            hint.addClass(pos);
-            hint.css({
-                top: input.offset().top + input.outerHeight()/2 - hint.outerHeight()/2 - $(window).scrollTop() - 10,
-                left: $(window).width() + 100
-            });
-            hint.show().animate({
-                left: left
-            }, o.hintEasingTime, o.hintEasing, function(){
-                setTimeout(function(){
-                    hint.hide().remove();
-                }, o.hideHint);
-            });
+            } else {
+                // right
+                if (pos === 'right') {
+                    left = input.offset().left + input.outerWidth() + 15 - $(window).scrollLeft();
+                    top = input.offset().top + input.outerHeight() / 2 - hint.outerHeight() / 2 - $(window).scrollTop() - 10;
+
+                    hint.addClass(pos);
+                    hint.css({
+                        top: top,
+                        left: $(window).width() + 100
+                    });
+                    hint.show().animate({
+                        left: left
+                    }, o.hintEasingTime, o.hintEasing, function () {
+                        setTimeout(function () {
+                            hint.hide().remove();
+                        }, o.hideHint);
+                    });
+                } else if (pos === 'left') {
+                    left = input.offset().left - hint.outerWidth() - 10 - $(window).scrollLeft();
+                    top = input.offset().top + input.outerHeight() / 2 - hint.outerHeight() / 2 - $(window).scrollTop() - 10;
+
+                    hint.addClass(pos);
+                    hint.css({
+                        top: top,
+                        left: -input.offset().left - hint.outerWidth() - 10
+                    });
+                    hint.show().animate({
+                        left: left
+                    }, o.hintEasingTime, o.hintEasing, function () {
+                        setTimeout(function () {
+                            hint.hide().remove();
+                        }, o.hideHint);
+                    });
+                } else if (pos === 'top') {
+
+                } else /*bottom*/ {
+
+                }
+            }
         },
 
         _format: function( source, params ) {

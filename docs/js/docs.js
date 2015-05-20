@@ -25,13 +25,15 @@ function init(){
 $(function(){
     "use strict";
 
-    setInterval(function(){
-        $("h1 .nav-button").toggleClass('transform');
-    }, 2000);
+    $("h1 .nav-button").addClass('transform');
 
-    setInterval(function(){
-        $("#job").toggleClass('block-shadow-danger');
-    }, 1000);
+    //setInterval(function(){
+    //    $("h1 .nav-button").toggleClass('transform');
+    //}, 2000);
+    //
+    //setInterval(function(){
+    //    $("#job").toggleClass('block-shadow-danger');
+    //}, 1000);
 });
 
 if (window.location.hostname !== 'localhost') {
