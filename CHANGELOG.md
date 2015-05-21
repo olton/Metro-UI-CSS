@@ -2,6 +2,8 @@
 
 ## 3.0.5
 * fix triggering for input when clear button clicked
+* fix panel heading style bug
+* New widget [Validator](http://metroui.org.ua/validator.html)
  
 ## 3.0.4
 * New widget [Keypad](http://metroui.org.ua/keypad.html)
