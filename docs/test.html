@@ -21,84 +21,125 @@
     <script src="js/prettify/run_prettify.js"></script>
 
     <script>
-        function setNameRoome(str){
-            console.log(str.innerHTML);
-            document.getElementById('RoomName').innerText = str.innerText + " Первый этаж";
+        function showDialog(id){
+            var dialog = $(id).data('dialog');
+            dialog.open();
         }
     </script>
+
 </head>
-<body onload="init()">
+<body>
+    <div class="app-bar" data-role="appbar">
+        <ul class="app-bar-menu">
+            <li>
+                <a class="dropdown-toggle">Dialogs</a>
+                <ul class="d-menu" data-role="dropdown">
+                    <li><a onclick="showDialog('#dialog1')">Show Dialog</a></li>
+                    <li><a onclick="showDialog('#dialog2')">Show Dialog with overlay</a></li>
+                    <li><a onclick="showDialog('#dialog3')">Show Dialog with dark overlay</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
     <div class="container page-content">
         <h1>Test page</h1>
+        <div class="dialog padding20" data-role="dialog" id="dialog1" data-close-button="true">
+            <h1>Simple dialog</h1>
+            <p>
+                Dialog :: Metro UI CSS - The front-end framework
+                for developing projects on the web in Windows Metro Style.
+            </p>
+        </div>
+        <div class="dialog padding20" data-role="dialog" id="dialog2" data-overlay="true" data-overlay-color="bg-transparent" data-close-button="true">
+            <h2 class="text-light">Contexte FFT</h2>
+            <form class="user-input" action="croftophile_nooverlay.html" method="post" name="fchangerderesp">
+                <input type="hidden" name="rubrique" value="1">
+                <input type="hidden" name="contenu" value="">
+                <input type="hidden" name="op" value="f_changeresp">
+                <input type="hidden" name="opref" value="">
+                <input type="hidden" name="filtre" value="">
+                <input type="hidden" name="filtre_fft" value="">
 
-        <form data-role="validator" data-show-required-state="false" data-hint-easing="easeOutExpo">
-            <div class="grid">
-                <div class="row cells2">
-                    <div class="cell">
-                        <div class="input-control text full-size" data-role="input">
-                            <input type="text" data-validate-func="required" placeholder="not empty" data-validate-message="This field can not be empty">
-                            <button class="button helper-button clear"><span class="mif-cross"></span></button>
-                        </div>
-                        <div class="input-control text full-size" data-role="input">
-                            <input type="text" data-validate-func="minlength" placeholder="min length 3" data-validate-arg="3" data-validate-message="Min length 3 symbols">
-                            <button class="button helper-button clear"><span class="mif-cross"></span></button>
-                        </div>
-                        <div class="input-control text full-size" data-role="input">
-                            <input type="text" data-validate-func="maxlength" placeholder="max length 6" data-validate-arg="6" data-validate-message="Max length 6 symbols">
-                            <button class="button helper-button clear"><span class="mif-cross"></span></button>
-                        </div>
-                        <div class="input-control text full-size" data-role="input">
-                            <input type="text" data-validate-func="min" placeholder="min value 10" data-validate-arg="10" data-validate-message="Value &gt;= 10">
-                            <button class="button helper-button clear"><span class="mif-cross"></span></button>
-                        </div>
-                        <div class="input-control text full-size" data-role="input">
-                            <input type="text" data-validate-func="max" placeholder="max value 10" data-validate-arg="10" data-validate-message="Value &lt;= 10">
-                            <button class="button helper-button clear"><span class="mif-cross"></span></button>
-                        </div>
-                        <div class="input-control text full-size" data-role="input">
-                            <input type="text" data-validate-func="email" placeholder="email" data-validate-message="Value must be valid email address">
-                            <button class="button helper-button clear"><span class="mif-cross"></span></button>
-                        </div>
-                        <div class="input-control text full-size" data-role="input">
-                            <input type="text" data-validate-func="url" placeholder="url" data-validate-message="Value must be valid url">
-                            <button class="button helper-button clear"><span class="mif-cross"></span></button>
-                        </div>
-                        <div class="input-control text full-size" data-role="input">
-                            <input type="text" data-validate-func="date" placeholder="date" data-validate-message="Value must be valid date string">
-                            <button class="button helper-button clear"><span class="mif-cross"></span></button>
-                        </div>
-                        <div class="input-control text full-size" data-role="input">
-                            <input type="text" data-validate-func="number" placeholder="number" data-validate-message="Value must be a numeric">
-                            <button class="button helper-button clear"><span class="mif-cross"></span></button>
-                        </div>
-                        <div class="input-control text full-size" data-role="input">
-                            <input type="text" data-validate-func="digits" placeholder="digits" data-validate-message="Value must contains only digits">
-                            <button class="button helper-button clear"><span class="mif-cross"></span></button>
-                        </div>
-                        <div class="input-control text full-size" data-role="input">
-                            <input type="text" data-validate-func="hexcolor" placeholder="hex color" data-validate-message="Value must be a valid hex color">
-                            <button class="button helper-button clear"><span class="mif-cross"></span></button>
-                        </div>
-                        <div class="input-control text full-size" data-role="input">
-                            <input type="text" data-validate-func="pattern" placeholder="custom pattern: ^\d+$" data-validate-arg="^\d+$" data-validate-message="Value must be eq to pattern">
-                            <button class="button helper-button clear"><span class="mif-cross"></span></button>
-                        </div>
-
-                        <div class="input-control text full-size no-display">
-                            <input type="text" placeholder="default, no validate">
-                            <button class="button helper-button clear"><span class="mif-cross"></span></button>
-                        </div>
-                    </div>
-                    <div class="cell">
-                    </div>
+                <div class="input-control select full-size">
+                    <select name="f_changeur" id="f_changeur">
+                        <option value="">Choisissez...</option>
+                        <option value="12" selected="selected">Administration-Aucun défini</option>
+                        <option value="6">Comité de tri-Aucun défini</option>
+                        <option value="5">Chef de groupe-Technique</option>
+                    </select>
                 </div>
-            </div>
-            <hr class="thin">
-            <div class="form-actions padding10 no-padding-left">
-                <button class="button primary" type="submit">Submit</button>
-                <button class="button link" type="button">Cancel</button>
-            </div>
-        </form>
+                <div class="">
+                    <button class="button primary">Changer</button>
+                </div>
+            </form>
+
+            <h2 class="text-light">Contexte benchmark</h2>
+            <form class="user-input" action="croftophile_nooverlay.html" method="post" name="bmchangerderesp">
+                <input type="hidden" name="rubrique" value="1">
+                <input type="hidden" name="contenu" value="">
+                <input type="hidden" name="op" value="b_changeresp">
+                <input type="hidden" name="opref" value="">
+                <input type="hidden" name="filtre" value="">
+                <input type="hidden" name="filtre_fft" value="">
+
+                <div class="input-control select full-size">
+                    <select name="changeur" id="changeur">
+                        <option value="">Choisissez...</option>
+                        <option value="2" selected="selected">Utilisateur</option>
+                        <option value="3">Manager</option>
+                        <option value="1">Administrateur</option>
+                    </select>
+                </div>
+                <div>
+                    <button class="button primary">Changer</button>
+                </div>
+            </form>
+        </div>
+        <div class="dialog padding20" data-role="dialog" id="dialog3" data-overlay="true" data-overlay-color="bg-dark" data-close-button="true">
+            <h2 class="text-light">Contexte FFT</h2>
+            <form class="user-input" action="croftophile_nooverlay.html" method="post" name="fchangerderesp">
+                <input type="hidden" name="rubrique" value="1">
+                <input type="hidden" name="contenu" value="">
+                <input type="hidden" name="op" value="f_changeresp">
+                <input type="hidden" name="opref" value="">
+                <input type="hidden" name="filtre" value="">
+                <input type="hidden" name="filtre_fft" value="">
+
+                <div class="input-control select full-size">
+                    <select name="f_changeur" id="f_changeur">
+                        <option value="">Choisissez...</option>
+                        <option value="12" selected="selected">Administration-Aucun défini</option>
+                        <option value="6">Comité de tri-Aucun défini</option>
+                        <option value="5">Chef de groupe-Technique</option>
+                    </select>
+                </div>
+                <div class="">
+                    <button class="button primary">Changer</button>
+                </div>
+            </form>
+
+            <h2 class="text-light">Contexte benchmark</h2>
+            <form class="user-input" action="croftophile_nooverlay.html" method="post" name="bmchangerderesp">
+                <input type="hidden" name="rubrique" value="1">
+                <input type="hidden" name="contenu" value="">
+                <input type="hidden" name="op" value="b_changeresp">
+                <input type="hidden" name="opref" value="">
+                <input type="hidden" name="filtre" value="">
+                <input type="hidden" name="filtre_fft" value="">
+
+                <div class="input-control select full-size">
+                    <select name="changeur" id="changeur">
+                        <option value="">Choisissez...</option>
+                        <option value="2" selected="selected">Utilisateur</option>
+                        <option value="3">Manager</option>
+                        <option value="1">Administrateur</option>
+                    </select>
+                </div>
+                <div>
+                    <button class="button primary">Changer</button>
+                </div>
+            </form>
+        </div>
     </div>
 </body>
 </html>
