@@ -13115,6 +13115,17 @@ p [data-hint] {
 .hint2.no-border.right:before {
   left: -7px;
 }
+.hint2.line {
+  padding: 2px 4px;
+  border: none;
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  margin: -5px 0 4px 0;
+}
+.hint2.line:before {
+  display: none;
+}
 .preloader-ring {
   position: relative;
   padding-top: 0.22rem;
