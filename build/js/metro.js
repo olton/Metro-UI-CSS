@@ -7111,31 +7111,48 @@ window.METRO_LOCALES = {
         },
 
         _showErrorHint: function(input){
-            var o = this.options, msg = input.data('validateMessage'), pos = input.data('validateMessagePos') || o.hintPosition;
+            var o = this.options,
+                msg = input.data('validateHint'),
+                pos = input.data('validateHintPosition') || o.hintPosition,
+                mode = input.data('validateHintMode') || o.hintMode,
+                background = input.data('validateHintBackground') || o.hintBackground,
+                color = input.data('validateHintColor') || o.hintColor;
+
             var hint, top, left;
 
-            hint = $("<div/>").addClass(o.hintMode+' validator-hint').appendTo(input.parent());
+            hint = $("<div/>").addClass(mode+' validator-hint');//.appendTo(input.parent());
             hint.html(this._format(msg, input.val()));
             hint.css({
                 'min-width': o.hintSize
             });
 
-            if (o.hintBackground.isColor()) {
-                hint.css('background-color', o.hintBackground);
+            if (background.isColor()) {
+                hint.css('background-color', background);
             } else {
-                hint.addClass(o.hintBackground);
+                hint.addClass(background);
             }
 
-            if (o.hintColor.isColor()) {
-                hint.css('color', o.hintColor);
+            if (color.isColor()) {
+                hint.css('color', color);
             } else {
-                hint.addClass(o.hintColor);
+                hint.addClass(color);
             }
 
             // Position
-            if (o.hintMode === 'line') {
-
+            if (mode === 'line') {
+                hint.addClass('hint2').addClass('line');
+                hint.css({
+                    'position': 'relative',
+                    'width': input.parent().hasClass('input-control') ? input.parent().width() : input.width()
+                });
+                hint.insertAfter(input.parent());
+                hint.fadeIn(o.hintEasingTime, function(){
+                    setTimeout(function () {
+                        hint.hide().remove();
+                    }, o.hideHint);
+                });
             } else {
+                hint.appendTo("body");
                 // right
                 if (pos === 'right') {
                     left = input.offset().left + input.outerWidth() + 15 - $(window).scrollLeft();
@@ -7170,9 +7187,35 @@ window.METRO_LOCALES = {
                         }, o.hideHint);
                     });
                 } else if (pos === 'top') {
+                    left = input.offset().left + input.outerWidth()/2 - hint.outerWidth()/2  - $(window).scrollLeft();
+                    top = input.offset().top - $(window).scrollTop() - hint.outerHeight() - 20;
 
+                    hint.addClass(pos);
+                    hint.css({
+                        top: -hint.outerHeight(),
+                        left: left
+                    }).show().animate({
+                        top: top
+                    }, o.hintEasingTime, o.hintEasing, function(){
+                        setTimeout(function () {
+                            hint.hide().remove();
+                        }, o.hideHint);
+                    });
                 } else /*bottom*/ {
+                    left = input.offset().left + input.outerWidth()/2 - hint.outerWidth()/2  - $(window).scrollLeft();
+                    top = input.offset().top - $(window).scrollTop() + input.outerHeight();
 
+                    hint.addClass(pos);
+                    hint.css({
+                        top: $(window).height(),
+                        left: left
+                    }).show().animate({
+                        top: top
+                    }, o.hintEasingTime, o.hintEasing, function(){
+                        setTimeout(function () {
+                            hint.hide().remove();
+                        }, o.hideHint);
+                    });
                 }
             }
         },

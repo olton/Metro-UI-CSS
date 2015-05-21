@@ -26,7 +26,7 @@
         }
 
         function notifyOnErrorInput(input){
-            var message = input.data('validateMessage');
+            var message = input.data('validateHint');
             $.Notify({
                 caption: 'Error',
                 content: message,
@@ -66,7 +66,7 @@
                         <form data-role="validator" data-on-before-submit="no_submit" data-hint-mode="hint" data-hint-easing="easeOutBounce">
                             <label class="block">Min length control (hint)</label>
                             <div class="input-control text">
-                                <input type="text" data-validate-func="minlength" data-validate-arg="6" data-validate-message="Min length 6 sym !" data-validate-message-pos="left">
+                                <input type="text" data-validate-func="minlength" data-validate-arg="6" data-validate-hint="Min length 6 sym !" data-validate-hint-position="top">
                                 <span class="input-state-error mif-warning"></span>
                                 <span class="input-state-success mif-checkmark"></span>
                             </div>
@@ -79,7 +79,7 @@
                         <form data-role="validator" data-on-before-submit="no_submit" data-on-error-input="notifyOnErrorInput" data-show-error-hint="false">
                             <label class="block">Combine with notify system</label>
                             <div class="input-control text">
-                                <input type="text" data-validate-func="required" data-validate-arg="6" data-validate-message="This field can not be empty!">
+                                <input type="text" data-validate-func="required" data-validate-arg="6" data-validate-hint="This field can not be empty!">
                                 <span class="input-state-error mif-warning"></span>
                                 <span class="input-state-success mif-checkmark"></span>
                             </div>
@@ -132,7 +132,7 @@
 
                 &lt;script&gt;
                     function notifyOnErrorInput(input){
-                        var message = input.data('validateMessage');
+                        var message = input.data('validateHint');
                         $.Notify({
                             caption: 'Error',
                             content: message,
@@ -322,67 +322,109 @@
             </tbody>
         </table>
 
-        <h3>Hint position</h3>
+        <h3>Hint position <small>hint mode:  <span class="tag">hint</span></small> </h3>
         <div class="example" data-text="example">
             <div class="grid">
                 <div class="row cells4">
                     <div class="cell">
                         <form data-role="validator" data-on-before-submit="no_submit" data-hint-mode="hint" data-hint-easing="easeOutBounce">
+                            <label>Top</label>
                             <div class="input-control text full-size">
                                 <input type="text"
                                        data-validate-func="required"
-                                       data-validate-message="This field can not be empty!"
-                                       data-validate-message-pos="top">
+                                       data-validate-hint="This field can not be empty!"
+                                       data-validate-hint-position="top">
                                 <span class="input-state-error mif-warning"></span>
                                 <span class="input-state-success mif-checkmark"></span>
                             </div>
                             <div class="align-center">
-                                <button class="button info">Top</button>
+                                <button class="button info">Submit</button>
                             </div>
                         </form>
                     </div>
                     <div class="cell">
                         <form data-role="validator" data-on-before-submit="no_submit" data-hint-mode="hint" data-hint-easing="easeOutBounce">
+                            <label>Left</label>
                             <div class="input-control text full-size">
                                 <input type="text"
                                        data-validate-func="required"
-                                       data-validate-message="This field can not be empty!"
-                                       data-validate-message-pos="left">
+                                       data-validate-hint="This field can not be empty!"
+                                       data-validate-hint-position="left">
                                 <span class="input-state-error mif-warning"></span>
                                 <span class="input-state-success mif-checkmark"></span>
                             </div>
                             <div class="align-center">
-                                <button class="button info">Left</button>
+                                <button class="button info">Submit</button>
                             </div>
                         </form>
                     </div>
                     <div class="cell">
                         <form data-role="validator" data-on-before-submit="no_submit" data-hint-mode="hint" data-hint-easing="easeOutBounce">
+                            <label>Right</label>
                             <div class="input-control text full-size">
                                 <input type="text"
                                        data-validate-func="required"
-                                       data-validate-message="This field can not be empty!"
-                                       data-validate-message-pos="right">
+                                       data-validate-hint="This field can not be empty!"
+                                       data-validate-hint-position="right">
                                 <span class="input-state-error mif-warning"></span>
                                 <span class="input-state-success mif-checkmark"></span>
                             </div>
                             <div class="align-center">
-                                <button class="button info">Right</button>
+                                <button class="button info">Submit</button>
                             </div>
                         </form>
                     </div>
                     <div class="cell">
                         <form data-role="validator" data-on-before-submit="no_submit" data-hint-mode="hint" data-hint-easing="easeOutBounce">
+                            <label>Bottom</label>
                             <div class="input-control text full-size">
                                 <input type="text"
                                        data-validate-func="required"
-                                       data-validate-message="This field can not be empty!"
-                                       data-validate-message-pos="bottom">
+                                       data-validate-hint="This field can not be empty!"
+                                       data-validate-hint-position="bottom">
                                 <span class="input-state-error mif-warning"></span>
                                 <span class="input-state-success mif-checkmark"></span>
                             </div>
                             <div class="align-center">
-                                <button class="button info">Bottom</button>
+                                <button class="button info">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h3>Hint position <small>hint mode: <span class="tag">line</span></small></h3>
+        <div class="example" data-text="example">
+            <div class="grid">
+                <div class="row cells4">
+                    <div class="cell">
+                        <form data-role="validator" data-on-before-submit="no_submit" data-hint-mode="line">
+                            <div class="input-control text full-size">
+                                <input type="text"
+                                       data-validate-func="required"
+                                       data-validate-hint="This field can not be empty!"
+                                       data-validate-hint-position="top">
+                                <span class="input-state-error mif-warning"></span>
+                                <span class="input-state-success mif-checkmark"></span>
+                            </div>
+                            <div class="align-center">
+                                <button class="button info">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="cell colspan3">
+                        <form data-role="validator" data-on-before-submit="no_submit" data-hint-mode="line">
+                            <div class="input-control text full-size">
+                                <input type="text"
+                                       data-validate-func="required"
+                                       data-validate-hint="This field can not be empty!"
+                                       data-validate-hint-position="top">
+                                <span class="input-state-error mif-warning"></span>
+                                <span class="input-state-success mif-checkmark"></span>
+                            </div>
+                            <div class="align-center">
+                                <button class="button info">Submit</button>
                             </div>
                         </form>
                     </div>
@@ -391,7 +433,7 @@
         </div>
 
         <h3>Func examples</h3>
-        <form data-role="validator" data-show-required-state="false" data-hint-easing="easeOutExpo">
+        <form data-role="validator" data-show-required-state="false" data-hint-easing="easeOutExpo" data-hint-mode="line" data-hint-background="bg-red" data-hint-color="fg-white">
             <div class="grid">
                 <div class="row cells2">
                     <div class="cell">
@@ -403,84 +445,84 @@
 
                         <label>Not empty control</label>
                         <div class="input-control text full-size" data-role="input">
-                            <input type="text" data-validate-func="required" placeholder="not empty" data-validate-message="This field can not be empty">
+                            <input type="text" data-validate-func="required" placeholder="not empty" data-validate-hint="This field can not be empty">
                             <span class="input-state-error mif-warning"></span>
                             <span class="input-state-success mif-checkmark"></span>
                         </div>
 
                         <label>Min length control</label>
                         <div class="input-control text full-size" data-role="input">
-                            <input type="text" data-validate-func="minlength" placeholder="min length 3" data-validate-arg="3" data-validate-message="Min length 3 symbols">
+                            <input type="text" data-validate-func="minlength" placeholder="min length 3" data-validate-arg="3" data-validate-hint="Min length 3 symbols">
                             <span class="input-state-error mif-warning"></span>
                             <span class="input-state-success mif-checkmark"></span>
                         </div>
 
                         <label>Max length control</label>
                         <div class="input-control text full-size" data-role="input">
-                            <input type="text" data-validate-func="maxlength" value="1234567" placeholder="max length 6" data-validate-arg="6" data-validate-message="Max length 6 symbols">
+                            <input type="text" data-validate-func="maxlength" value="1234567" placeholder="max length 6" data-validate-arg="6" data-validate-hint="Max length 6 symbols">
                             <span class="input-state-error mif-warning"></span>
                             <span class="input-state-success mif-checkmark"></span>
                         </div>
 
                         <label>Min value control</label>
                         <div class="input-control text full-size" data-role="input">
-                            <input type="text" data-validate-func="min" placeholder="min value 10" data-validate-arg="10" data-validate-message="Value &gt;= 10">
+                            <input type="text" data-validate-func="min" placeholder="min value 10" data-validate-arg="10" data-validate-hint="Value &gt;= 10">
                             <span class="input-state-error mif-warning"></span>
                             <span class="input-state-success mif-checkmark"></span>
                         </div>
 
                         <label>Max value control</label>
                         <div class="input-control text full-size" data-role="input">
-                            <input type="text" data-validate-func="max" placeholder="max value 10" data-validate-arg="10" data-validate-message="Value &lt;= 10">
+                            <input type="text" data-validate-func="max" placeholder="max value 10" data-validate-arg="10" data-validate-hint="Value &lt;= 10">
                             <span class="input-state-error mif-warning"></span>
                             <span class="input-state-success mif-checkmark"></span>
                         </div>
 
                         <label>Valid email control</label>
                         <div class="input-control text full-size" data-role="input">
-                            <input type="text" data-validate-func="email" placeholder="email" data-validate-message="Value must be valid email address">
+                            <input type="text" data-validate-func="email" placeholder="email" data-validate-hint="Value must be valid email address">
                             <span class="input-state-error mif-warning"></span>
                             <span class="input-state-success mif-checkmark"></span>
                         </div>
 
                         <label>Valid url control</label>
                         <div class="input-control text full-size" data-role="input">
-                            <input type="text" data-validate-func="url" placeholder="url" data-validate-message="Value must be valid url">
+                            <input type="text" data-validate-func="url" placeholder="url" data-validate-hint="Value must be valid url">
                             <span class="input-state-error mif-warning"></span>
                             <span class="input-state-success mif-checkmark"></span>
                         </div>
 
                         <label>Valid date control</label>
                         <div class="input-control text full-size" data-role="input">
-                            <input type="text" data-validate-func="date" placeholder="date" data-validate-message="Value must be valid date string">
+                            <input type="text" data-validate-func="date" placeholder="date" data-validate-hint="Value must be valid date string">
                             <span class="input-state-error mif-warning"></span>
                             <span class="input-state-success mif-checkmark"></span>
                         </div>
 
                         <label>Is number control</label>
                         <div class="input-control text full-size" data-role="input">
-                            <input type="text" data-validate-func="number" placeholder="number" data-validate-message="Value must be a numeric">
+                            <input type="text" data-validate-func="number" placeholder="number" data-validate-hint="Value must be a numeric">
                             <span class="input-state-error mif-warning"></span>
                             <span class="input-state-success mif-checkmark"></span>
                         </div>
 
                         <label>Is digits control</label>
                         <div class="input-control text full-size" data-role="input">
-                            <input type="text" data-validate-func="digits" placeholder="digits" data-validate-message="Value must contains only digits">
+                            <input type="text" data-validate-func="digits" placeholder="digits" data-validate-hint="Value must contains only digits">
                             <span class="input-state-error mif-warning"></span>
                             <span class="input-state-success mif-checkmark"></span>
                         </div>
 
                         <label>Valid hex color control</label>
                         <div class="input-control text full-size" data-role="input">
-                            <input type="text" data-validate-func="hexcolor" placeholder="hex color" data-validate-message="Value must be a valid hex color">
+                            <input type="text" data-validate-func="hexcolor" placeholder="hex color" data-validate-hint="Value must be a valid hex color">
                             <span class="input-state-error mif-warning"></span>
                             <span class="input-state-success mif-checkmark"></span>
                         </div>
 
                         <label>Control by custom pattern (regexp)</label>
                         <div class="input-control text full-size" data-role="input">
-                            <input type="text" data-validate-func="pattern" placeholder="custom pattern: ^\d+$" data-validate-arg="^\d+$" data-validate-message="Value must be eq to pattern">
+                            <input type="text" data-validate-func="pattern" placeholder="custom pattern: ^\d+$" data-validate-arg="^\d+$" data-validate-hint="Value must be eq to pattern">
                             <span class="input-state-error mif-warning"></span>
                             <span class="input-state-success mif-checkmark"></span>
                         </div>
