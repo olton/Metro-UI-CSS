@@ -445,93 +445,77 @@
                             <button class="button helper-button clear"><span class="mif-cross"></span></button>
                         </div>
 
-                        <div>
-                            <label>Not empty control</label>
-                            <div class="input-control text" data-role="input">
-                                <input type="text" data-validate-func="required" placeholder="not empty" data-validate-hint="This field can not be empty">
-                                <span class="input-state-error mif-warning"></span>
-                                <span class="input-state-success mif-checkmark"></span>
-                            </div>
-
-                            <label>Min length control</label>
-                            <div class="input-control text " data-role="input">
-                                <input type="text" data-validate-func="minlength" placeholder="min length 3" data-validate-arg="3" data-validate-hint="Min length 3 symbols">
-                                <span class="input-state-error mif-warning"></span>
-                                <span class="input-state-success mif-checkmark"></span>
-                            </div>
-                        </div>
-
-                        <label>Max length control</label>
-                        <div class="input-control text full-size" data-role="input">
-                            <input type="text" data-validate-func="maxlength" value="1234567" placeholder="max length 6" data-validate-arg="6" data-validate-hint="Max length 6 symbols">
+                        <div class="input-control text" data-role="input">
+                            <input type="text" data-validate-func="required" placeholder="not empty" data-validate-hint="This field can not be empty">
                             <span class="input-state-error mif-warning"></span>
                             <span class="input-state-success mif-checkmark"></span>
                         </div>
 
-                        <label>Min value control</label>
-                        <div class="input-control text full-size" data-role="input">
+                        <div class="input-control text " data-role="input">
+                            <input type="text" data-validate-func="minlength" placeholder="min length 3" data-validate-arg="3" data-validate-hint="Min length 3 symbols">
+                            <span class="input-state-error mif-warning"></span>
+                            <span class="input-state-success mif-checkmark"></span>
+                        </div>
+
+                        <div class="input-control text " data-role="input">
+                            <input type="text" data-validate-func="maxlength" placeholder="max length 6" data-validate-arg="6" data-validate-hint="Max length 6 symbols">
+                            <span class="input-state-error mif-warning"></span>
+                            <span class="input-state-success mif-checkmark"></span>
+                        </div>
+
+                        <div class="input-control text " data-role="input">
                             <input type="text" data-validate-func="min" placeholder="min value 10" data-validate-arg="10" data-validate-hint="Value &gt;= 10">
                             <span class="input-state-error mif-warning"></span>
                             <span class="input-state-success mif-checkmark"></span>
                         </div>
 
-                        <label>Max value control</label>
-                        <div class="input-control text full-size" data-role="input">
+                        <div class="input-control text " data-role="input">
                             <input type="text" data-validate-func="max" placeholder="max value 10" data-validate-arg="10" data-validate-hint="Value &lt;= 10">
                             <span class="input-state-error mif-warning"></span>
                             <span class="input-state-success mif-checkmark"></span>
                         </div>
 
-                        <label>Valid email control</label>
-                        <div class="input-control text full-size" data-role="input">
-                            <input type="text" data-validate-func="email" placeholder="email" data-validate-hint="Value must be valid email address">
+                        <div class="input-control text " data-role="input">
+                            <input type="text" data-validate-func="email" placeholder="email" data-validate-hint="Not valid email address">
                             <span class="input-state-error mif-warning"></span>
                             <span class="input-state-success mif-checkmark"></span>
                         </div>
 
-                        <label>Valid url control</label>
-                        <div class="input-control text full-size" data-role="input">
+                        <div class="input-control text " data-role="input">
                             <input type="text" data-validate-func="url" placeholder="url" data-validate-hint="Value must be valid url">
                             <span class="input-state-error mif-warning"></span>
                             <span class="input-state-success mif-checkmark"></span>
                         </div>
 
-                        <label>Valid date control</label>
-                        <div class="input-control text full-size" data-role="input">
+                        <div class="input-control text " data-role="input">
                             <input type="text" data-validate-func="date" placeholder="date" data-validate-hint="Value must be valid date string">
                             <span class="input-state-error mif-warning"></span>
                             <span class="input-state-success mif-checkmark"></span>
                         </div>
 
-                        <label>Is number control</label>
-                        <div class="input-control text full-size" data-role="input">
+                        <div class="input-control text " data-role="input">
                             <input type="text" data-validate-func="number" placeholder="number" data-validate-hint="Value must be a numeric">
                             <span class="input-state-error mif-warning"></span>
                             <span class="input-state-success mif-checkmark"></span>
                         </div>
 
-                        <label>Is digits control</label>
-                        <div class="input-control text full-size" data-role="input">
+                        <div class="input-control text " data-role="input">
                             <input type="text" data-validate-func="digits" placeholder="digits" data-validate-hint="Value must contains only digits">
                             <span class="input-state-error mif-warning"></span>
                             <span class="input-state-success mif-checkmark"></span>
                         </div>
 
-                        <label>Valid hex color control</label>
-                        <div class="input-control text full-size" data-role="input">
+                        <div class="input-control text " data-role="input">
                             <input type="text" data-validate-func="hexcolor" placeholder="hex color" data-validate-hint="Value must be a valid hex color">
                             <span class="input-state-error mif-warning"></span>
                             <span class="input-state-success mif-checkmark"></span>
                         </div>
 
-                        <label>Control by custom pattern (regexp)</label>
-                        <div class="input-control text full-size" data-role="input">
+                        <div class="input-control text " data-role="input">
                             <input type="text" data-validate-func="pattern" placeholder="custom pattern: ^\d+$" data-validate-arg="^\d+$" data-validate-hint="Value must be eq to pattern">
                             <span class="input-state-error mif-warning"></span>
                             <span class="input-state-success mif-checkmark"></span>
                         </div>
-                    </div>
-                    <div class="cell">
                     </div>
                 </div>
             </div>
