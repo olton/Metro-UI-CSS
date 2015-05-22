@@ -7145,7 +7145,7 @@ window.METRO_LOCALES = {
                     'position': 'relative',
                     'width': input.parent().hasClass('input-control') ? input.parent().width() : input.width()
                 });
-                hint.insertAfter(input.parent());
+                hint.appendTo(input.parent());
                 hint.fadeIn(o.hintEasingTime, function(){
                     setTimeout(function () {
                         hint.hide().remove();
