@@ -19,6 +19,8 @@
     <script src="js/metro.js"></script>
     <script src="js/docs.js"></script>
     <script src="js/prettify/run_prettify.js"></script>
+    <script src="js/ga.js"></script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
     <script>
         function no_submit(){
@@ -101,7 +103,7 @@
                         &lt;input
                             data-validate-func="minlength"
                             data-validate-arg="6"
-                            data-validate-message="This field must contains min 6 symbols!"
+                            data-validate-hint="This field must contains min 6 symbols!"
                             type="text"&gt;
                         &lt;span class="input-state-error mif-warning"&gt;&lt;/span&gt;
                         &lt;span class="input-state-success mif-checkmark"&gt;&lt;/span&gt;
@@ -121,7 +123,7 @@
                     &lt;div class="input-control text"&gt;
                         &lt;input type="text"
                             data-validate-func="required"
-                            data-validate-message="This field can not be empty!"&gt;
+                            data-validate-hine="This field can not be empty!"&gt;
                         &lt;span class="input-state-error mif-warning"&gt;&lt;/span&gt;
                         &lt;span class="input-state-success mif-checkmark"&gt;&lt;/span&gt;
                     &lt;/div&gt;
@@ -433,9 +435,9 @@
         </div>
 
         <h3>Func examples</h3>
-        <form data-role="validator" data-show-required-state="false" data-hint-easing="easeOutExpo" data-hint-mode="line" data-hint-background="bg-red" data-hint-color="fg-white">
+        <form data-role="validator" data-show-required-state="false" data-hint-mode="line" data-hint-background="bg-red" data-hint-color="fg-white" data-hide-error="5000">
             <div class="grid">
-                <div class="row cells2">
+                <div class="row">
                     <div class="cell">
 
                         <div class="input-control text full-size">
@@ -443,18 +445,20 @@
                             <button class="button helper-button clear"><span class="mif-cross"></span></button>
                         </div>
 
-                        <label>Not empty control</label>
-                        <div class="input-control text full-size" data-role="input">
-                            <input type="text" data-validate-func="required" placeholder="not empty" data-validate-hint="This field can not be empty">
-                            <span class="input-state-error mif-warning"></span>
-                            <span class="input-state-success mif-checkmark"></span>
-                        </div>
+                        <div>
+                            <label>Not empty control</label>
+                            <div class="input-control text" data-role="input">
+                                <input type="text" data-validate-func="required" placeholder="not empty" data-validate-hint="This field can not be empty">
+                                <span class="input-state-error mif-warning"></span>
+                                <span class="input-state-success mif-checkmark"></span>
+                            </div>
 
-                        <label>Min length control</label>
-                        <div class="input-control text full-size" data-role="input">
-                            <input type="text" data-validate-func="minlength" placeholder="min length 3" data-validate-arg="3" data-validate-hint="Min length 3 symbols">
-                            <span class="input-state-error mif-warning"></span>
-                            <span class="input-state-success mif-checkmark"></span>
+                            <label>Min length control</label>
+                            <div class="input-control text " data-role="input">
+                                <input type="text" data-validate-func="minlength" placeholder="min length 3" data-validate-arg="3" data-validate-hint="Min length 3 symbols">
+                                <span class="input-state-error mif-warning"></span>
+                                <span class="input-state-success mif-checkmark"></span>
+                            </div>
                         </div>
 
                         <label>Max length control</label>
