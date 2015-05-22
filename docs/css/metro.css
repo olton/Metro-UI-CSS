@@ -4191,6 +4191,8 @@ a.tag {
   list-style: none inside none;
   margin: 0;
   padding: 0;
+  background-color: #ffffff;
+  border-collapse: separate;
 }
 .h-menu:before,
 .h-menu:after {
@@ -4394,6 +4396,7 @@ a.tag {
   position: relative;
   width: auto;
   float: left;
+  border-collapse: separate;
   position: absolute;
   display: none;
   z-index: 1000;
@@ -4571,7 +4574,13 @@ a.tag {
   right: 0;
   width: auto;
 }
+.h-menu,
+.v-menu,
+.d-menu {
+  border-collapse: separate;
+}
 .m-menu {
+  border-collapse: separate;
   text-align: left;
   display: block;
   height: auto ;
@@ -4815,6 +4824,7 @@ a.tag {
   width: auto;
   float: left;
   background-color: #ffffff;
+  border-collapse: separate;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
 }
 .t-menu > li {
@@ -4897,6 +4907,7 @@ a.tag {
   width: auto;
   float: left;
   background-color: #ffffff;
+  border-collapse: separate;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
 }
 .t-menu.horizontal > li {
@@ -9575,6 +9586,7 @@ input[type="submit"].link:active {
   position: relative;
   width: auto;
   float: left;
+  border-collapse: separate;
   border: 1px #eeeeee solid;
   width: 100%;
 }

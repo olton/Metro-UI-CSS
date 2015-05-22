@@ -1,4 +1,4 @@
-window.METRO_VERSION = '3.0.0';
+window.METRO_VERSION = '3.0.5';
 window.METRO_AUTO_REINIT = true;
 window.METRO_LANGUAGE = 'en';
 window.METRO_LOCALE = 'EN_en';

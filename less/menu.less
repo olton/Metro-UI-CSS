@@ -19,6 +19,8 @@
 	list-style: none inside none;
 	margin: 0;
 	padding: 0;
+    background-color: @white;
+    border-collapse: separate;
 
 	& > li {
 		display: block;
@@ -287,12 +289,14 @@
 }
 
 .h-menu, .v-menu, .d-menu {
+    border-collapse: separate;
     li:hover > .d-menu[data-show='immediate'] {
         //display: block;
     }
 }
 
 .m-menu {
+    border-collapse: separate;
 	text-align: left;
 	display: block;
 	.clear-float;
@@ -530,6 +534,7 @@
 	width: auto;
 	float: left;
 	background-color: @white;
+    border-collapse: separate;
 
 	& > li {
 		position: relative;
