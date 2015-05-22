@@ -3898,6 +3898,11 @@ a.tag {
 .app-bar .app-bar-menu > li > a.dropdown-toggle {
   padding-right: 1.5rem;
 }
+.app-bar .app-bar-menu > li.dropdown-toggle:before,
+.app-bar .app-bar-menu > li > a.dropdown-toggle:before {
+  border-color: #ffffff;
+  display: block;
+}
 .app-bar .app-bar-menu > li .d-menu {
   top: 100%;
   border: 2px solid #005696;
@@ -4125,9 +4130,9 @@ a.tag {
   border-top: 1px solid #4c9cd7;
   position: relative;
   float: none;
+  display: none;
   z-index: 1000 1;
   background-color: #005696;
-  display: none;
   clear: both;
 }
 .app-bar .app-bar-pullmenu .app-bar-menu > li,
@@ -4191,6 +4196,8 @@ a.tag {
   list-style: none inside none;
   margin: 0;
   padding: 0;
+  background-color: #ffffff;
+  border-collapse: separate;
 }
 .h-menu:before,
 .h-menu:after {
@@ -4394,6 +4401,7 @@ a.tag {
   position: relative;
   width: auto;
   float: left;
+  border-collapse: separate;
   position: absolute;
   display: none;
   z-index: 1000;
@@ -4571,7 +4579,13 @@ a.tag {
   right: 0;
   width: auto;
 }
+.h-menu,
+.v-menu,
+.d-menu {
+  border-collapse: separate;
+}
 .m-menu {
+  border-collapse: separate;
   text-align: left;
   display: block;
   height: auto ;
@@ -4815,6 +4829,7 @@ a.tag {
   width: auto;
   float: left;
   background-color: #ffffff;
+  border-collapse: separate;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
 }
 .t-menu > li {
@@ -4897,6 +4912,7 @@ a.tag {
   width: auto;
   float: left;
   background-color: #ffffff;
+  border-collapse: separate;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
 }
 .t-menu.horizontal > li {
@@ -9575,6 +9591,7 @@ input[type="submit"].link:active {
   position: relative;
   width: auto;
   float: left;
+  border-collapse: separate;
   border: 1px #eeeeee solid;
   width: 100%;
 }
