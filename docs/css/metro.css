@@ -3898,6 +3898,11 @@ a.tag {
 .app-bar .app-bar-menu > li > a.dropdown-toggle {
   padding-right: 1.5rem;
 }
+.app-bar .app-bar-menu > li.dropdown-toggle:before,
+.app-bar .app-bar-menu > li > a.dropdown-toggle:before {
+  border-color: #ffffff;
+  display: block;
+}
 .app-bar .app-bar-menu > li .d-menu {
   top: 100%;
   border: 2px solid #005696;
@@ -4125,9 +4130,9 @@ a.tag {
   border-top: 1px solid #4c9cd7;
   position: relative;
   float: none;
+  display: none;
   z-index: 1000 1;
   background-color: #005696;
-  display: none;
   clear: both;
 }
 .app-bar .app-bar-pullmenu .app-bar-menu > li,
