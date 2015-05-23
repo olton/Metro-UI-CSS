@@ -6655,6 +6655,9 @@ window.METRO_LOCALES = {
                     parent.addClass('disabled');
                 }
             }
+            if (parent.data('value') !==  undefined) {
+                checkbox.val(parent.data('value'));
+            }
         },
 
         _createRadio: function(leaf, parent){
@@ -6680,6 +6683,9 @@ window.METRO_LOCALES = {
                 if (parent.data('disabled') === true) {
                     parent.addClass('disabled');
                 }
+            }
+            if (parent.data('value') !==  undefined) {
+                checkbox.val(parent.data('value'));
             }
         },
 
