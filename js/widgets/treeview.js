@@ -57,6 +57,9 @@
                     parent.addClass('disabled');
                 }
             }
+            if (parent.data('value') !==  undefined) {
+                checkbox.val(parent.data('value'));
+            }
         },
 
         _createRadio: function(leaf, parent){
@@ -82,6 +85,9 @@
                 if (parent.data('disabled') === true) {
                     parent.addClass('disabled');
                 }
+            }
+            if (parent.data('value') !==  undefined) {
+                checkbox.val(parent.data('value'));
             }
         },
 
