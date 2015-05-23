@@ -6928,6 +6928,8 @@ window.METRO_LOCALES = {
             onErrorInput: function(input){}
         },
 
+        _scroll: 0,
+
         funcs: {
             required: function(val){
                 return val.trim() !== "";
@@ -7029,6 +7031,15 @@ window.METRO_LOCALES = {
             }
 
             inputs.on('focus', function(){
+            });
+
+            $(window).scroll(function(e){
+                var st = $(this).scrollTop();
+                var delta = isNaN(st - this._scroll) ? 0 : st - this._scroll;
+                $(".validator-hint.hint2").css({
+                    top: '-='+delta
+                });
+                this._scroll = st;
             });
 
             element.submit = this._submit();
@@ -7149,7 +7160,8 @@ window.METRO_LOCALES = {
                 hint.addClass('hint2').addClass('line');
                 hint.css({
                     'position': 'relative',
-                    'width': input.parent().hasClass('input-control') ? input.parent().width() : input.width()
+                    'width': input.parent().hasClass('input-control') ? input.parent().width() : input.width(),
+                    'z-index': 100
                 });
                 hint.appendTo(input.parent());
                 hint.fadeIn(o.hintEasingTime, function(){
