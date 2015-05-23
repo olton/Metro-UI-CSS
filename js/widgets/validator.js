@@ -25,7 +25,7 @@
             onErrorInput: function(input){}
         },
 
-        _scroll: 0,
+        _scroll: $(window).scrollTop(),
 
         funcs: {
             required: function(val){
@@ -129,6 +129,8 @@
 
             inputs.on('focus', function(){
             });
+
+            console.log(this._scroll);
 
             $(window).scroll(function(e){
                 var st = $(this).scrollTop();
@@ -234,8 +236,12 @@
 
             var hint, top, left;
 
+            if (msg === undefined) {
+                return false;
+            }
+
             hint = $("<div/>").addClass(mode+' validator-hint');//.appendTo(input.parent());
-            hint.html(this._format(msg, input.val()));
+            hint.html(msg !== undefined ? this._format(msg, input.val()) : '');
             hint.css({
                 'min-width': o.hintSize
             });
