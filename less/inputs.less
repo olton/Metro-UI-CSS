@@ -46,10 +46,11 @@
 			font-size: 24px;
 			line-height: 1;
 			position: absolute;
-			top: 4px;
+			top: 50%;
+            margin-top: -12px;
 			left: 4px;
 			z-index: 2;
-			color: @gray;
+			color: @grayLight;
 		}
 
 		.prepend-icon ~ input {
@@ -349,7 +350,7 @@ input, select, textarea {
 		font-size: 1rem;
 		color: #C8C8C8;
 		position: absolute;
-		top: 1rem;
+		top: 1.2rem;
 		left: 0;
 		z-index: 1;
 		opacity: 1;
@@ -361,17 +362,17 @@ input, select, textarea {
 	}
 
 	&.iconic {
-		margin-left: 2rem;
+		margin-left: 32px;
 
 		.icon {
-			width: 1.5rem;
-			height: 1.5rem;
-			font-size: 1.5rem;
-			line-height: 100%;
+			width: 24px;
+			height: 24px;
+			font-size: 24px;
+			line-height: 1;
 			position: absolute;
-			left: -32px;
+			left: -28px;
 			top: 50%;
-			margin-top: -.5rem;
+			margin-top: -8px;
 			display: block;
 			opacity: .2;
 			.transition(.3s, linear);
@@ -384,6 +385,10 @@ input, select, textarea {
 			}
 
 		}
+
+        &.full-size {
+            width: ~"calc(100% - 32px) !important";
+        }
 	}
 }
 
