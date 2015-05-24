@@ -1,5 +1,7 @@
 # Changelog 
 
+## 3.0.6
+
 ## 3.0.5
 * fix triggering for input when clear button clicked
 * fix panel heading style bug
