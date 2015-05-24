@@ -30,6 +30,10 @@ body {
     font-size: .7rem;
 }
 
+.prettyprint {
+    overflow: hidden;
+    overflow-x: scroll;
+}
 
 @media screen and (max-width: 800px) {
     .app-bar.fixed-top {

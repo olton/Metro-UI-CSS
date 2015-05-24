@@ -21,24 +21,124 @@
     <script src="js/prettify/run_prettify.js"></script>
 
     <script>
-        function setNameRoome(str){
-            console.log(str.innerHTML);
-            document.getElementById('RoomName').innerText = str.innerText + " Первый этаж";
+        function showDialog(id){
+            var dialog = $(id).data('dialog');
+            dialog.open();
         }
     </script>
+
 </head>
-<body onload="init()">
+<body>
+    <div class="app-bar" data-role="appbar">
+        <ul class="app-bar-menu">
+            <li>
+                <a class="dropdown-toggle">Dialogs</a>
+                <ul class="d-menu" data-role="dropdown">
+                    <li><a onclick="showDialog('#dialog1')">Show Dialog</a></li>
+                    <li><a onclick="showDialog('#dialog2')">Show Dialog with overlay</a></li>
+                    <li><a onclick="showDialog('#dialog3')">Show Dialog with dark overlay</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
     <div class="container page-content">
         <h1>Test page</h1>
+        <div class="dialog padding20" data-role="dialog" id="dialog1" data-close-button="true">
+            <h1>Simple dialog</h1>
+            <p>
+                Dialog :: Metro UI CSS - The front-end framework
+                for developing projects on the web in Windows Metro Style.
+            </p>
+        </div>
+        <div class="dialog padding20" data-role="dialog" id="dialog2" data-overlay="true" data-overlay-color="bg-transparent" data-close-button="true">
+            <h2 class="text-light">Contexte FFT</h2>
+            <form class="user-input" action="croftophile_nooverlay.html" method="post" name="fchangerderesp">
+                <input type="hidden" name="rubrique" value="1">
+                <input type="hidden" name="contenu" value="">
+                <input type="hidden" name="op" value="f_changeresp">
+                <input type="hidden" name="opref" value="">
+                <input type="hidden" name="filtre" value="">
+                <input type="hidden" name="filtre_fft" value="">
 
-        <div style="width: 300px">
-            <div class="input-control modern text iconic" data-role="input,datepicker">
-                <input type="text">
-                <span class="label">You date</span>
-                <span class="informer">Please enter you birthday</span>
-                <span class="placeholder">Input birthday</span>
-                <span class="icon mif-calendar"></span>
-            </div>
+                <div class="input-control select full-size">
+                    <select name="f_changeur" id="f_changeur">
+                        <option value="">Choisissez...</option>
+                        <option value="12" selected="selected">Administration-Aucun défini</option>
+                        <option value="6">Comité de tri-Aucun défini</option>
+                        <option value="5">Chef de groupe-Technique</option>
+                    </select>
+                </div>
+                <div class="">
+                    <button class="button primary">Changer</button>
+                </div>
+            </form>
+
+            <h2 class="text-light">Contexte benchmark</h2>
+            <form class="user-input" action="croftophile_nooverlay.html" method="post" name="bmchangerderesp">
+                <input type="hidden" name="rubrique" value="1">
+                <input type="hidden" name="contenu" value="">
+                <input type="hidden" name="op" value="b_changeresp">
+                <input type="hidden" name="opref" value="">
+                <input type="hidden" name="filtre" value="">
+                <input type="hidden" name="filtre_fft" value="">
+
+                <div class="input-control select full-size">
+                    <select name="changeur" id="changeur">
+                        <option value="">Choisissez...</option>
+                        <option value="2" selected="selected">Utilisateur</option>
+                        <option value="3">Manager</option>
+                        <option value="1">Administrateur</option>
+                    </select>
+                </div>
+                <div>
+                    <button class="button primary">Changer</button>
+                </div>
+            </form>
+        </div>
+        <div class="dialog padding20" data-role="dialog" id="dialog3" data-overlay="true" data-overlay-color="bg-dark" data-close-button="true">
+            <h2 class="text-light">Contexte FFT</h2>
+            <form class="user-input" action="croftophile_nooverlay.html" method="post" name="fchangerderesp">
+                <input type="hidden" name="rubrique" value="1">
+                <input type="hidden" name="contenu" value="">
+                <input type="hidden" name="op" value="f_changeresp">
+                <input type="hidden" name="opref" value="">
+                <input type="hidden" name="filtre" value="">
+                <input type="hidden" name="filtre_fft" value="">
+
+                <div class="input-control select full-size">
+                    <select name="f_changeur" id="f_changeur">
+                        <option value="">Choisissez...</option>
+                        <option value="12" selected="selected">Administration-Aucun défini</option>
+                        <option value="6">Comité de tri-Aucun défini</option>
+                        <option value="5">Chef de groupe-Technique</option>
+                    </select>
+                </div>
+                <div class="">
+                    <button class="button primary">Changer</button>
+                </div>
+            </form>
+
+            <h2 class="text-light">Contexte benchmark</h2>
+            <form class="user-input" action="croftophile_nooverlay.html" method="post" name="bmchangerderesp">
+                <input type="hidden" name="rubrique" value="1">
+                <input type="hidden" name="contenu" value="">
+                <input type="hidden" name="op" value="b_changeresp">
+                <input type="hidden" name="opref" value="">
+                <input type="hidden" name="filtre" value="">
+                <input type="hidden" name="filtre_fft" value="">
+
+                <div class="input-control select full-size">
+                    <select name="changeur" id="changeur">
+                        <option value="">Choisissez...</option>
+                        <option value="2" selected="selected">Utilisateur</option>
+                        <option value="3">Manager</option>
+                        <option value="1">Administrateur</option>
+                    </select>
+                </div>
+                <div>
+                    <button class="button primary">Changer</button>
+                </div>
+            </form>
         </div>
     </div>
 </body>

@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Metro.UI.CSS</id>
-    <version>3.0.4</version>
+    <version>3.0.5</version>
     <title>Metro UI CSS</title>
     <authors>Sergey Pimenov</authors>
     <owners>Sergey Pimenov</owners>
@@ -13,7 +13,7 @@
     <releaseNotes></releaseNotes>
     <language>en-US</language>
     <copyright>Copyright 2012-2015, Sergey Pimenov</copyright>
-    <tags>Windows Metro UI CSS Framework</tags>
+    <tags>Windows Metro UI CSS Framework LESS</tags>
   </metadata>
   <files>
     <file src="build\js\*.js" target="Content\Scripts" />

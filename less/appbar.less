@@ -64,6 +64,10 @@
 
             &.dropdown-toggle {
                 padding-right: 1.5rem;
+                &:before {
+                    border-color: @white;
+                    display: block;
+                }
             }
         }
 
@@ -294,7 +298,6 @@
             display: none;
             z-index: @zindexDropdown +1; //+1 because we want see it, even if pullmenu is open
             background-color: @appBarBackgroundActive;
-            display: none;
             clear: both;
             & > li, & > li > a {
                 float: none;
