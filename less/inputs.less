@@ -46,10 +46,11 @@
 			font-size: 24px;
 			line-height: 1;
 			position: absolute;
-			top: 4px;
+			top: 50%;
+            margin-top: -12px;
 			left: 4px;
 			z-index: 2;
-			color: @gray;
+			color: @grayLight;
 		}
 
 		.prepend-icon ~ input {
@@ -126,46 +127,73 @@
 		}
 	}
 
+    [class*=input-state-] {
+        position: absolute;
+        display: none;
+        top: 50%;
+        right: 8px;
+        z-index: 3;
+        font-size: 1rem;
+        margin-top: -.5rem;
+    }
+
 	&.error {
 		input, textarea, select {
-			border-color: @red ;
-		}
+            border: 1px solid @red;
+        }
 
 		&.neon {
 			input, textarea, select {
 				.block-shadow-error;
 			}
 		}
+
+        .input-state-error {
+            display: block;
+            color: @red;
+        }
 	}
 	&.warning {
 		input, textarea, select {
-			border-color: @yellow ;
-		}
+            border: 1px solid @yellow;
+        }
 		&.neon {
 			input, textarea, select {
 				.block-shadow-warning;
 			}
 		}
+        .input-state-warning {
+            display: block;
+            color: @yellow;
+        }
 	}
 	&.success {
 		input, textarea, select {
-			border-color: @green ;
-		}
+            border: 1px solid @green;
+        }
 		&.neon {
 			input, textarea, select {
 				.block-shadow-success;
 			}
 		}
+        .input-state-success {
+            display: block;
+            color: @green;
+        }
 	}
 	&.info {
 		input, textarea, select {
-			border-color: @cyan ;
-		}
+            border: 1px solid @cyan;
+        }
 		&.neon {
 			input, textarea, select {
 				.block-shadow-info;
 			}
 		}
+        .input-state-success {
+            display: block;
+            color: @cyan;
+        }
 	}
 	&.required {
 		input, textarea, select {
@@ -176,7 +204,19 @@
 				.block-shadow-info;
 			}
 		}
+        .input-state-required {
+            display: block;
+            color: @cyan;
+        }
 	}
+}
+
+input, select, textarea {
+    &.error {border: 1px solid @red;}
+    &.warning {border: 1px solid @yellow;}
+    &.info {border: 1px solid @cyan;}
+    &.success {border: 1px solid @green;}
+    &.required {border: 1px dashed @cyan;}
 }
 
 .input-control {
@@ -310,7 +350,7 @@
 		font-size: 1rem;
 		color: #C8C8C8;
 		position: absolute;
-		top: 1rem;
+		top: 1.2rem;
 		left: 0;
 		z-index: 1;
 		opacity: 1;
@@ -322,17 +362,17 @@
 	}
 
 	&.iconic {
-		margin-left: 2rem;
+		margin-left: 32px;
 
 		.icon {
-			width: 1.5rem;
-			height: 1.5rem;
-			font-size: 1.5rem;
-			line-height: 100%;
+			width: 24px;
+			height: 24px;
+			font-size: 24px;
+			line-height: 1;
 			position: absolute;
-			left: -32px;
+			left: -28px;
 			top: 50%;
-			margin-top: -.5rem;
+			margin-top: -8px;
 			display: block;
 			opacity: .2;
 			.transition(.3s, linear);
@@ -345,6 +385,10 @@
 			}
 
 		}
+
+        &.full-size {
+            width: ~"calc(100% - 32px) !important";
+        }
 	}
 }
 

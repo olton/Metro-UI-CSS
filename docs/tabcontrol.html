@@ -233,18 +233,55 @@
             <tbody>
             <tr>
                 <td>onTabClick</td>
-                <td style="white-space: nowrap">data-on-step</td>
+                <td style="white-space: nowrap">data-on-tab-click</td>
                 <td>(tab)</td>
                 <td>The event fired when tab click. This function can return true or false. If returned value is false, tab no switched</td>
             </tr>
             <tr>
                 <td>onTabChanged</td>
-                <td style="white-space: nowrap">data-on-step-click</td>
+                <td style="white-space: nowrap">data-on-tab-changed</td>
                 <td>(tab)</td>
                 <td>The event fired when the tab is changed</td>
             </tr>
             </tbody>
         </table>
+
+        <div class="example" data-text="code">
+            <pre class="prettyprint linenums"><code>
+                &lt;div class="tabcontrol"
+                     data-role="tabcontrol"
+                     data-on-tab-click="tab_click"
+                     data-on-tab-changed="tab_changed"&gt;
+                    ...
+                &lt;/div&gt;
+
+                &lt;script&gt;
+                    function tab_click(tab){
+                        console.log(tab);
+                        return true;
+                    }
+
+                    function tab_changed(tab){
+                        console.log(tab);
+                    }
+                &lt;/script&gt;
+            </code></pre>
+
+            <pre class="prettyprint linenums"><code>
+                &lt;div class="tabcontrol" id="tabcontrol"&gt;
+                    ...
+                &lt;/div&gt;
+
+                &lt;script&gt;
+                    $(function(){
+                        $("#tabcontrol).tabcontrol({
+                            onTabClick: function(tab){...},
+                            onTabChanged: function(tab){...}
+                        });
+                    })
+                &lt;/script&gt;
+            </code></pre>
+        </div>
 
         <h3>Additional</h3>
         <p>

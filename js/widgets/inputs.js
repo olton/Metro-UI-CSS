@@ -85,7 +85,9 @@
             var input = element.find('input');
             var helpers = element.find('.helper-button');
             var buttons = element.find('.button');
+            var states = element.find('.input-state-error, .input-state-warning, .input-state-info, .input-state-success, .input-state-required');
             var padding = 0;
+
 
             $.each(buttons, function(){
                 var b = $(this);
@@ -96,13 +98,17 @@
                 'padding-right': padding + 5
             });
 
+            states.css({
+                'right': padding + 8
+            });
+
             helpers
                 .attr('tabindex', -1)
                 .attr('type', 'button');
 
             if (helper_clear) {
                 helper_clear.on('click', function(){
-                    input.val('').focus();
+                    input.val('').trigger('change').focus();
                 });
             }
             if (helper_reveal && element.hasClass('password')) {

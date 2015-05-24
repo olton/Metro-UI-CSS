@@ -136,3 +136,30 @@ p [data-hint]{
 		}
 	}
 }
+
+.hint, .hint2 {
+    &.no-border {
+        border: none;
+        &:before {
+            border: none;
+        }
+        &.right {
+            &:before {
+                left: -7px;
+            }
+        }
+    }
+}
+
+.hint2.line {
+    padding: 2px 4px;
+    border: none;
+    display: block;
+    //width: 100%;
+    max-width: 100%;
+    margin: -5px 0 4px 0;
+
+    &:before {
+        display: none;
+    }
+}

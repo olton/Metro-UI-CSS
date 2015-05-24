@@ -1,5 +1,5 @@
 /*!
- * Metro UI CSS v3.0.3 (http://metroui.org.ua)
+ * Metro UI CSS v3.0.5 (http://metroui.org.ua)
  * Copyright 2012-2015 Sergey Pimenov
  * Licensed under MIT (http://metroui.org.ua/license.html)
  */
@@ -7,7 +7,7 @@ if (typeof jQuery === 'undefined') {
     throw new Error('Metro\'s JavaScript requires jQuery');
 }
 
-window.METRO_VERSION = '3.0.0';
+window.METRO_VERSION = '3.0.5';
 window.METRO_AUTO_REINIT = true;
 window.METRO_LANGUAGE = 'en';
 window.METRO_LOCALE = 'EN_en';
@@ -2742,7 +2742,8 @@ window.METRO_LOCALES = {
             _slides: {},
             _currentIndex: 0,
             _interval: 0,
-            _outPosition: 0
+            _outPosition: 0,
+            _animating: false
         },
 
 
@@ -2900,10 +2901,18 @@ window.METRO_LOCALES = {
 
             if (o._slides.length > 1) {
                 prev.on('click', function(){
-                    that._slideTo('prior');
+                    if (o._animating === false) {
+                        that._slideTo('prior');
+                        o._animating = true;
+                        setTimeout(function(){o._animating = false;}, o.duration);
+                    }
                 });
                 next.on('click', function(){
-                    that._slideTo('next');
+                    if (o._animating === false) {
+                        that._slideTo('next');
+                        o._animating = true;
+                        setTimeout(function(){o._animating = false;}, o.duration);
+                    }
                 });
             } else {
                 next.hide();
@@ -3023,6 +3032,7 @@ window.METRO_LOCALES = {
         }
     });
 })( jQuery );
+
 (function ( $ ) {
 
     "use strict";
@@ -3708,7 +3718,7 @@ window.METRO_LOCALES = {
                 }
             });
 
-            toggle = o.toggleElement ? $(o.toggleElement) : parent.children('.dropdown-toggle').length > 0 ? parent.children('.dropdown-toggle') : parent.children('a:nth-child(1');
+            toggle = o.toggleElement ? $(o.toggleElement) : parent.children('.dropdown-toggle').length > 0 ? parent.children('.dropdown-toggle') : parent.children('a:nth-child(1)');
 
             if (METRO_SHOW_TYPE !== undefined) {
                 this.options.effect = METRO_SHOW_TYPE;
@@ -3925,6 +3935,7 @@ window.METRO_LOCALES = {
             hintColor: '#000000',
             hintMaxSize: 200,
             hintMode: 'default',
+            hintShadow: false,
 
             _hint: undefined
         },
@@ -4041,7 +4052,6 @@ window.METRO_LOCALES = {
                     top: element.offset().top - $(window).scrollTop() + element.outerHeight(),
                     left: o.hintMode === 2 ? element.offset().left + element.outerWidth()/2 - _hint.outerWidth()/2  - $(window).scrollLeft(): element.offset().left - $(window).scrollLeft()
                 });
-                console.log(element.offset().left);
             }
 
             o._hint = _hint;
@@ -4146,7 +4156,9 @@ window.METRO_LOCALES = {
             var input = element.find('input');
             var helpers = element.find('.helper-button');
             var buttons = element.find('.button');
+            var states = element.find('.input-state-error, .input-state-warning, .input-state-info, .input-state-success, .input-state-required');
             var padding = 0;
+
 
             $.each(buttons, function(){
                 var b = $(this);
@@ -4157,13 +4169,17 @@ window.METRO_LOCALES = {
                 'padding-right': padding + 5
             });
 
+            states.css({
+                'right': padding + 8
+            });
+
             helpers
                 .attr('tabindex', -1)
                 .attr('type', 'button');
 
             if (helper_clear) {
                 helper_clear.on('click', function(){
-                    input.val('').focus();
+                    input.val('').trigger('change').focus();
                 });
             }
             if (helper_reveal && element.hasClass('password')) {
@@ -6639,6 +6655,9 @@ window.METRO_LOCALES = {
                     parent.addClass('disabled');
                 }
             }
+            if (parent.data('value') !==  undefined) {
+                checkbox.val(parent.data('value'));
+            }
         },
 
         _createRadio: function(leaf, parent){
@@ -6664,6 +6683,9 @@ window.METRO_LOCALES = {
                 if (parent.data('disabled') === true) {
                     parent.addClass('disabled');
                 }
+            }
+            if (parent.data('value') !==  undefined) {
+                checkbox.val(parent.data('value'));
             }
         },
 
@@ -6868,6 +6890,380 @@ window.METRO_LOCALES = {
             }
 
             return this;
+        },
+
+        _destroy: function () {
+        },
+
+        _setOption: function ( key, value ) {
+            this._super('_setOption', key, value);
+        }
+    });
+
+})( jQuery );
+(function ( $ ) {
+
+    "use strict";
+
+    $.widget( "metro.validator" , {
+
+        version: "1.0.0",
+
+        options: {
+            showErrorState: true,
+            showErrorHint: true,
+            showRequiredState: true,
+            showSuccessState: true,
+            hintSize: 0,
+            hintBackground: '#FFFCC0',
+            hintColor: '#000000',
+            hideError: 2000,
+            hideHint: 5000,
+            hintEasing: 'easeInQuad',
+            hintEasingTime: 400,
+            hintMode: 'hint', // hint, line
+            hintPosition: 'right',
+            focusInput: true,
+            onBeforeSubmit: function(form, result){return true;},
+            onErrorInput: function(input){}
+        },
+
+        _scroll: $(window).scrollTop(),
+
+        funcs: {
+            required: function(val){
+                return val.trim() !== "";
+            },
+            minlength: function(val, len){
+                if (len == undefined || isNaN(len) || len <= 0) {
+                    return false;
+                }
+                return val.trim().length >= len;
+            },
+            maxlength: function(val, len){
+                if (len == undefined || isNaN(len) || len <= 0) {
+                    return false;
+                }
+                return val.trim().length <= len;
+            },
+            min: function(val, min_value){
+                if (min_value == undefined || isNaN(min_value)) {
+                    return false;
+                }
+                if (val.trim() === "") {
+                    return false;
+                }
+                if (isNaN(val)) {
+                    return false;
+                }
+                return val >= min_value;
+            },
+            max: function(val, max_value){
+                if (max_value == undefined || isNaN(max_value)) {
+                    return false;
+                }
+                if (val.trim() === "") {
+                    return false;
+                }
+                if (isNaN(val)) {
+                    return false;
+                }
+                return val <= max_value;
+            },
+            email: function(val){
+                return /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i.test(val);
+            },
+            url: function(val){
+                return /^(?:[a-z]+:)?\/\//i.test(val);
+            },
+            date: function(val){
+                return !!(new Date(val) !== "Invalid Date" && !isNaN(new Date(val)));
+            },
+            number: function(val){
+                return (val - 0) == val && (''+val).trim().length > 0;
+            },
+            digits: function(val){
+                return /^\d+$/.test(val);
+            },
+            hexcolor: function(val){
+                return /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(val);
+            },
+            pattern: function(val, pat){
+                if (pat == undefined) {
+                    return false;
+                }
+                var reg = new RegExp(pat);
+                return reg.test(val);
+            }
+        },
+
+        _create: function () {
+            var that = this, element = this.element, o = this.options;
+
+            $.each(element.data(), function(key, value){
+                if (key in o) {
+                    try {
+                        o[key] = $.parseJSON(value);
+                    } catch (e) {
+                        o[key] = value;
+                    }
+                }
+            });
+
+            if (o.hintMode !== 'line') {
+                o.hintMode = 'hint2';
+            }
+
+            this._createValidator();
+
+            element.data('validator', this);
+
+        },
+
+        _createValidator: function(){
+            var that = this, element = this.element, o = this.options;
+            var inputs = element.find("[data-validate-func]");
+
+            element.attr('novalidate', 'novalidate');
+
+            if (o.showRequiredState) {
+                inputs.addClass('required');
+            }
+
+            inputs.on('focus', function(){
+            });
+
+            console.log(this._scroll);
+
+            $(window).scroll(function(e){
+                var st = $(this).scrollTop();
+                var delta = isNaN(st - this._scroll) ? 0 : st - this._scroll;
+                $(".validator-hint.hint2").css({
+                    top: '-='+delta
+                });
+                this._scroll = st;
+            });
+
+            element.submit = this._submit();
+        },
+
+        _submit: function(){
+            var that = this, element = this.element, o = this.options;
+            var inputs = element.find("[data-validate-func]");
+
+            element.submit(function(e){
+                var result = 0;
+
+                $('.validator-hint').hide();
+                inputs.removeClass('error success');
+                $.each(inputs, function(i, v){
+                    var input = $(v);
+                    if (input.parent().hasClass('input-control')) {
+                        input.parent().removeClass('error success');
+                    }
+                });
+
+                $.each(inputs, function(i, v){
+                    var input = $(v);
+                    var func = input.data('validateFunc'), arg = input.data('validateArg');
+                    var this_result = that.funcs[func](input.val(), arg);
+
+                    if (!this_result) {
+                        if (typeof o.onErrorInput === 'string') {
+                            window[o.onErrorInput](input);
+                        } else {
+                            o.onErrorInput(input);
+                        }
+                    }
+
+                    if (!this_result && o.showErrorState) {
+                        that._showError(input);
+                    }
+                    if (!this_result && o.showErrorHint) {
+                        setTimeout(function(){
+                            that._showErrorHint(input);
+                        }, i*100);
+
+                    }
+                    if (this_result && o.showSuccessState) {
+                        that._showSuccess(input);
+                    }
+                    if (!this_result && i == 0 && o.focusInput) {
+                        input.focus();
+                    }
+                    result += !this_result ? 1 : 0;
+                });
+
+                if (typeof o.onBeforeSubmit === 'string') {
+                    result += !window[o.onBeforeSubmit](element, result) ? 1 : 0;
+                } else {
+                    result += !o.onBeforeSubmit(element, result) ? 1 : 0;
+                }
+
+                //return false;
+                return result === 0;
+            });
+        },
+
+        _showSuccess: function(input){
+            if (input.parent().hasClass('input-control')) {
+                input.parent().addClass('success');
+            } else {
+                input.addClass('success');
+            }
+        },
+
+        _showError: function(input){
+            var o = this.options;
+
+            if (input.parent().hasClass('input-control')) {
+                input.parent().addClass('error');
+            } else {
+                input.addClass('error');
+            }
+
+            if (o.hideError && o.hideError > 0) {
+                setTimeout(function(){
+                    input.parent().removeClass('error');
+                }, o.hideError);
+            }
+        },
+
+        _showErrorHint: function(input){
+            var o = this.options,
+                msg = input.data('validateHint'),
+                pos = input.data('validateHintPosition') || o.hintPosition,
+                mode = input.data('validateHintMode') || o.hintMode,
+                background = input.data('validateHintBackground') || o.hintBackground,
+                color = input.data('validateHintColor') || o.hintColor;
+
+            var hint, top, left;
+
+            if (msg === undefined) {
+                return false;
+            }
+
+            hint = $("<div/>").addClass(mode+' validator-hint');//.appendTo(input.parent());
+            hint.html(msg !== undefined ? this._format(msg, input.val()) : '');
+            hint.css({
+                'min-width': o.hintSize
+            });
+
+            if (background.isColor()) {
+                hint.css('background-color', background);
+            } else {
+                hint.addClass(background);
+            }
+
+            if (color.isColor()) {
+                hint.css('color', color);
+            } else {
+                hint.addClass(color);
+            }
+
+            // Position
+            if (mode === 'line') {
+                hint.addClass('hint2').addClass('line');
+                hint.css({
+                    'position': 'relative',
+                    'width': input.parent().hasClass('input-control') ? input.parent().width() : input.width(),
+                    'z-index': 100
+                });
+                hint.appendTo(input.parent());
+                hint.fadeIn(o.hintEasingTime, function(){
+                    setTimeout(function () {
+                        hint.hide().remove();
+                    }, o.hideHint);
+                });
+            } else {
+                hint.appendTo("body");
+                // right
+                if (pos === 'right') {
+                    left = input.offset().left + input.outerWidth() + 15 - $(window).scrollLeft();
+                    top = input.offset().top + input.outerHeight() / 2 - hint.outerHeight() / 2 - $(window).scrollTop() - 10;
+
+                    hint.addClass(pos);
+                    hint.css({
+                        top: top,
+                        left: $(window).width() + 100
+                    });
+                    hint.show().animate({
+                        left: left
+                    }, o.hintEasingTime, o.hintEasing, function () {
+                        setTimeout(function () {
+                            hint.hide().remove();
+                        }, o.hideHint);
+                    });
+                } else if (pos === 'left') {
+                    left = input.offset().left - hint.outerWidth() - 10 - $(window).scrollLeft();
+                    top = input.offset().top + input.outerHeight() / 2 - hint.outerHeight() / 2 - $(window).scrollTop() - 10;
+
+                    hint.addClass(pos);
+                    hint.css({
+                        top: top,
+                        left: -input.offset().left - hint.outerWidth() - 10
+                    });
+                    hint.show().animate({
+                        left: left
+                    }, o.hintEasingTime, o.hintEasing, function () {
+                        setTimeout(function () {
+                            hint.hide().remove();
+                        }, o.hideHint);
+                    });
+                } else if (pos === 'top') {
+                    left = input.offset().left + input.outerWidth()/2 - hint.outerWidth()/2  - $(window).scrollLeft();
+                    top = input.offset().top - $(window).scrollTop() - hint.outerHeight() - 20;
+
+                    hint.addClass(pos);
+                    hint.css({
+                        top: -hint.outerHeight(),
+                        left: left
+                    }).show().animate({
+                        top: top
+                    }, o.hintEasingTime, o.hintEasing, function(){
+                        setTimeout(function () {
+                            hint.hide().remove();
+                        }, o.hideHint);
+                    });
+                } else /*bottom*/ {
+                    left = input.offset().left + input.outerWidth()/2 - hint.outerWidth()/2  - $(window).scrollLeft();
+                    top = input.offset().top - $(window).scrollTop() + input.outerHeight();
+
+                    hint.addClass(pos);
+                    hint.css({
+                        top: $(window).height(),
+                        left: left
+                    }).show().animate({
+                        top: top
+                    }, o.hintEasingTime, o.hintEasing, function(){
+                        setTimeout(function () {
+                            hint.hide().remove();
+                        }, o.hideHint);
+                    });
+                }
+            }
+        },
+
+        _format: function( source, params ) {
+            if ( arguments.length === 1 ) {
+                return function() {
+                    var args = $.makeArray( arguments );
+                    args.unshift( source );
+                    return $.validator.format.apply( this, args );
+                };
+            }
+            if ( arguments.length > 2 && params.constructor !== Array  ) {
+                params = $.makeArray( arguments ).slice( 1 );
+            }
+            if ( params.constructor !== Array ) {
+                params = [ params ];
+            }
+            $.each( params, function( i, n ) {
+                source = source.replace( new RegExp( "\\{" + i + "\\}", "g" ), function() {
+                    return n;
+                });
+            });
+            return source;
         },
 
         _destroy: function () {

@@ -1,5 +1,17 @@
 # Changelog 
 
+## 3.0.5
+* fix triggering for input when clear button clicked
+* fix panel heading style bug
+* New widget [Validator](http://metroui.org.ua/validator.html)
+* fix dropdown.js pull-request 768
+* fix full size for modern input
+* carousel: Added duration based timeout to next/prev event 
+* upd tabcontrol docs
+* fix drop shadow for menu for ie9
+* fix appbar dropdown toggle for ie
+* upd treeview for value for check and radio
+ 
 ## 3.0.4
 * New widget [Keypad](http://metroui.org.ua/keypad.html)
 * fixed float for dataTables

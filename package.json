@@ -1,7 +1,7 @@
 {
   "author": "Sergey Pimenov",
   "name": "metro",
-  "version": "3.0.4",
+  "version": "3.0.5",
   "description": "The front-end framework for developing responsive, mobile projects on the web in Windows Metro Style.",
   "keywords": [
     "css",
@@ -10,17 +10,18 @@
     "responsive",
     "front-end",
     "framework",
-    "web"
+    "web",
+    "metro"
   ],
   "homepage": "http://metroui.org.ua",
   "style": "build/css/metro.css",
   "mif": "build/css/metro-icons.css",
   "repository": {
     "type": "git",
-    "url": "https://bitbucket.com/olton/metro.git"
+    "url": "https://github.com/olton/Metro-UI-CSS.git"
   },
   "bugs": {
-    "url": "https://bitbucket.com/olton/metro/issues"
+    "url": "http://forum.metroui.org.ua"
   },
   "license": {
     "type": "MIT",
