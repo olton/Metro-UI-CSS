@@ -3718,7 +3718,7 @@ window.METRO_LOCALES = {
                 }
             });
 
-            toggle = o.toggleElement ? $(o.toggleElement) : parent.children('.dropdown-toggle').length > 0 ? parent.children('.dropdown-toggle') : parent.children('a:nth-child(1');
+            toggle = o.toggleElement ? $(o.toggleElement) : parent.children('.dropdown-toggle').length > 0 ? parent.children('.dropdown-toggle') : parent.children('a:nth-child(1)');
 
             if (METRO_SHOW_TYPE !== undefined) {
                 this.options.effect = METRO_SHOW_TYPE;
