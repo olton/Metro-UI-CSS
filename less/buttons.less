@@ -361,6 +361,15 @@ a.shortcut-button {
 			}
 		}
 	}
+
+    &.light {
+        span {
+            background-color: @white;
+            &:before, &:after {
+                background-color: @white;
+            }
+        }
+    }
 }
 
 .group-of-buttons {
@@ -528,14 +537,16 @@ a.shortcut-button {
         .square(1.4rem);
         font-size: .6rem;
         line-height: 1;
-        padding: .2rem .625rem;
+        padding: 0;
+        min-width: 0;
     }
 
     &.small-button {
+        .square(1.7rem);
         font-size: .7rem;
         line-height: 1.68rem;
-        padding: 0 .625rem;
-        .square(1.7rem);
+        padding: 0;
+        min-width: 0;
     }
 
     &.large-button {

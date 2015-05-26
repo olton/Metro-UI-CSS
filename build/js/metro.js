@@ -6933,7 +6933,6 @@ window.METRO_LOCALES = {
 
         funcs: {
             required: function(val){
-                console.log(val);
                 return val.trim() !== "";
             },
             minlength: function(val, len){
@@ -7063,7 +7062,9 @@ window.METRO_LOCALES = {
         _submit: function(){
             var that = this, element = this.element, o = this.options;
             var inputs = element.find("[data-validate-func]");
+            var submit = element.find(":submit").attr('disabled', 'disabled');
 
+            console.log(submit.attr('disabled'));
 
             var result = 0;
             $('.validator-hint').hide();
@@ -7113,14 +7114,15 @@ window.METRO_LOCALES = {
             }
 
             if (result !== 0) {
+                submit.removeAttr('disabled');
                 return false;
             }
 
-            if (typeof o.onSubmit === 'string') {
-                return window[o.onSubmit](element[0]);
-            } else {
-                return o.onSubmit(element[0])
-            }
+            result = (typeof o.onSubmit === 'string') ? window[o.onSubmit](element[0]) : result = o.onSubmit(element[0]);
+
+            submit.removeAttr('disabled');
+
+            return result;
         },
 
         _showSuccess: function(input){
