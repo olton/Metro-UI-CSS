@@ -6007,10 +6007,6 @@ a.shortcut-button {
   z-index: 2;
   position: relative;
 }
-.nav-button:active,
-.nav-button:focus {
-  outline: 1px #eeeeee solid;
-}
 .nav-button span {
   position: absolute;
   top: 1.2rem;
