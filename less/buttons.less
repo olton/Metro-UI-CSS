@@ -83,25 +83,6 @@
 	text-align: center;
 	text-decoration:none;
 	vertical-align: middle;
-
-	&.big-button {
-		.square(3.125rem);
-		line-height: 1.1;
-	}
-}
-
-.round-button, .cycle-button, .square-button {
-	&.mini-button {
-		.square(1.5rem);
-	}
-
-	&.small-button {
-		.square(1.7rem);
-	}
-
-	&.large-button {
-		.square(2.55rem);
-	}
 }
 
 .square-button {
@@ -112,8 +93,6 @@ a.button, a.round-button, a.square-button {
 	color: inherit;
 	&:hover {text-decoration: none;}
 }
-
-
 
 .button {
 	&.loading-pulse {
@@ -543,6 +522,36 @@ a.shortcut-button {
 	font-size: 1.2rem;
 	line-height: 1;
 }
+
+.round-button, .cycle-button, .square-button {
+    &.mini-button {
+        .square(1.4rem);
+        font-size: .6rem;
+        line-height: 1;
+        padding: .2rem .625rem;
+    }
+
+    &.small-button {
+        font-size: .7rem;
+        line-height: 1.68rem;
+        padding: 0 .625rem;
+        .square(1.7rem);
+    }
+
+    &.large-button {
+        height: 2.55rem;
+        font-size: 1.05rem;
+        line-height: 1;
+        .square(2.55rem);
+    }
+    &.big-button {
+        height: 3.125rem;
+        font-size: 1.2rem;
+        line-height: 1;
+        .square(3.125rem);
+    }
+}
+
 .button {
     &.primary {
         background: @linkColor;

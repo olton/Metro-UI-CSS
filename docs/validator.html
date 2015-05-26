@@ -525,6 +525,35 @@
                 <button class="button link" type="button">Cancel</button>
             </div>
         </form>
+
+        <h3>onSubmit</h3>
+        <form data-on-submit="submit" data-role="validator" action="javascript:void(0)">
+            <div class="input-control text" data-role="input">
+                <input type="text" data-validate-func="required" placeholder="not empty" data-validate-hint="This field can not be empty">
+                <span class="input-state-error mif-warning"></span>
+                <span class="input-state-success mif-checkmark"></span>
+            </div>
+            <label class="block">Категория</label>
+            <div class="input-control select full-size" data-role="input">
+                <select name="employee_category" data-validate-func="required" >
+                    <option value="" selected>Выберите категорию</option>
+                    <option value="1" >категория 1</option>
+                    <option value="2" >категория 2</option>
+                    <option value="3" >категория 3</option>
+                    <option value="4" >категория 4</option>
+                </select>
+            </div>
+            <div class="form-actions padding10 no-padding-left">
+                <button class="button primary" type="submit">Submit</button>
+                <button class="button link" type="button">Cancel</button>
+            </div>
+        </form>
+        <script>
+            function submit(form){
+                console.log(form);
+                return true;
+            }
+        </script>
     </div>
 
     @@hit
