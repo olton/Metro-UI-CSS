@@ -22,13 +22,15 @@
             hintPosition: 'right',
             focusInput: true,
             onBeforeSubmit: function(form, result){return true;},
-            onErrorInput: function(input){}
+            onErrorInput: function(input){},
+            onSubmit: function(form){return true;}
         },
 
-        _scroll: $(window).scrollTop(),
+        _scroll: 0,
 
         funcs: {
             required: function(val){
+                console.log(val);
                 return val.trim() !== "";
             },
             minlength: function(val, len){
@@ -111,6 +113,8 @@
                 o.hintMode = 'hint2';
             }
 
+            this._scroll = $(window).scrollTop();
+
             this._createValidator();
 
             element.data('validator', this);
@@ -130,7 +134,7 @@
             inputs.on('focus', function(){
             });
 
-            console.log(this._scroll);
+            //console.log(this._scroll);
 
             $(window).scroll(function(e){
                 var st = $(this).scrollTop();
@@ -141,65 +145,79 @@
                 this._scroll = st;
             });
 
-            element.submit = this._submit();
+            if (element[0].onsubmit) {
+                this._onsubmit = element[0].onsubmit;
+                element[0].onsubmit = null;
+            } else {
+                this._onsubmit = null;
+            }
+
+            element[0].onsubmit = function(){
+                return that._submit();
+            };
         },
 
         _submit: function(){
             var that = this, element = this.element, o = this.options;
             var inputs = element.find("[data-validate-func]");
 
-            element.submit(function(e){
-                var result = 0;
 
-                $('.validator-hint').hide();
-                inputs.removeClass('error success');
-                $.each(inputs, function(i, v){
-                    var input = $(v);
-                    if (input.parent().hasClass('input-control')) {
-                        input.parent().removeClass('error success');
-                    }
-                });
+            var result = 0;
+            $('.validator-hint').hide();
+            inputs.removeClass('error success');
+            $.each(inputs, function(i, v){
+                var input = $(v);
+                if (input.parent().hasClass('input-control')) {
+                    input.parent().removeClass('error success');
+                }
+            });
 
-                $.each(inputs, function(i, v){
-                    var input = $(v);
-                    var func = input.data('validateFunc'), arg = input.data('validateArg');
-                    var this_result = that.funcs[func](input.val(), arg);
+            $.each(inputs, function(i, v){
+                var input = $(v);
+                var func = input.data('validateFunc'), arg = input.data('validateArg');
+                var this_result = that.funcs[func](input.val(), arg);
 
-                    if (!this_result) {
-                        if (typeof o.onErrorInput === 'string') {
-                            window[o.onErrorInput](input);
-                        } else {
-                            o.onErrorInput(input);
-                        }
+                if (!this_result) {
+                    if (typeof o.onErrorInput === 'string') {
+                        window[o.onErrorInput](input);
+                    } else {
+                        o.onErrorInput(input);
                     }
-
-                    if (!this_result && o.showErrorState) {
-                        that._showError(input);
-                    }
-                    if (!this_result && o.showErrorHint) {
-                        setTimeout(function(){
-                            that._showErrorHint(input);
-                        }, i*100);
-
-                    }
-                    if (this_result && o.showSuccessState) {
-                        that._showSuccess(input);
-                    }
-                    if (!this_result && i == 0 && o.focusInput) {
-                        input.focus();
-                    }
-                    result += !this_result ? 1 : 0;
-                });
-
-                if (typeof o.onBeforeSubmit === 'string') {
-                    result += !window[o.onBeforeSubmit](element, result) ? 1 : 0;
-                } else {
-                    result += !o.onBeforeSubmit(element, result) ? 1 : 0;
                 }
 
-                //return false;
-                return result === 0;
+                if (!this_result && o.showErrorState) {
+                    that._showError(input);
+                }
+                if (!this_result && o.showErrorHint) {
+                    setTimeout(function(){
+                        that._showErrorHint(input);
+                    }, i*100);
+
+                }
+                if (this_result && o.showSuccessState) {
+                    that._showSuccess(input);
+                }
+                if (!this_result && i == 0 && o.focusInput) {
+                    input.focus();
+                }
+                result += !this_result ? 1 : 0;
             });
+
+            if (typeof o.onBeforeSubmit === 'string') {
+                result += !window[o.onBeforeSubmit](element, result) ? 1 : 0;
+            } else {
+                result += !o.onBeforeSubmit(element, result) ? 1 : 0;
+            }
+
+            if (result !== 0) {
+                return false;
+            }
+
+            if (typeof o.onSubmit === 'string') {
+                return window[o.onSubmit](element[0]);
+            } else {
+                return o.onSubmit(element[0])
+            }
         },
 
         _showSuccess: function(input){

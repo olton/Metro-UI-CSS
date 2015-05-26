@@ -5330,31 +5330,6 @@ a.tag {
   color: #114968;
   border-color: transparent;
 }
-.round-button.big-button,
-.cycle-button.big-button,
-.square-button.big-button {
-  width: 3.125rem;
-  height: 3.125rem;
-  line-height: 1.1;
-}
-.round-button.mini-button,
-.cycle-button.mini-button,
-.square-button.mini-button {
-  width: 1.5rem;
-  height: 1.5rem;
-}
-.round-button.small-button,
-.cycle-button.small-button,
-.square-button.small-button {
-  width: 1.7rem;
-  height: 1.7rem;
-}
-.round-button.large-button,
-.cycle-button.large-button,
-.square-button.large-button {
-  width: 2.55rem;
-  height: 2.55rem;
-}
 .square-button {
   border-radius: 0;
 }
@@ -6230,6 +6205,40 @@ a.shortcut-button {
   font-size: 1.2rem;
   line-height: 1;
 }
+.round-button.mini-button,
+.cycle-button.mini-button,
+.square-button.mini-button {
+  width: 1.4rem;
+  height: 1.4rem;
+  font-size: .6rem;
+  line-height: 1;
+  padding: .2rem .625rem;
+}
+.round-button.small-button,
+.cycle-button.small-button,
+.square-button.small-button {
+  font-size: .7rem;
+  line-height: 1.68rem;
+  padding: 0 .625rem;
+  width: 1.7rem;
+  height: 1.7rem;
+}
+.round-button.large-button,
+.cycle-button.large-button,
+.square-button.large-button {
+  font-size: 1.05rem;
+  line-height: 1;
+  width: 2.55rem;
+  height: 2.55rem;
+}
+.round-button.big-button,
+.cycle-button.big-button,
+.square-button.big-button {
+  font-size: 1.2rem;
+  line-height: 1;
+  width: 3.125rem;
+  height: 3.125rem;
+}
 .button.primary {
   background: #2086bf;
   color: #ffffff;
@@ -6520,22 +6529,31 @@ div.square-button.big-button {
   color: #114968;
   border-color: transparent;
 }
-.toolbar .toolbar-button.big-button {
-  width: 3.125rem;
-  height: 3.125rem;
-  line-height: 1.1;
-}
 .toolbar .toolbar-button.mini-button {
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1.4rem;
+  height: 1.4rem;
+  font-size: .6rem;
+  line-height: 1;
+  padding: .2rem .625rem;
 }
 .toolbar .toolbar-button.small-button {
+  font-size: .7rem;
+  line-height: 1.68rem;
+  padding: 0 .625rem;
   width: 1.7rem;
   height: 1.7rem;
 }
 .toolbar .toolbar-button.large-button {
+  font-size: 1.05rem;
+  line-height: 1;
   width: 2.55rem;
   height: 2.55rem;
+}
+.toolbar .toolbar-button.big-button {
+  font-size: 1.2rem;
+  line-height: 1;
+  width: 3.125rem;
+  height: 3.125rem;
 }
 .toolbar-group,
 .toolbar-section {
@@ -6761,22 +6779,31 @@ div.square-button.big-button {
   color: #114968;
   border-color: transparent;
 }
-.v-toolbar .toolbar-button.big-button {
-  width: 3.125rem;
-  height: 3.125rem;
-  line-height: 1.1;
-}
 .v-toolbar .toolbar-button.mini-button {
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1.4rem;
+  height: 1.4rem;
+  font-size: .6rem;
+  line-height: 1;
+  padding: .2rem .625rem;
 }
 .v-toolbar .toolbar-button.small-button {
+  font-size: .7rem;
+  line-height: 1.68rem;
+  padding: 0 .625rem;
   width: 1.7rem;
   height: 1.7rem;
 }
 .v-toolbar .toolbar-button.large-button {
+  font-size: 1.05rem;
+  line-height: 1;
   width: 2.55rem;
   height: 2.55rem;
+}
+.v-toolbar .toolbar-button.big-button {
+  font-size: 1.2rem;
+  line-height: 1;
+  width: 3.125rem;
+  height: 3.125rem;
 }
 .v-toolbar.rounded > .toolbar-button,
 .v-toolbar.rounded > .toolbar-section .toolbar-button {
