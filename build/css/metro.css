@@ -6058,6 +6058,13 @@ a.shortcut-button {
   -webkit-transform: rotate(-45deg);
           transform: rotate(-45deg);
 }
+.nav-button.light span {
+  background-color: #ffffff;
+}
+.nav-button.light span:before,
+.nav-button.light span:after {
+  background-color: #ffffff;
+}
 .group-of-buttons .button.active,
 .group-of-buttons .toolbar-button.active {
   background-color: #00ccff;
@@ -6212,16 +6219,18 @@ a.shortcut-button {
   height: 1.4rem;
   font-size: .6rem;
   line-height: 1;
-  padding: .2rem .625rem;
+  padding: 0;
+  min-width: 0;
 }
 .round-button.small-button,
 .cycle-button.small-button,
 .square-button.small-button {
-  font-size: .7rem;
-  line-height: 1.68rem;
-  padding: 0 .625rem;
   width: 1.7rem;
   height: 1.7rem;
+  font-size: .7rem;
+  line-height: 1.68rem;
+  padding: 0;
+  min-width: 0;
 }
 .round-button.large-button,
 .cycle-button.large-button,
@@ -6534,14 +6543,16 @@ div.square-button.big-button {
   height: 1.4rem;
   font-size: .6rem;
   line-height: 1;
-  padding: .2rem .625rem;
+  padding: 0;
+  min-width: 0;
 }
 .toolbar .toolbar-button.small-button {
-  font-size: .7rem;
-  line-height: 1.68rem;
-  padding: 0 .625rem;
   width: 1.7rem;
   height: 1.7rem;
+  font-size: .7rem;
+  line-height: 1.68rem;
+  padding: 0;
+  min-width: 0;
 }
 .toolbar .toolbar-button.large-button {
   font-size: 1.05rem;
@@ -6784,14 +6795,16 @@ div.square-button.big-button {
   height: 1.4rem;
   font-size: .6rem;
   line-height: 1;
-  padding: .2rem .625rem;
+  padding: 0;
+  min-width: 0;
 }
 .v-toolbar .toolbar-button.small-button {
-  font-size: .7rem;
-  line-height: 1.68rem;
-  padding: 0 .625rem;
   width: 1.7rem;
   height: 1.7rem;
+  font-size: .7rem;
+  line-height: 1.68rem;
+  padding: 0;
+  min-width: 0;
 }
 .v-toolbar .toolbar-button.large-button {
   font-size: 1.05rem;
