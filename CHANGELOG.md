@@ -3,6 +3,7 @@
 ## 3.0.6
 * add support user defined onsubmit for validator over data-on-submit attribute
 * add light color for nav-button
+* fix square(round, cycle)-button sizes
 
 ## 3.0.5
 * fix triggering for input when clear button clicked
