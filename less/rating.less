@@ -1,103 +1,175 @@
+@import (once) "variables";
+@import (once) "transform";
+
 .rating {
-    color: #2784a7;
-    cursor: pointer;
-    display: block;
-    width: auto;
-    .SwapMargin(0, 10px, 10px, 0);
-    height: @ratingSize;
-    .clearfix;
+	cursor: pointer;
+	display: inline-block;
+	.clear-float;
 
-    ul {
-        list-style: none;
-        color: inherit;
-        display: block;
-        margin: 0;
-        padding: 0;
-        margin-bottom: 5px;
-        .clearfix;
+	.star {
+		cursor: pointer;
+		display: block;
+		.FloatItem("left");
+		color: @gray;
+		font-size: 20px;
+		z-index: 1;
+		position: relative;
+		width: 20px;
+		height: 24px;
+		vertical-align: middle;
+		line-height: 22px;
 
-        li {
-            display: block;
-            .FloatItem("left");
-            position: relative;
-            font-family: iconFont;
-            font-size: @ratingSize;
-            line-height: @ratingSize;
-            color: inherit;
+		&:before, &:after  {
+			position: absolute;
+			content: '\2605';
+			display: block;
+			z-index: 2;
+			top: 0 ;
+			.DockItem("left", 0);
+			vertical-align: middle;
+		}
 
-            &:before {
-                content: @ratingNo;
-            }
+		&.on {
+			color: gold;
 
-            &.rated {
-                &:before {
-                    content: @ratingRated;
-                }
-                &.half {
-                    &:before {
-                        content: @ratingHalf;
-                    }
-                }
-            }
+			&.half {
+				color: @gray;
+				&:after {
+					color: gold;
+				}
+			}
+		}
+
+		&.half {
+			&:after {
+				z-index: 3;
+				width: 8px;
+				overflow: hidden;
+			}
+		}
+	}
+
+    &.poor {
+        .star.on {
+            color: @red;
 
             &.half {
-                &:before {
-                    content: @ratingHalf;
+                color: @gray;
+                &:after {
+                    color: @red;
                 }
             }
         }
     }
-    .score-hint {
-        display: block;
-        font-size: 12px;
-        color: @dark;
-    }
-}
+    &.regular {
+        .star.on {
+            color: gold;
 
-.rating.active {
-    ul {
-        &:hover > li:before {
-            content: @ratingRated;
-        }
-
-        li {
-            &:hover ~ li {
-                &:before {
-                    content: @ratingNo !important;
+            &.half {
+                color: @gray;
+                &:after {
+                    color: gold;
                 }
             }
-
-            &:hover {
-                &:before {
-                    content: @ratingRated !important;
-                }
-            }
-
         }
     }
+    &.good {
+        .star.on {
+            color: @green;
+
+            &.half {
+                color: @gray;
+                &:after {
+                    color: @green;
+                }
+            }
+        }
+    }
+
+	&:not(.static) {
+
+
+        .star:hover {
+            color: gold ;
+            &.half, &.on.half {
+                color:gold;
+                &:after {
+                    color:gold;
+                }
+            }
+        }
+
+		&:hover > .star, &:hover > .star:after {
+			color: gold ;
+            &.half, &.on.half {
+                color:gold;
+                &:after {
+                    color:gold;
+                }
+            }
+		}
+
+        .star:hover ~ .star, .star:hover ~ .star:after {
+            color: gray ;
+            &.half, &.on.half {
+                color:gray;
+                &:after {
+                    color:gray;
+                }
+            }
+        }
+
+	}
+
 }
 
 .rating {
-    &.small {
-        li {
-            font-size: @ratingSize / 1.5;
-            line-height: @ratingSize / 1.5;
-        }
+	&.small {
+		.star {
+			width: 14px;
+			height: 16px;
+			font-size: 14px;
+			line-height: 14px;
 
-        .score-hint {
-            margin-top: -5px;
-            font-size: 10px;
-        }
-    }
+			&.half {
+				&:after {
+					width: 6px;
+				}
+			}
+		}
+	}
 
-    &.large {
-        li {
-            font-size: @ratingSize * 1.5;
-        }
+	&.large {
+		.star {
+			width: 28px;
+			height: 30px;
+			font-size: 32px;
+			line-height: 24px;
 
-        .score-hint {
-            margin-top: 10px;
-            font-size: 16px;
-        }
-    }
+			&.half {
+				&:after {
+					width: 13px;
+				}
+			}
+		}
+	}
+}
+
+.rating {
+	.score {
+		display: block;
+		font-size: .8rem;
+	}
+
+	&.small {
+		.score {
+			font-size: .6rem;
+		}
+	}
+
+	&.large {
+		.score {
+			font-size: 1rem;
+		}
+	}
 }

@@ -1,118 +1,100 @@
+@import (once) "variables";
+@import (once) "typography";
+@import (once) "utils";
+
 .carousel {
-    display: block;
-    position: relative;
-    //margin-bottom: @unitSize;
-    overflow: hidden;
-    background-color: @grayLighter;
+	display: block;
+	width: 100%;
+	position: relative;
+	min-height: 100px;
+	overflow: hidden;
 
-    .slide {
-        position: absolute;
-        .DockItem("left", 0);
-        top: 0;
-        width: 100%;
-        height: 100%;
-        display: none;
-        padding: 0;
+	.slide {
+		position: absolute;
+		display: block;
+		width: 100%;
+		height: 100%;
+		min-height: 100%;
+		.clear-float;
+	}
 
-        div.subslide {
-            z-index: 2;
-            position: absolute;
-            top: 10px;
-            .DockItem("left", 10px);
-        }
+	[class*="carousel-switch"], .carousel-bullets {
+		position: absolute;
+		display: block;
+		z-index: @zindexDropdown - 1;
+        .no-user-select;
+	}
 
-        img.cover {
-            width: 100%;
-            min-height: 100%;
-            z-index: 1;
-            position: absolute;
-            top: 0 !important;
-            .DockItem("left", 0) !important;
-        }
+	.carousel-bullets {
+		.DockItem("left", 0);
+		.DockItem("right", 0);
+		bottom: .625rem;
 
-        &:first-child {
-            display: block;
-        }
-    }
+		.align-center;
 
-    .controls {
-        display: block;
-        position: absolute;
-        top: 50%;
-        .DockItem("left", 15px);
-        min-width: 40px;
-        min-height: 40px;
-        width: auto;
-        height: auto;
-        margin-top: -20px;
-        font-size: 48pt;
-        font-weight: 100;
-        line-height: 30px;
-        color: #fff;
-        text-align: center;
-        cursor: pointer;
-        opacity: .75;
-        z-index: 100;
+		.carousel-bullet {
+			display: inline-block;
+			.FloatItem("none");
+			width: .625rem;
+			height: .625rem;
+			background-color: #ababab;
+			box-shadow: none;
+			border-radius: 50%;
+			.MarginLeftOrRight("margin-right", .625rem);
+			cursor: pointer;
+			border: 1px @white solid;
 
-        &.left {}
+			&:last-child {
+				.MarginLeftOrRight("margin-right", 0);
+			}
 
-        &.right {
-            .DockItem("left", auto);
-            .DockItem("right", 15px);
-        }
+			&.bullet-on {
+				background-color: @lightCyan;
+			}
 
-        &:hover {
-            opacity: 1;
-        }
-    }
+			&:hover {
+			}
+		}
+	}
 
-    .markers {
-        z-index: 100;
-        margin: 0;
-        padding: 0;
-        display: block;
-        position: absolute;
-        bottom: 10px;
-        .DockItem("left", 10px);
+	&.square-bullets {
+		.carousel-bullet {
+			border-radius: 0 ;
+		}
+	}
 
-        & > ul {
-            .unstyled;
-        }
+	.carousel-switch-next, .carousel-switch-prev {
+		width: auto;
+		line-height: 4rem;
+		height: 4rem;
+		text-decoration: none;
+		margin-top: -2rem;
+		top: 50%;
+		font-size: 4rem;
+		font-weight: 300;
+		color: @grayLighter;
+		cursor: pointer;
+		vertical-align: middle;
+		padding: 0;
 
-        li {
-            display: block;
-            .FloatItem("left");
-            .MarginLeftOrRight("margin-right", 5px);
+		&:hover {
+			color: @white;
+			.text-shadow;
+		}
 
-            a {
-                background-color: @white;
-                display: block;
-                .FloatItem("left");
-                border: 1px @white solid;
-            }
+		img {
+			max-width: 64px;
+			max-height: 64px;
+		}
+	}
 
-            &.active a {
-                background-color: @amber;
-            }
-        }
+	.carousel-switch-next {
+		.DockItem("right", 0);
+		.DockItem("left", auto);
+	}
 
-        &.default {
-            & > ul > li > a {
-                width: 32px;
-                height: 6px;
-            }
-        }
-        &.cycle {
-            & > ul > li > a {
-                width: 24px;
-                height: 24px;
-                border-radius: 50%;
-            }
-        }
-        &.square {
-            & > ul > li > a {
-                .square(24px);
-            }
-        }
-    }
+	.carousel-switch-prev {
+		.DockItem("left", 0);
+		.DockItem("right", auto);
+	}
 }

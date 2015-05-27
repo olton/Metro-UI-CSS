@@ -1,137 +1,25 @@
 .container {
-    margin: 0 auto;
-    width: @containerDesktopSize;
+	width: 960px;
+	margin: 0 auto;
+
+	&:not(.no-responsive-future) {
+		@media screen and (min-width: 1401px) {
+			width: 1200px;
+		}
+
+		@media screen and (max-width: 992px) {
+			width: 100%;
+			padding: 0;
+		}
+
+		@media screen and (max-width: 768px) {
+			width: 100%;
+			padding: 0;
+		}
+
+		@media screen and (max-width: 640px) {
+			width: 100%;
+			padding: 0;
+		}
+	}
 }
-
-.page {
-    .clearfix;
-    width: 100%;
-    min-height: 100%;
-    margin: 0;
-    padding: 0;
-
-    .page-header {
-
-        .page-header-content {
-            .clearfix;
-            min-height: @unitSize * 5;
-            min-height: auto;
-
-            .branding {
-                display: inline-block;
-                width: auto;
-                padding: 10px 0;
-                .MarginLeftOrRight("margin-right", 20px);
-
-                .brand-title {
-                    .subheader;
-                    display: block;
-                }
-
-                .brand-slogan {
-                    .item-title-secondary;
-                    #font > .normal;
-                    font-family: @segoeLightFontFamily;
-                    display: block;
-                }
-
-                .brand-title, .brand-slogan {
-                    margin: 0;
-                }
-
-                a + .brand-title, a + .brand-slogan {
-                    text-decoration: none !important;
-                }
-            }
-
-        }
-    }
-
-    .page-region {
-
-        .page-region-content {
-            .clearfix;
-            min-height: 500px;
-        }
-    }
-
-    .page-footer {
-        .page-footer-content {
-            .clearfix;
-            height: @unitSize * 5;
-        }
-    }
-}
-
-.page {
-    &.secondary {
-        .page-region-content, .page-header-content {
-            .PaddingLeftOrRight("padding-left", @unitSize * 4);
-        }
-    }
-}
-
-.app-bar {
-    position: fixed;
-    bottom: 0;
-    .DockItem("left", 0);
-    .DockItem("right", 0);
-    min-height: 100px;
-    background-color: @dark;
-    z-index: @zindexCharms;
-}
-
-.charms {
-    position: fixed;
-    .DockItem("right", 0);
-    top: 0;
-    bottom: 0;
-    height: 100%;
-    min-width: 200px;
-    width: auto;
-    z-index: @zindexCharms;
-
-    &.place-left {
-        .DockItem("left", 0);
-        .DockItem("right", auto);
-    }
-
-    &.search {}
-    &.sharing{}
-    &.appsets{}
-    &.apphelp{}
-}
-
-.message-dialog {
-    position: fixed;
-    .DockItem("left", 0);
-    .DockItem("right", 0);
-    height: auto;
-    min-height: 100px;
-    top: 30%;
-    padding: 10px 10px 0;
-    z-index: @zindexModal;
-}
-
-.flyouts{}
-
-.error-bar, .warning-bar, .info-bar {
-    position: fixed;
-    top: 0;
-    .DockItem("left", 0);
-    .DockItem("right", 0);
-    padding: 10px 20px;
-    color: #fff;
-    min-height: 100px;
-    z-index: @zindexModal;
-}
-.error-bar {
-    .bg-darkRed;
-}
-.warning-bar {
-    .bg-darkOrange;
-}
-.info-bar {
-    .bg-lightBlue;
-}
-

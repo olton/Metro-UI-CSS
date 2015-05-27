@@ -1,0 +1,113 @@
+@import (once) "variables";
+@import (once) "buttons";
+@import (once) "utils";
+
+.toolbar {
+	position: relative;
+	.clear-float;
+}
+
+.toolbar-section {
+	position: relative;
+	.PaddingLeftOrRight("padding-left", .5725rem);
+	margin: .125rem;
+	.FloatItem("left");
+	width: auto;
+
+	&.no-divider {
+		&:before {
+			display: none;
+		}
+	}
+
+	&:before {
+		position: absolute;
+		content: "";
+		width: .325rem;
+		height: 100%;
+		.DockItem("left", 0);
+		background-color: @grayLighter;
+		cursor: move;
+	}
+}
+
+.toolbar {
+    .toolbar-button {
+        .square-button;
+        margin: 0;
+    }
+}
+
+.toolbar-group, .toolbar-section {
+	display: inline-block;
+
+	&.condensed {
+		.clear-float;
+
+		.button, .toolbar-button {
+			display: block;
+			.FloatItem("left");
+		}
+	}
+}
+
+.toolbar-group {
+	&-check {
+		.toolbar-button {
+			&.checked {
+				background-color: @lightCyan;
+				color: @white;
+				border-color: @lightCyan;
+			}
+		}
+	}
+
+	&-radio {
+		.toolbar-button {
+			&.checked {
+				background-color: @lightCyan;
+				color: @white;
+				border-color: @lightCyan;
+			}
+		}
+	}
+}
+
+.toolbar {
+	&.rounded {
+		& > .toolbar-button, & > .toolbar-section .toolbar-button {
+			border-radius: .3125rem;
+		}
+
+		.toolbar-section {
+			&:before {
+				border-radius: .3125rem;
+			}
+		}
+	}
+}
+
+.v-toolbar {
+	.toolbar;
+	.FloatItem("left");
+
+	.toolbar-section {
+		.PaddingLeftOrRight("padding-left", 0);
+		padding-top: .5725rem;
+
+		&:before {
+			width: 100%;
+			top: 0;
+			height: .325rem;
+		}
+	}
+
+	.toolbar-button {
+		display: block;
+		margin-bottom: .25rem;
+	}
+
+	&.no-divider {
+		.toolbar-section:before {display: none}
+	}
+}

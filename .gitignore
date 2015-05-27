@@ -1,6 +1,37 @@
-.idea
-.zip
-*id_rsa*
-*.nupkg
+# Ignore docs files
 
+# Numerous always-ignore extensions
+*.diff
+*.err
+*.log
+*.orig
+*.rej
+*.swo
+*.swp
+*.vi
+*.zip
+*~
+
+# OS or Editor folders
+._*
+.cache
+.DS_Store
+.idea
+.replace
+.compiled_html
+.project
+.settings
+.tmproj
+*.esproj
+*.sublime-project
+*.sublime-workspace
+nbproject
+Thumbs.db
+
+# grunt-html-validation
+validation-report.json
+validation-status.json
+
+# Folders to ignore
+bower_components
 node_modules

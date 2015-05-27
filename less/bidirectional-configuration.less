@@ -1,0 +1,48 @@
+.SetmifsWhenRTL() when (@direction = @ltr) {
+}
+
+.SetmifsWhenRTL() when (@direction = @rtl) {
+    .mif-chevron-left:before{
+        content: "\e649"; /*.mif-chevron-right*/
+    }
+
+    .mif-chevron-right:before{
+        content: "\e648"; /*.mif-chevron-left*/
+    }
+
+    .mif-arrow-up-left:before {
+        content: "\ea3b"; /*.mif-arrow-up-right*/
+    }
+
+    .mif-arrow-up-right:before{
+        content: "\ea39"; /*.mif-arrow-up-left*/
+    }
+
+    .mif-arrow-left:before {
+        content: "\ea3c"; /*.mif-arrow-right*/
+    }
+
+    .mif-arrow-right:before {
+        content: "\ea40"; /*.mif-arrow-left*/
+    }
+
+    .mif-arrow-down-left:before {
+	    content: "\ea3d"; /*.mif-arrow-down-right*/
+    }
+
+    .mif-arrow-down-right:before {
+	    content: "\ea3f"; /*.mif-arrow-down-left*/
+    }
+
+    .mif-chevron-thin-left:before {
+	    content: "\e69b"; /*.mif-chevron-thin-right*/
+    }
+    
+    .mif-chevron-thin-right:before {
+	    content: "\e697"; /*.mif-chevron-thin-left*/
+    }
+
+    
+}
+
+.SetmifsWhenRTL();

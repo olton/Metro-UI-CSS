@@ -1,3 +1,7 @@
+@import (once) "variables";
+@import (once) "buttons";
+@import (once) "utils";
+
 .wizard {
     .steps {
         margin: 10px 0;
@@ -46,7 +50,7 @@
             }
 
             &:disabled {
-                background-color: lighten(@gray, 10%) !important;
+                background-color: lighten(@gray, 10%) ;
             }
         }
     }

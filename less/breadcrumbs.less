@@ -1,118 +1,203 @@
+@import (once) "variables";
+@import (once) "typography";
+@import (once) "utils";
 
 .breadcrumbs {
-    margin: 0.2em;
+	.flush-list;
+	background-color: @white;
+	color: #999;
+	padding: 1rem;
 
-    ul {
-        margin: 0;
-        padding: 0;
-        list-style: none;
-        overflow: hidden;
-        width: 100%;
+	& > li {
+		display: inline-block;
+		color: inherit;
+		.SwapMargin(0, 1rem, 0, 0);
+		position: relative;
+		vertical-align: middle;
 
-        li {
-            .FloatItem("left");
-            .SwapMargin(0, .2em, 0, 1em);
-        }
+		&:before, &:after {
+			display: block;
+			position: absolute;
+			vertical-align: middle;
+			color: transparent;
+			font-size: 0;
+			content: "";
+			height: 1px;
+			width: .375rem;
+			background-color: @dark;
+			top: 50%;
+			.DockItem("left", 100%);
+			.MarginLeftOrRight("margin-left", .5rem);
+		}
 
-        li:first-child {
-            .MarginLeftOrRight("margin-left", 0) !important;
-            a:before {
-                content: normal;
-            }
-        }
+		&:before {
+			.rotate(45deg);
+			margin-top: -.125rem;
+		}
 
-        li:last-child {
-            background: none;
-            a {
-                color: @dark;
-            }
-            &:after, &:before {
-                content: normal;
-            }
-        }
+		&:after {
+			.rotate(-45deg);
+			margin-top: .125rem;
+		}
 
-        a {
-            background: @inputRestState;
-            padding: .3em 1em;
-            .FloatItem("left");
-            text-decoration: none;
-            color: @linkColor;
-            position: relative;
+		& > a {
+			color: inherit;
+			display: inline-block;
+			line-height: 1;
+		}
 
-            &:hover {
-                background: @cyan;
-                color: @white;
+		&:last-child {
+			color: @dark;
+			font-weight: bolder;
+			a {cursor: default;}
+			&:before, &:after {
+				background-color: @transparent;
+			}
+		}
 
-                &:before {
-                    border-color: @cyan @cyan @cyan transparent;
-                }
+		&:hover {
+			color: @dark;
+		}
+	}
 
-                &:after {
-                    .BorderLeftColor(@cyan);
-                }
-            }
+	img, .icon {
+		display: inline-block;
+		line-height: .8;
+		height: 1rem;
+		width: 1rem;
+		font-size: 1rem;
+		vertical-align: -15%;
+	}
+
+	&.dark {
+		background-color: #393832;
+
+		& > li {
+			&:hover, &:last-child {
+				color: @white;
+			}
+
+			&:before, &:after {
+				background-color: @white;
+			}
+		}
+	}
+}
+
+
+.breadcrumbs2 {
+    margin: 0.625rem 0;
+    padding: 0;
+    list-style: none;
+    overflow: hidden;
+    width: 100%;
+
+    li {
+        .FloatItem("left");
+        .SwapMargin(0, .2em, 0, 1em);
+    }
+
+    a {
+        background: @inputRestState;
+        padding: .3em 1em;
+        .FloatItem("left");
+        text-decoration: none;
+        color: @linkColor;
+        position: relative;
+
+        &:hover {
+            background: @cyan;
+            color: @white;
 
             &:before {
-                content: "";
-                position: absolute;
-                top: 50%;
-                margin-top: -1.5em;
-                border-width: 1.5em 0 1.5em 1em;
-                border-style: solid;
-                border-color: #ddd #ddd #ddd transparent;
-                .DockItem("left", -1em);
-                .MarginLeftOrRight("margin-left", 1px);
+                border-color: @cyan @cyan @cyan transparent;
             }
 
             &:after {
-                content: "";
-                position: absolute;
-                top: 50%;
-                margin-top: -1.5em;
-                border-top: 1.5em solid transparent;
-                border-bottom: 1.5em solid transparent;
-                .BorderLeftOrRight("border-left", 1em, #ddd, solid);
-                .DockItem("right", -1em);
-                .MarginLeftOrRight("margin-right", 1px);
+                .BorderLeftOrRightColor("border-left-color", @cyan);
             }
         }
 
-        .active, .active:hover {
-            background: none;
-            a {
-                color: @dark;
-            }
+        &:before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            margin-top: -1.5em;
+            border-width: 1.5em 0 1.5em 1em;
+            border-style: solid;
+            border-color: @inputRestState @inputRestState @inputRestState transparent;
+            .DockItem("left", -1em);
+            .MarginLeftOrRight("margin-left", 1px);
         }
 
-        .active:hover {
+        &:after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            margin-top: -1.5em;
+            border-top: 1.5em solid transparent;
+            border-bottom: 1.5em solid transparent;
+            .BorderLeftOrRight("border-left", 1em, @inputRestState, solid);
+            .DockItem("right", -1em);
+            .MarginLeftOrRight("margin-right", 1px);
+        }
+    }
+
+    & > li:first-child {
+        .MarginLeftOrRight("margin-left", 0);
+        a:before {
+            content: normal;
+        }
+    }
+
+    & > li:last-child {
+        background: none;
+        a {
+            color: @dark;
+        }
+        &:after, &:before {
+            content: normal;
+        }
+        &:hover {
             a {
                 color: @white;
-            }
-        }
-
-        .active {
-            &:after, &:before {
-                content: normal;
             }
         }
     }
 
-    &.small {
-        li {
-            .SwapMargin(0, .2em, 0, .8em);
+    .active, .active:hover {
+        background: none;
+        a {
+            color: @dark;
         }
+    }
+
+    .active:hover {
+        a {
+            color: @white;
+        }
+    }
+
+    .active {
+        &:after, &:before {
+            content: normal;
+        }
+    }
+
+    &.small {
         a {
             padding: .2em 1em;
             font-size: 11.9px;
         }
     }
     &.mini {
-        li {
-            .SwapMargin(0, .2em, 0, .6em);
-        }
         a {
             padding: .1em 1em;
             font-size: 10.5px;
         }
+    }
+
+    & > li > a > [class*=mif] {
+        vertical-align: -10%;
     }
 }

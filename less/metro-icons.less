@@ -1,0 +1,31 @@
+@font-face {
+	font-family: 'metro';
+	src:url('../fonts/metro.eot?izvoei');
+	src:url('../fonts/metro.eot?#iefixizvoei') format('embedded-opentype'),
+	url('../fonts/metro.woff?izvoei') format('woff'),
+	url('../fonts/metro.ttf?izvoei') format('truetype'),
+	url('../fonts/metro.svg?izvoei#metro') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="mif-"], [class*=" mif-"] {
+	display: inline-block;
+	font: normal normal normal 1.5em/1;
+	font-family: metro, "Segoe UI", "Open Sans", serif;
+	line-height: 1 ;
+	text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	transform: translate(0, 0);
+	vertical-align: middle;
+
+	&:before {
+		font-family: metro, serif;
+	}
+}
+
+@import "metro-icons-mixins";
+@import "metro-icons-animation";
+@import "metro-icons-content";
+

@@ -1,0 +1,697 @@
+@import (once) "variables";
+@import (once) "transform";
+@import (once) "utils";
+@import (once) "typography";
+
+.h-menu, .v-menu, .d-menu, .m-menu {
+	li:hover > .dropdown-toggle {
+		&:before {
+			border-color: @white;
+		}
+	}
+}
+
+.h-menu {
+    .TextAlignTo("left");
+	display: block;
+	.clear-float;
+	height: auto;
+	list-style: none inside none;
+	margin: 0;
+	padding: 0;
+    background-color: @white;
+    border-collapse: separate;
+
+	& > li {
+		display: block;
+		.FloatItem("left");
+		position: relative;
+
+		&:hover {
+			background-color: @lightCyan;
+			color: @white;
+
+			& > a {
+				color: @white;
+			}
+		}
+
+		&.no-hovered {
+			background-color: inherit;
+			color: inherit;
+		}
+
+		&:first-child {
+			.MarginLeftOrRight("margin-left", 0);
+		}
+
+		& > a {
+			display: block;
+			.FloatItem("left");
+			position: relative;
+			font-weight: normal;
+			color: lighten(@textColor, 30%);
+			font-size: .875rem;
+			outline: none;
+			text-decoration: none;
+			padding: 1.125rem 1.625rem;
+			border: none;
+
+			&:hover {
+				background-color: @lightCyan;
+				color: @white;
+			}
+		}
+
+        .input-control, .button {
+            margin-top: 10px;
+        }
+
+		&.active {
+			a {
+				background-color: @lightCyan;
+				color: @white;
+			}
+		}
+	}
+
+	& > li > .d-menu {
+		.DockItem("left", 0);
+		top: 100%;
+	}
+
+}
+
+.v-menu {
+    .TextAlignTo("left");
+    background: @white;
+    max-width: 15.625rem;
+	list-style: none inside none;
+	margin: 0;
+	padding: 0;
+
+	position: relative;
+	width: auto;
+	.FloatItem("left");
+
+	li {
+		display: block;
+		.FloatItem("none");
+		position: relative;
+		.clear-float;
+
+		a {
+			color: lighten(@textColor, 30%);
+			font-size: .875rem;
+			display: block;
+			.FloatItem("none");
+			.SwapPadding(.75rem, 2rem, .75rem, 2.5rem);
+			text-decoration: none;
+			vertical-align: middle;
+			position: relative;
+			white-space: nowrap;
+			min-width: 12.5rem;
+			border: none;
+
+
+			img, .icon {
+				position: absolute;
+				.DockItem("left", .875rem);
+				top: 50%;
+				margin-top: -.5625rem;
+				color: @textColor;
+				max-height: 1.125rem;
+				font-size: 1.125rem;
+				display: inline-block;
+				.MarginLeftOrRight("margin-right", .3125rem);
+				vertical-align: middle;
+				text-align: center;
+			}
+		}
+
+		&.active {
+			.BorderLeft(2px) solid;
+			border-color: @cyan;
+
+			& > a {
+				background-color: @lightCyan;
+				color: @white;
+				font-weight: bold;
+			}
+		}
+
+
+		&:hover {
+			text-decoration: none;
+			background: @lightCyan;
+
+			& > a, .icon {
+				color: @white;
+			}
+		}
+	}
+
+	.divider {
+		padding: 0;
+		height: 1px;
+		margin: 0 1px;
+		overflow: hidden;
+		background-color: lighten(#e5e5e5, 5%);
+		&:hover {
+			background-color: lighten(#e5e5e5, 5%);
+		}
+	}
+
+    &.subdown {
+        .d-menu {
+			min-width: 0;
+            position: relative;
+            width: 100%;
+            .DockItem("left", 0);
+            .DockItem("right", 0);
+            top: 100%;
+            box-shadow: none;
+        }
+    }
+
+    .item-block {
+        display: block;
+        padding: .625rem;
+		background-color: @grayLighter;
+    }
+
+    .d-menu {
+        .DockItem("left", 100%);
+        top: -10%;
+    }
+
+	.menu-title {
+		background-color: @menuItemTitleBackground;
+		font-size: 12px;
+		line-height: 14px;
+		padding: 4px 8px;
+		border: 0;
+		color: #646464;
+		&:first-child {
+			margin: 0;
+			border-top-width: 0;
+			&:hover {
+				border-top-width: 0;
+			}
+		}
+		&:hover {
+			background-color: @menuItemTitleBackground;
+			cursor: default;
+			border: 0;
+		}
+	}
+
+	.dropdown-toggle {
+		&:before {
+			.rotate(-135deg);
+			margin-top: -2px;
+		}
+	}
+
+	&.subdown {
+		.dropdown-toggle {
+			&:before {
+				.rotate(-45deg);
+				.MarginLeftOrRight("margin-left", -1.25rem);
+			}
+		}
+	}
+
+	li.disabled {
+		a {
+			color: @grayLighter;
+		}
+		&:hover {
+			background-color: inherit;
+			cursor: default;
+			border: 0;
+
+			a {
+				cursor: inherit;
+			}
+		}
+	}
+}
+
+.d-menu {
+    .v-menu;
+    position: absolute;
+    display: none;
+    z-index: @zindexDropdown;
+    //.DockItem("left", -.3125rem);
+    .DockItem("left", 0);
+    //min-width: 13.75rem;
+
+    .d-menu {
+        .DockItem("left", 100%);
+        top: -10%;
+    }
+
+    &.open {
+        display: block ;
+    }
+
+    &.drop-left {
+        .DockItem("left", -100%);
+    }
+
+    &.drop-up {
+        top: auto;
+        bottom: 0;
+    }
+
+	&.context {
+		li {
+			a {
+				font-size: .75rem;
+				.SwapPadding(.3125rem, 2rem, .3125rem, 2.5rem);
+				//color: @textColor;
+
+				.icon {
+					margin-top: -.4375rem;
+				}
+			}
+		}
+	}
+
+	&.place-right {
+		.DockItem("left", auto);
+		.DockItem("right", 0);
+		width: auto;
+	}
+
+    .block-shadow-impact;
+}
+
+.h-menu, .v-menu, .d-menu {
+    border-collapse: separate;
+    li:hover > .d-menu[data-show='immediate'] {
+        //display: block;
+    }
+}
+
+.m-menu {
+    border-collapse: separate;
+	.TextAlignTo("left");
+	display: block;
+	.clear-float;
+	height: auto ;
+	position: relative;
+	background-color: @white;
+	color: @dark;
+	.block-shadow-impact;
+	list-style: none inside none;
+	margin: 0;
+	padding: 0;
+
+
+	& > li, .m-menu-item {
+		display: block;
+		.FloatItem("left");
+		background-color: @white;
+
+		&:hover {
+			background-color: @lightCyan;
+
+			& > a {
+				color: @white;
+			}
+		}
+
+		&.no-hovered {
+			background-color: inherit;
+			color: inherit;
+		}
+
+		&:first-child {
+			.MarginLeftOrRight("margin-left", 0);
+		}
+
+		& > a {
+			display: block;
+			.FloatItem("left");
+			position: relative;
+			font-weight: normal;
+			color: inherit;
+			font-size: .875rem;
+			outline: none;
+			text-decoration: none;
+			padding: 1rem 1.625rem;// 1rem 1.125rem;
+			border: none;
+
+			&:hover {
+				background-color: inherit;
+			}
+
+			&.dropdown-toggle {
+				.SwapPadding(1rem, 1.625rem, 1rem, 1.125rem);
+			}
+		}
+
+		&.active-container {
+			background-color: @lightCyan;
+
+			a {
+				color: @white;
+
+				&.dropdown-toggle {
+					&:before {
+						border-color: @white;
+					}
+				}
+			}
+
+			.m-menu-container {
+				//box-shadow: 2px 2px 2px 0 rgba(0,0,0,.2);
+			}
+		}
+
+		.d-menu {
+			.DockItem("left", 0);
+			top: 100%;
+		}
+	}
+
+
+	.m-menu-container {
+		position: absolute;
+		.DockItem("left", 0);
+		.DockItem("right", 0);
+		top: 100%;
+		padding: .3125rem;
+		font-size: .75rem;
+		z-index: @zindexDropdown;
+		background-color: inherit;
+
+		li, a {
+			color: @white;
+		}
+
+		a {
+			text-decoration: underline;
+		}
+
+		li {
+			&:hover > a, &.active > a {
+				text-decoration: none;
+			}
+		}
+	}
+
+	.m-menu-container {
+		display: none;
+
+		&.open {
+			display: block;
+		}
+
+	}
+}
+
+.v-menu, .d-menu {
+	&.context {
+		li {
+			a {
+				font-size: .75rem;
+				.SwapPadding(.3125rem, 2rem, .3125rem, 2.5rem);
+
+				.icon {
+					margin-top: -.4375rem;
+					font-size: .825rem;
+					color: inherit;
+				}
+			}
+		}
+	}
+}
+
+.v-menu, .d-menu {
+	&.no-min-size {
+		li {
+			a {
+				min-width: 0;
+			}
+		}
+	}
+	&.full-size {
+		li {
+			a {
+				min-width: 0;
+				width: 100%;
+			}
+		}
+	}
+}
+
+.horizontal-menu {
+	display: block;
+	width: 100%;
+	color: @dark;
+	position: relative;
+	.flush-list;
+	.clear-float;
+
+	& > li {
+		display: block;
+		.FloatItem("left");
+		color: inherit;
+		background-color: inherit;
+		position: relative;
+
+		& > a {
+			position: relative;
+			display: block;
+			.FloatItem("left");
+			font-size: 1.4rem;
+			color: inherit;
+			background-color: inherit;
+			padding: .625rem 1.625rem;
+			line-height: 1.4rem;
+		}
+	}
+
+	& > li > .d-menu {
+		.DockItem("left", 0);
+		top: 100%;
+	}
+
+	&.compact {
+		& > li {
+			& > a {
+				font-size: .9rem;
+				line-height: .9rem;
+			}
+		}
+	}
+}
+
+.vertical-menu {
+	.horizontal-menu;
+	position: relative;
+	width: auto;
+	.FloatItem("left");
+
+	& > li {
+		.FloatItem("none");
+
+		& > a {
+			.FloatItem("none");
+		}
+	}
+
+	& > li > .d-menu {
+		.DockItem("left", 100%);
+		top: 0;
+	}
+
+	&.compact {
+		& > li {
+			& > a {
+				padding-top: .325rem;
+				padding-bottom: .325rem;
+			}
+		}
+	}
+
+	.dropdown-toggle {
+		&:before {
+			margin-top: -2px;
+			.rotate(-135deg);
+		}
+	}
+}
+
+.t-menu {
+	list-style: none inside none;
+	margin: 0;
+	padding: 0;
+	position: relative;
+	width: auto;
+	.FloatItem("left");
+	background-color: @white;
+    border-collapse: separate;
+
+	& > li {
+		position: relative;
+
+		& > a {
+			display: block;
+			padding: 1rem 1.2rem;
+			border-bottom: 1px @grayLighter solid;
+			position: relative;
+
+			.icon {
+				width: 1.5rem;
+				height: 1.5rem;
+				font-size: 1.5rem;
+			}
+		}
+
+		&:hover {
+			& > a {
+				background-color: @cyan;
+				color: @white;
+			}
+		}
+
+		&:last-child {
+			a {border-bottom: 0;}
+		}
+	}
+
+	.block-shadow-impact;
+}
+
+.t-menu {
+	&.compact {
+		& > li {
+			& > a {
+				padding: .5rem .7rem;
+
+				.icon {
+					width: 1rem;
+					height: 1rem;
+					font-size: 1rem;
+				}
+			}
+		}
+	}
+}
+
+.t-menu {
+	li .t-menu {
+		position: absolute;
+		.DockItem("left", 100%);
+		.MarginLeftOrRight("margin-left", .3125rem);
+		top: 0;
+		.FloatItem("none");
+
+		& > li {
+			.FloatItem("left");
+			display: block;
+
+			& > a {
+				.FloatItem("left");
+				display: block;
+			}
+		}
+	}
+
+	.t-menu.horizontal {
+		.t-menu {
+			.DockItem("left", 0);
+			top: 100% ;
+			margin-top: .3125rem ;
+			.MarginLeftOrRight("margin-left", 0);
+		}
+	}
+}
+
+.t-menu {
+	.dropdown-toggle {
+		&:after {
+			content: "";
+			background-color: @transparent;
+			position: absolute;
+			.DockItem("left", auto);
+			top: auto;
+			bottom: 0;
+			.DockItem("right", 0);
+			width: 0;
+			height: 0;
+			border-style: solid;
+			border-width: 0 0 8px 8px;
+			border-color: transparent transparent @cyan transparent;
+			.rotate(0);
+		}
+
+		&:before {
+			display: none;
+		}
+	}
+
+	& > li:hover {
+		& > .dropdown-toggle {
+			&:after {
+				border-color: transparent transparent @darkCyan transparent;
+			}
+		}
+	}
+}
+
+.t-menu.horizontal {
+	.t-menu;
+
+	& > li {
+		display: block;
+		.FloatItem("left");
+
+		& > a {
+			display: block;
+			.FloatItem("left");
+			.BorderLeftOrRight("border-right", 1px, @grayLighter, solid);
+			border-bottom: 0;
+		}
+
+		&:last-child {
+			& > a {
+				.BorderRight(0);
+			}
+		}
+	}
+}
+
+.t-menu.horizontal {
+	.t-menu:not(.horizontal) {
+		.DockItem("left", 0);
+		top: 100% ;
+		margin-top: .3125rem ;
+		.MarginLeftOrRight("margin-left", 0);
+
+		.t-menu.horizontal {
+			.DockItem("left", 100%);
+			.MarginLeftOrRight("margin-left", .3125rem);
+			top: 0 ;
+			.FloatItem("left");
+		}
+	}
+}
+
+.horizontal-menu, .h-menu, .m-menu {
+    & > li > .d-menu {
+        .DockItem("left", auto);
+    }
+}
+
+[data-role="dropdown"] {
+	&:not(.open), &:not(.keep-open) {
+		display: none;
+		position: absolute;
+		z-index: @zindexDropdown;
+	}
+}

@@ -1,378 +1,618 @@
-.button {
-    padding: 4px 12px;
-    text-align: center;
-    vertical-align: middle !important;
-    background-color: @inputRestState;
-    border: 1px transparent solid;
-    color: @grayDarker;
-    border-radius: 0;
-    cursor: pointer;
-//    position: relative;
-    display: inline-block;
-    outline: none;
-    font-family: @segoeLightFontFamily;
-    font-size: 14px;
-    line-height: 16px;
-
-    &.default {
-        background-color: #008287;
-        color: #fff;
-    }
-
-    &:active {
-//        top: 1px;
-//        .DockItem("left", 1px);
-    }
-
-    &:focus {
-        outline: 0;
-        border: 1px #353535 dotted;
-    }
-
-    &:disabled, &.disabled {
-        background-color: #eaeaea !important;
-        color: #bebebe !important;
-        cursor: not-allowed !important;
-    }
-
-    * {
-        color: inherit;
-        &:hover {
-            color: inherit;
-        }
-    }
-}
-
-a.button {
-    &:hover {
-        color: inherit;
-    }
-    * {
-        color: inherit;
-        &:hover {
-            color: inherit;
-        }
-    }
-}
+@import (once) "variables";
+@import (once) "colors";
+@import (once) "typography";
+@import (once) "transform";
+@import (once) "animations";
 
 .button {
-    &.primary {
-        background-color: @darkBlue !important;
-        color: @white !important;
-    }
+	padding: 0 1rem;
+	height: 2.125rem;
+	text-align: center;
+	vertical-align: middle;
+	background-color: @defaultBGColor;
+	border: 1px @borderColorButton solid;
+	color: @textColor;
+	cursor: pointer;
+	display: inline-block;
+	outline: none;
+	font-size: .875rem;
+	line-height: 1;
+	margin: .15625rem 0;
+	position: relative;
 
-    &.info {
-        background-color: @lightBlue !important;
-        color: @white !important;
-    }
+	&.default {
+		background-color: #008287;
+		color: #fff;
+	}
 
-    &.success {
-        background-color: @green !important;
-        color: @white !important;
-    }
+	&:hover {
+		border-color: darken(@inputHoverState, 10%);
+	}
 
-    &.warning {
-        background-color: @orange !important;
-        color: @white !important;
-    }
+	&:active {
+		background: @grayLighter;
+		color: @textColor;
+		box-shadow: none;
+	}
 
-    &.danger {
-        background-color: @darkRed !important;
-        color: @white !important;
-    }
+	&:focus {
+		outline: 0;
+	}
 
-    &.inverse {
-        background-color: @dark !important;
-        color: @white !important;
-    }
+	&:disabled, &.disabled {
+		background-color: #eaeaea;
+		color: #bebebe;
+		cursor: default;
+		border-color: transparent;
+	}
 
-    &.link {
-        background-color: transparent !important;
-        color: @linkColor !important;
-        &:hover {
-            text-decoration: underline;
-        }
-        &:disabled, &.disabled {
-            background-color: transparent !important;
-            color: #bebebe !important;
-            cursor: not-allowed !important;
-        }
-        [class*="icon-"] {
-            text-decoration: none !important;
-        }
-    }
+	* {
+		color: inherit;
+		&:hover {
+			color: inherit;
+		}
+	}
+
+	&.rounded {
+		border-radius: .325rem;
+	}
+
+	& > [class*=mif-] {
+		vertical-align: middle;
+	}
+}
+
+.button.button-shadow {
+	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+}
+
+.button {
+	img {
+		height: .875rem;
+		vertical-align: middle;
+		margin: 0;
+	}
+}
+
+.round-button, .cycle-button, .square-button {
+	.button;
+	width: 2.125rem;
+	min-width: 2.125rem;
+	padding: 0 ;
+	border-radius: 50%;
+	text-align: center;
+	text-decoration:none;
+	vertical-align: middle;
+
+	&.big-button {
+		.square(3.125rem);
+		line-height: 1.1;
+	}
+}
+
+.round-button, .cycle-button, .square-button {
+	&.mini-button {
+		.square(1.5rem);
+	}
+
+	&.small-button {
+		.square(1.7rem);
+	}
+
+	&.large-button {
+		.square(2.55rem);
+	}
+}
+
+.square-button {
+	border-radius: 0;
+}
+
+a.button, a.round-button, a.square-button {
+	color: inherit;
+	&:hover {text-decoration: none;}
 }
 
 
-button {
-    .button;
+
+.button {
+	&.loading-pulse {
+		position: relative;
+		padding: 0 1.325rem;
+		&:before {
+			position: absolute;
+			content: "";
+			.DockItem("left", 0);
+			top: 50%;
+			margin-top: -10px;
+			width: 20px;
+			height: 20px;
+			background-color: #333;
+
+			border-radius: 100%;
+			.animate( scaleout 1.0s infinite ease-in-out );
+		}
+
+		&.lighten {
+			&:before {
+				background-color: #fff;
+			}
+		}
+	}
+
+	&.loading-cube {
+		position: relative;
+		padding: 0 1.325rem;
+		&:before, &:after {
+			content: "";
+			background-color: #333;
+			width: 5px;
+			height: 5px;
+			position: absolute;
+			top: 50%;
+			.DockItem("left", 3px);
+			margin-top: -8px;
+
+			.animate( cubemove 1.8s infinite ease-in-out );
+		}
+
+		&:after {
+			animation-delay: -0.9s;
+		}
+
+		&.lighten {
+			&:before, &:after {
+				background-color: #fff;
+			}
+		}
+	}
 }
 
 .command-button {
-    .button;
-    .TextAlignTo("left");
-    font-size: 14pt;
-    width: auto;
-    small {
-        display: block;
-        .tertiary-text-secondary;
-        color: inherit;
-    }
-    [class*="icon-"] {
-        font-size: 1.7em;
-        margin-top: 0;
-    }
-    [class*="icon-"] {
-        &.on-left {.FloatItem("left");}
-        &.on-right {.FloatItem("right");}
-    }
+	.button;
+	height: auto;
+	.TextAlignTo("left");
+	font-size: 1.325rem;
+	.PaddingLeftOrRight("padding-left", 4rem);
+	padding-top: 8px;
+	padding-bottom: 4px;
 
-    [class*="icon-"] {
-        &.on-left + small {
-            .MarginLeftOrRight("margin-left", 40px);
-        }
-        &.on-right + small {
-            .MarginLeftOrRight("margin-right", 40px);
-        }
-    }
-}
+	small {
+		display: block;
+		font-size: .8rem;
+		line-height: 1.625rem;
+		margin-top: -.3125rem;
+	}
 
-.toolbar {
-    width: auto;
-    margin-bottom: 10px;
-    .clearfix;
+	.icon {
+		.DockItem("left", 1rem);
+		top: 50%;
+		margin-top: -1rem;
+		position: absolute;
+		font-size: 2rem;
+		height: 2rem;
+		width: 2rem;
+		.MarginLeftOrRight("margin-right", .625rem);
+	}
 
-    &.transparent, .transparent {
-        button, .button {
-            background-color: transparent;
+	&.icon-right {
+		.PaddingLeftOrRight("padding-left", 1rem);
+		.PaddingLeftOrRight("padding-right", 4rem);
 
-            &:hover {
-                background-color: @grayLighter;
-                border: 1px @white solid;
-            }
-        }
-    }
-
-    button, .button {
-        color: inherit;
-        padding: 4px 8px;
-        display: block;
-        .FloatItem("left");
-        font-size: 12pt;
-        line-height: 12pt;
-        .MarginLeftOrRight("margin-right", 2px);
-
-        &:last-child {
-            .MarginLeftOrRight("margin-right", 0);
-        }
-    }
-
-    &.no-spaces, .toolbar-group.no-spaces {
-        button, .button {
-            .MarginLeftOrRight("margin-right", 0);
-            &:active {
-                background-color: @dark;
-                color: @white;
-                top: auto;
-                .DockItem("left", auto);
-            }
-        }
-    }
-
-    .divider {
-        display: block;
-        .FloatItem("left");
-        height: 12px;
-        width: 1px;
-        margin: 8px 8px;
-        background-color: @grayLight;
-        vertical-align: middle !important;
-    }
-
-    .toolbar-group {
-        padding: 0;
-        margin: 0;
-        display: inline-block;
-        .MarginLeftOrRight("margin-right", 10px);
-        color: inherit;
-        .clearfix;
-    }
-}
-
-.button-dropdown {
-    position: relative;
-    display: inline-block;
-
-    .dropdown-menu.place-right {
-        .DockItem("right", 0);
-        .DockItem("left", auto);
-    }
-}
-
-button.dropdown-toggle, .button.dropdown-toggle {
-    .PaddingLeftOrRight("padding-right", 16px);
-    border: 0;
-    &:before {
-        position: absolute;
-        font-family: iconFont;
-        font-size: 14px;
-        .DockItem("right", 1px);
-        z-index: 2;
-    }
+		.icon {
+			.DockItem("left", auto);
+			.DockItem("right", 0);
+		}
+	}
 }
 
 .image-button {
-    .button;
-    position: relative;
-    border: 0;
-    .PaddingLeftOrRight("padding-right", 45px);
+	.button;
+	border: 0;
+	.PaddingLeftOrRight("padding-left", 2.75rem);
+	background-color: @grayLighter;
 
-    img, &:active img, [class*="icon-"] {
-        display: block;
-        position: absolute;
-        .FloatItem("right");
-        .DockItem("right", 0);
-        top: 0;
-        padding: 5px;
-        height: 100%;
-        .MarginLeftOrRight("margin-left", 0px);
-        box-sizing: border-box;
-        border: 1px transparent solid;
-        z-index: 2;
-        text-align: center;
-    }
-    [class*="icon-"] {
-        vertical-align: middle !important;
-        font-size: 12pt;
-        line-height: 12pt;
-        top: 0;
-        .DockItem("right", 0);
-    }
-    &.image-left {
-        .PaddingLeftOrRight("padding-right", 12px);
-        .PaddingLeftOrRight("padding-left", 45px);
+	&:active {
+		background-color: darken(@grayLighter, 5%);
+	}
 
-        img, &:active img, [class*="icon-"] {
-            .DockItem("right", auto);
-            .DockItem("left", 0);
-        }
-    }
+	.icon {
+		position: absolute;
+		.DockItem("left", 0);
+		top: 0;
+		height: 100%;
+		width: 2.125rem;
+		padding: .525rem;
+		font-size: 1rem;
+		background-color: @grayLight;
+		text-align: center;
+		vertical-align: middle;
+	}
 
-    &:focus {
-        border: 0;
-    }
+	img.icon {
+		padding-top: .525rem;
+	}
+
+	&.icon-right {
+		.PaddingLeftOrRight("padding-left", 1rem);
+		.PaddingLeftOrRight("padding-right", 2.75rem);
+
+		.icon {
+			.DockItem("right", 0);
+			.DockItem("left", auto);
+		}
+	}
 }
 
-.shortcut {
-    .button;
-    height: 92px;
-    width: 92px;
-    text-align: center;
-    font-size: 12pt;
-    border: 0;
-    border-bottom: 2px solid transparent;
-    display: inline-block;
-    position: relative;
-
-    [class*="icon-"] {
-        display: block;
-        margin: 10px;
-        font-size: 1.5em;
-    }
-
-    small {
-        display: block;
-        position: absolute;
-        top: 0;
-        .DockItem("right", 0);
-        padding: 2px 4px;
-        min-height: 10px;
-        min-width: 10px;
-        text-align: center;
-        vertical-align: middle;
-        font-family: @segoeBoldFontFamily;
-    }
-
-    &:hover {
-        border-color: @red;
-    }
-
-    &.link {
-        border: 1px @linkColor solid;
-        text-decoration: none !important;
-        &:hover {
-            border-bottom-width: 2px;
-        }
-    }
+a.image-button {
+	padding-top: 10px;
 }
 
-a.shortcut {
-    padding: 12px 0;
-    &:hover {
-        color: inherit;
-    }
+.image-button {
+	&.small-button {
+		.PaddingLeftOrRight("padding-left", 2rem);
+		.PaddingLeftOrRight("padding-right", 1rem);
+		padding-top: 0;
+		.icon {
+			width: 1.625rem;
+			font-size: .875rem;
+			height: 100%;
+			padding: .4rem;
+		}
+
+		&.icon-right {
+			.PaddingLeftOrRight("padding-left", .625rem);
+			.PaddingLeftOrRight("padding-right", 2rem);
+		}
+	}
 }
 
-.button-set {
-    .clearfix;
+.shortcut-button {
+	.button;
+	width: 5.75rem;
+	height: 5.75rem;
+	text-align: center;
 
-    .button, button {
-        display: block;
-        .FloatItem("left");
-        .MarginLeftOrRight("margin-right", 2px);
+	.icon, .title {
+		display: block;
+		color: inherit;
+	}
 
+	.icon {
+		font-size: 1.7rem;
+		height: 1.7rem;
+		width: 1.7rem;
+		margin: .875rem auto;
+	}
 
-        &.active {
-            background-color: @gray;
-            color: @white;
-        }
-    }
+	.title {
 
-    &.no-spaces {
-        button, .button {
-            &:active {
-                background-color: @dark;
-                color: @white;
-                top: auto;
-                .DockItem("left", auto);
-            }
-            .MarginLeftOrRight("margin-right", 0) !important;
-        }
-    }
+	}
 
-    &.transparent {
-        .button, button {
-            background-color: transparent;
+	.badge {
+		color: inherit;
+		position: absolute;
+		top: 0;
+		.DockItem("right", 0);
+		font-size: .7rem;
+		line-height: 1rem;
+		padding: 0 .225rem;
+	}
+}
 
-            &.active {
-                background-color: @gray;
-                color: @white;
-            }
-        }
-    }
+a.shortcut-button {
+	padding-top: 10px;
 }
 
 .button {
-    &:active {
-        .button > .inverse;
-        border-color: transparent;
-    }
+	&.dropdown-toggle {
+		.PaddingLeftOrRight("padding-right", 1.625rem);
+
+		&.drop-marker-light {
+			&:before, &:after {
+				background-color: @white;
+			}
+		}
+	}
 }
 
-.button, button {
-    &.large {
-        padding: 11px 19px;
-        font-size: 17.5px;
-        //line-height: 19.5px;
+.nav-button {
+	width: 2rem;
+	height: 2rem;
+	background-size: 1rem 1rem;
+	background: center center no-repeat;
+	text-indent: -9999px;
+	border: 0;
+	display: inline-block;
+	cursor: pointer;
+	z-index: 2;
+
+	&:active, &:focus {
+		outline: 1px @grayLighter solid;
+	}	position: relative;
+
+	&:hover {
+		//background: rgba(255,255,255, .1);
+	}
+
+	span {
+		position: absolute;
+		top: 1.2rem;
+		.DockItem("left", .5rem);
+		width: 1.2rem;
+		height: 2px;
+		margin: 0 0 0;
+		background: @dark;
+		.rotate(0);
+		.transition(.3s, linear);
+
+		&:before, &:after {
+			content: '';
+			position: absolute;
+			top: -.5rem;
+			.DockItem("right", 0);
+			width: 1.2rem;
+			height: 2px;
+			background: @dark;
+			.rotate(0);
+			.transition(.3s, linear);
+		}
+
+		&:after {
+			top: .5rem;
+		}
+	}
+
+	&.transform {
+		span {
+			.rotate(180deg);
+			background: @dark;
+
+			&:before, &:after {
+				content: '';
+				top: -5px;
+				.DockItem("right", 0);
+				width: .75rem;
+				.rotate(45deg);
+			}
+
+			&:after {
+				top: 5px;
+				.rotate(-45deg);
+			}
+		}
+	}
+}
+
+.group-of-buttons {
+	.button, .toolbar-button {
+		&.active {
+			background-color: @lighterBlue;
+			color: @white;
+		}
+		&:active {
+			background-color: @cyan;
+			color: @white;
+		}
+	}
+}
+
+.split-button {
+	display: inline-block;
+	position: relative;
+	.clear-float;
+
+	.button, .split {
+		display: block;
+		.FloatItem("left");
+	}
+
+	.split {
+		.SwapPadding(0, 1rem, 0, .625rem);
+		height: 2.125rem;
+		text-align: center;
+		vertical-align: middle ;
+		background-color: @defaultBGColor;
+		border: 1px @borderColorButton solid;
+		color: @textColor;
+		cursor: pointer;
+		outline: none;
+		font-size: .875rem;
+		line-height: 2.1rem;
+		position: relative;
+		margin: .15625rem 0;
+
+
+		&:hover {
+			background-color: @grayLighter;
+			border-color: darken(@inputHoverState, 10%);
+		}
+	}
+
+	.split-content {
+		position: absolute;
+		top: 100%;
+	}
+}
+
+.split {
+	&.primary {
+		background: @linkColor;
+		color: @white;
+		border-color: @linkColor;
+
+		&:active {
+			background: @darkCyan;
+		}
+		&:hover {
+			background: @lightCyan;
+			border-color: @lightCyan;
+		}
+		&.dropdown-toggle:before {
+			border-color: @white;
+		}
+	}
+	&.success {
+		background: @green;
+		color: @white;
+		border-color: @green;
+
+		&:active {
+			background: @darkGreen;
+		}
+		&:hover {
+			background: @lightGreen;
+			border-color: @lightGreen;
+		}
+		&.dropdown-toggle:before {
+			border-color: @white;
+		}
+	}
+	&.danger {
+		background: @red;
+		color: @white;
+		border-color: @red;
+
+		&:active {
+			background: @darkRed;
+		}
+		&:hover {
+			background: @lightRed;
+			border-color: @lightRed;
+		}
+		&.dropdown-toggle:before {
+			border-color: @white;
+		}
+	}
+	&.info {
+		background: @lightCyan;
+		color: @white;
+		border-color: @lightCyan;
+
+		&:active {
+			background: @cyan;
+		}
+		&:hover {
+			background: @lightBlue;
+			border-color: @lightBlue;
+		}
+		&.dropdown-toggle:before {
+			border-color: @white;
+		}
+	}
+	&.warning {
+		background: @orange;
+		color: @white;
+		border-color: @orange;
+
+		&:active {
+			background: @darkOrange;
+		}
+		&:hover {
+			background: @lightOrange;
+			border-color: @lightOrange;
+		}
+		&.dropdown-toggle:before {
+			border-color: @white;
+		}
+	}
+}
+
+.mini-button {
+	font-size: .6rem;
+	line-height: 1.3;
+	padding: .2rem .625rem;
+	height: 1.4rem;
+}
+
+.small-button {
+	font-size: .7rem;
+	line-height: 1.68rem;
+	padding: 0 .625rem;
+	height: 1.7rem;
+}
+
+.large-button {
+	height: 2.55rem;
+	font-size: 1.05rem;
+	line-height: 2.52rem;
+}
+
+.big-button {
+	height: 3.125rem;
+	font-size: 1.2rem;
+	line-height: 1;
+}
+.button {
+    &.primary {
+        background: @linkColor;
+        color: @white;
+        border-color: @linkColor;
+
+        &:active {
+            background: @darkCyan;
+            color: @white;
+        }
     }
-    &.small {
-        padding: 2px 10px;
-        font-size: 11.9px;
-        //line-height: 13.9px;
+    &.success {
+        background: @green;
+        color: @white;
+        border-color: @green;
+
+        &:active {
+            background: @darkGreen;
+            color: @white;
+        }
     }
-    &.mini {
-        padding: 0px 6px;
-        font-size: 10.5px;
-        //line-height: 12.5px;
+    &.danger, &.alert {
+        background: @red;
+        color: @white;
+        border-color: @red;
+
+        &:active {
+            background: @darkRed;
+            color: @white;
+        }
     }
+    &.info {
+        background: @lightCyan;
+        color: @white;
+        border-color: @lightCyan;
+
+        &:active {
+            background: @cyan;
+            color: @white;
+        }
+    }
+    &.warning {
+        background: @orange;
+        color: @white;
+        border-color: @orange;
+
+        &:active {
+            background: @darkOrange;
+            color: @white;
+        }
+    }
+    &.link {
+        background: @transparent;
+        color: @linkColor;
+        border-color: @transparent;
+        text-decoration: underline;
+
+        &:hover, &:active {
+            background: @transparent;
+            color: darken(@linkVisitedColor, 20%);
+            border-color: @transparent;
+        }
+    }
+}
+a, span, div {
+	&.button, &.round-button, &.cycle-button, &.square-button  {
+		padding-top: .53125rem;
+
+		&.big-button {
+			padding-top: .78125rem;
+		}
+	}
 }

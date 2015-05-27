@@ -1,0 +1,168 @@
+@import (once) "variables";
+@import (once) "typography";
+@import (once) "utils";
+
+.overlay {
+    position: fixed;
+    .DockItem("left", 0);
+    top: 0;
+    .DockItem("right", 0);
+    bottom: 0;
+    background-color: rgba(255,255,255, .5);
+    z-index: @zindexModal - 1;
+
+	&.transparent {
+		background-color: rgba(255,255,255, 0);
+	}
+}
+
+.window {
+	display: block;
+	position: relative;
+	height: auto;
+	width: 100%;
+	background-color: @winFlatBackgroundColor;
+
+	.block-shadow;
+}
+
+.window-caption {
+	position: relative;
+	background-color: @winFlatBackgroundColor;
+	padding: .4375rem .3125rem;
+	border-bottom: 1px @winFlatBorderColor solid;
+	border-top: 0;
+	cursor: default;
+
+	.window-caption-title {
+		font-size: .875rem;
+		.text-bold;
+	}
+
+	.window-caption-icon {
+		.MarginLeftOrRight("margin-left", .3125rem);
+		* {
+			height: 1rem;
+			width: 1rem;
+		}
+	}
+
+	.window-caption-icon ~ .window-caption-title {
+		.PaddingLeftOrRight("padding-left", .3125rem);
+	}
+
+	.btn-close, .btn-min, .btn-max {
+		position: absolute;
+		height: 1.5rem;
+		width: 1.5rem;
+		min-height: 1.5rem;
+		text-align: center;
+		vertical-align: middle;
+		font-size: 1rem;
+		font-weight: normal;
+		.SwapPadding(0, 0, .625rem, 0);
+		z-index: 3;
+		outline: none;
+		cursor: pointer;
+        display: block;
+
+		background-color: @winFlatBackgroundColor;
+		color: @winFlatSystemButtonRestColor;
+		top: .25rem;
+		.DockItem("right", .25rem);
+		&:hover {
+			background-color: @winFlatSystemButtonHoverBackground;
+			color: @winFlatSystemButtonActiveColor;
+			&:after {
+				border-color: @winFlatSystemButtonActiveColor;
+			}
+		}
+		&:active {
+			background-color: @winFlatSystemButtonActiveBackground;
+			color: @white;
+		}
+		&:after {
+			border-color: @winFlatSystemButtonRestColor;
+			content: '\D7';
+			position: absolute;
+			.DockItem("left", 50%);
+			top: -2px;
+			.MarginLeftOrRight("margin-left", -.25em);
+		}
+	}
+
+	.btn-min, .btn-max {
+		&:after {
+			display: block;
+			position: absolute;
+			width: .625rem;
+			height: .625rem;
+			border: 0 #000 solid;
+			border-bottom-width: 2px;
+			content: ' ';
+			bottom: .375rem;
+			.DockItem("left", 50%);
+			.MarginLeftOrRight("margin-left", -.375rem);
+			top: auto;
+		}
+	}
+
+	.btn-max {
+		&:after {
+			height: .375rem;
+			border: 1px #000 solid;
+			border-top-width: 2px;
+		}
+	}
+
+	.btn-max {
+		.DockItem("right", 1.8125rem);
+	}
+	.btn-min {
+		.DockItem("right", 3.375rem);
+	}
+	.btn-close {
+		&:after {
+			margin-top: .1875rem;
+			.MarginLeftOrRight("margin-left", -.3125rem);
+		}
+	}
+}
+
+.window-content {
+	position: relative;
+	width: 100%;
+	height: auto;
+	display: block;
+	padding: .25rem;
+}
+
+.window {
+	&.success {
+		.window-caption {
+			background-color: @green;
+			color: @white;
+		}
+		.block-shadow-success;
+	}
+}
+
+.window {
+	&.error {
+		.window-caption {
+			background-color: @red;
+			color: @white;
+		}
+		.block-shadow-error;
+	}
+}
+
+.window {
+	&.warning {
+		.window-caption {
+			background-color: @orange;
+			color: @white;
+		}
+		.block-shadow-warning;
+	}
+}

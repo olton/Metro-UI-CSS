@@ -1,8 +1,11 @@
+@import (once) "variables";
+@import (once) "utils";
+
 .slider {
     height: 12px;
     width: auto;
     position: relative;
-    background-color: @sliderBackgroundColor;
+    background-color: @grayLight;
     margin-bottom: 10px;
 
     .marker {
@@ -12,7 +15,7 @@
         position: absolute;
         top: 0;
         .DockItem("left", 0);
-        background-color: @sliderMarkerColor;
+        background-color: @dark;
         z-index: 2;
 
         &:focus, &:active, &hover {
@@ -23,12 +26,12 @@
     .complete {
         height: 100%;
         width: auto;
-        background-color: @sliderCompleteColor;
+        background-color: @teal;
         z-index: 1;
         transition: background .3s ease;
     }
 
-    &>.hint {
+    & > .slider-hint {
         background-color: @white;
         position: absolute;
         z-index: 3;
@@ -37,20 +40,22 @@
         top: -40px;
         min-width: 30px;
         text-align: center;
-        #font > .segoe-light;
         font-size: 14px;
-        .shadow;
         display: none;
+		.block-shadow;
+		&:before {
+			display: none;
+		}
     }
 
     &.permanent-hint {
-        & > .hint {
+        & > .slider-hint {
             display: block;
         }
     }
 
     &.hint-bottom {
-        .hint {
+        .slider-hint {
             top: 100%;
             margin-top: 5px;
         }
@@ -59,27 +64,33 @@
     &.vertical {
         height: 100px;
         width: 12px;
+		.FloatItem("left");
+		.MarginLeftOrRight("margin-right", 10px);
+
+		&:last-child:first-child {
+			.MarginLeftOrRight("margin-left", 0);
+		}
 
         .marker {
-            .DockItem("left", 0) !important;
+            .DockItem("left", 0);
         }
 
         .complete {
             position: absolute;
             height: auto;
-            width: 100% !important;
+            width: 100% ;
             bottom: 0;
             .DockItem("left", 0);
         }
 
-        .hint {
+        .slider-hint {
             .DockItem("left", 100%);
             .MarginLeftOrRight("margin-left", 5px);
             margin-top: 0;
         }
 
         &.hint-left {
-            .hint {
+            .slider-hint {
                 .DockItem("left", -40px);
             }
         }
@@ -87,13 +98,13 @@
 
     &:hover {
         .complete {
-            background-color: @sliderCompleteHoverColor;
+            background-color: @lightTeal;
         }
     }
 
     &:active, &:active + .marker:active {
         .complete {
-            background-color: @sliderCompleteHoverColor;
+            background-color: @lightTeal;
         }
     }
 
@@ -103,4 +114,24 @@
     &.place-right {
         .MarginLeftOrRight("margin-left", 20px);
     }
+}
+
+.slider {
+	&.large {
+		height: 24px;
+
+		.marker {
+			width: 24px;
+			height: 24px;
+		}
+
+		.slider-hint {
+			min-width: 30px;
+		}
+
+		&.vertical {
+			width: 24px;
+			height: 100px;
+		}
+	}
 }
