@@ -203,14 +203,14 @@
 
                     parent.toggleClass('collapsed');
                     if (!parent.hasClass('collapsed')) {
-                        parent.children('ul').slideDown('fast');
+                        parent.children('ul').fadeIn('fast');
                         if (typeof o.onExpand === 'string') {
                             window[o.onExpand](parent, leaf, node);
                         } else {
                             o.onExpand(parent, leaf, node);
                         }
                     } else {
-                        parent.children('ul').slideUp('fast');
+                        parent.children('ul').fadeOut('fast');
                         if (typeof o.onCollapse === 'string') {
                             window[o.onCollapse](leaf, parent, node, that);
                         } else {
@@ -229,14 +229,14 @@
 
                 parent.toggleClass('collapsed');
                 if (!parent.hasClass('collapsed')) {
-                    parent.children('ul').slideDown('fast');
+                    parent.children('ul').fadeIn('fast');
                     if (typeof o.onExpand === 'string') {
                         window[o.onExpand](leaf, parent, node, that);
                     } else {
                         o.onExpand(leaf, parent, node, that);
                     }
                 } else {
-                    parent.children('ul').slideUp('fast');
+                    parent.children('ul').fadeOut('fast');
                     if (typeof o.onCollapse === 'string') {
                         window[o.onCollapse](leaf, parent, node, that);
                     } else {
