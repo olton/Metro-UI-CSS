@@ -6801,14 +6801,14 @@ window.METRO_LOCALES = {
 
                     parent.toggleClass('collapsed');
                     if (!parent.hasClass('collapsed')) {
-                        parent.children('ul').slideDown('fast');
+                        parent.children('ul').fadeIn('fast');
                         if (typeof o.onExpand === 'string') {
                             window[o.onExpand](parent, leaf, node);
                         } else {
                             o.onExpand(parent, leaf, node);
                         }
                     } else {
-                        parent.children('ul').slideUp('fast');
+                        parent.children('ul').fadeOut('fast');
                         if (typeof o.onCollapse === 'string') {
                             window[o.onCollapse](leaf, parent, node, that);
                         } else {
@@ -6827,14 +6827,14 @@ window.METRO_LOCALES = {
 
                 parent.toggleClass('collapsed');
                 if (!parent.hasClass('collapsed')) {
-                    parent.children('ul').slideDown('fast');
+                    parent.children('ul').fadeIn('fast');
                     if (typeof o.onExpand === 'string') {
                         window[o.onExpand](leaf, parent, node, that);
                     } else {
                         o.onExpand(leaf, parent, node, that);
                     }
                 } else {
-                    parent.children('ul').slideUp('fast');
+                    parent.children('ul').fadeOut('fast');
                     if (typeof o.onCollapse === 'string') {
                         window[o.onCollapse](leaf, parent, node, that);
                     } else {
@@ -7063,8 +7063,6 @@ window.METRO_LOCALES = {
             var that = this, element = this.element, o = this.options;
             var inputs = element.find("[data-validate-func]");
             var submit = element.find(":submit").attr('disabled', 'disabled');
-
-            console.log(submit.attr('disabled'));
 
             var result = 0;
             $('.validator-hint').hide();

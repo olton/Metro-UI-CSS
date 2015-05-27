@@ -161,8 +161,6 @@
             var inputs = element.find("[data-validate-func]");
             var submit = element.find(":submit").attr('disabled', 'disabled');
 
-            console.log(submit.attr('disabled'));
-
             var result = 0;
             $('.validator-hint').hide();
             inputs.removeClass('error success');
