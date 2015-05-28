@@ -14009,6 +14009,21 @@ p [data-hint] {
 .input-control .select2-container {
   margin: 0;
 }
+.input-control.error .select2-selection {
+  border: 1px solid #ce352c;
+}
+.input-control.warning .select2-selection {
+  border: 1px solid #e3c800;
+}
+.input-control.success .select2-selection {
+  border: 1px solid #60a917;
+}
+.input-control.info .select2-selection {
+  border: 1px solid #1ba1e2;
+}
+.input-control.required .select2-selection {
+  border: 1px dashed #1ba1e2;
+}
 /*
 * Third-party plugin DataTables
 * Plugin home page: http://datatables.net/
