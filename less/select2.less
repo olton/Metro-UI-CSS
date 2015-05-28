@@ -347,4 +347,30 @@
 	.select2-container {
 		margin: 0;
 	}
+
+    &.error {
+        .select2-selection {
+            border: 1px solid @red;
+        }
+    }
+    &.warning {
+        .select2-selection {
+            border: 1px solid @yellow;
+        }
+    }
+    &.success {
+        .select2-selection {
+            border: 1px solid @green;
+        }
+    }
+    &.info {
+        .select2-selection {
+            border: 1px solid @cyan;
+        }
+    }
+    &.required {
+        .select2-selection {
+            border: 1px dashed @cyan;
+        }
+    }
 }

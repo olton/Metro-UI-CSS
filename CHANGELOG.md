@@ -7,6 +7,7 @@
 * remove outline for nav-button
 * change calendar min-width to 220px or 13.75rem
 * fix class collapsed for treeview leaf
+* add states for select2
 
 ## 3.0.5
 * fix triggering for input when clear button clicked
