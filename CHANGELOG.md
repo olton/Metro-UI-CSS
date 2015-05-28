@@ -3,8 +3,8 @@
 ## 3.0.6
 * add support user defined onsubmit for validator over data-on-submit attribute
 * add light color for nav-button
-* fix square(round, cycle)-button sizes
 * remove outline for nav-button
+* fix square(round, cycle)-button sizes
 * change calendar min-width to 220px or 13.75rem
 * fix class collapsed for treeview leaf
 * add states for select2

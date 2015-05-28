@@ -7031,7 +7031,14 @@ window.METRO_LOCALES = {
             element.attr('novalidate', 'novalidate');
 
             if (o.showRequiredState) {
-                inputs.addClass('required');
+                $.each(inputs, function(){
+                    var input = $(this);
+                    if (input.parent().hasClass('input-control')) {
+                        input.parent().addClass('required');
+                    } else {
+                        input.addClass('required');
+                    }
+                });
             }
 
             inputs.on('focus', function(){
@@ -7063,7 +7070,7 @@ window.METRO_LOCALES = {
         _submit: function(){
             var that = this, element = this.element, o = this.options;
             var inputs = element.find("[data-validate-func]");
-            var submit = element.find(":submit").attr('disabled', 'disabled');
+            var submit = element.find(":submit").attr('disabled', 'disabled').addClass('disabled');
 
             var result = 0;
             $('.validator-hint').hide();
@@ -7113,13 +7120,13 @@ window.METRO_LOCALES = {
             }
 
             if (result !== 0) {
-                submit.removeAttr('disabled');
+                submit.removeAttr('disabled').removeClass('disabled');
                 return false;
             }
 
             result = (typeof o.onSubmit === 'string') ? window[o.onSubmit](element[0]) : result = o.onSubmit(element[0]);
 
-            submit.removeAttr('disabled');
+            submit.removeAttr('disabled').removeClass('disabled');
 
             return result;
         },
