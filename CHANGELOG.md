@@ -9,6 +9,7 @@
 * fix class collapsed for treeview leaf
 * add states for select2
 * upd Metro Icon Fonts (added new 33 icons)
+* fix static rating
 
 ## 3.0.5
 * fix triggering for input when clear button clicked
