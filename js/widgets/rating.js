@@ -82,7 +82,7 @@
 
             stars.on('click', function(e){
 
-                if (o.static) {
+                if (o.static || element.hasClass('static') || element.data('static')) {
                     return false;
                 }
 
