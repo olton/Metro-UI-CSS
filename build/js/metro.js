@@ -5317,6 +5317,10 @@ window.METRO_LOCALES = {
 
             stars.on('click', function(e){
 
+                if (o.static) {
+                    return false;
+                }
+
                 if (typeof o.onRate === 'string') {
                     if (!window[o.onRate]($(this).data('star-value'), this, that)) {
                         return false;
