@@ -2461,7 +2461,7 @@ span {
 }
 /* Block function */
 .set-border {
-  border: 1px #eeeeee solid;
+  border: 1px #d9d9d9 solid;
 }
 .set-border.medium-border {
   border-width: 8px;
@@ -7112,13 +7112,21 @@ div.square-button.big-button {
   min-height: 2.125rem;
   height: 2.125rem;
   position: relative;
-  width: 10.875rem;
   vertical-align: middle;
   margin: .325rem 0;
   line-height: 1;
 }
 .input-control[data-role=select] {
   height: auto;
+}
+.input-control.text,
+.input-control.select,
+.input-control.file,
+.input-control.password,
+.input-control.number,
+.input-control.email,
+.input-control.tel {
+  width: 10.875rem;
 }
 .input-control.text .button,
 .input-control.select .button,
@@ -13516,7 +13524,7 @@ p [data-hint] {
 .streamer .events .event-super {
   height: 100%;
   min-height: 100%;
-  border: 1px #eeeeee solid;
+  border: 1px #d9d9d9 solid;
 }
 .streamer .events .event-super.medium-border {
   border-width: 8px;
@@ -13540,7 +13548,7 @@ p [data-hint] {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
-  border: 1px #eeeeee solid;
+  border: 1px #d9d9d9 solid;
 }
 .streamer .events .event-stream .event.medium-border {
   border-width: 8px;
