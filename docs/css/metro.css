@@ -7112,7 +7112,7 @@ div.square-button.big-button {
   min-height: 2.125rem;
   height: 2.125rem;
   position: relative;
-  min-width: 10.875rem;
+  width: 10.875rem;
   vertical-align: middle;
   margin: .325rem 0;
   line-height: 1;
