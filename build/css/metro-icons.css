@@ -2331,7 +2331,7 @@
 }
 /* Block function */
 .set-border {
-  border: 1px #eeeeee solid;
+  border: 1px #d9d9d9 solid;
 }
 .set-border.medium-border {
   border-width: 8px;
