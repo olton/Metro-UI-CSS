@@ -7272,6 +7272,20 @@ div.square-button.big-button {
   font-size: 1rem;
   margin-top: -0.5rem;
 }
+.input-control.required input,
+.input-control.required textarea,
+.input-control.required select {
+  border: 1px dashed #1ba1e2;
+}
+.input-control.required.neon input,
+.input-control.required.neon textarea,
+.input-control.required.neon select {
+  box-shadow: 0 0 25px 0 rgba(89, 205, 226, 0.7);
+}
+.input-control.required .input-state-required {
+  display: block;
+  color: #1ba1e2;
+}
 .input-control.error input,
 .input-control.error textarea,
 .input-control.error select {
@@ -7325,20 +7339,6 @@ div.square-button.big-button {
   box-shadow: 0 0 25px 0 rgba(89, 205, 226, 0.7);
 }
 .input-control.info .input-state-success {
-  display: block;
-  color: #1ba1e2;
-}
-.input-control.required input,
-.input-control.required textarea,
-.input-control.required select {
-  border: 1px dashed #1ba1e2;
-}
-.input-control.required.neon input,
-.input-control.required.neon textarea,
-.input-control.required.neon select {
-  box-shadow: 0 0 25px 0 rgba(89, 205, 226, 0.7);
-}
-.input-control.required .input-state-required {
   display: block;
   color: #1ba1e2;
 }
@@ -13789,7 +13789,7 @@ p [data-hint] {
   position: absolute;
   left: -100000px;
   width: 100%;
-  z-index: 999;
+  z-index: 1051;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
 }
 .select2-results {
