@@ -137,6 +137,20 @@
         margin-top: -.5rem;
     }
 
+    &.required {
+        input, textarea, select {
+            border: 1px dashed @cyan ;
+        }
+        &.neon {
+            input, textarea, select {
+                .block-shadow-info;
+            }
+        }
+        .input-state-required {
+            display: block;
+            color: @cyan;
+        }
+    }
 	&.error {
 		input, textarea, select {
             border: 1px solid @red;
@@ -191,20 +205,6 @@
 			}
 		}
         .input-state-success {
-            display: block;
-            color: @cyan;
-        }
-	}
-	&.required {
-		input, textarea, select {
-			border: 1px dashed @cyan ;
-		}
-		&.neon {
-			input, textarea, select {
-				.block-shadow-info;
-			}
-		}
-        .input-state-required {
             display: block;
             color: @cyan;
         }
