@@ -85,6 +85,11 @@ module.exports = function(grunt) {
         },
 
         copy: {
+            build_font: {
+                src: 'fonts/*',
+                dest: 'build/',
+                expand: true
+            },            
             docs_css_core: {
                 src: 'build/css/<%= pkg.name %>.css',
                 dest: 'docs/css/<%= pkg.name %>.css'
