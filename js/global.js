@@ -1,10 +1,11 @@
 window.METRO_VERSION = '3.0.5';
-window.METRO_AUTO_REINIT = true;
-window.METRO_LANGUAGE = 'en';
-window.METRO_LOCALE = 'EN_en';
-window.METRO_CURRENT_LOCALE = 'en';
-window.METRO_SHOW_TYPE = 'slide';
-window.METRO_DEBUG = true;
+
+if (window.METRO_AUTO_REINIT === undefined) window.METRO_AUTO_REINIT = true;
+if (window.METRO_LANGUAGE === undefined) window.METRO_LANGUAGE = 'en';
+if (window.METRO_LOCALE === undefined) window.METRO_LOCALE = 'EN_en';
+if (window.METRO_CURRENT_LOCALE === undefined) window.METRO_CURRENT_LOCALE = 'en';
+if (window.METRO_SHOW_TYPE === undefined) window.METRO_SHOW_TYPE = 'slide';
+if (window.METRO_DEBUG === undefined) window.METRO_DEBUG = true;
 
 window.canObserveMutation = 'MutationObserver' in window;
 
