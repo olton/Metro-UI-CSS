@@ -1,5 +1,7 @@
 # Changelog 
 
+## 3.0.7
+
 ## 3.0.6
 * add support user defined onsubmit for validator over data-on-submit attribute
 * add light color for nav-button

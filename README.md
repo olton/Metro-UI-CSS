@@ -5,7 +5,7 @@ Metro UI CSS developed with the advice of Microsoft to build the user interface 
  
 ## Current Version
 
-### 3.0.6
+### 3.0.7
 
 #### Install with bower
 bower install metro
