@@ -348,6 +348,11 @@
 		margin: 0;
 	}
 
+    &.required {
+        .select2-selection {
+            border: 1px dashed @cyan;
+        }
+    }
     &.error {
         .select2-selection {
             border: 1px solid @red;
@@ -366,11 +371,6 @@
     &.info {
         .select2-selection {
             border: 1px solid @cyan;
-        }
-    }
-    &.required {
-        .select2-selection {
-            border: 1px dashed @cyan;
         }
     }
 }

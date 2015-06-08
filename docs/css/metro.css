@@ -14018,6 +14018,9 @@ p [data-hint] {
 .input-control .select2-container {
   margin: 0;
 }
+.input-control.required .select2-selection {
+  border: 1px dashed #1ba1e2;
+}
 .input-control.error .select2-selection {
   border: 1px solid #ce352c;
 }
@@ -14029,9 +14032,6 @@ p [data-hint] {
 }
 .input-control.info .select2-selection {
   border: 1px solid #1ba1e2;
-}
-.input-control.required .select2-selection {
-  border: 1px dashed #1ba1e2;
 }
 /*
 * Third-party plugin DataTables
