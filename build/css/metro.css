@@ -3780,6 +3780,34 @@ a.tag {
 .table .super-condensed td {
   padding: .125rem;
 }
+.table tbody tr.error {
+  background-color: #ce352c;
+  color: #ffffff;
+}
+.table tbody tr.error:hover {
+  background-color: #da5a53;
+}
+.table tbody tr.warning {
+  background-color: #fa6800;
+  color: #ffffff;
+}
+.table tbody tr.warning:hover {
+  background-color: #c29008;
+}
+.table tbody tr.success {
+  background-color: #60a917;
+  color: #ffffff;
+}
+.table tbody tr.success:hover {
+  background-color: #7ad61d;
+}
+.table tbody tr.info {
+  background-color: #1ba1e2;
+  color: #ffffff;
+}
+.table tbody tr.info:hover {
+  background-color: #59cde2;
+}
 .app-bar {
   display: block;
   width: 100%;
@@ -14171,6 +14199,34 @@ p [data-hint] {
 .dataTable .super-condensed th,
 .dataTable .super-condensed td {
   padding: .125rem;
+}
+.dataTable tbody tr.error {
+  background-color: #ce352c;
+  color: #ffffff;
+}
+.dataTable tbody tr.error:hover {
+  background-color: #da5a53;
+}
+.dataTable tbody tr.warning {
+  background-color: #fa6800;
+  color: #ffffff;
+}
+.dataTable tbody tr.warning:hover {
+  background-color: #c29008;
+}
+.dataTable tbody tr.success {
+  background-color: #60a917;
+  color: #ffffff;
+}
+.dataTable tbody tr.success:hover {
+  background-color: #7ad61d;
+}
+.dataTable tbody tr.info {
+  background-color: #1ba1e2;
+  color: #ffffff;
+}
+.dataTable tbody tr.info:hover {
+  background-color: #59cde2;
 }
 .dataTable .sorting {
   position: relative;
