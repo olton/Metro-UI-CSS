@@ -1,4 +1,4 @@
-window.METRO_CALENDAR_WEEK_START = 0;
+//window.METRO_CALENDAR_WEEK_START = 0;
 window.METRO_LOCALES = {
     'en': {
         months: [
