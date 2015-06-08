@@ -11,6 +11,7 @@
 * upd Metro Icon Fonts (added new 33 icons)
 * fix static rating
 * remove min-width for input
+* add states for table rows
 
 ## 3.0.5
 * fix triggering for input when clear button clicked
