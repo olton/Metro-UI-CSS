@@ -120,8 +120,80 @@
                         </div>
                     </div>
                 </div>
+                <h5>Select states</h5>
+                <div class="row cells5">
+                    <div class="cell">
+                        <div class="input-control error full-size" data-role="select" data-template-result="fmtState" data-placeholder="error">
+                            <select class="full-size">
+                                <option></option>
+                                <option value="AK">Alaska</option>
+                                <option value="HI">Hawaii</option>
+                                <option value="CA">California</option>
+                                <option value="NV">Nevada</option>
+                                <option value="OR">Oregon</option>
+                                <option value="WA">Washington</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="cell">
+                        <div class="input-control warning full-size" data-role="select" data-template-result="fmtState" data-placeholder="warning">
+                            <select class="full-size">
+                                <option></option>
+                                <option value="AK">Alaska</option>
+                                <option value="HI">Hawaii</option>
+                                <option value="CA">California</option>
+                                <option value="NV">Nevada</option>
+                                <option value="OR">Oregon</option>
+                                <option value="WA">Washington</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="cell">
+                        <div class="input-control success full-size" data-role="select" data-template-result="fmtState" data-placeholder="success">
+                            <select class="full-size">
+                                <option></option>
+                                <option value="AK">Alaska</option>
+                                <option value="HI">Hawaii</option>
+                                <option value="CA">California</option>
+                                <option value="NV">Nevada</option>
+                                <option value="OR">Oregon</option>
+                                <option value="WA">Washington</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="cell">
+                        <div class="input-control info full-size" data-role="select" data-template-result="fmtState" data-placeholder="info">
+                            <select class="full-size">
+                                <option></option>
+                                <option value="AK">Alaska</option>
+                                <option value="HI">Hawaii</option>
+                                <option value="CA">California</option>
+                                <option value="NV">Nevada</option>
+                                <option value="OR">Oregon</option>
+                                <option value="WA">Washington</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="cell">
+                        <div class="input-control required full-size" data-role="select" data-template-result="fmtState" data-placeholder="required">
+                            <select class="full-size">
+                                <option></option>
+                                <option value="AK">Alaska</option>
+                                <option value="HI">Hawaii</option>
+                                <option value="CA">California</option>
+                                <option value="NV">Nevada</option>
+                                <option value="OR">Oregon</option>
+                                <option value="WA">Washington</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+
+        <p class="padding10 bg-grayLighter">
+            <span class="tag alert">Important!</span> States for select object displayed only for select placed in <span class="tag">input-control</span> container.
+        </p>
 
         <h3>How to use</h3>
 
@@ -147,6 +219,14 @@
             <h5>Metro UI CSS declarative style</h5>
             <pre class="prettyprint linenums"><code>
                 &lt;div class="input-control" data-role="select"&gt;
+                    &lt;select&gt;
+                    &lt;option&gt;option&lt;/option&gt;
+                    ...
+                    &lt;option&gt;option&lt;/option&gt;
+                    &lt;/select&gt;
+                &lt;/div&gt;
+
+                &lt;div class="input-control error" data-role="select"&gt;
                     &lt;select&gt;
                     &lt;option&gt;option&lt;/option&gt;
                     ...

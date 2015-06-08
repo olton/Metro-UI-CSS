@@ -189,3 +189,36 @@
 		th, td {padding: .125rem;}
 	}
 }
+
+.table {
+    tbody tr {
+        &.error {
+            background-color: @red;
+            color: @white;
+            &:hover {
+                background-color: @lightRed;
+            }
+        }
+        &.warning {
+            background-color: @orange;
+            color: @white;
+            &:hover {
+                background-color: @lightOrange;
+            }
+        }
+        &.success {
+            background-color: @green;
+            color: @white;
+            &:hover {
+                background-color: @lightGreen;
+            }
+        }
+        &.info {
+            background-color: @cyan;
+            color: @white;
+            &:hover {
+                background-color: @lightCyan;
+            }
+        }
+    }
+}

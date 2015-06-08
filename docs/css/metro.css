@@ -2461,13 +2461,22 @@ span {
 }
 /* Block function */
 .set-border {
-  border: 1px #eeeeee solid;
+  border: 1px #d9d9d9 solid;
 }
 .set-border.medium-border {
   border-width: 8px;
 }
 .set-border.large-border {
   border-width: 16px;
+}
+.pos-abs {
+  position: absolute !important;
+}
+.pos-rel {
+  position: relative !important;
+}
+.pos-fix {
+  position: fixed !important;
 }
 /* transform functions */
 .rotate45 {
@@ -3770,6 +3779,34 @@ a.tag {
 .table .super-condensed th,
 .table .super-condensed td {
   padding: .125rem;
+}
+.table tbody tr.error {
+  background-color: #ce352c;
+  color: #ffffff;
+}
+.table tbody tr.error:hover {
+  background-color: #da5a53;
+}
+.table tbody tr.warning {
+  background-color: #fa6800;
+  color: #ffffff;
+}
+.table tbody tr.warning:hover {
+  background-color: #c29008;
+}
+.table tbody tr.success {
+  background-color: #60a917;
+  color: #ffffff;
+}
+.table tbody tr.success:hover {
+  background-color: #7ad61d;
+}
+.table tbody tr.info {
+  background-color: #1ba1e2;
+  color: #ffffff;
+}
+.table tbody tr.info:hover {
+  background-color: #59cde2;
 }
 .app-bar {
   display: block;
@@ -5330,31 +5367,6 @@ a.tag {
   color: #114968;
   border-color: transparent;
 }
-.round-button.big-button,
-.cycle-button.big-button,
-.square-button.big-button {
-  width: 3.125rem;
-  height: 3.125rem;
-  line-height: 1.1;
-}
-.round-button.mini-button,
-.cycle-button.mini-button,
-.square-button.mini-button {
-  width: 1.5rem;
-  height: 1.5rem;
-}
-.round-button.small-button,
-.cycle-button.small-button,
-.square-button.small-button {
-  width: 1.7rem;
-  height: 1.7rem;
-}
-.round-button.large-button,
-.cycle-button.large-button,
-.square-button.large-button {
-  width: 2.55rem;
-  height: 2.55rem;
-}
 .square-button {
   border-radius: 0;
 }
@@ -5839,6 +5851,7 @@ a.image-button {
   width: 5.75rem;
   height: 5.75rem;
   text-align: center;
+  font-size: .75rem;
 }
 .shortcut-button.default {
   background-color: #008287;
@@ -6032,10 +6045,6 @@ a.shortcut-button {
   z-index: 2;
   position: relative;
 }
-.nav-button:active,
-.nav-button:focus {
-  outline: 1px #eeeeee solid;
-}
 .nav-button span {
   position: absolute;
   top: 1.2rem;
@@ -6082,6 +6091,13 @@ a.shortcut-button {
   top: 5px;
   -webkit-transform: rotate(-45deg);
           transform: rotate(-45deg);
+}
+.nav-button.light span {
+  background-color: #ffffff;
+}
+.nav-button.light span:before,
+.nav-button.light span:after {
+  background-color: #ffffff;
 }
 .group-of-buttons .button.active,
 .group-of-buttons .toolbar-button.active {
@@ -6229,6 +6245,42 @@ a.shortcut-button {
   height: 3.125rem;
   font-size: 1.2rem;
   line-height: 1;
+}
+.round-button.mini-button,
+.cycle-button.mini-button,
+.square-button.mini-button {
+  width: 1.4rem;
+  height: 1.4rem;
+  font-size: .6rem;
+  line-height: 1;
+  padding: 0;
+  min-width: 0;
+}
+.round-button.small-button,
+.cycle-button.small-button,
+.square-button.small-button {
+  width: 1.7rem;
+  height: 1.7rem;
+  font-size: .7rem;
+  line-height: 1.68rem;
+  padding: 0;
+  min-width: 0;
+}
+.round-button.large-button,
+.cycle-button.large-button,
+.square-button.large-button {
+  font-size: 1.05rem;
+  line-height: 1;
+  width: 2.55rem;
+  height: 2.55rem;
+}
+.round-button.big-button,
+.cycle-button.big-button,
+.square-button.big-button {
+  font-size: 1.2rem;
+  line-height: 1;
+  width: 3.125rem;
+  height: 3.125rem;
 }
 .button.primary {
   background: #2086bf;
@@ -6520,22 +6572,33 @@ div.square-button.big-button {
   color: #114968;
   border-color: transparent;
 }
-.toolbar .toolbar-button.big-button {
-  width: 3.125rem;
-  height: 3.125rem;
-  line-height: 1.1;
-}
 .toolbar .toolbar-button.mini-button {
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1.4rem;
+  height: 1.4rem;
+  font-size: .6rem;
+  line-height: 1;
+  padding: 0;
+  min-width: 0;
 }
 .toolbar .toolbar-button.small-button {
   width: 1.7rem;
   height: 1.7rem;
+  font-size: .7rem;
+  line-height: 1.68rem;
+  padding: 0;
+  min-width: 0;
 }
 .toolbar .toolbar-button.large-button {
+  font-size: 1.05rem;
+  line-height: 1;
   width: 2.55rem;
   height: 2.55rem;
+}
+.toolbar .toolbar-button.big-button {
+  font-size: 1.2rem;
+  line-height: 1;
+  width: 3.125rem;
+  height: 3.125rem;
 }
 .toolbar-group,
 .toolbar-section {
@@ -6761,22 +6824,33 @@ div.square-button.big-button {
   color: #114968;
   border-color: transparent;
 }
-.v-toolbar .toolbar-button.big-button {
-  width: 3.125rem;
-  height: 3.125rem;
-  line-height: 1.1;
-}
 .v-toolbar .toolbar-button.mini-button {
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1.4rem;
+  height: 1.4rem;
+  font-size: .6rem;
+  line-height: 1;
+  padding: 0;
+  min-width: 0;
 }
 .v-toolbar .toolbar-button.small-button {
   width: 1.7rem;
   height: 1.7rem;
+  font-size: .7rem;
+  line-height: 1.68rem;
+  padding: 0;
+  min-width: 0;
 }
 .v-toolbar .toolbar-button.large-button {
+  font-size: 1.05rem;
+  line-height: 1;
   width: 2.55rem;
   height: 2.55rem;
+}
+.v-toolbar .toolbar-button.big-button {
+  font-size: 1.2rem;
+  line-height: 1;
+  width: 3.125rem;
+  height: 3.125rem;
 }
 .v-toolbar.rounded > .toolbar-button,
 .v-toolbar.rounded > .toolbar-section .toolbar-button {
@@ -7066,13 +7140,21 @@ div.square-button.big-button {
   min-height: 2.125rem;
   height: 2.125rem;
   position: relative;
-  min-width: 10.875rem;
   vertical-align: middle;
   margin: .325rem 0;
   line-height: 1;
 }
 .input-control[data-role=select] {
   height: auto;
+}
+.input-control.text,
+.input-control.select,
+.input-control.file,
+.input-control.password,
+.input-control.number,
+.input-control.email,
+.input-control.tel {
+  width: 10.875rem;
 }
 .input-control.text .button,
 .input-control.select .button,
@@ -7218,6 +7300,20 @@ div.square-button.big-button {
   font-size: 1rem;
   margin-top: -0.5rem;
 }
+.input-control.required input,
+.input-control.required textarea,
+.input-control.required select {
+  border: 1px dashed #1ba1e2;
+}
+.input-control.required.neon input,
+.input-control.required.neon textarea,
+.input-control.required.neon select {
+  box-shadow: 0 0 25px 0 rgba(89, 205, 226, 0.7);
+}
+.input-control.required .input-state-required {
+  display: block;
+  color: #1ba1e2;
+}
 .input-control.error input,
 .input-control.error textarea,
 .input-control.error select {
@@ -7271,20 +7367,6 @@ div.square-button.big-button {
   box-shadow: 0 0 25px 0 rgba(89, 205, 226, 0.7);
 }
 .input-control.info .input-state-success {
-  display: block;
-  color: #1ba1e2;
-}
-.input-control.required input,
-.input-control.required textarea,
-.input-control.required select {
-  border: 1px dashed #1ba1e2;
-}
-.input-control.required.neon input,
-.input-control.required.neon textarea,
-.input-control.required.neon select {
-  box-shadow: 0 0 25px 0 rgba(89, 205, 226, 0.7);
-}
-.input-control.required .input-state-required {
   display: block;
   color: #1ba1e2;
 }
@@ -8864,6 +8946,7 @@ input[type="submit"].link:active {
   }
 }
 .calendar {
+  min-width: 13.75rem;
   border: 1px #eeeeee solid;
   font-size: .75rem;
   padding: .3125rem;
@@ -12433,6 +12516,9 @@ input[type="submit"].link:active {
 .treeview .node.collapsed:hover > .node-toggle:before {
   border-bottom-color: #1b6eae;
 }
+.treeview .node.collapsed > ul {
+  display: none;
+}
 .presenter {
   width: 100%;
   height: 200px;
@@ -13466,7 +13552,7 @@ p [data-hint] {
 .streamer .events .event-super {
   height: 100%;
   min-height: 100%;
-  border: 1px #eeeeee solid;
+  border: 1px #d9d9d9 solid;
 }
 .streamer .events .event-super.medium-border {
   border-width: 8px;
@@ -13490,7 +13576,7 @@ p [data-hint] {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
-  border: 1px #eeeeee solid;
+  border: 1px #d9d9d9 solid;
 }
 .streamer .events .event-stream .event.medium-border {
   border-width: 8px;
@@ -13731,7 +13817,7 @@ p [data-hint] {
   position: absolute;
   left: -100000px;
   width: 100%;
-  z-index: 999;
+  z-index: 1051;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
 }
 .select2-results {
@@ -13960,6 +14046,21 @@ p [data-hint] {
 .input-control .select2-container {
   margin: 0;
 }
+.input-control.required .select2-selection {
+  border: 1px dashed #1ba1e2;
+}
+.input-control.error .select2-selection {
+  border: 1px solid #ce352c;
+}
+.input-control.warning .select2-selection {
+  border: 1px solid #e3c800;
+}
+.input-control.success .select2-selection {
+  border: 1px solid #60a917;
+}
+.input-control.info .select2-selection {
+  border: 1px solid #1ba1e2;
+}
 /*
 * Third-party plugin DataTables
 * Plugin home page: http://datatables.net/
@@ -14098,6 +14199,34 @@ p [data-hint] {
 .dataTable .super-condensed th,
 .dataTable .super-condensed td {
   padding: .125rem;
+}
+.dataTable tbody tr.error {
+  background-color: #ce352c;
+  color: #ffffff;
+}
+.dataTable tbody tr.error:hover {
+  background-color: #da5a53;
+}
+.dataTable tbody tr.warning {
+  background-color: #fa6800;
+  color: #ffffff;
+}
+.dataTable tbody tr.warning:hover {
+  background-color: #c29008;
+}
+.dataTable tbody tr.success {
+  background-color: #60a917;
+  color: #ffffff;
+}
+.dataTable tbody tr.success:hover {
+  background-color: #7ad61d;
+}
+.dataTable tbody tr.info {
+  background-color: #1ba1e2;
+  color: #ffffff;
+}
+.dataTable tbody tr.info:hover {
+  background-color: #59cde2;
 }
 .dataTable .sorting {
   position: relative;
