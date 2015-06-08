@@ -56,7 +56,7 @@ $(function(){
             adBlock = true;
         }
     });
-    if (adBlock) {
+    if (gb.length == 0 || adBlock) {
         var b = $("<div/>").addClass('padding10 bg-red fg-white text-accent');
         b.html('Advertising on the website of the project allows the project to evolve. Support the project, please disable ad blocker.');
         var target = window.location.pathname == '/' ? $('.metro-title') : $('.page-content > h1:nth-child(1)');
