@@ -1,5 +1,5 @@
 /*!
- * Metro UI CSS v3.0.5 (http://metroui.org.ua)
+ * Metro UI CSS v3.0.6 (http://metroui.org.ua)
  * Copyright 2012-2015 Sergey Pimenov
  * Licensed under MIT (http://metroui.org.ua/license.html)
  */
@@ -8,12 +8,13 @@ if (typeof jQuery === 'undefined') {
 }
 
 window.METRO_VERSION = '3.0.5';
-window.METRO_AUTO_REINIT = true;
-window.METRO_LANGUAGE = 'en';
-window.METRO_LOCALE = 'EN_en';
-window.METRO_CURRENT_LOCALE = 'en';
-window.METRO_SHOW_TYPE = 'slide';
-window.METRO_DEBUG = true;
+
+if (window.METRO_AUTO_REINIT === undefined) window.METRO_AUTO_REINIT = true;
+if (window.METRO_LANGUAGE === undefined) window.METRO_LANGUAGE = 'en';
+if (window.METRO_LOCALE === undefined) window.METRO_LOCALE = 'EN_en';
+if (window.METRO_CURRENT_LOCALE === undefined) window.METRO_CURRENT_LOCALE = 'en';
+if (window.METRO_SHOW_TYPE === undefined) window.METRO_SHOW_TYPE = 'slide';
+if (window.METRO_DEBUG === undefined) window.METRO_DEBUG = true;
 
 window.canObserveMutation = 'MutationObserver' in window;
 
@@ -1919,7 +1920,7 @@ function touch2Mouse(e)
     });
 
 })( jQuery );
-window.METRO_CALENDAR_WEEK_START = 0;
+//window.METRO_CALENDAR_WEEK_START = 0;
 window.METRO_LOCALES = {
     'en': {
         months: [
@@ -4135,6 +4136,7 @@ window.METRO_LOCALES = {
             wrapper.insertAfter(input);
             input.attr('tabindex', '-1');
             button.attr('type', 'button');
+            wrapper.attr('placeholder', input.attr('placeholder'))
 
             input.on('change', function(){
                 var val = $(this).val();
@@ -5315,6 +5317,10 @@ window.METRO_LOCALES = {
             stars = element.find('.star');
 
             stars.on('click', function(e){
+
+                if (o.static || element.hasClass('static') || element.data('static')) {
+                    return false;
+                }
 
                 if (typeof o.onRate === 'string') {
                     if (!window[o.onRate]($(this).data('star-value'), this, that)) {
@@ -6801,14 +6807,14 @@ window.METRO_LOCALES = {
 
                     parent.toggleClass('collapsed');
                     if (!parent.hasClass('collapsed')) {
-                        parent.children('ul').slideDown('fast');
+                        parent.children('ul').fadeIn('fast');
                         if (typeof o.onExpand === 'string') {
                             window[o.onExpand](parent, leaf, node);
                         } else {
                             o.onExpand(parent, leaf, node);
                         }
                     } else {
-                        parent.children('ul').slideUp('fast');
+                        parent.children('ul').fadeOut('fast');
                         if (typeof o.onCollapse === 'string') {
                             window[o.onCollapse](leaf, parent, node, that);
                         } else {
@@ -6827,14 +6833,14 @@ window.METRO_LOCALES = {
 
                 parent.toggleClass('collapsed');
                 if (!parent.hasClass('collapsed')) {
-                    parent.children('ul').slideDown('fast');
+                    parent.children('ul').fadeIn('fast');
                     if (typeof o.onExpand === 'string') {
                         window[o.onExpand](leaf, parent, node, that);
                     } else {
                         o.onExpand(leaf, parent, node, that);
                     }
                 } else {
-                    parent.children('ul').slideUp('fast');
+                    parent.children('ul').fadeOut('fast');
                     if (typeof o.onCollapse === 'string') {
                         window[o.onCollapse](leaf, parent, node, that);
                     } else {
@@ -6925,10 +6931,11 @@ window.METRO_LOCALES = {
             hintPosition: 'right',
             focusInput: true,
             onBeforeSubmit: function(form, result){return true;},
-            onErrorInput: function(input){}
+            onErrorInput: function(input){},
+            onSubmit: function(form){return true;}
         },
 
-        _scroll: $(window).scrollTop(),
+        _scroll: 0,
 
         funcs: {
             required: function(val){
@@ -7014,6 +7021,8 @@ window.METRO_LOCALES = {
                 o.hintMode = 'hint2';
             }
 
+            this._scroll = $(window).scrollTop();
+
             this._createValidator();
 
             element.data('validator', this);
@@ -7027,13 +7036,20 @@ window.METRO_LOCALES = {
             element.attr('novalidate', 'novalidate');
 
             if (o.showRequiredState) {
-                inputs.addClass('required');
+                $.each(inputs, function(){
+                    var input = $(this);
+                    if (input.parent().hasClass('input-control')) {
+                        input.parent().addClass('required');
+                    } else {
+                        input.addClass('required');
+                    }
+                });
             }
 
             inputs.on('focus', function(){
             });
 
-            console.log(this._scroll);
+            //console.log(this._scroll);
 
             $(window).scroll(function(e){
                 var st = $(this).scrollTop();
@@ -7044,65 +7060,80 @@ window.METRO_LOCALES = {
                 this._scroll = st;
             });
 
-            element.submit = this._submit();
+            if (element[0].onsubmit) {
+                this._onsubmit = element[0].onsubmit;
+                element[0].onsubmit = null;
+            } else {
+                this._onsubmit = null;
+            }
+
+            element[0].onsubmit = function(){
+                return that._submit();
+            };
         },
 
         _submit: function(){
             var that = this, element = this.element, o = this.options;
             var inputs = element.find("[data-validate-func]");
+            var submit = element.find(":submit").attr('disabled', 'disabled').addClass('disabled');
 
-            element.submit(function(e){
-                var result = 0;
+            var result = 0;
+            $('.validator-hint').hide();
+            inputs.removeClass('error success');
+            $.each(inputs, function(i, v){
+                var input = $(v);
+                if (input.parent().hasClass('input-control')) {
+                    input.parent().removeClass('error success');
+                }
+            });
 
-                $('.validator-hint').hide();
-                inputs.removeClass('error success');
-                $.each(inputs, function(i, v){
-                    var input = $(v);
-                    if (input.parent().hasClass('input-control')) {
-                        input.parent().removeClass('error success');
+            $.each(inputs, function(i, v){
+                var input = $(v);
+                var func = input.data('validateFunc'), arg = input.data('validateArg');
+                var this_result = that.funcs[func](input.val(), arg);
+
+                if (!this_result) {
+                    if (typeof o.onErrorInput === 'string') {
+                        window[o.onErrorInput](input);
+                    } else {
+                        o.onErrorInput(input);
                     }
-                });
-
-                $.each(inputs, function(i, v){
-                    var input = $(v);
-                    var func = input.data('validateFunc'), arg = input.data('validateArg');
-                    var this_result = that.funcs[func](input.val(), arg);
-
-                    if (!this_result) {
-                        if (typeof o.onErrorInput === 'string') {
-                            window[o.onErrorInput](input);
-                        } else {
-                            o.onErrorInput(input);
-                        }
-                    }
-
-                    if (!this_result && o.showErrorState) {
-                        that._showError(input);
-                    }
-                    if (!this_result && o.showErrorHint) {
-                        setTimeout(function(){
-                            that._showErrorHint(input);
-                        }, i*100);
-
-                    }
-                    if (this_result && o.showSuccessState) {
-                        that._showSuccess(input);
-                    }
-                    if (!this_result && i == 0 && o.focusInput) {
-                        input.focus();
-                    }
-                    result += !this_result ? 1 : 0;
-                });
-
-                if (typeof o.onBeforeSubmit === 'string') {
-                    result += !window[o.onBeforeSubmit](element, result) ? 1 : 0;
-                } else {
-                    result += !o.onBeforeSubmit(element, result) ? 1 : 0;
                 }
 
-                //return false;
-                return result === 0;
+                if (!this_result && o.showErrorState) {
+                    that._showError(input);
+                }
+                if (!this_result && o.showErrorHint) {
+                    setTimeout(function(){
+                        that._showErrorHint(input);
+                    }, i*100);
+
+                }
+                if (this_result && o.showSuccessState) {
+                    that._showSuccess(input);
+                }
+                if (!this_result && i == 0 && o.focusInput) {
+                    input.focus();
+                }
+                result += !this_result ? 1 : 0;
             });
+
+            if (typeof o.onBeforeSubmit === 'string') {
+                result += !window[o.onBeforeSubmit](element, result) ? 1 : 0;
+            } else {
+                result += !o.onBeforeSubmit(element, result) ? 1 : 0;
+            }
+
+            if (result !== 0) {
+                submit.removeAttr('disabled').removeClass('disabled');
+                return false;
+            }
+
+            result = (typeof o.onSubmit === 'string') ? window[o.onSubmit](element[0]) : result = o.onSubmit(element[0]);
+
+            submit.removeAttr('disabled').removeClass('disabled');
+
+            return result;
         },
 
         _showSuccess: function(input){

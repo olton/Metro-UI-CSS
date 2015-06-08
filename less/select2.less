@@ -68,7 +68,7 @@
 	position: absolute;
 	left: -100000px;
 	width: 100%;
-	z-index: @zindexDropdown - 1;
+	z-index: @zindexModal + 1;
 
 	.block-shadow-impact;
 }
@@ -347,4 +347,30 @@
 	.select2-container {
 		margin: 0;
 	}
+
+    &.required {
+        .select2-selection {
+            border: 1px dashed @cyan;
+        }
+    }
+    &.error {
+        .select2-selection {
+            border: 1px solid @red;
+        }
+    }
+    &.warning {
+        .select2-selection {
+            border: 1px solid @yellow;
+        }
+    }
+    &.success {
+        .select2-selection {
+            border: 1px solid @green;
+        }
+    }
+    &.info {
+        .select2-selection {
+            border: 1px solid @cyan;
+        }
+    }
 }

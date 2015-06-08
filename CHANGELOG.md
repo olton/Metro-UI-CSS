@@ -1,5 +1,18 @@
 # Changelog 
 
+## 3.0.6
+* add support user defined onsubmit for validator over data-on-submit attribute
+* add light color for nav-button
+* remove outline for nav-button
+* fix square(round, cycle)-button sizes
+* change calendar min-width to 220px or 13.75rem
+* fix class collapsed for treeview leaf
+* add states for select2
+* upd Metro Icon Fonts (added new 33 icons)
+* fix static rating
+* remove min-width for input
+* add states for table rows
+
 ## 3.0.5
 * fix triggering for input when clear button clicked
 * fix panel heading style bug

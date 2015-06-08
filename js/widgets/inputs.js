@@ -64,6 +64,7 @@
             wrapper.insertAfter(input);
             input.attr('tabindex', '-1');
             button.attr('type', 'button');
+            wrapper.attr('placeholder', input.attr('placeholder'))
 
             input.on('change', function(){
                 var val = $(this).val();

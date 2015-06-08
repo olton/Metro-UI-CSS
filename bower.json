@@ -1,7 +1,7 @@
 {
     "author": "Sergey Pimenov",
     "name": "metro",
-    "version": "3.0.5",
+    "version": "3.0.6",
     "description": "The front-end framework for developing responsive, mobile projects on the web in Windows Metro Style.",
     "keywords": [
         "css",

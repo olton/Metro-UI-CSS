@@ -82,6 +82,10 @@
 
             stars.on('click', function(e){
 
+                if (o.static || element.hasClass('static') || element.data('static')) {
+                    return false;
+                }
+
                 if (typeof o.onRate === 'string') {
                     if (!window[o.onRate]($(this).data('star-value'), this, that)) {
                         return false;
