@@ -3061,6 +3061,20 @@ a.tag {
     padding: 5px;
   }
 }
+.fixed-top,
+.fixed-bottom {
+  position: fixed;
+  left: 0;
+  right: 0;
+}
+.fixed-top {
+  top: 0;
+  bottom: auto;
+}
+.fixed-bottom {
+  top: auto;
+  bottom: 0;
+}
 .grid {
   display: block;
   position: relative;
