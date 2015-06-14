@@ -1,6 +1,8 @@
 # Changelog 
 
 ## 3.0.7
+* add padding for container on mobile devices
+* add handler for fitImage for window resize
 
 ## 3.0.6
 * add support user defined onsubmit for validator over data-on-submit attribute
