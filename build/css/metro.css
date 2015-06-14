@@ -3040,19 +3040,25 @@ a.tag {
 @media screen and (max-width: 992px) {
   .container:not(.no-responsive-future) {
     width: 100%;
-    padding: 0;
+    padding: 10px;
   }
 }
 @media screen and (max-width: 768px) {
   .container:not(.no-responsive-future) {
     width: 100%;
-    padding: 0;
+    padding: 10px;
   }
 }
 @media screen and (max-width: 640px) {
   .container:not(.no-responsive-future) {
     width: 100%;
-    padding: 0;
+    padding: 10px;
+  }
+}
+@media screen and (max-width: 320px) {
+  .container:not(.no-responsive-future) {
+    width: 100%;
+    padding: 5px;
   }
 }
 .grid {

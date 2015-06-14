@@ -61,7 +61,23 @@
                 'border-radius': o.format === 'cycle' ? '50%' : '0'
             });
 
+            $(window).on('resize', function(){
+                var p_w = image_frame.innerWidth();
+                var p_h = image_frame.innerHeight();
 
+                switch (o.format) {
+                    case 'sd': p_h = 3 * p_w / 4; break;
+                    case 'square': p_h = p_w; break;
+                    case 'cycle': p_h = p_w; break;
+                    case 'fill-h': p_h = "100%"; image_container.css('height', '100%'); break;
+                    case 'fill': p_h = "100%"; image_container.css('height', '100%'); break;
+                    default: p_h = 9 * p_w / 16;
+                }
+
+                div.css({
+                    'height': p_h
+                });
+            });
 
             if (o.frameColor !== 'default') {
                 if (o.frameColor.isUrl()) {
