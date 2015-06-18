@@ -3938,6 +3938,67 @@ window.METRO_LOCALES = {
         }
     });
 })( jQuery );
+(function ( $ ) {
+
+    "use strict";
+
+    $.widget( "metro.grid" , {
+
+        version: "3.0.0",
+
+        options: {
+            equalHeight: false
+        },
+
+        _create: function () {
+            var that = this, element = this.element, o = this.options;
+
+            $.each(element.data(), function(key, value){
+                if (key in o) {
+                    try {
+                        o[key] = $.parseJSON(value);
+                    } catch (e) {
+                        o[key] = value;
+                    }
+                }
+            });
+
+            if (o.equalHeight) {
+                this._setEqualHeight();
+            }
+
+            element.data('grid', this);
+
+        },
+
+        _setEqualHeight: function(){
+            var that = this, element = this.element, o = this.options;
+            var rows = element.find('.row');
+
+            $.each(rows, function(){
+                var row = $(this);
+                var cells = row.children('.cell');
+                var maxHeight = 0;
+
+                $.each(cells, function(){
+                    if ($(this).height() > maxHeight) {
+                        maxHeight = $(this).outerHeight();
+                    }
+                });
+
+                cells.css('height', maxHeight);
+            });
+        },
+
+        _destroy: function () {
+        },
+
+        _setOption: function ( key, value ) {
+            this._super('_setOption', key, value);
+        }
+    });
+
+})( jQuery );
 (function( $ ) {
 
     "use strict";
@@ -3953,6 +4014,7 @@ window.METRO_LOCALES = {
             hintMaxSize: 200,
             hintMode: 'default',
             hintShadow: false,
+            hintBorder: true,
 
             _hint: undefined
         },
@@ -4010,6 +4072,10 @@ window.METRO_LOCALES = {
                 _hint.addClass('hint2');
             } else {
                 _hint.addClass('hint');
+            }
+
+            if (!o.hintBorder) {
+                _hint.addClass('no-border');
             }
 
             if (hint_title) {
