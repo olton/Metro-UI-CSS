@@ -3965,6 +3965,10 @@ window.METRO_LOCALES = {
 
             if (o.equalHeight) {
                 this._setEqualHeight();
+
+                $(window).on('resize', function(){
+                    that._setEqualHeight();
+                });
             }
 
             element.data('grid', this);
@@ -3980,13 +3984,15 @@ window.METRO_LOCALES = {
                 var cells = row.children('.cell');
                 var maxHeight = 0;
 
+                cells.css('min-height', '0');
+
                 $.each(cells, function(){
                     if ($(this).height() > maxHeight) {
                         maxHeight = $(this).outerHeight();
                     }
                 });
 
-                cells.css('height', maxHeight);
+                cells.css('min-height', maxHeight);
             });
         },
 
