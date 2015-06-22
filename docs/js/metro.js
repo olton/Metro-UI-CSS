@@ -2775,9 +2775,6 @@ window.METRO_LOCALES = {
                 if (oh > max_height) {max_height = oh;}
             });
 
-            element.find('.slide').hide();
-            element.find('.slide:nth-child(1)').show();
-
             element.css({
                 'width': o.width,
                 'height': o.height ? o.height : max_height
@@ -2802,6 +2799,9 @@ window.METRO_LOCALES = {
                         if (that.options.auto) {that._autoStart();}// that.options.period;
                     });
             }
+
+            element.find('.slide').hide();
+            element.find('.slide:nth-child(1)').show();
 
             //this._slideToSlide(0);
             if (o.auto) {
@@ -3947,7 +3947,7 @@ window.METRO_LOCALES = {
         version: "3.0.0",
 
         options: {
-            equalHeight: false
+            equalHeight: true
         },
 
         _create: function () {
@@ -3964,7 +3964,9 @@ window.METRO_LOCALES = {
             });
 
             if (o.equalHeight) {
-                this._setEqualHeight();
+                setTimeout(function(){
+                    that._setEqualHeight();
+                }, 50);
 
                 $(window).on('resize', function(){
                     that._setEqualHeight();
@@ -3987,7 +3989,8 @@ window.METRO_LOCALES = {
                 cells.css('min-height', '0');
 
                 $.each(cells, function(){
-                    if ($(this).height() > maxHeight) {
+                    //console.log(this.tagName, $(this).outerHeight());
+                    if ($(this).outerHeight() > maxHeight) {
                         maxHeight = $(this).outerHeight();
                     }
                 });

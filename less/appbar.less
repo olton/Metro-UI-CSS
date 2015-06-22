@@ -5,6 +5,10 @@
 @appBarBackgroundActive: #005696;
 @appBarDividerColor: #4C9CD7;
 
+@appBarBackgroundDarcula: #3C3F41;
+@appBarBackgroundActiveDarcula: @dark;
+@appBarDividerColorDarcula: #616162;
+
 .app-bar {
     display: block;
     width: 100%;
@@ -69,6 +73,10 @@
                     display: block;
                 }
             }
+        }
+
+        & > li {
+            padding: 0;
         }
 
         & > li .d-menu {
@@ -308,27 +316,27 @@
             }
 
             li:hover {
-                background-color: @appBarBackground !important;
+                background-color: @appBarBackground;
                 a {
-                    background-color: @appBarBackground !important;
-                    color: @white !important;
+                    background-color: @appBarBackground;
+                    color: @white;
                 }
             }
 
             .d-menu {
-                border: 0 !important;
-                border-top: 1px solid @appBarDividerColor !important;
+                border: 0;
+                border-top: 1px solid @appBarDividerColor;
                 clear: both;
-                float: none !important;
-                width: 100% !important;
-                position: relative !important;
-                left: 0 !important;
+                float: none;
+                width: 100%;
+                position: relative;
+                left: 0;
                 box-shadow: none;
                 max-width: 100%;
-                background-color: @appBarBackgroundActive !important;
+                background-color: @appBarBackgroundActive;
 
                 li {
-                    width: 100% !important;
+                    width: 100%;
                     background-color: inherit;
 
                     a {
@@ -342,7 +350,7 @@
 
                 .dropdown-toggle {
                     &:before {
-                        border-color: @white !important;
+                        border-color: @white;
                         .rotate(-45deg);
                     }
                 }
@@ -352,7 +360,100 @@
                 }
 
                 .d-menu {
-                    top: 0 !important;
+                    top: 0;
+                    left: 0;
+                }
+            }
+        }
+    }
+}
+
+.app-bar {
+    &.darcula {
+        background-color: @appBarBackgroundDarcula;
+
+        .app-bar-element, .app-bar-menu > li, .app-bar-menu > li > a {
+            &:hover, &:active {
+                background-color: @appBarBackgroundActiveDarcula;
+            }
+        }
+
+        .app-bar-divider {
+            background-color: @appBarDividerColorDarcula;
+        }
+
+        .app-bar-element, .app-bar-menu > li {
+            .d-menu {
+                background-color: @appBarBackgroundDarcula;
+                border-color: @transparent;
+
+                li:not(.disabled) > a, li > a {
+                    background-color: @appBarBackgroundDarcula;
+                    color: @white;
+
+                    &:hover {
+                        background-color: @appBarBackgroundActiveDarcula;
+                        color: @white;
+                    }
+                }
+
+                li:hover > a {
+                    background-color: @appBarBackgroundActiveDarcula;
+                }
+
+                .divider {
+                    background-color: @appBarDividerColorDarcula;
+                    &:hover {
+                        background-color: @appBarDividerColorDarcula;
+                    }
+                }
+            }
+        }
+
+        .app-bar-element, .app-bar-menu li {
+            .dropdown-toggle {
+                &:before {
+                    border-color: @white;
+                }
+            }
+        }
+
+        .app-bar-element, .app-bar-menu li {
+            &.disabled, &:disabled {
+                color: @gray;
+                a {
+                    color: inherit !important;
+                }
+            }
+        }
+
+        .app-bar-pullbutton {
+            &:hover {
+                background-color: @appBarBackgroundActiveDarcula;
+            }
+        }
+
+        .app-bar-drop-container {
+            border: 2px solid @appBarBackgroundDarcula;
+            background-color: @appBarBackgroundDarcula;
+            color: @white;
+
+            &:before {
+                background-color: @appBarBackgroundDarcula;
+                border-color: @appBarBackgroundDarcula;
+            }
+        }
+
+        .app-bar-pullmenu {
+            .app-bar-menu {
+                border-top: 1px solid @appBarDividerColorDarcula;
+                background-color: @appBarDividerColorDarcula;
+                li:hover {
+                    background-color: @appBarBackgroundDarcula;
+                    a {
+                        background-color: @appBarBackgroundActiveDarcula;
+                        color: @white;
+                    }
                 }
             }
         }
