@@ -55,9 +55,6 @@
                 if (oh > max_height) {max_height = oh;}
             });
 
-            element.find('.slide').hide();
-            element.find('.slide:nth-child(1)').show();
-
             element.css({
                 'width': o.width,
                 'height': o.height ? o.height : max_height
@@ -82,6 +79,9 @@
                         if (that.options.auto) {that._autoStart();}// that.options.period;
                     });
             }
+
+            element.find('.slide').hide();
+            element.find('.slide:nth-child(1)').show();
 
             //this._slideToSlide(0);
             if (o.auto) {

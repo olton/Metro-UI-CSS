@@ -2469,15 +2469,6 @@ span {
 .set-border.large-border {
   border-width: 16px;
 }
-.pos-abs {
-  position: absolute !important;
-}
-.pos-rel {
-  position: relative !important;
-}
-.pos-fix {
-  position: fixed !important;
-}
 /* transform functions */
 .rotate45 {
   -webkit-transform: rotate(45deg);
@@ -3066,6 +3057,7 @@ a.tag {
   position: fixed;
   left: 0;
   right: 0;
+  z-index: 1030;
 }
 .fixed-top {
   top: 0;
@@ -3074,6 +3066,15 @@ a.tag {
 .fixed-bottom {
   top: auto;
   bottom: 0;
+}
+.pos-abs {
+  position: absolute !important;
+}
+.pos-rel {
+  position: relative !important;
+}
+.pos-fix {
+  position: fixed !important;
 }
 .grid {
   display: block;
@@ -3960,6 +3961,9 @@ a.tag {
   border-color: #ffffff;
   display: block;
 }
+.app-bar .app-bar-menu > li {
+  padding: 0;
+}
 .app-bar .app-bar-menu > li .d-menu {
   top: 100%;
   border: 2px solid #005696;
@@ -4200,26 +4204,26 @@ a.tag {
   height: auto;
 }
 .app-bar .app-bar-pullmenu .app-bar-menu li:hover {
-  background-color: #0072c6 !important;
+  background-color: #0072c6;
 }
 .app-bar .app-bar-pullmenu .app-bar-menu li:hover a {
-  background-color: #0072c6 !important;
-  color: #ffffff !important;
+  background-color: #0072c6;
+  color: #ffffff;
 }
 .app-bar .app-bar-pullmenu .app-bar-menu .d-menu {
-  border: 0 !important;
-  border-top: 1px solid #4c9cd7 !important;
+  border: 0;
+  border-top: 1px solid #4c9cd7;
   clear: both;
-  float: none !important;
-  width: 100% !important;
-  position: relative !important;
-  left: 0 !important;
+  float: none;
+  width: 100%;
+  position: relative;
+  left: 0;
   box-shadow: none;
   max-width: 100%;
-  background-color: #005696 !important;
+  background-color: #005696;
 }
 .app-bar .app-bar-pullmenu .app-bar-menu .d-menu li {
-  width: 100% !important;
+  width: 100%;
   background-color: inherit;
 }
 .app-bar .app-bar-pullmenu .app-bar-menu .d-menu li a {
@@ -4230,7 +4234,7 @@ a.tag {
   color: #ffffff;
 }
 .app-bar .app-bar-pullmenu .app-bar-menu .d-menu .dropdown-toggle:before {
-  border-color: #ffffff !important;
+  border-color: #ffffff;
   -webkit-transform: rotate(-45deg);
           transform: rotate(-45deg);
 }
@@ -4238,7 +4242,92 @@ a.tag {
   background-color: #4c9cd7;
 }
 .app-bar .app-bar-pullmenu .app-bar-menu .d-menu .d-menu {
-  top: 0 !important;
+  top: 0;
+  left: 0;
+}
+.app-bar.darcula {
+  background-color: #3c3f41;
+}
+.app-bar.darcula .app-bar-element:hover,
+.app-bar.darcula .app-bar-menu > li:hover,
+.app-bar.darcula .app-bar-menu > li > a:hover,
+.app-bar.darcula .app-bar-element:active,
+.app-bar.darcula .app-bar-menu > li:active,
+.app-bar.darcula .app-bar-menu > li > a:active {
+  background-color: #1d1d1d;
+}
+.app-bar.darcula .app-bar-divider {
+  background-color: #616162;
+}
+.app-bar.darcula .app-bar-element .d-menu,
+.app-bar.darcula .app-bar-menu > li .d-menu {
+  background-color: #3c3f41;
+  border-color: transparent;
+}
+.app-bar.darcula .app-bar-element .d-menu li:not(.disabled) > a,
+.app-bar.darcula .app-bar-menu > li .d-menu li:not(.disabled) > a,
+.app-bar.darcula .app-bar-element .d-menu li > a,
+.app-bar.darcula .app-bar-menu > li .d-menu li > a {
+  background-color: #3c3f41;
+  color: #ffffff;
+}
+.app-bar.darcula .app-bar-element .d-menu li:not(.disabled) > a:hover,
+.app-bar.darcula .app-bar-menu > li .d-menu li:not(.disabled) > a:hover,
+.app-bar.darcula .app-bar-element .d-menu li > a:hover,
+.app-bar.darcula .app-bar-menu > li .d-menu li > a:hover {
+  background-color: #1d1d1d;
+  color: #ffffff;
+}
+.app-bar.darcula .app-bar-element .d-menu li:hover > a,
+.app-bar.darcula .app-bar-menu > li .d-menu li:hover > a {
+  background-color: #1d1d1d;
+}
+.app-bar.darcula .app-bar-element .d-menu .divider,
+.app-bar.darcula .app-bar-menu > li .d-menu .divider {
+  background-color: #616162;
+}
+.app-bar.darcula .app-bar-element .d-menu .divider:hover,
+.app-bar.darcula .app-bar-menu > li .d-menu .divider:hover {
+  background-color: #616162;
+}
+.app-bar.darcula .app-bar-element .dropdown-toggle:before,
+.app-bar.darcula .app-bar-menu li .dropdown-toggle:before {
+  border-color: #ffffff;
+}
+.app-bar.darcula .app-bar-element.disabled,
+.app-bar.darcula .app-bar-menu li.disabled,
+.app-bar.darcula .app-bar-element:disabled,
+.app-bar.darcula .app-bar-menu li:disabled {
+  color: #555555;
+}
+.app-bar.darcula .app-bar-element.disabled a,
+.app-bar.darcula .app-bar-menu li.disabled a,
+.app-bar.darcula .app-bar-element:disabled a,
+.app-bar.darcula .app-bar-menu li:disabled a {
+  color: inherit !important;
+}
+.app-bar.darcula .app-bar-pullbutton:hover {
+  background-color: #1d1d1d;
+}
+.app-bar.darcula .app-bar-drop-container {
+  border: 2px solid #3c3f41;
+  background-color: #3c3f41;
+  color: #ffffff;
+}
+.app-bar.darcula .app-bar-drop-container:before {
+  background-color: #3c3f41;
+  border-color: #3c3f41;
+}
+.app-bar.darcula .app-bar-pullmenu .app-bar-menu {
+  border-top: 1px solid #616162;
+  background-color: #616162;
+}
+.app-bar.darcula .app-bar-pullmenu .app-bar-menu li:hover {
+  background-color: #3c3f41;
+}
+.app-bar.darcula .app-bar-pullmenu .app-bar-menu li:hover a {
+  background-color: #1d1d1d;
+  color: #ffffff;
 }
 .h-menu li:hover > .dropdown-toggle:before,
 .v-menu li:hover > .dropdown-toggle:before,

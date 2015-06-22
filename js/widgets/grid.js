@@ -7,7 +7,7 @@
         version: "3.0.0",
 
         options: {
-            equalHeight: false
+            equalHeight: true
         },
 
         _create: function () {
@@ -24,7 +24,9 @@
             });
 
             if (o.equalHeight) {
-                this._setEqualHeight();
+                setTimeout(function(){
+                    that._setEqualHeight();
+                }, 50);
 
                 $(window).on('resize', function(){
                     that._setEqualHeight();
@@ -47,7 +49,8 @@
                 cells.css('min-height', '0');
 
                 $.each(cells, function(){
-                    if ($(this).height() > maxHeight) {
+                    //console.log(this.tagName, $(this).outerHeight());
+                    if ($(this).outerHeight() > maxHeight) {
                         maxHeight = $(this).outerHeight();
                     }
                 });

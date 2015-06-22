@@ -2339,15 +2339,6 @@
 .set-border.large-border {
   border-width: 16px;
 }
-.pos-abs {
-  position: absolute !important;
-}
-.pos-rel {
-  position: relative !important;
-}
-.pos-fix {
-  position: fixed !important;
-}
 /* transform functions */
 .rotate45 {
   -webkit-transform: rotate(45deg);
