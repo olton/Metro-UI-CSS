@@ -3,6 +3,10 @@
 ## 3.0.7
 * add padding for container on mobile devices
 * add handler for fitImage for window resize
+* remove important from app-bar
+* add darcula scheme for app-bar
+* add [Animations](http://metroui.org.ua/animations.html), thx to [Meneses Evandro](https://github.com/MenesesEvandro)
+* add [Metro Icon Font Animations](http://metroui.org.ua/font.html), thx to [Meneses Evandro](https://github.com/MenesesEvandro)
 
 ## 3.0.6
 * add support user defined onsubmit for validator over data-on-submit attribute
