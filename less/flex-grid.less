@@ -1,0 +1,35 @@
+@import (once) "flex";
+
+.flex-grid {
+    display: block;
+    width: 100%;
+}
+
+.flex-grid {
+    .row {
+        .flexbox;
+
+        @media only screen and (max-width: 640px) {
+            flex-direction: column;
+        }
+    }
+}
+
+.flex-grid {
+    .row {
+        .cell {
+            .flex(1 auto);
+
+            .generate-colspan(12);
+
+            .generate-colspan(@j, @k: 2) when (@k =< @j){
+                &.colspan@{k} {
+                    .flex(@k auto);
+                }
+
+                .generate-colspan(@j, (@k + 1));
+            }
+        }
+    }
+}
+
