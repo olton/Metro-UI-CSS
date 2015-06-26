@@ -4010,6 +4010,20 @@ a.tag {
   .grid:not(.no-responsive-future) .row > .cell[class*=colspan]:nth-child(odd) {
     margin-left: 0;
   }
+  .grid:not(.no-responsive-future) .row > .cell:nth-child(1):last-child,
+  .grid:not(.no-responsive-future) .row > .cell[class*=colspan]:nth-child(1):last-child,
+  .grid:not(.no-responsive-future) .row > .cell:nth-child(3):last-child,
+  .grid:not(.no-responsive-future) .row > .cell[class*=colspan]:nth-child(3):last-child,
+  .grid:not(.no-responsive-future) .row > .cell:nth-child(5):last-child,
+  .grid:not(.no-responsive-future) .row > .cell[class*=colspan]:nth-child(5):last-child,
+  .grid:not(.no-responsive-future) .row > .cell:nth-child(7):last-child,
+  .grid:not(.no-responsive-future) .row > .cell[class*=colspan]:nth-child(7):last-child,
+  .grid:not(.no-responsive-future) .row > .cell:nth-child(9):last-child,
+  .grid:not(.no-responsive-future) .row > .cell[class*=colspan]:nth-child(9):last-child,
+  .grid:not(.no-responsive-future) .row > .cell:nth-child(11):last-child,
+  .grid:not(.no-responsive-future) .row > .cell[class*=colspan]:nth-child(11):last-child {
+    width: 100%;
+  }
 }
 @media only screen and (max-width: 640px) {
   .grid:not(.no-responsive-future) .row {
@@ -4303,6 +4317,20 @@ a.tag {
   .grid.condensed:not(.no-responsive-future) .row > .cell:nth-child(odd),
   .grid.condensed:not(.no-responsive-future) .row > .cell[class*=colspan]:nth-child(odd) {
     margin-left: 0;
+  }
+  .grid.condensed:not(.no-responsive-future) .row > .cell:nth-child(1):last-child,
+  .grid.condensed:not(.no-responsive-future) .row > .cell[class*=colspan]:nth-child(1):last-child,
+  .grid.condensed:not(.no-responsive-future) .row > .cell:nth-child(3):last-child,
+  .grid.condensed:not(.no-responsive-future) .row > .cell[class*=colspan]:nth-child(3):last-child,
+  .grid.condensed:not(.no-responsive-future) .row > .cell:nth-child(5):last-child,
+  .grid.condensed:not(.no-responsive-future) .row > .cell[class*=colspan]:nth-child(5):last-child,
+  .grid.condensed:not(.no-responsive-future) .row > .cell:nth-child(7):last-child,
+  .grid.condensed:not(.no-responsive-future) .row > .cell[class*=colspan]:nth-child(7):last-child,
+  .grid.condensed:not(.no-responsive-future) .row > .cell:nth-child(9):last-child,
+  .grid.condensed:not(.no-responsive-future) .row > .cell[class*=colspan]:nth-child(9):last-child,
+  .grid.condensed:not(.no-responsive-future) .row > .cell:nth-child(11):last-child,
+  .grid.condensed:not(.no-responsive-future) .row > .cell[class*=colspan]:nth-child(11):last-child {
+    width: 100%;
   }
 }
 @media only screen and (max-width: 640px) {
