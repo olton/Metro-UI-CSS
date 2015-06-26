@@ -8,9 +8,26 @@
 .flex-grid {
     .row {
         .flexbox;
+    }
 
-        @media only screen and (max-width: 640px) {
-            flex-direction: column;
+    &.dir-row {
+        .row {
+            .flex-dir-row;
+        }
+    }
+    &.dir-row-reverse {
+        .row {
+            .flex-dir-row-reverse;
+        }
+    }
+    &.dir-column {
+        .row {
+            .flex-dir-column;
+        }
+    }
+    &.dir-column-reverse {
+        .row {
+            .flex-dir-column-reverse;
         }
     }
 }
@@ -20,6 +37,7 @@
         .cell {
             .flex(1 auto);
 
+            // colspan
             .generate-colspan(12);
 
             .generate-colspan(@j, @k: 2) when (@k =< @j){
@@ -29,7 +47,63 @@
 
                 .generate-colspan(@j, (@k + 1));
             }
+
+            // grow size
+            .generate-flex-size(12);
+
+            .generate-flex-size(@j, @k: 1) when (@k =< @j){
+                &.flex-size@{k} {
+                    flex-grow: @k;
+                }
+
+                .generate-flex-size(@j, (@k + 1));
+            }
+
+            // percent size
+            .generate-flex-size-p(100);
+
+            .generate-flex-size-p(@j, @k: 10) when (@k =< @j){
+                &.flex-size-p@{k} {
+                    .flex(0 0 @k + 0%);
+                }
+
+                .generate-flex-size-p(@j, (@k + 10));
+            }
+
+            // pixels size
+            .generate-flex-size-x(1000);
+
+            .generate-flex-size-x(@j, @k: 100) when (@k =< @j){
+                &.flex-size-x@{k} {
+                    .flex(0 0 @k + 0px);
+                }
+
+                .generate-flex-size-x(@j, (@k + 100));
+            }
+
         }
     }
 }
 
+.flex-grid {
+    .row {
+        @media only screen and (max-width: 800px) {
+            .flex-wrap;
+            .cell {
+                .flex(0 0 50%);
+                &:nth-child(1):last-child,
+                &:nth-child(3):last-child,
+                &:nth-child(5):last-child,
+                &:nth-child(7):last-child,
+                &:nth-child(9):last-child,
+                &:nth-child(11):last-child
+                {
+                    flex-basis: 100%;
+                }
+            }
+        }
+        @media only screen and (max-width: 640px) {
+            flex-direction: column;
+        }
+    }
+}
