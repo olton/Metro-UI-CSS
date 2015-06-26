@@ -5201,22 +5201,23 @@ a.tag {
   text-align: center;
   width: 100%;
 }
-.f-menu > li > .d-menu {
+.f-menu > li .d-menu {
   width: 100%;
   max-width: none;
 }
-.f-menu > li > .d-menu li {
+.f-menu > li .d-menu li {
   width: 100%;
 }
-.f-menu > li > .d-menu li a {
+.f-menu > li .d-menu li a {
   width: 100%;
   min-width: 0;
   padding: .75rem 0;
 }
 @media only screen and (max-width: 640px) {
-  .f-menu > li > .d-menu {
+  .f-menu > li .d-menu {
     position: relative;
     box-shadow: none;
+    left: 0;
   }
 }
 .v-menu {
