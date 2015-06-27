@@ -1,5 +1,7 @@
 @import (once) "flex";
 
+@gridCellBaseSize: 8.33333333%;
+
 .flex-grid {
     display: block;
     width: 100%;
@@ -9,75 +11,58 @@
     .row {
         .flexbox;
     }
-
-    &.dir-row {
-        .row {
-            .flex-dir-row;
-        }
-    }
-    &.dir-row-reverse {
-        .row {
-            .flex-dir-row-reverse;
-        }
-    }
-    &.dir-column {
-        .row {
-            .flex-dir-column;
-        }
-    }
-    &.dir-column-reverse {
-        .row {
-            .flex-dir-column-reverse;
-        }
-    }
 }
 
 .flex-grid {
+
     .row {
         .cell {
-            .flex(1 auto);
+            .flex(0 0 @gridCellBaseSize);
+        }
+
+        &.cell-auto-size {
+            .cell {
+                .flex(1 1 auto);
+            }
+        }
+    }
+
+    .row {
+        .cell {
 
             // colspan
             .generate-colspan(12);
-
             .generate-colspan(@j, @k: 2) when (@k =< @j){
                 &.colspan@{k} {
-                    .flex(@k auto);
+                    .flex(0 0 @gridCellBaseSize * @k);
                 }
-
                 .generate-colspan(@j, (@k + 1));
             }
 
             // grow size
             .generate-flex-size(12);
-
             .generate-flex-size(@j, @k: 1) when (@k =< @j){
-                &.flex-size@{k} {
-                    flex-grow: @k;
+                &.size@{k} {
+                    .flex(0 0 @gridCellBaseSize * @k);
                 }
-
                 .generate-flex-size(@j, (@k + 1));
             }
 
             // percent size
             .generate-flex-size-p(100);
-
             .generate-flex-size-p(@j, @k: 10) when (@k =< @j){
-                &.flex-size-p@{k} {
+                &.size-p@{k} {
                     .flex(0 0 @k + 0%);
                 }
-
                 .generate-flex-size-p(@j, (@k + 10));
             }
 
             // pixels size
             .generate-flex-size-x(1000);
-
             .generate-flex-size-x(@j, @k: 100) when (@k =< @j){
-                &.flex-size-x@{k} {
+                &.size-x@{k} {
                     .flex(0 0 @k + 0px);
                 }
-
                 .generate-flex-size-x(@j, (@k + 100));
             }
 
@@ -85,11 +70,11 @@
     }
 }
 
-.flex-grid {
+.flex-grid:not(.no-responsive-future) {
     .row {
         @media only screen and (max-width: 800px) {
             .flex-wrap;
-            .cell {
+            .cell, .cell[class*=size] {
                 .flex(0 0 50%);
                 &:nth-child(1):last-child,
                 &:nth-child(3):last-child,
