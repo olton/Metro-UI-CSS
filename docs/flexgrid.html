@@ -22,6 +22,17 @@
     <script src="js/ga.js"></script>
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
+    <style>
+        .demo-flex-grid .row > .cell {
+            padding: 10px;
+            background-color: darkgray;
+            color: white;
+            text-align: center;
+            border: 1px #000 solid;
+            box-sizing: border-box;
+        }
+    </style>
+
 </head>
 <body onload="init()">
     <div class="container page-content">
@@ -30,25 +41,39 @@
         @@adsense
 
         <div class="example" data-text="example">
-            <div class="flex-grid">
+            <div class="flex-grid demo-flex-grid">
                 <div class="row">
+                    <div class="cell debug">1</div>
+                    <div class="cell debug">1</div>
+                    <div class="cell debug">1</div>
+                    <div class="cell debug">1</div>
+                    <div class="cell debug">1</div>
+                    <div class="cell debug">1</div>
+                    <div class="cell debug">1</div>
+                    <div class="cell debug">1</div>
+                    <div class="cell debug">1</div>
+                    <div class="cell debug">1</div>
+                    <div class="cell debug">1</div>
                     <div class="cell debug">1</div>
                 </div>
                 <div class="row">
-                    <div class="cell debug">1</div>
-                    <div class="cell debug">2</div>
+                    <div class="cell colspan8 debug">8</div>
+                    <div class="cell colspan4 debug">4</div>
                 </div>
                 <div class="row">
-                    <div class="cell debug">1</div>
-                    <div class="cell debug">2</div>
-                    <div class="cell debug">3</div>
+                    <div class="cell size4 debug">4</div>
+                    <div class="cell size4 debug">4</div>
+                    <div class="cell size4 debug">4</div>
                 </div>
                 <div class="row">
-                    <div class="cell debug">1</div>
-                    <div class="cell debug">2</div>
-                    <div class="cell debug">3</div>
-                    <div class="cell debug">4</div>
+                    <div class="cell size2 debug">2</div>
+                    <div class="cell size2 debug">2</div>
+                    <div class="cell size2 debug">2</div>
+                    <div class="cell size2 debug">2</div>
+                    <div class="cell size2 debug">2</div>
+                    <div class="cell size2 debug">2</div>
                 </div>
+                <h5>Default cell fixed size</h5>
                 <div class="row">
                     <div class="cell debug">1</div>
                     <div class="cell debug">2</div>
@@ -56,25 +81,45 @@
                     <div class="cell debug">4</div>
                     <div class="cell debug">5</div>
                 </div>
-                <!--
+                <h5>Cell size auto</h5>
+                <div class="row cell-auto-size">
+                    <div class="cell debug">1</div>
+                    <div class="cell debug">2</div>
+                    <div class="cell debug">3</div>
+                    <div class="cell debug">4</div>
+                    <div class="cell debug">5</div>
+                </div>
+
+                <h5>Justify start</h5>
                 <div class="row">
                     <div class="cell debug">1</div>
                     <div class="cell debug">2</div>
                     <div class="cell debug">3</div>
-                    <div class="cell debug">3</div>
-                    <div class="cell debug">3</div>
-                    <div class="cell debug">3</div>
                 </div>
-                <div class="row">
+                <h5>Justify center</h5>
+                <div class="row flex-just-center">
                     <div class="cell debug">1</div>
                     <div class="cell debug">2</div>
                     <div class="cell debug">3</div>
-                    <div class="cell debug">3</div>
-                    <div class="cell debug">3</div>
-                    <div class="cell debug">3</div>
+                </div>
+                <h5>Justify end</h5>
+                <div class="row flex-just-end">
+                    <div class="cell debug">1</div>
+                    <div class="cell debug">2</div>
                     <div class="cell debug">3</div>
                 </div>
-                -->
+                <h5>Justify space around</h5>
+                <div class="row flex-just-sa">
+                    <div class="cell debug">1</div>
+                    <div class="cell debug">2</div>
+                    <div class="cell debug">3</div>
+                </div>
+                <h5>Justify space between</h5>
+                <div class="row flex-just-sb">
+                    <div class="cell debug">1</div>
+                    <div class="cell debug">2</div>
+                    <div class="cell debug">3</div>
+                </div>
             </div>
         </div>
 

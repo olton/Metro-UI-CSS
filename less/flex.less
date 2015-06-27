@@ -119,26 +119,34 @@
     flex-shrink: 0 !important;
 }
 
+.no-grow {
+    flex-grow: 0 !important;
+}
+
 .flex-size-auto {
     .flex(1 auto);
 }
 
 .generate-flex-size(12);
-
 .generate-flex-size(@j, @k: 1) when (@k =< @j){
     .flex-size@{k} {
         flex-grow: @k;
     }
-
     .generate-flex-size(@j, (@k + 1));
 }
 
 .generate-flex-size-p(100);
-
 .generate-flex-size-p(@j, @k: 10) when (@k =< @j){
     .flex-size-p@{k} {
         .flex(0 0 @k + 0%);
     }
-
     .generate-flex-size-p(@j, (@k + 10));
+}
+
+.generate-flex-size-x(1000);
+.generate-flex-size-x(@j, @k: 100) when (@k =< @j){
+    .flex-size-x@{k} {
+        .flex(0 0 @k + 0px);
+    }
+    .generate-flex-size-x(@j, (@k + 100));
 }
