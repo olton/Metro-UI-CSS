@@ -1,6 +1,7 @@
 # Changelog 
 
 ## 3.0.8
+* upd font declaration add sans-serif 
 
 ## 3.0.7
 * add padding for container on mobile devices
