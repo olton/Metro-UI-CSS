@@ -7,21 +7,24 @@
 	counter-reset:li;
 	padding-left:0;
 	margin-left: .625rem;
+    color: @textColor;
 
 	li {
 		position:relative;
 		padding: 4px 12px;
 		list-style:none;
-		color: @textColor;
+		color: inherit;
 
 		&:before {
 			position: absolute;
 			top: 50%;
 			margin-top: -.8rem;
-			left: -10px;
+			left: -.625rem;
 			color: @lightCyan;
 			font-size: 2rem;
 			vertical-align: middle;
+            .square(1.25rem);
+            line-height: 1.25rem;
 		}
 	}
 
@@ -35,7 +38,7 @@
 		content: "\2022";
 	}
 
-	& > ul li:before {
+	ul li:before {
 		content: "\00B7";
 	}
 }
@@ -51,17 +54,70 @@
 		font-size: .8rem ;
 		color: @white;
 		background-color: @lightCyan;
-		.square(1.25rem);
 		border-radius: 50%;
 		.align-center;
 		margin-top: -.65rem;
 	}
 
-	&.square-marker {
+	&.square-marker, &.square-bullet {
 		& > li:before {
 			border-radius: 0;
 		}
 	}
+}
+
+.simple-list, .numeric-list {
+    &.large-bullet {
+
+        li {
+
+            margin: 6px 0;
+            padding-left: 2rem;
+
+            &:before {
+                line-height: 2rem;
+                .square(2rem);
+                margin-top: -1rem;
+            }
+        }
+    }
+}
+
+.simple-list {
+    &.large-bullet {
+        li {
+            padding-left: 1rem;
+            &:before {
+                margin-top: -1.3rem;
+                font-size: 3rem;
+                //color: inherit;
+            }
+        }
+    }
+}
+
+.simple-list {
+    &.dark-bullet {li:before {color: @dark;}}
+    &.alert-bullet {li:before {color: @red;}}
+    &.info-bullet {li:before {color: @cyan;}}
+    &.success-bullet {li:before {color: @green;}}
+    &.warning-bullet {li:before {color: @yellow;}}
+    &.red-bullet {li:before {color: @red;}}
+    &.blue-bullet {li:before {color: @cyan;}}
+    &.green-bullet {li:before {color: @green;}}
+    &.yellow-bullet {li:before {color: @yellow;}}
+}
+
+.numeric-list {
+    &.dark-bullet {li:before {background-color: @dark;}}
+    &.alert-bullet {li:before {background-color: @red;}}
+    &.info-bullet {li:before {background-color: @cyan;}}
+    &.success-bullet {li:before {background-color: @green;}}
+    &.warning-bullet {li:before {background-color: @yellow;}}
+    &.red-bullet {li:before {background-color: @red;}}
+    &.blue-bullet {li:before {background-color: @cyan;}}
+    &.green-bullet {li:before {background-color: @green;}}
+    &.yellow-bullet {li:before {background-color: @yellow;}}
 }
 
 .step-list {

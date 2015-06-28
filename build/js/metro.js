@@ -1,5 +1,5 @@
 /*!
- * Metro UI CSS v3.0.6 (http://metroui.org.ua)
+ * Metro UI CSS v3.0.7 (http://metroui.org.ua)
  * Copyright 2012-2015 Sergey Pimenov
  * Licensed under MIT (http://metroui.org.ua/license.html)
  */
@@ -2775,9 +2775,6 @@ window.METRO_LOCALES = {
                 if (oh > max_height) {max_height = oh;}
             });
 
-            element.find('.slide').hide();
-            element.find('.slide:nth-child(1)').show();
-
             element.css({
                 'width': o.width,
                 'height': o.height ? o.height : max_height
@@ -2802,6 +2799,9 @@ window.METRO_LOCALES = {
                         if (that.options.auto) {that._autoStart();}// that.options.period;
                     });
             }
+
+            element.find('.slide').hide();
+            element.find('.slide:nth-child(1)').show();
 
             //this._slideToSlide(0);
             if (o.auto) {
@@ -3870,7 +3870,23 @@ window.METRO_LOCALES = {
                 'border-radius': o.format === 'cycle' ? '50%' : '0'
             });
 
+            $(window).on('resize', function(){
+                var p_w = image_frame.innerWidth();
+                var p_h = image_frame.innerHeight();
 
+                switch (o.format) {
+                    case 'sd': p_h = 3 * p_w / 4; break;
+                    case 'square': p_h = p_w; break;
+                    case 'cycle': p_h = p_w; break;
+                    case 'fill-h': p_h = "100%"; image_container.css('height', '100%'); break;
+                    case 'fill': p_h = "100%"; image_container.css('height', '100%'); break;
+                    default: p_h = 9 * p_w / 16;
+                }
+
+                div.css({
+                    'height': p_h
+                });
+            });
 
             if (o.frameColor !== 'default') {
                 if (o.frameColor.isUrl()) {
@@ -3922,6 +3938,76 @@ window.METRO_LOCALES = {
         }
     });
 })( jQuery );
+(function ( $ ) {
+
+    "use strict";
+
+    $.widget( "metro.grid" , {
+
+        version: "3.0.0",
+
+        options: {
+            equalHeight: true
+        },
+
+        _create: function () {
+            var that = this, element = this.element, o = this.options;
+
+            $.each(element.data(), function(key, value){
+                if (key in o) {
+                    try {
+                        o[key] = $.parseJSON(value);
+                    } catch (e) {
+                        o[key] = value;
+                    }
+                }
+            });
+
+            if (o.equalHeight) {
+                setTimeout(function(){
+                    that._setEqualHeight();
+                }, 50);
+
+                $(window).on('resize', function(){
+                    that._setEqualHeight();
+                });
+            }
+
+            element.data('grid', this);
+
+        },
+
+        _setEqualHeight: function(){
+            var that = this, element = this.element, o = this.options;
+            var rows = element.find('.row');
+
+            $.each(rows, function(){
+                var row = $(this);
+                var cells = row.children('.cell');
+                var maxHeight = 0;
+
+                cells.css('min-height', '0');
+
+                $.each(cells, function(){
+                    //console.log(this.tagName, $(this).outerHeight());
+                    if ($(this).outerHeight() > maxHeight) {
+                        maxHeight = $(this).outerHeight();
+                    }
+                });
+
+                cells.css('min-height', maxHeight);
+            });
+        },
+
+        _destroy: function () {
+        },
+
+        _setOption: function ( key, value ) {
+            this._super('_setOption', key, value);
+        }
+    });
+
+})( jQuery );
 (function( $ ) {
 
     "use strict";
@@ -3937,6 +4023,7 @@ window.METRO_LOCALES = {
             hintMaxSize: 200,
             hintMode: 'default',
             hintShadow: false,
+            hintBorder: true,
 
             _hint: undefined
         },
@@ -3994,6 +4081,10 @@ window.METRO_LOCALES = {
                 _hint.addClass('hint2');
             } else {
                 _hint.addClass('hint');
+            }
+
+            if (!o.hintBorder) {
+                _hint.addClass('no-border');
             }
 
             if (hint_title) {

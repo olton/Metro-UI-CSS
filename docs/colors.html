@@ -50,7 +50,21 @@
         <p>
             To set background color: use prefix <span class="tag">bg-</span>, to set foreground color: use prefix <span class="tag">fg-</span>, to set outline color: use prefix <span class="tag">ol-</span>, to set border color: use prefix <span class="tag">bd-</span>.
             Also you can set active, hover and focus colors with classes <span class="tag">bg(fg)-hover-*</span>, <span class="tag">bg(fg)-active-</span> and <span class="tag">bg(fg)-focus-</span>.
+            Also you can change :before and :after color and background for element with classes: <span class="tag">before-bg-*</span>, <span class="tag">before-fg-*</span>, <span class="tag">after-bg-*</span>, <span class="tag">after-fg-*</span>.
         </p>
+
+        <div class="example" data-text="colors">
+            <h5>Before and after colors</h5>
+            <ul class="simple-list color-list" id="before-bg-color-list"></ul>
+            <script>
+                $(function(){
+                    var item, span;
+                    $.each(metro_colors, function(i, v){
+                        item = $("<li/>").addClass('before-fg-'+v+' padding10').html(v).appendTo($("#before-bg-color-list"));
+                    });
+                });
+            </script>
+        </div>
 
         <p>
             To create ribbed background use prefix <span class="tag">ribbed-</span>.

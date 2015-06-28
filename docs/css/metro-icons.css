@@ -1982,6 +1982,642 @@
   background: #00aff0 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
+.before-bg-black:before {
+  background: #000000 !important;
+}
+.before-bg-white:before {
+  background: #ffffff !important;
+}
+.before-bg-lime:before {
+  background: #a4c400 !important;
+}
+.before-bg-green:before {
+  background: #60a917 !important;
+}
+.before-bg-emerald:before {
+  background: #008a00 !important;
+}
+.before-bg-teal:before {
+  background: #00aba9 !important;
+}
+.before-bg-cyan:before {
+  background: #1ba1e2 !important;
+}
+.before-bg-cobalt:before {
+  background: #0050ef !important;
+}
+.before-bg-indigo:before {
+  background: #6a00ff !important;
+}
+.before-bg-violet:before {
+  background: #aa00ff !important;
+}
+.before-bg-pink:before {
+  background: #dc4fad !important;
+}
+.before-bg-magenta:before {
+  background: #d80073 !important;
+}
+.before-bg-crimson:before {
+  background: #a20025 !important;
+}
+.before-bg-red:before {
+  background: #ce352c !important;
+}
+.before-bg-orange:before {
+  background: #fa6800 !important;
+}
+.before-bg-amber:before {
+  background: #f0a30a !important;
+}
+.before-bg-yellow:before {
+  background: #e3c800 !important;
+}
+.before-bg-brown:before {
+  background: #825a2c !important;
+}
+.before-bg-olive:before {
+  background: #6d8764 !important;
+}
+.before-bg-steel:before {
+  background: #647687 !important;
+}
+.before-bg-mauve:before {
+  background: #76608a !important;
+}
+.before-bg-taupe:before {
+  background: #87794e !important;
+}
+.before-bg-gray:before {
+  background: #555555 !important;
+}
+.before-bg-dark:before {
+  background: #333333 !important;
+}
+.before-bg-darker:before {
+  background: #222222 !important;
+}
+.before-bg-transparent:before {
+  background: transparent !important;
+}
+.before-bg-darkBrown:before {
+  background: #63362f !important;
+}
+.before-bg-darkCrimson:before {
+  background: #640024 !important;
+}
+.before-bg-darkMagenta:before {
+  background: #81003c !important;
+}
+.before-bg-darkIndigo:before {
+  background: #4b0096 !important;
+}
+.before-bg-darkCyan:before {
+  background: #1b6eae !important;
+}
+.before-bg-darkCobalt:before {
+  background: #00356a !important;
+}
+.before-bg-darkTeal:before {
+  background: #004050 !important;
+}
+.before-bg-darkEmerald:before {
+  background: #003e00 !important;
+}
+.before-bg-darkGreen:before {
+  background: #128023 !important;
+}
+.before-bg-darkOrange:before {
+  background: #bf5a15 !important;
+}
+.before-bg-darkRed:before {
+  background: #9a1616 !important;
+}
+.before-bg-darkPink:before {
+  background: #9a165a !important;
+}
+.before-bg-darkViolet:before {
+  background: #57169a !important;
+}
+.before-bg-darkBlue:before {
+  background: #16499a !important;
+}
+.before-bg-lightBlue:before {
+  background: #4390df !important;
+}
+.before-bg-lightRed:before {
+  background: #da5a53 !important;
+}
+.before-bg-lightGreen:before {
+  background: #7ad61d !important;
+}
+.before-bg-lighterBlue:before {
+  background: #00ccff !important;
+}
+.before-bg-lightTeal:before {
+  background: #45fffd !important;
+}
+.before-bg-lightOlive:before {
+  background: #78aa1c !important;
+}
+.before-bg-lightOrange:before {
+  background: #c29008 !important;
+}
+.before-bg-lightPink:before {
+  background: #f472d0 !important;
+}
+.before-bg-grayDark:before {
+  background: #333333 !important;
+}
+.before-bg-grayDarker:before {
+  background: #222222 !important;
+}
+.before-bg-grayLight:before {
+  background: #999999 !important;
+}
+.before-bg-grayLighter:before {
+  background: #eeeeee !important;
+}
+.before-bg-blue:before {
+  background: #00aff0 !important;
+}
+.after-bg-black:after {
+  background: #000000 !important;
+}
+.after-bg-white:after {
+  background: #ffffff !important;
+}
+.after-bg-lime:after {
+  background: #a4c400 !important;
+}
+.after-bg-green:after {
+  background: #60a917 !important;
+}
+.after-bg-emerald:after {
+  background: #008a00 !important;
+}
+.after-bg-teal:after {
+  background: #00aba9 !important;
+}
+.after-bg-cyan:after {
+  background: #1ba1e2 !important;
+}
+.after-bg-cobalt:after {
+  background: #0050ef !important;
+}
+.after-bg-indigo:after {
+  background: #6a00ff !important;
+}
+.after-bg-violet:after {
+  background: #aa00ff !important;
+}
+.after-bg-pink:after {
+  background: #dc4fad !important;
+}
+.after-bg-magenta:after {
+  background: #d80073 !important;
+}
+.after-bg-crimson:after {
+  background: #a20025 !important;
+}
+.after-bg-red:after {
+  background: #ce352c !important;
+}
+.after-bg-orange:after {
+  background: #fa6800 !important;
+}
+.after-bg-amber:after {
+  background: #f0a30a !important;
+}
+.after-bg-yellow:after {
+  background: #e3c800 !important;
+}
+.after-bg-brown:after {
+  background: #825a2c !important;
+}
+.after-bg-olive:after {
+  background: #6d8764 !important;
+}
+.after-bg-steel:after {
+  background: #647687 !important;
+}
+.after-bg-mauve:after {
+  background: #76608a !important;
+}
+.after-bg-taupe:after {
+  background: #87794e !important;
+}
+.after-bg-gray:after {
+  background: #555555 !important;
+}
+.after-bg-dark:after {
+  background: #333333 !important;
+}
+.after-bg-darker:after {
+  background: #222222 !important;
+}
+.after-bg-transparent:after {
+  background: transparent !important;
+}
+.after-bg-darkBrown:after {
+  background: #63362f !important;
+}
+.after-bg-darkCrimson:after {
+  background: #640024 !important;
+}
+.after-bg-darkMagenta:after {
+  background: #81003c !important;
+}
+.after-bg-darkIndigo:after {
+  background: #4b0096 !important;
+}
+.after-bg-darkCyan:after {
+  background: #1b6eae !important;
+}
+.after-bg-darkCobalt:after {
+  background: #00356a !important;
+}
+.after-bg-darkTeal:after {
+  background: #004050 !important;
+}
+.after-bg-darkEmerald:after {
+  background: #003e00 !important;
+}
+.after-bg-darkGreen:after {
+  background: #128023 !important;
+}
+.after-bg-darkOrange:after {
+  background: #bf5a15 !important;
+}
+.after-bg-darkRed:after {
+  background: #9a1616 !important;
+}
+.after-bg-darkPink:after {
+  background: #9a165a !important;
+}
+.after-bg-darkViolet:after {
+  background: #57169a !important;
+}
+.after-bg-darkBlue:after {
+  background: #16499a !important;
+}
+.after-bg-lightBlue:after {
+  background: #4390df !important;
+}
+.after-bg-lightRed:after {
+  background: #da5a53 !important;
+}
+.after-bg-lightGreen:after {
+  background: #7ad61d !important;
+}
+.after-bg-lighterBlue:after {
+  background: #00ccff !important;
+}
+.after-bg-lightTeal:after {
+  background: #45fffd !important;
+}
+.after-bg-lightOlive:after {
+  background: #78aa1c !important;
+}
+.after-bg-lightOrange:after {
+  background: #c29008 !important;
+}
+.after-bg-lightPink:after {
+  background: #f472d0 !important;
+}
+.after-bg-grayDark:after {
+  background: #333333 !important;
+}
+.after-bg-grayDarker:after {
+  background: #222222 !important;
+}
+.after-bg-grayLight:after {
+  background: #999999 !important;
+}
+.after-bg-grayLighter:after {
+  background: #eeeeee !important;
+}
+.after-bg-blue:after {
+  background: #00aff0 !important;
+}
+.before-fg-black:before {
+  color: #000000 !important;
+}
+.before-fg-white:before {
+  color: #ffffff !important;
+}
+.before-fg-lime:before {
+  color: #a4c400 !important;
+}
+.before-fg-green:before {
+  color: #60a917 !important;
+}
+.before-fg-emerald:before {
+  color: #008a00 !important;
+}
+.before-fg-teal:before {
+  color: #00aba9 !important;
+}
+.before-fg-cyan:before {
+  color: #1ba1e2 !important;
+}
+.before-fg-cobalt:before {
+  color: #0050ef !important;
+}
+.before-fg-indigo:before {
+  color: #6a00ff !important;
+}
+.before-fg-violet:before {
+  color: #aa00ff !important;
+}
+.before-fg-pink:before {
+  color: #dc4fad !important;
+}
+.before-fg-magenta:before {
+  color: #d80073 !important;
+}
+.before-fg-crimson:before {
+  color: #a20025 !important;
+}
+.before-fg-red:before {
+  color: #ce352c !important;
+}
+.before-fg-orange:before {
+  color: #fa6800 !important;
+}
+.before-fg-amber:before {
+  color: #f0a30a !important;
+}
+.before-fg-yellow:before {
+  color: #e3c800 !important;
+}
+.before-fg-brown:before {
+  color: #825a2c !important;
+}
+.before-fg-olive:before {
+  color: #6d8764 !important;
+}
+.before-fg-steel:before {
+  color: #647687 !important;
+}
+.before-fg-mauve:before {
+  color: #76608a !important;
+}
+.before-fg-taupe:before {
+  color: #87794e !important;
+}
+.before-fg-gray:before {
+  color: #555555 !important;
+}
+.before-fg-dark:before {
+  color: #333333 !important;
+}
+.before-fg-darker:before {
+  color: #222222 !important;
+}
+.before-fg-transparent:before {
+  color: transparent !important;
+}
+.before-fg-darkBrown:before {
+  color: #63362f !important;
+}
+.before-fg-darkCrimson:before {
+  color: #640024 !important;
+}
+.before-fg-darkMagenta:before {
+  color: #81003c !important;
+}
+.before-fg-darkIndigo:before {
+  color: #4b0096 !important;
+}
+.before-fg-darkCyan:before {
+  color: #1b6eae !important;
+}
+.before-fg-darkCobalt:before {
+  color: #00356a !important;
+}
+.before-fg-darkTeal:before {
+  color: #004050 !important;
+}
+.before-fg-darkEmerald:before {
+  color: #003e00 !important;
+}
+.before-fg-darkGreen:before {
+  color: #128023 !important;
+}
+.before-fg-darkOrange:before {
+  color: #bf5a15 !important;
+}
+.before-fg-darkRed:before {
+  color: #9a1616 !important;
+}
+.before-fg-darkPink:before {
+  color: #9a165a !important;
+}
+.before-fg-darkViolet:before {
+  color: #57169a !important;
+}
+.before-fg-darkBlue:before {
+  color: #16499a !important;
+}
+.before-fg-lightBlue:before {
+  color: #4390df !important;
+}
+.before-fg-lightRed:before {
+  color: #da5a53 !important;
+}
+.before-fg-lightGreen:before {
+  color: #7ad61d !important;
+}
+.before-fg-lighterBlue:before {
+  color: #00ccff !important;
+}
+.before-fg-lightTeal:before {
+  color: #45fffd !important;
+}
+.before-fg-lightOlive:before {
+  color: #78aa1c !important;
+}
+.before-fg-lightOrange:before {
+  color: #c29008 !important;
+}
+.before-fg-lightPink:before {
+  color: #f472d0 !important;
+}
+.before-fg-grayDark:before {
+  color: #333333 !important;
+}
+.before-fg-grayDarker:before {
+  color: #222222 !important;
+}
+.before-fg-grayLight:before {
+  color: #999999 !important;
+}
+.before-fg-grayLighter:before {
+  color: #eeeeee !important;
+}
+.before-fg-blue:before {
+  color: #00aff0 !important;
+}
+.after-fg-black:after {
+  color: #000000 !important;
+}
+.after-fg-white:after {
+  color: #ffffff !important;
+}
+.after-fg-lime:after {
+  color: #a4c400 !important;
+}
+.after-fg-green:after {
+  color: #60a917 !important;
+}
+.after-fg-emerald:after {
+  color: #008a00 !important;
+}
+.after-fg-teal:after {
+  color: #00aba9 !important;
+}
+.after-fg-cyan:after {
+  color: #1ba1e2 !important;
+}
+.after-fg-cobalt:after {
+  color: #0050ef !important;
+}
+.after-fg-indigo:after {
+  color: #6a00ff !important;
+}
+.after-fg-violet:after {
+  color: #aa00ff !important;
+}
+.after-fg-pink:after {
+  color: #dc4fad !important;
+}
+.after-fg-magenta:after {
+  color: #d80073 !important;
+}
+.after-fg-crimson:after {
+  color: #a20025 !important;
+}
+.after-fg-red:after {
+  color: #ce352c !important;
+}
+.after-fg-orange:after {
+  color: #fa6800 !important;
+}
+.after-fg-amber:after {
+  color: #f0a30a !important;
+}
+.after-fg-yellow:after {
+  color: #e3c800 !important;
+}
+.after-fg-brown:after {
+  color: #825a2c !important;
+}
+.after-fg-olive:after {
+  color: #6d8764 !important;
+}
+.after-fg-steel:after {
+  color: #647687 !important;
+}
+.after-fg-mauve:after {
+  color: #76608a !important;
+}
+.after-fg-taupe:after {
+  color: #87794e !important;
+}
+.after-fg-gray:after {
+  color: #555555 !important;
+}
+.after-fg-dark:after {
+  color: #333333 !important;
+}
+.after-fg-darker:after {
+  color: #222222 !important;
+}
+.after-fg-transparent:after {
+  color: transparent !important;
+}
+.after-fg-darkBrown:after {
+  color: #63362f !important;
+}
+.after-fg-darkCrimson:after {
+  color: #640024 !important;
+}
+.after-fg-darkMagenta:after {
+  color: #81003c !important;
+}
+.after-fg-darkIndigo:after {
+  color: #4b0096 !important;
+}
+.after-fg-darkCyan:after {
+  color: #1b6eae !important;
+}
+.after-fg-darkCobalt:after {
+  color: #00356a !important;
+}
+.after-fg-darkTeal:after {
+  color: #004050 !important;
+}
+.after-fg-darkEmerald:after {
+  color: #003e00 !important;
+}
+.after-fg-darkGreen:after {
+  color: #128023 !important;
+}
+.after-fg-darkOrange:after {
+  color: #bf5a15 !important;
+}
+.after-fg-darkRed:after {
+  color: #9a1616 !important;
+}
+.after-fg-darkPink:after {
+  color: #9a165a !important;
+}
+.after-fg-darkViolet:after {
+  color: #57169a !important;
+}
+.after-fg-darkBlue:after {
+  color: #16499a !important;
+}
+.after-fg-lightBlue:after {
+  color: #4390df !important;
+}
+.after-fg-lightRed:after {
+  color: #da5a53 !important;
+}
+.after-fg-lightGreen:after {
+  color: #7ad61d !important;
+}
+.after-fg-lighterBlue:after {
+  color: #00ccff !important;
+}
+.after-fg-lightTeal:after {
+  color: #45fffd !important;
+}
+.after-fg-lightOlive:after {
+  color: #78aa1c !important;
+}
+.after-fg-lightOrange:after {
+  color: #c29008 !important;
+}
+.after-fg-lightPink:after {
+  color: #f472d0 !important;
+}
+.after-fg-grayDark:after {
+  color: #333333 !important;
+}
+.after-fg-grayDarker:after {
+  color: #222222 !important;
+}
+.after-fg-grayLight:after {
+  color: #999999 !important;
+}
+.after-fg-grayLighter:after {
+  color: #eeeeee !important;
+}
+.after-fg-blue:after {
+  color: #00aff0 !important;
+}
 .dropdown-toggle {
   position: relative;
   cursor: pointer;
@@ -2021,6 +2657,12 @@
 .shadow {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.35);
 }
+.before-shadow:before {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.35);
+}
+.after-shadow:after {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.35);
+}
 .block-shadow {
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3);
 }
@@ -2046,6 +2688,12 @@
   box-shadow: -1px 6px 6px -6px rgba(0, 0, 0, 0.35);
 }
 .text-shadow {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+.before-text-shadow:before {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+.after-text-shadow:after {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 }
 .no-shadow {
@@ -2339,15 +2987,6 @@
 .set-border.large-border {
   border-width: 16px;
 }
-.pos-abs {
-  position: absolute !important;
-}
-.pos-rel {
-  position: relative !important;
-}
-.pos-fix {
-  position: fixed !important;
-}
 /* transform functions */
 .rotate45 {
   -webkit-transform: rotate(45deg);
@@ -2516,6 +3155,222 @@
 .rotateY-360 {
   -webkit-transform: rotateY(-360deg);
           transform: rotateY(-360deg);
+}
+.ani-spin,
+.ani-hover-spin:hover {
+  -webkit-animation: ani-spin 1.5s linear infinite;
+          animation: ani-spin 1.5s linear infinite;
+}
+.ani-spin.ani-fast,
+.ani-hover-spin.ani-fast:hover {
+  -webkit-animation: ani-spin 0.7s linear infinite;
+          animation: ani-spin 0.7s linear infinite;
+}
+.ani-spin.ani-slow,
+.ani-hover-spin.ani-slow:hover {
+  -webkit-animation: ani-spin 2.2s linear infinite;
+          animation: ani-spin 2.2s linear infinite;
+}
+.ani-pulse,
+.ani-hover-pulse:hover {
+  -webkit-animation: ani-pulse 1.7s infinite;
+          animation: ani-pulse 1.7s infinite;
+}
+.ani-pulse.ani-fast,
+.ani-hover-pulse.ani-fast:hover {
+  -webkit-animation: ani-pulse 1s infinite;
+          animation: ani-pulse 1s infinite;
+}
+.ani-pulse.ani-slow,
+.ani-hover-pulse.ani-slow:hover {
+  -webkit-animation: ani-pulse 3s infinite;
+          animation: ani-pulse 3s infinite;
+}
+.ani-spanner,
+.ani-hover-spanner:hover {
+  transform-origin-x: 90%;
+  transform-origin-y: 35%;
+  transform-origin-z: initial;
+  -webkit-animation: ani-wrench 2.5s ease infinite;
+          animation: ani-wrench 2.5s ease infinite;
+}
+.ani-spanner.ani-fast,
+.ani-hover-spanner.ani-fast:hover {
+  -webkit-animation: ani-wrench 1.2s ease infinite;
+          animation: ani-wrench 1.2s ease infinite;
+}
+.ani-spanner.ani-slow,
+.ani-hover-spanner.ani-slow:hover {
+  -webkit-animation: ani-wrench 3.7s ease infinite;
+          animation: ani-wrench 3.7s ease infinite;
+}
+.ani-ring,
+.ani-hover-ring:hover {
+  transform-origin-x: 50%;
+  transform-origin-y: 0px;
+  transform-origin-z: initial;
+  -webkit-animation: ani-ring 2s ease infinite;
+          animation: ani-ring 2s ease infinite;
+}
+.ani-ring.ani-fast,
+.ani-hover-ring.ani-fast:hover {
+  -webkit-animation: ani-ring 1s ease infinite;
+          animation: ani-ring 1s ease infinite;
+}
+.ani-ring.ani-slow,
+.ani-hover-ring.ani-slow:hover {
+  -webkit-animation: ani-ring 3s ease infinite;
+          animation: ani-ring 3s ease infinite;
+}
+.ani-vertical,
+.ani-hover-vertical:hover {
+  -webkit-animation: ani-vertical 2s ease infinite;
+          animation: ani-vertical 2s ease infinite;
+}
+.ani-vertical.ani-fast,
+.ani-vertical.ani-fast:hover {
+  -webkit-animation: ani-vertical 1s ease infinite;
+          animation: ani-vertical 1s ease infinite;
+}
+.ani-vertical.ani-slow,
+.ani-hover-vertical.ani-slow:hover {
+  -webkit-animation: ani-vertical 4s ease infinite;
+          animation: ani-vertical 4s ease infinite;
+}
+.ani-horizontal,
+.ani-hover-horizontal:hover {
+  -webkit-animation: ani-horizontal 2s ease infinite;
+          animation: ani-horizontal 2s ease infinite;
+}
+.ani-horizontal.ani-fast,
+.ani-horizontal.ani-fast:hover {
+  -webkit-animation: ani-horizontal 1s ease infinite;
+          animation: ani-horizontal 1s ease infinite;
+}
+.ani-horizontal.ani-slow,
+.ani-horizontal.ani-slow:hover {
+  -webkit-animation: ani-horizontal 3s ease infinite;
+          animation: ani-horizontal 3s ease infinite;
+}
+.ani-flash,
+.ani-hover-flash:hover {
+  -webkit-animation: ani-flash 2s ease infinite;
+          animation: ani-flash 2s ease infinite;
+}
+.ani-flash.ani-fast,
+.ani-hover-flash.ani-fast:hover {
+  -webkit-animation: ani-flash 1s ease infinite;
+          animation: ani-flash 1s ease infinite;
+}
+.ani-flash.ani-slow,
+.ani-hover-flash.ani-slow:hover {
+  -webkit-animation: ani-flash 3s ease infinite;
+          animation: ani-flash 3s ease infinite;
+}
+.ani-bounce,
+.ani-hover-bounce:hover {
+  -webkit-animation: ani-bounce 2s ease infinite;
+          animation: ani-bounce 2s ease infinite;
+}
+.ani-bounce.ani-fast,
+.ani-hover-bounce.ani-fast:hover {
+  -webkit-animation: ani-bounce 1s ease infinite;
+          animation: ani-bounce 1s ease infinite;
+}
+.ani-bounce.ani-slow,
+.ani-hover-bounce.ani-slow:hover {
+  -webkit-animation: ani-bounce 3s ease infinite;
+          animation: ani-bounce 3s ease infinite;
+}
+.ani-float,
+.ani-hover-float:hover {
+  -webkit-animation: ani-float 2s linear infinite;
+          animation: ani-float 2s linear infinite;
+}
+.ani-float.ani-fast,
+.ani-hover-float.ani-fast:hover {
+  -webkit-animation: ani-float 1s linear infinite;
+          animation: ani-float 1s linear infinite;
+}
+.ani-float.ani-slow,
+.ani-hover-float.ani-slow:hover {
+  -webkit-animation: ani-float 3s linear infinite;
+          animation: ani-float 3s linear infinite;
+}
+.ani-heartbeat,
+.ani-hover-heartbeat:hover {
+  -webkit-animation: ani-heartbeat 2s linear infinite;
+          animation: ani-heartbeat 2s linear infinite;
+}
+.ani-heartbeat.ani-fast,
+.ani-hover-heartbeat.ani-fast:hover {
+  -webkit-animation: ani-heartbeat 1s linear infinite;
+          animation: ani-heartbeat 1s linear infinite;
+}
+.ani-heartbeat.ani-slow,
+.ani-hover-heartbeat.ani-slow:hover {
+  -webkit-animation: ani-heartbeat 3s linear infinite;
+          animation: ani-heartbeat 3s linear infinite;
+}
+.ani-shake,
+.ani-hover-shake:hover {
+  -webkit-animation: ani-wrench 2.5s ease infinite;
+          animation: ani-wrench 2.5s ease infinite;
+}
+.ani-shake.ani-fast,
+.ani-hover-shake.ani-fast:hover {
+  -webkit-animation: ani-wrench 1.2s ease infinite;
+          animation: ani-wrench 1.2s ease infinite;
+}
+.ani-shake.ani-slow,
+.ani-hover-shake.ani-slow:hover {
+  -webkit-animation: ani-wrench 3.7s ease infinite;
+          animation: ani-wrench 3.7s ease infinite;
+}
+.ani-shuttle,
+.ani-hover-shuttle:hover {
+  -webkit-animation: ani-shuttle 2s linear infinite;
+          animation: ani-shuttle 2s linear infinite;
+}
+.ani-shuttle.ani-fast,
+.ani-hover-shuttle.ani-fast:hover {
+  -webkit-animation: ani-shuttle 1s linear infinite;
+          animation: ani-shuttle 1s linear infinite;
+}
+.ani-shuttle.ani-slow,
+.ani-hover-shuttle.ani-slow:hover {
+  -webkit-animation: ani-shuttle 3s linear infinite;
+          animation: ani-shuttle 3s linear infinite;
+}
+.ani-pass,
+.ani-hover-pass:hover {
+  -webkit-animation: ani-pass 2s linear infinite;
+          animation: ani-pass 2s linear infinite;
+}
+.ani-pass.ani-fast,
+.ani-hover-pass.ani-fast:hover {
+  -webkit-animation: ani-pass 1s linear infinite;
+          animation: ani-pass 1s linear infinite;
+}
+.ani-pass.ani-slow,
+.ani-hover-pass.ani-slow:hover {
+  -webkit-animation: ani-pass 3s linear infinite;
+          animation: ani-pass 3s linear infinite;
+}
+.ani-ripple,
+.ani-hover-ripple:hover {
+  -webkit-animation: ani-ripple 2s infinite linear;
+          animation: ani-ripple 2s infinite linear;
+}
+.ani-ripple.ani-fast,
+.ani-hover-ripple.ani-fast:hover {
+  -webkit-animation: ani-ripple 1s infinite linear;
+          animation: ani-ripple 1s infinite linear;
+}
+.ani-ripple.ani-slow,
+.ani-hover-ripple.ani-slow:hover {
+  -webkit-animation: ani-ripple 3s infinite linear;
+          animation: ani-ripple 3s infinite linear;
 }
 @-webkit-keyframes swinging {
   0% {
@@ -2827,15 +3682,7 @@
     opacity: 1;
   }
 }
-.mif-ani-spin {
-  -webkit-animation: mif-ani-spin 1s infinite linear;
-          animation: mif-ani-spin 1s infinite linear;
-}
-.mif-ani-pulse {
-  -webkit-animation: mif-ani-pulse 1s infinite;
-          animation: mif-ani-pulse 1s infinite;
-}
-@-webkit-keyframes mif-ani-spin {
+@-webkit-keyframes ani-spin {
   0% {
     -webkit-transform: rotate(0deg);
             transform: rotate(0deg);
@@ -2845,7 +3692,7 @@
             transform: rotate(359deg);
   }
 }
-@keyframes mif-ani-spin {
+@keyframes ani-spin {
   0% {
     -webkit-transform: rotate(0deg);
             transform: rotate(0deg);
@@ -2855,7 +3702,7 @@
             transform: rotate(359deg);
   }
 }
-@-webkit-keyframes mif-ani-pulse {
+@-webkit-keyframes ani-pulse {
   0% {
     -webkit-transform: rotate(0deg);
             transform: rotate(0deg);
@@ -2865,7 +3712,7 @@
             transform: rotate(359deg);
   }
 }
-@keyframes mif-ani-pulse {
+@keyframes ani-pulse {
   0% {
     -webkit-transform: rotate(0deg);
             transform: rotate(0deg);
@@ -2874,6 +3721,784 @@
     -webkit-transform: rotate(359deg);
             transform: rotate(359deg);
   }
+}
+@-webkit-keyframes ani-wrench {
+  0% {
+    -webkit-transform: rotate(-12deg);
+            transform: rotate(-12deg);
+  }
+  8% {
+    -webkit-transform: rotate(12deg);
+            transform: rotate(12deg);
+  }
+  10% {
+    -webkit-transform: rotate(24deg);
+            transform: rotate(24deg);
+  }
+  18% {
+    -webkit-transform: rotate(-24deg);
+            transform: rotate(-24deg);
+  }
+  20% {
+    -webkit-transform: rotate(-24deg);
+            transform: rotate(-24deg);
+  }
+  28% {
+    -webkit-transform: rotate(24deg);
+            transform: rotate(24deg);
+  }
+  30% {
+    -webkit-transform: rotate(24deg);
+            transform: rotate(24deg);
+  }
+  38% {
+    -webkit-transform: rotate(-24deg);
+            transform: rotate(-24deg);
+  }
+  40% {
+    -webkit-transform: rotate(-24deg);
+            transform: rotate(-24deg);
+  }
+  48% {
+    -webkit-transform: rotate(24deg);
+            transform: rotate(24deg);
+  }
+  50% {
+    -webkit-transform: rotate(24deg);
+            transform: rotate(24deg);
+  }
+  58% {
+    -webkit-transform: rotate(-24deg);
+            transform: rotate(-24deg);
+  }
+  60% {
+    -webkit-transform: rotate(-24deg);
+            transform: rotate(-24deg);
+  }
+  68% {
+    -webkit-transform: rotate(24deg);
+            transform: rotate(24deg);
+  }
+  75% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+@keyframes ani-wrench {
+  0% {
+    -webkit-transform: rotate(-12deg);
+            transform: rotate(-12deg);
+  }
+  8% {
+    -webkit-transform: rotate(12deg);
+            transform: rotate(12deg);
+  }
+  10% {
+    -webkit-transform: rotate(24deg);
+            transform: rotate(24deg);
+  }
+  18% {
+    -webkit-transform: rotate(-24deg);
+            transform: rotate(-24deg);
+  }
+  20% {
+    -webkit-transform: rotate(-24deg);
+            transform: rotate(-24deg);
+  }
+  28% {
+    -webkit-transform: rotate(24deg);
+            transform: rotate(24deg);
+  }
+  30% {
+    -webkit-transform: rotate(24deg);
+            transform: rotate(24deg);
+  }
+  38% {
+    -webkit-transform: rotate(-24deg);
+            transform: rotate(-24deg);
+  }
+  40% {
+    -webkit-transform: rotate(-24deg);
+            transform: rotate(-24deg);
+  }
+  48% {
+    -webkit-transform: rotate(24deg);
+            transform: rotate(24deg);
+  }
+  50% {
+    -webkit-transform: rotate(24deg);
+            transform: rotate(24deg);
+  }
+  58% {
+    -webkit-transform: rotate(-24deg);
+            transform: rotate(-24deg);
+  }
+  60% {
+    -webkit-transform: rotate(-24deg);
+            transform: rotate(-24deg);
+  }
+  68% {
+    -webkit-transform: rotate(24deg);
+            transform: rotate(24deg);
+  }
+  75% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+@-webkit-keyframes ani-ring {
+  0% {
+    -webkit-transform: rotate(-15deg);
+            transform: rotate(-15deg);
+  }
+  2% {
+    -webkit-transform: rotate(15deg);
+            transform: rotate(15deg);
+  }
+  4% {
+    -webkit-transform: rotate(-18deg);
+            transform: rotate(-18deg);
+  }
+  6% {
+    -webkit-transform: rotate(18deg);
+            transform: rotate(18deg);
+  }
+  8% {
+    -webkit-transform: rotate(-22deg);
+            transform: rotate(-22deg);
+  }
+  10% {
+    -webkit-transform: rotate(22deg);
+            transform: rotate(22deg);
+  }
+  12% {
+    -webkit-transform: rotate(-18deg);
+            transform: rotate(-18deg);
+  }
+  14% {
+    -webkit-transform: rotate(18deg);
+            transform: rotate(18deg);
+  }
+  16% {
+    -webkit-transform: rotate(-12deg);
+            transform: rotate(-12deg);
+  }
+  18% {
+    -webkit-transform: rotate(12deg);
+            transform: rotate(12deg);
+  }
+  20% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+@keyframes ani-ring {
+  0% {
+    -webkit-transform: rotate(-15deg);
+            transform: rotate(-15deg);
+  }
+  2% {
+    -webkit-transform: rotate(15deg);
+            transform: rotate(15deg);
+  }
+  4% {
+    -webkit-transform: rotate(-18deg);
+            transform: rotate(-18deg);
+  }
+  6% {
+    -webkit-transform: rotate(18deg);
+            transform: rotate(18deg);
+  }
+  8% {
+    -webkit-transform: rotate(-22deg);
+            transform: rotate(-22deg);
+  }
+  10% {
+    -webkit-transform: rotate(22deg);
+            transform: rotate(22deg);
+  }
+  12% {
+    -webkit-transform: rotate(-18deg);
+            transform: rotate(-18deg);
+  }
+  14% {
+    -webkit-transform: rotate(18deg);
+            transform: rotate(18deg);
+  }
+  16% {
+    -webkit-transform: rotate(-12deg);
+            transform: rotate(-12deg);
+  }
+  18% {
+    -webkit-transform: rotate(12deg);
+            transform: rotate(12deg);
+  }
+  20% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+@-webkit-keyframes ani-vertical {
+  0% {
+    -webkit-transform: translate(0, -3px);
+            transform: translate(0, -3px);
+  }
+  4% {
+    -webkit-transform: translate(0, 3px);
+            transform: translate(0, 3px);
+  }
+  8% {
+    -webkit-transform: translate(0, -3px);
+            transform: translate(0, -3px);
+  }
+  12% {
+    -webkit-transform: translate(0, 3px);
+            transform: translate(0, 3px);
+  }
+  16% {
+    -webkit-transform: translate(0, -3px);
+            transform: translate(0, -3px);
+  }
+  20% {
+    -webkit-transform: translate(0, 3px);
+            transform: translate(0, 3px);
+  }
+  22% {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+}
+@keyframes ani-vertical {
+  0% {
+    -webkit-transform: translate(0, -3px);
+            transform: translate(0, -3px);
+  }
+  4% {
+    -webkit-transform: translate(0, 3px);
+            transform: translate(0, 3px);
+  }
+  8% {
+    -webkit-transform: translate(0, -3px);
+            transform: translate(0, -3px);
+  }
+  12% {
+    -webkit-transform: translate(0, 3px);
+            transform: translate(0, 3px);
+  }
+  16% {
+    -webkit-transform: translate(0, -3px);
+            transform: translate(0, -3px);
+  }
+  20% {
+    -webkit-transform: translate(0, 3px);
+            transform: translate(0, 3px);
+  }
+  22% {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+}
+@-webkit-keyframes ani-horizontal {
+  0% {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+  6% {
+    -webkit-transform: translate(5px, 0);
+            transform: translate(5px, 0);
+  }
+  12% {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+  18% {
+    -webkit-transform: translate(5px, 0);
+            transform: translate(5px, 0);
+  }
+  24% {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+  30% {
+    -webkit-transform: translate(5px, 0);
+            transform: translate(5px, 0);
+  }
+  36% {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+}
+@keyframes ani-horizontal {
+  0% {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+  6% {
+    -webkit-transform: translate(5px, 0);
+            transform: translate(5px, 0);
+  }
+  12% {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+  18% {
+    -webkit-transform: translate(5px, 0);
+            transform: translate(5px, 0);
+  }
+  24% {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+  30% {
+    -webkit-transform: translate(5px, 0);
+            transform: translate(5px, 0);
+  }
+  36% {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+}
+@-webkit-keyframes ani-flash {
+  0%,
+  100%,
+  50% {
+    opacity: 1;
+  }
+  25%,
+  75% {
+    opacity: 0;
+  }
+}
+@keyframes ani-flash {
+  0%,
+  100%,
+  50% {
+    opacity: 1;
+  }
+  25%,
+  75% {
+    opacity: 0;
+  }
+}
+@-webkit-keyframes ani-bounce {
+  0%,
+  10%,
+  20%,
+  50%,
+  80% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+  40% {
+    -webkit-transform: translateY(-15px);
+            transform: translateY(-15px);
+  }
+  60% {
+    -webkit-transform: translateY(-15px);
+            transform: translateY(-15px);
+  }
+}
+@keyframes ani-bounce {
+  0%,
+  10%,
+  20%,
+  50%,
+  80% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+  40% {
+    -webkit-transform: translateY(-15px);
+            transform: translateY(-15px);
+  }
+  60% {
+    -webkit-transform: translateY(-15px);
+            transform: translateY(-15px);
+  }
+}
+@-webkit-keyframes ani-float {
+  0% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+  50% {
+    -webkit-transform: translateY(-6px);
+            transform: translateY(-6px);
+  }
+  100% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+@keyframes ani-float {
+  0% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+  50% {
+    -webkit-transform: translateY(-6px);
+            transform: translateY(-6px);
+  }
+  100% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+@-webkit-keyframes ani-heartbeat {
+  0% {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+  }
+  50% {
+    -webkit-transform: scale(0.8);
+            transform: scale(0.8);
+  }
+  100% {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+  }
+}
+@keyframes ani-heartbeat {
+  0% {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+  }
+  50% {
+    -webkit-transform: scale(0.8);
+            transform: scale(0.8);
+  }
+  100% {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+  }
+}
+@-webkit-keyframes ani-shuttle {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  10%,
+  20% {
+    -webkit-transform: scale(0.9) rotate(-8deg);
+            transform: scale(0.9) rotate(-8deg);
+  }
+  30%,
+  50%,
+  70% {
+    -webkit-transform: scale(1.3) rotate(8deg);
+            transform: scale(1.3) rotate(8deg);
+  }
+  40%,
+  60% {
+    -webkit-transform: scale(1.3) rotate(-8deg);
+            transform: scale(1.3) rotate(-8deg);
+  }
+  80% {
+    -webkit-transform: scale(1) rotate(0);
+            transform: scale(1) rotate(0);
+  }
+}
+@keyframes ani-shuttle {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  10%,
+  20% {
+    -webkit-transform: scale(0.9) rotate(-8deg);
+            transform: scale(0.9) rotate(-8deg);
+  }
+  30%,
+  50%,
+  70% {
+    -webkit-transform: scale(1.3) rotate(8deg);
+            transform: scale(1.3) rotate(8deg);
+  }
+  40%,
+  60% {
+    -webkit-transform: scale(1.3) rotate(-8deg);
+            transform: scale(1.3) rotate(-8deg);
+  }
+  80% {
+    -webkit-transform: scale(1) rotate(0);
+            transform: scale(1) rotate(0);
+  }
+}
+@-webkit-keyframes ani-pass {
+  0% {
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+    opacity: 0;
+  }
+  50% {
+    -webkit-transform: translateX(0%);
+            transform: translateX(0%);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translateX(50%);
+            transform: translateX(50%);
+    opacity: 0;
+  }
+}
+@keyframes ani-pass {
+  0% {
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+    opacity: 0;
+  }
+  50% {
+    -webkit-transform: translateX(0%);
+            transform: translateX(0%);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translateX(50%);
+            transform: translateX(50%);
+    opacity: 0;
+  }
+}
+@-webkit-keyframes ani-ripple {
+  0% {
+    opacity: .6;
+  }
+  50% {
+    -webkit-transform: scale(1.8);
+            transform: scale(1.8);
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes ani-ripple {
+  0% {
+    opacity: .6;
+  }
+  50% {
+    -webkit-transform: scale(1.8);
+            transform: scale(1.8);
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.mif-ani-spin,
+.mif-ani-hover-spin:hover {
+  -webkit-animation: ani-spin 1.5s linear infinite;
+          animation: ani-spin 1.5s linear infinite;
+}
+.mif-ani-spin.mif-ani-fast,
+.mif-ani-hover-spin.mif-ani-fast:hover {
+  -webkit-animation: ani-spin 0.7s linear infinite;
+          animation: ani-spin 0.7s linear infinite;
+}
+.mif-ani-spin.mif-ani-slow,
+.mif-ani-hover-spin.mif-ani-slow:hover {
+  -webkit-animation: ani-spin 2.2s linear infinite;
+          animation: ani-spin 2.2s linear infinite;
+}
+.mif-ani-pulse,
+.mif-ani-hover-pulse:hover {
+  -webkit-animation: ani-pulse 1.7s infinite;
+          animation: ani-pulse 1.7s infinite;
+}
+.mif-ani-pulse.mif-ani-fast,
+.mif-ani-hover-pulse.mif-ani-fast:hover {
+  -webkit-animation: ani-pulse 1s infinite;
+          animation: ani-pulse 1s infinite;
+}
+.mif-ani-pulse.mif-ani-slow,
+.mif-ani-hover-pulse.mif-ani-slow:hover {
+  -webkit-animation: ani-pulse 3s infinite;
+          animation: ani-pulse 3s infinite;
+}
+.mif-ani-spanner,
+.mif-ani-hover-spanner:hover {
+  transform-origin-x: 90%;
+  transform-origin-y: 35%;
+  transform-origin-z: initial;
+  -webkit-animation: ani-wrench 2.5s ease infinite;
+          animation: ani-wrench 2.5s ease infinite;
+}
+.mif-ani-spanner.mif-ani-fast,
+.mif-ani-hover-spanner.mif-ani-fast:hover {
+  -webkit-animation: ani-wrench 1.2s ease infinite;
+          animation: ani-wrench 1.2s ease infinite;
+}
+.mif-ani-spanner.mif-ani-slow,
+.mif-ani-hover-spanner.mif-ani-slow:hover {
+  -webkit-animation: ani-wrench 3.7s ease infinite;
+          animation: ani-wrench 3.7s ease infinite;
+}
+.mif-ani-ring,
+.mif-ani-hover-ring:hover {
+  transform-origin-x: 50%;
+  transform-origin-y: 0px;
+  transform-origin-z: initial;
+  -webkit-animation: ani-ring 2s ease infinite;
+          animation: ani-ring 2s ease infinite;
+}
+.mif-ani-ring.mif-ani-fast,
+.mif-ani-hover-ring.mif-ani-fast:hover {
+  -webkit-animation: ani-ring 1s ease infinite;
+          animation: ani-ring 1s ease infinite;
+}
+.mif-ani-ring.mif-ani-slow,
+.mif-ani-hover-ring.mif-ani-slow:hover {
+  -webkit-animation: ani-ring 3s ease infinite;
+          animation: ani-ring 3s ease infinite;
+}
+.mif-ani-vertical,
+.mif-ani-hover-vertical:hover {
+  -webkit-animation: ani-vertical 2s ease infinite;
+          animation: ani-vertical 2s ease infinite;
+}
+.mif-ani-vertical.mif-ani-fast,
+.mif-ani-vertical.mif-ani-fast:hover {
+  -webkit-animation: ani-vertical 1s ease infinite;
+          animation: ani-vertical 1s ease infinite;
+}
+.mif-ani-vertical.mif-ani-slow,
+.mif-ani-hover-vertical.mif-ani-slow:hover {
+  -webkit-animation: ani-vertical 4s ease infinite;
+          animation: ani-vertical 4s ease infinite;
+}
+.mif-ani-horizontal,
+.mif-ani-hover-horizontal:hover {
+  -webkit-animation: ani-horizontal 2s ease infinite;
+          animation: ani-horizontal 2s ease infinite;
+}
+.mif-ani-horizontal.mif-ani-fast,
+.mif-ani-horizontal.mif-ani-fast:hover {
+  -webkit-animation: ani-horizontal 1s ease infinite;
+          animation: ani-horizontal 1s ease infinite;
+}
+.mif-ani-horizontal.mif-ani-slow,
+.mif-ani-horizontal.mif-ani-slow:hover {
+  -webkit-animation: ani-horizontal 3s ease infinite;
+          animation: ani-horizontal 3s ease infinite;
+}
+.mif-ani-flash,
+.mif-ani-hover-flash:hover {
+  -webkit-animation: ani-flash 2s ease infinite;
+          animation: ani-flash 2s ease infinite;
+}
+.mif-ani-flash.mif-ani-fast,
+.mif-ani-hover-flash.mif-ani-fast:hover {
+  -webkit-animation: ani-flash 1s ease infinite;
+          animation: ani-flash 1s ease infinite;
+}
+.mif-ani-flash.mif-ani-slow,
+.mif-ani-hover-flash.mif-ani-slow:hover {
+  -webkit-animation: ani-flash 3s ease infinite;
+          animation: ani-flash 3s ease infinite;
+}
+.mif-ani-bounce,
+.mif-ani-hover-bounce:hover {
+  -webkit-animation: ani-bounce 2s ease infinite;
+          animation: ani-bounce 2s ease infinite;
+}
+.mif-ani-bounce.mif-ani-fast,
+.mif-ani-hover-bounce.mif-ani-fast:hover {
+  -webkit-animation: ani-bounce 1s ease infinite;
+          animation: ani-bounce 1s ease infinite;
+}
+.mif-ani-bounce.mif-ani-slow,
+.mif-ani-hover-bounce.mif-ani-slow:hover {
+  -webkit-animation: ani-bounce 3s ease infinite;
+          animation: ani-bounce 3s ease infinite;
+}
+.mif-ani-float,
+.mif-ani-hover-float:hover {
+  -webkit-animation: ani-float 2s linear infinite;
+          animation: ani-float 2s linear infinite;
+}
+.mif-ani-float.mif-ani-fast,
+.mif-ani-hover-float.mif-ani-fast:hover {
+  -webkit-animation: ani-float 1s linear infinite;
+          animation: ani-float 1s linear infinite;
+}
+.mif-ani-float.mif-ani-slow,
+.mif-ani-hover-float.mif-ani-slow:hover {
+  -webkit-animation: ani-float 3s linear infinite;
+          animation: ani-float 3s linear infinite;
+}
+.mif-ani-heartbeat,
+.mif-ani-hover-heartbeat:hover {
+  -webkit-animation: ani-heartbeat 2s linear infinite;
+          animation: ani-heartbeat 2s linear infinite;
+}
+.mif-ani-heartbeat.mif-ani-fast,
+.mif-ani-hover-heartbeat.mif-ani-fast:hover {
+  -webkit-animation: ani-heartbeat 1s linear infinite;
+          animation: ani-heartbeat 1s linear infinite;
+}
+.mif-ani-heartbeat.mif-ani-slow,
+.mif-ani-hover-heartbeat.mif-ani-slow:hover {
+  -webkit-animation: ani-heartbeat 3s linear infinite;
+          animation: ani-heartbeat 3s linear infinite;
+}
+.mif-ani-shake,
+.mif-ani-hover-shake:hover {
+  -webkit-animation: ani-wrench 2.5s ease infinite;
+          animation: ani-wrench 2.5s ease infinite;
+}
+.mif-ani-shake.mif-ani-fast,
+.mif-ani-hover-shake.mif-ani-fast:hover {
+  -webkit-animation: ani-wrench 1.2s ease infinite;
+          animation: ani-wrench 1.2s ease infinite;
+}
+.mif-ani-shake.mif-ani-slow,
+.mif-ani-hover-shake.mif-ani-slow:hover {
+  -webkit-animation: ani-wrench 3.7s ease infinite;
+          animation: ani-wrench 3.7s ease infinite;
+}
+.mif-ani-shuttle,
+.mif-ani-hover-shuttle:hover {
+  -webkit-animation: ani-shuttle 2s linear infinite;
+          animation: ani-shuttle 2s linear infinite;
+}
+.mif-ani-shuttle.mif-ani-fast,
+.mif-ani-hover-shuttle.mif-ani-fast:hover {
+  -webkit-animation: ani-shuttle 1s linear infinite;
+          animation: ani-shuttle 1s linear infinite;
+}
+.mif-ani-shuttle.mif-ani-slow,
+.mif-ani-hover-shuttle.mif-ani-slow:hover {
+  -webkit-animation: ani-shuttle 3s linear infinite;
+          animation: ani-shuttle 3s linear infinite;
+}
+.mif-ani-pass,
+.mif-ani-hover-pass:hover {
+  -webkit-animation: ani-pass 2s linear infinite;
+          animation: ani-pass 2s linear infinite;
+}
+.mif-ani-pass.mif-ani-fast,
+.mif-ani-hover-pass.mif-ani-fast:hover {
+  -webkit-animation: ani-pass 1s linear infinite;
+          animation: ani-pass 1s linear infinite;
+}
+.mif-ani-pass.mif-ani-slow,
+.mif-ani-hover-pass.mif-ani-slow:hover {
+  -webkit-animation: ani-pass 3s linear infinite;
+          animation: ani-pass 3s linear infinite;
+}
+.mif-ani-ripple,
+.mif-ani-hover-ripple:hover {
+  -webkit-animation: ani-ripple 2s infinite linear;
+          animation: ani-ripple 2s infinite linear;
+}
+.mif-ani-ripple.mif-ani-fast,
+.mif-ani-hover-ripple.mif-ani-fast:hover {
+  -webkit-animation: ani-ripple 1s infinite linear;
+          animation: ani-ripple 1s infinite linear;
+}
+.mif-ani-ripple.mif-ani-slow,
+.mif-ani-hover-ripple.mif-ani-slow:hover {
+  -webkit-animation: ani-ripple 3s infinite linear;
+          animation: ani-ripple 3s infinite linear;
 }
 .mif-microscope:before {
   content: "\f089";

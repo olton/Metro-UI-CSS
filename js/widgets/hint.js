@@ -13,6 +13,7 @@
             hintMaxSize: 200,
             hintMode: 'default',
             hintShadow: false,
+            hintBorder: true,
 
             _hint: undefined
         },
@@ -70,6 +71,10 @@
                 _hint.addClass('hint2');
             } else {
                 _hint.addClass('hint');
+            }
+
+            if (!o.hintBorder) {
+                _hint.addClass('no-border');
             }
 
             if (hint_title) {

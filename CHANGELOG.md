@@ -1,5 +1,20 @@
 # Changelog 
 
+## 3.0.7
+* add padding for container on mobile devices
+* add handler for fitImage for window resize
+* remove important from app-bar
+* add darcula scheme for app-bar
+* add [Animations](http://metroui.org.ua/animations.html), thx to [Meneses Evandro](https://github.com/MenesesEvandro)
+* add [Metro Icon Font Animations](http://metroui.org.ua/font.html), thx to [Meneses Evandro](https://github.com/MenesesEvandro)
+* add colored bullets for lists
+* add new color classes to set color for before and after
+* add flex-grid
+* add f-menu (flex)
+* add full-size (100%) for odd last cells in grid 
+* add template admin panel with sidebar
+* add offset for cells for grid (default and condensed)
+
 ## 3.0.6
 * add support user defined onsubmit for validator over data-on-submit attribute
 * add light color for nav-button
