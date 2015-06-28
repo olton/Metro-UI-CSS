@@ -40,13 +40,19 @@
 					width: (@width);
 
 					.generate-colspan(@i);
-
 					.generate-colspan(@j, @k: 2) when (@k =< @j){
 						&.colspan@{k} {
 							width: @width * @k + ((@k - 1) * @gridMargin);
 						}
-
 						.generate-colspan(@j, (@k + 1));
+					}
+
+					.generate-offset(@i);
+					.generate-offset(@j, @k: 1) when (@k =< @j){
+						&.offset@{k} {
+							margin-left: @width * @k + ((@k - 1) * @gridMargin) + @gridMargin;
+						}
+						.generate-offset(@j, (@k + 1));
 					}
 				}
 			}
@@ -138,15 +144,22 @@
 					width: (@width);
 
 					.generate-colspan(@i);
-
 					.generate-colspan(@j, @k: 2) when (@k =< @j){
 						&.colspan@{k} {
 							width: @width * @k + ((@k - 1) * @gridMarginCondensed);
 						}
-
 						.generate-colspan(@j, (@k + 1));
 					}
-				}
+
+                    .generate-offset(@i);
+                    .generate-offset(@j, @k: 1) when (@k =< @j){
+                        &.offset@{k} {
+                            margin-left: @width * @k + ((@k - 1) * @gridMarginCondensed);
+                        }
+                        .generate-offset(@j, (@k + 1));
+                    }
+
+                }
 			}
 
 			.generate-cell(@n, (@i + 1));
