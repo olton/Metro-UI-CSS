@@ -3769,6 +3769,12 @@ a.tag {
 .grid .row.cells2 > .cell.colspan2 {
   width: 100%;
 }
+.grid .row.cells2 > .cell.offset1 {
+  margin-left: 51.063825%;
+}
+.grid .row.cells2 > .cell.offset2 {
+  margin-left: 102.12765%;
+}
 .grid .row.cells3 > .cell {
   width: 31.9149%;
 }
@@ -3777,6 +3783,15 @@ a.tag {
 }
 .grid .row.cells3 > .cell.colspan3 {
   width: 100%;
+}
+.grid .row.cells3 > .cell.offset1 {
+  margin-left: 34.04255%;
+}
+.grid .row.cells3 > .cell.offset2 {
+  margin-left: 68.0851%;
+}
+.grid .row.cells3 > .cell.offset3 {
+  margin-left: 102.12765%;
 }
 .grid .row.cells4 > .cell {
   width: 23.4042625%;
@@ -3789,6 +3804,18 @@ a.tag {
 }
 .grid .row.cells4 > .cell.colspan4 {
   width: 100%;
+}
+.grid .row.cells4 > .cell.offset1 {
+  margin-left: 25.5319125%;
+}
+.grid .row.cells4 > .cell.offset2 {
+  margin-left: 51.063825%;
+}
+.grid .row.cells4 > .cell.offset3 {
+  margin-left: 76.5957375%;
+}
+.grid .row.cells4 > .cell.offset4 {
+  margin-left: 102.12765%;
 }
 .grid .row.cells5 > .cell {
   width: 18.29788%;
@@ -3804,6 +3831,21 @@ a.tag {
 }
 .grid .row.cells5 > .cell.colspan5 {
   width: 100%;
+}
+.grid .row.cells5 > .cell.offset1 {
+  margin-left: 20.42553%;
+}
+.grid .row.cells5 > .cell.offset2 {
+  margin-left: 40.85106%;
+}
+.grid .row.cells5 > .cell.offset3 {
+  margin-left: 61.27659%;
+}
+.grid .row.cells5 > .cell.offset4 {
+  margin-left: 81.70212%;
+}
+.grid .row.cells5 > .cell.offset5 {
+  margin-left: 102.12765%;
 }
 .grid .row.cells6 > .cell {
   width: 14.893625%;
@@ -3822,6 +3864,24 @@ a.tag {
 }
 .grid .row.cells6 > .cell.colspan6 {
   width: 100%;
+}
+.grid .row.cells6 > .cell.offset1 {
+  margin-left: 17.021275%;
+}
+.grid .row.cells6 > .cell.offset2 {
+  margin-left: 34.04255%;
+}
+.grid .row.cells6 > .cell.offset3 {
+  margin-left: 51.063825%;
+}
+.grid .row.cells6 > .cell.offset4 {
+  margin-left: 68.0851%;
+}
+.grid .row.cells6 > .cell.offset5 {
+  margin-left: 85.106375%;
+}
+.grid .row.cells6 > .cell.offset6 {
+  margin-left: 102.12765%;
 }
 .grid .row.cells7 > .cell {
   width: 12.46201429%;
@@ -3843,6 +3903,27 @@ a.tag {
 }
 .grid .row.cells7 > .cell.colspan7 {
   width: 100%;
+}
+.grid .row.cells7 > .cell.offset1 {
+  margin-left: 14.58966429%;
+}
+.grid .row.cells7 > .cell.offset2 {
+  margin-left: 29.17932857%;
+}
+.grid .row.cells7 > .cell.offset3 {
+  margin-left: 43.76899286%;
+}
+.grid .row.cells7 > .cell.offset4 {
+  margin-left: 58.35865714%;
+}
+.grid .row.cells7 > .cell.offset5 {
+  margin-left: 72.94832143%;
+}
+.grid .row.cells7 > .cell.offset6 {
+  margin-left: 87.53798571%;
+}
+.grid .row.cells7 > .cell.offset7 {
+  margin-left: 102.12765%;
 }
 .grid .row.cells8 > .cell {
   width: 10.63830625%;
@@ -3867,6 +3948,30 @@ a.tag {
 }
 .grid .row.cells8 > .cell.colspan8 {
   width: 100%;
+}
+.grid .row.cells8 > .cell.offset1 {
+  margin-left: 12.76595625%;
+}
+.grid .row.cells8 > .cell.offset2 {
+  margin-left: 25.5319125%;
+}
+.grid .row.cells8 > .cell.offset3 {
+  margin-left: 38.29786875%;
+}
+.grid .row.cells8 > .cell.offset4 {
+  margin-left: 51.063825%;
+}
+.grid .row.cells8 > .cell.offset5 {
+  margin-left: 63.82978125%;
+}
+.grid .row.cells8 > .cell.offset6 {
+  margin-left: 76.5957375%;
+}
+.grid .row.cells8 > .cell.offset7 {
+  margin-left: 89.36169375%;
+}
+.grid .row.cells8 > .cell.offset8 {
+  margin-left: 102.12765%;
 }
 .grid .row.cells9 > .cell {
   width: 9.21986667%;
@@ -3894,6 +3999,33 @@ a.tag {
 }
 .grid .row.cells9 > .cell.colspan9 {
   width: 100%;
+}
+.grid .row.cells9 > .cell.offset1 {
+  margin-left: 11.34751667%;
+}
+.grid .row.cells9 > .cell.offset2 {
+  margin-left: 22.69503333%;
+}
+.grid .row.cells9 > .cell.offset3 {
+  margin-left: 34.04255%;
+}
+.grid .row.cells9 > .cell.offset4 {
+  margin-left: 45.39006667%;
+}
+.grid .row.cells9 > .cell.offset5 {
+  margin-left: 56.73758333%;
+}
+.grid .row.cells9 > .cell.offset6 {
+  margin-left: 68.0851%;
+}
+.grid .row.cells9 > .cell.offset7 {
+  margin-left: 79.43261667%;
+}
+.grid .row.cells9 > .cell.offset8 {
+  margin-left: 90.78013333%;
+}
+.grid .row.cells9 > .cell.offset9 {
+  margin-left: 102.12765%;
 }
 .grid .row.cells10 > .cell {
   width: 8.085115%;
@@ -3924,6 +4056,36 @@ a.tag {
 }
 .grid .row.cells10 > .cell.colspan10 {
   width: 100%;
+}
+.grid .row.cells10 > .cell.offset1 {
+  margin-left: 10.212765%;
+}
+.grid .row.cells10 > .cell.offset2 {
+  margin-left: 20.42553%;
+}
+.grid .row.cells10 > .cell.offset3 {
+  margin-left: 30.638295%;
+}
+.grid .row.cells10 > .cell.offset4 {
+  margin-left: 40.85106%;
+}
+.grid .row.cells10 > .cell.offset5 {
+  margin-left: 51.063825%;
+}
+.grid .row.cells10 > .cell.offset6 {
+  margin-left: 61.27659%;
+}
+.grid .row.cells10 > .cell.offset7 {
+  margin-left: 71.489355%;
+}
+.grid .row.cells10 > .cell.offset8 {
+  margin-left: 81.70212%;
+}
+.grid .row.cells10 > .cell.offset9 {
+  margin-left: 91.914885%;
+}
+.grid .row.cells10 > .cell.offset10 {
+  margin-left: 102.12765%;
 }
 .grid .row.cells11 > .cell {
   width: 7.15668182%;
@@ -3957,6 +4119,39 @@ a.tag {
 }
 .grid .row.cells11 > .cell.colspan11 {
   width: 100%;
+}
+.grid .row.cells11 > .cell.offset1 {
+  margin-left: 9.28433182%;
+}
+.grid .row.cells11 > .cell.offset2 {
+  margin-left: 18.56866364%;
+}
+.grid .row.cells11 > .cell.offset3 {
+  margin-left: 27.85299545%;
+}
+.grid .row.cells11 > .cell.offset4 {
+  margin-left: 37.13732727%;
+}
+.grid .row.cells11 > .cell.offset5 {
+  margin-left: 46.42165909%;
+}
+.grid .row.cells11 > .cell.offset6 {
+  margin-left: 55.70599091%;
+}
+.grid .row.cells11 > .cell.offset7 {
+  margin-left: 64.99032273%;
+}
+.grid .row.cells11 > .cell.offset8 {
+  margin-left: 74.27465455%;
+}
+.grid .row.cells11 > .cell.offset9 {
+  margin-left: 83.55898636%;
+}
+.grid .row.cells11 > .cell.offset10 {
+  margin-left: 92.84331818%;
+}
+.grid .row.cells11 > .cell.offset11 {
+  margin-left: 102.12765%;
 }
 .grid .row.cells12 > .cell {
   width: 6.3829875%;
@@ -3993,6 +4188,42 @@ a.tag {
 }
 .grid .row.cells12 > .cell.colspan12 {
   width: 100%;
+}
+.grid .row.cells12 > .cell.offset1 {
+  margin-left: 8.5106375%;
+}
+.grid .row.cells12 > .cell.offset2 {
+  margin-left: 17.021275%;
+}
+.grid .row.cells12 > .cell.offset3 {
+  margin-left: 25.5319125%;
+}
+.grid .row.cells12 > .cell.offset4 {
+  margin-left: 34.04255%;
+}
+.grid .row.cells12 > .cell.offset5 {
+  margin-left: 42.5531875%;
+}
+.grid .row.cells12 > .cell.offset6 {
+  margin-left: 51.063825%;
+}
+.grid .row.cells12 > .cell.offset7 {
+  margin-left: 59.5744625%;
+}
+.grid .row.cells12 > .cell.offset8 {
+  margin-left: 68.0851%;
+}
+.grid .row.cells12 > .cell.offset9 {
+  margin-left: 76.5957375%;
+}
+.grid .row.cells12 > .cell.offset10 {
+  margin-left: 85.106375%;
+}
+.grid .row.cells12 > .cell.offset11 {
+  margin-left: 93.6170125%;
+}
+.grid .row.cells12 > .cell.offset12 {
+  margin-left: 102.12765%;
 }
 .grid .row:empty {
   display: none;
@@ -4080,6 +4311,12 @@ a.tag {
 .grid.condensed .row.cells2 > .cell.colspan2 {
   width: 100%;
 }
+.grid.condensed .row.cells2 > .cell.offset1 {
+  margin-left: 50%;
+}
+.grid.condensed .row.cells2 > .cell.offset2 {
+  margin-left: 100%;
+}
 .grid.condensed .row.cells3 > .cell {
   width: 33.33333333%;
 }
@@ -4088,6 +4325,15 @@ a.tag {
 }
 .grid.condensed .row.cells3 > .cell.colspan3 {
   width: 100%;
+}
+.grid.condensed .row.cells3 > .cell.offset1 {
+  margin-left: 33.33333333%;
+}
+.grid.condensed .row.cells3 > .cell.offset2 {
+  margin-left: 66.66666667%;
+}
+.grid.condensed .row.cells3 > .cell.offset3 {
+  margin-left: 100%;
 }
 .grid.condensed .row.cells4 > .cell {
   width: 25%;
@@ -4100,6 +4346,18 @@ a.tag {
 }
 .grid.condensed .row.cells4 > .cell.colspan4 {
   width: 100%;
+}
+.grid.condensed .row.cells4 > .cell.offset1 {
+  margin-left: 25%;
+}
+.grid.condensed .row.cells4 > .cell.offset2 {
+  margin-left: 50%;
+}
+.grid.condensed .row.cells4 > .cell.offset3 {
+  margin-left: 75%;
+}
+.grid.condensed .row.cells4 > .cell.offset4 {
+  margin-left: 100%;
 }
 .grid.condensed .row.cells5 > .cell {
   width: 20%;
@@ -4115,6 +4373,21 @@ a.tag {
 }
 .grid.condensed .row.cells5 > .cell.colspan5 {
   width: 100%;
+}
+.grid.condensed .row.cells5 > .cell.offset1 {
+  margin-left: 20%;
+}
+.grid.condensed .row.cells5 > .cell.offset2 {
+  margin-left: 40%;
+}
+.grid.condensed .row.cells5 > .cell.offset3 {
+  margin-left: 60%;
+}
+.grid.condensed .row.cells5 > .cell.offset4 {
+  margin-left: 80%;
+}
+.grid.condensed .row.cells5 > .cell.offset5 {
+  margin-left: 100%;
 }
 .grid.condensed .row.cells6 > .cell {
   width: 16.66666667%;
@@ -4133,6 +4406,24 @@ a.tag {
 }
 .grid.condensed .row.cells6 > .cell.colspan6 {
   width: 100%;
+}
+.grid.condensed .row.cells6 > .cell.offset1 {
+  margin-left: 16.66666667%;
+}
+.grid.condensed .row.cells6 > .cell.offset2 {
+  margin-left: 33.33333333%;
+}
+.grid.condensed .row.cells6 > .cell.offset3 {
+  margin-left: 50%;
+}
+.grid.condensed .row.cells6 > .cell.offset4 {
+  margin-left: 66.66666667%;
+}
+.grid.condensed .row.cells6 > .cell.offset5 {
+  margin-left: 83.33333333%;
+}
+.grid.condensed .row.cells6 > .cell.offset6 {
+  margin-left: 100%;
 }
 .grid.condensed .row.cells7 > .cell {
   width: 14.28571429%;
@@ -4154,6 +4445,27 @@ a.tag {
 }
 .grid.condensed .row.cells7 > .cell.colspan7 {
   width: 100%;
+}
+.grid.condensed .row.cells7 > .cell.offset1 {
+  margin-left: 14.28571429%;
+}
+.grid.condensed .row.cells7 > .cell.offset2 {
+  margin-left: 28.57142857%;
+}
+.grid.condensed .row.cells7 > .cell.offset3 {
+  margin-left: 42.85714286%;
+}
+.grid.condensed .row.cells7 > .cell.offset4 {
+  margin-left: 57.14285714%;
+}
+.grid.condensed .row.cells7 > .cell.offset5 {
+  margin-left: 71.42857143%;
+}
+.grid.condensed .row.cells7 > .cell.offset6 {
+  margin-left: 85.71428571%;
+}
+.grid.condensed .row.cells7 > .cell.offset7 {
+  margin-left: 100%;
 }
 .grid.condensed .row.cells8 > .cell {
   width: 12.5%;
@@ -4178,6 +4490,30 @@ a.tag {
 }
 .grid.condensed .row.cells8 > .cell.colspan8 {
   width: 100%;
+}
+.grid.condensed .row.cells8 > .cell.offset1 {
+  margin-left: 12.5%;
+}
+.grid.condensed .row.cells8 > .cell.offset2 {
+  margin-left: 25%;
+}
+.grid.condensed .row.cells8 > .cell.offset3 {
+  margin-left: 37.5%;
+}
+.grid.condensed .row.cells8 > .cell.offset4 {
+  margin-left: 50%;
+}
+.grid.condensed .row.cells8 > .cell.offset5 {
+  margin-left: 62.5%;
+}
+.grid.condensed .row.cells8 > .cell.offset6 {
+  margin-left: 75%;
+}
+.grid.condensed .row.cells8 > .cell.offset7 {
+  margin-left: 87.5%;
+}
+.grid.condensed .row.cells8 > .cell.offset8 {
+  margin-left: 100%;
 }
 .grid.condensed .row.cells9 > .cell {
   width: 11.11111111%;
@@ -4205,6 +4541,33 @@ a.tag {
 }
 .grid.condensed .row.cells9 > .cell.colspan9 {
   width: 100%;
+}
+.grid.condensed .row.cells9 > .cell.offset1 {
+  margin-left: 11.11111111%;
+}
+.grid.condensed .row.cells9 > .cell.offset2 {
+  margin-left: 22.22222222%;
+}
+.grid.condensed .row.cells9 > .cell.offset3 {
+  margin-left: 33.33333333%;
+}
+.grid.condensed .row.cells9 > .cell.offset4 {
+  margin-left: 44.44444444%;
+}
+.grid.condensed .row.cells9 > .cell.offset5 {
+  margin-left: 55.55555556%;
+}
+.grid.condensed .row.cells9 > .cell.offset6 {
+  margin-left: 66.66666667%;
+}
+.grid.condensed .row.cells9 > .cell.offset7 {
+  margin-left: 77.77777778%;
+}
+.grid.condensed .row.cells9 > .cell.offset8 {
+  margin-left: 88.88888889%;
+}
+.grid.condensed .row.cells9 > .cell.offset9 {
+  margin-left: 100%;
 }
 .grid.condensed .row.cells10 > .cell {
   width: 10%;
@@ -4235,6 +4598,36 @@ a.tag {
 }
 .grid.condensed .row.cells10 > .cell.colspan10 {
   width: 100%;
+}
+.grid.condensed .row.cells10 > .cell.offset1 {
+  margin-left: 10%;
+}
+.grid.condensed .row.cells10 > .cell.offset2 {
+  margin-left: 20%;
+}
+.grid.condensed .row.cells10 > .cell.offset3 {
+  margin-left: 30%;
+}
+.grid.condensed .row.cells10 > .cell.offset4 {
+  margin-left: 40%;
+}
+.grid.condensed .row.cells10 > .cell.offset5 {
+  margin-left: 50%;
+}
+.grid.condensed .row.cells10 > .cell.offset6 {
+  margin-left: 60%;
+}
+.grid.condensed .row.cells10 > .cell.offset7 {
+  margin-left: 70%;
+}
+.grid.condensed .row.cells10 > .cell.offset8 {
+  margin-left: 80%;
+}
+.grid.condensed .row.cells10 > .cell.offset9 {
+  margin-left: 90%;
+}
+.grid.condensed .row.cells10 > .cell.offset10 {
+  margin-left: 100%;
 }
 .grid.condensed .row.cells11 > .cell {
   width: 9.09090909%;
@@ -4268,6 +4661,39 @@ a.tag {
 }
 .grid.condensed .row.cells11 > .cell.colspan11 {
   width: 100%;
+}
+.grid.condensed .row.cells11 > .cell.offset1 {
+  margin-left: 9.09090909%;
+}
+.grid.condensed .row.cells11 > .cell.offset2 {
+  margin-left: 18.18181818%;
+}
+.grid.condensed .row.cells11 > .cell.offset3 {
+  margin-left: 27.27272727%;
+}
+.grid.condensed .row.cells11 > .cell.offset4 {
+  margin-left: 36.36363636%;
+}
+.grid.condensed .row.cells11 > .cell.offset5 {
+  margin-left: 45.45454545%;
+}
+.grid.condensed .row.cells11 > .cell.offset6 {
+  margin-left: 54.54545455%;
+}
+.grid.condensed .row.cells11 > .cell.offset7 {
+  margin-left: 63.63636364%;
+}
+.grid.condensed .row.cells11 > .cell.offset8 {
+  margin-left: 72.72727273%;
+}
+.grid.condensed .row.cells11 > .cell.offset9 {
+  margin-left: 81.81818182%;
+}
+.grid.condensed .row.cells11 > .cell.offset10 {
+  margin-left: 90.90909091%;
+}
+.grid.condensed .row.cells11 > .cell.offset11 {
+  margin-left: 100%;
 }
 .grid.condensed .row.cells12 > .cell {
   width: 8.33333333%;
@@ -4304,6 +4730,42 @@ a.tag {
 }
 .grid.condensed .row.cells12 > .cell.colspan12 {
   width: 100%;
+}
+.grid.condensed .row.cells12 > .cell.offset1 {
+  margin-left: 8.33333333%;
+}
+.grid.condensed .row.cells12 > .cell.offset2 {
+  margin-left: 16.66666667%;
+}
+.grid.condensed .row.cells12 > .cell.offset3 {
+  margin-left: 25%;
+}
+.grid.condensed .row.cells12 > .cell.offset4 {
+  margin-left: 33.33333333%;
+}
+.grid.condensed .row.cells12 > .cell.offset5 {
+  margin-left: 41.66666667%;
+}
+.grid.condensed .row.cells12 > .cell.offset6 {
+  margin-left: 50%;
+}
+.grid.condensed .row.cells12 > .cell.offset7 {
+  margin-left: 58.33333333%;
+}
+.grid.condensed .row.cells12 > .cell.offset8 {
+  margin-left: 66.66666667%;
+}
+.grid.condensed .row.cells12 > .cell.offset9 {
+  margin-left: 75%;
+}
+.grid.condensed .row.cells12 > .cell.offset10 {
+  margin-left: 83.33333333%;
+}
+.grid.condensed .row.cells12 > .cell.offset11 {
+  margin-left: 91.66666667%;
+}
+.grid.condensed .row.cells12 > .cell.offset12 {
+  margin-left: 100%;
 }
 @media screen and (max-width: 768px) {
   .grid.condensed:not(.no-responsive-future) .row {
