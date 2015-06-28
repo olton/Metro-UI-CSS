@@ -23,14 +23,6 @@
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
     <style>
-        .demo-flex-grid .row > .cell {
-            padding: 10px;
-            background-color: darkgray;
-            color: white;
-            text-align: center;
-            border: 1px #000 solid;
-            box-sizing: border-box;
-        }
     </style>
 
 </head>
@@ -40,8 +32,12 @@
 
         @@adsense
 
+        <div class="margin20 no-margin-left no-margin-right sub-header text-light">
+            Metro UI CSS includes a responsive flex grid system that appropriately scales up to 12 fixed columns and no limit non-fixed columns. It includes predefined classes for easy layout options.
+        </div>
+
         <div class="example" data-text="example">
-            <div class="flex-grid demo-flex-grid">
+            <div class="flex-grid demo-grid">
                 <div class="row">
                     <div class="cell debug">1</div>
                     <div class="cell debug">1</div>
@@ -123,6 +119,57 @@
             </div>
         </div>
 
+        <h3>Introduction</h3>
+        <p>
+            Grid systems are used to create page layouts through a series of rows and columns that house your content. Here's how the grid system works:
+        </p>
+        <ul>
+            <li>Rows must be placed within a <span class="tag info">.flex-grid</span> container</li>
+            <li>Use rows to create horizontal groups of columns (container with class <span class="tag info">.row</span>).</li>
+            <li>Content should be placed within columns (container with class <span class="tag info">.cell</span>).</li>
+            <li>Default row no contain cells</li>
+            <li>Cells can extended and take the place of multiple cells using the classes <span class="tag info">.colspan2 or .size2</span> ... <span class="tag info">.colspan12 or size12</span> </li>
+            <li>Cells can extended and take the place of any sizes using the classes: for percent size set - <span class="tag info">.size-p10</span> ... <span class="tag info">.size-p100</span> with step 10 </li>
+            <li>Cells can extended and take the place of any sizes using the classes: for pixels size set - <span class="tag info">.size-x100</span> ... <span class="tag info">.size-x1000</span> with step 100 </li>
+            <li>To set automatic size of all columns in row you can add class <span class="tag">cell-auto-size</span> to row.</li>
+            <li>To set automatic size to any columns in row you can add class <span class="tag">auto-size</span> to cell.</li>
+            <li>
+                To change the distribution of cells you can use the built-in classes:
+                <ul>
+                    <li>flex-dir-row</li>
+                    <li>flex-dir-row-reverse</li>
+                    <li>flex-dir-column</li>
+                    <li>flex-dir-column-reverse</li>
+                    <li>flex-wrap</li>
+                    <li>flex-wrap-reverse</li>
+                    <li>flex-no-wrap</li>
+                    <li>flex-just-start</li>
+                    <li>flex-just-end</li>
+                    <li>flex-just-center</li>
+                    <li>flex-just-sa (space around)</li>
+                    <li>flex-just-sb (space between)</li>
+                    <li>flex-align-stretch</li>
+                    <li>flex-align-start</li>
+                    <li>flex-align-end</li>
+                    <li>flex-align-center</li>
+                    <li>flex-align-base</li>
+                    <li>flex-content-stretch</li>
+                    <li>flex-content-start</li>
+                    <li>flex-content-end</li>
+                    <li>flex-content-center</li>
+                    <li>flex-content-sb</li>
+                    <li>flex-content-sa</li>
+                    <li>flex-self-auto</li>
+                    <li>flex-self-start</li>
+                    <li>flex-self-end</li>
+                    <li>flex-self-center</li>
+                    <li>flex-self-base</li>
+                    <li>flex-self-stretch</li>
+                    <li>no-shrink</li>
+                    <li>no-grow</li>
+                </ul>
+            </li>
+        </ul>
     </div>
 
     @@hit
