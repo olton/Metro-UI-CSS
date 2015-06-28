@@ -40,13 +40,19 @@
 					width: (@width);
 
 					.generate-colspan(@i);
-
 					.generate-colspan(@j, @k: 2) when (@k =< @j){
 						&.colspan@{k} {
 							width: @width * @k + ((@k - 1) * @gridMargin);
 						}
-
 						.generate-colspan(@j, (@k + 1));
+					}
+
+					.generate-offset(@i);
+					.generate-offset(@j, @k: 1) when (@k =< @j){
+						&.offset@{k} {
+							margin-left: @width * @k + ((@k - 1) * @gridMargin) + @gridMargin;
+						}
+						.generate-offset(@j, (@k + 1));
 					}
 				}
 			}
@@ -73,6 +79,15 @@
 					&:nth-child(odd) {
 						margin-left: 0;
 					}
+                    &:nth-child(1):last-child,
+                    &:nth-child(3):last-child,
+                    &:nth-child(5):last-child,
+                    &:nth-child(7):last-child,
+                    &:nth-child(9):last-child,
+                    &:nth-child(11):last-child
+                    {
+                        width: 100%;
+                    }
 				}
 			}
 		}
@@ -129,15 +144,22 @@
 					width: (@width);
 
 					.generate-colspan(@i);
-
 					.generate-colspan(@j, @k: 2) when (@k =< @j){
 						&.colspan@{k} {
 							width: @width * @k + ((@k - 1) * @gridMarginCondensed);
 						}
-
 						.generate-colspan(@j, (@k + 1));
 					}
-				}
+
+                    .generate-offset(@i);
+                    .generate-offset(@j, @k: 1) when (@k =< @j){
+                        &.offset@{k} {
+                            margin-left: @width * @k + ((@k - 1) * @gridMarginCondensed);
+                        }
+                        .generate-offset(@j, (@k + 1));
+                    }
+
+                }
 			}
 
 			.generate-cell(@n, (@i + 1));
@@ -158,6 +180,16 @@
 					&:nth-child(odd) {
 						margin-left: 0;
 					}
+
+                    &:nth-child(1):last-child,
+                    &:nth-child(3):last-child,
+                    &:nth-child(5):last-child,
+                    &:nth-child(7):last-child,
+                    &:nth-child(9):last-child,
+                    &:nth-child(11):last-child
+                    {
+                        width: 100%;
+                    }
 				}
 			}
 		}

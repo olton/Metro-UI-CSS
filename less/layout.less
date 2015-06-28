@@ -9,17 +9,45 @@
 
 		@media screen and (max-width: 992px) {
 			width: 100%;
-			padding: 0;
+			padding: 10px;
 		}
 
 		@media screen and (max-width: 768px) {
 			width: 100%;
-			padding: 0;
+			padding: 10px;
 		}
 
 		@media screen and (max-width: 640px) {
 			width: 100%;
-			padding: 0;
+			padding: 10px;
+		}
+
+		@media screen and (max-width: 320px) {
+			width: 100%;
+			padding: 5px;
 		}
 	}
 }
+
+.fixed-top, .fixed-bottom {
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: @zindexFixedNavbar;
+}
+
+.fixed-top {
+    top: 0;
+    bottom: auto;
+
+}
+
+.fixed-bottom {
+    top: auto;
+    bottom: 0;
+}
+
+.pos-abs {position: absolute !important;}
+.pos-rel {position: relative !important;}
+.pos-fix {position: fixed !important;}
+

@@ -19,38 +19,26 @@
     <script src="js/metro.js"></script>
     <script src="js/docs.js"></script>
     <script src="js/prettify/run_prettify.js"></script>
-
-    <script>
-        function tree_add_leaf_checkbox_example(){
-            var tree = $("#test_tree").data("treeview");
-            var node = tree.element.find('li:nth-child(1)');
-            var i;
-
-            for(i=0;i<10;i++) {
-                tree.addLeaf(node, "Leaf item " + i, {
-                    mode: 'checkbox'
-                });
-            }
-
-            node.addClass('collapsed');
-        }
-
-        $(function(){
-            tree_add_leaf_checkbox_example();
-        })
-    </script>
+    <script src="js/ga.js"></script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
 </head>
-<body>
+<body onload="init()">
     <div class="container page-content">
-        <h1>Tree with collapsed state</h1>
-        <div style="width: 300px">
-            <div class="treeview" data-role="treeview" id="test_tree">
-                <ul>
-                    <li><span class="leaf">Root</span></li>
-                </ul>
+        <h1><a href="index.html" class="nav-button transform"><span></span></a>&nbsp;Title</h1>
+
+        @@adsense
+
+        <div class="flex-grid">
+            <div class="row">
+                <div class="cell size-x200 debug">Sidebar</div>
+                <div class="cell debug">Content</div>
             </div>
         </div>
     </div>
+
+
+    @@hit
+
 </body>
 </html>

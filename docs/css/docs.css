@@ -35,6 +35,15 @@ body {
     overflow-x: scroll;
 }
 
+.demo-grid .row > .cell {
+    padding: 10px;
+    background-color: darkgray;
+    color: white;
+    text-align: center;
+    border: 1px #000 solid;
+}
+
+
 @media screen and (max-width: 800px) {
     .app-bar.fixed-top {
         position: relative !important;
