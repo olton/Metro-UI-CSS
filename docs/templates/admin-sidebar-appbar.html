@@ -16,6 +16,8 @@
     <link href="../css/metro-icons.css" rel="stylesheet">
 
     <script src="../js/jquery-2.1.3.min.js"></script>
+    <script src="../js/jquery.dataTables.min.js"></script>
+
     <script src="../js/metro.js"></script>
 
     <style>
@@ -59,6 +61,15 @@
                 type: t
             });
         }
+
+        $(function(){
+            $('.sidebar').on('click', 'li', function(){
+                if (!$(this).hasClass('active')) {
+                    $('.sidebar li').removeClass('active');
+                    $(this).addClass('active');
+                }
+            })
+        })
     </script>
 </head>
 <body class="bg-steel">
@@ -159,7 +170,8 @@
                     <button class="button success" onclick="pushMessage('success')"><span class="mif-play"></span> Start</button>
                     <button class="button warning" onclick="pushMessage('warning')"><span class="mif-loop2"></span> Restart</button>
                     <button class="button alert" onclick="pushMessage('alert')">Stop all machines</button>
-                    <table class="table border bordered">
+                    <hr class="thin bg-grayLighter">
+                    <table class="dataTable border bordered" data-role="datatable">
                         <thead>
                         <tr>
                             <td style="width: 20px">
