@@ -3344,7 +3344,7 @@ html {
   }
 }
 body {
-  font-family: "Segoe UI", "Open Sans", serif;
+  font-family: "Segoe UI", "Open Sans", sans-serif, serif;
   font-size: 0.875rem;
   line-height: 1.1;
   font-weight: 400;
@@ -3366,25 +3366,25 @@ body {
   font-style: italic;
 }
 .leader {
-  font: 400 2.25rem/1.1 "Segoe UI", "Open Sans", serif;
+  font: 400 2.25rem/1.1 "Segoe UI", "Open Sans", sans-serif, serif;
 }
 .sub-leader {
-  font: 500 1.875rem/1.1 "Segoe UI", "Open Sans", serif;
+  font: 500 1.875rem/1.1 "Segoe UI", "Open Sans", sans-serif, serif;
 }
 .header {
-  font: 500 1.5rem/1.1 "Segoe UI", "Open Sans", serif;
+  font: 500 1.5rem/1.1 "Segoe UI", "Open Sans", sans-serif, serif;
 }
 .sub-header {
-  font: 500 1.125rem/1.1 "Segoe UI", "Open Sans", serif;
+  font: 500 1.125rem/1.1 "Segoe UI", "Open Sans", sans-serif, serif;
 }
 .alt-header {
-  font: 500 1rem/1.1 "Segoe UI", "Open Sans", serif;
+  font: 500 1rem/1.1 "Segoe UI", "Open Sans", sans-serif, serif;
 }
 .sub-alt-header {
-  font: 500 0.875rem/1.1 "Segoe UI", "Open Sans", serif;
+  font: 500 0.875rem/1.1 "Segoe UI", "Open Sans", sans-serif, serif;
 }
 .minor-header {
-  font: 500 0.75rem/1.1 "Segoe UI", "Open Sans", serif;
+  font: 500 0.75rem/1.1 "Segoe UI", "Open Sans", sans-serif, serif;
 }
 @media screen and (max-width: 800px) {
   h1,
@@ -3398,22 +3398,22 @@ body {
   }
 }
 h1 {
-  font: 400 2.25rem/1.1 "Segoe UI", "Open Sans", serif;
+  font: 400 2.25rem/1.1 "Segoe UI", "Open Sans", sans-serif, serif;
 }
 h2 {
-  font: 500 1.875rem/1.1 "Segoe UI", "Open Sans", serif;
+  font: 500 1.875rem/1.1 "Segoe UI", "Open Sans", sans-serif, serif;
 }
 h3 {
-  font: 500 1.5rem/1.1 "Segoe UI", "Open Sans", serif;
+  font: 500 1.5rem/1.1 "Segoe UI", "Open Sans", sans-serif, serif;
 }
 h4 {
-  font: 500 1.125rem/1.1 "Segoe UI", "Open Sans", serif;
+  font: 500 1.125rem/1.1 "Segoe UI", "Open Sans", sans-serif, serif;
 }
 h5 {
-  font: 500 0.875rem/1.1 "Segoe UI", "Open Sans", serif;
+  font: 500 0.875rem/1.1 "Segoe UI", "Open Sans", sans-serif, serif;
 }
 h6 {
-  font: 500 0.75rem/1.1 "Segoe UI", "Open Sans", serif;
+  font: 500 0.75rem/1.1 "Segoe UI", "Open Sans", sans-serif, serif;
 }
 h1,
 h2,
@@ -8839,7 +8839,7 @@ div.square-button.big-button {
 .input-control textarea {
   position: relative;
   min-height: 6.25rem;
-  font-family: "Segoe UI", "Open Sans", serif;
+  font-family: "Segoe UI", "Open Sans", sans-serif, serif;
 }
 .input-control.textarea {
   height: auto;
@@ -12888,7 +12888,7 @@ input[type="submit"].link:active {
   z-index: 2;
   height: 2.625rem;
   box-shadow: -1px 6px 6px -6px rgba(0, 0, 0, 0.35);
-  font: 500 1.125rem/1.1 "Segoe UI", "Open Sans", serif;
+  font: 500 1.125rem/1.1 "Segoe UI", "Open Sans", sans-serif, serif;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
