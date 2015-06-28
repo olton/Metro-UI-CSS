@@ -12,6 +12,7 @@
 * add flex-grid
 * add f-menu (flex)
 * add full-size (100%) for odd last cells in grid 
+* add template admin panel with sidebar
 
 ## 3.0.6
 * add support user defined onsubmit for validator over data-on-submit attribute
