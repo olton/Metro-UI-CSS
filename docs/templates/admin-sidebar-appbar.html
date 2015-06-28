@@ -50,6 +50,15 @@
                 }
             });
         });
+
+        function pushMessage(t){
+            var mes = 'Info|Implement independently';
+            $.Notify({
+                caption: mes.split("|")[0],
+                content: mes.split("|")[1],
+                type: t
+            });
+        }
     </script>
 </head>
 <body class="bg-steel">
@@ -135,10 +144,10 @@
                 <div class="cell auto-size padding20 bg-white">
                     <h1 class="text-light">Virtual machines <span class="mif-drive-eta place-right"></span></h1>
                     <hr class="thin bg-grayLighter">
-                    <button class="button primary"><span class="mif-plus"></span> Create...</button>
-                    <button class="button success"><span class="mif-play"></span> Start</button>
-                    <button class="button warning"><span class="mif-loop2"></span> Restart</button>
-                    <button class="button alert place-right">Stop all machines</button>
+                    <button class="button primary" onclick="pushMessage('info')"><span class="mif-plus"></span> Create...</button>
+                    <button class="button success" onclick="pushMessage('success')"><span class="mif-play"></span> Start</button>
+                    <button class="button warning" onclick="pushMessage('warning')"><span class="mif-loop2"></span> Restart</button>
+                    <button class="button alert" onclick="pushMessage('alert')">Stop all machines</button>
                     <table class="table border bordered">
                         <thead>
                         <tr>
