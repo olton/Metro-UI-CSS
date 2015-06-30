@@ -1,7 +1,8 @@
 # Changelog 
 
 ## 3.0.8
-* upd font declaration add sans-serif 
+* upd font declaration add sans-serif
+* add responsive for sidebar
 
 ## 3.0.7
 * add padding for container on mobile devices
