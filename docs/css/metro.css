@@ -7,8 +7,6 @@ body {
 html,
 body,
 * {
-  -ms-box-sizing: border-box;
-  -o-box-sizing: border-box;
   box-sizing: border-box;
 }
 article,
@@ -53,7 +51,6 @@ img {
   height: auto;
   vertical-align: middle;
   border: 0;
-  -ms-interpolation-mode: bicubic;
 }
 #map_canvas img,
 .google-maps img {
@@ -121,11 +118,6 @@ input[type=password]::-ms-reveal {
 }
 a {
   text-decoration: none;
-}
-div,
-p,
-span {
-  position: relative;
 }
 @media print {
   a,
