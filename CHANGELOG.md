@@ -4,6 +4,7 @@
 * upd font declaration add sans-serif
 * add responsive for sidebar
 * add tile factor 1.25 for devices with width <= 800px
+* add hint timeout
 
 ## 3.0.7
 * add padding for container on mobile devices
