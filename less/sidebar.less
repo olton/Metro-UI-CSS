@@ -5,7 +5,7 @@
 @import (once) "menu";
 
 .sidebar-container {
-	background-color: #71b1d1;
+	background-color: @sidebarBackground;
 	color: @white;
 	position: absolute;
 	top: 0;
@@ -16,7 +16,7 @@
 }
 
 .sidebar {
-	background-color: #71b1d1;
+	background-color: @sidebarBackground;
 	color: @white;
 	position: relative;
 	width: 100%;
@@ -77,8 +77,8 @@
 		}
 
 		&.active {
-			background-color: @white;
-			color: #323232;
+			background-color: @sidebarBackgroundActive;
+			color: @sidebarColor;
 		}
 	}
 }
@@ -106,6 +106,29 @@
 			right: 4px;
 		}
 	}
+}
+
+.sidebar:not(.no-responsive-future) {
+    @media screen and (max-width: 800px) {
+        width: 52px;
+        .transition(.2s, ease);
+
+        a {
+            padding-right: 0;
+            padding-left: 0;
+            width: 52px;
+        }
+
+        .title {
+            display: none ;
+        }
+
+        .counter {
+            position: absolute;
+            top: 0;
+            right: 4px;
+        }
+    }
 }
 
 .sidebar2 {
