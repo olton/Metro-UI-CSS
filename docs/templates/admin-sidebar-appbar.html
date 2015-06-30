@@ -43,16 +43,6 @@
     </style>
 
     <script>
-        $(function(){
-            $(window).on('resize', function(){
-                if ($(this).width() <= 800) {
-                    $(".sidebar").addClass('compact');
-                } else {
-                    $(".sidebar").removeClass('compact');
-                }
-            });
-        });
-
         function pushMessage(t){
             var mes = 'Info|Implement independently';
             $.Notify({

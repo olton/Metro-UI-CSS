@@ -12143,6 +12143,25 @@ input[type="submit"].link:active {
   top: 0;
   right: 4px;
 }
+@media screen and (max-width: 800px) {
+  .sidebar:not(.no-responsive-future) {
+    width: 52px;
+    transition: all 0.2s ease;
+  }
+  .sidebar:not(.no-responsive-future) a {
+    padding-right: 0;
+    padding-left: 0;
+    width: 52px;
+  }
+  .sidebar:not(.no-responsive-future) .title {
+    display: none ;
+  }
+  .sidebar:not(.no-responsive-future) .counter {
+    position: absolute;
+    top: 0;
+    right: 4px;
+  }
+}
 .sidebar2 {
   text-align: left;
   background: #ffffff;
