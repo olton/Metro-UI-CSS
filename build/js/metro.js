@@ -4024,6 +4024,7 @@ window.METRO_LOCALES = {
             hintMode: 'default',
             hintShadow: false,
             hintBorder: true,
+            hintTimeout: 0,
 
             _hint: undefined
         },
@@ -4041,7 +4042,9 @@ window.METRO_LOCALES = {
             });
 
             this.element.on('mouseleave', function(e){
-                o._hint.hide().remove();
+                if (o._hint.length) {
+                    o._hint.hide().remove();
+                }
                 e.preventDefault();
             });
 
@@ -4147,6 +4150,14 @@ window.METRO_LOCALES = {
             }
 
             o._hint = _hint;
+
+            if (o.hintTimeout > 0) {
+                setTimeout(function(){
+                    if (o._hint.length) {
+                        o._hint.hide().remove();
+                    }
+                }, o.hintTimeout);
+            }
         },
 
         _destroy: function(){
