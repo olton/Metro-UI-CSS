@@ -194,25 +194,25 @@ Date.prototype.format = function (mask, utc) {
  */
 
 
-(function($){
+(function(jQuery){
     "use strict";
 
-    $.fn.reverse = Array.prototype.reverse;
+    jQuery.fn.reverse = Array.prototype.reverse;
 
-    $.Metro = function(params){
-        params = $.extend({
+    jQuery.Metro = function(params){
+        params = jQuery.extend({
         }, params);
     };
 
-    $.Metro.initWidgets = function(){
+    jQuery.Metro.initWidgets = function(){
         var widgets;
-        widgets = $("[data-role]");
-        $.each(widgets, function(){
-            var $this = $(this);
-            var roles = $this.data('role').split(/\s*,\s*/);
+        widgets = jQuery("[data-role]");
+        jQuery.each(widgets, function(){
+            var jQuerythis = jQuery(this);
+            var roles = jQuerythis.data('role').split(/\s*,\s*/);
             roles.map(function(func){
                 try {
-                    if ($.fn[func] !== undefined) {$.fn[func].call($this);}
+                    if (jQuery.fn[func] !== undefined) {jQuery.fn[func].call(jQuerythis);}
                 } catch(e) {
                     if (window.METRO_DEBUG) {
                         console.log(e.message, e.stack);
@@ -223,23 +223,23 @@ Date.prototype.format = function (mask, utc) {
     };
 })(jQuery);
 
-$(function(){
+jQuery(function(){
     "use strict";
 
-    $.Metro.initWidgets();
+    jQuery.Metro.initWidgets();
 
     if (window.METRO_AUTO_REINIT) {
         if (!window.canObserveMutation) {
-            var originalDOM = $('body').html(),
+            var originalDOM = jQuery('body').html(),
                 actualDOM;
 
             setInterval(function () {
-                actualDOM = $('body').html();
+                actualDOM = jQuery('body').html();
 
                 if (originalDOM !== actualDOM) {
                     originalDOM = actualDOM;
 
-                    $.Metro.initWidgets();
+                    jQuery.Metro.initWidgets();
                 }
             }, 100);
         } else {
@@ -256,23 +256,23 @@ $(function(){
                         var obj, widgets, plugins;
 
                         for(var i = 0, l = record.addedNodes.length; i < l; i++) {
-                            obj = $(record.addedNodes[i]);
+                            obj = jQuery(record.addedNodes[i]);
                             plugins = obj.find("[data-role]");
 
                             if (obj.data('role') !== undefined) {
-                                widgets = $.merge(plugins, obj);
+                                widgets = jQuery.merge(plugins, obj);
                             } else {
                                 widgets = plugins;
                             }
 
                             if (widgets.length) {
-                                $.each(widgets, function(){
-                                    var $this = $(this);
-                                    var roles = $this.data('role').split(/\s*,\s*/);
+                                jQuery.each(widgets, function(){
+                                    var _this = jQuery(this);
+                                    var roles = _this.data('role').split(/\s*,\s*/);
                                     roles.map(function(func){
                                         try {
-                                            if ($.fn[func] !== undefined) {
-                                                $.fn[func].call($this);
+                                            if (jQuery.fn[func] !== undefined) {
+                                                jQuery.fn[func].call(_this);
                                             }
                                         } catch(e) {
                                             if (window.METRO_DEBUG) {

@@ -5,6 +5,8 @@
 * add responsive for sidebar
 * add tile factor 1.25 for devices with width <= 800px
 * add hint timeout
+* add hotkeys plugin by [John Resig](https://github.com/jeresig)
+* add simple wysiwyg editor
 
 ## 3.0.7
 * add padding for container on mobile devices

@@ -1,4 +1,4 @@
-(function($) {
+(function(jQuery) {
 
     "use strict";
 
@@ -28,7 +28,7 @@
 		},
 		
 		init: function(options) {
-			this.options = $.extend({}, this.options, options);
+			this.options = jQuery.extend({}, this.options, options);
 			this._build();
 			return this;
 		},
@@ -36,12 +36,12 @@
 		_build: function() {
             var that = this, o = this.options;
 
-			this._container = _notify_container || $("<div/>").addClass("notify-container").appendTo('body');
+			this._container = _notify_container || jQuery("<div/>").addClass("notify-container").appendTo('body');
 			_notify_container = this._container;
 
 			if (o.content === '' || o.content === undefined) {return false;}
 			
-			this._notify = $("<div/>").addClass("notify");
+			this._notify = jQuery("<div/>").addClass("notify");
 
             if (o.type !== 'default') {
                 this._notify.addClass(o.type);
@@ -53,20 +53,20 @@
 
             // add Icon
             if (o.icon !== '') {
-                var icon = $(o.icon).addClass('notify-icon').appendTo(this._notify);
+                var icon = jQuery(o.icon).addClass('notify-icon').appendTo(this._notify);
             }
 
 			// add title
    	    	if (o.caption !== '' && o.caption !== undefined) {
-   	    	    $("<div/>").addClass("notify-title").html(o.caption).appendTo(this._notify);
+   	    	    jQuery("<div/>").addClass("notify-title").html(o.caption).appendTo(this._notify);
    	    	}
    	    	// add content
    	    	if (o.content !== '' && o.content !== undefined) {
-   	    	    $("<div/>").addClass("notify-text").html(o.content).appendTo(this._notify);
+   	    	    jQuery("<div/>").addClass("notify-text").html(o.content).appendTo(this._notify);
    	    	}
 
             // add closer
-            var closer = $("<span/>").addClass("notify-closer").appendTo(this._notify);
+            var closer = jQuery("<span/>").addClass("notify-closer").appendTo(this._notify);
             closer.on('click', function(){
                 that.close(0);
             });
@@ -102,7 +102,7 @@
 
 			if(this._notify !== undefined) {
         	   	this._notify.fadeOut('slow', function() {
-					$(this).remove();
+					jQuery(this).remove();
 					_notifies.splice(_notifies.indexOf(that._notify), 1);
 				});
 				return this;
@@ -122,12 +122,12 @@
 		}
 	};
 	
-	$.Notify = function(options) {
+	jQuery.Notify = function(options) {
 		return Object.create(Notify).init(options);
 	};
 
-	$.Notify.show = function(message, title, icon) {
-		return $.Notify({
+	jQuery.Notify.show = function(message, title, icon) {
+		return jQuery.Notify({
        	    content: message,
        	    caption: title,
             icon: icon

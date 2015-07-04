@@ -1,10 +1,10 @@
 // TODO - add color bar parts
 
-(function ( $ ) {
+(function ( jQuery ) {
 
     "use strict";
 
-    $.widget( "metro.progressBar" , {
+    jQuery.widget( "metro.progressBar" , {
 
         version: "3.0.0",
 
@@ -20,10 +20,10 @@
             var that = this, element = this.element, o = this.options;
             var bar = element.children('.bar:last-child');
 
-            $.each(element.data(), function(key, value){
+            jQuery.each(element.data(), function(key, value){
                 if (key in o) {
                     try {
-                        o[key] = $.parseJSON(value);
+                        o[key] = jQuery.parseJSON(value);
                     } catch (e) {
                         o[key] = value;
                     }
@@ -31,12 +31,12 @@
             });
 
             if (bar.length === 0) {
-                bar = $('<div/>').addClass('bar').appendTo(element);
+                bar = jQuery('<div/>').addClass('bar').appendTo(element);
             }
 
             if (o.colors) {
                 var p = 0;
-                $.each(o.colors, function(c,v){
+                jQuery.each(o.colors, function(c,v){
                     that.colorsDim[c] = [p,v];
                     p = v + 1;
                 });
@@ -52,7 +52,7 @@
         color: function(value){
             var element = this.element, o = this.options;
             var bar = element.children('.bar:last-child');
-            var isOk  = /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(value);
+            var isOk  = /(^#[0-9A-F]{6}jQuery)|(^#[0-9A-F]{3}jQuery)/i.test(value);
 
             if (isOk) {
                 bar.css({
@@ -80,13 +80,13 @@
 
                 if (o.colors) {
 
-                    $.each(colors, function (c, v) {
+                    jQuery.each(colors, function (c, v) {
                         if (value >= v[0] && value <= v[1]) {
                             that.color(c);
                             return true;
                         }
                     });
-                    //$.each(o.colors, function(c, v){
+                    //jQuery.each(o.colors, function(c, v){
                     //    gradient.push(c + " " + v + "%");
                     //});
                     //console.log(gradient.join(","));

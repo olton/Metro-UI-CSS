@@ -1,8 +1,8 @@
-(function ( $ ) {
+(function ( jQuery ) {
 
     "use strict";
 
-    $.widget( "metro.datatable" , {
+    jQuery.widget( "metro.datatable" , {
 
         version: "3.0.0",
 
@@ -12,9 +12,9 @@
         _create: function () {
             var that = this, element = this.element, o = this.options;
 
-            $.each(element.data(), function(key, value){
+            jQuery.each(element.data(), function(key, value){
                 try {
-                    o[key] = $.parseJSON(value);
+                    o[key] = jQuery.parseJSON(value);
                 } catch (e) {
                     o[key] = value;
                 }

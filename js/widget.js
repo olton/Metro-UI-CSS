@@ -13,7 +13,7 @@
 		// Browser globals
 		factory( jQuery );
 	}
-}(function( $ ) {
+}(function( jQuery ) {
 /*!
  * jQuery UI Widget 1.11.3
  * http://jqueryui.com
@@ -29,16 +29,16 @@
 var widget_uuid = 0,
 	widget_slice = Array.prototype.slice;
 
-$.cleanData = (function( orig ) {
+jQuery.cleanData = (function( orig ) {
 	return function( elems ) {
 		var events, elem, i;
 		for ( i = 0; (elem = elems[i]) != null; i++ ) {
 			try {
 
 				// Only trigger remove when necessary to save time
-				events = $._data( elem, "events" );
+				events = jQuery._data( elem, "events" );
 				if ( events && events.remove ) {
-					$( elem ).triggerHandler( "remove" );
+					jQuery( elem ).triggerHandler( "remove" );
 				}
 
 			// http://bugs.jquery.com/ticket/8235
@@ -46,9 +46,9 @@ $.cleanData = (function( orig ) {
 		}
 		orig( elems );
 	};
-})( $.cleanData );
+})( jQuery.cleanData );
 
-$.widget = function( name, base, prototype ) {
+jQuery.widget = function( name, base, prototype ) {
 	var fullName, existingConstructor, constructor, basePrototype,
 		// proxiedPrototype allows the provided prototype to remain unmodified
 		// so that it can be used as a mixin for multiple widgets (#8876)
@@ -60,17 +60,17 @@ $.widget = function( name, base, prototype ) {
 
 	if ( !prototype ) {
 		prototype = base;
-		base = $.Widget;
+		base = jQuery.Widget;
 	}
 
 	// create selector for plugin
-	$.expr[ ":" ][ fullName.toLowerCase() ] = function( elem ) {
-		return !!$.data( elem, fullName );
+	jQuery.expr[ ":" ][ fullName.toLowerCase() ] = function( elem ) {
+		return !!jQuery.data( elem, fullName );
 	};
 
-	$[ namespace ] = $[ namespace ] || {};
-	existingConstructor = $[ namespace ][ name ];
-	constructor = $[ namespace ][ name ] = function( options, element ) {
+	jQuery[ namespace ] = jQuery[ namespace ] || {};
+	existingConstructor = jQuery[ namespace ][ name ];
+	constructor = jQuery[ namespace ][ name ] = function( options, element ) {
 		// allow instantiation without "new" keyword
 		if ( !this._createWidget ) {
 			return new constructor( options, element );
@@ -83,11 +83,11 @@ $.widget = function( name, base, prototype ) {
 		}
 	};
 	// extend with the existing constructor to carry over any static properties
-	$.extend( constructor, existingConstructor, {
+	jQuery.extend( constructor, existingConstructor, {
 		version: prototype.version,
 		// copy the object used to create the prototype in case we need to
 		// redefine the widget later
-		_proto: $.extend( {}, prototype ),
+		_proto: jQuery.extend( {}, prototype ),
 		// track widgets that inherit from this widget in case this widget is
 		// redefined after a widget inherits from it
 		_childConstructors: []
@@ -97,9 +97,9 @@ $.widget = function( name, base, prototype ) {
 	// we need to make the options hash a property directly on the new instance
 	// otherwise we'll modify the options hash on the prototype that we're
 	// inheriting from
-	basePrototype.options = $.widget.extend( {}, basePrototype.options );
-	$.each( prototype, function( prop, value ) {
-		if ( !$.isFunction( value ) ) {
+	basePrototype.options = jQuery.widget.extend( {}, basePrototype.options );
+	jQuery.each( prototype, function( prop, value ) {
+		if ( !jQuery.isFunction( value ) ) {
 			proxiedPrototype[ prop ] = value;
 			return;
 		}
@@ -127,7 +127,7 @@ $.widget = function( name, base, prototype ) {
 			};
 		})();
 	});
-	constructor.prototype = $.widget.extend( basePrototype, {
+	constructor.prototype = jQuery.widget.extend( basePrototype, {
 		// TODO: remove support for widgetEventPrefix
 		// always use the name + a colon as the prefix, e.g., draggable:start
 		// don't prefix for widgets that aren't DOM-based
@@ -144,12 +144,12 @@ $.widget = function( name, base, prototype ) {
 	// the new version of this widget. We're essentially trying to replace one
 	// level in the prototype chain.
 	if ( existingConstructor ) {
-		$.each( existingConstructor._childConstructors, function( i, child ) {
+		jQuery.each( existingConstructor._childConstructors, function( i, child ) {
 			var childPrototype = child.prototype;
 
 			// redefine the child widget using the same prototype that was
 			// originally used, but inherit from the new version of the base
-			$.widget( childPrototype.namespace + "." + childPrototype.widgetName, constructor, child._proto );
+			jQuery.widget( childPrototype.namespace + "." + childPrototype.widgetName, constructor, child._proto );
 		});
 		// remove the list of existing child constructors from the old constructor
 		// so the old child constructors can be garbage collected
@@ -158,12 +158,12 @@ $.widget = function( name, base, prototype ) {
 		base._childConstructors.push( constructor );
 	}
 
-	$.widget.bridge( name, constructor );
+	jQuery.widget.bridge( name, constructor );
 
 	return constructor;
 };
 
-$.widget.extend = function( target ) {
+jQuery.widget.extend = function( target ) {
 	var input = widget_slice.call( arguments, 1 ),
 		inputIndex = 0,
 		inputLength = input.length,
@@ -174,11 +174,11 @@ $.widget.extend = function( target ) {
 			value = input[ inputIndex ][ key ];
 			if ( input[ inputIndex ].hasOwnProperty( key ) && value !== undefined ) {
 				// Clone objects
-				if ( $.isPlainObject( value ) ) {
-					target[ key ] = $.isPlainObject( target[ key ] ) ?
-						$.widget.extend( {}, target[ key ], value ) :
+				if ( jQuery.isPlainObject( value ) ) {
+					target[ key ] = jQuery.isPlainObject( target[ key ] ) ?
+						jQuery.widget.extend( {}, target[ key ], value ) :
 						// Don't extend strings, arrays, etc. with objects
-						$.widget.extend( {}, value );
+						jQuery.widget.extend( {}, value );
 				// Copy everything else by reference
 				} else {
 					target[ key ] = value;
@@ -189,9 +189,9 @@ $.widget.extend = function( target ) {
 	return target;
 };
 
-$.widget.bridge = function( name, object ) {
+jQuery.widget.bridge = function( name, object ) {
 	var fullName = object.prototype.widgetFullName || name;
-	$.fn[ name ] = function( options ) {
+	jQuery.fn[ name ] = function( options ) {
 		var isMethodCall = typeof options === "string",
 			args = widget_slice.call( arguments, 1 ),
 			returnValue = this;
@@ -199,17 +199,17 @@ $.widget.bridge = function( name, object ) {
 		if ( isMethodCall ) {
 			this.each(function() {
 				var methodValue,
-					instance = $.data( this, fullName );
+					instance = jQuery.data( this, fullName );
 				if ( options === "instance" ) {
 					returnValue = instance;
 					return false;
 				}
 				if ( !instance ) {
-					return $.error( "cannot call methods on " + name + " prior to initialization; " +
+					return jQuery.error( "cannot call methods on " + name + " prior to initialization; " +
 						"attempted to call method '" + options + "'" );
 				}
-				if ( !$.isFunction( instance[options] ) || options.charAt( 0 ) === "_" ) {
-					return $.error( "no such method '" + options + "' for " + name + " widget instance" );
+				if ( !jQuery.isFunction( instance[options] ) || options.charAt( 0 ) === "_" ) {
+					return jQuery.error( "no such method '" + options + "' for " + name + " widget instance" );
 				}
 				methodValue = instance[ options ].apply( instance, args );
 				if ( methodValue !== instance && methodValue !== undefined ) {
@@ -223,18 +223,18 @@ $.widget.bridge = function( name, object ) {
 
 			// Allow multiple hashes to be passed on init
 			if ( args.length ) {
-				options = $.widget.extend.apply( null, [ options ].concat(args) );
+				options = jQuery.widget.extend.apply( null, [ options ].concat(args) );
 			}
 
 			this.each(function() {
-				var instance = $.data( this, fullName );
+				var instance = jQuery.data( this, fullName );
 				if ( instance ) {
 					instance.option( options || {} );
 					if ( instance._init ) {
 						instance._init();
 					}
 				} else {
-					$.data( this, fullName, new object( options, this ) );
+					jQuery.data( this, fullName, new object( options, this ) );
 				}
 			});
 		}
@@ -243,10 +243,10 @@ $.widget.bridge = function( name, object ) {
 	};
 };
 
-$.Widget = function( /* options, element */ ) {};
-$.Widget._childConstructors = [];
+jQuery.Widget = function( /* options, element */ ) {};
+jQuery.Widget._childConstructors = [];
 
-$.Widget.prototype = {
+jQuery.Widget.prototype = {
 	widgetName: "widget",
 	widgetEventPrefix: "",
 	defaultElement: "<div>",
@@ -257,17 +257,17 @@ $.Widget.prototype = {
 		create: null
 	},
 	_createWidget: function( options, element ) {
-		element = $( element || this.defaultElement || this )[ 0 ];
-		this.element = $( element );
+		element = jQuery( element || this.defaultElement || this )[ 0 ];
+		this.element = jQuery( element );
 		this.uuid = widget_uuid++;
 		this.eventNamespace = "." + this.widgetName + this.uuid;
 
-		this.bindings = $();
-		this.hoverable = $();
-		this.focusable = $();
+		this.bindings = jQuery();
+		this.hoverable = jQuery();
+		this.focusable = jQuery();
 
 		if ( element !== this ) {
-			$.data( element, this.widgetFullName, this );
+			jQuery.data( element, this.widgetFullName, this );
 			this._on( true, this.element, {
 				remove: function( event ) {
 					if ( event.target === element ) {
@@ -275,15 +275,15 @@ $.Widget.prototype = {
 					}
 				}
 			});
-			this.document = $( element.style ?
+			this.document = jQuery( element.style ?
 				// element within the document
 				element.ownerDocument :
 				// element is window or document
 				element.document || element );
-			this.window = $( this.document[0].defaultView || this.document[0].parentWindow );
+			this.window = jQuery( this.document[0].defaultView || this.document[0].parentWindow );
 		}
 
-		this.options = $.widget.extend( {},
+		this.options = jQuery.widget.extend( {},
 			this.options,
 			this._getCreateOptions(),
 			options );
@@ -292,10 +292,10 @@ $.Widget.prototype = {
 		this._trigger( "create", null, this._getCreateEventData() );
 		this._init();
 	},
-	_getCreateOptions: $.noop,
-	_getCreateEventData: $.noop,
-	_create: $.noop,
-	_init: $.noop,
+	_getCreateOptions: jQuery.noop,
+	_getCreateEventData: jQuery.noop,
+	_create: jQuery.noop,
+	_init: jQuery.noop,
 
 	destroy: function() {
 		this._destroy();
@@ -306,7 +306,7 @@ $.Widget.prototype = {
 			.removeData( this.widgetFullName )
 			// support: jquery <1.6.3
 			// http://bugs.jquery.com/ticket/9413
-			.removeData( $.camelCase( this.widgetFullName ) );
+			.removeData( jQuery.camelCase( this.widgetFullName ) );
 		this.widget()
 			.unbind( this.eventNamespace )
 			.removeAttr( "aria-disabled" )
@@ -319,7 +319,7 @@ $.Widget.prototype = {
 		this.hoverable.removeClass( "ui-state-hover" );
 		this.focusable.removeClass( "ui-state-focus" );
 	},
-	_destroy: $.noop,
+	_destroy: jQuery.noop,
 
 	widget: function() {
 		return this.element;
@@ -333,7 +333,7 @@ $.Widget.prototype = {
 
 		if ( arguments.length === 0 ) {
 			// don't return a reference to the internal hash
-			return $.widget.extend( {}, this.options );
+			return jQuery.widget.extend( {}, this.options );
 		}
 
 		if ( typeof key === "string" ) {
@@ -342,7 +342,7 @@ $.Widget.prototype = {
 			parts = key.split( "." );
 			key = parts.shift();
 			if ( parts.length ) {
-				curOption = options[ key ] = $.widget.extend( {}, this.options[ key ] );
+				curOption = options[ key ] = jQuery.widget.extend( {}, this.options[ key ] );
 				for ( i = 0; i < parts.length - 1; i++ ) {
 					curOption[ parts[ i ] ] = curOption[ parts[ i ] ] || {};
 					curOption = curOption[ parts[ i ] ];
@@ -414,18 +414,18 @@ $.Widget.prototype = {
 			element = this.element;
 			delegateElement = this.widget();
 		} else {
-			element = delegateElement = $( element );
+			element = delegateElement = jQuery( element );
 			this.bindings = this.bindings.add( element );
 		}
 
-		$.each( handlers, function( event, handler ) {
+		jQuery.each( handlers, function( event, handler ) {
 			function handlerProxy() {
 				// allow widgets to customize the disabled handling
 				// - disabled as an array instead of boolean
 				// - disabled class as method for disabling individual parts
 				if ( !suppressDisabledCheck &&
 						( instance.options.disabled === true ||
-							$( this ).hasClass( "ui-state-disabled" ) ) ) {
+							jQuery( this ).hasClass( "ui-state-disabled" ) ) ) {
 					return;
 				}
 				return ( typeof handler === "string" ? instance[ handler ] : handler )
@@ -435,7 +435,7 @@ $.Widget.prototype = {
 			// copy the guid so direct unbinding works
 			if ( typeof handler !== "string" ) {
 				handlerProxy.guid = handler.guid =
-					handler.guid || handlerProxy.guid || $.guid++;
+					handler.guid || handlerProxy.guid || jQuery.guid++;
 			}
 
 			var match = event.match( /^([\w:-]*)\s*(.*)$/ ),
@@ -455,9 +455,9 @@ $.Widget.prototype = {
 		element.unbind( eventName ).undelegate( eventName );
 
 		// Clear the stack to avoid memory leaks (#10056)
-		this.bindings = $( this.bindings.not( element ).get() );
-		this.focusable = $( this.focusable.not( element ).get() );
-		this.hoverable = $( this.hoverable.not( element ).get() );
+		this.bindings = jQuery( this.bindings.not( element ).get() );
+		this.focusable = jQuery( this.focusable.not( element ).get() );
+		this.hoverable = jQuery( this.hoverable.not( element ).get() );
 	},
 
 	_delay: function( handler, delay ) {
@@ -473,10 +473,10 @@ $.Widget.prototype = {
 		this.hoverable = this.hoverable.add( element );
 		this._on( element, {
 			mouseenter: function( event ) {
-				$( event.currentTarget ).addClass( "ui-state-hover" );
+				jQuery( event.currentTarget ).addClass( "ui-state-hover" );
 			},
 			mouseleave: function( event ) {
-				$( event.currentTarget ).removeClass( "ui-state-hover" );
+				jQuery( event.currentTarget ).removeClass( "ui-state-hover" );
 			}
 		});
 	},
@@ -485,10 +485,10 @@ $.Widget.prototype = {
 		this.focusable = this.focusable.add( element );
 		this._on( element, {
 			focusin: function( event ) {
-				$( event.currentTarget ).addClass( "ui-state-focus" );
+				jQuery( event.currentTarget ).addClass( "ui-state-focus" );
 			},
 			focusout: function( event ) {
-				$( event.currentTarget ).removeClass( "ui-state-focus" );
+				jQuery( event.currentTarget ).removeClass( "ui-state-focus" );
 			}
 		});
 	},
@@ -498,7 +498,7 @@ $.Widget.prototype = {
 			callback = this.options[ type ];
 
 		data = data || {};
-		event = $.Event( event );
+		event = jQuery.Event( event );
 		event.type = ( type === this.widgetEventPrefix ?
 			type :
 			this.widgetEventPrefix + type ).toLowerCase();
@@ -517,14 +517,14 @@ $.Widget.prototype = {
 		}
 
 		this.element.trigger( event, data );
-		return !( $.isFunction( callback ) &&
+		return !( jQuery.isFunction( callback ) &&
 			callback.apply( this.element[0], [ event ].concat( data ) ) === false ||
 			event.isDefaultPrevented() );
 	}
 };
 
-$.each( { show: "fadeIn", hide: "fadeOut" }, function( method, defaultEffect ) {
-	$.Widget.prototype[ "_" + method ] = function( element, options, callback ) {
+jQuery.each( { show: "fadeIn", hide: "fadeOut" }, function( method, defaultEffect ) {
+	jQuery.Widget.prototype[ "_" + method ] = function( element, options, callback ) {
 		if ( typeof options === "string" ) {
 			options = { effect: options };
 		}
@@ -538,18 +538,18 @@ $.each( { show: "fadeIn", hide: "fadeOut" }, function( method, defaultEffect ) {
 		if ( typeof options === "number" ) {
 			options = { duration: options };
 		}
-		hasOptions = !$.isEmptyObject( options );
+		hasOptions = !jQuery.isEmptyObject( options );
 		options.complete = callback;
 		if ( options.delay ) {
 			element.delay( options.delay );
 		}
-		if ( hasOptions && $.effects && $.effects.effect[ effectName ] ) {
+		if ( hasOptions && jQuery.effects && jQuery.effects.effect[ effectName ] ) {
 			element[ method ]( options );
 		} else if ( effectName !== method && element[ effectName ] ) {
 			element[ effectName ]( options.duration, options.easing, callback );
 		} else {
 			element.queue(function( next ) {
-				$( this )[ method ]();
+				jQuery( this )[ method ]();
 				if ( callback ) {
 					callback.call( element[ 0 ] );
 				}
@@ -559,7 +559,7 @@ $.each( { show: "fadeIn", hide: "fadeOut" }, function( method, defaultEffect ) {
 	};
 });
 
-var widget = $.widget;
+var widget = jQuery.widget;
 
 
 

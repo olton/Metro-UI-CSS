@@ -1,8 +1,8 @@
-(function ( $ ) {
+(function ( jQuery ) {
 
     "use strict";
 
-    $.widget( "metro.fitImage" , {
+    jQuery.widget( "metro.fitImage" , {
 
         version: "3.0.0",
 
@@ -20,25 +20,25 @@
             var i_w, i_h, p_w, p_h;
             var div, src = element.attr('src');
 
-            $.each(element.data(), function(key, value){
+            jQuery.each(element.data(), function(key, value){
                 if (key in o) {
                     try {
-                        o[key] = $.parseJSON(value);
+                        o[key] = jQuery.parseJSON(value);
                     } catch (e) {
                         o[key] = value;
                     }
                 }
             });
 
-            $("<img/>")
+            jQuery("<img/>")
                 .attr('src', src)
                 .load(function(){
                     i_w = this.width;
                     i_h = this.height;
                 }).remove();
 
-            var image_container = $("<div/>").addClass('image-container').css('width', '100%').appendTo(parent);
-            var image_frame = $("<div/>").addClass('frame').appendTo(image_container);
+            var image_container = jQuery("<div/>").addClass('image-container').css('width', '100%').appendTo(parent);
+            var image_frame = jQuery("<div/>").addClass('frame').appendTo(image_container);
 
             p_w = image_frame.innerWidth();
             p_h = image_frame.innerHeight();
@@ -52,7 +52,7 @@
                 default: p_h = 9 * p_w / 16;
             }
 
-            div = $("<div/>").css({
+            div = jQuery("<div/>").css({
                 'width': '100%',
                 'height': p_h,
                 'background-image': 'url('+src+')',
@@ -61,7 +61,7 @@
                 'border-radius': o.format === 'cycle' ? '50%' : '0'
             });
 
-            $(window).on('resize', function(){
+            jQuery(window).on('resize', function(){
                 var p_w = image_frame.innerWidth();
                 var p_h = image_frame.innerHeight();
 
@@ -87,7 +87,7 @@
                 }
             }
             if (o.overlay !== false) {
-                var overlay = $("<div/>").addClass('image-overlay').html(o.overlay).appendTo(image_container);
+                var overlay = jQuery("<div/>").addClass('image-overlay').html(o.overlay).appendTo(image_container);
             }
             if (o.shadow !== false) {
                 image_container.addClass('block-shadow');

@@ -1,7 +1,7 @@
-(function( $ ) {
+(function( jQuery ) {
     "use strict";
 
-    $.widget("metro.carousel", {
+    jQuery.widget("metro.carousel", {
 
         version: "3.0.0",
 
@@ -32,10 +32,10 @@
             var that = this, o = this.options,
                 element = this.element;
 
-            $.each(element.data(), function(key, value){
+            jQuery.each(element.data(), function(key, value){
                 if (key in o) {
                     try {
-                        o[key] = $.parseJSON(value);
+                        o[key] = jQuery.parseJSON(value);
                     } catch (e) {
                         o[key] = value;
                     }
@@ -47,8 +47,8 @@
             var max_height = 0; //element.find('.slide:nth-child(1)').outerHeight();
 
 
-            $.each(o._slides, function(){
-                var oh, slide = $(this);
+            jQuery.each(o._slides, function(){
+                var oh, slide = jQuery(this);
 
                 oh = slide.outerHeight();
 
@@ -133,11 +133,11 @@
             }
 
             carousel.find('.carousel-bullets a').each(function(){
-                var index = $(this).data('num');
+                var index = jQuery(this).data('num');
                 if (index === o._currentIndex) {
-                    $(this).addClass('bullet-on');
+                    jQuery(this).addClass('bullet-on');
                 } else {
-                    $(this).removeClass('bullet-on');
+                    jQuery(this).removeClass('bullet-on');
                 }
             });
         },
@@ -166,8 +166,8 @@
         _controls: function(){
             var next, prev, that = this, element = this.element, o = this.options;
 
-            next = $('<span/>').addClass('carousel-switch-next').html("&gt;");
-            prev = $('<span/>').addClass('carousel-switch-prev').html("&lt;");
+            next = jQuery('<span/>').addClass('carousel-switch-next').html("&gt;");
+            prev = jQuery('<span/>').addClass('carousel-switch-prev').html("&lt;");
 
             if (o.controlNext) {
                 next.html(o.controlNext);
@@ -204,10 +204,10 @@
         _markers: function () {
             var div, a, i, that = this, o = this.options;
 
-            div = $('<div class="carousel-bullets" />');
+            div = jQuery('<div class="carousel-bullets" />');
 
             for (i = 0; i < o._slides.length; i++) {
-                a = $('<a class="carousel-bullet" href="javascript:void(0)" data-num="' + i + '"></a>');
+                a = jQuery('<a class="carousel-bullet" href="javascript:void(0)" data-num="' + i + '"></a>');
                 if (i === 0) {
                     a.addClass('bullet-on');
                 }
@@ -216,13 +216,13 @@
 
 
             div.find('a').on('click', function (e) {
-                var $this = $(this),
-                    index = $this.data('num');
+                var _this = jQuery(this),
+                    index = _this.data('num');
 
 
 
                 div.find('a').removeClass('bullet-on');
-                $this.addClass('bullet-on');
+                _this.addClass('bullet-on');
 
                 if (index === o._currentIndex) {
                     return false;
@@ -240,29 +240,29 @@
 
 
         _effectSwitch: function(currentSlide, nextSlide){
-            $(currentSlide)
+            jQuery(currentSlide)
                 .hide();
-            $(nextSlide)
+            jQuery(nextSlide)
                 .css({left: 0})
                 .show();
             this.element.css({
-                height: $(nextSlide).outerHeight()
+                height: jQuery(nextSlide).outerHeight()
             });
         },
 
         _effectSlide: function(currentSlide, nextSlide){
             var o = this.options;
-            $(currentSlide)
+            jQuery(currentSlide)
                 .animate({left: o._outPosition}, o.duration, o.effectFunc);
-            $(nextSlide)
+            jQuery(nextSlide)
                 .css('left', o._outPosition * -1)
                 .show();
 
             this.element.css({
-                height: $(nextSlide).outerHeight()
+                height: jQuery(nextSlide).outerHeight()
             });
 
-            $(nextSlide).animate({left: 0}, o.duration, o.effectFunc);
+            jQuery(nextSlide).animate({left: 0}, o.duration, o.effectFunc);
         },
 
         _effectSlowdown: function(currentSlide, nextSlide){
@@ -271,35 +271,35 @@
                 'duration': o.duration,
                 'easing': 'doubleSqrt'
             };
-            $.easing.doubleSqrt = function(t) {
+            jQuery.easing.doubleSqrt = function(t) {
                 return Math.sqrt(Math.sqrt(t));
             };
 
-            $(currentSlide)
+            jQuery(currentSlide)
                 .animate({left: o._outPosition}, options);
 
 
-            $(nextSlide)
+            jQuery(nextSlide)
                 .css('left', o._outPosition * -1)
                 .show();
 
             this.element.css({
-                height: $(nextSlide).outerHeight()
+                height: jQuery(nextSlide).outerHeight()
             });
 
-            $(nextSlide).animate({left: 0}, options);
+            jQuery(nextSlide).animate({left: 0}, options);
         },
 
         _effectFade: function(currentSlide, nextSlide){
             var o = this.options;
 
-            $(currentSlide)
+            jQuery(currentSlide)
                 .fadeOut(o.duration);
-            $(nextSlide)
+            jQuery(nextSlide)
                 .css({left: 0})
                 .fadeIn(o.duration);
             this.element.css({
-                height: $(nextSlide).outerHeight()
+                height: jQuery(nextSlide).outerHeight()
             });
         },
 

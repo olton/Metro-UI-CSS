@@ -160,10 +160,10 @@ window.METRO_LOCALES = {
     }
 };
 
-(function( $ ) {
+(function( jQuery ) {
     "use strict";
 
-    $.widget("metro.calendar", {
+    jQuery.widget("metro.calendar", {
 
         version: "3.0.0",
 
@@ -206,10 +206,10 @@ window.METRO_LOCALES = {
         _create: function(){
             var that = this, element = this.element, o = this.options;
 
-            $.each(element.data(), function(key, value){
+            jQuery.each(element.data(), function(key, value){
                 if (key in o) {
                     try {
-                        o[key] = $.parseJSON(value);
+                        o[key] = jQuery.parseJSON(value);
                     } catch (e) {
                         o[key] = value;
                     }
@@ -246,7 +246,7 @@ window.METRO_LOCALES = {
             if (o.preset) {
                 re = /\s*,\s*/;
                 dates = o.preset.split(re);
-                $.each(dates, function(){
+                jQuery.each(dates, function(){
                     if (new Date(this) !== undefined) {that.setDate(this);}
                 });
             }
@@ -254,7 +254,7 @@ window.METRO_LOCALES = {
             if (o.exclude) {
                 re = /\s*,\s*/;
                 dates = o.exclude.split(re);
-                $.each(dates, function(){
+                jQuery.each(dates, function(){
                     if (new Date(this) !== undefined) {that.setDateExclude(this);}
                 });
             }
@@ -262,7 +262,7 @@ window.METRO_LOCALES = {
             if (o.stored) {
                 re = /\s*,\s*/;
                 dates = o.stored.split(re);
-                $.each(dates, function(){
+                jQuery.each(dates, function(){
                     if (new Date(this) !== undefined) {that.setDateStored(this);}
                 });
             }
@@ -281,8 +281,8 @@ window.METRO_LOCALES = {
                 var buttonToday = o.buttonToday ? "<button class='button calendar-btn-today small-button success'>"+this.locales[o.locale].buttons[0]+"</button>" : "";
                 var buttonClear = o.buttonClear ? "<button class='button calendar-btn-clear small-button warning'>"+this.locales[o.locale].buttons[1]+"</button>" : "";
 
-                tr = $("<div/>").addClass("calendar-row calendar-actions");
-                td = $("<div/>").addClass("align-center").html(
+                tr = jQuery("<div/>").addClass("calendar-row calendar-actions");
+                td = jQuery("<div/>").addClass("align-center").html(
                     buttonToday + buttonClear
                 );
                 td.appendTo(tr);
@@ -312,7 +312,7 @@ window.METRO_LOCALES = {
 
             this.element.html("");
 
-            table = $("<div/>").addClass("calendar-grid");
+            table = jQuery("<div/>").addClass("calendar-grid");
             if (o.condensedGrid) {
                 table.addClass('condensed no-border');
             }
@@ -320,30 +320,30 @@ window.METRO_LOCALES = {
             //console.log(this.locales);
 
             // Add calendar header
-            tr = $("<div/>").addClass('calendar-row no-margin');
+            tr = jQuery("<div/>").addClass('calendar-row no-margin');
 
-            $("<div/>").addClass("calendar-cell align-center").html("<a class='btn-previous-year' href='#'>-</a>").appendTo(tr);
-            $("<div/>").addClass("calendar-cell align-center").html("<a class='btn-previous-month' href='#'>&#12296;</a>").appendTo(tr);
+            jQuery("<div/>").addClass("calendar-cell align-center").html("<a class='btn-previous-year' href='#'>-</a>").appendTo(tr);
+            jQuery("<div/>").addClass("calendar-cell align-center").html("<a class='btn-previous-month' href='#'>&#12296;</a>").appendTo(tr);
 
-            $("<div/>").addClass("calendar-cell sel-month align-center").html("<a class='btn-select-month' href='#'>"+ this.locales[o.locale].months[month]+' '+year+"</a>").appendTo(tr);
+            jQuery("<div/>").addClass("calendar-cell sel-month align-center").html("<a class='btn-select-month' href='#'>"+ this.locales[o.locale].months[month]+' '+year+"</a>").appendTo(tr);
 
-            $("<div/>").addClass("calendar-cell align-center").html("<a class='btn-next-month' href='#'>&#12297;</a>").appendTo(tr);
-            $("<div/>").addClass("calendar-cell align-center").html("<a class='btn-next-year' href='#'>+</a>").appendTo(tr);
+            jQuery("<div/>").addClass("calendar-cell align-center").html("<a class='btn-next-month' href='#'>&#12297;</a>").appendTo(tr);
+            jQuery("<div/>").addClass("calendar-cell align-center").html("<a class='btn-next-year' href='#'>+</a>").appendTo(tr);
 
             tr.addClass("calendar-header").appendTo(table);
 
             // Add day names
             var j;
-            tr = $("<div/>").addClass('calendar-row week-days');
+            tr = jQuery("<div/>").addClass('calendar-row week-days');
             for(i = 0; i < 7; i++) {
                 if (!o.weekStart) {
-                    td = $("<div/>").addClass("calendar-cell align-center day-of-week").appendTo(tr);
-                    div = $("<div/>").html(this.locales[o.locale].days[i + 7]).appendTo(td);
+                    td = jQuery("<div/>").addClass("calendar-cell align-center day-of-week").appendTo(tr);
+                    div = jQuery("<div/>").html(this.locales[o.locale].days[i + 7]).appendTo(td);
                 } else {
                     j = i + 1;
                     if (j === 7) {j = 0;}
-                    td = $("<div/>").addClass("calendar-cell align-center day-of-week").appendTo(tr);
-                    div = $("<div/>").html(this.locales[o.locale].days[j+7]).appendTo(td);
+                    td = jQuery("<div/>").addClass("calendar-cell align-center day-of-week").appendTo(tr);
+                    div = jQuery("<div/>").html(this.locales[o.locale].days[j+7]).appendTo(td);
                 }
             }
             tr.addClass("calendar-subheader").appendTo(table);
@@ -352,11 +352,11 @@ window.METRO_LOCALES = {
             var prevMonth = this._month - 1; if (prevMonth < 0) {prevMonth = 11;} var daysInPrevMonth = totalDays[prevMonth];
             var _first_week_day = ((o.weekStart) ? first_week_day + 6 : first_week_day)%7;
             var htmlPrevDay = "";
-            tr = $("<div/>").addClass('calendar-row');
+            tr = jQuery("<div/>").addClass('calendar-row');
             for(i = 0; i < _first_week_day; i++) {
                 if (o.otherDays) {htmlPrevDay = daysInPrevMonth - (_first_week_day - i - 1);}
-                td = $("<div/>").addClass("calendar-cell empty").appendTo(tr);
-                div = $("<div/>").addClass('other-day').html(htmlPrevDay).appendTo(td);
+                td = jQuery("<div/>").addClass("calendar-cell empty").appendTo(tr);
+                div = jQuery("<div/>").addClass('other-day').html(htmlPrevDay).appendTo(td);
                 if (!o.otherDays) {
                     div.css('visibility', 'hidden');
                 }
@@ -372,11 +372,11 @@ window.METRO_LOCALES = {
 
                 if (week_day === 0) {
                     tr.appendTo(table);
-                    tr = $("<div/>").addClass('calendar-row');
+                    tr = jQuery("<div/>").addClass('calendar-row');
                 }
 
-                td = $("<div/>").addClass("calendar-cell align-center day");
-                div = $("<div/>").appendTo(td);
+                td = jQuery("<div/>").addClass("calendar-cell align-center day");
+                div = jQuery("<div/>").appendTo(td);
 
                 if (o.minDate !== false && (new Date(year, month, i) < o.minDate) || o.maxDate !== false && (new Date(year, month, i) > o.maxDate)) {
                     td.removeClass("day");
@@ -421,8 +421,8 @@ window.METRO_LOCALES = {
             var htmlOtherDays = "";
             for (i = week_day+1; i<=7; i++){
                 if (o.otherDays) {htmlOtherDays = i - week_day;}
-                td = $("<div/>").addClass("calendar-cell empty").appendTo(tr);
-                div = $("<div/>").addClass('other-day').html(htmlOtherDays).appendTo(td);
+                td = jQuery("<div/>").addClass("calendar-cell empty").appendTo(tr);
+                div = jQuery("<div/>").addClass('other-day').html(htmlOtherDays).appendTo(td);
                 if (!o.otherDays) {
                     div.css('visibility', 'hidden');
                 }
@@ -447,26 +447,26 @@ window.METRO_LOCALES = {
 
             this.element.html("");
 
-            table = $("<div/>").addClass("calendar-grid");
+            table = jQuery("<div/>").addClass("calendar-grid");
             if (this.options.condensedGrid) {
                 table.addClass('condensed no-border');
             }
 
             // Add calendar header
-            tr = $("<div/>").addClass('calendar-row');
+            tr = jQuery("<div/>").addClass('calendar-row');
 
-            $("<div/>").addClass("calendar-cell sel-minus align-center").html("<a class='btn-previous-year' href='#'>-</a>").appendTo(tr);
-            $("<div/>").addClass("calendar-cell sel-year align-center").html("<a class='btn-select-year' href='#'>"+this._year+"</a>").appendTo(tr);
-            $("<div/>").addClass("calendar-cell sel-plus align-center").html("<a class='btn-next-year' href='#'>+</a>").appendTo(tr);
+            jQuery("<div/>").addClass("calendar-cell sel-minus align-center").html("<a class='btn-previous-year' href='#'>-</a>").appendTo(tr);
+            jQuery("<div/>").addClass("calendar-cell sel-year align-center").html("<a class='btn-select-year' href='#'>"+this._year+"</a>").appendTo(tr);
+            jQuery("<div/>").addClass("calendar-cell sel-plus align-center").html("<a class='btn-next-year' href='#'>+</a>").appendTo(tr);
 
             tr.addClass("calendar-header").appendTo(table);
 
-            tr = $("<div/>").addClass('calendar-row');
+            tr = jQuery("<div/>").addClass('calendar-row');
             j = 0;
             for (i=0;i<12;i++) {
 
-                //td = $("<td/>").addClass("text-center month").html("<a href='#' data-month='"+i+"'>"+this.options.monthsShort[i]+"</a>");
-                td = $("<div/>").addClass("calendar-cell month-cell align-center month").html("<a href='#' data-month='"+i+"'>"+this.locales[this.options.locale].months[i+12]+"</a>");
+                //td = jQuery("<td/>").addClass("text-center month").html("<a href='#' data-month='"+i+"'>"+this.options.monthsShort[i]+"</a>");
+                td = jQuery("<div/>").addClass("calendar-cell month-cell align-center month").html("<a href='#' data-month='"+i+"'>"+this.locales[this.options.locale].months[i+12]+"</a>");
 
                 if (this._month === i && (new Date()).getFullYear() === this._year) {
                     td.addClass("today");
@@ -475,7 +475,7 @@ window.METRO_LOCALES = {
                 td.appendTo(tr);
                 if ((j+1) % 4 === 0) {
                     tr.appendTo(table);
-                    tr = $("<div/>").addClass('calendar-row');
+                    tr = jQuery("<div/>").addClass('calendar-row');
                 }
                 j+=1;
             }
@@ -490,32 +490,32 @@ window.METRO_LOCALES = {
 
             this.element.html("");
 
-            table = $("<div/>").addClass("calendar-grid");
+            table = jQuery("<div/>").addClass("calendar-grid");
             if (this.options.condensedGrid) {
                 table.addClass('condensed no-border');
             }
 
             // Add calendar header
-            tr = $("<div/>").addClass('calendar-row cells4');
+            tr = jQuery("<div/>").addClass('calendar-row cells4');
 
-            $("<div/>").addClass("calendar-cell sel-minus align-center").html("<a class='btn-previous-year' href='#'>-</a>").appendTo(tr);
-            $("<div/>").addClass("calendar-cell sel-year align-center").html("<a class='btn-none-btn'>" + (this._distance)+"-"+(this._distance+11) + "</a>").appendTo(tr);
-            $("<div/>").addClass("calendar-cell sel-plus align-center").html("<a class='btn-next-year' href='#'>+</a>").appendTo(tr);
+            jQuery("<div/>").addClass("calendar-cell sel-minus align-center").html("<a class='btn-previous-year' href='#'>-</a>").appendTo(tr);
+            jQuery("<div/>").addClass("calendar-cell sel-year align-center").html("<a class='btn-none-btn'>" + (this._distance)+"-"+(this._distance+11) + "</a>").appendTo(tr);
+            jQuery("<div/>").addClass("calendar-cell sel-plus align-center").html("<a class='btn-next-year' href='#'>+</a>").appendTo(tr);
 
             tr.addClass("calendar-header").appendTo(table);
 
-            tr = $("<div/>").addClass('calendar-row');
+            tr = jQuery("<div/>").addClass('calendar-row');
 
             j = 0;
             for (i=this._distance;i<this._distance+12;i++) {
-                td = $("<div/>").addClass("calendar-cell year-cell align-center year").html("<a href='#' data-year='"+i+"'>"+i+"</a>");
+                td = jQuery("<div/>").addClass("calendar-cell year-cell align-center year").html("<a href='#' data-year='"+i+"'>"+i+"</a>");
                 if ((new Date()).getFullYear() === i) {
                     td.addClass("today");
                 }
                 td.appendTo(tr);
                 if ((j+1) % 4 === 0) {
                     tr.appendTo(table);
-                    tr = $("<div/>").addClass('calendar-row');
+                    tr = jQuery("<div/>").addClass('calendar-row');
                 }
                 j+=1;
             }
@@ -586,24 +586,24 @@ window.METRO_LOCALES = {
                     e.preventDefault();
                     e.stopPropagation();
 
-                    if ($(this).parent().parent().hasClass('exclude')) {
+                    if (jQuery(this).parent().parent().hasClass('exclude')) {
                         return false;
                     }
 
-                    var d = (new Date(that._year, that._month, parseInt($(this).html()))).format(that.options.format,null);
-                    var d0 = (new Date(that._year, that._month, parseInt($(this).html())));
+                    var d = (new Date(that._year, that._month, parseInt(jQuery(this).html()))).format(that.options.format,null);
+                    var d0 = (new Date(that._year, that._month, parseInt(jQuery(this).html())));
 
                     if (that.options.multiSelect) {
-                        $(this).parent().parent().toggleClass("selected");
+                        jQuery(this).parent().parent().toggleClass("selected");
 
-                        if ($(this).parent().parent().hasClass("selected")) {
+                        if (jQuery(this).parent().parent().hasClass("selected")) {
                             that._addDate(d);
                         } else {
                             that._removeDate(d);
                         }
                     } else {
                         table.find('.day a').parent().parent().removeClass('selected');
-                        $(this).parent().parent().addClass("selected");
+                        jQuery(this).parent().parent().addClass("selected");
                         that.element.data('_storage', []);
                         that._addDate(d);
                     }
@@ -627,7 +627,7 @@ window.METRO_LOCALES = {
                     that._event = 'eventNext';
                     e.preventDefault();
                     e.stopPropagation();
-                    that._month = parseInt($(this).data('month'));
+                    that._month = parseInt(jQuery(this).data('month'));
                     that._mode = 'day';
                     that._renderCalendar();
                 });
@@ -657,7 +657,7 @@ window.METRO_LOCALES = {
                     that._event = 'eventNext';
                     e.preventDefault();
                     e.stopPropagation();
-                    that._year = parseInt($(this).data('year'));
+                    that._year = parseInt(jQuery(this).data('year'));
                     that._mode = 'month';
                     that._renderCalendar();
                 });
@@ -761,7 +761,7 @@ window.METRO_LOCALES = {
 
         getDates: function(){
             var res;
-            res = $.merge($.merge([], this.element.data('_storage')), this.element.data('_stored'));
+            res = jQuery.merge(jQuery.merge([], this.element.data('_storage')), this.element.data('_stored'));
             return res.unique();
         },
 

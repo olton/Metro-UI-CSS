@@ -1,8 +1,8 @@
-(function ( $ ) {
+(function ( jQuery ) {
 
     "use strict";
 
-    $.widget( "metro.keypad" , {
+    jQuery.widget( "metro.keypad" , {
 
         version: "3.0.0",
 
@@ -18,10 +18,10 @@
         _create: function () {
             var that = this, element = this.element, o = this.options;
 
-            $.each(element.data(), function(key, value){
+            jQuery.each(element.data(), function(key, value){
                 if (key in o) {
                     try {
-                        o[key] = $.parseJSON(value);
+                        o[key] = jQuery.parseJSON(value);
                     } catch (e) {
                         o[key] = value;
                     }
@@ -53,11 +53,11 @@
             });
 
             keys.map(function(i){
-                $("<div/>").addClass('key').html(i).data('key', i).appendTo(keypad);
+                jQuery("<div/>").addClass('key').html(i).data('key', i).appendTo(keypad);
             });
 
-            $("<div/>").addClass('key').html('&larr;').data('key', '&larr;').appendTo(keypad);
-            $("<div/>").addClass('key').html('&times;').data('key', '&times;').appendTo(keypad);
+            jQuery("<div/>").addClass('key').html('&larr;').data('key', '&larr;').appendTo(keypad);
+            jQuery("<div/>").addClass('key').html('&times;').data('key', '&times;').appendTo(keypad);
         },
 
         _createKeypad: function(){
@@ -66,7 +66,7 @@
 
             if (element.hasClass('input-control')) {
 
-                keypad = $("<div/>").addClass('keypad keypad-dropdown').css({
+                keypad = jQuery("<div/>").addClass('keypad keypad-dropdown').css({
                     position: 'absolute',
                     'z-index': 1000,
                     display: 'none'
@@ -81,18 +81,18 @@
                         keypad.hide();
                     }
 
-                    var opened_pads = $(".keypad.keypad-dropdown");
-                    $.each(opened_pads, function(){
-                        if (!$(this).is(keypad)) {
-                            $(this).hide();
+                    var opened_pads = jQuery(".keypad.keypad-dropdown");
+                    jQuery.each(opened_pads, function(){
+                        if (!jQuery(this).is(keypad)) {
+                            jQuery(this).hide();
                         }
                     });
 
                     e.stopPropagation();
                 });
 
-                $('html').on('click', function(){
-                    $(".keypad.keypad-dropdown").hide();
+                jQuery('html').on('click', function(){
+                    jQuery(".keypad.keypad-dropdown").hide();
                 });
             } else {
                 keypad = element;
@@ -100,7 +100,7 @@
             }
 
             if (o.target !== false) {
-                $(o.target).attr('readonly', true);
+                jQuery(o.target).attr('readonly', true);
             }
 
             if (keypad.parent().data('role') === 'dropdown') {
@@ -114,22 +114,22 @@
             this._shuffleKeys();
 
             keypad.on('click', '.key', function(e){
-                var key = $(this);
+                var key = jQuery(this);
 
                 if (o.target) {
 
                     if (key.data('key') !== '&larr;' && key.data('key') !== '&times;') {
-                        if (o.length && $(o.target).val().length === o.length) {
+                        if (o.length && jQuery(o.target).val().length === o.length) {
                             return false;
                         }
-                        $(o.target).val($(o.target).val() + '' + key.data('key'));
+                        jQuery(o.target).val(jQuery(o.target).val() + '' + key.data('key'));
                     } else {
                         if (key.data('key') === '&times;') {
-                            $(o.target).val('');
+                            jQuery(o.target).val('');
                         }
                         if (key.data('key') === '&larr;') {
-                            var val = $(o.target).val();
-                            $(o.target).val(val.substring(0, val.length - 1))
+                            var val = jQuery(o.target).val();
+                            jQuery(o.target).val(val.substring(0, val.length - 1))
                         }
                     }
                 }

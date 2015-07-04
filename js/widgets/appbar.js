@@ -4,11 +4,11 @@
  * 
  * PS: You are doing great work Sergey! Greats Daniel
  */
-(function ($) {
+(function (jQuery) {
 
     "use strict";
 
-    $.widget("metro.appbar", {
+    jQuery.widget("metro.appbar", {
         version: "3.0.0",
         options: {
             flexstyle: "app-bar-menu", //app-bar-menu | YOUR_OWN class for the pull flexmenu, basic support for "sidebar2" are integrated in the appbar.less file
@@ -19,10 +19,10 @@
         _create: function () {
             var that = this, element = this.element, o = this.options;
 
-            $.each(element.data(), function (key, value) {
+            jQuery.each(element.data(), function (key, value) {
                 if (key in o) {
                     try {
-                        o[key] = $.parseJSON(value);
+                        o[key] = jQuery.parseJSON(value);
                     } catch (e) {
                         o[key] = value;
                     }
@@ -40,10 +40,10 @@
             var freeSpace;
 
             //get the overall free space from the wrapping parent of the menus
-            menusParentWidth = $(that.menusParent).width();
+            menusParentWidth = jQuery(that.menusParent).width();
 
             //get the width of all visible children
-            children = $(that.menusParent).children(":visible").not(".app-bar-pullmenu");
+            children = jQuery(that.menusParent).children(":visible").not(".app-bar-pullmenu");
 
 
             //margin support: because there could be margins between elements, we do not summarize the width up with a one liner
@@ -60,7 +60,7 @@
             var floatState;
 
             for (var i = 0, len = children.length; i < len; i++) {
-                floatState = $(children[i]).css("float");
+                floatState = jQuery(children[i]).css("float");
                 switch (floatState) {
                     case "left":
                         childrenLeftFloated.push(children[i]);
@@ -81,27 +81,27 @@
             children = childrenLeftFloated.concat(childrenAsUsual, childrenRightFloated);
 
             //convert the array to jquery object again
-            children = $(children);
+            children = jQuery(children);
 
             //=== calculate the width of the elements with margin support ===
 
             //adds the left margin dedicated to the first child
-            childrenWidth += parseInt($(children).first().css("margin-left"));
+            childrenWidth += parseInt(jQuery(children).first().css("margin-left"));
 
             //walk trough the children and add the size, 
             for (var i = 0, len = children.length - 1; i <= len; i++) {
-                childrenWidth += $(children[i]).outerWidth();
+                childrenWidth += jQuery(children[i]).outerWidth();
                 if (i !== len) {
                     //the highest margin between two elements counts
                     childrenWidth += Math.max(
-                            parseInt($(children[i]).css("margin-right")),
-                            parseInt($(children[i + 1]).css("margin-left"))
+                            parseInt(jQuery(children[i]).css("margin-right")),
+                            parseInt(jQuery(children[i + 1]).css("margin-left"))
 
                             );
                 }
             }
             //the right margin for the right child
-            childrenWidth += parseInt($(children[len]).css("margin-right"));
+            childrenWidth += parseInt(jQuery(children[len]).css("margin-right"));
 
             //now we have all data for calculation. Yippie-Ya-Yeah, Schweinebacke!! (much cooler German translation of B. W. Yippie-Ya-Yeah, Motherf***er)
             freeSpace = menusParentWidth - childrenWidth;
@@ -115,24 +115,24 @@
         },
         _originIndexMove: function(menu, child) {
                 //find all children which are lower than we
-                var flexChildren = $(menu).children().filter(function () {
-                    return parseInt($(this).attr("data-flexorderorigin")) < parseInt($(child).attr("data-flexorderorigin"));
+                var flexChildren = jQuery(menu).children().filter(function () {
+                    return parseInt(jQuery(this).attr("data-flexorderorigin")) < parseInt(jQuery(child).attr("data-flexorderorigin"));
                 });
                 
                 if (flexChildren.length > 0) {
                     //because we are greater, we set it after the childern which are lower
-                    $(flexChildren).last().after(child);
+                    jQuery(flexChildren).last().after(child);
                 } else {
                     //find all children which are greater than we are
-                    flexChildren = $(menu).children().filter(function () {
-                        return parseInt($(this).attr("data-flexorderorigin")) > parseInt($(child).attr("data-flexorderorigin"));
+                    flexChildren = jQuery(menu).children().filter(function () {
+                        return parseInt(jQuery(this).attr("data-flexorderorigin")) > parseInt(jQuery(child).attr("data-flexorderorigin"));
                     });
                     if (flexChildren.length > 0) {
                         //because we are lower, we set us before the childern which are greater
-                        $(flexChildren).first().before(child);
+                        jQuery(flexChildren).first().before(child);
                     } else {
                         //we have no children, just append it
-                        $(menu).append(child);
+                        jQuery(menu).append(child);
                     }
                 }
         },
@@ -144,7 +144,7 @@
             if (direction === "toPullMenu") {
                 //get next candidate which could be moved to the pullmenu, in fact the last which not have a mark as pullmenu-entry
 
-                var nextToHide = $(that.allMenuEntries).not(".app-bar-pullmenu-entry").last();
+                var nextToHide = jQuery(that.allMenuEntries).not(".app-bar-pullmenu-entry").last();
 
                 if (nextToHide.length === 0) {
                     //nothing left, we have nothing to do
@@ -153,52 +153,52 @@
 
 
                 //find out in which menubar we are located in
-                var topMenu = $(nextToHide).parent(); //this is only a appbar-menu not the appbar itself
+                var topMenu = jQuery(nextToHide).parent(); //this is only a appbar-menu not the appbar itself
                 //find out where we have to go
-                var topMenuIndex = $(that.flexVisibles).index($(nextToHide).parent());
-                var pullMenuBar = $(that.pullMenu).find(".app-bar-pullmenubar").eq(topMenuIndex); //TODO: Make the class app-bar-menu configurable - perhaps sidebar
+                var topMenuIndex = jQuery(that.flexVisibles).index(jQuery(nextToHide).parent());
+                var pullMenuBar = jQuery(that.pullMenu).find(".app-bar-pullmenubar").eq(topMenuIndex); //TODO: Make the class app-bar-menu configurable - perhaps sidebar
 
                 that._originIndexMove(pullMenuBar, nextToHide);
                 //move it to the pullmenu
-//                if ($(topMenu).is("[data-flexdirection='reverse']")) {//data-flexdirection="reverse" support 
-//                    $(nextToHide).appendTo(pullMenuBar);
+//                if (jQuery(topMenu).is("[data-flexdirection='reverse']")) {//data-flexdirection="reverse" support
+//                    jQuery(nextToHide).appendTo(pullMenuBar);
 //                } else {                                             //normal way
-//                    $(nextToHide).prependTo(pullMenuBar);
+//                    jQuery(nextToHide).prependTo(pullMenuBar);
 //                }
 
                 //mark the entry as a entry of the pullmenu
-                $(nextToHide).addClass("app-bar-pullmenu-entry");
+                jQuery(nextToHide).addClass("app-bar-pullmenu-entry");
 
                 //the menubar is initiated with the hidden class, so we do not see empty pullmenubars, we must unhide them
                 //it does not matter, if we see it already, we do it always:
-                $(pullMenuBar).removeClass("hidden")
+                jQuery(pullMenuBar).removeClass("hidden")
                         .show();
 
                 //in case there are no more entries in the top menu bar we can hide it
-                if ($(topMenu).children().length === 0) {
-                    $(topMenu).addClass("hidden");
+                if (jQuery(topMenu).children().length === 0) {
+                    jQuery(topMenu).addClass("hidden");
                 }
 
                 //we show the pullbutton now
-                $(that.pullButton).show();
+                jQuery(that.pullButton).show();
 
                 return nextToHide;
 
             } else if (direction === "fromPullMenu") {
                 //get next candidate which could be moved to the topbar menu, in fact the first which is still marked as pullmenu-entry
-                var nextToShow = $(that.allMenuEntries).filter(".app-bar-pullmenu-entry").first();
+                var nextToShow = jQuery(that.allMenuEntries).filter(".app-bar-pullmenu-entry").first();
 
 
                 //find out in which pullmenu we are located in
-                var pullMenuBar = $(nextToShow).parent(); //only one single menu, not the whole thing
+                var pullMenuBar = jQuery(nextToShow).parent(); //only one single menu, not the whole thing
 
                 //find out where we have to go
-                var topMenuIndex = $(pullMenuBar).index(); //it is the same structur as that.flexVisibles, so we can use the simple index
-                var topMenu = $(that.flexVisibles).eq(topMenuIndex);
+                var topMenuIndex = jQuery(pullMenuBar).index(); //it is the same structur as that.flexVisibles, so we can use the simple index
+                var topMenu = jQuery(that.flexVisibles).eq(topMenuIndex);
 
-                $(topMenu).removeClass("hidden");
+                jQuery(topMenu).removeClass("hidden");
                 //remove the mark as a entry of the pullmenu and move it to the normal top menu
-                $(nextToShow).removeClass("app-bar-pullmenu-entry");
+                jQuery(nextToShow).removeClass("app-bar-pullmenu-entry");
 
                 //cosider the flexorder
 
@@ -208,15 +208,15 @@
                 that._originIndexMove(topMenu, nextToShow);
 
                 //in case there are no more entries left, we can hide the pullbar menu from this entry
-                if ($(pullMenuBar).children().length === 0) {
-                    $(pullMenuBar).addClass("hidden")
+                if (jQuery(pullMenuBar).children().length === 0) {
+                    jQuery(pullMenuBar).addClass("hidden")
                             .hide();
                 }
 
                 //in case we have no more menus in the pullbar area, we hide the pullbar thing
-                if ($(that.pullMenu).children(".app-bar-pullmenubar").not(".hidden").length === 0) {
-                    $(that.pullMenu).hide().addClass("hidden");
-                    $(that.pullButton).hide();
+                if (jQuery(that.pullMenu).children(".app-bar-pullmenubar").not(".hidden").length === 0) {
+                    jQuery(that.pullMenu).hide().addClass("hidden");
+                    jQuery(that.pullButton).hide();
                 }
 
                 if (nextToShow.length === 0) {
@@ -283,23 +283,23 @@
 
             that.lastFlexAction = undefined;
 
-            that.pullButton = $(element).find('.app-bar-pullbutton');
-            var menus = $(element).find('.app-bar-menu');
+            that.pullButton = jQuery(element).find('.app-bar-pullbutton');
+            var menus = jQuery(element).find('.app-bar-menu');
 
             that.initiatedAsFlex = false;   //we change it later in the code - conditionally
-            o.flexclean = $(element).is("[data-flexclean='true']") || o.flexclean;
-            o.flexstyle = $(element).attr("data-flexstyle") || o.flexstyle;
+            o.flexclean = jQuery(element).is("[data-flexclean='true']") || o.flexclean;
+            o.flexstyle = jQuery(element).attr("data-flexstyle") || o.flexstyle;
 
             var flexVisible, menuEntries; //temporarly used vars
 
-            that.flexVisibles = $();    //the menus which are directly in the appbar
-            that.allMenuEntries = $();  //all menu entries in a sorted order
-            that.menusParent = $();     //common parent from the menus, which can but do not need to be this.element. We get the max width from it
-            that.pullMenu = $();
+            that.flexVisibles = jQuery();    //the menus which are directly in the appbar
+            that.allMenuEntries = jQuery();  //all menu entries in a sorted order
+            that.menusParent = jQuery();     //common parent from the menus, which can but do not need to be this.element. We get the max width from it
+            that.pullMenu = jQuery();
 
-            if (menus.length > 0 && $(element).is(":not('.no-flexible')")) {
+            if (menus.length > 0 && jQuery(element).is(":not('.no-flexible')")) {
                 //strip off all .no-flexible menus
-                that.flexVisibles = $(menus).not(".no-flexible");
+                that.flexVisibles = jQuery(menus).not(".no-flexible");
 
                 if (that.flexVisibles.length > 0) {
 
@@ -307,57 +307,57 @@
 
                     //sort the menus according to the data-flexorder attribute
                     that.flexVisibles.sort(function (a, b) {
-                        var aValue = (parseInt($(a).data("flexorder")) || $(a).index() + 1);
-                        var bValue = (parseInt($(b).data("flexorder")) || $(b).index() + 1);
+                        var aValue = (parseInt(jQuery(a).data("flexorder")) || jQuery(a).index() + 1);
+                        var bValue = (parseInt(jQuery(b).data("flexorder")) || jQuery(b).index() + 1);
                         return aValue - bValue;
                     });
 
                     //get all children in a sorted order according to the data-flexorder attribute
-                    $(that.flexVisibles).each(function () {
+                    jQuery(that.flexVisibles).each(function () {
                         flexVisible = this;
 
-                        menuEntries = $(flexVisible).children();
+                        menuEntries = jQuery(flexVisible).children();
 
                         //give  all menuEntries a flexorder which have not one and save the original order
-                        $(menuEntries).each(function () {
-                            $(this).attr("data-flexorderorigin", $(this).index());
+                        jQuery(menuEntries).each(function () {
+                            jQuery(this).attr("data-flexorderorigin", jQuery(this).index());
                             
-                            if(!($(this).is("[data-flexorder]"))) {
-                                $(this).attr("data-flexorder", $(this).index() + 1);
+                            if(!(jQuery(this).is("[data-flexorder]"))) {
+                                jQuery(this).attr("data-flexorder", jQuery(this).index() + 1);
                             }
                         });
 
                         menuEntries.sort(function (a, b) {
-                            var aValue = parseInt($(a).data("flexorder"));
-                            var bValue = parseInt($(b).data("flexorder"));
+                            var aValue = parseInt(jQuery(a).data("flexorder"));
+                            var bValue = parseInt(jQuery(b).data("flexorder"));
                             return aValue - bValue;
                         });
 
                         //data-flexdirection="reverse" support 
-                        if ($(flexVisible).is("[data-flexdirection='reverse']")) {
+                        if (jQuery(flexVisible).is("[data-flexdirection='reverse']")) {
                             menuEntries.reverse();
                         }
 
-                        $.merge(that.allMenuEntries, $(menuEntries).not(".no-flexible")); //strip off all .no-flexible elements
+                        jQuery.merge(that.allMenuEntries, jQuery(menuEntries).not(".no-flexible")); //strip off all .no-flexible elements
                     });
 
                     //find the parent, which contains all menus
-                    that.menusParent = $(element).find(".app-bar-menu").first().parent();
+                    that.menusParent = jQuery(element).find(".app-bar-menu").first().parent();
 
                     // === create a pull down button + pull menu ===
                     //check if a pulldown button already exists, if not we create one
                     if (!(that.pullButton.length > 0)) {
                         //DOC: We can create a display:none button, if we want to force to not show a pull button
-                        that.pullButton = $('<div class="app-bar-pullbutton automatic"></div>');
-                        $(that.menusParent).append(that.pullButton);
+                        that.pullButton = jQuery('<div class="app-bar-pullbutton automatic"></div>');
+                        jQuery(that.menusParent).append(that.pullButton);
                     }
 
                     //create a pullmenu
-                    that.pullMenu = $('<nav class="app-bar-pullmenu hidden" />');
+                    that.pullMenu = jQuery('<nav class="app-bar-pullmenu hidden" />');
 
                     //create menubars within the pullmenu
                     that.flexVisibles.each(function () {
-                        $(that.pullMenu).append($('<ul class="app-bar-pullmenubar hidden ' + o.flexstyle + '" />'));
+                        jQuery(that.pullMenu).append(jQuery('<ul class="app-bar-pullmenubar hidden ' + o.flexstyle + '" />'));
                     });
                     
                     
@@ -365,13 +365,13 @@
                     // WORKAROUND: this is because a :after:before clearfix for the pullmenu do not work for some reason
                     //position: absolute does not work if we do not break the float. another pure css solution should be written in the appbar.less
                     //after that remove this line
-                    $(that.menusParent).append($('<div class="clearfix" style="width: 0;">')); 
+                    jQuery(that.menusParent).append(jQuery('<div class="clearfix" style="width: 0;">'));
                     //-----------
                     
                     
-                    $(that.pullMenu).addClass("flexstyle-" + o.flexstyle);
+                    jQuery(that.pullMenu).addClass("flexstyle-" + o.flexstyle);
 
-                    $(that.menusParent).append(that.pullMenu);
+                    jQuery(that.menusParent).append(that.pullMenu);
 
                     //check for the first time the menu entries /hide them if needed, etc.
                     that._checkMenuEntries();
@@ -381,20 +381,20 @@
                     //===  EVENTS =================================================
 
                     //activate the click event for the pull button
-                    $(that.pullButton).on("click", function () {
+                    jQuery(that.pullButton).on("click", function () {
 
                         //who am i?
-                        that = $(this).closest("[data-role=appbar]").data("appbar");
+                        that = jQuery(this).closest("[data-role=appbar]").data("appbar");
 
                         //we show /hide the pullmenu
-                        if ($(that.pullMenu).is(":hidden")) {
-                            $(that.pullMenu).show();
-                            $(that.pullMenu).find(".app-bar-pullmenubar")
+                        if (jQuery(that.pullMenu).is(":hidden")) {
+                            jQuery(that.pullMenu).show();
+                            jQuery(that.pullMenu).find(".app-bar-pullmenubar")
                                     .hide().not(".hidden").slideDown("fast");
                         } else {
-                            $(that.pullMenu).find(".app-bar-pullmenubar")
+                            jQuery(that.pullMenu).find(".app-bar-pullmenubar")
                                     .not(".hidden").show().slideUp("fast", function () {
-                                $(that.pullMenu).hide();
+                                jQuery(that.pullMenu).hide();
                             });
                         }
 
@@ -402,26 +402,26 @@
 
 
                     //we have to calculate everything new, if the user resizes or zooms the window
-                    $(window).resize(function () {
-                        $("[data-role=appbar]:not(.no-flexible)").each(function () {
-                            $(this).data("appbar").resize();
+                    jQuery(window).resize(function () {
+                        jQuery("[data-role=appbar]:not(.no-flexible)").each(function () {
+                            jQuery(this).data("appbar").resize();
                         });
                     });
 
 
                     //because fonts(also icon-fonts) are often loaded async after the page has loaded and this script walked through already, 
                     //we have to check again after these elements loaded. Because there is no way to observe only specific elements, we do it for the window
-                    $(window).load(function () {
-                        $("[data-role=appbar]:not(.no-flexible)").each(function () {
-                            $(this).data("appbar").resize();
+                    jQuery(window).load(function () {
+                        jQuery("[data-role=appbar]:not(.no-flexible)").each(function () {
+                            jQuery(this).data("appbar").resize();
                         });
                     });
 
                     //pictures (or other outside stuff was loaded - pictures are also often loaded async or have a lazy load or are injected after a while. 
                     //a picture can change a size of the element from the appbar, so we must recheck it again.
-                    $("[data-role=appbar]:not(.no-flexible) [src]").on("load", function () {
+                    jQuery("[data-role=appbar]:not(.no-flexible) [src]").on("load", function () {
                         //who am i?
-                        var appbar = $(this).closest("[data-role=appbar]").data("appbar");
+                        var appbar = jQuery(this).closest("[data-role=appbar]").data("appbar");
                         appbar.resize();
                     });
                 }

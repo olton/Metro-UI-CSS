@@ -119,6 +119,11 @@ input[type=password]::-ms-reveal {
 a {
   text-decoration: none;
 }
+div,
+p,
+span {
+  position: relative;
+}
 @media print {
   a,
   a:visited {

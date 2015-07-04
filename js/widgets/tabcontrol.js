@@ -1,7 +1,7 @@
-(function ( $ ) {
+(function ( jQuery ) {
     "use strict";
 
-    $.widget( "metro.tabControl" , {
+    jQuery.widget( "metro.tabControl" , {
 
         version: "3.0.0",
 
@@ -20,10 +20,10 @@
             var frames = element.children('.frames').children('div');
             var tab, target, frame;
 
-            $.each(element.data(), function(key, value){
+            jQuery.each(element.data(), function(key, value){
                 if (key in o) {
                     try {
-                        o[key] = $.parseJSON(value);
+                        o[key] = jQuery.parseJSON(value);
                     } catch (e) {
                         o[key] = value;
                     }
@@ -37,7 +37,7 @@
                     tab = element.find("a[href='"+stored_target+"']");
                     if (tab) {
                         target = tab.attr('href');
-                        frame = target && target.isUrl() ? false : $(target);
+                        frame = target && target.isUrl() ? false : jQuery(target);
                         o._current.tab = tab;
                         o._current.frame = frame;
                     }
@@ -49,7 +49,7 @@
                 tab = element.find("a[href='"+ o.openTarget+"']");
                 if (tab) {
                     target = tab.attr('href');
-                    frame = target && target.isUrl() ? false : $(target);
+                    frame = target && target.isUrl() ? false : jQuery(target);
                     o._current.tab = tab;
                     o._current.frame = frame;
                 }
@@ -57,8 +57,8 @@
 
             if (!o._current.tab) {
 
-                $.each(tabs, function (i, v) {
-                    var tab = $(v), target = tab.attr('href'), frame = target.isUrl() ? false : $(target);
+                jQuery.each(tabs, function (i, v) {
+                    var tab = jQuery(v), target = tab.attr('href'), frame = target.isUrl() ? false : jQuery(target);
                     if (tab.parent().hasClass('active') && !tab.parent().hasClass('disabled') && frame !== false) {
                         o._current.tab = tab;
                         o._current.frame = frame;
@@ -69,9 +69,9 @@
             if (!o._current.tab) {
 
                 for(var i = 0; i < tabs.length; i++) {
-                    if (!$(tabs[i]).attr('href').isUrl() && !$(tabs[i]).parent().hasClass('disabled')) {
-                        o._current.tab = $(tabs[i]);
-                        o._current.frame = $($(tabs[i]).attr('href'));
+                    if (!jQuery(tabs[i]).attr('href').isUrl() && !jQuery(tabs[i]).parent().hasClass('disabled')) {
+                        o._current.tab = jQuery(tabs[i]);
+                        o._current.frame = jQuery(jQuery(tabs[i]).attr('href'));
                         break;
                     }
                 }
@@ -82,7 +82,7 @@
 
             //this._hideTabs();
             //
-            //$(window).on('resize', function(){
+            //jQuery(window).on('resize', function(){
             //    that._hideTabs();
             //});
 
@@ -96,12 +96,12 @@
             var _tabs = element.children('.tabs').find('li:not(.non-visible-tabs)');
             var _nvt = element.children('.tabs').find('.non-visible-tabs').children('.d-menu');
 
-            $.each(_tabs, function(){
-                var $tab = $(this), tab = this;
+            jQuery.each(_tabs, function(){
+                var jQuerytab = jQuery(this), tab = this;
                 if (tab.offsetLeft + tab.offsetWidth + 30 > w) {
-                    var new_tab = $tab.clone(true);
+                    var new_tab = jQuerytab.clone(true);
                     new_tab.appendTo(_nvt);
-                    $tab.remove();
+                    jQuerytab.remove();
                 }
             });
         },
@@ -128,7 +128,7 @@
             var frames = element.children('.frames').children('div');
 
             element.on('click', '.tabs > li > a', function(e){
-                var tab = $(this), target = tab.attr('href'), frame = $(target);
+                var tab = jQuery(this), target = tab.attr('href'), frame = jQuery(target);
 
                 if (tab.parent().hasClass('disabled')) {return false;}
 
