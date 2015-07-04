@@ -1,8 +1,8 @@
-(function ( $ ) {
+(function ( jQuery ) {
 
     "use strict";
 
-    $.widget( "metro.presenter" , {
+    jQuery.widget( "metro.presenter" , {
 
         version: "3.0.0",
 
@@ -27,10 +27,10 @@
         _create: function () {
             var that = this, element = this.element, o = this.options;
 
-            $.each(element.data(), function(key, value){
+            jQuery.each(element.data(), function(key, value){
                 if (key in o) {
                     try {
-                        o[key] = $.parseJSON(value);
+                        o[key] = jQuery.parseJSON(value);
                     } catch (e) {
                         o[key] = value;
                     }
@@ -79,7 +79,7 @@
             var that = this, element = this.element, o = this.options;
             var index = this._currentAct;
             setTimeout(function(){
-                if (that._acts[index] !== undefined) $(that._acts[index]).fadeOut(1000, function(){
+                if (that._acts[index] !== undefined) jQuery(that._acts[index]).fadeOut(1000, function(){
                     that._actDone = true;
                 });
             }, o.sceneTimeout);
@@ -88,7 +88,7 @@
         _showAct: function(){
             var that = this, element = this.element, o = this.options;
 
-            var act = $(this._acts[this._currentAct]);
+            var act = jQuery(this._acts[this._currentAct]);
             var actors = act.find('.actor');
             var i;
 
@@ -103,8 +103,8 @@
             });
 
             i = 0;
-            $.each(actors, function(){
-                var actor = $(this), pos = {top: actor.data('position').split(",")[0], left: actor.data('position').split(",")[1]};//that._actor_positions[$(that._acts[that._currentAct]).attr('id')][actor.attr('id')];
+            jQuery.each(actors, function(){
+                var actor = jQuery(this), pos = {top: actor.data('position').split(",")[0], left: actor.data('position').split(",")[1]};//that._actor_positions[jQuery(that._acts[that._currentAct]).attr('id')][actor.attr('id')];
                 var actor_effect, actor_duration, actor_timeout, actor_easing;
 
                 actor_effect = actor.data('effect') !== undefined ? actor.data('effect') : o.effect;

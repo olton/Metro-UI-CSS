@@ -1,8 +1,8 @@
-(function( $ ) {
+(function( jQuery ) {
 
     "use strict";
 
-    $.widget("metro.dropdown", {
+    jQuery.widget("metro.dropdown", {
 
         version: "3.0.0",
 
@@ -20,17 +20,17 @@
 
             var toggle;
 
-            $.each(element.data(), function(key, value){
+            jQuery.each(element.data(), function(key, value){
                 if (key in o) {
                     try {
-                        o[key] = $.parseJSON(value);
+                        o[key] = jQuery.parseJSON(value);
                     } catch (e) {
                         o[key] = value;
                     }
                 }
             });
 
-            toggle = o.toggleElement ? $(o.toggleElement) : parent.children('.dropdown-toggle').length > 0 ? parent.children('.dropdown-toggle') : parent.children('a:nth-child(1)');
+            toggle = o.toggleElement ? jQuery(o.toggleElement) : parent.children('.dropdown-toggle').length > 0 ? parent.children('.dropdown-toggle') : parent.children('a:nth-child(1)');
 
             if (METRO_SHOW_TYPE !== undefined) {
                 this.options.effect = METRO_SHOW_TYPE;
@@ -38,13 +38,13 @@
 
             toggle.on('click.'+name, function(e){
                 parent.siblings(parent[0].tagName).removeClass("active-container");
-                $(".active-container").removeClass("active-container");
+                jQuery(".active-container").removeClass("active-container");
 
                 if (menu.css('display') === 'block' && !menu.hasClass('keep-open')) {
                     that._close(menu);
                 } else {
-                    $('[data-role=dropdown]').each(function(i, el){
-                        if (!menu.parents('[data-role=dropdown]').is(el) && !$(el).hasClass('keep-open') && $(el).css('display') === 'block') {
+                    jQuery('[data-role=dropdown]').each(function(i, el){
+                        if (!menu.parents('[data-role=dropdown]').is(el) && !jQuery(el).hasClass('keep-open') && jQuery(el).css('display') === 'block') {
                             that._close(el);
                         }
                     });
@@ -53,8 +53,8 @@
                             'visibility': 'hidden',
                             'display': 'block'
                         });
-                        var item_length = $(menu.children('li')[0]).outerWidth();
-                        //var item_length2 = $(menu.children('li')[0]).width();
+                        var item_length = jQuery(menu.children('li')[0]).outerWidth();
+                        //var item_length2 = jQuery(menu.children('li')[0]).width();
                         menu.css({
                             'visibility': 'visible',
                             'display': 'none'
@@ -76,14 +76,14 @@
                 });
             }
 
-            $(menu).find('li.disabled a').on('click', function(e){
+            jQuery(menu).find('li.disabled a').on('click', function(e){
                 e.preventDefault();
             });
 
-            $(document).on('click', function(e){
-                $('[data-role=dropdown]').each(function(i, el){
-                    if (!$(el).hasClass('keep-open') && $(el).css('display')==='block') {
-                        $(el).hide();
+            jQuery(document).on('click', function(e){
+                jQuery('[data-role=dropdown]').each(function(i, el){
+                    if (!jQuery(el).hasClass('keep-open') && jQuery(el).css('display')==='block') {
+                        jQuery(el).hide();
                     }
                 });
             });
@@ -93,18 +93,18 @@
 
         _open: function(el){
             switch (this.options.effect) {
-                case 'fade': $(el).fadeIn('fast'); break;
-                case 'slide': $(el).slideDown('fast'); break;
-                default: $(el).show();
+                case 'fade': jQuery(el).fadeIn('fast'); break;
+                case 'slide': jQuery(el).slideDown('fast'); break;
+                default: jQuery(el).show();
             }
             this._trigger("onOpen", null, el);
         },
 
         _close: function(el){
             switch (this.options.effect) {
-                case 'fade': $(el).fadeOut('fast'); break;
-                case 'slide': $(el).slideUp('fast'); break;
-                default: $(el).hide();
+                case 'fade': jQuery(el).fadeOut('fast'); break;
+                case 'slide': jQuery(el).slideUp('fast'); break;
+                default: jQuery(el).hide();
             }
             this._trigger("onClose", null, el);
         },

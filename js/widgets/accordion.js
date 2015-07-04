@@ -1,7 +1,7 @@
-(function( $ ) {
+(function( jQuery ) {
     "use strict";
 
-    $.widget("metro.accordion", {
+    jQuery.widget("metro.accordion", {
 
         version: "3.0.0",
 
@@ -18,7 +18,7 @@
             var that = this, element = this.element;
 
             element.on('click', '.heading', function(e){
-                var frame = $(this).parent();
+                var frame = jQuery(this).parent();
 
                 if (frame.hasClass('disabled')) {return false;}
 
@@ -36,8 +36,8 @@
         _closeAllFrames: function(){
             var that = this;
             var frames = this.element.children('.frame.active');
-            $.each(frames, function(){
-                that._closeFrame($(this));
+            jQuery.each(frames, function(){
+                that._closeFrame(jQuery(this));
             });
         },
 
@@ -97,10 +97,10 @@
         _setOptionsData: function(){
             var o = this.options;
 
-            $.each(this.element.data(), function(key, value){
+            jQuery.each(this.element.data(), function(key, value){
                 if (key in o) {
                     try {
-                        o[key] = $.parseJSON(value);
+                        o[key] = jQuery.parseJSON(value);
                     } catch (e) {
                         o[key] = value;
                     }

@@ -1,8 +1,8 @@
-(function( $ ) {
+(function( jQuery ) {
 
     "use strict";
 
-    $.widget("metro.hint", {
+    jQuery.widget("metro.hint", {
 
         version: "3.0.0",
 
@@ -25,7 +25,7 @@
 
 
             this.element.on('mouseenter', function(e){
-                $(".hint, .hint2").remove();
+                jQuery(".hint, .hint2").remove();
                 that.createHint();
                 o._hint.show();
                 e.preventDefault();
@@ -49,10 +49,10 @@
 
             var _hint;
 
-            $.each(element.data(), function(key, value){
+            jQuery.each(element.data(), function(key, value){
                 if (key in o) {
                     try {
-                        o[key] = $.parseJSON(value);
+                        o[key] = jQuery.parseJSON(value);
                     } catch (e) {
                         o[key] = value;
                     }
@@ -60,7 +60,7 @@
             });
 
             if (element[0].tagName === 'TD' || element[0].tagName === 'TH') {
-                var wrp = $("<div/>").css("display", "inline-block").html(element.html());
+                var wrp = jQuery("<div/>").css("display", "inline-block").html(element.html());
                 element.html(wrp);
                 element = wrp;
             }
@@ -69,7 +69,7 @@
             var hint_text = hint.length > 1 ? hint[1] : hint[0];
 
 
-            _hint = $("<div/>").appendTo('body');
+            _hint = jQuery("<div/>").appendTo('body');
             if (o.hintMode === 2) {
                 _hint.addClass('hint2');
             } else {
@@ -81,9 +81,9 @@
             }
 
             if (hint_title) {
-                $("<div/>").addClass("hint-title").html(hint_title).appendTo(_hint);
+                jQuery("<div/>").addClass("hint-title").html(hint_title).appendTo(_hint);
             }
-            $("<div/>").addClass("hint-text").html(hint_text).appendTo(_hint);
+            jQuery("<div/>").addClass("hint-text").html(hint_text).appendTo(_hint);
 
             _hint.addClass(o.position);
 
@@ -116,26 +116,26 @@
             if (o.hintPosition === 'top') {
                 _hint.addClass('top');
                 _hint.css({
-                    top: element.offset().top - $(window).scrollTop() - _hint.outerHeight() - 20,
-                    left: o.hintMode === 2 ? element.offset().left + element.outerWidth()/2 - _hint.outerWidth()/2  - $(window).scrollLeft(): element.offset().left - $(window).scrollLeft()
+                    top: element.offset().top - jQuery(window).scrollTop() - _hint.outerHeight() - 20,
+                    left: o.hintMode === 2 ? element.offset().left + element.outerWidth()/2 - _hint.outerWidth()/2  - jQuery(window).scrollLeft(): element.offset().left - jQuery(window).scrollLeft()
                 });
             } else if (o.hintPosition === 'right') {
                 _hint.addClass('right');
                 _hint.css({
-                    top: o.hintMode === 2 ? element.offset().top + element.outerHeight()/2 - _hint.outerHeight()/2 - $(window).scrollTop() - 10 : element.offset().top - 10 - $(window).scrollTop(),
-                    left: element.offset().left + element.outerWidth() + 15 - $(window).scrollLeft()
+                    top: o.hintMode === 2 ? element.offset().top + element.outerHeight()/2 - _hint.outerHeight()/2 - jQuery(window).scrollTop() - 10 : element.offset().top - 10 - jQuery(window).scrollTop(),
+                    left: element.offset().left + element.outerWidth() + 15 - jQuery(window).scrollLeft()
                 });
             } else if (o.hintPosition === 'left') {
                 _hint.addClass('left');
                 _hint.css({
-                    top: o.hintMode === 2 ? element.offset().top + element.outerHeight()/2 - _hint.outerHeight()/2 - $(window).scrollTop() - 10 : element.offset().top - 10 - $(window).scrollTop(),
-                    left: element.offset().left - _hint.outerWidth() - 10 - $(window).scrollLeft()
+                    top: o.hintMode === 2 ? element.offset().top + element.outerHeight()/2 - _hint.outerHeight()/2 - jQuery(window).scrollTop() - 10 : element.offset().top - 10 - jQuery(window).scrollTop(),
+                    left: element.offset().left - _hint.outerWidth() - 10 - jQuery(window).scrollLeft()
                 });
             } else {
                 _hint.addClass('bottom');
                 _hint.css({
-                    top: element.offset().top - $(window).scrollTop() + element.outerHeight(),
-                    left: o.hintMode === 2 ? element.offset().left + element.outerWidth()/2 - _hint.outerWidth()/2  - $(window).scrollLeft(): element.offset().left - $(window).scrollLeft()
+                    top: element.offset().top - jQuery(window).scrollTop() + element.outerHeight(),
+                    left: o.hintMode === 2 ? element.offset().left + element.outerWidth()/2 - _hint.outerWidth()/2  - jQuery(window).scrollLeft(): element.offset().left - jQuery(window).scrollLeft()
                 });
             }
 

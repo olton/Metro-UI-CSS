@@ -1,5 +1,5 @@
-(function( $ ) {
-    $.widget("metro.streamer", {
+(function( jQuery ) {
+    jQuery.widget("metro.streamer", {
 
         version: "3.0.0",
 
@@ -25,10 +25,10 @@
                 event_streams = element.find(".event-stream");
 
 
-            $.each(element.data(), function(key, value){
+            jQuery.each(element.data(), function(key, value){
                 if (key in o) {
                     try {
-                        o[key] = $.parseJSON(value);
+                        o[key] = jQuery.parseJSON(value);
                     } catch (e) {
                         o[key] = value;
                     }
@@ -37,14 +37,14 @@
 
             element.data('streamSelect', -1);
 
-            var meter = $("<ul/>").addClass("meter");
+            var meter = jQuery("<ul/>").addClass("meter");
             var i, j, m, start = o.meterStart, stop = o.meterStop, interval = o.meterInterval;
 
             var _intervals = [];
             for (i = start; i<stop; i++) {
                 for (j = 0; j < 60; j+=interval) {
                     m = (i<10?"0"+i:i)+":"+(j<10?"0"+j:j);
-                    $("<li/>").addClass("js-interval-"+ m.replace(":", "-")).html("<em>"+m+"</em>").appendTo(meter);
+                    jQuery("<li/>").addClass("js-interval-"+ m.replace(":", "-")).html("<em>"+m+"</em>").appendTo(meter);
                     _intervals.push(m);
                 }
             }
@@ -56,17 +56,17 @@
             // Re-Calc all event-stream width and set background for time
             element.find(".event-stream").each(function(i, s){
                 var event_stream_width = 0;
-                var events = $(s).find(".event");
+                var events = jQuery(s).find(".event");
 
                 events.each(function(i, el){
-                    event_stream_width += $(el).outerWidth() + parseInt($(el).css('margin-left'));
+                    event_stream_width += jQuery(el).outerWidth() + parseInt(jQuery(el).css('margin-left'));
                 });
 
-                $(s).css({
+                jQuery(s).css({
                     width: (event_stream_width + ( (events.length-1) * 2 ) + 1)
                 });
 
-                $(s).find(".time").css("background-color", $(streams[i]).css('background-color'));
+                jQuery(s).find(".time").css("background-color", jQuery(streams[i]).css('background-color'));
             });
 
             // Set scrollbar
@@ -82,7 +82,7 @@
             // Re-Calc events-area width
             var events_area_width = 0;
             groups.each(function(i, el){
-                events_area_width += $(el).outerWidth();
+                events_area_width += jQuery(el).outerWidth();
             });
             events_area_width += ( (groups.length-1) * 2 ) + 10;
             events_area.css('width', events_area_width);
@@ -98,14 +98,14 @@
             });
 
             streams.each(function(i, s){
-                $(s).mousedown(function(e){
+                jQuery(s).mousedown(function(e){
                     if (element.data('streamSelect') == i) {
                         events.removeClass('event-disable');
                         element.data('streamSelect', -1);
                     } else {
                         element.data('streamSelect', i);
                         events.addClass('event-disable');
-                        $(event_streams[i]).find(".event").removeClass("event-disable");
+                        jQuery(event_streams[i]).find(".event").removeClass("event-disable");
                     }
                 });
             });
@@ -123,10 +123,10 @@
 
             events.on('click', function(e){
                 if (e.ctrlKey) {
-                    $(this).toggleClass("selected");
+                    jQuery(this).toggleClass("selected");
                 }
                 e.preventDefault();
-                o.onClick($(this));
+                o.onClick(jQuery(this));
             });
 
             element.find(".js-go-previous-time").on('click', function(e){
@@ -157,8 +157,8 @@
 
 
             element.find(".js-schedule-mode").on("click", function(e){
-                $(this).toggleClass("active");
-                element.data("schedule-mode", $(this).hasClass("inverse"));
+                jQuery(this).toggleClass("active");
+                element.data("schedule-mode", jQuery(this).hasClass("inverse"));
                 e.preventDefault();
             });
         },

@@ -1,8 +1,8 @@
-(function( $ ) {
+(function( jQuery ) {
 
     "use strict";
 
-    $.widget("metro.datepicker", {
+    jQuery.widget("metro.datepicker", {
 
         version: "3.0.0",
 
@@ -35,12 +35,12 @@
 
             //console.log(o);
 
-            $.each(element.data(), function(key, value){
+            jQuery.each(element.data(), function(key, value){
                 //console.log(typeof key, key, value);
 
                 if (key in o) {
                     try {
-                        o[key] = $.parseJSON(value);
+                        o[key] = jQuery.parseJSON(value);
                     } catch (e) {
                         o[key] = value;
                     }
@@ -70,8 +70,8 @@
                 }
             });
 
-            $('html').on('click', function(){
-                $(".calendar-dropdown").hide();
+            jQuery('html').on('click', function(){
+                jQuery(".calendar-dropdown").hide();
             });
 
             element.data('datepicker', this);
@@ -81,7 +81,7 @@
         _createCalendar: function(){
             var _calendar, that = this, element = this.element, o = this.options;
 
-            _calendar = $("<div/>").css({
+            _calendar = jQuery("<div/>").css({
                 position: 'absolute',
                 display: 'none',
                 'max-width': 220,
@@ -137,13 +137,13 @@
 
         _show: function(){
             if (this.options.effect === 'slide') {
-                $(".calendar-dropdown").slideUp('fast');
+                jQuery(".calendar-dropdown").slideUp('fast');
                 this._calendar.slideDown('fast');
             } else if (this.options.effect === 'fade') {
-                $(".calendar-dropdown").fadeOut('fast');
+                jQuery(".calendar-dropdown").fadeOut('fast');
                 this._calendar.fadeIn('fast');
             } else {
-                $(".calendar-dropdown").hide();
+                jQuery(".calendar-dropdown").hide();
                 this._calendar.show();
             }
         },

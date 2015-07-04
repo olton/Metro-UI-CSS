@@ -1,8 +1,8 @@
-(function( $ ) {
+(function( jQuery ) {
 
     "use strict";
 
-    $.widget("metro.popover", {
+    jQuery.widget("metro.popover", {
 
         version: "3.0.0",
 
@@ -32,10 +32,10 @@
 
             element = this.element;
 
-            $.each(element.data(), function(key, value){
+            jQuery.each(element.data(), function(key, value){
                 if (key in o) {
                     try {
-                        o[key] = $.parseJSON(value);
+                        o[key] = jQuery.parseJSON(value);
                     } catch (e) {
                         o[key] = value;
                     }
@@ -44,8 +44,8 @@
 
             var popover, content_container, marker_class;
 
-            popover = $("<div/>").addClass("popover").appendTo('body').hide();
-            $("<div/>").appendTo(popover);
+            popover = jQuery("<div/>").addClass("popover").appendTo('body').hide();
+            jQuery("<div/>").appendTo(popover);
 
             if (o.popoverShadow) {
                 popover.addClass("popover-shadow");
@@ -87,7 +87,7 @@
                 if (!popover.data('visible')) {that.show();}
             });
 
-            $(window).scroll(function(){
+            jQuery(window).scroll(function(){
                 //that.popover.hide();
                 if (that.popover.data('visible')) {
                     that.setPosition();
@@ -101,23 +101,23 @@
 
             if (o.popoverPosition === 'top') {
                 popover.css({
-                    top: element.offset().top - $(window).scrollTop() - popover.outerHeight() - 10,
-                    left: element.offset().left + element.outerWidth()/2 - popover.outerWidth()/2  - $(window).scrollLeft()
+                    top: element.offset().top - jQuery(window).scrollTop() - popover.outerHeight() - 10,
+                    left: element.offset().left + element.outerWidth()/2 - popover.outerWidth()/2  - jQuery(window).scrollLeft()
                 });
             } else if (o.popoverPosition === 'bottom') {
                 popover.css({
-                    top: element.offset().top - $(window).scrollTop() + element.outerHeight() + 10,
-                    left: element.offset().left + element.outerWidth()/2 - popover.outerWidth()/2  - $(window).scrollLeft()
+                    top: element.offset().top - jQuery(window).scrollTop() + element.outerHeight() + 10,
+                    left: element.offset().left + element.outerWidth()/2 - popover.outerWidth()/2  - jQuery(window).scrollLeft()
                 });
             } else if (o.popoverPosition === 'right') {
                 popover.css({
-                    top: element.offset().top + element.outerHeight()/2 - popover.outerHeight()/2 - $(window).scrollTop(),
-                    left: element.offset().left + element.outerWidth() - $(window).scrollLeft() + 10
+                    top: element.offset().top + element.outerHeight()/2 - popover.outerHeight()/2 - jQuery(window).scrollTop(),
+                    left: element.offset().left + element.outerWidth() - jQuery(window).scrollLeft() + 10
                 });
             } else if (o.popoverPosition === 'left') {
                 popover.css({
-                    top: element.offset().top + element.outerHeight()/2 - popover.outerHeight()/2 - $(window).scrollTop(),
-                    left: element.offset().left - popover.outerWidth() - $(window).scrollLeft() - 10
+                    top: element.offset().top + element.outerHeight()/2 - popover.outerHeight()/2 - jQuery(window).scrollTop(),
+                    left: element.offset().left - popover.outerWidth() - jQuery(window).scrollLeft() - 10
                 });
             }
             return this;

@@ -1,8 +1,8 @@
-(function( $ ) {
+(function( jQuery ) {
 
     "use strict";
 
-    $.widget("metro.stepper", {
+    jQuery.widget("metro.stepper", {
 
         version: "3.0.0",
 
@@ -18,10 +18,10 @@
         _create: function(){
             var element = this.element, o = this.options, element_id = element.attr('id');
 
-            $.each(element.data(), function(key, value){
+            jQuery.each(element.data(), function(key, value){
                 if (key in o) {
                     try {
-                        o[key] = $.parseJSON(value);
+                        o[key] = jQuery.parseJSON(value);
                     } catch (e) {
                         o[key] = value;
                     }
@@ -46,7 +46,7 @@
         _createEvents: function(){
             var that = this, element = this.element, o= this.options;
             element.on('click', 'li', function(e){
-                var step = $(this).data('step');
+                var step = jQuery(this).data('step');
 
 
                 if (typeof o.onStepClick === 'string') {
@@ -63,7 +63,7 @@
             var element = this.element, o= this.options;
             var i, ul, li;
 
-            ul = $("<ul/>");
+            ul = jQuery("<ul/>");
 
             switch(o.type) {
                 case 'diamond': element.addClass('diamond'); break;
@@ -71,7 +71,7 @@
             }
 
             for(i=0;i< o.steps;i++) {
-                li = $("<li/>").data('step', i + 1).appendTo(ul);
+                li = jQuery("<li/>").data('step', i + 1).appendTo(ul);
             }
             ul.appendTo(element);
         },
@@ -81,11 +81,11 @@
                 steps = element.find("li"),
                 element_width = element.width(),
                 steps_length = steps.length-1,
-                step_width = $(steps[0]).width();
+                step_width = jQuery(steps[0]).width();
 
-            $.each(steps, function(i, step){
+            jQuery.each(steps, function(i, step){
                 var left = i === 0 ? 0 : (element_width - step_width)/steps_length * i;
-                $(step).animate({
+                jQuery(step).animate({
                     left: left
                 });
             });
@@ -97,10 +97,10 @@
 
             steps.removeClass('current').removeClass('complete');
 
-            $.each(steps, function(i, s){
-                if (i < step - 1) {$(s).addClass('complete');}
+            jQuery.each(steps, function(i, s){
+                if (i < step - 1) {jQuery(s).addClass('complete');}
                 if (i === step - 1) {
-                    $(s).addClass('current') ;
+                    jQuery(s).addClass('current') ;
 
                     if (typeof  o.onStep === 'string') {
                         window[o.onStep](i+1, s);

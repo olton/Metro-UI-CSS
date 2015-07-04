@@ -1,8 +1,8 @@
-(function ( $ ) {
+(function ( jQuery ) {
 
     "use strict";
 
-    $.widget( "metro.widget" , {
+    jQuery.widget( "metro.widget" , {
 
         version: "3.0.0",
 
@@ -13,10 +13,10 @@
         _create: function () {
             var that = this, element = this.element, o = this.options;
 
-            $.each(element.data(), function(key, value){
+            jQuery.each(element.data(), function(key, value){
                 if (key in o) {
                     try {
-                        o[key] = $.parseJSON(value);
+                        o[key] = jQuery.parseJSON(value);
                     } catch (e) {
                         o[key] = value;
                     }

@@ -21,19 +21,19 @@
         // Browser globals
         factory(jQuery);
     }
-}(function ($) {
+}(function (jQuery) {
 
     var toFix = ['wheel', 'mousewheel', 'DOMMouseScroll', 'MozMousePixelScroll'];
     var toBind = 'onwheel' in document || document.documentMode >= 9 ? ['wheel'] : ['mousewheel', 'DomMouseScroll', 'MozMousePixelScroll'];
     var lowestDelta, lowestDeltaXY;
 
-    if ( $.event.fixHooks ) {
+    if ( jQuery.event.fixHooks ) {
         for ( var i = toFix.length; i; ) {
-            $.event.fixHooks[ toFix[--i] ] = $.event.mouseHooks;
+            jQuery.event.fixHooks[ toFix[--i] ] = jQuery.event.mouseHooks;
         }
     }
 
-    $.event.special.mousewheel = {
+    jQuery.event.special.mousewheel = {
         setup: function() {
             if ( this.addEventListener ) {
                 for ( var i = toBind.length; i; ) {
@@ -55,7 +55,7 @@
         }
     };
 
-    $.fn.extend({
+    jQuery.fn.extend({
         mousewheel: function(fn) {
             return fn ? this.bind("mousewheel", fn) : this.trigger("mousewheel");
         },
@@ -75,7 +75,7 @@
             absDelta = 0,
             absDeltaXY = 0,
             fn;
-        event = $.event.fix(orgEvent);
+        event = jQuery.event.fix(orgEvent);
         event.type = "mousewheel";
 
         // Old school scrollwheel delta
@@ -111,7 +111,7 @@
         // Add event and delta to the front of the arguments
         args.unshift(event, delta, deltaX, deltaY);
 
-        return ($.event.dispatch || $.event.handle).apply(this, args);
+        return (jQuery.event.dispatch || jQuery.event.handle).apply(this, args);
     }
 
 }));

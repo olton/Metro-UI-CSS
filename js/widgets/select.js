@@ -1,8 +1,8 @@
-(function ( $ ) {
+(function ( jQuery ) {
 
     "use strict";
 
-    $.widget( "metro.select" , {
+    jQuery.widget( "metro.select" , {
 
         version: "3.0.0",
 
@@ -19,9 +19,9 @@
                 'query'
             ];
 
-            $.each(element.data(), function(key, value){
+            jQuery.each(element.data(), function(key, value){
                 try {
-                    o[key] = $.parseJSON(value);
+                    o[key] = jQuery.parseJSON(value);
                 } catch (e) {
                     o[key] = value;
                 }
@@ -34,7 +34,7 @@
             });
 
             if (o.dropdownParent !== undefined) {
-                o.dropdownParent = $(o.dropdownParent);
+                o.dropdownParent = jQuery(o.dropdownParent);
             }
 
             if(jQuery().select2) {
