@@ -7,6 +7,7 @@
 * add hint timeout
 * add hotkeys plugin by [John Resig](https://github.com/jeresig)
 * add simple wysiwyg editor
+* change all $ to jQuery for noConflict support
 
 ## 3.0.7
 * add padding for container on mobile devices
