@@ -17,6 +17,7 @@
   -webkit-transform: translate(0, 0);
           transform: translate(0, 0);
   vertical-align: middle;
+  position: static;
 }
 [class^="mif-"]:before,
 [class*=" mif-"]:before {
@@ -25,7 +26,7 @@
 .mif-lg {
   font-size: 1.3rem;
   line-height: 0.75em;
-  vertical-align: -25%;
+  vertical-align: -35%;
 }
 .mif-2x {
   font-size: 1.75rem;
