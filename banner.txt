@@ -1,0 +1,16 @@
+/**
+ * Created by srinath on 5/7/15.
+ */
+(function (factory) {
+    if (typeof define === "function" && define.amd) {
+
+        // AMD. Register as an anonymous module.
+        define(["jquery"], factory);
+    } else {
+        if (typeof jQuery === 'undefined') {
+            throw new Error("Metro's JavaScript requires jQuery.");
+        }
+        // Browser globals
+        factory(jQuery);
+    }
+}(function ($) {

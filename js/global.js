@@ -9,19 +9,19 @@ if (window.METRO_DEBUG === undefined) window.METRO_DEBUG = true;
 
 window.canObserveMutation = 'MutationObserver' in window;
 
-String.prototype.isUrl = function(){
+String.prototype.isUrl = function () {
     "use strict";
     var regexp = /^(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
     return regexp.test(this);
 };
 
-String.prototype.isColor = function(){
+String.prototype.isColor = function () {
     "use strict";
     return /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(this);
 };
 
-Array.prototype.shuffle = function(){
-    var currentIndex = this.length, temporaryValue, randomIndex ;
+Array.prototype.shuffle = function () {
+    var currentIndex = this.length, temporaryValue, randomIndex;
 
     while (0 !== currentIndex) {
 
@@ -36,15 +36,15 @@ Array.prototype.shuffle = function(){
     return this;
 };
 
-Array.prototype.clone = function(){
+Array.prototype.clone = function () {
     return this.slice(0);
 };
 
-Array.prototype.unique = function() {
+Array.prototype.unique = function () {
     var a = this.concat();
-    for(var i=0; i<a.length; ++i) {
-        for(var j=i+1; j<a.length; ++j) {
-            if(a[i] === a[j])
+    for (var i = 0; i < a.length; ++i) {
+        for (var j = i + 1; j < a.length; ++j) {
+            if (a[i] === a[j])
                 a.splice(j--, 1);
         }
     }
@@ -52,13 +52,13 @@ Array.prototype.unique = function() {
     return a;
 };
 
-window.uniqueId = function (prefix){
+window.uniqueId = function (prefix) {
     "use strict";
     var d = new Date().getTime();
-    var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-        var r = (d + Math.random()*16)%16 | 0;
-        d = Math.floor(d/16);
-        return (c=='x' ? r : (r&0x3|0x8)).toString(16);
+    var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+        var r = (d + Math.random() * 16) % 16 | 0;
+        d = Math.floor(d / 16);
+        return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
     });
     return uuid;
 };
@@ -83,13 +83,15 @@ var dateFormat = function () {
 
     "use strict";
 
-    var	token = /d{1,4}|m{1,4}|yy(?:yy)?|([HhMsTt])\1?|[LloSZ]|"[^"]*"|'[^']*'/g,
+    var token = /d{1,4}|m{1,4}|yy(?:yy)?|([HhMsTt])\1?|[LloSZ]|"[^"]*"|'[^']*'/g,
         timezone = /\b(?:[PMCEA][SDP]T|(?:Pacific|Mountain|Central|Eastern|Atlantic) (?:Standard|Daylight|Prevailing) Time|(?:GMT|UTC)(?:[-+]\d{4})?)\b/g,
         timezoneClip = /[^-+\dA-Z]/g,
         pad = function (val, len) {
             val = String(val);
             len = len || 2;
-            while (val.length < len) {val = "0" + val;}
+            while (val.length < len) {
+                val = "0" + val;
+            }
             return val;
         };
 
@@ -121,7 +123,7 @@ var dateFormat = function () {
 
         var locale = window.METRO_CURRENT_LOCALE || 'en';
 
-        var	_ = utc ? "getUTC" : "get",
+        var _ = utc ? "getUTC" : "get",
             d = date[_ + "Date"](),
             D = date[_ + "Day"](),
             m = date[_ + "Month"](),
@@ -132,33 +134,33 @@ var dateFormat = function () {
             L = date[_ + "Milliseconds"](),
             o = utc ? 0 : date.getTimezoneOffset(),
             flags = {
-                d:    d,
-                dd:   pad(d),
-                ddd:  window.METRO_LOCALES[locale].days[D],
+                d: d,
+                dd: pad(d),
+                ddd: window.METRO_LOCALES[locale].days[D],
                 dddd: window.METRO_LOCALES[locale].days[D + 7],
-                m:    m + 1,
-                mm:   pad(m + 1),
+                m: m + 1,
+                mm: pad(m + 1),
                 mmm: window.METRO_LOCALES[locale].months[m],
                 mmmm: window.METRO_LOCALES[locale].months[m + 12],
-                yy:   String(y).slice(2),
+                yy: String(y).slice(2),
                 yyyy: y,
-                h:    H % 12 || 12,
-                hh:   pad(H % 12 || 12),
-                H:    H,
-                HH:   pad(H),
-                M:    M,
-                MM:   pad(M),
-                s:    s,
-                ss:   pad(s),
-                l:    pad(L, 3),
-                L:    pad(L > 99 ? Math.round(L / 10) : L),
-                t:    H < 12 ? "a"  : "p",
-                tt:   H < 12 ? "am" : "pm",
-                T:    H < 12 ? "A"  : "P",
-                TT:   H < 12 ? "AM" : "PM",
-                Z:    utc ? "UTC" : (String(date).match(timezone) || [""]).pop().replace(timezoneClip, ""),
-                o:    (o > 0 ? "-" : "+") + pad(Math.floor(Math.abs(o) / 60) * 100 + Math.abs(o) % 60, 4),
-                S:    ["th", "st", "nd", "rd"][d % 10 > 3 ? 0 : (d % 100 - d % 10 !== 10) * d % 10]
+                h: H % 12 || 12,
+                hh: pad(H % 12 || 12),
+                H: H,
+                HH: pad(H),
+                M: M,
+                MM: pad(M),
+                s: s,
+                ss: pad(s),
+                l: pad(L, 3),
+                L: pad(L > 99 ? Math.round(L / 10) : L),
+                t: H < 12 ? "a" : "p",
+                tt: H < 12 ? "am" : "pm",
+                T: H < 12 ? "A" : "P",
+                TT: H < 12 ? "AM" : "PM",
+                Z: utc ? "UTC" : (String(date).match(timezone) || [""]).pop().replace(timezoneClip, ""),
+                o: (o > 0 ? "-" : "+") + pad(Math.floor(Math.abs(o) / 60) * 100 + Math.abs(o) % 60, 4),
+                S: ["th", "st", "nd", "rd"][d % 10 > 3 ? 0 : (d % 100 - d % 10 !== 10) * d % 10]
             };
 
         return mask.replace(token, function ($0) {
@@ -169,17 +171,17 @@ var dateFormat = function () {
 
 // Some common format strings
 dateFormat.masks = {
-    "default":      "ddd mmm dd yyyy HH:MM:ss",
-    shortDate:      "m/d/yy",
-    mediumDate:     "mmm d, yyyy",
-    longDate:       "mmmm d, yyyy",
-    fullDate:       "dddd, mmmm d, yyyy",
-    shortTime:      "h:MM TT",
-    mediumTime:     "h:MM:ss TT",
-    longTime:       "h:MM:ss TT Z",
-    isoDate:        "yyyy-mm-dd",
-    isoTime:        "HH:MM:ss",
-    isoDateTime:    "yyyy-mm-dd'T'HH:MM:ss",
+    "default": "ddd mmm dd yyyy HH:MM:ss",
+    shortDate: "m/d/yy",
+    mediumDate: "mmm d, yyyy",
+    longDate: "mmmm d, yyyy",
+    fullDate: "dddd, mmmm d, yyyy",
+    shortTime: "h:MM TT",
+    mediumTime: "h:MM:ss TT",
+    longTime: "h:MM:ss TT Z",
+    isoDate: "yyyy-mm-dd",
+    isoTime: "HH:MM:ss",
+    isoDateTime: "yyyy-mm-dd'T'HH:MM:ss",
     isoUtcDateTime: "UTC:yyyy-mm-dd'T'HH:MM:ss'Z'"
 };
 
@@ -194,26 +196,27 @@ Date.prototype.format = function (mask, utc) {
  */
 
 
-(function($){
+(function ($) {
     "use strict";
 
     $.fn.reverse = Array.prototype.reverse;
 
-    $.Metro = function(params){
-        params = $.extend({
-        }, params);
+    $.Metro = function (params) {
+        params = $.extend({}, params);
     };
 
-    $.Metro.initWidgets = function(){
+    $.Metro.initWidgets = function () {
         var widgets;
         widgets = $("[data-role]");
-        $.each(widgets, function(){
+        $.each(widgets, function () {
             var $this = $(this);
             var roles = $this.data('role').split(/\s*,\s*/);
-            roles.map(function(func){
+            roles.map(function (func) {
                 try {
-                    if ($.fn[func] !== undefined) {$.fn[func].call($this);}
-                } catch(e) {
+                    if ($.fn[func] !== undefined) {
+                        $.fn[func].call($this);
+                    }
+                } catch (e) {
                     if (window.METRO_DEBUG) {
                         console.log(e.message, e.stack);
                     }
@@ -223,7 +226,7 @@ Date.prototype.format = function (mask, utc) {
     };
 })(jQuery);
 
-$(function(){
+$(function () {
     "use strict";
 
     $.Metro.initWidgets();
@@ -248,14 +251,14 @@ $(function(){
                 'childList': true,
                 'subtree': true
             };
-            observerCallback = function(mutations){
-                mutations.map(function(record){
+            observerCallback = function (mutations) {
+                mutations.map(function (record) {
                     if (record.addedNodes) {
 
                         /*jshint loopfunc: true */
                         var obj, widgets, plugins;
 
-                        for(var i = 0, l = record.addedNodes.length; i < l; i++) {
+                        for (var i = 0, l = record.addedNodes.length; i < l; i++) {
                             obj = $(record.addedNodes[i]);
                             plugins = obj.find("[data-role]");
 
@@ -266,15 +269,15 @@ $(function(){
                             }
 
                             if (widgets.length) {
-                                $.each(widgets, function(){
+                                $.each(widgets, function () {
                                     var $this = $(this);
                                     var roles = $this.data('role').split(/\s*,\s*/);
-                                    roles.map(function(func){
+                                    roles.map(function (func) {
                                         try {
                                             if ($.fn[func] !== undefined) {
                                                 $.fn[func].call($this);
                                             }
-                                        } catch(e) {
+                                        } catch (e) {
                                             if (window.METRO_DEBUG) {
                                                 console.log(e.message, e.stack);
                                             }
@@ -291,3 +294,4 @@ $(function(){
         }
     }
 });
+
