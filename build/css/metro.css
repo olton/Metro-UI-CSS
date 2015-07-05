@@ -119,11 +119,6 @@ input[type=password]::-ms-reveal {
 a {
   text-decoration: none;
 }
-div,
-p,
-span {
-  position: relative;
-}
 @media print {
   a,
   a:visited {
@@ -5228,6 +5223,23 @@ a.tag {
   padding-left: 1rem;
   padding-right: 1rem;
 }
+.app-bar .app-bar-element .d-menu {
+  top: 100%;
+  border: 2px solid #005696;
+}
+.app-bar .app-bar-element .d-menu li:not(.disabled):hover {
+  background-color: #eee;
+}
+.app-bar .app-bar-element .d-menu li:not(.disabled):hover > a {
+  color: #1d1d1d;
+}
+.app-bar .app-bar-element .d-menu .d-menu {
+  top: -0.625rem;
+  left: 100%;
+}
+.app-bar .app-bar-element .d-menu .dropdown-toggle:before {
+  border-color: #1d1d1d;
+}
 .app-bar .app-bar-divider {
   display: block;
   float: left;
@@ -5269,6 +5281,28 @@ a.tag {
 .app-bar .app-bar-menu > li > a.branding {
   padding-left: 1rem;
   padding-right: 1rem;
+}
+.app-bar .app-bar-menu > li .d-menu,
+.app-bar .app-bar-menu > li > a .d-menu {
+  top: 100%;
+  border: 2px solid #005696;
+}
+.app-bar .app-bar-menu > li .d-menu li:not(.disabled):hover,
+.app-bar .app-bar-menu > li > a .d-menu li:not(.disabled):hover {
+  background-color: #eee;
+}
+.app-bar .app-bar-menu > li .d-menu li:not(.disabled):hover > a,
+.app-bar .app-bar-menu > li > a .d-menu li:not(.disabled):hover > a {
+  color: #1d1d1d;
+}
+.app-bar .app-bar-menu > li .d-menu .d-menu,
+.app-bar .app-bar-menu > li > a .d-menu .d-menu {
+  top: -0.625rem;
+  left: 100%;
+}
+.app-bar .app-bar-menu > li .d-menu .dropdown-toggle:before,
+.app-bar .app-bar-menu > li > a .d-menu .dropdown-toggle:before {
+  border-color: #1d1d1d;
 }
 .app-bar .app-bar-menu > li:before,
 .app-bar .app-bar-menu > li > a:before,
@@ -5440,9 +5474,14 @@ a.tag {
   top: auto;
   bottom: 3.125rem;
 }
-.app-bar.drop-up .d-menu .d-menu {
+.app-bar.drop-up .app-bar-element > .d-menu {
+  top: auto;
+  bottom: 3.125rem;
+}
+.app-bar.drop-up .app-bar-menu li .d-menu .d-menu,
+.app-bar.drop-up .app-bar-element .d-menu .d-menu {
   top: auto ;
-  bottom: 0 ;
+  bottom: 0;
 }
 .app-bar.fixed-top,
 .app-bar.fixed-bottom {
@@ -5479,6 +5518,23 @@ a.tag {
 .app-bar .app-bar-pullbutton.branding {
   padding-left: 1rem;
   padding-right: 1rem;
+}
+.app-bar .app-bar-pullbutton .d-menu {
+  top: 100%;
+  border: 2px solid #005696;
+}
+.app-bar .app-bar-pullbutton .d-menu li:not(.disabled):hover {
+  background-color: #eee;
+}
+.app-bar .app-bar-pullbutton .d-menu li:not(.disabled):hover > a {
+  color: #1d1d1d;
+}
+.app-bar .app-bar-pullbutton .d-menu .d-menu {
+  top: -0.625rem;
+  left: 100%;
+}
+.app-bar .app-bar-pullbutton .d-menu .dropdown-toggle:before {
+  border-color: #1d1d1d;
 }
 .app-bar .app-bar-pullbutton:before,
 .app-bar .app-bar-pullbutton:after {
@@ -15820,6 +15876,7 @@ input[type="submit"].link:active {
   min-width: 200px;
   cursor: default;
   max-width: 300px;
+  position: relative;
 }
 .notify .notify-icon {
   width: 32px;
