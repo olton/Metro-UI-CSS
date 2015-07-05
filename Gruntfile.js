@@ -1,19 +1,24 @@
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 
     "use strict";
 
     require('load-grunt-tasks')(grunt);
+    var fs = require('fs');
+
+    var bannerTemplate = fs.readFileSync('banner.txt', 'utf8');
+    var footerTemplate = fs.readFileSync('footer.txt', 'utf8');
 
     var autoprefixer = require('autoprefixer-core');
 
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         banner: '/*!\n' +
-                ' * Metro UI CSS v<%= pkg.version %> (<%= pkg.homepage %>)\n' +
-                ' * Copyright 2012-<%= grunt.template.today("yyyy") %> <%= pkg.author %>\n' +
-                ' * Licensed under <%= pkg.license.type %> (<%= pkg.license.url %>)\n' +
-                ' */\n',
-
+        ' * Metro UI CSS v<%= pkg.version %> (<%= pkg.homepage %>)\n' +
+        ' * Copyright 2012-<%= grunt.template.today("yyyy") %> <%= pkg.author %>\n' +
+        ' * Licensed under <%= pkg.license.type %> (<%= pkg.license.url %>)\n' +
+        ' */\n'
+        + bannerTemplate + '\n',
+        footer: footerTemplate,
         clean: {
             build: ['build'],
             docs: ['docs/css/metro*.css', 'docs/js/metro*.js'],
@@ -23,11 +28,11 @@ module.exports = function(grunt) {
         concat: {
             options: {
                 banner: '<%= banner %>',
+                footer: '<%= footer %>',
                 stripBanners: false
             },
             metro: {
                 src: [
-                    'js/requirements.js',
                     'js/global.js',
                     'js/widget.js',
                     'js/utils/*.js',
@@ -67,10 +72,10 @@ module.exports = function(grunt) {
         postcss: {
             options: {
                 processors: [
-                    autoprefixer({ browsers: ['> 5%'] }).postcss
+                    autoprefixer({browsers: ['> 5%']}).postcss
                 ]
             },
-            dist: { src: 'build/css/*.css' }
+            dist: {src: 'build/css/*.css'}
         },
 
         cssmin: {
@@ -89,7 +94,7 @@ module.exports = function(grunt) {
                 src: 'fonts/*',
                 dest: 'build/',
                 expand: true
-            },            
+            },
             docs_css_core: {
                 src: 'build/css/<%= pkg.name %>.css',
                 dest: 'docs/css/<%= pkg.name %>.css'

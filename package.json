@@ -18,7 +18,7 @@
   "mif": "build/css/metro-icons.css",
   "repository": {
     "type": "git",
-    "url": "https://github.com/olton/Metro-UI-CSS.git"
+    "url": "https://github.com/appsflare/Metro-UI-CSS.git"
   },
   "bugs": {
     "url": "http://forum.metroui.org.ua"
