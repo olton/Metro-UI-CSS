@@ -4229,6 +4229,7 @@ window.METRO_LOCALES = {
             hintShadow: false,
             hintBorder: true,
             hintTimeout: 0,
+            hintTimeDelay: 0,
 
             _hint: undefined
         },
@@ -4240,8 +4241,15 @@ window.METRO_LOCALES = {
 
             this.element.on('mouseenter', function(e){
                 jQuery(".hint, .hint2").remove();
-                that.createHint();
-                o._hint.show();
+                if (o.hintTimeDelay > 0) {
+                    setTimeout(function(){
+                        that.createHint();
+                        o._hint.show();
+                    }, o.hintTimeDelay);
+                } else {
+                    that.createHint();
+                    o._hint.show();
+                }
                 e.preventDefault();
             });
 
