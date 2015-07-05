@@ -2875,6 +2875,15 @@ a {
 .no-overflow {
   overflow: hidden !important;
 }
+.no-scroll {
+  overflow: hidden !important;
+}
+.no-scroll-x {
+  overflow-x: hidden !important;
+}
+.no-scroll-y {
+  overflow-y: hidden !important;
+}
 .no-wrap {
   white-space: nowrap !important;
 }
@@ -3386,7 +3395,7 @@ body {
   h5,
   h6,
   p {
-    margin: .625rem 0 .625rem .625rem;
+    margin: .625rem;
   }
 }
 h1 {

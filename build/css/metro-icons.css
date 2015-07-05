@@ -2754,6 +2754,15 @@
 .no-overflow {
   overflow: hidden !important;
 }
+.no-scroll {
+  overflow: hidden !important;
+}
+.no-scroll-x {
+  overflow-x: hidden !important;
+}
+.no-scroll-y {
+  overflow-y: hidden !important;
+}
 .no-wrap {
   white-space: nowrap !important;
 }
