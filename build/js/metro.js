@@ -6496,7 +6496,7 @@ window.METRO_LOCALES = {
 
             setTimeout(function(){
                 element.find(".events").animate({
-                    scrollLeft:  (interval.offsetLeft)
+                    scrollLeft:  (interval.offsetLeft - $('.streams').width())
                 }, speed, function(){
                     that._afterSlide();
                 });
