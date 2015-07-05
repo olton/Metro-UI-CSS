@@ -1,8 +1,8 @@
-(function ( jQuery ) {
+(function ( $ ) {
 
     "use strict";
 
-    jQuery.widget( "metro.grid" , {
+    $.widget( "metro.grid" , {
 
         version: "3.0.0",
 
@@ -13,10 +13,10 @@
         _create: function () {
             var that = this, element = this.element, o = this.options;
 
-            jQuery.each(element.data(), function(key, value){
+            $.each(element.data(), function(key, value){
                 if (key in o) {
                     try {
-                        o[key] = jQuery.parseJSON(value);
+                        o[key] = $.parseJSON(value);
                     } catch (e) {
                         o[key] = value;
                     }
@@ -28,7 +28,7 @@
                     that._setEqualHeight();
                 }, 50);
 
-                jQuery(window).on('resize', function(){
+                $(window).on('resize', function(){
                     that._setEqualHeight();
                 });
             }
@@ -41,17 +41,17 @@
             var that = this, element = this.element, o = this.options;
             var rows = element.find('.row');
 
-            jQuery.each(rows, function(){
-                var row = jQuery(this);
+            $.each(rows, function(){
+                var row = $(this);
                 var cells = row.children('.cell');
                 var maxHeight = 0;
 
                 cells.css('min-height', '0');
 
-                jQuery.each(cells, function(){
-                    //console.log(this.tagName, jQuery(this).outerHeight());
-                    if (jQuery(this).outerHeight() > maxHeight) {
-                        maxHeight = jQuery(this).outerHeight();
+                $.each(cells, function(){
+                    //console.log(this.tagName, $(this).outerHeight());
+                    if ($(this).outerHeight() > maxHeight) {
+                        maxHeight = $(this).outerHeight();
                     }
                 });
 

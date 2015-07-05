@@ -1,8 +1,8 @@
-(function ( jQuery ) {
+(function ( $ ) {
 
     "use strict";
 
-    jQuery.widget( "metro.validator" , {
+    $.widget( "metro.validator" , {
 
         version: "1.0.0",
 
@@ -69,7 +69,7 @@
                 return val <= max_value;
             },
             email: function(val){
-                return /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)jQuery/i.test(val);
+                return /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i.test(val);
             },
             url: function(val){
                 return /^(?:[a-z]+:)?\/\//i.test(val);
@@ -81,10 +81,10 @@
                 return (val - 0) == val && (''+val).trim().length > 0;
             },
             digits: function(val){
-                return /^\d+jQuery/.test(val);
+                return /^\d+$/.test(val);
             },
             hexcolor: function(val){
-                return /(^#[0-9A-F]{6}jQuery)|(^#[0-9A-F]{3}jQuery)/i.test(val);
+                return /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(val);
             },
             pattern: function(val, pat){
                 if (pat == undefined) {
@@ -98,10 +98,10 @@
         _create: function () {
             var that = this, element = this.element, o = this.options;
 
-            jQuery.each(element.data(), function(key, value){
+            $.each(element.data(), function(key, value){
                 if (key in o) {
                     try {
-                        o[key] = jQuery.parseJSON(value);
+                        o[key] = $.parseJSON(value);
                     } catch (e) {
                         o[key] = value;
                     }
@@ -112,7 +112,7 @@
                 o.hintMode = 'hint2';
             }
 
-            this._scroll = jQuery(window).scrollTop();
+            this._scroll = $(window).scrollTop();
 
             this._createValidator();
 
@@ -127,8 +127,8 @@
             element.attr('novalidate', 'novalidate');
 
             if (o.showRequiredState) {
-                jQuery.each(inputs, function(){
-                    var input = jQuery(this);
+                $.each(inputs, function(){
+                    var input = $(this);
                     if (input.parent().hasClass('input-control')) {
                         input.parent().addClass('required');
                     } else {
@@ -142,10 +142,10 @@
 
             //console.log(this._scroll);
 
-            jQuery(window).scroll(function(e){
-                var st = jQuery(this).scrollTop();
+            $(window).scroll(function(e){
+                var st = $(this).scrollTop();
                 var delta = isNaN(st - this._scroll) ? 0 : st - this._scroll;
-                jQuery(".validator-hint.hint2").css({
+                $(".validator-hint.hint2").css({
                     top: '-='+delta
                 });
                 this._scroll = st;
@@ -169,17 +169,17 @@
             var submit = element.find(":submit").attr('disabled', 'disabled').addClass('disabled');
 
             var result = 0;
-            jQuery('.validator-hint').hide();
+            $('.validator-hint').hide();
             inputs.removeClass('error success');
-            jQuery.each(inputs, function(i, v){
-                var input = jQuery(v);
+            $.each(inputs, function(i, v){
+                var input = $(v);
                 if (input.parent().hasClass('input-control')) {
                     input.parent().removeClass('error success');
                 }
             });
 
-            jQuery.each(inputs, function(i, v){
-                var input = jQuery(v);
+            $.each(inputs, function(i, v){
+                var input = $(v);
                 var func = input.data('validateFunc'), arg = input.data('validateArg');
                 var this_result = that.funcs[func](input.val(), arg);
 
@@ -265,7 +265,7 @@
                 return false;
             }
 
-            hint = jQuery("<div/>").addClass(mode+' validator-hint');//.appendTo(input.parent());
+            hint = $("<div/>").addClass(mode+' validator-hint');//.appendTo(input.parent());
             hint.html(msg !== undefined ? this._format(msg, input.val()) : '');
             hint.css({
                 'min-width': o.hintSize
@@ -301,13 +301,13 @@
                 hint.appendTo("body");
                 // right
                 if (pos === 'right') {
-                    left = input.offset().left + input.outerWidth() + 15 - jQuery(window).scrollLeft();
-                    top = input.offset().top + input.outerHeight() / 2 - hint.outerHeight() / 2 - jQuery(window).scrollTop() - 10;
+                    left = input.offset().left + input.outerWidth() + 15 - $(window).scrollLeft();
+                    top = input.offset().top + input.outerHeight() / 2 - hint.outerHeight() / 2 - $(window).scrollTop() - 10;
 
                     hint.addClass(pos);
                     hint.css({
                         top: top,
-                        left: jQuery(window).width() + 100
+                        left: $(window).width() + 100
                     });
                     hint.show().animate({
                         left: left
@@ -317,8 +317,8 @@
                         }, o.hideHint);
                     });
                 } else if (pos === 'left') {
-                    left = input.offset().left - hint.outerWidth() - 10 - jQuery(window).scrollLeft();
-                    top = input.offset().top + input.outerHeight() / 2 - hint.outerHeight() / 2 - jQuery(window).scrollTop() - 10;
+                    left = input.offset().left - hint.outerWidth() - 10 - $(window).scrollLeft();
+                    top = input.offset().top + input.outerHeight() / 2 - hint.outerHeight() / 2 - $(window).scrollTop() - 10;
 
                     hint.addClass(pos);
                     hint.css({
@@ -333,8 +333,8 @@
                         }, o.hideHint);
                     });
                 } else if (pos === 'top') {
-                    left = input.offset().left + input.outerWidth()/2 - hint.outerWidth()/2  - jQuery(window).scrollLeft();
-                    top = input.offset().top - jQuery(window).scrollTop() - hint.outerHeight() - 20;
+                    left = input.offset().left + input.outerWidth()/2 - hint.outerWidth()/2  - $(window).scrollLeft();
+                    top = input.offset().top - $(window).scrollTop() - hint.outerHeight() - 20;
 
                     hint.addClass(pos);
                     hint.css({
@@ -348,12 +348,12 @@
                         }, o.hideHint);
                     });
                 } else /*bottom*/ {
-                    left = input.offset().left + input.outerWidth()/2 - hint.outerWidth()/2  - jQuery(window).scrollLeft();
-                    top = input.offset().top - jQuery(window).scrollTop() + input.outerHeight();
+                    left = input.offset().left + input.outerWidth()/2 - hint.outerWidth()/2  - $(window).scrollLeft();
+                    top = input.offset().top - $(window).scrollTop() + input.outerHeight();
 
                     hint.addClass(pos);
                     hint.css({
-                        top: jQuery(window).height(),
+                        top: $(window).height(),
                         left: left
                     }).show().animate({
                         top: top
@@ -369,18 +369,18 @@
         _format: function( source, params ) {
             if ( arguments.length === 1 ) {
                 return function() {
-                    var args = jQuery.makeArray( arguments );
+                    var args = $.makeArray( arguments );
                     args.unshift( source );
-                    return jQuery.validator.format.apply( this, args );
+                    return $.validator.format.apply( this, args );
                 };
             }
             if ( arguments.length > 2 && params.constructor !== Array  ) {
-                params = jQuery.makeArray( arguments ).slice( 1 );
+                params = $.makeArray( arguments ).slice( 1 );
             }
             if ( params.constructor !== Array ) {
                 params = [ params ];
             }
-            jQuery.each( params, function( i, n ) {
+            $.each( params, function( i, n ) {
                 source = source.replace( new RegExp( "\\{" + i + "\\}", "g" ), function() {
                     return n;
                 });

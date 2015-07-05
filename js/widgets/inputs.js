@@ -1,7 +1,7 @@
-(function( jQuery ) {
+(function( $ ) {
     "use strict";
 
-    jQuery.widget("metro.input", {
+    $.widget("metro.input", {
 
         version: "3.0.0",
 
@@ -12,10 +12,10 @@
         _create: function(){
             var element = this.element, o = this.options;
 
-            jQuery.each(element.data(), function(key, value){
+            $.each(element.data(), function(key, value){
                 if (key in o) {
                     try {
-                        o[key] = jQuery.parseJSON(value);
+                        o[key] = $.parseJSON(value);
                     } catch (e) {
                         o[key] = value;
                     }
@@ -57,7 +57,7 @@
         _createInputFile: function(){
             var element = this.element;
             var wrapper, button, input;
-            wrapper = jQuery("<input type='text' class='input-file-wrapper' readonly style='z-index: 1; cursor: default;'>");
+            wrapper = $("<input type='text' class='input-file-wrapper' readonly style='z-index: 1; cursor: default;'>");
             button = element.children('.button');
             input = element.children('input[type="file"]');
             input.css('z-index', 0);
@@ -67,7 +67,7 @@
             wrapper.attr('placeholder', input.attr('placeholder'))
 
             input.on('change', function(){
-                var val = jQuery(this).val();
+                var val = $(this).val();
                 if (val !== '') {
                     wrapper.val(val.replace(/.+[\\\/]/, ""));
                     wrapper.attr('title', val.replace(/.+[\\\/]/, ""));
@@ -90,8 +90,8 @@
             var padding = 0;
 
 
-            jQuery.each(buttons, function(){
-                var b = jQuery(this);
+            $.each(buttons, function(){
+                var b = $(this);
                 padding += b.outerWidth();
             });
 

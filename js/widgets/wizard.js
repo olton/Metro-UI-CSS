@@ -1,8 +1,8 @@
-(function( jQuery ) {
+(function( $ ) {
 
     "use strict";
 
-    jQuery.widget("metro.wizard", {
+    $.widget("metro.wizard", {
 
         version: "3.0.0",
 
@@ -41,10 +41,10 @@
                 o = this.options,
                 steps = element.find(".step");
 
-            jQuery.each(element.data(), function(key, value){
+            $.each(element.data(), function(key, value){
                 if (key in o) {
                     try {
-                        o[key] = jQuery.parseJSON(value);
+                        o[key] = $.parseJSON(value);
                     } catch (e) {
                         o[key] = value;
                     }
@@ -88,7 +88,7 @@
         _createStepper: function(steps){
             var stepper, o = this.options;
 
-            stepper = jQuery("<div/>").addClass("stepper")
+            stepper = $("<div/>").addClass("stepper")
                 .attr("data-role", "stepper")
                 .attr("data-steps", steps);
 
@@ -103,13 +103,13 @@
             var that = this, element = this.element, o = this.options;
 
             if (o.buttons) {
-                var actions = jQuery("<div/>").addClass("actions").appendTo(element);
-                var group_left = jQuery("<div/>").addClass("group-left").appendTo(actions);
-                var group_right = jQuery("<div/>").addClass("group-right").appendTo(actions);
+                var actions = $("<div/>").addClass("actions").appendTo(element);
+                var group_left = $("<div/>").addClass("group-left").appendTo(actions);
+                var group_right = $("<div/>").addClass("group-right").appendTo(actions);
                 var cancel_button, help_button, prior_button, next_button, finish_button;
 
                 if (o.buttons.cancel) {
-                    cancel_button = jQuery("<button type='button'/>").addClass("btn-cancel").html(window.METRO_LOCALES[o.locale].buttons[2]);
+                    cancel_button = $("<button type='button'/>").addClass("btn-cancel").html(window.METRO_LOCALES[o.locale].buttons[2]);
                     if (typeof o.buttons.cancel === "boolean") {
                         cancel_button.appendTo(group_left);
                     } else {
@@ -135,7 +135,7 @@
                     });
                 }
                 if (o.buttons.help) {
-                    help_button = jQuery("<button type='button'/>").addClass("btn-help").html(window.METRO_LOCALES[o.locale].buttons[3]);
+                    help_button = $("<button type='button'/>").addClass("btn-help").html(window.METRO_LOCALES[o.locale].buttons[3]);
                     if (typeof o.buttons.help === "boolean") {
                         help_button.appendTo(group_right);
                     } else {
@@ -160,7 +160,7 @@
                     });
                 }
                 if (o.buttons.prior) {
-                    prior_button = jQuery("<button type='button'/>").addClass("btn-prior").html(window.METRO_LOCALES[o.locale].buttons[4]);
+                    prior_button = $("<button type='button'/>").addClass("btn-prior").html(window.METRO_LOCALES[o.locale].buttons[4]);
                     if (typeof o.buttons.prior === "boolean") {
                         prior_button.appendTo(group_right);
                     } else {
@@ -185,7 +185,7 @@
                     });
                 }
                 if (o.buttons.next) {
-                    next_button = jQuery("<button type='button'/>").addClass("btn-next").html(window.METRO_LOCALES[o.locale].buttons[5]);
+                    next_button = $("<button type='button'/>").addClass("btn-next").html(window.METRO_LOCALES[o.locale].buttons[5]);
                     if (typeof o.buttons.next === "boolean") {
                         next_button.appendTo(group_right);
                     } else {
@@ -210,7 +210,7 @@
                     });
                 }
                 if (o.buttons.finish) {
-                    finish_button = jQuery("<button type='button'/>").addClass("btn-finish").html(window.METRO_LOCALES[o.locale].buttons[6]);
+                    finish_button = $("<button type='button'/>").addClass("btn-finish").html(window.METRO_LOCALES[o.locale].buttons[6]);
                     if (typeof o.buttons.finish === "boolean") {
                         finish_button.appendTo(group_right);
                     } else {
@@ -245,7 +245,7 @@
 
             this._currentStep = new_step;
             this._steps.hide();
-            jQuery(this._steps[new_step]).show();
+            $(this._steps[new_step]).show();
 
 
             if (typeof o.onPage === 'string') {
@@ -284,7 +284,7 @@
 
             this._currentStep = new_step;
             this._steps.hide();
-            jQuery(this._steps[new_step]).show();
+            $(this._steps[new_step]).show();
 
             if (typeof o.onPage === 'string') {
                 window[o.onPage](this._currentStep + 1, this.element);
@@ -321,7 +321,7 @@
             if (new_step < 0) {return false;}
             this._currentStep = new_step;
             this._steps.hide();
-            jQuery(this._steps[new_step]).show();
+            $(this._steps[new_step]).show();
 
             if (typeof o.onPage === 'string') {
                 window[o.onPage](this._currentStep + 1, this.element);

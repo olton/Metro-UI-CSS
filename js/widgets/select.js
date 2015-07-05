@@ -1,8 +1,8 @@
-(function ( jQuery ) {
+(function ( $ ) {
 
     "use strict";
 
-    jQuery.widget( "metro.select" , {
+    $.widget( "metro.select" , {
 
         version: "3.0.0",
 
@@ -19,9 +19,9 @@
                 'query'
             ];
 
-            jQuery.each(element.data(), function(key, value){
+            $.each(element.data(), function(key, value){
                 try {
-                    o[key] = jQuery.parseJSON(value);
+                    o[key] = $.parseJSON(value);
                 } catch (e) {
                     o[key] = value;
                 }
@@ -34,10 +34,10 @@
             });
 
             if (o.dropdownParent !== undefined) {
-                o.dropdownParent = jQuery(o.dropdownParent);
+                o.dropdownParent = $(o.dropdownParent);
             }
 
-            if(jQuery().select2) {
+            if($().select2) {
                 try {
                     element.find("select").select2(o);
                 } catch (e) {

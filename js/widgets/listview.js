@@ -1,8 +1,8 @@
-(function ( jQuery ) {
+(function ( $ ) {
 
     "use strict";
 
-    jQuery.widget( "metro.listview" , {
+    $.widget( "metro.listview" , {
 
         version: "3.0.0",
 
@@ -15,10 +15,10 @@
         _create: function () {
             var that = this, element = this.element, o = this.options;
 
-            jQuery.each(element.data(), function(key, value){
+            $.each(element.data(), function(key, value){
                 if (key in o) {
                     try {
-                        o[key] = jQuery.parseJSON(value);
+                        o[key] = $.parseJSON(value);
                     } catch (e) {
                         o[key] = value;
                     }
@@ -36,8 +36,8 @@
             var that = this, element = this.element, o = this.options;
             var groups = element.find('.list-group');
 
-            jQuery.each(groups, function(){
-                var group = jQuery(this);
+            $.each(groups, function(){
+                var group = $(this);
                 if (group.hasClass('collapsed')) {
                     group.find('.list-group-content').hide();
                 }
@@ -49,7 +49,7 @@
             var that = this, element = this.element, o = this.options;
 
             element.on('click', '.list-group-toggle', function(e){
-                var toggle = jQuery(this), parent = toggle.parent();
+                var toggle = $(this), parent = toggle.parent();
 
                 if (toggle.parent().hasClass('keep-open')) {
                     return;
@@ -77,7 +77,7 @@
             });
 
             element.on('click', '.list', function(e){
-                var list = jQuery(this);
+                var list = $(this);
 
                 element.find('.list').removeClass('active');
                 list.addClass('active');

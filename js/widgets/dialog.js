@@ -1,8 +1,8 @@
-(function ( jQuery ) {
+(function ( $ ) {
 
     "use strict";
 
-    jQuery.widget( "metro.dialog" , {
+    $.widget( "metro.dialog" , {
 
         version: "3.0.0",
 
@@ -32,10 +32,10 @@
         _create: function () {
             var that = this, element = this.element, o = this.options;
 
-            jQuery.each(element.data(), function(key, value){
+            $.each(element.data(), function(key, value){
                 if (key in o) {
                     try {
-                        o[key] = jQuery.parseJSON(value);
+                        o[key] = $.parseJSON(value);
                     } catch (e) {
                         o[key] = value;
                     }
@@ -52,10 +52,10 @@
 
         _createOverlay: function(){
             var that = this, element = this.element, o = this.options;
-            var overlay = jQuery('body').find('.dialog-overlay');
+            var overlay = $('body').find('.dialog-overlay');
 
             if (overlay.length === 0) {
-                overlay = jQuery("<div/>").addClass('dialog-overlay');
+                overlay = $("<div/>").addClass('dialog-overlay');
             }
 
             if (o.overlayColor) {
@@ -115,7 +115,7 @@
             });
 
             if (o.closeButton) {
-                jQuery("<span/>").addClass('dialog-close-button').appendTo(element).on('click', function(){
+                $("<span/>").addClass('dialog-close-button').appendTo(element).on('click', function(){
                     that.close();
                 });
             }
@@ -129,8 +129,8 @@
                 height = element.height();
 
             element.css({
-                left: o.windowsStyle === false ? ( jQuery(window).width() - width ) / 2 : 0,
-                top: ( jQuery(window).height() - height ) / 2
+                left: o.windowsStyle === false ? ( $(window).width() - width ) / 2 : 0,
+                top: ( $(window).height() - height ) / 2
             });
         },
 
@@ -168,7 +168,7 @@
             clearInterval(o._interval);
 
             if (o.overlay) {
-                jQuery('body').find('.dialog-overlay').remove();
+                $('body').find('.dialog-overlay').remove();
             }
 
             element.data('opened', false);

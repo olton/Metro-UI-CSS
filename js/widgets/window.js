@@ -1,8 +1,8 @@
-(function ( jQuery ) {
+(function ( $ ) {
 
     "use strict";
 
-    jQuery.widget( "metro.window" , {
+    $.widget( "metro.window" , {
 
         version: "3.0.0",
 
@@ -31,10 +31,10 @@
         _create: function () {
             var element = this.element, o = this.options;
 
-            jQuery.each(element.data(), function(key, value){
+            $.each(element.data(), function(key, value){
                 if (key in o) {
                     try {
-                        o[key] = jQuery.parseJSON(value);
+                        o[key] = $.parseJSON(value);
                     } catch (e) {
                         o[key] = value;
                     }
@@ -52,20 +52,20 @@
             var wind = element, capt, cont;
 
             wind.addClass("window");
-            capt = jQuery("<div/>").addClass("window-caption");
-            cont = jQuery("<div/>").addClass("window-content");
+            capt = $("<div/>").addClass("window-caption");
+            cont = $("<div/>").addClass("window-content");
 
             if (o.icon || o.title) {capt.appendTo(wind);}
             cont.appendTo(wind);
 
             if (typeof o.size === 'object') {
-                jQuery.each(o.size, function(key, value){
+                $.each(o.size, function(key, value){
                     cont.css(key, value);
                 });
             }
 
             if (o.captionStyle && typeof o.captionStyle === 'object') {
-                jQuery.each(o.captionStyle, function(key, value){
+                $.each(o.captionStyle, function(key, value){
                     if (value.isColor()) {
                         capt.css(key, value + " !important");
                     } else {
@@ -75,7 +75,7 @@
             }
 
             if (o.contentStyle && typeof o.contentStyle === 'object') {
-                jQuery.each(o.contentStyle, function(key, value){
+                $.each(o.contentStyle, function(key, value){
                     if (value.isColor()) {
                         cont.css(key, value + " !important");
                     } else {
@@ -99,7 +99,7 @@
 
             if (o.icon) {
                 if (icon.length === 0) {
-                    jQuery("<span/>").addClass('window-caption-icon').html(o.icon).appendTo(capt);
+                    $("<span/>").addClass('window-caption-icon').html(o.icon).appendTo(capt);
                 } else {
                     icon.html(o.icon);
                 }
@@ -114,7 +114,7 @@
 
             if (o.title) {
                 if (title.length === 0) {
-                    jQuery("<span/>").addClass('window-caption-title').html(o.title).appendTo(capt);
+                    $("<span/>").addClass('window-caption-title').html(o.title).appendTo(capt);
                 } else {
                     title.html(o.title);
                 }
@@ -134,7 +134,7 @@
                 var btnClose = o.buttons.btnClose;
 
                 if (btnMin && btnMin !== false) {
-                    bMin = jQuery("<span/>").addClass('btn-min').appendTo(capt);
+                    bMin = $("<span/>").addClass('btn-min').appendTo(capt);
                     if (typeof btnMin === 'object') {
                         bMin.css(btnMin);
                     }
@@ -147,7 +147,7 @@
                 }
 
                 if (btnMax && btnMax !== false) {
-                    bMax = jQuery("<span/>").addClass('btn-max').appendTo(capt);
+                    bMax = $("<span/>").addClass('btn-max').appendTo(capt);
                     if (typeof btnMax === 'object') {
                         bMax.css(btnMax);
                     }
@@ -160,7 +160,7 @@
                 }
 
                 if (btnClose && btnClose !== false) {
-                    bClose = jQuery("<span/>").addClass('btn-close').appendTo(capt);
+                    bClose = $("<span/>").addClass('btn-close').appendTo(capt);
                     if (typeof btnClose === 'object') {
                         bClose.css(btnClose);
                     }
@@ -183,8 +183,8 @@
 
             if (c.isUrl()) {
                 if (c.indexOf('youtube') > -1) {
-                    var iframe = jQuery("<iframe>");
-                    var video_container = jQuery("<div/>").addClass('video-container').appendTo(content);
+                    var iframe = $("<iframe>");
+                    var video_container = $("<div/>").addClass('video-container').appendTo(content);
 
                     iframe
                         .attr('src', c)

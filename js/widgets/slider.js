@@ -1,7 +1,7 @@
-(function( jQuery ) {
+(function( $ ) {
     "use strict";
 
-    jQuery.widget("metro.slider", {
+    $.widget("metro.slider", {
 
         version: "3.0.0",
 
@@ -47,10 +47,10 @@
             var o = this.options,
                 s = o._slider;
 
-            jQuery.each(element.data(), function(key, value){
+            $.each(element.data(), function(key, value){
                 if (key in o) {
                     try {
-                        o[key] = jQuery.parseJSON(value);
+                        o[key] = $.parseJSON(value);
                     } catch (e) {
                         o[key] = value;
                     }
@@ -105,15 +105,15 @@
             var element = this.element, o = this.options, that = this, hint = element.children('.slider-hint');
             var returnedValue;
 
-            jQuery(element).on("mousemove", function (event) {
+            $(element).on("mousemove", function (event) {
                 that._movingMarker(event);
                 if (!element.hasClass('permanent-hint')) {
                     hint.css('display', 'block');
                 }
             });
-            jQuery(element).on("mouseup mouseleave", function () {
-                jQuery(element).off('mousemove');
-                jQuery(element).off('mouseup');
+            $(element).on("mouseup mouseleave", function () {
+                $(element).off('mousemove');
+                $(element).off('mouseup');
                 element.data('value', o.position);
                 element.trigger('changed', o.position);
 
@@ -177,7 +177,7 @@
             var returnedValue = o.returnType === 'value' ? this._valueToRealValue(o.position) : o.position;
 
             if (o.target) {
-                jQuery(o.target).val(returnedValue);
+                $(o.target).val(returnedValue);
             }
 
             if (typeof o.onChange === 'string') {
@@ -311,11 +311,11 @@
 
             element.html('');
 
-            complete = jQuery("<div/>").addClass("complete").appendTo(element);
-            marker = jQuery("<a/>").addClass("marker").appendTo(element);
+            complete = $("<div/>").addClass("complete").appendTo(element);
+            marker = $("<a/>").addClass("marker").appendTo(element);
 
             if (o.showHint) {
-                hint = jQuery("<span/>").addClass("slider-hint").appendTo(element);
+                hint = $("<span/>").addClass("slider-hint").appendTo(element);
             }
 
             if (o.color !== 'default') {

@@ -1,8 +1,8 @@
-(function ( jQuery ) {
+(function ( $ ) {
 
     "use strict";
 
-    jQuery.widget( "metro.wizard2" , {
+    $.widget( "metro.wizard2" , {
 
         version: "3.0.0",
 
@@ -27,10 +27,10 @@
         _create: function () {
             var that = this, element = this.element, o = this.options;
 
-            jQuery.each(element.data(), function(key, value){
+            $.each(element.data(), function(key, value){
                 if (key in o) {
                     try {
-                        o[key] = jQuery.parseJSON(value);
+                        o[key] = $.parseJSON(value);
                     } catch (e) {
                         o[key] = value;
                     }
@@ -46,10 +46,10 @@
                 o.finish = this._steps.length;
             }
 
-            jQuery.each(this._steps, function(i, v){
-                if (jQuery(v).outerHeight() > that._height) {that._height = jQuery(v).outerHeight();}
-                //console.log(i, jQuery(v).outerHeight(), that._height);
-                if (jQuery(v).hasClass('active')) {
+            $.each(this._steps, function(i, v){
+                if ($(v).outerHeight() > that._height) {that._height = $(v).outerHeight();}
+                //console.log(i, $(v).outerHeight(), that._height);
+                if ($(v).hasClass('active')) {
                     that._step = i + 1;
                 }
             });
@@ -60,7 +60,7 @@
                 height: this._height + 48
             });
 
-            jQuery(window).resize(function(){
+            $(window).resize(function(){
                 that._width = element.innerWidth() - ( (that._steps.length - 1) * 24 +  (that._steps.length));
                 that.step(that._step);
             });
@@ -74,13 +74,13 @@
 
         _createActionBar: function(){
             var that = this, element = this.element, o = this.options;
-            var bar = jQuery("<div/>").addClass('action-bar').appendTo(element);
+            var bar = $("<div/>").addClass('action-bar').appendTo(element);
             var btn_prev, btn_next, btn_help, btn_finish;
 
-            btn_help = jQuery("<button/>").html(o.buttonLabels.help).addClass('button cycle-button medium-button wiz-btn-help place-left').appendTo(bar);
-            btn_finish = jQuery("<button/>").html(o.buttonLabels.finish).addClass('button cycle-button medium-button wiz-btn-finish place-right').appendTo(bar);
-            btn_next = jQuery("<button/>").html(o.buttonLabels.next).addClass('button cycle-button medium-button wiz-btn-next place-right').appendTo(bar);
-            btn_prev = jQuery("<button/>").html(o.buttonLabels.prev).addClass('button cycle-button medium-button wiz-btn-prev place-right').appendTo(bar);
+            btn_help = $("<button/>").html(o.buttonLabels.help).addClass('button cycle-button medium-button wiz-btn-help place-left').appendTo(bar);
+            btn_finish = $("<button/>").html(o.buttonLabels.finish).addClass('button cycle-button medium-button wiz-btn-finish place-right').appendTo(bar);
+            btn_next = $("<button/>").html(o.buttonLabels.next).addClass('button cycle-button medium-button wiz-btn-next place-right').appendTo(bar);
+            btn_prev = $("<button/>").html(o.buttonLabels.prev).addClass('button cycle-button medium-button wiz-btn-prev place-right').appendTo(bar);
 
             btn_help.on('click', function(){
                 if (typeof o.onHelpClick === 'string') {
@@ -133,7 +133,7 @@
             this.element.children('.step')
                 .removeClass('active prev next');
 
-            jQuery(this.element.children('.step')[index - 1])
+            $(this.element.children('.step')[index - 1])
                 .addClass('active')
                 .css('width', this._width);
 

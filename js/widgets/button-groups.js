@@ -1,7 +1,7 @@
-(function ( jQuery ) {
+(function ( $ ) {
     "use strict";
 
-    jQuery.widget( "metro.group" , {
+    $.widget( "metro.group" , {
 
         version: "3.0.0",
 
@@ -15,10 +15,10 @@
         _create: function () {
             var that = this, element = this.element, o = this.options;
 
-            jQuery.each(element.data(), function(key, value){
+            $.each(element.data(), function(key, value){
                 if (key in o) {
                     try {
-                        o[key] = jQuery.parseJSON(value);
+                        o[key] = $.parseJSON(value);
                     } catch (e) {
                         o[key] = value;
                     }
@@ -30,7 +30,7 @@
             var buttons = element.find('.button, .toolbar-button');
 
             for(var i = 0; i < buttons.length; i++) {
-                jQuery(buttons[i]).data('index', i);
+                $(buttons[i]).data('index', i);
             }
 
             if (o.buttonStyle !== false) {
@@ -40,22 +40,22 @@
             element.on('click', '.button, .toolbar-button', function(){
 
                 if (typeof o.onChange === 'string') {
-                    if (!window[o.onChange](jQuery(this).data('index'), this)) {return false;}
+                    if (!window[o.onChange]($(this).data('index'), this)) {return false;}
                 } else {
-                    if (!o.onChange(jQuery(this).data('index'), this)) {return false;}
+                    if (!o.onChange($(this).data('index'), this)) {return false;}
                 }
 
                 if (o.groupType === 'one-state') {
                     buttons.removeClass('active');
-                    jQuery(this).addClass('active');
+                    $(this).addClass('active');
                 } else  {
-                    jQuery(this).toggleClass('active');
+                    $(this).toggleClass('active');
                 }
 
                 if (typeof o.onChanged === 'string') {
-                    window[o.onChanged](jQuery(this).data('index'), this);
+                    window[o.onChanged]($(this).data('index'), this);
                 } else {
-                    o.onChanged(jQuery(this).data('index'), this);
+                    o.onChanged($(this).data('index'), this);
                 }
             });
 
