@@ -5,6 +5,7 @@
 * add responsive for sidebar
 * add tile factor 1.25 for devices with width <= 800px
 * add hint timeout
+* add hint time delay
 * add hotkeys plugin by [John Resig](https://github.com/jeresig)
 * add simple wysiwyg editor
 * change all $ to jQuery for noConflict support
