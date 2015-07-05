@@ -39,6 +39,28 @@
             padding-left: 1rem;
             padding-right: 1rem;
         }
+
+        .d-menu {
+            top: 100%;
+            border: 2px solid @appBarBackgroundActive;
+            li:not(.disabled):hover {
+                background-color: #eee;
+                & > a {
+                    color: @dark;
+                }
+            }
+
+            .d-menu {
+                top: -.625rem;
+                left: 100%;
+            }
+            .dropdown-toggle {
+                &:before {
+                    border-color: @dark;
+                }
+            }
+        }
+
     }
 
     .app-bar-divider {
@@ -215,10 +237,17 @@
             }
         }
 
-        .d-menu {
+        .app-bar-element {
+            & > .d-menu {
+                top: auto;
+                bottom: 3.125rem;
+            }
+        }
+
+        .app-bar-menu li .d-menu, .app-bar-element .d-menu {
             .d-menu {
                 top: auto ;
-                bottom: 0 ;
+                bottom: 0;
             }
         }
 
