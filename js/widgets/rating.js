@@ -1,8 +1,8 @@
-(function ( jQuery ) {
+(function ( $ ) {
 
     "use strict";
 
-    jQuery.widget( "metro.rating" , {
+    $.widget( "metro.rating" , {
 
         version: "3.0.0",
 
@@ -25,10 +25,10 @@
         _create: function () {
             var element = this.element, o = this.options;
 
-            jQuery.each(element.data(), function(key, value){
+            $.each(element.data(), function(key, value){
                 if (key in o) {
                     try {
-                        o[key] = jQuery.parseJSON(value);
+                        o[key] = $.parseJSON(value);
                     } catch (e) {
                         o[key] = value;
                     }
@@ -65,11 +65,11 @@
             }
 
             for (i = 0; i < o.stars; i++) {
-                star = jQuery("<span/>").addClass('star').appendTo(element).data('star-value', i+1);
+                star = $("<span/>").addClass('star').appendTo(element).data('star-value', i+1);
             }
 
             if (o.showScore) {
-                score = jQuery("<span/>").addClass('score').appendTo(element);
+                score = $("<span/>").addClass('score').appendTo(element);
             }
 
         },
@@ -87,22 +87,22 @@
                 }
 
                 if (typeof o.onRate === 'string') {
-                    if (!window[o.onRate](jQuery(this).data('star-value'), this, that)) {
+                    if (!window[o.onRate]($(this).data('star-value'), this, that)) {
                         return false;
                     }
                 } else {
-                    if (!o.onRate(jQuery(this).data('star-value'), this, that)) {
+                    if (!o.onRate($(this).data('star-value'), this, that)) {
                         return false;
                     }
                 }
 
                 if (typeof o.onRated === 'string') {
-                    window[o.onRated](jQuery(this).data('star-value'), this, that);
+                    window[o.onRated]($(this).data('star-value'), this, that);
                 } else {
-                    o.onRated(jQuery(this).data('star-value'), this, that);
+                    o.onRated($(this).data('star-value'), this, that);
                 }
 
-                that._value = jQuery(this).data('star-value');
+                that._value = $(this).data('star-value');
                 that._setValue();
                 that._setScore();
 
@@ -117,10 +117,10 @@
                 stars = element.find('.star').removeClass('on half');
                 var index = Math.floor(this._value) - 1;
                 var half = (this._value - Math.floor(this._value)) * 10 > 0;
-                jQuery(stars[index]).addClass('on');
-                jQuery(stars[index]).prevAll().addClass('on');
+                $(stars[index]).addClass('on');
+                $(stars[index]).prevAll().addClass('on');
                 if (half) {
-                    jQuery(stars[index]).next().addClass('on half');
+                    $(stars[index]).next().addClass('on half');
                 }
             }
 

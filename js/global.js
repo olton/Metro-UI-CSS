@@ -1,4 +1,4 @@
-window.METRO_VERSION = '3.0.5';
+window.METRO_VERSION = '3.0.8';
 
 if (window.METRO_AUTO_REINIT === undefined) window.METRO_AUTO_REINIT = true;
 if (window.METRO_LANGUAGE === undefined) window.METRO_LANGUAGE = 'en';
@@ -6,6 +6,7 @@ if (window.METRO_LOCALE === undefined) window.METRO_LOCALE = 'EN_en';
 if (window.METRO_CURRENT_LOCALE === undefined) window.METRO_CURRENT_LOCALE = 'en';
 if (window.METRO_SHOW_TYPE === undefined) window.METRO_SHOW_TYPE = 'slide';
 if (window.METRO_DEBUG === undefined) window.METRO_DEBUG = true;
+if (window.METRO_CALENDAR_WEEK_START === undefined) window.METRO_CALENDAR_WEEK_START = 0;
 
 window.canObserveMutation = 'MutationObserver' in window;
 
@@ -194,25 +195,25 @@ Date.prototype.format = function (mask, utc) {
  */
 
 
-(function(jQuery){
+(function($){
     "use strict";
 
-    jQuery.fn.reverse = Array.prototype.reverse;
+    $.fn.reverse = Array.prototype.reverse;
 
-    jQuery.Metro = function(params){
-        params = jQuery.extend({
+    $.Metro = function(params){
+        params = $.extend({
         }, params);
     };
 
-    jQuery.Metro.initWidgets = function(){
+    $.Metro.initWidgets = function(){
         var widgets;
-        widgets = jQuery("[data-role]");
-        jQuery.each(widgets, function(){
-            var jQuerythis = jQuery(this);
-            var roles = jQuerythis.data('role').split(/\s*,\s*/);
+        widgets = $("[data-role]");
+        $.each(widgets, function(){
+            var $this = $(this);
+            var roles = $this.data('role').split(/\s*,\s*/);
             roles.map(function(func){
                 try {
-                    if (jQuery.fn[func] !== undefined) {jQuery.fn[func].call(jQuerythis);}
+                    if ($.fn[func] !== undefined) {$.fn[func].call($this);}
                 } catch(e) {
                     if (window.METRO_DEBUG) {
                         console.log(e.message, e.stack);
@@ -223,23 +224,23 @@ Date.prototype.format = function (mask, utc) {
     };
 })(jQuery);
 
-jQuery(function(){
+(function($){
     "use strict";
 
-    jQuery.Metro.initWidgets();
+    $.Metro.initWidgets();
 
     if (window.METRO_AUTO_REINIT) {
         if (!window.canObserveMutation) {
-            var originalDOM = jQuery('body').html(),
+            var originalDOM = $('body').html(),
                 actualDOM;
 
             setInterval(function () {
-                actualDOM = jQuery('body').html();
+                actualDOM = $('body').html();
 
                 if (originalDOM !== actualDOM) {
                     originalDOM = actualDOM;
 
-                    jQuery.Metro.initWidgets();
+                    $.Metro.initWidgets();
                 }
             }, 100);
         } else {
@@ -256,23 +257,23 @@ jQuery(function(){
                         var obj, widgets, plugins;
 
                         for(var i = 0, l = record.addedNodes.length; i < l; i++) {
-                            obj = jQuery(record.addedNodes[i]);
+                            obj = $(record.addedNodes[i]);
                             plugins = obj.find("[data-role]");
 
                             if (obj.data('role') !== undefined) {
-                                widgets = jQuery.merge(plugins, obj);
+                                widgets = $.merge(plugins, obj);
                             } else {
                                 widgets = plugins;
                             }
 
                             if (widgets.length) {
-                                jQuery.each(widgets, function(){
-                                    var _this = jQuery(this);
+                                $.each(widgets, function(){
+                                    var _this = $(this);
                                     var roles = _this.data('role').split(/\s*,\s*/);
                                     roles.map(function(func){
                                         try {
-                                            if (jQuery.fn[func] !== undefined) {
-                                                jQuery.fn[func].call(_this);
+                                            if ($.fn[func] !== undefined) {
+                                                $.fn[func].call(_this);
                                             }
                                         } catch(e) {
                                             if (window.METRO_DEBUG) {
@@ -290,4 +291,4 @@ jQuery(function(){
             observer.observe(document, observerOptions);
         }
     }
-});
+})(jQuery);

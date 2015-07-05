@@ -1,8 +1,8 @@
-(function ( jQuery ) {
+(function ( $ ) {
 
     "use strict";
 
-    jQuery.widget( "metro.treeview" , {
+    $.widget( "metro.treeview" , {
 
         version: "3.0.0",
 
@@ -16,10 +16,10 @@
         _create: function () {
             var that = this, element = this.element, o = this.options;
 
-            jQuery.each(element.data(), function(key, value){
+            $.each(element.data(), function(key, value){
                 if (key in o) {
                     try {
-                        o[key] = jQuery.parseJSON(value);
+                        o[key] = $.parseJSON(value);
                     } catch (e) {
                         o[key] = value;
                     }
@@ -36,9 +36,9 @@
         _createCheckbox: function(leaf, parent){
             var input, checkbox, check;
 
-            input = jQuery("<label/>").addClass("input-control checkbox small-check").insertBefore(leaf);
-            checkbox = jQuery("<input/>").attr('type', 'checkbox').appendTo(input);
-            check = jQuery("<span/>").addClass('check').appendTo(input);
+            input = $("<label/>").addClass("input-control checkbox small-check").insertBefore(leaf);
+            checkbox = $("<input/>").attr('type', 'checkbox').appendTo(input);
+            check = $("<span/>").addClass('check').appendTo(input);
             if (parent.data('name') !== undefined) {
                 checkbox.attr('name', parent.data('name'));
             }
@@ -65,9 +65,9 @@
         _createRadio: function(leaf, parent){
             var input, checkbox, check;
 
-            input = jQuery("<label/>").addClass("input-control radio small-check").insertBefore(leaf);
-            checkbox = jQuery("<input/>").attr('type', 'radio').appendTo(input);
-            check = jQuery("<span/>").addClass('check').appendTo(input);
+            input = $("<label/>").addClass("input-control radio small-check").insertBefore(leaf);
+            checkbox = $("<input/>").attr('type', 'radio').appendTo(input);
+            check = $("<span/>").addClass('check').appendTo(input);
             if (parent.data('name') !== undefined) {
                 checkbox.attr('name', parent.data('name'));
             }
@@ -94,8 +94,8 @@
         _initTree: function(){
             var that = this, element = this.element, o = this.options;
             var leafs = element.find('.leaf');
-            jQuery.each(leafs, function(){
-                var leaf = jQuery(this), parent = leaf.parent('li'), ul = leaf.siblings('ul'), node = jQuery(leaf.parents('.node')[0]);
+            $.each(leafs, function(){
+                var leaf = $(this), parent = leaf.parent('li'), ul = leaf.siblings('ul'), node = $(leaf.parents('.node')[0]);
                 //var input, checkbox, check;
 
                 if (parent.data('mode') === 'checkbox') {
@@ -120,13 +120,13 @@
         _renderChecks: function(check){
             var element = this.element, that = this, o = this.options;
             var state = check.is(":checked");
-            var parent = jQuery(check.parent().parent());
+            var parent = $(check.parent().parent());
             var children_checks = parent.children('ul').find('[type="checkbox"]');
 
             children_checks.prop('checked', state).removeClass('indeterminate');
 
-            jQuery.each(element.find('.node[data-mode=checkbox]').reverse(), function(){
-                var node = jQuery(this),
+            $.each(element.find('.node[data-mode=checkbox]').reverse(), function(){
+                var node = $(this),
                     ch = node.children('.input-control').find('[type="checkbox"]'),
                     children_all = node.children('ul').find('[type="checkbox"]'),
                     children_checked = node.children('ul').find('[type="checkbox"]:checked');
@@ -148,12 +148,12 @@
             var that = this, element = this.element, o = this.options;
 
             element.on('change', 'input:checkbox', function(){
-                that._renderChecks(jQuery(this));
+                that._renderChecks($(this));
             });
 
             element.on('click', 'input', function(){
-                var leaf = jQuery(this),
-                    node = jQuery(leaf.parents('.node')[0]),
+                var leaf = $(this),
+                    node = $(leaf.parents('.node')[0]),
                     parent = leaf.parent('li'),
                     check = leaf.siblings('.input-control').find('input:checkbox'),
                     radio = leaf.siblings('.input-control').find('input:radio'),
@@ -179,8 +179,8 @@
             });
 
             element.on('click', '.leaf', function(){
-                var leaf = jQuery(this),
-                    node = jQuery(leaf.parents('.node')[0]),
+                var leaf = $(this),
+                    node = $(leaf.parents('.node')[0]),
                     parent = leaf.parent('li');
 
                 element.find('.leaf').parent('li').removeClass('active');
@@ -195,7 +195,7 @@
 
             if (o.doubleClick) {
                 element.on('dblclick', '.leaf', function (e) {
-                    var leaf = jQuery(this), parent = leaf.parent('li'), node = jQuery(leaf.parents('.node')[0]);
+                    var leaf = $(this), parent = leaf.parent('li'), node = $(leaf.parents('.node')[0]);
 
                     if (parent.hasClass("keep-open")) {
                         return false;
@@ -223,7 +223,7 @@
             }
 
             element.on('click', '.node-toggle', function(e){
-                var leaf = jQuery(this).siblings('.leaf'), parent = jQuery(this).parent('li'), node = jQuery(leaf.parents('.node')[0]);
+                var leaf = $(this).siblings('.leaf'), parent = $(this).parent('li'), node = $(leaf.parents('.node')[0]);
 
                 if (parent.hasClass("keep-open")) {return false;}
 
@@ -255,32 +255,32 @@
             if (parent) {
                 if (parent[0].tagName === "LI") {parent.addClass('node');}
                 if (parent.children('.node-toggle').length === 0) {
-                    jQuery("<span/>").addClass('node-toggle').appendTo(parent);
+                    $("<span/>").addClass('node-toggle').appendTo(parent);
                 }
             }
 
-            ul = parent ? jQuery(parent).children('ul') : element.children('ul');
+            ul = parent ? $(parent).children('ul') : element.children('ul');
 
             if (ul.length === 0) {
-                ul = jQuery("<ul/>").appendTo(parent ? parent : element);
+                ul = $("<ul/>").appendTo(parent ? parent : element);
             }
 
-            li = jQuery("<li/>").appendTo( ul );
+            li = $("<li/>").appendTo( ul );
 
             if (data !== undefined) {
                 if (data.tagName !== undefined) {
-                    leaf = jQuery("<"+data.tagName+"/>").addClass("leaf").appendTo(li);
+                    leaf = $("<"+data.tagName+"/>").addClass("leaf").appendTo(li);
                 } else {
-                    leaf = jQuery("<span/>").addClass("leaf").appendTo(li);
+                    leaf = $("<span/>").addClass("leaf").appendTo(li);
                 }
             } else {
-                leaf = jQuery("<span/>").addClass("leaf").appendTo(li);
+                leaf = $("<span/>").addClass("leaf").appendTo(li);
             }
 
             leaf.html(name);
 
             if (data !== undefined) {
-                jQuery.each(data, function(key, value){
+                $.each(data, function(key, value){
                     li.attr("data-"+key, value);
                 });
                 if (data.mode !== undefined) {

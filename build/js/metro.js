@@ -7,7 +7,7 @@ if (typeof jQuery === 'undefined') {
     throw new Error('Metro\'s JavaScript requires jQuery');
 }
 
-window.METRO_VERSION = '3.0.5';
+window.METRO_VERSION = '3.0.8';
 
 if (window.METRO_AUTO_REINIT === undefined) window.METRO_AUTO_REINIT = true;
 if (window.METRO_LANGUAGE === undefined) window.METRO_LANGUAGE = 'en';
@@ -15,6 +15,7 @@ if (window.METRO_LOCALE === undefined) window.METRO_LOCALE = 'EN_en';
 if (window.METRO_CURRENT_LOCALE === undefined) window.METRO_CURRENT_LOCALE = 'en';
 if (window.METRO_SHOW_TYPE === undefined) window.METRO_SHOW_TYPE = 'slide';
 if (window.METRO_DEBUG === undefined) window.METRO_DEBUG = true;
+if (window.METRO_CALENDAR_WEEK_START === undefined) window.METRO_CALENDAR_WEEK_START = 0;
 
 window.canObserveMutation = 'MutationObserver' in window;
 
@@ -203,25 +204,25 @@ Date.prototype.format = function (mask, utc) {
  */
 
 
-(function(jQuery){
+(function($){
     "use strict";
 
-    jQuery.fn.reverse = Array.prototype.reverse;
+    $.fn.reverse = Array.prototype.reverse;
 
-    jQuery.Metro = function(params){
-        params = jQuery.extend({
+    $.Metro = function(params){
+        params = $.extend({
         }, params);
     };
 
-    jQuery.Metro.initWidgets = function(){
+    $.Metro.initWidgets = function(){
         var widgets;
-        widgets = jQuery("[data-role]");
-        jQuery.each(widgets, function(){
-            var jQuerythis = jQuery(this);
-            var roles = jQuerythis.data('role').split(/\s*,\s*/);
+        widgets = $("[data-role]");
+        $.each(widgets, function(){
+            var $this = $(this);
+            var roles = $this.data('role').split(/\s*,\s*/);
             roles.map(function(func){
                 try {
-                    if (jQuery.fn[func] !== undefined) {jQuery.fn[func].call(jQuerythis);}
+                    if ($.fn[func] !== undefined) {$.fn[func].call($this);}
                 } catch(e) {
                     if (window.METRO_DEBUG) {
                         console.log(e.message, e.stack);
@@ -232,23 +233,23 @@ Date.prototype.format = function (mask, utc) {
     };
 })(jQuery);
 
-jQuery(function(){
+(function($){
     "use strict";
 
-    jQuery.Metro.initWidgets();
+    $.Metro.initWidgets();
 
     if (window.METRO_AUTO_REINIT) {
         if (!window.canObserveMutation) {
-            var originalDOM = jQuery('body').html(),
+            var originalDOM = $('body').html(),
                 actualDOM;
 
             setInterval(function () {
-                actualDOM = jQuery('body').html();
+                actualDOM = $('body').html();
 
                 if (originalDOM !== actualDOM) {
                     originalDOM = actualDOM;
 
-                    jQuery.Metro.initWidgets();
+                    $.Metro.initWidgets();
                 }
             }, 100);
         } else {
@@ -265,23 +266,23 @@ jQuery(function(){
                         var obj, widgets, plugins;
 
                         for(var i = 0, l = record.addedNodes.length; i < l; i++) {
-                            obj = jQuery(record.addedNodes[i]);
+                            obj = $(record.addedNodes[i]);
                             plugins = obj.find("[data-role]");
 
                             if (obj.data('role') !== undefined) {
-                                widgets = jQuery.merge(plugins, obj);
+                                widgets = $.merge(plugins, obj);
                             } else {
                                 widgets = plugins;
                             }
 
                             if (widgets.length) {
-                                jQuery.each(widgets, function(){
-                                    var _this = jQuery(this);
+                                $.each(widgets, function(){
+                                    var _this = $(this);
                                     var roles = _this.data('role').split(/\s*,\s*/);
                                     roles.map(function(func){
                                         try {
-                                            if (jQuery.fn[func] !== undefined) {
-                                                jQuery.fn[func].call(_this);
+                                            if ($.fn[func] !== undefined) {
+                                                $.fn[func].call(_this);
                                             }
                                         } catch(e) {
                                             if (window.METRO_DEBUG) {
@@ -299,7 +300,7 @@ jQuery(function(){
             observer.observe(document, observerOptions);
         }
     }
-});
+})(jQuery);
 
 /*! jQuery UI - v1.11.3 - 2015-02-23
 * http://jqueryui.com
@@ -1494,10 +1495,10 @@ function touch2Mouse(e)
     e.preventDefault();
 }
 
-(function( jQuery ) {
+(function( $ ) {
     "use strict";
 
-    jQuery.widget("metro.accordion", {
+    $.widget("metro.accordion", {
 
         version: "3.0.0",
 
@@ -1514,7 +1515,7 @@ function touch2Mouse(e)
             var that = this, element = this.element;
 
             element.on('click', '.heading', function(e){
-                var frame = jQuery(this).parent();
+                var frame = $(this).parent();
 
                 if (frame.hasClass('disabled')) {return false;}
 
@@ -1532,8 +1533,8 @@ function touch2Mouse(e)
         _closeAllFrames: function(){
             var that = this;
             var frames = this.element.children('.frame.active');
-            jQuery.each(frames, function(){
-                that._closeFrame(jQuery(this));
+            $.each(frames, function(){
+                that._closeFrame($(this));
             });
         },
 
@@ -1593,10 +1594,10 @@ function touch2Mouse(e)
         _setOptionsData: function(){
             var o = this.options;
 
-            jQuery.each(this.element.data(), function(key, value){
+            $.each(this.element.data(), function(key, value){
                 if (key in o) {
                     try {
-                        o[key] = jQuery.parseJSON(value);
+                        o[key] = $.parseJSON(value);
                     } catch (e) {
                         o[key] = value;
                     }
@@ -1618,11 +1619,11 @@ function touch2Mouse(e)
  * 
  * PS: You are doing great work Sergey! Greats Daniel
  */
-(function (jQuery) {
+(function ($) {
 
     "use strict";
 
-    jQuery.widget("metro.appbar", {
+    $.widget("metro.appbar", {
         version: "3.0.0",
         options: {
             flexstyle: "app-bar-menu", //app-bar-menu | YOUR_OWN class for the pull flexmenu, basic support for "sidebar2" are integrated in the appbar.less file
@@ -1633,10 +1634,10 @@ function touch2Mouse(e)
         _create: function () {
             var that = this, element = this.element, o = this.options;
 
-            jQuery.each(element.data(), function (key, value) {
+            $.each(element.data(), function (key, value) {
                 if (key in o) {
                     try {
-                        o[key] = jQuery.parseJSON(value);
+                        o[key] = $.parseJSON(value);
                     } catch (e) {
                         o[key] = value;
                     }
@@ -1654,10 +1655,10 @@ function touch2Mouse(e)
             var freeSpace;
 
             //get the overall free space from the wrapping parent of the menus
-            menusParentWidth = jQuery(that.menusParent).width();
+            menusParentWidth = $(that.menusParent).width();
 
             //get the width of all visible children
-            children = jQuery(that.menusParent).children(":visible").not(".app-bar-pullmenu");
+            children = $(that.menusParent).children(":visible").not(".app-bar-pullmenu");
 
 
             //margin support: because there could be margins between elements, we do not summarize the width up with a one liner
@@ -1674,7 +1675,7 @@ function touch2Mouse(e)
             var floatState;
 
             for (var i = 0, len = children.length; i < len; i++) {
-                floatState = jQuery(children[i]).css("float");
+                floatState = $(children[i]).css("float");
                 switch (floatState) {
                     case "left":
                         childrenLeftFloated.push(children[i]);
@@ -1695,27 +1696,27 @@ function touch2Mouse(e)
             children = childrenLeftFloated.concat(childrenAsUsual, childrenRightFloated);
 
             //convert the array to jquery object again
-            children = jQuery(children);
+            children = $(children);
 
             //=== calculate the width of the elements with margin support ===
 
             //adds the left margin dedicated to the first child
-            childrenWidth += parseInt(jQuery(children).first().css("margin-left"));
+            childrenWidth += parseInt($(children).first().css("margin-left"));
 
             //walk trough the children and add the size, 
             for (var i = 0, len = children.length - 1; i <= len; i++) {
-                childrenWidth += jQuery(children[i]).outerWidth();
+                childrenWidth += $(children[i]).outerWidth();
                 if (i !== len) {
                     //the highest margin between two elements counts
                     childrenWidth += Math.max(
-                            parseInt(jQuery(children[i]).css("margin-right")),
-                            parseInt(jQuery(children[i + 1]).css("margin-left"))
+                            parseInt($(children[i]).css("margin-right")),
+                            parseInt($(children[i + 1]).css("margin-left"))
 
                             );
                 }
             }
             //the right margin for the right child
-            childrenWidth += parseInt(jQuery(children[len]).css("margin-right"));
+            childrenWidth += parseInt($(children[len]).css("margin-right"));
 
             //now we have all data for calculation. Yippie-Ya-Yeah, Schweinebacke!! (much cooler German translation of B. W. Yippie-Ya-Yeah, Motherf***er)
             freeSpace = menusParentWidth - childrenWidth;
@@ -1729,24 +1730,24 @@ function touch2Mouse(e)
         },
         _originIndexMove: function(menu, child) {
                 //find all children which are lower than we
-                var flexChildren = jQuery(menu).children().filter(function () {
-                    return parseInt(jQuery(this).attr("data-flexorderorigin")) < parseInt(jQuery(child).attr("data-flexorderorigin"));
+                var flexChildren = $(menu).children().filter(function () {
+                    return parseInt($(this).attr("data-flexorderorigin")) < parseInt($(child).attr("data-flexorderorigin"));
                 });
                 
                 if (flexChildren.length > 0) {
                     //because we are greater, we set it after the childern which are lower
-                    jQuery(flexChildren).last().after(child);
+                    $(flexChildren).last().after(child);
                 } else {
                     //find all children which are greater than we are
-                    flexChildren = jQuery(menu).children().filter(function () {
-                        return parseInt(jQuery(this).attr("data-flexorderorigin")) > parseInt(jQuery(child).attr("data-flexorderorigin"));
+                    flexChildren = $(menu).children().filter(function () {
+                        return parseInt($(this).attr("data-flexorderorigin")) > parseInt($(child).attr("data-flexorderorigin"));
                     });
                     if (flexChildren.length > 0) {
                         //because we are lower, we set us before the childern which are greater
-                        jQuery(flexChildren).first().before(child);
+                        $(flexChildren).first().before(child);
                     } else {
                         //we have no children, just append it
-                        jQuery(menu).append(child);
+                        $(menu).append(child);
                     }
                 }
         },
@@ -1758,7 +1759,7 @@ function touch2Mouse(e)
             if (direction === "toPullMenu") {
                 //get next candidate which could be moved to the pullmenu, in fact the last which not have a mark as pullmenu-entry
 
-                var nextToHide = jQuery(that.allMenuEntries).not(".app-bar-pullmenu-entry").last();
+                var nextToHide = $(that.allMenuEntries).not(".app-bar-pullmenu-entry").last();
 
                 if (nextToHide.length === 0) {
                     //nothing left, we have nothing to do
@@ -1767,52 +1768,52 @@ function touch2Mouse(e)
 
 
                 //find out in which menubar we are located in
-                var topMenu = jQuery(nextToHide).parent(); //this is only a appbar-menu not the appbar itself
+                var topMenu = $(nextToHide).parent(); //this is only a appbar-menu not the appbar itself
                 //find out where we have to go
-                var topMenuIndex = jQuery(that.flexVisibles).index(jQuery(nextToHide).parent());
-                var pullMenuBar = jQuery(that.pullMenu).find(".app-bar-pullmenubar").eq(topMenuIndex); //TODO: Make the class app-bar-menu configurable - perhaps sidebar
+                var topMenuIndex = $(that.flexVisibles).index($(nextToHide).parent());
+                var pullMenuBar = $(that.pullMenu).find(".app-bar-pullmenubar").eq(topMenuIndex); //TODO: Make the class app-bar-menu configurable - perhaps sidebar
 
                 that._originIndexMove(pullMenuBar, nextToHide);
                 //move it to the pullmenu
-//                if (jQuery(topMenu).is("[data-flexdirection='reverse']")) {//data-flexdirection="reverse" support
-//                    jQuery(nextToHide).appendTo(pullMenuBar);
+//                if ($(topMenu).is("[data-flexdirection='reverse']")) {//data-flexdirection="reverse" support
+//                    $(nextToHide).appendTo(pullMenuBar);
 //                } else {                                             //normal way
-//                    jQuery(nextToHide).prependTo(pullMenuBar);
+//                    $(nextToHide).prependTo(pullMenuBar);
 //                }
 
                 //mark the entry as a entry of the pullmenu
-                jQuery(nextToHide).addClass("app-bar-pullmenu-entry");
+                $(nextToHide).addClass("app-bar-pullmenu-entry");
 
                 //the menubar is initiated with the hidden class, so we do not see empty pullmenubars, we must unhide them
                 //it does not matter, if we see it already, we do it always:
-                jQuery(pullMenuBar).removeClass("hidden")
+                $(pullMenuBar).removeClass("hidden")
                         .show();
 
                 //in case there are no more entries in the top menu bar we can hide it
-                if (jQuery(topMenu).children().length === 0) {
-                    jQuery(topMenu).addClass("hidden");
+                if ($(topMenu).children().length === 0) {
+                    $(topMenu).addClass("hidden");
                 }
 
                 //we show the pullbutton now
-                jQuery(that.pullButton).show();
+                $(that.pullButton).show();
 
                 return nextToHide;
 
             } else if (direction === "fromPullMenu") {
                 //get next candidate which could be moved to the topbar menu, in fact the first which is still marked as pullmenu-entry
-                var nextToShow = jQuery(that.allMenuEntries).filter(".app-bar-pullmenu-entry").first();
+                var nextToShow = $(that.allMenuEntries).filter(".app-bar-pullmenu-entry").first();
 
 
                 //find out in which pullmenu we are located in
-                var pullMenuBar = jQuery(nextToShow).parent(); //only one single menu, not the whole thing
+                var pullMenuBar = $(nextToShow).parent(); //only one single menu, not the whole thing
 
                 //find out where we have to go
-                var topMenuIndex = jQuery(pullMenuBar).index(); //it is the same structur as that.flexVisibles, so we can use the simple index
-                var topMenu = jQuery(that.flexVisibles).eq(topMenuIndex);
+                var topMenuIndex = $(pullMenuBar).index(); //it is the same structur as that.flexVisibles, so we can use the simple index
+                var topMenu = $(that.flexVisibles).eq(topMenuIndex);
 
-                jQuery(topMenu).removeClass("hidden");
+                $(topMenu).removeClass("hidden");
                 //remove the mark as a entry of the pullmenu and move it to the normal top menu
-                jQuery(nextToShow).removeClass("app-bar-pullmenu-entry");
+                $(nextToShow).removeClass("app-bar-pullmenu-entry");
 
                 //cosider the flexorder
 
@@ -1822,15 +1823,15 @@ function touch2Mouse(e)
                 that._originIndexMove(topMenu, nextToShow);
 
                 //in case there are no more entries left, we can hide the pullbar menu from this entry
-                if (jQuery(pullMenuBar).children().length === 0) {
-                    jQuery(pullMenuBar).addClass("hidden")
+                if ($(pullMenuBar).children().length === 0) {
+                    $(pullMenuBar).addClass("hidden")
                             .hide();
                 }
 
                 //in case we have no more menus in the pullbar area, we hide the pullbar thing
-                if (jQuery(that.pullMenu).children(".app-bar-pullmenubar").not(".hidden").length === 0) {
-                    jQuery(that.pullMenu).hide().addClass("hidden");
-                    jQuery(that.pullButton).hide();
+                if ($(that.pullMenu).children(".app-bar-pullmenubar").not(".hidden").length === 0) {
+                    $(that.pullMenu).hide().addClass("hidden");
+                    $(that.pullButton).hide();
                 }
 
                 if (nextToShow.length === 0) {
@@ -1897,23 +1898,23 @@ function touch2Mouse(e)
 
             that.lastFlexAction = undefined;
 
-            that.pullButton = jQuery(element).find('.app-bar-pullbutton');
-            var menus = jQuery(element).find('.app-bar-menu');
+            that.pullButton = $(element).find('.app-bar-pullbutton');
+            var menus = $(element).find('.app-bar-menu');
 
             that.initiatedAsFlex = false;   //we change it later in the code - conditionally
-            o.flexclean = jQuery(element).is("[data-flexclean='true']") || o.flexclean;
-            o.flexstyle = jQuery(element).attr("data-flexstyle") || o.flexstyle;
+            o.flexclean = $(element).is("[data-flexclean='true']") || o.flexclean;
+            o.flexstyle = $(element).attr("data-flexstyle") || o.flexstyle;
 
             var flexVisible, menuEntries; //temporarly used vars
 
-            that.flexVisibles = jQuery();    //the menus which are directly in the appbar
-            that.allMenuEntries = jQuery();  //all menu entries in a sorted order
-            that.menusParent = jQuery();     //common parent from the menus, which can but do not need to be this.element. We get the max width from it
-            that.pullMenu = jQuery();
+            that.flexVisibles = $();    //the menus which are directly in the appbar
+            that.allMenuEntries = $();  //all menu entries in a sorted order
+            that.menusParent = $();     //common parent from the menus, which can but do not need to be this.element. We get the max width from it
+            that.pullMenu = $();
 
-            if (menus.length > 0 && jQuery(element).is(":not('.no-flexible')")) {
+            if (menus.length > 0 && $(element).is(":not('.no-flexible')")) {
                 //strip off all .no-flexible menus
-                that.flexVisibles = jQuery(menus).not(".no-flexible");
+                that.flexVisibles = $(menus).not(".no-flexible");
 
                 if (that.flexVisibles.length > 0) {
 
@@ -1921,57 +1922,57 @@ function touch2Mouse(e)
 
                     //sort the menus according to the data-flexorder attribute
                     that.flexVisibles.sort(function (a, b) {
-                        var aValue = (parseInt(jQuery(a).data("flexorder")) || jQuery(a).index() + 1);
-                        var bValue = (parseInt(jQuery(b).data("flexorder")) || jQuery(b).index() + 1);
+                        var aValue = (parseInt($(a).data("flexorder")) || $(a).index() + 1);
+                        var bValue = (parseInt($(b).data("flexorder")) || $(b).index() + 1);
                         return aValue - bValue;
                     });
 
                     //get all children in a sorted order according to the data-flexorder attribute
-                    jQuery(that.flexVisibles).each(function () {
+                    $(that.flexVisibles).each(function () {
                         flexVisible = this;
 
-                        menuEntries = jQuery(flexVisible).children();
+                        menuEntries = $(flexVisible).children();
 
                         //give  all menuEntries a flexorder which have not one and save the original order
-                        jQuery(menuEntries).each(function () {
-                            jQuery(this).attr("data-flexorderorigin", jQuery(this).index());
+                        $(menuEntries).each(function () {
+                            $(this).attr("data-flexorderorigin", $(this).index());
                             
-                            if(!(jQuery(this).is("[data-flexorder]"))) {
-                                jQuery(this).attr("data-flexorder", jQuery(this).index() + 1);
+                            if(!($(this).is("[data-flexorder]"))) {
+                                $(this).attr("data-flexorder", $(this).index() + 1);
                             }
                         });
 
                         menuEntries.sort(function (a, b) {
-                            var aValue = parseInt(jQuery(a).data("flexorder"));
-                            var bValue = parseInt(jQuery(b).data("flexorder"));
+                            var aValue = parseInt($(a).data("flexorder"));
+                            var bValue = parseInt($(b).data("flexorder"));
                             return aValue - bValue;
                         });
 
                         //data-flexdirection="reverse" support 
-                        if (jQuery(flexVisible).is("[data-flexdirection='reverse']")) {
+                        if ($(flexVisible).is("[data-flexdirection='reverse']")) {
                             menuEntries.reverse();
                         }
 
-                        jQuery.merge(that.allMenuEntries, jQuery(menuEntries).not(".no-flexible")); //strip off all .no-flexible elements
+                        $.merge(that.allMenuEntries, $(menuEntries).not(".no-flexible")); //strip off all .no-flexible elements
                     });
 
                     //find the parent, which contains all menus
-                    that.menusParent = jQuery(element).find(".app-bar-menu").first().parent();
+                    that.menusParent = $(element).find(".app-bar-menu").first().parent();
 
                     // === create a pull down button + pull menu ===
                     //check if a pulldown button already exists, if not we create one
                     if (!(that.pullButton.length > 0)) {
                         //DOC: We can create a display:none button, if we want to force to not show a pull button
-                        that.pullButton = jQuery('<div class="app-bar-pullbutton automatic"></div>');
-                        jQuery(that.menusParent).append(that.pullButton);
+                        that.pullButton = $('<div class="app-bar-pullbutton automatic"></div>');
+                        $(that.menusParent).append(that.pullButton);
                     }
 
                     //create a pullmenu
-                    that.pullMenu = jQuery('<nav class="app-bar-pullmenu hidden" />');
+                    that.pullMenu = $('<nav class="app-bar-pullmenu hidden" />');
 
                     //create menubars within the pullmenu
                     that.flexVisibles.each(function () {
-                        jQuery(that.pullMenu).append(jQuery('<ul class="app-bar-pullmenubar hidden ' + o.flexstyle + '" />'));
+                        $(that.pullMenu).append($('<ul class="app-bar-pullmenubar hidden ' + o.flexstyle + '" />'));
                     });
                     
                     
@@ -1979,13 +1980,13 @@ function touch2Mouse(e)
                     // WORKAROUND: this is because a :after:before clearfix for the pullmenu do not work for some reason
                     //position: absolute does not work if we do not break the float. another pure css solution should be written in the appbar.less
                     //after that remove this line
-                    jQuery(that.menusParent).append(jQuery('<div class="clearfix" style="width: 0;">'));
+                    $(that.menusParent).append($('<div class="clearfix" style="width: 0;">'));
                     //-----------
                     
                     
-                    jQuery(that.pullMenu).addClass("flexstyle-" + o.flexstyle);
+                    $(that.pullMenu).addClass("flexstyle-" + o.flexstyle);
 
-                    jQuery(that.menusParent).append(that.pullMenu);
+                    $(that.menusParent).append(that.pullMenu);
 
                     //check for the first time the menu entries /hide them if needed, etc.
                     that._checkMenuEntries();
@@ -1995,20 +1996,20 @@ function touch2Mouse(e)
                     //===  EVENTS =================================================
 
                     //activate the click event for the pull button
-                    jQuery(that.pullButton).on("click", function () {
+                    $(that.pullButton).on("click", function () {
 
                         //who am i?
-                        that = jQuery(this).closest("[data-role=appbar]").data("appbar");
+                        that = $(this).closest("[data-role=appbar]").data("appbar");
 
                         //we show /hide the pullmenu
-                        if (jQuery(that.pullMenu).is(":hidden")) {
-                            jQuery(that.pullMenu).show();
-                            jQuery(that.pullMenu).find(".app-bar-pullmenubar")
+                        if ($(that.pullMenu).is(":hidden")) {
+                            $(that.pullMenu).show();
+                            $(that.pullMenu).find(".app-bar-pullmenubar")
                                     .hide().not(".hidden").slideDown("fast");
                         } else {
-                            jQuery(that.pullMenu).find(".app-bar-pullmenubar")
+                            $(that.pullMenu).find(".app-bar-pullmenubar")
                                     .not(".hidden").show().slideUp("fast", function () {
-                                jQuery(that.pullMenu).hide();
+                                $(that.pullMenu).hide();
                             });
                         }
 
@@ -2016,26 +2017,26 @@ function touch2Mouse(e)
 
 
                     //we have to calculate everything new, if the user resizes or zooms the window
-                    jQuery(window).resize(function () {
-                        jQuery("[data-role=appbar]:not(.no-flexible)").each(function () {
-                            jQuery(this).data("appbar").resize();
+                    $(window).resize(function () {
+                        $("[data-role=appbar]:not(.no-flexible)").each(function () {
+                            $(this).data("appbar").resize();
                         });
                     });
 
 
                     //because fonts(also icon-fonts) are often loaded async after the page has loaded and this script walked through already, 
                     //we have to check again after these elements loaded. Because there is no way to observe only specific elements, we do it for the window
-                    jQuery(window).load(function () {
-                        jQuery("[data-role=appbar]:not(.no-flexible)").each(function () {
-                            jQuery(this).data("appbar").resize();
+                    $(window).load(function () {
+                        $("[data-role=appbar]:not(.no-flexible)").each(function () {
+                            $(this).data("appbar").resize();
                         });
                     });
 
                     //pictures (or other outside stuff was loaded - pictures are also often loaded async or have a lazy load or are injected after a while. 
                     //a picture can change a size of the element from the appbar, so we must recheck it again.
-                    jQuery("[data-role=appbar]:not(.no-flexible) [src]").on("load", function () {
+                    $("[data-role=appbar]:not(.no-flexible) [src]").on("load", function () {
                         //who am i?
-                        var appbar = jQuery(this).closest("[data-role=appbar]").data("appbar");
+                        var appbar = $(this).closest("[data-role=appbar]").data("appbar");
                         appbar.resize();
                     });
                 }
@@ -2050,10 +2051,10 @@ function touch2Mouse(e)
     });
 
 })(jQuery);
-(function ( jQuery ) {
+(function ( $ ) {
     "use strict";
 
-    jQuery.widget( "metro.group" , {
+    $.widget( "metro.group" , {
 
         version: "3.0.0",
 
@@ -2067,10 +2068,10 @@ function touch2Mouse(e)
         _create: function () {
             var that = this, element = this.element, o = this.options;
 
-            jQuery.each(element.data(), function(key, value){
+            $.each(element.data(), function(key, value){
                 if (key in o) {
                     try {
-                        o[key] = jQuery.parseJSON(value);
+                        o[key] = $.parseJSON(value);
                     } catch (e) {
                         o[key] = value;
                     }
@@ -2082,7 +2083,7 @@ function touch2Mouse(e)
             var buttons = element.find('.button, .toolbar-button');
 
             for(var i = 0; i < buttons.length; i++) {
-                jQuery(buttons[i]).data('index', i);
+                $(buttons[i]).data('index', i);
             }
 
             if (o.buttonStyle !== false) {
@@ -2092,22 +2093,22 @@ function touch2Mouse(e)
             element.on('click', '.button, .toolbar-button', function(){
 
                 if (typeof o.onChange === 'string') {
-                    if (!window[o.onChange](jQuery(this).data('index'), this)) {return false;}
+                    if (!window[o.onChange]($(this).data('index'), this)) {return false;}
                 } else {
-                    if (!o.onChange(jQuery(this).data('index'), this)) {return false;}
+                    if (!o.onChange($(this).data('index'), this)) {return false;}
                 }
 
                 if (o.groupType === 'one-state') {
                     buttons.removeClass('active');
-                    jQuery(this).addClass('active');
+                    $(this).addClass('active');
                 } else  {
-                    jQuery(this).toggleClass('active');
+                    $(this).toggleClass('active');
                 }
 
                 if (typeof o.onChanged === 'string') {
-                    window[o.onChanged](jQuery(this).data('index'), this);
+                    window[o.onChanged]($(this).data('index'), this);
                 } else {
-                    o.onChanged(jQuery(this).data('index'), this);
+                    o.onChanged($(this).data('index'), this);
                 }
             });
 
@@ -2286,10 +2287,10 @@ window.METRO_LOCALES = {
     }
 };
 
-(function( jQuery ) {
+(function( $ ) {
     "use strict";
 
-    jQuery.widget("metro.calendar", {
+    $.widget("metro.calendar", {
 
         version: "3.0.0",
 
@@ -2332,10 +2333,10 @@ window.METRO_LOCALES = {
         _create: function(){
             var that = this, element = this.element, o = this.options;
 
-            jQuery.each(element.data(), function(key, value){
+            $.each(element.data(), function(key, value){
                 if (key in o) {
                     try {
-                        o[key] = jQuery.parseJSON(value);
+                        o[key] = $.parseJSON(value);
                     } catch (e) {
                         o[key] = value;
                     }
@@ -2372,7 +2373,7 @@ window.METRO_LOCALES = {
             if (o.preset) {
                 re = /\s*,\s*/;
                 dates = o.preset.split(re);
-                jQuery.each(dates, function(){
+                $.each(dates, function(){
                     if (new Date(this) !== undefined) {that.setDate(this);}
                 });
             }
@@ -2380,7 +2381,7 @@ window.METRO_LOCALES = {
             if (o.exclude) {
                 re = /\s*,\s*/;
                 dates = o.exclude.split(re);
-                jQuery.each(dates, function(){
+                $.each(dates, function(){
                     if (new Date(this) !== undefined) {that.setDateExclude(this);}
                 });
             }
@@ -2388,7 +2389,7 @@ window.METRO_LOCALES = {
             if (o.stored) {
                 re = /\s*,\s*/;
                 dates = o.stored.split(re);
-                jQuery.each(dates, function(){
+                $.each(dates, function(){
                     if (new Date(this) !== undefined) {that.setDateStored(this);}
                 });
             }
@@ -2407,8 +2408,8 @@ window.METRO_LOCALES = {
                 var buttonToday = o.buttonToday ? "<button class='button calendar-btn-today small-button success'>"+this.locales[o.locale].buttons[0]+"</button>" : "";
                 var buttonClear = o.buttonClear ? "<button class='button calendar-btn-clear small-button warning'>"+this.locales[o.locale].buttons[1]+"</button>" : "";
 
-                tr = jQuery("<div/>").addClass("calendar-row calendar-actions");
-                td = jQuery("<div/>").addClass("align-center").html(
+                tr = $("<div/>").addClass("calendar-row calendar-actions");
+                td = $("<div/>").addClass("align-center").html(
                     buttonToday + buttonClear
                 );
                 td.appendTo(tr);
@@ -2438,7 +2439,7 @@ window.METRO_LOCALES = {
 
             this.element.html("");
 
-            table = jQuery("<div/>").addClass("calendar-grid");
+            table = $("<div/>").addClass("calendar-grid");
             if (o.condensedGrid) {
                 table.addClass('condensed no-border');
             }
@@ -2446,30 +2447,30 @@ window.METRO_LOCALES = {
             //console.log(this.locales);
 
             // Add calendar header
-            tr = jQuery("<div/>").addClass('calendar-row no-margin');
+            tr = $("<div/>").addClass('calendar-row no-margin');
 
-            jQuery("<div/>").addClass("calendar-cell align-center").html("<a class='btn-previous-year' href='#'>-</a>").appendTo(tr);
-            jQuery("<div/>").addClass("calendar-cell align-center").html("<a class='btn-previous-month' href='#'>&#12296;</a>").appendTo(tr);
+            $("<div/>").addClass("calendar-cell align-center").html("<a class='btn-previous-year' href='#'>-</a>").appendTo(tr);
+            $("<div/>").addClass("calendar-cell align-center").html("<a class='btn-previous-month' href='#'>&#12296;</a>").appendTo(tr);
 
-            jQuery("<div/>").addClass("calendar-cell sel-month align-center").html("<a class='btn-select-month' href='#'>"+ this.locales[o.locale].months[month]+' '+year+"</a>").appendTo(tr);
+            $("<div/>").addClass("calendar-cell sel-month align-center").html("<a class='btn-select-month' href='#'>"+ this.locales[o.locale].months[month]+' '+year+"</a>").appendTo(tr);
 
-            jQuery("<div/>").addClass("calendar-cell align-center").html("<a class='btn-next-month' href='#'>&#12297;</a>").appendTo(tr);
-            jQuery("<div/>").addClass("calendar-cell align-center").html("<a class='btn-next-year' href='#'>+</a>").appendTo(tr);
+            $("<div/>").addClass("calendar-cell align-center").html("<a class='btn-next-month' href='#'>&#12297;</a>").appendTo(tr);
+            $("<div/>").addClass("calendar-cell align-center").html("<a class='btn-next-year' href='#'>+</a>").appendTo(tr);
 
             tr.addClass("calendar-header").appendTo(table);
 
             // Add day names
             var j;
-            tr = jQuery("<div/>").addClass('calendar-row week-days');
+            tr = $("<div/>").addClass('calendar-row week-days');
             for(i = 0; i < 7; i++) {
                 if (!o.weekStart) {
-                    td = jQuery("<div/>").addClass("calendar-cell align-center day-of-week").appendTo(tr);
-                    div = jQuery("<div/>").html(this.locales[o.locale].days[i + 7]).appendTo(td);
+                    td = $("<div/>").addClass("calendar-cell align-center day-of-week").appendTo(tr);
+                    div = $("<div/>").html(this.locales[o.locale].days[i + 7]).appendTo(td);
                 } else {
                     j = i + 1;
                     if (j === 7) {j = 0;}
-                    td = jQuery("<div/>").addClass("calendar-cell align-center day-of-week").appendTo(tr);
-                    div = jQuery("<div/>").html(this.locales[o.locale].days[j+7]).appendTo(td);
+                    td = $("<div/>").addClass("calendar-cell align-center day-of-week").appendTo(tr);
+                    div = $("<div/>").html(this.locales[o.locale].days[j+7]).appendTo(td);
                 }
             }
             tr.addClass("calendar-subheader").appendTo(table);
@@ -2478,11 +2479,11 @@ window.METRO_LOCALES = {
             var prevMonth = this._month - 1; if (prevMonth < 0) {prevMonth = 11;} var daysInPrevMonth = totalDays[prevMonth];
             var _first_week_day = ((o.weekStart) ? first_week_day + 6 : first_week_day)%7;
             var htmlPrevDay = "";
-            tr = jQuery("<div/>").addClass('calendar-row');
+            tr = $("<div/>").addClass('calendar-row');
             for(i = 0; i < _first_week_day; i++) {
                 if (o.otherDays) {htmlPrevDay = daysInPrevMonth - (_first_week_day - i - 1);}
-                td = jQuery("<div/>").addClass("calendar-cell empty").appendTo(tr);
-                div = jQuery("<div/>").addClass('other-day').html(htmlPrevDay).appendTo(td);
+                td = $("<div/>").addClass("calendar-cell empty").appendTo(tr);
+                div = $("<div/>").addClass('other-day').html(htmlPrevDay).appendTo(td);
                 if (!o.otherDays) {
                     div.css('visibility', 'hidden');
                 }
@@ -2498,11 +2499,11 @@ window.METRO_LOCALES = {
 
                 if (week_day === 0) {
                     tr.appendTo(table);
-                    tr = jQuery("<div/>").addClass('calendar-row');
+                    tr = $("<div/>").addClass('calendar-row');
                 }
 
-                td = jQuery("<div/>").addClass("calendar-cell align-center day");
-                div = jQuery("<div/>").appendTo(td);
+                td = $("<div/>").addClass("calendar-cell align-center day");
+                div = $("<div/>").appendTo(td);
 
                 if (o.minDate !== false && (new Date(year, month, i) < o.minDate) || o.maxDate !== false && (new Date(year, month, i) > o.maxDate)) {
                     td.removeClass("day");
@@ -2547,8 +2548,8 @@ window.METRO_LOCALES = {
             var htmlOtherDays = "";
             for (i = week_day+1; i<=7; i++){
                 if (o.otherDays) {htmlOtherDays = i - week_day;}
-                td = jQuery("<div/>").addClass("calendar-cell empty").appendTo(tr);
-                div = jQuery("<div/>").addClass('other-day').html(htmlOtherDays).appendTo(td);
+                td = $("<div/>").addClass("calendar-cell empty").appendTo(tr);
+                div = $("<div/>").addClass('other-day').html(htmlOtherDays).appendTo(td);
                 if (!o.otherDays) {
                     div.css('visibility', 'hidden');
                 }
@@ -2573,26 +2574,26 @@ window.METRO_LOCALES = {
 
             this.element.html("");
 
-            table = jQuery("<div/>").addClass("calendar-grid");
+            table = $("<div/>").addClass("calendar-grid");
             if (this.options.condensedGrid) {
                 table.addClass('condensed no-border');
             }
 
             // Add calendar header
-            tr = jQuery("<div/>").addClass('calendar-row');
+            tr = $("<div/>").addClass('calendar-row');
 
-            jQuery("<div/>").addClass("calendar-cell sel-minus align-center").html("<a class='btn-previous-year' href='#'>-</a>").appendTo(tr);
-            jQuery("<div/>").addClass("calendar-cell sel-year align-center").html("<a class='btn-select-year' href='#'>"+this._year+"</a>").appendTo(tr);
-            jQuery("<div/>").addClass("calendar-cell sel-plus align-center").html("<a class='btn-next-year' href='#'>+</a>").appendTo(tr);
+            $("<div/>").addClass("calendar-cell sel-minus align-center").html("<a class='btn-previous-year' href='#'>-</a>").appendTo(tr);
+            $("<div/>").addClass("calendar-cell sel-year align-center").html("<a class='btn-select-year' href='#'>"+this._year+"</a>").appendTo(tr);
+            $("<div/>").addClass("calendar-cell sel-plus align-center").html("<a class='btn-next-year' href='#'>+</a>").appendTo(tr);
 
             tr.addClass("calendar-header").appendTo(table);
 
-            tr = jQuery("<div/>").addClass('calendar-row');
+            tr = $("<div/>").addClass('calendar-row');
             j = 0;
             for (i=0;i<12;i++) {
 
-                //td = jQuery("<td/>").addClass("text-center month").html("<a href='#' data-month='"+i+"'>"+this.options.monthsShort[i]+"</a>");
-                td = jQuery("<div/>").addClass("calendar-cell month-cell align-center month").html("<a href='#' data-month='"+i+"'>"+this.locales[this.options.locale].months[i+12]+"</a>");
+                //td = $("<td/>").addClass("text-center month").html("<a href='#' data-month='"+i+"'>"+this.options.monthsShort[i]+"</a>");
+                td = $("<div/>").addClass("calendar-cell month-cell align-center month").html("<a href='#' data-month='"+i+"'>"+this.locales[this.options.locale].months[i+12]+"</a>");
 
                 if (this._month === i && (new Date()).getFullYear() === this._year) {
                     td.addClass("today");
@@ -2601,7 +2602,7 @@ window.METRO_LOCALES = {
                 td.appendTo(tr);
                 if ((j+1) % 4 === 0) {
                     tr.appendTo(table);
-                    tr = jQuery("<div/>").addClass('calendar-row');
+                    tr = $("<div/>").addClass('calendar-row');
                 }
                 j+=1;
             }
@@ -2616,32 +2617,32 @@ window.METRO_LOCALES = {
 
             this.element.html("");
 
-            table = jQuery("<div/>").addClass("calendar-grid");
+            table = $("<div/>").addClass("calendar-grid");
             if (this.options.condensedGrid) {
                 table.addClass('condensed no-border');
             }
 
             // Add calendar header
-            tr = jQuery("<div/>").addClass('calendar-row cells4');
+            tr = $("<div/>").addClass('calendar-row cells4');
 
-            jQuery("<div/>").addClass("calendar-cell sel-minus align-center").html("<a class='btn-previous-year' href='#'>-</a>").appendTo(tr);
-            jQuery("<div/>").addClass("calendar-cell sel-year align-center").html("<a class='btn-none-btn'>" + (this._distance)+"-"+(this._distance+11) + "</a>").appendTo(tr);
-            jQuery("<div/>").addClass("calendar-cell sel-plus align-center").html("<a class='btn-next-year' href='#'>+</a>").appendTo(tr);
+            $("<div/>").addClass("calendar-cell sel-minus align-center").html("<a class='btn-previous-year' href='#'>-</a>").appendTo(tr);
+            $("<div/>").addClass("calendar-cell sel-year align-center").html("<a class='btn-none-btn'>" + (this._distance)+"-"+(this._distance+11) + "</a>").appendTo(tr);
+            $("<div/>").addClass("calendar-cell sel-plus align-center").html("<a class='btn-next-year' href='#'>+</a>").appendTo(tr);
 
             tr.addClass("calendar-header").appendTo(table);
 
-            tr = jQuery("<div/>").addClass('calendar-row');
+            tr = $("<div/>").addClass('calendar-row');
 
             j = 0;
             for (i=this._distance;i<this._distance+12;i++) {
-                td = jQuery("<div/>").addClass("calendar-cell year-cell align-center year").html("<a href='#' data-year='"+i+"'>"+i+"</a>");
+                td = $("<div/>").addClass("calendar-cell year-cell align-center year").html("<a href='#' data-year='"+i+"'>"+i+"</a>");
                 if ((new Date()).getFullYear() === i) {
                     td.addClass("today");
                 }
                 td.appendTo(tr);
                 if ((j+1) % 4 === 0) {
                     tr.appendTo(table);
-                    tr = jQuery("<div/>").addClass('calendar-row');
+                    tr = $("<div/>").addClass('calendar-row');
                 }
                 j+=1;
             }
@@ -2712,24 +2713,24 @@ window.METRO_LOCALES = {
                     e.preventDefault();
                     e.stopPropagation();
 
-                    if (jQuery(this).parent().parent().hasClass('exclude')) {
+                    if ($(this).parent().parent().hasClass('exclude')) {
                         return false;
                     }
 
-                    var d = (new Date(that._year, that._month, parseInt(jQuery(this).html()))).format(that.options.format,null);
-                    var d0 = (new Date(that._year, that._month, parseInt(jQuery(this).html())));
+                    var d = (new Date(that._year, that._month, parseInt($(this).html()))).format(that.options.format,null);
+                    var d0 = (new Date(that._year, that._month, parseInt($(this).html())));
 
                     if (that.options.multiSelect) {
-                        jQuery(this).parent().parent().toggleClass("selected");
+                        $(this).parent().parent().toggleClass("selected");
 
-                        if (jQuery(this).parent().parent().hasClass("selected")) {
+                        if ($(this).parent().parent().hasClass("selected")) {
                             that._addDate(d);
                         } else {
                             that._removeDate(d);
                         }
                     } else {
                         table.find('.day a').parent().parent().removeClass('selected');
-                        jQuery(this).parent().parent().addClass("selected");
+                        $(this).parent().parent().addClass("selected");
                         that.element.data('_storage', []);
                         that._addDate(d);
                     }
@@ -2753,7 +2754,7 @@ window.METRO_LOCALES = {
                     that._event = 'eventNext';
                     e.preventDefault();
                     e.stopPropagation();
-                    that._month = parseInt(jQuery(this).data('month'));
+                    that._month = parseInt($(this).data('month'));
                     that._mode = 'day';
                     that._renderCalendar();
                 });
@@ -2783,7 +2784,7 @@ window.METRO_LOCALES = {
                     that._event = 'eventNext';
                     e.preventDefault();
                     e.stopPropagation();
-                    that._year = parseInt(jQuery(this).data('year'));
+                    that._year = parseInt($(this).data('year'));
                     that._mode = 'month';
                     that._renderCalendar();
                 });
@@ -2887,7 +2888,7 @@ window.METRO_LOCALES = {
 
         getDates: function(){
             var res;
-            res = jQuery.merge(jQuery.merge([], this.element.data('_storage')), this.element.data('_stored'));
+            res = $.merge($.merge([], this.element.data('_storage')), this.element.data('_stored'));
             return res.unique();
         },
 
@@ -2922,10 +2923,10 @@ window.METRO_LOCALES = {
         }
     });
 })( jQuery );
-(function( jQuery ) {
+(function( $ ) {
     "use strict";
 
-    jQuery.widget("metro.carousel", {
+    $.widget("metro.carousel", {
 
         version: "3.0.0",
 
@@ -2956,10 +2957,10 @@ window.METRO_LOCALES = {
             var that = this, o = this.options,
                 element = this.element;
 
-            jQuery.each(element.data(), function(key, value){
+            $.each(element.data(), function(key, value){
                 if (key in o) {
                     try {
-                        o[key] = jQuery.parseJSON(value);
+                        o[key] = $.parseJSON(value);
                     } catch (e) {
                         o[key] = value;
                     }
@@ -2971,8 +2972,8 @@ window.METRO_LOCALES = {
             var max_height = 0; //element.find('.slide:nth-child(1)').outerHeight();
 
 
-            jQuery.each(o._slides, function(){
-                var oh, slide = jQuery(this);
+            $.each(o._slides, function(){
+                var oh, slide = $(this);
 
                 oh = slide.outerHeight();
 
@@ -3057,11 +3058,11 @@ window.METRO_LOCALES = {
             }
 
             carousel.find('.carousel-bullets a').each(function(){
-                var index = jQuery(this).data('num');
+                var index = $(this).data('num');
                 if (index === o._currentIndex) {
-                    jQuery(this).addClass('bullet-on');
+                    $(this).addClass('bullet-on');
                 } else {
-                    jQuery(this).removeClass('bullet-on');
+                    $(this).removeClass('bullet-on');
                 }
             });
         },
@@ -3090,8 +3091,8 @@ window.METRO_LOCALES = {
         _controls: function(){
             var next, prev, that = this, element = this.element, o = this.options;
 
-            next = jQuery('<span/>').addClass('carousel-switch-next').html("&gt;");
-            prev = jQuery('<span/>').addClass('carousel-switch-prev').html("&lt;");
+            next = $('<span/>').addClass('carousel-switch-next').html("&gt;");
+            prev = $('<span/>').addClass('carousel-switch-prev').html("&lt;");
 
             if (o.controlNext) {
                 next.html(o.controlNext);
@@ -3128,10 +3129,10 @@ window.METRO_LOCALES = {
         _markers: function () {
             var div, a, i, that = this, o = this.options;
 
-            div = jQuery('<div class="carousel-bullets" />');
+            div = $('<div class="carousel-bullets" />');
 
             for (i = 0; i < o._slides.length; i++) {
-                a = jQuery('<a class="carousel-bullet" href="javascript:void(0)" data-num="' + i + '"></a>');
+                a = $('<a class="carousel-bullet" href="javascript:void(0)" data-num="' + i + '"></a>');
                 if (i === 0) {
                     a.addClass('bullet-on');
                 }
@@ -3140,7 +3141,7 @@ window.METRO_LOCALES = {
 
 
             div.find('a').on('click', function (e) {
-                var _this = jQuery(this),
+                var _this = $(this),
                     index = _this.data('num');
 
 
@@ -3164,29 +3165,29 @@ window.METRO_LOCALES = {
 
 
         _effectSwitch: function(currentSlide, nextSlide){
-            jQuery(currentSlide)
+            $(currentSlide)
                 .hide();
-            jQuery(nextSlide)
+            $(nextSlide)
                 .css({left: 0})
                 .show();
             this.element.css({
-                height: jQuery(nextSlide).outerHeight()
+                height: $(nextSlide).outerHeight()
             });
         },
 
         _effectSlide: function(currentSlide, nextSlide){
             var o = this.options;
-            jQuery(currentSlide)
+            $(currentSlide)
                 .animate({left: o._outPosition}, o.duration, o.effectFunc);
-            jQuery(nextSlide)
+            $(nextSlide)
                 .css('left', o._outPosition * -1)
                 .show();
 
             this.element.css({
-                height: jQuery(nextSlide).outerHeight()
+                height: $(nextSlide).outerHeight()
             });
 
-            jQuery(nextSlide).animate({left: 0}, o.duration, o.effectFunc);
+            $(nextSlide).animate({left: 0}, o.duration, o.effectFunc);
         },
 
         _effectSlowdown: function(currentSlide, nextSlide){
@@ -3195,35 +3196,35 @@ window.METRO_LOCALES = {
                 'duration': o.duration,
                 'easing': 'doubleSqrt'
             };
-            jQuery.easing.doubleSqrt = function(t) {
+            $.easing.doubleSqrt = function(t) {
                 return Math.sqrt(Math.sqrt(t));
             };
 
-            jQuery(currentSlide)
+            $(currentSlide)
                 .animate({left: o._outPosition}, options);
 
 
-            jQuery(nextSlide)
+            $(nextSlide)
                 .css('left', o._outPosition * -1)
                 .show();
 
             this.element.css({
-                height: jQuery(nextSlide).outerHeight()
+                height: $(nextSlide).outerHeight()
             });
 
-            jQuery(nextSlide).animate({left: 0}, options);
+            $(nextSlide).animate({left: 0}, options);
         },
 
         _effectFade: function(currentSlide, nextSlide){
             var o = this.options;
 
-            jQuery(currentSlide)
+            $(currentSlide)
                 .fadeOut(o.duration);
-            jQuery(nextSlide)
+            $(nextSlide)
                 .css({left: 0})
                 .fadeIn(o.duration);
             this.element.css({
-                height: jQuery(nextSlide).outerHeight()
+                height: $(nextSlide).outerHeight()
             });
         },
 
@@ -3238,11 +3239,11 @@ window.METRO_LOCALES = {
     });
 })( jQuery );
 
-(function ( jQuery ) {
+(function ( $ ) {
 
     "use strict";
 
-    jQuery.widget( "metro.countdown" , {
+    $.widget( "metro.countdown" , {
 
         version: "3.0.0",
 
@@ -3273,10 +3274,10 @@ window.METRO_LOCALES = {
         _create: function () {
             var that = this, element = this.element, o = this.options;
 
-            jQuery.each(element.data(), function(key, value){
+            $.each(element.data(), function(key, value){
                 if (key in o) {
                     try {
-                        o[key] = jQuery.parseJSON(value);
+                        o[key] = $.parseJSON(value);
                     } catch (e) {
                         o[key] = value;
                     }
@@ -3335,9 +3336,9 @@ window.METRO_LOCALES = {
             var p, d;
 
             parts.map(function(v){
-                p = jQuery("<div/>").addClass('part ' + v).attr('data-day-text', o.labels[v]).appendTo(element);
-                jQuery("<div/>").addClass('digit').appendTo(p);
-                jQuery("<div/>").addClass('digit').appendTo(p);
+                p = $("<div/>").addClass('part ' + v).attr('data-day-text', o.labels[v]).appendTo(element);
+                $("<div/>").addClass('digit').appendTo(p);
+                $("<div/>").addClass('digit').appendTo(p);
                 if (o.labelColor.isColor()) {
                     p.css({
                         color: o.labelColor
@@ -3363,7 +3364,7 @@ window.METRO_LOCALES = {
                 }
 
                 if (v !== 'seconds') {
-                    d = jQuery("<div/>").addClass("divider").text(':').appendTo(element);
+                    d = $("<div/>").addClass("divider").text(':').appendTo(element);
                     if (o.dividerColor.isColor()) {
                         d.css({'color': o.dividerColor});
                     } else {
@@ -3484,11 +3485,11 @@ window.METRO_LOCALES = {
     });
 
 })( jQuery );
-(function ( jQuery ) {
+(function ( $ ) {
 
     "use strict";
 
-    jQuery.widget( "metro.datatable" , {
+    $.widget( "metro.datatable" , {
 
         version: "3.0.0",
 
@@ -3498,15 +3499,15 @@ window.METRO_LOCALES = {
         _create: function () {
             var that = this, element = this.element, o = this.options;
 
-            jQuery.each(element.data(), function(key, value){
+            $.each(element.data(), function(key, value){
                 try {
-                    o[key] = jQuery.parseJSON(value);
+                    o[key] = $.parseJSON(value);
                 } catch (e) {
                     o[key] = value;
                 }
             });
 
-            if(jQuery().dataTable) {
+            if($().dataTable) {
                 try {
                     element.dataTable(o);
                 } catch (e) {
@@ -3529,11 +3530,11 @@ window.METRO_LOCALES = {
     });
 
 })( jQuery );
-(function( jQuery ) {
+(function( $ ) {
 
     "use strict";
 
-    jQuery.widget("metro.datepicker", {
+    $.widget("metro.datepicker", {
 
         version: "3.0.0",
 
@@ -3566,12 +3567,12 @@ window.METRO_LOCALES = {
 
             //console.log(o);
 
-            jQuery.each(element.data(), function(key, value){
+            $.each(element.data(), function(key, value){
                 //console.log(typeof key, key, value);
 
                 if (key in o) {
                     try {
-                        o[key] = jQuery.parseJSON(value);
+                        o[key] = $.parseJSON(value);
                     } catch (e) {
                         o[key] = value;
                     }
@@ -3601,8 +3602,8 @@ window.METRO_LOCALES = {
                 }
             });
 
-            jQuery('html').on('click', function(){
-                jQuery(".calendar-dropdown").hide();
+            $('html').on('click', function(){
+                $(".calendar-dropdown").hide();
             });
 
             element.data('datepicker', this);
@@ -3612,7 +3613,7 @@ window.METRO_LOCALES = {
         _createCalendar: function(){
             var _calendar, that = this, element = this.element, o = this.options;
 
-            _calendar = jQuery("<div/>").css({
+            _calendar = $("<div/>").css({
                 position: 'absolute',
                 display: 'none',
                 'max-width': 220,
@@ -3668,13 +3669,13 @@ window.METRO_LOCALES = {
 
         _show: function(){
             if (this.options.effect === 'slide') {
-                jQuery(".calendar-dropdown").slideUp('fast');
+                $(".calendar-dropdown").slideUp('fast');
                 this._calendar.slideDown('fast');
             } else if (this.options.effect === 'fade') {
-                jQuery(".calendar-dropdown").fadeOut('fast');
+                $(".calendar-dropdown").fadeOut('fast');
                 this._calendar.fadeIn('fast');
             } else {
-                jQuery(".calendar-dropdown").hide();
+                $(".calendar-dropdown").hide();
                 this._calendar.show();
             }
         },
@@ -3699,11 +3700,11 @@ window.METRO_LOCALES = {
 
 
 
-(function ( jQuery ) {
+(function ( $ ) {
 
     "use strict";
 
-    jQuery.widget( "metro.dialog" , {
+    $.widget( "metro.dialog" , {
 
         version: "3.0.0",
 
@@ -3733,10 +3734,10 @@ window.METRO_LOCALES = {
         _create: function () {
             var that = this, element = this.element, o = this.options;
 
-            jQuery.each(element.data(), function(key, value){
+            $.each(element.data(), function(key, value){
                 if (key in o) {
                     try {
-                        o[key] = jQuery.parseJSON(value);
+                        o[key] = $.parseJSON(value);
                     } catch (e) {
                         o[key] = value;
                     }
@@ -3753,10 +3754,10 @@ window.METRO_LOCALES = {
 
         _createOverlay: function(){
             var that = this, element = this.element, o = this.options;
-            var overlay = jQuery('body').find('.dialog-overlay');
+            var overlay = $('body').find('.dialog-overlay');
 
             if (overlay.length === 0) {
-                overlay = jQuery("<div/>").addClass('dialog-overlay');
+                overlay = $("<div/>").addClass('dialog-overlay');
             }
 
             if (o.overlayColor) {
@@ -3816,7 +3817,7 @@ window.METRO_LOCALES = {
             });
 
             if (o.closeButton) {
-                jQuery("<span/>").addClass('dialog-close-button').appendTo(element).on('click', function(){
+                $("<span/>").addClass('dialog-close-button').appendTo(element).on('click', function(){
                     that.close();
                 });
             }
@@ -3830,8 +3831,8 @@ window.METRO_LOCALES = {
                 height = element.height();
 
             element.css({
-                left: o.windowsStyle === false ? ( jQuery(window).width() - width ) / 2 : 0,
-                top: ( jQuery(window).height() - height ) / 2
+                left: o.windowsStyle === false ? ( $(window).width() - width ) / 2 : 0,
+                top: ( $(window).height() - height ) / 2
             });
         },
 
@@ -3869,7 +3870,7 @@ window.METRO_LOCALES = {
             clearInterval(o._interval);
 
             if (o.overlay) {
-                jQuery('body').find('.dialog-overlay').remove();
+                $('body').find('.dialog-overlay').remove();
             }
 
             element.data('opened', false);
@@ -3891,11 +3892,11 @@ window.METRO_LOCALES = {
         }
     });
 })( jQuery );
-(function( jQuery ) {
+(function( $ ) {
 
     "use strict";
 
-    jQuery.widget("metro.dropdown", {
+    $.widget("metro.dropdown", {
 
         version: "3.0.0",
 
@@ -3913,17 +3914,17 @@ window.METRO_LOCALES = {
 
             var toggle;
 
-            jQuery.each(element.data(), function(key, value){
+            $.each(element.data(), function(key, value){
                 if (key in o) {
                     try {
-                        o[key] = jQuery.parseJSON(value);
+                        o[key] = $.parseJSON(value);
                     } catch (e) {
                         o[key] = value;
                     }
                 }
             });
 
-            toggle = o.toggleElement ? jQuery(o.toggleElement) : parent.children('.dropdown-toggle').length > 0 ? parent.children('.dropdown-toggle') : parent.children('a:nth-child(1)');
+            toggle = o.toggleElement ? $(o.toggleElement) : parent.children('.dropdown-toggle').length > 0 ? parent.children('.dropdown-toggle') : parent.children('a:nth-child(1)');
 
             if (METRO_SHOW_TYPE !== undefined) {
                 this.options.effect = METRO_SHOW_TYPE;
@@ -3931,13 +3932,13 @@ window.METRO_LOCALES = {
 
             toggle.on('click.'+name, function(e){
                 parent.siblings(parent[0].tagName).removeClass("active-container");
-                jQuery(".active-container").removeClass("active-container");
+                $(".active-container").removeClass("active-container");
 
                 if (menu.css('display') === 'block' && !menu.hasClass('keep-open')) {
                     that._close(menu);
                 } else {
-                    jQuery('[data-role=dropdown]').each(function(i, el){
-                        if (!menu.parents('[data-role=dropdown]').is(el) && !jQuery(el).hasClass('keep-open') && jQuery(el).css('display') === 'block') {
+                    $('[data-role=dropdown]').each(function(i, el){
+                        if (!menu.parents('[data-role=dropdown]').is(el) && !$(el).hasClass('keep-open') && $(el).css('display') === 'block') {
                             that._close(el);
                         }
                     });
@@ -3946,8 +3947,8 @@ window.METRO_LOCALES = {
                             'visibility': 'hidden',
                             'display': 'block'
                         });
-                        var item_length = jQuery(menu.children('li')[0]).outerWidth();
-                        //var item_length2 = jQuery(menu.children('li')[0]).width();
+                        var item_length = $(menu.children('li')[0]).outerWidth();
+                        //var item_length2 = $(menu.children('li')[0]).width();
                         menu.css({
                             'visibility': 'visible',
                             'display': 'none'
@@ -3969,14 +3970,14 @@ window.METRO_LOCALES = {
                 });
             }
 
-            jQuery(menu).find('li.disabled a').on('click', function(e){
+            $(menu).find('li.disabled a').on('click', function(e){
                 e.preventDefault();
             });
 
-            jQuery(document).on('click', function(e){
-                jQuery('[data-role=dropdown]').each(function(i, el){
-                    if (!jQuery(el).hasClass('keep-open') && jQuery(el).css('display')==='block') {
-                        jQuery(el).hide();
+            $(document).on('click', function(e){
+                $('[data-role=dropdown]').each(function(i, el){
+                    if (!$(el).hasClass('keep-open') && $(el).css('display')==='block') {
+                        $(el).hide();
                     }
                 });
             });
@@ -3986,18 +3987,18 @@ window.METRO_LOCALES = {
 
         _open: function(el){
             switch (this.options.effect) {
-                case 'fade': jQuery(el).fadeIn('fast'); break;
-                case 'slide': jQuery(el).slideDown('fast'); break;
-                default: jQuery(el).show();
+                case 'fade': $(el).fadeIn('fast'); break;
+                case 'slide': $(el).slideDown('fast'); break;
+                default: $(el).show();
             }
             this._trigger("onOpen", null, el);
         },
 
         _close: function(el){
             switch (this.options.effect) {
-                case 'fade': jQuery(el).fadeOut('fast'); break;
-                case 'slide': jQuery(el).slideUp('fast'); break;
-                default: jQuery(el).hide();
+                case 'fade': $(el).fadeOut('fast'); break;
+                case 'slide': $(el).slideUp('fast'); break;
+                default: $(el).hide();
             }
             this._trigger("onClose", null, el);
         },
@@ -4011,11 +4012,11 @@ window.METRO_LOCALES = {
     });
 })( jQuery );
 
-(function ( jQuery ) {
+(function ( $ ) {
 
     "use strict";
 
-    jQuery.widget( "metro.fitImage" , {
+    $.widget( "metro.fitImage" , {
 
         version: "3.0.0",
 
@@ -4033,25 +4034,25 @@ window.METRO_LOCALES = {
             var i_w, i_h, p_w, p_h;
             var div, src = element.attr('src');
 
-            jQuery.each(element.data(), function(key, value){
+            $.each(element.data(), function(key, value){
                 if (key in o) {
                     try {
-                        o[key] = jQuery.parseJSON(value);
+                        o[key] = $.parseJSON(value);
                     } catch (e) {
                         o[key] = value;
                     }
                 }
             });
 
-            jQuery("<img/>")
+            $("<img/>")
                 .attr('src', src)
                 .load(function(){
                     i_w = this.width;
                     i_h = this.height;
                 }).remove();
 
-            var image_container = jQuery("<div/>").addClass('image-container').css('width', '100%').appendTo(parent);
-            var image_frame = jQuery("<div/>").addClass('frame').appendTo(image_container);
+            var image_container = $("<div/>").addClass('image-container').css('width', '100%').appendTo(parent);
+            var image_frame = $("<div/>").addClass('frame').appendTo(image_container);
 
             p_w = image_frame.innerWidth();
             p_h = image_frame.innerHeight();
@@ -4065,7 +4066,7 @@ window.METRO_LOCALES = {
                 default: p_h = 9 * p_w / 16;
             }
 
-            div = jQuery("<div/>").css({
+            div = $("<div/>").css({
                 'width': '100%',
                 'height': p_h,
                 'background-image': 'url('+src+')',
@@ -4074,7 +4075,7 @@ window.METRO_LOCALES = {
                 'border-radius': o.format === 'cycle' ? '50%' : '0'
             });
 
-            jQuery(window).on('resize', function(){
+            $(window).on('resize', function(){
                 var p_w = image_frame.innerWidth();
                 var p_h = image_frame.innerHeight();
 
@@ -4100,7 +4101,7 @@ window.METRO_LOCALES = {
                 }
             }
             if (o.overlay !== false) {
-                var overlay = jQuery("<div/>").addClass('image-overlay').html(o.overlay).appendTo(image_container);
+                var overlay = $("<div/>").addClass('image-overlay').html(o.overlay).appendTo(image_container);
             }
             if (o.shadow !== false) {
                 image_container.addClass('block-shadow');
@@ -4142,11 +4143,11 @@ window.METRO_LOCALES = {
         }
     });
 })( jQuery );
-(function ( jQuery ) {
+(function ( $ ) {
 
     "use strict";
 
-    jQuery.widget( "metro.grid" , {
+    $.widget( "metro.grid" , {
 
         version: "3.0.0",
 
@@ -4157,10 +4158,10 @@ window.METRO_LOCALES = {
         _create: function () {
             var that = this, element = this.element, o = this.options;
 
-            jQuery.each(element.data(), function(key, value){
+            $.each(element.data(), function(key, value){
                 if (key in o) {
                     try {
-                        o[key] = jQuery.parseJSON(value);
+                        o[key] = $.parseJSON(value);
                     } catch (e) {
                         o[key] = value;
                     }
@@ -4172,7 +4173,7 @@ window.METRO_LOCALES = {
                     that._setEqualHeight();
                 }, 50);
 
-                jQuery(window).on('resize', function(){
+                $(window).on('resize', function(){
                     that._setEqualHeight();
                 });
             }
@@ -4185,17 +4186,17 @@ window.METRO_LOCALES = {
             var that = this, element = this.element, o = this.options;
             var rows = element.find('.row');
 
-            jQuery.each(rows, function(){
-                var row = jQuery(this);
+            $.each(rows, function(){
+                var row = $(this);
                 var cells = row.children('.cell');
                 var maxHeight = 0;
 
                 cells.css('min-height', '0');
 
-                jQuery.each(cells, function(){
-                    //console.log(this.tagName, jQuery(this).outerHeight());
-                    if (jQuery(this).outerHeight() > maxHeight) {
-                        maxHeight = jQuery(this).outerHeight();
+                $.each(cells, function(){
+                    //console.log(this.tagName, $(this).outerHeight());
+                    if ($(this).outerHeight() > maxHeight) {
+                        maxHeight = $(this).outerHeight();
                     }
                 });
 
@@ -4212,11 +4213,11 @@ window.METRO_LOCALES = {
     });
 
 })( jQuery );
-(function( jQuery ) {
+(function( $ ) {
 
     "use strict";
 
-    jQuery.widget("metro.hint", {
+    $.widget("metro.hint", {
 
         version: "3.0.0",
 
@@ -4240,7 +4241,7 @@ window.METRO_LOCALES = {
 
 
             this.element.on('mouseenter', function(e){
-                jQuery(".hint, .hint2").remove();
+                $(".hint, .hint2").remove();
                 if (o.hintTimeDelay > 0) {
                     setTimeout(function(){
                         that.createHint();
@@ -4271,10 +4272,10 @@ window.METRO_LOCALES = {
 
             var _hint;
 
-            jQuery.each(element.data(), function(key, value){
+            $.each(element.data(), function(key, value){
                 if (key in o) {
                     try {
-                        o[key] = jQuery.parseJSON(value);
+                        o[key] = $.parseJSON(value);
                     } catch (e) {
                         o[key] = value;
                     }
@@ -4282,7 +4283,7 @@ window.METRO_LOCALES = {
             });
 
             if (element[0].tagName === 'TD' || element[0].tagName === 'TH') {
-                var wrp = jQuery("<div/>").css("display", "inline-block").html(element.html());
+                var wrp = $("<div/>").css("display", "inline-block").html(element.html());
                 element.html(wrp);
                 element = wrp;
             }
@@ -4291,7 +4292,7 @@ window.METRO_LOCALES = {
             var hint_text = hint.length > 1 ? hint[1] : hint[0];
 
 
-            _hint = jQuery("<div/>").appendTo('body');
+            _hint = $("<div/>").appendTo('body');
             if (o.hintMode === 2) {
                 _hint.addClass('hint2');
             } else {
@@ -4303,9 +4304,9 @@ window.METRO_LOCALES = {
             }
 
             if (hint_title) {
-                jQuery("<div/>").addClass("hint-title").html(hint_title).appendTo(_hint);
+                $("<div/>").addClass("hint-title").html(hint_title).appendTo(_hint);
             }
-            jQuery("<div/>").addClass("hint-text").html(hint_text).appendTo(_hint);
+            $("<div/>").addClass("hint-text").html(hint_text).appendTo(_hint);
 
             _hint.addClass(o.position);
 
@@ -4338,26 +4339,26 @@ window.METRO_LOCALES = {
             if (o.hintPosition === 'top') {
                 _hint.addClass('top');
                 _hint.css({
-                    top: element.offset().top - jQuery(window).scrollTop() - _hint.outerHeight() - 20,
-                    left: o.hintMode === 2 ? element.offset().left + element.outerWidth()/2 - _hint.outerWidth()/2  - jQuery(window).scrollLeft(): element.offset().left - jQuery(window).scrollLeft()
+                    top: element.offset().top - $(window).scrollTop() - _hint.outerHeight() - 20,
+                    left: o.hintMode === 2 ? element.offset().left + element.outerWidth()/2 - _hint.outerWidth()/2  - $(window).scrollLeft(): element.offset().left - $(window).scrollLeft()
                 });
             } else if (o.hintPosition === 'right') {
                 _hint.addClass('right');
                 _hint.css({
-                    top: o.hintMode === 2 ? element.offset().top + element.outerHeight()/2 - _hint.outerHeight()/2 - jQuery(window).scrollTop() - 10 : element.offset().top - 10 - jQuery(window).scrollTop(),
-                    left: element.offset().left + element.outerWidth() + 15 - jQuery(window).scrollLeft()
+                    top: o.hintMode === 2 ? element.offset().top + element.outerHeight()/2 - _hint.outerHeight()/2 - $(window).scrollTop() - 10 : element.offset().top - 10 - $(window).scrollTop(),
+                    left: element.offset().left + element.outerWidth() + 15 - $(window).scrollLeft()
                 });
             } else if (o.hintPosition === 'left') {
                 _hint.addClass('left');
                 _hint.css({
-                    top: o.hintMode === 2 ? element.offset().top + element.outerHeight()/2 - _hint.outerHeight()/2 - jQuery(window).scrollTop() - 10 : element.offset().top - 10 - jQuery(window).scrollTop(),
-                    left: element.offset().left - _hint.outerWidth() - 10 - jQuery(window).scrollLeft()
+                    top: o.hintMode === 2 ? element.offset().top + element.outerHeight()/2 - _hint.outerHeight()/2 - $(window).scrollTop() - 10 : element.offset().top - 10 - $(window).scrollTop(),
+                    left: element.offset().left - _hint.outerWidth() - 10 - $(window).scrollLeft()
                 });
             } else {
                 _hint.addClass('bottom');
                 _hint.css({
-                    top: element.offset().top - jQuery(window).scrollTop() + element.outerHeight(),
-                    left: o.hintMode === 2 ? element.offset().left + element.outerWidth()/2 - _hint.outerWidth()/2  - jQuery(window).scrollLeft(): element.offset().left - jQuery(window).scrollLeft()
+                    top: element.offset().top - $(window).scrollTop() + element.outerHeight(),
+                    left: o.hintMode === 2 ? element.offset().left + element.outerWidth()/2 - _hint.outerWidth()/2  - $(window).scrollLeft(): element.offset().left - $(window).scrollLeft()
                 });
             }
 
@@ -4384,10 +4385,10 @@ window.METRO_LOCALES = {
 
 
 
-(function( jQuery ) {
+(function( $ ) {
     "use strict";
 
-    jQuery.widget("metro.input", {
+    $.widget("metro.input", {
 
         version: "3.0.0",
 
@@ -4398,10 +4399,10 @@ window.METRO_LOCALES = {
         _create: function(){
             var element = this.element, o = this.options;
 
-            jQuery.each(element.data(), function(key, value){
+            $.each(element.data(), function(key, value){
                 if (key in o) {
                     try {
-                        o[key] = jQuery.parseJSON(value);
+                        o[key] = $.parseJSON(value);
                     } catch (e) {
                         o[key] = value;
                     }
@@ -4443,7 +4444,7 @@ window.METRO_LOCALES = {
         _createInputFile: function(){
             var element = this.element;
             var wrapper, button, input;
-            wrapper = jQuery("<input type='text' class='input-file-wrapper' readonly style='z-index: 1; cursor: default;'>");
+            wrapper = $("<input type='text' class='input-file-wrapper' readonly style='z-index: 1; cursor: default;'>");
             button = element.children('.button');
             input = element.children('input[type="file"]');
             input.css('z-index', 0);
@@ -4453,7 +4454,7 @@ window.METRO_LOCALES = {
             wrapper.attr('placeholder', input.attr('placeholder'))
 
             input.on('change', function(){
-                var val = jQuery(this).val();
+                var val = $(this).val();
                 if (val !== '') {
                     wrapper.val(val.replace(/.+[\\\/]/, ""));
                     wrapper.attr('title', val.replace(/.+[\\\/]/, ""));
@@ -4476,8 +4477,8 @@ window.METRO_LOCALES = {
             var padding = 0;
 
 
-            jQuery.each(buttons, function(){
-                var b = jQuery(this);
+            $.each(buttons, function(){
+                var b = $(this);
                 padding += b.outerWidth();
             });
 
@@ -4522,11 +4523,11 @@ window.METRO_LOCALES = {
         }
     });
 })( jQuery );
-(function ( jQuery ) {
+(function ( $ ) {
 
     "use strict";
 
-    jQuery.widget( "metro.keypad" , {
+    $.widget( "metro.keypad" , {
 
         version: "3.0.0",
 
@@ -4542,10 +4543,10 @@ window.METRO_LOCALES = {
         _create: function () {
             var that = this, element = this.element, o = this.options;
 
-            jQuery.each(element.data(), function(key, value){
+            $.each(element.data(), function(key, value){
                 if (key in o) {
                     try {
-                        o[key] = jQuery.parseJSON(value);
+                        o[key] = $.parseJSON(value);
                     } catch (e) {
                         o[key] = value;
                     }
@@ -4577,11 +4578,11 @@ window.METRO_LOCALES = {
             });
 
             keys.map(function(i){
-                jQuery("<div/>").addClass('key').html(i).data('key', i).appendTo(keypad);
+                $("<div/>").addClass('key').html(i).data('key', i).appendTo(keypad);
             });
 
-            jQuery("<div/>").addClass('key').html('&larr;').data('key', '&larr;').appendTo(keypad);
-            jQuery("<div/>").addClass('key').html('&times;').data('key', '&times;').appendTo(keypad);
+            $("<div/>").addClass('key').html('&larr;').data('key', '&larr;').appendTo(keypad);
+            $("<div/>").addClass('key').html('&times;').data('key', '&times;').appendTo(keypad);
         },
 
         _createKeypad: function(){
@@ -4590,7 +4591,7 @@ window.METRO_LOCALES = {
 
             if (element.hasClass('input-control')) {
 
-                keypad = jQuery("<div/>").addClass('keypad keypad-dropdown').css({
+                keypad = $("<div/>").addClass('keypad keypad-dropdown').css({
                     position: 'absolute',
                     'z-index': 1000,
                     display: 'none'
@@ -4605,18 +4606,18 @@ window.METRO_LOCALES = {
                         keypad.hide();
                     }
 
-                    var opened_pads = jQuery(".keypad.keypad-dropdown");
-                    jQuery.each(opened_pads, function(){
-                        if (!jQuery(this).is(keypad)) {
-                            jQuery(this).hide();
+                    var opened_pads = $(".keypad.keypad-dropdown");
+                    $.each(opened_pads, function(){
+                        if (!$(this).is(keypad)) {
+                            $(this).hide();
                         }
                     });
 
                     e.stopPropagation();
                 });
 
-                jQuery('html').on('click', function(){
-                    jQuery(".keypad.keypad-dropdown").hide();
+                $('html').on('click', function(){
+                    $(".keypad.keypad-dropdown").hide();
                 });
             } else {
                 keypad = element;
@@ -4624,7 +4625,7 @@ window.METRO_LOCALES = {
             }
 
             if (o.target !== false) {
-                jQuery(o.target).attr('readonly', true);
+                $(o.target).attr('readonly', true);
             }
 
             if (keypad.parent().data('role') === 'dropdown') {
@@ -4638,22 +4639,22 @@ window.METRO_LOCALES = {
             this._shuffleKeys();
 
             keypad.on('click', '.key', function(e){
-                var key = jQuery(this);
+                var key = $(this);
 
                 if (o.target) {
 
                     if (key.data('key') !== '&larr;' && key.data('key') !== '&times;') {
-                        if (o.length && jQuery(o.target).val().length === o.length) {
+                        if (o.length && $(o.target).val().length === o.length) {
                             return false;
                         }
-                        jQuery(o.target).val(jQuery(o.target).val() + '' + key.data('key'));
+                        $(o.target).val($(o.target).val() + '' + key.data('key'));
                     } else {
                         if (key.data('key') === '&times;') {
-                            jQuery(o.target).val('');
+                            $(o.target).val('');
                         }
                         if (key.data('key') === '&larr;') {
-                            var val = jQuery(o.target).val();
-                            jQuery(o.target).val(val.substring(0, val.length - 1))
+                            var val = $(o.target).val();
+                            $(o.target).val(val.substring(0, val.length - 1))
                         }
                     }
                 }
@@ -4676,11 +4677,11 @@ window.METRO_LOCALES = {
     });
 
 })( jQuery );
-(function ( jQuery ) {
+(function ( $ ) {
 
     "use strict";
 
-    jQuery.widget( "metro.listview" , {
+    $.widget( "metro.listview" , {
 
         version: "3.0.0",
 
@@ -4693,10 +4694,10 @@ window.METRO_LOCALES = {
         _create: function () {
             var that = this, element = this.element, o = this.options;
 
-            jQuery.each(element.data(), function(key, value){
+            $.each(element.data(), function(key, value){
                 if (key in o) {
                     try {
-                        o[key] = jQuery.parseJSON(value);
+                        o[key] = $.parseJSON(value);
                     } catch (e) {
                         o[key] = value;
                     }
@@ -4714,8 +4715,8 @@ window.METRO_LOCALES = {
             var that = this, element = this.element, o = this.options;
             var groups = element.find('.list-group');
 
-            jQuery.each(groups, function(){
-                var group = jQuery(this);
+            $.each(groups, function(){
+                var group = $(this);
                 if (group.hasClass('collapsed')) {
                     group.find('.list-group-content').hide();
                 }
@@ -4727,7 +4728,7 @@ window.METRO_LOCALES = {
             var that = this, element = this.element, o = this.options;
 
             element.on('click', '.list-group-toggle', function(e){
-                var toggle = jQuery(this), parent = toggle.parent();
+                var toggle = $(this), parent = toggle.parent();
 
                 if (toggle.parent().hasClass('keep-open')) {
                     return;
@@ -4755,7 +4756,7 @@ window.METRO_LOCALES = {
             });
 
             element.on('click', '.list', function(e){
-                var list = jQuery(this);
+                var list = $(this);
 
                 element.find('.list').removeClass('active');
                 list.addClass('active');
@@ -4778,7 +4779,7 @@ window.METRO_LOCALES = {
     });
 
 })( jQuery );
-(function(jQuery) {
+(function($) {
 
     "use strict";
 
@@ -4808,7 +4809,7 @@ window.METRO_LOCALES = {
 		},
 		
 		init: function(options) {
-			this.options = jQuery.extend({}, this.options, options);
+			this.options = $.extend({}, this.options, options);
 			this._build();
 			return this;
 		},
@@ -4816,12 +4817,12 @@ window.METRO_LOCALES = {
 		_build: function() {
             var that = this, o = this.options;
 
-			this._container = _notify_container || jQuery("<div/>").addClass("notify-container").appendTo('body');
+			this._container = _notify_container || $("<div/>").addClass("notify-container").appendTo('body');
 			_notify_container = this._container;
 
 			if (o.content === '' || o.content === undefined) {return false;}
 			
-			this._notify = jQuery("<div/>").addClass("notify");
+			this._notify = $("<div/>").addClass("notify");
 
             if (o.type !== 'default') {
                 this._notify.addClass(o.type);
@@ -4833,20 +4834,20 @@ window.METRO_LOCALES = {
 
             // add Icon
             if (o.icon !== '') {
-                var icon = jQuery(o.icon).addClass('notify-icon').appendTo(this._notify);
+                var icon = $(o.icon).addClass('notify-icon').appendTo(this._notify);
             }
 
 			// add title
    	    	if (o.caption !== '' && o.caption !== undefined) {
-   	    	    jQuery("<div/>").addClass("notify-title").html(o.caption).appendTo(this._notify);
+   	    	    $("<div/>").addClass("notify-title").html(o.caption).appendTo(this._notify);
    	    	}
    	    	// add content
    	    	if (o.content !== '' && o.content !== undefined) {
-   	    	    jQuery("<div/>").addClass("notify-text").html(o.content).appendTo(this._notify);
+   	    	    $("<div/>").addClass("notify-text").html(o.content).appendTo(this._notify);
    	    	}
 
             // add closer
-            var closer = jQuery("<span/>").addClass("notify-closer").appendTo(this._notify);
+            var closer = $("<span/>").addClass("notify-closer").appendTo(this._notify);
             closer.on('click', function(){
                 that.close(0);
             });
@@ -4882,7 +4883,7 @@ window.METRO_LOCALES = {
 
 			if(this._notify !== undefined) {
         	   	this._notify.fadeOut('slow', function() {
-					jQuery(this).remove();
+					$(this).remove();
 					_notifies.splice(_notifies.indexOf(that._notify), 1);
 				});
 				return this;
@@ -4902,12 +4903,12 @@ window.METRO_LOCALES = {
 		}
 	};
 	
-	jQuery.Notify = function(options) {
+	$.Notify = function(options) {
 		return Object.create(Notify).init(options);
 	};
 
-	jQuery.Notify.show = function(message, title, icon) {
-		return jQuery.Notify({
+	$.Notify.show = function(message, title, icon) {
+		return $.Notify({
        	    content: message,
        	    caption: title,
             icon: icon
@@ -4916,11 +4917,11 @@ window.METRO_LOCALES = {
 	
 })(jQuery);
 
-(function( jQuery ) {
+(function( $ ) {
 
     "use strict";
 
-    jQuery.widget("metro.panel", {
+    $.widget("metro.panel", {
 
         version: "3.0.0",
 
@@ -4930,10 +4931,10 @@ window.METRO_LOCALES = {
         _create: function(){
             var element = this.element, o = this.options;
 
-            jQuery.each(element.data(), function(key, value){
+            $.each(element.data(), function(key, value){
                 if (key in o) {
                     try {
-                        o[key] = jQuery.parseJSON(value);
+                        o[key] = $.parseJSON(value);
                     } catch (e) {
                         o[key] = value;
                     }
@@ -4973,11 +4974,11 @@ window.METRO_LOCALES = {
         }
     });
 })( jQuery );
-(function ( jQuery ) {
+(function ( $ ) {
 
     "use strict";
 
-    jQuery.widget( "metro.widget" , {
+    $.widget( "metro.widget" , {
 
         version: "3.0.0",
 
@@ -4988,15 +4989,17 @@ window.METRO_LOCALES = {
         _create: function () {
             var that = this, element = this.element, o = this.options;
 
-            jQuery.each(element.data(), function(key, value){
+            $.each(element.data(), function(key, value){
                 if (key in o) {
                     try {
-                        o[key] = jQuery.parseJSON(value);
+                        o[key] = $.parseJSON(value);
                     } catch (e) {
                         o[key] = value;
                     }
                 }
             });
+
+            console.log('Hi');
 
             element.data('widget', this);
 
@@ -5011,11 +5014,11 @@ window.METRO_LOCALES = {
     });
 
 })( jQuery );
-(function( jQuery ) {
+(function( $ ) {
 
     "use strict";
 
-    jQuery.widget("metro.popover", {
+    $.widget("metro.popover", {
 
         version: "3.0.0",
 
@@ -5045,10 +5048,10 @@ window.METRO_LOCALES = {
 
             element = this.element;
 
-            jQuery.each(element.data(), function(key, value){
+            $.each(element.data(), function(key, value){
                 if (key in o) {
                     try {
-                        o[key] = jQuery.parseJSON(value);
+                        o[key] = $.parseJSON(value);
                     } catch (e) {
                         o[key] = value;
                     }
@@ -5057,8 +5060,8 @@ window.METRO_LOCALES = {
 
             var popover, content_container, marker_class;
 
-            popover = jQuery("<div/>").addClass("popover").appendTo('body').hide();
-            jQuery("<div/>").appendTo(popover);
+            popover = $("<div/>").addClass("popover").appendTo('body').hide();
+            $("<div/>").appendTo(popover);
 
             if (o.popoverShadow) {
                 popover.addClass("popover-shadow");
@@ -5100,7 +5103,7 @@ window.METRO_LOCALES = {
                 if (!popover.data('visible')) {that.show();}
             });
 
-            jQuery(window).scroll(function(){
+            $(window).scroll(function(){
                 //that.popover.hide();
                 if (that.popover.data('visible')) {
                     that.setPosition();
@@ -5114,23 +5117,23 @@ window.METRO_LOCALES = {
 
             if (o.popoverPosition === 'top') {
                 popover.css({
-                    top: element.offset().top - jQuery(window).scrollTop() - popover.outerHeight() - 10,
-                    left: element.offset().left + element.outerWidth()/2 - popover.outerWidth()/2  - jQuery(window).scrollLeft()
+                    top: element.offset().top - $(window).scrollTop() - popover.outerHeight() - 10,
+                    left: element.offset().left + element.outerWidth()/2 - popover.outerWidth()/2  - $(window).scrollLeft()
                 });
             } else if (o.popoverPosition === 'bottom') {
                 popover.css({
-                    top: element.offset().top - jQuery(window).scrollTop() + element.outerHeight() + 10,
-                    left: element.offset().left + element.outerWidth()/2 - popover.outerWidth()/2  - jQuery(window).scrollLeft()
+                    top: element.offset().top - $(window).scrollTop() + element.outerHeight() + 10,
+                    left: element.offset().left + element.outerWidth()/2 - popover.outerWidth()/2  - $(window).scrollLeft()
                 });
             } else if (o.popoverPosition === 'right') {
                 popover.css({
-                    top: element.offset().top + element.outerHeight()/2 - popover.outerHeight()/2 - jQuery(window).scrollTop(),
-                    left: element.offset().left + element.outerWidth() - jQuery(window).scrollLeft() + 10
+                    top: element.offset().top + element.outerHeight()/2 - popover.outerHeight()/2 - $(window).scrollTop(),
+                    left: element.offset().left + element.outerWidth() - $(window).scrollLeft() + 10
                 });
             } else if (o.popoverPosition === 'left') {
                 popover.css({
-                    top: element.offset().top + element.outerHeight()/2 - popover.outerHeight()/2 - jQuery(window).scrollTop(),
-                    left: element.offset().left - popover.outerWidth() - jQuery(window).scrollLeft() - 10
+                    top: element.offset().top + element.outerHeight()/2 - popover.outerHeight()/2 - $(window).scrollTop(),
+                    left: element.offset().left - popover.outerWidth() - $(window).scrollLeft() - 10
                 });
             }
             return this;
@@ -5163,11 +5166,11 @@ window.METRO_LOCALES = {
         }
     });
 })( jQuery );
-(function ( jQuery ) {
+(function ( $ ) {
 
     "use strict";
 
-    jQuery.widget( "metro.preloader" , {
+    $.widget( "metro.preloader" , {
 
         version: "3.0.0",
 
@@ -5179,10 +5182,10 @@ window.METRO_LOCALES = {
         _create: function () {
             var that = this, element = this.element, o = this.options;
 
-            jQuery.each(element.data(), function(key, value){
+            $.each(element.data(), function(key, value){
                 if (key in o) {
                     try {
-                        o[key] = jQuery.parseJSON(value);
+                        o[key] = $.parseJSON(value);
                     } catch (e) {
                         o[key] = value;
                     }
@@ -5200,8 +5203,8 @@ window.METRO_LOCALES = {
             var i, wrap, circle;
 
             for(i = 0; i < 5 ; i++) {
-                wrap = jQuery("<div/>").addClass('wrap').appendTo(element);
-                circle = jQuery("<div/>").addClass('circle').appendTo(wrap);
+                wrap = $("<div/>").addClass('wrap').appendTo(element);
+                circle = $("<div/>").addClass('circle').appendTo(wrap);
             }
         },
 
@@ -5210,7 +5213,7 @@ window.METRO_LOCALES = {
             var i, circle;
 
             for(i = 0; i < 5 ; i++) {
-                circle = jQuery("<div/>").addClass('circle').appendTo(element);
+                circle = $("<div/>").addClass('circle').appendTo(element);
             }
         },
 
@@ -5239,11 +5242,11 @@ window.METRO_LOCALES = {
     });
 
 })( jQuery );
-(function ( jQuery ) {
+(function ( $ ) {
 
     "use strict";
 
-    jQuery.widget( "metro.presenter" , {
+    $.widget( "metro.presenter" , {
 
         version: "3.0.0",
 
@@ -5268,10 +5271,10 @@ window.METRO_LOCALES = {
         _create: function () {
             var that = this, element = this.element, o = this.options;
 
-            jQuery.each(element.data(), function(key, value){
+            $.each(element.data(), function(key, value){
                 if (key in o) {
                     try {
-                        o[key] = jQuery.parseJSON(value);
+                        o[key] = $.parseJSON(value);
                     } catch (e) {
                         o[key] = value;
                     }
@@ -5320,7 +5323,7 @@ window.METRO_LOCALES = {
             var that = this, element = this.element, o = this.options;
             var index = this._currentAct;
             setTimeout(function(){
-                if (that._acts[index] !== undefined) jQuery(that._acts[index]).fadeOut(1000, function(){
+                if (that._acts[index] !== undefined) $(that._acts[index]).fadeOut(1000, function(){
                     that._actDone = true;
                 });
             }, o.sceneTimeout);
@@ -5329,7 +5332,7 @@ window.METRO_LOCALES = {
         _showAct: function(){
             var that = this, element = this.element, o = this.options;
 
-            var act = jQuery(this._acts[this._currentAct]);
+            var act = $(this._acts[this._currentAct]);
             var actors = act.find('.actor');
             var i;
 
@@ -5344,8 +5347,8 @@ window.METRO_LOCALES = {
             });
 
             i = 0;
-            jQuery.each(actors, function(){
-                var actor = jQuery(this), pos = {top: actor.data('position').split(",")[0], left: actor.data('position').split(",")[1]};//that._actor_positions[jQuery(that._acts[that._currentAct]).attr('id')][actor.attr('id')];
+            $.each(actors, function(){
+                var actor = $(this), pos = {top: actor.data('position').split(",")[0], left: actor.data('position').split(",")[1]};//that._actor_positions[$(that._acts[that._currentAct]).attr('id')][actor.attr('id')];
                 var actor_effect, actor_duration, actor_timeout, actor_easing;
 
                 actor_effect = actor.data('effect') !== undefined ? actor.data('effect') : o.effect;
@@ -5434,11 +5437,11 @@ window.METRO_LOCALES = {
 })( jQuery );
 // TODO - add color bar parts
 
-(function ( jQuery ) {
+(function ( $ ) {
 
     "use strict";
 
-    jQuery.widget( "metro.progressBar" , {
+    $.widget( "metro.progressBar" , {
 
         version: "3.0.0",
 
@@ -5454,10 +5457,10 @@ window.METRO_LOCALES = {
             var that = this, element = this.element, o = this.options;
             var bar = element.children('.bar:last-child');
 
-            jQuery.each(element.data(), function(key, value){
+            $.each(element.data(), function(key, value){
                 if (key in o) {
                     try {
-                        o[key] = jQuery.parseJSON(value);
+                        o[key] = $.parseJSON(value);
                     } catch (e) {
                         o[key] = value;
                     }
@@ -5465,12 +5468,12 @@ window.METRO_LOCALES = {
             });
 
             if (bar.length === 0) {
-                bar = jQuery('<div/>').addClass('bar').appendTo(element);
+                bar = $('<div/>').addClass('bar').appendTo(element);
             }
 
             if (o.colors) {
                 var p = 0;
-                jQuery.each(o.colors, function(c,v){
+                $.each(o.colors, function(c,v){
                     that.colorsDim[c] = [p,v];
                     p = v + 1;
                 });
@@ -5486,7 +5489,7 @@ window.METRO_LOCALES = {
         color: function(value){
             var element = this.element, o = this.options;
             var bar = element.children('.bar:last-child');
-            var isOk  = /(^#[0-9A-F]{6}jQuery)|(^#[0-9A-F]{3}jQuery)/i.test(value);
+            var isOk  = /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(value);
 
             if (isOk) {
                 bar.css({
@@ -5514,13 +5517,13 @@ window.METRO_LOCALES = {
 
                 if (o.colors) {
 
-                    jQuery.each(colors, function (c, v) {
+                    $.each(colors, function (c, v) {
                         if (value >= v[0] && value <= v[1]) {
                             that.color(c);
                             return true;
                         }
                     });
-                    //jQuery.each(o.colors, function(c, v){
+                    //$.each(o.colors, function(c, v){
                     //    gradient.push(c + " " + v + "%");
                     //});
                     //console.log(gradient.join(","));
@@ -5548,11 +5551,11 @@ window.METRO_LOCALES = {
         }
     });
 })( jQuery );
-(function ( jQuery ) {
+(function ( $ ) {
 
     "use strict";
 
-    jQuery.widget( "metro.rating" , {
+    $.widget( "metro.rating" , {
 
         version: "3.0.0",
 
@@ -5575,10 +5578,10 @@ window.METRO_LOCALES = {
         _create: function () {
             var element = this.element, o = this.options;
 
-            jQuery.each(element.data(), function(key, value){
+            $.each(element.data(), function(key, value){
                 if (key in o) {
                     try {
-                        o[key] = jQuery.parseJSON(value);
+                        o[key] = $.parseJSON(value);
                     } catch (e) {
                         o[key] = value;
                     }
@@ -5615,11 +5618,11 @@ window.METRO_LOCALES = {
             }
 
             for (i = 0; i < o.stars; i++) {
-                star = jQuery("<span/>").addClass('star').appendTo(element).data('star-value', i+1);
+                star = $("<span/>").addClass('star').appendTo(element).data('star-value', i+1);
             }
 
             if (o.showScore) {
-                score = jQuery("<span/>").addClass('score').appendTo(element);
+                score = $("<span/>").addClass('score').appendTo(element);
             }
 
         },
@@ -5637,22 +5640,22 @@ window.METRO_LOCALES = {
                 }
 
                 if (typeof o.onRate === 'string') {
-                    if (!window[o.onRate](jQuery(this).data('star-value'), this, that)) {
+                    if (!window[o.onRate]($(this).data('star-value'), this, that)) {
                         return false;
                     }
                 } else {
-                    if (!o.onRate(jQuery(this).data('star-value'), this, that)) {
+                    if (!o.onRate($(this).data('star-value'), this, that)) {
                         return false;
                     }
                 }
 
                 if (typeof o.onRated === 'string') {
-                    window[o.onRated](jQuery(this).data('star-value'), this, that);
+                    window[o.onRated]($(this).data('star-value'), this, that);
                 } else {
-                    o.onRated(jQuery(this).data('star-value'), this, that);
+                    o.onRated($(this).data('star-value'), this, that);
                 }
 
-                that._value = jQuery(this).data('star-value');
+                that._value = $(this).data('star-value');
                 that._setValue();
                 that._setScore();
 
@@ -5667,10 +5670,10 @@ window.METRO_LOCALES = {
                 stars = element.find('.star').removeClass('on half');
                 var index = Math.floor(this._value) - 1;
                 var half = (this._value - Math.floor(this._value)) * 10 > 0;
-                jQuery(stars[index]).addClass('on');
-                jQuery(stars[index]).prevAll().addClass('on');
+                $(stars[index]).addClass('on');
+                $(stars[index]).prevAll().addClass('on');
                 if (half) {
-                    jQuery(stars[index]).next().addClass('on half');
+                    $(stars[index]).next().addClass('on half');
                 }
             }
 
@@ -5709,11 +5712,11 @@ window.METRO_LOCALES = {
     });
 
 })( jQuery );
-(function ( jQuery ) {
+(function ( $ ) {
 
     "use strict";
 
-    jQuery.widget( "metro.select" , {
+    $.widget( "metro.select" , {
 
         version: "3.0.0",
 
@@ -5730,9 +5733,9 @@ window.METRO_LOCALES = {
                 'query'
             ];
 
-            jQuery.each(element.data(), function(key, value){
+            $.each(element.data(), function(key, value){
                 try {
-                    o[key] = jQuery.parseJSON(value);
+                    o[key] = $.parseJSON(value);
                 } catch (e) {
                     o[key] = value;
                 }
@@ -5745,10 +5748,10 @@ window.METRO_LOCALES = {
             });
 
             if (o.dropdownParent !== undefined) {
-                o.dropdownParent = jQuery(o.dropdownParent);
+                o.dropdownParent = $(o.dropdownParent);
             }
 
-            if(jQuery().select2) {
+            if($().select2) {
                 try {
                     element.find("select").select2(o);
                 } catch (e) {
@@ -5771,10 +5774,10 @@ window.METRO_LOCALES = {
     });
 
 })( jQuery );
-(function( jQuery ) {
+(function( $ ) {
     "use strict";
 
-    jQuery.widget("metro.slider", {
+    $.widget("metro.slider", {
 
         version: "3.0.0",
 
@@ -5820,10 +5823,10 @@ window.METRO_LOCALES = {
             var o = this.options,
                 s = o._slider;
 
-            jQuery.each(element.data(), function(key, value){
+            $.each(element.data(), function(key, value){
                 if (key in o) {
                     try {
-                        o[key] = jQuery.parseJSON(value);
+                        o[key] = $.parseJSON(value);
                     } catch (e) {
                         o[key] = value;
                     }
@@ -5878,15 +5881,15 @@ window.METRO_LOCALES = {
             var element = this.element, o = this.options, that = this, hint = element.children('.slider-hint');
             var returnedValue;
 
-            jQuery(element).on("mousemove", function (event) {
+            $(element).on("mousemove", function (event) {
                 that._movingMarker(event);
                 if (!element.hasClass('permanent-hint')) {
                     hint.css('display', 'block');
                 }
             });
-            jQuery(element).on("mouseup mouseleave", function () {
-                jQuery(element).off('mousemove');
-                jQuery(element).off('mouseup');
+            $(element).on("mouseup mouseleave", function () {
+                $(element).off('mousemove');
+                $(element).off('mouseup');
                 element.data('value', o.position);
                 element.trigger('changed', o.position);
 
@@ -5950,7 +5953,7 @@ window.METRO_LOCALES = {
             var returnedValue = o.returnType === 'value' ? this._valueToRealValue(o.position) : o.position;
 
             if (o.target) {
-                jQuery(o.target).val(returnedValue);
+                $(o.target).val(returnedValue);
             }
 
             if (typeof o.onChange === 'string') {
@@ -6084,11 +6087,11 @@ window.METRO_LOCALES = {
 
             element.html('');
 
-            complete = jQuery("<div/>").addClass("complete").appendTo(element);
-            marker = jQuery("<a/>").addClass("marker").appendTo(element);
+            complete = $("<div/>").addClass("complete").appendTo(element);
+            marker = $("<a/>").addClass("marker").appendTo(element);
 
             if (o.showHint) {
-                hint = jQuery("<span/>").addClass("slider-hint").appendTo(element);
+                hint = $("<span/>").addClass("slider-hint").appendTo(element);
             }
 
             if (o.color !== 'default') {
@@ -6148,11 +6151,11 @@ window.METRO_LOCALES = {
         }
     });
 })( jQuery );
-(function( jQuery ) {
+(function( $ ) {
 
     "use strict";
 
-    jQuery.widget("metro.stepper", {
+    $.widget("metro.stepper", {
 
         version: "3.0.0",
 
@@ -6168,10 +6171,10 @@ window.METRO_LOCALES = {
         _create: function(){
             var element = this.element, o = this.options, element_id = element.attr('id');
 
-            jQuery.each(element.data(), function(key, value){
+            $.each(element.data(), function(key, value){
                 if (key in o) {
                     try {
-                        o[key] = jQuery.parseJSON(value);
+                        o[key] = $.parseJSON(value);
                     } catch (e) {
                         o[key] = value;
                     }
@@ -6196,7 +6199,7 @@ window.METRO_LOCALES = {
         _createEvents: function(){
             var that = this, element = this.element, o= this.options;
             element.on('click', 'li', function(e){
-                var step = jQuery(this).data('step');
+                var step = $(this).data('step');
 
 
                 if (typeof o.onStepClick === 'string') {
@@ -6213,7 +6216,7 @@ window.METRO_LOCALES = {
             var element = this.element, o= this.options;
             var i, ul, li;
 
-            ul = jQuery("<ul/>");
+            ul = $("<ul/>");
 
             switch(o.type) {
                 case 'diamond': element.addClass('diamond'); break;
@@ -6221,7 +6224,7 @@ window.METRO_LOCALES = {
             }
 
             for(i=0;i< o.steps;i++) {
-                li = jQuery("<li/>").data('step', i + 1).appendTo(ul);
+                li = $("<li/>").data('step', i + 1).appendTo(ul);
             }
             ul.appendTo(element);
         },
@@ -6231,11 +6234,11 @@ window.METRO_LOCALES = {
                 steps = element.find("li"),
                 element_width = element.width(),
                 steps_length = steps.length-1,
-                step_width = jQuery(steps[0]).width();
+                step_width = $(steps[0]).width();
 
-            jQuery.each(steps, function(i, step){
+            $.each(steps, function(i, step){
                 var left = i === 0 ? 0 : (element_width - step_width)/steps_length * i;
-                jQuery(step).animate({
+                $(step).animate({
                     left: left
                 });
             });
@@ -6247,10 +6250,10 @@ window.METRO_LOCALES = {
 
             steps.removeClass('current').removeClass('complete');
 
-            jQuery.each(steps, function(i, s){
-                if (i < step - 1) {jQuery(s).addClass('complete');}
+            $.each(steps, function(i, s){
+                if (i < step - 1) {$(s).addClass('complete');}
                 if (i === step - 1) {
-                    jQuery(s).addClass('current') ;
+                    $(s).addClass('current') ;
 
                     if (typeof  o.onStep === 'string') {
                         window[o.onStep](i+1, s);
@@ -6308,8 +6311,8 @@ window.METRO_LOCALES = {
 })( jQuery );
 
 
-(function( jQuery ) {
-    jQuery.widget("metro.streamer", {
+(function( $ ) {
+    $.widget("metro.streamer", {
 
         version: "3.0.0",
 
@@ -6335,10 +6338,10 @@ window.METRO_LOCALES = {
                 event_streams = element.find(".event-stream");
 
 
-            jQuery.each(element.data(), function(key, value){
+            $.each(element.data(), function(key, value){
                 if (key in o) {
                     try {
-                        o[key] = jQuery.parseJSON(value);
+                        o[key] = $.parseJSON(value);
                     } catch (e) {
                         o[key] = value;
                     }
@@ -6347,14 +6350,14 @@ window.METRO_LOCALES = {
 
             element.data('streamSelect', -1);
 
-            var meter = jQuery("<ul/>").addClass("meter");
+            var meter = $("<ul/>").addClass("meter");
             var i, j, m, start = o.meterStart, stop = o.meterStop, interval = o.meterInterval;
 
             var _intervals = [];
             for (i = start; i<stop; i++) {
                 for (j = 0; j < 60; j+=interval) {
                     m = (i<10?"0"+i:i)+":"+(j<10?"0"+j:j);
-                    jQuery("<li/>").addClass("js-interval-"+ m.replace(":", "-")).html("<em>"+m+"</em>").appendTo(meter);
+                    $("<li/>").addClass("js-interval-"+ m.replace(":", "-")).html("<em>"+m+"</em>").appendTo(meter);
                     _intervals.push(m);
                 }
             }
@@ -6366,17 +6369,17 @@ window.METRO_LOCALES = {
             // Re-Calc all event-stream width and set background for time
             element.find(".event-stream").each(function(i, s){
                 var event_stream_width = 0;
-                var events = jQuery(s).find(".event");
+                var events = $(s).find(".event");
 
                 events.each(function(i, el){
-                    event_stream_width += jQuery(el).outerWidth() + parseInt(jQuery(el).css('margin-left'));
+                    event_stream_width += $(el).outerWidth() + parseInt($(el).css('margin-left'));
                 });
 
-                jQuery(s).css({
+                $(s).css({
                     width: (event_stream_width + ( (events.length-1) * 2 ) + 1)
                 });
 
-                jQuery(s).find(".time").css("background-color", jQuery(streams[i]).css('background-color'));
+                $(s).find(".time").css("background-color", $(streams[i]).css('background-color'));
             });
 
             // Set scrollbar
@@ -6392,7 +6395,7 @@ window.METRO_LOCALES = {
             // Re-Calc events-area width
             var events_area_width = 0;
             groups.each(function(i, el){
-                events_area_width += jQuery(el).outerWidth();
+                events_area_width += $(el).outerWidth();
             });
             events_area_width += ( (groups.length-1) * 2 ) + 10;
             events_area.css('width', events_area_width);
@@ -6408,14 +6411,14 @@ window.METRO_LOCALES = {
             });
 
             streams.each(function(i, s){
-                jQuery(s).mousedown(function(e){
+                $(s).mousedown(function(e){
                     if (element.data('streamSelect') == i) {
                         events.removeClass('event-disable');
                         element.data('streamSelect', -1);
                     } else {
                         element.data('streamSelect', i);
                         events.addClass('event-disable');
-                        jQuery(event_streams[i]).find(".event").removeClass("event-disable");
+                        $(event_streams[i]).find(".event").removeClass("event-disable");
                     }
                 });
             });
@@ -6433,10 +6436,10 @@ window.METRO_LOCALES = {
 
             events.on('click', function(e){
                 if (e.ctrlKey) {
-                    jQuery(this).toggleClass("selected");
+                    $(this).toggleClass("selected");
                 }
                 e.preventDefault();
-                o.onClick(jQuery(this));
+                o.onClick($(this));
             });
 
             element.find(".js-go-previous-time").on('click', function(e){
@@ -6467,8 +6470,8 @@ window.METRO_LOCALES = {
 
 
             element.find(".js-schedule-mode").on("click", function(e){
-                jQuery(this).toggleClass("active");
-                element.data("schedule-mode", jQuery(this).hasClass("inverse"));
+                $(this).toggleClass("active");
+                element.data("schedule-mode", $(this).hasClass("inverse"));
                 e.preventDefault();
             });
         },
@@ -6518,10 +6521,10 @@ window.METRO_LOCALES = {
 
 
 
-(function ( jQuery ) {
+(function ( $ ) {
     "use strict";
 
-    jQuery.widget( "metro.tabControl" , {
+    $.widget( "metro.tabControl" , {
 
         version: "3.0.0",
 
@@ -6540,10 +6543,10 @@ window.METRO_LOCALES = {
             var frames = element.children('.frames').children('div');
             var tab, target, frame;
 
-            jQuery.each(element.data(), function(key, value){
+            $.each(element.data(), function(key, value){
                 if (key in o) {
                     try {
-                        o[key] = jQuery.parseJSON(value);
+                        o[key] = $.parseJSON(value);
                     } catch (e) {
                         o[key] = value;
                     }
@@ -6557,7 +6560,7 @@ window.METRO_LOCALES = {
                     tab = element.find("a[href='"+stored_target+"']");
                     if (tab) {
                         target = tab.attr('href');
-                        frame = target && target.isUrl() ? false : jQuery(target);
+                        frame = target && target.isUrl() ? false : $(target);
                         o._current.tab = tab;
                         o._current.frame = frame;
                     }
@@ -6569,7 +6572,7 @@ window.METRO_LOCALES = {
                 tab = element.find("a[href='"+ o.openTarget+"']");
                 if (tab) {
                     target = tab.attr('href');
-                    frame = target && target.isUrl() ? false : jQuery(target);
+                    frame = target && target.isUrl() ? false : $(target);
                     o._current.tab = tab;
                     o._current.frame = frame;
                 }
@@ -6577,8 +6580,8 @@ window.METRO_LOCALES = {
 
             if (!o._current.tab) {
 
-                jQuery.each(tabs, function (i, v) {
-                    var tab = jQuery(v), target = tab.attr('href'), frame = target.isUrl() ? false : jQuery(target);
+                $.each(tabs, function (i, v) {
+                    var tab = $(v), target = tab.attr('href'), frame = target.isUrl() ? false : $(target);
                     if (tab.parent().hasClass('active') && !tab.parent().hasClass('disabled') && frame !== false) {
                         o._current.tab = tab;
                         o._current.frame = frame;
@@ -6589,9 +6592,9 @@ window.METRO_LOCALES = {
             if (!o._current.tab) {
 
                 for(var i = 0; i < tabs.length; i++) {
-                    if (!jQuery(tabs[i]).attr('href').isUrl() && !jQuery(tabs[i]).parent().hasClass('disabled')) {
-                        o._current.tab = jQuery(tabs[i]);
-                        o._current.frame = jQuery(jQuery(tabs[i]).attr('href'));
+                    if (!$(tabs[i]).attr('href').isUrl() && !$(tabs[i]).parent().hasClass('disabled')) {
+                        o._current.tab = $(tabs[i]);
+                        o._current.frame = $($(tabs[i]).attr('href'));
                         break;
                     }
                 }
@@ -6602,7 +6605,7 @@ window.METRO_LOCALES = {
 
             //this._hideTabs();
             //
-            //jQuery(window).on('resize', function(){
+            //$(window).on('resize', function(){
             //    that._hideTabs();
             //});
 
@@ -6616,12 +6619,12 @@ window.METRO_LOCALES = {
             var _tabs = element.children('.tabs').find('li:not(.non-visible-tabs)');
             var _nvt = element.children('.tabs').find('.non-visible-tabs').children('.d-menu');
 
-            jQuery.each(_tabs, function(){
-                var jQuerytab = jQuery(this), tab = this;
+            $.each(_tabs, function(){
+                var $tab = $(this), tab = this;
                 if (tab.offsetLeft + tab.offsetWidth + 30 > w) {
-                    var new_tab = jQuerytab.clone(true);
+                    var new_tab = $tab.clone(true);
                     new_tab.appendTo(_nvt);
-                    jQuerytab.remove();
+                    $tab.remove();
                 }
             });
         },
@@ -6648,7 +6651,7 @@ window.METRO_LOCALES = {
             var frames = element.children('.frames').children('div');
 
             element.on('click', '.tabs > li > a', function(e){
-                var tab = jQuery(this), target = tab.attr('href'), frame = jQuery(target);
+                var tab = $(this), target = tab.attr('href'), frame = $(target);
 
                 if (tab.parent().hasClass('disabled')) {return false;}
 
@@ -6696,11 +6699,11 @@ window.METRO_LOCALES = {
     });
 
 })( jQuery );
-(function ( jQuery ) {
+(function ( $ ) {
 
     "use strict";
 
-    jQuery.widget( "metro.tile" , {
+    $.widget( "metro.tile" , {
 
         version: "3.0.0",
 
@@ -6720,10 +6723,10 @@ window.METRO_LOCALES = {
         _create: function () {
             var that = this, element = this.element, o = this.options;
 
-            jQuery.each(element.data(), function(key, value){
+            $.each(element.data(), function(key, value){
                 if (key in o) {
                     try {
-                        o[key] = jQuery.parseJSON(value);
+                        o[key] = $.parseJSON(value);
                     } catch (e) {
                         o[key] = value;
                     }
@@ -6743,7 +6746,7 @@ window.METRO_LOCALES = {
             this._frames = element.find(".live-slide");
             if (this._frames.length <= 1) {return false;}
 
-            jQuery.easing.doubleSqrt = function(t) {return Math.sqrt(Math.sqrt(t));};
+            $.easing.doubleSqrt = function(t) {return Math.sqrt(Math.sqrt(t));};
 
             this._size = {
                 'width': element.width(),
@@ -6811,9 +6814,9 @@ window.METRO_LOCALES = {
                 'easing': this.options.easing
             };
 
-            jQuery(currentFrame)
+            $(currentFrame)
                 .animate({top: -_out}, options);
-            jQuery(nextFrame)
+            $(nextFrame)
                 .css({top: _out})
                 .show()
                 .animate({top: 0}, options);
@@ -6826,9 +6829,9 @@ window.METRO_LOCALES = {
                 'easing': this.options.easing
             };
 
-            jQuery(currentFrame)
+            $(currentFrame)
                 .animate({top: _out}, options);
-            jQuery(nextFrame)
+            $(nextFrame)
                 .css({top: -_out})
                 .show()
                 .animate({top: 0}, options);
@@ -6841,9 +6844,9 @@ window.METRO_LOCALES = {
                 'easing': this.options.easing
             };
 
-            jQuery(currentFrame)
+            $(currentFrame)
                 .animate({left: _out * -1}, options);
-            jQuery(nextFrame)
+            $(nextFrame)
                 .css({left: _out})
                 .show()
                 .animate({left: 0}, options);
@@ -6856,9 +6859,9 @@ window.METRO_LOCALES = {
                 'easing': this.options.easing
             };
 
-            jQuery(currentFrame)
+            $(currentFrame)
                 .animate({left: _out}, options);
-            jQuery(nextFrame)
+            $(nextFrame)
                 .css({left: -_out})
                 .show()
                 .animate({left: 0}, options);
@@ -6869,7 +6872,7 @@ window.METRO_LOCALES = {
             var dim = {w: element.width(), h: element.height()};
 
             element.on('mousedown', function(e){
-                var X = e.pageX - jQuery(this).offset().left, Y = e.pageY - jQuery(this).offset().top;
+                var X = e.pageX - $(this).offset().left, Y = e.pageY - $(this).offset().top;
                 var transform = 'top';
 
                 if (X < dim.w * 1/3 && (Y < dim.h * 1/2 || Y > dim.h * 1/2 )) {
@@ -6880,7 +6883,7 @@ window.METRO_LOCALES = {
                     transform = 'bottom';
                 }
 
-                jQuery(this).addClass("tile-transform-"+transform);
+                $(this).addClass("tile-transform-"+transform);
 
                 //console.log(transform);
 
@@ -6892,14 +6895,14 @@ window.METRO_LOCALES = {
             });
 
             element.on('mouseup', function(){
-                jQuery(this)
+                $(this)
                     .removeClass("tile-transform-left")
                     .removeClass("tile-transform-right")
                     .removeClass("tile-transform-top")
                     .removeClass("tile-transform-bottom");
             });
             element.on('mouseleave', function(){
-                jQuery(this)
+                $(this)
                     .removeClass("tile-transform-left")
                     .removeClass("tile-transform-right")
                     .removeClass("tile-transform-top")
@@ -6916,11 +6919,11 @@ window.METRO_LOCALES = {
     });
 
 })( jQuery );
-(function ( jQuery ) {
+(function ( $ ) {
 
     "use strict";
 
-    jQuery.widget( "metro.treeview" , {
+    $.widget( "metro.treeview" , {
 
         version: "3.0.0",
 
@@ -6934,10 +6937,10 @@ window.METRO_LOCALES = {
         _create: function () {
             var that = this, element = this.element, o = this.options;
 
-            jQuery.each(element.data(), function(key, value){
+            $.each(element.data(), function(key, value){
                 if (key in o) {
                     try {
-                        o[key] = jQuery.parseJSON(value);
+                        o[key] = $.parseJSON(value);
                     } catch (e) {
                         o[key] = value;
                     }
@@ -6954,9 +6957,9 @@ window.METRO_LOCALES = {
         _createCheckbox: function(leaf, parent){
             var input, checkbox, check;
 
-            input = jQuery("<label/>").addClass("input-control checkbox small-check").insertBefore(leaf);
-            checkbox = jQuery("<input/>").attr('type', 'checkbox').appendTo(input);
-            check = jQuery("<span/>").addClass('check').appendTo(input);
+            input = $("<label/>").addClass("input-control checkbox small-check").insertBefore(leaf);
+            checkbox = $("<input/>").attr('type', 'checkbox').appendTo(input);
+            check = $("<span/>").addClass('check').appendTo(input);
             if (parent.data('name') !== undefined) {
                 checkbox.attr('name', parent.data('name'));
             }
@@ -6983,9 +6986,9 @@ window.METRO_LOCALES = {
         _createRadio: function(leaf, parent){
             var input, checkbox, check;
 
-            input = jQuery("<label/>").addClass("input-control radio small-check").insertBefore(leaf);
-            checkbox = jQuery("<input/>").attr('type', 'radio').appendTo(input);
-            check = jQuery("<span/>").addClass('check').appendTo(input);
+            input = $("<label/>").addClass("input-control radio small-check").insertBefore(leaf);
+            checkbox = $("<input/>").attr('type', 'radio').appendTo(input);
+            check = $("<span/>").addClass('check').appendTo(input);
             if (parent.data('name') !== undefined) {
                 checkbox.attr('name', parent.data('name'));
             }
@@ -7012,8 +7015,8 @@ window.METRO_LOCALES = {
         _initTree: function(){
             var that = this, element = this.element, o = this.options;
             var leafs = element.find('.leaf');
-            jQuery.each(leafs, function(){
-                var leaf = jQuery(this), parent = leaf.parent('li'), ul = leaf.siblings('ul'), node = jQuery(leaf.parents('.node')[0]);
+            $.each(leafs, function(){
+                var leaf = $(this), parent = leaf.parent('li'), ul = leaf.siblings('ul'), node = $(leaf.parents('.node')[0]);
                 //var input, checkbox, check;
 
                 if (parent.data('mode') === 'checkbox') {
@@ -7038,13 +7041,13 @@ window.METRO_LOCALES = {
         _renderChecks: function(check){
             var element = this.element, that = this, o = this.options;
             var state = check.is(":checked");
-            var parent = jQuery(check.parent().parent());
+            var parent = $(check.parent().parent());
             var children_checks = parent.children('ul').find('[type="checkbox"]');
 
             children_checks.prop('checked', state).removeClass('indeterminate');
 
-            jQuery.each(element.find('.node[data-mode=checkbox]').reverse(), function(){
-                var node = jQuery(this),
+            $.each(element.find('.node[data-mode=checkbox]').reverse(), function(){
+                var node = $(this),
                     ch = node.children('.input-control').find('[type="checkbox"]'),
                     children_all = node.children('ul').find('[type="checkbox"]'),
                     children_checked = node.children('ul').find('[type="checkbox"]:checked');
@@ -7066,12 +7069,12 @@ window.METRO_LOCALES = {
             var that = this, element = this.element, o = this.options;
 
             element.on('change', 'input:checkbox', function(){
-                that._renderChecks(jQuery(this));
+                that._renderChecks($(this));
             });
 
             element.on('click', 'input', function(){
-                var leaf = jQuery(this),
-                    node = jQuery(leaf.parents('.node')[0]),
+                var leaf = $(this),
+                    node = $(leaf.parents('.node')[0]),
                     parent = leaf.parent('li'),
                     check = leaf.siblings('.input-control').find('input:checkbox'),
                     radio = leaf.siblings('.input-control').find('input:radio'),
@@ -7097,8 +7100,8 @@ window.METRO_LOCALES = {
             });
 
             element.on('click', '.leaf', function(){
-                var leaf = jQuery(this),
-                    node = jQuery(leaf.parents('.node')[0]),
+                var leaf = $(this),
+                    node = $(leaf.parents('.node')[0]),
                     parent = leaf.parent('li');
 
                 element.find('.leaf').parent('li').removeClass('active');
@@ -7113,7 +7116,7 @@ window.METRO_LOCALES = {
 
             if (o.doubleClick) {
                 element.on('dblclick', '.leaf', function (e) {
-                    var leaf = jQuery(this), parent = leaf.parent('li'), node = jQuery(leaf.parents('.node')[0]);
+                    var leaf = $(this), parent = leaf.parent('li'), node = $(leaf.parents('.node')[0]);
 
                     if (parent.hasClass("keep-open")) {
                         return false;
@@ -7141,7 +7144,7 @@ window.METRO_LOCALES = {
             }
 
             element.on('click', '.node-toggle', function(e){
-                var leaf = jQuery(this).siblings('.leaf'), parent = jQuery(this).parent('li'), node = jQuery(leaf.parents('.node')[0]);
+                var leaf = $(this).siblings('.leaf'), parent = $(this).parent('li'), node = $(leaf.parents('.node')[0]);
 
                 if (parent.hasClass("keep-open")) {return false;}
 
@@ -7173,32 +7176,32 @@ window.METRO_LOCALES = {
             if (parent) {
                 if (parent[0].tagName === "LI") {parent.addClass('node');}
                 if (parent.children('.node-toggle').length === 0) {
-                    jQuery("<span/>").addClass('node-toggle').appendTo(parent);
+                    $("<span/>").addClass('node-toggle').appendTo(parent);
                 }
             }
 
-            ul = parent ? jQuery(parent).children('ul') : element.children('ul');
+            ul = parent ? $(parent).children('ul') : element.children('ul');
 
             if (ul.length === 0) {
-                ul = jQuery("<ul/>").appendTo(parent ? parent : element);
+                ul = $("<ul/>").appendTo(parent ? parent : element);
             }
 
-            li = jQuery("<li/>").appendTo( ul );
+            li = $("<li/>").appendTo( ul );
 
             if (data !== undefined) {
                 if (data.tagName !== undefined) {
-                    leaf = jQuery("<"+data.tagName+"/>").addClass("leaf").appendTo(li);
+                    leaf = $("<"+data.tagName+"/>").addClass("leaf").appendTo(li);
                 } else {
-                    leaf = jQuery("<span/>").addClass("leaf").appendTo(li);
+                    leaf = $("<span/>").addClass("leaf").appendTo(li);
                 }
             } else {
-                leaf = jQuery("<span/>").addClass("leaf").appendTo(li);
+                leaf = $("<span/>").addClass("leaf").appendTo(li);
             }
 
             leaf.html(name);
 
             if (data !== undefined) {
-                jQuery.each(data, function(key, value){
+                $.each(data, function(key, value){
                     li.attr("data-"+key, value);
                 });
                 if (data.mode !== undefined) {
@@ -7221,11 +7224,11 @@ window.METRO_LOCALES = {
     });
 
 })( jQuery );
-(function ( jQuery ) {
+(function ( $ ) {
 
     "use strict";
 
-    jQuery.widget( "metro.validator" , {
+    $.widget( "metro.validator" , {
 
         version: "1.0.0",
 
@@ -7292,7 +7295,7 @@ window.METRO_LOCALES = {
                 return val <= max_value;
             },
             email: function(val){
-                return /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)jQuery/i.test(val);
+                return /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i.test(val);
             },
             url: function(val){
                 return /^(?:[a-z]+:)?\/\//i.test(val);
@@ -7304,10 +7307,10 @@ window.METRO_LOCALES = {
                 return (val - 0) == val && (''+val).trim().length > 0;
             },
             digits: function(val){
-                return /^\d+jQuery/.test(val);
+                return /^\d+$/.test(val);
             },
             hexcolor: function(val){
-                return /(^#[0-9A-F]{6}jQuery)|(^#[0-9A-F]{3}jQuery)/i.test(val);
+                return /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(val);
             },
             pattern: function(val, pat){
                 if (pat == undefined) {
@@ -7321,10 +7324,10 @@ window.METRO_LOCALES = {
         _create: function () {
             var that = this, element = this.element, o = this.options;
 
-            jQuery.each(element.data(), function(key, value){
+            $.each(element.data(), function(key, value){
                 if (key in o) {
                     try {
-                        o[key] = jQuery.parseJSON(value);
+                        o[key] = $.parseJSON(value);
                     } catch (e) {
                         o[key] = value;
                     }
@@ -7335,7 +7338,7 @@ window.METRO_LOCALES = {
                 o.hintMode = 'hint2';
             }
 
-            this._scroll = jQuery(window).scrollTop();
+            this._scroll = $(window).scrollTop();
 
             this._createValidator();
 
@@ -7350,8 +7353,8 @@ window.METRO_LOCALES = {
             element.attr('novalidate', 'novalidate');
 
             if (o.showRequiredState) {
-                jQuery.each(inputs, function(){
-                    var input = jQuery(this);
+                $.each(inputs, function(){
+                    var input = $(this);
                     if (input.parent().hasClass('input-control')) {
                         input.parent().addClass('required');
                     } else {
@@ -7365,10 +7368,10 @@ window.METRO_LOCALES = {
 
             //console.log(this._scroll);
 
-            jQuery(window).scroll(function(e){
-                var st = jQuery(this).scrollTop();
+            $(window).scroll(function(e){
+                var st = $(this).scrollTop();
                 var delta = isNaN(st - this._scroll) ? 0 : st - this._scroll;
-                jQuery(".validator-hint.hint2").css({
+                $(".validator-hint.hint2").css({
                     top: '-='+delta
                 });
                 this._scroll = st;
@@ -7392,17 +7395,17 @@ window.METRO_LOCALES = {
             var submit = element.find(":submit").attr('disabled', 'disabled').addClass('disabled');
 
             var result = 0;
-            jQuery('.validator-hint').hide();
+            $('.validator-hint').hide();
             inputs.removeClass('error success');
-            jQuery.each(inputs, function(i, v){
-                var input = jQuery(v);
+            $.each(inputs, function(i, v){
+                var input = $(v);
                 if (input.parent().hasClass('input-control')) {
                     input.parent().removeClass('error success');
                 }
             });
 
-            jQuery.each(inputs, function(i, v){
-                var input = jQuery(v);
+            $.each(inputs, function(i, v){
+                var input = $(v);
                 var func = input.data('validateFunc'), arg = input.data('validateArg');
                 var this_result = that.funcs[func](input.val(), arg);
 
@@ -7488,7 +7491,7 @@ window.METRO_LOCALES = {
                 return false;
             }
 
-            hint = jQuery("<div/>").addClass(mode+' validator-hint');//.appendTo(input.parent());
+            hint = $("<div/>").addClass(mode+' validator-hint');//.appendTo(input.parent());
             hint.html(msg !== undefined ? this._format(msg, input.val()) : '');
             hint.css({
                 'min-width': o.hintSize
@@ -7524,13 +7527,13 @@ window.METRO_LOCALES = {
                 hint.appendTo("body");
                 // right
                 if (pos === 'right') {
-                    left = input.offset().left + input.outerWidth() + 15 - jQuery(window).scrollLeft();
-                    top = input.offset().top + input.outerHeight() / 2 - hint.outerHeight() / 2 - jQuery(window).scrollTop() - 10;
+                    left = input.offset().left + input.outerWidth() + 15 - $(window).scrollLeft();
+                    top = input.offset().top + input.outerHeight() / 2 - hint.outerHeight() / 2 - $(window).scrollTop() - 10;
 
                     hint.addClass(pos);
                     hint.css({
                         top: top,
-                        left: jQuery(window).width() + 100
+                        left: $(window).width() + 100
                     });
                     hint.show().animate({
                         left: left
@@ -7540,8 +7543,8 @@ window.METRO_LOCALES = {
                         }, o.hideHint);
                     });
                 } else if (pos === 'left') {
-                    left = input.offset().left - hint.outerWidth() - 10 - jQuery(window).scrollLeft();
-                    top = input.offset().top + input.outerHeight() / 2 - hint.outerHeight() / 2 - jQuery(window).scrollTop() - 10;
+                    left = input.offset().left - hint.outerWidth() - 10 - $(window).scrollLeft();
+                    top = input.offset().top + input.outerHeight() / 2 - hint.outerHeight() / 2 - $(window).scrollTop() - 10;
 
                     hint.addClass(pos);
                     hint.css({
@@ -7556,8 +7559,8 @@ window.METRO_LOCALES = {
                         }, o.hideHint);
                     });
                 } else if (pos === 'top') {
-                    left = input.offset().left + input.outerWidth()/2 - hint.outerWidth()/2  - jQuery(window).scrollLeft();
-                    top = input.offset().top - jQuery(window).scrollTop() - hint.outerHeight() - 20;
+                    left = input.offset().left + input.outerWidth()/2 - hint.outerWidth()/2  - $(window).scrollLeft();
+                    top = input.offset().top - $(window).scrollTop() - hint.outerHeight() - 20;
 
                     hint.addClass(pos);
                     hint.css({
@@ -7571,12 +7574,12 @@ window.METRO_LOCALES = {
                         }, o.hideHint);
                     });
                 } else /*bottom*/ {
-                    left = input.offset().left + input.outerWidth()/2 - hint.outerWidth()/2  - jQuery(window).scrollLeft();
-                    top = input.offset().top - jQuery(window).scrollTop() + input.outerHeight();
+                    left = input.offset().left + input.outerWidth()/2 - hint.outerWidth()/2  - $(window).scrollLeft();
+                    top = input.offset().top - $(window).scrollTop() + input.outerHeight();
 
                     hint.addClass(pos);
                     hint.css({
-                        top: jQuery(window).height(),
+                        top: $(window).height(),
                         left: left
                     }).show().animate({
                         top: top
@@ -7592,18 +7595,18 @@ window.METRO_LOCALES = {
         _format: function( source, params ) {
             if ( arguments.length === 1 ) {
                 return function() {
-                    var args = jQuery.makeArray( arguments );
+                    var args = $.makeArray( arguments );
                     args.unshift( source );
-                    return jQuery.validator.format.apply( this, args );
+                    return $.validator.format.apply( this, args );
                 };
             }
             if ( arguments.length > 2 && params.constructor !== Array  ) {
-                params = jQuery.makeArray( arguments ).slice( 1 );
+                params = $.makeArray( arguments ).slice( 1 );
             }
             if ( params.constructor !== Array ) {
                 params = [ params ];
             }
-            jQuery.each( params, function( i, n ) {
+            $.each( params, function( i, n ) {
                 source = source.replace( new RegExp( "\\{" + i + "\\}", "g" ), function() {
                     return n;
                 });
@@ -7620,11 +7623,11 @@ window.METRO_LOCALES = {
     });
 
 })( jQuery );
-(function ( jQuery ) {
+(function ( $ ) {
 
     "use strict";
 
-    jQuery.widget( "metro.window" , {
+    $.widget( "metro.window" , {
 
         version: "3.0.0",
 
@@ -7653,10 +7656,10 @@ window.METRO_LOCALES = {
         _create: function () {
             var element = this.element, o = this.options;
 
-            jQuery.each(element.data(), function(key, value){
+            $.each(element.data(), function(key, value){
                 if (key in o) {
                     try {
-                        o[key] = jQuery.parseJSON(value);
+                        o[key] = $.parseJSON(value);
                     } catch (e) {
                         o[key] = value;
                     }
@@ -7674,20 +7677,20 @@ window.METRO_LOCALES = {
             var wind = element, capt, cont;
 
             wind.addClass("window");
-            capt = jQuery("<div/>").addClass("window-caption");
-            cont = jQuery("<div/>").addClass("window-content");
+            capt = $("<div/>").addClass("window-caption");
+            cont = $("<div/>").addClass("window-content");
 
             if (o.icon || o.title) {capt.appendTo(wind);}
             cont.appendTo(wind);
 
             if (typeof o.size === 'object') {
-                jQuery.each(o.size, function(key, value){
+                $.each(o.size, function(key, value){
                     cont.css(key, value);
                 });
             }
 
             if (o.captionStyle && typeof o.captionStyle === 'object') {
-                jQuery.each(o.captionStyle, function(key, value){
+                $.each(o.captionStyle, function(key, value){
                     if (value.isColor()) {
                         capt.css(key, value + " !important");
                     } else {
@@ -7697,7 +7700,7 @@ window.METRO_LOCALES = {
             }
 
             if (o.contentStyle && typeof o.contentStyle === 'object') {
-                jQuery.each(o.contentStyle, function(key, value){
+                $.each(o.contentStyle, function(key, value){
                     if (value.isColor()) {
                         cont.css(key, value + " !important");
                     } else {
@@ -7721,7 +7724,7 @@ window.METRO_LOCALES = {
 
             if (o.icon) {
                 if (icon.length === 0) {
-                    jQuery("<span/>").addClass('window-caption-icon').html(o.icon).appendTo(capt);
+                    $("<span/>").addClass('window-caption-icon').html(o.icon).appendTo(capt);
                 } else {
                     icon.html(o.icon);
                 }
@@ -7736,7 +7739,7 @@ window.METRO_LOCALES = {
 
             if (o.title) {
                 if (title.length === 0) {
-                    jQuery("<span/>").addClass('window-caption-title').html(o.title).appendTo(capt);
+                    $("<span/>").addClass('window-caption-title').html(o.title).appendTo(capt);
                 } else {
                     title.html(o.title);
                 }
@@ -7756,7 +7759,7 @@ window.METRO_LOCALES = {
                 var btnClose = o.buttons.btnClose;
 
                 if (btnMin && btnMin !== false) {
-                    bMin = jQuery("<span/>").addClass('btn-min').appendTo(capt);
+                    bMin = $("<span/>").addClass('btn-min').appendTo(capt);
                     if (typeof btnMin === 'object') {
                         bMin.css(btnMin);
                     }
@@ -7769,7 +7772,7 @@ window.METRO_LOCALES = {
                 }
 
                 if (btnMax && btnMax !== false) {
-                    bMax = jQuery("<span/>").addClass('btn-max').appendTo(capt);
+                    bMax = $("<span/>").addClass('btn-max').appendTo(capt);
                     if (typeof btnMax === 'object') {
                         bMax.css(btnMax);
                     }
@@ -7782,7 +7785,7 @@ window.METRO_LOCALES = {
                 }
 
                 if (btnClose && btnClose !== false) {
-                    bClose = jQuery("<span/>").addClass('btn-close').appendTo(capt);
+                    bClose = $("<span/>").addClass('btn-close').appendTo(capt);
                     if (typeof btnClose === 'object') {
                         bClose.css(btnClose);
                     }
@@ -7805,8 +7808,8 @@ window.METRO_LOCALES = {
 
             if (c.isUrl()) {
                 if (c.indexOf('youtube') > -1) {
-                    var iframe = jQuery("<iframe>");
-                    var video_container = jQuery("<div/>").addClass('video-container').appendTo(content);
+                    var iframe = $("<iframe>");
+                    var video_container = $("<div/>").addClass('video-container').appendTo(content);
 
                     iframe
                         .attr('src', c)
@@ -7827,11 +7830,11 @@ window.METRO_LOCALES = {
         }
     });
 })( jQuery );
-(function( jQuery ) {
+(function( $ ) {
 
     "use strict";
 
-    jQuery.widget("metro.wizard", {
+    $.widget("metro.wizard", {
 
         version: "3.0.0",
 
@@ -7870,10 +7873,10 @@ window.METRO_LOCALES = {
                 o = this.options,
                 steps = element.find(".step");
 
-            jQuery.each(element.data(), function(key, value){
+            $.each(element.data(), function(key, value){
                 if (key in o) {
                     try {
-                        o[key] = jQuery.parseJSON(value);
+                        o[key] = $.parseJSON(value);
                     } catch (e) {
                         o[key] = value;
                     }
@@ -7917,7 +7920,7 @@ window.METRO_LOCALES = {
         _createStepper: function(steps){
             var stepper, o = this.options;
 
-            stepper = jQuery("<div/>").addClass("stepper")
+            stepper = $("<div/>").addClass("stepper")
                 .attr("data-role", "stepper")
                 .attr("data-steps", steps);
 
@@ -7932,13 +7935,13 @@ window.METRO_LOCALES = {
             var that = this, element = this.element, o = this.options;
 
             if (o.buttons) {
-                var actions = jQuery("<div/>").addClass("actions").appendTo(element);
-                var group_left = jQuery("<div/>").addClass("group-left").appendTo(actions);
-                var group_right = jQuery("<div/>").addClass("group-right").appendTo(actions);
+                var actions = $("<div/>").addClass("actions").appendTo(element);
+                var group_left = $("<div/>").addClass("group-left").appendTo(actions);
+                var group_right = $("<div/>").addClass("group-right").appendTo(actions);
                 var cancel_button, help_button, prior_button, next_button, finish_button;
 
                 if (o.buttons.cancel) {
-                    cancel_button = jQuery("<button type='button'/>").addClass("btn-cancel").html(window.METRO_LOCALES[o.locale].buttons[2]);
+                    cancel_button = $("<button type='button'/>").addClass("btn-cancel").html(window.METRO_LOCALES[o.locale].buttons[2]);
                     if (typeof o.buttons.cancel === "boolean") {
                         cancel_button.appendTo(group_left);
                     } else {
@@ -7964,7 +7967,7 @@ window.METRO_LOCALES = {
                     });
                 }
                 if (o.buttons.help) {
-                    help_button = jQuery("<button type='button'/>").addClass("btn-help").html(window.METRO_LOCALES[o.locale].buttons[3]);
+                    help_button = $("<button type='button'/>").addClass("btn-help").html(window.METRO_LOCALES[o.locale].buttons[3]);
                     if (typeof o.buttons.help === "boolean") {
                         help_button.appendTo(group_right);
                     } else {
@@ -7989,7 +7992,7 @@ window.METRO_LOCALES = {
                     });
                 }
                 if (o.buttons.prior) {
-                    prior_button = jQuery("<button type='button'/>").addClass("btn-prior").html(window.METRO_LOCALES[o.locale].buttons[4]);
+                    prior_button = $("<button type='button'/>").addClass("btn-prior").html(window.METRO_LOCALES[o.locale].buttons[4]);
                     if (typeof o.buttons.prior === "boolean") {
                         prior_button.appendTo(group_right);
                     } else {
@@ -8014,7 +8017,7 @@ window.METRO_LOCALES = {
                     });
                 }
                 if (o.buttons.next) {
-                    next_button = jQuery("<button type='button'/>").addClass("btn-next").html(window.METRO_LOCALES[o.locale].buttons[5]);
+                    next_button = $("<button type='button'/>").addClass("btn-next").html(window.METRO_LOCALES[o.locale].buttons[5]);
                     if (typeof o.buttons.next === "boolean") {
                         next_button.appendTo(group_right);
                     } else {
@@ -8039,7 +8042,7 @@ window.METRO_LOCALES = {
                     });
                 }
                 if (o.buttons.finish) {
-                    finish_button = jQuery("<button type='button'/>").addClass("btn-finish").html(window.METRO_LOCALES[o.locale].buttons[6]);
+                    finish_button = $("<button type='button'/>").addClass("btn-finish").html(window.METRO_LOCALES[o.locale].buttons[6]);
                     if (typeof o.buttons.finish === "boolean") {
                         finish_button.appendTo(group_right);
                     } else {
@@ -8074,7 +8077,7 @@ window.METRO_LOCALES = {
 
             this._currentStep = new_step;
             this._steps.hide();
-            jQuery(this._steps[new_step]).show();
+            $(this._steps[new_step]).show();
 
 
             if (typeof o.onPage === 'string') {
@@ -8113,7 +8116,7 @@ window.METRO_LOCALES = {
 
             this._currentStep = new_step;
             this._steps.hide();
-            jQuery(this._steps[new_step]).show();
+            $(this._steps[new_step]).show();
 
             if (typeof o.onPage === 'string') {
                 window[o.onPage](this._currentStep + 1, this.element);
@@ -8150,7 +8153,7 @@ window.METRO_LOCALES = {
             if (new_step < 0) {return false;}
             this._currentStep = new_step;
             this._steps.hide();
-            jQuery(this._steps[new_step]).show();
+            $(this._steps[new_step]).show();
 
             if (typeof o.onPage === 'string') {
                 window[o.onPage](this._currentStep + 1, this.element);
@@ -8187,11 +8190,11 @@ window.METRO_LOCALES = {
 })( jQuery );
 
 
-(function ( jQuery ) {
+(function ( $ ) {
 
     "use strict";
 
-    jQuery.widget( "metro.wizard2" , {
+    $.widget( "metro.wizard2" , {
 
         version: "3.0.0",
 
@@ -8216,10 +8219,10 @@ window.METRO_LOCALES = {
         _create: function () {
             var that = this, element = this.element, o = this.options;
 
-            jQuery.each(element.data(), function(key, value){
+            $.each(element.data(), function(key, value){
                 if (key in o) {
                     try {
-                        o[key] = jQuery.parseJSON(value);
+                        o[key] = $.parseJSON(value);
                     } catch (e) {
                         o[key] = value;
                     }
@@ -8235,10 +8238,10 @@ window.METRO_LOCALES = {
                 o.finish = this._steps.length;
             }
 
-            jQuery.each(this._steps, function(i, v){
-                if (jQuery(v).outerHeight() > that._height) {that._height = jQuery(v).outerHeight();}
-                //console.log(i, jQuery(v).outerHeight(), that._height);
-                if (jQuery(v).hasClass('active')) {
+            $.each(this._steps, function(i, v){
+                if ($(v).outerHeight() > that._height) {that._height = $(v).outerHeight();}
+                //console.log(i, $(v).outerHeight(), that._height);
+                if ($(v).hasClass('active')) {
                     that._step = i + 1;
                 }
             });
@@ -8249,7 +8252,7 @@ window.METRO_LOCALES = {
                 height: this._height + 48
             });
 
-            jQuery(window).resize(function(){
+            $(window).resize(function(){
                 that._width = element.innerWidth() - ( (that._steps.length - 1) * 24 +  (that._steps.length));
                 that.step(that._step);
             });
@@ -8263,13 +8266,13 @@ window.METRO_LOCALES = {
 
         _createActionBar: function(){
             var that = this, element = this.element, o = this.options;
-            var bar = jQuery("<div/>").addClass('action-bar').appendTo(element);
+            var bar = $("<div/>").addClass('action-bar').appendTo(element);
             var btn_prev, btn_next, btn_help, btn_finish;
 
-            btn_help = jQuery("<button/>").html(o.buttonLabels.help).addClass('button cycle-button medium-button wiz-btn-help place-left').appendTo(bar);
-            btn_finish = jQuery("<button/>").html(o.buttonLabels.finish).addClass('button cycle-button medium-button wiz-btn-finish place-right').appendTo(bar);
-            btn_next = jQuery("<button/>").html(o.buttonLabels.next).addClass('button cycle-button medium-button wiz-btn-next place-right').appendTo(bar);
-            btn_prev = jQuery("<button/>").html(o.buttonLabels.prev).addClass('button cycle-button medium-button wiz-btn-prev place-right').appendTo(bar);
+            btn_help = $("<button/>").html(o.buttonLabels.help).addClass('button cycle-button medium-button wiz-btn-help place-left').appendTo(bar);
+            btn_finish = $("<button/>").html(o.buttonLabels.finish).addClass('button cycle-button medium-button wiz-btn-finish place-right').appendTo(bar);
+            btn_next = $("<button/>").html(o.buttonLabels.next).addClass('button cycle-button medium-button wiz-btn-next place-right').appendTo(bar);
+            btn_prev = $("<button/>").html(o.buttonLabels.prev).addClass('button cycle-button medium-button wiz-btn-prev place-right').appendTo(bar);
 
             btn_help.on('click', function(){
                 if (typeof o.onHelpClick === 'string') {
@@ -8322,7 +8325,7 @@ window.METRO_LOCALES = {
             this.element.children('.step')
                 .removeClass('active prev next');
 
-            jQuery(this.element.children('.step')[index - 1])
+            $(this.element.children('.step')[index - 1])
                 .addClass('active')
                 .css('width', this._width);
 

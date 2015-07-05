@@ -1,8 +1,8 @@
-(function ( jQuery ) {
+(function ( $ ) {
 
     "use strict";
 
-    jQuery.widget( "metro.countdown" , {
+    $.widget( "metro.countdown" , {
 
         version: "3.0.0",
 
@@ -33,10 +33,10 @@
         _create: function () {
             var that = this, element = this.element, o = this.options;
 
-            jQuery.each(element.data(), function(key, value){
+            $.each(element.data(), function(key, value){
                 if (key in o) {
                     try {
-                        o[key] = jQuery.parseJSON(value);
+                        o[key] = $.parseJSON(value);
                     } catch (e) {
                         o[key] = value;
                     }
@@ -95,9 +95,9 @@
             var p, d;
 
             parts.map(function(v){
-                p = jQuery("<div/>").addClass('part ' + v).attr('data-day-text', o.labels[v]).appendTo(element);
-                jQuery("<div/>").addClass('digit').appendTo(p);
-                jQuery("<div/>").addClass('digit').appendTo(p);
+                p = $("<div/>").addClass('part ' + v).attr('data-day-text', o.labels[v]).appendTo(element);
+                $("<div/>").addClass('digit').appendTo(p);
+                $("<div/>").addClass('digit').appendTo(p);
                 if (o.labelColor.isColor()) {
                     p.css({
                         color: o.labelColor
@@ -123,7 +123,7 @@
                 }
 
                 if (v !== 'seconds') {
-                    d = jQuery("<div/>").addClass("divider").text(':').appendTo(element);
+                    d = $("<div/>").addClass("divider").text(':').appendTo(element);
                     if (o.dividerColor.isColor()) {
                         d.css({'color': o.dividerColor});
                     } else {

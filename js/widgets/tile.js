@@ -1,8 +1,8 @@
-(function ( jQuery ) {
+(function ( $ ) {
 
     "use strict";
 
-    jQuery.widget( "metro.tile" , {
+    $.widget( "metro.tile" , {
 
         version: "3.0.0",
 
@@ -22,10 +22,10 @@
         _create: function () {
             var that = this, element = this.element, o = this.options;
 
-            jQuery.each(element.data(), function(key, value){
+            $.each(element.data(), function(key, value){
                 if (key in o) {
                     try {
-                        o[key] = jQuery.parseJSON(value);
+                        o[key] = $.parseJSON(value);
                     } catch (e) {
                         o[key] = value;
                     }
@@ -45,7 +45,7 @@
             this._frames = element.find(".live-slide");
             if (this._frames.length <= 1) {return false;}
 
-            jQuery.easing.doubleSqrt = function(t) {return Math.sqrt(Math.sqrt(t));};
+            $.easing.doubleSqrt = function(t) {return Math.sqrt(Math.sqrt(t));};
 
             this._size = {
                 'width': element.width(),
@@ -113,9 +113,9 @@
                 'easing': this.options.easing
             };
 
-            jQuery(currentFrame)
+            $(currentFrame)
                 .animate({top: -_out}, options);
-            jQuery(nextFrame)
+            $(nextFrame)
                 .css({top: _out})
                 .show()
                 .animate({top: 0}, options);
@@ -128,9 +128,9 @@
                 'easing': this.options.easing
             };
 
-            jQuery(currentFrame)
+            $(currentFrame)
                 .animate({top: _out}, options);
-            jQuery(nextFrame)
+            $(nextFrame)
                 .css({top: -_out})
                 .show()
                 .animate({top: 0}, options);
@@ -143,9 +143,9 @@
                 'easing': this.options.easing
             };
 
-            jQuery(currentFrame)
+            $(currentFrame)
                 .animate({left: _out * -1}, options);
-            jQuery(nextFrame)
+            $(nextFrame)
                 .css({left: _out})
                 .show()
                 .animate({left: 0}, options);
@@ -158,9 +158,9 @@
                 'easing': this.options.easing
             };
 
-            jQuery(currentFrame)
+            $(currentFrame)
                 .animate({left: _out}, options);
-            jQuery(nextFrame)
+            $(nextFrame)
                 .css({left: -_out})
                 .show()
                 .animate({left: 0}, options);
@@ -171,7 +171,7 @@
             var dim = {w: element.width(), h: element.height()};
 
             element.on('mousedown', function(e){
-                var X = e.pageX - jQuery(this).offset().left, Y = e.pageY - jQuery(this).offset().top;
+                var X = e.pageX - $(this).offset().left, Y = e.pageY - $(this).offset().top;
                 var transform = 'top';
 
                 if (X < dim.w * 1/3 && (Y < dim.h * 1/2 || Y > dim.h * 1/2 )) {
@@ -182,7 +182,7 @@
                     transform = 'bottom';
                 }
 
-                jQuery(this).addClass("tile-transform-"+transform);
+                $(this).addClass("tile-transform-"+transform);
 
                 //console.log(transform);
 
@@ -194,14 +194,14 @@
             });
 
             element.on('mouseup', function(){
-                jQuery(this)
+                $(this)
                     .removeClass("tile-transform-left")
                     .removeClass("tile-transform-right")
                     .removeClass("tile-transform-top")
                     .removeClass("tile-transform-bottom");
             });
             element.on('mouseleave', function(){
-                jQuery(this)
+                $(this)
                     .removeClass("tile-transform-left")
                     .removeClass("tile-transform-right")
                     .removeClass("tile-transform-top")

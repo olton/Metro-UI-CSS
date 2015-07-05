@@ -1,8 +1,8 @@
-(function ( jQuery ) {
+(function ( $ ) {
 
     "use strict";
 
-    jQuery.widget( "metro.preloader" , {
+    $.widget( "metro.preloader" , {
 
         version: "3.0.0",
 
@@ -14,10 +14,10 @@
         _create: function () {
             var that = this, element = this.element, o = this.options;
 
-            jQuery.each(element.data(), function(key, value){
+            $.each(element.data(), function(key, value){
                 if (key in o) {
                     try {
-                        o[key] = jQuery.parseJSON(value);
+                        o[key] = $.parseJSON(value);
                     } catch (e) {
                         o[key] = value;
                     }
@@ -35,8 +35,8 @@
             var i, wrap, circle;
 
             for(i = 0; i < 5 ; i++) {
-                wrap = jQuery("<div/>").addClass('wrap').appendTo(element);
-                circle = jQuery("<div/>").addClass('circle').appendTo(wrap);
+                wrap = $("<div/>").addClass('wrap').appendTo(element);
+                circle = $("<div/>").addClass('circle').appendTo(wrap);
             }
         },
 
@@ -45,7 +45,7 @@
             var i, circle;
 
             for(i = 0; i < 5 ; i++) {
-                circle = jQuery("<div/>").addClass('circle').appendTo(element);
+                circle = $("<div/>").addClass('circle').appendTo(element);
             }
         },
 
