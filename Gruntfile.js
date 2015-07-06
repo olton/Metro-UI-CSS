@@ -58,9 +58,13 @@ module.exports = function(grunt) {
                 src: 'less/<%= pkg.name %>.less',
                 dest: 'build/css/<%= pkg.name %>.css'
             },
+            compileRtl: {
+                src: 'less/<%= pkg.name %>-rtl.less',
+                dest: 'build/css/<%= pkg.name %>-rtl.css'
+            },
             compileFont: {
-                src: 'less/metro-icons.less',
-                dest: 'build/css/metro-icons.css'
+                src: 'less/<%= pkg.name %>-icons.less',
+                dest: 'build/css/<%= pkg.name %>-icons.css'
             }
         },
 
@@ -78,9 +82,13 @@ module.exports = function(grunt) {
                 src: 'build/css/<%= pkg.name %>.css',
                 dest: 'build/css/<%= pkg.name %>.min.css'
             },
+            minRtl: {
+                src: 'build/css/<%= pkg.name %>-rtl.css',
+                dest: 'build/css/<%= pkg.name %>-rtl.min.css'
+            },
             minFont: {
-                src: 'build/css/metro-icons.css',
-                dest: 'build/css/metro-icons.min.css'
+                src: 'build/css/<%= pkg.name %>-icons.css',
+                dest: 'build/css/<%= pkg.name %>-icons.min.css'
             }
         },
 
@@ -94,9 +102,13 @@ module.exports = function(grunt) {
                 src: 'build/css/<%= pkg.name %>.css',
                 dest: 'docs/css/<%= pkg.name %>.css'
             },
+            docs_css_rtl: {
+                src: 'build/css/<%= pkg.name %>-rtl.css',
+                dest: 'docs/css/<%= pkg.name %>-rtl.css'
+            },
             docs_css_font: {
-                src: 'build/css/metro-icons.css',
-                dest: 'docs/css/metro-icons.css'
+                src: 'build/css/<%= pkg.name %>-icons.css',
+                dest: 'docs/css/<%= pkg.name %>-icons.css'
             },
             docs_js: {
                 src: 'build/js/<%= pkg.name %>.js',
