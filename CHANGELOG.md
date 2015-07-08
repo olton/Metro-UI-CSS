@@ -7,8 +7,8 @@
 * add hint timeout
 * add hint time delay
 * add hotkeys plugin by [John Resig](https://github.com/jeresig)
-* add simple wysiwyg editor
 * add noConflict support
+* add RTL support (partial)
 
 ## 3.0.7
 * add padding for container on mobile devices

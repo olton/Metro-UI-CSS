@@ -58,6 +58,10 @@ module.exports = function(grunt) {
                 src: 'less/<%= pkg.name %>.less',
                 dest: 'build/css/<%= pkg.name %>.css'
             },
+            compileResponsive: {
+                src: 'less/<%= pkg.name %>-responsive.less',
+                dest: 'build/css/<%= pkg.name %>-responsive.css'
+            },
             compileRtl: {
                 src: 'less/<%= pkg.name %>-rtl.less',
                 dest: 'build/css/<%= pkg.name %>-rtl.css'
@@ -86,6 +90,10 @@ module.exports = function(grunt) {
                 src: 'build/css/<%= pkg.name %>-rtl.css',
                 dest: 'build/css/<%= pkg.name %>-rtl.min.css'
             },
+            minResponsive: {
+                src: 'build/css/<%= pkg.name %>-responsive.css',
+                dest: 'build/css/<%= pkg.name %>-responsive.min.css'
+            },
             minFont: {
                 src: 'build/css/<%= pkg.name %>-icons.css',
                 dest: 'build/css/<%= pkg.name %>-icons.min.css'
@@ -105,6 +113,10 @@ module.exports = function(grunt) {
             docs_css_rtl: {
                 src: 'build/css/<%= pkg.name %>-rtl.css',
                 dest: 'docs/css/<%= pkg.name %>-rtl.css'
+            },
+            docs_css_responsive: {
+                src: 'build/css/<%= pkg.name %>-responsive.css',
+                dest: 'docs/css/<%= pkg.name %>-responsive.css'
             },
             docs_css_font: {
                 src: 'build/css/<%= pkg.name %>-icons.css',
