@@ -3,16 +3,6 @@
 @import (once) "variables";
 @import (once) "utils";
 
-@tileMargin: 5px;
-@tileSize: 150px;
-@tileHalfSize: 70px;
-@tileMedium: 310px;
-@tileBig: 470px;
-@tileLarge: 630px;
-@tileOutlineSize: 3px;
-@tileGroupMargin: 80px;
-
-@tileMDFactor: 1.25;
 
 .tile-area {
 	min-width: 100%;
@@ -119,195 +109,101 @@
 
 .tile {
 
-    @media screen and (max-width: 800px) {
-        width: @tileSize / @tileMDFactor;
-        height: @tileSize / @tileMDFactor;
-    }
 
 	&.small-tile {
 		width: @tileHalfSize;
 		height: @tileHalfSize;
-
-        @media screen and (max-width: 800px) {
-            width: @tileHalfSize / @tileMDFactor;
-            height: @tileHalfSize / @tileMDFactor;
-        }
 	}
 
 	&.wide-tile {
 		width: @tileMedium;
 		height: @tileSize;
-
-        @media screen and (max-width: 800px) {
-            width: @tileMedium / @tileMDFactor;
-            height: @tileSize / @tileMDFactor;
-        }
 	}
 
 	&.wide-tile-v {
 		height: @tileMedium;
 		width: @tileSize;
-
-        @media screen and (max-width: 800px) {
-            width: @tileSize / @tileMDFactor;
-            height: @tileMedium / @tileMDFactor;
-        }
 	}
 
 	&.large-tile {
 		width: @tileMedium;
 		height: @tileMedium;
-
-        @media screen and (max-width: 800px) {
-            width: @tileMedium / @tileMDFactor;
-            height: @tileMedium / @tileMDFactor;
-        }
 	}
 
 	&.big-tile {
 		width: @tileBig;
 		height: @tileBig;
-
-        @media screen and (max-width: 800px) {
-            width: @tileBig / @tileMDFactor;
-            height: @tileBig / @tileMDFactor;
-        }
 	}
 
 	&.super-tile {
 		width: @tileLarge;
 		height: @tileLarge;
-
-        @media screen and (max-width: 800px) {
-            width: @tileLarge / @tileMDFactor;
-            height: @tileLarge / @tileMDFactor;
-        }
 	}
 }
 
 .tile-square {
 	.tile;
-    @media screen and (max-width: 800px) {
-        width: @tileSize / @tileMDFactor;
-        height: @tileSize / @tileMDFactor;
-    }
 }
 .tile-small {
 	.tile;
 	width: @tileHalfSize;
 	height: @tileHalfSize;
-    @media screen and (max-width: 800px) {
-        width: @tileHalfSize / @tileMDFactor;
-        height: @tileHalfSize / @tileMDFactor;
-    }
 }
 .tile-wide {
 	.tile;
 	width: @tileMedium;
 	height: @tileSize;
-    @media screen and (max-width: 800px) {
-        width: @tileMedium / @tileMDFactor;
-        height: @tileSize / @tileMDFactor;
-    }
 }
 .tile-large {
 	.tile;
 	width: @tileMedium;
 	height: @tileMedium;
-    @media screen and (max-width: 800px) {
-        width: @tileMedium / @tileMDFactor;
-        height: @tileMedium / @tileMDFactor;
-    }
 }
 .tile-big {
 	.tile;
 	width: @tileBig;
 	height: @tileBig;
-    @media screen and (max-width: 800px) {
-        width: @tileBig / @tileMDFactor;
-        height: @tileBig / @tileMDFactor;
-    }
 }
 .tile-super {
 	.tile;
 	width: @tileLarge;
 	height: @tileLarge;
-    @media screen and (max-width: 800px) {
-        width: @tileLarge / @tileMDFactor;
-        height: @tileLarge / @tileMDFactor;
-    }
 }
 .tile-small-x {
 	width: @tileHalfSize;
-    @media screen and (max-width: 800px) {
-        width: @tileHalfSize / @tileMDFactor;
-    }
 }
 .tile-square-x {
 	width: @tileSize;
-    @media screen and (max-width: 800px) {
-        width: @tileSize / @tileMDFactor;
-    }
 }
 .tile-wide-x {
 	width: @tileMedium;
-    @media screen and (max-width: 800px) {
-        width: @tileMedium / @tileMDFactor;
-    }
 }
 .tile-large-x {
 	width: @tileMedium;
-    @media screen and (max-width: 800px) {
-        width: @tileMedium / @tileMDFactor;
-    }
 }
 .tile-big-x {
 	width: @tileBig;
-    @media screen and (max-width: 800px) {
-        width: @tileBig / @tileMDFactor;
-    }
 }
 .tile-super-x {
 	width: @tileLarge;
-    @media screen and (max-width: 800px) {
-        width: @tileLarge / @tileMDFactor;
-    }
 }
 .tile-small-y {
 	height: @tileHalfSize;
-    @media screen and (max-width: 800px) {
-        height: @tileHalfSize / @tileMDFactor;
-    }
 }
 .tile-square-y {
 	height: @tileSize;
-    @media screen and (max-width: 800px) {
-        height: @tileSize / @tileMDFactor;
-    }
 }
 .tile-wide-y {
 	height: @tileMedium;
-    @media screen and (max-width: 800px) {
-        height: @tileMedium / @tileMDFactor;
-    }
 }
 .tile-large-y {
 	height: @tileMedium;
-    @media screen and (max-width: 800px) {
-        height: @tileMedium / @tileMDFactor;
-    }
 }
 .tile-big-y {
 	height: @tileBig;
-    @media screen and (max-width: 800px) {
-        height: @tileBig / @tileMDFactor;
-    }
 }
 .tile-super-y {
 	height: @tileLarge;
-    @media screen and (max-width: 800px) {
-        height: @tileLarge / @tileMDFactor;
-    }
 }
 
 // Patterns
@@ -354,13 +250,6 @@
 			left: 50%;
 			margin-left: -32px;
 			text-align: center;
-            @media screen and (max-width: 800px) {
-                width: 64px / @tileMDFactor;
-                height: 64px / @tileMDFactor;
-                margin-left: -32px / @tileMDFactor;
-                margin-top: -40px / @tileMDFactor;
-                font-size: 64px / @tileMDFactor;
-            }
 		}
 	}
 
@@ -372,13 +261,6 @@
 				font-size: 32px;
 				margin-left: -16px;
 				margin-top: -16px;
-                @media screen and (max-width: 800px) {
-                    font-size: 32px / @tileMDFactor;
-                    width: 32px / @tileMDFactor;
-                    height: 32px / @tileMDFactor;
-                    margin-left: -16px / @tileMDFactor;
-                    margin-top: -16px / @tileMDFactor;
-                }
 			}
 		}
 	}
@@ -894,34 +776,4 @@
 
 // Media
 
-.tile-area:not(.no-responsive-future) {
-	@media screen and (max-width: 640px) {
-		width: 100% ;
-		padding: 0;
 
-		.tile-area-title {
-			display: none;
-		}
-
-		.tile-group {
-			margin: 0 ;
-			padding: 0 ;
-			float: none;
-			.tile-group-title {
-				display: none;
-			}
-		}
-	}
-}
-
-.tile-container:not(.no-responsive-future) {
-	@media screen and (max-width: 640px) {
-		width: 100% ;
-	}
-}
-
-.tile-big, .tile.big-tile, .tile-super, .tile.super-tile {
-	@media screen and (max-width: 320px){
-		width: 310px ;
-	}
-}
