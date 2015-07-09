@@ -9,6 +9,7 @@
 * add hotkeys plugin by [John Resig](https://github.com/jeresig)
 * add noConflict support
 * add RTL support (partial)
+* move all media to standalone file metro-responsive
 
 ## 3.0.7
 * add padding for container on mobile devices
