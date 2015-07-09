@@ -84,12 +84,10 @@ h1, h2, h3, h4, h5, h6, p  {
 }
 
 .grid {
-    @media screen and (max-width: 768px) {
-        .row {
+    @media screen and (max-width: 800px) {
+        .row, .row[class*=cells] {
             margin: 0;
-        }
 
-        .row {
             & > .cell, & > .cell[class*=colspan] {
                 width: 48.936175% ;
                 margin-bottom: 10px;
@@ -110,12 +108,10 @@ h1, h2, h3, h4, h5, h6, p  {
         }
     }
 
-    @media only screen and (max-width: 640px) {
-        .row {
+    @media screen and (max-width: 640px) {
+        .row, .row[class*=cells]  {
             margin: 0;
-        }
 
-        .row {
             & > .cell, & > .cell[class*=colspan] {
                 width: 100%;
                 margin: .3125rem 0;
@@ -124,12 +120,10 @@ h1, h2, h3, h4, h5, h6, p  {
     }
 
     &.condensed {
-        @media screen and (max-width: 768px) {
-            .row {
+        @media screen and (max-width: 800px) {
+            .row, .row[class*=cells] {
                 margin: 0;
-            }
 
-            .row {
                 & > .cell, & > .cell[class*=colspan] {
                     width: 50% ;
                     margin-bottom: 10px ;
@@ -152,11 +146,9 @@ h1, h2, h3, h4, h5, h6, p  {
         }
 
         @media only screen and (max-width: 640px) {
-            .row {
+            .row, .row[class*=cells] {
                 margin: 0;
-            }
 
-            .row {
                 & > .cell, & > .cell[class*=colspan] {
                     width: 100%;
                     margin: .3125rem 0;

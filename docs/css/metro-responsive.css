@@ -3471,78 +3471,118 @@
             flex-direction: column;
   }
 }
-@media screen and (max-width: 768px) {
-  .grid .row {
+@media screen and (max-width: 800px) {
+  .grid .row,
+  .grid .row[class*=cells] {
     margin: 0;
   }
   .grid .row > .cell,
-  .grid .row > .cell[class*=colspan] {
+  .grid .row[class*=cells] > .cell,
+  .grid .row > .cell[class*=colspan],
+  .grid .row[class*=cells] > .cell[class*=colspan] {
     width: 48.936175% ;
     margin-bottom: 10px;
   }
   .grid .row > .cell:nth-child(odd),
-  .grid .row > .cell[class*=colspan]:nth-child(odd) {
+  .grid .row[class*=cells] > .cell:nth-child(odd),
+  .grid .row > .cell[class*=colspan]:nth-child(odd),
+  .grid .row[class*=cells] > .cell[class*=colspan]:nth-child(odd) {
     margin-left: 0;
   }
   .grid .row > .cell:nth-child(1):last-child,
+  .grid .row[class*=cells] > .cell:nth-child(1):last-child,
   .grid .row > .cell[class*=colspan]:nth-child(1):last-child,
+  .grid .row[class*=cells] > .cell[class*=colspan]:nth-child(1):last-child,
   .grid .row > .cell:nth-child(3):last-child,
+  .grid .row[class*=cells] > .cell:nth-child(3):last-child,
   .grid .row > .cell[class*=colspan]:nth-child(3):last-child,
+  .grid .row[class*=cells] > .cell[class*=colspan]:nth-child(3):last-child,
   .grid .row > .cell:nth-child(5):last-child,
+  .grid .row[class*=cells] > .cell:nth-child(5):last-child,
   .grid .row > .cell[class*=colspan]:nth-child(5):last-child,
+  .grid .row[class*=cells] > .cell[class*=colspan]:nth-child(5):last-child,
   .grid .row > .cell:nth-child(7):last-child,
+  .grid .row[class*=cells] > .cell:nth-child(7):last-child,
   .grid .row > .cell[class*=colspan]:nth-child(7):last-child,
+  .grid .row[class*=cells] > .cell[class*=colspan]:nth-child(7):last-child,
   .grid .row > .cell:nth-child(9):last-child,
+  .grid .row[class*=cells] > .cell:nth-child(9):last-child,
   .grid .row > .cell[class*=colspan]:nth-child(9):last-child,
+  .grid .row[class*=cells] > .cell[class*=colspan]:nth-child(9):last-child,
   .grid .row > .cell:nth-child(11):last-child,
-  .grid .row > .cell[class*=colspan]:nth-child(11):last-child {
+  .grid .row[class*=cells] > .cell:nth-child(11):last-child,
+  .grid .row > .cell[class*=colspan]:nth-child(11):last-child,
+  .grid .row[class*=cells] > .cell[class*=colspan]:nth-child(11):last-child {
     width: 100%;
   }
 }
-@media only screen and (max-width: 640px) {
-  .grid .row {
+@media screen and (max-width: 640px) {
+  .grid .row,
+  .grid .row[class*=cells] {
     margin: 0;
   }
   .grid .row > .cell,
-  .grid .row > .cell[class*=colspan] {
+  .grid .row[class*=cells] > .cell,
+  .grid .row > .cell[class*=colspan],
+  .grid .row[class*=cells] > .cell[class*=colspan] {
     width: 100%;
     margin: .3125rem 0;
   }
 }
-@media screen and (max-width: 768px) {
-  .grid.condensed .row {
+@media screen and (max-width: 800px) {
+  .grid.condensed .row,
+  .grid.condensed .row[class*=cells] {
     margin: 0;
   }
   .grid.condensed .row > .cell,
-  .grid.condensed .row > .cell[class*=colspan] {
+  .grid.condensed .row[class*=cells] > .cell,
+  .grid.condensed .row > .cell[class*=colspan],
+  .grid.condensed .row[class*=cells] > .cell[class*=colspan] {
     width: 50% ;
     margin-bottom: 10px ;
   }
   .grid.condensed .row > .cell:nth-child(odd),
-  .grid.condensed .row > .cell[class*=colspan]:nth-child(odd) {
+  .grid.condensed .row[class*=cells] > .cell:nth-child(odd),
+  .grid.condensed .row > .cell[class*=colspan]:nth-child(odd),
+  .grid.condensed .row[class*=cells] > .cell[class*=colspan]:nth-child(odd) {
     margin-left: 0;
   }
   .grid.condensed .row > .cell:nth-child(1):last-child,
+  .grid.condensed .row[class*=cells] > .cell:nth-child(1):last-child,
   .grid.condensed .row > .cell[class*=colspan]:nth-child(1):last-child,
+  .grid.condensed .row[class*=cells] > .cell[class*=colspan]:nth-child(1):last-child,
   .grid.condensed .row > .cell:nth-child(3):last-child,
+  .grid.condensed .row[class*=cells] > .cell:nth-child(3):last-child,
   .grid.condensed .row > .cell[class*=colspan]:nth-child(3):last-child,
+  .grid.condensed .row[class*=cells] > .cell[class*=colspan]:nth-child(3):last-child,
   .grid.condensed .row > .cell:nth-child(5):last-child,
+  .grid.condensed .row[class*=cells] > .cell:nth-child(5):last-child,
   .grid.condensed .row > .cell[class*=colspan]:nth-child(5):last-child,
+  .grid.condensed .row[class*=cells] > .cell[class*=colspan]:nth-child(5):last-child,
   .grid.condensed .row > .cell:nth-child(7):last-child,
+  .grid.condensed .row[class*=cells] > .cell:nth-child(7):last-child,
   .grid.condensed .row > .cell[class*=colspan]:nth-child(7):last-child,
+  .grid.condensed .row[class*=cells] > .cell[class*=colspan]:nth-child(7):last-child,
   .grid.condensed .row > .cell:nth-child(9):last-child,
+  .grid.condensed .row[class*=cells] > .cell:nth-child(9):last-child,
   .grid.condensed .row > .cell[class*=colspan]:nth-child(9):last-child,
+  .grid.condensed .row[class*=cells] > .cell[class*=colspan]:nth-child(9):last-child,
   .grid.condensed .row > .cell:nth-child(11):last-child,
-  .grid.condensed .row > .cell[class*=colspan]:nth-child(11):last-child {
+  .grid.condensed .row[class*=cells] > .cell:nth-child(11):last-child,
+  .grid.condensed .row > .cell[class*=colspan]:nth-child(11):last-child,
+  .grid.condensed .row[class*=cells] > .cell[class*=colspan]:nth-child(11):last-child {
     width: 100%;
   }
 }
 @media only screen and (max-width: 640px) {
-  .grid.condensed .row {
+  .grid.condensed .row,
+  .grid.condensed .row[class*=cells] {
     margin: 0;
   }
   .grid.condensed .row > .cell,
-  .grid.condensed .row > .cell[class*=colspan] {
+  .grid.condensed .row[class*=cells] > .cell,
+  .grid.condensed .row > .cell[class*=colspan],
+  .grid.condensed .row[class*=cells] > .cell[class*=colspan] {
     width: 100%;
     margin: .3125rem 0;
   }
