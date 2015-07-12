@@ -12635,6 +12635,8 @@ input[type="submit"].link:active {
   overflow: hidden;
 }
 .carousel .slide {
+  top: 0;
+  left: 0;
   position: absolute;
   display: block;
   width: 100%;

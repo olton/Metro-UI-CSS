@@ -206,14 +206,17 @@ Date.prototype.format = function (mask, utc) {
     };
 
     $.Metro.initWidgets = function(){
-        var widgets;
-        widgets = $("[data-role]");
+        var widgets = $("[data-role]");
+
         $.each(widgets, function(){
-            var $this = $(this);
+            var $this = $(this), w = this;
             var roles = $this.data('role').split(/\s*,\s*/);
             roles.map(function(func){
                 try {
-                    if ($.fn[func] !== undefined) {$.fn[func].call($this);}
+                    //$(w)[func]();
+                    if ($.fn[func] !== undefined) {
+                        $.fn[func].call($this);
+                    }
                 } catch(e) {
                     if (window.METRO_DEBUG) {
                         console.log(e.message, e.stack);
@@ -244,12 +247,15 @@ Date.prototype.format = function (mask, utc) {
                 }
             }, 100);
         } else {
+            //console.log('observable');
             var observer, observerOptions, observerCallback;
             observerOptions = {
                 'childList': true,
                 'subtree': true
             };
             observerCallback = function(mutations){
+                //console.log('hi from observer');
+
                 mutations.map(function(record){
                     if (record.addedNodes) {
 
@@ -291,4 +297,6 @@ Date.prototype.format = function (mask, utc) {
             observer.observe(document, observerOptions);
         }
     }
+
+
 })(jQuery);
