@@ -7,6 +7,13 @@ require.config({
         widget_initiator: "metro/initiator",
         widget_countdown: "metro/widgets/countdown",
         widget_accordion: "metro/widgets/accordion"
+    },
+    shim: {
+        metro_global: ["jquery"],
+        widget_factory: ["jquery"],
+        widget_initiator: ["jquery"],
+        widget_countdown: ["jquery"],
+        widget_accordion: ["jquery"]
     }
 });
 
