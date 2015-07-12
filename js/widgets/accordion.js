@@ -11,7 +11,7 @@
 
     //var $ = jQuery;
 
-    var accordion = $.widget("metro.accordion", {
+    $.widget("metro.accordion", {
 
         version: "3.0.0",
 
