@@ -194,4 +194,3 @@ Date.prototype.format = function (mask, utc) {
  * End date format
  */
 
-
