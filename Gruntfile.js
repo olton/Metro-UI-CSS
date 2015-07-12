@@ -28,8 +28,8 @@ module.exports = function(grunt) {
             metro: {
                 src: [
                     'js/requirements.js',
-                    'js/global.js',
                     'js/widget.js',
+                    'js/global.js',
                     'js/utils/*.js',
                     'js/widgets/*.js'
                 ],

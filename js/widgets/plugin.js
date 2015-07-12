@@ -1,6 +1,16 @@
-(function ( $ ) {
+(function (factory) {
+    if ( typeof define === 'function' && define.amd ) {
+        define(['jquery'], factory);
+    } else if (typeof exports === 'object') {
+        module.exports = factory;
+    } else {
+        factory(jQuery);
+    }
+}(function ( jQuery ) {
 
     "use strict";
+
+    var $ = jQuery;
 
     $.widget( "metro.widget" , {
 
@@ -37,4 +47,4 @@
         }
     });
 
-})( jQuery );
+}));
