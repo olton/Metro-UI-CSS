@@ -30,9 +30,9 @@ module.exports = function(grunt) {
                     'js/requirements.js',
                     'js/widget.js',
                     'js/global.js',
+                    'js/initiator.js',
                     'js/utils/*.js',
-                    'js/widgets/*.js',
-                    'js/initiator.js'
+                    'js/widgets/*.js'
                 ],
                 dest: 'build/js/<%= pkg.name %>.js'
             }
