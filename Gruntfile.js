@@ -31,7 +31,8 @@ module.exports = function(grunt) {
                     'js/widget.js',
                     'js/global.js',
                     'js/utils/*.js',
-                    'js/widgets/*.js'
+                    'js/widgets/*.js',
+                    'js/initiator.js'
                 ],
                 dest: 'build/js/<%= pkg.name %>.js'
             }
