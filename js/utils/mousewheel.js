@@ -1,36 +1,16 @@
-/*! Copyright (c) 2013 Brandon Aaron (http://brandonaaron.net)
- * Licensed under the MIT License (LICENSE.txt).
- *
- * Thanks to: http://adomas.org/javascript-mouse-wheel/ for some pointers.
- * Thanks to: Mathias Bank(http://www.mathias-bank.de) for a scope bug fix.
- * Thanks to: Seamus Leahy for adding deltaX and deltaY
- *
- * Version: 3.1.3
- *
- * Requires: 1.2.2+
- */
-
-(function (factory) {
-    if ( typeof define === 'function' && define.amd ) {
-        define(['jquery'], factory);
-    } else if (typeof exports === 'object') {
-        module.exports = factory;
-    } else {
-        factory(jQuery);
-    }
-}(function (jQuery) {
+(function ($) {
 
     var toFix = ['wheel', 'mousewheel', 'DOMMouseScroll', 'MozMousePixelScroll'];
     var toBind = 'onwheel' in document || document.documentMode >= 9 ? ['wheel'] : ['mousewheel', 'DomMouseScroll', 'MozMousePixelScroll'];
     var lowestDelta, lowestDeltaXY;
 
-    if ( jQuery.event.fixHooks ) {
+    if ( $.event.fixHooks ) {
         for ( var i = toFix.length; i; ) {
-            jQuery.event.fixHooks[ toFix[--i] ] = jQuery.event.mouseHooks;
+            $.event.fixHooks[ toFix[--i] ] = $.event.mouseHooks;
         }
     }
 
-    jQuery.event.special.mousewheel = {
+    $.event.special.mousewheel = {
         setup: function() {
             if ( this.addEventListener ) {
                 for ( var i = toBind.length; i; ) {
@@ -52,7 +32,7 @@
         }
     };
 
-    jQuery.fn.extend({
+    $.fn.extend({
         mousewheel: function(fn) {
             return fn ? this.bind("mousewheel", fn) : this.trigger("mousewheel");
         },
@@ -72,7 +52,7 @@
             absDelta = 0,
             absDeltaXY = 0,
             fn;
-        event = jQuery.event.fix(orgEvent);
+        event = $.event.fix(orgEvent);
         event.type = "mousewheel";
 
         // Old school scrollwheel delta
@@ -108,7 +88,7 @@
         // Add event and delta to the front of the arguments
         args.unshift(event, delta, deltaX, deltaY);
 
-        return (jQuery.event.dispatch || jQuery.event.handle).apply(this, args);
+        return ($.event.dispatch || $.event.handle).apply(this, args);
     }
 
-}));
+})(jQuery);

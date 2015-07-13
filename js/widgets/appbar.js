@@ -1,22 +1,8 @@
-/*
- * flexible appbar, which automatically collapse if not enough space avaiable
- * @author rewritten by Daniel Milbrandt, xiphe.com
- * 
- * PS: You are doing great work Sergey! Greats Daniel
- */
-(function (factory) {
-    if ( typeof define === 'function' && define.amd ) {
-        define(['jquery'], factory);
-    } else if (typeof exports === 'object') {
-        module.exports = factory;
-    } else {
-        factory(jQuery);
-    }
-}(function (jQuery) {
+(function ($) {
 
     "use strict";
 
-    var $ = jQuery;
+    //var $ = jQuery;
 
     $.widget("metro.appbar", {
         version: "3.0.0",
@@ -444,4 +430,4 @@
             this._super('_setOption', key, value);
         }
     });
-}));
+})(jQuery);

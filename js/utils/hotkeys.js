@@ -1,34 +1,6 @@
-/*jslint browser: true*/
-/*jslint jquery: true*/
+(function($) {
 
-/*
- * jQuery Hotkeys Plugin
- * Copyright 2010, John Resig
- * Dual licensed under the MIT or GPL Version 2 licenses.
- *
- * Based upon the plugin by Tzury Bar Yochay:
- * https://github.com/tzuryby/jquery.hotkeys
- *
- * Original idea by:
- * Binny V A, http://www.openjs.com/scripts/events/keyboard_shortcuts/
- */
-
-/*
- * One small change is: now keys are passed by object { keys: '...' }
- * Might be useful, when you want to pass some other data to your handler
- */
-
-(function (factory) {
-    if ( typeof define === 'function' && define.amd ) {
-        define(['jquery'], factory);
-    } else if (typeof exports === 'object') {
-        module.exports = factory;
-    } else {
-        factory(jQuery);
-    }
-}(function(jQuery) {
-
-    jQuery.hotkeys = {
+    $.hotkeys = {
         version: "0.8",
 
         specialKeys: {
@@ -153,20 +125,20 @@
         handleObj.handler = function(event) {
             //      Don't fire in text-accepting inputs that we didn't directly bind to
             if (this !== event.target &&
-                (jQuery.hotkeys.options.filterInputAcceptingElements &&
-                jQuery.hotkeys.textInputTypes.test(event.target.nodeName) ||
-                (jQuery.hotkeys.options.filterContentEditable && jQuery(event.target).attr('contenteditable')) ||
-                (jQuery.hotkeys.options.filterTextInputs &&
-                jQuery.inArray(event.target.type, jQuery.hotkeys.textAcceptingInputTypes) > -1))) {
+                ($.hotkeys.options.filterInputAcceptingElements &&
+                $.hotkeys.textInputTypes.test(event.target.nodeName) ||
+                ($.hotkeys.options.filterContentEditable && $(event.target).attr('contenteditable')) ||
+                ($.hotkeys.options.filterTextInputs &&
+                $.inArray(event.target.type, $.hotkeys.textAcceptingInputTypes) > -1))) {
                 return;
             }
 
-            var special = event.type !== "keypress" && jQuery.hotkeys.specialKeys[event.which],
+            var special = event.type !== "keypress" && $.hotkeys.specialKeys[event.which],
                 character = String.fromCharCode(event.which).toLowerCase(),
                 modif = "",
                 possible = {};
 
-            jQuery.each(["alt", "ctrl", "shift"], function(index, specialKey) {
+            $.each(["alt", "ctrl", "shift"], function(index, specialKey) {
 
                 if (event[specialKey + 'Key'] && special !== specialKey) {
                     modif += specialKey + '+';
@@ -187,11 +159,11 @@
             }
             else {
                 possible[modif + character] = true;
-                possible[modif + jQuery.hotkeys.shiftNums[character]] = true;
+                possible[modif + $.hotkeys.shiftNums[character]] = true;
 
                 // "$" can be triggered as "Shift+4" or "Shift+$" or just "$"
                 if (modif === "shift+") {
-                    possible[jQuery.hotkeys.shiftNums[character]] = true;
+                    possible[$.hotkeys.shiftNums[character]] = true;
                 }
             }
 
@@ -203,10 +175,10 @@
         };
     }
 
-    jQuery.each(["keydown", "keyup", "keypress"], function() {
-        jQuery.event.special[this] = {
+    $.each(["keydown", "keyup", "keypress"], function() {
+        $.event.special[this] = {
             add: keyHandler
         };
     });
 
-}));
+})(jQuery);
