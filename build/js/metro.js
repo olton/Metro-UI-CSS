@@ -204,20 +204,7 @@ Date.prototype.format = function (mask, utc) {
  */
 
 
-/*! jQuery UI - v1.11.3 - 2015-02-23
- * http://jqueryui.com
- * Includes: widget.js
- * Copyright 2015 jQuery Foundation and other contributors; Licensed MIT */
-
-(function (factory) {
-    if (typeof define === 'function' && define.amd) {
-        define(['jquery'], factory);
-    } else if (typeof exports === 'object') {
-        module.exports = factory;
-    } else {
-        factory(jQuery);
-    }
-}(function (jQuery) {
+(function ($) {
     /*!
      * jQuery UI Widget 1.11.3
      * http://jqueryui.com
@@ -233,27 +220,27 @@ Date.prototype.format = function (mask, utc) {
     var widget_uuid = 0,
         widget_slice = Array.prototype.slice;
 
-    jQuery.cleanData = (function (orig) {
+    $.cleanData = (function (orig) {
         return function (elems) {
             var events, elem, i;
             for (i = 0; (elem = elems[i]) != null; i++) {
                 try {
 
                     // Only trigger remove when necessary to save time
-                    events = jQuery._data(elem, "events");
+                    events = $._data(elem, "events");
                     if (events && events.remove) {
-                        jQuery(elem).triggerHandler("remove");
+                        $(elem).triggerHandler("remove");
                     }
 
-                    // http://bugs.jquery.com/ticket/8235
+                    // http://bugs.$.com/ticket/8235
                 } catch (e) {
                 }
             }
             orig(elems);
         };
-    })(jQuery.cleanData);
+    })($.cleanData);
 
-    jQuery.widget = function (name, base, prototype) {
+    $.widget = function (name, base, prototype) {
         var fullName, existingConstructor, constructor, basePrototype,
         // proxiedPrototype allows the provided prototype to remain unmodified
         // so that it can be used as a mixin for multiple widgets (#8876)
@@ -265,17 +252,17 @@ Date.prototype.format = function (mask, utc) {
 
         if (!prototype) {
             prototype = base;
-            base = jQuery.Widget;
+            base = $.Widget;
         }
 
         // create selector for plugin
-        jQuery.expr[":"][fullName.toLowerCase()] = function (elem) {
-            return !!jQuery.data(elem, fullName);
+        $.expr[":"][fullName.toLowerCase()] = function (elem) {
+            return !!$.data(elem, fullName);
         };
 
-        jQuery[namespace] = jQuery[namespace] || {};
-        existingConstructor = jQuery[namespace][name];
-        constructor = jQuery[namespace][name] = function (options, element) {
+        $[namespace] = $[namespace] || {};
+        existingConstructor = $[namespace][name];
+        constructor = $[namespace][name] = function (options, element) {
             // allow instantiation without "new" keyword
             if (!this._createWidget) {
                 return new constructor(options, element);
@@ -288,11 +275,11 @@ Date.prototype.format = function (mask, utc) {
             }
         };
         // extend with the existing constructor to carry over any static properties
-        jQuery.extend(constructor, existingConstructor, {
+        $.extend(constructor, existingConstructor, {
             version: prototype.version,
             // copy the object used to create the prototype in case we need to
             // redefine the widget later
-            _proto: jQuery.extend({}, prototype),
+            _proto: $.extend({}, prototype),
             // track widgets that inherit from this widget in case this widget is
             // redefined after a widget inherits from it
             _childConstructors: []
@@ -302,9 +289,9 @@ Date.prototype.format = function (mask, utc) {
         // we need to make the options hash a property directly on the new instance
         // otherwise we'll modify the options hash on the prototype that we're
         // inheriting from
-        basePrototype.options = jQuery.widget.extend({}, basePrototype.options);
-        jQuery.each(prototype, function (prop, value) {
-            if (!jQuery.isFunction(value)) {
+        basePrototype.options = $.widget.extend({}, basePrototype.options);
+        $.each(prototype, function (prop, value) {
+            if (!$.isFunction(value)) {
                 proxiedPrototype[prop] = value;
                 return;
             }
@@ -332,7 +319,7 @@ Date.prototype.format = function (mask, utc) {
                 };
             })();
         });
-        constructor.prototype = jQuery.widget.extend(basePrototype, {
+        constructor.prototype = $.widget.extend(basePrototype, {
             // TODO: remove support for widgetEventPrefix
             // always use the name + a colon as the prefix, e.g., draggable:start
             // don't prefix for widgets that aren't DOM-based
@@ -349,12 +336,12 @@ Date.prototype.format = function (mask, utc) {
         // the new version of this widget. We're essentially trying to replace one
         // level in the prototype chain.
         if (existingConstructor) {
-            jQuery.each(existingConstructor._childConstructors, function (i, child) {
+            $.each(existingConstructor._childConstructors, function (i, child) {
                 var childPrototype = child.prototype;
 
                 // redefine the child widget using the same prototype that was
                 // originally used, but inherit from the new version of the base
-                jQuery.widget(childPrototype.namespace + "." + childPrototype.widgetName, constructor, child._proto);
+                $.widget(childPrototype.namespace + "." + childPrototype.widgetName, constructor, child._proto);
             });
             // remove the list of existing child constructors from the old constructor
             // so the old child constructors can be garbage collected
@@ -363,12 +350,12 @@ Date.prototype.format = function (mask, utc) {
             base._childConstructors.push(constructor);
         }
 
-        jQuery.widget.bridge(name, constructor);
+        $.widget.bridge(name, constructor);
 
         return constructor;
     };
 
-    jQuery.widget.extend = function (target) {
+    $.widget.extend = function (target) {
         var input = widget_slice.call(arguments, 1),
             inputIndex = 0,
             inputLength = input.length,
@@ -379,11 +366,11 @@ Date.prototype.format = function (mask, utc) {
                 value = input[inputIndex][key];
                 if (input[inputIndex].hasOwnProperty(key) && value !== undefined) {
                     // Clone objects
-                    if (jQuery.isPlainObject(value)) {
-                        target[key] = jQuery.isPlainObject(target[key]) ?
-                            jQuery.widget.extend({}, target[key], value) :
+                    if ($.isPlainObject(value)) {
+                        target[key] = $.isPlainObject(target[key]) ?
+                            $.widget.extend({}, target[key], value) :
                             // Don't extend strings, arrays, etc. with objects
-                            jQuery.widget.extend({}, value);
+                            $.widget.extend({}, value);
                         // Copy everything else by reference
                     } else {
                         target[key] = value;
@@ -394,9 +381,9 @@ Date.prototype.format = function (mask, utc) {
         return target;
     };
 
-    jQuery.widget.bridge = function (name, object) {
+    $.widget.bridge = function (name, object) {
         var fullName = object.prototype.widgetFullName || name;
-        jQuery.fn[name] = function (options) {
+        $.fn[name] = function (options) {
             var isMethodCall = typeof options === "string",
                 args = widget_slice.call(arguments, 1),
                 returnValue = this;
@@ -404,17 +391,17 @@ Date.prototype.format = function (mask, utc) {
             if (isMethodCall) {
                 this.each(function () {
                     var methodValue,
-                        instance = jQuery.data(this, fullName);
+                        instance = $.data(this, fullName);
                     if (options === "instance") {
                         returnValue = instance;
                         return false;
                     }
                     if (!instance) {
-                        return jQuery.error("cannot call methods on " + name + " prior to initialization; " +
+                        return $.error("cannot call methods on " + name + " prior to initialization; " +
                             "attempted to call method '" + options + "'");
                     }
-                    if (!jQuery.isFunction(instance[options]) || options.charAt(0) === "_") {
-                        return jQuery.error("no such method '" + options + "' for " + name + " widget instance");
+                    if (!$.isFunction(instance[options]) || options.charAt(0) === "_") {
+                        return $.error("no such method '" + options + "' for " + name + " widget instance");
                     }
                     methodValue = instance[options].apply(instance, args);
                     if (methodValue !== instance && methodValue !== undefined) {
@@ -428,18 +415,18 @@ Date.prototype.format = function (mask, utc) {
 
                 // Allow multiple hashes to be passed on init
                 if (args.length) {
-                    options = jQuery.widget.extend.apply(null, [options].concat(args));
+                    options = $.widget.extend.apply(null, [options].concat(args));
                 }
 
                 this.each(function () {
-                    var instance = jQuery.data(this, fullName);
+                    var instance = $.data(this, fullName);
                     if (instance) {
                         instance.option(options || {});
                         if (instance._init) {
                             instance._init();
                         }
                     } else {
-                        jQuery.data(this, fullName, new object(options, this));
+                        $.data(this, fullName, new object(options, this));
                     }
                 });
             }
@@ -448,11 +435,11 @@ Date.prototype.format = function (mask, utc) {
         };
     };
 
-    jQuery.Widget = function (/* options, element */) {
+    $.Widget = function (/* options, element */) {
     };
-    jQuery.Widget._childConstructors = [];
+    $.Widget._childConstructors = [];
 
-    jQuery.Widget.prototype = {
+    $.Widget.prototype = {
         widgetName: "widget",
         widgetEventPrefix: "",
         defaultElement: "<div>",
@@ -463,17 +450,17 @@ Date.prototype.format = function (mask, utc) {
             create: null
         },
         _createWidget: function (options, element) {
-            element = jQuery(element || this.defaultElement || this)[0];
-            this.element = jQuery(element);
+            element = $(element || this.defaultElement || this)[0];
+            this.element = $(element);
             this.uuid = widget_uuid++;
             this.eventNamespace = "." + this.widgetName + this.uuid;
 
-            this.bindings = jQuery();
-            this.hoverable = jQuery();
-            this.focusable = jQuery();
+            this.bindings = $();
+            this.hoverable = $();
+            this.focusable = $();
 
             if (element !== this) {
-                jQuery.data(element, this.widgetFullName, this);
+                $.data(element, this.widgetFullName, this);
                 this._on(true, this.element, {
                     remove: function (event) {
                         if (event.target === element) {
@@ -481,15 +468,15 @@ Date.prototype.format = function (mask, utc) {
                         }
                     }
                 });
-                this.document = jQuery(element.style ?
+                this.document = $(element.style ?
                     // element within the document
                     element.ownerDocument :
                     // element is window or document
                 element.document || element);
-                this.window = jQuery(this.document[0].defaultView || this.document[0].parentWindow);
+                this.window = $(this.document[0].defaultView || this.document[0].parentWindow);
             }
 
-            this.options = jQuery.widget.extend({},
+            this.options = $.widget.extend({},
                 this.options,
                 this._getCreateOptions(),
                 options);
@@ -498,10 +485,10 @@ Date.prototype.format = function (mask, utc) {
             this._trigger("create", null, this._getCreateEventData());
             this._init();
         },
-        _getCreateOptions: jQuery.noop,
-        _getCreateEventData: jQuery.noop,
-        _create: jQuery.noop,
-        _init: jQuery.noop,
+        _getCreateOptions: $.noop,
+        _getCreateEventData: $.noop,
+        _create: $.noop,
+        _init: $.noop,
 
         destroy: function () {
             this._destroy();
@@ -512,7 +499,7 @@ Date.prototype.format = function (mask, utc) {
                 .removeData(this.widgetFullName)
                 // support: jquery <1.6.3
                 // http://bugs.jquery.com/ticket/9413
-                .removeData(jQuery.camelCase(this.widgetFullName));
+                .removeData($.camelCase(this.widgetFullName));
             this.widget()
                 .unbind(this.eventNamespace)
                 .removeAttr("aria-disabled")
@@ -525,7 +512,7 @@ Date.prototype.format = function (mask, utc) {
             this.hoverable.removeClass("ui-state-hover");
             this.focusable.removeClass("ui-state-focus");
         },
-        _destroy: jQuery.noop,
+        _destroy: $.noop,
 
         widget: function () {
             return this.element;
@@ -539,7 +526,7 @@ Date.prototype.format = function (mask, utc) {
 
             if (arguments.length === 0) {
                 // don't return a reference to the internal hash
-                return jQuery.widget.extend({}, this.options);
+                return $.widget.extend({}, this.options);
             }
 
             if (typeof key === "string") {
@@ -548,7 +535,7 @@ Date.prototype.format = function (mask, utc) {
                 parts = key.split(".");
                 key = parts.shift();
                 if (parts.length) {
-                    curOption = options[key] = jQuery.widget.extend({}, this.options[key]);
+                    curOption = options[key] = $.widget.extend({}, this.options[key]);
                     for (i = 0; i < parts.length - 1; i++) {
                         curOption[parts[i]] = curOption[parts[i]] || {};
                         curOption = curOption[parts[i]];
@@ -620,18 +607,18 @@ Date.prototype.format = function (mask, utc) {
                 element = this.element;
                 delegateElement = this.widget();
             } else {
-                element = delegateElement = jQuery(element);
+                element = delegateElement = $(element);
                 this.bindings = this.bindings.add(element);
             }
 
-            jQuery.each(handlers, function (event, handler) {
+            $.each(handlers, function (event, handler) {
                 function handlerProxy() {
                     // allow widgets to customize the disabled handling
                     // - disabled as an array instead of boolean
                     // - disabled class as method for disabling individual parts
                     if (!suppressDisabledCheck &&
                         ( instance.options.disabled === true ||
-                        jQuery(this).hasClass("ui-state-disabled") )) {
+                        $(this).hasClass("ui-state-disabled") )) {
                         return;
                     }
                     return ( typeof handler === "string" ? instance[handler] : handler )
@@ -641,7 +628,7 @@ Date.prototype.format = function (mask, utc) {
                 // copy the guid so direct unbinding works
                 if (typeof handler !== "string") {
                     handlerProxy.guid = handler.guid =
-                        handler.guid || handlerProxy.guid || jQuery.guid++;
+                        handler.guid || handlerProxy.guid || $.guid++;
                 }
 
                 var match = event.match(/^([\w:-]*)\s*(.*)$/),
@@ -661,9 +648,9 @@ Date.prototype.format = function (mask, utc) {
             element.unbind(eventName).undelegate(eventName);
 
             // Clear the stack to avoid memory leaks (#10056)
-            this.bindings = jQuery(this.bindings.not(element).get());
-            this.focusable = jQuery(this.focusable.not(element).get());
-            this.hoverable = jQuery(this.hoverable.not(element).get());
+            this.bindings = $(this.bindings.not(element).get());
+            this.focusable = $(this.focusable.not(element).get());
+            this.hoverable = $(this.hoverable.not(element).get());
         },
 
         _delay: function (handler, delay) {
@@ -680,10 +667,10 @@ Date.prototype.format = function (mask, utc) {
             this.hoverable = this.hoverable.add(element);
             this._on(element, {
                 mouseenter: function (event) {
-                    jQuery(event.currentTarget).addClass("ui-state-hover");
+                    $(event.currentTarget).addClass("ui-state-hover");
                 },
                 mouseleave: function (event) {
-                    jQuery(event.currentTarget).removeClass("ui-state-hover");
+                    $(event.currentTarget).removeClass("ui-state-hover");
                 }
             });
         },
@@ -692,10 +679,10 @@ Date.prototype.format = function (mask, utc) {
             this.focusable = this.focusable.add(element);
             this._on(element, {
                 focusin: function (event) {
-                    jQuery(event.currentTarget).addClass("ui-state-focus");
+                    $(event.currentTarget).addClass("ui-state-focus");
                 },
                 focusout: function (event) {
-                    jQuery(event.currentTarget).removeClass("ui-state-focus");
+                    $(event.currentTarget).removeClass("ui-state-focus");
                 }
             });
         },
@@ -705,7 +692,7 @@ Date.prototype.format = function (mask, utc) {
                 callback = this.options[type];
 
             data = data || {};
-            event = jQuery.Event(event);
+            event = $.Event(event);
             event.type = ( type === this.widgetEventPrefix ?
                 type :
             this.widgetEventPrefix + type ).toLowerCase();
@@ -724,14 +711,14 @@ Date.prototype.format = function (mask, utc) {
             }
 
             this.element.trigger(event, data);
-            return !( jQuery.isFunction(callback) &&
+            return !( $.isFunction(callback) &&
             callback.apply(this.element[0], [event].concat(data)) === false ||
             event.isDefaultPrevented() );
         }
     };
 
-    jQuery.each({show: "fadeIn", hide: "fadeOut"}, function (method, defaultEffect) {
-        jQuery.Widget.prototype["_" + method] = function (element, options, callback) {
+    $.each({show: "fadeIn", hide: "fadeOut"}, function (method, defaultEffect) {
+        $.Widget.prototype["_" + method] = function (element, options, callback) {
             if (typeof options === "string") {
                 options = {effect: options};
             }
@@ -745,18 +732,18 @@ Date.prototype.format = function (mask, utc) {
             if (typeof options === "number") {
                 options = {duration: options};
             }
-            hasOptions = !jQuery.isEmptyObject(options);
+            hasOptions = !$.isEmptyObject(options);
             options.complete = callback;
             if (options.delay) {
                 element.delay(options.delay);
             }
-            if (hasOptions && jQuery.effects && jQuery.effects.effect[effectName]) {
+            if (hasOptions && $.effects && $.effects.effect[effectName]) {
                 element[method](options);
             } else if (effectName !== method && element[effectName]) {
                 element[effectName](options.duration, options.easing, callback);
             } else {
                 element.queue(function (next) {
-                    jQuery(this)[method]();
+                    $(this)[method]();
                     if (callback) {
                         callback.call(element[0]);
                     }
@@ -766,9 +753,9 @@ Date.prototype.format = function (mask, utc) {
         };
     });
 
-    var widget = jQuery.widget;
+    var widget = $.widget;
 
-}));
+})(jQuery);
 (function($){
     "use strict";
 
@@ -877,61 +864,15 @@ Date.prototype.format = function (mask, utc) {
     }
 })(jQuery);
 
-/*
- * jQuery Easing v1.3 - http://gsgd.co.uk/sandbox/jquery/easing/
- *
- * Uses the built in easing capabilities added In jQuery 1.1
- * to offer multiple easing options
- *
- * TERMS OF USE - jQuery Easing
- * 
- * Open source under the BSD License. 
- * 
- * Copyright © 2008 George McGinley Smith
- * All rights reserved.
- * 
- * Redistribution and use in source and binary forms, with or without modification, 
- * are permitted provided that the following conditions are met:
- * 
- * Redistributions of source code must retain the above copyright notice, this list of 
- * conditions and the following disclaimer.
- * Redistributions in binary form must reproduce the above copyright notice, this list 
- * of conditions and the following disclaimer in the documentation and/or other materials 
- * provided with the distribution.
- * 
- * Neither the name of the author nor the names of contributors may be used to endorse 
- * or promote products derived from this software without specific prior written permission.
- * 
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY 
- * EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
- * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
- *  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
- *  EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
- *  GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED 
- * AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
- *  NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED 
- * OF THE POSSIBILITY OF SUCH DAMAGE. 
- *
-*/
+(function($) {
+	$.easing['jswing'] = $.easing['swing'];
 
-// t: current time, b: begInnIng value, c: change In value, d: duration
-(function (factory) {
-	if ( typeof define === 'function' && define.amd ) {
-		define(['jquery'], factory);
-	} else if (typeof exports === 'object') {
-		module.exports = factory;
-	} else {
-		factory(jQuery);
-	}
-}(function(jQuery) {
-	jQuery.easing['jswing'] = jQuery.easing['swing'];
-
-	jQuery.extend(jQuery.easing,
+	$.extend($.easing,
 		{
 			def: 'easeOutQuad',
 			swing: function (x, t, b, c, d) {
-				//alert(jQuery.easing.default);
-				return jQuery.easing[jQuery.easing.def](x, t, b, c, d);
+				//alert($.easing.default);
+				return $.easing[$.easing.def](x, t, b, c, d);
 			},
 			easeInQuad: function (x, t, b, c, d) {
 				return c * (t /= d) * t + b;
@@ -1061,7 +1002,7 @@ Date.prototype.format = function (mask, utc) {
 				return c / 2 * ((t -= 2) * t * (((s *= (1.525)) + 1) * t + s) + 2) + b;
 			},
 			easeInBounce: function (x, t, b, c, d) {
-				return c - jQuery.easing.easeOutBounce(x, d - t, 0, c, d) + b;
+				return c - $.easing.easeOutBounce(x, d - t, 0, c, d) + b;
 			},
 			easeOutBounce: function (x, t, b, c, d) {
 				if ((t /= d) < (1 / 2.75)) {
@@ -1075,74 +1016,15 @@ Date.prototype.format = function (mask, utc) {
 				}
 			},
 			easeInOutBounce: function (x, t, b, c, d) {
-				if (t < d / 2) return jQuery.easing.easeInBounce(x, t * 2, 0, c, d) * .5 + b;
-				return jQuery.easing.easeOutBounce(x, t * 2 - d, 0, c, d) * .5 + c * .5 + b;
+				if (t < d / 2) return $.easing.easeInBounce(x, t * 2, 0, c, d) * .5 + b;
+				return $.easing.easeOutBounce(x, t * 2 - d, 0, c, d) * .5 + c * .5 + b;
 			}
 		});
-}));
-/*
- *
- * TERMS OF USE - EASING EQUATIONS
- * 
- * Open source under the BSD License. 
- * 
- * Copyright © 2001 Robert Penner
- * All rights reserved.
- * 
- * Redistribution and use in source and binary forms, with or without modification, 
- * are permitted provided that the following conditions are met:
- * 
- * Redistributions of source code must retain the above copyright notice, this list of 
- * conditions and the following disclaimer.
- * Redistributions in binary form must reproduce the above copyright notice, this list 
- * of conditions and the following disclaimer in the documentation and/or other materials 
- * provided with the distribution.
- * 
- * Neither the name of the author nor the names of contributors may be used to endorse 
- * or promote products derived from this software without specific prior written permission.
- * 
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY 
- * EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
- * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
- *  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
- *  EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
- *  GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED 
- * AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
- *  NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED 
- * OF THE POSSIBILITY OF SUCH DAMAGE. 
- *
- */
-/*jslint browser: true*/
-/*jslint jquery: true*/
+})(jQuery);
 
-/*
- * jQuery Hotkeys Plugin
- * Copyright 2010, John Resig
- * Dual licensed under the MIT or GPL Version 2 licenses.
- *
- * Based upon the plugin by Tzury Bar Yochay:
- * https://github.com/tzuryby/jquery.hotkeys
- *
- * Original idea by:
- * Binny V A, http://www.openjs.com/scripts/events/keyboard_shortcuts/
- */
+(function($) {
 
-/*
- * One small change is: now keys are passed by object { keys: '...' }
- * Might be useful, when you want to pass some other data to your handler
- */
-
-(function (factory) {
-    if ( typeof define === 'function' && define.amd ) {
-        define(['jquery'], factory);
-    } else if (typeof exports === 'object') {
-        module.exports = factory;
-    } else {
-        factory(jQuery);
-    }
-}(function(jQuery) {
-
-    jQuery.hotkeys = {
+    $.hotkeys = {
         version: "0.8",
 
         specialKeys: {
@@ -1267,20 +1149,20 @@ Date.prototype.format = function (mask, utc) {
         handleObj.handler = function(event) {
             //      Don't fire in text-accepting inputs that we didn't directly bind to
             if (this !== event.target &&
-                (jQuery.hotkeys.options.filterInputAcceptingElements &&
-                jQuery.hotkeys.textInputTypes.test(event.target.nodeName) ||
-                (jQuery.hotkeys.options.filterContentEditable && jQuery(event.target).attr('contenteditable')) ||
-                (jQuery.hotkeys.options.filterTextInputs &&
-                jQuery.inArray(event.target.type, jQuery.hotkeys.textAcceptingInputTypes) > -1))) {
+                ($.hotkeys.options.filterInputAcceptingElements &&
+                $.hotkeys.textInputTypes.test(event.target.nodeName) ||
+                ($.hotkeys.options.filterContentEditable && $(event.target).attr('contenteditable')) ||
+                ($.hotkeys.options.filterTextInputs &&
+                $.inArray(event.target.type, $.hotkeys.textAcceptingInputTypes) > -1))) {
                 return;
             }
 
-            var special = event.type !== "keypress" && jQuery.hotkeys.specialKeys[event.which],
+            var special = event.type !== "keypress" && $.hotkeys.specialKeys[event.which],
                 character = String.fromCharCode(event.which).toLowerCase(),
                 modif = "",
                 possible = {};
 
-            jQuery.each(["alt", "ctrl", "shift"], function(index, specialKey) {
+            $.each(["alt", "ctrl", "shift"], function(index, specialKey) {
 
                 if (event[specialKey + 'Key'] && special !== specialKey) {
                     modif += specialKey + '+';
@@ -1301,11 +1183,11 @@ Date.prototype.format = function (mask, utc) {
             }
             else {
                 possible[modif + character] = true;
-                possible[modif + jQuery.hotkeys.shiftNums[character]] = true;
+                possible[modif + $.hotkeys.shiftNums[character]] = true;
 
                 // "$" can be triggered as "Shift+4" or "Shift+$" or just "$"
                 if (modif === "shift+") {
-                    possible[jQuery.hotkeys.shiftNums[character]] = true;
+                    possible[$.hotkeys.shiftNums[character]] = true;
                 }
             }
 
@@ -1317,46 +1199,26 @@ Date.prototype.format = function (mask, utc) {
         };
     }
 
-    jQuery.each(["keydown", "keyup", "keypress"], function() {
-        jQuery.event.special[this] = {
+    $.each(["keydown", "keyup", "keypress"], function() {
+        $.event.special[this] = {
             add: keyHandler
         };
     });
 
-}));
-/*! Copyright (c) 2013 Brandon Aaron (http://brandonaaron.net)
- * Licensed under the MIT License (LICENSE.txt).
- *
- * Thanks to: http://adomas.org/javascript-mouse-wheel/ for some pointers.
- * Thanks to: Mathias Bank(http://www.mathias-bank.de) for a scope bug fix.
- * Thanks to: Seamus Leahy for adding deltaX and deltaY
- *
- * Version: 3.1.3
- *
- * Requires: 1.2.2+
- */
-
-(function (factory) {
-    if ( typeof define === 'function' && define.amd ) {
-        define(['jquery'], factory);
-    } else if (typeof exports === 'object') {
-        module.exports = factory;
-    } else {
-        factory(jQuery);
-    }
-}(function (jQuery) {
+})(jQuery);
+(function ($) {
 
     var toFix = ['wheel', 'mousewheel', 'DOMMouseScroll', 'MozMousePixelScroll'];
     var toBind = 'onwheel' in document || document.documentMode >= 9 ? ['wheel'] : ['mousewheel', 'DomMouseScroll', 'MozMousePixelScroll'];
     var lowestDelta, lowestDeltaXY;
 
-    if ( jQuery.event.fixHooks ) {
+    if ( $.event.fixHooks ) {
         for ( var i = toFix.length; i; ) {
-            jQuery.event.fixHooks[ toFix[--i] ] = jQuery.event.mouseHooks;
+            $.event.fixHooks[ toFix[--i] ] = $.event.mouseHooks;
         }
     }
 
-    jQuery.event.special.mousewheel = {
+    $.event.special.mousewheel = {
         setup: function() {
             if ( this.addEventListener ) {
                 for ( var i = toBind.length; i; ) {
@@ -1378,7 +1240,7 @@ Date.prototype.format = function (mask, utc) {
         }
     };
 
-    jQuery.fn.extend({
+    $.fn.extend({
         mousewheel: function(fn) {
             return fn ? this.bind("mousewheel", fn) : this.trigger("mousewheel");
         },
@@ -1398,7 +1260,7 @@ Date.prototype.format = function (mask, utc) {
             absDelta = 0,
             absDeltaXY = 0,
             fn;
-        event = jQuery.event.fix(orgEvent);
+        event = $.event.fix(orgEvent);
         event.type = "mousewheel";
 
         // Old school scrollwheel delta
@@ -1434,27 +1296,12 @@ Date.prototype.format = function (mask, utc) {
         // Add event and delta to the front of the arguments
         args.unshift(event, delta, deltaX, deltaY);
 
-        return (jQuery.event.dispatch || jQuery.event.handle).apply(this, args);
+        return ($.event.dispatch || $.event.handle).apply(this, args);
     }
 
-}));
+})(jQuery);
 
-/**
-* Copyright (c) 2014, Leon Sorokin
-* All rights reserved. (MIT Licensed)
-*
-* preCode.js - painkiller for <pre><code> & <textarea>
-*/
-
-(function (factory) {
-	if ( typeof define === 'function' && define.amd ) {
-		define(['jquery'], factory);
-	} else if (typeof exports === 'object') {
-		module.exports = factory;
-	} else {
-		factory(jQuery);
-	}
-}(function() {
+(function() {
 	function preCode(selector) {
 		var els = Array.prototype.slice.call(document.querySelectorAll(selector), 0);
 
@@ -1489,16 +1336,8 @@ Date.prototype.format = function (mask, utc) {
 	document.addEventListener("DOMContentLoaded", function() {
 		preCode("pre code, textarea");
 	}, false);
-}));
-(function (factory) {
-    if ( typeof define === 'function' && define.amd ) {
-        define(['jquery'], factory);
-    } else if (typeof exports === 'object') {
-        module.exports = factory;
-    } else {
-        factory(jQuery);
-    }
-}(function() {
+})();
+(function() {
     var hasTouch = 'ontouchend' in window, eventTimer;
     var moveDirection = 'undefined', startX, startY, deltaX, deltaY, mouseDown = false;
 
@@ -1560,17 +1399,9 @@ Date.prototype.format = function (mask, utc) {
 
         e.preventDefault();
     }
-}));
+})();
 
-(function (factory) {
-    if ( typeof define === 'function' && define.amd ) {
-        define(['jquery'], factory);
-    } else if (typeof exports === 'object') {
-        module.exports = factory;
-    } else {
-        factory(jQuery);
-    }
-}(function( $ ) {
+(function( $ ) {
     "use strict";
 
     //var $ = jQuery;
@@ -1689,27 +1520,13 @@ Date.prototype.format = function (mask, utc) {
             this._super('_setOption', key, value);
         }
     });
-}));
+})(jQuery);
 
-/*
- * flexible appbar, which automatically collapse if not enough space avaiable
- * @author rewritten by Daniel Milbrandt, xiphe.com
- * 
- * PS: You are doing great work Sergey! Greats Daniel
- */
-(function (factory) {
-    if ( typeof define === 'function' && define.amd ) {
-        define(['jquery'], factory);
-    } else if (typeof exports === 'object') {
-        module.exports = factory;
-    } else {
-        factory(jQuery);
-    }
-}(function (jQuery) {
+(function ($) {
 
     "use strict";
 
-    var $ = jQuery;
+    //var $ = jQuery;
 
     $.widget("metro.appbar", {
         version: "3.0.0",
@@ -2137,20 +1954,12 @@ Date.prototype.format = function (mask, utc) {
             this._super('_setOption', key, value);
         }
     });
-}));
+})(jQuery);
 
-(function (factory) {
-    if ( typeof define === 'function' && define.amd ) {
-        define(['jquery'], factory);
-    } else if (typeof exports === 'object') {
-        module.exports = factory;
-    } else {
-        factory(jQuery);
-    }
-}(function ( jQuery ) {
+(function ( $ ) {
     "use strict";
 
-    var $ = jQuery;
+    //var $ = jQuery;
 
     $.widget( "metro.group" , {
 
@@ -2222,7 +2031,7 @@ Date.prototype.format = function (mask, utc) {
         }
     });
 
-}));
+})(jQuery);
 //window.METRO_CALENDAR_WEEK_START = 0;
 window.METRO_LOCALES = {
     'en': {
@@ -2385,18 +2194,10 @@ window.METRO_LOCALES = {
     }
 };
 
-(function (factory) {
-    if ( typeof define === 'function' && define.amd ) {
-        define(['jquery'], factory);
-    } else if (typeof exports === 'object') {
-        module.exports = factory;
-    } else {
-        factory(jQuery);
-    }
-}(function( jQuery ) {
+(function( $ ) {
     "use strict";
 
-    var $ = jQuery;
+    //var $ = jQuery;
 
     $.widget("metro.calendar", {
 
@@ -3030,19 +2831,11 @@ window.METRO_LOCALES = {
             this._super('_setOption', key, value);
         }
     });
-}));
-(function (factory) {
-    if ( typeof define === 'function' && define.amd ) {
-        define(['jquery'], factory);
-    } else if (typeof exports === 'object') {
-        module.exports = factory;
-    } else {
-        factory(jQuery);
-    }
-}(function( jQuery ) {
+})(jQuery);
+(function( $ ) {
     "use strict";
 
-    var $ = jQuery;
+    //var $ = jQuery;
 
     $.widget("metro.carousel", {
 
@@ -3355,21 +3148,13 @@ window.METRO_LOCALES = {
             this._super('_setOption', key, value);
         }
     });
-}));
+})(jQuery);
 
-(function (factory) {
-    if ( typeof define === 'function' && define.amd ) {
-        define(['jquery'], factory);
-    } else if (typeof exports === 'object') {
-        module.exports = factory;
-    } else {
-        factory(jQuery);
-    }
-}(function ( jQuery ) {
+(function ( $ ) {
 
     "use strict";
 
-    var $ = jQuery;
+    //var $ = jQuery;
 
     $.widget( "metro.countdown" , {
 
@@ -3614,20 +3399,12 @@ window.METRO_LOCALES = {
         }
     });
 
-}));
-(function (factory) {
-    if ( typeof define === 'function' && define.amd ) {
-        define(['jquery'], factory);
-    } else if (typeof exports === 'object') {
-        module.exports = factory;
-    } else {
-        factory(jQuery);
-    }
-}(function ( jQuery ) {
+})(jQuery);
+(function ( $ ) {
 
     "use strict";
 
-    var $ = jQuery;
+    //var $ = jQuery;
 
     $.widget( "metro.datatable" , {
 
@@ -3669,20 +3446,12 @@ window.METRO_LOCALES = {
         }
     });
 
-}));
-(function (factory) {
-    if ( typeof define === 'function' && define.amd ) {
-        define(['jquery'], factory);
-    } else if (typeof exports === 'object') {
-        module.exports = factory;
-    } else {
-        factory(jQuery);
-    }
-}(function( jQuery ) {
+})(jQuery);
+(function( $ ) {
 
     "use strict";
 
-    var $ = jQuery;
+    //var $ = jQuery;
 
     $.widget("metro.datepicker", {
 
@@ -3846,23 +3615,15 @@ window.METRO_LOCALES = {
             this._super('_setOption', key, value);
         }
     });
-}));
+})(jQuery);
 
 
 
-(function (factory) {
-    if ( typeof define === 'function' && define.amd ) {
-        define(['jquery'], factory);
-    } else if (typeof exports === 'object') {
-        module.exports = factory;
-    } else {
-        factory(jQuery);
-    }
-}(function ( jQuery ) {
+(function ( $ ) {
 
     "use strict";
 
-    var $ = jQuery;
+    //var $ = jQuery;
 
     $.widget( "metro.dialog" , {
 
@@ -4051,20 +3812,12 @@ window.METRO_LOCALES = {
             this._super('_setOption', key, value);
         }
     });
-}));
-(function (factory) {
-    if ( typeof define === 'function' && define.amd ) {
-        define(['jquery'], factory);
-    } else if (typeof exports === 'object') {
-        module.exports = factory;
-    } else {
-        factory(jQuery);
-    }
-}(function( jQuery ) {
+})(jQuery);
+(function( $ ) {
 
     "use strict";
 
-    var $ = jQuery;
+    //var $ = jQuery;
 
     $.widget("metro.dropdown", {
 
@@ -4180,21 +3933,13 @@ window.METRO_LOCALES = {
             this._super('_setOption', key, value);
         }
     });
-}));
+})(jQuery);
 
-(function (factory) {
-    if ( typeof define === 'function' && define.amd ) {
-        define(['jquery'], factory);
-    } else if (typeof exports === 'object') {
-        module.exports = factory;
-    } else {
-        factory(jQuery);
-    }
-}(function ( jQuery ) {
+(function ( $ ) {
 
     "use strict";
 
-    var $ = jQuery;
+    //var $ = jQuery;
 
     $.widget( "metro.fitImage" , {
 
@@ -4322,20 +4067,12 @@ window.METRO_LOCALES = {
             this._super('_setOption', key, value);
         }
     });
-}));
-(function (factory) {
-    if ( typeof define === 'function' && define.amd ) {
-        define(['jquery'], factory);
-    } else if (typeof exports === 'object') {
-        module.exports = factory;
-    } else {
-        factory(jQuery);
-    }
-}(function ( jQuery ) {
+})(jQuery);
+(function ( $ ) {
 
     "use strict";
 
-    var $ = jQuery;
+    //var $ = jQuery;
 
     $.widget( "metro.grid" , {
 
@@ -4402,20 +4139,12 @@ window.METRO_LOCALES = {
         }
     });
 
-}));
-(function (factory) {
-    if ( typeof define === 'function' && define.amd ) {
-        define(['jquery'], factory);
-    } else if (typeof exports === 'object') {
-        module.exports = factory;
-    } else {
-        factory(jQuery);
-    }
-}(function( jQuery ) {
+})(jQuery);
+(function( $ ) {
 
     "use strict";
 
-    var $ = jQuery;
+    //var $ = jQuery;
 
     $.widget("metro.hint", {
 
@@ -4580,19 +4309,11 @@ window.METRO_LOCALES = {
             this._super('_setOption', key, value);
         }
     });
-}));
-(function (factory) {
-    if ( typeof define === 'function' && define.amd ) {
-        define(['jquery'], factory);
-    } else if (typeof exports === 'object') {
-        module.exports = factory;
-    } else {
-        factory(jQuery);
-    }
-}(function( jQuery ) {
+})(jQuery);
+(function( $ ) {
     "use strict";
 
-    var $ = jQuery;
+    //var $ = jQuery;
 
     $.widget("metro.input", {
 
@@ -4728,20 +4449,12 @@ window.METRO_LOCALES = {
             this._super('_setOption', key, value);
         }
     });
-}));
-(function (factory) {
-    if ( typeof define === 'function' && define.amd ) {
-        define(['jquery'], factory);
-    } else if (typeof exports === 'object') {
-        module.exports = factory;
-    } else {
-        factory(jQuery);
-    }
-}(function ( jQuery ) {
+})(jQuery);
+(function ( $ ) {
 
     "use strict";
 
-    var $ = jQuery;
+    //var $ = jQuery;
 
     $.widget( "metro.keypad" , {
 
@@ -4892,20 +4605,12 @@ window.METRO_LOCALES = {
         }
     });
 
-}));
-(function (factory) {
-    if ( typeof define === 'function' && define.amd ) {
-        define(['jquery'], factory);
-    } else if (typeof exports === 'object') {
-        module.exports = factory;
-    } else {
-        factory(jQuery);
-    }
-}(function ( jQuery ) {
+})(jQuery);
+(function ( $ ) {
 
     "use strict";
 
-    var $ = jQuery;
+    //var $ = jQuery;
 
     $.widget( "metro.listview" , {
 
@@ -5004,20 +4709,12 @@ window.METRO_LOCALES = {
         }
     });
 
-}));
-(function (factory) {
-	if ( typeof define === 'function' && define.amd ) {
-		define(['jquery'], factory);
-	} else if (typeof exports === 'object') {
-		module.exports = factory;
-	} else {
-		factory(jQuery);
-	}
-}(function(jQuery) {
+})(jQuery);
+(function($) {
 
     "use strict";
 
-	var $ = jQuery;
+	//var $ = jQuery;
 
 	var _notify_container = false;
 	var _notifies = [];
@@ -5151,21 +4848,13 @@ window.METRO_LOCALES = {
        	});
     };
 	
-}));
+})(jQuery);
 
-(function (factory) {
-    if ( typeof define === 'function' && define.amd ) {
-        define(['jquery'], factory);
-    } else if (typeof exports === 'object') {
-        module.exports = factory;
-    } else {
-        factory(jQuery);
-    }
-}(function( jQuery ) {
+(function( $ ) {
 
     "use strict";
 
-    var $ = jQuery;
+    //var $ = jQuery;
 
     $.widget("metro.panel", {
 
@@ -5219,20 +4908,12 @@ window.METRO_LOCALES = {
             this._super('_setOption', key, value);
         }
     });
-}));
-(function (factory) {
-    if ( typeof define === 'function' && define.amd ) {
-        define(['jquery'], factory);
-    } else if (typeof exports === 'object') {
-        module.exports = factory;
-    } else {
-        factory(jQuery);
-    }
-}(function ( jQuery ) {
+})(jQuery);
+(function ( $ ) {
 
     "use strict";
 
-    var $ = jQuery;
+    //var $ = jQuery;
 
     $.widget( "metro.widget" , {
 
@@ -5269,20 +4950,12 @@ window.METRO_LOCALES = {
         }
     });
 
-}));
-(function (factory) {
-    if ( typeof define === 'function' && define.amd ) {
-        define(['jquery'], factory);
-    } else if (typeof exports === 'object') {
-        module.exports = factory;
-    } else {
-        factory(jQuery);
-    }
-}(function( jQuery ) {
+})(jQuery);
+(function( $ ) {
 
     "use strict";
 
-    var $ = jQuery;
+    //var $ = jQuery;
 
     $.widget("metro.popover", {
 
@@ -5431,20 +5104,12 @@ window.METRO_LOCALES = {
             this._super('_setOption', key, value);
         }
     });
-}));
-(function (factory) {
-    if ( typeof define === 'function' && define.amd ) {
-        define(['jquery'], factory);
-    } else if (typeof exports === 'object') {
-        module.exports = factory;
-    } else {
-        factory(jQuery);
-    }
-}(function ( jQuery ) {
+})(jQuery);
+(function ( $ ) {
 
     "use strict";
 
-    var $ = jQuery;
+    //var $ = jQuery;
 
     $.widget( "metro.preloader" , {
 
@@ -5517,20 +5182,12 @@ window.METRO_LOCALES = {
         }
     });
 
-}));
-(function (factory) {
-    if ( typeof define === 'function' && define.amd ) {
-        define(['jquery'], factory);
-    } else if (typeof exports === 'object') {
-        module.exports = factory;
-    } else {
-        factory(jQuery);
-    }
-}(function ( jQuery ) {
+})(jQuery);
+(function ( $ ) {
 
     "use strict";
 
-    var $ = jQuery;
+    //var $ = jQuery;
 
     $.widget( "metro.presenter" , {
 
@@ -5720,20 +5377,12 @@ window.METRO_LOCALES = {
         }
     });
 
-}));
-(function (factory) {
-    if ( typeof define === 'function' && define.amd ) {
-        define(['jquery'], factory);
-    } else if (typeof exports === 'object') {
-        module.exports = factory;
-    } else {
-        factory(jQuery);
-    }
-}(function ( jQuery ) {
+})(jQuery);
+(function ( $ ) {
 
     "use strict";
 
-    var $ = jQuery;
+    //var $ = jQuery;
 
     $.widget( "metro.progressBar" , {
 
@@ -5844,20 +5493,12 @@ window.METRO_LOCALES = {
             this._super('_setOption', key, value);
         }
     });
-}));
-(function (factory) {
-    if ( typeof define === 'function' && define.amd ) {
-        define(['jquery'], factory);
-    } else if (typeof exports === 'object') {
-        module.exports = factory;
-    } else {
-        factory(jQuery);
-    }
-}(function ( jQuery ) {
+})(jQuery);
+(function ( $ ) {
 
     "use strict";
 
-    var $ = jQuery;
+    //var $ = jQuery;
 
     $.widget( "metro.rating" , {
 
@@ -6015,20 +5656,12 @@ window.METRO_LOCALES = {
         }
     });
 
-}));
-(function (factory) {
-    if ( typeof define === 'function' && define.amd ) {
-        define(['jquery'], factory);
-    } else if (typeof exports === 'object') {
-        module.exports = factory;
-    } else {
-        factory(jQuery);
-    }
-}(function ( jQuery ) {
+})(jQuery);
+(function ( $ ) {
 
     "use strict";
 
-    var $ = jQuery;
+    //var $ = jQuery;
 
     $.widget( "metro.select" , {
 
@@ -6087,19 +5720,11 @@ window.METRO_LOCALES = {
         }
     });
 
-}));
-(function (factory) {
-    if ( typeof define === 'function' && define.amd ) {
-        define(['jquery'], factory);
-    } else if (typeof exports === 'object') {
-        module.exports = factory;
-    } else {
-        factory(jQuery);
-    }
-}(function( jQuery ) {
+})(jQuery);
+(function( $ ) {
     "use strict";
 
-    var $ = jQuery;
+    //var $ = jQuery;
 
     $.widget("metro.slider", {
 
@@ -6474,20 +6099,12 @@ window.METRO_LOCALES = {
             this._super('_setOption', key, value);
         }
     });
-}));
-(function (factory) {
-    if ( typeof define === 'function' && define.amd ) {
-        define(['jquery'], factory);
-    } else if (typeof exports === 'object') {
-        module.exports = factory;
-    } else {
-        factory(jQuery);
-    }
-}(function( jQuery ) {
+})(jQuery);
+(function( $ ) {
 
     "use strict";
 
-    var $ = jQuery;
+    //var $ = jQuery;
 
     $.widget("metro.stepper", {
 
@@ -6642,21 +6259,13 @@ window.METRO_LOCALES = {
             this._super('_setOption', key, value);
         }
     });
-}));
+})(jQuery);
 
 
-(function (factory) {
-    if ( typeof define === 'function' && define.amd ) {
-        define(['jquery'], factory);
-    } else if (typeof exports === 'object') {
-        module.exports = factory;
-    } else {
-        factory(jQuery);
-    }
-}(function( jQuery ) {
+(function( $ ) {
     "use strict";
 
-    var $ = jQuery;
+    //var $ = jQuery;
 
     $.widget("metro.streamer", {
 
@@ -6863,22 +6472,14 @@ window.METRO_LOCALES = {
             this._super('_setOption', key, value);
         }
     })
-}));
+})(jQuery);
 
 
 
-(function (factory) {
-    if ( typeof define === 'function' && define.amd ) {
-        define(['jquery'], factory);
-    } else if (typeof exports === 'object') {
-        module.exports = factory;
-    } else {
-        factory(jQuery);
-    }
-}(function ( jQuery ) {
+(function ( $ ) {
     "use strict";
 
-    var $ = jQuery;
+    //var $ = jQuery;
 
     $.widget( "metro.tabControl" , {
 
@@ -7054,20 +6655,12 @@ window.METRO_LOCALES = {
         }
     });
 
-}));
-(function (factory) {
-    if ( typeof define === 'function' && define.amd ) {
-        define(['jquery'], factory);
-    } else if (typeof exports === 'object') {
-        module.exports = factory;
-    } else {
-        factory(jQuery);
-    }
-}(function ( jQuery ) {
+})(jQuery);
+(function ( $ ) {
 
     "use strict";
 
-    var $ = jQuery;
+    //var $ = jQuery;
 
     $.widget( "metro.tile" , {
 
@@ -7284,20 +6877,12 @@ window.METRO_LOCALES = {
         }
     });
 
-}));
-(function (factory) {
-    if ( typeof define === 'function' && define.amd ) {
-        define(['jquery'], factory);
-    } else if (typeof exports === 'object') {
-        module.exports = factory;
-    } else {
-        factory(jQuery);
-    }
-}(function ( jQuery ) {
+})(jQuery);
+(function ( $ ) {
 
     "use strict";
 
-    var $ = jQuery;
+    //var $ = jQuery;
 
     $.widget( "metro.treeview" , {
 
@@ -7599,20 +7184,12 @@ window.METRO_LOCALES = {
         }
     });
 
-}));
-(function (factory) {
-    if ( typeof define === 'function' && define.amd ) {
-        define(['jquery'], factory);
-    } else if (typeof exports === 'object') {
-        module.exports = factory;
-    } else {
-        factory(jQuery);
-    }
-}(function ( jQuery ) {
+})(jQuery);
+(function ( $ ) {
 
     "use strict";
 
-    var $ = jQuery;
+    //var $ = jQuery;
 
     $.widget( "metro.validator" , {
 
@@ -8008,20 +7585,12 @@ window.METRO_LOCALES = {
         }
     });
 
-}));
-(function (factory) {
-    if ( typeof define === 'function' && define.amd ) {
-        define(['jquery'], factory);
-    } else if (typeof exports === 'object') {
-        module.exports = factory;
-    } else {
-        factory(jQuery);
-    }
-}(function ( jQuery ) {
+})(jQuery);
+(function ( $ ) {
 
     "use strict";
 
-    var $ = jQuery;
+    //var $ = jQuery;
 
     $.widget( "metro.window" , {
 
@@ -8225,20 +7794,12 @@ window.METRO_LOCALES = {
             this._super('_setOption', key, value);
         }
     });
-}));
-(function (factory) {
-    if ( typeof define === 'function' && define.amd ) {
-        define(['jquery'], factory);
-    } else if (typeof exports === 'object') {
-        module.exports = factory;
-    } else {
-        factory(jQuery);
-    }
-}(function( jQuery ) {
+})(jQuery);
+(function( $ ) {
 
     "use strict";
 
-    var $ = jQuery;
+    //var $ = jQuery;
 
     $.widget("metro.wizard", {
 
@@ -8593,22 +8154,14 @@ window.METRO_LOCALES = {
             this._super('_setOption', key, value);
         }
     });
-}));
+})(jQuery);
 
 
-(function (factory) {
-    if ( typeof define === 'function' && define.amd ) {
-        define(['jquery'], factory);
-    } else if (typeof exports === 'object') {
-        module.exports = factory;
-    } else {
-        factory(jQuery);
-    }
-}(function ( jQuery ) {
+(function ( $ ) {
 
     "use strict";
 
-    var $ = jQuery;
+    //var $ = jQuery;
 
     $.widget( "metro.wizard2" , {
 
@@ -8801,4 +8354,4 @@ window.METRO_LOCALES = {
             this._super('_setOption', key, value);
         }
     });
-}));
+})(jQuery);

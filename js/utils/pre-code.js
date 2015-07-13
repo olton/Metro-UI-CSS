@@ -1,19 +1,4 @@
-/**
-* Copyright (c) 2014, Leon Sorokin
-* All rights reserved. (MIT Licensed)
-*
-* preCode.js - painkiller for <pre><code> & <textarea>
-*/
-
-(function (factory) {
-	if ( typeof define === 'function' && define.amd ) {
-		define(['jquery'], factory);
-	} else if (typeof exports === 'object') {
-		module.exports = factory;
-	} else {
-		factory(jQuery);
-	}
-}(function() {
+(function() {
 	function preCode(selector) {
 		var els = Array.prototype.slice.call(document.querySelectorAll(selector), 0);
 
@@ -48,4 +33,4 @@
 	document.addEventListener("DOMContentLoaded", function() {
 		preCode("pre code, textarea");
 	}, false);
-}));
+})();
