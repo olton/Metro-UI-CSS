@@ -1,19 +1,26 @@
 require.config({
-    baseUrl: "scripts",
     paths: {
         jquery: "jquery",
-        metro: "metro"
+        metro: "../../../build/js/metro"
     },
     shim: {
-        metro: ["jquery"]
+        jquery: {
+            exports: "jQuery"
+        },
+        metro: {
+            deps: ['jquery']
+        },
+        'metro.accordion': ['jquery'],
+        'metro.countdown': ['jquery']
     }
 });
 
 require(
-    ['jquery', 'metro'],
+    ["jquery", "metro"],
     function($){
-        $(function(){
-            $.Metro.initWidgets();
-        });
+
+    },
+    function(err){
+        console.log(err);
     }
 );
