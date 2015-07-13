@@ -3,6 +3,10 @@
  * Copyright 2012-2015 Sergey Pimenov
  * Licensed under MIT (http://metroui.org.ua/license.html)
  */
+if (typeof jQuery === 'undefined') {
+    throw new Error('Metro\'s JavaScript requires jQuery');
+}
+
 window.METRO_VERSION = '3.0.8';
 
 if (window.METRO_AUTO_REINIT === undefined) window.METRO_AUTO_REINIT = true;
@@ -765,29 +769,31 @@ Date.prototype.format = function (mask, utc) {
     var widget = jQuery.widget;
 
 }));
-(function($){
+
+jQuery( document ).ready(function() {
     "use strict";
+
+    var $ = jQuery;
+
+    console.log('ku-ku');
 
     $.fn.reverse = Array.prototype.reverse;
 
-    $.Metro = function(params){
-        params = $.extend({
-        }, params);
-    };
-
-    $.Metro.initWidgets = function(){
+    var metroInitWidgets = function () {
         var widgets = $("[data-role]");
 
-        $.each(widgets, function(){
+        $.each(widgets, function () {
             var $this = $(this), w = this;
             var roles = $this.data('role').split(/\s*,\s*/);
-            roles.map(function(func){
+            roles.map(function (func) {
                 try {
                     //$(w)[func]();
                     if ($.fn[func] !== undefined) {
                         $.fn[func].call($this);
+                    } else {
+                        console.log('$.fn[' + func + '] is not a function');
                     }
-                } catch(e) {
+                } catch (e) {
                     if (window.METRO_DEBUG) {
                         console.log(e.message, e.stack);
                     }
@@ -795,12 +801,6 @@ Date.prototype.format = function (mask, utc) {
             });
         });
     };
-})(jQuery);
-
-(function($){
-    "use strict";
-
-    $.Metro.initWidgets();
 
     if (window.METRO_AUTO_REINIT) {
         if (!window.canObserveMutation) {
@@ -813,7 +813,7 @@ Date.prototype.format = function (mask, utc) {
                 if (originalDOM !== actualDOM) {
                     originalDOM = actualDOM;
 
-                    $.Metro.initWidgets();
+                    metroInitWidgets();
                 }
             }, 100);
         } else {
@@ -867,7 +867,702 @@ Date.prototype.format = function (mask, utc) {
             observer.observe(document, observerOptions);
         }
     }
+
+    setTimeout(function(){
+        metroInitWidgets();
+    }, 100);
+});
+
+(function($){
+    "use strict";
+
+
 })(jQuery);
+
+/*
+ * jQuery Easing v1.3 - http://gsgd.co.uk/sandbox/jquery/easing/
+ *
+ * Uses the built in easing capabilities added In jQuery 1.1
+ * to offer multiple easing options
+ *
+ * TERMS OF USE - jQuery Easing
+ * 
+ * Open source under the BSD License. 
+ * 
+ * Copyright © 2008 George McGinley Smith
+ * All rights reserved.
+ * 
+ * Redistribution and use in source and binary forms, with or without modification, 
+ * are permitted provided that the following conditions are met:
+ * 
+ * Redistributions of source code must retain the above copyright notice, this list of 
+ * conditions and the following disclaimer.
+ * Redistributions in binary form must reproduce the above copyright notice, this list 
+ * of conditions and the following disclaimer in the documentation and/or other materials 
+ * provided with the distribution.
+ * 
+ * Neither the name of the author nor the names of contributors may be used to endorse 
+ * or promote products derived from this software without specific prior written permission.
+ * 
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY 
+ * EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+ * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+ *  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ *  EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+ *  GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED 
+ * AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+ *  NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED 
+ * OF THE POSSIBILITY OF SUCH DAMAGE. 
+ *
+*/
+
+// t: current time, b: begInnIng value, c: change In value, d: duration
+(function (factory) {
+	if ( typeof define === 'function' && define.amd ) {
+		define(['jquery'], factory);
+	} else if (typeof exports === 'object') {
+		module.exports = factory;
+	} else {
+		factory(jQuery);
+	}
+}(function(jQuery) {
+	jQuery.easing['jswing'] = jQuery.easing['swing'];
+
+	jQuery.extend(jQuery.easing,
+		{
+			def: 'easeOutQuad',
+			swing: function (x, t, b, c, d) {
+				//alert(jQuery.easing.default);
+				return jQuery.easing[jQuery.easing.def](x, t, b, c, d);
+			},
+			easeInQuad: function (x, t, b, c, d) {
+				return c * (t /= d) * t + b;
+			},
+			easeOutQuad: function (x, t, b, c, d) {
+				return -c * (t /= d) * (t - 2) + b;
+			},
+			easeInOutQuad: function (x, t, b, c, d) {
+				if ((t /= d / 2) < 1) return c / 2 * t * t + b;
+				return -c / 2 * ((--t) * (t - 2) - 1) + b;
+			},
+			easeInCubic: function (x, t, b, c, d) {
+				return c * (t /= d) * t * t + b;
+			},
+			easeOutCubic: function (x, t, b, c, d) {
+				return c * ((t = t / d - 1) * t * t + 1) + b;
+			},
+			easeInOutCubic: function (x, t, b, c, d) {
+				if ((t /= d / 2) < 1) return c / 2 * t * t * t + b;
+				return c / 2 * ((t -= 2) * t * t + 2) + b;
+			},
+			easeInQuart: function (x, t, b, c, d) {
+				return c * (t /= d) * t * t * t + b;
+			},
+			easeOutQuart: function (x, t, b, c, d) {
+				return -c * ((t = t / d - 1) * t * t * t - 1) + b;
+			},
+			easeInOutQuart: function (x, t, b, c, d) {
+				if ((t /= d / 2) < 1) return c / 2 * t * t * t * t + b;
+				return -c / 2 * ((t -= 2) * t * t * t - 2) + b;
+			},
+			easeInQuint: function (x, t, b, c, d) {
+				return c * (t /= d) * t * t * t * t + b;
+			},
+			easeOutQuint: function (x, t, b, c, d) {
+				return c * ((t = t / d - 1) * t * t * t * t + 1) + b;
+			},
+			easeInOutQuint: function (x, t, b, c, d) {
+				if ((t /= d / 2) < 1) return c / 2 * t * t * t * t * t + b;
+				return c / 2 * ((t -= 2) * t * t * t * t + 2) + b;
+			},
+			easeInSine: function (x, t, b, c, d) {
+				return -c * Math.cos(t / d * (Math.PI / 2)) + c + b;
+			},
+			easeOutSine: function (x, t, b, c, d) {
+				return c * Math.sin(t / d * (Math.PI / 2)) + b;
+			},
+			easeInOutSine: function (x, t, b, c, d) {
+				return -c / 2 * (Math.cos(Math.PI * t / d) - 1) + b;
+			},
+			easeInExpo: function (x, t, b, c, d) {
+				return (t == 0) ? b : c * Math.pow(2, 10 * (t / d - 1)) + b;
+			},
+			easeOutExpo: function (x, t, b, c, d) {
+				return (t == d) ? b + c : c * (-Math.pow(2, -10 * t / d) + 1) + b;
+			},
+			easeInOutExpo: function (x, t, b, c, d) {
+				if (t == 0) return b;
+				if (t == d) return b + c;
+				if ((t /= d / 2) < 1) return c / 2 * Math.pow(2, 10 * (t - 1)) + b;
+				return c / 2 * (-Math.pow(2, -10 * --t) + 2) + b;
+			},
+			easeInCirc: function (x, t, b, c, d) {
+				return -c * (Math.sqrt(1 - (t /= d) * t) - 1) + b;
+			},
+			easeOutCirc: function (x, t, b, c, d) {
+				return c * Math.sqrt(1 - (t = t / d - 1) * t) + b;
+			},
+			easeInOutCirc: function (x, t, b, c, d) {
+				if ((t /= d / 2) < 1) return -c / 2 * (Math.sqrt(1 - t * t) - 1) + b;
+				return c / 2 * (Math.sqrt(1 - (t -= 2) * t) + 1) + b;
+			},
+			easeInElastic: function (x, t, b, c, d) {
+				var s = 1.70158;
+				var p = 0;
+				var a = c;
+				if (t == 0) return b;
+				if ((t /= d) == 1) return b + c;
+				if (!p) p = d * .3;
+				if (a < Math.abs(c)) {
+					a = c;
+					s = p / 4;
+				}
+				else s = p / (2 * Math.PI) * Math.asin(c / a);
+				return -(a * Math.pow(2, 10 * (t -= 1)) * Math.sin((t * d - s) * (2 * Math.PI) / p)) + b;
+			},
+			easeOutElastic: function (x, t, b, c, d) {
+				var s = 1.70158;
+				var p = 0;
+				var a = c;
+				if (t == 0) return b;
+				if ((t /= d) == 1) return b + c;
+				if (!p) p = d * .3;
+				if (a < Math.abs(c)) {
+					a = c;
+					s = p / 4;
+				}
+				else s = p / (2 * Math.PI) * Math.asin(c / a);
+				return a * Math.pow(2, -10 * t) * Math.sin((t * d - s) * (2 * Math.PI) / p) + c + b;
+			},
+			easeInOutElastic: function (x, t, b, c, d) {
+				var s = 1.70158;
+				var p = 0;
+				var a = c;
+				if (t == 0) return b;
+				if ((t /= d / 2) == 2) return b + c;
+				if (!p) p = d * (.3 * 1.5);
+				if (a < Math.abs(c)) {
+					a = c;
+					s = p / 4;
+				}
+				else s = p / (2 * Math.PI) * Math.asin(c / a);
+				if (t < 1) return -.5 * (a * Math.pow(2, 10 * (t -= 1)) * Math.sin((t * d - s) * (2 * Math.PI) / p)) + b;
+				return a * Math.pow(2, -10 * (t -= 1)) * Math.sin((t * d - s) * (2 * Math.PI) / p) * .5 + c + b;
+			},
+			easeInBack: function (x, t, b, c, d, s) {
+				if (s == undefined) s = 1.70158;
+				return c * (t /= d) * t * ((s + 1) * t - s) + b;
+			},
+			easeOutBack: function (x, t, b, c, d, s) {
+				if (s == undefined) s = 1.70158;
+				return c * ((t = t / d - 1) * t * ((s + 1) * t + s) + 1) + b;
+			},
+			easeInOutBack: function (x, t, b, c, d, s) {
+				if (s == undefined) s = 1.70158;
+				if ((t /= d / 2) < 1) return c / 2 * (t * t * (((s *= (1.525)) + 1) * t - s)) + b;
+				return c / 2 * ((t -= 2) * t * (((s *= (1.525)) + 1) * t + s) + 2) + b;
+			},
+			easeInBounce: function (x, t, b, c, d) {
+				return c - jQuery.easing.easeOutBounce(x, d - t, 0, c, d) + b;
+			},
+			easeOutBounce: function (x, t, b, c, d) {
+				if ((t /= d) < (1 / 2.75)) {
+					return c * (7.5625 * t * t) + b;
+				} else if (t < (2 / 2.75)) {
+					return c * (7.5625 * (t -= (1.5 / 2.75)) * t + .75) + b;
+				} else if (t < (2.5 / 2.75)) {
+					return c * (7.5625 * (t -= (2.25 / 2.75)) * t + .9375) + b;
+				} else {
+					return c * (7.5625 * (t -= (2.625 / 2.75)) * t + .984375) + b;
+				}
+			},
+			easeInOutBounce: function (x, t, b, c, d) {
+				if (t < d / 2) return jQuery.easing.easeInBounce(x, t * 2, 0, c, d) * .5 + b;
+				return jQuery.easing.easeOutBounce(x, t * 2 - d, 0, c, d) * .5 + c * .5 + b;
+			}
+		});
+}));
+/*
+ *
+ * TERMS OF USE - EASING EQUATIONS
+ * 
+ * Open source under the BSD License. 
+ * 
+ * Copyright © 2001 Robert Penner
+ * All rights reserved.
+ * 
+ * Redistribution and use in source and binary forms, with or without modification, 
+ * are permitted provided that the following conditions are met:
+ * 
+ * Redistributions of source code must retain the above copyright notice, this list of 
+ * conditions and the following disclaimer.
+ * Redistributions in binary form must reproduce the above copyright notice, this list 
+ * of conditions and the following disclaimer in the documentation and/or other materials 
+ * provided with the distribution.
+ * 
+ * Neither the name of the author nor the names of contributors may be used to endorse 
+ * or promote products derived from this software without specific prior written permission.
+ * 
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY 
+ * EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+ * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+ *  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ *  EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+ *  GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED 
+ * AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+ *  NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED 
+ * OF THE POSSIBILITY OF SUCH DAMAGE. 
+ *
+ */
+/*jslint browser: true*/
+/*jslint jquery: true*/
+
+/*
+ * jQuery Hotkeys Plugin
+ * Copyright 2010, John Resig
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ *
+ * Based upon the plugin by Tzury Bar Yochay:
+ * https://github.com/tzuryby/jquery.hotkeys
+ *
+ * Original idea by:
+ * Binny V A, http://www.openjs.com/scripts/events/keyboard_shortcuts/
+ */
+
+/*
+ * One small change is: now keys are passed by object { keys: '...' }
+ * Might be useful, when you want to pass some other data to your handler
+ */
+
+(function (factory) {
+    if ( typeof define === 'function' && define.amd ) {
+        define(['jquery'], factory);
+    } else if (typeof exports === 'object') {
+        module.exports = factory;
+    } else {
+        factory(jQuery);
+    }
+}(function(jQuery) {
+
+    jQuery.hotkeys = {
+        version: "0.8",
+
+        specialKeys: {
+            8: "backspace",
+            9: "tab",
+            10: "return",
+            13: "return",
+            16: "shift",
+            17: "ctrl",
+            18: "alt",
+            19: "pause",
+            20: "capslock",
+            27: "esc",
+            32: "space",
+            33: "pageup",
+            34: "pagedown",
+            35: "end",
+            36: "home",
+            37: "left",
+            38: "up",
+            39: "right",
+            40: "down",
+            45: "insert",
+            46: "del",
+            59: ";",
+            61: "=",
+            96: "0",
+            97: "1",
+            98: "2",
+            99: "3",
+            100: "4",
+            101: "5",
+            102: "6",
+            103: "7",
+            104: "8",
+            105: "9",
+            106: "*",
+            107: "+",
+            109: "-",
+            110: ".",
+            111: "/",
+            112: "f1",
+            113: "f2",
+            114: "f3",
+            115: "f4",
+            116: "f5",
+            117: "f6",
+            118: "f7",
+            119: "f8",
+            120: "f9",
+            121: "f10",
+            122: "f11",
+            123: "f12",
+            144: "numlock",
+            145: "scroll",
+            173: "-",
+            186: ";",
+            187: "=",
+            188: ",",
+            189: "-",
+            190: ".",
+            191: "/",
+            192: "`",
+            219: "[",
+            220: "\\",
+            221: "]",
+            222: "'"
+        },
+
+        shiftNums: {
+            "`": "~",
+            "1": "!",
+            "2": "@",
+            "3": "#",
+            "4": "$",
+            "5": "%",
+            "6": "^",
+            "7": "&",
+            "8": "*",
+            "9": "(",
+            "0": ")",
+            "-": "_",
+            "=": "+",
+            ";": ": ",
+            "'": "\"",
+            ",": "<",
+            ".": ">",
+            "/": "?",
+            "\\": "|"
+        },
+
+        // excludes: button, checkbox, file, hidden, image, password, radio, reset, search, submit, url
+        textAcceptingInputTypes: [
+            "text", "password", "number", "email", "url", "range", "date", "month", "week", "time", "datetime",
+            "datetime-local", "search", "color", "tel"],
+
+        // default input types not to bind to unless bound directly
+        textInputTypes: /textarea|input|select/i,
+
+        options: {
+            filterInputAcceptingElements: true,
+            filterTextInputs: true,
+            filterContentEditable: true
+        }
+    };
+
+    function keyHandler(handleObj) {
+        if (typeof handleObj.data === "string") {
+            handleObj.data = {
+                keys: handleObj.data
+            };
+        }
+
+        // Only care when a possible input has been specified
+        if (!handleObj.data || !handleObj.data.keys || typeof handleObj.data.keys !== "string") {
+            return;
+        }
+
+        var origHandler = handleObj.handler,
+            keys = handleObj.data.keys.toLowerCase().split(" ");
+
+        handleObj.handler = function(event) {
+            //      Don't fire in text-accepting inputs that we didn't directly bind to
+            if (this !== event.target &&
+                (jQuery.hotkeys.options.filterInputAcceptingElements &&
+                jQuery.hotkeys.textInputTypes.test(event.target.nodeName) ||
+                (jQuery.hotkeys.options.filterContentEditable && jQuery(event.target).attr('contenteditable')) ||
+                (jQuery.hotkeys.options.filterTextInputs &&
+                jQuery.inArray(event.target.type, jQuery.hotkeys.textAcceptingInputTypes) > -1))) {
+                return;
+            }
+
+            var special = event.type !== "keypress" && jQuery.hotkeys.specialKeys[event.which],
+                character = String.fromCharCode(event.which).toLowerCase(),
+                modif = "",
+                possible = {};
+
+            jQuery.each(["alt", "ctrl", "shift"], function(index, specialKey) {
+
+                if (event[specialKey + 'Key'] && special !== specialKey) {
+                    modif += specialKey + '+';
+                }
+            });
+
+            // metaKey is triggered off ctrlKey erronously
+            if (event.metaKey && !event.ctrlKey && special !== "meta") {
+                modif += "meta+";
+            }
+
+            if (event.metaKey && special !== "meta" && modif.indexOf("alt+ctrl+shift+") > -1) {
+                modif = modif.replace("alt+ctrl+shift+", "hyper+");
+            }
+
+            if (special) {
+                possible[modif + special] = true;
+            }
+            else {
+                possible[modif + character] = true;
+                possible[modif + jQuery.hotkeys.shiftNums[character]] = true;
+
+                // "$" can be triggered as "Shift+4" or "Shift+$" or just "$"
+                if (modif === "shift+") {
+                    possible[jQuery.hotkeys.shiftNums[character]] = true;
+                }
+            }
+
+            for (var i = 0, l = keys.length; i < l; i++) {
+                if (possible[keys[i]]) {
+                    return origHandler.apply(this, arguments);
+                }
+            }
+        };
+    }
+
+    jQuery.each(["keydown", "keyup", "keypress"], function() {
+        jQuery.event.special[this] = {
+            add: keyHandler
+        };
+    });
+
+}));
+/*! Copyright (c) 2013 Brandon Aaron (http://brandonaaron.net)
+ * Licensed under the MIT License (LICENSE.txt).
+ *
+ * Thanks to: http://adomas.org/javascript-mouse-wheel/ for some pointers.
+ * Thanks to: Mathias Bank(http://www.mathias-bank.de) for a scope bug fix.
+ * Thanks to: Seamus Leahy for adding deltaX and deltaY
+ *
+ * Version: 3.1.3
+ *
+ * Requires: 1.2.2+
+ */
+
+(function (factory) {
+    if ( typeof define === 'function' && define.amd ) {
+        define(['jquery'], factory);
+    } else if (typeof exports === 'object') {
+        module.exports = factory;
+    } else {
+        factory(jQuery);
+    }
+}(function (jQuery) {
+
+    var toFix = ['wheel', 'mousewheel', 'DOMMouseScroll', 'MozMousePixelScroll'];
+    var toBind = 'onwheel' in document || document.documentMode >= 9 ? ['wheel'] : ['mousewheel', 'DomMouseScroll', 'MozMousePixelScroll'];
+    var lowestDelta, lowestDeltaXY;
+
+    if ( jQuery.event.fixHooks ) {
+        for ( var i = toFix.length; i; ) {
+            jQuery.event.fixHooks[ toFix[--i] ] = jQuery.event.mouseHooks;
+        }
+    }
+
+    jQuery.event.special.mousewheel = {
+        setup: function() {
+            if ( this.addEventListener ) {
+                for ( var i = toBind.length; i; ) {
+                    this.addEventListener( toBind[--i], handler, false );
+                }
+            } else {
+                this.onmousewheel = handler;
+            }
+        },
+
+        teardown: function() {
+            if ( this.removeEventListener ) {
+                for ( var i = toBind.length; i; ) {
+                    this.removeEventListener( toBind[--i], handler, false );
+                }
+            } else {
+                this.onmousewheel = null;
+            }
+        }
+    };
+
+    jQuery.fn.extend({
+        mousewheel: function(fn) {
+            return fn ? this.bind("mousewheel", fn) : this.trigger("mousewheel");
+        },
+
+        unmousewheel: function(fn) {
+            return this.unbind("mousewheel", fn);
+        }
+    });
+
+
+    function handler(event) {
+        var orgEvent = event || window.event,
+            args = [].slice.call(arguments, 1),
+            delta = 0,
+            deltaX = 0,
+            deltaY = 0,
+            absDelta = 0,
+            absDeltaXY = 0,
+            fn;
+        event = jQuery.event.fix(orgEvent);
+        event.type = "mousewheel";
+
+        // Old school scrollwheel delta
+        if ( orgEvent.wheelDelta ) { delta = orgEvent.wheelDelta; }
+        if ( orgEvent.detail )     { delta = orgEvent.detail * -1; }
+
+        // New school wheel delta (wheel event)
+        if ( orgEvent.deltaY ) {
+            deltaY = orgEvent.deltaY * -1;
+            delta  = deltaY;
+        }
+        if ( orgEvent.deltaX ) {
+            deltaX = orgEvent.deltaX;
+            delta  = deltaX * -1;
+        }
+
+        // Webkit
+        if ( orgEvent.wheelDeltaY !== undefined ) { deltaY = orgEvent.wheelDeltaY; }
+        if ( orgEvent.wheelDeltaX !== undefined ) { deltaX = orgEvent.wheelDeltaX * -1; }
+
+        // Look for lowest delta to normalize the delta values
+        absDelta = Math.abs(delta);
+        if ( !lowestDelta || absDelta < lowestDelta ) { lowestDelta = absDelta; }
+        absDeltaXY = Math.max(Math.abs(deltaY), Math.abs(deltaX));
+        if ( !lowestDeltaXY || absDeltaXY < lowestDeltaXY ) { lowestDeltaXY = absDeltaXY; }
+
+        // Get a whole value for the deltas
+        fn = delta > 0 ? 'floor' : 'ceil';
+        delta  = Math[fn](delta / lowestDelta);
+        deltaX = Math[fn](deltaX / lowestDeltaXY);
+        deltaY = Math[fn](deltaY / lowestDeltaXY);
+
+        // Add event and delta to the front of the arguments
+        args.unshift(event, delta, deltaX, deltaY);
+
+        return (jQuery.event.dispatch || jQuery.event.handle).apply(this, args);
+    }
+
+}));
+
+/**
+* Copyright (c) 2014, Leon Sorokin
+* All rights reserved. (MIT Licensed)
+*
+* preCode.js - painkiller for <pre><code> & <textarea>
+*/
+
+(function (factory) {
+	if ( typeof define === 'function' && define.amd ) {
+		define(['jquery'], factory);
+	} else if (typeof exports === 'object') {
+		module.exports = factory;
+	} else {
+		factory(jQuery);
+	}
+}(function() {
+	function preCode(selector) {
+		var els = Array.prototype.slice.call(document.querySelectorAll(selector), 0);
+
+		els.forEach(function(el, idx, arr){
+			var txt = el.textContent
+				.replace(/^[\r\n]+/, "")	// strip leading newline
+				.replace(/\s+$/g, "");
+
+			if (/^\S/gm.test(txt)) {
+				el.textContent = txt;
+				return;
+			}
+
+			var mat, str, re = /^[\t ]+/gm, len, min = 1e3;
+
+			while (mat = re.exec(txt)) {
+				len = mat[0].length;
+
+				if (len < min) {
+					min = len;
+					str = mat[0];
+				}
+			}
+
+			if (min == 1e3)
+				return;
+
+			el.textContent = txt.replace(new RegExp("^" + str, 'gm'), "");
+		});
+	}
+
+	document.addEventListener("DOMContentLoaded", function() {
+		preCode("pre code, textarea");
+	}, false);
+}));
+(function (factory) {
+    if ( typeof define === 'function' && define.amd ) {
+        define(['jquery'], factory);
+    } else if (typeof exports === 'object') {
+        module.exports = factory;
+    } else {
+        factory(jQuery);
+    }
+}(function() {
+    var hasTouch = 'ontouchend' in window, eventTimer;
+    var moveDirection = 'undefined', startX, startY, deltaX, deltaY, mouseDown = false;
+
+    var addTouchEvents = function(element) {
+        if (hasTouch) {
+            element.addEventListener("touchstart", touch2Mouse, true);
+            element.addEventListener("touchmove", touch2Mouse, true);
+            element.addEventListener("touchend", touch2Mouse, true);
+        }
+    };
+
+    function touch2Mouse(e) {
+        var theTouch = e.changedTouches[0];
+        var mouseEv;
+
+        switch (e.type) {
+            case "touchstart":
+                mouseEv = "mousedown";
+                break;
+            case "touchend":
+                mouseEv = "mouseup";
+                break;
+            case "touchmove":
+                mouseEv = "mousemove";
+                break;
+            default:
+                return;
+        }
+
+
+        if (mouseEv == "mousedown") {
+            eventTimer = (new Date()).getTime();
+            startX = theTouch.clientX;
+            startY = theTouch.clientY;
+            mouseDown = true;
+        }
+
+        if (mouseEv == "mouseup") {
+            if ((new Date()).getTime() - eventTimer <= 500) {
+                mouseEv = "click";
+            } else if ((new Date()).getTime() - eventTimer > 1000) {
+                mouseEv = "longclick";
+            }
+            eventTimer = 0;
+            mouseDown = false;
+        }
+
+        if (mouseEv == "mousemove") {
+            if (mouseDown) {
+                deltaX = theTouch.clientX - startX;
+                deltaY = theTouch.clientY - startY;
+                moveDirection = deltaX > deltaY ? 'horizontal' : 'vertical';
+            }
+        }
+
+        var mouseEvent = document.createEvent("MouseEvent");
+        mouseEvent.initMouseEvent(mouseEv, true, true, window, 1, theTouch.screenX, theTouch.screenY, theTouch.clientX, theTouch.clientY, false, false, false, false, 0, null);
+        theTouch.target.dispatchEvent(mouseEvent);
+
+        e.preventDefault();
+    }
+}));
 
 (function (factory) {
     if ( typeof define === 'function' && define.amd ) {
@@ -879,7 +1574,7 @@ Date.prototype.format = function (mask, utc) {
     }
 }(function( $ ) {
     "use strict";
-
+    console.log('accordion in');
     //var $ = jQuery;
 
     $.widget("metro.accordion", {
@@ -1087,7 +1782,7 @@ Date.prototype.format = function (mask, utc) {
 
             //=== build up the new children jquery object ===
             //join the left, right and normal children   
-            children = new Array();
+            children = [];
             children = childrenLeftFloated.concat(childrenAsUsual, childrenRightFloated);
 
             //convert the array to jquery object again
@@ -3964,7 +4659,7 @@ window.METRO_LOCALES = {
             wrapper.insertAfter(input);
             input.attr('tabindex', '-1');
             button.attr('type', 'button');
-            wrapper.attr('placeholder', input.attr('placeholder'))
+            wrapper.attr('placeholder', input.attr('placeholder'));
 
             input.on('change', function(){
                 var val = $(this).val();

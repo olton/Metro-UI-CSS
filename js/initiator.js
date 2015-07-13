@@ -19,6 +19,8 @@
                     //$(w)[func]();
                     if ($.fn[func] !== undefined) {
                         $.fn[func].call($this);
+                    } else {
+                        console.log('$.fn['+func+'] is not a function');
                     }
                 } catch(e) {
                     if (window.METRO_DEBUG) {
@@ -83,6 +85,8 @@
                                         try {
                                             if ($.fn[func] !== undefined) {
                                                 $.fn[func].call(_this);
+                                            } else {
+                                                console.log('$.fn['+func+'] is not a function');
                                             }
                                         } catch(e) {
                                             if (window.METRO_DEBUG) {
