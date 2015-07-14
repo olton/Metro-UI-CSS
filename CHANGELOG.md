@@ -8,8 +8,9 @@
 * add hint time delay
 * add hotkeys plugin by [John Resig](https://github.com/jeresig)
 * add noConflict support
-* add RTL support (partial)
+* init RTL support (partial)
 * move all media to standalone file metro-responsive
+* add support for [RequireJS](http://forum.metroui.org.ua/viewtopic.php?pid=614#p614)
 
 ## 3.0.7
 * add padding for container on mobile devices
