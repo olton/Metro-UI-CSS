@@ -1,9 +1,3 @@
-(function ($) {
-
-    "use strict";
-
-    //var $ = jQuery;
-
     $.widget("metro.appbar", {
         version: "3.0.0",
         options: {
@@ -430,4 +424,3 @@
             this._super('_setOption', key, value);
         }
     });
-})(jQuery);

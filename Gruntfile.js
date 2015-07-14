@@ -14,6 +14,14 @@ module.exports = function(grunt) {
                 ' * Licensed under <%= pkg.license.type %> (<%= pkg.license.url %>)\n' +
                 ' */\n',
 
+        requirejs_banner: "\n(function( factory ) {\n"+
+                          "    if ( typeof define === 'function' && define.amd ) {\n" +
+                          "        define([ 'jquery' ], factory );\n"+
+                          "    } else {\n" +
+                          "        factory( jQuery );\n"+
+                          "    }\n"+
+                          "}(function( jQuery ) { \n'use strict';\n\nvar $ = jQuery;\n\n",
+
         clean: {
             build: ['build'],
             docs: ['docs/css/metro*.css', 'docs/js/metro*.js'],
@@ -22,8 +30,13 @@ module.exports = function(grunt) {
 
         concat: {
             options: {
-                banner: '<%= banner %>',
-                stripBanners: false
+                banner: '<%= banner %>' + '<%= requirejs_banner%>',
+                footer: "\n\nreturn $.Metro.init();\n\n}));",
+                stripBanners: true,
+                process: function(src, filepath) {
+                    return '// Source: ' + filepath + '\n' +
+                        src.replace(/(^|\n)[ \t]*('use strict'|"use strict");?\s*/g, '$1');
+                }
             },
             metro: {
                 src: [
