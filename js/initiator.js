@@ -1,40 +1,34 @@
-(function($){
-    "use strict";
+$.fn.reverse = Array.prototype.reverse;
 
-    $.fn.reverse = Array.prototype.reverse;
+$.Metro = function(params){
+    params = $.extend({
+    }, params);
+};
 
-    $.Metro = function(params){
-        params = $.extend({
-        }, params);
-    };
+$.Metro.initWidgets = function(){
+    var widgets = $("[data-role]");
 
-    $.Metro.initWidgets = function(){
-        var widgets = $("[data-role]");
-
-        $.each(widgets, function(){
-            var $this = $(this), w = this;
-            var roles = $this.data('role').split(/\s*,\s*/);
-            roles.map(function(func){
-                try {
-                    //$(w)[func]();
-                    if ($.fn[func] !== undefined) {
-                        $.fn[func].call($this);
-                    } else {
-                        console.log('$.fn['+func+'] is not a function');
-                    }
-                } catch(e) {
-                    if (window.METRO_DEBUG) {
-                        console.log(e.message, e.stack);
-                    }
+    $.each(widgets, function(){
+        var $this = $(this), w = this;
+        var roles = $this.data('role').split(/\s*,\s*/);
+        roles.map(function(func){
+            try {
+                //$(w)[func]();
+                if ($.fn[func] !== undefined) {
+                    $.fn[func].call($this);
+                } else {
+                    console.log('$.fn['+func+'] is not a function');
                 }
-            });
+            } catch(e) {
+                if (window.METRO_DEBUG) {
+                    console.log(e.message, e.stack);
+                }
+            }
         });
-    };
-})(jQuery);
+    });
+};
 
-(function($){
-    "use strict";
-
+$.Metro.init = function(){
     $.Metro.initWidgets();
 
     if (window.METRO_AUTO_REINIT) {
@@ -104,4 +98,4 @@
             observer.observe(document, observerOptions);
         }
     }
-})(jQuery);
+};
