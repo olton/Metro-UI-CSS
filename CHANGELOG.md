@@ -11,6 +11,7 @@
 * init RTL support (partial)
 * move all media to standalone file metro-responsive
 * add support for [RequireJS](http://forum.metroui.org.ua/viewtopic.php?pid=614#p614)
+* add charm widget
 
 ## 3.0.7
 * add padding for container on mobile devices
