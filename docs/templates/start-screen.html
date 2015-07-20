@@ -35,13 +35,12 @@
             transform: scale(.8);
         }
 
-        .charm.right-side {
-            width: 300px;
-            right: -300px;
-        }
-
         #charmSettings .button {
             margin: 5px;
+        }
+
+        .schemeButtons {
+            /*width: 300px;*/
         }
 
         @media screen and (max-width: 640px) {
@@ -145,43 +144,13 @@
                 left: 0
             });
         });
-        function showSearch(){
-            var  charm = $("#charmSearch");
 
-            if (charm.data('hidden') == undefined) {charm.data('hidden', true);}
-
-            if (!charm.data('hidden')) {
-
-                charm.animate({
-                    right: -300
-                });
-
-                charm.data('hidden', true);
+        function showCharms(id){
+            var  charm = $(id).data("charm");
+            if (charm.element.data("opened") === true) {
+                charm.close();
             } else {
-                charm.animate({
-                    right: 0
-                });
-                charm.data('hidden', false);
-            }
-        }
-
-        function showSettings(){
-            var  charm = $("#charmSettings");
-
-            if (charm.data('hidden') == undefined) {charm.data('hidden', true);}
-
-            if (!charm.data('hidden')) {
-
-                charm.animate({
-                    right: -300
-                });
-
-                charm.data('hidden', true);
-            } else {
-                charm.animate({
-                    right: 0
-                });
-                charm.data('hidden', false);
+                charm.open();
             }
         }
 
@@ -232,8 +201,7 @@
 
 </head>
 <body style="overflow-y: hidden;">
-    <div class="charm right-side padding20 bg-grayDark" id="charmSearch">
-        <button class="square-button bg-transparent fg-white no-border place-right small-button" onclick="showSearch()"><span class="mif-cross"></span></button>
+    <div data-role="charm" id="charmSearch">
         <h1 class="text-light">Search</h1>
         <hr class="thin"/>
         <br />
@@ -252,8 +220,7 @@
         </div>
     </div>
 
-    <div class="charm right-side padding20 bg-grayDark" id="charmSettings">
-        <button class="square-button bg-transparent fg-white no-border place-right small-button" onclick="showSettings()"><span class="mif-cross"></span></button>
+    <div data-role="charm" id="charmSettings" data-position="top">
         <h1 class="text-light">Settings</h1>
         <hr class="thin"/>
         <br />
@@ -286,8 +253,8 @@
         <h1 class="tile-area-title">Start</h1>
         <div class="tile-area-controls">
             <button class="image-button icon-right bg-transparent fg-white bg-hover-dark no-border"><span class="sub-header no-margin text-light">Sergey Pimenov</span> <span class="icon mif-user"></span></button>
-            <button class="square-button bg-transparent fg-white bg-hover-dark no-border" onclick="showSearch()"><span class="mif-search"></span></button>
-            <button class="square-button bg-transparent fg-white bg-hover-dark no-border" onclick="showSettings()"><span class="mif-cog"></span></button>
+            <button class="square-button bg-transparent fg-white bg-hover-dark no-border" onclick="showCharms('#charmSearch')"><span class="mif-search"></span></button>
+            <button class="square-button bg-transparent fg-white bg-hover-dark no-border" onclick="showCharms('#charmSettings')"><span class="mif-cog"></span></button>
             <a href="../tiles.html" class="square-button bg-transparent fg-white bg-hover-dark no-border"><span class="mif-switch"></span></a>
         </div>
 
