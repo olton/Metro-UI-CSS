@@ -15149,11 +15149,43 @@ input[type="submit"].link:active {
   z-index: 1060;
   background: #1d1d1d;
   color: #eeeeee;
+  padding: .625rem;
+}
+.charm .charm-closer {
+  position: absolute;
+  height: 1rem;
+  width: 1rem;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 1rem;
+  font-weight: normal;
+  padding: 0 0 .625rem 0;
+  z-index: 3;
+  outline: none;
+  cursor: pointer;
+  color: #777777;
+  top: .25rem;
+  right: .25rem;
+}
+.charm .charm-closer:after {
+  content: '\D7';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-top: -0.65rem;
+  margin-left: -0.35rem;
+}
+.charm .charm-closer:hover {
+  color: #ffffff;
+}
+.charm .charm-closer:active {
+  color: #ffffff;
 }
 .charm.right-side {
   width: auto;
   right: 0;
   top: 0;
+  left: auto;
   bottom: 0;
 }
 .charm.left-side {
@@ -15168,10 +15200,11 @@ input[type="submit"].link:active {
   right: 0;
   top: 0;
 }
-.charm.top-side {
+.charm.bottom-side {
   height: auto;
   left: 0;
   right: 0;
+  top: auto;
   bottom: 0;
 }
 .notify-container {
