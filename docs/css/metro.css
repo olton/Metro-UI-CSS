@@ -16084,6 +16084,210 @@ p [data-hint] {
 .keypad.shadow {
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3);
 }
+.fluent-menu .tabs-holder {
+  list-style: none;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  display: block;
+  z-index: 2;
+}
+.fluent-menu .tabs-holder:before,
+.fluent-menu .tabs-holder:after {
+  display: table;
+  content: "";
+}
+.fluent-menu .tabs-holder:after {
+  clear: both;
+}
+.fluent-menu .tabs-holder li {
+  display: block;
+  float: left;
+  margin-right: 5px;
+  background-color: #ffffff;
+}
+.fluent-menu .tabs-holder li a {
+  display: block;
+  float: left;
+  padding: .25rem 1rem;
+  text-transform: uppercase;
+  font-size: .8em;
+  color: #444444;
+}
+.fluent-menu .tabs-holder li a:hover {
+  color: #0072c6;
+}
+.fluent-menu .tabs-holder li:first-child {
+  margin-left: 0;
+}
+.fluent-menu .tabs-holder li.active {
+  border: 1px #d4d4d4 solid;
+  border-bottom-color: #ffffff;
+}
+.fluent-menu .tabs-holder li.active a {
+  color: #0072c6;
+}
+.fluent-menu .tabs-holder li.special {
+  border: 1px #0072c6 solid;
+  background-color: #0072c6;
+}
+.fluent-menu .tabs-holder li.special a {
+  color: #ffffff;
+}
+.fluent-menu .tabs-holder li.special a:hover {
+  color: #ffffff;
+}
+.fluent-menu .tabs-content {
+  z-index: 1;
+  position: relative;
+  margin-top: -1px;
+  border: 1px #d4d4d4 solid;
+  background-color: #ffffff;
+  height: 120px;
+}
+.fluent-menu .tabs-content .tab-panel {
+  display: block;
+  height: 100%;
+  padding: 5px 0 2px;
+}
+.fluent-menu .tabs-content .tab-panel .tab-panel-group {
+  height: 100%;
+  position: relative;
+  display: block;
+  float: left;
+  padding: 0 5px;
+  border-right: 1px #d4d4d4 solid;
+}
+.fluent-menu .tabs-content .tab-panel .tab-panel-group:last-child {
+  margin-right: 0;
+}
+.fluent-menu .tabs-content .tab-panel .tab-group-caption {
+  font-size: 10px;
+  margin: 2px 0 -2px;
+  text-align: center;
+  display: block;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  white-space: nowrap;
+  background: #eeeeee;
+}
+.fluent-menu .tabs-content .tab-panel .tab-content-segment {
+  display: block;
+  float: left;
+  position: relative;
+}
+.fluent-menu .fluent-button,
+.fluent-menu .fluent-big-button,
+.fluent-menu .fluent-tool-button {
+  background-color: #ffffff;
+  padding: .3125rem;
+  display: block;
+  cursor: default;
+  border: 0;
+  outline: none;
+  font-size: .8em;
+  line-height: 1.2;
+  vertical-align: middle;
+}
+.fluent-menu .fluent-button:hover,
+.fluent-menu .fluent-big-button:hover,
+.fluent-menu .fluent-tool-button:hover {
+  background-color: #cde6f7;
+}
+.fluent-menu .fluent-button img,
+.fluent-menu .fluent-big-button img,
+.fluent-menu .fluent-tool-button img,
+.fluent-menu .fluent-button .icon,
+.fluent-menu .fluent-big-button .icon,
+.fluent-menu .fluent-tool-button .icon,
+.fluent-menu .fluent-button [class*=mif-],
+.fluent-menu .fluent-big-button [class*=mif-],
+.fluent-menu .fluent-tool-button [class*=mif-] {
+  line-height: 1.2;
+  display: block;
+  float: left;
+  margin-right: 5px;
+  width: 16px;
+  height: 16px;
+  color: #444444;
+  vertical-align: middle;
+}
+.fluent-menu .fluent-button .label,
+.fluent-menu .fluent-big-button .label,
+.fluent-menu .fluent-tool-button .label {
+  display: inline-block;
+  color: inherit;
+  font: inherit;
+}
+.fluent-menu .fluent-button:active,
+.fluent-menu .fluent-big-button:active,
+.fluent-menu .fluent-tool-button:active {
+  top: 0;
+  left: 0;
+  background-color: #75bae9;
+}
+.fluent-menu .fluent-button.dropdown-toggle:before,
+.fluent-menu .fluent-big-button.dropdown-toggle:before,
+.fluent-menu .fluent-tool-button.dropdown-toggle:before {
+  margin-top: -0.3125rem;
+}
+.fluent-menu .fluent-big-button {
+  padding: 7px 5px;
+  text-align: center;
+  white-space: normal;
+  line-height: 12px;
+  float: left;
+  position: relative;
+}
+.fluent-menu .fluent-big-button img,
+.fluent-menu .fluent-big-button .icon,
+.fluent-menu .fluent-big-button [class*=mif-] {
+  display: block;
+  width: 40px;
+  height: 40px;
+  font-size: 40px;
+  float: none;
+  text-align: center;
+  margin: 5px auto 5px;
+}
+.fluent-menu .fluent-big-button br {
+  line-height: 4px;
+  height: 4px;
+  font-size: 4px;
+}
+.fluent-menu .fluent-tool-button {
+  padding: 4px;
+}
+.fluent-menu .fluent-tool-button img,
+.fluent-menu .fluent-tool-button [class*="icon-"] {
+  display: block;
+  width: 16px;
+  height: 16px;
+  font-size: 16px;
+  float: none;
+  text-align: center;
+}
+.fluent-menu .fluent-tool-button img {
+  margin-right: 0;
+}
+.fluent-menu .dropdown-toggle {
+  padding-right: 24px;
+}
+.fluent-menu .d-menu {
+  position: absolute;
+  top: 100%;
+  z-index: 100;
+}
+.fluent-menu .d-menu a {
+  padding: 4px 24px;
+  font-size: .8em;
+}
+.fluent-menu .d-menu a:hover {
+  background-color: #cde6f7;
+  color: #444444;
+}
 .select2-container {
   box-sizing: border-box;
   display: inline-block;

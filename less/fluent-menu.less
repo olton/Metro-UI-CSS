@@ -1,0 +1,220 @@
+@import (once) "variables";
+@import (once) "utils";
+
+.fluent-menu {
+
+    .tabs-holder {
+        list-style: none;
+        position: relative;
+        margin: 0;
+        padding: 0;
+        display: block;
+        z-index: 2;
+        .clear-float;
+
+        li {
+            display: block;
+            float: left;
+            margin-right: 5px;
+            background-color: #ffffff;
+
+            a {
+                display: block;
+                float: left;
+                padding: .25rem 1rem;
+                text-transform: uppercase;
+                font-size: .8em;
+                color: @fmTabRestColor;
+
+                &:hover {
+                    color: @fmTabActiveColor;
+                }
+            }
+
+            &:first-child {
+                margin-left: 0;
+            }
+
+            &.active {
+                border: 1px @fmBorderColor solid;
+                border-bottom-color: @white;
+                a {
+                    color: @fmTabActiveColor;
+                }
+            }
+            &.special {
+                border: 1px @fmTabActiveColor solid;
+                background-color: @fmTabActiveColor;
+                a {
+                    color: @white;
+                    &:hover {
+                        color: @white;
+                    }
+                }
+            }
+        }
+    }
+
+    .tabs-content {
+        z-index: 1;
+        position: relative;
+        margin-top: -1px;
+        border: 1px @fmBorderColor solid;
+        background-color: #ffffff;
+        height: 120px;
+
+        .tab-panel {
+            display: block;
+            height: 100%;
+            padding: 5px 0 2px;
+
+
+            .tab-panel-group {
+                height: 100%;
+                position: relative;
+                display: block;
+                float: left;
+                padding: 0 5px;
+                border-right: 1px @fmBorderColor solid;
+
+                &:last-child {
+                    margin-right: 0;
+                }
+            }
+
+            .tab-group-caption {
+                font-size: 10px;
+                margin: 2px 0 -2px;
+                text-align: center;
+                display: block;
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                left: 0;
+                white-space: nowrap;
+                background: @grayLighter;
+            }
+
+            .tab-group-content {
+
+            }
+
+            .tab-content-segment {
+                display: block;
+                float: left;
+                position: relative;
+            }
+
+            .tab-content-composit {
+
+            }
+        }
+    }
+}
+
+// Buttons
+
+.fluent-menu {
+    .fluent-button, .fluent-big-button, .fluent-tool-button {
+        background-color: @white;
+        padding: .3125rem;
+        display: block;
+        cursor: default;
+        border: 0;
+        outline: none;
+        font-size: .8em;
+        line-height: 1.2;
+        vertical-align: middle;
+
+        &:hover {
+            background-color: @fmElementHoverBackground;
+        }
+        img, .icon, [class*=mif-] {
+            line-height: 1.2;
+            display: block;
+            float: left;
+            margin-right: 5px;
+            width: 16px;
+            height: 16px;
+            color: @fmTabRestColor;
+            vertical-align: middle;
+        }
+
+        .label {
+            display: inline-block;
+            color: inherit;
+            font: inherit;
+        }
+
+        &:active {
+            top: 0;
+            left: 0;
+            background-color: darken(@fmElementHoverBackground, 20%);
+        }
+
+        &.dropdown-toggle {
+            &:before {
+                margin-top: -.3125rem;
+            }
+        }
+    }
+
+    .fluent-big-button {
+        padding: 7px 5px;
+        text-align: center;
+        white-space: normal;
+        line-height: 12px;
+        float: left;
+        position: relative;
+
+        img, .icon, [class*=mif-] {
+            display: block;
+            width: 40px;
+            height: 40px;
+            font-size: 40px;
+            float: none;
+            text-align: center;
+            margin: 5px auto 5px;
+        }
+
+        br {
+            line-height: 4px;
+            height: 4px;
+            font-size: 4px;
+        }
+
+    }
+
+    .fluent-tool-button {
+        padding: 4px;
+        img, [class*="icon-"] {
+            display: block;
+            width: 16px;
+            height: 16px;
+            font-size: 16px;
+            float: none;
+            text-align: center;
+        }
+        img {
+            margin-right: 0;
+        }
+    }
+
+    .dropdown-toggle {
+        padding-right: 24px;
+    }
+
+    .d-menu {
+        position: absolute;
+        top: 100%;
+        z-index: 100;
+        a {
+            padding: 4px 24px;
+            font-size: .8em;
+            &:hover {
+                background-color: @fmElementHoverBackground;
+                color: @fmTabRestColor;
+            }
+        }
+    }
+}
