@@ -223,7 +223,7 @@ Date.prototype.format = function (mask, utc) {
     };
 })(jQuery);
 
-$(function(){
+(function($){
     "use strict";
 
     $.Metro.initWidgets();
@@ -290,4 +290,4 @@ $(function(){
             observer.observe(document, observerOptions);
         }
     }
-});
+})(jQuery);
