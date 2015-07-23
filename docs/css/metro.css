@@ -5904,6 +5904,90 @@ a.tag {
   background-color: #128023;
   color: #ffffff;
 }
+.app-bar.orange {
+  background-color: #fa6800;
+}
+.app-bar.orange .app-bar-element:hover,
+.app-bar.orange .app-bar-menu > li:hover,
+.app-bar.orange .app-bar-menu > li > a:hover,
+.app-bar.orange .app-bar-element:active,
+.app-bar.orange .app-bar-menu > li:active,
+.app-bar.orange .app-bar-menu > li > a:active {
+  background-color: #bf5a15;
+}
+.app-bar.orange .app-bar-divider {
+  background-color: #c29008;
+}
+.app-bar.orange .app-bar-element .d-menu,
+.app-bar.orange .app-bar-menu > li .d-menu {
+  background-color: #fa6800;
+  border-color: transparent;
+}
+.app-bar.orange .app-bar-element .d-menu li:not(.disabled) > a,
+.app-bar.orange .app-bar-menu > li .d-menu li:not(.disabled) > a,
+.app-bar.orange .app-bar-element .d-menu li > a,
+.app-bar.orange .app-bar-menu > li .d-menu li > a {
+  background-color: #fa6800;
+  color: #ffffff;
+}
+.app-bar.orange .app-bar-element .d-menu li:not(.disabled) > a:hover,
+.app-bar.orange .app-bar-menu > li .d-menu li:not(.disabled) > a:hover,
+.app-bar.orange .app-bar-element .d-menu li > a:hover,
+.app-bar.orange .app-bar-menu > li .d-menu li > a:hover {
+  background-color: #bf5a15;
+  color: #ffffff;
+}
+.app-bar.orange .app-bar-element .d-menu li:hover > a,
+.app-bar.orange .app-bar-menu > li .d-menu li:hover > a {
+  background-color: #bf5a15;
+}
+.app-bar.orange .app-bar-element .d-menu .divider,
+.app-bar.orange .app-bar-menu > li .d-menu .divider {
+  background-color: #c29008;
+}
+.app-bar.orange .app-bar-element .d-menu .divider:hover,
+.app-bar.orange .app-bar-menu > li .d-menu .divider:hover {
+  background-color: #c29008;
+}
+.app-bar.orange .app-bar-element .dropdown-toggle:before,
+.app-bar.orange .app-bar-menu li .dropdown-toggle:before {
+  border-color: #ffffff;
+}
+.app-bar.orange .app-bar-element.disabled,
+.app-bar.orange .app-bar-menu li.disabled,
+.app-bar.orange .app-bar-element:disabled,
+.app-bar.orange .app-bar-menu li:disabled {
+  color: #555555;
+}
+.app-bar.orange .app-bar-element.disabled a,
+.app-bar.orange .app-bar-menu li.disabled a,
+.app-bar.orange .app-bar-element:disabled a,
+.app-bar.orange .app-bar-menu li:disabled a {
+  color: inherit !important;
+}
+.app-bar.orange .app-bar-pullbutton:hover {
+  background-color: #bf5a15;
+}
+.app-bar.orange .app-bar-drop-container {
+  border: 2px solid #fa6800;
+  background-color: #fa6800;
+  color: #ffffff;
+}
+.app-bar.orange .app-bar-drop-container:before {
+  background-color: #fa6800;
+  border-color: #fa6800;
+}
+.app-bar.orange .app-bar-pullmenu .app-bar-menu {
+  border-top: 1px solid #c29008;
+  background-color: #c29008;
+}
+.app-bar.orange .app-bar-pullmenu .app-bar-menu li:hover {
+  background-color: #fa6800;
+}
+.app-bar.orange .app-bar-pullmenu .app-bar-menu li:hover a {
+  background-color: #bf5a15;
+  color: #ffffff;
+}
 .h-menu li:hover > .dropdown-toggle:before,
 .v-menu li:hover > .dropdown-toggle:before,
 .d-menu li:hover > .dropdown-toggle:before,
