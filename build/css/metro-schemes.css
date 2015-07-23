@@ -1,3 +1,6 @@
+/*
+* params: name, background, backgroundHover, item, itemHover, itemDisabled, divider, dropdown-toggle
+*/
 .app-bar.pink {
   background-color: #dc4fad;
 }
@@ -502,6 +505,9 @@
   background-color: #bf5a15;
   color: #ffffff;
 }
+/*
+* params: name, background, backgroundHover, item, itemHover, itemDisabled, divider, dropdown-toggle
+*/
 .v-menu.darcula,
 .d-menu.darcula {
   background: #3c3f41;
@@ -766,6 +772,9 @@
 .d-menu.orange li.divider {
   background: #c29008;
 }
+/*
+* params: name, background, backgroundHover, item, itemHover, itemDisabled, divider, dropdown-toggle
+*/
 .t-menu.darcula {
   background-color: #3c3f41;
 }
@@ -963,4 +972,121 @@
 .t-menu.orange.horizontal > li > a,
 .t-menu.orange .horizontal > li > a {
   border-right-color: #c29008;
+}
+/*
+* params: name, background, backgroundHover, backgroundActive, item, itemHover, itemActive, itemDisabled
+*/
+.sidebar.darcula {
+  background: #3c3f41;
+}
+.sidebar.darcula li > a {
+  background: #3c3f41;
+  color: #ffffff;
+}
+.sidebar.darcula li:hover > a {
+  background: #4d5154;
+  color: #ffffff;
+}
+.sidebar.darcula li.active > a {
+  background: #1d1d1d;
+  color: #ffffff;
+}
+.sidebar.darcula li.disabled > a {
+  background: #3c3f41;
+  color: #555555;
+}
+.sidebar.pink {
+  background: #dc4fad;
+}
+.sidebar.pink li > a {
+  background: #dc4fad;
+  color: #ffffff;
+}
+.sidebar.pink li:hover > a {
+  background: #b91a6c;
+  color: #ffffff;
+}
+.sidebar.pink li.active > a {
+  background: #9a165a;
+  color: #ffffff;
+}
+.sidebar.pink li.disabled > a {
+  background: #dc4fad;
+  color: #555555;
+}
+.sidebar.navy {
+  background: #0072c6;
+}
+.sidebar.navy li > a {
+  background: #0072c6;
+  color: #ffffff;
+}
+.sidebar.navy li:hover > a {
+  background: #006aba;
+  color: #ffffff;
+}
+.sidebar.navy li.active > a {
+  background: #005696;
+  color: #ffffff;
+}
+.sidebar.navy li.disabled > a {
+  background: #0072c6;
+  color: #555555;
+}
+.sidebar.red {
+  background: #ce352c;
+}
+.sidebar.red li > a {
+  background: #ce352c;
+  color: #ffffff;
+}
+.sidebar.red li:hover > a {
+  background: #b91a1a;
+  color: #ffffff;
+}
+.sidebar.red li.active > a {
+  background: #9a1616;
+  color: #ffffff;
+}
+.sidebar.red li.disabled > a {
+  background: #ce352c;
+  color: #555555;
+}
+.sidebar.green {
+  background: #60a917;
+}
+.sidebar.green li > a {
+  background: #60a917;
+  color: #ffffff;
+}
+.sidebar.green li:hover > a {
+  background: #169f2c;
+  color: #ffffff;
+}
+.sidebar.green li.active > a {
+  background: #128023;
+  color: #ffffff;
+}
+.sidebar.green li.disabled > a {
+  background: #60a917;
+  color: #555555;
+}
+.sidebar.orange {
+  background: #fa6800;
+}
+.sidebar.orange li > a {
+  background: #fa6800;
+  color: #ffffff;
+}
+.sidebar.orange li:hover > a {
+  background: #df6919;
+  color: #ffffff;
+}
+.sidebar.orange li.active > a {
+  background: #bf5a15;
+  color: #ffffff;
+}
+.sidebar.orange li.disabled > a {
+  background: #fa6800;
+  color: #555555;
 }
