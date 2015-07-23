@@ -3,6 +3,7 @@
 @import (once) "utils";
 @import (once) "typography";
 @import (once) "flex";
+@import (once) "scheme-builder";
 
 .h-menu, .v-menu, .d-menu, .m-menu {
 	li:hover > .dropdown-toggle {
@@ -726,3 +727,10 @@
 		z-index: @zindexDropdown;
 	}
 }
+
+#scheme-builder > .d-menu-scheme(darcula, @appBarBackgroundDarcula, @appBarBackgroundActiveDarcula, @white, @white, @gray, @appBarDividerColorDarcula, @white);
+#scheme-builder > .d-menu-scheme(pink, @pink, @darkPink, @white, @white, @gray, @lightPink, @white);
+#scheme-builder > .d-menu-scheme(navy, @appBarBackground, @appBarBackgroundActive, @white, @white, @gray, @appBarDividerColor, @white);
+#scheme-builder > .d-menu-scheme(red, @red, @darkRed, @white, @white, @gray, @lightRed, @white);
+#scheme-builder > .d-menu-scheme(green, @green, @darkGreen, @white, @white, @gray, @lightGreen, @white);
+#scheme-builder > .d-menu-scheme(orange, @orange, @darkOrange, @white, @white, @gray, @lightOrange, @white);

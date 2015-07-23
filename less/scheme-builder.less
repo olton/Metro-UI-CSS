@@ -94,9 +94,53 @@
     }
 
     .d-menu-scheme(@name, @background, @backgroundHover, @item, @itemHover, @itemDisabled, @divider, @dropdownToggle){
-        .d-menu {
+        .v-menu, .d-menu {
             &.@{name} {
+                background: @background;
 
+                li > a {
+                    background: @background;
+                    color: @item;
+
+                    .icon {
+                        color: darken(@item, 20%);
+                    }
+
+                    &:hover {
+                        background: @backgroundHover;
+                        color: @itemHover;
+
+                        .icon {
+                            color: @itemHover;
+                        }
+                    }
+                }
+
+                li > .item-block {
+                    background: lighten(@background, 5%);
+                }
+
+                li.disabled > a {
+                    background: @background;
+                    color: @itemDisabled;
+                }
+
+                li > a {
+                    &.dropdown-toggle {
+                        &:before {
+                            border-color: @dropdownToggle;
+                        }
+                    }
+                }
+
+                li.menu-title {
+                    background: darken(@background, 5%);
+                    color: darken(@item, 20%);
+                }
+
+                li.divider {
+                    background: @divider;
+                }
             }
         }
     }
