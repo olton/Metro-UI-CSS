@@ -13,6 +13,7 @@
 * add support for [RequireJS](http://forum.metroui.org.ua/viewtopic.php?pid=614#p614)
 * add charm widget
 * add fluent menu from
+* add color schemes for app-bar
 
 ## 3.0.7
 * add padding for container on mobile devices
