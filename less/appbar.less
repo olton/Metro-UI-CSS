@@ -1,5 +1,6 @@
 @import (once) "variables";
 @import (once) "utils";
+@import (once) "scheme-builder";
 
 
 .app-bar {
@@ -157,6 +158,7 @@
         left: 0;
         margin-top: 10px;
         border: 2px solid @appBarBackgroundActive;
+        background: @white;
 
         &:before {
             content: '';
@@ -405,189 +407,8 @@
     }
 }
 
-
-.app-bar-scheme(@name, @background, @hoverBackground, @item, @itemDisabled,  @divider){
-
-}
-
-.app-bar {
-    &.darcula {
-        background-color: @appBarBackgroundDarcula;
-
-        .app-bar-element, .app-bar-menu > li, .app-bar-menu > li > a {
-            &:hover, &:active {
-                background-color: @appBarBackgroundActiveDarcula;
-            }
-        }
-
-        .app-bar-divider {
-            background-color: @appBarDividerColorDarcula;
-        }
-
-        .app-bar-element, .app-bar-menu > li {
-            .d-menu {
-                background-color: @appBarBackgroundDarcula;
-                border-color: @transparent;
-
-                li:not(.disabled) > a, li > a {
-                    background-color: @appBarBackgroundDarcula;
-                    color: @white;
-
-                    &:hover {
-                        background-color: @appBarBackgroundActiveDarcula;
-                        color: @white;
-                    }
-                }
-
-                li:hover > a {
-                    background-color: @appBarBackgroundActiveDarcula;
-                }
-
-                .divider {
-                    background-color: @appBarDividerColorDarcula;
-                    &:hover {
-                        background-color: @appBarDividerColorDarcula;
-                    }
-                }
-            }
-        }
-
-        .app-bar-element, .app-bar-menu li {
-            .dropdown-toggle {
-                &:before {
-                    border-color: @white;
-                }
-            }
-        }
-
-        .app-bar-element, .app-bar-menu li {
-            &.disabled, &:disabled {
-                color: @gray;
-                a {
-                    color: inherit !important;
-                }
-            }
-        }
-
-        .app-bar-pullbutton {
-            &:hover {
-                background-color: @appBarBackgroundActiveDarcula;
-            }
-        }
-
-        .app-bar-drop-container {
-            border: 2px solid @appBarBackgroundDarcula;
-            background-color: @appBarBackgroundDarcula;
-            color: @white;
-
-            &:before {
-                background-color: @appBarBackgroundDarcula;
-                border-color: @appBarBackgroundDarcula;
-            }
-        }
-
-        .app-bar-pullmenu {
-            .app-bar-menu {
-                border-top: 1px solid @appBarDividerColorDarcula;
-                background-color: @appBarDividerColorDarcula;
-                li:hover {
-                    background-color: @appBarBackgroundDarcula;
-                    a {
-                        background-color: @appBarBackgroundActiveDarcula;
-                        color: @white;
-                    }
-                }
-            }
-        }
-    }
-
-    &.navy {
-        background-color: @appBarBackground;
-
-        .app-bar-element, .app-bar-menu > li, .app-bar-menu > li > a {
-            &:hover, &:active {
-                background-color: @appBarBackgroundActive;
-            }
-        }
-
-        .app-bar-divider {
-            background-color: @appBarDividerColor;
-        }
-
-        .app-bar-element, .app-bar-menu > li {
-            .d-menu {
-                background-color: @appBarBackground;
-                border-color: @transparent;
-
-                li:not(.disabled) > a, li > a {
-                    background-color: @appBarBackground;
-                    color: @white;
-
-                    &:hover {
-                        background-color: @appBarBackgroundActive;
-                        color: @white;
-                    }
-                }
-
-                li:hover > a {
-                    background-color: @appBarBackgroundActive;
-                }
-
-                .divider {
-                    background-color: @appBarDividerColor;
-                    &:hover {
-                        background-color: @appBarDividerColor;
-                    }
-                }
-            }
-        }
-
-        .app-bar-element, .app-bar-menu li {
-            .dropdown-toggle {
-                &:before {
-                    border-color: @white;
-                }
-            }
-        }
-
-        .app-bar-element, .app-bar-menu li {
-            &.disabled, &:disabled {
-                color: @gray;
-                a {
-                    color: inherit !important;
-                }
-            }
-        }
-
-        .app-bar-pullbutton {
-            &:hover {
-                background-color: @appBarBackgroundActive;
-            }
-        }
-
-        .app-bar-drop-container {
-            border: 2px solid @appBarBackground;
-            background-color: @appBarBackground;
-            color: @white;
-
-            &:before {
-                background-color: @appBarBackground;
-                border-color: @appBarBackground;
-            }
-        }
-
-        .app-bar-pullmenu {
-            .app-bar-menu {
-                border-top: 1px solid @appBarDividerColor;
-                background-color: @appBarDividerColor;
-                li:hover {
-                    background-color: @appBarBackground;
-                    a {
-                        background-color: @appBarBackgroundActive;
-                        color: @white;
-                    }
-                }
-            }
-        }
-    }
-}
+#scheme-builder > .app-bar-scheme(pink, @pink, @darkPink, @white, @white, @gray, @lightPink, @white);
+#scheme-builder > .app-bar-scheme(darcula, @appBarBackgroundDarcula, @appBarBackgroundActiveDarcula, @white, @white, @gray, @appBarDividerColorDarcula, @white);
+#scheme-builder > .app-bar-scheme(navy, @appBarBackground, @appBarBackgroundActive, @white, @white, @gray, @appBarDividerColor, @white);
+#scheme-builder > .app-bar-scheme(red, @red, @darkRed, @white, @white, @gray, @lightRed, @white);
+#scheme-builder > .app-bar-scheme(green, @green, @darkGreen, @white, @white, @gray, @lightGreen, @white);
