@@ -192,4 +192,32 @@
             }
         }
     }
+
+    .sidebar-scheme(@name, @background, @backgroundHover, @backgroundActive, @item, @itemHover, @itemActive, @itemDisabled) {
+        .sidebar {
+            &.@{name} {
+                background: @background;
+
+                li > a {
+                    background: @background;
+                    color: @item;
+                }
+
+                li:hover > a {
+                    background: @backgroundHover;
+                    color: @itemHover;
+                }
+
+                li.active > a {
+                    background: @backgroundActive;
+                    color: @itemActive;
+                }
+
+                li.disabled > a {
+                    background: @background;
+                    color: @itemDisabled;
+                }
+            }
+        }
+    }
 }

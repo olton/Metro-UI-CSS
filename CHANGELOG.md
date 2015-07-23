@@ -18,6 +18,7 @@
 * add color schemes for v-menu
 * add color schemes for d-menu
 * add color schemes for t-menu
+* add color schemes for sidebar
 
 ## 3.0.7
 * add padding for container on mobile devices
