@@ -23,7 +23,7 @@ module.exports = function(grunt) {
                           "}(function( jQuery ) { \n'use strict';\n\nvar $ = jQuery;\n\n",
 
         clean: {
-            build: ['build'],
+            build: ['build/js', 'build/css', 'build/fonts'],
             docs: ['docs/css/metro*.css', 'docs/js/metro*.js'],
             compiled_html: ['.compiled_html']
         },
@@ -80,6 +80,10 @@ module.exports = function(grunt) {
                 src: 'less/<%= pkg.name %>-rtl.less',
                 dest: 'build/css/<%= pkg.name %>-rtl.css'
             },
+            compileSchemes: {
+                src: 'less/<%= pkg.name %>-schemes.less',
+                dest: 'build/css/<%= pkg.name %>-schemes.css'
+            },
             compileFont: {
                 src: 'less/<%= pkg.name %>-icons.less',
                 dest: 'build/css/<%= pkg.name %>-icons.css'
@@ -108,6 +112,10 @@ module.exports = function(grunt) {
                 src: 'build/css/<%= pkg.name %>-responsive.css',
                 dest: 'build/css/<%= pkg.name %>-responsive.min.css'
             },
+            minSchemes: {
+                src: 'build/css/<%= pkg.name %>-schemes.css',
+                dest: 'build/css/<%= pkg.name %>-schemes.min.css'
+            },
             minFont: {
                 src: 'build/css/<%= pkg.name %>-icons.css',
                 dest: 'build/css/<%= pkg.name %>-icons.min.css'
@@ -131,6 +139,10 @@ module.exports = function(grunt) {
             docs_css_responsive: {
                 src: 'build/css/<%= pkg.name %>-responsive.css',
                 dest: 'docs/css/<%= pkg.name %>-responsive.css'
+            },
+            docs_css_schemes: {
+                src: 'build/css/<%= pkg.name %>-schemes.css',
+                dest: 'docs/css/<%= pkg.name %>-schemes.css'
             },
             docs_css_font: {
                 src: 'build/css/<%= pkg.name %>-icons.css',
