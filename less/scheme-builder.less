@@ -144,4 +144,52 @@
             }
         }
     }
+
+    .t-menu-scheme(@name, @background, @backgroundHover, @item, @itemHover, @itemDisabled, @divider, @dropdownToggle){
+        .t-menu {
+            &.@{name} {
+                background-color: @background;
+
+                .t-menu {
+                    background-color: @background;
+                }
+
+                li > a {
+                    background: @background;
+                    color: @item;
+                    border-bottom-color: @divider;
+
+                    &.dropdown-toggle, &.dropdown-toggle:hover {
+                        &:after {
+                            border-color: transparent transparent @dropdownToggle;
+                        }
+                    }
+                }
+
+                li:hover > a {
+                    background: @backgroundHover;
+                    color: @itemHover;
+
+                    &.dropdown-toggle {
+                        &:after {
+                            border-color: transparent transparent @dropdownToggle;
+                        }
+                    }
+                }
+
+                li.disabled > a {
+                    background: @background;
+                    color: @itemDisabled;
+
+                    &:hover {
+                        background: @background;
+                    }
+                }
+
+                &.horizontal > li > a, .horizontal > li > a {
+                    border-right-color: @divider;
+                }
+            }
+        }
+    }
 }

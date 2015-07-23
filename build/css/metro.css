@@ -7090,6 +7090,204 @@ a.tag {
 .t-menu.horizontal > li:hover > .dropdown-toggle:after {
   border-color: transparent transparent #1b6eae transparent;
 }
+.t-menu.horizontal.darcula {
+  background-color: #3c3f41;
+}
+.t-menu.horizontal.darcula .t-menu {
+  background-color: #3c3f41;
+}
+.t-menu.horizontal.darcula li > a {
+  background: #3c3f41;
+  color: #ffffff;
+  border-bottom-color: #616162;
+}
+.t-menu.horizontal.darcula li > a.dropdown-toggle:after,
+.t-menu.horizontal.darcula li > a.dropdown-toggle:hover:after {
+  border-color: transparent transparent #ffffff;
+}
+.t-menu.horizontal.darcula li:hover > a {
+  background: #1d1d1d;
+  color: #ffffff;
+}
+.t-menu.horizontal.darcula li:hover > a.dropdown-toggle:after {
+  border-color: transparent transparent #ffffff;
+}
+.t-menu.horizontal.darcula li.disabled > a {
+  background: #3c3f41;
+  color: #555555;
+}
+.t-menu.horizontal.darcula li.disabled > a:hover {
+  background: #3c3f41;
+}
+.t-menu.horizontal.darcula.horizontal > li > a,
+.t-menu.horizontal.darcula .horizontal > li > a {
+  border-right-color: #616162;
+}
+.t-menu.horizontal.pink {
+  background-color: #dc4fad;
+}
+.t-menu.horizontal.pink .t-menu {
+  background-color: #dc4fad;
+}
+.t-menu.horizontal.pink li > a {
+  background: #dc4fad;
+  color: #ffffff;
+  border-bottom-color: #f472d0;
+}
+.t-menu.horizontal.pink li > a.dropdown-toggle:after,
+.t-menu.horizontal.pink li > a.dropdown-toggle:hover:after {
+  border-color: transparent transparent #ffffff;
+}
+.t-menu.horizontal.pink li:hover > a {
+  background: #9a165a;
+  color: #ffffff;
+}
+.t-menu.horizontal.pink li:hover > a.dropdown-toggle:after {
+  border-color: transparent transparent #ffffff;
+}
+.t-menu.horizontal.pink li.disabled > a {
+  background: #dc4fad;
+  color: #555555;
+}
+.t-menu.horizontal.pink li.disabled > a:hover {
+  background: #dc4fad;
+}
+.t-menu.horizontal.pink.horizontal > li > a,
+.t-menu.horizontal.pink .horizontal > li > a {
+  border-right-color: #f472d0;
+}
+.t-menu.horizontal.navy {
+  background-color: #0072c6;
+}
+.t-menu.horizontal.navy .t-menu {
+  background-color: #0072c6;
+}
+.t-menu.horizontal.navy li > a {
+  background: #0072c6;
+  color: #ffffff;
+  border-bottom-color: #4c9cd7;
+}
+.t-menu.horizontal.navy li > a.dropdown-toggle:after,
+.t-menu.horizontal.navy li > a.dropdown-toggle:hover:after {
+  border-color: transparent transparent #ffffff;
+}
+.t-menu.horizontal.navy li:hover > a {
+  background: #005696;
+  color: #ffffff;
+}
+.t-menu.horizontal.navy li:hover > a.dropdown-toggle:after {
+  border-color: transparent transparent #ffffff;
+}
+.t-menu.horizontal.navy li.disabled > a {
+  background: #0072c6;
+  color: #555555;
+}
+.t-menu.horizontal.navy li.disabled > a:hover {
+  background: #0072c6;
+}
+.t-menu.horizontal.navy.horizontal > li > a,
+.t-menu.horizontal.navy .horizontal > li > a {
+  border-right-color: #4c9cd7;
+}
+.t-menu.horizontal.red {
+  background-color: #ce352c;
+}
+.t-menu.horizontal.red .t-menu {
+  background-color: #ce352c;
+}
+.t-menu.horizontal.red li > a {
+  background: #ce352c;
+  color: #ffffff;
+  border-bottom-color: #da5a53;
+}
+.t-menu.horizontal.red li > a.dropdown-toggle:after,
+.t-menu.horizontal.red li > a.dropdown-toggle:hover:after {
+  border-color: transparent transparent #ffffff;
+}
+.t-menu.horizontal.red li:hover > a {
+  background: #9a1616;
+  color: #ffffff;
+}
+.t-menu.horizontal.red li:hover > a.dropdown-toggle:after {
+  border-color: transparent transparent #ffffff;
+}
+.t-menu.horizontal.red li.disabled > a {
+  background: #ce352c;
+  color: #555555;
+}
+.t-menu.horizontal.red li.disabled > a:hover {
+  background: #ce352c;
+}
+.t-menu.horizontal.red.horizontal > li > a,
+.t-menu.horizontal.red .horizontal > li > a {
+  border-right-color: #da5a53;
+}
+.t-menu.horizontal.green {
+  background-color: #60a917;
+}
+.t-menu.horizontal.green .t-menu {
+  background-color: #60a917;
+}
+.t-menu.horizontal.green li > a {
+  background: #60a917;
+  color: #ffffff;
+  border-bottom-color: #7ad61d;
+}
+.t-menu.horizontal.green li > a.dropdown-toggle:after,
+.t-menu.horizontal.green li > a.dropdown-toggle:hover:after {
+  border-color: transparent transparent #ffffff;
+}
+.t-menu.horizontal.green li:hover > a {
+  background: #128023;
+  color: #ffffff;
+}
+.t-menu.horizontal.green li:hover > a.dropdown-toggle:after {
+  border-color: transparent transparent #ffffff;
+}
+.t-menu.horizontal.green li.disabled > a {
+  background: #60a917;
+  color: #555555;
+}
+.t-menu.horizontal.green li.disabled > a:hover {
+  background: #60a917;
+}
+.t-menu.horizontal.green.horizontal > li > a,
+.t-menu.horizontal.green .horizontal > li > a {
+  border-right-color: #7ad61d;
+}
+.t-menu.horizontal.orange {
+  background-color: #fa6800;
+}
+.t-menu.horizontal.orange .t-menu {
+  background-color: #fa6800;
+}
+.t-menu.horizontal.orange li > a {
+  background: #fa6800;
+  color: #ffffff;
+  border-bottom-color: #c29008;
+}
+.t-menu.horizontal.orange li > a.dropdown-toggle:after,
+.t-menu.horizontal.orange li > a.dropdown-toggle:hover:after {
+  border-color: transparent transparent #ffffff;
+}
+.t-menu.horizontal.orange li:hover > a {
+  background: #bf5a15;
+  color: #ffffff;
+}
+.t-menu.horizontal.orange li:hover > a.dropdown-toggle:after {
+  border-color: transparent transparent #ffffff;
+}
+.t-menu.horizontal.orange li.disabled > a {
+  background: #fa6800;
+  color: #555555;
+}
+.t-menu.horizontal.orange li.disabled > a:hover {
+  background: #fa6800;
+}
+.t-menu.horizontal.orange.horizontal > li > a,
+.t-menu.horizontal.orange .horizontal > li > a {
+  border-right-color: #c29008;
+}
 .t-menu.horizontal > li {
   display: block;
   float: left;
@@ -7389,6 +7587,204 @@ a.tag {
 .v-menu.orange li.divider,
 .d-menu.orange li.divider {
   background: #c29008;
+}
+.t-menu.darcula {
+  background-color: #3c3f41;
+}
+.t-menu.darcula .t-menu {
+  background-color: #3c3f41;
+}
+.t-menu.darcula li > a {
+  background: #3c3f41;
+  color: #ffffff;
+  border-bottom-color: #616162;
+}
+.t-menu.darcula li > a.dropdown-toggle:after,
+.t-menu.darcula li > a.dropdown-toggle:hover:after {
+  border-color: transparent transparent #ffffff;
+}
+.t-menu.darcula li:hover > a {
+  background: #1d1d1d;
+  color: #ffffff;
+}
+.t-menu.darcula li:hover > a.dropdown-toggle:after {
+  border-color: transparent transparent #ffffff;
+}
+.t-menu.darcula li.disabled > a {
+  background: #3c3f41;
+  color: #555555;
+}
+.t-menu.darcula li.disabled > a:hover {
+  background: #3c3f41;
+}
+.t-menu.darcula.horizontal > li > a,
+.t-menu.darcula .horizontal > li > a {
+  border-right-color: #616162;
+}
+.t-menu.pink {
+  background-color: #dc4fad;
+}
+.t-menu.pink .t-menu {
+  background-color: #dc4fad;
+}
+.t-menu.pink li > a {
+  background: #dc4fad;
+  color: #ffffff;
+  border-bottom-color: #f472d0;
+}
+.t-menu.pink li > a.dropdown-toggle:after,
+.t-menu.pink li > a.dropdown-toggle:hover:after {
+  border-color: transparent transparent #ffffff;
+}
+.t-menu.pink li:hover > a {
+  background: #9a165a;
+  color: #ffffff;
+}
+.t-menu.pink li:hover > a.dropdown-toggle:after {
+  border-color: transparent transparent #ffffff;
+}
+.t-menu.pink li.disabled > a {
+  background: #dc4fad;
+  color: #555555;
+}
+.t-menu.pink li.disabled > a:hover {
+  background: #dc4fad;
+}
+.t-menu.pink.horizontal > li > a,
+.t-menu.pink .horizontal > li > a {
+  border-right-color: #f472d0;
+}
+.t-menu.navy {
+  background-color: #0072c6;
+}
+.t-menu.navy .t-menu {
+  background-color: #0072c6;
+}
+.t-menu.navy li > a {
+  background: #0072c6;
+  color: #ffffff;
+  border-bottom-color: #4c9cd7;
+}
+.t-menu.navy li > a.dropdown-toggle:after,
+.t-menu.navy li > a.dropdown-toggle:hover:after {
+  border-color: transparent transparent #ffffff;
+}
+.t-menu.navy li:hover > a {
+  background: #005696;
+  color: #ffffff;
+}
+.t-menu.navy li:hover > a.dropdown-toggle:after {
+  border-color: transparent transparent #ffffff;
+}
+.t-menu.navy li.disabled > a {
+  background: #0072c6;
+  color: #555555;
+}
+.t-menu.navy li.disabled > a:hover {
+  background: #0072c6;
+}
+.t-menu.navy.horizontal > li > a,
+.t-menu.navy .horizontal > li > a {
+  border-right-color: #4c9cd7;
+}
+.t-menu.red {
+  background-color: #ce352c;
+}
+.t-menu.red .t-menu {
+  background-color: #ce352c;
+}
+.t-menu.red li > a {
+  background: #ce352c;
+  color: #ffffff;
+  border-bottom-color: #da5a53;
+}
+.t-menu.red li > a.dropdown-toggle:after,
+.t-menu.red li > a.dropdown-toggle:hover:after {
+  border-color: transparent transparent #ffffff;
+}
+.t-menu.red li:hover > a {
+  background: #9a1616;
+  color: #ffffff;
+}
+.t-menu.red li:hover > a.dropdown-toggle:after {
+  border-color: transparent transparent #ffffff;
+}
+.t-menu.red li.disabled > a {
+  background: #ce352c;
+  color: #555555;
+}
+.t-menu.red li.disabled > a:hover {
+  background: #ce352c;
+}
+.t-menu.red.horizontal > li > a,
+.t-menu.red .horizontal > li > a {
+  border-right-color: #da5a53;
+}
+.t-menu.green {
+  background-color: #60a917;
+}
+.t-menu.green .t-menu {
+  background-color: #60a917;
+}
+.t-menu.green li > a {
+  background: #60a917;
+  color: #ffffff;
+  border-bottom-color: #7ad61d;
+}
+.t-menu.green li > a.dropdown-toggle:after,
+.t-menu.green li > a.dropdown-toggle:hover:after {
+  border-color: transparent transparent #ffffff;
+}
+.t-menu.green li:hover > a {
+  background: #128023;
+  color: #ffffff;
+}
+.t-menu.green li:hover > a.dropdown-toggle:after {
+  border-color: transparent transparent #ffffff;
+}
+.t-menu.green li.disabled > a {
+  background: #60a917;
+  color: #555555;
+}
+.t-menu.green li.disabled > a:hover {
+  background: #60a917;
+}
+.t-menu.green.horizontal > li > a,
+.t-menu.green .horizontal > li > a {
+  border-right-color: #7ad61d;
+}
+.t-menu.orange {
+  background-color: #fa6800;
+}
+.t-menu.orange .t-menu {
+  background-color: #fa6800;
+}
+.t-menu.orange li > a {
+  background: #fa6800;
+  color: #ffffff;
+  border-bottom-color: #c29008;
+}
+.t-menu.orange li > a.dropdown-toggle:after,
+.t-menu.orange li > a.dropdown-toggle:hover:after {
+  border-color: transparent transparent #ffffff;
+}
+.t-menu.orange li:hover > a {
+  background: #bf5a15;
+  color: #ffffff;
+}
+.t-menu.orange li:hover > a.dropdown-toggle:after {
+  border-color: transparent transparent #ffffff;
+}
+.t-menu.orange li.disabled > a {
+  background: #fa6800;
+  color: #555555;
+}
+.t-menu.orange li.disabled > a:hover {
+  background: #fa6800;
+}
+.t-menu.orange.horizontal > li > a,
+.t-menu.orange .horizontal > li > a {
+  border-right-color: #c29008;
 }
 .button {
   padding: 0 1rem;
