@@ -197,6 +197,19 @@
 			background-color: @white;
 		}
 	}
+
+	.dropdown-toggle {
+		&:before {
+			.transition(.3s);
+		}
+
+		&.active-toggle {
+			&:before {
+				.rotate135;
+				.transition(.3s);
+			}
+		}
+	}
 }
 
 .sidebar2 {
