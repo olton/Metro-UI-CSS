@@ -6770,20 +6770,21 @@ $.widget( "metro.tile" , {
 
         addTouchEvents(element[0]);
 
-        element.on('click, touchstart', function(e){
+        element.on('click', function(e){
             if (element[0].tagName === "A") {
 
             } else {
-                e.preventDefault();
+                //console.log(typeof o.onClick);
                 if (typeof o.onClick === "function") {
                     o.onClick(element);
                 } else {
-                    if (window[o.onClick] !== undefined) {
+                    if (typeof window[o.onClick] === "function") {
                         window[o.onClick](element);
                     } else {
                         $.globalEval(o.onClick);
                     }
                 }
+                //e.preventDefault();
             }
         });
     },
