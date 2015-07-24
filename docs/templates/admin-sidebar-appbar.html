@@ -25,6 +25,8 @@
         html, body {
             height: 100%;
         }
+        body {
+        }
         .page-content {
             padding-top: 3.125rem;
             min-height: 100%;
@@ -39,6 +41,9 @@
         @media screen and (max-width: 800px){
             #cell-sidebar {
                 flex-basis: 52px;
+            }
+            #cell-content {
+                flex-basis: calc(100% - 52px);
             }
         }
     </style>
@@ -101,12 +106,12 @@
 
         <div class="app-bar-element place-right">
             <span class="dropdown-toggle"><span class="mif-cog"></span> User Name</span>
-            <div class="app-bar-drop-container padding10 place-right no-margin-top block-shadow" data-role="dropdown" data-no-close="true" style="width: 220px">
+            <div class="app-bar-drop-container padding10 place-right no-margin-top block-shadow fg-dark" data-role="dropdown" data-no-close="true" style="width: 220px">
                 <h2 class="text-light">Quick settings</h2>
-                <ul class="unstyled-list">
-                    <li><a href="" class="fg-white fg-hover-yellow">Profile</a></li>
-                    <li><a href="" class="fg-white fg-hover-yellow">Security</a></li>
-                    <li><a href="" class="fg-white fg-hover-yellow">Exit</a></li>
+                <ul class="unstyled-list fg-dark">
+                    <li><a href="" class="fg-white1 fg-hover-yellow">Profile</a></li>
+                    <li><a href="" class="fg-white2 fg-hover-yellow">Security</a></li>
+                    <li><a href="" class="fg-white3 fg-hover-yellow">Exit</a></li>
                 </ul>
             </div>
         </div>
@@ -154,7 +159,7 @@
                         </a></li>
                     </ul>
                 </div>
-                <div class="cell auto-size padding20 bg-white">
+                <div class="cell auto-size padding20 bg-white" id="cell-content">
                     <h1 class="text-light">Virtual machines <span class="mif-drive-eta place-right"></span></h1>
                     <hr class="thin bg-grayLighter">
                     <button class="button primary" onclick="pushMessage('info')"><span class="mif-plus"></span> Create...</button>
