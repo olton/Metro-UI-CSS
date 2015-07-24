@@ -6,7 +6,8 @@ $.widget( "metro.tile" , {
         effect: 'slideLeft',
         period: 4000,
         duration: 700,
-        easing: 'doubleSqrt'
+        easing: 'doubleSqrt',
+        onClick: function(tile){}
     },
 
     _frames: {},
@@ -30,9 +31,31 @@ $.widget( "metro.tile" , {
 
         this._createTransformTile();
         this._createLiveTile();
+        this._createEvents();
 
         element.data('tile', this);
 
+    },
+
+    _createEvents: function(){
+        var that = this, element = this.element, o = this.options;
+
+        element.on('click', function(e){
+            if (element[0].tagName === "A") {
+
+            } else {
+                e.preventDefault();
+                if (typeof o.onClick === "function") {
+                    o.onClick(element);
+                } else {
+                    if (window[o.onClick] !== undefined) {
+                        window[o.onClick](element);
+                    } else {
+                        $.globalEval(o.onClick);
+                    }
+                }
+            }
+        });
     },
 
     _createLiveTile: function(){
