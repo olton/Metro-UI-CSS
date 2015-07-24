@@ -1,5 +1,4 @@
 @import (once) "flex";
-@import (once) "transform";
 @import (once) "variables";
 
 html {
@@ -82,7 +81,7 @@ h1, h2, h3, h4, h5, h6, p  {
         }
     }
 }
-
+//grid
 .grid {
     @media screen and (max-width: 800px) {
         .row, .row[class*=cells] {
@@ -177,19 +176,18 @@ h1, h2, h3, h4, h5, h6, p  {
 .sidebar {
     @media screen and (max-width: 800px) {
         width: 52px;
-        .transition(.2s, ease);
 
-        a {
+        li > a {
             padding-right: 0;
             padding-left: 0;
-            width: 52px;
+            width: 52px !important;
         }
 
-        .title {
+        li > a > .title {
             display: none ;
         }
 
-        .counter {
+        li > a > .counter {
             position: absolute;
             top: 0;
             right: 4px;

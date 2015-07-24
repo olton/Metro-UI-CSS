@@ -303,7 +303,7 @@ a {
   background-color: rgba(120, 170, 28, 0.7) !important;
 }
 .op-lightOrange {
-  background-color: rgba(194, 144, 8, 0.7) !important;
+  background-color: rgba(255, 193, 148, 0.7) !important;
 }
 .op-lightPink {
   background-color: rgba(244, 114, 208, 0.7) !important;
@@ -462,7 +462,7 @@ a {
   background: #78aa1c !important;
 }
 .bg-lightOrange {
-  background: #c29008 !important;
+  background: #ffc194 !important;
 }
 .bg-lightPink {
   background: #f472d0 !important;
@@ -615,7 +615,7 @@ a {
   color: #78aa1c !important;
 }
 .fg-lightOrange {
-  color: #c29008 !important;
+  color: #ffc194 !important;
 }
 .fg-lightPink {
   color: #f472d0 !important;
@@ -774,7 +774,7 @@ a {
   outline-color: #78aa1c !important;
 }
 .ol-lightOrange {
-  outline-color: #c29008 !important;
+  outline-color: #ffc194 !important;
 }
 .ol-lightPink {
   outline-color: #f472d0 !important;
@@ -930,7 +930,7 @@ a {
   border-color: #78aa1c !important;
 }
 .bd-lightOrange {
-  border-color: #c29008 !important;
+  border-color: #ffc194 !important;
 }
 .bd-lightPink {
   border-color: #f472d0 !important;
@@ -1086,7 +1086,7 @@ a {
   background: #78aa1c !important;
 }
 .bg-hover-lightOrange:hover {
-  background: #c29008 !important;
+  background: #ffc194 !important;
 }
 .bg-hover-lightPink:hover {
   background: #f472d0 !important;
@@ -1242,7 +1242,7 @@ a {
   color: #78aa1c !important;
 }
 .fg-hover-lightOrange:hover {
-  color: #c29008 !important;
+  color: #ffc194 !important;
 }
 .fg-hover-lightPink:hover {
   color: #f472d0 !important;
@@ -1398,7 +1398,7 @@ a {
   background: #78aa1c !important;
 }
 .bg-active-lightOrange:active {
-  background: #c29008 !important;
+  background: #ffc194 !important;
 }
 .bg-active-lightPink:active {
   background: #f472d0 !important;
@@ -1554,7 +1554,7 @@ a {
   color: #78aa1c !important;
 }
 .fg-active-lightOrange:active {
-  color: #c29008 !important;
+  color: #ffc194 !important;
 }
 .fg-active-lightPink:active {
   color: #f472d0 !important;
@@ -1710,7 +1710,7 @@ a {
   background: #78aa1c !important;
 }
 .bg-focus-lightOrange:focus {
-  background: #c29008 !important;
+  background: #ffc194 !important;
 }
 .bg-focus-lightPink:focus {
   background: #f472d0 !important;
@@ -1866,7 +1866,7 @@ a {
   color: #78aa1c !important;
 }
 .fg-focus-lightOrange:focus {
-  color: #c29008 !important;
+  color: #ffc194 !important;
 }
 .fg-focus-lightPink:focus {
   color: #f472d0 !important;
@@ -2057,7 +2057,7 @@ a {
   background-size: 40px 40px !important;
 }
 .ribbed-lightOrange {
-  background: #c29008 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
+  background: #ffc194 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
 .ribbed-lightPink {
@@ -2243,7 +2243,7 @@ a {
   background: #78aa1c !important;
 }
 .before-bg-lightOrange:before {
-  background: #c29008 !important;
+  background: #ffc194 !important;
 }
 .before-bg-lightPink:before {
   background: #f472d0 !important;
@@ -2402,7 +2402,7 @@ a {
   background: #78aa1c !important;
 }
 .after-bg-lightOrange:after {
-  background: #c29008 !important;
+  background: #ffc194 !important;
 }
 .after-bg-lightPink:after {
   background: #f472d0 !important;
@@ -2561,7 +2561,7 @@ a {
   color: #78aa1c !important;
 }
 .before-fg-lightOrange:before {
-  color: #c29008 !important;
+  color: #ffc194 !important;
 }
 .before-fg-lightPink:before {
   color: #f472d0 !important;
@@ -2720,7 +2720,7 @@ a {
   color: #78aa1c !important;
 }
 .after-fg-lightOrange:after {
-  color: #c29008 !important;
+  color: #ffc194 !important;
 }
 .after-fg-lightPink:after {
   color: #f472d0 !important;
@@ -4983,7 +4983,7 @@ a.tag {
   color: #ffffff;
 }
 .table tbody tr.warning:hover {
-  background-color: #c29008;
+  background-color: #ffc194;
 }
 .table tbody tr.success {
   background-color: #60a917;
@@ -7576,8 +7576,8 @@ a.shortcut-button {
   background: #bf5a15;
 }
 .split.warning:hover {
-  background: #c29008;
-  border-color: #c29008;
+  background: #ffc194;
+  border-color: #ffc194;
 }
 .split.warning.dropdown-toggle:before {
   border-color: #ffffff;
@@ -12116,6 +12116,7 @@ input[type="submit"].link:active {
   background-color: #ffffff;
   color: #323232;
   white-space: normal;
+  min-width: 0;
 }
 .sidebar2 li a .icon {
   color: inherit ;
@@ -14630,10 +14631,10 @@ input[type="submit"].link:active {
   outline-color: #97d623;
 }
 .tile-area-scheme-lightOrange {
-  background-color: #c29008;
+  background-color: #ffc194;
 }
 .tile-area-scheme-lightOrange [class*=tile] {
-  outline-color: #f3b40a;
+  outline-color: #ffdec7;
 }
 .tile-area-scheme-lightPink {
   background-color: #f472d0;
@@ -15277,7 +15278,7 @@ input[type="submit"].link:active {
   color: #ffffff;
 }
 .notify.warning .notify-closer:hover {
-  background-color: #c29008;
+  background-color: #ffc194;
 }
 .notify.warning .notify-closer:active {
   background-color: #bf5a15;
@@ -15657,7 +15658,7 @@ p [data-hint] {
   color: #ffffff;
 }
 .dialog.warning .dialog-close-button {
-  background-color: #c29008;
+  background-color: #ffc194;
   color: #ffffff;
 }
 .dialog.warning .dialog-close-button:active {
@@ -16669,7 +16670,7 @@ p [data-hint] {
   color: #ffffff;
 }
 .dataTable tbody tr.warning:hover {
-  background-color: #c29008;
+  background-color: #ffc194;
 }
 .dataTable tbody tr.success {
   background-color: #60a917;

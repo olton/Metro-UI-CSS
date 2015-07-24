@@ -433,7 +433,7 @@
   background-color: #bf5a15;
 }
 .app-bar.orange .app-bar-divider {
-  background-color: #c29008;
+  background-color: #ffc194;
 }
 .app-bar.orange .app-bar-element .d-menu,
 .app-bar.orange .app-bar-menu > li .d-menu {
@@ -460,11 +460,11 @@
 }
 .app-bar.orange .app-bar-element .d-menu .divider,
 .app-bar.orange .app-bar-menu > li .d-menu .divider {
-  background-color: #c29008;
+  background-color: #ffc194;
 }
 .app-bar.orange .app-bar-element .d-menu .divider:hover,
 .app-bar.orange .app-bar-menu > li .d-menu .divider:hover {
-  background-color: #c29008;
+  background-color: #ffc194;
 }
 .app-bar.orange .app-bar-element .dropdown-toggle:before,
 .app-bar.orange .app-bar-menu li .dropdown-toggle:before {
@@ -495,8 +495,8 @@
   border-color: #fa6800;
 }
 .app-bar.orange .app-bar-pullmenu .app-bar-menu {
-  border-top: 1px solid #c29008;
-  background-color: #c29008;
+  border-top: 1px solid #ffc194;
+  background-color: #ffc194;
 }
 .app-bar.orange .app-bar-pullmenu .app-bar-menu li:hover {
   background-color: #fa6800;
@@ -770,7 +770,7 @@
 }
 .v-menu.orange li.divider,
 .d-menu.orange li.divider {
-  background: #c29008;
+  background: #ffc194;
 }
 /*
 * params: name, background, backgroundHover, item, itemHover, itemDisabled, divider, dropdown-toggle
@@ -949,7 +949,7 @@
 .t-menu.orange li > a {
   background: #fa6800;
   color: #ffffff;
-  border-bottom-color: #c29008;
+  border-bottom-color: #ffc194;
 }
 .t-menu.orange li > a.dropdown-toggle:after,
 .t-menu.orange li > a.dropdown-toggle:hover:after {
@@ -971,7 +971,7 @@
 }
 .t-menu.orange.horizontal > li > a,
 .t-menu.orange .horizontal > li > a {
-  border-right-color: #c29008;
+  border-right-color: #ffc194;
 }
 /*
 * params: name, background, backgroundHover, backgroundActive, item, itemHover, itemActive, itemDisabled

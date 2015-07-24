@@ -182,7 +182,7 @@
   background-color: rgba(120, 170, 28, 0.7) !important;
 }
 .op-lightOrange {
-  background-color: rgba(194, 144, 8, 0.7) !important;
+  background-color: rgba(255, 193, 148, 0.7) !important;
 }
 .op-lightPink {
   background-color: rgba(244, 114, 208, 0.7) !important;
@@ -341,7 +341,7 @@
   background: #78aa1c !important;
 }
 .bg-lightOrange {
-  background: #c29008 !important;
+  background: #ffc194 !important;
 }
 .bg-lightPink {
   background: #f472d0 !important;
@@ -494,7 +494,7 @@
   color: #78aa1c !important;
 }
 .fg-lightOrange {
-  color: #c29008 !important;
+  color: #ffc194 !important;
 }
 .fg-lightPink {
   color: #f472d0 !important;
@@ -653,7 +653,7 @@
   outline-color: #78aa1c !important;
 }
 .ol-lightOrange {
-  outline-color: #c29008 !important;
+  outline-color: #ffc194 !important;
 }
 .ol-lightPink {
   outline-color: #f472d0 !important;
@@ -809,7 +809,7 @@
   border-color: #78aa1c !important;
 }
 .bd-lightOrange {
-  border-color: #c29008 !important;
+  border-color: #ffc194 !important;
 }
 .bd-lightPink {
   border-color: #f472d0 !important;
@@ -965,7 +965,7 @@
   background: #78aa1c !important;
 }
 .bg-hover-lightOrange:hover {
-  background: #c29008 !important;
+  background: #ffc194 !important;
 }
 .bg-hover-lightPink:hover {
   background: #f472d0 !important;
@@ -1121,7 +1121,7 @@
   color: #78aa1c !important;
 }
 .fg-hover-lightOrange:hover {
-  color: #c29008 !important;
+  color: #ffc194 !important;
 }
 .fg-hover-lightPink:hover {
   color: #f472d0 !important;
@@ -1277,7 +1277,7 @@
   background: #78aa1c !important;
 }
 .bg-active-lightOrange:active {
-  background: #c29008 !important;
+  background: #ffc194 !important;
 }
 .bg-active-lightPink:active {
   background: #f472d0 !important;
@@ -1433,7 +1433,7 @@
   color: #78aa1c !important;
 }
 .fg-active-lightOrange:active {
-  color: #c29008 !important;
+  color: #ffc194 !important;
 }
 .fg-active-lightPink:active {
   color: #f472d0 !important;
@@ -1589,7 +1589,7 @@
   background: #78aa1c !important;
 }
 .bg-focus-lightOrange:focus {
-  background: #c29008 !important;
+  background: #ffc194 !important;
 }
 .bg-focus-lightPink:focus {
   background: #f472d0 !important;
@@ -1745,7 +1745,7 @@
   color: #78aa1c !important;
 }
 .fg-focus-lightOrange:focus {
-  color: #c29008 !important;
+  color: #ffc194 !important;
 }
 .fg-focus-lightPink:focus {
   color: #f472d0 !important;
@@ -1936,7 +1936,7 @@
   background-size: 40px 40px !important;
 }
 .ribbed-lightOrange {
-  background: #c29008 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
+  background: #ffc194 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
 .ribbed-lightPink {
@@ -2122,7 +2122,7 @@
   background: #78aa1c !important;
 }
 .before-bg-lightOrange:before {
-  background: #c29008 !important;
+  background: #ffc194 !important;
 }
 .before-bg-lightPink:before {
   background: #f472d0 !important;
@@ -2281,7 +2281,7 @@
   background: #78aa1c !important;
 }
 .after-bg-lightOrange:after {
-  background: #c29008 !important;
+  background: #ffc194 !important;
 }
 .after-bg-lightPink:after {
   background: #f472d0 !important;
@@ -2440,7 +2440,7 @@
   color: #78aa1c !important;
 }
 .before-fg-lightOrange:before {
-  color: #c29008 !important;
+  color: #ffc194 !important;
 }
 .before-fg-lightPink:before {
   color: #f472d0 !important;
@@ -2599,7 +2599,7 @@
   color: #78aa1c !important;
 }
 .after-fg-lightOrange:after {
-  color: #c29008 !important;
+  color: #ffc194 !important;
 }
 .after-fg-lightPink:after {
   color: #f472d0 !important;
