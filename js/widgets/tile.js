@@ -60,6 +60,8 @@ $.widget( "metro.tile" , {
 
     _createLiveTile: function(){
         var that = this, element = this.element, o = this.options;
+        var event_down = isTouchDevice() ? 'touchstart' : 'mouseenter';
+        var event_up = isTouchDevice() ? 'touchend' : 'mouseleave';
 
         this._frames = element.find(".live-slide");
         if (this._frames.length <= 1) {return false;}
@@ -71,11 +73,11 @@ $.widget( "metro.tile" , {
             'height': element.height()
         };
 
-        element.on('mouseenter', function(){
+        element.on(event_down, function(){
             that.stop();
         });
 
-        element.on('mouseleave', function(){
+        element.on(event_up, function(){
             that.start();
         });
 
@@ -188,8 +190,12 @@ $.widget( "metro.tile" , {
     _createTransformTile: function(){
         var that = this, element = this.element, o = this.options;
         var dim = {w: element.width(), h: element.height()};
+        var event_down = isTouchDevice() ? 'touchstart' : 'mousedown';
+        var event_up = isTouchDevice() ? 'touchend' : 'mouseup';
+        var event_leave = isTouchDevice() ? 'touchend' : 'mouseleave';
 
-        element.on('mousedown', function(e){
+
+        element.on(event_down, function(e){
             var X = e.pageX - $(this).offset().left, Y = e.pageY - $(this).offset().top;
             var transform = 'top';
 
@@ -212,14 +218,14 @@ $.widget( "metro.tile" , {
             }
         });
 
-        element.on('mouseup', function(){
+        element.on(event_up, function(){
             $(this)
                 .removeClass("tile-transform-left")
                 .removeClass("tile-transform-right")
                 .removeClass("tile-transform-top")
                 .removeClass("tile-transform-bottom");
         });
-        element.on('mouseleave', function(){
+        element.on(event_leave, function(){
             $(this)
                 .removeClass("tile-transform-left")
                 .removeClass("tile-transform-right")
