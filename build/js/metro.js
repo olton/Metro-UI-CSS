@@ -3997,21 +3997,29 @@ $.widget("metro.dropdown", {
     },
 
     _open: function(el){
+        var parent = this.element.parent(), o = this.options;
+        var toggle = o.toggleElement ? $(o.toggleElement) : parent.children('.dropdown-toggle').length > 0 ? parent.children('.dropdown-toggle') : parent.children('a:nth-child(1)');
+
         switch (this.options.effect) {
             case 'fade': $(el).fadeIn('fast'); break;
             case 'slide': $(el).slideDown('fast'); break;
             default: $(el).show();
         }
         this._trigger("onOpen", null, el);
+        toggle.addClass('active-toggle');
     },
 
     _close: function(el){
+        var parent = $(el).parent(), o = this.options;
+        var toggle = o.toggleElement ? $(o.toggleElement) : parent.children('.dropdown-toggle').length > 0 ? parent.children('.dropdown-toggle') : parent.children('a:nth-child(1)');
+
         switch (this.options.effect) {
             case 'fade': $(el).fadeOut('fast'); break;
             case 'slide': $(el).slideUp('fast'); break;
             default: $(el).hide();
         }
         this._trigger("onClose", null, el);
+        toggle.removeClass('active-toggle');
     },
 
     _destroy: function(){

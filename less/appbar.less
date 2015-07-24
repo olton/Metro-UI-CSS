@@ -259,6 +259,33 @@
 }
 
 .app-bar {
+    .app-bar-element, .app-bar-menu {
+        .dropdown-toggle {
+            &:before {
+                .transition(.3s);
+            }
+
+            &.active-toggle {
+                &:before {
+                    .rotate135;
+                    .transition(.3s);
+                }
+            }
+        }
+
+        .d-menu {
+            .dropdown-toggle {
+                &.active-toggle {
+                    &:before {
+                        .rotate45;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.app-bar {
     &.fixed-top, &.fixed-bottom {
         z-index: @zindexFixedNavbar;
         position: fixed;
