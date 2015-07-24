@@ -39,14 +39,12 @@ $.widget( "metro.tile" , {
 
     _createEvents: function(){
         var that = this, element = this.element, o = this.options;
+        var event = isTouchDevice() ? 'touchstart' : 'click';
 
-        addTouchEvents(element[0]);
-
-        element.on('click', function(e){
+        element.on(event, function(e){
             if (element[0].tagName === "A") {
 
             } else {
-                //console.log(typeof o.onClick);
                 if (typeof o.onClick === "function") {
                     o.onClick(element);
                 } else {
@@ -56,7 +54,6 @@ $.widget( "metro.tile" , {
                         $.globalEval(o.onClick);
                     }
                 }
-                //e.preventDefault();
             }
         });
     },
