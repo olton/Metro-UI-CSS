@@ -40,7 +40,9 @@ $.widget( "metro.tile" , {
     _createEvents: function(){
         var that = this, element = this.element, o = this.options;
 
-        element.on('click', function(e){
+        addTouchEvents(element[0]);
+
+        element.on('click, touchstart', function(e){
             if (element[0].tagName === "A") {
 
             } else {

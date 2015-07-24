@@ -21,6 +21,7 @@
 * add color schemes for sidebar
 * fix min width for sidebar2 item
 * add rotate dropdown-toggle marker
+* add onclick event and touch for tile plugin
 
 ## 3.0.7
 * add padding for container on mobile devices
