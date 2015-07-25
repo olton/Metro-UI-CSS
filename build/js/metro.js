@@ -6437,10 +6437,15 @@ $.widget("metro.stepper", {
             var step = $(this).data('step');
 
 
-            if (typeof o.onStepClick === 'string') {
-                window[o.onStepClick](step - 1, step);
-            } else {
+            if (typeof o.onStepClick === 'function') {
                 o.onStepClick(step - 1, step);
+            } else {
+                if (typeof window[o.onStepClick] === 'function') {
+                    window[o.onStepClick](step - 1, step);
+                } else {
+                    var result = eval("(function(){"+o.onStepClick+"})");
+                    result.call(step - 1, step);
+                }
             }
 
             element.trigger("stepclick", step);
@@ -6490,10 +6495,15 @@ $.widget("metro.stepper", {
             if (i === step - 1) {
                 $(s).addClass('current') ;
 
-                if (typeof  o.onStep === 'string') {
-                    window[o.onStep](i+1, s);
-                } else {
+                if (typeof o.onStep === 'function') {
                     o.onStep(i+1, s);
+                } else {
+                    if (typeof window[o.onStep] === 'function') {
+                        window[o.onStep](i+1, s);
+                    } else {
+                        var result = eval("(function(){"+o.onStep+"})");
+                        result.call(i+1, s);
+                    }
                 }
             }
         });
