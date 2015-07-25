@@ -1,0 +1,223 @@
+#scheme-builder {
+    .app-bar-scheme(@name, @background, @hoverBackground, @item, @itemHover, @itemDisabled, @divider, @dropdownToggle: @white){
+        .app-bar {
+            &.@{name} {
+                background-color: @background;
+
+                .app-bar-element, .app-bar-menu > li, .app-bar-menu > li > a {
+                    &:hover, &:active {
+                        background-color: @hoverBackground;
+                    }
+                }
+
+                .app-bar-divider {
+                    background-color: @divider;
+                }
+
+                .app-bar-element, .app-bar-menu > li {
+                    .d-menu {
+                        background-color: @background;
+                        border-color: transparent;
+
+                        li:not(.disabled) > a, li > a {
+                            background-color: @background;
+                            color: @item;
+
+                            &:hover {
+                                background-color: @hoverBackground;
+                                color: @itemHover;
+                            }
+                        }
+
+                        li:hover > a {
+                            background-color: @hoverBackground;
+                        }
+
+                        .divider {
+                            background-color: @divider;
+                            &:hover {
+                                background-color: @divider;
+                            }
+                        }
+                    }
+                }
+
+                .app-bar-element, .app-bar-menu li {
+                    .dropdown-toggle {
+                        &:before {
+                            border-color: @dropdownToggle;
+                        }
+                    }
+                }
+
+                .app-bar-element, .app-bar-menu li {
+                    &.disabled, &:disabled {
+                        color: @itemDisabled;
+                        a {
+                            color: inherit !important;
+                        }
+                    }
+                }
+
+                .app-bar-pullbutton {
+                    &:hover {
+                        background-color: @hoverBackground;
+                    }
+                }
+
+                .app-bar-drop-container {
+                    border: 2px solid @background;
+                    background-color: @background;
+                    color: @item;
+
+                    &:before {
+                        background-color: @background;
+                        border-color: @background;
+                    }
+                }
+
+                .app-bar-pullmenu {
+                    .app-bar-menu {
+                        border-top: 1px solid @divider;
+                        background-color: @divider;
+                        li:hover {
+                            background-color: @background;
+                            a {
+                                background-color: @hoverBackground;
+                                color: @item;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .d-menu-scheme(@name, @background, @backgroundHover, @item, @itemHover, @itemDisabled, @divider, @dropdownToggle){
+        .v-menu, .d-menu {
+            &.@{name} {
+                background: @background;
+
+                li > a {
+                    background: @background;
+                    color: @item;
+
+                    .icon {
+                        color: darken(@item, 20%);
+                    }
+
+                    &:hover {
+                        background: @backgroundHover;
+                        color: @itemHover;
+
+                        .icon {
+                            color: @itemHover;
+                        }
+                    }
+                }
+
+                li > .item-block {
+                    background: lighten(@background, 5%);
+                }
+
+                li.disabled > a {
+                    background: @background;
+                    color: @itemDisabled;
+                }
+
+                li > a {
+                    &.dropdown-toggle {
+                        &:before {
+                            border-color: @dropdownToggle;
+                        }
+                    }
+                }
+
+                li.menu-title {
+                    background: darken(@background, 5%);
+                    color: darken(@item, 20%);
+                }
+
+                li.divider {
+                    background: @divider;
+                }
+            }
+        }
+    }
+
+    .t-menu-scheme(@name, @background, @backgroundHover, @item, @itemHover, @itemDisabled, @divider, @dropdownToggle){
+        .t-menu {
+            &.@{name} {
+                background-color: @background;
+
+                .t-menu {
+                    background-color: @background;
+                }
+
+                li > a {
+                    background: @background;
+                    color: @item;
+                    border-bottom-color: @divider;
+
+                    &.dropdown-toggle, &.dropdown-toggle:hover {
+                        &:after {
+                            border-color: transparent transparent @dropdownToggle;
+                        }
+                    }
+                }
+
+                li:hover > a {
+                    background: @backgroundHover;
+                    color: @itemHover;
+
+                    &.dropdown-toggle {
+                        &:after {
+                            border-color: transparent transparent @dropdownToggle;
+                        }
+                    }
+                }
+
+                li.disabled > a {
+                    background: @background;
+                    color: @itemDisabled;
+
+                    &:hover {
+                        background: @background;
+                    }
+                }
+
+                &.horizontal > li > a, .horizontal > li > a {
+                    border-right-color: @divider;
+                }
+            }
+        }
+    }
+
+    .sidebar-scheme(@name, @background, @backgroundHover, @backgroundActive, @item, @itemHover, @itemActive, @itemDisabled) {
+        .sidebar {
+            &.@{name} {
+                background: @background;
+
+                li > a {
+                    background: @background;
+                    color: @item;
+                }
+
+                li:hover > a {
+                    background: @backgroundHover;
+                    color: @itemHover;
+                }
+
+                li.active > a {
+                    background: @backgroundActive;
+                    color: @itemActive;
+                }
+
+                li.disabled > a {
+                    background: @background;
+                    color: @itemDisabled;
+                }
+            }
+        }
+    }
+}

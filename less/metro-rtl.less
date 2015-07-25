@@ -1,0 +1,73 @@
+@import (once) "variables";
+
+*[dir=ltr] {
+    direction: ltr;
+    unicode-bidi: embed;
+}
+
+*[dir=rtl] {
+    direction: rtl;
+    unicode-bidi: embed;
+}
+
+bdo[dir=ltr] {
+    direction: ltr;
+    unicode-bidi: bidi-override;
+}
+
+bdo[dir=rtl] {
+    direction: rtl;
+    unicode-bidi: bidi-override;
+}
+
+*[dir=rtl] ul, *[dir=rtl] ol, ul[dir=rtl], ol[dir=rtl] {
+    margin-right: .3125rem;
+    margin-left: 0;
+    padding-right: .625rem;
+
+    li {
+
+        & ul, & ol {
+            padding-right: 1.5625rem;
+            padding-left: 0;
+        }
+    }
+}
+
+*[dir=rtl] dl, dl[dir=rtl] {
+
+    dd {
+        margin-right: .9375rem;
+        margin-left: 0;
+    }
+
+    &.horizontal {
+        dt {
+            float: right;
+            width: 10rem;
+            overflow: hidden;
+            clear: left;
+            text-align: right;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        dd {
+            margin-right: 11.25rem;
+            margin-left: 0;
+        }
+    }
+}
+
+*[dir=rtl] blockquote, blockquote[dir=rtl] {
+    margin: .625rem 0;
+    padding: 0 .625rem 0 0;
+    border-left: none;
+    border-right: .25rem @grayLight solid;
+}
+
+
+// Inputs
+.input-control {
+
+}

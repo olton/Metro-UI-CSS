@@ -13,6 +13,7 @@
 
     <link href="../css/metro.css" rel="stylesheet">
     <link href="../css/metro-icons.css" rel="stylesheet">
+    <!--<link href="../css/metro-responsive.css" rel="stylesheet">-->
 
     <script src="../js/jquery-2.1.3.min.js"></script>
     <script src="../js/metro.js"></script>
@@ -34,13 +35,12 @@
             transform: scale(.8);
         }
 
-        .charm.right-side {
-            width: 300px;
-            right: -300px;
-        }
-
         #charmSettings .button {
             margin: 5px;
+        }
+
+        .schemeButtons {
+            /*width: 300px;*/
         }
 
         @media screen and (max-width: 640px) {
@@ -144,43 +144,13 @@
                 left: 0
             });
         });
-        function showSearch(){
-            var  charm = $("#charmSearch");
 
-            if (charm.data('hidden') == undefined) {charm.data('hidden', true);}
-
-            if (!charm.data('hidden')) {
-
-                charm.animate({
-                    right: -300
-                });
-
-                charm.data('hidden', true);
+        function showCharms(id){
+            var  charm = $(id).data("charm");
+            if (charm.element.data("opened") === true) {
+                charm.close();
             } else {
-                charm.animate({
-                    right: 0
-                });
-                charm.data('hidden', false);
-            }
-        }
-
-        function showSettings(){
-            var  charm = $("#charmSettings");
-
-            if (charm.data('hidden') == undefined) {charm.data('hidden', true);}
-
-            if (!charm.data('hidden')) {
-
-                charm.animate({
-                    right: -300
-                });
-
-                charm.data('hidden', true);
-            } else {
-                charm.animate({
-                    right: 0
-                });
-                charm.data('hidden', false);
+                charm.open();
             }
         }
 
@@ -230,9 +200,8 @@
     </script>
 
 </head>
-<body>
-    <div class="charm right-side padding20 bg-grayDark" id="charmSearch">
-        <button class="square-button bg-transparent fg-white no-border place-right small-button" onclick="showSearch()"><span class="mif-cross"></span></button>
+<body style="overflow-y: hidden;">
+    <div data-role="charm" id="charmSearch">
         <h1 class="text-light">Search</h1>
         <hr class="thin"/>
         <br />
@@ -251,8 +220,7 @@
         </div>
     </div>
 
-    <div class="charm right-side padding20 bg-grayDark" id="charmSettings">
-        <button class="square-button bg-transparent fg-white no-border place-right small-button" onclick="showSettings()"><span class="mif-cross"></span></button>
+    <div data-role="charm" id="charmSettings" data-position="top">
         <h1 class="text-light">Settings</h1>
         <hr class="thin"/>
         <br />
@@ -281,12 +249,12 @@
         </div>
     </div>
 
-    <div class="tile-area tile-area-scheme-dark fg-white">
+    <div class="tile-area tile-area-scheme-dark fg-white" style="height: 100%; max-height: 100% !important;">
         <h1 class="tile-area-title">Start</h1>
         <div class="tile-area-controls">
             <button class="image-button icon-right bg-transparent fg-white bg-hover-dark no-border"><span class="sub-header no-margin text-light">Sergey Pimenov</span> <span class="icon mif-user"></span></button>
-            <button class="square-button bg-transparent fg-white bg-hover-dark no-border" onclick="showSearch()"><span class="mif-search"></span></button>
-            <button class="square-button bg-transparent fg-white bg-hover-dark no-border" onclick="showSettings()"><span class="mif-cog"></span></button>
+            <button class="square-button bg-transparent fg-white bg-hover-dark no-border" onclick="showCharms('#charmSearch')"><span class="mif-search"></span></button>
+            <button class="square-button bg-transparent fg-white bg-hover-dark no-border" onclick="showCharms('#charmSettings')"><span class="mif-cog"></span></button>
             <a href="../tiles.html" class="square-button bg-transparent fg-white bg-hover-dark no-border"><span class="mif-switch"></span></a>
         </div>
 
@@ -295,21 +263,21 @@
 
             <div class="tile-container">
 
-                <div class="tile bg-indigo fg-white" data-role="tile">
+                <a href="http://calendar.google.com" class="tile bg-indigo fg-white" data-role="tile">
                     <div class="tile-content iconic">
                         <span class="icon mif-calendar"></span>
                     </div>
                     <span class="tile-label">Calendar</span>
-                </div>
+                </a>
 
-                <div class="tile bg-darkBlue fg-white" data-role="tile">
+                <div class="tile bg-darkBlue fg-white" data-role="tile" onclick="document.location.href='http://gmail.com'">
                     <div class="tile-content iconic">
                         <span class="icon mif-envelop"></span>
                     </div>
                     <span class="tile-label">Inbox</span>
                 </div>
 
-                <div class="tile-large bg-steel fg-white" data-role="tile">
+                <div class="tile-large bg-steel fg-white" data-role="tile" data-on-click="document.location.href='http://weather.com'">
                     <div class="tile-content" style="background: url(../images/clouds2.png) top left no-repeat; background-size: cover">
                         <div class="padding10">
                             <h1>57°</h1>
@@ -331,11 +299,11 @@
             <div class="tile-container">
                 <div class="tile-wide" data-role="tile" data-effect="slideLeft">
                     <div class="tile-content">
-                        <div class="live-slide"><img src="../images/1.jpg" data-role="fitImage" data-format="fill"></div>
-                        <div class="live-slide"><img src="../images/2.jpg" data-role="fitImage" data-format="fill"></div>
-                        <div class="live-slide"><img src="../images/3.jpg" data-role="fitImage" data-format="fill"></div>
-                        <div class="live-slide"><img src="../images/4.jpg" data-role="fitImage" data-format="fill"></div>
-                        <div class="live-slide"><img src="../images/5.jpg" data-role="fitImage" data-format="fill"></div>
+                        <a href="http://google.com/search?q=bear" class="live-slide"><img src="../images/1.jpg" data-role="fitImage" data-format="fill"></a>
+                        <a href="http://google.com/search?q=cat" class="live-slide"><img src="../images/2.jpg" data-role="fitImage" data-format="fill"></a>
+                        <a href="http://google.com/search?q=dog" class="live-slide"><img src="../images/3.jpg" data-role="fitImage" data-format="fill"></a>
+                        <a href="http://google.com/search?q=eagle" class="live-slide"><img src="../images/4.jpg" data-role="fitImage" data-format="fill"></a>
+                        <a href="http://google.com/search?q=fox" class="live-slide"><img src="../images/5.jpg" data-role="fitImage" data-format="fill"></a>
                     </div>
                     <div class="tile-label">Gallery</div>
                 </div>

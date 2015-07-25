@@ -1,13 +1,3 @@
-/*
- * flexible appbar, which automatically collapse if not enough space avaiable
- * @author rewritten by Daniel Milbrandt, xiphe.com
- * 
- * PS: You are doing great work Sergey! Greats Daniel
- */
-(function ($) {
-
-    "use strict";
-
     $.widget("metro.appbar", {
         version: "3.0.0",
         options: {
@@ -160,7 +150,7 @@
 
                 that._originIndexMove(pullMenuBar, nextToHide);
                 //move it to the pullmenu
-//                if ($(topMenu).is("[data-flexdirection='reverse']")) {//data-flexdirection="reverse" support 
+//                if ($(topMenu).is("[data-flexdirection='reverse']")) {//data-flexdirection="reverse" support
 //                    $(nextToHide).appendTo(pullMenuBar);
 //                } else {                                             //normal way
 //                    $(nextToHide).prependTo(pullMenuBar);
@@ -365,7 +355,7 @@
                     // WORKAROUND: this is because a :after:before clearfix for the pullmenu do not work for some reason
                     //position: absolute does not work if we do not break the float. another pure css solution should be written in the appbar.less
                     //after that remove this line
-                    $(that.menusParent).append($('<div class="clearfix" style="width: 0;">')); 
+                    $(that.menusParent).append($('<div class="clearfix" style="width: 0;">'));
                     //-----------
                     
                     
@@ -434,5 +424,3 @@
             this._super('_setOption', key, value);
         }
     });
-
-})(jQuery);

@@ -3,6 +3,7 @@
 @import (once) "utils";
 @import (once) "typography";
 @import (once) "flex";
+@import (once) "scheme-builder";
 
 .h-menu, .v-menu, .d-menu, .m-menu {
 	li:hover > .dropdown-toggle {
@@ -81,15 +82,23 @@
 		top: 100%;
 	}
 
+	.dropdown-toggle {
+		&:before {
+			.transition(.3s);
+		}
+
+		&.active-toggle {
+			&:before {
+				.rotate135;
+				.transition(.3s);
+			}
+		}
+	}
 }
 
 .f-menu {
     .h-menu;
     .flexbox;
-
-    @media only screen and (max-width: 640px) {
-        flex-direction: column;
-    }
 
     & > li {
         text-align: center;
@@ -113,14 +122,17 @@
                 min-width: 0;
                 padding: .75rem 0;
             }
-
-            @media only screen and (max-width: 640px) {
-                position: relative;
-                box-shadow: none;
-                left: 0;
-            }
         }
     }
+	.d-menu {
+		.dropdown-toggle {
+			&.active-toggle {
+				&:before {
+					.rotate45;
+				}
+			}
+		}
+	}
 }
 
 .v-menu {
@@ -254,11 +266,29 @@
 		}
 	}
 
+	.dropdown-toggle {
+		&:before {
+			.transition(.3s);
+		}
+
+		&.active-toggle {
+			&:before {
+				.rotate45;
+				.transition(.3s);
+			}
+		}
+	}
+
 	&.subdown {
 		.dropdown-toggle {
 			&:before {
 				.rotate(-45deg);
 				margin-left: -1.25rem;
+			}
+			&.active-toggle {
+				&:before {
+					.rotate135;
+				}
 			}
 		}
 	}
@@ -452,6 +482,21 @@
 		}
 
 	}
+
+	& > li {
+		.dropdown-toggle {
+			&:before {
+				.transition(.3s);
+			}
+
+			&.active-toggle {
+				&:before {
+					.rotate135;
+					.transition(.3s);
+				}
+			}
+		}
+	}
 }
 
 .v-menu, .d-menu {
@@ -529,6 +574,29 @@
 			}
 		}
 	}
+
+	.dropdown-toggle {
+		&:before {
+			.transition(.3s);
+		}
+
+		&.active-toggle {
+			&:before {
+				.rotate135;
+				.transition(.3s);
+			}
+		}
+	}
+	.d-menu {
+		.dropdown-toggle {
+			&.active-toggle {
+				&:before {
+					.rotate45;
+				}
+			}
+		}
+	}
+
 }
 
 .vertical-menu {
@@ -563,6 +631,18 @@
 		&:before {
 			margin-top: -2px;
 			.rotate(-135deg);
+		}
+	}
+	.dropdown-toggle {
+		&:before {
+			.transition(.3s);
+		}
+
+		&.active-toggle {
+			&:before {
+				.rotate45;
+				.transition(.3s);
+			}
 		}
 	}
 }
@@ -736,3 +816,5 @@
 		z-index: @zindexDropdown;
 	}
 }
+
+

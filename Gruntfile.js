@@ -14,22 +14,36 @@ module.exports = function(grunt) {
                 ' * Licensed under <%= pkg.license.type %> (<%= pkg.license.url %>)\n' +
                 ' */\n',
 
+        requirejs_banner: "\n(function( factory ) {\n"+
+                          "    if ( typeof define === 'function' && define.amd ) {\n" +
+                          "        define([ 'jquery' ], factory );\n"+
+                          "    } else {\n" +
+                          "        factory( jQuery );\n"+
+                          "    }\n"+
+                          "}(function( jQuery ) { \n'use strict';\n\nvar $ = jQuery;\n\n",
+
         clean: {
-            build: ['build'],
+            build: ['build/js', 'build/css', 'build/fonts'],
             docs: ['docs/css/metro*.css', 'docs/js/metro*.js'],
             compiled_html: ['.compiled_html']
         },
 
         concat: {
             options: {
-                banner: '<%= banner %>',
-                stripBanners: false
+                banner: '<%= banner %>' + '<%= requirejs_banner%>',
+                footer: "\n\nreturn $.Metro.init();\n\n}));",
+                stripBanners: true,
+                process: function(src, filepath) {
+                    return '// Source: ' + filepath + '\n' +
+                        src.replace(/(^|\n)[ \t]*('use strict'|"use strict");?\s*/g, '$1');
+                }
             },
             metro: {
                 src: [
                     'js/requirements.js',
                     'js/global.js',
                     'js/widget.js',
+                    'js/initiator.js',
                     'js/utils/*.js',
                     'js/widgets/*.js'
                 ],
@@ -58,9 +72,21 @@ module.exports = function(grunt) {
                 src: 'less/<%= pkg.name %>.less',
                 dest: 'build/css/<%= pkg.name %>.css'
             },
+            compileResponsive: {
+                src: 'less/<%= pkg.name %>-responsive.less',
+                dest: 'build/css/<%= pkg.name %>-responsive.css'
+            },
+            compileRtl: {
+                src: 'less/<%= pkg.name %>-rtl.less',
+                dest: 'build/css/<%= pkg.name %>-rtl.css'
+            },
+            compileSchemes: {
+                src: 'less/<%= pkg.name %>-schemes.less',
+                dest: 'build/css/<%= pkg.name %>-schemes.css'
+            },
             compileFont: {
-                src: 'less/metro-icons.less',
-                dest: 'build/css/metro-icons.css'
+                src: 'less/<%= pkg.name %>-icons.less',
+                dest: 'build/css/<%= pkg.name %>-icons.css'
             }
         },
 
@@ -78,9 +104,21 @@ module.exports = function(grunt) {
                 src: 'build/css/<%= pkg.name %>.css',
                 dest: 'build/css/<%= pkg.name %>.min.css'
             },
+            minRtl: {
+                src: 'build/css/<%= pkg.name %>-rtl.css',
+                dest: 'build/css/<%= pkg.name %>-rtl.min.css'
+            },
+            minResponsive: {
+                src: 'build/css/<%= pkg.name %>-responsive.css',
+                dest: 'build/css/<%= pkg.name %>-responsive.min.css'
+            },
+            minSchemes: {
+                src: 'build/css/<%= pkg.name %>-schemes.css',
+                dest: 'build/css/<%= pkg.name %>-schemes.min.css'
+            },
             minFont: {
-                src: 'build/css/metro-icons.css',
-                dest: 'build/css/metro-icons.min.css'
+                src: 'build/css/<%= pkg.name %>-icons.css',
+                dest: 'build/css/<%= pkg.name %>-icons.min.css'
             }
         },
 
@@ -94,9 +132,21 @@ module.exports = function(grunt) {
                 src: 'build/css/<%= pkg.name %>.css',
                 dest: 'docs/css/<%= pkg.name %>.css'
             },
+            docs_css_rtl: {
+                src: 'build/css/<%= pkg.name %>-rtl.css',
+                dest: 'docs/css/<%= pkg.name %>-rtl.css'
+            },
+            docs_css_responsive: {
+                src: 'build/css/<%= pkg.name %>-responsive.css',
+                dest: 'docs/css/<%= pkg.name %>-responsive.css'
+            },
+            docs_css_schemes: {
+                src: 'build/css/<%= pkg.name %>-schemes.css',
+                dest: 'docs/css/<%= pkg.name %>-schemes.css'
+            },
             docs_css_font: {
-                src: 'build/css/metro-icons.css',
-                dest: 'docs/css/metro-icons.css'
+                src: 'build/css/<%= pkg.name %>-icons.css',
+                dest: 'docs/css/<%= pkg.name %>-icons.css'
             },
             docs_js: {
                 src: 'build/js/<%= pkg.name %>.js',

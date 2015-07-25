@@ -1,0 +1,48 @@
+@import (once) "variables";
+@import (once) "scheme-builder";
+
+// app-bar
+/*
+* params: name, background, backgroundHover, item, itemHover, itemDisabled, divider, dropdown-toggle
+*/
+#scheme-builder > .app-bar-scheme(pink, @pink, @darkPink, @white, @white, @gray, @lightPink, @white);
+#scheme-builder > .app-bar-scheme(darcula, @appBarBackgroundDarcula, @appBarBackgroundActiveDarcula, @white, @white, @gray, @appBarDividerColorDarcula, @white);
+#scheme-builder > .app-bar-scheme(navy, @appBarBackground, @appBarBackgroundActive, @white, @white, @gray, @appBarDividerColor, @white);
+#scheme-builder > .app-bar-scheme(red, @red, @darkRed, @white, @white, @gray, @lightRed, @white);
+#scheme-builder > .app-bar-scheme(green, @green, @darkGreen, @white, @white, @gray, @lightGreen, @white);
+#scheme-builder > .app-bar-scheme(orange, @orange, @darkOrange, @white, @white, @gray, @lightOrange, @white);
+
+// menus
+// v-menu, d-menu
+/*
+* params: name, background, backgroundHover, item, itemHover, itemDisabled, divider, dropdown-toggle
+*/
+#scheme-builder > .d-menu-scheme(darcula, @appBarBackgroundDarcula, @appBarBackgroundActiveDarcula, @white, @white, @gray, @appBarDividerColorDarcula, @white);
+#scheme-builder > .d-menu-scheme(pink, @pink, @darkPink, @white, @white, @gray, @lightPink, @white);
+#scheme-builder > .d-menu-scheme(navy, @appBarBackground, @appBarBackgroundActive, @white, @white, @gray, @appBarDividerColor, @white);
+#scheme-builder > .d-menu-scheme(red, @red, @darkRed, @white, @white, @gray, @lightRed, @white);
+#scheme-builder > .d-menu-scheme(green, @green, @darkGreen, @white, @white, @gray, @lightGreen, @white);
+#scheme-builder > .d-menu-scheme(orange, @orange, @darkOrange, @white, @white, @gray, @lightOrange, @white);
+
+// t-menu
+/*
+* params: name, background, backgroundHover, item, itemHover, itemDisabled, divider, dropdown-toggle
+*/
+#scheme-builder > .t-menu-scheme(darcula, @appBarBackgroundDarcula, @appBarBackgroundActiveDarcula, @white, @white, @gray, @appBarDividerColorDarcula, @white);
+#scheme-builder > .t-menu-scheme(pink, @pink, @darkPink, @white, @white, @gray, @lightPink, @white);
+#scheme-builder > .t-menu-scheme(navy, @appBarBackground, @appBarBackgroundActive, @white, @white, @gray, @appBarDividerColor, @white);
+#scheme-builder > .t-menu-scheme(red, @red, @darkRed, @white, @white, @gray, @lightRed, @white);
+#scheme-builder > .t-menu-scheme(green, @green, @darkGreen, @white, @white, @gray, @lightGreen, @white);
+#scheme-builder > .t-menu-scheme(orange, @orange, @darkOrange, @white, @white, @gray, @lightOrange, @white);
+
+// sidebar
+/*
+* params: name, background, backgroundHover, backgroundActive, item, itemHover, itemActive, itemDisabled
+*/
+#scheme-builder > .sidebar-scheme(darcula, @appBarBackgroundDarcula, lighten(@appBarBackgroundDarcula, 7%), @appBarBackgroundActiveDarcula, @white, @white, @white, @gray);
+#scheme-builder > .sidebar-scheme(pink, @pink, lighten(@darkPink, 7%), @darkPink, @white, @white, @white, @gray);
+#scheme-builder > .sidebar-scheme(navy, @appBarBackground, lighten(@appBarBackgroundActive, 7%), @appBarBackgroundActive, @white, @white, @white, @gray);
+#scheme-builder > .sidebar-scheme(red, @red, lighten(@darkRed, 7%), @darkRed, @white, @white, @white, @gray);
+#scheme-builder > .sidebar-scheme(green, @green, lighten(@darkGreen, 7%), @darkGreen, @white, @white, @white, @gray);
+#scheme-builder > .sidebar-scheme(orange, @orange, lighten(@darkOrange, 7%), @darkOrange, @white, @white, @white, @gray);
+
