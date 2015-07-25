@@ -5252,7 +5252,8 @@ $.widget("metro.popover", {
         popoverBackground: 'bg-cyan',
         popoverColor: 'fg-white',
         popoverMode: 'none', //click, hover,
-        popoverShadow: true
+        popoverShadow: true,
+        onPopup: function(popover){}
     },
 
     popover: {},
@@ -5323,7 +5324,9 @@ $.widget("metro.popover", {
         this.setText(o.popoverText);
 
         element.on(o.popoverMode, function(e){
-            if (!popover.data('visible')) {that.show();}
+            if (!popover.data('visible')) {
+                that.show();
+            }
         });
 
         $(window).scroll(function(){
@@ -5373,6 +5376,18 @@ $.widget("metro.popover", {
 
         popover.fadeIn(function(){
             popover.data('visible', true);
+
+            if (typeof o.onPopup === 'function') {
+                o.onPopup(popover);
+            } else {
+                if (typeof window[o.onPopup] === 'function') {
+                    window[o.onPopup](popover);
+                } else {
+                    var result = eval("(function(){"+o.onPopup+"})");
+                    result.call(popover);
+                }
+            }
+
             setTimeout(function(){
                 popover.fadeOut(
                     function(){popover.data('visible', false);}
