@@ -21,6 +21,7 @@
         "build/css/metro-icons.css",
         "build/css/metro-rtl.css",
         "build/css/metro-responsive.css",
+        "build/css/metro-schemes.css",
         "build/fonts/metro.eot",
         "build/fonts/metro.svg",
         "build/fonts/metro.ttf",
