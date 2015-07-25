@@ -1590,10 +1590,15 @@ $.widget("metro.accordion", {
         var o = this.options;
         var content = frame.children('.content');
 
-        if (typeof o.onFrameOpen === 'string') {
-            if (!window[o.onFrameOpen](frame)) {return false;}
-        } else {
+        if (typeof o.onFrameOpen === 'function') {
             if (!o.onFrameOpen(frame)) {return false;}
+        } else {
+            if (typeof window[o.onFrameOpen] === 'function') {
+                if (!window[o.onFrameOpen](frame)) {return false;}
+            } else {
+                var result = eval("(function(){"+o.onFrameOpen+"})");
+                if (!result.call(frame)) {return false;}
+            }
         }
 
         if (o.closeAny) {this._closeAllFrames();}
@@ -1601,10 +1606,15 @@ $.widget("metro.accordion", {
         content.slideDown(o.speed);
         frame.addClass('active');
 
-        if (typeof o.onFrameOpened === 'string') {
-            window[o.onFrameOpened](frame);
-        } else {
+        if (typeof o.onFrameOpened === 'function') {
             o.onFrameOpened(frame);
+        } else {
+            if (typeof window[o.onFrameOpened] === 'function') {
+                window[o.onFrameOpened](frame);
+            } else {
+                var result = eval("(function(){"+o.onFrameOpened+"})");
+                result.call(frame);
+            }
         }
     },
 
@@ -1612,35 +1622,35 @@ $.widget("metro.accordion", {
         var o = this.options;
         var content = frame.children('.content');
 
-        if (typeof o.onFrameClose === 'string') {
-            if (!window[o.onFrameClose](frame)) {return false;}
-        } else {
+        if (typeof o.onFrameClose === 'function') {
             if (!o.onFrameClose(frame)) {return false;}
+        } else {
+            if (typeof window[o.onFrameClose] === 'function') {
+                if (!window[o.onFrameClose](frame)) {return false;}
+            } else {
+                var result = eval("(function(){"+o.onFrameClose+"})");
+                if (!result.call(frame)) {return false;}
+            }
         }
 
         content.slideUp(o.speed,function(){
             frame.removeClass("active");
         });
 
-        if (typeof o.onFrameClosed === 'string') {
-            window[o.onFrameClosed](frame);
-        } else {
+        if (typeof o.onFrameClosed === 'function') {
             o.onFrameClosed(frame);
+        } else {
+            if (typeof window[o.onFrameClosed] === 'function') {
+                window[o.onFrameClosed](frame);
+            } else {
+                var result = eval("(function(){"+o.onFrameClosed+"})");
+                result.call(frame);
+            }
         }
     },
 
     _create: function(){
         var that = this, o = this.options, element = this.element;
-
-        this._setOptionsData();
-
-        that.init();
-        element.data('accordion', this);
-
-    },
-
-    _setOptionsData: function(){
-        var o = this.options;
 
         $.each(this.element.data(), function(key, value){
             if (key in o) {
@@ -1651,6 +1661,10 @@ $.widget("metro.accordion", {
                 }
             }
         });
+
+        that.init();
+        element.data('accordion', this);
+
     },
 
     _destroy: function(){

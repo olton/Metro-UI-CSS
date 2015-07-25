@@ -111,7 +111,11 @@
                 <div class="row">
                     <div class="cell">
                         <h5>.accordion & .large-heading</h5>
-                        <div class="accordion large-heading" data-role="accordion">
+                        <div class="accordion large-heading" data-role="accordion"
+                             data-on-frame-open="return frame.attr('id') !== 'f3'"
+                             data-on-frame-opened="alert('You open frame '+frame.find('.heading').text())"
+                             data-on-frame-closed="alert('You close frame '+frame.find('.heading').text())"
+                            >
                             <div class="frame">
                                 <div class="heading">Item 1</div>
                                 <div class="content">
@@ -124,7 +128,13 @@
                                     Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute.
                                 </div>
                             </div>
-                            <div class="frame">
+                            <div class="frame active">
+                                <div class="heading">Item 4</div>
+                                <div class="content">
+                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute.
+                                </div>
+                            </div>
+                            <div class="frame" id="f3">
                                 <div class="heading">Item 3</div>
                                 <div class="content">
                                     Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
