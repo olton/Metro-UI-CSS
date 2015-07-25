@@ -4874,7 +4874,8 @@ $.widget( "metro.listview" , {
     options: {
         onExpand: function(group){},
         onCollapse: function(group){},
-        onActivate: function(list){}
+        onActivate: function(list){},
+        onListClick: function(list){}
     },
 
     _create: function () {
@@ -4915,6 +4916,7 @@ $.widget( "metro.listview" , {
 
         element.on('click', '.list-group-toggle', function(e){
             var toggle = $(this), parent = toggle.parent();
+            var result;
 
             if (toggle.parent().hasClass('keep-open')) {
                 return;
@@ -4924,17 +4926,27 @@ $.widget( "metro.listview" , {
 
             if (!parent.hasClass('collapsed')) {
                 toggle.siblings('.list-group-content').slideDown('fast');
-                if (typeof o.onExpand === 'string') {
-                    window[o.onExpand](parent);
-                } else {
+                if (typeof o.onExpand === 'function') {
                     o.onExpand(parent);
+                } else {
+                    if (typeof window[o.onExpand] === 'function') {
+                        window[o.onExpand](parent);
+                    } else {
+                        result = eval("(function(){"+o.onExpand+"})");
+                        result.call(parent);
+                    }
                 }
             } else {
                 toggle.siblings('.list-group-content').slideUp('fast');
-                if (typeof o.onCollapse === 'string') {
-                    window[o.onCollapse](parent);
-                } else {
+                if (typeof o.onCollapse === 'function') {
                     o.onCollapse(parent);
+                } else {
+                    if (typeof window[o.onCollapse] === 'function') {
+                        window[o.onCollapse](parent);
+                    } else {
+                        result = eval("(function(){"+o.onCollapse+"})");
+                        result.call(parent);
+                    }
                 }
             }
             e.preventDefault();
@@ -4943,13 +4955,29 @@ $.widget( "metro.listview" , {
 
         element.on('click', '.list', function(e){
             var list = $(this);
+            var result;
 
             element.find('.list').removeClass('active');
             list.addClass('active');
-            if (typeof o.onActivate === 'string') {
-                window[o.onActivate](list);
-            } else {
+            if (typeof o.onActivate === 'function') {
                 o.onActivate(list);
+            } else {
+                if (typeof window[o.onActivate] === 'function') {
+                    window[o.onActivate](list);
+                } else {
+                    result = eval("(function(){"+o.onActivate+"})");
+                    result.call(list);
+                }
+            }
+            if (typeof o.onListClick === 'function') {
+                o.onListClick(list);
+            } else {
+                if (typeof window[o.onListClick] === 'function') {
+                    window[o.onListClick](list);
+                } else {
+                    result = eval("(function(){"+o.onListClick+"})");
+                    result.call(list);
+                }
             }
             e.preventDefault();
             e.stopPropagation();
