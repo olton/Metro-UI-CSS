@@ -5903,14 +5903,14 @@ $.widget("metro.slider", {
         this._initPoints();
         this._placeMarker(o.position);
 
-        addTouchEvents(element[0]);
+        var event_down = isTouchDevice() ? 'touchstart' : 'mousedown';
 
-        element.children('.marker').on('mousedown', function (e) {
+        element.children('.marker').on(event_down, function (e) {
             e.preventDefault();
             that._startMoveMarker(e);
         });
 
-        element.on('mousedown', function (e) {
+        element.on(event_down, function (e) {
             e.preventDefault();
             that._startMoveMarker(e);
         });
@@ -5923,13 +5923,16 @@ $.widget("metro.slider", {
         var element = this.element, o = this.options, that = this, hint = element.children('.slider-hint');
         var returnedValue;
 
-        $(element).on("mousemove", function (event) {
+        var event_move = isTouchDevice() ? 'touchmove' : 'mousemove';
+        var event_up = isTouchDevice() ? 'touchend' : 'mouseup mouseleave';
+
+        $(element).on(event_move, function (event) {
             that._movingMarker(event);
             if (!element.hasClass('permanent-hint')) {
                 hint.css('display', 'block');
             }
         });
-        $(element).on("mouseup mouseleave", function () {
+        $(element).on(event_up, function () {
             $(element).off('mousemove');
             $(element).off('mouseup');
             element.data('value', o.position);
@@ -5954,7 +5957,7 @@ $.widget("metro.slider", {
         this._movingMarker(e);
     },
 
-    _movingMarker: function (event) {
+    _movingMarker: function (ev) {
         var element = this.element, o = this.options;
         var cursorPos,
             percents,
@@ -5966,6 +5969,10 @@ $.widget("metro.slider", {
             sliderEnd = o._slider.stop,
             sliderLength = o._slider.length,
             markerSize = o._slider.marker;
+
+        var event = !isTouchDevice() ? ev.originalEvent : ev.originalEvent.touches[0];
+
+        console.log(event);
 
         if (vertical) {
             cursorPos = event.pageY - sliderOffset;
