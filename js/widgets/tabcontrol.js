@@ -6,7 +6,7 @@ $.widget( "metro.tabControl" , {
         openTarget: false,
         saveState: false,
         onTabClick: function(tab){return true;},
-        onTabChanged: function(tab){},
+        onTabChange: function(tab){},
         _current: {tab: false, frame: false}
     },
 
@@ -125,14 +125,20 @@ $.widget( "metro.tabControl" , {
         var frames = element.children('.frames').children('div');
 
         element.on('click', '.tabs > li > a', function(e){
+            var result;
             var tab = $(this), target = tab.attr('href'), frame = $(target);
 
             if (tab.parent().hasClass('disabled')) {return false;}
 
-            if (typeof o.onTabClick === 'string') {
-                if (!window[o.onTabClick](tab)) {return false;}
-            } else {
+            if (typeof o.onTabClick === 'function') {
                 if (!o.onTabClick(tab)) {return false;}
+            } else {
+                if (typeof window[o.onTabClick] === 'function') {
+                    if (!window[o.onTabClick](tab)) {return false;}
+                } else {
+                    result = eval("(function(){"+o.onTabClick+"})");
+                    if (!result.call(tab)) {return false;}
+                }
             }
 
             if (target.isUrl()) {
@@ -145,10 +151,15 @@ $.widget( "metro.tabControl" , {
 
             that._openTab();
 
-            if (typeof o.onTabChanged === 'string') {
-                window[o.onTabChanged](tab);
+            if (typeof o.onTabChange === 'function') {
+                o.onTabChange(tab);
             } else {
-                o.onTabChanged(tab);
+                if (typeof window[o.onTabChange] === 'function') {
+                    window[o.onTabChange](tab);
+                } else {
+                    result = eval("(function(){"+o.onTabChange+"})");
+                    result.call(tab);
+                }
             }
 
             e.preventDefault();

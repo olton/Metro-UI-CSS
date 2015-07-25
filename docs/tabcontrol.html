@@ -241,8 +241,8 @@
                 <td>The event fired when tab click. This function can return true or false. If returned value is false, tab no switched</td>
             </tr>
             <tr>
-                <td>onTabChanged</td>
-                <td style="white-space: nowrap">data-on-tab-changed</td>
+                <td>onTabChange</td>
+                <td style="white-space: nowrap">data-on-tab-change</td>
                 <td>(tab)</td>
                 <td>The event fired when the tab is changed</td>
             </tr>
@@ -254,7 +254,7 @@
                 &lt;div class="tabcontrol"
                      data-role="tabcontrol"
                      data-on-tab-click="tab_click"
-                     data-on-tab-changed="tab_changed"&gt;
+                     data-on-tab-change="tab_change"&gt;
                     ...
                 &lt;/div&gt;
 
@@ -264,7 +264,7 @@
                         return true;
                     }
 
-                    function tab_changed(tab){
+                    function tab_change(tab){
                         console.log(tab);
                     }
                 &lt;/script&gt;
@@ -279,7 +279,7 @@
                     $(function(){
                         $("#tabcontrol).tabcontrol({
                             onTabClick: function(tab){...},
-                            onTabChanged: function(tab){...}
+                            onTabChange: function(tab){...}
                         });
                     })
                 &lt;/script&gt;
