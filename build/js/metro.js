@@ -3910,10 +3910,15 @@ $.widget( "metro.dialog" , {
 
         element.fadeIn();
 
-        if (typeof o.onDialogOpen === 'string') {
-            window[o.onDialogOpen](element);
-        } else {
+        if (typeof o.onDialogOpen === 'function') {
             o.onDialogOpen(element);
+        } else {
+            if (typeof window[o.onDialogOpen] === 'function') {
+                window[o.onDialogOpen](element);
+            } else {
+                var result = eval("(function(){"+o.onDialogOpen+"})");
+                result.call(element);
+            }
         }
 
         if (o.hide && parseInt(o.hide) > 0) {
@@ -3936,10 +3941,15 @@ $.widget( "metro.dialog" , {
 
         element.fadeOut();
 
-        if (typeof o.onDialogClose === 'string') {
-            window[o.onDialogClose](element);
-        } else {
+        if (typeof o.onDialogClose === 'function') {
             o.onDialogClose(element);
+        } else {
+            if (typeof window[o.onDialogClose] === 'function') {
+                window[o.onDialogClose](element);
+            } else {
+                var result = eval("(function(){"+o.onDialogClose+"})");
+                result.call(element);
+            }
         }
     },
 
