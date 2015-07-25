@@ -47,8 +47,8 @@
             <div class="row cells2">
                 <div class="cell">
                     <div class="example" data-text="example">
-                        <h5>Simple color test</h5>
-                        <div class="progress small" id="pb1" data-role="progressBar" data-value="0" data-color="bg-pink"></div>
+                        <h5>Simple color test <span id="sct-1">0%</span></h5>
+                        <div class="progress small" id="pb1" data-role="progressBar" data-value="0" data-color="bg-pink" data-on-progress="$('#sct-1').html(value+'%')"></div>
 
                         <button class="button success" onclick="runPB1()">Start</button>
                         <button class="button danger" onclick="stopPB1()">Stop</button>
