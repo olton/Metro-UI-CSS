@@ -5,7 +5,9 @@ $.widget("metro.dropdown", {
     options: {
         effect: window.METRO_SHOW_TYPE,
         toggleElement: false,
-        noClose: false
+        noClose: false,
+        onDrop: function(object){},
+        onUp: function(object){}
     },
 
     _create: function(){
@@ -98,6 +100,17 @@ $.widget("metro.dropdown", {
         }
         this._trigger("onOpen", null, el);
         toggle.addClass('active-toggle');
+
+        if (typeof o.onDrop === 'function') {
+            o.onDrop(el);
+        } else {
+            if (typeof window[o.onDrop] === 'function') {
+                window[o.onDrop](el);
+            } else {
+                var result = eval("(function(){"+o.onDrop+"})");
+                result.call(el);
+            }
+        }
     },
 
     _close: function(el){
@@ -111,6 +124,17 @@ $.widget("metro.dropdown", {
         }
         this._trigger("onClose", null, el);
         toggle.removeClass('active-toggle');
+
+        if (typeof o.onUp === 'function') {
+            o.onUp(el);
+        } else {
+            if (typeof window[o.onUp] === 'function') {
+                window[o.onUp](el);
+            } else {
+                var result = eval("(function(){"+o.onUp+"})");
+                result.call(el);
+            }
+        }
     },
 
     _destroy: function(){
