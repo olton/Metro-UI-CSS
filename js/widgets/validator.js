@@ -180,10 +180,15 @@ $.widget( "metro.validator" , {
             var this_result = that.funcs[func](input.val(), arg);
 
             if (!this_result) {
-                if (typeof o.onErrorInput === 'string') {
-                    window[o.onErrorInput](input);
-                } else {
+                if (typeof o.onErrorInput === 'function') {
                     o.onErrorInput(input);
+                } else {
+                    if (typeof window[o.onErrorInput] === 'function') {
+                        window[o.onErrorInput](input);
+                    } else {
+                        result = eval("(function(){"+o.onErrorInput+"})");
+                        result.call(input);
+                    }
                 }
             }
 
@@ -216,7 +221,16 @@ $.widget( "metro.validator" , {
             return false;
         }
 
-        result = (typeof o.onSubmit === 'string') ? window[o.onSubmit](element[0]) : result = o.onSubmit(element[0]);
+        if (typeof o.onSubmit === 'function') {
+            result = o.onSubmit(element[0]);
+        } else {
+            if (typeof window[o.onSubmit] === 'function') {
+                result = window[o.onSubmit](element[0]);
+            } else {
+                var f = eval("(function(){"+o.onSubmit+"})");
+                result = f.call(element[0]);
+            }
+        }
 
         submit.removeAttr('disabled').removeClass('disabled');
 
