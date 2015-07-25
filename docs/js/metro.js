@@ -5865,20 +5865,30 @@ $.widget( "metro.rating" , {
                 return false;
             }
 
-            if (typeof o.onRate === 'string') {
-                if (!window[o.onRate]($(this).data('star-value'), this, that)) {
-                    return false;
-                }
+            var result, value = $(this).data('star-value'),
+                star = this,
+                rating = that;
+
+            if (typeof o.onRate === 'function') {
+                if (!o.onRate(value, star, rating)) {return false;}
             } else {
-                if (!o.onRate($(this).data('star-value'), this, that)) {
-                    return false;
+                if (typeof window[o.onRate] === 'function') {
+                    if (!window[o.onRate](value, star, rating)) {return false;}
+                } else {
+                    result = eval("(function(){"+o.onRate+"})");
+                    if (!result.call(value, star, rating)) {return false;}
                 }
             }
 
-            if (typeof o.onRated === 'string') {
-                window[o.onRated]($(this).data('star-value'), this, that);
+            if (typeof o.onRated === 'function') {
+                o.onRated(value, star, rating);
             } else {
-                o.onRated($(this).data('star-value'), this, that);
+                if (typeof window[o.onRated] === 'function') {
+                    window[o.onRated](value, star, rating);
+                } else {
+                    result = eval("(function(){"+o.onRated+"})");
+                    result.call(value, star, rating);
+                }
             }
 
             that._value = $(this).data('star-value');
