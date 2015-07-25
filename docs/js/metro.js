@@ -2457,17 +2457,8 @@ $.widget("metro.calendar", {
         }
 
         tr.appendTo(table);
-
         this._renderButtons(table);
-
         table.appendTo(this.element);
-
-        //if (typeof  o.getDates == 'string') {
-        //    window[o.getDates](this.element.data('_storage'));
-        //} else {
-        //    o.getDates(this.element.data('_storage'));
-        //}
-
     },
 
     _renderMonths: function(){
@@ -2637,17 +2628,15 @@ $.widget("metro.calendar", {
                 }
 
 
-                //console.log(o.getDates);
-                //if (typeof o.getDates == 'string') {
-                //    window[o.getDates](that.element.data('_storage'));
-                //} else {
-                //    o.getDates(that.element.data('_storage'));
-                //}
-
-                if (typeof  o.dayClick === 'string') {
-                    window[o.dayClick](d, d0);
-                } else {
+                if (typeof o.dayClick === 'function') {
                     o.dayClick(d, d0);
+                } else {
+                    if (typeof window[o.dayClick] === 'function') {
+                        window[o.dayClick](d, d0);
+                    } else {
+                        var result = eval("(function(){"+o.dayClick+"})");
+                        result.call(d, d0);
+                    }
                 }
             });
         } else if (this._mode === 'month') {
