@@ -6568,8 +6568,7 @@ $.widget("metro.streamer", {
         slideToTime: "default",
         slideSleep: 1000,
         slideSpeed: 1000,
-        onClick: function(event){},
-        onLongClick: function(event){}
+        onClick: function(event){}
     },
 
     _create: function(){
@@ -6679,11 +6678,25 @@ $.widget("metro.streamer", {
         var events = element.find(".event");
 
         events.on('click', function(e){
+
+            var event = $(this);
+
             if (e.ctrlKey) {
                 $(this).toggleClass("selected");
             }
+
+            if (typeof o.onClick === 'function') {
+                o.onClick(event);
+            } else {
+                if (typeof window[o.onClick] === 'function') {
+                    window[o.onClick](event);
+                } else {
+                    var result = eval("(function(){"+o.onClick+"})");
+                    result.call(event);
+                }
+            }
+
             e.preventDefault();
-            o.onClick($(this));
         });
 
         element.find(".js-go-previous-time").on('click', function(e){
