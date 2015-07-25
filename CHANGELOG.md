@@ -23,6 +23,7 @@
 * add rotate dropdown-toggle marker
 * add onclick event and touch for tile plugin
 * upd touch support for slider
+* upd event binding model for widgets [Event binding](http://metroui.org.ua/events.html)
 
 ## 3.0.7
 * add padding for container on mobile devices

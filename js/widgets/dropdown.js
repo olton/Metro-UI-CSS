@@ -81,7 +81,7 @@ $.widget("metro.dropdown", {
         $(document).on('click', function(e){
             $('[data-role=dropdown]').each(function(i, el){
                 if (!$(el).hasClass('keep-open') && $(el).css('display')==='block') {
-                    $(el).hide();
+                    that._close(el);
                 }
             });
         });
