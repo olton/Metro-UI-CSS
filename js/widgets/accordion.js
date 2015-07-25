@@ -73,6 +73,7 @@ $.widget("metro.accordion", {
     _closeFrame: function(frame){
         var o = this.options;
         var content = frame.children('.content');
+        var result;
 
         if (typeof o.onFrameClose === 'function') {
             if (!o.onFrameClose(frame)) {return false;}
@@ -80,7 +81,7 @@ $.widget("metro.accordion", {
             if (typeof window[o.onFrameClose] === 'function') {
                 if (!window[o.onFrameClose](frame)) {return false;}
             } else {
-                var result = eval("(function(){"+o.onFrameClose+"})");
+                result = eval("(function(){"+o.onFrameClose+"})");
                 if (!result.call(frame)) {return false;}
             }
         }
@@ -95,7 +96,7 @@ $.widget("metro.accordion", {
             if (typeof window[o.onFrameClosed] === 'function') {
                 window[o.onFrameClosed](frame);
             } else {
-                var result = eval("(function(){"+o.onFrameClosed+"})");
+                result = eval("(function(){"+o.onFrameClosed+"})");
                 result.call(frame);
             }
         }

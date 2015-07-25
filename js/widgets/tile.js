@@ -45,13 +45,14 @@ $.widget( "metro.tile" , {
             if (element[0].tagName === "A") {
 
             } else {
-                if (typeof o.onClick === "function") {
-                    o.onClick(element);
+                if (typeof o.onClick === 'function') {
+                    o.onClick(frame);
                 } else {
-                    if (typeof window[o.onClick] === "function") {
-                        window[o.onClick](element);
+                    if (typeof window[o.onClick] === 'function') {
+                        window[o.onClick](frame);
                     } else {
-                        $.globalEval(o.onClick);
+                        var result = eval("(function(){"+o.onClick+"})");
+                        result.call(frame);
                     }
                 }
             }
