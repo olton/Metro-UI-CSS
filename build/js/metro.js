@@ -3444,6 +3444,8 @@ $.widget( "metro.countdown" , {
         }, 500);
 
         this._interval = setInterval(function(){
+            var result;
+
             left = Math.floor((that._alarmOn - (new Date())) / 1000);
             if (left < 0) {left = 0;}
 
@@ -3474,10 +3476,15 @@ $.widget( "metro.countdown" , {
             s = left;
             that._update('seconds', s);
 
-            if (typeof o.onTick === 'string') {
-                window[o.onTick](d, h, m, s);
-            } else {
+            if (typeof o.onTick === 'function') {
                 o.onTick(d, h, m, s);
+            } else {
+                if (typeof window[o.onTick] === 'function') {
+                    window[o.onTick](d, h, m, s);
+                } else {
+                    result = eval("(function(){"+o.onTick+"})");
+                    result.call(d, h, m, s);
+                }
             }
 
             //that._blink();
@@ -3485,10 +3492,15 @@ $.widget( "metro.countdown" , {
             if (d === 0 && h === 0 && m === 0 && s === 0) {
                 element.find('.part').addClass('disabled');
 
-                if (typeof o.onStop === 'string') {
-                    window[o.onStop]();
-                } else {
+                if (typeof o.onStop === 'function') {
                     o.onStop();
+                } else {
+                    if (typeof window[o.onStop] === 'function') {
+                        window[o.onStop]();
+                    } else {
+                        result = eval("(function(){"+o.onStop+"})");
+                        result.call();
+                    }
                 }
 
                 that._stop('all');
