@@ -5,7 +5,8 @@ $.widget( "metro.progressBar" , {
     options: {
         color: 'default',
         colors: false,
-        value: 0
+        value: 0,
+        onProgress: function(value){}
     },
 
     colorsDim: {},
@@ -80,21 +81,24 @@ $.widget( "metro.progressBar" , {
                         return true;
                     }
                 });
-                //$.each(o.colors, function(c, v){
-                //    gradient.push(c + " " + v + "%");
-                //});
-                //console.log(gradient.join(","));
-                //
-                //bar.css({
-                //    'background': "linear-gradient(to right, " + gradient.join(",") + ")"
-                //});
             }
 
             o.value = value;
 
             bar.animate({
                 width: o.value + '%'
-            }, 100);
+            }, 100, function(){
+                if (typeof o.onProgress === 'function') {
+                    o.onProgress(value);
+                } else {
+                    if (typeof window[o.onProgress] === 'function') {
+                        window[o.onProgress](value);
+                    } else {
+                        var result = eval("(function(){"+o.onProgress+"})");
+                        result.call(value);
+                    }
+                }
+            });
         } else {
             return this.options.value;
         }
