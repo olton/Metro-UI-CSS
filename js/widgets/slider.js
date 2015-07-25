@@ -23,7 +23,6 @@ $.widget("metro.slider", {
         target: false,
 
         onChange: function(value, slider){},
-        onChanged: function(value, slider){},
 
         _slider : {
             vertical: false,
@@ -119,13 +118,6 @@ $.widget("metro.slider", {
 
             returnedValue = o.returnType === 'value' ? that._valueToRealValue(o.position) : o.position;
 
-            if (typeof o.onChanged === 'string') {
-                window[o.onChanged](returnedValue, element);
-            } else {
-                o.onChanged(returnedValue, element);
-            }
-
-
             if (!element.hasClass('permanent-hint')) {
                 hint.css('display', 'none');
             }
@@ -151,7 +143,7 @@ $.widget("metro.slider", {
 
         var event = !isTouchDevice() ? ev.originalEvent : ev.originalEvent.touches[0];
 
-        console.log(event);
+        //console.log(event);
 
         if (vertical) {
             cursorPos = event.pageY - sliderOffset;
@@ -184,10 +176,15 @@ $.widget("metro.slider", {
             $(o.target).val(returnedValue);
         }
 
-        if (typeof o.onChange === 'string') {
-            window[o.onChange](returnedValue, element);
-        } else {
+        if (typeof o.onChange === 'function') {
             o.onChange(returnedValue, element);
+        } else {
+            if (typeof window[o.onChange] === 'function') {
+                window[o.onChange](returnedValue, element);
+            } else {
+                var result = eval("(function(){"+o.onChange+"})");
+                result.call(returnedValue, element);
+            }
         }
     },
 
@@ -346,7 +343,7 @@ $.widget("metro.slider", {
     },
 
     value: function (value) {
-        var o = this.options, returnedValue;
+        var element = this.element, o = this.options, returnedValue;
 
         if (typeof value !== 'undefined') {
 
@@ -359,10 +356,15 @@ $.widget("metro.slider", {
             returnedValue = o.returnType === 'value' ? this._valueToRealValue(o.position) : o.position;
 
 
-            if (typeof o.onChange === 'string') {
-                window[o.onChange](returnedValue, this.element);
+            if (typeof o.onChange === 'function') {
+                o.onChange(returnedValue, element);
             } else {
-                o.onChange(returnedValue, this.element);
+                if (typeof window[o.onChange] === 'function') {
+                    window[o.onChange](returnedValue, element);
+                } else {
+                    var result = eval("(function(){"+o.onChange+"})");
+                    result.call(returnedValue, element);
+                }
             }
 
             return this;
