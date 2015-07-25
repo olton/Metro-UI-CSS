@@ -210,10 +210,15 @@ $.widget( "metro.validator" , {
             result += !this_result ? 1 : 0;
         });
 
-        if (typeof o.onBeforeSubmit === 'string') {
-            result += !window[o.onBeforeSubmit](element, result) ? 1 : 0;
-        } else {
+        if (typeof o.onBeforeSubmit === 'function') {
             result += !o.onBeforeSubmit(element, result) ? 1 : 0;
+        } else {
+            if (typeof window[o.onBeforeSubmit] === 'function') {
+                result += window[o.onBeforeSubmit](element, result) ? 1 : 0;
+            } else {
+                var f0 = eval("(function(){"+o.onBeforeSubmit+"})");
+                result += f0.call(element, result) ? 1 : 0;
+            }
         }
 
         if (result !== 0) {
