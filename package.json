@@ -1,45 +1,45 @@
 {
-  "author": "Sergey Pimenov",
-  "name": "metro",
-  "version": "3.0.7",
-  "description": "The front-end framework for developing responsive, mobile projects on the web in Windows Metro Style.",
-  "keywords": [
-    "css",
-    "less",
-    "mobile-first",
-    "responsive",
-    "front-end",
-    "framework",
-    "web",
-    "metro"
-  ],
-  "homepage": "http://metroui.org.ua",
-  "style": "build/css/metro.css",
-  "mif": "build/css/metro-icons.css",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/olton/Metro-UI-CSS.git"
-  },
-  "bugs": {
-    "url": "http://forum.metroui.org.ua"
-  },
-  "license": {
-    "type": "MIT",
-    "url": "http://metroui.org.ua/license.html"
-  },
-  "devDependencies": {
-    "autoprefixer-core": "^5.1.11",
-    "grunt": "^0.4.5",
-    "grunt-autoprefixer": "^3.0.0",
-    "grunt-contrib-clean": "^0.6.0",
-    "grunt-contrib-concat": "^0.5.1",
-    "grunt-contrib-copy": "^0.8.0",
-    "grunt-contrib-cssmin": "^0.12.2",
-    "grunt-contrib-less": "^1.0.0",
-    "grunt-contrib-uglify": "^0.8.0",
-    "grunt-contrib-watch": "^0.6.1",
-    "grunt-postcss": "^0.3.0",
-    "grunt-replace": "^0.9.1",
-    "load-grunt-tasks": "^3.1.0"
-  }
+    "author": "Sergey Pimenov",
+    "name": "metro",
+    "version": "3.0.8",
+    "description": "The front-end framework for developing responsive, mobile projects on the web in Windows Metro Style.",
+    "keywords": [
+        "css",
+        "less",
+        "mobile-first",
+        "responsive",
+        "front-end",
+        "framework",
+        "web",
+        "metro"
+    ],
+    "homepage": "http://metroui.org.ua",
+    "style": "build/css/metro.css",
+    "mif": "build/css/metro-icons.css",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/olton/Metro-UI-CSS.git"
+    },
+    "bugs": {
+        "url": "http://forum.metroui.org.ua"
+    },
+    "license": {
+        "type": "MIT",
+        "url": "http://metroui.org.ua/license.html"
+    },
+    "devDependencies": {
+        "autoprefixer-core": "^5.1.11",
+        "grunt": "^0.4.5",
+        "grunt-autoprefixer": "^3.0.0",
+        "grunt-contrib-clean": "^0.6.0",
+        "grunt-contrib-concat": "^0.5.1",
+        "grunt-contrib-copy": "^0.8.0",
+        "grunt-contrib-cssmin": "^0.12.2",
+        "grunt-contrib-less": "^1.0.0",
+        "grunt-contrib-uglify": "^0.8.0",
+        "grunt-contrib-watch": "^0.6.1",
+        "grunt-postcss": "^0.3.0",
+        "grunt-replace": "^0.9.1",
+        "load-grunt-tasks": "^3.1.0"
+    }
 }

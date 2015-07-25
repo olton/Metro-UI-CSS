@@ -1,70 +1,64 @@
-(function ( $ ) {
+$.widget( "metro.grid" , {
 
-    "use strict";
+    version: "3.0.0",
 
-    $.widget( "metro.grid" , {
+    options: {
+        equalHeight: true
+    },
 
-        version: "3.0.0",
+    _create: function () {
+        var that = this, element = this.element, o = this.options;
 
-        options: {
-            equalHeight: true
-        },
+        $.each(element.data(), function(key, value){
+            if (key in o) {
+                try {
+                    o[key] = $.parseJSON(value);
+                } catch (e) {
+                    o[key] = value;
+                }
+            }
+        });
 
-        _create: function () {
-            var that = this, element = this.element, o = this.options;
+        if (o.equalHeight) {
+            setTimeout(function(){
+                that._setEqualHeight();
+            }, 50);
 
-            $.each(element.data(), function(key, value){
-                if (key in o) {
-                    try {
-                        o[key] = $.parseJSON(value);
-                    } catch (e) {
-                        o[key] = value;
-                    }
+            $(window).on('resize', function(){
+                that._setEqualHeight();
+            });
+        }
+
+        element.data('grid', this);
+
+    },
+
+    _setEqualHeight: function(){
+        var that = this, element = this.element, o = this.options;
+        var rows = element.find('.row');
+
+        $.each(rows, function(){
+            var row = $(this);
+            var cells = row.children('.cell');
+            var maxHeight = 0;
+
+            cells.css('min-height', '0');
+
+            $.each(cells, function(){
+                //console.log(this.tagName, $(this).outerHeight());
+                if ($(this).outerHeight() > maxHeight) {
+                    maxHeight = $(this).outerHeight();
                 }
             });
 
-            if (o.equalHeight) {
-                setTimeout(function(){
-                    that._setEqualHeight();
-                }, 50);
+            cells.css('min-height', maxHeight);
+        });
+    },
 
-                $(window).on('resize', function(){
-                    that._setEqualHeight();
-                });
-            }
+    _destroy: function () {
+    },
 
-            element.data('grid', this);
-
-        },
-
-        _setEqualHeight: function(){
-            var that = this, element = this.element, o = this.options;
-            var rows = element.find('.row');
-
-            $.each(rows, function(){
-                var row = $(this);
-                var cells = row.children('.cell');
-                var maxHeight = 0;
-
-                cells.css('min-height', '0');
-
-                $.each(cells, function(){
-                    //console.log(this.tagName, $(this).outerHeight());
-                    if ($(this).outerHeight() > maxHeight) {
-                        maxHeight = $(this).outerHeight();
-                    }
-                });
-
-                cells.css('min-height', maxHeight);
-            });
-        },
-
-        _destroy: function () {
-        },
-
-        _setOption: function ( key, value ) {
-            this._super('_setOption', key, value);
-        }
-    });
-
-})( jQuery );
+    _setOption: function ( key, value ) {
+        this._super('_setOption', key, value);
+    }
+});

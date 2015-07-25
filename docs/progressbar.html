@@ -13,6 +13,9 @@
 
     <link href="css/metro.css" rel="stylesheet">
     <link href="css/metro-icons.css" rel="stylesheet">
+    <link href="css/metro-responsive.css" rel="stylesheet">
+    <link href="css/metro-schemes.css" rel="stylesheet">
+
     <link href="css/docs.css" rel="stylesheet">
 
     <script src="js/jquery-2.1.3.min.js"></script>
@@ -23,7 +26,7 @@
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
 </head>
-<body onload="init()">
+<body>
     <div class="container page-content">
         <h1><a href="index.html" class="nav-button transform"><span></span></a>&nbsp;ProgressBar</h1>
 
@@ -44,8 +47,8 @@
             <div class="row cells2">
                 <div class="cell">
                     <div class="example" data-text="example">
-                        <h5>Simple color test</h5>
-                        <div class="progress small" id="pb1" data-role="progressBar" data-value="0" data-color="bg-pink"></div>
+                        <h5>Simple color test <span id="sct-1">0%</span></h5>
+                        <div class="progress small" id="pb1" data-role="progressBar" data-value="0" data-color="bg-pink" data-on-progress="$('#sct-1').html(value+'%')"></div>
 
                         <button class="button success" onclick="runPB1()">Start</button>
                         <button class="button danger" onclick="stopPB1()">Stop</button>

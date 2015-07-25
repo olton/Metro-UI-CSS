@@ -13,6 +13,9 @@
 
     <link href="css/metro.css" rel="stylesheet">
     <link href="css/metro-icons.css" rel="stylesheet">
+    <link href="css/metro-responsive.css" rel="stylesheet">
+    <link href="css/metro-schemes.css" rel="stylesheet">
+
     <link href="css/docs.css" rel="stylesheet">
 
     <script src="js/jquery-2.1.3.min.js"></script>
@@ -36,7 +39,7 @@
         });
     </script>
 </head>
-<body onload="init()">
+<body>
     <div class="container page-content">
         <h1><a href="index.html" class="nav-button transform"><span></span></a>&nbsp;ListView</h1>
 
@@ -67,7 +70,7 @@
                 </label>
             </div>
             <br />
-            <div class="listview set-border padding10" data-role="listview" id="lv1">
+            <div class="listview set-border padding10" data-role="listview" id="lv1" data-on-list-click="alert('You select ' + list.find('.list-title').text())">
                 <div class="list">
                     <img src="images/folder-videos.png" class="list-icon">
                     <span class="list-title">Video</span>

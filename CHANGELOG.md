@@ -1,5 +1,30 @@
 # Changelog 
 
+## 3.0.8
+* upd font declaration add sans-serif
+* add responsive for sidebar
+* add tile factor 1.25 for devices with width <= 800px
+* add hint timeout
+* add hint time delay
+* add hotkeys plugin by [John Resig](https://github.com/jeresig)
+* add noConflict support
+* init RTL support (partial)
+* move all media to standalone file metro-responsive
+* add support for [RequireJS](http://forum.metroui.org.ua/viewtopic.php?pid=614#p614)
+* add charm widget
+* add fluent menu 
+* add color schemes module metro-schemes
+* add color schemes for app-bar
+* add color schemes for v-menu
+* add color schemes for d-menu
+* add color schemes for t-menu
+* add color schemes for sidebar
+* fix min width for sidebar2 item
+* add rotate dropdown-toggle marker
+* add onclick event and touch for tile plugin
+* upd touch support for slider
+* upd event binding model for widgets [Event binding](http://metroui.org.ua/events.html)
+
 ## 3.0.7
 * add padding for container on mobile devices
 * add handler for fitImage for window resize

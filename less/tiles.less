@@ -3,14 +3,6 @@
 @import (once) "variables";
 @import (once) "utils";
 
-@tileMargin: 5px;
-@tileSize: 150px;
-@tileHalfSize: 70px;
-@tileMedium: 310px;
-@tileBig: 470px;
-@tileLarge: 630px;
-@tileOutlineSize: 3px;
-@tileGroupMargin: 80px;
 
 .tile-area {
 	min-width: 100%;
@@ -116,6 +108,8 @@
 }
 
 .tile {
+
+
 	&.small-tile {
 		width: @tileHalfSize;
 		height: @tileHalfSize;
@@ -782,34 +776,4 @@
 
 // Media
 
-.tile-area:not(.no-responsive-future) {
-	@media screen and (max-width: 640px) {
-		width: 100% ;
-		padding: 0;
 
-		.tile-area-title {
-			display: none;
-		}
-
-		.tile-group {
-			margin: 0 ;
-			padding: 0 ;
-			float: none;
-			.tile-group-title {
-				display: none;
-			}
-		}
-	}
-}
-
-.tile-container:not(.no-responsive-future) {
-	@media screen and (max-width: 640px) {
-		width: 100% ;
-	}
-}
-
-.tile-big, .tile.big-tile, .tile-super, .tile.super-tile {
-	@media screen and (max-width: 320px){
-		width: 310px ;
-	}
-}

@@ -2,9 +2,9 @@
 @subunitSize:           5px;
 
 //Typo
-@fontName: "Segoe UI", "Open Sans", serif;
-@fontNameLight: "Segoe UI Light", "Open Sans Light", serif;
-@fontNameBold: "Segoe UI Bold", "Open Sans Bold", serif;
+@fontName: "Segoe UI", "Open Sans", sans-serif, serif;
+@fontNameLight: "Segoe UI Light", "Open Sans Light", sans-serif, serif;
+@fontNameBold: "Segoe UI Bold", "Open Sans Bold", sans-serif, serif;
 
 @baseFontSize: .875rem;
 @secondTextFontSize: .75rem;
@@ -69,7 +69,7 @@
 @lighterBlue:           #00CCFF;
 @lightTeal:             lighten(@teal, 30%);
 @lightOlive:            #78aa1c;
-@lightOrange:           #c29008;
+@lightOrange:           lighten(@orange, 30%);
 @lightPink:             #f472d0;
 @lightRed:              lighten(@red, 10%);
 @lightGreen:            lighten(@green, 10%);
@@ -124,6 +124,10 @@
 @winCloseButtonActiveColor:             #e04343;
 @winCloseButtonInActiveColor:           #bcbcbc;
 
+@sidebarBackground: #71b1d1;
+@sidebarBackgroundActive: @white;
+@sidebarColor: #323232;
+
 //Inputs
 @inputHoverState:       #919191;
 @inputRestState:        #d9d9d9;
@@ -147,3 +151,29 @@
 @preloaderRingRotate: -14deg;
 @preloaderRingTimeMute: 30;
 
+@tileMargin: 5px;
+@tileSize: 150px;
+@tileHalfSize: 70px;
+@tileMedium: 310px;
+@tileBig: 470px;
+@tileLarge: 630px;
+@tileOutlineSize: 3px;
+@tileGroupMargin: 80px;
+
+@tileMDFactor: 1.25;
+
+@appBarBackground: #0072C6;
+@appBarBackgroundActive: #005696;
+@appBarDividerColor: #4C9CD7;
+
+@appBarBackgroundDarcula: #3C3F41;
+@appBarBackgroundActiveDarcula: @dark;
+@appBarDividerColorDarcula: #616162;
+
+@fmElementHoverBackground: #cde6f7;
+@fmTabActiveColor: #0072c6;
+@fmTabRestColor: #444444;
+@fmTabBackground: #ffffff;
+@fmPanelBackground: #ffffff;
+@fmPanelCaptionRestColor: #666666;
+@fmBorderColor: #d4d4d4;

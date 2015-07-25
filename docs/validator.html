@@ -13,6 +13,9 @@
 
     <link href="css/metro.css" rel="stylesheet">
     <link href="css/metro-icons.css" rel="stylesheet">
+    <link href="css/metro-responsive.css" rel="stylesheet">
+    <link href="css/metro-schemes.css" rel="stylesheet">
+
     <link href="css/docs.css" rel="stylesheet">
 
     <script src="js/jquery-2.1.3.min.js"></script>
@@ -37,7 +40,7 @@
         }
     </script>
 </head>
-<body onload="init()">
+<body>
     <div class="container page-content">
         <h1><a href="index.html" class="nav-button transform"><span></span></a>&nbsp;Form validator</h1>
 
@@ -554,6 +557,40 @@
                 return true;
             }
         </script>
+
+        <h3>onSubmit 2</h3>
+        <div class="example" data-text="example">
+            <div class="grid">
+                <div class="row cells2">
+                    <div class="cell">
+                        <form data-role="validator" data-on-submit="return false">
+                            <label class="block">data-on-submit: return false</label>
+                            <div class="input-control text">
+                                <input type="text" data-validate-func="required" data-show-error-hint="false">
+                                <span class="input-state-error mif-warning"></span>
+                                <span class="input-state-success mif-checkmark"></span>
+                            </div>
+                            <div>
+                                <button class="button success">Send</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="cell">
+                        <form data-role="validator" data-on-submit="return true">
+                            <label class="block">data-on-submit: return true</label>
+                            <div class="input-control text">
+                                <input type="text" data-validate-func="required" data-show-error-hint="false">
+                                <span class="input-state-error mif-warning"></span>
+                                <span class="input-state-success mif-checkmark"></span>
+                            </div>
+                            <div>
+                                <button class="button success">Send</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     @@hit

@@ -13,6 +13,9 @@
 
     <link href="css/metro.css" rel="stylesheet">
     <link href="css/metro-icons.css" rel="stylesheet">
+    <link href="css/metro-responsive.css" rel="stylesheet">
+    <link href="css/metro-schemes.css" rel="stylesheet">
+
     <link href="css/docs.css" rel="stylesheet">
 
     <script src="js/jquery-2.1.3.min.js"></script>
@@ -24,7 +27,7 @@
 
 
 </head>
-<body onload="init()">
+<body>
     <div class="container page-content">
         <h1><a href="index.html" class="nav-button transform"><span></span></a>&nbsp;Countdown</h1>
 
@@ -45,6 +48,10 @@
 
             <div class="align-center">
                 <div class="countdown" data-role="countdown" data-background-color="ribbed-darkRed" data-label-color="fg-grayLight" data-divider-color="fg-grayLight"  data-days="30" style="font-size: 2rem"></div>
+            </div>
+
+            <div class="align-center">
+                <div class="countdown" data-role="countdown" data-background-color="ribbed-darkRed" data-label-color="fg-grayLight" data-divider-color="fg-grayLight"  data-seconds="30" data-on-stop="alert('last countdown stopped')"></div>
             </div>
         </div>
 

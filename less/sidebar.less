@@ -5,7 +5,7 @@
 @import (once) "menu";
 
 .sidebar-container {
-	background-color: #71b1d1;
+	background-color: @sidebarBackground;
 	color: @white;
 	position: absolute;
 	top: 0;
@@ -16,7 +16,7 @@
 }
 
 .sidebar {
-	background-color: #71b1d1;
+	background-color: @sidebarBackground;
 	color: @white;
 	position: relative;
 	width: 100%;
@@ -77,8 +77,8 @@
 		}
 
 		&.active {
-			background-color: @white;
-			color: #323232;
+			background-color: @sidebarBackgroundActive;
+			color: @sidebarColor;
 		}
 	}
 }
@@ -142,6 +142,7 @@
 			background-color: @white;
 			color: #323232;
 			white-space: normal;
+			min-width: 0;
 
 			.icon {
 				color: inherit ;
@@ -194,6 +195,19 @@
 
 		a {
 			background-color: @white;
+		}
+	}
+
+	.dropdown-toggle {
+		&:before {
+			.transition(.3s);
+		}
+
+		&.active-toggle {
+			&:before {
+				.rotate135;
+				.transition(.3s);
+			}
 		}
 	}
 }

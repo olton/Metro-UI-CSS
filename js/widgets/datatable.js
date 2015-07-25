@@ -1,45 +1,39 @@
-(function ( $ ) {
+$.widget( "metro.datatable" , {
 
-    "use strict";
+    version: "3.0.0",
 
-    $.widget( "metro.datatable" , {
+    options: {
+    },
 
-        version: "3.0.0",
+    _create: function () {
+        var that = this, element = this.element, o = this.options;
 
-        options: {
-        },
-
-        _create: function () {
-            var that = this, element = this.element, o = this.options;
-
-            $.each(element.data(), function(key, value){
-                try {
-                    o[key] = $.parseJSON(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            });
-
-            if(jQuery().dataTable) {
-                try {
-                    element.dataTable(o);
-                } catch (e) {
-
-                }
-            } else {
-                alert('dataTable plugin required');
+        $.each(element.data(), function(key, value){
+            try {
+                o[key] = $.parseJSON(value);
+            } catch (e) {
+                o[key] = value;
             }
+        });
 
-            element.data('datatable', this);
+        if($().dataTable) {
+            try {
+                element.dataTable(o);
+            } catch (e) {
 
-        },
-
-        _destroy: function () {
-        },
-
-        _setOption: function ( key, value ) {
-            this._super('_setOption', key, value);
+            }
+        } else {
+            alert('dataTable plugin required');
         }
-    });
 
-})( jQuery );
+        element.data('datatable', this);
+
+    },
+
+    _destroy: function () {
+    },
+
+    _setOption: function ( key, value ) {
+        this._super('_setOption', key, value);
+    }
+});
