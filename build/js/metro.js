@@ -1621,6 +1621,7 @@ $.widget("metro.accordion", {
     _closeFrame: function(frame){
         var o = this.options;
         var content = frame.children('.content');
+        var result;
 
         if (typeof o.onFrameClose === 'function') {
             if (!o.onFrameClose(frame)) {return false;}
@@ -1628,7 +1629,7 @@ $.widget("metro.accordion", {
             if (typeof window[o.onFrameClose] === 'function') {
                 if (!window[o.onFrameClose](frame)) {return false;}
             } else {
-                var result = eval("(function(){"+o.onFrameClose+"})");
+                result = eval("(function(){"+o.onFrameClose+"})");
                 if (!result.call(frame)) {return false;}
             }
         }
@@ -1643,7 +1644,7 @@ $.widget("metro.accordion", {
             if (typeof window[o.onFrameClosed] === 'function') {
                 window[o.onFrameClosed](frame);
             } else {
-                var result = eval("(function(){"+o.onFrameClosed+"})");
+                result = eval("(function(){"+o.onFrameClosed+"})");
                 result.call(frame);
             }
         }
@@ -2117,6 +2118,7 @@ $.widget( "metro.group" , {
 
     _create: function () {
         var that = this, element = this.element, o = this.options;
+        var result;
 
         $.each(element.data(), function(key, value){
             if (key in o) {
@@ -2142,10 +2144,17 @@ $.widget( "metro.group" , {
 
         element.on('click', '.button, .toolbar-button', function(){
 
-            if (typeof o.onChange === 'string') {
-                if (!window[o.onChange]($(this).data('index'), this)) {return false;}
+            var button = $(this), index = button.data('index');
+
+            if (typeof o.onChange === 'function') {
+                if (!o.onChange(index, button)) {return false;}
             } else {
-                if (!o.onChange($(this).data('index'), this)) {return false;}
+                if (typeof window[o.onChange] === 'function') {
+                    if (!window[o.onChange](index, button)) {return false;}
+                } else {
+                    result = eval("(function(){"+o.onChange+"})");
+                    if (!result.call(index, button)) {return false;}
+                }
             }
 
             if (o.groupType === 'one-state') {
@@ -2155,10 +2164,15 @@ $.widget( "metro.group" , {
                 $(this).toggleClass('active');
             }
 
-            if (typeof o.onChanged === 'string') {
-                window[o.onChanged]($(this).data('index'), this);
+            if (typeof o.onChanged === 'function') {
+                o.onChanged(index, button);
             } else {
-                o.onChanged($(this).data('index'), this);
+                if (typeof window[o.onChanged] === 'function') {
+                    window[o.onChanged](index, button);
+                } else {
+                    result = eval("(function(){"+o.onChanged+"})");
+                    result.call(index, button);
+                }
             }
         });
 
@@ -6800,13 +6814,14 @@ $.widget( "metro.tile" , {
             if (element[0].tagName === "A") {
 
             } else {
-                if (typeof o.onClick === "function") {
-                    o.onClick(element);
+                if (typeof o.onClick === 'function') {
+                    o.onClick(frame);
                 } else {
-                    if (typeof window[o.onClick] === "function") {
-                        window[o.onClick](element);
+                    if (typeof window[o.onClick] === 'function') {
+                        window[o.onClick](frame);
                     } else {
-                        $.globalEval(o.onClick);
+                        var result = eval("(function(){"+o.onClick+"})");
+                        result.call(frame);
                     }
                 }
             }

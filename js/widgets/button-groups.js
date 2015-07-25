@@ -11,6 +11,7 @@ $.widget( "metro.group" , {
 
     _create: function () {
         var that = this, element = this.element, o = this.options;
+        var result;
 
         $.each(element.data(), function(key, value){
             if (key in o) {
@@ -36,10 +37,17 @@ $.widget( "metro.group" , {
 
         element.on('click', '.button, .toolbar-button', function(){
 
-            if (typeof o.onChange === 'string') {
-                if (!window[o.onChange]($(this).data('index'), this)) {return false;}
+            var button = $(this), index = button.data('index');
+
+            if (typeof o.onChange === 'function') {
+                if (!o.onChange(index, button)) {return false;}
             } else {
-                if (!o.onChange($(this).data('index'), this)) {return false;}
+                if (typeof window[o.onChange] === 'function') {
+                    if (!window[o.onChange](index, button)) {return false;}
+                } else {
+                    result = eval("(function(){"+o.onChange+"})");
+                    if (!result.call(index, button)) {return false;}
+                }
             }
 
             if (o.groupType === 'one-state') {
@@ -49,10 +57,15 @@ $.widget( "metro.group" , {
                 $(this).toggleClass('active');
             }
 
-            if (typeof o.onChanged === 'string') {
-                window[o.onChanged]($(this).data('index'), this);
+            if (typeof o.onChanged === 'function') {
+                o.onChanged(index, button);
             } else {
-                o.onChanged($(this).data('index'), this);
+                if (typeof window[o.onChanged] === 'function') {
+                    window[o.onChanged](index, button);
+                } else {
+                    result = eval("(function(){"+o.onChanged+"})");
+                    result.call(index, button);
+                }
             }
         });
 
