@@ -5,6 +5,7 @@ $.widget( "metro.treeview" , {
     options: {
         doubleClick: true,
         onClick: function(leaf, node, pnode, tree){},
+        onInputClick: function(leaf, node, pnode, tree){},
         onExpand: function(leaf, node, pnode, tree){},
         onCollapse: function(leaf, node, pnode, tree){}
     },
@@ -167,10 +168,15 @@ $.widget( "metro.treeview" , {
                 if (!check_disabled) {radio.prop('checked', true);}
             }
 
-            if (typeof o.onClick === 'string') {
-                window[o.onClick](leaf, parent, node, that);
+            if (typeof o.onInputClick === 'function') {
+                o.onInputClick(leaf, parent, node, that);
             } else {
-                o.onClick(leaf, parent, node, that);
+                if (typeof window[o.onInputClick] === 'function') {
+                    window[o.onInputClick](leaf, parent, node, that);
+                } else {
+                    var result = eval("(function(){"+o.onInputClick+"})");
+                    result.call(leaf, parent, node, that);
+                }
             }
         });
 
@@ -182,16 +188,22 @@ $.widget( "metro.treeview" , {
             element.find('.leaf').parent('li').removeClass('active');
             parent.addClass('active');
 
-            if (typeof o.onClick === 'string') {
-                window[o.onClick](leaf, parent, node, that);
-            } else {
+            if (typeof o.onClick === 'function') {
                 o.onClick(leaf, parent, node, that);
+            } else {
+                if (typeof window[o.onClick] === 'function') {
+                    window[o.onClick](leaf, parent, node, that);
+                } else {
+                    var result = eval("(function(){"+o.onClick+"})");
+                    result.call(leaf, parent, node, that);
+                }
             }
         });
 
         if (o.doubleClick) {
             element.on('dblclick', '.leaf', function (e) {
                 var leaf = $(this), parent = leaf.parent('li'), node = $(leaf.parents('.node')[0]);
+                var result;
 
                 if (parent.hasClass("keep-open")) {
                     return false;
@@ -200,17 +212,29 @@ $.widget( "metro.treeview" , {
                 parent.toggleClass('collapsed');
                 if (!parent.hasClass('collapsed')) {
                     parent.children('ul').fadeIn('fast');
-                    if (typeof o.onExpand === 'string') {
-                        window[o.onExpand](parent, leaf, node);
+
+                    if (typeof o.onExpand === 'function') {
+                        o.onExpand(parent, leaf, node, that);
                     } else {
-                        o.onExpand(parent, leaf, node);
+                        if (typeof window[o.onExpand] === 'function') {
+                            window[o.onExpand](parent, leaf, node, that);
+                        } else {
+                            result = eval("(function(){"+o.onExpand+"})");
+                            result.call(parent, leaf, node, that);
+                        }
                     }
                 } else {
                     parent.children('ul').fadeOut('fast');
-                    if (typeof o.onCollapse === 'string') {
-                        window[o.onCollapse](leaf, parent, node, that);
+
+                    if (typeof o.onCollapse === 'function') {
+                        o.onCollapse(parent, leaf, node, that);
                     } else {
-                        o.onCollapse(leaf, parent, node, that);
+                        if (typeof window[o.onCollapse] === 'function') {
+                            window[o.onCollapse](parent, leaf, node, that);
+                        } else {
+                            result = eval("(function(){"+o.onCollapse+"})");
+                            result.call(parent, leaf, node, that);
+                        }
                     }
                 }
                 e.stopPropagation();
@@ -220,23 +244,34 @@ $.widget( "metro.treeview" , {
 
         element.on('click', '.node-toggle', function(e){
             var leaf = $(this).siblings('.leaf'), parent = $(this).parent('li'), node = $(leaf.parents('.node')[0]);
+            var result;
 
             if (parent.hasClass("keep-open")) {return false;}
 
             parent.toggleClass('collapsed');
             if (!parent.hasClass('collapsed')) {
                 parent.children('ul').fadeIn('fast');
-                if (typeof o.onExpand === 'string') {
-                    window[o.onExpand](leaf, parent, node, that);
+                if (typeof o.onExpand === 'function') {
+                    o.onExpand(parent, leaf, node, that);
                 } else {
-                    o.onExpand(leaf, parent, node, that);
+                    if (typeof window[o.onExpand] === 'function') {
+                        window[o.onExpand](parent, leaf, node, that);
+                    } else {
+                        result = eval("(function(){"+o.onExpand+"})");
+                        result.call(parent, leaf, node, that);
+                    }
                 }
             } else {
                 parent.children('ul').fadeOut('fast');
-                if (typeof o.onCollapse === 'string') {
-                    window[o.onCollapse](leaf, parent, node, that);
+                if (typeof o.onCollapse === 'function') {
+                    o.onCollapse(parent, leaf, node, that);
                 } else {
-                    o.onCollapse(leaf, parent, node, that);
+                    if (typeof window[o.onCollapse] === 'function') {
+                        window[o.onCollapse](parent, leaf, node, that);
+                    } else {
+                        result = eval("(function(){"+o.onCollapse+"})");
+                        result.call(parent, leaf, node, that);
+                    }
                 }
             }
             e.stopPropagation();
