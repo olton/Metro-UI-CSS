@@ -4714,7 +4714,8 @@ $.widget( "metro.keypad" , {
         target: false,
         shuffle: false,
         length: false,
-        keys: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
+        keys: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'],
+        onKey: function(key){}
     },
 
     //_keys: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'],
@@ -4742,7 +4743,7 @@ $.widget( "metro.keypad" , {
 
     },
 
-    _shuffleKeys: function(keypad){
+    _shuffleKeys: function(){
         var that = this, element = this.element, o = this.options;
         var keys = o.keys.slice(0);
         var keypad = this._keypad;
@@ -4821,7 +4822,6 @@ $.widget( "metro.keypad" , {
             var key = $(this);
 
             if (o.target) {
-
                 if (key.data('key') !== '&larr;' && key.data('key') !== '&times;') {
                     if (o.length && $(o.target).val().length === o.length) {
                         return false;
@@ -4835,6 +4835,17 @@ $.widget( "metro.keypad" , {
                         var val = $(o.target).val();
                         $(o.target).val(val.substring(0, val.length - 1))
                     }
+                }
+            }
+
+            if (typeof o.onKey === 'function') {
+                o.onKey(key);
+            } else {
+                if (typeof window[o.onKey] === 'function') {
+                    window[o.onKey](key);
+                } else {
+                    var result = eval("(function(){"+o.onKey+"})");
+                    result.call(key);
                 }
             }
 
