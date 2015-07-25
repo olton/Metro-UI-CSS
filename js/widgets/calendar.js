@@ -63,7 +63,7 @@ $.widget("metro.calendar", {
             o.maxDate = new Date(o.maxDate+'T00:00:00Z');
         }
 
-        console.log(window.METRO_LOCALES);
+        //console.log(window.METRO_LOCALES);
 
         this.locales = window.METRO_LOCALES;
 

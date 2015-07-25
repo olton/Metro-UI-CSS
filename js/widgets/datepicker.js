@@ -18,7 +18,7 @@ $.widget("metro.datepicker", {
         buttonToday: true,
         buttonClear: true,
         condensedGrid: false,
-        selected: function(d, d0){}
+        onSelect: function(d, d0){}
     },
 
     _calendar: undefined,
@@ -111,8 +111,18 @@ $.widget("metro.datepicker", {
                 that.element.children("input[type=text]").val(d);
                 that.element.children("input[type=text]").trigger('change', d0);
                 that.element.children("input[type=text]").blur();
-                that.options.selected(d, d0);
                 that._hide();
+
+                if (typeof o.onSelect === 'function') {
+                    o.onSelect(d, d0);
+                } else {
+                    if (typeof window[o.onSelect] === 'function') {
+                        window[o.onSelect](d, d0);
+                    } else {
+                        var result = eval("(function(){"+o.onSelect+"})");
+                        result.call(d, d0);
+                    }
+                }
             }
         });
 
