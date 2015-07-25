@@ -33,11 +33,18 @@ $.widget( "metro.fluentmenu" , {
         element.on("click", ".tabs-holder > li > a", function(e){
             var a = $(this);
             var li = a.parent('li');
+            var result;
+
             if (li.hasClass('special')) {
-                if (typeof o.onSpecialClick === "string") {
-                    window[o.onSpecialClick](a, li);
-                } else {
+                if (typeof o.onSpecialClick === 'function') {
                     o.onSpecialClick(a, li);
+                } else {
+                    if (typeof window[o.onSpecialClick] === 'function') {
+                        window[o.onSpecialClick](a, li);
+                    } else {
+                        result = eval("(function(){"+o.onSpecialClick+"})");
+                        result.call(a, li);
+                    }
                 }
             } else {
                 var panel = $(a.attr('href'));
@@ -45,12 +52,27 @@ $.widget( "metro.fluentmenu" , {
                 that._showPanel(panel);
                 element.find('.tabs-holder > li').removeClass('active');
                 a.parent('li').addClass('active');
-                if (typeof o.onTabClick === "string") {
-                    window[o.onTabClick](a, li);
-                    window[o.onTabChange](a, li);
-                } else {
+
+                if (typeof o.onTabClick === 'function') {
                     o.onTabClick(a, li);
+                } else {
+                    if (typeof window[o.onTabClick] === 'function') {
+                        window[o.onTabClick](a, li);
+                    } else {
+                        result = eval("(function(){"+o.onTabClick+"})");
+                        result.call(a, li);
+                    }
+                }
+
+                if (typeof o.onTabChange === 'function') {
                     o.onTabChange(a, li);
+                } else {
+                    if (typeof window[o.onTabChange] === 'function') {
+                        window[o.onTabChange](a, li);
+                    } else {
+                        result = eval("(function(){"+o.onTabChange+"})");
+                        result.call(a, li);
+                    }
                 }
             }
             e.preventDefault();
