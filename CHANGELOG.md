@@ -22,6 +22,7 @@
 * fix min width for sidebar2 item
 * add rotate dropdown-toggle marker
 * add onclick event and touch for tile plugin
+* upd touch support for slider
 
 ## 3.0.7
 * add padding for container on mobile devices
