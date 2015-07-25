@@ -8201,10 +8201,15 @@ $.widget("metro.wizard", {
                     clickable: o.stepperClickable
                 }).on('stepclick', function(e, s){
                     that.stepTo(s);
-                    if (typeof o.onStepClick === 'string' ) {
-                        window[o.onStepClick](s);
-                    } else {
+                    if (typeof o.onStepClick === 'function') {
                         o.onStepClick(s);
+                    } else {
+                        if (typeof window[o.onStepClick] === 'function') {
+                            window[o.onStepClick](s);
+                        } else {
+                            var result = eval("(function(){"+o.onStepClick+"})");
+                            result.call(s);
+                        }
                     }
                 });
         }
@@ -8267,12 +8272,16 @@ $.widget("metro.wizard", {
                     }
                 }
                 cancel_button.on('click', function(){
-                    if (typeof  o.onCancel === 'string') {
-                        window[o.onCancel](that._currentStep+1, element);
-                    } else {
+                    if (typeof o.onCancel === 'function') {
                         o.onCancel(that._currentStep+1, element);
+                    } else {
+                        if (typeof window[o.onCancel] === 'function') {
+                            window[o.onCancel](that._currentStep+1, element);
+                        } else {
+                            var result = eval("(function(){"+o.onCancel+"})");
+                            result.call(that._currentStep+1, element);
+                        }
                     }
-
                 });
             }
             if (o.buttons.help) {
@@ -8293,10 +8302,15 @@ $.widget("metro.wizard", {
                     }
                 }
                 help_button.on('click', function(){
-                    if (typeof o.onHelp === 'string') {
-                        window[o.onHelp](that._currentStep+1, element);
-                    } else {
+                    if (typeof o.onHelp === 'function') {
                         o.onHelp(that._currentStep+1, element);
+                    } else {
+                        if (typeof window[o.onHelp] === 'function') {
+                            window[o.onHelp](that._currentStep+1, element);
+                        } else {
+                            var result = eval("(function(){"+o.onHelp+"})");
+                            result.call(that._currentStep+1, element);
+                        }
                     }
                 });
             }
@@ -8318,10 +8332,15 @@ $.widget("metro.wizard", {
                     }
                 }
                 prior_button.on('click', function(){
-                    if (typeof o.onPrior === 'string') {
-                        if (window[o.onPrior](that._currentStep+1, element)) {that.prior();}
-                    } else {
+                    if (typeof o.onPrior === 'function') {
                         if (o.onPrior(that._currentStep+1, element)) {that.prior();}
+                    } else {
+                        if (typeof window[o.onPrior] === 'function') {
+                            if (window[o.onPrior](that._currentStep+1, element)) {that.prior();}
+                        } else {
+                            var result = eval("(function(){"+o.onPrior+"})");
+                            if (result.call(that._currentStep+1, element)) {that.prior();}
+                        }
                     }
                 });
             }
@@ -8343,10 +8362,15 @@ $.widget("metro.wizard", {
                     }
                 }
                 next_button.on('click', function(){
-                    if (typeof o.onNext === 'string') {
-                        if (window[o.onNext](that._currentStep+1, element)) {that.next();}
-                    } else {
+                    if (typeof o.onNext === 'function') {
                         if (o.onNext(that._currentStep+1, element)) {that.next();}
+                    } else {
+                        if (typeof window[o.onNext] === 'function') {
+                            if (window[o.onNext](that._currentStep+1, element)) {that.next();}
+                        } else {
+                            var result = eval("(function(){"+o.onNext+"})");
+                            if (result.call(that._currentStep+1, element)) {that.next();}
+                        }
                     }
                 });
             }
@@ -8368,10 +8392,15 @@ $.widget("metro.wizard", {
                     }
                 }
                 finish_button.on('click', function(){
-                    if (typeof o.onFinish === 'string') {
-                        window[o.onFinish](that._currentStep+1, element);
-                    } else {
+                    if (typeof o.onFinish === 'function') {
                         o.onFinish(that._currentStep+1, element);
+                    } else {
+                        if (typeof window[o.onFinish] === 'function') {
+                            window[o.onFinish](that._currentStep+1, element);
+                        } else {
+                            var result = eval("(function(){"+o.onFinish+"})");
+                            result.call(that._currentStep+1, element);
+                        }
                     }
                 });
             }
@@ -8379,7 +8408,7 @@ $.widget("metro.wizard", {
     },
 
     next: function(){
-        var o = this.options;
+        var element = this.element, that = this, o = this.options;
         var new_step = this._currentStep + 1;
 
         if (new_step === this._steps.length) {return false;}
@@ -8389,10 +8418,15 @@ $.widget("metro.wizard", {
         $(this._steps[new_step]).show();
 
 
-        if (typeof o.onPage === 'string') {
-            window[o.onPage](this._currentStep + 1, this.element);
+        if (typeof o.onPage === 'function') {
+            o.onPage(that._currentStep+1, element);
         } else {
-            o.onPage(this._currentStep + 1, this.element);
+            if (typeof window[o.onPage] === 'function') {
+                window[o.onPage](that._currentStep+1, element);
+            } else {
+                var result = eval("(function(){"+o.onPage+"})");
+                result.call(that._currentStep+1, element);
+            }
         }
 
         if (this._stepper !== undefined) {this._stepper.stepper('stepTo', this._currentStep + 1);}
@@ -8418,7 +8452,7 @@ $.widget("metro.wizard", {
     },
 
     prior: function(){
-        var new_step = this._currentStep - 1;
+        var element = this.element, that = this, new_step = this._currentStep - 1;
         var o = this.options;
 
         if (new_step < 0) {return false;}
@@ -8427,10 +8461,15 @@ $.widget("metro.wizard", {
         this._steps.hide();
         $(this._steps[new_step]).show();
 
-        if (typeof o.onPage === 'string') {
-            window[o.onPage](this._currentStep + 1, this.element);
+        if (typeof o.onPage === 'function') {
+            o.onPage(that._currentStep+1, element);
         } else {
-            o.onPage(this._currentStep + 1, this.element);
+            if (typeof window[o.onPage] === 'function') {
+                window[o.onPage](that._currentStep+1, element);
+            } else {
+                var result = eval("(function(){"+o.onPage+"})");
+                result.call(that._currentStep+1, element);
+            }
         }
 
         if (this._stepper !== undefined) {this._stepper.stepper('stepTo', this._currentStep + 1);}
@@ -8456,7 +8495,7 @@ $.widget("metro.wizard", {
     },
 
     stepTo: function(step){
-        var new_step = step - 1;
+        var element = this.element, that = this, new_step = step - 1;
         var o = this.options;
 
         if (new_step < 0) {return false;}
@@ -8464,10 +8503,15 @@ $.widget("metro.wizard", {
         this._steps.hide();
         $(this._steps[new_step]).show();
 
-        if (typeof o.onPage === 'string') {
-            window[o.onPage](this._currentStep + 1, this.element);
+        if (typeof o.onPage === 'function') {
+            o.onPage(that._currentStep+1, element);
         } else {
-            o.onPage(this._currentStep + 1, this.element);
+            if (typeof window[o.onPage] === 'function') {
+                window[o.onPage](that._currentStep+1, element);
+            } else {
+                var result = eval("(function(){"+o.onPage+"})");
+                result.call(that._currentStep+1, element);
+            }
         }
 
         if (this._stepper !== undefined) {this._stepper.stepper('stepTo', step);}
@@ -8512,10 +8556,12 @@ $.widget( "metro.wizard2" , {
             finish: 'OK',
             help: '?'
         },
-        onPrevClick: function(step){return true;},
-        onNextClick: function(step){return true;},
-        onFinishClick: function(step){},
-        onHelpClick: function(step){}
+        onPrior: function(page, wiz){return true;},
+        onNext: function(page, wiz){return true;},
+        onFinish: function(page, wiz){},
+        onHelp: function(page, wiz){},
+        onPage: function(page, wiz){}
+
     },
 
     _step: 1,
@@ -8580,34 +8626,54 @@ $.widget( "metro.wizard2" , {
         btn_prev = $("<button/>").html(o.buttonLabels.prev).addClass('button cycle-button medium-button wiz-btn-prev place-right').appendTo(bar);
 
         btn_help.on('click', function(){
-            if (typeof o.onHelpClick === 'string') {
-                window[o.onHelpClick](that._step);
+            if (typeof o.onHelp === 'function') {
+                o.onHelp(that._step, that);
             } else {
-                o.onHelpClick(that._step);
+                if (typeof window[o.onHelp] === 'function') {
+                    window[o.onHelp](that._step, that);
+                } else {
+                    var result = eval("(function(){"+o.onHelp+"})");
+                    result.call(that._step, that);
+                }
             }
         });
 
         btn_finish.on('click', function(){
-            if (typeof o.onFinishClick === 'string') {
-                window[o.onFinishClick](that._step);
+            if (typeof o.onFinish === 'function') {
+                o.onFinish(that._step, that);
             } else {
-                o.onFinishClick(that._step);
+                if (typeof window[o.onFinish] === 'function') {
+                    window[o.onFinish](that._step, that);
+                } else {
+                    var result = eval("(function(){"+o.onFinish+"})");
+                    result.call(that._step, that);
+                }
             }
         });
 
         btn_prev.on('click', function(){
-            if (typeof o.onPrevClick === 'string') {
-                if (window[o.onPrevClick](that._step)) {that.prev();}
+            if (typeof o.onPrior === 'function') {
+                if (o.onPrior(that._step, element)) {that.prior();}
             } else {
-                if (o.onPrevClick(that._step)) {that.prev();}
+                if (typeof window[o.onPrior] === 'function') {
+                    if (window[o.onPrior](that._step, element)) {that.prior();}
+                } else {
+                    var result = eval("(function(){"+o.onPrior+"})");
+                    if (result.call(that._step, element)) {that.prior();}
+                }
             }
         });
 
         btn_next.on('click', function(){
-            if (typeof o.onNextClick === 'string') {
-                if (window[o.onNextClick](that._step)) {that.next();}
+            if (typeof o.onNext === 'function') {
+                if (o.onNext(that._step, element)) {that.next();}
             } else {
-                if (o.onNextClick(that._step)) {that.next();}
+                if (typeof window[o.onNext] === 'function') {
+                    if (window[o.onNext](that._step, element)) {that.next();}
+                } else {
+                    var result = eval("(function(){"+o.onNext+"})");
+                    if (result.call(that._step, element)) {that.next();}
+                }
             }
         });
     },
@@ -8659,7 +8725,7 @@ $.widget( "metro.wizard2" , {
 
     },
 
-    prev: function(){
+    prior: function(){
         var new_step = this._step - 1;
         if (new_step <= 0) {
             return false;
