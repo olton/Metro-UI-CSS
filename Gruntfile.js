@@ -31,7 +31,7 @@ module.exports = function(grunt) {
         concat: {
             options: {
                 banner: '<%= banner %>' + '<%= requirejs_banner%>',
-                footer: "\n\nreturn $.Metro.init();\n\n}));",
+                footer: "\n\n return $.Metro.init();\n\n}));",
                 stripBanners: true,
                 process: function(src, filepath) {
                     return '// Source: ' + filepath + '\n' +
