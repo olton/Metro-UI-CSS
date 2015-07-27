@@ -1,6 +1,7 @@
 # Changelog 
 
 ## 3.0.9
+* add hotkeys binding
 
 ## 3.0.8
 * upd font declaration add sans-serif
