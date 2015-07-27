@@ -105,7 +105,7 @@ $.Metro.init = function(){
                                     }
                                     return false;
                                 });
-                                console.log($.Metro.hotkeys);
+                                //console.log($.Metro.hotkeys);
                             });
 
                             if (obj.data('role') !== undefined) {
