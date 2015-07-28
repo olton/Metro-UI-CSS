@@ -33,6 +33,8 @@ $.Metro.initWidgets = function(){
             }
             return false;
         });
+
+        element.data('hotKeyBonded', true);
     });
 
     $.each(widgets, function(){
