@@ -30,6 +30,7 @@ if (window.METRO_CURRENT_LOCALE === undefined) window.METRO_CURRENT_LOCALE = 'en
 if (window.METRO_SHOW_TYPE === undefined) window.METRO_SHOW_TYPE = 'slide';
 if (window.METRO_DEBUG === undefined) window.METRO_DEBUG = true;
 if (window.METRO_CALENDAR_WEEK_START === undefined) window.METRO_CALENDAR_WEEK_START = 0;
+if (window.METRO_OVERWRITE_HOTKEY === undefined) window.METRO_OVERWRITE_HOTKEY = 0;
 
 window.canObserveMutation = 'MutationObserver' in window;
 
@@ -932,11 +933,17 @@ $.Metro.initWidgets = function(){
         var element = $(this);
         var hotkey = element.data('hotkey').toLowerCase();
 
-        if ($.Metro.hotkeys.indexOf(hotkey) > -1) return;
+        //if ($.Metro.hotkeys.indexOf(hotkey) > -1) {
+        //    return;
+        //}
+        if (element.data('hotKeyBonded') === true ) {
+            return;
+        }
 
         $.Metro.hotkeys.push(hotkey);
 
         $(document).on('keyup', null, hotkey, function(e){
+            if (element === undefined) return;
             if (element[0].tagName === 'A' && element.attr('href').trim() !== '' && element.attr('href').trim() !== '#') {
                 document.location.href = element.attr('href');
             } else {
@@ -1000,6 +1007,7 @@ $.Metro.init = function(){
 
                         for(var i = 0, l = record.addedNodes.length; i < l; i++) {
                             obj = $(record.addedNodes[i]);
+
                             plugins = obj.find("[data-role]");
 
                             hotkeys = obj.find("[data-hotkey]");
@@ -1008,12 +1016,18 @@ $.Metro.init = function(){
                                 var element = $(this);
                                 var hotkey = element.data('hotkey').toLowerCase();
 
-                                if ($.Metro.hotkeys.indexOf(hotkey) > -1) return;
+                                //if ($.Metro.hotkeys.indexOf(hotkey) > -1) {
+                                //    return;
+                                //}
+
+                                if (element.data('hotKeyBonded') === true ) {
+                                    return;
+                                }
 
                                 $.Metro.hotkeys.push(hotkey);
 
                                 $(document).on('keyup', null, hotkey, function () {
-                                    var hotkey = element.data('hotkey').toLowerCase();
+                                    if (element === undefined) return;
 
                                     if (element[0].tagName === 'A' && element.attr('href').trim() !== '' && element.attr('href').trim() !== '#') {
                                         document.location.href = element.attr('href');
@@ -1022,7 +1036,9 @@ $.Metro.init = function(){
                                     }
                                     return false;
                                 });
-                                console.log($.Metro.hotkeys);
+
+                                element.data('hotKeyBonded', true);
+                                //console.log($.Metro.hotkeys);
                             });
 
                             if (obj.data('role') !== undefined) {
@@ -5273,6 +5289,22 @@ $.widget( "metro.widget" , {
         console.log('Hi');
 
         element.data('widget', this);
+
+    },
+
+    _executeEvent: function(event){
+        var result, args = arguments.splice(0, 1);
+
+        if (typeof event === 'function') {
+            event.apply(args);
+        } else {
+            if (typeof window[event] === 'function') {
+                window[event].apply(args);
+            } else {
+                result = eval("(function(){"+event+"})");
+                result.apply(args);
+            }
+        }
 
     },
 

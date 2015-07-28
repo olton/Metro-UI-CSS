@@ -15,11 +15,17 @@ $.Metro.initWidgets = function(){
         var element = $(this);
         var hotkey = element.data('hotkey').toLowerCase();
 
-        if ($.Metro.hotkeys.indexOf(hotkey) > -1) return;
+        //if ($.Metro.hotkeys.indexOf(hotkey) > -1) {
+        //    return;
+        //}
+        if (element.data('hotKeyBonded') === true ) {
+            return;
+        }
 
         $.Metro.hotkeys.push(hotkey);
 
         $(document).on('keyup', null, hotkey, function(e){
+            if (element === undefined) return;
             if (element[0].tagName === 'A' && element.attr('href').trim() !== '' && element.attr('href').trim() !== '#') {
                 document.location.href = element.attr('href');
             } else {
@@ -83,6 +89,7 @@ $.Metro.init = function(){
 
                         for(var i = 0, l = record.addedNodes.length; i < l; i++) {
                             obj = $(record.addedNodes[i]);
+
                             plugins = obj.find("[data-role]");
 
                             hotkeys = obj.find("[data-hotkey]");
@@ -91,12 +98,18 @@ $.Metro.init = function(){
                                 var element = $(this);
                                 var hotkey = element.data('hotkey').toLowerCase();
 
-                                if ($.Metro.hotkeys.indexOf(hotkey) > -1) return;
+                                //if ($.Metro.hotkeys.indexOf(hotkey) > -1) {
+                                //    return;
+                                //}
+
+                                if (element.data('hotKeyBonded') === true ) {
+                                    return;
+                                }
 
                                 $.Metro.hotkeys.push(hotkey);
 
                                 $(document).on('keyup', null, hotkey, function () {
-                                    var hotkey = element.data('hotkey').toLowerCase();
+                                    if (element === undefined) return;
 
                                     if (element[0].tagName === 'A' && element.attr('href').trim() !== '' && element.attr('href').trim() !== '#') {
                                         document.location.href = element.attr('href');
@@ -105,6 +118,8 @@ $.Metro.init = function(){
                                     }
                                     return false;
                                 });
+
+                                element.data('hotKeyBonded', true);
                                 //console.log($.Metro.hotkeys);
                             });
 
