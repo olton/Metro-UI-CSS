@@ -7,6 +7,7 @@ if (window.METRO_CURRENT_LOCALE === undefined) window.METRO_CURRENT_LOCALE = 'en
 if (window.METRO_SHOW_TYPE === undefined) window.METRO_SHOW_TYPE = 'slide';
 if (window.METRO_DEBUG === undefined) window.METRO_DEBUG = true;
 if (window.METRO_CALENDAR_WEEK_START === undefined) window.METRO_CALENDAR_WEEK_START = 0;
+if (window.METRO_OVERWRITE_HOTKEY === undefined) window.METRO_OVERWRITE_HOTKEY = 0;
 
 window.canObserveMutation = 'MutationObserver' in window;
 
