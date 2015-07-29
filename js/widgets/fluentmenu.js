@@ -29,6 +29,9 @@ $.widget( "metro.fluentmenu" , {
 
     _createMenu: function(){
         var that = this, element = this.element, o = this.options;
+        var active_tab = $(element.find(".tabs-holder > li.active")[0]);
+
+        this.openTab(active_tab);
 
         element.on("click", ".tabs-holder > li > a", function(e){
             var a = $(this);
@@ -88,6 +91,18 @@ $.widget( "metro.fluentmenu" , {
             panel = this.element.find('.tabs-holder li.active a').attr('href');
         }
         $(panel).show();
+    },
+
+    openTab: function(tab){
+        var that = this, element = this.element, o = this.options;
+        var target_panel = $(tab.children('a').attr('href'));
+        if (target_panel.length === 0) {
+            return false;
+        }
+        this._hidePanels();
+        this._showPanel(target_panel);
+        element.find('.tabs-holder > li').removeClass('active');
+        tab.addClass('active');
     },
 
     _destroy: function () {
