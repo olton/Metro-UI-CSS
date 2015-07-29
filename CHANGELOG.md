@@ -1,5 +1,9 @@
 # Changelog 
 
+## 3.0.9
+* add hotkeys binding
+* fix fluent-menu initialize
+
 ## 3.0.8
 * upd font declaration add sans-serif
 * add responsive for sidebar

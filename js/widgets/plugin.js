@@ -25,6 +25,22 @@ $.widget( "metro.widget" , {
 
     },
 
+    _executeEvent: function(event){
+        var result, args = arguments.splice(0, 1);
+
+        if (typeof event === 'function') {
+            event.apply(args);
+        } else {
+            if (typeof window[event] === 'function') {
+                window[event].apply(args);
+            } else {
+                result = eval("(function(){"+event+"})");
+                result.apply(args);
+            }
+        }
+
+    },
+
     _destroy: function () {
     },
 

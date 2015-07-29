@@ -387,9 +387,10 @@ a.shortcut-button {
 	}
 }
 
-.split-button {
+.split-button, .dropdown-button {
 	display: inline-block;
 	position: relative;
+	vertical-align: middle;
 	.clear-float;
 
 	.button, .split {
@@ -408,7 +409,7 @@ a.shortcut-button {
 		cursor: pointer;
 		outline: none;
 		font-size: .875rem;
-		line-height: 2.1rem;
+		//line-height: 2.1rem;
 		position: relative;
 		margin: .15625rem 0;
 
@@ -416,6 +417,19 @@ a.shortcut-button {
 		&:hover {
 			background-color: @grayLighter;
 			border-color: darken(@inputHoverState, 10%);
+		}
+
+		&.dropdown-toggle {
+			&:before {
+				.transition(.3s);
+			}
+
+			&.active-toggle {
+				&:before {
+					.rotate135;
+					.transition(.3s);
+				}
+			}
 		}
 	}
 
@@ -635,6 +649,39 @@ a, span, div {
 
 		&.big-button {
 			padding-top: .78125rem;
+		}
+	}
+}
+
+.dropdown-button {
+	button.dropdown-toggle {
+		&:before {
+			.transition(.3s);
+		}
+
+		&.active-toggle {
+			&:before {
+				.rotate135;
+				.transition(.3s);
+			}
+		}
+	}
+}
+
+.shortcut-button {
+	&[data-hotkey] {
+		&::after {
+			position: absolute;
+			content: attr(data-hotkey);
+			font-size: .625rem;
+			bottom: 0;
+			right: 0;
+			color: @grayLight;
+		}
+		&.no-hotkey-display {
+			&::after {
+				display: none;
+			}
 		}
 	}
 }

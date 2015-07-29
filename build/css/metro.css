@@ -5779,6 +5779,16 @@ a.tag {
 .v-menu li:hover .icon {
   color: #ffffff;
 }
+.v-menu li a[data-hotkey] {
+  padding-right: 3.2rem;
+}
+.v-menu li a[data-hotkey]:after {
+  content: attr(data-hotkey);
+  position: absolute;
+  right: 1.2rem;
+  width: auto;
+  font-size: .8em;
+}
 .v-menu .divider {
   padding: 0;
   height: 1px;
@@ -5936,6 +5946,16 @@ a.tag {
 .d-menu li:hover > a,
 .d-menu li:hover .icon {
   color: #ffffff;
+}
+.d-menu li a[data-hotkey] {
+  padding-right: 3.2rem;
+}
+.d-menu li a[data-hotkey]:after {
+  content: attr(data-hotkey);
+  position: absolute;
+  right: 1.2rem;
+  width: auto;
+  font-size: .8em;
 }
 .d-menu .divider {
   padding: 0;
@@ -7593,24 +7613,32 @@ a.shortcut-button {
   background-color: #1ba1e2;
   color: #ffffff;
 }
-.split-button {
+.split-button,
+.dropdown-button {
   display: inline-block;
   position: relative;
+  vertical-align: middle;
 }
 .split-button:before,
-.split-button:after {
+.dropdown-button:before,
+.split-button:after,
+.dropdown-button:after {
   display: table;
   content: "";
 }
-.split-button:after {
+.split-button:after,
+.dropdown-button:after {
   clear: both;
 }
 .split-button .button,
-.split-button .split {
+.dropdown-button .button,
+.split-button .split,
+.dropdown-button .split {
   display: block;
   float: left;
 }
-.split-button .split {
+.split-button .split,
+.dropdown-button .split {
   padding: 0 1rem 0 .625rem;
   height: 2.125rem;
   text-align: center;
@@ -7621,15 +7649,26 @@ a.shortcut-button {
   cursor: pointer;
   outline: none;
   font-size: .875rem;
-  line-height: 2.1rem;
   position: relative;
   margin: .15625rem 0;
 }
-.split-button .split:hover {
+.split-button .split:hover,
+.dropdown-button .split:hover {
   background-color: #eeeeee;
   border-color: #787878;
 }
-.split-button .split-content {
+.split-button .split.dropdown-toggle:before,
+.dropdown-button .split.dropdown-toggle:before {
+  transition: all 0.3s ease;
+}
+.split-button .split.dropdown-toggle.active-toggle:before,
+.dropdown-button .split.dropdown-toggle.active-toggle:before {
+  -webkit-transform: rotate(135deg);
+          transform: rotate(135deg);
+  transition: all 0.3s ease;
+}
+.split-button .split-content,
+.dropdown-button .split-content {
   position: absolute;
   top: 100%;
 }
@@ -7852,6 +7891,25 @@ a.square-button.big-button,
 span.square-button.big-button,
 div.square-button.big-button {
   padding-top: .78125rem;
+}
+.dropdown-button button.dropdown-toggle:before {
+  transition: all 0.3s ease;
+}
+.dropdown-button button.dropdown-toggle.active-toggle:before {
+  -webkit-transform: rotate(135deg);
+          transform: rotate(135deg);
+  transition: all 0.3s ease;
+}
+.shortcut-button[data-hotkey]::after {
+  position: absolute;
+  content: attr(data-hotkey);
+  font-size: .625rem;
+  bottom: 0;
+  right: 0;
+  color: #999999;
+}
+.shortcut-button[data-hotkey].no-hotkey-display::after {
+  display: none;
 }
 .toolbar {
   position: relative;
@@ -12114,6 +12172,16 @@ input[type="submit"].link:active {
 .sidebar2 li:hover > a,
 .sidebar2 li:hover .icon {
   color: #ffffff;
+}
+.sidebar2 li a[data-hotkey] {
+  padding-right: 3.2rem;
+}
+.sidebar2 li a[data-hotkey]:after {
+  content: attr(data-hotkey);
+  position: absolute;
+  right: 1.2rem;
+  width: auto;
+  font-size: .8em;
 }
 .sidebar2 .divider {
   padding: 0;

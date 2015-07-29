@@ -1,5 +1,5 @@
 /*!
- * Metro UI CSS v3.0.8 (http://metroui.org.ua)
+ * Metro UI CSS v3.0.9 (http://metroui.org.ua)
  * Copyright 2012-2015 Sergey Pimenov
  * Licensed under MIT (http://metroui.org.ua/license.html)
  */
@@ -21,7 +21,7 @@ if (typeof jQuery === 'undefined') {
 }
 
 // Source: js/global.js
-window.METRO_VERSION = '3.0.8';
+window.METRO_VERSION = '3.0.9';
 
 if (window.METRO_AUTO_REINIT === undefined) window.METRO_AUTO_REINIT = true;
 if (window.METRO_LANGUAGE === undefined) window.METRO_LANGUAGE = 'en';
@@ -82,6 +82,12 @@ var d = new Date().getTime();
         return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
     });
     return uuid;
+};
+
+window.isTouchDevice = function() {
+    return (('ontouchstart' in window)
+    || (navigator.MaxTouchPoints > 0)
+    || (navigator.msMaxTouchPoints > 0));
 };
 
 window.METRO_LOCALES = {
@@ -919,6 +925,17 @@ $.Metro = function(params){
 $.Metro.initWidgets = function(){
     var widgets = $("[data-role]");
 
+    //var hotkeys = $("[data-hotkey]");
+    //$.each(hotkeys, function(){
+    //    var element = $(this);
+    //    var hotkey = element.data('hotkey').toLowerCase();
+    //    $(document).on('keyup', null, hotkey, function(e){
+    //        element.click();
+    //        e.preventDefault();
+    //        e.stopPropagation();
+    //    });
+    //});
+
     $.each(widgets, function(){
         var $this = $(this), w = this;
         var roles = $this.data('role').split(/\s*,\s*/);
@@ -957,24 +974,40 @@ $.Metro.init = function(){
                 }
             }, 100);
         } else {
-            //console.log('observable');
             var observer, observerOptions, observerCallback;
             observerOptions = {
                 'childList': true,
                 'subtree': true
             };
             observerCallback = function(mutations){
-                //console.log('hi from observer');
+
+                console.log(mutations);
 
                 mutations.map(function(record){
+
                     if (record.addedNodes) {
 
                         /*jshint loopfunc: true */
-                        var obj, widgets, plugins;
+                        var obj, widgets, plugins, hotkeys;
 
                         for(var i = 0, l = record.addedNodes.length; i < l; i++) {
                             obj = $(record.addedNodes[i]);
                             plugins = obj.find("[data-role]");
+
+                            hotkeys = obj.children("[data-hotkey]");
+                            $.each(hotkeys, function(){
+                                var element = $(this);
+                                var hotkey = element.data('hotkey').toLowerCase();
+                                console.log(hotkey);
+                                $(document).on('keyup', null, hotkey, function () {
+                                    if (element[0].tagName === 'A' && element.attr('href').trim() !== '' && element.attr('href').trim() !== '#') {
+                                        document.location.href = element.attr('href');
+                                    } else {
+                                        element.click();
+                                    }
+                                    return false;
+                                });
+                            });
 
                             if (obj.data('role') !== undefined) {
                                 widgets = $.merge(plugins, obj);
@@ -988,10 +1021,9 @@ $.Metro.init = function(){
                                     var roles = _this.data('role').split(/\s*,\s*/);
                                     roles.map(function(func){
                                         try {
-                                            if ($.fn[func] !== undefined) {
+                                            if ($.fn[func] !== undefined && _this.data('initiated') !== true) {
                                                 $.fn[func].call(_this);
-                                            } else {
-                                                console.log('$.fn['+func+'] is not a function');
+                                                _this.data('initiated', true);
                                             }
                                         } catch(e) {
                                             if (window.METRO_DEBUG) {
@@ -1005,12 +1037,17 @@ $.Metro.init = function(){
                     }
                 });
             };
+
             observer = new MutationObserver(observerCallback);
             observer.observe(document, observerOptions);
         }
     }
 };
 
+jQuery(document).ready(function(){
+    console.log('document ready');
+    $.Metro.init();
+});
 // Source: js/utils/easing.js
 	$.easing['jswing'] = $.easing['swing'];
 
@@ -1584,10 +1621,15 @@ $.widget("metro.accordion", {
         var o = this.options;
         var content = frame.children('.content');
 
-        if (typeof o.onFrameOpen === 'string') {
-            if (!window[o.onFrameOpen](frame)) {return false;}
-        } else {
+        if (typeof o.onFrameOpen === 'function') {
             if (!o.onFrameOpen(frame)) {return false;}
+        } else {
+            if (typeof window[o.onFrameOpen] === 'function') {
+                if (!window[o.onFrameOpen](frame)) {return false;}
+            } else {
+                var result = eval("(function(){"+o.onFrameOpen+"})");
+                if (!result.call(frame)) {return false;}
+            }
         }
 
         if (o.closeAny) {this._closeAllFrames();}
@@ -1595,46 +1637,52 @@ $.widget("metro.accordion", {
         content.slideDown(o.speed);
         frame.addClass('active');
 
-        if (typeof o.onFrameOpened === 'string') {
-            window[o.onFrameOpened](frame);
-        } else {
+        if (typeof o.onFrameOpened === 'function') {
             o.onFrameOpened(frame);
+        } else {
+            if (typeof window[o.onFrameOpened] === 'function') {
+                window[o.onFrameOpened](frame);
+            } else {
+                var result = eval("(function(){"+o.onFrameOpened+"})");
+                result.call(frame);
+            }
         }
     },
 
     _closeFrame: function(frame){
         var o = this.options;
         var content = frame.children('.content');
+        var result;
 
-        if (typeof o.onFrameClose === 'string') {
-            if (!window[o.onFrameClose](frame)) {return false;}
-        } else {
+        if (typeof o.onFrameClose === 'function') {
             if (!o.onFrameClose(frame)) {return false;}
+        } else {
+            if (typeof window[o.onFrameClose] === 'function') {
+                if (!window[o.onFrameClose](frame)) {return false;}
+            } else {
+                result = eval("(function(){"+o.onFrameClose+"})");
+                if (!result.call(frame)) {return false;}
+            }
         }
 
         content.slideUp(o.speed,function(){
             frame.removeClass("active");
         });
 
-        if (typeof o.onFrameClosed === 'string') {
-            window[o.onFrameClosed](frame);
-        } else {
+        if (typeof o.onFrameClosed === 'function') {
             o.onFrameClosed(frame);
+        } else {
+            if (typeof window[o.onFrameClosed] === 'function') {
+                window[o.onFrameClosed](frame);
+            } else {
+                result = eval("(function(){"+o.onFrameClosed+"})");
+                result.call(frame);
+            }
         }
     },
 
     _create: function(){
         var that = this, o = this.options, element = this.element;
-
-        this._setOptionsData();
-
-        that.init();
-        element.data('accordion', this);
-
-    },
-
-    _setOptionsData: function(){
-        var o = this.options;
 
         $.each(this.element.data(), function(key, value){
             if (key in o) {
@@ -1645,6 +1693,10 @@ $.widget("metro.accordion", {
                 }
             }
         });
+
+        that.init();
+        element.data('accordion', this);
+
     },
 
     _destroy: function(){
@@ -2097,6 +2149,7 @@ $.widget( "metro.group" , {
 
     _create: function () {
         var that = this, element = this.element, o = this.options;
+        var result;
 
         $.each(element.data(), function(key, value){
             if (key in o) {
@@ -2122,10 +2175,17 @@ $.widget( "metro.group" , {
 
         element.on('click', '.button, .toolbar-button', function(){
 
-            if (typeof o.onChange === 'string') {
-                if (!window[o.onChange]($(this).data('index'), this)) {return false;}
+            var button = $(this), index = button.data('index');
+
+            if (typeof o.onChange === 'function') {
+                if (!o.onChange(index, button)) {return false;}
             } else {
-                if (!o.onChange($(this).data('index'), this)) {return false;}
+                if (typeof window[o.onChange] === 'function') {
+                    if (!window[o.onChange](index, button)) {return false;}
+                } else {
+                    result = eval("(function(){"+o.onChange+"})");
+                    if (!result.call(index, button)) {return false;}
+                }
             }
 
             if (o.groupType === 'one-state') {
@@ -2135,10 +2195,15 @@ $.widget( "metro.group" , {
                 $(this).toggleClass('active');
             }
 
-            if (typeof o.onChanged === 'string') {
-                window[o.onChanged]($(this).data('index'), this);
+            if (typeof o.onChanged === 'function') {
+                o.onChanged(index, button);
             } else {
-                o.onChanged($(this).data('index'), this);
+                if (typeof window[o.onChanged] === 'function') {
+                    window[o.onChanged](index, button);
+                } else {
+                    result = eval("(function(){"+o.onChanged+"})");
+                    result.call(index, button);
+                }
             }
         });
 
@@ -2220,7 +2285,7 @@ $.widget("metro.calendar", {
             o.maxDate = new Date(o.maxDate+'T00:00:00Z');
         }
 
-        console.log(window.METRO_LOCALES);
+        //console.log(window.METRO_LOCALES);
 
         this.locales = window.METRO_LOCALES;
 
@@ -2423,17 +2488,8 @@ $.widget("metro.calendar", {
         }
 
         tr.appendTo(table);
-
         this._renderButtons(table);
-
         table.appendTo(this.element);
-
-        //if (typeof  o.getDates == 'string') {
-        //    window[o.getDates](this.element.data('_storage'));
-        //} else {
-        //    o.getDates(this.element.data('_storage'));
-        //}
-
     },
 
     _renderMonths: function(){
@@ -2603,17 +2659,15 @@ $.widget("metro.calendar", {
                 }
 
 
-                //console.log(o.getDates);
-                //if (typeof o.getDates == 'string') {
-                //    window[o.getDates](that.element.data('_storage'));
-                //} else {
-                //    o.getDates(that.element.data('_storage'));
-                //}
-
-                if (typeof  o.dayClick === 'string') {
-                    window[o.dayClick](d, d0);
-                } else {
+                if (typeof o.dayClick === 'function') {
                     o.dayClick(d, d0);
+                } else {
+                    if (typeof window[o.dayClick] === 'function') {
+                        window[o.dayClick](d, d0);
+                    } else {
+                        var result = eval("(function(){"+o.dayClick+"})");
+                        result.call(d, d0);
+                    }
                 }
             });
         } else if (this._mode === 'month') {
@@ -3103,6 +3157,171 @@ $.widget("metro.carousel", {
     }
 });
 
+// Source: js/widgets/charm.js
+$.widget( "metro.charm" , {
+
+    version: "3.0.0",
+
+    options: {
+        position: "right",
+        opacity: 1,
+        outside: false,
+        timeout: 0,
+        duration: 400
+    },
+
+    _create: function () {
+        var that = this, element = this.element, o = this.options;
+
+        $.each(element.data(), function(key, value){
+            if (key in o) {
+                try {
+                    o[key] = $.parseJSON(value);
+                } catch (e) {
+                    o[key] = value;
+                }
+            }
+        });
+
+
+        this._createCharm();
+
+        element.data('charm', this);
+    },
+
+    _createCharm: function(){
+        var that = this, element = this.element, o = this.options;
+
+        element.addClass("charm").addClass(o.position+"-side").css({opacity: o.opacity}).hide();
+
+        var closer = $("<span/>").addClass("charm-closer").appendTo(element);
+        closer.on('click', function(){
+            that.close();
+        });
+
+        if (o.outside === true) {
+            element.on('mouseleave', function(e){
+                that.close();
+            });
+        }
+    },
+
+    _showCharm: function(){
+        var that = this, element = this.element, o = this.options;
+        var size;
+
+        if (o.position === "left" || o.position === "right") {
+            size = element.outerWidth();
+            if (o.position === "left") {
+                element.css({
+                    left: -size
+                }).show().animate({
+                    left: 0
+                }, o.duration);
+            } else {
+                element.css({
+                    right: -size
+                }).show().animate({
+                    right: 0
+                }, o.duration);
+            }
+        } else {
+            size = element.outerHeight();
+            if (o.position === "top") {
+                element.css({
+                    top: -size
+                }).show().animate({
+                    top: 0
+                }, o.duration);
+            } else {
+                element.css({
+                    bottom: -size
+                }).show().animate({
+                    bottom: 0
+                }, o.duration);
+            }
+        }
+
+        if (o.timeout > 0) {
+            this._timeout_interval = setInterval(function(){
+                if (!element.is(":hover")) {
+                    that.close();
+                    clearInterval(this._timeout_interval);
+                }
+            }, o.timeout);
+        }
+    },
+
+    _hideCharm: function(){
+        var that = this, element = this.element, o = this.options;
+        var size;
+
+        if (o.position === "left" || o.position === "right") {
+            size = element.outerWidth();
+            if (o.position === "left") {
+                element.animate({
+                    left: -size
+                }, o.duration, function(){
+                    element.hide();
+                });
+            } else {
+                element.animate({
+                    right: -size
+                }, o.duration, function(){
+                    element.hide();
+                });
+            }
+        } else {
+            size = element.outerHeight();
+            if (o.position === "top") {
+                element.animate({
+                    top: -size
+                }, o.duration, function(){
+                    element.hide();
+                });
+            } else {
+                element.animate({
+                    bottom: -size
+                }, o.duration, function(){
+                    element.hide();
+                });
+            }
+        }
+
+        clearInterval(this._timeout_interval);
+    },
+
+    open: function(){
+        var that = this, element = this.element, o = this.options;
+
+        if (element.data("opened") === true) {
+            return;
+        }
+
+        element.data("opened", true);
+        this._showCharm();
+    },
+
+    close: function(){
+        var that = this, element = this.element, o = this.options;
+
+        if (element.data("opened") === false) {
+            return;
+        }
+
+        element.data("opened", false);
+
+        this._hideCharm();
+    },
+
+    _destroy: function () {
+    },
+
+    _setOption: function ( key, value ) {
+        this._super('_setOption', key, value);
+    }
+});
+
 // Source: js/widgets/countdown.js
 $.widget( "metro.countdown" , {
 
@@ -3256,6 +3475,8 @@ $.widget( "metro.countdown" , {
         }, 500);
 
         this._interval = setInterval(function(){
+            var result;
+
             left = Math.floor((that._alarmOn - (new Date())) / 1000);
             if (left < 0) {left = 0;}
 
@@ -3286,10 +3507,15 @@ $.widget( "metro.countdown" , {
             s = left;
             that._update('seconds', s);
 
-            if (typeof o.onTick === 'string') {
-                window[o.onTick](d, h, m, s);
-            } else {
+            if (typeof o.onTick === 'function') {
                 o.onTick(d, h, m, s);
+            } else {
+                if (typeof window[o.onTick] === 'function') {
+                    window[o.onTick](d, h, m, s);
+                } else {
+                    result = eval("(function(){"+o.onTick+"})");
+                    result.call(d, h, m, s);
+                }
             }
 
             //that._blink();
@@ -3297,10 +3523,15 @@ $.widget( "metro.countdown" , {
             if (d === 0 && h === 0 && m === 0 && s === 0) {
                 element.find('.part').addClass('disabled');
 
-                if (typeof o.onStop === 'string') {
-                    window[o.onStop]();
-                } else {
+                if (typeof o.onStop === 'function') {
                     o.onStop();
+                } else {
+                    if (typeof window[o.onStop] === 'function') {
+                        window[o.onStop]();
+                    } else {
+                        result = eval("(function(){"+o.onStop+"})");
+                        result.call();
+                    }
                 }
 
                 that._stop('all');
@@ -3409,7 +3640,7 @@ $.widget("metro.datepicker", {
         buttonToday: true,
         buttonClear: true,
         condensedGrid: false,
-        selected: function(d, d0){}
+        onSelect: function(d, d0){}
     },
 
     _calendar: undefined,
@@ -3502,8 +3733,18 @@ $.widget("metro.datepicker", {
                 that.element.children("input[type=text]").val(d);
                 that.element.children("input[type=text]").trigger('change', d0);
                 that.element.children("input[type=text]").blur();
-                that.options.selected(d, d0);
                 that._hide();
+
+                if (typeof o.onSelect === 'function') {
+                    o.onSelect(d, d0);
+                } else {
+                    if (typeof window[o.onSelect] === 'function') {
+                        window[o.onSelect](d, d0);
+                    } else {
+                        var result = eval("(function(){"+o.onSelect+"})");
+                        result.call(d, d0);
+                    }
+                }
             }
         });
 
@@ -3700,10 +3941,15 @@ $.widget( "metro.dialog" , {
 
         element.fadeIn();
 
-        if (typeof o.onDialogOpen === 'string') {
-            window[o.onDialogOpen](element);
-        } else {
+        if (typeof o.onDialogOpen === 'function') {
             o.onDialogOpen(element);
+        } else {
+            if (typeof window[o.onDialogOpen] === 'function') {
+                window[o.onDialogOpen](element);
+            } else {
+                var result = eval("(function(){"+o.onDialogOpen+"})");
+                result.call(element);
+            }
         }
 
         if (o.hide && parseInt(o.hide) > 0) {
@@ -3726,10 +3972,15 @@ $.widget( "metro.dialog" , {
 
         element.fadeOut();
 
-        if (typeof o.onDialogClose === 'string') {
-            window[o.onDialogClose](element);
-        } else {
+        if (typeof o.onDialogClose === 'function') {
             o.onDialogClose(element);
+        } else {
+            if (typeof window[o.onDialogClose] === 'function') {
+                window[o.onDialogClose](element);
+            } else {
+                var result = eval("(function(){"+o.onDialogClose+"})");
+                result.call(element);
+            }
         }
     },
 
@@ -3749,7 +4000,9 @@ $.widget("metro.dropdown", {
     options: {
         effect: window.METRO_SHOW_TYPE,
         toggleElement: false,
-        noClose: false
+        noClose: false,
+        onDrop: function(object){},
+        onUp: function(object){}
     },
 
     _create: function(){
@@ -3823,7 +4076,7 @@ $.widget("metro.dropdown", {
         $(document).on('click', function(e){
             $('[data-role=dropdown]').each(function(i, el){
                 if (!$(el).hasClass('keep-open') && $(el).css('display')==='block') {
-                    $(el).hide();
+                    that._close(el);
                 }
             });
         });
@@ -3832,21 +4085,51 @@ $.widget("metro.dropdown", {
     },
 
     _open: function(el){
+        var parent = this.element.parent(), o = this.options;
+        var toggle = o.toggleElement ? $(o.toggleElement) : parent.children('.dropdown-toggle').length > 0 ? parent.children('.dropdown-toggle') : parent.children('a:nth-child(1)');
+
         switch (this.options.effect) {
             case 'fade': $(el).fadeIn('fast'); break;
             case 'slide': $(el).slideDown('fast'); break;
             default: $(el).show();
         }
         this._trigger("onOpen", null, el);
+        toggle.addClass('active-toggle');
+
+        if (typeof o.onDrop === 'function') {
+            o.onDrop(el);
+        } else {
+            if (typeof window[o.onDrop] === 'function') {
+                window[o.onDrop](el);
+            } else {
+                var result = eval("(function(){"+o.onDrop+"})");
+                result.call(el);
+            }
+        }
     },
 
     _close: function(el){
+        var parent = $(el).parent(), o = this.options;
+        var toggle = o.toggleElement ? $(o.toggleElement) : parent.children('.dropdown-toggle').length > 0 ? parent.children('.dropdown-toggle') : parent.children('a:nth-child(1)');
+
         switch (this.options.effect) {
             case 'fade': $(el).fadeOut('fast'); break;
             case 'slide': $(el).slideUp('fast'); break;
             default: $(el).hide();
         }
         this._trigger("onClose", null, el);
+        toggle.removeClass('active-toggle');
+
+        if (typeof o.onUp === 'function') {
+            o.onUp(el);
+        } else {
+            if (typeof window[o.onUp] === 'function') {
+                window[o.onUp](el);
+            } else {
+                var result = eval("(function(){"+o.onUp+"})");
+                result.call(el);
+            }
+        }
     },
 
     _destroy: function(){
@@ -3975,6 +4258,107 @@ $.widget( "metro.fitImage" , {
         //element.css('display', 'none');
         element.remove();
 
+    },
+
+    _destroy: function () {
+    },
+
+    _setOption: function ( key, value ) {
+        this._super('_setOption', key, value);
+    }
+});
+
+// Source: js/widgets/fluentmenu.js
+$.widget( "metro.fluentmenu" , {
+
+    version: "3.0.0",
+
+    options: {
+        onSpecialClick: function(a, li){},
+        onTabClick: function(a, li){},
+        onTabChange: function(a, li){}
+    },
+
+    _create: function () {
+        var that = this, element = this.element, o = this.options;
+
+        $.each(element.data(), function(key, value){
+            if (key in o) {
+                try {
+                    o[key] = $.parseJSON(value);
+                } catch (e) {
+                    o[key] = value;
+                }
+            }
+        });
+
+        this._createMenu();
+
+        element.data('fluentmenu', this);
+
+    },
+
+    _createMenu: function(){
+        var that = this, element = this.element, o = this.options;
+
+        element.on("click", ".tabs-holder > li > a", function(e){
+            var a = $(this);
+            var li = a.parent('li');
+            var result;
+
+            if (li.hasClass('special')) {
+                if (typeof o.onSpecialClick === 'function') {
+                    o.onSpecialClick(a, li);
+                } else {
+                    if (typeof window[o.onSpecialClick] === 'function') {
+                        window[o.onSpecialClick](a, li);
+                    } else {
+                        result = eval("(function(){"+o.onSpecialClick+"})");
+                        result.call(a, li);
+                    }
+                }
+            } else {
+                var panel = $(a.attr('href'));
+                that._hidePanels();
+                that._showPanel(panel);
+                element.find('.tabs-holder > li').removeClass('active');
+                a.parent('li').addClass('active');
+
+                if (typeof o.onTabClick === 'function') {
+                    o.onTabClick(a, li);
+                } else {
+                    if (typeof window[o.onTabClick] === 'function') {
+                        window[o.onTabClick](a, li);
+                    } else {
+                        result = eval("(function(){"+o.onTabClick+"})");
+                        result.call(a, li);
+                    }
+                }
+
+                if (typeof o.onTabChange === 'function') {
+                    o.onTabChange(a, li);
+                } else {
+                    if (typeof window[o.onTabChange] === 'function') {
+                        window[o.onTabChange](a, li);
+                    } else {
+                        result = eval("(function(){"+o.onTabChange+"})");
+                        result.call(a, li);
+                    }
+                }
+            }
+            e.preventDefault();
+        });
+    },
+
+    _hidePanels: function(){
+        this.element.find('.tab-panel').hide();
+    },
+
+    _showPanel: function(panel){
+        if (panel == undefined) {
+            panel = this.element.find('.tabs-holder li.active a').attr('href');
+        }
+        $(panel).show();
     },
 
     _destroy: function () {
@@ -4361,7 +4745,8 @@ $.widget( "metro.keypad" , {
         target: false,
         shuffle: false,
         length: false,
-        keys: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
+        keys: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'],
+        onKey: function(key){}
     },
 
     //_keys: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'],
@@ -4389,7 +4774,7 @@ $.widget( "metro.keypad" , {
 
     },
 
-    _shuffleKeys: function(keypad){
+    _shuffleKeys: function(){
         var that = this, element = this.element, o = this.options;
         var keys = o.keys.slice(0);
         var keypad = this._keypad;
@@ -4468,7 +4853,6 @@ $.widget( "metro.keypad" , {
             var key = $(this);
 
             if (o.target) {
-
                 if (key.data('key') !== '&larr;' && key.data('key') !== '&times;') {
                     if (o.length && $(o.target).val().length === o.length) {
                         return false;
@@ -4482,6 +4866,17 @@ $.widget( "metro.keypad" , {
                         var val = $(o.target).val();
                         $(o.target).val(val.substring(0, val.length - 1))
                     }
+                }
+            }
+
+            if (typeof o.onKey === 'function') {
+                o.onKey(key);
+            } else {
+                if (typeof window[o.onKey] === 'function') {
+                    window[o.onKey](key);
+                } else {
+                    var result = eval("(function(){"+o.onKey+"})");
+                    result.call(key);
                 }
             }
 
@@ -4510,7 +4905,8 @@ $.widget( "metro.listview" , {
     options: {
         onExpand: function(group){},
         onCollapse: function(group){},
-        onActivate: function(list){}
+        onActivate: function(list){},
+        onListClick: function(list){}
     },
 
     _create: function () {
@@ -4551,6 +4947,7 @@ $.widget( "metro.listview" , {
 
         element.on('click', '.list-group-toggle', function(e){
             var toggle = $(this), parent = toggle.parent();
+            var result;
 
             if (toggle.parent().hasClass('keep-open')) {
                 return;
@@ -4560,17 +4957,27 @@ $.widget( "metro.listview" , {
 
             if (!parent.hasClass('collapsed')) {
                 toggle.siblings('.list-group-content').slideDown('fast');
-                if (typeof o.onExpand === 'string') {
-                    window[o.onExpand](parent);
-                } else {
+                if (typeof o.onExpand === 'function') {
                     o.onExpand(parent);
+                } else {
+                    if (typeof window[o.onExpand] === 'function') {
+                        window[o.onExpand](parent);
+                    } else {
+                        result = eval("(function(){"+o.onExpand+"})");
+                        result.call(parent);
+                    }
                 }
             } else {
                 toggle.siblings('.list-group-content').slideUp('fast');
-                if (typeof o.onCollapse === 'string') {
-                    window[o.onCollapse](parent);
-                } else {
+                if (typeof o.onCollapse === 'function') {
                     o.onCollapse(parent);
+                } else {
+                    if (typeof window[o.onCollapse] === 'function') {
+                        window[o.onCollapse](parent);
+                    } else {
+                        result = eval("(function(){"+o.onCollapse+"})");
+                        result.call(parent);
+                    }
                 }
             }
             e.preventDefault();
@@ -4579,13 +4986,29 @@ $.widget( "metro.listview" , {
 
         element.on('click', '.list', function(e){
             var list = $(this);
+            var result;
 
             element.find('.list').removeClass('active');
             list.addClass('active');
-            if (typeof o.onActivate === 'string') {
-                window[o.onActivate](list);
-            } else {
+            if (typeof o.onActivate === 'function') {
                 o.onActivate(list);
+            } else {
+                if (typeof window[o.onActivate] === 'function') {
+                    window[o.onActivate](list);
+                } else {
+                    result = eval("(function(){"+o.onActivate+"})");
+                    result.call(list);
+                }
+            }
+            if (typeof o.onListClick === 'function') {
+                o.onListClick(list);
+            } else {
+                if (typeof window[o.onListClick] === 'function') {
+                    window[o.onListClick](list);
+                } else {
+                    result = eval("(function(){"+o.onListClick+"})");
+                    result.call(list);
+                }
             }
             e.preventDefault();
             e.stopPropagation();
@@ -4740,6 +5163,8 @@ $.widget("metro.panel", {
     version: "3.0.0",
 
     options: {
+        onExpand: function(panel){},
+        onCollapse: function(panel){}
     },
 
     _create: function(){
@@ -4762,13 +5187,35 @@ $.widget("metro.panel", {
             var content = element.children(".content");
 
             toggle.on("click", function(){
+                var result;
+
                 if (element.hasClass("collapsed")) {
                     content.slideDown('fast', function(){
                         element.removeClass('collapsed');
+                        if (typeof o.onExpand === 'function') {
+                            o.onExpand(element);
+                        } else {
+                            if (typeof window[o.onExpand] === 'function') {
+                                window[o.onExpand](element);
+                            } else {
+                                result = eval("(function(){"+o.onExpand+"})");
+                                result.call(element);
+                            }
+                        }
                     });
                 } else {
                     content.slideUp('fast', function(){
                         element.addClass('collapsed');
+                        if (typeof o.onCollapse === 'function') {
+                            o.onCollapse(element);
+                        } else {
+                            if (typeof window[o.onCollapse] === 'function') {
+                                window[o.onCollapse](element);
+                            } else {
+                                result = eval("(function(){"+o.onCollapse+"})");
+                                result.call(element);
+                            }
+                        }
                     });
                 }
 
@@ -4836,7 +5283,8 @@ $.widget("metro.popover", {
         popoverBackground: 'bg-cyan',
         popoverColor: 'fg-white',
         popoverMode: 'none', //click, hover,
-        popoverShadow: true
+        popoverShadow: true,
+        onPopup: function(popover){}
     },
 
     popover: {},
@@ -4907,7 +5355,9 @@ $.widget("metro.popover", {
         this.setText(o.popoverText);
 
         element.on(o.popoverMode, function(e){
-            if (!popover.data('visible')) {that.show();}
+            if (!popover.data('visible')) {
+                that.show();
+            }
         });
 
         $(window).scroll(function(){
@@ -4957,6 +5407,18 @@ $.widget("metro.popover", {
 
         popover.fadeIn(function(){
             popover.data('visible', true);
+
+            if (typeof o.onPopup === 'function') {
+                o.onPopup(popover);
+            } else {
+                if (typeof window[o.onPopup] === 'function') {
+                    window[o.onPopup](popover);
+                } else {
+                    var result = eval("(function(){"+o.onPopup+"})");
+                    result.call(popover);
+                }
+            }
+
             setTimeout(function(){
                 popover.fadeOut(
                     function(){popover.data('visible', false);}
@@ -5242,7 +5704,8 @@ $.widget( "metro.progressBar" , {
     options: {
         color: 'default',
         colors: false,
-        value: 0
+        value: 0,
+        onProgress: function(value){}
     },
 
     colorsDim: {},
@@ -5317,21 +5780,24 @@ $.widget( "metro.progressBar" , {
                         return true;
                     }
                 });
-                //$.each(o.colors, function(c, v){
-                //    gradient.push(c + " " + v + "%");
-                //});
-                //console.log(gradient.join(","));
-                //
-                //bar.css({
-                //    'background': "linear-gradient(to right, " + gradient.join(",") + ")"
-                //});
             }
 
             o.value = value;
 
             bar.animate({
                 width: o.value + '%'
-            }, 100);
+            }, 100, function(){
+                if (typeof o.onProgress === 'function') {
+                    o.onProgress(value);
+                } else {
+                    if (typeof window[o.onProgress] === 'function') {
+                        window[o.onProgress](value);
+                    } else {
+                        var result = eval("(function(){"+o.onProgress+"})");
+                        result.call(value);
+                    }
+                }
+            });
         } else {
             return this.options.value;
         }
@@ -5430,20 +5896,30 @@ $.widget( "metro.rating" , {
                 return false;
             }
 
-            if (typeof o.onRate === 'string') {
-                if (!window[o.onRate]($(this).data('star-value'), this, that)) {
-                    return false;
-                }
+            var result, value = $(this).data('star-value'),
+                star = this,
+                rating = that;
+
+            if (typeof o.onRate === 'function') {
+                if (!o.onRate(value, star, rating)) {return false;}
             } else {
-                if (!o.onRate($(this).data('star-value'), this, that)) {
-                    return false;
+                if (typeof window[o.onRate] === 'function') {
+                    if (!window[o.onRate](value, star, rating)) {return false;}
+                } else {
+                    result = eval("(function(){"+o.onRate+"})");
+                    if (!result.call(value, star, rating)) {return false;}
                 }
             }
 
-            if (typeof o.onRated === 'string') {
-                window[o.onRated]($(this).data('star-value'), this, that);
+            if (typeof o.onRated === 'function') {
+                o.onRated(value, star, rating);
             } else {
-                o.onRated($(this).data('star-value'), this, that);
+                if (typeof window[o.onRated] === 'function') {
+                    window[o.onRated](value, star, rating);
+                } else {
+                    result = eval("(function(){"+o.onRated+"})");
+                    result.call(value, star, rating);
+                }
             }
 
             that._value = $(this).data('star-value');
@@ -5586,7 +6062,6 @@ $.widget("metro.slider", {
         target: false,
 
         onChange: function(value, slider){},
-        onChanged: function(value, slider){},
 
         _slider : {
             vertical: false,
@@ -5645,14 +6120,14 @@ $.widget("metro.slider", {
         this._initPoints();
         this._placeMarker(o.position);
 
-        addTouchEvents(element[0]);
+        var event_down = isTouchDevice() ? 'touchstart' : 'mousedown';
 
-        element.children('.marker').on('mousedown', function (e) {
+        element.children('.marker').on(event_down, function (e) {
             e.preventDefault();
             that._startMoveMarker(e);
         });
 
-        element.on('mousedown', function (e) {
+        element.on(event_down, function (e) {
             e.preventDefault();
             that._startMoveMarker(e);
         });
@@ -5665,26 +6140,22 @@ $.widget("metro.slider", {
         var element = this.element, o = this.options, that = this, hint = element.children('.slider-hint');
         var returnedValue;
 
-        $(element).on("mousemove", function (event) {
+        var event_move = isTouchDevice() ? 'touchmove' : 'mousemove';
+        var event_up = isTouchDevice() ? 'touchend' : 'mouseup mouseleave';
+
+        $(element).on(event_move, function (event) {
             that._movingMarker(event);
             if (!element.hasClass('permanent-hint')) {
                 hint.css('display', 'block');
             }
         });
-        $(element).on("mouseup mouseleave", function () {
+        $(element).on(event_up, function () {
             $(element).off('mousemove');
             $(element).off('mouseup');
             element.data('value', o.position);
             element.trigger('changed', o.position);
 
             returnedValue = o.returnType === 'value' ? that._valueToRealValue(o.position) : o.position;
-
-            if (typeof o.onChanged === 'string') {
-                window[o.onChanged](returnedValue, element);
-            } else {
-                o.onChanged(returnedValue, element);
-            }
-
 
             if (!element.hasClass('permanent-hint')) {
                 hint.css('display', 'none');
@@ -5696,7 +6167,7 @@ $.widget("metro.slider", {
         this._movingMarker(e);
     },
 
-    _movingMarker: function (event) {
+    _movingMarker: function (ev) {
         var element = this.element, o = this.options;
         var cursorPos,
             percents,
@@ -5708,6 +6179,10 @@ $.widget("metro.slider", {
             sliderEnd = o._slider.stop,
             sliderLength = o._slider.length,
             markerSize = o._slider.marker;
+
+        var event = !isTouchDevice() ? ev.originalEvent : ev.originalEvent.touches[0];
+
+        //console.log(event);
 
         if (vertical) {
             cursorPos = event.pageY - sliderOffset;
@@ -5740,10 +6215,15 @@ $.widget("metro.slider", {
             $(o.target).val(returnedValue);
         }
 
-        if (typeof o.onChange === 'string') {
-            window[o.onChange](returnedValue, element);
-        } else {
+        if (typeof o.onChange === 'function') {
             o.onChange(returnedValue, element);
+        } else {
+            if (typeof window[o.onChange] === 'function') {
+                window[o.onChange](returnedValue, element);
+            } else {
+                var result = eval("(function(){"+o.onChange+"})");
+                result.call(returnedValue, element);
+            }
         }
     },
 
@@ -5902,7 +6382,7 @@ $.widget("metro.slider", {
     },
 
     value: function (value) {
-        var o = this.options, returnedValue;
+        var element = this.element, o = this.options, returnedValue;
 
         if (typeof value !== 'undefined') {
 
@@ -5915,10 +6395,15 @@ $.widget("metro.slider", {
             returnedValue = o.returnType === 'value' ? this._valueToRealValue(o.position) : o.position;
 
 
-            if (typeof o.onChange === 'string') {
-                window[o.onChange](returnedValue, this.element);
+            if (typeof o.onChange === 'function') {
+                o.onChange(returnedValue, element);
             } else {
-                o.onChange(returnedValue, this.element);
+                if (typeof window[o.onChange] === 'function') {
+                    window[o.onChange](returnedValue, element);
+                } else {
+                    var result = eval("(function(){"+o.onChange+"})");
+                    result.call(returnedValue, element);
+                }
             }
 
             return this;
@@ -5983,10 +6468,15 @@ $.widget("metro.stepper", {
             var step = $(this).data('step');
 
 
-            if (typeof o.onStepClick === 'string') {
-                window[o.onStepClick](step - 1, step);
-            } else {
+            if (typeof o.onStepClick === 'function') {
                 o.onStepClick(step - 1, step);
+            } else {
+                if (typeof window[o.onStepClick] === 'function') {
+                    window[o.onStepClick](step - 1, step);
+                } else {
+                    var result = eval("(function(){"+o.onStepClick+"})");
+                    result.call(step - 1, step);
+                }
             }
 
             element.trigger("stepclick", step);
@@ -6036,10 +6526,15 @@ $.widget("metro.stepper", {
             if (i === step - 1) {
                 $(s).addClass('current') ;
 
-                if (typeof  o.onStep === 'string') {
-                    window[o.onStep](i+1, s);
-                } else {
+                if (typeof o.onStep === 'function') {
                     o.onStep(i+1, s);
+                } else {
+                    if (typeof window[o.onStep] === 'function') {
+                        window[o.onStep](i+1, s);
+                    } else {
+                        var result = eval("(function(){"+o.onStep+"})");
+                        result.call(i+1, s);
+                    }
                 }
             }
         });
@@ -6104,8 +6599,7 @@ $.widget("metro.streamer", {
         slideToTime: "default",
         slideSleep: 1000,
         slideSpeed: 1000,
-        onClick: function(event){},
-        onLongClick: function(event){}
+        onClick: function(event){}
     },
 
     _create: function(){
@@ -6215,11 +6709,25 @@ $.widget("metro.streamer", {
         var events = element.find(".event");
 
         events.on('click', function(e){
+
+            var event = $(this);
+
             if (e.ctrlKey) {
                 $(this).toggleClass("selected");
             }
+
+            if (typeof o.onClick === 'function') {
+                o.onClick(event);
+            } else {
+                if (typeof window[o.onClick] === 'function') {
+                    window[o.onClick](event);
+                } else {
+                    var result = eval("(function(){"+o.onClick+"})");
+                    result.call(event);
+                }
+            }
+
             e.preventDefault();
-            o.onClick($(this));
         });
 
         element.find(".js-go-previous-time").on('click', function(e){
@@ -6307,7 +6815,7 @@ $.widget( "metro.tabControl" , {
         openTarget: false,
         saveState: false,
         onTabClick: function(tab){return true;},
-        onTabChanged: function(tab){},
+        onTabChange: function(tab){},
         _current: {tab: false, frame: false}
     },
 
@@ -6426,14 +6934,20 @@ $.widget( "metro.tabControl" , {
         var frames = element.children('.frames').children('div');
 
         element.on('click', '.tabs > li > a', function(e){
+            var result;
             var tab = $(this), target = tab.attr('href'), frame = $(target);
 
             if (tab.parent().hasClass('disabled')) {return false;}
 
-            if (typeof o.onTabClick === 'string') {
-                if (!window[o.onTabClick](tab)) {return false;}
-            } else {
+            if (typeof o.onTabClick === 'function') {
                 if (!o.onTabClick(tab)) {return false;}
+            } else {
+                if (typeof window[o.onTabClick] === 'function') {
+                    if (!window[o.onTabClick](tab)) {return false;}
+                } else {
+                    result = eval("(function(){"+o.onTabClick+"})");
+                    if (!result.call(tab)) {return false;}
+                }
             }
 
             if (target.isUrl()) {
@@ -6446,10 +6960,15 @@ $.widget( "metro.tabControl" , {
 
             that._openTab();
 
-            if (typeof o.onTabChanged === 'string') {
-                window[o.onTabChanged](tab);
+            if (typeof o.onTabChange === 'function') {
+                o.onTabChange(tab);
             } else {
-                o.onTabChanged(tab);
+                if (typeof window[o.onTabChange] === 'function') {
+                    window[o.onTabChange](tab);
+                } else {
+                    result = eval("(function(){"+o.onTabChange+"})");
+                    result.call(tab);
+                }
             }
 
             e.preventDefault();
@@ -6482,7 +7001,8 @@ $.widget( "metro.tile" , {
         effect: 'slideLeft',
         period: 4000,
         duration: 700,
-        easing: 'doubleSqrt'
+        easing: 'doubleSqrt',
+        onClick: function(tile){}
     },
 
     _frames: {},
@@ -6506,13 +7026,38 @@ $.widget( "metro.tile" , {
 
         this._createTransformTile();
         this._createLiveTile();
+        this._createEvents();
 
         element.data('tile', this);
 
     },
 
+    _createEvents: function(){
+        var that = this, element = this.element, o = this.options;
+        var event = isTouchDevice() ? 'touchstart' : 'click';
+
+        element.on(event, function(e){
+            if (element[0].tagName === "A") {
+
+            } else {
+                if (typeof o.onClick === 'function') {
+                    o.onClick(element);
+                } else {
+                    if (typeof window[o.onClick] === 'function') {
+                        window[o.onClick](element);
+                    } else {
+                        var result = eval("(function(){"+o.onClick+"})");
+                        result.call(element);
+                    }
+                }
+            }
+        });
+    },
+
     _createLiveTile: function(){
         var that = this, element = this.element, o = this.options;
+        var event_down = isTouchDevice() ? 'touchstart' : 'mouseenter';
+        var event_up = isTouchDevice() ? 'touchend' : 'mouseleave';
 
         this._frames = element.find(".live-slide");
         if (this._frames.length <= 1) {return false;}
@@ -6524,11 +7069,11 @@ $.widget( "metro.tile" , {
             'height': element.height()
         };
 
-        element.on('mouseenter', function(){
+        element.on(event_down, function(){
             that.stop();
         });
 
-        element.on('mouseleave', function(){
+        element.on(event_up, function(){
             that.start();
         });
 
@@ -6641,8 +7186,12 @@ $.widget( "metro.tile" , {
     _createTransformTile: function(){
         var that = this, element = this.element, o = this.options;
         var dim = {w: element.width(), h: element.height()};
+        var event_down = isTouchDevice() ? 'touchstart' : 'mousedown';
+        var event_up = isTouchDevice() ? 'touchend' : 'mouseup';
+        var event_leave = isTouchDevice() ? 'touchend' : 'mouseleave';
 
-        element.on('mousedown', function(e){
+
+        element.on(event_down, function(e){
             var X = e.pageX - $(this).offset().left, Y = e.pageY - $(this).offset().top;
             var transform = 'top';
 
@@ -6665,14 +7214,14 @@ $.widget( "metro.tile" , {
             }
         });
 
-        element.on('mouseup', function(){
+        element.on(event_up, function(){
             $(this)
                 .removeClass("tile-transform-left")
                 .removeClass("tile-transform-right")
                 .removeClass("tile-transform-top")
                 .removeClass("tile-transform-bottom");
         });
-        element.on('mouseleave', function(){
+        element.on(event_leave, function(){
             $(this)
                 .removeClass("tile-transform-left")
                 .removeClass("tile-transform-right")
@@ -6697,6 +7246,7 @@ $.widget( "metro.treeview" , {
     options: {
         doubleClick: true,
         onClick: function(leaf, node, pnode, tree){},
+        onInputClick: function(leaf, node, pnode, tree){},
         onExpand: function(leaf, node, pnode, tree){},
         onCollapse: function(leaf, node, pnode, tree){}
     },
@@ -6859,10 +7409,15 @@ $.widget( "metro.treeview" , {
                 if (!check_disabled) {radio.prop('checked', true);}
             }
 
-            if (typeof o.onClick === 'string') {
-                window[o.onClick](leaf, parent, node, that);
+            if (typeof o.onInputClick === 'function') {
+                o.onInputClick(leaf, parent, node, that);
             } else {
-                o.onClick(leaf, parent, node, that);
+                if (typeof window[o.onInputClick] === 'function') {
+                    window[o.onInputClick](leaf, parent, node, that);
+                } else {
+                    var result = eval("(function(){"+o.onInputClick+"})");
+                    result.call(leaf, parent, node, that);
+                }
             }
         });
 
@@ -6874,16 +7429,22 @@ $.widget( "metro.treeview" , {
             element.find('.leaf').parent('li').removeClass('active');
             parent.addClass('active');
 
-            if (typeof o.onClick === 'string') {
-                window[o.onClick](leaf, parent, node, that);
-            } else {
+            if (typeof o.onClick === 'function') {
                 o.onClick(leaf, parent, node, that);
+            } else {
+                if (typeof window[o.onClick] === 'function') {
+                    window[o.onClick](leaf, parent, node, that);
+                } else {
+                    var result = eval("(function(){"+o.onClick+"})");
+                    result.call(leaf, parent, node, that);
+                }
             }
         });
 
         if (o.doubleClick) {
             element.on('dblclick', '.leaf', function (e) {
                 var leaf = $(this), parent = leaf.parent('li'), node = $(leaf.parents('.node')[0]);
+                var result;
 
                 if (parent.hasClass("keep-open")) {
                     return false;
@@ -6892,17 +7453,29 @@ $.widget( "metro.treeview" , {
                 parent.toggleClass('collapsed');
                 if (!parent.hasClass('collapsed')) {
                     parent.children('ul').fadeIn('fast');
-                    if (typeof o.onExpand === 'string') {
-                        window[o.onExpand](parent, leaf, node);
+
+                    if (typeof o.onExpand === 'function') {
+                        o.onExpand(parent, leaf, node, that);
                     } else {
-                        o.onExpand(parent, leaf, node);
+                        if (typeof window[o.onExpand] === 'function') {
+                            window[o.onExpand](parent, leaf, node, that);
+                        } else {
+                            result = eval("(function(){"+o.onExpand+"})");
+                            result.call(parent, leaf, node, that);
+                        }
                     }
                 } else {
                     parent.children('ul').fadeOut('fast');
-                    if (typeof o.onCollapse === 'string') {
-                        window[o.onCollapse](leaf, parent, node, that);
+
+                    if (typeof o.onCollapse === 'function') {
+                        o.onCollapse(parent, leaf, node, that);
                     } else {
-                        o.onCollapse(leaf, parent, node, that);
+                        if (typeof window[o.onCollapse] === 'function') {
+                            window[o.onCollapse](parent, leaf, node, that);
+                        } else {
+                            result = eval("(function(){"+o.onCollapse+"})");
+                            result.call(parent, leaf, node, that);
+                        }
                     }
                 }
                 e.stopPropagation();
@@ -6912,23 +7485,34 @@ $.widget( "metro.treeview" , {
 
         element.on('click', '.node-toggle', function(e){
             var leaf = $(this).siblings('.leaf'), parent = $(this).parent('li'), node = $(leaf.parents('.node')[0]);
+            var result;
 
             if (parent.hasClass("keep-open")) {return false;}
 
             parent.toggleClass('collapsed');
             if (!parent.hasClass('collapsed')) {
                 parent.children('ul').fadeIn('fast');
-                if (typeof o.onExpand === 'string') {
-                    window[o.onExpand](leaf, parent, node, that);
+                if (typeof o.onExpand === 'function') {
+                    o.onExpand(parent, leaf, node, that);
                 } else {
-                    o.onExpand(leaf, parent, node, that);
+                    if (typeof window[o.onExpand] === 'function') {
+                        window[o.onExpand](parent, leaf, node, that);
+                    } else {
+                        result = eval("(function(){"+o.onExpand+"})");
+                        result.call(parent, leaf, node, that);
+                    }
                 }
             } else {
                 parent.children('ul').fadeOut('fast');
-                if (typeof o.onCollapse === 'string') {
-                    window[o.onCollapse](leaf, parent, node, that);
+                if (typeof o.onCollapse === 'function') {
+                    o.onCollapse(parent, leaf, node, that);
                 } else {
-                    o.onCollapse(leaf, parent, node, that);
+                    if (typeof window[o.onCollapse] === 'function') {
+                        window[o.onCollapse](parent, leaf, node, that);
+                    } else {
+                        result = eval("(function(){"+o.onCollapse+"})");
+                        result.call(parent, leaf, node, that);
+                    }
                 }
             }
             e.stopPropagation();
@@ -7173,10 +7757,15 @@ $.widget( "metro.validator" , {
             var this_result = that.funcs[func](input.val(), arg);
 
             if (!this_result) {
-                if (typeof o.onErrorInput === 'string') {
-                    window[o.onErrorInput](input);
-                } else {
+                if (typeof o.onErrorInput === 'function') {
                     o.onErrorInput(input);
+                } else {
+                    if (typeof window[o.onErrorInput] === 'function') {
+                        window[o.onErrorInput](input);
+                    } else {
+                        result = eval("(function(){"+o.onErrorInput+"})");
+                        result.call(input);
+                    }
                 }
             }
 
@@ -7198,10 +7787,15 @@ $.widget( "metro.validator" , {
             result += !this_result ? 1 : 0;
         });
 
-        if (typeof o.onBeforeSubmit === 'string') {
-            result += !window[o.onBeforeSubmit](element, result) ? 1 : 0;
-        } else {
+        if (typeof o.onBeforeSubmit === 'function') {
             result += !o.onBeforeSubmit(element, result) ? 1 : 0;
+        } else {
+            if (typeof window[o.onBeforeSubmit] === 'function') {
+                result += window[o.onBeforeSubmit](element, result) ? 1 : 0;
+            } else {
+                var f0 = eval("(function(){"+o.onBeforeSubmit+"})");
+                result += f0.call(element, result) ? 1 : 0;
+            }
         }
 
         if (result !== 0) {
@@ -7209,7 +7803,16 @@ $.widget( "metro.validator" , {
             return false;
         }
 
-        result = (typeof o.onSubmit === 'string') ? window[o.onSubmit](element[0]) : result = o.onSubmit(element[0]);
+        if (typeof o.onSubmit === 'function') {
+            result = o.onSubmit(element[0]);
+        } else {
+            if (typeof window[o.onSubmit] === 'function') {
+                result = window[o.onSubmit](element[0]);
+            } else {
+                var f = eval("(function(){"+o.onSubmit+"})");
+                result = f.call(element[0]);
+            }
+        }
 
         submit.removeAttr('disabled').removeClass('disabled');
 
@@ -7648,10 +8251,15 @@ $.widget("metro.wizard", {
                     clickable: o.stepperClickable
                 }).on('stepclick', function(e, s){
                     that.stepTo(s);
-                    if (typeof o.onStepClick === 'string' ) {
-                        window[o.onStepClick](s);
-                    } else {
+                    if (typeof o.onStepClick === 'function') {
                         o.onStepClick(s);
+                    } else {
+                        if (typeof window[o.onStepClick] === 'function') {
+                            window[o.onStepClick](s);
+                        } else {
+                            var result = eval("(function(){"+o.onStepClick+"})");
+                            result.call(s);
+                        }
                     }
                 });
         }
@@ -7714,12 +8322,16 @@ $.widget("metro.wizard", {
                     }
                 }
                 cancel_button.on('click', function(){
-                    if (typeof  o.onCancel === 'string') {
-                        window[o.onCancel](that._currentStep+1, element);
-                    } else {
+                    if (typeof o.onCancel === 'function') {
                         o.onCancel(that._currentStep+1, element);
+                    } else {
+                        if (typeof window[o.onCancel] === 'function') {
+                            window[o.onCancel](that._currentStep+1, element);
+                        } else {
+                            var result = eval("(function(){"+o.onCancel+"})");
+                            result.call(that._currentStep+1, element);
+                        }
                     }
-
                 });
             }
             if (o.buttons.help) {
@@ -7740,10 +8352,15 @@ $.widget("metro.wizard", {
                     }
                 }
                 help_button.on('click', function(){
-                    if (typeof o.onHelp === 'string') {
-                        window[o.onHelp](that._currentStep+1, element);
-                    } else {
+                    if (typeof o.onHelp === 'function') {
                         o.onHelp(that._currentStep+1, element);
+                    } else {
+                        if (typeof window[o.onHelp] === 'function') {
+                            window[o.onHelp](that._currentStep+1, element);
+                        } else {
+                            var result = eval("(function(){"+o.onHelp+"})");
+                            result.call(that._currentStep+1, element);
+                        }
                     }
                 });
             }
@@ -7765,10 +8382,15 @@ $.widget("metro.wizard", {
                     }
                 }
                 prior_button.on('click', function(){
-                    if (typeof o.onPrior === 'string') {
-                        if (window[o.onPrior](that._currentStep+1, element)) {that.prior();}
-                    } else {
+                    if (typeof o.onPrior === 'function') {
                         if (o.onPrior(that._currentStep+1, element)) {that.prior();}
+                    } else {
+                        if (typeof window[o.onPrior] === 'function') {
+                            if (window[o.onPrior](that._currentStep+1, element)) {that.prior();}
+                        } else {
+                            var result = eval("(function(){"+o.onPrior+"})");
+                            if (result.call(that._currentStep+1, element)) {that.prior();}
+                        }
                     }
                 });
             }
@@ -7790,10 +8412,15 @@ $.widget("metro.wizard", {
                     }
                 }
                 next_button.on('click', function(){
-                    if (typeof o.onNext === 'string') {
-                        if (window[o.onNext](that._currentStep+1, element)) {that.next();}
-                    } else {
+                    if (typeof o.onNext === 'function') {
                         if (o.onNext(that._currentStep+1, element)) {that.next();}
+                    } else {
+                        if (typeof window[o.onNext] === 'function') {
+                            if (window[o.onNext](that._currentStep+1, element)) {that.next();}
+                        } else {
+                            var result = eval("(function(){"+o.onNext+"})");
+                            if (result.call(that._currentStep+1, element)) {that.next();}
+                        }
                     }
                 });
             }
@@ -7815,10 +8442,15 @@ $.widget("metro.wizard", {
                     }
                 }
                 finish_button.on('click', function(){
-                    if (typeof o.onFinish === 'string') {
-                        window[o.onFinish](that._currentStep+1, element);
-                    } else {
+                    if (typeof o.onFinish === 'function') {
                         o.onFinish(that._currentStep+1, element);
+                    } else {
+                        if (typeof window[o.onFinish] === 'function') {
+                            window[o.onFinish](that._currentStep+1, element);
+                        } else {
+                            var result = eval("(function(){"+o.onFinish+"})");
+                            result.call(that._currentStep+1, element);
+                        }
                     }
                 });
             }
@@ -7826,7 +8458,7 @@ $.widget("metro.wizard", {
     },
 
     next: function(){
-        var o = this.options;
+        var element = this.element, that = this, o = this.options;
         var new_step = this._currentStep + 1;
 
         if (new_step === this._steps.length) {return false;}
@@ -7836,10 +8468,15 @@ $.widget("metro.wizard", {
         $(this._steps[new_step]).show();
 
 
-        if (typeof o.onPage === 'string') {
-            window[o.onPage](this._currentStep + 1, this.element);
+        if (typeof o.onPage === 'function') {
+            o.onPage(that._currentStep+1, element);
         } else {
-            o.onPage(this._currentStep + 1, this.element);
+            if (typeof window[o.onPage] === 'function') {
+                window[o.onPage](that._currentStep+1, element);
+            } else {
+                var result = eval("(function(){"+o.onPage+"})");
+                result.call(that._currentStep+1, element);
+            }
         }
 
         if (this._stepper !== undefined) {this._stepper.stepper('stepTo', this._currentStep + 1);}
@@ -7865,7 +8502,7 @@ $.widget("metro.wizard", {
     },
 
     prior: function(){
-        var new_step = this._currentStep - 1;
+        var element = this.element, that = this, new_step = this._currentStep - 1;
         var o = this.options;
 
         if (new_step < 0) {return false;}
@@ -7874,10 +8511,15 @@ $.widget("metro.wizard", {
         this._steps.hide();
         $(this._steps[new_step]).show();
 
-        if (typeof o.onPage === 'string') {
-            window[o.onPage](this._currentStep + 1, this.element);
+        if (typeof o.onPage === 'function') {
+            o.onPage(that._currentStep+1, element);
         } else {
-            o.onPage(this._currentStep + 1, this.element);
+            if (typeof window[o.onPage] === 'function') {
+                window[o.onPage](that._currentStep+1, element);
+            } else {
+                var result = eval("(function(){"+o.onPage+"})");
+                result.call(that._currentStep+1, element);
+            }
         }
 
         if (this._stepper !== undefined) {this._stepper.stepper('stepTo', this._currentStep + 1);}
@@ -7903,7 +8545,7 @@ $.widget("metro.wizard", {
     },
 
     stepTo: function(step){
-        var new_step = step - 1;
+        var element = this.element, that = this, new_step = step - 1;
         var o = this.options;
 
         if (new_step < 0) {return false;}
@@ -7911,10 +8553,15 @@ $.widget("metro.wizard", {
         this._steps.hide();
         $(this._steps[new_step]).show();
 
-        if (typeof o.onPage === 'string') {
-            window[o.onPage](this._currentStep + 1, this.element);
+        if (typeof o.onPage === 'function') {
+            o.onPage(that._currentStep+1, element);
         } else {
-            o.onPage(this._currentStep + 1, this.element);
+            if (typeof window[o.onPage] === 'function') {
+                window[o.onPage](that._currentStep+1, element);
+            } else {
+                var result = eval("(function(){"+o.onPage+"})");
+                result.call(that._currentStep+1, element);
+            }
         }
 
         if (this._stepper !== undefined) {this._stepper.stepper('stepTo', step);}
@@ -7959,10 +8606,12 @@ $.widget( "metro.wizard2" , {
             finish: 'OK',
             help: '?'
         },
-        onPrevClick: function(step){return true;},
-        onNextClick: function(step){return true;},
-        onFinishClick: function(step){},
-        onHelpClick: function(step){}
+        onPrior: function(page, wiz){return true;},
+        onNext: function(page, wiz){return true;},
+        onFinish: function(page, wiz){},
+        onHelp: function(page, wiz){},
+        onPage: function(page, wiz){}
+
     },
 
     _step: 1,
@@ -8027,34 +8676,54 @@ $.widget( "metro.wizard2" , {
         btn_prev = $("<button/>").html(o.buttonLabels.prev).addClass('button cycle-button medium-button wiz-btn-prev place-right').appendTo(bar);
 
         btn_help.on('click', function(){
-            if (typeof o.onHelpClick === 'string') {
-                window[o.onHelpClick](that._step);
+            if (typeof o.onHelp === 'function') {
+                o.onHelp(that._step, that);
             } else {
-                o.onHelpClick(that._step);
+                if (typeof window[o.onHelp] === 'function') {
+                    window[o.onHelp](that._step, that);
+                } else {
+                    var result = eval("(function(){"+o.onHelp+"})");
+                    result.call(that._step, that);
+                }
             }
         });
 
         btn_finish.on('click', function(){
-            if (typeof o.onFinishClick === 'string') {
-                window[o.onFinishClick](that._step);
+            if (typeof o.onFinish === 'function') {
+                o.onFinish(that._step, that);
             } else {
-                o.onFinishClick(that._step);
+                if (typeof window[o.onFinish] === 'function') {
+                    window[o.onFinish](that._step, that);
+                } else {
+                    var result = eval("(function(){"+o.onFinish+"})");
+                    result.call(that._step, that);
+                }
             }
         });
 
         btn_prev.on('click', function(){
-            if (typeof o.onPrevClick === 'string') {
-                if (window[o.onPrevClick](that._step)) {that.prev();}
+            if (typeof o.onPrior === 'function') {
+                if (o.onPrior(that._step, element)) {that.prior();}
             } else {
-                if (o.onPrevClick(that._step)) {that.prev();}
+                if (typeof window[o.onPrior] === 'function') {
+                    if (window[o.onPrior](that._step, element)) {that.prior();}
+                } else {
+                    var result = eval("(function(){"+o.onPrior+"})");
+                    if (result.call(that._step, element)) {that.prior();}
+                }
             }
         });
 
         btn_next.on('click', function(){
-            if (typeof o.onNextClick === 'string') {
-                if (window[o.onNextClick](that._step)) {that.next();}
+            if (typeof o.onNext === 'function') {
+                if (o.onNext(that._step, element)) {that.next();}
             } else {
-                if (o.onNextClick(that._step)) {that.next();}
+                if (typeof window[o.onNext] === 'function') {
+                    if (window[o.onNext](that._step, element)) {that.next();}
+                } else {
+                    var result = eval("(function(){"+o.onNext+"})");
+                    if (result.call(that._step, element)) {that.next();}
+                }
             }
         });
     },
@@ -8106,7 +8775,7 @@ $.widget( "metro.wizard2" , {
 
     },
 
-    prev: function(){
+    prior: function(){
         var new_step = this._step - 1;
         if (new_step <= 0) {
             return false;
@@ -8139,6 +8808,4 @@ $.widget( "metro.wizard2" , {
 });
 
 
-return $.Metro.init();
-
-}));
+ }));

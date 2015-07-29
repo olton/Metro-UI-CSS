@@ -1,5 +1,5 @@
 /*!
- * Metro UI CSS v3.0.8 (http://metroui.org.ua)
+ * Metro UI CSS v3.0.9 (http://metroui.org.ua)
  * Copyright 2012-2015 Sergey Pimenov
  * Licensed under MIT (http://metroui.org.ua/license.html)
  */
@@ -21,7 +21,7 @@ if (typeof jQuery === 'undefined') {
 }
 
 // Source: js/global.js
-window.METRO_VERSION = '3.0.8';
+window.METRO_VERSION = '3.0.9';
 
 if (window.METRO_AUTO_REINIT === undefined) window.METRO_AUTO_REINIT = true;
 if (window.METRO_LANGUAGE === undefined) window.METRO_LANGUAGE = 'en';
@@ -922,8 +922,37 @@ $.Metro = function(params){
     }, params);
 };
 
+$.Metro.hotkeys = [];
+
 $.Metro.initWidgets = function(){
     var widgets = $("[data-role]");
+
+    var hotkeys = $("[data-hotkey]");
+    $.each(hotkeys, function(){
+        var element = $(this);
+        var hotkey = element.data('hotkey').toLowerCase();
+
+        //if ($.Metro.hotkeys.indexOf(hotkey) > -1) {
+        //    return;
+        //}
+        if (element.data('hotKeyBonded') === true ) {
+            return;
+        }
+
+        $.Metro.hotkeys.push(hotkey);
+
+        $(document).on('keyup', null, hotkey, function(e){
+            if (element === undefined) return;
+            if (element[0].tagName === 'A' && element.attr('href').trim() !== '' && element.attr('href').trim() !== '#') {
+                document.location.href = element.attr('href');
+            } else {
+                element.click();
+            }
+            return false;
+        });
+
+        element.data('hotKeyBonded', true);
+    });
 
     $.each(widgets, function(){
         var $this = $(this), w = this;
@@ -933,8 +962,6 @@ $.Metro.initWidgets = function(){
                 //$(w)[func]();
                 if ($.fn[func] !== undefined) {
                     $.fn[func].call($this);
-                } else {
-                    console.log('$.fn['+func+'] is not a function');
                 }
             } catch(e) {
                 if (window.METRO_DEBUG) {
@@ -963,24 +990,57 @@ $.Metro.init = function(){
                 }
             }, 100);
         } else {
-            //console.log('observable');
             var observer, observerOptions, observerCallback;
             observerOptions = {
                 'childList': true,
                 'subtree': true
             };
             observerCallback = function(mutations){
-                //console.log('hi from observer');
+
+                //console.log(mutations);
 
                 mutations.map(function(record){
+
                     if (record.addedNodes) {
 
                         /*jshint loopfunc: true */
-                        var obj, widgets, plugins;
+                        var obj, widgets, plugins, hotkeys;
 
                         for(var i = 0, l = record.addedNodes.length; i < l; i++) {
                             obj = $(record.addedNodes[i]);
+
                             plugins = obj.find("[data-role]");
+
+                            hotkeys = obj.find("[data-hotkey]");
+
+                            $.each(hotkeys, function(){
+                                var element = $(this);
+                                var hotkey = element.data('hotkey').toLowerCase();
+
+                                //if ($.Metro.hotkeys.indexOf(hotkey) > -1) {
+                                //    return;
+                                //}
+
+                                if (element.data('hotKeyBonded') === true ) {
+                                    return;
+                                }
+
+                                $.Metro.hotkeys.push(hotkey);
+
+                                $(document).on('keyup', null, hotkey, function () {
+                                    if (element === undefined) return;
+
+                                    if (element[0].tagName === 'A' && element.attr('href').trim() !== '' && element.attr('href').trim() !== '#') {
+                                        document.location.href = element.attr('href');
+                                    } else {
+                                        element.click();
+                                    }
+                                    return false;
+                                });
+
+                                element.data('hotKeyBonded', true);
+                                //console.log($.Metro.hotkeys);
+                            });
 
                             if (obj.data('role') !== undefined) {
                                 widgets = $.merge(plugins, obj);
@@ -994,10 +1054,9 @@ $.Metro.init = function(){
                                     var roles = _this.data('role').split(/\s*,\s*/);
                                     roles.map(function(func){
                                         try {
-                                            if ($.fn[func] !== undefined) {
+                                            if ($.fn[func] !== undefined && _this.data('initiated') !== true) {
                                                 $.fn[func].call(_this);
-                                            } else {
-                                                console.log('$.fn['+func+'] is not a function');
+                                                _this.data('initiated', true);
                                             }
                                         } catch(e) {
                                             if (window.METRO_DEBUG) {
@@ -1011,6 +1070,8 @@ $.Metro.init = function(){
                     }
                 });
             };
+
+            //console.log($(document));
             observer = new MutationObserver(observerCallback);
             observer.observe(document, observerOptions);
         }
@@ -1589,6 +1650,7 @@ $.widget("metro.accordion", {
     _openFrame: function(frame){
         var o = this.options;
         var content = frame.children('.content');
+        var result;
 
         if (typeof o.onFrameOpen === 'function') {
             if (!o.onFrameOpen(frame)) {return false;}
@@ -1596,7 +1658,7 @@ $.widget("metro.accordion", {
             if (typeof window[o.onFrameOpen] === 'function') {
                 if (!window[o.onFrameOpen](frame)) {return false;}
             } else {
-                var result = eval("(function(){"+o.onFrameOpen+"})");
+                result = eval("(function(){"+o.onFrameOpen+"})");
                 if (!result.call(frame)) {return false;}
             }
         }
@@ -1612,7 +1674,7 @@ $.widget("metro.accordion", {
             if (typeof window[o.onFrameOpened] === 'function') {
                 window[o.onFrameOpened](frame);
             } else {
-                var result = eval("(function(){"+o.onFrameOpened+"})");
+                result = eval("(function(){"+o.onFrameOpened+"})");
                 result.call(frame);
             }
         }
@@ -4269,6 +4331,9 @@ $.widget( "metro.fluentmenu" , {
 
     _createMenu: function(){
         var that = this, element = this.element, o = this.options;
+        var active_tab = $(element.find(".tabs-holder > li.active")[0]);
+
+        this.openTab(active_tab);
 
         element.on("click", ".tabs-holder > li > a", function(e){
             var a = $(this);
@@ -4328,6 +4393,18 @@ $.widget( "metro.fluentmenu" , {
             panel = this.element.find('.tabs-holder li.active a').attr('href');
         }
         $(panel).show();
+    },
+
+    openTab: function(tab){
+        var that = this, element = this.element, o = this.options;
+        var target_panel = $(tab.children('a').attr('href'));
+        if (target_panel.length === 0) {
+            return false;
+        }
+        this._hidePanels();
+        this._showPanel(target_panel);
+        element.find('.tabs-holder > li').removeClass('active');
+        tab.addClass('active');
     },
 
     _destroy: function () {
@@ -5229,6 +5306,22 @@ $.widget( "metro.widget" , {
         console.log('Hi');
 
         element.data('widget', this);
+
+    },
+
+    _executeEvent: function(event){
+        var result, args = arguments.splice(0, 1);
+
+        if (typeof event === 'function') {
+            event.apply(args);
+        } else {
+            if (typeof window[event] === 'function') {
+                window[event].apply(args);
+            } else {
+                result = eval("(function(){"+event+"})");
+                result.apply(args);
+            }
+        }
 
     },
 
@@ -7010,13 +7103,13 @@ $.widget( "metro.tile" , {
 
             } else {
                 if (typeof o.onClick === 'function') {
-                    o.onClick(frame);
+                    o.onClick(element);
                 } else {
                     if (typeof window[o.onClick] === 'function') {
-                        window[o.onClick](frame);
+                        window[o.onClick](element);
                     } else {
                         var result = eval("(function(){"+o.onClick+"})");
-                        result.call(frame);
+                        result.call(element);
                     }
                 }
             }
@@ -8777,6 +8870,6 @@ $.widget( "metro.wizard2" , {
 });
 
 
-return $.Metro.init();
+ return $.Metro.init();
 
 }));
