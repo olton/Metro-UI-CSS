@@ -30,7 +30,6 @@ if (window.METRO_CURRENT_LOCALE === undefined) window.METRO_CURRENT_LOCALE = 'en
 if (window.METRO_SHOW_TYPE === undefined) window.METRO_SHOW_TYPE = 'slide';
 if (window.METRO_DEBUG === undefined) window.METRO_DEBUG = true;
 if (window.METRO_CALENDAR_WEEK_START === undefined) window.METRO_CALENDAR_WEEK_START = 0;
-if (window.METRO_OVERWRITE_HOTKEY === undefined) window.METRO_OVERWRITE_HOTKEY = 0;
 
 window.canObserveMutation = 'MutationObserver' in window;
 
@@ -1651,6 +1650,7 @@ $.widget("metro.accordion", {
     _openFrame: function(frame){
         var o = this.options;
         var content = frame.children('.content');
+        var result;
 
         if (typeof o.onFrameOpen === 'function') {
             if (!o.onFrameOpen(frame)) {return false;}
@@ -1658,7 +1658,7 @@ $.widget("metro.accordion", {
             if (typeof window[o.onFrameOpen] === 'function') {
                 if (!window[o.onFrameOpen](frame)) {return false;}
             } else {
-                var result = eval("(function(){"+o.onFrameOpen+"})");
+                result = eval("(function(){"+o.onFrameOpen+"})");
                 if (!result.call(frame)) {return false;}
             }
         }
@@ -1674,7 +1674,7 @@ $.widget("metro.accordion", {
             if (typeof window[o.onFrameOpened] === 'function') {
                 window[o.onFrameOpened](frame);
             } else {
-                var result = eval("(function(){"+o.onFrameOpened+"})");
+                result = eval("(function(){"+o.onFrameOpened+"})");
                 result.call(frame);
             }
         }
@@ -4331,6 +4331,9 @@ $.widget( "metro.fluentmenu" , {
 
     _createMenu: function(){
         var that = this, element = this.element, o = this.options;
+        var active_tab = $(element.find(".tabs-holder > li.active")[0]);
+
+        this.openTab(active_tab);
 
         element.on("click", ".tabs-holder > li > a", function(e){
             var a = $(this);
@@ -4390,6 +4393,18 @@ $.widget( "metro.fluentmenu" , {
             panel = this.element.find('.tabs-holder li.active a').attr('href');
         }
         $(panel).show();
+    },
+
+    openTab: function(tab){
+        var that = this, element = this.element, o = this.options;
+        var target_panel = $(tab.children('a').attr('href'));
+        if (target_panel.length === 0) {
+            return false;
+        }
+        this._hidePanels();
+        this._showPanel(target_panel);
+        element.find('.tabs-holder > li').removeClass('active');
+        tab.addClass('active');
     },
 
     _destroy: function () {
