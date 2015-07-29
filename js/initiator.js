@@ -5,8 +5,37 @@ $.Metro = function(params){
     }, params);
 };
 
+$.Metro.hotkeys = [];
+
 $.Metro.initWidgets = function(){
     var widgets = $("[data-role]");
+
+    var hotkeys = $("[data-hotkey]");
+    $.each(hotkeys, function(){
+        var element = $(this);
+        var hotkey = element.data('hotkey').toLowerCase();
+
+        //if ($.Metro.hotkeys.indexOf(hotkey) > -1) {
+        //    return;
+        //}
+        if (element.data('hotKeyBonded') === true ) {
+            return;
+        }
+
+        $.Metro.hotkeys.push(hotkey);
+
+        $(document).on('keyup', null, hotkey, function(e){
+            if (element === undefined) return;
+            if (element[0].tagName === 'A' && element.attr('href').trim() !== '' && element.attr('href').trim() !== '#') {
+                document.location.href = element.attr('href');
+            } else {
+                element.click();
+            }
+            return false;
+        });
+
+        element.data('hotKeyBonded', true);
+    });
 
     $.each(widgets, function(){
         var $this = $(this), w = this;
@@ -16,8 +45,6 @@ $.Metro.initWidgets = function(){
                 //$(w)[func]();
                 if ($.fn[func] !== undefined) {
                     $.fn[func].call($this);
-                } else {
-                    console.log('$.fn['+func+'] is not a function');
                 }
             } catch(e) {
                 if (window.METRO_DEBUG) {
@@ -46,24 +73,57 @@ $.Metro.init = function(){
                 }
             }, 100);
         } else {
-            //console.log('observable');
             var observer, observerOptions, observerCallback;
             observerOptions = {
                 'childList': true,
                 'subtree': true
             };
             observerCallback = function(mutations){
-                //console.log('hi from observer');
+
+                //console.log(mutations);
 
                 mutations.map(function(record){
+
                     if (record.addedNodes) {
 
                         /*jshint loopfunc: true */
-                        var obj, widgets, plugins;
+                        var obj, widgets, plugins, hotkeys;
 
                         for(var i = 0, l = record.addedNodes.length; i < l; i++) {
                             obj = $(record.addedNodes[i]);
+
                             plugins = obj.find("[data-role]");
+
+                            hotkeys = obj.find("[data-hotkey]");
+
+                            $.each(hotkeys, function(){
+                                var element = $(this);
+                                var hotkey = element.data('hotkey').toLowerCase();
+
+                                //if ($.Metro.hotkeys.indexOf(hotkey) > -1) {
+                                //    return;
+                                //}
+
+                                if (element.data('hotKeyBonded') === true ) {
+                                    return;
+                                }
+
+                                $.Metro.hotkeys.push(hotkey);
+
+                                $(document).on('keyup', null, hotkey, function () {
+                                    if (element === undefined) return;
+
+                                    if (element[0].tagName === 'A' && element.attr('href').trim() !== '' && element.attr('href').trim() !== '#') {
+                                        document.location.href = element.attr('href');
+                                    } else {
+                                        element.click();
+                                    }
+                                    return false;
+                                });
+
+                                element.data('hotKeyBonded', true);
+                                //console.log($.Metro.hotkeys);
+                            });
 
                             if (obj.data('role') !== undefined) {
                                 widgets = $.merge(plugins, obj);
@@ -77,10 +137,9 @@ $.Metro.init = function(){
                                     var roles = _this.data('role').split(/\s*,\s*/);
                                     roles.map(function(func){
                                         try {
-                                            if ($.fn[func] !== undefined) {
+                                            if ($.fn[func] !== undefined && _this.data('initiated') !== true) {
                                                 $.fn[func].call(_this);
-                                            } else {
-                                                console.log('$.fn['+func+'] is not a function');
+                                                _this.data('initiated', true);
                                             }
                                         } catch(e) {
                                             if (window.METRO_DEBUG) {
@@ -94,6 +153,8 @@ $.Metro.init = function(){
                     }
                 });
             };
+
+            //console.log($(document));
             observer = new MutationObserver(observerCallback);
             observer.observe(document, observerOptions);
         }

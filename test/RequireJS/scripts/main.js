@@ -1,7 +1,7 @@
 require.config({
     paths: {
         jquery: "jquery",
-        metro: "metro"
+        metro: "../../../build/js/metro"
     },
     shim: {
         metro: {

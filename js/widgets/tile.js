@@ -46,13 +46,13 @@ $.widget( "metro.tile" , {
 
             } else {
                 if (typeof o.onClick === 'function') {
-                    o.onClick(frame);
+                    o.onClick(element);
                 } else {
                     if (typeof window[o.onClick] === 'function') {
-                        window[o.onClick](frame);
+                        window[o.onClick](element);
                     } else {
                         var result = eval("(function(){"+o.onClick+"})");
-                        result.call(frame);
+                        result.call(element);
                     }
                 }
             }

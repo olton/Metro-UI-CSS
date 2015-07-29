@@ -202,6 +202,17 @@
 				color: @white;
 			}
 		}
+
+		a[data-hotkey] {
+			padding-right: 3.2rem;
+			&:after {
+				content: attr(data-hotkey);
+				position: absolute;
+				right: 1.2rem;
+				width: auto;
+				font-size: .8em;
+			}
+		}
 	}
 
 	.divider {

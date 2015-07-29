@@ -41,6 +41,7 @@ $.widget("metro.accordion", {
     _openFrame: function(frame){
         var o = this.options;
         var content = frame.children('.content');
+        var result;
 
         if (typeof o.onFrameOpen === 'function') {
             if (!o.onFrameOpen(frame)) {return false;}
@@ -48,7 +49,7 @@ $.widget("metro.accordion", {
             if (typeof window[o.onFrameOpen] === 'function') {
                 if (!window[o.onFrameOpen](frame)) {return false;}
             } else {
-                var result = eval("(function(){"+o.onFrameOpen+"})");
+                result = eval("(function(){"+o.onFrameOpen+"})");
                 if (!result.call(frame)) {return false;}
             }
         }
@@ -64,7 +65,7 @@ $.widget("metro.accordion", {
             if (typeof window[o.onFrameOpened] === 'function') {
                 window[o.onFrameOpened](frame);
             } else {
-                var result = eval("(function(){"+o.onFrameOpened+"})");
+                result = eval("(function(){"+o.onFrameOpened+"})");
                 result.call(frame);
             }
         }

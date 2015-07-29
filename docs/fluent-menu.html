@@ -56,7 +56,7 @@
                 <ul class="tabs-holder">
                     <li class="special"><a href="#">File</a></li>
                     <li class="active"><a href="#tab_home">Home</a></li>
-                    <li><a href="#tab_mailings">Mailing</a></li>
+                    <li class="active"><a href="#tab_mailings">Mailing</a></li>
                     <li><a href="#tab_folder">Folder</a></li>
                     <li><a href="#tab_view">View</a></li>
                 </ul>
@@ -131,12 +131,81 @@
                     </div>
 
                     <div class="tab-panel" id="tab_mailings">
+                        <div class="tab-panel-group">
+                            <div class="tab-group-content">
+                                <button class="fluent-big-button">
+                                    <span class="icon mif-envelop"></span>
+                                    Create<br />message
+                                </button>
+                                <div class="tab-content-segment">
+                                    <button class="fluent-big-button dropdown-toggle">
+                                        <span class="icon mif-file-picture"></span>
+                                        <span class="label">Create<br />element</span>
+                                    </button>
+                                    <ul class="d-menu" data-role="dropdown">
+                                        <li><a href="#">Message</a></li>
+                                        <li><a href="#">Event</a></li>
+                                        <li><a href="#">Meeting</a></li>
+                                        <li><a href="#">Contact</a></li>
+                                    </ul>
+                                </div>
+                                <div class="tab-content-segment">
+                                    <button class="fluent-big-button">
+                                        <span class="mif-cancel"></span>
+                                        <span class="label">Delete</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="tab-group-caption">Clipboard</div>
+                        </div>
                     </div>
 
                     <div class="tab-panel" id="tab_folder">
+                        <div class="tab-panel-group">
+                            <div class="tab-group-content">
+                                <div class="tab-content-segment">
+                                    <button class="fluent-button"><span class="mif-loop"></span>Replay</button>
+                                    <button class="fluent-button"><span class="mif-infinite"></span>Replay all</button>
+                                    <button class="fluent-button"><span class="mif-loop2"></span>Forward</button>
+                                </div>
+                                <div class="tab-content-segment">
+                                    <button class="fluent-tool-button"><img src="images/Notebook-Save.png"></button>
+                                    <button class="fluent-tool-button"><img src="images/Folder-Rename.png"></button>
+                                    <button class="fluent-tool-button"><img src="images/Calendar-Next.png"></button>
+                                </div>
+                            </div>
+                            <div class="tab-group-caption">Reply</div>
+                        </div>
                     </div>
 
                     <div class="tab-panel" id="tab_view">
+                        <div class="tab-panel-group">
+                            <div class="tab-group-content">
+                                <button class="fluent-big-button">
+                                    <span class="icon mif-envelop"></span>
+                                    Create<br />message
+                                </button>
+                                <div class="tab-content-segment">
+                                    <button class="fluent-big-button dropdown-toggle">
+                                        <span class="icon mif-file-picture"></span>
+                                        <span class="label">Create<br />element</span>
+                                    </button>
+                                    <ul class="d-menu" data-role="dropdown">
+                                        <li><a href="#">Message</a></li>
+                                        <li><a href="#">Event</a></li>
+                                        <li><a href="#">Meeting</a></li>
+                                        <li><a href="#">Contact</a></li>
+                                    </ul>
+                                </div>
+                                <div class="tab-content-segment">
+                                    <button class="fluent-big-button">
+                                        <span class="mif-cancel"></span>
+                                        <span class="label">Delete</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="tab-group-caption">Clipboard</div>
+                        </div>
                     </div>
                 </div>
             </div>
