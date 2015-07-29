@@ -1,5 +1,7 @@
 # Changelog 
 
+## 3.0.10
+
 ## 3.0.9
 * add hotkeys binding
 * fix fluent-menu initialize
