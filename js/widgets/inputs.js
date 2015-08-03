@@ -34,6 +34,9 @@ $.widget("metro.input", {
         var element = this.element;
         var input = element.find("input");
         var placeholder = element.find(".placeholder");
+        
+        if (input.val() !== "")
+            placeholder.css({display: "none"});
 
         input.on("blur", function(){
             if (input.val() !== "") {
