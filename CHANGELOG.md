@@ -1,6 +1,7 @@
 # Changelog 
 
 ## 3.0.10
+* fix modern input initialize with value
 
 ## 3.0.9
 * add hotkeys binding

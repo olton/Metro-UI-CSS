@@ -10,7 +10,7 @@ Metro UI CSS developed with the advice of Microsoft to build the user interface 
 #### Install with bower
 bower install metro
 #### Install with nuget
-Package-Install Metro.UI.CSS
+Install-Package Metro.UI.CSS
 
 
 ### Whats new in 3.0
