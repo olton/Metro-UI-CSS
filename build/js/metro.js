@@ -6087,7 +6087,7 @@ $.widget( "metro.select" , {
 
             }
         } else {
-            alert('Select2 plugin required');
+            console.log('You are trying to use support for Select2, but the plugin is not found!');
         }
 
         element.data('select', this);
