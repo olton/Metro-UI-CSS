@@ -2,6 +2,7 @@
 
 ## 3.0.10
 * fix modern input initialize with value
+* remove alert for check select2 plugin exists
 
 ## 3.0.9
 * add hotkeys binding

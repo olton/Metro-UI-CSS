@@ -7,10 +7,39 @@ Metro UI CSS developed with the advice of Microsoft to build the user interface 
 
 ### 3.0.10
 
-#### Install with bower
+### Install with bower
 bower install metro
-#### Install with nuget
+
+### Install with nuget
 Install-Package Metro.UI.CSS
+
+### Public CDN
+
+#### Master branch
+##### CSS
+ 
+https://cdn.rawgit.com/olton/Metro-UI-CSS/master/build/css/metro.min.css<br />
+https://cdn.rawgit.com/olton/Metro-UI-CSS/master/build/css/metro-responsive.min.css<br /> 
+https://cdn.rawgit.com/olton/Metro-UI-CSS/master/build/css/metro-schemes.min.css<br />
+https://cdn.rawgit.com/olton/Metro-UI-CSS/master/build/css/metro-rtl.min.css<br />
+https://cdn.rawgit.com/olton/Metro-UI-CSS/master/build/css/metro-icons.min.css<br />
+
+##### JS
+
+https://cdn.rawgit.com/olton/Metro-UI-CSS/master/build/js/metro.min.js
+
+#### Develop branch
+##### CSS
+
+https://cdn.rawgit.com/olton/Metro-UI-CSS/develop/build/css/metro.min.css<br />
+https://cdn.rawgit.com/olton/Metro-UI-CSS/develop/build/css/metro-responsive.min.css<br /> 
+https://cdn.rawgit.com/olton/Metro-UI-CSS/develop/build/css/metro-schemes.min.css<br />
+https://cdn.rawgit.com/olton/Metro-UI-CSS/develop/build/css/metro-rtl.min.css<br />
+https://cdn.rawgit.com/olton/Metro-UI-CSS/develop/build/css/metro-icons.min.css<br />
+ 
+##### JS
+
+https://cdn.rawgit.com/olton/Metro-UI-CSS/develop/build/js/metro.min.js
 
 
 ### Whats new in 3.0
