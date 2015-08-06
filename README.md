@@ -43,7 +43,7 @@ https://cdn.rawgit.com/olton/Metro-UI-CSS/develop/build/js/metro.min.js
 
 
 ### Whats new in 3.0
-- compatible with AngularJS
+- compatible with AngularJS and RequireJS
 - full code refactoring
 - declarative approach to the definition of components
 - framework itself monitors components, pressure via ajax
