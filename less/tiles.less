@@ -635,6 +635,10 @@
 	.transY(@perspective, @rotate)  !important;
 }
 
+.tile-square.tile-transform-right {
+	.transY(@perspective, @rotate)  !important;
+}
+
 .tile-wide.tile-transform-right {
 	.transY(@perspective, @rotate/2) !important;
 }
@@ -661,6 +665,9 @@
 }
 
 .tile.tile-transform-left {
+    .transY(@perspective, -@rotate) !important;
+}
+.tile-square.tile-transform-left {
     .transY(@perspective, -@rotate) !important;
 }
 
@@ -692,6 +699,9 @@
 .tile.tile-transform-top {
 	.transX(@perspective, @rotate) !important;
 }
+.tile-square.tile-transform-top {
+	.transX(@perspective, @rotate) !important;
+}
 
 .tile-wide.tile-transform-top {
 	.transX(@perspective, @rotate/2) !important;
@@ -719,6 +729,9 @@
 }
 
 .tile.tile-transform-bottom {
+	.transX(@perspective, -@rotate) !important;
+}
+.tile-square.tile-transform-bottom {
 	.transX(@perspective, -@rotate) !important;
 }
 
