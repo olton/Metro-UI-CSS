@@ -43,11 +43,11 @@ https://cdn.rawgit.com/olton/Metro-UI-CSS/develop/build/js/metro.min.js
 
 
 ### Whats new in 3.0
-- compatible with AngularJS and RequireJS
-- full code refactoring
-- declarative approach to the definition of components
-- framework itself monitors components, pressure via ajax
-- create cool page without knowledge of javascript
++ compatible with AngularJS and RequireJS
++ full code refactoring
++ declarative approach to the definition of components
++ framework itself monitors components, pressure via ajax
++ create cool page without knowledge of javascript
 
  Documentation and Demo: [metroui.org.ua](http://metroui.org.ua/).   
  Documentation and Demo for V2: [metroui.org.ua/v2](http://metroui.org.ua/v2).   
