@@ -4,9 +4,9 @@
 @import (once) "animations";
 
 .preloader {
-
 	&-ring {
 		position: relative;
+
 		padding-top: @accentTextFontSize/5;
 		.square(@preloaderRingSize);
 		margin: .625rem;
@@ -71,10 +71,12 @@
 	}
 
 	&-metro {
+		overflow: hidden;
+		position: relative;
+
 		width: 100%;
 		height: 10px;
 		background-color: @transparent;
-		overflow: hidden;
 
 		& > .circle {
 			display: inline-block;
