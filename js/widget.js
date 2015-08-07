@@ -492,6 +492,10 @@ $.Widget.prototype = {
         }
 
         this.element.trigger(event, data);
+        
+        // Pre-check for callback, using our addons to String.prototype
+        callback = (typeof(callback) === "string" && callback.isFunctionName()) ? callback.toFunction() : callback;
+        
         return !( $.isFunction(callback) &&
         callback.apply(this.element[0], [event].concat(data)) === false ||
         event.isDefaultPrevented() );
