@@ -21,6 +21,42 @@ String.prototype.isColor = function () {
     return /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(this);
 };
 
+String.prototype.isFunctionName = function() {
+  // Namespaced function names "My.function.name" will become window['My']['function']['name']
+  var namespaces = this.split(".");
+  
+  // Define the context
+  var context = window;
+  
+  // Build the 'path' to the function
+  for(var i = 0; i < namespaces.length; i++) {
+    context = context[namespaces[i]];
+  }
+  
+  // Final check
+  return typeof(context) === 'function';
+};
+
+String.prototype.toFunction = function() {
+  if (this.isFunctionName()) {
+      // Namespaced function names "My.function.name" will become window['My']['function']['name']
+      var namespaces = this.split(".");
+      
+      // Define the context
+      var context = window;
+      
+      // Build the 'path' to the function
+      for(var i = 0; i < namespaces.length; i++) {
+        context = context[namespaces[i]];
+      }
+      
+      // Final check
+      return context;
+  } else {
+      throw this + " is not a function";
+  }
+};
+
 Array.prototype.shuffle = function () {
     var currentIndex = this.length, temporaryValue, randomIndex;
 
