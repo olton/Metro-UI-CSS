@@ -15785,10 +15785,11 @@ p [data-hint] {
   background-color: #555555;
 }
 .preloader-metro {
+  overflow: hidden;
+  position: relative;
   width: 100%;
   height: 10px;
   background-color: transparent;
-  overflow: hidden;
 }
 .preloader-metro > .circle {
   display: inline-block;
