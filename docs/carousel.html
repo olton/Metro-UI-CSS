@@ -26,6 +26,7 @@
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
 
+
 </head>
 <body>
     <div class="container page-content">
@@ -204,6 +205,52 @@
             </tr>
             </tbody>
         </table>
+
+        <h3>Methods</h3>
+        <div class="example" data-text="ecample">
+            <div class="grid">
+                <div class="row cells2">
+                    <div class="cell">
+                        <div id="car_m_1" class="carousel" data-role="carousel" data-height="200" data-controls="false" data-markers="false" data-auto="false">
+                            <div class="slide"><img src="images/1.jpg" data-role="fitImage" data-format="fill"></div>
+                            <div class="slide"><img src="images/2.jpg" data-role="fitImage" data-format="fill"></div>
+                            <div class="slide"><img src="images/3.jpg" data-role="fitImage" data-format="fill"></div>
+                            <div class="slide"><img src="images/4.jpg" data-role="fitImage" data-format="fill"></div>
+                        </div>
+                        <div class="padding20 bg-grayLighter align-center">
+                            <button class="button" onclick="$('#car_m_1').data('carousel').priorSlide()">Prior slide</button>
+                            <button class="button" onclick="$('#car_m_1').data('carousel').nextSlide()">Next slide</button>
+                        </div>
+                    </div>
+                    <div class="cell">
+                        <div id="car_m_2" class="carousel" data-role="carousel" data-height="200" data-controls="false" data-markers="false" data-auto="false">
+                            <div class="slide"><img src="images/1.jpg" data-role="fitImage" data-format="fill"></div>
+                            <div class="slide"><img src="images/2.jpg" data-role="fitImage" data-format="fill"></div>
+                            <div class="slide"><img src="images/3.jpg" data-role="fitImage" data-format="fill"></div>
+                            <div class="slide"><img src="images/4.jpg" data-role="fitImage" data-format="fill"></div>
+                        </div>
+                        <div id="car_m_2_thumbs" class="padding20 bg-grayLighter align-center">
+                            <div class="thumb" data-index="1"><img src="images/1.jpg" data-role="fitImage" data-format="fill"></div>
+                            <div class="thumb" data-index="2"><img src="images/2.jpg" data-role="fitImage" data-format="fill"></div>
+                            <div class="thumb" data-index="3"><img src="images/3.jpg" data-role="fitImage" data-format="fill"></div>
+                            <div class="thumb" data-index="4"><img src="images/4.jpg" data-role="fitImage" data-format="fill"></div>
+                        </div>
+                        <script>
+                            $(function(){
+                                var car_m_2 = $('#car_m_2').data('carousel');
+                                var thumbs = $('#car_m_2_thumbs > .thumb');
+                                $.each(thumbs, function(){
+                                    var thumb = $(this),  index = thumb.data('index') - 1;
+                                    thumb.on('click', function(){
+                                        car_m_2.slideTo(index);
+                                    });
+                                });
+                            });
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     @@hit
