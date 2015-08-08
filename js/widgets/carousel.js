@@ -300,6 +300,17 @@ $.widget("metro.carousel", {
         });
     },
 
+    slideTo: function(index){
+        this._slideToSlide(index);
+    },
+
+    nextSlide: function(){
+        this._slideTo('next');
+    },
+
+    priorSlide: function(){
+        this._slideTo('prior');
+    },
 
     _destroy: function(){
 
