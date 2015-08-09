@@ -943,7 +943,11 @@ $.Metro.initWidgets = function(){
 
         $(document).on('keyup', null, hotkey, function(e){
             if (element === undefined) return;
-            if (element[0].tagName === 'A' && element.attr('href').trim() !== '' && element.attr('href').trim() !== '#') {
+
+            if (element[0].tagName === 'A' &&
+                element.attr('href') !== undefined &&
+                element.attr('href').trim() !== '' &&
+                element.attr('href').trim() !== '#') {
                 document.location.href = element.attr('href');
             } else {
                 element.click();
@@ -1030,7 +1034,10 @@ $.Metro.init = function(){
                                 $(document).on('keyup', null, hotkey, function () {
                                     if (element === undefined) return;
 
-                                    if (element[0].tagName === 'A' && element.attr('href').trim() !== '' && element.attr('href').trim() !== '#') {
+                                    if (element[0].tagName === 'A' &&
+                                        element.attr('href') !== undefined &&
+                                        element.attr('href').trim() !== '' &&
+                                        element.attr('href').trim() !== '#') {
                                         document.location.href = element.attr('href');
                                     } else {
                                         element.click();
