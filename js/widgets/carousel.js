@@ -144,6 +144,10 @@ $.widget("metro.carousel", {
             currentSlide = o._slides[o._currentIndex],
             nextSlide = o._slides[slideIndex];
 
+        if (o._currentIndex === slideIndex) {
+            return false;
+        }
+
         if (slideIndex > o._currentIndex) {
             o._outPosition = -this.element.width();
         } else {
