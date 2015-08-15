@@ -4,6 +4,7 @@
 * fix modern input initialize with value
 * remove alert for check select2 plugin exists
 * add public methods slideTo, nextSlide, priorSlide for carousel
+* fix carousel method slitToSlide if next index eq current 
 
 ## 3.0.9
 * add hotkeys binding

@@ -59,28 +59,30 @@ h1, h2, h3, h4, h5, h6, p  {
     }
 }
 
-.flex-grid {
-    .row {
-        @media only screen and (max-width: 800px) {
-            .flex-wrap;
-            .cell, .cell[class*=size] {
-                .flex(0 0 50%);
-                &:nth-child(1):last-child,
-                &:nth-child(3):last-child,
-                &:nth-child(5):last-child,
-                &:nth-child(7):last-child,
-                &:nth-child(9):last-child,
-                &:nth-child(11):last-child
-                {
-                    flex-basis: 100%;
-                }
+@media only screen and (max-width: 800px) {
+    .flex-grid .row {
+        .flex-wrap;
+        .cell, .cell[class*=size] {
+            .flex(0 0 50%);
+            &:nth-child(1):last-child,
+            &:nth-child(3):last-child,
+            &:nth-child(5):last-child,
+            &:nth-child(7):last-child,
+            &:nth-child(9):last-child,
+            &:nth-child(11):last-child
+            {
+                flex-basis: 100%;
             }
-        }
-        @media only screen and (max-width: 640px) {
-            flex-direction: column;
         }
     }
 }
+
+@media only screen and (max-width: 640px) {
+    .flex-grid .row {
+        flex-direction: column;
+    }
+}
+
 //grid
 .grid {
     @media screen and (max-width: 800px) {
