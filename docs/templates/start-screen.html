@@ -197,6 +197,46 @@
                 showSettings();
             });
         });
+
+        var weather_icons = {
+            'clear-day': 'mif-sun',
+            'clear-night': 'mif-moon2',
+            'rain': 'mif-rainy',
+            'snow': 'mif-snowy3',
+            'sleet': 'mif-weather4',
+            'wind': 'mif-wind',
+            'fog': 'mif-cloudy2',
+            'cloudy': 'mif-cloudy',
+            'partly-cloudy-day': 'mif-cloudy3',
+            'partly-cloudy-night': 'mif-cloud5'
+        };
+        $(function(){
+            $.get("http://ip-api.com/json", function(response) {
+
+                var $latlon = response.lat + ',' + response.lon;
+
+                $.ajax({
+                    url: 'https://api.forecast.io/forecast/219588ba41dedc2f1019684e8ac393ad/'+$latlon+'?units=si',
+                    dataType: 'jsonp',
+                    success: function(data){
+                        //do whatever you want with the data here
+                        var current = data.currently;
+                        $('#city_name').html(response.city+", "+response.country);
+                        $("#city_temp").html(Math.round(current.temperature)+" &deg;C");
+                        $("#city_weather").html(current.summary);
+                        $("#city_weather_daily").html(data.daily.summary);
+                        $("#weather_icon").addClass(weather_icons[current.icon]);
+                        $("#pressure").html(current.pressure);
+                        $("#ozone").html(current.ozone);
+                        $("#wind_bearing").html(current.windBearing);
+                        $("#wind_speed").html(current.windSpeed);
+                        $("#weather_bg").css({
+                            'background-image': 'url(../images/'+current.icon+'.jpg'+')'
+                        });
+                    }
+                });
+            });
+        });
     </script>
 
 </head>
@@ -277,16 +317,19 @@
                     <span class="tile-label">Inbox</span>
                 </div>
 
-                <div class="tile-large bg-steel fg-white" data-role="tile" data-on-click="document.location.href='http://weather.com'">
-                    <div class="tile-content" style="background: url(../images/clouds2.png) top left no-repeat; background-size: cover">
+                <div class="tile-large bg-steel fg-white" data-role="tile" data-on-click="document.location.href='http://forecast.io'">
+                    <div class="tile-content" id="weather_bg" style="background: top left no-repeat; background-size: cover">
                         <div class="padding10">
-                            <h1>57°</h1>
-                            <h2>San Francisco</h2>
-                            <h5>Party Cloudy</h5>
-                            <p class="tertiary-text fg-white no-margin">Today</p>
-                            <p class="tertiary-text fg-white no-margin">63°/55° Mostly Clear</p>
-                            <p class="tertiary-text fg-white no-margin">Tomorrow</p>
-                            <p class="tertiary-text fg-white no-margin">64°/54° Mostly Clear</p>
+                            <h1 id="weather_icon" style="font-size: 6em;position: absolute; top: 10px; right: 10px;"></h1>
+                            <h1 id="city_temp"></h1>
+                            <h2 id="city_name" class="text-light"></h2>
+                            <h4 id="city_weather"></h4>
+                            <p id="city_weather_daily"></p>
+
+                            <p class="no-margin text-shadow">Pressure: <span class="text-bold" id="pressure"></span> mm</p>
+                            <p class="no-margin text-shadow">Ozone: <span class="text-bold" id="ozone"></span></p>
+                            <p class="no-margin text-shadow">Wind bearing: <span class="text-bold" id="wind_bearing"></span></p>
+                            <p class="no-margin text-shadow">Wind speed: <span class="text-bold" id="wind_speed">0</span> m/s</p>
                         </div>
                     </div>
                     <span class="tile-label">Weather</span>
