@@ -60,3 +60,68 @@ blockquote[dir=rtl] {
   border-left: none;
   border-right: 0.25rem #999999 solid;
 }
+*[dir=rtl] .input-control.text .button,
+.input-control[dir=rtl].text .button,
+*[dir=rtl] .input-control.select .button,
+.input-control[dir=rtl].select .button,
+*[dir=rtl] .input-control.file .button,
+.input-control[dir=rtl].file .button,
+*[dir=rtl] .input-control.password .button,
+.input-control[dir=rtl].password .button,
+*[dir=rtl] .input-control.number .button,
+.input-control[dir=rtl].number .button,
+*[dir=rtl] .input-control.email .button,
+.input-control[dir=rtl].email .button,
+*[dir=rtl] .input-control.tel .button,
+.input-control[dir=rtl].tel .button,
+*[dir=rtl] .input-control.text .button-group,
+.input-control[dir=rtl].text .button-group,
+*[dir=rtl] .input-control.select .button-group,
+.input-control[dir=rtl].select .button-group,
+*[dir=rtl] .input-control.file .button-group,
+.input-control[dir=rtl].file .button-group,
+*[dir=rtl] .input-control.password .button-group,
+.input-control[dir=rtl].password .button-group,
+*[dir=rtl] .input-control.number .button-group,
+.input-control[dir=rtl].number .button-group,
+*[dir=rtl] .input-control.email .button-group,
+.input-control[dir=rtl].email .button-group,
+*[dir=rtl] .input-control.tel .button-group,
+.input-control[dir=rtl].tel .button-group {
+  right: auto;
+  left: 0;
+}
+*[dir=rtl] .input-control.text .prepend-icon,
+.input-control[dir=rtl].text .prepend-icon,
+*[dir=rtl] .input-control.select .prepend-icon,
+.input-control[dir=rtl].select .prepend-icon,
+*[dir=rtl] .input-control.file .prepend-icon,
+.input-control[dir=rtl].file .prepend-icon,
+*[dir=rtl] .input-control.password .prepend-icon,
+.input-control[dir=rtl].password .prepend-icon,
+*[dir=rtl] .input-control.number .prepend-icon,
+.input-control[dir=rtl].number .prepend-icon,
+*[dir=rtl] .input-control.email .prepend-icon,
+.input-control[dir=rtl].email .prepend-icon,
+*[dir=rtl] .input-control.tel .prepend-icon,
+.input-control[dir=rtl].tel .prepend-icon {
+  left: auto;
+  right: 4px;
+}
+*[dir=rtl] .input-control.text .prepend-icon ~ input,
+.input-control[dir=rtl].text .prepend-icon ~ input,
+*[dir=rtl] .input-control.select .prepend-icon ~ input,
+.input-control[dir=rtl].select .prepend-icon ~ input,
+*[dir=rtl] .input-control.file .prepend-icon ~ input,
+.input-control[dir=rtl].file .prepend-icon ~ input,
+*[dir=rtl] .input-control.password .prepend-icon ~ input,
+.input-control[dir=rtl].password .prepend-icon ~ input,
+*[dir=rtl] .input-control.number .prepend-icon ~ input,
+.input-control[dir=rtl].number .prepend-icon ~ input,
+*[dir=rtl] .input-control.email .prepend-icon ~ input,
+.input-control[dir=rtl].email .prepend-icon ~ input,
+*[dir=rtl] .input-control.tel .prepend-icon ~ input,
+.input-control[dir=rtl].tel .prepend-icon ~ input {
+  padding-left: 0;
+  padding-right: 30px;
+}
