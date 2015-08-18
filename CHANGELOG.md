@@ -5,6 +5,7 @@
 * remove alert for check select2 plugin exists
 * add public methods slideTo, nextSlide, priorSlide for carousel
 * fix carousel method slideToSlide if next index eq current 
+* add rtl support for input controls
 
 ## 3.0.9
 * add hotkeys binding
