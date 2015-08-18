@@ -68,6 +68,21 @@ bdo[dir=rtl] {
 
 
 // Inputs
-.input-control {
+*[dir=rtl] .input-control, .input-control[dir=rtl] {
+    &.text, &.select, &.file, &.password, &.number, &.email, &.tel {
+        .button, .button-group {
+            right: auto;
+            left: 0;
+        }
 
+        .prepend-icon {
+            left: auto;
+            right: 4px;
+        }
+
+        .prepend-icon ~ input {
+            padding-left: 0;
+            padding-right: 30px;
+        }
+    }
 }
