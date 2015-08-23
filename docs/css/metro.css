@@ -9692,6 +9692,114 @@ input[type="submit"].link:active {
   outline-color: #8a8a8a;
   border-color: #8a8a8a;
 }
+.input-control.range input[type=range] {
+  border: 0;
+  box-sizing: border-box;
+  line-height: 1;
+  background-color: transparent;
+  cursor: pointer;
+  -webkit-appearance: none;
+  width: 100%;
+}
+.input-control.range input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+}
+.input-control.range input[type=range]:focus {
+  outline: none;
+}
+.input-control.range input[type=range]::-ms-track {
+  width: 100%;
+  cursor: pointer;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+.input-control.range input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 1em;
+  height: 1em;
+  margin-top: 0;
+  background-color: #555555;
+  border: 2px solid #555555;
+  cursor: pointer;
+}
+.input-control.range input[type=range]::-moz-range-thumb {
+  width: 1em;
+  height: 1em;
+  margin-top: 0;
+  background-color: #555555;
+  border: 2px solid #555555;
+  cursor: pointer;
+  border-radius: 0;
+  margin: 0;
+}
+.input-control.range input[type=range]::-ms-thumb {
+  width: 1em;
+  height: 1em;
+  margin-top: 0;
+  background-color: #555555;
+  border: 2px solid #555555;
+  cursor: pointer;
+}
+.input-control.range input[type=range]:hover::-webkit-slider-thumb {
+  border-color: #373737;
+  background-color: #1d1d1d;
+}
+.input-control.range input[type=range]:hover::-moz-range-thumb {
+  border-color: #373737;
+  background-color: #1d1d1d;
+}
+.input-control.range input[type=range]:hover::-ms-thumb {
+  border-color: #373737;
+  background-color: #1d1d1d;
+}
+.input-control.range input[type=range]:active::-webkit-slider-thumb {
+  border-color: #373737;
+}
+.input-control.range input[type=range]:active::-moz-range-thumb {
+  border-color: #373737;
+}
+.input-control.range input[type=range]:active::-ms-thumb {
+  border-color: #373737;
+}
+.input-control.range input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  cursor: pointer;
+  height: 100%;
+  background-color: #00aba9;
+  transition: background .3s ease;
+}
+.input-control.range input[type=range]::-moz-range-track {
+  width: 100%;
+  cursor: pointer;
+  height: 100%;
+  background-color: #00aba9;
+  transition: background .3s ease;
+}
+.input-control.range input[type=range]::-ms-track {
+  background: #00aba9;
+  border-color: transparent;
+  color: transparent;
+  height: 1.25em;
+}
+.input-control.range input[type=range]::-ms-fill-lower {
+  background: #00aba9;
+}
+.input-control.range input[type=range]::-ms-fill-upper {
+  display: none;
+}
+.input-control.range input[type=range]::-moz-range-track {
+  height: 1.25em;
+}
+.input-control.range.big-input {
+  height: 2.125rem;
+}
+.input-control.range.big-input input[type=range] {
+  padding: 0;
+}
+.input-control.range.big-input input[type=range]::-moz-range-track {
+  height: 1.2em;
+}
 .progress,
 .progress-bar {
   display: block;
