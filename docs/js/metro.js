@@ -5582,6 +5582,15 @@ $.widget( "metro.preloader" , {
         }
     },
 
+    _createSquare: function(){
+        var that = this, element = this.element, o = this.options;
+        var i, square;
+
+        for(i = 0; i < 4 ; i++) {
+            square = $("<div/>").addClass('square').appendTo(element);
+        }
+    },
+
     _createStructure: function(){
         var that = this, element = this.element, o = this.options;
 
@@ -5595,6 +5604,7 @@ $.widget( "metro.preloader" , {
         switch (o.type) {
             case 'ring': this._createRing(); break;
             case 'metro': this._createMetro(); break;
+            case 'square': this._createSquare(); break;
         }
     },
 

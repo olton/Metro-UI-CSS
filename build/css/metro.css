@@ -11489,6 +11489,118 @@ input[type="submit"].link:active {
     opacity: 0;
   }
 }
+@-webkit-keyframes ani-shrink {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  90% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  100% {
+    -webkit-transform: scale(0.5);
+            transform: scale(0.5);
+  }
+}
+@keyframes ani-shrink {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  90% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  100% {
+    -webkit-transform: scale(0.5);
+            transform: scale(0.5);
+  }
+}
+@-webkit-keyframes ani-drop {
+  0% {
+    -webkit-transform: translateY(-50px);
+            transform: translateY(-50px);
+  }
+  25% {
+    -webkit-transform: translate(0);
+            transform: translate(0);
+  }
+  100% {
+    -webkit-transform: translate(0);
+            transform: translate(0);
+  }
+}
+@keyframes ani-drop {
+  0% {
+    -webkit-transform: translateY(-50px);
+            transform: translateY(-50px);
+  }
+  25% {
+    -webkit-transform: translate(0);
+            transform: translate(0);
+  }
+  100% {
+    -webkit-transform: translate(0);
+            transform: translate(0);
+  }
+}
+@-webkit-keyframes ani-drop2 {
+  0% {
+    -webkit-transform: translateY(-50px);
+            transform: translateY(-50px);
+  }
+  50% {
+    -webkit-transform: translate(0);
+            transform: translate(0);
+  }
+  100% {
+    -webkit-transform: translate(0);
+            transform: translate(0);
+  }
+}
+@keyframes ani-drop2 {
+  0% {
+    -webkit-transform: translateY(-50px);
+            transform: translateY(-50px);
+  }
+  50% {
+    -webkit-transform: translate(0);
+            transform: translate(0);
+  }
+  100% {
+    -webkit-transform: translate(0);
+            transform: translate(0);
+  }
+}
+@-webkit-keyframes ani-drop3 {
+  0% {
+    -webkit-transform: translateY(-50px);
+            transform: translateY(-50px);
+  }
+  75% {
+    -webkit-transform: translate(0);
+            transform: translate(0);
+  }
+  100% {
+    -webkit-transform: translate(0);
+            transform: translate(0);
+  }
+}
+@keyframes ani-drop3 {
+  0% {
+    -webkit-transform: translateY(-50px);
+            transform: translateY(-50px);
+  }
+  75% {
+    -webkit-transform: translate(0);
+            transform: translate(0);
+  }
+  100% {
+    -webkit-transform: translate(0);
+            transform: translate(0);
+  }
+}
 .calendar {
   min-width: 13.75rem;
   border: 1px #eeeeee solid;
@@ -15928,6 +16040,59 @@ p [data-hint] {
 }
 .preloader-metro.dark-style > .circle {
   background-color: #555555;
+}
+.preloader-square {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+  -webkit-transform-origin: bottom left;
+          transform-origin: bottom left;
+  -webkit-animation: ani-shrink 1s linear infinite;
+          animation: ani-shrink 1s linear infinite;
+}
+.preloader-square .square {
+  position: absolute;
+  width: 19px;
+  height: 19px;
+  background: #ffffff;
+}
+.preloader-square .square:nth-child(1) {
+  left: 0;
+  top: 21px;
+}
+.preloader-square .square:nth-child(2) {
+  left: 21px;
+  top: 21px;
+  -webkit-animation: ani-drop 1s linear infinite;
+          animation: ani-drop 1s linear infinite;
+}
+.preloader-square .square:nth-child(3) {
+  left: 0;
+  top: 0;
+  -webkit-animation: ani-drop2 1s linear infinite;
+          animation: ani-drop2 1s linear infinite;
+}
+.preloader-square .square:nth-child(4) {
+  left: 21px;
+  top: 0;
+  -webkit-animation: ani-drop3 1s linear infinite;
+          animation: ani-drop3 1s linear infinite;
+}
+.preloader-square.dark-style > .square {
+  background-color: #555555;
+}
+.preloader-square.color-style > .square:nth-child(1) {
+  background-color: #fa6800;
+}
+.preloader-square.color-style > .square:nth-child(2) {
+  background-color: #60a917;
+}
+.preloader-square.color-style > .square:nth-child(3) {
+  background-color: #1ba1e2;
+}
+.preloader-square.color-style > .square:nth-child(4) {
+  background-color: #e3c800;
 }
 .dialog-overlay {
   background-color: transparent;
