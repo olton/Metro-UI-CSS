@@ -7,6 +7,7 @@
 * fix carousel method slideToSlide if next index eq current 
 * add rtl support for input controls
 * add input range
+* add new preloaders
 
 ## 3.0.9
 * add hotkeys binding

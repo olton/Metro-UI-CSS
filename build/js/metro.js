@@ -5605,6 +5605,15 @@ $.widget( "metro.preloader" , {
         }
     },
 
+    _createCycle: function(){
+        var that = this, element = this.element, o = this.options;
+        var i, cycle;
+
+        //for(i = 0; i < 3 ; i++) {
+            cycle = $("<div/>").addClass('cycle').appendTo(element);
+        //}
+    },
+
     _createStructure: function(){
         var that = this, element = this.element, o = this.options;
 
@@ -5619,6 +5628,7 @@ $.widget( "metro.preloader" , {
             case 'ring': this._createRing(); break;
             case 'metro': this._createMetro(); break;
             case 'square': this._createSquare(); break;
+            case 'cycle': this._createCycle(); break;
         }
     },
 
