@@ -358,7 +358,7 @@ $.widget("metro.slider", {
             if (o.target) {
                 $(o.target).val(returnedValue);
             }
-            
+
             if (typeof o.onChange === 'function') {
                 o.onChange(returnedValue, element);
             } else {

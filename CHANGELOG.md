@@ -8,6 +8,7 @@
 * add rtl support for input controls
 * add input range
 * add new preloaders
+* fix slider value method if target is defined
 
 ## 3.0.9
 * add hotkeys binding
