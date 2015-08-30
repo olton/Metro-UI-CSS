@@ -36,6 +36,10 @@
         <p>
             To use <span class="tag info">rtl</span> support you must include <span class="tag">metro-rtl.css</span> in head of you page and set attribute <span class="tag">dir</span> to <span class="tag">rtl</span> for parent element or same element.
         </p>
+
+
+        <h3 id="_typo_">Typography</h3>
+
         <div class="example" data-text="code">
             <pre class="prettyprint linenums no-scroll"><code>
                 &lt;link href="css/metro-rtl.css" rel="stylesheet"&gt;
@@ -50,8 +54,6 @@
                 &lt;article dir="rtl"&gt;...&lt;/article&gt;
             </code></pre>
         </div>
-
-        <h3>Typography</h3>
 
         <div class="example" dir="rtl">
             <h3>Paragraph</h3>
@@ -123,7 +125,93 @@
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
                 <small>Someone famous <cite title="Source Title">Source Title</cite></small>
             </blockquote>
+        </div>
 
+        <h3 id="_inputs_">Input controls</h3>
+
+        <div class="example" data-text="code">
+            <pre class="prettyprint linenums no-scroll"><code>
+                &lt;div dir="rtl"&gt;
+                    &lt;div class="input-control text" data-role="input"&gt;
+                        &lt;input type="text" value="This is a text"&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+
+                &lt;div class="input-control text" data-role="input"  dir="rtl"&gt;
+                    &lt;input type="text" value="This is a text"&gt;
+                &lt;/div&gt;
+            </code></pre>
+        </div>
+
+        <div class="example" data-text="demo">
+            <div class="grid">
+                <div class="row cells4">
+                    <div class="cell" dir="rtl">
+                        <h5>Simple input</h5>
+                        <div class="input-control text" data-role="input">
+                            <input type="text" value="This is a text">
+                        </div>
+                    </div>
+                    <div class="cell" dir="rtl">
+                        <h5>Input with button</h5>
+                        <div class="input-control text" data-role="input">
+                            <input type="text" value="This is a text">
+                            <button class="button"><span class="mif-search"></span></button>
+                        </div>
+                    </div>
+                    <div class="cell" dir="rtl">
+                        <h5>Input with buttons group</h5>
+                        <div class="input-control text" data-role="input">
+                            <input type="text">
+                            <div class="button-group">
+                                <button class="button"><img src="images/location.png"></button>
+                                <button class="button"><img src="images/group.png"></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cell" dir="rtl">
+                        <h5>Prepend icon</h5>
+                        <div class="input-control text" data-role="input">
+                            <span class="prepend-icon mif-user"></span>
+                            <input type="text" value="This is a text">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row cells4">
+                    <div class="cell" dir="rtl">
+                        <h5>Helper clear</h5>
+                        <div class="input-control text" data-role="input">
+                            <input type="text" value="This is a text">
+                            <button class="button helper-button clear"><span class="mif-cross"></span></button>
+                        </div>
+                    </div>
+                    <div class="cell" dir="rtl">
+                        <h5>Helper reveal</h5>
+                        <div class="input-control password" data-role="input">
+                            <input type="password" value="This is a text">
+                            <button class="button helper-button reveal"><span class="mif-looks"></span></button>
+                        </div>
+                    </div>
+                    <div class="cell" dir="rtl">
+                        <h5>Input file</h5>
+                        <div class="input-control file" data-role="input">
+                            <input type="file">
+                            <button class="button"><span class="mif-folder"></span></button>
+                        </div>
+                    </div>
+                    <div class="cell" dir="rtl">
+                        <h5>Select</h5>
+                        <div class="input-control select">
+                            <select>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </div>

@@ -1,5 +1,5 @@
 /*!
- * Metro UI CSS v3.0.9 (http://metroui.org.ua)
+ * Metro UI CSS v3.0.10 (http://metroui.org.ua)
  * Copyright 2012-2015 Sergey Pimenov
  * Licensed under MIT (http://metroui.org.ua/license.html)
  */
@@ -21,7 +21,7 @@ if (typeof jQuery === 'undefined') {
 }
 
 // Source: js/global.js
-window.METRO_VERSION = '3.0.9';
+window.METRO_VERSION = '3.0.10';
 
 if (window.METRO_AUTO_REINIT === undefined) window.METRO_AUTO_REINIT = true;
 if (window.METRO_LANGUAGE === undefined) window.METRO_LANGUAGE = 'en';
@@ -247,6 +247,20 @@ window.METRO_LOCALES = {
         ],
         buttons: [
             "Dnes", "Vyčistit", "Zrušit", "Pomoc", "Předešlý", "Další", "Dokončit"
+        ]
+    },
+    /* By Satit Rianpit <rianpit@gmail.com> */
+    'th': {
+        months: [
+            "มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม",
+            "ม.ค.", "ก.พ.", "มี.ค.", "เม.ย.", "พ.ค.", "มิ.ย.", "ก.ค.", "ส.ค.", "ก.ย.", "ต.ค.", "พ.ย.", "ธ.ค."
+        ],
+        days: [
+            "อาทิตย์", "จันทร์", "อังคาร", "พุธ", "พฤหัสบดี", "ศุกร์", "เสาร์",
+            "อา.", "จ.", "อ.", "พ.", "พฤ.", "ศ.", "ส."
+        ],
+        buttons: [
+            "วันนี้", "ล้าง", "ยกเลิก", "ช่วยเหลือ", "กลับ", "ต่อไป", "เสร็จ"
         ]
     }
 };
@@ -943,7 +957,11 @@ $.Metro.initWidgets = function(){
 
         $(document).on('keyup', null, hotkey, function(e){
             if (element === undefined) return;
-            if (element[0].tagName === 'A' && element.attr('href').trim() !== '' && element.attr('href').trim() !== '#') {
+
+            if (element[0].tagName === 'A' &&
+                element.attr('href') !== undefined &&
+                element.attr('href').trim() !== '' &&
+                element.attr('href').trim() !== '#') {
                 document.location.href = element.attr('href');
             } else {
                 element.click();
@@ -1030,7 +1048,10 @@ $.Metro.init = function(){
                                 $(document).on('keyup', null, hotkey, function () {
                                     if (element === undefined) return;
 
-                                    if (element[0].tagName === 'A' && element.attr('href').trim() !== '' && element.attr('href').trim() !== '#') {
+                                    if (element[0].tagName === 'A' &&
+                                        element.attr('href') !== undefined &&
+                                        element.attr('href').trim() !== '' &&
+                                        element.attr('href').trim() !== '#') {
                                         document.location.href = element.attr('href');
                                     } else {
                                         element.click();
@@ -3022,6 +3043,10 @@ $.widget("metro.carousel", {
             currentSlide = o._slides[o._currentIndex],
             nextSlide = o._slides[slideIndex];
 
+        if (o._currentIndex === slideIndex) {
+            return false;
+        }
+
         if (slideIndex > o._currentIndex) {
             o._outPosition = -this.element.width();
         } else {
@@ -3178,6 +3203,17 @@ $.widget("metro.carousel", {
         });
     },
 
+    slideTo: function(index){
+        this._slideToSlide(index);
+    },
+
+    nextSlide: function(){
+        this._slideTo('next');
+    },
+
+    priorSlide: function(){
+        this._slideTo('prior');
+    },
 
     _destroy: function(){
 
@@ -4684,6 +4720,10 @@ $.widget("metro.input", {
         var input = element.find("input");
         var placeholder = element.find(".placeholder");
 
+        if (input.val() !== "") {
+            placeholder.css({display: "none"});
+        }
+
         input.on("blur", function(){
             if (input.val() !== "") {
                 placeholder.css({display: "none"});
@@ -4734,6 +4774,7 @@ $.widget("metro.input", {
         var buttons = element.find('.button');
         var states = element.find('.input-state-error, .input-state-warning, .input-state-info, .input-state-success, .input-state-required');
         var padding = 0;
+        var rtl = element.attr('dir') === 'rtl' || element.parents("[dir='rtl']").length > 0;
 
 
         $.each(buttons, function(){
@@ -4741,13 +4782,23 @@ $.widget("metro.input", {
             padding += b.outerWidth();
         });
 
-        input.css({
-            'padding-right': padding + 5
-        });
+        if (rtl) {
+            input.css({
+                'padding-left': padding + 5
+            });
 
-        states.css({
-            'right': padding + 8
-        });
+            states.css({
+                'left': padding + 8
+            });
+        } else {
+            input.css({
+                'padding-right': padding + 5
+            });
+
+            states.css({
+                'right': padding + 8
+            });
+        }
 
         helpers
             .attr('tabindex', -1)
@@ -5545,6 +5596,24 @@ $.widget( "metro.preloader" , {
         }
     },
 
+    _createSquare: function(){
+        var that = this, element = this.element, o = this.options;
+        var i, square;
+
+        for(i = 0; i < 4 ; i++) {
+            square = $("<div/>").addClass('square').appendTo(element);
+        }
+    },
+
+    _createCycle: function(){
+        var that = this, element = this.element, o = this.options;
+        var i, cycle;
+
+        //for(i = 0; i < 3 ; i++) {
+            cycle = $("<div/>").addClass('cycle').appendTo(element);
+        //}
+    },
+
     _createStructure: function(){
         var that = this, element = this.element, o = this.options;
 
@@ -5558,6 +5627,8 @@ $.widget( "metro.preloader" , {
         switch (o.type) {
             case 'ring': this._createRing(); break;
             case 'metro': this._createMetro(); break;
+            case 'square': this._createSquare(); break;
+            case 'cycle': this._createCycle(); break;
         }
     },
 
@@ -6083,7 +6154,7 @@ $.widget( "metro.select" , {
 
             }
         } else {
-            alert('Select2 plugin required');
+            console.log('You are trying to use support for Select2, but the plugin is not found!');
         }
 
         element.data('select', this);
@@ -6456,6 +6527,9 @@ $.widget("metro.slider", {
 
             returnedValue = o.returnType === 'value' ? this._valueToRealValue(o.position) : o.position;
 
+            if (o.target) {
+                $(o.target).val(returnedValue);
+            }
 
             if (typeof o.onChange === 'function') {
                 o.onChange(returnedValue, element);

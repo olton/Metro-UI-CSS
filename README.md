@@ -5,20 +5,49 @@ Metro UI CSS developed with the advice of Microsoft to build the user interface 
  
 ## Current Version
 
-### 3.0.9
+### 3.0.10
 
-#### Install with bower
+### Install with bower
 bower install metro
-#### Install with nuget
-Package-Install Metro.UI.CSS
+
+### Install with nuget
+Install-Package Metro.UI.CSS
+
+### Public CDN
+
+#### Master branch
+##### CSS
+ 
+https://cdn.rawgit.com/olton/Metro-UI-CSS/master/build/css/metro.min.css<br />
+https://cdn.rawgit.com/olton/Metro-UI-CSS/master/build/css/metro-responsive.min.css<br /> 
+https://cdn.rawgit.com/olton/Metro-UI-CSS/master/build/css/metro-schemes.min.css<br />
+https://cdn.rawgit.com/olton/Metro-UI-CSS/master/build/css/metro-rtl.min.css<br />
+https://cdn.rawgit.com/olton/Metro-UI-CSS/master/build/css/metro-icons.min.css<br />
+
+##### JS
+
+https://cdn.rawgit.com/olton/Metro-UI-CSS/master/build/js/metro.min.js
+
+#### Develop branch
+##### CSS
+
+https://cdn.rawgit.com/olton/Metro-UI-CSS/develop/build/css/metro.min.css<br />
+https://cdn.rawgit.com/olton/Metro-UI-CSS/develop/build/css/metro-responsive.min.css<br /> 
+https://cdn.rawgit.com/olton/Metro-UI-CSS/develop/build/css/metro-schemes.min.css<br />
+https://cdn.rawgit.com/olton/Metro-UI-CSS/develop/build/css/metro-rtl.min.css<br />
+https://cdn.rawgit.com/olton/Metro-UI-CSS/develop/build/css/metro-icons.min.css<br />
+ 
+##### JS
+
+https://cdn.rawgit.com/olton/Metro-UI-CSS/develop/build/js/metro.min.js
 
 
 ### Whats new in 3.0
-- compatible with AngularJS
-- full code refactoring
-- declarative approach to the definition of components
-- framework itself monitors components, pressure via ajax
-- create cool page without knowledge of javascript
++ compatible with AngularJS and RequireJS
++ full code refactoring
++ declarative approach to the definition of components
++ framework itself monitors components, pressure via ajax
++ create cool page without knowledge of javascript
 
  Documentation and Demo: [metroui.org.ua](http://metroui.org.ua/).   
  Documentation and Demo for V2: [metroui.org.ua/v2](http://metroui.org.ua/v2).   

@@ -1,4 +1,4 @@
-window.METRO_VERSION = '3.0.9';
+window.METRO_VERSION = '3.0.10';
 
 if (window.METRO_AUTO_REINIT === undefined) window.METRO_AUTO_REINIT = true;
 if (window.METRO_LANGUAGE === undefined) window.METRO_LANGUAGE = 'en';
@@ -227,6 +227,20 @@ window.METRO_LOCALES = {
         ],
         buttons: [
             "Dnes", "Vyčistit", "Zrušit", "Pomoc", "Předešlý", "Další", "Dokončit"
+        ]
+    },
+    /* By Satit Rianpit <rianpit@gmail.com> */
+    'th': {
+        months: [
+            "มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม",
+            "ม.ค.", "ก.พ.", "มี.ค.", "เม.ย.", "พ.ค.", "มิ.ย.", "ก.ค.", "ส.ค.", "ก.ย.", "ต.ค.", "พ.ย.", "ธ.ค."
+        ],
+        days: [
+            "อาทิตย์", "จันทร์", "อังคาร", "พุธ", "พฤหัสบดี", "ศุกร์", "เสาร์",
+            "อา.", "จ.", "อ.", "พ.", "พฤ.", "ศ.", "ส."
+        ],
+        buttons: [
+            "วันนี้", "ล้าง", "ยกเลิก", "ช่วยเหลือ", "กลับ", "ต่อไป", "เสร็จ"
         ]
     }
 };
