@@ -35,6 +35,10 @@ $.widget("metro.input", {
         var input = element.find("input");
         var placeholder = element.find(".placeholder");
 
+        if (input.val() !== "") {
+            placeholder.css({display: "none"});
+        }
+
         input.on("blur", function(){
             if (input.val() !== "") {
                 placeholder.css({display: "none"});
@@ -85,6 +89,7 @@ $.widget("metro.input", {
         var buttons = element.find('.button');
         var states = element.find('.input-state-error, .input-state-warning, .input-state-info, .input-state-success, .input-state-required');
         var padding = 0;
+        var rtl = element.attr('dir') === 'rtl' || element.parents("[dir='rtl']").length > 0;
 
 
         $.each(buttons, function(){
@@ -92,13 +97,23 @@ $.widget("metro.input", {
             padding += b.outerWidth();
         });
 
-        input.css({
-            'padding-right': padding + 5
-        });
+        if (rtl) {
+            input.css({
+                'padding-left': padding + 5
+            });
 
-        states.css({
-            'right': padding + 8
-        });
+            states.css({
+                'left': padding + 8
+            });
+        } else {
+            input.css({
+                'padding-right': padding + 5
+            });
+
+            states.css({
+                'right': padding + 8
+            });
+        }
 
         helpers
             .attr('tabindex', -1)

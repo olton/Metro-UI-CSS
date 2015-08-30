@@ -43,6 +43,15 @@ body {
     border: 1px #000 solid;
 }
 
+.thumb {
+    background: white;
+    padding: 4px;
+    display: inline-block;
+    height: 2.375rem;
+    width: 2.375rem;
+    border: 1px transparent solid;
+    cursor: pointer;
+}
 
 @media screen and (max-width: 800px) {
     .app-bar.fixed-top {

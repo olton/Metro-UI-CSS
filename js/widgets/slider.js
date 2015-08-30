@@ -355,6 +355,9 @@ $.widget("metro.slider", {
 
             returnedValue = o.returnType === 'value' ? this._valueToRealValue(o.position) : o.position;
 
+            if (o.target) {
+                $(o.target).val(returnedValue);
+            }
 
             if (typeof o.onChange === 'function') {
                 o.onChange(returnedValue, element);

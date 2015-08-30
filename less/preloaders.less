@@ -4,9 +4,9 @@
 @import (once) "animations";
 
 .preloader {
-
 	&-ring {
 		position: relative;
+
 		padding-top: @accentTextFontSize/5;
 		.square(@preloaderRingSize);
 		margin: .625rem;
@@ -68,13 +68,53 @@
 				}
 			}
 		}
+
+        &.color-style {
+            & > .wrap {
+                & > .circle {
+                    &:after {
+                        background-color: @cyan;
+                    }
+                }
+            }
+            & > .wrap:nth-child(2) {
+                & > .circle {
+                    &:after {
+                        background-color: @orange;
+                    }
+                }
+            }
+            & > .wrap:nth-child(3) {
+                & > .circle {
+                    &:after {
+                        background-color: @green;
+                    }
+                }
+            }
+            & > .wrap:nth-child(4) {
+                & > .circle {
+                    &:after {
+                        background-color: @red;
+                    }
+                }
+            }
+            & > .wrap:nth-child(5) {
+                & > .circle {
+                    &:after {
+                        background-color: @yellow;
+                    }
+                }
+            }
+        }
 	}
 
 	&-metro {
+		overflow: hidden;
+		position: relative;
+
 		width: 100%;
 		height: 10px;
 		background-color: @transparent;
-		overflow: hidden;
 
 		& > .circle {
 			display: inline-block;
@@ -102,6 +142,164 @@
 		&.dark-style {
 			& > .circle {
 				background-color: @preloaderColorDark;
+			}
+		}
+
+        &.color-style {
+            & > .circle {
+                background-color: @cyan;
+            }
+            & > .circle:nth-child(2) {
+                background-color: @orange;
+            }
+            & > .circle:nth-child(3) {
+                background-color: @green;
+            }
+            & > .circle:nth-child(4) {
+                background-color: @red;
+            }
+            & > .circle:nth-child(5) {
+                background-color: @yellow;
+            }
+        }
+	}
+
+	&-square {
+		position: relative;
+		width: 40px;
+		height: 40px;
+		overflow: hidden;
+		transform-origin: bottom left;
+		animation: ani-shrink 1s linear infinite;
+
+		.square {
+			position: absolute;
+			width: 19px;
+			height: 19px;
+			background: @preloaderColor;
+
+			&:nth-child(1) {
+				left: 0;
+				top: 21px;
+			}
+
+			&:nth-child(2) {
+				left: 21px;
+				top: 21px;
+				animation: ani-drop 1s linear infinite;
+			}
+
+			&:nth-child(3) {
+				left: 0;
+				top: 0;
+				animation: ani-drop2 1s linear infinite;
+			}
+
+			&:nth-child(4) {
+				left: 21px;
+				top: 0;
+				animation: ani-drop3 1s linear infinite;
+			}
+		}
+
+		&.dark-style {
+			& > .square {
+				background-color: @preloaderColorDark;
+			}
+		}
+
+		&.color-style {
+
+			& > .square:nth-child(1) {
+				background-color: @orange;
+			}
+
+			& > .square:nth-child(2) {
+				background-color: @green;
+			}
+
+			& > .square:nth-child(3) {
+				background-color: @cyan;
+			}
+
+			& > .square:nth-child(4) {
+				background-color: @yellow;
+			}
+		}
+	}
+
+	&-cycle {
+		width: 64px;
+		height: 64px;
+		position: relative;
+		overflow: hidden;
+
+		.cycle {
+			display: block;
+			position: relative;
+			left: 50%;
+			top: 50%;
+			width: 64px;
+			height: 64px;
+			margin: -32px 0 0 -32px;
+			border-radius: 50%;
+			border: 3px solid transparent;
+			border-top-color: @white;
+			animation: ani-pre-spin 1s linear infinite;
+			z-index: 1001;
+
+			&:before {
+				content: "";
+				position: absolute;
+				top: 5px;
+				left: 5px;
+				right: 5px;
+				bottom: 5px;
+				border-radius: 50%;
+				border: 3px solid transparent;
+				border-top-color: @white;
+				animation: ani-pre-spin 2s linear infinite;
+			}
+
+			&:after {
+				content: "";
+				position: absolute;
+				top: 15px;
+				left: 15px;
+				right: 15px;
+				bottom: 15px;
+				border-radius: 50%;
+				border: 3px solid transparent;
+				border-top-color: @white;
+				animation: spin 1.5s linear infinite;
+			}
+		}
+
+		&.dark-style {
+			.cycle {
+				border-top-color: @dark;
+
+				&:before {
+					border-top-color: @dark;
+				}
+
+				&:after {
+					border-top-color: @dark;
+				}
+			}
+		}
+
+		&.color-style {
+			.cycle {
+				border-top-color: #3498db;
+
+				&:before {
+					border-top-color: #e74c3c;
+				}
+
+				&:after {
+					border-top-color: #f9c922;
+				}
 			}
 		}
 	}

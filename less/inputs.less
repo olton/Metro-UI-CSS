@@ -818,3 +818,120 @@ input[type="button"], input[type="reset"], input[type="submit"] {
 		}
 	}
 }
+
+.input-control {
+	&.range {
+		input[type=range] {
+			border: 0;
+			box-sizing: border-box;
+			line-height: 1;
+			background-color: transparent;
+			cursor: pointer;
+			-webkit-appearance: none;
+			width: 100%;
+
+			&::-webkit-slider-thumb {
+				-webkit-appearance: none;
+			}
+			&:focus {
+				outline: none;
+			}
+			&::-ms-track {
+				width: 100%;
+				cursor: pointer;
+				background: transparent;
+				border-color: transparent;
+				color: transparent;
+			}
+
+			.mx-trange-trump(){
+				width: 1em;
+				height: 1em;
+				margin-top: 0;
+				background-color: @gray;
+				border: 2px solid @gray;
+				cursor: pointer;
+			}
+
+			&::-webkit-slider-thumb {
+				-webkit-appearance: none;
+				.mx-trange-trump();
+			}
+
+			&::-moz-range-thumb {
+				.mx-trange-trump();
+				border-radius: 0;
+				margin: 0;
+			}
+
+			&::-ms-thumb {
+				.mx-trange-trump();
+			}
+
+			&:hover{
+				&::-webkit-slider-thumb { border-color: lighten(@dark, 10%); background-color: @dark;}
+				&::-moz-range-thumb     { border-color: lighten(@dark, 10%); background-color: @dark; }
+				&::-ms-thumb            { border-color: lighten(@dark, 10%); background-color: @dark; }
+			}
+
+			&:active{
+				&::-webkit-slider-thumb { border-color: lighten(@dark, 10%); }
+				&::-moz-range-thumb     { border-color: lighten(@dark, 10%); }
+				&::-ms-thumb            { border-color: lighten(@dark, 10%); }
+			}
+
+			.mx-range-track(){
+				width: 100%;
+				cursor: pointer;
+				height: 100%;
+				background-color: @teal;
+				transition: background .3s ease;
+			}
+
+
+			&::-webkit-slider-runnable-track {
+				.mx-range-track();
+			}
+
+			&:focus::-webkit-slider-runnable-track {
+
+			}
+
+			&::-moz-range-track {
+				.mx-range-track()
+			}
+
+			&::-ms-track {
+				background: @teal;
+				border-color: transparent;
+				color: transparent;
+				height: 1.25em;
+			}
+			&::-ms-fill-lower {
+				background: @teal;
+			}
+			&:focus::-ms-fill-lower {
+
+			}
+			&::-ms-fill-upper {
+				display: none;
+			}
+			&:focus::-ms-fill-upper {
+
+			}
+			&::-moz-range-track {
+				height: 1.25em;
+			}
+		}
+
+		&.big-input {
+			height: 2.125rem;
+			input[type=range] {
+				padding: 0;
+				&::-moz-range-track {
+					height: 1.2em;
+				}
+			}
+		}
+	}
+}

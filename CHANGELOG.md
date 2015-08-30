@@ -1,5 +1,15 @@
 # Changelog 
 
+## 3.0.10
+* fix modern input initialize with value
+* remove alert for check select2 plugin exists
+* add public methods slideTo, nextSlide, priorSlide for carousel
+* fix carousel method slideToSlide if next index eq current 
+* add rtl support for input controls
+* add input range
+* add new preloaders
+* fix slider value method if target is defined
+
 ## 3.0.9
 * add hotkeys binding
 * fix fluent-menu initialize
