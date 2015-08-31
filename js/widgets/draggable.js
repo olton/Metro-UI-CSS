@@ -1,9 +1,9 @@
-$.widget( "metro.widget" , {
+$.widget( "metro.draggable" , {
 
     version: "3.0.0",
 
     options: {
-        someValue: null
+        dragElement: null
     },
 
     _create: function () {
@@ -11,8 +11,7 @@ $.widget( "metro.widget" , {
 
         this._setOprionsFromDOM();
 
-        element.data('widget', this);
-
+        element.data('draggable', this);
     },
 
     _setOprionsFromDOM: function(){
