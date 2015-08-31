@@ -7,7 +7,8 @@ $.widget( "metro.keypad" , {
         shuffle: false,
         length: false,
         keys: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'],
-        onKey: function(key){}
+        onKey: function(key){},
+        onChange: function(value){}
     },
 
     //_keys: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'],
@@ -112,6 +113,7 @@ $.widget( "metro.keypad" , {
 
         keypad.on('click', '.key', function(e){
             var key = $(this);
+            var result;
 
             if (o.target) {
                 if (key.data('key') !== '&larr;' && key.data('key') !== '&times;') {
@@ -128,6 +130,8 @@ $.widget( "metro.keypad" , {
                         $(o.target).val(val.substring(0, val.length - 1))
                     }
                 }
+
+                o.target.trigger('change');
             }
 
             if (typeof o.onKey === 'function') {
@@ -136,8 +140,19 @@ $.widget( "metro.keypad" , {
                 if (typeof window[o.onKey] === 'function') {
                     window[o.onKey](key);
                 } else {
-                    var result = eval("(function(){"+o.onKey+"})");
+                    result = eval("(function(){"+o.onKey+"})");
                     result.call(key);
+                }
+            }
+
+            if (typeof o.onChange === 'function') {
+                o.onChange(o.target.val());
+            } else {
+                if (typeof window[o.onChange] === 'function') {
+                    window[o.onChange](o.target.val());
+                } else {
+                    result = eval("(function(){"+o.onChange+"})");
+                    result.call({value: o.target.val()});
                 }
             }
 
