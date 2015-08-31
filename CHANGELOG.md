@@ -1,6 +1,7 @@
 # Changelog 
 
 ## 3.0.11
+* add keypad onChange event
 
 ## 3.0.10
 * fix modern input initialize with value
