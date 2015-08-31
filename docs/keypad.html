@@ -173,6 +173,37 @@
                 &lt;/div&gt;
             </code></pre>
         </div>
+
+        <h3>Events</h3>
+        <div class="example" data-text="example">
+            <div id="keypad-log1" class="padding20 debug">&nbsp;</div>
+            <div class="input-control text" data-role="keypad" data-on-change="$('#keypad-log1').text(this.value);">
+                <input type="text">
+                <button class="button"><span class="mif-key"></span></button>
+            </div>
+
+            <pre class="prettyprint linenums"><code>
+                &lt;div id="keypad-log1" class="padding20 debug"&gt;&nbsp;&lt;/div&gt;
+                &lt;div class="input-control text" data-role="keypad" data-on-change="$('#keypad-log1').text(this.value);"&gt;
+                    &lt;input type="text"&gt;
+                    &lt;button class="button"&gt;&lt;span class="mif-key"&gt;&lt;/span&gt;&lt;/button&gt;
+                &lt;/div&gt;
+            </code></pre>
+
+            <div id="keypad-log2" class="padding20 debug">&nbsp;</div>
+            <div class="input-control text" data-role="keypad" data-shuffle="true">
+                <input type="text" onchange="$('#keypad-log2').text(this.value);">
+                <button class="button"><span class="mif-key"></span></button>
+            </div>
+
+            <pre class="prettyprint linenums"><code>
+                &lt;div id="keypad-log2" class="padding20 debug"&gt;&nbsp;&lt;/div&gt;
+                &lt;div class="input-control text" data-role="keypad"&gt;
+                    &lt;input type="text" onchange="$('#keypad-log2').text(this.value);"&gt;
+                    &lt;button class="button"&gt;&lt;span class="mif-key"&gt;&lt;/span&gt;&lt;/button&gt;
+                &lt;/div&gt;
+            </code></pre>
+        </div>
     </div>
 
     @@hit
