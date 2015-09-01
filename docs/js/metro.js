@@ -4866,6 +4866,10 @@ $.widget( "metro.keypad" , {
             o.keys = o.keys.split(",");
         }
 
+        if (o.target !== false) {
+            o.target = $(o.target);
+        }
+
         this._createKeypad();
 
         element.data('keypad', this);
