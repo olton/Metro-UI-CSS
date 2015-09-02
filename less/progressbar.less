@@ -1,5 +1,6 @@
 @import (once) "variables";
 @import (once) "utils";
+@import (once) "animations";
 
 .progress, .progress-bar {
 	display: block;
@@ -34,6 +35,12 @@
 	&.gradient-bar {
 		.bar {
 			background: linear-gradient(to right, #4cd964, #5ac8fa, #007aff, #34aadc, #5856d6, #ff2d55);
+		}
+	}
+
+	&.ani {
+		.bar {
+			.animate(ani-bg-stripes 2s linear infinite);
 		}
 	}
 }

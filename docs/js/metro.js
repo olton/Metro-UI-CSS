@@ -5857,6 +5857,7 @@ $.widget( "metro.progressBar" , {
         color: 'default',
         colors: false,
         value: 0,
+        animate: false,
         onProgress: function(value){}
     },
 
@@ -5865,6 +5866,10 @@ $.widget( "metro.progressBar" , {
     _create: function () {
         var that = this, element = this.element, o = this.options;
         var bar = element.children('.bar:last-child');
+
+        if (!element.hasClass('progress')) {
+            element.addClass('progress');
+        }
 
         $.each(element.data(), function(key, value){
             if (key in o) {
@@ -5936,9 +5941,26 @@ $.widget( "metro.progressBar" , {
 
             o.value = value;
 
-            bar.animate({
-                width: o.value + '%'
-            }, 100, function(){
+            if (o.animate !== false) {
+                var ani_speed = isNaN(o.animate) ? 500 : o.animate;
+                bar.animate({
+                    width: o.value + '%'
+                }, ani_speed, function(){
+                    if (typeof o.onProgress === 'function') {
+                        o.onProgress(value);
+                    } else {
+                        if (typeof window[o.onProgress] === 'function') {
+                            window[o.onProgress](value);
+                        } else {
+                            var result = eval("(function(){"+o.onProgress+"})");
+                            result.call(value);
+                        }
+                    }
+                });
+            } else {
+                bar.css({
+                    width: o.value + '%'
+                });
                 if (typeof o.onProgress === 'function') {
                     o.onProgress(value);
                 } else {
@@ -5949,7 +5971,8 @@ $.widget( "metro.progressBar" , {
                         result.call(value);
                     }
                 }
-            });
+            }
+
         } else {
             return this.options.value;
         }
