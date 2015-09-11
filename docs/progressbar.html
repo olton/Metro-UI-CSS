@@ -34,41 +34,41 @@
 
         <div class="example" data-text="example">
             <h5>Default</h5>
-            <div class="progress" data-value="85" data-color="bg-red" data-role="progressBar"></div>
+            <div class="progress" data-value="85" data-color="bg-red" data-role="progress"></div>
 
             <pre class="prettyprint linenums no-scroll-x"><code>
                 &lt;div class="progress"
                     data-value="85"
                     data-color="bg-red"
-                    data-role="progressBar"&gt;&lt;/div&gt;
+                    data-role="progress"&gt;&lt;/div&gt;
             </code></pre>
 
             <h5>Small</h5>
-            <div class="progress small" data-value="30" data-role="progressBar"></div>
+            <div class="progress small" data-value="30" data-role="progress"></div>
             <pre class="prettyprint linenums no-scroll-x"><code>
-                &lt;div class="progress small" data-role="progressBar"&gt;&lt;/div&gt;
+                &lt;div class="progress small" data-role="progress"&gt;&lt;/div&gt;
             </code></pre>
 
             <h5>Large</h5>
-            <div class="progress large" data-value="55" data-color="ribbed-amber" data-role="progressBar"></div>
+            <div class="progress large" data-value="55" data-color="ribbed-amber" data-role="progress"></div>
             <pre class="prettyprint linenums no-scroll-x"><code>
-                &lt;div class="progress large" data-role="progressBar"&gt;&lt;/div&gt;
+                &lt;div class="progress large" data-role="progress"&gt;&lt;/div&gt;
             </code></pre>
 
             <h5>Gradient</h5>
-            <div class="progress small gradient-bar" data-value="85" data-role="progressBar"></div>
+            <div class="progress small gradient-bar" data-value="85" data-role="progress"></div>
             <pre class="prettyprint linenums no-scroll-x"><code>
-                &lt;div class="progress gradient-bar" data-role="progressBar"&gt;&lt;/div&gt;
+                &lt;div class="progress gradient-bar" data-role="progress"&gt;&lt;/div&gt;
             </code></pre>
 
             <h5>Animate</h5>
-            <div class="progress small" data-animate="500" data-value="85" data-role="progressBar"></div>
-            <div class="progress large ani" data-value="55" data-color="ribbed-amber" data-role="progressBar"></div>
+            <div class="progress small" data-animate="500" data-value="85" data-role="progress"></div>
+            <div class="progress large ani" data-value="55" data-color="ribbed-amber" data-role="progress"></div>
 
             <pre class="prettyprint linenums no-scroll-x"><code>
-                &lt;div class="progress small" data-animate="500" data-role="progressBar"&gt;&lt;/div&gt;
+                &lt;div class="progress small" data-animate="500" data-role="progress"&gt;&lt;/div&gt;
 
-                &lt;div class="progress ani" data-color="ribbed-amber" data-role="progressBar"&gt;&lt;/div&gt;
+                &lt;div class="progress ani" data-color="ribbed-amber" data-role="progress"&gt;&lt;/div&gt;
             </code></pre>
         </div>
 
@@ -77,7 +77,7 @@
                 <div class="cell">
                     <div class="example" data-text="example">
                         <h5>Simple color test <span id="sct-1">0%</span></h5>
-                        <div class="progress small" id="pb1" data-role="progressBar" data-value="0" data-color="bg-pink" data-on-progress="$('#sct-1').html(value+'%')"></div>
+                        <div class="progress small" id="pb1" data-role="progress" data-value="0" data-color="bg-pink" data-on-progress="$('#sct-1').html(value+'%')"></div>
 
                         <button class="button success" onclick="runPB1()">Start</button>
                         <button class="button danger" onclick="stopPB1()">Stop</button>
@@ -87,11 +87,11 @@
                             var interval1;
                             function runPB1(){
                                 clearInterval(interval1);
-                                var pb = $("#pb1").progressBar();
+                                var pb = $("#pb1").data('progress');
                                 var val = 0;
                                 interval1 = setInterval(function(){
                                     val += 1;
-                                    pb.progressBar('progress', val);
+                                    pb.set(val);
                                     if (val >= 100) {
                                         val = 0;
                                         clearInterval(interval1);
@@ -101,8 +101,8 @@
 
                             function flashPB1(){
                                 clearInterval(interval1);
-                                var pb = $("#pb1").progressBar();
-                                pb.progressBar('progress', 0);
+                                var pb = $("#pb1").data('progress');
+                                pb.set(0);
                             }
 
                             function stopPB1(){
@@ -114,7 +114,7 @@
                 <div class="cell">
                     <div class="example" data-text="example">
                         <h5>Multi color test</h5>
-                        <div class="progress small" id="pb2" data-parts="true" data-role="progressBar" data-value="0" data-colors='{"bg-red": 33, "bg-yellow": 66, "bg-cyan": 90, "bg-green": 100}'></div>
+                        <div class="progress small" id="pb2" data-parts="true" data-role="progress" data-value="0" data-colors='{"bg-red": 33, "bg-yellow": 66, "bg-cyan": 90, "bg-green": 100}'></div>
 
                         <button class="button success" onclick="runPB2()">Start</button>
                         <button class="button danger" onclick="stopPB2()">Stop</button>
@@ -124,11 +124,11 @@
                             var interval2;
                             function runPB2(){
                                 clearInterval(interval2);
-                                var pb = $("#pb2").progressBar();
+                                var pb = $("#pb2").data('progress');
                                 var val = 0;
                                 interval2 = setInterval(function(){
                                     val += 2;
-                                    pb.progressBar('progress', val);
+                                    pb.set(val);
                                     if (val >= 100) {
                                         val = 0;
                                         clearInterval(interval2);
@@ -138,8 +138,8 @@
 
                             function flashPB2(){
                                 clearInterval(interval2);
-                                var pb = $("#pb2").progressBar();
-                                pb.progressBar('progress', 0);
+                                var pb = $("#pb2").data('progress');
+                                pb.set(0);
                             }
 
                             function stopPB2(){
@@ -149,6 +149,37 @@
                     </div>
                 </div>
             </div>
+        </div>
+
+        <div class="example" data-text="code">
+            <pre class="prettyprint linenums no-scroll-x"><code>
+                &lt;script&gt;
+                    var interval1;
+                    function runPB1(){
+                        clearInterval(interval1);
+                        var pb = $("#pb1").data('progress');
+                        var val = 0;
+                        interval1 = setInterval(function(){
+                            val += 1;
+                            pb.set(val);
+                            if (val >= 100) {
+                                val = 0;
+                                clearInterval(interval1);
+                            }
+                        }, 100);
+                    }
+
+                    function flashPB1(){
+                        clearInterval(interval1);
+                        var pb = $("#pb1").data('progress');
+                        pb.set(0);
+                    }
+
+                    function stopPB1(){
+                        clearInterval(interval1);
+                    }
+                &lt;/script&gt;
+            </code></pre>
         </div>
     </div>
 
