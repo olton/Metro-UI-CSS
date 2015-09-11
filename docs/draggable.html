@@ -30,23 +30,97 @@
     <div class="container page-content">
         <h1><a href="index.html" class="nav-button transform"><span></span></a>&nbsp;Draggable</h1>
 
+        <div class="margin20 no-margin-left no-margin-right sub-header text-light">
+            Metro UI CSS provides simple method for creating draggable elements with data-role <span class="tag">draggable</span> .
+        </div>
+
         <div class="example" data-text="example">
-            <div class="panel" style="width: 300px" data-role="draggable" data-drag-element=".heading">
-                <div class="heading">
-                    <span class="icon mif-home"></span>
-                    <span class="title">Panel Title</span>
-                </div>
-                <div class="content">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean luctus lectus sit amet odio ullamcorper malesuada dignissim justo gravida.
+            <div class="grid">
+                <div class="row">
+                    <div class="cell">
+                        <h5>Simple draggable</h5>
+                        <div class="padding40 align-center">
+                            <div class="bg-red padding20 inline-block" style="width: 50px" data-role="draggable"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div data-role="dialog,draggable" data-show="true" id="dialog" class="dialog padding20 bg-white shadow" data-close-button="true">
-            <h1>Simple dialog</h1>
-            <p>
-                Dialog :: Metro UI CSS - The front-end framework for developing projects on the web in Windows Metro Style
-            </p>
+        <div class="example" data-text="code">
+            <pre class="prettyprint linenums no-scroll-x"><code>
+                &lt;div data-role="draggable"&gt;&lt;/div&gt;
+            </code></pre>
+        </div>
+
+        <div class="example" data-text="example">
+            <div class="grid">
+                <div class="row cells2">
+                    <div class="cell">
+                        <h5>Draggable panel</h5>
+                        <div class="panel" style="width: 300px" data-role="draggable">
+                            <div class="heading">
+                                <span class="icon mif-home"></span>
+                                <span class="title">Panel Title</span>
+                            </div>
+                            <div class="content">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean luctus lectus sit amet odio ullamcorper malesuada dignissim justo gravida.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cell">
+                        <h5>Draggable panel on heading</h5>
+                        <div class="panel" style="width: 300px" data-role="draggable" data-drag-element=".heading">
+                            <div class="heading">
+                                <span class="icon mif-home"></span>
+                                <span class="title">Panel Title</span>
+                            </div>
+                            <div class="content">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean luctus lectus sit amet odio ullamcorper malesuada dignissim justo gravida.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="example" data-text="code">
+            <pre class="prettyprint linenums"><code>
+                &lt;!--Draggable panel--&gt;
+                &lt;div class="panel" data-role="draggable"&gt;
+                    &lt;div class="heading"&gt;
+                        &lt;span class="icon mif-home"&gt;&lt;/span&gt;
+                        &lt;span class="title"&gt;Panel Title&lt;/span&gt;
+                    &lt;/div&gt;
+                    &lt;div class="content"&gt;
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    &lt;/div&gt;
+                &lt;/div&gt;
+
+                &lt;!--Draggable panel on heading--&gt;
+                &lt;div class="panel" data-role="draggable" data-drag-element=".heading"&gt;
+                    &lt;div class="heading"&gt;
+                        &lt;span class="icon mif-home"&gt;&lt;/span&gt;
+                        &lt;span class="title"&gt;Panel Title&lt;/span&gt;
+                    &lt;/div&gt;
+                    &lt;div class="content"&gt;
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            </code></pre>
+        </div>
+
+        <div class="example" data-text="example">
+            <div data-role="dialog,draggable" id="dialog" class="dialog padding20 bg-white shadow" data-close-button="true">
+                <h1>Simple dialog</h1>
+                <p>
+                    Dialog :: Metro UI CSS - The front-end framework for developing projects on the web in Windows Metro Style
+                </p>
+            </div>
+
+            <h5>Draggable dialog</h5>
+            <br />
+            <button class="button" onclick="$('#dialog').data('dialog').toggle()">Show dialog</button>
         </div>
 
         @@adsense

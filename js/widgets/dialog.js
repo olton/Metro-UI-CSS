@@ -134,6 +134,15 @@ $.widget( "metro.dialog" , {
         });
     },
 
+    toggle: function(){
+        var element = this.element;
+        if (element.data('opened')) {
+            this.close();
+        } else {
+            this.open();
+        }
+    },
+
     open: function(){
         var that = this, element = this.element, o = this.options;
         var overlay;

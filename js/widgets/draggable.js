@@ -4,6 +4,7 @@ $.widget( "metro.draggable" , {
 
     options: {
         dragElement: null,
+        dragArea: null,
         onDragStart: function(el){},
         onDragStop: function(el){},
         onDragMove: function(el){}
@@ -12,14 +13,11 @@ $.widget( "metro.draggable" , {
     drag: false,
     oldCursor: null,
     oldZindex: null,
+    oldPosition: null,
 
 
     _create: function () {
         var that = this, element = this.element, o = this.options;
-
-        setTimeout(function(){
-
-        }, 500);
 
         this._setOptionsFromDOM();
         this._createDraggable();
@@ -30,7 +28,6 @@ $.widget( "metro.draggable" , {
     _createDraggable: function(){
         var that = this, element = this.element, o = this.options;
         var dragElement  = o.dragElement ? element.find(o.dragElement) : element;
-        console.log(dragElement);
 
         addTouchEvents(element[0]);
 
@@ -52,31 +49,40 @@ $.widget( "metro.draggable" , {
 
             that.oldCursor = el.css('cursor') ? el.css('cursor') : 'default' ;
             that.oldZindex= element.css('z-index');
-            el.css({
+            dragElement.css({
                 cursor: 'move'
             });
 
-            console.log(element, that.oldZindex);
-
-            element.css('z-index', '2000');
+            element.css({
+                'z-index': '2000'
+            });
 
             var drg_h = element.outerHeight(),
                 drg_w = element.outerWidth(),
                 pos_y = element.offset().top + drg_h - e.pageY,
                 pos_x = element.offset().left + drg_w - e.pageX;
 
-            $(window).on('mousemove', function(e){
+            var dragArea = o.dragArea ? $(o.dragArea) : $(window);
+
+            dragArea.on('mousemove', function(e){
                 var offset;
 
                 if (!that.drag) return false;
 
+                var os = {
+                    left: o.dragArea ? dragArea.offset().left : 0,
+                    top: o.dragArea ? dragArea.offset().top : 0
+                };
+
                 var t = (e.pageY > 0)?(e.pageY + pos_y - drg_h):(0);
                 var l = (e.pageX > 0)?(e.pageX + pos_x - drg_w):(0);
 
-                if(t >= 0 && t <= window.innerHeight - element.outerHeight()) {
+                console.log(dragArea.height() + dragArea.scrollTop(), dragArea.width());
+
+                if(t >= 0 && t <= dragArea.innerHeight() + dragArea.scrollTop() - element.outerHeight()) {
                     element.offset({top: t});
                 }
-                if(l >= 0 && l <= window.innerWidth - element.outerWidth()) {
+                if(l >= 0 && l <= dragArea.innerWidth() + dragArea.scrollLeft() - element.outerWidth()) {
                     element.offset({left: l});
                 }
 
@@ -104,11 +110,12 @@ $.widget( "metro.draggable" , {
             var result, el = $(this);
 
             that.drag = false;
-            el.css({
+            dragElement.css({
                 cursor: that.oldCursor
             });
             element.css({
-                'z-index': that.oldZindex
+                'z-index': that.oldZindex,
+                'position': that.oldPosition
             });
 
             if (typeof o.onDragStop === 'function') {
