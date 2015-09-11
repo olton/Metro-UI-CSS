@@ -17,7 +17,7 @@ $.widget( "metro.dialog" , {
         color: 'default',
         closeButton: false,
         windowsStyle: false,
-
+        show: false,
         _interval: undefined,
         _overlay: undefined,
 
@@ -44,6 +44,10 @@ $.widget( "metro.dialog" , {
         this._createDialog();
 
         element.data('dialog', this);
+
+        if (o.show) {
+            this.open();
+        }
     },
 
     _createOverlay: function(){

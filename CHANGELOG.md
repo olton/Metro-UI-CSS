@@ -6,6 +6,8 @@
 * fix box sizing for FF
 * chg progressBar role to progress and progress method to set
 * chg tabControl role to tabcontrol
+* add option for auto open dialog
+* fix important bug for multi role defining  
 
 ## 3.0.10
 * fix modern input initialize with value
