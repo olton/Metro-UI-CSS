@@ -5849,7 +5849,7 @@ $.widget( "metro.presenter" , {
 });
 
 // Source: js/widgets/progressbar.js
-$.widget( "metro.progressBar" , {
+$.widget( "metro.progress" , {
 
     version: "3.0.0",
 
@@ -5893,10 +5893,10 @@ $.widget( "metro.progressBar" , {
             });
         }
 
-        this.progress(o.value);
+        this.set(o.value);
         this.color(o.color);
 
-        element.data('progressBar', this);
+        element.data('progress', this);
 
     },
 
@@ -5918,7 +5918,7 @@ $.widget( "metro.progressBar" , {
         o.color = value;
     },
 
-    progress: function(value){
+    set: function(value){
         if (value !== undefined) {
             var element = this.element, o = this.options, colors = this.colorsDim;
             var bar = element.children('.bar:last-child');
@@ -6985,7 +6985,7 @@ $.widget("metro.streamer", {
 });
 
 // Source: js/widgets/tabcontrol.js
-$.widget( "metro.tabControl" , {
+$.widget( "metro.tabcontrol" , {
 
     version: "3.0.0",
 
@@ -7070,7 +7070,7 @@ $.widget( "metro.tabControl" , {
         //    that._hideTabs();
         //});
 
-        element.data('tabControl', this);
+        element.data('tabcontrol', this);
 
     },
 

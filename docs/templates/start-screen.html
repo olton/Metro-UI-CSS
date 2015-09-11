@@ -17,6 +17,7 @@
 
     <script src="../js/jquery-2.1.3.min.js"></script>
     <script src="../js/metro.js"></script>
+    <script src="//maps.googleapis.com/maps/api/js?sensor=false"></script>
 
     <style>
         .tile-area-controls {
@@ -210,32 +211,42 @@
             'partly-cloudy-day': 'mif-cloudy3',
             'partly-cloudy-night': 'mif-cloud5'
         };
+
+        var api_key = 'AIzaSyDPfgE0qhVmCcy-FNRLBjO27NbVrFM2abg';
+
         $(function(){
-            $.get("http://ip-api.com/json", function(response) {
-
-                var $latlon = response.lat + ',' + response.lon;
-
-                $.ajax({
-                    url: 'https://api.forecast.io/forecast/219588ba41dedc2f1019684e8ac393ad/'+$latlon+'?units=si',
-                    dataType: 'jsonp',
-                    success: function(data){
-                        //do whatever you want with the data here
-                        var current = data.currently;
-                        $('#city_name').html(response.city+", "+response.country);
-                        $("#city_temp").html(Math.round(current.temperature)+" &deg;C");
-                        $("#city_weather").html(current.summary);
-                        $("#city_weather_daily").html(data.daily.summary);
-                        $("#weather_icon").addClass(weather_icons[current.icon]);
-                        $("#pressure").html(current.pressure);
-                        $("#ozone").html(current.ozone);
-                        $("#wind_bearing").html(current.windBearing);
-                        $("#wind_speed").html(current.windSpeed);
-                        $("#weather_bg").css({
-                            'background-image': 'url(../images/'+current.icon+'.jpg'+')'
-                        });
-                    }
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position){
+                    var lat = position.coords.latitude, lon = position.coords.longitude;
+                    var pos = lat+','+lon;
+                    var latlng = new google.maps.LatLng(lat, lon);
+                    var geocoder = new google.maps.Geocoder();
+                    $.ajax({
+                        url: '//api.forecast.io/forecast/219588ba41dedc2f1019684e8ac393ad/'+pos+'?units=si',
+                        dataType: 'jsonp',
+                        success: function(data){
+                            //do whatever you want with the data here
+                            geocoder.geocode({latLng: latlng}, function(result, status){
+                                console.log(result[3]);
+                                $("#city_name").html(result[3].formatted_address);
+                            });
+                            var current = data.currently;
+                            //$('#city_name').html(response.city+", "+response.country);
+                            $("#city_temp").html(Math.round(current.temperature)+" &deg;C");
+                            $("#city_weather").html(current.summary);
+                            $("#city_weather_daily").html(data.daily.summary);
+                            $("#weather_icon").addClass(weather_icons[current.icon]);
+                            $("#pressure").html(current.pressure);
+                            $("#ozone").html(current.ozone);
+                            $("#wind_bearing").html(current.windBearing);
+                            $("#wind_speed").html(current.windSpeed);
+                            $("#weather_bg").css({
+                                'background-image': 'url(../images/'+current.icon+'.jpg'+')'
+                            });
+                        }
+                    });
                 });
-            });
+            }
         });
     </script>
 
