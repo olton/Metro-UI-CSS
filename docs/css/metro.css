@@ -11821,6 +11821,7 @@ input[type="submit"].link:active {
 }
 .stepper {
   margin: 10px 0;
+  width: 100%;
 }
 .stepper:before,
 .stepper:after {
@@ -11837,6 +11838,7 @@ input[type="submit"].link:active {
   padding: 0;
   margin: 30px 0;
   width: 100%;
+  display: block;
 }
 .stepper > ul li {
   list-style: none;
@@ -11891,6 +11893,9 @@ input[type="submit"].link:active {
 .stepper.diamond li:before {
   -webkit-transform: rotate(-45deg);
           transform: rotate(-45deg);
+}
+.wizard {
+  position: relative;
 }
 .wizard .steps {
   margin: 10px 0;

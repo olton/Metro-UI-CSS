@@ -120,7 +120,21 @@ $.widget( "metro.dialog" , {
             });
         }
 
-        element.hide();
+        this._hide();
+    },
+
+    _hide: function(){
+        var element = this.element;
+        element.css({
+           visibility: "hidden"
+        });
+    },
+
+    _show: function(){
+        var element = this.element;
+        element.css({
+           visibility: "visible"
+        });
     },
 
     _setPosition: function(){
@@ -156,7 +170,8 @@ $.widget( "metro.dialog" , {
             overlay.appendTo('body').show();
         }
 
-        element.fadeIn();
+        //element.fadeIn();
+        this._show();
 
         if (typeof o.onDialogOpen === 'function') {
             o.onDialogOpen(element);
@@ -187,7 +202,8 @@ $.widget( "metro.dialog" , {
 
         element.data('opened', false);
 
-        element.fadeOut();
+        //element.fadeOut();
+        this._hide();
 
         if (typeof o.onDialogClose === 'function') {
             o.onDialogClose(element);

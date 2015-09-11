@@ -8,6 +8,7 @@
 * chg tabControl role to tabcontrol
 * add option for auto open dialog
 * fix important bug for multi role defining  
+* add draggable plugin
 
 ## 3.0.10
 * fix modern input initialize with value
