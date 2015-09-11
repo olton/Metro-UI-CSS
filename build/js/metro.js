@@ -4083,7 +4083,7 @@ $.widget( "metro.draggable" , {
         dragArea: null,
         onDragStart: function(el){},
         onDragStop: function(el){},
-        onDragMove: function(el){}
+        onDragMove: function(el, offset){}
     },
 
     drag: false,
