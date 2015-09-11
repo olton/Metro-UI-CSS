@@ -4411,6 +4411,22 @@
             transform: rotate(360deg);
   }
 }
+@-webkit-keyframes ani-bg-stripes {
+  from {
+    background-position: 40px 0;
+  }
+  to {
+    background-position: 0 0;
+  }
+}
+@keyframes ani-bg-stripes {
+  from {
+    background-position: 40px 0;
+  }
+  to {
+    background-position: 0 0;
+  }
+}
 .mif-ani-spin,
 .mif-ani-hover-spin:hover {
   -webkit-animation: ani-spin 1.5s linear infinite;

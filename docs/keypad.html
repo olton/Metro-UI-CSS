@@ -203,6 +203,17 @@
                     &lt;button class="button"&gt;&lt;span class="mif-key"&gt;&lt;/span&gt;&lt;/button&gt;
                 &lt;/div&gt;
             </code></pre>
+
+            <div class="input-control text">
+                <input type="text" id="t1" onchange="action();">
+            </div>
+            <div data-role="keypad" data-target="#t1"></div>
+
+            <script>
+                function action(){
+                    console.log('This is works!!!');
+                }
+            </script>
         </div>
     </div>
 

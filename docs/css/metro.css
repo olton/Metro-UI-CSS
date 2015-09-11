@@ -9846,6 +9846,11 @@ input[type="submit"].link:active {
 .progress-bar.gradient-bar .bar {
   background: linear-gradient(to right, #4cd964, #5ac8fa, #007aff, #34aadc, #5856d6, #ff2d55);
 }
+.progress.ani .bar,
+.progress-bar.ani .bar {
+  -webkit-animation: ani-bg-stripes 2s linear infinite;
+          animation: ani-bg-stripes 2s linear infinite;
+}
 .popover {
   display: block;
   min-width: 12.5rem;
@@ -11619,6 +11624,22 @@ input[type="submit"].link:active {
   100% {
     -webkit-transform: rotate(360deg);
             transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes ani-bg-stripes {
+  from {
+    background-position: 40px 0;
+  }
+  to {
+    background-position: 0 0;
+  }
+}
+@keyframes ani-bg-stripes {
+  from {
+    background-position: 40px 0;
+  }
+  to {
+    background-position: 0 0;
   }
 }
 .calendar {
