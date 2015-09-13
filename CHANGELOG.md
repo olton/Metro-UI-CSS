@@ -10,6 +10,7 @@
 * fix important bug for multi role defining  
 * add draggable plugin
 * upd dialog for creating wizards in
+* upd calendar with pull request [785](https://github.com/olton/Metro-UI-CSS/pull/785)
 
 ## 3.0.10
 * fix modern input initialize with value
