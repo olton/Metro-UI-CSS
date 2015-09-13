@@ -1,5 +1,7 @@
 # Changelog 
 
+## 3.0.12
+
 ## 3.0.11
 * add keypad onChange event
 * chg progressBar animation model
