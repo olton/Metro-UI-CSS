@@ -1,5 +1,17 @@
 # Changelog 
 
+## 3.0.11
+* add keypad onChange event
+* chg progressBar animation model
+* fix box sizing for FF
+* chg progressBar role to progress and progress method to set
+* chg tabControl role to tabcontrol
+* add option for auto open dialog
+* fix important bug for multi role defining  
+* add draggable plugin
+* upd dialog for creating wizards in
+* upd calendar with pull request [785](https://github.com/olton/Metro-UI-CSS/pull/785)
+
 ## 3.0.10
 * fix modern input initialize with value
 * remove alert for check select2 plugin exists

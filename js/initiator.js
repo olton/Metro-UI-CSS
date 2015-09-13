@@ -47,8 +47,9 @@ $.Metro.initWidgets = function(){
         roles.map(function(func){
             try {
                 //$(w)[func]();
-                if ($.fn[func] !== undefined) {
+                if ($.fn[func] !== undefined && $this.data(func+'-initiated') !== true) {
                     $.fn[func].call($this);
+                    $this.data(func+'-initiated', true);
                 }
             } catch(e) {
                 if (window.METRO_DEBUG) {
@@ -144,9 +145,9 @@ $.Metro.init = function(){
                                     var roles = _this.data('role').split(/\s*,\s*/);
                                     roles.map(function(func){
                                         try {
-                                            if ($.fn[func] !== undefined && _this.data('initiated') !== true) {
+                                            if ($.fn[func] !== undefined && _this.data(func+'-initiated') !== true) {
                                                 $.fn[func].call(_this);
-                                                _this.data('initiated', true);
+                                                _this.data(func+'-initiated', true);
                                             }
                                         } catch(e) {
                                             if (window.METRO_DEBUG) {

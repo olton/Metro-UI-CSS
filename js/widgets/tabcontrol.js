@@ -1,4 +1,4 @@
-$.widget( "metro.tabControl" , {
+$.widget( "metro.tabcontrol" , {
 
     version: "3.0.0",
 
@@ -83,7 +83,7 @@ $.widget( "metro.tabControl" , {
         //    that._hideTabs();
         //});
 
-        element.data('tabControl', this);
+        element.data('tabcontrol', this);
 
     },
 
