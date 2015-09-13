@@ -17,7 +17,7 @@ $.widget( "metro.dialog" , {
         color: 'default',
         closeButton: false,
         windowsStyle: false,
-
+        show: false,
         _interval: undefined,
         _overlay: undefined,
 
@@ -44,6 +44,10 @@ $.widget( "metro.dialog" , {
         this._createDialog();
 
         element.data('dialog', this);
+
+        if (o.show) {
+            this.open();
+        }
     },
 
     _createOverlay: function(){
@@ -116,7 +120,21 @@ $.widget( "metro.dialog" , {
             });
         }
 
-        element.hide();
+        this._hide();
+    },
+
+    _hide: function(){
+        var element = this.element;
+        element.css({
+           visibility: "hidden"
+        });
+    },
+
+    _show: function(){
+        var element = this.element;
+        element.css({
+           visibility: "visible"
+        });
     },
 
     _setPosition: function(){
@@ -128,6 +146,15 @@ $.widget( "metro.dialog" , {
             left: o.windowsStyle === false ? ( $(window).width() - width ) / 2 : 0,
             top: ( $(window).height() - height ) / 2
         });
+    },
+
+    toggle: function(){
+        var element = this.element;
+        if (element.data('opened')) {
+            this.close();
+        } else {
+            this.open();
+        }
     },
 
     open: function(){
@@ -143,7 +170,8 @@ $.widget( "metro.dialog" , {
             overlay.appendTo('body').show();
         }
 
-        element.fadeIn();
+        //element.fadeIn();
+        this._show();
 
         if (typeof o.onDialogOpen === 'function') {
             o.onDialogOpen(element);
@@ -174,7 +202,8 @@ $.widget( "metro.dialog" , {
 
         element.data('opened', false);
 
-        element.fadeOut();
+        //element.fadeOut();
+        this._hide();
 
         if (typeof o.onDialogClose === 'function') {
             o.onDialogClose(element);

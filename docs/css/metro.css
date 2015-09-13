@@ -9846,6 +9846,11 @@ input[type="submit"].link:active {
 .progress-bar.gradient-bar .bar {
   background: linear-gradient(to right, #4cd964, #5ac8fa, #007aff, #34aadc, #5856d6, #ff2d55);
 }
+.progress.ani .bar,
+.progress-bar.ani .bar {
+  -webkit-animation: ani-bg-stripes 2s linear infinite;
+          animation: ani-bg-stripes 2s linear infinite;
+}
 .popover {
   display: block;
   min-width: 12.5rem;
@@ -11621,6 +11626,22 @@ input[type="submit"].link:active {
             transform: rotate(360deg);
   }
 }
+@-webkit-keyframes ani-bg-stripes {
+  from {
+    background-position: 40px 0;
+  }
+  to {
+    background-position: 0 0;
+  }
+}
+@keyframes ani-bg-stripes {
+  from {
+    background-position: 40px 0;
+  }
+  to {
+    background-position: 0 0;
+  }
+}
 .calendar {
   min-width: 13.75rem;
   border: 1px #eeeeee solid;
@@ -11800,6 +11821,7 @@ input[type="submit"].link:active {
 }
 .stepper {
   margin: 10px 0;
+  width: 100%;
 }
 .stepper:before,
 .stepper:after {
@@ -11816,6 +11838,7 @@ input[type="submit"].link:active {
   padding: 0;
   margin: 30px 0;
   width: 100%;
+  display: block;
 }
 .stepper > ul li {
   list-style: none;
@@ -11870,6 +11893,9 @@ input[type="submit"].link:active {
 .stepper.diamond li:before {
   -webkit-transform: rotate(-45deg);
           transform: rotate(-45deg);
+}
+.wizard {
+  position: relative;
 }
 .wizard .steps {
   margin: 10px 0;
