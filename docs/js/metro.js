@@ -4169,7 +4169,6 @@ $.widget( "metro.draggable" , {
                 var t = (e.pageY > 0)?(e.pageY + pos_y - drg_h):(0);
                 var l = (e.pageX > 0)?(e.pageX + pos_x - drg_w):(0);
 
-                console.log(dragArea.height() + dragArea.scrollTop(), dragArea.width());
 
                 if(t >= 0 && t <= dragArea.innerHeight() + dragArea.scrollTop() - element.outerHeight()) {
                     element.offset({top: t});
