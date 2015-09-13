@@ -36,11 +36,17 @@
 
         <div class="example" data-text="example">
             <div class="grid">
-                <div class="row">
+                <div class="row cells2">
                     <div class="cell">
                         <h5>Simple draggable</h5>
                         <div class="padding40 align-center">
                             <div class="bg-red padding20 inline-block" style="width: 50px" data-role="draggable"></div>
+                        </div>
+                    </div>
+                    <div class="cell">
+                        <h5>Area draggable</h5>
+                        <div class="padding40 align-center debug" id="dragarea">
+                            <div class="bg-red padding20 inline-block" style="width: 50px" data-role="draggable" data-drag-area="#dragarea"></div>
                         </div>
                     </div>
                 </div>
@@ -50,6 +56,10 @@
         <div class="example" data-text="code">
             <pre class="prettyprint linenums no-scroll-x"><code>
                 &lt;div data-role="draggable"&gt;&lt;/div&gt;
+
+                &lt;div id="area1"&gt;
+                    &lt;div data-role="draggable" data-drag-area="#area1"&gt;&lt;/div&gt;
+                &lt;/div&gt;
             </code></pre>
         </div>
 

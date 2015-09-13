@@ -4175,32 +4175,38 @@ $.widget( "metro.draggable" , {
                 'z-index': '2000'
             });
 
+            var dragArea = o.dragArea ? $(o.dragArea) : $(window);
+            var os = {
+                left: o.dragArea ? dragArea.offset().left : 0,
+                top: o.dragArea ? dragArea.offset().top : 0
+            };
+
             var drg_h = element.outerHeight(),
                 drg_w = element.outerWidth(),
                 pos_y = element.offset().top + drg_h - e.pageY,
                 pos_x = element.offset().left + drg_w - e.pageX;
 
-            var dragArea = o.dragArea ? $(o.dragArea) : $(window);
+            //console.log(pos_x, pos_y);
 
             dragArea.on('mousemove', function(e){
-                var offset;
+                var offset, pageX, pageY;
 
                 if (!that.drag) return false;
 
-                var os = {
-                    left: o.dragArea ? dragArea.offset().left : 0,
-                    top: o.dragArea ? dragArea.offset().top : 0
-                };
 
-                var t = (e.pageY > 0)?(e.pageY + pos_y - drg_h):(0);
-                var l = (e.pageX > 0)?(e.pageX + pos_x - drg_w):(0);
+                pageX = e.pageX - os.left;
+                pageY = e.pageY - os.top;
 
+                var t = (pageY > 0) ? (pageY + pos_y - drg_h) : (0);
+                var l = (pageX > 0) ? (pageX + pos_x - drg_w) : (0);
+                var t_delta = dragArea.innerHeight() + dragArea.scrollTop() - element.outerHeight();
+                var l_delta = dragArea.innerWidth() + dragArea.scrollLeft() - element.outerWidth();
 
-                if(t >= 0 && t <= dragArea.innerHeight() + dragArea.scrollTop() - element.outerHeight()) {
-                    element.offset({top: t});
+                if(t >= 0 && t <= t_delta) {
+                    element.offset({top: t + os.top});
                 }
-                if(l >= 0 && l <= dragArea.innerWidth() + dragArea.scrollLeft() - element.outerWidth()) {
-                    element.offset({left: l});
+                if(l >= 0 && l <= l_delta) {
+                    element.offset({left: l + os.left});
                 }
 
                 offset = {
