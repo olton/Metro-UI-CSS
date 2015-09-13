@@ -1,4 +1,4 @@
-window.METRO_VERSION = '3.0.10';
+window.METRO_VERSION = '3.0.12';
 
 if (window.METRO_AUTO_REINIT === undefined) window.METRO_AUTO_REINIT = true;
 if (window.METRO_LANGUAGE === undefined) window.METRO_LANGUAGE = 'en';
