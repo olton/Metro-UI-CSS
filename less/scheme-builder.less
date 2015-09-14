@@ -220,4 +220,57 @@
             }
         }
     }
+
+    .calendar-scheme(@name, @background, @backgroundHover, @backgroundActive, @item, @itemHover, @itemActive, @itemDisabled, @itemToday, @btnToday, @btnClear) {
+        .calendar {
+            &.@{name} {
+                background: @background;
+
+                a {
+                    color: @item;
+                    &:hover {
+                        background: @backgroundHover;
+                        color: @item;
+                    }
+                }
+
+                .calendar-header {
+                    background: @background;
+                }
+
+                .today {
+                    a {
+                        background-color: @itemToday;
+                    }
+                }
+
+                .day, .month, .year {
+                    border-color: @backgroundHover;
+                }
+
+                .other-day {
+                    background: @itemDisabled;
+                    border-color: @itemDisabled;
+                }
+
+                .day-of-week {
+                    color: @item;
+                }
+
+                .calendar-actions {
+                    .calendar-btn-today {
+                        background: @btnToday;
+                        border-color: @btnToday;
+                        &:active {
+                            background: darken(@btnToday, 10%);
+                        }
+                    }
+                    .calendar-btn-clear {
+                        background: @btnClear;
+                        border-color: @btnClear;
+                    }
+                }
+            }
+        }
+    }
 }

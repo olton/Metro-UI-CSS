@@ -1,5 +1,5 @@
 /*!
- * Metro UI CSS v3.0.11 (http://metroui.org.ua)
+ * Metro UI CSS v3.0.12 (http://metroui.org.ua)
  * Copyright 2012-2015 Sergey Pimenov
  * Licensed under MIT (http://metroui.org.ua/license.html)
  */
@@ -21,7 +21,7 @@ if (typeof jQuery === 'undefined') {
 }
 
 // Source: js/global.js
-window.METRO_VERSION = '3.0.10';
+window.METRO_VERSION = '3.0.12';
 
 if (window.METRO_AUTO_REINIT === undefined) window.METRO_AUTO_REINIT = true;
 if (window.METRO_LANGUAGE === undefined) window.METRO_LANGUAGE = 'en';
