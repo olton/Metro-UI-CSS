@@ -1,6 +1,7 @@
 # Changelog 
 
 ## 3.0.12
+* add color schemes for calendar
 
 ## 3.0.11
 * add keypad onChange event
