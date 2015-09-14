@@ -2296,6 +2296,7 @@ $.widget("metro.calendar", {
         locale: 'en',
         actions: true,
         condensedGrid: false,
+        scheme: 'default',
         getDates: function (d) { },
         dayClick: function (d, d0) { }
     },
@@ -2378,6 +2379,10 @@ $.widget("metro.calendar", {
             $.each(dates, function () {
                 if (new Date(this) !== undefined) { that.setDateStored(this); }
             });
+        }
+
+        if (o.scheme !== 'default') {
+            element.addClass(o.scheme);
         }
 
         this._renderCalendar();
@@ -3734,6 +3739,7 @@ $.widget("metro.datepicker", {
         buttonToday: true,
         buttonClear: true,
         condensedGrid: false,
+        scheme: 'default',
         onSelect: function(d, d0){}
     },
 
@@ -3821,6 +3827,7 @@ $.widget("metro.datepicker", {
             date: o.preset ? o.preset : new Date(),
             minDate: o.minDate,
             maxDate: o.maxDate,
+            scheme: o.scheme,
             dayClick: function(d, d0){
                 //console.log(d, d0);
                 _calendar.calendar('setDate', d0);
