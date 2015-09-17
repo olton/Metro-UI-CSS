@@ -1,5 +1,7 @@
 # Changelog 
 
+## 3.0.13
+
 ## 3.0.12
 * add color schemes for calendar
 * fix bug in calendar after pull-request 785  
