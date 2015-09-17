@@ -3,6 +3,7 @@
 ## 3.0.12
 * add color schemes for calendar
 * fix calendar min, max date
+* init clock plugin
 
 ## 3.0.11
 * add keypad onChange event

@@ -16859,6 +16859,9 @@ p [data-hint] {
   background-color: #cde6f7;
   color: #444444;
 }
+.clock {
+  text-align: center;
+}
 .select2-container {
   box-sizing: border-box;
   display: inline-block;
