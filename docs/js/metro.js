@@ -2425,7 +2425,7 @@ $.widget("metro.calendar", {
         var totalDays = ["31", "" + feb + "", "31", "30", "31", "30", "31", "31", "30", "31", "30", "31"];
         var daysInMonth = totalDays[month];
         
-        var first_week_day = this._dateFromNumbers(year, month, 1).getDay();
+        var first_week_day = this._dateFromNumbers(year, month + 1, 1).getDay();
 
         var table, tr, td, i, div;
 
@@ -2497,7 +2497,7 @@ $.widget("metro.calendar", {
             td = $("<div/>").addClass("calendar-cell align-center day");
             div = $("<div/>").appendTo(td);
 
-            if (o.minDate !== false && (this._dateFromNumbers(year, month, i) < o.minDate) || o.maxDate !== false && (this._dateFromNumbers(year, month, i) > o.maxDate)) {
+            if (o.minDate !== false && (this._dateFromNumbers(year, month + 1, i) < o.minDate) || o.maxDate !== false && (this._dateFromNumbers(year, month + 1, i) > o.maxDate)) {
                 td.removeClass("day");
                 div.addClass("other-day");
                 d_html = i;

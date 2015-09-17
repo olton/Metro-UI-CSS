@@ -2,6 +2,7 @@
 
 ## 3.0.12
 * add color schemes for calendar
+* fix bug in calendar after pull-request 785  
 
 ## 3.0.11
 * add keypad onChange event
