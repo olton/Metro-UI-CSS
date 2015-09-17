@@ -1090,3 +1090,240 @@
   background: #fa6800;
   color: #555555;
 }
+/*
+* params: name, background, backgroundHover, backgroundActive, item, itemHover, itemActive, itemDisabled
+*/
+.calendar.darcula {
+  background: #3c3f41;
+}
+.calendar.darcula a {
+  color: #ffffff;
+}
+.calendar.darcula a:hover {
+  background: #4d5154;
+  color: #ffffff;
+}
+.calendar.darcula .calendar-header {
+  background: #3c3f41;
+}
+.calendar.darcula .today a {
+  background-color: #fa6800;
+}
+.calendar.darcula .day,
+.calendar.darcula .month,
+.calendar.darcula .year {
+  border-color: #4d5154;
+}
+.calendar.darcula .other-day {
+  background: #555555;
+  border-color: #555555;
+}
+.calendar.darcula .day-of-week {
+  color: #ffffff;
+}
+.calendar.darcula .calendar-actions .calendar-btn-today {
+  background: #1d1d1d;
+  border-color: #1d1d1d;
+}
+.calendar.darcula .calendar-actions .calendar-btn-today:active {
+  background: #030303;
+}
+.calendar.darcula .calendar-actions .calendar-btn-clear {
+  background: transparent;
+  border-color: transparent;
+}
+.calendar.pink {
+  background: #dc4fad;
+}
+.calendar.pink a {
+  color: #ffffff;
+}
+.calendar.pink a:hover {
+  background: #b91a6c;
+  color: #ffffff;
+}
+.calendar.pink .calendar-header {
+  background: #dc4fad;
+}
+.calendar.pink .today a {
+  background-color: #fa6800;
+}
+.calendar.pink .day,
+.calendar.pink .month,
+.calendar.pink .year {
+  border-color: #b91a6c;
+}
+.calendar.pink .other-day {
+  background: #f472d0;
+  border-color: #f472d0;
+}
+.calendar.pink .day-of-week {
+  color: #ffffff;
+}
+.calendar.pink .calendar-actions .calendar-btn-today {
+  background: #9a165a;
+  border-color: #9a165a;
+}
+.calendar.pink .calendar-actions .calendar-btn-today:active {
+  background: #6d1040;
+}
+.calendar.pink .calendar-actions .calendar-btn-clear {
+  background: transparent;
+  border-color: transparent;
+}
+.calendar.navy {
+  background: #0072c6;
+}
+.calendar.navy a {
+  color: #ffffff;
+}
+.calendar.navy a:hover {
+  background: #006aba;
+  color: #ffffff;
+}
+.calendar.navy .calendar-header {
+  background: #0072c6;
+}
+.calendar.navy .today a {
+  background-color: #fa6800;
+}
+.calendar.navy .day,
+.calendar.navy .month,
+.calendar.navy .year {
+  border-color: #006aba;
+}
+.calendar.navy .other-day {
+  background: #59cde2;
+  border-color: #59cde2;
+}
+.calendar.navy .day-of-week {
+  color: #ffffff;
+}
+.calendar.navy .calendar-actions .calendar-btn-today {
+  background: #16499a;
+  border-color: #16499a;
+}
+.calendar.navy .calendar-actions .calendar-btn-today:active {
+  background: #10346d;
+}
+.calendar.navy .calendar-actions .calendar-btn-clear {
+  background: transparent;
+  border-color: transparent;
+}
+.calendar.red {
+  background: #ce352c;
+}
+.calendar.red a {
+  color: #ffffff;
+}
+.calendar.red a:hover {
+  background: #b91a1a;
+  color: #ffffff;
+}
+.calendar.red .calendar-header {
+  background: #ce352c;
+}
+.calendar.red .today a {
+  background-color: #fa6800;
+}
+.calendar.red .day,
+.calendar.red .month,
+.calendar.red .year {
+  border-color: #b91a1a;
+}
+.calendar.red .other-day {
+  background: #da5a53;
+  border-color: #da5a53;
+}
+.calendar.red .day-of-week {
+  color: #ffffff;
+}
+.calendar.red .calendar-actions .calendar-btn-today {
+  background: #9a1616;
+  border-color: #9a1616;
+}
+.calendar.red .calendar-actions .calendar-btn-today:active {
+  background: #6d1010;
+}
+.calendar.red .calendar-actions .calendar-btn-clear {
+  background: transparent;
+  border-color: transparent;
+}
+.calendar.green {
+  background: #60a917;
+}
+.calendar.green a {
+  color: #ffffff;
+}
+.calendar.green a:hover {
+  background: #169f2c;
+  color: #ffffff;
+}
+.calendar.green .calendar-header {
+  background: #60a917;
+}
+.calendar.green .today a {
+  background-color: #fa6800;
+}
+.calendar.green .day,
+.calendar.green .month,
+.calendar.green .year {
+  border-color: #169f2c;
+}
+.calendar.green .other-day {
+  background: #7ad61d;
+  border-color: #7ad61d;
+}
+.calendar.green .day-of-week {
+  color: #ffffff;
+}
+.calendar.green .calendar-actions .calendar-btn-today {
+  background: #128023;
+  border-color: #128023;
+}
+.calendar.green .calendar-actions .calendar-btn-today:active {
+  background: #0c5317;
+}
+.calendar.green .calendar-actions .calendar-btn-clear {
+  background: transparent;
+  border-color: transparent;
+}
+.calendar.orange {
+  background: #fa6800;
+}
+.calendar.orange a {
+  color: #ffffff;
+}
+.calendar.orange a:hover {
+  background: #df6919;
+  color: #ffffff;
+}
+.calendar.orange .calendar-header {
+  background: #fa6800;
+}
+.calendar.orange .today a {
+  background-color: #fa6800;
+}
+.calendar.orange .day,
+.calendar.orange .month,
+.calendar.orange .year {
+  border-color: #df6919;
+}
+.calendar.orange .other-day {
+  background: #ffc194;
+  border-color: #ffc194;
+}
+.calendar.orange .day-of-week {
+  color: #ffffff;
+}
+.calendar.orange .calendar-actions .calendar-btn-today {
+  background: #bf5a15;
+  border-color: #bf5a15;
+}
+.calendar.orange .calendar-actions .calendar-btn-today:active {
+  background: #914410;
+}
+.calendar.orange .calendar-actions .calendar-btn-clear {
+  background: transparent;
+  border-color: transparent;
+}

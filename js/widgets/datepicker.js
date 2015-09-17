@@ -18,6 +18,7 @@ $.widget("metro.datepicker", {
         buttonToday: true,
         buttonClear: true,
         condensedGrid: false,
+        scheme: 'default',
         onSelect: function(d, d0){}
     },
 
@@ -105,6 +106,7 @@ $.widget("metro.datepicker", {
             date: o.preset ? o.preset : new Date(),
             minDate: o.minDate,
             maxDate: o.maxDate,
+            scheme: o.scheme,
             dayClick: function(d, d0){
                 //console.log(d, d0);
                 _calendar.calendar('setDate', d0);
