@@ -2333,12 +2333,11 @@ $.widget("metro.calendar", {
         }
 
         if (o.minDate !== false && typeof o.minDate === 'string') {
-            o.minDate = new Date(o.minDate.replace(/\./g, "-") + 'T00:00:00Z');
-            o.minDate.setTime(o.minDate.getTime() - 24 * 60 * 60 * 1000);
+            o.minDate = new Date(o.minDate + 'T00:00:00Z') - 24 * 60 * 60 * 1000;
         }
 
         if (o.maxDate !== false && typeof o.maxDate === 'string') {
-            o.maxDate = new Date(o.maxDate.replace(/\./g, "-") + 'T00:00:00Z');
+            o.maxDate = new Date(o.maxDate + 'T00:00:00Z');
         }
 
         //console.log(window.METRO_LOCALES);
@@ -2426,11 +2425,7 @@ $.widget("metro.calendar", {
         var totalDays = ["31", "" + feb + "", "31", "30", "31", "30", "31", "31", "30", "31", "30", "31"];
         var daysInMonth = totalDays[month];
         
-<<<<<<< HEAD
-        var first_week_day = this._dateFromNumbers(year, month+1, 1).getDay();
-=======
         var first_week_day = this._dateFromNumbers(year, month + 1, 1).getDay();
->>>>>>> develop
 
         var table, tr, td, i, div;
 
@@ -2502,11 +2497,7 @@ $.widget("metro.calendar", {
             td = $("<div/>").addClass("calendar-cell align-center day");
             div = $("<div/>").appendTo(td);
 
-<<<<<<< HEAD
-            if (o.minDate !== false && (this._dateFromNumbers(year, month+1, i) < o.minDate) || o.maxDate !== false && (this._dateFromNumbers(year, month+1, i) > o.maxDate)) {
-=======
             if (o.minDate !== false && (this._dateFromNumbers(year, month + 1, i) < o.minDate) || o.maxDate !== false && (this._dateFromNumbers(year, month + 1, i) > o.maxDate)) {
->>>>>>> develop
                 td.removeClass("day");
                 div.addClass("other-day");
                 d_html = i;
@@ -3423,117 +3414,6 @@ $.widget( "metro.charm" , {
     },
 
     _destroy: function () {
-    },
-
-    _setOption: function ( key, value ) {
-        this._super('_setOption', key, value);
-    }
-});
-
-// Source: js/widgets/clock.js
-$.widget( "metro.clock" , {
-
-    version: "1.0.0",
-
-    options: {
-        format: '24',
-        showSeconds: true,
-        showDate: false,
-        dateFormat: 'american'
-    },
-
-    _create: function () {
-        var that = this, element = this.element, o = this.options;
-
-        this._setOptionsFromDOM();
-
-        this._createClock();
-
-        element.data('clock', this);
-    },
-
-    _tick: function(){
-        var that = this, element = this.element, o = this.options;
-        var current_time = new Date();
-
-        var h = current_time.getHours(),
-            m = current_time.getMinutes(),
-            s = current_time.getSeconds(),
-            dy = current_time.getDay(),
-            dt = current_time.getDate(),
-            mo = current_time.getMonth() + 1,
-            y = current_time.getFullYear(),
-            ap = "";
-
-        if (o.format == "12") {
-            ap = " AM";
-            if (h > 11) { ap = " PM"; }
-            if (h > 12) { h = h - 12; }
-            if (h == 0) { h = 12; }
-        }
-
-        h = this._leadZero(h);
-        m = this._leadZero(m);
-        s = this._leadZero(s);
-
-        dy = this._leadZero(dt);
-        mo = this._leadZero(mo);
-
-        var ddd, result = "";
-
-        if (o.dateFormat == 'american') {
-            ddd = y+"-"+mo+"-"+dy;
-        } else {
-            ddd = dy+"-"+mo+"-"+y;
-        }
-
-        if (o.showDate) {
-            result += ddd;
-        }
-
-        result += "<span></span> <span class='hour'>"+h+"</span>:<span class='minute'>"+m+"</span>";
-
-        if (o.showSeconds) {
-            result += ":<span class='second'>"+s+"</span>";
-        }
-
-        result += "<span class='ap'>"+ap+"</span>";
-
-        element.html(result);
-    },
-
-    _leadZero: function(i){
-        return i < 10 ? "0" + i : i;
-    },
-
-    _createClock: function(){
-        var that = this, element = this.element, o = this.options;
-
-        element.addClass('clock');
-
-        this._tick();
-
-        this._clockInterval = setInterval(function(){
-            that._tick();
-        }, 1000);
-    },
-
-    _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = $.parseJSON(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
-    },
-
-    _destroy: function () {
-        clearInterval(this._clockInterval);
     },
 
     _setOption: function ( key, value ) {
@@ -5701,7 +5581,7 @@ $.widget("metro.panel", {
 // Source: js/widgets/plugin.js
 $.widget( "metro.widget" , {
 
-    version: "1.0.0",
+    version: "3.0.0",
 
     options: {
         someValue: null
@@ -5710,13 +5590,13 @@ $.widget( "metro.widget" , {
     _create: function () {
         var that = this, element = this.element, o = this.options;
 
-        this._setOptionsFromDOM();
+        this._setOprionsFromDOM();
 
         element.data('widget', this);
 
     },
 
-    _setOptionsFromDOM: function(){
+    _setOprionsFromDOM: function(){
         var that = this, element = this.element, o = this.options;
 
         $.each(element.data(), function(key, value){
