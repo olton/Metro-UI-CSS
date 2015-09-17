@@ -2,9 +2,13 @@
 
 ## 3.0.12
 * add color schemes for calendar
+<<<<<<< HEAD
 * fix calendar min, max date
 * init clock plugin
 * fix bug in calendar after merge PR 785
+=======
+* fix bug in calendar after pull-request 785  
+>>>>>>> develop
 
 ## 3.0.11
 * add keypad onChange event
