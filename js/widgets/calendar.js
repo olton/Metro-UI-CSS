@@ -21,6 +21,7 @@ $.widget("metro.calendar", {
         locale: 'en',
         actions: true,
         condensedGrid: false,
+        scheme: 'default',
         getDates: function (d) { },
         dayClick: function (d, d0) { }
     },
@@ -57,11 +58,12 @@ $.widget("metro.calendar", {
         }
 
         if (o.minDate !== false && typeof o.minDate === 'string') {
-            o.minDate = new Date(o.minDate + 'T00:00:00Z') - 24 * 60 * 60 * 1000;
+            o.minDate = new Date(o.minDate.replace(/\./g, "-") + 'T00:00:00Z');
+            o.minDate.setTime(o.minDate.getTime() - 24 * 60 * 60 * 1000);
         }
 
         if (o.maxDate !== false && typeof o.maxDate === 'string') {
-            o.maxDate = new Date(o.maxDate + 'T00:00:00Z');
+            o.maxDate = new Date(o.maxDate.replace(/\./g, "-") + 'T00:00:00Z');
         }
 
         //console.log(window.METRO_LOCALES);
@@ -105,6 +107,10 @@ $.widget("metro.calendar", {
             });
         }
 
+        if (o.scheme !== 'default') {
+            element.addClass(o.scheme);
+        }
+
         this._renderCalendar();
 
         element.data('calendar', this);
@@ -145,7 +151,7 @@ $.widget("metro.calendar", {
         var totalDays = ["31", "" + feb + "", "31", "30", "31", "30", "31", "31", "30", "31", "30", "31"];
         var daysInMonth = totalDays[month];
         
-        var first_week_day = this._dateFromNumbers(year, month, 1).getDay();
+        var first_week_day = this._dateFromNumbers(year, month+1, 1).getDay();
 
         var table, tr, td, i, div;
 
@@ -217,7 +223,7 @@ $.widget("metro.calendar", {
             td = $("<div/>").addClass("calendar-cell align-center day");
             div = $("<div/>").appendTo(td);
 
-            if (o.minDate !== false && (this._dateFromNumbers(year, month, i) < o.minDate) || o.maxDate !== false && (this._dateFromNumbers(year, month, i) > o.maxDate)) {
+            if (o.minDate !== false && (this._dateFromNumbers(year, month+1, i) < o.minDate) || o.maxDate !== false && (this._dateFromNumbers(year, month+1, i) > o.maxDate)) {
                 td.removeClass("day");
                 div.addClass("other-day");
                 d_html = i;

@@ -1,5 +1,11 @@
 # Changelog 
 
+## 3.0.12
+* add color schemes for calendar
+* fix calendar min, max date
+* init clock plugin
+* fix bug in calendar after merge PR 785
+
 ## 3.0.11
 * add keypad onChange event
 * chg progressBar animation model
