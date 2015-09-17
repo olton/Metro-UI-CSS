@@ -151,7 +151,7 @@ $.widget("metro.calendar", {
         var totalDays = ["31", "" + feb + "", "31", "30", "31", "30", "31", "31", "30", "31", "30", "31"];
         var daysInMonth = totalDays[month];
         
-        var first_week_day = this._dateFromNumbers(year, month, 1).getDay();
+        var first_week_day = this._dateFromNumbers(year, month+1, 1).getDay();
 
         var table, tr, td, i, div;
 
