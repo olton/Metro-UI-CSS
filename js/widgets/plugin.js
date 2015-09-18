@@ -1,6 +1,6 @@
 $.widget( "metro.widget" , {
 
-    version: "3.0.0",
+    version: "1.0.0",
 
     options: {
         someValue: null
@@ -9,13 +9,13 @@ $.widget( "metro.widget" , {
     _create: function () {
         var that = this, element = this.element, o = this.options;
 
-        this._setOprionsFromDOM();
+        this._setOptionsFromDOM();
 
         element.data('widget', this);
 
     },
 
-    _setOprionsFromDOM: function(){
+    _setOptionsFromDOM: function(){
         var that = this, element = this.element, o = this.options;
 
         $.each(element.data(), function(key, value){
