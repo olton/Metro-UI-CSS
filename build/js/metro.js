@@ -3430,7 +3430,8 @@ $.widget( "metro.clock" , {
         showTime: true,
         showDate: true,
         timeFormat: '24',
-        dateFormat: 'american'
+        dateFormat: 'american',
+        divider: "&nbsp;&nbsp;"
     },
 
     _create: function () {
@@ -3457,7 +3458,7 @@ $.widget( "metro.clock" , {
         var time = timestamp.getTime();
         var result = "";
         var h = timestamp.getHours(),
-            m = timestamp.getMinutes(),
+            i = timestamp.getMinutes(),
             s = timestamp.getSeconds(),
             d = timestamp.getDate(),
             m = timestamp.getMonth() + 1,
@@ -3472,8 +3473,10 @@ $.widget( "metro.clock" , {
         }
 
         h = this._addLeadingZero(h);
-        m = this._addLeadingZero(m);
+        i = this._addLeadingZero(i);
         s = this._addLeadingZero(s);
+        m = this._addLeadingZero(m);
+        d = this._addLeadingZero(d);
 
         if (o.showDate) {
             if (o.dateFormat == 'american') {
@@ -3489,13 +3492,13 @@ $.widget( "metro.clock" , {
                 result += "<span class='date-divider'>-</span>";
                 result += "<span class='date-year'>" + y + "</span>";
             }
-            result += " ";
+            result += o.divider;
         }
 
         if (o.showTime) {
             result += "<span class='clock-hour'>" + h + "</span>";
             result += "<span class='clock-divider'>:</span>";
-            result += "<span class='clock-minute'>" + m + "</span>";
+            result += "<span class='clock-minute'>" + i + "</span>";
             result += "<span class='clock-divider'>:</span>";
             result += "<span class='clock-second'>" + s + "</span>";
         }
