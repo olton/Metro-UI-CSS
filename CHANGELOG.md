@@ -1,6 +1,7 @@
 # Changelog 
 
 ## 3.0.13
+* upd treeview for method addLeaf, now method returned li
 
 ## 3.0.12
 * add color schemes for calendar
