@@ -322,7 +322,7 @@ $.widget( "metro.treeview" , {
             }
         }
 
-        return this;
+        return li;
     },
 
     _destroy: function () {
