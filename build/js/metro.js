@@ -4341,7 +4341,7 @@ $.widget( "metro.draggable" , {
                 }
             });
 
-            e.preventDefault();
+            //e.preventDefault();
         });
 
         dragElement.on('mouseup', function(e){
@@ -4367,7 +4367,7 @@ $.widget( "metro.draggable" , {
                 }
             }
 
-            e.preventDefault();
+            //e.preventDefault();
         });
 
     },
