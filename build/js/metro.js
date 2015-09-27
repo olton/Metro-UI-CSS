@@ -4238,6 +4238,7 @@ $.widget( "metro.draggable" , {
     options: {
         dragElement: null,
         dragArea: null,
+        zIndex: 2000,
         onDragStart: function(el){},
         onDragStop: function(el){},
         onDragMove: function(el, offset){}
@@ -4287,7 +4288,7 @@ $.widget( "metro.draggable" , {
             });
 
             element.css({
-                'z-index': '2000'
+                'z-index': o.zIndex
             });
 
             var dragArea = o.dragArea ? $(o.dragArea) : $(window);
