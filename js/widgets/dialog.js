@@ -6,6 +6,7 @@ $.widget( "metro.dialog" , {
         modal: false,
         overlay: false,
         overlayColor: 'default',
+        overlayClickClose: false,
         type: 'default', // success, alert, warning, info
         place: 'center', // center, top-left, top-center, top-right, center-left, center-right, bottom-left, bottom-center, bottom-right
         position: 'default',
@@ -168,6 +169,11 @@ $.widget( "metro.dialog" , {
         if (o.overlay) {
             overlay = o._overlay;
             overlay.appendTo('body').show();
+            if (o.overlayClickClose) {
+                overlay.on('click', function(){
+                    that.close();
+                });
+            }
         }
 
         //element.fadeIn();
