@@ -5711,6 +5711,14 @@ a.tag {
   -webkit-transform: rotate(45deg);
           transform: rotate(45deg);
 }
+.f-menu.default-dropdown > li .d-menu {
+  width: auto;
+  min-width: 12.5rem;
+}
+.f-menu.default-dropdown > li .d-menu a {
+  text-align: left;
+  padding: .75rem 2rem .75rem 2.5rem;
+}
 .v-menu {
   text-align: left;
   background: #ffffff;

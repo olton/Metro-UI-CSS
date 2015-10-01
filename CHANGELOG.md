@@ -5,6 +5,8 @@
 * upd bower config
 * init clock plugin
 * fix draggable for preventDefault
+* upd draggable add data-z-index attribute
+* upd f-menu add subclass default-dropdown
 
 ## 3.0.12
 * add color schemes for calendar
