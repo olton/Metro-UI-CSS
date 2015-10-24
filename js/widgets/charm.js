@@ -86,7 +86,7 @@ $.widget( "metro.charm" , {
             this._timeout_interval = setInterval(function(){
                 if (!element.is(":hover")) {
                     that.close();
-                    clearInterval(this._timeout_interval);
+                    clearInterval(that._timeout_interval);
                 }
             }, o.timeout);
         }

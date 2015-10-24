@@ -1,5 +1,18 @@
 # Changelog 
 
+## 3.0.13
+* upd treeview for method addLeaf, now method returned li
+* upd bower config
+* init clock plugin
+* fix draggable for preventDefault
+* upd draggable add data-z-index attribute
+* upd f-menu add subclass default-dropdown
+* upd panel remove default padding for panel content
+* add textarea autoresize with max height
+* fix calendar for support const METRO_CURRENT_LOCALE
+* fix tabcontrol frames overflow
+* new font icons (+42)
+
 ## 3.0.12
 * add color schemes for calendar
 <<<<<<< HEAD

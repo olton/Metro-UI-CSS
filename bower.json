@@ -29,6 +29,10 @@
         "build/js/metro.js"
     ],
     "ignore": [
+        "node_modules",
+        "bower_components",
+        "docs",
+        "test"
     ],
       "dependencies": {
         "jquery": ">= 1.9.1"

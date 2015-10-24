@@ -1,5 +1,5 @@
 /*!
- * Metro UI CSS v3.0.12 (http://metroui.org.ua)
+ * Metro UI CSS v3.0.13 (http://metroui.org.ua)
  * Copyright 2012-2015 Sergey Pimenov
  * Licensed under MIT (http://metroui.org.ua/license.html)
  */
@@ -21,7 +21,7 @@ if (typeof jQuery === 'undefined') {
 }
 
 // Source: js/global.js
-window.METRO_VERSION = '3.0.12';
+window.METRO_VERSION = '3.0.13';
 
 if (window.METRO_AUTO_REINIT === undefined) window.METRO_AUTO_REINIT = true;
 if (window.METRO_LANGUAGE === undefined) window.METRO_LANGUAGE = 'en';
@@ -176,8 +176,8 @@ window.METRO_LOCALES = {
             'Gen', ' Feb', 'Mar', 'Apr', 'Mag', 'Giu', 'Lug', 'Ago', 'Set', 'Ott', 'Nov', 'Dic'
         ],
         days: [
-            'Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato', 'Domenica',
-            'Lun', 'Mar', 'Mer', 'Gio', 'Ven', 'Sab', 'Dom'
+            'Domenica', 'Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato', 
+            'Dom', 'Lun', 'Mar', 'Mer', 'Gio', 'Ven', 'Sab'
         ],
         buttons: [
             "Oggi", "Cancella", "Cancel", "Help", "Prior", "Next", "Finish"
@@ -2293,7 +2293,7 @@ $.widget("metro.calendar", {
         buttonToday: true,
         buttonClear: true,
         syncCalenderToDateField: true,
-        locale: 'en',
+        locale: window.METRO_CURRENT_LOCALE,
         actions: true,
         condensedGrid: false,
         scheme: 'default',
@@ -3354,7 +3354,7 @@ $.widget( "metro.charm" , {
             this._timeout_interval = setInterval(function(){
                 if (!element.is(":hover")) {
                     that.close();
-                    clearInterval(this._timeout_interval);
+                    clearInterval(that._timeout_interval);
                 }
             }, o.timeout);
         }
@@ -3436,10 +3436,18 @@ $.widget( "metro.clock" , {
     version: "1.0.0",
 
     options: {
+<<<<<<< HEAD
         format: '24',
         showSeconds: true,
         showDate: false,
         dateFormat: 'american'
+=======
+        showTime: true,
+        showDate: true,
+        timeFormat: '24',
+        dateFormat: 'american',
+        divider: "&nbsp;&nbsp;"
+>>>>>>> release-3.0.13
     },
 
     _create: function () {
@@ -3447,11 +3455,19 @@ $.widget( "metro.clock" , {
 
         this._setOptionsFromDOM();
 
+<<<<<<< HEAD
         this._createClock();
+=======
+        this._tick();
+        this._clockInterval = setInterval(function(){
+            that._tick();
+        }, 500);
+>>>>>>> release-3.0.13
 
         element.data('clock', this);
     },
 
+<<<<<<< HEAD
     _tick: function(){
         var that = this, element = this.element, o = this.options;
         var current_time = new Date();
@@ -3468,10 +3484,34 @@ $.widget( "metro.clock" , {
         if (o.format == "12") {
             ap = " AM";
             if (h > 11) { ap = " PM"; }
+=======
+    _addLeadingZero: function(i){
+        if (i<10){i="0" + i;}
+        return i;
+    },
+
+    _tick: function(){
+        var that = this, element = this.element, o = this.options;
+        var timestamp = new Date();
+        var time = timestamp.getTime();
+        var result = "";
+        var h = timestamp.getHours(),
+            i = timestamp.getMinutes(),
+            s = timestamp.getSeconds(),
+            d = timestamp.getDate(),
+            m = timestamp.getMonth() + 1,
+            y = timestamp.getFullYear(),
+            a = '';
+
+        if (o.timeFormat == '12') {
+            a = " AM";
+            if (h > 11) { a = " PM"; }
+>>>>>>> release-3.0.13
             if (h > 12) { h = h - 12; }
             if (h == 0) { h = 12; }
         }
 
+<<<<<<< HEAD
         h = this._leadZero(h);
         m = this._leadZero(m);
         s = this._leadZero(s);
@@ -3518,6 +3558,42 @@ $.widget( "metro.clock" , {
         }, 1000);
     },
 
+=======
+        h = this._addLeadingZero(h);
+        i = this._addLeadingZero(i);
+        s = this._addLeadingZero(s);
+        m = this._addLeadingZero(m);
+        d = this._addLeadingZero(d);
+
+        if (o.showDate) {
+            if (o.dateFormat == 'american') {
+                result += "<span class='date-month'>" + m + "</span>";
+                result += "<span class='date-divider'>-</span>";
+                result += "<span class='date-day'>" + d + "</span>";
+                result += "<span class='date-divider'>-</span>";
+                result += "<span class='date-year'>" + y + "</span>";
+            } else {
+                result += "<span class='date-day'>" + d + "</span>";
+                result += "<span class='date-divider'>-</span>";
+                result += "<span class='date-month'>" + m + "</span>";
+                result += "<span class='date-divider'>-</span>";
+                result += "<span class='date-year'>" + y + "</span>";
+            }
+            result += o.divider;
+        }
+
+        if (o.showTime) {
+            result += "<span class='clock-hour'>" + h + "</span>";
+            result += "<span class='clock-divider'>:</span>";
+            result += "<span class='clock-minute'>" + i + "</span>";
+            result += "<span class='clock-divider'>:</span>";
+            result += "<span class='clock-second'>" + s + "</span>";
+        }
+
+        element.html(result);
+    },
+
+>>>>>>> release-3.0.13
     _setOptionsFromDOM: function(){
         var that = this, element = this.element, o = this.options;
 
@@ -4023,6 +4099,7 @@ $.widget( "metro.dialog" , {
         modal: false,
         overlay: false,
         overlayColor: 'default',
+        overlayClickClose: false,
         type: 'default', // success, alert, warning, info
         place: 'center', // center, top-left, top-center, top-right, center-left, center-right, bottom-left, bottom-center, bottom-right
         position: 'default',
@@ -4185,6 +4262,11 @@ $.widget( "metro.dialog" , {
         if (o.overlay) {
             overlay = o._overlay;
             overlay.appendTo('body').show();
+            if (o.overlayClickClose) {
+                overlay.on('click', function(){
+                    that.close();
+                });
+            }
         }
 
         //element.fadeIn();
@@ -4250,6 +4332,7 @@ $.widget( "metro.draggable" , {
     options: {
         dragElement: null,
         dragArea: null,
+        zIndex: 2000,
         onDragStart: function(el){},
         onDragStop: function(el){},
         onDragMove: function(el, offset){}
@@ -4299,7 +4382,7 @@ $.widget( "metro.draggable" , {
             });
 
             element.css({
-                'z-index': '2000'
+                'z-index': o.zIndex
             });
 
             var dragArea = o.dragArea ? $(o.dragArea) : $(window);
@@ -4353,7 +4436,7 @@ $.widget( "metro.draggable" , {
                 }
             });
 
-            e.preventDefault();
+            //e.preventDefault();
         });
 
         dragElement.on('mouseup', function(e){
@@ -4379,7 +4462,7 @@ $.widget( "metro.draggable" , {
                 }
             }
 
-            e.preventDefault();
+            //e.preventDefault();
         });
 
     },
@@ -5035,7 +5118,9 @@ $.widget("metro.input", {
     version: "3.0.0",
 
     options: {
-        showLabelOnValue: false
+        showLabelOnValue: false,
+        textAutoResize: false,
+        textMaxHeight: 0
     },
 
     _create: function(){
@@ -5097,7 +5182,7 @@ $.widget("metro.input", {
         wrapper.insertAfter(input);
         input.attr('tabindex', '-1');
         button.attr('type', 'button');
-        wrapper.attr('placeholder', input.attr('placeholder'))
+        wrapper.attr('placeholder', input.attr('placeholder'));
 
         input.on('change', function(){
             var val = $(this).val();
@@ -5168,7 +5253,41 @@ $.widget("metro.input", {
     },
 
     _createInputTextarea: function(){
+        var element = this.element, that = this, o = this.options;
+        var textarea = element.find('textarea');
 
+        console.log(textarea);
+
+        var fitTextarea = function(){
+            textarea.css({
+                "resize": 'none',
+                "overflow-y": 'hidden'
+            });
+
+            textarea[0].style.height = 0;
+
+            var adjust = textarea[0].scrollHeight;
+
+            if (o.textMaxHeight > 0) {
+                if (o.textMaxHeight > adjust) {
+                    textarea[0].style.height = adjust + 'px';
+                } else {
+                    textarea[0].style.height = o.textMaxHeight + 'px';
+                }
+            } else {
+                textarea[0].style.height = adjust + 'px';
+            }
+        };
+
+        if (o.textAutoResize) {
+            textarea.on('keyup', fitTextarea);
+            textarea.on('keydown', fitTextarea);
+            textarea.on('change', fitTextarea);
+            textarea.on('focus', fitTextarea);
+            textarea.on('cut', fitTextarea);
+            textarea.on('paste', fitTextarea);
+            textarea.on('drop', fitTextarea);
+        }
     },
 
     _destroy: function(){
@@ -8077,7 +8196,7 @@ $.widget( "metro.treeview" , {
             }
         }
 
-        return this;
+        return li;
     },
 
     _destroy: function () {
