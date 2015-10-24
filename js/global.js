@@ -156,8 +156,8 @@ window.METRO_LOCALES = {
             'Gen', ' Feb', 'Mar', 'Apr', 'Mag', 'Giu', 'Lug', 'Ago', 'Set', 'Ott', 'Nov', 'Dic'
         ],
         days: [
-            'Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato', 'Domenica',
-            'Lun', 'Mar', 'Mer', 'Gio', 'Ven', 'Sab', 'Dom'
+            'Domenica', 'Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato', 
+            'Dom', 'Lun', 'Mar', 'Mer', 'Gio', 'Ven', 'Sab'
         ],
         buttons: [
             "Oggi", "Cancella", "Cancel", "Help", "Prior", "Next", "Finish"
