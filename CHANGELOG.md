@@ -7,6 +7,7 @@
 * fix draggable for preventDefault
 * upd draggable add data-z-index attribute
 * upd f-menu add subclass default-dropdown
+* upd panel remove default padding for panel content
 
 ## 3.0.12
 * add color schemes for calendar
