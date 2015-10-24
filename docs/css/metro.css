@@ -13180,7 +13180,6 @@ input[type="submit"].link:active {
   padding: .625rem;
 }
 .panel > .content {
-  padding: .625rem;
   background-color: #e8f1f4;
   z-index: 1;
   font-size: 0.875rem;
