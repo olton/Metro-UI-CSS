@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Metro, a sleek, intuitive, and powerful framework for faster and easier web development for Windows Metro Style.">
+    <meta name="keywords" content="HTML, CSS, JS, JavaScript, framework, metro, front-end, frontend, web development">
+    <meta name="author" content="Sergey Pimenov and Metro UI CSS contributors">
+
+    <link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
+    <title>ListView :: Metro UI CSS - The front-end framework for developing projects on the web in Windows Metro Style</title>
+
+    <link href="css/metro.css" rel="stylesheet">
+    <link href="css/metro-icons.css" rel="stylesheet">
+    <link href="css/metro-responsive.css" rel="stylesheet">
+    <link href="css/metro-schemes.css" rel="stylesheet">
+
+    <link href="css/docs.css" rel="stylesheet">
+
+    <script src="js/jquery-2.1.3.min.js"></script>
+    <script src="js/metro.js"></script>
+    <script src="js/docs.js"></script>
+    <script src="js/prettify/run_prettify.js"></script>
+    <script src="js/ga.js"></script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+    <script>
+        $(function(){
+            var checks = $("input:radio");
+            var lv = $("#lv1");
+            checks.on('change', function(){
+                if ($(this).is(":checked")) {
+                    lv.removeClass(function (index, css) {
+                        return (css.match(/(^|\s)list-type-\S+/g) || []).join(' ');
+                    }).addClass($(this).val());
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="container page-content">
+        <h1><a href="index.html" class="nav-button transform"><span></span></a>&nbsp;ListView</h1>
+
+        @@adsense
+
+        <h4>Explorer style</h4>
+        <div class="example" data-text="example">
+            <div class="set-border padding10 no-padding-top no-padding-bottom">
+                <label class="input-control radio small-check">
+                    <input type="radio" name="r1" value="default" checked>
+                    <span class="check"></span>
+                    <span class="caption">default</span>
+                </label>
+                <label class="input-control radio small-check">
+                    <input type="radio" name="r1" value="list-type-icons">
+                    <span class="check"></span>
+                    <span class="caption">Icons</span>
+                </label>
+                <label class="input-control radio small-check">
+                    <input type="radio" name="r1" value="list-type-tiles">
+                    <span class="check"></span>
+                    <span class="caption">Tiles</span>
+                </label>
+                <label class="input-control radio small-check">
+                    <input type="radio" name="r1" value="list-type-listing">
+                    <span class="check"></span>
+                    <span class="caption">Listing</span>
+                </label>
+            </div>
+            <br />
+            <div class="listview set-border padding10" data-role="listview" id="lv1" data-on-list-click="alert('You select ' + list.find('.list-title').text())">
+                <div class="list">
+                    <img src="images/folder-videos.png" class="list-icon">
+                    <span class="list-title">Video</span>
+                </div>
+                <div class="list">
+                    <img src="images/folder-documents.png" class="list-icon">
+                    <span class="list-title">Documents</span>
+                </div>
+                <div class="list active">
+                    <img src="images/folder-downloads.png" class="list-icon">
+                    <span class="list-title">Downloads</span>
+                </div>
+                <div class="list">
+                    <img src="images/folder-images.png" class="list-icon">
+                    <span class="list-title">Images</span>
+                </div>
+                <div class="list">
+                    <img src="images/folder-music.png" class="list-icon">
+                    <span class="list-title">Music</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="example" data-text="code">
+            <pre class="prettyprint linenums"><code>
+                &lt;div class="listview"&gt;
+                    &lt;div class="list"&gt;
+                        &lt;img src="..." class="list-icon"&gt;
+                        &lt;span class="list-title"&gt;...list title...&lt;/span&gt;
+                    &lt;/div&gt;
+                    ...
+                    &lt;div class="list"&gt;
+                        &lt;span class="list-icon icon-font-icon"&gt;&lt;/span&gt;
+                        &lt;span class="list-title"&gt;...list title...&lt;/span&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+
+                &lt;div class="listview list-type-icons"&gt;
+
+                &lt;div class="listview list-type-tiles"&gt;
+
+                &lt;div class="listview list-type-listing"&gt;
+            </code></pre>
+        </div>
+
+        <h5>ListView with groups</h5>
+        <div class="example" data-text="example">
+
+            <div class="listview set-border padding10" data-role="listview">
+                <div class="list-group">
+                    <span class="list-group-toggle">My Resources</span>
+                    <div class="list-group-content">
+                        <div class="list">
+                            <img src="images/folder-videos.png" class="list-icon">
+                            <span class="list-title">Video</span>
+                        </div>
+                        <div class="list">
+                            <img src="images/folder-documents.png" class="list-icon">
+                            <span class="list-title">Documents</span>
+                        </div>
+                        <div class="list">
+                            <img src="images/folder-downloads.png" class="list-icon">
+                            <span class="list-title">Downloads</span>
+                        </div>
+                        <div class="list">
+                            <img src="images/folder-images.png" class="list-icon">
+                            <span class="list-title">Images</span>
+                        </div>
+                        <div class="list">
+                            <img src="images/folder-music.png" class="list-icon">
+                            <span class="list-title">Music</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="list-group">
+                    <span class="list-group-toggle">My Computer</span>
+                    <div class="list-group-content">
+                        <div class="list">
+                            <img src="images/disk-sys.png" class="list-icon">
+                            <span class="list-title">Local Drive (C:)</span>
+                            <div class="list-data">
+                                <div class="progress" data-role="progressBar" data-value="75"></div>
+                            </div>
+                        </div>
+                        <div class="list">
+                            <img src="images/hard-drive.png" class="list-icon">
+                            <span class="list-title">Local Drive (D:)</span>
+                            <div class="list-data">
+                                <div class="progress" data-role="progressBar" data-value="35"></div>
+                            </div>
+                        </div>
+                        <div class="list">
+                            <img src="images/hard-drive.png" class="list-icon">
+                            <span class="list-title">Removable Drive (E:)</span>
+                            <div class="list-data">
+                                <div class="progress" data-role="progressBar" data-value="45"></div>
+                            </div>
+                        </div>
+                        <div class="list">
+                            <img src="images/bd-rom.png" class="list-icon">
+                            <span class="list-title">BD-ROM (J:)</span>
+                            <div class="list-data">
+                                disk not found
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="example" data-text="code">
+            <pre class="prettyprint linenums"><code>
+                &lt;div class="listview" data-role="listview"&gt;
+                    &lt;div class="list-group"&gt;
+                        &lt;span class="list-group-toggle"&gt;..list group title...&lt;/span&gt;
+                        &lt;div class="list-group-content"&gt;
+                            &lt;div class="list"&gt;...&lt;/div&gt;
+                            ...
+                            &lt;div class="list"&gt;...&lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    ...
+                    &lt;div class="list-group"&gt;
+                        &lt;span class="list-group-toggle"&gt;..list group title...&lt;/span&gt;
+                        &lt;div class="list-group-content"&gt;
+                            &lt;div class="list"&gt;...&lt;/div&gt;
+                            ...
+                            &lt;div class="list"&gt;...&lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            </code></pre>
+        </div>
+
+        <h4 id="_outlook_">Outlook style</h4>
+        <div class="example" data-text="example">
+            <div class="grid">
+                <div class="row cells2">
+                    <div class="cell">
+                        <div class="listview-outlook" data-role="listview">
+                            <a class="list marked" href="#">
+                                <div class="list-content">
+                                    <span class="list-title">subscribe@metroui.net</span>
+                                    <span class="list-subtitle">MetroUI: News on 26/10/2013</span>
+                                    <span class="list-remark">Hello friend! Newest for Metro UI CSS</span>
+                                </div>
+                            </a>
+                            <a class="list" href="#">
+                                <div class="list-content">
+                                    <span class="list-title">subscribe@metroui.net</span>
+                                    <span class="list-subtitle">MetroUI: News on 26/10/2013</span>
+                                    <span class="list-remark">Hello friend! Newest for Metro UI CSS</span>
+                                </div>
+                            </a>
+                            <a class="list" href="#">
+                                <div class="list-content">
+                                    <span class="list-title">subscribe@metroui.net</span>
+                                    <span class="list-subtitle">MetroUI: News on 26/10/2013</span>
+                                    <span class="list-remark">Hello friend! Newest for Metro UI CSS</span>
+                                </div>
+                            </a>
+                            <a class="list" href="#">
+                                <div class="list-content">
+                                    <span class="list-title">subscribe@metroui.net</span>
+                                    <span class="list-subtitle">MetroUI: News on 26/10/2013</span>
+                                    <span class="list-remark">Hello friend! Newest for Metro UI CSS</span>
+                                </div>
+                            </a>
+                            <a class="list" href="#">
+                                <div class="list-content">
+                                    <span class="list-title">subscribe@metroui.net</span>
+                                    <span class="list-subtitle">MetroUI: News on 26/10/2013</span>
+                                    <span class="list-remark">Hello friend! Newest for Metro UI CSS</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="cell">
+                        <div class="listview-outlook" data-role="listview">
+                            <div class="list-group ">
+                                <span class="list-group-toggle">Today</span>
+                                <div class="list-group-content">
+                                    <a class="list marked" href="#">
+                                        <div class="list-content">
+                                            <span class="list-title">subscribe@metroui.net</span>
+                                            <span class="list-subtitle">MetroUI: News on 26/10/2013</span>
+                                            <span class="list-remark">Hello friend! Newest for Metro UI CSS</span>
+                                        </div>
+                                    </a>
+                                    <a class="list" href="#">
+                                        <div class="list-content">
+                                            <span class="list-title">subscribe@metroui.net</span>
+                                            <span class="list-subtitle">MetroUI: News on 26/10/2013</span>
+                                            <span class="list-remark">Hello friend! Newest for Metro UI CSS</span>
+                                        </div>
+                                    </a>
+                                    <a class="list active" href="#">
+                                        <div class="list-content">
+                                            <span class="list-title">subscribe@metroui.net</span>
+                                            <span class="list-subtitle">MetroUI: News on 26/10/2013</span>
+                                            <span class="list-remark">Hello friend! Newest for Metro UI CSS</span>
+                                        </div>
+                                    </a>
+                                    <a class="list" href="#">
+                                        <div class="list-content">
+                                            <span class="list-title">subscribe@metroui.net</span>
+                                            <span class="list-subtitle">MetroUI: News on 26/10/2013</span>
+                                            <span class="list-remark">Hello friend! Newest for Metro UI CSS</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="list-group collapsed">
+                                <span class="list-group-toggle">Yesterday</span>
+                                <div class="list-group-content">
+                                    <a class="list" href="#">
+                                        <div class="list-content">
+                                            <span class="list-title"><span class="place-right icon-flag-2 fg-red smaller"></span>subscribe@metroui.net</span>
+                                            <span class="list-subtitle"><span class="place-right">1:51</span>MetroUI: News on 26/10/2013</span>
+                                            <span class="list-remark">Hello friend! Newest for Metro UI CSS</span>
+                                        </div>
+                                    </a>
+                                    <a class="list" href="#">
+                                        <div class="list-content">
+                                            <span class="list-title"><span class="place-right icon-flag-2 fg-green smaller"></span>subscribe@metroui.net</span>
+                                            <span class="list-subtitle"><span class="place-right">1:51</span>MetroUI: News on 26/10/2013</span>
+                                            <span class="list-remark">Hello friend! Newest for Metro UI CSS</span>
+                                        </div>
+                                    </a>
+                                    <a class="list" href="#">
+                                        <div class="list-content">
+                                            <span class="list-title">subscribe@metroui.net</span>
+                                            <span class="list-subtitle"><span class="place-right">1:51</span>MetroUI: News on 26/10/2013</span>
+                                            <span class="list-remark">Hello friend! Newest for Metro UI CSS</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="example" data-text="code">
+            <h5>Simple listview</h5>
+            <pre class="prettyprint linenums"><code>
+                &lt;div class="listview-outlook" data-role="listview"&gt;
+                    &lt;div class="list"&gt;
+                        &lt;div class="list-content"&gt;
+                            &lt;span class="list-title"&gt;...list title...&lt;/span&gt;
+                            &lt;span class="list-subtitle"&gt;...list subtitle...&lt;/span&gt;
+                            &lt;span class="list-remark"&gt;...list remark...&lt;/span&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    ...
+                    &lt;div class="list"&gt;
+                        &lt;div class="list-content"&gt;
+                            &lt;span class="list-title"&gt;...list title...&lt;/span&gt;
+                            &lt;span class="list-subtitle"&gt;...list subtitle...&lt;/span&gt;
+                            &lt;span class="list-remark"&gt;...list remark...&lt;/span&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            </code></pre>
+
+            <h5>Listview with groups</h5>
+            <pre class="prettyprint linenums"><code>
+                &lt;div class="listview-outlook" data-role="listview"&gt;
+                    &lt;div class="list-group"&gt;
+                        &lt;span class="list-group-toggle"&gt;...list group title...&lt;/span&gt;
+                        &lt;div class="list-group-content"&gt;
+                            &lt;div class="list"&gt;...&lt;/div&gt;
+                            ...
+                            &lt;div class="list"&gt;...&lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            </code></pre>
+        </div>
+
+        <h3>Events</h3>
+        <table class="table bordered border">
+            <thead>
+            <tr>
+                <td>Event</td>
+                <td>Data-*</td>
+                <td>Params</td>
+                <td>Description</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>onActivate</td>
+                <td style="white-space: nowrap">data-on-activate</td>
+                <td>(list)</td>
+                <td>The event fired when the list activated</td>
+            </tr>
+            <tr>
+                <td>onExpand</td>
+                <td style="white-space: nowrap">data-on-expand</td>
+                <td>(group)</td>
+                <td>The event fired when the group expanded</td>
+            </tr>
+            <tr>
+                <td>onCollapse</td>
+                <td style="white-space: nowrap">data-on-collapse</td>
+                <td>(group)</td>
+                <td>The event fired when the group collapsed</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    @@hit
+
+</body>
+</html>

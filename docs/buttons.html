@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Metro, a sleek, intuitive, and powerful framework for faster and easier web development for Windows Metro Style.">
+    <meta name="keywords" content="HTML, CSS, JS, JavaScript, framework, metro, front-end, frontend, web development">
+    <meta name="author" content="Sergey Pimenov and Metro UI CSS contributors">
+
+    <link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
+    <title>Buttons :: Metro UI CSS - The front-end framework for developing projects on the web in Windows Metro Style</title>
+
+    <link href="css/metro.css" rel="stylesheet">
+    <link href="css/metro-icons.css" rel="stylesheet">
+    <link href="css/metro-responsive.css" rel="stylesheet">
+    <link href="css/metro-schemes.css" rel="stylesheet">
+
+    <link href="css/docs.css" rel="stylesheet">
+
+    <script src="js/jquery-2.1.3.min.js"></script>
+    <script src="js/metro.js"></script>
+    <script src="js/docs.js"></script>
+    <script src="js/prettify/run_prettify.js"></script>
+    <script src="js/ga.js"></script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+
+</head>
+<body>
+    <div class="container page-content">
+        <h1><a href="index.html" class="nav-button transform"><span></span></a>&nbsp;Buttons</h1>
+
+        @@adsense
+
+        <div class="margin20 no-margin-left no-margin-right sub-header text-light">
+            With the Metro UI CSS you can easily create different types of buttons, stylized to Windows 8.
+        </div>
+        <p>
+            Button styles can be applied to anything with the .button class applied. However, typically you'll want to apply these to only <span class="tag">a</span> and <span class="tag">button</span> elements for the best rendering.
+        </p>
+
+        <h4>Push buttons</h4>
+        <div class="example" data-text="example">
+            <div class="margin10">
+                <button class="button">Default</button>
+                <button class="button" disabled>Disabled</button>
+                <a class="button">Anchor</a>
+                <div class="button">Div</div>
+                <span class="button">Span</span>
+                <button class="button rounded">Rounded</button>
+                <button class="button cycle-button">+</button>
+                <button class="button square-button">OK</button>
+            </div>
+        </div>
+
+        <div class="example" data-text="code">
+            <pre class="prettyprint linenums"><code>
+                &lt;button class="button"&gt;Caption&lt;/button&gt;
+                &lt;button class="button" disabled&gt;Caption&lt;/button&gt;
+                &lt;div class="button"&gt;Caption&lt;/div&gt;
+                &lt;a class="button"&gt;Caption&lt;/a&gt;
+                &lt;span class="button"&gt;Caption&lt;/span&gt;
+                &lt;button class="button rounded"&gt;Rounded&lt;/button&gt;
+                &lt;button class="button cycle-button"&gt;+&lt;/button&gt;
+                &lt;button class="button square-button"&gt;OK&lt;/button&gt;
+            </code></pre>
+        </div>
+
+        <h4>With icons</h4>
+        <p class="text-small">support both: icon fonts and images</p>
+        <div class="example" data-text="example">
+            <div class="margin10">
+                <button class="button"><span class="mif-checkmark"></span> Font icon</button>
+                <button class="button"><img src="images/Checkmark.png"> Image</button>
+            </div>
+        </div>
+
+        <div class="example" data-text="code">
+            <pre class="prettyprint linenums"><code>
+                &lt;button class="button"&gt;&lt;span class="mif-checkmark"&gt;&lt;/span&gt; Primary&lt;/button&gt;
+                &lt;button class="button"&gt;&lt;img src="images/Checkmark.png"&gt; Primary&lt;/button&gt;
+            </code></pre>
+        </div>
+
+        <h4>Any sizes</h4>
+        <div class="example" data-text="example">
+            <div class="margin10">
+                <button class="button mini-button">Mini</button>
+                <button class="button small-button">Small</button>
+                <button class="button">Default</button>
+                <button class="button large-button">Large</button>
+                <button class="button mini-button"><span class="mif-3d-rotation"></span> Mini</button>
+                <button class="button small-button"><span class="mif-3d-rotation"></span> Small</button>
+                <button class="button"><span class="mif-3d-rotation"></span> Button</button>
+                <button class="button large-button"><span class="mif-3d-rotation"></span> Large</button>
+            </div>
+            <div class="margin10">
+                <button class="square-button mini-button">M</button>
+                <button class="square-button small-button">S</button>
+                <button class="square-button">D</button>
+                <button class="square-button large-button">L</button>
+                <button class="square-button mini-button"><span class="mif-3d-rotation"></span></button>
+                <button class="square-button small-button"><span class="mif-3d-rotation"></span></button>
+                <button class="square-button"><span class="mif-3d-rotation"></span></button>
+                <button class="square-button large-button"><span class="mif-3d-rotation"></span></button>
+            </div>
+            <div class="margin10">
+                <button class="cycle-button mini-button">M</button>
+                <button class="cycle-button small-button">S</button>
+                <button class="cycle-button">D</button>
+                <button class="cycle-button large-button">L</button>
+                <button class="cycle-button mini-button"><span class="mif-3d-rotation"></span></button>
+                <button class="cycle-button small-button"><span class="mif-3d-rotation"></span></button>
+                <button class="cycle-button"><span class="mif-3d-rotation"></span></button>
+                <button class="cycle-button large-button"><span class="mif-3d-rotation"></span></button>
+            </div>
+        </div>
+
+        <div class="example" data-text="code">
+            <pre class="prettyprint linenums"><code>
+                &lt;button class="button mini-button"&gt;Caption&lt;/button&gt;
+                &lt;button class="button small-button"&gt;Caption&lt;/button&gt;
+                &lt;button class="button large-button"&gt;Caption&lt;/button&gt;
+            </code></pre>
+        </div>
+
+        <h4>Any colors (predefined and custom)</h4>
+        <div class="example" data-text="example">
+            <div class="margin10">
+                <button class="button primary">Primary</button>
+                <button class="button success">Success</button>
+                <button class="button info">Info</button>
+                <button class="button danger">Danger</button>
+                <button class="button warning">Warning</button>
+                <button class="button link">Link</button>
+                <button class="button bg-pink bg-active-darkPink fg-white">Custom</button>
+            </div>
+        </div>
+
+        <div class="example" data-text="code">
+            <pre class="prettyprint linenums"><code>
+                &lt;button class="button primary"&gt;Primary&lt;/button&gt;
+                &lt;button class="button success"&gt;Success&lt;/button&gt;
+                &lt;button class="button info"&gt;Info&lt;/button&gt;
+                &lt;button class="button danger"&gt;Danger&lt;/button&gt;
+                &lt;button class="button warning"&gt;Warning&lt;/button&gt;
+                &lt;button class="button link"&gt;Link&lt;/button&gt;
+                &lt;button class="button bg-pink bg-active-darkPink fg-white"&gt;Custom&lt;/button&gt;
+            </code></pre>
+        </div>
+
+        <h4>Cool buttons</h4>
+        <p class="text-small">with predefined classes</p>
+        <div class="example" data-text="example">
+            <div class="margin10">
+                <button class="button success block-shadow-success text-shadow">Button</button>
+                <button class="button warning block-shadow-warning text-shadow">Button</button>
+                <button class="button danger block-shadow-danger text-shadow">Button</button>
+                <button class="button info block-shadow-info text-shadow">Button</button>
+                <button class="button loading-pulse">Download NOW</button>
+                <button class="button loading-pulse lighten primary">Download NOW</button>
+                <button class="button loading-cube">Loading...</button>
+                <button class="button loading-cube lighten danger">Loading...</button>
+            </div>
+        </div>
+
+        <div class="example" data-text="code">
+            <pre class="prettyprint linenums"><code>
+                &lt;button class="button success block-shadow-success text-shadow"&gt;Button&lt;/button&gt;
+                &lt;button class="button warning block-shadow-warning text-shadow"&gt;Button&lt;/button&gt;
+                &lt;button class="button danger block-shadow-danger text-shadow"&gt;Button&lt;/button&gt;
+                &lt;button class="button info block-shadow-info text-shadow"&gt;Button&lt;/button&gt;
+                &lt;button class="button loading-pulse"&gt;Download NOW&lt;/button&gt;
+                &lt;button class="button loading-pulse lighten primary"&gt;Download NOW&lt;/button&gt;
+                &lt;button class="button loading-cube"&gt;Loading...&lt;/button&gt;
+                &lt;button class="button loading-cube lighten danger"&gt;Loading...&lt;/button&gt;
+            </code></pre>
+        </div>
+
+        <h4>Command button</h4>
+        <div class="example" data-text="example">
+            <div class="margin10">
+                <button class="command-button">
+                    <span class="icon mif-share"></span>
+                    Yes, share and connect
+                    <small>Use this option for home or work</small>
+                </button>
+                <button class="command-button icon-right warning">
+                    <span class="icon mif-share"></span>
+                    Yes, share and connect
+                    <small>Use this option for home or work</small>
+                </button>
+            </div>
+        </div>
+
+        <div class="example" data-text="code">
+            <pre class="prettyprint linenums"><code>
+                &lt;button class="command-button"&gt;
+                    &lt;span class="icon mif-share"&gt;&lt;/span&gt;
+                    Yes, share and connect
+                    &lt;small&gt;Use this option for home or work&lt;/small&gt;
+                &lt;/button&gt;
+                &lt;button class="command-button icon-right warning"&gt;
+                    &lt;span class="icon mif-share"&gt;&lt;/span&gt;
+                    Yes, share and connect
+                    &lt;small&gt;Use this option for home or work&lt;/small&gt;
+                &lt;/button&gt;
+            </code></pre>
+        </div>
+
+        <h4>Toolbars</h4>
+        <div class="example" data-text="example">
+            <div class="margin10">
+                <div class="toolbar">
+                    <div class="toolbar-section">
+                        <button class="toolbar-button"><span class="mif-floppy-disk"></span></button>
+                        <button class="toolbar-button"><span class="mif-print"></span></button>
+                        <button class="toolbar-button"><span class="mif-pencil"></span></button>
+                        <button class="toolbar-button">2</button>
+                        <button class="toolbar-button">3</button>
+                        <button class="toolbar-button">4</button>
+                    </div>
+
+                    <div class="toolbar-section">
+                        <button class="toolbar-button"><span class="mif-floppy-disk"></span></button>
+                        <button class="toolbar-button"><span class="mif-print"></span></button>
+                        <button class="toolbar-button"><span class="mif-pencil"></span></button>
+                        <button class="toolbar-button">2</button>
+                        <button class="toolbar-button">3</button>
+                        <button class="toolbar-button">4</button>
+                    </div>
+
+                    <div class="toolbar-section rounded">
+                        <button class="toolbar-button"><span class="mif-floppy-disk"></span></button>
+                        <button class="toolbar-button"><span class="mif-print"></span></button>
+                        <button class="toolbar-button"><span class="mif-pencil"></span></button>
+                        <button class="toolbar-button">2</button>
+                        <button class="toolbar-button">3</button>
+                        <button class="toolbar-button">4</button>
+                    </div>
+
+                    <div class="toolbar-section no-display">
+                        <div class="toolbar-group-check" data-role="group" data-group-type="one-state">
+                            <button class="toolbar-button">1.1</button>
+                            <button class="toolbar-button">1.2</button>
+                            <button class="toolbar-button">1.3</button>
+                        </div>
+                        <div class="toolbar-group-radio" data-role="group" data-group-type="mutli-state">
+                            <button class="toolbar-button">2.1</button>
+                            <button class="toolbar-button">2.2</button>
+                            <button class="toolbar-button">2.3</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="toolbar rounded">
+                    <div class="toolbar-section">
+                        <button class="toolbar-button"><span class="mif-floppy-disk"></span></button>
+                        <button class="toolbar-button"><span class="mif-print"></span></button>
+                        <button class="toolbar-button"><span class="mif-pencil"></span></button>
+                        <button class="toolbar-button">2</button>
+                        <button class="toolbar-button">3</button>
+                        <button class="toolbar-button">4</button>
+                    </div>
+
+                    <div class="toolbar-section">
+                        <button class="toolbar-button"><span class="mif-floppy-disk"></span></button>
+                        <button class="toolbar-button"><span class="mif-print"></span></button>
+                        <button class="toolbar-button"><span class="mif-pencil"></span></button>
+                        <button class="toolbar-button">2</button>
+                        <button class="toolbar-button">3</button>
+                        <button class="toolbar-button">4</button>
+                    </div>
+
+                    <div class="toolbar-section">
+                        <button class="toolbar-button"><span class="mif-floppy-disk"></span></button>
+                        <button class="toolbar-button"><span class="mif-print"></span></button>
+                        <button class="toolbar-button"><span class="mif-pencil"></span></button>
+                        <button class="toolbar-button">2</button>
+                        <button class="toolbar-button">3</button>
+                        <button class="toolbar-button">4</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="example" data-text="code">
+            <pre class="prettyprint linenums"><code>
+                &lt;!-- Horizontal --&gt;
+                &lt;div class="toolbar"&gt;
+                    &lt;div class="toolbar-section"&gt;
+                        &lt;button class="toolbar-button"&gt;...&lt;/button&gt;
+                        ...
+                        &lt;button class="toolbar-button"&gt;...&lt;/button&gt;
+                    &lt;/div&gt;
+                    ...
+                    &lt;div class="toolbar-section"&gt;
+                        &lt;button class="toolbar-button"&gt;...&lt;/button&gt;
+                        ...
+                        &lt;button class="toolbar-button"&gt;...&lt;/button&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+
+                &lt;!-- Vertical --&gt;
+                &lt;div class="v-toolbar"&gt;...&lt;/div&gt;
+            </code></pre>
+        </div>
+
+        <h4>Image button</h4>
+        <div class="example" data-text="example">
+            <div class="margin10">
+                <button class="image-button">
+                    Share this
+                    <span class="icon mif-share"></span>
+                </button>
+                <button class="image-button icon-right">
+                    Location
+                    <img src="images/location.png" class="icon">
+                </button>
+                <button class="image-button primary">
+                    Share this
+                    <span class="icon mif-share bg-darkCobalt"></span>
+                </button>
+                <a class="image-button bg-pink bg-active-amber fg-white icon-right">
+                    Anchor
+                    <img src="images/location.png" class="icon bg-darkPink">
+                </a>
+            </div>
+            <div class="margin10">
+                <button class="image-button small-button">
+                    Share this
+                    <span class="icon mif-share"></span>
+                </button>
+                <button class="image-button icon-right small-button">
+                    Location
+                    <img src="images/location.png" class="icon">
+                </button>
+                <button class="image-button primary small-button">
+                    Share this
+                    <span class="icon mif-share bg-darkCobalt"></span>
+                </button>
+                <a class="image-button bg-pink bg-active-amber fg-white icon-right small-button">
+                    Anchor
+                    <img src="images/location.png" class="icon bg-darkPink">
+                </a>
+            </div>
+        </div>
+
+        <div class="example" data-text="code">
+            <pre class="prettyprint linenums"><code>
+                &lt;button class="image-button"&gt;
+                    Share this
+                    &lt;span class="icon mif-share"&gt;&lt;/span&gt;
+                &lt;/button&gt;
+                &lt;button class="image-button icon-right"&gt;
+                    Location
+                    &lt;img src="images/location.png" class="icon"&gt;
+                &lt;/button&gt;
+                &lt;button class="image-button small-button"&gt;
+                    Share this
+                    &lt;span class="icon mif-share"&gt;&lt;/span&gt;
+                &lt;/button&gt;
+            </code></pre>
+        </div>
+
+        <h4>Shortcut button</h4>
+        <div class="example" data-text="example">
+            <div class="margin10">
+                <a class="shortcut-button">
+                    <span class="icon mif-rocket"></span>
+                    <span class="title">Rocket</span>
+                </a>
+                <button class="shortcut-button bg-cyan bg-active-darkBlue fg-white">
+                    <span class="icon mif-rocket"></span>
+                    <span class="title">Rocket</span>
+                    <span class="badge">10</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="example" data-text="code">
+            <pre class="prettyprint linenums"><code>
+                &lt;a class="shortcut-button"&gt;
+                    &lt;span class="icon mif-rocket"&gt;&lt;/span&gt;
+                    &lt;span class="title"&gt;Rocket&lt;/span&gt;
+                &lt;/a&gt;
+                &lt;button class="shortcut-button bg-cyan bg-active-darkBlue fg-white"&gt;
+                    &lt;span class="icon mif-rocket"&gt;&lt;/span&gt;
+                    &lt;span class="title"&gt;Rocket&lt;/span&gt;
+                    &lt;span class="badge"&gt;10&lt;/span&gt;
+                &lt;/button&gt;
+            </code></pre>
+        </div>
+
+        <h4>Dropdown button</h4>
+        <div class="example" data-text="example">
+            <div class="margin10">
+                <div class="dropdown-button">
+                    <button class="button dropdown-toggle">Menu</button>
+                    <ul class="split-content d-menu" data-role="dropdown">
+                        <li><a href="#">Reply</a></li>
+                        <li><a href="#">Reply All</a></li>
+                        <li><a href="#">Forward</a></li>
+                    </ul>
+                </div>
+                <div class="dropdown-button place-right">
+                    <button class="button dropdown-toggle">Menu</button>
+                    <ul class="split-content d-menu place-right" data-role="dropdown">
+                        <li><a href="#">Reply</a></li>
+                        <li><a href="#">Reply All</a></li>
+                        <li><a href="#">Forward</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="example" data-text="code">
+            <pre class="prettyprint linenums"><code>
+                &lt;!-- left --&gt;
+                &lt;div class="dropdown-button"&gt;
+                    &lt;button class="button dropdown-toggle"&gt;Menu&lt;/button&gt;
+                    &lt;ul class="split-content d-menu" data-role="dropdown"&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Reply&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Reply All&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Forward&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/div&gt;
+
+                &lt;!-- right --&gt;
+                &lt;div class="dropdown-button place-right"&gt;
+                    &lt;button class="button dropdown-toggle"&gt;Menu&lt;/button&gt;
+                    &lt;ul class="split-content d-menu place-right" data-role="dropdown"&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Reply&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Reply All&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Forward&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/div&gt;
+            </code></pre>
+        </div>
+
+        <h4>Split button</h4>
+        <div class="example" data-text="example">
+            <div class="margin10">
+                <div class="split-button">
+                    <button class="button">Reply</button>
+                    <button class="split dropdown-toggle"></button>
+                    <ul class="split-content d-menu" data-role="dropdown">
+                        <li><a href="#">Reply</a></li>
+                        <li><a href="#">Reply All</a></li>
+                        <li><a href="#">Forward</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="example" data-text="code">
+            <pre class="prettyprint linenums"><code>
+                &lt;div class="split-button"&gt;
+                    &lt;button class="button"&gt;Reply&lt;/button&gt;
+                    &lt;button class="split dropdown-toggle"&gt;&lt;/button&gt;
+                    &lt;ul class="split-content d-menu" data-role="dropdown"&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Reply&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Reply All&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Forward&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/div&gt;
+            </code></pre>
+        </div>
+
+        <h4>Pagination</h4>
+        <div class="example" data-text="example">
+            <div class="margin10">
+                <div class="pagination">
+                    <span class="item">&lt;</span>
+                    <span class="item">1</span>
+                    <span class="item">2</span>
+                    <span class="item">3</span>
+                    <span class="item current">4</span>
+                    <span class="item disabled">5</span>
+                    <span class="item spaces">...</span>
+                    <span class="item">7</span>
+                    <span class="item">8</span>
+                    <span class="item">&gt;</span>
+                </div>
+                <div class="pagination rounded">
+                    <span class="item">&lt;</span>
+                    <span class="item">1</span>
+                    <span class="item">2</span>
+                    <span class="item">3</span>
+                    <span class="item current">4</span>
+                    <span class="item disabled">5</span>
+                    <span class="item spaces">...</span>
+                    <span class="item">7</span>
+                    <span class="item">8</span>
+                    <span class="item">&gt;</span>
+                </div>
+                <div class="pagination cycle">
+                    <span class="item">&lt;</span>
+                    <span class="item">1</span>
+                    <span class="item">2</span>
+                    <span class="item">3</span>
+                    <span class="item current">4</span>
+                    <span class="item disabled">5</span>
+                    <span class="item spaces">...</span>
+                    <span class="item">7</span>
+                    <span class="item">8</span>
+                    <span class="item">9</span>
+                    <span class="item">10</span>
+                    <span class="item">100</span>
+                    <span class="item">&gt;</span>
+                </div>
+                <div class="pagination no-border">
+                    <span class="item">&lt;</span>
+                    <span class="item">1</span>
+                    <span class="item">2</span>
+                    <span class="item">3</span>
+                    <span class="item current">4</span>
+                    <span class="item disabled">5</span>
+                    <span class="item spaces">...</span>
+                    <span class="item">7</span>
+                    <span class="item">8</span>
+                    <span class="item">9</span>
+                    <span class="item">10</span>
+                    <span class="item">100</span>
+                    <span class="item">1000</span>
+                    <span class="item">&gt;</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="example" data-text="code">
+            <pre class="prettyprint linenums"><code>
+                &lt;div class="pagination"&gt;
+                    &lt;span class="item"&gt;val&lt;/span&gt;
+                    &lt;span class="item current"&gt;val&lt;/span&gt;
+                    &lt;span class="item disabled"&gt;val&lt;/span&gt;
+                    &lt;span class="item spaces"&gt;...&lt;/span&gt;
+                    &lt;span class="item"&gt;val&lt;/span&gt;
+                &lt;/div&gt;
+
+                &lt;div class="pagination rounded"&gt;...&lt;/div&gt;
+                &lt;div class="pagination cycle"&gt;...&lt;/div&gt;
+                &lt;div class="pagination no-border"&gt;...&lt;/div&gt;
+            </code></pre>
+        </div>
+
+        <h4>Breadcrumbs</h4>
+        <div class="example" data-text="example">
+            <div class="margin10">
+                <h5>breadcrumbs</h5>
+                <ul class="breadcrumbs">
+                    <li><a href="#"><span class="icon mif-home"></span></a></li>
+                    <li><a href="#">Products</a></li>
+                    <li><a href="#">Download</a></li>
+                    <li><a href="#">Windows 10</a></li>
+                </ul>
+                <ul class="breadcrumbs dark">
+                    <li><a href="#"><span class="icon mif-home"></span></a></li>
+                    <li><a href="#">Products</a></li>
+                    <li><a href="#">Download</a></li>
+                    <li><a href="#">Windows 10</a></li>
+                </ul>
+                <br />
+                <h5>breadcrumbs2</h5>
+                <ul class="breadcrumbs2">
+                    <li><a href="#"><span class="icon mif-home"></span></a></li>
+                    <li><a href="#">Products</a></li>
+                    <li><a href="#">Download</a></li>
+                    <li><a href="#">Windows 10</a></li>
+                </ul>
+                <ul class="breadcrumbs2 small">
+                    <li><a href="#"><span class="icon mif-home"></span></a></li>
+                    <li><a href="#">Products</a></li>
+                    <li><a href="#">Download</a></li>
+                    <li><a href="#">Windows 10</a></li>
+                </ul>
+                <ul class="breadcrumbs2 mini">
+                    <li><a href="#"><span class="icon mif-home"></span></a></li>
+                    <li><a href="#">Products</a></li>
+                    <li><a href="#">Download</a></li>
+                    <li><a href="#">Windows 10</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="example" data-text="code">
+            <pre class="prettyprint linenums"><code>
+                &lt;ul class="breadcrumbs"&gt;
+                    &lt;li&gt;&lt;a href="#"&gt;&lt;span class="icon mif-home"&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="#"&gt;Products&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="#"&gt;Download&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="#"&gt;Windows 10&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+
+                &lt;ul class="breadcrumbs dark"&gt;...&lt;/ul&gt;
+
+                &lt;ul class="breadcrumbs2"&gt;...&lt;/ul&gt;
+                &lt;ul class="breadcrumbs2 small"&gt;...&lt;/ul&gt;
+                &lt;ul class="breadcrumbs2 mini"&gt;...&lt;/ul&gt;
+
+            </code></pre>
+        </div>
+    </div>
+
+    @@hit
+
+</body>
+</html>

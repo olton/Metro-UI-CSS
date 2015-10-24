@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Metro, a sleek, intuitive, and powerful framework for faster and easier web development for Windows Metro Style.">
+    <meta name="keywords" content="HTML, CSS, JS, JavaScript, framework, metro, front-end, frontend, web development">
+    <meta name="author" content="Sergey Pimenov and Metro UI CSS contributors">
+
+    <link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
+    <title>Tiles :: Metro UI CSS - The front-end framework for developing projects on the web in Windows Metro Style</title>
+
+    <link href="css/metro.css" rel="stylesheet">
+    <link href="css/metro-icons.css" rel="stylesheet">
+    <link href="css/metro-responsive.css" rel="stylesheet">
+    <link href="css/metro-schemes.css" rel="stylesheet">
+
+    <link href="css/docs.css" rel="stylesheet">
+
+    <script src="js/jquery-2.1.3.min.js"></script>
+    <script src="js/metro.js"></script>
+    <script src="js/docs.js"></script>
+    <script src="js/prettify/run_prettify.js"></script>
+    <script src="js/ga.js"></script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+</head>
+<body>
+    <div class="container page-content">
+        <h1><a href="index.html" class="nav-button transform"><span></span></a>&nbsp;Tiles</h1>
+
+        @@adsense
+
+        <div class="tile-area no-padding">
+            <div class="tile-container bg-darkCobalt" style="width: 640px">
+                <div class="tile-large bg-lighterBlue" data-role="tile"></div>
+                <div class="tile-square bg-cobalt" data-role="tile"></div>
+                <div class="tile-small bg-red" data-role="tile"></div>
+                <div class="tile-small bg-orange" data-role="tile"></div>
+                <div class="tile-small bg-green" data-role="tile"></div>
+                <div class="tile-small bg-pink" data-role="tile"></div>
+                <div class="tile-wide bg-lightGreen" data-role="tile"></div>
+            </div>
+        </div>
+
+        <br />
+        <div class="example" data-text="code">
+            <pre class="prettyprint linenums"><code>
+                &lt;div class="tile" data-role="tile"&gt;...&lt;/div&gt;
+            </code></pre>
+        </div>
+
+        <h3>Tile sizes</h3>
+        <p>
+            This table represent original sizes for tiles from Windows Style Guide.
+        </p>
+
+        <table class="table bordered">
+            <thead>
+            <tr>
+                <td>Class</td>
+                <td style="width: 20%">Size (px)</td>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr>
+                <td>.tile-small</td>
+                <td>70x70</td>
+            </tr>
+            <tr>
+                <td>.tile or .tile-square</td>
+                <td>150x150</td>
+            </tr>
+            <tr>
+                <td>.tile-wide</td>
+                <td>310x150</td>
+            </tr>
+            <tr>
+                <td>.tile-large</td>
+                <td>310x310</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h5>Size modification classes</h5>
+        <table class="table bordered">
+            <thead>
+            <tr>
+                <td>Class</td>
+                <td style="width: 20%">Size (px)</td>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr>
+                <td>.tile-small-x</td>
+                <td>width 70</td>
+            </tr>
+            <tr>
+                <td>.tile-small-y</td>
+                <td>height 70</td>
+            </tr>
+            <tr>
+                <td>.tile-square-x</td>
+                <td>width 150</td>
+            </tr>
+            <tr>
+                <td>.tile-square-y</td>
+                <td>height 150</td>
+            </tr>
+            <tr>
+                <td>.tile-wide-x</td>
+                <td>width 310</td>
+            </tr>
+            <tr>
+                <td>.tile-wide-y</td>
+                <td>height 310</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h5>Extra tiles and extra modifications</h5>
+        <table class="table bordered">
+            <thead>
+            <tr>
+                <td>Class</td>
+                <td style="width: 20%">Size (px)</td>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr>
+                <td>.tile-big</td>
+                <td>470x470</td>
+            </tr>
+            <tr>
+                <td>.tile-super</td>
+                <td>630x630</td>
+            </tr>
+            <tr>
+                <td>.tile-big-x</td>
+                <td>width 470</td>
+            </tr>
+            <tr>
+                <td>.tile-big-y</td>
+                <td>height 470</td>
+            </tr>
+            <tr>
+                <td>.tile-super-x</td>
+                <td>width 470</td>
+            </tr>
+            <tr>
+                <td>.tile-super-y</td>
+                <td>height 470</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h3 id="_visualisation-patterns_">Tile content</h3>
+        <p>
+            All tile content can be placed in container with class <span class="tag">tile-content</span>.
+        </p>
+        <h4>Visualisation patterns</h4>
+        <div class="tile-container bg-darkCobalt">
+
+            <div class="tile bg-red fg-white" data-role="tile">
+                <div class="tile-content iconic">
+                    <span class="icon mif-cogs"></span>
+                </div>
+            </div>
+
+            <div class="tile bg-cyan fg-white" data-role="tile">
+                <div class="tile-content iconic">
+                    <span class="icon mif-envelop"></span>
+                    <span class="tile-badge bg-darkRed">5</span>
+                    <span class="tile-label">Mail</span>
+                </div>
+            </div>
+
+            <div class="tile-wide bg-orange fg-white" data-role="tile">
+                <div class="tile-content iconic">
+                    <span class="icon mif-cloud"></span>
+                    <span class="tile-label">Cloud service</span>
+                </div>
+            </div>
+
+            <div class="tile-wide bg-orange fg-white" data-role="tile">
+                <div class="tile-content image-set">
+                    <img src="images/1.jpg">
+                    <img src="images/2.jpg">
+                    <img src="images/3.jpg">
+                    <img src="images/4.jpg">
+                    <img src="images/5.jpg">
+                </div>
+                <span class="tile-label">image-set</span>
+            </div>
+
+            <div class="tile-wide bg-orange fg-white" data-role="tile">
+                <div class="tile-content">
+                    <div class="image-container">
+                        <div class="frame">
+                            <img src="images/1.jpg">
+                        </div>
+                        <div class="image-overlay op-green">
+                            <h2>Image title</h2>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="tile-label">Image container</div>
+                </div>
+            </div>
+
+            <div class="tile bg-transparent fg-white text-shadow" data-role="tile">
+                <div class="tile-content">
+                    <img src="images/me.jpg" data-role="fitImage" data-format='square'>
+                    <div class="tile-label">fitImage</div>
+                </div>
+            </div>
+
+            <div class="tile-wide bg-orange fg-white" data-role="tile">
+                <div class="tile-content">
+                    <div class="carousel" data-role="carousel" data-controls="false" data-markers="true">
+                        <div class="slide"><img src="images/1.jpg"></div>
+                        <div class="slide"><img src="images/2.jpg"></div>
+                        <div class="slide"><img src="images/3.jpg"></div>
+                        <div class="slide"><img src="images/4.jpg"></div>
+                        <div class="slide"><img src="images/5.jpg"></div>
+                    </div>
+                    <div class="tile-label">Carousel</div>
+                </div>
+            </div>
+
+            <div class="tile bg-green fg-white element-selected" data-role="tile">
+                <div class="tile-content iconic">
+                    <span class="icon mif-home"></span>
+                    <div class="tile-label">selected</div>
+                </div>
+            </div>
+
+            <div class="tile fg-white" data-role="tile">
+                <div class="tile-content slide-up">
+                    <div class="slide">
+                        <img src="images/2.jpg" data-role="fitImage" data-format="square">
+                    </div>
+                    <div class="slide-over op-cyan text-small padding10">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    </div>
+                    <div class="tile-label">slide-up</div>
+                </div>
+            </div>
+
+            <div class="tile-wide fg-white" data-role="tile">
+                <div class="tile-content slide-up">
+                    <div class="slide">
+                        <img src="images/3.jpg" data-role="fitImage" data-format="hd">
+                    </div>
+                    <div class="slide-over op-orange text-small padding10">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    </div>
+                    <div class="tile-label">slide-up</div>
+                </div>
+            </div>
+
+            <div class="tile-wide fg-white" data-role="tile">
+                <div class="tile-content slide-up-2">
+                    <div class="slide">
+                        <img src="images/3.jpg" data-role="fitImage" data-format="fill">
+                    </div>
+                    <div class="slide-over bg-orange text-small padding10">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    </div>
+                    <div class="tile-label">slide-up-2</div>
+                </div>
+            </div>
+
+            <div class="tile fg-white" data-role="tile">
+                <div class="tile-content slide-down">
+                    <div class="slide">
+                        <img src="images/4.jpg" data-role="fitImage" data-format="square">
+                    </div>
+                    <div class="slide-over op-cyan text-small padding10">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    </div>
+                    <div class="tile-label">slide-down</div>
+                </div>
+            </div>
+
+            <div class="tile-wide fg-white" data-role="tile">
+                <div class="tile-content slide-down">
+                    <div class="slide">
+                        <img src="images/5.jpg" data-role="fitImage" data-format="hd">
+                    </div>
+                    <div class="slide-over op-green text-small padding10">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    </div>
+                    <div class="tile-label">slide-down</div>
+                </div>
+            </div>
+
+            <div class="tile-wide fg-white" data-role="tile">
+                <div class="tile-content slide-down-2">
+                    <div class="slide">
+                        <img src="images/5.jpg" data-role="fitImage" data-format="fill">
+                    </div>
+                    <div class="slide-over bg-green text-small padding10">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    </div>
+                    <div class="tile-label">slide-down-2</div>
+                </div>
+            </div>
+
+            <div class="tile fg-white bg-transparent " data-role="tile">
+                <div class="tile-content slide-down-2 ">
+                    <div class="slide">
+                        <img src="images/spface2.jpg" data-role="fitImage" data-format="square">
+                    </div>
+                    <div class="slide-over bg-green text-small padding10 ">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    </div>
+                    <div class="tile-label">slide-down-2</div>
+                </div>
+            </div>
+
+            <div class="tile fg-white" data-role="tile">
+                <div class="tile-content slide-left">
+                    <div class="slide">
+                        <img src="images/4.jpg" data-role="fitImage" data-format="square">
+                    </div>
+                    <div class="slide-over op-cyan text-small padding10">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    </div>
+                    <div class="tile-label">slide-left</div>
+                </div>
+            </div>
+
+            <div class="tile-wide fg-white" data-role="tile">
+                <div class="tile-content slide-left">
+                    <div class="slide">
+                        <img src="images/5.jpg" data-role="fitImage" data-format="hd">
+                    </div>
+                    <div class="slide-over op-green text-small padding10">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    </div>
+                    <div class="tile-label">slide-left</div>
+                </div>
+            </div>
+
+            <div class="tile fg-white" data-role="tile">
+                <div class="tile-content slide-left-2">
+                    <div class="slide">
+                        <img src="images/5.jpg" data-role="fitImage" data-format="fill">
+                    </div>
+                    <div class="slide-over op-green text-small padding10">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    </div>
+                    <div class="tile-label">slide-left-2</div>
+                </div>
+            </div>
+
+            <div class="tile fg-white" data-role="tile">
+                <div class="tile-content slide-right">
+                    <div class="slide">
+                        <img src="images/1.jpg" data-role="fitImage" data-format="square">
+                    </div>
+                    <div class="slide-over op-cyan text-small padding10">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    </div>
+                    <div class="tile-label">slide-right</div>
+                </div>
+            </div>
+
+            <div class="tile-wide fg-white" data-role="tile">
+                <div class="tile-content slide-right">
+                    <div class="slide">
+                        <img src="images/2.jpg" data-role="fitImage" data-format="hd">
+                    </div>
+                    <div class="slide-over op-green text-small padding10">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    </div>
+                    <div class="tile-label">slide-right</div>
+                </div>
+            </div>
+
+            <div class="tile-wide fg-white" data-role="tile">
+                <div class="tile-content slide-right-2">
+                    <div class="slide">
+                        <img src="images/1.jpg" data-role="fitImage" data-format="fill">
+                    </div>
+                    <div class="slide-over op-green text-small padding10">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    </div>
+                    <div class="tile-label">slide-right-2</div>
+                </div>
+            </div>
+
+            <div class="tile-wide fg-white" data-role="tile">
+                <div class="tile-content zooming">
+                    <div class="slide">
+                        <img src="images/5.jpg">
+                    </div>
+                    <div class="tile-label">Zooming</div>
+                </div>
+            </div>
+
+            <div class="tile-wide fg-white" data-role="tile">
+                <div class="tile-content zooming-out">
+                    <div class="slide">
+                        <img src="images/4.jpg">
+                    </div>
+                    <div class="tile-label">Zooming out</div>
+                </div>
+            </div>
+
+            <div class="tile fg-white" data-role="tile" data-effect="slideLeft">
+                <div class="tile-content">
+                    <div class="live-slide"><img src="images/1.jpg" data-role="fitImage" data-format="fill"></div>
+                    <div class="live-slide"><img src="images/2.jpg" data-role="fitImage" data-format="fill"></div>
+                    <div class="live-slide"><img src="images/3.jpg" data-role="fitImage" data-format="fill"></div>
+                    <div class="live-slide"><img src="images/4.jpg" data-role="fitImage" data-format="fill"></div>
+                    <div class="live-slide"><img src="images/5.jpg" data-role="fitImage" data-format="fill"></div>
+                </div>
+                <div class="tile-label">effect: slideLeft</div>
+            </div>
+
+            <div class="tile fg-white" data-role="tile" data-effect="slideRight">
+                <div class="tile-content">
+                    <div class="live-slide"><img src="images/1.jpg" data-role="fitImage" data-format="fill"></div>
+                    <div class="live-slide"><img src="images/2.jpg" data-role="fitImage" data-format="fill"></div>
+                    <div class="live-slide"><img src="images/3.jpg" data-role="fitImage" data-format="fill"></div>
+                    <div class="live-slide"><img src="images/4.jpg" data-role="fitImage" data-format="fill"></div>
+                    <div class="live-slide"><img src="images/5.jpg" data-role="fitImage" data-format="fill"></div>
+                </div>
+                <div class="tile-label">effect: slideRight</div>
+            </div>
+
+            <div class="tile fg-white" data-role="tile" data-effect="slideLeftRight">
+                <div class="tile-content">
+                    <div class="live-slide"><img src="images/1.jpg" data-role="fitImage" data-format="fill"></div>
+                    <div class="live-slide"><img src="images/2.jpg" data-role="fitImage" data-format="fill"></div>
+                    <div class="live-slide"><img src="images/3.jpg" data-role="fitImage" data-format="fill"></div>
+                    <div class="live-slide"><img src="images/4.jpg" data-role="fitImage" data-format="fill"></div>
+                    <div class="live-slide"><img src="images/5.jpg" data-role="fitImage" data-format="fill"></div>
+                </div>
+                <div class="tile-label">effect: slideLeftRight</div>
+            </div>
+
+            <div class="tile fg-white" data-role="tile" data-effect="slideUp">
+                <div class="tile-content">
+                    <div class="live-slide"><img src="images/1.jpg" data-role="fitImage" data-format="fill"></div>
+                    <div class="live-slide"><img src="images/2.jpg" data-role="fitImage" data-format="fill"></div>
+                    <div class="live-slide"><img src="images/3.jpg" data-role="fitImage" data-format="fill"></div>
+                    <div class="live-slide"><img src="images/4.jpg" data-role="fitImage" data-format="fill"></div>
+                    <div class="live-slide"><img src="images/5.jpg" data-role="fitImage" data-format="fill"></div>
+                </div>
+                <div class="tile-label">effect: slideUp</div>
+            </div>
+
+            <div class="tile fg-white" data-role="tile" data-effect="slideDown">
+                <div class="tile-content">
+                    <div class="live-slide"><img src="images/1.jpg" data-role="fitImage" data-format="fill"></div>
+                    <div class="live-slide"><img src="images/2.jpg" data-role="fitImage" data-format="fill"></div>
+                    <div class="live-slide"><img src="images/3.jpg" data-role="fitImage" data-format="fill"></div>
+                    <div class="live-slide"><img src="images/4.jpg" data-role="fitImage" data-format="fill"></div>
+                    <div class="live-slide"><img src="images/5.jpg" data-role="fitImage" data-format="fill"></div>
+                </div>
+                <div class="tile-label">effect: slideDown</div>
+            </div>
+
+            <div class="tile fg-white" data-role="tile" data-effect="slideUpDown">
+                <div class="tile-content">
+                    <div class="live-slide"><img src="images/1.jpg" data-role="fitImage" data-format="fill"></div>
+                    <div class="live-slide"><img src="images/2.jpg" data-role="fitImage" data-format="fill"></div>
+                    <div class="live-slide"><img src="images/3.jpg" data-role="fitImage" data-format="fill"></div>
+                    <div class="live-slide"><img src="images/4.jpg" data-role="fitImage" data-format="fill"></div>
+                    <div class="live-slide"><img src="images/5.jpg" data-role="fitImage" data-format="fill"></div>
+                </div>
+                <div class="tile-label">effect: slideUpDown</div>
+            </div>
+
+        </div>
+
+        <h3>HTML examples</h3>
+        <div class="example" data-text="code">
+            <pre class="prettyprint linenums"><code>
+                &lt;!-- Tile with icon, icon can be font icon or image --&gt;
+                &lt;div class="tile"&gt;
+                    &lt;div class="tile-content iconic"&gt;
+                        &lt;icon/&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            </code></pre>
+            <pre class="prettyprint linenums"><code>
+                &lt;!-- Tile with label and badge --&gt;
+                &lt;div class="tile"&gt;
+                    &lt;div class="tile-content"&gt;
+                        &lt;span class="tile-label"&gt;Label&lt;/span&gt;
+                        &lt;span class="tile-badge"&gt;5&lt;/span&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            </code></pre>
+            <pre class="prettyprint linenums"><code>
+                &lt;!-- Tile with image set (max 5 images) --&gt;
+                &lt;div class="tile"&gt;
+                    &lt;div class="tile-content image-set"&gt;
+                        &lt;img src="..."&gt;
+                        &lt;img src="..."&gt;
+                        &lt;img src="..."&gt;
+                        &lt;img src="..."&gt;
+                        &lt;img src="..."&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            </code></pre>
+            <pre class="prettyprint linenums"><code>
+                &lt;!-- Tile with image container --&gt;
+                &lt;div class="tile"&gt;
+                    &lt;div class="tile-content"&gt;
+                        &lt;div class="image-container"&gt;
+                            &lt;div class="frame"&gt;
+                                &lt;img src="..."&gt;
+                            &lt;/div&gt;
+                            &lt;div class="image-overlay"&gt;
+                                Overlay text
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            </code></pre>
+            <pre class="prettyprint linenums"><code>
+                &lt;!-- Tile with image use fitImage plugin --&gt;
+                &lt;div class="tile"&gt;
+                    &lt;div class="tile-content"&gt;
+                        &lt;img src="..." data-role="fitImage" data-format="square"&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            </code></pre>
+            <pre class="prettyprint linenums"><code>
+                &lt;!-- Tile with carousel --&gt;
+                &lt;div class="tile"&gt;
+                    &lt;div class="tile-content"&gt;
+                        &lt;div class="carousel" data-role="carousel"&gt;
+                            &lt;div class="slide"&gt;&lt;img src="..."&gt;&lt;/div&gt;
+                            ...
+                            &lt;div class="slide"&gt;&lt;img src="..."&gt;&lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            </code></pre>
+            <pre class="prettyprint linenums"><code>
+                &lt;!-- Selected Tile --&gt;
+                &lt;div class="tile element-selected"&gt;
+                    ...
+                &lt;/div&gt;
+            </code></pre>
+            <pre class="prettyprint linenums"><code>
+                &lt;!-- Tile with slide-up effect --&gt;
+                &lt;div class="tile"&gt;
+                    &lt;div class="tile-content slide-up"&gt;
+                        &lt;div class="slide"&gt;
+                            ... Main slide content ...
+                        &lt;/div&gt;
+                        &lt;div class="slide-over"&gt;
+                            ... Over slide content here ...
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            </code></pre>
+            <pre class="prettyprint linenums"><code>
+                &lt;!-- Tile with slide-down effect --&gt;
+                &lt;div class="tile"&gt;
+                    &lt;div class="tile-content slide-down"&gt;
+                        &lt;div class="slide"&gt;
+                            ... Main slide content ...
+                        &lt;/div&gt;
+                        &lt;div class="slide-over"&gt;
+                            ... Over slide content here ...
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            </code></pre>
+            <pre class="prettyprint linenums"><code>
+                &lt;!-- Tile with slide-left effect --&gt;
+                &lt;div class="tile"&gt;
+                    &lt;div class="tile-content slide-left"&gt;
+                        &lt;div class="slide"&gt;
+                            ... Main slide content ...
+                        &lt;/div&gt;
+                        &lt;div class="slide-over"&gt;
+                            ... Over slide content here ...
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            </code></pre>
+            <pre class="prettyprint linenums"><code>
+                &lt;!-- Tile with slide-right effect --&gt;
+                &lt;div class="tile"&gt;
+                    &lt;div class="tile-content slide-right"&gt;
+                        &lt;div class="slide"&gt;
+                            ... Main slide content ...
+                        &lt;/div&gt;
+                        &lt;div class="slide-over"&gt;
+                            ... Over slide content here ...
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            </code></pre>
+            <pre class="prettyprint linenums"><code>
+                &lt;!-- Tile with zooming --&gt;
+                &lt;div class="tile"&gt;
+                    &lt;div class="tile-content zooming"&gt;
+                        &lt;div class="slide"&gt;
+                            ... Slide content here ...
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            </code></pre>
+            <pre class="prettyprint linenums"><code>
+                &lt;!-- Tile with zooming out --&gt;
+                &lt;div class="tile"&gt;
+                    &lt;div class="tile-content zooming-out"&gt;
+                        &lt;div class="slide"&gt;
+                            ... Slide content here ...
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            </code></pre>
+            <pre class="prettyprint linenums"><code>
+                &lt;!-- Live Tile --&gt;
+                &lt;div class="tile-wide" data-role="tile" data-effect="slideUpDown"&gt;
+                    &lt;div class="tile-content"&gt;
+                        &lt;div class="live-slide"&gt;...slide content...&lt;/div&gt;
+                        ...
+                        &lt;div class="live-slide"&gt;...slide content...&lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            </code></pre>
+        </div>
+    </div>
+
+    @@hit
+
+</body>
+</html>

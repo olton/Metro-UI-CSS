@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Metro, a sleek, intuitive, and powerful framework for faster and easier web development for Windows Metro Style.">
+    <meta name="keywords" content="HTML, CSS, JS, JavaScript, framework, metro, front-end, frontend, web development">
+    <meta name="author" content="Sergey Pimenov and Metro UI CSS contributors">
+
+    <link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
+    <title>Typography :: Metro UI CSS - The front-end framework for developing projects on the web in Windows Metro Style</title>
+
+    <link href="css/metro.css" rel="stylesheet">
+    <link href="css/metro-icons.css" rel="stylesheet">
+    <link href="css/metro-responsive.css" rel="stylesheet">
+    <link href="css/metro-schemes.css" rel="stylesheet">
+
+    <link href="css/docs.css" rel="stylesheet">
+
+    <script src="js/jquery-2.1.3.min.js"></script>
+    <script src="js/metro.js"></script>
+    <script src="js/docs.js"></script>
+    <script src="js/prettify/run_prettify.js"></script>
+    <script src="js/ga.js"></script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+</head>
+<body>
+    <div class="container page-content">
+        <h1><a href="index.html" class="nav-button transform"><span></span></a>&nbsp;Typography</h1>
+
+        @@adsense
+
+        <div class="example" data-text="font">
+            <table class="table bordered">
+                <thead>
+                    <tr>
+                        <td>Var</td>
+                        <td>Font family</td>
+                    </tr>
+                </thead>
+                <tr>
+                    <td>@fontName:</td>
+                    <td>"Segoe UI", "Open Sans", serif;</td>
+                </tr>
+                <tr>
+                    <td>@fontNameLight:</td>
+                    <td>"Segoe UI Light", "Open Sans Light", serif;</td>
+                </tr>
+                <tr>
+                    <td>@fontNameBold:</td>
+                    <td>"Segoe UI Bold", "Open Sans Bold", serif;</td>
+                </tr>
+            </table>
+
+            <p class="bg-grayLighter padding20">
+                The signature user interface font of Metro UI CSS, Segoe, Open Sans and PT Serif Caption. It's a sans serif design drawn in the tradition of signage and way-finding typefaces.
+                For non-windows system used Open Sans fonts, loaded from google fonts.
+            </p>
+        </div>
+
+        <h3>Headings</h3>
+        <div class="example" data-text="headings">
+            <table class="table bordered">
+                <tbody>
+                <tr>
+                    <td>
+                        <h1>h1. Metro heading</h1>
+                        <span>class .leader</span>
+                    </td>
+                    <td class="align-right">36px</td>
+                </tr>
+                <tr>
+                    <td>
+                        <h2>h2. Metro heading</h2>
+                        <span>class .sub-leader</span>
+                    </td>
+                    <td class="align-right">30px</td>
+                </tr>
+                <tr>
+                    <td>
+                        <h3>h3. Metro heading</h3>
+                        <span>class .header</span>
+                    </td>
+                    <td class="align-right">24px</td>
+                </tr>
+                <tr>
+                    <td>
+                        <h4>h4. Metro heading</h4>
+                        <span>class .sub-header</span>
+                    </td>
+                    <td class="align-right">18px</td>
+                </tr>
+                <tr>
+                    <td>
+                        <h5>h5. Metro heading</h5>
+                        <span>class .sub-alt-header</span>
+                    </td>
+                    <td class="align-right">14px</td>
+                </tr>
+                <tr>
+                    <td>
+                        <h6>h6. Metro heading</h6>
+                        <span>class .minor-header</span>
+                    </td>
+                    <td class="align-right">12px</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <blockquote>
+            Create lighter, secondary text in any heading with a generic &lt;small&gt; tag or the <span class="tag">.small</span> class.
+        </blockquote>
+
+        <div class="example" data-text="headings secondary">
+            <table class="table bordered">
+                <tbody>
+                <tr>
+                    <td>
+                        <h1>h1. Metro heading <small>Secondary text</small></h1>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h2>h2. Metro heading <small>Secondary text</small></h2>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h3>h3. Metro heading <small>Secondary text</small></h3>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h4>h4. Metro heading <small>Secondary text</small></h4>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h5>h5. Metro heading <small>Secondary text</small></h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h6>h6. Metro heading <small>Secondary text</small></h6>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+        <div class="example" data-text="paragraph">
+            <h5>Default paragraph</h5>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean luctus lectus sit amet odio ullamcorper malesuada dignissim justo gravida. Pellentesque sagittis, tellus id sagittis accumsan, augue velit pretium urna, ac interdum dui nibh et orci. Quisque dapibus elit ut metus varius ac bibendum sem luctus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis sagittis lorem. Praesent ac eros quam.</p>
+            <p>Praesent molestie bibendum consequat. Suspendisse a felis eu augue venenatis egestas nec ac lectus. Nam nec felis lorem. Maecenas luctus est et nulla cursus vestibulum. Curabitur suscipit adipiscing dui eget sollicitudin. Sed accumsan tincidunt enim, in feugiat ligula ornare et.</p>
+            <h5>Indent paragraph</h5>
+            <p class="indent-paragraph">Nullam libero odio, lacinia vel dignissim sed, consequat ac nisi. Ut at mauris sit amet sem dapibus pretium sit amet sed orci. Quisque tincidunt sodales sollicitudin. Ut purus odio, imperdiet ut laoreet ac, placerat vel ante. Nulla tincidunt sapien in metus tincidunt imperdiet. Vestibulum a dui nisi. Morbi vestibulum nulla lacinia enim tempus ullamcorper.</p>
+        </div>
+
+        <div class="example" data-text="additional text">
+            <h5>.text-default</h5>
+            <p class="text-default">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean luctus lectus sit amet odio ullamcorper malesuada dignissim justo gravida. Pellentesque sagittis, tellus id sagittis accumsan, augue velit pretium urna, ac interdum dui nibh et orci. Quisque dapibus elit ut metus varius ac bibendum sem luctus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis sagittis lorem. Praesent ac eros quam.</p>
+
+            <h5>.text-accent</h5>
+            <p class="text-accent">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean luctus lectus sit amet odio ullamcorper malesuada dignissim justo gravida. Pellentesque sagittis, tellus id sagittis accumsan, augue velit pretium urna, ac interdum dui nibh et orci. Quisque dapibus elit ut metus varius ac bibendum sem luctus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis sagittis lorem. Praesent ac eros quam.</p>
+
+            <h5>.text-secondary</h5>
+            <p class="text-secondary">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean luctus lectus sit amet odio ullamcorper malesuada dignissim justo gravida. Pellentesque sagittis, tellus id sagittis accumsan, augue velit pretium urna, ac interdum dui nibh et orci. Quisque dapibus elit ut metus varius ac bibendum sem luctus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis sagittis lorem. Praesent ac eros quam.</p>
+
+            <h5>.text-small</h5>
+            <p class="text-small">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean luctus lectus sit amet odio ullamcorper malesuada dignissim justo gravida. Pellentesque sagittis, tellus id sagittis accumsan, augue velit pretium urna, ac interdum dui nibh et orci. Quisque dapibus elit ut metus varius ac bibendum sem luctus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis sagittis lorem. Praesent ac eros quam.</p>
+
+            <h5>.text-dashed</h5>
+            <p class="text-dashed">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean luctus lectus sit amet odio ullamcorper malesuada dignissim justo gravida. Pellentesque sagittis, tellus id sagittis accumsan, augue velit pretium urna, ac interdum dui nibh et orci. Quisque dapibus elit ut metus varius ac bibendum sem luctus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis sagittis lorem. Praesent ac eros quam.</p>
+        </div>
+
+        <div class="example" data-text="transform">
+            <h5>.lowercase</h5>
+            <p class="lowercase">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean luctus lectus sit amet odio ullamcorper malesuada dignissim justo gravida. Pellentesque sagittis, tellus id sagittis accumsan, augue velit pretium urna, ac interdum dui nibh et orci. Quisque dapibus elit ut metus varius ac bibendum sem luctus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis sagittis lorem. Praesent ac eros quam.</p>
+
+            <h5>.uppercase</h5>
+            <p class="uppercase">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean luctus lectus sit amet odio ullamcorper malesuada dignissim justo gravida. Pellentesque sagittis, tellus id sagittis accumsan, augue velit pretium urna, ac interdum dui nibh et orci. Quisque dapibus elit ut metus varius ac bibendum sem luctus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis sagittis lorem. Praesent ac eros quam.</p>
+
+            <h5>.capital</h5>
+            <p class="capital">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean luctus lectus sit amet odio ullamcorper malesuada dignissim justo gravida. Pellentesque sagittis, tellus id sagittis accumsan, augue velit pretium urna, ac interdum dui nibh et orci. Quisque dapibus elit ut metus varius ac bibendum sem luctus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis sagittis lorem. Praesent ac eros quam.</p>
+        </div>
+
+        <div class="example" data-text="align">
+            <h5>.align-left</h5>
+            <p class="align-left">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean luctus lectus sit amet odio ullamcorper malesuada dignissim justo gravida. Pellentesque sagittis, tellus id sagittis accumsan, augue velit pretium urna, ac interdum dui nibh et orci. Quisque dapibus elit ut metus varius ac bibendum sem luctus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis sagittis lorem. Praesent ac eros quam.</p>
+
+            <h5>.align-right</h5>
+            <p class="align-right">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean luctus lectus sit amet odio ullamcorper malesuada dignissim justo gravida. Pellentesque sagittis, tellus id sagittis accumsan, augue velit pretium urna, ac interdum dui nibh et orci. Quisque dapibus elit ut metus varius ac bibendum sem luctus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis sagittis lorem. Praesent ac eros quam.</p>
+
+            <h5>.align-justify</h5>
+            <p class="align-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean luctus lectus sit amet odio ullamcorper malesuada dignissim justo gravida. Pellentesque sagittis, tellus id sagittis accumsan, augue velit pretium urna, ac interdum dui nibh et orci. Quisque dapibus elit ut metus varius ac bibendum sem luctus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis sagittis lorem. Praesent ac eros quam.</p>
+
+            <h5>.align-center</h5>
+            <p class="align-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean luctus lectus sit amet odio ullamcorper malesuada dignissim justo gravida. Pellentesque sagittis, tellus id sagittis accumsan, augue velit pretium urna, ac interdum dui nibh et orci. Quisque dapibus elit ut metus varius ac bibendum sem luctus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis sagittis lorem. Praesent ac eros quam.</p>
+
+        </div>
+
+        <div class="example" data-text="v-align-*">
+            <div style="line-height: 30px;" class="padding20 set-border sub-header">
+                <span class="v-align-top margin10">top</span>
+                <span class="v-align-bottom margin10">bottom</span>
+                <span class="v-align-baseline margin10">baseline</span>
+                <span class="v-align-middle margin10">middle</span>
+                <span class="v-align-sub margin10">sub</span>
+                <span class="v-align-super margin10">super</span>
+                <span class="v-align-top-text margin10">top-text</span>
+                <span class="v-align-bottom-text margin10">bottom-text</span>
+            </div>
+            <table class="table bordered">
+                <tr>
+                    <td class="v-align-top" style="height: 100px;">top</td>
+                    <td class="v-align-bottom" style="height: 30px">bottom</td>
+                    <td class="v-align-baseline" style="height: 30px">baseline</td>
+                    <td class="v-align-middle" style="height: 30px">middle</td>
+                    <td class="v-align-sub" style="height: 30px">sub</td>
+                    <td class="v-align-super" style="height: 30px">super</td>
+                    <td class="v-align-top-text" style="height: 30px">top-text</td>
+                    <td class="v-align-bottom-text" style="height: 30px">bottom-text</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="example" data-text="abbr">
+            <p>Lorem ipsum dolor sit amet, <abbr title="this is a abbreviation">consectetur</abbr> adipiscing elit.</p>
+        </div>
+
+        <div class="example" data-text="addr">
+            <address>
+                <strong>Metro UI CSS</strong><br>
+                Khreschatyk str, Suite 1<br>
+                Kiev, Ukraine 01001<br>
+                <abbr title="Phone">P:</abbr> (123) 456-7890
+            </address>
+            <address>
+                <strong>Full Name</strong><br>
+                <a href="mailto:#">first.last@example.com</a>
+            </address>
+        </div>
+
+        <div class="example" data-text="blockquote">
+            <blockquote>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                <small>Someone famous <cite title="Source Title">Source Title</cite></small>
+            </blockquote>
+            <hr class="thin">
+            <blockquote class="place-right">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                <small>Someone famous <cite title="Source Title">Source Title</cite></small>
+            </blockquote>
+        </div>
+
+        <div class="example" data-text="lists">
+            <div class="grid">
+                <div class="row cells2">
+                    <div class="cell">
+                        <h5>Unordered list</h5>
+                        <ul>
+                            <li>Lorem ipsum dolor sit amet</li>
+                            <li>Consectetur adipiscing elit</li>
+                            <li>Integer molestie lorem at massa</li>
+                            <li>Facilisis in pretium nisl aliquet</li>
+                            <li>Nulla volutpat aliquam velit
+                                <ul>
+                                    <li>Phasellus iaculis neque</li>
+                                    <li>Purus sodales ultricies</li>
+                                    <li>Vestibulum laoreet porttitor sem</li>
+                                    <li>Ac tristique libero volutpat at
+                                        <ul>
+                                            <li>Phasellus iaculis neque</li>
+                                            <li>Purus sodales ultricies</li>
+                                            <li>Vestibulum laoreet porttitor sem</li>
+                                            <li>Ac tristique libero volutpat at</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>Faucibus porta lacus fringilla vel</li>
+                            <li>Aenean sit amet erat nunc</li>
+                            <li>Eget porttitor lorem</li>
+                        </ul>
+                    </div>
+                    <div class="cell">
+                        <h5>Ordered list</h5>
+                        <ol>
+                            <li>Lorem ipsum dolor sit amet</li>
+                            <li>Consectetur adipiscing elit</li>
+                            <li>Integer molestie lorem at massa</li>
+                            <li>Facilisis in pretium nisl aliquet</li>
+                            <li>Nulla volutpat aliquam velit
+                                <ol>
+                                    <li>Phasellus iaculis neque</li>
+                                    <li>Purus sodales ultricies</li>
+                                    <li>Vestibulum laoreet porttitor sem</li>
+                                    <li>Ac tristique libero volutpat at
+                                        <ol>
+                                            <li>Phasellus iaculis neque</li>
+                                            <li>Purus sodales ultricies</li>
+                                            <li>Vestibulum laoreet porttitor sem</li>
+                                            <li>Ac tristique libero volutpat at</li>
+                                        </ol>
+                                    </li>
+                                </ol>
+                            </li>
+                            <li>Faucibus porta lacus fringilla vel</li>
+                            <li>Aenean sit amet erat nunc</li>
+                            <li>Eget porttitor lorem</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="example" data-text="stylized lists">
+            <div class="grid">
+                <h5>Default bullets</h5>
+                <div class="row cells3">
+                    <div class="cell">
+                        <h5>.simple-list</h5>
+                        <ul class="simple-list">
+                            <li>Lorem ipsum dolor sit amet</li>
+                            <li>Consectetur adipiscing elit</li>
+                            <li>Integer molestie lorem at massa</li>
+                            <li>Facilisis in pretium nisl aliquet</li>
+                            <li>Nulla volutpat aliquam velit</li>
+                            <li>Faucibus porta lacus fringilla vel</li>
+                            <li>Aenean sit amet erat nunc</li>
+                            <li>Eget porttitor lorem</li>
+                        </ul>
+                    </div>
+                    <div class="cell">
+                        <h5>.numeric-list</h5>
+                        <ol class="numeric-list">
+                            <li>Lorem ipsum dolor sit amet</li>
+                            <li>Consectetur adipiscing elit</li>
+                            <li>Integer molestie lorem at massa</li>
+                            <li>Facilisis in pretium nisl aliquet</li>
+                            <li>Nulla volutpat aliquam velit</li>
+                            <li>Faucibus porta lacus fringilla vel</li>
+                            <li>Aenean sit amet erat nunc</li>
+                            <li>Eget porttitor lorem</li>
+                        </ol>
+                    </div>
+                    <div class="cell">
+                        <h5>.numeric-list.square-marker</h5>
+                        <ol class="numeric-list square-marker">
+                            <li>Lorem ipsum dolor sit amet</li>
+                            <li>Consectetur adipiscing elit</li>
+                            <li>Integer molestie lorem at massa</li>
+                            <li>Facilisis in pretium nisl aliquet</li>
+                            <li>Nulla volutpat aliquam velit</li>
+                            <li>Faucibus porta lacus fringilla vel</li>
+                            <li>Aenean sit amet erat nunc</li>
+                            <li>Eget porttitor lorem</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <h5>Large bullets</h5>
+                <div class="row cells3">
+                    <div class="cell">
+                        <h5>.simple-list</h5>
+                        <ul class="simple-list large-bullet">
+                            <li>Lorem ipsum dolor sit amet</li>
+                            <li>Consectetur adipiscing elit</li>
+                            <li>Integer molestie lorem at massa</li>
+                            <li>Facilisis in pretium nisl aliquet</li>
+                            <li>Nulla volutpat aliquam velit</li>
+                            <li>Faucibus porta lacus fringilla vel</li>
+                            <li>Aenean sit amet erat nunc</li>
+                            <li>Eget porttitor lorem</li>
+                        </ul>
+                    </div>
+                    <div class="cell">
+                        <h5>.numeric-list</h5>
+                        <ol class="numeric-list large-bullet">
+                            <li>Lorem ipsum dolor sit amet</li>
+                            <li>Consectetur adipiscing elit</li>
+                            <li>Integer molestie lorem at massa</li>
+                            <li>Facilisis in pretium nisl aliquet</li>
+                            <li>Nulla volutpat aliquam velit</li>
+                            <li>Faucibus porta lacus fringilla vel</li>
+                            <li>Aenean sit amet erat nunc</li>
+                            <li>Eget porttitor lorem</li>
+                        </ol>
+                    </div>
+                    <div class="cell">
+                        <h5>.numeric-list.square-marker</h5>
+                        <ol class="numeric-list square-marker large-bullet">
+                            <li>Lorem ipsum dolor sit amet</li>
+                            <li>Consectetur adipiscing elit</li>
+                            <li>Integer molestie lorem at massa</li>
+                            <li>Facilisis in pretium nisl aliquet</li>
+                            <li>Nulla volutpat aliquam velit</li>
+                            <li>Faucibus porta lacus fringilla vel</li>
+                            <li>Aenean sit amet erat nunc</li>
+                            <li>Eget porttitor lorem</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <h5>Colored bullets</h5>
+                <div class="row cells5">
+                    <div class="cell">
+                        <h5>.dark-bullet</h5>
+                        <ul class="simple-list large-bullet dark-bullet">
+                            <li>Lorem ipsum</li>
+                            <li>Lorem ipsum</li>
+                            <li>Lorem ipsum</li>
+                            <li>Lorem ipsum</li>
+                        </ul>
+                    </div>
+                    <div class="cell">
+                        <h5>.red-bullet</h5>
+                        <ul class="simple-list large-bullet red-bullet">
+                            <li>Lorem ipsum</li>
+                            <li>Lorem ipsum</li>
+                            <li>Lorem ipsum</li>
+                            <li>Lorem ipsum</li>
+                        </ul>
+                    </div>
+                    <div class="cell">
+                        <h5>.green-bullet</h5>
+                        <ul class="simple-list large-bullet green-bullet">
+                            <li>Lorem ipsum</li>
+                            <li>Lorem ipsum</li>
+                            <li>Lorem ipsum</li>
+                            <li>Lorem ipsum</li>
+                        </ul>
+                    </div>
+                    <div class="cell">
+                        <h5>.blue-bullet</h5>
+                        <ul class="simple-list large-bullet blue-bullet">
+                            <li>Lorem ipsum</li>
+                            <li>Lorem ipsum</li>
+                            <li>Lorem ipsum</li>
+                            <li>Lorem ipsum</li>
+                        </ul>
+                    </div>
+                    <div class="cell">
+                        <h5>.yellow-bullet</h5>
+                        <ul class="simple-list large-bullet yellow-bullet">
+                            <li>Lorem ipsum</li>
+                            <li>Lorem ipsum</li>
+                            <li>Lorem ipsum</li>
+                            <li>Lorem ipsum</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="row cells5">
+                    <div class="cell">
+                        <h5>.dark-bullet</h5>
+                        <ul class="numeric-list large-bullet dark-bullet">
+                            <li>Lorem ipsum</li>
+                            <li>Lorem ipsum</li>
+                            <li>Lorem ipsum</li>
+                            <li>Lorem ipsum</li>
+                        </ul>
+                    </div>
+                    <div class="cell">
+                        <h5>.red-bullet</h5>
+                        <ul class="numeric-list large-bullet red-bullet">
+                            <li>Lorem ipsum</li>
+                            <li>Lorem ipsum</li>
+                            <li>Lorem ipsum</li>
+                            <li>Lorem ipsum</li>
+                        </ul>
+                    </div>
+                    <div class="cell">
+                        <h5>.green-bullet</h5>
+                        <ul class="numeric-list large-bullet green-bullet">
+                            <li>Lorem ipsum</li>
+                            <li>Lorem ipsum</li>
+                            <li>Lorem ipsum</li>
+                            <li>Lorem ipsum</li>
+                        </ul>
+                    </div>
+                    <div class="cell">
+                        <h5>.blue-bullet</h5>
+                        <ul class="numeric-list large-bullet blue-bullet">
+                            <li>Lorem ipsum</li>
+                            <li>Lorem ipsum</li>
+                            <li>Lorem ipsum</li>
+                            <li>Lorem ipsum</li>
+                        </ul>
+                    </div>
+                    <div class="cell">
+                        <h5>.yellow-bullet</h5>
+                        <ul class="numeric-list large-bullet yellow-bullet">
+                            <li>Lorem ipsum</li>
+                            <li>Lorem ipsum</li>
+                            <li>Lorem ipsum</li>
+                            <li>Lorem ipsum</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="row cells5">
+                    <div class="cell">
+                        <h5>.dark-bullet</h5>
+                        <ul class="numeric-list large-bullet dark-bullet square-bullet">
+                            <li>Lorem ipsum</li>
+                            <li>Lorem ipsum</li>
+                            <li>Lorem ipsum</li>
+                            <li>Lorem ipsum</li>
+                        </ul>
+                    </div>
+                    <div class="cell">
+                        <h5>.red-bullet</h5>
+                        <ul class="numeric-list large-bullet red-bullet square-bullet">
+                            <li>Lorem ipsum</li>
+                            <li>Lorem ipsum</li>
+                            <li>Lorem ipsum</li>
+                            <li>Lorem ipsum</li>
+                        </ul>
+                    </div>
+                    <div class="cell">
+                        <h5>.green-bullet</h5>
+                        <ul class="numeric-list large-bullet green-bullet square-bullet">
+                            <li>Lorem ipsum</li>
+                            <li>Lorem ipsum</li>
+                            <li>Lorem ipsum</li>
+                            <li>Lorem ipsum</li>
+                        </ul>
+                    </div>
+                    <div class="cell">
+                        <h5>.blue-bullet</h5>
+                        <ul class="numeric-list large-bullet blue-bullet square-bullet">
+                            <li>Lorem ipsum</li>
+                            <li>Lorem ipsum</li>
+                            <li>Lorem ipsum</li>
+                            <li>Lorem ipsum</li>
+                        </ul>
+                    </div>
+                    <div class="cell">
+                        <h5>.yellow-bullet</h5>
+                        <ul class="numeric-list large-bullet yellow-bullet square-bullet">
+                            <li>Lorem ipsum</li>
+                            <li>Lorem ipsum</li>
+                            <li>Lorem ipsum</li>
+                            <li>Lorem ipsum</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="example" data-text="stylized lists">
+            <div class="grid">
+                <div class="row ">
+                    <div class="cell">
+                        <h5>.step-list</h5>
+                        <ul class="step-list">
+                            <li>
+                                <h2 class="no-margin-top">Improve user sign-in experience</h2>
+                                <hr class="bg-red" />
+                                <div>
+                                    Add a custom domain so that your users can sign in with familiar user names. For example, if your organization owns ‘contoso.com’, users can sign in Azure AD with user names such as ‘joe@contoso.com’.
+                                    <br />
+                                    <br />
+                                    <button class="button danger">Add domain</button>
+                                </div>
+                            </li>
+                            <li>
+                                <h2 class="no-margin-top">Integrate with your local directory</h2>
+                                <hr class="bg-green" />
+                                <div>
+                                    Use the same user accounts and groups in the cloud that you already use on premises.
+                                    <br />
+                                    <a href="">Set up directory integration</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="">Download the preview of Azure AD Content</a>
+                                    <br />
+                                    <br />
+                                    <button class="button success">Add domain</button>
+                                </div>
+                            </li>
+                            <li>
+                                <h2 class="no-margin-top">Get Azure AD Premium</h2>
+                                <hr  class="bg-blue"/>
+                                <div>
+                                    Improve access management experiences for end users and administrators, including self service password reset, group management, sign in customization, and reporting.
+                                    <br />
+                                    <br />
+                                    <button class="button primary">Add domain</button>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="example" data-text="description">
+            <div class="grid">
+                <div class="row cells2">
+                    <div class="cell">
+                        <h5>default</h5>
+                        <dl>
+                            <dt>Description lists</dt>
+                            <dd>A description list is perfect for defining terms.</dd>
+                            <dt>Euismod</dt>
+                            <dd>Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.</dd>
+                            <dd>Donec id elit non mi porta gravida at eget metus.</dd>
+                            <dt>Malesuada porta</dt>
+                            <dd>Etiam porta sem malesuada magna mollis euismod.</dd>
+                        </dl>
+                    </div>
+                    <div class="cell">
+                        <h5>horizontal</h5>
+                        <dl class="horizontal">
+                            <dt>Description lists</dt>
+                            <dd>A description list is perfect for defining terms.</dd>
+                            <dt>Euismod</dt>
+                            <dd>Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.</dd>
+                            <dd>Donec id elit non mi porta gravida at eget metus.</dd>
+                            <dt>Malesuada porta</dt>
+                            <dd>Etiam porta sem malesuada magna mollis euismod.</dd>
+                            <dt>Felis euismod semper eget lacinia</dt>
+                            <dd>Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="example" data-text="tags">
+
+            <p>
+                <span class="tag success">success</span>
+                <span class="tag alert">alert</span>
+                <span class="tag info">info</span>
+                <span class="tag warning">warning</span>
+                <span class="tag">default</span>
+                <a class="tag success">success</a>
+                <a class="tag alert">alert</a>
+                <a class="tag info">info</a>
+                <a class="tag warning">warning</a>
+                <a class="tag">default</a>
+            </p>
+
+            <p>
+                Lorem ipsum dolor sit <span class="tag">amet</span>, consectetur adipiscing elit. <span class="tag success">Aenean</span> luctus lectus sit amet odio ullamcorper malesuada dignissim justo gravida.
+                <span class="tag alert">Pellentesque</span>  sagittis, tellus id sagittis accumsan, augue velit <span class="tag info">pretium</span> urna, ac interdum dui nibh et orci.
+                Quisque dapibus elit ut metus varius ac bibendum  sem luctus. <span class="tag warning">Lorem ipsum</span> dolor sit amet, consectetur adipiscing elit. Sed quis sagittis lorem. Praesent ac eros quam.
+            </p>
+        </div>
+
+    </div>
+
+    @@hit
+
+</body>
+</html>

@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Metro, a sleek, intuitive, and powerful framework for faster and easier web development for Windows Metro Style.">
+    <meta name="keywords" content="HTML, CSS, JS, JavaScript, framework, metro, front-end, frontend, web development">
+    <meta name="author" content="Sergey Pimenov and Metro UI CSS contributors">
+
+    <link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
+    <title>Rating :: Metro UI CSS - The front-end framework for developing projects on the web in Windows Metro Style</title>
+
+    <link href="css/metro.css" rel="stylesheet">
+    <link href="css/metro-icons.css" rel="stylesheet">
+    <link href="css/metro-responsive.css" rel="stylesheet">
+    <link href="css/metro-schemes.css" rel="stylesheet">
+
+    <link href="css/docs.css" rel="stylesheet">
+
+    <script src="js/jquery-2.1.3.min.js"></script>
+    <script src="js/metro.js"></script>
+    <script src="js/docs.js"></script>
+    <script src="js/prettify/run_prettify.js"></script>
+    <script src="js/ga.js"></script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+</head>
+<body>
+    <div class="container page-content">
+        <h1><a href="index.html" class="nav-button transform"><span></span></a>&nbsp;Rating</h1>
+
+        @@adsense
+
+        <div class="example" data-text="size">
+
+            <div class="grid">
+                <div class="row cells4">
+                    <div class="cell">
+                        <h5>small</h5>
+                        <div class="rating" data-role="rating" data-size="small" data-value="3"></div>
+                    </div>
+                    <div class="cell">
+                        <h5>default</h5>
+                        <div class="rating" data-role="rating" data-value="3.7"></div>
+                    </div>
+                    <div class="cell">
+                        <h5>large</h5>
+                        <div class="rating" data-role="rating" data-size="large"></div>
+                    </div>
+                    <div class="cell">
+                        <h5>Custom number of stars</h5>
+                        <div class="rating" data-role="rating" data-stars="10"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div> <!-- End of example -->
+
+        <div class="example" data-text="color">
+
+            <div class="grid">
+                <div class="row cells4">
+                    <div class="cell">
+                        <h5>poor (value 1/3)</h5>
+                        <div class="rating" data-role="rating" data-value="2" data-color-rate="true"></div>
+                    </div>
+                    <div class="cell">
+                        <h5>regular (value up to 2/3)</h5>
+                        <div class="rating" data-role="rating" data-value="3.7" data-color-rate="true"></div>
+                    </div>
+                    <div class="cell">
+                        <h5>good (value from 2/3)</h5>
+                        <div class="rating" data-role="rating" data-value="4.8" data-color-rate="true"></div>
+                    </div>
+                    <div class="cell">
+                        <h5>custom number of stars</h5>
+                        <div class="rating" data-role="rating" data-value="4.8" data-color-rate="true" data-stars="10"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div> <!-- End of example -->
+
+        <div class="example" data-text="static">
+
+            <div class="grid">
+                <div class="row cells4">
+                    <div class="cell">
+                        <div class="rating" data-role="rating" data-value="2" data-color-rate="true" data-static="true"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div> <!-- End of example -->
+
+        <div class="example" data-text="code">
+            <h5>Declarative style</h5>
+            <pre class="prettyprint linenums"><code>
+                &lt;div class="rating" data-role="rating"&gt;&lt;/div&gt;
+            </code></pre>
+
+            <h5>Javascript style</h5>
+            <pre class="prettyprint linenums"><code>
+                &lt;div class="rating" id="rating"&gt;&lt;/div&gt;
+
+                &lt;script&gt;
+                    $(function(){
+                        $("#rating").rating();
+                    });
+                &lt;/script&gt;
+            </code></pre>
+        </div>
+
+        <h3>Options</h3>
+        <table class="table bordered border">
+            <thead>
+            <tr>
+                <td>Parameter</td>
+                <td>Data-*</td>
+                <td>Type</td>
+                <td>Default value</td>
+                <td>Description</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>stars</td>
+                <td style="white-space: nowrap">data-stars</td>
+                <td>int</td>
+                <td>5</td>
+                <td>Stars count</td>
+            </tr>
+            <tr>
+                <td>value</td>
+                <td style="white-space: nowrap">data-value</td>
+                <td>float</td>
+                <td>0</td>
+                <td>Rating value</td>
+            </tr>
+            <tr>
+                <td>half</td>
+                <td style="white-space: nowrap">data-half</td>
+                <td>boolean</td>
+                <td>true</td>
+                <td>Can be half value</td>
+            </tr>
+            <tr>
+                <td>static</td>
+                <td style="white-space: nowrap">data-static</td>
+                <td>boolean</td>
+                <td>false</td>
+                <td>If true rating show as static</td>
+            </tr>
+            <tr>
+                <td>showScore</td>
+                <td style="white-space: nowrap">data-show-score</td>
+                <td>boolean</td>
+                <td>true</td>
+                <td>Show or hide score label</td>
+            </tr>
+            <tr>
+                <td>scoreTitle</td>
+                <td style="white-space: nowrap">data-score-title</td>
+                <td>string</td>
+                <td>Current:</td>
+                <td>Score label title</td>
+            </tr>
+            <tr>
+                <td>size</td>
+                <td style="white-space: nowrap">data-size</td>
+                <td>string</td>
+                <td>default</td>
+                <td>Rating size [default, small, large]</td>
+            </tr>
+            <tr>
+                <td>colorRate</td>
+                <td style="white-space: nowrap">data-color-rate</td>
+                <td>boolean</td>
+                <td>false</td>
+                <td>If true rating is displayed in color depending on the values</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h3>Events</h3>
+        <table class="table bordered border">
+            <thead>
+            <tr>
+                <td>Event</td>
+                <td>Data-*</td>
+                <td>Params</td>
+                <td>Description</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>onRate</td>
+                <td style="white-space: nowrap">data-on-rate</td>
+                <td>(value, star, widget)</td>
+                <td>The event fired when the star click. This function can return true or false. If function return false, rating not changed</td>
+            </tr>
+            <tr>
+                <td>onRated</td>
+                <td style="white-space: nowrap">data-on-rated</td>
+                <td>(value, star, widget)</td>
+                <td>The event fired when the star is pressed and onRate return true</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h3>Methods</h3>
+        <table class="table bordered border">
+            <thead>
+            <tr>
+                <td>Method</td>
+                <td>Description</td>
+                <td>Method call</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>value</td>
+                <td>Set or get rating value</td>
+                <td>
+                    <span class="tag">get value</span> <code>$("#itemid").rating('value') or $("#itemid").data('metro.rating').value()</code>
+                    <br />
+                    <span class="tag">set value</span> <code>$("#itemid").rating('value', val) or $("#itemid").data('metro.rating').value(val)</code>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h3>Use events and methods</h3>
+        <div class="example">
+            <div class="grid">
+                <div class="row">
+                    <div class="cell">
+                        <h4>onRate</h4>
+                        <div class="rating" data-role="rating" data-size="large" data-size="small" data-on-rate="demo_func_onRate"></div>
+                        <script>
+                            function demo_func_onRate(value, star, widget){
+                                if (value < 3) {
+                                    alert('Please rate as more then 3');
+                                    return false;
+                                }
+                                alert('Good rate');
+                                return true;
+                            }
+                        </script>
+
+                        <pre class="prettyprint linenums"><code>
+                            &lt;div class="rating" data-role="rating" data-size="large" data-size="small" data-on-rate="demo_func_onRate"&gt;&lt;/div&gt;
+                            &lt;script&gt;
+                                function demo_func_onRate(value, star, widget){
+                                    if (value &lt; 3) {
+                                        alert('Please rate as more then 3');
+                                        return false;
+                                    }
+                                    alert('Good rate');
+                                    return true;
+                                }
+                            &lt;/script&gt;
+                        </code></pre>
+                    </div>
+                    <div class="cell">
+                        <h4>onRated</h4>
+                        <div class="rating" data-role="rating" data-size="large" data-size="small" data-on-rated="demo_func_onRated"></div>
+                        <script>
+                            function demo_func_onRated(value, star, widget){
+                                alert('You rated this as ' + value);
+                            }
+                        </script>
+
+                        <pre class="prettyprint linenums"><code>
+                            &lt;div class="rating" data-role="rating" data-size="large" data-size="small" data-on-rate="demo_func_onRated"&gt;&lt;/div&gt;
+                            &lt;script&gt;
+                                function demo_func_onRated(value, star, widget){
+                                    alert('You rated this as ' + value);
+                                }
+                            &lt;/script&gt;
+                        </code></pre>
+                    </div>
+                    <div class="cell">
+                        <h4>Set or get Value</h4>
+                        <div class="rating" data-role="rating" data-size="large" data-size="small" id="demo_rating_1"></div>
+                        <br />
+                        <br />
+
+                        <button class="button" onclick="demo_rating1_get_value()">Get current value</button>
+
+                        <div class="input-control text">
+                            <input type="text" id="new_value_for_demo_rating_1" value="0">
+                            <button class="button" onclick="demo_rating1_set_value()">Set value</button>
+                        </div>
+
+                        <script>
+                            function demo_rating1_get_value(){
+                                var rating = $('#demo_rating_1').data('rating');
+                                alert(rating.value());
+                            }
+
+                            function demo_rating1_set_value(){
+                                var value = $('#new_value_for_demo_rating_1').val();
+                                var rating = $('#demo_rating_1').data('rating');
+
+                                if (value < 0 || value > 5) {
+                                    alert('You can set value in range 0...5');
+                                    return false;
+                                }
+
+                                rating.value(value);
+                            }
+                        </script>
+
+                        <pre class="prettyprint linenums"><code>
+                            &lt;div class="rating" data-role="rating" data-size="large" data-size="small" id="demo_rating_1"&gt;&lt;/div&gt;
+
+                            &lt;button class="button" onclick="demo_rating1_get_value()"&gt;Get current value&lt;/button&gt;
+
+                            &lt;div class="input-control text"&gt;
+                                &lt;input type="text" id="new_value_for_demo_rating_1" value="0"&gt;
+                                &lt;button class="button" onclick="demo_rating1_set_value()"&gt;Set value&lt;/button&gt;
+                            &lt;/div&gt;
+
+                            &lt;script&gt;
+                                function demo_rating1_get_value(){
+                                    var rating = $('#demo_rating_1').data('rating');
+                                    alert(rating.value());
+                                }
+
+                                function demo_rating1_set_value(){
+                                    var value = $('#new_value_for_demo_rating_1').val();
+                                    var rating = $('#demo_rating_1').data('rating');
+
+                                    if (value &lt; 0 || value &gt; 5) {
+                                        alert('You can set value in range 0...5');
+                                        return false;
+                                    }
+
+                                    rating.value(value);
+                                }
+                            &lt;/script&gt;
+                        </code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    @@hit
+
+</body>
+</html>

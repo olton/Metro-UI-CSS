@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Metro, a sleek, intuitive, and powerful framework for faster and easier web development for Windows Metro Style.">
+    <meta name="keywords" content="HTML, CSS, JS, JavaScript, framework, metro, front-end, frontend, web development">
+    <meta name="author" content="Sergey Pimenov and Metro UI CSS contributors">
+
+    <link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
+    <title>Window :: Metro UI CSS - The front-end framework for developing projects on the web in Windows Metro Style</title>
+
+    <link href="css/metro.css" rel="stylesheet">
+    <link href="css/metro-icons.css" rel="stylesheet">
+    <link href="css/metro-responsive.css" rel="stylesheet">
+    <link href="css/metro-schemes.css" rel="stylesheet">
+
+    <link href="css/docs.css" rel="stylesheet">
+
+    <script src="js/jquery-2.1.3.min.js"></script>
+    <script src="js/metro.js"></script>
+    <script src="js/docs.js"></script>
+    <script src="js/prettify/run_prettify.js"></script>
+    <script src="js/ga.js"></script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+</head>
+<body>
+    <div class="container page-content">
+        <h1><a href="index.html" class="nav-button transform"><span></span></a>&nbsp;Window</h1>
+
+        @@adsense
+
+        <div class="example" data-text="visualisation">
+            <h5>Window examples</h5>
+            <div class="grid">
+                <div class="row cells3">
+                    <div class="cell">
+                        <div class="window">
+                            <div class="window-caption">
+                                <span class="window-caption-icon"><span class="mif-windows"></span></span>
+                                <span class="window-caption-title">Window caption</span>
+                                <span class="btn-min"></span>
+                                <span class="btn-max"></span>
+                                <span class="btn-close"></span>
+                            </div>
+                            <div class="window-content" style="height: 100px">
+                                Window content
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cell">
+                        <div class="window">
+                            <div class="window-caption bg-brown fg-white">
+                                <span class="window-caption-icon"><img src="images/home.png"></span>
+                                <span class="window-caption-title">Window caption</span>
+                            </div>
+                            <div class="window-content" style="height: 100px">
+                                Window content
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cell">
+                        <div class="window">
+                            <div class="window-caption bg-cyan fg-white">
+                                <span class="window-caption-icon"><img src="images/home.png"></span>
+                                <span class="window-caption-title">Console</span>
+                                <span class="btn-close bg-red fg-white"></span>
+                            </div>
+                            <div class="window-content bg-dark fg-white" style="height: 100px">
+                                C:\>_
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row cells3">
+                    <div class="cell">
+                        <div class="window success">
+                            <div class="window-caption">
+                                <span class="window-caption-icon"><span class="mif-windows"></span></span>
+                                <span class="window-caption-title">Window .success</span>
+                                <span class="btn-min"></span>
+                                <span class="btn-max"></span>
+                                <span class="btn-close"></span>
+                            </div>
+                            <div class="window-content" style="height: 100px">
+                                Window content
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cell">
+                        <div class="window warning">
+                            <div class="window-caption">
+                                <span class="window-caption-icon"><span class="mif-windows"></span></span>
+                                <span class="window-caption-title">Window .warning</span>
+                                <span class="btn-min"></span>
+                                <span class="btn-max"></span>
+                                <span class="btn-close"></span>
+                            </div>
+                            <div class="window-content" style="height: 100px">
+                                Window content
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cell">
+                        <div class="window error">
+                            <div class="window-caption">
+                                <span class="window-caption-icon"><span class="mif-windows"></span></span>
+                                <span class="window-caption-title">Window .error</span>
+                                <span class="btn-min"></span>
+                                <span class="btn-max"></span>
+                                <span class="btn-close"></span>
+                            </div>
+                            <div class="window-content" style="height: 100px">
+                                Window content
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="example" data-text="data-role">
+            <h5>Window created by data-role</h5>
+            <div class="grid">
+                <div class="row cells3">
+                    <div class="cell">
+                        <div class="full-size">
+                            <div data-role="window"
+                                 data-size='{"height": 100}'
+                                 data-icon="<span class='mif-windows'></span>"
+                                 data-title="<span>Window</span>"
+                                 data-buttons='{"btnClose": "true"}'
+                                 data-on-btn-close-click="btnCloseClick"
+                                 data-content="This window created with using data-role attribute">
+                            </div>
+                            <script>
+                                function btnCloseClick(){
+                                    alert('hi from closer');
+                                }
+                            </script>
+                        </div>
+                    </div>
+                    <div class="cell">
+                        <div class="full-size">
+                            <div data-role="window"
+                                 data-size='{"height": 100}'
+                                 data-caption-style='{"background": "ribbed-amber", "color": "fg-white"}'
+                                 data-content-style='{"background": "bg-darkBlue", "color": "fg-yellow"}'
+                                 data-icon="<span class='mif-windows'></span>"
+                                 data-title="<span>Window</span>"
+                                 data-content="This window created with using data-role attribute">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cell">
+                        <div class="full-size">
+                            <div data-role="window"
+                                 data-size='{"height": 134}'
+                                 data-content="Window without caption">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="example" data-text="javascript">
+            <div>
+                <div id="win1"></div>
+            </div>
+
+            <script>
+
+                $(function(){
+                    var win1 = $("#win1").window({
+                        icon: "<span class='mif-windows'></span>",
+                        title: "Window by JS",
+                        content: "https://www.youtube.com/embed/etKCHLgW_o0"
+                    });
+                });
+
+            </script>
+        </div>
+    </div>
+
+    @@hit
+
+</body>
+</html>

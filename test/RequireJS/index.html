@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Metro UI CSS with RequireJS</title>
+
+    <link href="../../build/css/metro.min.css" rel="stylesheet">
+
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-light">Metro UI CSS with RequireJS</h1>
+
+        <div class="example">
+            <h3>Countdown</h3>
+            <div class="countdown" data-role="countdown" data-days="2"></div>
+        </div>
+
+        <div class="example">
+            <h3>Accordion</h3>
+            <div class="accordion" data-role="accordion" data-close-any="true">
+                <div class="frame">
+                    <div class="heading">Item 1</div>
+                    <div class="content">
+                        Duis autem vel eum iriure dolor in hendrerit in vulputate. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut.
+                    </div>
+                </div>
+                <div class="frame active">
+                    <div class="heading">Item 2</div>
+                    <div class="content">
+                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute.
+                    </div>
+                </div>
+                <div class="frame">
+                    <div class="heading">Item 3</div>
+                    <div class="content">
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="example">
+            <h5>Menu</h5>
+            <ul class="v-menu block-shadow-impact min-size-required">
+                <li class="menu-title">First Title</li>
+                <li><a data-hotkey="Ctrl+F1" href="#" onclick="alert('Home clicked')"><span class="mif-home icon"></span> Home</a></li>
+                <li class="divider"></li>
+                <li class="menu-title">Second Title</li>
+                <li><a data-hotkey="Alt+1" href="#" onclick="alert('Profile clicked')"><span class="mif-user icon"></span> Profile</a></li>
+                <li><a data-hotkey="Ctrl+F3" href="http://calendar.google.com"><span class="mif-calendar icon"></span> Calendar</a></li>
+                <li><a href="#"><span class="mif-image icon"></span> Photo</a></li>
+                <li class="divider"></li>
+                <li class="menu-title">Third Title</li>
+                <li>
+                    <a data-hotkey="Ctrl+F2" href="#" class="dropdown-toggle"><span class="mif-my-location icon"></span> Location</a>
+                    <ul class="d-menu" data-role="dropdown">
+                        <li class="menu-title">Title for dropdown</li>
+                        <li><a href="#">Коллеги</a></li>
+                        <li><a href="#">Интересно</a></li>
+                        <li>
+                            <div class="item-block text-center">
+                                <button class="square-button"><img class="icon" src="images/round.png"></button>
+                                <button class="square-button"><img class="icon" src="images/location.png"></button>
+                                <button class="square-button"><img class="icon" src="images/group.png"></button>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="#" class="dropdown-toggle">Еще...</a>
+                            <ul  class="d-menu" data-role="dropdown">
+                                <li><a href="#">Коллеги</a></li>
+                                <li><a href="#">Интересно</a></li>
+                                <li>
+                                    <div class="item-block text-center bg-grayLighter">
+                                        <button class="round-button"><img class="icon" src="images/round.png"></button>
+                                        <button class="round-button"><img class="icon" src="images/location.png"></button>
+                                        <button class="round-button"><img class="icon" src="images/group.png"></button>
+                                        <button class="round-button"><img class="icon" src="images/power.png"></button>
+                                    </div>
+                                </li>
+                                <li class="divider"></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li><a href="#"><span class="mif-bubbles icon"></span> Community</a></li>
+            </ul>
+        </div>
+
+    </div>
+
+    <script data-main="scripts/main" src="scripts/require.js"></script>
+</body>
+</html>

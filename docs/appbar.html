@@ -1,0 +1,1276 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta name="description" content="Metro, a sleek, intuitive, and powerful framework for faster and easier web development for Windows Metro Style.">
+        <meta name="keywords" content="HTML, CSS, JS, JavaScript, framework, metro, front-end, frontend, web development">
+        <meta name="author" content="Sergey Pimenov and Metro UI CSS contributors">
+
+        <link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
+        <title>Appbar :: Metro UI CSS - The front-end framework for developing projects on the web in Windows Metro Style</title>
+
+        <link href="css/metro.css" rel="stylesheet">
+        <link href="css/metro-icons.css" rel="stylesheet">
+        <link href="css/metro-responsive.css" rel="stylesheet">
+        <link href="css/metro-schemes.css" rel="stylesheet">
+
+        <link href="css/docs.css" rel="stylesheet">
+
+        <script src="js/jquery-2.1.3.min.js"></script>
+        <script src="js/metro.js"></script>
+        <script src="js/docs.js"></script>
+        <script src="js/prettify/run_prettify.js"></script>
+        <script src="js/ga.js"></script>
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+
+    </head>
+    <body>
+        <div class="container page-content">
+            <h1><a href="index.html" class="nav-button transform"><span></span></a>&nbsp;Appbar</h1>
+
+            @@adsense
+
+            <div class="padding10 bg-lighterBlue fg-white margin10 no-margin-right no-margin-left align-center">
+                Special thanks to <a href="http://xiphe.com" class="text-accent text-bold fg-white">Daniel Milbrandt</a> for adding flexible to appbar.
+            </div>
+
+            <div class="example" data-text="example">
+
+                <div class="app-bar" data-role="appbar">
+
+                    <a class="app-bar-element branding">Metro UI CSS</a>
+
+                    <ul class="app-bar-menu">
+                        <li><a href="">Home</a></li>
+                        <li>
+                            <a href="" class="dropdown-toggle">Products</a>
+                            <ul class="d-menu" data-role="dropdown">
+                                <li><a href="">Windows 10</a></li>
+                                <li><a href="">Spartan</a></li>
+                                <li><a href="">Outlook</a></li>
+                                <li><a href="">Office 2015</a></li>
+                                <li class="divider"></li>
+                                <li><a href="" class="dropdown-toggle">Other Products</a>
+                                    <ul class="d-menu" data-role="dropdown">
+                                        <li><a data-hotkey="alt+3" href="http://microsoft.com" target="_blank" onclick="console.log('hi'); return true;">Internet Explorer 10</a></li>
+                                        <li><a href="">Skype</a></li>
+                                        <li><a href="">Surface</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a href="">Support</a></li>
+                        <li><a href="">Help</a></li>
+                    </ul>
+
+                </div>
+            </div>
+
+            <h3>Appbar container</h3>
+            <div class="example" data-text="code">
+                <h5>Create appbar container</h5>
+                <pre class="prettyprint linenums"><code>
+                &lt;div class="app-bar"&gt;
+                ...
+                &lt;/div&gt;
+            </code></pre>
+            </div>
+
+            <h3>Appbar elements</h3>
+            <p>
+                To create app-bar elements you can use next classes: for single element <span class="tag">.app-bar-element</span>, for multi (menu) <span class="tag">app-bar-menu</span>, for divider <span class="tag">app-bar-divider</span>
+            </p>
+
+            <div class="example" data-text="code">
+                <h5>Create app-bar elements</h5>
+                <pre class="prettyprint linenums"><code>
+                &lt;div class="app-bar"&gt;
+                    &lt;a class="app-bar-element" href="..."&gt;Home&lt;/a&gt;
+
+                    &lt;span class="app-bar-divider"&gt;&lt;/span&gt;
+
+                    &lt;ul class="app-bar-menu"&gt;
+                        &lt;li&gt;&lt;a href=""&gt;Home&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a href="" class="dropdown-toggle"&gt;Products&lt;/a&gt;
+                            &lt;ul class="d-menu" data-role="dropdown"&gt;
+                                &lt;li&gt;&lt;a href=""&gt;Windows 10&lt;/a&gt;&lt;/li&gt;
+                                &lt;li&gt;&lt;a href=""&gt;Spartan&lt;/a&gt;&lt;/li&gt;
+                                &lt;li&gt;&lt;a href=""&gt;Outlook&lt;/a&gt;&lt;/li&gt;
+                                &lt;li&gt;&lt;a href=""&gt;Office 2015&lt;/a&gt;&lt;/li&gt;
+                                &lt;li class="divider"&gt;&lt;/li&gt;
+                                &lt;li&gt;&lt;a href="" class="dropdown-toggle"&gt;Other Products&lt;/a&gt;
+                                    &lt;ul class="d-menu" data-role="dropdown"&gt;
+                                        &lt;li&gt;&lt;a href=""&gt;Internet Explorer 10&lt;/a&gt;&lt;/li&gt;
+                                        &lt;li&gt;&lt;a href=""&gt;Skype&lt;/a&gt;&lt;/li&gt;
+                                        &lt;li&gt;&lt;a href=""&gt;Surface&lt;/a&gt;&lt;/li&gt;
+                                    &lt;/ul&gt;
+                                &lt;/li&gt;
+                            &lt;/ul&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;&lt;a href=""&gt;Support&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href=""&gt;Help&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/div&gt;
+            </code></pre>
+            </div>
+
+            <h3>Flexible Appbar</h3>
+            <div class="example" data-text="example">
+                Default styled
+                <div class="app-bar" data-role="appbar">
+
+                    <a class="app-bar-element branding">Metro UI CSS</a>
+
+                    <ul class="app-bar-menu">
+                        <li><a href="">Home</a></li>
+                        <li data-flexorder="2"><a href="">Unimportant</a></li>
+                        <li data-flexorder="1"><a href="">Important</a></li>
+                        <li>
+                            <a href="" class="dropdown-toggle">Products</a>
+                            <ul class="d-menu" data-role="dropdown">
+                                <li><a href="">Windows 10</a></li>
+                                <li><a href="">Spartan</a></li>
+                                <li><a href="">Outlook</a></li>
+                                <li><a href="">Office 2015</a></li>
+                                <li class="divider"></li>
+                                <li><a href="" class="dropdown-toggle">Other Products</a>
+                                    <ul class="d-menu" data-role="dropdown">
+                                        <li><a href="">Internet Explorer 10</a></li>
+                                        <li><a href="">Skype</a></li>
+                                        <li><a href="">Surface</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="app-bar-pullbutton automatic"></div>
+                    <ul class="app-bar-menu place-right" data-flexdirection="reverse">
+                        <li>
+                            <div class="input-control text">
+                                <input type="text" placeholder="Search...">
+                            </div>
+                        </li>
+                        <li><a href=""><span class="mif-phone icon"></span>Call</a></li>
+                        <li><a href=""><span class="mif-cart icon"></span> Cart(0)</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="example" data-text="example">
+                Custom Styled
+                <div class="app-bar" data-role="appbar" data-flexstyle="sidebar2">
+
+                    <a class="app-bar-element branding">Metro UI CSS</a>
+
+                    <ul class="app-bar-menu">
+                        <li><a href="">Home</a></li>
+                        <li data-flexorder="2"><a href="">Unimportant</a></li>
+                        <li data-flexorder="1"><a href="">Important</a></li>
+                        <li>
+                            <a href="" class="dropdown-toggle">Products</a>
+                            <ul class="d-menu" data-role="dropdown">
+                                <li><a href="">Windows 10</a></li>
+                                <li><a href="">Spartan</a></li>
+                                <li><a href="">Outlook</a></li>
+                                <li><a href="">Office 2015</a></li>
+                                <li class="divider"></li>
+                                <li><a href="" class="dropdown-toggle">Other Products</a>
+                                    <ul class="d-menu" data-role="dropdown">
+                                        <li><a href="">Internet Explorer 10</a></li>
+                                        <li><a href="">Skype</a></li>
+                                        <li><a href="">Surface</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="app-bar-pullbutton automatic"></div>
+                    <ul class="app-bar-menu place-right" data-flexdirection="reverse">
+                        <li>
+                            <div class="input-control text">
+                                <input type="text" placeholder="Search...">
+                            </div>
+                        </li>
+                        <li><a href=""><span class="mif-phone icon"></span>Call</a></li>
+                        <li><a href=""><span class="mif-cart icon"></span> Cart(0)</a></li>
+                    </ul>
+                </div>
+            </div>
+            <p>
+                The appbar comes with configurable full featured flexible menu support by default. Add <span class="tag">data-role="appbar"</span> to activate this. The elements which should be collapsed must be in a menu with <span class="tag">app-bar-menu</span> class.
+            </p>
+            <div class="example" data-text="code">
+                <h5>Create appbar with flexible menu support.</h5>
+                <pre class="prettyprint linenums"><code>
+                    &lt;div class="app-bar" data-role="appbar"&gt;
+                        &lt;a class="app-bar-element" href="..."&gt;Home&lt;/a&gt;
+
+                        &lt;span class="app-bar-divider"&gt;&lt;/span&gt;
+
+                        &lt;ul class="app-bar-menu"&gt;
+                            &lt;li&gt;&lt;a href=""&gt;Home&lt;/a&gt;&lt;/li&gt;
+                            &lt;li&gt;&lt;a href=""&gt;Support&lt;/a&gt;&lt;/li&gt;
+                            &lt;li&gt;&lt;a href=""&gt;Help&lt;/a&gt;&lt;/li&gt;
+                            ...very long list here ...
+                        &lt;/ul&gt;
+                    &lt;/div&gt;
+                </code></pre>
+            </div>
+
+            <h3>Features</h3>
+            <table class="table bordered border">
+                <thead>
+                    <tr>
+                        <td>Feature</td>
+                        <td>Description</td>
+                        <td>Code</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Fully Automated</td>
+                        <td>
+                            Use <span class="tag">data-role="appbar"</span>. The Appbar creates a pull down button on the right side if the menu entries do not fit into the bar.
+                            The Appbar refreshes automatically, if the user resize the window, or extern content like images are loaded into the appbar. If you have problems with the pullbutton which is created, see Custom Pull Button section.
+                        </td>
+                        <td>
+                            <pre class="prettyprint linenums"><code>
+                                &lt;div class=&quot;appbar&quot; data-role=&quot;appbar&quot;&gt;
+                                    &lt;ul class=&quot;app-bar-menu&quot;&gt;
+                                        &lt;li&gt;&lt;a href=&quot;&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
+                                        ...
+                                    &lt;/ul&gt;
+                                &lt;/div&gt;
+                            </code></pre>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Disable</td>
+                        <td>Use the <span class="tag">no-flexible</span> class to deactivate the flexible behavior. You can deactivate whole menus or picked menu entries. They will stay always. Even the whole appbar container can be marked as no-flexible. 
+                        </td>
+                        <td>
+                            <pre class="prettyprint linenums"><code>
+                                &lt;div class=&quot;appbar&quot; data-role=&quot;appbar&quot;&gt;
+                                    &lt;ul class=&quot;app-bar-menu&quot;&gt;
+                                        &lt;li&gt;...&lt;/li&gt;
+                                        &lt;li class=&quot;no-flexible&quot;&gt;...&lt;/li&gt;
+                                        &lt;li&gt;...&lt;/li&gt;
+                                    &lt;/ul&gt;
+                                    &lt;ul class=&quot;app-bar-menu no-flexible&quot;&gt;
+                                        &lt;li&gt;...&lt;/li&gt;
+                                        &lt;li&gt;...&lt;/li&gt;
+                                        &lt;li&gt;...&lt;/li&gt;
+                                    &lt;/ul&gt;
+                                &lt;/div&gt;
+                            </code></pre>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Custom Pull Button<br /> Righter placement.</td>
+                        <td>An appbar creates only a pull button if there is no one. It is floated right, and placed as last element. so if you have already a important element placed there with <span class="tag">place-right</span> it does not struggle with it. Otherwise it is placed right as possible. However, if you have placed a app-bar-menu right, you wish the pull button even righter. Because it is both floated you have to create the automatic button manually before all right placed menus.</td>
+                        <td>
+                            <pre class="prettyprint linenums"><code>
+                                &lt;div class=&quot;appbar&quot; data-role=&quot;appbar&quot;&gt;
+                                    &lt;ul class=&quot;app-bar-menu&quot;&gt;
+                                        ...
+                                    &lt;/ul&gt;
+
+                                    &lt;div class=&quot;app-bar-pullbutton automatic&quot;&gt;&lt;/div&gt;
+
+                                    &lt;ul class=&quot;app-bar-menu place-right&quot;&gt;
+                                        ...
+                                    &lt;/ul&gt;
+                                    
+                                &lt;/div&gt;
+                            </code></pre>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Custom Pull Button<br /> Own Style</td>
+                        <td>Create your own styled button with <span class="tag">&lt;div class=&quot;app-bar-pullbutton&quot;&gt;</span></td>
+                        <td>
+                            <pre class="prettyprint linenums"><code>
+                                &lt;div class=&quot;appbar&quot; data-role=&quot;appbar&quot;&gt;
+                                    &lt;ul class=&quot;app-bar-menu&quot;&gt;
+                                        ...
+                                    &lt;/ul&gt;
+                                    &lt;div class=&quot;app-bar-pullbutton&quot;&gt;
+                                        More
+                                        &lt;span class=&quot;mif-plus&quot;&gt;&lt;/span&gt;
+                                    &lt;/div&gt;
+                                &lt;/div&gt;
+                            </code></pre>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Clean Layout</td>
+                        <td>You can give <span class="tag">data-flexclean="true"</span> to the appbar, which will collapse all menu entries into the flexible menu. If you want to make an exception for one or two elements use the <span class="tag">no-flexible</span> class for these elements.</td>
+                        <td>
+                            <pre class="prettyprint linenums"><code>
+                                &lt;div class=&quot;appbar&quot; data-role=&quot;appbar&quot; data-flexclean=&quot;true&quot;&gt;
+                                    &lt;ul class=&quot;app-bar-menu&quot;&gt;
+                                        &lt;li&gt;Link&lt;/li&gt;
+                                        &lt;li&gt;Link2&lt;/li&gt;
+                                        &lt;li class=&quot;no-flexible&quot;&gt;Help&lt;/li&gt;
+                                    &lt;/ul&gt;
+                                &lt;/div&gt;
+                            </code></pre>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Order</td>
+                        <td><span class="tag">data-flexorder="3"</span>, <span class="tag">data-flexdirection="reverse"</span>Usually the elements disappear in the order found in the dom. Usually the right, will go first. You can overwrite this by using the data-flexorder attribute. The lower the value of the flexorder attribute is the later is it sorted into the flex menu. You can use this with the <span class="tag">app-bar-menu</span> and with its containing children in a cascading way. For <span class="tag">app-bar-menu</span> there is also the <span class="tag">data-flexdirection</span> attribute to reverse the order. Than the smaller the value is the earlies disappears. If no data-flexorder attribute is given, element's dom index + 1 is assigned by default. So there is no need to give them all an order if only a few of them need a special one. The following example is configured so: The Entry with 3.1 disappear first, because 3.x has a reversed order. 2.1 and 2.3 will stay always because they have a no-flexible class. After that you can see that 1.1 moves because it has a greater flexorder than 1.2 which has is own index + 1 as flexorder. Resize the window to see an effect. You can zoom in if the window can not become smaller.</td>
+                        <td>
+                            <pre class="prettyprint linenums"><code>
+                                &lt;div class=&quot;appbar&quot; data-role=&quot;appbar&quot;&gt;
+                                    &lt;ul class=&quot;app-bar-menu&quot;&gt;
+                                        &lt;li data-flexorder=&quot;5&quot;&gt;1&lt;/li&gt;
+                                        &lt;li&gt;2&lt;/li&gt;
+                                        &lt;li data-flexorder=&quot;1&quot;&gt;3&lt;/li&gt;
+                                    &lt;/ul&gt;
+                                    &lt;ul class=&quot;app-bar-menu&quot; data-flexorder=&quot;5&quot;&gt;
+                                        &lt;li class=&quot;no-flexible&quot;&gt;1&lt;/li&gt;
+                                        &lt;li&gt;2&lt;/li&gt;
+                                        &lt;li class=&quot;no-flexible&quot;&gt;3&lt;/li&gt;
+                                    &lt;/ul&gt;
+                                    &lt;ul class=&quot;app-bar-menu&quot; data-flexdirection=&quot;reverse&quot;&gt;
+                                        &lt;li&gt;1&lt;/li&gt;
+                                        &lt;li&gt;2&lt;/li&gt;
+                                        &lt;li&gt;3&lt;/li&gt;
+                                    &lt;/ul&gt;
+                                &lt;/div&gt;
+                            </code></pre>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <td colspan="3">
+                <div class="example" data-text="example">
+
+                    <div class="app-bar" data-role="appbar">
+
+                        <a class="app-bar-element branding">000</a>
+
+                        <ul class="app-bar-menu">
+                            <li data-flexorder="5"><a href="" data-flexorder="3">1.1</a></li>
+                            <li>
+                                <a href="" class="dropdown-toggle">1.2</a>
+                                <ul class="d-menu" data-role="dropdown">
+                                    <li><a href="">1.2.1</a></li>
+                                    <li><a href="">1.2.2</a></li>
+                                    <li><a href="">1.2.3</a></li>
+                                    <li><a href="">1.2.4</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="" class="dropdown-toggle">1.2.5</a>
+                                        <ul class="d-menu" data-role="dropdown">
+                                            <li><a href="">1.2.5.1</a></li>
+                                            <li><a href="">1.2.5.2</a></li>
+                                            <li><a href="">1.2.5.3</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li data-flexorder="3"><a href="" data-flexorder="3">1.3</a></li>
+                            <li><a href="" data-flexorder="6">1.4</a></li>
+                        </ul>
+                        <ul class="app-bar-menu">
+                            <li class="no-flexible"><a href="">2.1</a></li>
+                            <li>
+                                <a href="" class="dropdown-toggle">2.2</a>
+                                <ul class="d-menu" data-role="dropdown">
+                                    <li><a href="">2.2.1</a></li>
+                                    <li><a href="">2.2.2</a></li>
+                                    <li><a href="">2.2.3</a></li>
+                                    <li><a href="">2.2.4</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="" class="dropdown-toggle">2.2.4.1</a>
+                                        <ul class="d-menu" data-role="dropdown">
+                                            <li><a href="">2.2.4.2</a></li>
+                                            <li><a href="">2.2.4.3</a></li>
+                                            <li><a href="">2.2.4.4</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="no-flexible"><a href="">2.3</a></li>
+                            <li class=""><a href="">2.4</a></li>
+                        </ul>
+                        <ul class="app-bar-menu" data-flexdirection="reverse">
+                            <li><a href="">3.1</a></li>
+                            <li>
+                                <a href="" class="dropdown-toggle">3.2</a>
+                                <ul class="d-menu" data-role="dropdown">
+                                    <li><a href="">3.2.1</a></li>
+                                    <li><a href="">3.2.2</a></li>
+                                    <li><a href="">3.2.3</a></li>
+                                    <li><a href="">3.2.4</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="">3.3</a></li>
+                            <li class=""><a href="">3.4</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <table class="table bordered border">
+                    <thead>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Own Style for Flex Menu</td>
+                            <td><span class="tag">data-flexstyle="YOUR_OWN_CLASS"</span> e.g.<span class="tag">data-flexstyle="sidebar2"</span>The flex menu creates a menu with the app-bar-menu style class. You can overwrite this behaviour and give your own class with the data-flexstyle attribute. "sidebar2" is an option you can use out of the box. <span class="tag">data-flexstyle="app-bar-menu YOUR_CLASS"</span> can be used if you want only little changes. The order example shows the default app-bar-menu, the introduction example is made with the sidebar2 style.</td>
+                            <td>
+                                <pre class="prettyprint linenums"><code>
+                                &lt;div class=&quot;appbar&quot; data-role=&quot;appbar&quot; data-flexstyle=&quot;sidebar2&quot;&gt;
+                                ...
+                                </code></pre>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+                <div class="example" data-text="code">
+                    <h5>Create app-bar elements</h5>
+                    <pre class="prettyprint linenums"><code>
+                &lt;div class="app-bar" data-role="appbar"&gt;
+                    &lt;a class="app-bar-element" href="..."&gt;Home&lt;/a&gt;
+
+                    &lt;span class="app-bar-divider"&gt;&lt;/span&gt;
+
+                    &lt;ul class="app-bar-menu"&gt;
+                        &lt;li&gt;&lt;a href=""&gt;Home&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href=""&gt;Support&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href=""&gt;Help&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+
+                    &lt;span class="app-bar-pullbutton"&gt;&lt;/span&gt;
+                &lt;/div&gt;
+            </code></pre>
+                </div>
+
+                <h4>Drop container</h4>
+
+                <p>
+                    To create appbar drop container you can put inside <span class="tag">app-bar-element</span> <strong>toggle</strong> and <strong>container</strong>. Container can has class <span class="tag">app-bar-drop-container</span>.
+                </p>
+
+                <div class="example" data-text="example">
+                    <div class="app-bar">
+                        <a class="app-bar-element">
+                            <span id="toggle-tiles-dropdown" class="mif-apps mif-2x"></span>
+                            <div class="app-bar-drop-container" data-role="dropdown" data-toggle-element="#toggle-tiles-dropdown" data-no-close="false" style="width: 324px;">
+                                <div class="tile-container bg-white">
+                                    <div class="tile-small bg-cyan">
+                                        <div class="tile-content iconic">
+                                            <span class="icon mif-onedrive"></span>
+                                        </div>
+                                    </div>
+                                    <div class="tile-small bg-yellow">
+                                        <div class="tile-content iconic">
+                                            <span class="icon mif-google"></span>
+                                        </div>
+                                    </div>
+                                    <div class="tile-small bg-red">
+                                        <div class="tile-content iconic">
+                                            <span class="icon mif-facebook"></span>
+                                        </div>
+                                    </div>
+                                    <div class="tile-small bg-green">
+                                        <div class="tile-content iconic">
+                                            <span class="icon mif-twitter"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+
+                        <div class="app-bar-divider"></div>
+
+                        <div class="app-bar-element place-right">
+                            <a class="dropdown-toggle fg-white"><span class="mif-enter"></span> Enter</a>
+                            <div class="app-bar-drop-container bg-white fg-dark place-right" data-role="dropdown" data-no-close="true">
+                                <div class="padding20">
+                                    <form>
+                                        <h4 class="text-light">Login to service...</h4>
+                                        <div class="input-control text">
+                                            <span class="mif-user prepend-icon"></span>
+                                            <input type="text">
+                                        </div>
+                                        <div class="input-control text">
+                                            <span class="mif-lock prepend-icon"></span>
+                                            <input type="password">
+                                        </div>
+                                        <label class="input-control checkbox small-check">
+                                            <input type="checkbox">
+                                            <span class="check"></span>
+                                            <span class="caption">Remember me</span>
+                                        </label>
+                                        <div class="form-actions">
+                                            <button class="button">Login</button>
+                                            <button class="button link">Cancel</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="app-bar-divider place-right"></div>
+                    </div>
+                </div>
+
+                <div class="example" data-text="code">
+                    <h5>Drop container with tiles</h5>
+                    <pre class="prettyprint linenums"><code>
+                &lt;div class="app-bar"&gt;
+                    &lt;a class="app-bar-element"&gt;
+                        &lt;span id="toggle-tiles-dropdown" class="mif-apps mif-2x"&gt;&lt;/span&gt;
+                        &lt;div class="app-bar-drop-container"
+                                data-role="dropdown"
+                                data-toggle-element="#toggle-tiles-dropdown"
+                                data-no-close="false" style="width: 324px;"&gt;
+                            &lt;div class="tile-container bg-white"&gt;
+                                &lt;div class="tile-small bg-cyan"&gt;
+                                    &lt;div class="tile-content iconic"&gt;
+                                        &lt;span class="icon mif-onedrive"&gt;&lt;/span&gt;
+                                    &lt;/div&gt;
+                                &lt;/div&gt;
+                                &lt;div class="tile-small bg-yellow"&gt;
+                                    &lt;div class="tile-content iconic"&gt;
+                                        &lt;span class="icon mif-google"&gt;&lt;/span&gt;
+                                    &lt;/div&gt;
+                                &lt;/div&gt;
+                                &lt;div class="tile-small bg-red"&gt;
+                                    &lt;div class="tile-content iconic"&gt;
+                                        &lt;span class="icon mif-facebook"&gt;&lt;/span&gt;
+                                    &lt;/div&gt;
+                                &lt;/div&gt;
+                                &lt;div class="tile-small bg-green"&gt;
+                                    &lt;div class="tile-content iconic"&gt;
+                                        &lt;span class="icon mif-twitter"&gt;&lt;/span&gt;
+                                    &lt;/div&gt;
+                                &lt;/div&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/a&gt;
+                &lt;/div&gt;
+            </code></pre>
+
+                <h5>Drop container with form</h5>
+                <pre class="prettyprint linenums"><code>
+                &lt;div class="app-bar"&gt;
+                    &lt;div class="app-bar-element place-right"&gt;
+                        &lt;a class="dropdown-toggle fg-white"&gt;&lt;span class="mif-enter"&gt;&lt;/span&gt; Enter&lt;/a&gt;
+                        &lt;div class="app-bar-drop-container bg-white fg-dark place-right"
+                                data-role="dropdown" data-no-close="true"&gt;
+                            &lt;div class="padding20"&gt;
+                                &lt;form&gt;
+                                    &lt;h4 class="text-light"&gt;Login to service...&lt;/h4&gt;
+                                    &lt;div class="input-control text"&gt;
+                                        &lt;span class="mif-user prepend-icon"&gt;&lt;/span&gt;
+                                        &lt;input type="text"&gt;
+                                    &lt;/div&gt;
+                                    &lt;div class="input-control text"&gt;
+                                        &lt;span class="mif-lock prepend-icon"&gt;&lt;/span&gt;
+                                        &lt;input type="password"&gt;
+                                    &lt;/div&gt;
+                                    &lt;label class="input-control checkbox small-check"&gt;
+                                        &lt;input type="checkbox"&gt;
+                                        &lt;span class="check"&gt;&lt;/span&gt;
+                                        &lt;span class="caption"&gt;Remember me&lt;/span&gt;
+                                    &lt;/label&gt;
+                                    &lt;div class="form-actions"&gt;
+                                        &lt;button class="button"&gt;Login&lt;/button&gt;
+                                        &lt;button class="button link"&gt;Cancel&lt;/button&gt;
+                                    &lt;/div&gt;
+                                &lt;/form&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                </code></pre>
+            </div>
+
+            <p class="padding10 bg-grayLighter">
+                Drop container have additional property <span class="tag alert">data-on-close</span>. If this property is true container not closed on click on container.
+            </p>
+
+            <h4>Drop-up</h4>
+
+            <p>
+                To create appbar in drop-up mode you can add class <span class="tag">drop-up</span> to appbar.
+            </p>
+
+            <div class="example" data-text="example">
+                <div class="app-bar drop-up" data-role="appbar">
+                    <a class="app-bar-element">
+                        <span id="toggle-tiles-dropdown2" class="mif-apps mif-2x"></span>
+                        <div class="app-bar-drop-container" data-role="dropdown" data-toggle-element="#toggle-tiles-dropdown2" data-no-close="false" style="width: 324px;">
+                            <div class="tile-container bg-white">
+                                <div class="tile-small bg-cyan">
+                                    <div class="tile-content iconic">
+                                        <span class="icon mif-onedrive"></span>
+                                    </div>
+                                </div>
+                                <div class="tile-small bg-yellow">
+                                    <div class="tile-content iconic">
+                                        <span class="icon mif-google"></span>
+                                    </div>
+                                </div>
+                                <div class="tile-small bg-red">
+                                    <div class="tile-content iconic">
+                                        <span class="icon mif-facebook"></span>
+                                    </div>
+                                </div>
+                                <div class="tile-small bg-green">
+                                    <div class="tile-content iconic">
+                                        <span class="icon mif-twitter"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <div class="app-bar-divider"></div>
+                    <ul class="app-bar-menu">
+                        <li><a href="">Home</a></li>
+                        <li>
+                            <a href="" class="dropdown-toggle">Products</a>
+                            <ul class="d-menu" data-role="dropdown">
+                                <li><a href="">Windows 10</a></li>
+                                <li><a href="">Spartan</a></li>
+                                <li><a href="">Outlook</a></li>
+                                <li><a href="">Office 2015</a></li>
+                                <li class="divider"></li>
+                                <li><a href="" class="dropdown-toggle">Other Products</a>
+                                    <ul class="d-menu" data-role="dropdown">
+                                        <li><a href="">Internet Explorer 10</a></li>
+                                        <li><a href="">Skype</a></li>
+                                        <li><a href="">Surface</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a href="">Support</a></li>
+                        <li><a href="">Help</a></li>
+                    </ul>
+                    <div class="app-bar-element">
+                        <span class="dropdown-toggle">Ups</span>
+                        <ul class="d-menu" data-role="dropdown">
+                            <li><a href="">Windows 10</a></li>
+                            <li><a href="">Spartan</a></li>
+                            <li><a href="">Outlook</a></li>
+                            <li><a href="">Office 2015</a></li>
+                            <li class="divider"></li>
+                            <li><a href="" class="dropdown-toggle">Other Products</a>
+                                <ul class="d-menu" data-role="dropdown">
+                                    <li><a href="">Internet Explorer 10</a></li>
+                                    <li><a href="">Skype</a></li>
+                                    <li><a href="">Surface</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="app-bar-element place-right">
+                        <a class="dropdown-toggle fg-white"><span class="mif-enter"></span> Enter</a>
+                        <div class="app-bar-drop-container bg-white fg-dark place-right" data-role="dropdown" data-no-close="true">
+                            <div class="padding20">
+                                <form>
+                                    <h4 class="text-light">Login to service...</h4>
+                                    <div class="input-control text">
+                                        <span class="mif-user prepend-icon"></span>
+                                        <input type="text">
+                                    </div>
+                                    <div class="input-control text">
+                                        <span class="mif-lock prepend-icon"></span>
+                                        <input type="password">
+                                    </div>
+                                    <label class="input-control checkbox small-check">
+                                        <input type="checkbox">
+                                        <span class="check"></span>
+                                        <span class="caption">Remember me</span>
+                                    </label>
+                                    <div class="form-actions">
+                                        <button class="button">Login</button>
+                                        <button class="button link">Cancel</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="app-bar-divider place-right"></div>
+                </div>
+            </div>
+
+            <div class="example" data-text="code">
+                <pre class="prettyprint linenums"><code>
+                &lt;div class="app-bar drop-up"&gt;...&lt;/div&gt;
+                </code></pre>
+            </div>
+
+            <h3>Fixed bar</h3>
+            <p>
+                You can create fixed (top or bottom) navigation bar with built in subclasses <span class="tag">.fixed-top</span>, <span class="tag">.fixed-bottom</span>. If you use fixed position for application bar you can set manually margin or padding for main content from appbar.
+            </p>
+
+            <div class="example" data-text="code">
+                    <pre class="prettyprint linenums"><code>
+                    &lt;div class="app-bar fixed-top"&gt;...&lt;/div&gt;
+
+                    &lt;div class="main-content" style="margin-top: 3.125rem"&gt;
+                        ...
+                    &lt;/div&gt;
+
+                    or
+
+                    &lt;div class="main-content" style="padding-top: 3.125rem"&gt;
+                        ...
+                    &lt;/div&gt;
+                    </code></pre>
+            </div>
+
+            <h3>Place element on right</h3>
+            <p>
+                To place appbar element on right you must add class <span class="tag">place-right</span> to element.
+            </p>
+
+            <div class="example" data-text="code">
+                <pre class="prettyprint linenums"><code>
+                &lt;div class="app-bar"&gt;
+                    &lt;a class="app-bar-element place-right"&gt;Home&lt;/a&gt;
+                &lt;/div&gt;
+                </code></pre>
+            </div>
+
+
+            <h3>Color schemes</h3>
+            <p>
+                This future required <strong>metro-schemes.css</strong>
+            </p>
+            <div class="example" data-text="example">
+                <h5>Darcula</h5>
+                <pre class="prettyprint linenums no-scroll"><code>
+                    &lt;div class="app-bar darcula"&gt;...&lt;/div&gt;
+                </code></pre>
+                <div class="app-bar darcula" data-role="appbar">
+                    <a class="app-bar-element branding">Metro UI CSS</a>
+                    <span class="app-bar-divider"></span>
+                    <ul class="app-bar-menu">
+                        <li><a href="">Home</a></li>
+                        <li>
+                            <a href="" class="dropdown-toggle">Products</a>
+                            <ul class="d-menu" data-role="dropdown">
+                                <li><a href="">Windows 10</a></li>
+                                <li><a href="">Spartan</a></li>
+                                <li><a href="">Outlook</a></li>
+                                <li><a href="">Office 2015</a></li>
+                                <li class="divider"></li>
+                                <li><a href="" class="dropdown-toggle">Other Products</a>
+                                    <ul class="d-menu" data-role="dropdown">
+                                        <li><a href="">Internet Explorer 10</a></li>
+                                        <li><a href="">Skype</a></li>
+                                        <li><a href="">Surface</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="" class="dropdown-toggle">Support</a>
+                            <ul class="d-menu" data-role="dropdown">
+                                <li><a href="">About</a></li>
+                                <li><a href="">Contacts</a></li>
+                                <li><a href="">Community forum</a></li>
+                                <li>
+                                    <a href="" class="dropdown-toggle">Support</a>
+                                    <ul class="d-menu" data-role="dropdown">
+                                        <li><a href="" class="dropdown-toggle">About</a></li>
+                                        <li><a href="">Contacts</a></li>
+                                        <li><a href="">Community forum</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a href="">Help</a></li>
+                    </ul>
+                    <div class="app-bar-element place-right">
+                        <a class="dropdown-toggle fg-white"><span class="mif-enter"></span> Enter</a>
+                        <div class="app-bar-drop-container place-right" data-role="dropdown" data-no-close="true">
+                            <div class="padding20">
+                                <form>
+                                    <h4 class="text-light">Login to service...</h4>
+                                    <div class="input-control text">
+                                        <span class="mif-user prepend-icon"></span>
+                                        <input type="text">
+                                    </div>
+                                    <div class="input-control text">
+                                        <span class="mif-lock prepend-icon"></span>
+                                        <input type="password">
+                                    </div>
+                                    <label class="input-control checkbox small-check">
+                                        <input type="checkbox">
+                                        <span class="check"></span>
+                                        <span class="caption">Remember me</span>
+                                    </label>
+                                    <div class="form-actions">
+                                        <button class="button primary">Login</button>
+                                        <button class="button link fg-grayLighter">Cancel</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h5>Pink</h5>
+                <pre class="prettyprint linenums no-scroll"><code>
+                    &lt;div class="app-bar pink"&gt;...&lt;/div&gt;
+                </code></pre>
+                <div class="app-bar pink" data-role="appbar">
+                    <a class="app-bar-element branding">Metro UI CSS</a>
+                    <span class="app-bar-divider"></span>
+                    <ul class="app-bar-menu">
+                        <li><a href="">Home</a></li>
+                        <li>
+                            <a href="" class="dropdown-toggle">Products</a>
+                            <ul class="d-menu" data-role="dropdown">
+                                <li><a href="">Windows 10</a></li>
+                                <li><a href="">Spartan</a></li>
+                                <li><a href="">Outlook</a></li>
+                                <li><a href="">Office 2015</a></li>
+                                <li class="divider"></li>
+                                <li><a href="" class="dropdown-toggle">Other Products</a>
+                                    <ul class="d-menu" data-role="dropdown">
+                                        <li><a href="">Internet Explorer 10</a></li>
+                                        <li><a href="">Skype</a></li>
+                                        <li><a href="">Surface</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="" class="dropdown-toggle">Support</a>
+                            <ul class="d-menu" data-role="dropdown">
+                                <li><a href="">About</a></li>
+                                <li><a href="">Contacts</a></li>
+                                <li><a href="">Community forum</a></li>
+                                <li>
+                                    <a href="" class="dropdown-toggle">Support</a>
+                                    <ul class="d-menu" data-role="dropdown">
+                                        <li><a href="" class="dropdown-toggle">About</a></li>
+                                        <li><a href="">Contacts</a></li>
+                                        <li><a href="">Community forum</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a href="">Help</a></li>
+                    </ul>
+                    <div class="app-bar-element place-right">
+                        <a class="dropdown-toggle fg-white"><span class="mif-enter"></span> Enter</a>
+                        <div class="app-bar-drop-container place-right" data-role="dropdown" data-no-close="true">
+                            <div class="padding20">
+                                <form>
+                                    <h4 class="text-light">Login to service...</h4>
+                                    <div class="input-control text">
+                                        <span class="mif-user prepend-icon"></span>
+                                        <input type="text">
+                                    </div>
+                                    <div class="input-control text">
+                                        <span class="mif-lock prepend-icon"></span>
+                                        <input type="password">
+                                    </div>
+                                    <label class="input-control checkbox small-check">
+                                        <input type="checkbox">
+                                        <span class="check"></span>
+                                        <span class="caption">Remember me</span>
+                                    </label>
+                                    <div class="form-actions">
+                                        <button class="button primary">Login</button>
+                                        <button class="button link fg-grayLighter">Cancel</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h5>Navy</h5>
+                <pre class="prettyprint linenums no-scroll"><code>
+                    &lt;div class="app-bar navy"&gt;...&lt;/div&gt;
+                </code></pre>
+                <div class="app-bar navy" data-role="appbar">
+                    <a class="app-bar-element branding">Metro UI CSS</a>
+                    <span class="app-bar-divider"></span>
+                    <ul class="app-bar-menu">
+                        <li><a href="">Home</a></li>
+                        <li>
+                            <a href="" class="dropdown-toggle">Products</a>
+                            <ul class="d-menu" data-role="dropdown">
+                                <li><a href="">Windows 10</a></li>
+                                <li><a href="">Spartan</a></li>
+                                <li><a href="">Outlook</a></li>
+                                <li><a href="">Office 2015</a></li>
+                                <li class="divider"></li>
+                                <li><a href="" class="dropdown-toggle">Other Products</a>
+                                    <ul class="d-menu" data-role="dropdown">
+                                        <li><a href="">Internet Explorer 10</a></li>
+                                        <li><a href="">Skype</a></li>
+                                        <li><a href="">Surface</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="" class="dropdown-toggle">Support</a>
+                            <ul class="d-menu" data-role="dropdown">
+                                <li><a href="">About</a></li>
+                                <li><a href="">Contacts</a></li>
+                                <li><a href="">Community forum</a></li>
+                                <li>
+                                    <a href="" class="dropdown-toggle">Support</a>
+                                    <ul class="d-menu" data-role="dropdown">
+                                        <li><a href="" class="dropdown-toggle">About</a></li>
+                                        <li><a href="">Contacts</a></li>
+                                        <li><a href="">Community forum</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a href="">Help</a></li>
+                    </ul>
+                    <div class="app-bar-element place-right">
+                        <a class="dropdown-toggle fg-white"><span class="mif-enter"></span> Enter</a>
+                        <div class="app-bar-drop-container place-right" data-role="dropdown" data-no-close="true">
+                            <div class="padding20">
+                                <form>
+                                    <h4 class="text-light">Login to service...</h4>
+                                    <div class="input-control text">
+                                        <span class="mif-user prepend-icon"></span>
+                                        <input type="text">
+                                    </div>
+                                    <div class="input-control text">
+                                        <span class="mif-lock prepend-icon"></span>
+                                        <input type="password">
+                                    </div>
+                                    <label class="input-control checkbox small-check">
+                                        <input type="checkbox">
+                                        <span class="check"></span>
+                                        <span class="caption">Remember me</span>
+                                    </label>
+                                    <div class="form-actions">
+                                        <button class="button primary">Login</button>
+                                        <button class="button link fg-grayLighter">Cancel</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h5>Red</h5>
+                <pre class="prettyprint linenums no-scroll"><code>
+                    &lt;div class="app-bar red"&gt;...&lt;/div&gt;
+                </code></pre>
+                <div class="app-bar red" data-role="appbar">
+                    <a class="app-bar-element branding">Metro UI CSS</a>
+                    <span class="app-bar-divider"></span>
+                    <ul class="app-bar-menu">
+                        <li><a href="">Home</a></li>
+                        <li>
+                            <a href="" class="dropdown-toggle">Products</a>
+                            <ul class="d-menu" data-role="dropdown">
+                                <li><a href="">Windows 10</a></li>
+                                <li><a href="">Spartan</a></li>
+                                <li><a href="">Outlook</a></li>
+                                <li><a href="">Office 2015</a></li>
+                                <li class="divider"></li>
+                                <li><a href="" class="dropdown-toggle">Other Products</a>
+                                    <ul class="d-menu" data-role="dropdown">
+                                        <li><a href="">Internet Explorer 10</a></li>
+                                        <li><a href="">Skype</a></li>
+                                        <li><a href="">Surface</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="" class="dropdown-toggle">Support</a>
+                            <ul class="d-menu" data-role="dropdown">
+                                <li><a href="">About</a></li>
+                                <li><a href="">Contacts</a></li>
+                                <li><a href="">Community forum</a></li>
+                                <li>
+                                    <a href="" class="dropdown-toggle">Support</a>
+                                    <ul class="d-menu" data-role="dropdown">
+                                        <li><a href="" class="dropdown-toggle">About</a></li>
+                                        <li><a href="">Contacts</a></li>
+                                        <li><a href="">Community forum</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a href="">Help</a></li>
+                    </ul>
+                    <div class="app-bar-element place-right">
+                        <a class="dropdown-toggle fg-white"><span class="mif-enter"></span> Enter</a>
+                        <div class="app-bar-drop-container place-right" data-role="dropdown" data-no-close="true">
+                            <div class="padding20">
+                                <form>
+                                    <h4 class="text-light">Login to service...</h4>
+                                    <div class="input-control text">
+                                        <span class="mif-user prepend-icon"></span>
+                                        <input type="text">
+                                    </div>
+                                    <div class="input-control text">
+                                        <span class="mif-lock prepend-icon"></span>
+                                        <input type="password">
+                                    </div>
+                                    <label class="input-control checkbox small-check">
+                                        <input type="checkbox">
+                                        <span class="check"></span>
+                                        <span class="caption">Remember me</span>
+                                    </label>
+                                    <div class="form-actions">
+                                        <button class="button primary">Login</button>
+                                        <button class="button link fg-grayLighter">Cancel</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h5>Green</h5>
+                <pre class="prettyprint linenums no-scroll"><code>
+                    &lt;div class="app-bar green"&gt;...&lt;/div&gt;
+                </code></pre>
+                <div class="app-bar green" data-role="appbar">
+                    <a class="app-bar-element branding">Metro UI CSS</a>
+                    <span class="app-bar-divider"></span>
+                    <ul class="app-bar-menu">
+                        <li><a href="">Home</a></li>
+                        <li>
+                            <a href="" class="dropdown-toggle">Products</a>
+                            <ul class="d-menu" data-role="dropdown">
+                                <li><a href="">Windows 10</a></li>
+                                <li><a href="">Spartan</a></li>
+                                <li><a href="">Outlook</a></li>
+                                <li><a href="">Office 2015</a></li>
+                                <li class="divider"></li>
+                                <li><a href="" class="dropdown-toggle">Other Products</a>
+                                    <ul class="d-menu" data-role="dropdown">
+                                        <li><a href="">Internet Explorer 10</a></li>
+                                        <li><a href="">Skype</a></li>
+                                        <li><a href="">Surface</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="" class="dropdown-toggle">Support</a>
+                            <ul class="d-menu" data-role="dropdown">
+                                <li><a href="">About</a></li>
+                                <li><a href="">Contacts</a></li>
+                                <li><a href="">Community forum</a></li>
+                                <li>
+                                    <a href="" class="dropdown-toggle">Support</a>
+                                    <ul class="d-menu" data-role="dropdown">
+                                        <li><a href="" class="dropdown-toggle">About</a></li>
+                                        <li><a href="">Contacts</a></li>
+                                        <li><a href="">Community forum</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a href="">Help</a></li>
+                    </ul>
+                    <div class="app-bar-element place-right">
+                        <a class="dropdown-toggle fg-white"><span class="mif-enter"></span> Enter</a>
+                        <div class="app-bar-drop-container place-right" data-role="dropdown" data-no-close="true">
+                            <div class="padding20">
+                                <form>
+                                    <h4 class="text-light">Login to service...</h4>
+                                    <div class="input-control text">
+                                        <span class="mif-user prepend-icon"></span>
+                                        <input type="text">
+                                    </div>
+                                    <div class="input-control text">
+                                        <span class="mif-lock prepend-icon"></span>
+                                        <input type="password">
+                                    </div>
+                                    <label class="input-control checkbox small-check">
+                                        <input type="checkbox">
+                                        <span class="check"></span>
+                                        <span class="caption">Remember me</span>
+                                    </label>
+                                    <div class="form-actions">
+                                        <button class="button primary">Login</button>
+                                        <button class="button link fg-grayLighter">Cancel</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h5>Orange</h5>
+                <pre class="prettyprint linenums no-scroll"><code>
+                    &lt;div class="app-bar orange"&gt;...&lt;/div&gt;
+                </code></pre>
+                <div class="app-bar orange" data-role="appbar">
+                    <a class="app-bar-element branding">Metro UI CSS</a>
+                    <span class="app-bar-divider"></span>
+                    <ul class="app-bar-menu">
+                        <li><a href="">Home</a></li>
+                        <li>
+                            <a href="" class="dropdown-toggle">Products</a>
+                            <ul class="d-menu" data-role="dropdown">
+                                <li><a href="">Windows 10</a></li>
+                                <li><a href="">Spartan</a></li>
+                                <li><a href="">Outlook</a></li>
+                                <li><a href="">Office 2015</a></li>
+                                <li class="divider"></li>
+                                <li><a href="" class="dropdown-toggle">Other Products</a>
+                                    <ul class="d-menu" data-role="dropdown">
+                                        <li><a href="">Internet Explorer 10</a></li>
+                                        <li><a href="">Skype</a></li>
+                                        <li><a href="">Surface</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="" class="dropdown-toggle">Support</a>
+                            <ul class="d-menu" data-role="dropdown">
+                                <li><a href="">About</a></li>
+                                <li><a href="">Contacts</a></li>
+                                <li><a href="">Community forum</a></li>
+                                <li>
+                                    <a href="" class="dropdown-toggle">Support</a>
+                                    <ul class="d-menu" data-role="dropdown">
+                                        <li><a href="" class="dropdown-toggle">About</a></li>
+                                        <li><a href="">Contacts</a></li>
+                                        <li><a href="">Community forum</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a href="">Help</a></li>
+                    </ul>
+                    <div class="app-bar-element place-right">
+                        <a class="dropdown-toggle fg-white"><span class="mif-enter"></span> Enter</a>
+                        <div class="app-bar-drop-container place-right" data-role="dropdown" data-no-close="true">
+                            <div class="padding20">
+                                <form>
+                                    <h4 class="text-light">Login to service...</h4>
+                                    <div class="input-control text">
+                                        <span class="mif-user prepend-icon"></span>
+                                        <input type="text">
+                                    </div>
+                                    <div class="input-control text">
+                                        <span class="mif-lock prepend-icon"></span>
+                                        <input type="password">
+                                    </div>
+                                    <label class="input-control checkbox small-check">
+                                        <input type="checkbox">
+                                        <span class="check"></span>
+                                        <span class="caption">Remember me</span>
+                                    </label>
+                                    <div class="form-actions">
+                                        <button class="button primary">Login</button>
+                                        <button class="button link fg-grayLighter">Cancel</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Small dropdown</h3>
+            <div class="example" data-text="example">
+                <div class="app-bar" data-role="appbar">
+                    <a class="app-bar-element branding">Metro UI CSS</a>
+                    <span class="app-bar-divider"></span>
+                    <ul class="app-bar-menu small-dropdown">
+                        <li><a href="">Home</a></li>
+                        <li>
+                            <a href="" class="dropdown-toggle">Products</a>
+                            <ul class="d-menu" data-role="dropdown">
+                                <li><a href="">Windows 10</a></li>
+                                <li><a href="">Spartan</a></li>
+                                <li><a href="">Outlook</a></li>
+                                <li><a href="">Office 2015</a></li>
+                                <li class="divider"></li>
+                                <li><a href="" class="dropdown-toggle">Other Products</a>
+                                    <ul class="d-menu" data-role="dropdown">
+                                        <li><a href="">Internet Explorer 10</a></li>
+                                        <li><a href="">Skype</a></li>
+                                        <li><a href="">Surface</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="" class="dropdown-toggle">Support</a>
+                            <ul class="d-menu" data-role="dropdown">
+                                <li><a href="">About</a></li>
+                                <li><a href="">Contacts</a></li>
+                                <li><a href="">Community forum</a></li>
+                                <li>
+                                    <a href="" class="dropdown-toggle">Support</a>
+                                    <ul class="d-menu" data-role="dropdown">
+                                        <li><a href="" class="dropdown-toggle">About</a></li>
+                                        <li><a href="">Contacts</a></li>
+                                        <li><a href="">Community forum</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a href="">Help</a></li>
+                    </ul>
+                    <div class="app-bar-element place-right">
+                        <a class="dropdown-toggle fg-white"><span class="mif-enter"></span> Enter</a>
+                        <div class="app-bar-drop-container place-right" data-role="dropdown" data-no-close="true">
+                            <div class="padding20 fg-dark">
+                                <form>
+                                    <h4 class="text-light">Login to service...</h4>
+                                    <div class="input-control text">
+                                        <span class="mif-user prepend-icon"></span>
+                                        <input type="text">
+                                    </div>
+                                    <div class="input-control text">
+                                        <span class="mif-lock prepend-icon"></span>
+                                        <input type="password">
+                                    </div>
+                                    <label class="input-control checkbox small-check">
+                                        <input type="checkbox">
+                                        <span class="check"></span>
+                                        <span class="caption">Remember me</span>
+                                    </label>
+                                    <div class="form-actions">
+                                        <button class="button primary">Login</button>
+                                        <button class="button link fg-grayLighter">Cancel</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <pre class="prettyprint linenums no-scroll"><code>
+                    &lt;div class="app-bar"&gt;
+                        &lt;ul class="app-bar-menu small-dropdown"&gt;
+                        ...
+                        &lt;/ul&gt;
+                    &lt;/div&gt;
+                </code></pre>
+
+            </div>
+
+        </div>
+
+        @@hit
+
+    </body>
+</html>
