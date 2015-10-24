@@ -1,0 +1,69 @@
+body {
+
+}
+
+.page-content {
+    padding-top: 48px;
+}
+
+.color-list li {
+    display: inline-block;
+    padding: 10px;
+    width: 14.2857%;
+}
+
+.prettyprint {
+    background-color: #eeeeee;
+    border: 0 !important;
+    border-width: 1px !important;
+    border-color: #eeeeee !important;
+    border-left: 8px #555555 solid !important;
+}
+
+.prettyprint ol {
+    background-color: transparent !important;
+}
+
+.prettyprint li {background-color: white !important; list-style-type: decimal !important; padding-left: 1em; border-bottom: 1px #eee solid;}
+.prettyprint li:last-child{border-bottom: 0;}
+.prettyprint code .tag {
+    font-size: .7rem;
+}
+
+.prettyprint {
+    overflow: hidden;
+    overflow-x: scroll;
+}
+
+.demo-grid .row > .cell {
+    padding: 10px;
+    background-color: darkgray;
+    color: white;
+    text-align: center;
+    border: 1px #000 solid;
+}
+
+.thumb {
+    background: white;
+    padding: 4px;
+    display: inline-block;
+    height: 2.375rem;
+    width: 2.375rem;
+    border: 1px transparent solid;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 800px) {
+    .app-bar.fixed-top {
+        position: relative !important;
+    }
+    .page-content {
+        padding-top: 0 !important;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .page-content {
+        padding-top: 32px;
+    }
+}

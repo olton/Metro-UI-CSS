@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Metro, a sleek, intuitive, and powerful framework for faster and easier web development for Windows Metro Style.">
+    <meta name="keywords" content="HTML, CSS, JS, JavaScript, framework, metro, front-end, frontend, web development">
+    <meta name="author" content="Sergey Pimenov and Metro UI CSS contributors">
+
+    <link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
+    <title>Grid :: Metro UI CSS - The front-end framework for developing projects on the web in Windows Metro Style</title>
+
+    <link href="css/metro.css" rel="stylesheet">
+    <link href="css/metro-icons.css" rel="stylesheet">
+    <link href="css/metro-responsive.css" rel="stylesheet">
+    <link href="css/metro-schemes.css" rel="stylesheet">
+
+    <link href="css/docs.css" rel="stylesheet">
+
+    <script src="js/jquery-2.1.3.min.js"></script>
+    <script src="js/metro.js"></script>
+    <script src="js/docs.js"></script>
+    <script src="js/prettify/run_prettify.js"></script>
+    <script src="js/ga.js"></script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+</head>
+<body>
+    <div class="container page-content">
+        <h1><a href="index.html" class="nav-button transform"><span></span></a>&nbsp;Simple grid</h1>
+
+        @@adsense
+
+        <div class="margin20 no-margin-left no-margin-right sub-header text-light">
+            Metro UI CSS includes a responsive fluid grid system that appropriately scales up to 12 columns. It includes predefined classes for easy layout options.
+        </div>
+
+        <div class="example" data-text="example">
+            <h5>Default grid</h5>
+            <div class="grid demo-grid">
+                <div class="row cells3">
+                    <div class="cell debug">1</div>
+                    <div class="cell debug">2</div>
+                    <div class="cell debug">3</div>
+                </div>
+                <div class="row cells12">
+                    <div class="cell debug">1</div>
+                    <div class="cell debug colspan10">2</div>
+                    <div class="cell debug">3</div>
+                </div>
+                <div class="row cells5">
+                    <div class="cell debug">1</div>
+                    <div class="cell debug colspan3">2</div>
+                    <div class="cell debug">3</div>
+                </div>
+                <div class="row cells12">
+                    <div class="cell debug">1</div>
+                    <div class="cell debug">2</div>
+                    <div class="cell debug">3</div>
+                    <div class="cell debug">4</div>
+                    <div class="cell debug">5</div>
+                    <div class="cell debug">6</div>
+                    <div class="cell debug">7</div>
+                    <div class="cell debug">8</div>
+                    <div class="cell debug">9</div>
+                    <div class="cell debug">10</div>
+                    <div class="cell debug">11</div>
+                    <div class="cell debug">12</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="example" data-text="example">
+            <h5>Offset for default grid</h5>
+            <div class="grid demo-grid">
+                <div class="row cells12">
+                    <div class="cell offset11">offset11</div>
+                </div>
+                <div class="row cells12">
+                    <div class="cell offset10 colspan2">offset10</div>
+                </div>
+                <div class="row cells12">
+                    <div class="cell offset9 colspan3">offset9</div>
+                </div>
+                <div class="row cells12">
+                    <div class="cell offset8 colspan4">offset8</div>
+                </div>
+                <div class="row cells12">
+                    <div class="cell offset7 colspan5">offset7</div>
+                </div>
+                <div class="row cells12">
+                    <div class="cell offset6 colspan6">offset6</div>
+                </div>
+                <div class="row cells12">
+                    <div class="cell offset5 colspan7">offset5</div>
+                </div>
+                <div class="row cells12">
+                    <div class="cell offset4 colspan8">offset4</div>
+                </div>
+                <div class="row cells12">
+                    <div class="cell offset3 colspan9">offset3</div>
+                </div>
+                <div class="row cells12">
+                    <div class="cell offset2 colspan10">offset2</div>
+                </div>
+                <div class="row cells12">
+                    <div class="cell offset1 colspan11">offset1</div>
+                </div>
+                <div class="row">
+                    <div class="cell">no offset</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="example" data-text="example">
+            <h5>Condensed grid</h5>
+            <div class="grid condensed demo-grid">
+                <div class="row cells3">
+                    <div class="cell debug">1</div>
+                    <div class="cell debug">2</div>
+                    <div class="cell debug">3</div>
+                </div>
+                <div class="row cells12">
+                    <div class="cell debug">1</div>
+                    <div class="cell debug colspan10">2</div>
+                    <div class="cell debug">3</div>
+                </div>
+                <div class="row cells5">
+                    <div class="cell debug">1</div>
+                    <div class="cell debug colspan3">2</div>
+                    <div class="cell debug">3</div>
+                </div>
+                <div class="row cells12">
+                    <div class="cell debug">1</div>
+                    <div class="cell debug">2</div>
+                    <div class="cell debug">3</div>
+                    <div class="cell debug">4</div>
+                    <div class="cell debug">5</div>
+                    <div class="cell debug">6</div>
+                    <div class="cell debug">7</div>
+                    <div class="cell debug">8</div>
+                    <div class="cell debug">9</div>
+                    <div class="cell debug">10</div>
+                    <div class="cell debug">11</div>
+                    <div class="cell debug">12</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="example" data-text="example">
+            <h5>Offset for condensed grid</h5>
+            <div class="grid condensed demo-grid">
+                <div class="row cells12">
+                    <div class="cell offset11">offset11</div>
+                </div>
+                <div class="row cells12">
+                    <div class="cell offset10 colspan2">offset10</div>
+                </div>
+                <div class="row cells12">
+                    <div class="cell offset9 colspan3">offset9</div>
+                </div>
+                <div class="row cells12">
+                    <div class="cell offset8 colspan4">offset8</div>
+                </div>
+                <div class="row cells12">
+                    <div class="cell offset7 colspan5">offset7</div>
+                </div>
+                <div class="row cells12">
+                    <div class="cell offset6 colspan6">offset6</div>
+                </div>
+                <div class="row cells12">
+                    <div class="cell offset5 colspan7">offset5</div>
+                </div>
+                <div class="row cells12">
+                    <div class="cell offset4 colspan8">offset4</div>
+                </div>
+                <div class="row cells12">
+                    <div class="cell offset3 colspan9">offset3</div>
+                </div>
+                <div class="row cells12">
+                    <div class="cell offset2 colspan10">offset2</div>
+                </div>
+                <div class="row cells12">
+                    <div class="cell offset1 colspan11">offset1</div>
+                </div>
+                <div class="row">
+                    <div class="cell">no offset</div>
+                </div>
+            </div>
+        </div>
+
+        <h3>Introduction</h3>
+        <p>
+            Grid systems are used to create page layouts through a series of rows and columns that house your content. Here's how the grid system works:
+        </p>
+        <ul>
+            <li>Rows must be placed within a <span class="tag info">.grid</span> container</li>
+            <li>Use rows to create horizontal groups of columns (container with class <span class="tag info">.row</span>).</li>
+            <li>Content should be placed within columns (container with class <span class="tag info">.cell</span>).</li>
+            <li>Default row contain one cell</li>
+            <li>To define cells count use builtin classes <span class="tag info">.cells2</span> ... <span class="tag info">.cells12</span> for row.</li>
+            <li>To create grid without cell margin, add class <span class="tag info">.condensed</span> to grid main container</li>
+            <li>Cells can extended and take the place of multiple cells using the classes <span class="tag info">.colspan2</span> ... <span class="tag info">.colspan12</span> </li>
+        </ul>
+
+        <div class="example" data-text="code">
+            <h5>HTML</h5>
+            <pre class="prettyprint linenums"><code>
+                &lt;div class="grid"&gt;
+                    &lt;div class="row cellsN"&gt;
+                        &lt;div class="cell"&gt;&lt;/div&gt;
+                        ...
+                        &lt;div class="cell"&gt;&lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            </code></pre>
+
+            <h5>Grid with one cell in row</h5>
+            <pre class="prettyprint linenums"><code>
+                &lt;div class="grid"&gt;
+                    &lt;div class="row"&gt;
+                        &lt;div class="cell"&gt;&lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            </code></pre>
+
+            <h5>Grid with four cells in a row</h5>
+            <pre class="prettyprint linenums"><code>
+                &lt;div class="grid"&gt;
+                    &lt;div class="row cells4"&gt;
+                        &lt;div class="cell"&gt;&lt;/div&gt;
+                        &lt;div class="cell"&gt;&lt;/div&gt;
+                        &lt;div class="cell"&gt;&lt;/div&gt;
+                        &lt;div class="cell"&gt;&lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            </code></pre>
+
+            <h5>Grid with two cells in a row and one cell extended over three size</h5>
+            <pre class="prettyprint linenums"><code>
+                &lt;div class="grid"&gt;
+                    &lt;div class="row cells4"&gt;
+                        &lt;div class="cell"&gt;&lt;/div&gt;
+                        &lt;div class="cell colspan3"&gt;&lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            </code></pre>
+        </div>
+    </div>
+
+    @@hit
+
+</body>
+</html>

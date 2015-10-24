@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Metro, a sleek, intuitive, and powerful framework for faster and easier web development for Windows Metro Style.">
+    <meta name="keywords" content="HTML, CSS, JS, JavaScript, framework, metro, front-end, frontend, web development">
+    <meta name="author" content="Sergey Pimenov and Metro UI CSS contributors">
+
+    <link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
+    <title>RTL Supprot :: Metro UI CSS - The front-end framework for developing projects on the web in Windows Metro Style</title>
+
+    <link href="css/metro.css" rel="stylesheet">
+    <link href="css/metro-icons.css" rel="stylesheet">
+    <link href="css/metro-rtl.css" rel="stylesheet">
+    <link href="css/metro-responsive.css" rel="stylesheet">
+    <link href="css/metro-schemes.css" rel="stylesheet">
+
+    <link href="css/docs.css" rel="stylesheet">
+
+    <script src="js/jquery-2.1.3.min.js"></script>
+    <script src="js/metro.js"></script>
+    <script src="js/docs.js"></script>
+    <script src="js/prettify/run_prettify.js"></script>
+    <script src="js/ga.js"></script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+</head>
+<body>
+    <div class="container page-content">
+        <h1><a href="index.html" class="nav-button transform"><span></span></a>&nbsp;RTL Support</h1>
+
+        @@adsense
+
+        <p>
+            To use <span class="tag info">rtl</span> support you must include <span class="tag">metro-rtl.css</span> in head of you page and set attribute <span class="tag">dir</span> to <span class="tag">rtl</span> for parent element or same element.
+        </p>
+
+
+        <h3 id="_typo_">Typography</h3>
+
+        <div class="example" data-text="code">
+            <pre class="prettyprint linenums no-scroll"><code>
+                &lt;link href="css/metro-rtl.css" rel="stylesheet"&gt;
+
+                &lt;div dir="rtl"&gt;
+                    &lt;h1&gt;...&lt;/h1&gt;
+                    &lt;p&gt;...&lt;/p&gt;
+                &lt;/div&gt;
+
+                &lt;p dir="rtl"&gt;...&lt;/p&gt;
+
+                &lt;article dir="rtl"&gt;...&lt;/article&gt;
+            </code></pre>
+        </div>
+
+        <div class="example" dir="rtl">
+            <h3>Paragraph</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean luctus lectus sit amet odio ullamcorper malesuada dignissim justo gravida. Pellentesque sagittis, tellus id sagittis accumsan, augue velit pretium urna, ac interdum dui nibh et orci. Quisque dapibus elit ut metus varius ac bibendum sem luctus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis sagittis lorem. Praesent ac eros quam.</p>
+
+            <hr class="thin bg-grayLighter"/>
+            <h3>Heading</h3>
+            <h1>h1. Metro RTL Heading</h1>
+            <h2>h2. Metro RTL Heading</h2>
+            <h3>h3. Metro RTL Heading</h3>
+            <h4>h4. Metro RTL Heading</h4>
+            <h5>h5. Metro RTL Heading</h5>
+            <h6>h6. Metro RTL Heading</h6>
+
+            <hr class="thin bg-grayLighter"/>
+            <h3>Lists</h3>
+            <ul>
+                <li>Lorem ipsum dolor sit amet</li>
+                <li>Consectetur adipiscing elit</li>
+                <li>Integer molestie lorem at massa</li>
+                <li>Facilisis in pretium nisl aliquet</li>
+                <li>Nulla volutpat aliquam velit
+                    <ul>
+                        <li>Phasellus iaculis neque</li>
+                        <li>Purus sodales ultricies</li>
+                        <li>Vestibulum laoreet porttitor sem</li>
+                        <li>Ac tristique libero volutpat at
+                            <ul>
+                                <li>Phasellus iaculis neque</li>
+                                <li>Purus sodales ultricies</li>
+                                <li>Vestibulum laoreet porttitor sem</li>
+                                <li>Ac tristique libero volutpat at</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>Faucibus porta lacus fringilla vel</li>
+                <li>Aenean sit amet erat nunc</li>
+                <li>Eget porttitor lorem</li>
+            </ul>
+
+            <hr class="thin bg-grayLighter"/>
+            <h3>Description</h3>
+            <h5>default</h5>
+            <dl>
+                <dt>Description lists</dt>
+                <dd>A description list is perfect for defining terms.</dd>
+                <dt>Euismod</dt>
+                <dd>Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.</dd>
+                <dd>Donec id elit non mi porta gravida at eget metus.</dd>
+                <dt>Malesuada porta</dt>
+                <dd>Etiam porta sem malesuada magna mollis euismod.</dd>
+            </dl>
+
+            <h5>horizontal</h5>
+            <dl class="horizontal">
+                <dt>Description lists</dt>
+                <dd>A description list is perfect for defining terms.</dd>
+                <dt>Euismod</dt>
+                <dd>Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.</dd>
+                <dd>Donec id elit non mi porta gravida at eget metus.</dd>
+                <dt>Malesuada porta</dt>
+                <dd>Etiam porta sem malesuada magna mollis euismod.</dd>
+            </dl>
+
+            <hr class="thin bg-grayLighter"/>
+            <h3>Blockquote</h3>
+            <blockquote>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                <small>Someone famous <cite title="Source Title">Source Title</cite></small>
+            </blockquote>
+        </div>
+
+        <h3 id="_inputs_">Input controls</h3>
+
+        <div class="example" data-text="code">
+            <pre class="prettyprint linenums no-scroll"><code>
+                &lt;div dir="rtl"&gt;
+                    &lt;div class="input-control text" data-role="input"&gt;
+                        &lt;input type="text" value="This is a text"&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+
+                &lt;div class="input-control text" data-role="input"  dir="rtl"&gt;
+                    &lt;input type="text" value="This is a text"&gt;
+                &lt;/div&gt;
+            </code></pre>
+        </div>
+
+        <div class="example" data-text="demo">
+            <div class="grid">
+                <div class="row cells4">
+                    <div class="cell" dir="rtl">
+                        <h5>Simple input</h5>
+                        <div class="input-control text" data-role="input">
+                            <input type="text" value="This is a text">
+                        </div>
+                    </div>
+                    <div class="cell" dir="rtl">
+                        <h5>Input with button</h5>
+                        <div class="input-control text" data-role="input">
+                            <input type="text" value="This is a text">
+                            <button class="button"><span class="mif-search"></span></button>
+                        </div>
+                    </div>
+                    <div class="cell" dir="rtl">
+                        <h5>Input with buttons group</h5>
+                        <div class="input-control text" data-role="input">
+                            <input type="text">
+                            <div class="button-group">
+                                <button class="button"><img src="images/location.png"></button>
+                                <button class="button"><img src="images/group.png"></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cell" dir="rtl">
+                        <h5>Prepend icon</h5>
+                        <div class="input-control text" data-role="input">
+                            <span class="prepend-icon mif-user"></span>
+                            <input type="text" value="This is a text">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row cells4">
+                    <div class="cell" dir="rtl">
+                        <h5>Helper clear</h5>
+                        <div class="input-control text" data-role="input">
+                            <input type="text" value="This is a text">
+                            <button class="button helper-button clear"><span class="mif-cross"></span></button>
+                        </div>
+                    </div>
+                    <div class="cell" dir="rtl">
+                        <h5>Helper reveal</h5>
+                        <div class="input-control password" data-role="input">
+                            <input type="password" value="This is a text">
+                            <button class="button helper-button reveal"><span class="mif-looks"></span></button>
+                        </div>
+                    </div>
+                    <div class="cell" dir="rtl">
+                        <h5>Input file</h5>
+                        <div class="input-control file" data-role="input">
+                            <input type="file">
+                            <button class="button"><span class="mif-folder"></span></button>
+                        </div>
+                    </div>
+                    <div class="cell" dir="rtl">
+                        <h5>Select</h5>
+                        <div class="input-control select">
+                            <select>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    @@hit
+
+</body>
+</html>

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Metro, a sleek, intuitive, and powerful framework for faster and easier web development for Windows Metro Style.">
+    <meta name="keywords" content="HTML, CSS, JS, JavaScript, framework, metro, front-end, frontend, web development">
+    <meta name="author" content="Sergey Pimenov and Metro UI CSS contributors">
+
+    <link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
+    <title>Tables :: Metro UI CSS - The front-end framework for developing projects on the web in Windows Metro Style</title>
+
+    <link href="css/metro.css" rel="stylesheet">
+    <link href="css/metro-icons.css" rel="stylesheet">
+    <link href="css/metro-responsive.css" rel="stylesheet">
+    <link href="css/metro-schemes.css" rel="stylesheet">
+
+    <link href="css/docs.css" rel="stylesheet">
+
+    <script src="js/jquery-2.1.3.min.js"></script>
+    <script src="js/metro.js"></script>
+    <script src="js/docs.js"></script>
+    <script src="js/prettify/run_prettify.js"></script>
+    <script src="js/ga.js"></script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+</head>
+<body>
+    <div class="container page-content">
+        <h1><a href="index.html" class="nav-button transform"><span></span></a>&nbsp;Table</h1>
+
+        @@adsense
+
+        <h3>Main demo</h3>
+        <p>
+            Switch on to enable Metro UI CSS table.
+        </p>
+        <div class="padding20 bg-grayLighter">
+            <label class="switch-original padding10">
+                <input type="checkbox" onchange="$('#main_table_demo').toggleClass('table'); $('#main_table_demo_keys').toggleClass('no-display')">
+                <span class="caption"> Off </span>
+                <span class="check"></span>
+                <span class="caption"> On </span>
+            </label>
+
+            <div class="inline-block no-display" id="main_table_demo_keys">
+                <label class="input-control checkbox small-check no-margin">
+                    <input type="checkbox" onchange="$('#main_table_demo').toggleClass('striped')">
+                    <span class="check"></span>
+                    <span class="caption">striped</span>
+                </label>
+                <label class="input-control checkbox small-check no-margin">
+                    <input type="checkbox" onchange="$('#main_table_demo').toggleClass('hovered')">
+                    <span class="check"></span>
+                    <span class="caption">hovered</span>
+                </label>
+                <label class="input-control checkbox small-check no-margin">
+                    <input type="checkbox" onchange="$('#main_table_demo').toggleClass('cell-hovered')">
+                    <span class="check"></span>
+                    <span class="caption">cell-hovered</span>
+                </label>
+                <label class="input-control checkbox small-check no-margin">
+                    <input type="checkbox" onchange="$('#main_table_demo').toggleClass('border')">
+                    <span class="check"></span>
+                    <span class="caption">border</span>
+                </label>
+                <label class="input-control checkbox small-check no-margin">
+                    <input type="checkbox" onchange="$('#main_table_demo').toggleClass('bordered')">
+                    <span class="check"></span>
+                    <span class="caption">bordered</span>
+                </label>
+            </div>
+        </div>
+        <br />
+
+        <div class="example" data-text="table">
+            <table class="" id="main_table_demo">
+                <thead>
+                <tr>
+                    <th>Header 1</th>
+                    <th>Header 2</th>
+                    <th>Header 3</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>a</td>
+                    <td>b</td>
+                    <td>c</td>
+                </tr>
+                <tr>
+                    <td>a</td>
+                    <td>b</td>
+                    <td>c</td>
+                </tr>
+                <tr>
+                    <td>a</td>
+                    <td>b</td>
+                    <td>c</td>
+                </tr>
+                <tr>
+                    <td>a</td>
+                    <td>b</td>
+                    <td>c</td>
+                </tr>
+                <tr>
+                    <td>a</td>
+                    <td>b</td>
+                    <td>c</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h5>Main class</h5>
+        <p>
+            To enable Metro UI CSS table style, you must add class <span class="tag info">table</span> to you table element.
+        </p>
+        <div class="example" data-text="code">
+            <pre class="prettyprint linenums"><code>
+                &lt;table class="table"&gt;...&lt;/table&gt;
+            </code></pre>
+        </div>
+        <h5>Additional classes</h5>
+        <p>
+            To enable any futures you can add sub-classes: <span class="tag">striped</span>, <span class="tag">hovered</span>, <span class="tag">cell-hovered</span>, <span class="tag">border</span>, <span class="tag">bordered</span>,  to you table element.
+        </p>
+        <div class="example" data-text="code">
+            <pre class="prettyprint linenums"><code>
+                &lt;table class="table striped hovered cell-hovered border bordered"&gt;...&lt;/table&gt;
+            </code></pre>
+        </div>
+
+        <h3>Sortable styling</h3>
+
+        <div class="example" data-text="example">
+            <table class="table border bordered sortable-markers-on-left">
+                <thead>
+                <tr>
+                    <th class="sortable-column ">Header 1</th>
+                    <th class="sortable-column sort-asc">Header 2  (sort marker left)</th>
+                    <th class="sortable-column ">Header 3</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>a</td>
+                    <td>b</td>
+                    <td>c</td>
+                </tr>
+                <tr>
+                    <td>a</td>
+                    <td>b</td>
+                    <td>c</td>
+                </tr>
+                </tbody>
+            </table>
+
+            <table class="table border bordered">
+                <thead>
+                <tr>
+                    <th class="sortable-column sort-asc">Header 1 (sort-asc)</th>
+                    <th class="sortable-column">Header 2</th>
+                    <th class="sortable-column sort-desc">Header 3 (sort-desc)</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>a</td>
+                    <td>b</td>
+                    <td>c</td>
+                </tr>
+                <tr>
+                    <td>a</td>
+                    <td>b</td>
+                    <td>c</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="example" data-text="code">
+            <h5>Sortable marker right</h5>
+            <pre class="prettyprint linenums"><code>
+                &lt;table class="table"&gt;
+                    &lt;thead>
+                        &lt;tr&gt;
+                            &lt;th class="sortable-column"&gt;Column&lt;/th&gt;
+                            &lt;th class="sortable-column sort-asc"&gt;Column&lt;/th&gt;
+                            &lt;th class="sortable-column sort-desc"&gt;Column&lt;/th&gt;
+                        &lt;/tr&gt;
+                    &lt;/thead&gt;
+                &lt;/table&gt;
+            </code></pre>
+
+            <h5>Sortable marker left</h5>
+            <pre class="prettyprint linenums"><code>
+                &lt;table class="table sortable-markers-on-left"&gt;
+                    &lt;thead>
+                        &lt;tr&gt;
+                            &lt;th class="sortable-column"&gt;Column&lt;/th&gt;
+                            &lt;th class="sortable-column sort-asc"&gt;Column&lt;/th&gt;
+                            &lt;th class="sortable-column sort-desc"&gt;Column&lt;/th&gt;
+                        &lt;/tr&gt;
+                    &lt;/thead&gt;
+                &lt;/table&gt;
+            </code></pre>
+        </div>
+
+
+        <div class="example" data-text="rows">
+            <table class="table border bordered hovered cell-hovered">
+                <thead>
+                <tr>
+                    <th>Header 1</th>
+                    <th>Header 2</th>
+                    <th>Header 3</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>a</td>
+                    <td>b</td>
+                    <td>c</td>
+                </tr>
+                <tr class="error">
+                    <td>a</td>
+                    <td>b</td>
+                    <td>c</td>
+                </tr>
+                <tr class="warning">
+                    <td>a</td>
+                    <td>b</td>
+                    <td>c</td>
+                </tr>
+                <tr class="info">
+                    <td>a</td>
+                    <td>b</td>
+                    <td>c</td>
+                </tr>
+                <tr class="success">
+                    <td>a</td>
+                    <td>b</td>
+                    <td>c</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    @@hit
+
+</body>
+</html>

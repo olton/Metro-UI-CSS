@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Metro, a sleek, intuitive, and powerful framework for faster and easier web development for Windows Metro Style.">
+    <meta name="keywords" content="HTML, CSS, JS, JavaScript, framework, metro, front-end, frontend, web development">
+    <meta name="author" content="Sergey Pimenov and Metro UI CSS contributors">
+
+    <link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
+    <title>Wizard :: Metro UI CSS - The front-end framework for developing projects on the web in Windows Metro Style</title>
+
+    <link href="css/metro.css" rel="stylesheet">
+    <link href="css/metro-icons.css" rel="stylesheet">
+    <link href="css/metro-responsive.css" rel="stylesheet">
+    <link href="css/metro-schemes.css" rel="stylesheet">
+
+    <link href="css/docs.css" rel="stylesheet">
+
+    <script src="js/jquery-2.1.3.min.js"></script>
+    <script src="js/metro.js"></script>
+    <script src="js/docs.js"></script>
+    <script src="js/prettify/run_prettify.js"></script>
+    <script src="js/ga.js"></script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+</head>
+<body>
+    <div class="container page-content">
+        <h1><a href="index.html" class="nav-button transform"><span></span></a>&nbsp;Wizard</h1>
+
+        @@adsense
+
+        <div class="example" data-text="example">
+            <div class="wizard" data-role="wizard">
+                <div class="steps">
+                    <div class="step">Page 1</div>
+                    <div class="step">Page 2</div>
+                    <div class="step">Page 3</div>
+                </div>
+            </div>
+        </div>
+        <div class="example" data-text="code">
+            <h5>Declarative style with attribute <span class="tag">data-role</span></h5>
+            <pre class="prettyprint linenums"><code>
+                &lt;div class="wizard" data-role="wizard"&gt;
+                    &lt;div class="steps"&gt;
+                        &lt;div class="step"&gt;Page 1&lt;/div&gt;
+                        &lt;div class="step"&gt;Page 2&lt;/div&gt;
+                        &lt;div class="step"&gt;Page 3&lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            </code></pre>
+            <h5>JavaScript style</h5>
+            <pre class="prettyprint linenums"><code>
+                &lt;div class="wizard" id="wizard"&gt;
+                    &lt;div class="steps"&gt;
+                        &lt;div class="step"&gt;Page 1&lt;/div&gt;
+                        &lt;div class="step"&gt;Page 2&lt;/div&gt;
+                        &lt;div class="step"&gt;Page 3&lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+
+                &lt;script&gt;
+                    $(function)(){
+                        $("#wizard").wizard();
+                    };
+                &lt;/script&gt;
+            </code></pre>
+        </div>
+
+        <h3>Options</h3>
+        <table class="table bordered border">
+            <thead>
+            <tr>
+                <td>Parameter</td>
+                <td>Data-*</td>
+                <td>Type</td>
+                <td>Default value</td>
+                <td>Description</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>stepper</td>
+                <td style="white-space: nowrap">data-stepper</td>
+                <td>boolean</td>
+                <td>true</td>
+                <td>show, hide stepper subcomponent</td>
+            </tr>
+            <tr>
+                <td>stepperType</td>
+                <td style="white-space: nowrap">data-stepper-type</td>
+                <td>string</td>
+                <td>default</td>
+                <td>define a type of stepper: square, cycle, diamond</td>
+            </tr>
+            <tr>
+                <td>stepperClickable</td>
+                <td style="white-space: nowrap">data-stepper-clickable</td>
+                <td>boolean</td>
+                <td>false</td>
+                <td>change wizard step by stepper item click</td>
+            </tr>
+            <tr>
+                <td>startPage</td>
+                <td style="white-space: nowrap">data-start-page</td>
+                <td>int</td>
+                <td>default</td>
+                <td>determines which page to start the wizard</td>
+            </tr>
+            <tr>
+                <td>finishStep</td>
+                <td style="white-space: nowrap">data-finish-step</td>
+                <td>int</td>
+                <td>default</td>
+                <td>determines which page to finish the wizard and activate finish button</td>
+            </tr>
+            <tr>
+                <td>locale</td>
+                <td style="white-space: nowrap">data-locale</td>
+                <td>string</td>
+                <td>en</td>
+                <td>determines locale (language) for wizard buttons</td>
+            </tr>
+            <tr>
+                <td>buttons</td>
+                <td style="white-space: nowrap">data-buttons</td>
+                <td>object</td>
+                <td>{cancel: true, help: true, prior: true, next: true, finish: true}</td>
+                <td>when a declarative definition of parameters parameter type of the object is specified in JSON format</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h5>Customize buttons</h5>
+        <p>
+            Buttons can be individually visually configured:
+        </p>
+        <pre class="prettyprint linenums"><code>
+            buttons: {
+                btn_type: {
+                    show: true || false,
+                    title: 'Cancel',
+                    cls: 'css class',
+                    group: 'right' || 'left'
+                }
+            }
+        </code></pre>
+        <div class="example" data-text="custom buttons">
+            <div class="wizard"
+                 data-role="wizard"
+                 data-buttons='{"next": "true", "prior": "true", "cancel": {"show": "true", "title": "Cancel wizard", "cls": "warning", "group": "right"}, "help": {"show": "true", "title": "Help Me!", "cls": "primary", "group": "right"}, "finish": {"show": "true", "title": "Finish step and Go!", "cls": "success", "group": "left"}}'
+                 data-stepper-clickable="true">
+                <div class="steps">
+                    <div class="step">Page 1</div>
+                    <div class="step">Page 2</div>
+                    <div class="step">Page 3</div>
+                </div>
+            </div>
+        </div>
+
+        <h3>Events</h3>
+        <table class="table bordered border">
+            <thead>
+            <tr>
+                <td>Event</td>
+                <td>Data-*</td>
+                <td>Params</td>
+                <td>Description</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>onCancel</td>
+                <td style="white-space: nowrap">data-on-cancel</td>
+                <td>(page, wiz)</td>
+                <td>The event fired when the button is pressed Cancel</td>
+            </tr>
+            <tr>
+                <td>onHelp</td>
+                <td style="white-space: nowrap">data-on-help</td>
+                <td>(page, wiz)</td>
+                <td>The event fired when the button is pressed Help</td>
+            </tr>
+            <tr>
+                <td>onPrior</td>
+                <td style="white-space: nowrap">data-on-prior</td>
+                <td>(page, wiz)</td>
+                <td>The event fired when the button is pressed Prior</td>
+            </tr>
+            <tr>
+                <td>onNext</td>
+                <td style="white-space: nowrap">data-on-next</td>
+                <td>(page, wiz)</td>
+                <td>The event fired when the button is pressed Next</td>
+            </tr>
+            <tr>
+                <td>onFinish</td>
+                <td style="white-space: nowrap">data-on-finish</td>
+                <td>(page, wiz)</td>
+                <td>The event fired when the button is pressed Finish</td>
+            </tr>
+            <tr>
+                <td>onPage</td>
+                <td style="white-space: nowrap">data-on-page</td>
+                <td>(page, wiz)</td>
+                <td>The event fired when the page changed</td>
+            </tr>
+            <tr>
+                <td>onStepCLick</td>
+                <td style="white-space: nowrap">data-on-step-cLick</td>
+                <td>(step)</td>
+                <td>The event fired when the stepper item is pressed</td>
+            </tr>
+            </tbody>
+        </table>
+        <br />
+    </div>
+
+    @@hit
+
+</body>
+</html>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Metro, a sleek, intuitive, and powerful framework for faster and easier web development for Windows Metro Style.">
+    <meta name="keywords" content="HTML, CSS, JS, JavaScript, framework, metro, front-end, frontend, web development">
+    <meta name="author" content="Sergey Pimenov and Metro UI CSS contributors">
+
+    <link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
+    <title>Keypad :: Metro UI CSS - The front-end framework for developing projects on the web in Windows Metro Style</title>
+
+    <link href="css/metro.css" rel="stylesheet">
+    <link href="css/metro-icons.css" rel="stylesheet">
+    <link href="css/metro-responsive.css" rel="stylesheet">
+    <link href="css/metro-schemes.css" rel="stylesheet">
+
+    <link href="css/docs.css" rel="stylesheet">
+
+    <script src="js/jquery-2.1.3.min.js"></script>
+    <script src="js/metro.js"></script>
+    <script src="js/docs.js"></script>
+    <script src="js/prettify/run_prettify.js"></script>
+    <script src="js/ga.js"></script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+</head>
+<body>
+    <div class="container page-content">
+        <h1><a href="index.html" class="nav-button transform"><span></span></a>&nbsp;Keypad</h1>
+
+        @@adsense
+
+        <div class="example" data-text="example">
+            <div class="grid">
+                <div class="row cells4">
+                    <div class="cell">
+                        <h5>Input text</h5>
+                        <div class="input-control text" data-role="keypad">
+                            <input type="text">
+                        </div>
+                    </div>
+                    <div class="cell">
+                        <h5>Input password</h5>
+                        <div class="input-control password" data-role="keypad">
+                            <input type="password">
+                        </div>
+                    </div>
+                    <div class="cell">
+                        <h5>Length control (ex: max 3 dig)</h5>
+                        <div class="input-control password" data-role="keypad" data-length="3">
+                            <input type="password">
+                        </div>
+                    </div>
+                    <div class="cell">
+                        <h5>Shuffle buttons</h5>
+                        <div class="input-control text" data-role="keypad" data-shuffle="true">
+                            <input type="text">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="example" data-text="code">
+            <pre class="prettyprint linenums"><code>
+                &lt;!-- Text --&gt;
+                &lt;div class="input-control text" data-role="keypad"&gt;
+                    &lt;input type="text"&gt;
+                &lt;/div&gt;
+
+                &lt;!-- Password --&gt;
+                &lt;div class="input-control password" data-role="keypad"&gt;
+                    &lt;input type="password"&gt;
+                &lt;/div&gt;
+
+                &lt;!-- Length --&gt;
+                &lt;div class="input-control password" data-role="keypad" data-length="3"&gt;
+                    &lt;input type="password"&gt;
+                &lt;/div&gt;
+
+                &lt;!-- Shuffle --&gt;
+                &lt;div class="input-control text" data-role="keypad" data-shuffle="true"&gt;
+                    &lt;input type="text"&gt;
+                &lt;/div&gt;
+            </code></pre>
+        </div>
+
+        <h3>Additional usage</h3>
+        <div class="example" data-text="example">
+            <div class="grid">
+                <div class="row cells3">
+                    <div class="cell">
+                        <h5>Standalone keypad</h5>
+                        <div class="input-control text">
+                            <input type="text" id="target1">
+                        </div>
+                        <div data-role="keypad" data-target="#target1"></div>
+                    </div>
+                    <div class="cell">
+                        <h5>Non standard usage</h5>
+                        <div class="input-control text">
+                            <input type="text" id="target2">
+                            <div class="button-group">
+                                <button class="button dropdown-toggle"><span class="mif-keyboard"></span></button>
+                                <div data-role="dropdown" data-no-close="true" style="right: 0;">
+                                    <div data-role="keypad" data-target="#target2"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cell">
+                        <h5>Non standard, shuffle</h5>
+                        <div class="input-control text">
+                            <input type="text" id="target3">
+                            <div class="button-group">
+                                <button class="button dropdown-toggle"><span class="mif-keyboard"></span></button>
+                                <div data-role="dropdown" data-no-close="true" style="right: 0;">
+                                    <div data-role="keypad" data-shuffle="true" data-target="#target3"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row cells3">
+                    <div class="cell">
+                        <h5>Custom keys</h5>
+                        <div class="input-control text" data-role="keypad" data-keys="q,w,e,r,t,y,u,i,o,p,a,s,d,f,g,h,j,k,l,z,x,c,v,b,n,m">
+                            <input type="text">
+                        </div>
+                    </div>
+                    <div class="cell">
+                        <h5>Custom keys, shuffle</h5>
+                        <div class="input-control text" data-role="keypad" data-shuffle="true" data-keys="q,w,e,r,t,y,u,i,o,p,a,s,d,f,g,h,j,k,l,z,x,c,v,b,n,m">
+                            <input type="text">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="example" data-text="code">
+            <pre class="prettyprint linenums"><code>
+                &lt;div class="input-control text"&gt;
+                    &lt;input type="text" id="target1"&gt;
+                &lt;/div&gt;
+                &lt;div data-role="keypad" data-target="#target1"&gt;&lt;/div&gt;
+
+                &lt;div class="input-control text"&gt;
+                    &lt;input type="text" id="target2"&gt;
+                    &lt;div class="button-group"&gt;
+                        &lt;button class="button dropdown-toggle"&gt;&lt;span class="mif-keyboard"&gt;&lt;/span&gt;&lt;/button&gt;
+                        &lt;div data-role="dropdown" data-no-close="true" style="right: 0;"&gt;
+                            &lt;div data-role="keypad" data-target="#target2"&gt;&lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+
+                &lt;div class="input-control text"&gt;
+                    &lt;input type="text" id="target3"&gt;
+                    &lt;div class="button-group"&gt;
+                        &lt;button class="button dropdown-toggle"&gt;&lt;span class="mif-keyboard"&gt;&lt;/span&gt;&lt;/button&gt;
+                        &lt;div data-role="dropdown" data-no-close="true" style="right: 0;"&gt;
+                            &lt;div data-role="keypad" data-shuffle="true" data-target="#target3"&gt;&lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+
+                &lt;div class="input-control text" data-role="keypad"
+                     data-keys="q,w,e,r,t,y,u,i,o,p,a,s,d,f,g,h,j,k,l,z,x,c,v,b,n,m"&gt;
+                    &lt;input type="text"&gt;
+                &lt;/div&gt;
+            </code></pre>
+        </div>
+
+        <h3>Events</h3>
+        <div class="example" data-text="example">
+            <div id="keypad-log1" class="padding20 debug">&nbsp;</div>
+            <div class="input-control text" data-role="keypad" data-on-change="$('#keypad-log1').text(this.value);">
+                <input type="text">
+                <button class="button"><span class="mif-key"></span></button>
+            </div>
+
+            <pre class="prettyprint linenums"><code>
+                &lt;div id="keypad-log1" class="padding20 debug"&gt;&nbsp;&lt;/div&gt;
+                &lt;div class="input-control text" data-role="keypad" data-on-change="$('#keypad-log1').text(this.value);"&gt;
+                    &lt;input type="text"&gt;
+                    &lt;button class="button"&gt;&lt;span class="mif-key"&gt;&lt;/span&gt;&lt;/button&gt;
+                &lt;/div&gt;
+            </code></pre>
+
+            <div id="keypad-log2" class="padding20 debug">&nbsp;</div>
+            <div class="input-control text" data-role="keypad" data-shuffle="true">
+                <input type="text" onchange="$('#keypad-log2').text(this.value);">
+                <button class="button"><span class="mif-key"></span></button>
+            </div>
+
+            <pre class="prettyprint linenums"><code>
+                &lt;div id="keypad-log2" class="padding20 debug"&gt;&nbsp;&lt;/div&gt;
+                &lt;div class="input-control text" data-role="keypad"&gt;
+                    &lt;input type="text" onchange="$('#keypad-log2').text(this.value);"&gt;
+                    &lt;button class="button"&gt;&lt;span class="mif-key"&gt;&lt;/span&gt;&lt;/button&gt;
+                &lt;/div&gt;
+            </code></pre>
+
+            <div class="input-control text">
+                <input type="text" id="t1" onchange="action();">
+            </div>
+            <div data-role="keypad" data-target="#t1"></div>
+
+            <script>
+                function action(){
+                    console.log('This is works!!!');
+                }
+            </script>
+        </div>
+    </div>
+
+    @@hit
+
+</body>
+</html>

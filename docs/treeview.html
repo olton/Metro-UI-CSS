@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Metro, a sleek, intuitive, and powerful framework for faster and easier web development for Windows Metro Style.">
+    <meta name="keywords" content="HTML, CSS, JS, JavaScript, framework, metro, front-end, frontend, web development">
+    <meta name="author" content="Sergey Pimenov and Metro UI CSS contributors">
+
+    <link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
+    <title>TreeView :: Metro UI CSS - The front-end framework for developing projects on the web in Windows Metro Style</title>
+
+    <link href="css/metro.css" rel="stylesheet">
+    <link href="css/metro-icons.css" rel="stylesheet">
+    <link href="css/metro-responsive.css" rel="stylesheet">
+    <link href="css/metro-schemes.css" rel="stylesheet">
+
+    <link href="css/docs.css" rel="stylesheet">
+
+    <script src="js/jquery-2.1.3.min.js"></script>
+    <script src="js/metro.js"></script>
+    <script src="js/docs.js"></script>
+    <script src="js/prettify/run_prettify.js"></script>
+    <script src="js/ga.js"></script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+</head>
+<body>
+    <div class="container page-content">
+        <h1><a href="index.html" class="nav-button transform"><span></span></a>&nbsp;TreeView</h1>
+
+        @@adsense
+
+        <div class="example" data-text="example">
+            <div class="grid">
+                <div class="row cells3">
+                    <div class="cell">
+                        <h5>TreeView</h5>
+                        <div class="treeview" data-role="treeview">
+                            <ul>
+                                <li class="node">
+                                    <span class="leaf">Favorites</span>
+                                    <span class="node-toggle"></span>
+                                    <ul>
+                                        <li><span class="leaf">Projects</span></li>
+                                        <li><span class="leaf">Downloads</span></li>
+                                        <li><span class="leaf">Desktop</span></li>
+                                    </ul>
+                                </li>
+                                <li class="node collapsed">
+                                    <span class="leaf">OneDrive</span>
+                                    <span class="node-toggle"></span>
+                                    <ul>
+                                        <li><span class="leaf">Documents</span></li>
+                                        <li class="node collapsed">
+                                            <span class="leaf">Projects</span>
+                                            <span class="node-toggle"></span>
+                                            <ul>
+                                                <li><span class="leaf">Metro UI CSS</span></li>
+                                                <li><span class="leaf">Restyle</span></li>
+                                                <li><a href="http://dnmarket.com" class="leaf">DNMarket</a></li>
+                                                <li><span class="leaf">Test Project</span></li>
+                                            </ul>
+                                        </li>
+                                        <li><span class="leaf">Photos</span></li>
+                                        <li><span class="leaf">Videos</span></li>
+                                        <li><span class="leaf">Music</span></li>
+                                    </ul>
+                                </li>
+                                <li><span class="leaf">Location</span></li>
+                                <li><span class="leaf">Computers</span></li>
+                                <li class="node collapsed">
+                                    <span class="node-toggle"></span>
+                                    <span class="leaf">Phones</span>
+                                </li>
+                                <li class="node">
+                                    <span class="leaf"><span class="mif-tree"></span> Network</span>
+                                    <span class="node-toggle"></span>
+                                    <ul>
+                                        <li><span class="leaf"><span class="icon mif-tablet"></span> ASUS</span></li>
+                                        <li><span class="leaf"><span class="icon mif-laptop"></span> BARACUDA</span></li>
+                                        <li><span class="leaf"><span class="icon mif-printer"></span> EPSON</span></li>
+                                        <li><span class="leaf"><span class="icon mif-database"></span> VUSOLO</span></li>
+                                        <li><span class="leaf"><span class="icon mif-phone"></span> GALAXY S4</span></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="cell">
+                        <h5>Checkbox &amp; Radio</h5>
+                        <div class="treeview" data-role="treeview">
+                            <ul>
+                                <li class="node">
+                                    <span class="node-toggle"></span>
+                                    <span class="leaf">Checkboxes</span>
+                                    <ul>
+                                        <li data-mode="checkbox" data-name="c1">
+                                            <span class="leaf">Play animations</span>
+                                        </li>
+                                        <li data-mode="checkbox" data-name="c2" data-checked="true">
+                                            <span class="leaf">Play sounds</span>
+                                        </li>
+                                        <li data-mode="checkbox" data-name="c3" data-disabled="true">
+                                            <span class="leaf">Disabled leaf</span>
+                                        </li>
+                                        <li data-mode="checkbox" data-name="c4" data-readonly="true" data-checked="true" data-value="1">
+                                            <span class="leaf">Read only</span>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="node">
+                                    <span class="node-toggle"></span>
+                                    <span class="leaf">Radio buttons</span>
+                                    <ul>
+                                        <li data-mode="radio" data-name="r1" data-checked="true">
+                                            <span class="leaf">Play animations</span>
+                                        </li>
+                                        <li data-mode="radio" data-name="r1">
+                                            <span class="leaf">Play sounds</span>
+                                        </li>
+                                        <li data-mode="radio" data-name="r1" data-disabled="true">
+                                            <span class="leaf">Disabled leaf</span>
+                                        </li>
+                                        <li data-mode="radio" data-name="r1">
+                                            <span class="leaf">Show pictures</span>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="node">
+                                    <span class="node-toggle"></span>
+                                    <span class="leaf">Mixed</span>
+                                    <ul>
+                                        <li data-mode="checkbox" data-name="c1">
+                                            <span class="leaf">Play animations</span>
+                                        </li>
+                                        <li data-mode="radio" data-name="r2" data-checked="true">
+                                            <span class="leaf">Play animations</span>
+                                        </li>
+                                        <li data-mode="radio" data-name="r2">
+                                            <span class="leaf">Play sounds</span>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="cell">
+                        <h5>Indeterminate</h5>
+                        <div class="treeview" data-role="treeview">
+                            <ul>
+                                <li class="node" data-mode="checkbox" data-name="c0">
+                                    <span class="leaf">Indeterminate</span>
+                                    <span class="node-toggle"></span>
+                                    <ul>
+                                        <li data-mode="checkbox" data-name="c1" class="node">
+                                            <span class="leaf">Play video</span>
+                                            <span class="node-toggle"></span>
+                                            <ul>
+                                                <li data-mode="checkbox" data-name="c1_1">
+                                                    <span class="leaf">AVI</span>
+                                                </li>
+                                                <li data-mode="checkbox" data-name="c1_2">
+                                                    <span class="leaf">MPEG</span>
+                                                </li>
+                                                <li data-mode="checkbox" data-name="c1_3">
+                                                    <span class="leaf">VIDX</span>
+                                                </li>
+                                                <li data-mode="checkbox" data-name="c1_3">
+                                                    <span class="leaf">XVID</span>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li data-mode="checkbox" data-name="c2" class="node">
+                                            <span class="leaf">Options</span>
+                                            <span class="node-toggle"></span>
+                                            <ul>
+                                                <li data-mode="checkbox" data-name="c2_1">
+                                                    <span class="leaf">Option 1</span>
+                                                </li>
+                                                <li data-mode="checkbox" data-name="c2_2">
+                                                    <span class="leaf">Option 2</span>
+                                                </li>
+                                                <li data-mode="checkbox" data-name="c2_3" class="node">
+                                                    <span class="leaf">Sub Options</span>
+                                                    <span class="node-toggle"></span>
+                                                    <ul>
+                                                        <li data-mode="checkbox" data-name="c2_3_1">
+                                                            <span class="leaf">Sub Option 1</span>
+                                                        </li>
+                                                        <li data-mode="checkbox" data-name="c2_3_2">
+                                                            <span class="leaf">Sub Option 2</span>
+                                                        </li>
+                                                        <li data-mode="checkbox" data-name="c2_3_3">
+                                                            <span class="leaf">Sub Option 3</span>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li data-mode="checkbox" data-name="c3_1_1">
+                                            <span class="leaf">Other</span>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- End of example -->
+
+        <div class="example" data-text="code">
+            <h5>Simple tree</h5>
+            <pre class="prettyprint linenums"><code>
+                &lt;div class="treeview" data-role="treeview"&gt;
+                    &lt;ul&gt;
+                        &lt;li&gt;&lt;span class="leaf"&gt;Leaf name&lt;/span&gt;&lt;/li&gt;
+                        ...
+                        &lt;li&gt;
+                            &lt;span class="leaf"&gt;Leaf name&lt;/span&gt;
+                            &lt;ul&gt;
+                                &lt;li&gt;&lt;span class="leaf"&gt;Leaf name&lt;/span&gt;&lt;/li&gt;
+                                ...
+                                &lt;li&gt;&lt;span class="leaf"&gt;Leaf name&lt;/span&gt;&lt;/li&gt;
+                            &lt;/ul&gt;
+                        &lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/div&gt;
+            </code></pre>
+
+            <h5>Create node</h5>
+            <pre class="prettyprint linenums"><code>
+                &lt;li class="node"&gt;
+                    &lt;span class="leaf"&gt;Leaf name&lt;/span&gt;
+                    &lt;span class="node-toggle"&gt;&lt;/span&gt;
+                    &lt;ul&gt;
+                        &lt;li&gt;&lt;span class="leaf"&gt;Leaf name&lt;/span&gt;&lt;/li&gt;
+                        ...
+                        &lt;li&gt;&lt;span class="leaf"&gt;Leaf name&lt;/span&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/li&gt;
+            </code></pre>
+
+            <h5>Create collapsed node</h5>
+            <pre class="prettyprint linenums"><code>
+                &lt;li class="node collapsed"&gt;
+                    &lt;span class="leaf"&gt;Leaf name&lt;/span&gt;
+                    &lt;span class="node-toggle"&gt;&lt;/span&gt;
+                    &lt;ul&gt;
+                        &lt;li&gt;&lt;span class="leaf"&gt;Leaf name&lt;/span&gt;&lt;/li&gt;
+                        ...
+                        &lt;li&gt;&lt;span class="leaf"&gt;Leaf name&lt;/span&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/li&gt;
+            </code></pre>
+
+            <h5>Create anchor leaf</h5>
+            <pre class="prettyprint linenums"><code>
+                &lt;li&gt;
+                    &lt;a href="..." class="leaf"&gt;Leaf name&lt;/a&gt;
+                &lt;/li&gt;
+            </code></pre>
+
+            <h5>Create leaf with icon (ex: Font Awesome), required class <span class="tag">icon</span> </h5>
+            <pre class="prettyprint linenums"><code>
+                &lt;li&gt;
+                    &lt;span class="leaf"&gt;&lt;span class="icon mif-tablet"&gt;&lt;/span&gt; Leaf name&lt;/span&gt;
+                &lt;/li&gt;
+            </code></pre>
+
+            <h5>Create leaf with icon (ex: img), required class <span class="tag">icon</span> </h5>
+            <pre class="prettyprint linenums"><code>
+                &lt;li&gt;
+                    &lt;span class="leaf"&gt;&lt;img src="..." class="icon"&gt; Leaf name&lt;/span&gt;
+                &lt;/li&gt;
+            </code></pre>
+
+            <h5>Create leaf with checkbox</h5>
+            <pre class="prettyprint linenums"><code>
+                &lt;li data-mode="checkbox" data-name="checkbox_name" data-checked="true"&gt;
+                    &lt;span class="leaf"&gt;Leaf name&lt;/span&gt;
+                &lt;/li&gt;
+            </code></pre>
+
+            <h5>Create leaf with radio button</h5>
+            <pre class="prettyprint linenums"><code>
+                &lt;li data-mode="radio" data-name="radio_name" data-checked="true"&gt;
+                    &lt;span class="leaf"&gt;Leaf name&lt;/span&gt;
+                &lt;/li&gt;
+            </code></pre>
+        </div> <!-- End of code example -->
+
+        <h3>Additional examples</h3>
+        <div class="example" data-text="code">
+            <h5>Add leaf on click on leaf</h5>
+            <p class="text-small">Click on Root or any leaf</p>
+            <div class="treeview debug"
+                 data-role="treeview"
+                 id="tree_add_leaf_example"
+                 data-double-click="false"
+                 data-on-click="tree_add_leaf_example_click">
+                <ul>
+                    <li><span class="leaf">Root</span></li>
+                </ul>
+            </div>
+
+            <script>
+                function tree_add_leaf_example_click(leaf, node, pnode, tree){
+                    tree.addLeaf(node, "Leaf item");
+                }
+            </script>
+
+            <pre class="prettyprint linenums"><code>
+
+                &lt;div class="treeview"
+                     data-role="treeview"
+                     id="tree_add_leaf_example"
+                     data-double-click="false"
+                     data-on-click="tree_add_leaf_example_click"&gt;
+                    &lt;ul&gt;
+                        &lt;li&gt;&lt;span class="leaf"&gt;Root&lt;/span&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/div&gt;
+
+                &lt;script&gt;
+                    function tree_add_leaf_example_click(leaf, node, pnode, tree){
+                        tree.addLeaf(node, "Leaf item");
+                    }
+                &lt;/script&gt;
+
+            </code></pre>
+
+            <h5>Add leaf on runtime</h5>
+            <p class="text-small">Click on leaf, then click button "Add leaf" or click button "Add root"</p>
+            <button onclick="tree_add_root_runtime_example_click()" class="button success small-button">Add root</button>
+            <button onclick="tree_add_leaf_runtime_example_click()" class="button primary small-button">Add leaf</button>
+            <div class="treeview debug" style="margin-top: 10px"
+                 data-role="treeview"
+                 id="tree_add_leaf_runtime_example">
+                <ul>
+                    <li><span class="leaf">Root</span></li>
+                </ul>
+            </div>
+
+            <script>
+                function tree_add_root_runtime_example_click(){
+                    var tree = $("#tree_add_leaf_runtime_example").data("treeview");
+
+                    tree.addLeaf(false, "Root");
+                }
+                function tree_add_leaf_runtime_example_click(){
+                    var tree = $("#tree_add_leaf_runtime_example").data("treeview");
+                    var node = tree.element.find('li.active');
+
+                    tree.addLeaf(node, "Leaf item");
+                }
+            </script>
+
+            <pre class="prettyprint linenums"><code>
+
+                &lt;div class="treeview"
+                     data-role="treeview"
+                     id="tree_add_leaf_runtime_example"&gt;
+                    &lt;ul&gt;
+                        &lt;li&gt;&lt;span class="leaf"&gt;Root&lt;/span&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/div&gt;
+
+                &lt;script&gt;
+                    function tree_add_root_runtime_example_click(){
+                        var tree = $("#tree_add_leaf_runtime_example").data("treeview");
+
+                        tree.addLeaf(false, "Root");
+                    }
+
+                    function tree_add_leaf_runtime_example_click(){
+                        var tree = $("#tree_add_leaf_runtime_example").data("treeview");
+                        var node = tree.element.find('li.active');
+
+                        tree.addLeaf(node, "Leaf item");
+                    }
+                &lt;/script&gt;
+
+            </code></pre>
+
+            <h5>Add leaf with checkbox and radio</h5>
+            <p class="text-small">Click on leaf, then click button "Add leaf" or click button "Add root"</p>
+            <button onclick="tree_add_root_runtime_example_click2()" class="button success small-button">Add root</button>
+            <button onclick="tree_add_leaf_checkbox_example_click()" class="button primary small-button">Add leaf with checkbox</button>
+            <button onclick="tree_add_leaf_radio_example_click()" class="button primary small-button">Add leaf with radio</button>
+            <div class="treeview debug" style="margin-top: 10px"
+                 data-role="treeview"
+                 id="tree_add_leaf_runtime_example2">
+                <ul>
+                    <li><span class="leaf">Root</span></li>
+                </ul>
+            </div>
+
+            <script>
+                function tree_add_root_runtime_example_click2(){
+                    var tree = $("#tree_add_leaf_runtime_example2").data("treeview");
+
+                    tree.addLeaf(false, "Root");
+                }
+                function tree_add_leaf_checkbox_example_click(){
+                    var tree = $("#tree_add_leaf_runtime_example2").data("treeview");
+                    var node = tree.element.find('li.active');
+
+                    tree.addLeaf(node, "Leaf item", {
+                        mode: 'checkbox'
+                    });
+                }
+                function tree_add_leaf_radio_example_click(){
+                    var tree = $("#tree_add_leaf_runtime_example2").data("treeview");
+                    var node = tree.element.find('li.active');
+
+                    tree.addLeaf(node, "Leaf item", {
+                        mode: 'radio',
+                        name: 'r1'
+                    });
+                }
+            </script>
+
+            <pre class="prettyprint linenums"><code>
+
+                &lt;div class="treeview"
+                     data-role="treeview"
+                     id="tree_add_leaf_runtime_example2"&gt;
+                    &lt;ul&gt;
+                        &lt;li&gt;&lt;span class="leaf"&gt;Root&lt;/span&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/div&gt;
+
+                &lt;script&gt;
+                    function tree_add_leaf_checkbox_example_click(){
+                        var tree = $("#tree_add_leaf_runtime_example2").data("treeview");
+                        var node = tree.element.find('li.active');
+
+                        tree.addLeaf(node, "Leaf item", {
+                            mode: 'checkbox',
+                            checked: (Math.round(Math.random()) === 0 ? false : true)
+                        });
+                    }
+
+                    function tree_add_leaf_radio_example_click(){
+                        var tree = $("#tree_add_leaf_runtime_example2").data("treeview");
+                        var node = tree.element.find('li.active');
+
+                        tree.addLeaf(node, "Leaf item", {
+                            mode: 'radio',
+                            name: 'r1',
+                            checked: (Math.round(Math.random()) === 0 ? false : true)
+                        });
+                    }
+                &lt;/script&gt;
+
+            </code></pre>
+        </div>
+    </div>
+
+    @@hit
+
+</body>
+</html>
