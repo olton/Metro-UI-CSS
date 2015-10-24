@@ -12764,7 +12764,6 @@ input[type="submit"].link:active {
 }
 .tabcontrol .frames {
   width: 100%;
-  overflow: hidden;
   position: relative;
 }
 .tabcontrol .frames .frame {
@@ -12849,7 +12848,6 @@ input[type="submit"].link:active {
 }
 .tabcontrol2 .frames {
   width: 100%;
-  overflow: hidden;
   position: relative;
 }
 .tabcontrol2 .frames .frame {

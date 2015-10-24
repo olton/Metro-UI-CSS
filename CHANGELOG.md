@@ -10,6 +10,8 @@
 * upd panel remove default padding for panel content
 * add textarea autoresize with max height
 * fix calendar for support const METRO_CURRENT_LOCALE
+* fix tabcontrol frames overflow
+* new font icons (+42)
 
 ## 3.0.12
 * add color schemes for calendar
