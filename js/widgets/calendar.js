@@ -18,7 +18,7 @@ $.widget("metro.calendar", {
         buttonToday: true,
         buttonClear: true,
         syncCalenderToDateField: true,
-        locale: 'en',
+        locale: window.METRO_CURRENT_LOCALE,
         actions: true,
         condensedGrid: false,
         scheme: 'default',

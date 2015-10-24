@@ -318,14 +318,41 @@
 
         <h4>Textarea</h4>
         <div class="example" data-text="example">
-            <div class="input-control textarea full-size">
-                <textarea></textarea>
+            <div class="grid">
+                <div class="row cells3">
+                    <div class="cell">
+                        <h5>Default</h5>
+                        <div class="input-control textarea full-size">
+                            <textarea></textarea>
+                        </div>
+                    </div>
+                    <div class="cell">
+                        <h5>Auto resize height</h5>
+                        <div class="input-control textarea full-size" data-role="input" data-text-auto-resize="true">
+                            <textarea></textarea>
+                        </div>
+                    </div>
+                    <div class="cell">
+                        <h5>Auto resize with max height</h5>
+                        <div class="input-control textarea full-size" data-role="input" data-text-auto-resize="true" data-text-max-height="200">
+                            <textarea></textarea>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
         <div class="example" data-text="code">
             <pre class="prettyprint linenums"><code>
                 &lt;div class="input-control textarea"&gt;
+                    &lt;textarea&gt;&lt;/textarea&gt;
+                &lt;/div&gt;
+                &lt;div class="input-control textarea"
+                    data-role="input" data-text-auto-resize="true"&gt;
+                    &lt;textarea&gt;&lt;/textarea&gt;
+                &lt;/div&gt;
+                &lt;div class="input-control textarea"
+                    data-role="input" data-text-auto-resize="true" data-text-max-height="200"&gt;
                     &lt;textarea&gt;&lt;/textarea&gt;
                 &lt;/div&gt;
             </code></pre>
