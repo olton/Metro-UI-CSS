@@ -8,6 +8,8 @@
 * upd draggable add data-z-index attribute
 * upd f-menu add subclass default-dropdown
 * upd panel remove default padding for panel content
+* add textarea autoresize with max height
+* fix calendar for support const METRO_CURRENT_LOCALE
 
 ## 3.0.12
 * add color schemes for calendar

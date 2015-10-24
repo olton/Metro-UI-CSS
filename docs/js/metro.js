@@ -176,8 +176,8 @@ window.METRO_LOCALES = {
             'Gen', ' Feb', 'Mar', 'Apr', 'Mag', 'Giu', 'Lug', 'Ago', 'Set', 'Ott', 'Nov', 'Dic'
         ],
         days: [
-            'Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato', 'Domenica',
-            'Lun', 'Mar', 'Mer', 'Gio', 'Ven', 'Sab', 'Dom'
+            'Domenica', 'Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato', 
+            'Dom', 'Lun', 'Mar', 'Mer', 'Gio', 'Ven', 'Sab'
         ],
         buttons: [
             "Oggi", "Cancella", "Cancel", "Help", "Prior", "Next", "Finish"
@@ -2293,7 +2293,7 @@ $.widget("metro.calendar", {
         buttonToday: true,
         buttonClear: true,
         syncCalenderToDateField: true,
-        locale: 'en',
+        locale: window.METRO_CURRENT_LOCALE,
         actions: true,
         condensedGrid: false,
         scheme: 'default',
@@ -5030,7 +5030,9 @@ $.widget("metro.input", {
     version: "3.0.0",
 
     options: {
-        showLabelOnValue: false
+        showLabelOnValue: false,
+        textAutoResize: false,
+        textMaxHeight: 0
     },
 
     _create: function(){
@@ -5092,7 +5094,7 @@ $.widget("metro.input", {
         wrapper.insertAfter(input);
         input.attr('tabindex', '-1');
         button.attr('type', 'button');
-        wrapper.attr('placeholder', input.attr('placeholder'))
+        wrapper.attr('placeholder', input.attr('placeholder'));
 
         input.on('change', function(){
             var val = $(this).val();
@@ -5163,7 +5165,41 @@ $.widget("metro.input", {
     },
 
     _createInputTextarea: function(){
+        var element = this.element, that = this, o = this.options;
+        var textarea = element.find('textarea');
 
+        console.log(textarea);
+
+        var fitTextarea = function(){
+            textarea.css({
+                "resize": 'none',
+                "overflow-y": 'hidden'
+            });
+
+            textarea[0].style.height = 0;
+
+            var adjust = textarea[0].scrollHeight;
+
+            if (o.textMaxHeight > 0) {
+                if (o.textMaxHeight > adjust) {
+                    textarea[0].style.height = adjust + 'px';
+                } else {
+                    textarea[0].style.height = o.textMaxHeight + 'px';
+                }
+            } else {
+                textarea[0].style.height = adjust + 'px';
+            }
+        };
+
+        if (o.textAutoResize) {
+            textarea.on('keyup', fitTextarea);
+            textarea.on('keydown', fitTextarea);
+            textarea.on('change', fitTextarea);
+            textarea.on('focus', fitTextarea);
+            textarea.on('cut', fitTextarea);
+            textarea.on('paste', fitTextarea);
+            textarea.on('drop', fitTextarea);
+        }
     },
 
     _destroy: function(){
