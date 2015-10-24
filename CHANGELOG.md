@@ -2,7 +2,7 @@
 
 ## 3.0.14
 * fix tabcontrol frames overflow
-git 
+
 ## 3.0.13
 * upd treeview for method addLeaf, now method returned li
 * upd bower config
