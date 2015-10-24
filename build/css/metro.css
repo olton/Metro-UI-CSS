@@ -12690,7 +12690,6 @@ input[type="submit"].link:active {
   color: #ffffff;
 }
 .tabcontrol {
-  overflow: hidden;
   position: relative;
   width: 100%;
 }
@@ -12774,7 +12773,6 @@ input[type="submit"].link:active {
   background-color: #999999;
 }
 .tabcontrol2 {
-  overflow: hidden;
   position: relative;
   width: 100%;
 }
