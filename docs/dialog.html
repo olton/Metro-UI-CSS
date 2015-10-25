@@ -261,6 +261,129 @@
             </tr>
             </tbody>
         </table>
+
+        <h3 id="_dialog-ajax_">Dialog content loaded with ajax</h3>
+        <div class="example">
+            <div data-role="dialog" id="dialog-ajax" class="padding20" data-close-button="true" data-href="dialog-ajax-demo-data.html" data-width="600"></div>
+            <div data-role="dialog" id="dialog-video-content" class="padding20" data-background="bg-dark" data-close-button="true"
+                 data-content='<iframe src="https://player.vimeo.com/video/86430443" frameborder="0"  allowfullscreen></iframe>' data-width="600" data-content-type="video"></div>
+
+            <button class="button" onclick="showMetroDialog('#dialog-ajax')">Ajax demo</button>
+            <button class="button" onclick="showMetroDialog('#dialog-video-content')">Video content demo</button>
+
+            <pre class="prettyprint linenums no-scroll-x"><code>
+                &lt;div data-role="dialog" id="dialog-ajax" class="padding20"
+                    data-close-button="true"
+                    data-href="dialog-ajax-demo-data.html"
+                    data-width="600"&gt;&lt;/div&gt;
+
+                &lt;div data-role="dialog" id="dialog-video-content"
+                    data-background="bg-dark"
+                    data-close-button="true"
+                    data-content='&lt;iframe src="https://player.vimeo.com/video/86430443"&gt;&lt;/iframe&gt;'
+                    data-width="600"
+                    data-content-type="video"&gt;&lt;/div&gt;
+            </code></pre>
+
+        </div>
+
+        <h3>Dialog place with attribute data-place</h3>
+        <div class="example">
+            <div data-role="dialog" id="dialog-place-default" class="padding20" data-close-button="true">
+                <h1>Simple dialog</h1>
+                <p>
+                    This dialog placed default
+                </p>
+            </div>
+            <div data-role="dialog" id="dialog-place-top-left" class="padding20" data-close-button="true" data-place="top-left">
+                <h1>Simple dialog</h1>
+                <p>
+                    This dialog placed top-left
+                </p>
+            </div>
+            <div data-role="dialog" id="dialog-place-top-center" class="padding20" data-close-button="true" data-place="top-center">
+                <h1>Simple dialog</h1>
+                <p>
+                    This dialog placed top-center
+                </p>
+            </div>
+            <div data-role="dialog" id="dialog-place-top-right" class="padding20" data-close-button="true" data-place="top-right">
+                <h1>Simple dialog</h1>
+                <p>
+                    This dialog placed top-right
+                </p>
+            </div>
+            <div data-role="dialog" id="dialog-place-bottom-left" class="padding20" data-close-button="true" data-place="bottom-left">
+                <h1>Simple dialog</h1>
+                <p>
+                    This dialog placed bottom-left
+                </p>
+            </div>
+            <div data-role="dialog" id="dialog-place-bottom-center" class="padding20" data-close-button="true" data-place="bottom-center">
+                <h1>Simple dialog</h1>
+                <p>
+                    This dialog placed bottom-center
+                </p>
+            </div>
+            <div data-role="dialog" id="dialog-place-bottom-right" class="padding20" data-close-button="true" data-place="bottom-right">
+                <h1>Simple dialog</h1>
+                <p>
+                    This dialog placed bottom-right
+                </p>
+            </div>
+            <div data-role="dialog" id="dialog-place-center-left" class="padding20" data-close-button="true" data-place="center-left">
+                <h1>Simple dialog</h1>
+                <p>
+                    This dialog placed center-left
+                </p>
+            </div>
+            <div data-role="dialog" id="dialog-place-center-right" class="padding20" data-close-button="true" data-place="center-right">
+                <h1>Simple dialog</h1>
+                <p>
+                    This dialog placed center-right
+                </p>
+            </div>
+            <button class="button bg-grayLighter" onclick="toggleMetroDialog('#dialog-place-default')">default</button>
+            <button class="button bg-grayLighter" onclick="toggleMetroDialog('#dialog-place-top-left')">top-left</button>
+            <button class="button bg-grayLighter" onclick="toggleMetroDialog('#dialog-place-top-center')">top-center</button>
+            <button class="button bg-grayLighter" onclick="toggleMetroDialog('#dialog-place-top-right')">top-right</button>
+            <button class="button bg-grayLighter" onclick="toggleMetroDialog('#dialog-place-bottom-left')">bottom-left</button>
+            <button class="button bg-grayLighter" onclick="toggleMetroDialog('#dialog-place-bottom-center')">bottom-center</button>
+            <button class="button bg-grayLighter" onclick="toggleMetroDialog('#dialog-place-bottom-right')">bottom-right</button>
+            <button class="button bg-grayLighter" onclick="toggleMetroDialog('#dialog-place-center-left')">center-left</button>
+            <button class="button bg-grayLighter" onclick="toggleMetroDialog('#dialog-place-center-right')">center-right</button>
+        </div>
+
+        <h3>Utility functions</h3>
+        <p>
+            Metro UI CSS provides global utility function for open, close and toggle dialogs.
+        </p>
+        <ul>
+            <li>Open dialog - showMetroDialog(el [, place])</li>
+            <li>Close dialog - hideMetroDialog(el)</li>
+            <li>Toggle dialog - toggleMetroDialog(el [, place])</li>
+        </ul>
+        <div class="example">
+            <div data-role="dialog" id="dialog-uf-1" class="padding20" data-close-button="true">
+                <h1>Simple dialog</h1>
+                <p>
+                    This dialog opened with utility function
+                </p>
+            </div>
+
+            <button class="button" onclick="showMetroDialog('#dialog-uf-1')">Open dialog</button>
+            <button class="button" onclick="hideMetroDialog('#dialog-uf-1')">Close dialog</button>
+            <button class="button" onclick="toggleMetroDialog('#dialog-uf-1')">Toggle dialog</button>
+            <button class="button" onclick="toggleMetroDialog('#dialog-uf-1', 'top-left')">Open dialog top-left</button>
+
+            <pre class="prettyprint linenums no-scroll-x"><code>
+                &lt;button class="button" onclick="showMetroDialog('#dialog-uf-1')"&gt;Open dialog&lt;/button&gt;
+                &lt;button class="button" onclick="hideMetroDialog('#dialog-uf-1')"&gt;Close dialog&lt;/button&gt;
+                &lt;button class="button" onclick="toggleMetroDialog('#dialog-uf-1')"&gt;Toggle dialog&lt;/button&gt;
+                &lt;button class="button" onclick="toggleMetroDialog('#dialog-uf-1', 'top-left')"&gt;Toggle dialog&lt;/button&gt;
+                &lt;button class="button" onclick="showMetroDialog('#dialog-uf-1', 'top-left')"&gt;Show dialog&lt;/button&gt;
+            </code></pre>
+        </div>
     </div>
 
     @@hit

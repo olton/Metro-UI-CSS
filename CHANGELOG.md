@@ -2,6 +2,9 @@
 
 ## 3.0.14
 * fix tabcontrol frames overflow
+* upd dialog, add utility function showMetroDialog, hideMetroDialog
+* upd dialog, add place option
+* upd dialog, add set content options
 
 ## 3.0.13
 * upd treeview for method addLeaf, now method returned li
