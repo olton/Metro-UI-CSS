@@ -131,7 +131,7 @@
                         <div class="input-control text">
                             <input id="slider_input2" value="0">
                         </div>
-                        <pre class="prettyprint linenums"><code>
+                        <pre class="prettyprint linenums no-scroll-x"><code>
                             &lt;div class="slider large"
                                     data-target="#slider_input"
                                     data-role="slider"
@@ -140,6 +140,21 @@
                             &lt;div class="input-control text"&gt;
                                 &lt;input id="slider_input" value="0"&gt;
                             &lt;/div&gt;
+                        </code></pre>
+
+                        <h5>Put slider value to non input on data-target</h5>
+                        <div class="slider large" data-target="#slider-target-non-input" data-role="slider" data-max-value="1000" data-min-value="0"></div>
+                        <button class="button primary">Send value <span id="slider-target-non-input">0</span></button>
+                        <pre class="prettyprint linenums no-scroll-x"><code>
+                            &lt;div class="slider large"
+                                 data-target="#slider-target-non-input"
+                                 data-role="slider"
+                                 data-max-value="1000"
+                                 data-min-value="0"&gt;&lt;/div&gt;
+                            &lt;button class="button primary"&gt;
+                                Send value
+                                &lt;span id="slider-target-non-input"&gt;0&lt;/span&gt;
+                            &lt;/button&gt;
                         </code></pre>
                     </div>
                 </div>
