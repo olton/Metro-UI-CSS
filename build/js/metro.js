@@ -3829,7 +3829,7 @@ $.widget( "metro.datatable" , {
 // Source: js/widgets/datepicker.js
 $.widget("metro.datepicker", {
 
-    version: "3.0.0",
+    version: "3.0.14",
 
     options: {
         format: "yyyy.mm.dd",
@@ -4005,7 +4005,7 @@ $.widget("metro.datepicker", {
 // Source: js/widgets/dialog.js
 $.widget( "metro.dialog" , {
 
-    version: "3.0.0",
+    version: "3.0.14",
 
     options: {
         modal: false,
@@ -6749,7 +6749,7 @@ $.widget( "metro.select" , {
 // Source: js/widgets/slider.js
 $.widget("metro.slider", {
 
-    version: "3.0.0",
+    version: "3.0.14",
 
     options: {
         position: 0,
@@ -6832,6 +6832,15 @@ $.widget("metro.slider", {
 
         var event_down = isTouchDevice() ? 'touchstart' : 'mousedown';
 
+        if (o.target && $(o.target)[0].tagName == 'INPUT') {
+            $(o.target).on('keyup', function(){
+                var input_value = this.value !== undefined ? this.value : 0;
+                var new_value = Math.min(input_value, o.maxValue);
+                that._placeMarker(that._realValueToValue(new_value));
+                //console.log(that._realValueToValue(this.value));
+            });
+        }
+
         element.children('.marker').on(event_down, function (e) {
             e.preventDefault();
             that._startMoveMarker(e);
@@ -6843,7 +6852,6 @@ $.widget("metro.slider", {
         });
 
         element.data('slider', this);
-
     },
 
     _startMoveMarker: function(e){
@@ -6853,17 +6861,18 @@ $.widget("metro.slider", {
         var event_move = isTouchDevice() ? 'touchmove' : 'mousemove';
         var event_up = isTouchDevice() ? 'touchend' : 'mouseup mouseleave';
 
-        $(element).on(event_move, function (event) {
+        $(document).on(event_move, function (event) {
             that._movingMarker(event);
             if (!element.hasClass('permanent-hint')) {
                 hint.css('display', 'block');
             }
         });
-        $(element).on(event_up, function () {
-            $(element).off('mousemove');
-            $(element).off('mouseup');
+        $(document).on(event_up, function () {
+            $(document).off('mousemove');
+            $(document).off('mouseup');
             element.data('value', o.position);
             element.trigger('changed', o.position);
+            element.trigger('change', o.position);
 
             returnedValue = o.returnType === 'value' ? that._valueToRealValue(o.position) : o.position;
 
@@ -6922,7 +6931,12 @@ $.widget("metro.slider", {
         var returnedValue = o.returnType === 'value' ? this._valueToRealValue(o.position) : o.position;
 
         if (o.target) {
-            $(o.target).val(returnedValue);
+            if ($(o.target)[0].tagName == 'INPUT') {
+                $(o.target).val(returnedValue);
+            } else {
+                $(o.target).html(returnedValue);
+            }
+            $(o.target).trigger('change', returnedValue);
         }
 
         if (typeof o.onChange === 'function') {
@@ -6987,6 +7001,13 @@ $.widget("metro.slider", {
         real_value = value * percent_value + o.minValue;
 
         return Math.round(real_value);
+    },
+
+    _realValueToValue: function(value){
+        var o = this.options, val_val;
+        var percent_value = (o.maxValue - o.minValue) / 100;
+        val_val = value / percent_value + o.minValue;
+        return Math.round(val_val);
     },
 
     _animate: function (obj, val) {
@@ -7105,7 +7126,12 @@ $.widget("metro.slider", {
             returnedValue = o.returnType === 'value' ? this._valueToRealValue(o.position) : o.position;
 
             if (o.target) {
-                $(o.target).val(returnedValue);
+                if ($(o.target)[0].tagName == 'INPUT') {
+                    $(o.target).val(returnedValue);
+                } else {
+                    $(o.target).html(returnedValue);
+                }
+                $(o.target).trigger('change', returnedValue);
             }
 
             if (typeof o.onChange === 'function') {

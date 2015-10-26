@@ -1,6 +1,6 @@
 $.widget( "metro.dialog" , {
 
-    version: "3.0.0",
+    version: "3.0.14",
 
     options: {
         modal: false,
