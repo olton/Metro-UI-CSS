@@ -7,6 +7,7 @@ $.widget( "metro.keypad" , {
         shuffle: false,
         length: false,
         keys: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'],
+        size: 32,
         onKey: function(key){},
         onChange: function(value){}
     },
@@ -51,7 +52,7 @@ $.widget( "metro.keypad" , {
         }
 
         keypad.html('').css({
-            width: keys_length / 4 * 32 + (keys_length / 4 + 1) * 2 + 2
+            width: keys_length / 4 * o.size + (keys_length / 4 + 1) * 2 + 2
         });
 
         keys.map(function(i){
