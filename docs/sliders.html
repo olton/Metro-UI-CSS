@@ -63,7 +63,7 @@
                         <div class="slider large" data-on-change="showSliderChange" data-role="slider" data-show-hint="true" data-position="35" data-permanent-hint="true" data-hint-position="bottom" data-max-value="1000" data-min-value="-300"></div>
                         <script>
                             function showSliderChange(value, slider){
-                                console.log(value);
+                                //console.log(value);
                             }
                         </script>
                     </div>
@@ -179,6 +179,24 @@
             </code></pre>
         </div>
 
+        <h4>Slider Buffer</h4>
+        <div class="example" data-text="example">
+            <br />
+            <br />
+            <div class="slider" data-role="slider" data-position="35" data-buffer="75"></div>
+            <div class="slider large" data-role="slider" data-position="35" data-buffer="75"></div>
+            <br />
+            <br />
+            <div class="slider" data-role="slider" data-vertical="true" data-buffer="75" data-position="35"></div>
+            <div class="slider large" data-role="slider" data-vertical="true" data-buffer="75" data-position="35"></div>
+        </div>
+
+        <div class="example" data-text="code">
+            <pre class="prettyprint linenums"><code>
+                &lt;div class="slider" data-role="slider" data-position="35" data-buffer="75"&gt;&lt;/div&gt;
+            </code></pre>
+        </div>
+
         <h3>Options</h3>
         <table class="table bordered border">
             <thead>
@@ -197,6 +215,13 @@
                 <td>int</td>
                 <td>0</td>
                 <td>Init position for slider</td>
+            </tr>
+            <tr>
+                <td>buffer</td>
+                <td style="white-space: nowrap">data-buffer</td>
+                <td>int</td>
+                <td>0</td>
+                <td>buffer size (0-100) in percent for slider (great for player)</td>
             </tr>
             <tr>
                 <td>accuracy</td>

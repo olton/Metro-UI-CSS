@@ -9,11 +9,11 @@
     margin-bottom: 10px;
 
     .marker {
-        height: 12px;
-        width: 12px;
+        height: 16px;
+        width: 16px;
         cursor: pointer;
         position: absolute;
-        top: 0;
+        top: -2px;
         left: 0;
         background-color: @dark;
         z-index: 2;
@@ -27,8 +27,23 @@
         height: 100%;
         width: auto;
         background-color: @teal;
+        z-index: 2;
+        transition: background .3s ease;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .buffer {
+        height: 6px;
+        width: auto;
+        background-color: @white;
         z-index: 1;
         transition: background .3s ease;
+        position: absolute;
+        top: 50%;
+        margin-top: -3px;
+        left: 0;
     }
 
     & > .slider-hint {
@@ -72,7 +87,7 @@
 		}
 
         .marker {
-            left: 0 ;
+            left: -2px ;
         }
 
         .complete {
@@ -81,6 +96,17 @@
             width: 100% ;
             bottom: 0;
             left: 0;
+            top: auto;
+        }
+
+        .buffer {
+            position: absolute;
+            height: auto;
+            width: 6px ;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+            top: auto;
         }
 
         .slider-hint {
@@ -120,9 +146,16 @@
 	&.large {
 		height: 24px;
 
+        .buffer {
+            height: 12px;
+            top: 50%;
+            margin-top: -6px;
+        }
+
 		.marker {
 			width: 24px;
 			height: 24px;
+            top: 0;
 		}
 
 		.slider-hint {
@@ -132,6 +165,22 @@
 		&.vertical {
 			width: 24px;
 			height: 100px;
+
+            .buffer {
+                width: 12px;
+                top: auto;
+                margin-left: -6px;
+            }
+
+            .marker {
+                left: 0;
+            }
 		}
 	}
+}
+
+.slider.cycle-marker {
+    .marker {
+        border-radius: 50%;
+    }
 }

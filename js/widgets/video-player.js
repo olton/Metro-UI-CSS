@@ -125,6 +125,13 @@ $.widget( "metro.video" , {
         video.on("canplay", function(){
             controls.fadeIn();
             preloader.hide();
+            var buffered = video_obj.buffered.length ? Math.round(Math.floor(video_obj.buffered.end(0)) / Math.floor(video_obj.duration) * 100) : 0;
+            that._setBufferSize(buffered);
+        });
+
+        video.on('progress', function(){
+            var buffered = video_obj.buffered.length ? Math.round(Math.floor(video_obj.buffered.end(0)) / Math.floor(video_obj.duration) * 100) : 0;
+            that._setBufferSize(buffered);
         });
 
         video.on("timeupdate", function(){
@@ -143,6 +150,7 @@ $.widget( "metro.video" , {
         video.on('ended', function(){
             that._stopVideo();
         });
+
     },
 
     _timeToString: function(time){
@@ -169,6 +177,13 @@ $.widget( "metro.video" , {
         var video = element.find("video"), video_obj = video[0];
         var slider = element.find(".stream-slider").data("slider");
         slider.value(Math.round(video_obj.currentTime * 100 / element.data('duration')));
+    },
+
+    _setBufferSize: function(value){
+        var that = this, element = this.element, element_obj = element[0], o = this.options;
+        var video = element.find("video"), video_obj = video[0];
+        var slider = element.find(".stream-slider").data("slider");
+        slider.buffer(Math.round(value));
     },
 
     _stopVideo: function(){
@@ -229,13 +244,13 @@ $.widget( "metro.video" , {
             showHint: true,
             animate: false,
             markerColor: 'bg-red',
-            completeColor: 'ribbed-cyan',
+            completeColor: 'bg-cyan',
             onStartChange: function(){
                 video_obj.pause();
             },
             onChanged: function(value, slider){
-                //if (video_obj.seekable.length > 0)
-                video_obj.currentTime = (element.data('duration') * value / 100).toFixed(0);
+                if (video_obj.seekable.length > 0)
+                    video_obj.currentTime = (element.data('duration') * value / 100).toFixed(0);
 
                 if (element.data('played') && video_obj.currentTime > 0)
                     video_obj.play();
@@ -318,7 +333,7 @@ $.widget( "metro.video" , {
             showHint: true,
             animate: false,
             markerColor: 'bg-red',
-            completeColor: 'ribbed-green',
+            completeColor: 'bg-green',
             onChange: function(value, slider){
                 video_obj.volume = value/100;
                 that._setupVolumeButton();

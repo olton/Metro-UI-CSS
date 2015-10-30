@@ -4,9 +4,11 @@ $.widget("metro.slider", {
 
     options: {
         position: 0,
+        buffer: 0,
         accuracy: 0,
         color: 'default',
         completeColor: 'default',
+        bufferColor: 'default',
         markerColor: 'default',
         colors: false,
         showHint: false,
@@ -15,7 +17,7 @@ $.widget("metro.slider", {
         vertical: false,
         min: 0,
         max: 100,
-        animate: true,
+        animate: false,
         minValue: 0,
         maxValue: 100,
         currValue: 0,
@@ -25,6 +27,7 @@ $.widget("metro.slider", {
         onStartChange: function(){},
         onChange: function(value, slider){},
         onChanged: function(value, slider){},
+        onBufferChange: function(value, slider){},
 
         _slider : {
             vertical: false,
@@ -55,12 +58,16 @@ $.widget("metro.slider", {
             }
         });
 
+        element.data('internal_id', uniqueId());
+        //console.log(element.data('internal_id'));
+
         o.accuracy = o.accuracy < 0 ? 0 : o.accuracy;
         o.min = o.min < 0 ? 0 : o.min;
         o.min = o.min > o.max ? o.max : o.min;
         o.max = o.max > 100 ? 100 : o.max;
         o.max = o.max < o.min ? o.min : o.max;
         o.position = this._correctValue(element.data('position') > o.min ? (element.data('position') > o.max ? o.max : element.data('position')) : o.min);
+        o.buffer = this._correctValue(element.data('buffer') > o.min ? (element.data('buffer') > o.max ? o.max : element.data('buffer')) : o.min);
         o.colors = o.colors ? o.colors.split(",") : false;
 
         s.vertical = o.vertical;
@@ -82,6 +89,7 @@ $.widget("metro.slider", {
         this._createSlider();
         this._initPoints();
         this._placeMarker(o.position);
+        this._showBuffer(o.buffer);
 
         var event_down = isTouchDevice() ? 'touchstart' : 'mousedown';
 
@@ -112,16 +120,6 @@ $.widget("metro.slider", {
         element.on(event_down, function (e) {
             e.preventDefault();
             that._startMoveMarker(e);
-            //if (typeof o.onStartChange === 'function') {
-            //    o.onStartChange();
-            //} else {
-            //    if (typeof window[o.onStartChange] === 'function') {
-            //        window[o.onStartChange]();
-            //    } else {
-            //        var result = eval("(function(){"+o.onStartChange+"})");
-            //        result.call();
-            //    }
-            //}
         });
 
         element.data('slider', this);
@@ -134,15 +132,15 @@ $.widget("metro.slider", {
         var event_move = isTouchDevice() ? 'touchmove' : 'mousemove';
         var event_up = isTouchDevice() ? 'touchend' : 'mouseup mouseleave';
 
-        $(document).on(event_move, function (event) {
+        $(element).on(event_move, function (event) {
             that._movingMarker(event);
             if (!element.hasClass('permanent-hint')) {
                 hint.css('display', 'block');
             }
         });
-        $(document).on(event_up, function () {
-            $(document).off('mousemove');
-            $(document).off('mouseup');
+        $(element).on(event_up, function () {
+            $(element).off('mousemove');
+            $(element).off('mouseup');
             element.data('value', o.position);
             element.trigger('changed', o.position);
             element.trigger('change', o.position);
@@ -363,11 +361,12 @@ $.widget("metro.slider", {
     _createSlider: function(){
         var element = this.element,
             o = this.options,
-            complete, marker, hint;
+            complete, marker, hint, buffer;
 
         element.html('');
 
         complete = $("<div/>").addClass("complete").appendTo(element);
+        buffer = $("<div/>").addClass("buffer").appendTo(element);
         marker = $("<a/>").addClass("marker").appendTo(element);
 
         if (o.showHint) {
@@ -386,6 +385,13 @@ $.widget("metro.slider", {
                 complete.css('background-color', o.completeColor);
             } else {
                 complete.addClass(o.completeColor);
+            }
+        }
+        if (o.bufferColor !== 'default') {
+            if (o.bufferColor.isColor()) {
+                buffer.css('background-color', o.bufferColor);
+            } else {
+                buffer.addClass(o.bufferColor);
             }
         }
         if (o.markerColor !== 'default') {
@@ -430,9 +436,66 @@ $.widget("metro.slider", {
                 }
             }
 
+            //if (typeof o.onChanged === 'function') {
+            //    o.onChanged(returnedValue, element);
+            //} else {
+            //    if (typeof window[o.onChanged] === 'function') {
+            //        window[o.onChanged](returnedValue, element);
+            //    } else {
+            //        var result = eval("(function(){"+o.onChanged+"})");
+            //        result.call(returnedValue, element);
+            //    }
+            //}
+
             return this;
         } else {
             returnedValue = o.returnType === 'value' ? this._valueToRealValue(o.position) : o.position;
+            return returnedValue;
+        }
+    },
+
+    _showBuffer: function(value){
+        var size, oldSize, o = this.options, element = this.element,
+            buffer = this.element.children('.buffer');
+
+        oldSize = o.buffer;
+        size = value == 100 ? 99.9 : value;
+
+        if (o._slider.vertical) {
+            this._animate(buffer.css('height', oldSize+'%'),{height: size+'%'});
+
+        } else {
+            this._animate(buffer.css('width', oldSize+'%'),{width: size+'%'});
+        }
+    },
+
+    buffer: function (value) {
+        var element = this.element, o = this.options, returnedValue;
+
+        if (typeof value !== 'undefined') {
+
+            value = value > 100 ? 100 : value;
+            value = value < 0 ? 0 : value;
+
+            this._showBuffer(parseInt(value));
+            o.buffer = parseInt(value);
+
+            returnedValue = o.buffer;
+
+            if (typeof o.onBufferChange === 'function') {
+                o.onBufferChange(returnedValue, element);
+            } else {
+                if (typeof window[o.onBufferChange] === 'function') {
+                    window[o.onBufferChange](returnedValue, element);
+                } else {
+                    var result = eval("(function(){"+o.onBufferChange+"})");
+                    result.call(returnedValue, element);
+                }
+            }
+
+            return this;
+        } else {
+            returnedValue = o.buffer;
             return returnedValue;
         }
     },
