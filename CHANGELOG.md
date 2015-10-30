@@ -7,6 +7,8 @@
 * upd dialog, add set content options
 * upd slider, add work with non input target
 * upd slider, add two way binding with target 
+* upd slider, add new Events: onStartChange, onChanged
+* add video player
 
 ## 3.0.13
 * upd treeview for method addLeaf, now method returned li
