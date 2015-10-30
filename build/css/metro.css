@@ -13366,11 +13366,11 @@ input[type="submit"].link:active {
   margin-bottom: 10px;
 }
 .slider .marker {
-  height: 12px;
-  width: 12px;
+  height: 16px;
+  width: 16px;
   cursor: pointer;
   position: absolute;
-  top: 0;
+  top: -2px;
   left: 0;
   background-color: #1d1d1d;
   z-index: 2;
@@ -13384,8 +13384,22 @@ input[type="submit"].link:active {
   height: 100%;
   width: auto;
   background-color: #00aba9;
+  z-index: 2;
+  transition: background .3s ease;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.slider .buffer {
+  height: 6px;
+  width: auto;
+  background-color: #ffffff;
   z-index: 1;
   transition: background .3s ease;
+  position: absolute;
+  top: 50%;
+  margin-top: -3px;
+  left: 0;
 }
 .slider > .slider-hint {
   background-color: #ffffff;
@@ -13420,7 +13434,7 @@ input[type="submit"].link:active {
   margin-left: 0;
 }
 .slider.vertical .marker {
-  left: 0 ;
+  left: -2px;
 }
 .slider.vertical .complete {
   position: absolute;
@@ -13428,6 +13442,16 @@ input[type="submit"].link:active {
   width: 100% ;
   bottom: 0;
   left: 0;
+  top: auto;
+}
+.slider.vertical .buffer {
+  position: absolute;
+  height: auto;
+  width: 6px ;
+  bottom: 0;
+  left: 50%;
+  margin-left: -3px;
+  top: auto;
 }
 .slider.vertical .slider-hint {
   left: 100%;
@@ -13453,9 +13477,15 @@ input[type="submit"].link:active {
 .slider.large {
   height: 24px;
 }
+.slider.large .buffer {
+  height: 12px;
+  top: 50%;
+  margin-top: -6px;
+}
 .slider.large .marker {
   width: 24px;
   height: 24px;
+  top: 0;
 }
 .slider.large .slider-hint {
   min-width: 30px;
@@ -13463,6 +13493,17 @@ input[type="submit"].link:active {
 .slider.large.vertical {
   width: 24px;
   height: 100px;
+}
+.slider.large.vertical .buffer {
+  width: 12px;
+  top: auto;
+  margin-left: -6px;
+}
+.slider.large.vertical .marker {
+  left: 0;
+}
+.slider.cycle-marker .marker {
+  border-radius: 50%;
 }
 .tile-area {
   min-width: 100%;
@@ -16966,20 +17007,12 @@ p [data-hint] {
   margin: 0 2px;
   background: inherit;
 }
-.video-player .controls .control-slider .slider .complete {
-  -webkit-animation: ani-bg-stripes 2s linear infinite;
-          animation: ani-bg-stripes 2s linear infinite;
-}
 .video-player .controls .volume-slider-wrapper {
   width: 6rem;
 }
 .video-player .controls .stream-slider-wrapper {
   float: none;
   width: 100%;
-}
-.video-player .controls .stream-slider-wrapper .slider .complete {
-  -webkit-animation: ani-bg-stripes 2s linear infinite;
-          animation: ani-bg-stripes 2s linear infinite;
 }
 .video-player .controls .control-button {
   float: left;

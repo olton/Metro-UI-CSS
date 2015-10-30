@@ -9,6 +9,7 @@
 * upd slider, add two way binding with target 
 * upd slider, add new Events: onStartChange, onChanged
 * add video player
+* upd slider, add buffer (great for player)
 
 ## 3.0.13
 * upd treeview for method addLeaf, now method returned li
