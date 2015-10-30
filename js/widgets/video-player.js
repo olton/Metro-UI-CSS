@@ -343,12 +343,6 @@ $.widget( "metro.video" , {
             } else {
                 if (element.data('fullScreen')) {
 
-                    $(document).on("keyup.metro_video_player", function(e){
-                        if (e.keyCode == 27) {
-                            screen_button.html(o.screenMoreButton);
-                            element.data('fullScreen', false);
-                        }
-                    });
 
                     if (element_obj.requestFullscreen) {
                         element_obj.requestFullscreen();
@@ -361,8 +355,6 @@ $.widget( "metro.video" , {
                     }
                 } else {
 
-                    $(document).off("keyup.metro_video_player");
-
                     if(document.exitFullscreen) {
                         document.exitFullscreen();
                     } else if(document.mozCancelFullScreen) {
@@ -371,6 +363,20 @@ $.widget( "metro.video" , {
                         document.webkitExitFullscreen();
                     }
                 }
+            }
+
+            if (element.data('fullScreen')) {
+                $(document).on("keyup.metro_video_player", function(e){
+                    if (e.keyCode == 27) {
+                        screen_button.html(o.screenMoreButton);
+                        element.data('fullScreen', false);
+                        if (element.hasClass('full-screen')) {
+                            element.removeClass("full-screen");
+                        }
+                    }
+                });
+            } else {
+                $(document).off("keyup.metro_video_player");
             }
         });
 
