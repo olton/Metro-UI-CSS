@@ -25,7 +25,9 @@ $.widget( "metro.video" , {
         src: false,
         loop: false,
         volume:.5,
-        logo: false
+        logo: false,
+
+        controlsHide: 1000
     },
 
     _create: function () {
@@ -151,6 +153,48 @@ $.widget( "metro.video" , {
             that._stopVideo();
         });
 
+        element.on("play", function(){
+            if (isTouchDevice()) {
+                setTimeout(function () {
+                    controls.fadeOut();
+                }, o.controlsHide);
+            }
+        });
+
+        element.on("pause", function(){
+        });
+
+        element.on("stop", function(){
+            controls.show();
+        });
+
+        element.on("mouseenter", function(){
+            setTimeout(function(){
+                controls.fadeIn();
+            }, o.controlsHide);
+        });
+
+        element.on("mouseleave", function(){
+            if (video_obj.currentTime > 0) {
+                setTimeout(function () {
+                    controls.fadeOut();
+                }, o.controlsHide);
+            }
+        });
+
+        if (isTouchDevice()) {
+            element.on("touchstart", function(){
+                if (video_obj.currentTime > 0) {
+                    setTimeout(function () {
+                        if (controls.css('display') == 'none') {
+                            controls.fadeIn();
+                        } else {
+                            controls.fadeOut();
+                        }
+                    }, o.controlsHide);
+                }
+            });
+        }
     },
 
     _timeToString: function(time){
@@ -198,6 +242,7 @@ $.widget( "metro.video" , {
         stop_button.attr("disabled", "disabled");
         element.data('played', false);
         element.find(".stream-slider").data('slider').value(0);
+        element.trigger('stop');
     },
 
     _playVideo: function(){
@@ -211,10 +256,12 @@ $.widget( "metro.video" , {
             video_obj.play();
             stop_button.removeAttr("disabled");
             element.data('played', true);
+            element.trigger('play');
         } else {
             play_button.html(o.playButton);
             video_obj.pause();
             element.data('played', false);
+            element.trigger('pause');
         }
     },
 
