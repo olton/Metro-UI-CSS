@@ -698,6 +698,11 @@
     width: 310px ;
   }
 }
+@media screen and (max-width: 320px) {
+  .no-small-phone {
+    display: none !important;
+  }
+}
 @media screen and (max-width: 640px) {
   .no-phone {
     display: none !important;

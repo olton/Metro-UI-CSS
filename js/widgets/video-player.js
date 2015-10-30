@@ -24,6 +24,8 @@ $.widget( "metro.video" , {
         poster: false,
         src: false,
         loop: false,
+        preload: false,
+        autoplay: false,
         volume:.5,
         logo: false,
 
@@ -86,7 +88,7 @@ $.widget( "metro.video" , {
         }
 
         if (o.preload) {
-            video.attr("preload", "preload");
+            video.attr("preload", "auto");
         }
 
         if (o.autoplay) {
@@ -305,7 +307,7 @@ $.widget( "metro.video" , {
         });
         stream_slider.data('slider').value(0);
 
-        loop_button = $("<button/>").addClass("square-button small-button1 control-button loop").html(o.loopButton).appendTo(controls);
+        loop_button = $("<button/>").addClass("square-button small-button1 control-button loop no-phone").html(o.loopButton).appendTo(controls);
         loop_button.on("click", function(){
             loop_button.toggleClass('active');
             if (loop_button.hasClass('active')) {
@@ -320,12 +322,12 @@ $.widget( "metro.video" , {
             that._playVideo();
         });
 
-        stop_button = $("<button/>").addClass("square-button small-button1 control-button stop").html(o.stopButton).appendTo(controls).attr("disabled", "disabled");
+        stop_button = $("<button/>").addClass("square-button small-button1 control-button stop no-phone").html(o.stopButton).appendTo(controls).attr("disabled", "disabled");
         stop_button.on("click", function(){
             that._stopVideo();
         });
 
-        info_box = $("<div/>").addClass('info-box').appendTo(controls);
+        info_box = $("<div/>").addClass('info-box no-small-phone').appendTo(controls); 
         info_box.html("00:00 / 00:00");
 
         screen_button = $("<button/>").addClass("square-button small-button1 control-button full").html(o.screenMoreButton).appendTo(controls);
