@@ -22,7 +22,9 @@ $.widget("metro.slider", {
         returnType: 'value',
         target: false,
 
+        onStartChange: function(){},
         onChange: function(value, slider){},
+        onChanged: function(value, slider){},
 
         _slider : {
             vertical: false,
@@ -95,11 +97,31 @@ $.widget("metro.slider", {
         element.children('.marker').on(event_down, function (e) {
             e.preventDefault();
             that._startMoveMarker(e);
+            if (typeof o.onStartChange === 'function') {
+                o.onStartChange();
+            } else {
+                if (typeof window[o.onStartChange] === 'function') {
+                    window[o.onStartChange]();
+                } else {
+                    var result = eval("(function(){"+o.onStartChange+"})");
+                    result.call();
+                }
+            }
         });
 
         element.on(event_down, function (e) {
             e.preventDefault();
             that._startMoveMarker(e);
+            //if (typeof o.onStartChange === 'function') {
+            //    o.onStartChange();
+            //} else {
+            //    if (typeof window[o.onStartChange] === 'function') {
+            //        window[o.onStartChange]();
+            //    } else {
+            //        var result = eval("(function(){"+o.onStartChange+"})");
+            //        result.call();
+            //    }
+            //}
         });
 
         element.data('slider', this);
@@ -130,6 +152,18 @@ $.widget("metro.slider", {
             if (!element.hasClass('permanent-hint')) {
                 hint.css('display', 'none');
             }
+
+            if (typeof o.onChanged === 'function') {
+                o.onChanged(returnedValue, element);
+            } else {
+                if (typeof window[o.onChanged] === 'function') {
+                    window[o.onChanged](returnedValue, element);
+                } else {
+                    var result = eval("(function(){"+o.onChanged+"})");
+                    result.call(returnedValue, element);
+                }
+            }
+
         });
 
         this._initPoints();
