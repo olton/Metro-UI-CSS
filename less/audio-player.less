@@ -5,7 +5,7 @@
 @audio_active_button: @white;
 
 .audio-player {
-    display: block;
+    display: inline-block;
     position: relative;
     background: @dark;
     height: auto;
@@ -22,21 +22,16 @@
             height: 2.125rem;
             display: inline-block;
             border: none;
-            color: @audio_inactive_button;
             background: rgba(34, 34, 34, 0.5);
             vertical-align: middle;
-
-            &:hover, &:active {
-                color: @audio_active_button;
-            }
         }
 
         .stream-wrapper {
-            padding: 0 .25rem 0;
+            padding: 0 .25rem;
         }
 
         .stream-slider {
-            width: 100%;
+            width: 200px;
         }
 
         .info-box {
@@ -54,15 +49,21 @@
             padding: 0 .25rem 0;
         }
 
-        .control-element:disabled {
-            color: @gray;
-        }
+        .play, .stop, .loop {
+            color: @audio_inactive_button;
+            &:hover, &:active {
+                color: @audio_active_button;
+            }
+       }
 
         .loop {
             &.active {
-                color: @green;
+                color: @lightGreen;
             }
         }
 
+        .control-element:disabled {
+            color: @gray;
+        }
     }
 }

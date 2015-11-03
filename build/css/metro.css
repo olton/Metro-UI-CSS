@@ -17075,7 +17075,7 @@ video::-webkit-media-controls-enclosure {
   display: none !important;
 }
 .audio-player {
-  display: block;
+  display: inline-block;
   position: relative;
   background: #1d1d1d;
   height: auto;
@@ -17099,19 +17099,14 @@ video::-webkit-media-controls-enclosure {
   height: 2.125rem;
   display: inline-block;
   border: none;
-  color: #b3b3b3;
   background: rgba(34, 34, 34, 0.5);
   vertical-align: middle;
 }
-.audio-player .controls .control-element:hover,
-.audio-player .controls .control-element:active {
-  color: #ffffff;
-}
 .audio-player .controls .stream-wrapper {
-  padding: 0 .25rem 0;
+  padding: 0 .25rem;
 }
 .audio-player .controls .stream-slider {
-  width: 100%;
+  width: 200px;
 }
 .audio-player .controls .info-box {
   margin: 0 2px;
@@ -17126,11 +17121,24 @@ video::-webkit-media-controls-enclosure {
   width: 100px;
   padding: 0 .25rem 0;
 }
-.audio-player .controls .control-element:disabled {
-  color: #555555;
+.audio-player .controls .play,
+.audio-player .controls .stop,
+.audio-player .controls .loop {
+  color: #b3b3b3;
+}
+.audio-player .controls .play:hover,
+.audio-player .controls .stop:hover,
+.audio-player .controls .loop:hover,
+.audio-player .controls .play:active,
+.audio-player .controls .stop:active,
+.audio-player .controls .loop:active {
+  color: #ffffff;
 }
 .audio-player .controls .loop.active {
-  color: #60a917;
+  color: #7ad61d;
+}
+.audio-player .controls .control-element:disabled {
+  color: #555555;
 }
 .select2-container {
   box-sizing: border-box;
