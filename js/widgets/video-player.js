@@ -8,6 +8,7 @@ $.widget( "metro.video" , {
         controls: true,
         controlsPosition: 'bottom',
         controlsModel: 'full',
+
         loopButton: "<span class='mif-loop'></span>",
         stopButton: "<span class='mif-stop'></span>",
         playButton: "<span class='mif-play'></span>",
@@ -26,6 +27,7 @@ $.widget( "metro.video" , {
         loop: false,
         preload: false,
         autoplay: false,
+        muted: false,
         volume:.5,
         logo: false,
 
@@ -65,7 +67,7 @@ $.widget( "metro.video" , {
             video = $("<video/>").appendTo(element);
         }
 
-        $.each(['autoplay', 'controls', 'height', 'width', 'loop', 'poster', 'preload'], function(){
+        $.each(['muted', 'autoplay', 'controls', 'height', 'width', 'loop', 'poster', 'preload'], function(){
             video.removeAttr(this);
         });
 
@@ -200,13 +202,14 @@ $.widget( "metro.video" , {
     },
 
     _timeToString: function(time){
-        var hours, minutes, seconds;
-
-        hours = parseInt( time / 3600 ) % 24;
-        minutes = parseInt( time / 60 ) % 60;
-        seconds = time % 60;
-
-        return (hours ? (hours) + ":" : "") + (minutes < 10 ? "0"+minutes : minutes) + ":" + (seconds < 10 ? "0"+seconds : seconds);
+        return secondsToFormattedString(time);
+        //var hours, minutes, seconds;
+        //
+        //hours = parseInt( time / 3600 ) % 24;
+        //minutes = parseInt( time / 60 ) % 60;
+        //seconds = time % 60;
+        //
+        //return (hours ? (hours) + ":" : "") + (minutes < 10 ? "0"+minutes : minutes) + ":" + (seconds < 10 ? "0"+seconds : seconds);
     },
 
     _setInfoData: function(){
@@ -301,8 +304,9 @@ $.widget( "metro.video" , {
                 if (video_obj.seekable.length > 0)
                     video_obj.currentTime = (element.data('duration') * value / 100).toFixed(0);
 
-                if (element.data('played') && video_obj.currentTime > 0)
+                if (element.data('played') && video_obj.currentTime >= 0) {
                     video_obj.play();
+                }
             }
         });
         stream_slider.data('slider').value(0);

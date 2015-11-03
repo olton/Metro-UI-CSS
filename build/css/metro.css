@@ -13359,18 +13359,18 @@ input[type="submit"].link:active {
   font-size: 1rem;
 }
 .slider {
-  height: 12px;
+  height: 2.125rem;
+  line-height: 1;
   width: auto;
   position: relative;
-  background-color: #999999;
-  margin-bottom: 10px;
 }
 .slider .marker {
-  height: 16px;
-  width: 16px;
+  height: 1rem;
+  width: 1rem;
   cursor: pointer;
   position: absolute;
-  top: -2px;
+  top: 50%;
+  margin-top: -0.5rem;
   left: 0;
   background-color: #1d1d1d;
   z-index: 2;
@@ -13378,88 +13378,78 @@ input[type="submit"].link:active {
 .slider .marker:focus,
 .slider .marker:active,
 .slider .markerhover {
-  outline: 2px #ce352c solid;
+  border: 2px #ce352c solid;
+}
+.slider .slider-backside,
+.slider .complete {
+  height: .5rem;
+  background: #999999;
+  width: 100%;
+  line-height: 2.125rem;
+  top: 50%;
+  margin-top: -0.25rem;
+  position: absolute;
 }
 .slider .complete {
-  height: 100%;
   width: auto;
   background-color: #00aba9;
   z-index: 2;
   transition: background .3s ease;
-  position: absolute;
-  top: 0;
   left: 0;
 }
 .slider .buffer {
-  height: 6px;
+  height: 4px;
   width: auto;
   background-color: #ffffff;
   z-index: 1;
   transition: background .3s ease;
   position: absolute;
   top: 50%;
-  margin-top: -3px;
+  margin-top: -2px;
   left: 0;
 }
-.slider > .slider-hint {
-  background-color: #ffffff;
+.slider .slider-hint {
+  min-width: 1.8rem;
+  width: auto;
+  height: auto;
   position: absolute;
   z-index: 3;
   border: 1px #ccc solid;
-  padding: 2px 4px;
-  top: -40px;
-  min-width: 30px;
+  padding: .25rem;
+  top: -1.2rem;
   text-align: center;
-  font-size: 14px;
+  font-size: .625rem;
   display: none;
-  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3);
+  background: #fffcc0;
 }
-.slider > .slider-hint:before {
-  display: none;
-}
-.slider.permanent-hint > .slider-hint {
+.slider .slider-hint:before {
+  border: 1px #ccc solid;
+  border-left: 0;
+  border-top: 0;
+  content: "";
+  width: .25rem;
+  height: .25rem;
   display: block;
+  position: absolute;
+  background-color: inherit;
+  margin-top: -0.125rem;
+  margin-left: -0.15625rem;
+  top: 100%;
+  left: 50%;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
 }
 .slider.hint-bottom .slider-hint {
   top: 100%;
-  margin-top: 5px;
+  margin-top: -0.125rem;
 }
-.slider.vertical {
-  height: 100px;
-  width: 12px;
-  float: left;
-  margin-right: 10px;
+.slider.hint-bottom .slider-hint:before {
+  top: -0.0625rem;
+  -webkit-transform: rotate(-135deg);
+          transform: rotate(-135deg);
 }
-.slider.vertical:last-child:first-child {
-  margin-left: 0;
-}
-.slider.vertical .marker {
-  left: -2px;
-}
-.slider.vertical .complete {
-  position: absolute;
-  height: auto;
-  width: 100% ;
-  bottom: 0;
-  left: 0;
-  top: auto;
-}
-.slider.vertical .buffer {
-  position: absolute;
-  height: auto;
-  width: 6px ;
-  bottom: 0;
-  left: 50%;
-  margin-left: -3px;
-  top: auto;
-}
-.slider.vertical .slider-hint {
-  left: 100%;
-  margin-left: 5px;
-  margin-top: 0;
-}
-.slider.vertical.hint-left .slider-hint {
-  left: -40px;
+.slider.permanent-hint > .slider-hint {
+  display: block;
 }
 .slider:hover .complete {
   background-color: #45fffd;
@@ -13474,33 +13464,61 @@ input[type="submit"].link:active {
 .slider.place-right {
   margin-left: 20px;
 }
-.slider.large {
-  height: 24px;
+.slider.ani .complete {
+  -webkit-animation: ani-bg-stripes 2s linear infinite;
+          animation: ani-bg-stripes 2s linear infinite;
 }
-.slider.large .buffer {
-  height: 12px;
-  top: 50%;
-  margin-top: -6px;
+.slider.vertical {
+  min-height: 100px;
+  width: 2.125rem;
+  display: inline-block;
 }
-.slider.large .marker {
-  width: 24px;
-  height: 24px;
-  top: 0;
-}
-.slider.large .slider-hint {
-  min-width: 30px;
-}
-.slider.large.vertical {
-  width: 24px;
-  height: 100px;
-}
-.slider.large.vertical .buffer {
-  width: 12px;
+.slider.vertical .slider-backside,
+.slider.vertical .complete {
+  position: absolute;
+  height: 100%;
+  width: .5rem;
+  bottom: 0;
+  left: 50%;
+  margin-left: -0.25rem;
   top: auto;
-  margin-left: -6px;
 }
-.slider.large.vertical .marker {
-  left: 0;
+.slider.vertical .marker {
+  left: 50%;
+  top: auto;
+  margin-left: -0.5rem;
+}
+.slider.vertical .buffer {
+  position: absolute;
+  height: auto;
+  width: 6px ;
+  bottom: 0;
+  left: 50%;
+  margin-left: -3px;
+  top: auto;
+}
+.slider.vertical .slider-hint {
+  left: 100%;
+  margin-top: 0;
+}
+.slider.vertical .slider-hint:before {
+  height: .25rem;
+  width: .25rem;
+  -webkit-transform: rotate(135deg);
+          transform: rotate(135deg);
+  left: -1px;
+  top: 50%;
+  margin-top: -0.125rem;
+  margin-left: -0.135rem;
+}
+.slider.vertical.hint-left .slider-hint {
+  left: -100%;
+  margin-left: .25rem;
+}
+.slider.vertical.hint-left .slider-hint:before {
+  left: 100%;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
 }
 .slider.cycle-marker .marker {
   border-radius: 50%;
@@ -17003,7 +17021,7 @@ p [data-hint] {
 .video-player .controls .control-slider {
   height: 2.125rem;
   float: left;
-  padding: .75rem 1rem 0;
+  padding: 0 1rem 0;
   margin: 0 2px;
   background: inherit;
 }
@@ -17055,6 +17073,64 @@ video::-webkit-media-controls {
 }
 video::-webkit-media-controls-enclosure {
   display: none !important;
+}
+.audio-player {
+  display: block;
+  position: relative;
+  background: #1d1d1d;
+  height: auto;
+}
+.audio-player .controls {
+  position: relative;
+  width: 100%;
+  height: auto;
+  padding: 4px;
+  background: inherit;
+}
+.audio-player .controls:before,
+.audio-player .controls:after {
+  display: table;
+  content: "";
+}
+.audio-player .controls:after {
+  clear: both;
+}
+.audio-player .controls .control-element {
+  height: 2.125rem;
+  display: inline-block;
+  border: none;
+  color: #b3b3b3;
+  background: rgba(34, 34, 34, 0.5);
+  vertical-align: middle;
+}
+.audio-player .controls .control-element:hover,
+.audio-player .controls .control-element:active {
+  color: #ffffff;
+}
+.audio-player .controls .stream-wrapper {
+  padding: 0 .25rem 0;
+}
+.audio-player .controls .stream-slider {
+  width: 100%;
+}
+.audio-player .controls .info-box {
+  margin: 0 2px;
+  padding: .75rem 1rem;
+  color: #ffffff;
+  height: 2.125rem;
+  line-height: 1;
+  text-align: center;
+  font-size: .8em;
+}
+.audio-player .controls .volume-wrapper {
+  width: 100px;
+  padding: 0 .25rem 0;
+}
+.audio-player .controls .control-element:disabled {
+  color: #555555;
+}
+.audio-player .controls .loop.active {
+  color: #60a917;
 }
 .select2-container {
   box-sizing: border-box;
