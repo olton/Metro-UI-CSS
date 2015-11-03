@@ -80,27 +80,6 @@ $.widget( "metro.audio" , {
 
         controls = $("<div>").addClass("controls").appendTo(element);
 
-        stream_wrapper = $("<div/>").addClass('stream-wrapper').appendTo(controls);
-        stream_slider = $("<div/>").addClass('slider stream-slider').appendTo(stream_wrapper);
-        stream_slider.slider({
-            showHint: true,
-            animate: false,
-            markerColor: 'bg-red',
-            completeColor: 'bg-cyan',
-            onStartChange: function(){
-                audio_obj.pause();
-            },
-            onChanged: function(value, slider){
-                if (audio_obj.seekable.length > 0)
-                    audio_obj.currentTime = (element.data('duration') * value / 100).toFixed(0);
-
-                if (element.data('played') && audio_obj.currentTime >= 0) {
-                    audio_obj.play();
-                }
-            }
-        });
-        stream_slider.data('slider').value(0);
-
         loop_button = $("<button/>").addClass("square-button control-element loop").html(o.loopButton).appendTo(controls);
         loop_button.on("click", function(){
             loop_button.toggleClass('active');
@@ -121,6 +100,27 @@ $.widget( "metro.audio" , {
         stop_button.on("click", function(){
             that._stop();
         });
+
+        stream_wrapper = $("<div/>").addClass('control-element stream-wrapper').appendTo(controls);
+        stream_slider = $("<div/>").addClass('slider stream-slider').appendTo(stream_wrapper);
+        stream_slider.slider({
+            showHint: true,
+            animate: false,
+            markerColor: 'bg-red',
+            completeColor: 'bg-cyan',
+            onStartChange: function(){
+                audio_obj.pause();
+            },
+            onChanged: function(value, slider){
+                if (audio_obj.seekable.length > 0)
+                    audio_obj.currentTime = (element.data('duration') * value / 100).toFixed(0);
+
+                if (element.data('played') && audio_obj.currentTime >= 0) {
+                    audio_obj.play();
+                }
+            }
+        });
+        stream_slider.data('slider').value(0);
 
         info_box = $("<div/>").addClass('control-element info-box').appendTo(controls);
         info_box.html("00:00 / 00:00");
