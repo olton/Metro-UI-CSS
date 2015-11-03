@@ -1,0 +1,68 @@
+@import (once) "variables";
+@import (once) "utils";
+
+@audio_inactive_button: darken(@white, 30%);
+@audio_active_button: @white;
+
+.audio-player {
+    display: block;
+    position: relative;
+    background: @dark;
+    height: auto;
+
+    .controls {
+        position: relative;
+        width: 100%;
+        height: auto;
+        padding: 4px;
+        background: inherit;
+        .clear-float;
+
+        .control-element {
+            height: 2.125rem;
+            display: inline-block;
+            border: none;
+            color: @audio_inactive_button;
+            background: rgba(34, 34, 34, 0.5);
+            vertical-align: middle;
+
+            &:hover, &:active {
+                color: @audio_active_button;
+            }
+        }
+
+        .stream-wrapper {
+            padding: 0 .25rem 0;
+        }
+
+        .stream-slider {
+            width: 100%;
+        }
+
+        .info-box {
+            margin: 0 2px;
+            padding: .75rem 1rem;
+            color: @white;
+            height: 2.125rem;
+            line-height: 1;
+            text-align: center;
+            font-size: .8em;
+        }
+
+        .volume-wrapper {
+            width: 100px;
+            padding: 0 .25rem 0;
+        }
+
+        .control-element:disabled {
+            color: @gray;
+        }
+
+        .loop {
+            &.active {
+                color: @green;
+            }
+        }
+
+    }
+}

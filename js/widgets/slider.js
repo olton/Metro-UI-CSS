@@ -103,7 +103,6 @@ $.widget("metro.slider", {
         }
 
         element.children('.marker').on(event_down, function (e) {
-            e.preventDefault();
             that._startMoveMarker(e);
             if (typeof o.onStartChange === 'function') {
                 o.onStartChange();
@@ -115,6 +114,8 @@ $.widget("metro.slider", {
                     result.call();
                 }
             }
+            e.preventDefault();
+            e.stopPropagation();
         });
 
         element.on(event_down, function (e) {
@@ -132,15 +133,15 @@ $.widget("metro.slider", {
         var event_move = isTouchDevice() ? 'touchmove' : 'mousemove';
         var event_up = isTouchDevice() ? 'touchend' : 'mouseup mouseleave';
 
-        $(element).on(event_move, function (event) {
+        $(document).on(event_move, function (event) {
             that._movingMarker(event);
             if (!element.hasClass('permanent-hint')) {
                 hint.css('display', 'block');
             }
         });
-        $(element).on(event_up, function () {
-            $(element).off('mousemove');
-            $(element).off('mouseup');
+        $(document).on(event_up, function () {
+            $(document).off(event_move);
+            $(document).off(event_up);
             element.data('value', o.position);
             element.trigger('changed', o.position);
             element.trigger('change', o.position);
@@ -247,7 +248,7 @@ $.widget("metro.slider", {
         if (o._slider.vertical) {
             var oldSize = this._percToPix(o.position) + o._slider.marker,
                 oldSize2 = o._slider.length - oldSize;
-            size = this._percToPix(value) + o._slider.marker;
+            size = this._percToPix(value) + o._slider.marker / 2;
             size2 = o._slider.length - size;
             this._animate(marker.css('top', oldSize2),{top: size2});
             this._animate(complete.css('height', oldSize),{height: size});
@@ -258,7 +259,7 @@ $.widget("metro.slider", {
             }
             if (o.showHint) {
                 hintValue = this._valueToRealValue(value);
-                hint.html(hintValue).css('top', size2 - hint.height()/2 + (element.hasClass('large') ? 8 : 0));
+                hint.html(hintValue).css('top', size2 - marker.height()/2 - hint.height()/4);
             }
         } else {
             size = this._percToPix(value);
@@ -270,7 +271,7 @@ $.widget("metro.slider", {
             }
             if (o.showHint) {
                 hintValue = this._valueToRealValue(value);
-                hint.html(hintValue).css({left: size - hint.width() / 2 + (element.hasClass('large') ? 6 : 0)});
+                hint.html(hintValue).css('left', size - marker.width()/2);
             }
         }
     },
@@ -295,7 +296,7 @@ $.widget("metro.slider", {
 
     _animate: function (obj, val) {
         var o = this.options;
-
+        //console.log(obj, val);
         if(o.animate) {
             obj.stop(true).animate(val);
         } else {
@@ -305,11 +306,12 @@ $.widget("metro.slider", {
 
     _pixToPerc: function (valuePix) {
         var valuePerc;
-        valuePerc = valuePix * this.options._slider.ppp;
+        valuePerc = (valuePix < 0 ? 0 : valuePix )* this.options._slider.ppp;
         return Math.round(this._correctValue(valuePerc));
     },
 
     _percToPix: function (value) {
+        ///console.log(this.options._slider.ppp, value);
         if (this.options._slider.ppp === 0) {
             return 0;
         }
@@ -361,10 +363,11 @@ $.widget("metro.slider", {
     _createSlider: function(){
         var element = this.element,
             o = this.options,
-            complete, marker, hint, buffer;
+            complete, marker, hint, buffer, back;
 
         element.html('');
 
+        back = $("<div/>").addClass("slider-backside").appendTo(element);
         complete = $("<div/>").addClass("complete").appendTo(element);
         buffer = $("<div/>").addClass("buffer").appendTo(element);
         marker = $("<a/>").addClass("marker").appendTo(element);
@@ -375,9 +378,9 @@ $.widget("metro.slider", {
 
         if (o.color !== 'default') {
             if (o.color.isColor()) {
-                element.css('background-color', o.color);
+                back.css('background-color', o.color);
             } else {
-                element.addClass(o.color);
+                back.addClass(o.color);
             }
         }
         if (o.completeColor !== 'default') {
