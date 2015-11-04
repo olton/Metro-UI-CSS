@@ -16,6 +16,9 @@ $.widget( "metro.audio" , {
         pauseButton: "<span class='mif-pause'></span>",
         muteButton: "<span class='mif-volume-mute2'></span>",
         shuffleButton: "<span class='mif-shuffle'></span>",
+        nextButton: "<span class='mif-forward'></span>",
+        prevButton: "<span class='mif-backward'></span>",
+        randomButton: "<span class='mif-dice'></span>",
 
         volumeLowButton: "<span class='mif-volume-low'></span>",
         volumeMediumButton: "<span class='mif-volume-medium'></span>",
@@ -31,8 +34,42 @@ $.widget( "metro.audio" , {
         this._createPlayer();
         this._addControls();
         this._addEvents();
+        this._addPlayList();
 
         element.data('audio', this);
+    },
+
+    _addPlayList: function(){
+        var that = this, element = this.element, o = this.options;
+        var audio = element.find("audio");
+        var play_list = element.find("ul");
+
+        if (play_list.length == 0) {
+            return this;
+        }
+
+        play_list.addClass("play-list");
+        var items = play_list.find("li");
+        if (items.length == 0) {
+            return this;
+        }
+        $.each(items, function(){
+            var item = $(this);
+            var pb = $("<div>").addClass('progress-bar small no-margin-top').data('role', 'progress').appendTo(item).hide();
+            item.on("click", function(){
+                items.removeClass("current");
+                items.find('.progress-bar').hide();
+                var src = item.data('src'), type = item.data('type');
+                item.addClass("current");
+                item.find('.progress-bar').show();
+                element.data('current', item);
+                that.play(src, type);
+            });
+        });
+        $(items[0]).click();
+        this._stop();
+        //$(items[0]).addClass("current").find(".progress-bar").show();
+        element.data("current", $(items[0]));
     },
 
     _createPlayer: function(){
@@ -72,11 +109,12 @@ $.widget( "metro.audio" , {
         element.data('duration', 0);
         element.data('played', false);
         element.data('volume', audio[0].volume);
+        element.data('current', false);
     },
 
     _addControls: function(){
         var that = this, element = this.element, o = this.options;
-        var controls, play_button, loop_button, stop_button, volume_button, volume_slider, stream_slider, info_box, stream_wrapper, volume_wrapper, shufle_button;
+        var controls, play_button, loop_button, stop_button, volume_button, volume_slider, stream_slider, info_box, stream_wrapper, volume_wrapper, shufle_button, next_button, prev_button, random_button;
         var audio = element.find('audio'), audio_obj = audio[0];
 
         controls = $("<div>").addClass("controls").appendTo(element);
@@ -95,6 +133,22 @@ $.widget( "metro.audio" , {
         play_button.on("click", function(){
             that._play();
         });
+
+        prev_button = $("<button/>").addClass("square-button control-element prev").html(o.prevButton).appendTo(controls);
+        prev_button.on("click", function(){
+            that._playPrev();
+        });
+
+        next_button = $("<button/>").addClass("square-button control-element next").html(o.nextButton).appendTo(controls);
+        next_button.on("click", function(){
+            that._playNext();
+        });
+
+        random_button = $("<button/>").addClass("square-button control-element random").html(o.randomButton).appendTo(controls);
+        random_button.on("click", function(){
+            that._playRandom();
+        });
+
 
         stop_button = $("<button/>").addClass("square-button control-element stop").html(o.stopButton).appendTo(controls);
         stop_button.attr("disabled", true);
@@ -208,6 +262,11 @@ $.widget( "metro.audio" , {
         audio.on("timeupdate", function(){
             that._setInfoData();
             that._setStreamSliderPosition();
+            if (element.data('current')) {
+                var pb = element.data('current').find('.progress-bar').data('progress');
+                var value = Math.round(audio_obj.currentTime * 100 / element.data('duration'));
+                pb.value(value);
+            }
         });
 
         audio.on("waiting", function(){
@@ -220,6 +279,9 @@ $.widget( "metro.audio" , {
 
         audio.on('ended', function(){
             that._stop();
+            if (element.find(".play-list li").length > 0) {
+                that._playNext();
+            }
         });
     },
 
@@ -268,6 +330,49 @@ $.widget( "metro.audio" , {
         }
     },
 
+    _playRandom: function(){
+        var that = this, element = this.element, element_obj = element[0], o = this.options;
+        var audio = element.find("audio"), audio_obj = audio[0];
+        var play_list = element.find(".play-list");
+        var items = element.find(".play-list li");
+        if (items.length == 0) {
+            return this;
+        }
+        var index = Math.floor(Math.random() * (items.length)) + 1;
+        var next = play_list.find("li:nth-child("+index+")");
+        next.click();
+    },
+
+    _playNext: function(){
+        var that = this, element = this.element, element_obj = element[0], o = this.options;
+        var audio = element.find("audio"), audio_obj = audio[0];
+        var play_list = element.find(".play-list");
+        var items = element.find(".play-list li");
+        if (items.length == 0) {
+            return this;
+        }
+        var next = play_list.find(".current").next();
+        if (next.length == 0) {
+            next = play_list.find("li:nth-child(1)");
+        }
+        next.click();
+    },
+
+    _playPrev: function(){
+        var that = this, element = this.element, element_obj = element[0], o = this.options;
+        var audio = element.find("audio"), audio_obj = audio[0];
+        var play_list = element.find(".play-list");
+        var items = element.find(".play-list li");
+        if (items.length == 0) {
+            return this;
+        }
+        var prev = play_list.find(".current").prev();
+        if (prev.length == 0) {
+            prev = play_list.find("li:last-child");
+        }
+        prev.click();
+    },
+
     _stop: function(){
         var that = this, element = this.element, element_obj = element[0], o = this.options;
         var audio = element.find("audio"), audio_obj = audio[0];
@@ -293,10 +398,11 @@ $.widget( "metro.audio" , {
         audio.find("source").remove();
         audio.removeAttr("src");
 
-        source = $("source").attr("src", file);
+        source = $("<source>").attr("src", file);
         if (type != undefined) {
             source.attr("type", type);
         }
+        audio_obj.load();
         source.appendTo(audio);
 
         this._play();

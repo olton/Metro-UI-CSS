@@ -465,6 +465,7 @@ $.widget( "metro.video" , {
         if (type != undefined) {
             source.attr("type", type);
         }
+        video_obj.load();
         source.appendTo(video);
 
         this._play();
