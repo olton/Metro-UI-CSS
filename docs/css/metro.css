@@ -17124,17 +17124,29 @@ video::-webkit-media-controls-enclosure {
 .audio-player .controls .play,
 .audio-player .controls .stop,
 .audio-player .controls .loop,
-.audio-player .controls .volume {
+.audio-player .controls .volume,
+.audio-player .controls .next,
+.audio-player .controls .prev,
+.audio-player .controls .shuffle,
+.audio-player .controls .random {
   color: #b3b3b3;
 }
 .audio-player .controls .play:hover,
 .audio-player .controls .stop:hover,
 .audio-player .controls .loop:hover,
 .audio-player .controls .volume:hover,
+.audio-player .controls .next:hover,
+.audio-player .controls .prev:hover,
+.audio-player .controls .shuffle:hover,
+.audio-player .controls .random:hover,
 .audio-player .controls .play:active,
 .audio-player .controls .stop:active,
 .audio-player .controls .loop:active,
-.audio-player .controls .volume:active {
+.audio-player .controls .volume:active,
+.audio-player .controls .next:active,
+.audio-player .controls .prev:active,
+.audio-player .controls .shuffle:active,
+.audio-player .controls .random:active {
   color: #ffffff;
 }
 .audio-player .controls .loop.active {
@@ -17142,6 +17154,74 @@ video::-webkit-media-controls-enclosure {
 }
 .audio-player .controls .control-element:disabled {
   color: #555555;
+}
+.audio-player .play-list-wrapper {
+  display: block;
+  position: relative;
+  padding: .625rem;
+  border-bottom: 1px solid #555555;
+}
+.audio-player .play-list-wrapper:before,
+.audio-player .play-list-wrapper:after {
+  display: table;
+  content: "";
+}
+.audio-player .play-list-wrapper:after {
+  clear: both;
+}
+.audio-player .album-title {
+  font-size: 2rem;
+  color: #ffffff;
+  font-weight: lighter;
+  margin: 0 0 .625rem;
+  padding-bottom: .625rem;
+  border-bottom: 1px solid #555555;
+}
+.audio-player .poster {
+  float: left;
+  width: 10rem;
+  position: relative;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3);
+}
+.audio-player .poster:after {
+  content: "";
+  width: 1px;
+  height: 100%;
+  background: #555555;
+  position: absolute;
+  left: 100%;
+  margin-left: .625rem;
+  top: 0;
+  bottom: 0;
+}
+.audio-player .play-list {
+  list-style: none;
+  padding: 10px;
+  color: #ffffff;
+  display: block;
+  font-size: .8em;
+  width: 100%;
+}
+.audio-player .play-list li {
+  padding: .125rem 1rem;
+  cursor: pointer;
+  position: relative;
+}
+.audio-player .play-list li:hover {
+  background: #555555;
+}
+.audio-player .play-list li.current {
+  color: #1ba1e2;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+.audio-player .play-list li.current:before {
+  content: "\25B6";
+  position: absolute;
+  left: .25rem;
+}
+.audio-player .poster ~ .play-list {
+  margin: 0 0 0 11rem;
+  width: calc(100% - 11rem);
 }
 .select2-container {
   box-sizing: border-box;
