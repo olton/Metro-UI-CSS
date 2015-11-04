@@ -2215,7 +2215,7 @@ $.widget( "metro.audio" , {
         stopButton: "<span class='mif-stop'></span>",
         playButton: "<span class='mif-play'></span>",
         pauseButton: "<span class='mif-pause'></span>",
-        muteButton: "<span class='mif-volume-mute'></span>",
+        muteButton: "<span class='mif-volume-mute2'></span>",
         shuffleButton: "<span class='mif-shuffle'></span>",
 
         volumeLowButton: "<span class='mif-volume-low'></span>",
@@ -2272,6 +2272,7 @@ $.widget( "metro.audio" , {
         element.data('muted', false);
         element.data('duration', 0);
         element.data('played', false);
+        element.data('volume', audio[0].volume);
     },
 
     _addControls: function(){
@@ -2330,15 +2331,22 @@ $.widget( "metro.audio" , {
 
         volume_button = $("<button/>").addClass("square-button control-element volume").html(o.volumeLowButton).appendTo(volume_container);
         volume_button.on("click", function(){
+
+            var volume_slider = element.find(".volume-slider").data("slider");
+
             element.data('muted', !element.data('muted'));
 
-            audio_obj.muted = element.data('muted');
-
             if (element.data('muted')) {
+                element.data("volume", audio_obj.volume);
                 volume_button.html(o.muteButton);
+                volume_slider.value(0);
             } else {
+                audio_obj.volume = element.data("volume");
+                volume_slider.value(element.data("volume")*100);
                 that._setupVolumeButton();
             }
+
+            audio_obj.muted = element.data('muted');
         });
 
         this._setupVolumeButton();
@@ -2484,6 +2492,8 @@ $.widget( "metro.audio" , {
         this._stop();
 
         audio.find("source").remove();
+        audio.removeAttr("src");
+
         source = $("source").attr("src", file);
         if (type != undefined) {
             source.attr("type", type);
@@ -9197,7 +9207,7 @@ $.widget( "metro.video" , {
         stopButton: "<span class='mif-stop'></span>",
         playButton: "<span class='mif-play'></span>",
         pauseButton: "<span class='mif-pause'></span>",
-        muteButton: "<span class='mif-volume-mute'></span>",
+        muteButton: "<span class='mif-volume-mute2'></span>",
 
         volumeLowButton: "<span class='mif-volume-low'></span>",
         volumeMediumButton: "<span class='mif-volume-medium'></span>",
@@ -9224,6 +9234,8 @@ $.widget( "metro.video" , {
         this._setOptionsFromDOM();
 
         this._createPlayer();
+        this._addControls();
+        this._addEvents();
 
         element.data('video', this);
     },
@@ -9283,14 +9295,13 @@ $.widget( "metro.video" , {
 
         video[0].volume = o.volume;
 
-        this._addControls();
-        this._addEvents();
 
         element.data('fullScreen', false);
         element.data('muted', false);
         element.data('duration', 0);
         element.data('timeInterval', undefined);
         element.data('played', false);
+        element.data('volume', video[0].volume);
 
     },
 
@@ -9309,7 +9320,7 @@ $.widget( "metro.video" , {
 
         video.on('loadedmetadata', function(){
             element.data('duration', video_obj.duration.toFixed(0));
-            info_box.html("00:00" + " / " + that._timeToString(element.data('duration')) );
+            info_box.html("00:00" + " / " + secondsToFormattedString(element.data('duration')) );
         });
 
         video.on("canplay", function(){
@@ -9385,24 +9396,13 @@ $.widget( "metro.video" , {
         }
     },
 
-    _timeToString: function(time){
-        return secondsToFormattedString(time);
-        //var hours, minutes, seconds;
-        //
-        //hours = parseInt( time / 3600 ) % 24;
-        //minutes = parseInt( time / 60 ) % 60;
-        //seconds = time % 60;
-        //
-        //return (hours ? (hours) + ":" : "") + (minutes < 10 ? "0"+minutes : minutes) + ":" + (seconds < 10 ? "0"+seconds : seconds);
-    },
-
     _setInfoData: function(){
         var that = this, element = this.element, element_obj = element[0], o = this.options;
         var video = element.find("video"), video_obj = video[0];
         var info_box = element.find(".controls .info-box");
         var currentTime = Math.round(video_obj.currentTime);
 
-        info_box.html(this._timeToString(currentTime) + " / " + this._timeToString(element.data('duration')));
+        info_box.html(secondsToFormattedString(currentTime) + " / " + secondsToFormattedString(element.data('duration')));
     },
 
     _setStreamSliderPosition: function(){
@@ -9419,7 +9419,7 @@ $.widget( "metro.video" , {
         slider.buffer(Math.round(value));
     },
 
-    _stopVideo: function(){
+    _stop: function(){
         var that = this, element = this.element, element_obj = element[0], o = this.options;
         var video = element.find("video"), video_obj = video[0];
         var stop_button = element.find(".controls .stop");
@@ -9434,7 +9434,7 @@ $.widget( "metro.video" , {
         element.trigger('stop');
     },
 
-    _playVideo: function(){
+    _play: function(){
         var that = this, element = this.element, element_obj = element[0], o = this.options;
         var video = element.find("video"), video_obj = video[0];
         var play_button = element.find(".controls .play");
@@ -9507,12 +9507,12 @@ $.widget( "metro.video" , {
 
         play_button = $("<button/>").addClass("square-button small-button1 control-button play").html(o.playButton).appendTo(controls);
         play_button.on("click", function(){
-            that._playVideo();
+            that._play();
         });
 
         stop_button = $("<button/>").addClass("square-button small-button1 control-button stop no-phone").html(o.stopButton).appendTo(controls).attr("disabled", "disabled");
         stop_button.on("click", function(){
-            that._stopVideo();
+            that._stop();
         });
 
         info_box = $("<div/>").addClass('info-box no-small-phone').appendTo(controls); 
@@ -9586,15 +9586,21 @@ $.widget( "metro.video" , {
 
         volume_button = $("<button/>").addClass("square-button small-button1 control-button volume place-right").html(o.volumeLowButton).appendTo(controls);
         volume_button.on("click", function(){
+            var volume_slider = element.find(".volume-slider").data("slider");
+
             element.data('muted', !element.data('muted'));
 
-            video_obj.muted = element.data('muted');
-
             if (element.data('muted')) {
+                element.data("volume", video_obj.volume);
                 volume_button.html(o.muteButton);
+                volume_slider.value(0);
             } else {
+                video_obj.volume = element.data("volume");
+                volume_slider.value(element.data("volume")*100);
                 that._setupVolumeButton();
             }
+
+            video_obj.muted = element.data('muted');
         });
         this._setupVolumeButton();
 
@@ -9637,6 +9643,53 @@ $.widget( "metro.video" , {
 
     _setOption: function ( key, value ) {
         this._super('_setOption', key, value);
+    },
+
+    play: function(file, type) {
+        var that = this, element = this.element, o = this.options;
+        var video = element.find("video"), video_obj = video[0];
+        var source;
+
+        this._stop();
+
+        video.find("source").remove();
+        video.removeAttr("src");
+
+        source = $("<source>").attr("src", file);
+        if (type != undefined) {
+            source.attr("type", type);
+        }
+        source.appendTo(video);
+
+        this._play();
+    },
+
+    stop: function(){
+        this._stop();
+    },
+
+    pause: function(){
+        var that = this, element = this.element, o = this.options;
+        var video = element.find("video"), video_obj = video[0];
+        var play_button = element.find(".play");
+
+        play_button.html(o.playButton);
+        video_obj.pause();
+        element.data('played', false);
+        element.trigger('pause');
+    },
+
+    resume: function(){
+        var that = this, element = this.element, o = this.options;
+        var video = element.find("video"), video_obj = video[0];
+        var play_button = element.find(".play");
+        var stop_button = element.find(".stop");
+
+        play_button.html(o.pauseButton);
+        video_obj.play();
+        stop_button.removeAttr("disabled");
+        element.data('played', true);
+        element.trigger('play');
     }
 });
 
