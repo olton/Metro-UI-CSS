@@ -17123,15 +17123,18 @@ video::-webkit-media-controls-enclosure {
 }
 .audio-player .controls .play,
 .audio-player .controls .stop,
-.audio-player .controls .loop {
+.audio-player .controls .loop,
+.audio-player .controls .volume {
   color: #b3b3b3;
 }
 .audio-player .controls .play:hover,
 .audio-player .controls .stop:hover,
 .audio-player .controls .loop:hover,
+.audio-player .controls .volume:hover,
 .audio-player .controls .play:active,
 .audio-player .controls .stop:active,
-.audio-player .controls .loop:active {
+.audio-player .controls .loop:active,
+.audio-player .controls .volume:active {
   color: #ffffff;
 }
 .audio-player .controls .loop.active {

@@ -14,7 +14,7 @@ $.widget( "metro.audio" , {
         stopButton: "<span class='mif-stop'></span>",
         playButton: "<span class='mif-play'></span>",
         pauseButton: "<span class='mif-pause'></span>",
-        muteButton: "<span class='mif-volume-mute'></span>",
+        muteButton: "<span class='mif-volume-mute2'></span>",
         shuffleButton: "<span class='mif-shuffle'></span>",
 
         volumeLowButton: "<span class='mif-volume-low'></span>",
@@ -71,6 +71,7 @@ $.widget( "metro.audio" , {
         element.data('muted', false);
         element.data('duration', 0);
         element.data('played', false);
+        element.data('volume', audio[0].volume);
     },
 
     _addControls: function(){
@@ -129,15 +130,22 @@ $.widget( "metro.audio" , {
 
         volume_button = $("<button/>").addClass("square-button control-element volume").html(o.volumeLowButton).appendTo(volume_container);
         volume_button.on("click", function(){
+
+            var volume_slider = element.find(".volume-slider").data("slider");
+
             element.data('muted', !element.data('muted'));
 
-            audio_obj.muted = element.data('muted');
-
             if (element.data('muted')) {
+                element.data("volume", audio_obj.volume);
                 volume_button.html(o.muteButton);
+                volume_slider.value(0);
             } else {
+                audio_obj.volume = element.data("volume");
+                volume_slider.value(element.data("volume")*100);
                 that._setupVolumeButton();
             }
+
+            audio_obj.muted = element.data('muted');
         });
 
         this._setupVolumeButton();
@@ -283,6 +291,8 @@ $.widget( "metro.audio" , {
         this._stop();
 
         audio.find("source").remove();
+        audio.removeAttr("src");
+
         source = $("source").attr("src", file);
         if (type != undefined) {
             source.attr("type", type);
