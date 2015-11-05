@@ -17180,19 +17180,12 @@ video::-webkit-media-controls-enclosure {
 .audio-player .poster {
   float: left;
   width: 10rem;
-  position: relative;
-  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3);
-}
-.audio-player .poster:after {
-  content: "";
-  width: 1px;
   height: 100%;
-  background: #555555;
-  position: absolute;
-  left: 100%;
-  margin-left: .625rem;
-  top: 0;
-  bottom: 0;
+}
+.audio-player .album-desc {
+  padding: .625rem;
+  color: #eeeeee;
+  font-size: .6875rem;
 }
 .audio-player .play-list {
   list-style: none;

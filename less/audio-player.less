@@ -90,19 +90,13 @@
     .poster {
         float: left;
         width: 10rem;
-        position: relative;
-        .block-shadow;
-        &:after {
-            content: "";
-            width: 1px;
-            height: 100%;
-            background: @gray;
-            position: absolute;
-            left: 100%;
-            margin-left: .625rem;
-            top: 0;
-            bottom: 0;
-        }
+        height: 100%;
+    }
+
+    .album-desc {
+        padding: .625rem;
+        color: @grayLighter;
+        font-size: .6875rem;
     }
 
     .play-list {
@@ -112,6 +106,9 @@
         display: block;
         font-size: .8em;
         width: 100%;
+        //max-height: 200px;
+        //overflow-x: hidden;
+        //overflow-y: auto;
 
         li {
             padding: .125rem 1rem;

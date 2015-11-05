@@ -25,6 +25,36 @@
     <script src="js/ga.js"></script>
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
+    <script>
+        function playList(){
+            return {
+                title: "Scorpions - Return to Forever",
+                poster: "http://metroui.org.ua/res/scorpions_poster.jpg",
+                desc: "German heavy metal icons the Scorpions hit the 50-year mark in 2015, being initially conceived all the way back in 1965 by a 16-year-old Rudolf Schenker as a beat band very much in line with the trends of the time, and slowly evolving into a hard rock force to contend with by the end of the '70s.",
+                items: [
+                    {file: "http://metroui.org.ua/res/scorpions/return_to_forever/01  Going Out With A Bang.mp3"},
+                    {file: "http://metroui.org.ua/res/scorpions/return_to_forever/02  We Built This House.mp3"},
+                    {file: "http://metroui.org.ua/res/scorpions/return_to_forever/03  Rock My Car.mp3"},
+                    {file: "http://metroui.org.ua/res/scorpions/return_to_forever/04  House Of Cards.mp3"},
+                    {file: "http://metroui.org.ua/res/scorpions/return_to_forever/05  All For One.mp3"},
+                    {file: "http://metroui.org.ua/res/scorpions/return_to_forever/06  Rock'N'Roll Band.mp3"},
+                    {file: "http://metroui.org.ua/res/scorpions/return_to_forever/07  Catch Your Luck And Play.mp3"},
+                    {file: "http://metroui.org.ua/res/scorpions/return_to_forever/08  Rollin' Home.mp3"},
+                    {file: "http://metroui.org.ua/res/scorpions/return_to_forever/09  Hard Rockin' The Place.mp3"},
+                    {file: "http://metroui.org.ua/res/scorpions/return_to_forever/10  Eye Of The Storm.mp3"},
+                    {file: "http://metroui.org.ua/res/scorpions/return_to_forever/11  The Scratch.mp3"},
+                    {file: "http://metroui.org.ua/res/scorpions/return_to_forever/12  Gypsy Life.mp3"},
+                    {file: "http://metroui.org.ua/res/scorpions/return_to_forever/13  The World We Used To Know.mp3"},
+                    {file: "http://metroui.org.ua/res/scorpions/return_to_forever/14  Dancing With The Moonlight.mp3"},
+                    {file: "http://metroui.org.ua/res/scorpions/return_to_forever/15  When The Truth Is A Lie.mp3"},
+                    {file: "http://metroui.org.ua/res/scorpions/return_to_forever/16  Who We Are.mp3"},
+                    {file: "http://metroui.org.ua/res/scorpions/return_to_forever/17  Crazy Ride.mp3"},
+                    {file: "http://metroui.org.ua/res/scorpions/return_to_forever/18  One And One Is Three.mp3"},
+                    {file: "http://metroui.org.ua/res/scorpions/return_to_forever/19  Delirious.mp3"}
+                ]
+            }
+        }
+    </script>
 </head>
 <body>
     <div class="container page-content">
@@ -69,6 +99,11 @@
                     </ul>
                 </div>
             </div>
+        </div>
+
+        <div class="example" data-text="example">
+            <h5>External play list, loaded by function</h5>
+            <div data-role="audio" data-play-list="playList"></div>
         </div>
 
         <div class="example" data-text="code">

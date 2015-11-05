@@ -2210,6 +2210,7 @@ $.widget( "metro.audio" , {
         loop: false,
         preload: false,
         autoplay: false,
+        playList: false,
 
         loopButton: "<span class='mif-loop'></span>",
         stopButton: "<span class='mif-stop'></span>",
@@ -2243,7 +2244,49 @@ $.widget( "metro.audio" , {
     _addPlayList: function(){
         var that = this, element = this.element, o = this.options;
         var audio = element.find("audio");
-        var play_list = element.find("ul");
+        var pl, pli, plw, poster, title;
+        var play_list;
+
+        if (o.playList) {
+            if (window[o.playList] != undefined && typeof window[o.playList] == 'function') {
+
+                pl =  window[o.playList]();
+                pli = pl.items;
+                plw = $("<div>").addClass("play-list-wrapper").insertBefore(element.find("audio"));
+
+                if (pl.title != undefined) {
+                    title = $("<h1>").addClass("album-title").html(pl.title).appendTo(plw);
+                }
+
+                if (pl.poster != undefined) {
+                    poster = $("<div>").addClass("poster").html($("<img>").attr("src", pl.poster)).appendTo(plw);
+                }
+
+                if (pl.desc != undefined) {
+                    $("<div>").addClass("album-desc").html(pl.desc).appendTo(poster);
+                }
+
+                play_list = $("<ul>").addClass("play-list").appendTo(plw);
+
+                if (pli != undefined) {
+                    $.each(pl.items, function(){
+                        var item = this, li;
+                        li = $("<li>").appendTo(play_list);
+                        li.data('src', item.file);
+                        if (item.type != undefined) {
+                            li.data('type', item.type);
+                        }
+                        if (item.title != undefined) {
+                            li.html(item.title);
+                        } else {
+                            li.html(item.file.replace(/^.*[\\\/]/, ''));
+                        }
+                    });
+                }
+            }
+        }
+
+        play_list = element.find("ul");
 
         if (play_list.length == 0) {
             return this;
@@ -2269,7 +2312,6 @@ $.widget( "metro.audio" , {
         });
         $(items[0]).click();
         this._stop();
-        //$(items[0]).addClass("current").find(".progress-bar").show();
         element.data("current", $(items[0]));
     },
 
