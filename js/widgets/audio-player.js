@@ -10,6 +10,7 @@ $.widget( "metro.audio" , {
         preload: false,
         autoplay: false,
         playList: false,
+        mode: "full",
 
         loopButton: "<span class='mif-loop'></span>",
         stopButton: "<span class='mif-stop'></span>",
@@ -20,6 +21,7 @@ $.widget( "metro.audio" , {
         nextButton: "<span class='mif-forward'></span>",
         prevButton: "<span class='mif-backward'></span>",
         randomButton: "<span class='mif-dice'></span>",
+        playListButton: "<span class='mif-list2'></span>",
 
         volumeLowButton: "<span class='mif-volume-low'></span>",
         volumeMediumButton: "<span class='mif-volume-medium'></span>",
@@ -36,8 +38,19 @@ $.widget( "metro.audio" , {
         this._addControls();
         this._addEvents();
         this._addPlayList();
+        this._setControlsVisibility();
 
         element.data('audio', this);
+    },
+
+    _setControlsVisibility: function(){
+        var that = this, element = this.element, o = this.options;
+        if (element.find(".play-list").length == 0) {
+            element.find(".controls .plist").hide();
+            element.find(".controls .next").hide();
+            element.find(".controls .prev").hide();
+            element.find(".controls .random").hide();
+        }
     },
 
     _addPlayList: function(){
@@ -119,6 +132,7 @@ $.widget( "metro.audio" , {
         var audio = element.find("audio");
 
         element.addClass("audio-player");
+        element.addClass(o.mode);
 
         if (audio.length == 0) {
             audio = $("<audio>").appendTo(element);
@@ -156,10 +170,21 @@ $.widget( "metro.audio" , {
 
     _addControls: function(){
         var that = this, element = this.element, o = this.options;
-        var controls, play_button, loop_button, stop_button, volume_button, volume_slider, stream_slider, info_box, stream_wrapper, volume_wrapper, shufle_button, next_button, prev_button, random_button;
+        var controls, play_button, loop_button, stop_button, volume_button,
+            volume_slider, stream_slider, info_box, stream_wrapper, volume_wrapper,
+            shufle_button, next_button, prev_button, random_button, play_list_button;
         var audio = element.find('audio'), audio_obj = audio[0];
 
         controls = $("<div>").addClass("controls").appendTo(element);
+
+        play_list_button = $("<button/>").addClass("square-button control-element plist").html(o.playListButton).appendTo(controls);
+        play_list_button.on("click", function(){
+            var play_list = element.find(".play-list-wrapper");
+            if (play_list.length == 0) {
+                return that;
+            }
+            play_list.toggleClass("not-visible");
+        });
 
         loop_button = $("<button/>").addClass("square-button control-element loop").html(o.loopButton).appendTo(controls);
         loop_button.on("click", function(){
