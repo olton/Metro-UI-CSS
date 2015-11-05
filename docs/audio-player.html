@@ -63,8 +63,29 @@
         @@adsense
 
         <div class="example" data-text="example">
-            <h5>Default with one source, full mode</h5>
+            <h5>Default with one source</h5>
             <div data-role="audio" data-list-position="bottom">
+                <audio controls>
+                    <source src="http://metroui.org.ua/res/rec.mp3" type='audio/mp3' />
+                </audio>
+            </div>
+
+            <h5>Micro Mode</h5>
+            <div data-role="audio" data-mode="micro">
+                <audio controls>
+                    <source src="http://metroui.org.ua/res/rec.mp3" type='audio/mp3' />
+                </audio>
+            </div>
+
+            <h5>Small Mode</h5>
+            <div data-role="audio" data-mode="small">
+                <audio controls>
+                    <source src="http://metroui.org.ua/res/rec.mp3" type='audio/mp3' />
+                </audio>
+            </div>
+
+            <h5>Medium Mode</h5>
+            <div data-role="audio" data-mode="medium">
                 <audio controls>
                     <source src="http://metroui.org.ua/res/rec.mp3" type='audio/mp3' />
                 </audio>
@@ -73,7 +94,7 @@
 
         <div class="example" data-text="example">
             <h5>With a play list, full mode</h5>
-            <div data-role="audio" data-list-position="bottom">
+            <div data-role="audio">
                 <div class="play-list-wrapper">
                     <h1 class="album-title">Scorpions - Return to Forever</h1>
                     <ul class="play-list">

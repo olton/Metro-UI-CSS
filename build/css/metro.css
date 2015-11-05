@@ -17128,7 +17128,8 @@ video::-webkit-media-controls-enclosure {
 .audio-player .controls .next,
 .audio-player .controls .prev,
 .audio-player .controls .shuffle,
-.audio-player .controls .random {
+.audio-player .controls .random,
+.audio-player .controls .plist {
   color: #b3b3b3;
 }
 .audio-player .controls .play:hover,
@@ -17139,6 +17140,7 @@ video::-webkit-media-controls-enclosure {
 .audio-player .controls .prev:hover,
 .audio-player .controls .shuffle:hover,
 .audio-player .controls .random:hover,
+.audio-player .controls .plist:hover,
 .audio-player .controls .play:active,
 .audio-player .controls .stop:active,
 .audio-player .controls .loop:active,
@@ -17146,7 +17148,8 @@ video::-webkit-media-controls-enclosure {
 .audio-player .controls .next:active,
 .audio-player .controls .prev:active,
 .audio-player .controls .shuffle:active,
-.audio-player .controls .random:active {
+.audio-player .controls .random:active,
+.audio-player .controls .plist:active {
   color: #ffffff;
 }
 .audio-player .controls .loop.active {
@@ -17168,6 +17171,9 @@ video::-webkit-media-controls-enclosure {
 }
 .audio-player .play-list-wrapper:after {
   clear: both;
+}
+.audio-player .play-list-wrapper.not-visible {
+  display: none;
 }
 .audio-player .album-title {
   font-size: 2rem;
@@ -17215,6 +17221,35 @@ video::-webkit-media-controls-enclosure {
 .audio-player .poster ~ .play-list {
   margin: 0 0 0 11rem;
   width: calc(100% - 11rem);
+}
+.audio-player.micro .plist,
+.audio-player.micro .loop,
+.audio-player.micro .next,
+.audio-player.micro .prev,
+.audio-player.micro .random,
+.audio-player.micro .stop,
+.audio-player.micro .stream-wrapper,
+.audio-player.micro .info-box,
+.audio-player.micro .volume-wrapper,
+.audio-player.micro .volume {
+  display: none;
+}
+.audio-player.small .plist,
+.audio-player.small .stop,
+.audio-player.small .stream-wrapper,
+.audio-player.small .next,
+.audio-player.small .prev,
+.audio-player.small .random,
+.audio-player.small .loop {
+  display: none;
+}
+.audio-player.medium .plist,
+.audio-player.medium .stop,
+.audio-player.medium .next,
+.audio-player.medium .prev,
+.audio-player.medium .random,
+.audio-player.medium .loop {
+  display: none;
 }
 .select2-container {
   box-sizing: border-box;

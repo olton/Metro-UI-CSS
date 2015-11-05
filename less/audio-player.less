@@ -49,7 +49,7 @@
             padding: 0 .25rem 0;
         }
 
-        .play, .stop, .loop, .volume, .next, .prev, .shuffle, .random {
+        .play, .stop, .loop, .volume, .next, .prev, .shuffle, .random, .plist {
             color: @audio_inactive_button;
             &:hover, &:active {
                 color: @audio_active_button;
@@ -76,6 +76,10 @@
         padding: .625rem;
         .clear-float;
         border-bottom: 1px solid @gray;
+
+        &.not-visible {
+            display: none;
+        }
     }
 
     .album-title {
@@ -135,5 +139,25 @@
     .poster ~ .play-list {
         margin: 0 0 0 11rem;
         width: ~"calc(100% - 11rem)";
+    }
+}
+
+.audio-player {
+    &.micro {
+        .plist, .loop, .next, .prev, .random, .stop, .stream-wrapper, .info-box, .volume-wrapper, .volume {
+            display: none;
+        }
+    }
+
+    &.small {
+        .plist, .stop, .stream-wrapper, .next, .prev, .random, .loop {
+            display: none;
+        }
+    }
+
+    &.medium {
+        .plist, .stop, .next, .prev, .random, .loop {
+            display: none;
+        }
     }
 }
