@@ -14,6 +14,7 @@
 * add audio player
 * remove large slider
 * redefine slider
+* fix radio-button checked state
 
 ## 3.0.13
 * upd treeview for method addLeaf, now method returned li

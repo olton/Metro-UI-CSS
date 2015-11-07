@@ -619,6 +619,10 @@ input, select, textarea {
 			}
 		}
 
+		input[type="radio"]:checked ~ .check:before {
+			border-color: @transparent;
+		}
+
 		input[type="radio"]:not(:checked) ~ .check:before {
 			background-color: @transparent;
 		}
