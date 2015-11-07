@@ -9303,6 +9303,9 @@ textarea.required {
           transform: rotate(0deg);
   border-radius: 50%;
 }
+.input-control.radio input[type="radio"]:checked ~ .check:before {
+  border-color: transparent;
+}
 .input-control.radio input[type="radio"]:not(:checked) ~ .check:before {
   background-color: transparent;
 }
