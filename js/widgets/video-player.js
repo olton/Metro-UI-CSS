@@ -301,80 +301,89 @@ $.widget( "metro.video" , {
         });
         stream_slider.data('slider').value(0);
 
-        loop_button = $("<button/>").addClass("square-button small-button1 control-button loop no-phone").html(o.loopButton).appendTo(controls);
-        loop_button.on("click", function(){
-            loop_button.toggleClass('active');
-            if (loop_button.hasClass('active')) {
-                video.attr("loop", "loop");
-            } else {
-                video.removeAttr("loop");
-            }
-        });
+        if (o.loopButton !== false) {
+            loop_button = $("<button/>").addClass("square-button small-button1 control-button loop no-phone").html(o.loopButton).appendTo(controls);
+            loop_button.on("click", function () {
+                loop_button.toggleClass('active');
+                if (loop_button.hasClass('active')) {
+                    video.attr("loop", "loop");
+                } else {
+                    video.removeAttr("loop");
+                }
+            });
+        }
 
-        play_button = $("<button/>").addClass("square-button small-button1 control-button play").html(o.playButton).appendTo(controls);
-        play_button.on("click", function(){
-            that._play();
-        });
+        if (o.playButton !== false) {
+            play_button = $("<button/>").addClass("square-button small-button1 control-button play").html(o.playButton).appendTo(controls);
+            play_button.on("click", function () {
+                that._play();
+            });
+        }
 
-        stop_button = $("<button/>").addClass("square-button small-button1 control-button stop no-phone").html(o.stopButton).appendTo(controls).attr("disabled", "disabled");
-        stop_button.on("click", function(){
-            that._stop();
-        });
+
+        if (o.stopButton !== false) {
+            stop_button = $("<button/>").addClass("square-button small-button1 control-button stop no-phone").html(o.stopButton).appendTo(controls).attr("disabled", "disabled");
+            stop_button.on("click", function () {
+                that._stop();
+            });
+        }
 
         info_box = $("<div/>").addClass('info-box no-small-phone').appendTo(controls); 
         info_box.html("00:00 / 00:00");
 
-        screen_button = $("<button/>").addClass("square-button small-button1 control-button full").html(o.screenMoreButton).appendTo(controls);
-        screen_button.on("click", function(){
-            element.data('fullScreen', !element.data('fullScreen'));
+        if (o.screenMoreButton !== false) {
+            screen_button = $("<button/>").addClass("square-button small-button1 control-button full").html(o.screenMoreButton).appendTo(controls);
+            screen_button.on("click", function () {
+                element.data('fullScreen', !element.data('fullScreen'));
 
-            if (element.data('fullScreen')) {
-                screen_button.html(o.screenLessButton);
-            } else {
-                screen_button.html(o.screenMoreButton);
-            }
-
-            if (o.fullScreenMode === 'window') {
-                element.toggleClass("full-screen");
-            } else {
                 if (element.data('fullScreen')) {
-
-
-                    if (element_obj.requestFullscreen) {
-                        element_obj.requestFullscreen();
-                    } else if (element_obj.msRequestFullscreen) {
-                        element_obj.msRequestFullscreen();
-                    } else if (element_obj.mozRequestFullScreen) {
-                        element_obj.mozRequestFullScreen();
-                    } else if (element_obj.webkitRequestFullscreen) {
-                        element_obj.webkitRequestFullscreen();
-                    }
+                    screen_button.html(o.screenLessButton);
                 } else {
-
-                    if(document.exitFullscreen) {
-                        document.exitFullscreen();
-                    } else if(document.mozCancelFullScreen) {
-                        document.mozCancelFullScreen();
-                    } else if(document.webkitExitFullscreen) {
-                        document.webkitExitFullscreen();
-                    }
+                    screen_button.html(o.screenMoreButton);
                 }
-            }
 
-            if (element.data('fullScreen')) {
-                $(document).on("keyup.metro_video_player", function(e){
-                    if (e.keyCode == 27) {
-                        screen_button.html(o.screenMoreButton);
-                        element.data('fullScreen', false);
-                        if (element.hasClass('full-screen')) {
-                            element.removeClass("full-screen");
+                if (o.fullScreenMode === 'window') {
+                    element.toggleClass("full-screen");
+                } else {
+                    if (element.data('fullScreen')) {
+
+
+                        if (element_obj.requestFullscreen) {
+                            element_obj.requestFullscreen();
+                        } else if (element_obj.msRequestFullscreen) {
+                            element_obj.msRequestFullscreen();
+                        } else if (element_obj.mozRequestFullScreen) {
+                            element_obj.mozRequestFullScreen();
+                        } else if (element_obj.webkitRequestFullscreen) {
+                            element_obj.webkitRequestFullscreen();
+                        }
+                    } else {
+
+                        if (document.exitFullscreen) {
+                            document.exitFullscreen();
+                        } else if (document.mozCancelFullScreen) {
+                            document.mozCancelFullScreen();
+                        } else if (document.webkitExitFullscreen) {
+                            document.webkitExitFullscreen();
                         }
                     }
-                });
-            } else {
-                $(document).off("keyup.metro_video_player");
-            }
-        });
+                }
+
+                if (element.data('fullScreen')) {
+                    $(document).on("keyup.metro_video_player", function (e) {
+                        if (e.keyCode == 27) {
+                            screen_button.html(o.screenMoreButton);
+                            element.data('fullScreen', false);
+                            if (element.hasClass('full-screen')) {
+                                element.removeClass("full-screen");
+                            }
+                        }
+                    });
+                } else {
+                    $(document).off("keyup.metro_video_player");
+                }
+            });
+        }
 
         volume_slider_wrapper = $("<div/>").addClass('control-slider volume-slider-wrapper place-right').appendTo(controls);
         volume_slider = $("<div/>").addClass('slider volume-slider').appendTo(volume_slider_wrapper);

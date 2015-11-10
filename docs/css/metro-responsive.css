@@ -713,7 +713,7 @@
     display: none !important;
   }
 }
-@media screen and (min-width: 900px) {
+@media screen and (min-width: 801px) {
   .no-pc {
     display: none !important;
   }
