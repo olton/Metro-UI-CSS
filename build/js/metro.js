@@ -1,6 +1,6 @@
 /*!
  * Metro UI CSS v3.0.13 (http://metroui.org.ua)
- * Copyright 2012-2015 Sergey Pimenov
+ * Copyright 2012-2016 Sergey Pimenov
  * Licensed under MIT (http://metroui.org.ua/license.html)
  */
 
@@ -470,7 +470,7 @@ $.widget = function (name, base, prototype) {
         }
         proxiedPrototype[prop] = (function () {
             var _super = function () {
-                    return base.prototype[prop].apply(this, arguments);
+                    return base.prototype[prop].apply(this, Array.prototype.slice.call(arguments, 1));
                 },
                 _superApply = function (args) {
                     return base.prototype[prop].apply(this, args);
