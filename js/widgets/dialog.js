@@ -1,6 +1,6 @@
 $.widget( "metro.dialog" , {
 
-    version: "3.0.0",
+    version: "3.0.14",
 
     options: {
         modal: false,
@@ -19,6 +19,9 @@ $.widget( "metro.dialog" , {
         closeButton: false,
         windowsStyle: false,
         show: false,
+        href: false,
+        contentType: 'default', // video
+
         _interval: undefined,
         _overlay: undefined,
 
@@ -132,7 +135,10 @@ $.widget( "metro.dialog" , {
     },
 
     _show: function(){
-        var element = this.element;
+        var that = this, element = this.element, o = this.options;
+
+        this._setContent();
+
         element.css({
            visibility: "visible"
         });
@@ -143,10 +149,103 @@ $.widget( "metro.dialog" , {
         var width = element.width(),
             height = element.height();
 
-        element.css({
-            left: o.windowsStyle === false ? ( $(window).width() - width ) / 2 : 0,
-            top: ( $(window).height() - height ) / 2
-        });
+        switch (o.place) {
+            case 'top-left': {
+                element.css({
+                    left: 0,
+                    top: 0
+                });
+                break;
+            }
+            case 'top-right': {
+                element.css({
+                    right: 0,
+                    top: 0
+                });
+                break;
+            }
+            case 'top-center': {
+                element.css({
+                    left: ( $(window).width() - width ) / 2,
+                    top: 0
+                });
+                break;
+            }
+            case 'bottom-left': {
+                element.css({
+                    left: 0,
+                    bottom: 0
+                });
+                break;
+            }
+            case 'bottom-right': {
+                element.css({
+                    right: 0,
+                    bottom: 0
+                });
+                break;
+            }
+            case 'center-left': {
+                element.css({
+                    left: 0,
+                    top: ( $(window).height() - height ) / 2
+                });
+                break;
+            }
+            case 'center-right': {
+                element.css({
+                    right: 0,
+                    top: ( $(window).height() - height ) / 2
+                });
+                break;
+            }
+            case 'bottom-center': {
+                element.css({
+                    left: ( $(window).width() - width ) / 2,
+                    bottom: 0
+                });
+                break;
+            }
+            default: {
+                element.css({
+                    left: o.windowsStyle === false ? ( $(window).width() - width ) / 2 : 0,
+                    top: ( $(window).height() - height ) / 2
+                });
+            }
+        }
+    },
+
+    _setContent: function(){
+        var that = this, element = this.element, o = this.options;
+        var content = $("<div>").addClass("set-dialog-content");
+
+        if (o.contentType === 'video') {
+            content.addClass('video-container');
+        }
+
+        if (o.content === false && o.href === false) {
+            return false;
+        }
+
+        element.find('.set-dialog-content').remove();
+
+        content.appendTo(element);
+
+        if (o.content) {
+            content.html(o.content);
+            this._setPosition();
+        }
+
+        if (o.href) {
+            $.get(
+                o.href,
+                function(response){
+                    content.html(response);
+                    that._setPosition();
+                }
+            );
+        }
+
     },
 
     toggle: function(){
@@ -223,6 +322,13 @@ $.widget( "metro.dialog" , {
         }
     },
 
+    reset: function(place){
+        if (place !== undefined) {
+            this.options.place = place;
+        }
+        this._setPosition();
+    },
+
     _destroy: function () {
     },
 
@@ -230,3 +336,66 @@ $.widget( "metro.dialog" , {
         this._super('_setOption', key, value);
     }
 });
+
+
+window.showMetroDialog = function (el, place){
+    var dialog = $(el), dialog_obj;
+    if (dialog.length == 0) {
+        console.log('Dialog ' + el + ' not found!');
+        return false;
+    }
+
+    dialog_obj = dialog.data('dialog');
+
+    if (dialog_obj == undefined) {
+        console.log('Element not contain role dialog! Please add attribute data-role="dialog" to element ' + el);
+        return false;
+    }
+
+    if (place !== undefined) {
+        dialog_obj.options.place = place;
+    }
+
+    dialog_obj.open();
+};
+
+window.hideMetroDialog = function(el){
+    var dialog = $(el), dialog_obj;
+    if (dialog.length == 0) {
+        console.log('Dialog ' + el + ' not found!');
+        return false;
+    }
+
+    dialog_obj = dialog.data('dialog');
+
+    if (dialog_obj == undefined) {
+        console.log('Element not contain role dialog! Please add attribute data-role="dialog" to element ' + el);
+        return false;
+    }
+
+    dialog_obj.close();
+};
+
+window.toggleMetroDialog = function(el, place){
+    var dialog = $(el), dialog_obj;
+    if (dialog.length == 0) {
+        console.log('Dialog ' + el + ' not found!');
+        return false;
+    }
+
+    dialog_obj = dialog.data('dialog');
+
+    if (dialog_obj == undefined) {
+        console.log('Element not contain role dialog! Please add attribute data-role="dialog" to element ' + el);
+        return false;
+    }
+
+    if (dialog_obj.element.data('opened') === true) {
+        dialog_obj.close();
+    } else {
+        if (place !== undefined) {
+            dialog_obj.options.place = place;
+        }
+        dialog_obj.open();
+    }
+};

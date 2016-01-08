@@ -1,5 +1,21 @@
 # Changelog 
 
+## 3.0.14
+* fix tabcontrol frames overflow
+* upd dialog, add utility function showMetroDialog, hideMetroDialog
+* upd dialog, add place option
+* upd dialog, add set content options
+* upd slider, add work with non input target
+* upd slider, add two way binding with target 
+* upd slider, add new Events: onStartChange, onChanged
+* add video player
+* upd slider, add buffer (great for player)
+* fix esc click for full screen video player with mode window
+* add audio player
+* remove large slider
+* redefine slider
+* fix radio-button checked state
+
 ## 3.0.13
 * upd treeview for method addLeaf, now method returned li
 * upd bower config

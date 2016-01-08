@@ -1,98 +1,105 @@
 @import (once) "variables";
+@import (once) "animations";
 @import (once) "utils";
 
 .slider {
-    height: 12px;
+    height: 2.125rem;
+    line-height: 1;
     width: auto;
     position: relative;
-    background-color: @grayLight;
-    margin-bottom: 10px;
 
     .marker {
-        height: 12px;
-        width: 12px;
+        height: 1rem;
+        width: 1rem;
         cursor: pointer;
         position: absolute;
-        top: 0;
+        top: 50%;
+        margin-top: -.5rem;
         left: 0;
         background-color: @dark;
         z-index: 2;
 
         &:focus, &:active, &hover {
-            outline: 2px @red solid;
+            border: 2px @red solid;
         }
+    }
+
+    .slider-backside, .complete {
+        height: .5rem;
+        background: @grayLight;
+        width: 100%;
+        line-height: 2.125rem;
+        top: 50%;
+        margin-top: -.25rem;
+        position: absolute;
     }
 
     .complete {
-        height: 100%;
         width: auto;
         background-color: @teal;
-        z-index: 1;
+        z-index: 2;
         transition: background .3s ease;
+        left: 0;
     }
 
-    & > .slider-hint {
+    .buffer {
+        height: 4px;
+        width: auto;
         background-color: @white;
+        z-index: 1;
+        transition: background .3s ease;
+        position: absolute;
+        top: 50%;
+        margin-top: -2px;
+        left: 0;
+    }
+
+    .slider-hint {
+        min-width: 1.8rem;
+        width: auto;
+        height: auto;
         position: absolute;
         z-index: 3;
         border: 1px #ccc solid;
-        padding: 2px 4px;
-        top: -40px;
-        min-width: 30px;
+        padding: .25rem;
+        top: -1.2rem;
         text-align: center;
-        font-size: 14px;
+        font-size: .625rem;
         display: none;
-		.block-shadow;
-		&:before {
-			display: none;
-		}
-    }
+        background: @hintColor;
 
-    &.permanent-hint {
-        & > .slider-hint {
+		&:before {
+            border: 1px #ccc solid;
+            border-left: 0;
+            border-top: 0;
+            content: "";
+            width: .25rem;
+            height: .25rem;
             display: block;
-        }
+            position: absolute;
+            background-color: inherit;
+            margin-top: -0.125rem;
+            margin-left: -0.15625rem;
+            top: 100%;
+            left: 50%;
+            .rotate(45deg);
+		}
     }
 
     &.hint-bottom {
         .slider-hint {
             top: 100%;
-            margin-top: 5px;
+            margin-top: -.125rem;
+            &:before {
+                top: -.0625rem;
+                .rotate(-135deg);
+            }
         }
     }
 
-    &.vertical {
-        height: 100px;
-        width: 12px;
-		float: left;
-		margin-right: 10px;
-
-		&:last-child:first-child {
-			margin-left: 0;
-		}
-
-        .marker {
-            left: 0 ;
-        }
-
-        .complete {
-            position: absolute;
-            height: auto;
-            width: 100% ;
-            bottom: 0;
-            left: 0;
-        }
-
-        .slider-hint {
-            left: 100%;
-            margin-left: 5px;
-            margin-top: 0;
-        }
-
-        &.hint-left {
-            .slider-hint {
-                left: -40px;
-            }
+    &.permanent-hint {
+        & > .slider-hint {
+            display: block;
         }
     }
 
@@ -114,24 +121,80 @@
     &.place-right {
         margin-left: 20px;
     }
+
+    &.ani {
+        .complete {
+            .animate(ani-bg-stripes 2s linear infinite);
+        }
+    }
 }
 
 .slider {
-	&.large {
-		height: 24px;
+    &.vertical {
+        min-height: 100px;
+        width: 2.125rem;
+        display: inline-block;
 
-		.marker {
-			width: 24px;
-			height: 24px;
-		}
+        .slider-backside, .complete {
+            position: absolute;
+            height: 100%;
+            width: .5rem;
+            bottom: 0;
+            left: 50%;
+            margin-left: -.25rem;
+            top: auto;
+        }
 
-		.slider-hint {
-			min-width: 30px;
-		}
+        .marker {
+            left: 50%;
+            top: auto;
+            margin-left: -.5rem;
+        }
 
-		&.vertical {
-			width: 24px;
-			height: 100px;
-		}
-	}
+        .complete {
+        }
+
+        .buffer {
+            position: absolute;
+            height: auto;
+            width: 6px ;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+            top: auto;
+        }
+
+        .slider-hint {
+            left: 100%;
+            margin-top: 0;
+
+            &:before {
+                height: .25rem;
+                width: .25rem;
+                .rotate(135deg);
+                left: -1px;
+                top: 50%;
+                margin-top: -.125rem;
+                margin-left: -.135rem;
+            }
+        }
+
+        &.hint-left {
+            .slider-hint {
+                left: -100%;
+                margin-left: .25rem;
+
+                &:before {
+                    left: 100%;
+                    .rotate(-45deg);
+                }
+            }
+        }
+    }
+}
+
+.slider.cycle-marker {
+    .marker {
+        border-radius: 50%;
+    }
 }

@@ -21,6 +21,16 @@ String.prototype.isColor = function () {
     return /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(this);
 };
 
+window.secondsToFormattedString = function(time){
+    var hours, minutes, seconds;
+
+    hours = parseInt( time / 3600 ) % 24;
+    minutes = parseInt( time / 60 ) % 60;
+    seconds = time % 60;
+
+    return (hours ? (hours) + ":" : "") + (minutes < 10 ? "0"+minutes : minutes) + ":" + (seconds < 10 ? "0"+seconds : seconds);
+};
+
 Array.prototype.shuffle = function () {
     var currentIndex = this.length, temporaryValue, randomIndex;
 

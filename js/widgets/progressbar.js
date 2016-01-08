@@ -127,6 +127,10 @@ $.widget( "metro.progress" , {
         }
     },
 
+    value: function(value){
+        return this.set(value);
+    },
+
     _destroy: function () {
     },
 
