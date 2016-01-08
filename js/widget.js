@@ -78,7 +78,7 @@ $.widget = function (name, base, prototype) {
         }
         proxiedPrototype[prop] = (function () {
             var _super = function () {
-                    return base.prototype[prop].apply(this, arguments);
+                    return base.prototype[prop].apply(this, Array.prototype.slice.call(arguments, 1));
                 },
                 _superApply = function (args) {
                     return base.prototype[prop].apply(this, args);
