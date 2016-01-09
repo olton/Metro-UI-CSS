@@ -26,7 +26,13 @@ $.widget( "metro.validator" , {
 
     funcs: {
         required: function(val){
-            return val.trim() !== "";
+            if ( val == null  ) {
+                return false;
+            } else if ( typeof val.constructor == Array ) {
+                return val.length > 0 ? true : false;
+            } else {
+                return val.trim() !== "";
+            }
         },
         minlength: function(val, len){
             if (len == undefined || isNaN(len) || len <= 0) {
