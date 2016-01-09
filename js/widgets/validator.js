@@ -28,7 +28,7 @@ $.widget( "metro.validator" , {
         required: function(val){
             if ( val == null  ) {
                 return false;
-            } else if ( typeof val.constructor == Array ) {
+            } else if ( val.constructor == Array ) {
                 return val.length > 0 ? true : false;
             } else {
                 return val.trim() !== "";
@@ -40,7 +40,7 @@ $.widget( "metro.validator" , {
             }
             if ( val == null  ) {
                 return false
-            } else if ( typeof val.constructor == Array ) {
+            } else if ( val.constructor == Array ) {
                 return val.length >= len ? true : false;
             } else {
                 return val.trim().length >= len;
@@ -52,7 +52,7 @@ $.widget( "metro.validator" , {
             }
             if ( val == null  ) {
                 return false
-            } else if ( typeof val.constructor == Array ) {
+            } else if ( val.constructor == Array ) {
                 return val.length <= len ? true : false;
             } else {
                 return val.trim().length <= len;
