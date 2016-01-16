@@ -15188,6 +15188,11 @@ video::-webkit-media-controls-enclosure {
   background-color: inherit ;
   color: #1d1d1d;
 }
+.dataTables_paginate .ellipsis {
+  display: block;
+  float: left;
+  padding: .25rem .625rem;
+}
 .dataTables_info {
   padding: 5px;
   background-color: #eeeeee;
