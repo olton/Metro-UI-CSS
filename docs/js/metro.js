@@ -1,6 +1,6 @@
 /*!
  * Metro UI CSS v3.0.14 (http://metroui.org.ua)
- * Copyright 2012-2015 Sergey Pimenov
+ * Copyright 2012-2016 Sergey Pimenov
  * Licensed under MIT (http://metroui.org.ua/license.html)
  */
 

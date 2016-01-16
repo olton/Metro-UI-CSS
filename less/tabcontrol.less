@@ -1,4 +1,4 @@
-@import (once) "variables";
+@import (once) "vars";
 @import (once) "utils";
 
 .tabcontrol {
@@ -54,8 +54,12 @@
 
 			&.disabled {
 				a {
-					.ribbed-grayLighter;
-					.fg-grayLight;
+					background: @grayLighter linear-gradient(-45deg, rgba(255,255,255,.15) 25%, transparent 25%, transparent 50%, rgba(255,255,255,.15) 50%, rgba(255,255,255,.15) 75%, transparent 75%, transparent);
+					background-size: 40px 40px;
+					color: @grayLight;
+
+					//.ribbed-grayLighter;
+					//.fg-grayLight;
 					cursor: default;
 				}
 			}

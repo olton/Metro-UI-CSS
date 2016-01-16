@@ -1,4 +1,4 @@
-@import (once) "variables";
+@import (once) "vars";
 
 *[dir=ltr] {
     direction: ltr;
@@ -85,4 +85,8 @@ bdo[dir=rtl] {
             padding-right: 30px;
         }
     }
+}
+
+*[dir=rtl] .grid .row > .cell {
+    float: right;
 }
