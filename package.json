@@ -1,7 +1,8 @@
 {
     "author": "Sergey Pimenov",
-    "name": "metro",
+    "name": "metro-ui",
     "version": "3.0.13",
+	"main": "build/js/metro.js",
     "description": "The front-end framework for developing responsive, mobile projects on the web in Windows Metro Style.",
     "keywords": [
         "css",
