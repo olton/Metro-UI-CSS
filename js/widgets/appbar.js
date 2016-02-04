@@ -274,6 +274,7 @@
             that.lastFlexAction = undefined;
 
             that.pullButton = $(element).find('.app-bar-pullbutton');
+			that.pullMenu = $(element).find('.app-bar-pullmenu');
             var menus = $(element).find('.app-bar-menu');
 
             that.initiatedAsFlex = false;   //we change it later in the code - conditionally
@@ -285,7 +286,6 @@
             that.flexVisibles = $();    //the menus which are directly in the appbar
             that.allMenuEntries = $();  //all menu entries in a sorted order
             that.menusParent = $();     //common parent from the menus, which can but do not need to be this.element. We get the max width from it
-            that.pullMenu = $();
 
             if (menus.length > 0 && $(element).is(":not('.no-flexible')")) {
                 //strip off all .no-flexible menus
@@ -342,8 +342,10 @@
                         $(that.menusParent).append(that.pullButton);
                     }
 
-                    //create a pullmenu
-                    that.pullMenu = $('<nav class="app-bar-pullmenu hidden" />');
+                    //check if a pullmenu already exist, if not we create one
+					if (!(that.pullMenu.length > 0)) {
+						that.pullMenu = $('<nav class="app-bar-pullmenu hidden" />');
+					}
 
                     //create menubars within the pullmenu
                     that.flexVisibles.each(function () {
