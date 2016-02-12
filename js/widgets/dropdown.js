@@ -42,9 +42,12 @@ $.widget("metro.dropdown", {
                 that._close(menu);
             } else {
                 $('[data-role=dropdown]').each(function(i, el){
-                    if (!menu.parents('[data-role=dropdown]').is(el) && !$(el).hasClass('keep-open') && $(el).css('display') === 'block') {
-                        that._close(el);
-                    }
+					var closeWhenOther = $(el).data('close-when-other');
+					if (typeof closeWhenOther === 'undefined' || closeWhenOther === true) {
+                        if (!menu.parents('[data-role=dropdown]').is(el) && !$(el).hasClass('keep-open') && $(el).css('display') === 'block') {
+                            that._close(el);
+                        }
+					}
                 });
                 if (menu.hasClass('horizontal')) {
                     menu.css({
@@ -80,9 +83,12 @@ $.widget("metro.dropdown", {
 
         $(document).on('click', function(e){
             $('[data-role=dropdown]').each(function(i, el){
-                if (!$(el).hasClass('keep-open') && $(el).css('display')==='block') {
-                    that._close(el);
-                }
+				var closeWhenOther = $(el).data('close-when-other');
+				if (typeof closeWhenOther === 'undefined' || closeWhenOther === true) {
+                    if (!$(el).hasClass('keep-open') && $(el).css('display')==='block') {
+                        that._close(el);
+                    }
+				}
             });
         });
 
