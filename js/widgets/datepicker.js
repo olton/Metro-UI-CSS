@@ -1,6 +1,6 @@
 $.widget("metro.datepicker", {
 
-    version: "3.0.0",
+    version: "3.0.14",
 
     options: {
         format: "yyyy.mm.dd",
@@ -108,9 +108,10 @@ $.widget("metro.datepicker", {
             maxDate: o.maxDate,
             scheme: o.scheme,
             dayClick: function(d, d0){
-                //console.log(d, d0);
+                // console.log(d, d0);
                 _calendar.calendar('setDate', d0);
                 that.element.children("input[type=text]").val(d);
+                // debugger;
                 that.element.children("input[type=text]").trigger('change', d0);
                 that.element.children("input[type=text]").blur();
                 that._hide();
@@ -170,5 +171,32 @@ $.widget("metro.datepicker", {
 
     _setOption: function(key, value){
         this._super('_setOption', key, value);
+    },
+
+    //sets the date on the datepicker
+    setDate : function(date) {
+
+      if($.isArray(date)) {
+          //TODO: handle multi-selected dates
+      }
+
+      //TODO: test for IE support
+
+      var input = this.element.find('input');
+
+      //retrieve calendar instance
+      //and get associated dom element
+      var calInst = this._calendar.data('metro-calendar');
+      var calEl = calInst.element;
+
+      //clear the date storage
+      calEl.data('_storage', []);
+
+      //set date on calendar
+      this._calendar.calendar('setDate', date);
+
+      date = this._calendar.calendar('getDate');
+      input.val(date);
+
     }
 });
