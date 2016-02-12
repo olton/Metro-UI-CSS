@@ -1,0 +1,194 @@
+@unitSize:              20px;
+@subunitSize:           5px;
+
+//Typo
+@fontName: "Segoe UI", "Open Sans", sans-serif, serif;
+@fontNameLight: "Segoe UI Light", "Open Sans Light", sans-serif, serif;
+@fontNameBold: "Segoe UI Bold", "Open Sans Bold", sans-serif, serif;
+
+@baseFontSize: .875rem;
+@secondTextFontSize: .75rem;
+@smallTextFontSize: .625rem;
+@accentTextFontSize: 1.1rem;
+
+// Grid
+@gridColumns: 12;
+@gridMargin: 2.12765%;
+@gridMarginCondensed: 0;
+
+// Z-index
+@zindexDropdown:        1000;
+@zindexPopover:         1010;
+@zindexTooltip:         1030;
+@zindexFixedNavbar:     1030;
+@zindexModalBackdrop:   1040;
+@zindexModal:           1050;
+@zindexCharms:          1060;
+@zindexFullScreen:      2147483646;
+@zindexVideoControls:   2147483647;
+
+// Colors
+@transparent:			transparent;
+@black:                 #000000;
+@white:                 #ffffff;
+@lime:                  #a4c400;
+@green:                 #60a917;
+@emerald:               #008a00;
+@blue:                  #00AFF0;
+@teal:                  #00aba9;
+@cyan:                  #1ba1e2;
+@cobalt:                #0050ef;
+@indigo:                #6a00ff;
+@violet:                #aa00ff;
+@pink:                  #dc4fad;
+@magenta:               #d80073;
+@crimson:               #a20025;
+@red:                   #CE352C;
+@orange:                #fa6800;
+@amber:                 #f0a30a;
+@yellow:                #e3c800;
+@brown:                 #825a2c;
+@olive:                 #6d8764;
+@steel:                 #647687;
+@mauve:                 #76608a;
+@taupe:                 #87794e;
+@dark:                  #1d1d1d;
+@darkBrown:             #63362F;
+@darkCrimson:           #640024;
+@darkMagenta:           #81003C;
+@darkIndigo:            #4B0096;
+@darkCyan:              #1B6EAE;
+@darkCobalt:            #00356A;
+@darkTeal:              #004050;
+@darkEmerald:           #003e00;
+@darkGreen:             #128023;
+@darkOrange:            #bf5a15;
+@darkRed:               #9a1616;
+@darkPink:              #9a165a;
+@darkViolet:            #57169a;
+@darkBlue:              #16499a;
+@lightBlue:             #4390df;
+@lighterBlue:           #00CCFF;
+@lightTeal:             lighten(@teal, 30%);
+@lightOlive:            #78aa1c;
+@lightOrange:           lighten(@orange, 30%);
+@lightPink:             #f472d0;
+@lightRed:              lighten(@red, 10%);
+@lightGreen:            lighten(@green, 10%);
+@lightCyan:				#59cde2;
+@grayed:                #585858;
+@grayDarker:            #222222;
+@darker:                #222222;
+@grayDark:              #333333;
+@gray:                  #555555;
+@grayLight:             #999999;
+@grayLighter:           #eeeeee;
+@darkGray:              #333333;
+@darkerGray:            #222222;
+@lightGray:             #999999;
+@lighterGray:           #eeeeee;
+
+@color-list: black, white, lime, green, emerald, blue, teal, cyan, cobalt, indigo, violet, pink, magenta, crimson, red, orange,
+              amber, yellow, brown, olive, steel, mauve, taupe, dark, darkBrown, darkCrimson, darkMagenta, darkIndigo, darkCyan,
+              darkCobalt, darkTeal, darkEmerald, darkGreen, darkOrange, darkRed, darkPink, darkViolet, darkBlue, lightBlue,
+              lighterBlue, lightTeal, lightOlive, lightOrange, lightPink, lightRed, lightGreen, lightCyan, grayed, grayDarker,
+              grayDark, gray, grayLight, grayLighter, lightGray, lighterGray, darkGray, darkerGray, darker;
+
+@color-list-length: length(@color-list);
+
+//Navbar colors
+@navbarBackground: @grayLighter;
+@navbarElementColor: @dark;
+
+//Menu colors
+@menuItemHoverBackground: #edf4fc;
+@menuItemHoverBorder: #a8d2fd;
+@menuItemTitleBackground: #f6f7f8;
+@menuBorder: #dcddde;
+@menuShadow: #ececec;
+@menuShadowA: rgba(236, 236, 236, .7);
+
+
+// Additional colors
+@textColor: #262626;
+@textColor2: #52677a;
+@subColor: #999999;
+@linkColor: #2086bf;
+@linkVisitedColor: #2086bf;
+@disabledColor: #CACACA;
+@borderColor: #bcd9e2;
+@borderColorButton: #d9d9d9;
+@hintColor: #FFFCC0;
+
+@bodyBGColor: #E5E5E5;
+@defaultBGColor: #FFFFFF;
+@secondBGColor: #F5F5F5;
+@thirdBGColor: #e8f1f4;
+
+@winBorderSize:                         .5rem;
+@winBorderColor:                        #6badf6;
+@winBorderColorInactive:                #ebebeb;
+@winDialogContentBackground:            #ededed;
+@winFlatBackgroundColor:                #ffffff;
+@winFlatBorderColor:                    #e9e9e9;
+@winFlatSystemButtonHoverBackground:    #cde6f7;
+@winFlatSystemButtonActiveBackground:   #92c0e0;
+@winFlatSystemButtonActiveColor:        #2a8dd4;
+@winFlatSystemButtonRestColor:          #777777;
+@winCloseButtonColor:                   #c75050;
+@winCloseButtonActiveColor:             #e04343;
+@winCloseButtonInActiveColor:           #bcbcbc;
+
+@sidebarBackground: #71b1d1;
+@sidebarBackgroundActive: @white;
+@sidebarColor: #323232;
+
+//Inputs
+@inputHoverState:       #919191;
+@inputRestState:        #d9d9d9;
+@inputDisabledState:    #8a8a8a;
+@inputDisabledBgState:  #E6E6E6;
+@inputFocusState:       #919191;
+@inputActiveState:      #1e1e1e;
+@placeHolderText: 		@grayLight;
+
+@borderRadius:			.3125rem;
+
+@symbolWarning: "\26A0";
+@symbolNoEntry: "\26D4";
+@symbolInfo: "\24D8";
+@symbolQuestion: "\2753";
+
+@preloaderRingTime: 4000ms;
+@preloaderRingSize: 32px;
+@preloaderColor: @white;
+@preloaderColorDark: @gray;
+@preloaderRingRotate: -14deg;
+@preloaderRingTimeMute: 30;
+
+@tileMargin: 5px;
+@tileSize: 150px;
+@tileHalfSize: 70px;
+@tileMedium: 310px;
+@tileBig: 470px;
+@tileLarge: 630px;
+@tileOutlineSize: 3px;
+@tileGroupMargin: 80px;
+
+@tileMDFactor: 1.25;
+
+@appBarBackground: #0072C6;
+@appBarBackgroundActive: #005696;
+@appBarDividerColor: #4C9CD7;
+
+@appBarBackgroundDarcula: #3C3F41;
+@appBarBackgroundActiveDarcula: @dark;
+@appBarDividerColorDarcula: #616162;
+
+@fmElementHoverBackground: #cde6f7;
+@fmTabActiveColor: #0072c6;
+@fmTabRestColor: #444444;
+@fmTabBackground: #ffffff;
+@fmPanelBackground: #ffffff;
+@fmPanelCaptionRestColor: #666666;
+@fmBorderColor: #d4d4d4;

@@ -1,12 +1,14 @@
 $.widget("metro.slider", {
 
-    version: "3.0.0",
+    version: "3.0.14",
 
     options: {
         position: 0,
+        buffer: 0,
         accuracy: 0,
         color: 'default',
         completeColor: 'default',
+        bufferColor: 'default',
         markerColor: 'default',
         colors: false,
         showHint: false,
@@ -15,14 +17,17 @@ $.widget("metro.slider", {
         vertical: false,
         min: 0,
         max: 100,
-        animate: true,
+        animate: false,
         minValue: 0,
         maxValue: 100,
         currValue: 0,
         returnType: 'value',
         target: false,
 
+        onStartChange: function(){},
         onChange: function(value, slider){},
+        onChanged: function(value, slider){},
+        onBufferChange: function(value, slider){},
 
         _slider : {
             vertical: false,
@@ -53,12 +58,16 @@ $.widget("metro.slider", {
             }
         });
 
+        element.data('internal_id', uniqueId());
+        //console.log(element.data('internal_id'));
+
         o.accuracy = o.accuracy < 0 ? 0 : o.accuracy;
         o.min = o.min < 0 ? 0 : o.min;
         o.min = o.min > o.max ? o.max : o.min;
         o.max = o.max > 100 ? 100 : o.max;
         o.max = o.max < o.min ? o.min : o.max;
         o.position = this._correctValue(element.data('position') > o.min ? (element.data('position') > o.max ? o.max : element.data('position')) : o.min);
+        o.buffer = this._correctValue(element.data('buffer') > o.min ? (element.data('buffer') > o.max ? o.max : element.data('buffer')) : o.min);
         o.colors = o.colors ? o.colors.split(",") : false;
 
         s.vertical = o.vertical;
@@ -80,12 +89,33 @@ $.widget("metro.slider", {
         this._createSlider();
         this._initPoints();
         this._placeMarker(o.position);
+        this._showBuffer(o.buffer);
 
         var event_down = isTouchDevice() ? 'touchstart' : 'mousedown';
 
+        if (o.target && $(o.target)[0].tagName == 'INPUT') {
+            $(o.target).on('keyup', function(){
+                var input_value = this.value !== undefined ? this.value : 0;
+                var new_value = Math.min(input_value, o.maxValue);
+                that._placeMarker(that._realValueToValue(new_value));
+                //console.log(that._realValueToValue(this.value));
+            });
+        }
+
         element.children('.marker').on(event_down, function (e) {
-            e.preventDefault();
             that._startMoveMarker(e);
+            if (typeof o.onStartChange === 'function') {
+                o.onStartChange();
+            } else {
+                if (typeof window[o.onStartChange] === 'function') {
+                    window[o.onStartChange]();
+                } else {
+                    var result = eval("(function(){"+o.onStartChange+"})");
+                    result.call();
+                }
+            }
+            e.preventDefault();
+            e.stopPropagation();
         });
 
         element.on(event_down, function (e) {
@@ -94,7 +124,6 @@ $.widget("metro.slider", {
         });
 
         element.data('slider', this);
-
     },
 
     _startMoveMarker: function(e){
@@ -104,23 +133,36 @@ $.widget("metro.slider", {
         var event_move = isTouchDevice() ? 'touchmove' : 'mousemove';
         var event_up = isTouchDevice() ? 'touchend' : 'mouseup mouseleave';
 
-        $(element).on(event_move, function (event) {
+        $(document).on(event_move, function (event) {
             that._movingMarker(event);
             if (!element.hasClass('permanent-hint')) {
                 hint.css('display', 'block');
             }
         });
-        $(element).on(event_up, function () {
-            $(element).off('mousemove');
-            $(element).off('mouseup');
+        $(document).on(event_up, function () {
+            $(document).off(event_move);
+            $(document).off(event_up);
             element.data('value', o.position);
             element.trigger('changed', o.position);
+            element.trigger('change', o.position);
 
             returnedValue = o.returnType === 'value' ? that._valueToRealValue(o.position) : o.position;
 
             if (!element.hasClass('permanent-hint')) {
                 hint.css('display', 'none');
             }
+
+            if (typeof o.onChanged === 'function') {
+                o.onChanged(returnedValue, element);
+            } else {
+                if (typeof window[o.onChanged] === 'function') {
+                    window[o.onChanged](returnedValue, element);
+                } else {
+                    var result = eval("(function(){"+o.onChanged+"})");
+                    result.call(returnedValue, element);
+                }
+            }
+
         });
 
         this._initPoints();
@@ -173,7 +215,12 @@ $.widget("metro.slider", {
         var returnedValue = o.returnType === 'value' ? this._valueToRealValue(o.position) : o.position;
 
         if (o.target) {
-            $(o.target).val(returnedValue);
+            if ($(o.target)[0].tagName == 'INPUT') {
+                $(o.target).val(returnedValue);
+            } else {
+                $(o.target).html(returnedValue);
+            }
+            $(o.target).trigger('change', returnedValue);
         }
 
         if (typeof o.onChange === 'function') {
@@ -201,7 +248,7 @@ $.widget("metro.slider", {
         if (o._slider.vertical) {
             var oldSize = this._percToPix(o.position) + o._slider.marker,
                 oldSize2 = o._slider.length - oldSize;
-            size = this._percToPix(value) + o._slider.marker;
+            size = this._percToPix(value) + o._slider.marker / 2;
             size2 = o._slider.length - size;
             this._animate(marker.css('top', oldSize2),{top: size2});
             this._animate(complete.css('height', oldSize),{height: size});
@@ -212,7 +259,7 @@ $.widget("metro.slider", {
             }
             if (o.showHint) {
                 hintValue = this._valueToRealValue(value);
-                hint.html(hintValue).css('top', size2 - hint.height()/2 + (element.hasClass('large') ? 8 : 0));
+                hint.html(hintValue).css('top', size2 - marker.height()/2 - hint.height()/4);
             }
         } else {
             size = this._percToPix(value);
@@ -224,7 +271,7 @@ $.widget("metro.slider", {
             }
             if (o.showHint) {
                 hintValue = this._valueToRealValue(value);
-                hint.html(hintValue).css({left: size - hint.width() / 2 + (element.hasClass('large') ? 6 : 0)});
+                hint.html(hintValue).css('left', size - marker.width()/2);
             }
         }
     },
@@ -240,9 +287,16 @@ $.widget("metro.slider", {
         return Math.round(real_value);
     },
 
+    _realValueToValue: function(value){
+        var o = this.options, val_val;
+        var percent_value = (o.maxValue - o.minValue) / 100;
+        val_val = value / percent_value + o.minValue;
+        return Math.round(val_val);
+    },
+
     _animate: function (obj, val) {
         var o = this.options;
-
+        //console.log(obj, val);
         if(o.animate) {
             obj.stop(true).animate(val);
         } else {
@@ -252,11 +306,12 @@ $.widget("metro.slider", {
 
     _pixToPerc: function (valuePix) {
         var valuePerc;
-        valuePerc = valuePix * this.options._slider.ppp;
+        valuePerc = (valuePix < 0 ? 0 : valuePix )* this.options._slider.ppp;
         return Math.round(this._correctValue(valuePerc));
     },
 
     _percToPix: function (value) {
+        ///console.log(this.options._slider.ppp, value);
         if (this.options._slider.ppp === 0) {
             return 0;
         }
@@ -308,11 +363,13 @@ $.widget("metro.slider", {
     _createSlider: function(){
         var element = this.element,
             o = this.options,
-            complete, marker, hint;
+            complete, marker, hint, buffer, back;
 
         element.html('');
 
+        back = $("<div/>").addClass("slider-backside").appendTo(element);
         complete = $("<div/>").addClass("complete").appendTo(element);
+        buffer = $("<div/>").addClass("buffer").appendTo(element);
         marker = $("<a/>").addClass("marker").appendTo(element);
 
         if (o.showHint) {
@@ -321,9 +378,9 @@ $.widget("metro.slider", {
 
         if (o.color !== 'default') {
             if (o.color.isColor()) {
-                element.css('background-color', o.color);
+                back.css('background-color', o.color);
             } else {
-                element.addClass(o.color);
+                back.addClass(o.color);
             }
         }
         if (o.completeColor !== 'default') {
@@ -331,6 +388,13 @@ $.widget("metro.slider", {
                 complete.css('background-color', o.completeColor);
             } else {
                 complete.addClass(o.completeColor);
+            }
+        }
+        if (o.bufferColor !== 'default') {
+            if (o.bufferColor.isColor()) {
+                buffer.css('background-color', o.bufferColor);
+            } else {
+                buffer.addClass(o.bufferColor);
             }
         }
         if (o.markerColor !== 'default') {
@@ -356,7 +420,12 @@ $.widget("metro.slider", {
             returnedValue = o.returnType === 'value' ? this._valueToRealValue(o.position) : o.position;
 
             if (o.target) {
-                $(o.target).val(returnedValue);
+                if ($(o.target)[0].tagName == 'INPUT') {
+                    $(o.target).val(returnedValue);
+                } else {
+                    $(o.target).html(returnedValue);
+                }
+                $(o.target).trigger('change', returnedValue);
             }
 
             if (typeof o.onChange === 'function') {
@@ -370,9 +439,66 @@ $.widget("metro.slider", {
                 }
             }
 
+            //if (typeof o.onChanged === 'function') {
+            //    o.onChanged(returnedValue, element);
+            //} else {
+            //    if (typeof window[o.onChanged] === 'function') {
+            //        window[o.onChanged](returnedValue, element);
+            //    } else {
+            //        var result = eval("(function(){"+o.onChanged+"})");
+            //        result.call(returnedValue, element);
+            //    }
+            //}
+
             return this;
         } else {
             returnedValue = o.returnType === 'value' ? this._valueToRealValue(o.position) : o.position;
+            return returnedValue;
+        }
+    },
+
+    _showBuffer: function(value){
+        var size, oldSize, o = this.options, element = this.element,
+            buffer = this.element.children('.buffer');
+
+        oldSize = o.buffer;
+        size = value == 100 ? 99.9 : value;
+
+        if (o._slider.vertical) {
+            this._animate(buffer.css('height', oldSize+'%'),{height: size+'%'});
+
+        } else {
+            this._animate(buffer.css('width', oldSize+'%'),{width: size+'%'});
+        }
+    },
+
+    buffer: function (value) {
+        var element = this.element, o = this.options, returnedValue;
+
+        if (typeof value !== 'undefined') {
+
+            value = value > 100 ? 100 : value;
+            value = value < 0 ? 0 : value;
+
+            this._showBuffer(parseInt(value));
+            o.buffer = parseInt(value);
+
+            returnedValue = o.buffer;
+
+            if (typeof o.onBufferChange === 'function') {
+                o.onBufferChange(returnedValue, element);
+            } else {
+                if (typeof window[o.onBufferChange] === 'function') {
+                    window[o.onBufferChange](returnedValue, element);
+                } else {
+                    var result = eval("(function(){"+o.onBufferChange+"})");
+                    result.call(returnedValue, element);
+                }
+            }
+
+            return this;
+        } else {
+            returnedValue = o.buffer;
             return returnedValue;
         }
     },

@@ -1,7 +1,4 @@
-@import (once) "variables";
-@import (once) "colors";
-@import (once) "typography";
-@import (once) "transform";
+@import (once) "vars";
 @import (once) "animations";
 
 .button {
@@ -16,7 +13,7 @@
 	display: inline-block;
 	outline: none;
 	font-size: .875rem;
-	line-height: 1;
+	line-height: 100%;
 	margin: .15625rem 0;
 	position: relative;
 
@@ -224,14 +221,14 @@ a.button, a.round-button, a.square-button {
 }
 
 a.image-button {
-	padding-top: 10px;
+	padding-top: .525rem;
 }
 
 .image-button {
+	line-height: 100%;
 	&.small-button {
 		padding-left: 2rem;
 		padding-right: 1rem;
-		padding-top: 0;
 		.icon {
 			width: 1.625rem;
 			font-size: .875rem;
@@ -522,16 +519,20 @@ a.shortcut-button {
 	}
 }
 
+.mini-button, .small-button, .large-button, .big-button {
+	line-height: 100%;
+}
+
 .mini-button {
 	font-size: .6rem;
-	line-height: 1.3;
+//	line-height: 1.3;
 	padding: .2rem .625rem;
 	height: 1.4rem;
 }
 
 .small-button {
 	font-size: .7rem;
-	line-height: 1.68rem;
+//	line-height: 1.68rem;
 	padding: 0 .625rem;
 	height: 1.7rem;
 }
@@ -539,13 +540,13 @@ a.shortcut-button {
 .large-button {
 	height: 2.55rem;
 	font-size: 1.05rem;
-	line-height: 2.52rem;
+//	line-height: 2.52rem;
 }
 
 .big-button {
 	height: 3.125rem;
 	font-size: 1.2rem;
-	line-height: 1;
+//	line-height: 1;
 }
 
 .round-button, .cycle-button, .square-button {
