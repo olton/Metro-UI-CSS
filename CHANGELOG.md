@@ -1,5 +1,7 @@
 # Changelog 
 
+## 3.1.0
+
 ## 3.0.14
 * fix tabcontrol frames overflow
 * upd dialog, add utility function showMetroDialog, hideMetroDialog
