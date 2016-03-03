@@ -44,6 +44,7 @@
 .project
 .settings
 .tmproj
+*.iml
 *.esproj
 *.sublime-project
 *.sublime-workspace
