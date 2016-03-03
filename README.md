@@ -79,7 +79,4 @@ Metro UI CSS 2.x you can find in a branch [metrouicss-2x](https://github.com/olt
 Metro UI CSS 0.95 you can find in a branch [metrouicss-0.95](https://github.com/olton/Metro-UI-CSS/tree/metrouicss-0.95) 
 
 ### Thanks
-Thanks to all. Special thanks to all those who financially supported the project.    
-    
-        
-        
+Thanks to all. Special thanks to all those who financially supported the project.
