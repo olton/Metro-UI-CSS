@@ -1,6 +1,8 @@
 # Changelog 
 
-## 3.1.0
+## 3.0.15
+* remove re-init for old browsers
+* METRO_AUTO_REINIT now deprecated
 
 ## 3.0.14
 * fix tabcontrol frames overflow

@@ -1,21 +1,16 @@
 # Welcome
-The front-end framework for developing projects on the web in Windows Metro Style, created and supported by Sergey Pimenov (aka olton) with the massive support and involvement of community.   
-
-Metro UI CSS developed with the advice of Microsoft to build the user interface and include: general styles, grid, layouts, typography, 20+ components, 300+ built-in icons. Metro UI CSS build with {LESS}. Metro UI CSS is open source and has MIT licensing model.
+The front-end framework for developing projects on the web in Windows Metro Style, created and supported by Sergey Pimenov (aka olton) with the massive support and involvement of community. Metro UI CSS developed with the advice of Microsoft to build the user interface and include: general styles, grid, layouts, typography, 20+ components, 300+ built-in icons. Metro UI CSS build with {LESS}. Metro UI CSS is open source and has MIT licensing model.
  
-## Current Version
-
-### 3.1.0
+## Current Version 3.0.15
 
 ### Install with bower
  bower install metro
-
-##### you can also use short repository of the latest version of metro UI CSS (from Master branch)
  bower install metro-dist
+
+### Install with npm
  npm install metro-dist
- 
- This repository contains only main framework files: css, js and font
- 
+
+metro-dist repository contains only main framework files: css, js and font
 
 ### Install with nuget
 Install-Package Metro.UI.CSS
@@ -25,11 +20,11 @@ Install-Package Metro.UI.CSS
 #### Master branch
 ##### CSS
  
-https://cdn.rawgit.com/olton/Metro-UI-CSS/master/build/css/metro.min.css<br />
-https://cdn.rawgit.com/olton/Metro-UI-CSS/master/build/css/metro-responsive.min.css<br /> 
-https://cdn.rawgit.com/olton/Metro-UI-CSS/master/build/css/metro-schemes.min.css<br />
-https://cdn.rawgit.com/olton/Metro-UI-CSS/master/build/css/metro-rtl.min.css<br />
-https://cdn.rawgit.com/olton/Metro-UI-CSS/master/build/css/metro-icons.min.css<br />
+https://cdn.rawgit.com/olton/Metro-UI-CSS/master/build/css/metro.min.css
+https://cdn.rawgit.com/olton/Metro-UI-CSS/master/build/css/metro-responsive.min.css
+https://cdn.rawgit.com/olton/Metro-UI-CSS/master/build/css/metro-schemes.min.css
+https://cdn.rawgit.com/olton/Metro-UI-CSS/master/build/css/metro-rtl.min.css
+https://cdn.rawgit.com/olton/Metro-UI-CSS/master/build/css/metro-icons.min.css
 
 ##### JS
 
@@ -38,11 +33,11 @@ https://cdn.rawgit.com/olton/Metro-UI-CSS/master/build/js/metro.min.js
 #### Develop branch
 ##### CSS
 
-https://cdn.rawgit.com/olton/Metro-UI-CSS/develop/build/css/metro.min.css<br />
-https://cdn.rawgit.com/olton/Metro-UI-CSS/develop/build/css/metro-responsive.min.css<br /> 
-https://cdn.rawgit.com/olton/Metro-UI-CSS/develop/build/css/metro-schemes.min.css<br />
-https://cdn.rawgit.com/olton/Metro-UI-CSS/develop/build/css/metro-rtl.min.css<br />
-https://cdn.rawgit.com/olton/Metro-UI-CSS/develop/build/css/metro-icons.min.css<br />
+https://cdn.rawgit.com/olton/Metro-UI-CSS/develop/build/css/metro.min.css
+https://cdn.rawgit.com/olton/Metro-UI-CSS/develop/build/css/metro-responsive.min.css 
+https://cdn.rawgit.com/olton/Metro-UI-CSS/develop/build/css/metro-schemes.min.css
+https://cdn.rawgit.com/olton/Metro-UI-CSS/develop/build/css/metro-rtl.min.css
+https://cdn.rawgit.com/olton/Metro-UI-CSS/develop/build/css/metro-icons.min.css
  
 ##### JS
 
