@@ -78,14 +78,6 @@ $.widget("metro.dropdown", {
             e.preventDefault();
         });
 
-        $(document).on('click', function(e){
-            $('[data-role=dropdown]').each(function(i, el){
-                if (!$(el).hasClass('keep-open') && $(el).css('display')==='block') {
-                    that._close(el);
-                }
-            });
-        });
-
         element.data('dropdown', this);
     },
 
@@ -143,4 +135,13 @@ $.widget("metro.dropdown", {
     _setOption: function(key, value){
         this._super('_setOption', key, value);
     }
+});
+
+$(document).on('click', function(e){
+    $('[data-role=dropdown]').each(function(i, el){
+        if (!$(el).hasClass('keep-open') && $(el).css('display')==='block') {
+            var that = $(el).data('dropdown');
+            that._close(el);
+        }
+    });
 });
