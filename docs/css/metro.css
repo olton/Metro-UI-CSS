@@ -923,6 +923,7 @@ a.tag {
 }
 .grid .row > .cell {
   display: block;
+  position: relative;
   float: left;
   width: 100%;
   min-height: 10px;
@@ -1396,44 +1397,14 @@ a.tag {
 .grid .row:empty {
   display: none;
 }
-.grid.condensed {
-  display: block;
-  position: relative;
-  margin: .625rem 0;
-}
-.grid.condensed:before,
-.grid.condensed:after {
-  display: table;
-  content: "";
-}
-.grid.condensed:after {
-  clear: both;
-}
 .grid.condensed .row {
-  width: 100%;
-  display: block;
   margin: 0 0 0 0;
-}
-.grid.condensed .row:before,
-.grid.condensed .row:after {
-  display: table;
-  content: "";
-}
-.grid.condensed .row:after {
-  clear: both;
 }
 .grid.condensed .row:last-child {
   margin-bottom: 0;
 }
 .grid.condensed .row > .cell {
-  display: block;
-  float: left;
-  width: 100%;
-  min-height: 10px;
   margin: 0 0 0 0;
-}
-.grid.condensed .row > .cell:first-child {
-  margin-left: 0;
 }
 .grid.condensed .row.cells2 > .cell {
   width: 50%;

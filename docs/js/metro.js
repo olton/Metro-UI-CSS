@@ -3906,6 +3906,61 @@ $.widget( "metro.charm" , {
     }
 });
 
+window.showMetroCharm = function (el){
+    var charm = $(el), charm_obj;
+    if (charm.length == 0) {
+        console.log('Charm ' + el + ' not found!');
+        return false;
+    }
+
+    charm_obj = charm.data('charm');
+
+    if (charm_obj == undefined) {
+        console.log('Element not contain role charm! Please add attribute data-role="charm" to element ' + el);
+        return false;
+    }
+
+    charm_obj.open();
+};
+
+window.hideMetroCharm = function(el){
+    var charm = $(el), charm_obj;
+    if (charm.length == 0) {
+        console.log('Charm ' + el + ' not found!');
+        return false;
+    }
+
+    charm_obj = charm.data('charm');
+
+    if (charm_obj == undefined) {
+        console.log('Element not contain role charm! Please add attribute data-role="charm" to element ' + el);
+        return false;
+    }
+
+    charm_obj.close();
+};
+
+window.toggleMetroCharm = function(el){
+    var charm = $(el), charm_obj;
+    if (charm.length == 0) {
+        console.log('Charm ' + el + ' not found!');
+        return false;
+    }
+
+    charm_obj = charm.data('charm');
+
+    if (charm_obj == undefined) {
+        console.log('Element not contain role charm! Please add attribute data-role="charm" to element ' + el);
+        return false;
+    }
+
+    if (charm_obj.element.data('opened') === true) {
+        charm_obj.close();
+    } else {
+        charm_obj.open();
+    }
+};
+
 // Source: js/widgets/clock.js
 $.widget( "metro.clock" , {
 

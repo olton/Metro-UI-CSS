@@ -3,6 +3,7 @@
 ## 3.0.15
 * remove re-init for old browsers
 * METRO_AUTO_REINIT now deprecated
+* add global methods for show/hide charms (showMetroCharm, hideMetroCharm, toggleMetroCharm)
 
 ## 3.0.14
 * fix tabcontrol frames overflow
