@@ -5,10 +5,16 @@ Metro UI CSS developed with the advice of Microsoft to build the user interface 
  
 ## Current Version
 
-### 3.0.13
+### 3.0.14
 
 ### Install with bower
-bower install metro
+ bower install metro
+
+##### you can also use short repository of the latest version of metro UI CSS (from Master branch)
+ bower install metro-dist
+ 
+ This repository contains only main framework files: css, js and font
+ 
 
 ### Install with nuget
 Install-Package Metro.UI.CSS

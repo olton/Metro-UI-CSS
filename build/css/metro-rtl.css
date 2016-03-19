@@ -125,3 +125,6 @@ blockquote[dir=rtl] {
   padding-left: 0;
   padding-right: 30px;
 }
+*[dir=rtl] .grid .row > .cell {
+  float: right;
+}

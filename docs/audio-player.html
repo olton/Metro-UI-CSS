@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Metro, a sleek, intuitive, and powerful framework for faster and easier web development for Windows Metro Style.">
+    <meta name="keywords" content="HTML, CSS, JS, JavaScript, framework, metro, front-end, frontend, web development">
+    <meta name="author" content="Sergey Pimenov and Metro UI CSS contributors">
+
+    <link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
+    <title>Metro UI CSS - The front-end framework for developing projects on the web in Windows Metro Style</title>
+
+    <link href="css/metro.css" rel="stylesheet">
+    <link href="css/metro-icons.css" rel="stylesheet">
+    <link href="css/metro-responsive.css" rel="stylesheet">
+    <link href="css/metro-schemes.css" rel="stylesheet">
+
+    <link href="css/docs.css" rel="stylesheet">
+
+    <script src="js/jquery-2.1.3.min.js"></script>
+    <script src="js/metro.js"></script>
+    <script src="js/docs.js"></script>
+    <script src="js/prettify/run_prettify.js"></script>
+    <script src="js/ga.js"></script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+    <script>
+        function playList(){
+            return {
+                title: "Scorpions - Return to Forever",
+                poster: "http://metroui.org.ua/res/scorpions_poster.jpg",
+                desc: "German heavy metal icons the Scorpions hit the 50-year mark in 2015, being initially conceived all the way back in 1965 by a 16-year-old Rudolf Schenker as a beat band very much in line with the trends of the time, and slowly evolving into a hard rock force to contend with by the end of the '70s.",
+                items: [
+                    {file: "http://metroui.org.ua/res/scorpions/return_to_forever/01  Going Out With A Bang.mp3"},
+                    {file: "http://metroui.org.ua/res/scorpions/return_to_forever/02  We Built This House.mp3"},
+                    {file: "http://metroui.org.ua/res/scorpions/return_to_forever/03  Rock My Car.mp3"},
+                    {file: "http://metroui.org.ua/res/scorpions/return_to_forever/04  House Of Cards.mp3"},
+                    {file: "http://metroui.org.ua/res/scorpions/return_to_forever/05  All For One.mp3"},
+                    {file: "http://metroui.org.ua/res/scorpions/return_to_forever/06  Rock'N'Roll Band.mp3"},
+                    {file: "http://metroui.org.ua/res/scorpions/return_to_forever/07  Catch Your Luck And Play.mp3"},
+                    {file: "http://metroui.org.ua/res/scorpions/return_to_forever/08  Rollin' Home.mp3"},
+                    {file: "http://metroui.org.ua/res/scorpions/return_to_forever/09  Hard Rockin' The Place.mp3"},
+                    {file: "http://metroui.org.ua/res/scorpions/return_to_forever/10  Eye Of The Storm.mp3"},
+                    {file: "http://metroui.org.ua/res/scorpions/return_to_forever/11  The Scratch.mp3"},
+                    {file: "http://metroui.org.ua/res/scorpions/return_to_forever/12  Gypsy Life.mp3"},
+                    {file: "http://metroui.org.ua/res/scorpions/return_to_forever/13  The World We Used To Know.mp3"},
+                    {file: "http://metroui.org.ua/res/scorpions/return_to_forever/14  Dancing With The Moonlight.mp3"},
+                    {file: "http://metroui.org.ua/res/scorpions/return_to_forever/15  When The Truth Is A Lie.mp3"},
+                    {file: "http://metroui.org.ua/res/scorpions/return_to_forever/16  Who We Are.mp3"},
+                    {file: "http://metroui.org.ua/res/scorpions/return_to_forever/17  Crazy Ride.mp3"},
+                    {file: "http://metroui.org.ua/res/scorpions/return_to_forever/18  One And One Is Three.mp3"},
+                    {file: "http://metroui.org.ua/res/scorpions/return_to_forever/19  Delirious.mp3"}
+                ]
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container page-content">
+        <h1><a href="index.html" class="nav-button transform"><span></span></a>&nbsp;Audio player</h1>
+
+        @@adsense
+
+        <div class="example" data-text="example">
+            <h5>Default with one source</h5>
+            <div data-role="audio" data-list-position="bottom">
+                <audio controls>
+                    <source src="http://metroui.org.ua/res/rec.mp3" type='audio/mp3' />
+                </audio>
+            </div>
+
+            <h5>Micro Mode</h5>
+            <div data-role="audio" data-mode="micro">
+                <audio controls>
+                    <source src="http://metroui.org.ua/res/rec.mp3" type='audio/mp3' />
+                </audio>
+            </div>
+
+            <h5>Small Mode</h5>
+            <div data-role="audio" data-mode="small">
+                <audio controls>
+                    <source src="http://metroui.org.ua/res/rec.mp3" type='audio/mp3' />
+                </audio>
+            </div>
+
+            <h5>Medium Mode</h5>
+            <div data-role="audio" data-mode="medium">
+                <audio controls>
+                    <source src="http://metroui.org.ua/res/rec.mp3" type='audio/mp3' />
+                </audio>
+            </div>
+        </div>
+
+        <div class="example" data-text="example">
+            <h5>With a play list, full mode</h5>
+            <div data-role="audio">
+                <div class="play-list-wrapper">
+                    <h1 class="album-title">Scorpions - Return to Forever</h1>
+                    <ul class="play-list">
+                        <li data-src="http://metroui.org.ua/res/scorpions/return_to_forever/01  Going Out With A Bang.mp3" data-type="audio/mp3">Going Out With A Bang</li>
+                        <li data-src="http://metroui.org.ua/res/scorpions/return_to_forever/02  We Built This House.mp3" data-type="audio/mp3">We Built This House</li>
+                        <li data-src="http://metroui.org.ua/res/scorpions/return_to_forever/03  Rock My Car.mp3" data-type="audio/mp3">Rock My Car</li>
+                        <li data-src="http://metroui.org.ua/res/scorpions/return_to_forever/04  House Of Cards.mp3" data-type="audio/mp3">House Of Cards</li>
+                        <li data-src="http://metroui.org.ua/res/scorpions/return_to_forever/05  All For One.mp3" data-type="audio/mp3">All For One</li>
+                        <li data-src="http://metroui.org.ua/res/scorpions/return_to_forever/06  Rock'N'Roll Band.mp3" data-type="audio/mp3">Rock'N'Roll Band</li>
+                        <li data-src="http://metroui.org.ua/res/scorpions/return_to_forever/07  Catch Your Luck And Play.mp3" data-type="audio/mp3">Catch Your Luck And Play</li>
+                        <li data-src="http://metroui.org.ua/res/scorpions/return_to_forever/08  Rollin' Home.mp3" data-type="audio/mp3">Rollin' Home</li>
+                        <li data-src="http://metroui.org.ua/res/scorpions/return_to_forever/09  Hard Rockin' The Place.mp3" data-type="audio/mp3">Hard Rockin' The Place</li>
+                        <li data-src="http://metroui.org.ua/res/scorpions/return_to_forever/10  Eye Of The Storm.mp3" data-type="audio/mp3">Eye Of The Storm</li>
+                        <li data-src="http://metroui.org.ua/res/scorpions/return_to_forever/11  The Scratch.mp3" data-type="audio/mp3">The Scratch</li>
+                        <li data-src="http://metroui.org.ua/res/scorpions/return_to_forever/12  Gypsy Life.mp3" data-type="audio/mp3">Gypsy Life</li>
+                        <li data-src="http://metroui.org.ua/res/scorpions/return_to_forever/13  The World We Used To Know.mp3" data-type="audio/mp3">The World We Used To Know</li>
+                        <li data-src="http://metroui.org.ua/res/scorpions/return_to_forever/14  Dancing With The Moonlight.mp3" data-type="audio/mp3">Dancing With The Moonlight</li>
+                        <li data-src="http://metroui.org.ua/res/scorpions/return_to_forever/15  When The Truth Is A Lie.mp3" data-type="audio/mp3">When The Truth Is A Lie</li>
+                        <li data-src="http://metroui.org.ua/res/scorpions/return_to_forever/16  Who We Are.mp3" data-type="audio/mp3">Who We Are</li>
+                        <li data-src="http://metroui.org.ua/res/scorpions/return_to_forever/17  Crazy Ride.mp3" data-type="audio/mp3">Crazy Ride</li>
+                        <li data-src="http://metroui.org.ua/res/scorpions/return_to_forever/18  One And One Is Three.mp3" data-type="audio/mp3">One And One Is Three</li>
+                        <li data-src="http://metroui.org.ua/res/scorpions/return_to_forever/19  Delirious.mp3" data-type="audio/mp3">Delirious</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="example" data-text="example">
+            <h5>External play list, loaded by function</h5>
+            <div data-role="audio" data-play-list="playList"></div>
+        </div>
+
+        <div class="example" data-text="code">
+            <pre class="prettyprint linenums"><code>
+                &lt;div data-role="audio"&gt;
+                    &lt;audio&gt;
+                        &lt;source src="http://metroui.org.ua/res/rec.mp3" type='audio/mp3' /&gt;
+                    &lt;/audio&gt;
+                &lt;/div&gt;
+            </code></pre>
+        </div>
+
+    </div>
+
+    @@hit
+
+</body>
+</html>

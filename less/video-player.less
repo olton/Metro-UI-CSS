@@ -1,0 +1,170 @@
+@import (once) "vars";
+@import (once) "animations";
+
+@inactive_button: darken(@white, 30%);
+@active_button: @white;
+
+.video-player:-webkit-full-screen {
+    position: fixed;
+    top: 0;
+    min-width: 100%;
+    min-height: 100%;
+    width: 100%;
+    height: 100%;
+
+    video {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+:-moz-full-screen {
+}
+
+:-ms-fullscreen {
+}
+
+.video-player:fullscreen {
+    position: fixed;
+    top: 0;
+    min-width: 100%;
+    min-height: 100%;
+
+    video {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.video-player {
+    display: block;
+    background: @dark;
+    position: relative;
+    width: 100%;
+    height: auto;
+    z-index: 1;
+
+    .video-preloader {
+        position: absolute;
+        z-index: @zindexVideoControls;
+        top: 50%;
+        left: 50%;
+        margin-top: -32px;
+        margin-left: -32px;
+    }
+
+    .video-logo {
+        position: absolute;
+        z-index: @zindexVideoControls;
+        right: 20px;
+        top: 20px;
+        height: 32px;
+    }
+
+    video {
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+    }
+
+    .controls {
+        position: absolute;
+        height: auto;
+        padding: .625rem;
+        z-index: @zindexVideoControls;
+        background: rgba(34, 34, 34, 0.5);
+
+        .info-box {
+            float: left;
+            background: inherit;
+            margin: 0 2px;
+            padding: .75rem 1rem;
+            color: @white;
+            height: 2.125rem;
+            text-align: center;
+            font-size: .8em;
+        }
+
+        .control-slider {
+            height: 2.125rem;
+            float: left;
+            padding: 0 1rem 0;
+            margin: 0 2px;
+            background: inherit;
+
+            .slider .complete {
+                //.animate(ani-bg-stripes 2s linear infinite);
+            }
+        }
+
+        .volume-slider-wrapper {
+            width: 6rem;
+        }
+
+        .stream-slider-wrapper {
+            float: none;
+            width: 100%;
+            .slider .complete {
+                //.animate(ani-bg-stripes 2s linear infinite);
+            }
+        }
+
+        .control-button {
+            float: left;
+            background: inherit;
+            border: 0;
+            //border-color: @inactive_button;
+            color: @inactive_button;
+            outline: none;
+            position: relative;
+            margin: 0 2px;
+
+            &:hover, &:active {
+                //border-color: @active_button;
+                color: @active_button;
+            }
+
+            &.loop {
+                &.active {
+                    color: @green;
+                }
+            }
+
+            &.play {
+            }
+
+            &.stop:disabled {
+                color: @gray;
+            }
+
+            &.full {
+                float: right;
+            }
+        }
+   }
+
+    .controls {
+        &.position-bottom {
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+    }
+
+    &.full-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        width: auto !important;
+        z-index: @zindexFullScreen;
+    }
+}
+
+video::-webkit-media-controls {
+    display:none !important;
+}
+video::-webkit-media-controls-enclosure {
+    display:none !important;
+}

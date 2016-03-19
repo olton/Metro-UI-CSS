@@ -1,4 +1,4 @@
-@import (once) "variables";
+@import (once) "vars";
 @import (once) "transform";
 @import (once) "utils";
 @import (once) "buttons";
@@ -617,6 +617,10 @@ input, select, textarea {
 				.rotate(0deg);
 				border-radius: 50%;
 			}
+		}
+
+		input[type="radio"]:checked ~ .check:before {
+			border-color: @transparent;
 		}
 
 		input[type="radio"]:not(:checked) ~ .check:before {
