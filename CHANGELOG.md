@@ -5,6 +5,8 @@
 * METRO_AUTO_REINIT now deprecated
 * add global methods for show/hide charms (showMetroCharm, hideMetroCharm, toggleMetroCharm)
 * fix dropdown closed by document click 
+* add Number.prototype.format
+* fix Metro Icon Font foe using with winphone apps
 
 ## 3.0.14
 * fix tabcontrol frames overflow
