@@ -33,6 +33,13 @@ if (window.METRO_CALENDAR_WEEK_START === undefined) window.METRO_CALENDAR_WEEK_S
 
 window.canObserveMutation = 'MutationObserver' in window;
 
+Number.prototype.format = function(n, x, s, c) {
+    var re = '\\d(?=(\\d{' + (x || 3) + '})+' + (n > 0 ? '\\D' : '$') + ')',
+        num = this.toFixed(Math.max(0, ~~n));
+
+    return (c ? num.replace('.', c) : num).replace(new RegExp(re, 'g'), '$&' + (s || ','));
+};
+
 String.prototype.isUrl = function () {
 var regexp = /^(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
     return regexp.test(this);
