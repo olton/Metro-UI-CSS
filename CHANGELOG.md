@@ -7,7 +7,9 @@
 * fix dropdown closed by document click 
 * add Number.prototype.format
 * fix Metro Icon Font foe using with winphone apps
-* upd dialog, add runtime setContent* methods
+* upd dialog: add runtime setContent* methods
+* upd charms: resize closer, add close charm by document click
+* upd charms: add position parameter to show charm functions
 
 ## 3.0.14
 * fix tabcontrol frames overflow

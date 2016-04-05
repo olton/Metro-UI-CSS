@@ -21,7 +21,7 @@ if (typeof jQuery === 'undefined') {
 }
 
 // Source: js/global.js
-window.METRO_VERSION = '3.0.13';
+window.METRO_VERSION = '3.0.15';
 
 if (window.METRO_AUTO_REINIT === undefined) window.METRO_AUTO_REINIT = true;
 if (window.METRO_LANGUAGE === undefined) window.METRO_LANGUAGE = 'en';
@@ -3805,31 +3805,51 @@ $.widget( "metro.charm" , {
             size = element.outerWidth();
             if (o.position === "left") {
                 element.css({
-                    left: -size
+                    left: -size,
+                    right: 'auto',
+                    top: 0,
+                    bottom: 0
                 }).show().animate({
                     left: 0
-                }, o.duration);
+                }, o.duration, function(){
+                    element.data("displayed", true);
+                });
             } else {
                 element.css({
-                    right: -size
+                    right: -size,
+                    left: 'auto',
+                    top: 0,
+                    bottom: 0
                 }).show().animate({
                     right: 0
-                }, o.duration);
+                }, o.duration, function(){
+                    element.data("displayed", true);
+                });
             }
         } else {
             size = element.outerHeight();
             if (o.position === "top") {
                 element.css({
-                    top: -size
+                    top: -size,
+                    bottom: 'auto',
+                    left: 0,
+                    right: 0
                 }).show().animate({
                     top: 0
-                }, o.duration);
+                }, o.duration, function(){
+                    element.data("displayed", true);
+                });
             } else {
                 element.css({
-                    bottom: -size
+                    bottom: -size,
+                    top: 'auto',
+                    left: 0,
+                    right: 0
                 }).show().animate({
                     bottom: 0
-                }, o.duration);
+                }, o.duration, function(){
+                    element.data("displayed", true);
+                });
             }
         }
 
@@ -3854,12 +3874,14 @@ $.widget( "metro.charm" , {
                     left: -size
                 }, o.duration, function(){
                     element.hide();
+                    element.data("displayed", false);
                 });
             } else {
                 element.animate({
                     right: -size
                 }, o.duration, function(){
                     element.hide();
+                    element.data("displayed", false);
                 });
             }
         } else {
@@ -3869,12 +3891,14 @@ $.widget( "metro.charm" , {
                     top: -size
                 }, o.duration, function(){
                     element.hide();
+                    element.data("displayed", false);
                 });
             } else {
                 element.animate({
                     bottom: -size
                 }, o.duration, function(){
                     element.hide();
+                    element.data("displayed", false);
                 });
             }
         }
@@ -3913,7 +3937,20 @@ $.widget( "metro.charm" , {
     }
 });
 
-window.showMetroCharm = function (el){
+$(document).on("click", ".charm", function(e){
+    e.preventDefault();
+    e.stopPropagation();
+});
+
+$(document).on('click', function(e){
+    $('[data-role=charm]').each(function(i, el){
+        if (!$(el).hasClass('keep-open') && $(el).data('displayed')===true) {
+            $(el).data('charm').close();
+        }
+    });
+});
+
+window.showMetroCharm = function (el, position){
     var charm = $(el), charm_obj;
     if (charm.length == 0) {
         console.log('Charm ' + el + ' not found!');
@@ -3927,7 +3964,18 @@ window.showMetroCharm = function (el){
         return false;
     }
 
+    if (position != undefined) {
+
+        charm.hide();
+        charm.data("displayed", false);
+        charm.data("opened", false);
+
+        charm_obj.options.position = position;
+    }
+
     charm_obj.open();
+
+    return false;
 };
 
 window.hideMetroCharm = function(el){
@@ -3947,7 +3995,7 @@ window.hideMetroCharm = function(el){
     charm_obj.close();
 };
 
-window.toggleMetroCharm = function(el){
+window.toggleMetroCharm = function(el, position){
     var charm = $(el), charm_obj;
     if (charm.length == 0) {
         console.log('Charm ' + el + ' not found!');
@@ -3964,6 +4012,13 @@ window.toggleMetroCharm = function(el){
     if (charm_obj.element.data('opened') === true) {
         charm_obj.close();
     } else {
+        if (position != undefined) {
+            charm.hide();
+            charm.data("displayed", false);
+            charm.data("opened", false);
+
+            charm_obj.options.position = position;
+        }
         charm_obj.open();
     }
 };
