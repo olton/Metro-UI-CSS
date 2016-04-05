@@ -12867,19 +12867,18 @@ input[type="submit"].link:active {
 }
 .charm .charm-closer {
   position: absolute;
-  height: 1rem;
-  width: 1rem;
+  display: block;
+  padding: .5rem;
   text-align: center;
   vertical-align: middle;
-  font-size: 1rem;
+  font-size: 2rem;
   font-weight: normal;
-  padding: 0 0 .625rem 0;
   z-index: 3;
   outline: none;
   cursor: pointer;
   color: #777777;
   top: .25rem;
-  right: .25rem;
+  right: 1rem;
 }
 .charm .charm-closer:after {
   content: '\D7';

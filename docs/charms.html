@@ -24,18 +24,6 @@
     <script src="js/prettify/run_prettify.js"></script>
     <script src="js/ga.js"></script>
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-
-    <script>
-        function showCharm(id){
-            var  charm = $("#"+id+"-charm").data("charm");
-            if (charm.element.data("opened") === true) {
-                charm.close();
-            } else {
-                charm.open();
-            }
-        }
-    </script>
-
 </head>
 <body>
     <div class="container page-content">
@@ -47,13 +35,21 @@
         <div data-role="charm" data-position="bottom" id="bottom-charm"><h1 class="text-light">Bottom charm</h1></div>
         <div data-role="charm" data-position="left" id="left-charm"><h1 class="text-light">Left charm</h1></div>
         <div data-role="charm" data-position="right" id="right-charm"><h1 class="text-light">Right charm</h1></div>
+        <div data-role="charm" id="free-position-charm"><div class="text-light" style="padding: 20px;">Charm with free position</div></div>
 
         <div class="example" data-text="example">
             <div class="padding20 align-center">
-                <button class="button" onclick="showCharm('left')">Left side</button>
-                <button class="button" onclick="showCharm('right')">Right side</button>
-                <button class="button" onclick="showCharm('top')">Top side</button>
-                <button class="button" onclick="showCharm('bottom')">Bottom side</button>
+                <button class="button" onclick="toggleMetroCharm('#left-charm')">Left side</button>
+                <button class="button" onclick="toggleMetroCharm('#right-charm')">Right side</button>
+                <button class="button" onclick="toggleMetroCharm('#top-charm')">Top side</button>
+                <button class="button" onclick="toggleMetroCharm('#bottom-charm')">Bottom side</button>
+            </div>
+
+            <div class="padding20 align-center">
+                <button class="button" onclick="showMetroCharm('#free-position-charm', 'left')">Left side</button>
+                <button class="button" onclick="showMetroCharm('#free-position-charm', 'right')">Right side</button>
+                <button class="button" onclick="showMetroCharm('#free-position-charm', 'top')">Top side</button>
+                <button class="button" onclick="showMetroCharm('#free-position-charm', 'bottom')">Bottom side</button>
             </div>
         </div>
 
@@ -74,14 +70,9 @@
 
             <h5>Execute</h5>
             <pre class="prettyprint linenums no-scroll"><code>
-                function showCharm(id){
-                    var  charm = $(id).data("charm");
-                    if (charm.element.data("opened") === true) {
-                        charm.close();
-                    } else {
-                        charm.open();
-                    }
-                }
+                toggleMetroCharm(el[, position]);
+                showMetroCharm(el[, position]);
+                hideMetroCharm(el);
             </code></pre>
         </div>
 
