@@ -20,7 +20,7 @@ module.exports = function(grunt) {
                           "    } else {\n" +
                           "        factory( jQuery );\n"+
                           "    }\n"+
-                          "}(function( jQuery ) { \n'use strict';\n\nvar $ = jQuery;\n\n",
+                          "}(function( jQuery ) { \n'use strict';\n\nvar $ = jQuery;\n\nwindow.METRO_VERSION = '<%= pkg.version %>';\n\n",
 
         clean: {
             build: ['build/js', 'build/css', 'build/fonts'],
