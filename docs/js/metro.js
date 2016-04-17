@@ -15,14 +15,14 @@
 
 var $ = jQuery;
 
+window.METRO_VERSION = '3.0.15';
+
 // Source: js/requirements.js
 if (typeof jQuery === 'undefined') {
     throw new Error('Metro\'s JavaScript requires jQuery');
 }
 
 // Source: js/global.js
-window.METRO_VERSION = '3.0.15';
-
 if (window.METRO_AUTO_REINIT === undefined) window.METRO_AUTO_REINIT = true;
 if (window.METRO_LANGUAGE === undefined) window.METRO_LANGUAGE = 'en';
 if (window.METRO_LOCALE === undefined) window.METRO_LOCALE = 'EN_en';
@@ -3949,6 +3949,23 @@ $(document).on('click', function(e){
         }
     });
 });
+
+window.metroCharmIsOpened = function(el){
+    var charm = $(el), charm_obj;
+    if (charm.length == 0) {
+        console.log('Charm ' + el + ' not found!');
+        return false;
+    }
+
+    charm_obj = charm.data('charm');
+
+    if (charm_obj == undefined) {
+        console.log('Element not contain role charm! Please add attribute data-role="charm" to element ' + el);
+        return false;
+    }
+
+    return charm_obj.element.data('opened') === true;
+};
 
 window.showMetroCharm = function (el, position){
     var charm = $(el), charm_obj;

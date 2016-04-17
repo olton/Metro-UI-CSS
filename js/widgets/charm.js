@@ -199,6 +199,23 @@ $(document).on('click', function(e){
     });
 });
 
+window.metroCharmIsOpened = function(el){
+    var charm = $(el), charm_obj;
+    if (charm.length == 0) {
+        console.log('Charm ' + el + ' not found!');
+        return false;
+    }
+
+    charm_obj = charm.data('charm');
+
+    if (charm_obj == undefined) {
+        console.log('Element not contain role charm! Please add attribute data-role="charm" to element ' + el);
+        return false;
+    }
+
+    return charm_obj.element.data('opened') === true;
+};
+
 window.showMetroCharm = function (el, position){
     var charm = $(el), charm_obj;
     if (charm.length == 0) {

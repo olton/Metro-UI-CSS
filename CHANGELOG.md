@@ -10,6 +10,7 @@
 * upd dialog: add runtime setContent* methods
 * upd charms: resize closer, add close charm by document click
 * upd charms: add position parameter to show charm functions
+* upd charms: add function to check charm is open
 
 ## 3.0.14
 * fix tabcontrol frames overflow
