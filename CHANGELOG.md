@@ -11,6 +11,7 @@
 * upd charms: resize closer, add close charm by document click
 * upd charms: add position parameter to show charm functions
 * upd charms: add function to check charm is open
+* additional colors moved to metro-colors.css
 
 ## 3.0.14
 * fix tabcontrol frames overflow
