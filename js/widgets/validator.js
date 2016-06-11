@@ -175,9 +175,20 @@ $.widget( "metro.validator" , {
         });
 
         $.each(inputs, function(i, v){
+            var this_result = true;
             var input = $(v);
-            var func = input.data('validateFunc'), arg = input.data('validateArg');
-            var this_result = that.funcs[func](input.val(), arg);
+            var func = input.data('validateFunc') != undefined ? String(input.data('validateFunc')).split(",") : [],
+                arg = input.data('validateArg') != undefined ? String(input.data('validateArg')).split(",") : [];
+
+            console.log(input.data('validateArg'));
+
+            $.each(func, function(i, func_name){
+                if (!this_result) return;
+                var _args = arg[i] != undefined ? arg[i] : false;
+                this_result = that.funcs[func_name.trim()](input.val(), _args);
+            });
+
+//            this_result = that.funcs[func](input.val(), arg);
 
             if (!this_result) {
                 if (typeof o.onErrorInput === 'function') {
