@@ -6,7 +6,7 @@
 * add global methods for show/hide charms (showMetroCharm, hideMetroCharm, toggleMetroCharm)
 * fix dropdown closed by document click 
 * add Number.prototype.format
-* fix Metro Icon Font foe using with winphone apps
+* fix Metro Icon Font for using with winphone apps
 * upd dialog: add runtime setContent* methods
 * upd charms: resize closer, add close charm by document click
 * upd charms: add position parameter to show charm functions
