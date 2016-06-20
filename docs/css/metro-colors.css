@@ -11,7 +11,6 @@
   background-color: rgba(0, 0, 0, 0.7);
 }
 .ribbed-black {
-  background: #000000 -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #000000 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
@@ -55,7 +54,6 @@
   background-color: rgba(255, 255, 255, 0.7);
 }
 .ribbed-white {
-  background: #ffffff -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #ffffff linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
@@ -99,7 +97,6 @@
   background-color: rgba(164, 196, 0, 0.7);
 }
 .ribbed-lime {
-  background: #a4c400 -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #a4c400 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
@@ -143,7 +140,6 @@
   background-color: rgba(96, 169, 23, 0.7);
 }
 .ribbed-green {
-  background: #60a917 -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #60a917 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
@@ -187,7 +183,6 @@
   background-color: rgba(0, 138, 0, 0.7);
 }
 .ribbed-emerald {
-  background: #008a00 -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #008a00 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
@@ -222,48 +217,47 @@
   color: #008a00 !important;
 }
 .bd-blue {
-  border-color: #00AFF0 !important;
+  border-color: #00aff0 !important;
 }
 .ol-blue {
-  outline-color: #00AFF0 !important;
+  outline-color: #00aff0 !important;
 }
 .op-blue {
   background-color: rgba(0, 175, 240, 0.7);
 }
 .ribbed-blue {
-  background: #00AFF0 -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background: #00AFF0 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
+  background: #00aff0 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
 .before-bg-blue:before {
-  background: #00AFF0 !important;
+  background: #00aff0 !important;
 }
 .before-fg-blue:before {
-  color: #00AFF0 !important;
+  color: #00aff0 !important;
 }
 .after-bg-blue:after {
-  background: #00AFF0 !important;
+  background: #00aff0 !important;
 }
 .after-fg-blue:after {
-  color: #00AFF0 !important;
+  color: #00aff0 !important;
 }
 .bg-hover-blue:hover {
-  background: #00AFF0 !important;
+  background: #00aff0 !important;
 }
 .bg-active-blue:active {
-  background: #00AFF0 !important;
+  background: #00aff0 !important;
 }
 .bg-focus-blue:focus {
-  background: #00AFF0 !important;
+  background: #00aff0 !important;
 }
 .fg-hover-blue:hover {
-  color: #00AFF0 !important;
+  color: #00aff0 !important;
 }
 .fg-active-blue:active {
-  color: #00AFF0 !important;
+  color: #00aff0 !important;
 }
 .fg-focus-blue:focus {
-  color: #00AFF0 !important;
+  color: #00aff0 !important;
 }
 .bd-teal {
   border-color: #00aba9 !important;
@@ -275,7 +269,6 @@
   background-color: rgba(0, 171, 169, 0.7);
 }
 .ribbed-teal {
-  background: #00aba9 -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #00aba9 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
@@ -319,7 +312,6 @@
   background-color: rgba(27, 161, 226, 0.7);
 }
 .ribbed-cyan {
-  background: #1ba1e2 -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #1ba1e2 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
@@ -363,7 +355,6 @@
   background-color: rgba(0, 80, 239, 0.7);
 }
 .ribbed-cobalt {
-  background: #0050ef -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #0050ef linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
@@ -407,7 +398,6 @@
   background-color: rgba(106, 0, 255, 0.7);
 }
 .ribbed-indigo {
-  background: #6a00ff -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #6a00ff linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
@@ -451,7 +441,6 @@
   background-color: rgba(170, 0, 255, 0.7);
 }
 .ribbed-violet {
-  background: #aa00ff -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #aa00ff linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
@@ -495,7 +484,6 @@
   background-color: rgba(220, 79, 173, 0.7);
 }
 .ribbed-pink {
-  background: #dc4fad -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #dc4fad linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
@@ -539,7 +527,6 @@
   background-color: rgba(216, 0, 115, 0.7);
 }
 .ribbed-magenta {
-  background: #d80073 -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #d80073 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
@@ -583,7 +570,6 @@
   background-color: rgba(162, 0, 37, 0.7);
 }
 .ribbed-crimson {
-  background: #a20025 -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #a20025 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
@@ -618,48 +604,47 @@
   color: #a20025 !important;
 }
 .bd-red {
-  border-color: #CE352C !important;
+  border-color: #ce352c !important;
 }
 .ol-red {
-  outline-color: #CE352C !important;
+  outline-color: #ce352c !important;
 }
 .op-red {
   background-color: rgba(206, 53, 44, 0.7);
 }
 .ribbed-red {
-  background: #CE352C -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background: #CE352C linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
+  background: #ce352c linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
 .before-bg-red:before {
-  background: #CE352C !important;
+  background: #ce352c !important;
 }
 .before-fg-red:before {
-  color: #CE352C !important;
+  color: #ce352c !important;
 }
 .after-bg-red:after {
-  background: #CE352C !important;
+  background: #ce352c !important;
 }
 .after-fg-red:after {
-  color: #CE352C !important;
+  color: #ce352c !important;
 }
 .bg-hover-red:hover {
-  background: #CE352C !important;
+  background: #ce352c !important;
 }
 .bg-active-red:active {
-  background: #CE352C !important;
+  background: #ce352c !important;
 }
 .bg-focus-red:focus {
-  background: #CE352C !important;
+  background: #ce352c !important;
 }
 .fg-hover-red:hover {
-  color: #CE352C !important;
+  color: #ce352c !important;
 }
 .fg-active-red:active {
-  color: #CE352C !important;
+  color: #ce352c !important;
 }
 .fg-focus-red:focus {
-  color: #CE352C !important;
+  color: #ce352c !important;
 }
 .bd-orange {
   border-color: #fa6800 !important;
@@ -671,7 +656,6 @@
   background-color: rgba(250, 104, 0, 0.7);
 }
 .ribbed-orange {
-  background: #fa6800 -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #fa6800 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
@@ -715,7 +699,6 @@
   background-color: rgba(240, 163, 10, 0.7);
 }
 .ribbed-amber {
-  background: #f0a30a -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #f0a30a linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
@@ -759,7 +742,6 @@
   background-color: rgba(227, 200, 0, 0.7);
 }
 .ribbed-yellow {
-  background: #e3c800 -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #e3c800 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
@@ -803,7 +785,6 @@
   background-color: rgba(130, 90, 44, 0.7);
 }
 .ribbed-brown {
-  background: #825a2c -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #825a2c linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
@@ -847,7 +828,6 @@
   background-color: rgba(109, 135, 100, 0.7);
 }
 .ribbed-olive {
-  background: #6d8764 -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #6d8764 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
@@ -891,7 +871,6 @@
   background-color: rgba(100, 118, 135, 0.7);
 }
 .ribbed-steel {
-  background: #647687 -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #647687 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
@@ -935,7 +914,6 @@
   background-color: rgba(118, 96, 138, 0.7);
 }
 .ribbed-mauve {
-  background: #76608a -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #76608a linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
@@ -979,7 +957,6 @@
   background-color: rgba(135, 121, 78, 0.7);
 }
 .ribbed-taupe {
-  background: #87794e -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #87794e linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
@@ -1023,7 +1000,6 @@
   background-color: rgba(29, 29, 29, 0.7);
 }
 .ribbed-dark {
-  background: #1d1d1d -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #1d1d1d linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
@@ -1058,48 +1034,47 @@
   color: #1d1d1d !important;
 }
 .bd-darkBrown {
-  border-color: #63362F !important;
+  border-color: #63362f !important;
 }
 .ol-darkBrown {
-  outline-color: #63362F !important;
+  outline-color: #63362f !important;
 }
 .op-darkBrown {
   background-color: rgba(99, 54, 47, 0.7);
 }
 .ribbed-darkBrown {
-  background: #63362F -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background: #63362F linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
+  background: #63362f linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
 .before-bg-darkBrown:before {
-  background: #63362F !important;
+  background: #63362f !important;
 }
 .before-fg-darkBrown:before {
-  color: #63362F !important;
+  color: #63362f !important;
 }
 .after-bg-darkBrown:after {
-  background: #63362F !important;
+  background: #63362f !important;
 }
 .after-fg-darkBrown:after {
-  color: #63362F !important;
+  color: #63362f !important;
 }
 .bg-hover-darkBrown:hover {
-  background: #63362F !important;
+  background: #63362f !important;
 }
 .bg-active-darkBrown:active {
-  background: #63362F !important;
+  background: #63362f !important;
 }
 .bg-focus-darkBrown:focus {
-  background: #63362F !important;
+  background: #63362f !important;
 }
 .fg-hover-darkBrown:hover {
-  color: #63362F !important;
+  color: #63362f !important;
 }
 .fg-active-darkBrown:active {
-  color: #63362F !important;
+  color: #63362f !important;
 }
 .fg-focus-darkBrown:focus {
-  color: #63362F !important;
+  color: #63362f !important;
 }
 .bd-darkCrimson {
   border-color: #640024 !important;
@@ -1111,7 +1086,6 @@
   background-color: rgba(100, 0, 36, 0.7);
 }
 .ribbed-darkCrimson {
-  background: #640024 -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #640024 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
@@ -1146,180 +1120,176 @@
   color: #640024 !important;
 }
 .bd-darkMagenta {
-  border-color: #81003C !important;
+  border-color: #81003c !important;
 }
 .ol-darkMagenta {
-  outline-color: #81003C !important;
+  outline-color: #81003c !important;
 }
 .op-darkMagenta {
   background-color: rgba(129, 0, 60, 0.7);
 }
 .ribbed-darkMagenta {
-  background: #81003C -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background: #81003C linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
+  background: #81003c linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
 .before-bg-darkMagenta:before {
-  background: #81003C !important;
+  background: #81003c !important;
 }
 .before-fg-darkMagenta:before {
-  color: #81003C !important;
+  color: #81003c !important;
 }
 .after-bg-darkMagenta:after {
-  background: #81003C !important;
+  background: #81003c !important;
 }
 .after-fg-darkMagenta:after {
-  color: #81003C !important;
+  color: #81003c !important;
 }
 .bg-hover-darkMagenta:hover {
-  background: #81003C !important;
+  background: #81003c !important;
 }
 .bg-active-darkMagenta:active {
-  background: #81003C !important;
+  background: #81003c !important;
 }
 .bg-focus-darkMagenta:focus {
-  background: #81003C !important;
+  background: #81003c !important;
 }
 .fg-hover-darkMagenta:hover {
-  color: #81003C !important;
+  color: #81003c !important;
 }
 .fg-active-darkMagenta:active {
-  color: #81003C !important;
+  color: #81003c !important;
 }
 .fg-focus-darkMagenta:focus {
-  color: #81003C !important;
+  color: #81003c !important;
 }
 .bd-darkIndigo {
-  border-color: #4B0096 !important;
+  border-color: #4b0096 !important;
 }
 .ol-darkIndigo {
-  outline-color: #4B0096 !important;
+  outline-color: #4b0096 !important;
 }
 .op-darkIndigo {
   background-color: rgba(75, 0, 150, 0.7);
 }
 .ribbed-darkIndigo {
-  background: #4B0096 -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background: #4B0096 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
+  background: #4b0096 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
 .before-bg-darkIndigo:before {
-  background: #4B0096 !important;
+  background: #4b0096 !important;
 }
 .before-fg-darkIndigo:before {
-  color: #4B0096 !important;
+  color: #4b0096 !important;
 }
 .after-bg-darkIndigo:after {
-  background: #4B0096 !important;
+  background: #4b0096 !important;
 }
 .after-fg-darkIndigo:after {
-  color: #4B0096 !important;
+  color: #4b0096 !important;
 }
 .bg-hover-darkIndigo:hover {
-  background: #4B0096 !important;
+  background: #4b0096 !important;
 }
 .bg-active-darkIndigo:active {
-  background: #4B0096 !important;
+  background: #4b0096 !important;
 }
 .bg-focus-darkIndigo:focus {
-  background: #4B0096 !important;
+  background: #4b0096 !important;
 }
 .fg-hover-darkIndigo:hover {
-  color: #4B0096 !important;
+  color: #4b0096 !important;
 }
 .fg-active-darkIndigo:active {
-  color: #4B0096 !important;
+  color: #4b0096 !important;
 }
 .fg-focus-darkIndigo:focus {
-  color: #4B0096 !important;
+  color: #4b0096 !important;
 }
 .bd-darkCyan {
-  border-color: #1B6EAE !important;
+  border-color: #1b6eae !important;
 }
 .ol-darkCyan {
-  outline-color: #1B6EAE !important;
+  outline-color: #1b6eae !important;
 }
 .op-darkCyan {
   background-color: rgba(27, 110, 174, 0.7);
 }
 .ribbed-darkCyan {
-  background: #1B6EAE -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background: #1B6EAE linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
+  background: #1b6eae linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
 .before-bg-darkCyan:before {
-  background: #1B6EAE !important;
+  background: #1b6eae !important;
 }
 .before-fg-darkCyan:before {
-  color: #1B6EAE !important;
+  color: #1b6eae !important;
 }
 .after-bg-darkCyan:after {
-  background: #1B6EAE !important;
+  background: #1b6eae !important;
 }
 .after-fg-darkCyan:after {
-  color: #1B6EAE !important;
+  color: #1b6eae !important;
 }
 .bg-hover-darkCyan:hover {
-  background: #1B6EAE !important;
+  background: #1b6eae !important;
 }
 .bg-active-darkCyan:active {
-  background: #1B6EAE !important;
+  background: #1b6eae !important;
 }
 .bg-focus-darkCyan:focus {
-  background: #1B6EAE !important;
+  background: #1b6eae !important;
 }
 .fg-hover-darkCyan:hover {
-  color: #1B6EAE !important;
+  color: #1b6eae !important;
 }
 .fg-active-darkCyan:active {
-  color: #1B6EAE !important;
+  color: #1b6eae !important;
 }
 .fg-focus-darkCyan:focus {
-  color: #1B6EAE !important;
+  color: #1b6eae !important;
 }
 .bd-darkCobalt {
-  border-color: #00356A !important;
+  border-color: #00356a !important;
 }
 .ol-darkCobalt {
-  outline-color: #00356A !important;
+  outline-color: #00356a !important;
 }
 .op-darkCobalt {
   background-color: rgba(0, 53, 106, 0.7);
 }
 .ribbed-darkCobalt {
-  background: #00356A -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background: #00356A linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
+  background: #00356a linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
 .before-bg-darkCobalt:before {
-  background: #00356A !important;
+  background: #00356a !important;
 }
 .before-fg-darkCobalt:before {
-  color: #00356A !important;
+  color: #00356a !important;
 }
 .after-bg-darkCobalt:after {
-  background: #00356A !important;
+  background: #00356a !important;
 }
 .after-fg-darkCobalt:after {
-  color: #00356A !important;
+  color: #00356a !important;
 }
 .bg-hover-darkCobalt:hover {
-  background: #00356A !important;
+  background: #00356a !important;
 }
 .bg-active-darkCobalt:active {
-  background: #00356A !important;
+  background: #00356a !important;
 }
 .bg-focus-darkCobalt:focus {
-  background: #00356A !important;
+  background: #00356a !important;
 }
 .fg-hover-darkCobalt:hover {
-  color: #00356A !important;
+  color: #00356a !important;
 }
 .fg-active-darkCobalt:active {
-  color: #00356A !important;
+  color: #00356a !important;
 }
 .fg-focus-darkCobalt:focus {
-  color: #00356A !important;
+  color: #00356a !important;
 }
 .bd-darkTeal {
   border-color: #004050 !important;
@@ -1331,7 +1301,6 @@
   background-color: rgba(0, 64, 80, 0.7);
 }
 .ribbed-darkTeal {
-  background: #004050 -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #004050 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
@@ -1375,7 +1344,6 @@
   background-color: rgba(0, 62, 0, 0.7);
 }
 .ribbed-darkEmerald {
-  background: #003e00 -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #003e00 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
@@ -1419,7 +1387,6 @@
   background-color: rgba(18, 128, 35, 0.7);
 }
 .ribbed-darkGreen {
-  background: #128023 -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #128023 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
@@ -1463,7 +1430,6 @@
   background-color: rgba(191, 90, 21, 0.7);
 }
 .ribbed-darkOrange {
-  background: #bf5a15 -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #bf5a15 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
@@ -1507,7 +1473,6 @@
   background-color: rgba(154, 22, 22, 0.7);
 }
 .ribbed-darkRed {
-  background: #9a1616 -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #9a1616 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
@@ -1551,7 +1516,6 @@
   background-color: rgba(154, 22, 90, 0.7);
 }
 .ribbed-darkPink {
-  background: #9a165a -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #9a165a linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
@@ -1595,7 +1559,6 @@
   background-color: rgba(87, 22, 154, 0.7);
 }
 .ribbed-darkViolet {
-  background: #57169a -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #57169a linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
@@ -1639,7 +1602,6 @@
   background-color: rgba(22, 73, 154, 0.7);
 }
 .ribbed-darkBlue {
-  background: #16499a -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #16499a linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
@@ -1683,7 +1645,6 @@
   background-color: rgba(67, 144, 223, 0.7);
 }
 .ribbed-lightBlue {
-  background: #4390df -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #4390df linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
@@ -1718,48 +1679,47 @@
   color: #4390df !important;
 }
 .bd-lighterBlue {
-  border-color: #00CCFF !important;
+  border-color: #00ccff !important;
 }
 .ol-lighterBlue {
-  outline-color: #00CCFF !important;
+  outline-color: #00ccff !important;
 }
 .op-lighterBlue {
   background-color: rgba(0, 204, 255, 0.7);
 }
 .ribbed-lighterBlue {
-  background: #00CCFF -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background: #00CCFF linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
+  background: #00ccff linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
 .before-bg-lighterBlue:before {
-  background: #00CCFF !important;
+  background: #00ccff !important;
 }
 .before-fg-lighterBlue:before {
-  color: #00CCFF !important;
+  color: #00ccff !important;
 }
 .after-bg-lighterBlue:after {
-  background: #00CCFF !important;
+  background: #00ccff !important;
 }
 .after-fg-lighterBlue:after {
-  color: #00CCFF !important;
+  color: #00ccff !important;
 }
 .bg-hover-lighterBlue:hover {
-  background: #00CCFF !important;
+  background: #00ccff !important;
 }
 .bg-active-lighterBlue:active {
-  background: #00CCFF !important;
+  background: #00ccff !important;
 }
 .bg-focus-lighterBlue:focus {
-  background: #00CCFF !important;
+  background: #00ccff !important;
 }
 .fg-hover-lighterBlue:hover {
-  color: #00CCFF !important;
+  color: #00ccff !important;
 }
 .fg-active-lighterBlue:active {
-  color: #00CCFF !important;
+  color: #00ccff !important;
 }
 .fg-focus-lighterBlue:focus {
-  color: #00CCFF !important;
+  color: #00ccff !important;
 }
 .bd-lightTeal {
   border-color: #45fffd !important;
@@ -1771,7 +1731,6 @@
   background-color: rgba(69, 255, 253, 0.7);
 }
 .ribbed-lightTeal {
-  background: #45fffd -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #45fffd linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
@@ -1815,7 +1774,6 @@
   background-color: rgba(120, 170, 28, 0.7);
 }
 .ribbed-lightOlive {
-  background: #78aa1c -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #78aa1c linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
@@ -1859,7 +1817,6 @@
   background-color: rgba(255, 193, 148, 0.7);
 }
 .ribbed-lightOrange {
-  background: #ffc194 -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #ffc194 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
@@ -1903,7 +1860,6 @@
   background-color: rgba(244, 114, 208, 0.7);
 }
 .ribbed-lightPink {
-  background: #f472d0 -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #f472d0 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
@@ -1947,7 +1903,6 @@
   background-color: rgba(218, 90, 83, 0.7);
 }
 .ribbed-lightRed {
-  background: #da5a53 -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #da5a53 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
@@ -1991,7 +1946,6 @@
   background-color: rgba(122, 214, 29, 0.7);
 }
 .ribbed-lightGreen {
-  background: #7ad61d -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #7ad61d linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
@@ -2035,7 +1989,6 @@
   background-color: rgba(89, 205, 226, 0.7);
 }
 .ribbed-lightCyan {
-  background: #59cde2 -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #59cde2 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
@@ -2079,7 +2032,6 @@
   background-color: rgba(88, 88, 88, 0.7);
 }
 .ribbed-grayed {
-  background: #585858 -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #585858 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
@@ -2123,7 +2075,6 @@
   background-color: rgba(34, 34, 34, 0.7);
 }
 .ribbed-grayDarker {
-  background: #222222 -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #222222 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
@@ -2167,7 +2118,6 @@
   background-color: rgba(51, 51, 51, 0.7);
 }
 .ribbed-grayDark {
-  background: #333333 -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #333333 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
@@ -2211,7 +2161,6 @@
   background-color: rgba(85, 85, 85, 0.7);
 }
 .ribbed-gray {
-  background: #555555 -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #555555 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
@@ -2255,7 +2204,6 @@
   background-color: rgba(153, 153, 153, 0.7);
 }
 .ribbed-grayLight {
-  background: #999999 -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #999999 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
@@ -2299,7 +2247,6 @@
   background-color: rgba(238, 238, 238, 0.7);
 }
 .ribbed-grayLighter {
-  background: #eeeeee -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #eeeeee linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
@@ -2343,7 +2290,6 @@
   background-color: rgba(153, 153, 153, 0.7);
 }
 .ribbed-lightGray {
-  background: #999999 -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #999999 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
@@ -2387,7 +2333,6 @@
   background-color: rgba(238, 238, 238, 0.7);
 }
 .ribbed-lighterGray {
-  background: #eeeeee -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #eeeeee linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
@@ -2431,7 +2376,6 @@
   background-color: rgba(51, 51, 51, 0.7);
 }
 .ribbed-darkGray {
-  background: #333333 -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #333333 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
@@ -2475,7 +2419,6 @@
   background-color: rgba(34, 34, 34, 0.7);
 }
 .ribbed-darkerGray {
-  background: #222222 -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #222222 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
@@ -2519,7 +2462,6 @@
   background-color: rgba(34, 34, 34, 0.7);
 }
 .ribbed-darker {
-  background: #222222 -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background: #222222 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
