@@ -1,5 +1,5 @@
 /*!
- * Metro UI CSS v3.0.14 (http://metroui.org.ua)
+ * Metro UI CSS v3.0.15 (http://metroui.org.ua)
  * Copyright 2012-2016 Sergey Pimenov
  * Licensed under MIT (http://metroui.org.ua/license.html)
  */
@@ -15,14 +15,14 @@
 
 var $ = jQuery;
 
+window.METRO_VERSION = '3.0.15';
+
 // Source: js/requirements.js
 if (typeof jQuery === 'undefined') {
     throw new Error('Metro\'s JavaScript requires jQuery');
 }
 
 // Source: js/global.js
-window.METRO_VERSION = '3.0.13';
-
 if (window.METRO_AUTO_REINIT === undefined) window.METRO_AUTO_REINIT = true;
 if (window.METRO_LANGUAGE === undefined) window.METRO_LANGUAGE = 'en';
 if (window.METRO_LOCALE === undefined) window.METRO_LOCALE = 'EN_en';
@@ -32,6 +32,13 @@ if (window.METRO_DEBUG === undefined) window.METRO_DEBUG = true;
 if (window.METRO_CALENDAR_WEEK_START === undefined) window.METRO_CALENDAR_WEEK_START = 0;
 
 window.canObserveMutation = 'MutationObserver' in window;
+
+Number.prototype.format = function(n, x, s, c) {
+    var re = '\\d(?=(\\d{' + (x || 3) + '})+' + (n > 0 ? '\\D' : '$') + ')',
+        num = this.toFixed(Math.max(0, ~~n));
+
+    return (c ? num.replace('.', c) : num).replace(new RegExp(re, 'g'), '$&' + (s || ','));
+};
 
 String.prototype.isUrl = function () {
 var regexp = /^(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
@@ -941,175 +948,113 @@ var widget = $.widget;
 // Source: js/initiator.js
 $.fn.reverse = Array.prototype.reverse;
 
-$.Metro = function(params){
-    params = $.extend({
-    }, params);
-};
-
-$.Metro.hotkeys = [];
-
-$.Metro.initWidgets = function(){
-    var widgets = $("[data-role]");
-
-    var hotkeys = $("[data-hotkey]");
-    $.each(hotkeys, function(){
-        var element = $(this);
-        var hotkey = element.data('hotkey').toLowerCase();
-
-        //if ($.Metro.hotkeys.indexOf(hotkey) > -1) {
-        //    return;
-        //}
-        if (element.data('hotKeyBonded') === true ) {
-            return;
-        }
-
-        $.Metro.hotkeys.push(hotkey);
-
-        $(document).on('keyup', null, hotkey, function(e){
-            if (element === undefined) return;
-
-            if (element[0].tagName === 'A' &&
-                element.attr('href') !== undefined &&
-                element.attr('href').trim() !== '' &&
-                element.attr('href').trim() !== '#') {
-                document.location.href = element.attr('href');
-            } else {
-                element.click();
-            }
-            return false;
+$.Metro = {
+    initWidgets: function(widgets) {
+        $.each(widgets, function () {
+            var $this = $(this), w = this;
+            var roles = $this.data('role').split(/\s*,\s*/);
+            roles.map(function (func) {
+                try {
+                    //$(w)[func]();
+                    if ($.fn[func] !== undefined && $this.data(func + '-initiated') !== true) {
+                        $.fn[func].call($this);
+                        $this.data(func + '-initiated', true);
+                    }
+                } catch (e) {
+                    if (window.METRO_DEBUG) {
+                        console.log(e.message, e.stack);
+                    }
+                }
+            });
         });
+    },
 
-        element.data('hotKeyBonded', true);
-    });
+    initHotkeys: function(hotkeys){
+        $.each(hotkeys, function(){
+            var element = $(this);
+            var hotkey = element.data('hotkey').toLowerCase();
 
-    $.each(widgets, function(){
-        var $this = $(this), w = this;
-        var roles = $this.data('role').split(/\s*,\s*/);
-        roles.map(function(func){
-            try {
-                //$(w)[func]();
-                if ($.fn[func] !== undefined && $this.data(func+'-initiated') !== true) {
-                    $.fn[func].call($this);
-                    $this.data(func+'-initiated', true);
-                }
-            } catch(e) {
-                if (window.METRO_DEBUG) {
-                    console.log(e.message, e.stack);
-                }
+            //if ($.Metro.hotkeys.indexOf(hotkey) > -1) {
+            //    return;
+            //}
+            if (element.data('hotKeyBonded') === true ) {
+                return;
             }
-        });
-    });
-};
 
-$.Metro.init = function(){
-    $.Metro.initWidgets();
+            $.Metro.hotkeys.push(hotkey);
 
-    if (window.METRO_AUTO_REINIT) {
-        if (!window.canObserveMutation) {
-            var originalDOM = $('body').html(),
-                actualDOM;
+            $(document).on('keyup', null, hotkey, function(e){
+                if (element === undefined) return;
 
-            setInterval(function () {
-                actualDOM = $('body').html();
-
-                if (originalDOM !== actualDOM) {
-                    originalDOM = actualDOM;
-
-                    $.Metro.initWidgets();
+                if (element[0].tagName === 'A' &&
+                    element.attr('href') !== undefined &&
+                    element.attr('href').trim() !== '' &&
+                    element.attr('href').trim() !== '#') {
+                    document.location.href = element.attr('href');
+                } else {
+                    element.click();
                 }
-            }, 100);
-        } else {
-            var observer, observerOptions, observerCallback;
-            observerOptions = {
-                'childList': true,
-                'subtree': true
-            };
-            observerCallback = function(mutations){
+                return false;
+            });
 
-                //console.log(mutations);
+            element.data('hotKeyBonded', true);
+        });
+    },
 
-                mutations.map(function(record){
+    init: function(){
+        var widgets = $("[data-role]");
+        var hotkeys = $("[data-hotkey]");
 
-                    if (record.addedNodes) {
 
-                        /*jshint loopfunc: true */
-                        var obj, widgets, plugins, hotkeys;
+        $.Metro.initHotkeys(hotkeys);
+        $.Metro.initWidgets(widgets);
 
-                        for(var i = 0, l = record.addedNodes.length; i < l; i++) {
-                            obj = $(record.addedNodes[i]);
+        var observer, observerOptions, observerCallback;
 
-                            plugins = obj.find("[data-role]");
+        observerOptions = {
+            'childList': true,
+            'subtree': true
+        };
 
-                            hotkeys = obj.find("[data-hotkey]");
+        observerCallback = function(mutations){
 
-                            $.each(hotkeys, function(){
-                                var element = $(this);
-                                var hotkey = element.data('hotkey').toLowerCase();
+            //console.log(mutations);
 
-                                //if ($.Metro.hotkeys.indexOf(hotkey) > -1) {
-                                //    return;
-                                //}
+            mutations.map(function(record){
 
-                                if (element.data('hotKeyBonded') === true ) {
-                                    return;
-                                }
+                if (record.addedNodes) {
 
-                                $.Metro.hotkeys.push(hotkey);
+                    /*jshint loopfunc: true */
+                    var obj, widgets, plugins, hotkeys;
 
-                                $(document).on('keyup', null, hotkey, function () {
-                                    if (element === undefined) return;
+                    for(var i = 0, l = record.addedNodes.length; i < l; i++) {
+                        obj = $(record.addedNodes[i]);
 
-                                    if (element[0].tagName === 'A' &&
-                                        element.attr('href') !== undefined &&
-                                        element.attr('href').trim() !== '' &&
-                                        element.attr('href').trim() !== '#') {
-                                        document.location.href = element.attr('href');
-                                    } else {
-                                        element.click();
-                                    }
-                                    return false;
-                                });
+                        plugins = obj.find("[data-role]");
 
-                                element.data('hotKeyBonded', true);
-                                //console.log($.Metro.hotkeys);
-                            });
+                        hotkeys = obj.find("[data-hotkey]");
 
-                            if (obj.data('role') !== undefined) {
-                                widgets = $.merge(plugins, obj);
-                            } else {
-                                widgets = plugins;
-                            }
+                        $.Metro.initHotkeys(hotkeys);
 
-                            if (widgets.length) {
-                                $.each(widgets, function(){
-                                    var _this = $(this);
-                                    var roles = _this.data('role').split(/\s*,\s*/);
-                                    roles.map(function(func){
-                                        try {
-                                            if ($.fn[func] !== undefined && _this.data(func+'-initiated') !== true) {
-                                                $.fn[func].call(_this);
-                                                _this.data(func+'-initiated', true);
-                                            }
-                                        } catch(e) {
-                                            if (window.METRO_DEBUG) {
-                                                console.log(e.message, e.stack);
-                                            }
-                                        }
-                                    });
-                                });
-                            }
+                        if (obj.data('role') !== undefined) {
+                            widgets = $.merge(plugins, obj);
+                        } else {
+                            widgets = plugins;
+                        }
+
+                        if (widgets.length) {
+                            $.Metro.initWidgets(widgets);
                         }
                     }
-                });
-            };
+                }
+            });
+        };
 
-            //console.log($(document));
-            observer = new MutationObserver(observerCallback);
-            observer.observe(document, observerOptions);
-        }
+        //console.log($(document));
+        observer = new MutationObserver(observerCallback);
+        observer.observe(document, observerOptions);
     }
 };
-
 // Source: js/utils/easing.js
 	$.easing['jswing'] = $.easing['swing'];
 
@@ -3860,31 +3805,51 @@ $.widget( "metro.charm" , {
             size = element.outerWidth();
             if (o.position === "left") {
                 element.css({
-                    left: -size
+                    left: -size,
+                    right: 'auto',
+                    top: 0,
+                    bottom: 0
                 }).show().animate({
                     left: 0
-                }, o.duration);
+                }, o.duration, function(){
+                    element.data("displayed", true);
+                });
             } else {
                 element.css({
-                    right: -size
+                    right: -size,
+                    left: 'auto',
+                    top: 0,
+                    bottom: 0
                 }).show().animate({
                     right: 0
-                }, o.duration);
+                }, o.duration, function(){
+                    element.data("displayed", true);
+                });
             }
         } else {
             size = element.outerHeight();
             if (o.position === "top") {
                 element.css({
-                    top: -size
+                    top: -size,
+                    bottom: 'auto',
+                    left: 0,
+                    right: 0
                 }).show().animate({
                     top: 0
-                }, o.duration);
+                }, o.duration, function(){
+                    element.data("displayed", true);
+                });
             } else {
                 element.css({
-                    bottom: -size
+                    bottom: -size,
+                    top: 'auto',
+                    left: 0,
+                    right: 0
                 }).show().animate({
                     bottom: 0
-                }, o.duration);
+                }, o.duration, function(){
+                    element.data("displayed", true);
+                });
             }
         }
 
@@ -3909,12 +3874,14 @@ $.widget( "metro.charm" , {
                     left: -size
                 }, o.duration, function(){
                     element.hide();
+                    element.data("displayed", false);
                 });
             } else {
                 element.animate({
                     right: -size
                 }, o.duration, function(){
                     element.hide();
+                    element.data("displayed", false);
                 });
             }
         } else {
@@ -3924,12 +3891,14 @@ $.widget( "metro.charm" , {
                     top: -size
                 }, o.duration, function(){
                     element.hide();
+                    element.data("displayed", false);
                 });
             } else {
                 element.animate({
                     bottom: -size
                 }, o.duration, function(){
                     element.hide();
+                    element.data("displayed", false);
                 });
             }
         }
@@ -3967,6 +3936,109 @@ $.widget( "metro.charm" , {
         this._super('_setOption', key, value);
     }
 });
+
+$(document).on("click", ".charm", function(e){
+    e.preventDefault();
+    e.stopPropagation();
+});
+
+$(document).on('click', function(e){
+    $('[data-role=charm]').each(function(i, el){
+        if (!$(el).hasClass('keep-open') && $(el).data('displayed')===true) {
+            $(el).data('charm').close();
+        }
+    });
+});
+
+window.metroCharmIsOpened = function(el){
+    var charm = $(el), charm_obj;
+    if (charm.length == 0) {
+        console.log('Charm ' + el + ' not found!');
+        return false;
+    }
+
+    charm_obj = charm.data('charm');
+
+    if (charm_obj == undefined) {
+        console.log('Element not contain role charm! Please add attribute data-role="charm" to element ' + el);
+        return false;
+    }
+
+    return charm_obj.element.data('opened') === true;
+};
+
+window.showMetroCharm = function (el, position){
+    var charm = $(el), charm_obj;
+    if (charm.length == 0) {
+        console.log('Charm ' + el + ' not found!');
+        return false;
+    }
+
+    charm_obj = charm.data('charm');
+
+    if (charm_obj == undefined) {
+        console.log('Element not contain role charm! Please add attribute data-role="charm" to element ' + el);
+        return false;
+    }
+
+    if (position != undefined) {
+
+        charm.hide();
+        charm.data("displayed", false);
+        charm.data("opened", false);
+
+        charm_obj.options.position = position;
+    }
+
+    charm_obj.open();
+
+    return false;
+};
+
+window.hideMetroCharm = function(el){
+    var charm = $(el), charm_obj;
+    if (charm.length == 0) {
+        console.log('Charm ' + el + ' not found!');
+        return false;
+    }
+
+    charm_obj = charm.data('charm');
+
+    if (charm_obj == undefined) {
+        console.log('Element not contain role charm! Please add attribute data-role="charm" to element ' + el);
+        return false;
+    }
+
+    charm_obj.close();
+};
+
+window.toggleMetroCharm = function(el, position){
+    var charm = $(el), charm_obj;
+    if (charm.length == 0) {
+        console.log('Charm ' + el + ' not found!');
+        return false;
+    }
+
+    charm_obj = charm.data('charm');
+
+    if (charm_obj == undefined) {
+        console.log('Element not contain role charm! Please add attribute data-role="charm" to element ' + el);
+        return false;
+    }
+
+    if (charm_obj.element.data('opened') === true) {
+        charm_obj.close();
+    } else {
+        if (position != undefined) {
+            charm.hide();
+            charm.data("displayed", false);
+            charm.data("opened", false);
+
+            charm_obj.options.position = position;
+        }
+        charm_obj.open();
+    }
+};
 
 // Source: js/widgets/clock.js
 $.widget( "metro.clock" , {
@@ -4807,12 +4879,19 @@ $.widget( "metro.dialog" , {
             return false;
         }
 
-        element.find('.set-dialog-content').remove();
+        element.children(":not(.dialog-close-button)").remove();
+        //element.find('.set-dialog-content').remove();
 
         content.appendTo(element);
 
         if (o.content) {
-            content.html(o.content);
+
+            if (o.content instanceof jQuery) {
+                o.content.appendTo(content);
+            } else {
+                content.html(o.content);
+            }
+
             this._setPosition();
         }
 
@@ -4826,6 +4905,27 @@ $.widget( "metro.dialog" , {
             );
         }
 
+    },
+
+    setContent: function(content){
+        this.options.contentType = "default";
+        this.options.href = false;
+        this.options.content = content;
+        this._setContent();
+    },
+
+    setContentHref: function(href){
+        this.options.contentType = "href";
+        this.options.content = false;
+        this.options.href = href;
+        this._setContent();
+    },
+
+    setContentVideo: function(content){
+        this.options.contentType = "video";
+        this.options.content = content;
+        this.options.href = false;
+        this._setContent();
     },
 
     toggle: function(){
@@ -4918,7 +5018,7 @@ $.widget( "metro.dialog" , {
 });
 
 
-window.showMetroDialog = function (el, place){
+window.showMetroDialog = function (el, place, content, contentType){
     var dialog = $(el), dialog_obj;
     if (dialog.length == 0) {
         console.log('Dialog ' + el + ' not found!');
@@ -4930,6 +5030,14 @@ window.showMetroDialog = function (el, place){
     if (dialog_obj == undefined) {
         console.log('Element not contain role dialog! Please add attribute data-role="dialog" to element ' + el);
         return false;
+    }
+
+    if (content != undefined) {
+        switch (contentType) {
+            case 'href': dialog_obj.setContentHref(content); break;
+            case 'video': dialog_obj.setContentVideo(content); break;
+            default: dialog_obj.setContent(content);
+        }
     }
 
     if (place !== undefined) {
@@ -4956,7 +5064,7 @@ window.hideMetroDialog = function(el){
     dialog_obj.close();
 };
 
-window.toggleMetroDialog = function(el, place){
+window.toggleMetroDialog = function(el, place, content, contentType){
     var dialog = $(el), dialog_obj;
     if (dialog.length == 0) {
         console.log('Dialog ' + el + ' not found!');
@@ -4968,6 +5076,14 @@ window.toggleMetroDialog = function(el, place){
     if (dialog_obj == undefined) {
         console.log('Element not contain role dialog! Please add attribute data-role="dialog" to element ' + el);
         return false;
+    }
+
+    if (content != undefined) {
+        switch (contentType) {
+            case 'href': dialog_obj.setContentHref(content); break;
+            case 'video': dialog_obj.setContentVideo(content); break;
+            default: dialog_obj.setContent(content);
+        }
     }
 
     if (dialog_obj.element.data('opened') === true) {
@@ -5226,14 +5342,6 @@ $.widget("metro.dropdown", {
             e.preventDefault();
         });
 
-        $(document).on('click', function(e){
-            $('[data-role=dropdown]').each(function(i, el){
-                if (!$(el).hasClass('keep-open') && $(el).css('display')==='block') {
-                    that._close(el);
-                }
-            });
-        });
-
         element.data('dropdown', this);
     },
 
@@ -5291,6 +5399,15 @@ $.widget("metro.dropdown", {
     _setOption: function(key, value){
         this._super('_setOption', key, value);
     }
+});
+
+$(document).on('click', function(e){
+    $('[data-role=dropdown]').each(function(i, el){
+        if (!$(el).hasClass('keep-open') && $(el).css('display')==='block') {
+            var that = $(el).data('dropdown');
+            that._close(el);
+        }
+    });
 });
 
 // Source: js/widgets/fit-image.js
@@ -9172,9 +9289,20 @@ $.widget( "metro.validator" , {
         });
 
         $.each(inputs, function(i, v){
+            var this_result = true;
             var input = $(v);
-            var func = input.data('validateFunc'), arg = input.data('validateArg');
-            var this_result = that.funcs[func](input.val(), arg);
+            var func = input.data('validateFunc') != undefined ? String(input.data('validateFunc')).split(",") : [],
+                arg = input.data('validateArg') != undefined ? String(input.data('validateArg')).split(",") : [];
+
+            console.log(input.data('validateArg'));
+
+            $.each(func, function(i, func_name){
+                if (!this_result) return;
+                var _args = arg[i] != undefined ? arg[i] : false;
+                this_result = that.funcs[func_name.trim()](input.val(), _args);
+            });
+
+//            this_result = that.funcs[func](input.val(), arg);
 
             if (!this_result) {
                 if (typeof o.onErrorInput === 'function') {

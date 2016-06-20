@@ -1,0 +1,27 @@
+@import (once) "vars";
+
+.op-default {
+	background-color: rgba(red(@cyan), green(@cyan), blue(@cyan), .7);
+}
+
+.generate-colors(@color-list-length);
+.generate-colors(@name, @i: 1) when (@i =< @color-list-length) {
+	@name: extract(@color-list, @i);
+
+	.bd-@{name} {border-color: @@name !important;}
+	.ol-@{name} {outline-color: @@name !important;}
+	.op-@{name} {background-color: rgba(red(@@name), green(@@name), blue(@@name), .7);}
+	.ribbed-@{name} {background: @@name linear-gradient(-45deg, rgba(255,255,255,.15) 25%, transparent 25%, transparent 50%, rgba(255,255,255,.15) 50%, rgba(255,255,255,.15) 75%, transparent 75%, transparent) !important;	background-size: 40px 40px !important;	}
+	.before-bg-@{name} {&:before {background: @@name !important;}}
+	.before-fg-@{name} {&:before {color: @@name !important;}}
+	.after-bg-@{name} {&:after {background: @@name !important;}}
+	.after-fg-@{name} {&:after {color: @@name !important;}}
+	.bg-hover-@{name} {&:hover{background: @@name !important;}}
+	.bg-active-@{name} {&:active{background: @@name !important;}}
+	.bg-focus-@{name} {&:focus{background: @@name !important;}}
+	.fg-hover-@{name} {&:hover{color: @@name !important;}}
+	.fg-active-@{name} {&:active{color: @@name !important;}}
+	.fg-focus-@{name} {&:focus{color: @@name !important;}}
+
+	.generate-colors(@name, @i + 1);
+}

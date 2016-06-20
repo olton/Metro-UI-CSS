@@ -21,6 +21,7 @@
 
 		& > .cell {
 			display: block;
+			position: relative;
 			float: left;
 			width: 100%;
 			min-height: 10px;
@@ -67,30 +68,15 @@
 }
 
 .grid.condensed {
-	display: block;
-	position: relative;
-	margin: .625rem 0;
-	.clear-float;
-
 	.row {
-		width: 100%;
-		display: block;
 		.margin(0, 0, @gridMarginCondensed, 0);
-		.clear-float;
 
 		&:last-child {
 			margin-bottom: 0;
 		}
 
 		& > .cell {
-			display: block;
-			float: left;
-			width: 100%;
-			min-height: 10px;
 			.margin(0, 0, 0, @gridMarginCondensed);
-			&:first-child {
-				margin-left: 0;
-			}
 		}
 
 		.generate-cell(@gridColumns);

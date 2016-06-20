@@ -1,5 +1,19 @@
 # Changelog 
 
+## 3.0.15
+* remove re-init for old browsers
+* METRO_AUTO_REINIT now deprecated
+* add global methods for show/hide charms (showMetroCharm, hideMetroCharm, toggleMetroCharm)
+* fix dropdown closed by document click 
+* add Number.prototype.format
+* fix Metro Icon Font for using with winphone apps
+* upd dialog: add runtime setContent* methods
+* upd charms: resize closer, add close charm by document click
+* upd charms: add position parameter to show charm functions
+* upd charms: add function to check charm is open
+* additional colors moved to metro-colors.css
+* add validator multiple funcs, see validator multi func demo
+
 ## 3.0.14
 * fix tabcontrol frames overflow
 * upd dialog, add utility function showMetroDialog, hideMetroDialog
