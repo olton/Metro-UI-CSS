@@ -20,7 +20,7 @@ module.exports = function(grunt) {
                           "    } else {\n" +
                           "        factory( jQuery );\n"+
                           "    }\n"+
-                          "}(function( jQuery ) { \n'use strict';\n\nvar $ = jQuery;\n\n",
+                          "}(function( jQuery ) { \n'use strict';\n\nvar $ = jQuery;\n\nwindow.METRO_VERSION = '<%= pkg.version %>';\n\n",
 
         clean: {
             build: ['build/js', 'build/css', 'build/fonts'],
@@ -84,6 +84,10 @@ module.exports = function(grunt) {
                 src: 'less/<%= pkg.name %>-schemes.less',
                 dest: 'build/css/<%= pkg.name %>-schemes.css'
             },
+            compileColors: {
+                src: 'less/<%= pkg.name %>-colors.less',
+                dest: 'build/css/<%= pkg.name %>-colors.css'
+            },
             compileFont: {
                 src: 'less/<%= pkg.name %>-icons.less',
                 dest: 'build/css/<%= pkg.name %>-icons.css'
@@ -116,6 +120,10 @@ module.exports = function(grunt) {
                 src: 'build/css/<%= pkg.name %>-schemes.css',
                 dest: 'build/css/<%= pkg.name %>-schemes.min.css'
             },
+            minColors: {
+                src: 'build/css/<%= pkg.name %>-colors.css',
+                dest: 'build/css/<%= pkg.name %>-colors.min.css'
+            },
             minFont: {
                 src: 'build/css/<%= pkg.name %>-icons.css',
                 dest: 'build/css/<%= pkg.name %>-icons.min.css'
@@ -144,6 +152,10 @@ module.exports = function(grunt) {
                 src: 'build/css/<%= pkg.name %>-schemes.css',
                 dest: 'docs/css/<%= pkg.name %>-schemes.css'
             },
+            docs_css_colors: {
+                src: 'build/css/<%= pkg.name %>-colors.css',
+                dest: 'docs/css/<%= pkg.name %>-colors.css'
+            },
             docs_css_font: {
                 src: 'build/css/<%= pkg.name %>-icons.css',
                 dest: 'docs/css/<%= pkg.name %>-icons.css'
@@ -161,10 +173,6 @@ module.exports = function(grunt) {
                         {
                             match: 'adsense',
                             replacement: '<%= grunt.file.read(".replace/google-adsense-block.txt") %>'
-                        },
-                        {
-                            match: 'hit',
-                            replacement: '<%= grunt.file.read(".replace/hit-ua-counter.txt") %>'
                         }
                     ]
                 },

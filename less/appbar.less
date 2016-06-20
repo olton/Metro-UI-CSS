@@ -24,6 +24,7 @@
         position: relative;
         vertical-align: middle;
         height: 3.125rem;
+        background-color: inherit;
 
         &:hover, &:active {
             background-color: @appBarBackgroundActive;
@@ -32,6 +33,12 @@
         &.branding {
             padding-left: 1rem;
             padding-right: 1rem;
+        }
+
+        &.branding.no-hover {
+            &:hover, &:active {
+                background-color: @appBarBackground;
+            }
         }
 
         .d-menu {

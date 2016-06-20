@@ -1,5 +1,3 @@
-window.METRO_VERSION = '3.0.13';
-
 if (window.METRO_AUTO_REINIT === undefined) window.METRO_AUTO_REINIT = true;
 if (window.METRO_LANGUAGE === undefined) window.METRO_LANGUAGE = 'en';
 if (window.METRO_LOCALE === undefined) window.METRO_LOCALE = 'EN_en';
@@ -9,6 +7,13 @@ if (window.METRO_DEBUG === undefined) window.METRO_DEBUG = true;
 if (window.METRO_CALENDAR_WEEK_START === undefined) window.METRO_CALENDAR_WEEK_START = 0;
 
 window.canObserveMutation = 'MutationObserver' in window;
+
+Number.prototype.format = function(n, x, s, c) {
+    var re = '\\d(?=(\\d{' + (x || 3) + '})+' + (n > 0 ? '\\D' : '$') + ')',
+        num = this.toFixed(Math.max(0, ~~n));
+
+    return (c ? num.replace('.', c) : num).replace(new RegExp(re, 'g'), '$&' + (s || ','));
+};
 
 String.prototype.isUrl = function () {
     "use strict";

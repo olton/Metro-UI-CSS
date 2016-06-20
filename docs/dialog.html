@@ -375,6 +375,8 @@
             <button class="button" onclick="hideMetroDialog('#dialog-uf-1')">Close dialog</button>
             <button class="button" onclick="toggleMetroDialog('#dialog-uf-1')">Toggle dialog</button>
             <button class="button" onclick="toggleMetroDialog('#dialog-uf-1', 'top-left')">Open dialog top-left</button>
+            <button class="button" onclick="showMetroDialog('#dialog-uf-1', 'default', 'This is a new runtime content')">Open dialog, set content</button>
+            <button class="button" onclick="showMetroDialog('#dialog-uf-1', 'default', ($('<div>').addClass('padding20').html('hi! i am jquery content for dialog ')))">Open dialog, set content as jQuery object</button>
 
             <pre class="prettyprint linenums no-scroll-x"><code>
                 &lt;button class="button" onclick="showMetroDialog('#dialog-uf-1')"&gt;Open dialog&lt;/button&gt;
@@ -385,8 +387,5 @@
             </code></pre>
         </div>
     </div>
-
-    @@hit
-
 </body>
 </html>

@@ -524,10 +524,37 @@
             </div>
             <hr class="thin">
             <div class="form-actions padding10 no-padding-left">
-                <button class="button primary" type="submit">Submit</button>
-                <button class="button link" type="button">Cancel</button>
+                <button class="button" type="submit">Submit</button>
             </div>
         </form>
+
+        <h3>Multi func</h3>
+        <div class="example" data-text="code">
+            <pre class="prettyprint linenums no-scroll"><code>
+                &lt;input type="text" data-validate-func="required, number"&gt;
+
+                &lt;input type="text"
+                    data-validate-func="required, number, minlength"
+                    data-validate-arg=",,6"&gt;
+            </code></pre>
+        </div>
+        <form data-on-submit="submit" data-role="validator" action="javascript:void(0)">
+            <div class="input-control text block" data-role="input" style="width: 300px">
+                <input type="text" data-validate-func="required, number" placeholder="not empty, number" data-validate-hint="This field can not be empty and can be number">
+                <span class="input-state-error mif-warning"></span>
+                <span class="input-state-success mif-checkmark"></span>
+            </div>
+            <div class="input-control text block" data-role="input" style="width: 300px">
+                <input type="text" data-validate-func="required, number, minlength" placeholder="not empty, number, min length 6" data-validate-arg=",,6" data-validate-hint="This field can not be empty and can be number and min length 6 digits">
+                <span class="input-state-error mif-warning"></span>
+                <span class="input-state-success mif-checkmark"></span>
+            </div>
+            <hr class="thin">
+            <div class="form-actions padding10 no-padding-left">
+                <button class="button" type="submit">Submit</button>
+            </div>
+        </form>
+
 
         <h3>onSubmit</h3>
         <form data-on-submit="submit" data-role="validator" action="javascript:void(0)">
@@ -548,7 +575,6 @@
             </div>
             <div class="form-actions padding10 no-padding-left">
                 <button class="button" type="submit">Submit</button>
-                <button class="button link" type="button">Cancel</button>
             </div>
         </form>
         <script>
@@ -592,8 +618,5 @@
             </div>
         </div>
     </div>
-
-    @@hit
-
 </body>
 </html>
