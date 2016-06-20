@@ -1,5 +1,7 @@
 # Changelog 
 
+## 3.0.16
+
 ## 3.0.15
 * remove re-init for old browsers
 * METRO_AUTO_REINIT now deprecated

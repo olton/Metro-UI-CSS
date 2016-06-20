@@ -1,7 +1,7 @@
 {
     "author": "Sergey Pimenov",
     "name": "metro",
-    "version": "3.0.15",
+    "version": "3.0.16",
     "description": "The front-end framework for developing responsive, mobile projects on the web in Windows Metro Style.",
     "keywords": [
         "css",
@@ -23,10 +23,7 @@
     "bugs": {
         "url": "http://forum.metroui.org.ua"
     },
-    "license": {
-        "type": "MIT",
-        "url": "http://metroui.org.ua/license.html"
-    },
+    "license": "SEE LICENSE IN http://metroui.org.ua/license.html",
     "devDependencies": {
         "autoprefixer-core": "^5.1.11",
         "grunt": "^0.4.5",
