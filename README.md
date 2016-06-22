@@ -4,22 +4,31 @@ The front-end framework for developing projects on the web in Windows Metro Styl
 ## Current Version 3.0.15
 
 ### Install with bower
- bower install metro
- bower install metro-dist
+
+```
+ $ bower install metro
+ $ bower install metro-dist
+```
 
 ### Install with npm
+```
  npm install metro-dist
+```
 
 metro-dist repository contains only main framework files: css, js and font
 
 ### Install with nuget
+
+```
 Install-Package Metro.UI.CSS
+```
 
 ### Public CDN
 
 #### Master branch
+
 ##### CSS
- 
+
 https://cdn.rawgit.com/olton/Metro-UI-CSS/master/build/css/metro.min.css
 https://cdn.rawgit.com/olton/Metro-UI-CSS/master/build/css/metro-responsive.min.css
 https://cdn.rawgit.com/olton/Metro-UI-CSS/master/build/css/metro-schemes.min.css
