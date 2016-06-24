@@ -248,6 +248,19 @@ window.METRO_LOCALES = {
         buttons: [
             "Dnes", "Vyčistit", "Zrušit", "Pomoc", "Předešlý", "Další", "Dokončit"
         ]
+    },
+    'id': {
+        months: [
+            "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember",
+            "Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Dec"
+        ],
+        days: [
+            "Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu",
+            "Mi", "Se", "Se", "Ra", "Ka", "Ju", "Sa"
+        ],
+        buttons: [
+            "Hari Ini", "Mengulang", "Batalkan", "Bantuan", "Sebelumnya", "Berikutnya", "Selesai"
+        ]
     }
 };
 
