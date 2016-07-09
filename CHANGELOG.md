@@ -1,7 +1,8 @@
 # Changelog 
 
 ## 3.0.16
-* fix metro-icons.css 
+* fix metro-icons.css
+* fix calendar events 
 
 ## 3.0.15
 * remove re-init for old browsers
