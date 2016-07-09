@@ -882,7 +882,6 @@ a.tag {
   -webkit-transform: rotate(-45deg);
           transform: rotate(-45deg);
 }
-/* Block function */
 .set-border {
   border: 1px #d9d9d9 solid;
 }
@@ -7622,6 +7621,8 @@ input[type="submit"].link:active {
   -webkit-animation: swinging 5s ease-in-out 0s;
           animation: swinging 5s ease-in-out 0s;
 }
+/* transform functions */
+/* Block function */
 .ani-spin,
 .ani-hover-spin:hover {
   -webkit-animation: ani-spin 1.5s linear infinite;
@@ -15834,7 +15835,6 @@ video::-webkit-media-controls-enclosure {
 .bg-darker {
   background-color: #222222 !important;
 }
-/* transform functions */
 .rotate45 {
   -webkit-transform: rotate(45deg);
           transform: rotate(45deg);
