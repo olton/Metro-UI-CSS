@@ -1,0 +1,35 @@
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.98" y1="-734.47" x2="54.72" y2="-663.49" gradientTransform="matrix(1, 0, 0, -1, 0, -648.86)" gradientUnits="userSpaceOnUse">
+      <stop offset="0.02" stop-color="#765af8"/>
+      <stop offset="0.38" stop-color="#b345f1"/>
+      <stop offset="0.76" stop-color="#fa3293"/>
+      <stop offset="0.94" stop-color="#ff318c"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="4.93" y1="-737.26" x2="58.59" y2="-666.39" xlink:href="#linear-gradient"/>
+    <linearGradient id="linear-gradient-3" x1="92.98" y1="-733.7" x2="62.66" y2="-661.73" gradientTransform="matrix(1, 0, 0, -1, 0, -648.86)" gradientUnits="userSpaceOnUse">
+      <stop offset="0.18" stop-color="#765af8"/>
+      <stop offset="0.24" stop-color="#8655f6"/>
+      <stop offset="0.34" stop-color="#9f4cf3"/>
+      <stop offset="0.44" stop-color="#ae47f2"/>
+      <stop offset="0.52" stop-color="#b345f1"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="115.65" y1="-753.74" x2="45.12" y2="-699.2" gradientTransform="matrix(1, 0, 0, -1, 0, -648.86)" gradientUnits="userSpaceOnUse">
+      <stop offset="0.02" stop-color="#765af8"/>
+      <stop offset="0.38" stop-color="#b345f1"/>
+    </linearGradient>
+  </defs>
+  <title>icon_PhpStorm</title>
+  <g>
+    <polygon points="72.4 27.8 66.4 9.6 21.8 0 0 24.6 68 59.4 72.4 27.8" fill="url(#linear-gradient)"/>
+    <polygon points="51.2 75.6 49.8 37.6 0 24.6 12.2 98 51.2 97.6 51.2 75.6" fill="url(#linear-gradient-2)"/>
+    <polygon points="40.4 75 42.8 44.8 79 7.6 111.4 13.6 128 55 110.6 72.2 82.4 67.6 64.6 86 40.4 75" fill="url(#linear-gradient-3)"/>
+    <polygon points="79 7.6 27 53.8 37 113 80.2 128 128 99.4 79 7.6" fill="url(#linear-gradient-4)"/>
+  </g>
+  <g>
+    <rect x="24" y="24" width="80" height="80"/>
+    <rect x="31.6" y="89" width="30" height="5" fill="#fff"/>
+    <path d="M31.2,34.4H44.8c8,0,12.8,4.6,12.8,11.4h0c0,7.6-6,11.6-13.4,11.6H38.6v10H31.2v-33h0Zm13.2,17c3.49,0,5.8-2.4,5.8-5.2h0c0-3.2-2.2-5-6-5H38.6V51.4h5.8Z" fill="#fff"/>
+    <path d="M59.4,62.8l4.4-5.2c3,2.4,6.2,4,10,4,3,0,4.8-1.2,4.8-3.2h0c0-1.8-1.2-2.8-6.8-4.2-6.8-1.8-11-3.6-11-10.2V43.8c0-6,4.8-10,11.6-10A20.15,20.15,0,0,1,84.8,38L81,43.6c-3-2-5.8-3.2-8.6-3.2s-4.2,1.2-4.2,3h0c0,2.2,1.4,3,7.2,4.4C82.2,49.6,86,52,86,57.8h0c0,6.6-5,10.4-12.2,10.4a21.14,21.14,0,0,1-14.4-5.4" fill="#fff"/>
+  </g>
+</svg>

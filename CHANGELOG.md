@@ -1,6 +1,7 @@
 # Changelog 
 
 ## 3.0.16
+* fix metro-icons.css 
 
 ## 3.0.15
 * remove re-init for old browsers
