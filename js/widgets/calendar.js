@@ -375,13 +375,13 @@ $.widget("metro.calendar", {
             table = this.element.find('.calendar-grid');
 
         if (this._mode === 'day') {
-            table.find('.btn-select-month').on('click', function (e) {
+            table.find('.btn-select-month').off('click').on('click', function (e) {
                 e.preventDefault();
                 e.stopPropagation();
                 that._mode = 'month';
                 that._renderCalendar();
             });
-            table.find('.btn-previous-month').on('click', function (e) {
+            table.find('.btn-previous-month').off('click').on('click', function (e) {
                 that._event = 'eventPrevious';
                 e.preventDefault();
                 e.stopPropagation();
@@ -392,7 +392,7 @@ $.widget("metro.calendar", {
                 }
                 that._renderCalendar();
             });
-            table.find('.btn-next-month').on('click', function (e) {
+            table.find('.btn-next-month').off('click').on('click', function (e) {
                 that._event = 'eventNext';
                 e.preventDefault();
                 e.stopPropagation();
@@ -403,14 +403,14 @@ $.widget("metro.calendar", {
                 }
                 that._renderCalendar();
             });
-            table.find('.btn-previous-year').on('click', function (e) {
+            table.find('.btn-previous-year').off('click').on('click', function (e) {
                 that._event = 'eventPrevious';
                 e.preventDefault();
                 e.stopPropagation();
                 that._year -= 1;
                 that._renderCalendar();
             });
-            table.find('.btn-next-year').on('click', function (e) {
+            table.find('.btn-next-year').off('click').on('click', function (e) {
                 that._event = 'eventNext';
                 e.preventDefault();
                 e.stopPropagation();
@@ -456,7 +456,7 @@ $.widget("metro.calendar", {
                 }
             });
         } else if (this._mode === 'month') {
-            table.find('.month a').on('click', function (e) {
+            table.find('.month a').off('click').on('click', function (e) {
                 that._event = 'eventNext';
                 e.preventDefault();
                 e.stopPropagation();
@@ -464,21 +464,21 @@ $.widget("metro.calendar", {
                 that._mode = 'day';
                 that._renderCalendar();
             });
-            table.find('.btn-previous-year').on('click', function (e) {
+            table.find('.btn-previous-year').off('click').on('click', function (e) {
                 that._event = 'eventPrevious';
                 e.preventDefault();
                 e.stopPropagation();
                 that._year -= 1;
                 that._renderCalendar();
             });
-            table.find('.btn-next-year').on('click', function (e) {
+            table.find('.btn-next-year').off('click').on('click', function (e) {
                 that._event = 'eventNext';
                 e.preventDefault();
                 e.stopPropagation();
                 that._year += 1;
                 that._renderCalendar();
             });
-            table.find('.btn-select-year').on('click', function (e) {
+            table.find('.btn-select-year').off('click').on('click', function (e) {
                 that._event = 'eventNext';
                 e.preventDefault();
                 e.stopPropagation();
@@ -486,7 +486,7 @@ $.widget("metro.calendar", {
                 that._renderCalendar();
             });
         } else {
-            table.find('.year a').on('click', function (e) {
+            table.find('.year a').off('click').on('click', function (e) {
                 that._event = 'eventNext';
                 e.preventDefault();
                 e.stopPropagation();
@@ -494,14 +494,14 @@ $.widget("metro.calendar", {
                 that._mode = 'month';
                 that._renderCalendar();
             });
-            table.find('.btn-previous-year').on('click', function (e) {
+            table.find('.btn-previous-year').off('click').on('click', function (e) {
                 that._event = 'eventPrevious';
                 e.preventDefault();
                 e.stopPropagation();
                 that._distance -= 10;
                 that._renderCalendar();
             });
-            table.find('.btn-next-year').on('click', function (e) {
+            table.find('.btn-next-year').off('click').on('click', function (e) {
                 that._event = 'eventNext';
                 e.preventDefault();
                 e.stopPropagation();
@@ -510,7 +510,7 @@ $.widget("metro.calendar", {
             });
         }
 
-        table.find('.calendar-btn-today').on('click', function (e) {
+        table.find('.calendar-btn-today').off('click').on('click', function (e) {
             //that._event = 'eventNext';
             e.preventDefault();
             e.stopPropagation();
@@ -521,7 +521,7 @@ $.widget("metro.calendar", {
             that._day = that.options.date.getDate();
             that._renderCalendar();
         });
-        table.find('.calendar-btn-clear').on('click', function (e) {
+        table.find('.calendar-btn-clear').off('click').on('click', function (e) {
             e.preventDefault();
             e.stopPropagation();
             that.options.date = new Date();
