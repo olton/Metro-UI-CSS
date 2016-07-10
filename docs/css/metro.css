@@ -891,6 +891,10 @@ a.tag {
 .set-border.large-border {
   border-width: 16px;
 }
+.fix-slow-animation {
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
 .grid {
   display: block;
   position: relative;
@@ -12883,6 +12887,8 @@ input[type="submit"].link:active {
   background: #1d1d1d;
   color: #eeeeee;
   padding: .625rem;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
 }
 .charm .charm-closer {
   position: absolute;

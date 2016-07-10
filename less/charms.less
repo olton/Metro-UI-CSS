@@ -1,5 +1,6 @@
 @import (once) "vars";
 @import (once) "utils";
+@import (once) "mixins";
 
 .charm {
 	display: block;
@@ -8,6 +9,7 @@
 	background: @dark;
 	color: @grayLighter;
 	padding: .625rem;
+    .enableGPU();
 
     .charm-closer {
         position: absolute;

@@ -1,6 +1,6 @@
 @import (once) "vars";
 @import (once) "transform";
-//@import (once) "colors";
+@import (once) "mixins";
 
 .dropdown-toggle {
 	position: relative;
@@ -285,3 +285,6 @@
 	}
 }
 
+.fix-slow-animation {
+	.enableGPU();
+}
