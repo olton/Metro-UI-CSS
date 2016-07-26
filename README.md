@@ -20,28 +20,28 @@ Install-Package Metro.UI.CSS
 #### Master branch
 ##### CSS
  
- https://cdn.rawgit.com/olton/Metro-UI-CSS/master/build/css/metro.min.css
- https://cdn.rawgit.com/olton/Metro-UI-CSS/master/build/css/metro-responsive.min.css
- https://cdn.rawgit.com/olton/Metro-UI-CSS/master/build/css/metro-schemes.min.css
- https://cdn.rawgit.com/olton/Metro-UI-CSS/master/build/css/metro-rtl.min.css
- https://cdn.rawgit.com/olton/Metro-UI-CSS/master/build/css/metro-icons.min.css
+ - https://cdn.rawgit.com/olton/Metro-UI-CSS/master/build/css/metro.min.css
+ - https://cdn.rawgit.com/olton/Metro-UI-CSS/master/build/css/metro-responsive.min.css
+ - https://cdn.rawgit.com/olton/Metro-UI-CSS/master/build/css/metro-schemes.min.css
+ - https://cdn.rawgit.com/olton/Metro-UI-CSS/master/build/css/metro-rtl.min.css
+ - https://cdn.rawgit.com/olton/Metro-UI-CSS/master/build/css/metro-icons.min.css
 
 ##### JS
 
- https://cdn.rawgit.com/olton/Metro-UI-CSS/master/build/js/metro.min.js
+ - https://cdn.rawgit.com/olton/Metro-UI-CSS/master/build/js/metro.min.js
 
 #### Develop branch
 ##### CSS
 
- https://cdn.rawgit.com/olton/Metro-UI-CSS/develop/build/css/metro.min.css
- https://cdn.rawgit.com/olton/Metro-UI-CSS/develop/build/css/metro-responsive.min.css 
- https://cdn.rawgit.com/olton/Metro-UI-CSS/develop/build/css/metro-schemes.min.css
- https://cdn.rawgit.com/olton/Metro-UI-CSS/develop/build/css/metro-rtl.min.css
- https://cdn.rawgit.com/olton/Metro-UI-CSS/develop/build/css/metro-icons.min.css
+ - https://cdn.rawgit.com/olton/Metro-UI-CSS/develop/build/css/metro.min.css
+ - https://cdn.rawgit.com/olton/Metro-UI-CSS/develop/build/css/metro-responsive.min.css 
+ - https://cdn.rawgit.com/olton/Metro-UI-CSS/develop/build/css/metro-schemes.min.css
+ - https://cdn.rawgit.com/olton/Metro-UI-CSS/develop/build/css/metro-rtl.min.css
+ - https://cdn.rawgit.com/olton/Metro-UI-CSS/develop/build/css/metro-icons.min.css
  
 ##### JS
 
- https://cdn.rawgit.com/olton/Metro-UI-CSS/develop/build/js/metro.min.js
+ - https://cdn.rawgit.com/olton/Metro-UI-CSS/develop/build/js/metro.min.js
 
 
 ### Whats new in 3.0

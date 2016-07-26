@@ -4,6 +4,8 @@
 * fix metro-icons.css
 * fix calendar events
 * Small fix for mif-* class
+* fix dialogs position
+* global dialog function moved to window.metroDialog object and renamed (open, close, toggle), see docs
 
 ## 3.0.15
 * remove re-init for old browsers
