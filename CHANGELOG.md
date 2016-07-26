@@ -6,6 +6,7 @@
 * Small fix for mif-* class
 * fix dialogs position
 * global dialog function moved to window.metroDialog object and renamed (open, close, toggle), see docs
+* fix appbar and fitImage for jquery 3.1.0
 
 ## 3.0.15
 * remove re-init for old browsers
