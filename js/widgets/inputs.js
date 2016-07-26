@@ -141,7 +141,7 @@ $.widget("metro.input", {
         var element = this.element, that = this, o = this.options;
         var textarea = element.find('textarea');
 
-        console.log(textarea);
+        //console.log(textarea);
 
         var fitTextarea = function(){
             textarea.css({

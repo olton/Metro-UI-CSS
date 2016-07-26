@@ -26,9 +26,7 @@ $.widget( "metro.fitImage" , {
             }
         });
 
-        $("<img/>")
-            .attr('src', src)
-            .load(function(){
+        $("<img/>").attr('src', src).on('load', function(){
                 i_w = this.width;
                 i_h = this.height;
             }).remove();
