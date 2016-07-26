@@ -8,20 +8,12 @@
 [class^="mif-"],
 [class*=" mif-"] {
   display: inline-block;
-  font: normal normal normal 1.5em/1;
-  font-family: metro, "Segoe UI", "Open Sans", serif;
-  line-height: 1 ;
+  font: normal normal normal 1.2em/1 metro;
+  font-size: inherit;
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  -webkit-transform: translate(0, 0);
-          transform: translate(0, 0);
   vertical-align: middle;
-  position: static;
-}
-[class^="mif-"]:before,
-[class*=" mif-"]:before {
-  font-family: metro, serif;
 }
 .mif-lg {
   font-size: 1.3rem;

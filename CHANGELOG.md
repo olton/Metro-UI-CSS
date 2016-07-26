@@ -2,7 +2,8 @@
 
 ## 3.0.16
 * fix metro-icons.css
-* fix calendar events 
+* fix calendar events
+* Small fix for mif-* class
 
 ## 3.0.15
 * remove re-init for old browsers
