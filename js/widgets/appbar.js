@@ -390,30 +390,6 @@
 
                     });
 
-
-                    //we have to calculate everything new, if the user resizes or zooms the window
-                    $(window).resize(function () {
-                        $("[data-role=appbar]:not(.no-flexible)").each(function () {
-                            $(this).data("appbar").resize();
-                        });
-                    });
-
-
-                    //because fonts(also icon-fonts) are often loaded async after the page has loaded and this script walked through already, 
-                    //we have to check again after these elements loaded. Because there is no way to observe only specific elements, we do it for the window
-                    $(window).load(function () {
-                        $("[data-role=appbar]:not(.no-flexible)").each(function () {
-                            $(this).data("appbar").resize();
-                        });
-                    });
-
-                    //pictures (or other outside stuff was loaded - pictures are also often loaded async or have a lazy load or are injected after a while. 
-                    //a picture can change a size of the element from the appbar, so we must recheck it again.
-                    $("[data-role=appbar]:not(.no-flexible) [src]").on("load", function () {
-                        //who am i?
-                        var appbar = $(this).closest("[data-role=appbar]").data("appbar");
-                        appbar.resize();
-                    });
                 }
             }
 
@@ -423,4 +399,28 @@
         _setOption: function (key, value) {
             this._super('_setOption', key, value);
         }
+    });
+
+    //we have to calculate everything new, if the user resizes or zooms the window
+    $(window).on('resize', function () {
+        $("[data-role=appbar]:not(.no-flexible)").each(function () {
+            $(this).data("appbar").resize();
+        });
+    });
+
+
+    //because fonts(also icon-fonts) are often loaded async after the page has loaded and this script walked through already,
+    //we have to check again after these elements loaded. Because there is no way to observe only specific elements, we do it for the window
+    $(window).on('load', function () {
+        $("[data-role=appbar]:not(.no-flexible)").each(function () {
+            $(this).data("appbar").resize();
+        });
+    });
+
+    //pictures (or other outside stuff was loaded - pictures are also often loaded async or have a lazy load or are injected after a while.
+    //a picture can change a size of the element from the appbar, so we must recheck it again.
+    $("[data-role=appbar]:not(.no-flexible) [src]").on("load", function () {
+        //who am i?
+        var appbar = $(this).closest("[data-role=appbar]").data("appbar");
+        appbar.resize();
     });
