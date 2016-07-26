@@ -47,6 +47,7 @@ $.widget( "metro.dialog" , {
         }
         this._createDialog();
 
+        element.appendTo($('body'));
         element.data('dialog', this);
 
         if (o.show) {
@@ -146,8 +147,8 @@ $.widget( "metro.dialog" , {
 
     _setPosition: function(){
         var that = this, element = this.element, o = this.options;
-        var width = element.width(),
-            height = element.height();
+        var width = element.outerWidth(),
+            height = element.outerHeight();
 
         switch (o.place) {
             case 'top-left': {
@@ -366,80 +367,84 @@ $.widget( "metro.dialog" , {
 });
 
 
-window.showMetroDialog = function (el, place, content, contentType){
-    var dialog = $(el), dialog_obj;
-    if (dialog.length == 0) {
-        console.log('Dialog ' + el + ' not found!');
-        return false;
-    }
-
-    dialog_obj = dialog.data('dialog');
-
-    if (dialog_obj == undefined) {
-        console.log('Element not contain role dialog! Please add attribute data-role="dialog" to element ' + el);
-        return false;
-    }
-
-    if (content != undefined) {
-        switch (contentType) {
-            case 'href': dialog_obj.setContentHref(content); break;
-            case 'video': dialog_obj.setContentVideo(content); break;
-            default: dialog_obj.setContent(content);
+var dialog = {
+    open: function(el, place, content, contentType){
+        var dialog = $(el), dialog_obj;
+        if (dialog.length == 0) {
+            console.log('Dialog ' + el + ' not found!');
+            return false;
         }
-    }
 
-    if (place !== undefined) {
-        dialog_obj.options.place = place;
-    }
+        dialog_obj = dialog.data('dialog');
 
-    dialog_obj.open();
-};
-
-window.hideMetroDialog = function(el){
-    var dialog = $(el), dialog_obj;
-    if (dialog.length == 0) {
-        console.log('Dialog ' + el + ' not found!');
-        return false;
-    }
-
-    dialog_obj = dialog.data('dialog');
-
-    if (dialog_obj == undefined) {
-        console.log('Element not contain role dialog! Please add attribute data-role="dialog" to element ' + el);
-        return false;
-    }
-
-    dialog_obj.close();
-};
-
-window.toggleMetroDialog = function(el, place, content, contentType){
-    var dialog = $(el), dialog_obj;
-    if (dialog.length == 0) {
-        console.log('Dialog ' + el + ' not found!');
-        return false;
-    }
-
-    dialog_obj = dialog.data('dialog');
-
-    if (dialog_obj == undefined) {
-        console.log('Element not contain role dialog! Please add attribute data-role="dialog" to element ' + el);
-        return false;
-    }
-
-    if (content != undefined) {
-        switch (contentType) {
-            case 'href': dialog_obj.setContentHref(content); break;
-            case 'video': dialog_obj.setContentVideo(content); break;
-            default: dialog_obj.setContent(content);
+        if (dialog_obj == undefined) {
+            console.log('Element not contain role dialog! Please add attribute data-role="dialog" to element ' + el);
+            return false;
         }
-    }
 
-    if (dialog_obj.element.data('opened') === true) {
-        dialog_obj.close();
-    } else {
+        if (content != undefined) {
+            switch (contentType) {
+                case 'href': dialog_obj.setContentHref(content); break;
+                case 'video': dialog_obj.setContentVideo(content); break;
+                default: dialog_obj.setContent(content);
+            }
+        }
+
         if (place !== undefined) {
             dialog_obj.options.place = place;
         }
+
         dialog_obj.open();
+    },
+
+    close: function(el){
+        var dialog = $(el), dialog_obj;
+        if (dialog.length == 0) {
+            console.log('Dialog ' + el + ' not found!');
+            return false;
+        }
+
+        dialog_obj = dialog.data('dialog');
+
+        if (dialog_obj == undefined) {
+            console.log('Element not contain role dialog! Please add attribute data-role="dialog" to element ' + el);
+            return false;
+        }
+
+        dialog_obj.close();
+    },
+
+    toggle: function(el, place, content, contentType){
+        var dialog = $(el), dialog_obj;
+        if (dialog.length == 0) {
+            console.log('Dialog ' + el + ' not found!');
+            return false;
+        }
+
+        dialog_obj = dialog.data('dialog');
+
+        if (dialog_obj == undefined) {
+            console.log('Element not contain role dialog! Please add attribute data-role="dialog" to element ' + el);
+            return false;
+        }
+
+        if (content != undefined) {
+            switch (contentType) {
+                case 'href': dialog_obj.setContentHref(content); break;
+                case 'video': dialog_obj.setContentVideo(content); break;
+                default: dialog_obj.setContent(content);
+            }
+        }
+
+        if (dialog_obj.element.data('opened') === true) {
+            dialog_obj.close();
+        } else {
+            if (place !== undefined) {
+                dialog_obj.options.place = place;
+            }
+            dialog_obj.open();
+        }
     }
 };
+
+window.metroDialog = dialog;

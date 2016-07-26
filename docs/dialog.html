@@ -15,6 +15,7 @@
     <link href="css/metro-icons.css" rel="stylesheet">
     <link href="css/metro-responsive.css" rel="stylesheet">
     <link href="css/metro-schemes.css" rel="stylesheet">
+    <link href="css/metro-colors.css" rel="stylesheet">
 
     <link href="css/docs.css" rel="stylesheet">
 
@@ -49,16 +50,16 @@
         </div>
 
         <div class="padding20 no-padding-right no-padding-left no-padding-top">
-            <button class="button" onclick="showDialog('dialog')">Show dialog</button>
-            <button class="button" onclick="showDialog('dialog2')">Show dialog2</button>
-            <button class="button success" onclick="showDialog('dialog3')">Success</button>
-            <button class="button warning" onclick="showDialog('dialog4')">Warning</button>
-            <button class="button alert" onclick="showDialog('dialog5')">Alert</button>
-            <button class="button info" onclick="showDialog('dialog6')">Info</button>
-            <button class="button" onclick="showDialog('dialog10')">Custom colors</button>
-            <button class="button" onclick="showDialog('dialog7')">Windows Style</button>
-            <button class="button" onclick="showDialog('dialog8')">Overlay</button>
-            <button class="button" onclick="showDialog('dialog9')">Overlay 2</button>
+            <button class="button" onclick="metroDialog.toggle('#dialog')">Show dialog</button>
+            <button class="button" onclick="metroDialog.toggle('#dialog2')">Show dialog2</button>
+            <button class="button success" onclick="metroDialog.toggle('#dialog3')">Success</button>
+            <button class="button warning" onclick="metroDialog.toggle('#dialog4')">Warning</button>
+            <button class="button alert" onclick="metroDialog.toggle('#dialog5')">Alert</button>
+            <button class="button info" onclick="metroDialog.toggle('#dialog6')">Info</button>
+            <button class="button" onclick="metroDialog.toggle('#dialog10')">Custom colors</button>
+            <button class="button" onclick="metroDialog.toggle('#dialog7')">Windows Style</button>
+            <button class="button" onclick="metroDialog.toggle('#dialog8')">Overlay</button>
+            <button class="button" onclick="metroDialog.toggle('#dialog9')">Overlay 2</button>
         </div>
 
         <div class="example" data-text="code">
@@ -72,8 +73,7 @@
         <div class="example" data-text="example">
             <h5>Example of usage</h5>
             <pre class="prettyprint linenums"><code>
-                &lt;button onclick="showDialog('#dialog')"&gt;Show dialog&lt;/button&gt;
-
+                Over data-attribute
                 &lt;div data-role="dialog" id="dialog"&gt;
                     &lt;h1&gt;Simple dialog&lt;/h1&gt;
                     &lt;p&gt;
@@ -82,12 +82,8 @@
                     &lt;/p&gt;
                 &lt;/div&gt;
 
-                &lt;script&gt;
-                    function showDialog(id){
-                        var dialog = $(id).data('dialog');
-                        dialog.open();
-                    }
-                &lt;/script&gt;
+                Manual from js
+                &lt;button onclick="metroDialog.open('#dialog')"&gt;Show dialog&lt;/button&gt;
             </code></pre>
         </div>
 
@@ -268,8 +264,8 @@
             <div data-role="dialog" id="dialog-video-content" class="padding20" data-background="bg-dark" data-close-button="true"
                  data-content='<iframe src="https://player.vimeo.com/video/86430443" frameborder="0"  allowfullscreen></iframe>' data-width="600" data-content-type="video"></div>
 
-            <button class="button" onclick="showMetroDialog('#dialog-ajax')">Ajax demo</button>
-            <button class="button" onclick="showMetroDialog('#dialog-video-content')">Video content demo</button>
+            <button class="button" onclick="metroDialog.toggle('#dialog-ajax')">Ajax demo</button>
+            <button class="button" onclick="metroDialog.toggle('#dialog-video-content')">Video content demo</button>
 
             <pre class="prettyprint linenums no-scroll-x"><code>
                 &lt;div data-role="dialog" id="dialog-ajax" class="padding20"
@@ -343,15 +339,15 @@
                     This dialog placed center-right
                 </p>
             </div>
-            <button class="button bg-grayLighter" onclick="toggleMetroDialog('#dialog-place-default')">default</button>
-            <button class="button bg-grayLighter" onclick="toggleMetroDialog('#dialog-place-top-left')">top-left</button>
-            <button class="button bg-grayLighter" onclick="toggleMetroDialog('#dialog-place-top-center')">top-center</button>
-            <button class="button bg-grayLighter" onclick="toggleMetroDialog('#dialog-place-top-right')">top-right</button>
-            <button class="button bg-grayLighter" onclick="toggleMetroDialog('#dialog-place-bottom-left')">bottom-left</button>
-            <button class="button bg-grayLighter" onclick="toggleMetroDialog('#dialog-place-bottom-center')">bottom-center</button>
-            <button class="button bg-grayLighter" onclick="toggleMetroDialog('#dialog-place-bottom-right')">bottom-right</button>
-            <button class="button bg-grayLighter" onclick="toggleMetroDialog('#dialog-place-center-left')">center-left</button>
-            <button class="button bg-grayLighter" onclick="toggleMetroDialog('#dialog-place-center-right')">center-right</button>
+            <button class="button bg-grayLighter" onclick="metroDialog.toggle('#dialog-place-default')">default</button>
+            <button class="button bg-grayLighter" onclick="metroDialog.toggle('#dialog-place-top-left')">top-left</button>
+            <button class="button bg-grayLighter" onclick="metroDialog.toggle('#dialog-place-top-center')">top-center</button>
+            <button class="button bg-grayLighter" onclick="metroDialog.toggle('#dialog-place-top-right')">top-right</button>
+            <button class="button bg-grayLighter" onclick="metroDialog.toggle('#dialog-place-bottom-left')">bottom-left</button>
+            <button class="button bg-grayLighter" onclick="metroDialog.toggle('#dialog-place-bottom-center')">bottom-center</button>
+            <button class="button bg-grayLighter" onclick="metroDialog.toggle('#dialog-place-bottom-right')">bottom-right</button>
+            <button class="button bg-grayLighter" onclick="metroDialog.toggle('#dialog-place-center-left')">center-left</button>
+            <button class="button bg-grayLighter" onclick="metroDialog.toggle('#dialog-place-center-right')">center-right</button>
         </div>
 
         <h3>Utility functions</h3>
@@ -359,9 +355,9 @@
             Metro UI CSS provides global utility function for open, close and toggle dialogs.
         </p>
         <ul>
-            <li>Open dialog - showMetroDialog(el [, place])</li>
-            <li>Close dialog - hideMetroDialog(el)</li>
-            <li>Toggle dialog - toggleMetroDialog(el [, place])</li>
+            <li>Open dialog - metroDialog.open(el [, place])</li>
+            <li>Close dialog - metroDialog.close(el)</li>
+            <li>Toggle dialog - metroDialog.toggle(el [, place])</li>
         </ul>
         <div class="example">
             <div data-role="dialog" id="dialog-uf-1" class="padding20" data-close-button="true">
@@ -371,19 +367,19 @@
                 </p>
             </div>
 
-            <button class="button" onclick="showMetroDialog('#dialog-uf-1')">Open dialog</button>
-            <button class="button" onclick="hideMetroDialog('#dialog-uf-1')">Close dialog</button>
-            <button class="button" onclick="toggleMetroDialog('#dialog-uf-1')">Toggle dialog</button>
-            <button class="button" onclick="toggleMetroDialog('#dialog-uf-1', 'top-left')">Open dialog top-left</button>
-            <button class="button" onclick="showMetroDialog('#dialog-uf-1', 'default', 'This is a new runtime content')">Open dialog, set content</button>
-            <button class="button" onclick="showMetroDialog('#dialog-uf-1', 'default', ($('<div>').addClass('padding20').html('hi! i am jquery content for dialog ')))">Open dialog, set content as jQuery object</button>
+            <button class="button" onclick="metroDialog.open('#dialog-uf-1')">Open dialog</button>
+            <button class="button" onclick="metroDialog.close('#dialog-uf-1')">Close dialog</button>
+            <button class="button" onclick="metroDialog.toggle('#dialog-uf-1')">Toggle dialog</button>
+            <button class="button" onclick="metroDialog.toggle('#dialog-uf-1', 'top-left')">Open dialog top-left</button>
+            <button class="button" onclick="metroDialog.open('#dialog-uf-1', 'default', 'This is a new runtime content')">Open dialog, set content</button>
+            <button class="button" onclick="metroDialog.open('#dialog-uf-1', 'default', ($('<div>').addClass('padding20').html('hi! i am jquery content for dialog ')))">Open dialog, set content as jQuery object</button>
 
             <pre class="prettyprint linenums no-scroll-x"><code>
-                &lt;button class="button" onclick="showMetroDialog('#dialog-uf-1')"&gt;Open dialog&lt;/button&gt;
-                &lt;button class="button" onclick="hideMetroDialog('#dialog-uf-1')"&gt;Close dialog&lt;/button&gt;
-                &lt;button class="button" onclick="toggleMetroDialog('#dialog-uf-1')"&gt;Toggle dialog&lt;/button&gt;
-                &lt;button class="button" onclick="toggleMetroDialog('#dialog-uf-1', 'top-left')"&gt;Toggle dialog&lt;/button&gt;
-                &lt;button class="button" onclick="showMetroDialog('#dialog-uf-1', 'top-left')"&gt;Show dialog&lt;/button&gt;
+                &lt;button class="button" onclick="metroDialog.open('#dialog-uf-1')"&gt;Open dialog&lt;/button&gt;
+                &lt;button class="button" onclick="metroDialog.close('#dialog-uf-1')"&gt;Close dialog&lt;/button&gt;
+                &lt;button class="button" onclick="metroDialog.toggle('#dialog-uf-1')"&gt;Toggle dialog&lt;/button&gt;
+                &lt;button class="button" onclick="metroDialog.toggle('#dialog-uf-1', 'top-left')"&gt;Toggle dialog&lt;/button&gt;
+                &lt;button class="button" onclick="metroDialog.open('#dialog-uf-1', 'top-left')"&gt;Show dialog&lt;/button&gt;
             </code></pre>
         </div>
     </div>
