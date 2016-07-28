@@ -9171,28 +9171,29 @@ $.widget( "metro.validator" , {
             return val.trim().length <= len;
         },
         min: function(val, min_value){
+
             if (min_value == undefined || isNaN(min_value)) {
                 return false;
             }
-            if (val.trim() === "") {
+            if (!this.number(val)) {
                 return false;
             }
             if (isNaN(val)) {
                 return false;
             }
-            return val >= min_value;
+            return Number(val) >= Number(min_value);
         },
         max: function(val, max_value){
             if (max_value == undefined || isNaN(max_value)) {
                 return false;
             }
-            if (val.trim() === "") {
+            if (!this.number(val)) {
                 return false;
             }
             if (isNaN(val)) {
                 return false;
             }
-            return val <= max_value;
+            return Number(val) <= Number(max_value);
         },
         email: function(val){
             return /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i.test(val);
@@ -9310,7 +9311,7 @@ $.widget( "metro.validator" , {
             var func = input.data('validateFunc') != undefined ? String(input.data('validateFunc')).split(",") : [],
                 arg = input.data('validateArg') != undefined ? String(input.data('validateArg')).split(",") : [];
 
-            console.log(input.data('validateArg'));
+            //console.log(input.data('validateArg'));
 
             $.each(func, function(i, func_name){
                 if (!this_result) return;
