@@ -9272,7 +9272,7 @@ $.widget( "metro.validator" , {
         $(window).scroll(function(e){
             var st = $(this).scrollTop();
             var delta = isNaN(st - this._scroll) ? 0 : st - this._scroll;
-            $(".validator-hint.hint2").css({
+            $(".validator-hint.hint2:not(.line)").css({
                 top: '-='+delta
             });
             this._scroll = st;
@@ -9451,7 +9451,7 @@ $.widget( "metro.validator" , {
             hint.appendTo(input.parent());
             hint.fadeIn(o.hintEasingTime, function(){
                 setTimeout(function () {
-                    hint.hide().remove();
+                    //hint.hide().remove();
                 }, o.hideHint);
             });
         } else {
