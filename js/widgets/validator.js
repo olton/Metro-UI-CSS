@@ -321,7 +321,7 @@ $.widget( "metro.validator" , {
             hint.appendTo(input.parent());
             hint.fadeIn(o.hintEasingTime, function(){
                 setTimeout(function () {
-                    //hint.hide().remove();
+                    hint.hide().remove();
                 }, o.hideHint);
             });
         } else {
