@@ -23,6 +23,11 @@
 	color: @dark;
 	z-index: @zindexModal;
 
+    &.dialog-ex {
+        padding: .625rem;
+    }
+
+
 	.block-shadow;
 
 	.dialog-close-button {
@@ -59,6 +64,27 @@
 			border-color: @winFlatSystemButtonRestColor;
 			content: '\D7';
 			line-height: 1;
+		}
+	}
+
+	.dialog-title {
+		font-size: 1.125rem;
+	}
+
+	.dialog-title + .dialog-content {
+		margin-top: 20px;
+	}
+
+	.dialog-actions {
+		position: relative;
+		display: block;
+		padding: 8px 0;
+		text-align: right;
+        margin-top: .625rem;
+
+		.button {
+			margin: 0 4px;
+			min-width: 64px;
 		}
 	}
 
