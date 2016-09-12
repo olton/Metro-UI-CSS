@@ -21,9 +21,8 @@ $.widget( "metro.dialog" , {
         show: false,
         href: false,
         contentType: 'default', // video
-
-        _interval: undefined,
-        _overlay: undefined,
+        closeAction: true,
+        closeElement: ".js-dialog-close",
 
         onDialogOpen: function(dialog){},
         onDialogClose: function(dialog){}
@@ -42,10 +41,20 @@ $.widget( "metro.dialog" , {
             }
         });
 
+        this._interval = undefined;
+        this._overlay = undefined;
+
+
         if (o.overlay) {
             this._createOverlay();
         }
         this._createDialog();
+
+        if (o.closeAction === true) {
+            element.on("click", ".js-dialog-close" + o.closeElement, function(){
+                that.close();
+            });
+        }
 
         element.appendTo($('body'));
         element.data('dialog', this);
@@ -73,7 +82,7 @@ $.widget( "metro.dialog" , {
             }
         }
 
-        o._overlay = overlay;
+        this._overlay = overlay;
     },
 
     _createDialog: function(){
@@ -129,10 +138,13 @@ $.widget( "metro.dialog" , {
     },
 
     _hide: function(){
-        var element = this.element;
+        var element = this.element, o = this.options;
         element.css({
            visibility: "hidden"
         });
+        if (o.removeOnClose === true) {
+            element.remove();
+        }
     },
 
     _show: function(){
@@ -295,7 +307,7 @@ $.widget( "metro.dialog" , {
         element.data('opened', true);
 
         if (o.overlay) {
-            overlay = o._overlay;
+            overlay = this._overlay;
             overlay.appendTo('body').show();
             if (o.overlayClickClose) {
                 overlay.on('click', function(){
@@ -319,7 +331,7 @@ $.widget( "metro.dialog" , {
         }
 
         if (o.hide && parseInt(o.hide) > 0) {
-            o._interval = setTimeout(function(){
+            this._interval = setTimeout(function(){
                 that.close();
             }, parseInt(o.hide));
         }
@@ -328,7 +340,7 @@ $.widget( "metro.dialog" , {
     close: function(){
         var that = this, element = this.element, o = this.options;
 
-        clearInterval(o._interval);
+        clearInterval(this._interval);
 
         if (o.overlay) {
             $('body').find('.dialog-overlay').remove();
@@ -444,7 +456,79 @@ var dialog = {
             }
             dialog_obj.open();
         }
+    },
+
+    create: function(data){
+        var dlg, id, html, buttons, button;
+
+        id = "dialog_id_" + (new Date()).getTime();
+        dlg = $("<div id='"+id+"' class='dialog dialog-ex'></div>");
+
+        if (data.title !== undefined) {
+            $("<div class='dialog-title'>"+data.title+"</div>").appendTo(dlg);
+        }
+        if (data.content !== undefined) {
+            $("<div class='dialog-content'>"+data.content+"</div>").appendTo(dlg);
+        }
+        if (data.actions !== undefined && typeof data.actions == 'object') {
+
+            buttons = $("<div class='dialog-actions'></div>").appendTo(dlg);
+
+            $.each(data.actions, function(){
+                var item = this;
+
+                button = $("<button>").attr("type", "button").addClass("button").html(item.title);
+
+                if (item.cls !== undefined) {
+                    button.addClass(item.cls);
+                }
+
+                button.appendTo(buttons);
+
+                if (item.onclick != undefined) {
+
+                    button[0].addEventListener("click", function(){
+                        if (typeof item.onclick === 'function') {
+                            item.onclick(dlg);
+                        } else {
+                            if (typeof window[item.onclick] === 'function') {
+                                window[item.onclick](dlg);
+                            } else {
+                                var result = eval("(function(){"+item.onclick+"})");
+                                result.call(dlg);
+                            }
+                        }
+                    }, true);
+                }
+            });
+        }
+
+        dlg.appendTo($("body"));
+
+        var dlg_options = $.extend({}, {
+            show: true,
+            closeAction: true,
+            removeOnClose: true
+        }, (data.options != undefined ? data.options : {}));
+
+        return dlg.dialog(dlg_options);
     }
 };
 
 window.metroDialog = dialog;
+
+$.Dialog = function(data){
+    return dialog.create(data);
+};
+
+$(window).on('resize', function(){
+    var dialogs = $('.dialog');
+
+    $.each(dialogs, function(){
+        var dlg = $(this).data('dialog'), element = dlg.element;
+        if (element.data('opened') !== true) {
+            return;
+        }
+        dlg.reset();
+    });
+});
