@@ -5,7 +5,8 @@
 * fix calendar events
 * Small fix for mif-* class
 * fix dialogs position
-* global dialog function moved to window.metroDialog object and renamed (open, close, toggle), see docs
+* global dialog function moved to window.metroDialog object and renamed (open, close, toggle, create), see docs
+* add $.Dialog method
 * fix appbar and fitImage for jquery 3.1.0
 * fix validator issues #835, #837, #839
 
