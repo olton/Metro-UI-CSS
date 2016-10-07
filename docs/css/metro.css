@@ -9946,7 +9946,7 @@ input[type="submit"].link:active {
   position: relative;
   width: 100%;
 }
-.tabcontrol .tabs {
+.tabcontrol > .tabs {
   width: 100%;
   margin: 0;
   padding: 0;
@@ -9955,21 +9955,21 @@ input[type="submit"].link:active {
   white-space: nowrap;
   overflow: visible;
 }
-.tabcontrol .tabs:before,
-.tabcontrol .tabs:after {
+.tabcontrol > .tabs:before,
+.tabcontrol > .tabs:after {
   display: table;
   content: "";
 }
-.tabcontrol .tabs:after {
+.tabcontrol > .tabs:after {
   clear: both;
 }
-.tabcontrol .tabs li {
+.tabcontrol > .tabs li {
   display: block;
   float: left;
   position: relative;
   white-space: nowrap;
 }
-.tabcontrol .tabs li a {
+.tabcontrol > .tabs li a {
   display: block;
   float: left;
   padding: 8px 24px;
@@ -9980,28 +9980,28 @@ input[type="submit"].link:active {
   position: relative;
   white-space: nowrap;
 }
-.tabcontrol .tabs li:hover a {
+.tabcontrol > .tabs li:hover a {
   background-color: #eeeeee;
 }
-.tabcontrol .tabs li.active a {
+.tabcontrol > .tabs li.active a {
   background-color: #1ba1e2;
   color: #ffffff;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 }
-.tabcontrol .tabs li.disabled a {
+.tabcontrol > .tabs li.disabled a {
   background: #eeeeee linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
   background-size: 40px 40px;
   color: #999999;
   cursor: default;
 }
-.tabcontrol .tabs li.non-visible-tabs {
+.tabcontrol > .tabs li.non-visible-tabs {
   display: block;
   float: right;
 }
-.tabcontrol .tabs li.non-visible-tabs:empty {
+.tabcontrol > .tabs li.non-visible-tabs:empty {
   display: none;
 }
-.tabcontrol .tabs li.non-visible-tabs.dropdown-toggle {
+.tabcontrol > .tabs li.non-visible-tabs.dropdown-toggle {
   height: 100% ;
 }
 .tabcontrol.tabs-bottom .tabs {
@@ -10014,11 +10014,11 @@ input[type="submit"].link:active {
 .tabcontrol.tabs-bottom .tabs li:hover {
   top: 0;
 }
-.tabcontrol .frames {
+.tabcontrol > .frames {
   width: 100%;
   position: relative;
 }
-.tabcontrol .frames .frame {
+.tabcontrol > .frames .frame {
   display: block;
   position: relative;
   width: 100%;
@@ -10029,7 +10029,7 @@ input[type="submit"].link:active {
   position: relative;
   width: 100%;
 }
-.tabcontrol2 .tabs {
+.tabcontrol2 > .tabs {
   width: 100%;
   margin: 0;
   padding: 0;
@@ -10038,21 +10038,21 @@ input[type="submit"].link:active {
   white-space: nowrap;
   overflow: visible;
 }
-.tabcontrol2 .tabs:before,
-.tabcontrol2 .tabs:after {
+.tabcontrol2 > .tabs:before,
+.tabcontrol2 > .tabs:after {
   display: table;
   content: "";
 }
-.tabcontrol2 .tabs:after {
+.tabcontrol2 > .tabs:after {
   clear: both;
 }
-.tabcontrol2 .tabs li {
+.tabcontrol2 > .tabs li {
   display: block;
   float: left;
   position: relative;
   white-space: nowrap;
 }
-.tabcontrol2 .tabs li a {
+.tabcontrol2 > .tabs li a {
   display: block;
   float: left;
   padding: 8px 24px;
@@ -10063,28 +10063,28 @@ input[type="submit"].link:active {
   position: relative;
   white-space: nowrap;
 }
-.tabcontrol2 .tabs li:hover a {
+.tabcontrol2 > .tabs li:hover a {
   background-color: #eeeeee;
 }
-.tabcontrol2 .tabs li.active a {
+.tabcontrol2 > .tabs li.active a {
   background-color: #1ba1e2;
   color: #ffffff;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 }
-.tabcontrol2 .tabs li.disabled a {
+.tabcontrol2 > .tabs li.disabled a {
   background: #eeeeee linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
   background-size: 40px 40px;
   color: #999999;
   cursor: default;
 }
-.tabcontrol2 .tabs li.non-visible-tabs {
+.tabcontrol2 > .tabs li.non-visible-tabs {
   display: block;
   float: right;
 }
-.tabcontrol2 .tabs li.non-visible-tabs:empty {
+.tabcontrol2 > .tabs li.non-visible-tabs:empty {
   display: none;
 }
-.tabcontrol2 .tabs li.non-visible-tabs.dropdown-toggle {
+.tabcontrol2 > .tabs li.non-visible-tabs.dropdown-toggle {
   height: 100% ;
 }
 .tabcontrol2.tabs-bottom .tabs {
@@ -10097,28 +10097,28 @@ input[type="submit"].link:active {
 .tabcontrol2.tabs-bottom .tabs li:hover {
   top: 0;
 }
-.tabcontrol2 .frames {
+.tabcontrol2 > .frames {
   width: 100%;
   position: relative;
 }
-.tabcontrol2 .frames .frame {
+.tabcontrol2 > .frames .frame {
   display: block;
   position: relative;
   width: 100%;
   padding: 20px;
   background-color: #999999;
 }
-.tabcontrol2 .tabs {
+.tabcontrol2 > .tabs {
   border-bottom: 0;
   vertical-align: bottom;
   z-index: 2;
 }
-.tabcontrol2 .tabs li {
+.tabcontrol2 > .tabs li {
   padding-top: 2px;
   overflow: visible;
   margin: 0 2px;
 }
-.tabcontrol2 .tabs li:after {
+.tabcontrol2 > .tabs li:after {
   content: "";
   position: absolute;
   left: 0;
@@ -10128,64 +10128,64 @@ input[type="submit"].link:active {
   height: 2px;
   z-index: 3;
 }
-.tabcontrol2 .tabs li:not(.active):after {
+.tabcontrol2 > .tabs li:not(.active):after {
   background-color: #eeeeee;
   height: 1px;
 }
-.tabcontrol2 .tabs li:first-child {
+.tabcontrol2 > .tabs li:first-child {
   margin-left: 10px;
 }
-.tabcontrol2 .tabs li a {
+.tabcontrol2 > .tabs li a {
   background-color: #eeeeee;
   padding-top: .3125rem;
   text-shadow: none ;
 }
-.tabcontrol2 .tabs li.active {
+.tabcontrol2 > .tabs li.active {
   padding-top: 0;
   padding-bottom: 0;
 }
-.tabcontrol2 .tabs li.active a {
+.tabcontrol2 > .tabs li.active a {
   background-color: #ffffff;
   border: 1px #eeeeee solid;
   border-top: 2px #ce352c solid;
   border-bottom: 0;
   color: #1ba1e2;
 }
-.tabcontrol2 .tabs li.active:hover a {
+.tabcontrol2 > .tabs li.active:hover a {
   background-color: inherit;
 }
-.tabcontrol2 .tabs li:hover a {
+.tabcontrol2 > .tabs li:hover a {
   background-color: #e1e1e1;
 }
-.tabcontrol2.tabs-bottom .tabs {
+.tabcontrol2.tabs-bottom > .tabs {
   border-top: 0;
 }
-.tabcontrol2.tabs-bottom .tabs li {
+.tabcontrol2.tabs-bottom > .tabs li {
   padding: 0;
 }
-.tabcontrol2.tabs-bottom .tabs li:after {
+.tabcontrol2.tabs-bottom > .tabs li:after {
   top: -1px;
   background-color: #ffffff;
 }
-.tabcontrol2.tabs-bottom .tabs li.active {
+.tabcontrol2.tabs-bottom > .tabs li.active {
   padding-bottom: 0;
 }
-.tabcontrol2.tabs-bottom .tabs li.active a {
+.tabcontrol2.tabs-bottom > .tabs li.active a {
   border: 1px #eeeeee solid;
   border-bottom: 2px #ce352c solid;
   border-top: 0;
 }
-.tabcontrol2.tabs-bottom .tabs li:not(.active) {
+.tabcontrol2.tabs-bottom > .tabs li:not(.active) {
   margin-bottom: 0;
 }
-.tabcontrol2.tabs-bottom .tabs li:not(.active):after {
+.tabcontrol2.tabs-bottom > .tabs li:not(.active):after {
   background-color: #eeeeee;
 }
-.tabcontrol2 .frames {
+.tabcontrol2 > .frames {
   z-index: 1;
   border: 1px #eeeeee solid;
 }
-.tabcontrol2 .frames .frame {
+.tabcontrol2 > .frames .frame {
   background-color: #ffffff;
 }
 .accordion > .frame {

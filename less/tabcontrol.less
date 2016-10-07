@@ -6,7 +6,7 @@
 	position: relative;
 	width: 100%;
 
-	.tabs {
+	& > .tabs {
 		width: 100%;
 		margin: 0;
 		padding: 0;
@@ -95,7 +95,7 @@
 		}
 	}
 
-	.frames {
+	& > .frames {
 		width: 100%;
 		//overflow: hidden;
 		position: relative;
@@ -113,7 +113,7 @@
 .tabcontrol2 {
 	.tabcontrol;
 
-	.tabs {
+	& > .tabs {
 		border-bottom: 0;
 		vertical-align: bottom;
 		z-index: 2;
@@ -177,7 +177,7 @@
 	}
 
 	&.tabs-bottom {
-		.tabs {
+		& > .tabs {
 			border-top: 0;
 
 			li {
@@ -207,7 +207,7 @@
 		}
 	}
 
-	.frames {
+	& > .frames {
 		z-index: 1;
 		border: 1px @grayLighter solid;
 
