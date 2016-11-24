@@ -11,6 +11,7 @@
 * fix validator issues #835, #837, #839
 * small fix for accordion frames padding 
 * upd countdown: 4 digits for days
+* add micro template engine
 
 ## 3.0.15
 * remove re-init for old browsers
