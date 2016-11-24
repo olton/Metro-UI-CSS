@@ -9480,18 +9480,24 @@ $.widget( "metro.validator" , {
         $.each(inputs, function(i, v){
             var this_result = true;
             var input = $(v);
-            var func = input.data('validateFunc') != undefined ? String(input.data('validateFunc')).split(",") : [],
-                arg = input.data('validateArg') != undefined ? String(input.data('validateArg')).split(",") : [];
+            var func = [], arg = [];
 
-            //console.log(input.data('validateArg'));
+            func = input.data('validateFunc') != undefined ? String(input.data('validateFunc')).split(",") : [];
+            $.each(func, function(i, v){
+                func[i] = String(func[i]).trim();
+            });
+
+            if (func.indexOf('pattern') !== -1) {
+                arg.push(String(input.data('validateArg')));
+            } else {
+                arg  = input.data('validateArg') != undefined ? String(input.data('validateArg')).split(",") : [];
+            }
 
             $.each(func, function(i, func_name){
                 if (!this_result) return;
                 var _args = arg[i] != undefined ? arg[i] : false;
                 this_result = that.funcs[func_name.trim()](input.val(), _args);
             });
-
-//            this_result = that.funcs[func](input.val(), arg);
 
             if (!this_result) {
                 if (typeof o.onErrorInput === 'function') {
