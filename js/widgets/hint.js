@@ -93,14 +93,14 @@ $.widget("metro.hint", {
 
         if (o.hintShadow) {_hint.addClass("shadow");}
         if (o.hintBackground) {
-            if (o.hintBackground.isColor()) {
+            if (metroUtils.isColor(o.hintBackground)) {
                 _hint.css("background-color", o.hintBackground);
             } else {
                 _hint.addClass(o.hintBackground);
             }
         }
         if (o.hintColor) {
-            if (o.hintColor.isColor()) {
+            if (metroUtils.isColor(o.hintColor)) {
                 _hint.css("color", o.hintColor);
             } else {
                 _hint.addClass(o.hintColor);

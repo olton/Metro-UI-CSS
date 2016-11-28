@@ -126,7 +126,7 @@ $.widget( "metro.video" , {
 
         video.on('loadedmetadata', function(){
             element.data('duration', video_obj.duration.toFixed(0));
-            info_box.html("00:00" + " / " + secondsToFormattedString(element.data('duration')) );
+            info_box.html("00:00" + " / " + metroUtils.secondsToFormattedString(element.data('duration')) );
         });
 
         video.on("canplay", function(){
@@ -208,7 +208,7 @@ $.widget( "metro.video" , {
         var info_box = element.find(".controls .info-box");
         var currentTime = Math.round(video_obj.currentTime);
 
-        info_box.html(secondsToFormattedString(currentTime) + " / " + secondsToFormattedString(element.data('duration')));
+        info_box.html(metroUtils.secondsToFormattedString(currentTime) + " / " + metroUtils.secondsToFormattedString(element.data('duration')));
     },
 
     _setStreamSliderPosition: function(){

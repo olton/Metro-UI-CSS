@@ -74,7 +74,7 @@ $.widget( "metro.fitImage" , {
         });
 
         if (o.frameColor !== 'default') {
-            if (o.frameColor.isUrl()) {
+            if (metroUtils.isColor(o.frameColor)) {
                 image_frame.css('background-color', o.frameColor);
             } else {
                 image_frame.addClass(o.frameColor);

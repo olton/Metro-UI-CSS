@@ -100,7 +100,7 @@ $.widget( "metro.countdown" , {
                 $("<div/>").addClass('digit').appendTo(p);
                 $("<div/>").addClass('digit').appendTo(p);
             }
-            if (o.labelColor.isColor()) {
+            if (metroUtils.isColor(o.labelColor)) {
                 p.css({
                     color: o.labelColor
                 });
@@ -108,7 +108,7 @@ $.widget( "metro.countdown" , {
                 p.addClass(o.labelColor);
             }
 
-            if (o.backgroundColor.isColor()) {
+            if (metroUtils.isColor(o.backgroundColor)) {
                 p.find('.digit').css({
                     background: o.backgroundColor
                 });
@@ -116,7 +116,7 @@ $.widget( "metro.countdown" , {
                 p.find('.digit').addClass(o.backgroundColor);
             }
 
-            if (o.digitColor.isColor()) {
+            if (metroUtils.isColor(o.digitColor)) {
                 p.find('.digit').css({
                     color: o.digitColor
                 });
@@ -126,7 +126,7 @@ $.widget( "metro.countdown" , {
 
             if (v !== 'seconds') {
                 d = $("<div/>").addClass("divider").text(':').appendTo(element);
-                if (o.dividerColor.isColor()) {
+                if (metroUtils.isColor(o.dividerColor)) {
                     d.css({'color': o.dividerColor});
                 } else {
                     d.addClass(o.dividerColor);

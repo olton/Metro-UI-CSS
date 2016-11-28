@@ -40,24 +40,26 @@ Number.prototype.format = function(n, x, s, c) {
     return (c ? num.replace('.', c) : num).replace(new RegExp(re, 'g'), '$&' + (s || ','));
 };
 
-String.prototype.isUrl = function () {
-var regexp = /^(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
-    return regexp.test(this);
-};
+// String.prototype.isUrl = function () {
+//     "use strict";
+//     var regexp = /^(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
+//     return regexp.test(this);
+// };
 
-String.prototype.isColor = function () {
-return /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(this);
-};
+// String.prototype.isColor = function () {
+//     "use strict";
+//     return /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(this);
+// };
 
-window.secondsToFormattedString = function(time){
-    var hours, minutes, seconds;
-
-    hours = parseInt( time / 3600 ) % 24;
-    minutes = parseInt( time / 60 ) % 60;
-    seconds = time % 60;
-
-    return (hours ? (hours) + ":" : "") + (minutes < 10 ? "0"+minutes : minutes) + ":" + (seconds < 10 ? "0"+seconds : seconds);
-};
+// window.secondsToFormattedString = function(time){
+//     var hours, minutes, seconds;
+//
+//     hours = parseInt( time / 3600 ) % 24;
+//     minutes = parseInt( time / 60 ) % 60;
+//     seconds = time % 60;
+//
+//     return (hours ? (hours) + ":" : "") + (minutes < 10 ? "0"+minutes : minutes) + ":" + (seconds < 10 ? "0"+seconds : seconds);
+// };
 
 Array.prototype.shuffle = function () {
     var currentIndex = this.length, temporaryValue, randomIndex;
@@ -91,15 +93,16 @@ Array.prototype.unique = function () {
     return a;
 };
 
-window.uniqueId = function (prefix) {
-var d = new Date().getTime();
-    var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-        var r = (d + Math.random() * 16) % 16 | 0;
-        d = Math.floor(d / 16);
-        return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
-    });
-    return uuid;
-};
+// window.uniqueId = function (prefix) {
+//     "use strict";
+//     var d = new Date().getTime();
+//     var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+//         var r = (d + Math.random() * 16) % 16 | 0;
+//         d = Math.floor(d / 16);
+//         return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+//     });
+//     return uuid;
+// };
 
 window.isTouchDevice = function() {
     return (('ontouchstart' in window)
@@ -1068,6 +1071,76 @@ $.Metro = {
         observer.observe(document, observerOptions);
     }
 };
+// Source: js/utils/core-utils.js
+var utils = {
+    isColor: function(val){
+        return /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(val);
+    },
+
+    isUrl: function(val){
+        return /^(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/.test(this);
+    },
+
+    secondsToFormattedString: function(time){
+        var hours, minutes, seconds;
+
+        hours = parseInt( time / 3600 ) % 24;
+        minutes = parseInt( time / 60 ) % 60;
+        seconds = time % 60;
+
+        return (hours ? (hours) + ":" : "") + (minutes < 10 ? "0"+minutes : minutes) + ":" + (seconds < 10 ? "0"+seconds : seconds);
+    },
+
+    uniqueId: function (prefix) {
+var d = new Date().getTime();
+        var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+            var r = (d + Math.random() * 16) % 16 | 0;
+            d = Math.floor(d / 16);
+            return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+        });
+        return uuid;
+    },
+
+    isTouchDevice: function() {
+        return (('ontouchstart' in window)
+        || (navigator.MaxTouchPoints > 0)
+        || (navigator.msMaxTouchPoints > 0));
+    },
+
+    arrayUnique: function (array) {
+        var a = array.concat();
+        for (var i = 0; i < a.length; ++i) {
+            for (var j = i + 1; j < a.length; ++j) {
+                if (a[i] === a[j])
+                    a.splice(j--, 1);
+            }
+        }
+
+        return a;
+    },
+
+    arrayClone: function(array){
+        return array.slice(0);
+    },
+
+    arrayShuffle: function (array) {
+        var currentIndex = array.length, temporaryValue, randomIndex;
+
+        while (0 !== currentIndex) {
+
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+
+            temporaryValue = array[currentIndex];
+            array[currentIndex] = array[randomIndex];
+            array[randomIndex] = temporaryValue;
+        }
+
+        return array;
+    }
+};
+
+$.metroUtils = window.metroUtils = utils;
 // Source: js/utils/easing.js
 	$.easing['jswing'] = $.easing['swing'];
 
@@ -2524,7 +2597,7 @@ $.widget( "metro.audio" , {
 
         audio.on('loadedmetadata', function(){
             element.data('duration', audio_obj.duration.toFixed(0));
-            info_box.html("00:00" + " / " + secondsToFormattedString(element.data('duration')) );
+            info_box.html("00:00" + " / " + metroUtils.secondsToFormattedString(element.data('duration')) );
         });
 
         audio.on("canplay", function(){
@@ -2570,7 +2643,7 @@ $.widget( "metro.audio" , {
         var info_box = element.find(".controls .info-box");
         var currentTime = Math.round(audio_obj.currentTime);
 
-        info_box.html(secondsToFormattedString(currentTime) + " / " + secondsToFormattedString(element.data('duration')));
+        info_box.html(metroUtils.secondsToFormattedString(currentTime) + " / " + metroUtils.secondsToFormattedString(element.data('duration')));
     },
 
     _setStreamSliderPosition: function(){
@@ -4305,7 +4378,7 @@ $.widget( "metro.countdown" , {
                 $("<div/>").addClass('digit').appendTo(p);
                 $("<div/>").addClass('digit').appendTo(p);
             }
-            if (o.labelColor.isColor()) {
+            if (metroUtils.isColor(o.labelColor)) {
                 p.css({
                     color: o.labelColor
                 });
@@ -4313,7 +4386,7 @@ $.widget( "metro.countdown" , {
                 p.addClass(o.labelColor);
             }
 
-            if (o.backgroundColor.isColor()) {
+            if (metroUtils.isColor(o.backgroundColor)) {
                 p.find('.digit').css({
                     background: o.backgroundColor
                 });
@@ -4321,7 +4394,7 @@ $.widget( "metro.countdown" , {
                 p.find('.digit').addClass(o.backgroundColor);
             }
 
-            if (o.digitColor.isColor()) {
+            if (metroUtils.isColor(o.digitColor)) {
                 p.find('.digit').css({
                     color: o.digitColor
                 });
@@ -4331,7 +4404,7 @@ $.widget( "metro.countdown" , {
 
             if (v !== 'seconds') {
                 d = $("<div/>").addClass("divider").text(':').appendTo(element);
-                if (o.dividerColor.isColor()) {
+                if (metroUtils.isColor(o.dividerColor)) {
                     d.css({'color': o.dividerColor});
                 } else {
                     d.addClass(o.dividerColor);
@@ -4827,7 +4900,7 @@ $.widget( "metro.dialog" , {
         }
 
         if (o.overlayColor) {
-            if (o.overlayColor.isColor()) {
+            if (metroUtils.isColor(o.overlayColor)) {
                 overlay.css({
                     background: o.overlayColor
                 });
@@ -4858,7 +4931,7 @@ $.widget( "metro.dialog" , {
         }
 
         if (o.background !== 'default') {
-            if (o.background.isColor()) {
+            if (metroUtils.isColor(o.background)) {
                 element.css({
                     background: o.background
                 });
@@ -4868,7 +4941,7 @@ $.widget( "metro.dialog" , {
         }
 
         if (o.color !== 'default') {
-            if (o.color.isColor()) {
+            if (metroUtils.isColor(o.color)) {
                 element.css({
                     color: o.color
                 });
@@ -5677,7 +5750,7 @@ $.widget( "metro.fitImage" , {
         });
 
         if (o.frameColor !== 'default') {
-            if (o.frameColor.isUrl()) {
+            if (metroUtils.isColor(o.frameColor)) {
                 image_frame.css('background-color', o.frameColor);
             } else {
                 image_frame.addClass(o.frameColor);
@@ -6004,14 +6077,14 @@ $.widget("metro.hint", {
 
         if (o.hintShadow) {_hint.addClass("shadow");}
         if (o.hintBackground) {
-            if (o.hintBackground.isColor()) {
+            if (metroUtils.isColor(o.hintBackground)) {
                 _hint.css("background-color", o.hintBackground);
             } else {
                 _hint.addClass(o.hintBackground);
             }
         }
         if (o.hintColor) {
-            if (o.hintColor.isColor()) {
+            if (metroUtils.isColor(o.hintColor)) {
                 _hint.css("color", o.hintColor);
             } else {
                 _hint.addClass(o.hintColor);
@@ -7692,7 +7765,7 @@ $.widget("metro.slider", {
             }
         });
 
-        element.data('internal_id', uniqueId());
+        element.data('internal_id', metroUtils.uniqueId());
         //console.log(element.data('internal_id'));
 
         o.accuracy = o.accuracy < 0 ? 0 : o.accuracy;
@@ -8011,28 +8084,28 @@ $.widget("metro.slider", {
         }
 
         if (o.color !== 'default') {
-            if (o.color.isColor()) {
+            if (metroUtils.isColor(o.color)) {
                 back.css('background-color', o.color);
             } else {
                 back.addClass(o.color);
             }
         }
         if (o.completeColor !== 'default') {
-            if (o.completeColor.isColor()) {
+            if (metroUtils.isColor(o.completeColor)) {
                 complete.css('background-color', o.completeColor);
             } else {
                 complete.addClass(o.completeColor);
             }
         }
         if (o.bufferColor !== 'default') {
-            if (o.bufferColor.isColor()) {
+            if (metroUtils.isColor(o.bufferColor)) {
                 buffer.css('background-color', o.bufferColor);
             } else {
                 buffer.addClass(o.bufferColor);
             }
         }
         if (o.markerColor !== 'default') {
-            if (o.markerColor.isColor()) {
+            if (metroUtils.isColor(o.markerColor)) {
                 marker.css('background-color', o.markerColor);
             } else {
                 marker.addClass(o.markerColor);
@@ -8173,7 +8246,7 @@ $.widget("metro.stepper", {
 
         if (!element.hasClass('stepper')) {element.addClass('stepper');}
         if (element_id === undefined) {
-            element_id = window.uniqueId(this.widgetName+'_');
+            element_id = metroUtils.uniqueId(this.widgetName+'_');
             element.attr('id', element_id);
         }
 
@@ -8568,7 +8641,7 @@ $.widget( "metro.tabcontrol" , {
                 tab = element.find("a[href='"+stored_target+"']");
                 if (tab) {
                     target = tab.attr('href');
-                    frame = target && target.isUrl() ? false : $(target);
+                    frame = target && metroUtils.isUrl(target) ? false : $(target);
                     o._current.tab = tab;
                     o._current.frame = frame;
                 }
@@ -8580,7 +8653,7 @@ $.widget( "metro.tabcontrol" , {
             tab = element.find("a[href='"+ o.openTarget+"']");
             if (tab) {
                 target = tab.attr('href');
-                frame = target && target.isUrl() ? false : $(target);
+                frame = target && metroUtils.isUrl(target) ? false : $(target);
                 o._current.tab = tab;
                 o._current.frame = frame;
             }
@@ -8589,7 +8662,7 @@ $.widget( "metro.tabcontrol" , {
         if (!o._current.tab) {
 
             $.each(tabs, function (i, v) {
-                var tab = $(v), target = tab.attr('href'), frame = target.isUrl() ? false : $(target);
+                var tab = $(v), target = tab.attr('href'), frame = metroUtils.isUrl(target) ? false : $(target);
                 if (tab.parent().hasClass('active') && !tab.parent().hasClass('disabled') && frame !== false) {
                     o._current.tab = tab;
                     o._current.frame = frame;
@@ -8600,7 +8673,7 @@ $.widget( "metro.tabcontrol" , {
         if (!o._current.tab) {
 
             for(var i = 0; i < tabs.length; i++) {
-                if (!$(tabs[i]).attr('href').isUrl() && !$(tabs[i]).parent().hasClass('disabled')) {
+                if (!metroUtils.isUrl($(tabs[i]).attr('href')) && !$(tabs[i]).parent().hasClass('disabled')) {
                     o._current.tab = $(tabs[i]);
                     o._current.frame = $($(tabs[i]).attr('href'));
                     break;
@@ -8675,7 +8748,7 @@ $.widget( "metro.tabcontrol" , {
                 }
             }
 
-            if (target.isUrl()) {
+            if (metroUtils.isUrl(target)) {
                 window.location.href = target;
                 return true;
             }
@@ -9606,13 +9679,13 @@ $.widget( "metro.validator" , {
             'min-width': o.hintSize
         });
 
-        if (background.isColor()) {
+        if (metroUtils.isColor(background)) {
             hint.css('background-color', background);
         } else {
             hint.addClass(background);
         }
 
-        if (color.isColor()) {
+        if (metroUtils.isColor(color)) {
             hint.css('color', color);
         } else {
             hint.addClass(color);
@@ -9860,7 +9933,7 @@ $.widget( "metro.video" , {
 
         video.on('loadedmetadata', function(){
             element.data('duration', video_obj.duration.toFixed(0));
-            info_box.html("00:00" + " / " + secondsToFormattedString(element.data('duration')) );
+            info_box.html("00:00" + " / " + metroUtils.secondsToFormattedString(element.data('duration')) );
         });
 
         video.on("canplay", function(){
@@ -9942,7 +10015,7 @@ $.widget( "metro.video" , {
         var info_box = element.find(".controls .info-box");
         var currentTime = Math.round(video_obj.currentTime);
 
-        info_box.html(secondsToFormattedString(currentTime) + " / " + secondsToFormattedString(element.data('duration')));
+        info_box.html(metroUtils.secondsToFormattedString(currentTime) + " / " + metroUtils.secondsToFormattedString(element.data('duration')));
     },
 
     _setStreamSliderPosition: function(){
@@ -10308,7 +10381,7 @@ $.widget( "metro.window" , {
 
         if (o.captionStyle && typeof o.captionStyle === 'object') {
             $.each(o.captionStyle, function(key, value){
-                if (value.isColor()) {
+                if (metroUtils.isColor(value)) {
                     capt.css(key, value + " !important");
                 } else {
                     capt.addClass(value);
@@ -10318,7 +10391,7 @@ $.widget( "metro.window" , {
 
         if (o.contentStyle && typeof o.contentStyle === 'object') {
             $.each(o.contentStyle, function(key, value){
-                if (value.isColor()) {
+                if (metroUtils.isColor(value)) {
                     cont.css(key, value + " !important");
                 } else {
                     cont.addClass(value);
@@ -10423,7 +10496,7 @@ $.widget( "metro.window" , {
 
         if (!c) {return;}
 
-        if (c.isUrl()) {
+        if (metroUtils.isUrl(c)) {
             if (c.indexOf('youtube') > -1) {
                 var iframe = $("<iframe>");
                 var video_container = $("<div/>").addClass('video-container').appendTo(content);

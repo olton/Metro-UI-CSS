@@ -73,7 +73,7 @@ $.widget( "metro.dialog" , {
         }
 
         if (o.overlayColor) {
-            if (o.overlayColor.isColor()) {
+            if (metroUtils.isColor(o.overlayColor)) {
                 overlay.css({
                     background: o.overlayColor
                 });
@@ -104,7 +104,7 @@ $.widget( "metro.dialog" , {
         }
 
         if (o.background !== 'default') {
-            if (o.background.isColor()) {
+            if (metroUtils.isColor(o.background)) {
                 element.css({
                     background: o.background
                 });
@@ -114,7 +114,7 @@ $.widget( "metro.dialog" , {
         }
 
         if (o.color !== 'default') {
-            if (o.color.isColor()) {
+            if (metroUtils.isColor(o.color)) {
                 element.css({
                     color: o.color
                 });

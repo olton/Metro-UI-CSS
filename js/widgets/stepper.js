@@ -26,7 +26,7 @@ $.widget("metro.stepper", {
 
         if (!element.hasClass('stepper')) {element.addClass('stepper');}
         if (element_id === undefined) {
-            element_id = window.uniqueId(this.widgetName+'_');
+            element_id = metroUtils.uniqueId(this.widgetName+'_');
             element.attr('id', element_id);
         }
 

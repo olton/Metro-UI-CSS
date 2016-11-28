@@ -15,26 +15,26 @@ Number.prototype.format = function(n, x, s, c) {
     return (c ? num.replace('.', c) : num).replace(new RegExp(re, 'g'), '$&' + (s || ','));
 };
 
-String.prototype.isUrl = function () {
-    "use strict";
-    var regexp = /^(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
-    return regexp.test(this);
-};
+// String.prototype.isUrl = function () {
+//     "use strict";
+//     var regexp = /^(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
+//     return regexp.test(this);
+// };
 
-String.prototype.isColor = function () {
-    "use strict";
-    return /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(this);
-};
+// String.prototype.isColor = function () {
+//     "use strict";
+//     return /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(this);
+// };
 
-window.secondsToFormattedString = function(time){
-    var hours, minutes, seconds;
-
-    hours = parseInt( time / 3600 ) % 24;
-    minutes = parseInt( time / 60 ) % 60;
-    seconds = time % 60;
-
-    return (hours ? (hours) + ":" : "") + (minutes < 10 ? "0"+minutes : minutes) + ":" + (seconds < 10 ? "0"+seconds : seconds);
-};
+// window.secondsToFormattedString = function(time){
+//     var hours, minutes, seconds;
+//
+//     hours = parseInt( time / 3600 ) % 24;
+//     minutes = parseInt( time / 60 ) % 60;
+//     seconds = time % 60;
+//
+//     return (hours ? (hours) + ":" : "") + (minutes < 10 ? "0"+minutes : minutes) + ":" + (seconds < 10 ? "0"+seconds : seconds);
+// };
 
 Array.prototype.shuffle = function () {
     var currentIndex = this.length, temporaryValue, randomIndex;
@@ -68,16 +68,16 @@ Array.prototype.unique = function () {
     return a;
 };
 
-window.uniqueId = function (prefix) {
-    "use strict";
-    var d = new Date().getTime();
-    var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-        var r = (d + Math.random() * 16) % 16 | 0;
-        d = Math.floor(d / 16);
-        return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
-    });
-    return uuid;
-};
+// window.uniqueId = function (prefix) {
+//     "use strict";
+//     var d = new Date().getTime();
+//     var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+//         var r = (d + Math.random() * 16) % 16 | 0;
+//         d = Math.floor(d / 16);
+//         return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+//     });
+//     return uuid;
+// };
 
 window.isTouchDevice = function() {
     return (('ontouchstart' in window)

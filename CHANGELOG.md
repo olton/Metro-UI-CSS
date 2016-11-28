@@ -13,6 +13,7 @@
 * upd countdown: 4 digits for days
 * add micro template engine
 * fix validator for issue #869
+* fix isColor moved to metroUtils issue #872
 
 ## 3.0.15
 * remove re-init for old browsers

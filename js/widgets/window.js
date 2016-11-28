@@ -62,7 +62,7 @@ $.widget( "metro.window" , {
 
         if (o.captionStyle && typeof o.captionStyle === 'object') {
             $.each(o.captionStyle, function(key, value){
-                if (value.isColor()) {
+                if (metroUtils.isColor(value)) {
                     capt.css(key, value + " !important");
                 } else {
                     capt.addClass(value);
@@ -72,7 +72,7 @@ $.widget( "metro.window" , {
 
         if (o.contentStyle && typeof o.contentStyle === 'object') {
             $.each(o.contentStyle, function(key, value){
-                if (value.isColor()) {
+                if (metroUtils.isColor(value)) {
                     cont.css(key, value + " !important");
                 } else {
                     cont.addClass(value);
@@ -177,7 +177,7 @@ $.widget( "metro.window" , {
 
         if (!c) {return;}
 
-        if (c.isUrl()) {
+        if (metroUtils.isUrl(c)) {
             if (c.indexOf('youtube') > -1) {
                 var iframe = $("<iframe>");
                 var video_container = $("<div/>").addClass('video-container').appendTo(content);

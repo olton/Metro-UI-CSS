@@ -324,7 +324,7 @@ $.widget( "metro.audio" , {
 
         audio.on('loadedmetadata', function(){
             element.data('duration', audio_obj.duration.toFixed(0));
-            info_box.html("00:00" + " / " + secondsToFormattedString(element.data('duration')) );
+            info_box.html("00:00" + " / " + metroUtils.secondsToFormattedString(element.data('duration')) );
         });
 
         audio.on("canplay", function(){
@@ -370,7 +370,7 @@ $.widget( "metro.audio" , {
         var info_box = element.find(".controls .info-box");
         var currentTime = Math.round(audio_obj.currentTime);
 
-        info_box.html(secondsToFormattedString(currentTime) + " / " + secondsToFormattedString(element.data('duration')));
+        info_box.html(metroUtils.secondsToFormattedString(currentTime) + " / " + metroUtils.secondsToFormattedString(element.data('duration')));
     },
 
     _setStreamSliderPosition: function(){

@@ -304,13 +304,13 @@ $.widget( "metro.validator" , {
             'min-width': o.hintSize
         });
 
-        if (background.isColor()) {
+        if (metroUtils.isColor(background)) {
             hint.css('background-color', background);
         } else {
             hint.addClass(background);
         }
 
-        if (color.isColor()) {
+        if (metroUtils.isColor(color)) {
             hint.css('color', color);
         } else {
             hint.addClass(color);
