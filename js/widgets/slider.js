@@ -58,7 +58,7 @@ $.widget("metro.slider", {
             }
         });
 
-        element.data('internal_id', uniqueId());
+        element.data('internal_id', metroUtils.uniqueId());
         //console.log(element.data('internal_id'));
 
         o.accuracy = o.accuracy < 0 ? 0 : o.accuracy;
@@ -377,28 +377,28 @@ $.widget("metro.slider", {
         }
 
         if (o.color !== 'default') {
-            if (o.color.isColor()) {
+            if (metroUtils.isColor(o.color)) {
                 back.css('background-color', o.color);
             } else {
                 back.addClass(o.color);
             }
         }
         if (o.completeColor !== 'default') {
-            if (o.completeColor.isColor()) {
+            if (metroUtils.isColor(o.completeColor)) {
                 complete.css('background-color', o.completeColor);
             } else {
                 complete.addClass(o.completeColor);
             }
         }
         if (o.bufferColor !== 'default') {
-            if (o.bufferColor.isColor()) {
+            if (metroUtils.isColor(o.bufferColor)) {
                 buffer.css('background-color', o.bufferColor);
             } else {
                 buffer.addClass(o.bufferColor);
             }
         }
         if (o.markerColor !== 'default') {
-            if (o.markerColor.isColor()) {
+            if (metroUtils.isColor(o.markerColor)) {
                 marker.css('background-color', o.markerColor);
             } else {
                 marker.addClass(o.markerColor);

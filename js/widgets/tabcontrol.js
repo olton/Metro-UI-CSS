@@ -34,7 +34,7 @@ $.widget( "metro.tabcontrol" , {
                 tab = element.find("a[href='"+stored_target+"']");
                 if (tab) {
                     target = tab.attr('href');
-                    frame = target && target.isUrl() ? false : $(target);
+                    frame = target && metroUtils.isUrl(target) ? false : $(target);
                     o._current.tab = tab;
                     o._current.frame = frame;
                 }
@@ -46,7 +46,7 @@ $.widget( "metro.tabcontrol" , {
             tab = element.find("a[href='"+ o.openTarget+"']");
             if (tab) {
                 target = tab.attr('href');
-                frame = target && target.isUrl() ? false : $(target);
+                frame = target && metroUtils.isUrl(target) ? false : $(target);
                 o._current.tab = tab;
                 o._current.frame = frame;
             }
@@ -55,7 +55,7 @@ $.widget( "metro.tabcontrol" , {
         if (!o._current.tab) {
 
             $.each(tabs, function (i, v) {
-                var tab = $(v), target = tab.attr('href'), frame = target.isUrl() ? false : $(target);
+                var tab = $(v), target = tab.attr('href'), frame = metroUtils.isUrl(target) ? false : $(target);
                 if (tab.parent().hasClass('active') && !tab.parent().hasClass('disabled') && frame !== false) {
                     o._current.tab = tab;
                     o._current.frame = frame;
@@ -66,7 +66,7 @@ $.widget( "metro.tabcontrol" , {
         if (!o._current.tab) {
 
             for(var i = 0; i < tabs.length; i++) {
-                if (!$(tabs[i]).attr('href').isUrl() && !$(tabs[i]).parent().hasClass('disabled')) {
+                if (!metroUtils.isUrl($(tabs[i]).attr('href')) && !$(tabs[i]).parent().hasClass('disabled')) {
                     o._current.tab = $(tabs[i]);
                     o._current.frame = $($(tabs[i]).attr('href'));
                     break;
@@ -141,7 +141,7 @@ $.widget( "metro.tabcontrol" , {
                 }
             }
 
-            if (target.isUrl()) {
+            if (metroUtils.isUrl(target)) {
                 window.location.href = target;
                 return true;
             }
