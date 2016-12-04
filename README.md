@@ -18,17 +18,17 @@ Install-Package Metro.UI.CSS
 ### Public CDN
 
 #### Master branch
-##### CSS
- 
- - https://cdn.rawgit.com/olton/Metro-UI-CSS/master/build/css/metro.min.css
- - https://cdn.rawgit.com/olton/Metro-UI-CSS/master/build/css/metro-responsive.min.css
- - https://cdn.rawgit.com/olton/Metro-UI-CSS/master/build/css/metro-schemes.min.css
- - https://cdn.rawgit.com/olton/Metro-UI-CSS/master/build/css/metro-rtl.min.css
- - https://cdn.rawgit.com/olton/Metro-UI-CSS/master/build/css/metro-icons.min.css
+####CSS
+-  http://cdn.metroui.org.ua/css/metro.min.css
+-  http://cdn.metroui.org.ua/css/metro-colors.min.css 
+-  http://cdn.metroui.org.ua/css/metro-schemes.min.css 
+-  http://cdn.metroui.org.ua/css/metro-icons.min.css 
+-  http://cdn.metroui.org.ua/css/metro-responsive.min.css 
+-  http://cdn.metroui.org.ua/css/metro-rtl.min.css 
+-  http://cdn.metroui.org.ua/css/metro-font-cdn.css - this required for use icons from cdn
 
-##### JS
-
- - https://cdn.rawgit.com/olton/Metro-UI-CSS/master/build/js/metro.min.js
+####JS
+- http://cdn.metroui.org.ua/js/metro.min.js
 
 #### Develop branch
 ##### CSS
