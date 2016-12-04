@@ -4,6 +4,7 @@
 .button {
 	padding: 0 1rem;
 	height: 2.125rem;
+	//line-height: 2.125rem;
 	text-align: center;
 	vertical-align: middle;
 	background-color: @defaultBGColor;
@@ -13,7 +14,6 @@
 	display: inline-block;
 	outline: none;
 	font-size: .875rem;
-	line-height: 100%;
 	margin: .15625rem 0;
 	position: relative;
 
@@ -80,6 +80,7 @@
 	text-align: center;
 	text-decoration:none;
 	vertical-align: middle;
+	line-height: 1;
 }
 
 .square-button {
@@ -227,6 +228,7 @@ a.image-button {
 .image-button {
 	line-height: 100%;
 	&.small-button {
+		line-height: 100%;
 		padding-left: 2rem;
 		padding-right: 1rem;
 		.icon {
@@ -249,6 +251,7 @@ a.image-button {
 	height: 5.75rem;
 	text-align: center;
     font-size: .75rem;
+	line-height: 1;
 
 	.icon, .title {
 		display: block;
@@ -529,6 +532,7 @@ a.shortcut-button {
 //	line-height: 1.3;
 	padding: .2rem .625rem;
 	height: 1.4rem;
+	line-height: 1.4rem;
 }
 
 .small-button {
@@ -536,25 +540,26 @@ a.shortcut-button {
 //	line-height: 1.68rem;
 	padding: 0 .625rem;
 	height: 1.7rem;
+	line-height: 1.7rem;
 }
 
 .large-button {
 	height: 2.55rem;
 	font-size: 1.05rem;
-//	line-height: 2.52rem;
+	line-height: 2.55rem;
 }
 
 .big-button {
+	line-height: 3.125rem;
 	height: 3.125rem;
 	font-size: 1.2rem;
-//	line-height: 1;
 }
 
 .round-button, .cycle-button, .square-button {
     &.mini-button {
         .square(1.4rem);
         font-size: .6rem;
-        line-height: 1;
+        //line-height: 1;
         padding: 0;
         min-width: 0;
     }
@@ -562,7 +567,7 @@ a.shortcut-button {
     &.small-button {
         .square(1.7rem);
         font-size: .7rem;
-        line-height: 1.68rem;
+        //line-height: 1.68rem;
         padding: 0;
         min-width: 0;
     }
@@ -576,7 +581,7 @@ a.shortcut-button {
     &.big-button {
         height: 3.125rem;
         font-size: 1.2rem;
-        line-height: 1;
+        //line-height: 1;
         .square(3.125rem);
     }
 }

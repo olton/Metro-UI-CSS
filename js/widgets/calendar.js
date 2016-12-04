@@ -147,7 +147,7 @@ $.widget("metro.calendar", {
             }
         }
 
-        var totalDays = ["31", "" + feb + "", "31", "30", "31", "30", "31", "31", "30", "31", "30", "31"];
+        var totalDays = [31, feb, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
         var daysInMonth = totalDays[month];
         
         var first_week_day = this._dateFromNumbers(year, month + 1, 1).getDay();
@@ -169,7 +169,7 @@ $.widget("metro.calendar", {
         $("<div/>").addClass("calendar-cell align-center").html("<a class='btn-previous-year' href='#'>-</a>").appendTo(tr);
         $("<div/>").addClass("calendar-cell align-center").html("<a class='btn-previous-month' href='#'>&#12296;</a>").appendTo(tr);
 
-        $("<div/>").addClass("calendar-cell sel-month align-center").html("<a class='btn-select-month' href='#'>" + this.locales[o.locale].months[month] + ' ' + year + "</a>").appendTo(tr);
+        $("<div/>").addClass("calendar-cell sel-month align-center").html("<a class='btn-select-month' href='#'>" + this.locales[o.locale].months[month + 12] + ' ' + year + "</a>").appendTo(tr);
 
         $("<div/>").addClass("calendar-cell align-center").html("<a class='btn-next-month' href='#'>&#12297;</a>").appendTo(tr);
         $("<div/>").addClass("calendar-cell align-center").html("<a class='btn-next-year' href='#'>+</a>").appendTo(tr);
