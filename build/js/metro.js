@@ -4077,6 +4077,104 @@ $.widget( "metro.charm" , {
 //     });
 // });
 
+var metroCharm = {
+    isOpened: function(el){
+        var charm = $(el), charm_obj;
+        if (charm.length == 0) {
+            console.log('Charm ' + el + ' not found!');
+            return false;
+        }
+
+        charm_obj = charm.data('charm');
+
+        if (charm_obj == undefined) {
+            console.log('Element not contain role charm! Please add attribute data-role="charm" to element ' + el);
+            return false;
+        }
+
+        return charm_obj.element.data('opened') === true;
+    },
+
+    show: function(el, position){
+        var charm = $(el), charm_obj;
+        if (charm.length == 0) {
+            console.log('Charm ' + el + ' not found!');
+            return false;
+        }
+
+        charm_obj = charm.data('charm');
+
+        if (charm_obj == undefined) {
+            console.log('Element not contain role charm! Please add attribute data-role="charm" to element ' + el);
+            return false;
+        }
+
+        if (position != undefined) {
+
+            charm.hide();
+            charm.data("displayed", false);
+            charm.data("opened", false);
+
+            charm_obj.options.position = position;
+        }
+
+        charm_obj.open();
+
+        return false;
+    },
+
+    hide: function(el){
+        var charm = $(el), charm_obj;
+        if (charm.length == 0) {
+            console.log('Charm ' + el + ' not found!');
+            return false;
+        }
+
+        charm_obj = charm.data('charm');
+
+        if (charm_obj == undefined) {
+            console.log('Element not contain role charm! Please add attribute data-role="charm" to element ' + el);
+            return false;
+        }
+
+        charm_obj.close();
+    },
+
+    close: function(el){
+        return this.show(el);
+    },
+
+    toggle: function(el, position){
+        var charm = $(el), charm_obj;
+        if (charm.length == 0) {
+            console.log('Charm ' + el + ' not found!');
+            return false;
+        }
+
+        charm_obj = charm.data('charm');
+
+        if (charm_obj == undefined) {
+            console.log('Element not contain role charm! Please add attribute data-role="charm" to element ' + el);
+            return false;
+        }
+
+        if (charm_obj.element.data('opened') === true) {
+            charm_obj.close();
+        } else {
+            if (position != undefined) {
+                charm.hide();
+                charm.data("displayed", false);
+                charm.data("opened", false);
+
+                charm_obj.options.position = position;
+            }
+            charm_obj.open();
+        }
+    }
+};
+
+$.Charm = window.metroCharm = metroCharm;
+
 window.metroCharmIsOpened = function(el){
     var charm = $(el), charm_obj;
     if (charm.length == 0) {
