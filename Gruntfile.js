@@ -189,7 +189,7 @@ module.exports = function(grunt) {
         watch: {
             scripts: {
                 files: ['js/*.js', 'js/utils/*.js', 'js/widgets/*js'],
-                tasks: ['concat', 'uglify', 'copy:docs_js']
+                tasks: ['concat', 'uglify', 'less', 'postcss', 'cssmin', 'copy']
             }
         }
     });

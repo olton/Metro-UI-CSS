@@ -15,6 +15,7 @@
 * fix validator for issue #869
 * fix isColor moved to metroUtils issue #872
 * fix anchor as buttons issue #868
+* rem close charms on document click (for issue #884)
 
 ## 3.0.15
 * remove re-init for old browsers

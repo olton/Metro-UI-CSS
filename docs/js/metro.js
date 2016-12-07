@@ -4064,18 +4064,18 @@ $.widget( "metro.charm" , {
     }
 });
 
-$(document).on("click", ".charm", function(e){
-    e.preventDefault();
-    e.stopPropagation();
-});
-
-$(document).on('click', function(e){
-    $('[data-role=charm]').each(function(i, el){
-        if (!$(el).hasClass('keep-open') && $(el).data('displayed')===true) {
-            $(el).data('charm').close();
-        }
-    });
-});
+// $(document).on("click", ".charm", function(e){
+//     e.preventDefault();
+//     e.stopPropagation();
+// });
+//
+// $(document).on('click', function(e){
+//     $('[data-role=charm]').each(function(i, el){
+//         if (!$(el).hasClass('keep-open') && $(el).data('displayed')===true) {
+//             $(el).data('charm').close();
+//         }
+//     });
+// });
 
 window.metroCharmIsOpened = function(el){
     var charm = $(el), charm_obj;
