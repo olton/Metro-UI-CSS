@@ -64,6 +64,32 @@ var utils = {
         }
 
         return array;
+    },
+
+    hex2rgba: function(hex, alpha){
+        var c;
+        alpha = isNaN(alpha) ? 1 : alpha;
+        if(/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)){
+            c= hex.substring(1).split('');
+            if(c.length== 3){
+                c= [c[0], c[0], c[1], c[1], c[2], c[2]];
+            }
+            c= '0x'+c.join('');
+            return 'rgba('+[(c>>16)&255, (c>>8)&255, c&255].join(',')+','+alpha+')';
+        }
+        throw new Error('Hex2rgba error. Bad Hex value');
+    },
+
+    random: function(from, to){
+        return Math.floor(Math.random()*(to-from+1)+from);
+    },
+
+    isInt: function(n){
+        return Number(n) === n && n % 1 === 0;
+    },
+
+    isFloat: function(n){
+        return Number(n) === n && n % 1 !== 0;
     }
 };
 

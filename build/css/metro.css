@@ -14518,6 +14518,14 @@ video::-webkit-media-controls-enclosure {
 .audio-player.medium .loop {
   display: none;
 }
+.donut {
+  display: block;
+  position: relative;
+}
+.donut > svg {
+  width: 100%;
+  height: 100%;
+}
 .select2-container {
   box-sizing: border-box;
   display: inline-block;
