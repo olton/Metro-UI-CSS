@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Metro, a sleek, intuitive, and powerful framework for faster and easier web development for Windows Metro Style.">
+    <meta name="keywords" content="HTML, CSS, JS, JavaScript, framework, metro, front-end, frontend, web development">
+    <meta name="author" content="Sergey Pimenov and Metro UI CSS contributors">
+
+    <link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
+    <title>Metro UI CSS - The front-end framework for developing projects on the web in Windows Metro Style</title>
+
+    <link href="css/metro.css" rel="stylesheet">
+    <link href="css/metro-icons.css" rel="stylesheet">
+    <link href="css/metro-responsive.css" rel="stylesheet">
+    <link href="css/metro-schemes.css" rel="stylesheet">
+    <link href="css/metro-colors.css" rel="stylesheet">
+
+    <link href="css/docs.css" rel="stylesheet">
+
+    <script src="js/jquery-3.1.0.min.js"></script>
+    <script src="js/metro.js"></script>
+    <script src="js/docs.js"></script>
+    <script src="js/prettify/run_prettify.js"></script>
+    <script src="js/ga.js"></script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+    <style>
+        .donut {
+            float: left;
+            margin-left: 10px;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="container page-content">
+        <h1><a href="index.html" class="nav-button transform"><span></span></a>&nbsp;Donut chart</h1>
+
+        @@adsense
+
+        <div class="example">
+            <div class="clear-float">
+                <div data-role="donut" data-value="35" id="donut1"></div>
+                <div data-role="donut" data-value="75" data-animate="10" id="donut2"></div>
+            </div>
+            <br />
+
+            <button class="button primary" onclick="genNewDonutValue()">New Value</button>
+            <button class="button success" onclick="runDonut()">Run</button>
+
+            <script>
+                function genNewDonutValue(){
+                    var donut_value = metroUtils.random(0,100);
+
+                    $('#donut1').data('donut').val(donut_value);
+                    $('#donut2').data('donut').val(donut_value);
+                }
+
+                function runDonut(){
+                    var donut = $('#donut1').data('donut');
+                    var i = 0;
+                    var interval;
+
+                    interval = setInterval(function(){
+                        donut.val(++i);
+                        if (i == 100) {
+                            clearInterval(interval);
+                        }
+                    }, 10)
+                }
+            </script>
+        </div>
+    </div>
+
+</body>
+</html>
