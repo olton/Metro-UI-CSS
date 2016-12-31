@@ -1,7 +1,7 @@
 # Welcome
 The front-end framework for developing projects on the web in Windows Metro Style, created and supported by Sergey Pimenov (aka olton) with the massive support and involvement of community. Metro UI CSS developed with the advice of Microsoft to build the user interface and include: general styles, grid, layouts, typography, 20+ components, 300+ built-in icons. Metro UI CSS build with {LESS}. Metro UI CSS is open source and has MIT licensing model.
  
-## Current Version 3.0.16
+## Current Version 3.0.17
 
 ### Install with bower
  bower install metro
