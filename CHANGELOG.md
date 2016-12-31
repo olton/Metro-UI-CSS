@@ -1,5 +1,7 @@
 # Changelog 
 
+## 3.0.17
+
 ## 3.0.16
 * fix metro-icons.css
 * fix calendar events
