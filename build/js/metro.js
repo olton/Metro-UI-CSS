@@ -5565,8 +5565,6 @@ $.widget( "metro.donut" , {
             return o.value
         }
 
-        console.log(o.animate);
-
         if (o.animate > 0) {
             var i = 0;
             var interval;
