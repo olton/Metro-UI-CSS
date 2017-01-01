@@ -1,6 +1,6 @@
 /*!
- * Metro UI CSS v3.0.16 (http://metroui.org.ua)
- * Copyright 2012-2016 Sergey Pimenov
+ * Metro UI CSS v3.0.17 (http://metroui.org.ua)
+ * Copyright 2012-2017 Sergey Pimenov
  * Licensed under  ()
  */
 
@@ -15,7 +15,7 @@
 
 var $ = jQuery;
 
-window.METRO_VERSION = '3.0.16';
+window.METRO_VERSION = '3.0.17';
 
 // Source: js/requirements.js
 if (typeof jQuery === 'undefined') {
@@ -965,6 +965,9 @@ var widget = $.widget;
 $.fn.reverse = Array.prototype.reverse;
 
 $.Metro = {
+
+    hotkeys: [],
+
     initWidgets: function(widgets) {
         $.each(widgets, function () {
             var $this = $(this), w = this;
