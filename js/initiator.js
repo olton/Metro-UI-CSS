@@ -1,6 +1,9 @@
 $.fn.reverse = Array.prototype.reverse;
 
 $.Metro = {
+
+    hotkeys: [],
+
     initWidgets: function(widgets) {
         $.each(widgets, function () {
             var $this = $(this), w = this;
