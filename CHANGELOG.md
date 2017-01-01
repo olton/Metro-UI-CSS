@@ -1,6 +1,7 @@
 # Changelog 
 
 ## 3.0.17
+* fix hotkeys init error 
 
 ## 3.0.16
 * fix metro-icons.css
