@@ -295,23 +295,36 @@ $.widget( "metro.treeview" , {
         if (ul.length === 0) {
             ul = $("<ul/>").appendTo(parent ? parent : element);
         }
+        
+        li = $("<li/>");
+        if (data && data.className) {
+            li.addClass(data.className);
+        }
+        
+        if (data && data.before) {
+            data.before.before(li);
+        } else {
+            li.appendTo(ul);
+        }
 
-        li = $("<li/>").appendTo( ul );
-
-        if (data !== undefined) {
-            if (data.tagName !== undefined) {
-                leaf = $("<"+data.tagName+"/>").addClass("leaf").appendTo(li);
-            } else {
-                leaf = $("<span/>").addClass("leaf").appendTo(li);
-            }
+        if (data !== undefined && data.tagName !== undefined) {
+            leaf = $("<"+data.tagName+"/>").addClass("leaf").appendTo(li);
         } else {
             leaf = $("<span/>").addClass("leaf").appendTo(li);
         }
-
+        
+        name = '<span class="name">' + name + '</span>';
+        
+        if (data !== undefined && data.icon !== undefined) {
+            name = '<span class="icon mif-' + data.icon + '"></span>' + name;
+        }
+        
         leaf.html(name);
 
         if (data !== undefined) {
             $.each(data, function(key, value){
+                if (key == "before")
+                    return;
                 li.attr("data-"+key, value);
             });
             if (data.mode !== undefined) {
