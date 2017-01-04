@@ -1,5 +1,7 @@
 # Changelog 
 
+## 3.0.18
+
 ## 3.0.17
 * fix hotkeys init error 
 
