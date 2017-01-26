@@ -14,7 +14,6 @@ body {
 
 .prettyprint {
     background-color: #eeeeee;
-    border: 0 !important;
     border-width: 1px !important;
     border-color: #eeeeee !important;
     border-left: 8px #555555 solid !important;
@@ -32,7 +31,7 @@ body {
 
 .prettyprint {
     overflow: hidden;
-    overflow-x: scroll;
+    overflow-x: auto;
 }
 
 .demo-grid .row > .cell {
