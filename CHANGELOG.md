@@ -1,6 +1,8 @@
 # Changelog 
 
 ## 3.0.18
+* add method isOpened for Dialog widget 
+* add method metroDialog.isDialog(el) 
 
 ## 3.0.17
 * fix hotkeys init error 

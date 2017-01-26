@@ -289,6 +289,10 @@ $.widget( "metro.dialog" , {
         this._setContent();
     },
 
+    isOpened: function(){
+        return this.element.data('opened') === true;
+    },
+
     toggle: function(){
         var element = this.element;
         if (element.data('opened')) {
@@ -380,7 +384,7 @@ $.widget( "metro.dialog" , {
 
 
 var dialog = {
-    open: function(el, place, content, contentType){
+    isDialog: function(el){
         var dialog = $(el), dialog_obj;
         if (dialog.length == 0) {
             console.log('Dialog ' + el + ' not found!');
@@ -391,6 +395,16 @@ var dialog = {
 
         if (dialog_obj == undefined) {
             console.log('Element not contain role dialog! Please add attribute data-role="dialog" to element ' + el);
+            return false;
+        }
+
+        return true;
+    },
+
+    open: function(el, place, content, contentType){
+        var dialog = $(el), dialog_obj = dialog.data('dialog');
+
+        if (!this.isDialog(el)) {
             return false;
         }
 
@@ -410,16 +424,9 @@ var dialog = {
     },
 
     close: function(el){
-        var dialog = $(el), dialog_obj;
-        if (dialog.length == 0) {
-            console.log('Dialog ' + el + ' not found!');
-            return false;
-        }
+        var dialog = $(el), dialog_obj = dialog.data('dialog');
 
-        dialog_obj = dialog.data('dialog');
-
-        if (dialog_obj == undefined) {
-            console.log('Element not contain role dialog! Please add attribute data-role="dialog" to element ' + el);
+        if (!this.isDialog(el)) {
             return false;
         }
 
@@ -427,16 +434,9 @@ var dialog = {
     },
 
     toggle: function(el, place, content, contentType){
-        var dialog = $(el), dialog_obj;
-        if (dialog.length == 0) {
-            console.log('Dialog ' + el + ' not found!');
-            return false;
-        }
+        var dialog = $(el), dialog_obj = dialog.data('dialog');
 
-        dialog_obj = dialog.data('dialog');
-
-        if (dialog_obj == undefined) {
-            console.log('Element not contain role dialog! Please add attribute data-role="dialog" to element ' + el);
+        if (!this.isDialog(el)) {
             return false;
         }
 
