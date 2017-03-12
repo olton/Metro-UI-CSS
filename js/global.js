@@ -5,6 +5,8 @@ if (window.METRO_CURRENT_LOCALE === undefined) window.METRO_CURRENT_LOCALE = 'en
 if (window.METRO_SHOW_TYPE === undefined) window.METRO_SHOW_TYPE = 'slide';
 if (window.METRO_DEBUG === undefined) window.METRO_DEBUG = true;
 if (window.METRO_CALENDAR_WEEK_START === undefined) window.METRO_CALENDAR_WEEK_START = 0;
+if (window.METRO_CALENDAR_DATE_FORMAT === undefined) window.METRO_CALENDAR_DATE_FORMAT = "yyyy-mm-dd";
+if (window.METRO_DATEPICKER_DATE_FORMAT === undefined) window.METRO_DATEPICKER_DATE_FORMAT = "yyyy.mm.dd";
 
 window.canObserveMutation = 'MutationObserver' in window;
 
