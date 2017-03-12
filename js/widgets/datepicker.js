@@ -3,7 +3,7 @@ $.widget("metro.datepicker", {
     version: "3.0.14",
 
     options: {
-        format: "yyyy.mm.dd",
+        format: window.METRO_DATEPICKER_DATE_FORMAT,
         preset: false,
         minDate: false,
         maxDate: false,

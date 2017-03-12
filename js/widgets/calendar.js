@@ -3,7 +3,7 @@ $.widget("metro.calendar", {
     version: "3.0.0",
 
     options: {
-        format: "yyyy-mm-dd",
+        format: window.METRO_CALENDAR_DATE_FORMAT,
         multiSelect: false,
         startMode: 'day', //year, month, day
         weekStart: window.METRO_CALENDAR_WEEK_START, // 0 - Sunday, 1 - Monday
