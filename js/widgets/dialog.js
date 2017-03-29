@@ -477,7 +477,7 @@ var dialog = {
             $.each(data.actions, function(){
                 var item = this;
 
-                button = $("<button>").attr("type", "button").addClass("button").html(item.title);
+                button = $("<button>").attr("type", "button").addClass("button").addClass(item.class).html(item.title);
 
                 if (item.cls !== undefined) {
                     button.addClass(item.cls);
