@@ -26,19 +26,37 @@ $.widget( "metro.validator" , {
 
     funcs: {
         required: function(val){
-            return val.trim() !== "";
+            if ( val == null  ) {
+                return false;
+            } else if ( typeof val.constructor == Array ) {
+                return val.length > 0 ? true : false;
+            } else {
+                return val.trim() !== "";
+            }
         },
         minlength: function(val, len){
             if (len == undefined || isNaN(len) || len <= 0) {
                 return false;
             }
-            return val.trim().length >= len;
+            if ( val == null  ) {
+                return false
+            } else if ( typeof val.constructor == Array ) {
+                return val.length >= len ? true : false;
+            } else {
+                return val.trim().length >= len;
+            }            
         },
         maxlength: function(val, len){
             if (len == undefined || isNaN(len) || len <= 0) {
                 return false;
             }
-            return val.trim().length <= len;
+            if ( val == null  ) {
+                return false
+            } else if ( typeof val.constructor == Array ) {
+                return val.length <= len ? true : false;
+            } else {
+                return val.trim().length <= len;
+            }            
         },
         min: function(val, min_value){
 
