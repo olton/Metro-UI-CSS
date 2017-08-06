@@ -211,12 +211,6 @@ $.widget( "metro.tile" , {
             $(this).addClass("tile-transform-"+transform);
 
             //console.log(transform);
-
-            if (element[0].tagName === 'A' && element.attr('href')) {
-                setTimeout(function(){
-                    document.location.href = element.attr('href');
-                }, 500);
-            }
         });
 
         element.on(event_up, function(){
