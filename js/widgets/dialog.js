@@ -504,6 +504,10 @@ var dialog = {
         }
 
         dlg.appendTo($("body"));
+        
+        if (typeof data.callback === 'function') {
+            data.callback(dlg);
+        }
 
         var dlg_options = $.extend({}, {
             show: true,
