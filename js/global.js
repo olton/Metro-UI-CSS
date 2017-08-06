@@ -270,6 +270,20 @@ window.METRO_LOCALES = {
         buttons: [
             "Hari Ini", "Mengulang", "Batalkan", "Bantuan", "Sebelumnya", "Berikutnya", "Selesai"
         ]
+    },
+    /*https://github.com/MSBilgin*/
+    'tr':{
+        months: [
+            "Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık",
+            "Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"
+        ],
+        days: [
+            "Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi", "Pazar",
+            "Pzt", "Sal", "Çar", "Per", "Cum", "Cmt", "Paz"
+        ],
+        buttons: [
+            "Bugün", "Temizle", "İptal", "Yardım", "Önceki", "Sonraki", "Bitir"
+        ]
     }
 };
 
