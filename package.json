@@ -24,6 +24,9 @@
         "url": "http://forum.metroui.org.ua"
     },
     "license": "SEE LICENSE IN http://metroui.org.ua/license.html",
+	"dependencies": {
+		"jquery": "3.2.1"
+	},
     "devDependencies": {
         "autoprefixer-core": "^5.1.11",
         "grunt": "^0.4.5",
