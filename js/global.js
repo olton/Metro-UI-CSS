@@ -270,6 +270,19 @@ window.METRO_LOCALES = {
         buttons: [
             "Hari Ini", "Mengulang", "Batalkan", "Bantuan", "Sebelumnya", "Berikutnya", "Selesai"
         ]
+    },
+	'tr': {
+        months: [
+            "Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık",
+			"Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"
+        ],
+        days: [
+            "Pazar", "Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi",
+			"Paz", "Pzt", "Sal", "Çar", "Per", "Cum", "Cmt"
+        ],
+        buttons: [
+            "Bugün", "Temizle", "İptal", "Yardım", "Önceki", "Sonraki", "Bitir"
+        ]
     }
 };
 
