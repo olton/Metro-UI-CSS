@@ -295,6 +295,19 @@ window.METRO_LOCALES = {
         buttons: [
             "Hari Ini", "Mengulang", "Batalkan", "Bantuan", "Sebelumnya", "Berikutnya", "Selesai"
         ]
+    },
+    'hu': {
+        months: [
+            'Január', 'Február', 'Március', 'Április', 'Május', 'Június', 'Július', 'Augusztus', 'Szeptember', 'Október', 'November', 'December',
+            'Jan', 'Febr', 'Márc', 'Ápr', 'Máj', 'Jún', 'Júl', 'Aug', 'Szept', 'Okt', 'Nov', 'Dec'
+        ],
+        days: [
+            'Vasárnap', 'Hétfő', 'Kedd', 'Szerda', 'Csütörtök', 'Péntek', 'Szombat',
+            'V', 'H', 'K', 'Sz', 'Cs', 'P', 'Sz'
+        ],
+        buttons: [
+            'Ma', 'Törlés', 'Mégse', 'Segítség', 'Előző', 'Következő', 'Vége'
+        ]
     }
 };
 
