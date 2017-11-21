@@ -371,7 +371,7 @@
                     //===  EVENTS =================================================
 
                     //activate the click event for the pull button
-                    $(that.pullButton).on("click", function () {
+                    $(that.pullButton).on("click", function (e) {
 
                         //who am i?
                         that = $(this).closest("[data-role=appbar]").data("appbar");
@@ -381,6 +381,8 @@
                             $(that.pullMenu).show();
                             $(that.pullMenu).find(".app-bar-pullmenubar")
                                     .hide().not(".hidden").slideDown("fast");
+                            e.preventDefault();
+                            e.stopPropagation();
                         } else {
                             $(that.pullMenu).find(".app-bar-pullmenubar")
                                     .not(".hidden").show().slideUp("fast", function () {
