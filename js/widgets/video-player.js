@@ -25,7 +25,7 @@ $.widget( "metro.video" , {
         poster: false,
         src: false,
         loop: false,
-        preload: false,
+        preload: true,
         autoplay: false,
         muted: false,
         volume:.5,
@@ -56,7 +56,7 @@ $.widget( "metro.video" , {
         } else if (o.videoSize == 'SD' && o.videoSize == 'sd') {
             player_height = 3 * player_width / 4;
         } else {
-
+            player_height = 9 * player_width / 16;
         }
 
         element.addClass('video-player');
@@ -125,11 +125,14 @@ $.widget( "metro.video" , {
         var video = element.find("video"), video_obj = video[0];
 
         video.on('loadedmetadata', function(){
+            //console.log("loadedmetadata");
             element.data('duration', video_obj.duration.toFixed(0));
             info_box.html("00:00" + " / " + metroUtils.secondsToFormattedString(element.data('duration')) );
         });
 
+        // Not fired in Chrome
         video.on("canplay", function(){
+            //console.log("canplay");
             controls.fadeIn();
             preloader.hide();
             var buffered = video_obj.buffered.length ? Math.round(Math.floor(video_obj.buffered.end(0)) / Math.floor(video_obj.duration) * 100) : 0;

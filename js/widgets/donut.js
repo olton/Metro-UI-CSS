@@ -80,7 +80,7 @@ $.widget( "metro.donut" , {
         }
 
         if (o.animate > 0) {
-            var i = 0;
+            var i = -1;
             var interval;
 
             interval = setInterval(function(){
