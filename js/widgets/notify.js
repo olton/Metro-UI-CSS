@@ -17,7 +17,7 @@ var Notify = {
 		width: 'auto',
 		height: 'auto',
 		style: false, // {background: '', color: ''}
-		position: 'right', //right, left
+		position: 'right', //right(default defined by notify.less), left, center
 		timeout: 3000,
 		keepOpen: false,
 		type: 'default' //default, success, alert, info, warning
@@ -66,11 +66,49 @@ var Notify = {
 		closer.on('click', function(){
 			that.close(0);
 		});
-
-		if (o.width !== 'auto') {this._notify.css('min-width', o.width);}
+        
+        /**
+         * Modify max-width no matter whether or not the giving o.width is greater than it.
+         * by JSoon start
+         */
+        if (o.width !== 'auto') {
+            this._notify.css({
+                'min-width': o.width,
+                'max-width': o.width
+            });
+        }
+        /**
+         * by JSoon end
+         */
 		if (o.height !== 'auto') {this._notify.css('min-height', o.height);}
-
-		this._notify.hide().appendTo(this._container).fadeIn('slow');
+        
+        /**
+         * Add position config to notify system.
+         * by JSoon start
+         */
+        this._notify.hide().appendTo(this._container).fadeIn({
+            duration: 'slow',
+            start: function () {
+                // Set position in the start of fade animation,
+                // in case that _notify_container's width can be figured out.
+                if (o.position && o.position === 'left') {
+                    _notify_container.css({
+                        'right': 'auto',
+                        'left': 0
+                    });
+                }
+                if (o.position && o.position === 'center') {
+                    var width = _notify_container.width();
+                    _notify_container.css({
+                        'right': '50%',
+                        'margin-right': -(width / 2)
+                    });
+                }
+            }
+        });
+        /**
+         * by JSoon end
+         */
 		_notifies.push(this._notify);
 
 		if (!o.keepOpen) {
