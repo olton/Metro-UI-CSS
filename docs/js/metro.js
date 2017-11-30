@@ -2264,7 +2264,7 @@ $.widget("metro.accordion", {
                         that = $(this).closest("[data-role=appbar]").data("appbar");
 
                         //we show /hide the pullmenu
-                        if ($(that.pullMenu).is(":hidden")) {
+                        if ($(that.pullMenu).length !== 0 && $(that.pullMenu).is(":hidden")) {
                             $(that.pullMenu).show();
                             $(that.pullMenu).find(".app-bar-pullmenubar")
                                     .hide().not(".hidden").slideDown("fast");
