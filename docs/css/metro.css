@@ -11825,6 +11825,16 @@ input[type="submit"].link:active {
   position: absolute;
   box-shadow: inset 0 0 1px #FFFFCC;
 }
+.tile-content.slide-up > .slide-over,
+.tile-content.slide-down > .slide-over,
+.tile-content.slide-up-2 > .slide-over,
+.tile-content.slide-down-2 > .slide-over,
+.tile-content.slide-left > .slide-over,
+.tile-content.slide-right > .slide-over,
+.tile-content.slide-left-2 > .slide-over,
+.tile-content.slide-right-2 > .slide-over {
+  box-shadow: none;
+}
 .tile-content.slide-up > .slide,
 .tile-content.slide-down > .slide,
 .tile-content.slide-up-2 > .slide,
