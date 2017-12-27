@@ -18,7 +18,7 @@ Install-Package Metro.UI.CSS
 ### Public CDN
 
 #### Master branch
-####CSS
+#### CSS
 -  http://cdn.metroui.org.ua/css/metro.min.css
 -  http://cdn.metroui.org.ua/css/metro-colors.min.css 
 -  http://cdn.metroui.org.ua/css/metro-schemes.min.css 
@@ -27,7 +27,7 @@ Install-Package Metro.UI.CSS
 -  http://cdn.metroui.org.ua/css/metro-rtl.min.css 
 -  http://cdn.metroui.org.ua/css/metro-font-cdn.css - this required for use icons from cdn
 
-####JS
+#### JS
 - http://cdn.metroui.org.ua/js/metro.min.js
 
 #### Develop branch
