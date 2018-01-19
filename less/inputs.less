@@ -53,7 +53,7 @@
 			color: @grayLight;
 		}
 
-		.prepend-icon ~ input {
+		.prepend-icon ~ input, .prepend-icon ~ select {
 			padding-left: 30px;
 		}
 	}
@@ -238,6 +238,10 @@ input, select, textarea {
 				border-color: darken(@inputHoverState, 10%);
 			}
 		}
+    
+    input[type=text] {
+      padding-right: 50px;
+    }
 	}
 }
 

@@ -60,7 +60,11 @@ $.widget("metro.input", {
     _createInputFile: function(){
         var element = this.element;
         var wrapper, button, input;
-        wrapper = $("<input type='text' class='input-file-wrapper' readonly style='z-index: 1; cursor: default;'>");
+        wrapper = $("<input type='text' class='input-file-wrapper' style='z-index: 1; cursor: default;'>");
+        if (element.attr( 'data-readonly' ) != "false") {
+          wrapper.attr('readonly', true);
+        }
+        
         button = element.children('.button');
         input = element.children('input[type="file"]');
         input.css('z-index', 0);
