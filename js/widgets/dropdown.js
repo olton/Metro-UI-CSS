@@ -144,4 +144,14 @@ $(document).on('click', function(e){
             that._close(el);
         }
     });
+
+    var that = $("[data-role=appbar]").data("appbar");
+
+    //we show /hide the pullmenu
+    if ($(that.pullMenu).length !== 0 && $(that.pullMenu).not(":hidden")) {
+        $(that.pullMenu).find(".app-bar-pullmenubar")
+            .not(".hidden").show().slideUp("fast", function () {
+            $(that.pullMenu).hide();
+        });
+    }
 });
