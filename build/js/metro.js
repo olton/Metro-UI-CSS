@@ -295,6 +295,19 @@ window.METRO_LOCALES = {
         buttons: [
             "Hari Ini", "Mengulang", "Batalkan", "Bantuan", "Sebelumnya", "Berikutnya", "Selesai"
         ]
+    },
+    'hu': {
+        months: [
+            'Január', 'Február', 'Március', 'Április', 'Május', 'Június', 'Július', 'Augusztus', 'Szeptember', 'Október', 'November', 'December',
+            'Jan', 'Febr', 'Márc', 'Ápr', 'Máj', 'Jún', 'Júl', 'Aug', 'Szept', 'Okt', 'Nov', 'Dec'
+        ],
+        days: [
+            'Vasárnap', 'Hétfő', 'Kedd', 'Szerda', 'Csütörtök', 'Péntek', 'Szombat',
+            'V', 'H', 'K', 'Sz', 'Cs', 'P', 'Sz'
+        ],
+        buttons: [
+            'Ma', 'Törlés', 'Mégse', 'Segítség', 'Előző', 'Következő', 'Vége'
+        ]
     }
 };
 
@@ -2245,16 +2258,18 @@ $.widget("metro.accordion", {
                     //===  EVENTS =================================================
 
                     //activate the click event for the pull button
-                    $(that.pullButton).on("click", function () {
+                    $(that.pullButton).on("click", function (e) {
 
                         //who am i?
                         that = $(this).closest("[data-role=appbar]").data("appbar");
 
                         //we show /hide the pullmenu
-                        if ($(that.pullMenu).is(":hidden")) {
+                        if ($(that.pullMenu).length !== 0 && $(that.pullMenu).is(":hidden")) {
                             $(that.pullMenu).show();
                             $(that.pullMenu).find(".app-bar-pullmenubar")
                                     .hide().not(".hidden").slideDown("fast");
+                            e.preventDefault();
+                            e.stopPropagation();
                         } else {
                             $(that.pullMenu).find(".app-bar-pullmenubar")
                                     .not(".hidden").show().slideUp("fast", function () {
@@ -5243,6 +5258,10 @@ $.widget( "metro.dialog" , {
         this._setContent();
     },
 
+    isOpened: function(){
+        return this.element.data('opened') === true;
+    },
+
     toggle: function(){
         var element = this.element;
         if (element.data('opened')) {
@@ -5334,7 +5353,7 @@ $.widget( "metro.dialog" , {
 
 
 var dialog = {
-    open: function(el, place, content, contentType){
+    isDialog: function(el){
         var dialog = $(el), dialog_obj;
         if (dialog.length == 0) {
             console.log('Dialog ' + el + ' not found!');
@@ -5345,6 +5364,16 @@ var dialog = {
 
         if (dialog_obj == undefined) {
             console.log('Element not contain role dialog! Please add attribute data-role="dialog" to element ' + el);
+            return false;
+        }
+
+        return true;
+    },
+
+    open: function(el, place, content, contentType){
+        var dialog = $(el), dialog_obj = dialog.data('dialog');
+
+        if (!this.isDialog(el)) {
             return false;
         }
 
@@ -5364,16 +5393,9 @@ var dialog = {
     },
 
     close: function(el){
-        var dialog = $(el), dialog_obj;
-        if (dialog.length == 0) {
-            console.log('Dialog ' + el + ' not found!');
-            return false;
-        }
+        var dialog = $(el), dialog_obj = dialog.data('dialog');
 
-        dialog_obj = dialog.data('dialog');
-
-        if (dialog_obj == undefined) {
-            console.log('Element not contain role dialog! Please add attribute data-role="dialog" to element ' + el);
+        if (!this.isDialog(el)) {
             return false;
         }
 
@@ -5381,16 +5403,9 @@ var dialog = {
     },
 
     toggle: function(el, place, content, contentType){
-        var dialog = $(el), dialog_obj;
-        if (dialog.length == 0) {
-            console.log('Dialog ' + el + ' not found!');
-            return false;
-        }
+        var dialog = $(el), dialog_obj = dialog.data('dialog');
 
-        dialog_obj = dialog.data('dialog');
-
-        if (dialog_obj == undefined) {
-            console.log('Element not contain role dialog! Please add attribute data-role="dialog" to element ' + el);
+        if (!this.isDialog(el)) {
             return false;
         }
 
@@ -5569,7 +5584,7 @@ $.widget( "metro.donut" , {
         }
 
         if (o.animate > 0) {
-            var i = 0;
+            var i = -1;
             var interval;
 
             interval = setInterval(function(){
@@ -5918,6 +5933,16 @@ $(document).on('click', function(e){
             that._close(el);
         }
     });
+
+    var that = $("[data-role=appbar]").data("appbar");
+
+    //we show /hide the pullmenu
+    if ($(that.pullMenu).length !== 0 && $(that.pullMenu).not(":hidden")) {
+        $(that.pullMenu).find(".app-bar-pullmenubar")
+            .not(".hidden").show().slideUp("fast", function () {
+            $(that.pullMenu).hide();
+        });
+    }
 });
 
 // Source: js/widgets/fit-image.js
@@ -10079,7 +10104,7 @@ $.widget( "metro.video" , {
         poster: false,
         src: false,
         loop: false,
-        preload: false,
+        preload: true,
         autoplay: false,
         muted: false,
         volume:.5,
@@ -10110,7 +10135,7 @@ $.widget( "metro.video" , {
         } else if (o.videoSize == 'SD' && o.videoSize == 'sd') {
             player_height = 3 * player_width / 4;
         } else {
-
+            player_height = 9 * player_width / 16;
         }
 
         element.addClass('video-player');
@@ -10179,11 +10204,14 @@ $.widget( "metro.video" , {
         var video = element.find("video"), video_obj = video[0];
 
         video.on('loadedmetadata', function(){
+            //console.log("loadedmetadata");
             element.data('duration', video_obj.duration.toFixed(0));
             info_box.html("00:00" + " / " + metroUtils.secondsToFormattedString(element.data('duration')) );
         });
 
+        // Not fired in Chrome
         video.on("canplay", function(){
+            //console.log("canplay");
             controls.fadeIn();
             preloader.hide();
             var buffered = video_obj.buffered.length ? Math.round(Math.floor(video_obj.buffered.end(0)) / Math.floor(video_obj.duration) * 100) : 0;
