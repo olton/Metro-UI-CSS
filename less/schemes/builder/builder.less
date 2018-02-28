@@ -1,0 +1,435 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+.scheme-builder (
+    @schemeBodyColor,
+    @schemeTextColor,
+    @schemePrimaryColor,
+    @schemeSecondaryColor,
+    @schemeThirdColor,
+
+    @schemePrimaryTextColor,
+    @schemeSecondaryTextColor,
+    @schemeThirdTextColor,
+
+    @schemeBorderColor,
+    @schemeDividerColor,
+
+    @schemeFontFamily,
+    @schemeFontSize,
+    @schemeCheckColor
+){
+    body {
+        font-size: @schemeFontSize;
+        font-family: @schemeFontFamily;
+        color: @schemeTextColor;
+        background-color: @schemeBodyColor;
+    }
+
+    .bg-primary {background-color: @schemePrimaryColor!important; color: @schemePrimaryTextColor!important;}
+    .bg-secondary {background-color: @schemeSecondaryColor!important; color: @schemeSecondaryTextColor!important;}
+    .bg-third {background-color: @schemeThirdColor!important; color: @schemeThirdTextColor!important;}
+
+    .fg-primary{color: @schemePrimaryColor!important;}
+    .fg-secondary{color: @schemeSecondaryColor!important;}
+    .fg-third{color: @schemeThirdColor!important;}
+
+    .button {
+        background-color: @schemePrimaryColor;
+        color: @schemePrimaryTextColor;
+
+        &:active, &.focus, &:focus {
+            .focus-show(@schemePrimaryColor);
+        }
+    }
+
+    .breadcrumbs {
+        background-color: @schemePrimaryColor;
+        color: @schemePrimaryTextColor;
+
+        .page-item {
+            &::before, &::after {
+                background-color: @schemePrimaryTextColor;
+            }
+        }
+        .page-link:hover {
+            color: darken(@schemePrimaryTextColor, 10%);
+        }
+
+        &.type2 {
+            background-color: @schemeSecondaryColor;
+            color: @schemeSecondaryTextColor;
+
+            .page-item {
+                &::before, &::after {
+                    background-color: @schemeSecondaryTextColor;
+                }
+            }
+            .page-link:hover {
+                color: darken(@schemeSecondaryTextColor, 10%);
+            }
+        }
+
+        &.type3 {
+            background-color: @schemeThirdColor;
+            color: @schemeThirdTextColor;
+
+            .page-item {
+                &::before, &::after {
+                    background-color: @schemeThirdTextColor;
+                }
+            }
+            .page-link:hover {
+                color: darken(@schemeThirdTextColor, 10%);
+            }
+        }
+    }
+
+    .pagination {
+        .page-item:not(.no-link) {
+            background-color: @schemePrimaryColor;
+            color: @schemePrimaryTextColor;
+            border: 1px darken(@schemePrimaryColor, 10%) solid;
+
+            .page-link, .service {
+                &:hover {
+                    background-color: @hoverBackground!important;
+                }
+            }
+        }
+
+        &.no-gap {
+            .page-item {
+                border: none;
+                margin: 0;
+            }
+        }
+
+        .page-item {
+            &.active {
+                background-color: lighten(@schemePrimaryColor, 10%);
+            }
+        }
+    }
+
+    input[type=text],
+    input[type=password],
+    input[type=tel],
+    input[type=datetime-local],
+    input[type=email],
+    input[type=file],
+    input[type=month],
+    input[type=number],
+    input[type=search],
+    input[type=time],
+    input[type=url],
+    input[type=week],
+    input[type=file],
+    select, textarea, .file, .input, .textarea, .select {
+        border-color: @schemePrimaryColor !important;
+        box-shadow: none!important;
+    }
+
+    .input, .select, .textarea, .file {
+        border-style: solid!important;
+
+        .prepend {
+            background-color: @schemePrimaryColor;
+            color: @schemePrimaryTextColor;
+        }
+    }
+
+    .file {
+        .button {
+            background-color: @schemePrimaryColor;
+            color: @schemePrimaryTextColor;
+        }
+    }
+
+    .checkbox, .radio {
+        .check {
+            border-color: @schemeCheckColor;
+
+            &::before {
+                border-color: @schemePrimaryColor;
+            }
+        }
+
+        input:indeterminate ~ .check {
+            border-color: @schemePrimaryColor;
+            &::before {
+                background-color: @schemePrimaryColor;
+            }
+        }
+
+        input:focus ~ .check {
+            box-shadow: none;
+        }
+
+        input:checked ~ .check {
+            border-color: @schemePrimaryColor;
+        }
+
+        input:disabled ~ .check {
+            border-color: lighten(@schemeCheckColor, 40%);
+        }
+    }
+
+    .radio {
+        .check {
+            border-color: @schemeCheckColor;
+
+            &::before {
+                border-color: transparent;
+                background-color: @schemePrimaryColor;
+            }
+        }
+    }
+
+    .switch {
+        .check {
+            outline-color: @schemeCheckColor;
+            transition: @transition-base;
+
+            &::after {
+                outline-color: darken(@schemePrimaryColor, 10%);
+                border-color: darken(@schemePrimaryColor, 10%);
+                background-color: darken(@schemePrimaryColor, 10%);
+            }
+        }
+
+        input:not(:disabled):checked ~ .check {
+            background-color: @schemePrimaryColor;
+        }
+        input:not(:disabled):not(:checked) ~ .check {
+            &::after {
+                outline-color: darken(@schemeCheckColor, 10%);
+                border-color: darken(@schemeCheckColor, 10%);
+                background-color: darken(@schemeCheckColor, 10%);
+            }
+        }
+    }
+
+    .topbar {
+        background-color: @schemePrimaryColor;
+    }
+
+    .accordion {
+        .frame .heading {
+            background-color: @schemePrimaryColor;
+            color: @schemePrimaryTextColor;
+        }
+
+        .frame {
+            margin: 0;
+        }
+
+        .frame + .frame {
+            border-top: 1px darken(@schemePrimaryColor, 10%) solid;
+        }
+
+        &.type2 {
+            .frame {
+                .content {
+                    background-color: @schemeSecondaryColor;
+                    color: @schemeSecondaryTextColor;
+                }
+            }
+        }
+        &.type3 {
+            .frame {
+                .content {
+                    background-color: @schemeThirdColor;
+                    color: @schemeThirdTextColor;
+                }
+            }
+        }
+    }
+
+    .tabs {
+        &[class*=tabs-expand] {
+            & > ul, & > ul > li {
+                background-color: @schemeThirdColor;
+                color: @schemeThirdTextColor;
+                border-bottom-color: @schemePrimaryColor;
+            }
+
+            & > ul > li:hover {
+                border-color: transparent;
+                background-color: @schemeSecondaryColor;
+            }
+
+            & > ul > li.active {
+                border: none;
+                background-color: @schemePrimaryColor;
+                color: @schemePrimaryTextColor;
+            }
+
+            &.bottom {
+                & > ul, & > ul > li {
+                    border-top-color: @schemePrimaryColor;
+                }
+            }
+
+            &.vertical {
+                & > ul, & > ul > li {
+                    border-right-color: @schemePrimaryColor;
+                }
+
+                &.right {
+                    & > ul, & > ul > li {
+                        border-left-color: @schemePrimaryColor;
+                    }
+                }
+            }
+        }
+    }
+
+    .master {
+        background-color: #f9f9f9;
+
+        .controls {
+            .next, .prev {
+                color: @schemePrimaryColor;
+            }
+        }
+
+        .pages {
+            border-color: @schemePrimaryColor;
+        }
+    }
+
+    .carousel {
+        [class*=carousel-switch] {
+            color: @schemePrimaryColor;
+        }
+
+        .carousel-bullets {
+            .bullet-on {
+                background-color: @schemePrimaryColor;
+            }
+        }
+    }
+
+    .streamer {
+        .stream-event.selected {
+            box-shadow: 0 0 0 1px rgba(red(@schemePrimaryColor), green(@schemePrimaryColor), blue(@schemePrimaryColor), 1)!important;
+
+            &::after {
+                border-top-color: @schemePrimaryColor;
+            }
+        }
+    }
+
+    .calendar {
+        .calendar-header {
+            background-color: @schemePrimaryColor;
+            color: @schemePrimaryTextColor;
+        }
+
+        .day.today {
+            background-color: rgba(red(@schemePrimaryColor), green(@schemePrimaryColor), blue(@schemePrimaryColor), .5);
+        }
+
+        .day.selected {
+            box-shadow: 0 0 0 1px rgba(red(@schemePrimaryColor), green(@schemePrimaryColor), blue(@schemePrimaryColor), 1)!important;
+
+            &::after {
+                border-top-color: @schemePrimaryColor;
+            }
+        }
+    }
+
+    .countdown {
+        line-height: 1.5;
+
+        .part {
+            color: @schemePrimaryColor;
+        }
+
+        &.type1 {
+            background-color: @schemePrimaryColor;
+            .part {
+                color: @schemePrimaryTextColor;
+            }
+        }
+        &.type2 {
+            background-color: @schemeSecondaryColor;
+            .part {
+                color: @schemeSecondaryTextColor;
+            }
+        }
+        &.type3 {
+            background-color: @schemeThirdColor;
+            .part {
+                color: @schemeThirdTextColor;
+            }
+        }
+    }
+
+    .h-menu {
+        background-color: @schemePrimaryColor;
+        color: @schemePrimaryTextColor;
+
+        & > li > a {
+            &.dropdown-toggle {
+                &::before {
+                    border-color: @schemePrimaryTextColor;
+                }
+            }
+        }
+    }
+
+    .d-menu, .v-menu {
+        color: @schemePrimaryColor;
+
+        li {
+            .dropdown-toggle {
+                &::before {
+                    border-color: @schemePrimaryColor;
+                }
+            }
+
+            &:hover {
+                background-color: @schemePrimaryColor;
+                color: @schemePrimaryTextColor;
+
+                .dropdown-toggle {
+                    &::before {
+                        border-color: @schemePrimaryTextColor;
+                    }
+                }
+            }
+        }
+    }
+
+    .v-menu {
+        .menu-title {
+            background-color: darken(@schemePrimaryColor, 10%);
+            color: @schemePrimaryTextColor;
+        }
+    }
+
+    .slider {
+        .complete {
+            background-color: @schemePrimaryColor;
+        }
+
+        .hint {
+            background-color: @schemePrimaryColor;
+            color: @schemePrimaryTextColor;
+        }
+    }
+
+    .keypad {
+        border-color: @schemePrimaryColor;
+        .keys {
+            background-color: @schemePrimaryColor;
+            color: @schemePrimaryTextColor;
+
+            .service-key {
+                background-color: darken(@schemePrimaryColor, 5%);
+            }
+        }
+    }
+}

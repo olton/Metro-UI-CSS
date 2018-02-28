@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <meta name="twitter:site" content="@metroui">
+    <meta name="twitter:creator" content="@pimenov_sergey">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Metro 4 Components Library">
+    <meta name="twitter:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.">
+    <meta name="twitter:image" content="https://metroui.org.ua/images/m4-logo-social.png">
+
+    <meta property="og:url" content="https://metroui.org.ua/v4/index.html">
+    <meta property="og:title" content="Metro 4 Components Library">
+    <meta property="og:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:secure_url" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="968">
+    <meta property="og:image:height" content="504">
+
+    <meta name="author" content="Sergey Pimenov">
+    <meta name="description" content="The most popular HTML, CSS, and JS library in Metro style.">
+    <meta name="keywords" content="HTML, CSS, JS, Metro, CSS3, Javascript, HTML5, UI, Library, Web, Development, Framework">
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <link href="metro/css/metro-all.css" rel="stylesheet">
+    <link href="highlight/styles/github.css" rel="stylesheet">
+    <link href="docsearch/docsearch.min.css" rel="stylesheet">
+    <link href="css/site.css" rel="stylesheet">
+
+    <title>Master - Metro 4 :: Popular HTML, CSS and JS library</title>
+
+    <style>
+        .ra-master {
+            background-color: #f9f9f9;
+            padding: 16px 64px;
+        }
+
+        .ra-master .controls .next, .ra-master .controls .prev{
+            color: #b00015;
+        }
+
+        .ra-master .pages {
+            border-color: #b00015;
+            border-style: dashed;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+
+        <div class="row flex-xl-nowrap">
+            <div class="cell-md-3 cell-xl-2 pr-0 border-right bd-light" id="sidenav">
+            </div>
+
+            <div class="d-none d-block-xl cell-xl-2 order-2 border-left bd-light toc-wrapper">
+                <h5>Table of contents</h5>
+                <hr/>
+                <ul class="toc-nav">
+                    <li class="toc-entry"><a href="#">Master</a></li>
+                    <li class="toc-entry"><a href="#_master_about">About</a></li>
+                    <li class="toc-entry">
+                        <a href="#_master_options">Options</a>
+                        <ul>
+                            <li class="toc-entry"><a href="#_master_options_title">Setup title</a></li>
+                            <li class="toc-entry"><a href="#_master_options_controls">Controls</a></li>
+                            <li class="toc-entry"><a href="#_master_options_effect">Effect</a></li>
+                            <li class="toc-entry"><a href="#_master_options_background">Background</a></li>
+                            <li class="toc-entry"><a href="#_master_options_customize">Customize</a></li>
+                        </ul>
+                    </li>
+                    <li class="toc-entry"><a href="#_master_events">Events</a></li>
+                    <li class="toc-entry"><a href="#_master_methods">Methods</a></li>
+                </ul>
+            </div>
+
+            <main class="cell-md-9 cell-xl-8 order-1 pr-1-sx pl-1-sx pr-5-md pl-5-md">
+                <div class="place-right d-none d-block-lg" style="width: 200px;">
+                    <img src="images/logo.png" class="w-100">
+                </div>
+
+                <h1>Master</h1>
+                <p class="text-leader">
+                    Do you want to give the user a sequence of actions? Use the Master component from Metro 4.
+                </p>
+
+                <!-- ads-html -->
+
+                <h3 id="_master_about">About</h3>
+                <p>
+                    The <code>master</code> consists of a <code>container</code> and <code>pages</code>. To activate component add <code>data-role="master"</code> to element (container) and define pages. The pages is a block elements with class <code>.page</code>.
+                </p>
+                <div class="example">
+                    <div data-role="master">
+                        <div class="page">Page 1</div>
+                        <div class="page">Page 2</div>
+                        <div class="page">Page 3</div>
+                        <div class="page">Page 4</div>
+                    </div>
+                </div>
+                <pre><code class="html">
+                    &lt;div data-role="master"&gt;
+                        &lt;div class="page"&gt;Page 1&lt;/div&gt;
+                        &lt;div class="page"&gt;Page 2&lt;/div&gt;
+                        &lt;div class="page"&gt;Page 3&lt;/div&gt;
+                        &lt;div class="page"&gt;Page 4&lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
+
+                <h3 id="_master_options">Options</h3>
+                <p>
+                    The <code>master</code> component has a number of options. You can use that options to set style and behavior of component.
+                </p>
+                <table class="table cell-border table-border options-table">
+                    <thead>
+                    <tr>
+                        <th>Options</th>
+                        <th>Data-*</th>
+                        <th>Default</th>
+                        <th>Desc</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>effect</td>
+                        <td><code>data-effect</code></td>
+                        <td>slide</td>
+                        <td>The effect for master page change, can be slide, switch or fade</td>
+                    </tr>
+                    <tr>
+                        <td>effectFunc</td>
+                        <td><code>data-effect-func</code></td>
+                        <td>slide</td>
+                        <td>The easing function for effect</td>
+                    </tr>
+                    <tr>
+                        <td>duration</td>
+                        <td><code>data-duration</code></td>
+                        <td>300</td>
+                        <td>The effect duration</td>
+                    </tr>
+                    <tr>
+                        <td>controlPrev</td>
+                        <td><code>data-control-prev</code></td>
+                        <td>&lt;</td>
+                        <td>Image for prev control. Can be symbol or icon from font or image tag</td>
+                    </tr>
+                    <tr>
+                        <td>controlNext</td>
+                        <td><code>data-control-next</code></td>
+                        <td>&gt;</td>
+                        <td>Image for next control. Can be symbol or icon from font or image tag</td>
+                    </tr>
+                    <tr>
+                        <td>controlTitle</td>
+                        <td><code>data-control-title</code></td>
+                        <td>Master, page $1 of $2</td>
+                        <td>String for master title. Can be contains $1 for current page and $2 for pages count</td>
+                    </tr>
+                    <tr>
+                        <td>backgroundImage</td>
+                        <td><code>data-background-image</code></td>
+                        <td></td>
+                        <td>Background image for master. Also can be customized for each page with data-cover attribute for page.</td>
+                    </tr>
+                    <tr>
+                        <td>clsMaster</td>
+                        <td><code>data-cls-master</code></td>
+                        <td></td>
+                        <td>Additional class for master</td>
+                    </tr>
+                    <tr>
+                        <td>clsControls</td>
+                        <td><code>data-cls-controls</code></td>
+                        <td></td>
+                        <td>Additional class for master prev, next controls</td>
+                    </tr>
+                    <tr>
+                        <td>clsControlPrev</td>
+                        <td><code>data-cls-control-prev</code></td>
+                        <td></td>
+                        <td>Additional class for master prev control</td>
+                    </tr>
+                    <tr>
+                        <td>clsControlNext</td>
+                        <td><code>data-cls-control-next</code></td>
+                        <td></td>
+                        <td>Additional class for master next control</td>
+                    </tr>
+                    <tr>
+                        <td>clsControlTitle</td>
+                        <td><code>data-cls-control-title</code></td>
+                        <td></td>
+                        <td>Additional class for master title</td>
+                    </tr>
+                    <tr>
+                        <td>clsPages</td>
+                        <td><code>data-cls-pages</code></td>
+                        <td></td>
+                        <td>Additional class for master pages wrapper</td>
+                    </tr>
+                    <tr>
+                        <td>clsPage</td>
+                        <td><code>data-cls-page</code></td>
+                        <td></td>
+                        <td>Additional class for master page</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <h4 id="_master_options_title">Setup title</h4>
+                <p>
+                    You can change <code>title</code> for <code>master</code> component.
+                    To change <code>title</code> use attribute <code>data-control-title</code>.
+                    By default this option has value <code>Master, page $1 of $2</code> where $1 - wrapper for current page number and $2 - wrapper for pages count.
+                </p>
+                <div class="example">
+                    <div data-role="master" data-control-title="Ordering, step $1 of $2">
+                        <div class="page">Page 1</div>
+                        <div class="page">Page 2</div>
+                        <div class="page">Page 3</div>
+                        <div class="page">Page 4</div>
+                    </div>
+                </div>
+                <pre><code class="html">
+                    &lt;div data-role="master"
+                        data-control-title="Ordering, step $1 of $2"&gt;
+                        &lt;div class="page"&gt;Page 1&lt;/div&gt;
+                        &lt;div class="page"&gt;Page 2&lt;/div&gt;
+                        &lt;div class="page"&gt;Page 3&lt;/div&gt;
+                        &lt;div class="page"&gt;Page 4&lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
+
+                <h4 id="_master_options_controls">Controls</h4>
+                <p>
+                    To change <code>master control</code> use attributes <code>data-control-prev</code> and <code>data-control-next</code>. Value for thees attributes can be symbol or valid html tag.
+                </p>
+                <div class="example">
+                    <div data-role="master"
+                         data-control-title="Ordering, step $1 of $2"
+                         data-control-prev="<span class='mif-arrow-left'></span>"
+                         data-control-next="<span class='mif-arrow-right'></span>"
+                    >
+                        <div class="page">Page 1</div>
+                        <div class="page">Page 2</div>
+                        <div class="page">Page 3</div>
+                        <div class="page">Page 4</div>
+                    </div>
+                </div>
+                <pre><code class="html">
+                    &lt;div data-role="master"
+                        data-control-title="Ordering, step $1 of $2"
+                         data-control-prev="&lt;span class='mif-arrow-left'&gt;&lt;/span&gt;"
+                         data-control-next="&lt;span class='mif-arrow-right'&gt;&lt;/span&gt;"
+                    &gt;
+                        &lt;div class="page"&gt;Page 1&lt;/div&gt;
+                        &lt;div class="page"&gt;Page 2&lt;/div&gt;
+                        &lt;div class="page"&gt;Page 3&lt;/div&gt;
+                        &lt;div class="page"&gt;Page 4&lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
+
+                <h4 id="_master_options_effect">Effect</h4>
+                <p>
+                    When pages change, this is accompanied by an effect. You have three effects: <code>slide</code>, <code>switch</code> and <code>fade</code>.
+                    To set <code>effect</code> use attribute <code>data-effect</code>.
+                    Also for <code>slide</code> effect you can use additional option <code>effectFunc</code> to set <code>easing</code> function for effect.
+                    To set <code>easing</code> function use attribute <code>data-effect-func</code>.
+                </p>
+                <div class="example">
+                    <div class="d-flex flex-justify-center mb-2">
+                        <input type="radio" data-role="radio" name="r1" value="slide" data-caption="slide" checked onclick="$('#effect-demo').attr('data-effect', this.value)">
+                        <input type="radio" data-role="radio" name="r1" value="fade" data-caption="fade" onclick="$('#effect-demo').attr('data-effect', this.value)">
+                        <input type="radio" data-role="radio" name="r1" value="switch" data-caption="switch" onclick="$('#effect-demo').attr('data-effect', this.value)">
+                    </div>
+                    <div id="effect-demo" data-role="master"
+                         data-control-title="Ordering, step $1 of $2"
+                         data-control-prev="<span class='mif-arrow-left'></span>"
+                         data-control-next="<span class='mif-arrow-right'></span>"
+                    >
+                        <div class="page">
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                        </div>
+                        <div class="page">
+                            It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                        </div>
+                        <div class="page">
+                            The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
+                        </div>
+                    </div>
+                </div>
+                <pre><code class="html">
+                    &lt;div data-role="master" data-effect="fade"&gt;
+                        &lt;div class="page"&gt;Page 1&lt;/div&gt;
+                        &lt;div class="page"&gt;Page 2&lt;/div&gt;
+                        &lt;div class="page"&gt;Page 3&lt;/div&gt;
+                        &lt;div class="page"&gt;Page 4&lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
+
+                <h4 id="_master_options_background">Background</h4>
+                <p>
+                    You can set <code>background</code> for <code>master</code> component.
+                    To set <code>background</code> use attribute <code>data-background-image</code> to set image or <code>data-cls-master</code> to set colored background.
+                </p>
+                <div class="example">
+                    <div data-role="master"
+                         data-background-image="images/bg-2.jpg"
+                         data-cls-control-prev="fg-red h1"
+                         data-cls-control-next="fg-red h1"
+                    >
+                        <div class="page">Page 1</div>
+                        <div class="page">Page 2</div>
+                        <div class="page">Page 3</div>
+                        <div class="page">Page 4</div>
+                    </div>
+                </div>
+                <pre><code>
+                    &lt;div data-role="master"
+                        data-background-image="images/bg-2.jpg"&gt;
+                    ...
+                    &lt;/div&gt;
+                </code></pre>
+                <p>
+                    Also you can change background for each page with <code>data-cover</code> page attribute.
+                </p>
+                <div class="example">
+                    <div data-role="master"
+                         data-cls-control-prev="fg-red h1"
+                         data-cls-control-next="fg-red h1"
+                    >
+                        <div class="page" data-cover="images/bg-2.jpg">Page 1</div>
+                        <div class="page" data-cover="images/bg-3.jpg">Page 2</div>
+                        <div class="page" data-cover="images/bg-4.jpg">Page 3</div>
+                    </div>
+                </div>
+                <pre><code>
+                    &lt;div data-role="master"&gt;
+                        &lt;div class="page" data-cover="images/bg-2.jpg"&gt;Page 1&lt;/div&gt;
+                        &lt;div class="page" data-cover="images/bg-3.jpg"&gt;Page 2&lt;/div&gt;
+                        &lt;div class="page" data-cover="images/bg-4.jpg"&gt;Page 3&lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
+
+                <h4 id="_master_options_customize">Customize</h4>
+                <p>
+                    You can customize <code>master</code>.
+                    To customize use special options with <code>cls</code> prefix.
+                    To set thees options use relevant attributes <code>data-cls-*</code>.
+                </p>
+                <div class="example">
+                    <div data-role="master"
+                         data-control-prev="<span class='mif-arrow-left'></span>"
+                         data-control-next="<span class='mif-arrow-right'></span>"
+                         data-cls-master="ra-master drop-shadow"
+                         data-control-title="$1 of $2"
+                         data-cls-control-title="fg-green h1"
+                    >
+                        <div class="page">Page 1</div>
+                        <div class="page">Page 2</div>
+                        <div class="page">Page 3</div>
+                    </div>
+                </div>
+                <pre><code>
+                    &lt;div data-role="master"
+                         data-control-prev="&lt;span class='mif-arrow-left'&gt;&lt;/span&gt;"
+                         data-control-next="&lt;span class='mif-arrow-right'&gt;&lt;/span&gt;"
+                         data-cls-master="ra-master drop-shadow"
+                         data-control-title="$1 of $2"
+                         data-cls-control-title="fg-green h1"
+                    &gt;
+                        &lt;div class="page" &gt;Page 1&lt;/div&gt;
+                        &lt;div class="page" &gt;Page 2&lt;/div&gt;
+                        &lt;div class="page" &gt;Page 3&lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
+
+                <h3 id="_master_events">Events</h3>
+                <p>
+                    When carousel works, it generated the numbers of events. You can use callback for this events to behavior with component.
+                </p>
+                <table class="table cell-border table-border options-table">
+                    <thead>
+                    <tr>
+                        <th>Event</th>
+                        <th>Data-*</th>
+                        <th>Desc</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>onBeforePage(dir, index, page, element)</td>
+                        <td><code>data-on-before-page</code></td>
+                        <td>Fired before page changed. Can return true or false. When return false, page not changed. Dir has one two string values <b>next</b> or <b>prev</b></td>
+                    </tr>
+                    <tr>
+                        <td>onBeforePrev(index, page, element)</td>
+                        <td><code>data-on-before-prev</code></td>
+                        <td>Fired before page changed. Can return true or false. When return false, page not changed</td>
+                    </tr>
+                    <tr>
+                        <td>onBeforeNext(index, page, element)</td>
+                        <td><code>data-on-before-next</code></td>
+                        <td>Fired before page changed. Can return true or false. When return false, page not changed</td>
+                    </tr>
+                    <tr>
+                        <td>onMasterCreate(el)</td>
+                        <td><code>data-on-master-create</code></td>
+                        <td>Fired when master is created</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="example">
+                    <div class="mx-auto"
+                         data-role="master"
+                         data-cls-master="ra-master"
+                         data-control-prev="<span class='mif-arrow-left'></span>"
+                         data-control-next="<span class='mif-arrow-right'></span>"
+                         data-on-before-page="masterBeforePage">
+
+                        <div class="page">
+                            <form data-role="validator" action="javascript:" data-interactive-check="true">
+                                <select class="mb-2" data-role="select" data-duration="100">
+                                    <optgroup label="Physical servers">
+                                        <option value="dedicated_corei3_hp">Core i3 (hp)</option>
+                                        <option value="dedicated_pentium_hp">Pentium (hp)</option>
+                                        <option value="dedicated_smart_corei3_hp">Smart Core i3 (hp)</option>
+                                        <option value="dedicated_smart_pentium_hp">Smart Pentium (hp)</option>
+                                        <option value="dedicated_smart_xeon_hp">Smart Xeon (hp)</option>
+                                        <option value="dedicated_xeon_hp">Xeon (hp)</option>
+                                        <option value="dedicated_xeon">Xeon</option>
+                                        <option value="dedicated_xeon_sata">Xeon SATA</option>
+                                        <option value="dedicated_dual_xeon">Dual Xeon</option>
+                                        <option value="dedicated_dual_xeon_sata">Dual Xeon SATA</option>
+                                        <option value="dedicated_smart_xeon">Smart Xeon</option>
+                                        <option value="dedicated_smart_xeon_sata">Smart Xeon SATA</option>
+                                        <option value="dedicated_smart_dual_xeon">Smart Dual Xeon</option>
+                                        <option value="dedicated_smart_dual_xeon_sata">Smart Dual Xeon SATA</option>
+                                        <option value="colo_new_2u">Colocation 2U</option>
+                                        <option value="colo_new_4u">Colocation 4U</option>
+                                    </optgroup>
+                                    <optgroup label="Virtual hosting">
+                                        <option value="mini">Mini</option>
+                                        <option value="site">Site</option>
+                                        <option value="portal">Portal</option>
+                                    </optgroup>
+                                    <optgroup label="Virtual servers">
+                                        <option value="evps0">eVPS-TEST (30 days)</option>
+                                        <option value="evps1" selected="selected">eVPS-1</option>
+                                        <option value="evps2">eVPS-2</option>
+                                        <option value="evps4">eVPS-4</option>
+                                        <option value="evps8">eVPS-8</option>
+                                        <option value="evps16">eVPS-16</option>
+                                        <option value="evps32">eVPS-32</option>
+                                        <option value="evps64">eVPS-64</option>
+                                        <option value="evps128">eVPS-128</option>
+                                    </optgroup>
+                                </select>
+
+                                <p>Specify an existing domain name that you want to use for your order</p>
+                                <input id="domain_name" placeholder="Domain (site address)" data-role="input" data-validate="required" data-prepend="www." data-cls-prepend="bg-dark fg-white">
+                                <span class="invalid_feedback text-center">field not filled</span>
+                            </form>
+                        </div>
+                        <div class="page">Page 2</div>
+                        <div class="page">Page 3</div>
+                        <div class="page">Page 4</div>
+
+                    </div>
+                    <script>
+                        function masterBeforePage(dir, index, page, el){
+
+                            if (dir === "next" && index === 0 && $('#domain_name').val() === "") {
+                                Metro.validator.validate($('#domain_name'));
+                                return false;
+                            }
+
+                            return true;
+                        }
+                    </script>
+                </div>
+                <pre><code>
+                    &lt;div data-role="master" data-on-before-page="masterBeforePage"&gt;
+                    ...
+                    &lt;/div&gt;
+                    &lt;script&gt;
+                        function masterBeforePage(dir, index, page, el){
+
+                            if (dir === "next" index === 0 && $('#domain_name').val() === "") {
+                                Metro.validator.validate($('#domain_name'));
+                                return false;
+                            }
+
+                            return true;
+                        }
+                    &lt;/script&gt;
+                </code></pre>
+
+                <h3 id="_master_methods">Methods</h3>
+                <p>
+                    Component master has a number of methods to manipulate component.
+                </p>
+                <table class="table cell-border table-border options-table">
+                    <thead>
+                    <tr>
+                        <th>Method</th>
+                        <th>Desc</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><code>toPage(index)</code></td>
+                        <td>Go to specific page</td>
+                    </tr>
+                    <tr>
+                        <td><code>next()</code></td>
+                        <td>Go to next page</td>
+                    </tr>
+                    <tr>
+                        <td><code>prev()</code></td>
+                        <td>Go to prev page</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <pre><code>
+                    var master = $(element).data('master');
+                    master.toPage(2);
+                    master.next();
+                    master.prev();
+                </code></pre>
+
+            </main>
+        </div>
+
+    </div>
+
+    <script src="docsearch/docsearch.min.js"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="metro/js/metro.js"></script>
+    <script src="highlight/highlight.pack.js"></script>
+    <script src="js/clipboard.min.js"></script>
+    <script src="js/site.js"></script>
+    <!-- ads-script -->
+</body>
+</html>

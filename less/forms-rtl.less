@@ -1,0 +1,81 @@
+input.rtl, input[dir=rtl] {
+    direction: rtl;
+}
+
+.input {
+
+    &[dir=rtl], &.rtl {
+        input {
+            order: 2;
+            direction: rtl;
+        }
+
+        .button-group {
+            order: 1;
+        }
+
+        .prepend {
+            order: 3;
+        }
+
+        flex-flow: row-reverse nowrap;
+    }
+}
+
+.file {
+    &[dir=rtl], &.rtl {
+        .prepend {order: 3}
+        .caption {
+            order: 2;
+            text-align: right;
+        }
+
+        button {
+            order: 1;
+            margin-left: 0;
+            margin-right: auto;
+        }
+    }
+}
+
+.textarea {
+    &[dir=rtl], &.rtl {
+
+        flex-direction: row-reverse;
+
+        .prepend {
+            order: 2;
+        }
+
+        textarea {
+            order: 1;
+        }
+
+        .input-clear-button {
+            right: auto;
+            left: .25rem;
+        }
+
+        .input-clear-button ~ textarea {
+            padding-left: 48px;
+            padding-right: .75rem;
+        }
+    }
+}
+
+.select {
+    &[dir=rtl], &.rtl {
+        flex-direction: row-reverse;
+        input {order: 1;}
+        .prepend {order: 2;}
+
+        &.dropdown-toggle {
+            padding-right: 0!important;
+            padding-left: 1.5rem;
+            &::before {
+                margin-left: 1.25rem;
+                left: 0;
+            }
+        }
+    }
+}

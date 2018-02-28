@@ -1,657 +1,980 @@
 <!DOCTYPE html>
-<html>
-<head lang="en">
+<html lang="en">
+<head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="description" content="Metro, a sleek, intuitive, and powerful framework for faster and easier web development for Windows Metro Style.">
-    <meta name="keywords" content="HTML, CSS, JS, JavaScript, framework, metro, front-end, frontend, web development">
-    <meta name="author" content="Sergey Pimenov and Metro UI CSS contributors">
 
-    <link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
-    <title>Typography :: Metro UI CSS - The front-end framework for developing projects on the web in Windows Metro Style</title>
+    <meta name="twitter:site" content="@metroui">
+    <meta name="twitter:creator" content="@pimenov_sergey">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Metro 4 Components Library">
+    <meta name="twitter:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.">
+    <meta name="twitter:image" content="https://metroui.org.ua/images/m4-logo-social.png">
 
-    <link href="css/metro.css" rel="stylesheet">
-    <link href="css/metro-icons.css" rel="stylesheet">
-    <link href="css/metro-responsive.css" rel="stylesheet">
-    <link href="css/metro-schemes.css" rel="stylesheet">
+    <meta property="og:url" content="https://metroui.org.ua/v4/index.html">
+    <meta property="og:title" content="Metro 4 Components Library">
+    <meta property="og:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:secure_url" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="968">
+    <meta property="og:image:height" content="504">
 
-    <link href="css/docs.css" rel="stylesheet">
+    <meta name="author" content="Sergey Pimenov">
+    <meta name="description" content="Metro 4 offers various tools and classes for displaying elements of typography for your site. This includes titles, paragraphs, lists, various text elements and much more.">
+    <meta name="keywords" content="HTML, CSS, JS, Metro, CSS3, Javascript, HTML5, UI, Library, Web, Development, Framework">
 
-    <script src="js/jquery-2.1.3.min.js"></script>
-    <script src="js/metro.js"></script>
-    <script src="js/docs.js"></script>
-    <script src="//cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
-    <script src="js/ga.js"></script>
-    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
 
+    <link href="metro/css/metro-all.css" rel="stylesheet">
+    <link href="highlight/styles/github.css" rel="stylesheet">
+    <link href="docsearch/docsearch.min.css" rel="stylesheet">
+    <link href="css/site.css" rel="stylesheet">
+
+    <title>Typography - Metro 4 :: Popular HTML, CSS and JS library</title>
 </head>
 <body>
-    <div class="container page-content">
-        <h1><a href="index.html" class="nav-button transform"><span></span></a>&nbsp;Typography</h1>
-
-        @@adsense
-
-        <div class="example" data-text="font">
-            <table class="table bordered">
-                <thead>
-                    <tr>
-                        <td>Var</td>
-                        <td>Font family</td>
-                    </tr>
-                </thead>
-                <tr>
-                    <td>@fontName:</td>
-                    <td>"Segoe UI", "Open Sans", serif;</td>
-                </tr>
-                <tr>
-                    <td>@fontNameLight:</td>
-                    <td>"Segoe UI Light", "Open Sans Light", serif;</td>
-                </tr>
-                <tr>
-                    <td>@fontNameBold:</td>
-                    <td>"Segoe UI Bold", "Open Sans Bold", serif;</td>
-                </tr>
-            </table>
-
-            <p class="bg-grayLighter padding20">
-                The signature user interface font of Metro UI CSS, Segoe, Open Sans and PT Serif Caption. It's a sans serif design drawn in the tradition of signage and way-finding typefaces.
-                For non-windows system used Open Sans fonts, loaded from google fonts.
-            </p>
-        </div>
-
-        <h3>Headings</h3>
-        <div class="example" data-text="headings">
-            <table class="table bordered">
-                <tbody>
-                <tr>
-                    <td>
-                        <h1>h1. Metro heading</h1>
-                        <span>class .leader</span>
-                    </td>
-                    <td class="align-right">36px</td>
-                </tr>
-                <tr>
-                    <td>
-                        <h2>h2. Metro heading</h2>
-                        <span>class .sub-leader</span>
-                    </td>
-                    <td class="align-right">30px</td>
-                </tr>
-                <tr>
-                    <td>
-                        <h3>h3. Metro heading</h3>
-                        <span>class .header</span>
-                    </td>
-                    <td class="align-right">24px</td>
-                </tr>
-                <tr>
-                    <td>
-                        <h4>h4. Metro heading</h4>
-                        <span>class .sub-header</span>
-                    </td>
-                    <td class="align-right">18px</td>
-                </tr>
-                <tr>
-                    <td>
-                        <h5>h5. Metro heading</h5>
-                        <span>class .sub-alt-header</span>
-                    </td>
-                    <td class="align-right">14px</td>
-                </tr>
-                <tr>
-                    <td>
-                        <h6>h6. Metro heading</h6>
-                        <span>class .minor-header</span>
-                    </td>
-                    <td class="align-right">12px</td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <blockquote>
-            Create lighter, secondary text in any heading with a generic &lt;small&gt; tag or the <span class="tag">.small</span> class.
-        </blockquote>
-
-        <div class="example" data-text="headings secondary">
-            <table class="table bordered">
-                <tbody>
-                <tr>
-                    <td>
-                        <h1>h1. Metro heading <small>Secondary text</small></h1>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <h2>h2. Metro heading <small>Secondary text</small></h2>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <h3>h3. Metro heading <small>Secondary text</small></h3>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <h4>h4. Metro heading <small>Secondary text</small></h4>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <h5>h5. Metro heading <small>Secondary text</small></h5>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <h6>h6. Metro heading <small>Secondary text</small></h6>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-
-
-        <div class="example" data-text="paragraph">
-            <h5>Default paragraph</h5>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean luctus lectus sit amet odio ullamcorper malesuada dignissim justo gravida. Pellentesque sagittis, tellus id sagittis accumsan, augue velit pretium urna, ac interdum dui nibh et orci. Quisque dapibus elit ut metus varius ac bibendum sem luctus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis sagittis lorem. Praesent ac eros quam.</p>
-            <p>Praesent molestie bibendum consequat. Suspendisse a felis eu augue venenatis egestas nec ac lectus. Nam nec felis lorem. Maecenas luctus est et nulla cursus vestibulum. Curabitur suscipit adipiscing dui eget sollicitudin. Sed accumsan tincidunt enim, in feugiat ligula ornare et.</p>
-            <h5>Indent paragraph</h5>
-            <p class="indent-paragraph">Nullam libero odio, lacinia vel dignissim sed, consequat ac nisi. Ut at mauris sit amet sem dapibus pretium sit amet sed orci. Quisque tincidunt sodales sollicitudin. Ut purus odio, imperdiet ut laoreet ac, placerat vel ante. Nulla tincidunt sapien in metus tincidunt imperdiet. Vestibulum a dui nisi. Morbi vestibulum nulla lacinia enim tempus ullamcorper.</p>
-        </div>
-
-        <div class="example" data-text="additional text">
-            <h5>.text-default</h5>
-            <p class="text-default">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean luctus lectus sit amet odio ullamcorper malesuada dignissim justo gravida. Pellentesque sagittis, tellus id sagittis accumsan, augue velit pretium urna, ac interdum dui nibh et orci. Quisque dapibus elit ut metus varius ac bibendum sem luctus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis sagittis lorem. Praesent ac eros quam.</p>
-
-            <h5>.text-accent</h5>
-            <p class="text-accent">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean luctus lectus sit amet odio ullamcorper malesuada dignissim justo gravida. Pellentesque sagittis, tellus id sagittis accumsan, augue velit pretium urna, ac interdum dui nibh et orci. Quisque dapibus elit ut metus varius ac bibendum sem luctus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis sagittis lorem. Praesent ac eros quam.</p>
-
-            <h5>.text-secondary</h5>
-            <p class="text-secondary">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean luctus lectus sit amet odio ullamcorper malesuada dignissim justo gravida. Pellentesque sagittis, tellus id sagittis accumsan, augue velit pretium urna, ac interdum dui nibh et orci. Quisque dapibus elit ut metus varius ac bibendum sem luctus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis sagittis lorem. Praesent ac eros quam.</p>
-
-            <h5>.text-small</h5>
-            <p class="text-small">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean luctus lectus sit amet odio ullamcorper malesuada dignissim justo gravida. Pellentesque sagittis, tellus id sagittis accumsan, augue velit pretium urna, ac interdum dui nibh et orci. Quisque dapibus elit ut metus varius ac bibendum sem luctus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis sagittis lorem. Praesent ac eros quam.</p>
-
-            <h5>.text-dashed</h5>
-            <p class="text-dashed">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean luctus lectus sit amet odio ullamcorper malesuada dignissim justo gravida. Pellentesque sagittis, tellus id sagittis accumsan, augue velit pretium urna, ac interdum dui nibh et orci. Quisque dapibus elit ut metus varius ac bibendum sem luctus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis sagittis lorem. Praesent ac eros quam.</p>
-        </div>
-
-        <div class="example" data-text="transform">
-            <h5>.lowercase</h5>
-            <p class="lowercase">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean luctus lectus sit amet odio ullamcorper malesuada dignissim justo gravida. Pellentesque sagittis, tellus id sagittis accumsan, augue velit pretium urna, ac interdum dui nibh et orci. Quisque dapibus elit ut metus varius ac bibendum sem luctus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis sagittis lorem. Praesent ac eros quam.</p>
-
-            <h5>.uppercase</h5>
-            <p class="uppercase">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean luctus lectus sit amet odio ullamcorper malesuada dignissim justo gravida. Pellentesque sagittis, tellus id sagittis accumsan, augue velit pretium urna, ac interdum dui nibh et orci. Quisque dapibus elit ut metus varius ac bibendum sem luctus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis sagittis lorem. Praesent ac eros quam.</p>
-
-            <h5>.capital</h5>
-            <p class="capital">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean luctus lectus sit amet odio ullamcorper malesuada dignissim justo gravida. Pellentesque sagittis, tellus id sagittis accumsan, augue velit pretium urna, ac interdum dui nibh et orci. Quisque dapibus elit ut metus varius ac bibendum sem luctus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis sagittis lorem. Praesent ac eros quam.</p>
-        </div>
-
-        <div class="example" data-text="align">
-            <h5>.align-left</h5>
-            <p class="align-left">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean luctus lectus sit amet odio ullamcorper malesuada dignissim justo gravida. Pellentesque sagittis, tellus id sagittis accumsan, augue velit pretium urna, ac interdum dui nibh et orci. Quisque dapibus elit ut metus varius ac bibendum sem luctus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis sagittis lorem. Praesent ac eros quam.</p>
-
-            <h5>.align-right</h5>
-            <p class="align-right">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean luctus lectus sit amet odio ullamcorper malesuada dignissim justo gravida. Pellentesque sagittis, tellus id sagittis accumsan, augue velit pretium urna, ac interdum dui nibh et orci. Quisque dapibus elit ut metus varius ac bibendum sem luctus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis sagittis lorem. Praesent ac eros quam.</p>
-
-            <h5>.align-justify</h5>
-            <p class="align-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean luctus lectus sit amet odio ullamcorper malesuada dignissim justo gravida. Pellentesque sagittis, tellus id sagittis accumsan, augue velit pretium urna, ac interdum dui nibh et orci. Quisque dapibus elit ut metus varius ac bibendum sem luctus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis sagittis lorem. Praesent ac eros quam.</p>
-
-            <h5>.align-center</h5>
-            <p class="align-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean luctus lectus sit amet odio ullamcorper malesuada dignissim justo gravida. Pellentesque sagittis, tellus id sagittis accumsan, augue velit pretium urna, ac interdum dui nibh et orci. Quisque dapibus elit ut metus varius ac bibendum sem luctus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis sagittis lorem. Praesent ac eros quam.</p>
-
-        </div>
-
-        <div class="example" data-text="v-align-*">
-            <div style="line-height: 30px;" class="padding20 set-border sub-header">
-                <span class="v-align-top margin10">top</span>
-                <span class="v-align-bottom margin10">bottom</span>
-                <span class="v-align-baseline margin10">baseline</span>
-                <span class="v-align-middle margin10">middle</span>
-                <span class="v-align-sub margin10">sub</span>
-                <span class="v-align-super margin10">super</span>
-                <span class="v-align-top-text margin10">top-text</span>
-                <span class="v-align-bottom-text margin10">bottom-text</span>
+    <div class="container-fluid" id="content">
+        <div class="row flex-xl-nowrap">
+            <div class="cell-md-3 cell-xl-2 pr-0 border-right bd-light" id="sidenav">
             </div>
-            <table class="table bordered">
-                <tr>
-                    <td class="v-align-top" style="height: 100px;">top</td>
-                    <td class="v-align-bottom" style="height: 30px">bottom</td>
-                    <td class="v-align-baseline" style="height: 30px">baseline</td>
-                    <td class="v-align-middle" style="height: 30px">middle</td>
-                    <td class="v-align-sub" style="height: 30px">sub</td>
-                    <td class="v-align-super" style="height: 30px">super</td>
-                    <td class="v-align-top-text" style="height: 30px">top-text</td>
-                    <td class="v-align-bottom-text" style="height: 30px">bottom-text</td>
-                </tr>
-            </table>
-        </div>
 
-        <div class="example" data-text="abbr">
-            <p>Lorem ipsum dolor sit amet, <abbr title="this is a abbreviation">consectetur</abbr> adipiscing elit.</p>
-        </div>
-
-        <div class="example" data-text="addr">
-            <address>
-                <strong>Metro UI CSS</strong><br>
-                Khreschatyk str, Suite 1<br>
-                Kiev, Ukraine 01001<br>
-                <abbr title="Phone">P:</abbr> (123) 456-7890
-            </address>
-            <address>
-                <strong>Full Name</strong><br>
-                <a href="mailto:#">first.last@example.com</a>
-            </address>
-        </div>
-
-        <div class="example" data-text="blockquote">
-            <blockquote>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                <small>Someone famous <cite title="Source Title">Source Title</cite></small>
-            </blockquote>
-            <hr class="thin">
-            <blockquote class="place-right">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                <small>Someone famous <cite title="Source Title">Source Title</cite></small>
-            </blockquote>
-        </div>
-
-        <div class="example" data-text="lists">
-            <div class="grid">
-                <div class="row cells2">
-                    <div class="cell">
-                        <h5>Unordered list</h5>
+            <div class="d-none d-block-xl cell-xl-2 order-2 border-left bd-light toc-wrapper">
+                <h5>Table of contents</h5>
+                <hr/>
+                <ul class="toc-nav">
+                    <li class="toc-entry"><a href="#">Typography</a></li>
+                    <li class="toc-entry"><a href="#_reset">Reset</a></li>
+                    <li class="toc-entry"><a href="#_font_stack">Font stack</a></li>
+                    <li class="toc-entry"><a href="#_headings">Headings</a></li>
+                    <li class="toc-entry"><a href="#_super_headings">Super headings</a></li>
+                    <li class="toc-entry"><a href="#_paragraph">Paragraph</a></li>
+                    <li>
                         <ul>
-                            <li>Lorem ipsum dolor sit amet</li>
-                            <li>Consectetur adipiscing elit</li>
-                            <li>Integer molestie lorem at massa</li>
-                            <li>Facilisis in pretium nisl aliquet</li>
-                            <li>Nulla volutpat aliquam velit
-                                <ul>
-                                    <li>Phasellus iaculis neque</li>
-                                    <li>Purus sodales ultricies</li>
-                                    <li>Vestibulum laoreet porttitor sem</li>
-                                    <li>Ac tristique libero volutpat at
-                                        <ul>
-                                            <li>Phasellus iaculis neque</li>
-                                            <li>Purus sodales ultricies</li>
-                                            <li>Vestibulum laoreet porttitor sem</li>
-                                            <li>Ac tristique libero volutpat at</li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>Faucibus porta lacus fringilla vel</li>
-                            <li>Aenean sit amet erat nunc</li>
-                            <li>Eget porttitor lorem</li>
+                            <li class="toc-entry"><a href="#_paragraph_default">Defaults</a></li>
+                            <li class="toc-entry"><a href="#_paragraph_lead">Leader</a></li>
+                            <li class="toc-entry"><a href="#_paragraph_secondary">Secondary &amp; Small</a></li>
+                            <li class="toc-entry"><a href="#_paragraph_indents">Indents</a></li>
                         </ul>
-                    </div>
-                    <div class="cell">
-                        <h5>Ordered list</h5>
-                        <ol>
-                            <li>Lorem ipsum dolor sit amet</li>
-                            <li>Consectetur adipiscing elit</li>
-                            <li>Integer molestie lorem at massa</li>
-                            <li>Facilisis in pretium nisl aliquet</li>
-                            <li>Nulla volutpat aliquam velit
-                                <ol>
-                                    <li>Phasellus iaculis neque</li>
-                                    <li>Purus sodales ultricies</li>
-                                    <li>Vestibulum laoreet porttitor sem</li>
-                                    <li>Ac tristique libero volutpat at
-                                        <ol>
-                                            <li>Phasellus iaculis neque</li>
-                                            <li>Purus sodales ultricies</li>
-                                            <li>Vestibulum laoreet porttitor sem</li>
-                                            <li>Ac tristique libero volutpat at</li>
-                                        </ol>
-                                    </li>
-                                </ol>
-                            </li>
-                            <li>Faucibus porta lacus fringilla vel</li>
-                            <li>Aenean sit amet erat nunc</li>
-                            <li>Eget porttitor lorem</li>
-                        </ol>
-                    </div>
-                </div>
+                    </li>
+                    <li class="toc-entry"><a href="#_inline_elements">Inline elements</a></li>
+                    <li class="toc-entry"><a href="#_abbr">Abbreviations</a></li>
+                    <li class="toc-entry"><a href="#_addr">Address</a></li>
+                    <li class="toc-entry"><a href="#_blockquotes">Blockquotes</a></li>
+                    <li class="toc-entry"><a href="#_remarks">Remarks</a></li>
+                    <li class="toc-entry"><a href="#_lists">Lists</a></li>
+                    <li>
+                        <ul>
+                            <li class="toc-entry"><a href="#_lists_unstyled">Unstyled</a></li>
+                            <li class="toc-entry"><a href="#_lists_unordered">Unordered</a></li>
+                            <li class="toc-entry"><a href="#_lists_ordered">Ordered</a></li>
+                            <li class="toc-entry"><a href="#_lists_inline">Inline</a></li>
+                            <li class="toc-entry"><a href="#_lists_desc">Description list</a></li>
+                        </ul>
+                    </li>
+                    <li class="toc-entry">
+                        <a href="#_tally">Code</a>
+                        <ul>
+                            <li class="toc-entry"><a href="#_code_inline">Inline code</a></li>
+                            <li class="toc-entry"><a href="#_code_vars">Variables</a></li>
+                            <li class="toc-entry"><a href="#_user_input">User input</a></li>
+                            <li class="toc-entry"><a href="#_sample_output">Sample output</a></li>
+                        </ul>
+                    </li>
+                    <li class="toc-entry"><a href="#_ellipsis">Text ellipsis</a></li>
+                    <li class="toc-entry"><a href="#_text_transform">Transform</a></li>
+                    <li class="toc-entry"><a href="#_text_alignment">Alignment</a></li>
+                    <li class="toc-entry"><a href="#_text_weight">Font weight</a></li>
+                    <li class="toc-entry"><a href="#_responsive">Responsive</a></li>
+                </ul>
+
             </div>
-        </div>
 
-        <div class="example" data-text="stylized lists">
-            <div class="grid">
-                <h5>Default bullets</h5>
-                <div class="row cells3">
-                    <div class="cell">
-                        <h5>.simple-list</h5>
-                        <ul class="simple-list">
-                            <li>Lorem ipsum dolor sit amet</li>
-                            <li>Consectetur adipiscing elit</li>
-                            <li>Integer molestie lorem at massa</li>
-                            <li>Facilisis in pretium nisl aliquet</li>
-                            <li>Nulla volutpat aliquam velit</li>
-                            <li>Faucibus porta lacus fringilla vel</li>
-                            <li>Aenean sit amet erat nunc</li>
-                            <li>Eget porttitor lorem</li>
-                        </ul>
-                    </div>
-                    <div class="cell">
-                        <h5>.numeric-list</h5>
-                        <ol class="numeric-list">
-                            <li>Lorem ipsum dolor sit amet</li>
-                            <li>Consectetur adipiscing elit</li>
-                            <li>Integer molestie lorem at massa</li>
-                            <li>Facilisis in pretium nisl aliquet</li>
-                            <li>Nulla volutpat aliquam velit</li>
-                            <li>Faucibus porta lacus fringilla vel</li>
-                            <li>Aenean sit amet erat nunc</li>
-                            <li>Eget porttitor lorem</li>
-                        </ol>
-                    </div>
-                    <div class="cell">
-                        <h5>.numeric-list.square-marker</h5>
-                        <ol class="numeric-list square-marker">
-                            <li>Lorem ipsum dolor sit amet</li>
-                            <li>Consectetur adipiscing elit</li>
-                            <li>Integer molestie lorem at massa</li>
-                            <li>Facilisis in pretium nisl aliquet</li>
-                            <li>Nulla volutpat aliquam velit</li>
-                            <li>Faucibus porta lacus fringilla vel</li>
-                            <li>Aenean sit amet erat nunc</li>
-                            <li>Eget porttitor lorem</li>
-                        </ol>
-                    </div>
+            <main class="cell-md-9 cell-xl-8 order-1 pr-1-sx pl-1-sx pr-5-md pl-5-md">
+                <div class="place-right d-none d-block-lg" style="width: 200px;">
+                    <img src="images/logo.png" class="w-100">
                 </div>
 
-                <h5>Large bullets</h5>
-                <div class="row cells3">
-                    <div class="cell">
-                        <h5>.simple-list</h5>
-                        <ul class="simple-list large-bullet">
-                            <li>Lorem ipsum dolor sit amet</li>
-                            <li>Consectetur adipiscing elit</li>
-                            <li>Integer molestie lorem at massa</li>
-                            <li>Facilisis in pretium nisl aliquet</li>
-                            <li>Nulla volutpat aliquam velit</li>
-                            <li>Faucibus porta lacus fringilla vel</li>
-                            <li>Aenean sit amet erat nunc</li>
-                            <li>Eget porttitor lorem</li>
-                        </ul>
-                    </div>
-                    <div class="cell">
-                        <h5>.numeric-list</h5>
-                        <ol class="numeric-list large-bullet">
-                            <li>Lorem ipsum dolor sit amet</li>
-                            <li>Consectetur adipiscing elit</li>
-                            <li>Integer molestie lorem at massa</li>
-                            <li>Facilisis in pretium nisl aliquet</li>
-                            <li>Nulla volutpat aliquam velit</li>
-                            <li>Faucibus porta lacus fringilla vel</li>
-                            <li>Aenean sit amet erat nunc</li>
-                            <li>Eget porttitor lorem</li>
-                        </ol>
-                    </div>
-                    <div class="cell">
-                        <h5>.numeric-list.square-marker</h5>
-                        <ol class="numeric-list square-marker large-bullet">
-                            <li>Lorem ipsum dolor sit amet</li>
-                            <li>Consectetur adipiscing elit</li>
-                            <li>Integer molestie lorem at massa</li>
-                            <li>Facilisis in pretium nisl aliquet</li>
-                            <li>Nulla volutpat aliquam velit</li>
-                            <li>Faucibus porta lacus fringilla vel</li>
-                            <li>Aenean sit amet erat nunc</li>
-                            <li>Eget porttitor lorem</li>
-                        </ol>
-                    </div>
+                <h1>Typography</h1>
+                <p class="text-leader">
+                    Metro 4 offers various tools and classes for displaying elements of typography for your site. This includes titles, paragraphs, lists, various text elements and much more.
+                </p>
+
+                <!-- ads-html -->
+
+                <h3 id="_reset">Reset</h3>
+
+                <p>
+                    In Metro 4 reset method based on Eric Meyer’s <a href="http://meyerweb.com/eric/tools/css/reset/">"Reset CSS" 2.0</a> and include additional rules.
+                </p>
+
+                <p>
+                    The <span class="tally">&lt;html&gt;</span> and <span class="tally">&lt;body&gt;</span> elements are updated to provide better page-wide defaults. More specifically:
+                </p>
+
+                <ul>
+                    <li>
+                        The <span class="tally">box-sizing</span> is globally set on every element—including <span class="tally">*:before</span> and <span class="tally">*:after</span>, to <span class="tally">border-box</span>.
+                        This ensures that the declared width of element is never exceeded due to padding or border.
+                    </li>
+                    <li>
+                        The <span class="tally">&lt;body&gt;</span> also sets a global <span class="tally">font-family</span> and <span class="tally">line-height</span>. This is inherited later by some form elements to prevent font inconsistencies.
+                    </li>
+                    <li>
+                        For safety, the <span class="tally">&lt;body&gt;</span> has a declared <span class="tally">background-color</span>, defaulting to <span class="tally">#fff</span> (white).
+                    </li>
+                </ul>
+
+                <!-- Font stack -->
+
+                <h3 id="_font_stack">Native font stack</h3>
+                <p>
+                    In Metro 4 i use a "native font stack" for optimum text rendering on every device and OS. Read more about native font stacks in this <a href="https://www.smashingmagazine.com/2015/11/using-system-ui-fonts-practical-guide/">Smashing Magazine article</a>.
+                </p>
+
+                <pre class=""><code>
+                    @fontName:  -apple-system,
+                                system-ui,
+                                BlinkMacSystemFont,
+                                "Segoe UI", "Roboto", "Ubuntu",
+                                "Helvetica Neue", sans-serif;
+                </code></pre>
+
+
+                <table class="table row-border">
+                    <thead>
+                    <tr>
+                        <th colspan="2">Match table for font family and OS</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>-apple-system</td>
+                        <td>Safari for OS X and iOS (San Francisco)</td>
+                    </tr>
+                    <tr>
+                        <td>system-ui</td>
+                        <td>Chrome >= 56 for OS X (San Francisco), Windows, Linux and Android</td>
+                    </tr>
+                    <tr>
+                        <td>BlinkMacSystemFont</td>
+                        <td>Chrome < 56 for OS X (San Francisco)</td>
+                    </tr>
+                    <tr>
+                        <td>Segoe UI</td>
+                        <td>Windows</td>
+                    </tr>
+                    <tr>
+                        <td>Roboto</td>
+                        <td>Android</td>
+                    </tr>
+                    <tr>
+                        <td>Ubuntu</td>
+                        <td>Linux</td>
+                    </tr>
+                    <tr>
+                        <td>Helvetica Neue, sans-serif</td>
+                        <td>Basic web fallback</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <!-- Headings -->
+
+                <h3 id="_headings">Headings</h3>
+                <p>
+                    In Metro 4 You can access all kinds of headings from <span class="tally">h1</span> through <span class="tally">h6</span>.
+                </p>
+
+                <table class="table row-border">
+                    <tbody>
+                    <tr>
+                        <td style="width: 150px"><span class="tally">&lt;h1&gt;</span></td>
+                        <td class="d-none d-block-md"><span class="h1">h1. Metro heading</span></td>
+                        <td>48px</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tally">&lt;h2&gt;</span></td>
+                        <td class="d-none d-block-md"><span class="h2">h2. Metro heading</span></td>
+                        <td>32px</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tally">&lt;h3&gt;</span></td>
+                        <td class="d-none d-block-md"><span class="h3">h3. Metro heading</span></td>
+                        <td>28px</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tally">&lt;h4&gt;</span></td>
+                        <td class="d-none d-block-md"><span class="h4">h4. Metro heading</span></td>
+                        <td>24px</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tally">&lt;h5&gt;</span></td>
+                        <td class="d-none d-block-md"><span class="h5">h5. Metro heading</span></td>
+                        <td>20px</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tally">&lt;h6&gt;</span></td>
+                        <td class="d-none d-block-md"><span class="h6">h6. Metro heading</span></td>
+                        <td>18px</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <p>
+                    If you want to create a header element without using tags <span class="tally">&lt;h1&gt; - &lt;h6&gt;</span>, Metro 4 present relevant classes: <span class="tally">.h1</span> through <span class="tally">.h6</span>.  You can also use the following additional classes:
+                </p>
+
+                <table class="table row-border">
+                    <thead>
+                    <tr>
+                        <th>Tag</th>
+                        <th>Class</th>
+                        <th>Additional</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><code>&lt;h1&gt;</code></td>
+                        <td>.h1</td>
+                        <td>.leader</td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;h2&gt;</code></td>
+                        <td>.h2</td>
+                        <td>.sub-leader</td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;h3&gt;</code></td>
+                        <td>.h2</td>
+                        <td>.header</td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;h4&gt;</code></td>
+                        <td>.h4</td>
+                        <td>.sub-header</td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;h5&gt;</code></td>
+                        <td>.h5</td>
+                        <td>.alt-header</td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;h6&gt;</code></td>
+                        <td>.h6</td>
+                        <td>.sub-alt-header</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <h4>Heading secondary text</h4>
+                <p>
+                    You can create lighter, secondary text in any heading with a generic <span class="tally">&lt;small&gt;</span> tag or the <span class="tally">.small</span> class.
+                </p>
+
+                <table class="table row-border">
+                    <tbody>
+                    <tr>
+                        <td><code>&lt;h1&gt;</code></td>
+                        <td><h1>Header <small>Secondary</small></h1></td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;h2&gt;</code></td>
+                        <td><h2>Header <small>Secondary</small></h2></td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;h3&gt;</code></td>
+                        <td><h3>Header <small>Secondary</small></h3></td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;h4&gt;</code></td>
+                        <td><h4>Header <small>Secondary</small></h4></td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;h5&gt;</code></td>
+                        <td><h5>Header <small>Secondary</small></h5></td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;h6&gt;</code></td>
+                        <td><h6>Header <small>Secondary</small></h6></td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <pre class=""><code>
+                    &lt;h1&gt;Header &lt;small&gt;Secondary&lt;/small&gt;&lt;/h1&gt;
+                </code></pre>
+
+                <!-- Super headings -->
+
+                <h3 id="_super_headings">Super headings</h3>
+                <p>
+                    Metro 4 support super headings: <span class="tally">.display1</span>, <span class="tally">.display2</span>, <span class="tally">.display3</span>, <span class="tally">.display4</span>.
+                </p>
+
+                <table class="table row-border">
+                    <tbody>
+                    <tr>
+                        <td style="width: 150px;"><span class="tally">.display4</span></td>
+                        <td class="d-none d-block-md"><span class="display4">Display4</span></td>
+                        <td>112px</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tally">.display3</span></td>
+                        <td class="d-none d-block-md"><span class="display3">Display3</span></td>
+                        <td>56px</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tally">.display2</span></td>
+                        <td class="d-none d-block-md"><span class="display2">Display2</span></td>
+                        <td>48px</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tally">.display1</span></td>
+                        <td class="d-none d-block-md"><span class="display1">Display1</span></td>
+                        <td>36px</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <!-- Paragraphs -->
+
+                <h3 id="_paragraph">Paragraph</h3>
+
+                <p class="text-leader">
+                    Metro 4 provides various classes for creating and working with paragraphs.
+                </p>
+
+                <h4 id="_paragraph_default">Default paragraph</h4>
+                <p>
+                    In Metro 4 default paragraph styled with <span class="tally">line-height</span> <span class="tally">1.5</span> value, <span class="tally">margin-bottom</span> <span class="tally">16px</span> and <span class="tally">font-size</span> <span class="tally">16px</span>.
+                </p>
+
+                <div class="example">
+                    <p>
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                    </p>
                 </div>
 
-                <h5>Colored bullets</h5>
-                <div class="row cells5">
-                    <div class="cell">
-                        <h5>.dark-bullet</h5>
-                        <ul class="simple-list large-bullet dark-bullet">
-                            <li>Lorem ipsum</li>
-                            <li>Lorem ipsum</li>
-                            <li>Lorem ipsum</li>
-                            <li>Lorem ipsum</li>
-                        </ul>
-                    </div>
-                    <div class="cell">
-                        <h5>.red-bullet</h5>
-                        <ul class="simple-list large-bullet red-bullet">
-                            <li>Lorem ipsum</li>
-                            <li>Lorem ipsum</li>
-                            <li>Lorem ipsum</li>
-                            <li>Lorem ipsum</li>
-                        </ul>
-                    </div>
-                    <div class="cell">
-                        <h5>.green-bullet</h5>
-                        <ul class="simple-list large-bullet green-bullet">
-                            <li>Lorem ipsum</li>
-                            <li>Lorem ipsum</li>
-                            <li>Lorem ipsum</li>
-                            <li>Lorem ipsum</li>
-                        </ul>
-                    </div>
-                    <div class="cell">
-                        <h5>.blue-bullet</h5>
-                        <ul class="simple-list large-bullet blue-bullet">
-                            <li>Lorem ipsum</li>
-                            <li>Lorem ipsum</li>
-                            <li>Lorem ipsum</li>
-                            <li>Lorem ipsum</li>
-                        </ul>
-                    </div>
-                    <div class="cell">
-                        <h5>.yellow-bullet</h5>
-                        <ul class="simple-list large-bullet yellow-bullet">
-                            <li>Lorem ipsum</li>
-                            <li>Lorem ipsum</li>
-                            <li>Lorem ipsum</li>
-                            <li>Lorem ipsum</li>
-                        </ul>
-                    </div>
+                <pre class=""><code>
+                    &lt;p&gt;...&lt;/p&gt;
+                </code></pre>
+
+                <h4 id="_paragraph_lead">Leader text</h4>
+
+                <p>
+                    To make leader paragraph use class: <span class="tally">.text-leader</span> and <span class="tally">.text-leader2</span>.
+                </p>
+
+                <div class="example">
+                    <p class="text-leader">
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                    </p>
+                    <p class="text-leader2">
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                    </p>
                 </div>
 
-                <div class="row cells5">
-                    <div class="cell">
-                        <h5>.dark-bullet</h5>
-                        <ul class="numeric-list large-bullet dark-bullet">
-                            <li>Lorem ipsum</li>
-                            <li>Lorem ipsum</li>
-                            <li>Lorem ipsum</li>
-                            <li>Lorem ipsum</li>
-                        </ul>
-                    </div>
-                    <div class="cell">
-                        <h5>.red-bullet</h5>
-                        <ul class="numeric-list large-bullet red-bullet">
-                            <li>Lorem ipsum</li>
-                            <li>Lorem ipsum</li>
-                            <li>Lorem ipsum</li>
-                            <li>Lorem ipsum</li>
-                        </ul>
-                    </div>
-                    <div class="cell">
-                        <h5>.green-bullet</h5>
-                        <ul class="numeric-list large-bullet green-bullet">
-                            <li>Lorem ipsum</li>
-                            <li>Lorem ipsum</li>
-                            <li>Lorem ipsum</li>
-                            <li>Lorem ipsum</li>
-                        </ul>
-                    </div>
-                    <div class="cell">
-                        <h5>.blue-bullet</h5>
-                        <ul class="numeric-list large-bullet blue-bullet">
-                            <li>Lorem ipsum</li>
-                            <li>Lorem ipsum</li>
-                            <li>Lorem ipsum</li>
-                            <li>Lorem ipsum</li>
-                        </ul>
-                    </div>
-                    <div class="cell">
-                        <h5>.yellow-bullet</h5>
-                        <ul class="numeric-list large-bullet yellow-bullet">
-                            <li>Lorem ipsum</li>
-                            <li>Lorem ipsum</li>
-                            <li>Lorem ipsum</li>
-                            <li>Lorem ipsum</li>
-                        </ul>
-                    </div>
+                <pre class=""><code>
+                    &lt;p class="text-leader"&gt;...&lt;/p&gt;
+                    &lt;p class="text-leader2"&gt;...&lt;/p&gt;
+                </code></pre>
+
+                <h4 id="_paragraph_secondary">Secondary &amp; Small</h4>
+
+                <p>
+                    To make secondary and small paragraph use classes: <span class="tally">.text-secondary</span> and <span class="tally">.text-small</span>.
+                </p>
+
+                <div class="example">
+                    <p class="text-secondary">
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                    </p>
+                    <p class="text-small">
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                    </p>
                 </div>
 
-                <div class="row cells5">
-                    <div class="cell">
-                        <h5>.dark-bullet</h5>
-                        <ul class="numeric-list large-bullet dark-bullet square-bullet">
-                            <li>Lorem ipsum</li>
-                            <li>Lorem ipsum</li>
-                            <li>Lorem ipsum</li>
-                            <li>Lorem ipsum</li>
-                        </ul>
-                    </div>
-                    <div class="cell">
-                        <h5>.red-bullet</h5>
-                        <ul class="numeric-list large-bullet red-bullet square-bullet">
-                            <li>Lorem ipsum</li>
-                            <li>Lorem ipsum</li>
-                            <li>Lorem ipsum</li>
-                            <li>Lorem ipsum</li>
-                        </ul>
-                    </div>
-                    <div class="cell">
-                        <h5>.green-bullet</h5>
-                        <ul class="numeric-list large-bullet green-bullet square-bullet">
-                            <li>Lorem ipsum</li>
-                            <li>Lorem ipsum</li>
-                            <li>Lorem ipsum</li>
-                            <li>Lorem ipsum</li>
-                        </ul>
-                    </div>
-                    <div class="cell">
-                        <h5>.blue-bullet</h5>
-                        <ul class="numeric-list large-bullet blue-bullet square-bullet">
-                            <li>Lorem ipsum</li>
-                            <li>Lorem ipsum</li>
-                            <li>Lorem ipsum</li>
-                            <li>Lorem ipsum</li>
-                        </ul>
-                    </div>
-                    <div class="cell">
-                        <h5>.yellow-bullet</h5>
-                        <ul class="numeric-list large-bullet yellow-bullet square-bullet">
-                            <li>Lorem ipsum</li>
-                            <li>Lorem ipsum</li>
-                            <li>Lorem ipsum</li>
-                            <li>Lorem ipsum</li>
-                        </ul>
+                <pre class=""><code>
+                    &lt;p class="text-secondary"&gt;...&lt;/p&gt;
+                    &lt;p class="text-small"&gt;...&lt;/p&gt;
+                </code></pre>
+
+                <h4 id="_paragraph_indents">Indents</h4>
+                <div class="example">
+                    <p class="indent">
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                    </p>
+                    <p class="indent-letter">
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                    </p>
+                </div>
+
+                <pre class=""><code>
+                    &lt;p class='indent'&gt;...&lt;/p&gt;
+                    &lt;p class='indent-letter'&gt;...&lt;/p&gt;
+                </code></pre>
+
+                <h3 id="_inline_elements">Inline text elements</h3>
+
+                <p>Styling for common inline HTML5 elements.</p>
+
+                <div class="example">
+                    <p>You can use the mark tag to <mark>highlight</mark> text.</p>
+                    <p><del>This line of text is meant to be treated as deleted text.</del></p>
+                    <p><s>This line of text is meant to be treated as no longer accurate.</s></p>
+                    <p><ins>This line of text is meant to be treated as an addition to the document.</ins></p>
+                    <p><u>This line of text will render as underlined</u></p>
+                    <p><small>This line of text is meant to be treated as fine print.</small></p>
+                    <p><strong>This line rendered as bold text.</strong></p>
+                    <p><em>This line rendered as italicized text.</em></p>
+                </div>
+
+                <pre class=""><code>
+                    &lt;p&gt;You can use the mark tag to &lt;mark&gt;highlight&lt;/mark&gt; text.&lt;/p&gt;
+                    &lt;p&gt;&lt;del&gt;This line of text is meant to be treated as deleted text.&lt;/del&gt;&lt;/p&gt;
+                    &lt;p&gt;&lt;s&gt;This line of text is meant to be treated as no longer accurate.&lt;/s&gt;&lt;/p&gt;
+                    &lt;p&gt;&lt;ins&gt;This line of text is meant to be treated as an addition to the document.&lt;/ins&gt;&lt;/p&gt;
+                    &lt;p&gt;&lt;u&gt;This line of text will render as underlined&lt;/u&gt;&lt;/p&gt;
+                    &lt;p&gt;&lt;small&gt;This line of text is meant to be treated as fine print.&lt;/small&gt;&lt;/p&gt;
+                    &lt;p&gt;&lt;strong&gt;This line rendered as bold text.&lt;/strong&gt;&lt;/p&gt;
+                    &lt;p&gt;&lt;em&gt;This line rendered as italicized text.&lt;/em&gt;&lt;/p&gt;
+                </code></pre>
+
+                <h3 id="_abbr">Abbreviations</h3>
+                <p>
+                    Stylized implementation of HTML’s <span class="tally">&lt;abbr&gt;</span>  element for abbreviations and acronyms to show the expanded version on hover.
+                    Abbreviations have a default underline and gain a help cursor to provide additional context on hover and to users of assistive technologies.
+                </p>
+
+                <div class="example">
+                    <abbr title="this is a abbreviation">Abbreviation</abbr>
+                </div>
+
+                <pre class=""><code>
+                    &lt;abbr title="this is a abbreviation"&gt;Abbreviation&lt;/abbr&gt;
+                </code></pre>
+
+                <h3 id="_addr">Address</h3>
+                <p>
+                    Stylized implementation of HTML’s <span class="tally">&lt;addr&gt;</span>  element for creating address.
+                </p>
+
+                <div class="example">
+                    <address>
+                        <strong>Metro 4</strong><br>
+                        Khreschatyk str, Suite 1<br>
+                        Kiev, Ukraine 01001<br>
+                        <abbr title="Phone">P:</abbr> (123) 456-7890
+                    </address>
+
+                    <address>
+                        <strong>Full Name</strong><br>
+                        <a href="mailto:#">first.last@example.com</a>
+                    </address>
+                </div>
+
+                <pre class=""><code>
+                    &lt;address&gt;
+                        &lt;strong&gt;Metro 4&lt;/strong&gt;&lt;br&gt;
+                        Khreschatyk str, Suite 1&lt;br&gt;
+                        Kiev, Ukraine 01001&lt;br&gt;
+                        &lt;abbr title="Phone"&gt;P:&lt;/abbr&gt; (123) 456-7890
+                    &lt;/address&gt;
+
+                    &lt;address&gt;
+                        &lt;strong&gt;Full Name&lt;/strong&gt;&lt;br&gt;
+                        &lt;a href="mailto:#"&gt;first.last@example.com&lt;/a&gt;
+                    &lt;/address&gt;
+                </code></pre>
+
+                <h3 id="_blockquotes">Blockquotes</h3>
+                <p>
+                    For quoting blocks of content from another source within your document.
+                </p>
+
+                <div class="example clear">
+                    <blockquote>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                        <small>Someone famous <cite title="Source Title">Source Title</cite></small>
+                    </blockquote>
+
+
+                    <blockquote class="place-right">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                        <small>Someone famous <cite title="Source Title">Source Title</cite></small>
+                    </blockquote>
+                </div>
+
+                <pre class=""><code>
+                    &lt;blockquote&gt;
+                        &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit.&lt;/p&gt;
+                        &lt;small&gt;Someone famous
+                            &lt;cite title="Source Title"&gt;Source Title&lt;/cite&gt;
+                        &lt;/small&gt;
+                    &lt;/blockquote&gt;
+
+                    &lt;blockquote class="place-right"&gt;
+                        &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit.&lt;/p&gt;
+                        &lt;small&gt;Someone famous
+                            &lt;cite title="Source Title"&gt;Source Title&lt;/cite&gt;
+                        &lt;/small&gt;
+                    &lt;/blockquote&gt;
+                </code></pre>
+
+                <h3 id="_remarks">Remarks</h3>
+                <p>
+                    For quoting blocks of content you can add class <code>.remark</code> to block or paragraph.
+                </p>
+                <div class="example">
+                    <div class="remark">
+                        Sunt demissioes transferre festus, fortis fugaes. Cauliflower combines greatly with sticky ginger.
                     </div>
                 </div>
-            </div>
-        </div>
-
-        <div class="example" data-text="stylized lists">
-            <div class="grid">
-                <div class="row ">
-                    <div class="cell">
-                        <h5>.step-list</h5>
-                        <ul class="step-list">
-                            <li>
-                                <h2 class="no-margin-top">Improve user sign-in experience</h2>
-                                <hr class="bg-red" />
-                                <div>
-                                    Add a custom domain so that your users can sign in with familiar user names. For example, if your organization owns ‘contoso.com’, users can sign in Azure AD with user names such as ‘joe@contoso.com’.
-                                    <br />
-                                    <br />
-                                    <button class="button danger">Add domain</button>
-                                </div>
-                            </li>
-                            <li>
-                                <h2 class="no-margin-top">Integrate with your local directory</h2>
-                                <hr class="bg-green" />
-                                <div>
-                                    Use the same user accounts and groups in the cloud that you already use on premises.
-                                    <br />
-                                    <a href="">Set up directory integration</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="">Download the preview of Azure AD Content</a>
-                                    <br />
-                                    <br />
-                                    <button class="button success">Add domain</button>
-                                </div>
-                            </li>
-                            <li>
-                                <h2 class="no-margin-top">Get Azure AD Premium</h2>
-                                <hr  class="bg-blue"/>
-                                <div>
-                                    Improve access management experiences for end users and administrators, including self service password reset, group management, sign in customization, and reporting.
-                                    <br />
-                                    <br />
-                                    <button class="button primary">Add domain</button>
-                                </div>
-                            </li>
-                        </ul>
+                <pre class=""><code>
+                    &lt;div class="remark"&gt;
+                        ...
+                    &lt;/div&gt;
+                </code></pre>
+                <p>
+                    In additional you can add accent colors subclasses to remarks:
+                        <span class="tally">.primary</span>,
+                        <span class="tally">.secondary</span>,
+                        <span class="tally">.success</span>,
+                        <span class="tally">.alert</span>,
+                        <span class="tally">.warning</span>,
+                        <span class="tally">.yellow</span>,
+                        <span class="tally">.info</span>,
+                        <span class="tally">.dark</span>.
+                </p>
+                <div class="example">
+                    <div class="remark primary">
+                        Sunt demissioes transferre festus, fortis fugaes. Cauliflower combines greatly with sticky ginger.
+                    </div>
+                    <div class="remark warning">
+                        Sunt demissioes transferre festus, fortis fugaes. Cauliflower combines greatly with sticky ginger.
+                    </div>
+                    <div class="remark info">
+                        Sunt demissioes transferre festus, fortis fugaes. Cauliflower combines greatly with sticky ginger.
+                    </div>
+                    <div class="remark alert">
+                        Sunt demissioes transferre festus, fortis fugaes. Cauliflower combines greatly with sticky ginger.
                     </div>
                 </div>
-            </div>
-        </div>
+                <pre class=""><code>
+                    &lt;div class="remark primary"&gt;
+                        ...
+                    &lt;/div&gt;
+                </code></pre>
 
-        <div class="example" data-text="description">
-            <div class="grid">
-                <div class="row cells2">
-                    <div class="cell">
-                        <h5>default</h5>
-                        <dl>
-                            <dt>Description lists</dt>
-                            <dd>A description list is perfect for defining terms.</dd>
-                            <dt>Euismod</dt>
-                            <dd>Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.</dd>
-                            <dd>Donec id elit non mi porta gravida at eget metus.</dd>
-                            <dt>Malesuada porta</dt>
-                            <dd>Etiam porta sem malesuada magna mollis euismod.</dd>
-                        </dl>
-                    </div>
-                    <div class="cell">
-                        <h5>horizontal</h5>
-                        <dl class="horizontal">
-                            <dt>Description lists</dt>
-                            <dd>A description list is perfect for defining terms.</dd>
-                            <dt>Euismod</dt>
-                            <dd>Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.</dd>
-                            <dd>Donec id elit non mi porta gravida at eget metus.</dd>
-                            <dt>Malesuada porta</dt>
-                            <dd>Etiam porta sem malesuada magna mollis euismod.</dd>
-                            <dt>Felis euismod semper eget lacinia</dt>
-                            <dd>Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</dd>
-                        </dl>
+                <h3 id="_lists">Lists</h3>
+
+                <h4 id="_lists_unstyled">Unstyled list</h4>
+                <div class="example">
+                    <ul class="unstyled-list">
+                        <li>Sunt tataes consumere talis, emeritis orgiaes.</li>
+                        <li>Nunquam transferre plasmator.</li>
+                        <li>Heu, germanus calcaria!</li>
+                        <li>Vortexs resistere in mare!
+                            <ul class="unstyled-list">
+                                <li>Resistentias cantare!</li>
+                                <li>Lacteas volare in camerarius rugensis civitas!</li>
+                                <li>Nunquam manifestum genetrix.</li>
+                            </ul>
+                        </li>
+                        <li>Sunt tataes consumere talis, emeritis orgiaes.</li>
+                        <li>Nunquam transferre plasmator.</li>
+                        <li>Heu, germanus calcaria!</li>
+                    </ul>
+                </div>
+                <pre class=""><code>
+                    &lt;ul class="unstyled-list"&gt;
+                        &lt;li&gt;Sunt tataes consumere talis, emeritis orgiaes.&lt;/li&gt;
+                        &lt;li&gt;Nunquam transferre plasmator.&lt;/li&gt;
+                        &lt;li&gt;Heu, germanus calcaria!&lt;/li&gt;
+                        &lt;li&gt;Vortexs resistere in mare!
+                            &lt;ul class="unstyled-list"&gt;
+                                &lt;li&gt;Resistentias cantare!&lt;/li&gt;
+                                &lt;li&gt;Lacteas volare in camerarius rugensis civitas!&lt;/li&gt;
+                                &lt;li&gt;Nunquam manifestum genetrix.&lt;/li&gt;
+                            &lt;/ul&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;Sunt tataes consumere talis, emeritis orgiaes.&lt;/li&gt;
+                        &lt;li&gt;Nunquam transferre plasmator.&lt;/li&gt;
+                        &lt;li&gt;Heu, germanus calcaria!&lt;/li&gt;
+                    &lt;/ul&gt;
+                </code></pre>
+
+                <h4 id="_lists_unordered">Unordered list</h4>
+                <div class="example">
+                    <ul>
+                        <li>Sunt tataes consumere talis, emeritis orgiaes.</li>
+                        <li>Nunquam transferre plasmator.</li>
+                        <li>Heu, germanus calcaria!</li>
+                        <li>Vortexs resistere in mare!
+                            <ul>
+                                <li>Resistentias cantare!</li>
+                                <li>Lacteas volare in camerarius rugensis civitas!</li>
+                                <li>Nunquam manifestum genetrix.</li>
+                                <li>Pol, a bene diatria, cotta!
+                                    <ul>
+                                        <li>Resistentias cantare!</li>
+                                        <li>Lacteas volare in camerarius rugensis civitas!</li>
+                                        <li>Nunquam manifestum genetrix.</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>Sunt tataes consumere talis, emeritis orgiaes.</li>
+                        <li>Nunquam transferre plasmator.</li>
+                        <li>Heu, germanus calcaria!</li>
+                    </ul>
+                </div>
+                <pre class=""><code>
+                    &lt;ul&gt;
+                        &lt;li&gt;...&lt;/li&gt;
+                        &lt;li&gt;...
+                            &lt;ul&gt;
+                                &lt;li&gt;...&lt;/li&gt;
+                                &lt;li&gt;...&lt;/li&gt;
+                            &lt;/ul&gt;
+                        &lt;/li&gt;
+                    &lt;/ul&gt;
+                </code></pre>
+
+                <h4 id="_lists_ordered">Ordered list</h4>
+                <div class="example">
+                    <ol>
+                        <li>Sunt tataes consumere talis, emeritis orgiaes.</li>
+                        <li>Nunquam transferre plasmator.</li>
+                        <li>Heu, germanus calcaria!</li>
+                        <li>Est peritus devatio, cesaris.
+                            <ol>
+                                <li>Resistentias cantare!</li>
+                                <li>Lacteas volare in camerarius rugensis civitas!</li>
+                                <li>Nunquam manifestum genetrix.</li>
+                                <li>Nunquam vitare ratione.
+                                    <ol>
+                                        <li>Resistentias cantare!</li>
+                                        <li>Lacteas volare in camerarius rugensis civitas!</li>
+                                        <li>Nunquam manifestum genetrix.</li>
+                                    </ol>
+                                </li>
+                            </ol>
+                        </li>
+                        <li>Sunt tataes consumere talis, emeritis orgiaes.</li>
+                        <li>Nunquam transferre plasmator.</li>
+                        <li>Heu, germanus calcaria!</li>
+                    </ol>
+                </div>
+                <pre class=""><code>
+                    &lt;ol&gt;
+                        &lt;li&gt;...&lt;/li&gt;
+                        &lt;li&gt;...
+                            &lt;ol&gt;
+                                &lt;li&gt;...&lt;/li&gt;
+                                &lt;li&gt;...&lt;/li&gt;
+                            &lt;/ol&gt;
+                        &lt;/li&gt;
+                    &lt;/ol&gt;
+                </code></pre>
+
+                <h4 id="_lists_inline">Inline list</h4>
+                <div class="example">
+                    <ul class="inline-list">
+                        <li>Home</li>
+                        <li>Base</li>
+                        <li>Widgets</li>
+                        <li>Contacts</li>
+                    </ul>
+                </div>
+                <pre class=""><code>
+                    &lt;ul class="inline-list"&gt;
+                        &lt;li&gt;Home&lt;/li&gt;
+                        &lt;li&gt;Base&lt;/li&gt;
+                        &lt;li&gt;Widgets&lt;/li&gt;
+                        &lt;li&gt;Contacts&lt;/li&gt;
+                    &lt;/ul&gt;
+                </code></pre>
+
+                <h4 id="_lists_desc">Description list</h4>
+
+                <div class="example">
+                    <dl>
+                        <dt>Description lists</dt>
+                        <dd>A description list is perfect for defining terms.</dd>
+                        <dt>Euismod</dt>
+                        <dd>Vestibulum id ligula porta felis euismod semper eget nec elit.</dd>
+                        <dd>Donec id elit non mi porta gravida at eget metus.</dd>
+                        <dt>Malesuada porta</dt>
+                        <dd>Etiam porta sem malesuada magna mollis euismod.</dd>
+                    </dl>
+                </div>
+
+                <h6>Horizontal style</h6>
+                <div class="example">
+                    <dl class="horizontal">
+                        <dt>Description lists</dt>
+                        <dd>A description list is perfect for defining terms.</dd>
+                        <dt>Euismod</dt>
+                        <dd>Vestibulum id ligula porta felis euismod semper eget sem nec elit.</dd>
+                        <dd>Donec id elit non mi porta gravida at eget metus.</dd>
+                        <dt>Malesuada porta</dt>
+                        <dd>Etiam porta sem malesuada magna mollis euismod.</dd>
+                        <dt>Felis euismod semper eget lacinia</dt>
+                        <dd>Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</dd>
+                    </dl>
+                </div>
+
+                <pre class=""><code>
+                    &lt;dl&gt;
+                        &lt;dt&gt;Description lists&lt;/dt&gt;
+                        &lt;dd&gt;A description list is perfect for defining terms.&lt;/dd&gt;
+                        &lt;dt&gt;Euismod&lt;/dt&gt;
+                        &lt;dd&gt;Vestibulum id ligula porta felis euismod semper.&lt;/dd&gt;
+                        &lt;dd&gt;Donec id elit non mi porta gravida at eget metus.&lt;/dd&gt;
+                        &lt;dt&gt;Malesuada porta&lt;/dt&gt;
+                        &lt;dd&gt;Etiam porta sem malesuada magna mollis euismod.&lt;/dd&gt;
+                    &lt;/dl&gt;
+
+                    &lt;dl class="horizontal"&gt;
+                        ...
+                    &lt;/dl&gt;
+                </code></pre>
+
+                <h3 id="_tally">Code</h3>
+                <p>
+                    Documentation and examples for displaying inline and multiline blocks of code with Metro 4.
+                </p>
+
+                <h4 id="_code_inline">Inline code</h4>
+                <p>
+                    Wrap inline snippets of code with <code>&lt;code&gt;</code> or class <code>.tally</code>. Be sure to escape HTML angle brackets.
+                </p>
+                <div class="example">
+                    <code>code</code>
+                    <span class="tally">tally</span>
+                    <span class="tally success">success</span>
+                    <code class="warning">warning</code>
+                    <span class="tally alert">alert</span>
+                    <code class="info">info</code>
+
+                    <br />
+                    <br />
+                    <p>
+                        Yes, there is chaos, it experiments with core.
+                        Pestilence, <code class="info">punishment</code>, and strength. <span class="tally">Sunt</span> zirbuses dignus <code class="alert">superbus</code>, clemens cedriumes.
+                        <span class="tally success">Gravy</span> soup is just not the same without nutmeg and chopped small meatloafs.
+                    </p>
+                </div>
+                <pre class=""><code>
+                    &lt;code&gt;code&lt;/code&gt;
+                    &lt;span class="tally"&gt;tally&lt;/span&gt;
+                    &lt;span class="tally success"&gt;success&lt;/span&gt;
+                    &lt;code class="warning"&gt;warning&lt;/code&gt;
+                    &lt;span class="tally alert"&gt;alert&lt;/span&gt;
+                    &lt;code class="info"&gt;info&lt;/code&gt;
+                </code></pre>
+
+                <h4 id="_code_vars">Variables</h4>
+                <p>
+                    To create code variable use <code>&lt;var&gt;</code>.
+                </p>
+                <div class="example">
+                    <var>y</var> = <var>m</var><var>x</var> + <var>b</var>
+                </div>
+                <pre class=""><code>
+                    &lt;var&gt;y&lt;/var&gt; = &lt;var&gt;m&lt;/var&gt;&lt;var&gt;x&lt;/var&gt; + &lt;var&gt;b&lt;/var&gt;
+                </code></pre>
+
+                <h4 id="_user_input">User input</h4>
+                <p>
+                    Use the <code>&lt;kbd&gt;</code> to indicate input that is typically entered via keyboard.
+                </p>
+                <div class="example">
+                    To switch directories, type <kbd>cd</kbd> followed by the name of the directory.<br>
+                    To edit settings, press <kbd><kbd>ctrl</kbd> + <kbd>,</kbd></kbd>
+                </div>
+                <pre class=""><code>
+                    To switch directories, type &lt;kbd&gt;cd&lt;/kbd&gt; followed by the name of the directory.&lt;br&gt;
+                    To edit settings, press &lt;kbd&gt;&lt;kbd&gt;ctrl&lt;/kbd&gt; + &lt;kbd&gt;,&lt;/kbd&gt;&lt;/kbd&gt;
+                </code></pre>
+
+                <h4 id="_sample_output">Sample output</h4>
+                <p>
+                    For indicating sample output from a program use the <code>&lt;samp&gt;</code> tag.
+                </p>
+                <div class="example">
+                    <samp>Sample output from a computer program.</samp>
+                </div>
+                <pre class=""><code>
+                    &lt;samp&gt;Sample output from a computer program.&lt;/samp&gt;
+                </code></pre>
+
+                <h3 id="_ellipsis">Text ellipsis</h3>
+                <div class="example">
+                    <div style="width: 100px;">
+                        <p class="text-ellipsis">For a salted bloody frittata, add some olive oil and green curry.</p>
                     </div>
                 </div>
-            </div>
-        </div>
+                <pre class=""><code>
+                    &lt;div style="width: 100px;"&gt;
+                        &lt;p class="text-ellipsis"&gt;For a salted bloody frittata.&lt;/p&gt;
+                    &lt;/div&gt;
+                </code></pre>
 
-        <div class="example" data-text="tags">
+                <h3 id="_text_transform">Text transform</h3>
+                <p>Easily transform text with text transform classes.</p>
 
-            <p>
-                <span class="tag success">success</span>
-                <span class="tag alert">alert</span>
-                <span class="tag info">info</span>
-                <span class="tag warning">warning</span>
-                <span class="tag">default</span>
-                <a class="tag success">success</a>
-                <a class="tag alert">alert</a>
-                <a class="tag info">info</a>
-                <a class="tag warning">warning</a>
-                <a class="tag">default</a>
-            </p>
+                <div class="example">
+                    <p class="text-lower">lowercased text</p>
+                    <p class="text-upper">UPPERCASED TEXT</p>
+                    <p class="text-cap">Capitalized text</p>
+                </div>
 
-            <p>
-                Lorem ipsum dolor sit <span class="tag">amet</span>, consectetur adipiscing elit. <span class="tag success">Aenean</span> luctus lectus sit amet odio ullamcorper malesuada dignissim justo gravida.
-                <span class="tag alert">Pellentesque</span>  sagittis, tellus id sagittis accumsan, augue velit <span class="tag info">pretium</span> urna, ac interdum dui nibh et orci.
-                Quisque dapibus elit ut metus varius ac bibendum  sem luctus. <span class="tag warning">Lorem ipsum</span> dolor sit amet, consectetur adipiscing elit. Sed quis sagittis lorem. Praesent ac eros quam.
-            </p>
+                <pre class=""><code>
+                    &lt;p class="text-lower"&gt;lowercased text&lt;/p&gt;
+                    &lt;p class="text-upper"&gt;uppercased text&lt;/p&gt;
+                    &lt;p class="text-cap"&gt;сapitalized text&lt;/p&gt;
+                </code></pre>
+
+                <h3 id="_text_alignment">Text alignment</h3>
+                <p>Easily realign text to components with text alignment classes.</p>
+
+                <div class="example">
+                    <p class="text-left">Left aligned text on all viewport sizes.</p>
+                    <p class="text-center">Center aligned text on all viewport sizes.</p>
+                    <p class="text-right">Right aligned text on all viewport sizes.</p>
+                </div>
+
+                <pre class=""><code>
+                    &lt;p class="text-left"&gt;Left aligned text on all viewport sizes.&lt;/p&gt;
+                    &lt;p class="text-center"&gt;Center aligned text on all viewport sizes.&lt;/p&gt;
+                    &lt;p class="text-right"&gt;Right aligned text on all viewport sizes.&lt;/p&gt;
+                </code></pre>
+
+                <p>If you need to align the text to the width, you can use the class <span class="tally">.text-just</span></p>
+                <div class="example">
+                    <p class="text-just">
+                        It is a remarkable nuclear flux, sir. Poeta resisteres, tanquam rusticus tus. Not hell or chaos, yearn the acceptance. After smashing the turkey, enamel margerine, strudel and gold tequila with it in a plastic bag.
+                        It is a remarkable nuclear flux, sir. Poeta resisteres, tanquam rusticus tus. Not hell or chaos, yearn the acceptance. After smashing the turkey, enamel margerine, strudel and gold tequila with it in a plastic bag.
+                    </p>
+                </div>
+
+                <pre class=""><code>
+                    &lt;p class="text-just"&gt;...&lt;/p&gt;
+                </code></pre>
+
+                <h4>Vertical alignment</h4>
+                <p>
+                    To change vertical alignment you can use predefined classes:
+                    <span class="tally">.va-top</span>,
+                    <span class="tally">.va-bottom</span>,
+                    <span class="tally">.va-baseline</span>,
+                    <span class="tally">.va-middle</span>,
+                    <span class="tally">.va-sub</span>,
+                    <span class="tally">.va-super</span>,
+                    <span class="tally">.va-text-top</span>,
+                    <span class="tally">.va-text-bottom</span>
+                    and their media analogues.
+                </p>
+
+                <p>Transform and alignment classes you can use with media breakpoints rules. For this feature Metro 4 present special media classes:
+                    <span class="tally">.text-center-*</span>,
+                    <span class="tally">.text-left-*</span>,
+                    <span class="tally">.text-right-*</span>,
+                    <span class="tally">.text-just-*</span>,
+                    <span class="tally">.text-cap-*</span>,
+                    <span class="tally">.text-upper-*</span>,
+                    <span class="tally">.text-lower-*</span>
+                    Replace the asterisk with the desired point: <span class="tally">sm</span>, <span class="tally">md</span>, <span class="tally">lg</span>, <span class="tally">xl</span>, <span class="tally">xxl</span>.
+                    This breakpoints works with <span class="tally">min-width</span> rule.
+                </p>
+
+                <h3 id="_text_weight">Font weight</h3>
+                <p>
+                    You can change font weight with special classes:
+                    <span class="tally">.text-ultralight</span>,
+                    <span class="tally">.text-light</span>,
+                    <span class="tally">.text-normal</span>,
+                    <span class="tally">.text-medium</span>,
+                    <span class="tally">.text-bold</span>.
+                </p>
+
+                <table class="table striped bordered">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Weight</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><p class="text-ultralight">Ultralight text</p></td>
+                        <td>100</td>
+                    </tr>
+                    <tr>
+                        <td><p class="text-light">Light text</p></td>
+                        <td>200</td>
+                    </tr>
+                    <tr>
+                        <td><p class="text-normal">Normal text</p></td>
+                        <td>400</td>
+                    </tr>
+                    <tr>
+                        <td><p class="text-medium">Medium text</p></td>
+                        <td>500</td>
+                    </tr>
+                    <tr>
+                        <td><p class="text-bold">Bold text</p></td>
+                        <td>700</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <h3 id="_responsive">Responsive</h3>
+                <p>
+                    Responsive typography refers to scaling text and components by simply adjusting the root element’s font-size within a series of media queries.
+                    Metro 4 <strong>doesn’t do this for you</strong>, but it’s fairly easy to add if you need it.
+                    Since the size of the elements is set in units and em, for changing the font you need to change the font size of the html element in you styles.
+                </p>
+                <pre class=""><code>
+                    html {
+                      font-size: 14px;
+                    }
+
+                    @media screen and (min-width: 576px) {
+                      html {
+                        font-size: 16px;
+                      }
+                    }
+
+                    @media screen and (min-width: 768px) {
+                      html {
+                        font-size: 20px;
+                      }
+                    }
+
+                    @media screen and (min-width: 992px) {
+                      html {
+                        font-size: 28px;
+                      }
+                    }
+                </code></pre>
+            </main>
         </div>
 
     </div>
+
+    <script src="docsearch/docsearch.min.js"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="metro/js/metro.js"></script>
+    <script src="highlight/highlight.pack.js"></script>
+    <script src="js/clipboard.min.js"></script>
+    <script src="js/site.js"></script>
+    <!-- ads-script -->
 </body>
 </html>

@@ -1,15 +1,168 @@
-@import (once) "vars";
+@import (once) "include/vars";
+@import (once) "include/mixins";
 
 .op-default {
-	background-color: rgba(red(@cyan), green(@cyan), blue(@cyan), .7);
+    background-color: rgba(red(@cyan), green(@cyan), blue(@cyan), .7) !important;
 }
 
-.generate-colors(@color-list-length);
-.generate-colors(@name, @i: 1) when (@i =< @color-list-length) {
-	@name: extract(@color-list, @i);
+.bg-transparent {
+    background-color: @transparent !important;
+}
 
-	.fg-@{name} {color: @@name !important;}
-	.bg-@{name} {background-color: @@name !important;}
+.bd-default {
+    border-color: @borderColor!important;
+}
 
-	.generate-colors(@name, @i + 1);
+.generate-colors(@colorListLength);
+.generate-colors(@name, @i: 1) when (@i =< @colorListLength) {
+    @name: extract(@colorList, @i);
+
+    .fg-@{name} {color: @@name !important;}
+    .bg-@{name} {background-color: @@name !important;}
+
+    .generate-colors(@name, @i + 1);
+}
+
+.button,
+.command-button,
+.image-button,
+.shortcut,
+.tool-button,
+.split-button .split,
+tbody tr, tbody td,
+.tally, code,
+.notify,
+.input .button-group .button {
+    .generate-accent-colors(@buttonPredefinedTypesLength);
+    .generate-accent-colors(@name, @i: 1) when (@i =< @buttonPredefinedTypesLength) {
+        @name: extract(@buttonPredefinedTypes, @i);
+        @color: "@{name}Color";
+
+        &.@{name} {
+            outline-color: lighten(@@color, 30%);
+            background-color: @@color;
+            color: @white;
+
+            &.outline {
+                color: @@color;
+                border-color: @@color;
+
+                &.dropdown-toggle::before {
+                    border-color: @@color;
+                }
+
+                &:hover {
+                    color: @white;
+                }
+            }
+
+            &.dropdown-toggle::before {
+                border-color: @white;
+            }
+
+            &:hover {
+                color: @white;
+                background-color: darken(@@color, 10%);
+                border-color: darken(@@color, 20%);
+
+                &.dropdown-toggle::before {
+                    border-color: @white;
+                }
+            }
+
+            &.same-color {
+                &:hover {
+                    background-color: @@color;
+                    border-color: @@color;
+                }
+            }
+            &:active, &.focus, &:focus {
+                .focus-show(@@color);
+            }
+        }
+
+        .generate-accent-colors(@name, @i + 1);
+    }
+
+    &.yellow, &.light {
+        color: @dark;
+        &:hover, &.outline:hover {
+            color: @dark;
+        }
+    }
+}
+
+.pagination {
+    .generate-accent-colors(@buttonPredefinedTypesLength);
+    .generate-accent-colors(@name, @i: 1) when (@i =< @buttonPredefinedTypesLength) {
+        @name: extract(@buttonPredefinedTypes, @i);
+        @color: "@{name}Color";
+
+        &.@{name} {
+            .page-item {
+                &.active, &.service, &:hover {
+                    background-color: @@color;
+                    border-color: @@color;
+                    color: @white;
+                    &:hover {
+                        background-color: darken(@@color, 10%);
+                    }
+                }
+            }
+        }
+
+        .generate-accent-colors(@name, @i + 1);
+    }
+
+    &.light, &.yellow {
+        .page-item {
+            &.active, &.service, &:hover {
+                color: @dark;
+            }
+        }
+    }
+}
+
+.remark {
+    .generate-accent-colors(@buttonPredefinedTypesLength);
+    .generate-accent-colors(@name, @i: 1) when (@i =< @buttonPredefinedTypesLength) {
+        @name: extract(@buttonPredefinedTypes, @i);
+        @color: "@{name}Color";
+
+        &.@{name} {
+            border-left: 4px solid @@color;
+        }
+
+        .generate-accent-colors(@name, @i + 1);
+    }
+}
+
+input[type=text],
+input[type=password],
+input[type=tel],
+input[type=datetime-local],
+input[type=email],
+input[type=file],
+input[type=month],
+input[type=number],
+input[type=search],
+input[type=time],
+input[type=url],
+input[type=week],
+select, textarea, .file, .input, .select, .textarea, .keypad {
+    .generate-accent-colors(@buttonPredefinedTypesLength);
+    .generate-accent-colors(@name, @i: 1) when (@i =< @buttonPredefinedTypesLength) {
+        @name: extract(@buttonPredefinedTypes, @i);
+        @color: "@{name}Color";
+
+        &.@{name} {
+            border-color: @@color;
+
+            &:focus, &.focused {
+                .focus-show(@@color);
+            }
+        }
+
+        .generate-accent-colors(@name, @i + 1);
+    }
 }

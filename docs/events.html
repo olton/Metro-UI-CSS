@@ -1,80 +1,105 @@
 <!DOCTYPE html>
-<html>
-<head lang="en">
+<html lang="en">
+<head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="description" content="Metro, a sleek, intuitive, and powerful framework for faster and easier web development for Windows Metro Style.">
-    <meta name="keywords" content="HTML, CSS, JS, JavaScript, framework, metro, front-end, frontend, web development">
-    <meta name="author" content="Sergey Pimenov and Metro UI CSS contributors">
 
-    <link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
-    <title>Event binding :: Metro UI CSS - The front-end framework for developing projects on the web in Windows Metro Style</title>
+    <meta name="twitter:site" content="@metroui">
+    <meta name="twitter:creator" content="@pimenov_sergey">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Metro 4 Components Library">
+    <meta name="twitter:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.">
+    <meta name="twitter:image" content="https://metroui.org.ua/images/m4-logo-social.png">
 
-    <link href="css/metro.css" rel="stylesheet">
-    <link href="css/metro-icons.css" rel="stylesheet">
-    <link href="css/metro-responsive.css" rel="stylesheet">
-    <link href="css/metro-schemes.css" rel="stylesheet">
+    <meta property="og:url" content="https://metroui.org.ua/v4/index.html">
+    <meta property="og:title" content="Metro 4 Components Library">
+    <meta property="og:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:secure_url" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="968">
+    <meta property="og:image:height" content="504">
 
-    <link href="css/docs.css" rel="stylesheet">
+    <meta name="author" content="Sergey Pimenov">
+    <meta name="description" content="Events system in Metro 4. The most popular HTML, CSS, and JS library in Metro style.">
+    <meta name="keywords" content="HTML, CSS, JS, Metro, CSS3, Javascript, HTML5, UI, Library, Web, Development, Framework">
 
-    <script src="js/jquery-2.1.3.min.js"></script>
-    <script src="js/metro.js"></script>
-    <script src="js/docs.js"></script>
-    <script src="//cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
-    <script src="js/ga.js"></script>
-    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
 
+    <link href="metro/css/metro-all.css" rel="stylesheet">
+    <link href="highlight/styles/github.css" rel="stylesheet">
+    <link href="docsearch/docsearch.min.css" rel="stylesheet">
+    <link href="css/site.css" rel="stylesheet">
+
+    <title>Events - Metro 4 :: Popular HTML, CSS and JS library</title>
 </head>
 <body>
-    <div class="container page-content">
-        <h1><a href="index.html" class="nav-button transform"><span></span></a>&nbsp;Event binding</h1>
+    <div class="container-fluid">
 
-        @@adsense
+        <div class="row flex-xl-nowrap">
+            <div class="cell-md-3 cell-xl-2 pr-0 border-right bd-light" id="sidenav">
+            </div>
 
-        <div class="margin20 no-margin-left no-margin-right sub-header text-light">
-            Many widgets have any events. Metro UI CSS provides several ways to define events.
-        </div>
+            <div class="d-none d-block-xl cell-xl-2 order-2 border-left bd-light toc-wrapper">
+                <h5>Table of contents</h5>
+                <hr/>
+                <ul class="toc-nav">
+                    <li class="toc-entry"><a href="#">Events system</a></li>
+                </ul>
 
-        <div class="example" data-text="example">
-            <h5>Function name</h5>
-            <pre class="prettyprint linenums"><code>
-                &lt;form data-role="validator" data-on-submit="func_name"&gt;
-                    ...
-                &lt;/form&gt;
+            </div>
 
-                &lt;script&gt;
-                    function func_name(form){
-                        return false;
-                    }
-                &lt;/script&gt;
-            </code></pre>
+            <main class="cell-md-9 cell-xl-8 order-1 pr-1-sx pl-1-sx pr-5-md pl-5-md">
+                <div class="place-right d-none d-block-lg" style="width: 200px;">
+                    <img src="images/logo.png" class="w-100">
+                </div>
 
-            <h5>Internal javascript</h5>
-            <pre class="prettyprint linenums"><code>
-                &lt;form data-role="validator" data-on-submit="return false"&gt;
-                    ...
-                &lt;/form&gt;
-            </code></pre>
+                <h1>Events</h1>
+                <p class="text-leader">
+                    Events system in Metro 4 Components Library.
+                </p>
 
-            <h5>Javascript</h5>
-            <pre class="prettyprint linenums"><code>
-                &lt;form id="form1"&gt;
-                    ...
-                &lt;/form&gt;
+                <!-- ads-html -->
 
-                &lt;script&gt;
-                    $(function(){
-                        $("#form1").validator({
-                            onSubmit: function(form){
-                                return false;
+                <h3>About</h3>
+                <p>
+                    Many components in Metro 4 generate events during their work. All events are defined width attributes with prefix <code>data-on-*</code>.
+                    To define event you can use two ways:
+                </p>
+                <ol class="decimal">
+                    <li>Set <strong>function name</strong> as <code>data-on-*</code> attribute value</li>
+                    <li>use <strong>valid javascript code</strong> for <code>data-on-*</code> attribute value</li>
+                </ol>
+                <pre><code class="html">
+                    &lt;input data-role="keypad" data-on-change="console.log(arguments)"&gt;
+                    &lt;input data-role="keypad" data-on-change="dataChange"&gt;
+                    &lt;input data-role="keypad" data-on-change="MyPackage.dataChange"&gt;
+
+                    &lt;script&gt;
+                        function dataChange(el){
+                            console.log(arguments);
+                        }
+
+                        var MyPackage = {
+                            dataChange: function(el){
+                                console.log(arguments);
                             }
-                        });
-                    });
-                &lt;/script&gt;
-            </code></pre>
+                        }
+                    &lt;/script&gt;
+                </code></pre>
+            </main>
         </div>
 
     </div>
+
+    <script src="docsearch/docsearch.min.js"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="metro/js/metro.js"></script>
+    <script src="highlight/highlight.pack.js"></script>
+    <script src="js/clipboard.min.js"></script>
+    <script src="js/site.js"></script>
+    <!-- ads-script -->
 </body>
 </html>

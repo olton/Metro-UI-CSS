@@ -1,0 +1,187 @@
+@import (once) "include/vars";
+@import (once) "include/mixins";
+
+.table {
+    width: 100%;
+    margin-bottom: 1rem;
+
+    th, td {
+        padding: 0.625rem;
+    }
+
+    thead, tfoot {
+        border-bottom: 4px solid @lightGray;
+
+        tr:last-child {
+        }
+
+        th, td {
+            cursor: default;
+            color: @dark;
+            border-color: transparent;
+            text-align: left;
+            font-weight: bold;
+            line-height: 1.2;
+        }
+    }
+
+    tfoot {
+        border-top: 4px solid @lightGray;
+    }
+
+    tbody {
+        td {
+            padding: 0.625rem 0.85rem;
+            vertical-align: middle;
+        }
+    }
+
+    .sortable-column {
+        position: relative;
+        cursor: pointer;
+        &:after {
+            position: absolute;
+            content: "";
+            width: 1rem;
+            height: 1rem;
+            left: 100%;
+            .px2rem(margin-left, -20px);
+            top: 50%;
+            margin-top: -.5rem;
+            color: inherit;
+            font-size: 1rem;
+            line-height: 1;
+        }
+
+        &.sort-asc, &.sort-desc {
+            background-color: darken(@light, 5%);
+            &:after {
+                color: @dark;
+            }
+        }
+
+        &.sort-asc {
+            &:after {
+                content: "\2191";
+            }
+        }
+
+        &.sort-desc {
+            &:after {
+                content: "\2193";
+            }
+        }
+    }
+
+    &.sortable-markers-on-left {
+        .sortable-column {
+            .px2rem(padding-left, 30px);
+            &:before, &:after {
+                left: 0;
+                .px2rem(margin-left, 10px);
+            }
+        }
+    }
+
+    tr.selected {
+        td {background-color: rgba(28, 183, 236, 0.10);}
+    }
+
+    td.selected {
+        background-color: rgba(28, 183, 236, 0.30);
+    }
+
+    &.striped {
+        tbody tr:nth-child(odd) {
+            background: @light;
+        }
+    }
+
+    &.row-hover {
+        tbody {
+            tr {
+                &:hover {
+                    background-color: rgba(28, 183, 236, 0.10);
+                }
+            }
+        }
+    }
+
+    &.cell-hover {
+        tbody {
+            td {
+                &:hover {
+                    background-color: rgba(28, 183, 236, 0.30);
+                }
+            }
+        }
+    }
+
+    &.table-border {
+        border: 1px @borderColor solid;
+    }
+
+    &.cell-border {
+        //
+    }
+
+    &.cell-border {
+        th, td {
+            border: 1px @borderColor solid;
+        }
+
+        thead {
+            tr:first-child {
+                th, td {
+                    border-top: none;
+
+                    &:first-child {
+                        border-left: none;
+                    }
+                    &:last-child {
+                        border-right: none;
+                    }
+                }
+            }
+        }
+
+        tbody {
+            tr {
+
+                &:first-child {
+                    td {
+                        border-top: none;
+                    }
+                }
+
+                td {
+                    &:first-child {
+                        border-left: none;
+                    }
+                    &:last-child {
+                        border-right: none;
+                    }
+                }
+
+                &:last-child {
+                    td {
+                        border-bottom: none;
+                    }
+                }
+            }
+        }
+    }
+
+    &.row-border {
+        tr + tr {
+            border-top: 1px @borderColor solid;
+        }
+    }
+
+    &.compact {
+        th, td {
+            padding: .3rem;
+            font-size: .9em;
+        }
+    }
+}

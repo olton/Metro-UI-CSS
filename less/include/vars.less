@@ -1,0 +1,335 @@
+@unitSize: 4px;
+
+// Fonts
+@fontName:  -apple-system, system-ui, BlinkMacSystemFont,
+            "Segoe UI", "Roboto", "Ubuntu",
+            "Helvetica Neue", sans-serif;
+
+@fontSize: @unitSize * 4;
+
+
+// Colors
+@lightenValue: 15%;
+@darkenValue: 15%;
+
+@transparent:			transparent;
+
+@brandColor1: #2ac4f4;
+@brandColor2: #004d6f;
+
+@black:                 #000000;
+@white:                 #ffffff;
+@dark:                  #1d1d1d;
+@light:                 #f8f8f8;
+@gray:                  #bebebe;
+@grayBlue:              #607d8b;
+@grayWhite:             #f5f5f5;
+@grayMouse:             #455a64;
+
+@lime:                  #a4c400;
+@green:                 #60a917;
+@emerald:               #008a00;
+@blue:                  #00AFF0;
+@teal:                  #00aba9;
+@cyan:                  #1ba1e2;
+@cobalt:                #0050ef;
+@indigo:                #6a00ff;
+@violet:                #aa00ff;
+@pink:                  #dc4fad;
+@magenta:               #d80073;
+@crimson:               #a20025;
+@red:                   #CE352C;
+@orange:                #fa6800;
+@amber:                 #f0a30a;
+@yellow:                #fff000;
+@brown:                 #825a2c;
+@olive:                 #6d8764;
+@steel:                 #647687;
+@mauve:                 #76608a;
+@taupe:                 #87794e;
+
+@lightLime:             lighten(@lime, @lightenValue);
+@lightGreen:            lighten(@green, @lightenValue);
+@lightEmerald:          lighten(@emerald, @lightenValue);
+@lightBlue:             lighten(@blue, @lightenValue);
+@lightTeal:             lighten(@teal, @lightenValue);
+@lightCyan:             lighten(@cyan, @lightenValue);
+@lightCobalt:           lighten(@cobalt, @lightenValue);
+@lightIndigo:           lighten(@indigo, @lightenValue);
+@lightViolet:           lighten(@violet, @lightenValue);
+@lightPink:             lighten(@pink, @lightenValue);
+@lightMagenta:          lighten(@magenta, @lightenValue);
+@lightCrimson:          lighten(@crimson, @lightenValue);
+@lightRed:              lighten(@red, @lightenValue);
+@lightOrange:           lighten(@orange, @lightenValue);
+@lightAmber:            lighten(@amber, @lightenValue);
+@lightYellow:           lighten(@yellow, @lightenValue);
+@lightBrown:            lighten(@brown, @lightenValue);
+@lightOlive:            lighten(@olive, @lightenValue);
+@lightSteel:            lighten(@steel, @lightenValue);
+@lightMauve:            lighten(@mauve, @lightenValue);
+@lightTaupe:            lighten(@taupe, @lightenValue);
+@lightGray:             lighten(@gray, @lightenValue);
+@lightGrayBlue:         lighten(@grayBlue, @lightenValue);
+
+
+@darkLime:             darken(@lime, @darkenValue);
+@darkGreen:            darken(@green, @darkenValue);
+@darkEmerald:          darken(@emerald, @darkenValue);
+@darkBlue:             darken(@blue, @darkenValue);
+@darkTeal:             darken(@teal, @darkenValue);
+@darkCyan:             darken(@cyan, @darkenValue);
+@darkCobalt:           darken(@cobalt, @darkenValue);
+@darkIndigo:           darken(@indigo, @darkenValue);
+@darkViolet:           darken(@violet, @darkenValue);
+@darkPink:             darken(@pink, @darkenValue);
+@darkMagenta:          darken(@magenta, @darkenValue);
+@darkCrimson:          darken(@crimson, @darkenValue);
+@darkRed:              darken(@red, @darkenValue);
+@darkOrange:           darken(@orange, @darkenValue);
+@darkAmber:            darken(@amber, @darkenValue);
+@darkYellow:           darken(@yellow, @darkenValue);
+@darkBrown:            darken(@brown, @darkenValue);
+@darkOlive:            darken(@olive, @darkenValue);
+@darkSteel:            darken(@steel, @darkenValue);
+@darkMauve:            darken(@mauve, @darkenValue);
+@darkTaupe:            darken(@taupe, @darkenValue);
+@darkGray:             darken(@gray, @darkenValue);
+@darkGrayBlue:         darken(@grayBlue, @darkenValue);
+
+@colorList: black, white, dark, light, grayBlue, grayWhite, grayMouse, brandColor1, brandColor2,
+            lime, green, emerald, blue, teal, cyan, cobalt, indigo, violet, pink, magenta, crimson, red, orange, amber, yellow, brown, olive, steel, mauve, taupe, gray,
+            lightLime, lightGreen, lightEmerald, lightBlue, lightTeal, lightCyan, lightCobalt, lightIndigo, lightViolet, lightPink, lightMagenta, lightCrimson, lightRed, lightOrange, lightAmber, lightYellow, lightBrown, lightOlive, lightSteel, lightMauve, lightTaupe, lightGray, lightGrayBlue,
+            darkLime, darkGreen, darkEmerald, darkBlue, darkTeal, darkCyan, darkCobalt, darkIndigo, darkViolet, darkPink, darkMagenta, darkCrimson, darkRed, darkOrange, darkAmber, darkYellow, darkBrown, darkOlive, darkSteel, darkMauve, darkTaupe, darkGray, darkGrayBlue;
+
+@colorListLength: length(@colorList);
+
+// Body
+@bodyColor: lighten(@black, 13%);
+
+// Hover
+@hoverBackground:  rgba(red(@dark), green(@dark), blue(@dark), .1);
+@hoverBackground2:  rgba(red(@dark), green(@dark), blue(@dark), .5);
+@hoverBackgroundLight3:  rgba(red(@white), green(@white), blue(@white), .3);
+@hoverBackgroundLight2:  rgba(red(@white), green(@white), blue(@white), .2);
+@hoverBackgroundLight1:  rgba(red(@white), green(@white), blue(@white), .1);
+@hoverBackgroundLight:  rgba(red(@white), green(@white), blue(@white), .01);
+
+// Appbar
+@appBarBackground: @brandColor2;
+@appBarBackgroundActive: lighten(@brandColor2, 10%);
+@appBarColor: @white;
+
+// Taskbar
+@taskBarBackground: #053046;
+@taskBarItemHover: rgba(red(@white), green(@white), blue(@white), .1);
+@taskBarItemActive: rgba(red(@white), green(@white), blue(@white), .3);
+
+// Form and Inputs
+@inputBorder: #d9d9d9;
+@checkBackground: darken(@inputBorder, 10%);
+
+// Disabled
+@disabledBackground: #e9e9e9;
+@disabledBorder: #e9e9e9;
+@disabledColor: lighten(@dark, 50%);
+
+// Borders
+@borderRadius: .25rem;
+@borderColor: darken(@light, 10%);
+
+// Links
+@linkColor:             #007bff;
+@linkColorHover:        #0056b3;
+
+
+// Accent colors
+@primaryColor: @cobalt;
+@secondaryColor: @grayBlue;
+@successColor: @green;
+@alertColor: @red;
+@warningColor: @lightOrange;
+@yellowColor: #ffe484;
+@infoColor: @lightCyan;
+@darkColor: lighten(@dark, 20%);
+@lightColor: @light;
+@brand1Color: @brandColor1;
+@brand2Color: @brandColor2;
+
+@buttonPredefinedTypes: primary, secondary, success, alert, warning, yellow, info, dark, light, brand1, brand2;
+@buttonPredefinedTypesLength: length(@buttonPredefinedTypes);
+
+// Z-index
+@zindex-selectedCheck:      100;
+@zindex-absolute:           500;
+@zindex-dropdown:           1000;
+@zindex-sticky:             1020;
+@zindex-fixed:              1030;
+@zindex-modal-backdrop:     1040;
+@zindex-modal:              1050;
+@zindex-popover:            1060;
+@zindex-tooltip:            1070;
+@zindex-top:                1080;
+@zindex-charms:             1090;
+@zindex-fullscreen:         2147483647;
+
+
+// Percents breakpoints
+@percentBreakpointsList: 25, 50, 75, 100;
+@percentBreakpointsLength: length(@percentBreakpointsList);
+
+// Tiles
+@tileApp: 44px 44px;
+@tileSmall: 70px 70px;
+@tileMedium: 150px 150px;
+@tileWide: 310px 150px;
+@tileLarge: 310px 310px;
+@tileMargin: 5px;
+@tileCellSize: extract(@tileMedium, 1);
+@tileOutlineColor:  rgba(red(@dark), green(@dark), blue(@dark), .1);
+@tileTransformPerspective: 500px;
+@tileTransformRotate: 0.138372rad;
+
+
+// Media breakpoints
+@fs: 0;
+@sm: 576px;
+@md: 768px;
+@lg: 992px;
+@xl: 1200px;
+@xxl: 1452px;
+
+@mediaBreakpointListMobile: fs, sm, md, lg, xl, xxl;
+@mediaBreakpointListDesktop: xxl, xl, lg, md, sm, fs;
+
+@mediaBreakpointListMobileLength: length(@mediaBreakpointListMobile);
+@mediaBreakpointListDesktopLength: length(@mediaBreakpointListDesktop);
+
+// Transition
+@transition-short:       all .15s ease-in-out;
+@transition-base:        all .3s ease-in-out;
+@transition-long:        all 1s ease-in-out;
+@transition-margin:      margin .3s ease-in-out;
+@transition-fade:        opacity .15s linear;
+@transition-color:       color .3s linear;
+@transition-collapse:    max-height .3s ease;
+@transition-width:       width .3s ease;
+@transition-left:        left .3s ease;
+@transition-right:       right .3s ease;
+@transition-top:         top .3s ease;
+@transition-bottom:      bottom .3s ease;
+@transition-transform:   transform .3s ease;
+
+// Grid
+@gridColumns12: 12;
+@gridGapSize: 12px;
+@gridCellBaseSize: 8.333335%;
+
+// Windows
+@winBorderSize:                         .5rem;
+@winBorderColor:                        #6badf6;
+@winBorderColorInactive:                #ebebeb;
+@winDialogContentBackground:            #ededed;
+@winFlatBackgroundColor:                #ffffff;
+@winFlatBorderColor:                    #e9e9e9;
+@winFlatSystemButtonHoverBackground:    #cde6f7;
+@winFlatSystemButtonActiveBackground:   #92c0e0;
+@winFlatSystemButtonActiveColor:        #2a8dd4;
+@winFlatSystemButtonRestColor:          #777777;
+@winCloseButtonColor:                   #c75050;
+@winCloseButtonActiveColor:             #e04343;
+@winCloseButtonInActiveColor:           #bcbcbc;
+@winCaptionBackground:                  #3c6478;
+@winCaptionColor:                       @white;
+
+@streamerItemWidth: 224px;
+@streamerTimelineImage: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOAAAAATCAYAAACJKwFWAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo2OWY4NzBhNi0zODU3LWFmNDEtYWMzZS03YzlkOTcxZjMxOTIiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NEREMzg4NkJBQjkyMTFFN0JDQTVFMzg4RUE0RDc4RkQiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NEREMzg4NkFBQjkyMTFFN0JDQTVFMzg4RUE0RDc4RkQiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKFdpbmRvd3MpIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6YzEyZGQ1NjktNmM3YS0yZTQ2LTg2MmQtZWY3OGU5MmQ4NWY2IiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjY5Zjg3MGE2LTM4NTctYWY0MS1hYzNlLTdjOWQ5NzFmMzE5MiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pv3rUTMAAAIHSURBVHja7Jq/S0JRHMWfpj37oSA8qikIImioIaghaHDrD2hqaG4R6i8paGksh2iIQGhoCYewocChhkDEoAjsx5IGDZV2Ll6huXvoKZwPHHwuh3O/737f03tvpNVqeUKIcIiYBiwUCoe4LhH8FqAadO/oE0BT0AUh0xxUhyqOPklohpRpFvqEbh194tA8dGX9XJi2fteE8S1CN1DD0WcSSpHmpslUhl4dfcahMeiSMTdj9qKYyWR2/uKA5v39dd1OUNebOAKtQtuEQa5Bd9C5o4+pVRbaImRagd6hU4LXJinTMjQMHZEymfn05eizBE1AOUKmDegAeiY8PE0z7xIyZaP2op/0Rk1AaYKPeQP6pEyD9inqyigx05B9ozLG5ttPV5I2FwPf1suVFGlsnUwBwSdt5zmD/qh+hQsRHmpAIdSAQqgBhRBqQCHUgEKIfyBG9jP7SD4pV5KYibFs3EfMZJbWu+0I0oDH24ZI2nq5krD3j5UpTvDxiZnoDWg2Ot8IPmbjfI+UqQo9EXw+vPZJCgYn0HeXNeCjx9vfKtt6uVIjPqhMpjrBx5ykqXRrA1ZJPg3P/RhTh2OSzwu0T/J66MJfQ2dEL1adisRMOZJPyeMcjdN/QCHCRg0ohBpQCDWgECKkBgxUip4k4rVXLiMqRU8SdBowr1r0JE2vvbTeVCl6kvyPAAMASGlSBhr76A8AAAAASUVORK5CYII=";
+
+@activityRingTime: 4000ms;
+@activityRingSize: 32px;
+@activityColor: @white;
+@activityColorDark: @darkGray;
+@activityRingRotate: -14deg;
+@activityRingTimeMute: 30;
+
+@hintBackground: rgba(255, 252, 192, 1);
+@hintColor: @dark;
+
+@mpStep: 4;
+@mpUnit: px;
+
+@playerInactiveColor: #555555;
+@playerActiveColor: @green;
+@playerHoverColor: @white;
+@playerControlsBackground: rgba(34, 34, 34, 0.5);
+
+@ribbonMenuStaticBackground: #1979ca;
+@ribbonMenuBackground: #ffffff;
+@ribbonMenuActiveBackground: #f5f6f7;
+@ribbonMenuBorder: #dadbdc;
+@ribbonMenuItemBorder: #a4cef9;
+@ribbonMenuItemActiveBorder: #1979ca;
+@ribbonMenuItemHoverBackground: rgba(red(#a4cef9), green(#a4cef9), blue(#a4cef9), .2);
+@ribbonMenuItemActiveBackground: rgba(red(#a4cef9), green(#a4cef9), blue(#a4cef9), .8);
+@ribbonDropdownBackground: #fbfcfd;
+@ribbonDropdownDivider: #dcddde;
+@ribbonDropdownShadow: #e3e4e5;
+
+
+@playIconLight: data-uri('image/svg+xml;charset=UTF-8', 'less/images/media/light/play.svg');
+@loopIconLight: data-uri('image/svg+xml;charset=UTF-8', 'less/images/media/light/loop.svg');
+@stopIconLight: data-uri('image/svg+xml;charset=UTF-8', 'less/images/media/light/stop.svg');
+@pauseIconLight: data-uri('image/svg+xml;charset=UTF-8', 'less/images/media/light/pause.svg');
+@muteIconLight: data-uri('image/svg+xml;charset=UTF-8', 'less/images/media/light/volume-mute.svg');
+@volumeLowIconLight: data-uri('image/svg+xml;charset=UTF-8', 'less/images/media/light/volume-low.svg');
+@volumeMediumIconLight: data-uri('image/svg+xml;charset=UTF-8', 'less/images/media/light/volume-medium.svg');
+@volumeHighIconLight: data-uri('image/svg+xml;charset=UTF-8', 'less/images/media/light/volume-high.svg');
+@enlargeIconLight: data-uri('image/svg+xml;charset=UTF-8', 'less/images/media/light/enlarge.svg');
+@shrinkIconLight: data-uri('image/svg+xml;charset=UTF-8', 'less/images/media/light/shrink.svg');
+@playlistIconLight: data-uri('image/svg+xml;charset=UTF-8', 'less/images/media/light/list.svg');
+@nextIconLight: data-uri('image/svg+xml;charset=UTF-8', 'less/images/media/light/next.svg');
+@prevIconLight: data-uri('image/svg+xml;charset=UTF-8', 'less/images/media/light/prev.svg');
+@firstIconLight: data-uri('image/svg+xml;charset=UTF-8', 'less/images/media/light/first.svg');
+@lastIconLight: data-uri('image/svg+xml;charset=UTF-8', 'less/images/media/light/last.svg');
+@forwardIconLight: data-uri('image/svg+xml;charset=UTF-8', 'less/images/media/light/forward.svg');
+@backwardIconLight: data-uri('image/svg+xml;charset=UTF-8', 'less/images/media/light/backward.svg');
+@shareIconLight: data-uri('image/svg+xml;charset=UTF-8', 'less/images/media/light/share.svg');
+@equalizerIconLight: data-uri('image/svg+xml;charset=UTF-8', 'less/images/media/light/equalizer.svg');
+@ejectIconLight: data-uri('image/svg+xml;charset=UTF-8', 'less/images/media/light/eject.svg');
+@shuffleIconLight: data-uri('image/svg+xml;charset=UTF-8', 'less/images/media/light/shuffle.svg');
+@randomIconLight: data-uri('image/svg+xml;charset=UTF-8', 'less/images/media/light/dice.svg');
+
+@playIconDark: data-uri('image/svg+xml;charset=UTF-8', 'less/images/media/dark/play.svg');
+@loopIconDark: data-uri('image/svg+xml;charset=UTF-8', 'less/images/media/dark/loop.svg');
+@stopIconDark: data-uri('image/svg+xml;charset=UTF-8', 'less/images/media/dark/stop.svg');
+@pauseIconDark: data-uri('image/svg+xml;charset=UTF-8', 'less/images/media/dark/pause.svg');
+@muteIconDark: data-uri('image/svg+xml;charset=UTF-8', 'less/images/media/dark/volume-mute.svg');
+@volumeLowIconDark: data-uri('image/svg+xml;charset=UTF-8', 'less/images/media/dark/volume-low.svg');
+@volumeMediumIconDark: data-uri('image/svg+xml;charset=UTF-8', 'less/images/media/dark/volume-medium.svg');
+@volumeHighIconDark: data-uri('image/svg+xml;charset=UTF-8', 'less/images/media/dark/volume-high.svg');
+@enlargeIconDark: data-uri('image/svg+xml;charset=UTF-8', 'less/images/media/dark/enlarge.svg');
+@shrinkIconDark: data-uri('image/svg+xml;charset=UTF-8', 'less/images/media/dark/shrink.svg');
+@playlistIconDark: data-uri('image/svg+xml;charset=UTF-8', 'less/images/media/dark/list.svg');
+@nextIconDark: data-uri('image/svg+xml;charset=UTF-8', 'less/images/media/dark/next.svg');
+@prevIconDark: data-uri('image/svg+xml;charset=UTF-8', 'less/images/media/dark/prev.svg');
+@firstIconDark: data-uri('image/svg+xml;charset=UTF-8', 'less/images/media/dark/first.svg');
+@lastIconDark: data-uri('image/svg+xml;charset=UTF-8', 'less/images/media/dark/last.svg');
+@forwardIconDark: data-uri('image/svg+xml;charset=UTF-8', 'less/images/media/dark/forward.svg');
+@backwardIconDark: data-uri('image/svg+xml;charset=UTF-8', 'less/images/media/dark/backward.svg');
+@shareIconDark: data-uri('image/svg+xml;charset=UTF-8', 'less/images/media/dark/share.svg');
+@equalizerIconDark: data-uri('image/svg+xml;charset=UTF-8', 'less/images/media/dark/equalizer.svg');
+@ejectIconDark: data-uri('image/svg+xml;charset=UTF-8', 'less/images/media/dark/eject.svg');
+@shuffleIconDark: data-uri('image/svg+xml;charset=UTF-8', 'less/images/media/dark/shuffle.svg');
+@randomIconDark: data-uri('image/svg+xml;charset=UTF-8', 'less/images/media/dark/dice.svg');
+
+@checkIcon: data-uri('image/svg+xml;charset=UTF-8', 'less/images/inputs/checkmark.svg');
+@crossIcon: data-uri('image/svg+xml;charset=UTF-8', 'less/images/inputs/cross.svg');
+@searchIcon: data-uri('image/svg+xml;charset=UTF-8', 'less/images/inputs/search.svg');
+@eyeIcon: data-uri('image/svg+xml;charset=UTF-8', 'less/images/inputs/eye.svg');
+
+@helpIcon: data-uri('image/svg+xml;charset=UTF-8', 'less/images/wizard/help.svg');
+@leftArrowIcon: data-uri('image/svg+xml;charset=UTF-8', 'less/images/wizard/arrow-left.svg');
+@rightArrowIcon: data-uri('image/svg+xml;charset=UTF-8', 'less/images/wizard/arrow-right.svg');
+@calendarIcon: data-uri('image/svg+xml;charset=UTF-8', 'less/images/inputs/calendar.svg');
+@clockIcon: data-uri('image/svg+xml;charset=UTF-8', 'less/images/inputs/clock.svg');
+@menuIcon: data-uri('image/svg+xml;charset=UTF-8', 'less/images/apps/menu.svg');

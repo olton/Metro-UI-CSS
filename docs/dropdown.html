@@ -1,41 +1,183 @@
 <!DOCTYPE html>
-<html>
-<head lang="en">
+<html lang="en">
+<head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="description" content="Metro, a sleek, intuitive, and powerful framework for faster and easier web development for Windows Metro Style.">
-    <meta name="keywords" content="HTML, CSS, JS, JavaScript, framework, metro, front-end, frontend, web development">
-    <meta name="author" content="Sergey Pimenov and Metro UI CSS contributors">
 
-    <link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
-    <title>Dropdown :: Metro UI CSS - The front-end framework for developing projects on the web in Windows Metro Style</title>
+    <meta name="twitter:site" content="@metroui">
+    <meta name="twitter:creator" content="@pimenov_sergey">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Metro 4 Components Library">
+    <meta name="twitter:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.">
+    <meta name="twitter:image" content="https://metroui.org.ua/images/m4-logo-social.png">
 
-    <link href="css/metro.css" rel="stylesheet">
-    <link href="css/metro-icons.css" rel="stylesheet">
-    <link href="css/metro-responsive.css" rel="stylesheet">
-    <link href="css/metro-schemes.css" rel="stylesheet">
+    <meta property="og:url" content="https://metroui.org.ua/v4/index.html">
+    <meta property="og:title" content="Metro 4 Components Library">
+    <meta property="og:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:secure_url" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="968">
+    <meta property="og:image:height" content="504">
 
-    <link href="css/docs.css" rel="stylesheet">
+    <meta name="author" content="Sergey Pimenov">
+    <meta name="description" content="Easy creating dropdown elements. The most popular HTML, CSS, and JS library in Metro style.">
+    <meta name="keywords" content="HTML, CSS, JS, Metro, CSS3, Javascript, HTML5, UI, Library, Web, Development, Framework">
 
-    <script src="js/jquery-2.1.3.min.js"></script>
-    <script src="js/metro.js"></script>
-    <script src="js/docs.js"></script>
-    <script src="//cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
-    <script src="js/ga.js"></script>
-    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
 
+    <link href="metro/css/metro-all.css" rel="stylesheet">
+    <link href="highlight/styles/github.css" rel="stylesheet">
+    <link href="docsearch/docsearch.min.css" rel="stylesheet">
+    <link href="css/site.css" rel="stylesheet">
 
+    <title>Dropdown - Metro 4 :: Popular HTML, CSS and JS library</title>
 </head>
 <body>
-    <div class="container page-content">
-        <h1><a href="index.html" class="nav-button transform"><span></span></a>&nbsp;Dropdown</h1>
+    <div class="container-fluid">
 
-        @@adsense
+        <div class="row flex-xl-nowrap">
+            <div class="cell-md-3 cell-xl-2 pr-0 border-right bd-light" id="sidenav">
+            </div>
 
-        <div class="example" data-text="example">
+            <div class="d-none d-block-xl cell-xl-2 order-2 border-left bd-light toc-wrapper">
+                <h5>Table of contents</h5>
+                <hr/>
+                <ul class="toc-nav">
+                    <li class="toc-entry"><a href="#">Dropdown</a></li>
+                    <li class="toc-entry"><a href="#_dropdown_about">About</a></li>
+                    <li class="toc-entry"><a href="#_dropdown_options">Options</a></li>
+                </ul>
 
+            </div>
+
+            <main class="cell-md-9 cell-xl-8 order-1 pr-1-sx pl-1-sx pr-5-md pl-5-md">
+                <div class="place-right d-none d-block-lg" style="width: 200px;">
+                    <img src="images/logo.png" class="w-100">
+                </div>
+
+                <h1>Dropdown</h1>
+                <p class="text-leader">
+                    Easy creating dropdown elements with special role.
+                </p>
+
+                <!-- ads-html -->
+
+                <h3 id="_dropdown_about">About</h3>
+                <p>
+                    Quite often you have to create elements that <code>dropdown</code> at the user's request. For example, drop-down menus.
+                    In Metro 4 you can transform any element to <code>dropdown</code>. Element must have <code>display: block</code> css property.
+                    To create <code>dropdown</code> element you can add role <code>data-role="dropdown"</code> and define <code>toggle</code> for it with attribute <code>data-toggle-element="..."</code>.
+                    At the same time, only one dropdown element can be opened.
+                </p>
+                <div class="example">
+                    <button class="button" id="dropdown_toggle_1">Drop block</button>
+                    <div class="pos-relative">
+                        <div class="bg-red fg-white" data-role="dropdown" data-toggle-element="#dropdown_toggle_1">
+                            <p class="p-10 text-center">In Metro 4 you can transform any element to dropdown.</p>
+                        </div>
+                    </div>
+                </div>
+                <pre><code class="html">
+                    &lt;button class="button" id="dropdown_toggle_1"&gt;Drop block&lt;/button&gt;
+                    &lt;div class="pos-relative"&gt;
+                        &lt;div class="bg-red fg-white"
+                                data-role="dropdown"
+                                data-toggle-element="#dropdown_toggle_1"&gt;
+                            &lt;p class="p-10 text-center"&gt;
+                                In Metro 4 you can transform any element to dropdown.
+                            &lt;/p&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
+
+                <h3 id="_dropdown_options">Options</h3>
+                <p>
+                    Each dropdown element has a number of option:
+                </p>
+                <table class="table cell-border table-border options-table">
+                    <thead>
+                    <tr>
+                        <th>Option</th>
+                        <th>Data-*</th>
+                        <th>Default</th>
+                        <th>Desc</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>effect</td>
+                        <td><code>data-effect</code></td>
+                        <td>slide</td>
+                        <td>Show/Close effect. Values: slide, fade</td>
+                    </tr>
+                    <tr>
+                        <td>toggleElement</td>
+                        <td><code>data-toggle-element</code></td>
+                        <td>null</td>
+                        <td>Selector who specified toggle element</td>
+                    </tr>
+                    <tr>
+                        <td>duration</td>
+                        <td><code>data-duration</code></td>
+                        <td>300</td>
+                        <td>Effect duration in milliseconds</td>
+                    </tr>
+                    <tr>
+                        <td>noClose</td>
+                        <td><code>data-no-close</code></td>
+                        <td>false</td>
+                        <td>If true, dropped element can't be close</td>
+                    </tr>
+                    <tr>
+                        <td>onDrop</td>
+                        <td><code>data-on-drop</code></td>
+                        <td>Metro.noop</td>
+                        <td>Event fired when element dropped</td>
+                    </tr>
+                    <tr>
+                        <td>onUp</td>
+                        <td><code>data-on-up</code></td>
+                        <td>Metro.noop</td>
+                        <td>Event fired when element close</td>
+                    </tr>
+                    <tr>
+                        <td>onDropdownCreate</td>
+                        <td><code>data-on-dropdown-create</code></td>
+                        <td>Metro.noop</td>
+                        <td>Event fired when element created</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <p class="remark warning">
+                    Important! One dropdown element is open, other dropdown elements are closed!
+                </p>
+
+                <h3 id="_dropdown_methods">Methods</h3>
+                <p>
+                    Each dropdown component has next methods: <code>open()</code>, <code>close()</code>. You can use this methods to interact with component.
+                </p>
+                <pre><code class="javascript">
+                    el = $('#el').data('dropdown');
+                    el.open();
+                    setTimeout(function(){
+                        el.close();
+                    }, 2000);
+                </code></pre>
+            </main>
         </div>
+
     </div>
+
+    <script src="docsearch/docsearch.min.js"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="metro/js/metro.js"></script>
+    <script src="highlight/highlight.pack.js"></script>
+    <script src="js/clipboard.min.js"></script>
+    <script src="js/site.js"></script>
+    <!-- ads-script -->
 </body>
 </html>

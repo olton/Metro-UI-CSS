@@ -1,351 +1,363 @@
 <!DOCTYPE html>
-<html>
-<head lang="en">
+<html lang="en">
+<head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="description" content="Metro, a sleek, intuitive, and powerful framework for faster and easier web development for Windows Metro Style.">
-    <meta name="keywords" content="HTML, CSS, JS, JavaScript, framework, metro, front-end, frontend, web development">
-    <meta name="author" content="Sergey Pimenov and Metro UI CSS contributors">
 
-    <link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
-    <title>Rating :: Metro UI CSS - The front-end framework for developing projects on the web in Windows Metro Style</title>
+    <meta name="twitter:site" content="@metroui">
+    <meta name="twitter:creator" content="@pimenov_sergey">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Metro 4 Components Library">
+    <meta name="twitter:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.">
+    <meta name="twitter:image" content="https://metroui.org.ua/images/m4-logo-social.png">
 
-    <link href="css/metro.css" rel="stylesheet">
-    <link href="css/metro-icons.css" rel="stylesheet">
-    <link href="css/metro-responsive.css" rel="stylesheet">
-    <link href="css/metro-schemes.css" rel="stylesheet">
+    <meta property="og:url" content="https://metroui.org.ua/v4/index.html">
+    <meta property="og:title" content="Metro 4 Components Library">
+    <meta property="og:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:secure_url" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="968">
+    <meta property="og:image:height" content="504">
 
-    <link href="css/docs.css" rel="stylesheet">
+    <meta name="author" content="Sergey Pimenov">
+    <meta name="description" content="Allow users to easily view and set ratings. The most popular HTML, CSS, and JS library in Metro style.">
+    <meta name="keywords" content="HTML, CSS, JS, Metro, CSS3, Javascript, HTML5, UI, Library, Web, Development, Framework">
 
-    <script src="js/jquery-2.1.3.min.js"></script>
-    <script src="js/metro.js"></script>
-    <script src="js/docs.js"></script>
-    <script src="//cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
-    <script src="js/ga.js"></script>
-    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
 
+    <link href="metro/css/metro-all.css" rel="stylesheet">
+    <link href="highlight/styles/github.css" rel="stylesheet">
+    <link href="docsearch/docsearch.min.css" rel="stylesheet">
+    <link href="css/site.css" rel="stylesheet">
+
+    <title>Rating - Metro 4 :: Popular HTML, CSS and JS library</title>
 </head>
 <body>
-    <div class="container page-content">
-        <h1><a href="index.html" class="nav-button transform"><span></span></a>&nbsp;Rating</h1>
+    <div class="container-fluid">
 
-        @@adsense
-
-        <div class="example" data-text="size">
-
-            <div class="grid">
-                <div class="row cells4">
-                    <div class="cell">
-                        <h5>small</h5>
-                        <div class="rating" data-role="rating" data-size="small" data-value="3"></div>
-                    </div>
-                    <div class="cell">
-                        <h5>default</h5>
-                        <div class="rating" data-role="rating" data-value="3.7"></div>
-                    </div>
-                    <div class="cell">
-                        <h5>large</h5>
-                        <div class="rating" data-role="rating" data-size="large"></div>
-                    </div>
-                    <div class="cell">
-                        <h5>Custom number of stars</h5>
-                        <div class="rating" data-role="rating" data-stars="10"></div>
-                    </div>
-                </div>
+        <div class="row flex-xl-nowrap">
+            <div class="cell-md-3 cell-xl-2 pr-0 border-right bd-light" id="sidenav">
             </div>
 
-        </div> <!-- End of example -->
+            <div class="d-none d-block-xl cell-xl-2 order-2 border-left bd-light toc-wrapper">
+                <h5>Table of contents</h5>
+                <hr/>
+                <ul class="toc-nav">
+                    <li class="toc-entry"><a href="#">Rating</a></li>
+                    <li class="toc-entry"><a href="#_rating_about">About</a></li>
+                    <li class="toc-entry">
+                        <a href="#_rating_options">Options</a>
+                        <ul>
+                            <li class="toc-entry"><a href="#_rating_options_stars">Stars count</a></li>
+                            <li class="toc-entry"><a href="#_rating_options_values">Value &amp; Values</a></li>
+                            <li class="toc-entry"><a href="#_rating_options_message">Message</a></li>
+                            <li class="toc-entry"><a href="#_rating_options_colors">Colors</a></li>
+                            <li class="toc-entry"><a href="#_rating_options_static">Static rating</a></li>
+                        </ul>
+                    </li>
+                    <li class="toc-entry"><a href="#_rating_events">Events</a></li>
+                    <li class="toc-entry"><a href="#_rating_methods">Methods</a></li>
+                    <li class="toc-entry"><a href="#_rating_customize">Customize</a></li>
+                </ul>
 
-        <div class="example" data-text="color">
-
-            <div class="grid">
-                <div class="row cells4">
-                    <div class="cell">
-                        <h5>poor (value 1/3)</h5>
-                        <div class="rating" data-role="rating" data-value="2" data-color-rate="true"></div>
-                    </div>
-                    <div class="cell">
-                        <h5>regular (value up to 2/3)</h5>
-                        <div class="rating" data-role="rating" data-value="3.7" data-color-rate="true"></div>
-                    </div>
-                    <div class="cell">
-                        <h5>good (value from 2/3)</h5>
-                        <div class="rating" data-role="rating" data-value="4.8" data-color-rate="true"></div>
-                    </div>
-                    <div class="cell">
-                        <h5>custom number of stars</h5>
-                        <div class="rating" data-role="rating" data-value="4.8" data-color-rate="true" data-stars="10"></div>
-                    </div>
-                </div>
             </div>
 
-        </div> <!-- End of example -->
-
-        <div class="example" data-text="static">
-
-            <div class="grid">
-                <div class="row cells4">
-                    <div class="cell">
-                        <div class="rating" data-role="rating" data-value="2" data-color-rate="true" data-static="true"></div>
-                    </div>
+            <main class="cell-md-9 cell-xl-8 order-1 pr-1-sx pl-1-sx pr-5-md pl-5-md">
+                <div class="place-right d-none d-block-lg" style="width: 200px;">
+                    <img src="images/logo.png" class="w-100">
                 </div>
-            </div>
 
-        </div> <!-- End of example -->
+                <h1>Rating</h1>
+                <p class="text-leader">
+                    Allow users to easily view and set ratings that reflect degrees of satisfaction with content and services.
+                </p>
 
-        <div class="example" data-text="code">
-            <h5>Declarative style</h5>
-            <pre class="prettyprint linenums"><code>
-                &lt;div class="rating" data-role="rating"&gt;&lt;/div&gt;
-            </code></pre>
+                <!-- ads-html -->
 
-            <h5>Javascript style</h5>
-            <pre class="prettyprint linenums"><code>
-                &lt;div class="rating" id="rating"&gt;&lt;/div&gt;
+                <h3 id="_rating_about">About</h3>
+                <p>
+                    Allow users to easily view and set ratings that reflect degrees of satisfaction with content and services.
+                    The <code>rating</code> control has several great features that provide flexibility and customization.
+                    To create <code>rating</code>, add role <code>rating</code> with attribute <code>data-role</code> to <code>input</code> element.
+                </p>
+                <div class="example">
+                    <input data-role="rating">
+                </div>
+                <pre><code class="html">
+                    &lt;input data-role="rating"&gt;
+                </code></pre>
 
-                &lt;script&gt;
-                    $(function(){
-                        $("#rating").rating();
-                    });
-                &lt;/script&gt;
-            </code></pre>
-        </div>
+                <h3 id="_rating_options">Options</h3>
+                <p>
+                    The <code>rating</code> component has a number of options to setup it.
+                </p>
 
-        <h3>Options</h3>
-        <table class="table bordered border">
-            <thead>
-            <tr>
-                <td>Parameter</td>
-                <td>Data-*</td>
-                <td>Type</td>
-                <td>Default value</td>
-                <td>Description</td>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>stars</td>
-                <td style="white-space: nowrap">data-stars</td>
-                <td>int</td>
-                <td>5</td>
-                <td>Stars count</td>
-            </tr>
-            <tr>
-                <td>value</td>
-                <td style="white-space: nowrap">data-value</td>
-                <td>float</td>
-                <td>0</td>
-                <td>Rating value</td>
-            </tr>
-            <tr>
-                <td>half</td>
-                <td style="white-space: nowrap">data-half</td>
-                <td>boolean</td>
-                <td>true</td>
-                <td>Can be half value</td>
-            </tr>
-            <tr>
-                <td>static</td>
-                <td style="white-space: nowrap">data-static</td>
-                <td>boolean</td>
-                <td>false</td>
-                <td>If true rating show as static</td>
-            </tr>
-            <tr>
-                <td>showScore</td>
-                <td style="white-space: nowrap">data-show-score</td>
-                <td>boolean</td>
-                <td>true</td>
-                <td>Show or hide score label</td>
-            </tr>
-            <tr>
-                <td>scoreTitle</td>
-                <td style="white-space: nowrap">data-score-title</td>
-                <td>string</td>
-                <td>Current:</td>
-                <td>Score label title</td>
-            </tr>
-            <tr>
-                <td>size</td>
-                <td style="white-space: nowrap">data-size</td>
-                <td>string</td>
-                <td>default</td>
-                <td>Rating size [default, small, large]</td>
-            </tr>
-            <tr>
-                <td>colorRate</td>
-                <td style="white-space: nowrap">data-color-rate</td>
-                <td>boolean</td>
-                <td>false</td>
-                <td>If true rating is displayed in color depending on the values</td>
-            </tr>
-            </tbody>
-        </table>
+                <h4 id="_rating_options_stars">Stars count</h4>
+                <p>
+                    By default the rating is displayed with five stars.
+                    You can set your own number of stars with attribute <code>data-stars="..."</code>.
+                    Value for this attribute must be a valid integer value.
+                </p>
+                <div class="example">
+                    <input data-role="rating" data-stars="10">
+                </div>
+                <pre><code class="html">
+                    &lt;input data-role="rating" data-stars="10"&gt;
+                </code></pre>
 
-        <h3>Events</h3>
-        <table class="table bordered border">
-            <thead>
-            <tr>
-                <td>Event</td>
-                <td>Data-*</td>
-                <td>Params</td>
-                <td>Description</td>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>onRate</td>
-                <td style="white-space: nowrap">data-on-rate</td>
-                <td>(value, star, widget)</td>
-                <td>The event fired when the star click. This function can return true or false. If function return false, rating not changed</td>
-            </tr>
-            <tr>
-                <td>onRated</td>
-                <td style="white-space: nowrap">data-on-rated</td>
-                <td>(value, star, widget)</td>
-                <td>The event fired when the star is pressed and onRate return true</td>
-            </tr>
-            </tbody>
-        </table>
-
-        <h3>Methods</h3>
-        <table class="table bordered border">
-            <thead>
-            <tr>
-                <td>Method</td>
-                <td>Description</td>
-                <td>Method call</td>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>value</td>
-                <td>Set or get rating value</td>
-                <td>
-                    <span class="tag">get value</span> <code>$("#itemid").rating('value') or $("#itemid").data('metro.rating').value()</code>
-                    <br />
-                    <span class="tag">set value</span> <code>$("#itemid").rating('value', val) or $("#itemid").data('metro.rating').value(val)</code>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-
-        <h3>Use events and methods</h3>
-        <div class="example">
-            <div class="grid">
-                <div class="row">
-                    <div class="cell">
-                        <h4>onRate</h4>
-                        <div class="rating" data-role="rating" data-size="large" data-size="small" data-on-rate="demo_func_onRate"></div>
-                        <script>
-                            function demo_func_onRate(value, star, widget){
-                                if (value < 3) {
-                                    alert('Please rate as more then 3');
-                                    return false;
-                                }
-                                alert('Good rate');
-                                return true;
-                            }
-                        </script>
-
-                        <pre class="prettyprint linenums"><code>
-                            &lt;div class="rating" data-role="rating" data-size="large" data-size="small" data-on-rate="demo_func_onRate"&gt;&lt;/div&gt;
-                            &lt;script&gt;
-                                function demo_func_onRate(value, star, widget){
-                                    if (value &lt; 3) {
-                                        alert('Please rate as more then 3');
-                                        return false;
-                                    }
-                                    alert('Good rate');
-                                    return true;
-                                }
-                            &lt;/script&gt;
-                        </code></pre>
-                    </div>
-                    <div class="cell">
-                        <h4>onRated</h4>
-                        <div class="rating" data-role="rating" data-size="large" data-size="small" data-on-rated="demo_func_onRated"></div>
-                        <script>
-                            function demo_func_onRated(value, star, widget){
-                                alert('You rated this as ' + value);
-                            }
-                        </script>
-
-                        <pre class="prettyprint linenums"><code>
-                            &lt;div class="rating" data-role="rating" data-size="large" data-size="small" data-on-rate="demo_func_onRated"&gt;&lt;/div&gt;
-                            &lt;script&gt;
-                                function demo_func_onRated(value, star, widget){
-                                    alert('You rated this as ' + value);
-                                }
-                            &lt;/script&gt;
-                        </code></pre>
-                    </div>
-                    <div class="cell">
-                        <h4>Set or get Value</h4>
-                        <div class="rating" data-role="rating" data-size="large" data-size="small" id="demo_rating_1"></div>
-                        <br />
-                        <br />
-
-                        <button class="button" onclick="demo_rating1_get_value()">Get current value</button>
-
-                        <div class="input-control text">
-                            <input type="text" id="new_value_for_demo_rating_1" value="0">
-                            <button class="button" onclick="demo_rating1_set_value()">Set value</button>
+                <h4 id="_rating_options_values">Value, values and round values</h4>
+                <p>
+                    You can set rated value with attribute <code>data-value="..."</code>.
+                    Value for this attribute must be a valid number value and less or equal of count of stars.
+                </p>
+                <div class="example">
+                    <input data-role="rating" data-value="3">
+                </div>
+                <pre><code class="html">
+                    &lt;input data-role="rating" data-value="3"&gt;
+                </code></pre>
+                <p>
+                    If your value is a float, you can use special attribute <code>data-round-func="round|ceil|floor"</code> to set round function.
+                    By default, used <code>round</code> function.
+                </p>
+                <div class="example">
+                    <div class="row">
+                        <div class="cell-md-4">
+                            <p class="text-bold">round</p>
+                            <input data-role="rating" data-value="3.7" data-round-func="round">
                         </div>
-
-                        <script>
-                            function demo_rating1_get_value(){
-                                var rating = $('#demo_rating_1').data('rating');
-                                alert(rating.value());
-                            }
-
-                            function demo_rating1_set_value(){
-                                var value = $('#new_value_for_demo_rating_1').val();
-                                var rating = $('#demo_rating_1').data('rating');
-
-                                if (value < 0 || value > 5) {
-                                    alert('You can set value in range 0...5');
-                                    return false;
-                                }
-
-                                rating.value(value);
-                            }
-                        </script>
-
-                        <pre class="prettyprint linenums"><code>
-                            &lt;div class="rating" data-role="rating" data-size="large" data-size="small" id="demo_rating_1"&gt;&lt;/div&gt;
-
-                            &lt;button class="button" onclick="demo_rating1_get_value()"&gt;Get current value&lt;/button&gt;
-
-                            &lt;div class="input-control text"&gt;
-                                &lt;input type="text" id="new_value_for_demo_rating_1" value="0"&gt;
-                                &lt;button class="button" onclick="demo_rating1_set_value()"&gt;Set value&lt;/button&gt;
-                            &lt;/div&gt;
-
-                            &lt;script&gt;
-                                function demo_rating1_get_value(){
-                                    var rating = $('#demo_rating_1').data('rating');
-                                    alert(rating.value());
-                                }
-
-                                function demo_rating1_set_value(){
-                                    var value = $('#new_value_for_demo_rating_1').val();
-                                    var rating = $('#demo_rating_1').data('rating');
-
-                                    if (value &lt; 0 || value &gt; 5) {
-                                        alert('You can set value in range 0...5');
-                                        return false;
-                                    }
-
-                                    rating.value(value);
-                                }
-                            &lt;/script&gt;
-                        </code></pre>
+                        <div class="cell-md-4">
+                            <p class="text-bold">ceil</p>
+                            <input data-role="rating" data-value="3.7" data-round-func="ceil">
+                        </div>
+                        <div class="cell-md-4">
+                            <p class="text-bold">floor</p>
+                            <input data-role="rating" data-value="3.7" data-round-func="floor">
+                        </div>
                     </div>
                 </div>
-            </div>
+                <pre><code class="html">
+                    &lt;input data-role="rating" data-value="3.7" data-round-func="round"&gt;
+                    &lt;input data-role="rating" data-value="3.7" data-round-func="ceil"&gt;
+                    &lt;input data-role="rating" data-value="3.7" data-round-func="floor"&gt;
+                </code></pre>
+                <p>
+                    Each star has associated value, to determine the ranking. By default, this number is from 1 to the number of stars.
+                    You can set own set of values with attribute <code>data-values="..."</code>. Use <strong>comma separated</strong> string to set value for this attribute.
+                </p>
+                <div class="example">
+                    <p class="text-bold mb-4">
+                        Click on star to view associated value.
+                    </p>
+                    <div class="row">
+                        <div class="cell-md-6">
+                            <input data-role="rating" data-values="0.1, 0.2, 0.3, 0.4, 0.5" onchange="$('#input-for-values-number').val(this.value)">
+                        </div>
+                        <div class="cell-md-6">
+                            <input data-role="input" id="input-for-values-number" readonly data-clear-button="false">
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="cell-md-6">
+                            <input data-role="rating" data-values="A, B, C, D, E" onchange="$('#input-for-values-alpha').val(this.value)">
+                        </div>
+                        <div class="cell-md-6">
+                            <input data-role="input" id="input-for-values-alpha" readonly data-clear-button="false">
+                        </div>
+                    </div>
+                </div>
+                <pre><code class="html">
+                    &lt;input data-role="rating" data-values="0.1, 0.2, 0.3, 0.4, 0.5"&gt;
+                    &lt;input data-role="rating" data-values="A, B, C, D, E"&gt;
+                </code></pre>
+
+                <h4 id="_rating_options_message">Message</h4>
+                <p>
+                    With attribute <code>data-message="..."</code> you can set additional information field for <code>rating</code>.
+                </p>
+                <div class="example">
+                    <input data-role="rating" data-value="3" data-message="(3856)">
+                </div>
+                <pre><code class="html">
+                    &lt;input data-role="rating" data-value="3" data-message="(3856)"&gt;
+                </code></pre>
+
+                <h4 id="_rating_options_colors">Colors</h4>
+                <p>
+                    You can set own colors for rating with attributes <code>data-star-color="..."</code> and <code>data-stared-color="..."</code>.
+                    Value for this attribute must be valid <strong>color hex value</strong> or Metro 4 color name. A color names a defined in <code>Metro.utils</code>, you can see all names in example below.
+                </p>
+                <div class="example">
+                    <div class="row">
+                        <div class="cell-md-3">
+                            <input data-role="rating" data-value="3" data-star-color="cyan" data-stared-color="pink">
+                        </div>
+                        <div class="cell-md-3">
+                            <input data-role="rating" data-value="3" data-star-color="pink" data-stared-color="cyan">
+                        </div>
+                        <div class="cell-md-3">
+                            <input data-role="rating" data-value="3" data-star-color="green" data-stared-color="red">
+                        </div>
+                        <div class="cell-md-3">
+                            <input data-role="rating" data-value="3" data-star-color="yellow" data-stared-color="yellow">
+                        </div>
+                    </div>
+                </div>
+                <pre><code class="html">
+                    &lt;input data-role="rating"
+                        data-value="3"
+                        data-star-color="cyan"
+                        data-stared-color="pink"&gt;
+                </code></pre>
+                <pre><code>
+                        colors: {
+                            lime: '#a4c400',
+                            green: '#60a917',
+                            emerald: '#008a00',
+                            blue: '#00AFF0',
+                            teal: '#00aba9',
+                            cyan: '#1ba1e2',
+                            cobalt: '#0050ef',
+                            indigo: '#6a00ff',
+                            violet: '#aa00ff',
+                            pink: '#dc4fad',
+                            magenta: '#d80073',
+                            crimson: '#a20025',
+                            red: '#CE352C',
+                            orange: '#fa6800',
+                            amber: '#f0a30a',
+                            yellow: '#fff000',
+                            brown: '#825a2c',
+                            olive: '#6d8764',
+                            steel: '#647687',
+                            mauve: '#76608a',
+                            taupe: '#87794e'
+                        }
+                </code></pre>
+
+                <h4 id="_rating_options_static">Static rating</h4>
+                <p>
+                    If you need create static rating, use attribute <code>data-static="true"</code> to set it.
+                </p>
+                <div class="example">
+                    <input data-role="rating" data-value="3" data-message="(3856)" data-static="true">
+                </div>
+                <pre><code class="html">
+                    &lt;input data-role="rating"
+                        data-value="3"
+                        data-message="(3856)"
+                        data-static="true"&gt;
+                </code></pre>
+
+                <h3 id="_rating_events">Events</h3>
+                <p>
+                    When <code>rating</code> works, it generate the number of events. You can use callbacks for this events to interact with it.
+                </p>
+                <table class="table cell-border table-border options-table">
+                    <thead>
+                    <tr>
+                        <th>Event</th>
+                        <th>Data</th>
+                        <th>Desc</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><code>onStarClick(value, star, element)</code></td>
+                        <td><code>data-on-star-click</code></td>
+                        <td>Fired when use click on the star on the not static rating</td>
+                    </tr>
+                    <tr>
+                        <td><code>onRatingCreate(element)</code></td>
+                        <td><code>data-on-rating-create</code></td>
+                        <td>Fired when the rating was created.</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="example">
+                    <input id="rating-events" data-role="rating" data-on-star-click="alert('User rated this with value ' + arguments[0])">
+                </div>
+                <pre><code class="html">
+                    &lt;input id="rating-events"
+                        data-role="rating"
+                        data-on-star-click="
+                            alert('User rated this with value ' + arguments[0])
+                        "&gt;
+                </code></pre>
+
+                <h3 id="_rating_methods">Methods</h3>
+                <p>
+                    Rating has the number of methods to interact with it.
+                </p>
+                <table class="table cell-border table-border options-table">
+                    <thead>
+                    <tr>
+                        <th>Method</th>
+                        <th>Desc</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><code>val()</code></td>
+                        <td>Get current rating value</td>
+                    </tr>
+                    <tr>
+                        <td><code>val(val)</code></td>
+                        <td>Set rating value</td>
+                    </tr>
+                    <tr>
+                        <td><code>msg(m)</code></td>
+                        <td>Set rating info message</td>
+                    </tr>
+                    <tr>
+                        <td><code>static(mode)</code></td>
+                        <td>Set rating mode: static when true or not when false</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="example">
+                    <input data-role="rating" id="rating-methods" data-message="Please rate">
+                    <div class="mt-2">
+                        <button class="button" onclick="
+                            var v = Metro.utils.random(1, 5);
+                            var r = $('#rating-methods').data('rating');
+                            r.val(v).msg('Your rate is: ' + v);
+                        ">Click me for rate</button>
+                    </div>
+                </div>
+                <pre><code class="html">
+                    &lt;input data-role="rating" id="rating-methods" data-message="Please rate"&gt;
+                    &lt;div&gt;
+                        &lt;button class="button" onclick="
+                            var v = Metro.utils.random(1, 5);
+                            var r = $('#rating-methods').data('rating');
+                            r.val(v).msg('Your rate is: ' + v);
+                        "&gt;Click me for rate&lt;/button&gt;
+                    &lt;/div&gt;
+                </code></pre>
+
+                <h3 id="_rating_customize">Customize</h3>
+                <p>
+                    You can customize cube component. For change cube visual style use attributes:
+                        <code>data-cls-rating</code> - additional class for rating component,
+                        <code>data-cls-stars</code> - additional class for stars list,
+                        <code>data-cls-result</code> - additional class for message field.
+                    Use these attributes to set additional classes to cube elements.
+                </p>
+            </main>
         </div>
+
     </div>
+
+    <script src="docsearch/docsearch.min.js"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="metro/js/metro.js"></script>
+    <script src="highlight/highlight.pack.js"></script>
+    <script src="js/clipboard.min.js"></script>
+    <script src="js/site.js"></script>
+    <!-- ads-script -->
 </body>
 </html>

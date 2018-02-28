@@ -1,283 +1,412 @@
-@import (once) "vars";
-@import (once) "utils";
+@import (once) "include/vars";
+@import (once) "include/mixins";
 
-
-@eventWidth: 211px;
-@eventHeight: 75px;
-@eventMargin: 2px;
+@streamItemWidth: 224px;
 
 .streamer {
     position: relative;
     display: block;
     width: 100%;
     overflow: hidden;
+    margin-bottom: 1rem;
 }
 
 .streamer {
-	.streamer-toolbar {
-		.toolbar-button {
-			display: block;
-			float: left;
-			width: .625rem;
-			height: 1.5rem;
+    .streams {
+        //width: 200px;
+        width: 40px;
+        overflow: visible;
+        display: flex;
+        flex-flow: column nowrap;
+        padding-top: 30px;
+        background-color: @white;
+        color: @dark;
+        position: absolute;
+        margin-top: 2px;
+        left: 0;
+        top: 0;
+        z-index: @zindex-absolute;
+    }
 
-			&.active {
-				background-color: @gray;
-				color: @white;
-			}
-		}
-	}
+    .streamer-actions {
+        position: absolute;
+        top: -1px;
+        left: 0;
+        width: 100%;
+        height: 32px;
+        //display: flex;
+        display: none;
+        flex-flow: row nowrap;
+        justify-content: flex-start;
+        background-color: inherit;
+        z-index: @zindex-selectedCheck + 1;
+    }
 
-    .meter {
-        height: 25px;
+    .streamer-action {
+        margin: 1px;
+        height: 26px;
+        width: 26px;
+        border: 0px solid @borderColor;
+        line-height: 26px;
+        text-align: center;
+        cursor: pointer;
+        background-color: @white;
+        color: @dark;
+        outline: none;
+        padding: 0;
+
+        * {
+            vertical-align: inherit ;
+            font-size: 26px;
+            width: 100%!important;
+            height: 100%!important;
+        }
+    }
+
+    a.streamer-action {
+        color: @dark;
+        &:hover {
+            color: @dark ;
+        }
+    }
+
+    .stream {
+        position: relative;
+        height: 75px;
+        width: 40px;
+        padding: 4px 8px;
+        display: flex;
+        flex-flow: column nowrap;
+        background-color: inherit;
+        color: inherit;
+        border: 2px solid @white;
+        cursor: pointer;
+        user-select: none;
+        transition: @transition-width;
+    }
+
+    .stream-title, .stream-secondary {
+        //display: block;
+        display: none;
+        z-index: 2;
+    }
+
+    .stream-title {
+        font-size: 14px;
+        text-transform: uppercase;
+        height: 100%;
+        line-height: 1;
+    }
+
+    .stream-secondary {
+        height: 16px;
+        line-height: 16px;
+        font-size: 12px;
+    }
+
+    .stream-icon {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -16px;
+        margin-left: -16px;
+        width: 32px;
+        height: 32px;
+        font-size: 24px;
+    }
+}
+
+.streamer {
+    .events-area {
+        width: 100%;
+        overflow: hidden;
+        display: flex;
+        flex-flow: column nowrap;
+        overflow-x: auto;
+        padding-left: 40px;
+        z-index: 1;
+        -webkit-overflow-scrolling: touch;
+        position: relative;
+    }
+
+    .streamer-timeline {
+        height: 32px;
         width: auto;
-        list-style: none;
+        list-style: none inside;
         margin: 0;
         padding: 0;
-        display: block;
-        overflow: hidden;
+        display: flex;
+        flex-flow: row nowrap;
+        order: 1;
 
         li {
-            display: block;
-            float: left;
-            width: 213px;
-            padding: 2px 3px;
-			background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAANUAAAAUCAYAAAAa9HiSAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAHlJREFUeNrs2csJgDAQQMFE7Gj77yA9+UNswOwewgwI3hYTngrpY4yjAb9FRH9u7qguLfuqmFP1PKutm/2Zu36b9wvMJSoQFYgKRAWICkQFq9qrBn0HY4neM4pl5lSyP75U4PcPRAWICkQFogJEBaICUQGigjynAAMAqEOFksZmC3MAAAAASUVORK5CYII=') top left repeat-x;
+            flex-shrink: 0;
+            width: @streamItemWidth;
+            background: url(@streamerTimelineImage) no-repeat;
+            vertical-align: bottom;
+            height: 100%;
+            line-height: 30px;
+            display: flex;
+            flex-flow: row nowrap;
 
             em {
                 font-size: 10px;
                 font-style: normal;
+                margin: 4px;
+                flex: 1 0 0;
+                max-width: 100%;
             }
         }
     }
 
-    .streams {
-        width: 142px;
-        padding-top: 25px;
-        position: absolute;
-        left: 0;
-        top: 0;
-        z-index: 2;
-        background-color: rgba(255,255,255, 1);
+    .streamer-events {
+        order: 2;
+        position: relative;
+        display: flex;
+        flex-flow: row nowrap;
+    }
 
-        .streams-title {
-            position: absolute;
-            top: 0;
-        }
+    .event-group {
+        display: block;
+        background-color: @white;
+        color: @dark;
+        border: 1px solid transparent;
+        flex-shrink: 0;
+        margin-top: -1px;
+    }
 
-        .stream {
-            position: relative;
-            display: block;
-            width: 100%;
-            height: 75px;
-            margin: 0 2px 2px 0;
-            padding: 5px;
-            color: @white;
-            cursor: pointer;
+    .stream-events {
+        height: 75px;
+        width: auto;
+        position: relative;
+        display: flex;
+        flex-flow: row nowrap;
 
-            .stream-title {
-                font-size: .75rem;
-                line-height: 1;
-                br {
+        &.global-stream {
+            min-height: 100%;
 
-                }
-            }
-
-            .stream-number {
-                position: absolute;
-                left: 5px;
-                bottom: 5px;
-                font-size: .6875rem;
-                line-height: 1;
-            }
-
-            &:hover {
-
+            .stream-event {
+                min-width: 100%;
             }
         }
     }
 
-    .events {
-        padding-left: 143px;
+    .stream-event {
+        width: @streamItemWidth - 2;
+        height: ~"calc(100% - 3px)";
+        border: 1px solid @grayWhite;
+        margin: 2px 1px;
+        background-color: @white;
+        color: @dark;
         overflow: hidden;
+        user-select: none;
+        cursor: pointer;
+
+        &:hover {
+            border-color: @borderColor;
+        }
+    }
+
+    .stream-event-slide {
+        display: flex;
+        position: relative;
+        flex-flow: row nowrap;
         height: 100%;
-        min-height: 100%;
-        overflow-x: scroll;
 
-        .double {
-            width: @eventWidth * 2 + @eventMargin;
+        .slide-logo {
+            width: 40px;
+            position: relative;
+            display: flex;
+            flex-flow: column nowrap;
+            padding: 2px;
+
+            .icon {
+                .square(36, px);
+            }
+
+            .time {
+                margin-top: 1px;
+                padding: 5px 4px 6px;
+                font-size: .75rem;
+            }
         }
 
-        .triple {
-            width: @eventWidth * 3 + @eventMargin * 2;
-        }
-
-        .quadro {
-            width: @eventWidth * 4 + @eventMargin * 3;
-        }
-
-        .events-area {
+        .slide-data {
+            margin: 0 4px;
+            padding: 4px 0;
+            display: flex;
+            flex-flow: column nowrap;
+            width: ~"calc(100% - 48px)";
             height: 100%;
-            min-height: 100%;
-            overflow: hidden;
-            .clear-float;
+
+            .title, .subtitle, .desc {
+                line-height: 1;
+            }
+
+            .title {
+                font-size: 12px;
+                font-weight: bold;
+                line-height: 14px;
+            }
+
+            .subtitle {
+                font-size: 10px;
+            }
+
+            .desc {
+                font-size: 11px;
+                color: #999999;
+                margin-top: auto;
+                height: 29px;
+            }
+
+            * + .subtitle {
+                margin-top: 2px;
+            }
         }
 
-        .events-grid {
-            height: 100%;
-            min-height: 100%;
-            .clear-float;
+        .state-icon {
+            position: absolute;
+            z-index: @zindex-selectedCheck - 1;
+            top: 4px;
+            right: 8px;
+            color: @darkGray;
         }
+    }
+}
 
-        .event-group {
-            height: @eventHeight * 6 + @eventMargin * 5;
-            //min-height: 100%;
-            min-width: @eventWidth;
-            margin: 0 @eventMargin @eventMargin 0;
-            float: left;
+.streamer {
+    .stream-event {
+        position: relative;
+        user-select: none;
+        &.selected {
+            box-shadow: 0 0 0 1px rgba(red(@lightCyan), green(@lightCyan), blue(@lightCyan), 1)!important;
         }
+    }
+}
 
-        .event-super {
-            height: 100%;
-            min-height: 100%;
-            .set-border;
+.streamer {
+    .stream {
+        &.disabled {
+
         }
+    }
 
-        .event-stream {
-            height: 75px;
-
-            .event {
-                min-width: @eventWidth;
-                height: @eventHeight;
-                float: left;
-                display: block;
-                margin: 0 @eventMargin @eventMargin 0;
-                cursor: pointer;
-                position: relative;
-                overflow: hidden;
-				.no-user-select;
-                .set-border;
-
-                &:last-child {
-                    margin-right: 0;
-                }
-
-                &.event-disable {
-                    opacity: .2;
-                }
-
-                .event-content {
-                    width: 100%;
-                    height: 100%;
-                    padding: 0;
-                    margin: 0;
-                    position: absolute;
-                    left: 0;
-                    top: 0;
-                    overflow: hidden;
-                    display: none;
-
-                    &:first-child {
-                        display: block;
-                    }
-                }
-
-                .event-content-logo {
-                    display: block;
-                    float: left;
-                    margin-right: 5px;
-                    padding: 3px;
-
-                    .icon {
-                        position: relative;
-                        width: 39px;
-                        height: 39px;
-                        margin-bottom: 1px;
-                        img {
-                            width: 100%;
-                            height: 100%;
-                        }
-                    }
-
-                    .time {
-                        position: relative;
-                        width: 39px;
-                        padding: 8px 4px;
-                        font-size: .75rem;
-                        color: @white;
-                        line-height: 1;
-                    }
-                }
-
-                .event-content-data {
-                    display: block;
-                    padding: 0;
-                    margin: 0;
-                    position: relative;
-                    margin-left: 50px;
-
-                    .title {
-                        position: relative;
-                        font-size: .875rem;
-                        line-height: 1;
-                        margin: 3px 0 0;
-                        padding: 0;
-                    }
-
-                    .subtitle {
-                        position: relative;
-                        font-size: .625rem;
-                        line-height: 1;
-                        margin: 0;
-                        padding: 0;
-                        margin-bottom: 10px;
-                    }
-
-                    .remark {
-                        position: absolute;
-                        display: block;
-                        top: 36px;
-                        margin-right: 4px;
-                        font-size: .6875rem;
-                        line-height: 1;
-                        //font-style: italic;
-                        color: @grayLight;
-                    }
-                }
-
-                &:hover {
-                    border-color: @grayLight;
-                }
-
-                &.selected {
-                    .event-content-logo {
-                        .time {
-                            //padding: 5px 4px;
-                        }
-                    }
-					.element-selected;
-                    border-width: 1px;
-                    &:before {
-                        right: 3px;
-                        top: 3px;
-                        color: @white;
-                    }
-                }
-
-                &.margin-one {
-                    margin-left: @eventWidth + @eventMargin ;
-                }
-                &.margin-double {
-                    margin-left: @eventWidth * 2 + @eventMargin * 2 ;
-                }
-                &.margin-triple {
-                    margin-left: @eventWidth * 3 + @eventMargin * 3 ;
-                }
-                &.margin-quadro {
-                    margin-left: @eventWidth * 4 + @eventMargin * 4 ;
-                }
-
+    .stream-events:not(.global-stream) {
+        .stream-event {
+            &.disabled {
+                opacity: .2;
             }
         }
     }
+}
+
+.streamer {
+    .size-auto {
+        width: auto;
+    }
+
+    .event-group {
+        .generate-size(@i, @k: 1) when (@k =< @i) {
+            &.size-@{k}x {
+                width: @streamItemWidth * @k;
+            }
+            .generate-size(@i, @k + 1);
+        }
+        .generate-size(10);
+    }
+
+    .stream-event {
+        .generate-size(@i, @k: 1) when (@k =< @i) {
+            &.size-@{k}x {
+                width: (@streamItemWidth - 2) * @k + (2 * ( @k - 1 ));
+            }
+            &.shift-@{k}x {
+                margin-left: (@streamItemWidth - 2) * @k + (2 * ( @k ) + 1);
+            }
+            .generate-size(@i, @k + 1);
+        }
+        .generate-size(10);
+    }
+}
+
+html.metro-no-touch-device {
+    .streamer {
+        .stream {
+            &:hover {
+                transition: @transition-width;
+                width: 200px;
+                .stream-title, .stream-secondary {
+                    display: block;
+                }
+                .stream-icon {
+                    bottom: 4px;
+                    right: 4px;
+                    top: auto;
+                    left: auto;
+                }
+            }
+        }
+    }
+}
+
+html.metro-touch-device {
+    .streamer {
+        .stream {
+            &.focused {
+                transition: @transition-width;
+                width: 200px;
+                .stream-title, .stream-secondary {
+                    display: block;
+                }
+                .stream-icon {
+                    bottom: 4px;
+                    right: 4px;
+                    top: auto;
+                    left: auto;
+                }
+            }
+        }
+    }
+}
+
+.streamer-expand(){
+    .stream {
+        width: 200px;
+    }
+
+    .streamer-actions {
+        display: flex;
+        width: 200px;
+    }
+
+    .stream-title, .stream-secondary {
+        display: block;
+    }
+
+    .stream-icon {
+        bottom: 4px;
+        right: 4px;
+        top: auto;
+        left: auto;
+    }
+
+    .events-area {
+        padding-left: 200px;
+    }
+}
+
+.generate-streamer-media(@mediaBreakpointListMobileLength);
+.generate-streamer-media(@name, @i: 1) when (@i <= @mediaBreakpointListMobileLength) {
+    @m: extract(@mediaBreakpointListMobile, @i);
+
+    @media screen and (min-width: @@m) {
+        .streamer {
+            &.streamer-expand-@{m} {
+                .streamer-expand();
+            }
+        }
+    }
+
+    .generate-streamer-media(@name, @i + 1);
 }

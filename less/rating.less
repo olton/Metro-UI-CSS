@@ -1,175 +1,111 @@
-@import (once) "vars";
-@import (once) "transform";
+@import (once) "include/vars";
+@import (once) "include/mixins";
 
-.rating {
-	cursor: pointer;
-	display: inline-block;
-	.clear-float;
+@ratingStarSize: 24px;
+@ratingStarOff: @gray;
+@ratingStarOn: @dark;
 
-	.star {
-		cursor: pointer;
-		display: block;
-		float: left;
-		color: @gray;
-		font-size: 20px;
-		z-index: 1;
-		position: relative;
-		width: 20px;
-		height: 24px;
-		vertical-align: middle;
-		line-height: 22px;
-
-		&:before, &:after  {
-			position: absolute;
-			content: '\2605';
-			display: block;
-			z-index: 2;
-			top: 0 ;
-			left: 0;
-			vertical-align: middle;
-		}
-
-		&.on {
-			color: gold;
-
-			&.half {
-				color: @gray;
-				&:after {
-					color: gold;
-				}
-			}
-		}
-
-		&.half {
-			&:after {
-				z-index: 3;
-				width: 8px;
-				overflow: hidden;
-			}
-		}
-	}
-
-    &.poor {
-        .star.on {
-            color: @red;
-
-            &.half {
-                color: @gray;
-                &:after {
-                    color: @red;
-                }
-            }
-        }
-    }
-    &.regular {
-        .star.on {
-            color: gold;
-
-            &.half {
-                color: @gray;
-                &:after {
-                    color: gold;
-                }
-            }
-        }
-    }
-    &.good {
-        .star.on {
-            color: @green;
-
-            &.half {
-                color: @gray;
-                &:after {
-                    color: @green;
-                }
-            }
-        }
-    }
-
-	&:not(.static) {
-
-
-        .star:hover {
-            color: gold ;
-            &.half, &.on.half {
-                color:gold;
-                &:after {
-                    color:gold;
-                }
-            }
-        }
-
-		&:hover > .star, &:hover > .star:after {
-			color: gold ;
-            &.half, &.on.half {
-                color:gold;
-                &:after {
-                    color:gold;
-                }
-            }
-		}
-
-        .star:hover ~ .star, .star:hover ~ .star:after {
-            color: gray ;
-            &.half, &.on.half {
-                color:gray;
-                &:after {
-                    color:gray;
-                }
-            }
-        }
-
-	}
-
+.rating-star(@size) {
+    width: @size;
+    height: @size;
+    line-height: @size;
+    font-size: @size;
 }
 
 .rating {
-	&.small {
-		.star {
-			width: 14px;
-			height: 16px;
-			font-size: 14px;
-			line-height: 14px;
-
-			&.half {
-				&:after {
-					width: 6px;
-				}
-			}
-		}
-	}
-
-	&.large {
-		.star {
-			width: 28px;
-			height: 30px;
-			font-size: 32px;
-			line-height: 24px;
-
-			&.half {
-				&:after {
-					width: 13px;
-				}
-			}
-		}
-	}
+    display: inline-flex;
+    flex-flow: row;
+    align-items: center;
+    position: relative;
+    background-color: @transparent;
+    cursor: default;
+    font-size: 16px;
 }
 
 .rating {
-	.score {
-		display: block;
-		font-size: .8rem;
-	}
+    input {
+        width: 1px;
+        height: 1px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+    }
 
-	&.small {
-		.score {
-			font-size: .6rem;
-		}
-	}
+    .stars, .result, .title {
+        display: block;
+        position: relative;
+    }
 
-	&.large {
-		.score {
-			font-size: 1rem;
-		}
-	}
+    .stars {
+        margin: 0;
+        padding: 0;
+        list-style: none inside;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: flex-start;
+        align-items: center;
+
+        li {
+            display: block;
+            position: relative;
+            color: @ratingStarOff;
+            .rating-star(@ratingStarSize);
+            transition: @transition-color;
+
+            &::before {
+                position: absolute;
+                content: '\2605';
+                display: block;
+                left: 50%;
+                .translateX(-50%);
+                top: 50%;
+                .translateY(-50%);
+            }
+        }
+    }
+
+    .result {
+        font-size: .8em;
+        margin-left: 10px;
+    }
+
+    .title {
+        margin-right: 10px;
+    }
+}
+
+.rating .stars {
+    cursor: default;
+
+    li.on {
+        color: @ratingStarOn
+    }
+}
+
+.rating:not(.static) .stars {
+    cursor: pointer;
+
+    &:hover {
+        li {
+            color: @ratingStarOn;
+        }
+    }
+
+    li:hover ~ li {
+        color: @ratingStarOff!important;
+    }
+
+    li.scale {
+        animation: star-scale .3s ease-in-out;
+    }
+}
+
+@keyframes star-scale {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.5);
+    }
 }

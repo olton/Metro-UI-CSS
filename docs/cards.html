@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <meta name="twitter:site" content="@metroui">
+    <meta name="twitter:creator" content="@pimenov_sergey">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Metro 4 Components Library">
+    <meta name="twitter:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.">
+    <meta name="twitter:image" content="https://metroui.org.ua/images/m4-logo-social.png">
+
+    <meta property="og:url" content="https://metroui.org.ua/v4/index.html">
+    <meta property="og:title" content="Metro 4 Components Library">
+    <meta property="og:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:secure_url" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="968">
+    <meta property="og:image:height" content="504">
+
+    <meta name="author" content="Sergey Pimenov">
+    <meta name="description" content="A card is a sheet that serves as an entry point to more detailed information. The most popular HTML, CSS, and JS library in Metro style.">
+    <meta name="keywords" content="HTML, CSS, JS, Metro, CSS3, Javascript, HTML5, UI, Library, Web, Development, Framework">
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <link href="metro/css/metro-all.css" rel="stylesheet">
+    <link href="highlight/styles/github.css" rel="stylesheet">
+    <link href="docsearch/docsearch.min.css" rel="stylesheet">
+    <link href="css/site.css" rel="stylesheet">
+
+    <title>Cards - Metro 4 :: Popular HTML, CSS and JS library</title>
+
+    <style>
+        .card {
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+
+        <div class="row flex-xl-nowrap">
+            <div class="cell-md-3 cell-xl-2 pr-0 border-right bd-light" id="sidenav">
+            </div>
+
+            <div class="d-none d-block-xl cell-xl-2 order-2 border-left bd-light toc-wrapper">
+                <h5>Table of contents</h5>
+                <hr/>
+                <ul class="toc-nav">
+                    <li class="toc-entry"><a href="#">Cards</a></li>
+                    <li class="toc-entry">
+                        <a href="#_card_about">About cards</a>
+                        <ul>
+                            <li class="toc-entry"><a href="#_card_simple">Simple card</a></li>
+                            <li class="toc-entry"><a href="#_card_simple">Image header</a></li>
+                            <li class="toc-entry"><a href="#_card_simple">Likes card</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
+
+            <main class="cell-md-9 cell-xl-8 order-1 pr-1-sx pl-1-sx pr-5-md pl-5-md">
+                <div class="place-right d-none d-block-lg" style="width: 200px;">
+                    <img src="images/logo.png" class="w-100">
+                </div>
+
+                <h1>Cards</h1>
+                <p class="text-leader">
+                    A card is a sheet that serves as an entry point to more detailed information.
+                </p>
+
+                <!-- ads-html -->
+
+                <h3 id="_card_about">About cards</h3>
+                <p>
+                    Metro 4 provides any classes to create cards. A card is a sheet that serves as an entry point to more detailed information.
+                    Cards may contain a photo, text, and a link about a single subject.
+                    They may display content containing elements of varying size, such as photos with captions of variable length.
+                </p>
+
+                <h4 id="_card_simple">Simple card</h4>
+                <div class="example">
+                    <div class="card mx-auto">
+                        <div class="card-header">
+                            Card header
+                        </div>
+                        <div class="card-content p-2">
+                            Card with header and footer. Card header is used to display card title and footer for some additional information or for custom actions.
+                        </div>
+                        <div class="card-footer">
+                            Card Footer
+                        </div>
+                    </div>
+                </div>
+                <pre><code class="html">
+                    &lt;div class="card"&gt;
+                        &lt;div class="card-header"&gt;
+                            Card header
+                        &lt;/div&gt;
+                        &lt;div class="card-content p-2"&gt;
+                            Card with header and footer...
+                        &lt;/div&gt;
+                        &lt;div class="card-footer"&gt;
+                            Card Footer
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
+                <p class="remark">
+                    By default card have width <code>100%</code>. You can set own size for your cards.
+                </p>
+
+                <h4 id="_card_image_header">Image header</h4>
+                <div class="example">
+                    <div class="card image-header">
+                        <div class="card-header fg-white"
+                             style="background-image: url(images/4.jpg)">
+                            Journey To Mountains
+                        </div>
+                        <div class="card-content p-2">
+                            <p class="fg-gray">Posted on January 21, 2015</p>
+                            Quisque eget vestibulum nulla. Quisque quis dui quis ex
+                            ultricies efficitur vitae non felis. Phasellus quis nibh
+                            hendrerit...
+                        </div>
+                        <div class="card-footer">
+                            <button class="button secondary">Read More</button>
+                        </div>
+                    </div>
+                </div>
+                <pre><code class="html">
+                    &lt;div class="card image-header"&gt;
+                        &lt;div class="card-header fg-white"
+                             style="background-image: url(http://lorempixel.com/1000/600/)"&gt;
+                            Journey To Mountains
+                        &lt;/div&gt;
+                        &lt;div class="card-content p-2"&gt;
+                            &lt;p class="fg-gray"&gt;Posted on January 21, 2015&lt;/p&gt;
+                            Quisque eget vestibulum nulla. Quisque quis dui quis ex
+                            ultricies efficitur vitae non felis. Phasellus quis nibh
+                            hendrerit...
+                        &lt;/div&gt;
+                        &lt;div class="card-footer"&gt;
+                            &lt;button class="button secondary"&gt;Read More&lt;/button&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
+
+                <h4 id="_card_likes">Likes card</h4>
+                <div class="example">
+                    <div class="row mt-2">
+                        <div class="cell-md-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="avatar">
+                                        <img src="images/pumba.png">
+                                    </div>
+                                    <div class="name">John Doe</div>
+                                    <div class="date">Monday at 3:47 PM</div>
+                                </div>
+                                <div class="card-content">
+                                    <img src="images/1.jpg" style="width: 100%">
+                                </div>
+                                <div class="card-footer">
+                                    <button class="flat-button mif-thumbs-up"></button>
+                                    <button class="flat-button mif-tag"></button>
+                                    <button class="flat-button mif-share"></button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="cell-md-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="avatar">
+                                        <img src="images/pumba.png">
+                                    </div>
+                                    <div class="name">John Doe</div>
+                                    <div class="date">Monday at 3:47 PM</div>
+                                </div>
+                                <div class="card-content p-2">
+                                    What a nice photo i took yesterday!
+                                </div>
+                                <div class="card-content">
+                                    <img src="images/2.jpg" style="width: 100%">
+                                </div>
+                                <div class="card-content fg-gray p-2">
+                                    <span><small>Likes: </small>112</span>
+                                    <span><small>Comments: </small>43</span>
+                                </div>
+                                <div class="card-footer">
+                                    <button class="flat-button mif-thumbs-up mif-2x"></button>
+                                    <button class="flat-button mif-tag mif-2x"></button>
+                                    <button class="flat-button mif-share mif-2x"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <pre><code class="html">
+                    &lt;div class="card"&gt;
+                        &lt;div class="card-header"&gt;
+                            &lt;div class="avatar"&gt;
+                                &lt;img src="http://lorempixel.com/68/68/people/"&gt;
+                            &lt;/div&gt;
+                            &lt;div class="name"&gt;John Doe&lt;/div&gt;
+                            &lt;div class="date"&gt;Monday at 3:47 PM&lt;/div&gt;
+                        &lt;/div&gt;
+                        &lt;div class="card-content p-2"&gt;
+                            &lt;img src="http://lorempixel.com/1000/600/" style="width: 100%"&gt;
+                        &lt;/div&gt;
+                        &lt;div class="card-footer"&gt;
+                            &lt;button class="flat-button mif-thumbs-up"&gt;&lt;/button&gt;
+                            &lt;button class="flat-button mif-tag"&gt;&lt;/button&gt;
+                            &lt;button class="flat-button mif-share"&gt;&lt;/button&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+
+                    &lt;div class="card"&gt;
+                        &lt;div class="card-header"&gt;
+                            &lt;div class="avatar"&gt;
+                                &lt;img src="http://lorempixel.com/68/68/people/"&gt;
+                            &lt;/div&gt;
+                            &lt;div class="name"&gt;John Doe&lt;/div&gt;
+                            &lt;div class="date"&gt;Monday at 3:47 PM&lt;/div&gt;
+                        &lt;/div&gt;
+                        &lt;div class="card-content p-2"&gt;
+                            What a nice photo i took yesterday!
+                        &lt;/div&gt;
+                        &lt;div class="card-content"&gt;
+                            &lt;img src="http://lorempixel.com/1000/600/" style="width: 100%"&gt;
+                        &lt;/div&gt;
+                        &lt;div class="card-content fg-gray p-2"&gt;
+                            &lt;span&gt;&lt;small&gt;Likes: &lt;/small&gt;112&lt;/span&gt;
+                            &lt;span&gt;&lt;small&gt;Comments: &lt;/small&gt;43&lt;/span&gt;
+                        &lt;/div&gt;
+                        &lt;div class="card-footer"&gt;
+                            &lt;button class="flat-button mif-thumbs-up mif-2x"&gt;&lt;/button&gt;
+                            &lt;button class="flat-button mif-tag mif-2x"&gt;&lt;/button&gt;
+                            &lt;button class="flat-button mif-share mif-2x"&gt;&lt;/button&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
+            </main>
+        </div>
+
+    </div>
+
+    <script src="docsearch/docsearch.min.js"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="metro/js/metro.js"></script>
+    <script src="highlight/highlight.pack.js"></script>
+    <script src="js/clipboard.min.js"></script>
+    <script src="js/site.js"></script>
+    <!-- ads-script -->
+</body>
+</html>

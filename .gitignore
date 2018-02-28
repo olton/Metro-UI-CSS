@@ -57,3 +57,13 @@ validation-status.json
 # Folders to ignore
 bower_components
 node_modules
+adsense
+
+# Special files
+deploy.bat
+commit.bat
+publish.bat
+Postprocess.js
+Build.js
+*.ftpauth
+/package-lock.json

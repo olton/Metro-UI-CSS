@@ -1,127 +1,89 @@
-@import (once) "vars";
-@import (once) "utils";
-
-// leaf
-// node
+@import (once) "include/vars";
+@import (once) "include/mixins";
 
 .treeview {
-	margin: 0;
-	padding: 0;
-	display: block;
-	font-size: .75rem;
+    margin: 0 0 0 8px;
+    padding: 0;
+    font-size: .8125rem;
+    list-style: none inside;
+    display: block;
+    position: relative;
+    user-select: none;
+}
 
-	ul {
-		margin: 0;
-		padding: 0;
-		list-style: none;
-		width: 100%;
-		font-size: inherit;
-	}
+.treeview {
+    li {
+        display: block;
+        position: relative;
+        padding: 2px 0;
+        cursor: pointer;
+        line-height: 1.25rem;
 
-	li {
-		font-size: inherit;
-		padding: 2px 16px;
-		cursor: pointer;
-		position: relative;
-		color: @gray;
-		vertical-align: middle;
-		.no-user-select;
+        .icon {
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            font-size: 16px;
+            left: 0;
+            top: 2px;
+            line-height: 16px;
 
-		&.active > .leaf {
-			font-weight: bold;
-		}
-
-		&.disabled {
-			cursor: default;
-			color: @grayLight;
-
-			&:hover > .leaf {
-				color: @grayLight;
-			}
-		}
-	}
-
-	li {
-		.input-control {
-			margin: 0 .3125rem 0 0;
-			height: 1rem;
-			line-height: .625rem;
-            min-height: 0;
-
-			.check {
-				line-height: 1rem;
-			}
-		}
-	}
-
-	ul > li > .leaf {
-		&:hover {
-			color: @dark;
-		}
-	}
-
-	.leaf {
-		vertical-align: middle;
-		display: inline-block;
-		color: inherit;
-	}
-
-	.leaf {
-		.icon {
-			width: 1rem;
-			height: 1rem;
-			text-align: center;
-		}
-	}
-
-	.node-toggle {
-		position: absolute;
-		left: 0;
-		top: 8px;
-		width: 8px;
-		height: 8px;
-
-		&:before {
-			position: absolute;
-			display: block;
-			left: 0;
-			top: -3px;
-			height: 0;
-			content: '';
-			width: 0;
-			border-left: 7px solid transparent;
-			border-top: 7px solid transparent;
-			border-bottom: 7px @cyan solid;
-		}
-	}
-
-	li:hover > .node-toggle {
-		&:before {
-			border-bottom-color: @darkCyan;
-		}
-	}
-
-	.node {
-		&.collapsed {
-			& > .node-toggle {
-				&:before {
-					left: -4px;
-					.rotate-45;
-					border-bottom-color: @grayLight;
-				}
-			}
-
-			&:hover {
-				& > .node-toggle {
-					&:before {
-						border-bottom-color: @darkCyan;
-					}
-				}
-			}
-
-            & > ul {
-                display: none;
+            img {
+                max-width: 100%;
+                height: 100%;
             }
-		}
-	}
+        }
+
+        .caption {
+            position: relative;
+        }
+
+        .icon ~ .caption {
+            margin-left: 20px;
+        }
+
+        .node-toggle {
+            .toggle();
+        }
+
+        .node-toggle {
+            position: absolute;
+            left: 0;
+            top: 0;
+            .translateX(-100%);
+            .square(24, px);
+
+            &::before {
+                .rotate(-135deg);
+            }
+        }
+
+        &.expanded {
+            & > .node-toggle {
+                &::before {
+                    .rotate(-45deg);
+                }
+            }
+        }
+
+        &.current > .caption {
+            color: @black;
+        }
+    }
+
+    ul {
+        margin: 0 0 0 1rem;
+        padding: 0;
+        list-style: none inside;
+        display: block;
+        position: relative;
+        font-weight: normal;
+    }
+
+    .select .d-menu {
+        position: absolute;
+        left: 0;
+        margin: 0;
+        width: auto;
+    }
 }

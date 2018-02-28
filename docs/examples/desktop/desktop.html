@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <meta name="twitter:site" content="@metroui">
+    <meta name="twitter:creator" content="@pimenov_sergey">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Metro 4 Components Library">
+    <meta name="twitter:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.">
+    <meta name="twitter:image" content="https://metroui.org.ua/images/m4-logo-social.png">
+
+    <meta property="og:url" content="https://metroui.org.ua/v4/index.html">
+    <meta property="og:title" content="Metro 4 Components Library">
+    <meta property="og:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:secure_url" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="968">
+    <meta property="og:image:height" content="504">
+
+    <meta name="author" content="Sergey Pimenov">
+    <meta name="description" content="The most popular HTML, CSS, and JS library in Metro style.">
+    <meta name="keywords" content="HTML, CSS, JS, Metro, CSS3, Javascript, HTML5, UI, Library, Web, Development, Framework">
+
+    <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+
+    <link href="../../metro/css/metro-all.css" rel="stylesheet">
+    <link href="descktop.css" rel="stylesheet">
+
+    <title>Desktop demo - Metro 4 :: Popular HTML, CSS and JS library</title>
+</head>
+<body>
+    <div class="desktop">
+        <div class="window-area bg-dark"></div>
+        <div class="task-bar">
+            <div class="task-bar-section">
+                <button class="task-bar-item" id="start-menu-toggle"><span class="mif-windows"></span></button>
+                <div class="start-menu" data-role="dropdown" data-toggle-element="#start-menu-toggle">
+                    <div class="start-menu-inner h-100">
+                        <div class="explorer">
+                            <ul class="v-menu w-100 bg-brandColor2 fg-white">
+                                <li><a onclick="createWindowYoutube()">Youtube window</a></li>
+                                <li><a onclick="createWindow()">New window</a></li>
+                                <li><a onclick="createWindowModal()">Modal window</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="task-bar-section tasks"></div>
+        </div>
+    </div>
+
+    <script src="../../js/jquery-3.3.1.min.js"></script>
+    <script src="../../metro/js/metro.js"></script>
+    <script src="desktop.js"></script>
+    <script>
+        var w_icons = [
+            'rocket', 'apps', 'cog', 'anchor'
+        ];
+        var w_titles = [
+            'rocket', 'apps', 'cog', 'anchor'
+        ];
+
+        function createWindow(){
+            var index = Metro.utils.random(0, 3);
+            Desktop.createWindow({
+                width: 300,
+                icon: "<span class='mif-"+w_icons[index]+"'></span>",
+                title: w_titles[index],
+                content: "<div class='p-2'>This is desktop demo created with Metro 4 Components Library</div>"
+            });
+        }
+
+        function createWindowModal(){
+            Desktop.createWindow({
+                width: 300,
+                icon: "<span class='mif-cogs'></span>",
+                title: "Modal window",
+                content: "<div class='p-2'>This is desktop demo created with Metro 4 Components Library</div>",
+                overlay: true,
+                //overlayColor: "transparent",
+                modal: true,
+                place: "center",
+                onShow: function(win){
+                    win.addClass("ani-swoopInTop");
+                    setTimeout(function(){
+                        win.removeClass("ani-swoopInTop");
+                    }, 1000);
+                },
+                onClose: function(win){
+                    win.addClass("ani-swoopOutTop");
+                }
+            });
+        }
+
+        function createWindowYoutube(){
+            Desktop.createWindow({
+                width: 500,
+                icon: "<span class='mif-youtube'></span>",
+                title: "Youtube video",
+                content: "https://youtu.be/S9MeTn1i72g",
+                clsContent: "bg-dark"
+            });
+        }
+
+    </script>
+    <!-- ads-script -->
+</body>
+</html>

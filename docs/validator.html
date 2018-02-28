@@ -1,622 +1,430 @@
 <!DOCTYPE html>
-<html>
-<head lang="en">
+<html lang="en">
+<head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="description" content="Metro, a sleek, intuitive, and powerful framework for faster and easier web development for Windows Metro Style.">
-    <meta name="keywords" content="HTML, CSS, JS, JavaScript, framework, metro, front-end, frontend, web development">
-    <meta name="author" content="Sergey Pimenov and Metro UI CSS contributors">
 
-    <link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
-    <title>Form Validator :: Metro UI CSS - The front-end framework for developing projects on the web in Windows Metro Style</title>
+    <meta name="twitter:site" content="@metroui">
+    <meta name="twitter:creator" content="@pimenov_sergey">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Metro 4 Components Library">
+    <meta name="twitter:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.">
+    <meta name="twitter:image" content="https://metroui.org.ua/images/m4-logo-social.png">
 
-    <link href="css/metro.css" rel="stylesheet">
-    <link href="css/metro-icons.css" rel="stylesheet">
-    <link href="css/metro-responsive.css" rel="stylesheet">
-    <link href="css/metro-schemes.css" rel="stylesheet">
+    <meta property="og:url" content="https://metroui.org.ua/v4/index.html">
+    <meta property="og:title" content="Metro 4 Components Library">
+    <meta property="og:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:secure_url" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="968">
+    <meta property="og:image:height" content="504">
 
-    <link href="css/docs.css" rel="stylesheet">
+    <meta name="author" content="Sergey Pimenov">
+    <meta name="description" content="Makes simple client-side form validation easy, whilst still offering plenty of customization options.">
+    <meta name="keywords" content="HTML, CSS, JS, Metro, CSS3, Javascript, HTML5, UI, Library, Web, Development, Framework">
 
-    <script src="js/jquery-2.1.3.min.js"></script>
-    <script src="js/metro.js"></script>
-    <script src="js/docs.js"></script>
-    <script src="//cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
-    <script src="js/ga.js"></script>
-    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
 
-    <script>
-        function no_submit(){
-            return false;
-        }
+    <link href="metro/css/metro-all.css" rel="stylesheet">
+    <link href="highlight/styles/github.css" rel="stylesheet">
+    <link href="docsearch/docsearch.min.css" rel="stylesheet">
+    <link href="css/site.css" rel="stylesheet">
 
-        function notifyOnErrorInput(input){
-            var message = input.data('validateHint');
-            $.Notify({
-                caption: 'Error',
-                content: message,
-                type: 'alert'
-            });
-        }
-    </script>
+    <title>Validator - Metro 4 :: Popular HTML, CSS and JS library</title>
 </head>
 <body>
-    <div class="container page-content">
-        <h1><a href="index.html" class="nav-button transform"><span></span></a>&nbsp;Form validator</h1>
+    <div class="container-fluid">
 
-        @@adsense
+        <div class="row flex-xl-nowrap">
+            <div class="cell-md-3 cell-xl-2 pr-0 border-right bd-light" id="sidenav">
+            </div>
 
-        <div class="margin20 no-margin-left no-margin-right sub-header text-light">
-            This widget makes simple clientside form validation easy, whilst still offering plenty of customization options.
-            The widget comes bundled with a useful set of validation methods, including URL, email, hex color, min and max values, length validation.
-        </div>
+            <div class="d-none d-block-xl cell-xl-2 order-2 border-left bd-light toc-wrapper">
+                <h5>Table of contents</h5>
+                <hr/>
+                <ul class="toc-nav">
+                    <li class="toc-entry"><a href="#">Validator</a></li>
+                    <li class="toc-entry"><a href="#_validator_how_to">How to</a></li>
+                    <li class="toc-entry"><a href="#_validator_funcs">Functions</a></li>
+                    <li class="toc-entry"><a href="#_validator_events">Events</a></li>
+                    <li class="toc-entry"><a href="#_validator_submit">Submit</a></li>
+                    <li class="toc-entry"><a href="#_validator_interactive">Interactive check</a></li>
+                </ul>
 
-        <div class="example" data-text="example">
-            <div class="grid">
-                <div class="row cells3">
-                    <div class="cell">
-                        <form data-role="validator" data-on-before-submit="no_submit">
-                            <label class="block">Min length control (state)</label>
-                            <div class="input-control text">
-                                <input type="text" data-validate-func="minlength" data-validate-arg="6" data-show-error-hint="false">
-                                <span class="input-state-error mif-warning"></span>
-                                <span class="input-state-success mif-checkmark"></span>
-                            </div>
-                            <div>
-                                <button class="button success">Send</button>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="cell">
-                        <form data-role="validator" data-on-before-submit="no_submit" data-hint-mode="hint" data-hint-easing="easeOutBounce">
-                            <label class="block">Min length control (hint)</label>
-                            <div class="input-control text">
-                                <input type="text" data-validate-func="minlength" data-validate-arg="6" data-validate-hint="Min length 6 sym !" data-validate-hint-position="top">
-                                <span class="input-state-error mif-warning"></span>
-                                <span class="input-state-success mif-checkmark"></span>
-                            </div>
-                            <div>
-                                <button class="button success">Send</button>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="cell">
-                        <form data-role="validator" data-on-before-submit="no_submit" data-on-error-input="notifyOnErrorInput" data-show-error-hint="false">
-                            <label class="block">Combine with notify system</label>
-                            <div class="input-control text">
-                                <input type="text" data-validate-func="required" data-validate-arg="6" data-validate-hint="This field can not be empty!">
-                                <span class="input-state-error mif-warning"></span>
-                                <span class="input-state-success mif-checkmark"></span>
-                            </div>
-                            <div>
-                                <button class="button success">Send</button>
-                            </div>
-                        </form>
-                    </div>
+            </div>
+
+            <main class="cell-md-9 cell-xl-8 order-1 pr-1-sx pl-1-sx pr-5-md pl-5-md">
+                <div class="place-right d-none d-block-lg" style="width: 200px;">
+                    <img src="images/logo.png" class="w-100">
                 </div>
-            </div>
-        </div>
 
-        <div class="example" data-text="code">
-            <h5>Simple</h5>
-            <pre class="prettyprint linenums"><code>
-                &lt;form data-role="validator"&gt;
-                    &lt;label class="block"&gt;Min length control&lt;/label&gt;
-                    &lt;div class="input-control text"&gt;
-                        &lt;input
-                            data-validate-func="minlength"
-                            data-validate-arg="6"
-                            data-validate-hint="This field must contains min 6 symbols!"
-                            type="text"&gt;
-                        &lt;span class="input-state-error mif-warning"&gt;&lt;/span&gt;
-                        &lt;span class="input-state-success mif-checkmark"&gt;&lt;/span&gt;
-                    &lt;/div&gt;
-                    &lt;div&gt;
-                        &lt;button class="button success"&gt;Send&lt;/button&gt;
-                    &lt;/div&gt;
-                &lt;/form&gt;
-            </code></pre>
-            <h5>Combine with notify system</h5>
-            <pre class="prettyprint linenums"><code>
-                &lt;form
-                    data-role="validator"
-                    data-on-error-input="notifyOnErrorInput"
-                    data-show-error-hint="false"&gt;
-                    &lt;label class="block"&gt;Combine with notify system&lt;/label&gt;
-                    &lt;div class="input-control text"&gt;
-                        &lt;input type="text"
-                            data-validate-func="required"
-                            data-validate-hine="This field can not be empty!"&gt;
-                        &lt;span class="input-state-error mif-warning"&gt;&lt;/span&gt;
-                        &lt;span class="input-state-success mif-checkmark"&gt;&lt;/span&gt;
-                    &lt;/div&gt;
-                    &lt;div&gt;
-                        &lt;button class="button success"&gt;Send&lt;/button&gt;
-                    &lt;/div&gt;
-                &lt;/form&gt;
+                <h1>Validator</h1>
+                <p class="text-leader">
+                    Makes simple client-side form validation easy, whilst still offering plenty of customization options.
+                    The widget comes bundled with a useful set of validation methods, including URL, email, hex color, min and max values, length validation.
+                </p>
 
-                &lt;script&gt;
-                    function notifyOnErrorInput(input){
-                        var message = input.data('validateHint');
-                        $.Notify({
-                            caption: 'Error',
-                            content: message,
-                            type: 'alert'
-                        });
-                    }
-                &lt;/script&gt;
-            </code></pre>
-        </div>
+                <!-- ads-html -->
 
-        <h3>Validating functions</h3>
-        <table class="table border bordered">
-            <thead>
-            <tr>
-                <th>Func name</th>
-                <th>Description</th>
-                <th>Params</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td><strong>required</strong></td>
-                <td>Field can not be empty</td>
-                <td>no</td>
-            </tr>
-            <tr>
-                <td><strong>minlength</strong></td>
-                <td>Control min length of value</td>
-                <td>integer</td>
-            </tr>
-            <tr>
-                <td><strong>maxlength</strong></td>
-                <td>Control max length of value</td>
-                <td>integer</td>
-            </tr>
-            <tr>
-                <td><strong>min</strong></td>
-                <td>Control min value for numeric</td>
-                <td>number</td>
-            </tr>
-            <tr>
-                <td><strong>max</strong></td>
-                <td>Control max value for numeric</td>
-                <td>number</td>
-            </tr>
-            <tr>
-                <td><strong>email</strong></td>
-                <td>Control valid email address</td>
-                <td>no</td>
-            </tr>
-            <tr>
-                <td><strong>url</strong></td>
-                <td>Control valid url address</td>
-                <td>no</td>
-            </tr>
-            <tr>
-                <td><strong>date</strong></td>
-                <td>Control valid date string</td>
-                <td>no</td>
-            </tr>
-            <tr>
-                <td><strong>number</strong></td>
-                <td>Control valid number value</td>
-                <td>no</td>
-            </tr>
-            <tr>
-                <td><strong>digits</strong></td>
-                <td>Control only digits in value</td>
-                <td>no</td>
-            </tr>
-            <tr>
-                <td><strong>hexcolor</strong></td>
-                <td>Control valid hex color value</td>
-                <td>no</td>
-            </tr>
-            <tr>
-                <td><strong>pattern</strong></td>
-                <td>Custom regexp pattern for control value</td>
-                <td>string pattern</td>
-            </tr>
-            </tbody>
-        </table>
+                <h3 id="_validator_how_to">How to</h3>
+                <p>
+                    To activate Validator add attribute <code>data-role="validator"</code> to form and define validation functions over attribute <code>data-validate="..."</code> for inputs.
+                </p>
 
-        <h3>Validator options</h3>
-        <table class="table bordered border">
-            <thead>
-            <tr>
-                <td>Parameter</td>
-                <td>Data-*</td>
-                <td>Type</td>
-                <td>Default value</td>
-                <td>Description</td>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>showErrorState</td>
-                <td style="white-space: nowrap">data-show-error-state</td>
-                <td>boolean</td>
-                <td>true</td>
-                <td>If true input change color state</td>
-            </tr>
-            <tr>
-                <td>showErrorHint</td>
-                <td style="white-space: nowrap">data-show-error-hint</td>
-                <td>boolean</td>
-                <td>true</td>
-                <td>If true over input showing hint</td>
-            </tr>
-            <tr>
-                <td>showRequiredState</td>
-                <td style="white-space: nowrap">data-show-required-state</td>
-                <td>boolean</td>
-                <td>true</td>
-                <td>If true input with validate func showing with required color state</td>
-            </tr>
-            <tr>
-                <td>showSuccessState</td>
-                <td style="white-space: nowrap">data-show-success-state</td>
-                <td>boolean</td>
-                <td>true</td>
-                <td>If true valid input with func showing with success color state</td>
-            </tr>
-            <tr>
-                <td>hintSize</td>
-                <td style="white-space: nowrap">data-hint-size</td>
-                <td>int</td>
-                <td>200</td>
-                <td>Min width of hint size</td>
-            </tr>
-            <tr>
-                <td>hintBackground</td>
-                <td style="white-space: nowrap">data-hint-background</td>
-                <td>string</td>
-                <td>#FFFCC0</td>
-                <td>Hint background color, can be hex color or class name</td>
-            </tr>
-            <tr>
-                <td>hintColor</td>
-                <td style="white-space: nowrap">data-hint-color</td>
-                <td>string</td>
-                <td>#000000</td>
-                <td>Hint text color, can be hex color or class name</td>
-            </tr>
-            <tr>
-                <td>hideError</td>
-                <td style="white-space: nowrap">data-hide-error</td>
-                <td>int</td>
-                <td>2000</td>
-                <td>Time interval before error state disabled (msec)</td>
-            </tr>
-            <tr>
-                <td>hideHint</td>
-                <td style="white-space: nowrap">data-hide-hint</td>
-                <td>int</td>
-                <td>5000</td>
-                <td>Time interval before hint hided (msec)</td>
-            </tr>
-            <tr>
-                <td>hintEasing</td>
-                <td style="white-space: nowrap">data-hint-easing</td>
-                <td>string</td>
-                <td>easeInQuad</td>
-                <td>Easing func for animate showing hint</td>
-            </tr>
-            <tr>
-                <td>hintEasingTime</td>
-                <td style="white-space: nowrap">data-hint-easing-time</td>
-                <td>int</td>
-                <td>400</td>
-                <td>Easing animate time</td>
-            </tr>
-            <tr>
-                <td>hintMode</td>
-                <td style="white-space: nowrap">data-hint-mode</td>
-                <td>string</td>
-                <td>hint</td>
-                <td>Hint type, can be: hint or line</td>
-            </tr>
-            <tr>
-                <td>hintPosition</td>
-                <td style="white-space: nowrap">data-hint-position</td>
-                <td>string</td>
-                <td>right</td>
-                <td>Hint position, can be: right, left, top or bottom</td>
-            </tr>
-            </tbody>
-        </table>
-
-        <h3>Hint position <small>hint mode:  <span class="tag">hint</span></small> </h3>
-        <div class="example" data-text="example">
-            <div class="grid">
-                <div class="row cells4">
-                    <div class="cell">
-                        <form data-role="validator" data-on-before-submit="no_submit" data-hint-mode="hint" data-hint-easing="easeOutBounce">
-                            <label>Top</label>
-                            <div class="input-control text full-size">
-                                <input type="text"
-                                       data-validate-func="required"
-                                       data-validate-hint="This field can not be empty!"
-                                       data-validate-hint-position="top">
-                                <span class="input-state-error mif-warning"></span>
-                                <span class="input-state-success mif-checkmark"></span>
+                <div class="example">
+                    <form data-role="validator" action="javascript:">
+                        <div class="row mb-2">
+                            <div class="cell-md-6">
+                                <label>First name</label>
+                                <input type="text" data-validate="required, minlength=6" placeholder="Enter first name">
+                                <span class="invalid_feedback">
+                                    Input correct name with min length 6 symbols
+                                </span>
                             </div>
-                            <div class="align-center">
-                                <button class="button info">Submit</button>
+                            <div class="cell-md-6">
+                                <label>Email</label>
+                                <input type="email" data-validate="required, email" placeholder="Enter email" data-role="input">
+                                <span class="invalid_feedback">
+                                    Input correct email address
+                                </span>
                             </div>
-                        </form>
-                    </div>
-                    <div class="cell">
-                        <form data-role="validator" data-on-before-submit="no_submit" data-hint-mode="hint" data-hint-easing="easeOutBounce">
-                            <label>Left</label>
-                            <div class="input-control text full-size">
-                                <input type="text"
-                                       data-validate-func="required"
-                                       data-validate-hint="This field can not be empty!"
-                                       data-validate-hint-position="left">
-                                <span class="input-state-error mif-warning"></span>
-                                <span class="input-state-success mif-checkmark"></span>
-                            </div>
-                            <div class="align-center">
-                                <button class="button info">Submit</button>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="cell">
-                        <form data-role="validator" data-on-before-submit="no_submit" data-hint-mode="hint" data-hint-easing="easeOutBounce">
-                            <label>Right</label>
-                            <div class="input-control text full-size">
-                                <input type="text"
-                                       data-validate-func="required"
-                                       data-validate-hint="This field can not be empty!"
-                                       data-validate-hint-position="right">
-                                <span class="input-state-error mif-warning"></span>
-                                <span class="input-state-success mif-checkmark"></span>
-                            </div>
-                            <div class="align-center">
-                                <button class="button info">Submit</button>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="cell">
-                        <form data-role="validator" data-on-before-submit="no_submit" data-hint-mode="hint" data-hint-easing="easeOutBounce">
-                            <label>Bottom</label>
-                            <div class="input-control text full-size">
-                                <input type="text"
-                                       data-validate-func="required"
-                                       data-validate-hint="This field can not be empty!"
-                                       data-validate-hint-position="bottom">
-                                <span class="input-state-error mif-warning"></span>
-                                <span class="input-state-success mif-checkmark"></span>
-                            </div>
-                            <div class="align-center">
-                                <button class="button info">Submit</button>
-                            </div>
-                        </form>
-                    </div>
+                        </div>
+                        <button class="button primary">Submit</button>
+                    </form>
                 </div>
-            </div>
-        </div>
+                <pre class=""><code>
+                    &lt;form data-role="validator" action="javascript:"&gt;
+                        &lt;div class="row mb-2"&gt;
+                            &lt;div class="cell-md-6"&gt;
+                                &lt;label&gt;First name&lt;/label&gt;
+                                &lt;input type="text" data-validate="required, minlength=6"&gt;
+                                &lt;span class="invalid_feedback"&gt;
+                                    Input correct name with min length 6 symbols
+                                &lt;/span&gt;
+                            &lt;/div&gt;
+                            &lt;div class="cell-md-6"&gt;
+                                &lt;label&gt;Email&lt;/label&gt;
+                                &lt;input type="email" data-validate="required, email" data-role="input"&gt;
+                                &lt;span class="invalid_feedback"&gt;
+                                    Input correct email address
+                                &lt;/span&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                        &lt;button class="button primary"&gt;Submit&lt;/button&gt;
+                    &lt;/form&gt;
+                </code></pre>
 
-        <h3>Hint position <small>hint mode: <span class="tag">line</span></small></h3>
-        <div class="example" data-text="example">
-            <div class="grid">
-                <div class="row cells4">
-                    <div class="cell">
-                        <form data-role="validator" data-on-before-submit="no_submit" data-hint-mode="line">
-                            <div class="input-control text full-size">
-                                <input type="text"
-                                       data-validate-func="required"
-                                       data-validate-hint="This field can not be empty!"
-                                       data-validate-hint-position="top">
-                                <span class="input-state-error mif-warning"></span>
-                                <span class="input-state-success mif-checkmark"></span>
-                            </div>
-                            <div class="align-center">
-                                <button class="button info">Submit</button>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="cell colspan3">
-                        <form data-role="validator" data-on-before-submit="no_submit" data-hint-mode="line">
-                            <div class="input-control text full-size">
-                                <input type="text"
-                                       data-validate-func="required"
-                                       data-validate-hint="This field can not be empty!"
-                                       data-validate-hint-position="top">
-                                <span class="input-state-error mif-warning"></span>
-                                <span class="input-state-success mif-checkmark"></span>
-                            </div>
-                            <div class="align-center">
-                                <button class="button info">Submit</button>
-                            </div>
-                        </form>
-                    </div>
+                <h3 id="_validator_funcs">Functions</h3>
+                <p>
+                    Metro 4 Validator supports 12 validation functions.
+                    To define validation for input add to input attribute <code>data-validate="..."</code>.
+                    You can combine validation functions. To set function argument use record <code>func_name=arg</code>.
+                </p>
+
+                <div class="example">
+                    <form data-role="validator" action="javascript:">
+                        <div class="form-group">
+                            <label>Input name</label>
+                            <input type="text" data-validate="required" name="nickname">
+                        </div>
+                        <div class="form-group">
+                            <label>Input age</label>
+                            <input type="text" data-validate="required, number" name="age">
+                        </div>
+                        <div class="form-group">
+                            <label>Input pin</label>
+                            <input type="text" data-validate="required, digits, length=4" name="pin">
+                        </div>
+                        <div class="form-group">
+                            <label>Input password</label>
+                            <input type="password" data-validate="required" name="pass1">
+                        </div>
+                        <div class="form-group">
+                            <label>Input password again</label>
+                            <input type="password" data-validate="required, compare=pass1" name="pass1_1">
+                            <span class="invalid_feedback">
+                                Pass1 and Pass2 must be equal.
+                            </span>
+                        </div>
+                        <br />
+                        <button class="button success">Submit</button>
+                    </form>
                 </div>
-            </div>
-        </div>
+                <pre class=""><code>
+                    &lt;form data-role="validator" action="javascript:"&gt;
+                        &lt;div class="form-group"&gt;
+                            &lt;label&gt;Input name&lt;/label&gt;
+                            &lt;input type="text" data-validate="required" name="nickname"&gt;
+                        &lt;/div&gt;
+                        &lt;div class="form-group"&gt;
+                            &lt;label&gt;Input age&lt;/label&gt;
+                            &lt;input type="text" data-validate="required, number" name="age"&gt;
+                        &lt;/div&gt;
+                        &lt;div class="form-group"&gt;
+                            &lt;label&gt;Input pin&lt;/label&gt;
+                            &lt;input type="text" data-validate="required, digits, length=4" name="pin"&gt;
+                        &lt;/div&gt;
+                        &lt;div class="form-group"&gt;
+                            &lt;label&gt;Input password&lt;/label&gt;
+                            &lt;input type="password" data-validate="required" name="pass1"&gt;
+                        &lt;/div&gt;
+                        &lt;div class="form-group"&gt;
+                            &lt;label&gt;Input password again&lt;/label&gt;
+                            &lt;input type="password" data-validate="required, compare=pass1" name="pass2"&gt;
+                            &lt;span class="invalid_feedback"&gt;
+                                Pass1 and Pass2 must be equal.
+                            &lt;/span&gt;
+                        &lt;/div&gt;
+                        &lt;br /&gt;
+                        &lt;button class="button success"&gt;Submit&lt;/button&gt;
+                    &lt;/form&gt;
+                </code></pre>
 
-        <h3>Func examples</h3>
-        <form data-role="validator" data-show-required-state="false" data-hint-mode="line" data-hint-background="bg-red" data-hint-color="fg-white" data-hide-error="5000">
-            <div class="grid">
-                <div class="row">
-                    <div class="cell">
+                <h4>Validate functions</h4>
+                <p>
+                    You can use 12 functions for validating input value:
+                        <code>required</code>,
+                        <code>length</code>,
+                        <code>minlength</code>,
+                        <code>maxlength</code>,
+                        <code>min</code>,
+                        <code>max</code>,
+                        <code>email</code>,
+                        <code>url</code>,
+                        <code>date</code>,
+                        <code>number</code>,
+                        <code>digits</code>,
+                        <code>hexcolor</code>,
+                        <code>color</code>,
+                        <code>pattern</code>,
+                        <code>compare</code>.
+                </p>
 
-                        <div class="input-control text full-size">
-                            <input type="text" placeholder="default, no validate">
-                            <button class="button helper-button clear"><span class="mif-cross"></span></button>
+                <ul class="unstyled-list mt-2">
+                    <li>
+                        <strong>required</strong> - mark field as required. Value can not be empty.
+                        <pre><code>
+                            &lt;input type="text" data-validate="required"&gt;
+                        </code></pre>
+                    </li>
+
+                    <li>
+                        <strong>length</strong> - set length for value in symbols
+                        <pre><code>
+                            &lt;input type="text" data-validate="length=4"&gt;
+                        </code></pre>
+                    </li>
+
+                    <li>
+                        <strong>minlength</strong> - set min length for value in symbols
+                        <pre><code>
+                            &lt;input type="text" data-validate="minlength=4"&gt;
+                        </code></pre>
+                    </li>
+
+                    <li>
+                        <strong>maxlength</strong>: set max length for value in symbols
+                        <pre><code>
+                            &lt;input type="text" data-validate="maxlength=4"&gt;
+                        </code></pre>
+                    </li>
+
+                    <li>
+                        <strong>min</strong> - value must be great or equal then <code>min</code>
+                        <pre><code>
+                            &lt;input type="text" data-validate="min=4"&gt;
+                        </code></pre>
+                    </li>
+
+                    <li>
+                        <strong>max</strong>: value must be less or equal then <code>max</code>
+                        <pre><code>
+                            &lt;input type="text" data-validate="max=4"&gt;
+                        </code></pre>
+                    </li>
+
+                    <li>
+                        <strong>email</strong> - value must be a valid email
+                        <pre><code>
+                            &lt;input type="text" data-validate="email"&gt;
+                        </code></pre>
+                    </li>
+
+                    <li>
+                        <strong>url</strong> - valid url required
+                        <pre><code>
+                            &lt;input type="text" data-validate="url"&gt;
+                        </code></pre>
+                    </li>
+
+                    <li>
+                        <strong>date</strong> - valid date required
+                        <pre><code>
+                            &lt;input type="text" data-validate="date"&gt;
+                        </code></pre>
+                    </li>
+
+                    <li>
+                        <strong>number</strong> - value must be a number
+                        <pre><code>
+                            &lt;input type="text" data-validate="number"&gt;
+                        </code></pre>
+                    </li>
+
+                    <li>
+                        <strong>digits</strong>: value must contains only digits
+                        <pre><code>
+                            &lt;input type="text" data-validate="digits"&gt;
+                        </code></pre>
+                    </li>
+
+                    <li>
+                        <strong>hexcolor</strong> - value must be a valid hex color
+                        <pre><code>
+                            &lt;input type="text" data-validate="hexcolor"&gt;
+                        </code></pre>
+                    </li>
+
+                    <li>
+                        <strong>color</strong> - value must contains standard color name
+                        <pre><code>
+                            &lt;input type="text" data-validate="color"&gt;
+                        </code></pre>
+                    </li>
+
+                    <li>
+                        <strong>pattern</strong> - value must be equal with regexp pattern
+                        <pre><code>
+                            &lt;input type="text" data-validate="pattern=/(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i"&gt;
+                        </code></pre>
+                    </li>
+
+                    <li>
+                        <strong>compare</strong> - value must be equal to compared input
+                        <pre><code>
+                            &lt;input type="password" data-validate="required" name="pass1"&gt;
+                            &lt;input type="password" data-validate="required, compare=pass1" name="pass2"&gt;
+                        </code></pre>
+                    </li>
+                </ul>
+                <p class="remark success">
+                    Also, you can use <strong>validator functions</strong> without a form. For use it without form, in <code>Metro 4</code> present object <code>Metro.validator</code> with all validation functions.
+                </p>
+                <pre><code>
+                    var validator = Metro.validator;
+
+                    validator.color("red") // return true
+                    validator.color("blueRed") // return false
+                </code></pre>
+
+                <h4>Combine validating functions</h4>
+                <p>
+                    You can combine function. To use it, add function to attribute <code>data-validate</code> with comma delimiter.
+                </p>
+                <pre><code>
+                    &lt;input type="password" data-validate="required, compare=pass1" name="pass2"&gt;
+                </code></pre>
+
+                <h3 id="_validator_events">Events</h3>
+                <p>
+                    When Validator is works, fired any events:
+                        <code>onBeforeSubmit(form)</code>,
+                        <code>onError(element, value)</code>,
+                        <code>onValid(element, value)</code>,
+                        <code>onSubmit(form)</code>,
+                        <code>onValidatorCreate(form)</code>.
+                </p>
+                <p>
+                    To use event add attribute <code>data-on-*</code> to form.
+                </p>
+                <div class="example">
+                    <form data-role="validator" action="javascript:" data-on-submit="alert('Form submitted!')">
+                        <div class="row mb-2">
+                            <div class="cell-md-6">
+                                <label>First name</label>
+                                <input type="text" data-validate="minlength=6" placeholder="Enter first name">
+                                <span class="invalid_feedback">
+                                    Input correct name with min length 6 symbols
+                                </span>
+                            </div>
                         </div>
-
-                        <div class="input-control text" data-role="input">
-                            <input type="text" data-validate-func="required" placeholder="not empty" data-validate-hint="This field can not be empty">
-                            <span class="input-state-error mif-warning"></span>
-                            <span class="input-state-success mif-checkmark"></span>
-                        </div>
-
-                        <div class="input-control text " data-role="input">
-                            <input type="text" data-validate-func="minlength" placeholder="min length 3" data-validate-arg="3" data-validate-hint="Min length 3 symbols">
-                            <span class="input-state-error mif-warning"></span>
-                            <span class="input-state-success mif-checkmark"></span>
-                        </div>
-
-                        <div class="input-control text " data-role="input">
-                            <input type="text" data-validate-func="maxlength" placeholder="max length 6" data-validate-arg="6" data-validate-hint="Max length 6 symbols">
-                            <span class="input-state-error mif-warning"></span>
-                            <span class="input-state-success mif-checkmark"></span>
-                        </div>
-
-                        <div class="input-control text " data-role="input">
-                            <input type="text" data-validate-func="min" placeholder="min value 10" data-validate-arg="10" data-validate-hint="Value &gt;= 10">
-                            <span class="input-state-error mif-warning"></span>
-                            <span class="input-state-success mif-checkmark"></span>
-                        </div>
-
-                        <div class="input-control text " data-role="input">
-                            <input type="text" data-validate-func="max" placeholder="max value 10" data-validate-arg="10" data-validate-hint="Value &lt;= 10">
-                            <span class="input-state-error mif-warning"></span>
-                            <span class="input-state-success mif-checkmark"></span>
-                        </div>
-
-                        <div class="input-control text " data-role="input">
-                            <input type="text" data-validate-func="email" placeholder="email" data-validate-hint="Not valid email address">
-                            <span class="input-state-error mif-warning"></span>
-                            <span class="input-state-success mif-checkmark"></span>
-                        </div>
-
-                        <div class="input-control text " data-role="input">
-                            <input type="text" data-validate-func="url" placeholder="url" data-validate-hint="Value must be valid url">
-                            <span class="input-state-error mif-warning"></span>
-                            <span class="input-state-success mif-checkmark"></span>
-                        </div>
-
-                        <div class="input-control text " data-role="input">
-                            <input type="text" data-validate-func="date" placeholder="date" data-validate-hint="Value must be valid date string">
-                            <span class="input-state-error mif-warning"></span>
-                            <span class="input-state-success mif-checkmark"></span>
-                        </div>
-
-                        <div class="input-control text " data-role="input">
-                            <input type="text" data-validate-func="number" placeholder="number" data-validate-hint="Value must be a numeric">
-                            <span class="input-state-error mif-warning"></span>
-                            <span class="input-state-success mif-checkmark"></span>
-                        </div>
-
-                        <div class="input-control text " data-role="input">
-                            <input type="text" data-validate-func="digits" placeholder="digits" data-validate-hint="Value must contains only digits">
-                            <span class="input-state-error mif-warning"></span>
-                            <span class="input-state-success mif-checkmark"></span>
-                        </div>
-
-                        <div class="input-control text " data-role="input">
-                            <input type="text" data-validate-func="hexcolor" placeholder="hex color" data-validate-hint="Value must be a valid hex color">
-                            <span class="input-state-error mif-warning"></span>
-                            <span class="input-state-success mif-checkmark"></span>
-                        </div>
-
-                        <div class="input-control text " data-role="input">
-                            <input type="text" data-validate-func="pattern" placeholder="custom pattern: ^\d+$" data-validate-arg="^\d+$" data-validate-hint="Value must be eq to pattern">
-                            <span class="input-state-error mif-warning"></span>
-                            <span class="input-state-success mif-checkmark"></span>
-                        </div>
-                    </div>
+                        <button class="button primary">Submit</button>
+                    </form>
                 </div>
-            </div>
-            <hr class="thin">
-            <div class="form-actions padding10 no-padding-left">
-                <button class="button" type="submit">Submit</button>
-            </div>
-        </form>
+                <pre class=""><code>
+                    &lt;form data-role="validator" action="javascript:"
+                          data-on-submit="alert('Form submitted!')"&gt;
+                        &lt;div class="row mb-2"&gt;
+                            &lt;div class="cell-md-6"&gt;
+                                &lt;label&gt;First name&lt;/label&gt;
+                                &lt;input type="text" data-validate="required, minlength=6"&gt;
+                                &lt;span class="invalid_feedback"&gt;
+                                    Input correct name with min length 6 symbols
+                                &lt;/span&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                        &lt;button class="button primary"&gt;Submit&lt;/button&gt;
+                    &lt;/form&gt;
+                </code></pre>
 
-        <h3>Multi func</h3>
-        <div class="example" data-text="code">
-            <pre class="prettyprint linenums no-scroll"><code>
-                &lt;input type="text" data-validate-func="required, number"&gt;
+                <h3 id="_validator_submit">Submit form</h3>
+                <p>
+                    The following conditions must be met to send the form:
+                </p>
+                <ol class="decimal">
+                    <li>The all the validations must be passed</li>
+                    <li>If an onBeforeSubmit event is defined, it must return true</li>
+                </ol>
 
-                &lt;input type="text"
-                    data-validate-func="required, number, minlength"
-                    data-validate-arg=",,6"&gt;
-            </code></pre>
-        </div>
-        <form data-on-submit="submit" data-role="validator" action="javascript:void(0)">
-            <div class="input-control text block" data-role="input" style="width: 300px">
-                <input type="text" data-validate-func="required, number" placeholder="not empty, number" data-validate-hint="This field can not be empty and can be number">
-                <span class="input-state-error mif-warning"></span>
-                <span class="input-state-success mif-checkmark"></span>
-            </div>
-            <div class="input-control text block" data-role="input" style="width: 300px">
-                <input type="text" data-validate-func="required, number, minlength" placeholder="not empty, number, min length 6" data-validate-arg=",,6" data-validate-hint="This field can not be empty and can be number and min length 6 digits">
-                <span class="input-state-error mif-warning"></span>
-                <span class="input-state-success mif-checkmark"></span>
-            </div>
-            <hr class="thin">
-            <div class="form-actions padding10 no-padding-left">
-                <button class="button" type="submit">Submit</button>
-            </div>
-        </form>
-
-
-        <h3>onSubmit</h3>
-        <form data-on-submit="submit" data-role="validator" action="javascript:void(0)">
-            <div class="input-control text" data-role="input">
-                <input type="text" data-validate-func="required" placeholder="not empty" data-validate-hint="This field can not be empty">
-                <span class="input-state-error mif-warning"></span>
-                <span class="input-state-success mif-checkmark"></span>
-            </div>
-            <label class="block">Категория</label>
-            <div class="input-control select full-size" data-role="input">
-                <select name="employee_category" data-validate-func="required" >
-                    <option value="" selected>Выберите категорию</option>
-                    <option value="1" >категория 1</option>
-                    <option value="2" >категория 2</option>
-                    <option value="3" >категория 3</option>
-                    <option value="4" >категория 4</option>
-                </select>
-            </div>
-            <div class="form-actions padding10 no-padding-left">
-                <button class="button" type="submit">Submit</button>
-            </div>
-        </form>
-        <script>
-            function submit(form){
-                console.log(form);
-                return true;
-            }
-        </script>
-
-        <h3>onSubmit 2</h3>
-        <div class="example" data-text="example">
-            <div class="grid">
-                <div class="row cells2">
-                    <div class="cell">
-                        <form data-role="validator" data-on-submit="return false">
-                            <label class="block">data-on-submit: return false</label>
-                            <div class="input-control text">
-                                <input type="text" data-validate-func="required" data-show-error-hint="false">
-                                <span class="input-state-error mif-warning"></span>
-                                <span class="input-state-success mif-checkmark"></span>
+                <h3 id="_validator_interactive">Interactive check</h3>
+                <p class="text-small text-muted">Thanks to <a href="https://www.facebook.com/itz.prabakar">Prabakar Decipher</a></p>
+                <p>
+                    If you set attribute <code>data-interactive-check</code> to <code>true</code>, validator checks input on user change input value.
+                </p>
+                <div class="example">
+                    <form data-role="validator" action="javascript:" data-interactive-check="true">
+                        <div class="row mb-2">
+                            <div class="cell-md-6">
+                                <label>First name</label>
+                                <input type="text" data-validate="minlength=6" placeholder="Enter first name">
+                                <span class="invalid_feedback">
+                                    Input correct name with min length 6 symbols
+                                </span>
                             </div>
-                            <div>
-                                <button class="button success">Send</button>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="cell">
-                        <form data-role="validator" data-on-submit="return true">
-                            <label class="block">data-on-submit: return true</label>
-                            <div class="input-control text">
-                                <input type="text" data-validate-func="required" data-show-error-hint="false">
-                                <span class="input-state-error mif-warning"></span>
-                                <span class="input-state-success mif-checkmark"></span>
-                            </div>
-                            <div>
-                                <button class="button success">Send</button>
-                            </div>
-                        </form>
-                    </div>
+                        </div>
+                    </form>
                 </div>
-            </div>
+                <pre><code class="html">
+                    &lt;form data-role="validator"
+                            action="javascript:" data-interactive-check="true"&gt;
+                        &lt;div class="row mb-2"&gt;
+                            &lt;div class="cell-md-6"&gt;
+                                &lt;label&gt;First name&lt;/label&gt;
+                                &lt;input type="text" data-validate="minlength=6" placeholder="Enter first name"&gt;
+                                &lt;span class="invalid_feedback"&gt;
+                                    Input correct name with min length 6 symbols
+                                &lt;/span&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/form&gt;
+                </code></pre>
+                <p>
+                    This option only check input. When form submited, validator check all values again.
+                </p>
+            </main>
         </div>
+
     </div>
+
+    <script src="docsearch/docsearch.min.js"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="metro/js/metro.js"></script>
+    <script src="highlight/highlight.pack.js"></script>
+    <script src="js/clipboard.min.js"></script>
+    <script src="js/site.js"></script>
+    <!-- ads-script -->
 </body>
 </html>

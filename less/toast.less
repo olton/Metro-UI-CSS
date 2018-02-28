@@ -1,0 +1,20 @@
+@import (once) "include/vars";
+@import (once) "include/mixins";
+
+.toast {
+    position: fixed;
+    bottom: 1.25rem;
+    width: auto;
+    max-width: 35.5rem;
+    padding: .5rem 1.5rem;
+    text-align: left;
+    font-size: .875rem;
+    font-weight: normal;
+    background-color: #323232;
+    color: @white;
+    border-radius: @borderRadius;
+}
+
+.toast {
+    z-index: @zindex-top;
+}

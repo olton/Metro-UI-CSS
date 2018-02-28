@@ -1,85 +1,70 @@
-@import (once) "vars";
-@import (once) "utils";
+@import (once) "include/vars";
+@import (once) "include/mixins";
 
 .stepper {
-    margin: 10px 0;
-    width: 100%;
-    .clear-float;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    position: relative;
+    margin: .5rem 0;
 
-    & > ul {
-        counter-reset:li;
-        border-top: 1px @dark dotted;
-        position: relative;
-        padding: 0;
-        margin: 30px 0;
-        width: 100%;
+    &::before {
+        content: "";
         display: block;
+        width: 100%;
+        position: absolute;
+        height: 1px;
+        background-color: @gray;
+        top: 50%;
+        left: 0;
+        z-index: 0;
+    }
 
-        li {
-            list-style: none;
-            float: left;
-            width: 2em;
-            height: 2em;
-            margin-top: -1em;
-            position: absolute;
-            left: 0;
-            background:#666;
-            cursor: pointer;
-			font-size: .875rem;
+    &.vertical {
+        flex-flow: column nowrap;
+    }
+}
 
-            &:before {
-                content:counter(li);
-                counter-increment:li;
-                position:absolute;
-                box-sizing:border-box;
-                padding:.3em 10px;
-                color:#fff;
-                font-weight:bold;
-                font-family:"Helvetica Neue", Arial, sans-serif;
-                font-size: .9em;
-                text-align:center;
-            }
+.stepper {
+    .step {
+        display: block;
+        width: 32px;
+        height: 32px;
+        line-height: 32px;
+        text-align: center;
+        z-index: 1;
+        background-color: @darkGray;
+        color: @white;
+        cursor: pointer;
+        position: relative;
 
-            &:hover {
-                background-color: @grayLight;
-            }
+        span {
+            display: block;
+        }
 
-            &.current, &.complete {
-                transition: all 0.2s ease;
-            }
+        &.complete {
+            background-color: @green;
+            color: @white;
+        }
 
-            &.current {
-                background-color: @cyan;
-                //.scale(1.5);
-
-                &:hover {
-                    background-color: @lighterBlue;
-                }
-            }
-            &.complete {
-                background-color: @green;
-
-                &:before {
-                }
-
-                &:hover {
-                    background-color: @lightGreen;
-                }
-            }
+        &.current {
+            background-color: @cyan;
+            color: @white;
         }
     }
+
     &.cycle {
-        li {
+        .step {
             border-radius: 50%;
         }
     }
+
     &.diamond {
-        li {
+        .step {
             .rotate(45deg);
-            &:before {
+            span {
                 .rotate(-45deg);
             }
         }
-
     }
 }

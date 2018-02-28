@@ -1,222 +1,402 @@
 <!DOCTYPE html>
-<html>
-<head lang="en">
+<html lang="en">
+<head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="description" content="Metro, a sleek, intuitive, and powerful framework for faster and easier web development for Windows Metro Style.">
-    <meta name="keywords" content="HTML, CSS, JS, JavaScript, framework, metro, front-end, frontend, web development">
-    <meta name="author" content="Sergey Pimenov and Metro UI CSS contributors">
 
-    <link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
-    <title>Wizard :: Metro UI CSS - The front-end framework for developing projects on the web in Windows Metro Style</title>
+    <meta name="twitter:site" content="@metroui">
+    <meta name="twitter:creator" content="@pimenov_sergey">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Metro 4 Components Library">
+    <meta name="twitter:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.">
+    <meta name="twitter:image" content="https://metroui.org.ua/images/m4-logo-social.png">
 
-    <link href="css/metro.css" rel="stylesheet">
-    <link href="css/metro-icons.css" rel="stylesheet">
-    <link href="css/metro-responsive.css" rel="stylesheet">
-    <link href="css/metro-schemes.css" rel="stylesheet">
+    <meta property="og:url" content="https://metroui.org.ua/v4/index.html">
+    <meta property="og:title" content="Metro 4 Components Library">
+    <meta property="og:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:secure_url" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="968">
+    <meta property="og:image:height" content="504">
 
-    <link href="css/docs.css" rel="stylesheet">
+    <meta name="author" content="Sergey Pimenov">
+    <meta name="description" content="The most popular HTML, CSS, and JS library in Metro style.">
+    <meta name="keywords" content="HTML, CSS, JS, Metro, CSS3, Javascript, HTML5, UI, Library, Web, Development, Framework">
 
-    <script src="js/jquery-2.1.3.min.js"></script>
-    <script src="js/metro.js"></script>
-    <script src="js/docs.js"></script>
-    <script src="//cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
-    <script src="js/ga.js"></script>
-    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
 
+    <link href="metro/css/metro-all.css" rel="stylesheet">
+    <link href="highlight/styles/github.css" rel="stylesheet">
+    <link href="docsearch/docsearch.min.css" rel="stylesheet">
+    <link href="css/site.css" rel="stylesheet">
+
+    <title>Wizard - Metro 4 :: Popular HTML, CSS and JS library</title>
 </head>
 <body>
-    <div class="container page-content">
-        <h1><a href="index.html" class="nav-button transform"><span></span></a>&nbsp;Wizard</h1>
+    <div class="container-fluid">
 
-        @@adsense
-
-        <div class="example" data-text="example">
-            <div class="wizard" data-role="wizard">
-                <div class="steps">
-                    <div class="step">Page 1</div>
-                    <div class="step">Page 2</div>
-                    <div class="step">Page 3</div>
-                </div>
+        <div class="row flex-xl-nowrap">
+            <div class="cell-md-3 cell-xl-2 pr-0 border-right bd-light" id="sidenav">
             </div>
-        </div>
-        <div class="example" data-text="code">
-            <h5>Declarative style with attribute <span class="tag">data-role</span></h5>
-            <pre class="prettyprint linenums"><code>
-                &lt;div class="wizard" data-role="wizard"&gt;
-                    &lt;div class="steps"&gt;
-                        &lt;div class="step"&gt;Page 1&lt;/div&gt;
-                        &lt;div class="step"&gt;Page 2&lt;/div&gt;
-                        &lt;div class="step"&gt;Page 3&lt;/div&gt;
-                    &lt;/div&gt;
-                &lt;/div&gt;
-            </code></pre>
-            <h5>JavaScript style</h5>
-            <pre class="prettyprint linenums"><code>
-                &lt;div class="wizard" id="wizard"&gt;
-                    &lt;div class="steps"&gt;
-                        &lt;div class="step"&gt;Page 1&lt;/div&gt;
-                        &lt;div class="step"&gt;Page 2&lt;/div&gt;
-                        &lt;div class="step"&gt;Page 3&lt;/div&gt;
-                    &lt;/div&gt;
-                &lt;/div&gt;
 
-                &lt;script&gt;
-                    $(function)(){
-                        $("#wizard").wizard();
-                    };
-                &lt;/script&gt;
-            </code></pre>
-        </div>
+            <div class="d-none d-block-xl cell-xl-2 order-2 border-left bd-light toc-wrapper">
+                <h5>Table of contents</h5>
+                <hr/>
+                <ul class="toc-nav">
+                    <li class="toc-entry"><a href="#">Wizard</a></li>
+                    <li class="toc-entry"><a href="#_wizard_about">About</a></li>
+                    <li class="toc-entry"><a href="#_wizard_controls">Controls</a></li>
+                    <li class="toc-entry"><a href="#_wizard_start">Start page</a></li>
+                    <li class="toc-entry"><a href="#_wizard_finish">Finish page</a></li>
+                    <li class="toc-entry"><a href="#_wizard_events">Events</a></li>
+                    <li class="toc-entry"><a href="#_wizard_methods">Methods</a></li>
+                    <li class="toc-entry">
+                        <a href="#_wizard_customize">Customize</a>
+                        <ul>
+                            <li class="toc-entry"><a href="#_wizard_controls_style">Controls style</a></li>
+                            <li class="toc-entry"><a href="#_wizard_controls_icons">Controls icons</a></li>
+                            <li class="toc-entry"><a href="#_wizard_controls_classes">Custom classes</a></li>
+                        </ul>
+                    </li>
+                    <li class="toc-entry"><a href="#_wizard_responsive">Responsive</a></li>
+                </ul>
 
-        <h3>Options</h3>
-        <table class="table bordered border">
-            <thead>
-            <tr>
-                <td>Parameter</td>
-                <td>Data-*</td>
-                <td>Type</td>
-                <td>Default value</td>
-                <td>Description</td>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>stepper</td>
-                <td style="white-space: nowrap">data-stepper</td>
-                <td>boolean</td>
-                <td>true</td>
-                <td>show, hide stepper subcomponent</td>
-            </tr>
-            <tr>
-                <td>stepperType</td>
-                <td style="white-space: nowrap">data-stepper-type</td>
-                <td>string</td>
-                <td>default</td>
-                <td>define a type of stepper: square, cycle, diamond</td>
-            </tr>
-            <tr>
-                <td>stepperClickable</td>
-                <td style="white-space: nowrap">data-stepper-clickable</td>
-                <td>boolean</td>
-                <td>false</td>
-                <td>change wizard step by stepper item click</td>
-            </tr>
-            <tr>
-                <td>startPage</td>
-                <td style="white-space: nowrap">data-start-page</td>
-                <td>int</td>
-                <td>default</td>
-                <td>determines which page to start the wizard</td>
-            </tr>
-            <tr>
-                <td>finishStep</td>
-                <td style="white-space: nowrap">data-finish-step</td>
-                <td>int</td>
-                <td>default</td>
-                <td>determines which page to finish the wizard and activate finish button</td>
-            </tr>
-            <tr>
-                <td>locale</td>
-                <td style="white-space: nowrap">data-locale</td>
-                <td>string</td>
-                <td>en</td>
-                <td>determines locale (language) for wizard buttons</td>
-            </tr>
-            <tr>
-                <td>buttons</td>
-                <td style="white-space: nowrap">data-buttons</td>
-                <td>object</td>
-                <td>{cancel: true, help: true, prior: true, next: true, finish: true}</td>
-                <td>when a declarative definition of parameters parameter type of the object is specified in JSON format</td>
-            </tr>
-            </tbody>
-        </table>
-
-        <h5>Customize buttons</h5>
-        <p>
-            Buttons can be individually visually configured:
-        </p>
-        <pre class="prettyprint linenums"><code>
-            buttons: {
-                btn_type: {
-                    show: true || false,
-                    title: 'Cancel',
-                    cls: 'css class',
-                    group: 'right' || 'left'
-                }
-            }
-        </code></pre>
-        <div class="example" data-text="custom buttons">
-            <div class="wizard"
-                 data-role="wizard"
-                 data-buttons='{"next": "true", "prior": "true", "cancel": {"show": "true", "title": "Cancel wizard", "cls": "warning", "group": "right"}, "help": {"show": "true", "title": "Help Me!", "cls": "primary", "group": "right"}, "finish": {"show": "true", "title": "Finish step and Go!", "cls": "success", "group": "left"}}'
-                 data-stepper-clickable="true">
-                <div class="steps">
-                    <div class="step">Page 1</div>
-                    <div class="step">Page 2</div>
-                    <div class="step">Page 3</div>
-                </div>
             </div>
+
+            <main class="cell-md-9 cell-xl-8 order-1 pr-1-sx pl-1-sx pr-5-md pl-5-md">
+                <div class="place-right d-none d-block-lg" style="width: 200px;">
+                    <img src="images/logo.png" class="w-100">
+                </div>
+
+                <h1>Wizard</h1>
+                <p class="text-leader">
+                    Create user friendly wizard easy with Metro 4 Wizard component.
+                </p>
+
+                <!-- ads-html -->
+
+                <h3 id="_wizard_about">About</h3>
+                <p>
+                    With the <code>wizard</code> control, you can easily generate <code>multi-step</code> wizard dialogs.
+                    To create <code>wizard</code>  create wizard structure and add role <code>wizard</code> with attribute <code>data-role="wizard"</code> to element.
+                    Each page a <code>section</code> element with sub block element with class <code>.page-content</code>.
+                </p>
+                <div class="example">
+                    <div data-role="wizard" class="wizard-wide-sm">
+                        <section><div class="page-content">Page 1</div></section>
+                        <section><div class="page-content">Page 2</div></section>
+                        <section><div class="page-content">Page 3</div></section>
+                        <section><div class="page-content">Page 4</div></section>
+                        <section><div class="page-content">Page 5</div></section>
+                    </div>
+                </div>
+                <pre><code class="html">
+                    &lt;div data-role="wizard"&gt;
+                        &lt;section&gt;&lt;div class="page-content"&gt;Page 1&lt;/div&gt;&lt;/section&gt;
+                        &lt;section&gt;&lt;div class="page-content"&gt;Page 2&lt;/div&gt;&lt;/section&gt;
+                        &lt;section&gt;&lt;div class="page-content"&gt;Page 3&lt;/div&gt;&lt;/section&gt;
+                        &lt;section&gt;&lt;div class="page-content"&gt;Page 4&lt;/div&gt;&lt;/section&gt;
+                        &lt;section&gt;&lt;div class="page-content"&gt;Page 5&lt;/div&gt;&lt;/section&gt;
+                    &lt;/div&gt;
+                </code></pre>
+
+                <h3 id="_wizard_controls">Controls</h3>
+                <p>
+                    When Metro 4 create a <code>wizard</code> component, it adds buttons to navigate on wizard steps:
+                        <code>help</code>,
+                        <code>prev</code>,
+                        <code>next</code> and
+                        <code>finish</code>.
+                    For each button you can use callback to interact with wizard:
+                </p>
+
+                <table class="table cell-border table-border options-table mt-4">
+                    <thead>
+                    <tr>
+                        <th>Event</th>
+                        <th>Data-*</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>onHelpClick()</td>
+                        <td><code>data-on-help-click</code></td>
+                    </tr>
+                    <tr>
+                        <td>onPrevClick()</td>
+                        <td><code>data-on-prev-click</code></td>
+                    </tr>
+                    <tr>
+                        <td>onNextClick()</td>
+                        <td><code>data-on-next-click</code></td>
+                    </tr>
+                    <tr>
+                        <td>onFinishClick()</td>
+                        <td><code>data-on-finish-click</code></td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <h3 id="_wizard_start">Start page</h3>
+                <p>
+                    You can specify page number fro start wizard with attribute <code>data-start="..."</code>.
+                    Value for this attribute must be page index from <code>1</code> to <code>pages count</code>.
+                </p>
+                <div class="example">
+                    <div data-role="wizard" data-start="3"  class="wizard-wide-sm">
+                        <section><div class="page-content">Page 1</div></section>
+                        <section><div class="page-content">Page 2</div></section>
+                        <section><div class="page-content">Page 3</div></section>
+                        <section><div class="page-content">Page 4</div></section>
+                        <section><div class="page-content">Page 5</div></section>
+                    </div>
+                </div>
+                <pre><code class="html">
+                    &lt;div data-role="wizard" data-start="3"&gt;
+                        &lt;section&gt;&lt;div class="page-content"&gt;Page 1&lt;/div&gt;&lt;/section&gt;
+                        &lt;section&gt;&lt;div class="page-content"&gt;Page 2&lt;/div&gt;&lt;/section&gt;
+                        &lt;section&gt;&lt;div class="page-content"&gt;Page 3&lt;/div&gt;&lt;/section&gt;
+                        &lt;section&gt;&lt;div class="page-content"&gt;Page 4&lt;/div&gt;&lt;/section&gt;
+                        &lt;section&gt;&lt;div class="page-content"&gt;Page 5&lt;/div&gt;&lt;/section&gt;
+                    &lt;/div&gt;
+                </code></pre>
+
+                <h3 id="_wizard_finish">Finish page</h3>
+                <p>
+                    You can specify page, when finish button cam be enabled. To set it, use attribute <code>data-finish="..."</code>.
+                    Value for this attribute must be page index from <code>1</code> to <code>pages count</code>.
+                </p>
+                <div class="example">
+                    <div data-role="wizard" data-finish="3" class="wizard-wide-sm">
+                        <section><div class="page-content">Page 1</div></section>
+                        <section><div class="page-content">Page 2</div></section>
+                        <section><div class="page-content">Page 3</div></section>
+                        <section><div class="page-content">Page 4</div></section>
+                        <section><div class="page-content">Page 5</div></section>
+                    </div>
+                </div>
+                <pre><code class="html">
+                    &lt;div data-role="wizard" data-finish="3"&gt;
+                        &lt;section&gt;&lt;div class="page-content"&gt;Page 1&lt;/div&gt;&lt;/section&gt;
+                        &lt;section&gt;&lt;div class="page-content"&gt;Page 2&lt;/div&gt;&lt;/section&gt;
+                        &lt;section&gt;&lt;div class="page-content"&gt;Page 3&lt;/div&gt;&lt;/section&gt;
+                        &lt;section&gt;&lt;div class="page-content"&gt;Page 4&lt;/div&gt;&lt;/section&gt;
+                        &lt;section&gt;&lt;div class="page-content"&gt;Page 5&lt;/div&gt;&lt;/section&gt;
+                    &lt;/div&gt;
+                </code></pre>
+
+                <h3 id="_wizard_events">Events</h3>
+                <p>
+                    You can use additional events to interact with wizard:
+                </p>
+                <table class="table cell-border table-border options-table mt-4">
+                    <thead>
+                    <tr>
+                        <th>Event</th>
+                        <th>Data-*</th>
+                        <th>Desc</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>onPage(index, page, wizard)</td>
+                        <td><code>data-on-page</code></td>
+                        <td>Fired when page changed</td>
+                    </tr>
+                    <tr>
+                        <td>onBeforePrev(index, page, element)</td>
+                        <td><code>data-on-before-prev</code></td>
+                        <td>When this function return false, page not changed</td>
+                    </tr>
+                    <tr>
+                        <td>onBeforeNext(index, page, element)</td>
+                        <td><code>data-on-before-next</code></td>
+                        <td>When this function return false, page not changed</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <h3 id="_wizard_methods">Methods</h3>
+                <p>
+                    You can use <code>wizard</code> methods to interact with component.
+                </p>
+                <ul>
+                    <li><strong>next()</strong> - switch to next page</li>
+                    <li><strong>prev()</strong> - switch to prev page</li>
+                    <li><strong>first()</strong> - switch to first page</li>
+                    <li><strong>last()</strong> - switch to last page</li>
+                    <li><strong>toPage(p)</strong> - switch to specified page (p - page index from 1)</li>
+                </ul>
+
+                <h3 id="_wizard_customize">Customize</h3>
+                <p>
+                    You can change a style for the <code>wizard</code> and it controls and elements with special <code>data attributes</code>.
+                </p>
+
+                <h4 id="_wizard_controls_style">Controls style</h4>
+                <p>
+                    Two data attributes <code>data-button-mode</code> and <code>data-button-outline</code> are responsible for controls buttons style.
+                    With attribute <code>data-button-mode</code> you can set three modes for buttons: <code>button</code>, <code>cycle</code> and <code>square</code>.
+                    With attribute <code>data-button-outline</code> you can set buttons to <code>outline</code> style (default: true). See more about <a href="buttons.html">Buttons</a>.
+                </p>
+                <div class="example">
+                    <div class="row">
+                        <div class="cell-sm-6">
+                            <h6>square</h6>
+                            <div data-role="wizard" data-button-mode="square"></div>
+                        </div>
+                        <div class="cell-sm-6">
+                            <h6>cycle</h6>
+                            <div data-role="wizard" data-button-mode="cycle"></div>
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="cell-sm-6">
+                            <h6>button</h6>
+                            <div data-role="wizard" data-button-mode="button"
+                                 data-icon-help="<span>Help</span>"
+                                 data-icon-prev="<span>Prev</span>"
+                                 data-icon-next="<span>Next</span>"
+                                 data-icon-finish="<span>Finish</span>"
+                            ></div>
+                        </div>
+                        <div class="cell-sm-6">
+                            <h6>button, outline: false</h6>
+                            <div data-role="wizard" data-button-mode="default" data-button-outline="false"></div>
+                        </div>
+                    </div>
+                </div>
+                <pre><code class="html">
+                    &lt;div data-role="wizard" data-button-mode="square"&gt;&lt;/div&gt;
+
+                    &lt;div data-role="wizard" data-button-mode="cycle"&gt;&lt;/div&gt;
+
+                    &lt;div data-role="wizard" data-button-mode="button"
+                         data-icon-help="&lt;span&gt;Help&lt;/span&gt;"
+                         data-icon-prev="&lt;span&gt;Prev&lt;/span&gt;"
+                         data-icon-next="&lt;span&gt;Next&lt;/span&gt;"
+                         data-icon-finish="&lt;span&gt;Finish&lt;/span&gt;"&gt;&lt;/div&gt;
+
+                    &lt;div data-role="wizard" data-button-mode="button" data-button-outline="false"&gt;&lt;/div&gt;
+                </code></pre>
+
+                <h4 id="_wizard_controls_icons">Controls icons</h4>
+                <p>
+                    You can change controls icons with attributes:
+                    <code>data-icon-help</code>,
+                    <code>data-icon-prev</code>,
+                    <code>data-icon-next</code> and
+                    <code>data-icon-finish</code>.
+                    Value for these attributes must be valid <strong>html tag</strong> or <strong>path to image</strong>.
+                </p>
+                <div class="example">
+                    <div data-role="wizard"
+                         data-button-mode="button"
+                         data-icon-help="<span>Help</span>"
+                         data-icon-prev="<span class='mif-arrow-left'></span>"
+                         data-icon-next="<span class='mif-arrow-right'></span>"
+                         data-icon-finish="images/checkmark.png"  class="wizard-wide-sm">
+                        <section><div class="page-content">Page 1</div></section>
+                        <section><div class="page-content">Page 2</div></section>
+                        <section><div class="page-content">Page 3</div></section>
+                    </div>
+                </div>
+                <pre><code class="html">
+                    &lt;div data-role="wizard"
+                         data-icon-help="&lt;span&gt;Help&lt;/span&gt;"
+                         data-icon-prev="&lt;span class='mif-arrow-left'&gt;&lt;/span&gt;"
+                         data-icon-next="&lt;span class='mif-arrow-right'&gt;&lt;/span&gt;"
+                         data-icon-finish="images/checkmark.png"&gt;
+                        &lt;section&gt;&lt;div class="page-content"&gt;Page 1&lt;/div&gt;&lt;/section&gt;
+                        &lt;section&gt;&lt;div class="page-content"&gt;Page 2&lt;/div&gt;&lt;/section&gt;
+                        &lt;section&gt;&lt;div class="page-content"&gt;Page 3&lt;/div&gt;&lt;/section&gt;
+                    &lt;/div&gt;
+                </code></pre>
+
+                <h4 id="_wizard_controls_classes">Custom classes</h4>
+                <p>
+                    Also you can use special data attributes to define your own classes for wizard and controls:
+                        <code>data-cls-wizard</code>,
+                        <code>data-cls-actions</code>,
+                        <code>data-cls-help</code>,
+                        <code>data-cls-prev</code>,
+                        <code>data-cls-next</code>,
+                        <code>data-cls-finish</code>.
+                </p>
+                <p>
+                    If you need to change colors for feature and complete section, you must define your own style for this with next patterns:
+                </p>
+                <pre><code class="css">
+                    Less preprocessor code:
+
+                    .wizard {
+                        & > section {
+                            &:nth-child(1) {border-color: @cyan;}
+                            &:nth-child(2) {border-color: darken(@cyan, 5%);}
+                            &:nth-child(3) {border-color: darken(@cyan, 10%);}
+                            &:nth-child(4) {border-color: darken(@cyan, 15%);}
+                            &:nth-child(5) {border-color: darken(@cyan, 20%);}
+                            &:nth-child(6) {border-color: darken(@cyan, 25%);}
+                            &:nth-child(7) {border-color: darken(@cyan, 30%);}
+                            &:nth-child(8) {border-color: darken(@cyan, 35%);}
+                            &:nth-child(9) {border-color: darken(@cyan, 40%);}
+                            &:nth-child(10) {border-color: darken(@cyan, 50%);}
+
+                            &.complete {
+                                &:nth-child(1) {border-color: @lightGray;}
+                                &:nth-child(2) {border-color: darken(@lightGray, 5%);}
+                                &:nth-child(3) {border-color: darken(@lightGray, 10%);}
+                                &:nth-child(4) {border-color: darken(@lightGray, 15%);}
+                                &:nth-child(5) {border-color: darken(@lightGray, 20%);}
+                                &:nth-child(6) {border-color: darken(@lightGray, 25%);}
+                                &:nth-child(7) {border-color: darken(@lightGray, 30%);}
+                                &:nth-child(8) {border-color: darken(@lightGray, 35%);}
+                                &:nth-child(9) {border-color: darken(@lightGray, 40%);}
+                                &:nth-child(10) {border-color: darken(@lightGray, 50%);}
+                            }
+                        }
+                    }
+                </code></pre>
+
+                <h3 id="_wizard_responsive">Responsive</h3>
+                <p>
+                    By default wizard displayed in mobile mode wit shrinks feature and complete sections. To expand wizard use special classes:
+                        <code>.wizard-wide-*</code>. Where asterisk is one of: <code>sm</code>, <code>md</code>, <code>lg</code>, <code>xl</code> or <code>xxl</code>.
+                    If you need expand wizard always use class <code>.wizard-wide-fs</code>.
+                    See more information about <a href="media.html">Media breakpoints</a>.
+                </p>
+                <div class="example">
+                    <div class="row">
+                        <div class="cell-md-6">
+                            <div data-role="wizard">
+                                <section><div class="page-content">Page 1</div></section>
+                                <section><div class="page-content">Page 2</div></section>
+                                <section><div class="page-content">Page 3</div></section>
+                            </div>
+                        </div>
+                        <div class="cell-md-6">
+                            <div data-role="wizard" class="wizard-wide-fs">
+                                <section><div class="page-content">Page 1</div></section>
+                                <section><div class="page-content">Page 2</div></section>
+                                <section><div class="page-content">Page 3</div></section>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
         </div>
 
-        <h3>Events</h3>
-        <table class="table bordered border">
-            <thead>
-            <tr>
-                <td>Event</td>
-                <td>Data-*</td>
-                <td>Params</td>
-                <td>Description</td>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>onCancel</td>
-                <td style="white-space: nowrap">data-on-cancel</td>
-                <td>(page, wiz)</td>
-                <td>The event fired when the button is pressed Cancel</td>
-            </tr>
-            <tr>
-                <td>onHelp</td>
-                <td style="white-space: nowrap">data-on-help</td>
-                <td>(page, wiz)</td>
-                <td>The event fired when the button is pressed Help</td>
-            </tr>
-            <tr>
-                <td>onPrior</td>
-                <td style="white-space: nowrap">data-on-prior</td>
-                <td>(page, wiz)</td>
-                <td>The event fired when the button is pressed Prior</td>
-            </tr>
-            <tr>
-                <td>onNext</td>
-                <td style="white-space: nowrap">data-on-next</td>
-                <td>(page, wiz)</td>
-                <td>The event fired when the button is pressed Next</td>
-            </tr>
-            <tr>
-                <td>onFinish</td>
-                <td style="white-space: nowrap">data-on-finish</td>
-                <td>(page, wiz)</td>
-                <td>The event fired when the button is pressed Finish</td>
-            </tr>
-            <tr>
-                <td>onPage</td>
-                <td style="white-space: nowrap">data-on-page</td>
-                <td>(page, wiz)</td>
-                <td>The event fired when the page changed</td>
-            </tr>
-            <tr>
-                <td>onStepCLick</td>
-                <td style="white-space: nowrap">data-on-step-cLick</td>
-                <td>(step)</td>
-                <td>The event fired when the stepper item is pressed</td>
-            </tr>
-            </tbody>
-        </table>
-        <br />
     </div>
+
+    <script src="docsearch/docsearch.min.js"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="metro/js/metro.js"></script>
+    <script src="highlight/highlight.pack.js"></script>
+    <script src="js/clipboard.min.js"></script>
+    <script src="js/site.js"></script>
+    <!-- ads-script -->
 </body>
 </html>

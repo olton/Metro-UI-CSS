@@ -1,17 +1,3 @@
-// var template =
-//     'My skills:' +
-//     '<%if(this.showSkills) {%>' +
-//     '<%for(var index in this.skills) {%>' +
-//     '<a href="#"><%this.skills[index]%></a>' +
-//     '<%}%>' +
-//     '<%} else {%>' +
-//     '<p>none</p>' +
-//     '<%}%>';
-//     console.log(TemplateEngine(template, {
-//     skills: ["js", "html", "css"],
-//     showSkills: true
-// }));
-
 var TemplateEngine = function(html, options) {
     var re = /<%(.+?)%>/g,
         reExp = /(^( )?(var|if|for|else|switch|case|break|{|}|;))(.*)?/g,
@@ -21,7 +7,7 @@ var TemplateEngine = function(html, options) {
         match;
     var add = function(line, js) {
         js? (code += line.match(reExp) ? line + '\n' : 'r.push(' + line + ');\n') :
-            (code += line != '' ? 'r.push("' + line.replace(/"/g, '\\"') + '");\n' : '');
+            (code += line !== '' ? 'r.push("' + line.replace(/"/g, '\\"') + '");\n' : '');
         return add;
     };
     while(match = re.exec(html)) {
@@ -35,6 +21,4 @@ var TemplateEngine = function(html, options) {
     return result;
 };
 
-window.metroTemplate = TemplateEngine;
-
-$.Template = TemplateEngine;
+Metro['template'] = TemplateEngine;

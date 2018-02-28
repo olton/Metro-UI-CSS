@@ -1,79 +1,52 @@
-@import (once) "vars";
-@import (once) "utils";
-@import (once) "mixins";
+@import (once) "include/vars";
+@import (once) "include/mixins";
 
-.charm {
-	display: block;
-	position: fixed;
-	z-index: @zindexCharms;
-	background: @dark;
-	color: @grayLighter;
-	padding: .625rem;
-    .enableGPU();
-
-    .charm-closer {
-        position: absolute;
-        display: block;
-        padding: .5rem;
-        //height: 2rem;
-        //width: 2rem;
-        text-align: center;
-        vertical-align: middle;
-        font-size: 2rem;
-        font-weight: normal;
-        //padding: 0 0 .625rem 0;
-        z-index: 3;
-        outline: none;
-        cursor: pointer;
-
-        color: @winFlatSystemButtonRestColor;
-        top: .25rem;
-        right: 1rem;
-
-        &:after {
-            content: '\D7';
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            margin-top: -.65rem;
-            margin-left: -.35rem;
-        }
-
-        &:hover {
-            color: @white;
-        }
-
-        &:active {
-            color: @white;
-        }
-    }
+.charms {
+    display: block;
+    position: fixed;
+    z-index: @zindex-charms;
+    background-color: @dark;
+    color: @white;
+    transition: @transition-transform;
 }
 
-.charm {
-	&.right-side {
-		width: auto;
-		right: 0;
-		top: 0;
-        left: auto;
-		bottom: 0;
-	}
-	&.left-side {
-		width: auto;
-		left: 0;
-		top: 0;
-		bottom: 0;
-	}
-	&.top-side {
-		height: auto;
-		left: 0;
-		right: 0;
-		top: 0;
-	}
-	&.bottom-side {
-		height: auto;
-		left: 0;
-		right: 0;
-        top: auto;
-		bottom: 0;
-	}
+.charms {
+    &.top-side {
+        bottom: 100%;
+        width: 100%;
+        left: 0;
+
+        &.open {
+            transform: translateY(100%);
+        }
+    }
+    &.bottom-side {
+        top: 100%;
+        left: 0;
+        width: 100%;
+
+        &.open {
+            transform: translateY(-100%);
+        }
+    }
+    &.left-side {
+        top: 0;
+        bottom: 0;
+        right: 100%;
+        width: auto;
+
+        &.open {
+            transform: translateX(100%);
+        }
+    }
+    &.right-side {
+        top: 0;
+        bottom: 0;
+        width: auto;
+        left: 100%;
+
+        &.open {
+            transform: translateX(-100%);
+        }
+    }
 }

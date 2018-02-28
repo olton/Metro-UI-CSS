@@ -1,0 +1,71 @@
+@import (once) "include/vars";
+@import (once) "include/mixins";
+
+.hamburger {
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: 0;
+    font-size: 14px;
+    line-height: 36px;
+    transition: @transition-short;
+    background-color: transparent;
+    color: @white;
+    cursor: pointer;
+    outline: none;
+    width: 36px;
+    height: 36px;
+
+    .line {
+        width: 30px;
+        background-color: @white;
+        display: block;
+        transition: all 0.3s ease-in-out;
+        height: 3px;
+        margin: 4px auto;
+    }
+
+    &.dark {
+        .line {
+            background-color: @dark;
+        }
+    }
+}
+
+.hamburger {
+    &.menu-down {
+
+        .line:nth-child(2) {
+            transition-delay: .3s;
+        }
+
+        &.active {
+            .rotate(90deg);
+
+            .line:nth-child(2) {
+                opacity: 0;
+                transition: none;
+            }
+
+            .line:nth-child(1), .line:nth-child(3) {
+                width: 20px;
+                transform-origin: right;
+                margin: -4px 8px;
+            }
+
+            .line:nth-child(1) {
+                .rotate(45deg);
+                .translateY(6px);
+            }
+
+            .line:nth-child(3) {
+                .rotate(-45deg);
+                .translateY(-6px);
+            }
+        }
+    }
+}

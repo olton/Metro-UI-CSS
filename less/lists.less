@@ -1,147 +1,28 @@
-@import (once) "vars";
-@import (once) "typography";
-@import (once) "utils";
-
-.simple-list, .numeric-list {
-	.unstyled-list;
-	counter-reset:li;
-	padding-left:0;
-	margin-left: .625rem;
-    color: @textColor;
-
-	li {
-		position:relative;
-		padding: 4px 12px;
-		list-style:none;
-		color: inherit;
-
-		&:before {
-			position: absolute;
-			top: 50%;
-			margin-top: -.8rem;
-			left: -.625rem;
-			color: @lightCyan;
-			font-size: 2rem;
-			vertical-align: middle;
-            .square(1.25rem);
-            line-height: 1.25rem;
-		}
-	}
-
-	ul {
-		margin: 4px .5em 0;
-	}
-}
-
-.simple-list {
-	& > li:before {
-		content: "\2022";
-	}
-
-	ul li:before {
-		content: "\00B7";
-	}
-}
-
-.numeric-list {
-	& > li {
-		padding: 4px 12px 4px 18px;
-	}
-
-	& > li:before {
-		content:counter(li);
-		counter-increment:li;
-		font-size: .8rem ;
-		color: @white;
-		background-color: @lightCyan;
-		border-radius: 50%;
-		.align-center;
-		margin-top: -.65rem;
-	}
-
-	&.square-marker, &.square-bullet {
-		& > li:before {
-			border-radius: 0;
-		}
-	}
-}
-
-.simple-list, .numeric-list {
-    &.large-bullet {
-
-        li {
-
-            margin: 6px 0;
-            padding-left: 2rem;
-
-            &:before {
-                line-height: 2rem;
-                .square(2rem);
-                margin-top: -1rem;
-            }
-        }
-    }
-}
-
-.simple-list {
-    &.large-bullet {
-        li {
-            padding-left: 1rem;
-            &:before {
-                margin-top: -1.3rem;
-                font-size: 3rem;
-                //color: inherit;
-            }
-        }
-    }
-}
-
-.simple-list {
-    &.dark-bullet {li:before {color: @dark;}}
-    &.alert-bullet {li:before {color: @red;}}
-    &.info-bullet {li:before {color: @cyan;}}
-    &.success-bullet {li:before {color: @green;}}
-    &.warning-bullet {li:before {color: @yellow;}}
-    &.red-bullet {li:before {color: @red;}}
-    &.blue-bullet {li:before {color: @cyan;}}
-    &.green-bullet {li:before {color: @green;}}
-    &.yellow-bullet {li:before {color: @yellow;}}
-}
-
-.numeric-list {
-    &.dark-bullet {li:before {background-color: @dark;}}
-    &.alert-bullet {li:before {background-color: @red;}}
-    &.info-bullet {li:before {background-color: @cyan;}}
-    &.success-bullet {li:before {background-color: @green;}}
-    &.warning-bullet {li:before {background-color: @yellow;}}
-    &.red-bullet {li:before {background-color: @red;}}
-    &.blue-bullet {li:before {background-color: @cyan;}}
-    &.green-bullet {li:before {background-color: @green;}}
-    &.yellow-bullet {li:before {background-color: @yellow;}}
-}
+@import (once) "include/vars";
+@import (once) "include/mixins";
 
 .step-list {
-	margin: 0 0 0 2rem;
-	padding: 0;
-	list-style-type: none;
-	counter-reset:li;
+    margin: 0 0 0 2rem;
+    padding: 0;
+    list-style-type: none;
+    counter-reset:li;
 
-	& > li {
-		border-left: 1px #ccc solid;
-		position: relative;
-		padding: 0 .625rem;
-		margin: .625rem;
-		vertical-align: top;
-	}
+    & > li {
+        border-left: 1px #ccc solid;
+        position: relative;
+        padding: 0 .625rem;
+        margin: .625rem;
+        vertical-align: top;
+    }
 
-	& > li:before {
-		position: absolute;
-		content:counter(li);
-		counter-increment:li;
-		font-size: 2rem;
-		color: @grayLight;
-		left: 0;
-		top: .3125rem;
-		margin-left: -1.5rem;
-	}
+    & > li:before {
+        position: absolute;
+        content:counter(li);
+        counter-increment:li;
+        font-size: 2rem;
+        color: @lightGray;
+        left: 0;
+        top: .3125rem;
+        margin-left: -1.5rem;
+    }
 }
