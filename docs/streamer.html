@@ -1,235 +1,536 @@
 <!DOCTYPE html>
-<html>
-<head lang="en">
+<html lang="en">
+<head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="description" content="Metro, a sleek, intuitive, and powerful framework for faster and easier web development for Windows Metro Style.">
-    <meta name="keywords" content="HTML, CSS, JS, JavaScript, framework, metro, front-end, frontend, web development">
-    <meta name="author" content="Sergey Pimenov and Metro UI CSS contributors">
 
-    <link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
-    <title>Streamer :: Metro UI CSS - The front-end framework for developing projects on the web in Windows Metro Style</title>
+    <meta name="twitter:site" content="@metroui">
+    <meta name="twitter:creator" content="@pimenov_sergey">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Metro 4 Components Library">
+    <meta name="twitter:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.">
+    <meta name="twitter:image" content="https://metroui.org.ua/images/m4-logo-social.png">
 
-    <link href="css/metro.css" rel="stylesheet">
-    <link href="css/metro-icons.css" rel="stylesheet">
-    <link href="css/metro-responsive.css" rel="stylesheet">
-    <link href="css/metro-schemes.css" rel="stylesheet">
+    <meta property="og:url" content="https://metroui.org.ua/v4/index.html">
+    <meta property="og:title" content="Metro 4 Components Library">
+    <meta property="og:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:secure_url" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="968">
+    <meta property="og:image:height" content="504">
 
-    <link href="css/docs.css" rel="stylesheet">
+    <meta name="author" content="Sergey Pimenov">
+    <meta name="description" content="Create an event program with the streamer component. The most popular HTML, CSS, and JS library in Metro style.">
+    <meta name="keywords" content="HTML, CSS, JS, Metro, CSS3, Javascript, HTML5, UI, Library, Web, Development, Framework">
 
-    <script src="js/jquery-2.1.3.min.js"></script>
-    <script src="js/metro.js"></script>
-    <script src="js/docs.js"></script>
-    <script src="//cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
-    <script src="js/ga.js"></script>
-    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
 
+    <link href="metro/css/metro-all.css" rel="stylesheet">
+    <link href="highlight/styles/github.css" rel="stylesheet">
+    <link href="docsearch/docsearch.min.css" rel="stylesheet">
+    <link href="css/site.css" rel="stylesheet">
+
+    <title>Streamer - Metro 4 :: Popular HTML, CSS and JS library</title>
+
+    <style>
+        body.noScroll {
+            overflow: hidden;
+        }
+    </style>
 </head>
 <body>
-    <div class="container page-content">
-        <h1><a href="index.html" class="nav-button transform"><span></span></a>&nbsp;Streamer</h1>
+    <div class="container-fluid">
 
-        @@adsense
-
-        <div class="example" data-text="example">
-            <div class="streamer" data-role="streamer" data-scroll-bar="true" data-slide-to-time="10:20" data-slide-speed="500">
-                <div class="streams">
-                    <div class="streams-title">
-                        <div class="toolbar streamer-toolbar">
-                            <button class="toolbar-button js-show-all-streams" title="Show all streams"><span class="mif-event-available"></span></button>
-                            <button class="toolbar-button js-schedule-mode" title="On|Off schedule mode"><span class="mif-history"></span></button>
-                            <button class="toolbar-button js-go-previous-time" title="Go to previous time interval"><span class="mif-previous"></span></button>
-                            <button class="toolbar-button js-go-next-time" title="Go to next time interval"><span class="mif-next"></span></button>
-                        </div>
-                    </div>
-                    <div class="stream bg-teal">
-                        <div class="stream-title">INTERNET<br />BUSINESS</div>
-                        <div class="stream-number">room 1</div>
-                    </div>
-                    <div class="stream bg-orange">
-                        <div class="stream-title">ADVERTISING<br />ANALYST<br />SEO</div>
-                        <div class="stream-number">room 2</div>
-                    </div>
-                    <div class="stream bg-lightBlue">
-                        <div class="stream-title">STARTUPS<br />E-COMMERCE</div>
-                        <div class="stream-number">room 3</div>
-                    </div>
-                    <div class="stream bg-darkGreen">
-                        <div class="stream-title">MOBILE<br />GAMES<br />USABILITY</div>
-                        <div class="stream-number">room 4</div>
-                    </div>
-                    <div class="stream bg-pink">
-                        <div class="stream-title">INTERNET<br />TECHNOLOGY</div>
-                        <div class="stream-number">room 5</div>
-                    </div>
-                    <div class="stream bg-violet">
-                        <div class="stream-title">MASTERS</div>
-                        <div class="stream-number">room 6</div>
-                    </div>
-                </div>
-
-                <div class="events">
-                    <div class="events-area">
-                        <div class="events-grid">
-                            <div class="event-group double">
-                                <div class="event-super padding20">
-                                    <div>9:00 - 9:40</div>
-                                    <h2 class="no-margin">Registration</h2>
-                                </div>
-                            </div>
-                            <div class="event-group double">
-                                <div class="event-super padding20">
-                                    <div>9:40 - 10:20</div>
-                                    <h2 class="no-margin">Keynote speech</h2>
-
-                                    <br />
-                                    <img src="images/org-01.png">
-                                    <h4 class="no-margin">Aleksandr Olshanskiy</h4>
-                                    <p>Imena.UA, MiroHost</p>
-
-                                </div>
-                            </div>
-
-                            <div class="event-group">
-                                <div class="event-stream" >
-                                    <div class="event" data-role="tile">
-                                        <div class="event-content live-slide">
-                                            <div class="event-content-logo">
-                                                <img class="icon" src="images/live1.jpg">
-                                                <div class="time">10:20</div>
-                                            </div>
-                                            <div class="event-content-data">
-                                                <div class="title">Katerina Kostereva</div>
-                                                <div class="subtitle">Terrasoft</div>
-                                                <div class="remark">Create and develop a business without external investment</div>
-                                            </div>
-                                        </div>
-                                        <div class="event-content live-slide">
-                                            <div class="event-content-logo">
-                                                <img class="icon" src="images/live2.jpg">
-                                                <div class="time">10:30</div>
-                                            </div>
-                                            <div class="event-content-data">
-                                                <div class="title">Vlad Voskresensky</div>
-                                                <div class="subtitle">InvisibleCRM</div>
-                                                <div class="remark">Team Building in your startup: what to do and what not</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="event">
-                                        <div class="event-content">
-                                            <div class="event-content-logo">
-                                                <img class="icon" src="images/x.jpg">
-                                                <div class="time">10:40</div>
-                                            </div>
-                                            <div class="event-content-data">
-                                                <div class="title">Round table</div>
-                                                <div class="remark">Trends in mobile platforms</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="event"></div>
-                                    <div class="event"></div>
-                                    <div class="event"></div>
-                                    <div class="event"></div>
-                                    <div class="event"></div>
-                                    <div class="event"></div>
-                                    <div class="event"></div>
-                                    <div class="event double"></div>
-                                    <div class="event double"></div>
-                                    <div class="event"></div>
-                                    <div class="event"></div>
-                                    <div class="event"></div>
-                                    <div class="event"></div>
-                                    <div class="event double"></div>
-                                    <div class="event"></div>
-                                    <div class="event"></div>
-                                    <div class="event"></div>
-                                    <div class="event"></div>
-                                </div>
-
-                                <div class="event-stream" >
-                                    <div class="event double margin-one">
-                                        <div class="event-content">
-                                            <div class="event-content-logo">
-                                                <img class="icon" src="images/x.jpg">
-                                                <div class="time">10:40</div>
-                                            </div>
-                                            <div class="event-content-data">
-                                                <div class="title">Round table</div>
-                                                <div class="remark">Trends in mobile platforms</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="event">
-                                        <div class="event-content">
-                                            <div class="event-content-logo">
-                                                <img class="icon" src="images/me.jpg">
-                                                <div class="time">10:20</div>
-                                            </div>
-                                            <div class="event-content-data">
-                                                <div class="title">Sergey Pimenov</div>
-                                                <div class="subtitle">Metro UI CSS</div>
-                                                <div class="remark">Create a site with interface similar to Windows 8</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="event-stream" >
-                                    <div class="event" data-role="tile" data-effect="slideDown" data-period="3000">
-                                        <div class="event-content live-slide">
-                                            <div class="event-content-logo">
-                                                <img class="icon" src="images/me.jpg">
-                                                <div class="time">10:20</div>
-                                            </div>
-                                            <div class="event-content-data">
-                                                <div class="title">Sergey Pimenov</div>
-                                                <div class="subtitle">Metro UI CSS</div>
-                                                <div class="remark">Create a site with interface similar to Windows 8</div>
-                                            </div>
-                                        </div>
-                                        <div class="event-content live-slide">
-                                            <div class="event-content-logo">
-                                                <img class="icon" src="images/x.jpg">
-                                                <div class="time">10:30</div>
-                                            </div>
-                                            <div class="event-content-data">
-                                                <div class="title">Round table</div>
-                                                <div class="subtitle">Metro UI CSS</div>
-                                                <div class="remark">Discussion</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="event double">
-                                        <div class="event-content">
-                                            <div class="event-content-logo">
-                                                <img class="icon" src="images/x.jpg">
-                                                <div class="time">10:40</div>
-                                            </div>
-                                            <div class="event-content-data">
-                                                <div class="title">Round table</div>
-                                                <div class="remark">Trends in mobile platforms</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="event-group double" data-start="18:20">
-                                <div class="event-super padding20">
-                                    <div>18:20</div>
-                                    <h2 class="no-margin">Final ceremony</h2>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
+        <div class="row flex-xl-nowrap" id="x1">
+            <div class="cell-md-3 cell-xl-2 pr-0 border-right bd-light" id="sidenav">
             </div>
+
+            <div class="d-none d-block-xl cell-xl-2 order-2 border-left bd-light toc-wrapper">
+                <h5>Table of contents</h5>
+                <hr/>
+                <ul class="toc-nav">
+                    <li class="toc-entry"><a href="#">Streamer</a></li>
+                    <li class="toc-entry"><a href="#_streamer_about">About</a></li>
+                    <li class="toc-entry"><a href="#_streamer_create">Create streamer</a></li>
+                    <li class="toc-entry"><a href="#_streamer_options">Options</a></li>
+                    <li class="toc-entry"><a href="#_streamer_data">Streamer data</a></li>
+                    <li class="toc-entry"><a href="#_streamer_methods">Methods</a></li>
+                    <li class="toc-entry"><a href="#_streamer_responsive">Responsive</a></li>
+                    <li class="toc-entry"><a href="#_streamer_observe">Observe</a></li>
+                </ul>
+
+            </div>
+
+            <main class="cell-md-9 cell-xl-8 order-1 pr-1-sx pl-1-sx pr-5-md pl-5-md">
+                <div class="place-right d-none d-block-lg" style="width: 200px;">
+                    <img src="images/logo.png" class="w-100">
+                </div>
+
+                <h1>Streamer</h1>
+                <p class="text-leader">
+                    Create an event program with the streamer component. Metro 4 contains css classes and plugin to create streamer component.
+                </p>
+
+                <!-- ads-html -->
+
+                <h3 id="_streamer_about">About</h3>
+                <p>
+                    Streamer is a complex element for creating an event program. The component includes a special HTML structure, styles, and a javascript code to interact with this structure.
+                </p>
+
+                <div class="example mt-3 p-0 no-border">
+                    <div id="streamer" class="streamer-expand-sm" data-role="streamer" data-source="data/streamer_data.json" data-start-from="09:00" data-slide-to-start="true"></div>
+                </div>
+
+                <h3 id="_streamer_create">Create streamer</h3>
+                <p>
+                    To create streamer you must execute three steps: add container with <code>data-role="streamer"</code> attribute, then define other options over <code>data-*</code> attributes and
+                    define streamer data with <code>data-source</code> or <code>data-data</code> attributes.
+                </p>
+                <pre><code>
+                    &lt;div data-role="streamer"
+                         data-source="data/streamer_data.json"
+                         data-start-from="09:00"
+                         data-slide-to-start="false"&gt;
+                    &lt;/div&gt;
+                </code></pre>
+
+                <h3 id="_streamer_options">Options</h3>
+                <p>
+                    The streamer contains a number of options for defining behavior:
+                </p>
+                <table class="table cell-border table-border options-table">
+                    <thead>
+                    <tr>
+                        <td>Option</td>
+                        <td>Data-*</td>
+                        <td>Default</td>
+                        <td>Desc</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>defaultClosedIcon</td>
+                        <td>data-default-closed-icon</td>
+                        <td></td>
+                        <td>Default icon for closed event</td>
+                    </tr>
+                    <tr>
+                        <td>defaultOpenIcon</td>
+                        <td>data-default-open-icon</td>
+                        <td></td>
+                        <td>Default icon for open event</td>
+                    </tr>
+                    <tr>
+                        <td>changeUri</td>
+                        <td>data-change-uri</td>
+                        <td>true</td>
+                        <td>If true, browser url will be changed when event selected</td>
+                    </tr>
+                    <tr>
+                        <td>encodeLink</td>
+                        <td>data-encode-link</td>
+                        <td>true</td>
+                        <td>If true, streamer link will be encoded with Base64</td>
+                    </tr>
+                    <tr>
+                        <td>closed</td>
+                        <td>data-closed</td>
+                        <td>false</td>
+                        <td>Streamer is closed. Event are not can be selected</td>
+                    </tr>
+                    <tr>
+                        <td>startFrom</td>
+                        <td>data-start-from</td>
+                        <td>null</td>
+                        <td>Streamer can be slided to this time pint after create</td>
+                    </tr>
+                    <tr>
+                        <td>slideToStart</td>
+                        <td>data-slide-to-start</td>
+                        <td>false</td>
+                        <td>If true, Streamer will be slided to time pint defined in startFrom options after create</td>
+                    </tr>
+                    <tr>
+                        <td>startSlideSleep</td>
+                        <td>data-start-slide-sleep</td>
+                        <td>1000</td>
+                        <td>Timeout before sliding to start time point</td>
+                    </tr>
+                    <tr>
+                        <td>source</td>
+                        <td>data-source</td>
+                        <td></td>
+                        <td>Link to stream data</td>
+                    </tr>
+                    <tr>
+                        <td>data</td>
+                        <td>data-data</td>
+                        <td></td>
+                        <td>Object with stream data</td>
+                    </tr>
+                    <tr>
+                        <td>eventClick</td>
+                        <td>data-event-click</td>
+                        <td>select</td>
+                        <td>Behavior when clicking on a event. This value can be <code>select</code> or <code>click</code></td>
+                    </tr>
+                    <tr>
+                        <td>streamSelect</td>
+                        <td>data-stream-select</td>
+                        <td>false</td>
+                        <td>If true, user can be select one stream on click them and disable others.</td>
+                    </tr>
+                    <tr>
+                        <td>onStreamerCreate</td>
+                        <td>data-on-streamer-create</td>
+                        <td>Metro.noop</td>
+                        <td>Callback</td>
+                    </tr>
+                    <tr>
+                        <td>onStreamClick</td>
+                        <td>data-on-stream-click</td>
+                        <td>Metro.noop</td>
+                        <td>Callback</td>
+                    </tr>
+                    <tr>
+                        <td>onStreamSelect</td>
+                        <td>data-on-stream-select</td>
+                        <td>Metro.noop</td>
+                        <td>Callback</td>
+                    </tr>
+                    <tr>
+                        <td>onEventClick</td>
+                        <td>data-on-event-click</td>
+                        <td>Metro.noop</td>
+                        <td>Callback</td>
+                    </tr>
+                    <tr>
+                        <td>onEventSelect</td>
+                        <td>data-on-event-select</td>
+                        <td>Metro.noop</td>
+                        <td>Callback</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <h3 id="_streamer_data">Streamer data</h3>
+                <p>
+                    An important parameter of the streamer is the parameter that determines the data for the streamer. Data for the <code>streamer</code> can be determined in two ways:
+                        <code>data-source=*</code> attribute,
+                        <code>data-data=*</code> attribute.
+                </p>
+
+                <div class="img-container thumbnail mb-2">
+                    <img src="images/streamer.jpg">
+                </div>
+
+                <p>
+                    Data for a streamer is an object of a certain format. <a href="data/streamer_data.json">This is a link to demo data</a>. This object contains four main section:
+                </p>
+                <ul>
+                    <li><strong>actions</strong> - user defined actions</li>
+                    <li><strong>timeline</strong> - timeline definition</li>
+                    <li><strong>streams</strong> - streams definition</li>
+                    <li><strong>global</strong> - additions events</li>
+                </ul>
+                <pre><code>
+                    {
+                        actions: {...}
+                        timeline: {...}
+                        streams: {...}
+                        global: {...}
+                    }
+                </code></pre>
+
+                <h4 id="_streamer_data_actions">Actions</h4>
+                <p>
+                    User define action showing in top left corner of streamer and hide when streamer collapsed (default). For details see <a href="#_streamer_responsive">streamer responsive feature</a>.
+                    Each action is described by three parameters:
+                        <code>html</code> - html value for action,
+                        <code>cls</code> - additional classes for action,
+                        <code>onclick</code> - click event for action (<a href="events.html">rules for defining events in Metro 4</a>).
+                </p>
+                <pre><code>
+                    {
+                        actions: [
+                            {
+                                html: "&lt;span class='mif-print'&gt;&lt;/span&gt;",
+                                cls: "fg-red",
+                                onclick: "alert('Printed!!!')"
+                            }
+                        ]
+                    }
+                </code></pre>
+
+                <h4 id="_streamer_data_timeline">Timeline</h4>
+                <p>
+                    To define <code>timeline</code> you can use same name section. This section contains three parameters:
+                        <code>start</code> - begin time,
+                        <code>stop</code> - end time,
+                        <code>step</code> - step in minutes.
+                </p>
+                <pre><code>
+                    {
+                        timeline: {
+                            start: "09:00",
+                            stop: "18:00",
+                            step: 20
+                        }
+                    }
+                </code></pre>
+
+                <h4 id="_streamer_data_streams">Streams</h4>
+                <p>
+                    Streams are defined in <code>streams</code> section. Each <code>stream</code> is described with next parameters:
+                        <code>title</code>,
+                        <code>secondary</code>,
+                        <code>icon</code>,
+                        <code>cls</code>,
+                        <code>data</code>,
+                        <code>events</code>.
+                </p>
+                <pre><code>
+                    {
+                        streams: [
+                            {
+                                title: "Internet business",
+                                secondary: "room 1",
+                                icon: "<span class='mif-link stream-icon'></span>",
+                                cls: "bg-teal fg-white",
+                                data: "any data, stored to stream object",
+                                events: [...]
+                            }
+                        ]
+                    }
+                </code></pre>
+
+                <h5 id="_streamer_data_events">Events</h5>
+                <p>
+                    Each stream can be contains events. Events is described with next parameters:
+                        <code>icon</code>,
+                        <code>time</code>,
+                        <code>title</code>,
+                        <code>subtitle</code>,
+                        <code>desc</code>,
+                        <code>size</code>,
+                        <code>selected</code>,
+                        <code>closed</code>,
+                        <code>closedIcon</code>,
+                        <code>openIcon</code>,
+                        <code>clsClosedIcon</code>,
+                        <code>clsOpenIcon</code>,
+                        <code>data</code>,
+                        <code>cls</code>,
+                        <code>target</code>.
+                </p>
+                <pre><code>
+                    {
+                        events: [
+                            {
+                                icon: "images/olshanskysmall.jpg",
+                                time: "09:00",
+                                title: "Alexandr Olshansky",
+                                subtitle: "Internet Invest Group",
+                                desc: "Information revolution - the way to new middle ages",
+                                size: 1,
+                                selected: 0,
+                                closed: true,
+                                data: {},
+                                closedIcon: "&lt;span class='mif-video-camera'&gt;&lt;/span&gt;",
+                                openIcon: "&lt;span class='mif-apps'&gt;&lt;/span&gt;",
+                                target: "https://2017.iforum.ua/reporter/?id=99#video-365",
+                                cls: ""
+                            }
+                        ]
+                    }
+                </code></pre>
+                <table class="table cell-border table-border options-table">
+                    <thead>
+                    <tr>
+                        <td>Param</td>
+                        <td>Desc</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>icon</td>
+                        <td>html tag for event icon</td>
+                    </tr>
+                    <tr>
+                        <td>time</td>
+                        <td>Event time point</td>
+                    </tr>
+                    <tr>
+                        <td>title</td>
+                        <td>Event title</td>
+                    </tr>
+                    <tr>
+                        <td>subtitle</td>
+                        <td>Event subtitle</td>
+                    </tr>
+                    <tr>
+                        <td>desc</td>
+                        <td>Event short description</td>
+                    </tr>
+                    <tr>
+                        <td>size</td>
+                        <td>Event size. Can be from 1 to 10</td>
+                    </tr>
+                    <tr>
+                        <td>shift</td>
+                        <td>Event shift (shift the event to the right of the previous one). Can be from 1 to 10</td>
+                    </tr>
+                    <tr>
+                        <td>selected</td>
+                        <td>Event mark as selected. Can be 1 or 0</td>
+                    </tr>
+                    <tr>
+                        <td>closed</td>
+                        <td>Event mark as close. Can be 1 or 0</td>
+                    </tr>
+                    <tr>
+                        <td>closedIcon</td>
+                        <td>If event is closed, this icon showing on top right corner</td>
+                    </tr>
+                    <tr>
+                        <td>openIcon</td>
+                        <td>If event is open, this icon showing on top right corner</td>
+                    </tr>
+                    <tr>
+                        <td>target</td>
+                        <td>If event is closed, this param contains target. When user click on closed event browser switched to this target.</td>
+                    </tr>
+                    <tr>
+                        <td>data</td>
+                        <td>Any data, can be stored to event</td>
+                    </tr>
+                    <tr>
+                        <td>cls</td>
+                        <td>Additional class for event</td>
+                    </tr>
+                    <tr>
+                        <td>clsClosedIcon</td>
+                        <td>Additional class for closed event icon</td>
+                    </tr>
+                    <tr>
+                        <td>clsOpenIcon</td>
+                        <td>Additional class for open event icon</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <h4 id="_streamer_data_global">Additions Events</h4>
+                <p>
+                    Before and after main events you can define additional global events. To define global event use section <code>global</code>.
+                    Each event in global stream must be described with six parameters:
+                        <code>time</code>,
+                        <code>size</code>,
+                        <code>cls</code>,
+                        <code>title</code>,
+                        <code>subtitle</code>,
+                        <code>html</code>.
+                </p>
+                <pre><code>
+                    {
+                        global: {
+                            before: [
+                                {
+                                    time: "08:40",
+                                    size: 1,
+                                    cls: 0,
+                                    title: "Registration",
+                                    subtitle: "08:40 - 09:00",
+                                    html: "Any valid html code",
+                                }
+                            ],
+                            after: [
+                                {
+                                    time: "12:00",
+                                    size: 2,
+                                    cls: "p-2",
+                                    title: "Closing ceremony"
+                                },
+                                {
+                                    time: "12:40",
+                                    size: 2,
+                                    cls: "p-2",
+                                    title: "Banquet"
+                                }
+                            ]
+                        }
+                    }
+                </code></pre>
+
+                <h3 id="_streamer_methods">Methods</h3>
+                <p>
+                    Streamer contains the numbers of usefulness methods:
+                </p>
+                <ul>
+                    <li><code>getLink()</code> - return link to same streamer with pre-selected events</li>
+                    <li><code>getTimes()</code> - return array with time points</li>
+                    <li><code>getEvents(type, include_global)</code> - return array with events. Type can be: selected, non-selected or all (default)</li>
+                    <li><code>slideTo(time)</code> - slide streamer to required time, time must be string in format HH:MI</li>
+                    <li><code>enableStream(stream)</code> - enable stream after it can be disabled</li>
+                    <li><code>disableStream(stream)</code> - disable stream</li>
+                    <li><code>toggleStream(stream)</code> - toggle stream state</li>
+                    <li><code>source(src)</code> - change streamer source and redraw</li>
+                    <li><code>data(src)</code> - change streamer data and redraw</li>
+                    <li><code>source()</code> - get streamer source</li>
+                    <li><code>data()</code> - get streamer data</li>
+                    <li><code>getStreamerData()</code> - get streamer internal data</li>
+                </ul>
+
+                <h3 id="_streamer_responsive">Responsive</h3>
+                <p>
+                    On default, streamer showing in collapsed mode:
+                </p>
+                <div class="example no-border p-0">
+                    <div data-role="streamer" data-source="data/streamer_data3.json" data-start-from="09:00"></div>
+                </div>
+                <pre><code>
+                    &lt;div data-role="streamer"
+                        data-source="data/streamer_data3.json"
+                        data-start-from="09:00"&gt;&lt;/div&gt;
+                </code></pre>
+                <div class="example no-border p-0">
+                    <div class="streamer-expand-sm" data-role="streamer" data-source="data/streamer_data3.json" data-start-from="09:00"></div>
+                </div>
+                <pre><code>
+                    &lt;div class="streamer-expand-sm"
+                        data-role="streamer"
+                        data-source="data/streamer_data3.json"
+                        data-start-from="09:00"&gt;&lt;/div&gt;
+                </code></pre>
+                <p>
+                    To expand streams markers, add one of classes:
+                        <code>.streamer-expand</code>,
+                        <code>.streamer-expand-sm</code>,
+                        <code>.streamer-expand-md</code>,
+                        <code>.streamer-expand-lg</code>,
+                        <code>.streamer-expand-xl</code>,
+                        <code>.streamer-expand-xxl</code>. See <a href="media.html">media breakpoints</a>.
+                </p>
+
+                <h3 id="_streamer_observe">Observe</h3>
+                <p>
+                    You can change attributes <code>data-source</code>, <code>data-data</code>, <code>data-stream-select</code>  at runtime and streamer will be updated.
+                </p>
+
+            </main>
         </div>
+
     </div>
+
+    <script src="docsearch/docsearch.min.js"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="metro/js/metro.js"></script>
+    <script src="highlight/highlight.pack.js"></script>
+    <script src="js/clipboard.min.js"></script>
+    <script src="js/site.js"></script>
+    <!-- ads-script -->
 </body>
 </html>

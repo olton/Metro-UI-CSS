@@ -1,0 +1,37 @@
+@import (once) "../include/vars";
+@import (once) "builder/builder";
+
+@schemeBodyColor: #ffffff;
+@schemeTextColor: #000000;
+
+@schemePrimaryColor: #b00015;
+@schemeSecondaryColor: #212121;
+@schemeThirdColor: #000000;
+
+@schemePrimaryTextColor: #ffffff;
+@schemeSecondaryTextColor: #ffffff;
+@schemeThirdTextColor: #ffffff;
+
+@schemeBorderColor: #d9d9d9;
+@schemeDividerColor: #d9d9d9;
+
+//@schemeFontFamily: 'Open Sans',sans-serif;
+@schemeFontFamily: @fontName;
+@schemeFontSize: .875rem;
+@schemeCheckColor: #6f6f6f;
+
+.scheme-builder(
+    @schemeBodyColor,
+    @schemeTextColor,
+    @schemePrimaryColor,
+    @schemeSecondaryColor,
+    @schemeThirdColor,
+    @schemePrimaryTextColor,
+    @schemeSecondaryTextColor,
+    @schemeThirdTextColor,
+    @schemeBorderColor,
+    @schemeDividerColor,
+    @schemeFontFamily,
+    @schemeFontSize,
+    @schemeCheckColor
+);

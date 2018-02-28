@@ -1,5 +1,4 @@
-$.hotkeys = {
-    version: "0.8",
+var hotkeys = {
 
     specialKeys: {
         8: "backspace",
@@ -99,82 +98,82 @@ $.hotkeys = {
     textInputTypes: /textarea|input|select/i,
 
     options: {
-        filterInputAcceptingElements: true,
-        filterTextInputs: true,
-        filterContentEditable: true
-    }
-};
+        filterInputAcceptingElements: METRO_HOTKEYS_FILTER_INPUT_ACCEPTING_ELEMENTS,
+        filterTextInputs: METRO_HOTKEYS_FILTER_TEXT_INPUTS,
+        filterContentEditable: METRO_HOTKEYS_FILTER_CONTENT_EDITABLE
+    },
 
-function keyHandler(handleObj) {
-    if (typeof handleObj.data === "string") {
-        handleObj.data = {
-            keys: handleObj.data
-        };
-    }
+    keyHandler: function(handleObj){
+        if (typeof handleObj.data === "string") {
+            handleObj.data = {
+                keys: handleObj.data
+            };
+        }
 
-    // Only care when a possible input has been specified
-    if (!handleObj.data || !handleObj.data.keys || typeof handleObj.data.keys !== "string") {
-        return;
-    }
-
-    var origHandler = handleObj.handler,
-        keys = handleObj.data.keys.toLowerCase().split(" ");
-
-    handleObj.handler = function(event) {
-        //      Don't fire in text-accepting inputs that we didn't directly bind to
-        if (this !== event.target &&
-            ($.hotkeys.options.filterInputAcceptingElements &&
-            $.hotkeys.textInputTypes.test(event.target.nodeName) ||
-            ($.hotkeys.options.filterContentEditable && $(event.target).attr('contenteditable')) ||
-            ($.hotkeys.options.filterTextInputs &&
-            $.inArray(event.target.type, $.hotkeys.textAcceptingInputTypes) > -1))) {
+        // Only care when a possible input has been specified
+        if (!handleObj.data || !handleObj.data.keys || typeof handleObj.data.keys !== "string") {
             return;
         }
 
-        var special = event.type !== "keypress" && $.hotkeys.specialKeys[event.which],
-            character = String.fromCharCode(event.which).toLowerCase(),
-            modif = "",
-            possible = {};
+        var origHandler = handleObj.handler,
+            keys = handleObj.data.keys.toLowerCase().split(" ");
 
-        $.each(["alt", "ctrl", "shift"], function(index, specialKey) {
-
-            if (event[specialKey + 'Key'] && special !== specialKey) {
-                modif += specialKey + '+';
+        handleObj.handler = function(event) {
+            //      Don't fire in text-accepting inputs that we didn't directly bind to
+            if (this !== event.target &&
+                (hotkeys.options.filterInputAcceptingElements && hotkeys.textInputTypes.test(event.target.nodeName) ||
+                    (hotkeys.options.filterContentEditable && $(event.target).attr('contenteditable')) ||
+                    (hotkeys.options.filterTextInputs && $.inArray(event.target.type, hotkeys.textAcceptingInputTypes) > -1))
+            )
+            {
+                return;
             }
-        });
 
-        // metaKey is triggered off ctrlKey erronously
-        if (event.metaKey && !event.ctrlKey && special !== "meta") {
-            modif += "meta+";
-        }
+            var special = event.type !== "keypress" && hotkeys.specialKeys[event.which],
+                character = String.fromCharCode(event.which).toLowerCase(),
+                modif = "",
+                possible = {};
 
-        if (event.metaKey && special !== "meta" && modif.indexOf("alt+ctrl+shift+") > -1) {
-            modif = modif.replace("alt+ctrl+shift+", "hyper+");
-        }
+            $.each(["alt", "ctrl", "shift"], function(index, specialKey) {
 
-        if (special) {
-            possible[modif + special] = true;
-        }
-        else {
-            possible[modif + character] = true;
-            possible[modif + $.hotkeys.shiftNums[character]] = true;
+                if (event[specialKey + 'Key'] && special !== specialKey) {
+                    modif += specialKey + '+';
+                }
+            });
 
-            // "$" can be triggered as "Shift+4" or "Shift+$" or just "$"
-            if (modif === "shift+") {
-                possible[$.hotkeys.shiftNums[character]] = true;
+            // metaKey is triggered off ctrlKey erronously
+            if (event.metaKey && !event.ctrlKey && special !== "meta") {
+                modif += "meta+";
             }
-        }
 
-        for (var i = 0, l = keys.length; i < l; i++) {
-            if (possible[keys[i]]) {
-                return origHandler.apply(this, arguments);
+            if (event.metaKey && special !== "meta" && modif.indexOf("alt+ctrl+shift+") > -1) {
+                modif = modif.replace("alt+ctrl+shift+", "hyper+");
             }
-        }
-    };
-}
+
+            if (special) {
+                possible[modif + special] = true;
+            }
+            else {
+                possible[modif + character] = true;
+                possible[modif + hotkeys.shiftNums[character]] = true;
+
+                // "$" can be triggered as "Shift+4" or "Shift+$" or just "$"
+                if (modif === "shift+") {
+                    possible[hotkeys.shiftNums[character]] = true;
+                }
+            }
+
+            for (var i = 0, l = keys.length; i < l; i++) {
+                if (possible[keys[i]]) {
+                    return origHandler.apply(this, arguments);
+                }
+            }
+        };
+    }
+};
 
 $.each(["keydown", "keyup", "keypress"], function() {
     $.event.special[this] = {
-        add: keyHandler
+        add: hotkeys.keyHandler
     };
 });

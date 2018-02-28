@@ -1,0 +1,21 @@
+.ripple {
+    display: block;
+    width: 0;
+    height: 0;
+    border-radius: 100%;
+    background: rgba(255, 255, 255, 0.4);
+    transform: scale(0);
+    position: absolute;
+    opacity: 1;
+}
+
+.rippleEffect {
+    animation: rippleDrop .5s linear;
+}
+
+@keyframes rippleDrop {
+    100% {
+        transform: scale(2.5);
+        opacity: 0;
+    }
+}

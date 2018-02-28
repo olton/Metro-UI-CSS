@@ -1,0 +1,59 @@
+{
+  "actions": [],
+  "timeline": {
+    "start": "09:00",
+    "stop": "18:00",
+    "step": "20"
+  },
+  "streams": [
+    {
+      "title": "\u0406\u043d\u0442\u0435\u0440\u043d\u0435\u0442-\u0431\u0456\u0437\u043d\u0435\u0441 \/ \u0421\u0442\u0430\u0440\u0442\u0430\u043f\u0438",
+      "secondary": "",
+      "icon": "",
+      "cls": "metro_streamer_stream_stream_bg_731 fg-dark",
+      "data": "",
+      "events": []
+    },
+    {
+      "title": "\u0420\u0435\u043a\u043b\u0430\u043c\u0430 \u0456 \u043f\u0440\u043e\u0441\u0443\u0432\u0430\u043d\u043d\u044f",
+      "secondary": "",
+      "icon": "",
+      "cls": "metro_streamer_stream_stream_bg_733 fg-dark",
+      "data": "",
+      "events": []
+    },
+    {
+      "title": "\u0406\u043d\u0442\u0435\u0440\u043d\u0435\u0442-\u0442\u0435\u0445\u043d\u043e\u043b\u043e\u0433\u0456\u0457",
+      "secondary": "",
+      "icon": "",
+      "cls": "metro_streamer_stream_stream_bg_744 fg-dark",
+      "data": "",
+      "events": []
+    },
+    {
+      "title": "\u041e\u0441\u0432\u0456\u0442\u043d\u0456 \u0442\u0435\u0445\u043d\u043e\u043b\u043e\u0433\u0456\u0457 \u043c\u0430\u0439\u0431\u0443\u0442\u043d\u044c\u043e\u0433\u043e \/ \u0406\u043d\u043d\u043e\u0432\u0430\u0446\u0456\u0457",
+      "secondary": "",
+      "icon": "",
+      "cls": "metro_streamer_stream_stream_bg_745 fg-dark",
+      "data": "",
+      "events": []
+    },
+    {
+      "title": "Digital Fun \/ CRM & \u041b\u043e\u044f\u043b\u044c\u043d\u0456\u0441\u0442\u044c",
+      "secondary": "",
+      "icon": "",
+      "cls": "metro_streamer_stream_stream_bg_746 fg-dark",
+      "data": "",
+      "events": []
+    },
+    {
+      "title": "Blockchain",
+      "secondary": "1111",
+      "icon": "",
+      "cls": "metro_streamer_stream_stream_bg_748 fg-dark",
+      "data": "",
+      "events": []
+    }
+  ],
+  "global": []
+}

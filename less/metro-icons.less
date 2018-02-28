@@ -1,25 +1,41 @@
+@import (once) "include/vars";
+@import (once) "include/mixins";
+
 @font-face {
-	font-family: 'metro';
-	src:url('../fonts/metro.eot');
-	src:url('../fonts/metro.eot') format('embedded-opentype'),
-	url('../fonts/metro.woff') format('woff'),
-	url('../fonts/metro.ttf') format('truetype'),
-	url('../fonts/metro.svg') format('svg');
-	font-weight: normal;
-	font-style: normal;
+    font-family: 'icons';
+    src: url('../mif/metro.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 }
 
-[class^="mif-"], [class*=" mif-"] {
-	display: inline-block;
-	font: normal normal normal 1.2em/1 metro;
-	font-size: inherit;
-	text-rendering: auto;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	vertical-align: middle;
+[class*=mif-] {
+    speak: none;
+    display: inline-block;
+    font-family: 'icons', 'Roboto', 'Noto Sans', sans-serif;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    vertical-align: middle;
+    text-align: center;
+    position: relative;
 }
 
-@import "metro-icons-mixins";
-@import "metro-icons-animation";
-@import "metro-icons-content";
+.mif-lg {
+    font-size: 1.2em;
+}
 
+.mif-2x {
+    font-size: 1.5em;
+}
+.mif-3x {
+    font-size: 2em;
+}
+.mif-4x {
+    font-size: 2.5em;
+}
+.mif-5x {
+    font-size: 3em;
+}
+
+@import "icons";

@@ -1,0 +1,267 @@
+@import (once) "include/vars";
+@import (once) "include/mixins";
+
+// Checkbox, radio and swith
+
+.checkbox, .radio, .switch {
+    display: inline-block;
+    position: relative;
+    margin: 0;
+    transition: @transition-base;
+    user-select: none;
+    cursor: pointer;
+
+    input {
+        position: absolute;
+        opacity: 0;
+        width: 0.0625rem;
+        height: 0.0625rem;
+    }
+
+    .check, .caption {
+        display: inline-block;
+        vertical-align: middle;
+        .px2rem(line-height, 20px);
+        .px2rem(font-size, 14px);
+    }
+
+    &.disabled {
+        pointer-events: none;
+    }
+}
+
+
+.checkbox, .radio {
+
+    display: inline-flex;
+
+    .caption {
+        margin-top: 2px;
+    }
+
+    .check {
+        display: inline-block;
+        .square(1, rem);
+        border: 2px rgba(0, 0, 0, 0.26) solid;
+        border-radius: 0;
+        position: relative;
+        z-index: 2;
+        box-sizing: content-box;
+        color: @white;
+        background-color: @white;
+        top: 2px;
+    }
+
+    .check {
+        transition: @transition-base;
+        &::after, &::before {
+            transition: @transition-base;
+        }
+    }
+
+    &.disabled ~ .check, input:disabled ~ .check {
+        border-color: @disabledBorder;
+        background-color: @transparent;
+    }
+
+    &.disabled ~ input:checked, input:disabled:checked {
+        &  ~ .check {
+            background-color: @disabledBackground;
+            border-color: @disabledBackground;
+
+            &:before {
+                border-color: @white;
+            }
+        }
+
+        & ~ .caption {
+            color: @disabledColor;
+        }
+    }
+
+    input:checked ~ .check {
+        background-color: @dark;
+        border-color: @dark;
+
+        &::before {
+            transition: @transition-base;
+            display: block;
+        }
+    }
+
+    .check ~ .caption {
+        .px2rem(margin-left, 5px);
+        margin-right: .5rem;
+    }
+
+    .caption ~ .check {
+        .px2rem(margin-left, 5px);
+        margin-right: .5rem;
+    }
+
+
+    input:focus ~ .check {
+        box-shadow: 0 0 0 3px rgba(red(@lightGray), green(@lightGray), blue(@lightGray), 0.45);
+    }
+
+    &.disabled {
+        .check {
+            &::after {
+                background-color: @disabledBackground;
+            }
+        }
+    }
+
+    input:disabled {
+        & ~ .check {
+            &::after {
+                background-color: @disabledBackground;
+            }
+        }
+    }
+
+    &:focus, &:active {
+        input:not(:disabled) {
+            & ~ .check {
+                .halo();
+            }
+        }
+    }
+}
+
+.checkbox {
+    .check {
+        &::before {
+            position: absolute;
+            vertical-align: middle;
+            color: transparent;
+            font-size: 0;
+            content: "";
+            height: .375rem;
+            width: .625rem;
+            background-color: @transparent;
+            border-left: 2px solid;
+            border-bottom: 2px solid;
+            border-color: @white;
+            left: 50%;
+            top: 50%;
+            margin-left: -.3125rem;
+            margin-top: -.3125rem;
+            display: block;
+            transform: rotate(-45deg);
+        }
+    }
+
+    input:indeterminate ~ .check {
+        &::before {
+            display: block!important;
+            height: .625rem;
+            background-color: @dark;
+            border: none;
+            transform: rotate(0deg);
+        }
+    }
+
+    input:not(:checked) {
+        & ~ .check {
+            &::before {
+                transition: @transition-base;
+                display: none;
+            }
+        }
+    }
+}
+
+.radio {
+    .check {
+        background-color: transparent !important;
+        border-radius: 50%;
+        &::before {
+            display: none;
+            content: "";
+            color: @checkBackground;
+            background-color: @dark;
+            .circle(.75, rem);
+            .px2rem(margin-left, 2px);
+            .px2rem(margin-top, 2px);
+        }
+    }
+
+    input:checked ~ .check {
+        &::before {
+            display: block;
+        }
+    }
+
+    input:disabled:checked {
+        & ~ .check {
+            &::before {
+                color: @disabledColor;
+                background-color: @disabledBackground;
+            }
+        }
+    }
+}
+
+.switch {
+    .caption {
+        margin: -4px 5px 0;
+    }
+
+    .check {
+        position: relative;
+        height: 1.25rem;
+        width: 2.8125rem;
+        border: 2px @dark solid;
+        cursor: pointer;
+        background: @transparent;
+        z-index: 1;
+        display: inline-block;
+        vertical-align: middle;
+        border-radius: 1.125rem / 2;
+        top: -2px;
+    }
+
+    .check:after {
+        position: absolute;
+        left: 3px;
+        display: block;
+        content: "";
+        height: .75rem;
+        width: .75rem;
+        top: 50%;
+        .translateY(-50%);
+        border: 2px #333 solid;
+        cursor: pointer;
+        background: #333;
+        z-index: 2;
+        transition: @transition-base;
+        border-radius: 50%;
+    }
+
+    input[type="checkbox"]:focus ~ .check {
+        outline: 1px @lightGray dotted ;
+    }
+
+    input[type="checkbox"]:checked ~ .check {
+        background: @dark;
+        border-color: @dark;
+        &:after {
+            background-color: @white;
+            border-color: @white;
+            left: auto;
+            .translateX(1.625rem);
+            .translateY(-50%);
+            transition: @transition-base;
+        }
+    }
+
+    input[type="checkbox"]:disabled ~ .check {
+        background-color: @disabledBackground;
+        border-color: @disabledBackground;
+        &:after {
+            background-color: darken(@disabledBackground, 10%);
+            border-color: darken(@disabledBackground, 10%);
+        }
+    }
+}

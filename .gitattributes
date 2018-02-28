@@ -9,7 +9,3 @@
 *.yml   text eol=lf
 # Don't diff or textually merge source maps
 *.map   binary
-
-metro-theme.css linguist-vendored=false
-metro.css linguist-vendored=false
-metro.js linguist-vendored=false

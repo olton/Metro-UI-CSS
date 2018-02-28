@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <meta name="twitter:site" content="@metroui">
+    <meta name="twitter:creator" content="@pimenov_sergey">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Metro 4 Components Library">
+    <meta name="twitter:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.">
+    <meta name="twitter:image" content="https://metroui.org.ua/images/m4-logo-social.png">
+
+    <meta property="og:url" content="https://metroui.org.ua/v4/index.html">
+    <meta property="og:title" content="Metro 4 Components Library">
+    <meta property="og:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:secure_url" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="968">
+    <meta property="og:image:height" content="504">
+
+    <meta name="author" content="Sergey Pimenov">
+    <meta name="description" content="Use a time picker to let a user pick a single time value. The most popular HTML, CSS, and JS library in Metro style.">
+    <meta name="keywords" content="HTML, CSS, JS, Metro, CSS3, Javascript, HTML5, UI, Library, Web, Development, Framework">
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <link href="metro/css/metro-all.css" rel="stylesheet">
+    <link href="highlight/styles/github.css" rel="stylesheet">
+    <link href="docsearch/docsearch.min.css" rel="stylesheet">
+    <link href="css/site.css" rel="stylesheet">
+
+    <title>Timepicker - Metro 4 :: Popular HTML, CSS and JS library</title>
+</head>
+<body>
+    <div class="container-fluid">
+
+        <div class="row flex-xl-nowrap">
+            <div class="cell-md-3 cell-xl-2 pr-0 border-right bd-light" id="sidenav">
+            </div>
+
+            <div class="d-none d-block-xl cell-xl-2 order-2 border-left bd-light toc-wrapper">
+                <h5>Table of contents</h5>
+                <hr/>
+                <ul class="toc-nav">
+                    <li class="toc-entry"><a href="#">Time picker</a></li>
+                    <li class="toc-entry"><a href="#_timepicker_about">About</a></li>
+                    <li class="toc-entry"><a href="#_timepciker_parts">Picker parts</a></li>
+                    <li class="toc-entry"><a href="#_timepicker_labels">Labels &amp; locale</a></li>
+                    <li class="toc-entry"><a href="#_timepicker_value">Value</a></li>
+                    <li class="toc-entry"><a href="#_timepicker_events">Events</a></li>
+                    <li class="toc-entry"><a href="#_timepicker_methods">Methods</a></li>
+                    <li class="toc-entry"><a href="#_timepicker_custom">Customize</a></li>
+                </ul>
+
+            </div>
+
+            <main class="cell-md-9 cell-xl-8 order-1 pr-1-sx pl-1-sx pr-5-md pl-5-md">
+                <div class="place-right d-none d-block-lg" style="width: 200px;">
+                    <img src="images/logo.png" class="w-100">
+                </div>
+
+                <h1>Timepicker</h1>
+                <p class="text-leader">
+                    Use a time picker to let a user pick a single time value.
+                </p>
+
+                <!-- ads-html -->
+
+                <h3 id="_timepicker_about">About</h3>
+                <p>
+                    The time picker gives you a standardized way to let users pick a time value. To create <code>timepicker</code> add role with attribute <code>data-role="timepicker"</code> to input element.
+                </p>
+                <div class="example">
+                    <div class="row">
+                        <div class="cell-md-4">
+                        </div>
+                        <div class="cell-md-4">
+                            <input data-role="timepicker">
+                        </div>
+                        <div class="cell-md-4">
+                        </div>
+                    </div>
+                </div>
+                <pre><code class="html">
+                    &lt;input data-role="timepicker"&gt;
+                </code></pre>
+
+                <h3 id="_timepciker_parts">Picker parts</h3>
+                <p>
+                    The picker consists of three parts: <code>hours</code>, <code>minutes</code> and <code>seconds</code>.
+                    With attributes <code>data-hours</code>, <code>data-minutes</code> and <code>data-seconds</code> you can on/off each part.
+                    For disabled parts, the picker will generate <strong>zero value</strong> - <code>00</code>.
+                </p>
+                <div class="example">
+                    <div class="row">
+                        <div class="cell-md-4">
+                            <input data-role="timepicker" data-minutes="false" data-seconds="false">
+                        </div>
+                        <div class="cell-md-4">
+                            <input data-role="timepicker" data-seconds="false">
+                        </div>
+                        <div class="cell-md-4">
+                            <input data-role="timepicker" data-hours="false">
+                        </div>
+                    </div>
+                </div>
+                <pre><code class="html">
+                    &lt;input data-role="timepicker" data-minutes="false" data-seconds="false"&gt;
+                    &lt;input data-role="timepicker" data-seconds="false"&gt;
+                    &lt;input data-role="timepicker" data-hours="false"&gt;
+                </code></pre>
+
+                <h3 id="_timepicker_labels">Labels &amp; locale</h3>
+                <p>
+                    You can on/off <code>parts labels</code> with attribute <code>data-show-labels</code>.
+                </p>
+                <div class="example">
+                    <div class="row">
+                        <div class="cell-md-6">
+                            <input data-role="timepicker" data-show-labels="true">
+                        </div>
+                        <div class="cell-md-6">
+                            <input data-role="timepicker" data-show-labels="false">
+                        </div>
+                    </div>
+                </div>
+                <pre><code class="html">
+                    &lt;input data-role="timepicker" data-show-labels="true"&gt;
+                    &lt;input data-role="timepicker" data-show-labels="false"&gt;
+                </code></pre>
+                <p>
+                    Also you can set <code>locale</code> for labels with attribute <code>data-locale</code>.
+                </p>
+                <div class="example">
+                    <div class="row">
+                        <div class="cell-md-4">
+                            <input data-role="timepicker" data-locale="uk-UA">
+                        </div>
+                        <div class="cell-md-4">
+                            <input data-role="timepicker" data-locale="de-DE">
+                        </div>
+                        <div class="cell-md-4">
+                            <input data-role="timepicker" data-locale="hu-HU">
+                        </div>
+                    </div>
+                </div>
+                <pre><code class="html">
+                    &lt;input data-role="timepicker" data-locale="uk-UA"&gt;
+                    &lt;input data-role="timepicker" data-locale="de-DE"&gt;
+                    &lt;input data-role="timepicker" data-locale="hu-HU"&gt;
+                </code></pre>
+
+                <h3 id="_timepicker_value">Picker value</h3>
+                <p>
+                    By default picker get current time from system for init value. But you can set init time with attribute <code>data-value</code>.
+                    Also you can change attribute <code>data-value</code> at runtime to change real value for component.
+                    To get value you can read input <code>value</code> attribute or use special <code>component methods</code>.
+                </p>
+                <div class="example">
+                    <div class="row">
+                        <div class="cell-md-4">
+                            <input data-role="timepicker" data-value="0">
+                        </div>
+                        <div class="cell-md-4">
+                            <input data-role="timepicker" data-value="12:00">
+                        </div>
+                        <div class="cell-md-4">
+                            <input data-role="timepicker" data-value="13:01:23">
+                        </div>
+                    </div>
+                </div>
+                <pre><code class="html">
+                    &lt;input data-role="timepicker" data-value="0"&gt;
+                    &lt;input data-role="timepicker" data-value="12:00"&gt;
+                    &lt;input data-role="timepicker" data-value="13:01:23"&gt;
+                </code></pre>
+
+                <h3 id="_timepicker_events">Events</h3>
+                <p>
+                    When picker works, it generated a number of events. You can use callbacks to these events to interact with it.
+                </p>
+                <table class="table cell-border table-border options-table">
+                    <thead>
+                    <tr>
+                        <th>Events</th>
+                        <th>Data-*</th>
+                        <th>Desc</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><code>onSet(val, elem_val, elem, picker)</code></td>
+                        <td><code>data-on-set</code></td>
+                        <td>Fired when value sets to picker</td>
+                    </tr>
+                    <tr>
+                        <td><code>onOpen(val, elem, picker)</code></td>
+                        <td><code>data-on-open</code></td>
+                        <td>Fired when picker is open</td>
+                    </tr>
+                    <tr>
+                        <td><code>onClose(val, elem, picker)</code></td>
+                        <td><code>data-on-close</code></td>
+                        <td>Fired when picker is close</td>
+                    </tr>
+                    <tr>
+                        <td><code>onScroll(target, list, picker)</code></td>
+                        <td><code>data-on-scroll</code></td>
+                        <td>Fired when picker is scroll</td>
+                    </tr>
+                    <tr>
+                        <td><code>onTimePickerCreate(elem, picker)</code></td>
+                        <td><code>data-on-time-picker-create</code></td>
+                        <td>Fired when picker was created</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <pre><code class="html">
+                    html:
+
+                    &lt;input data-role="timepicker" data-on-set="console.log(arguments)"&gt;
+                    &lt;input data-role="timepicker" data-on-set="myLib.time.set"&gt;
+
+                    javascript:
+
+                    var myLib = {
+                        time: {
+                            set: function(val){
+                                console.log(val);
+                            }
+                        }
+                    }
+                </code></pre>
+
+                <h3 id="_timepicker_methods">Methods</h3>
+                <p>
+                    To interact with component you can use picker methods.
+                </p>
+                <table class="table cell-border table-border options-table">
+                    <thead>
+                    <tr>
+                        <th>Method</th>
+                        <th>Desc</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><code>open()</code></td>
+                        <td>Use this method to open picker scroller</td>
+                    </tr>
+                    <tr>
+                        <td><code>close()</code></td>
+                        <td>Use this method to close picker scroller</td>
+                    </tr>
+                    <tr>
+                        <td><code>val()</code></td>
+                        <td>Use this method to get picker value as string</td>
+                    </tr>
+                    <tr>
+                        <td><code>val(t)</code></td>
+                        <td>Use this method to set picker value from string</td>
+                    </tr>
+                    <tr>
+                        <td><code>time()</code></td>
+                        <td>Use this method to get picker value as object {h, m, s}</td>
+                    </tr>
+                    <tr>
+                        <td><code>time(t)</code></td>
+                        <td>Use this method to set picker value from object {h, m, s}</td>
+                    </tr>
+                    <tr>
+                        <td><code>date()</code></td>
+                        <td>Use this method to get picker value as datetime object</td>
+                    </tr>
+                    <tr>
+                        <td><code>date(t)</code></td>
+                        <td>Use this method to set picker value from datetime object</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <h3 id="_timepicker_custom">Customize</h3>
+                <p>
+                    You can use attribute <code>data-distance</code> to set scroller size.
+                </p>
+                <div class="example">
+                    <div class="row">
+                        <div class="cell-md-4"><input data-role="timepicker" data-distance="1"></div>
+                        <div class="cell-md-4"><input data-role="timepicker" data-distance="2"></div>
+                        <div class="cell-md-4"><input data-role="timepicker" data-distance="3"></div>
+                    </div>
+                </div>
+                <pre><code class="html">
+                    &lt;input data-role="timepicker" data-distance="1"&gt;
+                    &lt;input data-role="timepicker" data-distance="2"&gt;
+                    &lt;input data-role="timepicker" data-distance="3"&gt;
+                </code></pre>
+
+                <p>
+                    Also you can use attributes
+                        <code>data-cls-picker</code>,
+                        <code>data-cls-part</code>,
+                        <code>data-cls-hours</code>,
+                        <code>data-cls-minutes</code>,
+                        <code>data-cls-seconds</code> to set additional styles to picker. Values for these attributes must be valid css class.
+                </p>
+                <div class="example">
+                    <div class="row">
+                        <div class="cell-md-4">
+                        </div>
+                        <div class="cell-md-4">
+                            <input data-role="timepicker"
+                                   data-cls-picker="shadow-3"
+                                   data-cls-hours="bg-red fg-white"
+                                   data-cls-minutes="bg-green fg-white"
+                                   data-cls-seconds="bg-cyan fg-white"
+                            >
+                        </div>
+                        <div class="cell-md-4">
+                        </div>
+                    </div>
+                </div>
+
+
+            </main>
+        </div>
+
+    </div>
+
+    <script src="docsearch/docsearch.min.js"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="metro/js/metro.js"></script>
+    <script src="highlight/highlight.pack.js"></script>
+    <script src="js/clipboard.min.js"></script>
+    <script src="js/site.js"></script>
+    <!-- ads-script -->
+</body>
+</html>

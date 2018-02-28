@@ -1,0 +1,51 @@
+@import (once) "include/vars";
+@import (once) "include/mixins";
+
+.w-sx {width: 320px;}
+.w-sm {width: 480px;}
+.w-ld {width: 640px;}
+.w-md {width: 768px;}
+.w-lg {width: 1024px;}
+.w-xl {width: 1200px;}
+.w-xxl {width: 1440px;}
+.w-auto {width: auto!important;}
+.h-auto {height: auto!important;}
+
+.generate-width(4);
+.generate-width(@i) when (@i > 0) {
+
+    @s: @i * 25;
+
+    .w-@{s} {width: @i * 25 + 0% !important;}
+    .h-@{s} {height: @i * 25 + 0% !important;}
+    .mh-@{s} {max-height: @i * 25 + 0% !important;}
+    .mw-@{s} {max-width: @i * 25 + 0% !important;}
+
+    .generate-width(@i - 1);
+}
+
+.generate-sizing-media-options(@mediaBreakpointListMobileLength);
+.generate-sizing-media-options(@name, @i: 1) when (@i <= @mediaBreakpointListMobileLength) {
+    @m: extract(@mediaBreakpointListMobile, @i);
+
+    @media screen and (min-width: @@m) {
+
+        .w-auto-@{m} {width: auto!important;}
+        .h-auto-@{m} {width: auto!important;}
+
+        .generate-width(4);
+        .generate-width(@i) when (@i > 0) {
+
+            @s: @i * 25;
+
+            .w-@{s}-@{m} {width: @i * 25 + 0% !important;}
+            .h-@{s}-@{m} {height: @i * 25 + 0% !important;}
+            .mh-@{s}-@{m} {max-height: @i * 25 + 0% !important;}
+            .mw-@{s}-@{m} {max-width: @i * 25 + 0% !important;}
+
+            .generate-width(@i - 1);
+        }
+    }
+
+    .generate-sizing-media-options(@name, @i + 1);
+}

@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <meta name="twitter:site" content="@metroui">
+    <meta name="twitter:creator" content="@pimenov_sergey">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Metro 4 Components Library">
+    <meta name="twitter:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.">
+    <meta name="twitter:image" content="https://metroui.org.ua/images/m4-logo-social.png">
+
+    <meta property="og:url" content="https://metroui.org.ua/v4/index.html">
+    <meta property="og:title" content="Metro 4 Components Library">
+    <meta property="og:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:secure_url" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="968">
+    <meta property="og:image:height" content="504">
+
+    <meta name="author" content="Sergey Pimenov">
+    <meta name="description" content="The most popular HTML, CSS, and JS library in Metro style.">
+    <meta name="keywords" content="HTML, CSS, JS, Metro, CSS3, Javascript, HTML5, UI, Library, Web, Development, Framework">
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <link href="metro/css/metro-all.css" rel="stylesheet">
+    <link href="highlight/styles/github.css" rel="stylesheet">
+    <link href="docsearch/docsearch.min.css" rel="stylesheet">
+    <link href="css/site.css" rel="stylesheet">
+
+    <title>Side navigation - Metro 4 :: Popular HTML, CSS and JS library</title>
+</head>
+<body>
+    <div class="container-fluid">
+
+        <div class="row flex-xl-nowrap">
+            <div class="cell-md-3 cell-xl-2 pr-0 border-right bd-light" id="sidenav">
+            </div>
+
+            <div class="d-none d-block-xl cell-xl-2 order-2 border-left bd-light toc-wrapper">
+                <h5>Table of contents</h5>
+                <hr/>
+                <ul class="toc-nav">
+                    <li class="toc-entry"><a href="#">Side navigation</a></li>
+                    <li class="toc-entry"><a href="#_sidenav_about">About</a></li>
+                    <li class="toc-entry"><a href="#_v-menu">Vertical menu</a></li>
+                    <li class="toc-entry"><a href="#_sidenav-counter">Side menu with counter</a></li>
+                </ul>
+
+            </div>
+
+            <main class="cell-md-9 cell-xl-8 order-1 pr-1-sx pl-1-sx pr-5-md pl-5-md">
+                <div class="place-right d-none d-block-lg" style="width: 200px;">
+                    <img src="images/logo.png" class="w-100">
+                </div>
+
+                <h1>Side navigation</h1>
+                <p class="text-leader">
+                    Metro 4 contains components to create user-friendly side navigation.
+                </p>
+
+                <!-- ads-html -->
+
+                <h3 id="_sidenav_about">About</h3>
+                <p>
+                    Often the project needs to implement a side menu. Metro 4 gives you the opportunity to do this in many ways.
+                    You can use: <strong>vertical menu</strong>, <strong>side menu with counter</strong> or <strong>side menu m3</strong>.
+                </p>
+
+                <h3 id="_v-menu">Vertical menu</h3>
+                <p>
+                    The vertical menu is intended, first of all, to create sidebar menus of your site. To create vertical menu add class <code>.v-menu</code> to list.
+                    How to create it you can read in <a href="http://localhost:63342/Metro-UI-CSS-4/docs/menu.html#_v_menu">this article</a>.
+                </p>
+                <div class="example clear">
+                    <ul class="v-menu" style="width: 220px;">
+                        <li class="menu-title">General</li>
+                        <li><a href="#"><span class="mif-home icon"></span> Home</a></li>
+                        <li class="menu-title">Products</li>
+                        <li><a href="#"><span class="mif-windows icon"></span> Windows</a></li>
+                        <li class="disabled"><a href="#"><span class="mif-library icon"></span> Office 365</a></li>
+                        <li><a href="#"><span class="mif-skype icon"></span> Skype</a></li>
+                        <li class="menu-title">Support</li>
+                        <li>
+                            <a href="#" data-hotkey="Alt+F1">Community</a>
+                            <ul class="v-menu" data-role="dropdown" style="display: none;">
+                                <li><a href="#">Blog</a></li>
+                                <li><a href="#">Github</a></li>
+                                <li><a href="#">Forum</a></li>
+                                <li class="divider"></li>
+                                <li class="p-2 bg-light">
+                                    <button class="button square primary"><span class="mif-target"></span></button>
+                                    <button class="button square success"><span class="mif-apps"></span></button>
+                                    <button class="button square alert"><span class="mif-file-code"></span></button>
+                                    <button class="button square warning"><span class="mif-download"></span></button>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="menu-title">Shop</li>
+                        <li><a href="#"><span class="mif-cart icon"></span> Cart</a></li>
+                    </ul>
+                </div>
+
+                <h3 id="_sidenav-counter">Side navigation with counter</h3>
+                <p>
+                    To create <code>side navigation with counter</code> you must add class <code>.sidenav-counter</code> to list and create <code>items</code> in special formats.
+                    Each item must contains: <code>icon</code>, <code>title</code> and <code>counter</code> elements.
+                </p>
+
+                <p>
+                    By default, <code>sidenav</code> displayed in compact mode. To expand it, you must add one of classes:
+                        <code>.sidenav-expand-fs</code>,
+                        <code>.sidenav-expand-sm</code>,
+                        <code>.sidenav-expand-md</code>,
+                        <code>.sidenav-expand-lg</code>,
+                        <code>.sidenav-expand-xl</code> or
+                        <code>.sidenav-expand-xxl</code>.
+                    More about media breakpoints you can see in <a href="media.html">this article</a>.
+                </p>
+
+                <div class="example">
+                    <div class="row">
+                        <div class="cell-md-6 flex-no-shrink">
+                            <h5>Expanded</h5>
+                            <ul class="sidenav-counter sidenav-counter-expand-fs h-auto">
+                                <li><a href="#">
+                                    <span class="mif-apps icon"></span>
+                                    <span class="title">all items</span>
+                                    <span class="counter">0</span>
+                                </a></li>
+                                <li><a href="#">
+                                    <span class="mif-vpn-lock icon"></span>
+                                    <span class="title">websites</span>
+                                    <span class="counter">0</span>
+                                </a></li>
+                                <li class="active"><a href="#">
+                                    <span class="mif-drive-eta icon"></span>
+                                    <span class="title">Virtual machines</span>
+                                    <span class="counter">0</span>
+                                </a></li>
+                                <li><a href="#">
+                                    <span class="mif-cloud icon"></span>
+                                    <span class="title">Cloud services</span>
+                                    <span class="counter">0</span>
+                                </a></li>
+                                <li><a href="#">
+                                    <span class="mif-database icon"></span>
+                                    <span class="title">SQL Databases</span>
+                                    <span class="counter">0</span>
+                                </a></li>
+                                <li><a href="#">
+                                    <span class="mif-cogs icon"></span>
+                                    <span class="title">Automation</span>
+                                    <span class="counter">0</span>
+                                </a></li>
+                            </ul>
+                        </div>
+                        <div class="cell-md-6">
+                            <h5>Compact</h5>
+                            <ul class="sidenav-counter h-auto">
+                                <li><a href="#">
+                                    <span class="mif-apps icon"></span>
+                                    <span class="title">all items</span>
+                                    <span class="counter">0</span>
+                                </a></li>
+                                <li><a href="#">
+                                    <span class="mif-vpn-lock icon"></span>
+                                    <span class="title">websites</span>
+                                    <span class="counter">0</span>
+                                </a></li>
+                                <li class="active"><a href="#">
+                                    <span class="mif-drive-eta icon"></span>
+                                    <span class="title">Virtual machines</span>
+                                    <span class="counter">0</span>
+                                </a></li>
+                                <li><a href="#">
+                                    <span class="mif-cloud icon"></span>
+                                    <span class="title">Cloud services</span>
+                                    <span class="counter">0</span>
+                                </a></li>
+                                <li><a href="#">
+                                    <span class="mif-database icon"></span>
+                                    <span class="title">SQL Databases</span>
+                                    <span class="counter">0</span>
+                                </a></li>
+                                <li><a href="#">
+                                    <span class="mif-cogs icon"></span>
+                                    <span class="title">Automation</span>
+                                    <span class="counter">0</span>
+                                </a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <pre><code class="html">
+                    &lt;ul class="sidenav-counter"&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;
+                            &lt;span class="mif-apps icon"&gt;&lt;/span&gt;
+                            &lt;span class="title"&gt;all items&lt;/span&gt;
+                            &lt;span class="counter"&gt;0&lt;/span&gt;
+                        &lt;/a&gt;&lt;/li&gt;
+                        ...
+                    &lt;/ul&gt;
+                </code></pre>
+                <p>
+                    To set this menu for right to left language, add attribute <code>dir="rtl"</code> to list.
+                </p>
+                <div class="example">
+                    <div class="row">
+                        <div class="cell-md-6 flex-no-shrink">
+                            <h5>Expanded</h5>
+                            <ul class="sidenav-counter sidenav-counter-expand-fs h-auto" dir="rtl">
+                                <li><a href="#">
+                                    <span class="mif-apps icon"></span>
+                                    <span class="title">all items</span>
+                                    <span class="counter">0</span>
+                                </a></li>
+                                <li><a href="#">
+                                    <span class="mif-vpn-lock icon"></span>
+                                    <span class="title">websites</span>
+                                    <span class="counter">0</span>
+                                </a></li>
+                                <li class="active"><a href="#">
+                                    <span class="mif-drive-eta icon"></span>
+                                    <span class="title">Virtual machines</span>
+                                    <span class="counter">0</span>
+                                </a></li>
+                                <li><a href="#">
+                                    <span class="mif-cloud icon"></span>
+                                    <span class="title">Cloud services</span>
+                                    <span class="counter">0</span>
+                                </a></li>
+                                <li><a href="#">
+                                    <span class="mif-database icon"></span>
+                                    <span class="title">SQL Databases</span>
+                                    <span class="counter">0</span>
+                                </a></li>
+                                <li><a href="#">
+                                    <span class="mif-cogs icon"></span>
+                                    <span class="title">Automation</span>
+                                    <span class="counter">0</span>
+                                </a></li>
+                            </ul>
+                        </div>
+                        <div class="cell-md-6">
+                            <h5>Compact</h5>
+                            <ul class="sidenav-counter h-auto" dir="rtl">
+                                <li><a href="#">
+                                    <span class="mif-apps icon"></span>
+                                    <span class="title">all items</span>
+                                    <span class="counter">0</span>
+                                </a></li>
+                                <li><a href="#">
+                                    <span class="mif-vpn-lock icon"></span>
+                                    <span class="title">websites</span>
+                                    <span class="counter">0</span>
+                                </a></li>
+                                <li class="active"><a href="#">
+                                    <span class="mif-drive-eta icon"></span>
+                                    <span class="title">Virtual machines</span>
+                                    <span class="counter">0</span>
+                                </a></li>
+                                <li><a href="#">
+                                    <span class="mif-cloud icon"></span>
+                                    <span class="title">Cloud services</span>
+                                    <span class="counter">0</span>
+                                </a></li>
+                                <li><a href="#">
+                                    <span class="mif-database icon"></span>
+                                    <span class="title">SQL Databases</span>
+                                    <span class="counter">0</span>
+                                </a></li>
+                                <li><a href="#">
+                                    <span class="mif-cogs icon"></span>
+                                    <span class="title">Automation</span>
+                                    <span class="counter">0</span>
+                                </a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <pre><code class="html">
+                    &lt;ul class="sidenav-counter" dir="rtl"&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;
+                            &lt;span class="mif-apps icon"&gt;&lt;/span&gt;
+                            &lt;span class="title"&gt;all items&lt;/span&gt;
+                            &lt;span class="counter"&gt;0&lt;/span&gt;
+                        &lt;/a&gt;&lt;/li&gt;
+                        ...
+                    &lt;/ul&gt;
+                </code></pre>
+
+                <h3 id="_sidenav-m3">Side menu m3</h3>
+                <p>
+                    This navigation menu crawled from the version of Metro 3, hence the name <code>.sidenav-m3</code>
+                </p>
+
+                <div class="example">
+                    <div class="row">
+                        <div class="cell-md-6 clear">
+                            <ul class="sidenav-m3 float-left">
+                                <li class="title">Title 1</li>
+                                <li class="active"><a href="#"><span class="mif-home icon"></span>Dashboard</a></li>
+                                <li class="stick-right bg-red"><a href="#"><span class="mif-cog icon"></span>Layouts</a></li>
+                                <li class="stick-left bg-green">
+                                    <a class="dropdown-toggle" href="#"><span class="mif-tree icon"></span>Sub menu</a>
+                                    <ul class="d-menu" data-role="dropdown" style="display: none;">
+                                        <li><a href=""><span class="mif-vpn-lock icon"></span> Subitem 1</a></li>
+                                        <li><a href="">Subitem 2</a></li>
+                                        <li><a href="">Subitem 3</a></li>
+                                        <li><a href="">Subitem 4</a></li>
+                                        <li class="disabled"><a href="">Subitem 5</a></li>
+                                    </ul>
+                                </li>
+                                <li class=""><a href="#">Thread item</a></li>
+                                <li class="disabled"><a href="#">Disabled item</a></li>
+
+                                <li class="title">Title 2</li>
+                                <li><a href="#">Other Item 1</a></li>
+                                <li><a href="#">Other item 2</a></li>
+                                <li><a href="#">Other item 3</a></li>
+                            </ul>
+                        </div>
+                        <div class="cell-md-6 clear">
+                            <ul class="sidenav-m3 float-right" dir="rtl">
+                                <li class="title">Title 1</li>
+                                <li class="active"><a href="#"><span class="mif-home icon"></span>Dashboard</a></li>
+                                <li class="stick-right bg-red"><a href="#"><span class="mif-cog icon"></span>Layouts</a></li>
+                                <li class="stick-left bg-green">
+                                    <a class="dropdown-toggle" href="#"><span class="mif-tree icon"></span>Sub menu</a>
+                                    <ul class="d-menu" data-role="dropdown" style="display: none;">
+                                        <li><a href=""><span class="mif-vpn-lock icon"></span> Subitem 1</a></li>
+                                        <li><a href="">Subitem 2</a></li>
+                                        <li><a href="">Subitem 3</a></li>
+                                        <li><a href="">Subitem 4</a></li>
+                                        <li class="disabled"><a href="">Subitem 5</a></li>
+                                    </ul>
+                                </li>
+                                <li class=""><a href="#">Thread item</a></li>
+                                <li class="disabled"><a href="#">Disabled item</a></li>
+
+                                <li class="title">Title 2</li>
+                                <li><a href="#">Other Item 1</a></li>
+                                <li><a href="#">Other item 2</a></li>
+                                <li><a href="#">Other item 3</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <pre><code class="html">
+                    &lt;ul class="sidenav-m3"&gt;
+                        &lt;li class="title"&gt;Title 1&lt;/li&gt;
+                        &lt;li class="active"&gt;&lt;a href="#"&gt;&lt;span class="mif-home icon"&gt;&lt;/span&gt;Dashboard&lt;/a&gt;&lt;/li&gt;
+                        &lt;li class="stick-right bg-red"&gt;&lt;a href="#"&gt;&lt;span class="mif-cog icon"&gt;&lt;/span&gt;Layouts&lt;/a&gt;&lt;/li&gt;
+                        &lt;li class="stick-left bg-green"&gt;
+                            &lt;a class="dropdown-toggle" href="#"&gt;&lt;span class="mif-tree icon"&gt;&lt;/span&gt;Sub menu&lt;/a&gt;
+                            &lt;ul class="d-menu" data-role="dropdown" style="display: none;"&gt;
+                                &lt;li&gt;&lt;a href=""&gt;&lt;span class="mif-vpn-lock icon"&gt;&lt;/span&gt; Subitem 1&lt;/a&gt;&lt;/li&gt;
+                                &lt;li&gt;&lt;a href=""&gt;Subitem 2&lt;/a&gt;&lt;/li&gt;
+                                &lt;li&gt;&lt;a href=""&gt;Subitem 3&lt;/a&gt;&lt;/li&gt;
+                                &lt;li&gt;&lt;a href=""&gt;Subitem 4&lt;/a&gt;&lt;/li&gt;
+                                &lt;li class="disabled"&gt;&lt;a href=""&gt;Subitem 5&lt;/a&gt;&lt;/li&gt;
+                            &lt;/ul&gt;
+                        &lt;/li&gt;
+                        &lt;li class=""&gt;&lt;a href="#"&gt;Thread item&lt;/a&gt;&lt;/li&gt;
+                        &lt;li class="disabled"&gt;&lt;a href="#"&gt;Disabled item&lt;/a&gt;&lt;/li&gt;
+
+                        &lt;li class="title"&gt;Title 2&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Other Item 1&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Other item 2&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Other item 3&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                </code></pre>
+                <p>
+                    To set this menu for right to left language, add attribute <code>dir="rtl"</code> to list.
+                </p>
+                <pre><code class="html">
+                    &lt;ul class="sidenav-m3" dir="rtl"&gt;
+                    ...
+                    &lt;/ul&gt;
+                </code></pre>
+
+
+            </main>
+        </div>
+
+    </div>
+
+    <script src="docsearch/docsearch.min.js"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="metro/js/metro.js"></script>
+    <script src="highlight/highlight.pack.js"></script>
+    <script src="js/clipboard.min.js"></script>
+    <script src="js/site.js"></script>
+    <!-- ads-script -->
+</body>
+</html>

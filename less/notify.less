@@ -1,183 +1,50 @@
-@import (once) "vars";
-@import (once) "utils";
+@import (once) "include/vars";
+@import (once) "include/mixins";
 
 .notify-container {
-	position: fixed;
-	top: 0;
-	right: 0;
-	width: auto;
-	.clear-float;
-	z-index: @zindexCharms + 1;
+    background-color: @transparent;
+    position: fixed;
+    top: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    z-index: @zindex-top;
+    width: auto;
 
-	&.position-left {
-		left: 0;
-		right: auto;
-	}
+    &.position-left {
+        right: auto;
+        left: 0;
+    }
 
-	&.position-top {
-		left: 0;
-		right: 0;
-		top: 0;
-		height: auto;
+    &.position-top, &.position-bottom {
+        width: 100%!important;
+        flex-direction: row;
+    }
 
-		.notify {
-			float: left;
-		}
-	}
-
-	&.position-bottom {
-		left: 0;
-		right: 0;
-		bottom: 0;
-		top: auto;
-		height: auto;
-
-		.notify {
-			float: left;
-		}
-	}
+    &.position-bottom {
+        top: auto;
+        bottom: 0;
+    }
 }
 
 .notify {
-	display: block;
-	margin: .3125rem;
-	padding: .625rem;
-	min-width: 200px;
-	cursor: default;
-	max-width: 300px;
-    position: relative;
-
-	.notify-icon {
-		width: 32px;
-		height: 32px;
-		font-size: 32px;
-		text-align: center;
-		position: absolute;
-		margin: -16px 10px;
-		top: 50%;
-		left: 0;
-	}
-
-	.notify-icon ~ .notify-title, .notify-icon ~ .notify-text {
-		position: relative;
-		margin-left: 42px;
-	}
-
-	.notify-title, .notify-text {
-		display: block;
-		margin-right: 20px;
-	}
-
-	.notify-title {
-		font-weight: 500;
-		font-size: 1rem;
-	}
-
-	.notify-text {
-		font-size: .875rem;
-	}
-
-	.notify-closer {
-		position: absolute;
-		height: 1rem;
-		width: 1rem;
-		text-align: center;
-		vertical-align: middle;
-		font-size: 1rem;
-		font-weight: normal;
-		padding: 0 0 .625rem 0;
-		z-index: 3;
-		outline: none;
-		cursor: pointer;
-
-		background-color: @winFlatBackgroundColor;
-		color: @winFlatSystemButtonRestColor;
-		top: .25rem;
-		right: .25rem;
-
-		&:after {
-			border-color: @winFlatSystemButtonRestColor;
-			content: '\D7';
-			position: absolute;
-			left: 50%;
-			top: 50%;
-			margin-top: -.65rem;
-			margin-left: -.35rem;
-		}
-
-		&:hover {
-			background-color: @winFlatSystemButtonHoverBackground;
-			color: @white;
-		}
-
-		&:active {
-			background-color: @winFlatSystemButtonActiveBackground;
-			color: @white;
-		}
-	}
+    display: block;
+    background-color: @white;
+    color: @dark;
+    padding: .5rem;
+    margin: .25rem;
+    border: 1px solid @borderColor;
+    cursor: pointer;
 }
 
-.notify {
-	background-color: rgba(229, 243, 251, 1);
-	color: @dark;
+.notify-title {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: .5rem;
+}
 
-	&.success {
-		background-color: @green;
-		color: @white;
-		.notify-closer {
-			background-color: @green;
-			color: @white;
-			&:hover {
-				background-color: @lightGreen;
-			}
-			&:active {
-				background-color: @darkGreen;
-			}
-		}
-	}
-
-	&.alert {
-		background-color: @red;
-		color: @white;
-		.notify-closer {
-			background-color: @red;
-			color: @white;
-			&:hover {
-				background-color: @lightRed;
-			}
-			&:active {
-				background-color: @darkRed;
-			}
-		}
-	}
-
-	&.warning {
-		background-color: @orange;
-		color: @white;
-		.notify-closer {
-			background-color: @orange;
-			color: @white;
-			&:hover {
-				background-color: @lightOrange;
-			}
-			&:active {
-				background-color: @darkOrange;
-			}
-		}
-	}
-
-	&.info {
-		background-color: @cyan;
-		color: @white;
-		.notify-closer {
-			background-color: @cyan;
-			color: @white;
-			&:hover {
-				background-color: @lightCyan;
-			}
-			&:active {
-				background-color: @darkCyan;
-			}
-		}
-	}
+.notify-message {
+    font-size: .9rem;
+    font-weight: normal;
 }

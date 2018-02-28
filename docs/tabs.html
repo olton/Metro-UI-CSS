@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <meta name="twitter:site" content="@metroui">
+    <meta name="twitter:creator" content="@pimenov_sergey">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Metro 4 Components Library">
+    <meta name="twitter:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.">
+    <meta name="twitter:image" content="https://metroui.org.ua/images/m4-logo-social.png">
+
+    <meta property="og:url" content="https://metroui.org.ua/v4/index.html">
+    <meta property="og:title" content="Metro 4 Components Library">
+    <meta property="og:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:secure_url" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="968">
+    <meta property="og:image:height" content="504">
+
+    <meta name="author" content="Sergey Pimenov">
+    <meta name="description" content="Metro 4 has at its disposal classes and a plugin for creating an tabbed interface.">
+    <meta name="keywords" content="HTML, CSS, JS, Metro, CSS3, Javascript, HTML5, UI, Library, Web, Development, Framework">
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <link href="metro/css/metro-all.css" rel="stylesheet">
+    <link href="highlight/styles/github.css" rel="stylesheet">
+    <link href="docsearch/docsearch.min.css" rel="stylesheet">
+    <link href="css/site.css" rel="stylesheet">
+
+    <title>Tabs - Metro 4 :: Popular HTML, CSS and JS library</title>
+</head>
+<body>
+    <div class="container-fluid">
+
+        <div class="row flex-xl-nowrap">
+            <div class="cell-md-3 cell-xl-2 pr-0 border-right bd-light" id="sidenav">
+            </div>
+
+            <div class="d-none d-block-xl cell-xl-2 order-2 border-left bd-light toc-wrapper">
+                <h5>Table of contents</h5>
+                <hr/>
+                <ul class="toc-nav">
+                    <li class="toc-entry"><a href="#">Tabs</a></li>
+                    <li class="toc-entry"><a href="#_tabs_horizontal">Horizontal</a></li>
+                    <li class="toc-entry"><a href="#_tabs_vertical">Vertical</a></li>
+                    <li class="toc-entry"><a href="#_tabs_alignment">Alignment</a></li>
+                    <li class="toc-entry"><a href="#_tabs_target">Target content</a></li>
+                    <li class="toc-entry"><a href="#_tabs_js">Events</a></li>
+                </ul>
+
+            </div>
+
+            <main class="cell-md-9 cell-xl-8 order-1 pr-1-sx pl-1-sx pr-5-md pl-5-md">
+                <div class="place-right d-none d-block-lg" style="width: 200px;">
+                    <img src="images/logo.png" class="w-100">
+                </div>
+
+                <h1>Tabs</h1>
+                <p class="text-leader">
+                    Metro 4 has at its disposal classes and a plugin for creating an tabbed interface.
+                </p>
+
+                <!-- ads-html -->
+
+                <h3 id="_tabs_horizontal">Horizontal</h3>
+                <p>
+                    To create horizontal tabs add class <code>tabs</code> to list and attribute <code>data-role="tabs"</code>. To set tabs on bottom add class <code>bottom</code>.
+                </p>
+
+                <p>
+                    Default tabs is <code>collapsed</code>.
+                </p>
+                <div class="example">
+                    <ul class="mb-2" data-role="tabs">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Profile</a></li>
+                        <li><a href="#">Links</a></li>
+                        <li class="disabled"><a href="#">Disabled</a></li>
+                    </ul>
+                </div>
+
+                <p>
+                    To expand add one of classes:
+                    <code>.tabs-expand</code>,
+                    <code>.tabs-expand-sm</code>,
+                    <code>.tabs-expand-md</code>,
+                    <code>.tabs-expand-lg</code>,
+                    <code>.tabs-expand-xl</code>,
+                    <code>.tabs-expand-xxl</code>.
+                </p>
+
+                <div class="example">
+                    <ul class="tabs-expand-md" data-role="tabs">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Profile</a></li>
+                        <li><a href="#">Links</a></li>
+                        <li class="disabled"><a href="#">Disabled</a></li>
+                    </ul>
+                </div>
+                <pre class=""><code>
+                    &lt;ul data-role="tabs"&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Profile&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Links&lt;/a&gt;&lt;/li&gt;
+                        &lt;li class="disabled"&gt;&lt;a href="#"&gt;Disabled&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+
+                    &lt;ul class="tabs-expand-md" data-role="tabs"&gt;
+                    ...
+                    &lt;/ul&gt;
+                </code></pre>
+
+                <div class="example">
+                    <ul class="bottom mt-2 tabs-expand-md" data-role="tabs">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Profile</a></li>
+                        <li><a href="#">Links</a></li>
+                        <li class="disabled"><a href="#">Disabled</a></li>
+                    </ul>
+                </div>
+                <pre class=""><code>
+                    &lt;ul class="bottom" data-role="tabs"&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Profile&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Links&lt;/a&gt;&lt;/li&gt;
+                        &lt;li class="disabled"&gt;&lt;a href="#"&gt;Disabled&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                </code></pre>
+
+                <h3 id="_tabs_vertical">Vertical</h3>
+                <p>
+                    To create vertical tabs add class <code>tabs vertical</code> to list and attribute <code>data-role="tabs"</code>. To set tabs on right add class <code>right</code>.
+                </p>
+
+                <h4>Left side</h4>
+                <div class="example clear">
+                    <ul class="vertical tabs-expand-fs" data-role="tabs" style="max-width: 120px;">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Profile</a></li>
+                        <li><a href="#">Links</a></li>
+                        <li class="disabled"><a href="#">Disabled</a></li>
+                    </ul>
+                </div>
+                <pre class=""><code>
+                    &lt;ul class="vertical" data-role="tabs"&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Profile&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Links&lt;/a&gt;&lt;/li&gt;
+                        &lt;li class="disabled"&gt;&lt;a href="#"&gt;Disabled&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                </code></pre>
+
+                <h4>Right side</h4>
+                <div class="example clear">
+                    <ul class="vertical right place-right tabs-expand-fs" data-role="tabs" style="width: 120px">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Profile</a></li>
+                        <li><a href="#">Links</a></li>
+                        <li class="disabled"><a href="#">Disabled</a></li>
+                    </ul>
+                </div>
+                <pre class=""><code>
+                    &lt;ul class="vertical right" data-role="tabs"&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Profile&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Links&lt;/a&gt;&lt;/li&gt;
+                        &lt;li class="disabled"&gt;&lt;a href="#"&gt;Disabled&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                </code></pre>
+
+                <h3 id="_tabs_alignment">Alignment</h3>
+                <p>
+                    Use flex utilitarian classes to determine the position of tabs: <code>.flex-justify-*</code>.
+                </p>
+                <h4>Horizontal tabs alignment</h4>
+                <div class="example">
+                    <ul class="flex-justify-start tabs-expand-md" data-role="tabs">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Profile</a></li>
+                        <li><a href="#">Links</a></li>
+                        <li class="disabled"><a href="#">Disabled</a></li>
+                    </ul>
+                    <ul class="flex-justify-center mt-2 tabs-expand-md" data-role="tabs">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Profile</a></li>
+                        <li><a href="#">Links</a></li>
+                        <li class="disabled"><a href="#">Disabled</a></li>
+                    </ul>
+                    <ul class="flex-justify-end mt-2 tabs-expand-md" data-role="tabs">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Profile</a></li>
+                        <li><a href="#">Links</a></li>
+                        <li class="disabled"><a href="#">Disabled</a></li>
+                    </ul>
+                </div>
+                <pre class=""><code>
+                    &lt;ul class="flex-justify-start" data-role="tabs"&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Profile&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Links&lt;/a&gt;&lt;/li&gt;
+                        &lt;li class="disabled"&gt;&lt;a href="#"&gt;Disabled&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                    &lt;ul class="flex-justify-center mt-2" data-role="tabs"&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Profile&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Links&lt;/a&gt;&lt;/li&gt;
+                        &lt;li class="disabled"&gt;&lt;a href="#"&gt;Disabled&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                    &lt;ul class="flex-justify-end mt-2" data-role="tabs"&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Profile&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Links&lt;/a&gt;&lt;/li&gt;
+                        &lt;li class="disabled"&gt;&lt;a href="#"&gt;Disabled&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                </code></pre>
+
+                <h4>Vertical tabs alignment</h4>
+                <div class="example clear" style="height: 400px;">
+                    <div class="row h-100">
+                        <div class="cell-sm-4">
+                            <ul class="vertical place-left tabs-expand-fs h-100" data-role="tabs">
+                                <li><a href="#">Home</a></li>
+                                <li><a href="#">Profile</a></li>
+                                <li><a href="#">Links</a></li>
+                                <li class="disabled"><a href="#">Disabled</a></li>
+                            </ul>
+                        </div>
+                        <div class="cell-sm-4">
+                            <ul class="vertical tabs-expand-fs flex-justify-center ml-2 place-left h-100" data-role="tabs">
+                                <li><a href="#">Home</a></li>
+                                <li><a href="#">Profile</a></li>
+                                <li><a href="#">Links</a></li>
+                                <li class="disabled"><a href="#">Disabled</a></li>
+                            </ul>
+                        </div>
+                        <div class="cell-sm-4">
+                            <ul class="vertical tabs-expand-fs flex-justify-end ml-2 place-left h-100" data-role="tabs">
+                                <li><a href="#">Home</a></li>
+                                <li><a href="#">Profile</a></li>
+                                <li><a href="#">Links</a></li>
+                                <li class="disabled"><a href="#">Disabled</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <pre class=""><code>
+                    &lt;ul class="vertical place-left" data-role="tabs"&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Profile&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Links&lt;/a&gt;&lt;/li&gt;
+                        &lt;li class="disabled"&gt;&lt;a href="#"&gt;Disabled&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                    &lt;ul class="vertical flex-justify-center ml-2 place-left" data-role="tabs"&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Profile&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Links&lt;/a&gt;&lt;/li&gt;
+                        &lt;li class="disabled"&gt;&lt;a href="#"&gt;Disabled&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                    &lt;ul class="vertical flex-justify-end ml-2 place-left" data-role="tabs"&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Profile&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Links&lt;/a&gt;&lt;/li&gt;
+                        &lt;li class="disabled"&gt;&lt;a href="#"&gt;Disabled&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                </code></pre>
+
+                <h3 id="_tabs_target">Target content</h3>
+                <p>
+                    Target content is determined automatically through the attribute <code>href</code>.
+                </p>
+                <div class="example">
+                    <ul class="tabs-expand-md" data-role="tabs">
+                        <li><a href="#_target_1">Home</a></li>
+                        <li><a href="#_target_2">Profile</a></li>
+                        <li><a href="#_target_3">Links</a></li>
+                        <li class="disabled"><a href="#">Disabled</a></li>
+                        <li>
+                            <a href="#" class="dropdown-toggle">Dropdown</a>
+                            <ul class="d-menu" data-role="dropdown">
+                                <li><a href="#_target_4">Item 1</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="border bd-default no-border-top p-2">
+                        <div id="_target_1">
+                            A falsis, calceus altus racana. Heavens of emptiness will daily know a remarkable doer. When cooking soaked pumpkin seeds, be sure they are room temperature.
+                        </div>
+                        <div id="_target_2">
+                            The shield is a post-apocalyptic nanomachine. Gar, never mark a fish. Instead of decorating sweet milk with avocado, use a handfull tablespoons salsa verde and one container rosemary plastic bag.
+                        </div>
+                        <div id="_target_3">
+                            Cream soup is just not the same without basil and canned ground pork butts. Elogium prareres, tanquam alter species. Engage, extraterrestrial wind!
+                        </div>
+                        <div id="_target_4">
+                            This is content for hidden tab from dropdown.
+                        </div>
+                    </div>
+                </div>
+                <pre class=""><code>
+                    &lt;ul data-role="tabs"&gt;
+                        &lt;li&gt;&lt;a href="#_target_1"&gt;Home&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#_target_2"&gt;Profile&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#_target_3"&gt;Links&lt;/a&gt;&lt;/li&gt;
+                        &lt;li class="disabled"&gt;&lt;a href="#"&gt;Disabled&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                    &lt;div class="border bd-default no-border-top p-2"&gt;
+                        &lt;div id="_target_1"&gt;
+                            A falsis, calceus altus racana.
+                        &lt;/div&gt;
+                        &lt;div id="_target_2"&gt;
+                            The shield is a post-apocalyptic nanomachine.
+                        &lt;/div&gt;
+                        &lt;div id="_target_3"&gt;
+                            Cream soup is just not the same without basil
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
+
+                <h3 id="_tabs_js">Events</h3>
+                <p>
+                    Plugin activated automaticaly when you add attribute <code>data-role="tabs"</code> to list.
+                    You can define callbacks for events: <code>onTabsCreate</code> over attribute <code>data-on-tabs-create</code>, <code>onTab</code> over attribute <code>data-on-tab</code> and <code>on-before-tab</code> for <code>onBeforeTab</code>.
+                </p>
+                <table class="table cell-border table-border options-table">
+                    <thead>
+                    <tr>
+                        <th>Events</th>
+                        <th>Data-*</th>
+                        <th>Desc</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><code>onBeforeTab(tab, elem)</code></td>
+                        <td><code>data-on-before-tab</code></td>
+                        <td>This event occurs before the tab is opened if this function return false, tab is not open</td>
+                    </tr>
+                    <tr>
+                        <td><code>onTab(tab, elem)</code></td>
+                        <td><code>data-on-tab</code></td>
+                        <td>This event occurs when the tab is opened</td>
+                    </tr>
+                    <tr>
+                        <td><code>onTabsCreate(tab, elem)</code></td>
+                        <td><code>data-on-tabs-create</code></td>
+                        <td>This event occurs when the tabs is created</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </main>
+        </div>
+
+    </div>
+
+    <script src="docsearch/docsearch.min.js"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="metro/js/metro.js"></script>
+    <script src="highlight/highlight.pack.js"></script>
+    <script src="js/clipboard.min.js"></script>
+    <script src="js/site.js"></script>
+    <!-- ads-script -->
+</body>
+</html>

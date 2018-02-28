@@ -1,0 +1,140 @@
+@import (once) "include/vars";
+@import (once) "include/mixins";
+
+.sidenav-counter {
+    display: block;
+    position: relative;
+    list-style: none inside;
+    height: 100%;
+    width: 52px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    margin: 0;
+    padding: 0;
+    transition: @transition-base;
+    background-color: @light;
+
+    .hideScrollBars();
+}
+
+.sidenav-counter {
+    li, a {
+        display: block;
+        position: relative;
+        height: 52px;
+        line-height: 52px;
+        background-color: inherit;
+        color: inherit;
+        width: 100%;
+    }
+
+
+    a {
+        padding: .625rem 0 .625rem 0;
+        line-height: .875rem;
+        text-decoration: none;
+    }
+
+    .icon {
+        .square(28, px);
+        font-size: 26px;
+        line-height: 28px;
+        vertical-align: middle;
+        text-align: center;
+        position: absolute;
+        left: .625rem;
+        top: .635rem;
+    }
+
+    .title, .counter {
+        display: block;
+        margin: 0;
+        white-space: nowrap;
+    }
+
+    .title {
+        font-size: .6875rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        display: none;
+    }
+
+    .counter {
+        font-size: .7rem;
+        font-weight: normal;
+        position: absolute;
+        top: 0;
+        right: 4px;
+    }
+
+
+    li:hover {
+        background-color: @hoverBackground;
+    }
+
+    li:active {
+        background-color: @darkCyan;
+        color: @white;
+    }
+
+    .active, li.active:hover {
+        background-color: @cyan;
+        color: @white;
+    }
+}
+
+.sidenav-counter[dir=rtl] {
+    .counter {
+        right: auto;
+        left: 4px;
+    }
+
+    .icon {
+        left: .725rem;
+    }
+}
+
+.sidenav-counter-expand() {
+    width: 220px;
+
+    a {
+        padding: .625rem 1rem .625rem 3.75rem;
+    }
+
+    .title {
+        display: block;
+    }
+
+    .counter {
+        position: relative;
+        top: auto;
+        right: auto;
+    }
+}
+
+
+.generate-sidenav-media-options(@mediaBreakpointListMobileLength);
+.generate-sidenav-media-options(@name, @i: 1) when (@i <= @mediaBreakpointListMobileLength) {
+    @m: extract(@mediaBreakpointListMobile, @i);
+
+    @media screen and (min-width: @@m) {
+
+        .sidenav-counter {
+            &.sidenav-counter-expand-@{m} {
+                .sidenav-counter-expand();
+            }
+            &.sidenav-counter-expand-@{m}[dir=rtl] {
+                a {
+                    padding: .625rem 3.75rem .625rem 1rem;
+                }
+
+                .icon {
+                    left: auto;
+                    right: .625rem;
+                }
+            }
+        }
+    }
+
+    .generate-sidenav-media-options(@name, @i + 1);
+}

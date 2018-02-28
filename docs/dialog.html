@@ -1,444 +1,426 @@
 <!DOCTYPE html>
-<html>
-<head lang="en">
+<html lang="en">
+<head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="description" content="Metro, a sleek, intuitive, and powerful framework for faster and easier web development for Windows Metro Style.">
-    <meta name="keywords" content="HTML, CSS, JS, JavaScript, framework, metro, front-end, frontend, web development">
-    <meta name="author" content="Sergey Pimenov and Metro UI CSS contributors">
 
-    <link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
-    <title>Dialog :: Metro UI CSS - The front-end framework for developing projects on the web in Windows Metro Style</title>
+    <meta name="twitter:site" content="@metroui">
+    <meta name="twitter:creator" content="@pimenov_sergey">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Metro 4 Components Library">
+    <meta name="twitter:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.">
+    <meta name="twitter:image" content="https://metroui.org.ua/images/m4-logo-social.png">
 
-    <link href="css/metro.css" rel="stylesheet">
-    <link href="css/metro-icons.css" rel="stylesheet">
-    <link href="css/metro-responsive.css" rel="stylesheet">
-    <link href="css/metro-schemes.css" rel="stylesheet">
-    <link href="css/metro-colors.css" rel="stylesheet">
+    <meta property="og:url" content="https://metroui.org.ua/v4/index.html">
+    <meta property="og:title" content="Metro 4 Components Library">
+    <meta property="og:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:secure_url" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="968">
+    <meta property="og:image:height" content="504">
 
-    <link href="css/docs.css" rel="stylesheet">
+    <meta name="author" content="Sergey Pimenov">
+    <meta name="description" content="Metro 4 provides the ability to easily create dialogs. Dialogs can be predefined or created in runtime.">
+    <meta name="keywords" content="HTML, CSS, JS, Metro, CSS3, Javascript, HTML5, UI, Library, Web, Development, Framework">
 
-    <script src="js/jquery-2.1.3.min.js"></script>
-    <script src="js/metro.js"></script>
-    <script src="js/docs.js"></script>
-    <script src="//cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
-    <script src="js/ga.js"></script>
-    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
 
+    <link href="metro/css/metro-all.css" rel="stylesheet">
+    <link href="highlight/styles/github.css" rel="stylesheet">
+    <link href="docsearch/docsearch.min.css" rel="stylesheet">
+    <link href="css/site.css" rel="stylesheet">
+
+    <title>Dialog - Metro 4 :: Popular HTML, CSS and JS library</title>
 </head>
 <body>
-    <div class="container page-content">
-        <h1><a href="index.html" class="nav-button transform"><span></span></a>&nbsp;Dialog</h1>
+    <div class="container-fluid">
 
-        @@adsense
-
-        <div class="margin20 no-margin-left no-margin-right sub-header text-light">
-            Metro UI CSS provides the ability to easily create dialogs. The dialogue can be ANY Your unit, it is sufficient to determine the appropriate role <span class="tag">data-role='dialog'</span>.
-        </div>
-
-        <div class="padding20 no-padding-right no-padding-left no-padding-top">
-            <button class="button" onclick="metroDialog.toggle('#dialog')">Show dialog</button>
-            <button class="button" onclick="metroDialog.toggle('#dialog2')">Show dialog2</button>
-            <button class="button success" onclick="metroDialog.toggle('#dialog3')">Success</button>
-            <button class="button warning" onclick="metroDialog.toggle('#dialog4')">Warning</button>
-            <button class="button alert" onclick="metroDialog.toggle('#dialog5')">Alert</button>
-            <button class="button info" onclick="metroDialog.toggle('#dialog6')">Info</button>
-            <button class="button" onclick="metroDialog.toggle('#dialog10')">Custom colors</button>
-            <button class="button" onclick="metroDialog.toggle('#dialog7')">Windows Style</button>
-            <button class="button" onclick="metroDialog.toggle('#dialog8')">Overlay</button>
-            <button class="button" onclick="metroDialog.toggle('#dialog9')">Overlay 2</button>
-        </div>
-
-        <div class="example" data-text="code">
-            <pre class="prettyprint linenums"><code>
-                &lt;div data-role="dialog"&gt;
-                    ...you content here...
-                &lt;/div&gt;
-            </code></pre>
-        </div>
-
-        <div class="example" data-text="example">
-            <h5>Example of usage</h5>
-            <pre class="prettyprint linenums"><code>
-                Over data-attribute
-                &lt;div data-role="dialog" id="dialog"&gt;
-                    &lt;h1&gt;Simple dialog&lt;/h1&gt;
-                    &lt;p&gt;
-                        Dialog :: Metro UI CSS - The front-end framework
-                        for developing projects on the web in Windows Metro Style.
-                    &lt;/p&gt;
-                &lt;/div&gt;
-
-                Manual from js
-                &lt;button onclick="metroDialog.open('#dialog')"&gt;Show dialog&lt;/button&gt;
-            </code></pre>
-        </div>
-
-        <div data-role="dialog" id="dialog" class="padding20" data-close-button="true">
-            <h1>Simple dialog</h1>
-            <p>
-                Dialog :: Metro UI CSS - The front-end framework for developing projects on the web in Windows Metro Style
-            </p>
-        </div>
-
-        <div data-role="dialog" id="dialog3" class="padding20" data-close-button="true" data-type="success">
-            <h1>Simple dialog</h1>
-            <p>
-                Dialog :: Metro UI CSS - The front-end framework for developing projects on the web in Windows Metro Style
-            </p>
-        </div>
-
-        <div data-role="dialog" id="dialog4" class="padding20" data-close-button="true" data-type="warning">
-            <h1>Simple dialog</h1>
-            <p>
-                Dialog :: Metro UI CSS - The front-end framework for developing projects on the web in Windows Metro Style
-            </p>
-        </div>
-
-        <div data-role="dialog" id="dialog5" class="padding20" data-close-button="true" data-type="alert">
-            <h1>Simple dialog</h1>
-            <p>
-                Dialog :: Metro UI CSS - The front-end framework for developing projects on the web in Windows Metro Style
-            </p>
-        </div>
-
-        <div data-role="dialog" id="dialog6" class="padding20" data-close-button="true" data-type="info">
-            <h1>Simple dialog</h1>
-            <p>
-                Dialog :: Metro UI CSS - The front-end framework for developing projects on the web in Windows Metro Style
-            </p>
-        </div>
-
-        <div data-role="dialog" id="dialog7" class="padding20" data-close-button="true" data-windows-style="true">
-            <div class="container">
-                <h1>Simple dialog</h1>
-                <p>
-                    Dialog :: Metro UI CSS - The front-end framework for developing projects on the web in Windows Metro Style
-                </p>
-            </div>
-        </div>
-
-        <div data-role="dialog" id="dialog8" class="info padding20" data-close-button="true" data-overlay="true">
-            <h1>Simple dialog</h1>
-            <p>
-                This dialog with default overlay
-            </p>
-        </div>
-
-        <div data-role="dialog" id="dialog9" class="padding20" data-close-button="true" data-overlay="true" data-overlay-color="op-dark" data-overlay-click-close="true">
-            <h1>Simple dialog</h1>
-            <p>
-                This dialog with colored overlay
-            </p>
-        </div>
-
-        <div data-role="dialog" id="dialog10" class="padding20" data-close-button="true" data-background="bg-pink" data-color="fg-white">
-            <h1>Simple dialog</h1>
-            <p>
-                This dialog with custom colors
-            </p>
-        </div>
-
-        <div data-role="dialog" id="dialog2" data-hide="3000" class="padding20" data-close-button="true">
-            <h1>Simple dialog</h1>
-            <p>
-                This dialog will be auto closed after 3 sec
-            </p>
-        </div>
-
-        <h3>Options</h3>
-        <table class="table bordered border">
-            <thead>
-            <tr>
-                <td>Parameter</td>
-                <td>Data-*</td>
-                <td>Type</td>
-                <td>Default value</td>
-                <td>Description</td>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>overlay</td>
-                <td style="white-space: nowrap">data-overlay</td>
-                <td>boolean</td>
-                <td>false</td>
-                <td>Show dialog with overlay</td>
-            </tr>
-            <tr>
-                <td>overlayClickClose</td>
-                <td style="white-space: nowrap">data-overlay-click-close</td>
-                <td>boolean</td>
-                <td>false</td>
-                <td>Close dialog on overlay click</td>
-            </tr>
-            <tr>
-                <td>overlayColor</td>
-                <td style="white-space: nowrap">data-overlay-color</td>
-                <td>string</td>
-                <td>default</td>
-                <td>Overlay color, hex value or class name</td>
-            </tr>
-            <tr>
-                <td>type</td>
-                <td style="white-space: nowrap">data-type</td>
-                <td>string</td>
-                <td>default</td>
-                <td>Dialog type: default, success, warning, alert, info</td>
-            </tr>
-            <tr>
-                <td>background</td>
-                <td style="white-space: nowrap">data-background</td>
-                <td>string</td>
-                <td>default</td>
-                <td>Dialog background color, hex value or class name</td>
-            </tr>
-            <tr>
-                <td>color</td>
-                <td style="white-space: nowrap">data-color</td>
-                <td>string</td>
-                <td>default</td>
-                <td>Dialog main color for text, hex value or class name</td>
-            </tr>
-            <tr>
-                <td>hide</td>
-                <td style="white-space: nowrap">data-hide</td>
-                <td>int</td>
-                <td>false</td>
-                <td>If value gt 0 then dialog hide automatically after N ms</td>
-            </tr>
-            <tr>
-                <td>width</td>
-                <td style="white-space: nowrap">data-width</td>
-                <td>int or string</td>
-                <td>auto</td>
-                <td>Dialog width</td>
-            </tr>
-            <tr>
-                <td>height</td>
-                <td style="white-space: nowrap">data-height</td>
-                <td>int or string</td>
-                <td>auto</td>
-                <td>Dialog height</td>
-            </tr>
-            <tr>
-                <td>show</td>
-                <td style="white-space: nowrap">data-show</td>
-                <td>boolean</td>
-                <td>false</td>
-                <td>Auto open Dialog after create</td>
-            </tr>
-            <tr>
-                <td>closeButton</td>
-                <td style="white-space: nowrap">data-close-button</td>
-                <td>boolean</td>
-                <td>false</td>
-                <td>Show dialog close button</td>
-            </tr>
-            <tr>
-                <td>windowsStyle</td>
-                <td style="white-space: nowrap">data-windows-style</td>
-                <td>boolean</td>
-                <td>false</td>
-                <td>Show dialog in windows 8 style (full width). Recommended put content in additional <span class="tag">div</span> with class <span class="tag">.container</span></td>
-            </tr>
-            </tbody>
-        </table>
-
-        <h3 id="_dialog-ajax_">Dialog content loaded with ajax</h3>
-        <div class="example">
-            <div data-role="dialog" id="dialog-ajax" class="padding20" data-close-button="true" data-href="dialog-ajax-demo-data.html" data-width="600"></div>
-            <div data-role="dialog" id="dialog-video-content" class="padding20" data-background="bg-dark" data-close-button="true"
-                 data-content='<iframe src="https://player.vimeo.com/video/86430443" frameborder="0"  allowfullscreen></iframe>' data-width="600" data-content-type="video"></div>
-
-            <button class="button" onclick="metroDialog.toggle('#dialog-ajax')">Ajax demo</button>
-            <button class="button" onclick="metroDialog.toggle('#dialog-video-content')">Video content demo</button>
-
-            <pre class="prettyprint linenums no-scroll-x"><code>
-                &lt;div data-role="dialog" id="dialog-ajax" class="padding20"
-                    data-close-button="true"
-                    data-href="dialog-ajax-demo-data.html"
-                    data-width="600"&gt;&lt;/div&gt;
-
-                &lt;div data-role="dialog" id="dialog-video-content"
-                    data-background="bg-dark"
-                    data-close-button="true"
-                    data-content='&lt;iframe src="https://player.vimeo.com/video/86430443"&gt;&lt;/iframe&gt;'
-                    data-width="600"
-                    data-content-type="video"&gt;&lt;/div&gt;
-            </code></pre>
-
-        </div>
-
-        <h3>Dialog place with attribute data-place</h3>
-        <div class="example">
-            <div data-role="dialog" id="dialog-place-default" class="padding20" data-close-button="true">
-                <h1>Simple dialog</h1>
-                <p>
-                    This dialog placed default
-                </p>
-            </div>
-            <div data-role="dialog" id="dialog-place-top-left" class="padding20" data-close-button="true" data-place="top-left">
-                <h1>Simple dialog</h1>
-                <p>
-                    This dialog placed top-left
-                </p>
-            </div>
-            <div data-role="dialog" id="dialog-place-top-center" class="padding20" data-close-button="true" data-place="top-center">
-                <h1>Simple dialog</h1>
-                <p>
-                    This dialog placed top-center
-                </p>
-            </div>
-            <div data-role="dialog" id="dialog-place-top-right" class="padding20" data-close-button="true" data-place="top-right">
-                <h1>Simple dialog</h1>
-                <p>
-                    This dialog placed top-right
-                </p>
-            </div>
-            <div data-role="dialog" id="dialog-place-bottom-left" class="padding20" data-close-button="true" data-place="bottom-left">
-                <h1>Simple dialog</h1>
-                <p>
-                    This dialog placed bottom-left
-                </p>
-            </div>
-            <div data-role="dialog" id="dialog-place-bottom-center" class="padding20" data-close-button="true" data-place="bottom-center">
-                <h1>Simple dialog</h1>
-                <p>
-                    This dialog placed bottom-center
-                </p>
-            </div>
-            <div data-role="dialog" id="dialog-place-bottom-right" class="padding20" data-close-button="true" data-place="bottom-right">
-                <h1>Simple dialog</h1>
-                <p>
-                    This dialog placed bottom-right
-                </p>
-            </div>
-            <div data-role="dialog" id="dialog-place-center-left" class="padding20" data-close-button="true" data-place="center-left">
-                <h1>Simple dialog</h1>
-                <p>
-                    This dialog placed center-left
-                </p>
-            </div>
-            <div data-role="dialog" id="dialog-place-center-right" class="padding20" data-close-button="true" data-place="center-right">
-                <h1>Simple dialog</h1>
-                <p>
-                    This dialog placed center-right
-                </p>
-            </div>
-            <button class="button bg-grayLighter" onclick="metroDialog.toggle('#dialog-place-default')">default</button>
-            <button class="button bg-grayLighter" onclick="metroDialog.toggle('#dialog-place-top-left')">top-left</button>
-            <button class="button bg-grayLighter" onclick="metroDialog.toggle('#dialog-place-top-center')">top-center</button>
-            <button class="button bg-grayLighter" onclick="metroDialog.toggle('#dialog-place-top-right')">top-right</button>
-            <button class="button bg-grayLighter" onclick="metroDialog.toggle('#dialog-place-bottom-left')">bottom-left</button>
-            <button class="button bg-grayLighter" onclick="metroDialog.toggle('#dialog-place-bottom-center')">bottom-center</button>
-            <button class="button bg-grayLighter" onclick="metroDialog.toggle('#dialog-place-bottom-right')">bottom-right</button>
-            <button class="button bg-grayLighter" onclick="metroDialog.toggle('#dialog-place-center-left')">center-left</button>
-            <button class="button bg-grayLighter" onclick="metroDialog.toggle('#dialog-place-center-right')">center-right</button>
-        </div>
-
-        <h3>Utility functions</h3>
-        <p>
-            Metro UI CSS provides global utility function for open, close and toggle dialogs.
-        </p>
-        <ul>
-            <li>Open dialog - metroDialog.open(el [, place])</li>
-            <li>Close dialog - metroDialog.close(el)</li>
-            <li>Toggle dialog - metroDialog.toggle(el [, place])</li>
-        </ul>
-        <div class="example">
-            <div data-role="dialog" id="dialog-uf-1" class="padding20" data-close-button="true">
-                <h1>Simple dialog</h1>
-                <p>
-                    This dialog opened with utility function
-                </p>
+        <div class="row flex-xl-nowrap">
+            <div class="cell-md-3 cell-xl-2 pr-0 border-right bd-light" id="sidenav">
             </div>
 
-            <button class="button" onclick="metroDialog.open('#dialog-uf-1')">Open dialog</button>
-            <button class="button" onclick="metroDialog.close('#dialog-uf-1')">Close dialog</button>
-            <button class="button" onclick="metroDialog.toggle('#dialog-uf-1')">Toggle dialog</button>
-            <button class="button" onclick="metroDialog.toggle('#dialog-uf-1', 'top-left')">Open dialog top-left</button>
-            <button class="button" onclick="metroDialog.open('#dialog-uf-1', 'default', 'This is a new runtime content')">Open dialog, set content</button>
-            <button class="button" onclick="metroDialog.open('#dialog-uf-1', 'default', ($('<div>').addClass('padding20').html('hi! i am jquery content for dialog ')))">Open dialog, set content as jQuery object</button>
+            <div class="d-none d-block-xl cell-xl-2 order-2 border-left bd-light toc-wrapper">
+                <h5>Table of contents</h5>
+                <hr/>
+                <ul class="toc-nav">
+                    <li class="toc-entry"><a href="#">Dialog</a></li>
+                    <li class="toc-entry"><a href="#_dialog_about">About</a></li>
+                    <li class="toc-entry">
+                        <a href="#_dialog_about">Create dialog</a>
+                        <ul>
+                            <li class="toc-entry"><a href="#_dialog_create_predefined">Predefined</a></li>
+                            <li class="toc-entry"><a href="#_dialog_create_runtime">Runtime</a></li>
+                        </ul>
+                    </li>
+                    <li class="toc-entry"><a href="#_dialog_options">Options</a></li>
+                    <li class="toc-entry"><a href="#_dialog_actions">Dialog actions</a></li>
+                    <li class="toc-entry"><a href="#_dialog_utils">Utilities</a></li>
+                </ul>
 
-            <pre class="prettyprint linenums no-scroll-x"><code>
-                &lt;button class="button" onclick="metroDialog.open('#dialog-uf-1')"&gt;Open dialog&lt;/button&gt;
-                &lt;button class="button" onclick="metroDialog.close('#dialog-uf-1')"&gt;Close dialog&lt;/button&gt;
-                &lt;button class="button" onclick="metroDialog.toggle('#dialog-uf-1')"&gt;Toggle dialog&lt;/button&gt;
-                &lt;button class="button" onclick="metroDialog.toggle('#dialog-uf-1', 'top-left')"&gt;Toggle dialog&lt;/button&gt;
-                &lt;button class="button" onclick="metroDialog.open('#dialog-uf-1', 'top-left')"&gt;Show dialog&lt;/button&gt;
-            </code></pre>
-        </div>
+            </div>
 
-        <h3>$.Dialog</h3>
-        <div class="example">
-            <button class="button bg-orange fg-white" onclick="openCustom()">Create dialog with $.Dialog</button>
-        </div>
-        <script>
-            function openCustom(){
-                metroDialog.create({
-                    title: "Dialog title",
-                    content: "This is a dialog content",
-                    actions: [
-                        {
-                            title: "Ok",
-                            onclick: function(el){
-                                //console.log(el);
-                                $(el).data('dialog').close();
-                            }
-                        },
-                        {
-                            title: "Cancel",
-                            cls: "js-dialog-close"
+            <main class="cell-md-9 cell-xl-8 order-1 pr-1-sx pl-1-sx pr-5-md pl-5-md">
+                <div class="place-right d-none d-block-lg" style="width: 200px;">
+                    <img src="images/logo.png" class="w-100">
+                </div>
+
+                <h1>Dialog</h1>
+                <p class="text-leader">
+                    Metro 4 provides the ability to easily create dialogs. Dialogs can be predefined or created in runtime.
+                </p>
+
+                <!-- ads-html -->
+
+                <h3 id="_dialog_about">About dialog</h3>
+                <p>
+                    Dialogs inform users about a specific task and may contain critical information, require decisions, or involve multiple tasks. Metro 4 build windows with using next classes: <code>.dialog</code>, <code>.dialog-title</code>, <code>.dialog-content</code> and <code>.dialog-actions</code> and result <code>dialog</code> has next structure:
+                </p>
+
+                <div class="example p-2">
+                    <div class="dialog mx-auto mt-4 mb-4" style="position: static; width: 480px;">
+                        <div class="dialog-title">Use Windows location service?</div>
+                        <div class="dialog-content">
+                            Bassus abactors ducunt ad triticum. A fraternal form of manifestation is the bliss.
+                        </div>
+                        <div class="dialog-actions">
+                            <button class="button">Disagree</button>
+                            <button class="button primary">Agree</button>
+                        </div>
+                    </div>
+                </div>
+                <pre><code>
+                    &lt;div class="dialog"&gt;
+                        &lt;div class="dialog-title"&gt;Use Windows location service?&lt;/div&gt;
+                        &lt;div class="dialog-content"&gt;
+                            Bassus abactors ducunt ad triticum.
+                            A fraternal form of manifestation is the bliss.
+                        &lt;/div&gt;
+                        &lt;div class="dialog-actions"&gt;
+                            &lt;button class="button"&gt;Disagree&lt;/button&gt;
+                            &lt;button class="button primary"&gt;Agree&lt;/button&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
+
+                <h3 id="_dialog_create">Create dialog</h3>
+                <p>
+                    Metro 4 provides two ways for create dialogs:
+                </p>
+                <ul>
+                    <li>Predefined method</li>
+                    <li>Runtime method</li>
+                </ul>
+
+                <h4 id="_dialog_create_predefined">Predefined method</h4>
+                <p>
+                    First-off you must create <code>HTML</code> element with special structure and define all actions required for dialog, include dismiss action.
+                    Then add any <a href="#_dialog_options">options</a> over <code>data-*</code> attributes.
+                    And at the end add an attribute <code>data-role="dialog"</code> to your element for initialization <code>dialog</code>.
+                    After the initialization, the dialog will be hidden until it is called.
+                </p>
+                <pre><code>
+                    &lt;div class="dialog" data-role="dialog"&gt;
+                        &lt;div class="dialog-title"&gt;Use Windows location service?&lt;/div&gt;
+                        &lt;div class="dialog-content"&gt;
+                            Bassus abactors ducunt ad triticum.
+                            A fraternal form of manifestation is the bliss.
+                        &lt;/div&gt;
+                        &lt;div class="dialog-actions"&gt;
+                            &lt;button class="button js-dialog-close"&gt;Disagree&lt;/button&gt;
+                            &lt;button class="button primary js-dialog-close"&gt;Agree&lt;/button&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;button class="button primary"
+                        onclick="Metro.dialog.open('#demoDialog1')"&gt;Open dialog&lt;/button&gt;
+                </code></pre>
+                <div class="example">
+                    <div data-role="dialog" id="demoDialog1">
+                        <div class="dialog-title">Use Windows location service?</div>
+                        <div class="dialog-content">
+                            Bassus abactors ducunt ad triticum. A fraternal form of manifestation is the bliss.
+                        </div>
+                        <div class="dialog-actions">
+                            <button class="button primary js-dialog-close">Agree</button>
+                            <button class="button js-dialog-close">Disagree</button>
+                        </div>
+                    </div>
+                    <button class="button primary" onclick="Metro.dialog.open('#demoDialog1')">Open dialog</button>
+                </div>
+
+                <h4 id="_dialog_create_runtime">Create dialog at runtime</h4>
+                <p>
+                    To create <code>dialog</code> at <code>runtime</code> you mus execute method <code>Metro.dialog.create</code> with required options.
+                </p>
+                <pre><code>
+                    Metro.dialog.create({
+                        title: "Use Windows location service?",
+                        content: "&lt;div&gt;Bassus abactors ducunt ad triticum...&lt;/div&gt;"
+                    });
+                </code></pre>
+                <div class="example">
+                    <button class="button secondary" onclick="openDemoDialog()">Open dialog</button>
+                    <script>
+                        function openDemoDialog(){
+                            Metro.dialog.create({
+                                title: "Use Windows location service?",
+                                content: "<div>Bassus abactors ducunt ad triticum. A fraternal form of manifestation is the bliss.</div>"
+                            });
                         }
-                    ],
-                    options: {
-                    }
-                });
-            }
-        </script>
+                    </script>
+                </div>
 
-        <pre class="prettyprint linenums no-scroll-x"><code>
-                metroDialog.create({
-                    title: "Dialog title",
-                    content: "This is a dialog content",
-                    actions: [
-                        {
-                            title: "Ok",
-                            onclick: function(el){
-                                $(el).data('dialog').close();
-                            }
-                        },
-                        {
-                            title: "Cancel",
-                            cls: "js-dialog-close"
+                <h3 id="_dialog_options">Options</h3>
+                <p>
+                    You can set any options to define dialog:
+                </p>
+                <table class="table table-border cell-border options-table">
+                    <thead>
+                    <tr>
+                        <td>Options</td>
+                        <td>Data-*</td>
+                        <td>Default</td>
+                        <td>Description</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>title</td>
+                        <td><code>data-title</code></td>
+                        <td></td>
+                        <td>Set dialog title</td>
+                    </tr>
+                    <tr>
+                        <td>content</td>
+                        <td><code>data-content</code></td>
+                        <td></td>
+                        <td>Set dialog content. Can be simple html, jquery object or function. Simple html text requires wrapping in a tag</td>
+                    </tr>
+                    <tr>
+                        <td>actions</td>
+                        <td><code>data-actions</code></td>
+                        <td>{}</td>
+                        <td>Set dialog actions.</td>
+                    </tr>
+                    <tr>
+                        <td>actionsAlign</td>
+                        <td><code>data-actions-align</code></td>
+                        <td>right</td>
+                        <td>Set dialog actions align.</td>
+                    </tr>
+                    <tr>
+                        <td>defaultAction</td>
+                        <td><code>data-default-action</code></td>
+                        <td>true</td>
+                        <td>If you are not defined actions to dialog will be added default action</td>
+                    </tr>
+                    <tr>
+                        <td>overlay</td>
+                        <td><code>data-overlay</code></td>
+                        <td>true</td>
+                        <td>Add overlay when dialog is opened</td>
+                    </tr>
+                    <tr>
+                        <td>overlayColor</td>
+                        <td><code>data-overlay-color</code></td>
+                        <td>#000000</td>
+                        <td>Overlay color. Can be hex color value or transparent</td>
+                    </tr>
+                    <tr>
+                        <td>overlayAlpha</td>
+                        <td><code>data-overlay-alpha</code></td>
+                        <td>0.5</td>
+                        <td>Overlay color alpha channel value.</td>
+                    </tr>
+                    <tr>
+                        <td>overlayClickClose</td>
+                        <td><code>data-overlay-click-close</code></td>
+                        <td>false</td>
+                        <td>Close dialog when user click on overlay</td>
+                    </tr>
+                    <tr>
+                        <td>width</td>
+                        <td><code>data-width</code></td>
+                        <td>480</td>
+                        <td>Dialog width</td>
+                    </tr>
+                    <tr>
+                        <td>closeAction</td>
+                        <td><code>data-close-action</code></td>
+                        <td>true</td>
+                        <td>If this options is true Metro 4 add event to elements with class <code>.js-dialog-close</code> for close dialog</td>
+                    </tr>
+                    <tr>
+                        <td>clsDialog</td>
+                        <td><code>data-cls-dialog</code></td>
+                        <td></td>
+                        <td>Add additional classes to dialog</td>
+                    </tr>
+                    <tr>
+                        <td>clsTitle</td>
+                        <td><code>data-cls-title</code></td>
+                        <td></td>
+                        <td>Add additional classes to dialog title</td>
+                    </tr>
+                    <tr>
+                        <td>clsContent</td>
+                        <td><code>data-cls-content</code></td>
+                        <td></td>
+                        <td>Add additional classes to dialog content</td>
+                    </tr>
+                    <tr>
+                        <td>clsAction</td>
+                        <td><code>data-cls-actions</code></td>
+                        <td></td>
+                        <td>Add additional classes to dialog actions block</td>
+                    </tr>
+                    <tr>
+                        <td>clsDefaultAction</td>
+                        <td><code>data-cls-default-actions</code></td>
+                        <td></td>
+                        <td>Add additional classes to dialog default action button</td>
+                    </tr>
+                    <tr>
+                        <td>autoHide</td>
+                        <td><code>data-auto-hide</code></td>
+                        <td>0</td>
+                        <td>If this options &gt; 0, dialog closed after this timeout in milliseconds</td>
+                    </tr>
+                    <tr>
+                        <td>removeOnClose</td>
+                        <td><code>data-remove-on-close</code></td>
+                        <td>false</td>
+                        <td>If this options is <code>true</code> dialog will be removed after closes</td>
+                    </tr>
+                    <tr>
+                        <td>show</td>
+                        <td><code>data-show</code></td>
+                        <td>false</td>
+                        <td>If this options is <code>true</code> dialog will be showed immediate after initializing</td>
+                    </tr>
+                    <tr>
+                        <td>onDialogCreate</td>
+                        <td><code>data-on-dialog-create</code></td>
+                        <td>Metro.noop</td>
+                        <td>This <code>callback</code> executed after dialog is created</td>
+                    </tr>
+                    <tr>
+                        <td>onOpen</td>
+                        <td><code>data-on-open</code></td>
+                        <td>Metro.noop</td>
+                        <td>This <code>callback</code> executed after dialog is open</td>
+                    </tr>
+                    <tr>
+                        <td>onClose</td>
+                        <td><code>data-on-close</code></td>
+                        <td>Metro.noop</td>
+                        <td>This <code>callback</code> executed after dialog is close</td>
+                    </tr>
+                    <tr>
+                        <td>onShow</td>
+                        <td><code>data-on-show</code></td>
+                        <td>Metro.noop</td>
+                        <td>This <code>callback</code> executed after dialog is showing</td>
+                    </tr>
+                    <tr>
+                        <td>onHide</td>
+                        <td><code>data-on-hide</code></td>
+                        <td>Metro.noop</td>
+                        <td>This <code>callback</code> executed before dialog is hiding</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <h3 id="_dialog_actions">Dialog actions</h3>
+                <p>
+                    If you add custom actions to dialog, you can use next options for each action:
+                </p>
+                <ul>
+                    <li><strong>cls</strong> - additional class for action element</li>
+                    <li><strong>caption</strong> - caption for action element</li>
+                    <li><strong>onclick</strong> - event function for action element</li>
+                </ul>
+                <div class="example">
+                    <button class="button info" onclick="openDemoDialogActions()">Open dialog</button>
+                    <script>
+                        function openDemoDialogActions(){
+                            Metro.dialog.create({
+                                title: "Use Windows location service?",
+                                content: "<div>Bassus abactors ducunt ad triticum. A fraternal form of manifestation is the bliss.</div>",
+                                actions: [
+                                    {
+                                        caption: "Agree",
+                                        cls: "js-dialog-close alert",
+                                        onclick: function(){
+                                            alert("You clicked Agree action");
+                                        }
+                                    },
+                                    {
+                                        caption: "Disagree",
+                                        cls: "js-dialog-close",
+                                        onclick: function(){
+                                            alert("You clicked Disagree action");
+                                        }
+                                    }
+                                ]
+                            });
                         }
-                    ],
-                    options: { // dialog options
-                    }
-                });
-
-
-                $.Dialog({
-                    title: "Dialog title",
-                    content: "This is a dialog content",
-                    actions: [
-                        {
-                            title: "Ok",
-                            onclick: function(el){
-                                $(el).data('dialog').close();
-                            }
-                        },
-                        {
-                            title: "Cancel",
-                            cls: "js-dialog-close"
+                    </script>
+                </div>
+                <pre><code>
+                    &lt;button class="button info"
+                        onclick="openDemoDialogActions()"&gt;Open dialog&lt;/button&gt;
+                    &lt;script&gt;
+                        function openDemoDialogActions(){
+                            Metro.dialog.create({
+                                title: "Use Windows location service?",
+                                content: "&lt;div&gt;Bassus abactors ducunt ad triticum...&lt;/div&gt;",
+                                actions: [
+                                    {
+                                        caption: "Agree",
+                                        cls: "js-dialog-close alert",
+                                        onclick: function(){
+                                            alert("You clicked Agree action");
+                                        }
+                                    },
+                                    {
+                                        caption: "Disagree",
+                                        cls: "js-dialog-close",
+                                        onclick: function(){
+                                            alert("You clicked Disagree action");
+                                        }
+                                    }
+                                ]
+                            });
                         }
-                    ],
-                    options: {
-                    }
-                });
-        </code></pre>
+                    &lt;/script&gt;
+                </code></pre>
+
+                <h3 id="_dialog_utils">Utilities</h3>
+                <p>
+                    Metro 4 contains special object <code>Metro.dialog</code> to manipulate <code>dialogs</code>. This object contains next methods:
+                </p>
+                <ul>
+                    <li><strong>create(options)</strong> - create dialog with options</li>
+                    <li><strong>open(el, content, title)</strong> - open dialog</li>
+                    <li><strong>close(el)</strong> - close dialog</li>
+                    <li><strong>toggle(el)</strong> - toggle dialog state</li>
+                    <li><strong>remove(el)</strong> - remove dialog from DOM</li>
+                    <li><strong>isDialog(el)</strong> - check if element is dialog instance</li>
+                    <li><strong>isOpen(el)</strong> - check if dialog is open</li>
+                </ul>
+            </main>
+        </div>
     </div>
+
+    <script src="docsearch/docsearch.min.js"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="metro/js/metro.js"></script>
+    <script src="highlight/highlight.pack.js"></script>
+    <script src="js/clipboard.min.js"></script>
+    <script src="js/site.js"></script>
+    <!-- ads-script -->
 </body>
 </html>

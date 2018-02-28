@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <meta name="twitter:site" content="@metroui">
+    <meta name="twitter:creator" content="@pimenov_sergey">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Metro 4 Components Library">
+    <meta name="twitter:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.">
+    <meta name="twitter:image" content="https://metroui.org.ua/images/m4-logo-social.png">
+
+    <meta property="og:url" content="https://metroui.org.ua/v4/index.html">
+    <meta property="og:title" content="Metro 4 Components Library">
+    <meta property="og:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:secure_url" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="968">
+    <meta property="og:image:height" content="504">
+
+    <meta name="author" content="Sergey Pimenov">
+    <meta name="description" content="A ribbon is a command bar that organizes a program's features into a series of tabs. The most popular HTML, CSS, and JS library in Metro style.">
+    <meta name="keywords" content="HTML, CSS, JS, Metro, CSS3, Javascript, HTML5, UI, Library, Web, Development, Framework">
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <link href="metro/css/metro-all.css" rel="stylesheet">
+    <link href="highlight/styles/github.css" rel="stylesheet">
+    <link href="docsearch/docsearch.min.css" rel="stylesheet">
+    <link href="css/site.css" rel="stylesheet">
+
+    <title>Ribbon menu - Metro 4 :: Popular HTML, CSS and JS library</title>
+</head>
+<body>
+    <div class="container-fluid">
+
+        <div class="row flex-xl-nowrap">
+            <div class="cell-md-3 cell-xl-2 pr-0 border-right bd-light" id="sidenav">
+            </div>
+
+            <div class="d-none d-block-xl cell-xl-2 order-2 border-left bd-light toc-wrapper">
+                <h5>Table of contents</h5>
+                <hr/>
+                <ul class="toc-nav">
+                    <li class="toc-entry"><a href="#">Ribbon menu</a></li>
+                    <li class="toc-entry"><a href="#_ribbon_about">About</a></li>
+                    <li class="toc-entry">
+                        <a href="#_ribbon_structure">Structure</a>
+                        <ul>
+                            <li class="toc-entry"><a href="#_ribbon_structure_tabs">Tabs</a></li>
+                            <li class="toc-entry"><a href="#_ribbon_structure_content">Content</a></li>
+                            <li class="toc-entry"><a href="#_ribbon_section">Section</a></li>
+                        </ul>
+                    </li>
+                    <li class="toc-entry">
+                        <a href="#_ribbon_elements">Ribbon elements</a>
+                        <ul>
+                            <li class="toc-entry"><a href="#_ribbon_elements-button">Button</a></li>
+                            <li class="toc-entry"><a href="#_ribbon_elements-icon-button">Icon button</a></li>
+                            <li class="toc-entry"><a href="#_ribbon_elements-tool-button">Tool button</a></li>
+                            <li class="toc-entry"><a href="#_ribbon_elements-split-button">Split button</a></li>
+                            <li class="toc-entry"><a href="#_ribbon_elements-buttons-group">Buttons group</a></li>
+                            <li class="toc-entry"><a href="#_ribbon_elements-dropdown">Dropdown</a></li>
+                            <li class="toc-entry"><a href="#_ribbon_elements-others">Others...</a></li>
+                        </ul>
+                    </li>
+                    <li class="toc-entry"><a href="#_ribbon_events">Events</a></li>
+                </ul>
+
+            </div>
+
+            <main class="cell-md-9 cell-xl-8 order-1 pr-1-sx pl-1-sx pr-5-md pl-5-md">
+                <div class="place-right d-none d-block-lg" style="width: 200px;">
+                    <img src="images/logo.png" class="w-100">
+                </div>
+
+                <h1>Ribbon menu</h1>
+                <p class="text-leader">
+                    A ribbon is a command bar that organizes a program's features into a series of tabs.
+                </p>
+
+                <!-- ads-html -->
+
+                <h3 id="_ribbon_about">About</h3>
+                <p>
+                    In computer interface design, a ribbon is a graphical control element in the form of a set of toolbars placed on several tabs.
+                    The typical structure of a ribbon includes large, tabbed toolbars, filled with graphical buttons and other graphical control elements, grouped by functionality.
+                    Such ribbons use tabs to expose different sets of controls, eliminating the need for numerous parallel toolbars.
+                    Contextual tabs are tabs that appear only when the user needs them.
+                </p>
+
+                <div class="example">
+
+                    <div class="window">
+                        <div class="window-caption">
+                            <span class="icon mif-windows"></span>
+                            <span class="title">Metro 4</span>
+                            <div class="buttons">
+                                <span class="btn-min"></span>
+                                <span class="btn-max"></span>
+                                <span class="btn-close"></span>
+                            </div>
+                        </div>
+                        <nav data-role="ribbonmenu">
+                            <ul class="tabs-holder">
+                                <li class="static"><a href="#">File</a></li>
+                                <li class="active"><a href="#section_main">Main</a></li>
+                                <li><a href="#section_buttons">Buttons</a></li>
+                                <li><a href="#section_inputs">Inputs</a></li>
+                            </ul>
+
+                            <div class="content-holder">
+
+                                <div class="section" id="section_main">
+                                    <div class="group">
+                                        <button class="ribbon-button">
+                                            <span class="icon">
+                                                <img src="images/share.svg">
+                                            </span>
+                                            <span class="caption">Share</span>
+                                        </button>
+                                        <button class="ribbon-button">
+                                            <span class="icon">
+                                                <img src="images/email.svg">
+                                            </span>
+                                            <span class="caption">Email</span>
+                                        </button>
+                                        <div>
+                                            <button class="ribbon-button dropdown-toggle">
+                                                <span class="icon">
+                                                    <span class="mif-file-zip fg-cyan"></span>
+                                                </span>
+                                                <span class="caption">Compress</span>
+                                            </button>
+                                            <ul class="ribbon-dropdown" data-role="dropdown" data-duration="100">
+                                                <li class="checked"><a href="#">Modification</a></li>
+                                                <li class="checked"><a href="#">Type</a></li>
+                                                <li class="checked"><a href="#">Size</a></li>
+                                                <li><a href="#">Creating</a></li>
+                                                <li><a href="#">Authors</a></li>
+                                                <li class="checked-one"><a href="#">Tags</a></li>
+                                                <li><a href="#">Names</a></li>
+                                                <li class="divider"></li>
+                                                <li><a href="#">Columns...</a></li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="group-divider"></div>
+
+                                        <div class="pl-1 pr-1 d-flex flex-column">
+                                            <button class="ribbon-tool-button">
+                                                <img src="images/location.png">
+                                            </button>
+                                            <div>
+                                                <button class="ribbon-tool-button dropdown-toggle">
+                                                    <span class="mif-alarm fg-red"></span>
+                                                </button>
+                                                <ul class="ribbon-dropdown" data-role="dropdown" data-duration="100">
+                                                    <li class="checked"><a href="#">Modification</a></li>
+                                                    <li class="checked"><a href="#">Type</a></li>
+                                                    <li class="checked"><a href="#">Size</a></li>
+                                                    <li><a href="#">Creating</a></li>
+                                                    <li><a href="#">Authors</a></li>
+                                                    <li class="checked-one"><a href="#">Tags</a></li>
+                                                    <li><a href="#">Names</a></li>
+                                                    <li class="divider"></li>
+                                                    <li><a href="#">Columns...</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                        <div class="group-divider"></div>
+
+                                        <div class="ribbon-split-button">
+                                            <button class="ribbon-main">
+                                                <span class="icon">
+                                                    <span class="mif-cogs"></span>
+                                                </span>
+                                            </button>
+                                            <span class="ribbon-split dropdown-toggle">Options</span>
+                                            <ul class="ribbon-dropdown" data-role="dropdown" data-duration="100">
+                                                <li class="checked"><a href="#">Modification</a></li>
+                                                <li class="checked"><a href="#">Type</a></li>
+                                                <li class="checked"><a href="#">Size</a></li>
+                                                <li><a href="#">Creating</a></li>
+                                                <li><a href="#">Authors</a></li>
+                                                <li class="checked-one"><a href="#">Tags</a></li>
+                                                <li><a href="#">Names</a></li>
+                                                <li class="divider"></li>
+                                                <li><a href="#">Columns...</a></li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="group-divider"></div>
+
+                                        <div class="d-flex flex-column">
+                                            <button class="ribbon-icon-button">
+                                                <span class="icon">
+                                                    <span class="mif-apple"></span>
+                                                </span>
+                                                <span class="caption">Apple</span>
+                                            </button>
+
+                                            <div>
+                                                <button class="ribbon-icon-button dropdown-toggle">
+                                                    <span class="icon">
+                                                        <span class="mif-apps"></span>
+                                                    </span>
+                                                    <span class="caption">Apps</span>
+                                                </button>
+                                                <ul class="ribbon-dropdown" data-role="dropdown">
+                                                    <li class="checked"><a href="#">Modification</a></li>
+                                                    <li class="checked"><a href="#">Type</a></li>
+                                                    <li class="checked"><a href="#">Size</a></li>
+                                                    <li><a href="#">Creating</a></li>
+                                                    <li><a href="#">Authors</a></li>
+                                                    <li class="checked-one"><a href="#">Tags</a></li>
+                                                    <li><a href="#">Names</a></li>
+                                                    <li class="divider"></li>
+                                                    <li>
+                                                        <a href="#" class="dropdown-toggle">Columns...</a>
+                                                        <ul class="ribbon-dropdown" data-role="dropdown">
+                                                            <li><a href="#">Creating</a></li>
+                                                            <li><a href="#">Authors</a></li>
+                                                            <li><a href="#">Names</a></li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                        <div class="ribbon-toggle-group">
+                                            <button class="ribbon-icon-button">
+                                                <span class="icon">
+                                                    <span class="mif-list"></span>
+                                                </span>
+                                                <span class="caption">List</span>
+                                            </button>
+
+                                            <button class="ribbon-icon-button">
+                                                <span class="icon">
+                                                    <span class="mif-apps"></span>
+                                                </span>
+                                                <span class="caption">Content</span>
+                                            </button>
+
+                                            <button class="ribbon-icon-button">
+                                                <span class="icon">
+                                                    <span class="mif-table"></span>
+                                                </span>
+                                                <span class="caption">Icons</span>
+                                            </button>
+
+                                            <button class="ribbon-icon-button">
+                                                <span class="icon">
+                                                    <span class="mif-image"></span>
+                                                </span>
+                                                <span class="caption">Small icons</span>
+                                            </button>
+
+                                            <button class="ribbon-icon-button">
+                                                <span class="icon">
+                                                    <span class="mif-images"></span>
+                                                </span>
+                                                <span class="caption">Large icons</span>
+                                            </button>
+
+                                            <button class="ribbon-icon-button">
+                                                <span class="icon">
+                                                    <span class="mif-windows"></span>
+                                                </span>
+                                                <span class="caption">Tiles</span>
+                                            </button>
+                                        </div>
+
+
+                                        <span class="title">ribbon controls</span>
+                                    </div>
+                                </div>
+
+                                <div class="section" id="section_buttons">
+                                    <div class="group flex-column">
+                                        <button class="button">Button</button>
+                                        <button class="button primary">Button</button>
+
+                                        <span class="title">Buttons</span>
+                                    </div>
+                                    <div class="group flex-column">
+                                        <div class="toolbar">
+                                            <button class="tool-button"><span class="mif-floppy-disk"></span></button>
+                                            <button class="tool-button"><img src="images/checkmark.png"></button>
+                                            <button class="tool-button text-button">Open</button>
+                                        </div>
+                                        <div class="toolbar mt-1">
+                                            <button class="tool-button primary"><span class="mif-floppy-disk"></span></button>
+                                            <button class="tool-button info"><span class="mif-printer"></span></button>
+                                            <button class="tool-button success text-button">Open</button>
+                                        </div>
+
+                                        <span class="title">Tool bars</span>
+                                    </div>
+                                    <div class="group">
+                                        <button class="shortcut">
+                                            <span class="caption">Rocket</span>
+                                            <span class="mif-rocket icon"></span>
+                                        </button>
+                                        <button class="shortcut primary">
+                                            <span class="tag">10</span>
+                                            <span class="caption">Rocket</span>
+                                            <span class="mif-rocket icon"></span>
+                                        </button>
+                                        <button class="shortcut secondary outline">
+                                            <span class="tag">10</span>
+                                            <span class="caption">Rocket</span>
+                                            <span class="mif-rocket icon"></span>
+                                        </button>
+
+                                        <span class="title">Shortcuts</span>
+                                    </div>
+                                    <div class="group">
+
+                                        <span class="title">All others...</span>
+                                    </div>
+                                </div>
+
+                                <div class="section" id="section_inputs">
+                                    <div class="group flex-column" style="width: 220px">
+                                        <input data-role="input" data-prepend="<span class='mif-envelop'>">
+                                        <input data-role="input" data-prepend="<span class='mif-user'>">
+                                        <span class="title">Input</span>
+                                    </div>
+                                    <div class="group" style="width: 220px">
+                                        <textarea data-role="textarea" class="flex-self-stretch"></textarea>
+                                        <span class="title">Textarea</span>
+                                    </div>
+                                    <div class="group flex-column" style="width: 220px">
+                                        <select data-role="select">
+                                            <option value="1">Value 1</option>
+                                            <option value="2">Value 2</option>
+                                            <option value="3">Value 3</option>
+                                        </select>
+                                        <span class="title">Select</span>
+                                    </div>
+                                    <div class="group flex-column" style="width: 220px">
+                                        <div>
+                                            <input name="c1" type="checkbox" data-role="checkbox" data-caption="check it">
+                                        </div>
+                                        <div>
+                                            <input name="r1" type="radio" data-role="radio" data-caption="A">
+                                            <input name="r1" type="radio" data-role="radio" data-caption="B">
+                                            <input name="r1" type="radio" data-role="radio" data-caption="C">
+                                        </div>
+                                        <div>
+                                            <input name="c2" type="checkbox" data-role="switch" data-caption="check it">
+                                        </div>
+                                        <span class="title">Switches</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </nav>
+                        <div class="window-content p-2">
+                            Window content
+                        </div>
+                    </div>
+                </div>
+
+                <h3 id="_ribbon_structure">Ribbon menu structure</h3>
+                <p>
+                    The Ribbon menu consists two main parts: tabs and tab content. The ribbon menu must contains role <code>ribbonmenu</code>.
+                    Tabs is a list with class <code>.tabs-holder</code> and content holder - container with class <code>.content-holder</code>.
+                </p>
+                <pre><code class="html">
+                    &lt;nav data-role="ribbonmenu"&gt;
+                        &lt;ul class="tabs-holder"&gt;
+                        ...
+                        &lt;/ul&gt;
+
+                        &lt;div class="content-holder"&gt;
+                        ...
+                        &lt;/div&gt;
+                    &lt;/nav&gt;
+                </code></pre>
+
+                <h4 id="_ribbon_structure_tabs">Tabs</h4>
+                <p>
+                    To create <code>tabs</code> you must use list with class <code>.tabs-holder</code>. Each item in tabs must be defined as <code>li &gt; a</code>.
+                    Item can has special state <code>static</code>. To create <code>static</code> item, add class <code>.static</code> to <code>&lt;li&gt;</code>.
+                    In ribbon menu, static tabs have self-behavior. For disabling tab you mus use class <code>.disabled</code>.
+                </p>
+                <div class="example">
+                    <nav data-role="ribbonmenu">
+                        <ul class="tabs-holder">
+                            <li class="static"><a href="#">Static</a></li>
+                            <li><a href="#">One</a></li>
+                            <li><a href="#">Two</a></li>
+                            <li class="disabled"><a href="#">Disabled</a></li>
+                            <li><a href="#">Three</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <pre><code class="html">
+                    &lt;nav data-role="ribbonmenu"&gt;
+                        &lt;ul class="tabs-holder"&gt;
+                            &lt;li class="static"&gt;&lt;a href="#"&gt;Static&lt;/a&gt;&lt;/li&gt;
+                            &lt;li&gt;&lt;a href="#"&gt;One&lt;/a&gt;&lt;/li&gt;
+                            &lt;li&gt;&lt;a href="#"&gt;Two&lt;/a&gt;&lt;/li&gt;
+                            &lt;li class="disabled"&gt;&lt;a href="#"&gt;Disabled&lt;/a&gt;&lt;/li&gt;
+                            &lt;li&gt;&lt;a href="#"&gt;Three&lt;/a&gt;&lt;/li&gt;
+                        &lt;/ul&gt;
+                    &lt;/nav&gt;
+                </code></pre>
+                <p>
+                    Each tab can be linked to content section. To link use attribute <code>href</code> for <code>anchor</code>. Value for this attribute must be valid element <code>id</code>.
+                </p>
+
+                <h4 id="_ribbon_structure_content">Content</h4>
+                <p>
+                    Content for tabs must be stored in containers with class <code>.section</code>. All section put into container with class <code>.content-holder</code>.
+                    Each section must have attribute <code>id</code> with unique value. This value will be used to link from the tab to content.
+                </p>
+                <div class="example">
+                    <nav data-role="ribbonmenu">
+                        <ul class="tabs-holder">
+                            <li class="static"><a href="#">Static</a></li>
+                            <li><a href="#section-one">One</a></li>
+                            <li><a href="#section-two">Two</a></li>
+                            <li><a href="#section-three">Three</a></li>
+                        </ul>
+
+                        <div class="content-holder">
+                            <div class="section" id="section-one">
+                                <p class="p-4">Section one</p>
+                            </div>
+                            <div class="section" id="section-two">
+                                <p class="p-4">Section two</p>
+                            </div>
+                            <div class="section" id="section-three">
+                                <p class="p-4">Section three</p>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+                <pre><code class="html">
+                    &lt;nav data-role="ribbonmenu"&gt;
+                        &lt;ul class="tabs-holder"&gt;
+                            &lt;li class="static"&gt;&lt;a href="#"&gt;Static&lt;/a&gt;&lt;/li&gt;
+                            &lt;li&gt;&lt;a href="#section-one"&gt;One&lt;/a&gt;&lt;/li&gt;
+                            &lt;li&gt;&lt;a href="#section-two"&gt;Two&lt;/a&gt;&lt;/li&gt;
+                            &lt;li&gt;&lt;a href="#section-three"&gt;Three&lt;/a&gt;&lt;/li&gt;
+                        &lt;/ul&gt;
+
+                        &lt;div class="content-holder"&gt;
+                            &lt;div class="section" id="section-one"&gt;
+                                &lt;p class="p-4"&gt;Section one&lt;/p&gt;
+                            &lt;/div&gt;
+                            &lt;div class="section" id="section-two"&gt;
+                                &lt;p class="p-4"&gt;Section two&lt;/p&gt;
+                            &lt;/div&gt;
+                            &lt;div class="section" id="section-three"&gt;
+                                &lt;p class="p-4"&gt;Section three&lt;/p&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/nav&gt;
+                </code></pre>
+
+                <h4 id="_ribbon_section">Section</h4>
+                <p>
+                    Tabs content stored in a <code>section</code>. Section is a container with class <code>.section</code>.
+                    Each section can contains <code>elements</code>, <code>groups</code> of the elements and <code> group title</code>.
+                </p>
+                <div class="example">
+                    <nav data-role="ribbonmenu">
+                        <ul class="tabs-holder">
+                            <li><a href="#section-1-1">Main</a></li>
+                        </ul>
+
+                        <div class="content-holder">
+                            <div class="section" id="section-1-1">
+                                <div class="group">
+                                    <button class="ribbon-button">
+                                            <span class="icon">
+                                                <img src="images/share.svg">
+                                            </span>
+                                        <span class="caption">Share</span>
+                                    </button>
+
+                                    <button class="ribbon-button">
+                                            <span class="icon">
+                                                <img src="images/share.svg">
+                                            </span>
+                                        <span class="caption">Share</span>
+                                    </button>
+
+                                    <button class="ribbon-button">
+                                            <span class="icon">
+                                                <img src="images/share.svg">
+                                            </span>
+                                        <span class="caption">Share</span>
+                                    </button>
+
+                                    <span class="title">Group title</span>
+                                </div>
+
+                                <div class="group">
+                                    <button class="ribbon-button">
+                                            <span class="icon">
+                                                <img src="images/share.svg">
+                                            </span>
+                                        <span class="caption">Share</span>
+                                    </button>
+
+                                    <span class="title">Group title</span>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+                <pre><code class="html">
+                    &lt;nav data-role="ribbonmenu"&gt;
+                        &lt;ul class="tabs-holder"&gt;
+                            &lt;li&gt;&lt;a href="#section-1-1"&gt;Main&lt;/a&gt;&lt;/li&gt;
+                        &lt;/ul&gt;
+
+                        &lt;div class="content-holder"&gt;
+                            &lt;div class="section" id="section-1-1"&gt;
+                                &lt;div class="group"&gt;
+                                    &lt;button class="ribbon-button"&gt;
+                                            &lt;span class="icon"&gt;
+                                                &lt;img src="images/share.svg"&gt;
+                                            &lt;/span&gt;
+                                        &lt;span class="caption"&gt;Share&lt;/span&gt;
+                                    &lt;/button&gt;
+
+                                    &lt;span class="title"&gt;Group title&lt;/span&gt;
+                                &lt;/div&gt;
+
+                                &lt;div class="group"&gt;
+                                    &lt;button class="ribbon-button"&gt;
+                                            &lt;span class="icon"&gt;
+                                                &lt;img src="images/share.svg"&gt;
+                                            &lt;/span&gt;
+                                        &lt;span class="caption"&gt;Share&lt;/span&gt;
+                                    &lt;/button&gt;
+
+                                    &lt;span class="title"&gt;Group title&lt;/span&gt;
+                                &lt;/div&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/nav&gt;
+                </code></pre>
+
+                <h3 id="_ribbon_elements">Ribbon elements</h3>
+                <p>
+                    Metro 4 contains the number of special ribbon elements:
+                        <code>button</code>,
+                        <code>tool button</code>,
+                        <code>icon button</code>,
+                        <code>split button</code>,
+                        <code>buttons group</code> and
+                        <code>dropdown</code>.
+                </p>
+
+                <h4 id="_ribbon_elements-button">Button</h4>
+                <p>
+                    To create ribbon button add class <code>.ribbon-button</code> to <code>&lt;button&gt;</code> element and then add <code>icon</code> and <code>caption</code>.
+                </p>
+                <div class="example">
+                    <nav data-role="ribbonmenu">
+                        <ul class="tabs-holder">
+                            <li><a href="#section-button">Button</a></li>
+                        </ul>
+
+                        <div class="content-holder">
+                            <div class="section" id="section-button">
+                                <button class="ribbon-button">
+                                    <span class="icon">
+                                        <img src="images/share.svg">
+                                    </span>
+                                    <span class="caption">Share</span>
+                                </button>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+                <pre><code class="html">
+                    &lt;button class="ribbon-button"&gt;
+                        &lt;span class="icon"&gt;
+                            &lt;img src="images/share.svg"&gt;
+                        &lt;/span&gt;
+                        &lt;span class="caption"&gt;Share&lt;/span&gt;
+                    &lt;/button&gt;
+                </code></pre>
+
+                <h4 id="_ribbon_elements-icon-button">Icon button</h4>
+                <p>
+                    To create ribbon icon button add class <code>.ribbon-icon-button</code> to <code>&lt;button&gt;</code> element and then add <code>icon</code> and <code>caption</code>.
+                </p>
+                <div class="example">
+                    <nav data-role="ribbonmenu">
+                        <ul class="tabs-holder">
+                            <li><a href="#section-icon-button">Button</a></li>
+                        </ul>
+
+                        <div class="content-holder">
+                            <div class="section" id="section-icon-button">
+                                <button class="ribbon-icon-button">
+                                    <span class="icon">
+                                        <img src="images/share.svg">
+                                    </span>
+                                    <span class="caption">Share</span>
+                                </button>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+                <pre><code class="html">
+                    &lt;button class="ribbon-icon-button"&gt;
+                        &lt;span class="icon"&gt;
+                            &lt;img src="images/share.svg"&gt;
+                        &lt;/span&gt;
+                        &lt;span class="caption"&gt;Share&lt;/span&gt;
+                    &lt;/button&gt;
+                </code></pre>
+
+                <h4 id="_ribbon_elements-tool-button">Tool button</h4>
+                <p>
+                    To create ribbon tool button add class <code>.ribbon-tool-button</code> to <code>&lt;button&gt;</code> element and then add <code>icon</code>.
+                </p>
+                <div class="example">
+                    <nav data-role="ribbonmenu">
+                        <ul class="tabs-holder">
+                            <li><a href="#section-tool-button">Button</a></li>
+                        </ul>
+
+                        <div class="content-holder">
+                            <div class="section" id="section-tool-button">
+                                <button class="ribbon-tool-button">
+                                    <span class="icon">
+                                        <img src="images/share.svg">
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+                <pre><code class="html">
+                    &lt;button class="ribbon-tool-button"&gt;
+                        &lt;span class="icon"&gt;
+                            &lt;img src="images/share.svg"&gt;
+                        &lt;/span&gt;
+                    &lt;/button&gt;
+                </code></pre>
+
+                <h4 id="_ribbon_elements-split-button">Split button</h4>
+                <p>
+                    To create ribbon split button add class <code>.ribbon-split-button</code> to <code>&lt;div&gt;</code> element and then add <code>button</code>, <code>split</code> and <code>dropdown</code>.
+                </p>
+                <div class="example">
+                    <nav data-role="ribbonmenu">
+                        <ul class="tabs-holder">
+                            <li><a href="#section-split-button">Button</a></li>
+                        </ul>
+
+                        <div class="content-holder">
+                            <div class="section" id="section-split-button">
+                                <div class="ribbon-split-button">
+                                    <button class="ribbon-main">
+                                                <span class="icon">
+                                                    <span class="mif-cogs"></span>
+                                                </span>
+                                    </button>
+                                    <span class="ribbon-split dropdown-toggle">Options</span>
+                                    <ul class="ribbon-dropdown" data-role="dropdown" data-duration="100">
+                                        <li class="checked"><a href="#">Modification</a></li>
+                                        <li class="checked"><a href="#">Type</a></li>
+                                        <li class="checked"><a href="#">Size</a></li>
+                                        <li><a href="#">Creating</a></li>
+                                        <li><a href="#">Authors</a></li>
+                                        <li class="checked-one"><a href="#">Tags</a></li>
+                                        <li><a href="#">Names</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#">Columns...</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+                <pre><code class="html">
+                    &lt;div class="ribbon-split-button"&gt;
+                        &lt;button class="ribbon-main"&gt;
+                            &lt;span class="icon"&gt;
+                                &lt;span class="mif-cogs"&gt;&lt;/span&gt;
+                            &lt;/span&gt;
+                        &lt;/button&gt;
+                        &lt;span class="ribbon-split dropdown-toggle"&gt;Options&lt;/span&gt;
+                        &lt;ul class="ribbon-dropdown" data-role="dropdown" data-duration="100"&gt;
+                            &lt;li class="checked"&gt;&lt;a href="#"&gt;Modification&lt;/a&gt;&lt;/li&gt;
+                            &lt;li class="checked"&gt;&lt;a href="#"&gt;Type&lt;/a&gt;&lt;/li&gt;
+                            &lt;li class="checked"&gt;&lt;a href="#"&gt;Size&lt;/a&gt;&lt;/li&gt;
+                            &lt;li&gt;&lt;a href="#"&gt;Creating&lt;/a&gt;&lt;/li&gt;
+                            &lt;li&gt;&lt;a href="#"&gt;Authors&lt;/a&gt;&lt;/li&gt;
+                            &lt;li class="checked-one"&gt;&lt;a href="#"&gt;Tags&lt;/a&gt;&lt;/li&gt;
+                            &lt;li&gt;&lt;a href="#"&gt;Names&lt;/a&gt;&lt;/li&gt;
+                            &lt;li class="divider"&gt;&lt;/li&gt;
+                            &lt;li&gt;&lt;a href="#"&gt;Columns...&lt;/a&gt;&lt;/li&gt;
+                        &lt;/ul&gt;
+                    &lt;/div&gt;
+                </code></pre>
+
+                <h4 id="_ribbon_elements-buttons-group">Buttons group</h4>
+                <p>
+                    You can create <code>buttons group</code> where <code>one</code> button has <code>active</code> state at one time. Active button has class <code>.active</code>.
+                    For this there are two ways:
+                </p>
+                <ol class="decimal mt-2">
+                    <li>Use role <code>data-role="buttonsGroup"</code> for buttons container</li>
+                    <li>Use predefined class <code>.ribbon-toggle-group</code></li>
+                </ol>
+                <div class="example">
+                    <nav data-role="ribbonmenu">
+                        <ul class="tabs-holder">
+                            <li><a href="#section-group">Group</a></li>
+                        </ul>
+
+                        <div class="content-holder">
+                            <div class="section" id="section-group">
+                                <div class="group">
+
+                                    <div data-role="buttonsGroup" data-cls-active="active">
+                                        <button class="ribbon-button">
+                                            <span class="icon">
+                                                <span class="mif-vertical-align-top"></span>
+                                            </span>
+                                            <span class="caption">Top</span>
+                                        </button>
+                                        <button class="ribbon-button">
+                                            <span class="icon">
+                                                <span class="mif-vertical-align-center"></span>
+                                            </span>
+                                            <span class="caption">Center</span>
+                                        </button>
+                                        <button class="ribbon-button">
+                                            <span class="icon">
+                                                <span class="mif-vertical-align-bottom"></span>
+                                            </span>
+                                            <span class="caption">Bottom</span>
+                                        </button>
+                                    </div>
+
+                                    <span class="title">Role group</span>
+                                </div>
+
+                                <div class="group">
+                                    <div class="ribbon-toggle-group">
+                                        <button class="ribbon-icon-button">
+                                                <span class="icon">
+                                                    <span class="mif-list"></span>
+                                                </span>
+                                            <span class="caption">List</span>
+                                        </button>
+
+                                        <button class="ribbon-icon-button">
+                                                <span class="icon">
+                                                    <span class="mif-apps"></span>
+                                                </span>
+                                            <span class="caption">Content</span>
+                                        </button>
+
+                                        <button class="ribbon-icon-button">
+                                                <span class="icon">
+                                                    <span class="mif-table"></span>
+                                                </span>
+                                            <span class="caption">Icons</span>
+                                        </button>
+
+                                        <button class="ribbon-icon-button">
+                                                <span class="icon">
+                                                    <span class="mif-image"></span>
+                                                </span>
+                                            <span class="caption">Small icons</span>
+                                        </button>
+
+                                        <button class="ribbon-icon-button">
+                                                <span class="icon">
+                                                    <span class="mif-images"></span>
+                                                </span>
+                                            <span class="caption">Large icons</span>
+                                        </button>
+
+                                        <button class="ribbon-icon-button">
+                                                <span class="icon">
+                                                    <span class="mif-windows"></span>
+                                                </span>
+                                            <span class="caption">Tiles</span>
+                                        </button>
+                                    </div>
+
+                                    <span class="title">Group class</span>
+                                </div>
+
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+                <pre><code class="html">
+                    &lt;nav data-role="ribbonmenu"&gt;
+                        &lt;ul class="tabs-holder"&gt;
+                            &lt;li&gt;&lt;a href="#section-group"&gt;Group&lt;/a&gt;&lt;/li&gt;
+                        &lt;/ul&gt;
+
+                        &lt;div class="content-holder"&gt;
+                            &lt;div class="section" id="section-group"&gt;
+                                &lt;div class="group"&gt;
+
+                                    &lt;div data-role="buttonsGroup" data-cls-active="active"&gt;
+                                        &lt;button class="ribbon-button"&gt;
+                                            &lt;span class="icon"&gt;
+                                                &lt;span class="mif-vertical-align-top"&gt;&lt;/span&gt;
+                                            &lt;/span&gt;
+                                            &lt;span class="caption"&gt;Top&lt;/span&gt;
+                                        &lt;/button&gt;
+                                        &lt;button class="ribbon-button"&gt;
+                                            &lt;span class="icon"&gt;
+                                                &lt;span class="mif-vertical-align-center"&gt;&lt;/span&gt;
+                                            &lt;/span&gt;
+                                            &lt;span class="caption"&gt;Center&lt;/span&gt;
+                                        &lt;/button&gt;
+                                        &lt;button class="ribbon-button"&gt;
+                                            &lt;span class="icon"&gt;
+                                                &lt;span class="mif-vertical-align-bottom"&gt;&lt;/span&gt;
+                                            &lt;/span&gt;
+                                            &lt;span class="caption"&gt;Bottom&lt;/span&gt;
+                                        &lt;/button&gt;
+                                    &lt;/div&gt;
+
+                                    &lt;span class="title"&gt;Role group&lt;/span&gt;
+                                &lt;/div&gt;
+
+                                &lt;div class="group"&gt;
+                                    &lt;div class="ribbon-toggle-group"&gt;
+                                        &lt;button class="ribbon-icon-button"&gt;
+                                                &lt;span class="icon"&gt;
+                                                    &lt;span class="mif-list"&gt;&lt;/span&gt;
+                                                &lt;/span&gt;
+                                            &lt;span class="caption"&gt;List&lt;/span&gt;
+                                        &lt;/button&gt;
+
+                                        &lt;button class="ribbon-icon-button"&gt;
+                                                &lt;span class="icon"&gt;
+                                                    &lt;span class="mif-apps"&gt;&lt;/span&gt;
+                                                &lt;/span&gt;
+                                            &lt;span class="caption"&gt;Content&lt;/span&gt;
+                                        &lt;/button&gt;
+
+                                        &lt;button class="ribbon-icon-button"&gt;
+                                                &lt;span class="icon"&gt;
+                                                    &lt;span class="mif-table"&gt;&lt;/span&gt;
+                                                &lt;/span&gt;
+                                            &lt;span class="caption"&gt;Icons&lt;/span&gt;
+                                        &lt;/button&gt;
+
+                                        &lt;button class="ribbon-icon-button"&gt;
+                                                &lt;span class="icon"&gt;
+                                                    &lt;span class="mif-image"&gt;&lt;/span&gt;
+                                                &lt;/span&gt;
+                                            &lt;span class="caption"&gt;Small icons&lt;/span&gt;
+                                        &lt;/button&gt;
+
+                                        &lt;button class="ribbon-icon-button"&gt;
+                                                &lt;span class="icon"&gt;
+                                                    &lt;span class="mif-images"&gt;&lt;/span&gt;
+                                                &lt;/span&gt;
+                                            &lt;span class="caption"&gt;Large icons&lt;/span&gt;
+                                        &lt;/button&gt;
+
+                                        &lt;button class="ribbon-icon-button"&gt;
+                                                &lt;span class="icon"&gt;
+                                                    &lt;span class="mif-windows"&gt;&lt;/span&gt;
+                                                &lt;/span&gt;
+                                            &lt;span class="caption"&gt;Tiles&lt;/span&gt;
+                                        &lt;/button&gt;
+                                    &lt;/div&gt;
+
+                                    &lt;span class="title"&gt;Group class&lt;/span&gt;
+                                &lt;/div&gt;
+
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/nav&gt;
+                </code></pre>
+
+                <h4 id="_ribbon_elements-dropdown">Dropdown menu</h4>
+                <p>
+                    Ribbon menu contains self designed dropdown menu. To create ribbon dropdown menu you must add class <code>ribbon-dropdown</code> to list.
+                    Each item can has three sates: <code>simple</code>, <code>checked</code> and <code>checked-one</code>.
+                </p>
+                <div class="example clear">
+                    <ul class="ribbon-dropdown pos-relative">
+                        <li class="checked"><a href="#">Modification</a></li>
+                        <li class="checked"><a href="#">Type</a></li>
+                        <li class="checked"><a href="#">Size</a></li>
+                        <li><a href="#">Creating</a></li>
+                        <li><a href="#">Authors</a></li>
+                        <li class="checked-one"><a href="#">Tags</a></li>
+                        <li><a href="#">Names</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Columns...</a></li>
+                    </ul>
+                </div>
+                <pre><code class="html">
+                    &lt;ul class="ribbon-dropdown"&gt;
+                        &lt;li class="checked"&gt;&lt;a href="#"&gt;Modification&lt;/a&gt;&lt;/li&gt;
+                        &lt;li class="checked"&gt;&lt;a href="#"&gt;Type&lt;/a&gt;&lt;/li&gt;
+                        &lt;li class="checked"&gt;&lt;a href="#"&gt;Size&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Creating&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Authors&lt;/a&gt;&lt;/li&gt;
+                        &lt;li class="checked-one"&gt;&lt;a href="#"&gt;Tags&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Names&lt;/a&gt;&lt;/li&gt;
+                        &lt;li class="divider"&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Columns...&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                </code></pre>
+                <p>
+                    You can use ribbon dropdown menu to create button with dropped down. To create it you must use next html structure:
+                </p>
+                <pre><code class="html">
+                    &lt;div&gt;
+                        &lt;button class="ribbon-[button|icon-button|tool-button] dropdown-toggle"&gt;
+                            ...
+                        &lt;/button&gt;
+                        &lt;ul class="ribbon-dropdown" data-role="dropdown"&gt;
+                            &lt;li&gt;&lt;a href="..."&gt;...&lt;/a&gt;&lt;/li&gt;
+                            ...
+                            &lt;li&gt;&lt;a href="..."&gt;...&lt;/a&gt;&lt;/li&gt;
+                        &lt;/ul&gt;
+                    &lt;/div&gt;
+                </code></pre>
+                <div class="example">
+                    <nav data-role="ribbonmenu">
+                        <ul class="tabs-holder">
+                            <li><a href="#section-dropdown">Dropdown</a></li>
+                        </ul>
+                        <div class="content-holder">
+                            <div class="section" id="section-dropdown">
+                                <div class="group">
+                                    <div>
+                                        <button class="ribbon-button dropdown-toggle">
+                                            <span class="icon">
+                                                <span class="mif-file-zip fg-cyan"></span>
+                                            </span>
+                                            <span class="caption">Compress</span>
+                                        </button>
+                                        <ul class="ribbon-dropdown" data-role="dropdown" data-duration="100">
+                                            <li class="checked"><a href="#">Modification</a></li>
+                                            <li class="checked"><a href="#">Type</a></li>
+                                            <li class="checked"><a href="#">Size</a></li>
+                                            <li><a href="#">Creating</a></li>
+                                            <li><a href="#">Authors</a></li>
+                                            <li class="checked-one"><a href="#">Tags</a></li>
+                                            <li><a href="#">Names</a></li>
+                                            <li class="divider"></li>
+                                            <li><a href="#">Columns...</a></li>
+                                        </ul>
+                                    </div>
+
+                                    <span class="title">Button</span>
+                                </div>
+
+                                <div class="group">
+                                    <div>
+                                        <button class="ribbon-icon-button dropdown-toggle">
+                                            <span class="icon">
+                                                <span class="mif-file-zip fg-cyan"></span>
+                                            </span>
+                                            <span class="caption">Compress</span>
+                                        </button>
+                                        <ul class="ribbon-dropdown" data-role="dropdown" data-duration="100">
+                                            <li class="checked"><a href="#">Modification</a></li>
+                                            <li class="checked"><a href="#">Type</a></li>
+                                            <li class="checked"><a href="#">Size</a></li>
+                                            <li><a href="#">Creating</a></li>
+                                            <li><a href="#">Authors</a></li>
+                                            <li class="checked-one"><a href="#">Tags</a></li>
+                                            <li><a href="#">Names</a></li>
+                                            <li class="divider"></li>
+                                            <li><a href="#">Columns...</a></li>
+                                        </ul>
+                                    </div>
+
+                                    <span class="title">Icon button</span>
+                                </div>
+
+                                <div class="group">
+                                    <div>
+                                        <button class="ribbon-tool-button dropdown-toggle">
+                                            <span class="icon">
+                                                <span class="mif-file-zip fg-cyan"></span>
+                                            </span>
+                                        </button>
+                                        <ul class="ribbon-dropdown" data-role="dropdown" data-duration="100">
+                                            <li class="checked"><a href="#">Modification</a></li>
+                                            <li class="checked"><a href="#">Type</a></li>
+                                            <li class="checked"><a href="#">Size</a></li>
+                                            <li><a href="#">Creating</a></li>
+                                            <li><a href="#">Authors</a></li>
+                                            <li class="checked-one"><a href="#">Tags</a></li>
+                                            <li><a href="#">Names</a></li>
+                                            <li class="divider"></li>
+                                            <li><a href="#">Columns...</a></li>
+                                        </ul>
+                                    </div>
+
+                                    <span class="title">Tool button</span>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+                <pre><code class="html">
+                    &lt;div&gt;
+                        &lt;button class="ribbon-tool-button dropdown-toggle"&gt;
+                            &lt;span class="icon"&gt;
+                                &lt;span class="mif-file-zip fg-cyan"&gt;&lt;/span&gt;
+                            &lt;/span&gt;
+                        &lt;/button&gt;
+                        &lt;ul class="ribbon-dropdown" data-role="dropdown" data-duration="100"&gt;
+                            &lt;li class="checked"&gt;&lt;a href="#"&gt;Modification&lt;/a&gt;&lt;/li&gt;
+                            &lt;li class="checked"&gt;&lt;a href="#"&gt;Type&lt;/a&gt;&lt;/li&gt;
+                            &lt;li class="checked"&gt;&lt;a href="#"&gt;Size&lt;/a&gt;&lt;/li&gt;
+                            &lt;li&gt;&lt;a href="#"&gt;Creating&lt;/a&gt;&lt;/li&gt;
+                            &lt;li&gt;&lt;a href="#"&gt;Authors&lt;/a&gt;&lt;/li&gt;
+                            &lt;li class="checked-one"&gt;&lt;a href="#"&gt;Tags&lt;/a&gt;&lt;/li&gt;
+                            &lt;li&gt;&lt;a href="#"&gt;Names&lt;/a&gt;&lt;/li&gt;
+                            &lt;li class="divider"&gt;&lt;/li&gt;
+                            &lt;li&gt;&lt;a href="#"&gt;Columns...&lt;/a&gt;&lt;/li&gt;
+                        &lt;/ul&gt;
+                    &lt;/div&gt;
+                </code></pre>
+
+                <h4 id="_ribbon_elements-others">Others...</h4>
+                <p>
+                    You can put any others elements to ribbon menu. See <a href="#">first example</a>, input and button tabs.
+                </p>
+
+                <h3 id="_ribbon_events">Events</h3>
+                <p>
+                    When ribbon menu works, it generate any <code>events</code>. You can create <code>callback</code> to events to interact with it.
+                </p>
+                <table class="table cell-border table-border options-table">
+                    <thead>
+                    <tr>
+                        <th>Event</th>
+                        <th>Data-*</th>
+                        <th>Desc</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><code>onStatic(tab, el)</code></td>
+                        <td><code>data-on-static</code></td>
+                        <td>The event occurs when the user clicks on the static tab</td>
+                    </tr>
+                    <tr>
+                        <td><code>onBeforeTab(tab, el)</code></td>
+                        <td><code>data-on-before-tab</code></td>
+                        <td>The event occurs before tab change. If this function return false, tab not activated</td>
+                    </tr>
+                    <tr>
+                        <td><code>onTab(tab, el)</code></td>
+                        <td><code>data-on-tab</code></td>
+                        <td>The event occurs after tab changed.</td>
+                    </tr>
+                    <tr>
+                        <td><code>onRibbonMenuCreate(el)</code></td>
+                        <td><code>data-on-ribbon-menu-create</code></td>
+                        <td>The event occurs after menu created.</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <pre><code class="html">
+                    &lt;nav data-role="ribbonmenu"
+                         data-on-tab="console.log(arguments)"&gt;
+                        ...
+                    &lt;/nav&gt;
+                </code></pre>
+            </main>
+        </div>
+
+    </div>
+
+    <script src="docsearch/docsearch.min.js"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="metro/js/metro.js"></script>
+    <script src="highlight/highlight.pack.js"></script>
+    <script src="js/clipboard.min.js"></script>
+    <script src="js/site.js"></script>
+    <!-- ads-script -->
+</body>
+</html>

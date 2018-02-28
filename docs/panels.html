@@ -1,172 +1,383 @@
 <!DOCTYPE html>
-<html>
-<head lang="en">
+<html lang="en">
+<head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="description" content="Metro, a sleek, intuitive, and powerful framework for faster and easier web development for Windows Metro Style.">
-    <meta name="keywords" content="HTML, CSS, JS, JavaScript, framework, metro, front-end, frontend, web development">
-    <meta name="author" content="Sergey Pimenov and Metro UI CSS contributors">
 
-    <link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
-    <title>Panels :: Metro UI CSS - The front-end framework for developing projects on the web in Windows Metro Style</title>
+    <meta name="twitter:site" content="@metroui">
+    <meta name="twitter:creator" content="@pimenov_sergey">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Metro 4 Components Library">
+    <meta name="twitter:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.">
+    <meta name="twitter:image" content="https://metroui.org.ua/images/m4-logo-social.png">
 
-    <link href="css/metro.css" rel="stylesheet">
-    <link href="css/metro-icons.css" rel="stylesheet">
-    <link href="css/metro-responsive.css" rel="stylesheet">
-    <link href="css/metro-schemes.css" rel="stylesheet">
+    <meta property="og:url" content="https://metroui.org.ua/v4/index.html">
+    <meta property="og:title" content="Metro 4 Components Library">
+    <meta property="og:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:secure_url" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="968">
+    <meta property="og:image:height" content="504">
 
-    <link href="css/docs.css" rel="stylesheet">
+    <meta name="author" content="Sergey Pimenov">
+    <meta name="description" content="Group the information and focus the user's attention on it using the panel. The most popular HTML, CSS, and JS library in Metro style.">
+    <meta name="keywords" content="Panel, HTML, CSS, JS, Metro, CSS3, Javascript, HTML5, UI, Library, Web, Development, Framework">
 
-    <script src="js/jquery-2.1.3.min.js"></script>
-    <script src="js/metro.js"></script>
-    <script src="js/docs.js"></script>
-    <script src="//cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
-    <script src="js/ga.js"></script>
-    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
 
+    <link href="metro/css/metro-all.css" rel="stylesheet">
+    <link href="highlight/styles/github.css" rel="stylesheet">
+    <link href="docsearch/docsearch.min.css" rel="stylesheet">
+    <link href="css/site.css" rel="stylesheet">
+
+    <title>Panel - Metro 4 :: Popular HTML, CSS and JS library</title>
 </head>
 <body>
-    <div class="container page-content">
-        <h1><a href="index.html" class="nav-button transform"><span></span></a>&nbsp;Panels</h1>
+    <div class="container-fluid">
 
-        @@adsense
-
-        <div class="example" data-text="example">
-            <div class="grid">
-                <div class="row cells3">
-                    <div class="cell">
-                        <h5>Default</h5>
-                        <div class="panel">
-                            <div class="heading">
-                                <span class="title">Panel Title</span>
-                            </div>
-                            <div class="content padding10">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean luctus lectus sit amet odio ullamcorper malesuada dignissim justo gravida.
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="cell">
-                        <h5>With icon</h5>
-                        <div class="panel">
-                            <div class="heading">
-                                <span class="icon mif-home"></span>
-                                <span class="title">Panel Title</span>
-                            </div>
-                            <div class="content padding10">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean luctus lectus sit amet odio ullamcorper malesuada dignissim justo gravida.
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="cell">
-                        <h5>Collapsible</h5>
-                        <div class="panel" data-role="panel">
-                            <div class="heading">
-                                <img class="icon" src="images/location.png">
-                                <span class="title">Panel Title</span>
-                            </div>
-                            <div class="content padding10">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean luctus lectus sit amet odio ullamcorper malesuada dignissim justo gravida.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row cells3">
-                    <div class="cell">
-                        <h5>Alert (&.alert)</h5>
-                        <div class="panel alert">
-                            <div class="heading">
-                                <span class="title">Panel Title</span>
-                            </div>
-                            <div class="content padding10">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean luctus lectus sit amet odio ullamcorper malesuada dignissim justo gravida.
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="cell">
-                        <h5>Warning (&.warning)</h5>
-                        <div class="panel warning">
-                            <div class="heading">
-                                <span class="title">Panel Title</span>
-                            </div>
-                            <div class="content padding10">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean luctus lectus sit amet odio ullamcorper malesuada dignissim justo gravida.
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="cell">
-                        <h5>Success (&.success)</h5>
-                        <div class="panel success">
-                            <div class="heading">
-                                <span class="title">Panel Title</span>
-                            </div>
-                            <div class="content padding10">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean luctus lectus sit amet odio ullamcorper malesuada dignissim justo gravida.
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <div class="row flex-xl-nowrap">
+            <div class="cell-md-3 cell-xl-2 pr-0 border-right bd-light" id="sidenav">
             </div>
-        </div> <!-- End of example -->
 
-        <div class="example" data-text="code">
-            <h5>HTML</h5>
-            <pre class="prettyprint linenums"><code>
-                &lt;!-- Default --&gt;
-                &lt;div class="panel"&gt;
-                    &lt;div class="heading"&gt;
-                        &lt;span class="title"&gt;Panel Title&lt;/span&gt;
+            <div class="d-none d-block-xl cell-xl-2 order-2 border-left bd-light toc-wrapper">
+                <h5>Table of contents</h5>
+                <hr/>
+                <ul class="toc-nav">
+                    <li class="toc-entry"><a href="#">Panel</a></li>
+                    <li class="toc-entry"><a href="#_panel_create">Create panel</a></li>
+                    <li class="toc-entry"><a href="#_panel_size">Panel size</a></li>
+                    <li class="toc-entry"><a href="#_panel_title">Panel title</a></li>
+                    <li class="toc-entry"><a href="#_panel_collapsible">Collapsible panel</a></li>
+                    <li class="toc-entry"><a href="#_panel_draggable">Draggable</a></li>
+                    <li class="toc-entry"><a href="#_panel_events">Events</a></li>
+                    <li class="toc-entry"><a href="#_panel_methods">Methods</a></li>
+                    <li class="toc-entry"><a href="#_panel_customize">Customize</a></li>
+                </ul>
+
+            </div>
+
+            <main class="cell-md-9 cell-xl-8 order-1 pr-1-sx pl-1-sx pr-5-md pl-5-md">
+                <div class="place-right d-none d-block-lg" style="width: 200px;">
+                    <img src="images/logo.png" class="w-100">
+                </div>
+
+                <h1>Panel</h1>
+                <p class="text-leader">
+                    Group the information and focus the user's attention on it using the panel.
+                </p>
+
+                <!-- ads-html -->
+
+                <h3 id="_panel_create">Create panel</h3>
+                <p>
+                    To create panel, add attribute <code>data-role="panel"</code> to element.
+                </p>
+                <div class="example">
+                    <div class="mx-auto" data-role="panel" data-width="280">
+                        Raptus capios ducunt ad genetrix. Joy doesn’t beautifully respect any believer — but the power is what flies.
+                    </div>
+                </div>
+                <pre><code>
+                    &lt;div data-role="panel"&gt;
+                        ...
                     &lt;/div&gt;
-                    &lt;div class="content"&gt;
-                        ... panel content ...
+                </code></pre>
+
+                <h3 id="_panel_size">Create panel with your own size</h3>
+                <p>
+                    To create panel with your own size, use attributes <code>data-width="..."</code> and  <code>data-height="..."</code>.
+                </p>
+                <div class="example">
+                    <div class="mx-auto" data-role="panel" data-width="280" data-height="150">
+                        Raptus capios ducunt ad genetrix. Joy doesn’t beautifully respect any believer — but the power is what flies.
+                        Raptus capios ducunt ad genetrix. Joy doesn’t beautifully respect any believer — but the power is what flies.
+                    </div>
+                </div>
+                <pre><code>
+                    &lt;div data-role="panel" data-width="280" data-height="150"&gt;
+                        ...
                     &lt;/div&gt;
-                &lt;/div&gt;
+                </code></pre>
 
-                &lt;!-- With icon (font) --&gt;
-                &lt;div class="panel"&gt;
-                    &lt;div class="heading"&gt;
-                        &lt;span class="icon mif-home"&gt;&lt;/span&gt;
-                        &lt;span class="title"&gt;Panel Title&lt;/span&gt;
+                <h3 id="_panel_title">Panel title</h3>
+                <p>
+                    For more information, you can add a <code>title</code> to the panel.
+                    To add <code>title</code> you must add or <strong>title caption</strong> or <strong>title icon</strong>.
+                    To add <code>caption</code> use attribute <code>data-title-caption="..."</code>,
+                    to add <code>icon</code> use attribute <code>data-title-icon="..."</code>.
+                </p>
+                <div class="example">
+                    <div class="mx-auto" data-role="panel" data-width="280" data-title-caption="Panel title" data-title-icon="<span class='mif-apps'></span>">
+                        Raptus capios ducunt ad genetrix. Joy doesn’t beautifully respect any believer — but the power is what flies.
+                    </div>
+                </div>
+                <pre><code>
+                    &lt;div data-role="panel"
+                        data-title-caption="Panel title"
+                        data-title-icon="&lt;span class='mif-apps'&gt;&lt;/span&gt;"&gt;
+                        ...
                     &lt;/div&gt;
-                    &lt;div class="content"&gt;
-                        ... panel content ...
+                </code></pre>
+                <p class="remark warning">
+                    For <code>title icon</code> you must use a valid <code>html tag</code>. It can be icon from font or image.
+                </p>
+
+                <h3 id="_panel_collapsible">Collapsible panel</h3>
+                <p>
+                    If you need to create <strong>collapsing panel</strong>, add attribute <code>data-collapsible="true"</code> to element.
+                    To start panel in <code>collapsed</code> state, add attribute <code>data-collapsed="true"</code>.
+                </p>
+                <div class="example">
+                    <div class="row">
+                        <div class="cell-md-6">
+                            <div data-role="panel" data-title-caption="Panel title" data-collapsible="true">
+                                Raptus capios ducunt ad genetrix. Joy doesn’t beautifully respect any believer — but the power is what flies.
+                            </div>
+                        </div>
+                        <div class="cell-md-6">
+                            <div data-role="panel" data-title-caption="Panel title" data-collapsible="true" data-collapsed="true">
+                                Raptus capios ducunt ad genetrix. Joy doesn’t beautifully respect any believer — but the power is what flies.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <pre><code>
+                    &lt;div data-role="panel"
+                        data-title-caption="Panel title"
+                        data-collapsible="true"&gt;
+                        ...
                     &lt;/div&gt;
-                &lt;/div&gt;
 
-                &lt;!-- With icon (img) --&gt;
-                &lt;div class="panel"&gt;
-                    &lt;div class="heading"&gt;
-                        &lt;img class="icon" src="..."&gt;
-                        &lt;span class="title"&gt;Panel Title&lt;/span&gt;
+                    &lt;div data-role="panel"
+                        data-title-caption="Panel title"
+                        data-collapsed="true"
+                        data-collapsible="true"&gt;
+                        ...
                     &lt;/div&gt;
-                    &lt;div class="content"&gt;
-                        ... panel content ...
+                </code></pre>
+
+                <h3 id="_panel_draggable">Draggable</h3>
+                <p>
+                    You can create <code>draggable</code> panel with attribute <code>data-draggable="true"</code>.
+                </p>
+                <div class="example" style="height: 300px">
+                    <div data-role="panel"
+                         data-title-caption="Panel title"
+                         data-title-icon="<span class='mif-apps'></span>"
+                         data-width="240"
+                         data-collapsible="true"
+                         data-draggable="true">
+                        Raptus capios ducunt ad genetrix. Joy doesn’t beautifully respect any believer — but the power is what flies.
+                    </div>
+                </div>
+                <pre><code>
+                    &lt;div data-role="panel"
+                         data-title-caption="Panel title"
+                         data-title-icon="&lt;span class='mif-apps'&gt;&lt;/span&gt;"
+                         data-width="240"
+                         data-collapsible="true"
+                         data-draggable="true"&gt;
+                        ...
                     &lt;/div&gt;
-                &lt;/div&gt;
-            </code></pre>
+                </code></pre>
 
-            <h5>Collapsible, declarative style</h5>
-            <pre class="prettyprint linenums"><code>
-                &lt;div class="panel" data-role="panel"&gt;...&lt;/div&gt;
-            </code></pre>
+                <h3 id="_panel_events">Events</h3>
+                <p>
+                    When panel works, it generated the numbers of events. You can use callback for this events to behavior with panel.
+                </p>
+                <table class="table cell-border table-border options-table">
+                    <thead>
+                    <tr>
+                        <th>Event</th>
+                        <th>Data-*</th>
+                        <th>Desc</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>onCollapse(el)</td>
+                        <td><code>data-on-collapse</code></td>
+                        <td>Fired when panel was collapsed</td>
+                    </tr>
+                    <tr>
+                        <td>onExpand(el)</td>
+                        <td><code>data-on-expand</code></td>
+                        <td>Fired when panel was expanded</td>
+                    </tr>
+                    <tr>
+                        <td>onDragStart(pos, el)</td>
+                        <td><code>data-on-drag-start</code></td>
+                        <td>Fired when panel drag started</td>
+                    </tr>
+                    <tr>
+                        <td>onDragStop(pos, el)</td>
+                        <td><code>data-on-drag-stop</code></td>
+                        <td>Fired when panel drag stopped</td>
+                    </tr>
+                    <tr>
+                        <td>onDragMove(pos, el)</td>
+                        <td><code>data-on-drag-move</code></td>
+                        <td>Fired when panel drag moved</td>
+                    </tr>
+                    <tr>
+                        <td>onPanelCreate(el)</td>
+                        <td><code>data-on-panel-create</code></td>
+                        <td>Fired when panel was created</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="example" style="height: 300px">
+                    <div class="row h-100">
+                        <div class="cell-md-2 bg-light" style="width: 100px">
+                            <div>X: <span id="panel_ev_x">0</span></div>
+                            <div>Y: <span id="panel_ev_y">0</span></div>
+                        </div>
+                        <div class="cell-md-10">
+                            <div data-role="panel"
+                                 data-title-caption="Panel title"
+                                 data-title-icon="<span class='mif-apps'></span>"
+                                 data-width="240"
+                                 data-collapsible="true"
+                                 data-draggable="true"
+                                 data-on-drag-move="
+                                    var pos = arguments[0];
+                                    $('#panel_ev_x').text(pos.x);
+                                    $('#panel_ev_y').text(pos.y);
+                                 "
+                            >
+                                Raptus capios ducunt ad genetrix. Joy doesn’t beautifully respect any believer — but the power is what flies.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <pre><code class="html">
+                    &lt;div class="row h-100"&gt;
+                        &lt;div class="stub bg-light" style="width: 100px"&gt;
+                            &lt;div&gt;X: &lt;span id="panel_ev_x"&gt;0&lt;/span&gt;&lt;/div&gt;
+                            &lt;div&gt;Y: &lt;span id="panel_ev_y"&gt;0&lt;/span&gt;&lt;/div&gt;
+                        &lt;/div&gt;
+                        &lt;div class="cell"&gt;
+                            &lt;div data-role="panel"
+                                 data-title-caption="Panel title"
+                                 data-title-icon="&lt;span class='mif-apps'&gt;&lt;/span&gt;"
+                                 data-width="240"
+                                 data-collapsible="true"
+                                 data-draggable="true"
+                                 data-on-drag-move="
+                                    var pos = arguments[0];
+                                    $('#panel_ev_x').text(pos.x);
+                                    $('#panel_ev_y').text(pos.y);
+                                 "
+                            &gt;
+                                Raptus capios ducunt ad genetrix...
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
 
-            <h5>Collapsible, javascript style</h5>
-            <pre class="prettyprint linenums"><code>
-                &lt;div class="panel" id="panel"&gt;...&lt;/div&gt;
+                <h3 id="_panel_methods">Methods</h3>
+                <p>
+                    You can use panel methods to interact with the component.
+                </p>
+                <ul>
+                    <li><strong>collapse()</strong> - collapse panel</li>
+                    <li><strong>expand()</strong> - expand panel</li>
+                </ul>
 
-                &lt;script&gt;
-                    $(function(){
-                        $("#panel").panel();
-                    });
-                &lt;/script&gt;
-            </code></pre>
+                <h3 id="_panel_customize">Customize</h3>
+                <p>
+                    If you need to customize the slider, you can use next options:
+                </p>
+                <table class="table cell-border table-border options-table">
+                    <thead>
+                    <tr>
+                        <th>Option</th>
+                        <th>Data-*</th>
+                        <th>Desc</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>clsPanel</td>
+                        <td><code>data-cls-panel</code></td>
+                        <td>Additional class for panel</td>
+                    </tr>
+                    <tr>
+                        <td>clsTitle</td>
+                        <td><code>data-cls-title</code></td>
+                        <td>Additional class for panel title</td>
+                    </tr>
+                    <tr>
+                        <td>clsTitleCaption</td>
+                        <td><code>data-cls-title-caption</code></td>
+                        <td>Additional class for panel title caption</td>
+                    </tr>
+                    <tr>
+                        <td>clsTitleIcon</td>
+                        <td><code>data-cls-title-icon</code></td>
+                        <td>Additional class for panel title icon</td>
+                    </tr>
+                    <tr>
+                        <td>clsContent</td>
+                        <td><code>data-cls-content</code></td>
+                        <td>Additional class for panel content</td>
+                    </tr>
+                    <tr>
+                        <td>clsCollapseToggle</td>
+                        <td><code>data-cls-collapse-toggle</code></td>
+                        <td>Additional class for panel collapse toggle</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="example">
+                    <div class="mx-auto"
+                         data-role="panel"
+                         data-width="280"
+                         data-title-caption="Panel title"
+                         data-title-icon="<span class='mif-apps'></span>"
+                         data-collapsible="true"
+                         data-cls-panel="shadow-3"
+                         data-cls-title="bg-red fg-white"
+                         data-cls-title-icon="bg-green fg-white"
+                         data-cls-content="bg-cyan fg-white"
+                         data-cls-collapse-toggle="bg-dark fg-white marker-light"
+                    >
+                        Raptus capios ducunt ad genetrix. Joy doesn’t beautifully respect any believer — but the power is what flies.
+                    </div>
+                </div>
+                <pre><code class="html">
+                    &lt;div class="mx-auto"
+                         data-role="panel"
+                         data-width="280"
+                         data-title-caption="Panel title"
+                         data-title-icon="&lt;span class='mif-apps'&gt;&lt;/span&gt;"
+                         data-collapsible="true"
+                         data-cls-panel="shadow-3"
+                         data-cls-title="bg-red fg-white"
+                         data-cls-title-icon="bg-green fg-white"
+                         data-cls-content="bg-cyan fg-white"
+                         data-cls-collapse-toggle="bg-dark fg-white marker-light"
+                    &gt;
+                        Raptus capios ducunt ad genetrix.
+                        Joy doesn’t beautifully respect any believer —
+                        but the power is what flies.
+                    &lt;/div&gt;
+                </code></pre>
 
+            </main>
         </div>
+
     </div>
+
+    <script src="docsearch/docsearch.min.js"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="metro/js/metro.js"></script>
+    <script src="highlight/highlight.pack.js"></script>
+    <script src="js/clipboard.min.js"></script>
+    <script src="js/site.js"></script>
+    <!-- ads-script -->
 </body>
 </html>

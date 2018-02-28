@@ -1,0 +1,82 @@
+@import (once) "include/vars";
+@import (once) "include/mixins";
+
+.topbar {
+    display: flex;
+    padding: .5rem 1rem;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    position: sticky;
+    top: 0;
+    background: @appBarBackground;
+    color: @appBarColor;
+    z-index: @zindex-top;
+}
+
+
+.topbar-brand, .topbar-element, .topbar-menu {
+    display: block;
+    white-space: nowrap;
+    background: inherit;
+    color: @white;
+    text-decoration: none!important;
+    height: 2.5rem;
+    line-height: 2.5rem;
+    font-size: .875rem;
+    margin-bottom: 1rem;
+}
+
+.topbar-brand {
+    font-size: 1.25rem;
+    margin-top: 1rem;
+}
+
+
+.topbar-menu {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.topbar-menu li a {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    height: 2.5rem;
+    line-height: 2.5rem;
+    padding: 0 .5rem;
+    font-size: .875rem;
+
+    &:hover, &:active {
+        background: @hoverBackground;
+    }
+}
+
+@media screen and (min-width: @sm){
+    .topbar-element, .topbar-menu {
+        //font-size: 1rem;
+    }
+}
+
+
+.generate-topbar-media-options(@mediaBreakpointListMobileLength);
+.generate-topbar-media-options(@name, @i: 1) when (@i <= @mediaBreakpointListMobileLength) {
+    @m: extract(@mediaBreakpointListMobile, @i);
+
+    @media screen and (min-width: @@m) {
+        .topbar-expand-@{m} {
+            flex-direction: row!important;
+
+            .topbar-brand, .topbar-element, .topbar-menu {
+                margin-bottom: 0;
+                margin-top: 0;
+            }
+        }
+    }
+
+    .generate-topbar-media-options(@name, @i + 1);
+}
+

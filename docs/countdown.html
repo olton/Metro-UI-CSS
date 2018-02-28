@@ -1,195 +1,421 @@
 <!DOCTYPE html>
-<html>
-<head lang="en">
+<html lang="en">
+<head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="description" content="Metro, a sleek, intuitive, and powerful framework for faster and easier web development for Windows Metro Style.">
-    <meta name="keywords" content="HTML, CSS, JS, JavaScript, framework, metro, front-end, frontend, web development">
-    <meta name="author" content="Sergey Pimenov and Metro UI CSS contributors">
 
-    <link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
-    <title>Countdown :: Metro UI CSS - The front-end framework for developing projects on the web in Windows Metro Style</title>
+    <meta name="twitter:site" content="@metroui">
+    <meta name="twitter:creator" content="@pimenov_sergey">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Metro 4 Components Library">
+    <meta name="twitter:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.">
+    <meta name="twitter:image" content="https://metroui.org.ua/images/m4-logo-social.png">
 
-    <link href="css/metro.css" rel="stylesheet">
-    <link href="css/metro-icons.css" rel="stylesheet">
-    <link href="css/metro-responsive.css" rel="stylesheet">
-    <link href="css/metro-schemes.css" rel="stylesheet">
+    <meta property="og:url" content="https://metroui.org.ua/v4/index.html">
+    <meta property="og:title" content="Metro 4 Components Library">
+    <meta property="og:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:secure_url" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="968">
+    <meta property="og:image:height" content="504">
 
-    <link href="css/docs.css" rel="stylesheet">
+    <meta name="author" content="Sergey Pimenov">
+    <meta name="description" content="Create a countdown element in Metro 4 is very simple with the use of a special countdown component. The most popular HTML, CSS, and JS library in Metro style.">
+    <meta name="keywords" content="HTML, CSS, JS, Metro, CSS3, Javascript, HTML5, UI, Library, Web, Development, Framework">
 
-    <script src="js/jquery-3.1.0.min.js"></script>
-    <script src="js/metro.js"></script>
-    <script src="js/docs.js"></script>
-    <script src="js/prettify/run_prettify.js"></script>
-    <script src="js/ga.js"></script>
-    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
 
+    <link href="metro/css/metro-all.css" rel="stylesheet">
+    <link href="highlight/styles/github.css" rel="stylesheet">
+    <link href="docsearch/docsearch.min.css" rel="stylesheet">
+    <link href="css/site.css" rel="stylesheet">
 
+    <title>Countdown - Metro 4 :: Popular HTML, CSS and JS library</title>
 </head>
 <body>
-    <div class="container page-content">
-        <h1><a href="index.html" class="nav-button transform"><span></span></a>&nbsp;Countdown</h1>
+    <div class="container-fluid">
 
-        @@adsense
-
-        <div class="example" data-text="example">
-            <div class="align-center">
-                <div class="countdown labels-top" data-role="countdown" data-minutes="2" data-seconds="30" data-background-color="bg-green" data-divider-color="fg-dark" data-label-color="fg-gray"></div>
+        <div class="row flex-xl-nowrap">
+            <div class="cell-md-3 cell-xl-2 pr-0 border-right bd-light" id="sidenav">
             </div>
 
-            <div class="align-center">
-                <div class="countdown" data-role="countdown" data-hours="2" data-background-color="bg-red" data-divider-color="fg-dark" data-label-color="fg-gray"></div>
+            <div class="d-none d-block-xl cell-xl-2 order-2 border-left bd-light toc-wrapper">
+                <h5>Table of contents</h5>
+                <hr/>
+                <ul class="toc-nav">
+                    <li class="toc-entry"><a href="#">Countdown</a></li>
+                    <li class="toc-entry"><a href="#_countdown_about">About</a></li>
+                    <li class="toc-entry"><a href="#_countdown_options">Options</a></li>
+                    <li class="toc-entry"><a href="#_countdown_interval">Setup interval</a></li>
+                    <li class="toc-entry"><a href="#_countdown_customize">Customize</a></li>
+                    <li class="toc-entry"><a href="#_countdown_events">Events</a></li>
+                    <li class="toc-entry"><a href="#_countdown_methods">Methods</a></li>
+                    <li class="toc-entry"><a href="#_countdown_i18n">i18n</a></li>
+                </ul>
+
             </div>
 
-            <div class="align-center">
-                <div class="countdown labels-top" data-role="countdown" data-label-color="fg-grayLight" data-divider-color="fg-grayLight"  data-days="2" style="font-size: 2rem"></div>
-            </div>
+            <main class="cell-md-9 cell-xl-8 order-1 pr-1-sx pl-1-sx pr-5-md pl-5-md">
+                <div class="place-right d-none d-block-lg" style="width: 200px;">
+                    <img src="images/logo.png" class="w-100">
+                </div>
 
-            <div class="align-center">
-                <div class="countdown" data-role="countdown" data-background-color="ribbed-darkRed" data-label-color="fg-grayLight" data-divider-color="fg-grayLight"  data-days="728" style="font-size: 2rem"></div>
-            </div>
+                <h1>Countdown</h1>
+                <p class="text-leader">
+                    Create a countdown element in Metro 4 is very simple with the use of a special countdown component.
+                </p>
 
-            <div class="align-center">
-                <div class="countdown" data-role="countdown" data-background-color="ribbed-darkRed" data-label-color="fg-grayLight" data-divider-color="fg-grayLight"  data-seconds="30" data-on-stop="alert('last countdown stopped')"></div>
-            </div>
+                <!-- ads-html -->
+
+                <h3 id="_countdown_about">About</h3>
+                <p>
+                    The goal of the <code>countdown</code> component is to create an element that can count down time from the specified time point.
+                    To create <code>countdown</code> add <code>data-role="countdown"</code> attribute to element and <code>setup options</code>.
+                </p>
+                <div class="example">
+                    <div data-role="countdown" data-hours="90" data-on-alarm="console.log('alarm')"></div>
+                </div>
+                <pre><code class="html">
+                    &lt;div data-role="countdown" data-hours="90"&gt;&lt;/div&gt;
+                </code></pre>
+
+                <h3 id="_countdown_options">Options</h3>
+                <p>
+                    You can set <code>options</code> to set times and visual styles for the <code>countdown</code> element.
+                </p>
+                <table class="table cell-border table-border options-table">
+                    <thead>
+                    <tr>
+                        <th>Options</th>
+                        <th>Data-*</th>
+                        <th>Default</th>
+                        <th>Desc</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>days</td>
+                        <td><code>data-days</code></td>
+                        <td>0</td>
+                        <td>Add days to interval</td>
+                    </tr>
+                    <tr>
+                        <td>hours</td>
+                        <td><code>data-hours</code></td>
+                        <td>0</td>
+                        <td>Add hours to interval</td>
+                    </tr>
+                    <tr>
+                        <td>minutes</td>
+                        <td><code>data-minutes</code></td>
+                        <td>0</td>
+                        <td>Add minutes to interval</td>
+                    </tr>
+                    <tr>
+                        <td>seconds</td>
+                        <td><code>data-seconds</code></td>
+                        <td>0</td>
+                        <td>Add seconds to interval</td>
+                    </tr>
+                    <tr>
+                        <td>date</td>
+                        <td><code>data-date</code></td>
+                        <td>Now</td>
+                        <td>Set start point interval</td>
+                    </tr>
+                    <tr>
+                        <td>daysLabel</td>
+                        <td><code>data-days-label</code></td>
+                        <td>days</td>
+                        <td>Set label for days</td>
+                    </tr>
+                    <tr>
+                        <td>hoursLabel</td>
+                        <td><code>data-hours-label</code></td>
+                        <td>hours</td>
+                        <td>Set label for hours</td>
+                    </tr>
+                    <tr>
+                        <td>minutesLabel</td>
+                        <td><code>data-minutes-label</code></td>
+                        <td>mins</td>
+                        <td>Set label for minutes</td>
+                    </tr>
+                    <tr>
+                        <td>secondsLabel</td>
+                        <td><code>data-seconds-label</code></td>
+                        <td>secs</td>
+                        <td>Set label for seconds</td>
+                    </tr>
+                    <tr>
+                        <td>clsZero</td>
+                        <td><code>data-cls-zero</code></td>
+                        <td></td>
+                        <td>Set additional class for zero value</td>
+                    </tr>
+                    <tr>
+                        <td>clsAlarm</td>
+                        <td><code>data-cls-alarm</code></td>
+                        <td></td>
+                        <td>Set additional class for alarm state</td>
+                    </tr>
+                    <tr>
+                        <td>clsDays</td>
+                        <td><code>data-cls-days</code></td>
+                        <td></td>
+                        <td>Set additional class for days</td>
+                    </tr>
+                    <tr>
+                        <td>clsHours</td>
+                        <td><code>data-cls-hours</code></td>
+                        <td></td>
+                        <td>Set additional class for hours</td>
+                    </tr>
+                    <tr>
+                        <td>clsMinutes</td>
+                        <td><code>data-cls-minutes</code></td>
+                        <td></td>
+                        <td>Set additional class for minutes</td>
+                    </tr>
+                    <tr>
+                        <td>clsSeconds</td>
+                        <td><code>data-cls-seconds</code></td>
+                        <td></td>
+                        <td>Set additional class for seconds</td>
+                    </tr>
+                    <tr>
+                        <td>onCountdownCreate</td>
+                        <td><code>data-on-countdown-create</code></td>
+                        <td>Metro.noop</td>
+                        <td>Fired when component is created</td>
+                    </tr>
+                    <tr>
+                        <td>onAlarm</td>
+                        <td><code>data-on-alarm</code></td>
+                        <td>Metro.noop</td>
+                        <td>Fired when countdown is done</td>
+                    </tr>
+                    <tr>
+                        <td>onTick</td>
+                        <td><code>data-on-tick</code></td>
+                        <td>Metro.noop</td>
+                        <td>Fired when countdown is ticks</td>
+                    </tr>
+                    <tr>
+                        <td>onZero</td>
+                        <td><code>data-on-zero</code></td>
+                        <td>Metro.noop</td>
+                        <td>Fired when part is sets to zero</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <h3 id="_countdown_interval">Setup interval</h3>
+                <p>
+                    By default the <code>start point</code> for interval is <code>today</code>. To this point you can add <code>days</code>, <code>hours</code>, <code>minutes</code> and <code>seconds</code>.
+                </p>
+                <div class="example">
+                    <div data-role="countdown" data-days="1" data-hours="2" data-minutes="3" data-seconds="4"></div>
+                </div>
+                <pre><code class="html">
+                    &lt;div data-role="countdown"
+                         data-days="1"
+                         data-hours="2"
+                         data-minutes="3"
+                         data-seconds="4"&gt;&lt;/div&gt;
+                </code></pre>
+
+                <p>
+                    Also you can set start point manually. To set start point add <code>data-date</code> attribute to element.
+                    Value for this attribute can be <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15"><strong>VALID</strong> date string</a>.
+                </p>
+                <div class="example">
+                    <div data-role="countdown" data-date="01/01/2018" data-days="1" data-hours="2" data-minutes="3" data-seconds="4"></div>
+                </div>
+                <pre><code class="html">
+                    &lt;div data-role="countdown"  data-date="01/01/2018"
+                         data-days="1"
+                         data-hours="2"
+                         data-minutes="3"
+                         data-seconds="4"&gt;&lt;/div&gt;
+                </code></pre>
+
+                <h3 id="_countdown_customize">Customize</h3>
+                <p>
+                    You can customize <code>countdown</code> control with special attributes:
+                        <code>data-cls-zero</code>,
+                        <code>data-cls-alarm</code>,
+                        <code>data-cls-days</code>,
+                        <code>data-cls-hours</code>,
+                        <code>data-cls-minutes</code>,
+                        <code>data-cls-seconds</code>.
+                    With this attributes you can define classes to customize visual style for <code>countdown</code>.
+                </p>
+                <div class="example text-center">
+                    <div id="countdown_paused" data-role="countdown" data-start="false" data-days="1" data-seconds="10" data-cls-days="bg-orange fg-white" data-cls-hours="bg-red fg-white" data-cls-minutes="bg-green fg-white" data-cls-seconds="bg-blue fg-white" data-cls-zero="bg-light fg-lightGray"></div>
+                    <button class="button mt-2" onclick="$('#countdown_paused').data('countdown').start()">Start</button>
+                </div>
+                <pre><code class="html">
+                    &lt;div data-role="countdown"
+                         data-days="1"
+                         data-cls-zero="bg-light fg-lightGray"
+                         data-cls-hours="bg-red fg-white"
+                         data-cls-minutes="bg-green fg-white"
+                         data-cls-seconds="bg-blue fg-white"&gt;&lt;/div&gt;
+                </code></pre>
+
+                <h3 id="_countdown_events">Events</h3>
+                <p>
+                    When the <code>countdown</code> is running, it generates various <code>events</code> that you can use. How to define Metro 4 components events see <a href="events.html">Events rules</a>.
+                </p>
+                <ul>
+                    <li><strong>onCountdownCreate(el)</strong> - fired when component created</li>
+                    <li><strong>onAlarm(now, el) - fired when countdown is done</strong></li>
+                    <li><strong>onTick({d, h, m, s}, el) - fired every tick (one second)</strong></li>
+                    <li><strong>onZero(part, el) - fired when part sets to zero</strong></li>
+                </ul>
+                <div class="example text-center">
+                    <div id="countdown_events" data-role="countdown"
+                         data-start="false"
+                         data-days="1"
+                         data-seconds="10"
+                         data-on-countdown-create="console.log('Countdown was created!')"
+                         data-on-zero="console.log(arguments)"
+                         data-on-tick="console.log(arguments)"
+                         data-on-alarm="console.log(arguments)"
+                    ></div>
+                    <button class="button mt-2" onclick="$('#countdown_events').data('countdown').start()">Start</button>
+                </div>
+                <pre><code class="html">
+                    &lt;div id="countdown_events" data-role="countdown"
+                         data-start="false"
+                         data-days="1"
+                         data-seconds="10"
+                         data-on-countdown-create="console.log('Countdown was created!')"
+                         data-on-zero="console.log(arguments)"
+                         data-on-tick="console.log(arguments)"
+                         data-on-alarm="console.log(arguments)"&gt;&lt;/div&gt;
+                    &lt;button class="button mt-2"
+                        onclick="$('#countdown_events').data('countdown').start()"&gt;Start&lt;/button&gt;
+                </code></pre>
+
+                <h3 id="_countdown_methods">Methods</h3>
+                <p>
+                    Each <code>countdown</code> component contains same methods:
+                </p>
+                <ul>
+                    <li><strong>start()</strong> - Start countdown</li>
+                    <li><strong>stop()</strong> - Stop countdown</li>
+                    <li><strong>pause()</strong> - Pause countdown</li>
+                    <li><strong>isPaused()</strong> - Return true, if countdown is paused</li>
+                    <li><strong>getTimepoint(asDate)</strong> - Return countdown start point</li>
+                    <li><strong>getBreakpoint(asDate)</strong> - Return countdown break point</li>
+                    <li><strong>getLeft()</strong> - Return object. It contains days, hours, minutes and seconds to stop</li>
+                </ul>
+                <div class="example text-center">
+                    <div id="countdown_methods" data-role="countdown"
+                         data-start="false"
+                         data-days="1"
+                         data-seconds="10"
+                    ></div>
+                    <button class="button mt-2" onclick="$('#countdown_methods').data('countdown').start()">Start</button>
+                    <button class="button mt-2" onclick="$('#countdown_methods').data('countdown').stop()">Stop</button>
+                    <button class="button mt-2" onclick="$('#countdown_methods').data('countdown').pause()">Pause</button>
+                    <button class="button mt-2" onclick="alert($('#countdown_methods').data('countdown').getTimepoint(true))">Timepoint</button>
+                    <button class="button mt-2" onclick="alert($('#countdown_methods').data('countdown').getBreakpoint(true))">Breakpoint</button>
+                    <button class="button mt-2" onclick="alert('Minutes left: ' + $('#countdown_methods').data('countdown').getLeft().minutes)">Minutes left</button>
+                </div>
+                <pre><code>
+                    &lt;div id="countdown_methods" data-role="countdown"
+                         data-start="false"
+                         data-days="1"
+                         data-seconds="10"
+                    &gt;&lt;/div&gt;
+
+                    &lt;button class="button mt-2"
+                        onclick="$('#countdown_methods').data('countdown').start()"&gt;Start&lt;/button&gt;
+
+                    &lt;button class="button mt-2"
+                        onclick="$('#countdown_methods').data('countdown').stop()"&gt;Stop&lt;/button&gt;
+
+                    &lt;button class="button mt-2"
+                        onclick="$('#countdown_methods').data('countdown').pause()"&gt;Pause&lt;/button&gt;
+
+                    &lt;button class="button mt-2"
+                        onclick="alert($('#countdown_methods').data('countdown').getTimepoint(true))"&gt;Timepoint&lt;/button&gt;
+
+                    &lt;button class="button mt-2"
+                        onclick="alert($('#countdown_methods').data('countdown').getBreakpoint(true))"&gt;Breakpoint&lt;/button&gt;
+
+                    &lt;button class="button mt-2"
+                        onclick="alert('Minutes left: ' + $('#countdown_methods').data('countdown').getLeft().minutes)"&gt;Minutes left&lt;/button&gt;
+                </code></pre>
+
+                <h3 id="_countdown_i18n">i18n</h3>
+                <p>
+                    To change <code>language</code> for <code>countdown</code> use attribute <code>data-locale</code>. All predefined language files stored in <code>i18n</code> folder.
+                    You can add own internationalisation file to <code>i18n</code> folder with same structure and use it. For more information about <code>i18n</code> see <a href="i18n.html">this page</a>.
+                </p>
+                <div class="example">
+                    <div data-role="countdown" data-hours="90" data-locale="de-DE" style="font-size: 36px"></div>
+                </div>
+                <pre><code class="html">
+                    &lt;div data-role="countdown" data-hours="90" data-locale="de-DE"&gt;&lt;/div&gt;
+                </code></pre>
+                <p>
+                    You can change locale in runtime. To change locale,  update value for attribute <code>data-locale</code>.
+                </p>
+                <div class="example">
+                    <div class="d-flex flex-justify-center mb-4">
+                        <button class="button m-1" onclick="changeLocale($(this).text())">en-US</button>
+                        <button class="button m-1" onclick="changeLocale($(this).text())">de-DE</button>
+                        <button class="button m-1" onclick="changeLocale($(this).text())">hu-HU</button>
+                        <button class="button m-1" onclick="changeLocale($(this).text())">uk-UA</button>
+                        <button class="button m-1" onclick="changeLocale($(this).text())">ru-RU</button>
+                    </div>
+
+                    <div id="countdown_locale" data-role="countdown" data-hours="90" style="font-size: 36px"></div>
+
+                    <script>
+                        function changeLocale(locale){
+                            $('#countdown_locale').attr('data-locale', locale);
+                        }
+                    </script>
+                </div>
+                <pre><code class="html">
+                    &lt;div class="d-flex flex-justify-center mb-4"&gt;
+                        &lt;button class="button m-1" onclick="changeLocale($(this).text())"&gt;en-US&lt;/button&gt;
+                        &lt;button class="button m-1" onclick="changeLocale($(this).text())"&gt;de-DE&lt;/button&gt;
+                        &lt;button class="button m-1" onclick="changeLocale($(this).text())"&gt;hu-HU&lt;/button&gt;
+                        &lt;button class="button m-1" onclick="changeLocale($(this).text())"&gt;uk-UA&lt;/button&gt;
+                        &lt;button class="button m-1" onclick="changeLocale($(this).text())"&gt;ru-RU&lt;/button&gt;
+                    &lt;/div&gt;
+
+                    &lt;div id="countdown_locale"
+                        data-role="countdown"
+                        data-hours="90"
+                        style="font-size: 36px"&gt;&lt;/div&gt;
+
+                    &lt;script&gt;
+                        function changeLocale(locale){
+                            $('#countdown_locale').attr('data-locale', locale);
+                        }
+                    &lt;/script&gt;
+                </code></pre>
+            </main>
         </div>
 
-        <div class="example" data-text="code">
-            <h5>Declarative style</h5>
-            <pre class="prettyprint linenums no-scroll-x"><code>
-                &lt;div class="countdown" data-role="countdown"&gt;&lt;/div&gt;
-            </code></pre>
-
-            <h5>JavaScript style</h5>
-            <pre class="prettyprint linenums no-scroll-x"><code>
-                &lt;div class="countdown" id="countdown"&gt;&lt;/div&gt;
-
-                &lt;script&gt;
-                    $(function(){
-                        $("#countdown").countdown();
-                    });
-                &lt;/script&gt;
-            </code></pre>
-        </div>
-
-        <h3>Options</h3>
-        <table class="table bordered border">
-            <thead>
-            <tr>
-                <td>Parameter</td>
-                <td>Data-*</td>
-                <td>Type</td>
-                <td>Default value</td>
-                <td>Description</td>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>stop</td>
-                <td style="white-space: nowrap">data-stop</td>
-                <td>stringify date</td>
-                <td>false (current datetime)</td>
-                <td>Stop time</td>
-            </tr>
-            <tr>
-                <td>days</td>
-                <td style="white-space: nowrap">data-days</td>
-                <td>int</td>
-                <td>false</td>
-                <td>Days to stop</td>
-            </tr>
-            <tr>
-                <td>hours</td>
-                <td style="white-space: nowrap">data-hours</td>
-                <td>int</td>
-                <td>false</td>
-                <td>Hours to stop</td>
-            </tr>
-            <tr>
-                <td>minutes</td>
-                <td style="white-space: nowrap">data-minutes</td>
-                <td>int</td>
-                <td>false</td>
-                <td>Minutes to stop</td>
-            </tr>
-            <tr>
-                <td>seconds</td>
-                <td style="white-space: nowrap">data-seconds</td>
-                <td>int</td>
-                <td>false</td>
-                <td>Seconds to stop</td>
-            </tr>
-            <tr>
-                <td>backgroundColor</td>
-                <td style="white-space: nowrap">data-background-color</td>
-                <td>string</td>
-                <td>bg-cyan</td>
-                <td>Digit background. Color or class</td>
-            </tr>
-            <tr>
-                <td>digitColor</td>
-                <td style="white-space: nowrap">data-digit-color</td>
-                <td>string</td>
-                <td>fg-white</td>
-                <td>Digit color. Color or class</td>
-            </tr>
-            <tr>
-                <td>dividerColor</td>
-                <td style="white-space: nowrap">data-divider-color</td>
-                <td>string</td>
-                <td>fg-dark</td>
-                <td>Divider color. Color or class</td>
-            </tr>
-            <tr>
-                <td>labelColor</td>
-                <td style="white-space: nowrap">data-label-color</td>
-                <td>string</td>
-                <td>fg-grayLight</td>
-                <td>Labels color. Color or class</td>
-            </tr>
-            <tr>
-                <td>labels</td>
-                <td style="white-space: nowrap">data-labels</td>
-                <td>object</td>
-                <td>{'days': 'days', 'hours': 'hours', 'minutes': 'minutes', 'seconds': 'seconds'}</td>
-                <td>Label values</td>
-            </tr>
-            </tbody>
-        </table>
-
-        <div class="padding10 bg-grayLighter">
-            <p><span class="tag alert">Important!</span> If you use <span class="tag info">stop</span> option, you should consider the following:
-                <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">Mozilla Date specific</a>,
-                <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15">ECMA Date Time String Format</a>.
-            </p>
-        </div>
-
-        <h3>Events</h3>
-        <table class="table bordered border">
-            <thead>
-            <tr>
-                <td>Event</td>
-                <td>Data-*</td>
-                <td>Params</td>
-                <td>Description</td>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>onTick</td>
-                <td style="white-space: nowrap">data-on-tick</td>
-                <td>(d, h, m, s)</td>
-                <td>The event fired when the countdown ticked</td>
-            </tr>
-            <tr>
-                <td>onStop</td>
-                <td style="white-space: nowrap">data-on-stop</td>
-                <td></td>
-                <td>The event fired when the countdown stopped</td>
-            </tr>
-            </tbody>
-        </table>
     </div>
+
+    <script src="docsearch/docsearch.min.js"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="metro/js/metro.js"></script>
+    <script src="highlight/highlight.pack.js"></script>
+    <script src="js/clipboard.min.js"></script>
+    <script src="js/site.js"></script>
+    <!-- ads-script -->
 </body>
 </html>
