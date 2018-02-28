@@ -217,47 +217,47 @@
   color: #008a00 !important;
 }
 .bd-blue {
-  border-color: #00aff0 !important;
+  border-color: #00AFF0 !important;
 }
 .ol-blue {
-  outline-color: #00aff0 !important;
+  outline-color: #00AFF0 !important;
 }
 .op-blue {
   background-color: rgba(0, 175, 240, 0.7);
 }
 .ribbed-blue {
-  background: #00aff0 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
+  background: #00AFF0 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
 .before-bg-blue:before {
-  background: #00aff0 !important;
+  background: #00AFF0 !important;
 }
 .before-fg-blue:before {
-  color: #00aff0 !important;
+  color: #00AFF0 !important;
 }
 .after-bg-blue:after {
-  background: #00aff0 !important;
+  background: #00AFF0 !important;
 }
 .after-fg-blue:after {
-  color: #00aff0 !important;
+  color: #00AFF0 !important;
 }
 .bg-hover-blue:hover {
-  background: #00aff0 !important;
+  background: #00AFF0 !important;
 }
 .bg-active-blue:active {
-  background: #00aff0 !important;
+  background: #00AFF0 !important;
 }
 .bg-focus-blue:focus {
-  background: #00aff0 !important;
+  background: #00AFF0 !important;
 }
 .fg-hover-blue:hover {
-  color: #00aff0 !important;
+  color: #00AFF0 !important;
 }
 .fg-active-blue:active {
-  color: #00aff0 !important;
+  color: #00AFF0 !important;
 }
 .fg-focus-blue:focus {
-  color: #00aff0 !important;
+  color: #00AFF0 !important;
 }
 .bd-teal {
   border-color: #00aba9 !important;
@@ -604,47 +604,47 @@
   color: #a20025 !important;
 }
 .bd-red {
-  border-color: #ce352c !important;
+  border-color: #CE352C !important;
 }
 .ol-red {
-  outline-color: #ce352c !important;
+  outline-color: #CE352C !important;
 }
 .op-red {
   background-color: rgba(206, 53, 44, 0.7);
 }
 .ribbed-red {
-  background: #ce352c linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
+  background: #CE352C linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
 .before-bg-red:before {
-  background: #ce352c !important;
+  background: #CE352C !important;
 }
 .before-fg-red:before {
-  color: #ce352c !important;
+  color: #CE352C !important;
 }
 .after-bg-red:after {
-  background: #ce352c !important;
+  background: #CE352C !important;
 }
 .after-fg-red:after {
-  color: #ce352c !important;
+  color: #CE352C !important;
 }
 .bg-hover-red:hover {
-  background: #ce352c !important;
+  background: #CE352C !important;
 }
 .bg-active-red:active {
-  background: #ce352c !important;
+  background: #CE352C !important;
 }
 .bg-focus-red:focus {
-  background: #ce352c !important;
+  background: #CE352C !important;
 }
 .fg-hover-red:hover {
-  color: #ce352c !important;
+  color: #CE352C !important;
 }
 .fg-active-red:active {
-  color: #ce352c !important;
+  color: #CE352C !important;
 }
 .fg-focus-red:focus {
-  color: #ce352c !important;
+  color: #CE352C !important;
 }
 .bd-orange {
   border-color: #fa6800 !important;
@@ -1034,47 +1034,47 @@
   color: #1d1d1d !important;
 }
 .bd-darkBrown {
-  border-color: #63362f !important;
+  border-color: #63362F !important;
 }
 .ol-darkBrown {
-  outline-color: #63362f !important;
+  outline-color: #63362F !important;
 }
 .op-darkBrown {
   background-color: rgba(99, 54, 47, 0.7);
 }
 .ribbed-darkBrown {
-  background: #63362f linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
+  background: #63362F linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
 .before-bg-darkBrown:before {
-  background: #63362f !important;
+  background: #63362F !important;
 }
 .before-fg-darkBrown:before {
-  color: #63362f !important;
+  color: #63362F !important;
 }
 .after-bg-darkBrown:after {
-  background: #63362f !important;
+  background: #63362F !important;
 }
 .after-fg-darkBrown:after {
-  color: #63362f !important;
+  color: #63362F !important;
 }
 .bg-hover-darkBrown:hover {
-  background: #63362f !important;
+  background: #63362F !important;
 }
 .bg-active-darkBrown:active {
-  background: #63362f !important;
+  background: #63362F !important;
 }
 .bg-focus-darkBrown:focus {
-  background: #63362f !important;
+  background: #63362F !important;
 }
 .fg-hover-darkBrown:hover {
-  color: #63362f !important;
+  color: #63362F !important;
 }
 .fg-active-darkBrown:active {
-  color: #63362f !important;
+  color: #63362F !important;
 }
 .fg-focus-darkBrown:focus {
-  color: #63362f !important;
+  color: #63362F !important;
 }
 .bd-darkCrimson {
   border-color: #640024 !important;
@@ -1120,176 +1120,176 @@
   color: #640024 !important;
 }
 .bd-darkMagenta {
-  border-color: #81003c !important;
+  border-color: #81003C !important;
 }
 .ol-darkMagenta {
-  outline-color: #81003c !important;
+  outline-color: #81003C !important;
 }
 .op-darkMagenta {
   background-color: rgba(129, 0, 60, 0.7);
 }
 .ribbed-darkMagenta {
-  background: #81003c linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
+  background: #81003C linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
 .before-bg-darkMagenta:before {
-  background: #81003c !important;
+  background: #81003C !important;
 }
 .before-fg-darkMagenta:before {
-  color: #81003c !important;
+  color: #81003C !important;
 }
 .after-bg-darkMagenta:after {
-  background: #81003c !important;
+  background: #81003C !important;
 }
 .after-fg-darkMagenta:after {
-  color: #81003c !important;
+  color: #81003C !important;
 }
 .bg-hover-darkMagenta:hover {
-  background: #81003c !important;
+  background: #81003C !important;
 }
 .bg-active-darkMagenta:active {
-  background: #81003c !important;
+  background: #81003C !important;
 }
 .bg-focus-darkMagenta:focus {
-  background: #81003c !important;
+  background: #81003C !important;
 }
 .fg-hover-darkMagenta:hover {
-  color: #81003c !important;
+  color: #81003C !important;
 }
 .fg-active-darkMagenta:active {
-  color: #81003c !important;
+  color: #81003C !important;
 }
 .fg-focus-darkMagenta:focus {
-  color: #81003c !important;
+  color: #81003C !important;
 }
 .bd-darkIndigo {
-  border-color: #4b0096 !important;
+  border-color: #4B0096 !important;
 }
 .ol-darkIndigo {
-  outline-color: #4b0096 !important;
+  outline-color: #4B0096 !important;
 }
 .op-darkIndigo {
   background-color: rgba(75, 0, 150, 0.7);
 }
 .ribbed-darkIndigo {
-  background: #4b0096 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
+  background: #4B0096 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
 .before-bg-darkIndigo:before {
-  background: #4b0096 !important;
+  background: #4B0096 !important;
 }
 .before-fg-darkIndigo:before {
-  color: #4b0096 !important;
+  color: #4B0096 !important;
 }
 .after-bg-darkIndigo:after {
-  background: #4b0096 !important;
+  background: #4B0096 !important;
 }
 .after-fg-darkIndigo:after {
-  color: #4b0096 !important;
+  color: #4B0096 !important;
 }
 .bg-hover-darkIndigo:hover {
-  background: #4b0096 !important;
+  background: #4B0096 !important;
 }
 .bg-active-darkIndigo:active {
-  background: #4b0096 !important;
+  background: #4B0096 !important;
 }
 .bg-focus-darkIndigo:focus {
-  background: #4b0096 !important;
+  background: #4B0096 !important;
 }
 .fg-hover-darkIndigo:hover {
-  color: #4b0096 !important;
+  color: #4B0096 !important;
 }
 .fg-active-darkIndigo:active {
-  color: #4b0096 !important;
+  color: #4B0096 !important;
 }
 .fg-focus-darkIndigo:focus {
-  color: #4b0096 !important;
+  color: #4B0096 !important;
 }
 .bd-darkCyan {
-  border-color: #1b6eae !important;
+  border-color: #1B6EAE !important;
 }
 .ol-darkCyan {
-  outline-color: #1b6eae !important;
+  outline-color: #1B6EAE !important;
 }
 .op-darkCyan {
   background-color: rgba(27, 110, 174, 0.7);
 }
 .ribbed-darkCyan {
-  background: #1b6eae linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
+  background: #1B6EAE linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
 .before-bg-darkCyan:before {
-  background: #1b6eae !important;
+  background: #1B6EAE !important;
 }
 .before-fg-darkCyan:before {
-  color: #1b6eae !important;
+  color: #1B6EAE !important;
 }
 .after-bg-darkCyan:after {
-  background: #1b6eae !important;
+  background: #1B6EAE !important;
 }
 .after-fg-darkCyan:after {
-  color: #1b6eae !important;
+  color: #1B6EAE !important;
 }
 .bg-hover-darkCyan:hover {
-  background: #1b6eae !important;
+  background: #1B6EAE !important;
 }
 .bg-active-darkCyan:active {
-  background: #1b6eae !important;
+  background: #1B6EAE !important;
 }
 .bg-focus-darkCyan:focus {
-  background: #1b6eae !important;
+  background: #1B6EAE !important;
 }
 .fg-hover-darkCyan:hover {
-  color: #1b6eae !important;
+  color: #1B6EAE !important;
 }
 .fg-active-darkCyan:active {
-  color: #1b6eae !important;
+  color: #1B6EAE !important;
 }
 .fg-focus-darkCyan:focus {
-  color: #1b6eae !important;
+  color: #1B6EAE !important;
 }
 .bd-darkCobalt {
-  border-color: #00356a !important;
+  border-color: #00356A !important;
 }
 .ol-darkCobalt {
-  outline-color: #00356a !important;
+  outline-color: #00356A !important;
 }
 .op-darkCobalt {
   background-color: rgba(0, 53, 106, 0.7);
 }
 .ribbed-darkCobalt {
-  background: #00356a linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
+  background: #00356A linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
 .before-bg-darkCobalt:before {
-  background: #00356a !important;
+  background: #00356A !important;
 }
 .before-fg-darkCobalt:before {
-  color: #00356a !important;
+  color: #00356A !important;
 }
 .after-bg-darkCobalt:after {
-  background: #00356a !important;
+  background: #00356A !important;
 }
 .after-fg-darkCobalt:after {
-  color: #00356a !important;
+  color: #00356A !important;
 }
 .bg-hover-darkCobalt:hover {
-  background: #00356a !important;
+  background: #00356A !important;
 }
 .bg-active-darkCobalt:active {
-  background: #00356a !important;
+  background: #00356A !important;
 }
 .bg-focus-darkCobalt:focus {
-  background: #00356a !important;
+  background: #00356A !important;
 }
 .fg-hover-darkCobalt:hover {
-  color: #00356a !important;
+  color: #00356A !important;
 }
 .fg-active-darkCobalt:active {
-  color: #00356a !important;
+  color: #00356A !important;
 }
 .fg-focus-darkCobalt:focus {
-  color: #00356a !important;
+  color: #00356A !important;
 }
 .bd-darkTeal {
   border-color: #004050 !important;
@@ -1679,47 +1679,47 @@
   color: #4390df !important;
 }
 .bd-lighterBlue {
-  border-color: #00ccff !important;
+  border-color: #00CCFF !important;
 }
 .ol-lighterBlue {
-  outline-color: #00ccff !important;
+  outline-color: #00CCFF !important;
 }
 .op-lighterBlue {
   background-color: rgba(0, 204, 255, 0.7);
 }
 .ribbed-lighterBlue {
-  background: #00ccff linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
+  background: #00CCFF linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 40px 40px !important;
 }
 .before-bg-lighterBlue:before {
-  background: #00ccff !important;
+  background: #00CCFF !important;
 }
 .before-fg-lighterBlue:before {
-  color: #00ccff !important;
+  color: #00CCFF !important;
 }
 .after-bg-lighterBlue:after {
-  background: #00ccff !important;
+  background: #00CCFF !important;
 }
 .after-fg-lighterBlue:after {
-  color: #00ccff !important;
+  color: #00CCFF !important;
 }
 .bg-hover-lighterBlue:hover {
-  background: #00ccff !important;
+  background: #00CCFF !important;
 }
 .bg-active-lighterBlue:active {
-  background: #00ccff !important;
+  background: #00CCFF !important;
 }
 .bg-focus-lighterBlue:focus {
-  background: #00ccff !important;
+  background: #00CCFF !important;
 }
 .fg-hover-lighterBlue:hover {
-  color: #00ccff !important;
+  color: #00CCFF !important;
 }
 .fg-active-lighterBlue:active {
-  color: #00ccff !important;
+  color: #00CCFF !important;
 }
 .fg-focus-lighterBlue:focus {
-  color: #00ccff !important;
+  color: #00CCFF !important;
 }
 .bd-lightTeal {
   border-color: #45fffd !important;
