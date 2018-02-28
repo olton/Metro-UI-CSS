@@ -97,7 +97,7 @@ module.exports = function(grunt) {
         postcss: {
             options: {
                 processors: [
-                    autoprefixer({ browsers: ['> 5%'] }).postcss
+                    autoprefixer({ browsers: ['> 5%'] })
                 ]
             },
             dist: { src: 'build/css/*.css' }
