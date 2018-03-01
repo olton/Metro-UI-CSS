@@ -296,9 +296,9 @@
                     </li>
 
                     <li>
-                        <strong>pattern</strong> - value must be equal with regexp pattern
+                        <strong>pattern</strong> - value must be equal with regex pattern. Currently regex modifiers not supported. Parsing regex modifiers will be added in next version.
                         <pre><code>
-                            &lt;input type="text" data-validate="pattern=/(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i"&gt;
+                            &lt;input type="text" data-validate="pattern=(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)"&gt;
                         </code></pre>
                     </li>
 
