@@ -9,7 +9,7 @@
     Sleek, intuitive, and powerful front-end framework for faster and easier web development.
  Build responsive, mobile-first projects on the web with the first front-end component library in Metro Style.
     <br>
-    <a href="https://metroui.org.ua/v4/"><strong>Explore Metro 4 docs »</strong></a>
+    <a href="https://metroui.org.ua/"><strong>Explore Metro 4 docs »</strong></a>
   </p>
 </p>
 
@@ -17,7 +17,7 @@
 Metro 4 is an MIT-licensed open source project. 
 It's an independent project with its ongoing development made possible entirely thanks to the support by these
 <br>
-<a href="https://github.com/Pro-Club/MetroCL/blob/master/BACKERS.md"><strong>awesome Backers</strong></a>.
+<a href="https://github.com/olton/Metro-UI-CSS/blob/master/BACKERS.md"><strong>awesome Backers</strong></a>.
 </p>
 
 <br>
