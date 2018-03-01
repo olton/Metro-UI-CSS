@@ -61,9 +61,12 @@ adsense
 
 # Special files
 deploy.bat
+deploy-only.bat
+docs.bat
 commit.bat
 publish.bat
 Postprocess.js
 Build.js
+Docs.js
 *.ftpauth
 /package-lock.json
