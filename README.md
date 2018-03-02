@@ -26,7 +26,7 @@ It's an independent project with its ongoing development made possible entirely 
 ## Current Version 4.0.1
 
 ### Status
-[![Build Status](https://api.travis-ci.org/Pro-Club/MetroCL.svg?branch=master)](https://travis-ci.org/Pro-Club/MetroCL)
+[![Build Status](https://travis-ci.org/olton/Metro-UI-CSS.svg?branch=master)](https://travis-ci.org/olton/Metro-UI-CSS)
 [![Dependency Status](https://david-dm.org/Pro-Club/MetroCL/status.svg)](https://david-dm.org/Pro-Club/MetroCL)
 [![devDependency Status](https://david-dm.org/Pro-Club/MetroCL/dev-status.svg)](https://david-dm.org/Pro-Club/MetroCL?type=dev)
 [![CSS gzip size](http://img.badgesize.io/Pro-Club/MetroCL/master/build/css/metro-all.min.css?compression=gzip&label=CSS+gzip)](https://github.com/Pro-Club/MetroCL/blob/master/build/css/metro-all.min.css)
