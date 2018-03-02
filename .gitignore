@@ -69,4 +69,5 @@ Postprocess.js
 Build.js
 Docs.js
 *.ftpauth
+*.nupkg
 /package-lock.json
