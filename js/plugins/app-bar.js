@@ -47,7 +47,7 @@ var AppBar = {
 
         hamburger = element.find(".hamburger");
         if (hamburger.length === 0) {
-            hamburger = $("<button>").addClass("hamburger menu-down").appendTo(element);
+            hamburger = $("<button>").attr("type", "button").addClass("hamburger menu-down").appendTo(element);
             for(var i = 0; i < 3; i++) {
                 $("<span>").addClass("line").appendTo(hamburger);
             }
