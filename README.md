@@ -23,7 +23,7 @@ It's an independent project with its ongoing development made possible entirely 
 <br>
 <hr>
  
-## Current Version 4.0.0
+## Current Version 4.0.1
 
 ### Status
 [![Build Status](https://api.travis-ci.org/Pro-Club/MetroCL.svg?branch=master)](https://travis-ci.org/Pro-Club/MetroCL)
