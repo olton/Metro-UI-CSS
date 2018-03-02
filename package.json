@@ -25,7 +25,7 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "autoprefixer": "^7.2.1",
+    "autoprefixer": "^8.0.0",
     "grunt": "^1.0.1",
     "grunt-build-number": "^1.0.0",
     "grunt-bump": "^0.8.0",
