@@ -26,11 +26,10 @@ If you'd like to join them, please consider:
 
  - [Riku](https://www.patreon.com/user/creators?u=8976699) <small>(The first backer for Metro 4!)</small>
 
-<!--
 <h2 align="center">Backers via Patreon</h2>
 
  - [Jonathan](https://www.patreon.com/user/creators?u=10019621)
--->
+
 <h2 align="center">Project donors</h2>
 
  - [Chaoswriter96](https://github.com/Chaoswriter96)
