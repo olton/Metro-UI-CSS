@@ -42,5 +42,8 @@
     "grunt-replace": "^1.0.1",
     "grunt-stripcomments": "^0.7.2",
     "load-grunt-tasks": "^3.1.0"
+  },
+  "dependencies": {
+    "jquery": ">= 2"
   }
 }
