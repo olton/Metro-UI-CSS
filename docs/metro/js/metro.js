@@ -3741,7 +3741,7 @@ var AppBar = {
 
         hamburger = element.find(".hamburger");
         if (hamburger.length === 0) {
-            hamburger = $("<button>").addClass("hamburger menu-down").appendTo(element);
+            hamburger = $("<button>").attr("type", "button").addClass("hamburger menu-down").appendTo(element);
             for(var i = 0; i < 3; i++) {
                 $("<span>").addClass("line").appendTo(hamburger);
             }
@@ -4815,7 +4815,7 @@ var Calendar = {
         footer.html("");
 
         $.each(o.buttons, function(){
-            var button = $("<button>").addClass("button " + this + " " + o['cls'+this.capitalize()+'Button']).html(buttons_locale[this]).appendTo(footer);
+            var button = $("<button>").attr("type", "button").addClass("button " + this + " " + o['cls'+this.capitalize()+'Button']).html(buttons_locale[this]).appendTo(footer);
             if (this === 'cancel' || this === 'done') {
                 button.addClass("js-dialog-close");
             }
@@ -7480,8 +7480,8 @@ var DatePicker = {
         selectBlock.height((o.distance * 2 + 1) * 40);
 
         actionBlock = $("<div>").addClass("action-block").appendTo(selectWrapper);
-        $("<button>").addClass("button action-ok").html("<span class='default-icon-check'></span>").appendTo(actionBlock);
-        $("<button>").addClass("button action-cancel").html("<span class='default-icon-cross'></span>").appendTo(actionBlock);
+        $("<button>").attr("type", "button").addClass("button action-ok").html("<span class='default-icon-check'></span>").appendTo(actionBlock);
+        $("<button>").attr("type", "button").addClass("button action-cancel").html("<span class='default-icon-cross'></span>").appendTo(actionBlock);
 
 
         element[0].className = '';
@@ -11859,7 +11859,7 @@ var Select = {
             element.val(val);
             element.trigger("change");
             list_obj.close();
-            Utils.exec(o.onChange, [val]);
+            Utils.exec(o.onChange, [val], element[0]);
         });
     },
 
@@ -13854,8 +13854,8 @@ var TimePicker = {
         selectBlock.height((o.distance * 2 + 1) * 40);
 
         actionBlock = $("<div>").addClass("action-block").appendTo(selectWrapper);
-        $("<button>").addClass("button action-ok").html("<span class='default-icon-check'></span>").appendTo(actionBlock);
-        $("<button>").addClass("button action-cancel").html("<span class='default-icon-cross'></span>").appendTo(actionBlock);
+        $("<button>").attr("type", "button").addClass("button action-ok").html("<span class='default-icon-check'></span>").appendTo(actionBlock);
+        $("<button>").attr("type", "button").addClass("button action-cancel").html("<span class='default-icon-cross'></span>").appendTo(actionBlock);
 
 
         element[0].className = '';

@@ -181,7 +181,7 @@ var Select = {
             element.val(val);
             element.trigger("change");
             list_obj.close();
-            Utils.exec(o.onChange, [val]);
+            Utils.exec(o.onChange, [val], element[0]);
         });
     },
 

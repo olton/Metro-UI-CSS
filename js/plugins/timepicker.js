@@ -149,8 +149,8 @@ var TimePicker = {
         selectBlock.height((o.distance * 2 + 1) * 40);
 
         actionBlock = $("<div>").addClass("action-block").appendTo(selectWrapper);
-        $("<button>").addClass("button action-ok").html("<span class='default-icon-check'></span>").appendTo(actionBlock);
-        $("<button>").addClass("button action-cancel").html("<span class='default-icon-cross'></span>").appendTo(actionBlock);
+        $("<button>").attr("type", "button").addClass("button action-ok").html("<span class='default-icon-check'></span>").appendTo(actionBlock);
+        $("<button>").attr("type", "button").addClass("button action-cancel").html("<span class='default-icon-cross'></span>").appendTo(actionBlock);
 
 
         element[0].className = '';

@@ -428,7 +428,7 @@ var Calendar = {
         footer.html("");
 
         $.each(o.buttons, function(){
-            var button = $("<button>").addClass("button " + this + " " + o['cls'+this.capitalize()+'Button']).html(buttons_locale[this]).appendTo(footer);
+            var button = $("<button>").attr("type", "button").addClass("button " + this + " " + o['cls'+this.capitalize()+'Button']).html(buttons_locale[this]).appendTo(footer);
             if (this === 'cancel' || this === 'done') {
                 button.addClass("js-dialog-close");
             }
