@@ -1,5 +1,5 @@
 /*!
- * Metro 4 Components Library v4.0.0 build 594 (https://metroui.org.ua)
+ * Metro 4 Components Library v4.0.0 build @@build (https://metroui.org.ua)
  * Copyright 2018 Sergey Pimenov
  * Licensed under MIT
  */
@@ -71,7 +71,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.0.0-594-beta",
+    version: "@@version-@@build@@status",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -11726,6 +11726,32 @@ var Select = {
     },
 
     _createSelect: function(){
+
+        function addOption(item, parent){
+            var option = $(item);
+            var l, a;
+
+            l = $("<li>").addClass(o.clsOption).data("text", item.text).data('value', item.value).appendTo(list);
+            a = $("<a>").html(item.text).appendTo(l).addClass(item.className);
+
+            if (option.is(":selected")) {
+                element.val(item.value);
+                input.val(item.text).trigger("change");
+                element.trigger("change");
+            }
+
+            a.appendTo(l);
+            l.appendTo(parent);
+        }
+
+        function addOptionGroup(item, parent){
+            var group = $(item);
+            var optgroup = $("<li>").html(item.label).addClass("group-title").appendTo(parent);
+            $.each(group.children(), function(){
+                addOption(this, parent);
+            })
+        }
+
         var that = this, element = this.element, o = this.options;
 
         var prev = element.prev();
@@ -11733,6 +11759,7 @@ var Select = {
         var container = $("<div>").addClass("select " + element[0].className).addClass(o.clsElement);
         var multiple = element.prop("multiple");
         var select_id = Utils.uniqueId();
+
 
         container.attr("id", select_id).addClass("dropdown-toggle");
 
@@ -11750,31 +11777,6 @@ var Select = {
             var list = $("<ul>").addClass("d-menu").css({
                 "max-height": o.dropHeight
             });
-
-            function addOption(item, parent){
-                var option = $(item);
-                var l, a;
-
-                l = $("<li>").addClass(o.clsOption).data("text", item.text).data('value', item.value).appendTo(list);
-                a = $("<a>").html(item.text).appendTo(l).addClass(item.className);
-
-                if (option.is(":selected")) {
-                    element.val(item.value);
-                    input.val(item.text).trigger("change");
-                    element.trigger("change");
-                }
-
-                a.appendTo(l);
-                l.appendTo(parent);
-            }
-
-            function addOptionGroup(item, parent){
-                var group = $(item);
-                var optgroup = $("<li>").html(item.label).addClass("group-title").appendTo(parent);
-                $.each(group.children(), function(){
-                    addOption(this, parent);
-                })
-            }
 
             $.each(element.children(), function(){
                 if (this.tagName === "OPTION") {
@@ -13525,6 +13527,15 @@ var Tile = {
     },
 
     _createTile: function(){
+        function switchImage(el, img_src){
+            setTimeout(function(){
+                el.fadeOut(500, function(){
+                    el.css("background-image", "url(" + img_src + ")");
+                    el.fadeIn();
+                });
+            }, Utils.random(0,1000));
+        }
+
         var that = this, element = this.element, o = this.options;
         var slides = element.find(".slide");
         var slides2 = element.find(".slide-front, .slide-back");
@@ -13585,15 +13596,6 @@ var Tile = {
                 element.prepend(div);
                 img.remove();
             });
-
-            function switchImage(el, img_src){
-                setTimeout(function(){
-                    el.fadeOut(500, function(){
-                        el.css("background-image", "url(" + img_src + ")");
-                        el.fadeIn();
-                    });
-                }, Utils.random(0,1000));
-            }
 
             setInterval(function(){
                 var temp = that.images.slice();

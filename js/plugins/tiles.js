@@ -50,6 +50,15 @@ var Tile = {
     },
 
     _createTile: function(){
+        function switchImage(el, img_src){
+            setTimeout(function(){
+                el.fadeOut(500, function(){
+                    el.css("background-image", "url(" + img_src + ")");
+                    el.fadeIn();
+                });
+            }, Utils.random(0,1000));
+        }
+
         var that = this, element = this.element, o = this.options;
         var slides = element.find(".slide");
         var slides2 = element.find(".slide-front, .slide-back");
@@ -110,15 +119,6 @@ var Tile = {
                 element.prepend(div);
                 img.remove();
             });
-
-            function switchImage(el, img_src){
-                setTimeout(function(){
-                    el.fadeOut(500, function(){
-                        el.css("background-image", "url(" + img_src + ")");
-                        el.fadeIn();
-                    });
-                }, Utils.random(0,1000));
-            }
 
             setInterval(function(){
                 var temp = that.images.slice();
