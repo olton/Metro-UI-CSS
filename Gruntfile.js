@@ -6,7 +6,7 @@ module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         banner: '/*!\n' +
-        ' * Metro 4 Components Library v<%= pkg.version %> build @@build (<%= pkg.homepage %>)\n' +
+        ' * Metro 4 Components Library v<%= pkg.version %> build @@build<%= pkg.version_suffix %> (<%= pkg.homepage %>)\n' +
         ' * Copyright <%= grunt.template.today("yyyy") %> <%= pkg.author %>\n' +
         ' * Licensed under <%= pkg.license %>\n' +
         ' */\n',
