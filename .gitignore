@@ -68,6 +68,7 @@ publish.bat
 build.bat
 Postprocess.js
 Build.js
+Build_replace.js
 Docs.js
 *.ftpauth
 *.nupkg
