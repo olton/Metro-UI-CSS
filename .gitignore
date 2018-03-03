@@ -65,6 +65,7 @@ deploy-only.bat
 docs.bat
 commit.bat
 publish.bat
+build.bat
 Postprocess.js
 Build.js
 Docs.js
