@@ -79,14 +79,14 @@
                         <div class="row mb-2">
                             <div class="cell-md-6">
                                 <label>First name</label>
-                                <input type="text" data-validate="required, minlength=6" placeholder="Enter first name">
+                                <input type="text" data-validate="minlength=6" placeholder="Enter first name">
                                 <span class="invalid_feedback">
                                     Input correct name with min length 6 symbols
                                 </span>
                             </div>
                             <div class="cell-md-6">
                                 <label>Email</label>
-                                <input type="email" data-validate="required, email" placeholder="Enter email" data-role="input">
+                                <input type="email" data-validate="required email" placeholder="Enter email" data-role="input">
                                 <span class="invalid_feedback">
                                     Input correct email address
                                 </span>
@@ -100,14 +100,14 @@
                         &lt;div class="row mb-2"&gt;
                             &lt;div class="cell-md-6"&gt;
                                 &lt;label&gt;First name&lt;/label&gt;
-                                &lt;input type="text" data-validate="required, minlength=6"&gt;
+                                &lt;input type="text" data-validate="required minlength=6"&gt;
                                 &lt;span class="invalid_feedback"&gt;
                                     Input correct name with min length 6 symbols
                                 &lt;/span&gt;
                             &lt;/div&gt;
                             &lt;div class="cell-md-6"&gt;
                                 &lt;label&gt;Email&lt;/label&gt;
-                                &lt;input type="email" data-validate="required, email" data-role="input"&gt;
+                                &lt;input type="email" data-validate="required email" data-role="input"&gt;
                                 &lt;span class="invalid_feedback"&gt;
                                     Input correct email address
                                 &lt;/span&gt;
@@ -127,24 +127,24 @@
                 <div class="example">
                     <form data-role="validator" action="javascript:">
                         <div class="form-group">
-                            <label>Input name</label>
+                            <label>Input name (<small>required</small>)</label>
                             <input type="text" data-validate="required" name="nickname">
                         </div>
                         <div class="form-group">
-                            <label>Input age</label>
-                            <input type="text" data-validate="required, number" name="age">
+                            <label>Input age (<small>required number</small>)</label>
+                            <input type="text" data-validate="required number" name="age">
                         </div>
                         <div class="form-group">
-                            <label>Input pin</label>
-                            <input type="text" data-validate="required, digits, length=4" name="pin">
+                            <label>Input pin (<small>required digits length=4</small>)</label>
+                            <input type="text" data-validate="required digits length=4" name="pin">
                         </div>
                         <div class="form-group">
-                            <label>Input password</label>
+                            <label>Input password (<small>required</small>)</label>
                             <input type="password" data-validate="required" name="pass1">
                         </div>
                         <div class="form-group">
-                            <label>Input password again</label>
-                            <input type="password" data-validate="required, compare=pass1" name="pass1_1">
+                            <label>Input password again (<small>required compare=pass1</small>)</label>
+                            <input type="password" data-validate="required compare=pass1" name="pass1_1">
                             <span class="invalid_feedback">
                                 Pass1 and Pass2 must be equal.
                             </span>
@@ -161,11 +161,11 @@
                         &lt;/div&gt;
                         &lt;div class="form-group"&gt;
                             &lt;label&gt;Input age&lt;/label&gt;
-                            &lt;input type="text" data-validate="required, number" name="age"&gt;
+                            &lt;input type="text" data-validate="required number" name="age"&gt;
                         &lt;/div&gt;
                         &lt;div class="form-group"&gt;
                             &lt;label&gt;Input pin&lt;/label&gt;
-                            &lt;input type="text" data-validate="required, digits, length=4" name="pin"&gt;
+                            &lt;input type="text" data-validate="required digits length=4" name="pin"&gt;
                         &lt;/div&gt;
                         &lt;div class="form-group"&gt;
                             &lt;label&gt;Input password&lt;/label&gt;
@@ -173,7 +173,7 @@
                         &lt;/div&gt;
                         &lt;div class="form-group"&gt;
                             &lt;label&gt;Input password again&lt;/label&gt;
-                            &lt;input type="password" data-validate="required, compare=pass1" name="pass2"&gt;
+                            &lt;input type="password" data-validate="required compare=pass1" name="pass2"&gt;
                             &lt;span class="invalid_feedback"&gt;
                                 Pass1 and Pass2 must be equal.
                             &lt;/span&gt;
@@ -306,7 +306,7 @@
                         <strong>compare</strong> - value must be equal to compared input
                         <pre><code>
                             &lt;input type="password" data-validate="required" name="pass1"&gt;
-                            &lt;input type="password" data-validate="required, compare=pass1" name="pass2"&gt;
+                            &lt;input type="password" data-validate="required compare=pass1" name="pass2"&gt;
                         </code></pre>
                     </li>
                 </ul>
@@ -325,7 +325,7 @@
                     You can combine function. To use it, add function to attribute <code>data-validate</code> with comma delimiter.
                 </p>
                 <pre><code>
-                    &lt;input type="password" data-validate="required, compare=pass1" name="pass2"&gt;
+                    &lt;input type="text" data-validate="required pattern=^[\w]{7,15}$"&gt;
                 </code></pre>
 
                 <h3 id="_validator_events">Events</h3>
@@ -360,7 +360,7 @@
                         &lt;div class="row mb-2"&gt;
                             &lt;div class="cell-md-6"&gt;
                                 &lt;label&gt;First name&lt;/label&gt;
-                                &lt;input type="text" data-validate="required, minlength=6"&gt;
+                                &lt;input type="text" data-validate="minlength=6"&gt;
                                 &lt;span class="invalid_feedback"&gt;
                                     Input correct name with min length 6 symbols
                                 &lt;/span&gt;

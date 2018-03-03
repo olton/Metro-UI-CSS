@@ -1,5 +1,5 @@
 /*!
- * Metro 4 Components Library v4.0.1 build 603 (https://metroui.org.ua)
+ * Metro 4 Components Library v4.0.1 build @@build-beta (https://metroui.org.ua)
  * Copyright 2018 Sergey Pimenov
  * Licensed under MIT
  */
@@ -71,7 +71,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.0.1-603-beta",
+    version: "@@version-@@build@@status",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -14533,7 +14533,7 @@ var ValidatorFuncs = {
         var this_result = true;
         var input = $(el);
         var control = ValidatorFuncs.is_control(input);
-        var funcs = input.data('validate') !== undefined ? String(input.data('validate')).split(",").map(function(s){return s.trim();}) : [];
+        var funcs = input.data('validate') !== undefined ? String(input.data('validate')).split(" ").map(function(s){return s.trim();}) : [];
 
         if (funcs.length === 0) {
             return true;
@@ -14556,7 +14556,13 @@ var ValidatorFuncs = {
             if (f === 'compare') {
                 a = input[0].form.elements[a].value;
             }
-            this_result = ValidatorFuncs[f](input.val(), a);
+
+            if (Utils.isFunc(ValidatorFuncs[f]) === false)  {
+                this_result = true;
+            } else {
+                this_result = ValidatorFuncs[f](input.val(), a);
+            }
+
             if (result !== undefined) {
                 result.val += this_result ? 0 : 1;
             }

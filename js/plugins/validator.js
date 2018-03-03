@@ -84,7 +84,7 @@ var ValidatorFuncs = {
         var this_result = true;
         var input = $(el);
         var control = ValidatorFuncs.is_control(input);
-        var funcs = input.data('validate') !== undefined ? String(input.data('validate')).split(",").map(function(s){return s.trim();}) : [];
+        var funcs = input.data('validate') !== undefined ? String(input.data('validate')).split(" ").map(function(s){return s.trim();}) : [];
 
         if (funcs.length === 0) {
             return true;
@@ -107,7 +107,13 @@ var ValidatorFuncs = {
             if (f === 'compare') {
                 a = input[0].form.elements[a].value;
             }
-            this_result = ValidatorFuncs[f](input.val(), a);
+
+            if (Utils.isFunc(ValidatorFuncs[f]) === false)  {
+                this_result = true;
+            } else {
+                this_result = ValidatorFuncs[f](input.val(), a);
+            }
+
             if (result !== undefined) {
                 result.val += this_result ? 0 : 1;
             }
