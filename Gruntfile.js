@@ -148,7 +148,7 @@ module.exports = function(grunt) {
     });
 
     grunt.registerTask('default', [
-        'clean', 'less', 'postcss', 'concat',  'uglify', 'cssmin', 'copy', 'watch'
+        'clean', 'less', 'postcss', 'concat',  'uglify', 'cssmin', 'copy'
     ]);
 
 };
