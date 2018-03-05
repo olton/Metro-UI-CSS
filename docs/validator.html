@@ -48,10 +48,33 @@
                 <ul class="toc-nav">
                     <li class="toc-entry"><a href="#">Validator</a></li>
                     <li class="toc-entry"><a href="#_validator_how_to">How to</a></li>
-                    <li class="toc-entry"><a href="#_validator_funcs">Functions</a></li>
+                    <li class="toc-entry">
+                        <a href="#_validator_funcs">Functions</a>
+                        <ul>
+                            <li class="toc-entry"><a href="#_validator_func_required">Required</a></li>
+                            <li class="toc-entry"><a href="#_validator_func_length">Length</a></li>
+                            <li class="toc-entry"><a href="#_validator_func_minlength">Min length</a></li>
+                            <li class="toc-entry"><a href="#_validator_func_maxlength">Max length</a></li>
+                            <li class="toc-entry"><a href="#_validator_func_min">Min value</a></li>
+                            <li class="toc-entry"><a href="#_validator_func_max">Max value</a></li>
+                            <li class="toc-entry"><a href="#_validator_func_email">Email</a></li>
+                            <li class="toc-entry"><a href="#_validator_func_url">Url</a></li>
+                            <li class="toc-entry"><a href="#_validator_func_date">Date</a></li>
+                            <li class="toc-entry"><a href="#_validator_func_number">Number</a></li>
+                            <li class="toc-entry"><a href="#_validator_func_integer">Integer</a></li>
+                            <li class="toc-entry"><a href="#_validator_func_float">Float</a></li>
+                            <li class="toc-entry"><a href="#_validator_func_digits">Digits</a></li>
+                            <li class="toc-entry"><a href="#_validator_func_hexcolor">Hex color</a></li>
+                            <li class="toc-entry"><a href="#_validator_func_color">Color</a></li>
+                            <li class="toc-entry"><a href="#_validator_func_pattern">Pattern</a></li>
+                            <li class="toc-entry"><a href="#_validator_func_compare">Compare</a></li>
+                        </ul>
+                    </li>
                     <li class="toc-entry"><a href="#_validator_events">Events</a></li>
                     <li class="toc-entry"><a href="#_validator_submit">Submit</a></li>
+                    <li class="toc-entry"><a href="#_validator_error_handling">Error handling</a></li>
                     <li class="toc-entry"><a href="#_validator_interactive">Interactive check</a></li>
+                    <li class="toc-entry"><a href="#_validator_outside">Validating without a form</a></li>
                 </ul>
 
             </div>
@@ -73,13 +96,18 @@
                 <p>
                     To activate Validator add attribute <code>data-role="validator"</code> to form and define validation functions over attribute <code>data-validate="..."</code> for inputs.
                 </p>
+                <p>
+                    Supported elements: <code>input</code>, <code>select</code>, <code>textarea</code>, <code>checkbox</code> and <code>switch</code>.
+                    For <code>checkbox</code> and <code>switch</code> you can use only <code>required</code> validation function.
+                    More about form elements read in <a href="forms.html">this article</a>.
+                </p>
 
                 <div class="example">
                     <form data-role="validator" action="javascript:">
                         <div class="row mb-2">
                             <div class="cell-md-6">
                                 <label>First name</label>
-                                <input type="text" data-validate="minlength=6" placeholder="Enter first name">
+                                <input type="text" data-validate="required minlength=6" placeholder="Enter first name">
                                 <span class="invalid_feedback">
                                     Input correct name with min length 6 symbols
                                 </span>
@@ -91,6 +119,12 @@
                                     Input correct email address
                                 </span>
                             </div>
+                        </div>
+                        <div class="mt-2 mb-2">
+                            <input type="checkbox" data-role="checkbox" data-caption="I accept the terms" data-validate="required">
+                            <span class="invalid_feedback">
+                                    You must accept this!
+                            </span>
                         </div>
                         <button class="button primary">Submit</button>
                     </form>
@@ -204,105 +238,119 @@
                 </p>
 
                 <ul class="unstyled-list mt-2">
-                    <li>
+                    <li id="_validator_func_required">
                         <strong>required</strong> - mark field as required. Value can not be empty.
                         <pre><code>
                             &lt;input type="text" data-validate="required"&gt;
                         </code></pre>
                     </li>
 
-                    <li>
+                    <li id="_validator_func_length">
                         <strong>length</strong> - set length for value in symbols
                         <pre><code>
                             &lt;input type="text" data-validate="length=4"&gt;
                         </code></pre>
                     </li>
 
-                    <li>
+                    <li id="_validator_func_minlength">
                         <strong>minlength</strong> - set min length for value in symbols
                         <pre><code>
                             &lt;input type="text" data-validate="minlength=4"&gt;
                         </code></pre>
                     </li>
 
-                    <li>
+                    <li id="_validator_func_maxlength">
                         <strong>maxlength</strong>: set max length for value in symbols
                         <pre><code>
                             &lt;input type="text" data-validate="maxlength=4"&gt;
                         </code></pre>
                     </li>
 
-                    <li>
+                    <li id="_validator_func_min">
                         <strong>min</strong> - value must be great or equal then <code>min</code>
                         <pre><code>
                             &lt;input type="text" data-validate="min=4"&gt;
                         </code></pre>
                     </li>
 
-                    <li>
+                    <li id="_validator_func_max">
                         <strong>max</strong>: value must be less or equal then <code>max</code>
                         <pre><code>
                             &lt;input type="text" data-validate="max=4"&gt;
                         </code></pre>
                     </li>
 
-                    <li>
+                    <li id="_validator_func_email">
                         <strong>email</strong> - value must be a valid email
                         <pre><code>
                             &lt;input type="text" data-validate="email"&gt;
                         </code></pre>
                     </li>
 
-                    <li>
+                    <li id="_validator_func_url">
                         <strong>url</strong> - valid url required
                         <pre><code>
                             &lt;input type="text" data-validate="url"&gt;
                         </code></pre>
                     </li>
 
-                    <li>
+                    <li id="_validator_func_date">
                         <strong>date</strong> - valid date required
                         <pre><code>
                             &lt;input type="text" data-validate="date"&gt;
                         </code></pre>
                     </li>
 
-                    <li>
+                    <li id="_validator_func_number">
                         <strong>number</strong> - value must be a number
                         <pre><code>
                             &lt;input type="text" data-validate="number"&gt;
                         </code></pre>
                     </li>
 
-                    <li>
+                    <li id="_validator_func_integer">
+                        <strong>number</strong> - value must be a integer
+                        <pre><code>
+                            &lt;input type="text" data-validate="integer"&gt;
+                        </code></pre>
+                    </li>
+
+                    <li id="_validator_func_float">
+                        <strong>number</strong> - value must be a float
+                        <pre><code>
+                            &lt;input type="text" data-validate="float"&gt;
+                        </code></pre>
+                    </li>
+
+                    <li id="_validator_func_digits">
                         <strong>digits</strong>: value must contains only digits
                         <pre><code>
                             &lt;input type="text" data-validate="digits"&gt;
                         </code></pre>
                     </li>
 
-                    <li>
+                    <li id="_validator_func_hexcolor">
                         <strong>hexcolor</strong> - value must be a valid hex color
                         <pre><code>
                             &lt;input type="text" data-validate="hexcolor"&gt;
                         </code></pre>
                     </li>
 
-                    <li>
+                    <li id="_validator_func_color">
                         <strong>color</strong> - value must contains standard color name
                         <pre><code>
                             &lt;input type="text" data-validate="color"&gt;
                         </code></pre>
                     </li>
 
-                    <li>
+                    <li id="_validator_func_pattern">
                         <strong>pattern</strong> - value must be equal with regex pattern. Currently regex modifiers not supported. Parsing regex modifiers will be added in next version.
                         <pre><code>
                             &lt;input type="text" data-validate="pattern=(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)"&gt;
                         </code></pre>
                     </li>
 
-                    <li>
+                    <li id="_validator_func_compare">
                         <strong>compare</strong> - value must be equal to compared input
                         <pre><code>
                             &lt;input type="password" data-validate="required" name="pass1"&gt;
@@ -310,15 +358,6 @@
                         </code></pre>
                     </li>
                 </ul>
-                <p class="remark success">
-                    Also, you can use <strong>validator functions</strong> without a form. For use it without form, in <code>Metro 4</code> present object <code>Metro.validator</code> with all validation functions.
-                </p>
-                <pre><code>
-                    var validator = Metro.validator;
-
-                    validator.color("red") // return true
-                    validator.color("blueRed") // return false
-                </code></pre>
 
                 <h4>Combine validating functions</h4>
                 <p>
@@ -333,7 +372,9 @@
                     When Validator is works, fired any events:
                         <code>onBeforeSubmit(form)</code>,
                         <code>onError(element, value)</code>,
-                        <code>onValid(element, value)</code>,
+                        <code>onValidate(element, value)</code>,
+                        <code>onErrorForm()</code>,
+                        <code>onValidateForm()</code>,
                         <code>onSubmit(form)</code>,
                         <code>onValidatorCreate(form)</code>.
                 </p>
@@ -341,11 +382,11 @@
                     To use event add attribute <code>data-on-*</code> to form.
                 </p>
                 <div class="example">
-                    <form data-role="validator" action="javascript:" data-on-submit="alert('Form submitted!')">
+                    <form data-role="validator" action="javascript:" data-on-submit="alert('Your submitted name is: ' + this['nick_name'].value)">
                         <div class="row mb-2">
                             <div class="cell-md-6">
-                                <label>First name</label>
-                                <input type="text" data-validate="minlength=6" placeholder="Enter first name">
+                                <label>Your nickname</label>
+                                <input type="text" data-validate="minlength=3" placeholder="Enter your nickname" name="nick_name">
                                 <span class="invalid_feedback">
                                     Input correct name with min length 6 symbols
                                 </span>
@@ -356,11 +397,11 @@
                 </div>
                 <pre class=""><code>
                     &lt;form data-role="validator" action="javascript:"
-                          data-on-submit="alert('Form submitted!')"&gt;
+                          data-on-submit="alert('Your submitted name is: ' + this['nick_name'].value)"&gt;
                         &lt;div class="row mb-2"&gt;
                             &lt;div class="cell-md-6"&gt;
-                                &lt;label&gt;First name&lt;/label&gt;
-                                &lt;input type="text" data-validate="minlength=6"&gt;
+                                &lt;label&gt;Your nickname&lt;/label&gt;
+                                &lt;input type="text" data-validate="minlength=6" name="nick_name"&gt;
                                 &lt;span class="invalid_feedback"&gt;
                                     Input correct name with min length 6 symbols
                                 &lt;/span&gt;
@@ -369,6 +410,54 @@
                         &lt;button class="button primary"&gt;Submit&lt;/button&gt;
                     &lt;/form&gt;
                 </code></pre>
+                <table class="table cell-border table-border options-table">
+                    <thead>
+                    <tr>
+                        <th>Event</th>
+                        <th>Data</th>
+                        <th>Context</th>
+                        <th>Desc</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><code>onError(el, val)</code></td>
+                        <td><code>data-on-error</code></td>
+                        <td><code>element</code></td>
+                        <td>Event generate if field not passed validation</td>
+                    </tr>
+                    <tr>
+                        <td><code>onValidate(el, val)</code></td>
+                        <td><code>data-on-validate</code></td>
+                        <td><code>element</code></td>
+                        <td>Event generate if field passed validation</td>
+                    </tr>
+                    <tr>
+                        <td><code>onErrorForm(log, el)</code></td>
+                        <td><code>data-on-error-form</code></td>
+                        <td><code>form</code></td>
+                        <td>Event generate if form not passed validation</td>
+                    </tr>
+                    <tr>
+                        <td><code>onValidateForm(el)</code></td>
+                        <td><code>data-on-validate-form</code></td>
+                        <td><code>form</code></td>
+                        <td>Event generate if form passed validation</td>
+                    </tr>
+                    <tr>
+                        <td><code>onBeforeSubmit(el)</code></td>
+                        <td><code>data-on-before-submit</code></td>
+                        <td><code>form</code></td>
+                        <td>If this function return false, form will not be submitted</td>
+                    </tr>
+                    <tr>
+                        <td><code>onSubmit(el)</code></td>
+                        <td><code>data-on-submit</code></td>
+                        <td><code>form</code></td>
+                        <td>Event generate when form is submitted</td>
+                    </tr>
+                    </tbody>
+                </table>
 
                 <h3 id="_validator_submit">Submit form</h3>
                 <p>
@@ -376,8 +465,196 @@
                 </p>
                 <ol class="decimal">
                     <li>The all the validations must be passed</li>
-                    <li>If an onBeforeSubmit event is defined, it must return true</li>
+                    <li>If an <code>onBeforeSubmit</code> event is defined, it must return true</li>
                 </ol>
+
+                <h3 id="_validator_error_handling">Error handling</h3>
+                <p>
+                    If not passed all validations, a form will not be submitted. You can handling the validation errors with validator events:
+                        <code>onError</code> and <code>onErrorForm</code>.
+                </p>
+
+                <h4 id="_validator_error_handling_onError">onError</h4>
+                <p>
+                    Event <code>onError</code> generated for each inputs when input not passed validation.
+                </p>
+                <div class="example">
+                    <div class="row">
+                        <div class="cell-md-6">
+                            <form data-role="validator" action="javascript:"
+                                  data-on-error="$('#handling-errors-onError').append(this.name + ': ' + this.value + '<br/>')">
+                                <div class="form-group">
+                                    <label>Input name (<small>required</small>)</label>
+                                    <input type="text" data-validate="required" name="nickname">
+                                </div>
+                                <div class="form-group">
+                                    <label>Input age (<small>required number</small>)</label>
+                                    <input type="text" data-validate="required number" name="age">
+                                </div>
+                                <div class="form-group">
+                                    <label>Input pin (<small>required digits length=4</small>)</label>
+                                    <input type="text" data-validate="required digits length=4" name="pin">
+                                </div>
+                                <div class="form-group">
+                                    <label>Input password (<small>required</small>)</label>
+                                    <input type="password" data-validate="required" name="pass1">
+                                </div>
+                                <div class="form-group">
+                                    <label>Input password again (<small>required compare=pass1</small>)</label>
+                                    <input type="password" data-validate="required compare=pass1" name="pass1_1">
+                                    <span class="invalid_feedback">
+                                Pass1 and Pass2 must be equal.
+                            </span>
+                                </div>
+                                <br />
+                                <button class="button success">Submit</button>
+                            </form>
+                        </div>
+                        <div class="cell-md-6">
+                            <button class="button" onclick="$('#handling-errors-onError').html('')">Clear log</button>
+                            <div id="handling-errors-onError"></div>
+                        </div>
+                    </div>
+                </div>
+                <pre><code class="html">
+                    &lt;div class="row"&gt;
+                        &lt;div class="cell-md-6"&gt;
+                            &lt;form data-role="validator" action="javascript:"
+                                  data-on-error="$('#handling-errors-onError').append(this.name + ': ' + this.value + '&lt;br/&gt;')"&gt;
+                                &lt;div class="form-group"&gt;
+                                    &lt;label&gt;Input name (&lt;small&gt;required&lt;/small&gt;)&lt;/label&gt;
+                                    &lt;input type="text" data-validate="required" name="nickname"&gt;
+                                &lt;/div&gt;
+                                &lt;div class="form-group"&gt;
+                                    &lt;label&gt;Input age (&lt;small&gt;required number&lt;/small&gt;)&lt;/label&gt;
+                                    &lt;input type="text" data-validate="required number" name="age"&gt;
+                                &lt;/div&gt;
+                                &lt;div class="form-group"&gt;
+                                    &lt;label&gt;Input pin (&lt;small&gt;required digits length=4&lt;/small&gt;)&lt;/label&gt;
+                                    &lt;input type="text" data-validate="required digits length=4" name="pin"&gt;
+                                &lt;/div&gt;
+                                &lt;div class="form-group"&gt;
+                                    &lt;label&gt;Input password (&lt;small&gt;required&lt;/small&gt;)&lt;/label&gt;
+                                    &lt;input type="password" data-validate="required" name="pass1"&gt;
+                                &lt;/div&gt;
+                                &lt;div class="form-group"&gt;
+                                    &lt;label&gt;Input password again (&lt;small&gt;required compare=pass1&lt;/small&gt;)&lt;/label&gt;
+                                    &lt;input type="password" data-validate="required compare=pass1" name="pass1_1"&gt;
+                                    &lt;span class="invalid_feedback"&gt;
+                                Pass1 and Pass2 must be equal.
+                            &lt;/span&gt;
+                                &lt;/div&gt;
+                                &lt;br /&gt;
+                                &lt;button class="button success"&gt;Submit&lt;/button&gt;
+                            &lt;/form&gt;
+                        &lt;/div&gt;
+                        &lt;div class="cell-md-6"&gt;
+                            &lt;button class="button" onclick="$('#handling-errors-onError').html('')"&gt;Clear log&lt;/button&gt;
+                            &lt;div id="handling-errors-onError"&gt;&lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
+
+                <h4 id="_validator_error_handling_onErrorForm">onErrorForm</h4>
+                <p>
+                    Event <code>onErrorForm</code> generated for form when input not passed validation. Argument for this event is object: <code>{input: el, name = '...', value: ..., funcs: [...], errors: [...]}</code>.
+                </p>
+                <ul class="unstyled-list mt-2">
+                    <li><strong>input</strong> - html input element</li>
+                    <li><strong>name</strong> - input name</li>
+                    <li><strong>value</strong> - input value</li>
+                    <li><strong>funcs</strong> - input validation functions as array</li>
+                    <li><strong>errors</strong> - not passed validation functions as array</li>
+                </ul>
+                <div class="example">
+                    <div class="row">
+                        <div class="cell-md-6">
+                            <form data-role="validator" action="javascript:"
+                                  data-on-error-form="
+                                  var log = arguments[0];
+                                  var res = $('#handling-errors-onErrorForm');
+                                  res.html('');
+                                  $.each(log, function(){
+                                        res.append(this.name + ': ' + this.errors.join(',') + '<br/>')
+                                  })
+                                  ">
+                                <div class="form-group">
+                                    <label>Input name (<small>required</small>)</label>
+                                    <input type="text" data-validate="required" name="nickname">
+                                </div>
+                                <div class="form-group">
+                                    <label>Input age (<small>required number</small>)</label>
+                                    <input type="text" data-validate="required number" name="age">
+                                </div>
+                                <div class="form-group">
+                                    <label>Input pin (<small>required digits length=4</small>)</label>
+                                    <input type="text" data-validate="required digits length=4" name="pin">
+                                </div>
+                                <div class="form-group">
+                                    <label>Input password (<small>required</small>)</label>
+                                    <input type="password" data-validate="required" name="pass1">
+                                </div>
+                                <div class="form-group">
+                                    <label>Input password again (<small>required compare=pass1</small>)</label>
+                                    <input type="password" data-validate="required compare=pass1" name="pass1_1">
+                                    <span class="invalid_feedback">
+                                Pass1 and Pass2 must be equal.
+                            </span>
+                                </div>
+                                <br />
+                                <button class="button success">Submit</button>
+                            </form>
+                        </div>
+                        <div class="cell-md-6">
+                            <div id="handling-errors-onErrorForm"></div>
+                        </div>
+                    </div>
+                </div>
+                <pre><code class="html">
+                    &lt;div class="row"&gt;
+                        &lt;div class="cell-md-6"&gt;
+                            &lt;form data-role="validator" action="javascript:"
+                                  data-on-error="
+                                  var log = arguments[0];
+                                  var res = $('#handling-errors-onErrorForm');
+                                  res.html('');
+                                  $.each(log, function(){
+                                        res.append(this.name + ': ' + this.errors.join(',') + '<br/>')
+                                  })
+                                  "&gt;
+                                &lt;div class="form-group"&gt;
+                                    &lt;label&gt;Input name (&lt;small&gt;required&lt;/small&gt;)&lt;/label&gt;
+                                    &lt;input type="text" data-validate="required" name="nickname"&gt;
+                                &lt;/div&gt;
+                                &lt;div class="form-group"&gt;
+                                    &lt;label&gt;Input age (&lt;small&gt;required number&lt;/small&gt;)&lt;/label&gt;
+                                    &lt;input type="text" data-validate="required number" name="age"&gt;
+                                &lt;/div&gt;
+                                &lt;div class="form-group"&gt;
+                                    &lt;label&gt;Input pin (&lt;small&gt;required digits length=4&lt;/small&gt;)&lt;/label&gt;
+                                    &lt;input type="text" data-validate="required digits length=4" name="pin"&gt;
+                                &lt;/div&gt;
+                                &lt;div class="form-group"&gt;
+                                    &lt;label&gt;Input password (&lt;small&gt;required&lt;/small&gt;)&lt;/label&gt;
+                                    &lt;input type="password" data-validate="required" name="pass1"&gt;
+                                &lt;/div&gt;
+                                &lt;div class="form-group"&gt;
+                                    &lt;label&gt;Input password again (&lt;small&gt;required compare=pass1&lt;/small&gt;)&lt;/label&gt;
+                                    &lt;input type="password" data-validate="required compare=pass1" name="pass1_1"&gt;
+                                    &lt;span class="invalid_feedback"&gt;
+                                Pass1 and Pass2 must be equal.
+                            &lt;/span&gt;
+                                &lt;/div&gt;
+                                &lt;br /&gt;
+                                &lt;button class="button success"&gt;Submit&lt;/button&gt;
+                            &lt;/form&gt;
+                        &lt;/div&gt;
+                        &lt;div class="cell-md-6"&gt;
+                            &lt;button class="button" onclick="$('#handling-errors-onError').html('')"&gt;Clear log&lt;/button&gt;
+                            &lt;div id="handling-errors-onError"&gt;&lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
 
                 <h3 id="_validator_interactive">Interactive check</h3>
                 <p class="text-small text-muted">Thanks to <a href="https://www.facebook.com/itz.prabakar">Prabakar Decipher</a></p>
@@ -412,8 +689,23 @@
                     &lt;/form&gt;
                 </code></pre>
                 <p>
-                    This option only check input. When form submited, validator check all values again.
+                    This option only check input. When form submitted, validator check all values again.
                 </p>
+
+                <h3 id="_validator_outside">Validating without a form</h3>
+                <p>
+                    Also, you can use <strong>validator functions</strong> without a form. For use it without form, in <code>Metro 4</code> present object <code>Metro.validator</code> with all validation functions.
+                </p>
+                <pre><code class="javascript">
+                    var validator = Metro.validator;
+                    var field = $("#input_id"); // for input must be defined validation functions
+
+                    validator.color("red") // return true
+                    validator.color("blueRed") // return false
+
+                    validator.validate(field, null) // return true or false
+                </code></pre>
+
             </main>
         </div>
 

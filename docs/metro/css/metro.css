@@ -17118,6 +17118,17 @@ form[data-role*=validator] .invalid_feedback {
 .switch.disabled {
   pointer-events: none;
 }
+.checkbox.required,
+.radio.required,
+.switch.required,
+.checkbox.invalid,
+.radio.invalid,
+.switch.invalid,
+.checkbox.valid,
+.radio.valid,
+.switch.valid {
+  border: none!important;
+}
 .checkbox,
 .radio {
   display: -webkit-inline-box;
