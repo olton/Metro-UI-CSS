@@ -32,6 +32,12 @@
     &.required, &.invalid, &.valid {
         border: none!important;
     }
+
+    &.invalid {
+        &::after {
+            display: none;
+        }
+    }
 }
 
 .checkbox, .radio {

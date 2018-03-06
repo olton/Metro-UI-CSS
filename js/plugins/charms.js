@@ -64,8 +64,6 @@ var Charms = {
         var element = this.element, o = this.options;
 
         element.on(Metro.events.click, function(e){
-            e.preventDefault();
-            e.stopPropagation();
         });
     },
 

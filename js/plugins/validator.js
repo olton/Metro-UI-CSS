@@ -81,9 +81,18 @@ var ValidatorFuncs = {
     compare: function(val, val2){
         return val === val2;
     },
+    not: function(val, not_this){
+        return val !== not_this;
+    },
 
     is_control: function(el){
-        return el.parent().hasClass("input") || el.parent().hasClass("select") || el.parent().hasClass("textarea") || el.parent().hasClass("checkbox") || el.parent().hasClass("switch");
+        return el.parent().hasClass("input")
+            || el.parent().hasClass("select")
+            || el.parent().hasClass("textarea")
+            || el.parent().hasClass("checkbox")
+            || el.parent().hasClass("switch")
+            || el.parent().hasClass("radio")
+            ;
     },
 
     validate: function(el, result, cb_ok, cb_error){
@@ -103,7 +112,7 @@ var ValidatorFuncs = {
             input.removeClass("invalid valid");
         }
 
-        if (input.attr('type').toLowerCase() === "checkbox") {
+        if (input.attr('type') && input.attr('type').toLowerCase() === "checkbox") {
             if (funcs.indexOf('required') === -1) {
                 this_result = true;
             } else {
@@ -113,6 +122,17 @@ var ValidatorFuncs = {
             if (this_result === false) {
                 errors.push('required');
             }
+
+            if (result !== undefined) {
+                result.val += this_result ? 0 : 1;
+            }
+        } else if (input.attr('type') && input.attr('type').toLowerCase() === "radio") {
+            if (input.attr('name') === undefined) {
+                this_result = true;
+            }
+
+            var radio_selector = 'input[name=' + input.attr('name') + ']:checked';
+            this_result = $(radio_selector).length > 0;
 
             if (result !== undefined) {
                 result.val += this_result ? 0 : 1;
