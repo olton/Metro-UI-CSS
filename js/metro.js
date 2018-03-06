@@ -301,10 +301,11 @@ var Metro = {
                         var mc = $this.data('metroComponent');
 
                         if (mc === undefined) {
-                            $this.data('metroComponent', [func]);
+                            mc = [func];
                         } else {
                             mc.push(func);
                         }
+                        $this.data('metroComponent', mc);
                     }
                 } catch (e) {
                     console.log(e.message, e.stack);
@@ -352,10 +353,11 @@ var Metro = {
                 var mc = element.data('metroComponent');
 
                 if (mc === undefined) {
-                    element.data('metroComponent', [name]);
+                    mc = [name];
                 } else {
                     mc.push(name);
                 }
+                element.data('metroComponent', mc);
             }
         } catch (e) {
             console.log(e.message, e.stack);

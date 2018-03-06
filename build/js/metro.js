@@ -1,5 +1,5 @@
 /*!
- * Metro 4 Components Library v4.0.4 build 614-beta (https://metroui.org.ua)
+ * Metro 4 Components Library v4.0.4 build @@build-beta (https://metroui.org.ua)
  * Copyright 2018 Sergey Pimenov
  * Licensed under MIT
  */
@@ -71,7 +71,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.0.4-614-beta",
+    version: "@@version-@@build@@status",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -319,10 +319,11 @@ var Metro = {
                         var mc = $this.data('metroComponent');
 
                         if (mc === undefined) {
-                            $this.data('metroComponent', [func]);
+                            mc = [func];
                         } else {
                             mc.push(func);
                         }
+                        $this.data('metroComponent', mc);
                     }
                 } catch (e) {
                     console.log(e.message, e.stack);
@@ -370,10 +371,11 @@ var Metro = {
                 var mc = element.data('metroComponent');
 
                 if (mc === undefined) {
-                    element.data('metroComponent', [name]);
+                    mc = [name];
                 } else {
                     mc.push(name);
                 }
+                element.data('metroComponent', mc);
             }
         } catch (e) {
             console.log(e.message, e.stack);
