@@ -48,6 +48,7 @@
                 <ul class="toc-nav">
                     <li class="toc-entry"><a href="#">Validator</a></li>
                     <li class="toc-entry"><a href="#_validator_how_to">How to</a></li>
+                    <li class="toc-entry"><a href="#_validator_feedback">Invalid feedback</a></li>
                     <li class="toc-entry">
                         <a href="#_validator_funcs">Functions</a>
                         <ul>
@@ -68,6 +69,7 @@
                             <li class="toc-entry"><a href="#_validator_func_color">Color</a></li>
                             <li class="toc-entry"><a href="#_validator_func_pattern">Pattern</a></li>
                             <li class="toc-entry"><a href="#_validator_func_compare">Compare</a></li>
+                            <li class="toc-entry"><a href="#_validator_func_not">Not</a></li>
                         </ul>
                     </li>
                     <li class="toc-entry"><a href="#_validator_events">Events</a></li>
@@ -97,8 +99,8 @@
                     To activate Validator add attribute <code>data-role="validator"</code> to form and define validation functions over attribute <code>data-validate="..."</code> for inputs.
                 </p>
                 <p>
-                    Supported elements: <code>input</code>, <code>select</code>, <code>textarea</code>, <code>checkbox</code> and <code>switch</code>.
-                    For <code>checkbox</code> and <code>switch</code> you can use only <code>required</code> validation function.
+                    Supported elements: <code>input</code>, <code>select</code>, <code>textarea</code>, <code>checkbox</code>, <code>switch</code> and <code>radio</code>.
+                    For <code>checkbox</code>, <code>switch</code> and <code>radio</code> you can use only <code>required</code> validation function.
                     More about form elements read in <a href="forms.html">this article</a>.
                 </p>
 
@@ -115,17 +117,34 @@
                             <div class="cell-md-6">
                                 <label>Email</label>
                                 <input type="email" data-validate="required email" placeholder="Enter email" data-role="input">
-                                <span class="invalid_feedback">
-                                    Input correct email address
-                                </span>
+                                <span class="invalid_feedback">Input correct email address</span>
                             </div>
                         </div>
+
                         <div class="mt-2 mb-2">
-                            <input type="checkbox" data-role="checkbox" data-caption="I accept the terms" data-validate="required">
-                            <span class="invalid_feedback">
-                                    You must accept this!
-                            </span>
+                            <label>Select option</label>
+                            <select data-role="select" data-validate="required not=-1">
+                                <option value="-1" class="d-none"></option>
+                                <option value="1">Value 1</option>
+                                <option value="2">Value 2</option>
+                                <option value="3">Value 3</option>
+                            </select>
+                            <span class="invalid_feedback">You must select a option!</span>
                         </div>
+
+                        <div class="row mb-2">
+                            <div class="cell-md-6">
+                                <input type="checkbox" data-role="checkbox" data-caption="I accept the terms" data-validate="required">
+                                <span class="invalid_feedback">You must accept this!</span>
+                            </div>
+                            <div class="cell-md-6">
+                                <input type="radio" name="__r1" data-role="radio" value="1" data-validate="required" data-caption="Type 1">
+                                <input type="radio" name="__r1" data-role="radio" value="2" data-validate="required" data-caption="Type 2">
+                                <input type="radio" name="__r1" data-role="radio" value="3" data-validate="required" data-caption="Type 3">
+                                <span class="invalid_feedback">You must select a option!</span>
+                            </div>
+                        </div>
+
                         <button class="button primary">Submit</button>
                     </form>
                 </div>
@@ -134,21 +153,119 @@
                         &lt;div class="row mb-2"&gt;
                             &lt;div class="cell-md-6"&gt;
                                 &lt;label&gt;First name&lt;/label&gt;
-                                &lt;input type="text" data-validate="required minlength=6"&gt;
+                                &lt;input type="text"
+                                    data-validate="required minlength=6"
+                                    placeholder="Enter first name"&gt;
                                 &lt;span class="invalid_feedback"&gt;
                                     Input correct name with min length 6 symbols
                                 &lt;/span&gt;
                             &lt;/div&gt;
                             &lt;div class="cell-md-6"&gt;
                                 &lt;label&gt;Email&lt;/label&gt;
-                                &lt;input type="email" data-validate="required email" data-role="input"&gt;
+                                &lt;input type="email"
+                                    data-validate="required email"
+                                    placeholder="Enter email" data-role="input"&gt;
                                 &lt;span class="invalid_feedback"&gt;
                                     Input correct email address
                                 &lt;/span&gt;
                             &lt;/div&gt;
                         &lt;/div&gt;
+
+                        &lt;div class="mt-2 mb-2"&gt;
+                            &lt;label&gt;Select option&lt;/label&gt;
+                            &lt;select data-role="select" data-validate="required not=-1"&gt;
+                                &lt;option value="-1" class="d-none"&gt;&lt;/option&gt;
+                                &lt;option value="1"&gt;Value 1&lt;/option&gt;
+                                &lt;option value="2"&gt;Value 2&lt;/option&gt;
+                                &lt;option value="3"&gt;Value 3&lt;/option&gt;
+                            &lt;/select&gt;
+                            &lt;span class="invalid_feedback"&gt;
+                                You must select a option!
+                            &lt;/span&gt;
+                        &lt;/div&gt;
+
+                        &lt;div class="row mb-2"&gt;
+                            &lt;div class="cell-md-6"&gt;
+                                &lt;input type="checkbox"
+                                    data-role="checkbox"
+                                    data-caption="I accept the terms"
+                                    data-validate="required"&gt;
+                                &lt;span class="invalid_feedback"&gt;
+                                    You must accept this!
+                                &lt;/span&gt;
+                            &lt;/div&gt;
+                            &lt;div class="cell-md-6"&gt;
+                                &lt;input type="radio" name="__r1"
+                                    data-role="radio" value="1"
+                                    data-validate="required" data-caption="Type 1"&gt;
+                                &lt;input type="radio" name="__r1"
+                                    data-role="radio" value="2"
+                                    data-validate="required" data-caption="Type 2"&gt;
+                                &lt;input type="radio" name="__r1"
+                                    data-role="radio" value="3"
+                                    data-validate="required" data-caption="Type 3"&gt;
+                                &lt;span class="invalid_feedback"
+                                    &gt;You must select a option!
+                                &lt;/span&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+
                         &lt;button class="button primary"&gt;Submit&lt;/button&gt;
                     &lt;/form&gt;
+                </code></pre>
+
+                <h4>Validating radio</h4>
+                <p>
+                    To validate <code>radio</code> component you must add attribute <code>name</code> to element and use validate function <code>required</code>.
+                    Validate function must be added to all radio element.
+                </p>
+                <pre><code class="html">
+                    &lt;input type="radio" name="__r1"
+                        data-role="radio" value="1"
+                        data-validate="required" data-caption="Type 1"&gt;
+                    &lt;input type="radio" name="__r1"
+                        data-role="radio" value="2"
+                        data-validate="required" data-caption="Type 2"&gt;
+                    &lt;input type="radio" name="__r1"
+                        data-role="radio" value="3"
+                        data-validate="required" data-caption="Type 3"&gt;
+                </code></pre>
+
+                <h4>Validating select</h4>
+                <p>
+                    To validate <code>select</code> component you must add specific first option and use validate functions <code>required</code> and <code>not</code>.
+                </p>
+                <pre><code class="html">
+                    &lt;select data-role="select" data-validate="required not=-1"&gt;
+                        &lt;option value="-1" class="d-none"&gt;&lt;/option&gt;
+                        &lt;option value="1"&gt;Value 1&lt;/option&gt;
+                        &lt;option value="2"&gt;Value 2&lt;/option&gt;
+                        &lt;option value="3"&gt;Value 3&lt;/option&gt;
+                    &lt;/select&gt;
+                </code></pre>
+
+                <h3 id="_validator_feedback">Invalid feedback</h3>
+                <p>
+                    You can create user-friendly <strong>invalid feedback</strong>. To create it, add element with class <code>.invalid_feedback</code> after input.
+                </p>
+                <div class="example">
+                    <form data-role="validator" action="javascript:">
+                        <div class="mb-2">
+                            <label>Email</label>
+                            <input type="email" data-validate="required email" placeholder="Enter email" data-role="input">
+                            <span class="invalid_feedback">Input correct email address</span>
+                        </div>
+                        <button class="button">Send</button>
+                    </form>
+                </div>
+                <pre><code class="html">
+                    &lt;label&gt;Email&lt;/label&gt;
+                    &lt;input type="email"
+                        data-validate="required email"
+                        placeholder="Enter email" data-role="input"&gt;
+                    &lt;span class="invalid_feedback"&gt;
+                        Input correct email address
+                    &lt;/span&gt;
                 </code></pre>
 
                 <h3 id="_validator_funcs">Functions</h3>
@@ -355,6 +472,18 @@
                         <pre><code>
                             &lt;input type="password" data-validate="required" name="pass1"&gt;
                             &lt;input type="password" data-validate="required compare=pass1" name="pass2"&gt;
+                        </code></pre>
+                    </li>
+
+                    <li id="_validator_func_not">
+                        <strong>not</strong> - value must not be equal to compared value
+                        <pre><code>
+                            &lt;select data-role="select" data-validate="required not=-1"&gt;
+                                &lt;option value="-1" class="d-none"&gt;&lt;/option&gt;
+                                &lt;option value="1"&gt;Value 1&lt;/option&gt;
+                                &lt;option value="2"&gt;Value 2&lt;/option&gt;
+                                &lt;option value="3"&gt;Value 3&lt;/option&gt;
+                            &lt;/select&gt;
                         </code></pre>
                     </li>
                 </ul>

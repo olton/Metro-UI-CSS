@@ -80,8 +80,7 @@ var Select = {
         var parent = element.parent();
         var container = $("<div>").addClass("select " + element[0].className).addClass(o.clsElement);
         var multiple = element.prop("multiple");
-        var select_id = Utils.uniqueId();
-
+        var select_id = Utils.elementId("select");
 
         container.attr("id", select_id).addClass("dropdown-toggle");
 
@@ -95,7 +94,7 @@ var Select = {
         element.addClass(o.clsSelect);
 
         if (multiple === false) {
-            var input = $("<input>").attr("type", "text").attr("name", "__" + element.attr("name") + "__").prop("readonly", true);
+            var input = $("<input>").attr("type", "text").attr("name", "__" + select_id + "__").prop("readonly", true);
             var list = $("<ul>").addClass("d-menu").css({
                 "max-height": o.dropHeight
             });
@@ -124,10 +123,10 @@ var Select = {
                         }
                         l.data('dropdown').close();
                     });
-                    Utils.exec(o.onDrop, [list, element]);
+                    Utils.exec(o.onDrop, [list, element], list[0]);
                 },
                 onUp: function(){
-                    Utils.exec(o.onUp, [list, element]);
+                    Utils.exec(o.onUp, [list, element], list[0]);
                 }
             });
         }

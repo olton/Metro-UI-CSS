@@ -1,5 +1,5 @@
 /*!
- * Metro 4 Components Library v4.0.3 build 613-beta (https://metroui.org.ua)
+ * Metro 4 Components Library v4.0.3 build @@build-beta (https://metroui.org.ua)
  * Copyright 2018 Sergey Pimenov
  * Licensed under MIT
  */
@@ -71,7 +71,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.0.3-613-beta",
+    version: "@@version-@@build@@status",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -6048,8 +6048,6 @@ var Charms = {
         var element = this.element, o = this.options;
 
         element.on(Metro.events.click, function(e){
-            e.preventDefault();
-            e.stopPropagation();
         });
     },
 
@@ -11758,8 +11756,7 @@ var Select = {
         var parent = element.parent();
         var container = $("<div>").addClass("select " + element[0].className).addClass(o.clsElement);
         var multiple = element.prop("multiple");
-        var select_id = Utils.uniqueId();
-
+        var select_id = Utils.elementId("select");
 
         container.attr("id", select_id).addClass("dropdown-toggle");
 
@@ -11773,7 +11770,7 @@ var Select = {
         element.addClass(o.clsSelect);
 
         if (multiple === false) {
-            var input = $("<input>").attr("type", "text").attr("name", "__" + element.attr("name") + "__").prop("readonly", true);
+            var input = $("<input>").attr("type", "text").attr("name", "__" + select_id + "__").prop("readonly", true);
             var list = $("<ul>").addClass("d-menu").css({
                 "max-height": o.dropHeight
             });
@@ -11802,10 +11799,10 @@ var Select = {
                         }
                         l.data('dropdown').close();
                     });
-                    Utils.exec(o.onDrop, [list, element]);
+                    Utils.exec(o.onDrop, [list, element], list[0]);
                 },
                 onUp: function(){
-                    Utils.exec(o.onUp, [list, element]);
+                    Utils.exec(o.onUp, [list, element], list[0]);
                 }
             });
         }
@@ -14530,9 +14527,18 @@ var ValidatorFuncs = {
     compare: function(val, val2){
         return val === val2;
     },
+    not: function(val, not_this){
+        return val !== not_this;
+    },
 
     is_control: function(el){
-        return el.parent().hasClass("input") || el.parent().hasClass("select") || el.parent().hasClass("textarea") || el.parent().hasClass("checkbox") || el.parent().hasClass("switch");
+        return el.parent().hasClass("input")
+            || el.parent().hasClass("select")
+            || el.parent().hasClass("textarea")
+            || el.parent().hasClass("checkbox")
+            || el.parent().hasClass("switch")
+            || el.parent().hasClass("radio")
+            ;
     },
 
     validate: function(el, result, cb_ok, cb_error){
@@ -14552,7 +14558,7 @@ var ValidatorFuncs = {
             input.removeClass("invalid valid");
         }
 
-        if (input.attr('type').toLowerCase() === "checkbox") {
+        if (input.attr('type') && input.attr('type').toLowerCase() === "checkbox") {
             if (funcs.indexOf('required') === -1) {
                 this_result = true;
             } else {
@@ -14562,6 +14568,17 @@ var ValidatorFuncs = {
             if (this_result === false) {
                 errors.push('required');
             }
+
+            if (result !== undefined) {
+                result.val += this_result ? 0 : 1;
+            }
+        } else if (input.attr('type') && input.attr('type').toLowerCase() === "radio") {
+            if (input.attr('name') === undefined) {
+                this_result = true;
+            }
+
+            var radio_selector = 'input[name=' + input.attr('name') + ']:checked';
+            this_result = $(radio_selector).length > 0;
 
             if (result !== undefined) {
                 result.val += this_result ? 0 : 1;

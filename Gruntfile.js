@@ -2,6 +2,9 @@ module.exports = function(grunt) {
 
     "use strict";
 
+    var watching = grunt.option('watching');
+    var tasks = [];
+
     require('load-grunt-tasks')(grunt);
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
@@ -147,8 +150,12 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.registerTask('default', [
-        'clean', 'less', 'postcss', 'concat',  'uglify', 'cssmin', 'copy'
-    ]);
+    tasks = ['clean', 'less', 'postcss', 'concat',  'uglify', 'cssmin', 'copy'];
+
+    if (watching) {
+        tasks.push('watch');
+    }
+
+    grunt.registerTask('default', tasks);
 
 };

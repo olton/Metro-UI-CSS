@@ -17056,7 +17056,7 @@ fieldset.disabled,
   -webkit-box-shadow: 0 0 0 3px rgba(206, 53, 44, 0.45) !important;
           box-shadow: 0 0 0 3px rgba(206, 53, 44, 0.45) !important;
 }
-.invalid::before {
+.invalid::after {
   position: absolute;
   content: "!";
   color: #CE352C;
@@ -17128,6 +17128,11 @@ form[data-role*=validator] .invalid_feedback {
 .radio.valid,
 .switch.valid {
   border: none!important;
+}
+.checkbox.invalid::after,
+.radio.invalid::after,
+.switch.invalid::after {
+  display: none;
 }
 .checkbox,
 .radio {
