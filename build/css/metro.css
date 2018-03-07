@@ -24821,6 +24821,7 @@ video:-webkit-full-screen {
           transform: translateY(-50%) translateX(-50%);
   font-size: 50px;
   line-height: 50px;
+  z-index: 2;
 }
 [class*=tile-] .branding-bar {
   height: 32px;
@@ -24828,13 +24829,14 @@ video:-webkit-full-screen {
   position: absolute;
   left: 0;
   bottom: 0;
-  width: 100%;
+  right: 0;
   padding: 0 10px 5px;
   font-size: .875rem;
   font-weight: 500;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  z-index: 2;
 }
 [class*=tile-] .badge-top,
 [class*=tile-] .badge-bottom {
@@ -24844,6 +24846,7 @@ video:-webkit-full-screen {
   font-size: 12px;
   text-align: center;
   background-color: rgba(29, 29, 29, 0.1);
+  z-index: 2;
 }
 [class*=tile-] .badge-bottom {
   right: 10px;
@@ -24943,6 +24946,7 @@ video:-webkit-full-screen {
           transform: perspective(500px) rotateX(-0.046124rad);
 }
 .tiles-grid {
+  position: relative;
   display: grid;
   grid-template-columns: repeat(auto-fit, 70px);
   grid-template-rows: repeat(auto-fit, 70px);

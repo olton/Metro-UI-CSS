@@ -48,6 +48,7 @@
         .translateX(-50%);
         font-size: 50px;
         line-height: 50px;
+        z-index: 2;
     }
 
     .branding-bar {
@@ -56,11 +57,12 @@
         position: absolute;
         left: 0;
         bottom: 0;
-        width: 100%;
+        right: 0;
         padding: 0 10px 5px;
         font-size: .875rem;
         font-weight: 500;
         .text-ellipsis();
+        z-index: 2;
     }
 
     .badge-top, .badge-bottom {
@@ -70,6 +72,7 @@
         font-size: 12px;
         text-align: center;
         background-color: @hoverBackground;
+        z-index: 2;
     }
 
     .badge-bottom {
@@ -198,6 +201,7 @@
 
 
 .tiles-grid {
+    position: relative;
     display: grid;
     grid-template-columns: repeat(auto-fit, 70px);
     grid-template-rows: repeat(auto-fit, 70px);

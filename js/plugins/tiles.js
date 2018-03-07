@@ -20,6 +20,7 @@ var Tile = {
         cover: "",
         effect: "",
         effectInterval: 3000,
+        effectDuration: 500,
         target: null,
         canTransform: true,
         onClick: Metro.noop,
@@ -147,11 +148,11 @@ var Tile = {
 
             next = that.slides[that.currentSlide];
 
-            if (o.effect === "animate-slide-up") Animation.slideUp($(current), $(next));
-            if (o.effect === "animate-slide-down") Animation.slideDown($(current), $(next));
-            if (o.effect === "animate-slide-left") Animation.slideLeft($(current), $(next));
-            if (o.effect === "animate-slide-right") Animation.slideRight($(current), $(next));
-            if (o.effect === "animate-fade") Animation.fade($(current), $(next));
+            if (o.effect === "animate-slide-up") Animation.slideUp($(current), $(next), o.effectDuration);
+            if (o.effect === "animate-slide-down") Animation.slideDown($(current), $(next), o.effectDuration);
+            if (o.effect === "animate-slide-left") Animation.slideLeft($(current), $(next), o.effectDuration);
+            if (o.effect === "animate-slide-right") Animation.slideRight($(current), $(next), o.effectDuration);
+            if (o.effect === "animate-fade") Animation.fade($(current), $(next), o.effectDuration);
 
         }, o.effectInterval);
     },
