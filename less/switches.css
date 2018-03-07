@@ -1,0 +1,323 @@
+Skipped data-uri embedding of less/images/media/light/play.svg because file not found
+Skipped data-uri embedding of less/images/media/light/loop.svg because file not found
+Skipped data-uri embedding of less/images/media/light/stop.svg because file not found
+Skipped data-uri embedding of less/images/media/light/pause.svg because file not found
+Skipped data-uri embedding of less/images/media/light/volume-mute.svg because file not found
+Skipped data-uri embedding of less/images/media/light/volume-low.svg because file not found
+Skipped data-uri embedding of less/images/media/light/volume-medium.svg because file not found
+Skipped data-uri embedding of less/images/media/light/volume-high.svg because file not found
+Skipped data-uri embedding of less/images/media/light/enlarge.svg because file not found
+Skipped data-uri embedding of less/images/media/light/shrink.svg because file not found
+Skipped data-uri embedding of less/images/media/light/list.svg because file not found
+Skipped data-uri embedding of less/images/media/light/next.svg because file not found
+Skipped data-uri embedding of less/images/media/light/prev.svg because file not found
+Skipped data-uri embedding of less/images/media/light/first.svg because file not found
+Skipped data-uri embedding of less/images/media/light/last.svg because file not found
+Skipped data-uri embedding of less/images/media/light/forward.svg because file not found
+Skipped data-uri embedding of less/images/media/light/backward.svg because file not found
+Skipped data-uri embedding of less/images/media/light/share.svg because file not found
+Skipped data-uri embedding of less/images/media/light/equalizer.svg because file not found
+Skipped data-uri embedding of less/images/media/light/eject.svg because file not found
+Skipped data-uri embedding of less/images/media/light/shuffle.svg because file not found
+Skipped data-uri embedding of less/images/media/light/dice.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/play.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/loop.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/stop.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/pause.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/volume-mute.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/volume-low.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/volume-medium.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/volume-high.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/enlarge.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/shrink.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/list.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/next.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/prev.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/first.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/last.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/forward.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/backward.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/share.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/equalizer.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/eject.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/shuffle.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/dice.svg because file not found
+Skipped data-uri embedding of less/images/inputs/checkmark.svg because file not found
+Skipped data-uri embedding of less/images/inputs/cross.svg because file not found
+Skipped data-uri embedding of less/images/inputs/search.svg because file not found
+Skipped data-uri embedding of less/images/inputs/eye.svg because file not found
+Skipped data-uri embedding of less/images/wizard/help.svg because file not found
+Skipped data-uri embedding of less/images/wizard/arrow-left.svg because file not found
+Skipped data-uri embedding of less/images/wizard/arrow-right.svg because file not found
+Skipped data-uri embedding of less/images/inputs/calendar.svg because file not found
+Skipped data-uri embedding of less/images/inputs/clock.svg because file not found
+Skipped data-uri embedding of less/images/apps/menu.svg because file not found
+.hideScrollBars {
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+.hideScrollBars::-webkit-scrollbar {
+  display: none!important;
+}
+.checkbox,
+.radio,
+.switch {
+  display: inline-block;
+  position: relative;
+  margin: 0;
+  transition: all 0.3s ease-in-out;
+  user-select: none;
+  cursor: pointer;
+}
+.checkbox input,
+.radio input,
+.switch input {
+  position: absolute;
+  opacity: 0;
+  width: 0.0625rem;
+  height: 0.0625rem;
+}
+.checkbox .check,
+.radio .check,
+.switch .check,
+.checkbox .caption,
+.radio .caption,
+.switch .caption {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 1.25rem;
+  font-size: 0.875rem;
+}
+.checkbox.disabled,
+.radio.disabled,
+.switch.disabled {
+  pointer-events: none;
+}
+.checkbox.required,
+.radio.required,
+.switch.required,
+.checkbox.invalid,
+.radio.invalid,
+.switch.invalid,
+.checkbox.valid,
+.radio.valid,
+.switch.valid {
+  border: none!important;
+}
+.checkbox.invalid::after,
+.radio.invalid::after,
+.switch.invalid::after {
+  display: none;
+}
+.checkbox,
+.radio {
+  display: inline-flex;
+}
+.checkbox .caption,
+.radio .caption {
+  margin-top: 2px;
+}
+.checkbox .check,
+.radio .check {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  border: 2px rgba(0, 0, 0, 0.26) solid;
+  border-radius: 0;
+  position: relative;
+  z-index: 2;
+  box-sizing: content-box;
+  color: #ffffff;
+  background-color: #ffffff;
+  top: 2px;
+}
+.checkbox .check,
+.radio .check {
+  transition: all 0.3s ease-in-out;
+}
+.checkbox .check::after,
+.radio .check::after,
+.checkbox .check::before,
+.radio .check::before {
+  transition: all 0.3s ease-in-out;
+}
+.checkbox.disabled ~ .check,
+.radio.disabled ~ .check,
+.checkbox input:disabled ~ .check,
+.radio input:disabled ~ .check {
+  border-color: #e9e9e9;
+  background-color: transparent;
+}
+.checkbox.disabled ~ input:checked ~ .check,
+.radio.disabled ~ input:checked ~ .check,
+.checkbox input:disabled:checked ~ .check,
+.radio input:disabled:checked ~ .check {
+  background-color: #e9e9e9;
+  border-color: #e9e9e9;
+}
+.checkbox.disabled ~ input:checked ~ .check:before,
+.radio.disabled ~ input:checked ~ .check:before,
+.checkbox input:disabled:checked ~ .check:before,
+.radio input:disabled:checked ~ .check:before {
+  border-color: #ffffff;
+}
+.checkbox.disabled ~ input:checked ~ .caption,
+.radio.disabled ~ input:checked ~ .caption,
+.checkbox input:disabled:checked ~ .caption,
+.radio input:disabled:checked ~ .caption {
+  color: #9d9d9d;
+}
+.checkbox input:checked ~ .check,
+.radio input:checked ~ .check {
+  background-color: #1d1d1d;
+  border-color: #1d1d1d;
+}
+.checkbox input:checked ~ .check::before,
+.radio input:checked ~ .check::before {
+  transition: all 0.3s ease-in-out;
+  display: block;
+}
+.checkbox .check ~ .caption,
+.radio .check ~ .caption {
+  margin-left: 0.3125rem;
+  margin-right: .5rem;
+}
+.checkbox .caption ~ .check,
+.radio .caption ~ .check {
+  margin-left: 0.3125rem;
+  margin-right: .5rem;
+}
+.checkbox input:focus ~ .check,
+.radio input:focus ~ .check {
+  box-shadow: 0 0 0 3px rgba(228, 228, 228, 0.45);
+}
+.checkbox.disabled .check::after,
+.radio.disabled .check::after {
+  background-color: #e9e9e9;
+}
+.checkbox input:disabled ~ .check::after,
+.radio input:disabled ~ .check::after {
+  background-color: #e9e9e9;
+}
+.checkbox:focus input:not(:disabled) ~ .check::after,
+.radio:focus input:not(:disabled) ~ .check::after,
+.checkbox:active input:not(:disabled) ~ .check::after,
+.radio:active input:not(:disabled) ~ .check::after {
+  display: block;
+  content: "";
+  position: absolute;
+  width: 3.125rem;
+  height: 3.125rem;
+  border-radius: 50%;
+  background-color: rgba(187, 187, 187, 0.5);
+  opacity: .3;
+  top: 50%;
+  left: 50%;
+  margin-top: -1.5625rem;
+  margin-left: -1.5625rem;
+}
+.checkbox .check::before {
+  position: absolute;
+  vertical-align: middle;
+  color: transparent;
+  font-size: 0;
+  content: "";
+  height: .375rem;
+  width: .625rem;
+  background-color: transparent;
+  border-left: 2px solid;
+  border-bottom: 2px solid;
+  border-color: #ffffff;
+  left: 50%;
+  top: 50%;
+  margin-left: -0.3125rem;
+  margin-top: -0.3125rem;
+  display: block;
+  transform: rotate(-45deg);
+}
+.checkbox input:indeterminate ~ .check::before {
+  display: block!important;
+  height: .625rem;
+  background-color: #1d1d1d;
+  border: none;
+  transform: rotate(0deg);
+}
+.checkbox input:not(:checked) ~ .check::before {
+  transition: all 0.3s ease-in-out;
+  display: none;
+}
+.radio .check {
+  background-color: transparent !important;
+  border-radius: 50%;
+}
+.radio .check::before {
+  display: none;
+  content: "";
+  color: #c0c0c0;
+  background-color: #1d1d1d;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  margin-left: 0.125rem;
+  margin-top: 0.125rem;
+}
+.radio input:checked ~ .check::before {
+  display: block;
+}
+.radio input:disabled:checked ~ .check::before {
+  color: #9d9d9d;
+  background-color: #e9e9e9;
+}
+.switch .caption {
+  margin: -4px 5px 0;
+}
+.switch .check {
+  position: relative;
+  height: 1.25rem;
+  width: 2.8125rem;
+  border: 2px #1d1d1d solid;
+  cursor: pointer;
+  background: transparent;
+  z-index: 1;
+  display: inline-block;
+  vertical-align: middle;
+  border-radius: 0.5625rem;
+  top: -2px;
+}
+.switch .check:after {
+  position: absolute;
+  left: 3px;
+  display: block;
+  content: "";
+  height: .75rem;
+  width: .75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 2px #333 solid;
+  cursor: pointer;
+  background: #333;
+  z-index: 2;
+  transition: all 0.3s ease-in-out;
+  border-radius: 50%;
+}
+.switch input[type="checkbox"]:focus ~ .check {
+  outline: 1px #e4e4e4 dotted;
+}
+.switch input[type="checkbox"]:checked ~ .check {
+  background: #1d1d1d;
+  border-color: #1d1d1d;
+}
+.switch input[type="checkbox"]:checked ~ .check:after {
+  background-color: #ffffff;
+  border-color: #ffffff;
+  left: auto;
+  transform: translateX(1.625rem) translateY(-50%);
+  transition: all 0.3s ease-in-out;
+}
+.switch input[type="checkbox"]:disabled ~ .check {
+  background-color: #e9e9e9;
+  border-color: #e9e9e9;
+}
+.switch input[type="checkbox"]:disabled ~ .check:after {
+  background-color: #d0d0d0;
+  border-color: #d0d0d0;
+}

@@ -14,74 +14,10 @@
     left: 80px;
 }
 
-
-.tiles-group {
-
-    width: auto;
-    float: left;
-    overflow: visible;
-    left: 100px;
-
-    &::before {
-        content: attr(data-group-title);
-        display: block;
-        position: absolute;
-        left: 0;
-        top: -36px;
-        height: 1.5em;
-        line-height: 1.5em;
-        z-index: 1;
-        color: inherit;
-    }
-}
-
-@tileSize: extract(@tileMedium, 1);
-@tileMargin: 5px;
-
-.tiles-group {
-    margin-left: 80px;
-
-    &.size-half {
-        width: 70px + @tileMargin * 2;
-    }
-    &.size-one {
-        width: @tileSize + @tileMargin * 2;
-    }
-    &.size-two {
-        width: @tileSize * 2 + @tileMargin * 4;
-    }
-    &.size-three {
-        width: @tileSize * 3 + @tileMargin * 6;
-    }
-    &.size-four {
-        width: @tileSize * 4 + @tileMargin * 8;
-    }
-    &.size-five {
-        width: @tileSize * 5 + @tileMargin * 10;
-    }
-    &.size-six {
-        width: @tileSize * 6 + @tileMargin * 12;
-    }
-    &.size-seven {
-        width: @tileSize * 7 + @tileMargin * 14;
-    }
-    &.size-eight {
-        width: @tileSize * 8 + @tileMargin * 16;
-    }
-    &.size-nine {
-        width: @tileSize * 9 + @tileMargin * 18;
-    }
-    &.size-ten {
-        width: @tileSize * 10 + @tileMargin * 20;
-    }
-    &.size-eleven {
-        width: @tileSize * 11 + @tileMargin * 22;
-    }
-    &.size-twelve {
-        width: @tileSize * 12 + @tileMargin * 24;
-    }
-}
-
 [class*=tile-] {
     .scale(.8);
+}
+
+.tiles-group {
+    left: 100px;
 }

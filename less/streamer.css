@@ -1,0 +1,559 @@
+Skipped data-uri embedding of less/images/media/light/play.svg because file not found
+Skipped data-uri embedding of less/images/media/light/loop.svg because file not found
+Skipped data-uri embedding of less/images/media/light/stop.svg because file not found
+Skipped data-uri embedding of less/images/media/light/pause.svg because file not found
+Skipped data-uri embedding of less/images/media/light/volume-mute.svg because file not found
+Skipped data-uri embedding of less/images/media/light/volume-low.svg because file not found
+Skipped data-uri embedding of less/images/media/light/volume-medium.svg because file not found
+Skipped data-uri embedding of less/images/media/light/volume-high.svg because file not found
+Skipped data-uri embedding of less/images/media/light/enlarge.svg because file not found
+Skipped data-uri embedding of less/images/media/light/shrink.svg because file not found
+Skipped data-uri embedding of less/images/media/light/list.svg because file not found
+Skipped data-uri embedding of less/images/media/light/next.svg because file not found
+Skipped data-uri embedding of less/images/media/light/prev.svg because file not found
+Skipped data-uri embedding of less/images/media/light/first.svg because file not found
+Skipped data-uri embedding of less/images/media/light/last.svg because file not found
+Skipped data-uri embedding of less/images/media/light/forward.svg because file not found
+Skipped data-uri embedding of less/images/media/light/backward.svg because file not found
+Skipped data-uri embedding of less/images/media/light/share.svg because file not found
+Skipped data-uri embedding of less/images/media/light/equalizer.svg because file not found
+Skipped data-uri embedding of less/images/media/light/eject.svg because file not found
+Skipped data-uri embedding of less/images/media/light/shuffle.svg because file not found
+Skipped data-uri embedding of less/images/media/light/dice.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/play.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/loop.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/stop.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/pause.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/volume-mute.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/volume-low.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/volume-medium.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/volume-high.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/enlarge.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/shrink.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/list.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/next.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/prev.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/first.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/last.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/forward.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/backward.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/share.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/equalizer.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/eject.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/shuffle.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/dice.svg because file not found
+Skipped data-uri embedding of less/images/inputs/checkmark.svg because file not found
+Skipped data-uri embedding of less/images/inputs/cross.svg because file not found
+Skipped data-uri embedding of less/images/inputs/search.svg because file not found
+Skipped data-uri embedding of less/images/inputs/eye.svg because file not found
+Skipped data-uri embedding of less/images/wizard/help.svg because file not found
+Skipped data-uri embedding of less/images/wizard/arrow-left.svg because file not found
+Skipped data-uri embedding of less/images/wizard/arrow-right.svg because file not found
+Skipped data-uri embedding of less/images/inputs/calendar.svg because file not found
+Skipped data-uri embedding of less/images/inputs/clock.svg because file not found
+Skipped data-uri embedding of less/images/apps/menu.svg because file not found
+.hideScrollBars {
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+.hideScrollBars::-webkit-scrollbar {
+  display: none!important;
+}
+.streamer {
+  position: relative;
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+.streamer .streams {
+  width: 40px;
+  overflow: visible;
+  display: flex;
+  flex-flow: column nowrap;
+  padding-top: 30px;
+  background-color: #ffffff;
+  color: #1d1d1d;
+  position: absolute;
+  margin-top: 2px;
+  left: 0;
+  top: 0;
+  z-index: 500;
+}
+.streamer .streamer-actions {
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 100%;
+  height: 32px;
+  display: none;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  background-color: inherit;
+  z-index: 101;
+}
+.streamer .streamer-action {
+  margin: 1px;
+  height: 26px;
+  width: 26px;
+  border: 0px solid #dfdfdf;
+  line-height: 26px;
+  text-align: center;
+  cursor: pointer;
+  background-color: #ffffff;
+  color: #1d1d1d;
+  outline: none;
+  padding: 0;
+}
+.streamer .streamer-action * {
+  vertical-align: inherit ;
+  font-size: 26px;
+  width: 100%!important;
+  height: 100%!important;
+}
+.streamer a.streamer-action {
+  color: #1d1d1d;
+}
+.streamer a.streamer-action:hover {
+  color: #1d1d1d;
+}
+.streamer .stream {
+  position: relative;
+  height: 75px;
+  width: 40px;
+  padding: 4px 8px;
+  display: flex;
+  flex-flow: column nowrap;
+  background-color: inherit;
+  color: inherit;
+  border: 2px solid #ffffff;
+  cursor: pointer;
+  user-select: none;
+  transition: width 0.3s ease;
+}
+.streamer .stream-title,
+.streamer .stream-secondary {
+  display: none;
+  z-index: 2;
+}
+.streamer .stream-title {
+  font-size: 14px;
+  text-transform: uppercase;
+  height: 100%;
+  line-height: 1;
+}
+.streamer .stream-secondary {
+  height: 16px;
+  line-height: 16px;
+  font-size: 12px;
+}
+.streamer .stream-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -16px;
+  margin-left: -16px;
+  width: 32px;
+  height: 32px;
+  font-size: 24px;
+}
+.streamer .events-area {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-flow: column nowrap;
+  overflow-x: auto;
+  padding-left: 40px;
+  z-index: 1;
+  -webkit-overflow-scrolling: touch;
+  position: relative;
+}
+.streamer .streamer-timeline {
+  height: 32px;
+  width: auto;
+  list-style: none inside;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-flow: row nowrap;
+  order: 1;
+}
+.streamer .streamer-timeline li {
+  flex-shrink: 0;
+  width: 224px;
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOAAAAATCAYAAACJKwFWAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo2OWY4NzBhNi0zODU3LWFmNDEtYWMzZS03YzlkOTcxZjMxOTIiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NEREMzg4NkJBQjkyMTFFN0JDQTVFMzg4RUE0RDc4RkQiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NEREMzg4NkFBQjkyMTFFN0JDQTVFMzg4RUE0RDc4RkQiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKFdpbmRvd3MpIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6YzEyZGQ1NjktNmM3YS0yZTQ2LTg2MmQtZWY3OGU5MmQ4NWY2IiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjY5Zjg3MGE2LTM4NTctYWY0MS1hYzNlLTdjOWQ5NzFmMzE5MiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pv3rUTMAAAIHSURBVHja7Jq/S0JRHMWfpj37oSA8qikIImioIaghaHDrD2hqaG4R6i8paGksh2iIQGhoCYewocChhkDEoAjsx5IGDZV2Ll6huXvoKZwPHHwuh3O/737f03tvpNVqeUKIcIiYBiwUCoe4LhH8FqAadO/oE0BT0AUh0xxUhyqOPklohpRpFvqEbh194tA8dGX9XJi2fteE8S1CN1DD0WcSSpHmpslUhl4dfcahMeiSMTdj9qKYyWR2/uKA5v39dd1OUNebOAKtQtuEQa5Bd9C5o4+pVRbaImRagd6hU4LXJinTMjQMHZEymfn05eizBE1AOUKmDegAeiY8PE0z7xIyZaP2op/0Rk1AaYKPeQP6pEyD9inqyigx05B9ozLG5ttPV5I2FwPf1suVFGlsnUwBwSdt5zmD/qh+hQsRHmpAIdSAQqgBhRBqQCHUgEKIfyBG9jP7SD4pV5KYibFs3EfMZJbWu+0I0oDH24ZI2nq5krD3j5UpTvDxiZnoDWg2Ot8IPmbjfI+UqQo9EXw+vPZJCgYn0HeXNeCjx9vfKtt6uVIjPqhMpjrBx5ykqXRrA1ZJPg3P/RhTh2OSzwu0T/J66MJfQ2dEL1adisRMOZJPyeMcjdN/QCHCRg0ohBpQCDWgECKkBgxUip4k4rVXLiMqRU8SdBowr1r0JE2vvbTeVCl6kvyPAAMASGlSBhr76A8AAAAASUVORK5CYII=") no-repeat;
+  vertical-align: bottom;
+  height: 100%;
+  line-height: 30px;
+  display: flex;
+  flex-flow: row nowrap;
+}
+.streamer .streamer-timeline li em {
+  font-size: 10px;
+  font-style: normal;
+  margin: 4px;
+  flex: 1 0 0;
+  max-width: 100%;
+}
+.streamer .streamer-events {
+  order: 2;
+  position: relative;
+  display: flex;
+  flex-flow: row nowrap;
+}
+.streamer .event-group {
+  display: block;
+  background-color: #ffffff;
+  color: #1d1d1d;
+  border: 1px solid transparent;
+  flex-shrink: 0;
+  margin-top: -1px;
+}
+.streamer .stream-events {
+  height: 75px;
+  width: auto;
+  position: relative;
+  display: flex;
+  flex-flow: row nowrap;
+}
+.streamer .stream-events.global-stream {
+  min-height: 100%;
+}
+.streamer .stream-events.global-stream .stream-event {
+  min-width: 100%;
+}
+.streamer .stream-event {
+  width: 222px;
+  height: calc(100% - 3px);
+  border: 1px solid #f5f5f5;
+  margin: 2px 1px;
+  background-color: #ffffff;
+  color: #1d1d1d;
+  overflow: hidden;
+  user-select: none;
+  cursor: pointer;
+}
+.streamer .stream-event:hover {
+  border-color: #dfdfdf;
+}
+.streamer .stream-event-slide {
+  display: flex;
+  position: relative;
+  flex-flow: row nowrap;
+  height: 100%;
+}
+.streamer .stream-event-slide .slide-logo {
+  width: 40px;
+  position: relative;
+  display: flex;
+  flex-flow: column nowrap;
+  padding: 2px;
+}
+.streamer .stream-event-slide .slide-logo .icon {
+  width: 36px;
+  height: 36px;
+}
+.streamer .stream-event-slide .slide-logo .time {
+  margin-top: 1px;
+  padding: 5px 4px 6px;
+  font-size: .75rem;
+}
+.streamer .stream-event-slide .slide-data {
+  margin: 0 4px;
+  padding: 4px 0;
+  display: flex;
+  flex-flow: column nowrap;
+  width: calc(100% - 48px);
+  height: 100%;
+}
+.streamer .stream-event-slide .slide-data .title,
+.streamer .stream-event-slide .slide-data .subtitle,
+.streamer .stream-event-slide .slide-data .desc {
+  line-height: 1;
+}
+.streamer .stream-event-slide .slide-data .title {
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 14px;
+}
+.streamer .stream-event-slide .slide-data .subtitle {
+  font-size: 10px;
+}
+.streamer .stream-event-slide .slide-data .desc {
+  font-size: 11px;
+  color: #999999;
+  margin-top: auto;
+  height: 29px;
+}
+.streamer .stream-event-slide .slide-data * + .subtitle {
+  margin-top: 2px;
+}
+.streamer .stream-event-slide .state-icon {
+  position: absolute;
+  z-index: 99;
+  top: 4px;
+  right: 8px;
+  color: #989898;
+}
+.streamer .stream-event {
+  position: relative;
+  user-select: none;
+}
+.streamer .stream-event.selected {
+  box-shadow: 0 0 0 1px #5ebdec !important;
+}
+.streamer .stream-events:not(.global-stream) .stream-event.disabled {
+  opacity: .2;
+}
+.streamer .size-auto {
+  width: auto;
+}
+.streamer .event-group.size-1x {
+  width: 224px;
+}
+.streamer .event-group.size-2x {
+  width: 448px;
+}
+.streamer .event-group.size-3x {
+  width: 672px;
+}
+.streamer .event-group.size-4x {
+  width: 896px;
+}
+.streamer .event-group.size-5x {
+  width: 1120px;
+}
+.streamer .event-group.size-6x {
+  width: 1344px;
+}
+.streamer .event-group.size-7x {
+  width: 1568px;
+}
+.streamer .event-group.size-8x {
+  width: 1792px;
+}
+.streamer .event-group.size-9x {
+  width: 2016px;
+}
+.streamer .event-group.size-10x {
+  width: 2240px;
+}
+.streamer .stream-event.size-1x {
+  width: 222px;
+}
+.streamer .stream-event.shift-1x {
+  margin-left: 225px;
+}
+.streamer .stream-event.size-2x {
+  width: 446px;
+}
+.streamer .stream-event.shift-2x {
+  margin-left: 449px;
+}
+.streamer .stream-event.size-3x {
+  width: 670px;
+}
+.streamer .stream-event.shift-3x {
+  margin-left: 673px;
+}
+.streamer .stream-event.size-4x {
+  width: 894px;
+}
+.streamer .stream-event.shift-4x {
+  margin-left: 897px;
+}
+.streamer .stream-event.size-5x {
+  width: 1118px;
+}
+.streamer .stream-event.shift-5x {
+  margin-left: 1121px;
+}
+.streamer .stream-event.size-6x {
+  width: 1342px;
+}
+.streamer .stream-event.shift-6x {
+  margin-left: 1345px;
+}
+.streamer .stream-event.size-7x {
+  width: 1566px;
+}
+.streamer .stream-event.shift-7x {
+  margin-left: 1569px;
+}
+.streamer .stream-event.size-8x {
+  width: 1790px;
+}
+.streamer .stream-event.shift-8x {
+  margin-left: 1793px;
+}
+.streamer .stream-event.size-9x {
+  width: 2014px;
+}
+.streamer .stream-event.shift-9x {
+  margin-left: 2017px;
+}
+.streamer .stream-event.size-10x {
+  width: 2238px;
+}
+.streamer .stream-event.shift-10x {
+  margin-left: 2241px;
+}
+html.metro-no-touch-device .streamer .stream:hover {
+  transition: width 0.3s ease;
+  width: 200px;
+}
+html.metro-no-touch-device .streamer .stream:hover .stream-title,
+html.metro-no-touch-device .streamer .stream:hover .stream-secondary {
+  display: block;
+}
+html.metro-no-touch-device .streamer .stream:hover .stream-icon {
+  bottom: 4px;
+  right: 4px;
+  top: auto;
+  left: auto;
+}
+html.metro-touch-device .streamer .stream.focused {
+  transition: width 0.3s ease;
+  width: 200px;
+}
+html.metro-touch-device .streamer .stream.focused .stream-title,
+html.metro-touch-device .streamer .stream.focused .stream-secondary {
+  display: block;
+}
+html.metro-touch-device .streamer .stream.focused .stream-icon {
+  bottom: 4px;
+  right: 4px;
+  top: auto;
+  left: auto;
+}
+@media screen and (min-width: 0) {
+  .streamer.streamer-expand-fs .stream {
+    width: 200px;
+  }
+  .streamer.streamer-expand-fs .streamer-actions {
+    display: flex;
+    width: 200px;
+  }
+  .streamer.streamer-expand-fs .stream-title,
+  .streamer.streamer-expand-fs .stream-secondary {
+    display: block;
+  }
+  .streamer.streamer-expand-fs .stream-icon {
+    bottom: 4px;
+    right: 4px;
+    top: auto;
+    left: auto;
+  }
+  .streamer.streamer-expand-fs .events-area {
+    padding-left: 200px;
+  }
+}
+@media screen and (min-width: 576px) {
+  .streamer.streamer-expand-sm .stream {
+    width: 200px;
+  }
+  .streamer.streamer-expand-sm .streamer-actions {
+    display: flex;
+    width: 200px;
+  }
+  .streamer.streamer-expand-sm .stream-title,
+  .streamer.streamer-expand-sm .stream-secondary {
+    display: block;
+  }
+  .streamer.streamer-expand-sm .stream-icon {
+    bottom: 4px;
+    right: 4px;
+    top: auto;
+    left: auto;
+  }
+  .streamer.streamer-expand-sm .events-area {
+    padding-left: 200px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .streamer.streamer-expand-md .stream {
+    width: 200px;
+  }
+  .streamer.streamer-expand-md .streamer-actions {
+    display: flex;
+    width: 200px;
+  }
+  .streamer.streamer-expand-md .stream-title,
+  .streamer.streamer-expand-md .stream-secondary {
+    display: block;
+  }
+  .streamer.streamer-expand-md .stream-icon {
+    bottom: 4px;
+    right: 4px;
+    top: auto;
+    left: auto;
+  }
+  .streamer.streamer-expand-md .events-area {
+    padding-left: 200px;
+  }
+}
+@media screen and (min-width: 992px) {
+  .streamer.streamer-expand-lg .stream {
+    width: 200px;
+  }
+  .streamer.streamer-expand-lg .streamer-actions {
+    display: flex;
+    width: 200px;
+  }
+  .streamer.streamer-expand-lg .stream-title,
+  .streamer.streamer-expand-lg .stream-secondary {
+    display: block;
+  }
+  .streamer.streamer-expand-lg .stream-icon {
+    bottom: 4px;
+    right: 4px;
+    top: auto;
+    left: auto;
+  }
+  .streamer.streamer-expand-lg .events-area {
+    padding-left: 200px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .streamer.streamer-expand-xl .stream {
+    width: 200px;
+  }
+  .streamer.streamer-expand-xl .streamer-actions {
+    display: flex;
+    width: 200px;
+  }
+  .streamer.streamer-expand-xl .stream-title,
+  .streamer.streamer-expand-xl .stream-secondary {
+    display: block;
+  }
+  .streamer.streamer-expand-xl .stream-icon {
+    bottom: 4px;
+    right: 4px;
+    top: auto;
+    left: auto;
+  }
+  .streamer.streamer-expand-xl .events-area {
+    padding-left: 200px;
+  }
+}
+@media screen and (min-width: 1452px) {
+  .streamer.streamer-expand-xxl .stream {
+    width: 200px;
+  }
+  .streamer.streamer-expand-xxl .streamer-actions {
+    display: flex;
+    width: 200px;
+  }
+  .streamer.streamer-expand-xxl .stream-title,
+  .streamer.streamer-expand-xxl .stream-secondary {
+    display: block;
+  }
+  .streamer.streamer-expand-xxl .stream-icon {
+    bottom: 4px;
+    right: 4px;
+    top: auto;
+    left: auto;
+  }
+  .streamer.streamer-expand-xxl .events-area {
+    padding-left: 200px;
+  }
+}

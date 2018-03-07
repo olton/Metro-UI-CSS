@@ -1,0 +1,179 @@
+Skipped data-uri embedding of less/images/media/light/play.svg because file not found
+Skipped data-uri embedding of less/images/media/light/loop.svg because file not found
+Skipped data-uri embedding of less/images/media/light/stop.svg because file not found
+Skipped data-uri embedding of less/images/media/light/pause.svg because file not found
+Skipped data-uri embedding of less/images/media/light/volume-mute.svg because file not found
+Skipped data-uri embedding of less/images/media/light/volume-low.svg because file not found
+Skipped data-uri embedding of less/images/media/light/volume-medium.svg because file not found
+Skipped data-uri embedding of less/images/media/light/volume-high.svg because file not found
+Skipped data-uri embedding of less/images/media/light/enlarge.svg because file not found
+Skipped data-uri embedding of less/images/media/light/shrink.svg because file not found
+Skipped data-uri embedding of less/images/media/light/list.svg because file not found
+Skipped data-uri embedding of less/images/media/light/next.svg because file not found
+Skipped data-uri embedding of less/images/media/light/prev.svg because file not found
+Skipped data-uri embedding of less/images/media/light/first.svg because file not found
+Skipped data-uri embedding of less/images/media/light/last.svg because file not found
+Skipped data-uri embedding of less/images/media/light/forward.svg because file not found
+Skipped data-uri embedding of less/images/media/light/backward.svg because file not found
+Skipped data-uri embedding of less/images/media/light/share.svg because file not found
+Skipped data-uri embedding of less/images/media/light/equalizer.svg because file not found
+Skipped data-uri embedding of less/images/media/light/eject.svg because file not found
+Skipped data-uri embedding of less/images/media/light/shuffle.svg because file not found
+Skipped data-uri embedding of less/images/media/light/dice.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/play.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/loop.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/stop.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/pause.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/volume-mute.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/volume-low.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/volume-medium.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/volume-high.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/enlarge.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/shrink.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/list.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/next.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/prev.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/first.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/last.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/forward.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/backward.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/share.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/equalizer.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/eject.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/shuffle.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/dice.svg because file not found
+Skipped data-uri embedding of less/images/inputs/checkmark.svg because file not found
+Skipped data-uri embedding of less/images/inputs/cross.svg because file not found
+Skipped data-uri embedding of less/images/inputs/search.svg because file not found
+Skipped data-uri embedding of less/images/inputs/eye.svg because file not found
+Skipped data-uri embedding of less/images/wizard/help.svg because file not found
+Skipped data-uri embedding of less/images/wizard/arrow-left.svg because file not found
+Skipped data-uri embedding of less/images/wizard/arrow-right.svg because file not found
+Skipped data-uri embedding of less/images/inputs/calendar.svg because file not found
+Skipped data-uri embedding of less/images/inputs/clock.svg because file not found
+Skipped data-uri embedding of less/images/apps/menu.svg because file not found
+.hideScrollBars {
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+.hideScrollBars::-webkit-scrollbar {
+  display: none!important;
+}
+.img-container,
+.img-fluid,
+.img-thumbnail {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  position: relative;
+  vertical-align: middle;
+  background-color: transparent;
+  transition: all 0.3s ease-in-out;
+  overflow: visible;
+}
+.img-thumbnail {
+  padding: .25rem;
+  border: 1px solid #dfdfdf;
+  border-radius: 0.25rem;
+  background-color: #ffffff;
+}
+.img-container {
+  display: flex;
+  flex-direction: column;
+}
+.img-container img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  position: relative;
+}
+.img-container .image-overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  overflow: hidden;
+  font-size: .875rem;
+  line-height: 1rem;
+  padding: 2em;
+  background-color: rgba(27, 161, 226, 0.7);
+  color: #ffffff;
+  text-align: center;
+  border-radius: inherit;
+  transition: all 0.3s ease-in-out;
+}
+.img-container .image-overlay * {
+  color: #ffffff;
+}
+.img-container .image-overlay:hover {
+  opacity: 1;
+}
+.img-container .image-overlay:hover:before,
+.img-container .image-overlay:hover:after {
+  opacity: 1;
+  transform: scale(1);
+}
+.img-container .image-overlay:before,
+.img-container .image-overlay:after {
+  display: block;
+  position: absolute;
+  content: "";
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  top: 1em;
+  bottom: 1em;
+  left: 1em;
+  right: 1em;
+  opacity: 0;
+  border-radius: inherit;
+  transform: scale(1.5);
+  transition: all 0.3s ease-in-out;
+}
+.img-container .image-overlay:after {
+  border-left: none;
+  border-right: none;
+  bottom: 1em;
+  top: 1em;
+}
+.img-container .image-overlay:before {
+  border-top: none;
+  border-bottom: none;
+  bottom: 1em;
+  top: 1em;
+}
+.img-container.rounded img {
+  border-radius: 0.25rem;
+}
+.img-container.thumbnail {
+  padding: .25rem;
+  border: 1px solid #dfdfdf;
+  background-color: #ffffff;
+}
+.img-container.thumbnail .title {
+  font-size: .9rem;
+  line-height: 1;
+}
+.img-container img + .title {
+  margin-top: .25rem;
+}
+.img-container .title + img {
+  margin-top: .25rem;
+}
+.img-container.cover {
+  background-size: cover;
+  background: no-repeat 100% 100%;
+}
+figure {
+  margin: 0 0 1rem;
+}
+figure img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  position: relative;
+  vertical-align: middle;
+  background-color: transparent;
+  transition: all 0.3s ease-in-out;
+}

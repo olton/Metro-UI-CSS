@@ -242,6 +242,10 @@
 }
 
 .tiles-grid {
+    &.size-half {
+        width: 70px + @tileMargin * 2;
+    }
+
     .create-tiles-grid-size(@i: 1, @k: 1) when (@k <= @i) {
         &.size-@{k} {
             width: (@tileCellSize + @tileMargin * 2) * @k;
@@ -271,6 +275,9 @@
             .create-tiles-cells(12);
 
             .create-tiles-grid-size(@i: 1, @k: 1) when (@k <= @i) {
+                &.size--@{m}-half {
+                    width: 70px + @tileMargin * 2;
+                }
                 &.size-@{m}-@{k} {
                     width: (@tileCellSize + @tileMargin * 2) * @k;
                 }
@@ -281,5 +288,25 @@
         }
 
         .generate-tiles-media-options(@name, @j + 1);
+    }
+}
+
+.tiles-group {
+
+    width: auto;
+    float: left;
+    overflow: visible;
+    margin-left: 80px;
+
+    &::before {
+        content: attr(data-group-title);
+        display: block;
+        position: absolute;
+        left: 0;
+        top: -36px;
+        height: 1.5em;
+        line-height: 1.5em;
+        z-index: 1;
+        color: inherit;
     }
 }

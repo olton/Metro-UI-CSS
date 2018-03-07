@@ -57,6 +57,7 @@
                     <li class="toc-entry"><a href="#_tiles_effects">Tiles effects</a></li>
                     <li class="toc-entry"><a href="#_tiles_grid">Grid for tiles</a></li>
                     <li class="toc-entry"><a href="#_tiles_position">Tiles position</a></li>
+                    <li class="toc-entry"><a href="#_tiles_groups">Tiles groups</a></li>
                 </ul>
             </div>
 
@@ -547,6 +548,105 @@
                     &lt;/div&gt;
                 </code></pre>
 
+                <h3 id="_tiles_groups">Tiles groups</h3>
+                <p>
+                    To grouping tiles you can use special class <code>.tiles-group</code>. To set group fixed size, add one of classes:
+                        <code>.size-half</code>,
+                        <code>.size-1</code>,
+                        <code>.size-2</code>,
+                        <code>.size-3</code>,
+                        <code>.size-4</code>,
+                        <code>.size-5</code>,
+                        <code>.size-6</code>,
+                        <code>.size-7</code>,
+                        <code>.size-8</code>,
+                        <code>.size-9</code>,
+                        <code>.size-10</code>.
+                </p>
+                <p>
+                    Also, you can use media breakpoints for change size. To get it, use classes:
+                        <code>.size-{media}-half</code>,
+                        <code>.size-{media}-1</code>,
+                        <code>.size-{media}-2</code>,
+                        <code>.size-{media}-3</code>,
+                        <code>.size-{media}-4</code>,
+                        <code>.size-{media}-5</code>,
+                        <code>.size-{media}-6</code>,
+                        <code>.size-{media}-7</code>,
+                        <code>.size-{media}-8</code>,
+                        <code>.size-{media}-9</code>,
+                        <code>.size-{media}-10</code>.
+                    Where <code>{media}</code> is a breakpoint: <code>fs</code>, <code>sm</code>, <code>md</code>, <code>ld</code>, <code>xl</code>, <code>xxl</code>.
+                </p>
+                <div class="example clear">
+                    <div class="tiles-grid tiles-group size-2 fg-white ml-0 mt-10 fg-dark" data-group-title="General">
+                        <a href="https://github.com/olton/Metro-UI-CSS" data-role="tile" class="bg-indigo fg-white">
+                            <span class="mif-github icon"></span>
+                            <span class="branding-bar">Github</span>
+                            <span class="badge-bottom">30</span>
+                        </a>
+                        <div data-role="tile" class="bg-cyan fg-white">
+                            <span class="mif-envelop icon"></span>
+                            <span class="branding-bar">Email</span>
+                            <span class="badge-bottom">10</span>
+                        </div>
+                        <div data-role="tile" class="bg-orange fg-white" data-size="wide">
+                            <span class="mif-chrome icon"></span>
+                            <span class="branding-bar">Chrome</span>
+                        </div>
+                        <div data-role="tile" data-size="small">
+                            <span class="mif-apple icon"></span>
+                        </div>
+                        <div data-role="tile" data-size="small" class="bg-red fg-white">
+                            <span class="mif-bell icon"></span>
+                        </div>
+                        <div data-role="tile" data-size="small" class="bg-teal fg-white col-1 row-6">
+                            <span class="mif-windows icon"></span>
+                        </div>
+                        <div data-role="tile" data-size="small" class="bg-brown fg-white col-2 row-6">
+                            <span class="mif-wind icon"></span>
+                        </div>
+                        <div data-role="tile" class="bg-cyan fg-white">
+                            <span class="mif-table icon"></span>
+                            <span class="branding-bar">Tables</span>
+                        </div>
+                    </div>
+                </div>
+                <pre><code class="html">
+                    &lt;div class="tiles-grid tiles-group size-2" data-group-title="General"&gt;
+                        &lt;a href="https://github.com/olton/Metro-UI-CSS"
+                                data-role="tile" class="bg-indigo"&gt;
+                            &lt;span class="mif-github icon"&gt;&lt;/span&gt;
+                            &lt;span class="branding-bar"&gt;Github&lt;/span&gt;
+                            &lt;span class="badge-bottom"&gt;30&lt;/span&gt;
+                        &lt;/a&gt;
+                        &lt;div data-role="tile" class="bg-cyan"&gt;
+                            &lt;span class="mif-envelop icon"&gt;&lt;/span&gt;
+                            &lt;span class="branding-bar"&gt;Email&lt;/span&gt;
+                            &lt;span class="badge-bottom"&gt;10&lt;/span&gt;
+                        &lt;/div&gt;
+                        &lt;div data-role="tile" class="bg-orange" data-size="wide"&gt;
+                            &lt;span class="mif-chrome icon"&gt;&lt;/span&gt;
+                            &lt;span class="branding-bar"&gt;Chrome&lt;/span&gt;
+                        &lt;/div&gt;
+                        &lt;div data-role="tile" data-size="small"&gt;
+                            &lt;span class="mif-apple icon"&gt;&lt;/span&gt;
+                        &lt;/div&gt;
+                        &lt;div data-role="tile" data-size="small" class="bg-red"&gt;
+                            &lt;span class="mif-bell icon"&gt;&lt;/span&gt;
+                        &lt;/div&gt;
+                        &lt;div data-role="tile" data-size="small" class="bg-teal col-1 row-6"&gt;
+                            &lt;span class="mif-windows icon"&gt;&lt;/span&gt;
+                        &lt;/div&gt;
+                        &lt;div data-role="tile" data-size="small" class="bg-brown col-2 row-6"&gt;
+                            &lt;span class="mif-wind icon"&gt;&lt;/span&gt;
+                        &lt;/div&gt;
+                        &lt;div data-role="tile" class="bg-cyan"&gt;
+                            &lt;span class="mif-table icon"&gt;&lt;/span&gt;
+                            &lt;span class="branding-bar"&gt;Tables&lt;/span&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
             </main>
         </div>
 

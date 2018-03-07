@@ -1,0 +1,1044 @@
+Skipped data-uri embedding of less/images/media/light/play.svg because file not found
+Skipped data-uri embedding of less/images/media/light/loop.svg because file not found
+Skipped data-uri embedding of less/images/media/light/stop.svg because file not found
+Skipped data-uri embedding of less/images/media/light/pause.svg because file not found
+Skipped data-uri embedding of less/images/media/light/volume-mute.svg because file not found
+Skipped data-uri embedding of less/images/media/light/volume-low.svg because file not found
+Skipped data-uri embedding of less/images/media/light/volume-medium.svg because file not found
+Skipped data-uri embedding of less/images/media/light/volume-high.svg because file not found
+Skipped data-uri embedding of less/images/media/light/enlarge.svg because file not found
+Skipped data-uri embedding of less/images/media/light/shrink.svg because file not found
+Skipped data-uri embedding of less/images/media/light/list.svg because file not found
+Skipped data-uri embedding of less/images/media/light/next.svg because file not found
+Skipped data-uri embedding of less/images/media/light/prev.svg because file not found
+Skipped data-uri embedding of less/images/media/light/first.svg because file not found
+Skipped data-uri embedding of less/images/media/light/last.svg because file not found
+Skipped data-uri embedding of less/images/media/light/forward.svg because file not found
+Skipped data-uri embedding of less/images/media/light/backward.svg because file not found
+Skipped data-uri embedding of less/images/media/light/share.svg because file not found
+Skipped data-uri embedding of less/images/media/light/equalizer.svg because file not found
+Skipped data-uri embedding of less/images/media/light/eject.svg because file not found
+Skipped data-uri embedding of less/images/media/light/shuffle.svg because file not found
+Skipped data-uri embedding of less/images/media/light/dice.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/play.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/loop.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/stop.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/pause.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/volume-mute.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/volume-low.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/volume-medium.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/volume-high.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/enlarge.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/shrink.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/list.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/next.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/prev.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/first.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/last.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/forward.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/backward.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/share.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/equalizer.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/eject.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/shuffle.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/dice.svg because file not found
+Skipped data-uri embedding of less/images/inputs/checkmark.svg because file not found
+Skipped data-uri embedding of less/images/inputs/cross.svg because file not found
+Skipped data-uri embedding of less/images/inputs/search.svg because file not found
+Skipped data-uri embedding of less/images/inputs/eye.svg because file not found
+Skipped data-uri embedding of less/images/wizard/help.svg because file not found
+Skipped data-uri embedding of less/images/wizard/arrow-left.svg because file not found
+Skipped data-uri embedding of less/images/wizard/arrow-right.svg because file not found
+Skipped data-uri embedding of less/images/inputs/calendar.svg because file not found
+Skipped data-uri embedding of less/images/inputs/clock.svg because file not found
+Skipped data-uri embedding of less/images/apps/menu.svg because file not found
+.hideScrollBars {
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+.hideScrollBars::-webkit-scrollbar {
+  display: none!important;
+}
+html {
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Ubuntu", "Helvetica Neue", sans-serif;
+  font-size: 100%;
+}
+body {
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Ubuntu", "Helvetica Neue", sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  font-style: normal;
+  font-weight: 400;
+  color: #212121;
+}
+.text-ultralight {
+  font-weight: 100 !important;
+}
+.text-light {
+  font-weight: 200 !important;
+}
+.text-normal {
+  font-weight: 400 !important;
+}
+.text-medium {
+  font-weight: 500 !important;
+}
+.text-bold {
+  font-weight: 700 !important;
+}
+.display4 {
+  font-size: 7rem;
+  font-weight: 200;
+}
+.display3 {
+  font-size: 3.5rem;
+  font-weight: 400;
+}
+.display2 {
+  font-size: 3rem;
+  font-weight: 400;
+}
+.display1 {
+  font-size: 2.25rem;
+  font-weight: 400;
+}
+.display1,
+.display2,
+.display3,
+.display4 {
+  margin-bottom: 1.25rem;
+  line-height: 1.2;
+}
+.display4,
+.display3,
+.display2,
+.display1,
+.caption {
+  color: #757575;
+}
+.leader,
+.h1,
+h1 {
+  font-weight: 100;
+  font-size: 3rem;
+}
+.sub-leader,
+.h2,
+h2 {
+  font-weight: 400;
+  font-size: 2rem;
+}
+.header,
+.h3,
+h3 {
+  font-weight: 500;
+  font-size: 1.75rem;
+}
+.sub-header,
+.h4,
+h4 {
+  font-weight: 500;
+  font-size: 1.5rem;
+}
+.alt-header,
+.h5,
+h5 {
+  font-weight: 500;
+  font-size: 1.25rem;
+}
+.sub-alt-header,
+.h6,
+h6 {
+  font-weight: 500;
+  font-size: 1.125rem;
+}
+.text-small {
+  font-weight: 400;
+  font-size: 0.75rem;
+}
+.text-secondary {
+  font-weight: 400;
+  font-size: 0.875rem;
+}
+.text-leader {
+  font-size: 1.5rem;
+  font-weight: 300;
+}
+.text-leader2 {
+  font-size: 1.25rem;
+  font-weight: 300;
+}
+.text-muted {
+  color: #bebebe;
+}
+.leader,
+.h1,
+h1,
+.sub-leader,
+.h2,
+h2,
+.header,
+.h3,
+h3,
+.sub-header,
+.h4,
+h4,
+.alt-header,
+.h5,
+h5,
+.sub-alt-header,
+.h6,
+h6 {
+  color: inherit;
+  margin-bottom: .5rem;
+  line-height: 1.1;
+}
+.leader > small,
+.h1 > small,
+h1 > small,
+.sub-leader > small,
+.h2 > small,
+h2 > small,
+.header > small,
+.h3 > small,
+h3 > small,
+.sub-header > small,
+.h4 > small,
+h4 > small,
+.alt-header > small,
+.h5 > small,
+h5 > small,
+.sub-alt-header > small,
+.h6 > small,
+h6 > small,
+.leader > .small,
+.h1 > .small,
+h1 > .small,
+.sub-leader > .small,
+.h2 > .small,
+h2 > .small,
+.header > .small,
+.h3 > .small,
+h3 > .small,
+.sub-header > .small,
+.h4 > .small,
+h4 > .small,
+.alt-header > .small,
+.h5 > .small,
+h5 > .small,
+.sub-alt-header > .small,
+.h6 > .small,
+h6 > .small {
+  font-weight: 400;
+  font-size: .7em;
+  line-height: 1;
+  color: #777;
+}
+.text-upper {
+  text-transform: uppercase !important;
+}
+.text-lower {
+  text-transform: lowercase !important;
+}
+.text-cap {
+  text-transform: capitalize !important;
+}
+.text-left {
+  text-align: left !important;
+}
+.text-right {
+  text-align: right !important;
+}
+.text-center {
+  text-align: center !important;
+}
+.text-just {
+  text-align: justify !important;
+}
+.text-ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.va-top {
+  vertical-align: top !important;
+}
+.va-bottom {
+  vertical-align: bottom !important;
+}
+.va-baseline {
+  vertical-align: baseline !important;
+}
+.va-middle {
+  vertical-align: middle !important;
+}
+.va-sub {
+  vertical-align: sub !important;
+}
+.va-super {
+  vertical-align: super !important;
+}
+.va-text-top {
+  vertical-align: text-top !important;
+}
+.va-text-bottom {
+  vertical-align: text-bottom !important;
+}
+abbr {
+  text-decoration: none;
+  border-bottom: 1px #bebebe dotted;
+  cursor: help;
+  display: inline;
+}
+address {
+  font-weight: normal;
+  margin-bottom: 1rem;
+  font-style: normal;
+}
+sub,
+sup {
+  position: relative;
+  font-size: 75%;
+  line-height: 0;
+  vertical-align: baseline;
+}
+sub {
+  bottom: -0.25em;
+}
+sup {
+  top: -0.5em;
+}
+pre,
+code,
+kbd,
+samp {
+  font-family: monospace, monospace;
+  font-size: 1rem;
+}
+pre {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  overflow: auto;
+}
+code {
+  white-space: nowrap;
+}
+pre code {
+  white-space: inherit;
+}
+a {
+  color: #007bff;
+  text-decoration: none;
+  background-color: transparent;
+  -webkit-text-decoration-skip: objects;
+}
+a:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+a:not([href]):not([tabindex]) {
+  color: inherit;
+  text-decoration: none;
+}
+a:not([href]):not([tabindex]):focus,
+a:not([href]):not([tabindex]):hover {
+  color: inherit;
+  text-decoration: none;
+}
+a:not([href]):not([tabindex]):focus {
+  outline: 0;
+}
+mark {
+  padding: 0.1875rem;
+  background-color: #fcf8e3;
+  color: #000000;
+}
+del {
+  color: #bebebe;
+}
+* + p {
+  margin-top: 1rem;
+}
+dl,
+ul,
+ol {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  margin-left: 1rem;
+  list-style-position: inside;
+}
+dl dl,
+ul dl,
+ol dl,
+dl ul,
+ul ul,
+ol ul,
+dl ol,
+ul ol,
+ol ol {
+  margin-bottom: 0;
+  padding-left: 1.5rem;
+}
+ul,
+menu,
+dir {
+  display: block;
+  list-style-type: disc;
+}
+ol {
+  list-style: decimal;
+}
+li.no-style {
+  list-style-type: none;
+}
+ul ul {
+  list-style: circle;
+}
+ul ul ul {
+  list-style: square;
+}
+ol {
+  list-style: upper-roman;
+}
+ol ol {
+  list-style: decimal;
+}
+ol ol ol {
+  list-style: lower-alpha;
+}
+ol.decimal {
+  list-style: decimal;
+}
+ol.roman-upper {
+  list-style: upper-roman;
+}
+ol.roman-lower {
+  list-style: lower-roman;
+}
+ol.alpha-upper {
+  list-style: upper-alpha;
+}
+ol.alpha-lower {
+  list-style: lower-alpha;
+}
+ol.latin-upper {
+  list-style: upper-latin;
+}
+ol.latin-lower {
+  list-style: lower-latin;
+}
+ul.unstyled-list,
+ol.unstyled-list {
+  list-style: none inside;
+  margin-left: 0;
+}
+.inline-list {
+  list-style: none;
+  padding-left: 0;
+  margin-left: 0;
+}
+.inline-list li {
+  display: inline-block;
+  margin-right: .625rem;
+}
+.inline-list li:last-child {
+  margin-right: 0;
+}
+dl dt,
+dl dd {
+  line-height: 1.25rem;
+}
+dl dt {
+  font-weight: bold;
+}
+dl dd {
+  margin-left: .9375rem;
+}
+dl.horizontal dt {
+  float: left;
+  width: 10rem;
+  overflow: hidden;
+  clear: left;
+  text-align: right;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+dl.horizontal dd {
+  margin-left: 11.25rem;
+}
+.indent:first-letter {
+  margin-left: 2.5rem;
+}
+.indent-letter:first-letter {
+  font-weight: bold;
+  float: left;
+  padding: 0;
+  line-height: 2.5rem;
+  font-size: 3rem;
+  margin-right: 0.5rem;
+  margin-left: -0.125rem;
+  margin-top: 0.125rem;
+}
+blockquote {
+  margin-bottom: 1rem;
+  padding: 0 0 0 .625rem;
+  border-left: 0.25rem #f8f8f8 solid;
+}
+blockquote small {
+  color: #bebebe;
+}
+blockquote small:before {
+  content: "\2014 \00A0";
+}
+blockquote.place-right {
+  border: 0;
+  border-right: 4px #f8f8f8 solid;
+  padding-right: .625rem;
+  text-align: right;
+}
+blockquote.place-right small:before {
+  content: "";
+}
+blockquote.place-right small:after {
+  content: " \00A0 \2014";
+}
+hr {
+  border: 0;
+  height: 2px;
+  background-color: #f8f8f8;
+}
+hr.thin {
+  height: 1px;
+}
+hr.fat {
+  height: 3px;
+}
+.tally,
+code,
+kbd {
+  display: inline-block;
+  padding: 0.125rem 0.375rem 0.125rem;
+  font-size: 90%;
+  color: #bd4147;
+  background-color: #f8f9fa;
+  border-radius: 0.015625rem;
+  line-height: 1.3;
+  vertical-align: middle;
+}
+a .tally,
+a code,
+a kbd {
+  text-decoration: underline;
+  cursor: pointer;
+}
+kbd {
+  background-color: #004d6f;
+  color: #ffffff;
+  padding: 0.125rem 0.1875rem;
+}
+pre code {
+  background-color: inherit;
+}
+.remark {
+  display: block;
+  position: relative;
+  border: 1px solid #dfdfdf;
+  border-left: 4px solid #dfdfdf;
+  padding: 1rem;
+  font-size: 0.875rem;
+  margin: 1rem 0;
+}
+.reduce-1 {
+  font-size: .9em!important;
+}
+.reduce-2 {
+  font-size: .8em!important;
+}
+.reduce-3 {
+  font-size: .7em!important;
+}
+.reduce-4 {
+  font-size: .6em!important;
+}
+.reduce-5 {
+  font-size: .5em!important;
+}
+.enlarge-1 {
+  font-size: 1.1em!important;
+}
+.enlarge-2 {
+  font-size: 1.2em!important;
+}
+.enlarge-3 {
+  font-size: 1.3em!important;
+}
+.enlarge-4 {
+  font-size: 1.4em!important;
+}
+.enlarge-5 {
+  font-size: 1.5em!important;
+}
+.align-size {
+  font-size: 1em!important;
+}
+@media screen and (max-width: 0) {
+  .text-upper-fs {
+    text-transform: uppercase !important;
+  }
+  .text-lower-fs {
+    text-transform: lowercase !important;
+  }
+  .text-cap-fs {
+    text-transform: capitalize !important;
+  }
+  .text-left-fs {
+    text-align: left !important;
+  }
+  .text-right-fs {
+    text-align: right !important;
+  }
+  .text-center-fs {
+    text-align: center !important;
+  }
+  .text-just-fs {
+    text-align: justify !important;
+  }
+  .va-top-fs {
+    vertical-align: top !important;
+  }
+  .va-bottom-fs {
+    vertical-align: bottom !important;
+  }
+  .va-baseline-fs {
+    vertical-align: baseline !important;
+  }
+  .va-middle-fs {
+    vertical-align: middle !important;
+  }
+  .va-sub-fs {
+    vertical-align: sub !important;
+  }
+  .va-super-fs {
+    vertical-align: super !important;
+  }
+  .va-text-top-fs {
+    vertical-align: text-top !important;
+  }
+  .va-text-bottom-fs {
+    vertical-align: text-bottom !important;
+  }
+  .reduce-1-fs {
+    font-size: .9em!important;
+  }
+  .reduce-2-fs {
+    font-size: .8em!important;
+  }
+  .reduce-3-fs {
+    font-size: .7em!important;
+  }
+  .reduce-4-fs {
+    font-size: .6em!important;
+  }
+  .reduce-5-fs {
+    font-size: .5em!important;
+  }
+  .enlarge-1-fs {
+    font-size: 1.1em!important;
+  }
+  .enlarge-2-fs {
+    font-size: 1.2em!important;
+  }
+  .enlarge-3-fs {
+    font-size: 1.3em!important;
+  }
+  .enlarge-4-fs {
+    font-size: 1.4em!important;
+  }
+  .enlarge-5-fs {
+    font-size: 1.5em!important;
+  }
+}
+@media screen and (max-width: 576px) {
+  .text-upper-sm {
+    text-transform: uppercase !important;
+  }
+  .text-lower-sm {
+    text-transform: lowercase !important;
+  }
+  .text-cap-sm {
+    text-transform: capitalize !important;
+  }
+  .text-left-sm {
+    text-align: left !important;
+  }
+  .text-right-sm {
+    text-align: right !important;
+  }
+  .text-center-sm {
+    text-align: center !important;
+  }
+  .text-just-sm {
+    text-align: justify !important;
+  }
+  .va-top-sm {
+    vertical-align: top !important;
+  }
+  .va-bottom-sm {
+    vertical-align: bottom !important;
+  }
+  .va-baseline-sm {
+    vertical-align: baseline !important;
+  }
+  .va-middle-sm {
+    vertical-align: middle !important;
+  }
+  .va-sub-sm {
+    vertical-align: sub !important;
+  }
+  .va-super-sm {
+    vertical-align: super !important;
+  }
+  .va-text-top-sm {
+    vertical-align: text-top !important;
+  }
+  .va-text-bottom-sm {
+    vertical-align: text-bottom !important;
+  }
+  .reduce-1-sm {
+    font-size: .9em!important;
+  }
+  .reduce-2-sm {
+    font-size: .8em!important;
+  }
+  .reduce-3-sm {
+    font-size: .7em!important;
+  }
+  .reduce-4-sm {
+    font-size: .6em!important;
+  }
+  .reduce-5-sm {
+    font-size: .5em!important;
+  }
+  .enlarge-1-sm {
+    font-size: 1.1em!important;
+  }
+  .enlarge-2-sm {
+    font-size: 1.2em!important;
+  }
+  .enlarge-3-sm {
+    font-size: 1.3em!important;
+  }
+  .enlarge-4-sm {
+    font-size: 1.4em!important;
+  }
+  .enlarge-5-sm {
+    font-size: 1.5em!important;
+  }
+}
+@media screen and (max-width: 768px) {
+  .text-upper-md {
+    text-transform: uppercase !important;
+  }
+  .text-lower-md {
+    text-transform: lowercase !important;
+  }
+  .text-cap-md {
+    text-transform: capitalize !important;
+  }
+  .text-left-md {
+    text-align: left !important;
+  }
+  .text-right-md {
+    text-align: right !important;
+  }
+  .text-center-md {
+    text-align: center !important;
+  }
+  .text-just-md {
+    text-align: justify !important;
+  }
+  .va-top-md {
+    vertical-align: top !important;
+  }
+  .va-bottom-md {
+    vertical-align: bottom !important;
+  }
+  .va-baseline-md {
+    vertical-align: baseline !important;
+  }
+  .va-middle-md {
+    vertical-align: middle !important;
+  }
+  .va-sub-md {
+    vertical-align: sub !important;
+  }
+  .va-super-md {
+    vertical-align: super !important;
+  }
+  .va-text-top-md {
+    vertical-align: text-top !important;
+  }
+  .va-text-bottom-md {
+    vertical-align: text-bottom !important;
+  }
+  .reduce-1-md {
+    font-size: .9em!important;
+  }
+  .reduce-2-md {
+    font-size: .8em!important;
+  }
+  .reduce-3-md {
+    font-size: .7em!important;
+  }
+  .reduce-4-md {
+    font-size: .6em!important;
+  }
+  .reduce-5-md {
+    font-size: .5em!important;
+  }
+  .enlarge-1-md {
+    font-size: 1.1em!important;
+  }
+  .enlarge-2-md {
+    font-size: 1.2em!important;
+  }
+  .enlarge-3-md {
+    font-size: 1.3em!important;
+  }
+  .enlarge-4-md {
+    font-size: 1.4em!important;
+  }
+  .enlarge-5-md {
+    font-size: 1.5em!important;
+  }
+}
+@media screen and (max-width: 992px) {
+  .text-upper-lg {
+    text-transform: uppercase !important;
+  }
+  .text-lower-lg {
+    text-transform: lowercase !important;
+  }
+  .text-cap-lg {
+    text-transform: capitalize !important;
+  }
+  .text-left-lg {
+    text-align: left !important;
+  }
+  .text-right-lg {
+    text-align: right !important;
+  }
+  .text-center-lg {
+    text-align: center !important;
+  }
+  .text-just-lg {
+    text-align: justify !important;
+  }
+  .va-top-lg {
+    vertical-align: top !important;
+  }
+  .va-bottom-lg {
+    vertical-align: bottom !important;
+  }
+  .va-baseline-lg {
+    vertical-align: baseline !important;
+  }
+  .va-middle-lg {
+    vertical-align: middle !important;
+  }
+  .va-sub-lg {
+    vertical-align: sub !important;
+  }
+  .va-super-lg {
+    vertical-align: super !important;
+  }
+  .va-text-top-lg {
+    vertical-align: text-top !important;
+  }
+  .va-text-bottom-lg {
+    vertical-align: text-bottom !important;
+  }
+  .reduce-1-lg {
+    font-size: .9em!important;
+  }
+  .reduce-2-lg {
+    font-size: .8em!important;
+  }
+  .reduce-3-lg {
+    font-size: .7em!important;
+  }
+  .reduce-4-lg {
+    font-size: .6em!important;
+  }
+  .reduce-5-lg {
+    font-size: .5em!important;
+  }
+  .enlarge-1-lg {
+    font-size: 1.1em!important;
+  }
+  .enlarge-2-lg {
+    font-size: 1.2em!important;
+  }
+  .enlarge-3-lg {
+    font-size: 1.3em!important;
+  }
+  .enlarge-4-lg {
+    font-size: 1.4em!important;
+  }
+  .enlarge-5-lg {
+    font-size: 1.5em!important;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .text-upper-xl {
+    text-transform: uppercase !important;
+  }
+  .text-lower-xl {
+    text-transform: lowercase !important;
+  }
+  .text-cap-xl {
+    text-transform: capitalize !important;
+  }
+  .text-left-xl {
+    text-align: left !important;
+  }
+  .text-right-xl {
+    text-align: right !important;
+  }
+  .text-center-xl {
+    text-align: center !important;
+  }
+  .text-just-xl {
+    text-align: justify !important;
+  }
+  .va-top-xl {
+    vertical-align: top !important;
+  }
+  .va-bottom-xl {
+    vertical-align: bottom !important;
+  }
+  .va-baseline-xl {
+    vertical-align: baseline !important;
+  }
+  .va-middle-xl {
+    vertical-align: middle !important;
+  }
+  .va-sub-xl {
+    vertical-align: sub !important;
+  }
+  .va-super-xl {
+    vertical-align: super !important;
+  }
+  .va-text-top-xl {
+    vertical-align: text-top !important;
+  }
+  .va-text-bottom-xl {
+    vertical-align: text-bottom !important;
+  }
+  .reduce-1-xl {
+    font-size: .9em!important;
+  }
+  .reduce-2-xl {
+    font-size: .8em!important;
+  }
+  .reduce-3-xl {
+    font-size: .7em!important;
+  }
+  .reduce-4-xl {
+    font-size: .6em!important;
+  }
+  .reduce-5-xl {
+    font-size: .5em!important;
+  }
+  .enlarge-1-xl {
+    font-size: 1.1em!important;
+  }
+  .enlarge-2-xl {
+    font-size: 1.2em!important;
+  }
+  .enlarge-3-xl {
+    font-size: 1.3em!important;
+  }
+  .enlarge-4-xl {
+    font-size: 1.4em!important;
+  }
+  .enlarge-5-xl {
+    font-size: 1.5em!important;
+  }
+}
+@media screen and (max-width: 1452px) {
+  .text-upper-xxl {
+    text-transform: uppercase !important;
+  }
+  .text-lower-xxl {
+    text-transform: lowercase !important;
+  }
+  .text-cap-xxl {
+    text-transform: capitalize !important;
+  }
+  .text-left-xxl {
+    text-align: left !important;
+  }
+  .text-right-xxl {
+    text-align: right !important;
+  }
+  .text-center-xxl {
+    text-align: center !important;
+  }
+  .text-just-xxl {
+    text-align: justify !important;
+  }
+  .va-top-xxl {
+    vertical-align: top !important;
+  }
+  .va-bottom-xxl {
+    vertical-align: bottom !important;
+  }
+  .va-baseline-xxl {
+    vertical-align: baseline !important;
+  }
+  .va-middle-xxl {
+    vertical-align: middle !important;
+  }
+  .va-sub-xxl {
+    vertical-align: sub !important;
+  }
+  .va-super-xxl {
+    vertical-align: super !important;
+  }
+  .va-text-top-xxl {
+    vertical-align: text-top !important;
+  }
+  .va-text-bottom-xxl {
+    vertical-align: text-bottom !important;
+  }
+  .reduce-1-xxl {
+    font-size: .9em!important;
+  }
+  .reduce-2-xxl {
+    font-size: .8em!important;
+  }
+  .reduce-3-xxl {
+    font-size: .7em!important;
+  }
+  .reduce-4-xxl {
+    font-size: .6em!important;
+  }
+  .reduce-5-xxl {
+    font-size: .5em!important;
+  }
+  .enlarge-1-xxl {
+    font-size: 1.1em!important;
+  }
+  .enlarge-2-xxl {
+    font-size: 1.2em!important;
+  }
+  .enlarge-3-xxl {
+    font-size: 1.3em!important;
+  }
+  .enlarge-4-xxl {
+    font-size: 1.4em!important;
+  }
+  .enlarge-5-xxl {
+    font-size: 1.5em!important;
+  }
+}
