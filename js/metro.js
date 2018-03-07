@@ -364,6 +364,19 @@ var Metro = {
         }
     },
 
+    reinitPligin: function(element, name){
+        this.destroyPlugin(element, name);
+        this.initPlugin(element, name);
+    },
+
+    reinitPliginAll: function(element){
+        var mc = $(element).data("metroComponent");
+
+        if (mc !== undefined && mc.length > 0) $.each(mc, function(){
+            Metro.reinitPligin(element, this);
+        });
+    },
+
     noop: function(){},
     noop_true: function(){return true;},
     noop_false: function(){return false;},
