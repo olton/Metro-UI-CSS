@@ -1,0 +1,481 @@
+Skipped data-uri embedding of less/images/media/light/play.svg because file not found
+Skipped data-uri embedding of less/images/media/light/loop.svg because file not found
+Skipped data-uri embedding of less/images/media/light/stop.svg because file not found
+Skipped data-uri embedding of less/images/media/light/pause.svg because file not found
+Skipped data-uri embedding of less/images/media/light/volume-mute.svg because file not found
+Skipped data-uri embedding of less/images/media/light/volume-low.svg because file not found
+Skipped data-uri embedding of less/images/media/light/volume-medium.svg because file not found
+Skipped data-uri embedding of less/images/media/light/volume-high.svg because file not found
+Skipped data-uri embedding of less/images/media/light/enlarge.svg because file not found
+Skipped data-uri embedding of less/images/media/light/shrink.svg because file not found
+Skipped data-uri embedding of less/images/media/light/list.svg because file not found
+Skipped data-uri embedding of less/images/media/light/next.svg because file not found
+Skipped data-uri embedding of less/images/media/light/prev.svg because file not found
+Skipped data-uri embedding of less/images/media/light/first.svg because file not found
+Skipped data-uri embedding of less/images/media/light/last.svg because file not found
+Skipped data-uri embedding of less/images/media/light/forward.svg because file not found
+Skipped data-uri embedding of less/images/media/light/backward.svg because file not found
+Skipped data-uri embedding of less/images/media/light/share.svg because file not found
+Skipped data-uri embedding of less/images/media/light/equalizer.svg because file not found
+Skipped data-uri embedding of less/images/media/light/eject.svg because file not found
+Skipped data-uri embedding of less/images/media/light/shuffle.svg because file not found
+Skipped data-uri embedding of less/images/media/light/dice.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/play.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/loop.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/stop.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/pause.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/volume-mute.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/volume-low.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/volume-medium.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/volume-high.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/enlarge.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/shrink.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/list.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/next.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/prev.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/first.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/last.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/forward.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/backward.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/share.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/equalizer.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/eject.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/shuffle.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/dice.svg because file not found
+Skipped data-uri embedding of less/images/inputs/checkmark.svg because file not found
+Skipped data-uri embedding of less/images/inputs/cross.svg because file not found
+Skipped data-uri embedding of less/images/inputs/search.svg because file not found
+Skipped data-uri embedding of less/images/inputs/eye.svg because file not found
+Skipped data-uri embedding of less/images/wizard/help.svg because file not found
+Skipped data-uri embedding of less/images/wizard/arrow-left.svg because file not found
+Skipped data-uri embedding of less/images/wizard/arrow-right.svg because file not found
+Skipped data-uri embedding of less/images/inputs/calendar.svg because file not found
+Skipped data-uri embedding of less/images/inputs/clock.svg because file not found
+Skipped data-uri embedding of less/images/apps/menu.svg because file not found
+.hideScrollBars {
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+.hideScrollBars::-webkit-scrollbar {
+  display: none!important;
+}
+.h-menu {
+  list-style: none inside;
+  display: block;
+  margin: 0;
+  padding: 0;
+  background-color: #ffffff;
+  color: #1d1d1d;
+}
+.h-menu::after {
+  display: block;
+  clear: both;
+  content: "";
+}
+.h-menu > li,
+.h-menu > li > a {
+  display: block;
+  position: relative;
+}
+.h-menu > li {
+  background-color: inherit;
+  color: inherit;
+  float: left;
+}
+.h-menu > li:hover {
+  background-color: rgba(29, 29, 29, 0.1);
+}
+.h-menu > li:hover > a,
+.h-menu > li:hover .icon {
+  color: inherit;
+}
+.h-menu > li > a {
+  font-weight: normal;
+  color: inherit;
+  font-size: 1rem;
+  outline: none;
+  text-decoration: none;
+  padding: .5rem 1rem;
+  border: none;
+  background-color: inherit;
+  white-space: nowrap;
+}
+.h-menu > li > a.dropdown-toggle {
+  padding-right: 2rem!important;
+}
+.h-menu > li > a.dropdown-toggle::before {
+  margin-left: -1.25rem;
+}
+.h-menu.no-hover > li > a {
+  padding-left: .5rem;
+  padding-right: .5rem;
+  color: #6a6a6a;
+}
+.h-menu.no-hover > li:hover,
+.h-menu.no-hover > li > a:hover {
+  background-color: transparent;
+  color: #1d1d1d;
+}
+.h-menu.large > li > a {
+  padding: 1.125rem 1.625rem;
+  font-size: 2rem;
+}
+.h-menu.large > li > a.dropdown-toggle {
+  padding-right: 2.5rem!important;
+}
+.h-menu.large > li > a.dropdown-toggle::before {
+  height: 0.625rem;
+  width: 0.625rem;
+  margin-left: -1.75rem;
+}
+.h-menu > .divider {
+  display: none;
+}
+.h-menu.mega {
+  position: relative;
+}
+.h-menu.mega > li {
+  position: static;
+}
+.h-menu.mega > li.active-container {
+  background-color: inherit;
+}
+.h-menu.mega > li.active-container a {
+  background-color: inherit;
+}
+.h-menu.mega .mega-container {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  padding: 0;
+  background-color: inherit;
+  display: none;
+  color: inherit;
+  z-index: 1000;
+  box-shadow: 2px 2px 2px 0 rgba(29, 29, 29, 0.4);
+}
+.h-menu.mega .mega-container * {
+  color: inherit;
+}
+.d-menu,
+.v-menu {
+  position: absolute;
+  display: none;
+  float: left;
+  width: auto;
+  margin: 0;
+  padding: 0;
+  list-style: none inside none;
+  background-color: #ffffff;
+  color: #1d1d1d;
+}
+.d-menu .d-menu,
+.v-menu .d-menu,
+.d-menu .v-menu,
+.v-menu .v-menu {
+  left: 100%;
+  top: -0.5rem;
+}
+.d-menu.open,
+.v-menu.open {
+  display: block!important;
+}
+.d-menu.place-right,
+.v-menu.place-right {
+  left: auto;
+  right: 0;
+}
+.d-menu {
+  z-index: 1000;
+}
+.d-menu li,
+.v-menu li,
+.d-menu a,
+.v-menu a {
+  display: block;
+  float: none;
+  position: relative;
+  cursor: pointer;
+  color: inherit;
+  background-color: inherit;
+  height: auto;
+}
+.d-menu li a,
+.v-menu li a {
+  font-size: .875rem;
+  padding: 0 2rem 0 2.5rem;
+  line-height: 45px;
+  height: 45px;
+  text-decoration: none;
+  vertical-align: middle;
+  white-space: nowrap;
+  min-width: 12.5rem;
+  border: none;
+}
+.d-menu li a img,
+.v-menu li a img,
+.d-menu li a .icon,
+.v-menu li a .icon {
+  display: block;
+  position: absolute;
+  vertical-align: middle;
+  text-align: center;
+  text-decoration: none;
+  font-size: 1.2rem;
+  left: .5rem;
+  top: .8rem;
+  width: 1.2rem;
+  height: 1.2rem;
+  color: inherit;
+}
+.d-menu li a img::before,
+.v-menu li a img::before,
+.d-menu li a .icon::before,
+.v-menu li a .icon::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  line-height: 1.2rem;
+}
+.d-menu li.active,
+.v-menu li.active {
+  border-left: 2px solid;
+  border-color: #dfdfdf;
+}
+.d-menu li.active > a,
+.v-menu li.active > a {
+  background-color: #5ebdec;
+  color: #ffffff;
+  font-weight: bold;
+}
+.d-menu li:hover,
+.v-menu li:hover {
+  text-decoration: none;
+  background-color: rgba(29, 29, 29, 0.1);
+}
+.d-menu li:hover > a,
+.v-menu li:hover > a,
+.d-menu li:hover .icon,
+.v-menu li:hover .icon {
+  color: inherit;
+}
+.d-menu li a[data-hotkey],
+.v-menu li a[data-hotkey] {
+  padding-right: 3.2rem;
+}
+.d-menu li a[data-hotkey]::after,
+.v-menu li a[data-hotkey]::after {
+  content: attr(data-hotkey);
+  position: absolute;
+  right: 1.2rem;
+  width: auto;
+  font-size: .8em;
+}
+.d-menu li a.dropdown-toggle::before,
+.v-menu li a.dropdown-toggle::before {
+  transform: rotate(-135deg);
+}
+.d-menu li a.dropdown-toggle.active-toggle::before,
+.v-menu li a.dropdown-toggle.active-toggle::before {
+  transform: rotate(45deg);
+}
+.d-menu .divider,
+.v-menu .divider {
+  padding: 0;
+  height: 1px;
+  margin: 0 1px;
+  overflow: hidden;
+  background-color: #f2f2f2;
+  cursor: default;
+  pointer-events: none;
+}
+.d-menu .divider:hover,
+.v-menu .divider:hover {
+  background-color: #f2f2f2;
+}
+.d-menu.disabled,
+.v-menu.disabled {
+  cursor: default;
+  pointer-events: none;
+}
+.d-menu.disabled a,
+.v-menu.disabled a {
+  color: #e4e4e4;
+}
+.d-menu {
+  box-shadow: 2px 2px 2px 0 rgba(227, 228, 229, 0.7), -0.5px 0 1px 0 rgba(227, 228, 229, 0.7);
+}
+.d-menu.context li a {
+  height: 32px;
+  line-height: 32px;
+  font-size: .75rem;
+  padding: 0 2rem 0 2.5rem;
+}
+.d-menu.context li a .icon {
+  width: .92rem;
+  height: .92rem;
+  font-size: .92rem;
+  margin-top: -0.3rem;
+}
+.v-menu {
+  display: block;
+  position: relative;
+  width: 100%;
+  float: none;
+}
+.v-menu .v-menu {
+  display: none;
+  min-width: 0;
+  position: relative;
+  width: 100%;
+  left: 0 ;
+  right: 0 ;
+  top: 100%;
+  box-shadow: none;
+}
+.v-menu .menu-title {
+  background-color: #f6f7f8;
+  font-size: 12px;
+  line-height: 22px;
+  height: 22px;
+  padding: 0 8px;
+  border: 0;
+  color: #646464;
+  font-weight: bold;
+  pointer-events: none;
+}
+.v-menu .menu-title:first-child {
+  margin: 0;
+  border-top-width: 0;
+}
+.v-menu .menu-title:first-child:hover {
+  border-top-width: 0;
+}
+.v-menu .menu-title:hover {
+  background-color: #f6f7f8;
+  cursor: default;
+  border: 0;
+}
+.drop-left {
+  right: 100%;
+  top: 0;
+}
+.drop-right {
+  left: 100%;
+  top: 0;
+}
+.drop-up {
+  top: auto;
+  bottom: 100%;
+}
+.t-menu {
+  list-style: none inside none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  width: auto;
+  float: left;
+  background-color: #ffffff;
+  color: #1d1d1d;
+  border-collapse: separate;
+  display: none;
+  box-shadow: 2px 2px 2px 0 rgba(227, 228, 229, 0.7), -0.5px 0 1px 0 rgba(227, 228, 229, 0.7);
+}
+.t-menu.open {
+  display: block;
+}
+.t-menu > li {
+  position: relative;
+  background-color: inherit;
+  color: inherit;
+  display: block;
+}
+.t-menu > li > a {
+  display: block;
+  padding: .5rem 1rem 1.2rem;
+  border-bottom: 1px #dfdfdf solid;
+  position: relative;
+  color: inherit;
+  background-color: inherit;
+}
+.t-menu > li > a .icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  font-size: 1.5rem;
+}
+.t-menu > li:hover {
+  background-color: rgba(29, 29, 29, 0.1);
+}
+.t-menu > li:last-child a {
+  border-bottom: 0;
+}
+.t-menu.horizontal > li {
+  float: left;
+}
+.t-menu .t-menu {
+  position: absolute;
+  left: 100%;
+  margin-left: .3125rem ;
+  top: 0;
+  float: none;
+}
+.t-menu.horizontal .t-menu {
+  left: 0 ;
+  top: 100% ;
+  margin-top: .3125rem ;
+  margin-left: 0 ;
+}
+.t-menu .dropdown-toggle {
+  padding-right: 1rem!important;
+}
+.t-menu .dropdown-toggle:after {
+  content: "";
+  background-color: transparent;
+  position: absolute;
+  left: auto;
+  top: auto;
+  bottom: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 0 8px 8px;
+  border-color: transparent transparent rgba(29, 29, 29, 0.5) transparent;
+  transform: rotate(0);
+}
+.t-menu .dropdown-toggle:before {
+  display: none;
+}
+.t-menu.horizontal > li > a {
+  border-right: 1px #dfdfdf solid;
+  border-bottom: 0;
+}
+.t-menu.horizontal > li:last-child > a {
+  border-right: 0;
+}
+.t-menu.horizontal .t-menu:not(.horizontal) {
+  left: 0;
+  top: 100% ;
+  margin-top: .3125rem ;
+  margin-left: 0 ;
+}
+.t-menu.horizontal .t-menu:not(.horizontal) .t-menu.horizontal {
+  left: 100% ;
+  margin-left: .3125rem ;
+  top: -0.3rem;
+  float: left;
+}
+.t-menu.compact li a {
+  padding: .1rem .7rem .75rem;
+}
+.t-menu.compact li a .icon {
+  width: 1rem;
+  height: 1rem;
+  font-size: 1rem;
+}
+.t-menu.compact .dropdown-toggle {
+  padding-right: .7rem!important;
+}
+.t-menu {
+  z-index: 1000;
+}

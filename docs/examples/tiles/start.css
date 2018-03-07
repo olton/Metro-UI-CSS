@@ -69,65 +69,9 @@ Skipped data-uri embedding of less/images/apps/menu.svg because file not found
   top: 20px;
   left: 80px;
 }
-.tiles-group {
-  width: auto;
-  float: left;
-  overflow: visible;
-  left: 100px;
-}
-.tiles-group::before {
-  content: attr(data-group-title);
-  display: block;
-  position: absolute;
-  left: 0;
-  top: -36px;
-  height: 1.5em;
-  line-height: 1.5em;
-  z-index: 1;
-  color: inherit;
-}
-.tiles-group {
-  margin-left: 80px;
-}
-.tiles-group.size-half {
-  width: 80px;
-}
-.tiles-group.size-one {
-  width: 160px;
-}
-.tiles-group.size-two {
-  width: 320px;
-}
-.tiles-group.size-three {
-  width: 480px;
-}
-.tiles-group.size-four {
-  width: 640px;
-}
-.tiles-group.size-five {
-  width: 800px;
-}
-.tiles-group.size-six {
-  width: 960px;
-}
-.tiles-group.size-seven {
-  width: 1120px;
-}
-.tiles-group.size-eight {
-  width: 1280px;
-}
-.tiles-group.size-nine {
-  width: 1440px;
-}
-.tiles-group.size-ten {
-  width: 1600px;
-}
-.tiles-group.size-eleven {
-  width: 1760px;
-}
-.tiles-group.size-twelve {
-  width: 1920px;
-}
 [class*=tile-] {
   transform: scale(0.8);
+}
+.tiles-group {
+  left: 100px;
 }

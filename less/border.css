@@ -1,0 +1,377 @@
+Skipped data-uri embedding of less/images/media/light/play.svg because file not found
+Skipped data-uri embedding of less/images/media/light/loop.svg because file not found
+Skipped data-uri embedding of less/images/media/light/stop.svg because file not found
+Skipped data-uri embedding of less/images/media/light/pause.svg because file not found
+Skipped data-uri embedding of less/images/media/light/volume-mute.svg because file not found
+Skipped data-uri embedding of less/images/media/light/volume-low.svg because file not found
+Skipped data-uri embedding of less/images/media/light/volume-medium.svg because file not found
+Skipped data-uri embedding of less/images/media/light/volume-high.svg because file not found
+Skipped data-uri embedding of less/images/media/light/enlarge.svg because file not found
+Skipped data-uri embedding of less/images/media/light/shrink.svg because file not found
+Skipped data-uri embedding of less/images/media/light/list.svg because file not found
+Skipped data-uri embedding of less/images/media/light/next.svg because file not found
+Skipped data-uri embedding of less/images/media/light/prev.svg because file not found
+Skipped data-uri embedding of less/images/media/light/first.svg because file not found
+Skipped data-uri embedding of less/images/media/light/last.svg because file not found
+Skipped data-uri embedding of less/images/media/light/forward.svg because file not found
+Skipped data-uri embedding of less/images/media/light/backward.svg because file not found
+Skipped data-uri embedding of less/images/media/light/share.svg because file not found
+Skipped data-uri embedding of less/images/media/light/equalizer.svg because file not found
+Skipped data-uri embedding of less/images/media/light/eject.svg because file not found
+Skipped data-uri embedding of less/images/media/light/shuffle.svg because file not found
+Skipped data-uri embedding of less/images/media/light/dice.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/play.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/loop.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/stop.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/pause.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/volume-mute.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/volume-low.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/volume-medium.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/volume-high.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/enlarge.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/shrink.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/list.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/next.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/prev.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/first.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/last.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/forward.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/backward.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/share.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/equalizer.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/eject.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/shuffle.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/dice.svg because file not found
+Skipped data-uri embedding of less/images/inputs/checkmark.svg because file not found
+Skipped data-uri embedding of less/images/inputs/cross.svg because file not found
+Skipped data-uri embedding of less/images/inputs/search.svg because file not found
+Skipped data-uri embedding of less/images/inputs/eye.svg because file not found
+Skipped data-uri embedding of less/images/wizard/help.svg because file not found
+Skipped data-uri embedding of less/images/wizard/arrow-left.svg because file not found
+Skipped data-uri embedding of less/images/wizard/arrow-right.svg because file not found
+Skipped data-uri embedding of less/images/inputs/calendar.svg because file not found
+Skipped data-uri embedding of less/images/inputs/clock.svg because file not found
+Skipped data-uri embedding of less/images/apps/menu.svg because file not found
+.hideScrollBars {
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+.hideScrollBars::-webkit-scrollbar {
+  display: none!important;
+}
+.no-border {
+  border: 0 !important;
+}
+.no-border-left {
+  border-left: none !important;
+}
+.no-border-right {
+  border-right: none !important;
+}
+.no-border-top {
+  border-top: none !important;
+}
+.no-border-bottom {
+  border-bottom: none !important;
+}
+.no-border-visible {
+  border-color: transparent !important;
+}
+.border-none {
+  border: 0 !important;
+}
+.border-left-none {
+  border-left: none !important;
+}
+.border-right-none {
+  border-right: none !important;
+}
+.border-top-none {
+  border-top: none !important;
+}
+.border-bottom-none {
+  border-bottom: none !important;
+}
+.border-visible-none {
+  border-color: transparent !important;
+}
+.border {
+  border: 1px solid transparent;
+}
+.border-left {
+  border-left: 1px solid transparent;
+}
+.border-right {
+  border-right: 1px solid transparent;
+}
+.border-top {
+  border-top: 1px solid transparent;
+}
+.border-bottom {
+  border-bottom: 1px solid transparent;
+}
+.border-top-left,
+.border-left-top {
+  border-top: 1px solid transparent;
+  border-left: 1px solid transparent;
+}
+.border-top-right,
+.border-right-top {
+  border-top: 1px solid transparent;
+  border-right: 1px solid transparent;
+}
+.border-bottom-right,
+.border-right-bottom {
+  border-bottom: 1px solid transparent;
+  border-right: 1px solid transparent;
+}
+.border-bottom-left,
+.border-left-bottom {
+  border-bottom: 1px solid transparent;
+  border-left: 1px solid transparent;
+}
+.border-top-bottom,
+.border-bottom-top {
+  border-bottom: 1px solid transparent;
+  border-top: 1px solid transparent;
+}
+.border-right-left,
+.border-left-right {
+  border-right: 1px solid transparent;
+  border-left: 1px solid transparent;
+}
+.border-top-right-bottom {
+  border-top: 1px solid transparent;
+  border-right: 1px solid transparent;
+  border-bottom: 1px solid transparent;
+}
+.border-right-bottom-left {
+  border-left: 1px solid transparent;
+  border-right: 1px solid transparent;
+  border-bottom: 1px solid transparent;
+}
+.border-bottom-left-top {
+  border-left: 1px solid transparent;
+  border-top: 1px solid transparent;
+  border-bottom: 1px solid transparent;
+}
+.border-left-top-right {
+  border-left: 1px solid transparent;
+  border-top: 1px solid transparent;
+  border-bottom: 1px solid transparent;
+}
+.border-radius {
+  border-radius: 0.25rem;
+}
+.border-radius-half {
+  border-radius: 50%;
+}
+.border-20 {
+  border-width: 20px;
+}
+.border-size-20 {
+  border-width: 20px;
+}
+.border-radius-20 {
+  border-radius: 20px;
+}
+.border-19 {
+  border-width: 19px;
+}
+.border-size-19 {
+  border-width: 19px;
+}
+.border-radius-19 {
+  border-radius: 19px;
+}
+.border-18 {
+  border-width: 18px;
+}
+.border-size-18 {
+  border-width: 18px;
+}
+.border-radius-18 {
+  border-radius: 18px;
+}
+.border-17 {
+  border-width: 17px;
+}
+.border-size-17 {
+  border-width: 17px;
+}
+.border-radius-17 {
+  border-radius: 17px;
+}
+.border-16 {
+  border-width: 16px;
+}
+.border-size-16 {
+  border-width: 16px;
+}
+.border-radius-16 {
+  border-radius: 16px;
+}
+.border-15 {
+  border-width: 15px;
+}
+.border-size-15 {
+  border-width: 15px;
+}
+.border-radius-15 {
+  border-radius: 15px;
+}
+.border-14 {
+  border-width: 14px;
+}
+.border-size-14 {
+  border-width: 14px;
+}
+.border-radius-14 {
+  border-radius: 14px;
+}
+.border-13 {
+  border-width: 13px;
+}
+.border-size-13 {
+  border-width: 13px;
+}
+.border-radius-13 {
+  border-radius: 13px;
+}
+.border-12 {
+  border-width: 12px;
+}
+.border-size-12 {
+  border-width: 12px;
+}
+.border-radius-12 {
+  border-radius: 12px;
+}
+.border-11 {
+  border-width: 11px;
+}
+.border-size-11 {
+  border-width: 11px;
+}
+.border-radius-11 {
+  border-radius: 11px;
+}
+.border-10 {
+  border-width: 10px;
+}
+.border-size-10 {
+  border-width: 10px;
+}
+.border-radius-10 {
+  border-radius: 10px;
+}
+.border-9 {
+  border-width: 9px;
+}
+.border-size-9 {
+  border-width: 9px;
+}
+.border-radius-9 {
+  border-radius: 9px;
+}
+.border-8 {
+  border-width: 8px;
+}
+.border-size-8 {
+  border-width: 8px;
+}
+.border-radius-8 {
+  border-radius: 8px;
+}
+.border-7 {
+  border-width: 7px;
+}
+.border-size-7 {
+  border-width: 7px;
+}
+.border-radius-7 {
+  border-radius: 7px;
+}
+.border-6 {
+  border-width: 6px;
+}
+.border-size-6 {
+  border-width: 6px;
+}
+.border-radius-6 {
+  border-radius: 6px;
+}
+.border-5 {
+  border-width: 5px;
+}
+.border-size-5 {
+  border-width: 5px;
+}
+.border-radius-5 {
+  border-radius: 5px;
+}
+.border-4 {
+  border-width: 4px;
+}
+.border-size-4 {
+  border-width: 4px;
+}
+.border-radius-4 {
+  border-radius: 4px;
+}
+.border-3 {
+  border-width: 3px;
+}
+.border-size-3 {
+  border-width: 3px;
+}
+.border-radius-3 {
+  border-radius: 3px;
+}
+.border-2 {
+  border-width: 2px;
+}
+.border-size-2 {
+  border-width: 2px;
+}
+.border-radius-2 {
+  border-radius: 2px;
+}
+.border-1 {
+  border-width: 1px;
+}
+.border-size-1 {
+  border-width: 1px;
+}
+.border-radius-1 {
+  border-radius: 1px;
+}
+.rounded {
+  border-radius: 0.25rem !important;
+}
+.border-50 {
+  border-radius: 50% !important;
+}
+.border-solid {
+  border-style: solid!important;
+}
+.border-dashed {
+  border-style: dashed!important;
+}
+.border-dotted {
+  border-style: dotted!important;
+}
+.border-double {
+  border-style: double!important;
+}
+.border-groove {
+  border-style: groove!important;
+}
+.border-inset {
+  border-style: inset!important;
+}
+.border-outset {
+  border-style: outset!important;
+}
+.border-ridge {
+  border-style: ridge!important;
+}

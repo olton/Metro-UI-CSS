@@ -1,0 +1,523 @@
+Skipped data-uri embedding of less/images/media/light/play.svg because file not found
+Skipped data-uri embedding of less/images/media/light/loop.svg because file not found
+Skipped data-uri embedding of less/images/media/light/stop.svg because file not found
+Skipped data-uri embedding of less/images/media/light/pause.svg because file not found
+Skipped data-uri embedding of less/images/media/light/volume-mute.svg because file not found
+Skipped data-uri embedding of less/images/media/light/volume-low.svg because file not found
+Skipped data-uri embedding of less/images/media/light/volume-medium.svg because file not found
+Skipped data-uri embedding of less/images/media/light/volume-high.svg because file not found
+Skipped data-uri embedding of less/images/media/light/enlarge.svg because file not found
+Skipped data-uri embedding of less/images/media/light/shrink.svg because file not found
+Skipped data-uri embedding of less/images/media/light/list.svg because file not found
+Skipped data-uri embedding of less/images/media/light/next.svg because file not found
+Skipped data-uri embedding of less/images/media/light/prev.svg because file not found
+Skipped data-uri embedding of less/images/media/light/first.svg because file not found
+Skipped data-uri embedding of less/images/media/light/last.svg because file not found
+Skipped data-uri embedding of less/images/media/light/forward.svg because file not found
+Skipped data-uri embedding of less/images/media/light/backward.svg because file not found
+Skipped data-uri embedding of less/images/media/light/share.svg because file not found
+Skipped data-uri embedding of less/images/media/light/equalizer.svg because file not found
+Skipped data-uri embedding of less/images/media/light/eject.svg because file not found
+Skipped data-uri embedding of less/images/media/light/shuffle.svg because file not found
+Skipped data-uri embedding of less/images/media/light/dice.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/play.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/loop.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/stop.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/pause.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/volume-mute.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/volume-low.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/volume-medium.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/volume-high.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/enlarge.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/shrink.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/list.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/next.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/prev.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/first.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/last.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/forward.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/backward.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/share.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/equalizer.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/eject.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/shuffle.svg because file not found
+Skipped data-uri embedding of less/images/media/dark/dice.svg because file not found
+Skipped data-uri embedding of less/images/inputs/checkmark.svg because file not found
+Skipped data-uri embedding of less/images/inputs/cross.svg because file not found
+Skipped data-uri embedding of less/images/inputs/search.svg because file not found
+Skipped data-uri embedding of less/images/inputs/eye.svg because file not found
+Skipped data-uri embedding of less/images/wizard/help.svg because file not found
+Skipped data-uri embedding of less/images/wizard/arrow-left.svg because file not found
+Skipped data-uri embedding of less/images/wizard/arrow-right.svg because file not found
+Skipped data-uri embedding of less/images/inputs/calendar.svg because file not found
+Skipped data-uri embedding of less/images/inputs/clock.svg because file not found
+Skipped data-uri embedding of less/images/apps/menu.svg because file not found
+.hideScrollBars {
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+.hideScrollBars::-webkit-scrollbar {
+  display: none!important;
+}
+.calendar {
+  display: block;
+  position: relative;
+  width: 280px;
+  border: 1px solid #dfdfdf;
+  overflow: hidden;
+  user-select: none;
+}
+.calendar-header,
+.calendar-content,
+.calendar-footer {
+  position: relative;
+  display: block;
+  background-color: #ffffff;
+  color: #1d1d1d;
+}
+.calendar-header {
+  padding: 1rem;
+  background-color: #004d6f;
+  color: #ffffff;
+  user-select: none;
+}
+.calendar-header .header-year {
+  font-size: .75rem;
+}
+.calendar-header .header-day {
+  font-size: 1.325rem;
+}
+.calendar-content {
+  padding: 0 .5rem;
+  width: 278px;
+}
+.calendar-content .calendar-toolbar,
+.calendar-content .days-wrapper {
+  display: flex;
+  position: relative;
+}
+.calendar-content .calendar-toolbar {
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: .5rem 0;
+  width: 100%;
+}
+.calendar-content .calendar-toolbar .prev-month,
+.calendar-content .calendar-toolbar .prev-year,
+.calendar-content .calendar-toolbar .next-month,
+.calendar-content .calendar-toolbar .next-year {
+  padding: .5rem;
+  cursor: pointer;
+  text-align: center;
+  flex-grow: 1;
+  width: 37px;
+}
+.calendar-content .calendar-toolbar .prev-month::after,
+.calendar-content .calendar-toolbar .prev-year::after,
+.calendar-content .calendar-toolbar .next-month::after,
+.calendar-content .calendar-toolbar .next-year::after {
+  font-size: 1.625rem;
+  line-height: 1rem;
+  position: relative;
+}
+.calendar-content .calendar-toolbar .prev-month::after,
+.calendar-content .calendar-toolbar .prev-year::after {
+  content: "\2039";
+}
+.calendar-content .calendar-toolbar .next-month::after,
+.calendar-content .calendar-toolbar .next-year::after {
+  content: "\203A";
+}
+.calendar-content .calendar-toolbar .curr-month,
+.calendar-content .calendar-toolbar .curr-year {
+  flex-grow: 2;
+  padding: .5rem;
+  width: 100%;
+  text-align: center;
+  cursor: pointer;
+}
+.calendar-content .week-days,
+.calendar-content .days {
+  display: flex;
+  flex-flow: row nowrap;
+  border-top: 1px solid #dfdfdf;
+  border-bottom: 1px solid #dfdfdf;
+  justify-content: space-between;
+  padding: .5rem 0;
+  font-size: .75rem;
+}
+.calendar-content .days {
+  border: none;
+  flex-flow: column nowrap;
+}
+.calendar-content .days-row {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+.calendar-content .day {
+  width: calc(100%/7);
+  text-align: center;
+  cursor: pointer;
+  font-size: .85rem;
+  position: relative;
+  user-select: none;
+}
+.calendar-content .day.selected {
+  box-shadow: 0 0 0 1px #5ebdec !important;
+}
+.calendar-content .day.selected::after {
+  border-top: 20px solid #5ebdec;
+  border-left: 20px solid transparent;
+}
+.calendar-content .day.selected::before {
+  right: 1px!important;
+  top: 1px!important;
+}
+.calendar-content .outside {
+  color: #bebebe;
+  font-size: .75rem;
+}
+.calendar-content .today {
+  background-color: rgba(27, 161, 226, 0.5);
+  color: #ffffff;
+  font-weight: bold;
+}
+.calendar-content .excluded {
+  background-color: #f8f8f8;
+}
+.calendar-months,
+.calendar-years {
+  height: 100%;
+  display: block;
+  position: absolute;
+  top: 0;
+  background-color: #f8f8f8;
+  color: #1d1d1d;
+  float: left;
+  width: 120px;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+  z-index: 500;
+}
+.calendar-years > .years-list,
+.calendar-months > .months-list {
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto!important;
+}
+.calendar-years > .years-list li.active,
+.calendar-months > .months-list li.active {
+  background-color: #1ba1e2;
+  color: #ffffff;
+}
+.calendar-months {
+  left: 0;
+  transform: translateX(-100%);
+  width: 160px;
+}
+.calendar-months.open {
+  transition: all 0.3s ease-in-out;
+  transform: translateX(0);
+  box-shadow: 5px 0 7px -6px rgba(0, 0, 0, 0.75);
+}
+.calendar-months .months-list {
+  list-style: none inside;
+  padding: 0;
+  margin: 10px 0;
+}
+.calendar-months .months-list li {
+  padding: 4px 16px;
+  cursor: pointer;
+}
+.calendar-months .months-list li:hover {
+  background-color: rgba(29, 29, 29, 0.1);
+}
+.calendar-years {
+  left: 100%;
+}
+.calendar-years.open {
+  transition: all 0.3s ease-in-out;
+  transform: translateX(-100%);
+  box-shadow: -5px 0 7px -6px rgba(0, 0, 0, 0.75);
+}
+.calendar-years .years-list {
+  list-style: none inside;
+  padding: 0;
+  margin: 10px 0;
+  text-align: center;
+}
+.calendar-years .years-list li {
+  padding: 4px 16px;
+  cursor: pointer;
+}
+.calendar-years .years-list li:hover {
+  background-color: rgba(29, 29, 29, 0.1);
+}
+.calendar-footer {
+  padding: .5rem;
+  border-top: 1px solid #dfdfdf;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+}
+.calendar-footer > * {
+  margin: 0 2px;
+  font-size: .75rem;
+  width: 25%;
+  padding: .5rem 0;
+}
+@media screen and (min-width: 0) {
+  .calendar.calendar-wide-fs {
+    flex-flow: row nowrap;
+    width: 560px;
+  }
+  .calendar.calendar-wide-fs::after {
+    display: block;
+    clear: both;
+    content: "";
+  }
+  .calendar.calendar-wide-fs .calendar-header,
+  .calendar.calendar-wide-fs .calendar-footer {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    min-height: 100%;
+  }
+  .calendar.calendar-wide-fs .calendar-header {
+    left: 0;
+  }
+  .calendar.calendar-wide-fs .calendar-footer {
+    right: 0;
+  }
+  .calendar.calendar-wide-fs .calendar-header {
+    width: 180px;
+  }
+  .calendar.calendar-wide-fs .calendar-footer {
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: stretch;
+    border-top: none;
+    border-left: 1px solid #dfdfdf;
+    width: 96px;
+  }
+  .calendar.calendar-wide-fs .calendar-footer * {
+    width: 100%;
+    margin: 2px 0;
+  }
+  .calendar.calendar-wide-fs .calendar-content {
+    margin: 0 96px 0 180px;
+  }
+}
+@media screen and (min-width: 576px) {
+  .calendar.calendar-wide-sm {
+    flex-flow: row nowrap;
+    width: 560px;
+  }
+  .calendar.calendar-wide-sm::after {
+    display: block;
+    clear: both;
+    content: "";
+  }
+  .calendar.calendar-wide-sm .calendar-header,
+  .calendar.calendar-wide-sm .calendar-footer {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    min-height: 100%;
+  }
+  .calendar.calendar-wide-sm .calendar-header {
+    left: 0;
+  }
+  .calendar.calendar-wide-sm .calendar-footer {
+    right: 0;
+  }
+  .calendar.calendar-wide-sm .calendar-header {
+    width: 180px;
+  }
+  .calendar.calendar-wide-sm .calendar-footer {
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: stretch;
+    border-top: none;
+    border-left: 1px solid #dfdfdf;
+    width: 96px;
+  }
+  .calendar.calendar-wide-sm .calendar-footer * {
+    width: 100%;
+    margin: 2px 0;
+  }
+  .calendar.calendar-wide-sm .calendar-content {
+    margin: 0 96px 0 180px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .calendar.calendar-wide-md {
+    flex-flow: row nowrap;
+    width: 560px;
+  }
+  .calendar.calendar-wide-md::after {
+    display: block;
+    clear: both;
+    content: "";
+  }
+  .calendar.calendar-wide-md .calendar-header,
+  .calendar.calendar-wide-md .calendar-footer {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    min-height: 100%;
+  }
+  .calendar.calendar-wide-md .calendar-header {
+    left: 0;
+  }
+  .calendar.calendar-wide-md .calendar-footer {
+    right: 0;
+  }
+  .calendar.calendar-wide-md .calendar-header {
+    width: 180px;
+  }
+  .calendar.calendar-wide-md .calendar-footer {
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: stretch;
+    border-top: none;
+    border-left: 1px solid #dfdfdf;
+    width: 96px;
+  }
+  .calendar.calendar-wide-md .calendar-footer * {
+    width: 100%;
+    margin: 2px 0;
+  }
+  .calendar.calendar-wide-md .calendar-content {
+    margin: 0 96px 0 180px;
+  }
+}
+@media screen and (min-width: 992px) {
+  .calendar.calendar-wide-lg {
+    flex-flow: row nowrap;
+    width: 560px;
+  }
+  .calendar.calendar-wide-lg::after {
+    display: block;
+    clear: both;
+    content: "";
+  }
+  .calendar.calendar-wide-lg .calendar-header,
+  .calendar.calendar-wide-lg .calendar-footer {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    min-height: 100%;
+  }
+  .calendar.calendar-wide-lg .calendar-header {
+    left: 0;
+  }
+  .calendar.calendar-wide-lg .calendar-footer {
+    right: 0;
+  }
+  .calendar.calendar-wide-lg .calendar-header {
+    width: 180px;
+  }
+  .calendar.calendar-wide-lg .calendar-footer {
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: stretch;
+    border-top: none;
+    border-left: 1px solid #dfdfdf;
+    width: 96px;
+  }
+  .calendar.calendar-wide-lg .calendar-footer * {
+    width: 100%;
+    margin: 2px 0;
+  }
+  .calendar.calendar-wide-lg .calendar-content {
+    margin: 0 96px 0 180px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .calendar.calendar-wide-xl {
+    flex-flow: row nowrap;
+    width: 560px;
+  }
+  .calendar.calendar-wide-xl::after {
+    display: block;
+    clear: both;
+    content: "";
+  }
+  .calendar.calendar-wide-xl .calendar-header,
+  .calendar.calendar-wide-xl .calendar-footer {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    min-height: 100%;
+  }
+  .calendar.calendar-wide-xl .calendar-header {
+    left: 0;
+  }
+  .calendar.calendar-wide-xl .calendar-footer {
+    right: 0;
+  }
+  .calendar.calendar-wide-xl .calendar-header {
+    width: 180px;
+  }
+  .calendar.calendar-wide-xl .calendar-footer {
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: stretch;
+    border-top: none;
+    border-left: 1px solid #dfdfdf;
+    width: 96px;
+  }
+  .calendar.calendar-wide-xl .calendar-footer * {
+    width: 100%;
+    margin: 2px 0;
+  }
+  .calendar.calendar-wide-xl .calendar-content {
+    margin: 0 96px 0 180px;
+  }
+}
+@media screen and (min-width: 1452px) {
+  .calendar.calendar-wide-xxl {
+    flex-flow: row nowrap;
+    width: 560px;
+  }
+  .calendar.calendar-wide-xxl::after {
+    display: block;
+    clear: both;
+    content: "";
+  }
+  .calendar.calendar-wide-xxl .calendar-header,
+  .calendar.calendar-wide-xxl .calendar-footer {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    min-height: 100%;
+  }
+  .calendar.calendar-wide-xxl .calendar-header {
+    left: 0;
+  }
+  .calendar.calendar-wide-xxl .calendar-footer {
+    right: 0;
+  }
+  .calendar.calendar-wide-xxl .calendar-header {
+    width: 180px;
+  }
+  .calendar.calendar-wide-xxl .calendar-footer {
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: stretch;
+    border-top: none;
+    border-left: 1px solid #dfdfdf;
+    width: 96px;
+  }
+  .calendar.calendar-wide-xxl .calendar-footer * {
+    width: 100%;
+    margin: 2px 0;
+  }
+  .calendar.calendar-wide-xxl .calendar-content {
+    margin: 0 96px 0 180px;
+  }
+}
