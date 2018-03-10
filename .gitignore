@@ -61,11 +61,10 @@ adsense
 
 # Special files
 deploy.bat
-deploy-only.bat
-docs.bat
 commit.bat
-publish.bat
 build.bat
+final.bat
+tag.bat
 Postprocess.js
 Build.js
 Build_replace.js

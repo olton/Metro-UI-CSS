@@ -7947,6 +7947,9 @@ div {
 .z-top {
   z-index: 1080 !important;
 }
+.z-notify {
+  z-index: 1085 !important;
+}
 .z-charms {
   z-index: 1090 !important;
 }
@@ -17974,7 +17977,7 @@ figure img {
           flex-direction: column;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  z-index: 1080;
+  z-index: 1081;
   width: auto;
 }
 .notify-container.position-left {

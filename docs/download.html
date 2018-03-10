@@ -113,28 +113,42 @@
                 <p class="text-small">
                     * Metro CDN, provided for free by the folks at <a href="https://www.keycdn.com/">KeyCDN</a>
                 </p>
-<!--
+
                 <h3 id="_package_managers">Package managers</h3>
                 <p>
                     Pull in Metro 4 source files into nearly any project with some of the most popular package managers.
                 </p>
+                <br>
 
                 <h5 id="_pm_npm">npm</h5>
                 <pre class=""><code>
-                    $ npm install metro4@latest
+                    $ npm install metro4@latest // full
+                    $ npm install metro4-dist@latest // short
                 </code></pre>
 
 
                 <h5 id="_pm_bower">Yarn</h5>
                 <pre class=""><code>
-                    $ yarn add metro4@latest
+                    $ yarn add metro4@latest // full
+                    $ yarn add metro4-dist@latest // short
                 </code></pre>
 
                 <h5 id="_pm_nuget">NuGet</h5>
+                <p>Package manager</p>
                 <pre class=""><code>
-                    PM> Install-Package metro4 -Pre
+                    PM> Install-Package metro4 -Version {number}
                 </code></pre>
--->
+
+                <p>.NET CLI</p>
+                <pre class=""><code>
+                    > dotnet add package Metro4 -Version {number}
+                </code></pre>
+
+                <p>Packet CLI</p>
+                <pre class=""><code>
+                    > packet add package Metro4 -Version {number}
+                </code></pre>
+
                 <h3 id="_custom_builder">Custom builder</h3>
                 <p>
                     This feature in develop...

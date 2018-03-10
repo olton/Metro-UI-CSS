@@ -1,5 +1,5 @@
 /*!
- * Metro 4 Components Library v4.0.5 build 616-beta (https://metroui.org.ua)
+ * Metro 4 Components Library v4.0.6 build 617-beta (https://metroui.org.ua)
  * Copyright 2018 Sergey Pimenov
  * Licensed under MIT
  */
@@ -71,7 +71,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.0.5-616-beta",
+    version: "4.0.6-617-beta",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -7800,7 +7800,7 @@ var Dialog = {
         element.addClass("dialog");
 
         if (element.attr("id") === undefined) {
-            element.attr("id", Utils.uniqueId());
+            element.attr("id", Utils.elementId("dialog"));
         }
 
         if (o.title !== "") {
@@ -8040,7 +8040,7 @@ Metro['dialog'] = {
         dialog.toggle();
     },
 
-    isOpen: function(){
+    isOpen: function(el){
         if (!this.isDialog(el)) {
             return false;
         }
@@ -10627,7 +10627,7 @@ var Popover = {
         var that = this, elem = this.elem, element = this.element, o = this.options;
         var popover = $("<div>").addClass("popover neb").addClass(o.clsPopover).html(o.popoverText);
         var neb_pos;
-        var id = Utils.uniqueId();
+        var id = Utils.elementId("popover");
 
         popover.attr("id", id);
 
@@ -15634,6 +15634,13 @@ var Window = {
         }, timeout);
     },
 
+    hide: function(){
+        this.win.addClass("no-visible");
+    },
+    show: function(){
+        this.win.removeClass("no-visible");
+    },
+
     toggleButtons: function(a) {
         var that = this, element = this.element, win = this.win, o = this.options;
         var btnClose = win.find(".btn-close");
@@ -15663,11 +15670,14 @@ var Window = {
 
     changeClass: function(a){
         var that = this, element = this.element, win = this.win, o = this.options;
+        if (a === "data-cls-window") {
+            win[0].className = "window " + (o.resizable ? " resizeable " : " ") + element.attr("data-cls-window");
+        }
         if (a === "data-cls-caption") {
-            win.find(".window-caption")[0].className = element.attr("data-cls-caption");
+            win.find(".window-caption")[0].className = "window-caption " + element.attr("data-cls-caption");
         }
         if (a === "data-cls-content") {
-            win.find(".window-content")[0].className = element.attr("data-cls-content");
+            win.find(".window-content")[0].className = "window-content " + element.attr("data-cls-content");
         }
     },
 
@@ -15775,6 +15785,7 @@ var Window = {
             case "data-btn-max": this.toggleButtons(attributeName); break;
             case "data-width":
             case "data-height": this.changeSize(attributeName); break;
+            case "data-cls-window":
             case "data-cls-caption":
             case "data-cls-content": this.changeClass(attributeName); break;
             case "data-shadow": this.toggleShadow(); break;

@@ -64,6 +64,7 @@
                     <li class="toc-entry"><a href="#_window_resizeable">Resizeable</a></li>
                     <li class="toc-entry"><a href="#_window_options">Options</a></li>
                     <li class="toc-entry"><a href="#_window_events">Events</a></li>
+                    <li class="toc-entry"><a href="#_window_methods">Methods</a></li>
                 </ul>
 
             </div>
@@ -400,6 +401,13 @@
                         <td><span class="mif-checkmark fg-green"></span></td>
                     </tr>
                     <tr>
+                        <td>clsWindow</td>
+                        <td><code>data-cls-window</code></td>
+                        <td></td>
+                        <td>Additional classes for window</td>
+                        <td><span class="mif-checkmark fg-green"></span></td>
+                    </tr>
+                    <tr>
                         <td>clsCaption</td>
                         <td><code>data-cls-caption</code></td>
                         <td></td>
@@ -498,60 +506,113 @@
                     <thead>
                     <tr>
                         <th>Event</th>
-                        <th>Data attribute</th>
+                        <th>Data-*</th>
+                        <th>Desc</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <td>onDragStart</td>
-                        <td>data-on-drag-start</td>
+                        <td><code>onDragStart</code></td>
+                        <td><code>data-on-drag-start</code></td>
+                        <td>Generated when the user starts dragging the window</td>
                     </tr>
                     <tr>
-                        <td>onDragStop</td>
-                        <td>data-on-drag-stop</td>
+                        <td><code>onDragStop</code></td>
+                        <td><code>data-on-drag-stop</code></td>
+                        <td>Generated when the user stops dragging the window</td>
                     </tr>
                     <tr>
-                        <td>onDragMove</td>
-                        <td>data-on-drag-move</td>
+                        <td><code>onDragMove</code></td>
+                        <td><code>data-on-drag-move</code></td>
+                        <td>Generated when the user dragging the window</td>
                     </tr>
                     <tr>
-                        <td>onCaptionDblClick</td>
-                        <td>data-on-caption-dbl-click</td>
+                        <td><code>onCaptionDblClick</code></td>
+                        <td><code>data-on-caption-dbl-click</code></td>
+                        <td>Generated when the user double clicks on the window caption</td>
                     </tr>
                     <tr>
-                        <td>onCloseClick</td>
-                        <td>data-on-close-click</td>
+                        <td><code>onCloseClick</code></td>
+                        <td><code>data-on-close-click</code></td>
+                        <td>Generated when the user click close button</td>
                     </tr>
                     <tr>
-                        <td>onMaxClick</td>
-                        <td>data-on-max-click</td>
+                        <td><code>onMaxClick</code></td>
+                        <td><code>data-on-max-click</code></td>
+                        <td>Generated when the user click max button</td>
                     </tr>
                     <tr>
-                        <td>onMinClick</td>
-                        <td>data-on-min-click</td>
+                        <td><code>onMinClick</code></td>
+                        <td><code>data-on-min-click</code></td>
+                        <td>Generated when the user click min button</td>
                     </tr>
                     <tr>
-                        <td>onResizeStart</td>
-                        <td>data-on-resize-start</td>
+                        <td><code>onResizeStart</code></td>
+                        <td><code>data-on-resize-start</code></td>
+                        <td>Generated when the user starts resizing the window</td>
                     </tr>
                     <tr>
-                        <td>onResizeStop</td>
-                        <td>data-on-resize-stop</td>
+                        <td><code>onResizeStop</code></td>
+                        <td><code>data-on-resize-stop</code></td>
+                        <td>Generated when the user stops resizing the window</td>
                     </tr>
                     <tr>
-                        <td>onResize</td>
-                        <td>data-on-resize</td>
+                        <td><code>onResize</code></td>
+                        <td><code>data-on-resize</code></td>
+                        <td>Generated when the user resize the window</td>
                     </tr>
                     <tr>
-                        <td>onWindowCreate</td>
-                        <td>data-on-window-create</td>
+                        <td><code>onWindowCreate</code></td>
+                        <td><code>data-on-window-create</code></td>
+                        <td>Generated when window was created</td>
                     </tr>
                     <tr>
-                        <td>onDestroy</td>
-                        <td>data-on-window-destroy</td>
+                        <td><code>onDestroy</code></td>
+                        <td><code>data-on-window-destroy</code></td>
+                        <td>Generated when the window destroyed</td>
                     </tr>
                     </tbody>
                 </table>
+                <p>
+                    How to use event you can see in <a href="examples/desktop/desktop.html">this example</a>.
+                    The example source you can find on <a href="https://github.com/olton/Metro-UI-CSS/tree/master/docs/examples/desktop">github</a>.
+                </p>
+
+                <h3 id="_window_methods">Methods</h3>
+                <p>
+                    The window has a several methods to interact with it.
+                </p>
+                <table class="table cell-border table-border options-table mt-2">
+                    <thead>
+                    <tr>
+                        <td>Method</td>
+                        <td>Desc</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><code>minimized()</code></td>
+                        <td>Toggle minimized state</td>
+                    </tr>
+                    <tr>
+                        <td><code>maximized()</code></td>
+                        <td>Toggle maximized state</td>
+                    </tr>
+                    <tr>
+                        <td><code>close()</code></td>
+                        <td>Close window</td>
+                    </tr>
+                    <tr>
+                        <td><code>hide()</code></td>
+                        <td>Add class <code>.no-visible</code> to window</td>
+                    </tr>
+                    <tr>
+                        <td><code>show()</code></td>
+                        <td>Remove class <code>.no-visible</code> from window</td>
+                    </tr>
+                    </tbody>
+                </table>
+
             </main>
         </div>
 
