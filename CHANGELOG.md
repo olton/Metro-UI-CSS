@@ -1,3 +1,12 @@
+### 4.0.6
++ [x] Dialog: fix method `Metro.dialog.toggle()`
++ [x] Notify: increase `z-index` for default container
++ [x] Window: add observing `data-cls-window` attribute
++ [x] Window: fix observing `data-cls-caption` and `data-cls-content` attribute
++ [x] Window: add method `show()` - this method add class `no-visible` to `window`
++ [x] Window: add method `hide()` - this method remove class `no-visible` from `window`
++ [x] Window: upd documentation
+
 ### 4.0.5
 + [x] Tiles: add `.tiles-group` class with sizes subclasses
 + [x] Metro: add methods `reinitPlugin`, `reinitPluginAll`

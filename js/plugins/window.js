@@ -297,6 +297,13 @@ var Window = {
         }, timeout);
     },
 
+    hide: function(){
+        this.win.addClass("no-visible");
+    },
+    show: function(){
+        this.win.removeClass("no-visible");
+    },
+
     toggleButtons: function(a) {
         var that = this, element = this.element, win = this.win, o = this.options;
         var btnClose = win.find(".btn-close");
@@ -326,11 +333,14 @@ var Window = {
 
     changeClass: function(a){
         var that = this, element = this.element, win = this.win, o = this.options;
+        if (a === "data-cls-window") {
+            win[0].className = "window " + (o.resizable ? " resizeable " : " ") + element.attr("data-cls-window");
+        }
         if (a === "data-cls-caption") {
-            win.find(".window-caption")[0].className = element.attr("data-cls-caption");
+            win.find(".window-caption")[0].className = "window-caption " + element.attr("data-cls-caption");
         }
         if (a === "data-cls-content") {
-            win.find(".window-content")[0].className = element.attr("data-cls-content");
+            win.find(".window-content")[0].className = "window-content " + element.attr("data-cls-content");
         }
     },
 
@@ -438,6 +448,7 @@ var Window = {
             case "data-btn-max": this.toggleButtons(attributeName); break;
             case "data-width":
             case "data-height": this.changeSize(attributeName); break;
+            case "data-cls-window":
             case "data-cls-caption":
             case "data-cls-content": this.changeClass(attributeName); break;
             case "data-shadow": this.toggleShadow(); break;

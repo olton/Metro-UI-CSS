@@ -69,7 +69,7 @@ var Dialog = {
         element.addClass("dialog");
 
         if (element.attr("id") === undefined) {
-            element.attr("id", Utils.uniqueId());
+            element.attr("id", Utils.elementId("dialog"));
         }
 
         if (o.title !== "") {
@@ -309,7 +309,7 @@ Metro['dialog'] = {
         dialog.toggle();
     },
 
-    isOpen: function(){
+    isOpen: function(el){
         if (!this.isDialog(el)) {
             return false;
         }
