@@ -25,7 +25,7 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "autoprefixer": "^8.0.0",
+    "autoprefixer": "^8.1.0",
     "grunt": "^1.0.1",
     "grunt-build-number": "^1.0.0",
     "grunt-bump": "^0.8.0",
@@ -34,7 +34,7 @@
     "grunt-contrib-concat": "^1.0.1",
     "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-cssmin": "^2.2.1",
-    "grunt-contrib-less": "^1.0.0",
+    "grunt-contrib-less": "^1.4.1",
     "grunt-contrib-uglify": "^3.1.0",
     "grunt-contrib-watch": "^1.0.0",
     "grunt-ftp-push": "^1.2.1",

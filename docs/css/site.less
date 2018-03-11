@@ -1,12 +1,12 @@
 @import "../../less/include/vars";
 @import "../../less/include/mixins";
 
+#spider-navigator {
+    height: 1px;
+    visibility: hidden;
+}
+
 .demo-grid {
-    .row {
-
-    }
-
-
     .cell-auto {
         padding-left: 12px;
         padding-right: 12px;
@@ -35,8 +35,6 @@
 .gaps-demo {
     [class^=cell] {
         border: none !important;
-        //padding-top: 0;
-        //padding-bottom: 0;
     }
 
     [class^=cell] > div {
@@ -161,14 +159,6 @@ pre {
     color: @dark;
     font-weight: bold;
 }
-
-//.doc-nav-item ul {
-//    display: none;
-//}
-//
-//.doc-nav-item.active ul {
-//    display: block;
-//}
 
 .example {
     position: relative;
@@ -409,10 +399,6 @@ pre {
         max-height: 64px;
     }
 }
-
-//@media screen and (){
-//
-//}
 
 main {
     padding-bottom: 20px!important;

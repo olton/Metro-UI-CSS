@@ -87,6 +87,13 @@ module.exports = function(grunt) {
                 src: ["*.less"],
                 ext: ".css",
                 dest: "build/css/schemes"
+            },
+            docs: {
+                expand: true,
+                cwd: "docs/css/",
+                src: ["*.less"],
+                ext: ".css",
+                dest: "docs/css"
             }
         },
 
@@ -144,7 +151,7 @@ module.exports = function(grunt) {
 
         watch: {
             scripts: {
-                files: ['js/i18n/*.json', 'js/*.js', 'js/utils/*.js', 'js/plugins/*js', 'less/*.less', 'less/include/*.less', 'less/schemes/*.less', 'less/schemes/builder/*.less', 'Gruntfile.js'],
+                files: ['js/i18n/*.json', 'js/*.js', 'js/utils/*.js', 'js/plugins/*js', 'less/*.less', 'less/include/*.less', 'less/schemes/*.less', 'less/schemes/builder/*.less', 'docs/css/*.less', 'Gruntfile.js'],
                 tasks: ['clean',  'less', 'postcss', 'concat',  'uglify', 'cssmin', 'copy']
             }
         }
