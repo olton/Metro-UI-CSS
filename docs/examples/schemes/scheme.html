@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <meta name="twitter:site" content="@metroui">
+    <meta name="twitter:creator" content="@pimenov_sergey">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Metro 4 Components Library">
+    <meta name="twitter:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.">
+    <meta name="twitter:image" content="https://metroui.org.ua/images/m4-logo-social.png">
+
+    <meta property="og:url" content="https://metroui.org.ua/v4/index.html">
+    <meta property="og:title" content="Metro 4 Components Library">
+    <meta property="og:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:secure_url" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="968">
+    <meta property="og:image:height" content="504">
+
+    <meta name="author" content="Sergey Pimenov">
+    <meta name="description" content="The most popular HTML, CSS, and JS library in Metro style.">
+    <meta name="keywords" content="HTML, CSS, JS, Metro, CSS3, Javascript, HTML5, UI, Library, Web, Development, Framework">
+
+    <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+
+    <link href="../../metro/css/metro-all.css" rel="stylesheet">
+    <link href="../../metro/css/schemes/darcula.css" rel="stylesheet">
+
+    <title>Schemes demo - Metro 4 :: Popular HTML, CSS and JS library</title>
+
+    <style>
+        h2 {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Metro 4 Schemes</h1>
+        <hr class="thin">
+
+        <h2 id="accordion">Accordion</h2>
+        <div data-role="accordion">
+            <div class="frame">
+                <div class="heading">Header 1</div>
+                <div class="content">
+                    <div class="p-2">Cur luba manducare? Pol, a bene ionicis tormento. Warm, sichuan-style pudding is best garnished with aged BBQ sauce.</div>
+                </div>
+            </div>
+            <div class="frame active">
+                <div class="heading">Header 2</div>
+                <div class="content">
+                    <div class="p-2">Wildly open a starship. Belay, ye small wench- set sails for hunger! Springy, juicy pudding is best blended with whole ice water.</div>
+                </div>
+            </div>
+            <div class="frame">
+                <div class="heading">Header 3</div>
+                <div class="content">
+                    <div class="p-2">Bitter turkey can be made tasty by brushing with sweet chili sauce. Popcorn combines greatly with grey peanut butter.</div>
+                </div>
+            </div>
+        </div>
+
+        <h2 id="appbar">App bar</h2>
+        <div class="pos-relative app-bar-expand-md z-dropdown" data-role="appbar">
+            <a href="" class="brand no-hover text-bold">Metro 4</a>
+            <ul class="app-bar-menu">
+                <li><a href="#">Home</a></li>
+                <li>
+                    <a href="#" class="dropdown-toggle">Products</a>
+                    <ul class="d-menu" data-role="dropdown">
+                        <li><a href="#">Windows 10</a></li>
+                        <li><a href="#">Office 365</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Skype</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Contacts</a></li>
+            </ul>
+        </div>
+
+        <h2 id="calendar-picker">Calendar picker</h2>
+        <input data-role="calendarpicker">
+
+        <h2 id="button">Button</h2>
+        <button class="button">Default button</button>
+
+        <h2 id="calendar">Calendar</h2>
+        <div class="row">
+            <div class="cell-md-3">
+                <div data-role="calendar" class="mx-auto"></div>
+            </div>
+            <div class="cell-md-9">
+                <div data-role="calendar" class="calendar-wide-fs mx-auto"></div>
+            </div>
+        </div>
+
+
+    </div>
+
+<script src="../../js/jquery-3.3.1.min.js"></script>
+<script src="../../metro/js/metro.js"></script>
+<!-- ads-script -->
+</body>
+</html>

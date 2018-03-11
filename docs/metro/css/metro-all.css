@@ -213,12 +213,6 @@ img {
 div {
   position: relative;
 }
-.hideScrollBars {
-  -ms-overflow-style: -ms-autohiding-scrollbar;
-}
-.hideScrollBars::-webkit-scrollbar {
-  display: none!important;
-}
 .inherit-colors {
   background-color: inherit!important;
   color: inherit!important;
@@ -23251,7 +23245,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
             align-items: stretch;
     border-top: none;
     border-left: 1px solid #dfdfdf;
-    width: 96px;
+    width: 100px;
   }
   .calendar.calendar-wide-fs .calendar-footer * {
     width: 100%;
@@ -23308,7 +23302,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
             align-items: stretch;
     border-top: none;
     border-left: 1px solid #dfdfdf;
-    width: 96px;
+    width: 100px;
   }
   .calendar.calendar-wide-sm .calendar-footer * {
     width: 100%;
@@ -23365,7 +23359,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
             align-items: stretch;
     border-top: none;
     border-left: 1px solid #dfdfdf;
-    width: 96px;
+    width: 100px;
   }
   .calendar.calendar-wide-md .calendar-footer * {
     width: 100%;
@@ -23422,7 +23416,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
             align-items: stretch;
     border-top: none;
     border-left: 1px solid #dfdfdf;
-    width: 96px;
+    width: 100px;
   }
   .calendar.calendar-wide-lg .calendar-footer * {
     width: 100%;
@@ -23479,7 +23473,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
             align-items: stretch;
     border-top: none;
     border-left: 1px solid #dfdfdf;
-    width: 96px;
+    width: 100px;
   }
   .calendar.calendar-wide-xl .calendar-footer * {
     width: 100%;
@@ -23536,7 +23530,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
             align-items: stretch;
     border-top: none;
     border-left: 1px solid #dfdfdf;
-    width: 96px;
+    width: 100px;
   }
   .calendar.calendar-wide-xxl .calendar-footer * {
     width: 100%;
@@ -34226,12 +34220,6 @@ input[dir=rtl] {
 }
 
 /*# sourceMappingURL=maps/metro-rtl.css.map */
-.hideScrollBars {
-  -ms-overflow-style: -ms-autohiding-scrollbar;
-}
-.hideScrollBars::-webkit-scrollbar {
-  display: none!important;
-}
 @font-face {
   font-family: 'icons';
   src: url('../mif/metro.woff') format('woff');
