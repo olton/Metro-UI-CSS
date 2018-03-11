@@ -1,9 +1,3 @@
-.hideScrollBars {
-  -ms-overflow-style: -ms-autohiding-scrollbar;
-}
-.hideScrollBars::-webkit-scrollbar {
-  display: none!important;
-}
 @font-face {
   font-family: 'icons';
   src: url('../mif/metro.woff') format('woff');

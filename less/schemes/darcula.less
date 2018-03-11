@@ -1,0 +1,25 @@
+@import (once) "../include/vars";
+@import (once) "../include/mixins";
+@import (once) "builder/builder";
+
+@schemeBackgroundColor: #2B2B2B;
+@schemeTextColor: #ffffff;
+@schemeControlColor: #646464;
+@schemeControlFillColor: #4D5254;
+@schemeControlTextColor: #BBBBBB;
+@schemeBorderColor: #515151;
+@schemeDividerColor: darken(@schemeControlTextColor, 30%);
+@schemeFontFamily: @fontName;
+@schemeFontSize: @fontSize;
+
+.scheme-builder(
+        @schemeBackgroundColor,
+        @schemeTextColor,
+        @schemeControlColor,
+        @schemeControlFillColor,
+        @schemeControlTextColor,
+        @schemeBorderColor,
+        @schemeDividerColor,
+        @schemeFontFamily,
+        @schemeFontSize
+);
