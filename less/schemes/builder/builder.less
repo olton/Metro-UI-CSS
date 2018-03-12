@@ -19,6 +19,18 @@
         background-color: @schemeBackgroundColor;
     }
 
+    .display4, .display3, .display2, .display1 {
+        color: lighten(@schemeTextColor, 46%);
+    }
+
+    .disabled {
+        color: darken(@schemeControlTextColor, 30%)!important;
+    }
+
+    .bg-scheme {background-color: @schemeBackgroundColor!important;}
+    .bg-control {background-color: @schemeControlFillColor!important;}
+    .bg-control-bland {background-color: rgba(red(@schemeControlFillColor),green(@schemeControlFillColor),blue(@schemeControlFillColor), .2)!important;}
+
     // Inputs, switches
     input[type=text],
     input[type=password],
@@ -88,7 +100,7 @@
         input:indeterminate ~ .check {
             border-color: @schemeControlColor;
             &::before {
-                background-color: @schemeControlFillColor;
+                background-color: @schemeControlColor;
             }
         }
 
@@ -230,6 +242,53 @@
         }
     }
 
+    .breadcrumbs {
+        background-color: @schemeBackgroundColor;
+        color: @schemeControlTextColor;
+        border: 1px solid @schemeBorderColor;
+
+        .page-item {
+            &::before, &::after {
+                background-color: @schemeControlTextColor!important;
+            }
+        }
+        .page-link:hover {
+            color: darken(@schemeControlTextColor, 10%);
+        }
+    }
+
+    .pagination {
+        .page-item:not(.no-link) {
+            background-color: @schemeControlFillColor;
+            color: @schemeControlTextColor;
+            border: 1px darken(@schemeControlFillColor, 10%) solid;
+
+            .page-link, .service {
+                &:hover {
+                    background-color: @hoverBackground!important;
+                }
+            }
+        }
+
+        &.no-gap {
+            .page-item {
+                border: none;
+                margin: 0;
+            }
+        }
+
+        .page-item {
+            &.active {
+                background-color: lighten(@schemeControlFillColor, 10%);
+            }
+        }
+
+        .no-link {
+            background-color: @transparent;
+            color: @schemeControlTextColor;
+        }
+    }
+
     // Calendar
     .calendar {
         border-color: @schemeBorderColor;
@@ -301,6 +360,203 @@
 
         .dialog-actions {
             border-top-color: @schemeBorderColor;
+        }
+    }
+
+    // Hints
+
+    // Keypad
+    .keypad {
+        .keys {
+            background-color: @schemeControlFillColor;
+            border-color: @schemeBorderColor;
+            color: @schemeControlTextColor;
+        }
+        .key {
+            &.service-key {
+                background-color: darken(@schemeControlFillColor, 10%);
+            }
+        }
+    }
+
+    // Listview
+    .listview {
+        background-color: lighten(@schemeBackgroundColor, 1%);
+        color: @schemeControlTextColor;
+
+        .node {
+            &:hover {
+                background-color: @schemeControlFillColor;
+                color: @schemeControlTextColor;
+            }
+            &.current-select {
+                background-color: @schemeControlFillColor;
+                border-color: @schemeBorderColor!important;
+            }
+        }
+
+        .node-group {
+            .node-toggle {
+                &::before {
+                    border-color: @schemeControlTextColor;
+                }
+            }
+        }
+
+        &.view-content {
+            .node + .node {
+                border-top-color: @schemeBorderColor;
+            }
+        }
+    }
+
+    // Master
+    .master {
+        background-color: @schemeBackgroundColor;
+        color: @schemeTextColor;
+
+        .controls {
+            .next, .prev {
+                color: @schemeControlTextColor;
+            }
+        }
+
+        .pages {
+            border-color: @schemeBorderColor;
+        }
+    }
+
+    // Menu
+    .h-menu {
+        background-color: @schemeControlFillColor;
+        color: @schemeControlTextColor;
+
+        & > li > a {
+            &.dropdown-toggle {
+                &::before {
+                    border-color: @schemeControlTextColor;
+                }
+            }
+        }
+
+        .disabled {
+            color: darken(@schemeControlTextColor, 30%)!important;
+        }
+    }
+
+    .d-menu, .v-menu {
+        background-color: @schemeControlFillColor;
+        color: @schemeControlTextColor;
+        border: 1px solid @schemeBorderColor;
+        box-shadow: none;
+
+        li {
+            .dropdown-toggle {
+                &::before {
+                    border-color: @schemeControlTextColor;
+                }
+            }
+
+            &:hover {
+                background-color: @hoverBackground;
+                color: @schemeControlTextColor;
+
+                .dropdown-toggle {
+                    &::before {
+                        border-color: @schemeControlTextColor;
+                    }
+                }
+            }
+        }
+
+        .divider {
+            background-color: @schemeDividerColor;
+        }
+
+        .menu-title {
+            background-color: darken(@schemeControlFillColor, 2%);
+        }
+    }
+
+    .v-menu {
+        .v-menu {
+            border: none!important;
+        }
+    }
+
+    .t-menu {
+        background-color: @schemeControlFillColor;
+        color: @schemeControlTextColor;
+        box-shadow: none;
+
+        li a {
+            border-color: @schemeBorderColor!important;
+        }
+
+        .dropdown-toggle {
+            &::after {
+                border-color: transparent transparent @schemeControlTextColor transparent;
+            }
+        }
+    }
+
+    // navview
+    .navview {
+        .navview-pane {
+            background-color: @schemeControlFillColor;
+            color: @schemeControlTextColor;
+
+            .pull-button, .holder, .navview-menu li a {
+                &:hover {
+                    background-color: @hoverBackground;
+                }
+                &:active, &:focus {
+                    background-color: darken(@schemeControlFillColor, 4%);
+                }
+                &:focus {
+                    border: 2px solid @hoverBackground;
+                }
+            }
+
+            .dropdown-toggle {
+                &::after {
+                    border-color: transparent transparent @schemeControlTextColor transparent;
+                }
+            }
+        }
+
+        .navview-content {
+            background-color: lighten(@schemeBackgroundColor, 2%);
+            color: @schemeTextColor;
+        }
+    }
+
+    // Notify
+    .notify {
+        background-color: @schemeControlFillColor;
+        color: @schemeControlTextColor;
+        border: 1px solid @schemeBorderColor;
+    }
+
+    // Panel
+    .panel {
+        background-color: @schemeControlFillColor;
+        color: @schemeControlTextColor;
+        border-color: @schemeBorderColor!important;
+
+        .panel-title {
+            border-bottom-color: @schemeBorderColor;
+
+            .dropdown-toggle {
+                border-left-color: @schemeBorderColor;
+                &::before {
+                    border-color: @schemeControlTextColor;
+                }
+            }
+
+            .icon {
+                border-right-color: @schemeBorderColor;
+            }
         }
     }
 }

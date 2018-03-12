@@ -81,7 +81,7 @@ var Keypad = {
         if (parent.hasClass("input")) {
             keypad = parent;
         } else {
-            keypad = $("<div>").addClass(element[0].className);
+            keypad = $("<div>").addClass("input").addClass(element[0].className);
         }
 
         keypad.addClass("keypad");

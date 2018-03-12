@@ -40,8 +40,8 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Metro 4 Scheme builder</h1>
+    <div class="container" style="margin-bottom: 200px;">
+        <h1>Metro 4 Schemes <small>darcula.css</small></h1>
         <hr class="thin">
 
         <h2 id="inputs">Inputs</h2>
@@ -88,6 +88,39 @@
 
         <h2 id="button">Button</h2>
         <button class="button">Default button</button>
+
+        <h2 id="breadcrumbs">Breadcrumbs</h2>
+        <ul class="breadcrumbs">
+            <li class="page-item"><a href="#" class="page-link">Home</a></li>
+            <li class="page-item"><a href="#" class="page-link">Products</a></li>
+            <li class="page-item"><a href="#" class="page-link">Downloads</a></li>
+            <li class="page-item"><a href="#" class="page-link">Windows 10</a></li>
+        </ul>
+
+        <h2 id="pagination">Pagination</h2>
+        <ul class="pagination">
+            <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1">Previous</a></li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item active"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item no-link"><a class="page-link">...</a></li>
+            <li class="page-item"><a class="page-link" href="#">7</a></li>
+            <li class="page-item"><a class="page-link" href="#">8</a></li>
+            <li class="page-item"><a class="page-link" href="#">9</a></li>
+            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        </ul>
+        <ul class="pagination no-gap">
+            <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1">Previous</a></li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item active"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item no-link"><a class="page-link">...</a></li>
+            <li class="page-item"><a class="page-link" href="#">7</a></li>
+            <li class="page-item"><a class="page-link" href="#">8</a></li>
+            <li class="page-item"><a class="page-link" href="#">9</a></li>
+            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        </ul>
+
 
         <h2 id="accordion">Accordion</h2>
         <div data-role="accordion">
@@ -170,10 +203,281 @@
         </div>
         <button class="button" onclick="Metro.dialog.open($('#dialog1'))">Open dialog</button>
 
+        <h2 id="hints">Hints</h2>
+        <div class="example d-flex flex-justify-between">
+            <button class="button" data-role="hint" data-hint-position="right" data-hint-text="This is a hinted button">Hint Right</button>
+            <button class="button" data-role="hint" data-hint-position="top" data-hint-text="This is a hinted button">Hint Top</button>
+            <button class="button" data-role="hint" data-hint-position="bottom" data-hint-text="This is a hinted button">Hint Bottom</button>
+            <button class="button" data-role="hint" data-hint-position="left" data-hint-text="This is a hinted button">Hint Left</button>
+        </div>
+
+        <h2 id="keypad">Keypad</h2>
+        <input type="text" data-role="keypad">
+
+        <h2 id="listview">Listview</h2>
+        <div class="p-4 bg-control d-flex flex-justify-between border bd-default">
+            <input name="r1" value="list" data-role="radio" data-caption="List" checked title="">
+            <input name="r1" value="table" data-role="radio" data-caption="Table" title="">
+            <input name="r1" value="content" data-role="radio" data-caption="Content" title="">
+            <input name="r1" value="tiles" data-role="radio" data-caption="Tiles" title="">
+            <input name="r1" value="icons" data-role="radio" data-caption="Icons" title="">
+            <input name="r1" value="icons-medium" data-role="radio" data-caption="Medium icons" title="">
+            <input name="r1" value="icons-large" data-role="radio" data-caption="Large icons" title="">
+        </div>
+        <div class="border bd-default no-border-top">
+            <ul class="p-4" data-role="listview" data-selectable="true" data-view="list" id="listview-1" data-select-node="true" data-structure='{"date": true, "name": true}'>
+                <li data-icon="<span class='mif-folder fg-orange'>" data-caption="Video" data-content="<div class='mt-1' data-role='progress' data-value='35' data-small='true'>" data-date="12/21/2017" data-name="Video library"></li>
+                <li data-icon="<span class='mif-folder fg-cyan'>" data-caption="Images" data-content="<div class='mt-1' data-role='progress' data-value='78' data-small='true'>" data-date="12/21/2017" data-name="My images"></li>
+                <li data-icon="<span class='mif-folder-download fg-green'>" data-caption="Downloads" data-content="<div class='mt-1' data-role='progress' data-value='85' data-small='true'>" data-date="12/21/2017" data-name="System folder"></li>
+                <li data-icon="<span class='mif-folder'>" data-caption="Desktop" data-content="<div class='mt-1' data-role='progress' data-value='10' data-small='true'>" data-date="12/21/2017" data-name="System folder"></li>
+                <li data-icon="<span class='mif-file-empty'>" data-caption="desktop.ini" data-content="<span class='text-muted'>Created: 12.21.2017</span>"></li>
+                <li data-icon="../../images/setup.png" data-caption="setup.exe" data-content="<span class='text-muted'>Executable</span>"></li>
+                <li data-caption="Devices and disks" class="mt-2">
+                    <ul class="mt-2">
+                        <li data-icon="../../images/disk-os.png" data-caption="System (C:)"></li>
+                        <li data-icon="../../images/disk.png" data-caption="DS1 (D:)"></li>
+                        <li data-icon="../../images/disk.png" data-caption="DS2 (E:)"></li>
+                        <li data-icon="../../images/disk.png" data-caption="FreeAgent (G:)"></li>
+                        <li data-icon="../../images/disk-network.png" data-caption="Network"></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <h2 id="master">Master</h2>
+        <div data-role="master" data-control-prev="<span class='mif-arrow-left'></span>" data-control-next="<span class='mif-arrow-right'></span>">
+            <div class="page">Page 1</div>
+            <div class="page">Page 2</div>
+            <div class="page">Page 3</div>
+            <div class="page">Page 4</div>
+        </div>
+
+        <h2 id="menu">Menu</h2>
+        <h6 class="text-light">h-menu</h6>
+        <ul class="h-menu">
+            <li><a href="#">Home</a></li>
+            <li>
+                <a id="_test1" href="#" class="dropdown-toggle">Products</a>
+                <ul class="d-menu" data-role="dropdown">
+                    <li>
+                        <a href="#" class="dropdown-toggle">Windows</a>
+                        <ul class="d-menu" data-role="dropdown">
+                            <li><a href="#">Windows 10</a></li>
+                            <li><a href="#">Windows Server</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">MS-DOS</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Skype</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Office</a></li>
+                </ul>
+            </li>
+            <li>
+                <a id="_test2" href="#" class="dropdown-toggle">Products 2</a>
+                <ul class="d-menu" data-role="dropdown">
+                    <li>
+                        <a href="#" class="dropdown-toggle">Windows</a>
+                        <ul class="d-menu" data-role="dropdown">
+                            <li><a href="#">Windows 10</a></li>
+                            <li><a href="#">Windows Server</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">MS-DOS</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Skype</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Office</a></li>
+                </ul>
+            </li>
+            <li class="disabled"><a href="#">Support</a></li>
+            <li><a href="#">Cart</a></li>
+        </ul>
+
+        <div class="row mt-4">
+            <div class="cell-md-4">
+                <h6 class="text-light">d-menu</h6>
+                <ul class="d-menu d-block z-1 pos-relative">
+                    <li><a href="#">Windows 10</a></li>
+                    <li><a href="#">Windows Server</a></li>
+                    <li class="disabled"><a href="#">Windows XP</a></li>
+                    <li><a href="#">Windows 7</a></li>
+                    <li>
+                        <a href="#" class="dropdown-toggle">Office</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li><a href="#">MS-DOS</a></li>
+                </ul>
+            </div>
+            <div class="cell-md-4">
+                <h6 class="text-light">v-menu</h6>
+                <ul class="v-menu" style="width: 220px;">
+                    <li class="menu-title">General</li>
+                    <li><a href="#"><span class="mif-home icon"></span> Home</a></li>
+                    <li class="menu-title">Products</li>
+                    <li><a href="#"><span class="mif-windows icon"></span> Windows</a></li>
+                    <li class="disabled"><a href="#"><span class="mif-library icon"></span> Office 365</a></li>
+                    <li><a href="#"><span class="mif-skype icon"></span> Skype</a></li>
+                    <li class="menu-title">Support</li>
+                    <li>
+                        <a href="#" data-hotkey="Alt+F1">Community</a>
+                        <ul class="v-menu" data-role="dropdown">
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Github</a></li>
+                            <li><a href="#">Forum</a></li>
+                            <li class="divider"></li>
+                            <li class="p-2 d-flex flex-justify-center">
+                                <button class="button square primary m-1"><span class="mif-target"></span></button>
+                                <button class="button square success m-1"><span class="mif-apps"></span></button>
+                                <button class="button square alert m-1"><span class="mif-file-code"></span></button>
+                                <button class="button square warning m-1"><span class="mif-download"></span></button>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu-title">Shop</li>
+                    <li><a href="#"><span class="mif-cart icon"></span> Cart</a></li>
+                </ul>
+            </div>
+            <div class="cell-md-4">
+                <h6 class="text-light">t-menu</h6>
+                <ul class="t-menu open m-1">
+                    <li><a href="#"><span class="icon mif-home"></span></a></li>
+                    <li><a href="#" class="dropdown-toggle"><span class="icon mif-compass"></span></a>
+                        <ul class="t-menu horizontal" data-role="dropdown">
+                            <li><a href="#"><span class="icon mif-home"></span></a></li>
+                            <li><a href="#" class="dropdown-toggle"><span class="icon mif-compass"></span></a>
+                                <ul class="t-menu" data-role="dropdown">
+                                    <li><a href="#"><span class="icon mif-home"></span></a></li>
+                                    <li><a href="#"><span class="icon mif-compass"></span></a></li>
+                                    <li><a href="#"><span class="icon mif-bubbles"></span></a></li>
+                                    <li><a href="#"><span class="icon mif-file-empty"></span></a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#"><span class="icon mif-bubbles"></span></a></li>
+                            <li><a href="#"><span class="icon mif-bubbles"></span></a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#"><span class="icon mif-bubbles"></span></a></li>
+                    <li><a href="#"><span class="icon mif-file-empty"></span></a></li>
+                </ul>
+            </div>
+        </div>
+
+        <h2 id="navview">Navigation view</h2>
+        <div style="height: 500px">
+            <div data-role="navview" data-compact="md" data-expanded="lg" data-toggle="#pane-toggle">
+                <nav class="navview-pane">
+                    <button class="pull-button">
+                        <span class="mif-menu fg-light"></span>
+                    </button>
+
+                    <div class="suggest-box">
+                        <input data-role="search" data-clear-button="false" data-search-button-icon="<span class='mif-search fg-light'></span>">
+                        <button class="holder">
+                            <span class="mif-search fg-light"></span>
+                        </button>
+                    </div>
+
+                    <ul class="navview-menu">
+                        <li>
+                            <a href="#">
+                                <span class="icon"><span class="mif-home"></span></span>
+                                <span class="caption">Home</span>
+                            </a>
+                        </li>
+
+                        <li class="item-separator"></li>
+
+                        <li class="item-header">Main pages</li>
+
+                        <li>
+                            <a href="#">
+                                <span class="icon"><span class="mif-apps"></span></span>
+                                <span class="caption">Apps</span>
+                            </a>
+                        </li>
+                        <li class="active">
+                            <a href="#">
+                                <span class="icon"><span class="mif-gamepad"></span></span>
+                                <span class="caption">Games</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="dropdown-toggle">
+                                <span class="icon"><span class="mif-music"></span></span>
+                                <span class="caption">Music</span>
+                            </a>
+                            <ul class="navview-menu" data-role="dropdown">
+                                <li>
+                                    <a href="#">
+                                        <span class="icon"><span class="mif-gamepad"></span></span>
+                                        <span class="caption">Games</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="icon"><span class="mif-film"></span></span>
+                                        <span class="caption">Movies</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="disabled">
+                            <a href="#">
+                                <span class="icon"><span class="mif-images"></span></span>
+                                <span class="caption">Images</span>
+                            </a>
+                        </li>
+
+                        <li class="item-separator"></li>
+
+                        <li>
+                            <a href="#">
+                                <span class="icon"><span class="mif-folder"></span></span>
+                                <span class="caption">Documents</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <div class="navview-content pl-4-md pr-4-md">
+                    <h1>
+                        <button id="pane-toggle" class="button square d-none-md"><span class="mif-menu" ></span></button>
+                        What is?
+                    </h1>
+                    <p>
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <h2 id="notify">Notify</h2>
+        <button class="button" onclick="Metro.notify.create('This is a notify.', 'Title', {keepOpen: false});">Notify me</button>
+
+        <h2 id="panel">Panel</h2>
+        <div class="row">
+            <div class="cell-md-4">
+                <div data-role="panel" data-title-icon="<span class='mif-apps'></span>" data-title-caption="Panel title" data-collapsible="true">
+                    Raptus capios ducunt ad genetrix. Joy doesn’t beautifully respect any believer — but the power is what flies.
+                </div>
+            </div>
+        </div>
+
+
     </div>
 
-<script src="../../js/jquery-3.3.1.min.js"></script>
-<script src="../../metro/js/metro.js"></script>
-<!-- ads-script -->
+    <script src="../../js/jquery-3.3.1.min.js"></script>
+    <script src="../../metro/js/metro.js"></script>
+    <script>
+        $("input[name=r1]").on("click", function(){
+            var checked = $(this).is(":checked");
+            if (checked) {
+                $("#listview-1").data("listview").view(this.value);
+            }
+        });
+    </script>
+    <!-- ads-script -->
 </body>
 </html>

@@ -79,8 +79,13 @@ var NavigationView = {
         var that = this, element = this.element, o = this.options;
         var pane = this.pane, content = this.content;
 
-        element.on(Metro.events.click, ".pull-button, .holder", function(){
+        element.on(Metro.events.click, ".pull-button, .holder", function(e){
             var pane_compact = pane.width() < 280;
+            var target = $(this);
+
+            if (target.hasClass("holder")) {
+                target.parent().find("input").focus();
+            }
 
             if (that.pane.hasClass("open")) {
                 that.close();
@@ -97,6 +102,7 @@ var NavigationView = {
                 return ;
             }
 
+            return true;
         });
 
         if (this.paneToggle !== null) {
