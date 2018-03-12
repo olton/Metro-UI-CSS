@@ -27658,7 +27658,8 @@ video:-webkit-full-screen {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
-  border: 1px solid #dfdfdf;
+  border: 1px solid;
+  border-color: inherit;
   text-align: center;
   height: 38px;
   line-height: 34px;
@@ -27718,7 +27719,8 @@ video:-webkit-full-screen {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
-  border: 1px solid #dfdfdf;
+  border: 1px solid;
+  border-color: inherit;
   text-align: center;
   height: 38px;
   line-height: 38px;

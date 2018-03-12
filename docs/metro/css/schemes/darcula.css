@@ -23,7 +23,7 @@ textarea,
 .input,
 .textarea,
 .select {
-  border-color: #515151 !important;
+  border-color: #5E6060 !important;
   background-color: rgba(77, 82, 84, 0.2) !important;
   color: #BBBBBB;
 }
@@ -182,7 +182,7 @@ textarea.focused,
   margin: 0;
 }
 .accordion .frame + .frame {
-  border-top: 1px #373737 solid;
+  border-top: 1px #454646 solid;
 }
 .app-bar {
   background-color: #4D5254;
@@ -205,7 +205,7 @@ textarea.focused,
   .app-bar.app-bar-expand-fs .app-bar-container .d-menu {
     -webkit-box-shadow: none;
             box-shadow: none;
-    border: 1px solid #515151;
+    border: 1px solid #5E6060;
   }
 }
 @media screen and (min-width: 576px) {
@@ -213,7 +213,7 @@ textarea.focused,
   .app-bar.app-bar-expand-sm .app-bar-container .d-menu {
     -webkit-box-shadow: none;
             box-shadow: none;
-    border: 1px solid #515151;
+    border: 1px solid #5E6060;
   }
 }
 @media screen and (min-width: 768px) {
@@ -221,7 +221,7 @@ textarea.focused,
   .app-bar.app-bar-expand-md .app-bar-container .d-menu {
     -webkit-box-shadow: none;
             box-shadow: none;
-    border: 1px solid #515151;
+    border: 1px solid #5E6060;
   }
 }
 @media screen and (min-width: 992px) {
@@ -229,7 +229,7 @@ textarea.focused,
   .app-bar.app-bar-expand-lg .app-bar-container .d-menu {
     -webkit-box-shadow: none;
             box-shadow: none;
-    border: 1px solid #515151;
+    border: 1px solid #5E6060;
   }
 }
 @media screen and (min-width: 1200px) {
@@ -237,7 +237,7 @@ textarea.focused,
   .app-bar.app-bar-expand-xl .app-bar-container .d-menu {
     -webkit-box-shadow: none;
             box-shadow: none;
-    border: 1px solid #515151;
+    border: 1px solid #5E6060;
   }
 }
 @media screen and (min-width: 1452px) {
@@ -245,11 +245,11 @@ textarea.focused,
   .app-bar.app-bar-expand-xxl .app-bar-container .d-menu {
     -webkit-box-shadow: none;
             box-shadow: none;
-    border: 1px solid #515151;
+    border: 1px solid #5E6060;
   }
 }
 .bd-default {
-  border-color: #515151 !important;
+  border-color: #5E6060 !important;
 }
 .button {
   background-color: #4D5254;
@@ -262,7 +262,7 @@ textarea.focused,
           box-shadow: 0 0 0 3px rgba(77, 82, 84, 0.45);
 }
 .calendar {
-  border-color: #515151;
+  border-color: #5E6060;
 }
 .calendar .calendar-header {
   background-color: #4D5254;
@@ -282,6 +282,38 @@ textarea.focused,
 .calendar .calendar-months > .months-list li.active {
   background-color: #4D5254;
   color: #BBBBBB;
+}
+.countdown {
+  line-height: 1.5;
+}
+.countdown .part {
+  color: #BBBBBB;
+}
+.wheel-picker {
+  background-color: rgba(77, 82, 84, 0.2);
+  color: #BBBBBB;
+}
+.wheel-picker .date-wrapper,
+.wheel-picker .time-wrapper {
+  border-color: #5E6060;
+}
+.wheel-picker .select-block {
+  background-color: #4D5254;
+  color: #BBBBBB;
+}
+.wheel-picker .select-block ul {
+  border-color: #5E6060;
+}
+.wheel-picker .action-block .button {
+  color: #BBBBBB;
+}
+.dialog {
+  background-color: #2B2B2B;
+  color: #BBBBBB;
+  border: 1px solid #5E6060;
+}
+.dialog .dialog-actions {
+  border-top-color: #5E6060;
 }
 
 /*# sourceMappingURL=../maps/darcula.css.map */
