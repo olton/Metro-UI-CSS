@@ -35,6 +35,7 @@
         position: relative;
         font-size: 13px;
         border: 1px solid transparent;
+        background-color: inherit;
 
         &:hover {
             background-color: @listviewItemHoverBackground;
@@ -79,25 +80,25 @@
     &.view-list, &.view-table {
         .node {
             min-width: 160px;
-            line-height: 24px;
-            height: 24px;
-            padding: 1px 8px;
+            line-height: 26px;
+            height: 26px;
+            padding: 0 8px;
             flex-flow: row nowrap;
 
             & > .icon {
                 width: 20px;
                 height: 20px;
-                line-height: 20px;
+                line-height: 26px;
                 font-size: 18px;
             }
 
             & > .data {
-                line-height: 20px;
+                line-height: 26px;
                 padding-left: 24px;
             }
 
             & > .icon ~ .data {
-                padding-left: 4px;
+                padding-left: 8px;
             }
         }
     }
@@ -107,14 +108,14 @@
             display: inline-block;
             width: auto;
             margin-left: auto;
-            line-height: 20px;
+            line-height: 26px;
         }
     }
 
     &.view-content {
         .node {
             width: 100%;
-            height: 50px;
+            min-height: 50px;
             padding: 10px 16px;
             flex-flow: row nowrap;
 
