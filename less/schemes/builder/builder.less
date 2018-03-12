@@ -257,6 +257,50 @@
                 color: @schemeControlTextColor;
             }
         }
+    }
 
+    // Countdown
+    .countdown {
+        line-height: 1.5;
+
+        .part {
+            color: @schemeControlTextColor;
+        }
+    }
+
+    // Date picker and time picker
+    .wheel-picker {
+        background-color: rgba(red(@schemeControlFillColor),green(@schemeControlFillColor),blue(@schemeControlFillColor), .2);
+        color: @schemeControlTextColor;
+
+        .date-wrapper, .time-wrapper {
+            border-color: @schemeBorderColor;
+        }
+
+        .select-block {
+            background-color: @schemeControlFillColor;
+            color: @schemeControlTextColor;
+
+            ul {
+                border-color: @schemeBorderColor;
+            }
+        }
+
+        .action-block {
+            .button {
+                color: @schemeControlTextColor;
+            }
+        }
+    }
+
+    // Dialog
+    .dialog {
+        background-color: @schemeBackgroundColor;
+        color: @schemeControlTextColor;
+        border: 1px solid @schemeBorderColor;
+
+        .dialog-actions {
+            border-top-color: @schemeBorderColor;
+        }
     }
 }

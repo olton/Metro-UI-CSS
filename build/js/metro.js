@@ -7378,6 +7378,8 @@ var DatePicker = {
         clsMonth: "",
         clsDay: "",
         clsYear: "",
+        okButtonIcon: "<span class='default-icon-check'></span>",
+        cancelButtonIcon: "<span class='default-icon-cross'></span>",
         onSet: Metro.noop,
         onOpen: Metro.noop,
         onClose: Metro.noop,
@@ -7497,8 +7499,8 @@ var DatePicker = {
         selectBlock.height((o.distance * 2 + 1) * 40);
 
         actionBlock = $("<div>").addClass("action-block").appendTo(selectWrapper);
-        $("<button>").attr("type", "button").addClass("button action-ok").html("<span class='default-icon-check'></span>").appendTo(actionBlock);
-        $("<button>").attr("type", "button").addClass("button action-cancel").html("<span class='default-icon-cross'></span>").appendTo(actionBlock);
+        $("<button>").attr("type", "button").addClass("button action-ok").html(o.okButtonIcon).appendTo(actionBlock);
+        $("<button>").attr("type", "button").addClass("button action-cancel").html(o.cancelButtonIcon).appendTo(actionBlock);
 
 
         element[0].className = '';
@@ -13751,6 +13753,8 @@ var TimePicker = {
         clsHours: "",
         clsMinutes: "",
         clsSeconds: "",
+        okButtonIcon: "<span class='default-icon-check'></span>",
+        cancelButtonIcon: "<span class='default-icon-cross'></span>",
         onSet: Metro.noop,
         onOpen: Metro.noop,
         onClose: Metro.noop,
@@ -13871,8 +13875,8 @@ var TimePicker = {
         selectBlock.height((o.distance * 2 + 1) * 40);
 
         actionBlock = $("<div>").addClass("action-block").appendTo(selectWrapper);
-        $("<button>").attr("type", "button").addClass("button action-ok").html("<span class='default-icon-check'></span>").appendTo(actionBlock);
-        $("<button>").attr("type", "button").addClass("button action-cancel").html("<span class='default-icon-cross'></span>").appendTo(actionBlock);
+        $("<button>").attr("type", "button").addClass("button action-ok").html(o.okButtonIcon).appendTo(actionBlock);
+        $("<button>").attr("type", "button").addClass("button action-cancel").html(o.cancelButtonIcon).appendTo(actionBlock);
 
 
         element[0].className = '';

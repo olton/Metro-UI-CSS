@@ -130,9 +130,6 @@
             </ul>
         </div>
 
-        <h2 id="calendar-picker">Calendar picker</h2>
-        <input data-role="calendarpicker">
-
         <h2 id="calendar">Calendar</h2>
         <div class="row">
             <div class="cell-md-3">
@@ -143,6 +140,35 @@
             </div>
         </div>
 
+        <h2 id="calendar-picker">Pickers</h2>
+        <div class="row">
+            <div class="cell-md-4">
+                <input data-role="calendarpicker"  data-calendar-button-icon="<span class='mif-calendar'></span>">
+            </div>
+            <div class="cell-md-4">
+                <input data-role="datepicker" data-distance="1" data-ok-button-icon="<span class='mif-checkmark'></span>" data-cancel-button-icon="<span class='mif-cross'></span>">
+            </div>
+            <div class="cell-md-4">
+                <input data-role="timepicker" data-distance="1" data-ok-button-icon="<span class='mif-checkmark'></span>" data-cancel-button-icon="<span class='mif-cross'></span>">
+            </div>
+        </div>
+
+        <h2 id="countdown">Countdown</h2>
+        <div data-role="countdown" data-hours="90"></div>
+
+        <h2 id="dialog">Dialog</h2>
+        <div data-role="dialog" id="dialog1">
+            <div class="dialog-title">Use Windows location service?</div>
+            <div class="dialog-content">
+                Bassus abactors ducunt ad triticum.
+                A fraternal form of manifestation is the bliss.
+            </div>
+            <div class="dialog-actions">
+                <button class="button js-dialog-close">Agree</button>
+                <button class="flat-button js-dialog-close fg-light">Disagree</button>
+            </div>
+        </div>
+        <button class="button" onclick="Metro.dialog.open($('#dialog1'))">Open dialog</button>
 
     </div>
 
