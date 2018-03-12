@@ -4,6 +4,176 @@ body {
   color: #ffffff;
   background-color: #2B2B2B;
 }
+input[type=text],
+input[type=password],
+input[type=tel],
+input[type=datetime-local],
+input[type=email],
+input[type=file],
+input[type=month],
+input[type=number],
+input[type=search],
+input[type=time],
+input[type=url],
+input[type=week],
+input[type=file],
+select,
+textarea,
+.file,
+.input,
+.textarea,
+.select {
+  border-color: #515151 !important;
+  background-color: rgba(77, 82, 84, 0.2) !important;
+  color: #BBBBBB;
+}
+input[type=text]:focus,
+input[type=password]:focus,
+input[type=tel]:focus,
+input[type=datetime-local]:focus,
+input[type=email]:focus,
+input[type=file]:focus,
+input[type=month]:focus,
+input[type=number]:focus,
+input[type=search]:focus,
+input[type=time]:focus,
+input[type=url]:focus,
+input[type=week]:focus,
+input[type=file]:focus,
+select:focus,
+textarea:focus,
+.file:focus,
+.input:focus,
+.textarea:focus,
+.select:focus,
+input[type=text].focused,
+input[type=password].focused,
+input[type=tel].focused,
+input[type=datetime-local].focused,
+input[type=email].focused,
+input[type=file].focused,
+input[type=month].focused,
+input[type=number].focused,
+input[type=search].focused,
+input[type=time].focused,
+input[type=url].focused,
+input[type=week].focused,
+input[type=file].focused,
+select.focused,
+textarea.focused,
+.file.focused,
+.input.focused,
+.textarea.focused,
+.select.focused {
+  -webkit-box-shadow: 0 0 0 3px rgba(77, 82, 84, 0.45);
+          box-shadow: 0 0 0 3px rgba(77, 82, 84, 0.45);
+}
+.input,
+.select,
+.textarea,
+.file {
+  border-style: solid!important;
+}
+.input .prepend,
+.select .prepend,
+.textarea .prepend,
+.file .prepend,
+.input .button:hover,
+.select .button:hover,
+.textarea .button:hover,
+.file .button:hover {
+  background-color: #4D5254;
+  color: #BBBBBB;
+}
+.input .button,
+.select .button,
+.textarea .button,
+.file .button {
+  color: #BBBBBB;
+}
+.file .button {
+  background-color: #4D5254;
+}
+.select.dropdown-toggle::before {
+  border-color: #BBBBBB;
+}
+.select .d-menu,
+.select .v-menu {
+  background-color: #4D5254;
+  color: #BBBBBB;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+.checkbox .check,
+.radio .check {
+  border-color: #646464;
+}
+.checkbox .check::before,
+.radio .check::before {
+  border-color: #BBBBBB;
+}
+.checkbox input:indeterminate ~ .check,
+.radio input:indeterminate ~ .check {
+  border-color: #646464;
+}
+.checkbox input:indeterminate ~ .check::before,
+.radio input:indeterminate ~ .check::before {
+  background-color: #4D5254;
+}
+.checkbox input:focus ~ .check,
+.radio input:focus ~ .check {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+.checkbox input:checked ~ .check,
+.radio input:checked ~ .check {
+  border-color: #646464;
+}
+.checkbox input:disabled ~ .check,
+.radio input:disabled ~ .check,
+.checkbox input:disabled ~ .check::before,
+.radio input:disabled ~ .check::before {
+  border-color: rgba(100, 100, 100, 0.2) !important;
+}
+.checkbox .check {
+  background-color: rgba(77, 82, 84, 0.2) !important;
+}
+.radio .check::before {
+  border-color: transparent;
+  background-color: #BBBBBB;
+}
+.radio input:disabled ~ .check,
+.radio input:disabled ~ .check::before {
+  background-color: rgba(100, 100, 100, 0.2) !important;
+}
+.switch .check {
+  border-color: #646464;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+.switch .check::after {
+  outline-color: #4a4a4a;
+  border-color: #4a4a4a;
+  background-color: #4a4a4a;
+}
+.switch input:not(:disabled):checked ~ .check {
+  background-color: #4D5254;
+  border-color: #646464;
+}
+.switch input:not(:disabled):checked ~ .check::after {
+  outline-color: #BBBBBB;
+  border-color: #BBBBBB;
+  background-color: #BBBBBB;
+}
+.switch input:disabled ~ .check {
+  background-color: rgba(100, 100, 100, 0.2) !important;
+  border-color: rgba(100, 100, 100, 0.2) !important;
+}
+.switch input:disabled ~ .check::after {
+  outline-color: rgba(100, 100, 100, 0.2) !important;
+  border-color: rgba(100, 100, 100, 0.2) !important;
+  background-color: rgba(100, 100, 100, 0.2) !important;
+}
 .accordion .frame .heading {
   background-color: #4D5254;
   color: #BBBBBB;

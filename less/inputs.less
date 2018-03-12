@@ -142,19 +142,20 @@ label {
         display: flex;
         flex-wrap: nowrap;
         order: 2;
+    }
 
-        .button {
-            background-color: transparent;
-            color: @dark;
-            &:focus {
-                box-shadow: none;
-            }
-            &:hover {
-                background-color: @light;
-                text-shadow: rgba(0,0,0,.25) 0.1em 0.1em 0.2em;
-            }
+    .button {
+        background-color: transparent;
+        color: @dark;
+        &:focus {
+            box-shadow: none;
+        }
+        &:hover {
+            background-color: @light;
+            text-shadow: rgba(0,0,0,.25) 0.1em 0.1em 0.2em;
         }
     }
+
     &.disabled .button-group {
         button {
             background-color: @light;
@@ -194,8 +195,8 @@ label {
 
     .input-clear-button {
         position: absolute;
-        top: .25rem;
-        right: .25rem;
+        top: 0;
+        right: 0;
         z-index: 2;
         background-color: transparent;
         &:hover {
