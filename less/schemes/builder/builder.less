@@ -19,6 +19,143 @@
         background-color: @schemeBackgroundColor;
     }
 
+    // Inputs, switches
+    input[type=text],
+    input[type=password],
+    input[type=tel],
+    input[type=datetime-local],
+    input[type=email],
+    input[type=file],
+    input[type=month],
+    input[type=number],
+    input[type=search],
+    input[type=time],
+    input[type=url],
+    input[type=week],
+    input[type=file],
+    select, textarea, .file, .input, .textarea, .select {
+        border-color: @schemeBorderColor !important;
+        background-color: rgba(red(@schemeControlFillColor),green(@schemeControlFillColor),blue(@schemeControlFillColor), .2)!important;
+        color: @schemeControlTextColor;
+
+        &:focus, &.focused {
+            box-shadow: 0 0 0 3px rgba(red(@schemeControlFillColor), green(@schemeControlFillColor), blue(@schemeControlFillColor), 0.45);
+        }
+    }
+
+    .input, .select, .textarea, .file {
+        border-style: solid!important;
+
+        .prepend, .button:hover {
+            background-color: @schemeControlFillColor;
+            color: @schemeControlTextColor;
+        }
+
+        .button {
+            color: @schemeControlTextColor;
+        }
+    }
+
+    .file {
+        .button {
+            background-color: @schemeControlFillColor;
+        }
+    }
+
+    .select {
+        &.dropdown-toggle {
+            &::before {
+                border-color: @schemeControlTextColor;
+            }
+        }
+
+        .d-menu, .v-menu {
+            background-color: @schemeControlFillColor;
+            color: @schemeControlTextColor;
+            box-shadow: none;
+        }
+    }
+
+    .checkbox, .radio {
+        .check {
+            border-color: @schemeControlColor;
+
+            &::before {
+                border-color: @schemeControlTextColor;
+            }
+        }
+
+        input:indeterminate ~ .check {
+            border-color: @schemeControlColor;
+            &::before {
+                background-color: @schemeControlFillColor;
+            }
+        }
+
+        input:focus ~ .check {
+            box-shadow: none;
+        }
+
+        input:checked ~ .check {
+            border-color: @schemeControlColor;
+        }
+
+        input:disabled ~ .check, input:disabled ~ .check::before  {
+            border-color: rgba(red(@schemeControlColor), green(@schemeControlColor), blue(@schemeControlColor), .2)!important;
+        }
+    }
+
+    .checkbox {
+        .check {
+            background-color: rgba(red(@schemeControlFillColor),green(@schemeControlFillColor),blue(@schemeControlFillColor), .2)!important;
+        }
+    }
+
+    .radio {
+        .check {
+            &::before {
+                border-color: transparent;
+                background-color: @schemeControlTextColor;
+            }
+        }
+        input:disabled ~ .check, input:disabled ~ .check::before  {
+            background-color: rgba(red(@schemeControlColor), green(@schemeControlColor), blue(@schemeControlColor), .2)!important;
+        }
+    }
+
+    .switch {
+        .check {
+            border-color: @schemeControlColor;
+            transition: @transition-base;
+
+            &::after {
+                outline-color: darken(@schemeControlColor, 10%);
+                border-color: darken(@schemeControlColor, 10%);
+                background-color: darken(@schemeControlColor, 10%);
+            }
+        }
+
+        input:not(:disabled):checked ~ .check {
+            background-color: @schemeControlFillColor;
+            border-color: @schemeControlColor;
+            &::after {
+                outline-color: @schemeControlTextColor;
+                border-color: @schemeControlTextColor;
+                background-color: @schemeControlTextColor;
+            }
+        }
+
+        input:disabled ~ .check {
+            background-color: rgba(red(@schemeControlColor), green(@schemeControlColor), blue(@schemeControlColor), .2)!important;
+            border-color: rgba(red(@schemeControlColor), green(@schemeControlColor), blue(@schemeControlColor), .2)!important;
+            &::after {
+                outline-color: rgba(red(@schemeControlColor), green(@schemeControlColor), blue(@schemeControlColor), .2)!important;;
+                border-color: rgba(red(@schemeControlColor), green(@schemeControlColor), blue(@schemeControlColor), .2)!important;;
+                background-color: rgba(red(@schemeControlColor), green(@schemeControlColor), blue(@schemeControlColor), .2)!important;;
+            }
+        }
+    }
+
     // Accordion
     .accordion {
         .frame .heading {
@@ -95,7 +232,6 @@
 
     // Calendar
     .calendar {
-
         border-color: @schemeBorderColor;
 
         .calendar-header {

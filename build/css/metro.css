@@ -16741,15 +16741,15 @@ label {
       -ms-flex-order: 2;
           order: 2;
 }
-.input .button-group .button {
+.input .button {
   background-color: transparent;
   color: #1d1d1d;
 }
-.input .button-group .button:focus {
+.input .button:focus {
   -webkit-box-shadow: none;
           box-shadow: none;
 }
-.input .button-group .button:hover {
+.input .button:hover {
   background-color: #f8f8f8;
   text-shadow: rgba(0, 0, 0, 0.25) 0.1em 0.1em 0.2em;
 }
@@ -16805,8 +16805,8 @@ label {
 }
 .textarea .input-clear-button {
   position: absolute;
-  top: .25rem;
-  right: .25rem;
+  top: 0;
+  right: 0;
   z-index: 2;
   background-color: transparent;
 }
@@ -17333,9 +17333,6 @@ form[data-role*=validator] .invalid_feedback {
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
   border-radius: 50%;
-}
-.switch input[type="checkbox"]:focus ~ .check {
-  outline: 1px #e4e4e4 dotted;
 }
 .switch input[type="checkbox"]:checked ~ .check {
   background: #1d1d1d;
@@ -23542,6 +23539,9 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
 }
 .calendar-picker {
   position: relative;
+}
+.calendar-picker input {
+  width: 100%;
 }
 .calendar-picker .calendar {
   position: absolute;

@@ -5283,6 +5283,10 @@ var CalendarPicker = {
         var buttons = $("<div>").addClass("button-group");
         var calendarButton, clearButton, cal = $("<div>").addClass("drop-shadow");
 
+        if (element.attr("type") === undefined) {
+            element.attr("type", "text");
+        }
+
         this.value = element.val();
         if (Utils.isDate(this.value)) {
             this.value_date = new Date(this.value);

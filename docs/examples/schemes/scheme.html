@@ -41,8 +41,53 @@
 </head>
 <body>
     <div class="container">
-        <h1>Metro 4 Schemes</h1>
+        <h1>Metro 4 Scheme builder</h1>
         <hr class="thin">
+
+        <h2 id="inputs">Inputs</h2>
+
+        <input type="text" data-role="input" data-prepend="Your name" placeholder="Input your name...">
+
+        <input type="file" data-role="file" placeholder="Choose a file..." class="mt-2">
+
+        <select data-role="select" class="mt-2">
+            <option>Value 1</option>
+            <option>Value 2</option>
+            <option>Value 3</option>
+        </select>
+
+        <textarea data-role="textarea" class="mt-2"></textarea>
+
+        <div class="mt-2">
+            <input type="checkbox" data-role="checkbox" data-caption="Checkbox">
+            <input type="checkbox" data-role="checkbox" data-caption="Checkbox" checked>
+            <input type="checkbox" data-role="checkbox" data-caption="Indeterminate" indeterminate>
+            <input type="checkbox" data-role="checkbox" data-caption="Disabled" disabled>
+            <input type="checkbox" data-role="checkbox" data-caption="Disabled checked" disabled checked>
+        </div>
+
+        <div class="mt-2">
+            <input name="r1" type="radio" data-role="radio" data-caption="Radio 1">
+            <input name="r1" type="radio" data-role="radio" data-caption="Radio 2" checked>
+            <input name="r1" type="radio" data-role="radio" data-caption="Disabled" disabled>
+            <input name="r2" type="radio" data-role="radio" data-caption="Disabled checked" checked disabled>
+        </div>
+
+        <div class="mt-2">
+            <input type="checkbox" data-role="switch" data-caption="Switch">
+            <input type="checkbox" data-role="switch" data-caption="Switch" checked>
+            <input type="checkbox" data-role="switch" data-caption="Disabled" disabled>
+            <input type="checkbox" data-role="switch" data-caption="Disabled checked" checked disabled>
+        </div>
+
+        <div class="mt-2">
+            <input type="button" value="Button" class="button">
+            <input type="reset" value="Reset" class="button">
+            <input type="submit" value="Submit" class="button">
+        </div>
+
+        <h2 id="button">Button</h2>
+        <button class="button">Default button</button>
 
         <h2 id="accordion">Accordion</h2>
         <div data-role="accordion">
@@ -87,9 +132,6 @@
 
         <h2 id="calendar-picker">Calendar picker</h2>
         <input data-role="calendarpicker">
-
-        <h2 id="button">Button</h2>
-        <button class="button">Default button</button>
 
         <h2 id="calendar">Calendar</h2>
         <div class="row">
