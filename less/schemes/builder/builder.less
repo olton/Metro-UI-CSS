@@ -567,4 +567,43 @@
             }
         }
     }
+
+    // Popovers
+    .popover {
+        background-color: @schemeControlFillColor;
+        color: @schemeControlTextColor;
+        border-color: @schemeBorderColor;
+    }
+
+    // Rating
+
+    @ratingOff: darken(@schemeControlTextColor, 50%);
+    @ratingOn: @schemeControlTextColor;
+
+    .rating {
+        .stars {
+            li {
+                color: @ratingOff;
+
+                &.on {
+                    color: @ratingOn;
+                }
+            }
+        }
+    }
+
+    .rating:not(.static) .stars {
+        &:hover {
+            li {
+                color: @ratingOn;
+            }
+        }
+
+        li:hover ~ li {
+            color: @ratingOff!important;
+        }
+    }
+
+    // Ribbon menu
+
 }
