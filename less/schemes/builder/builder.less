@@ -12,6 +12,12 @@
     @schemeFontFamily,
     @schemeFontSize
 ) {
+
+    @blendBackground: rgba(red(@schemeBackgroundColor),green(@schemeBackgroundColor),blue(@schemeBackgroundColor), .2);
+    @blendFill: rgba(red(@schemeControlFillColor),green(@schemeControlFillColor),blue(@schemeControlFillColor), .2);
+    @blendControl: rgba(red(@schemeControlColor),green(@schemeControlColor),blue(@schemeControlColor), .2);
+    @boxShadow: 0 0 0 3px rgba(red(@schemeControlFillColor), green(@schemeControlFillColor), blue(@schemeControlFillColor), 0.45);
+
     body {
         font-size: @schemeFontSize;
         font-family: @schemeFontFamily;
@@ -27,9 +33,16 @@
         color: darken(@schemeControlTextColor, 30%)!important;
     }
 
+    // Border
+    .bd-default {
+        border-color: @schemeBorderColor!important;
+    }
+
     .bg-scheme {background-color: @schemeBackgroundColor!important;}
     .bg-control {background-color: @schemeControlFillColor!important;}
-    .bg-control-bland {background-color: rgba(red(@schemeControlFillColor),green(@schemeControlFillColor),blue(@schemeControlFillColor), .2)!important;}
+    .bg-control-bland {background-color: @blendFill!important;}
+    .fg-scheme {color: @schemeTextColor!important;}
+    .fg-control {color: @schemeControlTextColor!important;}
 
     // Inputs, switches
     input[type=text],
@@ -47,11 +60,11 @@
     input[type=file],
     select, textarea, .file, .input, .textarea, .select {
         border-color: @schemeBorderColor !important;
-        background-color: rgba(red(@schemeControlFillColor),green(@schemeControlFillColor),blue(@schemeControlFillColor), .2)!important;
+        background-color: @blendFill!important;
         color: @schemeControlTextColor;
 
         &:focus, &.focused {
-            box-shadow: 0 0 0 3px rgba(red(@schemeControlFillColor), green(@schemeControlFillColor), blue(@schemeControlFillColor), 0.45);
+            box-shadow: @boxShadow;
         }
     }
 
@@ -113,13 +126,13 @@
         }
 
         input:disabled ~ .check, input:disabled ~ .check::before  {
-            border-color: rgba(red(@schemeControlColor), green(@schemeControlColor), blue(@schemeControlColor), .2)!important;
+            border-color: @blendControl!important;
         }
     }
 
     .checkbox {
         .check {
-            background-color: rgba(red(@schemeControlFillColor),green(@schemeControlFillColor),blue(@schemeControlFillColor), .2)!important;
+            background-color: @blendFill!important;
         }
     }
 
@@ -131,7 +144,7 @@
             }
         }
         input:disabled ~ .check, input:disabled ~ .check::before  {
-            background-color: rgba(red(@schemeControlColor), green(@schemeControlColor), blue(@schemeControlColor), .2)!important;
+            background-color: @blendControl!important;
         }
     }
 
@@ -158,12 +171,12 @@
         }
 
         input:disabled ~ .check {
-            background-color: rgba(red(@schemeControlColor), green(@schemeControlColor), blue(@schemeControlColor), .2)!important;
-            border-color: rgba(red(@schemeControlColor), green(@schemeControlColor), blue(@schemeControlColor), .2)!important;
+            background-color: @blendControl!important;
+            border-color: @blendControl!important;
             &::after {
-                outline-color: rgba(red(@schemeControlColor), green(@schemeControlColor), blue(@schemeControlColor), .2)!important;;
-                border-color: rgba(red(@schemeControlColor), green(@schemeControlColor), blue(@schemeControlColor), .2)!important;;
-                background-color: rgba(red(@schemeControlColor), green(@schemeControlColor), blue(@schemeControlColor), .2)!important;;
+                outline-color: @blendControl!important;;
+                border-color: @blendControl!important;;
+                background-color: @blendControl!important;;
             }
         }
     }
@@ -225,11 +238,6 @@
         }
 
         .generate-app-bar-media-options(@name, @i + 1);
-    }
-
-    // Border
-    .bd-default {
-        border-color: @schemeBorderColor!important;
     }
 
     // Buttons
@@ -329,7 +337,7 @@
 
     // Date picker and time picker
     .wheel-picker {
-        background-color: rgba(red(@schemeControlFillColor),green(@schemeControlFillColor),blue(@schemeControlFillColor), .2);
+        background-color: @blendFill;
         color: @schemeControlTextColor;
 
         .date-wrapper, .time-wrapper {
@@ -526,7 +534,7 @@
         }
 
         .navview-content {
-            background-color: lighten(@schemeBackgroundColor, 2%);
+            background-color: @schemeBackgroundColor;
             color: @schemeTextColor;
         }
     }
