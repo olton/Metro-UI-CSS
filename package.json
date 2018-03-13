@@ -1,8 +1,8 @@
 {
   "author": "Sergey Pimenov",
   "name": "metro4",
-  "version": "4.0.6",
-  "build": "617",
+  "version": "4.0.7",
+  "build": "618",
   "version_suffix": "-beta",
   "description": "The front-end framework for Build responsive, mobile-first projects on the web with the first front-end component library in Metro Style",
   "keywords": [
