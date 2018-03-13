@@ -13,6 +13,9 @@ body {
 .disabled {
   color: #6e6e6e !important;
 }
+.bd-default {
+  border-color: #5E6060 !important;
+}
 .bg-scheme {
   background-color: #2B2B2B !important;
 }
@@ -21,6 +24,12 @@ body {
 }
 .bg-control-bland {
   background-color: rgba(60, 63, 65, 0.2) !important;
+}
+.fg-scheme {
+  color: #ffffff !important;
+}
+.fg-control {
+  color: #bbbbbb !important;
 }
 input[type=text],
 input[type=password],
@@ -266,9 +275,6 @@ textarea.focused,
     border: 1px solid #5E6060;
   }
 }
-.bd-default {
-  border-color: #5E6060 !important;
-}
 .button {
   background-color: #3C3F41;
   color: #bbbbbb;
@@ -482,7 +488,7 @@ textarea.focused,
   border-color: transparent transparent #bbbbbb transparent;
 }
 .navview .navview-content {
-  background-color: #303030;
+  background-color: #2B2B2B;
   color: #ffffff;
 }
 .notify {
