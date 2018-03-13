@@ -11401,7 +11401,7 @@ var RibbonMenu = {
         var fluentGroups = element.find(".ribbon-toggle-group");
         $.each(fluentGroups, function(){
             var g = $(this);
-            g.buttonsGroup({
+            g.buttongroup({
                 clsActive: "active"
             });
 

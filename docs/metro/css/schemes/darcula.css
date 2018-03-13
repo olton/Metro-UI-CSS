@@ -513,5 +513,22 @@ textarea.focused,
 .panel .panel-title .icon {
   border-right-color: #5E6060;
 }
+.popover {
+  background-color: #3C3F41;
+  color: #bbbbbb;
+  border-color: #5E6060;
+}
+.rating .stars li {
+  color: #3b3b3b;
+}
+.rating .stars li.on {
+  color: #bbbbbb;
+}
+.rating:not(.static) .stars:hover li {
+  color: #bbbbbb;
+}
+.rating:not(.static) .stars li:hover ~ li {
+  color: #3b3b3b !important;
+}
 
 /*# sourceMappingURL=../maps/darcula.css.map */
