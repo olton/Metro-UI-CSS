@@ -1006,27 +1006,26 @@
                     &lt;/ul&gt;
                 </code></pre>
 
-                <h3 id="_buttons_group">Buttons group</h3>
+                <h3 id="_buttons_group">Button group</h3>
                 <p>
-                    If you need to create buttons group, you can use role <code>buttonsGroup</code>.
-                    To create group add attribute <code>data-role="buttonsGroup"</code> to buttons container.
+                    To create group add attribute <code>data-role="buttongroup"</code> to buttons container.
                     To setup mode of toggle, use attribute <code>data-mode="..."</code> with one of values: <code>one</code> (default) or <code>multi</code>.
-                    Also you can set own classes to style active state with attribute <code>data-cla-active="..."</code>. The default value for this attribute <code>.bg-gray</code>.
+                    Also you can set own classes to style active state with attribute <code>data-cls-active="..."</code>. The default value for this attribute <code>active</code>.
                 </p>
 
                 <div class="example">
                     <div class="row">
                         <div class="cell-md-4">
                             <h6>Default (one state)</h6>
-                            <div data-role="buttonsGroup">
+                            <div data-role="buttongroup">
                                 <button class="button">1</button>
                                 <button class="button">2</button>
-                                <button class="button">3</button>
+                                <button class="button active">3</button>
                             </div>
                         </div>
                         <div class="cell-md-4">
                             <h6>Multi state</h6>
-                            <div data-role="buttonsGroup" data-mode="multi" data-cls-active="bg-red fg-white">
+                            <div data-role="buttongroup" data-mode="multi" data-cls-active="bg-red fg-white">
                                 <button class="button">1</button>
                                 <button class="button">2</button>
                                 <button class="button">3</button>
@@ -1034,12 +1033,12 @@
                         </div>
                         <div class="cell-md-4">
                             <h6>Toolbar example</h6>
-                            <div class="toolbar" data-role="buttonsGroup" data-mode="multi">
+                            <div class="toolbar" data-role="buttongroup" data-mode="multi">
                                 <button class="tool-button rounded"><span class="mif-bold"></span></button>
                                 <button class="tool-button rounded"><span class="mif-italic"></span></button>
                                 <button class="tool-button rounded"><span class="mif-underline"></span></button>
                             </div>
-                            <div class="toolbar" data-role="buttonsGroup">
+                            <div class="toolbar" data-role="buttongroup">
                                 <button class="tool-button rounded"><span class="mif-sort-asc"></span></button>
                                 <button class="tool-button rounded"><span class="mif-sort-desc"></span></button>
                             </div>
@@ -1047,20 +1046,20 @@
                     </div>
                 </div>
                 <pre><code class="html">
-                    &lt;div data-role="buttonsGroup"&gt;
+                    &lt;div data-role="buttongroup"&gt;
                         &lt;button class="button"&gt;1&lt;/button&gt;
                         &lt;button class="button"&gt;2&lt;/button&gt;
-                        &lt;button class="button"&gt;3&lt;/button&gt;
+                        &lt;button class="button active"&gt;3&lt;/button&gt;
                     &lt;/div&gt;
 
-                    &lt;div data-role="buttonsGroup" data-mode="multi"
+                    &lt;div data-role="buttongroup" data-mode="multi"
                         data-cls-active="bg-red fg-white"&gt;
                         &lt;button class="button"&gt;1&lt;/button&gt;
                         &lt;button class="button"&gt;2&lt;/button&gt;
                         &lt;button class="button"&gt;3&lt;/button&gt;
                     &lt;/div&gt;
 
-                    &lt;div class="toolbar" data-role="buttonsGroup"
+                    &lt;div class="toolbar" data-role="buttongroup"
                         data-mode="multi"&gt;
                         &lt;button class="tool-button rounded"&gt;
                             &lt;span class="mif-bold"&gt;&lt;/span&gt;
@@ -1072,7 +1071,7 @@
                             &lt;span class="mif-underline"&gt;&lt;/span&gt;
                         &lt;/button&gt;
                     &lt;/div&gt;
-                    &lt;div class="toolbar" data-role="buttonsGroup"&gt;
+                    &lt;div class="toolbar" data-role="buttongroup"&gt;
                         &lt;button class="tool-button rounded"&gt;
                             &lt;span class="mif-sort-asc"&gt;&lt;/span&gt;
                         &lt;/button&gt;
@@ -1082,11 +1081,11 @@
                     &lt;/div&gt;
                 </code></pre>
                 <p>
-                    For <code>buttons group</code> you can use two events: <code>data-on-buttons-group-create</code> and <code>data-on-button-click</code>.
+                    For <code>button group</code> you can use two events: <code>data-on-button-group-create</code> and <code>data-on-button-click</code>.
                 </p>
                 <pre><code class="html">
                     &lt;div class="toolbar"
-                        data-role="buttonsGroup"
+                        data-role="buttongroup"
                         data-on-button-click="console.log(arguments);"&gt;
                     ...
                     &lt;/div&gt;
@@ -1095,14 +1094,14 @@
                     if you use <code>&lt;span&gt;</code> or <code>&lt;a&gt;</code> tags for creating buttons, you must specify this with attribute <code>data-targets="..."</code>
                 </p>
                 <div class="example d-flex flex-justify-center">
-                    <div data-role="buttonsGroup" data-targets="button, a, span">
+                    <div data-role="buttongroup" data-targets="button, a, span">
                         <button class="button">1</button>
                         <a class="button">2</a>
                         <span class="button">3</span>
                     </div>
                 </div>
                 <pre><code class="html">
-                    &lt;div data-role="buttonsGroup" data-targets="button, a, span"&gt;
+                    &lt;div data-role="buttongroup" data-targets="button, a, span"&gt;
                         &lt;button class="button"&gt;1&lt;/button&gt;
                         &lt;a class="button"&gt;2&lt;/a&gt;
                         &lt;span class="button"&gt;3&lt;/span&gt;

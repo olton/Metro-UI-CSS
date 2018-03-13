@@ -1,3 +1,6 @@
+### 4.0.7
++ [x] Button group: fix it
+
 ### 4.0.6
 + [x] Dialog: fix method `Metro.dialog.toggle()`
 + [x] Notify: increase `z-index` for default container

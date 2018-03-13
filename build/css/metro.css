@@ -16405,6 +16405,10 @@ a.split-button a.split {
   -webkit-box-shadow: none;
           box-shadow: none;
 }
+.button-group .active {
+  background-color: #989898;
+  color: #ffffff;
+}
 .expand-button {
   width: 2.5rem;
   height: 2.5rem;
