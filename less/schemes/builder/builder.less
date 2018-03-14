@@ -768,6 +768,41 @@
         }
     }
 
+    // Sidenav
+    .sidenav-simple, .sidenav-counter {
+        background-color: @schemeControlFillColor;
+        color: @schemeControlTextColor;
+
+        .active, li.active:hover {
+            background-color: @blendControl;
+            color: @schemeControlTextColor;
+        }
+    }
+
+    .sidenav-m3 {
+        background-color: @schemeControlFillColor;
+        color: @schemeControlTextColor;
+
+        a {
+            background-color: @schemeControlFillColor;
+
+            &:hover {
+                background-color: darken(@schemeControlFillColor, 2%);
+            }
+        }
+
+        li + li {
+            border-top-color: @schemeBorderColor;
+        }
+
+        .d-menu {
+            border-color: @schemeControlFillColor;
+            margin-bottom: 4px;
+            li {
+                border-top-color: @schemeBorderColor;
+            }
+        }
+    }
 
     // Window
     .window {

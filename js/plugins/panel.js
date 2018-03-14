@@ -10,6 +10,8 @@ var Panel = {
         return this;
     },
 
+    dependencies: ['draggable', 'collapse'],
+
     options: {
         titleCaption: "",
         titleIcon: "",

@@ -48,8 +48,9 @@
                 <ul class="toc-nav">
                     <li class="toc-entry"><a href="#">Side navigation</a></li>
                     <li class="toc-entry"><a href="#_sidenav_about">About</a></li>
-                    <li class="toc-entry"><a href="#_v-menu">Vertical menu</a></li>
+                    <li class="toc-entry"><a href="#_sidenav-simple">Side menu simple</a></li>
                     <li class="toc-entry"><a href="#_sidenav-counter">Side menu with counter</a></li>
+                    <li class="toc-entry"><a href="#_sidenav-m3">Side menu M3</a></li>
                 </ul>
 
             </div>
@@ -69,51 +70,104 @@
                 <h3 id="_sidenav_about">About</h3>
                 <p>
                     Often the project needs to implement a side menu. Metro 4 gives you the opportunity to do this in many ways.
-                    You can use: <strong>vertical menu</strong>, <strong>side menu with counter</strong> or <strong>side menu m3</strong>.
+                    You can use: <strong>side menu</strong>, <strong>side menu with counter</strong> or <strong>side menu m3</strong>.
                 </p>
 
-                <h3 id="_v-menu">Vertical menu</h3>
+                <h3 id="_sidenav-simple">Side menu simple</h3>
                 <p>
-                    The vertical menu is intended, first of all, to create sidebar menus of your site. To create vertical menu add class <code>.v-menu</code> to list.
-                    How to create it you can read in <a href="http://localhost:63342/Metro-UI-CSS-4/docs/menu.html#_v_menu">this article</a>.
+                    To create <code>side navigation</code> you must add class <code>.sidenav-simple</code> to list and create <code>items</code> in special formats.
+                    Each item must contains: <code>icon</code> and <code>title</code> elements.
                 </p>
-                <div class="example clear">
-                    <ul class="v-menu" style="width: 220px;">
-                        <li class="menu-title">General</li>
-                        <li><a href="#"><span class="mif-home icon"></span> Home</a></li>
-                        <li class="menu-title">Products</li>
-                        <li><a href="#"><span class="mif-windows icon"></span> Windows</a></li>
-                        <li class="disabled"><a href="#"><span class="mif-library icon"></span> Office 365</a></li>
-                        <li><a href="#"><span class="mif-skype icon"></span> Skype</a></li>
-                        <li class="menu-title">Support</li>
-                        <li>
-                            <a href="#" data-hotkey="Alt+F1">Community</a>
-                            <ul class="v-menu" data-role="dropdown" style="display: none;">
-                                <li><a href="#">Blog</a></li>
-                                <li><a href="#">Github</a></li>
-                                <li><a href="#">Forum</a></li>
-                                <li class="divider"></li>
-                                <li class="p-2 bg-light">
-                                    <button class="button square primary"><span class="mif-target"></span></button>
-                                    <button class="button square success"><span class="mif-apps"></span></button>
-                                    <button class="button square alert"><span class="mif-file-code"></span></button>
-                                    <button class="button square warning"><span class="mif-download"></span></button>
-                                </li>
+                <p>
+                    By default, side menu displayed in compact mode. To expand it, you must add one of classes:
+                    <code>.sidenav-simple-expand-fs</code>,
+                    <code>.sidenav-simple-expand-sm</code>,
+                    <code>.sidenav-simple-expand-md</code>,
+                    <code>.sidenav-simple-expand-lg</code>,
+                    <code>.sidenav-simple-expand-xl</code> or
+                    <code>.sidenav-simple-expand-xxl</code>.
+                    More about media breakpoints you can see in <a href="media.html">this article</a>.
+                </p>
+                <div class="example">
+                    <div class="row">
+                        <div class="cell-md-6 flex-no-shrink">
+                            <h5>Expanded</h5>
+                            <ul class="sidenav-simple sidenav-simple-expand-fs h-auto">
+                                <li><a href="#">
+                                    <span class="mif-apps icon"></span>
+                                    <span class="title">all items</span>
+                                </a></li>
+                                <li><a href="#">
+                                    <span class="mif-vpn-lock icon"></span>
+                                    <span class="title">websites</span>
+                                </a></li>
+                                <li class="active"><a href="#">
+                                    <span class="mif-drive-eta icon"></span>
+                                    <span class="title">Virtual machines</span>
+                                </a></li>
+                                <li><a href="#">
+                                    <span class="mif-cloud icon"></span>
+                                    <span class="title">Cloud services</span>
+                                </a></li>
+                                <li><a href="#">
+                                    <span class="mif-database icon"></span>
+                                    <span class="title">SQL Databases</span>
+                                </a></li>
+                                <li><a href="#">
+                                    <span class="mif-cogs icon"></span>
+                                    <span class="title">Automation</span>
+                                </a></li>
                             </ul>
-                        </li>
-                        <li class="menu-title">Shop</li>
-                        <li><a href="#"><span class="mif-cart icon"></span> Cart</a></li>
-                    </ul>
+                        </div>
+                        <div class="cell-md-6">
+                            <h5>Compact</h5>
+                            <ul class="sidenav-simple h-auto">
+                                <li><a href="#">
+                                    <span class="mif-apps icon"></span>
+                                    <span class="title">all items</span>
+                                </a></li>
+                                <li><a href="#">
+                                    <span class="mif-vpn-lock icon"></span>
+                                    <span class="title">websites</span>
+                                </a></li>
+                                <li class="active"><a href="#">
+                                    <span class="mif-drive-eta icon"></span>
+                                    <span class="title">Virtual machines</span>
+                                </a></li>
+                                <li><a href="#">
+                                    <span class="mif-cloud icon"></span>
+                                    <span class="title">Cloud services</span>
+                                </a></li>
+                                <li><a href="#">
+                                    <span class="mif-database icon"></span>
+                                    <span class="title">SQL Databases</span>
+                                </a></li>
+                                <li><a href="#">
+                                    <span class="mif-cogs icon"></span>
+                                    <span class="title">Automation</span>
+                                </a></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
+                <pre><code class="html">
+                    &lt;ul class="sidenav-simple h-auto"&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;
+                            &lt;span class="mif-apps icon"&gt;&lt;/span&gt;
+                            &lt;span class="title"&gt;all items&lt;/span&gt;
+                        &lt;/a&gt;&lt;/li&gt;
+                        ...
+                    &lt;/ul&gt;
+                </code></pre>
 
-                <h3 id="_sidenav-counter">Side navigation with counter</h3>
+                <h3 id="_sidenav-counter">Side menu with counter</h3>
                 <p>
                     To create <code>side navigation with counter</code> you must add class <code>.sidenav-counter</code> to list and create <code>items</code> in special formats.
                     Each item must contains: <code>icon</code>, <code>title</code> and <code>counter</code> elements.
                 </p>
 
                 <p>
-                    By default, <code>sidenav</code> displayed in compact mode. To expand it, you must add one of classes:
+                    By default, side menu displayed in compact mode. To expand it, you must add one of classes:
                         <code>.sidenav-expand-fs</code>,
                         <code>.sidenav-expand-sm</code>,
                         <code>.sidenav-expand-md</code>,
@@ -162,7 +216,7 @@
                         </div>
                         <div class="cell-md-6">
                             <h5>Compact</h5>
-                            <ul class="sidenav-counter h-auto">
+                            <ul class="sidenav-counter">
                                 <li><a href="#">
                                     <span class="mif-apps icon"></span>
                                     <span class="title">all items</span>

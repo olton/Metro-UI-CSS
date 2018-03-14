@@ -216,6 +216,8 @@ var Validator = {
         return this;
     },
 
+    dependencies: ['utils', 'colors'],
+
     options: {
         submitTimeout: 200,
         interactiveCheck: false,

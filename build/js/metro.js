@@ -5238,6 +5238,8 @@ var CalendarPicker = {
         return this;
     },
 
+    dependencies: ['calendar'],
+
     options: {
         locale: METRO_LOCALE,
         size: "100%",
@@ -10403,6 +10405,8 @@ var Panel = {
         return this;
     },
 
+    dependencies: ['draggable', 'collapse'],
+
     options: {
         titleCaption: "",
         titleIcon: "",
@@ -11352,6 +11356,8 @@ var RibbonMenu = {
 
         return this;
     },
+
+    dependencies: ['buttongroup'],
 
     options: {
         onStatic: Metro.noop,
@@ -14709,6 +14715,8 @@ var Validator = {
         return this;
     },
 
+    dependencies: ['utils', 'colors'],
+
     options: {
         submitTimeout: 200,
         interactiveCheck: false,
@@ -15381,6 +15389,8 @@ var Window = {
 
         return this;
     },
+
+    dependencies: ['draggable', 'resizeable'],
 
     options: {
         width: "auto",
