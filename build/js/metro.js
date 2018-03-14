@@ -1,5 +1,5 @@
 /*!
- * Metro 4 Components Library v4.0.8 build @@build-beta (https://metroui.org.ua)
+ * Metro 4 Components Library v4.1.0 build @@build-beta (https://metroui.org.ua)
  * Copyright 2018 Sergey Pimenov
  * Licensed under MIT
  */
@@ -4328,6 +4328,7 @@ var ButtonGroup = {
     options: {
         targets: "button",
         clsActive: "active",
+        requiredButton: false,
         mode: Metro.groupMode.ONE,
         onButtonClick: Metro.noop,
         onButtonsGroupCreate: Metro.noop
@@ -4369,7 +4370,7 @@ var ButtonGroup = {
         buttons = element.find( o.targets );
         buttons_active = element.find( "." + o.clsActive );
 
-        if (o.mode === Metro.groupMode.ONE && buttons_active.length === 0) {
+        if (o.mode === Metro.groupMode.ONE && buttons_active.length === 0 && o.requiredButton === true) {
             $(buttons[0]).addClass(o.clsActive);
         }
 
@@ -13251,7 +13252,7 @@ var Tabs = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onTabsCreate, [this.element]);
+        Utils.exec(this.options.onTabsCreate, [this.element], this.elem);
 
         return this;
     },
@@ -13278,10 +13279,11 @@ var Tabs = {
 
     _create: function(){
         var that = this, element = this.element, o = this.options;
+        var tab = element.find(".active").length > 0 ? $(element.find(".active")[0]) : undefined;
 
         this._createStructure();
         this._createEvents();
-        this._open();
+        this._open(tab);
     },
 
     _createStructure: function(){
@@ -13289,7 +13291,7 @@ var Tabs = {
         var prev = element.prev();
         var parent = element.parent();
         var container = $("<div>").addClass("tabs tabs-wrapper " + element[0].className);
-        var expandButton, expandTitle, hamburger;
+        var expandTitle, hamburger;
 
         element[0].className = "";
 

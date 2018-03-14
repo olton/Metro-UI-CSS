@@ -8,7 +8,7 @@ var Tabs = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onTabsCreate, [this.element]);
+        Utils.exec(this.options.onTabsCreate, [this.element], this.elem);
 
         return this;
     },
@@ -35,10 +35,11 @@ var Tabs = {
 
     _create: function(){
         var that = this, element = this.element, o = this.options;
+        var tab = element.find(".active").length > 0 ? $(element.find(".active")[0]) : undefined;
 
         this._createStructure();
         this._createEvents();
-        this._open();
+        this._open(tab);
     },
 
     _createStructure: function(){
@@ -46,7 +47,7 @@ var Tabs = {
         var prev = element.prev();
         var parent = element.parent();
         var container = $("<div>").addClass("tabs tabs-wrapper " + element[0].className);
-        var expandButton, expandTitle, hamburger;
+        var expandTitle, hamburger;
 
         element[0].className = "";
 

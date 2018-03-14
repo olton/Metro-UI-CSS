@@ -792,6 +792,132 @@
                 <li><a href="#">Links</a></li>
                 <li class="disabled"><a href="#">Disabled</a></li>
             </ul>
+
+            <div class="row mt-4">
+                <div class="cell-md-6">
+                    <ul class="vertical place-left tabs-expand-fs" data-role="tabs" style="width: 120px">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Profile</a></li>
+                        <li><a href="#">Links</a></li>
+                        <li class="disabled"><a href="#">Disabled</a></li>
+                    </ul>
+                </div>
+                <div class="cell-md-6">
+                    <ul class="vertical right place-right tabs-expand-fs" data-role="tabs" style="width: 120px">
+                        <li><a href="#">Home</a></li>
+                        <li class="active"><a href="#">Profile</a></li>
+                        <li><a href="#">Links</a></li>
+                        <li class="disabled"><a href="#">Disabled</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <h2 id="treeview">Tree view</h2>
+        <div class="example">
+            <div class="row">
+                <div class="cell-md-4">
+                    <ul data-role="treeview">
+                        <li data-icon="<span class='mif-star-full'></span>" data-caption="Favorites">
+                            <ul>
+                                <li data-icon="<span class='mif-library'></span>" data-caption="Projects"></li>
+                                <li data-icon="<span class='mif-download'></span>" data-caption="Downloads"></li>
+                                <li data-icon="<img src='../../images/desktop.png'>" data-caption="Desktop"></li>
+                            </ul>
+                        </li>
+                        <li data-icon="<span class='mif-onedrive'></span>" data-caption="OneDrive">
+                            <ul>
+                                <li data-caption="Documents"></li>
+                                <li data-caption="Projects">
+                                    <ul>
+                                        <li data-caption="Web"></li>
+                                        <li data-caption="Android"></li>
+                                        <li data-caption="Windows"></li>
+                                        <li data-caption="iOS"></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="cell-md-4">
+                    <ul data-role="treeview">
+                        <li class="expanded" data-caption="Checkboxes">
+                            <ul>
+                                <li><input data-role="checkbox" data-caption="Play animation"></li>
+                                <li><input data-role="checkbox" data-caption="Play sound" checked></li>
+                                <li><input data-role="checkbox" data-caption="Disabled" disabled></li>
+                                <li><input data-role="checkbox" data-caption="Disabled checked" checked disabled></li>
+                            </ul>
+                        </li>
+                        <li class="expanded" data-caption="Radios">
+                            <ul>
+                                <li><input name="r1" data-role="radio" data-caption="Play animation"></li>
+                                <li><input name="r1" data-role="radio" data-caption="Play sound" checked></li>
+                                <li><input data-role="radio" data-caption="Disabled" disabled></li>
+                                <li><input data-role="radio" data-caption="Disabled checked" checked disabled></li>
+                            </ul>
+                        </li>
+                        <li class="expanded" data-caption="Switches">
+                            <ul>
+                                <li><input data-role="switch" data-caption="Play animation"></li>
+                                <li><input data-role="switch" data-caption="Play sound" checked></li>
+                                <li><input data-role="switch" data-caption="Disabled" disabled></li>
+                                <li><input data-role="switch" data-caption="Disabled checked" checked disabled></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="cell-md-4">
+                    <ul data-role="treeview">
+                        <li>
+                            <input data-role="checkbox" data-caption="Player options">
+                            <ul class="expanded">
+                                <li>
+                                    <input data-role="checkbox" data-caption="Play video">
+                                    <ul>
+                                        <li><input data-role="checkbox" data-caption="AVI"></li>
+                                        <li><input data-role="checkbox" data-caption="MPEG"></li>
+                                        <li><input data-role="checkbox" data-caption="VIDX"></li>
+                                        <li><input data-role="checkbox" data-caption="MP4"></li>
+                                        <li><input data-role="checkbox" data-caption="XVID"></li>
+                                    </ul>
+                                </li>
+                                <li><input data-role="checkbox" data-caption="Play audio"></li>
+                                <li>
+                                    <input data-role="checkbox" data-caption="Subtitles">
+                                    <ul>
+                                        <li>
+                                            <input data-role="checkbox" data-caption="Languages">
+                                            <ul>
+                                                <li><input data-role="checkbox" data-caption="English"></li>
+                                                <li><input data-role="checkbox" data-caption="Ukrainian"></li>
+                                                <li><input data-role="checkbox" data-caption="Dutch"></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <h2 id="wizard">Wizard</h2>
+        <div class="example">
+            <div data-role="wizard" class="wizard-wide-fs"
+                 data-icon-help="<span class='mif-help'></span>"
+                 data-icon-prev="<span class='mif-arrow-left'></span>"
+                 data-icon-next="<span class='mif-arrow-right'></span>"
+                 data-icon-finish="<span class='mif-checkmark'></span>"
+                 data-start="3">
+                <section><div class="page-content">Page 1</div></section>
+                <section><div class="page-content">Page 2</div></section>
+                <section><div class="page-content">Page 3</div></section>
+                <section><div class="page-content">Page 4</div></section>
+                <section><div class="page-content">Page 5</div></section>
+            </div>
         </div>
 
     </div>

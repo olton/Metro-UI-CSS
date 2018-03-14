@@ -962,6 +962,32 @@
         }
     }
 
+    .tabs {
+        &.vertical {
+            & > ul {
+                border-right-color: @schemeBorderColor;
+                & > li {
+                    border-right-color: @schemeBorderColor;
+                }
+                & > li.active {
+                    border-color: @schemeBorderColor;
+                }
+            }
+
+            &.right {
+                & > ul {
+                    border-left-color: @schemeBorderColor;
+                    & > li {
+                        border-left-color: @schemeBorderColor;
+                    }
+                    & > li.active {
+                        border-color: @schemeBorderColor;
+                    }
+                }
+            }
+        }
+    }
+
     [class*=tabs-expand] {
         & > ul {
             border-bottom-color: @schemeBorderColor;
@@ -972,6 +998,90 @@
                 &.active {
                     border-color: @schemeBorderColor;
                 }
+            }
+        }
+    }
+
+    // Top bar
+    .topbar {
+        background-color: @schemeControlFillColor;
+        color: @schemeControlTextColor;
+
+        .topbar-brand, .topbar-element, .topbar-menu {
+            color: @schemeControlTextColor;
+        }
+    }
+
+    // Treeview
+    .treeview {
+        background-color: @schemeBackgroundColor;
+        color: @schemeControlTextColor;
+
+        .node-toggle {
+            &::before {
+                border-color: @schemeControlTextColor!important;
+            }
+        }
+
+        li {
+            &.current > .caption {
+                color: @schemeTextColor;
+            }
+        }
+    }
+
+    // Wizard
+    .wizard {
+        background-color: @schemeBackgroundColor;
+        color: @schemeControlTextColor;
+        border-color: @schemeBorderColor;
+
+        & > section {
+            border-color: darken(@schemeControlFillColor, 50%);
+            &:nth-child(1) {border-color: @schemeControlFillColor;}
+            &:nth-child(2) {border-color: darken(@schemeControlFillColor, 5%);}
+            &:nth-child(3) {border-color: darken(@schemeControlFillColor, 10%);}
+            &:nth-child(4) {border-color: darken(@schemeControlFillColor, 15%);}
+            &:nth-child(5) {border-color: darken(@schemeControlFillColor, 20%);}
+            &:nth-child(6) {border-color: darken(@schemeControlFillColor, 25%);}
+            &:nth-child(7) {border-color: darken(@schemeControlFillColor, 30%);}
+            &:nth-child(8) {border-color: darken(@schemeControlFillColor, 35%);}
+            &:nth-child(9) {border-color: darken(@schemeControlFillColor, 40%);}
+            &:nth-child(10) {border-color: darken(@schemeControlFillColor, 50%);}
+
+            &::before {
+                color: @schemeTextColor;
+            }
+
+            &.complete {
+                border-color: darken(@schemeControlTextColor, 50%);
+                &:nth-child(1) {border-color: @schemeControlTextColor;}
+                &:nth-child(2) {border-color: darken(@schemeControlTextColor, 5%);}
+                &:nth-child(3) {border-color: darken(@schemeControlTextColor, 10%);}
+                &:nth-child(4) {border-color: darken(@schemeControlTextColor, 15%);}
+                &:nth-child(5) {border-color: darken(@schemeControlTextColor, 20%);}
+                &:nth-child(6) {border-color: darken(@schemeControlTextColor, 25%);}
+                &:nth-child(7) {border-color: darken(@schemeControlTextColor, 30%);}
+                &:nth-child(8) {border-color: darken(@schemeControlTextColor, 35%);}
+                &:nth-child(9) {border-color: darken(@schemeControlTextColor, 40%);}
+                &:nth-child(10) {border-color: darken(@schemeControlTextColor, 50%);}
+
+                &::before {
+                    color: @schemeTextColor;
+                }
+            }
+
+            &.current {
+                &::before {
+                    color: @schemeTextColor;
+                    background-color: @schemeControlFillColor;
+                }
+            }
+        }
+
+        .action-bar {
+            button {
+                border-color: @schemeBorderColor;
             }
         }
     }

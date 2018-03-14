@@ -14,6 +14,7 @@ var ButtonGroup = {
     options: {
         targets: "button",
         clsActive: "active",
+        requiredButton: false,
         mode: Metro.groupMode.ONE,
         onButtonClick: Metro.noop,
         onButtonsGroupCreate: Metro.noop
@@ -55,7 +56,7 @@ var ButtonGroup = {
         buttons = element.find( o.targets );
         buttons_active = element.find( "." + o.clsActive );
 
-        if (o.mode === Metro.groupMode.ONE && buttons_active.length === 0) {
+        if (o.mode === Metro.groupMode.ONE && buttons_active.length === 0 && o.requiredButton === true) {
             $(buttons[0]).addClass(o.clsActive);
         }
 
