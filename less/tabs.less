@@ -6,12 +6,14 @@
     min-height: 3rem;
     border: 1px solid @borderColor;
     transition: @transition-base;
+    background-color: @white;
+    color: @dark;
 
-    .expand-button, .expand-title {
+    .hamburger, .expand-title {
         cursor: pointer;
     }
 
-    .expand-button {
+    .hamburger {
         position: absolute;
         top: .25rem;
         right: .25rem;
@@ -196,7 +198,7 @@
         flex-direction: column;
     }
 
-    .expand-button, .expand-title {
+    .hamburger, .expand-title {
         display: none;
     }
 }

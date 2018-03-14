@@ -702,6 +702,130 @@ textarea.focused,
 .sidenav-m3 .d-menu li {
   border-top-color: #5E6060;
 }
+.slider .backside {
+  background-color: #3C3F41;
+}
+.slider .buffer {
+  background-color: #7d7d7d;
+}
+.slider .complete {
+  background-color: #bbbbbb;
+}
+.slider .marker {
+  background-color: #ffffff;
+}
+.stepper::before {
+  background-color: #3C3F41;
+}
+.stepper .step {
+  background-color: #3C3F41;
+  color: #bbbbbb;
+}
+.stepper .step.complete {
+  background-color: #6e6e6e;
+  color: #000000;
+}
+.stepper .step.current {
+  background-color: #ffffff;
+  color: #000000;
+}
+.streamer .streams {
+  background-color: #2B2B2B;
+  color: #ffffff;
+}
+.streamer .streamer-action {
+  background-color: #3C3F41;
+  color: #bbbbbb;
+}
+.streamer .stream {
+  border-color: #5E6060;
+}
+.streamer .event-group {
+  background-color: #2B2B2B;
+  color: #ffffff;
+}
+.streamer .stream-event {
+  background-color: #3C3F41;
+  color: #bbbbbb;
+  border-color: #5E6060;
+}
+.streamer .stream-event:hover {
+  border-color: #919393;
+}
+.streamer .stream-event.selected {
+  -webkit-box-shadow: 0 0 0 1px #5e6060 !important;
+          box-shadow: 0 0 0 1px #5e6060 !important;
+}
+.streamer .stream-event.selected::before {
+  border-color: #ffffff !important;
+}
+.streamer .stream-event.selected::after {
+  border-top-color: #5E6060;
+}
+.streamer .stream-event-slide .slide-data .title {
+  color: #ffffff;
+}
+.streamer .stream-event-slide .slide-data .subtitle,
+.streamer .stream-event-slide .slide-data .desc {
+  color: #bbbbbb;
+}
+.table {
+  background-color: #2B2B2B;
+  color: #bbbbbb;
+}
+.table thead th,
+.table thead td {
+  color: #ffffff;
+}
+.table thead {
+  border-bottom-color: #5E6060;
+}
+.table tfoot {
+  border-top-color: #5E6060;
+}
+.table .sortable-column.sort-asc,
+.table .sortable-column.sort-desc {
+  background-color: #7d7d7d;
+}
+.table .sortable-column.sort-asc:after,
+.table .sortable-column.sort-desc:after {
+  color: #bbbbbb;
+}
+.table.striped tbody tr:nth-child(odd) {
+  background: rgba(60, 63, 65, 0.2);
+}
+.table.table-border {
+  border-color: #5E6060;
+}
+.table.cell-border th,
+.table.cell-border td {
+  border-color: #5E6060;
+}
+.tabs {
+  background-color: #2B2B2B;
+  color: #bbbbbb;
+  border-color: #5E6060;
+}
+.tabs > ul > li {
+  background-color: rgba(60, 63, 65, 0.2);
+  color: #bbbbbb;
+}
+.tabs > ul > li:hover {
+  background-color: rgba(125, 125, 125, 0.2);
+}
+.tabs > ul > li.active {
+  background-color: #3C3F41;
+  color: #ffffff;
+}
+[class*=tabs-expand] > ul {
+  border-bottom-color: #5E6060;
+}
+[class*=tabs-expand] > ul > li {
+  border-bottom-color: #5E6060;
+}
+[class*=tabs-expand] > ul > li.active {
+  border-color: #5E6060;
+}
 .window {
   border-color: #5E6060;
   background-color: #2B2B2B;
@@ -717,6 +841,10 @@ textarea.focused,
 }
 .ribbon-menu .tabs-holder .static:hover {
   border-color: transparent !important;
+}
+.ribbon-menu .content-holder {
+  border-left: none;
+  border-right: none;
 }
 
 /*# sourceMappingURL=../maps/darcula.css.map */

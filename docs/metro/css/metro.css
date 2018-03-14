@@ -18399,7 +18399,7 @@ figure img {
   margin: 1px;
   height: 26px;
   width: 26px;
-  border: 0px solid #dfdfdf;
+  border: 0 solid #dfdfdf;
   line-height: 26px;
   text-align: center;
   cursor: pointer;
@@ -18410,9 +18410,10 @@ figure img {
 }
 .streamer .streamer-action * {
   vertical-align: inherit ;
-  font-size: 26px;
-  width: 100%!important;
-  height: 100%!important;
+  font-size: 24px;
+  text-align: center;
+  width: 24px;
+  height: 24px;
 }
 .streamer a.streamer-action {
   color: #1d1d1d;
@@ -21909,12 +21910,14 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   border: 1px solid #dfdfdf;
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
+  background-color: #ffffff;
+  color: #1d1d1d;
 }
-.tabs .expand-button,
+.tabs .hamburger,
 .tabs .expand-title {
   cursor: pointer;
 }
-.tabs .expand-button {
+.tabs .hamburger {
   position: absolute;
   top: .25rem;
   right: .25rem;
@@ -22082,7 +22085,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
         -ms-flex-direction: column;
             flex-direction: column;
   }
-  .tabs-expand-fs .expand-button,
+  .tabs-expand-fs .hamburger,
   .tabs-expand-fs .expand-title {
     display: none;
   }
@@ -22138,7 +22141,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
         -ms-flex-direction: column;
             flex-direction: column;
   }
-  .tabs-expand-sm .expand-button,
+  .tabs-expand-sm .hamburger,
   .tabs-expand-sm .expand-title {
     display: none;
   }
@@ -22194,7 +22197,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
         -ms-flex-direction: column;
             flex-direction: column;
   }
-  .tabs-expand-md .expand-button,
+  .tabs-expand-md .hamburger,
   .tabs-expand-md .expand-title {
     display: none;
   }
@@ -22250,7 +22253,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
         -ms-flex-direction: column;
             flex-direction: column;
   }
-  .tabs-expand-lg .expand-button,
+  .tabs-expand-lg .hamburger,
   .tabs-expand-lg .expand-title {
     display: none;
   }
@@ -22306,7 +22309,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
         -ms-flex-direction: column;
             flex-direction: column;
   }
-  .tabs-expand-xl .expand-button,
+  .tabs-expand-xl .hamburger,
   .tabs-expand-xl .expand-title {
     display: none;
   }
@@ -22362,7 +22365,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
         -ms-flex-direction: column;
             flex-direction: column;
   }
-  .tabs-expand-xxl .expand-button,
+  .tabs-expand-xxl .hamburger,
   .tabs-expand-xxl .expand-title {
     display: none;
   }

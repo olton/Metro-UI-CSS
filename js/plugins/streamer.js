@@ -60,7 +60,7 @@ var Streamer = {
         element.addClass("streamer");
 
         if (element.attr("id") === undefined) {
-            element.attr("id", Utils.uniqueId());
+            element.attr("id", Utils.elementId("streamer"));
         }
 
         if (o.source === null && o.data === null) {
