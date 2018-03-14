@@ -28138,14 +28138,14 @@ video:-webkit-full-screen {
 .ribbon-menu .content-holder {
   display: block;
   position: relative;
-  border-left: 1px solid #dadbdc;
-  border-right: 1px solid #dadbdc;
+}
+.ribbon-menu .content-holder {
+  background-color: #f5f6f7;
 }
 .ribbon-menu .content-holder .section {
   display: none;
   padding: 4px 4px;
   border-bottom: 1px solid #dadbdc;
-  background-color: #f5f6f7;
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start;
@@ -28179,7 +28179,7 @@ video:-webkit-full-screen {
   left: 0;
   bottom: 0;
   width: 100%;
-  line-height: 20px;
+  line-height: 24px;
   height: 20px;
   font-size: 11px;
   text-align: center;
@@ -28468,9 +28468,11 @@ video:-webkit-full-screen {
   height: 22px;
   top: 0;
   left: 0;
+  z-index: 1;
+}
+.ribbon-dropdown .checked::after {
   border: 1px solid #a4cef9;
   background-color: rgba(164, 206, 249, 0.2);
-  z-index: 1;
 }
 .ribbon-dropdown .checked-one::before {
   width: .4rem;

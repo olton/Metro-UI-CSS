@@ -4,6 +4,9 @@ body {
   color: #ffffff;
   background-color: #2B2B2B;
 }
+.dropdown-toggle::before {
+  border-color: #bbbbbb;
+}
 .display4,
 .display3,
 .display2,
@@ -117,6 +120,21 @@ textarea.focused,
 .textarea .button,
 .file .button {
   color: #bbbbbb;
+}
+.input input,
+.select input,
+.textarea input,
+.file input,
+.input select,
+.select select,
+.textarea select,
+.file select,
+.input textarea,
+.select textarea,
+.textarea textarea,
+.file textarea {
+  -webkit-box-shadow: none!important;
+          box-shadow: none!important;
 }
 .file .button {
   background-color: #3C3F41;
@@ -529,6 +547,144 @@ textarea.focused,
 }
 .rating:not(.static) .stars li:hover ~ li {
   color: #3b3b3b !important;
+}
+.ribbon-menu .tabs-holder {
+  border-bottom-color: #5E6060;
+}
+.ribbon-menu .tabs-holder li {
+  background-color: rgba(125, 125, 125, 0.2);
+  color: #bbbbbb;
+  border-bottom-color: rgba(125, 125, 125, 0.2);
+}
+.ribbon-menu .tabs-holder li:hover {
+  border-left-color: #5E6060;
+  border-right-color: #5E6060;
+}
+.ribbon-menu .tabs-holder .active {
+  background-color: #3C3F41;
+  border: 1px solid #5E6060;
+  border-bottom-color: transparent;
+}
+.ribbon-menu .content-holder {
+  border-left: 1px solid #5E6060;
+  border-right: 1px solid #5E6060;
+  background-color: #3C3F41;
+}
+.ribbon-menu .content-holder .section {
+  border-bottom: 1px solid #5E6060;
+}
+.ribbon-menu .content-holder .group .title {
+  border-top-color: #5E6060;
+}
+.ribbon-menu .content-holder .group .group-divider {
+  background-color: #5E6060;
+}
+.ribbon-menu .content-holder .group + .group {
+  border-left-color: #5E6060;
+}
+.ribbon-button:hover,
+.ribbon-icon-button:hover,
+.ribbon-tool-button:hover {
+  border-color: #5E6060;
+  background-color: rgba(125, 125, 125, 0.2);
+}
+.ribbon-icon-button.dropdown-toggle::after,
+.ribbon-tool-button.dropdown-toggle::after {
+  border-color: transparent transparent #bbbbbb transparent;
+}
+.ribbon-split-button:hover {
+  border-color: #5E6060;
+}
+.ribbon-split-button:hover .ribbon-split {
+  border-color: #5E6060;
+}
+.ribbon-split-button .ribbon-main,
+.ribbon-split-button .ribbon-split {
+  color: #bbbbbb;
+}
+.ribbon-split-button .ribbon-main:hover,
+.ribbon-split-button .ribbon-split:hover {
+  background-color: rgba(125, 125, 125, 0.2);
+}
+.ribbon-split-button .ribbon-main::after,
+.ribbon-split-button .ribbon-split::after {
+  border-color: transparent transparent #5E6060 transparent;
+}
+.ribbon-split-button .ribbon-split.dropdown-toggle::after {
+  border-color: transparent transparent #bbbbbb transparent;
+}
+.ribbon-button,
+.ribbon-icon-button,
+.ribbon-tool-button,
+.ribbon-split-button {
+  color: #bbbbbb;
+}
+.ribbon-dropdown {
+  background-color: #3C3F41;
+  color: #bbbbbb;
+  border-color: #5E6060;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+.ribbon-dropdown li:hover {
+  border-color: #5E6060;
+  background-color: rgba(125, 125, 125, 0.2);
+}
+.ribbon-dropdown a {
+  border-left-color: #5E6060;
+}
+.ribbon-dropdown .divider {
+  background-color: #5E6060;
+}
+.ribbon-dropdown .checked::before,
+.ribbon-dropdown .checked-one::before {
+  border-color: #bbbbbb;
+}
+.ribbon-dropdown .checked::after {
+  border-color: #bbbbbb;
+  background-color: rgba(125, 125, 125, 0.2);
+}
+.ribbon-dropdown .checked-one::before {
+  background-color: #bbbbbb;
+}
+.ribbon-toggle-group {
+  border-color: #5E6060;
+  background-color: rgba(60, 63, 65, 0.2);
+}
+.ribbon-button:active,
+.ribbon-tool-button:active,
+.ribbon-split:active,
+.ribbon-main:active,
+.ribbon-icon-button:active,
+.ribbon-button.active,
+.ribbon-tool-button.active,
+.ribbon-split.active,
+.ribbon-main.active,
+.ribbon-icon-button.active {
+  border-color: #5E6060;
+  background-color: rgba(125, 125, 125, 0.2) !important;
+}
+.ribbon-menu .active-container .ribbon-button,
+.ribbon-menu .active-container .ribbon-tool-button,
+.ribbon-menu .active-container .ribbon-icon-button {
+  border-color: #5E6060;
+  background-color: rgba(125, 125, 125, 0.2) !important;
+}
+.window {
+  border-color: #5E6060;
+  background-color: #2B2B2B;
+  color: #bbbbbb;
+}
+.window .window-caption {
+  background-color: #3C3F41;
+  color: #ffffff;
+}
+.ribbon-menu .tabs-holder .static {
+  background-color: #fa6800;
+  color: #ffffff;
+}
+.ribbon-menu .tabs-holder .static:hover {
+  border-color: transparent !important;
 }
 
 /*# sourceMappingURL=../maps/darcula.css.map */

@@ -1,3 +1,6 @@
+### 4.0.8
++ [x] Ribbon menu: fix it for button group
+
 ### 4.0.7
 + [x] Button group: fix it
 
