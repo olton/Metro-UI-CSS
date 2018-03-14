@@ -804,6 +804,178 @@
         }
     }
 
+    // Slider
+    .slider {
+        .backside {
+            background-color: @schemeControlFillColor;
+        }
+
+        .buffer {
+            background-color: @schemeControlColor;
+        }
+
+        .complete {
+            background-color: @schemeControlTextColor;
+        }
+
+        .marker {
+            background-color: @schemeTextColor;
+        }
+    }
+
+    // Stepper
+    .stepper {
+        &::before {
+            background-color: @schemeControlFillColor;
+        }
+        .step {
+            background-color: @schemeControlFillColor;
+            color: @schemeControlTextColor;
+
+            &.complete {
+                background-color: darken(@schemeControlTextColor, 30%);
+                color: contrast(@schemeControlTextColor);
+            }
+
+            &.current {
+                background-color: @schemeTextColor;
+                color: contrast(@schemeTextColor);
+            }
+
+        }
+    }
+
+    // Streamer
+    .streamer {
+        .streams {
+            background-color: @schemeBackgroundColor;
+            color: @schemeTextColor;
+        }
+
+        .streamer-action {
+            background-color: @schemeControlFillColor;
+            color: @schemeControlTextColor;
+        }
+
+        .stream {
+            border-color: @schemeBorderColor;
+        }
+
+        .event-group {
+            background-color: @schemeBackgroundColor;
+            color: @schemeTextColor;
+        }
+
+        .stream-event {
+            background-color: @schemeControlFillColor;
+            color: @schemeControlTextColor;
+            border-color: @schemeBorderColor;
+
+            &:hover {
+                border-color: lighten(@schemeBorderColor, 20%);
+            }
+
+            &.selected {
+                box-shadow: 0 0 0 1px rgba(red(@schemeBorderColor), green(@schemeBorderColor), blue(@schemeBorderColor), 1)!important;
+                &::before {
+                    border-color: @schemeTextColor!important;
+                }
+                &::after {
+                    border-top-color: @schemeBorderColor;
+                }
+            }
+        }
+
+        .stream-event-slide {
+            .slide-data {
+                .title {
+                    color: @schemeTextColor;
+                }
+                .subtitle, .desc {
+                    color: @schemeControlTextColor;
+                }
+            }
+        }
+    }
+
+    // Table
+    .table {
+        background-color: @schemeBackgroundColor;
+        color: @schemeControlTextColor;
+
+        thead {
+            th, td {
+                color: @schemeTextColor;
+            }
+        }
+
+        thead {
+            border-bottom-color: @schemeBorderColor;
+        }
+        tfoot {
+            border-top-color: @schemeBorderColor;
+        }
+
+        .sortable-column {
+            &.sort-asc, &.sort-desc {
+                background-color: @schemeControlColor;
+                &:after {
+                    color: @schemeControlTextColor;
+                }
+            }
+        }
+
+        &.striped {
+            tbody tr:nth-child(odd) {
+                background: @blendFill;
+            }
+        }
+
+        &.table-border {
+            border-color: @schemeBorderColor;
+        }
+
+        &.cell-border {
+            th, td {
+                border-color: @schemeBorderColor;
+            }
+        }
+    }
+
+    // Tabs
+    .tabs {
+        background-color: @schemeBackgroundColor;
+        color: @schemeControlTextColor;
+        border-color: @schemeBorderColor;
+
+        & > ul > li {
+            background-color: @blendFill;
+            color: @schemeControlTextColor;
+
+            &:hover {
+                background-color: @blendControl;
+            }
+            &.active {
+                background-color: @schemeControlFillColor;
+                color: @schemeTextColor;
+            }
+        }
+    }
+
+    [class*=tabs-expand] {
+        & > ul {
+            border-bottom-color: @schemeBorderColor;
+
+            & > li {
+                border-bottom-color: @schemeBorderColor;
+
+                &.active {
+                    border-color: @schemeBorderColor;
+                }
+            }
+        }
+    }
+
     // Window
     .window {
         border-color: @schemeBorderColor;

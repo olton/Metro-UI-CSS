@@ -88,10 +88,11 @@
                 <h3 id="_streamer_create">Create streamer</h3>
                 <p>
                     To create streamer you must execute three steps: add container with <code>data-role="streamer"</code> attribute, then define other options over <code>data-*</code> attributes and
-                    define streamer data with <code>data-source</code> or <code>data-data</code> attributes.
+                    define streamer data with <code>data-source</code> or <code>data-data</code> attributes. Also you must define <code>id</code> attribute for your streamer.
                 </p>
                 <pre><code>
-                    &lt;div data-role="streamer"
+                    &lt;div id="streamer"
+                         data-role="streamer"
                          data-source="data/streamer_data.json"
                          data-start-from="09:00"
                          data-slide-to-start="false"&gt;

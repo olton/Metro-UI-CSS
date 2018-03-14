@@ -35,10 +35,18 @@ var Tabs = {
 
     _create: function(){
         var that = this, element = this.element, o = this.options;
+
+        this._createStructure();
+        this._createEvents();
+        this._open();
+    },
+
+    _createStructure: function(){
+        var that = this, element = this.element, o = this.options;
         var prev = element.prev();
         var parent = element.parent();
         var container = $("<div>").addClass("tabs tabs-wrapper " + element[0].className);
-        var expandButton, expandTitle;
+        var expandButton, expandTitle, hamburger;
 
         element[0].className = "";
 
@@ -53,15 +61,33 @@ var Tabs = {
         element.data('expanded', false);
 
         expandTitle = $("<div>").addClass("expand-title"); container.prepend(expandTitle);
-        expandButton = $("<span>").addClass("expand-button").html("<span></span>"); container.append(expandButton);
+        hamburger = container.find(".hamburger");
+        if (hamburger.length === 0) {
+            hamburger = $("<button>").attr("type", "button").addClass("hamburger menu-down").appendTo(container);
+            for(var i = 0; i < 3; i++) {
+                $("<span>").addClass("line").appendTo(hamburger);
+            }
 
-        container.on(Metro.events.click, ".expand-button, .expand-title", function(){
+            if (Colors.isLight(Utils.computedRgbToHex(Utils.getStyleOne(container, "background-color"))) === true) {
+                hamburger.addClass("dark");
+            }
+        }
+
+    },
+
+    _createEvents: function(){
+        var that = this, element = this.element, o = this.options;
+        var container = element.parent();
+
+        container.on(Metro.events.click, ".hamburger, .expand-title", function(){
             if (element.data('expanded') === false) {
                 element.addClass("expand");
                 element.data('expanded', true);
+                container.find(".hamburger").addClass("active");
             } else {
                 element.removeClass("expand");
                 element.data('expanded', false);
+                container.find(".hamburger").removeClass("active");
             }
         });
 
@@ -72,12 +98,11 @@ var Tabs = {
             if (element.data('expanded') === true) {
                 element.removeClass("expand");
                 element.data('expanded', false);
+                container.find(".hamburger").removeClass("active");
             }
-            if (Utils.exec(o.onBeforeTab, [tab, element]) === true) that._open(tab);
+            if (Utils.exec(o.onBeforeTab, [tab, element], tab[0]) === true) that._open(tab);
             e.preventDefault();
         });
-
-        this._open();
     },
 
     _collectTargets: function(){
