@@ -65,16 +65,15 @@
     .content-holder {
         display: block;
         position: relative;
-        border-left: 1px solid @ribbonMenuBorder;
-        border-right: 1px solid @ribbonMenuBorder;
     }
 
     .content-holder {
+        background-color: @ribbonMenuActiveBackground;
+
         .section {
             display: none;
             padding: 4px 4px;
             border-bottom: 1px solid @ribbonMenuBorder;
-            background-color: @ribbonMenuActiveBackground;
             justify-content: flex-start;
 
             &.active {
@@ -101,7 +100,7 @@
                 left: 0;
                 bottom: 0;
                 width: 100%;
-                line-height: 20px;
+                line-height: 24px;
                 height: 20px;
                 font-size: 11px;
                 text-align: center;
@@ -419,9 +418,14 @@
             height: 22px;
             top: 0;
             left: 0;
+            z-index: 1;
+        }
+    }
+
+    .checked {
+        &::after {
             border: 1px solid @ribbonMenuItemBorder;
             background-color: @ribbonMenuItemHoverBackground;
-            z-index: 1;
         }
     }
 
