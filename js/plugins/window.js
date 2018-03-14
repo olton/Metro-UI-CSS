@@ -14,6 +14,8 @@ var Window = {
         return this;
     },
 
+    dependencies: ['draggable', 'resizeable'],
+
     options: {
         width: "auto",
         height: "auto",

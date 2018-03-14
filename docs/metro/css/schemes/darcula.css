@@ -670,6 +670,38 @@ textarea.focused,
   border-color: #5E6060;
   background-color: rgba(125, 125, 125, 0.2) !important;
 }
+.sidenav-simple,
+.sidenav-counter {
+  background-color: #3C3F41;
+  color: #bbbbbb;
+}
+.sidenav-simple .active,
+.sidenav-counter .active,
+.sidenav-simple li.active:hover,
+.sidenav-counter li.active:hover {
+  background-color: rgba(125, 125, 125, 0.2);
+  color: #bbbbbb;
+}
+.sidenav-m3 {
+  background-color: #3C3F41;
+  color: #bbbbbb;
+}
+.sidenav-m3 a {
+  background-color: #3C3F41;
+}
+.sidenav-m3 a:hover {
+  background-color: #373a3c;
+}
+.sidenav-m3 li + li {
+  border-top-color: #5E6060;
+}
+.sidenav-m3 .d-menu {
+  border-color: #3C3F41;
+  margin-bottom: 4px;
+}
+.sidenav-m3 .d-menu li {
+  border-top-color: #5E6060;
+}
 .window {
   border-color: #5E6060;
   background-color: #2B2B2B;

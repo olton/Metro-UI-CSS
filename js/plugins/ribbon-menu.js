@@ -10,6 +10,8 @@ var RibbonMenu = {
         return this;
     },
 
+    dependencies: ['buttongroup'],
+
     options: {
         onStatic: Metro.noop,
         onBeforeTab: Metro.noop_true,

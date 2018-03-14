@@ -15,6 +15,8 @@ var CalendarPicker = {
         return this;
     },
 
+    dependencies: ['calendar'],
+
     options: {
         locale: METRO_LOCALE,
         size: "100%",

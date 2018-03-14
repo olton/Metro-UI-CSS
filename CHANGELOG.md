@@ -1,3 +1,9 @@
+### 4.1.0
++ [x] Side navigation: new component `sidemenu-simple`
++ [x] Button group: new behavior for `one` mode - all unchecked
++ [x] Scheme builder: new mixin
++ [x] Schemes: darcula
+
 ### 4.0.8
 + [x] Ribbon menu: fix it for button group
 
