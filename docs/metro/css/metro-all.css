@@ -26000,8 +26000,8 @@ video:-webkit-full-screen {
           transform: scale(2);
 }
 .treeview {
-  margin: 0 0 0 8px;
-  padding: 0;
+  margin: 0 0 0 0;
+  padding: 0 0 0 24px;
   font-size: .8125rem;
   list-style: none inside;
   display: block;
@@ -26565,6 +26565,9 @@ video:-webkit-full-screen {
 .wizard .action-bar > * {
   margin: 1px;
 }
+.wizard > section {
+  border-color: #000000;
+}
 .wizard > section:nth-child(1) {
   border-color: #1ba1e2;
 }
@@ -26594,6 +26597,9 @@ video:-webkit-full-screen {
 }
 .wizard > section:nth-child(10) {
   border-color: #000000;
+}
+.wizard > section.complete {
+  border-color: #656565;
 }
 .wizard > section.complete:nth-child(1) {
   border-color: #e4e4e4;

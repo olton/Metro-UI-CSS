@@ -81,6 +81,7 @@
 
 .wizard {
     & > section {
+        border-color: darken(@cyan, 50%);
         &:nth-child(1) {border-color: @cyan;}
         &:nth-child(2) {border-color: darken(@cyan, 5%);}
         &:nth-child(3) {border-color: darken(@cyan, 10%);}
@@ -93,6 +94,7 @@
         &:nth-child(10) {border-color: darken(@cyan, 50%);}
 
         &.complete {
+            border-color: darken(@lightGray, 50%);
             &:nth-child(1) {border-color: @lightGray;}
             &:nth-child(2) {border-color: darken(@lightGray, 5%);}
             &:nth-child(3) {border-color: darken(@lightGray, 10%);}
