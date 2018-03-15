@@ -29,7 +29,7 @@
     <link rel="icon" href="../../favicon.ico" type="image/x-icon">
 
     <link href="../../metro/css/metro-all.css" rel="stylesheet">
-    <link href="../../metro/css/schemes/darcula.css" rel="stylesheet">
+    <link id="color-scheme" href="../../metro/css/schemes/darcula.css" rel="stylesheet">
 
     <title>Schemes demo - Metro 4 :: Popular HTML, CSS and JS library</title>
 
@@ -38,10 +38,21 @@
             margin-top: 20px;
         }
     </style>
+
+    <script>
+        function changeSchemeTo(n){
+            $("#color-scheme").attr("href", "../../metro/css/schemes/" + n);
+            $("#scheme-name").html(n);
+        }
+    </script>
 </head>
 <body>
     <div class="container" style="margin-bottom: 200px;">
-        <h1>Metro 4 Schemes <small>darcula.css</small></h1>
+        <div class="place-right mt-2">
+            <button class="button" onclick="changeSchemeTo('darcula.css')">darcula</button>
+            <button class="button" onclick="changeSchemeTo('red-alert.css')">red-alert</button>
+        </div>
+        <h1>Metro 4 Schemes <small id="scheme-name">darcula.css</small></h1>
         <hr class="thin">
 
         <h2 id="inputs">Inputs</h2>

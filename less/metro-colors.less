@@ -4,13 +4,24 @@
 @ribbedAlpha: .15;
 @ribbedAngle: -45deg;
 
+.op-default {
+    background-color: rgba(red(@cyan), green(@cyan), blue(@cyan), .7) !important;
+}
+
+.bg-transparent {
+    background-color: @transparent !important;
+}
+
+.bd-default {
+    border-color: @borderColor!important;
+}
 
 .generate-colors(@colorListLength);
 .generate-colors(@name, @i: 1) when (@i =< @colorListLength) {
     @name: extract(@colorList, @i);
 
-    //.fg-@{name} {color: @@name !important;}
-    //.bg-@{name} {background-color: @@name !important;}
+    .fg-@{name} {color: @@name !important;}
+    .bg-@{name} {background-color: @@name !important;}
     .bd-@{name} {border-color: @@name !important;}
     .ol-@{name} {outline-color: @@name !important;}
 

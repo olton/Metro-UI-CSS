@@ -303,7 +303,7 @@
                             </div>
                             <div class="cell-md-6">
                                 <select data-role="select" title="">
-                                    <optgroup label="Физические серверы">
+                                    <optgroup label="Physical servers">
                                         <option value="dedicated_corei3_hp">Core i3 (hp)</option>
                                         <option value="dedicated_pentium_hp">Pentium (hp)</option>
                                         <option value="dedicated_smart_corei3_hp">Smart Core i3 (hp)</option>
@@ -321,12 +321,12 @@
                                         <option value="colo_new_2u">Colocation 2U</option>
                                         <option value="colo_new_4u">Colocation 4U</option>
                                     </optgroup>
-                                    <optgroup label="Виртуальный хостинг">
+                                    <optgroup label="Virtual hosting">
                                         <option value="mini">Mini</option>
                                         <option value="site">Site</option>
                                         <option value="portal">Portal</option>
                                     </optgroup>
-                                    <optgroup label="Виртуальные серверы">
+                                    <optgroup label="Virtual servers">
                                         <option value="evps0">eVPS-TEST (30 дней)</option>
                                         <option value="evps1" selected="selected">eVPS-1</option>
                                         <option value="evps2">eVPS-2</option>
@@ -379,6 +379,51 @@
                     </tr>
                     </tbody>
                 </table>
+                <h4>Select in runtime</h4>
+                <p>
+                    To change select options at runtime, use method <code>data()</code>. You can use <code>PLAIN HTML</code> or <code>JSON OBJECT</code> to update options.
+                    When you execute method <code>data()</code>, options will be replaced in select. For more info see source if <a href="examples/ajax/select.html">this example</a>.
+                </p>
+                <div class="row mt-2">
+                    <div class="cell-md-6">
+                        <h6 class="text-light">HTML example</h6>
+                        <pre><code>
+                            &lt;option value="mini"&gt;Mini&lt;/option&gt;
+                            &lt;option value="site"&gt;Site&lt;/option&gt;
+                            &lt;option value="portal"&gt;Portal&lt;/option&gt;
+                            &lt;option value="portal"&gt;Corporate&lt;/option&gt;
+                            &lt;optgroup label="Virtual servers"&gt;
+                                &lt;option value="evps1"&gt;eVPS-1&lt;/option&gt;
+                                &lt;option value="evps2"&gt;eVPS-2&lt;/option&gt;
+                                &lt;option value="evps4"&gt;eVPS-4&lt;/option&gt;
+                                &lt;option value="evps8"&gt;eVPS-8&lt;/option&gt;
+                            &lt;/optgroup&gt;
+                        </code></pre>
+                    </div>
+                    <div class="cell-md-6">
+                        <h6 class="text-light">JSON example</h6>
+                        <pre><code class="json">
+                            {
+                              "1": "Item 1",
+                              "2": "Item 2",
+                              "3": "Item 3",
+                              "Item group": {
+                                "1_1": "Item 1_1",
+                                "2_2": "Item 2_2",
+                                "3_3": "Item 3_3"
+                              }
+                            }
+                        </code></pre>
+                    </div>
+                </div>
+                <pre><code>
+                    &lt;select id="select1" data-role="select"&gt;...&lt;/select&gt;
+                    ...
+                    $.get(_url_, function(response){
+                        var select  = $('#select1').data('select');
+                        select.data(response);
+                    });
+                </code></pre>
 
                 <h4 id="_textarea">Textarea</h4>
                 <p>

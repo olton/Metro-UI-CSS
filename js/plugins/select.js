@@ -47,33 +47,37 @@ var Select = {
         this._createEvents();
     },
 
+    _addOption: function(item, parent){
+        var option = $(item);
+        var l, a;
+        var element = this.element, o = this.options;
+        var input = element.siblings("input");
+
+        l = $("<li>").addClass(o.clsOption).data("text", item.text).data('value', item.value ? item.value : item.text).appendTo(parent);
+        a = $("<a>").html(item.text).appendTo(l).addClass(item.className);
+
+        if (option.is(":selected")) {
+            element.val(item.value);
+            input.val(item.text).trigger("change");
+            element.trigger("change");
+        }
+
+        a.appendTo(l);
+        l.appendTo(parent);
+    },
+
+    _addOptionGroup: function(item, parent){
+        var that = this;
+        var group = $(item);
+
+        $("<li>").html(item.label).addClass("group-title").appendTo(parent);
+
+        $.each(group.children(), function(){
+            that._addOption(this, parent);
+        })
+    },
+
     _createSelect: function(){
-
-        function addOption(item, parent){
-            var option = $(item);
-            var l, a;
-
-            l = $("<li>").addClass(o.clsOption).data("text", item.text).data('value', item.value).appendTo(list);
-            a = $("<a>").html(item.text).appendTo(l).addClass(item.className);
-
-            if (option.is(":selected")) {
-                element.val(item.value);
-                input.val(item.text).trigger("change");
-                element.trigger("change");
-            }
-
-            a.appendTo(l);
-            l.appendTo(parent);
-        }
-
-        function addOptionGroup(item, parent){
-            var group = $(item);
-            var optgroup = $("<li>").html(item.label).addClass("group-title").appendTo(parent);
-            $.each(group.children(), function(){
-                addOption(this, parent);
-            })
-        }
-
         var that = this, element = this.element, o = this.options;
 
         var prev = element.prev();
@@ -99,18 +103,17 @@ var Select = {
                 "max-height": o.dropHeight
             });
 
+            container.append(input);
+            container.append(list);
+
             $.each(element.children(), function(){
                 if (this.tagName === "OPTION") {
-                    addOption(this, list);
+                    that._addOption(this, list);
                 } else if (this.tagName === "OPTGROUP") {
-                    addOptionGroup(this, list);
-                } else {
-
+                    that._addOptionGroup(this, list);
                 }
             });
 
-            container.append(input);
-            container.append(list);
             list.dropdown({
                 duration: o.duration,
                 toggleElement: "#"+select_id,
@@ -129,6 +132,7 @@ var Select = {
                     Utils.exec(o.onUp, [list, element], list[0]);
                 }
             });
+
         }
 
         if (o.prepend !== "") {
@@ -151,6 +155,7 @@ var Select = {
         } else {
             this.enable();
         }
+
     },
 
     _createEvents: function(){
@@ -194,8 +199,51 @@ var Select = {
         this.element.parent().removeClass("disabled");
     },
 
+    data: function(op){
+        var that = this, element = this.element;
+        var list = element.siblings("ul");
+        var option, option_group;
+
+        element.html("");
+        list.html("");
+
+        if (typeof op === 'string') {
+            element.html(op);
+        } else if (Utils.isObject(op)) {
+            $.each(op, function(key, val){
+                if (Utils.isObject(val)) {
+                    option_group = $("<optgroup>").attr("label", key).appendTo(element);
+                    $.each(val, function(key2, val2){
+                        $("<option>").attr("value", key2).text(val2).appendTo(option_group);
+                    });
+                } else {
+                    $("<option>").attr("value", key).text(val).appendTo(element);
+                }
+            });
+        }
+
+        $.each(element.children(), function(){
+            if (this.tagName === "OPTION") {
+                that._addOption(this, list);
+            } else if (this.tagName === "OPTGROUP") {
+                that._addOptionGroup(this, list);
+            }
+        });
+    },
+
     changeAttribute: function(attributeName){
 
+    },
+
+    destroy: function(){
+        var element = this.element;
+        var container = element.parent();
+        var list = element.siblings("ul");
+        container.off(Metro.events.click);
+        list.off(Metro.events.click, "li");
+        Metro.destroyPlugin(list, "dropdown");
+        element.insertBefore(container);
+        container.remove();
     }
 };
 
