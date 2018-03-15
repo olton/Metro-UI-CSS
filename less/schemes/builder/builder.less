@@ -5,18 +5,10 @@
     @schemeBackgroundColor,
     @schemeTextColor,
     @schemeControlColor,
-    @schemeControlFillColor,
     @schemeControlTextColor,
-    @schemeBorderColor,
-    @schemeDividerColor,
     @schemeFontFamily,
     @schemeFontSize
 ) {
-
-    @blendBackground: rgba(red(@schemeBackgroundColor),green(@schemeBackgroundColor),blue(@schemeBackgroundColor), .2);
-    @blendFill: rgba(red(@schemeControlFillColor),green(@schemeControlFillColor),blue(@schemeControlFillColor), .2);
-    @blendControl: rgba(red(@schemeControlColor),green(@schemeControlColor),blue(@schemeControlColor), .2);
-    @boxShadow: 0 0 0 3px rgba(red(@schemeControlFillColor), green(@schemeControlFillColor), blue(@schemeControlFillColor), 0.45);
 
     body {
         font-size: @schemeFontSize;
@@ -31,25 +23,7 @@
         }
     }
 
-    .display4, .display3, .display2, .display1 {
-        color: lighten(@schemeTextColor, 46%);
-    }
-
-    .disabled {
-        color: darken(@schemeControlTextColor, 30%)!important;
-    }
-
-    // Border
-    .bd-default {
-        border-color: @schemeBorderColor!important;
-    }
-
-    .bg-scheme {background-color: @schemeBackgroundColor!important;}
-    .bg-control {background-color: @schemeControlFillColor!important;}
-    .bg-control-bland {background-color: @blendFill!important;}
-    .fg-scheme {color: @schemeTextColor!important;}
-    .fg-control {color: @schemeControlTextColor!important;}
-
+/*
     // Inputs, switches
     input[type=text],
     input[type=password],
@@ -1097,4 +1071,5 @@
             color: @schemeTextColor;
         }
     }
+    */
 }
