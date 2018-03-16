@@ -337,6 +337,10 @@
                 border: 1px solid @schemeControlColor!important;
                 background-color: @white!important;
                 color: @schemeControlColor!important;
+                li:hover {
+                    background-color: @schemeControlColor!important;
+                    color: @schemeControlTextColor!important;
+                }
             }
         }
     }
@@ -385,53 +389,57 @@
         }
     }
 
+    // Countdown
+    .countdown {
+        line-height: 1.5;
+
+        .part {
+            color: @schemeTextColor;
+        }
+    }
+
+    // Date picker and time picker
+    .wheel-picker {
+        background-color: @schemeBackgroundColor;
+        color: @schemeTextColor;
+
+        .date-wrapper, .time-wrapper {
+            border-color: @schemeControlColor;
+        }
+
+        .select-block {
+            background-color: @schemeControlColor;
+            color: @schemeControlTextColor;
+
+            ul {
+                border-color: @blendControlColor;
+            }
+        }
+
+        .action-block {
+            border-top: 1px @blendControlColor solid;
+            .button {
+                color: @schemeControlTextColor;
+            }
+        }
+    }
+
+    // Dialog
+    .dialog {
+        background-color: @schemeBackgroundColor;
+        color: @schemeTextColor;
+        border: 1px solid @schemeControlColor;
+
+        .dialog-actions {
+            border-top-color: @schemeControlColor;
+        }
+    }
+
     /*
 
 
-        // Countdown
-        .countdown {
-            line-height: 1.5;
 
-            .part {
-                color: @schemeControlTextColor;
-            }
-        }
 
-        // Date picker and time picker
-        .wheel-picker {
-            background-color: @blendFill;
-            color: @schemeControlTextColor;
-
-            .date-wrapper, .time-wrapper {
-                border-color: @schemeBorderColor;
-            }
-
-            .select-block {
-                background-color: @schemeControlFillColor;
-                color: @schemeControlTextColor;
-
-                ul {
-                    border-color: @schemeBorderColor;
-                }
-            }
-
-            .action-block {
-                .button {
-                    color: @schemeControlTextColor;
-                }
-            }
-        }
-
-        // Dialog
-        .dialog {
-            background-color: @schemeBackgroundColor;
-            color: @schemeControlTextColor;
-            border: 1px solid @schemeBorderColor;
-
-            .dialog-actions {
-                border-top-color: @schemeBorderColor;
-            }
-        }
 
         // Hints
 
