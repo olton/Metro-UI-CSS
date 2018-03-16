@@ -1,0 +1,84 @@
+@import (once) "include/vars";
+@import (once) "include/mixins";
+
+.switch {
+    display: inline-block;
+    position: relative;
+    margin: 0;
+    transition: @transition-base;
+    user-select: none;
+    cursor: pointer;
+
+    .hideElement(input);
+
+    .caption {
+        margin: -4px 5px 0;
+    }
+
+    .check {
+        position: relative;
+        height: 1.25rem;
+        width: 2.8125rem;
+        border: 2px @dark solid;
+        cursor: pointer;
+        background: @transparent;
+        z-index: 1;
+        display: inline-block;
+        vertical-align: middle;
+        border-radius: 1.125rem / 2;
+        top: -2px;
+    }
+
+    .check:after {
+        position: absolute;
+        left: 3px;
+        display: block;
+        content: "";
+        height: .75rem;
+        width: .75rem;
+        top: 50%;
+        .translateY(-50%);
+        border: 2px #333 solid;
+        cursor: pointer;
+        background: #333;
+        z-index: 2;
+        transition: @transition-base;
+        border-radius: 50%;
+    }
+
+    input[type="checkbox"]:focus ~ .check {
+        outline: 1px @lightGray dotted ;
+    }
+
+    input[type="checkbox"]:checked ~ .check {
+        background: @dark;
+        border-color: @dark;
+        &:after {
+            background-color: @white;
+            border-color: @white;
+            left: auto;
+            .translateX(1.625rem);
+            .translateY(-50%);
+            transition: @transition-base;
+        }
+    }
+
+    input[type="checkbox"]:disabled ~ .check {
+        background-color: @disabledBackground;
+        border-color: @disabledBackground;
+        &:after {
+            background-color: darken(@disabledBackground, 10%);
+            border-color: darken(@disabledBackground, 10%);
+        }
+    }
+
+    &.required, &.invalid, &.valid {
+        border: none!important;
+    }
+
+    &.invalid {
+        &::after {
+            display: none;
+        }
+    }
+}
