@@ -185,10 +185,6 @@ var Listview = {
             return o.view;
         }
 
-        if (Object.values(Metro.listView).indexOf(v) === -1) {
-            return ;
-        }
-
         o.view = v;
 
         $.each(Metro.listView, function(i, v){

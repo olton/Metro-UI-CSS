@@ -1,5 +1,5 @@
 /*!
- * Metro 4 Components Library v4.1.0 build @@build-beta (https://metroui.org.ua)
+ * Metro 4 Components Library v4.0.10 build @@build-beta (https://metroui.org.ua)
  * Copyright 2018 Sergey Pimenov
  * Licensed under MIT
  */
@@ -65,6 +65,14 @@ if ( typeof Object.create !== 'function' ) {
         F.prototype = o;
         return new F();
     };
+}
+
+if (typeof Object.values !== 'function') {
+    Object.values = function(obj) {
+        return Object.keys(obj).map(function(e) {
+            return obj[e]
+        });
+    }
 }
 
 var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0));
@@ -3770,6 +3778,8 @@ var AppBar = {
 
         if (menu.length === 0) {
             hamburger.hide();
+        } else {
+            Utils.addCssRule(Metro.sheet, ".app-bar-menu li", "list-style: none!important;");
         }
 
         if( !!element.attr("id") === false ){
@@ -6233,6 +6243,7 @@ var Checkbox = {
     },
     options: {
         caption: "",
+        indeterminate: false,
         captionPosition: "right",
         disabled: false,
         clsElement: "",
@@ -6259,41 +6270,40 @@ var Checkbox = {
         var that = this, element = this.element, o = this.options;
         var prev = element.prev();
         var parent = element.parent();
-        var container = $("<label>").addClass("checkbox " + element[0].className);
+        var checkbox = $("<label>").addClass("checkbox " + element[0].className);
         var check = $("<span>").addClass("check");
         var caption = $("<span>").addClass("caption").html(o.caption);
 
         if (element.attr('id') === undefined) {
-            element.attr('id', Utils.uniqueId());
+            element.attr('id', Utils.elementId("checkbox"));
         }
 
-        container.attr('for', element.attr('id'));
+        checkbox.attr('for', element.attr('id'));
 
         element.attr("type", "checkbox");
-        element.appendTo(container);
+        element.appendTo(checkbox);
 
         if (prev.length === 0) {
-            parent.prepend(container);
+            parent.prepend(checkbox);
         } else {
-            container.insertAfter(prev);
+            checkbox.insertAfter(prev);
         }
 
-        check.appendTo(container);
+        check.appendTo(checkbox);
+        caption.appendTo(checkbox);
 
         if (o.captionPosition === 'left') {
-            caption.insertBefore(check);
-        } else {
-            caption.insertAfter(check);
+            checkbox.addClass("caption-left");
         }
 
         this.origin.className = element[0].className;
         element[0].className = '';
 
-        container.addClass(o.clsElement);
+        checkbox.addClass(o.clsElement);
         caption.addClass(o.clsCaption);
         check.addClass(o.clsCheck);
 
-        if (element.attr("indeterminate") !== undefined) {
+        if (o.indeterminate) {
             element[0].indeterminate = true;
         }
 
@@ -6327,13 +6337,13 @@ var Checkbox = {
     },
 
     toggleIndeterminate: function(){
-        this.element[0].indeterminate = this.element.attr("indeterminate") !== undefined;
+        this.element[0].indeterminate = JSON.parse(this.element.attr("data-indeterminate")) === true;
     },
 
     changeAttribute: function(attributeName){
         switch (attributeName) {
             case 'disabled': this.toggleState(); break;
-            case 'indeterminate': this.toggleIndeterminate(); break;
+            case 'data-indeterminate': this.toggleIndeterminate(); break;
         }
     },
 
@@ -9637,10 +9647,6 @@ var Listview = {
             return o.view;
         }
 
-        if (Object.values(Metro.listView).indexOf(v) === -1) {
-            return ;
-        }
-
         o.view = v;
 
         $.each(Metro.listView, function(i, v){
@@ -10912,6 +10918,9 @@ var Radio = {
         this.options = $.extend( {}, this.options, options );
         this.elem  = elem;
         this.element = $(elem);
+        this.origin = {
+            className: ""
+        };
 
         this._setOptionsFromDOM();
         this._create();
@@ -10948,30 +10957,30 @@ var Radio = {
         var that = this, element = this.element, o = this.options;
         var prev = element.prev();
         var parent = element.parent();
-        var container = $("<label>").addClass("radio " + element[0].className);
+        var radio = $("<label>").addClass("radio " + element[0].className);
         var check = $("<span>").addClass("check");
         var caption = $("<span>").addClass("caption").html(o.caption);
 
         element.attr("type", "radio");
 
         if (prev.length === 0) {
-            parent.prepend(container);
+            parent.prepend(radio);
         } else {
-            container.insertAfter(prev);
+            radio.insertAfter(prev);
         }
 
-        element.appendTo(container);
-        check.appendTo(container);
+        element.appendTo(radio);
+        check.appendTo(radio);
+        caption.appendTo(radio);
 
         if (o.captionPosition === 'left') {
-            caption.insertBefore(check);
-        } else {
-            caption.insertAfter(check);
+            radio.addClass("caption-left");
         }
 
+        this.origin.className = element[0].className;
         element[0].className = '';
 
-        container.addClass(o.clsElement);
+        radio.addClass(o.clsElement);
         caption.addClass(o.clsCaption);
         check.addClass(o.clsCheck);
 
@@ -11004,6 +11013,14 @@ var Radio = {
         switch (attributeName) {
             case 'disabled': this.toggleState(); break;
         }
+    },
+
+    destroy: function(){
+        var element = this.element;
+        var parent = element.parent();
+        element[0].className = this.origin.className;
+        element.insertBefore(parent);
+        parent.remove();
     }
 };
 
@@ -11421,7 +11438,7 @@ var RibbonMenu = {
             });
 
             g.css("width", Math.ceil(gw * btns.length / 3) + 4);
-        })
+        });
     },
 
     _createEvents: function(){
@@ -13243,11 +13260,10 @@ var Switch = {
 
         element.appendTo(container);
         check.appendTo(container);
+        caption.appendTo(container);
 
         if (o.captionPosition === 'left') {
-            caption.insertBefore(check);
-        } else {
-            caption.insertAfter(check);
+            container.addClass("caption-left");
         }
 
         element[0].className = '';
@@ -14437,7 +14453,7 @@ var Treeview = {
 
             // down
             checks = check.closest("li").find("ul input[type=checkbox]");
-            checks.prop("indeterminate", false);
+            checks.attr("data-indeterminate", false);
             checks.prop("checked", checked);
 
             checks = [];
@@ -14452,23 +14468,24 @@ var Treeview = {
                 var children_checked = ch.closest("li").children("ul").find("input[type=checkbox]:checked").length;
 
                 if (children > 0 && children_checked === 0) {
-                    ch.prop("indeterminate", false);
+                    ch.attr("data-indeterminate", false);
                     ch.prop("checked", false);
                 }
 
                 if (children_checked === 0) {
-                    ch.prop("indeterminate", false);
+                    ch.attr("data-indeterminate", false);
                 } else {
                     if (children_checked > 0 && children > children_checked) {
-                        ch.prop("indeterminate", true);
+                        ch.attr("data-indeterminate", true);
                     } else if (children === children_checked) {
-                        ch.prop("indeterminate", false);
+                        ch.attr("data-indeterminate", false);
                         ch.prop("checked", true);
                     }
                 }
             });
 
-            Utils.exec(o.onCheckClick, [checked, check, node, element]);
+
+            Utils.exec(o.onCheckClick, [checked, check, node, element], this);
 
         });
     },

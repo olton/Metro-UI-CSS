@@ -48,55 +48,57 @@
 </head>
 <body>
     <div class="container" style="margin-bottom: 200px;">
-        <div class="place-right mt-2">
+        <div class="pos-fixed z-fullscreen" style="top: 10px; right: 10px;">
             <button class="button" onclick="changeSchemeTo('darcula.css')">darcula</button>
             <button class="button" onclick="changeSchemeTo('red-alert.css')">red-alert</button>
+            <button class="button" onclick="changeSchemeTo('sky-net.css')">sky-net</button>
         </div>
         <h1>Metro 4 Schemes <small id="scheme-name">darcula.css</small></h1>
         <hr class="thin">
 
         <h2 id="inputs">Inputs</h2>
         <div class="example">
+            <form data-role="validator" action="javascript:">
+                <input type="text" data-role="input" data-prepend="Your name" placeholder="Input your name..." data-validate="required">
+                <span class="invalid_feedback">This is invalid feedback</span>
+                <input type="file" data-role="file" placeholder="Choose a file..." class="mt-2">
 
-            <input type="text" data-role="input" data-prepend="Your name" placeholder="Input your name...">
+                <select data-role="select" class="mt-2">
+                    <option>Value 1</option>
+                    <option>Value 2</option>
+                    <option>Value 3</option>
+                </select>
 
-            <input type="file" data-role="file" placeholder="Choose a file..." class="mt-2">
+                <textarea data-role="textarea" class="mt-2"></textarea>
 
-            <select data-role="select" class="mt-2">
-                <option>Value 1</option>
-                <option>Value 2</option>
-                <option>Value 3</option>
-            </select>
+                <div class="mt-2">
+                    <input type="checkbox" data-role="checkbox" data-caption="Checkbox">
+                    <input type="checkbox" data-role="checkbox" data-caption="Checkbox" checked>
+                    <input type="checkbox" data-role="checkbox" data-caption="Indeterminate" data-indeterminate="true">
+                    <input type="checkbox" data-role="checkbox" data-caption="Disabled" disabled>
+                    <input type="checkbox" data-role="checkbox" data-caption="Disabled checked" disabled checked>
+                </div>
 
-            <textarea data-role="textarea" class="mt-2"></textarea>
+                <div class="mt-2">
+                    <input name="r1" type="radio" data-role="radio" data-caption="Radio 1" checked="checked">
+                    <input name="r1" type="radio" data-role="radio" data-caption="Radio 2">
+                    <input name="r2" type="radio" data-role="radio" data-caption="Disabled" disabled>
+                    <input name="r2" type="radio" data-role="radio" data-caption="Disabled checked" checked disabled>
+                </div>
 
-            <div class="mt-2">
-                <input type="checkbox" data-role="checkbox" data-caption="Checkbox">
-                <input type="checkbox" data-role="checkbox" data-caption="Checkbox" checked>
-                <input type="checkbox" data-role="checkbox" data-caption="Indeterminate" indeterminate>
-                <input type="checkbox" data-role="checkbox" data-caption="Disabled" disabled>
-                <input type="checkbox" data-role="checkbox" data-caption="Disabled checked" disabled checked>
-            </div>
+                <div class="mt-2">
+                    <input type="checkbox" data-role="switch" data-caption="Switch">
+                    <input type="checkbox" data-role="switch" data-caption="Switch" checked>
+                    <input type="checkbox" data-role="switch" data-caption="Disabled" disabled>
+                    <input type="checkbox" data-role="switch" data-caption="Disabled checked" checked disabled>
+                </div>
 
-            <div class="mt-2">
-                <input name="r1" type="radio" data-role="radio" data-caption="Radio 1">
-                <input name="r1" type="radio" data-role="radio" data-caption="Radio 2" checked>
-                <input name="r1" type="radio" data-role="radio" data-caption="Disabled" disabled>
-                <input name="r2" type="radio" data-role="radio" data-caption="Disabled checked" checked disabled>
-            </div>
-
-            <div class="mt-2">
-                <input type="checkbox" data-role="switch" data-caption="Switch">
-                <input type="checkbox" data-role="switch" data-caption="Switch" checked>
-                <input type="checkbox" data-role="switch" data-caption="Disabled" disabled>
-                <input type="checkbox" data-role="switch" data-caption="Disabled checked" checked disabled>
-            </div>
-
-            <div class="mt-2">
-                <input type="button" value="Button" class="button">
-                <input type="reset" value="Reset" class="button">
-                <input type="submit" value="Submit" class="button">
-            </div>
+                <div class="mt-2">
+                    <input type="button" value="Button" class="button">
+                    <input type="reset" value="Reset" class="button">
+                    <input type="submit" value="Submit" class="button">
+                </div>
+            </form>
         </div>
 
         <h2 id="button">Button</h2>
@@ -166,7 +168,24 @@
 
         <h2 id="appbar">App bar</h2>
         <div class="example">
-            <div class="pos-relative app-bar-expand-md z-dropdown" data-role="appbar">
+            <div class="pos-relative z-dropdown" data-role="appbar">
+                <a href="" class="brand no-hover text-bold">Metro 4</a>
+                <ul class="app-bar-menu">
+                    <li><a href="#">Home</a></li>
+                    <li>
+                        <a href="#" class="dropdown-toggle">Products</a>
+                        <ul class="d-menu" data-role="dropdown">
+                            <li><a href="#">Windows 10</a></li>
+                            <li><a href="#">Office 365</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Skype</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Contacts</a></li>
+                </ul>
+            </div>
+            <div class="pos-relative app-bar-expand-md z-dropdown mt-2" data-role="appbar">
                 <a href="" class="brand no-hover text-bold">Metro 4</a>
                 <ul class="app-bar-menu">
                     <li><a href="#">Home</a></li>
@@ -188,10 +207,12 @@
         <h2 id="calendar">Calendar</h2>
         <div class="example">
             <div class="row">
-                <div class="cell-md-3">
+                <div class="cell">
                     <div data-role="calendar" class="mx-auto"></div>
                 </div>
-                <div class="cell-md-9">
+            </div>
+            <div class="row mt-2">
+                <div class="cell">
                     <div data-role="calendar" class="calendar-wide-fs mx-auto"></div>
                 </div>
             </div>
@@ -251,13 +272,13 @@
         <h2 id="listview">Listview</h2>
         <div class="example">
             <div class="p-4 bg-control d-flex flex-justify-between border bd-default">
-                <input name="r1" value="list" data-role="radio" data-caption="List" checked title="">
-                <input name="r1" value="table" data-role="radio" data-caption="Table" title="">
-                <input name="r1" value="content" data-role="radio" data-caption="Content" title="">
-                <input name="r1" value="tiles" data-role="radio" data-caption="Tiles" title="">
-                <input name="r1" value="icons" data-role="radio" data-caption="Icons" title="">
-                <input name="r1" value="icons-medium" data-role="radio" data-caption="Medium icons" title="">
-                <input name="r1" value="icons-large" data-role="radio" data-caption="Large icons" title="">
+                <input name="r3" value="list" data-role="radio" data-caption="List" checked title="">
+                <input name="r3" value="table" data-role="radio" data-caption="Table" title="">
+                <input name="r3" value="content" data-role="radio" data-caption="Content" title="">
+                <input name="r3" value="tiles" data-role="radio" data-caption="Tiles" title="">
+                <input name="r3" value="icons" data-role="radio" data-caption="Icons" title="">
+                <input name="r3" value="icons-medium" data-role="radio" data-caption="Medium icons" title="">
+                <input name="r3" value="icons-large" data-role="radio" data-caption="Large icons" title="">
             </div>
             <div class="border bd-default no-border-top">
                 <ul class="p-4" data-role="listview" data-selectable="true" data-view="list" id="listview-1" data-select-node="true" data-structure='{"date": true, "name": true}'>
@@ -855,26 +876,26 @@
                     <ul data-role="treeview">
                         <li class="expanded" data-caption="Checkboxes">
                             <ul>
-                                <li><input data-role="checkbox" data-caption="Play animation"></li>
-                                <li><input data-role="checkbox" data-caption="Play sound" checked></li>
-                                <li><input data-role="checkbox" data-caption="Disabled" disabled></li>
-                                <li><input data-role="checkbox" data-caption="Disabled checked" checked disabled></li>
+                                <li><input type="checkbox" data-role="checkbox" data-caption="Play animation"></li>
+                                <li><input type="checkbox" data-role="checkbox" data-caption="Play sound" checked></li>
+                                <li><input type="checkbox" data-role="checkbox" data-caption="Disabled" disabled></li>
+                                <li><input type="checkbox" data-role="checkbox" data-caption="Disabled checked" checked disabled></li>
                             </ul>
                         </li>
                         <li class="expanded" data-caption="Radios">
                             <ul>
-                                <li><input name="r1" data-role="radio" data-caption="Play animation"></li>
-                                <li><input name="r1" data-role="radio" data-caption="Play sound" checked></li>
-                                <li><input data-role="radio" data-caption="Disabled" disabled></li>
-                                <li><input data-role="radio" data-caption="Disabled checked" checked disabled></li>
+                                <li><input type="radio" name="r4" data-role="radio" data-caption="Play animation"></li>
+                                <li><input type="radio" name="r4" data-role="radio" data-caption="Play sound" checked></li>
+                                <li><input type="radio" name="r5" data-role="radio" data-caption="Disabled" disabled></li>
+                                <li><input type="radio" name="r5" data-role="radio" data-caption="Disabled checked" checked disabled></li>
                             </ul>
                         </li>
                         <li class="expanded" data-caption="Switches">
                             <ul>
-                                <li><input data-role="switch" data-caption="Play animation"></li>
-                                <li><input data-role="switch" data-caption="Play sound" checked></li>
-                                <li><input data-role="switch" data-caption="Disabled" disabled></li>
-                                <li><input data-role="switch" data-caption="Disabled checked" checked disabled></li>
+                                <li><input type="checkbox" data-role="switch" data-caption="Play animation"></li>
+                                <li><input type="checkbox" data-role="switch" data-caption="Play sound" checked></li>
+                                <li><input type="checkbox" data-role="switch" data-caption="Disabled" disabled></li>
+                                <li><input type="checkbox" data-role="switch" data-caption="Disabled checked" checked disabled></li>
                             </ul>
                         </li>
                     </ul>
@@ -887,23 +908,23 @@
                                 <li>
                                     <input data-role="checkbox" data-caption="Play video">
                                     <ul>
-                                        <li><input data-role="checkbox" data-caption="AVI"></li>
-                                        <li><input data-role="checkbox" data-caption="MPEG"></li>
-                                        <li><input data-role="checkbox" data-caption="VIDX"></li>
-                                        <li><input data-role="checkbox" data-caption="MP4"></li>
-                                        <li><input data-role="checkbox" data-caption="XVID"></li>
+                                        <li><input type="checkbox" data-role="checkbox" data-caption="AVI"></li>
+                                        <li><input type="checkbox" data-role="checkbox" data-caption="MPEG"></li>
+                                        <li><input type="checkbox" data-role="checkbox" data-caption="VIDX"></li>
+                                        <li><input type="checkbox" data-role="checkbox" data-caption="MP4"></li>
+                                        <li><input type="checkbox" data-role="checkbox" data-caption="XVID"></li>
                                     </ul>
                                 </li>
-                                <li><input data-role="checkbox" data-caption="Play audio"></li>
+                                <li><input type="checkbox" data-role="checkbox" data-caption="Play audio"></li>
                                 <li>
-                                    <input data-role="checkbox" data-caption="Subtitles">
+                                    <input type="checkbox" data-role="checkbox" data-caption="Subtitles">
                                     <ul>
                                         <li>
-                                            <input data-role="checkbox" data-caption="Languages">
+                                            <input type="checkbox" data-role="checkbox" data-caption="Languages">
                                             <ul>
-                                                <li><input data-role="checkbox" data-caption="English"></li>
-                                                <li><input data-role="checkbox" data-caption="Ukrainian"></li>
-                                                <li><input data-role="checkbox" data-caption="Dutch"></li>
+                                                <li><input type="checkbox" data-role="checkbox" data-caption="English"></li>
+                                                <li><input type="checkbox" data-role="checkbox" data-caption="Ukrainian"></li>
+                                                <li><input type="checkbox" data-role="checkbox" data-caption="Dutch"></li>
                                             </ul>
                                         </li>
                                     </ul>
@@ -936,7 +957,7 @@
     <script src="../../js/jquery-3.3.1.min.js"></script>
     <script src="../../metro/js/metro.js"></script>
     <script>
-        $("input[name=r1]").on("click", function(){
+        $("input[name=r3]").on("click", function(){
             var checked = $(this).is(":checked");
             if (checked) {
                 $("#listview-1").data("listview").view(this.value);

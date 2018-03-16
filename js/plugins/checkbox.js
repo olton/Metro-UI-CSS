@@ -16,6 +16,7 @@ var Checkbox = {
     },
     options: {
         caption: "",
+        indeterminate: false,
         captionPosition: "right",
         disabled: false,
         clsElement: "",
@@ -42,41 +43,40 @@ var Checkbox = {
         var that = this, element = this.element, o = this.options;
         var prev = element.prev();
         var parent = element.parent();
-        var container = $("<label>").addClass("checkbox " + element[0].className);
+        var checkbox = $("<label>").addClass("checkbox " + element[0].className);
         var check = $("<span>").addClass("check");
         var caption = $("<span>").addClass("caption").html(o.caption);
 
         if (element.attr('id') === undefined) {
-            element.attr('id', Utils.uniqueId());
+            element.attr('id', Utils.elementId("checkbox"));
         }
 
-        container.attr('for', element.attr('id'));
+        checkbox.attr('for', element.attr('id'));
 
         element.attr("type", "checkbox");
-        element.appendTo(container);
+        element.appendTo(checkbox);
 
         if (prev.length === 0) {
-            parent.prepend(container);
+            parent.prepend(checkbox);
         } else {
-            container.insertAfter(prev);
+            checkbox.insertAfter(prev);
         }
 
-        check.appendTo(container);
+        check.appendTo(checkbox);
+        caption.appendTo(checkbox);
 
         if (o.captionPosition === 'left') {
-            caption.insertBefore(check);
-        } else {
-            caption.insertAfter(check);
+            checkbox.addClass("caption-left");
         }
 
         this.origin.className = element[0].className;
         element[0].className = '';
 
-        container.addClass(o.clsElement);
+        checkbox.addClass(o.clsElement);
         caption.addClass(o.clsCaption);
         check.addClass(o.clsCheck);
 
-        if (element.attr("indeterminate") !== undefined) {
+        if (o.indeterminate) {
             element[0].indeterminate = true;
         }
 
@@ -110,13 +110,13 @@ var Checkbox = {
     },
 
     toggleIndeterminate: function(){
-        this.element[0].indeterminate = this.element.attr("indeterminate") !== undefined;
+        this.element[0].indeterminate = JSON.parse(this.element.attr("data-indeterminate")) === true;
     },
 
     changeAttribute: function(attributeName){
         switch (attributeName) {
             case 'disabled': this.toggleState(); break;
-            case 'indeterminate': this.toggleIndeterminate(); break;
+            case 'data-indeterminate': this.toggleIndeterminate(); break;
         }
     },
 
