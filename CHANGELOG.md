@@ -1,11 +1,3 @@
-### 4.1.0
-+ [x] Side navigation: new component `sidemenu-simple`
-+ [x] Button group: new behavior for `one` mode - all unchecked
-+ [x] Select: add method `data()` for loading options at `runtime` 
-+ [x] Scheme builder: new mixin
-+ [x] Schemes: `darcula`, `red-alert`, `sky-net`
-+ [x] Color: move color classes `bg-*` and `fg-*` to `metro-color.css`
-
 ### 4.0.8
 + [x] Ribbon menu: fix it for button group
 
