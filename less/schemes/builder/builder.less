@@ -439,6 +439,20 @@
         }
     }
 
+    // Keypad
+    .keypad {
+        .keys {
+            background-color: @schemeBackgroundColor;
+            border-color: @schemeControlColor;
+            color: @schemeTextColor;
+        }
+        .key {
+            &.service-key {
+                background-color: darken(@schemeControlColor, 10%);
+            }
+        }
+    }
+
     /*
 
 
@@ -447,19 +461,6 @@
 
         // Hints
 
-        // Keypad
-        .keypad {
-            .keys {
-                background-color: @schemeControlFillColor;
-                border-color: @schemeBorderColor;
-                color: @schemeControlTextColor;
-            }
-            .key {
-                &.service-key {
-                    background-color: darken(@schemeControlFillColor, 10%);
-                }
-            }
-        }
 
         // Listview
         .listview {
