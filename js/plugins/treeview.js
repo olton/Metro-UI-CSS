@@ -175,7 +175,7 @@ var Treeview = {
 
             // down
             checks = check.closest("li").find("ul input[type=checkbox]");
-            checks.prop("indeterminate", false);
+            checks.attr("data-indeterminate", false);
             checks.prop("checked", checked);
 
             checks = [];
@@ -190,23 +190,24 @@ var Treeview = {
                 var children_checked = ch.closest("li").children("ul").find("input[type=checkbox]:checked").length;
 
                 if (children > 0 && children_checked === 0) {
-                    ch.prop("indeterminate", false);
+                    ch.attr("data-indeterminate", false);
                     ch.prop("checked", false);
                 }
 
                 if (children_checked === 0) {
-                    ch.prop("indeterminate", false);
+                    ch.attr("data-indeterminate", false);
                 } else {
                     if (children_checked > 0 && children > children_checked) {
-                        ch.prop("indeterminate", true);
+                        ch.attr("data-indeterminate", true);
                     } else if (children === children_checked) {
-                        ch.prop("indeterminate", false);
+                        ch.attr("data-indeterminate", false);
                         ch.prop("checked", true);
                     }
                 }
             });
 
-            Utils.exec(o.onCheckClick, [checked, check, node, element]);
+
+            Utils.exec(o.onCheckClick, [checked, check, node, element], this);
 
         });
     },

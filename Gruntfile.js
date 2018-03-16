@@ -99,10 +99,7 @@ module.exports = function(grunt) {
 
         postcss: {
             options: {
-                map: {
-                    inline: false,
-                    annotation: 'build/css/maps/'
-                },
+                map: false,
                 processors: [
                     require('autoprefixer')({
                         browsers: ['last 2 versions']

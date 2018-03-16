@@ -53,11 +53,10 @@ var Switch = {
 
         element.appendTo(container);
         check.appendTo(container);
+        caption.appendTo(container);
 
         if (o.captionPosition === 'left') {
-            caption.insertBefore(check);
-        } else {
-            caption.insertAfter(check);
+            container.addClass("caption-left");
         }
 
         element[0].className = '';

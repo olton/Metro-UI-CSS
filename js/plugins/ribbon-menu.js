@@ -73,7 +73,7 @@ var RibbonMenu = {
             });
 
             g.css("width", Math.ceil(gw * btns.length / 3) + 4);
-        })
+        });
     },
 
     _createEvents: function(){

@@ -49,6 +49,14 @@ if ( typeof Object.create !== 'function' ) {
     };
 }
 
+if (typeof Object.values !== 'function') {
+    Object.values = function(obj) {
+        return Object.keys(obj).map(function(e) {
+            return obj[e]
+        });
+    }
+}
+
 var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0));
 
 var Metro = {
