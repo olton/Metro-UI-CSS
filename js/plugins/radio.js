@@ -3,6 +3,9 @@ var Radio = {
         this.options = $.extend( {}, this.options, options );
         this.elem  = elem;
         this.element = $(elem);
+        this.origin = {
+            className: ""
+        };
 
         this._setOptionsFromDOM();
         this._create();
@@ -39,30 +42,30 @@ var Radio = {
         var that = this, element = this.element, o = this.options;
         var prev = element.prev();
         var parent = element.parent();
-        var container = $("<label>").addClass("radio " + element[0].className);
+        var radio = $("<label>").addClass("radio " + element[0].className);
         var check = $("<span>").addClass("check");
         var caption = $("<span>").addClass("caption").html(o.caption);
 
         element.attr("type", "radio");
 
         if (prev.length === 0) {
-            parent.prepend(container);
+            parent.prepend(radio);
         } else {
-            container.insertAfter(prev);
+            radio.insertAfter(prev);
         }
 
-        element.appendTo(container);
-        check.appendTo(container);
+        element.appendTo(radio);
+        check.appendTo(radio);
+        caption.appendTo(radio);
 
         if (o.captionPosition === 'left') {
-            caption.insertBefore(check);
-        } else {
-            caption.insertAfter(check);
+            radio.addClass("caption-left");
         }
 
+        this.origin.className = element[0].className;
         element[0].className = '';
 
-        container.addClass(o.clsElement);
+        radio.addClass(o.clsElement);
         caption.addClass(o.clsCaption);
         check.addClass(o.clsCheck);
 
@@ -95,6 +98,14 @@ var Radio = {
         switch (attributeName) {
             case 'disabled': this.toggleState(); break;
         }
+    },
+
+    destroy: function(){
+        var element = this.element;
+        var parent = element.parent();
+        element[0].className = this.origin.className;
+        element.insertBefore(parent);
+        parent.remove();
     }
 };
 

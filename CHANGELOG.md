@@ -1,3 +1,12 @@
+### 4.0.9
++ [x] Checkbox: refactoring
++ [x] Radio: refactoring
++ [x] Input: fix for IE11 and Edge
++ [x] Ribbon menu: fix for IE11 and Edge
++ [x] ListView: fix for IE11
++ [x] TreeView: fix for IE11 Edge for checkboxes
++ [x] Subsystem: add method `Object.values` special for IE11
+
 ### 4.0.8
 + [x] Ribbon menu: fix it for button group
 

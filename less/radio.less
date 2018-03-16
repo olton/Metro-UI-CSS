@@ -1,0 +1,91 @@
+@import (once) "include/vars";
+@import (once) "include/mixins";
+
+.radio {
+    display: inline-flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+    margin: 0;
+    user-select: none;
+    cursor: pointer;
+    line-height: 38px;
+
+    .hideElement(input);
+
+    .check, .caption {
+        display: block;
+        line-height: 38px;
+        font-size: 14px;
+        margin: 0 4px;
+        position: relative;
+    }
+
+    .check {
+        border: 2px @inputBorder solid;
+        .square(16, px);
+        border-radius: 50%;
+        transition: @transition-base;
+
+        &::before {
+            position: absolute;
+            vertical-align: middle;
+            font-size: 0;
+            content: "";
+            .square(6, px);
+            color: @transparent;
+            background-color: @white;
+            border: 2px solid @white;
+            border-radius: 50%;
+            left: 50%;
+            top: 50%;
+            margin-left: -3px;
+            margin-top: -3px;
+            display: none;
+            transform: rotate(-45deg);
+        }
+    }
+
+    input[type=radio]:checked ~ .check {
+        border-color: @dark;
+        background-color: @dark;
+        transition: @transition-base;
+
+        &::before {
+            display: block;
+        }
+    }
+
+    input[type=radio]:disabled ~ .check {
+        border-color: @disabledBorder;
+        background-color: @disabledBackground;
+    }
+
+    .check {order: 1;}
+    .caption {order: 2;}
+
+    &.caption-left {
+        .check {order: 2;}
+        .caption {order: 1;}
+    }
+
+    &.required, &.invalid, &.valid {
+        border: none!important;
+    }
+
+    &.invalid {
+        &::after {
+            display: none;
+        }
+    }
+
+    &:focus, &:active {
+        input[type=checkbox]:not(:disabled) {
+            & ~ .check {
+                .halo();
+            }
+        }
+    }
+}
+
