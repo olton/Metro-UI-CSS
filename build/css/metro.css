@@ -17761,7 +17761,7 @@ form[data-role*=validator] .invalid_feedback {
   bottom: 100%;
 }
 .t-menu {
-  list-style: none inside none;
+  list-style: none inside;
   margin: 0;
   padding: 0;
   position: relative;
@@ -18091,7 +18091,7 @@ figure img {
   font-weight: normal;
 }
 .accordion {
-  list-style: none inside none;
+  list-style: none inside;
   margin: 0;
   padding: 0;
   position: relative;
@@ -22010,7 +22010,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   text-decoration: none;
 }
 .tabs > ul {
-  list-style: none inside none;
+  list-style: none inside;
   margin: 0;
   padding: 0;
   display: -webkit-box;
@@ -28176,7 +28176,7 @@ video:-webkit-full-screen {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  list-style: none inside none;
+  list-style: none inside;
   margin: 0;
   padding: 0;
   position: relative;
@@ -28475,7 +28475,7 @@ video:-webkit-full-screen {
   z-index: 1;
 }
 .ribbon-dropdown {
-  list-style: none inside none;
+  list-style: none inside;
   margin: 0;
   padding: 0;
   position: relative;
@@ -28670,7 +28670,7 @@ video:-webkit-full-screen {
   padding: 0;
 }
 .app-bar .app-bar-menu {
-  list-style: none inside none;
+  list-style: none inside;
   margin: 0;
   padding: 0;
   position: relative;
@@ -28692,7 +28692,6 @@ video:-webkit-full-screen {
 .app-bar .app-bar-menu li,
 .app-bar .app-bar-menu a {
   display: block;
-  height: 100%;
   line-height: 55px;
   background-color: inherit;
   color: inherit;

@@ -1,3 +1,6 @@
+### 4.0.10
++ [x] App bar: fix `.app-bar-menu` dropped down for IE11 and Edge
+
 ### 4.0.9
 + [x] Checkbox: refactoring
 + [x] Radio: refactoring
