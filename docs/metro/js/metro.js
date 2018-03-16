@@ -1,5 +1,5 @@
 /*!
- * Metro 4 Components Library v4.0.9 build 620-beta (https://metroui.org.ua)
+ * Metro 4 Components Library v4.0.10 build 621-beta (https://metroui.org.ua)
  * Copyright 2018 Sergey Pimenov
  * Licensed under MIT
  */
@@ -79,7 +79,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.0.9-620-beta",
+    version: "4.0.10-621-beta",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -3778,6 +3778,8 @@ var AppBar = {
 
         if (menu.length === 0) {
             hamburger.hide();
+        } else {
+            Utils.addCssRule(Metro.sheet, ".app-bar-menu li", "list-style: none!important;");
         }
 
         if( !!element.attr("id") === false ){

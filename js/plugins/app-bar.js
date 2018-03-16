@@ -61,6 +61,8 @@ var AppBar = {
 
         if (menu.length === 0) {
             hamburger.hide();
+        } else {
+            Utils.addCssRule(Metro.sheet, ".app-bar-menu li", "list-style: none!important;");
         }
 
         if( !!element.attr("id") === false ){
