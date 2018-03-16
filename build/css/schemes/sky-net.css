@@ -390,6 +390,14 @@ textarea.focused,
 .dialog .dialog-actions {
   border-top-color: #0CA9F2;
 }
+.keypad .keys {
+  background-color: #ffffff;
+  border-color: #0CA9F2;
+  color: #464646;
+}
+.keypad .key.service-key {
+  background-color: #0a87c1;
+}
 /*
 
 
@@ -398,19 +406,6 @@ textarea.focused,
 
         // Hints
 
-        // Keypad
-        .keypad {
-            .keys {
-                background-color: @schemeControlFillColor;
-                border-color: @schemeBorderColor;
-                color: @schemeControlTextColor;
-            }
-            .key {
-                &.service-key {
-                    background-color: darken(@schemeControlFillColor, 10%);
-                }
-            }
-        }
 
         // Listview
         .listview {
