@@ -10,6 +10,9 @@
 .fg-control {
   color: #ffffff !important;
 }
+.bd-default {
+  border-color: #585b5d !important;
+}
 body {
   font-size: 16px;
   font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Ubuntu", "Helvetica Neue", sans-serif;
