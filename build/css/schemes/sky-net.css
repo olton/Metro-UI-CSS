@@ -315,6 +315,11 @@ textarea.focused,
   background-color: #ffffff !important;
   color: #0CA9F2 !important;
 }
+[class*=app-bar-expand] .app-bar-menu li .d-menu li:hover,
+[class*=app-bar-expand] .app-bar-container .d-menu li:hover {
+  background-color: #0CA9F2 !important;
+  color: #ffffff !important;
+}
 .calendar {
   border-color: #0CA9F2;
 }
@@ -347,53 +352,46 @@ textarea.focused,
 [class*=calendar-wide] .calendar-footer {
   border-left-color: #0CA9F2 !important;
 }
+.countdown {
+  line-height: 1.5;
+}
+.countdown .part {
+  color: #464646;
+}
+.wheel-picker {
+  background-color: #ffffff;
+  color: #464646;
+}
+.wheel-picker .date-wrapper,
+.wheel-picker .time-wrapper {
+  border-color: #0CA9F2;
+}
+.wheel-picker .select-block {
+  background-color: #0CA9F2;
+  color: #ffffff;
+}
+.wheel-picker .select-block ul {
+  border-color: rgba(12, 169, 242, 0.25);
+}
+.wheel-picker .action-block {
+  border-top: 1px rgba(12, 169, 242, 0.25) solid;
+}
+.wheel-picker .action-block .button {
+  color: #ffffff;
+}
+.dialog {
+  background-color: #ffffff;
+  color: #464646;
+  border: 1px solid #0CA9F2;
+}
+.dialog .dialog-actions {
+  border-top-color: #0CA9F2;
+}
 /*
 
 
-        // Countdown
-        .countdown {
-            line-height: 1.5;
 
-            .part {
-                color: @schemeControlTextColor;
-            }
-        }
 
-        // Date picker and time picker
-        .wheel-picker {
-            background-color: @blendFill;
-            color: @schemeControlTextColor;
-
-            .date-wrapper, .time-wrapper {
-                border-color: @schemeBorderColor;
-            }
-
-            .select-block {
-                background-color: @schemeControlFillColor;
-                color: @schemeControlTextColor;
-
-                ul {
-                    border-color: @schemeBorderColor;
-                }
-            }
-
-            .action-block {
-                .button {
-                    color: @schemeControlTextColor;
-                }
-            }
-        }
-
-        // Dialog
-        .dialog {
-            background-color: @schemeBackgroundColor;
-            color: @schemeControlTextColor;
-            border: 1px solid @schemeBorderColor;
-
-            .dialog-actions {
-                border-top-color: @schemeBorderColor;
-            }
-        }
 
         // Hints
 
