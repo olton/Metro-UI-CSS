@@ -2,16 +2,20 @@
 @import (once) "../include/mixins";
 @import (once) "builder/builder";
 
-@schemeBackgroundColor: #2B2B2B;
+@schemeBackground: #2B2B2B;
+@schemeBackgroundSecondary: #3a3a3a;
 @schemeTextColor: #ffffff;
+@schemeTextColorSecondary: #BBBBBB;
 @schemeControlColor: #585b5d;
 @schemeControlTextColor: #ffffff;
 @schemeFontFamily: @fontName;
 @schemeFontSize: @fontSize;
 
 .scheme-builder(
-    @schemeBackgroundColor,
+    @schemeBackground,
+    @schemeBackgroundSecondary,
     @schemeTextColor,
+    @schemeTextColorSecondary,
     @schemeControlColor,
     @schemeControlTextColor,
     @schemeFontFamily,
@@ -32,7 +36,6 @@
     }
 }
 
-@secondaryBackground: #3a3a3a;
 @ratingOn: @light;
 
 .rating {
@@ -49,45 +52,6 @@
                 color: @ratingOn;
             }
         }
-    }
-}
-
-.hint {
-    background-color: @secondaryBackground;
-    color: @schemeTextColor;
-}
-
-.notify {
-    background-color: @secondaryBackground;
-}
-
-.window {
-    .window-content {
-        background-color: @secondaryBackground;
-    }
-}
-
-.popover {
-    background-color: @secondaryBackground;
-    color: @schemeTextColor;
-}
-
-.ribbon-menu {
-    .tabs-holder {
-
-        .static {
-            background-color: @orange;
-            color: @white;
-            &:hover {
-                border-color: @transparent!important;
-            }
-        }
-
-    }
-
-    .content-holder {
-        border-left: none;
-        border-right: none;
     }
 }
 
