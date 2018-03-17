@@ -479,6 +479,15 @@ textarea.focused,
 .panel .panel-title .icon {
   border-right-color: rgba(255, 255, 255, 0.25);
 }
+.window {
+  border-color: rgba(175, 0, 21, 0.25);
+  background-color: #ffffff;
+  color: #000000;
+}
+.window .window-caption {
+  background-color: #AF0015;
+  color: #ffffff;
+}
 .popover {
   background-color: #ffffff;
   color: #000000;
@@ -499,159 +508,6 @@ textarea.focused,
 /*
 
 
-        // Ribbon menu
-        .ribbon-menu {
-            .tabs-holder {
-                border-bottom-color: @schemeBorderColor;
-
-                li {
-                    background-color: @blendControl;
-                    color: @schemeControlTextColor;
-                    border-bottom-color: @blendControl;
-
-                    &:hover {
-                        border-left-color: @schemeBorderColor;
-                        border-right-color: @schemeBorderColor;
-                    }
-                }
-
-                .active {
-                    background-color: @schemeControlFillColor;
-                    border: 1px solid @schemeBorderColor;
-                    border-bottom-color: transparent;
-                }
-            }
-
-            .content-holder {
-                border-left: 1px solid @schemeBorderColor;
-                border-right: 1px solid @schemeBorderColor;
-                background-color: @schemeControlFillColor;
-
-                .section {
-                    border-bottom: 1px solid @schemeBorderColor;
-                }
-
-                .group {
-                    .title {
-                        border-top-color: @schemeBorderColor;
-                    }
-                    .group-divider {
-                        background-color: @schemeBorderColor;
-                    }
-                }
-                .group + .group {
-                    border-left-color: @schemeBorderColor;
-                }
-            }
-        }
-
-        .ribbon-button, .ribbon-icon-button, .ribbon-tool-button {
-            &:hover {
-                border-color: @schemeBorderColor;
-                background-color: @blendControl;
-            }
-        }
-
-        .ribbon-icon-button, .ribbon-tool-button {
-            &.dropdown-toggle {
-                &::after {
-                    border-color: transparent transparent @schemeControlTextColor transparent;
-                }
-            }
-        }
-
-        .ribbon-split-button {
-            &:hover {
-                border-color: @schemeBorderColor;
-
-                .ribbon-split {
-                    border-color: @schemeBorderColor;
-                }
-            }
-
-            .ribbon-main, .ribbon-split {
-                color: @schemeControlTextColor;
-                &:hover {
-                    background-color: @blendControl;
-                }
-
-                &::after {
-                    border-color: transparent transparent @schemeBorderColor transparent;
-                }
-            }
-            .ribbon-split {
-                &.dropdown-toggle {
-                    &::after {
-                        border-color: transparent transparent @schemeControlTextColor transparent;
-                    }
-                }
-            }
-        }
-
-        .ribbon-button, .ribbon-icon-button, .ribbon-tool-button, .ribbon-split-button {
-            color: @schemeControlTextColor;
-        }
-
-        .ribbon-dropdown {
-            background-color: @schemeControlFillColor;
-            color: @schemeControlTextColor;
-            border-color: @schemeBorderColor;
-            box-shadow: none;
-
-            li {
-                &:hover {
-                    border-color: @schemeBorderColor;
-                    background-color: @blendControl;
-                }
-            }
-
-            a {
-                border-left-color: @schemeBorderColor;
-            }
-
-            .divider {
-                background-color: @schemeBorderColor;
-            }
-
-            .checked, .checked-one {
-                &::before {
-                    border-color: @schemeControlTextColor;
-                }
-            }
-            .checked {
-                &::after {
-                    border-color: @schemeControlTextColor;
-                    background-color: @blendControl;
-                }
-            }
-            .checked-one {
-                &::before {
-                    background-color: @schemeControlTextColor;
-                }
-
-            }
-        }
-
-        .ribbon-toggle-group {
-            border-color: @schemeBorderColor;
-            background-color: @blendFill;
-        }
-
-        .ribbon-button, .ribbon-tool-button, .ribbon-split, .ribbon-main, .ribbon-icon-button {
-            &:active, &.active {
-                border-color: @schemeBorderColor;
-                background-color: @blendControl!important;
-            }
-        }
-
-        .ribbon-menu {
-            .active-container {
-                .ribbon-button, .ribbon-tool-button, .ribbon-icon-button {
-                    border-color: @schemeBorderColor;
-                    background-color: @blendControl!important;
-                }
-            }
-        }
 
         // Sidenav
         .sidenav-simple, .sidenav-counter {
@@ -971,17 +827,162 @@ textarea.focused,
             }
         }
 
-        // Window
-        .window {
-            border-color: @schemeBorderColor;
-            background-color: @schemeBackgroundColor;
-            color: @schemeControlTextColor;
 
-            .window-caption {
+        // Ribbon menu
+        .ribbon-menu {
+            .tabs-holder {
+                border-bottom-color: @schemeBorderColor;
+
+                li {
+                    background-color: @blendControl;
+                    color: @schemeControlTextColor;
+                    border-bottom-color: @blendControl;
+
+                    &:hover {
+                        border-left-color: @schemeBorderColor;
+                        border-right-color: @schemeBorderColor;
+                    }
+                }
+
+                .active {
+                    background-color: @schemeControlFillColor;
+                    border: 1px solid @schemeBorderColor;
+                    border-bottom-color: transparent;
+                }
+            }
+
+            .content-holder {
+                border-left: 1px solid @schemeBorderColor;
+                border-right: 1px solid @schemeBorderColor;
                 background-color: @schemeControlFillColor;
-                color: @schemeTextColor;
+
+                .section {
+                    border-bottom: 1px solid @schemeBorderColor;
+                }
+
+                .group {
+                    .title {
+                        border-top-color: @schemeBorderColor;
+                    }
+                    .group-divider {
+                        background-color: @schemeBorderColor;
+                    }
+                }
+                .group + .group {
+                    border-left-color: @schemeBorderColor;
+                }
             }
         }
+
+        .ribbon-button, .ribbon-icon-button, .ribbon-tool-button {
+            &:hover {
+                border-color: @schemeBorderColor;
+                background-color: @blendControl;
+            }
+        }
+
+        .ribbon-icon-button, .ribbon-tool-button {
+            &.dropdown-toggle {
+                &::after {
+                    border-color: transparent transparent @schemeControlTextColor transparent;
+                }
+            }
+        }
+
+        .ribbon-split-button {
+            &:hover {
+                border-color: @schemeBorderColor;
+
+                .ribbon-split {
+                    border-color: @schemeBorderColor;
+                }
+            }
+
+            .ribbon-main, .ribbon-split {
+                color: @schemeControlTextColor;
+                &:hover {
+                    background-color: @blendControl;
+                }
+
+                &::after {
+                    border-color: transparent transparent @schemeBorderColor transparent;
+                }
+            }
+            .ribbon-split {
+                &.dropdown-toggle {
+                    &::after {
+                        border-color: transparent transparent @schemeControlTextColor transparent;
+                    }
+                }
+            }
+        }
+
+        .ribbon-button, .ribbon-icon-button, .ribbon-tool-button, .ribbon-split-button {
+            color: @schemeControlTextColor;
+        }
+
+        .ribbon-dropdown {
+            background-color: @schemeControlFillColor;
+            color: @schemeControlTextColor;
+            border-color: @schemeBorderColor;
+            box-shadow: none;
+
+            li {
+                &:hover {
+                    border-color: @schemeBorderColor;
+                    background-color: @blendControl;
+                }
+            }
+
+            a {
+                border-left-color: @schemeBorderColor;
+            }
+
+            .divider {
+                background-color: @schemeBorderColor;
+            }
+
+            .checked, .checked-one {
+                &::before {
+                    border-color: @schemeControlTextColor;
+                }
+            }
+            .checked {
+                &::after {
+                    border-color: @schemeControlTextColor;
+                    background-color: @blendControl;
+                }
+            }
+            .checked-one {
+                &::before {
+                    background-color: @schemeControlTextColor;
+                }
+
+            }
+        }
+
+        .ribbon-toggle-group {
+            border-color: @schemeBorderColor;
+            background-color: @blendFill;
+        }
+
+        .ribbon-button, .ribbon-tool-button, .ribbon-split, .ribbon-main, .ribbon-icon-button {
+            &:active, &.active {
+                border-color: @schemeBorderColor;
+                background-color: @blendControl!important;
+            }
+        }
+
+        .ribbon-menu {
+            .active-container {
+                .ribbon-button, .ribbon-tool-button, .ribbon-icon-button {
+                    border-color: @schemeBorderColor;
+                    background-color: @blendControl!important;
+                }
+            }
+        }
+
+
         */
 .navview .navview-pane .navview-menu li.active::before {
   background-color: #ffffff;
