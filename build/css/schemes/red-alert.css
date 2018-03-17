@@ -8,7 +8,7 @@
   background-color: #F8F8F8 !important;
 }
 .fg-scheme-secondary {
-  color: #000000 !important;
+  color: #3a3a3a !important;
 }
 .bg-control {
   background-color: #AF0015 !important;
@@ -199,13 +199,25 @@ textarea.focused,
 .switch input[type="checkbox"]:disabled:not(:checked) ~ .check::after {
   opacity: .5;
 }
-.button {
+.button,
+.command-button,
+.shortcut,
+.tool-button {
   background-color: #AF0015;
   color: #ffffff;
 }
 .button:active,
+.command-button:active,
+.shortcut:active,
+.tool-button:active,
 .button.focus,
-.button:focus {
+.command-button.focus,
+.shortcut.focus,
+.tool-button.focus,
+.button:focus,
+.command-button:focus,
+.shortcut:focus,
+.tool-button:focus {
   -webkit-box-shadow: 0 0 0 3px rgba(175, 0, 21, 0.45);
           box-shadow: 0 0 0 3px rgba(175, 0, 21, 0.45);
 }
@@ -443,7 +455,7 @@ textarea.focused,
 }
 .navview .navview-pane {
   background-color: #F8F8F8;
-  color: #000000;
+  color: #3a3a3a;
 }
 .navview .navview-pane .pull-button:hover,
 .navview .navview-pane .holder:hover,
@@ -472,12 +484,12 @@ textarea.focused,
 }
 .notify {
   background-color: #F8F8F8;
-  color: #000000;
+  color: #3a3a3a;
   border: 1px solid #AF0015;
 }
 .panel {
   background-color: #F8F8F8;
-  color: #000000;
+  color: #3a3a3a;
   border-color: rgba(175, 0, 21, 0.25) !important;
 }
 .panel .panel-title {
@@ -505,14 +517,14 @@ textarea.focused,
 }
 .window .window-content {
   background-color: #F8F8F8;
-  color: #000000;
+  color: #3a3a3a;
 }
 .resize-element::after {
   border-bottom-color: #AF0015;
 }
 .popover {
   background-color: #F8F8F8;
-  color: #000000;
+  color: #3a3a3a;
   border-color: #AF0015;
 }
 .rating .stars li {
@@ -590,8 +602,8 @@ textarea.focused,
   background-color: #F8F8F8;
 }
 .stepper .step {
-  background-color: rgba(175, 0, 21, 0.25);
-  color: #ffffff;
+  background-color: #F8F8F8;
+  color: #000000;
 }
 .stepper .step.complete {
   background-color: #AF0015;
@@ -601,431 +613,289 @@ textarea.focused,
   background-color: #000000;
   color: #ffffff;
 }
-/*
-
-
-
-
-
-
-        // Streamer
-        .streamer {
-            .streams {
-                background-color: @schemeBackground;
-                color: @schemeTextColor;
-            }
-
-            .streamer-action {
-                background-color: @schemeControlFillColor;
-                color: @schemeControlTextColor;
-            }
-
-            .stream {
-                border-color: @schemeBorderColor;
-            }
-
-            .event-group {
-                background-color: @schemeBackground;
-                color: @schemeTextColor;
-            }
-
-            .stream-event {
-                background-color: @schemeControlFillColor;
-                color: @schemeControlTextColor;
-                border-color: @schemeBorderColor;
-
-                &:hover {
-                    border-color: lighten(@schemeBorderColor, 20%);
-                }
-
-                &.selected {
-                    box-shadow: 0 0 0 1px rgba(red(@schemeBorderColor), green(@schemeBorderColor), blue(@schemeBorderColor), 1)!important;
-                    &::before {
-                        border-color: @schemeTextColor!important;
-                    }
-                    &::after {
-                        border-top-color: @schemeBorderColor;
-                    }
-                }
-            }
-
-            .stream-event-slide {
-                .slide-data {
-                    .title {
-                        color: @schemeTextColor;
-                    }
-                    .subtitle, .desc {
-                        color: @schemeControlTextColor;
-                    }
-                }
-            }
-        }
-
-        // Table
-        .table {
-            background-color: @schemeBackground;
-            color: @schemeControlTextColor;
-
-            thead {
-                th, td {
-                    color: @schemeTextColor;
-                }
-            }
-
-            thead {
-                border-bottom-color: @schemeBorderColor;
-            }
-            tfoot {
-                border-top-color: @schemeBorderColor;
-            }
-
-            .sortable-column {
-                &.sort-asc, &.sort-desc {
-                    background-color: @schemeControlColor;
-                    &:after {
-                        color: @schemeControlTextColor;
-                    }
-                }
-            }
-
-            &.striped {
-                tbody tr:nth-child(odd) {
-                    background: @blendFill;
-                }
-            }
-
-            &.table-border {
-                border-color: @schemeBorderColor;
-            }
-
-            &.cell-border {
-                th, td {
-                    border-color: @schemeBorderColor;
-                }
-            }
-        }
-
-        // Tabs
-        .tabs {
-            background-color: @schemeBackground;
-            color: @schemeControlTextColor;
-            border-color: @schemeBorderColor;
-
-            & > ul > li {
-                background-color: @blendFill;
-                color: @schemeControlTextColor;
-
-                &:hover {
-                    background-color: @blendControl;
-                }
-                &.active {
-                    background-color: @schemeControlFillColor;
-                    color: @schemeTextColor;
-                }
-            }
-        }
-
-        .tabs {
-            &.vertical {
-                & > ul {
-                    border-right-color: @schemeBorderColor;
-                    & > li {
-                        border-right-color: @schemeBorderColor;
-                    }
-                    & > li.active {
-                        border-color: @schemeBorderColor;
-                    }
-                }
-
-                &.right {
-                    & > ul {
-                        border-left-color: @schemeBorderColor;
-                        & > li {
-                            border-left-color: @schemeBorderColor;
-                        }
-                        & > li.active {
-                            border-color: @schemeBorderColor;
-                        }
-                    }
-                }
-            }
-        }
-
-        [class*=tabs-expand] {
-            & > ul {
-                border-bottom-color: @schemeBorderColor;
-
-                & > li {
-                    border-bottom-color: @schemeBorderColor;
-
-                    &.active {
-                        border-color: @schemeBorderColor;
-                    }
-                }
-            }
-        }
-
-        // Top bar
-        .topbar {
-            background-color: @schemeControlFillColor;
-            color: @schemeControlTextColor;
-
-            .topbar-brand, .topbar-element, .topbar-menu {
-                color: @schemeControlTextColor;
-            }
-        }
-
-        // Treeview
-        .treeview {
-            background-color: @schemeBackground;
-            color: @schemeControlTextColor;
-
-            .node-toggle {
-                &::before {
-                    border-color: @schemeControlTextColor!important;
-                }
-            }
-
-            li {
-                &.current > .caption {
-                    color: @schemeTextColor;
-                }
-            }
-        }
-
-        // Wizard
-        .wizard {
-            background-color: @schemeBackground;
-            color: @schemeControlTextColor;
-            border-color: @schemeBorderColor;
-
-            & > section {
-                border-color: darken(@schemeControlFillColor, 50%);
-                &:nth-child(1) {border-color: @schemeControlFillColor;}
-                &:nth-child(2) {border-color: darken(@schemeControlFillColor, 5%);}
-                &:nth-child(3) {border-color: darken(@schemeControlFillColor, 10%);}
-                &:nth-child(4) {border-color: darken(@schemeControlFillColor, 15%);}
-                &:nth-child(5) {border-color: darken(@schemeControlFillColor, 20%);}
-                &:nth-child(6) {border-color: darken(@schemeControlFillColor, 25%);}
-                &:nth-child(7) {border-color: darken(@schemeControlFillColor, 30%);}
-                &:nth-child(8) {border-color: darken(@schemeControlFillColor, 35%);}
-                &:nth-child(9) {border-color: darken(@schemeControlFillColor, 40%);}
-                &:nth-child(10) {border-color: darken(@schemeControlFillColor, 50%);}
-
-                &::before {
-                    color: @schemeTextColor;
-                }
-
-                &.complete {
-                    border-color: darken(@schemeControlTextColor, 50%);
-                    &:nth-child(1) {border-color: @schemeControlTextColor;}
-                    &:nth-child(2) {border-color: darken(@schemeControlTextColor, 5%);}
-                    &:nth-child(3) {border-color: darken(@schemeControlTextColor, 10%);}
-                    &:nth-child(4) {border-color: darken(@schemeControlTextColor, 15%);}
-                    &:nth-child(5) {border-color: darken(@schemeControlTextColor, 20%);}
-                    &:nth-child(6) {border-color: darken(@schemeControlTextColor, 25%);}
-                    &:nth-child(7) {border-color: darken(@schemeControlTextColor, 30%);}
-                    &:nth-child(8) {border-color: darken(@schemeControlTextColor, 35%);}
-                    &:nth-child(9) {border-color: darken(@schemeControlTextColor, 40%);}
-                    &:nth-child(10) {border-color: darken(@schemeControlTextColor, 50%);}
-
-                    &::before {
-                        color: @schemeTextColor;
-                    }
-                }
-
-                &.current {
-                    &::before {
-                        color: @schemeTextColor;
-                        background-color: @schemeControlFillColor;
-                    }
-                }
-            }
-
-            .action-bar {
-                button {
-                    border-color: @schemeBorderColor;
-                }
-            }
-        }
-
-
-        // Ribbon menu
-
-        .ribbon-menu {
-            .tabs-holder {
-
-                .static {
-                    background-color: @orange;
-                    color: @white;
-                    &:hover {
-                        border-color: @transparent!important;
-                    }
-                }
-
-            }
-
-            .content-holder {
-                border-left: none;
-                border-right: none;
-            }
-        }
-
-        .ribbon-menu {
-            .tabs-holder {
-                border-bottom-color: @schemeBorderColor;
-
-                li {
-                    background-color: @blendControl;
-                    color: @schemeControlTextColor;
-                    border-bottom-color: @blendControl;
-
-                    &:hover {
-                        border-left-color: @schemeBorderColor;
-                        border-right-color: @schemeBorderColor;
-                    }
-                }
-
-                .active {
-                    background-color: @schemeControlFillColor;
-                    border: 1px solid @schemeBorderColor;
-                    border-bottom-color: transparent;
-                }
-            }
-
-            .content-holder {
-                border-left: 1px solid @schemeBorderColor;
-                border-right: 1px solid @schemeBorderColor;
-                background-color: @schemeControlFillColor;
-
-                .section {
-                    border-bottom: 1px solid @schemeBorderColor;
-                }
-
-                .group {
-                    .title {
-                        border-top-color: @schemeBorderColor;
-                    }
-                    .group-divider {
-                        background-color: @schemeBorderColor;
-                    }
-                }
-                .group + .group {
-                    border-left-color: @schemeBorderColor;
-                }
-            }
-        }
-
-        .ribbon-button, .ribbon-icon-button, .ribbon-tool-button {
-            &:hover {
-                border-color: @schemeBorderColor;
-                background-color: @blendControl;
-            }
-        }
-
-        .ribbon-icon-button, .ribbon-tool-button {
-            &.dropdown-toggle {
-                &::after {
-                    border-color: transparent transparent @schemeControlTextColor transparent;
-                }
-            }
-        }
-
-        .ribbon-split-button {
-            &:hover {
-                border-color: @schemeBorderColor;
-
-                .ribbon-split {
-                    border-color: @schemeBorderColor;
-                }
-            }
-
-            .ribbon-main, .ribbon-split {
-                color: @schemeControlTextColor;
-                &:hover {
-                    background-color: @blendControl;
-                }
-
-                &::after {
-                    border-color: transparent transparent @schemeBorderColor transparent;
-                }
-            }
-            .ribbon-split {
-                &.dropdown-toggle {
-                    &::after {
-                        border-color: transparent transparent @schemeControlTextColor transparent;
-                    }
-                }
-            }
-        }
-
-        .ribbon-button, .ribbon-icon-button, .ribbon-tool-button, .ribbon-split-button {
-            color: @schemeControlTextColor;
-        }
-
-        .ribbon-dropdown {
-            background-color: @schemeControlFillColor;
-            color: @schemeControlTextColor;
-            border-color: @schemeBorderColor;
-            box-shadow: none;
-
-            li {
-                &:hover {
-                    border-color: @schemeBorderColor;
-                    background-color: @blendControl;
-                }
-            }
-
-            a {
-                border-left-color: @schemeBorderColor;
-            }
-
-            .divider {
-                background-color: @schemeBorderColor;
-            }
-
-            .checked, .checked-one {
-                &::before {
-                    border-color: @schemeControlTextColor;
-                }
-            }
-            .checked {
-                &::after {
-                    border-color: @schemeControlTextColor;
-                    background-color: @blendControl;
-                }
-            }
-            .checked-one {
-                &::before {
-                    background-color: @schemeControlTextColor;
-                }
-
-            }
-        }
-
-        .ribbon-toggle-group {
-            border-color: @schemeBorderColor;
-            background-color: @blendFill;
-        }
-
-        .ribbon-button, .ribbon-tool-button, .ribbon-split, .ribbon-main, .ribbon-icon-button {
-            &:active, &.active {
-                border-color: @schemeBorderColor;
-                background-color: @blendControl!important;
-            }
-        }
-
-        .ribbon-menu {
-            .active-container {
-                .ribbon-button, .ribbon-tool-button, .ribbon-icon-button {
-                    border-color: @schemeBorderColor;
-                    background-color: @blendControl!important;
-                }
-            }
-        }
-
-
-        */
+.streamer .streams {
+  background-color: #ffffff;
+  color: #000000;
+}
+.streamer .streamer-action {
+  background-color: #AF0015;
+  color: #ffffff;
+}
+.streamer .stream {
+  border-color: #AF0015;
+}
+.streamer .event-group {
+  background-color: #ffffff;
+  color: #000000;
+}
+.streamer .stream-event {
+  background-color: #F8F8F8;
+  color: #3a3a3a;
+  border-color: #AF0015;
+}
+.streamer .stream-event:hover {
+  border-color: #ff1632;
+}
+.streamer .stream-event.selected {
+  -webkit-box-shadow: 0 0 0 1px #af0015 !important;
+          box-shadow: 0 0 0 1px #af0015 !important;
+}
+.streamer .stream-event.selected::before {
+  border-color: #000000 !important;
+}
+.streamer .stream-event.selected::after {
+  border-top-color: #AF0015;
+}
+.streamer .stream-event-slide .slide-data .title {
+  color: #000000;
+}
+.streamer .stream-event-slide .slide-data .subtitle,
+.streamer .stream-event-slide .slide-data .desc {
+  color: #3a3a3a;
+}
+.table {
+  background-color: #ffffff;
+  color: #000000;
+}
+.table thead th,
+.table thead td {
+  color: #000000;
+}
+.table thead {
+  border-bottom-color: #AF0015;
+}
+.table tfoot {
+  border-top-color: #AF0015;
+}
+.table .sortable-column.sort-asc,
+.table .sortable-column.sort-desc {
+  background-color: #AF0015;
+  color: #ffffff;
+}
+.table .sortable-column.sort-asc:after,
+.table .sortable-column.sort-desc:after {
+  color: #ffffff;
+}
+.table.striped tbody tr:nth-child(odd) {
+  background: #F8F8F8;
+}
+.table.table-border {
+  border-color: #AF0015;
+}
+.table.cell-border th,
+.table.cell-border td {
+  border-color: #AF0015;
+}
+.tabs {
+  background-color: #ffffff;
+  color: #ffffff;
+  border-color: #AF0015;
+}
+.tabs > ul > li {
+  background-color: #F8F8F8;
+  color: #3a3a3a;
+}
+.tabs > ul > li:hover {
+  background-color: rgba(175, 0, 21, 0.25);
+}
+.tabs > ul > li.active {
+  background-color: #AF0015;
+  color: #ffffff;
+}
+.tabs .disabled {
+  color: rgba(255, 255, 255, 0.25) !important;
+}
+.tabs.vertical > ul {
+  border-right-color: #AF0015;
+}
+.tabs.vertical > ul > li {
+  border-right-color: #AF0015;
+}
+.tabs.vertical > ul > li.active {
+  border-color: #AF0015;
+}
+.tabs.vertical.right > ul {
+  border-left-color: #AF0015;
+}
+.tabs.vertical.right > ul > li {
+  border-left-color: #AF0015;
+}
+.tabs.vertical.right > ul > li.active {
+  border-color: #AF0015;
+}
+[class*=tabs-expand] > ul {
+  border-bottom-color: #AF0015;
+}
+[class*=tabs-expand] > ul > li {
+  border-bottom-color: #AF0015;
+}
+[class*=tabs-expand] > ul > li.active {
+  border-color: #AF0015;
+}
+.topbar {
+  background-color: #AF0015;
+  color: #ffffff;
+}
+.topbar .topbar-brand,
+.topbar .topbar-element,
+.topbar .topbar-menu {
+  color: #ffffff;
+}
+.treeview {
+  background-color: #ffffff;
+  color: #3a3a3a;
+}
+.treeview .node-toggle::before {
+  border-color: #3a3a3a !important;
+}
+.treeview li.current > .caption {
+  color: #000000;
+}
+.wizard {
+  background-color: #ffffff;
+  color: #000000;
+  border-color: #AF0015;
+}
+.wizard > section,
+.wizard.section {
+  border-color: #000000;
+}
+.wizard > section:nth-child(1),
+.wizard.section:nth-child(1) {
+  border-color: #AF0015;
+}
+.wizard > section:nth-child(2),
+.wizard.section:nth-child(2) {
+  border-color: #960012;
+}
+.wizard > section:nth-child(3),
+.wizard.section:nth-child(3) {
+  border-color: #7c000f;
+}
+.wizard > section:nth-child(4),
+.wizard.section:nth-child(4) {
+  border-color: #63000c;
+}
+.wizard > section:nth-child(5),
+.wizard.section:nth-child(5) {
+  border-color: #490009;
+}
+.wizard > section:nth-child(6),
+.wizard.section:nth-child(6) {
+  border-color: #300006;
+}
+.wizard > section:nth-child(7),
+.wizard.section:nth-child(7) {
+  border-color: #160003;
+}
+.wizard > section:nth-child(8),
+.wizard.section:nth-child(8) {
+  border-color: #000000;
+}
+.wizard > section:nth-child(9),
+.wizard.section:nth-child(9) {
+  border-color: #000000;
+}
+.wizard > section:nth-child(10),
+.wizard.section:nth-child(10) {
+  border-color: #000000;
+}
+.wizard > section::before,
+.wizard.section::before {
+  color: #ffffff;
+}
+.wizard > section.complete,
+.wizard.section.complete {
+  border-color: #797979;
+}
+.wizard > section.complete:nth-child(1),
+.wizard.section.complete:nth-child(1) {
+  border-color: #F8F8F8;
+}
+.wizard > section.complete:nth-child(2),
+.wizard.section.complete:nth-child(2) {
+  border-color: #ebebeb;
+}
+.wizard > section.complete:nth-child(3),
+.wizard.section.complete:nth-child(3) {
+  border-color: #dfdfdf;
+}
+.wizard > section.complete:nth-child(4),
+.wizard.section.complete:nth-child(4) {
+  border-color: #d2d2d2;
+}
+.wizard > section.complete:nth-child(5),
+.wizard.section.complete:nth-child(5) {
+  border-color: #c5c5c5;
+}
+.wizard > section.complete:nth-child(6),
+.wizard.section.complete:nth-child(6) {
+  border-color: #b8b8b8;
+}
+.wizard > section.complete:nth-child(7),
+.wizard.section.complete:nth-child(7) {
+  border-color: #acacac;
+}
+.wizard > section.complete:nth-child(8),
+.wizard.section.complete:nth-child(8) {
+  border-color: #9f9f9f;
+}
+.wizard > section.complete:nth-child(9),
+.wizard.section.complete:nth-child(9) {
+  border-color: #929292;
+}
+.wizard > section.complete:nth-child(10),
+.wizard.section.complete:nth-child(10) {
+  border-color: #797979;
+}
+.wizard > section.complete::before,
+.wizard.section.complete::before {
+  color: #3a3a3a;
+}
+.wizard > section.current::before,
+.wizard.section.current::before {
+  color: #000000;
+  background-color: #AF0015;
+}
+.wizard .action-bar button {
+  border-color: #AF0015;
+  color: #ffffff;
+}
+.ribbon-menu .tabs-holder .static {
+  background-color: #AF0015;
+  color: #ffffff;
+}
+.ribbon-menu .tabs-holder .static:hover {
+  border-color: transparent !important;
+}
+.ribbon-menu .ribbon-button,
+.ribbon-menu .ribbon-tool-button,
+.ribbon-menu .ribbon-split,
+.ribbon-menu .ribbon-main,
+.ribbon-menu .ribbon-icon-button {
+  color: #000000;
+}
+.ribbon-menu .ribbon-button:hover,
+.ribbon-menu .ribbon-tool-button:hover,
+.ribbon-menu .ribbon-split:hover,
+.ribbon-menu .ribbon-main:hover,
+.ribbon-menu .ribbon-icon-button:hover {
+  border-color: rgba(175, 0, 21, 0.25);
+  background-color: rgba(248, 248, 248, 0.25);
+}
+.ribbon-menu .ribbon-button:active,
+.ribbon-menu .ribbon-tool-button:active,
+.ribbon-menu .ribbon-split:active,
+.ribbon-menu .ribbon-main:active,
+.ribbon-menu .ribbon-icon-button:active,
+.ribbon-menu .ribbon-button.active,
+.ribbon-menu .ribbon-tool-button.active,
+.ribbon-menu .ribbon-split.active,
+.ribbon-menu .ribbon-main.active,
+.ribbon-menu .ribbon-icon-button.active {
+  border-color: rgba(175, 0, 21, 0.25);
+  background-color: rgba(255, 255, 255, 0.25);
+}
 .navview .navview-pane .navview-menu li.active::before {
   background-color: #ffffff;
 }

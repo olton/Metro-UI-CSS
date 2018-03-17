@@ -187,7 +187,7 @@
     }
 
     // Buttons
-    .button {
+    .button, .command-button, .shortcut, .tool-button {
         background-color: @schemeControlColor;
         color: @schemeControlTextColor;
 
@@ -196,6 +196,7 @@
         }
     }
 
+    // Breadcrumbs
     .breadcrumbs {
         background-color: @schemeBackground;
         color: @schemeControlColor;
@@ -210,6 +211,7 @@
         }
     }
 
+    // Pagination
     .pagination {
         .page-item:not(.no-link) {
             background-color: @schemeControlColor;
@@ -725,8 +727,8 @@
             background-color: @schemeBackgroundSecondary;
         }
         .step {
-            background-color: @blendControlColor;
-            color: @schemeControlTextColor;
+            background-color: @schemeBackgroundSecondary;
+            color: @schemeTextColor;
 
             &.complete {
                 background-color: @schemeControlColor;
@@ -741,429 +743,284 @@
         }
     }
 
-    /*
+    // Streamer
+    .streamer {
+        .streams {
+            background-color: @schemeBackground;
+            color: @schemeTextColor;
+        }
 
+        .streamer-action {
+            background-color: @schemeControlColor;
+            color: @schemeControlTextColor;
+        }
 
+        .stream {
+            border-color: @schemeControlColor;
+        }
 
+        .event-group {
+            background-color: @schemeBackground;
+            color: @schemeTextColor;
+        }
 
+        .stream-event {
+            background-color: @schemeBackgroundSecondary;
+            color: @schemeTextColorSecondary;
+            border-color: @schemeControlColor;
 
-
-        // Streamer
-        .streamer {
-            .streams {
-                background-color: @schemeBackground;
-                color: @schemeTextColor;
+            &:hover {
+                border-color: lighten(@schemeControlColor, 20%);
             }
 
-            .streamer-action {
-                background-color: @schemeControlFillColor;
-                color: @schemeControlTextColor;
-            }
-
-            .stream {
-                border-color: @schemeBorderColor;
-            }
-
-            .event-group {
-                background-color: @schemeBackground;
-                color: @schemeTextColor;
-            }
-
-            .stream-event {
-                background-color: @schemeControlFillColor;
-                color: @schemeControlTextColor;
-                border-color: @schemeBorderColor;
-
-                &:hover {
-                    border-color: lighten(@schemeBorderColor, 20%);
+            &.selected {
+                box-shadow: 0 0 0 1px rgba(red(@schemeControlColor), green(@schemeControlColor), blue(@schemeControlColor), 1)!important;
+                &::before {
+                    border-color: @schemeTextColor!important;
                 }
-
-                &.selected {
-                    box-shadow: 0 0 0 1px rgba(red(@schemeBorderColor), green(@schemeBorderColor), blue(@schemeBorderColor), 1)!important;
-                    &::before {
-                        border-color: @schemeTextColor!important;
-                    }
-                    &::after {
-                        border-top-color: @schemeBorderColor;
-                    }
-                }
-            }
-
-            .stream-event-slide {
-                .slide-data {
-                    .title {
-                        color: @schemeTextColor;
-                    }
-                    .subtitle, .desc {
-                        color: @schemeControlTextColor;
-                    }
+                &::after {
+                    border-top-color: @schemeControlColor;
                 }
             }
         }
 
-        // Table
-        .table {
-            background-color: @schemeBackground;
-            color: @schemeControlTextColor;
-
-            thead {
-                th, td {
+        .stream-event-slide {
+            .slide-data {
+                .title {
                     color: @schemeTextColor;
                 }
-            }
-
-            thead {
-                border-bottom-color: @schemeBorderColor;
-            }
-            tfoot {
-                border-top-color: @schemeBorderColor;
-            }
-
-            .sortable-column {
-                &.sort-asc, &.sort-desc {
-                    background-color: @schemeControlColor;
-                    &:after {
-                        color: @schemeControlTextColor;
-                    }
-                }
-            }
-
-            &.striped {
-                tbody tr:nth-child(odd) {
-                    background: @blendFill;
-                }
-            }
-
-            &.table-border {
-                border-color: @schemeBorderColor;
-            }
-
-            &.cell-border {
-                th, td {
-                    border-color: @schemeBorderColor;
+                .subtitle, .desc {
+                    color: @schemeTextColorSecondary;
                 }
             }
         }
+    }
 
-        // Tabs
-        .tabs {
-            background-color: @schemeBackground;
-            color: @schemeControlTextColor;
-            border-color: @schemeBorderColor;
+    // Table
+    .table {
+        background-color: @schemeBackground;
+        color: @schemeTextColor;
 
-            & > ul > li {
-                background-color: @blendFill;
+        thead {
+            th, td {
+                color: @schemeTextColor;
+            }
+        }
+
+        thead {
+            border-bottom-color: @schemeControlColor;
+        }
+        tfoot {
+            border-top-color: @schemeControlColor;
+        }
+
+        .sortable-column {
+            &.sort-asc, &.sort-desc {
+                background-color: @schemeControlColor;
                 color: @schemeControlTextColor;
-
-                &:hover {
-                    background-color: @blendControl;
-                }
-                &.active {
-                    background-color: @schemeControlFillColor;
-                    color: @schemeTextColor;
+                &:after {
+                    color: @schemeControlTextColor;
                 }
             }
         }
 
-        .tabs {
-            &.vertical {
+        &.striped {
+            tbody tr:nth-child(odd) {
+                background: @schemeBackgroundSecondary;
+            }
+        }
+
+        &.table-border {
+            border-color: @schemeControlColor;
+        }
+
+        &.cell-border {
+            th, td {
+                border-color: @schemeControlColor;
+            }
+        }
+    }
+
+    // Tabs
+    .tabs {
+        background-color: @schemeBackground;
+        color: @schemeControlTextColor;
+        border-color: @schemeControlColor;
+
+        & > ul > li {
+            background-color: @schemeBackgroundSecondary;
+            color: @schemeTextColorSecondary;
+
+            &:hover {
+                background-color: @blendControlColor;
+            }
+            &.active {
+                background-color: @schemeControlColor;
+                color: @schemeControlTextColor;
+            }
+        }
+
+        .disabled {
+            color: @blendControlTextColor!important;
+        }
+    }
+
+    .tabs {
+        &.vertical {
+            & > ul {
+                border-right-color: @schemeControlColor;
+                & > li {
+                    border-right-color: @schemeControlColor;
+                }
+                & > li.active {
+                    border-color: @schemeControlColor;
+                }
+            }
+
+            &.right {
                 & > ul {
-                    border-right-color: @schemeBorderColor;
+                    border-left-color: @schemeControlColor;
                     & > li {
-                        border-right-color: @schemeBorderColor;
+                        border-left-color: @schemeControlColor;
                     }
                     & > li.active {
-                        border-color: @schemeBorderColor;
-                    }
-                }
-
-                &.right {
-                    & > ul {
-                        border-left-color: @schemeBorderColor;
-                        & > li {
-                            border-left-color: @schemeBorderColor;
-                        }
-                        & > li.active {
-                            border-color: @schemeBorderColor;
-                        }
+                        border-color: @schemeControlColor;
                     }
                 }
             }
         }
+    }
 
-        [class*=tabs-expand] {
-            & > ul {
-                border-bottom-color: @schemeBorderColor;
+    [class*=tabs-expand] {
+        & > ul {
+            border-bottom-color: @schemeControlColor;
 
-                & > li {
-                    border-bottom-color: @schemeBorderColor;
+            & > li {
+                border-bottom-color: @schemeControlColor;
 
-                    &.active {
-                        border-color: @schemeBorderColor;
-                    }
+                &.active {
+                    border-color: @schemeControlColor;
                 }
             }
         }
+    }
 
-        // Top bar
-        .topbar {
-            background-color: @schemeControlFillColor;
+    // Top bar
+    .topbar {
+        background-color: @schemeControlColor;
+        color: @schemeControlTextColor;
+
+        .topbar-brand, .topbar-element, .topbar-menu {
             color: @schemeControlTextColor;
+        }
+    }
 
-            .topbar-brand, .topbar-element, .topbar-menu {
+    // Treeview
+    .treeview {
+        background-color: @schemeBackground;
+        color: @schemeTextColorSecondary;
+
+        .node-toggle {
+            &::before {
+                border-color: @schemeTextColorSecondary!important;
+            }
+        }
+
+        li {
+            &.current > .caption {
+                color: @schemeTextColor;
+            }
+        }
+    }
+
+    // Wizard
+    .wizard {
+        background-color: @schemeBackground;
+        color: @schemeTextColor;
+        border-color: @schemeControlColor;
+
+        & > section, &.section {
+            border-color: darken(@schemeControlColor, 50%);
+            &:nth-child(1) {border-color: @schemeControlColor;}
+            &:nth-child(2) {border-color: darken(@schemeControlColor, 5%);}
+            &:nth-child(3) {border-color: darken(@schemeControlColor, 10%);}
+            &:nth-child(4) {border-color: darken(@schemeControlColor, 15%);}
+            &:nth-child(5) {border-color: darken(@schemeControlColor, 20%);}
+            &:nth-child(6) {border-color: darken(@schemeControlColor, 25%);}
+            &:nth-child(7) {border-color: darken(@schemeControlColor, 30%);}
+            &:nth-child(8) {border-color: darken(@schemeControlColor, 35%);}
+            &:nth-child(9) {border-color: darken(@schemeControlColor, 40%);}
+            &:nth-child(10) {border-color: darken(@schemeControlColor, 50%);}
+
+            &::before {
+                color: @schemeControlTextColor;
+            }
+
+            &.complete {
+                border-color: darken(@schemeBackgroundSecondary, 50%);
+                &:nth-child(1) {border-color: @schemeBackgroundSecondary;}
+                &:nth-child(2) {border-color: darken(@schemeBackgroundSecondary, 5%);}
+                &:nth-child(3) {border-color: darken(@schemeBackgroundSecondary, 10%);}
+                &:nth-child(4) {border-color: darken(@schemeBackgroundSecondary, 15%);}
+                &:nth-child(5) {border-color: darken(@schemeBackgroundSecondary, 20%);}
+                &:nth-child(6) {border-color: darken(@schemeBackgroundSecondary, 25%);}
+                &:nth-child(7) {border-color: darken(@schemeBackgroundSecondary, 30%);}
+                &:nth-child(8) {border-color: darken(@schemeBackgroundSecondary, 35%);}
+                &:nth-child(9) {border-color: darken(@schemeBackgroundSecondary, 40%);}
+                &:nth-child(10) {border-color: darken(@schemeBackgroundSecondary, 50%);}
+
+                &::before {
+                    color: @schemeTextColorSecondary;
+                }
+            }
+
+            &.current {
+                &::before {
+                    color: @schemeTextColor;
+                    background-color: @schemeControlColor;
+                }
+            }
+        }
+
+        .action-bar {
+            button {
+                border-color: @schemeControlColor;
                 color: @schemeControlTextColor;
             }
         }
+    }
 
-        // Treeview
-        .treeview {
-            background-color: @schemeBackground;
-            color: @schemeControlTextColor;
+    // Ribbon menu
 
-            .node-toggle {
-                &::before {
-                    border-color: @schemeControlTextColor!important;
-                }
-            }
+    .ribbon-menu {
+        .tabs-holder {
 
-            li {
-                &.current > .caption {
-                    color: @schemeTextColor;
-                }
-            }
-        }
-
-        // Wizard
-        .wizard {
-            background-color: @schemeBackground;
-            color: @schemeControlTextColor;
-            border-color: @schemeBorderColor;
-
-            & > section {
-                border-color: darken(@schemeControlFillColor, 50%);
-                &:nth-child(1) {border-color: @schemeControlFillColor;}
-                &:nth-child(2) {border-color: darken(@schemeControlFillColor, 5%);}
-                &:nth-child(3) {border-color: darken(@schemeControlFillColor, 10%);}
-                &:nth-child(4) {border-color: darken(@schemeControlFillColor, 15%);}
-                &:nth-child(5) {border-color: darken(@schemeControlFillColor, 20%);}
-                &:nth-child(6) {border-color: darken(@schemeControlFillColor, 25%);}
-                &:nth-child(7) {border-color: darken(@schemeControlFillColor, 30%);}
-                &:nth-child(8) {border-color: darken(@schemeControlFillColor, 35%);}
-                &:nth-child(9) {border-color: darken(@schemeControlFillColor, 40%);}
-                &:nth-child(10) {border-color: darken(@schemeControlFillColor, 50%);}
-
-                &::before {
-                    color: @schemeTextColor;
-                }
-
-                &.complete {
-                    border-color: darken(@schemeControlTextColor, 50%);
-                    &:nth-child(1) {border-color: @schemeControlTextColor;}
-                    &:nth-child(2) {border-color: darken(@schemeControlTextColor, 5%);}
-                    &:nth-child(3) {border-color: darken(@schemeControlTextColor, 10%);}
-                    &:nth-child(4) {border-color: darken(@schemeControlTextColor, 15%);}
-                    &:nth-child(5) {border-color: darken(@schemeControlTextColor, 20%);}
-                    &:nth-child(6) {border-color: darken(@schemeControlTextColor, 25%);}
-                    &:nth-child(7) {border-color: darken(@schemeControlTextColor, 30%);}
-                    &:nth-child(8) {border-color: darken(@schemeControlTextColor, 35%);}
-                    &:nth-child(9) {border-color: darken(@schemeControlTextColor, 40%);}
-                    &:nth-child(10) {border-color: darken(@schemeControlTextColor, 50%);}
-
-                    &::before {
-                        color: @schemeTextColor;
-                    }
-                }
-
-                &.current {
-                    &::before {
-                        color: @schemeTextColor;
-                        background-color: @schemeControlFillColor;
-                    }
-                }
-            }
-
-            .action-bar {
-                button {
-                    border-color: @schemeBorderColor;
-                }
-            }
-        }
-
-
-        // Ribbon menu
-
-        .ribbon-menu {
-            .tabs-holder {
-
-                .static {
-                    background-color: @orange;
-                    color: @white;
-                    &:hover {
-                        border-color: @transparent!important;
-                    }
-                }
-
-            }
-
-            .content-holder {
-                border-left: none;
-                border-right: none;
-            }
-        }
-
-        .ribbon-menu {
-            .tabs-holder {
-                border-bottom-color: @schemeBorderColor;
-
-                li {
-                    background-color: @blendControl;
-                    color: @schemeControlTextColor;
-                    border-bottom-color: @blendControl;
-
-                    &:hover {
-                        border-left-color: @schemeBorderColor;
-                        border-right-color: @schemeBorderColor;
-                    }
-                }
-
-                .active {
-                    background-color: @schemeControlFillColor;
-                    border: 1px solid @schemeBorderColor;
-                    border-bottom-color: transparent;
-                }
-            }
-
-            .content-holder {
-                border-left: 1px solid @schemeBorderColor;
-                border-right: 1px solid @schemeBorderColor;
-                background-color: @schemeControlFillColor;
-
-                .section {
-                    border-bottom: 1px solid @schemeBorderColor;
-                }
-
-                .group {
-                    .title {
-                        border-top-color: @schemeBorderColor;
-                    }
-                    .group-divider {
-                        background-color: @schemeBorderColor;
-                    }
-                }
-                .group + .group {
-                    border-left-color: @schemeBorderColor;
-                }
-            }
-        }
-
-        .ribbon-button, .ribbon-icon-button, .ribbon-tool-button {
-            &:hover {
-                border-color: @schemeBorderColor;
-                background-color: @blendControl;
-            }
-        }
-
-        .ribbon-icon-button, .ribbon-tool-button {
-            &.dropdown-toggle {
-                &::after {
-                    border-color: transparent transparent @schemeControlTextColor transparent;
-                }
-            }
-        }
-
-        .ribbon-split-button {
-            &:hover {
-                border-color: @schemeBorderColor;
-
-                .ribbon-split {
-                    border-color: @schemeBorderColor;
-                }
-            }
-
-            .ribbon-main, .ribbon-split {
+            .static {
+                background-color: @schemeControlColor;
                 color: @schemeControlTextColor;
                 &:hover {
-                    background-color: @blendControl;
+                    border-color: @transparent!important;
                 }
+            }
 
-                &::after {
-                    border-color: transparent transparent @schemeBorderColor transparent;
-                }
-            }
-            .ribbon-split {
-                &.dropdown-toggle {
-                    &::after {
-                        border-color: transparent transparent @schemeControlTextColor transparent;
-                    }
-                }
-            }
         }
 
-        .ribbon-button, .ribbon-icon-button, .ribbon-tool-button, .ribbon-split-button {
-            color: @schemeControlTextColor;
+        .ribbon-button, .ribbon-tool-button, .ribbon-split, .ribbon-main, .ribbon-icon-button {
+            color: @schemeTextColor;
         }
-
-        .ribbon-dropdown {
-            background-color: @schemeControlFillColor;
-            color: @schemeControlTextColor;
-            border-color: @schemeBorderColor;
-            box-shadow: none;
-
-            li {
-                &:hover {
-                    border-color: @schemeBorderColor;
-                    background-color: @blendControl;
-                }
+        .ribbon-button, .ribbon-tool-button, .ribbon-split, .ribbon-main, .ribbon-icon-button {
+            &:hover {
+                border-color: @blendControlColor;
+                background-color: @blendBackgroundSecondary;
             }
-
-            a {
-                border-left-color: @schemeBorderColor;
-            }
-
-            .divider {
-                background-color: @schemeBorderColor;
-            }
-
-            .checked, .checked-one {
-                &::before {
-                    border-color: @schemeControlTextColor;
-                }
-            }
-            .checked {
-                &::after {
-                    border-color: @schemeControlTextColor;
-                    background-color: @blendControl;
-                }
-            }
-            .checked-one {
-                &::before {
-                    background-color: @schemeControlTextColor;
-                }
-
-            }
-        }
-
-        .ribbon-toggle-group {
-            border-color: @schemeBorderColor;
-            background-color: @blendFill;
         }
 
         .ribbon-button, .ribbon-tool-button, .ribbon-split, .ribbon-main, .ribbon-icon-button {
             &:active, &.active {
-                border-color: @schemeBorderColor;
-                background-color: @blendControl!important;
+                border-color: @blendControlColor;
+                background-color: @blendBackground;
             }
         }
 
-        .ribbon-menu {
-            .active-container {
-                .ribbon-button, .ribbon-tool-button, .ribbon-icon-button {
-                    border-color: @schemeBorderColor;
-                    background-color: @blendControl!important;
-                }
-            }
-        }
-
-
-        */
+    }
 }
