@@ -48,10 +48,10 @@
 </head>
 <body>
     <div class="container" style="margin-bottom: 200px;">
-        <div class="pos-fixed z-fullscreen" style="top: 10px; right: 10px;">
+        <div class="pos-fixed z-top" style="top: 10px; right: 10px;">
             <button class="button" onclick="changeSchemeTo('darcula.css')">darcula</button>
-            <button class="button" onclick="changeSchemeTo('red-alert.css')">red-alert</button>
-            <button class="button" onclick="changeSchemeTo('sky-net.css')">sky-net</button>
+            <button class="button" style="background-color: #AF0015" onclick="changeSchemeTo('red-alert.css')">red-alert</button>
+            <button class="button" style="background-color: #0CA9F2" onclick="changeSchemeTo('sky-net.css')">sky-net</button>
         </div>
         <h1>Metro 4 Schemes <small id="scheme-name">darcula.css</small></h1>
         <hr class="thin">
@@ -515,7 +515,7 @@
         </div>
 
         <h2 id="notify">Notify</h2>
-        <div class="example">
+        <div class="example text-center">
             <button class="button" onclick="Metro.notify.create('This is a notify.', 'Title', {keepOpen: false});">Notify me</button>
         </div>
 
@@ -527,8 +527,8 @@
         </div>
 
         <h2 id="popover">Popovers</h2>
-        <div class="example">
-            <button class="button" data-role="popover" data-popover-position="right" data-popover-text="This is popover!">Hover Me</button>
+        <div class="example text-center">
+            <button class="button" data-role="popover" data-popover-position="top" data-popover-text="This is popover!">Hover Me</button>
         </div>
 
         <h2 id="rating">Rating</h2>
