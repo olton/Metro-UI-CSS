@@ -4,6 +4,12 @@
 .fg-scheme {
   color: #000000 !important;
 }
+.bg-scheme-secondary {
+  background-color: #F8F8F8 !important;
+}
+.fg-scheme-secondary {
+  color: #000000 !important;
+}
 .bg-control {
   background-color: #AF0015 !important;
 }
@@ -12,6 +18,9 @@
 }
 .bd-default {
   border-color: #AF0015 !important;
+}
+.disabled {
+  cursor: default;
 }
 body {
   font-size: 16px;
@@ -398,6 +407,10 @@ textarea.focused,
 .keypad .key.service-key {
   background-color: #7c000f;
 }
+.hint {
+  background-color: #F8F8F8;
+  color: #000000;
+}
 .listview {
   background-color: #ffffff;
   color: #000000;
@@ -418,7 +431,7 @@ textarea.focused,
   border-top-color: #AF0015;
 }
 .master {
-  background-color: #ffffff;
+  background-color: #F8F8F8;
   color: #000000;
 }
 .master .controls .next,
@@ -429,8 +442,8 @@ textarea.focused,
   border-color: #AF0015;
 }
 .navview .navview-pane {
-  background-color: #AF0015;
-  color: #ffffff;
+  background-color: #F8F8F8;
+  color: #000000;
 }
 .navview .navview-pane .pull-button:hover,
 .navview .navview-pane .holder:hover,
@@ -458,16 +471,18 @@ textarea.focused,
   color: #000000;
 }
 .notify {
-  background-color: #AF0015;
-  color: #ffffff;
+  background-color: #F8F8F8;
+  color: #000000;
   border: 1px solid #AF0015;
 }
 .panel {
-  background-color: #AF0015;
-  color: #ffffff;
+  background-color: #F8F8F8;
+  color: #000000;
   border-color: rgba(175, 0, 21, 0.25) !important;
 }
 .panel .panel-title {
+  background-color: #AF0015;
+  color: #ffffff;
   border-bottom-color: rgba(255, 255, 255, 0.25);
 }
 .panel .panel-title .dropdown-toggle {
@@ -488,8 +503,15 @@ textarea.focused,
   background-color: #AF0015;
   color: #ffffff;
 }
+.window .window-content {
+  background-color: #F8F8F8;
+  color: #000000;
+}
+.resize-element::after {
+  border-bottom-color: #AF0015;
+}
 .popover {
-  background-color: #ffffff;
+  background-color: #F8F8F8;
   color: #000000;
   border-color: #AF0015;
 }
@@ -505,91 +527,91 @@ textarea.focused,
 .rating:not(.static) .stars li:hover ~ li {
   color: rgba(175, 0, 21, 0.25) !important;
 }
+.sidenav-simple,
+.sidenav-counter {
+  background-color: #ffffff;
+  color: #AF0015;
+}
+.sidenav-simple .active,
+.sidenav-counter .active,
+.sidenav-simple li.active:hover,
+.sidenav-counter li.active:hover {
+  background-color: #AF0015;
+  color: #ffffff;
+}
+.sidenav-simple li.disabled,
+.sidenav-counter li.disabled {
+  color: rgba(255, 255, 255, 0.25) !important;
+}
+.sidenav-m3 {
+  background-color: #AF0015;
+  color: #ffffff;
+}
+.sidenav-m3 a {
+  background-color: #AF0015;
+}
+.sidenav-m3 a:hover {
+  background-color: rgba(29, 29, 29, 0.1);
+}
+.sidenav-m3 li.disabled {
+  color: rgba(255, 255, 255, 0.25) !important;
+}
+.sidenav-m3 li + li {
+  border-top-color: #AF0015;
+}
+.sidenav-m3 .d-menu {
+  background-color: #7c000f !important;
+  border-color: #AF0015;
+  margin-bottom: 4px;
+}
+.sidenav-m3 .d-menu li {
+  border-color: #AF0015 !important;
+  color: #ffffff !important;
+}
+.sidenav-m3 .d-menu li.disabled {
+  color: rgba(255, 255, 255, 0.25) !important;
+}
+.sidenav-m3 .dropdown-toggle::before {
+  border-color: #ffffff;
+}
+.slider .backside {
+  background-color: rgba(175, 0, 21, 0.25);
+}
+.slider .buffer {
+  background-color: #ffffff;
+}
+.slider .complete {
+  background-color: #AF0015;
+}
+.slider .marker {
+  background-color: #000000;
+}
+.stepper::before {
+  background-color: #F8F8F8;
+}
+.stepper .step {
+  background-color: rgba(175, 0, 21, 0.25);
+  color: #ffffff;
+}
+.stepper .step.complete {
+  background-color: #AF0015;
+  color: #ffffff;
+}
+.stepper .step.current {
+  background-color: #000000;
+  color: #ffffff;
+}
 /*
 
 
 
-        // Sidenav
-        .sidenav-simple, .sidenav-counter {
-            background-color: @schemeControlFillColor;
-            color: @schemeControlTextColor;
 
-            .active, li.active:hover {
-                background-color: @blendControl;
-                color: @schemeControlTextColor;
-            }
-        }
 
-        .sidenav-m3 {
-            background-color: @schemeControlFillColor;
-            color: @schemeControlTextColor;
-
-            a {
-                background-color: @schemeControlFillColor;
-
-                &:hover {
-                    background-color: darken(@schemeControlFillColor, 2%);
-                }
-            }
-
-            li + li {
-                border-top-color: @schemeBorderColor;
-            }
-
-            .d-menu {
-                border-color: @schemeControlFillColor;
-                margin-bottom: 4px;
-                li {
-                    border-top-color: @schemeBorderColor;
-                }
-            }
-        }
-
-        // Slider
-        .slider {
-            .backside {
-                background-color: @schemeControlFillColor;
-            }
-
-            .buffer {
-                background-color: @schemeControlColor;
-            }
-
-            .complete {
-                background-color: @schemeControlTextColor;
-            }
-
-            .marker {
-                background-color: @schemeTextColor;
-            }
-        }
-
-        // Stepper
-        .stepper {
-            &::before {
-                background-color: @schemeControlFillColor;
-            }
-            .step {
-                background-color: @schemeControlFillColor;
-                color: @schemeControlTextColor;
-
-                &.complete {
-                    background-color: darken(@schemeControlTextColor, 30%);
-                    color: contrast(@schemeControlTextColor);
-                }
-
-                &.current {
-                    background-color: @schemeTextColor;
-                    color: contrast(@schemeTextColor);
-                }
-
-            }
-        }
 
         // Streamer
         .streamer {
             .streams {
-                background-color: @schemeBackgroundColor;
+                background-color: @schemeBackground;
                 color: @schemeTextColor;
             }
 
@@ -603,7 +625,7 @@ textarea.focused,
             }
 
             .event-group {
-                background-color: @schemeBackgroundColor;
+                background-color: @schemeBackground;
                 color: @schemeTextColor;
             }
 
@@ -641,7 +663,7 @@ textarea.focused,
 
         // Table
         .table {
-            background-color: @schemeBackgroundColor;
+            background-color: @schemeBackground;
             color: @schemeControlTextColor;
 
             thead {
@@ -685,7 +707,7 @@ textarea.focused,
 
         // Tabs
         .tabs {
-            background-color: @schemeBackgroundColor;
+            background-color: @schemeBackground;
             color: @schemeControlTextColor;
             border-color: @schemeBorderColor;
 
@@ -755,7 +777,7 @@ textarea.focused,
 
         // Treeview
         .treeview {
-            background-color: @schemeBackgroundColor;
+            background-color: @schemeBackground;
             color: @schemeControlTextColor;
 
             .node-toggle {
@@ -773,7 +795,7 @@ textarea.focused,
 
         // Wizard
         .wizard {
-            background-color: @schemeBackgroundColor;
+            background-color: @schemeBackground;
             color: @schemeControlTextColor;
             border-color: @schemeBorderColor;
 
@@ -829,6 +851,26 @@ textarea.focused,
 
 
         // Ribbon menu
+
+        .ribbon-menu {
+            .tabs-holder {
+
+                .static {
+                    background-color: @orange;
+                    color: @white;
+                    &:hover {
+                        border-color: @transparent!important;
+                    }
+                }
+
+            }
+
+            .content-holder {
+                border-left: none;
+                border-right: none;
+            }
+        }
+
         .ribbon-menu {
             .tabs-holder {
                 border-bottom-color: @schemeBorderColor;
@@ -986,15 +1028,4 @@ textarea.focused,
         */
 .navview .navview-pane .navview-menu li.active::before {
   background-color: #ffffff;
-}
-.ribbon-menu .tabs-holder .static {
-  background-color: #CE352C;
-  color: #ffffff;
-}
-.ribbon-menu .tabs-holder .static:hover {
-  border-color: transparent !important;
-}
-.ribbon-menu .content-holder {
-  border-left: none;
-  border-right: none;
 }

@@ -2,19 +2,28 @@
 @import (once) "../../include/mixins";
 
 .scheme-builder (
-    @schemeBackgroundColor,
+    @schemeBackground,
+    @schemeBackgroundSecondary,
     @schemeTextColor,
+    @schemeTextColorSecondary,
     @schemeControlColor,
     @schemeControlTextColor,
     @schemeFontFamily,
     @schemeFontSize
 ) {
 
+    @blendBackground: rgba(red(@schemeBackground), green(@schemeBackground), blue(@schemeBackground), .25);
+    @blendBackgroundSecondary: rgba(red(@schemeBackgroundSecondary), green(@schemeBackgroundSecondary), blue(@schemeBackgroundSecondary), .25);
+    @blendTextColor: rgba(red(@schemeTextColor), green(@schemeTextColor), blue(@schemeTextColor), .25);
+    @blendTextColorSecondary: rgba(red(@schemeTextColorSecondary), green(@schemeTextColorSecondary), blue(@schemeTextColorSecondary), .25);
     @blendControlColor: rgba(red(@schemeControlColor), green(@schemeControlColor), blue(@schemeControlColor), .25);
+    @blendControlTextColor: rgba(red(@schemeControlTextColor), green(@schemeControlTextColor), blue(@schemeControlTextColor), .25);
     @schemeDividerColor: rgba(red(@schemeControlTextColor), green(@schemeControlTextColor), blue(@schemeControlTextColor), .25);
 
-    .bg-scheme {background-color: @schemeBackgroundColor!important;}
+    .bg-scheme {background-color: @schemeBackground!important;}
     .fg-scheme {color: @schemeTextColor!important;}
+    .bg-scheme-secondary {background-color: @schemeBackgroundSecondary!important;}
+    .fg-scheme-secondary {color: @schemeTextColorSecondary!important;}
     .bg-control {background-color: @schemeControlColor!important;}
     .fg-control {color: @schemeControlTextColor!important;}
 
@@ -22,11 +31,15 @@
         border-color: @schemeControlColor!important;
     }
 
+    .disabled {
+        cursor: default;
+    }
+
     body {
         font-size: @schemeFontSize;
         font-family: @schemeFontFamily;
         color: @schemeTextColor;
-        background-color: @schemeBackgroundColor;
+        background-color: @schemeBackground;
     }
 
     hr {
@@ -48,7 +61,7 @@
     input[type=week],
     input[type=file],
     select, textarea, .file, .input, .textarea, .select {
-        background-color: @schemeBackgroundColor;
+        background-color: @schemeBackground;
         color: @schemeTextColor;
         border-color: @schemeControlColor !important;
 
@@ -184,7 +197,7 @@
     }
 
     .breadcrumbs {
-        background-color: @schemeBackgroundColor;
+        background-color: @schemeBackground;
         color: @schemeControlColor;
 
         .page-item {
@@ -404,7 +417,7 @@
 
     // Date picker and time picker
     .wheel-picker {
-        background-color: @schemeBackgroundColor;
+        background-color: @schemeBackground;
         color: @schemeTextColor;
 
         .date-wrapper, .time-wrapper {
@@ -430,7 +443,7 @@
 
     // Dialog
     .dialog {
-        background-color: @schemeBackgroundColor;
+        background-color: @schemeBackground;
         color: @schemeTextColor;
         border: 1px solid @schemeControlColor;
 
@@ -442,7 +455,7 @@
     // Keypad
     .keypad {
         .keys {
-            background-color: @schemeBackgroundColor;
+            background-color: @schemeBackground;
             border-color: @schemeControlColor;
             color: @schemeTextColor;
         }
@@ -454,10 +467,14 @@
     }
 
     // Hints
+    .hint {
+        background-color: @schemeBackgroundSecondary;
+        color: @schemeTextColor;
+    }
 
     // Listview
     .listview {
-        background-color: @schemeBackgroundColor;
+        background-color: @schemeBackground;
         color: @schemeTextColor;
 
         .node {
@@ -489,7 +506,7 @@
 
     // Master
     .master {
-        background-color: @schemeBackgroundColor;
+        background-color: @schemeBackgroundSecondary;
         color: @schemeTextColor;
 
         .controls {
@@ -506,8 +523,8 @@
     // navview
     .navview {
         .navview-pane {
-            background-color: @schemeControlColor;
-            color: @schemeControlTextColor;
+            background-color: @schemeBackgroundSecondary;
+            color: @schemeTextColorSecondary;
 
             .pull-button, .holder, .navview-menu li a {
                 &:hover {
@@ -529,25 +546,27 @@
         }
 
         .navview-content {
-            background-color: @schemeBackgroundColor;
+            background-color: @schemeBackground;
             color: @schemeTextColor;
         }
     }
 
     // Notify
     .notify {
-        background-color: @schemeControlColor;
-        color: @schemeControlTextColor;
+        background-color: @schemeBackgroundSecondary;
+        color: @schemeTextColorSecondary;
         border: 1px solid @schemeControlColor;
     }
 
     // Panel
     .panel {
-        background-color: @schemeControlColor;
-        color: @schemeControlTextColor;
+        background-color: @schemeBackgroundSecondary;
+        color: @schemeTextColorSecondary;
         border-color: @blendControlColor!important;
 
         .panel-title {
+            background-color: @schemeControlColor;
+            color: @schemeControlTextColor;
             border-bottom-color: @schemeDividerColor;
 
             .dropdown-toggle {
@@ -566,19 +585,29 @@
     // Window
     .window {
         border-color: @blendControlColor;
-        background-color: @schemeBackgroundColor;
+        background-color: @schemeBackground;
         color: @schemeTextColor;
 
         .window-caption {
             background-color: @schemeControlColor;
             color: @schemeControlTextColor;
         }
+        .window-content {
+            background-color: @schemeBackgroundSecondary;
+            color: @schemeTextColorSecondary;
+        }
+    }
+
+    .resize-element {
+        &::after {
+            border-bottom-color: @schemeControlColor;
+        }
     }
 
     // Popovers
     .popover {
-        background-color: @schemeBackgroundColor;
-        color: @schemeTextColor;
+        background-color: @schemeBackgroundSecondary;
+        color: @schemeTextColorSecondary;
         border-color: @schemeControlColor;
     }
 
@@ -611,91 +640,118 @@
         }
     }
 
+    // Sidenav
+    .sidenav-simple, .sidenav-counter {
+        background-color: @schemeBackground;
+        color: @schemeControlColor;
+
+        .active, li.active:hover {
+            background-color: @schemeControlColor;
+            color: @schemeControlTextColor;
+        }
+
+        li {
+            &.disabled {
+                color: @blendControlTextColor!important;
+            }
+        }
+    }
+
+    .sidenav-m3 {
+        background-color: @schemeControlColor;
+        color: @schemeControlTextColor;
+
+        a {
+            background-color: @schemeControlColor;
+
+            &:hover {
+                background-color: @hoverBackground;
+            }
+        }
+
+        li {
+            &.disabled {
+                color: @blendControlTextColor!important;
+            }
+        }
+
+        li + li {
+            border-top-color: @schemeControlColor;
+        }
+
+        .d-menu {
+            background-color: darken(@schemeControlColor, 10%)!important;
+            border-color: @schemeControlColor;
+            margin-bottom: 4px;
+            li {
+                border-color: @schemeControlColor!important;
+                color: @schemeControlTextColor!important;
+
+                &.disabled {
+                    color: @blendControlTextColor!important;
+                }
+            }
+        }
+
+        .dropdown-toggle {
+            &::before {
+                border-color: @schemeControlTextColor;
+            }
+        }
+    }
+
+    // Slider
+    .slider {
+        .backside {
+            background-color: @blendControlColor;
+        }
+
+        .buffer {
+            background-color: @schemeControlTextColor;
+        }
+
+        .complete {
+            background-color: @schemeControlColor;
+        }
+
+        .marker {
+            background-color: @schemeTextColor;
+        }
+    }
+
+    // Stepper
+    .stepper {
+        &::before {
+            background-color: @schemeBackgroundSecondary;
+        }
+        .step {
+            background-color: @blendControlColor;
+            color: @schemeControlTextColor;
+
+            &.complete {
+                background-color: @schemeControlColor;
+                color: @schemeControlTextColor;
+            }
+
+            &.current {
+                background-color: @schemeTextColor;
+                color: contrast(@schemeTextColor);
+            }
+
+        }
+    }
+
     /*
 
 
 
-        // Sidenav
-        .sidenav-simple, .sidenav-counter {
-            background-color: @schemeControlFillColor;
-            color: @schemeControlTextColor;
 
-            .active, li.active:hover {
-                background-color: @blendControl;
-                color: @schemeControlTextColor;
-            }
-        }
 
-        .sidenav-m3 {
-            background-color: @schemeControlFillColor;
-            color: @schemeControlTextColor;
-
-            a {
-                background-color: @schemeControlFillColor;
-
-                &:hover {
-                    background-color: darken(@schemeControlFillColor, 2%);
-                }
-            }
-
-            li + li {
-                border-top-color: @schemeBorderColor;
-            }
-
-            .d-menu {
-                border-color: @schemeControlFillColor;
-                margin-bottom: 4px;
-                li {
-                    border-top-color: @schemeBorderColor;
-                }
-            }
-        }
-
-        // Slider
-        .slider {
-            .backside {
-                background-color: @schemeControlFillColor;
-            }
-
-            .buffer {
-                background-color: @schemeControlColor;
-            }
-
-            .complete {
-                background-color: @schemeControlTextColor;
-            }
-
-            .marker {
-                background-color: @schemeTextColor;
-            }
-        }
-
-        // Stepper
-        .stepper {
-            &::before {
-                background-color: @schemeControlFillColor;
-            }
-            .step {
-                background-color: @schemeControlFillColor;
-                color: @schemeControlTextColor;
-
-                &.complete {
-                    background-color: darken(@schemeControlTextColor, 30%);
-                    color: contrast(@schemeControlTextColor);
-                }
-
-                &.current {
-                    background-color: @schemeTextColor;
-                    color: contrast(@schemeTextColor);
-                }
-
-            }
-        }
 
         // Streamer
         .streamer {
             .streams {
-                background-color: @schemeBackgroundColor;
+                background-color: @schemeBackground;
                 color: @schemeTextColor;
             }
 
@@ -709,7 +765,7 @@
             }
 
             .event-group {
-                background-color: @schemeBackgroundColor;
+                background-color: @schemeBackground;
                 color: @schemeTextColor;
             }
 
@@ -747,7 +803,7 @@
 
         // Table
         .table {
-            background-color: @schemeBackgroundColor;
+            background-color: @schemeBackground;
             color: @schemeControlTextColor;
 
             thead {
@@ -791,7 +847,7 @@
 
         // Tabs
         .tabs {
-            background-color: @schemeBackgroundColor;
+            background-color: @schemeBackground;
             color: @schemeControlTextColor;
             border-color: @schemeBorderColor;
 
@@ -861,7 +917,7 @@
 
         // Treeview
         .treeview {
-            background-color: @schemeBackgroundColor;
+            background-color: @schemeBackground;
             color: @schemeControlTextColor;
 
             .node-toggle {
@@ -879,7 +935,7 @@
 
         // Wizard
         .wizard {
-            background-color: @schemeBackgroundColor;
+            background-color: @schemeBackground;
             color: @schemeControlTextColor;
             border-color: @schemeBorderColor;
 
@@ -935,6 +991,26 @@
 
 
         // Ribbon menu
+
+        .ribbon-menu {
+            .tabs-holder {
+
+                .static {
+                    background-color: @orange;
+                    color: @white;
+                    &:hover {
+                        border-color: @transparent!important;
+                    }
+                }
+
+            }
+
+            .content-holder {
+                border-left: none;
+                border-right: none;
+            }
+        }
+
         .ribbon-menu {
             .tabs-holder {
                 border-bottom-color: @schemeBorderColor;
