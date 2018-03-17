@@ -25752,6 +25752,11 @@ video:-webkit-full-screen {
 .treeview li .radio .caption {
   line-height: 1;
 }
+.treeview li .switch,
+.treeview li .switch .check,
+.treeview li .switch .caption {
+  line-height: 1;
+}
 .listview {
   position: relative;
   margin: 0;

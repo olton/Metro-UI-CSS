@@ -18,6 +18,20 @@
     @schemeFontSize
 );
 
+.navview {
+    .navview-pane {
+        .navview-menu {
+            li {
+                &.active {
+                    &::before {
+                        background-color: @white;
+                    }
+                }
+            }
+        }
+    }
+}
+
 .ribbon-menu {
     .tabs-holder {
 

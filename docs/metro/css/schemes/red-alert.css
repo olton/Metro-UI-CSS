@@ -285,7 +285,7 @@ textarea.focused,
           box-shadow: none;
 }
 .t-menu li a {
-  border-color: rgba(255, 255, 255, 0.5) !important;
+  border-color: rgba(255, 255, 255, 0.25) !important;
 }
 .t-menu .dropdown-toggle::after {
   border-color: transparent transparent #ffffff transparent;
@@ -346,14 +346,14 @@ textarea.focused,
   color: #ffffff;
 }
 .calendar .calendar-footer {
-  border-top: #AF0015;
+  border-top-color: rgba(175, 0, 21, 0.25);
 }
 .calendar .week-days {
-  border-top-color: #AF0015;
-  border-bottom-color: #AF0015;
+  border-top-color: rgba(175, 0, 21, 0.25);
+  border-bottom-color: rgba(175, 0, 21, 0.25);
 }
 [class*=calendar-wide] .calendar-footer {
-  border-left-color: #AF0015 !important;
+  border-left-color: rgba(175, 0, 21, 0.25);
 }
 .countdown {
   line-height: 1.5;
@@ -398,157 +398,106 @@ textarea.focused,
 .keypad .key.service-key {
   background-color: #7c000f;
 }
+.listview {
+  background-color: #ffffff;
+  color: #000000;
+}
+.listview .node:hover {
+  background-color: rgba(175, 0, 21, 0.25);
+  color: #ffffff;
+}
+.listview .node.current-select {
+  background-color: #AF0015;
+  color: #ffffff;
+  border-color: #AF0015 !important;
+}
+.listview .node-group .node-toggle::before {
+  border-color: #000000;
+}
+.listview.view-content .node + .node {
+  border-top-color: #AF0015;
+}
+.master {
+  background-color: #ffffff;
+  color: #000000;
+}
+.master .controls .next,
+.master .controls .prev {
+  color: #AF0015;
+}
+.master .pages {
+  border-color: #AF0015;
+}
+.navview .navview-pane {
+  background-color: #AF0015;
+  color: #ffffff;
+}
+.navview .navview-pane .pull-button:hover,
+.navview .navview-pane .holder:hover,
+.navview .navview-pane .navview-menu li a:hover {
+  background-color: rgba(29, 29, 29, 0.1);
+}
+.navview .navview-pane .pull-button:active,
+.navview .navview-pane .holder:active,
+.navview .navview-pane .navview-menu li a:active,
+.navview .navview-pane .pull-button:focus,
+.navview .navview-pane .holder:focus,
+.navview .navview-pane .navview-menu li a:focus {
+  background-color: #7c000f;
+}
+.navview .navview-pane .pull-button:focus,
+.navview .navview-pane .holder:focus,
+.navview .navview-pane .navview-menu li a:focus {
+  border: 2px solid #7c000f;
+}
+.navview .navview-pane .dropdown-toggle::after {
+  border-color: transparent transparent #ffffff transparent;
+}
+.navview .navview-content {
+  background-color: #ffffff;
+  color: #000000;
+}
+.notify {
+  background-color: #AF0015;
+  color: #ffffff;
+  border: 1px solid #AF0015;
+}
+.panel {
+  background-color: #AF0015;
+  color: #ffffff;
+  border-color: rgba(175, 0, 21, 0.25) !important;
+}
+.panel .panel-title {
+  border-bottom-color: rgba(255, 255, 255, 0.25);
+}
+.panel .panel-title .dropdown-toggle {
+  border-left-color: rgba(255, 255, 255, 0.25);
+}
+.panel .panel-title .dropdown-toggle::before {
+  border-color: #ffffff;
+}
+.panel .panel-title .icon {
+  border-right-color: rgba(255, 255, 255, 0.25);
+}
+.popover {
+  background-color: #ffffff;
+  color: #000000;
+  border-color: #AF0015;
+}
+.rating .stars li {
+  color: rgba(175, 0, 21, 0.25);
+}
+.rating .stars li.on {
+  color: #AF0015;
+}
+.rating:not(.static) .stars:hover li {
+  color: #AF0015;
+}
+.rating:not(.static) .stars li:hover ~ li {
+  color: rgba(175, 0, 21, 0.25) !important;
+}
 /*
 
-
-
-
-
-        // Hints
-
-
-        // Listview
-        .listview {
-            background-color: lighten(@schemeBackgroundColor, 1%);
-            color: @schemeControlTextColor;
-
-            .node {
-                &:hover {
-                    background-color: @schemeControlFillColor;
-                    color: @schemeControlTextColor;
-                }
-                &.current-select {
-                    background-color: @schemeControlFillColor;
-                    border-color: @schemeBorderColor!important;
-                }
-            }
-
-            .node-group {
-                .node-toggle {
-                    &::before {
-                        border-color: @schemeControlTextColor;
-                    }
-                }
-            }
-
-            &.view-content {
-                .node + .node {
-                    border-top-color: @schemeBorderColor;
-                }
-            }
-        }
-
-        // Master
-        .master {
-            background-color: @schemeBackgroundColor;
-            color: @schemeTextColor;
-
-            .controls {
-                .next, .prev {
-                    color: @schemeControlTextColor;
-                }
-            }
-
-            .pages {
-                border-color: @schemeBorderColor;
-            }
-        }
-
-        // navview
-        .navview {
-            .navview-pane {
-                background-color: @schemeControlFillColor;
-                color: @schemeControlTextColor;
-
-                .pull-button, .holder, .navview-menu li a {
-                    &:hover {
-                        background-color: @hoverBackground;
-                    }
-                    &:active, &:focus {
-                        background-color: darken(@schemeControlFillColor, 4%);
-                    }
-                    &:focus {
-                        border: 2px solid @hoverBackground;
-                    }
-                }
-
-                .dropdown-toggle {
-                    &::after {
-                        border-color: transparent transparent @schemeControlTextColor transparent;
-                    }
-                }
-            }
-
-            .navview-content {
-                background-color: @schemeBackgroundColor;
-                color: @schemeTextColor;
-            }
-        }
-
-        // Notify
-        .notify {
-            background-color: @schemeControlFillColor;
-            color: @schemeControlTextColor;
-            border: 1px solid @schemeBorderColor;
-        }
-
-        // Panel
-        .panel {
-            background-color: @schemeControlFillColor;
-            color: @schemeControlTextColor;
-            border-color: @schemeBorderColor!important;
-
-            .panel-title {
-                border-bottom-color: @schemeBorderColor;
-
-                .dropdown-toggle {
-                    border-left-color: @schemeBorderColor;
-                    &::before {
-                        border-color: @schemeControlTextColor;
-                    }
-                }
-
-                .icon {
-                    border-right-color: @schemeBorderColor;
-                }
-            }
-        }
-
-        // Popovers
-        .popover {
-            background-color: @schemeControlFillColor;
-            color: @schemeControlTextColor;
-            border-color: @schemeBorderColor;
-        }
-
-        // Rating
-
-        @ratingOff: darken(@schemeControlTextColor, 50%);
-        @ratingOn: @schemeControlTextColor;
-
-        .rating {
-            .stars {
-                li {
-                    color: @ratingOff;
-
-                    &.on {
-                        color: @ratingOn;
-                    }
-                }
-            }
-        }
-
-        .rating:not(.static) .stars {
-            &:hover {
-                li {
-                    color: @ratingOn;
-                }
-            }
-
-            li:hover ~ li {
-                color: @ratingOff!important;
-            }
-        }
 
         // Ribbon menu
         .ribbon-menu {
@@ -1034,6 +983,9 @@ textarea.focused,
             }
         }
         */
+.navview .navview-pane .navview-menu li.active::before {
+  background-color: #ffffff;
+}
 .ribbon-menu .tabs-holder .static {
   background-color: #CE352C;
   color: #ffffff;

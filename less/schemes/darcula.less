@@ -18,6 +18,40 @@
     @schemeFontSize
 );
 
+.navview {
+    .navview-pane {
+        .navview-menu {
+            li {
+                &.active {
+                    &::before {
+                        background-color: @orange;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@ratingOn: @light;
+
+.rating {
+    .stars {
+        li {
+            &.on {
+                color: @ratingOn;
+            }
+        }
+    }
+    &:not(.static) .stars {
+        &:hover {
+            li {
+                color: @ratingOn;
+            }
+        }
+    }
+}
+
+
 .ribbon-menu {
     .tabs-holder {
 
