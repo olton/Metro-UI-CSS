@@ -896,6 +896,24 @@ textarea.focused,
   border-color: rgba(175, 0, 21, 0.25);
   background-color: rgba(255, 255, 255, 0.25);
 }
+.ribbon-menu .ribbon-split-button:hover {
+  border-color: rgba(175, 0, 21, 0.25);
+}
+.ribbon-menu .ribbon-split-button:hover .ribbon-split {
+  border-color: rgba(175, 0, 21, 0.25);
+}
+.ribbon-menu .ribbon-dropdown {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+.ribbon-menu .ribbon-dropdown li:hover {
+  border-color: rgba(175, 0, 21, 0.25);
+  background-color: rgba(248, 248, 248, 0.25);
+}
+.ribbon-menu .ribbon-dropdown .checked::after {
+  border-color: rgba(175, 0, 21, 0.25);
+  background-color: rgba(248, 248, 248, 0.25);
+}
 .navview .navview-pane .navview-menu li.active::before {
   background-color: #ffffff;
 }

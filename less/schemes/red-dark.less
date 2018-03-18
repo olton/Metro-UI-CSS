@@ -1,11 +1,11 @@
 @import (once) "../include/vars";
 @import (once) "builder/builder";
 
-@schemeBackground: #2B2B2B;
-@schemeBackgroundSecondary: #3a3a3a;
+@schemeBackground: #212121;
+@schemeBackgroundSecondary: #000000;
 @schemeTextColor: #ffffff;
-@schemeTextColorSecondary: #BBBBBB;
-@schemeControlColor: #585b5d;
+@schemeTextColorSecondary: #919396;
+@schemeControlColor: #730014;
 @schemeControlTextColor: #ffffff;
 @schemeFontFamily: @fontName;
 @schemeFontSize: @fontSize;
@@ -27,7 +27,7 @@
             li {
                 &.active {
                     &::before {
-                        background-color: @orange;
+                        background-color: @white;
                     }
                 }
             }
@@ -35,7 +35,7 @@
     }
 }
 
-@ratingOn: @light;
+@ratingOn: #870015;
 
 .rating {
     .stars {
@@ -56,7 +56,7 @@
 
 .ribbon-menu {
     .ribbon-button, .ribbon-tool-button, .ribbon-split, .ribbon-main, .ribbon-icon-button {
-        color: @schemeControlColor;
+        color: @dark;
     }
 }
 

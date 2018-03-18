@@ -53,6 +53,7 @@
                     <li class="toc-entry"><a href="#_appbar_menu">Menu</a></li>
                     <li class="toc-entry"><a href="#_appbar_dropdown">Dropdown</a></li>
                     <li class="toc-entry"><a href="#_appbar_hamburger">Hamburger</a></li>
+                    <li class="toc-entry"><a href="#_appbar_ie_bugs">IE11 and Edge bugs</a></li>
                 </ul>
 
             </div>
@@ -281,6 +282,19 @@
                 <p>
                     Hamburger button will be created automatically. You no need create it manually.
                 </p>
+
+                <h3 id="_appbar_ie_bugs">IE11 and Edge bugs</h3>
+                <p>
+                    IE11 and Edge can be show <code>.app-bar-menu</code> incorrect. To fix it, you must add next style to page head.
+                    Unfortunately this bug is old, but still not corrected and is associated with the display of lists.
+                </p>
+                <pre><code>
+                    &lt;style&gt;
+                        .app-bar-menu li {
+                            list-style: none!important;
+                        }
+                    &lt;/style&gt;
+                </code></pre>
             </main>
         </div>
 

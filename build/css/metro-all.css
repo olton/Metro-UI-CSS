@@ -26449,6 +26449,10 @@ video:-webkit-full-screen {
   -webkit-transition: width 0.3s ease;
   transition: width 0.3s ease;
 }
+.wizard > section.complete,
+.wizard > .section.complete {
+  cursor: pointer;
+}
 .wizard .action-bar {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -26860,7 +26864,7 @@ video:-webkit-full-screen {
           align-items: center;
   width: 48px;
   height: 48px;
-  background-color: inherit;
+  background-color: transparent;
   margin-bottom: 8px;
   border: 2px solid transparent;
   outline: none;

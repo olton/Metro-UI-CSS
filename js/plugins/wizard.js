@@ -87,13 +87,18 @@ var Wizard = {
     _setHeight: function(){
         var that = this, element = this.element, o = this.options;
         var pages = element.children("section");
+        var max_height = 0;
 
         pages.children(".page-content").css("max-height", "none");
 
         $.each(pages, function(){
-            var c = $(this).children(".page-content");
-            c.css("max-height", c.outerHeight(true));
+            var h = $(this).height();
+            if (max_height < parseInt(h)) {
+                max_height = h;
+            }
         });
+
+        element.height(max_height);
     },
 
     _createEvents: function(){
@@ -117,6 +122,11 @@ var Wizard = {
 
         element.on(Metro.events.click, ".wizard-btn-finish", function(){
             Utils.exec(o.onFinishClick, [that.current, element])
+        });
+
+        element.on(Metro.events.click, ".complete", function(){
+            var index = $(this).index() + 1;
+            that.toPage(index);
         });
 
         $(window).on(Metro.events.resize, function(){
