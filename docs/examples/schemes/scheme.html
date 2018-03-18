@@ -37,12 +37,16 @@
         h2 {
             margin-top: 20px;
         }
+        .app-bar-menu li {
+            list-style: none!important;
+        }
     </style>
 
     <script>
         function changeSchemeTo(n){
             $("#color-scheme").attr("href", "../../metro/css/schemes/" + n);
             $("#scheme-name").html(n);
+            Metro.utils.addCssRule(Metro.sheet, ".app-bar-menu li", "list-style: none!important;");
         }
     </script>
 </head>
@@ -51,6 +55,7 @@
         <div class="pos-fixed z-top p-4 bg-light" style="top: 10px; right: 10px;">
             <button class="button" style="background-color: #585b5d" onclick="changeSchemeTo('darcula.css')">darcula</button>
             <button class="button" style="background-color: #AF0015" onclick="changeSchemeTo('red-alert.css')">red-alert</button>
+            <button class="button" style="background-color: #690012" onclick="changeSchemeTo('red-dark.css')">red-dark</button>
             <button class="button" style="background-color: #0CA9F2" onclick="changeSchemeTo('sky-net.css')">sky-net</button>
         </div>
         <h1>Metro 4 Schemes <small id="scheme-name">darcula.css</small></h1>

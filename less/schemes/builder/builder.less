@@ -1022,5 +1022,32 @@
             }
         }
 
+        .ribbon-split-button {
+            &:hover {
+                border-color: @blendControlColor;
+
+                .ribbon-split {
+                    border-color: @blendControlColor;
+                }
+            }
+        }
+
+        .ribbon-dropdown {
+            box-shadow: none;
+
+            li {
+                &:hover {
+                    border-color: @blendControlColor;
+                    background-color: @blendBackgroundSecondary;
+                }
+            }
+
+            .checked {
+                &::after {
+                    border-color: @blendControlColor;
+                    background-color: @blendBackgroundSecondary;
+                }
+            }
+        }
     }
 }
