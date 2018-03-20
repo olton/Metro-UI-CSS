@@ -614,6 +614,10 @@ var Utils = {
         return Object.keys(obj).indexOf(value) > -1;
     },
 
+    inObject: function(obj, key, val){
+        return obj[key] !== undefined && obj[key] === val;
+    },
+
     newCssSheet: function(media){
         var style = document.createElement("style");
 

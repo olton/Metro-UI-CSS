@@ -1,5 +1,5 @@
 /*!
- * Metro 4 Components Library v4.1.0 build 625 (https://metroui.org.ua)
+ * Metro 4 Components Library v4.1.0 build @@build (https://metroui.org.ua)
  * Copyright 2018 Sergey Pimenov
  * Licensed under MIT
  */
@@ -79,7 +79,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.1.0-625",
+    version: "@@version-@@build@@status",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -320,7 +320,7 @@ var Metro = {
             var roles = $this.data('role').split(/\s*,\s*/);
             roles.map(function (func) {
                 try {
-                    if ($.fn[func] !== undefined && $this.data(func + '-initiated') !== true) {
+                    if ($.fn[func] !== undefined && $this.data(func) === undefined) {
                         $.fn[func].call($this);
                         $this.data(func + '-initiated', true);
 
@@ -3426,6 +3426,10 @@ var d = new Date().getTime();
 
     keyInObject: function(){
         return Object.keys(obj).indexOf(value) > -1;
+    },
+
+    inObject: function(obj, key, val){
+        return obj[key] !== undefined && obj[key] === val;
     },
 
     newCssSheet: function(media){
@@ -8608,6 +8612,11 @@ var File = {
     },
 
     _create: function(){
+        this._createStructure();
+        this._createEvents();
+    },
+
+    _createStructure: function(){
         var that = this, element = this.element, o = this.options;
         var prev = element.prev();
         var parent = element.parent();
@@ -8624,22 +8633,8 @@ var File = {
         element.appendTo(container);
         caption.insertBefore(element);
 
-        element.on(Metro.events.change, function(){
-            var val = $(this).val();
-            if (val !== '') {
-                val = val.replace(/.+[\\\/]/, "");
-                caption.html(val);
-                caption.attr('title', val);
-                Utils.exec(o.onSelect, [val, element])
-            }
-        });
-
         button = $("<button>").addClass("button").attr("tabindex", -1).attr("type", "button").html(o.caption);
         button.appendTo(container);
-
-        button.on(Metro.events.click, function(){
-            element.trigger("click");
-        });
 
         if (element.attr('dir') === 'rtl' ) {
             container.addClass("rtl");
@@ -8663,6 +8658,24 @@ var File = {
         } else {
             this.enable();
         }
+    },
+
+    _createEvents: function(){
+        var element = this.element, o = this.options;
+        var parent = element.parent();
+        var caption = parent.find(".caption");
+        parent.on(Metro.events.click, "button, .caption", function(){
+            element.trigger("click");
+        });
+        element.on(Metro.events.change, function(){
+            var val = $(this).val();
+            if (val !== '') {
+                val = val.replace(/.+[\\\/]/, "");
+                caption.html(val);
+                caption.attr('title', val);
+                Utils.exec(o.onSelect, [val, element], element[0]);
+            }
+        });
     },
 
     disable: function(){
@@ -8696,6 +8709,15 @@ var File = {
             case 'disabled': this.toggleState(); break;
             case 'dir': this.toggleDir(); break;
         }
+    },
+
+    destroy: function(){
+        var element = this.element;
+        var parent = element.parent();
+        element.off(Metro.events.change);
+        parent.off(Metro.events.click, "button, .caption");
+        element.insertBefore(parent);
+        parent.remove();
     }
 };
 
@@ -8786,6 +8808,13 @@ var Gravatar = {
             case 'data-size': this.resize(); break;
             case 'data-email': this.email(); break;
         }
+    },
+
+    destroy: function(){
+        var element = this.element;
+        if (element[0].tagName.toLowerCase() !== "img") {
+            element.html("");
+        }
     }
 };
 
@@ -8838,7 +8867,7 @@ var Hint = {
     _create: function(){
         var that = this, element = this.element, o = this.options;
 
-        element.on(Metro.events.enter, function(){
+        element.on(Metro.events.enter + "-hint", function(){
             that.createHint();
             if (o.hintHide > 0) {
                 setTimeout(function(){
@@ -8847,11 +8876,11 @@ var Hint = {
             }
         });
 
-        element.on(Metro.events.leave, function(){
+        element.on(Metro.events.leave + "-hint", function(){
             that.removeHint();
         });
 
-        $(window).on(Metro.events.scroll, function(){
+        $(window).on(Metro.events.scroll + "-hint", function(){
             if (that.hint !== null) that.setPosition();
         });
     },
@@ -8908,6 +8937,7 @@ var Hint = {
     },
 
     removeHint: function(){
+        var that = this;
         var hint = this.hint;
         var element = this.element;
         var options = this.options;
@@ -8918,6 +8948,7 @@ var Hint = {
             setTimeout(function(){
                 hint.hide(0, function(){
                     hint.remove();
+                    that.hint = null;
                 });
             }, timeout);
         }
@@ -8931,6 +8962,14 @@ var Hint = {
         switch (attributeName) {
             case "data-hint-text": this.changeText(); break;
         }
+    },
+
+    destroy: function(){
+        var that = this, elem = this.elem, element = this.element, o = this.options;
+        this.removeHint();
+        element.off(Metro.events.enter + "-hint");
+        element.off(Metro.events.leave + "-hint");
+        $(window).off(Metro.events.scroll + "-hint");
     }
 };
 
@@ -9091,6 +9130,31 @@ var Input = {
         switch (attributeName) {
             case 'disabled': this.toggleState(); break;
         }
+    },
+
+    destroy: function(){
+        var that = this, element = this.element, o = this.options;
+        var parent = element.parent();
+        var clearBtn = parent.find(".input-clear-button");
+        var revealBtn = parent.find(".input-reveal-button");
+        var customBtn = parent.find(".input-custom-button");
+
+        if (clearBtn.length > 0) {
+            clearBtn.off(Metro.events.click);
+        }
+        if (revealBtn.length > 0) {
+            revealBtn.off(Metro.events.start);
+            revealBtn.off(Metro.events.stop);
+        }
+        if (customBtn.length > 0) {
+            clearBtn.off(Metro.events.click);
+        }
+
+        element.off(Metro.events.blur);
+        element.off(Metro.events.focus);
+
+        element.insertBefore(parent);
+        parent.remove();
     }
 };
 
@@ -9103,6 +9167,7 @@ var Keypad = {
         this.element = $(elem);
         this.value = "";
         this.positions = ["top-left", "top", "top-right", "right", "bottom-right", "bottom", "bottom-left", "left"];
+        this.keypad = null;
 
         this._setOptionsFromDOM();
 
@@ -9229,6 +9294,8 @@ var Keypad = {
         } else {
             this.enable();
         }
+
+        this.keypad = keypad;
     },
 
     _setKeysPosition: function(){
@@ -9445,6 +9512,18 @@ var Keypad = {
             case 'disabled': this.toggleState(); break;
             case 'data-position': this.setPosition(); break;
         }
+    },
+
+    destroy: function(){
+        var element = this.element, keypad = this.keypad;
+
+        keypad.off(Metro.events.click, ".keys");
+        keypad.off(Metro.events.click);
+        keypad.off(Metro.events.click, ".key");
+        element.off(Metro.events.change);
+
+        element.insertBefore(keypad);
+        keypad.remove();
     }
 };
 
@@ -14812,6 +14891,7 @@ var Validator = {
     options: {
         submitTimeout: 200,
         interactiveCheck: false,
+        clearInvalid: 0,
         onBeforeSubmit: Metro.noop_true,
         onSubmit: Metro.noop,
         onError: Metro.noop,
@@ -14905,6 +14985,19 @@ var Validator = {
             }, o.submitTimeout);
         } else {
             Utils.exec(o.onErrorForm, [result.log, element], form);
+            console.log(o.clearInvalid);
+            if (o.clearInvalid > 0) {
+                setTimeout(function(){
+                    $.each(inputs, function(){
+                        var inp  = $(this);
+                        if (ValidatorFuncs.is_control(inp)) {
+                            inp.parent().removeClass("invalid");
+                        } else {
+                            inp.removeClass("invalid");
+                        }
+                    })
+                }, o.clearInvalid);
+            }
         }
 
         return result.val === 0;

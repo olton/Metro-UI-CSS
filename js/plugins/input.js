@@ -153,6 +153,31 @@ var Input = {
         switch (attributeName) {
             case 'disabled': this.toggleState(); break;
         }
+    },
+
+    destroy: function(){
+        var that = this, element = this.element, o = this.options;
+        var parent = element.parent();
+        var clearBtn = parent.find(".input-clear-button");
+        var revealBtn = parent.find(".input-reveal-button");
+        var customBtn = parent.find(".input-custom-button");
+
+        if (clearBtn.length > 0) {
+            clearBtn.off(Metro.events.click);
+        }
+        if (revealBtn.length > 0) {
+            revealBtn.off(Metro.events.start);
+            revealBtn.off(Metro.events.stop);
+        }
+        if (customBtn.length > 0) {
+            clearBtn.off(Metro.events.click);
+        }
+
+        element.off(Metro.events.blur);
+        element.off(Metro.events.focus);
+
+        element.insertBefore(parent);
+        parent.remove();
     }
 };
 

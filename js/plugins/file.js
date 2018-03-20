@@ -35,6 +35,11 @@ var File = {
     },
 
     _create: function(){
+        this._createStructure();
+        this._createEvents();
+    },
+
+    _createStructure: function(){
         var that = this, element = this.element, o = this.options;
         var prev = element.prev();
         var parent = element.parent();
@@ -51,22 +56,8 @@ var File = {
         element.appendTo(container);
         caption.insertBefore(element);
 
-        element.on(Metro.events.change, function(){
-            var val = $(this).val();
-            if (val !== '') {
-                val = val.replace(/.+[\\\/]/, "");
-                caption.html(val);
-                caption.attr('title', val);
-                Utils.exec(o.onSelect, [val, element])
-            }
-        });
-
         button = $("<button>").addClass("button").attr("tabindex", -1).attr("type", "button").html(o.caption);
         button.appendTo(container);
-
-        button.on(Metro.events.click, function(){
-            element.trigger("click");
-        });
 
         if (element.attr('dir') === 'rtl' ) {
             container.addClass("rtl");
@@ -90,6 +81,24 @@ var File = {
         } else {
             this.enable();
         }
+    },
+
+    _createEvents: function(){
+        var element = this.element, o = this.options;
+        var parent = element.parent();
+        var caption = parent.find(".caption");
+        parent.on(Metro.events.click, "button, .caption", function(){
+            element.trigger("click");
+        });
+        element.on(Metro.events.change, function(){
+            var val = $(this).val();
+            if (val !== '') {
+                val = val.replace(/.+[\\\/]/, "");
+                caption.html(val);
+                caption.attr('title', val);
+                Utils.exec(o.onSelect, [val, element], element[0]);
+            }
+        });
     },
 
     disable: function(){
@@ -123,6 +132,15 @@ var File = {
             case 'disabled': this.toggleState(); break;
             case 'dir': this.toggleDir(); break;
         }
+    },
+
+    destroy: function(){
+        var element = this.element;
+        var parent = element.parent();
+        element.off(Metro.events.change);
+        parent.off(Metro.events.click, "button, .caption");
+        element.insertBefore(parent);
+        parent.remove();
     }
 };
 

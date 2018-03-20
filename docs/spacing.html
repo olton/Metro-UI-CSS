@@ -85,6 +85,8 @@
                     <li><code>b</code> - <code>margin-bottom</code> or <code>padding-bottom</code></li>
                     <li><code>l</code> - <code>margin-left</code> or <code>padding-left</code></li>
                     <li><code>r</code> - <code>margin-right</code> or <code>padding-right</code></li>
+                    <li><code>x</code> - <code>margin-right</code> and <code>margin-left</code> or <code>padding-right</code> and <code>padding-left</code></li>
+                    <li><code>y</code> - <code>margin-top</code> and <code>margin-bottom</code> or <code>padding-top</code> and <code>padding-bottom</code></li>
                 </ul>
 
                 <p>
@@ -100,6 +102,16 @@
                         This block with dynamic padding
                     &lt;/div&gt;
                 </code></pre>
+                <p class="remark alert">
+                    if you need to have different paddings on different sides, you must define them explicitly for each of the parties.
+                    <pre><code class="html">
+                        &lt;div class="pl-10 pt-4 pr-10 pb-4"&gt;
+                            This block with any paddings
+                        &lt;/div&gt;
+                    </code></pre>
+                </p>
+
+                <h4>Negative margin</h4>
                 <p>
                     Also Metro 4 contains <code>margin</code> with negative value. To use add negative margin, use classes with suffix <code>-minus</code>.
                 </p>

@@ -1,3 +1,12 @@
+### 4.1.1
++ [x] Utils: add method `inObject`
++ [x] Metro.initWidgets: change check rule for defined component
++ [x] Input file: add click on then all elements parts
++ [x] App bar: fix `v-menu` usage
++ [x] Spacing: add `mx-*`, `px-*` classes 
++ [x] Examples: add examples presentation page
++ [x] Examples: add login form example `examples/forms/login.html`
+
 ### 4.1.0
 + [x] Side navigation: new component `sidemenu-simple`
 + [x] Button group: new behavior for `one` mode - all unchecked

@@ -45,7 +45,7 @@ var Hint = {
     _create: function(){
         var that = this, element = this.element, o = this.options;
 
-        element.on(Metro.events.enter, function(){
+        element.on(Metro.events.enter + "-hint", function(){
             that.createHint();
             if (o.hintHide > 0) {
                 setTimeout(function(){
@@ -54,11 +54,11 @@ var Hint = {
             }
         });
 
-        element.on(Metro.events.leave, function(){
+        element.on(Metro.events.leave + "-hint", function(){
             that.removeHint();
         });
 
-        $(window).on(Metro.events.scroll, function(){
+        $(window).on(Metro.events.scroll + "-hint", function(){
             if (that.hint !== null) that.setPosition();
         });
     },
@@ -115,6 +115,7 @@ var Hint = {
     },
 
     removeHint: function(){
+        var that = this;
         var hint = this.hint;
         var element = this.element;
         var options = this.options;
@@ -125,6 +126,7 @@ var Hint = {
             setTimeout(function(){
                 hint.hide(0, function(){
                     hint.remove();
+                    that.hint = null;
                 });
             }, timeout);
         }
@@ -138,6 +140,14 @@ var Hint = {
         switch (attributeName) {
             case "data-hint-text": this.changeText(); break;
         }
+    },
+
+    destroy: function(){
+        var that = this, elem = this.elem, element = this.element, o = this.options;
+        this.removeHint();
+        element.off(Metro.events.enter + "-hint");
+        element.off(Metro.events.leave + "-hint");
+        $(window).off(Metro.events.scroll + "-hint");
     }
 };
 

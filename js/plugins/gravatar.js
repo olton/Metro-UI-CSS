@@ -83,6 +83,13 @@ var Gravatar = {
             case 'data-size': this.resize(); break;
             case 'data-email': this.email(); break;
         }
+    },
+
+    destroy: function(){
+        var element = this.element;
+        if (element[0].tagName.toLowerCase() !== "img") {
+            element.html("");
+        }
     }
 };
 
