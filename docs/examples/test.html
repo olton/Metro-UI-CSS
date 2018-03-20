@@ -34,28 +34,41 @@
 </head>
 <body class="">
 
-<div>
-    <input type="checkbox" data-role="checkbox" data-caption="Checkbox 1">
-    <input type="checkbox" data-role="checkbox" data-caption="Checkbox 2" checked>
-    <input type="checkbox" data-role="checkbox" data-caption="Checkbox 3" disabled>
-    <input type="checkbox" data-role="checkbox" data-caption="Checkbox 4" disabled checked>
-    <input type="checkbox" data-role="checkbox" data-caption="Checkbox 5" data-indeterminate="true">
-</div>
+<div data-role="appbar" class="app-bar-expand-md">
+    <span class="brand">Metro 4</span>
+    <ul class="app-bar-menu">
+        <li>
+            <a href="" class="dropdown-toggle">v-menu</a>
+            <ul class="v-menu" data-role="dropdown">
+                <li class="menu-title">General</li>
+                <li><a href="#"><span class="mif-home icon"></span> Home</a></li>
+                <li class="menu-title">Products</li>
+                <li><a href="#"><span class="mif-windows icon"></span> Windows</a></li>
+                <li class="disabled"><a href="#"><span class="mif-library icon"></span> Office 365</a></li>
+                <li><a href="#"><span class="mif-skype icon"></span> Skype</a></li>
+                <li class="menu-title">Support</li>
+                <li>
+                    <a href="#" data-hotkey="Alt+F1">Community</a>
+                    <ul class="v-menu" data-role="dropdown">
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Github</a></li>
+                        <li><a href="#">Forum</a></li>
+                        <li class="divider"></li>
+                        <li class="p-2 d-flex flex-justify-center">
+                            <button class="button square primary m-1"><span class="mif-target"></span></button>
+                            <button class="button square success m-1"><span class="mif-apps"></span></button>
+                            <button class="button square alert m-1"><span class="mif-file-code"></span></button>
+                            <button class="button square warning m-1"><span class="mif-download"></span></button>
+                        </li>
+                    </ul>
+                </li>
+                <li class="menu-title">Shop</li>
+                <li><a href="#"><span class="mif-cart icon"></span> Cart</a></li>
 
-<div>
-    <input name="r1" type="radio" data-role="radio" data-caption="Radio 1">
-    <input name="r1" type="radio" data-role="radio" data-caption="Radio 2" checked>
-    <input name="r2" type="radio" data-role="radio" data-caption="Radio 3" disabled>
-    <input name="r2" type="radio" data-role="radio" data-caption="Radio 4" disabled checked>
+            </ul>
+        </li>
+    </ul>
 </div>
-
-<div>
-    <input type="checkbox" data-role="switch" data-caption="Switch 1">
-    <input type="checkbox" data-role="switch" data-caption="Switch 2" checked>
-    <input type="checkbox" data-role="switch" data-caption="Switch 3" disabled>
-    <input type="checkbox" data-role="switch" data-caption="Switch 4" disabled checked>
-</div>
-
 
 <script src="../js/jquery-3.3.1.min.js"></script>
 <script src="../metro/js/metro.js"></script>

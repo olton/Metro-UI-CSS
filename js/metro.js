@@ -302,7 +302,7 @@ var Metro = {
             var roles = $this.data('role').split(/\s*,\s*/);
             roles.map(function (func) {
                 try {
-                    if ($.fn[func] !== undefined && $this.data(func + '-initiated') !== true) {
+                    if ($.fn[func] !== undefined && $this.data(func) === undefined) {
                         $.fn[func].call($this);
                         $this.data(func + '-initiated', true);
 

@@ -5,6 +5,7 @@ var Keypad = {
         this.element = $(elem);
         this.value = "";
         this.positions = ["top-left", "top", "top-right", "right", "bottom-right", "bottom", "bottom-left", "left"];
+        this.keypad = null;
 
         this._setOptionsFromDOM();
 
@@ -131,6 +132,8 @@ var Keypad = {
         } else {
             this.enable();
         }
+
+        this.keypad = keypad;
     },
 
     _setKeysPosition: function(){
@@ -347,6 +350,18 @@ var Keypad = {
             case 'disabled': this.toggleState(); break;
             case 'data-position': this.setPosition(); break;
         }
+    },
+
+    destroy: function(){
+        var element = this.element, keypad = this.keypad;
+
+        keypad.off(Metro.events.click, ".keys");
+        keypad.off(Metro.events.click);
+        keypad.off(Metro.events.click, ".key");
+        element.off(Metro.events.change);
+
+        element.insertBefore(keypad);
+        keypad.remove();
     }
 };
 

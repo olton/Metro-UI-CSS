@@ -61,7 +61,7 @@
     }
 
     .app-bar-menu {
-        li, a {
+        & > li, & > li  > a {
             display: block;
             line-height: 55px;
             background-color: inherit;
@@ -69,11 +69,12 @@
             flex-shrink: 0;
         }
 
-        a {
+        & > li  > a {
             padding: 0 16px;
             text-decoration: none;
             font-size: 14px;
         }
+
     }
 
     .brand:not(.no-hover), .app-bar-menu li, .hamburger, .app-bar-item {
@@ -100,7 +101,7 @@
     }
 
     .app-bar-menu {
-        .d-menu {
+        .d-menu, .v-menu {
             box-shadow: none;
             position: relative;
             width: 100%;
@@ -158,6 +159,14 @@
                 height: 38px;
                 line-height: 38px;
             }
+        }
+
+        .v-menu {
+            position: absolute;
+            float: left;
+            width: auto;
+            border: 1px solid @borderColor;
+            background-color: @white;
         }
 
         &.collapsed {

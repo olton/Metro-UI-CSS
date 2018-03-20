@@ -221,6 +221,7 @@ var Validator = {
     options: {
         submitTimeout: 200,
         interactiveCheck: false,
+        clearInvalid: 0,
         onBeforeSubmit: Metro.noop_true,
         onSubmit: Metro.noop,
         onError: Metro.noop,
@@ -314,6 +315,19 @@ var Validator = {
             }, o.submitTimeout);
         } else {
             Utils.exec(o.onErrorForm, [result.log, element], form);
+            console.log(o.clearInvalid);
+            if (o.clearInvalid > 0) {
+                setTimeout(function(){
+                    $.each(inputs, function(){
+                        var inp  = $(this);
+                        if (ValidatorFuncs.is_control(inp)) {
+                            inp.parent().removeClass("invalid");
+                        } else {
+                            inp.removeClass("invalid");
+                        }
+                    })
+                }, o.clearInvalid);
+            }
         }
 
         return result.val === 0;
