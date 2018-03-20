@@ -1,3 +1,6 @@
+### 4.1.2
++ [x] Select: add method `val()`
+
 ### 4.1.1
 + [x] Utils: add method `inObject`
 + [x] Metro.initWidgets: change check rule for defined component

@@ -381,6 +381,32 @@
                 </table>
                 <h4>Select in runtime</h4>
                 <p>
+                    To set or get <code>select</code> value at runtime, use method <code>val()</code>.
+                    Calling a method without a parameter will return the current <code>select</code> value.
+                    Calling a method with a parameter will set  value for <code>select</code>.
+                </p>
+                <pre><code class="html">
+                    &lt;select data-role="select">
+                        &lt;option value="1">Value 1&lt;/option>
+                        &lt;option value="2">Value 2&lt;/option>
+                        &lt;option value="3">Value 3&lt;/option>
+                        &lt;option value="4">Value 4&lt;/option>
+                    &lt;/select>
+                </code></pre>
+
+                <pre><code class="javascript">
+                    function selectChangeValue(){
+                        var new_value = Metro.utils.random(1, 4);
+                        var select = $("select").data('select');
+
+                        console.log("Current value: " + select.val());
+                        console.log("New value: " + new_value);
+                        select.val(new_value);
+                        console.log("Result value: " + select.val());
+                    }
+                </code></pre>
+
+                <p>
                     To change select options at runtime, use method <code>data()</code>. You can use <code>PLAIN HTML</code> or <code>JSON OBJECT</code> to update options.
                     When you execute method <code>data()</code>, options will be replaced in select. For more info see source if <a href="examples/ajax/select.html">this example</a>.
                 </p>
