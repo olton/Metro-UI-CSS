@@ -199,6 +199,24 @@ var Select = {
         this.element.parent().removeClass("disabled");
     },
 
+    val: function(v){
+        var that = this, element = this.element;
+        var input = element.siblings("input");
+        var options = element.find("option");
+        if (v === undefined) {
+            return element.val();
+        }
+        options.removeAttr("selected");
+        $.each(options, function(){
+            var op = $(this);
+            if (this.value == v) {
+                op.attr("selected", "selected");
+                input.val(this.text);
+                element.trigger("change");
+            }
+        });
+    },
+
     data: function(op){
         var that = this, element = this.element;
         var list = element.siblings("ul");

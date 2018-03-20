@@ -1,5 +1,5 @@
 /*!
- * Metro 4 Components Library v4.1.1 build 626 (https://metroui.org.ua)
+ * Metro 4 Components Library v4.1.2 build @@build (https://metroui.org.ua)
  * Copyright 2018 Sergey Pimenov
  * Licensed under MIT
  */
@@ -79,7 +79,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.1.1-626",
+    version: "@@version-@@build@@status",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -12020,6 +12020,24 @@ var Select = {
     enable: function(){
         this.element.data("disabled", false);
         this.element.parent().removeClass("disabled");
+    },
+
+    val: function(v){
+        var that = this, element = this.element;
+        var input = element.siblings("input");
+        var options = element.find("option");
+        if (v === undefined) {
+            return element.val();
+        }
+        options.removeAttr("selected");
+        $.each(options, function(){
+            var op = $(this);
+            if (this.value == v) {
+                op.attr("selected", "selected");
+                input.val(this.text);
+                element.trigger("change");
+            }
+        });
     },
 
     data: function(op){
