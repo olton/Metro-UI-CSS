@@ -31,31 +31,103 @@
     <link href="../metro/css/metro-all.css" rel="stylesheet">
 
     <title>Test - Metro 4 :: Popular HTML, CSS and JS library</title>
+
+    <style>
+        .app-bar {
+            background-color: #23292D;
+            color: #bbbbbb;
+        }
+
+        .app-bar-search {
+            width: 100px;
+            height: 30px;
+            font-size: .875rem;
+            background-color: #3F4447!important;
+            color: #bbbbbb!important;
+            border: none!important;
+            border-radius: 4px;
+        }
+    </style>
+
 </head>
 <body class="">
+<header class="app-bar-expand-md" data-role="appbar">
+    <a href="#" class="brand no-hover fg-white-hover order-1"><span class="mif-github mif-2x"></span></a>
+    <div class="app-bar-item d-none d-flex-md order-2">
+        <input type="text" placeholder="Search" class="app-bar-search">
+    </div>
 
-<button class="button" onclick="selectChangeValue()">Change value</button>
+    <ul class="app-bar-menu order-4 order-md-3">
+        <li><a href="#" class="fg-white-hover">Pull requests</a></li>
+        <li><a href="#" class="fg-white-hover">Issues</a></li>
+        <li>
+            <a href="#" class="dropdown-toggle fg-white-hover marker-light">Marketplace</a>
+            <ul class="v-menu" data-role="dropdown">
+                <li class="menu-title">General</li>
+                <li><a href="#"><span class="mif-home icon"></span> Home</a></li>
+                <li class="menu-title">Products</li>
+                <li><a href="#"><span class="mif-windows icon"></span> Windows</a></li>
+                <li class="disabled"><a href="#"><span class="mif-library icon"></span> Office 365</a></li>
+                <li><a href="#"><span class="mif-skype icon"></span> Skype</a></li>
+                <li class="menu-title">Support</li>
+                <li>
+                    <a href="#" data-hotkey="Alt+F1">Community</a>
+                    <ul class="v-menu" data-role="dropdown">
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Github</a></li>
+                        <li><a href="#">Forum</a></li>
+                        <li class="divider"></li>
+                        <li class="p-2 d-flex flex-justify-center">
+                            <button class="button square primary m-1"><span class="mif-target"></span></button>
+                            <button class="button square success m-1"><span class="mif-apps"></span></button>
+                            <button class="button square alert m-1"><span class="mif-file-code"></span></button>
+                            <button class="button square warning m-1"><span class="mif-download"></span></button>
+                        </li>
+                    </ul>
+                </li>
+                <li class="menu-title">Shop</li>
+                <li><a href="#"><span class="mif-cart icon"></span> Cart</a></li>
+            </ul>
+        </li>
+        <li><a href="#" class="fg-white-hover">Explorer</a></li>
+    </ul>
 
-<select data-role="select">
-    <option value="1">Value 1</option>
-    <option value="2">Value 2</option>
-    <option value="3">Value 3</option>
-    <option value="4">Value 4</option>
-</select>
+    <div class="app-bar-container ml-auto order-3 order-md-4">
+        <a href="#" class="app-bar-item"><span class="mif-bell"></span></a>
+
+        <div class="app-bar-container">
+            <a class="app-bar-item dropdown-toggle marker-light" href="#"><span class="mif-plus"></span></a>
+            <ul class="d-menu place-right" data-role="dropdown">
+                <li><a href="">New repository</a></li>
+                <li><a href="">Import repository</a></li>
+                <li><a href="">New gist</a></li>
+                <li><a href="">New organization</a></li>
+                <li class="divider"></li>
+                <li><a href="">New issue</a></li>
+            </ul>
+        </div>
+
+        <div class="app-bar-container">
+            <a class="app-bar-item dropdown-toggle marker-light pl-1 pr-5" href="#">
+                <img class="rounded" data-role="gravatar" data-email="sergey@pimenov.com.ua" data-size="25">
+            </a>
+            <ul class="v-menu place-right" data-role="dropdown">
+                <li><a href="">Signed as <strong>olton</strong></a></li>
+                <li class="divider"></li>
+                <li><a href="">Your profile</a></li>
+                <li><a href="">Your stars</a></li>
+                <li><a href="">Your gists</a></li>
+                <li class="divider"></li>
+                <li><a href="">Help</a></li>
+                <li><a href="">Settings</a></li>
+                <li><a href="">Sign out</a></li>
+            </ul>
+        </div>
+    </div>
+</header>
 
 <script src="../js/jquery-3.3.1.min.js"></script>
 <script src="../metro/js/metro.js"></script>
-<script>
-    function selectChangeValue(){
-        var new_value = Metro.utils.random(1, 4);
-        var select = $("select").data('select');
-
-        console.log("Current value: " + select.val());
-        console.log("New value: " + new_value);
-        select.val(new_value);
-        console.log("Result value: " + select.val());
-    }
-</script>
 <!-- ads-script -->
 </body>
 </html>

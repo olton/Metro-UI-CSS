@@ -2,7 +2,7 @@
 @import (once) "include/mixins";
 
 .app-bar {
-    display: block;
+    display: flex;
     position: fixed;
     top: 0;
     left: 0;
@@ -11,7 +11,8 @@
     min-height: 55px;
     z-index: @zindex-top;
     background-color: @light;
-    .clear();
+    flex-flow: row wrap;
+    align-items: center;
 }
 
 .app-bar {
@@ -22,15 +23,8 @@
     }
 
     .brand, .app-bar-item, .app-bar-container {
-        float: left;
-    }
-
-    .app-bar-menu {
-        float: none;
-    }
-
-    .brand, .app-bar-item, .app-bar-container {
-        display: block;
+        display: flex;
+        align-items: center;
         position: relative;
         height: 55px;
         line-height: 55px;
@@ -46,7 +40,12 @@
         padding: 0;
     }
 
+    .app-bar-item {
+        white-space: nowrap;
+    }
+
     .app-bar-menu {
+        flex-shrink: 0;
         list-style: none inside;
         margin: 0;
         padding: 0;
@@ -55,7 +54,6 @@
         display: flex;
         flex-wrap: nowrap;
         flex-direction: column;
-        flex-shrink: 0;
         background-color: inherit;
         color: inherit;
     }
@@ -130,15 +128,40 @@
             }
         }
 
-        & > .d-menu {
+        .v-menu {
+            position: absolute;
+            float: left;
+            width: auto;
+            border: 1px solid @borderColor;
+            background-color: @white;
+        }
+
+        & > .d-menu, & > .v-menu {
             top: 100%;
         }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+    }
+}
+
+.app-bar {
+    .hamburger:not(.hidden) ~ .ml-auto {
+        margin-right: 48px;
     }
 }
 
 .app-bar-expand() {
 
     flex-wrap: nowrap;
+    flex-flow: row;
+
+    .brand, .app-bar-item, .app-bar-container {
+        width: auto;
+        flex-shrink: 1;
+    }
 
     .app-bar-menu {
         float: left;
@@ -149,7 +172,7 @@
         flex-direction: row;
     }
 
-    .app-bar-menu  {
+    .app-bar-menu {
         .d-menu {
             position: absolute;
             width: auto;

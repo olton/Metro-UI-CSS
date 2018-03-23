@@ -1,5 +1,5 @@
 /*!
- * Metro 4 Components Library v4.1.2 build 627 (https://metroui.org.ua)
+ * Metro 4 Components Library v4.1.2 build @@build (https://metroui.org.ua)
  * Copyright 2018 Sergey Pimenov
  * Licensed under MIT
  */
@@ -79,7 +79,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.1.2-627",
+    version: "@@version-@@build@@status",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -3768,7 +3768,7 @@ var AppBar = {
 
         hamburger = element.find(".hamburger");
         if (hamburger.length === 0) {
-            hamburger = $("<button>").attr("type", "button").addClass("hamburger menu-down").appendTo(element);
+            hamburger = $("<button>").attr("type", "button").addClass("hamburger menu-down");
             for(var i = 0; i < 3; i++) {
                 $("<span>").addClass("line").appendTo(hamburger);
             }
@@ -3778,12 +3778,13 @@ var AppBar = {
             }
         }
 
+        element.prepend(hamburger);
         menu = element.find(".app-bar-menu");
 
         if (menu.length === 0) {
             hamburger.hide();
         } else {
-            Utils.addCssRule(Metro.sheet, ".app-bar-menu li", "list-style: none!important;");
+            Utils.addCssRule(Metro.sheet, ".app-bar-menu li", "list-style: none!important;"); // This special for IE11 and Edge
         }
 
         if( !!element.attr("id") === false ){
@@ -3792,6 +3793,9 @@ var AppBar = {
 
         if (hamburger.css('display') === 'block') {
             menu.hide().addClass("collapsed");
+            hamburger.removeClass("hidden");
+        } else {
+            hamburger.addClass("hidden");
         }
     },
 
@@ -3815,7 +3819,9 @@ var AppBar = {
 
             if (hamburger.css('display') !== 'block') {
                 menu.show();
+                hamburger.addClass("hidden");
             } else {
+                hamburger.removeClass("hidden");
                 if (hamburger.hasClass("active")) {
                     menu.show().removeClass("collapsed");
                 } else {
@@ -3852,6 +3858,7 @@ var AppBar = {
     },
 
     destroy: function(){
+        var element = this.element;
         element.off(Metro.events.click, ".hamburger");
         $(window).off(Metro.events.resize+"-"+element.attr("id"));
     }
