@@ -1,10 +1,12 @@
 @import (once) "include/vars";
 @import (once) "include/mixins";
 
+@ordersCount: 24;
+
 .d-flex {display: flex!important;}
 .d-inline-flex {display: inline-flex!important;}
 
-.generate-order(@gridColumns12);
+.generate-order(@ordersCount);
 .generate-order(@j) when (@j > 0){
     .order-@{j} {
         order: @j;
@@ -114,7 +116,7 @@
         .flex-top-@{m} {margin-bottom: auto;}
         .flex-bottom-@{m} {margin-top: auto;}
 
-        .generate-order(@gridColumns12);
+        .generate-order(@ordersCount);
         .generate-order(@j) when (@j > 0){
             .order-@{m}-@{j} {
                 order: @j;

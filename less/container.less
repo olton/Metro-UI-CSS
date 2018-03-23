@@ -58,3 +58,13 @@ section {
     }
 }
 
+.generate-container-media-options(@mediaBreakpointListMobileLength);
+.generate-container-media-options(@name, @i: 1) when (@i <= @mediaBreakpointListMobileLength) {
+    @m: extract(@mediaBreakpointListMobile, @i);
+
+        .container-@{m} {
+            max-width: @@m!important;
+        }
+
+    .generate-container-media-options(@name, @i + 1);
+}

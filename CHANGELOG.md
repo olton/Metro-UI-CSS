@@ -1,3 +1,12 @@
+### 4.1.3
++ [x] Images: change `.img-container` display to `block`
++ [x] Streamer: increase sizes and offsets to 20 intervals
++ [x] App bar: flexible model
++ [x] App bar: fix using `.v-menu` in `.app-bar-container`
++ [x] Examples: Github page 
++ [x] Typography: add class `.no-decor`
++ [x] Less: move default icons data-uri to `include/default-icons`
+
 ### 4.1.2
 + [x] Select: add method `val()`
 
