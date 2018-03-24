@@ -2,23 +2,23 @@
 @import (once) "include/mixins";
 
 @font-face {
-    font-family: 'icons';
+    font-family: 'metro';
     src: url('../mif/metro.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
 
 [class*=mif-] {
+    font-family: 'metro'!important;
     speak: none;
-    display: inline-block;
-    font-family: 'icons', 'Roboto', 'Noto Sans', sans-serif;
-    font-size: inherit;
-    text-rendering: auto;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    vertical-align: middle;
-    text-align: center;
-    position: relative;
 }
 
 .mif-lg {

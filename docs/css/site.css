@@ -285,6 +285,7 @@ footer p a {
   text-align: center;
   vertical-align: middle;
   color: #1d1d1d;
+  display: inline-block;
 }
 @media screen and (min-width: 576px) {
   .icon-list li {

@@ -1,3 +1,6 @@
+### 4.1.4
++ [x] Metro icon fonts: update, 34 new icons
+
 ### 4.1.3
 + [x] Images: change `.img-container` display to `block`
 + [x] Streamer: increase sizes and offsets to 20 intervals
