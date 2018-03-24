@@ -12582,6 +12582,7 @@ tbody td.primary,
 .tally.primary,
 code.primary,
 .notify.primary,
+.info-button.primary,
 .input .button-group .button.primary {
   outline-color: #89b0ff;
   background-color: #0050ef;
@@ -12598,6 +12599,7 @@ tbody td.primary.outline,
 .tally.primary.outline,
 code.primary.outline,
 .notify.primary.outline,
+.info-button.primary.outline,
 .input .button-group .button.primary.outline {
   color: #0050ef;
   border-color: #0050ef;
@@ -12613,6 +12615,7 @@ tbody td.primary.outline.dropdown-toggle::before,
 .tally.primary.outline.dropdown-toggle::before,
 code.primary.outline.dropdown-toggle::before,
 .notify.primary.outline.dropdown-toggle::before,
+.info-button.primary.outline.dropdown-toggle::before,
 .input .button-group .button.primary.outline.dropdown-toggle::before {
   border-color: #0050ef;
 }
@@ -12627,6 +12630,7 @@ tbody td.primary.outline:hover,
 .tally.primary.outline:hover,
 code.primary.outline:hover,
 .notify.primary.outline:hover,
+.info-button.primary.outline:hover,
 .input .button-group .button.primary.outline:hover {
   color: #ffffff;
 }
@@ -12641,6 +12645,7 @@ tbody td.primary.dropdown-toggle::before,
 .tally.primary.dropdown-toggle::before,
 code.primary.dropdown-toggle::before,
 .notify.primary.dropdown-toggle::before,
+.info-button.primary.dropdown-toggle::before,
 .input .button-group .button.primary.dropdown-toggle::before {
   border-color: #ffffff;
 }
@@ -12655,6 +12660,7 @@ tbody td.primary:hover,
 .tally.primary:hover,
 code.primary:hover,
 .notify.primary:hover,
+.info-button.primary:hover,
 .input .button-group .button.primary:hover {
   color: #ffffff;
   background-color: #003fbc;
@@ -12671,6 +12677,7 @@ tbody td.primary:hover.dropdown-toggle::before,
 .tally.primary:hover.dropdown-toggle::before,
 code.primary:hover.dropdown-toggle::before,
 .notify.primary:hover.dropdown-toggle::before,
+.info-button.primary:hover.dropdown-toggle::before,
 .input .button-group .button.primary:hover.dropdown-toggle::before {
   border-color: #ffffff;
 }
@@ -12685,6 +12692,7 @@ tbody td.primary.same-color:hover,
 .tally.primary.same-color:hover,
 code.primary.same-color:hover,
 .notify.primary.same-color:hover,
+.info-button.primary.same-color:hover,
 .input .button-group .button.primary.same-color:hover {
   background-color: #0050ef;
   border-color: #0050ef;
@@ -12700,6 +12708,7 @@ tbody td.primary:active,
 .tally.primary:active,
 code.primary:active,
 .notify.primary:active,
+.info-button.primary:active,
 .input .button-group .button.primary:active,
 .button.primary.focus,
 .command-button.primary.focus,
@@ -12712,6 +12721,7 @@ tbody td.primary.focus,
 .tally.primary.focus,
 code.primary.focus,
 .notify.primary.focus,
+.info-button.primary.focus,
 .input .button-group .button.primary.focus,
 .button.primary:focus,
 .command-button.primary:focus,
@@ -12724,6 +12734,7 @@ tbody td.primary:focus,
 .tally.primary:focus,
 code.primary:focus,
 .notify.primary:focus,
+.info-button.primary:focus,
 .input .button-group .button.primary:focus {
   -webkit-box-shadow: 0 0 0 3px rgba(0, 80, 239, 0.45);
           box-shadow: 0 0 0 3px rgba(0, 80, 239, 0.45);
@@ -12739,6 +12750,7 @@ tbody td.secondary,
 .tally.secondary,
 code.secondary,
 .notify.secondary,
+.info-button.secondary,
 .input .button-group .button.secondary {
   outline-color: #b7c6cd;
   background-color: #607d8b;
@@ -12755,6 +12767,7 @@ tbody td.secondary.outline,
 .tally.secondary.outline,
 code.secondary.outline,
 .notify.secondary.outline,
+.info-button.secondary.outline,
 .input .button-group .button.secondary.outline {
   color: #607d8b;
   border-color: #607d8b;
@@ -12770,6 +12783,7 @@ tbody td.secondary.outline.dropdown-toggle::before,
 .tally.secondary.outline.dropdown-toggle::before,
 code.secondary.outline.dropdown-toggle::before,
 .notify.secondary.outline.dropdown-toggle::before,
+.info-button.secondary.outline.dropdown-toggle::before,
 .input .button-group .button.secondary.outline.dropdown-toggle::before {
   border-color: #607d8b;
 }
@@ -12784,6 +12798,7 @@ tbody td.secondary.outline:hover,
 .tally.secondary.outline:hover,
 code.secondary.outline:hover,
 .notify.secondary.outline:hover,
+.info-button.secondary.outline:hover,
 .input .button-group .button.secondary.outline:hover {
   color: #ffffff;
 }
@@ -12798,6 +12813,7 @@ tbody td.secondary.dropdown-toggle::before,
 .tally.secondary.dropdown-toggle::before,
 code.secondary.dropdown-toggle::before,
 .notify.secondary.dropdown-toggle::before,
+.info-button.secondary.dropdown-toggle::before,
 .input .button-group .button.secondary.dropdown-toggle::before {
   border-color: #ffffff;
 }
@@ -12812,6 +12828,7 @@ tbody td.secondary:hover,
 .tally.secondary:hover,
 code.secondary:hover,
 .notify.secondary:hover,
+.info-button.secondary:hover,
 .input .button-group .button.secondary:hover {
   color: #ffffff;
   background-color: #4b626d;
@@ -12828,6 +12845,7 @@ tbody td.secondary:hover.dropdown-toggle::before,
 .tally.secondary:hover.dropdown-toggle::before,
 code.secondary:hover.dropdown-toggle::before,
 .notify.secondary:hover.dropdown-toggle::before,
+.info-button.secondary:hover.dropdown-toggle::before,
 .input .button-group .button.secondary:hover.dropdown-toggle::before {
   border-color: #ffffff;
 }
@@ -12842,6 +12860,7 @@ tbody td.secondary.same-color:hover,
 .tally.secondary.same-color:hover,
 code.secondary.same-color:hover,
 .notify.secondary.same-color:hover,
+.info-button.secondary.same-color:hover,
 .input .button-group .button.secondary.same-color:hover {
   background-color: #607d8b;
   border-color: #607d8b;
@@ -12857,6 +12876,7 @@ tbody td.secondary:active,
 .tally.secondary:active,
 code.secondary:active,
 .notify.secondary:active,
+.info-button.secondary:active,
 .input .button-group .button.secondary:active,
 .button.secondary.focus,
 .command-button.secondary.focus,
@@ -12869,6 +12889,7 @@ tbody td.secondary.focus,
 .tally.secondary.focus,
 code.secondary.focus,
 .notify.secondary.focus,
+.info-button.secondary.focus,
 .input .button-group .button.secondary.focus,
 .button.secondary:focus,
 .command-button.secondary:focus,
@@ -12881,6 +12902,7 @@ tbody td.secondary:focus,
 .tally.secondary:focus,
 code.secondary:focus,
 .notify.secondary:focus,
+.info-button.secondary:focus,
 .input .button-group .button.secondary:focus {
   -webkit-box-shadow: 0 0 0 3px rgba(96, 125, 139, 0.45);
           box-shadow: 0 0 0 3px rgba(96, 125, 139, 0.45);
@@ -12896,6 +12918,7 @@ tbody td.success,
 .tally.success,
 code.success,
 .notify.success,
+.info-button.success,
 .input .button-group .button.success {
   outline-color: #adeb6e;
   background-color: #60a917;
@@ -12912,6 +12935,7 @@ tbody td.success.outline,
 .tally.success.outline,
 code.success.outline,
 .notify.success.outline,
+.info-button.success.outline,
 .input .button-group .button.success.outline {
   color: #60a917;
   border-color: #60a917;
@@ -12927,6 +12951,7 @@ tbody td.success.outline.dropdown-toggle::before,
 .tally.success.outline.dropdown-toggle::before,
 code.success.outline.dropdown-toggle::before,
 .notify.success.outline.dropdown-toggle::before,
+.info-button.success.outline.dropdown-toggle::before,
 .input .button-group .button.success.outline.dropdown-toggle::before {
   border-color: #60a917;
 }
@@ -12941,6 +12966,7 @@ tbody td.success.outline:hover,
 .tally.success.outline:hover,
 code.success.outline:hover,
 .notify.success.outline:hover,
+.info-button.success.outline:hover,
 .input .button-group .button.success.outline:hover {
   color: #ffffff;
 }
@@ -12955,6 +12981,7 @@ tbody td.success.dropdown-toggle::before,
 .tally.success.dropdown-toggle::before,
 code.success.dropdown-toggle::before,
 .notify.success.dropdown-toggle::before,
+.info-button.success.dropdown-toggle::before,
 .input .button-group .button.success.dropdown-toggle::before {
   border-color: #ffffff;
 }
@@ -12969,6 +12996,7 @@ tbody td.success:hover,
 .tally.success:hover,
 code.success:hover,
 .notify.success:hover,
+.info-button.success:hover,
 .input .button-group .button.success:hover {
   color: #ffffff;
   background-color: #477c11;
@@ -12985,6 +13013,7 @@ tbody td.success:hover.dropdown-toggle::before,
 .tally.success:hover.dropdown-toggle::before,
 code.success:hover.dropdown-toggle::before,
 .notify.success:hover.dropdown-toggle::before,
+.info-button.success:hover.dropdown-toggle::before,
 .input .button-group .button.success:hover.dropdown-toggle::before {
   border-color: #ffffff;
 }
@@ -12999,6 +13028,7 @@ tbody td.success.same-color:hover,
 .tally.success.same-color:hover,
 code.success.same-color:hover,
 .notify.success.same-color:hover,
+.info-button.success.same-color:hover,
 .input .button-group .button.success.same-color:hover {
   background-color: #60a917;
   border-color: #60a917;
@@ -13014,6 +13044,7 @@ tbody td.success:active,
 .tally.success:active,
 code.success:active,
 .notify.success:active,
+.info-button.success:active,
 .input .button-group .button.success:active,
 .button.success.focus,
 .command-button.success.focus,
@@ -13026,6 +13057,7 @@ tbody td.success.focus,
 .tally.success.focus,
 code.success.focus,
 .notify.success.focus,
+.info-button.success.focus,
 .input .button-group .button.success.focus,
 .button.success:focus,
 .command-button.success:focus,
@@ -13038,6 +13070,7 @@ tbody td.success:focus,
 .tally.success:focus,
 code.success:focus,
 .notify.success:focus,
+.info-button.success:focus,
 .input .button-group .button.success:focus {
   -webkit-box-shadow: 0 0 0 3px rgba(96, 169, 23, 0.45);
           box-shadow: 0 0 0 3px rgba(96, 169, 23, 0.45);
@@ -13053,6 +13086,7 @@ tbody td.alert,
 .tally.alert,
 code.alert,
 .notify.alert,
+.info-button.alert,
 .input .button-group .button.alert {
   outline-color: #ecaba7;
   background-color: #CE352C;
@@ -13069,6 +13103,7 @@ tbody td.alert.outline,
 .tally.alert.outline,
 code.alert.outline,
 .notify.alert.outline,
+.info-button.alert.outline,
 .input .button-group .button.alert.outline {
   color: #CE352C;
   border-color: #CE352C;
@@ -13084,6 +13119,7 @@ tbody td.alert.outline.dropdown-toggle::before,
 .tally.alert.outline.dropdown-toggle::before,
 code.alert.outline.dropdown-toggle::before,
 .notify.alert.outline.dropdown-toggle::before,
+.info-button.alert.outline.dropdown-toggle::before,
 .input .button-group .button.alert.outline.dropdown-toggle::before {
   border-color: #CE352C;
 }
@@ -13098,6 +13134,7 @@ tbody td.alert.outline:hover,
 .tally.alert.outline:hover,
 code.alert.outline:hover,
 .notify.alert.outline:hover,
+.info-button.alert.outline:hover,
 .input .button-group .button.alert.outline:hover {
   color: #ffffff;
 }
@@ -13112,6 +13149,7 @@ tbody td.alert.dropdown-toggle::before,
 .tally.alert.dropdown-toggle::before,
 code.alert.dropdown-toggle::before,
 .notify.alert.dropdown-toggle::before,
+.info-button.alert.dropdown-toggle::before,
 .input .button-group .button.alert.dropdown-toggle::before {
   border-color: #ffffff;
 }
@@ -13126,6 +13164,7 @@ tbody td.alert:hover,
 .tally.alert:hover,
 code.alert:hover,
 .notify.alert:hover,
+.info-button.alert:hover,
 .input .button-group .button.alert:hover {
   color: #ffffff;
   background-color: #a42a23;
@@ -13142,6 +13181,7 @@ tbody td.alert:hover.dropdown-toggle::before,
 .tally.alert:hover.dropdown-toggle::before,
 code.alert:hover.dropdown-toggle::before,
 .notify.alert:hover.dropdown-toggle::before,
+.info-button.alert:hover.dropdown-toggle::before,
 .input .button-group .button.alert:hover.dropdown-toggle::before {
   border-color: #ffffff;
 }
@@ -13156,6 +13196,7 @@ tbody td.alert.same-color:hover,
 .tally.alert.same-color:hover,
 code.alert.same-color:hover,
 .notify.alert.same-color:hover,
+.info-button.alert.same-color:hover,
 .input .button-group .button.alert.same-color:hover {
   background-color: #CE352C;
   border-color: #CE352C;
@@ -13171,6 +13212,7 @@ tbody td.alert:active,
 .tally.alert:active,
 code.alert:active,
 .notify.alert:active,
+.info-button.alert:active,
 .input .button-group .button.alert:active,
 .button.alert.focus,
 .command-button.alert.focus,
@@ -13183,6 +13225,7 @@ tbody td.alert.focus,
 .tally.alert.focus,
 code.alert.focus,
 .notify.alert.focus,
+.info-button.alert.focus,
 .input .button-group .button.alert.focus,
 .button.alert:focus,
 .command-button.alert:focus,
@@ -13195,6 +13238,7 @@ tbody td.alert:focus,
 .tally.alert:focus,
 code.alert:focus,
 .notify.alert:focus,
+.info-button.alert:focus,
 .input .button-group .button.alert:focus {
   -webkit-box-shadow: 0 0 0 3px rgba(206, 53, 44, 0.45);
           box-shadow: 0 0 0 3px rgba(206, 53, 44, 0.45);
@@ -13210,6 +13254,7 @@ tbody td.warning,
 .tally.warning,
 code.warning,
 .notify.warning,
+.info-button.warning,
 .input .button-group .button.warning {
   outline-color: #ffede1;
   background-color: #ff9447;
@@ -13226,6 +13271,7 @@ tbody td.warning.outline,
 .tally.warning.outline,
 code.warning.outline,
 .notify.warning.outline,
+.info-button.warning.outline,
 .input .button-group .button.warning.outline {
   color: #ff9447;
   border-color: #ff9447;
@@ -13241,6 +13287,7 @@ tbody td.warning.outline.dropdown-toggle::before,
 .tally.warning.outline.dropdown-toggle::before,
 code.warning.outline.dropdown-toggle::before,
 .notify.warning.outline.dropdown-toggle::before,
+.info-button.warning.outline.dropdown-toggle::before,
 .input .button-group .button.warning.outline.dropdown-toggle::before {
   border-color: #ff9447;
 }
@@ -13255,6 +13302,7 @@ tbody td.warning.outline:hover,
 .tally.warning.outline:hover,
 code.warning.outline:hover,
 .notify.warning.outline:hover,
+.info-button.warning.outline:hover,
 .input .button-group .button.warning.outline:hover {
   color: #ffffff;
 }
@@ -13269,6 +13317,7 @@ tbody td.warning.dropdown-toggle::before,
 .tally.warning.dropdown-toggle::before,
 code.warning.dropdown-toggle::before,
 .notify.warning.dropdown-toggle::before,
+.info-button.warning.dropdown-toggle::before,
 .input .button-group .button.warning.dropdown-toggle::before {
   border-color: #ffffff;
 }
@@ -13283,6 +13332,7 @@ tbody td.warning:hover,
 .tally.warning:hover,
 code.warning:hover,
 .notify.warning:hover,
+.info-button.warning:hover,
 .input .button-group .button.warning:hover {
   color: #ffffff;
   background-color: #ff7615;
@@ -13299,6 +13349,7 @@ tbody td.warning:hover.dropdown-toggle::before,
 .tally.warning:hover.dropdown-toggle::before,
 code.warning:hover.dropdown-toggle::before,
 .notify.warning:hover.dropdown-toggle::before,
+.info-button.warning:hover.dropdown-toggle::before,
 .input .button-group .button.warning:hover.dropdown-toggle::before {
   border-color: #ffffff;
 }
@@ -13313,6 +13364,7 @@ tbody td.warning.same-color:hover,
 .tally.warning.same-color:hover,
 code.warning.same-color:hover,
 .notify.warning.same-color:hover,
+.info-button.warning.same-color:hover,
 .input .button-group .button.warning.same-color:hover {
   background-color: #ff9447;
   border-color: #ff9447;
@@ -13328,6 +13380,7 @@ tbody td.warning:active,
 .tally.warning:active,
 code.warning:active,
 .notify.warning:active,
+.info-button.warning:active,
 .input .button-group .button.warning:active,
 .button.warning.focus,
 .command-button.warning.focus,
@@ -13340,6 +13393,7 @@ tbody td.warning.focus,
 .tally.warning.focus,
 code.warning.focus,
 .notify.warning.focus,
+.info-button.warning.focus,
 .input .button-group .button.warning.focus,
 .button.warning:focus,
 .command-button.warning:focus,
@@ -13352,6 +13406,7 @@ tbody td.warning:focus,
 .tally.warning:focus,
 code.warning:focus,
 .notify.warning:focus,
+.info-button.warning:focus,
 .input .button-group .button.warning:focus {
   -webkit-box-shadow: 0 0 0 3px rgba(255, 148, 71, 0.45);
           box-shadow: 0 0 0 3px rgba(255, 148, 71, 0.45);
@@ -13367,6 +13422,7 @@ tbody td.yellow,
 .tally.yellow,
 code.yellow,
 .notify.yellow,
+.info-button.yellow,
 .input .button-group .button.yellow {
   outline-color: #ffffff;
   background-color: #ffe484;
@@ -13383,6 +13439,7 @@ tbody td.yellow.outline,
 .tally.yellow.outline,
 code.yellow.outline,
 .notify.yellow.outline,
+.info-button.yellow.outline,
 .input .button-group .button.yellow.outline {
   color: #ffe484;
   border-color: #ffe484;
@@ -13398,6 +13455,7 @@ tbody td.yellow.outline.dropdown-toggle::before,
 .tally.yellow.outline.dropdown-toggle::before,
 code.yellow.outline.dropdown-toggle::before,
 .notify.yellow.outline.dropdown-toggle::before,
+.info-button.yellow.outline.dropdown-toggle::before,
 .input .button-group .button.yellow.outline.dropdown-toggle::before {
   border-color: #ffe484;
 }
@@ -13412,6 +13470,7 @@ tbody td.yellow.outline:hover,
 .tally.yellow.outline:hover,
 code.yellow.outline:hover,
 .notify.yellow.outline:hover,
+.info-button.yellow.outline:hover,
 .input .button-group .button.yellow.outline:hover {
   color: #ffffff;
 }
@@ -13426,6 +13485,7 @@ tbody td.yellow.dropdown-toggle::before,
 .tally.yellow.dropdown-toggle::before,
 code.yellow.dropdown-toggle::before,
 .notify.yellow.dropdown-toggle::before,
+.info-button.yellow.dropdown-toggle::before,
 .input .button-group .button.yellow.dropdown-toggle::before {
   border-color: #ffffff;
 }
@@ -13440,6 +13500,7 @@ tbody td.yellow:hover,
 .tally.yellow:hover,
 code.yellow:hover,
 .notify.yellow:hover,
+.info-button.yellow:hover,
 .input .button-group .button.yellow:hover {
   color: #ffffff;
   background-color: #ffd951;
@@ -13456,6 +13517,7 @@ tbody td.yellow:hover.dropdown-toggle::before,
 .tally.yellow:hover.dropdown-toggle::before,
 code.yellow:hover.dropdown-toggle::before,
 .notify.yellow:hover.dropdown-toggle::before,
+.info-button.yellow:hover.dropdown-toggle::before,
 .input .button-group .button.yellow:hover.dropdown-toggle::before {
   border-color: #ffffff;
 }
@@ -13470,6 +13532,7 @@ tbody td.yellow.same-color:hover,
 .tally.yellow.same-color:hover,
 code.yellow.same-color:hover,
 .notify.yellow.same-color:hover,
+.info-button.yellow.same-color:hover,
 .input .button-group .button.yellow.same-color:hover {
   background-color: #ffe484;
   border-color: #ffe484;
@@ -13485,6 +13548,7 @@ tbody td.yellow:active,
 .tally.yellow:active,
 code.yellow:active,
 .notify.yellow:active,
+.info-button.yellow:active,
 .input .button-group .button.yellow:active,
 .button.yellow.focus,
 .command-button.yellow.focus,
@@ -13497,6 +13561,7 @@ tbody td.yellow.focus,
 .tally.yellow.focus,
 code.yellow.focus,
 .notify.yellow.focus,
+.info-button.yellow.focus,
 .input .button-group .button.yellow.focus,
 .button.yellow:focus,
 .command-button.yellow:focus,
@@ -13509,6 +13574,7 @@ tbody td.yellow:focus,
 .tally.yellow:focus,
 code.yellow:focus,
 .notify.yellow:focus,
+.info-button.yellow:focus,
 .input .button-group .button.yellow:focus {
   -webkit-box-shadow: 0 0 0 3px rgba(255, 228, 132, 0.45);
           box-shadow: 0 0 0 3px rgba(255, 228, 132, 0.45);
@@ -13524,6 +13590,7 @@ tbody td.info,
 .tally.info,
 code.info,
 .notify.info,
+.info-button.info,
 .input .button-group .button.info {
   outline-color: #e6f5fc;
   background-color: #5ebdec;
@@ -13540,6 +13607,7 @@ tbody td.info.outline,
 .tally.info.outline,
 code.info.outline,
 .notify.info.outline,
+.info-button.info.outline,
 .input .button-group .button.info.outline {
   color: #5ebdec;
   border-color: #5ebdec;
@@ -13555,6 +13623,7 @@ tbody td.info.outline.dropdown-toggle::before,
 .tally.info.outline.dropdown-toggle::before,
 code.info.outline.dropdown-toggle::before,
 .notify.info.outline.dropdown-toggle::before,
+.info-button.info.outline.dropdown-toggle::before,
 .input .button-group .button.info.outline.dropdown-toggle::before {
   border-color: #5ebdec;
 }
@@ -13569,6 +13638,7 @@ tbody td.info.outline:hover,
 .tally.info.outline:hover,
 code.info.outline:hover,
 .notify.info.outline:hover,
+.info-button.info.outline:hover,
 .input .button-group .button.info.outline:hover {
   color: #ffffff;
 }
@@ -13583,6 +13653,7 @@ tbody td.info.dropdown-toggle::before,
 .tally.info.dropdown-toggle::before,
 code.info.dropdown-toggle::before,
 .notify.info.dropdown-toggle::before,
+.info-button.info.dropdown-toggle::before,
 .input .button-group .button.info.dropdown-toggle::before {
   border-color: #ffffff;
 }
@@ -13597,6 +13668,7 @@ tbody td.info:hover,
 .tally.info:hover,
 code.info:hover,
 .notify.info:hover,
+.info-button.info:hover,
 .input .button-group .button.info:hover {
   color: #ffffff;
   background-color: #30abe6;
@@ -13613,6 +13685,7 @@ tbody td.info:hover.dropdown-toggle::before,
 .tally.info:hover.dropdown-toggle::before,
 code.info:hover.dropdown-toggle::before,
 .notify.info:hover.dropdown-toggle::before,
+.info-button.info:hover.dropdown-toggle::before,
 .input .button-group .button.info:hover.dropdown-toggle::before {
   border-color: #ffffff;
 }
@@ -13627,6 +13700,7 @@ tbody td.info.same-color:hover,
 .tally.info.same-color:hover,
 code.info.same-color:hover,
 .notify.info.same-color:hover,
+.info-button.info.same-color:hover,
 .input .button-group .button.info.same-color:hover {
   background-color: #5ebdec;
   border-color: #5ebdec;
@@ -13642,6 +13716,7 @@ tbody td.info:active,
 .tally.info:active,
 code.info:active,
 .notify.info:active,
+.info-button.info:active,
 .input .button-group .button.info:active,
 .button.info.focus,
 .command-button.info.focus,
@@ -13654,6 +13729,7 @@ tbody td.info.focus,
 .tally.info.focus,
 code.info.focus,
 .notify.info.focus,
+.info-button.info.focus,
 .input .button-group .button.info.focus,
 .button.info:focus,
 .command-button.info:focus,
@@ -13666,6 +13742,7 @@ tbody td.info:focus,
 .tally.info:focus,
 code.info:focus,
 .notify.info:focus,
+.info-button.info:focus,
 .input .button-group .button.info:focus {
   -webkit-box-shadow: 0 0 0 3px rgba(94, 189, 236, 0.45);
           box-shadow: 0 0 0 3px rgba(94, 189, 236, 0.45);
@@ -13681,6 +13758,7 @@ tbody td.dark,
 .tally.dark,
 code.dark,
 .notify.dark,
+.info-button.dark,
 .input .button-group .button.dark {
   outline-color: #9d9d9d;
   background-color: #505050;
@@ -13697,6 +13775,7 @@ tbody td.dark.outline,
 .tally.dark.outline,
 code.dark.outline,
 .notify.dark.outline,
+.info-button.dark.outline,
 .input .button-group .button.dark.outline {
   color: #505050;
   border-color: #505050;
@@ -13712,6 +13791,7 @@ tbody td.dark.outline.dropdown-toggle::before,
 .tally.dark.outline.dropdown-toggle::before,
 code.dark.outline.dropdown-toggle::before,
 .notify.dark.outline.dropdown-toggle::before,
+.info-button.dark.outline.dropdown-toggle::before,
 .input .button-group .button.dark.outline.dropdown-toggle::before {
   border-color: #505050;
 }
@@ -13726,6 +13806,7 @@ tbody td.dark.outline:hover,
 .tally.dark.outline:hover,
 code.dark.outline:hover,
 .notify.dark.outline:hover,
+.info-button.dark.outline:hover,
 .input .button-group .button.dark.outline:hover {
   color: #ffffff;
 }
@@ -13740,6 +13821,7 @@ tbody td.dark.dropdown-toggle::before,
 .tally.dark.dropdown-toggle::before,
 code.dark.dropdown-toggle::before,
 .notify.dark.dropdown-toggle::before,
+.info-button.dark.dropdown-toggle::before,
 .input .button-group .button.dark.dropdown-toggle::before {
   border-color: #ffffff;
 }
@@ -13754,6 +13836,7 @@ tbody td.dark:hover,
 .tally.dark:hover,
 code.dark:hover,
 .notify.dark:hover,
+.info-button.dark:hover,
 .input .button-group .button.dark:hover {
   color: #ffffff;
   background-color: #373737;
@@ -13770,6 +13853,7 @@ tbody td.dark:hover.dropdown-toggle::before,
 .tally.dark:hover.dropdown-toggle::before,
 code.dark:hover.dropdown-toggle::before,
 .notify.dark:hover.dropdown-toggle::before,
+.info-button.dark:hover.dropdown-toggle::before,
 .input .button-group .button.dark:hover.dropdown-toggle::before {
   border-color: #ffffff;
 }
@@ -13784,6 +13868,7 @@ tbody td.dark.same-color:hover,
 .tally.dark.same-color:hover,
 code.dark.same-color:hover,
 .notify.dark.same-color:hover,
+.info-button.dark.same-color:hover,
 .input .button-group .button.dark.same-color:hover {
   background-color: #505050;
   border-color: #505050;
@@ -13799,6 +13884,7 @@ tbody td.dark:active,
 .tally.dark:active,
 code.dark:active,
 .notify.dark:active,
+.info-button.dark:active,
 .input .button-group .button.dark:active,
 .button.dark.focus,
 .command-button.dark.focus,
@@ -13811,6 +13897,7 @@ tbody td.dark.focus,
 .tally.dark.focus,
 code.dark.focus,
 .notify.dark.focus,
+.info-button.dark.focus,
 .input .button-group .button.dark.focus,
 .button.dark:focus,
 .command-button.dark:focus,
@@ -13823,6 +13910,7 @@ tbody td.dark:focus,
 .tally.dark:focus,
 code.dark:focus,
 .notify.dark:focus,
+.info-button.dark:focus,
 .input .button-group .button.dark:focus {
   -webkit-box-shadow: 0 0 0 3px rgba(80, 80, 80, 0.45);
           box-shadow: 0 0 0 3px rgba(80, 80, 80, 0.45);
@@ -13838,6 +13926,7 @@ tbody td.light,
 .tally.light,
 code.light,
 .notify.light,
+.info-button.light,
 .input .button-group .button.light {
   outline-color: #ffffff;
   background-color: #f8f8f8;
@@ -13854,6 +13943,7 @@ tbody td.light.outline,
 .tally.light.outline,
 code.light.outline,
 .notify.light.outline,
+.info-button.light.outline,
 .input .button-group .button.light.outline {
   color: #f8f8f8;
   border-color: #f8f8f8;
@@ -13869,6 +13959,7 @@ tbody td.light.outline.dropdown-toggle::before,
 .tally.light.outline.dropdown-toggle::before,
 code.light.outline.dropdown-toggle::before,
 .notify.light.outline.dropdown-toggle::before,
+.info-button.light.outline.dropdown-toggle::before,
 .input .button-group .button.light.outline.dropdown-toggle::before {
   border-color: #f8f8f8;
 }
@@ -13883,6 +13974,7 @@ tbody td.light.outline:hover,
 .tally.light.outline:hover,
 code.light.outline:hover,
 .notify.light.outline:hover,
+.info-button.light.outline:hover,
 .input .button-group .button.light.outline:hover {
   color: #ffffff;
 }
@@ -13897,6 +13989,7 @@ tbody td.light.dropdown-toggle::before,
 .tally.light.dropdown-toggle::before,
 code.light.dropdown-toggle::before,
 .notify.light.dropdown-toggle::before,
+.info-button.light.dropdown-toggle::before,
 .input .button-group .button.light.dropdown-toggle::before {
   border-color: #ffffff;
 }
@@ -13911,6 +14004,7 @@ tbody td.light:hover,
 .tally.light:hover,
 code.light:hover,
 .notify.light:hover,
+.info-button.light:hover,
 .input .button-group .button.light:hover {
   color: #ffffff;
   background-color: #dfdfdf;
@@ -13927,6 +14021,7 @@ tbody td.light:hover.dropdown-toggle::before,
 .tally.light:hover.dropdown-toggle::before,
 code.light:hover.dropdown-toggle::before,
 .notify.light:hover.dropdown-toggle::before,
+.info-button.light:hover.dropdown-toggle::before,
 .input .button-group .button.light:hover.dropdown-toggle::before {
   border-color: #ffffff;
 }
@@ -13941,6 +14036,7 @@ tbody td.light.same-color:hover,
 .tally.light.same-color:hover,
 code.light.same-color:hover,
 .notify.light.same-color:hover,
+.info-button.light.same-color:hover,
 .input .button-group .button.light.same-color:hover {
   background-color: #f8f8f8;
   border-color: #f8f8f8;
@@ -13956,6 +14052,7 @@ tbody td.light:active,
 .tally.light:active,
 code.light:active,
 .notify.light:active,
+.info-button.light:active,
 .input .button-group .button.light:active,
 .button.light.focus,
 .command-button.light.focus,
@@ -13968,6 +14065,7 @@ tbody td.light.focus,
 .tally.light.focus,
 code.light.focus,
 .notify.light.focus,
+.info-button.light.focus,
 .input .button-group .button.light.focus,
 .button.light:focus,
 .command-button.light:focus,
@@ -13980,6 +14078,7 @@ tbody td.light:focus,
 .tally.light:focus,
 code.light:focus,
 .notify.light:focus,
+.info-button.light:focus,
 .input .button-group .button.light:focus {
   -webkit-box-shadow: 0 0 0 3px rgba(248, 248, 248, 0.45);
           box-shadow: 0 0 0 3px rgba(248, 248, 248, 0.45);
@@ -13995,6 +14094,7 @@ tbody td.brand1,
 .tally.brand1,
 code.brand1,
 .notify.brand1,
+.info-button.brand1,
 .input .button-group .button.brand1 {
   outline-color: #bbecfc;
   background-color: #2ac4f4;
@@ -14011,6 +14111,7 @@ tbody td.brand1.outline,
 .tally.brand1.outline,
 code.brand1.outline,
 .notify.brand1.outline,
+.info-button.brand1.outline,
 .input .button-group .button.brand1.outline {
   color: #2ac4f4;
   border-color: #2ac4f4;
@@ -14026,6 +14127,7 @@ tbody td.brand1.outline.dropdown-toggle::before,
 .tally.brand1.outline.dropdown-toggle::before,
 code.brand1.outline.dropdown-toggle::before,
 .notify.brand1.outline.dropdown-toggle::before,
+.info-button.brand1.outline.dropdown-toggle::before,
 .input .button-group .button.brand1.outline.dropdown-toggle::before {
   border-color: #2ac4f4;
 }
@@ -14040,6 +14142,7 @@ tbody td.brand1.outline:hover,
 .tally.brand1.outline:hover,
 code.brand1.outline:hover,
 .notify.brand1.outline:hover,
+.info-button.brand1.outline:hover,
 .input .button-group .button.brand1.outline:hover {
   color: #ffffff;
 }
@@ -14054,6 +14157,7 @@ tbody td.brand1.dropdown-toggle::before,
 .tally.brand1.dropdown-toggle::before,
 code.brand1.dropdown-toggle::before,
 .notify.brand1.dropdown-toggle::before,
+.info-button.brand1.dropdown-toggle::before,
 .input .button-group .button.brand1.dropdown-toggle::before {
   border-color: #ffffff;
 }
@@ -14068,6 +14172,7 @@ tbody td.brand1:hover,
 .tally.brand1:hover,
 code.brand1:hover,
 .notify.brand1:hover,
+.info-button.brand1:hover,
 .input .button-group .button.brand1:hover {
   color: #ffffff;
   background-color: #0caddf;
@@ -14084,6 +14189,7 @@ tbody td.brand1:hover.dropdown-toggle::before,
 .tally.brand1:hover.dropdown-toggle::before,
 code.brand1:hover.dropdown-toggle::before,
 .notify.brand1:hover.dropdown-toggle::before,
+.info-button.brand1:hover.dropdown-toggle::before,
 .input .button-group .button.brand1:hover.dropdown-toggle::before {
   border-color: #ffffff;
 }
@@ -14098,6 +14204,7 @@ tbody td.brand1.same-color:hover,
 .tally.brand1.same-color:hover,
 code.brand1.same-color:hover,
 .notify.brand1.same-color:hover,
+.info-button.brand1.same-color:hover,
 .input .button-group .button.brand1.same-color:hover {
   background-color: #2ac4f4;
   border-color: #2ac4f4;
@@ -14113,6 +14220,7 @@ tbody td.brand1:active,
 .tally.brand1:active,
 code.brand1:active,
 .notify.brand1:active,
+.info-button.brand1:active,
 .input .button-group .button.brand1:active,
 .button.brand1.focus,
 .command-button.brand1.focus,
@@ -14125,6 +14233,7 @@ tbody td.brand1.focus,
 .tally.brand1.focus,
 code.brand1.focus,
 .notify.brand1.focus,
+.info-button.brand1.focus,
 .input .button-group .button.brand1.focus,
 .button.brand1:focus,
 .command-button.brand1:focus,
@@ -14137,6 +14246,7 @@ tbody td.brand1:focus,
 .tally.brand1:focus,
 code.brand1:focus,
 .notify.brand1:focus,
+.info-button.brand1:focus,
 .input .button-group .button.brand1:focus {
   -webkit-box-shadow: 0 0 0 3px rgba(42, 196, 244, 0.45);
           box-shadow: 0 0 0 3px rgba(42, 196, 244, 0.45);
@@ -14152,6 +14262,7 @@ tbody td.brand2,
 .tally.brand2,
 code.brand2,
 .notify.brand2,
+.info-button.brand2,
 .input .button-group .button.brand2 {
   outline-color: #09b4ff;
   background-color: #004d6f;
@@ -14168,6 +14279,7 @@ tbody td.brand2.outline,
 .tally.brand2.outline,
 code.brand2.outline,
 .notify.brand2.outline,
+.info-button.brand2.outline,
 .input .button-group .button.brand2.outline {
   color: #004d6f;
   border-color: #004d6f;
@@ -14183,6 +14295,7 @@ tbody td.brand2.outline.dropdown-toggle::before,
 .tally.brand2.outline.dropdown-toggle::before,
 code.brand2.outline.dropdown-toggle::before,
 .notify.brand2.outline.dropdown-toggle::before,
+.info-button.brand2.outline.dropdown-toggle::before,
 .input .button-group .button.brand2.outline.dropdown-toggle::before {
   border-color: #004d6f;
 }
@@ -14197,6 +14310,7 @@ tbody td.brand2.outline:hover,
 .tally.brand2.outline:hover,
 code.brand2.outline:hover,
 .notify.brand2.outline:hover,
+.info-button.brand2.outline:hover,
 .input .button-group .button.brand2.outline:hover {
   color: #ffffff;
 }
@@ -14211,6 +14325,7 @@ tbody td.brand2.dropdown-toggle::before,
 .tally.brand2.dropdown-toggle::before,
 code.brand2.dropdown-toggle::before,
 .notify.brand2.dropdown-toggle::before,
+.info-button.brand2.dropdown-toggle::before,
 .input .button-group .button.brand2.dropdown-toggle::before {
   border-color: #ffffff;
 }
@@ -14225,6 +14340,7 @@ tbody td.brand2:hover,
 .tally.brand2:hover,
 code.brand2:hover,
 .notify.brand2:hover,
+.info-button.brand2:hover,
 .input .button-group .button.brand2:hover {
   color: #ffffff;
   background-color: #002a3c;
@@ -14241,6 +14357,7 @@ tbody td.brand2:hover.dropdown-toggle::before,
 .tally.brand2:hover.dropdown-toggle::before,
 code.brand2:hover.dropdown-toggle::before,
 .notify.brand2:hover.dropdown-toggle::before,
+.info-button.brand2:hover.dropdown-toggle::before,
 .input .button-group .button.brand2:hover.dropdown-toggle::before {
   border-color: #ffffff;
 }
@@ -14255,6 +14372,7 @@ tbody td.brand2.same-color:hover,
 .tally.brand2.same-color:hover,
 code.brand2.same-color:hover,
 .notify.brand2.same-color:hover,
+.info-button.brand2.same-color:hover,
 .input .button-group .button.brand2.same-color:hover {
   background-color: #004d6f;
   border-color: #004d6f;
@@ -14270,6 +14388,7 @@ tbody td.brand2:active,
 .tally.brand2:active,
 code.brand2:active,
 .notify.brand2:active,
+.info-button.brand2:active,
 .input .button-group .button.brand2:active,
 .button.brand2.focus,
 .command-button.brand2.focus,
@@ -14282,6 +14401,7 @@ tbody td.brand2.focus,
 .tally.brand2.focus,
 code.brand2.focus,
 .notify.brand2.focus,
+.info-button.brand2.focus,
 .input .button-group .button.brand2.focus,
 .button.brand2:focus,
 .command-button.brand2:focus,
@@ -14294,6 +14414,7 @@ tbody td.brand2:focus,
 .tally.brand2:focus,
 code.brand2:focus,
 .notify.brand2:focus,
+.info-button.brand2:focus,
 .input .button-group .button.brand2:focus {
   -webkit-box-shadow: 0 0 0 3px rgba(0, 77, 111, 0.45);
           box-shadow: 0 0 0 3px rgba(0, 77, 111, 0.45);
@@ -14309,6 +14430,7 @@ tbody td.yellow,
 .tally.yellow,
 code.yellow,
 .notify.yellow,
+.info-button.yellow,
 .input .button-group .button.yellow,
 .button.light,
 .command-button.light,
@@ -14321,6 +14443,7 @@ tbody td.light,
 .tally.light,
 code.light,
 .notify.light,
+.info-button.light,
 .input .button-group .button.light {
   color: #1d1d1d;
 }
@@ -14335,6 +14458,7 @@ tbody td.yellow:hover,
 .tally.yellow:hover,
 code.yellow:hover,
 .notify.yellow:hover,
+.info-button.yellow:hover,
 .input .button-group .button.yellow:hover,
 .button.light:hover,
 .command-button.light:hover,
@@ -14347,6 +14471,7 @@ tbody td.light:hover,
 .tally.light:hover,
 code.light:hover,
 .notify.light:hover,
+.info-button.light:hover,
 .input .button-group .button.light:hover,
 .button.yellow.outline:hover,
 .command-button.yellow.outline:hover,
@@ -14359,6 +14484,7 @@ tbody td.yellow.outline:hover,
 .tally.yellow.outline:hover,
 code.yellow.outline:hover,
 .notify.yellow.outline:hover,
+.info-button.yellow.outline:hover,
 .input .button-group .button.yellow.outline:hover,
 .button.light.outline:hover,
 .command-button.light.outline:hover,
@@ -14371,6 +14497,7 @@ tbody td.light.outline:hover,
 .tally.light.outline:hover,
 code.light.outline:hover,
 .notify.light.outline:hover,
+.info-button.light.outline:hover,
 .input .button-group .button.light.outline:hover {
   color: #1d1d1d;
 }
@@ -17929,9 +18056,10 @@ aside::after {
       -ms-user-select: none;
           user-select: none;
   border: 1px solid transparent;
-  padding: .5rem .75rem;
+  padding: 0 .75rem;
   font-size: .875rem;
-  line-height: 1.25;
+  line-height: 35px;
+  height: 35px;
   -webkit-transition: all 0.15s ease-in-out;
   transition: all 0.15s ease-in-out;
   background-color: #ebebeb;
@@ -17954,6 +18082,7 @@ aside::after {
   color: #007bff;
 }
 .button.link:hover {
+  background-color: transparent;
   color: #0056b3;
   text-decoration: underline;
 }
@@ -17962,26 +18091,35 @@ aside::after {
   -webkit-box-shadow: none;
           box-shadow: none;
 }
+.button.hovered:hover {
+  background-color: rgba(29, 29, 29, 0.2);
+}
 .button img {
   height: 1rem;
 }
 .button.mini {
   font-size: 0.625rem;
-  padding: .2rem .5rem;
+  padding: 0 .5rem;
+  height: 20px;
+  line-height: 20px;
 }
 .button.mini img {
   height: 0.625rem;
 }
 .button.small {
   font-size: 0.75rem;
-  padding: .3rem .6rem;
+  padding: 0 .6rem;
+  height: 26px;
+  line-height: 26px;
 }
 .button.small img {
   height: 0.75rem;
 }
 .button.large {
   font-size: 1.375rem;
-  padding: .75rem 1rem;
+  padding: 0 1rem;
+  height: 53px;
+  line-height: 53px;
 }
 .button.large img {
   height: 1.375rem;
@@ -18250,7 +18388,8 @@ aside::after {
   padding-right: .5rem;
 }
 .dropdown-button,
-.split-button {
+.split-button,
+.info-button {
   display: inline-block;
   position: relative;
   width: auto;
@@ -18275,6 +18414,46 @@ aside::after {
 }
 .split-button .split:hover {
   background-color: #cbcbcb;
+}
+.info-button {
+  height: 28px;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  border: 1px solid #dfdfdf;
+  background-color: #ebebeb;
+  overflow: hidden;
+}
+.info-button .button,
+.info-button .info {
+  border-right: none;
+  height: 100%;
+  line-height: 24px;
+}
+.info-button .button:active,
+.info-button .info:active,
+.info-button .button:focus,
+.info-button .info:focus {
+  -webkit-box-shadow: none!important;
+          box-shadow: none!important;
+}
+.info-button .button {
+  background-color: inherit;
+  color: inherit;
+}
+.info-button .button:hover {
+  background-color: rgba(29, 29, 29, 0.1);
+}
+.info-button .info {
+  font-size: 12px;
+  background-color: #FEFEFE;
+  color: #1d1d1d;
+  padding: 0 .625rem;
+  text-decoration: none;
+  font-weight: 600;
+}
+.info-button .info:hover {
+  color: #0056b3;
 }
 a.button,
 a.command-button,
@@ -24713,19 +24892,31 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
 }
 .tabs > ul > li,
 .tabs > ul a {
-  display: block;
   position: relative;
 }
 .tabs > ul > li {
+  display: block;
   background-color: #ffffff;
   color: #1d1d1d;
   margin: 0 0 -1px 0;
 }
-.tabs > ul li a {
+.tabs > ul > li > a {
   padding: .5rem 1rem;
   background-color: inherit;
   color: inherit;
   text-decoration: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.tabs > ul > li > a > [class*=mif-] {
+  margin: 0 4px;
 }
 .tabs > ul > li:hover {
   background-color: #f8f8f8;
@@ -36578,6 +36769,13 @@ video:-webkit-full-screen {
 .app-bar .app-bar-container a {
   color: inherit;
   text-decoration: none;
+}
+.app-bar .app-bar-input {
+  width: 100px;
+  height: 30px;
+  font-size: .875rem;
+  border: none!important;
+  border-radius: 4px;
 }
 .app-bar .hamburger:not(.hidden) ~ .ml-auto {
   margin-right: 48px;

@@ -148,6 +148,22 @@
                     <div class="img-container p-4-md">
                         <img src="images/logo.png">
                     </div>
+                    <div class="text-center">
+                        <div class="info-button">
+                            <a href="https://github.com/olton/Metro-UI-CSS" class="button"><span class="mif-eye"></span> Watch</a>
+                            <a href="https://github.com/olton/Metro-UI-CSS/watchers" class="info" id="github-watch">589</a>
+                        </div>
+
+                        <div class="info-button">
+                            <a href="https://github.com/olton/Metro-UI-CSS" class="button"><span class="mif-star-full"></span> Star</a>
+                            <a href="https://github.com/olton/Metro-UI-CSS/stargazers" class="info" id="github-star">5,546</a>
+                        </div>
+
+                        <div class="info-button mt-1 mt-0-md">
+                            <a href="https://github.com/olton/Metro-UI-CSS" class="button"><span class="mif-flow-tree"></span> Fork</a>
+                            <a href="https://github.com/olton/Metro-UI-CSS/network" class="info" id="github-fork">1,841</a>
+                        </div>
+                    </div>
                 </div>
                 <div class="cell-md-6 p-md-5 text-center-sm">
                     <h1 class="d-none d-block-md">Metro 4</h1>
@@ -224,7 +240,15 @@
                     bl.parent().html("<div class='bg-red fg-white p-4 text-center h3 text-light'>With your help, I can make Metro 4 even better! Please, disable AdBlock or AdGuard. Thank you for support!</div>");
                 }
             });
-        }, 1000)
+        }, 1000);
+
+        Metro.utils.github("olton/Metro-UI-CSS", function(data){
+            $("#github-fork").text(Number(data.forks).format(0, 0, ","));
+            $("#github-star").text(Number(data.stargazers_count).format(0, 0, ","));
+            $("#github-watch").text(Number(data.subscribers_count).format(0, 0, ","));
+            $("#github-owner").text(data.owner.login);
+            $("#github-project").text(data.name);
+        })
     </script>
     <!-- ads-script -->
     <!-- ga-script -->

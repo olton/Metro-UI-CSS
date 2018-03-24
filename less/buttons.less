@@ -9,9 +9,10 @@
     vertical-align: middle;
     user-select: none;
     border: 1px solid transparent;
-    padding: .5rem .75rem;
+    padding: 0 .75rem;
     font-size: .875rem;
-    line-height: 1.25;
+    line-height: 35px;
+    height: 35px;
     transition: @transition-short;
     background-color: darken(@light, 5%);
     color: @dark;
@@ -33,11 +34,20 @@
         background-color: @transparent;
         color: @linkColor;
         &:hover {
+            background-color: @transparent;
             color: @linkColorHover;
             text-decoration: underline;
         }
         &.focus, &:focus {
             box-shadow: none;
+        }
+    }
+}
+
+.button {
+    &.hovered {
+        &:hover {
+            background-color:  rgba(red(@dark), green(@dark), blue(@dark), .2);
         }
     }
 }
@@ -51,21 +61,27 @@
 .button {
     &.mini {
         .px2rem(font-size, 10px);
-        padding: .2rem .5rem;
+        padding: 0 .5rem;
+        height: 20px;
+        line-height: 20px;
         img {
             .px2rem(height, 10px);
         }
     }
     &.small {
         .px2rem(font-size, 12px);
-        padding: .3rem .6rem;
+        padding: 0 .6rem;
+        height: 26px;
+        line-height: 26px;
         img {
             .px2rem(height, 12px);
         }
     }
     &.large {
         .px2rem(font-size, 22px);
-        padding: .75rem 1rem;
+        padding: 0 1rem;
+        height: 53px;
+        line-height: 53px;
         img {
             .px2rem(height, 22px);
         }
@@ -312,7 +328,7 @@
     }
 }
 
-.dropdown-button, .split-button {
+.dropdown-button, .split-button, .info-button {
     display: inline-block;
     position: relative;
     width: auto;
@@ -340,6 +356,42 @@
 
         &:hover {
             background-color: darken(@lightGray, 10%);
+        }
+    }
+}
+
+.info-button {
+    height: 28px;
+    display: inline-flex;
+    border: 1px solid @borderColor;
+    background-color: darken(@light, 5%);
+    overflow: hidden;
+
+    .button, .info {
+        border-right: none;
+        height: 100%;
+        line-height: 24px;
+        &:active, &:focus {
+            box-shadow: none!important;
+        }
+    }
+
+    .button {
+        background-color: inherit;
+        color: inherit;
+        &:hover {
+            background-color: @hoverBackground;
+        }
+    }
+    .info {
+        font-size: 12px;
+        background-color: #FEFEFE;
+        color: @dark;
+        padding: 0 .625rem;
+        text-decoration: none;
+        font-weight: 600;
+        &:hover {
+            color: @linkColorHover;
         }
     }
 }
