@@ -7,6 +7,9 @@
 .bd-default {
   border-color: #dfdfdf !important;
 }
+.bd-transparent {
+  border-color: transparent !important;
+}
 .fg-black {
   color: #000000 !important;
 }

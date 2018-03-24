@@ -183,7 +183,7 @@
                         <span class="no-wrap">Metro CDN by <a href="https://www.keycdn.com/">KeyCDN</a>.</span>
                         <span class="no-wrap">IDE PhpStorm by <a href="https://www.jetbrains.com/">JetBrains</a>.</span>
                         <br />
-                        Currently v4.0.0-alpha. Code licensed <a href="https://github.com/olton/Metro-UI-CSS/blob/master/LICENSE">MIT</a>, docs <a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.
+                        Currently <span class="version-number"></span>. Code licensed <a href="https://github.com/olton/Metro-UI-CSS/blob/master/LICENSE">MIT</a>, docs <a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.
                     </p>
                 </div>
                 <div class="cell-md-6">
@@ -195,6 +195,9 @@
 
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="metro/js/metro.js"></script>
+    <script>
+        $(".version-number").html(Metro.ver());
+    </script>
     <!-- ads-script -->
     <!-- ga-script -->
 </body>

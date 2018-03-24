@@ -1,3 +1,11 @@
+### 4.1.5
++ [x] Colors: add `.bd-transparent` class
++ [x] Buttons: add `.info-button` as Github split button
++ [x] Examples: upd github page for `.info-button`
++ [x] App bar: add class `.app-bar-input` for placing inputs
++ [x] Buttons: add class `.hovered` for default button
++ [x] Tabs: all tabs `anchors` now have flex box model 
+
 ### 4.1.4
 + [x] Metro icon fonts: update, 34 new icons
 
@@ -16,7 +24,7 @@
 ### 4.1.1
 + [x] Utils: add method `inObject`
 + [x] Metro.initWidgets: change check rule for defined component
-+ [x] Input file: add click on then all elements parts
++ [x] Input file: add click on the all elements parts
 + [x] App bar: fix `v-menu` usage
 + [x] Spacing: add `mx-*`, `px-*` classes 
 + [x] Examples: add examples presentation page

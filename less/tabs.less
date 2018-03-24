@@ -44,21 +44,28 @@
 
 .tabs > ul {
     & > li, a {
-        display: block;
         position: relative;
     }
 
     & > li {
+        display: block;
         background-color: @white;
         color: @dark;
         margin: 0 0 -1px 0;
     }
 
-    & li a {
+    & > li > a {
         padding: .5rem 1rem;
         background-color: inherit;
         color: inherit;
         text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        & > [class*=mif-] {
+            margin: 0 4px;
+        }
     }
 
     & > li:hover {

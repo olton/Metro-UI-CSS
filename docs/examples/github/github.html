@@ -39,13 +39,9 @@
         }
 
         .app-bar-search {
-            width: 100px;
-            height: 30px;
-            font-size: .875rem;
             background-color: #3F4447!important;
             color: #bbbbbb!important;
-            border: none!important;
-            border-radius: 4px;
+            width: 200px!important;
         }
 
         .tabs ul li {
@@ -59,6 +55,10 @@
 
         table {
             font-size: 14px;
+        }
+
+        table td [class*=mif-] {
+            margin: 0 4px;
         }
 
         code {
@@ -75,7 +75,7 @@
         <header class="container pos-relative app-bar-expand-md" data-role="appbar">
             <a href="#" class="brand no-hover fg-white-hover order-1"><span class="mif-github mif-2x"></span></a>
             <div class="app-bar-item d-none d-flex-md order-2">
-                <input type="text" placeholder="Search" class="app-bar-search">
+                <input type="text" placeholder="Search" class="app-bar-input app-bar-search">
             </div>
 
             <ul class="app-bar-menu order-4 order-md-3">
@@ -131,26 +131,26 @@
                 </div>
 
                 <div class="cell-md-6 text-center-md text-right pt-2">
-                    <div class="">
-                        <a class="button small rounded mr-2" href="#">
-                            <span class=""><span class="mif-eye"></span> Unwatch</span>
-                            <span class="text-bold" id="github-watch">589</span>
-                        </a>
-                        <a class="button small rounded mr-2" href="#">
-                            <span class=""><span class="mif-star-full"></span> Star</span>
-                            <span class="text-bold" id="github-star">5,546</span>
-                        </a>
-                        <a class="button small rounded mr-2" href="#">
-                            <span class=""><span class="mif-flow-tree"></span> Fork</span>
-                            <span class="text-bold" id="github-fork">1,841</span>
-                        </a>
+                    <div class="info-button rounded">
+                        <a href="#" class="button"><span class="mif-eye"></span> Unwatch</a>
+                        <a href="#" class="info" id="github-watch">589</a>
+                    </div>
+
+                    <div class="info-button rounded">
+                        <a href="#" class="button"><span class="mif-star-full"></span> Star</a>
+                        <a href="#" class="info" id="github-star">5,546</a>
+                    </div>
+
+                    <div class="info-button rounded mt-1 mt-0-md">
+                        <a href="#" class="button"><span class="mif-flow-tree"></span> Fork</a>
+                        <a href="#" class="info" id="github-fork">1,841</a>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="container pt-4">
-            <ul data-role="tabs" class="bg-light tabs-expand-md" style="top: 9px;">
+        <div class="container pt-4 pl-0 pr-0 pl-3-md pr-3-md">
+            <ul data-role="tabs" class="bg-light tabs-expand-md w-100" style="top: 11px;">
                 <li><a href="#"><span class="mif-embed"></span> Code</a></li>
                 <li><a href="#"><span class="mif-info"></span> Issues</a></li>
                 <li><a href="#"><span class="mif-flow-branch"></span> Pull requests</a></li>
@@ -181,50 +181,58 @@
                 <a href="#" class="text-small">Manage topics</a>
             </div>
 
+            <hr class="mt-4">
+
             <div class="mt-4">
                 <div class="row">
                     <div class="cell-md-6 text-center-md text-left pt-2">
-                        <button class="button small rounded mr-1">Branch: <strong>master</strong></button>
-                        <button class="button small rounded">New pull request</button>
+                        <button class="button small rounded mr-1 hovered">Branch: <strong>master</strong></button>
+                        <button class="button small rounded hovered">New pull request</button>
                     </div>
 
                     <div class="cell-md-6 text-center-md text-right pt-2">
-                        <button class="button small rounded">Create new file</button>
-                        <button class="button small rounded">Uploads files</button>
-                        <button class="button small rounded">Find file</button>
-                        <button class="button small rounded bg-green fg-white">Clone or download</button>
+                        <button class="button small rounded hovered">Create new file</button>
+                        <button class="button small rounded hovered">Uploads files</button>
+                        <button class="button small rounded hovered">Find file</button>
+                        <button class="button small rounded success">Clone or download</button>
                     </div>
                 </div>
             </div>
 
             <div class="p-4 mt-4 bg-light border bd-default">
                 <div class="row">
-                    <div class="cell-md-3 cell-sm-6 text-center">
-                        <a href="" class="fg-dark fg-cyan-hover no-decor">
+                    <div class="cell-md cell-sm-6 text-center">
+                        <a href="" class="fg-dark fg-cyan-hover no-decor d-flex flex-align-center flex-justify-center">
                             <span class="mif-history"></span>
-                            <span>1,300</span>
+                            <span class="text-bold ml-1 mr-1">1,300</span>
                             <span>commits</span>
                         </a>
                     </div>
-                    <div class="cell-md-3 cell-sm-6 text-center">
-                        <a href="" class="fg-dark fg-cyan-hover no-decor">
+                    <div class="cell-md cell-sm-6 text-center">
+                        <a href="" class="fg-dark fg-cyan-hover no-decor d-flex flex-align-center flex-justify-center">
                             <span class="mif-flow-tree"></span>
-                            <span>5</span>
+                            <span class="text-bold ml-1 mr-1">5</span>
                             <span>branches</span>
                         </a>
                     </div>
-                    <div class="cell-md-3 cell-sm-6 text-center">
-                        <a href="" class="fg-dark fg-cyan-hover no-decor">
+                    <div class="cell-md cell-sm-6 text-center">
+                        <a href="" class="fg-dark fg-cyan-hover no-decor d-flex flex-align-center flex-justify-center">
                             <span class="mif-tag"></span>
-                            <span>40</span>
+                            <span class="text-bold ml-1 mr-1">40</span>
                             <span>releases</span>
                         </a>
                     </div>
-                    <div class="cell-md-3 cell-sm-6 text-center">
-                        <a href="" class="fg-dark fg-cyan-hover no-decor">
+                    <div class="cell-md cell-sm-6 text-center">
+                        <a href="" class="fg-dark fg-cyan-hover no-decor d-flex flex-align-center flex-justify-center">
                             <span class="mif-users"></span>
-                            <span>37</span>
+                            <span class="text-bold ml-1 mr-1">37</span>
                             <span>contributors</span>
+                        </a>
+                    </div>
+                    <div class="cell-md cell-sm-12 text-center">
+                        <a href="" class="fg-dark fg-cyan-hover no-decor d-flex flex-align-center flex-justify-center">
+                            <span class="mif-balance-scale"></span>
+                            <span class="text-bold ml-1 mr-1">MIT</span>
                         </a>
                     </div>
                 </div>
