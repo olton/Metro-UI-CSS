@@ -1,5 +1,5 @@
 /*!
- * Metro 4 Components Library v4.1.5 build 632 (https://metroui.org.ua)
+ * Metro 4 Components Library v4.1.6 build @@build (https://metroui.org.ua)
  * Copyright 2018 Sergey Pimenov
  * Licensed under MIT
  */
@@ -79,7 +79,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.1.5-632",
+    version: "@@version-@@build@@status",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -6979,6 +6979,7 @@ var Cube = {
         this.id = null;
         this.rules = null;
         this.interval = false;
+        this.ruleInterval = false;
         this.running = false;
         this.intervals = [];
 
@@ -7037,6 +7038,7 @@ var Cube = {
         showAxis: false,
         axisStyle: "arrow", //line
         cellClick: false,
+        autoRestart: 5000,
 
         clsCube: "",
         clsCell: "",
@@ -7266,50 +7268,43 @@ var Cube = {
         this.running = true;
 
         $.each(this.rules, function(index, rule){
-
-            that._tick(index);
-
-            $.each(sides, function(){
-                var side_class = "."+this+"-side";
-                var side_name = this;
-                var cells_on = rule["on"] !== undefined && rule["on"][side_name] !== undefined ? rule["on"][side_name] : false;
-                var cells_off = rule["off"] !== undefined && rule["off"][side_name] !== undefined ? rule["off"][side_name] : false;
-
-                if (cells_on !== false) $.each(cells_on, function(){
-                    var cell_index = this;
-                    var cell = element.find(side_class + " .cell-id-"+cell_index);
-
-                    that._toggle(cell, 'on', index);
-                });
-
-                if (cells_off !== false) $.each(cells_off, function(){
-                    var cell_index = this;
-                    var cell = element.find(side_class + " .cell-id-"+cell_index);
-
-                    that._toggle(cell, 'off', index);
-                });
-            });
+            that._execRule(index, rule);
         });
     },
 
     _stop: function(){
         this.running = false;
         clearInterval(this.interval);
+        $.each(this.intervals, function(){
+            clearInterval(this);
+        })
     },
 
-    _tick: function(index){
+    _tick: function(index, speed){
         var that = this, element = this.element, o = this.options;
+        if (speed === undefined) {
+            speed = o.flashInterval * index;
+        }
 
-        setTimeout(function(){
-            Utils.exec(o.onTick, [index, element]);
-        }, o.flashInterval * index);
+        var interval = setTimeout(function(){
+            Utils.exec(o.onTick, [index], element[0]);
+            clearInterval(interval);
+            Utils.arrayDelete(that.intervals, interval);
+        }, speed);
+        this.intervals.push(interval);
     },
 
-    _toggle: function(cell, func, time){
+    _toggle: function(cell, func, time, speed){
         var that = this;
+        if (speed === undefined) {
+            speed = this.options.flashInterval * time;
+        }
         var interval = setTimeout(function(){
             cell[func === 'on' ? 'addClass' : 'removeClass']("light");
-        }, this.options.flashInterval * time);
+            clearInterval(interval);
+            Utils.arrayDelete(that.intervals, interval);
+        }, speed);
+        this.intervals.push(interval);
     },
 
     start: function(){
@@ -7318,6 +7313,55 @@ var Cube = {
 
     stop: function(){
         this._stop();
+    },
+
+    toRule: function(index, speed){
+        var that = this, element = this.element, o = this.options;
+        var rules = this.rules;
+
+        if (rules === null || rules === undefined || rules[index] === undefined) {
+            return ;
+        }
+        clearInterval(this.ruleInterval);
+        this.ruleInterval = false;
+        this.stop();
+        element.find(".cube-cell").removeClass("light");
+        for (var i = 0; i <= index; i++) {
+            this._execRule(i, rules[i], speed);
+        }
+        if (Utils.isInt(o.autoRestart) && o.autoRestart > 0) {
+            this.ruleInterval = setTimeout(function(){
+                that._run();
+            }, o.autoRestart);
+        }
+    },
+
+    _execRule: function(index, rule, speed){
+        var that = this, element = this.element, o = this.options;
+        var sides = ['left', 'right', 'top'];
+
+        this._tick(index, speed);
+
+        $.each(sides, function(){
+            var side_class = "."+this+"-side";
+            var side_name = this;
+            var cells_on = rule["on"] !== undefined && rule["on"][side_name] !== undefined ? rule["on"][side_name] : false;
+            var cells_off = rule["off"] !== undefined && rule["off"][side_name] !== undefined ? rule["off"][side_name] : false;
+
+            if (cells_on !== false) $.each(cells_on, function(){
+                var cell_index = this;
+                var cell = element.find(side_class + " .cell-id-"+cell_index);
+
+                that._toggle(cell, 'on', index, speed);
+            });
+
+            if (cells_off !== false) $.each(cells_off, function(){
+                var cell_index = this;
+                var cell = element.find(side_class + " .cell-id-"+cell_index);
+
+                that._toggle(cell, 'off', index, speed);
+            });
+        });
     },
 
     rule: function(r){
@@ -7329,6 +7373,8 @@ var Cube = {
             return ;
         }
         this.options.rules = r;
+        this.stop();
+        this.element.find(".cube-cell").removeClass("light");
         this._run();
     },
 
@@ -7343,6 +7389,8 @@ var Cube = {
         if (this._parseRules(rules) !== true) {
             return ;
         }
+        this.stop();
+        element.find(".cube-cell").removeClass("light");
         o.rules = rules;
         this._run();
     },
@@ -8487,12 +8535,16 @@ var Dropdown = {
                         'visibility': 'hidden',
                         'display': 'block'
                     });
-                    var item_length = $(element.children('li')[0]).outerWidth();
+                    var children_width = 0;
+                    $.each(element.children('li'), function(){
+                        children_width += $(this).outerWidth(true);
+                    });
+
                     element.css({
                         'visibility': 'visible',
                         'display': 'none'
                     });
-                    var menu_width = element.children('li').length * item_length + (element.children('li').length - 1);
+                    var menu_width = children_width;
                     element.css('width', menu_width);
                 }
                 that._open(element);

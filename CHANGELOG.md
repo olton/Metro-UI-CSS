@@ -1,3 +1,16 @@
+### 4.1.6
++ [x] Cube: fix change rules at runtime
++ [x] Cube: add method `toRule(...)` 
++ [x] Lists: add `.custom-list-marker`
++ [x] Lists: return from v3 `.step-list`
++ [x] Typography: add class `.text-underline`
++ [x] Intro: fix docs for meta tags
++ [x] Calendar: fix actions buttons padding
++ [x] Button: change height to `32px`
++ [x] Scheme builder: add `.info-button`, `.image-button`
++ [x] Menu: fix `.t-menu` horizontal dropped down size
++ [x] Color scheme `red-dark`: change secondary background color 
+
 ### 4.1.5
 + [x] Colors: add `.bd-transparent` class
 + [x] Buttons: add `.info-button` as Github split button

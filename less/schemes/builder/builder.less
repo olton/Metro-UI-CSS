@@ -194,6 +194,36 @@
         &:active, &.focus, &:focus {
             .focus-show(@schemeControlColor);
         }
+
+        &:hover {
+            background-color: darken(@schemeControlColor, 5%);
+        }
+    }
+
+    .info-button {
+        border-color: @schemeControlColor;
+
+        .button {
+            background-color: @schemeControlColor;
+            color: @schemeControlTextColor;
+
+            &:hover {
+                background-color: darken(@schemeControlColor, 5%);
+            }
+        }
+    }
+
+    .image-button {
+        border-color: @schemeControlColor;
+
+        .icon {
+            background-color: @schemeControlColor;
+            color: @schemeControlTextColor;
+
+            &:hover {
+                background-color: darken(@schemeControlColor, 5%);
+            }
+        }
     }
 
     // Breadcrumbs
@@ -207,7 +237,7 @@
             }
         }
         .page-link:hover {
-            color: darken(@schemeControlColor, 10%);
+            color: darken(@schemeControlColor, 5%);
         }
     }
 
@@ -221,7 +251,7 @@
 
         .page-item {
             &.active, &:hover {
-                background-color: darken(@schemeControlColor, 10%);
+                background-color: darken(@schemeControlColor, 5%);
             }
         }
 
@@ -514,6 +544,10 @@
         .controls {
             .next, .prev {
                 color: @schemeControlColor;
+
+                &.disabled {
+                    color: @blendControlColor;
+                }
             }
         }
 

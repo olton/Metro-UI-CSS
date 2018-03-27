@@ -373,16 +373,20 @@
 
         & > a {
             display: block;
-            padding: .5rem 1rem 1.2rem;
+            padding: 0 1rem;
             border-bottom: 1px @borderColor solid;
             position: relative;
             color: inherit;
             background-color: inherit;
+            height: 60px;
+            width: 60px;
+            line-height: 60px;
 
             .icon {
                 width: 1.5rem;
                 height: 1.5rem;
                 font-size: 1.5rem;
+                line-height: 60px;
             }
         }
 
@@ -393,6 +397,10 @@
         &:last-child {
             a {border-bottom: 0;}
         }
+    }
+
+    a {
+        text-decoration: none!important;
     }
 
     .default-shadow();
@@ -486,12 +494,16 @@
     &.compact {
         li {
             a {
-                padding: .1rem .7rem .75rem;
+                padding: 0 .7rem;
+                width: 40px;
+                height: 40px;
+                line-height: 40px;
 
                 .icon {
                     width: 1rem;
                     height: 1rem;
                     font-size: 1rem;
+                    line-height: 40px;
                 }
             }
         }

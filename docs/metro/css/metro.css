@@ -15882,6 +15882,9 @@ pre code {
 .align-size {
   font-size: 1em!important;
 }
+.text-underline {
+  text-decoration: underline;
+}
 @media screen and (max-width: 0) {
   .text-upper-fs {
     text-transform: uppercase !important;
@@ -18044,6 +18047,18 @@ aside::after {
   top: .3125rem;
   margin-left: -1.5rem;
 }
+.custom-list-marker li {
+  position: relative;
+  padding-left: 1.2em;
+}
+.custom-list-marker li::before {
+  content: attr(data-marker);
+  position: absolute;
+  left: 0;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
 .button,
 .flat-button {
   display: inline-block;
@@ -18058,8 +18073,8 @@ aside::after {
   border: 1px solid transparent;
   padding: 0 .75rem;
   font-size: .875rem;
-  line-height: 35px;
-  height: 35px;
+  line-height: 30px;
+  height: 32px;
   -webkit-transition: all 0.15s ease-in-out;
   transition: all 0.15s ease-in-out;
   background-color: #ebebeb;
@@ -18226,16 +18241,18 @@ aside::after {
   margin-right: .5rem;
 }
 .image-button {
-  font-size: 0.875rem;
+  font-size: 14px;
   padding: 0 .5rem 0 0;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  height: 32px;
+  line-height: 30px;
 }
 .image-button .icon {
-  width: 2rem;
-  height: 2rem;
-  line-height: 2rem;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
   font-size: 1rem;
   background-color: rgba(69, 90, 100, 0.55);
   color: #ffffff;
@@ -18340,9 +18357,12 @@ aside::after {
   margin-top: 1.5rem;
 }
 .toolbar {
-  display: inline-block;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
   position: relative;
   padding: 0 0 0 .5725rem;
+  top: 2px;
 }
 .toolbar.no-divider:before {
   display: none;
@@ -18374,6 +18394,7 @@ aside::after {
   padding: 0;
   cursor: pointer;
   outline: none;
+  margin: 0 2px;
 }
 .tool-button [class*=mif],
 .tool-button .icon,
@@ -18396,7 +18417,7 @@ aside::after {
 }
 .split-button .split {
   margin-left: -2px;
-  padding: .5rem .75rem;
+  padding: 0 .75rem;
   text-align: center;
   vertical-align: middle ;
   background-color: #e4e4e4;
@@ -18406,8 +18427,8 @@ aside::after {
   outline: none;
   font-size: .875rem;
   position: relative;
-  line-height: 1.25;
-  height: 2.1875rem;
+  line-height: 32px;
+  height: 32px;
 }
 .split-button .split.dropdown-toggle::before {
   margin-left: -1.25rem;
@@ -18416,19 +18437,20 @@ aside::after {
   background-color: #cbcbcb;
 }
 .info-button {
-  height: 28px;
+  height: 32px;
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
   border: 1px solid #dfdfdf;
   background-color: #ebebeb;
   overflow: hidden;
+  top: 2px;
 }
 .info-button .button,
 .info-button .info {
   border-right: none;
   height: 100%;
-  line-height: 24px;
+  line-height: 30px;
 }
 .info-button .button:active,
 .info-button .info:active,
@@ -20094,22 +20116,29 @@ form[data-role*=validator] .invalid_feedback {
 }
 .t-menu > li > a {
   display: block;
-  padding: .5rem 1rem 1.2rem;
+  padding: 0 1rem;
   border-bottom: 1px #dfdfdf solid;
   position: relative;
   color: inherit;
   background-color: inherit;
+  height: 60px;
+  width: 60px;
+  line-height: 60px;
 }
 .t-menu > li > a .icon {
   width: 1.5rem;
   height: 1.5rem;
   font-size: 1.5rem;
+  line-height: 60px;
 }
 .t-menu > li:hover {
   background-color: rgba(29, 29, 29, 0.1);
 }
 .t-menu > li:last-child a {
   border-bottom: 0;
+}
+.t-menu a {
+  text-decoration: none!important;
 }
 .t-menu.horizontal > li {
   float: left;
@@ -20169,12 +20198,16 @@ form[data-role*=validator] .invalid_feedback {
   float: left;
 }
 .t-menu.compact li a {
-  padding: .1rem .7rem .75rem;
+  padding: 0 .7rem;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
 }
 .t-menu.compact li a .icon {
   width: 1rem;
   height: 1rem;
   font-size: 1rem;
+  line-height: 40px;
 }
 .t-menu.compact .dropdown-toggle {
   padding-right: .7rem!important;
@@ -26147,8 +26180,6 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
 .calendar-footer > * {
   margin: 0 2px;
   font-size: .75rem;
-  width: 25%;
-  padding: .5rem 0;
 }
 @media screen and (min-width: 0) {
   .calendar.calendar-wide-fs {
@@ -36769,6 +36800,9 @@ video:-webkit-full-screen {
 .app-bar .app-bar-container a {
   color: inherit;
   text-decoration: none;
+}
+.app-bar a {
+  outline: none!important;
 }
 .app-bar .app-bar-input {
   width: 100px;
