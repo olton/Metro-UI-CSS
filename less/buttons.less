@@ -11,8 +11,8 @@
     border: 1px solid transparent;
     padding: 0 .75rem;
     font-size: .875rem;
-    line-height: 35px;
-    height: 35px;
+    line-height: 30px;
+    height: 32px;
     transition: @transition-short;
     background-color: darken(@light, 5%);
     color: @dark;
@@ -179,15 +179,16 @@
 }
 
 .image-button {
-    .px2rem(font-size, 14px);
+    font-size: 14px;
     padding: 0 .5rem 0 0;
     align-items: center;
+    height: 32px;
+    line-height: 30px;
 
     .icon {
-        //padding: .5rem;
-        width: 2rem;
-        height: 2rem;
-        line-height: 2rem;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
         font-size: 1rem;
         background-color: rgba(red(@grayMouse), green(@grayMouse), blue(@grayMouse), .55);
         color: @white;
@@ -279,9 +280,10 @@
 }
 
 .toolbar {
-    display: inline-block;
+    display: inline-flex;
     position: relative;
     padding: 0 0 0 .5725rem;
+    top: 2px;
 
     &.no-divider {
         &:before {
@@ -314,6 +316,7 @@
     padding: 0;
     cursor: pointer;
     outline: none;
+    margin: 0 2px;
 
     [class*=mif], .icon, img {
         height: 1rem;
@@ -337,7 +340,7 @@
 .split-button {
     .split {
         margin-left: -2px;
-        padding: .5rem .75rem;
+        padding: 0 .75rem;
         text-align: center;
         vertical-align: middle ;
         background-color: @lightGray;
@@ -347,8 +350,8 @@
         outline: none;
         font-size: .875rem;
         position: relative;
-        line-height: 1.25;
-        .px2rem(height, 35px);
+        line-height: 32px;
+        height: 32px;
 
         &.dropdown-toggle {
             &::before {margin-left: -1.25rem;}
@@ -361,16 +364,17 @@
 }
 
 .info-button {
-    height: 28px;
+    height: 32px;
     display: inline-flex;
     border: 1px solid @borderColor;
     background-color: darken(@light, 5%);
     overflow: hidden;
+    top: 2px;
 
     .button, .info {
         border-right: none;
         height: 100%;
-        line-height: 24px;
+        line-height: 30px;
         &:active, &:focus {
             box-shadow: none!important;
         }

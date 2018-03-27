@@ -466,6 +466,10 @@ pre code {
 
 .align-size {font-size: 1em!important;}
 
+.text-underline {
+    text-decoration: underline;
+}
+
 .generate-text-media-options(@mediaBreakpointListMobileLength);
 .generate-text-media-options(@name, @i: 1) when (@i <= @mediaBreakpointListMobileLength) {
     @m: extract(@mediaBreakpointListMobile, @i);

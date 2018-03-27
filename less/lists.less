@@ -26,3 +26,18 @@
         margin-left: -1.5rem;
     }
 }
+
+.custom-list-marker {
+    li {
+        position: relative;
+        padding-left: 1.2em;
+
+        &::before {
+            content: attr(data-marker);
+            position: absolute;
+            left: 0;
+            top: 50%;
+            .translateY(-50%);
+        }
+    }
+}

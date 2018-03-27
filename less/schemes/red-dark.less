@@ -2,7 +2,7 @@
 @import (once) "builder/builder";
 
 @schemeBackground: #212121;
-@schemeBackgroundSecondary: #000000;
+@schemeBackgroundSecondary: #252525;
 @schemeTextColor: #ffffff;
 @schemeTextColorSecondary: #919396;
 @schemeControlColor: #730014;
@@ -82,3 +82,14 @@
 
     }
 }
+
+.master {
+    .controls {
+        .next, .prev {
+            &.disabled {
+                color: #323232 !important;
+            }
+        }
+    }
+}
+

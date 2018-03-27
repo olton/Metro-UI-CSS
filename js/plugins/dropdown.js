@@ -64,12 +64,16 @@ var Dropdown = {
                         'visibility': 'hidden',
                         'display': 'block'
                     });
-                    var item_length = $(element.children('li')[0]).outerWidth();
+                    var children_width = 0;
+                    $.each(element.children('li'), function(){
+                        children_width += $(this).outerWidth(true);
+                    });
+
                     element.css({
                         'visibility': 'visible',
                         'display': 'none'
                     });
-                    var menu_width = element.children('li').length * item_length + (element.children('li').length - 1);
+                    var menu_width = children_width;
                     element.css('width', menu_width);
                 }
                 that._open(element);

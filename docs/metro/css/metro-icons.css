@@ -30,6 +30,21 @@
 .mif-5x {
   font-size: 3em;
 }
+.mif-6x {
+  font-size: 3.5em;
+}
+.mif-7x {
+  font-size: 4em;
+}
+.mif-8x {
+  font-size: 4.5em;
+}
+.mif-9x {
+  font-size: 5em;
+}
+.mif-10x {
+  font-size: 5.5em;
+}
 .mif-add-shopping-cart:before {
   content: "\e854";
 }
@@ -474,6 +489,9 @@
 .mif-facebook:before {
   content: "\f09a";
 }
+.mif-google-plus:before {
+  content: "\f0d5";
+}
 .mif-steam:before {
   content: "\f1b6";
 }
@@ -482,6 +500,9 @@
 }
 .mif-user-secret:before {
   content: "\f21b";
+}
+.mif-server:before {
+  content: "\f233";
 }
 .mif-balance-scale:before {
   content: "\f24e";

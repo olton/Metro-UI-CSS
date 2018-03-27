@@ -221,6 +221,32 @@ textarea.focused,
   -webkit-box-shadow: 0 0 0 3px rgba(88, 91, 93, 0.45);
           box-shadow: 0 0 0 3px rgba(88, 91, 93, 0.45);
 }
+.button:hover,
+.command-button:hover,
+.shortcut:hover,
+.tool-button:hover {
+  background-color: #4c4e50;
+}
+.info-button {
+  border-color: #585b5d;
+}
+.info-button .button {
+  background-color: #585b5d;
+  color: #ffffff;
+}
+.info-button .button:hover {
+  background-color: #4c4e50;
+}
+.image-button {
+  border-color: #585b5d;
+}
+.image-button .icon {
+  background-color: #585b5d;
+  color: #ffffff;
+}
+.image-button .icon:hover {
+  background-color: #4c4e50;
+}
 .breadcrumbs {
   background-color: #2B2B2B;
   color: #585b5d;
@@ -230,7 +256,7 @@ textarea.focused,
   background-color: #585b5d !important;
 }
 .breadcrumbs .page-link:hover {
-  color: #3f4143;
+  color: #4c4e50;
 }
 .pagination .page-item:not(.no-link) {
   background-color: #585b5d;
@@ -239,7 +265,7 @@ textarea.focused,
 }
 .pagination .page-item.active,
 .pagination .page-item:hover {
-  background-color: #3f4143;
+  background-color: #4c4e50;
 }
 .pagination .no-link {
   background-color: transparent;
@@ -449,6 +475,10 @@ textarea.focused,
 .master .controls .next,
 .master .controls .prev {
   color: #585b5d;
+}
+.master .controls .next.disabled,
+.master .controls .prev.disabled {
+  color: rgba(88, 91, 93, 0.25);
 }
 .master .pages {
   border-color: #585b5d;
@@ -977,4 +1007,12 @@ textarea.focused,
 .wizard > section.complete::before,
 .wizard > .section.complete::before {
   color: #ffffff;
+}
+.master .controls .next,
+.master .controls .prev {
+  color: #ffffff;
+}
+.master .controls .next.disabled,
+.master .controls .prev.disabled {
+  color: #585b5d !important;
 }
