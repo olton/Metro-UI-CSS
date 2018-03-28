@@ -1,3 +1,6 @@
+### 4.1.7
++ [x] Display: fix order display classes `d-*` 
+
 ### 4.1.6
 + [x] Cube: fix change rules at runtime
 + [x] Cube: add method `toRule(...)` 

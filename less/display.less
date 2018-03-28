@@ -11,6 +11,8 @@
 .d-table {display: table!important;}
 .d-table-row {display: table-row!important;}
 .d-table-cell {display: table-cell!important;}
+.d-flex {display: flex!important;}
+.d-inline-flex {display: inline-flex!important;}
 
 html.metro-touch-device {
     .d-none-touch {display: none!important;}
@@ -20,6 +22,8 @@ html.metro-touch-device {
     .d-table-touch {display: table!important;}
     .d-table-row-touch {display: table-row!important;}
     .d-table-cell-touch {display: table-cell!important;}
+    .d-flex-touch {display: flex!important;}
+    .d-inline-flex-touch {display: inline-flex!important;}
 }
 
 html.metro-no-touch-device {
@@ -30,6 +34,8 @@ html.metro-no-touch-device {
     .d-table-no-touch {display: table!important;}
     .d-table-row-no-touch {display: table-row!important;}
     .d-table-cell-no-touch {display: table-cell!important;}
+    .d-flex-no-touch {display: flex!important;}
+    .d-inline-flex-no-touch {display: inline-flex!important;}
 }
 
 .generate-display-media-options(@mediaBreakpointListMobileLength);
@@ -47,6 +53,9 @@ html.metro-no-touch-device {
         .d-table-@{m} {display: table!important;}
         .d-table-row-@{m} {display: table-row!important;}
         .d-table-cell-@{m} {display: table-cell!important;}
+        .d-flex-@{m} {display: flex!important;}
+        .d-inline-flex-@{m} {display: inline-flex!important;}
+
 
         html.metro-touch-device {
             .d-none-touch-@{m} {display: none!important;}
@@ -56,6 +65,8 @@ html.metro-no-touch-device {
             .d-table-touch-@{m} {display: table!important;}
             .d-table-row-touch-@{m} {display: table-row!important;}
             .d-table-cell-touch-@{m} {display: table-cell!important;}
+            .d-flex-touch-@{m} {display: flex!important;}
+            .d-inline-flex-touch-@{m} {display: inline-flex!important;}
         }
 
         html.metro-no-touch-device {
@@ -66,6 +77,8 @@ html.metro-no-touch-device {
             .d-table-no-touch-@{m} {display: table!important;}
             .d-table-row-no-touch-@{m} {display: table-row!important;}
             .d-table-cell-no-touch-@{m} {display: table-cell!important;}
+            .d-flex-no-touch-@{m} {display: flex!important;}
+            .d-inline-flex-no-touch-@{m} {display: inline-flex!important;}
         }
     }
 
