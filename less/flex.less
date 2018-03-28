@@ -3,9 +3,6 @@
 
 @ordersCount: 24;
 
-.d-flex {display: flex!important;}
-.d-inline-flex {display: inline-flex!important;}
-
 .generate-order(@ordersCount);
 .generate-order(@j) when (@j > 0){
     .order-@{j} {
@@ -69,9 +66,6 @@
     @m: extract(@mediaBreakpointListMobile, @i);
 
     @media screen and (min-width: @@m) {
-        .d-flex-@{m} {display: flex!important;}
-        .d-inline-flex-@{m} {display: inline-flex!important;}
-
         .flex-nowrap-@{m} {flex-wrap: nowrap !important;}
         .flex-wrap-@{m} {flex-wrap: wrap !important;}
         .flex-wrap-r-@{m} {flex-wrap: wrap-reverse !important;}

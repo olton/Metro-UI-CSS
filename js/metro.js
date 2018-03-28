@@ -258,6 +258,8 @@ var Metro = {
         this.initHotkeys(hotkeys);
         this.initWidgets(widgets);
 
+        this.about();
+
         return this;
     },
 
