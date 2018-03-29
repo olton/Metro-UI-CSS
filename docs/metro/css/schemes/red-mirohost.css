@@ -960,6 +960,9 @@ textarea.focused,
 .ribbon-menu .ribbon-icon-button {
   color: #1d1d1d;
 }
+.wizard {
+  background-color: #F8F8F8;
+}
 .wizard > section.complete,
 .wizard > .section.complete {
   border-color: #000000;
