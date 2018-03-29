@@ -18283,8 +18283,8 @@ aside::after {
   border: 1px solid transparent;
   padding: 0 .75rem;
   font-size: .875rem;
-  line-height: 30px;
-  height: 32px;
+  line-height: 34px;
+  height: 36px;
   -webkit-transition: all 0.15s ease-in-out;
   transition: all 0.15s ease-in-out;
   background-color: #ebebeb;
@@ -18301,6 +18301,9 @@ aside::after {
 .button:focus {
   -webkit-box-shadow: 0 0 0 3px rgba(228, 228, 228, 0.45);
           box-shadow: 0 0 0 3px rgba(228, 228, 228, 0.45);
+}
+.button:hover {
+  background-color: rgba(29, 29, 29, 0.1);
 }
 .button.link {
   background-color: transparent;
@@ -18456,13 +18459,13 @@ aside::after {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  height: 32px;
+  height: 36px;
   line-height: 30px;
 }
 .image-button .icon {
-  width: 30px;
-  height: 30px;
-  line-height: 30px;
+  width: 34px;
+  height: 34px;
+  line-height: 34px;
   font-size: 1rem;
   background-color: rgba(69, 90, 100, 0.55);
   color: #ffffff;
@@ -18637,8 +18640,8 @@ aside::after {
   outline: none;
   font-size: .875rem;
   position: relative;
-  line-height: 32px;
-  height: 32px;
+  line-height: 36px;
+  height: 36px;
 }
 .split-button .split.dropdown-toggle::before {
   margin-left: -1.25rem;
@@ -18647,7 +18650,7 @@ aside::after {
   background-color: #cbcbcb;
 }
 .info-button {
-  height: 32px;
+  height: 36px;
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
@@ -18660,7 +18663,7 @@ aside::after {
 .info-button .info {
   border-right: none;
   height: 100%;
-  line-height: 30px;
+  line-height: 34px;
 }
 .info-button .button:active,
 .info-button .info:active,
@@ -19174,6 +19177,9 @@ label {
   display: block;
   padding: 0 .5rem;
   width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .file.disabled button {
   background-color: #f8f8f8;
@@ -19396,6 +19402,18 @@ label {
   overflow-y: auto;
   top: 100%;
 }
+.select .d-menu li a {
+  padding: 0 1rem;
+  height: 32px;
+  line-height: 32px;
+}
+.select .d-menu .active {
+  border: none;
+  color: #ffffff;
+}
+.select .d-menu .active:hover {
+  color: #ffffff;
+}
 .select.focused {
   -webkit-box-shadow: 0 0 0 3px rgba(228, 228, 228, 0.45);
           box-shadow: 0 0 0 3px rgba(228, 228, 228, 0.45);
@@ -19585,7 +19603,7 @@ fieldset.disabled,
   -webkit-box-shadow: 0 0 0 3px rgba(96, 169, 23, 0.45) !important;
           box-shadow: 0 0 0 3px rgba(96, 169, 23, 0.45) !important;
 }
-form[data-role*=validator] .invalid_feedback {
+.invalid_feedback {
   display: none;
 }
 .invalid + .invalid_feedback,
@@ -19626,7 +19644,7 @@ form[data-role*=validator] .invalid_feedback {
 .checkbox .check,
 .checkbox .caption {
   display: block;
-  line-height: 38px;
+  line-height: 1;
   font-size: 14px;
   margin: 0 4px;
   position: relative;
@@ -19767,7 +19785,7 @@ form[data-role*=validator] .invalid_feedback {
 .radio .check,
 .radio .caption {
   display: block;
-  line-height: 38px;
+  line-height: 1;
   font-size: 14px;
   margin: 0 4px;
   position: relative;
@@ -26855,11 +26873,11 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
       -ms-flex-pack: justify;
           justify-content: space-between;
   color: #1d1d1d;
-  overflow: hidden;
   background-color: #ffffff;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  overflow: visible;
 }
 .master .controls,
 .master .pages,
@@ -26937,7 +26955,8 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   border-top: 1px solid #dfdfdf;
   border-bottom: 1px solid #dfdfdf;
   width: 100%;
-  height: 100%;
+  height: auto;
+  min-width: 1rem;
 }
 .master .page {
   display: block;
@@ -27435,12 +27454,14 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   -webkit-box-ordinal-group: 2;
       -ms-flex-order: 1;
           order: 1;
-  height: 100%;
+  height: 2.625rem;
+  line-height: 2.625rem;
   width: 2.625rem;
   border-right: 1px solid #dfdfdf;
   -ms-flex-negative: 0;
       flex-shrink: 0;
   color: inherit;
+  text-align: center;
 }
 .panel .panel-title img.icon {
   padding: .625rem;

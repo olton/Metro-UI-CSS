@@ -11,8 +11,8 @@
     border: 1px solid transparent;
     padding: 0 .75rem;
     font-size: .875rem;
-    line-height: 30px;
-    height: 32px;
+    line-height: 34px;
+    height: 36px;
     transition: @transition-short;
     background-color: darken(@light, 5%);
     color: @dark;
@@ -28,6 +28,10 @@
 .button {
     &:active, &.focus, &:focus {
         .focus-show(@lightGray);
+    }
+
+    &:hover {
+        background-color: @hoverBackground;
     }
 
     &.link {
@@ -182,13 +186,13 @@
     font-size: 14px;
     padding: 0 .5rem 0 0;
     align-items: center;
-    height: 32px;
+    height: 36px;
     line-height: 30px;
 
     .icon {
-        width: 30px;
-        height: 30px;
-        line-height: 30px;
+        width: 34px;
+        height: 34px;
+        line-height: 34px;
         font-size: 1rem;
         background-color: rgba(red(@grayMouse), green(@grayMouse), blue(@grayMouse), .55);
         color: @white;
@@ -350,8 +354,8 @@
         outline: none;
         font-size: .875rem;
         position: relative;
-        line-height: 32px;
-        height: 32px;
+        line-height: 36px;
+        height: 36px;
 
         &.dropdown-toggle {
             &::before {margin-left: -1.25rem;}
@@ -364,7 +368,7 @@
 }
 
 .info-button {
-    height: 32px;
+    height: 36px;
     display: inline-flex;
     border: 1px solid @borderColor;
     background-color: darken(@light, 5%);
@@ -374,7 +378,7 @@
     .button, .info {
         border-right: none;
         height: 100%;
-        line-height: 30px;
+        line-height: 34px;
         &:active, &:focus {
             box-shadow: none!important;
         }

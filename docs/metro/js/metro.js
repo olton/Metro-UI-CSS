@@ -1,5 +1,5 @@
 /*!
- * Metro 4 Components Library v4.1.7 build @@build (https://metroui.org.ua)
+ * Metro 4 Components Library v4.1.8 build @@build (https://metroui.org.ua)
  * Copyright 2018 Sergey Pimenov
  * Licensed under MIT
  */
@@ -10087,7 +10087,7 @@ var Master = {
             this.pages[this.currentIndex].css("left", "0").show(0);
             setTimeout(function(){
                 pages.css({
-                    height: that.pages[0].outerHeight() + 2
+                    height: that.pages[0].outerHeight(true) + 2
                 });
             }, 0);
         }
@@ -10118,6 +10118,10 @@ var Master = {
             ) {
                 that.next();
             }
+        });
+
+        $(window).on(Metro.events.resize + "-master" + element.attr("id"), function(){
+            element.find(".pages").height(that.pages[that.currentIndex].outerHeight(true) + 2);
         });
     },
 
@@ -11944,6 +11948,7 @@ var Select = {
             element.val(item.value);
             input.val(item.text).trigger("change");
             element.trigger("change");
+            l.addClass("active");
         }
 
         a.appendTo(l);
@@ -12003,6 +12008,7 @@ var Select = {
                 toggleElement: "#"+select_id,
                 onDrop: function(){
                     var selects = $(".select ul");
+                    var target = list.find("li.active").length > 0 ? $(list.find("li.active")[0]) : undefined;
                     $.each(selects, function(){
                         var l = $(this);
                         if (l.is(list)) {
@@ -12010,6 +12016,16 @@ var Select = {
                         }
                         l.data('dropdown').close();
                     });
+
+                    if (target !== undefined) {
+                        list.scrollTop(0);
+                        setTimeout(function(){
+                            list.animate({
+                                scrollTop: target.position().top - ( (list.height() - target.height() )/ 2)
+                            }, 100);
+                        }, 200);
+                    }
+
                     Utils.exec(o.onDrop, [list, element], list[0]);
                 },
                 onUp: function(){
@@ -12062,9 +12078,12 @@ var Select = {
                 e.stopPropagation();
                 return ;
             }
-            var val = $(this).data('value');
-            var txt = $(this).data('text');
+            var leaf = $(this);
+            var val = leaf.data('value');
+            var txt = leaf.data('text');
             var list_obj = list.data('dropdown');
+            list.find("li.active").removeClass("active");
+            leaf.addClass("active");
             input.val(txt).trigger("change");
             element.val(val);
             element.trigger("change");
@@ -14796,6 +14815,9 @@ var ValidatorFuncs = {
     email: function(val){
         return /^[a-z0-9\u007F-\uffff!#$%&'*+\/=?^_`{|}~-]+(?:\.[a-z0-9\u007F-\uffff!#$%&'*+\/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z]{2,}$/i.test(val);
     },
+    domain: function(val){
+        return /^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9]\.[a-zA-Z]{2,}$/.test(val);
+    },
     url: function(val){
         return /^(?:(?:https?|ftp):\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,}))\.?)(?::\d{2,5})?(?:[/?#]\S*)?$/i.test(val);
     },
@@ -15064,7 +15086,6 @@ var Validator = {
             }, o.submitTimeout);
         } else {
             Utils.exec(o.onErrorForm, [result.log, element], form);
-            console.log(o.clearInvalid);
             if (o.clearInvalid > 0) {
                 setTimeout(function(){
                     $.each(inputs, function(){

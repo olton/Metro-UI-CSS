@@ -146,7 +146,7 @@ var Master = {
             this.pages[this.currentIndex].css("left", "0").show(0);
             setTimeout(function(){
                 pages.css({
-                    height: that.pages[0].outerHeight() + 2
+                    height: that.pages[0].outerHeight(true) + 2
                 });
             }, 0);
         }
@@ -177,6 +177,10 @@ var Master = {
             ) {
                 that.next();
             }
+        });
+
+        $(window).on(Metro.events.resize + "-master" + element.attr("id"), function(){
+            element.find(".pages").height(that.pages[that.currentIndex].outerHeight(true) + 2);
         });
     },
 

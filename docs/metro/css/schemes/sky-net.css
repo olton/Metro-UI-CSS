@@ -128,6 +128,10 @@ textarea.focused,
   background-color: #0CA9F2;
   color: #ffffff;
 }
+.select .active a {
+  background-color: #0CA9F2 !important;
+  color: #ffffff !important;
+}
 .checkbox .check {
   border-color: #0CA9F2;
 }
@@ -681,14 +685,6 @@ textarea.focused,
 }
 .streamer .stream-event-slide .slide-data .subtitle,
 .streamer .stream-event-slide .slide-data .desc {
-  color: #464646;
-}
-.table {
-  background-color: #ffffff;
-  color: #464646;
-}
-.table thead th,
-.table thead td {
   color: #464646;
 }
 .table thead {

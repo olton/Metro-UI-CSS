@@ -128,6 +128,10 @@ textarea.focused,
   background-color: #730014;
   color: #ffffff;
 }
+.select .active a {
+  background-color: #730014 !important;
+  color: #ffffff !important;
+}
 .checkbox .check {
   border-color: #730014;
 }
@@ -683,14 +687,6 @@ textarea.focused,
 .streamer .stream-event-slide .slide-data .desc {
   color: #919396;
 }
-.table {
-  background-color: #212121;
-  color: #ffffff;
-}
-.table thead th,
-.table thead td {
-  color: #ffffff;
-}
 .table thead {
   border-bottom-color: #730014;
 }
@@ -1011,4 +1007,11 @@ textarea.focused,
 .master .controls .next.disabled,
 .master .controls .prev.disabled {
   color: #323232 !important;
+}
+.table {
+  color: #919396;
+}
+.table thead th,
+.table thead td {
+  color: #ffffff;
 }
