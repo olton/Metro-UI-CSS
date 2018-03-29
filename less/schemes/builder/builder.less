@@ -91,6 +91,13 @@
         }
     }
 
+    .select {
+        .active a {
+            background-color: @schemeControlColor!important;
+            color: @schemeControlTextColor!important;
+        }
+    }
+
     .checkbox {
         .check {
             border-color: @schemeControlColor;
@@ -832,15 +839,6 @@
 
     // Table
     .table {
-        background-color: @schemeBackground;
-        color: @schemeTextColor;
-
-        thead {
-            th, td {
-                color: @schemeTextColor;
-            }
-        }
-
         thead {
             border-bottom-color: @schemeControlColor;
         }

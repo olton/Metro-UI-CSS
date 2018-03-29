@@ -1,3 +1,17 @@
+### 4.1.8
++ [x] Master: set `overflow: visible` to element
++ [x] Select: add scroll to active option
++ [x] Scheme builder: add style for select active options
++ [x] Panel: fix `icon` place and size
++ [x] Scheme builder: remove `background-color` and `color` from `.table`
++ [x] Buttons: change height to `36px`
++ [x] Master: fix height of pages container when a window is resized
++ [x] Select: change padding and height for internal drop down list items
++ [x] Input file: fix overflow for very long file name
++ [x] Checkbox: fix `line-height` for long caption  
++ [x] Radio: fix `line-height` for long caption
++ [x] Validator: add validation function  `domain`   
+
 ### 4.1.7
 + [x] Display: fix order display classes `d-*` 
 

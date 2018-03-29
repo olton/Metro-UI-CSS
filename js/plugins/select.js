@@ -60,6 +60,7 @@ var Select = {
             element.val(item.value);
             input.val(item.text).trigger("change");
             element.trigger("change");
+            l.addClass("active");
         }
 
         a.appendTo(l);
@@ -119,6 +120,7 @@ var Select = {
                 toggleElement: "#"+select_id,
                 onDrop: function(){
                     var selects = $(".select ul");
+                    var target = list.find("li.active").length > 0 ? $(list.find("li.active")[0]) : undefined;
                     $.each(selects, function(){
                         var l = $(this);
                         if (l.is(list)) {
@@ -126,6 +128,16 @@ var Select = {
                         }
                         l.data('dropdown').close();
                     });
+
+                    if (target !== undefined) {
+                        list.scrollTop(0);
+                        setTimeout(function(){
+                            list.animate({
+                                scrollTop: target.position().top - ( (list.height() - target.height() )/ 2)
+                            }, 100);
+                        }, 200);
+                    }
+
                     Utils.exec(o.onDrop, [list, element], list[0]);
                 },
                 onUp: function(){
@@ -178,9 +190,12 @@ var Select = {
                 e.stopPropagation();
                 return ;
             }
-            var val = $(this).data('value');
-            var txt = $(this).data('text');
+            var leaf = $(this);
+            var val = leaf.data('value');
+            var txt = leaf.data('text');
             var list_obj = list.data('dropdown');
+            list.find("li.active").removeClass("active");
+            leaf.addClass("active");
             input.val(txt).trigger("change");
             element.val(val);
             element.trigger("change");

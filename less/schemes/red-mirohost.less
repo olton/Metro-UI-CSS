@@ -61,9 +61,6 @@
 }
 
 .wizard {
-
-    background-color: #F8F8F8;
-
     & > section, & > .section {
         &.complete {
             border-color: darken(@schemeControlColor, 50%);
@@ -87,12 +84,27 @@
 }
 
 .master {
+    background-color: #F8F8F8;
+
     .controls {
         .next, .prev {
             &.disabled {
                 color: #323232 !important;
             }
         }
+        .title {
+            color: @dark;
+        }
+    }
+
+    input[type=text], input[type=password], input[type=tel],
+    input[type=datetime-local], input[type=email], input[type=file],
+    input[type=month], input[type=number],
+    input[type=search], input[type=time],
+    input[type=url], input[type=week], input[type=file],
+    select, textarea, .file, .input, .textarea, .select {
+        background-color: @white;
+        color: @dark;
     }
 }
 

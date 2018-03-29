@@ -83,6 +83,7 @@ label {
         display: block;
         padding: 0 .5rem;
         width: 100%;
+        .text-ellipsis();
     }
 
     &.disabled {
@@ -272,6 +273,20 @@ label {
         width: 100%;
         overflow-y: auto;
         top: 100%;
+
+        li a {
+            padding: 0 1rem;
+            height: 32px;
+            line-height: 32px;
+        }
+
+        .active {
+            border: none;
+            color: @white;
+            &:hover {
+                color: @white;
+            }
+        }
     }
 
     &.focused {
@@ -320,10 +335,13 @@ label {
         }
     }
 
-
     ul {
         right: 0;
         left: 0;
+    }
+
+    .active {
+
     }
 }
 
@@ -432,10 +450,8 @@ form, fieldset, .form-group {
 }
 
 
-form[data-role*=validator] {
-    .invalid_feedback {
-        display: none;
-    }
+.invalid_feedback {
+    display: none;
 }
 
 .invalid + .invalid_feedback,
