@@ -458,6 +458,8 @@ pre code {
 .reduce-4 {font-size: .6em!important;}
 .reduce-5 {font-size: .5em!important;}
 
+.enlarge {font-size: 1em!important;}
+
 .enlarge-1 {font-size: 1.1em!important;}
 .enlarge-2 {font-size: 1.2em!important;}
 .enlarge-3 {font-size: 1.3em!important;}
@@ -474,7 +476,7 @@ pre code {
 .generate-text-media-options(@name, @i: 1) when (@i <= @mediaBreakpointListMobileLength) {
     @m: extract(@mediaBreakpointListMobile, @i);
 
-    @media screen and (max-width: @@m) {
+    @media screen and (min-width: @@m) {
         .text-upper-@{m} {text-transform: uppercase !important;}
         .text-lower-@{m} {text-transform: lowercase !important;}
         .text-cap-@{m}   {text-transform: capitalize !important;}
@@ -498,6 +500,8 @@ pre code {
         .reduce-3-@{m} {font-size: .7em!important;}
         .reduce-4-@{m} {font-size: .6em!important;}
         .reduce-5-@{m} {font-size: .5em!important;}
+
+        .enlarge-@{m} {font-size: 1em!important;}
 
         .enlarge-1-@{m} {font-size: 1.1em!important;}
         .enlarge-2-@{m} {font-size: 1.2em!important;}
