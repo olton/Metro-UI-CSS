@@ -16074,6 +16074,9 @@ pre code {
 .reduce-5 {
   font-size: .5em!important;
 }
+.enlarge {
+  font-size: 1em!important;
+}
 .enlarge-1 {
   font-size: 1.1em!important;
 }
@@ -16095,7 +16098,7 @@ pre code {
 .text-underline {
   text-decoration: underline;
 }
-@media screen and (max-width: 0) {
+@media screen and (min-width: 0) {
   .text-upper-fs {
     text-transform: uppercase !important;
   }
@@ -16156,6 +16159,9 @@ pre code {
   .reduce-5-fs {
     font-size: .5em!important;
   }
+  .enlarge-fs {
+    font-size: 1em!important;
+  }
   .enlarge-1-fs {
     font-size: 1.1em!important;
   }
@@ -16172,7 +16178,7 @@ pre code {
     font-size: 1.5em!important;
   }
 }
-@media screen and (max-width: 576px) {
+@media screen and (min-width: 576px) {
   .text-upper-sm {
     text-transform: uppercase !important;
   }
@@ -16233,6 +16239,9 @@ pre code {
   .reduce-5-sm {
     font-size: .5em!important;
   }
+  .enlarge-sm {
+    font-size: 1em!important;
+  }
   .enlarge-1-sm {
     font-size: 1.1em!important;
   }
@@ -16249,7 +16258,7 @@ pre code {
     font-size: 1.5em!important;
   }
 }
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 768px) {
   .text-upper-md {
     text-transform: uppercase !important;
   }
@@ -16310,6 +16319,9 @@ pre code {
   .reduce-5-md {
     font-size: .5em!important;
   }
+  .enlarge-md {
+    font-size: 1em!important;
+  }
   .enlarge-1-md {
     font-size: 1.1em!important;
   }
@@ -16326,7 +16338,7 @@ pre code {
     font-size: 1.5em!important;
   }
 }
-@media screen and (max-width: 992px) {
+@media screen and (min-width: 992px) {
   .text-upper-lg {
     text-transform: uppercase !important;
   }
@@ -16387,6 +16399,9 @@ pre code {
   .reduce-5-lg {
     font-size: .5em!important;
   }
+  .enlarge-lg {
+    font-size: 1em!important;
+  }
   .enlarge-1-lg {
     font-size: 1.1em!important;
   }
@@ -16403,7 +16418,7 @@ pre code {
     font-size: 1.5em!important;
   }
 }
-@media screen and (max-width: 1200px) {
+@media screen and (min-width: 1200px) {
   .text-upper-xl {
     text-transform: uppercase !important;
   }
@@ -16464,6 +16479,9 @@ pre code {
   .reduce-5-xl {
     font-size: .5em!important;
   }
+  .enlarge-xl {
+    font-size: 1em!important;
+  }
   .enlarge-1-xl {
     font-size: 1.1em!important;
   }
@@ -16480,7 +16498,7 @@ pre code {
     font-size: 1.5em!important;
   }
 }
-@media screen and (max-width: 1452px) {
+@media screen and (min-width: 1452px) {
   .text-upper-xxl {
     text-transform: uppercase !important;
   }
@@ -16540,6 +16558,9 @@ pre code {
   }
   .reduce-5-xxl {
     font-size: .5em!important;
+  }
+  .enlarge-xxl {
+    font-size: 1em!important;
   }
   .enlarge-1-xxl {
     font-size: 1.1em!important;

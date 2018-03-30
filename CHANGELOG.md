@@ -1,3 +1,8 @@
+### 4.1.9
++ [x] Typography: fix media for `reduce-*`, `enlarge-*`, `text-align`, `vertical-align`
++ [x] Validator: change rule for `domain` function
++ [x] Validator: fix returned value for `Metro.validator.validate()` function
+
 ### 4.1.8
 + [x] Master: set `overflow: visible` to element
 + [x] Select: add scroll to active option
