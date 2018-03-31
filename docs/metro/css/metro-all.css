@@ -19030,10 +19030,11 @@ textarea,
   color: #1d1d1d;
   width: 100%;
   display: block;
-  padding: .5rem .75rem;
+  padding: 0 .75rem;
   font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Ubuntu", "Helvetica Neue", sans-serif;
   font-size: 1rem;
-  line-height: 1.25;
+  height: 36px;
+  line-height: 36px;
   background: #ffffff none;
   background-clip: padding-box;
 }
@@ -19167,6 +19168,11 @@ input[type=submit],
 input[type=reset] {
   width: auto;
 }
+.textarea,
+textarea {
+  height: auto;
+  padding: .5rem .75rem;
+}
 label {
   margin-bottom: .5rem;
 }
@@ -19207,13 +19213,6 @@ label {
   color: #dfdfdf;
 }
 .file .prepend {
-  padding: .5rem .75rem;
-  background-color: #f8f8f8;
-  color: #1d1d1d;
-  line-height: 1.25rem;
-  white-space: nowrap;
-}
-.file .prepend {
   -webkit-box-ordinal-group: 2;
       -ms-flex-order: 1;
           order: 1;
@@ -19228,6 +19227,7 @@ label {
       -ms-flex-order: 3;
           order: 3;
   margin-left: auto;
+  height: 34px;
 }
 .input {
   display: -webkit-box;
@@ -19262,6 +19262,7 @@ label {
       flex-shrink: 0;
   -ms-flex-preferred-size: 0;
       flex-basis: 0;
+  height: 34px;
 }
 .input input:focus {
   -webkit-box-shadow: none;
@@ -19286,6 +19287,7 @@ label {
 .input .button {
   background-color: transparent;
   color: #1d1d1d;
+  height: 34px;
 }
 .input .button:focus {
   -webkit-box-shadow: none;
@@ -19298,13 +19300,6 @@ label {
 .input.disabled .button-group button {
   background-color: #f8f8f8;
   color: #dfdfdf;
-}
-.input .prepend {
-  padding: .5rem .75rem;
-  background-color: #f8f8f8;
-  color: #1d1d1d;
-  line-height: 1.25rem;
-  white-space: nowrap;
 }
 .input .prepend {
   -webkit-box-ordinal-group: 2;
@@ -19360,13 +19355,6 @@ label {
   display: none;
 }
 .textarea .prepend {
-  padding: .5rem .75rem;
-  background-color: #f8f8f8;
-  color: #1d1d1d;
-  line-height: 1.25rem;
-  white-space: nowrap;
-}
-.textarea .prepend {
   -webkit-box-ordinal-group: 2;
       -ms-flex-order: 1;
           order: 1;
@@ -19410,6 +19398,7 @@ label {
   cursor: pointer;
   width: calc(100% - .75rem);
   border: none!important;
+  height: 34px;
 }
 .select input:focus {
   -webkit-box-shadow: none;
@@ -19448,13 +19437,6 @@ label {
   border-color: #ffffff;
 }
 .select .prepend {
-  padding: .5rem .75rem;
-  background-color: #f8f8f8;
-  color: #1d1d1d;
-  line-height: 1.25rem;
-  white-space: nowrap;
-}
-.select .prepend {
   -webkit-box-ordinal-group: 2;
       -ms-flex-order: 1;
           order: 1;
@@ -19481,6 +19463,16 @@ label {
 .select ul {
   right: 0;
   left: 0;
+}
+.file .prepend,
+.input .prepend,
+.select .prepend,
+.textarea .prepend {
+  padding: .5rem .75rem;
+  background-color: #f8f8f8;
+  color: #1d1d1d;
+  line-height: 1.25rem;
+  white-space: nowrap;
 }
 .inline-form {
   display: -webkit-box;
@@ -36841,7 +36833,7 @@ video:-webkit-full-screen {
   left: 0;
   width: 100%;
   height: auto;
-  min-height: 55px;
+  min-height: 52px;
   z-index: 1080;
   background-color: #f8f8f8;
   -webkit-box-orient: horizontal;
@@ -36866,8 +36858,8 @@ video:-webkit-full-screen {
       -ms-flex-align: center;
           align-items: center;
   position: relative;
-  height: 55px;
-  line-height: 55px;
+  height: 52px;
+  line-height: 52px;
   padding: 0 16px;
   background-color: inherit;
   color: inherit;
@@ -36905,7 +36897,7 @@ video:-webkit-full-screen {
 .app-bar .app-bar-menu > li,
 .app-bar .app-bar-menu > li > a {
   display: block;
-  line-height: 55px;
+  line-height: 52px;
   background-color: inherit;
   color: inherit;
   -ms-flex-negative: 0;
@@ -36935,8 +36927,8 @@ video:-webkit-full-screen {
   right: 0;
   top: 0;
   display: block;
-  height: 55px;
-  width: 55px;
+  height: 52px;
+  width: 52px;
 }
 .app-bar .hamburger.menu-down.active .line:nth-child(1),
 .app-bar .hamburger.menu-down.active .line:nth-child(3) {

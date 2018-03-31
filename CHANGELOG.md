@@ -1,3 +1,9 @@
+### 4.1.10
++ [x] i18n: add `es-MX`, thanks to [rkgarcia](https://github.com/rkgarcia)
++ [x] Inputs: optimize css for `prepend` element
++ [x] Inputs: set height for `input`, `select`, `file` to `36px`
++ [x] App bar: change height to `52px`
+
 ### 4.1.9
 + [x] Typography: fix media for `reduce-*`, `enlarge-*`, `text-align`, `vertical-align`
 + [x] Validator: change rule for `domain` function

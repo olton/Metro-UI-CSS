@@ -21,10 +21,11 @@ select, textarea, .file, .input, .textarea, .select {
     color: @dark;
     width: 100%;
     display: block;
-    padding: .5rem .75rem;
+    padding: 0 .75rem;
     font-family: @fontName;
     font-size: 1rem;
-    line-height: 1.25;
+    height: 36px;
+    line-height: 36px;
     background: @white none;
     background-clip: padding-box;
 
@@ -49,6 +50,11 @@ select, textarea, .file, .input, .textarea, .select {
 
 input[type=button], input[type=submit], input[type=reset] {
     width: auto;
+}
+
+.textarea, textarea {
+    height: auto;
+    padding: .5rem .75rem;
 }
 
 label {
@@ -93,19 +99,12 @@ label {
         }
     }
 
-    .prepend {
-        padding: .5rem .75rem;
-        background-color: @light;
-        color: @dark;
-        line-height: 1.25rem;
-        white-space: nowrap;
-    }
-
     .prepend {order: 1}
     .caption {order: 2;}
     button {
         order: 3;
         margin-left: auto;
+        height: 34px;
     }
 }
 
@@ -132,6 +131,7 @@ label {
         flex-grow: 1;
         flex-shrink: 0;
         flex-basis: 0;
+        height: 34px;
 
         &:focus {
             box-shadow: none;
@@ -153,6 +153,7 @@ label {
     .button {
         background-color: transparent;
         color: @dark;
+        height: 34px;
         &:focus {
             box-shadow: none;
         }
@@ -167,14 +168,6 @@ label {
             background-color: @light;
             color: darken(@light, 10%);
         }
-    }
-
-    .prepend {
-        padding: .5rem .75rem;
-        background-color: @light;
-        color: @dark;
-        line-height: 1.25rem;
-        white-space: nowrap;
     }
 
     .prepend {order: 1}
@@ -217,14 +210,6 @@ label {
         }
     }
 
-    .prepend {
-        padding: .5rem .75rem;
-        background-color: @light;
-        color: @dark;
-        line-height: 1.25rem;
-        white-space: nowrap;
-    }
-
     .prepend {order: 1}
     textarea {order: 2;}
 
@@ -258,6 +243,7 @@ label {
         cursor: pointer;
         width: ~"calc(100% - .75rem)";
         border: none!important;
+        height: 34px;
         &:focus {
             box-shadow: none;
         }
@@ -309,14 +295,6 @@ label {
         }
     }
 
-    .prepend {
-        padding: .5rem .75rem;
-        background-color: @light;
-        color: @dark;
-        line-height: 1.25rem;
-        white-space: nowrap;
-    }
-
     .prepend {order: 1}
     input {order: 2;}
 
@@ -342,6 +320,16 @@ label {
 
     .active {
 
+    }
+}
+
+.file, .input, .select, .textarea {
+    .prepend {
+        padding: .5rem .75rem;
+        background-color: @light;
+        color: @dark;
+        line-height: 1.25rem;
+        white-space: nowrap;
     }
 }
 
