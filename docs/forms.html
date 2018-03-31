@@ -460,6 +460,7 @@
                     <form>
                         <textarea placeholder="Default" class="mb-1"></textarea>
                         <textarea data-role="textarea" placeholder="Autosize" data-auto-size="true" class="mb-1"></textarea>
+                        <textarea data-role="textarea" placeholder="Autosize" data-auto-size="true" class="mb-1" data-prepend="<span class='mif-bubbles'></span>"></textarea>
                         <textarea data-role="textarea" placeholder="Disabled" disabled></textarea>
                     </form>
                 </div>
@@ -510,7 +511,7 @@
                     <form>
                         <input type="checkbox" data-role="checkbox" data-caption="Unchecked" title="">
                         <input type="checkbox" data-role="checkbox" data-caption="Checked" checked title="">
-                        <input type="checkbox" data-role="checkbox" data-caption="Indeterminate" indeterminate title="">
+                        <input type="checkbox" data-role="checkbox" data-caption="Indeterminate" data-indeterminate="true" title="">
                         <input type="checkbox" data-role="checkbox" data-caption="Disabled" disabled title="">
                         <input type="checkbox" data-role="checkbox" data-caption="Disabled checked" disabled checked title="">
                     </form>
@@ -518,7 +519,7 @@
                 <pre class=""><code>
                     &lt;input type="checkbox" data-role="checkbox" data-caption="Check"&gt;
                     &lt;input type="checkbox" data-role="checkbox" data-caption="Check" checked&gt;
-                    &lt;input type="checkbox" data-role="checkbox" data-caption="Check" indeterminate&gt;
+                    &lt;input type="checkbox" data-role="checkbox" data-caption="Check" data-indeterminate="true"&gt;
                     &lt;input type="checkbox" data-role="checkbox" data-caption="Check" disabled&gt;
                     &lt;input type="checkbox" data-role="checkbox" data-caption="Check" disabled checked&gt;
                 </code></pre>
@@ -556,12 +557,13 @@
 
                 <h4>Indeterminate state</h4>
                 <p>
-                    In Metro 4, the checkbox can have an indeterminate state. To set this state add or remove attribute <code>indeterminate</code> for/from input.
+                    In Metro 4, the checkbox can have an indeterminate state. To set this state add or remove attribute <code>data-indeterminate="true"</code> for/from input.
                 </p>
                 <div class="example">
-                    <input type="checkbox" data-role="checkbox" data-caption="Indeterminate" indeterminate id="indeterminate-checkbox" title="">
+                    <input type="checkbox" data-role="checkbox" data-caption="Indeterminate" data-indeterminate="true" id="indeterminate-checkbox" title="">
                     <div class="mt-2">
-                        <button class="button" onclick="$('#indeterminate-checkbox').toggleAttr('indeterminate')">Switch state</button>
+                        <button class="button" onclick="$('#indeterminate-checkbox').toggleAttr('data-indeterminate', 'true')">Set state</button>
+                        <button class="button" onclick="$('#indeterminate-checkbox').toggleAttr('data-indeterminate', 'false')">Remove state</button>
                     </div>
                 </div>
                 <pre><code>
@@ -572,9 +574,11 @@
                         id="indeterminate-checkbox"&gt;
                     &lt;div class="mt-2"&gt;
                         &lt;button class="button"
-                            onclick="$('#indeterminate-checkbox').toggleAttr('indeterminate')"&gt;
-                            Switch state
-                        &lt;/button&gt;
+                            onclick="$('#indeterminate-checkbox').toggleAttr('data-indeterminate', 'true')"
+                        &gt;Set state&lt;/button&gt;
+                        &lt;button class="button"
+                            onclick="$('#indeterminate-checkbox').toggleAttr('data-indeterminate', 'false')"
+                        &gt;Remove state&lt;/button&gt;
                     &lt;/div&gt;
                 </code></pre>
                 <p class="remark warning">

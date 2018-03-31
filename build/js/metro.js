@@ -1,5 +1,5 @@
 /*!
- * Metro 4 Components Library v4.1.9 build 636 (https://metroui.org.ua)
+ * Metro 4 Components Library v4.1.10 build @@build (https://metroui.org.ua)
  * Copyright 2018 Sergey Pimenov
  * Licensed under MIT
  */
@@ -79,7 +79,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.1.9-636",
+    version: "@@version-@@build@@status",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -1930,7 +1930,6 @@ var Locales = {
         }
     },
     
-    
     'cn-ZH': {
         "calendar": {
             "months": [
@@ -2092,6 +2091,41 @@ var Locales = {
             "yes": "Так",
             "no": "Ні",
             "random": "Випадково"
+        }
+    },
+
+    'es-MX': {
+        "calendar": {
+            "months": [
+                "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre",
+                "Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"
+            ],
+            "days": [
+                "Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado",
+                "Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa",
+                "Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"
+            ],
+            "time": {
+                "days": "DÍAS",
+                "hours": "HORAS",
+                "minutes": "MINS",
+                "seconds": "SEGS",
+                "month": "MES",
+                "day": "DÍA",
+                "year": "AÑO"
+            }
+        },
+        "buttons": {
+            "ok": "Aceptar",
+            "cancel": "Cancelar",
+            "done": "Hecho",
+            "today": "Hoy",
+            "now": "Ahora",
+            "clear": "Limpiar",
+            "help": "Ayuda",
+            "yes": "Si",
+            "no": "No",
+            "random": "Aleatorio"
         }
     }
 };
