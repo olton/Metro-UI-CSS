@@ -19668,6 +19668,8 @@ fieldset.disabled,
   height: 16px;
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
 }
 .checkbox .check::before {
   position: absolute;
@@ -19810,6 +19812,8 @@ fieldset.disabled,
   border-radius: 50%;
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
 }
 .radio .check::before {
   position: absolute;
@@ -19937,6 +19941,8 @@ fieldset.disabled,
   border-radius: 0.5625rem;
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
 }
 .switch .check::after {
   position: absolute;
@@ -43132,7 +43138,7 @@ input[dir=rtl] {
 
 @font-face {
   font-family: 'metro';
-  src: url('../mif/metro.woff') format('woff');
+  src: url('../mif/metro.ttf?niykz5') format('truetype'), url('../mif/metro.woff?niykz5') format('woff'), url('../mif/metro.svg?niykz5#metro') format('svg');
   font-weight: normal;
   font-style: normal;
 }
