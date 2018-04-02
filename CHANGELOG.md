@@ -1,3 +1,7 @@
+### 4.1.11
++ [x] Switches: fix shrink for `check` element for `checkbox`, `radio` and `switch`
++ [x] Metro icons font: add loading `ttf` and `svg` font types
+
 ### 4.1.10
 + [x] i18n: add `es-MX`, thanks to [rkgarcia](https://github.com/rkgarcia)
 + [x] Inputs: optimize css for `prepend` element
