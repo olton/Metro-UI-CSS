@@ -25,6 +25,8 @@ It's an independent project with its ongoing development made possible entirely 
  
 ## Current Version 4.1.11
 
+[![Join the chat at https://gitter.im/metro4/Lobby](https://badges.gitter.im/metro4/Lobby.svg)](https://gitter.im/metro4/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 ### Status
 [![Build Status](https://travis-ci.org/olton/Metro-UI-CSS.svg?branch=master)](https://travis-ci.org/olton/Metro-UI-CSS)
 [![dependencies Status](https://david-dm.org/olton/Metro-UI-CSS/status.svg)](https://david-dm.org/olton/Metro-UI-CSS)
