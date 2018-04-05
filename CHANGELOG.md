@@ -1,3 +1,6 @@
+### 4.1.12
++ [x] i18n: add French `fr-FR` locale
+
 ### 4.1.11
 + [x] Switches: fix shrink for `check` element for `checkbox`, `radio` and `switch`
 + [x] Metro icons font: add loading `ttf` and `svg` font types

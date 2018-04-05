@@ -23,9 +23,7 @@ It's an independent project with its ongoing development made possible entirely 
 <br>
 <hr>
  
-## Current Version 4.1.11
-
-[![Join the chat at https://gitter.im/metro4/Lobby](https://badges.gitter.im/metro4/Lobby.svg)](https://gitter.im/metro4/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+## Current Version 4.1.12
 
 ### Status
 [![Build Status](https://travis-ci.org/olton/Metro-UI-CSS.svg?branch=master)](https://travis-ci.org/olton/Metro-UI-CSS)
@@ -35,6 +33,10 @@ It's an independent project with its ongoing development made possible entirely 
 [![JS gzip size](http://img.badgesize.io/olton/Metro-UI-CSS/master/build/js/metro.min.js?compression=gzip&label=JS+gzip)](https://github.com/olton/Metro-UI-CSS/blob/master/build/js/metro.min.js)
 [![Icons gzip size](http://img.badgesize.io/olton/Metro-UI-CSS/master/build/mif/metro.woff?compression=gzip&label=Icons+gzip)](https://github.com/olton/Metro-UI-CSS/tree/master/build/mif)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat)](https://github.com/olton/Metro-UI-CSS/blob/master/LICENSE)
+
+###Community
+[![Join the chat at https://gitter.im/metro4/Lobby](https://badges.gitter.im/metro4/Lobby.svg)](https://gitter.im/metro4/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 
 ### Whats new
 + Full code refactoring and optimisation
