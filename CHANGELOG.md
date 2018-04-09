@@ -1,5 +1,5 @@
 ### 4.1.12
-+ [x] i18n: add French `fr-FR` locale
++ [x] i18n: add French `fr-FR` locale, thanks to [drill95](https://github.com/drill95)
 
 ### 4.1.11
 + [x] Switches: fix shrink for `check` element for `checkbox`, `radio` and `switch`
