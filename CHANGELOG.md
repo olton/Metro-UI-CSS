@@ -1,3 +1,6 @@
+### 4.1.13
++ [x] Textarea: fix `line-height`
+
 ### 4.1.12
 + [x] i18n: add French `fr-FR` locale, thanks to [drill95](https://github.com/drill95)
 

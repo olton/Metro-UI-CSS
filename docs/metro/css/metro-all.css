@@ -19173,6 +19173,9 @@ textarea {
   height: auto;
   padding: .5rem .75rem;
 }
+textarea {
+  line-height: 1.2;
+}
 label {
   margin-bottom: .5rem;
 }
