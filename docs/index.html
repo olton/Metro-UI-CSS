@@ -231,16 +231,16 @@
         particlesJS.load('hero-wrapper', 'particles/particles.json', function(){});
         $(".version-number").html(Metro.ver());
 
-        setTimeout(function(){
-            var b = $(".adsbygoogle");
-            var h = 0;
-            $.each(b, function(){
-                var bl = $(this);
-                if (bl.height() < 50 || Metro.utils.getStyleOne(bl, 'display') === 'none') {
-                    bl.parent().html("<div class='bg-red fg-white p-4 text-center h3 text-light'>With your help, I can make Metro 4 even better! Please, disable AdBlock or AdGuard. Thank you for support!</div>");
-                }
-            });
-        }, 1000);
+        // setTimeout(function(){
+        //     var b = $(".adsbygoogle");
+        //     var h = 0;
+        //     $.each(b, function(){
+        //         var bl = $(this);
+        //         if (bl.height() < 50 || Metro.utils.getStyleOne(bl, 'display') === 'none') {
+        //             bl.parent().html("<div class='bg-red fg-white p-4 text-center h3 text-light'>With your help, I can make Metro 4 even better! Please, disable AdBlock or AdGuard. Thank you for support!</div>");
+        //         }
+        //     });
+        // }, 1000);
 
         Metro.utils.github("olton/Metro-UI-CSS", function(data){
             $("#github-fork").text(Number(data.forks).format(0, 0, ","));
