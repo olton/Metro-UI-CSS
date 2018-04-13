@@ -24,7 +24,8 @@
     }
 
     &.view-table {
-        flex-flow: column nowrap;
+        //flex-flow: column nowrap;
+        display: table;
     }
 }
 
@@ -77,7 +78,7 @@
 
 .listview {
 
-    &.view-list, &.view-table {
+    &.view-list {
         .node {
             min-width: 160px;
             line-height: 26px;
@@ -104,10 +105,36 @@
     }
 
     &.view-table {
+
+        .icon {
+            width: 20px;
+            height: 20px;
+            line-height: 26px;
+            font-size: 18px;
+
+            & > * {
+                width: 100%;
+            }
+        }
+
+        & > li {
+            .data > .caption {
+                padding: 0 .5rem;
+                line-height: 26px;
+            }
+        }
+
+        & > li {
+            display: table-row;
+
+            & > * {
+                display: table-cell;
+            }
+        }
+
         .node-data {
-            display: inline-block;
+            display: table-cell;
             width: auto;
-            margin-left: auto;
             line-height: 26px;
         }
     }

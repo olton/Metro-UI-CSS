@@ -643,6 +643,14 @@ var Utils = {
 
     media: function(query){
         return window.matchMedia(query).matches
+    },
+
+    mediaModes: function(){
+        return METRO_MEDIA;
+    },
+
+    inMedia: function(media){
+        return METRO_MEDIA.indexOf(media) > -1 && METRO_MEDIA.indexOf(media) === METRO_MEDIA.length - 1;
     }
 };
 

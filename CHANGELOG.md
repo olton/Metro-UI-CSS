@@ -1,3 +1,14 @@
+### 4.1.14
++ [x] Issues: fix #1072 
++ [x] Calendar picker: add events `onMonthChange`, `onYearChange`
++ [x] Calendar: add `special days`
++ [x] Calendar: add attributes `data-show-header`, `data-show-footer`
++ [x] Listview: fix `table` view mode
++ [x] Utils: add method `mediaModes()` - return current medias
++ [x] Utils: add method `inMedia(media)` - return true if `media` is current mode. Ex: `Metro.utils.inMedia('md')`
++ [x] Checkbox: increase size and fix element height to inputs 
++ [x] Radio: increase size and fix element height to inputs 
+
 ### 4.1.13
 + [x] Textarea: fix `line-height`
 

@@ -29,11 +29,6 @@ var CalendarPicker = {
         clsPicker: "",
         clsInput: "",
 
-        onCalendarPickerCreate: Metro.noop,
-        onCalendarShow: Metro.noop,
-        onCalendarHide: Metro.noop,
-        onChange: Metro.noop,
-
         yearsBefore: 100,
         yearsAfter: 100,
         weekStart: METRO_WEEK_START,
@@ -53,8 +48,17 @@ var CalendarPicker = {
         preset: null,
         minDate: null,
         maxDate: null,
+        special: null,
+        showHeader: true,
+        showFooter: true,
 
-        onDayClick: Metro.noop
+        onDayClick: Metro.noop,
+        onCalendarPickerCreate: Metro.noop,
+        onCalendarShow: Metro.noop,
+        onCalendarHide: Metro.noop,
+        onChange: Metro.noop,
+        onMonthChange: Metro.noop,
+        onYearChange: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -124,6 +128,9 @@ var CalendarPicker = {
             maxDate: o.maxDate,
             yearsBefore: o.yearsBefore,
             yearsAfter: o.yearsAfter,
+            special: o.special,
+            showHeader: o.showHeader,
+            showFooter: o.showFooter,
             onDayClick: function(sel, day, el){
                 var date = new Date(sel[0]);
                 that.value = date.format("%Y/%m/%d");
@@ -134,7 +141,9 @@ var CalendarPicker = {
                 cal.hide();
                 Utils.exec(o.onChange, [that.value, that.value_date, element]);
                 Utils.exec(o.onDayClick, [sel, day, el]);
-            }
+            },
+            onMonthChange: o.onMonthChange,
+            onYearChange: o.onYearChange
         });
 
         cal.hide();

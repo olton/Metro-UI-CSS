@@ -19037,6 +19037,7 @@ textarea,
   line-height: 36px;
   background: #ffffff none;
   background-clip: padding-box;
+  min-width: 0;
 }
 input[type=text]:focus,
 input[type=password]:focus,
@@ -19647,7 +19648,7 @@ fieldset.disabled,
       -ms-user-select: none;
           user-select: none;
   cursor: pointer;
-  line-height: 38px;
+  height: 36px;
 }
 .checkbox input {
   width: 1px;
@@ -19667,12 +19668,13 @@ fieldset.disabled,
 }
 .checkbox .check {
   border: 2px #d9d9d9 solid;
-  width: 16px;
-  height: 16px;
+  width: 20px;
+  height: 20px;
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
   -ms-flex-negative: 0;
       flex-shrink: 0;
+  line-height: 36px;
 }
 .checkbox .check::before {
   position: absolute;
@@ -19790,7 +19792,7 @@ fieldset.disabled,
       -ms-user-select: none;
           user-select: none;
   cursor: pointer;
-  line-height: 38px;
+  height: 36px;
 }
 .radio input {
   width: 1px;
@@ -19810,13 +19812,14 @@ fieldset.disabled,
 }
 .radio .check {
   border: 2px #d9d9d9 solid;
-  width: 16px;
-  height: 16px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
   -ms-flex-negative: 0;
       flex-shrink: 0;
+  line-height: 36px;
 }
 .radio .check::before {
   position: absolute;
@@ -26239,6 +26242,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+  margin: 1px;
 }
 .calendar-content .day.selected {
   -webkit-box-shadow: 0 0 0 1px #5ebdec !important;
@@ -29312,10 +29316,7 @@ video:-webkit-full-screen {
           flex-flow: row wrap;
 }
 .listview.view-table {
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-flow: column nowrap;
-          flex-flow: column nowrap;
+  display: table;
 }
 .listview .node {
   display: -webkit-box;
@@ -29354,8 +29355,7 @@ video:-webkit-full-screen {
 .listview:not(.selectable) .checkbox {
   display: none;
 }
-.listview.view-list .node,
-.listview.view-table .node {
+.listview.view-list .node {
   min-width: 160px;
   line-height: 26px;
   height: 26px;
@@ -29365,26 +29365,41 @@ video:-webkit-full-screen {
       -ms-flex-flow: row nowrap;
           flex-flow: row nowrap;
 }
-.listview.view-list .node > .icon,
-.listview.view-table .node > .icon {
+.listview.view-list .node > .icon {
   width: 20px;
   height: 20px;
   line-height: 26px;
   font-size: 18px;
 }
-.listview.view-list .node > .data,
-.listview.view-table .node > .data {
+.listview.view-list .node > .data {
   line-height: 26px;
   padding-left: 24px;
 }
-.listview.view-list .node > .icon ~ .data,
-.listview.view-table .node > .icon ~ .data {
+.listview.view-list .node > .icon ~ .data {
   padding-left: 8px;
 }
+.listview.view-table .icon {
+  width: 20px;
+  height: 20px;
+  line-height: 26px;
+  font-size: 18px;
+}
+.listview.view-table .icon > * {
+  width: 100%;
+}
+.listview.view-table > li .data > .caption {
+  padding: 0 .5rem;
+  line-height: 26px;
+}
+.listview.view-table > li {
+  display: table-row;
+}
+.listview.view-table > li > * {
+  display: table-cell;
+}
 .listview.view-table .node-data {
-  display: inline-block;
+  display: table-cell;
   width: auto;
-  margin-left: auto;
   line-height: 26px;
 }
 .listview.view-content .node {
