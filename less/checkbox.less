@@ -10,7 +10,7 @@
     margin: 0;
     user-select: none;
     cursor: pointer;
-    line-height: 38px;
+    height: @inputHeight;
 
     .hideElement(input);
 
@@ -24,9 +24,10 @@
 
     .check {
         border: 2px @inputBorder solid;
-        .square(16, px);
+        .square(20, px);
         transition: @transition-base;
         flex-shrink: 0;
+        line-height: @inputHeight;
 
         &::before {
             position: absolute;

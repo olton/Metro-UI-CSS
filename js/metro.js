@@ -258,6 +258,13 @@ var Metro = {
         this.initHotkeys(hotkeys);
         this.initWidgets(widgets);
 
+        window.METRO_MEDIA = [];
+        $.each(Metro.media_queries, function(key, query){
+            if (Utils.media(query)) {
+                METRO_MEDIA.push(Metro.media_mode[key]);
+            }
+        });
+
         this.about();
 
         return this;

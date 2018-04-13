@@ -33,26 +33,32 @@
     <title>Test - Metro 4 :: Popular HTML, CSS and JS library</title>
 
     <style>
-        .app-bar {
-            background-color: #23292D;
-            color: #bbbbbb;
-        }
-
-        .app-bar-search {
-            width: 100px;
-            height: 30px;
-            font-size: .875rem;
-            background-color: #3F4447!important;
-            color: #bbbbbb!important;
-            border: none!important;
-            border-radius: 4px;
+        [class*=cell-] {
+            border: 1px dotted red!important;
         }
     </style>
-
 </head>
 <body class="">
 
-<h1 class="d-flex d-table-row-md">Hello, World!</h1>
+<div class="container mt-20">
+    <form class="row">
+        <div class="cell-md-3">
+            <input type="text" data-role="input">
+        </div>
+        <div class="cell-md-3">
+            <input type="checkbox" data-role="checkbox" data-caption="Checkbox">
+            <input type="checkbox" data-role="checkbox" data-indeterminate="true">
+        </div>
+        <div class="cell-md-3">
+            <input name="r1" type="radio" data-role="radio" data-caption="Radio">
+            <input name="r1" type="radio" data-role="radio" data-caption="Radio" checked>
+        </div>
+        <div class="cell-md-3">
+            <input type="checkbox" data-role="switch" data-caption="Switch">
+        </div>
+    </form>
+</div>
+
 
 <script src="../js/jquery-3.3.1.min.js"></script>
 <script src="../metro/js/metro.js"></script>

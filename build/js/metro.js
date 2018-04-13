@@ -1,5 +1,5 @@
 /*!
- * Metro 4 Components Library v4.1.13 build 644 (https://metroui.org.ua)
+ * Metro 4 Components Library v4.1.14 build @@build (https://metroui.org.ua)
  * Copyright 2018 Sergey Pimenov
  * Licensed under MIT
  */
@@ -79,7 +79,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.1.13-644",
+    version: "@@version-@@build@@status",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -275,6 +275,13 @@ var Metro = {
 
         this.initHotkeys(hotkeys);
         this.initWidgets(widgets);
+
+        window.METRO_MEDIA = [];
+        $.each(Metro.media_queries, function(key, query){
+            if (Utils.media(query)) {
+                METRO_MEDIA.push(Metro.media_mode[key]);
+            }
+        });
 
         this.about();
 
@@ -3528,6 +3535,14 @@ var d = new Date().getTime();
 
     media: function(query){
         return window.matchMedia(query).matches
+    },
+
+    mediaModes: function(){
+        return METRO_MEDIA;
+    },
+
+    inMedia: function(media){
+        return METRO_MEDIA.indexOf(media) > -1 && METRO_MEDIA.indexOf(media) === METRO_MEDIA.length - 1;
     }
 };
 
@@ -4527,6 +4542,7 @@ var Calendar = {
         this.preset = [];
         this.selected = [];
         this.exclude = [];
+        this.special = [];
         this.min = null;
         this.max = null;
         this.locale = null;
@@ -4549,6 +4565,8 @@ var Calendar = {
         yearsBefore: 100,
         yearsAfter: 100,
         headerFormat: "%A, %b %e",
+        showHeader: true,
+        showFooter: true,
         clsCalendar: "",
         clsCalendarHeader: "",
         clsCalendarContent: "",
@@ -4571,6 +4589,7 @@ var Calendar = {
         maxDate: null,
         weekDayClick: false,
         multiSelect: false,
+        special: null,
         onCancel: Metro.noop,
         onToday: Metro.noop,
         onClear: Metro.noop,
@@ -4631,6 +4650,21 @@ var Calendar = {
             });
         }
 
+        if (o.special !== null) {
+            if (Array.isArray(o.special) === false) {
+                o.special = o.special.split(",").map(function(item){
+                    return item.trim();
+                });
+            }
+
+            $.each(o.special, function(){
+                if (Utils.isDate(this) === false) {
+                    return ;
+                }
+                that.special.push((new Date(this)).getTime());
+            });
+        }
+
         if (o.buttons !== false) {
             if (Array.isArray(o.buttons) === false) {
                 o.buttons = o.buttons.split(",").map(function(item){
@@ -4665,6 +4699,7 @@ var Calendar = {
     },
 
     _build: function(){
+        var element = this.element;
 
         this._drawCalendar();
         this._bindEvents();
@@ -4719,10 +4754,10 @@ var Calendar = {
             setTimeout(function(){
                 that._drawContent();
                 if (el.hasClass("prev-month") || el.hasClass("next-month")) {
-                    Utils.exec(o.onMonthChange, [that.current, element]);
+                    Utils.exec(o.onMonthChange, [that.current, element], element[0]);
                 }
                 if (el.hasClass("prev-year") || el.hasClass("next-year")) {
-                    Utils.exec(o.onYearChange, [that.current, element]);
+                    Utils.exec(o.onYearChange, [that.current, element], element[0]);
                 }
             }, o.ripple ? 300 : 0);
 
@@ -4859,7 +4894,7 @@ var Calendar = {
         element.on(Metro.events.click, ".calendar-months li", function(e){
             that.current.month = $(this).index();
             that._drawContent();
-            Utils.exec(o.onMonthChange, [that.current, element]);
+            Utils.exec(o.onMonthChange, [that.current, element], element[0]);
             element.find(".calendar-months").removeClass("open");
             e.preventDefault();
             e.stopPropagation();
@@ -4888,7 +4923,7 @@ var Calendar = {
         element.on(Metro.events.click, ".calendar-years li", function(e){
             that.current.year = $(this).text();
             that._drawContent();
-            Utils.exec(o.onYearChange, [that.current, element]);
+            Utils.exec(o.onYearChange, [that.current, element], element[0]);
             element.find(".calendar-years").removeClass("open");
             e.preventDefault();
             e.stopPropagation();
@@ -4910,7 +4945,6 @@ var Calendar = {
 
     _drawHeader: function(){
         var element = this.element, o = this.options;
-        var calendar_locale = this.locale['calendar'];
         var header = element.find(".calendar-header");
 
         if (header.length === 0) {
@@ -4921,7 +4955,10 @@ var Calendar = {
 
         $("<div>").addClass("header-year").html(this.today.getFullYear()).appendTo(header);
         $("<div>").addClass("header-day").html(this.today.format(o.headerFormat, o.locale)).appendTo(header);
-        // $("<div>").addClass("header-day").html(calendar_locale['days'][this.today.getDay()] + ", " + calendar_locale['months'][this.today.getMonth() + 12] + " " + this.today.getDate()).appendTo(header);
+
+        if (o.showHeader === false) {
+            header.hide();
+        }
     },
 
     _drawFooter: function(){
@@ -4945,6 +4982,10 @@ var Calendar = {
                 button.addClass("js-dialog-close");
             }
         });
+
+        if (o.showFooter === false) {
+            footer.hide();
+        }
     },
 
     _drawMonths: function(){
@@ -5037,17 +5078,24 @@ var Calendar = {
 
             if (o.outside === true) {
                 d.html(v);
-                if (this.selected.indexOf(s.getTime()) !== -1) {
-                    d.addClass("selected").addClass(o.clsSelected);
-                }
-                if (this.exclude.indexOf(s.getTime()) !== -1) {
-                    d.addClass("disabled excluded").addClass(o.clsExcluded);
-                }
-                if (this.min !== null && s.getTime() < this.min.getTime()) {
-                    d.addClass("disabled excluded").addClass(o.clsExcluded);
-                }
-                if (this.max !== null && s.getTime() > this.max.getTime()) {
-                    d.addClass("disabled excluded").addClass(o.clsExcluded);
+
+                if (this.special.length === 0) {
+                    if (this.selected.indexOf(s.getTime()) !== -1) {
+                        d.addClass("selected").addClass(o.clsSelected);
+                    }
+                    if (this.exclude.indexOf(s.getTime()) !== -1) {
+                        d.addClass("disabled excluded").addClass(o.clsExcluded);
+                    }
+                    if (this.min !== null && s.getTime() < this.min.getTime()) {
+                        d.addClass("disabled excluded").addClass(o.clsExcluded);
+                    }
+                    if (this.max !== null && s.getTime() > this.max.getTime()) {
+                        d.addClass("disabled excluded").addClass(o.clsExcluded);
+                    }
+                } else {
+                    if (this.special.indexOf(s.getTime()) === -1) {
+                        d.addClass("disabled excluded").addClass(o.clsExcluded);
+                    }
                 }
             }
 
@@ -5068,18 +5116,28 @@ var Calendar = {
                 d.addClass("today").addClass(o.clsToday);
             }
 
-            if (this.selected.indexOf(first.getTime()) !== -1) {
-                d.addClass("selected").addClass(o.clsSelected);
-            }
-            if (this.exclude.indexOf(first.getTime()) !== -1) {
-                d.addClass("disabled excluded").addClass(o.clsExcluded);
-            }
+            if (this.special.length === 0) {
 
-            if (this.min !== null && first.getTime() < this.min.getTime()) {
-                d.addClass("disabled excluded").addClass(o.clsExcluded);
-            }
-            if (this.max !== null && first.getTime() > this.max.getTime()) {
-                d.addClass("disabled excluded").addClass(o.clsExcluded);
+                if (this.selected.indexOf(first.getTime()) !== -1) {
+                    d.addClass("selected").addClass(o.clsSelected);
+                }
+                if (this.exclude.indexOf(first.getTime()) !== -1) {
+                    d.addClass("disabled excluded").addClass(o.clsExcluded);
+                }
+
+                if (this.min !== null && first.getTime() < this.min.getTime()) {
+                    d.addClass("disabled excluded").addClass(o.clsExcluded);
+                }
+                if (this.max !== null && first.getTime() > this.max.getTime()) {
+                    d.addClass("disabled excluded").addClass(o.clsExcluded);
+                }
+
+            } else {
+
+                if (this.special.indexOf(first.getTime()) === -1) {
+                    d.addClass("disabled excluded").addClass(o.clsExcluded);
+                }
+
             }
 
             counter++;
@@ -5107,17 +5165,25 @@ var Calendar = {
             d.data('day', s.getTime());
             if (o.outside === true) {
                 d.html(i + 1);
-                if (this.selected.indexOf(s.getTime()) !== -1) {
-                    d.addClass("selected").addClass(o.clsSelected);
-                }
-                if (this.exclude.indexOf(s.getTime()) !== -1) {
-                    d.addClass("disabled excluded").addClass(o.clsExcluded);
-                }
-                if (this.min !== null && s.getTime() < this.min.getTime()) {
-                    d.addClass("disabled excluded").addClass(o.clsExcluded);
-                }
-                if (this.max !== null && s.getTime() > this.max.getTime()) {
-                    d.addClass("disabled excluded").addClass(o.clsExcluded);
+
+                if (this.special.length === 0) {
+
+                    if (this.selected.indexOf(s.getTime()) !== -1) {
+                        d.addClass("selected").addClass(o.clsSelected);
+                    }
+                    if (this.exclude.indexOf(s.getTime()) !== -1) {
+                        d.addClass("disabled excluded").addClass(o.clsExcluded);
+                    }
+                    if (this.min !== null && s.getTime() < this.min.getTime()) {
+                        d.addClass("disabled excluded").addClass(o.clsExcluded);
+                    }
+                    if (this.max !== null && s.getTime() > this.max.getTime()) {
+                        d.addClass("disabled excluded").addClass(o.clsExcluded);
+                    }
+                } else {
+                    if (this.special.indexOf(s.getTime()) === -1) {
+                        d.addClass("disabled excluded").addClass(o.clsExcluded);
+                    }
                 }
             }
         }
@@ -5345,11 +5411,6 @@ var CalendarPicker = {
         clsPicker: "",
         clsInput: "",
 
-        onCalendarPickerCreate: Metro.noop,
-        onCalendarShow: Metro.noop,
-        onCalendarHide: Metro.noop,
-        onChange: Metro.noop,
-
         yearsBefore: 100,
         yearsAfter: 100,
         weekStart: METRO_WEEK_START,
@@ -5369,8 +5430,17 @@ var CalendarPicker = {
         preset: null,
         minDate: null,
         maxDate: null,
+        special: null,
+        showHeader: true,
+        showFooter: true,
 
-        onDayClick: Metro.noop
+        onDayClick: Metro.noop,
+        onCalendarPickerCreate: Metro.noop,
+        onCalendarShow: Metro.noop,
+        onCalendarHide: Metro.noop,
+        onChange: Metro.noop,
+        onMonthChange: Metro.noop,
+        onYearChange: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -5440,6 +5510,9 @@ var CalendarPicker = {
             maxDate: o.maxDate,
             yearsBefore: o.yearsBefore,
             yearsAfter: o.yearsAfter,
+            special: o.special,
+            showHeader: o.showHeader,
+            showFooter: o.showFooter,
             onDayClick: function(sel, day, el){
                 var date = new Date(sel[0]);
                 that.value = date.format("%Y/%m/%d");
@@ -5450,7 +5523,9 @@ var CalendarPicker = {
                 cal.hide();
                 Utils.exec(o.onChange, [that.value, that.value_date, element]);
                 Utils.exec(o.onDayClick, [sel, day, el]);
-            }
+            },
+            onMonthChange: o.onMonthChange,
+            onYearChange: o.onYearChange
         });
 
         cal.hide();

@@ -15,6 +15,7 @@ var Calendar = {
         this.preset = [];
         this.selected = [];
         this.exclude = [];
+        this.special = [];
         this.min = null;
         this.max = null;
         this.locale = null;
@@ -37,6 +38,8 @@ var Calendar = {
         yearsBefore: 100,
         yearsAfter: 100,
         headerFormat: "%A, %b %e",
+        showHeader: true,
+        showFooter: true,
         clsCalendar: "",
         clsCalendarHeader: "",
         clsCalendarContent: "",
@@ -59,6 +62,7 @@ var Calendar = {
         maxDate: null,
         weekDayClick: false,
         multiSelect: false,
+        special: null,
         onCancel: Metro.noop,
         onToday: Metro.noop,
         onClear: Metro.noop,
@@ -119,6 +123,21 @@ var Calendar = {
             });
         }
 
+        if (o.special !== null) {
+            if (Array.isArray(o.special) === false) {
+                o.special = o.special.split(",").map(function(item){
+                    return item.trim();
+                });
+            }
+
+            $.each(o.special, function(){
+                if (Utils.isDate(this) === false) {
+                    return ;
+                }
+                that.special.push((new Date(this)).getTime());
+            });
+        }
+
         if (o.buttons !== false) {
             if (Array.isArray(o.buttons) === false) {
                 o.buttons = o.buttons.split(",").map(function(item){
@@ -153,6 +172,7 @@ var Calendar = {
     },
 
     _build: function(){
+        var element = this.element;
 
         this._drawCalendar();
         this._bindEvents();
@@ -207,10 +227,10 @@ var Calendar = {
             setTimeout(function(){
                 that._drawContent();
                 if (el.hasClass("prev-month") || el.hasClass("next-month")) {
-                    Utils.exec(o.onMonthChange, [that.current, element]);
+                    Utils.exec(o.onMonthChange, [that.current, element], element[0]);
                 }
                 if (el.hasClass("prev-year") || el.hasClass("next-year")) {
-                    Utils.exec(o.onYearChange, [that.current, element]);
+                    Utils.exec(o.onYearChange, [that.current, element], element[0]);
                 }
             }, o.ripple ? 300 : 0);
 
@@ -347,7 +367,7 @@ var Calendar = {
         element.on(Metro.events.click, ".calendar-months li", function(e){
             that.current.month = $(this).index();
             that._drawContent();
-            Utils.exec(o.onMonthChange, [that.current, element]);
+            Utils.exec(o.onMonthChange, [that.current, element], element[0]);
             element.find(".calendar-months").removeClass("open");
             e.preventDefault();
             e.stopPropagation();
@@ -376,7 +396,7 @@ var Calendar = {
         element.on(Metro.events.click, ".calendar-years li", function(e){
             that.current.year = $(this).text();
             that._drawContent();
-            Utils.exec(o.onYearChange, [that.current, element]);
+            Utils.exec(o.onYearChange, [that.current, element], element[0]);
             element.find(".calendar-years").removeClass("open");
             e.preventDefault();
             e.stopPropagation();
@@ -398,7 +418,6 @@ var Calendar = {
 
     _drawHeader: function(){
         var element = this.element, o = this.options;
-        var calendar_locale = this.locale['calendar'];
         var header = element.find(".calendar-header");
 
         if (header.length === 0) {
@@ -409,7 +428,10 @@ var Calendar = {
 
         $("<div>").addClass("header-year").html(this.today.getFullYear()).appendTo(header);
         $("<div>").addClass("header-day").html(this.today.format(o.headerFormat, o.locale)).appendTo(header);
-        // $("<div>").addClass("header-day").html(calendar_locale['days'][this.today.getDay()] + ", " + calendar_locale['months'][this.today.getMonth() + 12] + " " + this.today.getDate()).appendTo(header);
+
+        if (o.showHeader === false) {
+            header.hide();
+        }
     },
 
     _drawFooter: function(){
@@ -433,6 +455,10 @@ var Calendar = {
                 button.addClass("js-dialog-close");
             }
         });
+
+        if (o.showFooter === false) {
+            footer.hide();
+        }
     },
 
     _drawMonths: function(){
@@ -525,17 +551,24 @@ var Calendar = {
 
             if (o.outside === true) {
                 d.html(v);
-                if (this.selected.indexOf(s.getTime()) !== -1) {
-                    d.addClass("selected").addClass(o.clsSelected);
-                }
-                if (this.exclude.indexOf(s.getTime()) !== -1) {
-                    d.addClass("disabled excluded").addClass(o.clsExcluded);
-                }
-                if (this.min !== null && s.getTime() < this.min.getTime()) {
-                    d.addClass("disabled excluded").addClass(o.clsExcluded);
-                }
-                if (this.max !== null && s.getTime() > this.max.getTime()) {
-                    d.addClass("disabled excluded").addClass(o.clsExcluded);
+
+                if (this.special.length === 0) {
+                    if (this.selected.indexOf(s.getTime()) !== -1) {
+                        d.addClass("selected").addClass(o.clsSelected);
+                    }
+                    if (this.exclude.indexOf(s.getTime()) !== -1) {
+                        d.addClass("disabled excluded").addClass(o.clsExcluded);
+                    }
+                    if (this.min !== null && s.getTime() < this.min.getTime()) {
+                        d.addClass("disabled excluded").addClass(o.clsExcluded);
+                    }
+                    if (this.max !== null && s.getTime() > this.max.getTime()) {
+                        d.addClass("disabled excluded").addClass(o.clsExcluded);
+                    }
+                } else {
+                    if (this.special.indexOf(s.getTime()) === -1) {
+                        d.addClass("disabled excluded").addClass(o.clsExcluded);
+                    }
                 }
             }
 
@@ -556,18 +589,28 @@ var Calendar = {
                 d.addClass("today").addClass(o.clsToday);
             }
 
-            if (this.selected.indexOf(first.getTime()) !== -1) {
-                d.addClass("selected").addClass(o.clsSelected);
-            }
-            if (this.exclude.indexOf(first.getTime()) !== -1) {
-                d.addClass("disabled excluded").addClass(o.clsExcluded);
-            }
+            if (this.special.length === 0) {
 
-            if (this.min !== null && first.getTime() < this.min.getTime()) {
-                d.addClass("disabled excluded").addClass(o.clsExcluded);
-            }
-            if (this.max !== null && first.getTime() > this.max.getTime()) {
-                d.addClass("disabled excluded").addClass(o.clsExcluded);
+                if (this.selected.indexOf(first.getTime()) !== -1) {
+                    d.addClass("selected").addClass(o.clsSelected);
+                }
+                if (this.exclude.indexOf(first.getTime()) !== -1) {
+                    d.addClass("disabled excluded").addClass(o.clsExcluded);
+                }
+
+                if (this.min !== null && first.getTime() < this.min.getTime()) {
+                    d.addClass("disabled excluded").addClass(o.clsExcluded);
+                }
+                if (this.max !== null && first.getTime() > this.max.getTime()) {
+                    d.addClass("disabled excluded").addClass(o.clsExcluded);
+                }
+
+            } else {
+
+                if (this.special.indexOf(first.getTime()) === -1) {
+                    d.addClass("disabled excluded").addClass(o.clsExcluded);
+                }
+
             }
 
             counter++;
@@ -595,17 +638,25 @@ var Calendar = {
             d.data('day', s.getTime());
             if (o.outside === true) {
                 d.html(i + 1);
-                if (this.selected.indexOf(s.getTime()) !== -1) {
-                    d.addClass("selected").addClass(o.clsSelected);
-                }
-                if (this.exclude.indexOf(s.getTime()) !== -1) {
-                    d.addClass("disabled excluded").addClass(o.clsExcluded);
-                }
-                if (this.min !== null && s.getTime() < this.min.getTime()) {
-                    d.addClass("disabled excluded").addClass(o.clsExcluded);
-                }
-                if (this.max !== null && s.getTime() > this.max.getTime()) {
-                    d.addClass("disabled excluded").addClass(o.clsExcluded);
+
+                if (this.special.length === 0) {
+
+                    if (this.selected.indexOf(s.getTime()) !== -1) {
+                        d.addClass("selected").addClass(o.clsSelected);
+                    }
+                    if (this.exclude.indexOf(s.getTime()) !== -1) {
+                        d.addClass("disabled excluded").addClass(o.clsExcluded);
+                    }
+                    if (this.min !== null && s.getTime() < this.min.getTime()) {
+                        d.addClass("disabled excluded").addClass(o.clsExcluded);
+                    }
+                    if (this.max !== null && s.getTime() > this.max.getTime()) {
+                        d.addClass("disabled excluded").addClass(o.clsExcluded);
+                    }
+                } else {
+                    if (this.special.indexOf(s.getTime()) === -1) {
+                        d.addClass("disabled excluded").addClass(o.clsExcluded);
+                    }
                 }
             }
         }

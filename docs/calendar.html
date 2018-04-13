@@ -60,6 +60,7 @@
                     <li class="toc-entry"><a href="#_calendar_buttons">Buttons</a></li>
                     <li class="toc-entry"><a href="#_calendar_exclude">Exclude</a></li>
                     <li class="toc-entry"><a href="#_calendar_preset">Preset</a></li>
+                    <li class="toc-entry"><a href="#_calendar_special">Special</a></li>
                     <li class="toc-entry"><a href="#_calendar_min_max">Min &amp; Max dates</a></li>
                     <li class="toc-entry"><a href="#_calendar_show">Show specific date</a></li>
                     <li class="toc-entry"><a href="#_calendar_select_month_year">Select month, year</a></li>
@@ -307,6 +308,42 @@
                     &gt;&lt;/div&gt;
                 </code></pre>
 
+                <h3 id="_calendar_special">Special dates</h3>
+                <p>
+                    You can set a <code>special</code> dates.
+                    If you set a special dates, others dates marked as disabled.
+                    To set special dates use <code>data-special="..."</code> attribute and specify dates who can be sets.
+                    Values for this attributes can be <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15">valid string date:</a> <code>YYYY-MM-DDTHH:mm:ss.sssZ</code>.
+                </p>
+                <div class="example">
+                    <div id="calendar_special"  class="mx-auto"
+                         data-role="calendar"
+                         data-show="2017/10/15"
+                         data-special="
+                            2017/10/10,
+                            2017/10/11,
+                            2017/10/12,
+                            2017/10/13,
+                            2017/10/14,
+                            2017/10/15,
+                            2017/10/16"
+                    ></div>
+                </div>
+                <pre><code class="html">
+                    &lt;div
+                        data-role="calendar"
+                        data-show="2017/10/15"
+                        data-special="
+                            2017/10/10,
+                            2017/10/11,
+                            2017/10/12,
+                            2017/10/13,
+                            2017/10/14,
+                            2017/10/15,
+                            2017/10/16"
+                    &gt;&lt;/div&gt;
+                </code></pre>
+
                 <h3 id="_calendar_min_max">Min &amp; max dates</h3>
                 <p>
                     You can limit the set of dates for user selection. To set limit use <code>data-min-date="..."</code> and <code>data-max-date="..."</code> attributes.
@@ -511,6 +548,18 @@
                         <td><code>data-week-day-click</code></td>
                         <td>false</td>
                         <td>If true, user can select a few days</td>
+                    </tr>
+                    <tr>
+                        <td>showHeader</td>
+                        <td><code>data-show-header</code></td>
+                        <td>true</td>
+                        <td>If true, header is visible</td>
+                    </tr>
+                    <tr>
+                        <td>showFooter</td>
+                        <td><code>data-show-footer</code></td>
+                        <td>true</td>
+                        <td>If true, footer is visible</td>
                     </tr>
                     </tbody>
                 </table>
