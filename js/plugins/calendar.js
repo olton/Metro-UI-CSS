@@ -747,6 +747,32 @@ var Calendar = {
         this._drawContent();
     },
 
+    setSpecial: function(special){
+        var that = this, element = this.element, o = this.options;
+
+        o.special = special !== undefined ? special : element.attr("data-special");
+
+        if (o.special !== null) {
+
+            that.special = [];
+
+            if (Array.isArray(o.special) === false) {
+                o.special = o.special.split(",").map(function(item){
+                    return item.trim();
+                });
+            }
+
+            $.each(o.special, function(){
+                if (Utils.isDate(this) === false) {
+                    return ;
+                }
+                that.special.push((new Date(this)).getTime());
+            });
+        }
+
+        this._drawContent();
+    },
+
     setShow: function(show){
         var that = this, element = this.element, o = this.options;
 
@@ -813,6 +839,7 @@ var Calendar = {
         switch (attributeName) {
             case 'data-exclude': this.setExclude(); break;
             case 'data-preset': this.setPreset(); break;
+            case 'data-special': this.setSpecial(); break;
             case 'data-show': this.setShow(); break;
             case 'data-min-date': this.setMinDate(); break;
             case 'data-max-date': this.setMaxDate(); break;
