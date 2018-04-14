@@ -294,11 +294,25 @@ var CalendarPicker = {
         this.i18n(element.attr("data-locale"));
     },
 
+    changeAttrSpecial: function(){
+        var that = this, element = this.element, o = this.options;
+        var cal = this.calendar.data("calendar");
+        cal.setSpecial(element.attr("data-special"));
+    },
+
+    changeAttrExclude: function(){
+        var that = this, element = this.element, o = this.options;
+        var cal = this.calendar.data("calendar");
+        cal.setExclude(element.attr("data-exclude"));
+    },
+
     changeAttribute: function(attributeName){
         switch (attributeName) {
             case "value": this.changeValue(); break;
             case 'disabled': this.toggleState(); break;
             case 'data-locale': this.changeAttrLocale(); break;
+            case 'data-special': this.changeAttrSpecial(); break;
+            case 'data-exclude': this.changeAttrExclude(); break;
         }
     }
 };
