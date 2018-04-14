@@ -381,16 +381,16 @@ var Metro = {
         }
     },
 
-    reinitPligin: function(element, name){
+    reinitPlugin: function(element, name){
         this.destroyPlugin(element, name);
         this.initPlugin(element, name);
     },
 
-    reinitPliginAll: function(element){
+    reinitPluginAll: function(element){
         var mc = $(element).data("metroComponent");
 
         if (mc !== undefined && mc.length > 0) $.each(mc, function(){
-            Metro.reinitPligin(element, this);
+            Metro.reinitPlugin(element, this);
         });
     },
 

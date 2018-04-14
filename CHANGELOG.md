@@ -1,3 +1,7 @@
+### 4.1.15
++ [x] Metro: corrected typos in method names `reinitPlugin` and `reiniPluginAll`
++ [x] Docs: corrected typos in example of `micro template` engine
+
 ### 4.1.14
 + [x] Issues: fix #1072 
 + [x] Calendar picker: add events `onMonthChange`, `onYearChange`
