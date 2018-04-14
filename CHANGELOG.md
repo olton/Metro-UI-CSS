@@ -1,3 +1,7 @@
+### 4.1.16
++ [ ] Calendar: add observing `data-special` attribute
++ [ ] Calendar picker: add observing `data-special` attribute
+
 ### 4.1.15
 + [x] Metro: corrected typos in method names `reinitPlugin` and `reiniPluginAll`
 + [x] Docs: corrected typos in example of `micro template` engine

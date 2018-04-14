@@ -65,6 +65,7 @@ commit.bat
 build.bat
 final.bat
 tag.bat
+delete-tag.bat
 Postprocess.js
 Build.js
 Build_replace.js
