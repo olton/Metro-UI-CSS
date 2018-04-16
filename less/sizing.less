@@ -15,15 +15,21 @@
 .h-vh-75 {height: 75vh!important;}
 .h-vh-50 {height: 50vh!important;}
 .h-vh-25 {height: 25vh!important;}
-.h-vh-10 {height: 10vh!important;}
-.h-vh-5 {height: 5vh!important;}
 
-.w-vw-100 {height: 100vh!important;}
-.w-vw-75 {height: 75vh!important;}
-.w-vw-50 {height: 50vh!important;}
-.w-vw-25 {height: 25vh!important;}
-.w-vw-10 {height: 10vh!important;}
-.w-vw-5 {height: 5vh!important;}
+.h-vw-100 {height: 100vw!important;}
+.h-vw-75 {height: 75vw!important;}
+.h-vw-50 {height: 50vw!important;}
+.h-vw-25 {height: 25vw!important;}
+
+.w-vh-100 {width: 100vh!important;}
+.w-vh-75 {width: 75vh!important;}
+.w-vh-50 {width: 50vh!important;}
+.w-vh-25 {width: 25vh!important;}
+
+.w-vw-100 {width: 100vw!important;}
+.w-vw-75 {width: 75vw!important;}
+.w-vw-50 {width: 50vw!important;}
+.w-vw-25 {width: 25vw!important;}
 
 .generate-width(4);
 .generate-width(@i) when (@i > 0) {
@@ -43,36 +49,27 @@
     @m: extract(@mediaBreakpointListMobile, @i);
 
     @media screen and (min-width: @@m) {
-
         .w-auto-@{m} {width: auto!important;}
         .h-auto-@{m} {width: auto!important;}
 
-        .h-vh-100-@{m} {height: 100vh!important;}
-        .h-vh-75-@{m} {height: 75vh!important;}
-        .h-vh-50-@{m} {height: 50vh!important;}
-        .h-vh-25-@{m} {height: 25vh!important;}
-        .h-vh-10-@{m} {height: 10vh!important;}
-        .h-vh-5-@{m} {height: 5vh!important;}
+        .generate-size(@j, @k: 0) when (@k < @j) {
 
-        .w-vw-100-@{m} {height: 100vh!important;}
-        .w-vw-75-@{m} {height: 75vh!important;}
-        .w-vw-50-@{m} {height: 50vh!important;}
-        .w-vw-25-@{m} {height: 25vh!important;}
-        .w-vw-10-@{m} {height: 10vh!important;}
-        .w-vw-5-@{m} {height: 5vh!important;}
+            @s: @k * 25;
 
-        .generate-width(4);
-        .generate-width(@i) when (@i > 0) {
+            .h-vh-@{s}-@{m} {height: unit(@s, vh)!important;}
+            .h-vw-@{s}-@{m} {height: unit(@s, vw)!important;}
+            .w-vh-@{s}-@{m} {width: unit(@s, vh)!important;}
+            .w-vw-@{s}-@{m} {width: unit(@s, vh)!important;}
 
-            @s: @i * 25;
+            .w-@{s}-@{m} {width: unit(@s, %) !important;}
+            .h-@{s}-@{m} {height: unit(@s, %) !important;}
+            .mw-@{s}-@{m} {max-width: unit(@s, %) !important;}
+            .mh-@{s}-@{m} {max-height: unit(@s, %) !important;}
 
-            .w-@{s}-@{m} {width: @i * 25 + 0% !important;}
-            .h-@{s}-@{m} {height: @i * 25 + 0% !important;}
-            .mh-@{s}-@{m} {max-height: @i * 25 + 0% !important;}
-            .mw-@{s}-@{m} {max-width: @i * 25 + 0% !important;}
-
-            .generate-width(@i - 1);
+            .generate-size(@j, (@k + 1));
         }
+        .generate-size(4);
+
     }
 
     .generate-sizing-media-options(@name, @i + 1);
