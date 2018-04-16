@@ -2,6 +2,7 @@
 + [x] Calendar: add observation for `data-special` attribute
 + [x] Calendar picker: add observation for `data-special` attribute
 + [x] Calendar picker: add observation for `data-exclude` attribute
++ [x] Sizing: fix utilities classes calculating `.w-@{s}-@{m}`
 
 ### 4.1.15
 + [x] Metro: corrected typos in method names `reinitPlugin` and `reiniPluginAll`
