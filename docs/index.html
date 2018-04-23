@@ -4,254 +4,377 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <meta name="twitter:site" content="@metroui">
-    <meta name="twitter:creator" content="@pimenov_sergey">
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Metro 4 Components Library">
-    <meta name="twitter:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.">
-    <meta name="twitter:image" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <link href="metro/css/metro-all.css" rel="stylesheet">
 
-    <meta property="og:url" content="https://metroui.org.ua/v4/index.html">
-    <meta property="og:title" content="Metro 4 Components Library">
-    <meta property="og:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.">
-    <meta property="og:type" content="website">
-    <meta property="og:image" content="https://metroui.org.ua/images/m4-logo-social.png">
-    <meta property="og:image:secure_url" content="https://metroui.org.ua/images/m4-logo-social.png">
-    <meta property="og:image:type" content="image/png">
-    <meta property="og:image:width" content="968">
-    <meta property="og:image:height" content="504">
+    <title>Metro 4</title>
 
-    <meta name="author" content="Sergey Pimenov">
-    <meta name="description" content="Are you tired of Bootstrap? Get started with Metro 4, the popular framework for building responsive, mobile-first sites in Metro style, with the Metro CDN and a template starter page. The most popular HTML, CSS, and JS library in Metro style.">
-    <meta name="keywords" content="HTML, CSS, JS, Metro, CSS3, Javascript, HTML5, UI, Library, Web, Development, Framework">
+    <style>
+        .hero-bg {
+            background: rgba(140,0,75,1);
+            background: -moz-linear-gradient(top, rgba(140,0,75,1) 0%, rgba(217,52,195,1) 100%);
+            background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(140,0,75,1)), color-stop(100%, rgba(217,52,195,1)));
+            background: -webkit-linear-gradient(top, rgba(140,0,75,1) 0%, rgba(217,52,195,1) 100%);
+            background: -o-linear-gradient(top, rgba(140,0,75,1) 0%, rgba(217,52,195,1) 100%);
+            background: -ms-linear-gradient(top, rgba(140,0,75,1) 0%, rgba(217,52,195,1) 100%);
+            background: linear-gradient(to bottom, rgba(140,0,75,1) 0%, rgba(217,52,195,1) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8c004b', endColorstr='#d934c3', GradientType=0 );
+        }
 
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+        .hamburger {
+            top: 10px!important;
+        }
 
-    <link href="metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
-    <link href="highlight/styles/github.css" rel="stylesheet">
-    <link href="docsearch/docsearch.min.css" rel="stylesheet">
-    <link href="css/site.css" rel="stylesheet">
+        .hero {
+            padding: 40px;
+        }
 
-    <title>Metro 4 - Popular HTML, CSS and JS library</title>
+        .neb-hero {
+            z-index: 5;
+        }
+
+        .neb-white {
+            z-index: 10;
+        }
+
+        .neb-light {
+            z-index: 4;
+        }
+
+        .neb-feature {
+            z-index: 3;
+        }
+
+        .neb::before {
+            display: none!important;
+        }
+
+        .neb::after {
+            display: block;
+            content: "";
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 24px 24px 0 24px;
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .neb-hero::after {
+            border-color: rgba(125,185,232,1) transparent transparent transparent;
+        }
+
+        .neb-white::after {
+            border-color: rgba(255,255,255,1) transparent transparent transparent;
+        }
+
+        .neb-light::after {
+            border-color: #F8F8F8 transparent transparent transparent;
+        }
+
+        .neb-feature::after {
+            border-color: #434363 transparent transparent transparent;
+        }
+
+        .feature-bg {
+            background-color: #434363;
+            color: #ffffff;
+        }
+
+        .footer-bg {
+            background-color: #3F3F3F;
+            color: #909090;
+        }
+
+        footer a {
+            color: #909090;
+            text-decoration: none!important;
+        }
+
+        footer a:hover {
+            color: #c9c9c9;
+        }
+
+        .info-panel {
+            display: block;
+            background-color: #ffffff;
+            color: #000000;
+            min-height: 450px;
+            margin-top: 20px;
+        }
+
+        .info-panel .info-panel-header {
+            padding: 30px;
+            text-transform: uppercase;
+            font-size: 18px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            line-height: 1.2;
+        }
+
+        .info-panel .info-panel-content {
+            padding: 20px;
+        }
+
+        .info-panel .info-panel-footer {
+            padding: 40px;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+        }
+
+        #social-menu li {
+            margin: 0 20px;
+        }
+
+        #footer-menu li {
+            margin: 0 20px;
+        }
+
+        .special-thanks {
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .special-thanks [class*=cell-] {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .special-thanks img {
+            width: 124px;
+            max-height: 64px;
+        }
+
+        @media all and (min-width: 768px) {
+            .hero {
+                padding: 160px 80px 300px;
+            }
+
+            .feature-table {
+                top: -260px;
+            }
+
+            .neb-white {
+                height: 360px;
+            }
+
+            .info-panel {
+                height: 470px;
+                margin-top: 0;
+            }
+        }
+    </style>
 </head>
-<body>
-    <div class="container-fluid bg-brandColor2">
-        <header class="container topbar topbar-expand-sm">
+<body style="padding-top: 72px">
+
+    <div class="container-fluid bg-darkMagenta fg-white pos-fixed fixed-top z-top">
+        <header class="container bg-darkMagenta fg-white pos-relative app-bar-expand-md" data-role="appbar">
             <a href="/" class="topbar-brand fg-white border bd-white border-radius pr-2 pl-2">m<sup>4</sup></a>
-            <ul class="topbar-menu ml-2-sm">
-                <li><a href="index.html">Home</a></li>
+            <ul class="app-bar-menu ml-auto">
+                <li><a href="index-old.html">Home</a></li>
                 <li><a href="intro.html">Guide</a></li>
                 <li><a href="examples.html">Examples</a></li>
                 <li class="d-none"><a href="#">Builder</a></li>
                 <li><a href="sponsors.html">Sponsors</a></li>
-                <li class="d-block d-none-md"><a href="https://github.com/olton/Metro-UI-CSS" target="_blank">Github</a></li>
-            </ul>
-            <ul class="topbar-menu d-none d-flex-md" style="margin-left: auto">
-                <li><a href="https://github.com/olton/Metro-UI-CSS" target="_blank"><span class="mif-github mif-2x"></span></a></li>
+                <li><a href="https://forum.metroui.org.ua">Forum</a></li>
+                <li><a href="https://github.com/olton/Metro-UI-CSS" target="_blank">Github</a></li>
             </ul>
         </header>
     </div>
 
-    <div id="spider-navigator">
-        <ul class="inline-list">
-            <li class="done"><a href="intro.html">Introduction</a></li>
-            <li class="done"><a href="download.html">Download</a></li>
-            <li class="done"><a href="contents.html">Contents</a></li>
-            <li class="done"><a href="browsers.html">Browsers &amp; devices</a></li>
-            <li class="done"><a href="media.html">Media breakpoints</a></li>
-            <li class="done"><a href="events.html">Define Events</a></li>
-            <li class="done"><a href="i18n.html">i18n</a></li>
-            <li class="done"><a href="configuring.html">Configuring</a></li>
-            <li class="done"><a href="vuejs.html">Configuring</a></li>
-            <li class="done"><a href="containers.html">Containers</a></li>
-            <li class="done"><a href="grid.html">Grid system</a></li>
-            <li class="done"><a href="typography.html">Typography</a></li>
-            <li class="done"><a href="tables.html">Tables</a></li>
-            <li class="done"><a href="forms.html">Forms</a></li>
-            <li class="done"><a href="buttons.html">Buttons</a></li>
-            <li class="done"><a href="images.html">Images</a></li>
-            <li class="done"><a href="figures.html">Figures</a></li>
-            <li class="done"><a href="app-bar.html">App bar</a></li>
-            <li class="done"><a href="sidenavigation.html">Side navigation</a></li>
-            <li class="done"><a href="menu.html">Menu</a></li>
-            <li class="done"><a href="ribbon-menu.html">Ribbon Menu</a></li>
-            <li class="done"><a href="accordion.html">Accordion</a></li>
-            <li class="done"><a href="tabs.html">Tabs</a></li>
-            <li class="done"><a href="master.html">Master</a></li>
-            <li class="done"><a href="keypad.html">Keypad</a></li>
-            <li class="done"><a href="treeview.html">TreeView</a></li>
-            <li class="done"><a href="listview.html">ListView</a></li>
-            <li class="done"><a href="slider.html">Slider</a></li>
-            <li class="done"><a href="stepper.html">Stepper</a></li>
-            <li class="done"><a href="wizard.html">Wizard</a></li>
-            <li class="done"><a href="navview.html">Navigation View</a></li>
-            <li class="done"><a href="charms.html">Charms</a></li>
-            <li class="done"><a href="tiles.html">Tiles</a></li>
-            <li class="done"><a href="carousel.html">Carousel</a></li>
-            <li class="done"><a href="popovers.html">Popovers</a></li>
-            <li class="done"><a href="panels.html">Panels</a></li>
-            <li class="done"><a href="cards.html">Cards</a></li>
-            <li class="done"><a href="rating.html">Rating</a></li>
-            <li class="done"><a href="progress.html">Progress &amp; Activity</a></li>
-            <li class="done"><a href="donut.html">Donut</a></li>
-            <li class="done"><a href="streamer.html">Streamer</a></li>
-            <li class="done"><a href="ripple.html">Ripple</a></li>
-            <li class="done"><a href="storage.html">Storage</a></li>
-            <li class="done"><a href="gravatar.html">Gravatar</a></li>
-            <li class="done"><a href="cube.html">Cube</a></li>
-            <li class="done"><a href="hints.html">Hints</a></li>
-            <li class="done"><a href="toast.html">Toasts</a></li>
-            <li class="done"><a href="notify.html">Notify system</a></li>
-            <li class="done"><a href="dialog.html">Dialogs</a></li>
-            <li class="done"><a href="windows.html">Windows</a></li>
-            <li class="done"><a href="calendar.html">Calendar</a></li>
-            <li class="done"><a href="calendarpicker.html">Calendar picker</a></li>
-            <li class="done"><a href="datepicker.html">Date picker</a></li>
-            <li class="done"><a href="timepicker.html">Time picker</a></li>
-            <li class="done"><a href="countdown.html">Countdown</a></li>
-            <li class="done"><a href="dateformat.html">Formatting date</a></li>
-            <li class="done"><a href="video.html">Video player</a></li>
-            <li class="done"><a href="audio.html">Audio player</a></li>
-            <li class="done"><a href="dropdown.html">Dropdown</a></li>
-            <li class="done"><a href="collapse.html">Collapse</a></li>
-            <li class="done"><a href="validator.html">Form validator</a></li>
-            <li class="done"><a href="draggable.html">Draggable</a></li>
-            <li class="done"><a href="hotkeys.html">Hotkeys</a></li>
-            <li class="done"><a href="scroll-events.html">Scroll events</a></li>
-            <li class="done"><a href="mouse-wheel.html">Mouse wheel</a></li>
-            <li class="done"><a href="micro-tpl.html">Micro templates</a></li>
-            <li class="done"><a href="color-module.html">Color module</a></li>
-            <li class="done"><a href="clear.html">Clear float</a></li>
-            <li class="done"><a href="colors.html">Colors</a></li>
-            <li class="done"><a href="display.html">Display &amp; visibility</a></li>
-            <li class="done"><a href="embed.html">Embed</a></li>
-            <li class="done"><a href="flex.html">Flex</a></li>
-            <li class="done"><a href="float.html">Float</a></li>
-            <li class="done"><a href="position.html">Position</a></li>
-            <li class="done"><a href="sizing.html">Sizing</a></li>
-            <li class="done"><a href="spacing.html">Spacing</a></li>
-            <li class="done"><a href="border.html">Border</a></li>
-            <li class="done"><a href="easing.html">Easing</a></li>
-            <li class="done"><a href="animation.html">Animations</a></li>
-            <li class="done"><a href="extensions.html">Extensions</a></li>
-            <li class="done"><a href="functions.html">Functions</a></li>
-            <li class="done"><a href="icons.html">Metro Icon Font</a></li>
-            <li class="done"><a href="color-schemes.html">Color Schemes</a></li>
-        </ul>
+    <div class="hero hero-bg text-center neb neb-hero">
+
+        <h1 class="fg-white"><span class="reduce-1 enlarge-1-md">Raise Your Design to the Next Level</span></h1>
+        <h4 class="fg-light text-upper text-light mt-4"><span class="reduce-1 enlarge-1-md">Choose <strong>Metro 4</strong> for your sites</span></h4>
+
     </div>
 
-    <div class="container-fluid" id="hero-wrapper">
-        <div class="container hero pt-md-3 pb-md-3">
-            <div class="row flex-align-center">
-                <div class="cell-md-6 order-md-2">
-                    <div class="img-container p-4-md">
-                        <img src="images/logo.png">
-                    </div>
-                    <div class="text-center">
-                        <div class="info-button">
-                            <a href="https://github.com/olton/Metro-UI-CSS" class="button"><span class="mif-eye"></span> Watch</a>
-                            <a href="https://github.com/olton/Metro-UI-CSS/watchers" class="info" id="github-watch">589</a>
-                        </div>
+    <div class="container-fluid bg-white fg-dark pt-10 pb-20 neb neb-white">
+        <div class="container text-center">
 
-                        <div class="info-button">
-                            <a href="https://github.com/olton/Metro-UI-CSS" class="button"><span class="mif-star-full"></span> Star</a>
-                            <a href="https://github.com/olton/Metro-UI-CSS/stargazers" class="info" id="github-star">5,546</a>
+            <div class="feature-table row mt-10 pos-absolute-md">
+                <div class="cell-md-4">
+                    <div class="info-panel rounded no-overflow shadow-3">
+                        <div class="info-panel-header bg-green fg-white">Free for use</div>
+                        <div class="info-panel-content">
+                            <div class="m-10"><span class="mif-security mif-8x fg-green"></span></div>
+                            <span class="text-leader2">Metro 4 is a open source and have MIT license</span>
                         </div>
-
-                        <div class="info-button mt-1 mt-0-md">
-                            <a href="https://github.com/olton/Metro-UI-CSS" class="button"><span class="mif-flow-tree"></span> Fork</a>
-                            <a href="https://github.com/olton/Metro-UI-CSS/network" class="info" id="github-fork">1,841</a>
+                        <div class="info-panel-footer">
+                            <a href="download.html" class="button large outline success rounded">Download</a>
                         </div>
                     </div>
                 </div>
-                <div class="cell-md-6 p-md-5 text-center text-left-md">
-                    <h1 class="d-none d-block-md">Metro 4</h1>
-                    <p class="text-leader">
-                        <strong>Are you tired of Bootstrap or did not fall in love it?</strong>
-                        <br />
-                        Build responsive, mobile-first projects on the web with the first front-end component library in Metro Style.
-                    </p>
-                    <p class="text-leader2">
-                        Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.
-                    </p>
-                    <div class="row flex-justify-around mt-4">
-                        <a href="intro.html" class="cell button brand1 same-color outline large m-1 success">Get started</a>
-                        <a href="download.html" class="cell button outline large m-1 success">Download</a>
-                        <a href="https://www.patreon.com/bePatron?u=8975658" class="cell button outline large m-1 alert">Become a Patron</a>
+                <div class="cell-md-4">
+                    <div class="info-panel rounded no-overflow shadow-3">
+                        <div class="info-panel-header bg-steel fg-white">Easy to use</div>
+                        <div class="info-panel-content">
+                            <div class="m-10"><span class="mif-checkmark mif-8x fg-steel"></span></div>
+                            <span class="text-leader2">To use Metro 4 you do not even need to know javascript</span>
+                        </div>
+                        <div class="info-panel-footer">
+                            <a href="intro.html" class="button large outline secondary rounded">Get started</a>
+                        </div>
                     </div>
-                    <p class="text-small mt-2">Currently <span class="version-number"></span></p>
-                    <div class="mt-4">
-                        <hr/>
-                        <ul class="inline-list">
-                            <li>Previous version:</li>
-                            <li><a href="https://github.com/olton/Metro-UI-CSS/tree/metrouicss-0.95">v0.x</a></li>
-                            <li><a href="https://github.com/olton/Metro-UI-CSS/tree/metrouicss-2x">v2.x</a></li>
-                            <li><a href="https://github.com/olton/Metro-UI-CSS/tree/metrouicss-3x">v3.x</a></li>
-                        </ul>
+                </div>
+                <div class="cell-md-4">
+                    <div class="info-panel rounded no-overflow shadow-3">
+                        <div class="info-panel-header bg-orange fg-white">For developers</div>
+                        <div class="info-panel-content">
+                            <div class="m-10"><span class="mif-github mif-8x fg-orange"></span></div>
+                            <span class="text-leader2">Metro 4 is easily expandable to our own needs</span>
+                        </div>
+                        <div class="info-panel-footer">
+                            <a href="https://github.com/olton/Metro-UI-CSS" class="button large outline warning rounded">Get source</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <footer class="container-fluid pt-5 pb-3 pl-0 pr-0 bg-grayWhite">
-        <div class="container">
-            <div class="row">
-                <div class="cell-md-6">
-                    <ul class="inline-list h-menu no-hover bg-grayWhite" style="margin-left: -.5rem">
-                        <li><a href="https://github.com/olton/Metro-UI-CSS">Github</a></li>
-                        <li><a href="https://www.facebook.com/metrouicss/">Facebook</a></li>
-                        <li><a href="https://github.com/olton/Metro-UI-CSS/issues">Issues</a></li>
-                        <li><a href="https://www.patreon.com/metroui">Donate</a></li>
-                    </ul>
-                    <p class="mt-0">
-                        Metro 4 (Metro UI CSS) &copy; 2012-2018 by <a href="mailto:sergey@pimenov.com.ua" class="no-wrap">Sergey Pimenov</a>.
-                        <br />
-                        <span class="no-wrap">Domain by <a href="https://imena.ua/">Imena.ua</a>.</span>
-                        <span class="no-wrap">Hosting by <a href="https://mirohost.net/">Mirohost</a>.</span>
-                        <span class="no-wrap">Metro CDN by <a href="https://www.keycdn.com/">KeyCDN</a>.</span>
-                        <span class="no-wrap">IDE PhpStorm by <a href="https://www.jetbrains.com/">JetBrains</a>.</span>
-                        <br />
-                        Currently <span class="version-number"></span>. Code licensed <a href="https://github.com/olton/Metro-UI-CSS/blob/master/LICENSE">MIT</a>, docs <a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.
+    <div class="container-fluid bg-light pt-10 pb-20 neb neb-light">
+        <div class="container text-center">
+            <div class="h1 m-10"><span class="reduce-1 enlarge-1-md">What is it?</span></div>
+            <div class="text-leader">
+                <p class="reduce-1 enlarge-1-md pl-5-fs pr-5-fs pl-20-md pr-20-md">
+                    Metro 4 is an open source toolkit for developing with HTML, CSS, and JS.
+                    Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.
+                </p>
+            </div>
+            <hr class="mt-10 mb-10 w-50" style="background-color: #E1E1E1">
+            <div class="text-leader2">
+                <p class="reduce-1 enlarge-1-md pl-5-fs pr-5-fs pl-20-md pr-20-md">
+                    Build responsive, mobile-first projects on the web with the first front-end component library in Metro Style.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid feature-bg pt-10 pb-20 neb neb-feature">
+        <div class="container text-center">
+            <div class="h1 mt-10"><span class="reduce-1 enlarge-1-md">All the Features You Need</span></div>
+            <div class="h4 text-light"><span class="reduce-1 enlarge-1-md">With Metro 4 you get:</span></div>
+
+            <div class="row mt-12">
+                <div class="cell-md-4 mt-4">
+                    <div><span class="mif-embed2 mif-8x"></span></div>
+                    <h4 class="fg-white mt-4">Base styles</h4>
+                    <p>
+                        Metro 4 includes various styles for changing the appearance of html elements.
                     </p>
                 </div>
-                <div class="cell-md-6">
-                    <!-- ads-html -->
+                <div class="cell-md-4 mt-4">
+                    <div><span class="mif-library mif-8x"></span></div>
+                    <h4 class="fg-white mt-4">70+ Components</h4>
+                    <p>
+                        More than 70 components are available to you to solve almost all tasks.
+                    </p>
                 </div>
+                <div class="cell-md-4 mt-4">
+                    <div><span class="mif-cogs mif-8x"></span></div>
+                    <h4 class="fg-white mt-4">Tools and Routines</h4>
+                    <p>
+                        Various built-in tool functions and classes will increase your productivity.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row mt-12">
+                <div class="cell-md-4 mt-4">
+                    <div><span class="mif-bug mif-8x"></span></div>
+                    <h4 class="fg-white mt-4">Issues</h4>
+                    <p>
+                        Rapid response to detected bugs and their elimination.
+                    </p>
+                </div>
+                <div class="cell-md-4 mt-4">
+                    <div><span class="mif-help mif-8x"></span></div>
+                    <h4 class="fg-white mt-4">Guide</h4>
+                    <p>
+                        Detailed description of all elements of the Metro 4 library.
+                    </p>
+                </div>
+                <div class="cell-md-4 mt-4">
+                    <div><span class="mif-bubbles mif-8x"></span></div>
+                    <h4 class="fg-white mt-4">Forum</h4>
+                    <p>
+                        Get additional help from the community on the Metro 4 forum.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="container-fluid bg-white fg-dark">
+        <div class="container pt-10 pb-20">
+            <div class="h1 mt-10 text-center"><span class="reduce-1 enlarge-1-md">Special thanks to</span></div>
+
+            <div class="row special-thanks">
+                <div class="cell-md-2">
+                    <a href="https://olshansky.ua/"><img src="images/olshansky.svg"></a>
+                </div>
+                <div class="cell-md-2">
+                    <a href="https://www.imena.ua/"><img src="images/imena_logo.png"></a>
+                </div>
+                <div class="cell-md-2">
+                    <a href="https://mirohost.net/"><img src="images/mirohost_logo.svg"></a>
+                </div>
+                <div class="cell-md-2">
+                    <a href="https://www.keycdn.com/"><img src="images/keycdn-logo.svg"></a>
+                </div>
+                <div class="cell-md-2">
+                    <a href="https://www.jetbrains.com/"><img src="images/jetbrains.svg"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer-bg">
+        <div class="container pt-20 pb-20">
+            <div class="text-center">
+                <ul class="inline-list reduce-1" id="social-menu">
+                    <li><a href="https://www.facebook.com/metrouicss/"><span class="mif-facebook"></span></a></li>
+                    <li><a href="https://twitter.com/MetroUI"><span class="mif-twitter"></span></a></li>
+                    <li><a href="#"><span class="mif-youtube"></span></a></li>
+                    <li><a href="https://github.com/olton/Metro-UI-CSS"><span class="mif-github"></span></a></li>
+                </ul>
+            </div>
+
+            <div class="text-center mt-10">
+                <ul class="inline-list reduce-1" id="footer-menu">
+                    <li><a href="https://github.com/olton/Metro-UI-CSS/blob/master/LICENSE">License</a></li>
+                    <li><a href="mailto:sergey@pimenov.com.ua">Author</a></li>
+                    <li><a href="https://forum.metroui.org.ua">Forum</a></li>
+                    <li><a href="https://github.com/olton/Metro-UI-CSS/issues">Issues</a></li>
+                    <li><a href="https://github.com/olton/Metro-UI-CSS/releases">Releases</a></li>
+                </ul>
+            </div>
+
+            <div class="text-center mt-10 reduce-1">
+                Metro 4 (Metro UI CSS) &copy; 2012-2018 by <a href="mailto:sergey@pimenov.com.ua" class="no-wrap">Sergey Pimenov</a>.
+                <br />
+                <span class="no-wrap">Domain by <a href="https://imena.ua/">Imena.ua</a>.</span>
+                <span class="no-wrap">Hosting by <a href="https://mirohost.net/">Mirohost</a>.</span>
+                <br/>
+                <span class="no-wrap">Metro CDN by <a href="https://www.keycdn.com/">KeyCDN</a>.</span>
+                <br/>
+                <span class="no-wrap">IDE PhpStorm by <a href="https://www.jetbrains.com/">JetBrains</a>.</span>
+                <br />
+                Currently <span class="version-number"></span>. Code licensed <a href="https://github.com/olton/Metro-UI-CSS/blob/master/LICENSE">MIT</a>, docs <a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.
             </div>
         </div>
     </footer>
 
     <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="metro/js/metro.js?ver=@@b-version"></script>
-
-    <script src="particles/particles.min.js"></script>
+    <script src="metro/js/metro.js"></script>
     <script>
-        particlesJS.load('hero-wrapper', 'particles/particles.json', function(){});
         $(".version-number").html(Metro.ver());
-
-        setTimeout(function(){
-            var b = $(".adsbygoogle");
-            var h = 0;
-            $.each(b, function(){
-                var bl = $(this);
-                if (bl.height() < 50 || Metro.utils.getStyleOne(bl, 'display') === 'none') {
-                    bl.parent().html("<div class='bg-red fg-white p-4 text-center h3 text-light'>With your help, I can make Metro 4 even better! Please, disable AdBlock or AdGuard. Thank you for support!</div>");
-                }
-            });
-        }, 1000);
-
-        Metro.utils.github("olton/Metro-UI-CSS", function(data){
-            $("#github-fork").text(Number(data.forks).format(0, 0, ","));
-            $("#github-star").text(Number(data.stargazers_count).format(0, 0, ","));
-            $("#github-watch").text(Number(data.subscribers_count).format(0, 0, ","));
-            $("#github-owner").text(data.owner.login);
-            $("#github-project").text(data.name);
-        })
     </script>
-    <!-- ads-script -->
-    <!-- ga-script -->
-    <!-- hit-ua -->
+
 </body>
 </html>
