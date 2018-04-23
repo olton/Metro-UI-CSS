@@ -1,3 +1,7 @@
+### 4.1.17
++ [x] Panel: add `.info-panel`
++ [x] Docs: redesign `index` and `sponsors` pages
+
 ### 4.1.16
 + [x] Calendar: add observation for `data-special` attribute
 + [x] Calendar picker: add observation for `data-special` attribute
