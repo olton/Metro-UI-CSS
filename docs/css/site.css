@@ -209,7 +209,7 @@ footer p a {
 @media screen and (max-width: 767px) {
   #sidenav {
     position: relative;
-    top: 0;
+    top: 50px;
   }
 }
 @media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {
