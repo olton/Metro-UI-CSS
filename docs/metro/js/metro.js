@@ -1,5 +1,5 @@
 /*!
- * Metro 4 Components Library v4.1.17 build 658 (https://metroui.org.ua)
+ * Metro 4 Components Library v4.1.18 build @@build (https://metroui.org.ua)
  * Copyright 2018 Sergey Pimenov
  * Licensed under MIT
  */
@@ -79,7 +79,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.1.17-658",
+    version: "@@version-@@build@@status",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -2790,6 +2790,80 @@ special.scrollstop = {
     }
 };
 
+// Source: js/utils/session-storage.js
+var SessionStorage = {
+    key: "METRO:APP",
+
+    init: function( options, elem ) {
+        this.options = $.extend( {}, this.options, options );
+
+        return this;
+    },
+
+    nvl: function(data, other){
+        return data === undefined || data === null ? other : data;
+    },
+
+    setKey: function(key){
+        this.key = key;
+    },
+
+    getKey: function(){
+        return this.key;
+    },
+
+    setItem: function(key, value){
+        window.localStorage.setItem(this.key + ":" + key, JSON.stringify(value));
+    },
+
+    getItem: function(key, default_value, reviver){
+        var result, value;
+
+        value = this.nvl(window.localStorage.getItem(this.key + ":" + key), default_value);
+
+        try {
+            result = JSON.parse(value, reviver);
+        } catch (e) {
+            result = null;
+        }
+        return result;
+    },
+
+    getItemPart: function(key, sub_key, default_value, reviver){
+        var i;
+        var val = this.getItem(key, default_value, reviver);
+
+        sub_key = sub_key.split("->");
+        for(i = 0; i < sub_key.length; i++) {
+            val = val[sub_key[i]];
+        }
+        return val;
+    },
+
+    delItem: function(key){
+        window.localStorage.removeItem(this.key + ":" + key)
+    },
+
+    size: function(unit){
+        var divider;
+        switch (unit) {
+            case 'm':
+            case 'M': {
+                divider = 1024 * 1024;
+                break;
+            }
+            case 'k':
+            case 'K': {
+                divider = 1024;
+                break;
+            }
+            default: divider = 1;
+        }
+        return JSON.stringify(window.localStorage).length / divider;
+    }
+};
+
+Metro['session'] = SessionStorage.init();
 // Source: js/utils/storage.js
 var Storage = {
     key: "METRO:APP",
@@ -16390,10 +16464,10 @@ var Wizard = {
             buttonMode += " outline";
         }
 
-        if (o.iconHelp !== false) $("<button>").addClass("button wizard-btn-help").addClass(buttonMode).addClass(o.clsHelp).html(Utils.isTag(o.iconHelp) ? o.iconHelp : $("<img>").attr('src', o.iconHelp)).appendTo(bar);
-        if (o.iconPrev !== false) $("<button>").addClass("button wizard-btn-prev").addClass(buttonMode).addClass(o.clsPrev).html(Utils.isTag(o.iconPrev) ? o.iconPrev : $("<img>").attr('src', o.iconPrev)).appendTo(bar);
-        if (o.iconNext !== false) $("<button>").addClass("button wizard-btn-next").addClass(buttonMode).addClass(o.clsNext).html(Utils.isTag(o.iconNext) ? o.iconNext : $("<img>").attr('src', o.iconNext)).appendTo(bar);
-        if (o.iconFinish !== false) $("<button>").addClass("button wizard-btn-finish").addClass(buttonMode).addClass(o.clsFinish).html(Utils.isTag(o.iconFinish) ? o.iconFinish : $("<img>").attr('src', o.iconFinish)).appendTo(bar);
+        if (o.iconHelp !== false) $("<button>").attr("type", "button").addClass("button wizard-btn-help").addClass(buttonMode).addClass(o.clsHelp).html(Utils.isTag(o.iconHelp) ? o.iconHelp : $("<img>").attr('src', o.iconHelp)).appendTo(bar);
+        if (o.iconPrev !== false) $("<button>").attr("type", "button").addClass("button wizard-btn-prev").addClass(buttonMode).addClass(o.clsPrev).html(Utils.isTag(o.iconPrev) ? o.iconPrev : $("<img>").attr('src', o.iconPrev)).appendTo(bar);
+        if (o.iconNext !== false) $("<button>").attr("type", "button").addClass("button wizard-btn-next").addClass(buttonMode).addClass(o.clsNext).html(Utils.isTag(o.iconNext) ? o.iconNext : $("<img>").attr('src', o.iconNext)).appendTo(bar);
+        if (o.iconFinish !== false) $("<button>").attr("type", "button").addClass("button wizard-btn-finish").addClass(buttonMode).addClass(o.clsFinish).html(Utils.isTag(o.iconFinish) ? o.iconFinish : $("<img>").attr('src', o.iconFinish)).appendTo(bar);
 
         this.toPage(o.start);
 
