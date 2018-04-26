@@ -1,3 +1,9 @@
+### 4.1.18
++ [x] Wizard: fix issue 1083
++ [x] Shadow utilities: add classes `.no-shadow`, `.no-shadow-text`
++ [x] Session storage: add it. Session storage work as `Metro.storage`
++ [x] Docs: fix side navigation layout 
+
 ### 4.1.17
 + [x] Panel: add `.info-panel`
 + [x] Docs: redesign `index` and `sponsors` pages
