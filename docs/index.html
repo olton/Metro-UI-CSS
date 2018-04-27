@@ -56,15 +56,15 @@
         }
 
         .neb-white {
-            z-index: 10;
-        }
-
-        .neb-light {
             z-index: 4;
         }
 
-        .neb-feature {
+        .neb-light {
             z-index: 3;
+        }
+
+        .neb-feature {
+            z-index: 2;
         }
 
         .neb::before {
@@ -85,7 +85,7 @@
         }
 
         .neb-hero::after {
-            border-color: rgba(125,185,232,1) transparent transparent transparent;
+            border-color: rgba(217,52,195,1) transparent transparent transparent;
         }
 
         .neb-white::after {
@@ -157,6 +157,10 @@
         @media all and (min-width: 768px) {
             .hero {
                 padding: 160px 80px 300px;
+            }
+
+            .neb-white {
+                z-index: 10;
             }
 
             .feature-table {
