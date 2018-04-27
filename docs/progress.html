@@ -49,13 +49,14 @@
                     <li class="toc-entry"><a href="#">Progress &amp; Activity</a></li>
                     <li class="toc-entry"><a href="#_activity_types">Activity indicators</a></li>
                     <li class="toc-entry">
-                        <a href="#_activity_types">Types of activity</a>
+                        <a href="#_activity_types">Activities</a>
                         <ul>
                             <li class="toc-entry"><a href="#_activity_type_ring">Ring</a></li>
                             <li class="toc-entry"><a href="#_activity_type_metro">Metro</a></li>
                             <li class="toc-entry"><a href="#_activity_type_square">Square</a></li>
                             <li class="toc-entry"><a href="#_activity_type_cycle">Cycle</a></li>
                             <li class="toc-entry"><a href="#_activity_type_simple">Simple</a></li>
+                            <li class="toc-entry"><a href="#_activity_overlay">Activity overlay</a></li>
                         </ul>
                     </li>
                     <li class="toc-entry">
@@ -65,13 +66,13 @@
                             <li class="toc-entry"><a href="#_progress_buffer">Buffer</a></li>
                             <li class="toc-entry"><a href="#_progress_load">Load</a></li>
                             <li class="toc-entry"><a href="#_progress_line">Line</a></li>
+                            <li class="toc-entry"><a href="#_progress_customize">Customize</a></li>
+                            <li class="toc-entry"><a href="#_progress_events">Events</a></li>
+                            <li class="toc-entry"><a href="#_progress_callbacks">Callbacks</a></li>
+                            <li class="toc-entry"><a href="#_progress_observe">Observe</a></li>
+                            <li class="toc-entry"><a href="#_progress_set_and_get_values">Set and get value</a></li>
                         </ul>
                     </li>
-                    <li class="toc-entry"><a href="#_progress_customize">Customize</a></li>
-                    <li class="toc-entry"><a href="#_progress_events">Events</a></li>
-                    <li class="toc-entry"><a href="#_progress_callbacks">Callbacks</a></li>
-                    <li class="toc-entry"><a href="#_progress_observe">Observe</a></li>
-                    <li class="toc-entry"><a href="#_progress_set_and_get_values">Set and get value</a></li>
                 </ul>
 
             </div>
@@ -206,6 +207,46 @@
                     &lt;div data-role="activity" data-type="simple"&gt;&lt;/div&gt;
                     &lt;div data-role="activity" data-type="simple" data-style="dark"&gt;&lt;/div&gt;
                     &lt;div data-role="activity" data-type="simple" data-style="color"&gt;&lt;/div&gt;
+                </code></pre>
+
+                <h4 id="_activity_overlay">Activity overlay</h4>
+                <p>
+                    Metro 4 contains object to create <code>activity overlay</code>. This functionality stored in object <code>Metro.activity</code>. Object contains two methods: <code>open({...})</code> and <code>close(activity)</code>.
+                </p>
+                <p>Options:</p>
+                <ul>
+                    <li>type - string, valid activity type</li>
+                    <li>style - string, valid activity style</li>
+                    <li>autoHide - integer, milliseconds</li>
+                    <li>overlayClickClose - boolean, true or false</li>
+                    <li>overlayColor - string, hex value, ex: <code>#ffffff</code></li>
+                    <li>overlayAlpha - float, from 0 to 1</li>
+                </ul>
+                <div class="example">
+                    <button class="button" onclick="Metro.activity.open({autoHide: 3000})">Open</button>
+                    <button class="button" onclick="Metro.activity.open({type: 'metro', overlayClickClose: true})">Open</button>
+                    <button class="button" onclick="var activity = Metro.activity.open({type: 'square', overlayColor: '#fff', overlayAlpha: 1}); setTimeout(function(){Metro.activity.close(activity)}, 5000)">Open</button>
+                </div>
+                <pre><code>
+                    &lt;button class="button"
+                            onclick="
+                                Metro.activity.open({autoHide: 3000})
+                            "&gt;Open&lt;/button&gt;
+
+                    &lt;button class="button"
+                            onclick="
+                                Metro.activity.open({type: 'metro', overlayClickClose: true})
+                            "&gt;Open&lt;/button&gt;
+
+                    &lt;button class="button"
+                            onclick="
+                                var activity = Metro.activity.open({
+                                    type: 'square',
+                                    overlayColor: '#fff',
+                                    overlayAlpha: 1
+                                });
+                                setTimeout(function(){Metro.activity.close(activity)}, 5000)
+                            "&gt;Open&lt;/button&gt;
                 </code></pre>
 
                 <h3 id="_progress_about">Progress indicator</h3>

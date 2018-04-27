@@ -37,119 +37,28 @@
         h4 {
             white-space: nowrap;
         }
-    </style>
-
-    <style>
-        .hero-bg {
-            background: rgba(140,0,75,1);
-            background: -moz-linear-gradient(top, rgba(140,0,75,1) 0%, rgba(217,52,195,1) 100%);
-            background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(140,0,75,1)), color-stop(100%, rgba(217,52,195,1)));
-            background: -webkit-linear-gradient(top, rgba(140,0,75,1) 0%, rgba(217,52,195,1) 100%);
-            background: -o-linear-gradient(top, rgba(140,0,75,1) 0%, rgba(217,52,195,1) 100%);
-            background: -ms-linear-gradient(top, rgba(140,0,75,1) 0%, rgba(217,52,195,1) 100%);
-            background: linear-gradient(to bottom, rgba(140,0,75,1) 0%, rgba(217,52,195,1) 100%);
-            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8c004b', endColorstr='#d934c3', GradientType=0 );
-        }
-
-        .hero {
-            padding: 40px;
-        }
-
-        .neb-hero {
-            z-index: 5;
-        }
-
-        .neb-white {
-            z-index: 4;
-        }
-
-        .neb-light {
-            z-index: 3;
-        }
-
-        .neb-feature {
-            z-index: 2;
-        }
-
-        .neb::before {
-            display: none!important;
-        }
-
-        .neb::after {
-            display: block;
-            content: "";
-            width: 0;
-            height: 0;
-            border-style: solid;
-            border-width: 24px 24px 0 24px;
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .neb-hero::after {
-            border-color: rgba(217,52,195,1) transparent transparent transparent;
-        }
-
-        .neb-white::after {
-            border-color: rgba(255,255,255,1) transparent transparent transparent;
-        }
-
-        .neb-light::after {
-            border-color: #F8F8F8 transparent transparent transparent;
-        }
-
-        .neb-feature::after {
-            border-color: #434363 transparent transparent transparent;
-        }
-
-        .feature-bg {
-            background-color: #434363;
-            color: #ffffff;
-        }
-
-        .footer-bg {
-            background-color: #3F3F3F;
-            color: #909090;
-        }
-
-        footer a {
-            color: #909090;
-            text-decoration: none!important;
-        }
-
-        footer a:hover {
-            color: #c9c9c9;
-        }
-
-        #social-menu li {
-            margin: 0 20px;
-        }
-
-        #footer-menu li {
-            margin: 0 20px;
-        }
-
-        .special-thanks {
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .special-thanks [class*=cell-] {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .special-thanks img {
-            width: 124px;
-            max-height: 64px;
-        }
 
         @media all and (min-width: 768px) {
             .hero {
                 padding: 160px 80px 120px;
             }
+
+            .neb-white {
+                height: auto;
+            }
+
+        }
+
+        [class*=cell-md-3] {
+            display: flex;
+            flex-flow: column;
+            justify-content: flex-start;
+        }
+
+        [class*=cell-md-3] div:last-child {
+            display: flex;
+            justify-content: space-between;
+            margin-top: auto!important;
         }
     </style>
 
@@ -276,7 +185,7 @@
 
         <!-- ads-html -->
 
-        <div class="row mt-6">
+        <div class="row mt-20">
             <div class="cell-md-3">
                 <h4 class="text-light">Start page</h4>
                 <div class="img-container img-thumbnail">
@@ -287,6 +196,7 @@
                 </div>
                 <div class="mt-2">
                     <a href="examples/tiles/start.html">Demo</a>
+                    <a href="https://github.com/olton/Metro-UI-CSS/tree/master/docs/examples/tiles">Source</a>
                 </div>
             </div>
             <div class="cell-md-3">
@@ -299,6 +209,7 @@
                 </div>
                 <div class="mt-2">
                     <a href="examples/forms/login.html">Demo</a>
+                    <a href="https://github.com/olton/Metro-UI-CSS/tree/master/docs/examples/forms">Source</a>
                 </div>
             </div>
             <div class="cell-md-3">
@@ -311,6 +222,7 @@
                 </div>
                 <div class="mt-2">
                     <a href="examples/schemes/scheme.html">Demo</a>
+                    <a href="https://github.com/olton/Metro-UI-CSS/tree/master/docs/examples/schemes">Source</a>
                 </div>
             </div>
             <div class="cell-md-3">
@@ -323,6 +235,7 @@
                 </div>
                 <div class="mt-2">
                     <a href="examples/dialogs/dialogs.html">Demo</a>
+                    <a href="https://github.com/olton/Metro-UI-CSS/tree/master/docs/examples/dialogs">Source</a>
                 </div>
             </div>
         </div>
@@ -338,6 +251,7 @@
                 </div>
                 <div class="mt-2">
                     <a href="examples/desktop/desktop.html">Demo</a>
+                    <a href="https://github.com/olton/Metro-UI-CSS/tree/master/docs/examples/desktop">Source</a>
                 </div>
             </div>
             <div class="cell-md-3">
@@ -350,6 +264,7 @@
                 </div>
                 <div class="mt-2">
                     <a href="examples/cube/cube.html">Demo</a>
+                    <a href="https://github.com/olton/Metro-UI-CSS/tree/master/docs/examples/cube">Source</a>
                 </div>
             </div>
             <div class="cell-md-3">
@@ -362,6 +277,7 @@
                 </div>
                 <div class="mt-2">
                     <a href="examples/cube/cube-custom-func.html">Demo</a>
+                    <a href="https://github.com/olton/Metro-UI-CSS/tree/master/docs/examples/cube">Source</a>
                 </div>
             </div>
             <div class="cell-md-3">
@@ -374,6 +290,7 @@
                 </div>
                 <div class="mt-2">
                     <a href="examples/ajax/select.html">Demo</a>
+                    <a href="https://github.com/olton/Metro-UI-CSS/tree/master/docs/examples/ajax">Source</a>
                 </div>
             </div>
         </div>
@@ -389,6 +306,7 @@
                 </div>
                 <div class="mt-2">
                     <a href="examples/colors/color-schemes.html">Demo</a>
+                    <a href="https://github.com/olton/Metro-UI-CSS/tree/master/docs/examples/colors">Source</a>
                 </div>
             </div>
             <div class="cell-md-3">
@@ -401,6 +319,7 @@
                 </div>
                 <div class="mt-2">
                     <a href="examples/colors/color-schemes-2.html">Demo</a>
+                    <a href="https://github.com/olton/Metro-UI-CSS/tree/master/docs/examples/colors">Source</a>
                 </div>
             </div>
             <div class="cell-md-3">
@@ -413,6 +332,7 @@
                 </div>
                 <div class="mt-2">
                     <a href="examples/colors/color-schemes-grayscale.html">Demo</a>
+                    <a href="https://github.com/olton/Metro-UI-CSS/tree/master/docs/examples/colors">Source</a>
                 </div>
             </div>
             <div class="cell-md-3">
@@ -425,6 +345,7 @@
                 </div>
                 <div class="mt-2">
                     <a href="examples/datetime/datepicker.html">Demo</a>
+                    <a href="https://github.com/olton/Metro-UI-CSS/tree/master/docs/examples/datetime">Source</a>
                 </div>
             </div>
         </div>
@@ -440,6 +361,7 @@
                 </div>
                 <div class="mt-2">
                     <a href="examples/github/github.html">Demo</a>
+                    <a href="https://github.com/olton/Metro-UI-CSS/tree/master/docs/examples/github">Source</a>
                 </div>
             </div>
         </div>

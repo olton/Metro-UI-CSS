@@ -38,20 +38,15 @@
         }
     </style>
 </head>
-<body class="">
+<body>
 
-<form action="#" data-role="validator">
-    <div data-role="wizard">
-        <section><div class="page-content">Page 1</div></section>
-        <section><div class="page-content">Page 2</div></section>
-        <section><div class="page-content">Page 3</div></section>
-        <section><div class="page-content">Page 4</div></section>
-        <section><div class="page-content">Page 5</div></section>
-    </div>
-</form>
+<button class="button" onclick="Metro.activity.open({autoHide: 3000})">Open</button>
+<button class="button" onclick="Metro.activity.open({type: 'metro', overlayClickClose: true})">Open</button>
+<button class="button" onclick="var activity = Metro.activity.open({type: 'square', overlayColor: '#fff', overlayAlpha: 1}); setTimeout(function(){Metro.activity.close(activity)}, 5000)">Open</button>
 
 <script src="../js/jquery-3.3.1.min.js"></script>
 <script src="../metro/js/metro.js"></script>
+
 <!-- ads-script -->
 </body>
 </html>

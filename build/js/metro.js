@@ -1,5 +1,5 @@
 /*!
- * Metro 4 Components Library v4.1.19 build 662 (https://metroui.org.ua)
+ * Metro 4 Components Library v4.1.19 build @@build (https://metroui.org.ua)
  * Copyright 2018 Sergey Pimenov
  * Licensed under MIT
  */
@@ -79,7 +79,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.1.19-662",
+    version: "@@version-@@build@@status",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -3878,6 +3878,25 @@ var Activity = {
 };
 
 Metro.plugin('activity', Activity);
+
+Metro['activity'] = {
+    open: function(options){
+        return Metro.dialog.create({
+            content: '<div data-role="activity" data-type="'+( options.type ? options.type : 'cycle' )+'" data-style="'+( options.style ? options.style : 'color' )+'"></div>',
+            defaultAction: false,
+            clsContent: "d-flex flex-justify-center flex-align-center bg-transparent no-shadow w-auto",
+            clsDialog: "no-shadow bg-transparent",
+            autoHide: options.autoHide ? options.autoHide : 0,
+            overlayClickClose: options.overlayClickClose === true,
+            overlayColor: options.overlayColor?options.overlayColor:'#000000',
+            overlayAlpha: options.overlayAlpha?options.overlayAlpha:.5
+        })
+    },
+
+    close: function(a){
+        Metro.dialog.close(a);
+    }
+};
 // Source: js/plugins/app-bar.js
 var AppBar = {
     init: function( options, elem ) {
