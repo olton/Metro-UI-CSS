@@ -339,11 +339,11 @@
     <script src="metro/js/metro.js?ver=@@b-version"></script>
     <script>
         $(".version-number").html(Metro.ver());
-        // Metro.utils.github("olton/Metro-UI-CSS", function(data){
-        //     $("#github-forks").text(Number(data.forks).format(0, 0, ","));
-        //     $("#github-stars").text(Number(data.stargazers_count).format(0, 0, ","));
-        //     $("#github-watchers").text(Number(data.subscribers_count).format(0, 0, ","));
-        // })
+        Metro.utils.github("olton/Metro-UI-CSS", function(data){
+            $("#github-forks").text(Number(data.forks).format(0, 0, ","));
+            $("#github-stars").text(Number(data.stargazers_count).format(0, 0, ","));
+            $("#github-watchers").text(Number(data.subscribers_count).format(0, 0, ","));
+        })
     </script>
     <!-- ads-script -->
     <!-- ga-script -->
