@@ -164,7 +164,7 @@
             }
 
             .feature-table {
-                top: -260px;
+                top: -280px;
             }
 
             .neb-white {
@@ -175,6 +175,10 @@
                 height: 470px;
                 margin-top: 0;
             }
+        }
+
+        .transition {
+            transition: all .3s linear;
         }
     </style>
 </head>
@@ -289,6 +293,11 @@
         <h1 class="fg-white mt-10"><span class="reduce-1 enlarge-1-md">Raise Your Work to the Next Level</span></h1>
         <h4 class="fg-light text-upper text-light mt-4"><span class="reduce-1 enlarge-1-md">Choose <strong>Metro 4</strong> for your sites</span></h4>
         <p class="fg-white text-small"><span class="mif-chevron-left"></span><span class="version-number"></span><span class="mif-chevron-right"></span></p>
+        <div class="d-flex flex-justify-center flex-align-center mt-4 text-small">
+            <a href="https://github.com/olton/Metro-UI-CSS/watchers" class="m-1 fg-gray no-decor fg-white-hover transition"><span class="mif-eye"></span> <span id="github-watchers">583</span></a>
+            <a href="https://github.com/olton/Metro-UI-CSS/stargazers" class="enlarge-5 m-1 fg-lightGray no-decor fg-white-hover transition"><span class="mif-star-full"></span> <span id="github-stars">5,594</span></a>
+            <a href="https://github.com/olton/Metro-UI-CSS/network/members" class="m-1 fg-gray no-decor fg-white-hover transition"><span class="mif-flow-tree"></span> <span id="github-forks">1,847</span></a>
+        </div>
 
     </div>
 
@@ -298,7 +307,7 @@
             <div class="feature-table row mt-10 pos-absolute-md">
                 <div class="cell-md-4">
                     <div class="info-panel rounded no-overflow shadow-3">
-                        <div class="info-panel-header bg-green fg-white">Free for use</div>
+                        <div class="info-panel-header bg-green fg-white">Free for ALL</div>
                         <div class="info-panel-content">
                             <div class="m-10"><span class="mif-security mif-8x fg-green"></span></div>
                             <span class="text-leader2">Metro 4 is a open source and have MIT license</span>
@@ -476,6 +485,11 @@
     <script src="metro/js/metro.js?ver=@@b-version"></script>
     <script>
         $(".version-number").html(Metro.ver());
+        // Metro.utils.github("olton/Metro-UI-CSS", function(data){
+        //     $("#github-forks").text(Number(data.forks).format(0, 0, ","));
+        //     $("#github-stars").text(Number(data.stargazers_count).format(0, 0, ","));
+        //     $("#github-watchers").text(Number(data.subscribers_count).format(0, 0, ","));
+        // })
     </script>
     <!-- ads-script -->
     <!-- ga-script -->
