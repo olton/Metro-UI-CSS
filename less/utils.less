@@ -1,6 +1,10 @@
 @import (once) "include/vars";
 @import (once) "include/mixins";
 
+.transition {
+    transition: all .3s linear;
+}
+
 .inherit-colors {
     background-color: inherit!important;
     color: inherit!important;
@@ -68,6 +72,10 @@
 
 .neb {
     .neb();
+}
+
+.neb2 {
+    .neb2(24px);
 }
 
 .selected {

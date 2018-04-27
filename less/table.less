@@ -36,7 +36,7 @@
         }
     }
 
-    .sortable-column {
+    .sortable-column, .sorting {
         position: relative;
         cursor: pointer;
         &:after {
@@ -53,20 +53,20 @@
             line-height: 1;
         }
 
-        &.sort-asc, &.sort-desc {
+        &.sort-asc, &.sort-desc, &.sorting_asc, &.sorting_desc {
             background-color: darken(@light, 5%);
             &:after {
                 color: @dark;
             }
         }
 
-        &.sort-asc {
+        &.sort-asc, &.sorting_asc {
             &:after {
                 content: "\2191";
             }
         }
 
-        &.sort-desc {
+        &.sort-desc, &.sorting_desc {
             &:after {
                 content: "\2193";
             }
@@ -74,7 +74,7 @@
     }
 
     &.sortable-markers-on-left {
-        .sortable-column {
+        .sortable-column, .sorting {
             .px2rem(padding-left, 30px);
             &:before, &:after {
                 left: 0;

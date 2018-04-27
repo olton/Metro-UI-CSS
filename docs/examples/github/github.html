@@ -68,6 +68,25 @@
         code:hover {
             background-color: #ededed;
         }
+
+        #hero {
+            background-color: #ffffff!important;
+        }
+
+        .tabs {
+            min-height: auto;
+        }
+
+        @media all and (min-width: 768px) {
+            #hero {
+                border-bottom: 1px solid #dfdfdf ;
+                background-color:#f8f8f8 !important ;
+            }
+
+            .tabs {
+                top: 2px;
+            }
+        }
     </style>
 </head>
 <body class="h-vh-100">
@@ -120,17 +139,17 @@
         </header>
     </div>
 
-    <div class="pt-16 border-bottom bd-default bg-light">
+    <div class="pt-16 bg-light" id="hero">
         <div class="container">
             <div class="row">
-                <div class="cell-md-6 text-center-md text-left pt-2">
+                <div class="cell-md-4 text-center-fs text-left-md pt-2">
                     <div>
                         <span class="mif-books"></span>
                         <a href="#"><span id="github-owner">olton</span> / <span id="github-project">Metro-UI-CSS</span></span></a>
                     </div>
                 </div>
 
-                <div class="cell-md-6 text-center-md text-right pt-2">
+                <div class="cell-md-8 text-center-fs text-right-md pt-2">
                     <div class="info-button rounded">
                         <a href="#" class="button"><span class="mif-eye"></span> Unwatch</a>
                         <a href="#" class="info" id="github-watch">589</a>
@@ -149,8 +168,8 @@
             </div>
         </div>
 
-        <div class="container pt-4 pl-0 pr-0 pl-3-md pr-3-md">
-            <ul data-role="tabs" class="bg-light tabs-expand-md w-100" style="top: 11px;">
+        <div class="container-fluid pt-4 pl-0 pr-0 pl-3-md pr-3-md">
+            <ul data-role="tabs" class="container bg-light tabs-expand-md w-100 pl-0 pr-0">
                 <li><a href="#"><span class="mif-embed"></span> Code</a></li>
                 <li><a href="#"><span class="mif-info"></span> Issues</a></li>
                 <li><a href="#"><span class="mif-flow-branch"></span> Pull requests</a></li>
@@ -185,12 +204,12 @@
 
             <div class="mt-4">
                 <div class="row">
-                    <div class="cell-md-6 text-center-md text-left pt-2">
+                    <div class="cell-md-6 text-center-fs text-left-md pt-2">
                         <button class="button small rounded mr-1 hovered">Branch: <strong>master</strong></button>
                         <button class="button small rounded hovered">New pull request</button>
                     </div>
 
-                    <div class="cell-md-6 text-center-md text-right pt-2">
+                    <div class="cell-md-6 text-center-fs text-right-md pt-2">
                         <button class="button small rounded hovered">Create new file</button>
                         <button class="button small rounded hovered">Uploads files</button>
                         <button class="button small rounded hovered">Find file</button>

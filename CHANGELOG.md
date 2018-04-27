@@ -1,4 +1,12 @@
-## 4.1.19
+### 4.1.20
++ [x] Animation: add class `.transition`
++ [x] Neb: add type 2 with class `.neb2` and subclasses `.neb-n`, `.neb-s`, `.neb-w`, `.neb-e`
++ [x] Docs: improve docs pages
++ [x] Examples: improve github page example
++ [x] Examples: improve start screen example
++ [x] Activity: add object `Metro.activity` with two methods: `open({...})`, `close(activity)`
+
+### 4.1.19
 + [x] Session storage: fix 
 
 ### 4.1.18
