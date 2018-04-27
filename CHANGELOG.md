@@ -1,3 +1,6 @@
+## 4.1.19
++ [x] Session storage: fix 
+
 ### 4.1.18
 + [x] Wizard: fix issue 1083
 + [x] Shadow utilities: add classes `.no-shadow`, `.no-shadow-text`

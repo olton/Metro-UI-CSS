@@ -1,5 +1,5 @@
 /*!
- * Metro 4 Components Library v4.1.18 build 659 (https://metroui.org.ua)
+ * Metro 4 Components Library v4.1.18 build @@build (https://metroui.org.ua)
  * Copyright 2018 Sergey Pimenov
  * Licensed under MIT
  */
@@ -79,7 +79,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.1.18-659",
+    version: "@@version-@@build@@status",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -2794,7 +2794,7 @@ special.scrollstop = {
 var SessionStorage = {
     key: "METRO:APP",
 
-    init: function( options, elem ) {
+    init: function( options ) {
         this.options = $.extend( {}, this.options, options );
 
         return this;
@@ -2813,13 +2813,13 @@ var SessionStorage = {
     },
 
     setItem: function(key, value){
-        window.localStorage.setItem(this.key + ":" + key, JSON.stringify(value));
+        window.sessionStorage.setItem(this.key + ":" + key, JSON.stringify(value));
     },
 
     getItem: function(key, default_value, reviver){
         var result, value;
 
-        value = this.nvl(window.localStorage.getItem(this.key + ":" + key), default_value);
+        value = this.nvl(window.sessionStorage.getItem(this.key + ":" + key), default_value);
 
         try {
             result = JSON.parse(value, reviver);
@@ -2841,7 +2841,7 @@ var SessionStorage = {
     },
 
     delItem: function(key){
-        window.localStorage.removeItem(this.key + ":" + key)
+        window.sessionStorage.removeItem(this.key + ":" + key)
     },
 
     size: function(unit){
@@ -2859,7 +2859,7 @@ var SessionStorage = {
             }
             default: divider = 1;
         }
-        return JSON.stringify(window.localStorage).length / divider;
+        return JSON.stringify(window.sessionStorage).length / divider;
     }
 };
 

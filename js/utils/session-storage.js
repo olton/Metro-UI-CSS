@@ -1,7 +1,7 @@
 var SessionStorage = {
     key: "METRO:APP",
 
-    init: function( options, elem ) {
+    init: function( options ) {
         this.options = $.extend( {}, this.options, options );
 
         return this;
@@ -20,13 +20,13 @@ var SessionStorage = {
     },
 
     setItem: function(key, value){
-        window.localStorage.setItem(this.key + ":" + key, JSON.stringify(value));
+        window.sessionStorage.setItem(this.key + ":" + key, JSON.stringify(value));
     },
 
     getItem: function(key, default_value, reviver){
         var result, value;
 
-        value = this.nvl(window.localStorage.getItem(this.key + ":" + key), default_value);
+        value = this.nvl(window.sessionStorage.getItem(this.key + ":" + key), default_value);
 
         try {
             result = JSON.parse(value, reviver);
@@ -48,7 +48,7 @@ var SessionStorage = {
     },
 
     delItem: function(key){
-        window.localStorage.removeItem(this.key + ":" + key)
+        window.sessionStorage.removeItem(this.key + ":" + key)
     },
 
     size: function(unit){
@@ -66,7 +66,7 @@ var SessionStorage = {
             }
             default: divider = 1;
         }
-        return JSON.stringify(window.localStorage).length / divider;
+        return JSON.stringify(window.sessionStorage).length / divider;
     }
 };
 
