@@ -49,6 +49,7 @@ pre {
 }
 #sidenav {
   overflow-y: hidden;
+  background-color: #ffffff;
 }
 .toc-wrapper > h5,
 #sidenav > h5 {
@@ -208,7 +209,8 @@ footer p a {
 }
 @media screen and (max-width: 767px) {
   #sidenav {
-    top: 50px;
+    position: relative;
+    top: 0;
   }
 }
 @media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {
