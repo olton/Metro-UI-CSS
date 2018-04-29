@@ -260,10 +260,30 @@ label {
         }
     }
 
+    .drop-container {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: ~"calc(100% + 2px)";
+        height: auto;
+        border-left: 1px solid @borderColor;
+        border-right: 1px solid @borderColor;
+        padding: 2px;
+        margin-left: -1px;
+        z-index: @zindex-dropdown;
+        background-color: @white;
+
+        .input {
+            margin: 4px 2px 6px;
+            width: ~"calc(100% - 4px)";
+        }
+    }
+
     .d-menu {
         width: 100%;
         overflow-y: auto;
-        top: 100%;
+        position: relative;
+        display: block;
 
         li a {
             padding: 0 1rem;

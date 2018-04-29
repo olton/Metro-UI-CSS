@@ -31,6 +31,7 @@ var Dialog = {
         clsContent: "",
         clsAction: "",
         clsDefaultAction: "",
+        clsOverlay: "",
         autoHide: 0,
         removeOnClose: false,
         show: false,
@@ -140,7 +141,7 @@ var Dialog = {
         var that = this, element = this.element, o = this.options;
 
         var overlay = $("<div>");
-        overlay.addClass("overlay");
+        overlay.addClass("overlay").addClass(o.clsOverlay);
 
         if (o.overlayColor === 'transparent') {
             overlay.addClass("transparent");
