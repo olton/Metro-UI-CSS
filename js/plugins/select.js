@@ -19,6 +19,9 @@ var Select = {
         clsOption: "",
         clsOptionGroup: "",
         prepend: "",
+        placeholder: "",
+        filterPlaceholder: "",
+        filter: true,
         copyInlineStyles: true,
         dropHeight: 200,
         disabled: false,
@@ -99,13 +102,24 @@ var Select = {
         element.addClass(o.clsSelect);
 
         if (multiple === false) {
-            var input = $("<input>").attr("type", "text").attr("name", "__" + select_id + "__").prop("readonly", true);
+
+            var input = $("<input>").attr("placeholder", o.placeholder).attr("type", "text").attr("name", "__" + select_id + "__").prop("readonly", true);
+            var drop_container = $("<div>").addClass("drop-container");
             var list = $("<ul>").addClass("d-menu").css({
                 "max-height": o.dropHeight
             });
+            var filter_input = $("<input type='text' data-role='input'>").attr("placeholder", o.filterPlaceholder);
 
             container.append(input);
-            container.append(list);
+            container.append(drop_container);
+
+            drop_container.append(filter_input);
+
+            if (o.filter !== true) {
+                filter_input.hide();
+            }
+
+            drop_container.append(list);
 
             $.each(element.children(), function(){
                 if (this.tagName === "OPTION") {
@@ -115,20 +129,24 @@ var Select = {
                 }
             });
 
-            list.dropdown({
+            drop_container.dropdown({
                 duration: o.duration,
                 toggleElement: "#"+select_id,
                 onDrop: function(){
-                    var selects = $(".select ul");
-                    var target = list.find("li.active").length > 0 ? $(list.find("li.active")[0]) : undefined;
-                    $.each(selects, function(){
-                        var l = $(this);
-                        if (l.is(list)) {
+                    var dropped, target;
+
+                    dropped = $(".select .drop-container");
+                    $.each(dropped, function(){
+                        var drop = $(this);
+                        if (drop.is(drop_container)) {
                             return ;
                         }
-                        l.data('dropdown').close();
+                        drop.data('dropdown').close();
                     });
 
+                    filter_input.val("").trigger(Metro.events.keyup).focus();
+
+                    target = list.find("li.active").length > 0 ? $(list.find("li.active")[0]) : undefined;
                     if (target !== undefined) {
                         list.scrollTop(0);
                         setTimeout(function(){
@@ -173,8 +191,10 @@ var Select = {
     _createEvents: function(){
         var that = this, element = this.element, o = this.options;
         var container = element.closest(".select");
+        var drop_container = container.find(".drop-container");
         var input = element.siblings("input");
-        var list = element.siblings("ul");
+        var filter_input = drop_container.find("input");
+        var list = drop_container.find("ul");
 
         container.on(Metro.events.click, function(e){
             e.preventDefault();
@@ -183,6 +203,8 @@ var Select = {
 
         input.on(Metro.events.blur, function(){container.removeClass("focused");});
         input.on(Metro.events.focus, function(){container.addClass("focused");});
+        filter_input.on(Metro.events.blur, function(){container.removeClass("focused");});
+        filter_input.on(Metro.events.focus, function(){container.addClass("focused");});
 
         list.on(Metro.events.click, "li", function(e){
             if ($(this).hasClass("group-title")) {
@@ -193,14 +215,34 @@ var Select = {
             var leaf = $(this);
             var val = leaf.data('value');
             var txt = leaf.data('text');
-            var list_obj = list.data('dropdown');
+
             list.find("li.active").removeClass("active");
             leaf.addClass("active");
             input.val(txt).trigger("change");
             element.val(val);
             element.trigger("change");
-            list_obj.close();
+            drop_container.data("dropdown").close();
             Utils.exec(o.onChange, [val], element[0]);
+        });
+
+        filter_input.on(Metro.events.keyup, function(){
+            var filter = this.value.toUpperCase();
+            var li = list.find("li");
+            var i, a;
+            for (i = 0; i < li.length; i++) {
+                if ($(li[i]).hasClass("group-title")) continue;
+                a = li[i].getElementsByTagName("a")[0];
+                if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    li[i].style.display = "";
+                } else {
+                    li[i].style.display = "none";
+                }
+            }
+        });
+
+        drop_container.on(Metro.events.click, function(e){
+            e.preventDefault();
+            e.stopPropagation();
         });
     },
 
@@ -234,7 +276,8 @@ var Select = {
 
     data: function(op){
         var that = this, element = this.element;
-        var list = element.siblings("ul");
+        var select = element.parent();
+        var list = select.find("ul");
         var option, option_group;
 
         element.html("");
@@ -269,19 +312,31 @@ var Select = {
     },
 
     destroy: function(){
-        var element = this.element;
-        var container = element.parent();
-        var list = element.siblings("ul");
+        var that = this, element = this.element;
+        var container = element.closest(".select");
+        var drop_container = container.find(".drop-container");
+        var input = element.siblings("input");
+        var filter_input = drop_container.find("input");
+        var list = drop_container.find("ul");
+
         container.off(Metro.events.click);
+        input.off(Metro.events.blur);
+        input.off(Metro.events.focus);
+        filter_input.off(Metro.events.blur);
+        filter_input.off(Metro.events.focus);
         list.off(Metro.events.click, "li");
-        Metro.destroyPlugin(list, "dropdown");
+        filter_input.off(Metro.events.keyup);
+        drop_container.off(Metro.events.click);
+
+        Metro.destroyPlugin(drop_container, "dropdown");
+
         element.insertBefore(container);
         container.remove();
     }
 };
 
 $(document).on(Metro.events.click, function(e){
-    var selects = $(".select ul");
+    var selects = $(".select .drop-container");
     $.each(selects, function(){
         $(this).data('dropdown').close();
     });

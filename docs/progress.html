@@ -210,6 +210,9 @@
                 </code></pre>
 
                 <h4 id="_activity_overlay">Activity overlay</h4>
+                <p class="text-small">
+                    This feature available from 4.1.20
+                </p>
                 <p>
                     Metro 4 contains object to create <code>activity overlay</code>. This functionality stored in object <code>Metro.activity</code>. Object contains two methods: <code>open({...})</code> and <code>close(activity)</code>.
                 </p>
@@ -221,32 +224,73 @@
                     <li>overlayClickClose - boolean, true or false</li>
                     <li>overlayColor - string, hex value, ex: <code>#ffffff</code></li>
                     <li>overlayAlpha - float, from 0 to 1</li>
+                    <li>text - additional text. <span class="text-small no-wrap fg-red">New in 4.2.0</span></li>
                 </ul>
                 <div class="example">
-                    <button class="button" onclick="Metro.activity.open({autoHide: 3000})">Open</button>
-                    <button class="button" onclick="Metro.activity.open({type: 'metro', overlayClickClose: true})">Open</button>
-                    <button class="button" onclick="var activity = Metro.activity.open({type: 'square', overlayColor: '#fff', overlayAlpha: 1}); setTimeout(function(){Metro.activity.close(activity)}, 5000)">Open</button>
+                    <button class="button" onclick="
+                        Metro.activity.open({autoHide: 3000})
+                    ">Open</button>
+
+                    <button class="button" onclick="
+                        Metro.activity.open({
+                            type: 'metro',
+                            overlayClickClose: true
+                        })
+                    ">Open</button>
+
+                    <button class="button" onclick="
+                        var activity = Metro.activity.open({
+                            type: 'square',
+                            overlayColor: '#fff',
+                            overlayAlpha: 1
+                        });
+                        setTimeout(function(){
+                            Metro.activity.close(activity);
+                        }, 5000)
+                    ">Open</button>
+
+                    <button class="button" onclick="
+                        Metro.activity.open({
+                            type: 'square',
+                            overlayColor: '#fff',
+                            overlayAlpha: 1,
+                            text: '<div class=\'mt-2 text-small\'>Please, wait...</div>',
+                            overlayClickClose: true
+                        });
+                    ">Open</button>
                 </div>
                 <pre><code>
-                    &lt;button class="button"
-                            onclick="
-                                Metro.activity.open({autoHide: 3000})
-                            "&gt;Open&lt;/button&gt;
+                    &lt;button class="button" onclick="
+                        Metro.activity.open({autoHide: 3000})
+                    "&gt;Open&lt;/button&gt;
 
-                    &lt;button class="button"
-                            onclick="
-                                Metro.activity.open({type: 'metro', overlayClickClose: true})
-                            "&gt;Open&lt;/button&gt;
+                    &lt;button class="button" onclick="
+                        Metro.activity.open({
+                            type: 'metro',
+                            overlayClickClose: true
+                        })
+                    "&gt;Open&lt;/button&gt;
 
-                    &lt;button class="button"
-                            onclick="
-                                var activity = Metro.activity.open({
-                                    type: 'square',
-                                    overlayColor: '#fff',
-                                    overlayAlpha: 1
-                                });
-                                setTimeout(function(){Metro.activity.close(activity)}, 5000)
-                            "&gt;Open&lt;/button&gt;
+                    &lt;button class="button" onclick="
+                        var activity = Metro.activity.open({
+                            type: 'square',
+                            overlayColor: '#fff',
+                            overlayAlpha: 1
+                        });
+                        setTimeout(function(){
+                            Metro.activity.close(activity);
+                        }, 5000)
+                    "&gt;Open&lt;/button&gt;
+
+                    &lt;button class="button" onclick="
+                        Metro.activity.open({
+                            type: 'square',
+                            overlayColor: '#fff',
+                            overlayAlpha: 1,
+                            text: '&lt;div class=\'mt-2 text-small\'&gt;Please, wait...&lt;/div&gt;',
+                            overlayClickClose: true
+                        });
+                    "&gt;Open&lt;/button&gt;
                 </code></pre>
 
                 <h3 id="_progress_about">Progress indicator</h3>

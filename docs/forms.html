@@ -350,7 +350,11 @@
                     &lt;/select&gt;
                 </code></pre>
                 <p>
-                    Additional functionality for select is implemented through the plugin <code>select</code>. To activate plugin and additional options add the attribute <code>data-role="select"</code> to element.
+                    Additional functionality for select is implemented through the plugin <code>select</code>.
+                    To activate plugin and additional options add the attribute <code>data-role="select"</code> to element.
+                </p>
+                <p>
+                    In version <code>4.2.0</code>, component receive new feature: <code>filtering</code>.
                 </p>
                 <p class="text-bold">Additional options:</p>
                 <table class="table table-border cell-border compact mb-4">
@@ -376,6 +380,16 @@
                         <td>data-on-change</td>
                         <td>$.noop()</td>
                         <td>Callback triggered when value changed</td>
+                    </tr>
+                    <tr>
+                        <td>data-filter</td>
+                        <td>true</td>
+                        <td>Enable/disable list filtering. Default is true</td>
+                    </tr>
+                    <tr>
+                        <td>data-filter-placeholder</td>
+                        <td></td>
+                        <td>Placeholder for filter input</td>
                     </tr>
                     </tbody>
                 </table>

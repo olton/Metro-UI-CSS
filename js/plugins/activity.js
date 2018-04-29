@@ -96,15 +96,20 @@ Metro.plugin('activity', Activity);
 
 Metro['activity'] = {
     open: function(options){
+
+        var activity = '<div data-role="activity" data-type="'+( options.type ? options.type : 'cycle' )+'" data-style="'+( options.style ? options.style : 'color' )+'"></div>';
+        var text = options.text ? '<div class="text-center">'+options.text+'</div>' : '';
+
         return Metro.dialog.create({
-            content: '<div data-role="activity" data-type="'+( options.type ? options.type : 'cycle' )+'" data-style="'+( options.style ? options.style : 'color' )+'"></div>',
+            content: activity + text,
             defaultAction: false,
-            clsContent: "d-flex flex-justify-center flex-align-center bg-transparent no-shadow w-auto",
-            clsDialog: "no-shadow bg-transparent",
+            clsContent: "d-flex flex-column flex-justify-center flex-align-center bg-transparent no-shadow w-auto",
+            clsDialog: "no-shadow bg-transparent global-dialog",
             autoHide: options.autoHide ? options.autoHide : 0,
             overlayClickClose: options.overlayClickClose === true,
             overlayColor: options.overlayColor?options.overlayColor:'#000000',
-            overlayAlpha: options.overlayAlpha?options.overlayAlpha:.5
+            overlayAlpha: options.overlayAlpha?options.overlayAlpha:.5,
+            clsOverlay: "global-overlay"
         })
     },
 

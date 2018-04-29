@@ -1,3 +1,12 @@
+### 4.2.0
++ [x] Select: add filtering feature.
++ [x] Activity: fix `z-index` for global activity with overlay
++ [x] Activity: add new option `text` for activity overlay
++ [x] Third party: add styles for `datatables` plugin
++ [x] Third party: add styles for `select2` plugin
++ [x] Demo: add demo page for `datatable` plugin 
++ [x] Demo: add demo page for `select2` plugin 
+
 ### 4.1.20
 + [x] Animation: add class `.transition`
 + [x] Neb: add type 2 with class `.neb2` and subclasses `.neb-n`, `.neb-s`, `.neb-w`, `.neb-e`

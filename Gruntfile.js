@@ -88,6 +88,13 @@ module.exports = function(grunt) {
                 ext: ".css",
                 dest: "build/css/schemes"
             },
+            third: {
+                expand: true,
+                cwd: "less/third-party/",
+                src: ["*.less"],
+                ext: ".css",
+                dest: "build/css/third-party"
+            },
             docs: {
                 expand: true,
                 cwd: "docs/css/",
@@ -111,6 +118,9 @@ module.exports = function(grunt) {
             },
             schemes: {
                 src: 'build/css/schemes/*.css'
+            },
+            third: {
+                src: 'build/css/third-party/*.css'
             }
         },
 
@@ -127,6 +137,13 @@ module.exports = function(grunt) {
                 cwd: "build/css/schemes",
                 src: ['*.css', '!*.min.css'],
                 dest: "build/css/schemes",
+                ext: ".min.css"
+            },
+            third: {
+                expand: true,
+                cwd: "build/css/third-party",
+                src: ['*.css', '!*.min.css'],
+                dest: "build/css/third-party",
                 ext: ".min.css"
             }
         },
@@ -148,7 +165,7 @@ module.exports = function(grunt) {
 
         watch: {
             scripts: {
-                files: ['js/i18n/*.json', 'js/*.js', 'js/utils/*.js', 'js/plugins/*js', 'less/*.less', 'less/include/*.less', 'less/schemes/*.less', 'less/schemes/builder/*.less', 'Gruntfile.js'],
+                files: ['js/i18n/*.json', 'js/*.js', 'js/utils/*.js', 'js/plugins/*js', 'less/*.less', 'less/include/*.less', 'less/third-party/*.less', 'less/schemes/*.less', 'less/schemes/builder/*.less', 'Gruntfile.js'],
                 tasks: ['clean',  'less', 'postcss', 'concat',  'uglify', 'cssmin', 'copy']
             }
         }

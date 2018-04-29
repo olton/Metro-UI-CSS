@@ -19122,6 +19122,9 @@ a.split-button a.split {
   pointer-events: none;
   color: #e4e4e4;
 }
+.pagination .page-item.active {
+  background-color: #e4e4e4;
+}
 .pagination.rounded .page-item {
   border-radius: 0.25rem;
 }
@@ -19565,10 +19568,28 @@ label {
 .select:hover input {
   border-color: transparent;
 }
+.select .drop-container {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: calc(100% + 2px);
+  height: auto;
+  border-left: 1px solid #dfdfdf;
+  border-right: 1px solid #dfdfdf;
+  padding: 2px;
+  margin-left: -1px;
+  z-index: 1000;
+  background-color: #ffffff;
+}
+.select .drop-container .input {
+  margin: 4px 2px 6px;
+  width: calc(100% - 4px);
+}
 .select .d-menu {
   width: 100%;
   overflow-y: auto;
-  top: 100%;
+  position: relative;
+  display: block;
 }
 .select .d-menu li a {
   padding: 0 1rem;
@@ -20921,6 +20942,12 @@ figure img {
 }
 .overlay.transparent {
   background-color: rgba(255, 255, 255, 0);
+}
+.global-overlay {
+  z-index: 2000 !important;
+}
+.global-dialog {
+  z-index: 2001 !important;
 }
 .window {
   display: -webkit-box;
