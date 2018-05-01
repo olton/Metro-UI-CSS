@@ -1,5 +1,5 @@
 /*!
- * Metro 4 Components Library v4.2.1 build 671 (https://metroui.org.ua)
+ * Metro 4 Components Library v4.2.2 build 672 (https://metroui.org.ua)
  * Copyright 2018 Sergey Pimenov
  * Licensed under MIT
  */
@@ -79,7 +79,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.1-671",
+    version: "4.2.2-672",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -16326,6 +16326,12 @@ var Window = {
     isOpen: function(){
         return this.win.hasClass("no-visible");
     },
+    min: function(a){
+        a ? this.win.addClass("minimized") : this.win.removeClass("minimized");
+    },
+    max: function(a){
+        a ? this.win.addClass("maximized") : this.win.removeClass("maximized");
+    },
 
     toggleButtons: function(a) {
         var that = this, element = this.element, win = this.win, o = this.options;
@@ -16495,12 +16501,28 @@ Metro['window'] = {
         return Utils.isMetroObject(el, "window");
     },
 
+    min: function(el, a){
+        if (!this.isWindow(el)) {
+            return false;
+        }
+        var win = $(el).data("window");
+        win.min(a);
+    },
+
+    max: function(el, a){
+        if (!this.isWindow(el)) {
+            return false;
+        }
+        var win = $(el).data("window");
+        win.max(a);
+    },
+
     show: function(el){
         if (!this.isWindow(el)) {
             return false;
         }
         var win = $(el).data("window");
-        win.open();
+        win.show();
     },
 
     hide: function(el){
@@ -16508,7 +16530,7 @@ Metro['window'] = {
             return false;
         }
         var win = $(el).data("window");
-        win.close();
+        win.hide();
     },
 
     toggle: function(el){
