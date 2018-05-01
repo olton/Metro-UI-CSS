@@ -42,6 +42,7 @@ var Window = {
         top: "auto",
         left: "auto",
         place: "auto",
+        closeAction: Metro.actions.REMOVE,
         onDragStart: Metro.noop,
         onDragStop: Metro.noop,
         onDragMove: Metro.noop,
@@ -186,7 +187,7 @@ var Window = {
             }
         }
 
-        win.attr("id", o.id === undefined ? Utils.uniqueId() : o.id);
+        win.attr("id", o.id === undefined ? Utils.elementId("window") : o.id);
 
         if (o.resizable === true) {
             resizer = $("<span>").addClass("resize-element");
@@ -269,7 +270,7 @@ var Window = {
     minimized: function(e){
         var that = this, win = this.win,  element = this.element, o = this.options;
         win.toggleClass("minimized");
-        Utils.exec(o.onMinClick, [win]);
+        Utils.exec(o.onMinClick, [win], element[0]);
     },
 
     close: function(e){
@@ -286,16 +287,21 @@ var Window = {
             timeout = 500;
         }
 
-        Utils.exec(o.onClose, [win]);
+        Utils.exec(o.onClose, [win], element[0]);
 
         timer = setTimeout(function(){
             timer = null;
             if (o.modal === true) {
                 win.siblings(".overlay").remove();
             }
-            Utils.exec(o.onCloseClick(), [win]);
-            Utils.exec(o.onWindowDestroy, [win]);
-            win.remove();
+            Utils.exec(o.onCloseClick(), [win], element[0]);
+            Utils.exec(o.onWindowDestroy, [win], element[0]);
+            if (o.closeAction === Metro.actions.REMOVE) {
+                win.remove();
+            } else {
+                that.hide();
+            }
+
         }, timeout);
     },
 
@@ -304,6 +310,16 @@ var Window = {
     },
     show: function(){
         this.win.removeClass("no-visible");
+    },
+    toggle: function(){
+        if (this.win.hasClass("no-visible")) {
+            this.show();
+        } else {
+            this.hide();
+        }
+    },
+    isOpen: function(){
+        return this.win.hasClass("no-visible");
     },
 
     toggleButtons: function(a) {
@@ -467,3 +483,61 @@ var Window = {
 };
 
 Metro.plugin('window', Window);
+
+Metro['window'] = {
+
+    isWindow: function(el){
+        return Utils.isMetroObject(el, "window");
+    },
+
+    show: function(el){
+        if (!this.isWindow(el)) {
+            return false;
+        }
+        var win = $(el).data("window");
+        win.open();
+    },
+
+    hide: function(el){
+        if (!this.isWindow(el)) {
+            return false;
+        }
+        var win = $(el).data("window");
+        win.close();
+    },
+
+    toggle: function(el){
+        if (!this.isWindow(el)) {
+            return false;
+        }
+        var win = $(el).data("window");
+        win.toggle();
+    },
+
+    isOpen: function(el){
+        if (!this.isWindow(el)) {
+            return false;
+        }
+        var win = $(el).data("window");
+        return win.isOpen();
+    },
+
+    close: function(el){
+        if (!this.isWindow(el)) {
+            return false;
+        }
+        var win = $(el).data("window");
+        win.close();
+    },
+
+    create: function(options){
+        var w;
+
+        w = $("<div>").appendTo($("body"));
+
+        var w_options = $.extend({}, {
+        }, (options !== undefined ? options : {}));
+
+        return w.window(w_options);
+    }
+};

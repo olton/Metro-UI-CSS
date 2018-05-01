@@ -176,6 +176,11 @@ var Metro = {
         XXL: "xxl"
     },
 
+    actions: {
+        REMOVE: 1,
+        HIDE: 2
+    },
+
     hotkeys: [],
 
     about: function(){
