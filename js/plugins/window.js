@@ -321,6 +321,12 @@ var Window = {
     isOpen: function(){
         return this.win.hasClass("no-visible");
     },
+    min: function(a){
+        a ? this.win.addClass("minimized") : this.win.removeClass("minimized");
+    },
+    max: function(a){
+        a ? this.win.addClass("maximized") : this.win.removeClass("maximized");
+    },
 
     toggleButtons: function(a) {
         var that = this, element = this.element, win = this.win, o = this.options;
@@ -490,12 +496,28 @@ Metro['window'] = {
         return Utils.isMetroObject(el, "window");
     },
 
+    min: function(el, a){
+        if (!this.isWindow(el)) {
+            return false;
+        }
+        var win = $(el).data("window");
+        win.min(a);
+    },
+
+    max: function(el, a){
+        if (!this.isWindow(el)) {
+            return false;
+        }
+        var win = $(el).data("window");
+        win.max(a);
+    },
+
     show: function(el){
         if (!this.isWindow(el)) {
             return false;
         }
         var win = $(el).data("window");
-        win.open();
+        win.show();
     },
 
     hide: function(el){
@@ -503,7 +525,7 @@ Metro['window'] = {
             return false;
         }
         var win = $(el).data("window");
-        win.close();
+        win.hide();
     },
 
     toggle: function(el){

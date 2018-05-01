@@ -1,3 +1,7 @@
+### 4.2.2
++ [x] Window: fix methods `show()`, `hide()` in `Metro.window`
++ [x] Window: add methods `min`, `max` to component and object
+
 ### 4.2.1
 + [x] Vertical menu: fix issue #1089 - the sub-menu are out of the view
 + [x] Window: change logic of method `close`
