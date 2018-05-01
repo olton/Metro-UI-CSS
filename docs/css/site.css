@@ -458,3 +458,6 @@ footer a:hover {
     margin-top: 0;
   }
 }
+h1 > .text-leader {
+  margin-bottom: 20px;
+}
