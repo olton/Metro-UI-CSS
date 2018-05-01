@@ -1,3 +1,8 @@
+### 4.2.1
++ [x] Vertical menu: fix issue #1089 - the sub-menu are out of the view
++ [x] Window: change logic of method `close`
++ [x] Window: add object `Metro.window` with a number of methods 
+
 ### 4.2.0
 + [x] Select: add filtering feature.
 + [x] Activity: fix `z-index` for global activity with overlay

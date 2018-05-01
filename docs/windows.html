@@ -65,6 +65,7 @@
                     <li class="toc-entry"><a href="#_window_options">Options</a></li>
                     <li class="toc-entry"><a href="#_window_events">Events</a></li>
                     <li class="toc-entry"><a href="#_window_methods">Methods</a></li>
+                    <li class="toc-entry"><a href="#_window_object">Metro.window object</a></li>
                 </ul>
 
             </div>
@@ -498,6 +499,13 @@
                         <td>Set window place (can be: center, top-left, top-center, top-right, right-center, bottom-right, bottom-center, bottom-left, left-center)</td>
                         <td><span class="mif-checkmark fg-green"></span></td>
                     </tr>
+                    <tr>
+                        <td>closeAction</td>
+                        <td><code>data-close-action</code></td>
+                        <td>Metro.actions.REMOVE</td>
+                        <td>Action when window close. Metro.actions.REMOVE or Metro.actions.HIDE</td>
+                        <td><span class="mif-cancel fg-red"></span></td>
+                    </tr>
                     </tbody>
                 </table>
 
@@ -613,6 +621,21 @@
                     </tbody>
                 </table>
 
+
+                <h3 id="_window_object">Metro.window object</h3>
+                <p class="text-small">Added in 4.2.1</p>
+                <p>
+                    You can use object <code>Metro.window</code> to manipulate of windows components. This object contains next methods:
+                </p>
+                <ul>
+                    <li><code>isWindow(el)</code> - checks, if element has role <code>window</code></li>
+                    <li><code>show(el)</code> - show hidden window</li>
+                    <li><code>hide(el)</code> - hide window</li>
+                    <li><code>toggle(el)</code> - toggle show/hide window</li>
+                    <li><code>isOpen(el)</code> - checks, if a window is showed</li>
+                    <li><code>close(el)</code> - close window</li>
+                    <li><code>create({...})</code> - create window</li>
+                </ul>
             </main>
         </div>
 

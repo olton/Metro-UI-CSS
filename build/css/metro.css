@@ -20500,10 +20500,7 @@ fieldset.disabled,
   top: 100%;
   border: 1px solid #dfdfdf;
 }
-.d-menu .d-menu,
-.v-menu .d-menu,
-.d-menu .v-menu,
-.v-menu .v-menu {
+.d-menu .d-menu {
   left: 100%;
   top: -0.5rem;
 }
