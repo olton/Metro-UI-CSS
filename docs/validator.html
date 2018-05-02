@@ -71,6 +71,7 @@
                             <li class="toc-entry"><a href="#_validator_func_pattern">Pattern</a></li>
                             <li class="toc-entry"><a href="#_validator_func_compare">Compare</a></li>
                             <li class="toc-entry"><a href="#_validator_func_not">Not</a></li>
+                            <li class="toc-entry"><a href="#_validator_func_custom">Custom</a></li>
                         </ul>
                     </li>
                     <li class="toc-entry"><a href="#_validator_events">Events</a></li>
@@ -354,6 +355,8 @@
                         <code>color</code>,
                         <code>pattern</code>,
                         <code>compare</code>.
+                        <code>not</code> and
+                        <code>custom</code>.
                 </p>
 
                 <ul class="unstyled-list mt-2">
@@ -493,6 +496,20 @@
                                 &lt;option value="2"&gt;Value 2&lt;/option&gt;
                                 &lt;option value="3"&gt;Value 3&lt;/option&gt;
                             &lt;/select&gt;
+                        </code></pre>
+                    </li>
+
+                    <li id="_validator_func_custom">
+                        <strong>custom</strong> - required valid function exist name
+                        <pre><code>
+                            --- html
+                            &lt;input type="text" data-validate="custom=myValidateFuncName"&gt;
+
+                            ---- javascript
+                            function myValidateFuncName(val){
+                                val = parseInt(val);
+                                return Metro.utils.isInt(val) && (val > 3 && val < 9);
+                            }
                         </code></pre>
                     </li>
                 </ul>

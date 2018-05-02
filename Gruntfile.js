@@ -23,7 +23,7 @@ module.exports = function(grunt) {
         "}(function( jQuery ) { \n'use strict';\n\nvar $ = jQuery;\n\n",
 
         clean: {
-            build: ['build/js', 'build/css']
+            build: ['build/js', 'build/css', 'build/mif']
         },
 
         concat: {
@@ -33,7 +33,7 @@ module.exports = function(grunt) {
                     footer: "\n\nreturn METRO_INIT === true ? Metro.init() : Metro;\n\n}));",
                     stripBanners: true,
                     process: function(src, filepath) {
-                        return '// Source: ' + filepath + '\n' +
+                        return '\n// Source: ' + filepath + '\n' +
                             src.replace(/(^|\n)[ \t]*('use strict'|"use strict");?\s*/g, '$1');
                     }
                 },
@@ -45,6 +45,9 @@ module.exports = function(grunt) {
                 dest: 'build/js/metro.js'
             },
             css: {
+                options: {
+                    banner: '<%= banner %>'
+                },
                 src: [
                     'build/css/metro.css',
                     'build/css/metro-colors.css',

@@ -1,3 +1,8 @@
+### 4.2.3
++ [x] Validator: add `custom` validation
++ [x] Navigation view: issue #1018 sets focus to the input field in suggest-box when user click on the helper
++ [x] Dialog: change `max-width` to `calc(100vw - 100px)` and `max-height` to `calc(100vh - 100px)`
+
 ### 4.2.2
 + [x] Window: fix methods `show()`, `hide()` in `Metro.window`
 + [x] Window: add methods `min`, `max` to component and object

@@ -88,6 +88,13 @@ var ValidatorFuncs = {
         return val !== not_this;
     },
 
+    custom: function(val, func){
+        if (Utils.isFunc(func) === false) {
+            return false;
+        }
+        return Utils.exec(func, [val]);
+    },
+
     is_control: function(el){
         return el.parent().hasClass("input")
             || el.parent().hasClass("select")

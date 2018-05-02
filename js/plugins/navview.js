@@ -82,9 +82,13 @@ var NavigationView = {
         element.on(Metro.events.click, ".pull-button, .holder", function(e){
             var pane_compact = pane.width() < 280;
             var target = $(this);
+            var input;
 
             if (target.hasClass("holder")) {
-                target.parent().find("input").focus();
+                input = target.parent().find("input");
+                setTimeout(function(){
+                    input.focus();
+                }, 200);
             }
 
             if (that.pane.hasClass("open")) {
