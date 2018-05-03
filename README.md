@@ -67,9 +67,9 @@ IE11+, Chrome, Firefox, Opera, Safari, Android, IOS
 Metro 4 has [MIT License](http://metroui.org.ua/license.html)
 
 ## Old version
-Metro UI CSS 3.x you can find in a repo [metrouicss-3x](https://github.com/olton/Metro-UI-CSS-3)     
-Metro UI CSS 2.x you can find in a repo [metrouicss-2x](https://github.com/olton/Metro-UI-CSS-2)     
-Metro UI CSS 0.x you can find in a repo [metrouicss-0.95](https://github.com/olton/Metro-UI-CSS-095) 
+Metro UI CSS 3.x you can find in a repo [Metro-UI-CSS-3](https://github.com/olton/Metro-UI-CSS-3)     
+Metro UI CSS 2.x you can find in a repo [Metro-UI-CSS-2](https://github.com/olton/Metro-UI-CSS-2)     
+Metro UI CSS 0.x you can find in a repo [Metro-UI-CSS-095](https://github.com/olton/Metro-UI-CSS-095) 
 
  Documentation and Demo for V3: [metroui.org.ua/v3](https://metroui.org.ua/v3/).   
  Documentation and Demo for V2: [metroui.org.ua/v2](https://metroui.org.ua/v2/).   
