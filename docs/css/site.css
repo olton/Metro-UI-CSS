@@ -66,51 +66,19 @@ pre {
 }
 .toc-wrapper .toc-nav li a,
 #sidenav .toc-nav li a {
-  color: #bebebe;
+  color: #989898;
 }
 .toc-wrapper .toc-nav li a:hover,
 #sidenav .toc-nav li a:hover {
   color: #1d1d1d;
 }
-.toc-wrapper .toc-nav li.done a,
-#sidenav .toc-nav li.done a {
-  color: #1d1d1d;
-}
-.toc-wrapper .toc-nav li.done a:before,
-#sidenav .toc-nav li.done a:before {
-  content: "\2713";
-  color: #60a917;
-  left: -1rem;
-  position: absolute;
-  font-weight: bold;
-}
-.toc-wrapper .toc-nav li.process a,
-#sidenav .toc-nav li.process a {
-  color: #1d1d1d;
-}
-.toc-wrapper .toc-nav li.process a:before,
-#sidenav .toc-nav li.process a:before {
-  content: "\25CF";
-  color: #1ba1e2;
-  left: -1rem;
-  position: absolute;
-  font-weight: bold;
-}
-.toc-wrapper .toc-nav li.idea a,
-#sidenav .toc-nav li.idea a {
-  color: #1d1d1d;
-}
-.toc-wrapper .toc-nav li.idea a:before,
-#sidenav .toc-nav li.idea a:before {
-  content: "\2600";
-  color: #dc4fad;
-  left: -1rem;
-  position: absolute;
-  font-weight: bold;
-}
 .toc-wrapper .toc-nav li.active,
 #sidenav .toc-nav li.active {
   font-weight: bold;
+}
+.toc-wrapper .toc-nav li.active a,
+#sidenav .toc-nav li.active a {
+  color: #1d1d1d;
 }
 .toc-wrapper .toc-nav ul,
 #sidenav .toc-nav ul,

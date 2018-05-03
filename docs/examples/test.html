@@ -34,20 +34,14 @@
 </head>
 <body>
 <div class="container">
-    <form data-role="validator" action="javascript:">
-        <input type="text" data-validate="custom=myValidateFunc">
-        <div class="mt-4">
-            <button class="button" type="submit">Submit</button>
-        </div>
-    </form>
+    <h1 data-role="counter" data-value="5603" data-step="10" data-delay="5"></h1>
 </div>
 <script src="../js/jquery-3.3.1.min.js"></script>
 <script src="../metro/js/metro.js"></script>
 <script>
-    function myValidateFunc(val) {
-        val = parseInt(val);
-        return Metro.utils.isInt(val) && (val > 3 && val < 9);
-    }
+    setTimeout(function () {
+        $("h1").data("counter").start();
+    }, 0);
 </script>
 <!-- ads-script -->
 

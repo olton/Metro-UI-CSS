@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <meta name="twitter:site" content="@metroui">
+    <meta name="twitter:creator" content="@pimenov_sergey">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Metro 4 Components Library">
+    <meta name="twitter:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.">
+    <meta name="twitter:image" content="https://metroui.org.ua/images/m4-logo-social.png">
+
+    <meta property="og:url" content="https://metroui.org.ua/v4/index.html">
+    <meta property="og:title" content="Metro 4 Components Library">
+    <meta property="og:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:secure_url" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="968">
+    <meta property="og:image:height" content="504">
+
+    <meta name="author" content="Sergey Pimenov">
+    <meta name="description" content="The most popular HTML, CSS, and JS library in Metro style.">
+    <meta name="keywords" content="HTML, CSS, JS, Metro, CSS3, Javascript, HTML5, UI, Library, Web, Development, Framework">
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <link href="metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
+    <link href="highlight/styles/github.css" rel="stylesheet">
+    <link href="docsearch/docsearch.min.css" rel="stylesheet">
+    <link href="css/site.css" rel="stylesheet">
+
+    <title>Counter - Metro 4 :: Popular HTML, CSS and JS library</title>
+</head>
+<body>
+    <div class="container-fluid">
+
+        <div class="row flex-xl-nowrap">
+            <div class="cell-md-3 cell-xl-2 pr-0 border-right bd-light" id="sidenav">
+            </div>
+
+            <div class="d-none d-block-xl cell-xl-2 order-2 border-left bd-light toc-wrapper">
+                <h5>Table of contents</h5>
+                <hr/>
+                <ul class="toc-nav">
+                    <li class="toc-entry"><a href="#">Counter</a></li>
+                    <li class="toc-entry"><a href="#_counter_about">About</a></li>
+                    <li class="toc-entry"><a href="#_counter_options">Options</a></li>
+                    <li class="toc-entry"><a href="#_counter_events">Events</a></li>
+                    <li class="toc-entry"><a href="#_counter_methods">Methods</a></li>
+                </ul>
+
+            </div>
+
+            <main class="cell-md-9 cell-xl-8 order-1 pr-1-sx pl-1-sx pr-5-md pl-5-md">
+                <div class="place-right d-none d-block-lg" style="width: 200px;">
+                    <img src="images/logo.png" class="w-100">
+                </div>
+
+                <h1>Counter</h1>
+                <p class="text-leader">
+                    Create animated number counter with simple Metro 4 component.
+                </p>
+
+                <!-- ads-html -->
+
+                <h3 id="_counter_about">About</h3>
+                <p>
+                    The <code>counter</code> component is a simple Metro 4 plugin for creating animated number counter from <code>0</code> to <code>defined value</code>.
+                </p>
+                <div class="example">
+                    <div>
+                        <button class="button success" onclick="$('#counter').data('counter').start()">Start</button>
+                        <button class="button alert" onclick="$('#counter').data('counter').reset()">Reset</button>
+                    </div>
+                    <div class="h1" data-role="counter" data-value="100" id="counter">0</div>
+                </div>
+                <pre><code>
+                    &lt;div&gt;
+                        &lt;button class="button success"
+                            onclick="$('#counter').data('counter').start()"&gt;
+                        Start&lt;/button&gt;
+
+                        &lt;button class="button alert"
+                            onclick="$('#counter').data('counter').reset()"&gt;
+                        Reset&lt;/button&gt;
+                    &lt;/div&gt;
+
+                    &lt;div class="h1" data-role="counter"
+                        data-value="100" id="counter"&gt;0&lt;/div&gt;
+                </code></pre>
+
+                <h3 id="_counter_options">Options</h3>
+                <p>
+                    The <code>counter</code> component contains a number of options for defining behavior:
+                </p>
+                <table class="table cell-border table-border options-table mt-2">
+                    <thead>
+                    <tr>
+                        <th>Option</th>
+                        <th>Data-*</th>
+                        <th>Default</th>
+                        <th>Desc</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>delay</td>
+                        <td><code>data-delay</code></td>
+                        <td>10</td>
+                        <td>Delay interval in ms</td>
+                    </tr>
+                    <tr>
+                        <td>step</td>
+                        <td><code>data-step</code></td>
+                        <td>1</td>
+                        <td>Step for animation</td>
+                    </tr>
+                    <tr>
+                        <td>value</td>
+                        <td><code>data-value</code></td>
+                        <td>0</td>
+                        <td>Counter end value</td>
+                    </tr>
+                    <tr>
+                        <td>timeout</td>
+                        <td><code>data-timeout</code></td>
+                        <td>null</td>
+                        <td>If defined (in ms), then counter start after this interval</td>
+                    </tr>
+                    <tr>
+                        <td>delimiter</td>
+                        <td><code>data-delimiter</code></td>
+                        <td>,</td>
+                        <td>Delimiter for number sections</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <h3 id="_counter_events">Events</h3>
+                <p>
+                    When <code>counter</code> works, it generated the numbers of events.
+                    You can use callback for this event to behavior with component.
+                </p>
+                <table class="table cell-border table-border options-table mt-2">
+                    <thead>
+                    <tr>
+                        <th>Event</th>
+                        <th>Data-*</th>
+                        <th>Desc</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>onTick(value, el)</td>
+                        <td><code>data-on-tick</code></td>
+                        <td>Fired when counter ticked</td>
+                    </tr>
+                    <tr>
+                        <td>onStart(el)</td>
+                        <td><code>data-on-start</code></td>
+                        <td>Fired when counter started</td>
+                    </tr>
+                    <tr>
+                        <td>onStop(el)</td>
+                        <td><code>data-on-stop</code></td>
+                        <td>Fired when counter stopped</td>
+                    </tr>
+                    <tr>
+                        <td>onCounterCreate(el)</td>
+                        <td><code>data-on-counter-create</code></td>
+                        <td>Fired when counter was created</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <h3 id="_counter_methods">Methods</h3>
+                <p>
+                    Component <code>counter</code> contains method to interact with it.
+                </p>
+                <ul>
+                    <li><strong>start()</strong> - start counting</li>
+                    <li><strong>reset()</strong> - reset counter for starting again</li>
+                </ul>
+
+            </main>
+        </div>
+
+    </div>
+
+    <script src="docsearch/docsearch.min.js"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="metro/js/metro.js?ver=@@b-version"></script>
+    <script src="highlight/highlight.pack.js"></script>
+    <script src="js/clipboard.min.js"></script>
+    <script src="js/site.js"></script>
+    <!-- ads-script -->
+    <!-- ga-script -->
+    <!-- hit-ua -->
+</body>
+</html>
