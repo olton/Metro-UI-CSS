@@ -86,51 +86,19 @@ pre {
         }
 
         li a {
-            color: @gray;
+            color: @darkGray;
 
             &:hover {
                 color: @dark;
             }
         }
 
-        li.done a {
-            color: @dark;
-
-            &:before {
-                content: "\2713";
-                color: @green;
-                left: -1rem;
-                position: absolute;
-                font-weight: bold;
-            }
-        }
-
-        li.process a {
-            color: @dark;
-
-            &:before {
-                content: "\25CF";
-                color: @cyan;
-                left: -1rem;
-                position: absolute;
-                font-weight: bold;
-            }
-        }
-
-        li.idea a {
-            color: @dark;
-
-            &:before {
-                content: "\2600";
-                color: @pink;
-                left: -1rem;
-                position: absolute;
-                font-weight: bold;
-            }
-        }
-
         li.active {
             font-weight: bold;
+
+            a {
+                color: @dark;
+            }
         }
 
         ul, ol {

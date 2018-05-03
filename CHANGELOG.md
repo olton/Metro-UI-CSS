@@ -1,3 +1,7 @@
+### 4.2.4
++ [x] Counter: add new component
++ [x] Docs: add docs for `counter` component
+
 ### 4.2.3
 + [x] Validator: add `custom` validation
 + [x] Navigation view: issue #1018 sets focus to the input field in suggest-box when user click on the helper

@@ -84,6 +84,7 @@
             <li class="done"><a href="session-storage.html">Storage</a></li>
             <li class="done"><a href="gravatar.html">Gravatar</a></li>
             <li class="done"><a href="cube.html">Cube</a></li>
+            <li class="done"><a href="counter.html">Counter</a></li>
             <li class="done"><a href="hints.html">Hints</a></li>
             <li class="done"><a href="toast.html">Toasts</a></li>
             <li class="done"><a href="notify.html">Notify system</a></li>
@@ -127,7 +128,8 @@
 
     <div class="container-fluid bg-darkMagenta fg-white pos-fixed fixed-top z-top">
         <header class="app-bar container bg-darkMagenta fg-white pos-relative app-bar-expand-md" data-role="appbar">
-            <a href="/" class="brand fg-white no-hover">Metro 4 Components Library</a>
+            <a href="/" class="d-block d-none-md brand fg-white no-hover"><span class="border bd-white border-radius p-2">m<sup>4</sup></span></a>
+            <a href="/" class="d-none d-block-md brand fg-white no-hover">Metro 4 Components Library</a>
             <ul class="app-bar-menu ml-auto">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="intro.html">Guide</a></li>
@@ -142,15 +144,17 @@
 
     <div class="hero hero-bg text-center neb neb-hero">
 
-        <a href="/" class="no-decor fg-white border bd-white border-radius p-4 h1 mb-10">m<sup>4</sup></a>
+        <div>
+            <a href="/" class="d-none d-inline-block-md no-decor fg-white border bd-white border-radius p-4 h1">m<sup>4</sup></a>
+        </div>
 
         <h1 class="fg-white mt-10"><span class="reduce-1 enlarge-1-md">Raise Your Work to the Next Level</span></h1>
         <h4 class="fg-light text-upper text-light mt-4"><span class="reduce-1 enlarge-1-md">Choose <strong>Metro 4</strong> for your sites</span></h4>
         <p class="fg-white text-small"><span class="mif-chevron-left"></span><span class="version-number"></span><span class="mif-chevron-right"></span></p>
         <div class="d-flex flex-justify-center flex-align-center mt-4 text-small">
-            <a href="https://github.com/olton/Metro-UI-CSS/watchers" class="m-1 fg-gray no-decor fg-white-hover transition"><span class="mif-eye"></span> <span id="github-watchers">583</span></a>
-            <a href="https://github.com/olton/Metro-UI-CSS/stargazers" class="enlarge-5 m-1 fg-lightGray no-decor fg-white-hover transition"><span class="mif-star-full"></span> <span id="github-stars">5,594</span></a>
-            <a href="https://github.com/olton/Metro-UI-CSS/network/members" class="m-1 fg-gray no-decor fg-white-hover transition"><span class="mif-flow-tree"></span> <span id="github-forks">1,847</span></a>
+            <a href="https://github.com/olton/Metro-UI-CSS/watchers" class="m-1 fg-gray no-decor fg-white-hover transition"><span class="mif-eye"></span> <span id="github-watchers" data-role="counter" data-step="5">0</span></a>
+            <a href="https://github.com/olton/Metro-UI-CSS/stargazers" class="enlarge-5 m-1 fg-lightGray no-decor fg-white-hover transition"><span class="mif-star-full"></span> <span id="github-stars" data-role="counter" data-step="10">0</span></a>
+            <a href="https://github.com/olton/Metro-UI-CSS/network/members" class="m-1 fg-gray no-decor fg-white-hover transition"><span class="mif-flow-tree"></span> <span id="github-forks" data-role="counter" data-step="5">0</span></a>
         </div>
 
     </div>
@@ -340,9 +344,9 @@
     <script>
         $(".version-number").html(Metro.ver());
         Metro.utils.github("olton/Metro-UI-CSS", function(data){
-            $("#github-forks").text(Number(data.forks).format(0, 0, ","));
-            $("#github-stars").text(Number(data.stargazers_count).format(0, 0, ","));
-            $("#github-watchers").text(Number(data.subscribers_count).format(0, 0, ","));
+            $("#github-forks").attr("data-value", data.forks).data("counter").start();
+            $("#github-stars").attr("data-value", data.stargazers_count).data("counter").start();
+            $("#github-watchers").attr("data-value", data.subscribers_count).data("counter").start();
         })
     </script>
     <!-- ads-script -->
