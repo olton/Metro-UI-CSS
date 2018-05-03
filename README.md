@@ -36,6 +36,7 @@ It's an independent project with its ongoing development made possible entirely 
 
 ### Community
 [![Join the chat at https://gitter.im/metro4/Lobby](https://badges.gitter.im/metro4/Lobby.svg)](https://gitter.im/metro4/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Join the forum at https://forum.metroui.org.ua](https://img.shields.io/badge/metro-forum-orange.svg)](https://forum.metroui.org.ua)
 
 
 ### Whats new
@@ -66,9 +67,9 @@ IE11+, Chrome, Firefox, Opera, Safari, Android, IOS
 Metro 4 has [MIT License](http://metroui.org.ua/license.html)
 
 ## Old version
-Metro UI CSS 3.x you can find in a branch [metrouicss-3x](https://github.com/olton/Metro-UI-CSS/tree/metrouicss-3x)     
-Metro UI CSS 2.x you can find in a branch [metrouicss-2x](https://github.com/olton/Metro-UI-CSS/tree/metrouicss-2x)     
-Metro UI CSS 0.x you can find in a branch [metrouicss-0.95](https://github.com/olton/Metro-UI-CSS/tree/metrouicss-0.95) 
+Metro UI CSS 3.x you can find in a repo [metrouicss-3x](https://github.com/olton/Metro-UI-CSS-3)     
+Metro UI CSS 2.x you can find in a repo [metrouicss-2x](https://github.com/olton/Metro-UI-CSS-2)     
+Metro UI CSS 0.x you can find in a repo [metrouicss-0.95](https://github.com/olton/Metro-UI-CSS-095) 
 
  Documentation and Demo for V3: [metroui.org.ua/v3](https://metroui.org.ua/v3/).   
  Documentation and Demo for V2: [metroui.org.ua/v2](https://metroui.org.ua/v2/).   
