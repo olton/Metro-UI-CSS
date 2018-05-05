@@ -18,6 +18,7 @@
     color: @dark;
     cursor: pointer;
     outline: none;
+    position: relative;
 }
 
 .flat-button {
@@ -145,6 +146,7 @@
     user-select: none;
     border: 1px solid transparent;
     outline: none;
+    position: relative;
 
     &:active, &.focus, &:focus {
         .focus-show(@lightGray);
@@ -321,6 +323,7 @@
     cursor: pointer;
     outline: none;
     margin: 0 2px;
+    position: relative;
 
     [class*=mif], .icon, img {
         height: 1rem;
@@ -374,11 +377,13 @@
     background-color: darken(@light, 5%);
     overflow: hidden;
     top: 2px;
+    position: relative;
 
     .button, .info {
         border-right: none;
         height: 100%;
         line-height: 34px;
+        position: relative;
         &:active, &:focus {
             box-shadow: none!important;
         }

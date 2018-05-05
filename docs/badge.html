@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <meta name="twitter:site" content="@metroui">
+    <meta name="twitter:creator" content="@pimenov_sergey">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Metro 4 Components Library">
+    <meta name="twitter:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.">
+    <meta name="twitter:image" content="https://metroui.org.ua/images/m4-logo-social.png">
+
+    <meta property="og:url" content="https://metroui.org.ua/v4/index.html">
+    <meta property="og:title" content="Metro 4 Components Library">
+    <meta property="og:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:secure_url" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="968">
+    <meta property="og:image:height" content="504">
+
+    <meta name="author" content="Sergey Pimenov">
+    <meta name="description" content="Use badge component to create a counter marker or small label. The most popular HTML, CSS, and JS library in Metro style.">
+    <meta name="keywords" content="HTML, CSS, JS, Metro, CSS3, Javascript, HTML5, UI, Library, Web, Development, Framework">
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <link href="metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
+    <link href="highlight/styles/github.css" rel="stylesheet">
+    <link href="docsearch/docsearch.min.css" rel="stylesheet">
+    <link href="css/site.css" rel="stylesheet">
+
+    <title>Badge - Metro 4 :: Popular HTML, CSS and JS library</title>
+</head>
+<body>
+    <div class="container-fluid">
+
+        <div class="row flex-xl-nowrap">
+            <div class="cell-md-3 cell-xl-2 pr-0 border-right bd-light" id="sidenav">
+            </div>
+
+            <div class="d-none d-block-xl cell-xl-2 order-2 border-left bd-light toc-wrapper">
+                <h5>Table of contents</h5>
+                <hr/>
+                <ul class="toc-nav">
+                    <li class="toc-entry"><a href="#">Badge</a></li>
+                    <li class="toc-entry"><a href="#_badge_about">About</a></li>
+                    <li class="toc-entry"><a href="#_badge_position">Position</a></li>
+                    <li class="toc-entry"><a href="#_badge_styling">Styling</a></li>
+                    <li class="toc-entry"><a href="#_badge_examples">Examples</a></li>
+                </ul>
+
+            </div>
+
+            <main class="cell-md-9 cell-xl-8 order-1 pr-1-sx pl-1-sx pr-5-md pl-5-md">
+                <div class="place-right d-none d-block-lg" style="width: 200px;">
+                    <img src="images/logo.png" class="w-100">
+                </div>
+
+                <h1>Badge</h1>
+                <p class="text-leader">
+                    Use badge component to create a counter marker or small label.
+                </p>
+
+                <!-- ads-html -->
+
+                <h3 id="_badge_about">About</h3>
+                <p class="text-small">Added in 4.2.5</p>
+                <p>
+                    Sometimes it is necessary somehow to note the number of certain elements on the button or another element.
+                    In Metro 4 for this purpose, there is a special component <code>badge</code>.
+                    To create <code>badge</code> you must add <code>&lt;span&gt;</code> with class <code>.badge</code> to the element.
+                </p>
+                <div class="example">
+                    <button class="button">
+                        <span class="ml-1">My Cart</span>
+                        <span class="badge">4</span>
+                    </button>
+                </div>
+                <pre><code>
+                    &lt;button class="button"&gt;
+                        &lt;span class="ml-1"&gt;My Cart&lt;/span&gt;
+                        &lt;span class="badge"&gt;4&lt;/span&gt;
+                    &lt;/button&gt;
+                </code></pre>
+                <p>
+                    Badges scale to match the size of the immediate parent element by using relative font sizing and em units.
+                </p>
+                <div class="example">
+                    <button class="button small m-4">
+                        <span class="ml-1">My Cart</span>
+                        <span class="badge">4</span>
+                    </button>
+                    <button class="button m-4">
+                        <span class="ml-1">My Cart</span>
+                        <span class="badge">4</span>
+                    </button>
+                    <button class="button large m-4">
+                        <span class="ml-1">My Cart</span>
+                        <span class="badge">4</span>
+                    </button>
+                </div>
+
+                <p>
+                    Badges can be used as part of links, buttons or others element to provide a counter or a small label.
+                </p>
+                <div class="example">
+                    <button class="button">
+                        <span class="ml-1">My Cart</span>
+                        <span class="badge">4</span>
+                    </button>
+                    <a href="#" class="pr-2">
+                        <span class="ml-1">My Cart</span>
+                        <span class="badge">4</span>
+                    </a>
+                    <h5 class="d-inline pos-relative ml-4 pr-4">
+                        My cart
+                        <span class="badge">4</span>
+                    </h5>
+                </div>
+                <pre><code>
+                    &lt;button class="button"&gt;
+                        &lt;span class="ml-1"&gt;My Cart&lt;/span&gt;
+                        &lt;span class="badge"&gt;4&lt;/span&gt;
+                    &lt;/button&gt;
+                    &lt;a href="#" class="pr-2"&gt;
+                        &lt;span class="ml-1"&gt;My Cart&lt;/span&gt;
+                        &lt;span class="badge"&gt;4&lt;/span&gt;
+                    &lt;/a&gt;
+                    &lt;h5 class="d-inline pos-relative ml-4 pr-4"&gt;
+                        My cart
+                        &lt;span class="badge"&gt;4&lt;/span&gt;
+                    &lt;/h5&gt;
+                </code></pre>
+                <p class="remark warning">
+                    Important! Parent element must have must have a <code>position</code> property other than <code>static</code>.
+                </p>
+
+                <h3 id="_badge_position">Badge position</h3>
+                <p>
+                    Badge can have three positions inside the parent element: <code>default</code>, <code>inside</code>, <code>inline</code>.
+                    Inside and inline positions are specified by the corresponding classes <code>.inside</code>, <code>.inline</code>.
+                </p>
+
+                <div class="example">
+                    <div class="row">
+                        <div class="cell-md-4">
+                            <h5 class="text-light">default</h5>
+                            <button class="button m-1">
+                                <span class="mif-cart"></span>
+                                <span class="ml-1">My Cart</span>
+                                <span class="badge bg-green fg-white">4</span>
+                            </button>
+                        </div>
+                        <div class="cell-md-4">
+                            <h5 class="text-light">inside</h5>
+                            <button class="button m-1">
+                                <span class="mif-cart"></span>
+                                <span class="ml-1 mr-2">My Cart</span>
+                                <span class="badge inside bg-pink fg-white">4</span>
+                            </button>
+                        </div>
+                        <div class="cell-md-4">
+                            <h5 class="text-light">inline</h5>
+                            <button class="button m-1">
+                                <span class="ml-1">My Cart</span>
+                                <span class="badge inline bg-red fg-white">4</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <pre><code>
+                    &lt;button class="button m-1"&gt;
+                        &lt;span class="mif-cart"&gt;&lt;/span&gt;
+                        &lt;span class="ml-1"&gt;My Cart&lt;/span&gt;
+                        &lt;span class="badge bg-green fg-white"&gt;4&lt;/span&gt;
+                    &lt;/button&gt;
+
+                    &lt;button class="button m-1"&gt;
+                        &lt;span class="mif-cart"&gt;&lt;/span&gt;
+                        &lt;span class="ml-1 mr-2"&gt;My Cart&lt;/span&gt;
+                        &lt;span class="badge inside bg-pink fg-white"&gt;4&lt;/span&gt;
+                    &lt;/button&gt;
+
+                    &lt;button class="button m-1"&gt;
+                        &lt;span class="ml-1"&gt;My Cart&lt;/span&gt;
+                        &lt;span class="badge inline bg-red fg-white"&gt;4&lt;/span&gt;
+                    &lt;/button&gt;
+                </code></pre>
+
+                <p class="remark info">
+                    For the next element default position is a <strong>inside</strong>:
+                    <code>.brand</code>,
+                    <code>.app-bar-item</code>,
+                    <code>.app-bar-menu > li > a</code>,
+                    <code>.h-menu > li > a</code>,
+                    <code>.d-menu > li > a</code>,
+                    <code>.v-menu > li > a</code>,
+                    <code>.t-menu > li > a</code>.
+                </p>
+
+                <h3 id="_badge_styling">Badge styling</h3>
+                <p>
+                    You can change default color style of <code>badge</code> with Metro 4 color classes.
+                </p>
+                <div class="example">
+                    <button class="button m-1">
+                        <span class="mif-cart"></span>
+                        <span class="ml-1">My Cart</span>
+                        <span class="badge bg-red fg-white">4</span>
+                    </button>
+                    <button class="button m-1">
+                        <span class="mif-cart"></span>
+                        <span class="ml-1">My Cart</span>
+                        <span class="badge bg-green fg-white">4</span>
+                    </button>
+                    <button class="button m-1">
+                        <span class="mif-cart"></span>
+                        <span class="ml-1">My Cart</span>
+                        <span class="badge bg-blue fg-white">4</span>
+                    </button>
+                </div>
+                <pre><code>
+                    &lt;button class="button m-1"&gt;
+                        &lt;span class="mif-cart"&gt;&lt;/span&gt;
+                        &lt;span class="ml-1"&gt;My Cart&lt;/span&gt;
+                        &lt;span class="badge bg-red fg-white"&gt;4&lt;/span&gt;
+                    &lt;/button&gt;
+                    &lt;button class="button m-1"&gt;
+                        &lt;span class="mif-cart"&gt;&lt;/span&gt;
+                        &lt;span class="ml-1"&gt;My Cart&lt;/span&gt;
+                        &lt;span class="badge bg-green fg-white"&gt;4&lt;/span&gt;
+                    &lt;/button&gt;
+                    &lt;button class="button m-1"&gt;
+                        &lt;span class="mif-cart"&gt;&lt;/span&gt;
+                        &lt;span class="ml-1"&gt;My Cart&lt;/span&gt;
+                        &lt;span class="badge bg-blue fg-white"&gt;4&lt;/span&gt;
+                    &lt;/button&gt;
+                </code></pre>
+
+                <h3 id="_badge_examples">Badge examples</h3>
+                <p>
+                    Below you can see examples of using badge in different Metro 4 components.
+                </p>
+                <div class="example">
+                    <h5 class="">app-bar</h5>
+                    <div class="app-bar pos-relative app-bar-expand-md z-dropdown" data-role="appbar">
+                        <a href="#" class="brand no-hover">
+                            <span style="width: 40px; height: 40px; line-height: 40px" class="text-center border bd-darkGray border-radius">m<sup>4</sup></span>
+                        </a>
+
+                        <ul class="app-bar-menu">
+                            <li><a href="#">Home</a></li>
+                            <li>
+                                <a href="#" class="dropdown-toggle">Products</a>
+                                <ul class="d-menu" data-role="dropdown">
+                                    <li><a href="#">Windows 10</a></li>
+                                    <li><a href="#">Office 365</a></li>
+                                    <li class="divider bg-lightGray"></li>
+                                    <li><a href="#">Skype</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Contacts</a></li>
+                            <li>
+                                <a href="#">Cart <span class="badge bg-red fg-white">4</span></a>
+                            </li>
+                        </ul>
+                        <a href="#" class="app-bar-item ml-auto">
+                            <span class="mif-cart"></span>
+                            <span class="badge bg-red fg-white">4</span>
+                        </a>
+                    </div>
+
+                    <h5 class="mt-4">h-menu</h5>
+                    <ul class="h-menu mt-4">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Products</a></li>
+                        <li><a href="#">Support</a></li>
+                        <li><a href="#">Cart <span class="badge">4</span></a></li>
+                    </ul>
+
+                    <h5 class="mt-4">t-menu</h5>
+                    <div class="clear mt-4">
+                        <ul class="t-menu horizontal compact open">
+                            <li><a href="#"><span class="icon mif-home"></span></a></li>
+                            <li><a href="#" class="dropdown-toggle"><span class="icon mif-compass"></span></a>
+                                <ul class="t-menu compact" data-role="dropdown">
+                                    <li><a href="#"><span class="icon mif-home"></span></a></li>
+                                    <li><a href="#" class="dropdown-toggle"><span class="icon mif-compass"></span></a>
+                                        <ul class="t-menu compact horizontal" data-role="dropdown">
+                                            <li><a href="#"><span class="icon mif-home"></span></a></li>
+                                            <li><a href="#"><span class="icon mif-compass"></span></a></li>
+                                            <li><a href="#"><span class="icon mif-bubbles"></span></a></li>
+                                            <li><a href="#"><span class="icon mif-file-empty"></span></a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#"><span class="icon mif-bubbles"></span></a></li>
+                                    <li><a href="#"><span class="icon mif-bubbles"></span></a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#"><span class="icon mif-bubbles"></span></a></li>
+                            <li><a href="#"><span class="icon mif-cart"></span><span class="badge bg-transparent">4</span> </a></li>
+                        </ul>
+                    </div>
+
+                    <h5 class="mt-4">d-menu</h5>
+                    <div class="clear">
+                    <ul class="d-menu open pos-static">
+                        <li><a href="#"><span class="mif-user icon"></span> Profile</a></li>
+                        <li><a href="#">Calendar</a></li>
+                        <li><a href="#">Photo <span class="badge inline bg-cyan fg-white">10</span> </a></li>
+                        <li class="divider"></li>
+                        <li><a href="#"><span class="mif-target icon"></span> Location</a></li>
+                    </ul>
+                    </div>
+
+                    <h5 class="mt-4">buttons</h5>
+                    <div class="mt-4">
+                        <button class="button m-1">
+                            <span class="mif-cart"></span>
+                            <span class="ml-1">My Cart</span>
+                            <span class="badge bg-red fg-white">4</span>
+                        </button>
+                        <button class="button square m-1">
+                            <span class="mif-cart"></span>
+                            <span class="badge bg-red fg-white">4</span>
+                        </button>
+                        <button class="image-button m-1">
+                            <span class="mif-share icon"></span>
+                            <span class="caption">Share it</span>
+                            <span class="badge bg-red fg-white">4</span>
+                        </button>
+                    </div>
+                </div>
+                <pre><code>
+                    &lt;div class="app-bar pos-relative app-bar-expand-md z-dropdown" data-role="appbar"&gt;
+                        &lt;a href="#" class="brand no-hover"&gt;
+                            Home
+                        &lt;/a&gt;
+
+                        &lt;ul class="app-bar-menu"&gt;
+                            &lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+                            &lt;li&gt;
+                                &lt;a href="#" class="dropdown-toggle"&gt;Products&lt;/a&gt;
+                                &lt;ul class="d-menu" data-role="dropdown"&gt;
+                                    &lt;li&gt;&lt;a href="#"&gt;Windows 10&lt;/a&gt;&lt;/li&gt;
+                                    &lt;li&gt;&lt;a href="#"&gt;Office 365&lt;/a&gt;&lt;/li&gt;
+                                    &lt;li class="divider bg-lightGray"&gt;&lt;/li&gt;
+                                    &lt;li&gt;&lt;a href="#"&gt;Skype&lt;/a&gt;&lt;/li&gt;
+                                &lt;/ul&gt;
+                            &lt;/li&gt;
+                            &lt;li&gt;&lt;a href="#"&gt;Blog&lt;/a&gt;&lt;/li&gt;
+                            &lt;li&gt;&lt;a href="#"&gt;Contacts&lt;/a&gt;&lt;/li&gt;
+                            &lt;li&gt;
+                                &lt;a href="#"&gt;Cart &lt;span class="badge bg-red fg-white"&gt;4&lt;/span&gt;&lt;/a&gt;
+                            &lt;/li&gt;
+                        &lt;/ul&gt;
+                        &lt;a href="#" class="app-bar-item ml-auto"&gt;
+                            &lt;span class="mif-cart"&gt;&lt;/span&gt;
+                            &lt;span class="badge bg-red fg-white"&gt;4&lt;/span&gt;
+                        &lt;/a&gt;
+                    &lt;/div&gt;
+                </code></pre>
+
+                <pre><code>
+                    &lt;ul class="h-menu mt-4"&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Products&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Support&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Cart &lt;span class="badge"&gt;4&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                </code></pre>
+
+                <pre><code>
+                    &lt;ul class="t-menu horizontal compact"&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;&lt;span class="icon mif-home"&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#" class="dropdown-toggle"&gt;&lt;span class="icon mif-compass"&gt;&lt;/span&gt;&lt;/a&gt;
+                            &lt;ul class="t-menu compact" data-role="dropdown"&gt;
+                                &lt;li&gt;&lt;a href="#"&gt;&lt;span class="icon mif-home"&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                                &lt;li&gt;&lt;a href="#" class="dropdown-toggle"&gt;&lt;span class="icon mif-compass"&gt;&lt;/span&gt;&lt;/a&gt;
+                                    &lt;ul class="t-menu compact horizontal" data-role="dropdown"&gt;
+                                        &lt;li&gt;&lt;a href="#"&gt;&lt;span class="icon mif-home"&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                                        &lt;li&gt;&lt;a href="#"&gt;&lt;span class="icon mif-compass"&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                                        &lt;li&gt;&lt;a href="#"&gt;&lt;span class="icon mif-bubbles"&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                                        &lt;li&gt;&lt;a href="#"&gt;&lt;span class="icon mif-file-empty"&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                                    &lt;/ul&gt;
+                                &lt;/li&gt;
+                                &lt;li&gt;&lt;a href="#"&gt;&lt;span class="icon mif-bubbles"&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                                &lt;li&gt;&lt;a href="#"&gt;&lt;span class="icon mif-bubbles"&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                            &lt;/ul&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;&lt;span class="icon mif-bubbles"&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;&lt;span class="icon mif-cart"&gt;&lt;/span&gt;&lt;span class="badge bg-transparent"&gt;4&lt;/span&gt; &lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                </code></pre>
+
+                <pre><code>
+                    &lt;ul class="d-menu"&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;&lt;span class="mif-user icon"&gt;&lt;/span&gt; Profile&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Calendar&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Photo &lt;span class="badge inline bg-cyan fg-white"&gt;10&lt;/span&gt; &lt;/a&gt;&lt;/li&gt;
+                        &lt;li class="divider"&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;&lt;span class="mif-target icon"&gt;&lt;/span&gt; Location&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                </code></pre>
+
+                <pre><code>
+                    &lt;button class="button m-1"&gt;
+                        &lt;span class="mif-cart"&gt;&lt;/span&gt;
+                        &lt;span class="ml-1"&gt;My Cart&lt;/span&gt;
+                        &lt;span class="badge bg-red fg-white"&gt;4&lt;/span&gt;
+                    &lt;/button&gt;
+                    &lt;button class="button square m-1"&gt;
+                        &lt;span class="mif-cart"&gt;&lt;/span&gt;
+                        &lt;span class="badge bg-red fg-white"&gt;4&lt;/span&gt;
+                    &lt;/button&gt;
+                    &lt;button class="image-button m-1"&gt;
+                        &lt;span class="mif-share icon"&gt;&lt;/span&gt;
+                        &lt;span class="caption"&gt;Share it&lt;/span&gt;
+                        &lt;span class="badge bg-red fg-white"&gt;4&lt;/span&gt;
+                    &lt;/button&gt;
+                </code></pre>
+            </main>
+        </div>
+
+    </div>
+
+    <script src="docsearch/docsearch.min.js"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="metro/js/metro.js?ver=@@b-version"></script>
+    <script src="highlight/highlight.pack.js"></script>
+    <script src="js/clipboard.min.js"></script>
+    <script src="js/site.js"></script>
+    <!-- ads-script -->
+    <!-- ga-script -->
+    <!-- hit-ua -->
+</body>
+</html>

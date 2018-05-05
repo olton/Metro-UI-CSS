@@ -1,3 +1,8 @@
+/*
+ * Metro 4 Components Library v4.2.4 build @@build (https://metroui.org.ua)
+ * Copyright 2018 Sergey Pimenov
+ * Licensed under MIT
+ */
 @font-face {
   font-family: 'metro';
   src: url('../mif/metro.ttf?niykz5') format('truetype'), url('../mif/metro.woff?niykz5') format('woff'), url('../mif/metro.svg?niykz5#metro') format('svg');

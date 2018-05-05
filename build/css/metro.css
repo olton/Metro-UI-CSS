@@ -1,3 +1,8 @@
+/*
+ * Metro 4 Components Library v4.2.4 build @@build (https://metroui.org.ua)
+ * Copyright 2018 Sergey Pimenov
+ * Licensed under MIT
+ */
 html,
 body,
 div,
@@ -15964,6 +15969,7 @@ pre code {
   white-space: inherit;
 }
 a {
+  position: relative;
   color: #007bff;
   text-decoration: none;
   background-color: transparent;
@@ -16749,9 +16755,6 @@ aside::after {
   max-width: none;
   padding-right: 12px;
   padding-left: 12px;
-}
-.hero {
-  padding: 5rem 1rem;
 }
 @media (min-width: 576px) {
   .container {
@@ -18466,6 +18469,7 @@ aside::after {
   color: #1d1d1d;
   cursor: pointer;
   outline: none;
+  position: relative;
 }
 .flat-button {
   min-width: 64px;
@@ -18579,6 +18583,7 @@ aside::after {
           user-select: none;
   border: 1px solid transparent;
   outline: none;
+  position: relative;
 }
 .command-button:active,
 .image-button:active,
@@ -18783,6 +18788,7 @@ aside::after {
   cursor: pointer;
   outline: none;
   margin: 0 2px;
+  position: relative;
 }
 .tool-button [class*=mif],
 .tool-button .icon,
@@ -18833,12 +18839,14 @@ aside::after {
   background-color: #ebebeb;
   overflow: hidden;
   top: 2px;
+  position: relative;
 }
 .info-button .button,
 .info-button .info {
   border-right: none;
   height: 100%;
   line-height: 34px;
+  position: relative;
 }
 .info-button .button:active,
 .info-button .info:active,
@@ -37117,6 +37125,10 @@ video:-webkit-full-screen {
   padding: 0 16px;
   text-decoration: none;
   font-size: 14px;
+  position: relative;
+}
+.app-bar .app-bar-menu > li {
+  position: relative;
 }
 .app-bar .brand:not(.no-hover):hover,
 .app-bar .app-bar-menu li:hover,
@@ -37600,6 +37612,55 @@ video:-webkit-full-screen {
 .info-panel-footer {
   padding: 40px;
 }
+.badge {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  background-color: #f8f8f8;
+  color: #1d1d1d;
+  border-radius: 0.25rem;
+  display: inline-block;
+  padding: .25em .4em;
+  font-size: 75%;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  -webkit-transform: translateY(-50%) translateX(50%);
+          transform: translateY(-50%) translateX(50%);
+}
+.brand .badge,
+.app-bar-item .badge,
+.app-bar-menu > li > a .badge,
+.h-menu > li > a .badge,
+.d-menu > li > a .badge,
+.v-menu > li > a .badge,
+.t-menu > li > a .badge {
+  -webkit-transform: translateY(0) translateX(0);
+          transform: translateY(0) translateX(0);
+}
+.badge.inline {
+  position: relative;
+  display: inline-block;
+  right: auto;
+  top: -1px;
+  -webkit-transform: translateY(0) translateX(0);
+          transform: translateY(0) translateX(0);
+}
+.badge.inside {
+  -webkit-transform: translateY(0) translateX(0);
+          transform: translateY(0) translateX(0);
+}
+.hero {
+  padding: 40px;
+}
+@media all and (min-width: 768px) {
+  .hero {
+    padding: 160px 80px;
+  }
+}
 .ripple {
   display: block;
   width: 0;
@@ -37724,6 +37785,121 @@ video:-webkit-full-screen {
 }
 .default-icon-menu {
   background-image: url("data:image/svg+xml;charset=UTF-8,%3C!--%20Generated%20by%20IcoMoon.io%20--%3E%0A%3Csvg%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2232%22%20height%3D%2232%22%20viewBox%3D%220%200%2032%2032%22%3E%0A%3Ctitle%3Emenu%3C%2Ftitle%3E%0A%3Cpath%20d%3D%22M2%206h28v6h-28zM2%2014h28v6h-28zM2%2022h28v6h-28z%22%3E%3C%2Fpath%3E%0A%3C%2Fsvg%3E%0A");
+}
+.c-auto {
+  cursor: auto;
+}
+.c-default {
+  cursor: default;
+}
+.c-none {
+  cursor: none;
+}
+.c-context-menu {
+  cursor: context-menu;
+}
+.c-help {
+  cursor: help;
+}
+.c-pointer {
+  cursor: pointer;
+}
+.c-progress {
+  cursor: progress;
+}
+.c-wait {
+  cursor: wait;
+}
+.c-cell {
+  cursor: cell;
+}
+.c-crosshair {
+  cursor: crosshair;
+}
+.c-text {
+  cursor: text;
+}
+.c-text-vertical {
+  cursor: vertical-text;
+}
+.c-alias {
+  cursor: alias;
+}
+.c-copy {
+  cursor: copy;
+}
+.c-move {
+  cursor: move;
+}
+.c-no-drop {
+  cursor: no-drop;
+}
+.c-not-allowed {
+  cursor: not-allowed;
+}
+.c-all-scroll {
+  cursor: all-scroll;
+}
+.c-col-resize {
+  cursor: col-resize;
+}
+.c-row-resize {
+  cursor: row-resize;
+}
+.c-n-resize {
+  cursor: n-resize;
+}
+.c-e-resize {
+  cursor: e-resize;
+}
+.c-s-resize {
+  cursor: s-resize;
+}
+.c-w-resize {
+  cursor: w-resize;
+}
+.c-ne-resize {
+  cursor: ne-resize;
+}
+.c-nw-resize {
+  cursor: nw-resize;
+}
+.c-se-resize {
+  cursor: se-resize;
+}
+.c-sw-resize {
+  cursor: sw-resize;
+}
+.c-ew-resize {
+  cursor: ew-resize;
+}
+.c-ns-resize {
+  cursor: ns-resize;
+}
+.c-nesw-resize {
+  cursor: nesw-resize;
+}
+.c-nwse-resize {
+  cursor: nwse-resize;
+}
+.c-zoom-in {
+  cursor: -webkit-zoom-in;
+  cursor: zoom-in;
+}
+.c-zoom-out {
+  cursor: -webkit-zoom-out;
+  cursor: zoom-out;
+}
+.c-grab {
+  cursor: -webkit-grab;
+  cursor: grab;
+}
+.c-grabbing {
+  cursor: -webkit-grabbing;
+  cursor: grabbing;
+}
+.c-none {
+  cursor: none;
 }
 @media print {
   .d-none-print {
