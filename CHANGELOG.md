@@ -1,3 +1,9 @@
+### 4.2.5
++ [x] CSS Utilities: add `cursor` classes in format `.c-{cursor-name}`. Example: `.c-alias`
++ [x] Badge: add class `.badge` to display any pages inside the element
++ [x] Docs: add doc file `badge.html` for `badge` component
++ [x] Docs: add doc file `cursors.html` for `cursors` classes
+
 ### 4.2.4
 + [x] Counter: add new component
 + [x] Docs: add docs for `counter` component

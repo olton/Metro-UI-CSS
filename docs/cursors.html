@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <meta name="twitter:site" content="@metroui">
+    <meta name="twitter:creator" content="@pimenov_sergey">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Metro 4 Components Library">
+    <meta name="twitter:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.">
+    <meta name="twitter:image" content="https://metroui.org.ua/images/m4-logo-social.png">
+
+    <meta property="og:url" content="https://metroui.org.ua/v4/index.html">
+    <meta property="og:title" content="Metro 4 Components Library">
+    <meta property="og:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:secure_url" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="968">
+    <meta property="og:image:height" content="504">
+
+    <meta name="author" content="Sergey Pimenov">
+    <meta name="description" content="Use special classes to set a specified cursor for the element. The most popular HTML, CSS, and JS library in Metro style.">
+    <meta name="keywords" content="HTML, CSS, JS, Metro, CSS3, Javascript, HTML5, UI, Library, Web, Development, Framework">
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <link href="metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
+    <link href="highlight/styles/github.css" rel="stylesheet">
+    <link href="docsearch/docsearch.min.css" rel="stylesheet">
+    <link href="css/site.css" rel="stylesheet">
+
+    <title>Cursors - Metro 4 :: Popular HTML, CSS and JS library</title>
+</head>
+<body>
+    <div class="container-fluid">
+
+        <div class="row flex-xl-nowrap">
+            <div class="cell-md-3 cell-xl-2 pr-0 border-right bd-light" id="sidenav">
+            </div>
+
+            <div class="d-none d-block-xl cell-xl-2 order-2 border-left bd-light toc-wrapper">
+                <h5>Table of contents</h5>
+                <hr/>
+                <ul class="toc-nav">
+                    <li class="toc-entry"><a href="#">Cursors</a></li>
+                </ul>
+
+            </div>
+
+            <main class="cell-md-9 cell-xl-8 order-1 pr-1-sx pl-1-sx pr-5-md pl-5-md">
+                <div class="place-right d-none d-block-lg" style="width: 200px;">
+                    <img src="images/logo.png" class="w-100">
+                </div>
+
+                <h1>Cursors</h1>
+                <p class="text-leader">
+                    Use special classes to set a specified cursor for the element.
+                </p>
+
+                <!-- ads-html -->
+
+                <h3>About</h3>
+                <p class="text-small">Added in 4.2.5</p>
+                <p>
+                    Metro 4 contains special classes to set a specified cursor for the element.
+                    These classes have format <code>.c-{cursor-name}</code>
+                </p>
+                <p class="remark warning">
+                    These classes do not contain <code>!important</code> marker.
+                </p>
+
+                <table class="table cell-border table-border options-table mt-2">
+                    <tbody>
+                    <tr>
+                        <th>Category</th>
+                        <th style="width: 7.5em;">Class</th>
+                        <th>Image</th>
+                        <th>Desc</th>
+                    </tr>
+                    <tr class="c-auto">
+                        <td rowspan="3">General</td>
+                        <td><code>.c-auto</code></td>
+                        <td>&nbsp;</td>
+                        <td>The browser determines the cursor to display based on the current context.<br>
+                            E.g. equivalent to <code>text</code> when hovering text.</td>
+                    </tr>
+                    <tr class="c-default">
+                        <td><code>.c-default</code></td>
+                        <td><img src="images/cursors/default.gif" alt="default.gif" style="height: 26px; width: 26px;"></td>
+                        <td>Default cursor, typically an arrow.</td>
+                    </tr>
+                    <tr class="c-none">
+                        <td><code>.c-none</code></td>
+                        <td>&nbsp;</td>
+                        <td>No cursor is rendered.</td>
+                    </tr>
+                    <tr class="c-context-menu">
+                        <td style="cursor: auto;" rowspan="5">Links and task statuses</td>
+                        <td><code>.c-context-menu</code></td>
+                        <td><img src="images/cursors/context-menu.png" alt="context-menu.png" style="height: 26px; width: 26px;"></td>
+                        <td>A context menu is available under the cursor.<br>
+                            Only IE 10 and up have implemented this on Windows: <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=258960" title="'context-menu' cursor glyph missing for Windows" class="external external-icon" rel="noopener">баг&nbsp;258960</a>.</td>
+                    </tr>
+                    <tr class="c-help">
+                        <td><code>.c-help</code></td>
+                        <td><img src="images/cursors/help.gif" alt="help.gif" style="height: 26px; width: 26px;"></td>
+                        <td>Indicating help is available.</td>
+                    </tr>
+                    <tr class="c-pointer">
+                        <td><code>.c-pointer</code></td>
+                        <td><img src="images/cursors/pointer.gif" alt="pointer.gif" style="height: 26px; width: 26px;"></td>
+                        <td>E.g. used when hovering over links, typically a hand.</td>
+                    </tr>
+                    <tr class="c-progress">
+                        <td><code>.c-progress</code></td>
+                        <td><img src="images/cursors/progress.gif" alt="progress.gif" style="height: 26px; width: 26px;"></td>
+                        <td>The program is busy in the background but the user can still interact with the interface (unlike for <code>wait</code>).</td>
+                    </tr>
+                    <tr class="c-wait">
+                        <td><code>.c-wait</code></td>
+                        <td><img src="images/cursors/wait.gif" alt="wait.gif" style="height: 26px; width: 26px;"></td>
+                        <td>The program is busy (sometimes an hourglass or a watch).</td>
+                    </tr>
+                    <tr class="c-cell">
+                        <td style="cursor: auto;" rowspan="4">Selection</td>
+                        <td><code>.c-cell</code></td>
+                        <td><img src="images/cursors/cell.gif" alt="cell.gif" style="height: 26px; width: 26px;"></td>
+                        <td>Indicating that cells can be selected.</td>
+                    </tr>
+                    <tr class="c-crosshair">
+                        <td><code>.c-crosshair</code></td>
+                        <td><img src="images/cursors/crosshair.gif" alt="crosshair.gif" style="height: 26px; width: 26px;"></td>
+                        <td>Cross cursor, often used to indicate selection in a bitmap.</td>
+                    </tr>
+                    <tr class="c-text">
+                        <td><code>.c-text</code></td>
+                        <td><img src="images/cursors/text.gif" alt="text.gif" style="height: 26px; width: 26px;" class="default"></td>
+                        <td>Indicating text can be selected, typically an I-beam.</td>
+                    </tr>
+                    <tr class="c-text-vertical">
+                        <td><code>.c-text-vertical</code></td>
+                        <td><img src="images/cursors/vertical-text.gif" alt="vertical-text.gif" style="height: 26px; width: 26px;"></td>
+                        <td>Indicating that vertical text can be selected, typically a sideways I-beam.</td>
+                    </tr>
+                    <tr class="c-alias">
+                        <td style="cursor: auto;" rowspan="5">Drag &amp; Drop</td>
+                        <td><code>.c-alias</code></td>
+                        <td><img src="images/cursors/alias.gif" alt="alias.gif" style="height: 26px; width: 26px;"></td>
+                        <td>Indicating an alias or shortcut is to be created.</td>
+                    </tr>
+                    <tr class="c-copy">
+                        <td><code>.c-copy</code></td>
+                        <td><img src="images/cursors/copy.gif" alt="copy.gif" style="height: 26px; width: 26px;" class="default"></td>
+                        <td>Indicating that something can be copied.</td>
+                    </tr>
+                    <tr class="c-move">
+                        <td><code>.c-move</code></td>
+                        <td><img src="images/cursors/move.gif" alt="move.gif" style="height: 26px; width: 26px;"></td>
+                        <td>The hovered object may be moved.</td>
+                    </tr>
+                    <tr class="c-no-drop">
+                        <td><code>.c-no-drop</code></td>
+                        <td><img src="images/cursors/no-drop.gif" alt="no-drop.gif" style="float: left; height: 26px; width: 33px;" class="lwrap"></td>
+                        <td>Cursor showing that a drop is not allowed at the current location.<br>
+                            <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=275173" title="CSS3 cursor 'no-drop' is the same as 'not-allowed'" class="external external-icon" rel="noopener">баг&nbsp;275173</a> on Windows&nbsp;and Mac OS X, "no-drop is the same as not-allowed".</td>
+                    </tr>
+                    <tr class="c-not-allowed">
+                        <td><code>.c-not-allowed</code></td>
+                        <td><img src="images/cursors/not-allowed.gif" alt="not-allowed.gif" style="height: 26px; width: 26px;"></td>
+                        <td>Cursor showing that something cannot be done.</td>
+                    </tr>
+                    <tr class="c-all-scroll">
+                        <td style="cursor: auto;" rowspan="15">Resizing &amp; scrolling</td>
+                        <td><code>.c-all-scroll</code></td>
+                        <td><img src="images/cursors/all-scroll.gif" alt="all-scroll.gif" style="height: 26px; width: 26px;"></td>
+                        <td>Cursor showing that something can be scrolled in any direction (panned).<br>
+                            <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=275174" title="Cursor glyph for CSS3 'all-scroll' is the same as for 'move'" class="external external-icon" rel="noopener">баг&nbsp;275174</a> on Windows, "<em>all-scroll</em> is the same as <em>move</em>".</td>
+                    </tr>
+                    <tr class="c-col-resize">
+                        <td><code>.c-col-resize</code></td>
+                        <td><img src="images/cursors/col-resize.gif" alt="col-resize.gif" style="height: 26px; width: 26px;"></td>
+                        <td>The item/column can be resized horizontally. Often rendered as arrows pointing left and right with a vertical bar separating.</td>
+                    </tr>
+                    <tr class="c-row-resize">
+                        <td><code>.c-row-resize</code></td>
+                        <td><img src="images/cursors/row-resize.gif" alt="row-resize.gif" style="height: 26px; width: 26px;"></td>
+                        <td>The item/row can be resized vertically. Often rendered as arrows pointing up and down with a horizontal bar separating them.</td>
+                    </tr>
+                    <tr class="c-n-resize">
+                        <td><code>.c-n-resize</code></td>
+                        <td><img src="images/cursors/n-resize.gif" alt="Example of a resize towards the top cursor" style="border-style: solid; border-width: 0px; height: 26px; width: 26px;"></td>
+                        <td style="cursor: auto;" rowspan="8">Some edge is to be moved. For example, the <code>se-resize</code> cursor is used when the movement starts from the <em>south-east</em> corner of the box.</td>
+                    </tr>
+                    <tr class="c-e-resize">
+                        <td><code>.c-e-resize</code></td>
+                        <td><img src="images/cursors/e-resize.gif" alt="Example of a resize towards the right cursor" style="height: 26px; width: 26px;"></td>
+                    </tr>
+                    <tr class="c-s-resize">
+                        <td><code>.c-s-resize</code></td>
+                        <td><img src="images/cursors/s-resize.gif" alt="Example of a resize towards the bottom cursor " style="height: 26px; width: 26px;"></td>
+                    </tr>
+                    <tr class="c-w-resize">
+                        <td><code>.c-w-resize</code></td>
+                        <td><img src="images/cursors/w-resize.gif" alt="Example of a resize towards the left cursor" style="height: 26px; width: 26px;"></td>
+                    </tr>
+                    <tr class="c-ne-resize">
+                        <td><code>.c-ne-resize</code></td>
+                        <td><img src="images/cursors/ne-resize.gif" alt="Example of a resize towards the top-right corner cursor" style="height: 26px; width: 26px;"></td>
+                    </tr>
+                    <tr class="c-nw-resize">
+                        <td><code>.c-nw-resize</code></td>
+                        <td><img src="images/cursors/nw-resize.gif" alt="Example of a resize towards the top-left corner cursor" style="height: 26px; width: 26px;"></td>
+                    </tr>
+                    <tr class="c-se-resize">
+                        <td><code>.c-se-resize</code></td>
+                        <td><img src="images/cursors/se-resize.gif" alt="Example of a resize towards the bottom-right corner cursor" style="height: 26px; width: 26px;"></td>
+                    </tr>
+                    <tr class="c-sw-resize">
+                        <td><code>.c-sw-resize</code></td>
+                        <td><img src="images/cursors/sw-resize.gif" alt="Example of a resize towards the bottom-left corner cursor" style="height: 26px; width: 26px;"></td>
+                    </tr>
+                    <tr class="c-ew-resize">
+                        <td><code>.c-ew-resize</code></td>
+                        <td><img src="images/cursors/3-resize.gif" alt="3-resize.gif" style="height: 26px; width: 26px;" class="default"></td>
+                        <td style="cursor: auto;" rowspan="4">Indicates a bidirectional resize cursor.</td>
+                    </tr>
+                    <tr class="c-ns-resize">
+                        <td><code>.c-ns-resize</code></td>
+                        <td><img src="images/cursors/6-resize.gif" alt="6-resize.gif" style="height: 26px; width: 26px;" class="default"></td>
+                    </tr>
+                    <tr class="c-nesw-resize">
+                        <td><code>.c-nesw-resize</code></td>
+                        <td><img src="images/cursors/1-resize.gif" alt="1-resize.gif" class="default"></td>
+                    </tr>
+                    <tr class="c-nwse-resize">
+                        <td><code>.c-nwse-resize</code></td>
+                        <td><img src="images/cursors/4-resize.gif" alt="4-resize.gif" style="height: 26px; width: 26px;" class="default"></td>
+                    </tr>
+                    <tr class="c-zoom-in">
+                        <td rowspan="2">Zooming</td>
+                        <td><code>.c-zoom-in</code></td>
+                        <td><img src="images/cursors/zoom-in.gif" alt="zoom-in.gif" class="default"></td>
+                        <td style="cursor: auto;" rowspan="2">
+                            <p>Indicates that something can be zoomed (magnified) in or out.</p>
+                        </td>
+                    </tr>
+                    <tr class="c-zoom-out">
+                        <td><code>.c-zoom-out</code></td>
+                        <td><img src="images/cursors/zoom-out.gif" alt="zoom-out.gif" class="default"></td>
+                    </tr>
+                    <tr class="c-grab">
+                        <td rowspan="2">Capture</td>
+                        <td><code>.c-grab</code></td>
+                        <td><img src="images/cursors/grab.gif" alt="grab.gif" class="default"></td>
+                        <td style="cursor: auto;" rowspan="2">
+                            <p>Indicates that something can be grabbed (dragged to be moved).</p>
+                        </td>
+                    </tr>
+                    <tr class="c-grabbing">
+                        <td><code>.c-grabbing</code></td>
+                        <td><img src="images/cursors/grabbing.gif" alt="grabbing.gif" class="default"></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="example">
+                    <button class="button c-default">Default</button>
+                    <button class="button c-pointer">Pointer</button>
+                    <button class="button c-grab">Grab</button>
+                </div>
+                <pre><code class="html">
+                    &lt;button class="button c-default"&gt;Default&lt;/button&gt;
+                    &lt;button class="button c-pointer"&gt;Pointer&lt;/button&gt;
+                    &lt;button class="button c-grab"&gt;Grab&lt;/button&gt;
+                </code></pre>
+            </main>
+        </div>
+
+    </div>
+
+    <script src="docsearch/docsearch.min.js"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="metro/js/metro.js?ver=@@b-version"></script>
+    <script src="highlight/highlight.pack.js"></script>
+    <script src="js/clipboard.min.js"></script>
+    <script src="js/site.js"></script>
+    <!-- ads-script -->
+    <!-- ga-script -->
+    <!-- hit-ua -->
+</body>
+</html>

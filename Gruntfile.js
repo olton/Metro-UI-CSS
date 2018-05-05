@@ -8,7 +8,7 @@ module.exports = function(grunt) {
     require('load-grunt-tasks')(grunt);
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
-        banner: '/*!\n' +
+        banner: '/*\n' +
         ' * Metro 4 Components Library v<%= pkg.version %> build @@build<%= pkg.version_suffix %> (<%= pkg.homepage %>)\n' +
         ' * Copyright <%= grunt.template.today("yyyy") %> <%= pkg.author %>\n' +
         ' * Licensed under <%= pkg.license %>\n' +
@@ -46,6 +46,7 @@ module.exports = function(grunt) {
             },
             css: {
                 options: {
+                    stripBanners: true,
                     banner: '<%= banner %>'
                 },
                 src: [
@@ -75,7 +76,8 @@ module.exports = function(grunt) {
             options: {
                 paths: "less/",
                 strictMath: false,
-                sourceMap: false
+                sourceMap: false,
+                banner: '<%= banner %>'
             },
             src: {
                 expand: true,
