@@ -105,22 +105,65 @@ var ValidatorFuncs = {
             ;
     },
 
-    validate: function(el, result, cb_ok, cb_error){
+    reset_state: function(el){
+        var input = Utils.isJQueryObject(el) === false ? $(el) : el ;
+        var is_control = ValidatorFuncs.is_control(input);
+
+        if (is_control) {
+            input.parent().removeClass("invalid valid");
+        } else {
+            input.removeClass("invalid valid");
+        }
+    },
+
+    set_valid_state: function(input){
+        if (Utils.isJQueryObject(input) === false) {
+            input = $(input);
+        }
+        var is_control = ValidatorFuncs.is_control(input);
+
+        if (is_control) {
+            input.parent().addClass("valid");
+        } else {
+            input.addClass("valid");
+        }
+    },
+
+    set_invalid_state: function(input){
+        if (Utils.isJQueryObject(input) === false) {
+            input = $(input);
+        }
+        var is_control = ValidatorFuncs.is_control(input);
+
+        if (is_control) {
+            input.parent().addClass("invalid");
+        } else {
+            input.addClass("invalid");
+        }
+    },
+
+    reset: function(form){
+        var that = this;
+        $.each($(form).find("[data-validate]"), function(){
+            that.reset_state(this);
+        });
+
+        return this;
+    },
+
+    validate: function(el, result, cb_ok, cb_error, required_mode){
         var this_result = true;
         var input = $(el);
-        var control = ValidatorFuncs.is_control(input);
+        var is_control = ValidatorFuncs.is_control(input);
         var funcs = input.data('validate') !== undefined ? String(input.data('validate')).split(" ").map(function(s){return s.trim();}) : [];
         var errors = [];
+        var required = funcs.indexOf('required') !== -1;
 
         if (funcs.length === 0) {
             return true;
         }
 
-        if (control) {
-            input.parent().removeClass("invalid valid");
-        } else {
-            input.removeClass("invalid valid");
-        }
+        this.reset_state(input);
 
         if (input.attr('type') && input.attr('type').toLowerCase() === "checkbox") {
             if (funcs.indexOf('required') === -1) {
@@ -163,7 +206,16 @@ var ValidatorFuncs = {
                 if (Utils.isFunc(ValidatorFuncs[f]) === false)  {
                     this_result = true;
                 } else {
-                    this_result = ValidatorFuncs[f](input.val(), a);
+                    if (required_mode === true || f === "required") {
+                        this_result = ValidatorFuncs[f](input.val(), a);
+                    } else {
+                        if (input.val().trim() !== "") {
+                            this_result = ValidatorFuncs[f](input.val(), a);
+                        } else {
+                            this_result = true;
+                        }
+                    }
+                    // this_result = ValidatorFuncs[f](input.val(), a);
                 }
 
                 if (this_result === false) {
@@ -177,11 +229,7 @@ var ValidatorFuncs = {
         }
 
         if (this_result === false) {
-            if (control) {
-                input.parent().addClass("invalid")
-            } else {
-                input.addClass("invalid")
-            }
+            this.set_invalid_state(input);
 
             if (result !== undefined) {
                 result.log.push({
@@ -196,11 +244,7 @@ var ValidatorFuncs = {
             if (cb_error !== undefined) Utils.exec(cb_error, [input, input.val()], input[0]);
 
         } else {
-            if (control) {
-                input.parent().addClass("valid")
-            } else {
-                input.addClass("valid")
-            }
+            this.set_valid_state(input);
 
             if (cb_ok !== undefined) Utils.exec(cb_ok, [input, input.val()], input[0]);
         }
@@ -217,6 +261,7 @@ var Validator = {
         this.elem  = elem;
         this.element = $(elem);
         this._onsubmit = null;
+        this._onreset = null;
         this._action = null;
         this.result = [];
 
@@ -232,6 +277,7 @@ var Validator = {
         submitTimeout: 200,
         interactiveCheck: false,
         clearInvalid: 0,
+        requiredMode: true,
         onBeforeSubmit: Metro.noop_true,
         onSubmit: Metro.noop,
         onError: Metro.noop,
@@ -278,23 +324,38 @@ var Validator = {
             }
             if (o.interactiveCheck === true) {
                 input.on(Metro.events.inputchange, function () {
-                    ValidatorFuncs.validate(this);
+                    ValidatorFuncs.validate(this, undefined, undefined, undefined, o.requiredMode);
                 });
             }
         });
 
         this._onsubmit = null;
+        this._onreset = null;
 
         if (element[0].onsubmit !== null) {
             this._onsubmit = element[0].onsubmit;
             element[0].onsubmit = null;
         }
 
+        if (element[0].onreset !== null) {
+            this._onreset = element[0].onreset;
+            element[0].onreset = null;
+        }
+
         element[0].onsubmit = function(){
             return that._submit();
         };
 
+        element[0].onreset = function(){
+            return that._reset();
+        };
+
         Utils.exec(this.options.onValidatorCreate, [element], this.elem);
+    },
+
+    _reset: function(){
+        ValidatorFuncs.reset(this.element);
+        if (this._onsubmit !==  null) Utils.exec(this._onsubmit, null, this.element[0]);
     },
 
     _submit: function(){
@@ -308,7 +369,7 @@ var Validator = {
         };
 
         $.each(inputs, function(){
-            ValidatorFuncs.validate(this, result, o.onValidate, o.onError);
+            ValidatorFuncs.validate(this, result, o.onValidate, o.onError, o.requiredMode);
         });
 
         submit.removeAttr("disabled").removeClass("disabled");
