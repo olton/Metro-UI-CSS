@@ -74,6 +74,7 @@
                             <li class="toc-entry"><a href="#_validator_func_custom">Custom</a></li>
                         </ul>
                     </li>
+                    <li class="toc-entry"><a href="#_validator_functions_mode">Functions mode</a></li>
                     <li class="toc-entry"><a href="#_validator_events">Events</a></li>
                     <li class="toc-entry"><a href="#_validator_submit">Submit</a></li>
                     <li class="toc-entry"><a href="#_validator_error_handling">Error handling</a></li>
@@ -520,6 +521,74 @@
                 </p>
                 <pre><code>
                     &lt;input type="text" data-validate="required pattern=^[\w]{7,15}$"&gt;
+                </code></pre>
+
+                <h3 id="_validator_functions_mode">Functions mode</h3>
+                <p class="text-small">New in 4.2.6</p>
+                <p>
+                    By default, all validating functions work in <strong>required mode</strong> - field value cannot be empty and must have required value.
+                    You can change this behavior with special form attribute <code>data-required-mode</code>.
+                    If you set this attribute to <code>false</code>, functions will work only if field value not empty or with <code>required</code> function in the pair.
+                </p>
+                <div class="example">
+                    <p class="h5 text-light">Default behavior, check value is valid email and not empty</p>
+                    <form data-role="validator" action="javascript:" class="mt-2">
+                        <input type="text" data-validate="email">
+                        <div class="form-actions">
+                            <button class="button" type="submit">Submit</button>
+                            <button class="button" type="reset">Reset</button>
+                        </div>
+                    </form>
+                    <p class="h5 text-light">Required mode  - false, check value is valid email when not empty</p>
+                    <form data-role="validator" data-required-mode="false" action="javascript:" class="mt-2">
+                        <input type="text" data-validate="email">
+                        <div class="form-actions">
+                            <button class="button" type="submit">Submit</button>
+                            <button class="button" type="reset">Reset</button>
+                        </div>
+                    </form>
+                    <p class="h5 text-light">Required mode  - false, check value is valid email and not empty with rule required</p>
+                    <form data-role="validator" data-required-mode="false" action="javascript:" class="mt-2">
+                        <input type="text" data-validate="required email">
+                        <div class="form-actions">
+                            <button class="button" type="submit">Submit</button>
+                            <button class="button" type="reset">Reset</button>
+                        </div>
+                    </form>
+                </div>
+                <pre><code>
+                    &lt;p class="h5 text-light"&gt;
+                        Default behavior, check value is valid email and not empty
+                    &lt;/p&gt;
+                    &lt;form data-role="validator" action="javascript:" class="mt-2"&gt;
+                        &lt;input type="text" data-validate="email"&gt;
+                        &lt;div class="form-actions"&gt;
+                            &lt;button class="button" type="submit"&gt;Submit&lt;/button&gt;
+                            &lt;button class="button" type="reset"&gt;Reset&lt;/button&gt;
+                        &lt;/div&gt;
+                    &lt;/form&gt;
+
+                    &lt;p class="h5 text-light"&gt;
+                        Required mode  - false, check value is valid email when not empty
+                    &lt;/p&gt;
+                    &lt;form data-role="validator" data-required-mode="false" action="javascript:" class="mt-2"&gt;
+                        &lt;input type="text" data-validate="email"&gt;
+                        &lt;div class="form-actions"&gt;
+                            &lt;button class="button" type="submit"&gt;Submit&lt;/button&gt;
+                            &lt;button class="button" type="reset"&gt;Reset&lt;/button&gt;
+                        &lt;/div&gt;
+                    &lt;/form&gt;
+
+                    &lt;p class="h5 text-light"&gt;
+                        Required mode  - false, check value is valid email and not empty with rule required
+                    &lt;/p&gt;
+                    &lt;form data-role="validator" data-required-mode="false" action="javascript:" class="mt-2"&gt;
+                        &lt;input type="text" data-validate="required email"&gt;
+                        &lt;div class="form-actions"&gt;
+                            &lt;button class="button" type="submit"&gt;Submit&lt;/button&gt;
+                            &lt;button class="button" type="reset"&gt;Reset&lt;/button&gt;
+                        &lt;/div&gt;
+                    &lt;/form&gt;
                 </code></pre>
 
                 <h3 id="_validator_events">Events</h3>

@@ -19168,6 +19168,11 @@ form {
   display: block;
   position: relative;
 }
+.form-actions {
+  margin: 10px 0;
+  display: block;
+  position: relative;
+}
 input[type=text],
 input[type=password],
 input[type=tel],

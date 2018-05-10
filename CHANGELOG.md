@@ -1,3 +1,11 @@
+### 4.2.6
++ [x] Validator: add func `reset` for reset fields state
++ [x] Validator: add func `reset_state` for reset field state
++ [x] Validator: add func `set_valid_state` for valid field state
++ [x] Validator: add func `set_invalid_state` for invalid field state
++ [x] Validator: add auto method `reset` for forms with role `validator`
++ [x] Validator: add option boolean `requiredMode` for form. If this option is `true`, all funcs works as `required`, else funcs works if field value is not empty.
+
 ### 4.2.5
 + [x] CSS Utilities: add `cursor` classes in format `.c-{cursor-name}`. Example: `.c-alias`
 + [x] Badge: added class `.badge` to display counting info or small label inside the element

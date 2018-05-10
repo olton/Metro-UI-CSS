@@ -34,15 +34,30 @@
 </head>
 <body>
 <div class="container">
-    <h1 data-role="counter" data-value="5603" data-step="10" data-delay="5"></h1>
+    <form data-role="validator" action="javascript:" class="m-20">
+        <input type="text" data-validate="email">
+        <div class="form-actions">
+            <button class="button" type="submit">Submit</button>
+            <button class="button" type="reset">Reset</button>
+        </div>
+    </form>
+    <form data-role="validator" data-required-mode="false" action="javascript:" class="m-20">
+        <input type="text" data-validate="email">
+        <div class="form-actions">
+            <button class="button" type="submit">Submit</button>
+            <button class="button" type="reset">Reset</button>
+        </div>
+    </form>
+    <form data-role="validator" data-required-mode="false" action="javascript:" class="m-20">
+        <input type="text" data-validate="required email">
+        <div class="form-actions">
+            <button class="button" type="submit">Submit</button>
+            <button class="button" type="reset">Reset</button>
+        </div>
+    </form>
 </div>
 <script src="../js/jquery-3.3.1.min.js"></script>
 <script src="../metro/js/metro.js"></script>
-<script>
-    setTimeout(function () {
-        $("h1").data("counter").start();
-    }, 0);
-</script>
 <!-- ads-script -->
 
 </body>

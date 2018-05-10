@@ -1,4 +1,4 @@
-####4.1.x
+### 4.x
 - [ ] Remove jQuery dependency 
 - [ ] Dropdown not only display: block
 - [ ] Calendar picker calendar as dialog on phones
@@ -10,6 +10,4 @@
 - [ ] Keypad: extends positions to all
 - [ ] Set value for inputs components with value attribute
 - [ ] Add media state for horizontal menu
-
-####4.x
 - [ ] Layout manager ?
