@@ -24,6 +24,7 @@
     "url": "https://github.com/olton/Metro-UI-CSS.git"
   },
   "license": "MIT",
+  "main": "build/js/metro.js",
   "devDependencies": {
     "autoprefixer": "^8.1.0",
     "grunt": "^1.0.1",
