@@ -443,5 +443,6 @@ $(window).on(Metro.events.resize, function(){
         if (Utils.media(query)) {
             METRO_MEDIA.push(Metro.media_mode[key]);
         }
-    })
+    });
 });
+

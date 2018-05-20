@@ -649,6 +649,10 @@ var Utils = {
         return METRO_MEDIA;
     },
 
+    mediaExist: function(media){
+        return METRO_MEDIA.indexOf(media) > -1;
+    },
+
     inMedia: function(media){
         return METRO_MEDIA.indexOf(media) > -1 && METRO_MEDIA.indexOf(media) === METRO_MEDIA.length - 1;
     }

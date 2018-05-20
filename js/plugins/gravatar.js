@@ -33,9 +33,6 @@ var Gravatar = {
     },
 
     _create: function(){
-        var that = this, element = this.element, o = this.options;
-        var image = element[0].tagName === 'IMG' ? element : $("<img>").appendTo(element);
-
         this.get();
     },
 
@@ -68,7 +65,6 @@ var Gravatar = {
 
     resize: function(new_size){
         this.options.size = new_size !== undefined ? new_size : this.element.attr("data-size");
-        console.log(this.options.size);
         this.get();
     },
 
@@ -78,7 +74,6 @@ var Gravatar = {
     },
 
     changeAttribute: function(attributeName){
-        console.log(attributeName);
         switch (attributeName) {
             case 'data-size': this.resize(); break;
             case 'data-email': this.email(); break;

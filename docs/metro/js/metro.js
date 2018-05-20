@@ -1,5 +1,5 @@
 /*
- * Metro 4 Components Library v4.2.6 build 682 (https://metroui.org.ua)
+ * Metro 4 Components Library v4.2.7 build @@build (https://metroui.org.ua)
  * Copyright 2018 Sergey Pimenov
  * Licensed under MIT
  */
@@ -80,7 +80,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.6.682 ",
+    version: "@@version.@@build @@status",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -462,8 +462,9 @@ $(window).on(Metro.events.resize, function(){
         if (Utils.media(query)) {
             METRO_MEDIA.push(Metro.media_mode[key]);
         }
-    })
+    });
 });
+
 
 
 // Source: js/utils/animation.js
@@ -1729,6 +1730,27 @@ Date.prototype.format = function(format, locale){
         }[sMatch] || sMatch;
     });
 };
+
+Date.prototype.addHours = function(n) {
+    this.setTime(this.getTime() + (n*60*60*1000));
+    return this;
+};
+
+Date.prototype.addDays = function(n) {
+    this.setDate(this.getDate() + (n));
+    return this;
+};
+
+Date.prototype.addMonths = function(n) {
+    this.setMonth(this.getMonth() + (n));
+    return this;
+};
+
+Date.prototype.addYears = function(n) {
+    this.setFullYear(this.getFullYear() + (n));
+    return this;
+};
+
 
 // Source: js/utils/hotkeys.js
 var hotkeys = {
@@ -3634,6 +3656,10 @@ var d = new Date().getTime();
         return METRO_MEDIA;
     },
 
+    mediaExist: function(media){
+        return METRO_MEDIA.indexOf(media) > -1;
+    },
+
     inMedia: function(media){
         return METRO_MEDIA.indexOf(media) > -1 && METRO_MEDIA.indexOf(media) === METRO_MEDIA.length - 1;
     }
@@ -3736,7 +3762,7 @@ var Accordion = {
         var frames = element.children(".frame");
         var frame = $(f);
 
-        if (Utils.exec(o.onFrameBeforeOpen, frame[0]) === false) {
+        if (Utils.exec(o.onFrameBeforeOpen, [frame], element[0]) === false) {
             return false;
         }
 
@@ -3748,14 +3774,14 @@ var Accordion = {
         frame.children(".heading").addClass(o.activeHeadingClass);
         frame.children(".content").addClass(o.activeContentClass).slideDown(o.duration);
 
-        Utils.callback(o.onFrameOpen, frame[0]);
+        Utils.exec(o.onFrameOpen, [frame], element[0]);
     },
 
     _closeFrame: function(f){
         var that = this, element = this.element, o = this.options;
         var frame = $(f);
 
-        if (Utils.exec(o.onFrameBeforeOpen, frame[0]) === false) {
+        if (Utils.exec(o.onFrameBeforeClose, [frame], element[0]) === false) {
             return ;
         }
 
@@ -3763,7 +3789,7 @@ var Accordion = {
         frame.children(".heading").removeClass(o.activeHeadingClass);
         frame.children(".content").removeClass(o.activeContentClass).slideUp(o.duration);
 
-        Utils.callback(o.onFrameClose, frame[0]);
+        Utils.callback(o.onFrameClose, [frame], element[0]);
     },
 
     _closeAll: function(){
@@ -4671,6 +4697,7 @@ var Calendar = {
         this.locale = null;
         this.minYear = this.current.year - this.options.yearsBefore;
         this.maxYear = this.current.year + this.options.yearsAfter;
+        this.offset = (new Date()).getTimezoneOffset() / 60 + 1;
 
         this._setOptionsFromDOM();
         this._create();
@@ -7874,6 +7901,7 @@ var DatePicker = {
         this.isOpen = false;
         this.value = new Date();
         this.locale = Metro.locales[METRO_LOCALE]['calendar'];
+        this.offset = (new Date()).getTimezoneOffset() / 60 + 1;
 
         this._setOptionsFromDOM();
         this._create();
@@ -7882,6 +7910,7 @@ var DatePicker = {
     },
 
     options: {
+        gmt: 0,
         format: "%Y-%m-%d",
         locale: METRO_LOCALE,
         value: null,
@@ -7908,7 +7937,7 @@ var DatePicker = {
     },
 
     _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         $.each(element.data(), function(key, value){
             if (key in o) {
@@ -7922,14 +7951,14 @@ var DatePicker = {
     },
 
     _create: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         if (o.distance < 1) {
             o.distance = 1;
         }
 
         if (o.value !== null && Utils.isDate(o.value)) {
-            this.value = new Date(o.value);
+            this.value = (new Date(o.value)).addHours(this.offset);
         }
 
         if (Metro.locales[o.locale] === undefined) {
@@ -7954,7 +7983,7 @@ var DatePicker = {
     },
 
     _createStructure: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var picker, month, day, year, i, j;
         var dateWrapper, selectWrapper, selectBlock, actionBlock;
 
@@ -8034,7 +8063,7 @@ var DatePicker = {
     },
 
     _createEvents: function(){
-        var that = this, element = this.element, o = this.options;
+        var that = this, o = this.options;
         var picker = this.picker;
 
         picker.on(Metro.events.start, ".select-block ul", function(e){
@@ -8053,7 +8082,7 @@ var DatePicker = {
                 pageY = Utils.pageXY(e).y;
             });
 
-            $(document).on(Metro.events.stop + "-picker", function(e){
+            $(document).on(Metro.events.stop + "-picker", function(){
                 $(document).off(Metro.events.move + "-picker");
                 $(document).off(Metro.events.stop + "-picker");
             });
@@ -8111,7 +8140,7 @@ var DatePicker = {
                     scrollTop: scroll_to
                 }, 100, function(){
                     target_element.addClass("active");
-                    Utils.exec(o.onScroll, [target_element, list, picker]);
+                    Utils.exec(o.onScroll, [target_element, list, picker], list[0]);
                 });
             });
         });
@@ -8134,7 +8163,7 @@ var DatePicker = {
     },
 
     _set: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var picker = this.picker;
         var m = this.locale['months'][this.value.getMonth()],
             d = this.value.getDate(),
@@ -8152,12 +8181,12 @@ var DatePicker = {
 
         element.val(this.value.format(o.format, o.locale)).trigger("change");
 
-        Utils.exec(o.onSet, [this.value, element.val(), element, picker]);
+        Utils.exec(o.onSet, [this.value, element.val(), element, picker], element[0]);
 
     },
 
     open: function(){
-        var that  = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var picker = this.picker;
         var m = this.value.getMonth(), d = this.value.getDate() - 1, y = this.value.getFullYear();
         var m_list, d_list, y_list;
@@ -8186,24 +8215,24 @@ var DatePicker = {
 
         this.isOpen = true;
 
-        Utils.exec(o.onOpen, [this.value, element, picker]);
+        Utils.exec(o.onOpen, [this.value, element, picker], element[0]);
     },
 
     close: function(){
         var picker = this.picker, o = this.options, element = this.element;
         picker.find(".select-wrapper").hide();
         this.isOpen = false;
-        Utils.exec(o.onClose, [this.value, element, picker]);
+        Utils.exec(o.onClose, [this.value, element, picker], element[0]);
     },
 
     val: function(t){
         if (t === undefined) {
-            return element.val();
+            return this.element.val();
         }
         if (Utils.isDate(t) === false) {
             return false;
         }
-        this.value = new Date(t);
+        this.value = (new Date(t)).addHours(this.offset);
         this._set();
     },
 
@@ -8231,7 +8260,7 @@ var DatePicker = {
     },
 
     destroy: function(){
-        var that  = this, element = this.element, o = this.options;
+        var element = this.element;
         var picker = this.picker;
         var parent = element.parent();
 
@@ -8249,7 +8278,7 @@ var DatePicker = {
 
 Metro.plugin('datepicker', DatePicker);
 
-$(document).on(Metro.events.click, function(e){
+$(document).on(Metro.events.click, function(){
     $.each($(".date-picker"), function(){
         $(this).find("input").data("datepicker").close();
     });
@@ -8283,6 +8312,7 @@ var Dialog = {
         overlayClickClose: false,
         width: '480',
         height: 'auto',
+        shadow: true,
         closeAction: true,
         clsDialog: "",
         clsTitle: "",
@@ -8326,6 +8356,10 @@ var Dialog = {
         var overlay;
 
         element.addClass("dialog");
+
+        if (o.shadow === true) {
+            element.addClass("shadow-on");
+        }
 
         if (element.attr("id") === undefined) {
             element.attr("id", Utils.elementId("dialog"));
@@ -8391,6 +8425,10 @@ var Dialog = {
         if (o.show) {
             this.open();
         }
+
+        $(window).on(Metro.events.resize + "_" + element.attr("id"), function(){
+            that.setPosition();
+        });
 
         Utils.exec(this.options.onDialogCreate, [this.element]);
     },
@@ -8526,7 +8564,6 @@ var Dialog = {
     },
 
     changeAttribute: function(attributeName){
-
     }
 };
 
@@ -9255,9 +9292,6 @@ var Gravatar = {
     },
 
     _create: function(){
-        var that = this, element = this.element, o = this.options;
-        var image = element[0].tagName === 'IMG' ? element : $("<img>").appendTo(element);
-
         this.get();
     },
 
@@ -9290,7 +9324,6 @@ var Gravatar = {
 
     resize: function(new_size){
         this.options.size = new_size !== undefined ? new_size : this.element.attr("data-size");
-        console.log(this.options.size);
         this.get();
     },
 
@@ -9300,7 +9333,6 @@ var Gravatar = {
     },
 
     changeAttribute: function(attributeName){
-        console.log(attributeName);
         switch (attributeName) {
             case 'data-size': this.resize(); break;
             case 'data-email': this.email(); break;
@@ -9472,6 +9504,306 @@ var Hint = {
 };
 
 Metro.plugin('hint', Hint);
+
+// Source: js/plugins/info-box.js
+var InfoBox = {
+    init: function( options, elem ) {
+        this.options = $.extend( {}, this.options, options );
+        this.elem  = elem;
+        this.element = $(elem);
+        this.overlay = null;
+
+        this._setOptionsFromDOM();
+        this._create();
+
+        return this;
+    },
+
+    options: {
+        type: "",
+        width: 480,
+        height: "auto",
+        overlay: true,
+        overlayColor: '#000000',
+        overlayAlpha: .5,
+        autoHide: 0,
+        removeOnClose: false,
+        closeButton: true,
+        clsBox: "",
+        clsBoxContent: "",
+        clsOverlay: "",
+        onOpen: Metro.noop,
+        onClose: Metro.noop,
+        onInfoBoxCreate: Metro.noop
+    },
+
+    _setOptionsFromDOM: function(){
+        var that = this, element = this.element, o = this.options;
+
+        $.each(element.data(), function(key, value){
+            if (key in o) {
+                try {
+                    o[key] = JSON.parse(value);
+                } catch (e) {
+                    o[key] = value;
+                }
+            }
+        });
+    },
+
+    _create: function(){
+        var that = this, element = this.element, o = this.options;
+
+        this._createStructure();
+        this._createEvents();
+
+        Utils.exec(o.onInfoBoxCreate, [element], element[0]);
+    },
+
+    _overlay: function(){
+        var that = this, element = this.element, o = this.options;
+
+        var overlay = $("<div>");
+        overlay.addClass("overlay").addClass(o.clsOverlay);
+
+        if (o.overlayColor === 'transparent') {
+            overlay.addClass("transparent");
+        } else {
+            overlay.css({
+                background: Utils.hex2rgba(o.overlayColor, o.overlayAlpha)
+            });
+        }
+
+        return overlay;
+    },
+
+    _createStructure: function(){
+        var that = this, element = this.element, o = this.options;
+        var closer, content;
+
+        if (o.overlay === true) {
+            this.overlay = this._overlay();
+        }
+
+        if (element.attr("id") === undefined) {
+            element.attr("id", Utils.elementId("infobox"));
+        }
+
+        element.addClass("info-box").addClass(o.type).addClass(o.clsBox);
+
+        closer = element.find("closer");
+        if (closer.length === 0) {
+            closer = $("<span>").addClass("button square closer");
+            closer.appendTo(element);
+        }
+
+        if (o.closeButton !== true) {
+            closer.hide();
+        }
+
+        content = element.find(".info-box-content");
+        if (content.length > 0) {
+            content.addClass(o.clsBoxContent);
+        }
+
+        element.css({
+            width: o.width,
+            height: o.height,
+            visibility: "hidden",
+            top: '100%',
+            left: ( $(window).width() - element.outerWidth() ) / 2
+        });
+
+        element.appendTo($('body'));
+    },
+
+    _createEvents: function(){
+        var that = this, element = this.element, o = this.options;
+
+        element.on(Metro.events.click, ".closer", function(){
+            that.close();
+        });
+
+        element.on(Metro.events.click, ".js-dialog-close", function(){
+            that.close();
+        });
+
+        $(window).on(Metro.events.resize + "_" + element.attr("id"), function(){
+            that.reposition();
+        });
+    },
+
+    _setPosition: function(){
+        var element = this.element;
+        element.css({
+            top: ( $(window).height() - element.outerHeight() ) / 2,
+            left: ( $(window).width() - element.outerWidth() ) / 2
+        });
+    },
+
+    reposition: function(){
+        this._setPosition();
+    },
+
+    setContent: function(c){
+        var that = this, element = this.element, o = this.options;
+        var content = element.find(".info-box-content");
+        if (content.length === 0) {
+            return ;
+        }
+        content.html(c);
+        this.reposition();
+    },
+
+    setType: function(t){
+        var that = this, element = this.element, o = this.options;
+        element.removeClass("success info alert warning").addClass(t);
+    },
+
+    open: function(){
+        var that = this, element = this.element, o = this.options;
+
+        if (o.overlay === true) {
+            this.overlay.appendTo($("body"));
+        }
+
+        this._setPosition();
+
+        element.css({
+            visibility: "visible"
+        });
+
+        Utils.exec(o.onOpen, [element], element[0]);
+        element.data("open", true);
+        if (parseInt(o.autoHide) > 0) {
+            setTimeout(function(){
+                that.close();
+            }, parseInt(o.autoHide));
+        }
+    },
+
+    close: function(){
+        var that = this, element = this.element, o = this.options;
+
+        if (o.overlay === true) {
+            $('body').find('.overlay').remove();
+        }
+
+        element.css({
+            visibility: "hidden",
+            top: "100%"
+        });
+
+        Utils.exec(o.onClose, [element], element[0]);
+        element.data("open", false);
+
+        if (o.removeOnClose === true) {
+            this.destroy();
+            element.remove();
+        }
+    },
+
+    isOpen: function(){
+        return this.element.data("open") === true;
+    },
+
+    changeAttribute: function(attributeName){
+
+    },
+
+    destroy: function(){
+        var that = this, element = this.element, o = this.options;
+
+        element.off(Metro.events.click, ".closer");
+        element.off(Metro.events.click, ".js-dialog-close");
+        $(window).off(Metro.events.resize + "_" + element.attr("id"));
+    }
+};
+
+Metro.plugin('infobox', InfoBox);
+
+Metro['infobox'] = {
+    isInfoBox: function(el){
+        return Utils.isMetroObject(el, "dialog");
+    },
+
+    open: function(el, c, t){
+        if (!this.isInfoBox(el)) {
+            return false;
+        }
+        var ib = $(el).data("infobox");
+        if (c !== undefined) {
+            ib.setContent(c);
+        }
+        if (t !== undefined) {
+            ib.setType(t);
+        }
+        ib.open();
+    },
+
+    close: function(el){
+        if (!this.isInfoBox(el)) {
+            return false;
+        }
+        var ib = $(el).data("infobox");
+        ib.close();
+    },
+
+    setContent: function(el, c){
+        if (!this.isInfoBox(el)) {
+            return false;
+        }
+
+        if (c === undefined) {
+            c = "";
+        }
+
+        var ib = $(el).data("infobox");
+        ib.setContent(c);
+        ib.reposition();
+    },
+
+    setType: function(el, t){
+        if (!this.isInfoBox(el)) {
+            return false;
+        }
+
+        var ib = $(el).data("infobox");
+        ib.setType(t);
+        ib.reposition();
+    },
+
+    isOpen: function(el){
+        if (!this.isInfoBox(el)) {
+            return false;
+        }
+        var ib = $(el).data("infobox");
+        return ib.isOpen();
+    },
+
+    create: function(c, t, o, open){
+        var el, ib, box_type, con;
+
+        box_type = t !== undefined ? t : "";
+
+        el = $("<div>").appendTo($("body"));
+        $("<div>").addClass("info-box-content").appendTo(el);
+
+        var ib_options = $.extend({}, {
+            removeOnClose: true,
+            type: box_type
+        }, (o !== undefined ? o : {}));
+
+        el.infobox(ib_options);
+        ib = el.data('infobox');
+        ib.setContent(c);
+        if (open !== false) {
+            ib.open();
+        }
+
+        return el;
+    }
+};
 
 // Source: js/plugins/input.js
 var Input = {
@@ -12690,6 +13022,216 @@ $(document).on(Metro.events.click, function(e){
 Metro.plugin('select', Select);
 
 
+
+// Source: js/plugins/sidebar.js
+var Sidebar = {
+    init: function( options, elem ) {
+        this.options = $.extend( {}, this.options, options );
+        this.elem  = elem;
+        this.element = $(elem);
+        this.toggle_element = null;
+
+        this._setOptionsFromDOM();
+        this._create();
+
+        return this;
+    },
+
+    options: {
+        shift: null,
+        staticShift: null,
+        toggle: null,
+        duration: METRO_ANIMATION_DURATION,
+        static: null,
+        menuItemClick: true,
+        onOpen: Metro.noop,
+        onClose: Metro.noop,
+        onToggle: Metro.noop,
+        onStaticSet: Metro.noop,
+        onStaticLoss: Metro.noop,
+        onSidebarCreate: Metro.noop
+    },
+
+    _setOptionsFromDOM: function(){
+        var that = this, element = this.element, o = this.options;
+
+        $.each(element.data(), function(key, value){
+            if (key in o) {
+                try {
+                    o[key] = JSON.parse(value);
+                } catch (e) {
+                    o[key] = value;
+                }
+            }
+        });
+    },
+
+    _create: function(){
+        var that = this, element = this.element, o = this.options;
+
+        this._createStructure();
+        this._createEvents();
+        $(window).resize();
+        this._checkStatic();
+
+        Utils.exec(o.onSidebarCreate, [element], element[0]);
+    },
+
+    _createStructure: function(){
+        var that = this, element = this.element, o = this.options;
+        var header = element.find(".sidebar-header");
+        var sheet = Metro.sheet;
+
+        if (element.attr("id") === undefined) {
+            element.attr("id", Utils.elementId("sidebar"));
+        }
+
+        element.addClass("sidebar");
+
+        if (o.toggle !== null && $(o.toggle).length > 0) {
+            this.toggle_element = $(o.toggle);
+        }
+
+        if (header.length > 0) {
+            if (header.data("image") !== undefined) {
+                header.css({
+                    backgroundImage: "url("+header.data("image")+")"
+                });
+            }
+        }
+
+        if (o.static !== null) {
+            if (o.staticShift !== null) {
+                Utils.addCssRule(sheet, "@media screen and " + Metro.media_queries[o.static.toUpperCase()], o.staticShift + "{margin-left: 280px; width: calc(100% - 280px);}");
+            }
+        }
+    },
+
+    _createEvents: function(){
+        var that = this, element = this.element, o = this.options;
+        var toggle = this.toggle_element;
+
+        if (toggle !== null) {
+            toggle.on(Metro.events.click, function(e){
+                that.toggle();
+            });
+        }
+
+        if (o.static !== null && ["fs", "sm", "md", "lg", "xl", "xxl"].indexOf(o.static)) {
+            $(window).on(Metro.events.resize + "_" + element.attr("id"), function(){
+                that._checkStatic();
+            });
+        }
+
+        if (o.menuItemClick === true) {
+            element.on(Metro.events.click, ".sidebar-menu li > a", function(){
+                that.close();
+            });
+        }
+    },
+
+    _checkStatic: function(){
+        var element = this.element, o = this.options;
+        if (Utils.mediaExist(o.static) && !element.hasClass("static")) {
+            element.addClass("static");
+            element.data("opened", false).removeClass('open');
+            if (o.shift !== null) {
+                $.each(o.shift.split(","), function(){
+                    $(this).css({left: 0}, o.duration);
+                });
+            }
+            Utils.exec(o.onStaticSet, [element], element[0]);
+        }
+        if (!Utils.mediaExist(o.static)) {
+            element.removeClass("static");
+            Utils.exec(o.onStaticLoss, [element], element[0]);
+        }
+    },
+
+    isOpen: function(){
+        return this.element.data("opened") === true;
+    },
+
+    open: function(){
+        var that = this, element = this.element, o = this.options;
+
+        if (element.hasClass("static")) {
+            return ;
+        }
+
+        element.data("opened", true).addClass('open');
+
+        if (o.shift !== null) {
+            $.each(o.shift.split(","), function(){
+                $(this).animate({left: element.outerWidth()}, o.duration);
+            });
+        }
+
+        Utils.exec(o.onOpen, [element], element[0]);
+    },
+
+    close: function(){
+        var that = this, element = this.element, o = this.options;
+
+        if (element.hasClass("static")) {
+            return ;
+        }
+
+        element.data("opened", false).removeClass('open');
+
+        if (o.shift !== null) {
+            $.each(o.shift.split(","), function(){
+                $(this).animate({left: 0}, o.duration);
+            });
+        }
+
+        Utils.exec(o.onClose, [element], element[0]);
+    },
+
+    toggle: function(){
+        if (this.isOpen()) {
+            this.close();
+        } else {
+            this.open();
+        }
+        Utils.exec(this.options.onToggle, [this.element], this.element[0]);
+    },
+
+    changeAttribute: function(attributeName){
+
+    },
+
+    destroy: function(){}
+};
+
+Metro.plugin('sidebar', Sidebar);
+
+Metro['sidebar'] = {
+    isSidebar: function(el){
+        return Utils.isMetroObject(el, "sidebar");
+    },
+
+    open: function(el){
+        if (!this.isSidebar(el)) {
+            return ;
+        }
+        $(el).data("sidebar").open();
+    },
+
+    close: function(el){
+        if (!this.isSidebar(el)) {
+            return ;
+        }
+        $(el).data("sidebar").close();
+    },
+
+    toggle: function(el){
+        if (!this.isSidebar(el)) {
+            return ;
+        }
+        $(el).data("sidebar").toggle();
+    }
+};
 
 // Source: js/plugins/slider.js
 var Slider = {

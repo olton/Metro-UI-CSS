@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Metro4</id>
-    <version>4.2.6</version>
+    <version>4.2.7</version>
     <title>Metro 4 Components Library</title>
     <authors>Sergey Pimenov</authors>
     <owners>Sergey Pimenov</owners>

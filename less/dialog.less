@@ -12,7 +12,13 @@
     background-color: @white;
     color: @dark;
     z-index: @zindex-modal;
-    .shadow(3);
+    border: 1px solid @borderColor;
+}
+
+.dialog {
+    &.shadow-on {
+        .shadow(3);
+    }
 }
 
 .dialog-title, .dialog-content, .dialog-actions {
@@ -49,3 +55,4 @@
         margin-top: 8px;
     }
 }
+

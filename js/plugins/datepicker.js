@@ -7,6 +7,7 @@ var DatePicker = {
         this.isOpen = false;
         this.value = new Date();
         this.locale = Metro.locales[METRO_LOCALE]['calendar'];
+        this.offset = (new Date()).getTimezoneOffset() / 60 + 1;
 
         this._setOptionsFromDOM();
         this._create();
@@ -15,6 +16,7 @@ var DatePicker = {
     },
 
     options: {
+        gmt: 0,
         format: "%Y-%m-%d",
         locale: METRO_LOCALE,
         value: null,
@@ -41,7 +43,7 @@ var DatePicker = {
     },
 
     _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         $.each(element.data(), function(key, value){
             if (key in o) {
@@ -55,14 +57,14 @@ var DatePicker = {
     },
 
     _create: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         if (o.distance < 1) {
             o.distance = 1;
         }
 
         if (o.value !== null && Utils.isDate(o.value)) {
-            this.value = new Date(o.value);
+            this.value = (new Date(o.value)).addHours(this.offset);
         }
 
         if (Metro.locales[o.locale] === undefined) {
@@ -87,7 +89,7 @@ var DatePicker = {
     },
 
     _createStructure: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var picker, month, day, year, i, j;
         var dateWrapper, selectWrapper, selectBlock, actionBlock;
 
@@ -167,7 +169,7 @@ var DatePicker = {
     },
 
     _createEvents: function(){
-        var that = this, element = this.element, o = this.options;
+        var that = this, o = this.options;
         var picker = this.picker;
 
         picker.on(Metro.events.start, ".select-block ul", function(e){
@@ -186,7 +188,7 @@ var DatePicker = {
                 pageY = Utils.pageXY(e).y;
             });
 
-            $(document).on(Metro.events.stop + "-picker", function(e){
+            $(document).on(Metro.events.stop + "-picker", function(){
                 $(document).off(Metro.events.move + "-picker");
                 $(document).off(Metro.events.stop + "-picker");
             });
@@ -244,7 +246,7 @@ var DatePicker = {
                     scrollTop: scroll_to
                 }, 100, function(){
                     target_element.addClass("active");
-                    Utils.exec(o.onScroll, [target_element, list, picker]);
+                    Utils.exec(o.onScroll, [target_element, list, picker], list[0]);
                 });
             });
         });
@@ -267,7 +269,7 @@ var DatePicker = {
     },
 
     _set: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var picker = this.picker;
         var m = this.locale['months'][this.value.getMonth()],
             d = this.value.getDate(),
@@ -285,12 +287,12 @@ var DatePicker = {
 
         element.val(this.value.format(o.format, o.locale)).trigger("change");
 
-        Utils.exec(o.onSet, [this.value, element.val(), element, picker]);
+        Utils.exec(o.onSet, [this.value, element.val(), element, picker], element[0]);
 
     },
 
     open: function(){
-        var that  = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var picker = this.picker;
         var m = this.value.getMonth(), d = this.value.getDate() - 1, y = this.value.getFullYear();
         var m_list, d_list, y_list;
@@ -319,24 +321,24 @@ var DatePicker = {
 
         this.isOpen = true;
 
-        Utils.exec(o.onOpen, [this.value, element, picker]);
+        Utils.exec(o.onOpen, [this.value, element, picker], element[0]);
     },
 
     close: function(){
         var picker = this.picker, o = this.options, element = this.element;
         picker.find(".select-wrapper").hide();
         this.isOpen = false;
-        Utils.exec(o.onClose, [this.value, element, picker]);
+        Utils.exec(o.onClose, [this.value, element, picker], element[0]);
     },
 
     val: function(t){
         if (t === undefined) {
-            return element.val();
+            return this.element.val();
         }
         if (Utils.isDate(t) === false) {
             return false;
         }
-        this.value = new Date(t);
+        this.value = (new Date(t)).addHours(this.offset);
         this._set();
     },
 
@@ -364,7 +366,7 @@ var DatePicker = {
     },
 
     destroy: function(){
-        var that  = this, element = this.element, o = this.options;
+        var element = this.element;
         var picker = this.picker;
         var parent = element.parent();
 
@@ -382,7 +384,7 @@ var DatePicker = {
 
 Metro.plugin('datepicker', DatePicker);
 
-$(document).on(Metro.events.click, function(e){
+$(document).on(Metro.events.click, function(){
     $.each($(".date-picker"), function(){
         $(this).find("input").data("datepicker").close();
     });
