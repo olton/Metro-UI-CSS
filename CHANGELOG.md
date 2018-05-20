@@ -5,7 +5,7 @@
 + [x] Extensions: add function `addHours`, `addDays`, `addMonths`, `addYears`  for date object
 + [x] Dialog: now shadow can be on/off with option `data-shadow="true"`
 + [x] Dialog: add `window.resize` controller
-+ [x] Info box: information boxes `default`, `alert`, `warning`, `success` and `info`
++ [x] Info box: add component information boxes width states `default`, `alert`, `warning`, `success` and `info`
 + [x] Sidebar: add component
 
 ### 4.2.6
