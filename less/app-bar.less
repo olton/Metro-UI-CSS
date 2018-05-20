@@ -34,6 +34,11 @@
         text-decoration: none;
         font-size: 14px;
         flex-shrink: 0;
+        border: none;
+
+        &:focus {
+            outline: none;
+        }
     }
 
     .app-bar-container {
@@ -219,6 +224,18 @@
     .hamburger {
         display: none;
     }
+}
+
+.p-ab {
+    padding-top: 52px!important;
+}
+
+.m-ab {
+    margin-top: 52px!important;
+}
+
+.h-ab {
+    height: ~"calc(100% - 52px)";
 }
 
 .generate-app-bar-media-options(@mediaBreakpointListMobileLength);

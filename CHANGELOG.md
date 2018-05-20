@@ -1,3 +1,13 @@
+### 4.2.7
++ [x] Accordion: fix events context to html element
++ [x] Date picker: fix for negative time zone (issue #1084)
++ [x] Date picker: fix events context to html element
++ [x] Extensions: add function `addHours`, `addDays`, `addMonths`, `addYears`  for date object
++ [x] Dialog: now shadow can be on/off with option `data-shadow="true"`
++ [x] Dialog: add `window.resize` controller
++ [x] Info box: information boxes `default`, `alert`, `warning`, `success` and `info`
++ [x] Sidebar: add component
+
 ### 4.2.6
 + [x] Validator: add func `reset` for reset fields state
 + [x] Validator: add func `reset_state` for reset field state

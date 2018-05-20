@@ -25,6 +25,7 @@ var Dialog = {
         overlayClickClose: false,
         width: '480',
         height: 'auto',
+        shadow: true,
         closeAction: true,
         clsDialog: "",
         clsTitle: "",
@@ -68,6 +69,10 @@ var Dialog = {
         var overlay;
 
         element.addClass("dialog");
+
+        if (o.shadow === true) {
+            element.addClass("shadow-on");
+        }
 
         if (element.attr("id") === undefined) {
             element.attr("id", Utils.elementId("dialog"));
@@ -133,6 +138,10 @@ var Dialog = {
         if (o.show) {
             this.open();
         }
+
+        $(window).on(Metro.events.resize + "_" + element.attr("id"), function(){
+            that.setPosition();
+        });
 
         Utils.exec(this.options.onDialogCreate, [this.element]);
     },
@@ -268,7 +277,6 @@ var Dialog = {
     },
 
     changeAttribute: function(attributeName){
-
     }
 };
 

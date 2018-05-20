@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <meta name="twitter:site" content="@metroui">
+    <meta name="twitter:creator" content="@pimenov_sergey">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Metro 4 Components Library">
+    <meta name="twitter:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.">
+    <meta name="twitter:image" content="https://metroui.org.ua/images/m4-logo-social.png">
+
+    <meta property="og:url" content="https://metroui.org.ua/v4/index.html">
+    <meta property="og:title" content="Metro 4 Components Library">
+    <meta property="og:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:secure_url" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="968">
+    <meta property="og:image:height" content="504">
+
+    <meta name="author" content="Sergey Pimenov">
+    <meta name="description" content="The most popular HTML, CSS, and JS library in Metro style.">
+    <meta name="keywords" content="HTML, CSS, JS, Metro, CSS3, Javascript, HTML5, UI, Library, Web, Development, Framework">
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <link href="metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
+    <link href="highlight/styles/github.css" rel="stylesheet">
+    <link href="docsearch/docsearch.min.css" rel="stylesheet">
+    <link href="css/site.css" rel="stylesheet">
+
+    <title>Sidebar - Metro 4 :: Popular HTML, CSS and JS library</title>
+</head>
+<body>
+    <div class="container-fluid">
+
+        <div class="row flex-xl-nowrap">
+            <div class="cell-md-3 cell-xl-2 pr-0 border-right bd-light" id="sidenav">
+            </div>
+
+            <div class="d-none d-block-xl cell-xl-2 order-2 border-left bd-light toc-wrapper">
+                <h5>Table of contents</h5>
+                <hr/>
+                <ul class="toc-nav">
+                    <li class="toc-entry"><a href="#">Sidebar</a></li>
+                    <li class="toc-entry"><a href="#_sidebar_about">About</a></li>
+                    <li class="toc-entry">
+                        <a href="#_sidebar_create">Create sidebar</a>
+                        <ul>
+                            <li class="toc-entry"><a href="#_sidebar_header">Sidebar header</a></li>
+                            <li class="toc-entry"><a href="#_sidebar_menu">Sidebar menu</a></li>
+                        </ul>
+                    </li>
+                    <li class="toc-entry"><a href="#_sidebar_toggle">Sidebar toggle</a></li>
+                    <li class="toc-entry"><a href="#_sidebar_shifting">Shifting content</a></li>
+                    <li class="toc-entry"><a href="#_sidebar_static">Static sidebar</a></li>
+                    <li class="toc-entry"><a href="#_sidebar_options">Options</a></li>
+                    <li class="toc-entry"><a href="#_stepper_events">Events</a></li>
+                    <li class="toc-entry"><a href="#_sidebar_methods">Methods</a></li>
+                    <li class="toc-entry"><a href="#_sidebar_object">Sidebar object</a></li>
+                </ul>
+
+            </div>
+
+            <main class="cell-md-9 cell-xl-8 order-1 pr-1-sx pl-1-sx pr-5-md pl-5-md">
+                <div class="place-right d-none d-block-lg" style="width: 200px;">
+                    <img src="images/logo.png" class="w-100">
+                </div>
+
+                <h1>Sidebar</h1>
+                <p class="text-leader">
+                    Create a hidden sidebar with a special component.
+                </p>
+
+                <!-- ads-html -->
+
+                <h3 id="_sidebar_about">About</h3>
+                <p class="text-small">New in 4.2.7</p>
+                <p>
+                    Often you can see the component that hides on the side of the content and contains a menu and is displayed on demand.
+                    Such a component is called a sidebar.
+                    You can create it with Metro 4 <code>sidebar</code> component.
+                </p>
+                <div class="example p-0 no-overflow" style="height: 400px;">
+                    <aside class="sidebar pos-absolute open z-2" data-role="sidebar" data-toggle="#sidebar-toggle" id="sb1">
+                        <div class="sidebar-header" data-image="images/sb-bg-1.jpg">
+                            <a href="/" class="fg-white sub-action" onclick="Metro.sidebar.close('#sb1'); return false;"><span class="mif-arrow-left mif-2x"></span></a>
+                            <div class="avatar">
+                                <img data-role="gravatar" data-email="sergey@pimenov.com.ua">
+                            </div>
+                            <span class="title fg-white">Metro 4 Components Library</span>
+                            <span class="subtitle fg-white"> 2018 &copy; Sergey Pimenov</span>
+                        </div>
+                        <ul class="sidebar-menu">
+                            <li><a><span class="mif-home icon"></span>Home</a></li>
+                            <li><a><span class="mif-books icon"></span>Guide</a></li>
+                            <li><a><span class="mif-files-empty icon"></span>Examples</a></li>
+                            <li class="divider"></li>
+                            <li><a><span class="mif-images icon"></span>Icons</a></li>
+                        </ul>
+                    </aside>
+                    <div class="aaa h-100 p-ab">
+                        <div class="app-bar pos-absolute bg-red z-1" data-role="appbar" id="app-bar-1">
+                            <button class="app-bar-item c-pointer" id="sidebar-toggle"><span class="mif-menu fg-white"></span></button>
+                        </div>
+
+                        <div class="h-100 p-4">
+                            <p class="h1">What is Lorem Ipsum?</p>
+                            <p>
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                            when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                            It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+                            It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
+                            and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 id="_sidebar_create">Create sidebar</h3>
+                <p>
+                    To create <code>sidebar</code> you must write valid <code>html</code> structure and to behavior with sidebar, add role <code>data-role="sidebar"</code>.
+                    The sidebar contains two main blocks: <code>header</code> and <code>menu</code>.
+                </p>
+                <pre><code>
+                    &lt;aside class="sidebar" data-role="sidebar"&gt;
+                        &lt;div class="sidebar-header"&gt;
+                            ...
+                        &lt;/div&gt;
+                        &lt;ul class="sidebar-menu"&gt;
+                            ...
+                        &lt;/ul&gt;
+                    &lt;/aside&gt;
+                </code></pre>
+
+                <h4 id="_sidebar_header">Sidebar header</h4>
+                <p>
+                    Sidebar header can contains next elements: <code>.sub-action</code>, <code>.avatar</code>, <code>.title</code> and <code>.subtitle</code>.
+                </p>
+                <div class="example">
+                    <aside class="sidebar pos-relative open z-1" data-role="sidebar">
+                        <div class="sidebar-header" data-image="images/sb-bg-1.jpg">
+                            <a href="/" class="fg-white sub-action" onclick="Metro.sidebar.close('#sb1'); return false;"><span class="mif-arrow-left mif-2x"></span></a>
+                            <div class="avatar">
+                                <img data-role="gravatar" data-email="sergey@pimenov.com.ua">
+                            </div>
+                            <span class="title fg-white" style="font-size: 18px; font-weight: 100">Metro 4 Components Library</span>
+                            <span class="subtitle fg-white"> 2018 &copy; Sergey Pimenov</span>
+                        </div>
+                    </aside>
+                </div>
+                <pre><code>
+                    &lt;div class="sidebar-header"&gt;
+                        &lt;a href="/" class="fg-white sub-action"
+                           onclick="Metro.sidebar.close('#sb1'); return false;"&gt;
+                            &lt;span class="mif-arrow-left mif-2x"&gt;&lt;/span&gt;
+                        &lt;/a&gt;
+                        &lt;div class="avatar"&gt;
+                            &lt;img data-role="gravatar" data-email="sergey@pimenov.com.ua"&gt;
+                        &lt;/div&gt;
+                        &lt;span class="title"&gt;Metro 4 Components Library&lt;/span&gt;
+                        &lt;span class="subtitle"&gt; 2018 &copy; Sergey Pimenov&lt;/span&gt;
+                    &lt;/div&gt;
+                </code></pre>
+
+                <h5>Sidebar header background</h5>
+                <p>
+                    By default, sidebar header have a <code>white</code> background color.
+                    To change it you must use color classes, add custom style or to, set image background, use special attribute <code>data-image="..."</code>.
+                </p>
+                <pre><code>
+                    &lt;div class="sidebar-header bg-red"&gt;
+                        ...
+                    &lt;/div&gt;
+
+                    ...or...
+
+                    &lt;div class="sidebar-header" style="background-color: red;"&gt;
+                        ...
+                    &lt;/div&gt;
+
+                    ...or...
+
+                    &lt;div class="sidebar-header" data-image="images/sb-bg-1.jpg"&gt;
+                        ...
+                    &lt;/div&gt;
+                </code></pre>
+
+                <h4 id="_sidebar_menu">Sidebar menu</h4>
+                <p>
+                    Sidebar menu contains links to site pages or other any targets. The menu is a list with links.
+                </p>
+                <pre><code>
+                    &lt;ul class="sidebar-menu"&gt;
+                        &lt;li&gt;&lt;a&gt;&lt;span class="mif-home icon"&gt;&lt;/span&gt;Home&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a&gt;&lt;span class="mif-books icon"&gt;&lt;/span&gt;Guide&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a&gt;&lt;span class="mif-files-empty icon"&gt;&lt;/span&gt;Examples&lt;/a&gt;&lt;/li&gt;
+                        &lt;li class="divider"&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a&gt;&lt;span class="mif-images icon"&gt;&lt;/span&gt;Icons&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                </code></pre>
+
+                <h5>Sidebar menu - grouping items</h5>
+                <p>
+                    You can grouping menu items. To mark group, use <code>&lt;li&gt;</code> with classes <code>.group-title</code> and <code>.divider</code>
+                </p>
+                <div class="example">
+                    <aside class="sidebar pos-relative open">
+                        <ul class="sidebar-menu">
+                            <li class="group-title">Main</li>
+                            <li><a><span class="mif-home icon"></span>Home</a></li>
+                            <li><a><span class="mif-books icon"></span>Guide</a></li>
+                            <li><a><span class="mif-files-empty icon"></span>Examples</a></li>
+                            <li class="group-title">Settings</li>
+                            <li><a><span class="mif-cogs icon"></span>Preferences</a></li>
+                            <li><a><span class="mif-user icon"></span>Profile</a></li>
+                            <li class="divider"></li>
+                            <li><a><span class="mif-exit icon"></span>Logout</a></li>
+                        </ul>
+                    </aside>
+                </div>
+                <pre><code>
+                    &lt;ul class="sidebar-menu"&gt;
+                        &lt;li class="group-title"&gt;Group one&lt;/li&gt;
+                        &lt;li&gt;&lt;a&gt;Item 1&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a&gt;Item 2&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a&gt;Item 3&lt;/a&gt;&lt;/li&gt;
+                        &lt;li class="divider"&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a&gt;Item 4&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a&gt;Item 5&lt;/a&gt;&lt;/li&gt;
+
+                        &lt;li class="group-title"&gt;Group two&lt;/li&gt;
+                        &lt;li&gt;&lt;a&gt;Item 6&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a&gt;Item 7&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                </code></pre>
+
+                <h3 id="_sidebar_toggle">Sidebar toggle</h3>
+                <p>
+                    You can set sidebar <code>toggle</code> with special attribute <code>data-toggle="..."</code>.
+                    Value for this attribute must be a valid element selector <code>id</code> or <code>class</code>.
+                    For sidebar toggle Metro 4 bind click event, who toggle sidebar state.
+                </p>
+                <div class="example p-0 no-overflow" style="height: 400px;">
+                    <aside class="sidebar pos-absolute z-2" data-role="sidebar" data-toggle="#sidebar-toggle-2">
+                        <div class="sidebar-header" data-image="images/sb-bg-1.jpg">
+                            <div class="avatar">
+                                <img data-role="gravatar" data-email="sergey@pimenov.com.ua">
+                            </div>
+                            <span class="title fg-white" style="font-size: 18px; font-weight: 100">Metro 4 Components Library</span>
+                            <span class="subtitle fg-white"> 2018 &copy; Sergey Pimenov</span>
+                        </div>
+                        <ul class="sidebar-menu">
+                            <li><a><span class="mif-home icon"></span>Home</a></li>
+                            <li><a><span class="mif-books icon"></span>Guide</a></li>
+                            <li><a><span class="mif-files-empty icon"></span>Examples</a></li>
+                            <li class="divider"></li>
+                            <li><a><span class="mif-images icon"></span>Icons</a></li>
+                        </ul>
+                    </aside>
+                    <div class="h-100 p-ab">
+                        <button class="button square pos-absolute pos-top-right alert"
+                                id="sidebar-toggle-2">
+                            <span class="mif-menu"></span>
+                        </button>
+                    </div>
+                </div>
+                <pre><code class="html">
+                    &lt;aside class="sidebar pos-absolute z-2" data-role="sidebar" data-toggle="#sidebar-toggle-2"&gt;
+                        &lt;div class="sidebar-header" data-image="images/sb-bg-1.jpg"&gt;
+                            &lt;div class="avatar"&gt;
+                                &lt;img data-role="gravatar" data-email="sergey@pimenov.com.ua"&gt;
+                            &lt;/div&gt;
+                            &lt;span class="title fg-white"&gt;Metro 4 Components Library&lt;/span&gt;
+                            &lt;span class="subtitle fg-white"&gt; 2018 &copy; Sergey Pimenov&lt;/span&gt;
+                        &lt;/div&gt;
+                        &lt;ul class="sidebar-menu"&gt;
+                            &lt;li&gt;&lt;a&gt;&lt;span class="mif-home icon"&gt;&lt;/span&gt;Home&lt;/a&gt;&lt;/li&gt;
+                            &lt;li&gt;&lt;a&gt;&lt;span class="mif-books icon"&gt;&lt;/span&gt;Guide&lt;/a&gt;&lt;/li&gt;
+                            &lt;li&gt;&lt;a&gt;&lt;span class="mif-files-empty icon"&gt;&lt;/span&gt;Examples&lt;/a&gt;&lt;/li&gt;
+                            &lt;li class="divider"&gt;&lt;/li&gt;
+                            &lt;li&gt;&lt;a&gt;&lt;span class="mif-images icon"&gt;&lt;/span&gt;Icons&lt;/a&gt;&lt;/li&gt;
+                        &lt;/ul&gt;
+                    &lt;/aside&gt;
+                    &lt;div class="h-100 p-ab"&gt;
+                        &lt;button class="button square pos-absolute pos-top-right"
+                                id="sidebar-toggle-2"&gt;
+                            &lt;span class="mif-menu"&gt;&lt;/span&gt;
+                        &lt;/button&gt;
+                    &lt;/div&gt;
+                </code></pre>
+
+                <h3 id="_sidebar_shifting">Shifting content</h3>
+                <p>
+                    You can use attribute <code>data-shift="..."</code> to create shifting content effect.
+                </p>
+                <div class="example p-0 no-overflow" style="height: 400px;">
+                    <aside class="sidebar pos-absolute z-2" data-role="sidebar" data-toggle="#sidebar-toggle-3" id="sb3" data-shift=".shifted-content">
+                        <div class="sidebar-header" data-image="images/sb-bg-1.jpg">
+                            <div class="avatar">
+                                <img data-role="gravatar" data-email="sergey@pimenov.com.ua">
+                            </div>
+                            <span class="title fg-white">Metro 4 Components Library</span>
+                            <span class="subtitle fg-white"> 2018 &copy; Sergey Pimenov</span>
+                        </div>
+                        <ul class="sidebar-menu">
+                            <li><a><span class="mif-home icon"></span>Home</a></li>
+                            <li><a><span class="mif-books icon"></span>Guide</a></li>
+                            <li><a><span class="mif-files-empty icon"></span>Examples</a></li>
+                            <li class="divider"></li>
+                            <li><a><span class="mif-images icon"></span>Icons</a></li>
+                        </ul>
+                    </aside>
+                    <div class="shifted-content h-100 p-ab">
+                        <div class="app-bar pos-absolute bg-red z-1" data-role="appbar" id="app-bar-2">
+                            <button class="app-bar-item c-pointer" id="sidebar-toggle-3"><span class="mif-menu fg-white"></span></button>
+                        </div>
+
+                        <div class="h-100 p-4">
+                            <p class="h1">What is Lorem Ipsum?</p>
+                            <p>
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                                when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                                It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+                                It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
+                                and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <pre><code>
+                    &lt;aside class="sidebar pos-absolute z-2"
+                           data-role="sidebar"
+                           data-toggle="#sidebar-toggle-3"
+                           id="sb3"
+                           data-shift=".shifted-content"&gt;
+                        &lt;div class="sidebar-header" data-image="images/sb-bg-1.jpg"&gt;
+                            &lt;div class="avatar"&gt;
+                                &lt;img data-role="gravatar" data-email="sergey@pimenov.com.ua"&gt;
+                            &lt;/div&gt;
+                            &lt;span class="title fg-white"&gt;Metro 4 Components Library&lt;/span&gt;
+                            &lt;span class="subtitle fg-white"&gt; 2018 &copy; Sergey Pimenov&lt;/span&gt;
+                        &lt;/div&gt;
+                        &lt;ul class="sidebar-menu"&gt;
+                            &lt;li&gt;&lt;a&gt;&lt;span class="mif-home icon"&gt;&lt;/span&gt;Home&lt;/a&gt;&lt;/li&gt;
+                            &lt;li&gt;&lt;a&gt;&lt;span class="mif-books icon"&gt;&lt;/span&gt;Guide&lt;/a&gt;&lt;/li&gt;
+                            &lt;li&gt;&lt;a&gt;&lt;span class="mif-files-empty icon"&gt;&lt;/span&gt;Examples&lt;/a&gt;&lt;/li&gt;
+                            &lt;li class="divider"&gt;&lt;/li&gt;
+                            &lt;li&gt;&lt;a&gt;&lt;span class="mif-images icon"&gt;&lt;/span&gt;Icons&lt;/a&gt;&lt;/li&gt;
+                        &lt;/ul&gt;
+                    &lt;/aside&gt;
+                    &lt;div class="shifted-content h-100 p-ab"&gt;
+                        &lt;div class="app-bar pos-absolute bg-red z-1" data-role="appbar"&gt;
+                            &lt;button class="app-bar-item c-pointer" id="sidebar-toggle-3"&gt;
+                                &lt;span class="mif-menu fg-white"&gt;&lt;/span&gt;
+                            &lt;/button&gt;
+                        &lt;/div&gt;
+
+                        &lt;div class="h-100 p-4"&gt;
+                            &lt;p class="h1"&gt;What is Lorem Ipsum?&lt;/p&gt;
+                            &lt;p&gt;
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+                                ...
+                            &lt;/p&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
+
+                <h3 id="_sidebar_static">Static sidebar</h3>
+                <p>
+                    You can set attribute <code>data-static="..."</code> with one of media points <code>md</code>, <code>lg</code>, <code>xl</code>, <code>xxl</code>
+                    to set rule when sidebar will be opened always.
+                    Also you can define elements, who must shifted when sidebar receive <code>static</code> state with attribute <code>data-static-shift="..."</code>.
+                </p>
+                <div class="example p-0 no-overflow" style="height: 400px;">
+                    <aside class="sidebar pos-absolute z-2"
+                           data-role="sidebar"
+                           data-toggle="#sidebar-toggle-4"
+                           id="sb4"
+                           data-shift=".shifted-content-2"
+                           data-static-shift=".shifted-content-2"
+                           data-static="md">
+                        <div class="sidebar-header" data-image="images/sb-bg-1.jpg">
+                            <div class="avatar">
+                                <img data-role="gravatar" data-email="sergey@pimenov.com.ua">
+                            </div>
+                            <span class="title fg-white">Metro 4 Components Library</span>
+                            <span class="subtitle fg-white"> 2018 &copy; Sergey Pimenov</span>
+                        </div>
+                        <ul class="sidebar-menu">
+                            <li><a><span class="mif-home icon"></span>Home</a></li>
+                            <li><a><span class="mif-books icon"></span>Guide</a></li>
+                            <li><a><span class="mif-files-empty icon"></span>Examples</a></li>
+                            <li class="divider"></li>
+                            <li><a><span class="mif-images icon"></span>Icons</a></li>
+                        </ul>
+                    </aside>
+                    <div class="shifted-content-2 h-100 p-ab">
+                        <div class="app-bar pos-absolute bg-red z-1" data-role="appbar" id="app-bar-3">
+                            <button class="app-bar-item c-pointer" id="sidebar-toggle-4"><span class="mif-menu fg-white"></span></button>
+                        </div>
+
+                        <div class="h-100 p-4">
+                            <p class="h1">What is Lorem Ipsum?</p>
+                            <p>
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <pre><code>
+                    &lt;aside class="sidebar pos-absolute z-2"
+                           data-role="sidebar"
+                           data-toggle="#sidebar-toggle-4"
+                           id="sb4"
+                           data-shift=".shifted-content-2"
+                           data-static-shift=".shifted-content-2"
+                           data-static="md"&gt;
+                        &lt;div class="sidebar-header" data-image="images/sb-bg-1.jpg"&gt;
+                            &lt;div class="avatar"&gt;
+                                &lt;img data-role="gravatar" data-email="sergey@pimenov.com.ua"&gt;
+                            &lt;/div&gt;
+                            &lt;span class="title fg-white"&gt;Metro 4 Components Library&lt;/span&gt;
+                            &lt;span class="subtitle fg-white"&gt; 2018 &copy; Sergey Pimenov&lt;/span&gt;
+                        &lt;/div&gt;
+                        &lt;ul class="sidebar-menu"&gt;
+                            &lt;li&gt;&lt;a&gt;&lt;span class="mif-home icon"&gt;&lt;/span&gt;Home&lt;/a&gt;&lt;/li&gt;
+                            &lt;li&gt;&lt;a&gt;&lt;span class="mif-books icon"&gt;&lt;/span&gt;Guide&lt;/a&gt;&lt;/li&gt;
+                            &lt;li&gt;&lt;a&gt;&lt;span class="mif-files-empty icon"&gt;&lt;/span&gt;Examples&lt;/a&gt;&lt;/li&gt;
+                            &lt;li class="divider"&gt;&lt;/li&gt;
+                            &lt;li&gt;&lt;a&gt;&lt;span class="mif-images icon"&gt;&lt;/span&gt;Icons&lt;/a&gt;&lt;/li&gt;
+                        &lt;/ul&gt;
+                    &lt;/aside&gt;
+                    &lt;div class="shifted-content-2 h-100 p-ab"&gt;
+                        &lt;div class="appbar pos-absolute bg-red z-1" data-role="appbar"&gt;
+                            &lt;button class="app-bar-item c-pointer" id="sidebar-toggle-4"&gt;
+                                &lt;span class="mif-menu fg-white"&gt;&lt;/span&gt;
+                            &lt;/button&gt;
+                        &lt;/div&gt;
+
+                        &lt;div class="h-100 p-4"&gt;
+                            &lt;p class="h1"&gt;What is Lorem Ipsum?&lt;/p&gt;
+                            &lt;p&gt;
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...
+                            &lt;/p&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
+
+                <h3 id="_sidebar_options">Options</h3>
+                <p>
+                    You can set any options for sidebar:
+                </p>
+                <table class="table table-border cell-border options-table mt-2">
+                    <thead>
+                    <tr>
+                        <td>Options</td>
+                        <td>Data-*</td>
+                        <td>Default</td>
+                        <td>Description</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>shift</td>
+                        <td><code>data-shift</code></td>
+                        <td></td>
+                        <td>Set elements selectors who will be shifted</td>
+                    </tr>
+                    <tr>
+                        <td>staticShift</td>
+                        <td><code>data-static-shift</code></td>
+                        <td></td>
+                        <td>Set elements selectors who will be shifted when sidebar in static mode</td>
+                    </tr>
+                    <tr>
+                        <td>toggle</td>
+                        <td><code>data-toggle</code></td>
+                        <td></td>
+                        <td>Set sidebar toggle element</td>
+                    </tr>
+                    <tr>
+                        <td>static</td>
+                        <td><code>data-static</code></td>
+                        <td></td>
+                        <td>Set media point for static mode</td>
+                    </tr>
+                    <tr>
+                        <td>menuItemClick</td>
+                        <td><code>data-menu-item-click</code></td>
+                        <td>true</td>
+                        <td>If true, sidebar will be closed when user click on sidebar menu item</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <h3 id="_stepper_events">Events</h3>
+                <p>
+                    When sidebar works, his generate events. You can use a callback for these events to interact with a stepper.
+                </p>
+                <table class="table cell-border table-border options-table">
+                    <thead>
+                    <tr>
+                        <th>Event</th>
+                        <th>Data-*</th>
+                        <th>Desc</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>onOpen(sb)</td>
+                        <td><code>data-on-open</code></td>
+                        <td>Fired when sidebar open</td>
+                    </tr>
+                    <tr>
+                        <td>onClose(sb)</td>
+                        <td><code>data-on-close</code></td>
+                        <td>Fired when sidebar close</td>
+                    </tr>
+                    <tr>
+                        <td>onToggle(sb)</td>
+                        <td><code>data-on-toggle</code></td>
+                        <td>Fired when sidebar toggle state</td>
+                    </tr>
+                    <tr>
+                        <td>onStaticSet(sb)</td>
+                        <td><code>data-on-static-set</code></td>
+                        <td>Fired when sidebar receive static state</td>
+                    </tr>
+                    <tr>
+                        <td>onStaticLoss(sb)</td>
+                        <td><code>data-on-static-loss</code></td>
+                        <td>Fired when sidebar loss static state</td>
+                    </tr>
+                    <tr>
+                        <td>onSidebarCreate(element)</td>
+                        <td><code>data-on-sidebar-create</code></td>
+                        <td>Fired when sidebar created</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <h3 id="_sidebar_methods">Methods</h3>
+                <p>
+                    To interact with component you can use methods:
+                </p>
+                <table class="table cell-border table-border options-table">
+                    <thead>
+                    <tr>
+                        <th>Method</th>
+                        <th>Desc</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><code>open()</code></td>
+                        <td>Open sidebar</td>
+                    </tr>
+                    <tr>
+                        <td><code>close()</code></td>
+                        <td>Close sidebar</td>
+                    </tr>
+                    <tr>
+                        <td><code>toggle()</code></td>
+                        <td>Toggle sidebar state</td>
+                    </tr>
+                    <tr>
+                        <td><code>isOpen()</code></td>
+                        <td>Use this method to check sidebar state</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <h3 id="_sidebar_object">Sidebar object</h3>
+                <p>
+                    Metro 4 contains special object <code>Metro.sidebar</code> to manipulate <code>Sidebars</code>.
+                    This object contains next methods:
+                </p>
+                <ul>
+                    <li><strong>open(el)</strong> - open Sidebar</li>
+                    <li><strong>close(el)</strong> - close Sidebar</li>
+                    <li><strong>toggle(el)</strong> - toggle Sidebar state</li>
+                    <li><strong>isSidebar(el)</strong> - check if element is Sidebar instance</li>
+                    <li><strong>isOpen(el)</strong> - check if sidebar is open</li>
+                </ul>
+            </main>
+        </div>
+
+    </div>
+
+    <script src="docsearch/docsearch.min.js"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="metro/js/metro.js?ver=@@b-version"></script>
+    <script src="highlight/highlight.pack.js"></script>
+    <script src="js/clipboard.min.js"></script>
+    <script src="js/site.js"></script>
+    <!-- ads-script -->
+    <!-- ga-script -->
+    <!-- hit-ua -->
+</body>
+</html>

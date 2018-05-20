@@ -21,6 +21,7 @@ var Calendar = {
         this.locale = null;
         this.minYear = this.current.year - this.options.yearsBefore;
         this.maxYear = this.current.year + this.options.yearsAfter;
+        this.offset = (new Date()).getTimezoneOffset() / 60 + 1;
 
         this._setOptionsFromDOM();
         this._create();

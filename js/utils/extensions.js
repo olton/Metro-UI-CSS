@@ -146,3 +146,23 @@ Date.prototype.format = function(format, locale){
         }[sMatch] || sMatch;
     });
 };
+
+Date.prototype.addHours = function(n) {
+    this.setTime(this.getTime() + (n*60*60*1000));
+    return this;
+};
+
+Date.prototype.addDays = function(n) {
+    this.setDate(this.getDate() + (n));
+    return this;
+};
+
+Date.prototype.addMonths = function(n) {
+    this.setMonth(this.getMonth() + (n));
+    return this;
+};
+
+Date.prototype.addYears = function(n) {
+    this.setFullYear(this.getFullYear() + (n));
+    return this;
+};
