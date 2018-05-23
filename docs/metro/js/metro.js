@@ -13703,6 +13703,7 @@ var Sorter = {
         sortTarget: null,
         sortContent: null,
         sortDir: "asc",
+        sortStart: true,
         onSortStart: Metro.noop,
         onSortStop: Metro.noop,
         onSortItemSwitch: Metro.noop,
@@ -13732,9 +13733,13 @@ var Sorter = {
     },
 
     _createStructure: function(){
-        var o = this.options;
+        var element = this.element, o = this.options;
 
-        if (o.sortTarget !== null) {
+        if (o.sortTarget === null) {
+            o.sortTarget = element.children()[0].tagName;
+        }
+
+        if (o.sortStart === true) {
             this.sort(o.sortDir);
         }
     },
@@ -13833,6 +13838,21 @@ Metro.plugin('sorter', Sorter);
 Metro['sorter'] = {
     create: function(el, op){
         return $(el).sorter(op);
+    },
+
+    isSorter: function(el){
+        return Utils.isMetroObject(el, "sorter");
+    },
+
+    sort: function(el, dir){
+        if (!this.isSorter(el)) {
+            return false;
+        }
+        var sorter = $(el).data("sorter");
+        if (dir === undefined) {
+            dir = "asc";
+        }
+        sorter.sort(dir);
     }
 };
 
