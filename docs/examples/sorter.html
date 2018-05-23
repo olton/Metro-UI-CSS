@@ -35,74 +35,26 @@
 </head>
 <body>
     <div class="container">
-        <h5>id01</h5>
-        <ul id="id01" data-role="sorter" data-sort-target="li">
-            <li>Oslo</li>
-            <li>Stockholm</li>
-            <li>Helsinki</li>
-            <li>Berlin</li>
-            <li>Rome</li>
-            <li>Madrid</li>
-        </ul>
+        <div class="example">
+            <div data-role="sorter" data-sort-target="p" data-sort-dir="desc">
+                <span class="text-small d-block mb-1">...These paragraphs will be sorted</span>
+                <p class="m-0">Oslo</p>
+                <p class="m-0">Stockholm</p>
+                <p class="m-0">Helsinki</p>
+                <p class="m-0">Berlin</p>
+                <p class="m-0">Rome</p>
+                <p class="m-0">Madrid</p>
 
-        <h5>id02</h5>
-        <ul id="id02" data-role="sorter" data-sort-target="li" data-sort-content="a" data-sort-dir="asc">
-            <li><a>3</a></li>
-            <li><a>1</a></li>
-            <li><a>5</a></li>
-            <li><a>6</a></li>
-            <li><a>2</a></li>
-            <li><a>4</a></li>
-        </ul>
-
-
-        <h5>id03</h5>
-        <div>
-            <button class="button" onclick="$('#id03').attr('data-sort-dir', 'asc')">Sort by Asc</button>
-            <button class="button" onclick="$('#id03').attr('data-sort-dir', 'desc')">Sort by Desc</button>
-        </div>
-
-        <ul id="id03" data-role="sorter">
-            <li><a>3</a></li>
-            <li><a>1</a></li>
-            <li class="skip"><a>5</a></li>
-            <li><a>6</a></li>
-            <li><a>2</a></li>
-            <li><a>4</a></li>
-        </ul>
-
-        <h5>id04</h5>
-        <div id="ido4" data-role="sorter" data-sort-dir="desc">
-            <p>1</p>
-            <p>2</p>
-            <p>3</p>
-            <p>4</p>
-            <p>5</p>
-        </div>
-
-        <h5>id05</h5>
-        <div id="id05">
-            <p>3</p>
-            <p>1</p>
-            <p>5</p>
-            <p>6</p>
-            <p>2</p>
-            <p>4</p>
+                <span class="text-small d-block mb-1 mt-2">...The blocks below will not participate in sorting</span>
+                <div>3</div>
+                <div>1</div>
+                <div>2</div>
+            </div>
         </div>
     </div>
 
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../metro/js/metro.js"></script>
     <!-- ads-script -->
-
-    <script>
-        var el = Metro.sorter.create("#id05", {
-            sortTarget: "p",
-            sortDir: "desc"
-        });
-
-        console.log(el);
-    </script>
-
 </body>
 </html>

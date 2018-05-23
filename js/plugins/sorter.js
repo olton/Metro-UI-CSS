@@ -3,7 +3,7 @@ var Sorter = {
         this.options = $.extend( {}, this.options, options );
         this.elem  = elem;
         this.element = $(elem);
-        this.sorted = false;
+        this.initial = [];
 
         this._setOptionsFromDOM();
         this._create();
@@ -16,6 +16,7 @@ var Sorter = {
         sortContent: null,
         sortDir: "asc",
         sortStart: true,
+        saveInitial: true,
         onSortStart: Metro.noop,
         onSortStop: Metro.noop,
         onSortItemSwitch: Metro.noop,
@@ -51,6 +52,8 @@ var Sorter = {
             o.sortTarget = element.children()[0].tagName;
         }
 
+        this.initial = element.find(o.sortTarget).get();
+
         if (o.sortStart === true) {
             this.sort(o.sortDir);
         }
@@ -74,49 +77,89 @@ var Sorter = {
             }
         }
 
-        return content.toLowerCase().replace(/[\n\r]+|[\s]{2,}/g, ' ').trim();
+        return content.toLowerCase().trim();
     },
 
     sort: function(dir){
-        var element = this.element, o = this.options;
-        var switching = true, items, i, shouldSwitch, content_1, content_2;
+        var that = this, element = this.element, o = this.options;
+        var items;
+        var id = Utils.uniqueId();
+        var prev;
 
-        if (dir === undefined) {
-            dir = o.sortDir;
+        if (dir !== undefined) {
+            o.sortDir = dir;
         }
 
-        this.sorted = false;
+        items = element.find(o.sortTarget).get();
+
+        if (items.length === 0) {
+            return ;
+        }
+
+        prev = $("<div>").attr("id", id).insertBefore($(element.find(o.sortTarget)[0]));
 
         Utils.exec(o.onSortStart, [element], element[0]);
 
-        while (switching) {
-            switching = false;
-            items = element.find(o.sortTarget);
-            if (items.length === 0) {
-                break;
+        items.sort(function(a, b){
+            var c1 = that._getItemContent(a);
+            var c2 = that._getItemContent(b);
+            var result = 0;
+
+            if (c1 < c2 ) {
+                return result = -1;
             }
 
-            for(i = 0; i < items.length - 1; i++) {
-                shouldSwitch = false;
-
-                content_1 = this._getItemContent(items[i]);
-                content_2 = this._getItemContent(items[i + 1]);
-
-                if (dir === "asc" ? content_1 > content_2 : content_1 < content_2) {
-                    shouldSwitch = true;
-                    break;
-                }
+            if (c1 > c2 ) {
+                return result = 1;
             }
-            if (shouldSwitch) {
-                items[i].parentNode.insertBefore(items[i + 1], items[i]);
-                switching = true;
-                Utils.exec(o.onSortItemSwitch, [items[i + 1], items[i]], element[0]);
+
+            if (result !== 0) {
+                Utils.exec(o.onSortItemSwitch, [a, b], element[0]);
             }
+
+            return result;
+        });
+
+        if (o.sortDir === "desc") {
+            items.reverse();
         }
 
-        this.sorted = true;
+        element.find(o.sortTarget).remove();
+
+        $.each(items, function(){
+            var $this = $(this);
+            $this.insertAfter(prev);
+            prev = $this;
+        });
+
+        $("#"+id).remove();
 
         Utils.exec(o.onSortStop, [element], element[0]);
+    },
+
+    reset: function(){
+        var that = this, element = this.element, o = this.options;
+        var items;
+        var id = Utils.uniqueId();
+        var prev;
+
+        items = this.initial;
+
+        if (items.length === 0) {
+            return ;
+        }
+
+        prev = $("<div>").attr("id", id).insertBefore($(element.find(o.sortTarget)[0]));
+
+        element.find(o.sortTarget).remove();
+
+        $.each(items, function(){
+            var $this = $(this);
+            $this.insertAfter(prev);
+            prev = $this;
+        });
+
+        $("#"+id).remove();
     },
 
     changeAttribute: function(attributeName){
@@ -165,5 +208,13 @@ Metro['sorter'] = {
             dir = "asc";
         }
         sorter.sort(dir);
+    },
+
+    reset: function(el){
+        if (!this.isSorter(el)) {
+            return false;
+        }
+        var sorter = $(el).data("sorter");
+        sorter.reset();
     }
 };
