@@ -1,3 +1,6 @@
+### 4.2.8
++ [x] Sorter: new component
+
 ### 4.2.7
 + [x] Accordion: fix events context to html element
 + [x] Date picker: fix for negative time zone (issue #1084)
