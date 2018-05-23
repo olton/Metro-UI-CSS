@@ -173,7 +173,7 @@
                     If no attribute is specified, the <code>tagName</code> property of the first child element will be used as the value.
                 </p>
                 <div class="example">
-                    <div data-role="sorter" data-sort-target=".cell-md-2" data-sort-dir="desc">
+                    <div data-role="sorter" data-sort-target="p">
                         <span class="text-small d-block mb-1">...These paragraphs will be sorted</span>
                         <p class="m-0">Oslo</p>
                         <p class="m-0">Stockholm</p>
@@ -302,6 +302,7 @@
                 </p>
                 <ul class="unstyled-list mt-2">
                     <li><strong>sort(dir)</strong> - Sort in specified direction</li>
+                    <li><strong>reset()</strong> - Reset element to initial state before sorting</li>
                 </ul>
                 <pre><code>
                     var sorter = $(el).data('sorter');
@@ -358,6 +359,7 @@
                     <div class="mb-2">
                         <button class="button" onclick="$('#sorter-attr').attr('data-sort-dir', 'asc')">Sort Asc</button>
                         <button class="button" onclick="$('#sorter-attr').attr('data-sort-dir', 'desc')">Sort Desc</button>
+                        <button class="button" onclick="$('#sorter-attr').data('sorter').reset()">Reset</button>
                     </div>
                     <ul data-role="sorter" data-sort-start="false" id="sorter-attr">
                         <li>Oslo</li>
