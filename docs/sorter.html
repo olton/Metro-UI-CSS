@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <meta name="twitter:site" content="@metroui">
+    <meta name="twitter:creator" content="@pimenov_sergey">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Metro 4 Components Library">
+    <meta name="twitter:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.">
+    <meta name="twitter:image" content="https://metroui.org.ua/images/m4-logo-social.png">
+
+    <meta property="og:url" content="https://metroui.org.ua/v4/index.html">
+    <meta property="og:title" content="Metro 4 Components Library">
+    <meta property="og:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:secure_url" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="968">
+    <meta property="og:image:height" content="504">
+
+    <meta name="author" content="Sergey Pimenov">
+    <meta name="description" content="Use Sorter component to sort an HTML element by content. The most popular HTML, CSS, and JS library in Metro style.">
+    <meta name="keywords" content="HTML, CSS, JS, Metro, CSS3, Javascript, HTML5, UI, Library, Web, Development, Framework">
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <link href="metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
+    <link href="highlight/styles/github.css" rel="stylesheet">
+    <link href="docsearch/docsearch.min.css" rel="stylesheet">
+    <link href="css/site.css" rel="stylesheet">
+
+    <title>Sorter - Metro 4 :: Popular HTML, CSS and JS library</title>
+</head>
+<body>
+    <div class="container-fluid">
+
+        <div class="row flex-xl-nowrap">
+            <div class="cell-md-3 cell-xl-2 pr-0 border-right bd-light" id="sidenav">
+            </div>
+
+            <div class="d-none d-block-xl cell-xl-2 order-2 border-left bd-light toc-wrapper">
+                <h5>Table of contents</h5>
+                <hr/>
+                <ul class="toc-nav">
+                    <li class="toc-entry"><a href="#">Sorter</a></li>
+                    <li class="toc-entry"><a href="#_sorter_about">About</a></li>
+                    <li class="toc-entry">
+                        <a href="#_sorter_create">Create sortable</a>
+                        <ul>
+                            <li class="toc-entry"><a href="#_sorter_role">Role sorter</a></li>
+                            <li class="toc-entry"><a href="#_sorter_start">Sorter start</a></li>
+                            <li class="toc-entry"><a href="#_sorter_target">Target</a></li>
+                            <li class="toc-entry"><a href="#_sorter_content">Content</a></li>
+                            <li class="toc-entry"><a href="#_sorter_dir">Direction</a></li>
+                        </ul>
+                    </li>
+                    <li class="toc-entry"><a href="#_sorter_events">Events</a></li>
+                    <li class="toc-entry"><a href="#_sorter_methods">Methods</a></li>
+                    <li class="toc-entry"><a href="#_sorter_object">Sorter object</a></li>
+                    <li class="toc-entry"><a href="#_sorter_observe">Observe</a></li>
+                </ul>
+
+            </div>
+
+            <main class="cell-md-9 cell-xl-8 order-1 pr-1-sx pl-1-sx pr-5-md pl-5-md">
+                <div class="place-right d-none d-block-lg" style="width: 200px;">
+                    <img src="images/logo.png" class="w-100">
+                </div>
+
+                <h1>Sorter</h1>
+                <p class="text-leader">
+                    Use Sorter component to sort an HTML element by content.
+                </p>
+
+                <!-- ads-html -->
+
+                <h3 id="_sorter_about">About</h3>
+                <p class="text-small">New in 4.2.8</p>
+                <p>
+                    Sometimes you need to sort the HTML elements by content.
+                    For example, you have a list of <code>&lt;ul&gt;</code> and you need to sort its elements.
+                    For these purposes in Metro 4 implemented a special component <code>Sorter</code>, which just solves this problem.
+                </p>
+                <div class="example">
+                    <div class="row">
+                        <div class="cell-md-4">
+                            <h5>Unsorted list</h5>
+                            <ul id="id01">
+                                <li>Oslo</li>
+                                <li>Stockholm</li>
+                                <li>Helsinki</li>
+                                <li>Berlin</li>
+                                <li>Rome</li>
+                                <li>Madrid</li>
+                            </ul>
+                        </div>
+                        <div class="cell-md-4">
+                            <h5>Sorted asc</h5>
+                            <ul id="id02" data-role="sorter">
+                                <li>Oslo</li>
+                                <li>Stockholm</li>
+                                <li>Helsinki</li>
+                                <li>Berlin</li>
+                                <li>Rome</li>
+                                <li>Madrid</li>
+                            </ul>
+                        </div>
+                        <div class="cell-md-4">
+                            <h5>Sorted desc</h5>
+                            <ul id="id03" data-role="sorter" data-sort-dir="desc">
+                                <li>Oslo</li>
+                                <li>Stockholm</li>
+                                <li>Helsinki</li>
+                                <li>Berlin</li>
+                                <li>Rome</li>
+                                <li>Madrid</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 id="_sorter_create">Create sortable element</h3>
+                <p>
+                    To create sortable element, you must add role <code>data-role="sorter"</code> to element and define which elements will be sorted and by what content.
+                    To set sorted elements use attribute <code>data-sort-target="..."</code> and to set content use attribute <code>data-sort-content="..."</code>.
+                    By default, <code>sorter</code> sort elements by <code>asc</code>. You can setup sort direction with attribute <code>data-sort-dir="asc|desc"</code>.
+                </p>
+
+                <h4 id="_sorter_role">Role sorter</h4>
+                <p>
+                    For simple ascending sort, add role defining attribute <code>data-role="sorter"</code> to the element:
+                </p>
+                <pre><code>
+                    &lt;ul data-role="sorter"&gt;
+                        &lt;li&gt;Oslo&lt;/li&gt;
+                        &lt;li&gt;Stockholm&lt;/li&gt;
+                        &lt;li&gt;Helsinki&lt;/li&gt;
+                        &lt;li&gt;Berlin&lt;/li&gt;
+                        &lt;li&gt;Rome&lt;/li&gt;
+                        &lt;li&gt;Madrid&lt;/li&gt;
+                    &lt;/ul&gt;
+                </code></pre>
+
+                <h4 id="_sorter_start">Sorter start</h4>
+                <p>
+                    By default, sorter start sort immediate after create sorter instance.
+                    If you need starting sort manually, set attribute <code>data-sort-start="false"</code>.
+                    You can start sorting later using a special <a href="#_sorter_methods">method</a>.
+                </p>
+                <div class="example">
+                    <div class="mb-2">
+                        <button class="button" onclick="Metro.sorter.sort('#sorter-start', 'asc')">Sort Asc</button>
+                        <button class="button" onclick="Metro.sorter.sort('#sorter-start', 'desc')">Sort Desc</button>
+                    </div>
+                    <ul data-role="sorter" data-sort-start="false" id="sorter-start">
+                        <li>Oslo</li>
+                        <li>Stockholm</li>
+                        <li>Helsinki</li>
+                        <li>Berlin</li>
+                        <li>Rome</li>
+                        <li>Madrid</li>
+                    </ul>
+                </div>
+
+                <h4 id="_sorter_target">Sort targets</h4>
+                <p>
+                    Attribute <code>data-sort-target="..."</code> defined sub elements who will ben sorted.
+                    This should be the correct element selector: <code>tagName</code> or <code>className</code>.
+                    If no attribute is specified, the <code>tagName</code> property of the first child element will be used as the value.
+                </p>
+                <div class="example">
+                    <div data-role="sorter" data-sort-target=".cell-md-2" data-sort-dir="desc">
+                        <span class="text-small d-block mb-1">...These paragraphs will be sorted</span>
+                        <p class="m-0">Oslo</p>
+                        <p class="m-0">Stockholm</p>
+                        <p class="m-0">Helsinki</p>
+                        <p class="m-0">Berlin</p>
+                        <p class="m-0">Rome</p>
+                        <p class="m-0">Madrid</p>
+
+                        <span class="text-small d-block mb-1 mt-2">...The blocks below will not participate in sorting</span>
+                        <div>3</div>
+                        <div>1</div>
+                        <div>2</div>
+                    </div>
+                </div>
+                <pre><code>
+                    &lt;div data-role="sorter" data-sort-target="p"&gt;
+                        ...These paragraphs will be sorted
+                        &lt;p&gt;Oslo&lt;/p&gt;
+                        &lt;p&gt;Stockholm&lt;/p&gt;
+                        &lt;p&gt;Helsinki&lt;/p&gt;
+                        &lt;p&gt;Berlin&lt;/p&gt;
+                        &lt;p&gt;Rome&lt;/p&gt;
+                        &lt;p&gt;Madrid&lt;/p&gt;
+
+                        ...The blocks below will not participate in sorting
+                        &lt;div&gt;3&lt;/div&gt;
+                        &lt;div&gt;1&lt;/div&gt;
+                        &lt;div&gt;2&lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
+
+                <h4 id="_sorter_content">Sort content</h4>
+                <p>
+                    By default for sorting component <code>Sorter</code> use <code>contentText</code> property of the sortable elements.
+                    To change it use attribute <code>data-sort-content="..."</code>.
+                    This should be the correct element selector: <code>tagName</code> or <code>className</code>.
+                </p>
+                <div class="example">
+                    <ul data-role="sorter" data-sort-content=".sort">
+                        <li><span class="sort">6</span> Oslo</li>
+                        <li><span class="sort">5</span> Stockholm</li>
+                        <li><span class="sort">4</span> Helsinki</li>
+                        <li><span class="sort">3</span> Berlin</li>
+                        <li><span class="sort">2</span> Rome</li>
+                        <li><span class="sort">1</span> Madrid</li>
+                    </ul>
+                </div>
+                <pre><code>
+                    &lt;ul data-role="sorter" data-sort-content=".sort"&gt;
+                        &lt;li&gt;&lt;span class="sort"&gt;6&lt;/span&gt; Oslo&lt;/li&gt;
+                        &lt;li&gt;&lt;span class="sort"&gt;5&lt;/span&gt; Stockholm&lt;/li&gt;
+                        &lt;li&gt;&lt;span class="sort"&gt;4&lt;/span&gt; Helsinki&lt;/li&gt;
+                        &lt;li&gt;&lt;span class="sort"&gt;3&lt;/span&gt; Berlin&lt;/li&gt;
+                        &lt;li&gt;&lt;span class="sort"&gt;2&lt;/span&gt; Rome&lt;/li&gt;
+                        &lt;li&gt;&lt;span class="sort"&gt;1&lt;/span&gt; Madrid&lt;/li&gt;
+                    &lt;/ul&gt;
+                </code></pre>
+
+                <h4 id="_sorter_dir">Sort direction</h4>
+                <p>
+                    By default, <code>sorter</code> sorts element be <code>ascending</code>.
+                    To change it, use attribute <code>data-sort-dir="..."</code>.
+                    Value for this attribute must be <code>asc</code> or <code>desc</code>.
+                </p>
+                <div class="example">
+                    <ul data-role="sorter" data-sort-dir="desc">
+                        <li>Oslo</li>
+                        <li>Stockholm</li>
+                        <li>Helsinki</li>
+                        <li>Berlin</li>
+                        <li>Rome</li>
+                        <li>Madrid</li>
+                    </ul>
+                </div>
+                <pre><code>
+                    &lt;ul data-role="sorter" data-sort-dir="desc"&gt;
+                        &lt;li&gt;Oslo&lt;/li&gt;
+                        &lt;li&gt;Stockholm&lt;/li&gt;
+                        &lt;li&gt;Helsinki&lt;/li&gt;
+                        &lt;li&gt;Berlin&lt;/li&gt;
+                        &lt;li&gt;Rome&lt;/li&gt;
+                        &lt;li&gt;Madrid&lt;/li&gt;
+                    &lt;/ul&gt;
+                </code></pre>
+
+                <h3 id="_sorter_events">Events</h3>
+                <p>
+                    When sorter works, it generated the numbers of events.
+                    You can use callback for this event to behavior with it.
+                </p>
+                <table class="table cell-border table-border options-table mt-2">
+                    <thead>
+                    <tr>
+                        <th>Event</th>
+                        <th>Data-*</th>
+                        <th>Desc</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>onSorterCreate(el)</td>
+                        <td><code>data-on-sorter-create</code></td>
+                        <td>Fired when sorter was created</td>
+                    </tr>
+                    <tr>
+                        <td>onSortStart(el)</td>
+                        <td><code>data-on-sort-start</code></td>
+                        <td>Fired when sort started</td>
+                    </tr>
+                    <tr>
+                        <td>onSortStop(el)</td>
+                        <td><code>data-on-sort-stop</code></td>
+                        <td>Fired when sort finished</td>
+                    </tr>
+                    <tr>
+                        <td>onSortItemSwitch(i1, i2)</td>
+                        <td><code>data-on-sort-item-switch</code></td>
+                        <td>Fired when sorter switch items</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <h3 id="_sorter_methods">Methods</h3>
+                <p>
+                    You can use Sorter methods ti interact with the sorter component.
+                </p>
+                <ul class="unstyled-list mt-2">
+                    <li><strong>sort(dir)</strong> - Sort in specified direction</li>
+                </ul>
+                <pre><code>
+                    var sorter = $(el).data('sorter');
+                    sorter.sort('asc');
+                    sorter.sort('desc');
+                </code></pre>
+
+                <h3 id="_sorter_object">Sorter object</h3>
+                <p>
+                    Metro 4 contains special object <code>Metro.sorter</code>.
+                    This object contains next methods:
+                </p>
+                <ul class="unstyled-list mt-2">
+                    <li><strong>create(el, options)</strong> - create Sorter</li>
+                    <li><strong>isSorter(el)</strong> - Check if element is Sorter instance</li>
+                    <li><strong>sort(el, dir)</strong> - Sorting data in specified sorter and direction</li>
+                </ul>
+                <pre><code>
+                    ...html
+                    &lt;ul id="sortable-list"&gt;
+                        &lt;li&gt;Oslo&lt;/li&gt;
+                        &lt;li&gt;Stockholm&lt;/li&gt;
+                        &lt;li&gt;Helsinki&lt;/li&gt;
+                        &lt;li&gt;Berlin&lt;/li&gt;
+                        &lt;li&gt;Rome&lt;/li&gt;
+                        &lt;li&gt;Madrid&lt;/li&gt;
+                    &lt;/ul&gt;
+
+                    ...javascript
+                    var sorter = Metro.sorter.create("#sortable-list");
+                </code></pre>
+
+                <pre><code>
+                    ...html
+                    &lt;ul id="sortable-list" data-role="sorter"&gt;
+                        &lt;li&gt;Oslo&lt;/li&gt;
+                        &lt;li&gt;Stockholm&lt;/li&gt;
+                        &lt;li&gt;Helsinki&lt;/li&gt;
+                        &lt;li&gt;Berlin&lt;/li&gt;
+                        &lt;li&gt;Rome&lt;/li&gt;
+                        &lt;li&gt;Madrid&lt;/li&gt;
+                    &lt;/ul&gt;
+
+                    ...javascript
+                    Metro.sorter.sort("#sortable-list", "asc");
+                    Metro.sorter.sort("#sortable-list", "desc");
+                </code></pre>
+
+                <h3 id="_sorter_observe">Observe sorter attributes</h3>
+                <p>
+                    You can change attributes <code>data-sort-dir</code> and <code>data-sort-content</code> in runtime to change content sorting.
+                </p>
+                <div class="example">
+                    <div class="mb-2">
+                        <button class="button" onclick="$('#sorter-attr').attr('data-sort-dir', 'asc')">Sort Asc</button>
+                        <button class="button" onclick="$('#sorter-attr').attr('data-sort-dir', 'desc')">Sort Desc</button>
+                    </div>
+                    <ul data-role="sorter" data-sort-start="false" id="sorter-attr">
+                        <li>Oslo</li>
+                        <li>Stockholm</li>
+                        <li>Helsinki</li>
+                        <li>Berlin</li>
+                        <li>Rome</li>
+                        <li>Madrid</li>
+                    </ul>
+                </div>
+                <pre><code>
+                    &lt;div&gt;
+                        &lt;button class="button"
+                                onclick="$('#sorter-attr').attr('data-sort-dir', 'asc')"&gt;
+                            Sort Asc
+                        &lt;/button&gt;
+                        &lt;button class="button"
+                                onclick="$('#sorter-attr').attr('data-sort-dir', 'desc')"&gt;
+                            Sort Desc
+                        &lt;/button&gt;
+                    &lt;/div&gt;
+
+                    &lt;ul data-role="sorter"
+                        data-sort-start="false"
+                        id="sorter-attr"&gt;
+                        &lt;li&gt;Oslo&lt;/li&gt;
+                        &lt;li&gt;Stockholm&lt;/li&gt;
+                        &lt;li&gt;Helsinki&lt;/li&gt;
+                        &lt;li&gt;Berlin&lt;/li&gt;
+                        &lt;li&gt;Rome&lt;/li&gt;
+                        &lt;li&gt;Madrid&lt;/li&gt;
+                    &lt;/ul&gt;
+                </code></pre>
+
+            </main>
+        </div>
+
+    </div>
+
+    <script src="docsearch/docsearch.min.js"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="metro/js/metro.js?ver=@@b-version"></script>
+    <script src="highlight/highlight.pack.js"></script>
+    <script src="js/clipboard.min.js"></script>
+    <script src="js/site.js"></script>
+    <!-- ads-script -->
+    <!-- ga-script -->
+    <!-- hit-ua -->
+</body>
+</html>
