@@ -104,7 +104,7 @@ Metro['activity'] = {
             content: activity + text,
             defaultAction: false,
             clsContent: "d-flex flex-column flex-justify-center flex-align-center bg-transparent no-shadow w-auto",
-            clsDialog: "no-shadow bg-transparent global-dialog",
+            clsDialog: "no-border no-shadow bg-transparent global-dialog",
             autoHide: options.autoHide ? options.autoHide : 0,
             overlayClickClose: options.overlayClickClose === true,
             overlayColor: options.overlayColor?options.overlayColor:'#000000',
