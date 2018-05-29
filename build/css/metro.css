@@ -18418,6 +18418,33 @@ aside::after {
   padding: .3rem;
   font-size: .9em;
 }
+.table-component {
+  display: block;
+  position: relative;
+}
+.table-bottom {
+  margin-left: 0;
+  margin-right: 0;
+}
+.table-info,
+.table-pagination {
+  -ms-flex-preferred-size: auto;
+      flex-basis: auto;
+}
+.table-progress {
+  width: 64px;
+  height: 64px;
+  position: absolute;
+  top: 200px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  display: none;
+  z-index: 2;
+}
+.table-progress [class*=activity-] {
+  margin: 0 auto;
+}
 .step-list {
   margin: 0 0 0 2rem;
   padding: 0;

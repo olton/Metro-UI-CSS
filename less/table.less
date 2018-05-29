@@ -191,3 +191,32 @@
         }
     }
 }
+
+.table-component {
+    display: block;
+    position: relative;
+}
+
+.table-bottom {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.table-info, .table-pagination {
+    flex-basis: auto;
+}
+
+.table-progress {
+    width: 64px;
+    height: 64px;
+    position: absolute;
+    top: 200px;
+    left: 50%;
+    .translateX(-50%);
+    display: none;
+    z-index: 2;
+
+    [class*=activity-] {
+        margin: 0 auto;
+    }
+}
