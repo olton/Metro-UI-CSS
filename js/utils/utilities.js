@@ -655,6 +655,22 @@ var Utils = {
 
     inMedia: function(media){
         return METRO_MEDIA.indexOf(media) > -1 && METRO_MEDIA.indexOf(media) === METRO_MEDIA.length - 1;
+    },
+
+    isValue: function(val){
+        return val !== undefined && val !== null && val !== "";
+    },
+
+    isNegative: function(val){
+        return parseFloat(val) < 0;
+    },
+
+    isPositive: function(val){
+        return parseFloat(val) > 0;
+    },
+
+    isZero: function(val){
+        return (parseFloat(val.toFixed(2))) === 0.00;
     }
 };
 

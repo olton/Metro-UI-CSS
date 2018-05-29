@@ -18304,16 +18304,18 @@ aside::after {
 .table .sortable-column:after,
 .table .sorting:after {
   position: absolute;
-  content: "";
+  content: "\21C5";
   width: 1rem;
   height: 1rem;
   left: 100%;
   margin-left: -1.25rem;
   top: 50%;
-  margin-top: -0.5rem;
+  margin-top: -0.3rem;
   color: inherit;
-  font-size: 1rem;
+  font-size: .8em;
+  font-weight: 100;
   line-height: 1;
+  opacity: .7;
 }
 .table .sortable-column.sort-asc,
 .table .sorting.sort-asc,
@@ -18334,6 +18336,10 @@ aside::after {
 .table .sortable-column.sorting_desc:after,
 .table .sorting.sorting_desc:after {
   color: #1d1d1d;
+  opacity: 1;
+  font-weight: 700;
+  font-size: 1em;
+  margin-top: -0.5rem;
 }
 .table .sortable-column.sort-asc:after,
 .table .sorting.sort-asc:after,
@@ -18411,6 +18417,33 @@ aside::after {
 .table.compact td {
   padding: .3rem;
   font-size: .9em;
+}
+.table-component {
+  display: block;
+  position: relative;
+}
+.table-bottom {
+  margin-left: 0;
+  margin-right: 0;
+}
+.table-info,
+.table-pagination {
+  -ms-flex-preferred-size: auto;
+      flex-basis: auto;
+}
+.table-progress {
+  width: 64px;
+  height: 64px;
+  position: absolute;
+  top: 200px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  display: none;
+  z-index: 2;
+}
+.table-progress [class*=activity-] {
+  margin: 0 auto;
 }
 .step-list {
   margin: 0 0 0 2rem;

@@ -1,5 +1,7 @@
 ### 4.2.8
 + [x] Sorter: new component
++ [x] Table: new component
++ [x] Utils: add new methods `isValue`, `isNegative`, `isPositive`, `isZero`
 
 ### 4.2.7
 + [x] Accordion: fix events context to html element
