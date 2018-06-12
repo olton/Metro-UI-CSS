@@ -314,7 +314,7 @@ var Locales = {
 
             "ok": "OK",
 
-            "cancel": "Cancella",
+            "cancel": "Annulla",
 
             "done": "Fatto",
 
@@ -322,7 +322,7 @@ var Locales = {
 
             "now": "Adesso",
 
-            "clear": "Chiaro",
+            "clear": "Cancella",
 
             "help": "Aiuto",
 
