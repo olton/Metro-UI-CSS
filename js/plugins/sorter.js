@@ -13,7 +13,7 @@ var Sorter = {
 
     options: {
         sortTarget: null,
-        sortContent: null,
+        sortSource: null,
         sortDir: "asc",
         sortStart: true,
         saveInitial: true,
@@ -59,25 +59,36 @@ var Sorter = {
         }
     },
 
-    _getItemContent: function(el){
+    _getItemContent: function(item){
         var o = this.options;
-        var content = "", items;
-        var $el = $(el);
+        var data, inset, i, format;
 
-        if (o.sortContent === null) {
-            content = el.textContent;
+        if (Utils.isValue(o.sortSource)) {
+            data = "";
+            inset = item.getElementsByClassName(o.sortSource);
+
+            if (inset.length > 0) for (i = 0; i < inset.length; i++) {
+                data += inset[i].textContent;
+            }
+            format = inset[0].dataset.format;
         } else {
-            items = $el.find(o.sortContent);
-            if (items.length === 0) {
-                content = el.textContent;
-            } else {
-                $.each(items, function(){
-                    content += " " + this.textContent;
-                })
+            data = item.textContent;
+            format = item.dataset.format;
+        }
+
+        data = (""+data).toLowerCase().replace(/[\n\r]+|[\s]{2,}/g, ' ').trim();
+
+        if (Utils.isValue(format)) {
+            switch (format) {
+                case "date": data = Utils.isDate(data) ? new Date(data) : ""; break;
+                case "number": data = Number(data); break;
+                case "int": data = parseInt(data); break;
+                case "float": data = parseFloat(data); break;
+                case "money": data = Number(parseFloat(data.replace(/[^0-9-.]/g, ''))); break;
             }
         }
 
-        return content.toLowerCase().trim();
+        return data;
     },
 
     sort: function(dir){

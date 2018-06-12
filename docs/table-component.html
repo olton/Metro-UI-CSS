@@ -47,16 +47,12 @@
                 <hr/>
                 <ul class="toc-nav">
                     <li class="toc-entry"><a href="#">Table</a></li>
-                    <li class="toc-entry"><a href="#_table_create">Create table</a></li>
+                    <li class="toc-entry"><a href="#_table_create">About</a></li>
                     <li class="toc-entry"><a href="#_table_sorting">Sorting</a></li>
-                    <li class="toc-entry">
-                        <a href="#_table_searching">Search block</a>
-                        <ul>
-                            <li class="toc-entry"><a href="#_table_search_input">Search input</a></li>
-                            <li class="toc-entry"><a href="#_table_rows_counter">Rows counter</a></li>
-                        </ul>
-                    </li>
-                    <li class="toc-entry"><a href="#_table_pagination">Paging block</a></li>
+                    <li class="toc-entry"><a href="#_table_search">Search</a></li>
+                    <li class="toc-entry"><a href="#_table_rows_counter">Rows counter</a></li>
+                    <li class="toc-entry"><a href="#_table_info">Table info</a></li>
+                    <li class="toc-entry"><a href="#_table_pagination">Pagination</a></li>
                     <li class="toc-entry">
                         <a href="#_table_external_data">External data</a>
                         <ul>
@@ -69,7 +65,9 @@
                     <li class="toc-entry"><a href="#_table_options">Options</a></li>
                     <li class="toc-entry"><a href="#_table_events">Events</a></li>
                     <li class="toc-entry"><a href="#_table_methods">Methods</a></li>
-                    <li class="toc-entry"><a href="#_table_customize">Customize</a></li>
+                    <li class="toc-entry"><a href="#_table_filters">Custom Filters</a></li>
+                    <li class="toc-entry"><a href="#_table_customize">Customize visual</a></li>
+                    <li class="toc-entry"><a href="#_table_custom_wrappers">Wrappers</a></li>
                 </ul>
 
             </div>
@@ -86,7 +84,7 @@
 
                 <!-- ads-html -->
 
-                <h3 id="_table_create">Create table</h3>
+                <h3 id="_table_create">About</h3>
                 <p class="text-small">New in 4.2.8</p>
                 <p>
                     If you need to create interactive table with filtering, searching and pagination features, you can use Metro 4 <code>table</code> component.
@@ -94,7 +92,14 @@
                     An important condition is the creation of sections <code>thead</code> and <code>tbody</code>.
                 </p>
                 <div class="example">
-                    <table class="table striped table-border mt-4" data-role="table" data-rows="5" data-rows-steps="5, 10" data-show-activity="false">
+                    <table class="table striped table-border mt-4"
+                           data-role="table"
+                           data-cls-table-top="row flex-nowrap"
+                           data-cls-search="cell-md-8"
+                           data-cls-rows-count="cell-md-4"
+                           data-rows="5"
+                           data-rows-steps="5, 10"
+                           data-show-activity="false">
                         <thead>
                         <tr>
                             <th class="sortable-column sort-asc">Name</th>
@@ -189,7 +194,11 @@
                 </div>
                 <pre><code>
                     &lt;table class="table striped table-border mt-4"
-                           data-role="table" data-rows="5"
+                           data-role="table"
+                           data-cls-table-top="row flex-nowrap"
+                           data-cls-search="cell-md-8"
+                           data-cls-rows-count="cell-md-4"
+                           data-rows="5"
                            data-rows-steps="5, 10"&gt;
                         &lt;thead&gt;
                         &lt;tr&gt;
@@ -262,29 +271,29 @@
                     &lt;/table&gt;
                 </code></pre>
 
-                <h3 id="_table_searching">Search block</h3>
+                <h3 id="_table_search">Search</h3>
                 <p>
-                    When component works, his create special search block before a table.
-                    This block contains two control element: <code>search input</code> and <code>select</code> to change rows count to be displayed.
+                    When component works, it creates special search block before a table.
                     This block is created automatically, but you can control its visibility using special component attributes.
-                    To hide this block, set attribute <code>data-search</code> to <code>false</code>.
+                    To hide this block, set attribute <code>data-show-search</code> to <code>false</code> or define custom wrapper.
                 </p>
                 <pre><code>
-                    &lt;table data-role="table" data-search="false"&gt;
+                    &lt;table data-role="table" data-show-search="false"&gt;
                         ...
                     &lt;/table&gt;
                 </code></pre>
 
-                <h4 id="_table_search_input">Search input</h4>
                 <p>
-                    You can specify your own search field with attribute <code>data-search-input="..."</code>.
+                    You can specify your own search field with attribute <code>data-search-wrapper="..."</code>.
                     Value for this attribute must be a valid element selector - className or ID.
                 </p>
 
-                <h4 id="_table_rows_counter">Rows counter</h4>
+                <h3 id="_table_rows_counter">Rows counter</h3>
                 <p>
+                    When component works, it creates special select block before a table to set displayed table rows count.
                     You can change default rows counter steps with attribute <code>data-rows-steps="..."</code>.
                     This is a comma delimiter value. To set a default rows count, use attribute <code>data-rows="..."</code>
+                    To hide this block, set attribute <code>data-show-rows-steps</code> to <code>false</code> or define custom wrapper.
                 </p>
                 <pre><code>
                     &lt;table data-role="table"
@@ -293,16 +302,34 @@
                         ...
                     &lt;/table&gt;
                 </code></pre>
+                <p>
+                    You can specify your own rows counter with attribute <code>data-rows-wrapper="..."</code>.
+                    Value for this attribute must be a valid element selector - className or ID.
+                </p>
+
+                <h3 id="_table_info">Table info</h3>
+                <p>
+                    When component works, it creates special block after a table to display table info.
+                    You can set custom text for this block with attribute <code>data-table-info-title="..."</code>.
+                    By default displayed <code>Showing $1 to $2 of $3 entries</code>.
+                    To hide this block, set attribute <code>data-show-table-info</code> to <code>false</code> or define custom wrapper.
+                </p>
+                <pre><code>
+                    &lt;table data-role="table"
+                        data-table-info-title="$1 to $2 from $3"&gt;
+                        ...
+                    &lt;/table&gt;
+                </code></pre>
 
                 <h3 id="_table_pagination">Paging block</h3>
                 <p>
                     When component works, his create special paging block after a table.
-                    This block contains two control element: <code>table info</code> and <code>pagination</code> section.
+                    This block contains <code>pagination</code> section.
                     This block is created automatically, but you can control its visibility using special component attributes.
-                    To hide this block, set attribute <code>data-pagination</code> to <code>false</code>.
+                    To hide this block, set attribute <code>data-show-pagination</code> to <code>false</code> or define custom wrapper.
                 </p>
                 <pre><code>
-                    &lt;table data-role="table" data-pagination="false"&gt;
+                    &lt;table data-role="table" data-show-pagination="false"&gt;
                         ...
                     &lt;/table&gt;
                 </code></pre>
@@ -585,6 +612,11 @@
                         <td>Event fired when the table was drawn.</td>
                     </tr>
                     <tr>
+                        <td><code>onDrawItem</code></td>
+                        <td><code>data-on-draw-item</code></td>
+                        <td>Event fired when row added to the table.</td>
+                    </tr>
+                    <tr>
                         <td><code>onSortStart</code></td>
                         <td><code>data-on-sort-start</code></td>
                         <td>Event fired when sorting process stated.</td>
@@ -640,13 +672,96 @@
                     <li><strong>first()</strong></li>
                     <li><strong>last()</strong></li>
                     <li><strong>page(num)</strong></li>
+                    <li><strong>draw()</strong></li>
+                    <li><strong>addFilter(func)</strong></li>
+                    <li><strong>removeFilter(func_index)</strong></li>
+                    <li><strong>getFilters()</strong></li>
+                </ul>
+
+                <h3 id="_table_filters">Filters</h3>
+                <p>
+                    You can add <strong>custom filters</strong> to your table component with a special attributes and methods.
+                    To set custom filters, use attributes <code>data-filter</code> and <code>data-filters</code>.
+                </p>
+                <p>
+                    Attribute <code>data-filter</code> set one filter, attribute <code>data-filters</code> set the number of filters.
+                    Value for <code>data-filter</code> must be valid function name, and for <code>data-filters</code> - comma separated functions name list.
+                </p>
+
+                <pre><code>
+                    &lt;table data-role="table" data-filter="myFilterFunc"&gt;...&lt;/table&gt;
+
+                    &lt;table data-role="table" data-filters="myFilters.Func1, myFilters.Func2"&gt;...&lt;/table&gt;
+
+                    ...javascript
+                    function myFilterFunc(row){...}
+
+                    var myFilters = {
+                        Func1: function(row){...},
+                        Func2: function(row){...}
+                    }
+
+                </code></pre>
+
+                <p>
+                    Component contains next methods to work with custom filters: <code>addFilter(func)</code>, <code>removeFilter(func)</code> and <code>getFilters()</code>.
+                </p>
+                <div class="example">
+                    <div class="mb-2">
+                        <button class="button" onclick="addFilter()">Add filter</button>
+                        <button class="button" onclick="removeFilter()">Remove filter</button>
+                    </div>
+                    <table id="filtersExample" class="table table-border mt-2"
+                           data-role="table" data-source="data/table.json"
+                           data-cls-table-top="row flex-nowrap"
+                           data-cls-search="cell-md-8"
+                           data-cls-rows-count="cell-md-4"
+                           data-rows="5" data-rows-steps="5">
+                    </table>
+                </div>
+                <p>...html</p>
+                <pre><code>
+                    &lt;div&gt;
+                        &lt;button class="button" onclick="addFilter()"&gt;Add filter&lt;/button&gt;
+                        &lt;button class="button" onclick="removeFilter()"&gt;Remove filter&lt;/button&gt;
+                    &lt;/div&gt;
+                    &lt;table id="filtersExample" class="table table-border mt-2"
+                           data-role="table" data-source="data/table.json"
+                           data-rows="5" data-rows-steps="5"&gt;
+                    &lt;/table&gt;
+                </code></pre>
+                <p>...JavaScript</p>
+                <pre><code>
+                    var customFilterTable = $('#filtersExample').data('table');
+                    var filterIndex;
+
+                    function addFilter(){
+                        filterIndex = customFilterTable.addFilter(function(row){
+                            return Metro.utils.between(row[3], 20, 30);
+                        });
+                        customFilterTable.draw();
+                    }
+                    function removeFilter(){
+                        customFilterTable.removeFilter(filterIndex);
+                        customFilterTable.draw();
+                    }
+                </code></pre>
+
+                <p>
+                    The methods have the following purpose:
+                </p>
+
+                <ul class="unstyled-list mt-2">
+                    <li><code>addFilter(func)</code> - add filter to table</li>
+                    <li><code>removeFilter(filter_index)</code> - remove filter from table</li>
+                    <li><code>getFilters()</code> - get filters as array</li>
                 </ul>
 
                 <h3 id="_table_customize">Customize</h3>
                 <p>
-                    You can customize any calendar elements with nex options:
+                    You can customize style of table and its elements with next options:
                 </p>
-                <table class="table cell-border table-border options-table">
+                <table class="table cell-border table-border options-table mt-4">
                     <thead>
                     <tr>
                         <th>Option</th>
@@ -748,6 +863,54 @@
                     </tbody>
                 </table>
 
+                <h3 id="_table_custom_wrappers">Custom elements wrappers</h3>
+                <p>
+                    You can set custom wrappers for <code>search</code>, <code>rows counter</code>, <code>table info</code> and <code>pagination</code> elements.
+                    To set it, use special named attributes:
+                        <code>data-search-wrapper</code>,
+                        <code>data-rows-wrapper</code>,
+                        <code>data-info-wrapper</code>,
+                        <code>data-pagination-wrapper</code>.
+                </p>
+                <div class="example">
+                    <div class="row mb-2">
+                        <div class="cell-md-8 my-search-wrapper"></div>
+                        <div class="cell-md-4 my-rows-wrapper"></div>
+                    </div>
+                    <p class="h3 text-center my-info-wrapper"></p>
+                    <div class="d-flex flex-justify-center my-pagination-wrapper"></div>
+                    <table class="table table-border striped"
+                           data-role="table"
+                           data-rows-steps="5, 10"
+                           data-rows="5"
+                           data-info-wrapper=".my-info-wrapper"
+                           data-pagination-wrapper=".my-pagination-wrapper"
+                           data-search-wrapper=".my-search-wrapper"
+                           data-rows-wrapper=".my-rows-wrapper"
+                           data-source="data/table.json">
+                    </table>
+                    <div class="d-flex flex-justify-center my-pagination-wrapper"></div>
+                </div>
+                <pre><code>
+                    &lt;div class="row mb-2"&gt;
+                        &lt;div class="cell-md-8 my-search-wrapper"&gt;&lt;/div&gt;
+                        &lt;div class="cell-md-4 my-rows-wrapper"&gt;&lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;p class="h3 text-center my-info-wrapper"&gt;&lt;/p&gt;
+                    &lt;div class="d-flex flex-justify-center my-pagination-wrapper"&gt;&lt;/div&gt;
+                    &lt;table class="table table-border striped"
+                           data-role="table"
+                           data-rows-steps="5, 10"
+                           data-rows="5"
+                           data-info-wrapper=".my-info-wrapper"
+                           data-pagination-wrapper=".my-pagination-wrapper"
+                           data-search-wrapper=".my-search-wrapper"
+                           data-rows-wrapper=".my-rows-wrapper"
+                           data-source="data/table.json"&gt;
+                    &lt;/table&gt;
+                    &lt;div class="d-flex flex-justify-center my-pagination-wrapper"&gt;&lt;/div&gt;
+                </code></pre>
+
             </main>
         </div>
 
@@ -759,6 +922,26 @@
     <script src="highlight/highlight.pack.js"></script>
     <script src="js/clipboard.min.js"></script>
     <script src="js/site.js"></script>
+    <script>
+        var customFilterTable = $('#filtersExample').data('table');
+        var filterIndex;
+
+        function addFilter(){
+            filterIndex = customFilterTable.addFilter(function(row){
+                return Metro.utils.between(row[3], 20, 30);
+            });
+            customFilterTable.draw();
+        }
+        function removeFilter(){
+            customFilterTable.removeFilter(filterIndex);
+            customFilterTable.draw();
+        }
+        var myFilters = {
+            addAgeFilter: function(row){
+                return Metro.utils.between(row[3], 20, 30);
+            }
+        }
+    </script>
     <!-- ads-script -->
     <!-- ga-script -->
     <!-- hit-ua -->

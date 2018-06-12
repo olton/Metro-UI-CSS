@@ -236,13 +236,13 @@ var Locales = {
     'fr-FR': {
         "calendar": {
             "months": [
-                "janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre",
-                "janv", "févr", "mars", "avr", "mai", "juin", "juil", "août", "sept", "oct", "nov", "déc"
+                "Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre",
+                "Janv", "Févr", "Mars", "Avr", "Mai", "Juin", "Juil", "Août", "Sept", "Oct", "Nov", "Déc"
             ],
             "days": [
-                "dimanche", "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi",
-                "de", "lu", "ma", "me", "je", "ve", "sa",
-                "dim", "lun", "mar", "mer", "jeu", "ven", "sam"
+                "Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi",
+                "De", "Du", "Ma", "Me", "Je", "Ve", "Sa",
+                "Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"
             ],
             "time": {
                 "days": "JOURS",
@@ -265,6 +265,41 @@ var Locales = {
             "yes": "Oui",
             "no": "Non",
             "random": "Aléatoire"
+        }
+    },
+
+    'it-IT': {
+        "calendar": {
+            "months": [
+                "Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre",
+                "Gen", "Feb", "Mar", "Apr", "Mag", "Giu", "Lug", "Ago", "Set", "Ott", "Nov", "Dic"
+            ],
+            "days": [
+                "Domenica", "Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato",
+                "Do", "Lu", "Ma", "Me", "Gi", "Ve", "Sa",
+                "Dom", "Lun", "Mar", "Mer", "Gio", "Ven", "Sab"
+            ],
+            "time": {
+                "days": "GIORNI",
+                "hours": "ORE",
+                "minutes": "MIN",
+                "seconds": "SEC",
+                "month": "MESE",
+                "day": "GIORNO",
+                "year": "ANNO"
+            }
+        },
+        "buttons": {
+            "ok": "OK",
+            "cancel": "Annulla",
+            "done": "Fatto",
+            "today": "Oggi",
+            "now": "Adesso",
+            "clear": "Cancella",
+            "help": "Aiuto",
+            "yes": "Sì",
+            "no": "No",
+            "random": "Random"
         }
     }
 };

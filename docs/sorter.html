@@ -53,8 +53,8 @@
                         <ul>
                             <li class="toc-entry"><a href="#_sorter_role">Role sorter</a></li>
                             <li class="toc-entry"><a href="#_sorter_start">Sorter start</a></li>
-                            <li class="toc-entry"><a href="#_sorter_target">Target</a></li>
-                            <li class="toc-entry"><a href="#_sorter_content">Content</a></li>
+                            <li class="toc-entry"><a href="#_sorter_target">Sort Target</a></li>
+                            <li class="toc-entry"><a href="#_sorter_content">Sort Source</a></li>
                             <li class="toc-entry"><a href="#_sorter_dir">Direction</a></li>
                         </ul>
                     </li>
@@ -126,7 +126,7 @@
                 <h3 id="_sorter_create">Create sortable element</h3>
                 <p>
                     To create sortable element, you must add role <code>data-role="sorter"</code> to element and define which elements will be sorted and by what content.
-                    To set sorted elements use attribute <code>data-sort-target="..."</code> and to set content use attribute <code>data-sort-content="..."</code>.
+                    To set sorted elements use attribute <code>data-sort-target="..."</code> and to set content use attribute <code>data-sort-source="..."</code>.
                     By default, <code>sorter</code> sort elements by <code>asc</code>. You can setup sort direction with attribute <code>data-sort-dir="asc|desc"</code>.
                 </p>
 
@@ -207,28 +207,28 @@
 
                 <h4 id="_sorter_content">Sort content</h4>
                 <p>
-                    By default for sorting component <code>Sorter</code> use <code>contentText</code> property of the sortable elements.
-                    To change it use attribute <code>data-sort-content="..."</code>.
-                    This should be the correct element selector: <code>tagName</code> or <code>className</code>.
+                    By default for sorting component <code>Sorter</code> use <code>textContent</code> property of the sortable elements.
+                    To change it use attribute <code>data-sort-source="..."</code>.
+                    This should be the correct element selector <code>className</code>.
                 </p>
                 <div class="example">
-                    <ul data-role="sorter" data-sort-content=".sort">
-                        <li><span class="sort">6</span> Oslo</li>
-                        <li><span class="sort">5</span> Stockholm</li>
-                        <li><span class="sort">4</span> Helsinki</li>
-                        <li><span class="sort">3</span> Berlin</li>
-                        <li><span class="sort">2</span> Rome</li>
-                        <li><span class="sort">1</span> Madrid</li>
+                    <ul data-role="sorter" data-sort-source="sort">
+                        <li>Rome <span class="sort">2</span></li>
+                        <li>Oslo <span class="sort">6</span> </li>
+                        <li>Berlin <span class="sort">3</span></li>
+                        <li>Helsinki <span class="sort">4</span></li>
+                        <li>Madrid <span class="sort">1</span></li>
+                        <li>Stockholm <span class="sort">5</span></li>
                     </ul>
                 </div>
-                <pre><code>
-                    &lt;ul data-role="sorter" data-sort-content=".sort"&gt;
-                        &lt;li&gt;&lt;span class="sort"&gt;6&lt;/span&gt; Oslo&lt;/li&gt;
-                        &lt;li&gt;&lt;span class="sort"&gt;5&lt;/span&gt; Stockholm&lt;/li&gt;
-                        &lt;li&gt;&lt;span class="sort"&gt;4&lt;/span&gt; Helsinki&lt;/li&gt;
-                        &lt;li&gt;&lt;span class="sort"&gt;3&lt;/span&gt; Berlin&lt;/li&gt;
-                        &lt;li&gt;&lt;span class="sort"&gt;2&lt;/span&gt; Rome&lt;/li&gt;
-                        &lt;li&gt;&lt;span class="sort"&gt;1&lt;/span&gt; Madrid&lt;/li&gt;
+                <pre><code class="html">
+                    &lt;ul data-role="sorter" data-sort-content="sort"&gt;
+                        &lt;li&gt;Rome &lt;span class="sort"&gt;2&lt;/span&gt;&lt;/li&gt;
+                        &lt;li&gt;Oslo &lt;span class="sort"&gt;6&lt;/span&gt; &lt;/li&gt;
+                        &lt;li&gt;Berlin &lt;span class="sort"&gt;3&lt;/span&gt;&lt;/li&gt;
+                        &lt;li&gt;Helsinki &lt;span class="sort"&gt;4&lt;/span&gt;&lt;/li&gt;
+                        &lt;li&gt;Madrid &lt;span class="sort"&gt;1&lt;/span&gt;&lt;/li&gt;
+                        &lt;li&gt;Stockholm &lt;span class="sort"&gt;5&lt;/span&gt;&lt;/li&gt;
                     &lt;/ul&gt;
                 </code></pre>
 

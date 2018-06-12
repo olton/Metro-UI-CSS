@@ -1,4 +1,4 @@
-var Table = {
+var List = {
     init: function( options, elem ) {
         this.options = $.extend( {}, this.options, options );
         this.elem  = elem;
@@ -15,16 +15,15 @@ var Table = {
         this.wrapperRows = null;
         this.wrapperPagination = null;
         this.filterIndex = null;
-        this.filtersIndexes = null;
+        this.filtersIndexes = [];
 
         this.sort = {
             dir: "asc",
             colIndex: 0
         };
 
-        this.heads = [];
+        this.header = null;
         this.items = [];
-        this.foots = [];
 
         this._setOptionsFromDOM();
         this._create();
@@ -33,28 +32,33 @@ var Table = {
     },
 
     options: {
+        sortTarget: "li",
+        sortClass: null,
+        sortDir: "asc",
+        sortInitial: false,
 
+        filterClass: null,
         filter: null,
+        filterString: "",
         filters: null,
         source: null,
 
-        showRowsSteps: true,
-        showSearch: true,
-        showTableInfo: true,
-        showPagination: true,
+        showItemsSteps: false,
+        showSearch: false,
+        showListInfo: false,
+        showPagination: false,
         showAllPages: false,
         showActivity: true,
 
-        muteTable: true,
+        muteList: true,
 
-        rows: 10,
-        rowsSteps: "10,25,50,100",
+        items: -1,
+        itemsSteps: "all, 10,25,50,100",
 
-        sortDir: "asc",
-
-        tableRowsCountTitle: "Show entries:",
-        tableSearchTitle: "Search:",
-        tableInfoTitle: "Showing $1 to $2 of $3 entries",
+        itemsAllTitle: "Show all",
+        listItemsCountTitle: "Show entries:",
+        listSearchTitle: "Search:",
+        listInfoTitle: "Showing $1 to $2 of $3 entries",
         paginationPrevTitle: "Prev",
         paginationNextTitle: "Next",
 
@@ -68,32 +72,21 @@ var Table = {
         paginationWrapper: null,
 
         clsComponent: "",
-        clsTable: "",
+        clsList: "",
+        clsListItem: "",
 
-        clsHead: "",
-        clsHeadRow: "",
-        clsHeadCell: "",
-
-        clsBody: "",
-        clsBodyRow: "",
-        clsBodyCell: "",
-
-        clsFooter: "",
-        clsFooterRow: "",
-        clsFooterCell: "",
-
-        clsTableTop: "",
-        clsRowsCount: "",
+        clsListTop: "",
+        clsItemsCount: "",
         clsSearch: "",
 
-        clsTableBottom: "",
-        clsTableInfo: "",
-        clsTablePagination: "",
+        clsListBottom: "",
+        clsListInfo: "",
+        clsListPagination: "",
 
         clsPagination: "",
 
         onDraw: Metro.noop,
-        onDrawRow: Metro.noop,
+        onDrawItem: Metro.noop,
         onSortStart: Metro.noop,
         onSortStop: Metro.noop,
         onSortItemSwitch: Metro.noop,
@@ -101,9 +94,10 @@ var Table = {
         onRowsCountChange: Metro.noop,
         onDataLoad: Metro.noop,
         onDataLoaded: Metro.noop,
-        onFilterRowAccepted: Metro.noop,
-        onFilterRowDeclined: Metro.noop,
-        onTableCreate: Metro.noop
+        onFilterItemAccepted: Metro.noop,
+        onFilterItemDeclined: Metro.noop,
+
+        onListCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -149,227 +143,84 @@ var Table = {
         this._createStructure();
         this._createEvents();
 
-        Utils.exec(o.onTableCreate, [element], element[0]);
+        Utils.exec(o.onListCreate, [element], element[0]);
     },
 
     _createItemsFromHTML: function(){
-        var that = this, element = this.element;
-        var body = element.find("tbody");
-        var head = element.find("thead");
-        var foot = element.find("tfoot");
+        var that = this, element = this.element, o = this.options;
 
         this.items = [];
-        this.heads = [];
-        this.foots = [];
 
-        if (body.length > 0) $.each(body.find("tr"), function(){
-            var row = $(this);
-            var tr = [];
-            $.each(row.children("td"), function(){
-                var td = $(this);
-                tr.push(td.html());
-            });
-            that.items.push(tr);
+        $.each(element.children(o.sortTarget), function(){
+            that.items.push(this);
         });
-
-        if (head.length > 0) $.each(head.find("tr > *"), function(){
-            var item = $(this);
-            var dir, head_item, item_class;
-
-            if (item.hasClass("sort-asc")) {
-                dir = "asc";
-            } else if (item.hasClass("sort-desc")) {
-                dir = "desc"
-            } else {
-                dir = undefined;
-            }
-
-            item_class = item[0].className.replace("sortable-column", "");
-            item_class = item_class.replace("sort-asc", "");
-            item_class = item_class.replace("sort-desc", "");
-
-            head_item = {
-                title: item.html(),
-                format: Utils.isValue(item.data("format")) ? item.data("format") : undefined,
-                name: Utils.isValue(item.data("name")) ? item.data("name") : undefined,
-                sortable: item.hasClass("sortable-column"),
-                sortDir: dir,
-                clsColumn: Utils.isValue(item.data("cls-column")) ? item.data("cls-column") : "",
-                cls: item_class
-            };
-            that.heads.push(head_item);
-        });
-
-        if (foot.length > 0) $.each(foot.find("tr > *"), function(){
-            var item = $(this);
-            var foot_item;
-
-            foot_item = {
-                title: item.html(),
-                name: Utils.isValue(item.data("name")) ? item.data("name") : false,
-                cls: item[0].className
-            };
-
-            that.foots.push(foot_item);
-        });
-
     },
 
     _createItemsFromJSON: function(source){
         var that = this;
 
         this.items = [];
-        this.heads = [];
-        this.foots = [];
 
-        if (source.header !== undefined) {
-            that.heads = source.header;
+        if (Utils.isValue(source.header)) {
+            that.header = source.header;
         }
 
-        if (source.data !== undefined) {
+        if (Utils.isValue(source.data)) {
             $.each(source.data, function(){
                 var row = this;
-                var tr = [];
-                $.each(row, function(){
-                    var td = this;
-                    tr.push(td);
+                var li = document.createElement("li");
+                var inner = Utils.isValue(that.header.template) ? that.header.template : "";
+
+                $.each(row, function(k, v){
+                    inner = inner.replace("$"+k, v);
                 });
-                that.items.push(tr);
+
+                li.innerHTML = inner;
+                that.items.push(li);
             });
         }
-
-        if (source.footer !== undefined) {
-            this.foots = source.footer;
-        }
-    },
-
-    _createTableHeader: function(){
-        var o = this.options;
-        var head = $("<thead>");
-        var tr, th;
-
-        head.addClass(o.clsHead);
-
-        if (this.heads.length === 0) {
-            return head;
-        }
-
-        tr = $("<tr>").addClass(o.clsHeadRow).appendTo(head);
-        $.each(this.heads, function(){
-            var item = this;
-            th = $("<th>").appendTo(tr);
-            if (item.sortable === true) {
-                th.addClass("sortable-column");
-                if (item.sortDir !== undefined) {
-                    th.addClass("sort-" + item.sortDir);
-                }
-            }
-            if (item.title !== undefined) {
-                th.html(item.title);
-            }
-            if (item.format !== undefined) {
-                th.attr("data-format", item.format);
-            }
-            if (item.name !== undefined) {
-                th.addClass("column-name-" + item.name);
-            }
-            if (item.size !== undefined) {
-                th.css({
-                    width: item.size
-                })
-            }
-            if (item.cls !== undefined) {
-                th.addClass(item.cls);
-            }
-            if (item.clsColumn !== undefined) {
-                th.addClass(item.clsColumn);
-            }
-            th.addClass(o.clsHeadCell);
-        });
-
-        return head;
-    },
-
-    _createTableBody: function(){
-        return $("<tbody>").addClass(this.options.clsBody);
-    },
-
-    _createTableFooter: function(){
-        var that = this, o = this.options;
-        var foot = $("<tfoot>").addClass(o.clsFooter);
-        var tr, th;
-
-        if (this.foots.length === 0) {
-            return foot;
-        }
-
-        tr = $("<tr>").addClass(o.clsHeadRow).appendTo(foot);
-        $.each(this.foots, function(i){
-            var item = this;
-            th = $("<th>").appendTo(tr);
-
-            if (item.title !== undefined) {
-                th.html(item.title);
-            }
-
-            if (item.name !== undefined) {
-                th.addClass("foot-column-name-" + item.name);
-            }
-
-            if (item.cls !== undefined) {
-                th.addClass(item.cls);
-            }
-
-            if (Utils.isValue(that.heads[i].clsColumn)) {
-                th.addClass(that.heads[i].clsColumn);
-            }
-
-            th.appendTo(tr);
-        });
-
-        return foot;
     },
 
     _createTopBlock: function (){
         var that = this, element = this.element, o = this.options;
-        var top_block = $("<div>").addClass("table-top").addClass(o.clsTableTop).insertBefore(element);
+        var top_block = $("<div>").addClass("list-top").addClass(o.clsListTop).insertBefore(element);
         var search_block, search_input, rows_block, rows_select;
 
-        search_block = Utils.isValue(this.wrapperSearch) ? this.wrapperSearch : $("<div>").addClass("table-search-block").addClass(o.clsSearch).appendTo(top_block);
+        search_block = Utils.isValue(this.wrapperSearch) ? this.wrapperSearch : $("<div>").addClass("list-search-block").addClass(o.clsSearch).appendTo(top_block);
 
         search_input = $("<input>").attr("type", "text").appendTo(search_block);
         search_input.input({
-            prepend: o.tableSearchTitle
+            prepend: o.listSearchTitle
         });
 
         if (o.showSearch !== true) {
             search_block.hide();
         }
 
-        rows_block = Utils.isValue(this.wrapperRows) ? this.wrapperRows : $("<div>").addClass("table-rows-block").addClass(o.clsRowsCount).appendTo(top_block);
+        rows_block = Utils.isValue(this.wrapperRows) ? this.wrapperRows : $("<div>").addClass("list-rows-block").addClass(o.clsItemsCount).appendTo(top_block);
 
         rows_select = $("<select>").appendTo(rows_block);
-        $.each(Utils.strToArray(o.rowsSteps), function () {
-            var option = $("<option>").attr("value", this).text(this).appendTo(rows_select);
-            if (parseInt(this) === parseInt(o.rows)) {
+        $.each(Utils.strToArray(o.itemsSteps), function () {
+            var option = $("<option>").attr("value", this === "all" ? -1 : this).text(this === "all" ? o.itemsAllTitle : this).appendTo(rows_select);
+            if (parseInt(this) === parseInt(o.items)) {
                 option.attr("selected", "selected");
             }
         });
         rows_select.select({
             filter: false,
-            prepend: o.tableRowsCountTitle,
+            prepend: o.listItemsCountTitle,
             onChange: function (val) {
-                if (parseInt(val) === parseInt(o.rows)) {
+                if (parseInt(val) === parseInt(o.items)) {
                     return;
                 }
-                o.rows = val;
+                o.items = parseInt(val);
                 that.currentPage = 1;
                 that._draw();
                 Utils.exec(o.onRowsCountChange, [val], element[0])
             }
         });
 
-        if (o.showRowsSteps !== true) {
+        if (o.showItemsSteps !== true) {
             rows_block.hide();
         }
 
@@ -378,15 +229,15 @@ var Table = {
 
     _createBottomBlock: function (){
         var element = this.element, o = this.options;
-        var bottom_block = $("<div>").addClass("table-bottom").addClass(o.clsTableBottom).insertAfter(element);
+        var bottom_block = $("<div>").addClass("list-bottom").addClass(o.clsListBottom).insertAfter(element);
         var info, pagination;
 
-        info = $("<div>").addClass("table-info").addClass(o.clsTableInfo).appendTo(bottom_block);
-        if (o.showTableInfo !== true) {
+        info = $("<div>").addClass("list-info").addClass(o.clsListInfo).appendTo(bottom_block);
+        if (o.showListInfo !== true) {
             info.hide();
         }
 
-        pagination = $("<div>").addClass("table-pagination").addClass(o.clsTablePagination).appendTo(bottom_block);
+        pagination = $("<div>").addClass("list-pagination").addClass(o.clsListPagination).appendTo(bottom_block);
         if (o.showPagination !== true) {
             pagination.hide();
         }
@@ -396,24 +247,27 @@ var Table = {
 
     _createStructure: function(){
         var that = this, element = this.element, o = this.options;
-        var table_component, sortable_columns;
-        var w_search = $(o.searchWrapper), w_info = $(o.infoWrapper), w_rows = $(o.rowsWrapper), w_paging = $(o.paginationWrapper);
+        var list_component;
+        var w_search = $(o.searchWrapper),
+            w_info = $(o.infoWrapper),
+            w_rows = $(o.rowsWrapper),
+            w_paging = $(o.paginationWrapper);
 
         if (w_search.length > 0) {this.wrapperSearch = w_search;}
         if (w_info.length > 0) {this.wrapperInfo = w_info;}
         if (w_rows.length > 0) {this.wrapperRows = w_rows;}
         if (w_paging.length > 0) {this.wrapperPagination = w_paging;}
 
-        if (!element.parent().hasClass("table-component")) {
-            table_component = $("<div>").addClass("table-component").insertBefore(element);
-            element.appendTo(table_component);
+        if (!element.parent().hasClass("list-component")) {
+            list_component = $("<div>").addClass("list-component").insertBefore(element);
+            element.appendTo(list_component);
         } else {
-            table_component = element.parent();
+            list_component = element.parent();
         }
 
-        table_component.addClass(o.clsComponent);
+        list_component.addClass(o.clsComponent);
 
-        this.activity =  $("<div>").addClass("table-progress").appendTo(table_component);
+        this.activity =  $("<div>").addClass("list-progress").appendTo(list_component);
         $("<div>").activity({
             type: o.activityType,
             style: o.activityStyle
@@ -425,30 +279,13 @@ var Table = {
             })
         }
 
-        element.html("").addClass(o.clsTable);
-
-        element.append(this._createTableHeader());
-        element.append(this._createTableBody());
-        element.append(this._createTableFooter());
+        element.html("").addClass(o.clsList);
 
         this._createTopBlock();
         this._createBottomBlock();
 
-        var need_sort = false;
-        if (this.heads.length > 0) $.each(this.heads, function(i){
-            var item = this;
-            if (!need_sort && ["asc", "desc"].indexOf(item.sortDir) > -1) {
-                need_sort = true;
-                that.sort.colIndex = i;
-                that.sort.dir = item.sortDir;
-            }
-        });
-
-        if (need_sort) {
-            sortable_columns = element.find(".sortable-column");
-            this._resetSortClass(sortable_columns);
-            $(sortable_columns.get(this.sort.colIndex)).addClass("sort-"+this.sort.dir);
-            this.sorting();
+        if (Utils.isValue(o.filterString)) {
+            this.filterString = o.filterString;
         }
 
         var filter_func;
@@ -472,51 +309,14 @@ var Table = {
 
         this.currentPage = 1;
 
-        this._draw();
-    },
-
-    _resetSortClass: function(el){
-        $(el).removeClass("sort-asc sort-desc");
+        this.sorting(o.sortClass, o.sortDir, true);
     },
 
     _createEvents: function(){
-        var that = this, element = this.element, o = this.options;
+        var that = this, element = this.element;
         var component = element.parent();
-        var search = component.find(".table-search-block input");
+        var search = component.find(".list-search-block input");
         var customSearch;
-
-        element.on(Metro.events.click, ".sortable-column", function(){
-
-            if (o.muteTable === true) element.addClass("disabled");
-
-            if (that.busy) {
-                return false;
-            }
-            that.busy = true;
-
-            var col = $(this);
-
-            that.activity.show(o.activityTimeout, function(){
-                that.currentPage = 1;
-                that.sort.colIndex = col.index();
-                if (!col.has("sort-asc") && !col.hasClass("sort-desc")) {
-                    that.sort.dir = o.sortDir;
-                } else {
-                    if (col.hasClass("sort-asc")) {
-                        that.sort.dir = "desc";
-                    } else {
-                        that.sort.dir = "asc";
-                    }
-                }
-                that._resetSortClass(element.find(".sortable-column"));
-                col.addClass("sort-"+that.sort.dir);
-                that.sorting();
-                that._draw(function(){
-                    that.busy = false;
-                    if (o.muteTable === true) element.removeClass("disabled");
-                });
-            });
-        });
 
         search.on(Metro.events.inputchange, function(){
             that.filterString = this.value.trim().toLowerCase();
@@ -582,7 +382,7 @@ var Table = {
     _info: function(start, stop, length){
         var element = this.element, o = this.options;
         var component = element.parent();
-        var info = Utils.isValue(this.wrapperInfo) ? this.wrapperInfo : component.find(".table-info");
+        var info = Utils.isValue(this.wrapperInfo) ? this.wrapperInfo : component.find(".list-info");
         var text;
 
         if (info.length === 0) {
@@ -597,7 +397,7 @@ var Table = {
             start = stop = length = 0;
         }
 
-        text = o.tableInfoTitle;
+        text = o.listInfoTitle;
         text = text.replace("$1", start);
         text = text.replace("$2", stop);
         text = text.replace("$3", length);
@@ -607,7 +407,7 @@ var Table = {
     _paging: function(length){
         var that = this, element = this.element, o = this.options;
         var component = element.parent();
-        var pagination_wrapper = Utils.isValue(this.wrapperPagination) ? this.wrapperPagination : component.find(".table-pagination");
+        var pagination_wrapper = Utils.isValue(this.wrapperPagination) ? this.wrapperPagination : component.find(".list-pagination");
         var i, prev, next;
         var shortDistance = 5;
         var pagination;
@@ -620,7 +420,7 @@ var Table = {
             return ;
         }
 
-        this.pagesCount = Math.ceil(length / o.rows);
+        this.pagesCount = Math.ceil(length / o.items);
 
         var add_item = function(item_title, item_type, data){
             var li, a;
@@ -684,34 +484,32 @@ var Table = {
         }
     },
 
-    _draw: function(cb){
-        var that = this, element = this.element, o = this.options;
-        var body = element.find("tbody");
-        var i;
-        var start = o.rows === -1 ? 0 : o.rows * (this.currentPage - 1),
-            stop = o.rows === -1 ? this.items.length - 1 : start + o.rows - 1;
-        var items;
-        var flt, idx = -1;
-
-        body.html("");
+    _filter: function(){
+        var that = this,
+            element = this.element,
+            o = this.options,
+            items, i, data, inset, c1, result;
 
         if (Utils.isValue(this.filterString) || this.filters.length > 0) {
-            flt = this.filterString.split(":");
-            if (flt.length > 1) {
-                $.each(that.heads, function (i, v) {
-                    if (flt[0] === v.title.toLowerCase()) {
-                        idx = i;
+            items = this.items.filter(function(item){
+                data = "";
+
+                if (Utils.isValue(o.filterClass)) {
+                    inset = item.getElementsByClassName(o.filterClass);
+
+                    if (inset.length > 0) for (i = 0; i < inset.length; i++) {
+                        data += inset[i].textContent;
                     }
-                })
-            }
-            items = this.items.filter(function(row){
-                var row_data = "" + (flt.length > 1 && idx > -1 ? row[idx] : row.join());
-                var c1 = row_data.replace(/[\n\r]+|[\s]{2,}/g, ' ').trim().toLowerCase();
-                var result = Utils.isValue(that.filterString) ? c1.indexOf(flt.length > 1 ? flt[1] : flt[0]) > -1 : true;
+                } else {
+                    data = item.textContent;
+                }
+
+                c1 = data.replace(/[\n\r]+|[\s]{2,}/g, ' ').trim().toLowerCase();
+                result = Utils.isValue(that.filterString) ? c1.indexOf(that.filterString) > -1 : true;
 
                 if (result === true && that.filters.length > 0) {
                     for (i = 0; i < that.filters.length; i++) {
-                        if (Utils.exec(that.filters[i], [row]) !== true) {
+                        if (Utils.exec(that.filters[i], [item]) !== true) {
                             result = false;
                             break;
                         }
@@ -719,9 +517,9 @@ var Table = {
                 }
 
                 if (result) {
-                    Utils.exec(o.onFilterRowAccepted, [row], element[0]);
+                    Utils.exec(o.onFilterItemAccepted, [item], element[0]);
                 } else {
-                    Utils.exec(o.onFilterRowDeclined, [row], element[0]);
+                    Utils.exec(o.onFilterItemDeclined, [item], element[0]);
                 }
 
                 return result;
@@ -732,18 +530,26 @@ var Table = {
             items = this.items;
         }
 
+        return items;
+    },
+
+    _draw: function(cb){
+        var element = this.element, o = this.options;
+        var i;
+        var start = o.items === -1 ? 0 : o.items * (this.currentPage - 1),
+            stop = o.items === -1 ? this.items.length - 1 : start + o.items - 1;
+        var items;
+
+        element.html("");
+
+        items = this._filter();
+
         for (i = start; i <= stop; i++) {
-            var tr = $("<tr>").addClass(o.clsBodyRow);
-            if (items[i] !== undefined) $.each(items[i], function(cell_i){
-                var td = $("<td>").html(this);
-                td.addClass(o.clsBodyCell);
-                if (that.heads[cell_i].clsColumn !== undefined) {
-                    td.addClass(that.heads[cell_i].clsColumn);
-                }
-                td.appendTo(tr);
-            });
-            tr.appendTo(body);
-            Utils.exec(o.onDrawRow, [tr], element[0]);
+            if (Utils.isValue(items[i])) {
+                items[i].className += " "+o.clsListItem;
+                element[0].appendChild(items[i]);
+            }
+            Utils.exec(o.onDrawItem, [items[i]], element[0]);
         }
 
         this._info(start + 1, stop + 1, items.length);
@@ -758,35 +564,51 @@ var Table = {
         }
     },
 
-    _getItemContent: function(row){
-        var result, col = row[this.sort.colIndex];
-        var format = this.heads[this.sort.colIndex].format;
+    _getItemContent: function(item){
+        var o = this.options;
+        var i, inset, data;
+        var format;
 
-        result = (""+col).toLowerCase().replace(/[\n\r]+|[\s]{2,}/g, ' ').trim();
+        if (Utils.isValue(o.sortClass)) {
+            data = "";
+            inset = item.getElementsByClassName(o.sortClass);
 
-        if (format !== undefined) {
+            if (inset.length > 0) for (i = 0; i < inset.length; i++) {
+                data += inset[i].textContent;
+            }
+            format = inset[0].dataset.format;
+        } else {
+            data = item.textContent;
+            format = item.dataset.format;
+        }
+
+        data = (""+data).toLowerCase().replace(/[\n\r]+|[\s]{2,}/g, ' ').trim();
+
+        if (Utils.isValue(format)) {
             switch (format) {
-                case "date": result = Utils.isDate(result) ? new Date(result) : ""; break;
-                case "number": result = Number(result); break;
-                case "int": result = parseInt(result); break;
-                case "float": result = parseFloat(result); break;
-                case "money": result = Utils.parseMoney(result); break;
+                case "date": data = Utils.isDate(data) ? new Date(data) : ""; break;
+                case "number": data = Number(data); break;
+                case "int": data = parseInt(data); break;
+                case "float": data = parseFloat(data); break;
+                case "money": data = Utils.parseMoney(data); break;
             }
         }
 
-        return result;
+        return data;
     },
 
     draw: function(){
         return this._draw();
     },
 
-    sorting: function(dir){
+    sorting: function(source, dir, redraw){
         var that = this, element = this.element, o = this.options;
-        var items;
 
-        if (dir !== undefined && dir !== null) {
-            this.sort.dir = dir;
+        if (Utils.isValue(source)) {
+            o.sortClass = source;
+        }
+        if (Utils.isValue(dir) && ["asc", "desc"].indexOf(dir) > -1) {
+            o.sortDir= dir;
         }
 
         Utils.exec(o.onSortStart, [this.items], element[0]);
@@ -797,10 +619,10 @@ var Table = {
             var result = 0;
 
             if (c1 < c2) {
-                result = that.sort.dir === "asc" ? -1 : 1;
+                result = o.sortDir === "asc" ? -1 : 1;
             }
             if (c1 > c2) {
-                result = that.sort.dir === "asc" ? 1 : -1;
+                result = o.sortDir === "asc" ? 1 : -1;
             }
 
             if (result !== 0) {
@@ -811,6 +633,12 @@ var Table = {
         });
 
         Utils.exec(o.onSortStop, [this.items], element[0]);
+
+        if (redraw === true) {
+            this._draw();
+        }
+
+        return this;
     },
 
     filter: function(val){
@@ -831,38 +659,39 @@ var Table = {
         Utils.exec(o.onDataLoad, [o.source], element[0]);
 
         $.get(o.source, function(data){
-            var need_sort = false;
-            var sortable_columns;
+            Utils.exec(o.onDataLoaded, [o.source, data], element[0]);
 
             that._createItemsFromJSON(data);
 
             element.html("");
 
-            element.append(that._createTableHeader());
-            element.append(that._createTableBody());
-            element.append(that._createTableFooter());
+            if (Utils.isValue(o.filterString)) {
+                that.filterString = o.filterString;
+            }
 
-            if (that.heads.length > 0) $.each(that.heads, function(i){
-                var item = this;
-                if (!need_sort && ["asc", "desc"].indexOf(item.sortDir) > -1) {
-                    need_sort = true;
-                    that.sort.colIndex = i;
-                    that.sort.dir = item.sortDir;
+            var filter_func;
+
+            if (Utils.isValue(o.filter)) {
+                filter_func = Utils.isFunc(o.filter);
+                if (filter_func === false) {
+                    filter_func = Utils.func(o.filter);
                 }
-            });
+                that.filterIndex = that.addFilter(filter_func);
+            }
 
-            if (need_sort) {
-                sortable_columns = element.find(".sortable-column");
-                that._resetSortClass(sortable_columns);
-                $(sortable_columns.get(that.sort.colIndex)).addClass("sort-"+that.sort.dir);
-                that.sorting();
+            if (Utils.isValue(o.filters)) {
+                $.each(Utils.strToArray(o.filters), function(){
+                    filter_func = Utils.isFunc(this);
+                    if (filter_func !== false) {
+                        that.filtersIndexes.push(that.addFilter(filter_func));
+                    }
+                });
             }
 
             that.currentPage = 1;
 
-            that._draw();
+            that.sorting(o.sortClass, o.sortDir, true);
 
-            Utils.exec(o.onDataLoaded, [o.source, data], element[0]);
         }).fail(function( jqXHR, textStatus, errorThrown) {
             console.log(textStatus); console.log(jqXHR); console.log(errorThrown);
         });
@@ -958,10 +787,43 @@ var Table = {
     },
 
     changeAttribute: function(attributeName){
+        var that = this, element = this.element, o = this.options;
 
+        var changeSortDir = function(){
+            var dir = element.attr("data-sort-dir");
+            if (!Utils.isValue(dir)) {
+                return ;
+            }
+            o.sortDir = dir;
+            that.sorting(o.sortClass, o.sortDir, true);
+        };
+
+        var changeSortClass = function(){
+            var target = element.attr("data-sort-source");
+            if (!Utils.isValue(target)) {
+                return ;
+            }
+            o.sortClass = target;
+            that.sorting(o.sortClass, o.sortDir, true);
+        };
+
+        var changeFilterString = function(){
+            var filter = element.attr("data-filter-string");
+            if (!Utils.isValue(target)) {
+                return ;
+            }
+            o.filterString = filter;
+            that.filter(o.filterString);
+        };
+
+        switch (attributeName) {
+            case "data-sort-dir": changeSortDir(); break;
+            case "data-sort-source": changeSortClass(); break;
+            case "data-filter-string": changeFilterString(); break;
+        }
     },
 
     destroy: function(){}
 };
 
-Metro.plugin('table', Table);
+Metro.plugin('list', List);

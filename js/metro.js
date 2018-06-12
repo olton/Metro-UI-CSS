@@ -403,6 +403,11 @@ var Metro = {
     noop_true: function(){return true;},
     noop_false: function(){return false;},
 
+    stop: function(e){
+        e.stopPropagation();
+        e.preventDefault();
+    },
+
     requestFullScreen: function(element){
         if (element.mozRequestFullScreen) {
             element.mozRequestFullScreen();

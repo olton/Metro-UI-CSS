@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <meta name="twitter:site" content="@metroui">
+    <meta name="twitter:creator" content="@pimenov_sergey">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Metro 4 Components Library">
+    <meta name="twitter:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.">
+    <meta name="twitter:image" content="https://metroui.org.ua/images/m4-logo-social.png">
+
+    <meta property="og:url" content="https://metroui.org.ua/v4/index.html">
+    <meta property="og:title" content="Metro 4 Components Library">
+    <meta property="og:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:secure_url" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="968">
+    <meta property="og:image:height" content="504">
+
+    <meta name="author" content="Sergey Pimenov">
+    <meta name="description" content="Create a list with sorting, filtering, searching and pagination features. The most popular HTML, CSS, and JS library in Metro style.">
+    <meta name="keywords" content="HTML, CSS, JS, Metro, CSS3, Javascript, HTML5, UI, Library, Web, Development, Framework">
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <link href="metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
+    <link href="highlight/styles/github.css" rel="stylesheet">
+    <link href="docsearch/docsearch.min.css" rel="stylesheet">
+    <link href="css/site.css" rel="stylesheet">
+
+    <title>List - Metro 4 :: Popular HTML, CSS and JS library</title>
+
+    <style>
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+
+        <div class="row flex-xl-nowrap">
+            <div class="cell-md-3 cell-xl-2 pr-0 border-right bd-light" id="sidenav">
+            </div>
+
+            <div class="d-none d-block-xl cell-xl-2 order-2 border-left bd-light toc-wrapper">
+                <h5>Table of contents</h5>
+                <hr/>
+                <ul class="toc-nav">
+                    <li class="toc-entry"><a href="#">List</a></li>
+                    <li class="toc-entry"><a href="#_list_about">About</a></li>
+                    <li class="toc-entry"><a href="#_list_create">Create list</a></li>
+                    <li class="toc-entry"><a href="#_list_external_data">External data</a></li>
+                    <li class="toc-entry"><a href="#_list_sorting">Sorting</a></li>
+                    <li class="toc-entry"><a href="#_list_filtering">Filtering</a></li>
+                    <li class="toc-entry"><a href="#_list_searching">Searching</a></li>
+                    <li class="toc-entry"><a href="#_list_pagination">Pagination</a></li>
+                    <li class="toc-entry"><a href="#_list_options">Options</a></li>
+                    <li class="toc-entry"><a href="#_list_events">Events</a></li>
+                    <li class="toc-entry"><a href="#_list_methods">Methods</a></li>
+                    <li class="toc-entry"><a href="#_list_customize">Customize list</a></li>
+                </ul>
+
+            </div>
+
+            <main class="cell-md-9 cell-xl-8 order-1 pr-1-sx pl-1-sx pr-5-md pl-5-md">
+                <div class="place-right d-none d-block-lg" style="width: 200px;">
+                    <img src="images/logo.png" class="w-100">
+                </div>
+
+                <h1>List</h1>
+                <p class="text-leader">
+                    Create a list with sorting, filtering, searching and pagination features.
+                </p>
+
+                <!-- ads-html -->
+
+                <h3 id="_list_about">About</h3>
+                <p class="text-small">New in 4.2.8</p>
+                <p>
+                    If you need to add sorting, filtering, pagination and searching features to the list, you can use <code>list</code> component.
+                    To create this <code>list</code>, you must add attribute <code>data-role="list"</code> to your element whose sub-elements need to be sorted and set required additional options with special attributes.
+                </p>
+                <div class="example">
+                    <p class="text-center h3 text-light">Sort by</p>
+                    <div class="d-flex flex-justify-center flex-wrap m-2">
+                        <button class="button m-1" onclick="$('#paintings').data('list').sorting('painting-price','asc',true)">Price <span class="mif-arrow-up"></span></button>
+                        <button class="button m-1" onclick="$('#paintings').data('list').sorting('painting-price','desc',true)">Price <span class="mif-arrow-down"></span></button>
+                        <button class="button m-1" onclick="$('#paintings').data('list').sorting('painting-author','asc',true)">Author <span class="mif-arrow-up"></span></button>
+                        <button class="button m-1" onclick="$('#paintings').data('list').sorting('painting-author','desc',true)">Author <span class="mif-arrow-down"></span></button>
+                        <button class="button m-1" onclick="$('#paintings').data('list').sorting('painting-name','asc',true)">Name <span class="mif-arrow-up"></span></button>
+                        <button class="button m-1" onclick="$('#paintings').data('list').sorting('painting-name','desc',true)">Name <span class="mif-arrow-down"></span></button>
+                        <div class="w-100 row flex-justify-center">
+                            <div class="cell-md-4 mt-4">
+                                <select data-role="select" data-filter="false" data-prepend="Paints By:" data-on-change="$('#paintings').data('list').filter(this.value)">
+                                    <option value="" selected>All</option>
+                                    <option value="gogen">Gogen</option>
+                                    <option value="sezann">Sezann</option>
+                                    <option value="bacon">Bacon</option>
+                                    <option value="klimt">Klimt</option>
+                                    <option value="munk">Munk</option>
+                                    <option value="picasso">Picasso</option>
+                                    <option value="kuning">Kuning</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <ul id="paintings"
+                        data-role="list"
+                        data-sort-class="painting-price"
+                        data-filter-class="painting-author"
+                        data-sort-dir="desc"
+                        data-cls-list="unstyled-list row flex-justify-center mt-4"
+                        data-cls-list-item="cell-sm-6 cell-md-4"
+                    >
+                        <li>
+                            <figure class="text-center">
+                                <div class="img-container thumbnail">
+                                    <img src="images/paintings/gogen.jpg" alt="Gogen, When is the wedding">
+                                </div>
+                                <figcaption class="painting-name">When is the wedding</figcaption>
+                                <figcaption class="painting-author text-bold">Gogen</figcaption>
+                                <figcaption class="painting-price" data-format="money">$ 300M</figcaption>
+                            </figure>
+                        </li>
+                        <li>
+                            <figure class="text-center">
+                                <div class="img-container thumbnail">
+                                    <img src="images/paintings/sezann.jpg" alt="Sezann, Players in cards">
+                                </div>
+                                <figcaption class="painting-name">Players in cards</figcaption>
+                                <figcaption class="painting-author text-bold">Sezann</figcaption>
+                                <figcaption class="painting-price" data-format="money">$ 250M</figcaption>
+                            </figure>
+                        </li>
+                        <li>
+                            <figure class="text-center">
+                                <div class="img-container thumbnail">
+                                    <img src="images/paintings/kuning.jpg" alt="Kunning, Woman III">
+                                </div>
+                                <figcaption class="painting-name">Woman III</figcaption>
+                                <figcaption class="painting-author text-bold">Kuning</figcaption>
+                                <figcaption class="painting-price" data-format="money">$ 137M</figcaption>
+                            </figure>
+                        </li>
+                        <li>
+                            <figure class="text-center">
+                                <div class="img-container thumbnail">
+                                    <img src="images/paintings/klimt.jpg" alt="Klimt, Gold Adele">
+                                </div>
+                                <figcaption class="painting-name">Gold Adele</figcaption>
+                                <figcaption class="painting-author text-bold">Klimt</figcaption>
+                                <figcaption class="painting-price" data-format="money">$ 135M</figcaption>
+                            </figure>
+                        </li>
+                        <li>
+                            <figure class="text-center">
+                                <div class="img-container thumbnail">
+                                    <img src="images/paintings/munk.jpg" alt="Munk, The Scream">
+                                </div>
+                                <figcaption class="painting-name">The Scream</figcaption>
+                                <figcaption class="painting-author text-bold">Munk</figcaption>
+                                <figcaption class="painting-price" data-format="money">$ 119M</figcaption>
+                            </figure>
+                        </li>
+                        <li>
+                            <figure class="text-center">
+                                <div class="img-container thumbnail">
+                                    <img src="images/paintings/picasso.jpg" alt="Picasso, Nude, green leaves and bust">
+                                </div>
+                                <figcaption class="painting-name">Nude, green leaves and bust</figcaption>
+                                <figcaption class="painting-author text-bold">Picasso</figcaption>
+                                <figcaption class="painting-price" data-format="money">$ 106M</figcaption>
+                            </figure>
+                        </li>
+                        <li>
+                            <figure class="text-center">
+                                <div class="img-container thumbnail">
+                                    <img src="images/paintings/bacon.jpg">
+                                </div>
+                                <figcaption class="painting-name">Three Studies of Lucian Freud</figcaption>
+                                <figcaption class="painting-author text-bold">Bacon</figcaption>
+                                <figcaption class="painting-price" data-format="money">$ 142M</figcaption>
+                            </figure>
+                        </li>
+                    </ul>
+                </div>
+                <pre><code>
+                    &lt;script&gt;
+                    function sortList(col, dir) {
+                        $('#paintings').data('list').sorting(col,dir,true)
+                    }
+                    &lt;/script&gt;
+
+                    &lt;p class="text-center h3 text-light"&gt;Sort by&lt;/p&gt;
+                    &lt;div class="d-flex flex-justify-center flex-wrap m-2"&gt;
+                        &lt;button class="button m-1" onclick="sortList('painting-price','asc')"&gt;Price &lt;span class="mif-arrow-up"&gt;&lt;/span&gt;&lt;/button&gt;
+                        &lt;button class="button m-1" onclick="sortList('painting-price','desc')"&gt;Price &lt;span class="mif-arrow-down"&gt;&lt;/span&gt;&lt;/button&gt;
+                        &lt;button class="button m-1" onclick="sortList('painting-author','asc')"&gt;Author &lt;span class="mif-arrow-up"&gt;&lt;/span&gt;&lt;/button&gt;
+                        &lt;button class="button m-1" onclick="sortList('painting-author','desc')"&gt;Author &lt;span class="mif-arrow-down"&gt;&lt;/span&gt;&lt;/button&gt;
+                        &lt;button class="button m-1" onclick="sortList('painting-name','asc')"&gt;Name &lt;span class="mif-arrow-up"&gt;&lt;/span&gt;&lt;/button&gt;
+                        &lt;button class="button m-1" onclick="sortList('painting-name','desc')"&gt;Name &lt;span class="mif-arrow-down"&gt;&lt;/span&gt;&lt;/button&gt;
+                        &lt;div class="cell-md-4 mt-4"&gt;
+                            &lt;select data-role="select" data-filter="false" data-prepend="Paints By:" data-on-change="$('#paintings').data('list').filter(this.value)"&gt;
+                                &lt;option value="" selected&gt;All&lt;/option&gt;
+                                &lt;option value="gogen"&gt;Gogen&lt;/option&gt;
+                                &lt;option value="sezann"&gt;Sezann&lt;/option&gt;
+                                &lt;option value="bacon"&gt;Bacon&lt;/option&gt;
+                                &lt;option value="klimt"&gt;Klimt&lt;/option&gt;
+                                &lt;option value="munk"&gt;Munk&lt;/option&gt;
+                                &lt;option value="picasso"&gt;Picasso&lt;/option&gt;
+                            &lt;/select&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+
+                    &lt;ul id="paintings"
+                        data-role="list"
+                        data-sort-class="painting-price"
+                        data-sort-dir="desc"
+                        data-cls-list="unstyled-list row flex-justify-center mt-4"
+                        data-cls-list-item="cell-sm-6 cell-md-4"
+                    &gt;
+                        &lt;li&gt;
+                            &lt;figure class="text-center"&gt;
+                                &lt;div class="img-container thumbnail"&gt;
+                                    &lt;img src="images/paintings/gogen.jpg" alt="Gogen, When is the wedding"&gt;
+                                &lt;/div&gt;
+                                &lt;figcaption class="painting-name"&gt;When is the wedding&lt;/figcaption&gt;
+                                &lt;figcaption class="painting-author text-bold"&gt;Gogen&lt;/figcaption&gt;
+                                &lt;figcaption class="painting-price" data-format="money"&gt;$ 300M&lt;/figcaption&gt;
+                            &lt;/figure&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;figure class="text-center"&gt;
+                                &lt;div class="img-container thumbnail"&gt;
+                                    &lt;img src="images/paintings/sezann.jpg" alt="Sezann, Players in cards"&gt;
+                                &lt;/div&gt;
+                                &lt;figcaption class="painting-name"&gt;Players in cards&lt;/figcaption&gt;
+                                &lt;figcaption class="painting-author text-bold"&gt;Sezann&lt;/figcaption&gt;
+                                &lt;figcaption class="painting-price" data-format="money"&gt;$ 250M&lt;/figcaption&gt;
+                            &lt;/figure&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;figure class="text-center"&gt;
+                                &lt;div class="img-container thumbnail"&gt;
+                                    &lt;img src="images/paintings/kuning.jpg" alt="Kunning, Woman III"&gt;
+                                &lt;/div&gt;
+                                &lt;figcaption class="painting-name"&gt;Woman III&lt;/figcaption&gt;
+                                &lt;figcaption class="painting-author text-bold"&gt;Bacon&lt;/figcaption&gt;
+                                &lt;figcaption class="painting-price" data-format="money"&gt;$ 137M&lt;/figcaption&gt;
+                            &lt;/figure&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;figure class="text-center"&gt;
+                                &lt;div class="img-container thumbnail"&gt;
+                                    &lt;img src="images/paintings/klimt.jpg" alt="Klimt, Gold Adele"&gt;
+                                &lt;/div&gt;
+                                &lt;figcaption class="painting-name"&gt;Gold Adele&lt;/figcaption&gt;
+                                &lt;figcaption class="painting-author text-bold"&gt;Klimt&lt;/figcaption&gt;
+                                &lt;figcaption class="painting-price" data-format="money"&gt;$ 135M&lt;/figcaption&gt;
+                            &lt;/figure&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;figure class="text-center"&gt;
+                                &lt;div class="img-container thumbnail"&gt;
+                                    &lt;img src="images/paintings/munk.jpg" alt="Munk, The Scream"&gt;
+                                &lt;/div&gt;
+                                &lt;figcaption class="painting-name"&gt;The Scream&lt;/figcaption&gt;
+                                &lt;figcaption class="painting-author text-bold"&gt;Munk&lt;/figcaption&gt;
+                                &lt;figcaption class="painting-price" data-format="money"&gt;$ 119M&lt;/figcaption&gt;
+                            &lt;/figure&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;figure class="text-center"&gt;
+                                &lt;div class="img-container thumbnail"&gt;
+                                    &lt;img src="images/paintings/picasso.jpg" alt="Picasso, Nude, green leaves and bust"&gt;
+                                &lt;/div&gt;
+                                &lt;figcaption class="painting-name"&gt;Nude, green leaves and bust&lt;/figcaption&gt;
+                                &lt;figcaption class="painting-author text-bold"&gt;Picasso&lt;/figcaption&gt;
+                                &lt;figcaption class="painting-price" data-format="money"&gt;$ 106M&lt;/figcaption&gt;
+                            &lt;/figure&gt;
+                        &lt;/li&gt;
+                    &lt;/ul&gt;
+                </code></pre>
+
+                <h3 id="_list_create">Create list</h3>
+                <p>
+                    To create interactive list, add attribute <code>data-role="list"</code> to your html list element.
+                </p>
+                <pre><code>
+                    &lt;ul data-role="list"&gt;
+                        ...
+                    &lt;/ul&gt;
+                </code></pre>
+
+                <h3 id="_list_external_data">External data</h3>
+                <p>
+                    You can specify a external data for your list.
+                    External data must have a valid specified json structure.
+                    To set it, use attribute <code>data-source</code>.
+                </p>
+                <pre><code>
+                    &lt;ul data-role="list" data-set="data/paintings.json"&gt;&lt;/ul&gt;
+                </code></pre>
+
+                <h4>External data structure</h4>
+                <p>
+                    External data must have <code>header</code> block and block with <code>data</code>.
+                    Header must contains template for list items. Link to <a href="data/paintings.json" target="_blank">example json file</a>.
+                </p>
+                <pre><code>
+                    {
+                      "header": {
+                        "template": ""
+                      },
+                      "data": []
+                    }
+                </code></pre>
+
+                <h3 id="_list_sorting">Sorting</h3>
+                <p>
+                    By default list sorter use <code>full inner text</code> of  list item (tags are cleared) to sorting items.
+                    You can <code>clarify</code> this with set sub-element <code>class name</code> with attribute <code>data-sort-class="..."</code>.
+                </p>
+                <p>
+                    To set sort direction use attribute <code>data-sort-dir="..."</code>. This attribute must be set into one of two values: <code>asc</code> or <code>desc</code>.
+                    By default, this attribute have a <code>asc</code> as value.
+                </p>
+                <pre><code>
+                    &lt;ul data-role="list"&gt;
+                        &lt;li&gt;&lt;span class="num"&gt;3&lt;/span&gt; item&lt;/li&gt;
+                        &lt;li&gt;&lt;span class="num"&gt;1&lt;/span&gt; item&lt;/li&gt;
+                        &lt;li&gt;&lt;span class="num"&gt;2&lt;/span&gt; item&lt;/li&gt;
+                    &lt;/ul&gt;
+                </code></pre>
+                <h6 class="">Clarify</h6>
+                <pre><code>
+                    &lt;ul data-role="list" data-sort-class="num"&gt;
+                        &lt;li&gt;&lt;span class="num"&gt;3&lt;/span&gt; item&lt;/li&gt;
+                        &lt;li&gt;&lt;span class="num"&gt;1&lt;/span&gt; item&lt;/li&gt;
+                        &lt;li&gt;&lt;span class="num"&gt;2&lt;/span&gt; item&lt;/li&gt;
+                    &lt;/ul&gt;
+                </code></pre>
+                <p>
+                    For right sorting specified fields (ex: formatted money, date), you can add attribute <code>data-format</code> to sorted items.
+                    You can use next formats to a field: <code>number</code>, <code>int</code>, <code>float</code>, <code>date</code> and <code>money</code>.
+                </p>
+                <p class="remark info">
+                    This feature works in pair with a <code>data-sort-class="..."</code> attribute.
+                </p>
+                <pre><code>
+                    &lt;ul id="paintings"
+                        data-role="list"
+                        data-sort-class="painting-price"
+                        data-sort-dir="desc"
+                    &gt;
+                        &lt;li&gt;
+                            &lt;figure class="text-center"&gt;
+                                &lt;div class="img-container thumbnail"&gt;
+                                    &lt;img src="images/paintings/gogen.jpg" alt="Gogen, When is the wedding"&gt;
+                                &lt;/div&gt;
+                                &lt;figcaption class="painting-name"&gt;When is the wedding&lt;/figcaption&gt;
+                                &lt;figcaption class="painting-author text-bold"&gt;Gogen&lt;/figcaption&gt;
+                                &lt;figcaption class="painting-price" data-format="money"&gt;$ 300M&lt;/figcaption&gt;
+                            &lt;/figure&gt;
+                        &lt;/li&gt;
+                        ...
+                    &lt;/ul&gt;
+                </code></pre>
+                <p>
+                    You can change attributes <code>data-sort-class</code> and <code>data-sort-dir</code> at runtime to change list sorting.
+                </p>
+
+                <h3 id="_list_filtering">Filtering</h3>
+                <p>
+                    When you are use <code>list</code> component, you can set filters on list items.
+                    You can specify filtering functions when defining a component or at runtime, using special methods.
+                </p>
+
+                <h4>Specify filters at defining component</h4>
+                <p>
+                    To set filters at defining component, you must use attributes <code>data-filter</code> and <code>data-filters</code>.
+                    Attribute <code>data-filter</code> set one filter, attribute <code>data-filters</code> set the number of filters.
+                    Value for the <code>data-filter</code> must be valid function name or javascript code, and for <code>data-filters</code> - comma separated functions name list.
+                </p>
+                <p>
+                    Each filter receive a single parameter - <code>list HTML element</code>. Filter function must return <code>true</code> or <code>false</code>.
+                </p>
+
+                <div class="example">
+                    <ul data-role="list"
+                        data-sort-class="painting-price"
+                        data-filter-class="painting-author"
+                        data-sort-dir="desc"
+                        data-cls-list="unstyled-list row flex-justify-center mt-4"
+                        data-cls-list-item="cell-sm-6 cell-md-4"
+                        data-source="data/paintings.json"
+                        data-filters="authorFilter, moneyFilter"
+                    ></ul>
+                    <script>
+                        function authorFilter(item){
+                            var author = item.getElementsByClassName('painting-author')[0].textContent;
+                            return author.indexOf("Klimt") > -1 || author.indexOf("Bacon") > -1
+                        }
+                        function moneyFilter(item){
+                            return Metro.utils.parseMoney(item.getElementsByClassName('painting-price')[0].textContent) > 120;
+                        }
+                    </script>
+                </div>
+                <pre><code>
+                    &lt;ul data-role="list"
+                        data-sort-class="painting-price"
+                        data-filter-class="painting-author"
+                        data-sort-dir="desc"
+                        data-cls-list="unstyled-list row flex-justify-center mt-4"
+                        data-cls-list-item="cell-sm-6 cell-md-4"
+                        data-source="data/paintings.json"
+                        data-filters="authorFilter, moneyFilter"
+                    &gt;&lt;/ul&gt;
+                    &lt;script&gt;
+                        function authorFilter(item){
+                            var author = item.getElementsByClassName('painting-author')[0].textContent;
+                            return author.indexOf("Klimt") &gt; -1 || author.indexOf("Bacon") &gt; -1
+                        }
+                        function moneyFilter(item){
+                            return Metro.utils.parseMoney(item.getElementsByClassName('painting-price')[0].textContent) &gt; 120;
+                        }
+                    &lt;/script&gt;
+                </code></pre>
+
+                <h3 id="_list_searching">Searching</h3>
+                <p>
+                    The <code>list</code> component support searching on the list items.
+                    The <code>searching</code> is a special case of filtration.
+                    To enable this function, you must set attribute <code>showSearch</code> to <code>true</code> (this case enable built in search input)
+                    and, if your need, set your one custom search wrapper with attribute <code>data-search-wrapper</code>.
+                </p>
+
+                <h4>Built in search</h4>
+                <div class="example">
+                    <ul data-role="list"
+                        data-sort-class="painting-price"
+                        data-filter-class="painting-author"
+                        data-sort-dir="desc"
+                        data-cls-list="unstyled-list row flex-justify-center mt-4"
+                        data-cls-list-item="cell-sm-6 cell-md-4"
+                        data-source="data/paintings.json"
+                        data-show-search="true"
+                    ></ul>
+                </div>
+                <pre><code>
+                    &lt;ul data-role="list"
+                        data-sort-class="painting-price"
+                        data-filter-class="painting-author"
+                        data-sort-dir="desc"
+                        data-cls-list="unstyled-list row flex-justify-center mt-4"
+                        data-cls-list-item="cell-sm-6 cell-md-4"
+                        data-source="data/paintings.json"
+                        data-show-search="true"
+                    &gt;&lt;/ul&gt;
+                </code></pre>
+
+                <h4>Your one search wrapper</h4>
+                <div class="example">
+                    <ul data-role="list"
+                        data-sort-class="painting-price"
+                        data-filter-class="painting-author"
+                        data-sort-dir="desc"
+                        data-cls-list="unstyled-list row flex-justify-center mt-4"
+                        data-cls-list-item="cell-sm-6 cell-md-4"
+                        data-source="data/paintings.json"
+                        data-search-wrapper=".my-search-wrapper"
+                        data-show-search="true"
+                    ></ul>
+                    <div class="my-search-wrapper"></div>
+                </div>
+                <pre><code>
+                    &lt;ul data-role="list"
+                        data-sort-class="painting-price"
+                        data-filter-class="painting-author"
+                        data-sort-dir="desc"
+                        data-cls-list="unstyled-list row flex-justify-center mt-4"
+                        data-cls-list-item="cell-sm-6 cell-md-4"
+                        data-source="data/paintings.json"
+                        data-search-wrapper=".my-search-wrapper"
+                        data-show-search="true"
+                    &gt;&lt;/ul&gt;
+                    &lt;div class="my-search-wrapper"&gt;&lt;/div&gt;
+                </code></pre>
+
+                <h3 id="_list_pagination">Pagination</h3>
+                <p>
+                    The <code>list</code> component also support <code>pagination</code> to display part of items at one time.
+                    To enable this function, you must set attribute <code>showPagination</code> to <code>true</code> (this case enable built pagination)
+                    and, if your need, set your one custom pagination wrapper with attribute <code>data-pagination-wrapper</code>.
+                    Also you can enable <code>item count block</code> with attribute <code>data-items-steps="true"</code>
+                    And you can enable <code>list items count info block</code> with attribute <code>data-show-info="true"</code>.
+                </p>
+                <div class="example">
+                    <ul data-role="list"
+                        data-sort-class="painting-price"
+                        data-filter-class="painting-author"
+                        data-sort-dir="desc"
+                        data-cls-list="unstyled-list row flex-justify-center mt-4"
+                        data-cls-list-item="cell-sm-6 cell-md-4"
+                        data-source="data/paintings.json"
+                        data-show-pagination="true"
+                        data-items="3"
+                        data-items-steps="all, 3, 5"
+                        data-show-items-steps="true"
+                        data-show-list-info="true"
+                    ></ul>
+                </div>
+                <pre><code class="html">
+                    &lt;ul data-role="list"
+                        data-sort-class="painting-price"
+                        data-filter-class="painting-author"
+                        data-sort-dir="desc"
+                        data-cls-list="unstyled-list row flex-justify-center mt-4"
+                        data-cls-list-item="cell-sm-6 cell-md-4"
+                        data-source="data/paintings.json"
+                        data-show-pagination="true"
+                        data-items="3"
+                        data-items-steps="all, 3, 5"
+                        data-show-items-steps="true"
+                        data-show-list-info="true"
+                    &gt;&lt;/ul&gt;
+                </code></pre>
+
+                <h3 id="_list_options">Options</h3>
+                <p>
+                    You can setup behavior of your list with any options. To these options you can use special attributes.
+                </p>
+                <table class="table cell-border table-border options-table mt-4">
+                    <thead>
+                    <tr>
+                        <td>Option</td>
+                        <td>Data-*</td>
+                        <td>Default</td>
+                        <td>Desc</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><code>sortClass</code></td>
+                        <td><code>data-sort-class</code></td>
+                        <td></td>
+                        <td>Class for sort source element. If you set this attribute, the sorter will use element with this class for sorting</td>
+                    </tr>
+                    <tr>
+                        <td><code>sortDir</code></td>
+                        <td><code>data-sort-dir</code></td>
+                        <td></td>
+                        <td>Direction for sorting. Must be <code>asc</code> or <code>desc</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>sortInitial</code></td>
+                        <td><code>data-sort-initial</code></td>
+                        <td></td>
+                        <td>When you set this attribute to true, you can reset list to initial order</td>
+                    </tr>
+                    <tr>
+                        <td><code>filterClass</code></td>
+                        <td><code>data-filter-class</code></td>
+                        <td></td>
+                        <td>Class for search source element. If you set this attribute, the searcher will use element with this class for searching</td>
+                    </tr>
+                    <tr>
+                        <td><code>filter</code></td>
+                        <td><code>data-filter</code></td>
+                        <td></td>
+                        <td>Initial filter function.</td>
+                    </tr>
+                    <tr>
+                        <td><code>filters</code></td>
+                        <td><code>data-filters</code></td>
+                        <td></td>
+                        <td>Initial filters function.</td>
+                    </tr>
+                    <tr>
+                        <td><code>filterString</code></td>
+                        <td><code>data-filter-string</code></td>
+                        <td></td>
+                        <td>Initial search value.</td>
+                    </tr>
+                    <tr>
+                        <td><code>source</code></td>
+                        <td><code>data-source</code></td>
+                        <td></td>
+                        <td>Define external data for list.</td>
+                    </tr>
+                    <tr>
+                        <td><code>showItemsSteps</code></td>
+                        <td><code>data-show-items-steps</code></td>
+                        <td>false</td>
+                        <td>Show items steps counter. Must be true or false.</td>
+                    </tr>
+                    <tr>
+                        <td><code>showSearch</code></td>
+                        <td><code>data-show-search</code></td>
+                        <td>false</td>
+                        <td>Show search input. Must be true or false.</td>
+                    </tr>
+                    <tr>
+                        <td><code>showListInfo</code></td>
+                        <td><code>data-show-list-info</code></td>
+                        <td>false</td>
+                        <td>Show list info block. Must be true or false.</td>
+                    </tr>
+                    <tr>
+                        <td><code>showPagination</code></td>
+                        <td><code>data-show-pagination</code></td>
+                        <td>false</td>
+                        <td>Show pagination. Must be true or false.</td>
+                    </tr>
+                    <tr>
+                        <td><code>showAllPages</code></td>
+                        <td><code>data-show-all-pages</code></td>
+                        <td>false</td>
+                        <td>Show all links to all pages in pagination.</td>
+                    </tr>
+                    <tr>
+                        <td><code>showActivity</code></td>
+                        <td><code>data-show-activity</code></td>
+                        <td>true</td>
+                        <td>Show activity for long operations. Must be true or false.</td>
+                    </tr>
+                    <tr>
+                        <td><code>muteList</code></td>
+                        <td><code>data-muteList</code></td>
+                        <td>true</td>
+                        <td>Mute list in the time of long operations. Must be true or false.</td>
+                    </tr>
+                    <tr>
+                        <td><code>items</code></td>
+                        <td><code>data-items</code></td>
+                        <td>-1</td>
+                        <td>How many items must be showed. -1 - all items. For pagination.</td>
+                    </tr>
+                    <tr>
+                        <td><code>itemsSteps</code></td>
+                        <td><code>data-items-steps</code></td>
+                        <td>all, 10,25,50,100</td>
+                        <td>Steps for items count to displayed. For pagination.</td>
+                    </tr>
+                    <tr>
+                        <td><code>itemsAllTitle</code></td>
+                        <td><code>data-items-all-title</code></td>
+                        <td>Show all items</td>
+                        <td>Title for all items step.</td>
+                    </tr>
+                    <tr>
+                        <td><code>listItemsCountTitle</code></td>
+                        <td><code>data-items-count-title</code></td>
+                        <td>Show entries:</td>
+                        <td>Title for items counter.</td>
+                    </tr>
+                    <tr>
+                        <td><code>listSearchTitle</code></td>
+                        <td><code>data-list-search-title</code></td>
+                        <td>Search:</td>
+                        <td>Title for search input.</td>
+                    </tr>
+                    <tr>
+                        <td><code>listInfoTitle</code></td>
+                        <td><code>data-list-info-title</code></td>
+                        <td>Showing $1 to $2 of $3 entries</td>
+                        <td>Title for info block.</td>
+                    </tr>
+                    <tr>
+                        <td><code>paginationPrevTitle</code></td>
+                        <td><code>data-pagination-prev-title</code></td>
+                        <td>Prev</td>
+                        <td>Title pagination prev button.</td>
+                    </tr>
+                    <tr>
+                        <td><code>paginationNextTitle</code></td>
+                        <td><code>data-pagination-next-title</code></td>
+                        <td>Next</td>
+                        <td>Title pagination next button.</td>
+                    </tr>
+                    <tr>
+                        <td><code>activityType</code></td>
+                        <td><code>data-activity-type</code></td>
+                        <td>cycle</td>
+                        <td>Activity type. More about <a href="progress.html">activity</a></td>
+                    </tr>
+                    <tr>
+                        <td><code>activityStyle</code></td>
+                        <td><code>data-activity-style</code></td>
+                        <td>color</td>
+                        <td>Activity style.</td>
+                    </tr>
+                    <tr>
+                        <td><code>searchWrapper</code></td>
+                        <td><code>data-search-wrapper</code></td>
+                        <td></td>
+                        <td>Selector for search input wrapper.</td>
+                    </tr>
+                    <tr>
+                        <td><code>rowsWrapper</code></td>
+                        <td><code>data-rows-wrapper</code></td>
+                        <td></td>
+                        <td>Selector for steps select wrapper.</td>
+                    </tr>
+                    <tr>
+                        <td><code>infoWrapper</code></td>
+                        <td><code>data-info-wrapper</code></td>
+                        <td></td>
+                        <td>Selector for list info wrapper.</td>
+                    </tr>
+                    <tr>
+                        <td><code>paginationWrapper</code></td>
+                        <td><code>data-pagination-wrapper</code></td>
+                        <td></td>
+                        <td>Selector for list pagination block wrapper.</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <h3 id="_list_events">Events</h3>
+                <p>
+                    When list works, it generates a series of events that you can use to interact with the component.
+                </p>
+                <table class="table cell-border table-border options-table mt-4">
+                    <thead>
+                    <tr>
+                        <td>Option</td>
+                        <td>Data-*</td>
+                        <td>Desc</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><code>onDraw(el)</code></td>
+                        <td><code>data-on-draw</code></td>
+                        <td>Event fired when the list was drawn.</td>
+                    </tr>
+                    <tr>
+                        <td><code>onDrawItem(item)</code></td>
+                        <td><code>data-on-draw-item</code></td>
+                        <td>Event fired when the list item was drawn.</td>
+                    </tr>
+                    <tr>
+                        <td><code>onSortStart(items)</code></td>
+                        <td><code>data-on-sort-start</code></td>
+                        <td>Event fired before sort started.</td>
+                    </tr>
+                    <tr>
+                        <td><code>onSortStop(items)</code></td>
+                        <td><code>data-on-sort-stop</code></td>
+                        <td>Event fired after sort.</td>
+                    </tr>
+                    <tr>
+                        <td><code>onSortItemSwitch(a, b, result)</code></td>
+                        <td><code>data-on-sort-item-switch</code></td>
+                        <td>Event fired when two item switched.</td>
+                    </tr>
+                    <tr>
+                        <td><code>onSearch(filter, items)</code></td>
+                        <td><code>data-on-search</code></td>
+                        <td>Event fired when user use searching.</td>
+                    </tr>
+                    <tr>
+                        <td><code>onRowsCountChange(val)</code></td>
+                        <td><code>data-on-rows-count-change</code></td>
+                        <td>Event fired when user change items count to display.</td>
+                    </tr>
+                    <tr>
+                        <td><code>onDataLoad(res)</code></td>
+                        <td><code>data-on-data-load</code></td>
+                        <td>Event fired before external data loads.</td>
+                    </tr>
+                    <tr>
+                        <td><code>onDataLoaded(res, data)</code></td>
+                        <td><code>data-on-data-loaded</code></td>
+                        <td>Event fired after external data was loaded.</td>
+                    </tr>
+                    <tr>
+                        <td><code>onFilterItemAccepted(item)</code></td>
+                        <td><code>data-on-filter-item-accepted</code></td>
+                        <td>Event fired filter return true for item.</td>
+                    </tr>
+                    <tr>
+                        <td><code>onFilterItemDeclined(item)</code></td>
+                        <td><code>data-on-filter-item-declined</code></td>
+                        <td>Event fired filter return false for item.</td>
+                    </tr>
+                    <tr>
+                        <td><code>onListCreate(el)</code></td>
+                        <td><code>data-on-list-create</code></td>
+                        <td>Event fired after the list created.</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <h3 id="_list_methods">Methods</h3>
+                <p>
+                    You can use list methods to interact with it.
+                </p>
+                <ul>
+                    <li><strong>draw()</strong> - redraw list</li>
+                    <li><strong>sorting(sortClass, sortDir, redraw)</strong> - sorting list</li>
+                    <li><strong>filter(val)</strong> - programming search on list items</li>
+                    <li><strong>loadData(res)</strong> - load items from external json</li>
+                    <li><strong>next()</strong> - goto next page</li>
+                    <li><strong>prev()</strong> - goto prev page</li>
+                    <li><strong>first()</strong> - goto first page</li>
+                    <li><strong>last()</strong> - goto last page</li>
+                    <li><strong>page(n)</strong> - goto specific page</li>
+                    <li><strong>addFilter(func)</strong> - add filter function</li>
+                    <li><strong>removeFilter(func_index)</strong> - remove filter function</li>
+                    <li><strong>removeFilters()</strong> - remove all filters</li>
+                    <li><strong>getFilters()</strong> - get filters</li>
+                    <li><strong>getFilterIndex()</strong> - get index for filter who set with attribute <code>data-filter</code></li>
+                    <li><strong>getFiltersIndexes()</strong> - get indexes for filters who set with attribute <code>data-filters</code></li>
+                </ul>
+                <div class="example">
+                    <div class="mb-4 text-center">
+                        <button class="button" onclick="$('#list-load-data').data('list').loadData('data/paintings.json')">Load data</button>
+                    </div>
+                    <ul id="list-load-data"
+                        data-role="list"
+                        data-sort-class="painting-price"
+                        data-sort-dir="asc"
+                        data-cls-list="unstyled-list row flex-justify-center mt-4"
+                        data-cls-list-item="cell-sm-6 cell-md-4"
+                    ></ul>
+                </div>
+                <pre><code>
+                    &lt;div class="mb-4 text-center"&gt;
+                        &lt;button class="button"
+                            onclick="$('#list-load-data').data('list').loadData('data/paintings.json')"&gt;
+                            Load data
+                        &lt;/button&gt;
+                    &lt;/div&gt;
+
+                    &lt;ul id="list-load-data"
+                        data-role="list"
+                        data-sort-class="painting-price"
+                        data-sort-dir="asc"
+                        data-cls-list="unstyled-list row flex-justify-center mt-4"
+                        data-cls-list-item="cell-sm-6 cell-md-4"
+                    &gt;&lt;/ul&gt;
+                </code></pre>
+
+                <h3 id="_list_customize">Customize list</h3>
+                <p>
+                    You can customize style of list and him elements with next options:
+                </p>
+                <table class="table cell-border table-border options-table mt-4">
+                    <thead>
+                    <tr>
+                        <th>Option</th>
+                        <th><code>Data-*</code></th>
+                        <th>Desc</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>clsComponent</td>
+                        <td><code>data-cls-component</code></td>
+                        <td>Additional class for component</td>
+                    </tr>
+                    <tr>
+                        <td>clsList</td>
+                        <td><code>data-cls-table</code></td>
+                        <td>Additional class for list</td>
+                    </tr>
+                    <tr>
+                        <td>clsListItem</td>
+                        <td><code>data-cls-list-item</code></td>
+                        <td>Additional class for list item</td>
+                    </tr>
+                    <tr>
+                        <td>clsListTop</td>
+                        <td><code>data-cls-list-top</code></td>
+                        <td>Additional class for list top block</td>
+                    </tr>
+                    <tr>
+                        <td>clsListBottom</td>
+                        <td><code>data-cls-list-bottom</code></td>
+                        <td>Additional class for list bottom block</td>
+                    </tr>
+                    <tr>
+                        <td>clsItemsCount</td>
+                        <td><code>data-cls-items-count</code></td>
+                        <td>Additional class for select items count block</td>
+                    </tr>
+                    <tr>
+                        <td>clsSearch</td>
+                        <td><code>data-cls-search</code></td>
+                        <td>Additional class for search block</td>
+                    </tr>
+                    <tr>
+                        <td>clsListBottom</td>
+                        <td><code>data-cls-list-bottom</code></td>
+                        <td>Additional class for list bottom block</td>
+                    </tr>
+                    <tr>
+                        <td>clsListInfo</td>
+                        <td><code>data-cls-list-bottom</code></td>
+                        <td>Additional class for list info block</td>
+                    </tr>
+                    <tr>
+                        <td>clsListPagination</td>
+                        <td><code>data-cls-list-pagination</code></td>
+                        <td>Additional class for list pagination block</td>
+                    </tr>
+                    <tr>
+                        <td>clsPagination</td>
+                        <td><code>data-cls-pagination</code></td>
+                        <td>Additional class for list pagination</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </main>
+        </div>
+
+    </div>
+
+    <script src="docsearch/docsearch.min.js"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="metro/js/metro.js?ver=@@b-version"></script>
+    <script src="highlight/highlight.pack.js"></script>
+    <script src="js/clipboard.min.js"></script>
+    <script src="js/site.js"></script>
+    <!-- ads-script -->
+    <!-- ga-script -->
+    <!-- hit-ua -->
+
+</body>
+</html>

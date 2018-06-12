@@ -163,7 +163,7 @@
                 </div>
 
                 <div id="icon_list_wrapper" class="mt-4">
-                    <ul class="unstyled-list list icon-list" id="icon-list">
+                    <ul class="unstyled-list list icon-list" id="icon-list" data-role="list" data-search-input="#icon-search" data-sort-target="label" data-sort-dir="asc">
                         <!-- New -->
                         <li class="icon-application"><span class="mif-add-shopping-cart"></span><span class="label"> add-shopping-cart</span></li>
                         <li class="icon-application"><span class="mif-create-new-folder"></span><span class="label"> create-new-folder</span></li>
@@ -754,23 +754,10 @@
     <script src="metro/js/metro.js?ver=@@b-version"></script>
     <script src="highlight/highlight.pack.js"></script>
     <script src="js/clipboard.min.js"></script>
-    <script src="js/list.min.js"></script>
     <script src="js/site.js"></script>
 
     <script>
         $("#icon-count").html($("#icon-list li").length);
-
-        var icon_list_options = {
-            valueNames: ['label']
-        };
-
-        var icon_list = new List('icon_list_wrapper', icon_list_options);
-        icon_list.sort('label', { order: "asc" });
-
-        $("#icon-search").off("keyup").on("keyup", function(){
-            var val = this.value.trim();
-            icon_list.search(val);
-        });
     </script>
     <!-- ads-script -->
     <!-- ga-script -->

@@ -1,7 +1,11 @@
 @import (once) "include/vars";
 @import (once) "include/mixins";
 
-[class*=tile-] {
+.tile-small,
+.tile-medium,
+.tile-wide,
+.tile-large,
+.tile-app {
     display: block;
     background-color: @cyan;
     color: @white;
@@ -37,7 +41,11 @@
     }
 }
 
-[class*=tile-] {
+.tile-small,
+.tile-medium,
+.tile-wide,
+.tile-large,
+.tile-app {
     .icon {
         max-width: 33%;
         height: 33%;
@@ -113,7 +121,11 @@
     }
 }
 
-[class*=tile-] {
+.tile-small,
+.tile-medium,
+.tile-wide,
+.tile-large,
+.tile-app {
     &.transform-right {
         .transformOrigin(left 50%);
         .perspective(@tileTransformPerspective)!important;
@@ -275,7 +287,7 @@
             .create-tiles-cells(12);
 
             .create-tiles-grid-size(@i: 1, @k: 1) when (@k <= @i) {
-                &.size--@{m}-half {
+                &.size-@{m}-half {
                     width: 70px + @tileMargin * 2;
                 }
                 &.size-@{m}-@{k} {
@@ -296,7 +308,6 @@
     width: auto;
     float: left;
     overflow: visible;
-    margin-left: 80px;
 
     &::before {
         content: attr(data-group-title);
