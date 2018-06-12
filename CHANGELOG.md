@@ -1,7 +1,10 @@
 ### 4.2.8
 + [x] Sorter: new component
 + [x] Table: new component
-+ [x] Utils: add new methods `isValue`, `isNegative`, `isPositive`, `isZero`
++ [x] List: new component
++ [x] Utils: add new methods `isValue`, `isNegative`, `isPositive`, `isZero`, `func`, `between`, `parseMoney`
++ [x] Tiles: upd for issue #1109
++ [x] i18n: add it-IT locale by [milanteo](https://github.com/milanteo)
 
 ### 4.2.7
 + [x] Accordion: fix events context to html element
