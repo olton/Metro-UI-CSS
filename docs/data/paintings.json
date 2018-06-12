@@ -1,0 +1,49 @@
+{
+  "header": {
+    "template": "<figure class='text-center'><div class='img-container thumbnail'><img src='$img_src'></div><figcaption class='painting-name'>$painting_name</figcaption><figcaption class='painting-author text-bold'>$painting_author</figcaption><figcaption class='painting-price' data-format='money'>$painting_price</figcaption></figure>"
+  },
+  "data": [
+    {
+      "img_src": "images/paintings/picasso.jpg",
+      "painting_name": "Nude, green leaves and bust",
+      "painting_author": "Picasso",
+      "painting_price": "$ 106M"
+    },
+    {
+      "img_src": "images/paintings/munk.jpg",
+      "painting_name": "The Scream",
+      "painting_author": "Munk",
+      "painting_price": "$ 119M"
+    },
+    {
+      "img_src": "images/paintings/klimt.jpg",
+      "painting_name": "Gold Adele",
+      "painting_author": "Klimt",
+      "painting_price": "$ 135M"
+    },
+    {
+      "img_src": "images/paintings/kuning.jpg",
+      "painting_name": "Woman III",
+      "painting_author": "Kuning",
+      "painting_price": "$ 135M"
+    },
+    {
+      "img_src": "images/paintings/sezann.jpg",
+      "painting_name": "Players in cards",
+      "painting_author": "Sezann",
+      "painting_price": "$ 250M"
+    },
+    {
+      "img_src": "images/paintings/gogen.jpg",
+      "painting_name": "When is the wedding",
+      "painting_author": "Gogen",
+      "painting_price": "$ 300M"
+    },
+    {
+      "img_src": "images/paintings/bacon.jpg",
+      "painting_name": "Three Studies of Lucian Freud",
+      "painting_author": "Bacon",
+      "painting_price": "$ 142M"
+    }
+  ]
+}

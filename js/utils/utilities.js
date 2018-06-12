@@ -197,12 +197,16 @@ var Utils = {
         return this.exec(f, args, context);
     },
 
+    func: function(f){
+        return new Function("a", f);
+    },
+
     exec: function(f, args, context){
         var result;
         if (f === undefined || f === null) {return false;}
         var func = this.isFunc(f);
         if (func === false) {
-            func = new Function("a", f);
+            func = this.func(f);
         }
 
         try {
@@ -268,6 +272,10 @@ var Utils = {
 
     camelCase: function(str){
         return str.replace(/-([a-z])/g, function (g) { return g[1].toUpperCase(); });
+    },
+
+    dashedName: function(str){
+        return str.replace(/([A-Z])/g, function(u) { return "-" + u.toLowerCase(); });
     },
 
     objectShift: function(obj){
@@ -586,10 +594,15 @@ var Utils = {
     },
 
     strToArray: function(str, delimiter){
-        if (delimiter === undefined) {
+        var a;
+
+        if (!this.isValue(delimiter)) {
             delimiter = ",";
         }
-        return str.split(delimiter).map(function(s){
+
+        a = (""+str).split(delimiter);
+
+        return a.map(function(s){
             return s.trim();
         })
     },
@@ -671,6 +684,14 @@ var Utils = {
 
     isZero: function(val){
         return (parseFloat(val.toFixed(2))) === 0.00;
+    },
+
+    between: function(val, bottom, top, equals){
+        return equals === true ? val >= bottom && val <= top : val > bottom && val < top;
+    },
+
+    parseMoney: function(val){
+        return Number(parseFloat(val.replace(/[^0-9-.]/g, '')));
     }
 };
 

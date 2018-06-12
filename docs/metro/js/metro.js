@@ -422,6 +422,11 @@ var Metro = {
     noop_true: function(){return true;},
     noop_false: function(){return false;},
 
+    stop: function(e){
+        e.stopPropagation();
+        e.preventDefault();
+    },
+
     requestFullScreen: function(element){
         if (element.mozRequestFullScreen) {
             element.mozRequestFullScreen();
@@ -2173,13 +2178,13 @@ var Locales = {
     'fr-FR': {
         "calendar": {
             "months": [
-                "janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre",
-                "janv", "févr", "mars", "avr", "mai", "juin", "juil", "août", "sept", "oct", "nov", "déc"
+                "Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre",
+                "Janv", "Févr", "Mars", "Avr", "Mai", "Juin", "Juil", "Août", "Sept", "Oct", "Nov", "Déc"
             ],
             "days": [
-                "dimanche", "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi",
-                "de", "lu", "ma", "me", "je", "ve", "sa",
-                "dim", "lun", "mar", "mer", "jeu", "ven", "sam"
+                "Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi",
+                "De", "Du", "Ma", "Me", "Je", "Ve", "Sa",
+                "Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"
             ],
             "time": {
                 "days": "JOURS",
@@ -2202,6 +2207,41 @@ var Locales = {
             "yes": "Oui",
             "no": "Non",
             "random": "Aléatoire"
+        }
+    },
+
+    'it-IT': {
+        "calendar": {
+            "months": [
+                "Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre",
+                "Gen", "Feb", "Mar", "Apr", "Mag", "Giu", "Lug", "Ago", "Set", "Ott", "Nov", "Dic"
+            ],
+            "days": [
+                "Domenica", "Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato",
+                "Do", "Lu", "Ma", "Me", "Gi", "Ve", "Sa",
+                "Dom", "Lun", "Mar", "Mer", "Gio", "Ven", "Sab"
+            ],
+            "time": {
+                "days": "GIORNI",
+                "hours": "ORE",
+                "minutes": "MIN",
+                "seconds": "SEC",
+                "month": "MESE",
+                "day": "GIORNO",
+                "year": "ANNO"
+            }
+        },
+        "buttons": {
+            "ok": "OK",
+            "cancel": "Annulla",
+            "done": "Fatto",
+            "today": "Oggi",
+            "now": "Adesso",
+            "clear": "Cancella",
+            "help": "Aiuto",
+            "yes": "Sì",
+            "no": "No",
+            "random": "Random"
         }
     }
 };
@@ -3204,12 +3244,16 @@ var d = new Date().getTime();
         return this.exec(f, args, context);
     },
 
+    func: function(f){
+        return new Function("a", f);
+    },
+
     exec: function(f, args, context){
         var result;
         if (f === undefined || f === null) {return false;}
         var func = this.isFunc(f);
         if (func === false) {
-            func = new Function("a", f);
+            func = this.func(f);
         }
 
         try {
@@ -3275,6 +3319,10 @@ var d = new Date().getTime();
 
     camelCase: function(str){
         return str.replace(/-([a-z])/g, function (g) { return g[1].toUpperCase(); });
+    },
+
+    dashedName: function(str){
+        return str.replace(/([A-Z])/g, function(u) { return "-" + u.toLowerCase(); });
     },
 
     objectShift: function(obj){
@@ -3593,10 +3641,15 @@ var d = new Date().getTime();
     },
 
     strToArray: function(str, delimiter){
-        if (delimiter === undefined) {
+        var a;
+
+        if (!this.isValue(delimiter)) {
             delimiter = ",";
         }
-        return str.split(delimiter).map(function(s){
+
+        a = (""+str).split(delimiter);
+
+        return a.map(function(s){
             return s.trim();
         })
     },
@@ -3678,6 +3731,14 @@ var d = new Date().getTime();
 
     isZero: function(val){
         return (parseFloat(val.toFixed(2))) === 0.00;
+    },
+
+    between: function(val, bottom, top, equals){
+        return equals === true ? val >= bottom && val <= top : val > bottom && val < top;
+    },
+
+    parseMoney: function(val){
+        return Number(parseFloat(val.replace(/[^0-9-.]/g, '')));
     }
 };
 
@@ -10387,6 +10448,837 @@ $(document).on(Metro.events.click, function(){
 });
 
 
+// Source: js/plugins/list.js
+var List = {
+    init: function( options, elem ) {
+        this.options = $.extend( {}, this.options, options );
+        this.elem  = elem;
+        this.element = $(elem);
+        this.currentPage = 1;
+        this.pagesCount = 1;
+        this.filterString = "";
+        this.data = null;
+        this.activity = null;
+        this.busy = false;
+        this.filters = [];
+        this.wrapperInfo = null;
+        this.wrapperSearch = null;
+        this.wrapperRows = null;
+        this.wrapperPagination = null;
+        this.filterIndex = null;
+        this.filtersIndexes = [];
+
+        this.sort = {
+            dir: "asc",
+            colIndex: 0
+        };
+
+        this.header = null;
+        this.items = [];
+
+        this._setOptionsFromDOM();
+        this._create();
+
+        return this;
+    },
+
+    options: {
+        sortTarget: "li",
+        sortClass: null,
+        sortDir: "asc",
+        sortInitial: false,
+
+        filterClass: null,
+        filter: null,
+        filterString: "",
+        filters: null,
+        source: null,
+
+        showItemsSteps: false,
+        showSearch: false,
+        showListInfo: false,
+        showPagination: false,
+        showAllPages: false,
+        showActivity: true,
+
+        muteList: true,
+
+        items: -1,
+        itemsSteps: "all, 10,25,50,100",
+
+        itemsAllTitle: "Show all",
+        listItemsCountTitle: "Show entries:",
+        listSearchTitle: "Search:",
+        listInfoTitle: "Showing $1 to $2 of $3 entries",
+        paginationPrevTitle: "Prev",
+        paginationNextTitle: "Next",
+
+        activityType: "cycle",
+        activityStyle: "color",
+        activityTimeout: 100,
+
+        searchWrapper: null,
+        rowsWrapper: null,
+        infoWrapper: null,
+        paginationWrapper: null,
+
+        clsComponent: "",
+        clsList: "",
+        clsListItem: "",
+
+        clsListTop: "",
+        clsItemsCount: "",
+        clsSearch: "",
+
+        clsListBottom: "",
+        clsListInfo: "",
+        clsListPagination: "",
+
+        clsPagination: "",
+
+        onDraw: Metro.noop,
+        onDrawItem: Metro.noop,
+        onSortStart: Metro.noop,
+        onSortStop: Metro.noop,
+        onSortItemSwitch: Metro.noop,
+        onSearch: Metro.noop,
+        onRowsCountChange: Metro.noop,
+        onDataLoad: Metro.noop,
+        onDataLoaded: Metro.noop,
+        onFilterItemAccepted: Metro.noop,
+        onFilterItemDeclined: Metro.noop,
+
+        onListCreate: Metro.noop
+    },
+
+    _setOptionsFromDOM: function(){
+        var element = this.element, o = this.options;
+
+        $.each(element.data(), function(key, value){
+            if (key in o) {
+                try {
+                    o[key] = JSON.parse(value);
+                } catch (e) {
+                    o[key] = value;
+                }
+            }
+        });
+    },
+
+    _create: function(){
+        var that = this, element = this.element, o = this.options;
+
+        if (o.source !== null) {
+            Utils.exec(o.onDataLoad, [o.source], element[0]);
+
+            $.get(o.source, function(data){
+                that._build(data);
+                Utils.exec(o.onDataLoaded, [o.source, data], element[0]);
+            }).fail(function( jqXHR, textStatus, errorThrown) {
+                console.log(textStatus); console.log(jqXHR); console.log(errorThrown);
+            });
+        } else {
+            that._build();
+        }
+    },
+
+    _build: function(data){
+        var element = this.element, o = this.options;
+
+        if (Utils.isValue(data)) {
+            this._createItemsFromJSON(data);
+        } else {
+            this._createItemsFromHTML()
+        }
+
+        this._createStructure();
+        this._createEvents();
+
+        Utils.exec(o.onListCreate, [element], element[0]);
+    },
+
+    _createItemsFromHTML: function(){
+        var that = this, element = this.element, o = this.options;
+
+        this.items = [];
+
+        $.each(element.children(o.sortTarget), function(){
+            that.items.push(this);
+        });
+    },
+
+    _createItemsFromJSON: function(source){
+        var that = this;
+
+        this.items = [];
+
+        if (Utils.isValue(source.header)) {
+            that.header = source.header;
+        }
+
+        if (Utils.isValue(source.data)) {
+            $.each(source.data, function(){
+                var row = this;
+                var li = document.createElement("li");
+                var inner = Utils.isValue(that.header.template) ? that.header.template : "";
+
+                $.each(row, function(k, v){
+                    inner = inner.replace("$"+k, v);
+                });
+
+                li.innerHTML = inner;
+                that.items.push(li);
+            });
+        }
+    },
+
+    _createTopBlock: function (){
+        var that = this, element = this.element, o = this.options;
+        var top_block = $("<div>").addClass("list-top").addClass(o.clsListTop).insertBefore(element);
+        var search_block, search_input, rows_block, rows_select;
+
+        search_block = Utils.isValue(this.wrapperSearch) ? this.wrapperSearch : $("<div>").addClass("list-search-block").addClass(o.clsSearch).appendTo(top_block);
+
+        search_input = $("<input>").attr("type", "text").appendTo(search_block);
+        search_input.input({
+            prepend: o.listSearchTitle
+        });
+
+        if (o.showSearch !== true) {
+            search_block.hide();
+        }
+
+        rows_block = Utils.isValue(this.wrapperRows) ? this.wrapperRows : $("<div>").addClass("list-rows-block").addClass(o.clsItemsCount).appendTo(top_block);
+
+        rows_select = $("<select>").appendTo(rows_block);
+        $.each(Utils.strToArray(o.itemsSteps), function () {
+            var option = $("<option>").attr("value", this === "all" ? -1 : this).text(this === "all" ? o.itemsAllTitle : this).appendTo(rows_select);
+            if (parseInt(this) === parseInt(o.items)) {
+                option.attr("selected", "selected");
+            }
+        });
+        rows_select.select({
+            filter: false,
+            prepend: o.listItemsCountTitle,
+            onChange: function (val) {
+                if (parseInt(val) === parseInt(o.items)) {
+                    return;
+                }
+                o.items = parseInt(val);
+                that.currentPage = 1;
+                that._draw();
+                Utils.exec(o.onRowsCountChange, [val], element[0])
+            }
+        });
+
+        if (o.showItemsSteps !== true) {
+            rows_block.hide();
+        }
+
+        return top_block;
+    },
+
+    _createBottomBlock: function (){
+        var element = this.element, o = this.options;
+        var bottom_block = $("<div>").addClass("list-bottom").addClass(o.clsListBottom).insertAfter(element);
+        var info, pagination;
+
+        info = $("<div>").addClass("list-info").addClass(o.clsListInfo).appendTo(bottom_block);
+        if (o.showListInfo !== true) {
+            info.hide();
+        }
+
+        pagination = $("<div>").addClass("list-pagination").addClass(o.clsListPagination).appendTo(bottom_block);
+        if (o.showPagination !== true) {
+            pagination.hide();
+        }
+
+        return bottom_block;
+    },
+
+    _createStructure: function(){
+        var that = this, element = this.element, o = this.options;
+        var list_component;
+        var w_search = $(o.searchWrapper),
+            w_info = $(o.infoWrapper),
+            w_rows = $(o.rowsWrapper),
+            w_paging = $(o.paginationWrapper);
+
+        if (w_search.length > 0) {this.wrapperSearch = w_search;}
+        if (w_info.length > 0) {this.wrapperInfo = w_info;}
+        if (w_rows.length > 0) {this.wrapperRows = w_rows;}
+        if (w_paging.length > 0) {this.wrapperPagination = w_paging;}
+
+        if (!element.parent().hasClass("list-component")) {
+            list_component = $("<div>").addClass("list-component").insertBefore(element);
+            element.appendTo(list_component);
+        } else {
+            list_component = element.parent();
+        }
+
+        list_component.addClass(o.clsComponent);
+
+        this.activity =  $("<div>").addClass("list-progress").appendTo(list_component);
+        $("<div>").activity({
+            type: o.activityType,
+            style: o.activityStyle
+        }).appendTo(this.activity);
+
+        if (o.showActivity !== true) {
+            this.activity.css({
+                visibility: "hidden"
+            })
+        }
+
+        element.html("").addClass(o.clsList);
+
+        this._createTopBlock();
+        this._createBottomBlock();
+
+        if (Utils.isValue(o.filterString)) {
+            this.filterString = o.filterString;
+        }
+
+        var filter_func;
+
+        if (Utils.isValue(o.filter)) {
+            filter_func = Utils.isFunc(o.filter);
+            if (filter_func === false) {
+                filter_func = Utils.func(o.filter);
+            }
+            that.filterIndex = that.addFilter(filter_func);
+        }
+
+        if (Utils.isValue(o.filters)) {
+            $.each(Utils.strToArray(o.filters), function(){
+                filter_func = Utils.isFunc(this);
+                if (filter_func !== false) {
+                    that.filtersIndexes.push(that.addFilter(filter_func));
+                }
+            });
+        }
+
+        this.currentPage = 1;
+
+        this.sorting(o.sortClass, o.sortDir, true);
+    },
+
+    _createEvents: function(){
+        var that = this, element = this.element;
+        var component = element.parent();
+        var search = component.find(".list-search-block input");
+        var customSearch;
+
+        search.on(Metro.events.inputchange, function(){
+            that.filterString = this.value.trim().toLowerCase();
+            if (that.filterString[that.filterString.length - 1] === ":") {
+                return ;
+            }
+            that.currentPage = 1;
+            that._draw();
+        });
+
+        if (Utils.isValue(this.wrapperSearch)) {
+            customSearch = this.wrapperSearch.find("input");
+            if (customSearch.length > 0) {
+                customSearch.on(Metro.events.inputchange, function(){
+                    that.filterString = this.value.trim().toLowerCase();
+                    if (that.filterString[that.filterString.length - 1] === ":") {
+                        return ;
+                    }
+                    that.currentPage = 1;
+                    that._draw();
+                });
+            }
+        }
+
+        function pageLinkClick(l){
+            var link = $(l);
+            var item = link.parent();
+
+            if (item.hasClass("active")) {
+                return ;
+            }
+
+            if (item.hasClass("service")) {
+                if (link.data("page") === "prev") {
+                    that.currentPage--;
+                    if (that.currentPage === 0) {
+                        that.currentPage = 1;
+                    }
+                } else {
+                    that.currentPage++;
+                    if (that.currentPage > that.pagesCount) {
+                        that.currentPage = that.pagesCount;
+                    }
+                }
+            } else {
+                that.currentPage = link.data("page");
+            }
+
+            that._draw();
+        }
+
+        component.on(Metro.events.click, ".pagination .page-link", function(){
+            pageLinkClick(this)
+        });
+
+        if (Utils.isValue(this.wrapperPagination)) {
+            this.wrapperPagination.on(Metro.events.click, ".pagination .page-link", function(){
+                pageLinkClick(this)
+            });
+        }
+    },
+
+    _info: function(start, stop, length){
+        var element = this.element, o = this.options;
+        var component = element.parent();
+        var info = Utils.isValue(this.wrapperInfo) ? this.wrapperInfo : component.find(".list-info");
+        var text;
+
+        if (info.length === 0) {
+            return ;
+        }
+
+        if (stop > length) {
+            stop = length;
+        }
+
+        if (this.items.length === 0) {
+            start = stop = length = 0;
+        }
+
+        text = o.listInfoTitle;
+        text = text.replace("$1", start);
+        text = text.replace("$2", stop);
+        text = text.replace("$3", length);
+        info.html(text);
+    },
+
+    _paging: function(length){
+        var that = this, element = this.element, o = this.options;
+        var component = element.parent();
+        var pagination_wrapper = Utils.isValue(this.wrapperPagination) ? this.wrapperPagination : component.find(".list-pagination");
+        var i, prev, next;
+        var shortDistance = 5;
+        var pagination;
+
+        pagination_wrapper.html("");
+
+        pagination = $("<ul>").addClass("pagination").addClass(o.clsPagination).appendTo(pagination_wrapper);
+
+        if (this.items.length === 0) {
+            return ;
+        }
+
+        this.pagesCount = Math.ceil(length / o.items);
+
+        var add_item = function(item_title, item_type, data){
+            var li, a;
+
+            li = $("<li>").addClass("page-item").addClass(item_type);
+            a  = $("<a>").addClass("page-link").html(item_title);
+            a.data("page", data);
+            a.appendTo(li);
+
+            return li;
+        };
+
+        prev = add_item(o.paginationPrevTitle, "service prev-page", "prev");
+        pagination.append(prev);
+
+        pagination.append(add_item(1, that.currentPage === 1 ? "active" : "", 1));
+
+        if (o.showAllPages === true || this.pagesCount <= 7) {
+            for (i = 2; i < this.pagesCount; i++) {
+                pagination.append(add_item(i, i === that.currentPage ? "active" : "", i));
+            }
+        } else {
+            if (that.currentPage < shortDistance) {
+                for (i = 2; i <= shortDistance; i++) {
+                    pagination.append(add_item(i, i === that.currentPage ? "active" : "", i));
+                }
+
+                if (this.pagesCount > shortDistance) {
+                    pagination.append(add_item("...", "no-link", null));
+                }
+            } else if (that.currentPage <= that.pagesCount && that.currentPage > that.pagesCount - shortDistance + 1) {
+                if (this.pagesCount > shortDistance) {
+                    pagination.append(add_item("...", "no-link", null));
+                }
+
+                for (i = that.pagesCount - shortDistance + 1; i < that.pagesCount; i++) {
+                    pagination.append(add_item(i, i === that.currentPage ? "active" : "", i));
+                }
+            } else {
+                pagination.append(add_item("...", "no-link", null));
+
+                pagination.append(add_item(that.currentPage - 1, "", that.currentPage - 1));
+                pagination.append(add_item(that.currentPage, "active", that.currentPage));
+                pagination.append(add_item(that.currentPage + 1, "", that.currentPage + 1));
+
+                pagination.append(add_item("...", "no-link", null));
+            }
+        }
+
+        if (that.pagesCount > 1 || that.currentPage < that.pagesCount) pagination.append(add_item(that.pagesCount, that.currentPage === that.pagesCount ? "active" : "", that.pagesCount));
+
+        next = add_item(o.paginationNextTitle, "service next-page", "next");
+        pagination.append(next);
+
+        if (this.currentPage === 1) {
+            prev.addClass("disabled");
+        }
+
+        if (this.currentPage === this.pagesCount) {
+            next.addClass("disabled");
+        }
+    },
+
+    _filter: function(){
+        var that = this,
+            element = this.element,
+            o = this.options,
+            items, i, data, inset, c1, result;
+
+        if (Utils.isValue(this.filterString) || this.filters.length > 0) {
+            items = this.items.filter(function(item){
+                data = "";
+
+                if (Utils.isValue(o.filterClass)) {
+                    inset = item.getElementsByClassName(o.filterClass);
+
+                    if (inset.length > 0) for (i = 0; i < inset.length; i++) {
+                        data += inset[i].textContent;
+                    }
+                } else {
+                    data = item.textContent;
+                }
+
+                c1 = data.replace(/[\n\r]+|[\s]{2,}/g, ' ').trim().toLowerCase();
+                result = Utils.isValue(that.filterString) ? c1.indexOf(that.filterString) > -1 : true;
+
+                if (result === true && that.filters.length > 0) {
+                    for (i = 0; i < that.filters.length; i++) {
+                        if (Utils.exec(that.filters[i], [item]) !== true) {
+                            result = false;
+                            break;
+                        }
+                    }
+                }
+
+                if (result) {
+                    Utils.exec(o.onFilterItemAccepted, [item], element[0]);
+                } else {
+                    Utils.exec(o.onFilterItemDeclined, [item], element[0]);
+                }
+
+                return result;
+            });
+
+            Utils.exec(o.onSearch, [that.filterString, items], element[0])
+        } else {
+            items = this.items;
+        }
+
+        return items;
+    },
+
+    _draw: function(cb){
+        var element = this.element, o = this.options;
+        var i;
+        var start = o.items === -1 ? 0 : o.items * (this.currentPage - 1),
+            stop = o.items === -1 ? this.items.length - 1 : start + o.items - 1;
+        var items;
+
+        element.html("");
+
+        items = this._filter();
+
+        for (i = start; i <= stop; i++) {
+            if (Utils.isValue(items[i])) {
+                items[i].className += " "+o.clsListItem;
+                element[0].appendChild(items[i]);
+            }
+            Utils.exec(o.onDrawItem, [items[i]], element[0]);
+        }
+
+        this._info(start + 1, stop + 1, items.length);
+        this._paging(items.length);
+
+        this.activity.hide();
+
+        Utils.exec(o.onDraw, [element], element[0]);
+
+        if (cb !== undefined) {
+            Utils.exec(cb, [element], element[0])
+        }
+    },
+
+    _getItemContent: function(item){
+        var o = this.options;
+        var i, inset, data;
+        var format;
+
+        if (Utils.isValue(o.sortClass)) {
+            data = "";
+            inset = item.getElementsByClassName(o.sortClass);
+
+            if (inset.length > 0) for (i = 0; i < inset.length; i++) {
+                data += inset[i].textContent;
+            }
+            format = inset[0].dataset.format;
+        } else {
+            data = item.textContent;
+            format = item.dataset.format;
+        }
+
+        data = (""+data).toLowerCase().replace(/[\n\r]+|[\s]{2,}/g, ' ').trim();
+
+        if (Utils.isValue(format)) {
+            switch (format) {
+                case "date": data = Utils.isDate(data) ? new Date(data) : ""; break;
+                case "number": data = Number(data); break;
+                case "int": data = parseInt(data); break;
+                case "float": data = parseFloat(data); break;
+                case "money": data = Utils.parseMoney(data); break;
+            }
+        }
+
+        return data;
+    },
+
+    draw: function(){
+        return this._draw();
+    },
+
+    sorting: function(source, dir, redraw){
+        var that = this, element = this.element, o = this.options;
+
+        if (Utils.isValue(source)) {
+            o.sortClass = source;
+        }
+        if (Utils.isValue(dir) && ["asc", "desc"].indexOf(dir) > -1) {
+            o.sortDir= dir;
+        }
+
+        Utils.exec(o.onSortStart, [this.items], element[0]);
+
+        this.items.sort(function(a, b){
+            var c1 = that._getItemContent(a);
+            var c2 = that._getItemContent(b);
+            var result = 0;
+
+            if (c1 < c2) {
+                result = o.sortDir === "asc" ? -1 : 1;
+            }
+            if (c1 > c2) {
+                result = o.sortDir === "asc" ? 1 : -1;
+            }
+
+            if (result !== 0) {
+                Utils.exec(o.onSortItemSwitch, [a, b, result], element[0]);
+            }
+
+            return result;
+        });
+
+        Utils.exec(o.onSortStop, [this.items], element[0]);
+
+        if (redraw === true) {
+            this._draw();
+        }
+
+        return this;
+    },
+
+    filter: function(val){
+        this.filterString = val.trim().toLowerCase();
+        this.currentPage = 1;
+        this._draw();
+    },
+
+    loadData: function(source){
+        var that = this, element = this.element, o = this.options;
+
+        if (Utils.isValue(source) !== true) {
+            return ;
+        }
+
+        o.source = source;
+
+        Utils.exec(o.onDataLoad, [o.source], element[0]);
+
+        $.get(o.source, function(data){
+            Utils.exec(o.onDataLoaded, [o.source, data], element[0]);
+
+            that._createItemsFromJSON(data);
+
+            element.html("");
+
+            if (Utils.isValue(o.filterString)) {
+                that.filterString = o.filterString;
+            }
+
+            var filter_func;
+
+            if (Utils.isValue(o.filter)) {
+                filter_func = Utils.isFunc(o.filter);
+                if (filter_func === false) {
+                    filter_func = Utils.func(o.filter);
+                }
+                that.filterIndex = that.addFilter(filter_func);
+            }
+
+            if (Utils.isValue(o.filters)) {
+                $.each(Utils.strToArray(o.filters), function(){
+                    filter_func = Utils.isFunc(this);
+                    if (filter_func !== false) {
+                        that.filtersIndexes.push(that.addFilter(filter_func));
+                    }
+                });
+            }
+
+            that.currentPage = 1;
+
+            that.sorting(o.sortClass, o.sortDir, true);
+
+        }).fail(function( jqXHR, textStatus, errorThrown) {
+            console.log(textStatus); console.log(jqXHR); console.log(errorThrown);
+        });
+    },
+
+    next: function(){
+        if (this.items.length === 0) return ;
+        this.currentPage++;
+        if (this.currentPage > this.pagesCount) {
+            this.currentPage = this.pagesCount;
+            return ;
+        }
+        this._draw();
+    },
+
+    prev: function(){
+        if (this.items.length === 0) return ;
+        this.currentPage--;
+        if (this.currentPage === 0) {
+            this.currentPage = 1;
+            return ;
+        }
+        this._draw();
+    },
+
+    first: function(){
+        if (this.items.length === 0) return ;
+        this.currentPage = 1;
+        this._draw();
+    },
+
+    last: function(){
+        if (this.items.length === 0) return ;
+        this.currentPage = this.pagesCount;
+        this._draw();
+    },
+
+    page: function(num){
+        if (num <= 0) {
+            num = 1;
+        }
+
+        if (num > this.pagesCount) {
+            num = this.pagesCount;
+        }
+
+        this.currentPage = num;
+        this._draw();
+    },
+
+    addFilter: function(f, redraw){
+        var func = Utils.isFunc(f);
+        if (func === false) {
+            return ;
+        }
+        this.filters.push(func);
+
+        if (redraw === true) {
+            this.currentPage = 1;
+            this.draw();
+        }
+
+        return this.filters.length - 1;
+    },
+
+    removeFilter: function(key, redraw){
+        Utils.arrayDeleteByKey(this.filters, key);
+        if (redraw === true) {
+            this.currentPage = 1;
+            this.draw();
+        }
+        return this;
+    },
+
+    removeFilters: function(redraw){
+        this.filters = [];
+        if (redraw === true) {
+            this.currentPage = 1;
+            this.draw();
+        }
+    },
+
+    getFilters: function(){
+        return this.filters;
+    },
+
+    getFilterIndex: function(){
+        return this.filterIndex;
+    },
+
+    getFiltersIndexes: function(){
+        return this.filtersIndexes;
+    },
+
+    changeAttribute: function(attributeName){
+        var that = this, element = this.element, o = this.options;
+
+        var changeSortDir = function(){
+            var dir = element.attr("data-sort-dir");
+            if (!Utils.isValue(dir)) {
+                return ;
+            }
+            o.sortDir = dir;
+            that.sorting(o.sortClass, o.sortDir, true);
+        };
+
+        var changeSortClass = function(){
+            var target = element.attr("data-sort-source");
+            if (!Utils.isValue(target)) {
+                return ;
+            }
+            o.sortClass = target;
+            that.sorting(o.sortClass, o.sortDir, true);
+        };
+
+        var changeFilterString = function(){
+            var filter = element.attr("data-filter-string");
+            if (!Utils.isValue(target)) {
+                return ;
+            }
+            o.filterString = filter;
+            that.filter(o.filterString);
+        };
+
+        switch (attributeName) {
+            case "data-sort-dir": changeSortDir(); break;
+            case "data-sort-source": changeSortClass(); break;
+            case "data-filter-string": changeFilterString(); break;
+        }
+    },
+
+    destroy: function(){}
+};
+
+Metro.plugin('list', List);
+
 // Source: js/plugins/listview.js
 var Listview = {
     init: function( options, elem ) {
@@ -13717,7 +14609,7 @@ var Sorter = {
 
     options: {
         sortTarget: null,
-        sortContent: null,
+        sortSource: null,
         sortDir: "asc",
         sortStart: true,
         saveInitial: true,
@@ -13763,25 +14655,36 @@ var Sorter = {
         }
     },
 
-    _getItemContent: function(el){
+    _getItemContent: function(item){
         var o = this.options;
-        var content = "", items;
-        var $el = $(el);
+        var data, inset, i, format;
 
-        if (o.sortContent === null) {
-            content = el.textContent;
+        if (Utils.isValue(o.sortSource)) {
+            data = "";
+            inset = item.getElementsByClassName(o.sortSource);
+
+            if (inset.length > 0) for (i = 0; i < inset.length; i++) {
+                data += inset[i].textContent;
+            }
+            format = inset[0].dataset.format;
         } else {
-            items = $el.find(o.sortContent);
-            if (items.length === 0) {
-                content = el.textContent;
-            } else {
-                $.each(items, function(){
-                    content += " " + this.textContent;
-                })
+            data = item.textContent;
+            format = item.dataset.format;
+        }
+
+        data = (""+data).toLowerCase().replace(/[\n\r]+|[\s]{2,}/g, ' ').trim();
+
+        if (Utils.isValue(format)) {
+            switch (format) {
+                case "date": data = Utils.isDate(data) ? new Date(data) : ""; break;
+                case "number": data = Number(data); break;
+                case "int": data = parseInt(data); break;
+                case "float": data = parseFloat(data); break;
+                case "money": data = Number(parseFloat(data.replace(/[^0-9-.]/g, ''))); break;
             }
         }
 
-        return content.toLowerCase().trim();
+        return data;
     },
 
     sort: function(dir){
@@ -14791,7 +15694,13 @@ var Table = {
         this.data = null;
         this.activity = null;
         this.busy = false;
-        this.filters = []; // TODO
+        this.filters = [];
+        this.wrapperInfo = null;
+        this.wrapperSearch = null;
+        this.wrapperRows = null;
+        this.wrapperPagination = null;
+        this.filterIndex = null;
+        this.filtersIndexes = null;
 
         this.sort = {
             dir: "asc",
@@ -14810,12 +15719,9 @@ var Table = {
 
     options: {
 
+        filter: null,
+        filters: null,
         source: null,
-
-        searchInput: null,
-
-        search: true,
-        pagination: true,
 
         showRowsSteps: true,
         showSearch: true,
@@ -14839,6 +15745,12 @@ var Table = {
 
         activityType: "cycle",
         activityStyle: "color",
+        activityTimeout: 100,
+
+        searchWrapper: null,
+        rowsWrapper: null,
+        infoWrapper: null,
+        paginationWrapper: null,
 
         clsComponent: "",
         clsTable: "",
@@ -14855,15 +15767,18 @@ var Table = {
         clsFooterRow: "",
         clsFooterCell: "",
 
-        clsPagination: "",
         clsTableTop: "",
-        clsTableBottom: "",
-        clsTableInfo: "",
-        clsTablePagination: "",
         clsRowsCount: "",
         clsSearch: "",
 
+        clsTableBottom: "",
+        clsTableInfo: "",
+        clsTablePagination: "",
+
+        clsPagination: "",
+
         onDraw: Metro.noop,
+        onDrawRow: Metro.noop,
         onSortStart: Metro.noop,
         onSortStop: Metro.noop,
         onSortItemSwitch: Metro.noop,
@@ -14871,6 +15786,8 @@ var Table = {
         onRowsCountChange: Metro.noop,
         onDataLoad: Metro.noop,
         onDataLoaded: Metro.noop,
+        onFilterRowAccepted: Metro.noop,
+        onFilterRowDeclined: Metro.noop,
         onTableCreate: Metro.noop
     },
 
@@ -15100,46 +16017,45 @@ var Table = {
 
     _createTopBlock: function (){
         var that = this, element = this.element, o = this.options;
-        var top_block = $("<div>").addClass("table-top row").addClass(o.clsTableTop).insertBefore(element);
+        var top_block = $("<div>").addClass("table-top").addClass(o.clsTableTop).insertBefore(element);
         var search_block, search_input, rows_block, rows_select;
 
-        search_block = $("<div>").addClass("search-block").addClass(o.clsSearch).appendTo(top_block);
-        search_block.addClass(o.pagination === true ? "cell-md-8":"cell-md-12");
+        search_block = Utils.isValue(this.wrapperSearch) ? this.wrapperSearch : $("<div>").addClass("table-search-block").addClass(o.clsSearch).appendTo(top_block);
 
         search_input = $("<input>").attr("type", "text").appendTo(search_block);
         search_input.input({
             prepend: o.tableSearchTitle
         });
 
-        search_block.appendTo(top_block);
-
-        if (o.pagination === true) {
-
-            rows_block = $("<div>").addClass("cell-md-4 rows-count").addClass(o.clsRowsCount).appendTo(top_block);
-            rows_select = $("<select>").appendTo(rows_block);
-            $.each(Utils.strToArray(o.rowsSteps), function () {
-                var option = $("<option>").attr("value", this).text(this).appendTo(rows_select);
-                if (parseInt(this) === parseInt(o.rows)) {
-                    option.attr("selected", "selected");
-                }
-            });
-            rows_select.select({
-                filter: false,
-                prepend: o.tableRowsCountTitle,
-                onChange: function (val) {
-                    if (parseInt(val) === parseInt(o.rows)) {
-                        return;
-                    }
-                    o.rows = val;
-                    that.currentPage = 1;
-                    that._draw();
-                    Utils.exec(o.onRowsCountChange, [val], element[0])
-                }
-            });
+        if (o.showSearch !== true) {
+            search_block.hide();
         }
 
-        if (o.search !== true) {
-            top_block.hide();
+        rows_block = Utils.isValue(this.wrapperRows) ? this.wrapperRows : $("<div>").addClass("table-rows-block").addClass(o.clsRowsCount).appendTo(top_block);
+
+        rows_select = $("<select>").appendTo(rows_block);
+        $.each(Utils.strToArray(o.rowsSteps), function () {
+            var option = $("<option>").attr("value", this).text(this).appendTo(rows_select);
+            if (parseInt(this) === parseInt(o.rows)) {
+                option.attr("selected", "selected");
+            }
+        });
+        rows_select.select({
+            filter: false,
+            prepend: o.tableRowsCountTitle,
+            onChange: function (val) {
+                if (parseInt(val) === parseInt(o.rows)) {
+                    return;
+                }
+                o.rows = val;
+                that.currentPage = 1;
+                that._draw();
+                Utils.exec(o.onRowsCountChange, [val], element[0])
+            }
+        });
+
+        if (o.showRowsSteps !== true) {
+            rows_block.hide();
         }
 
         return top_block;
@@ -15147,23 +16063,17 @@ var Table = {
 
     _createBottomBlock: function (){
         var element = this.element, o = this.options;
-        var bottom_block = $("<div>").addClass("table-bottom row flex-column").addClass(o.clsTableBottom).insertAfter(element);
-        var info_wrapper, info, pagination_wrapper, pagination;
+        var bottom_block = $("<div>").addClass("table-bottom").addClass(o.clsTableBottom).insertAfter(element);
+        var info, pagination;
 
-        info_wrapper = $("<div>").addClass("table-info").addClass(o.clsTableInfo).appendTo(bottom_block);
-        info = $("<span>").appendTo(info_wrapper);
+        info = $("<div>").addClass("table-info").addClass(o.clsTableInfo).appendTo(bottom_block);
         if (o.showTableInfo !== true) {
             info.hide();
         }
 
-        pagination_wrapper = $("<div>").addClass("table-pagination").addClass(o.clsTablePagination).appendTo(bottom_block);
-        pagination = $("<ul>").addClass("pagination").addClass(o.clsPagination).appendTo(pagination_wrapper);
+        pagination = $("<div>").addClass("table-pagination").addClass(o.clsTablePagination).appendTo(bottom_block);
         if (o.showPagination !== true) {
             pagination.hide();
-        }
-
-        if (o.pagination !== true) {
-            bottom_block.hide();
         }
 
         return bottom_block;
@@ -15172,6 +16082,12 @@ var Table = {
     _createStructure: function(){
         var that = this, element = this.element, o = this.options;
         var table_component, sortable_columns;
+        var w_search = $(o.searchWrapper), w_info = $(o.infoWrapper), w_rows = $(o.rowsWrapper), w_paging = $(o.paginationWrapper);
+
+        if (w_search.length > 0) {this.wrapperSearch = w_search;}
+        if (w_info.length > 0) {this.wrapperInfo = w_info;}
+        if (w_rows.length > 0) {this.wrapperRows = w_rows;}
+        if (w_paging.length > 0) {this.wrapperPagination = w_paging;}
 
         if (!element.parent().hasClass("table-component")) {
             table_component = $("<div>").addClass("table-component").insertBefore(element);
@@ -15220,21 +16136,38 @@ var Table = {
             this.sorting();
         }
 
+        var filter_func;
+
+        if (Utils.isValue(o.filter)) {
+            filter_func = Utils.isFunc(o.filter);
+            if (filter_func === false) {
+                filter_func = Utils.func(o.filter);
+            }
+            that.filterIndex = that.addFilter(filter_func);
+        }
+
+        if (Utils.isValue(o.filters)) {
+            $.each(Utils.strToArray(o.filters), function(){
+                filter_func = Utils.isFunc(this);
+                if (filter_func !== false) {
+                    that.filtersIndexes.push(that.addFilter(filter_func));
+                }
+            });
+        }
+
         this.currentPage = 1;
 
         this._draw();
     },
 
     _resetSortClass: function(el){
-        $(el)
-            .removeClass("sort-asc")
-            .removeClass("sort-desc");
+        $(el).removeClass("sort-asc sort-desc");
     },
 
     _createEvents: function(){
         var that = this, element = this.element, o = this.options;
         var component = element.parent();
-        var search = component.find(".search-block input");
+        var search = component.find(".table-search-block input");
         var customSearch;
 
         element.on(Metro.events.click, ".sortable-column", function(){
@@ -15248,7 +16181,7 @@ var Table = {
 
             var col = $(this);
 
-            that.activity.show(20, function(){
+            that.activity.show(o.activityTimeout, function(){
                 that.currentPage = 1;
                 that.sort.colIndex = col.index();
                 if (!col.has("sort-asc") && !col.hasClass("sort-desc")) {
@@ -15279,8 +16212,8 @@ var Table = {
             that._draw();
         });
 
-        if (Utils.isValue(o.searchInput)) {
-            customSearch = $(o.searchInput);
+        if (Utils.isValue(this.wrapperSearch)) {
+            customSearch = this.wrapperSearch.find("input");
             if (customSearch.length > 0) {
                 customSearch.on(Metro.events.inputchange, function(){
                     that.filterString = this.value.trim().toLowerCase();
@@ -15293,8 +16226,8 @@ var Table = {
             }
         }
 
-        component.on(Metro.events.click, ".pagination .page-link", function(){
-            var link = $(this);
+        function pageLinkClick(l){
+            var link = $(l);
             var item = link.parent();
 
             if (item.hasClass("active")) {
@@ -15314,17 +16247,27 @@ var Table = {
                     }
                 }
             } else {
-                that.currentPage = $(this).data("page");
+                that.currentPage = link.data("page");
             }
 
             that._draw();
+        }
+
+        component.on(Metro.events.click, ".pagination .page-link", function(){
+            pageLinkClick(this)
         });
+
+        if (Utils.isValue(this.wrapperPagination)) {
+            this.wrapperPagination.on(Metro.events.click, ".pagination .page-link", function(){
+                pageLinkClick(this)
+            });
+        }
     },
 
     _info: function(start, stop, length){
         var element = this.element, o = this.options;
         var component = element.parent();
-        var info = component.find(".table-info");
+        var info = Utils.isValue(this.wrapperInfo) ? this.wrapperInfo : component.find(".table-info");
         var text;
 
         if (info.length === 0) {
@@ -15349,9 +16292,14 @@ var Table = {
     _paging: function(length){
         var that = this, element = this.element, o = this.options;
         var component = element.parent();
-        var pagination = component.find(".pagination").html("");
+        var pagination_wrapper = Utils.isValue(this.wrapperPagination) ? this.wrapperPagination : component.find(".table-pagination");
         var i, prev, next;
         var shortDistance = 5;
+        var pagination;
+
+        pagination_wrapper.html("");
+
+        pagination = $("<ul>").addClass("pagination").addClass(o.clsPagination).appendTo(pagination_wrapper);
 
         if (this.items.length === 0) {
             return ;
@@ -15425,13 +16373,14 @@ var Table = {
         var that = this, element = this.element, o = this.options;
         var body = element.find("tbody");
         var i;
-        var start = o.pagination === true ? o.rows * (this.currentPage - 1) : 0, stop = o.pagination === true ? parseInt(start) + parseInt(o.rows) - 1 : this.items.length - 1;
+        var start = o.rows === -1 ? 0 : o.rows * (this.currentPage - 1),
+            stop = o.rows === -1 ? this.items.length - 1 : start + o.rows - 1;
         var items;
         var flt, idx = -1;
 
         body.html("");
 
-        if (this.filterString !== "") {
+        if (Utils.isValue(this.filterString) || this.filters.length > 0) {
             flt = this.filterString.split(":");
             if (flt.length > 1) {
                 $.each(that.heads, function (i, v) {
@@ -15443,8 +16392,24 @@ var Table = {
             items = this.items.filter(function(row){
                 var row_data = "" + (flt.length > 1 && idx > -1 ? row[idx] : row.join());
                 var c1 = row_data.replace(/[\n\r]+|[\s]{2,}/g, ' ').trim().toLowerCase();
+                var result = Utils.isValue(that.filterString) ? c1.indexOf(flt.length > 1 ? flt[1] : flt[0]) > -1 : true;
 
-                return c1.indexOf(flt.length > 1 ? flt[1] : flt[0]) > -1;
+                if (result === true && that.filters.length > 0) {
+                    for (i = 0; i < that.filters.length; i++) {
+                        if (Utils.exec(that.filters[i], [row]) !== true) {
+                            result = false;
+                            break;
+                        }
+                    }
+                }
+
+                if (result) {
+                    Utils.exec(o.onFilterRowAccepted, [row], element[0]);
+                } else {
+                    Utils.exec(o.onFilterRowDeclined, [row], element[0]);
+                }
+
+                return result;
             });
 
             Utils.exec(o.onSearch, [that.filterString, items], element[0])
@@ -15463,10 +16428,11 @@ var Table = {
                 td.appendTo(tr);
             });
             tr.appendTo(body);
+            Utils.exec(o.onDrawRow, [tr], element[0]);
         }
 
         this._info(start + 1, stop + 1, items.length);
-        if (o.pagination === true) this._paging(items.length);
+        this._paging(items.length);
 
         this.activity.hide();
 
@@ -15489,11 +16455,15 @@ var Table = {
                 case "number": result = Number(result); break;
                 case "int": result = parseInt(result); break;
                 case "float": result = parseFloat(result); break;
-                case "money": result = Number(parseFloat(result.replace(/[^0-9-.]/g, ''))); break;
+                case "money": result = Utils.parseMoney(result); break;
             }
         }
 
         return result;
+    },
+
+    draw: function(){
+        return this._draw();
     },
 
     sorting: function(dir){
@@ -15504,11 +16474,9 @@ var Table = {
             this.sort.dir = dir;
         }
 
-        Utils.exec(o.onSortStart, [element], element[0]);
+        Utils.exec(o.onSortStart, [this.items], element[0]);
 
-        items = this.items;
-
-        items.sort(function(a, b){
+        this.items.sort(function(a, b){
             var c1 = that._getItemContent(a);
             var c2 = that._getItemContent(b);
             var result = 0;
@@ -15527,9 +16495,7 @@ var Table = {
             return result;
         });
 
-        this.items = items;
-
-        Utils.exec(o.onSortStop, [element], element[0]);
+        Utils.exec(o.onSortStop, [this.items], element[0]);
     },
 
     filter: function(val){
@@ -15630,6 +16596,50 @@ var Table = {
 
         this.currentPage = num;
         this._draw();
+    },
+
+    addFilter: function(f, redraw){
+        var func = Utils.isFunc(f);
+        if (func === false) {
+            return ;
+        }
+        this.filters.push(func);
+
+        if (redraw === true) {
+            this.currentPage = 1;
+            this.draw();
+        }
+
+        return this.filters.length - 1;
+    },
+
+    removeFilter: function(key, redraw){
+        Utils.arrayDeleteByKey(this.filters, key);
+        if (redraw === true) {
+            this.currentPage = 1;
+            this.draw();
+        }
+        return this;
+    },
+
+    removeFilters: function(redraw){
+        this.filters = [];
+        if (redraw === true) {
+            this.currentPage = 1;
+            this.draw();
+        }
+    },
+
+    getFilters: function(){
+        return this.filters;
+    },
+
+    getFilterIndex: function(){
+        return this.filterIndex;
+    },
+
+    getFiltersIndexes: function(){
+        return this.filtersIndexes;
     },
 
     changeAttribute: function(attributeName){
