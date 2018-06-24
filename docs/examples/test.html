@@ -32,57 +32,31 @@
 
     <title>Test - Metro 4 :: Popular HTML, CSS and JS library</title>
 
-    <!--<style>-->
-        <!--@media screen and (min-width: 992px) {-->
-            <!--.shifted-content-2, .app-bar {-->
-                <!--margin-left: 280px;-->
-                <!--width: calc(100% - 280px);-->
-            <!--}-->
-        <!--}-->
-    <!--</style>-->
-
 </head>
 <body>
-
-<aside class="sidebar" data-role="sidebar" data-toggle="#sidebar-toggle-4" id="sb4" data-static="lg" data-static-shift=".shifted-content-2, .app-bar">
-    <div class="sidebar-header" data-image="../images/sb-bg-1.jpg">
-        <div class="avatar">
-            <img data-role="gravatar" data-email="sergey@pimenov.com.ua">
-        </div>
-        <span class="title fg-white">Metro 4 Components Library</span>
-        <span class="subtitle fg-white"> 2018 &copy; Sergey Pimenov</span>
+    <div class="container mt-4">
+        <button class="button" onclick="setValue(1)">Set 1</button>
+        <button class="button" onclick="setValue(2)">Set 2</button>
+        <button class="button" onclick="setValue(3)">Set 3</button>
+        <select data-role="select" id="s1" data-cls-element="mt-4">
+            <option value="1">Value 1</option>
+            <option value="2">Value 2</option>
+            <option value="3" selected>Value 3</option>
+        </select>
     </div>
-    <ul class="sidebar-menu">
-        <li><a><span class="mif-home icon"></span>Home</a></li>
-        <li><a><span class="mif-books icon"></span>Guide</a></li>
-        <li><a><span class="mif-files-empty icon"></span>Examples</a></li>
-        <li class="divider"></li>
-        <li><a><span class="mif-images icon"></span>Icons</a></li>
-    </ul>
-</aside>
 
-<div class="app-bar pos-absolute bg-red z-1" data-role="appbar">
-    <button class="app-bar-item c-pointer" id="sidebar-toggle-4"><span class="mif-menu fg-white"></span></button>
-</div>
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../metro/js/metro.js"></script>
 
-<div class="shifted-content-2 h-100 p-ab">
-    <div class="h-100 p-4">
-        <p class="h1">What is Lorem Ipsum?</p>
-        <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-            when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-            It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-            It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
-            and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-        </p>
-    </div>
-</div>
+    <script>
+        function setValue(v){
+            var sel = $('#s1').data('select');
+            sel.val(v);
+        }
+    </script>
 
-
-<script src="../js/jquery-3.3.1.min.js"></script>
-<script src="../metro/js/metro.js"></script>
-<!-- ads-script -->
+<script>
+</script>
 
 </body>
 </html>

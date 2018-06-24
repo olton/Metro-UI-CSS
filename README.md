@@ -23,7 +23,7 @@ It's an independent project with its ongoing development made possible entirely 
 <br>
 <hr>
  
-## Current Version 4.2.8
+## Current Version 4.2.9
 
 ### Status
 [![Build Status](https://travis-ci.org/olton/Metro-UI-CSS.svg?branch=master)](https://travis-ci.org/olton/Metro-UI-CSS)
@@ -48,7 +48,7 @@ It's an independent project with its ongoing development made possible entirely 
 + Framework itself monitors components attributes to change
 + Create cool page without knowledge of javascript
 
- Documentation and Demo for v4: [getmetroui.com](https://getmetroui.com/) or [metroui.org.ua](https://metroui.org.ua/).   
+ Documentation and Demo for v4: [getmetroui.com](https://getmetroui.com/) or [metroui.org.ua](https://metroui.org.ua/) or [m4.org.ua](https://m4.org.ua).   
 
 ### Credits
 - Styles created using the [less](http://lesscss.org) preprocessor by  [Alexis Sellier](https://github.com/cloudhead)

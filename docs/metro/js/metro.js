@@ -1,5 +1,5 @@
 /*
- * Metro 4 Components Library v4.2.8 build 684 (https://metroui.org.ua)
+ * Metro 4 Components Library v4.2.8 build @@build (https://metroui.org.ua)
  * Copyright 2018 Sergey Pimenov
  * Licensed under MIT
  */
@@ -80,7 +80,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.8.684 ",
+    version: "@@version.@@build @@status",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -3739,6 +3739,14 @@ var d = new Date().getTime();
 
     parseMoney: function(val){
         return Number(parseFloat(val.replace(/[^0-9-.]/g, '')));
+    },
+
+    isVisible: function(el){
+        if (this.isJQueryObject(el)) {
+            el = el[0];
+        }
+
+        return this.getStyleOne(el, "display") !== "none" && this.getStyleOne(el, "visibility") !== "hidden" && el.offsetParent !== null;
     }
 };
 
@@ -4901,18 +4909,15 @@ var Calendar = {
         }
 
         if (o.minDate !== null && Utils.isDate(o.minDate)) {
-            this.min = new Date(o.minDate);
-            this.min.setHours(0,0,0,0);
+            this.min = (new Date(o.minDate)).addHours(this.offset);
         }
 
         if (o.maxDate !== null && Utils.isDate(o.maxDate)) {
-            this.max = new Date(o.maxDate);
-            this.max.setHours(0,0,0,0);
+            this.max = (new Date(o.maxDate)).addHours(this.offset);
         }
 
         if (o.show !== null && Utils.isDate(o.show)) {
-            this.show = new Date(o.show);
-            this.show.setHours(0,0,0,0);
+            this.show = (new Date(o.show)).addHours(this.offset);
             this.current = {
                 year: this.show.getFullYear(),
                 month: this.show.getMonth(),
@@ -5313,10 +5318,10 @@ var Calendar = {
                     if (this.exclude.indexOf(s.getTime()) !== -1) {
                         d.addClass("disabled excluded").addClass(o.clsExcluded);
                     }
-                    if (this.min !== null && s.getTime() < this.min.getTime()) {
+                    if (this.min !== null && s < this.min) {
                         d.addClass("disabled excluded").addClass(o.clsExcluded);
                     }
-                    if (this.max !== null && s.getTime() > this.max.getTime()) {
+                    if (this.max !== null && s > this.max) {
                         d.addClass("disabled excluded").addClass(o.clsExcluded);
                     }
                 } else {
@@ -5415,12 +5420,12 @@ var Calendar = {
             }
         }
 
-        var day_height = element.find(".day:nth-child(1)").css('width');
+        //var day_height = Utils.getStyleOne(element.parent().find(".calendar .days"), 'width');
 
-        element.find(".days-row .day").css({
-            height: day_height,
-            lineHeight: day_height
-        });
+        // element.find(".days-row .day").css({
+        //     height: day_height,
+        //     lineHeight: day_height + 'px'
+        // });
     },
 
     _drawCalendar: function(){
@@ -13588,6 +13593,7 @@ var Select = {
         this.options = $.extend( {}, this.options, options );
         this.elem  = elem;
         this.element = $(elem);
+        this.list = null;
 
         this._setOptionsFromDOM();
         this._create();
@@ -13617,7 +13623,7 @@ var Select = {
     },
 
     _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         $.each(element.data(), function(key, value){
             if (key in o) {
@@ -13748,6 +13754,7 @@ var Select = {
                 }
             });
 
+            this.list = list;
         }
 
         if (o.prepend !== "") {
@@ -13774,7 +13781,7 @@ var Select = {
     },
 
     _createEvents: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var container = element.closest(".select");
         var drop_container = container.find(".drop-container");
         var input = element.siblings("input");
@@ -13842,19 +13849,36 @@ var Select = {
     },
 
     val: function(v){
-        var that = this, element = this.element;
+        var element = this.element, o = this.options;
         var input = element.siblings("input");
         var options = element.find("option");
+        var items = this.list.find("li");
+
         if (v === undefined) {
             return element.val();
         }
+
         options.removeAttr("selected");
         $.each(options, function(){
-            var op = $(this);
-            if (this.value == v) {
-                op.attr("selected", "selected");
-                input.val(this.text);
+            var op = this;
+
+            if (""+op.value === ""+v) {
+                op.setAttribute("selected", "selected");
+                input.val(op.text);
                 element.trigger("change");
+
+                items.removeClass("active");
+                $.each(items, function(){
+                    var item = $(this);
+
+                    if (item.hasClass("group-title")) return ;
+
+                    if (""+item.data("value") === ""+v) {
+                        item.addClass("active");
+                    }
+                });
+
+                Utils.exec(o.onChange, [v], element[0]);
             }
         });
     },
@@ -13863,7 +13887,7 @@ var Select = {
         var that = this, element = this.element;
         var select = element.parent();
         var list = select.find("ul");
-        var option, option_group;
+        var option_group;
 
         element.html("");
         list.html("");
@@ -13897,7 +13921,7 @@ var Select = {
     },
 
     destroy: function(){
-        var that = this, element = this.element;
+        var element = this.element;
         var container = element.closest(".select");
         var drop_container = container.find(".drop-container");
         var input = element.siblings("input");
@@ -13920,7 +13944,7 @@ var Select = {
     }
 };
 
-$(document).on(Metro.events.click, function(e){
+$(document).on(Metro.events.click, function(){
     var selects = $(".select .drop-container");
     $.each(selects, function(){
         $(this).data('dropdown').close();
@@ -14397,6 +14421,8 @@ var Slider = {
             case "prc2pix": return Math.round( v / ( 100 / length ));
             case "val2pix": return Math.round( this._convert(this._convert(v, 'val2prc'), 'prc2pix') );
         }
+
+        return 0;
     },
 
     _correct: function(value){
@@ -14482,12 +14508,31 @@ var Slider = {
         var slider = this.slider, o = this.options;
         var marker = slider.find(".marker"), complete = slider.find(".complete");
         var length = o.vertical === true ? slider.outerHeight() : slider.outerWidth();
+        var marker_size = parseInt(Utils.getStyleOne(marker, "width"));
+        var slider_visible = Utils.isVisible(slider);
+
+        if (slider_visible) {
+            marker.css({
+                'margin-top': 0,
+                'margin-left': 0
+            });
+        }
 
         if (o.vertical === true) {
-            marker.css('top', length - this.pixel);
+            if (slider_visible) {
+                marker.css('top', length - this.pixel);
+            } else {
+                marker.css('top', this.percent + "%");
+                marker.css('margin-top', this.percent === 0 ? 0 : -1 * marker_size / 2);
+            }
             complete.css('height', this.percent+"%");
         } else {
-            marker.css('left', this.pixel);
+            if (slider_visible) {
+                marker.css('left', this.pixel);
+            } else {
+                marker.css('left', this.percent + "%");
+                marker.css('margin-left', this.percent === 0 ? 0 : -1 * marker_size / 2);
+            }
             complete.css('width', this.percent+"%");
         }
     },
@@ -17491,10 +17536,12 @@ var TimePicker = {
         var that  = this, element = this.element, o = this.options;
         var picker = this.picker;
         var h, m, s;
-        var h_list, m_list, s_list, a_list;
+        var h_list, m_list, s_list;
+        var select_wrapper = picker.find(".select-wrapper");
+        var items = picker.find("li");
 
-        picker.find(".select-wrapper").show();
-        picker.find("li").removeClass("active");
+        select_wrapper.show();
+        items.removeClass("active");
 
         if (o.hours === true) {
             h = this.value[0];

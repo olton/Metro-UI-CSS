@@ -5,6 +5,7 @@
     display: block;
     position: relative;
     width: 100%;
+    min-width: 220px;
     cursor: default;
     background-color: @white;
     color: @dark;
@@ -81,9 +82,31 @@
         flex-flow: row nowrap;
         position: relative;
         width: 100%;
+        background-color: @white;
 
         & > * {
             flex: 1;
+
+            &:not(:last-child) {
+                border-right: 1px solid @borderColor;
+            }
         }
     }
+
+    .select-wrapper {
+        .translate3d(0, -50%, 0);
+    }
+
+    &.for-top {
+        .select-wrapper {
+            .translate3d(0, 0, 0);
+        }
+    }
+
+    &.for-bottom {
+        .select-wrapper {
+            .translate3d(0, -100%, 0);
+        }
+    }
+
 }

@@ -1,3 +1,11 @@
+### 4.2.9
++ [x] Calendar: fix day item height for issue #1112
++ [x] Select: fix method `val` for issue #1116
++ [x] App bar: fix drop down for issue #1114
++ [x] Slider: fix marker position for non displayed slider fro issue #1119
++ [x] Time(date) picker: add classes `.for-top`, `.for-bottom`. Use with attribute `data-cls-picker`
++ [x] Time(date) picker: add action button border
+
 ### 4.2.8
 + [x] Sorter: new component
 + [x] Table: new component

@@ -158,6 +158,14 @@
     a {
         outline: none!important;
     }
+
+    .app-bar-menu .d-menu .d-menu,
+    .app-bar-menu .v-menu .v-menu,
+    .app-bar-menu .v-menu .d-menu,
+    .app-bar-menu .d-menu .v-menu
+    {
+        left: 0;
+    }
 }
 
 .app-bar {
@@ -219,6 +227,14 @@
         &.collapsed {
             display: flex!important;
         }
+    }
+
+    .app-bar-menu .d-menu .d-menu,
+    .app-bar-menu .v-menu .v-menu,
+    .app-bar-menu .v-menu .d-menu,
+    .app-bar-menu .d-menu .v-menu
+    {
+        left: 100%;
     }
 
     .hamburger {

@@ -253,6 +253,8 @@ var Slider = {
             case "prc2pix": return Math.round( v / ( 100 / length ));
             case "val2pix": return Math.round( this._convert(this._convert(v, 'val2prc'), 'prc2pix') );
         }
+
+        return 0;
     },
 
     _correct: function(value){
@@ -338,12 +340,31 @@ var Slider = {
         var slider = this.slider, o = this.options;
         var marker = slider.find(".marker"), complete = slider.find(".complete");
         var length = o.vertical === true ? slider.outerHeight() : slider.outerWidth();
+        var marker_size = parseInt(Utils.getStyleOne(marker, "width"));
+        var slider_visible = Utils.isVisible(slider);
+
+        if (slider_visible) {
+            marker.css({
+                'margin-top': 0,
+                'margin-left': 0
+            });
+        }
 
         if (o.vertical === true) {
-            marker.css('top', length - this.pixel);
+            if (slider_visible) {
+                marker.css('top', length - this.pixel);
+            } else {
+                marker.css('top', this.percent + "%");
+                marker.css('margin-top', this.percent === 0 ? 0 : -1 * marker_size / 2);
+            }
             complete.css('height', this.percent+"%");
         } else {
-            marker.css('left', this.pixel);
+            if (slider_visible) {
+                marker.css('left', this.pixel);
+            } else {
+                marker.css('left', this.percent + "%");
+                marker.css('margin-left', this.percent === 0 ? 0 : -1 * marker_size / 2);
+            }
             complete.css('width', this.percent+"%");
         }
     },
