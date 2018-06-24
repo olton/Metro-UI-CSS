@@ -148,18 +148,15 @@ var Calendar = {
         }
 
         if (o.minDate !== null && Utils.isDate(o.minDate)) {
-            this.min = new Date(o.minDate);
-            this.min.setHours(0,0,0,0);
+            this.min = (new Date(o.minDate)).addHours(this.offset);
         }
 
         if (o.maxDate !== null && Utils.isDate(o.maxDate)) {
-            this.max = new Date(o.maxDate);
-            this.max.setHours(0,0,0,0);
+            this.max = (new Date(o.maxDate)).addHours(this.offset);
         }
 
         if (o.show !== null && Utils.isDate(o.show)) {
-            this.show = new Date(o.show);
-            this.show.setHours(0,0,0,0);
+            this.show = (new Date(o.show)).addHours(this.offset);
             this.current = {
                 year: this.show.getFullYear(),
                 month: this.show.getMonth(),
@@ -560,10 +557,10 @@ var Calendar = {
                     if (this.exclude.indexOf(s.getTime()) !== -1) {
                         d.addClass("disabled excluded").addClass(o.clsExcluded);
                     }
-                    if (this.min !== null && s.getTime() < this.min.getTime()) {
+                    if (this.min !== null && s < this.min) {
                         d.addClass("disabled excluded").addClass(o.clsExcluded);
                     }
-                    if (this.max !== null && s.getTime() > this.max.getTime()) {
+                    if (this.max !== null && s > this.max) {
                         d.addClass("disabled excluded").addClass(o.clsExcluded);
                     }
                 } else {
@@ -662,12 +659,12 @@ var Calendar = {
             }
         }
 
-        var day_height = element.find(".day:nth-child(1)").css('width');
+        //var day_height = Utils.getStyleOne(element.parent().find(".calendar .days"), 'width');
 
-        element.find(".days-row .day").css({
-            height: day_height,
-            lineHeight: day_height
-        });
+        // element.find(".days-row .day").css({
+        //     height: day_height,
+        //     lineHeight: day_height + 'px'
+        // });
     },
 
     _drawCalendar: function(){

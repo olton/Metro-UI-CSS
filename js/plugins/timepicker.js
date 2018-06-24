@@ -298,10 +298,12 @@ var TimePicker = {
         var that  = this, element = this.element, o = this.options;
         var picker = this.picker;
         var h, m, s;
-        var h_list, m_list, s_list, a_list;
+        var h_list, m_list, s_list;
+        var select_wrapper = picker.find(".select-wrapper");
+        var items = picker.find("li");
 
-        picker.find(".select-wrapper").show();
-        picker.find("li").removeClass("active");
+        select_wrapper.show();
+        items.removeClass("active");
 
         if (o.hours === true) {
             h = this.value[0];

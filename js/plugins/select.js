@@ -3,6 +3,7 @@ var Select = {
         this.options = $.extend( {}, this.options, options );
         this.elem  = elem;
         this.element = $(elem);
+        this.list = null;
 
         this._setOptionsFromDOM();
         this._create();
@@ -32,7 +33,7 @@ var Select = {
     },
 
     _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         $.each(element.data(), function(key, value){
             if (key in o) {
@@ -163,6 +164,7 @@ var Select = {
                 }
             });
 
+            this.list = list;
         }
 
         if (o.prepend !== "") {
@@ -189,7 +191,7 @@ var Select = {
     },
 
     _createEvents: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var container = element.closest(".select");
         var drop_container = container.find(".drop-container");
         var input = element.siblings("input");
@@ -257,19 +259,36 @@ var Select = {
     },
 
     val: function(v){
-        var that = this, element = this.element;
+        var element = this.element, o = this.options;
         var input = element.siblings("input");
         var options = element.find("option");
+        var items = this.list.find("li");
+
         if (v === undefined) {
             return element.val();
         }
+
         options.removeAttr("selected");
         $.each(options, function(){
-            var op = $(this);
-            if (this.value == v) {
-                op.attr("selected", "selected");
-                input.val(this.text);
+            var op = this;
+
+            if (""+op.value === ""+v) {
+                op.setAttribute("selected", "selected");
+                input.val(op.text);
                 element.trigger("change");
+
+                items.removeClass("active");
+                $.each(items, function(){
+                    var item = $(this);
+
+                    if (item.hasClass("group-title")) return ;
+
+                    if (""+item.data("value") === ""+v) {
+                        item.addClass("active");
+                    }
+                });
+
+                Utils.exec(o.onChange, [v], element[0]);
             }
         });
     },
@@ -278,7 +297,7 @@ var Select = {
         var that = this, element = this.element;
         var select = element.parent();
         var list = select.find("ul");
-        var option, option_group;
+        var option_group;
 
         element.html("");
         list.html("");
@@ -312,7 +331,7 @@ var Select = {
     },
 
     destroy: function(){
-        var that = this, element = this.element;
+        var element = this.element;
         var container = element.closest(".select");
         var drop_container = container.find(".drop-container");
         var input = element.siblings("input");
@@ -335,7 +354,7 @@ var Select = {
     }
 };
 
-$(document).on(Metro.events.click, function(e){
+$(document).on(Metro.events.click, function(){
     var selects = $(".select .drop-container");
     $.each(selects, function(){
         $(this).data('dropdown').close();
