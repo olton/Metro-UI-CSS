@@ -584,7 +584,7 @@ var Streamer = {
 
         o.data = new_data;
 
-        this.data = new_data;
+        this.data = JSON.parse(o.data);
         this.build();
 
         element.trigger("datachanged");

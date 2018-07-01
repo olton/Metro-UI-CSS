@@ -34,29 +34,15 @@
 
 </head>
 <body>
-    <div class="container mt-4">
-        <button class="button" onclick="setValue(1)">Set 1</button>
-        <button class="button" onclick="setValue(2)">Set 2</button>
-        <button class="button" onclick="setValue(3)">Set 3</button>
-        <select data-role="select" id="s1" data-cls-element="mt-4">
-            <option value="1">Value 1</option>
-            <option value="2">Value 2</option>
-            <option value="3" selected>Value 3</option>
-        </select>
+
+    <div class="container" style="height: 2000px">
+        <div style="margin-top: 1000px;">
+            <input type="text" data-role="datepicker">
+        </div>
     </div>
 
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../metro/js/metro.js"></script>
-
-    <script>
-        function setValue(v){
-            var sel = $('#s1').data('select');
-            sel.val(v);
-        }
-    </script>
-
-<script>
-</script>
 
 </body>
 </html>

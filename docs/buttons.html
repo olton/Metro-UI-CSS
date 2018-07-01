@@ -77,6 +77,7 @@
                     </li>
                     <li class="toc-entry"><a href="#_breadcrumbs">Breadcrumbs</a></li>
                     <li class="toc-entry"><a href="#_buttons_group">Buttons group</a></li>
+                    <li class="toc-entry"><a href="#_buttons_action">Action button</a></li>
                 </ul>
 
             </div>
@@ -1141,6 +1142,84 @@
                         &lt;span class="button"&gt;3&lt;/span&gt;
                     &lt;/div&gt;
                 </code></pre>
+
+                <h3 id="_buttons_action">Action button</h3>
+                <p class="text-small">New in 4.2.10</p>
+                <p>
+                    Floating action buttons are used for a promoted action.
+                    They are distinguished by a circled icon floating above the UI and have motion behaviors that include morphing, launching, and a transferring anchor point.
+                </p>
+
+                <p>Floating action buttons come in two sizes:</p>
+
+                <ul>
+                    <li>Default size: For most use cases</li>
+                    <li>Mini size with class <code>.second</code></li>
+                </ul>
+
+                <div class="example">
+                    <button class="action-button"><span class="icon"><span class="mif-plus"></span></span></button>
+                    <button class="action-button second"><span class="icon"><span class="mif-plus"></span></span></button>
+                </div>
+                <pre><code>
+                    &lt;button class="action-button"&gt;
+                        &lt;span class="icon"&gt;&lt;span class="mif-plus"&gt;&lt;/span&gt;&lt;/span&gt;
+                    &lt;/button&gt;
+
+                    &lt;button class="action-button second"&gt;
+                        &lt;span class="icon"&gt;&lt;span class="mif-plus"&gt;&lt;/span&gt;&lt;/span&gt;
+                    &lt;/button&gt;
+                </code></pre>
+
+                <h4>Multi action button</h4>
+                <p>
+                    You can create <code>action button</code> with <code>multi actions</code>.
+                    Sub actions can be dropped to
+                        <code>top</code>,
+                        <code>bottom</code>,
+                        <code>left</code> or
+                        <code>right</code>.
+                </p>
+                <p>
+                    To change this behavior, you must add one of the next classes to actions list:
+                    <code>.drop-bottom</code>,
+                    <code>.drop-left</code> or
+                    <code>.drop-right</code>. By default actions dropped to top.
+                </p>
+
+                <div class="example">
+                    <div class="multi-action">
+                        <button class="action-button rotate-minus bg-red fg-white"
+                                onclick="$(this).toggleClass('active')">
+                            <span class="icon"><span class="mif-plus"></span></span>
+                        </button>
+                        <ul class="actions drop-right">
+                            <li class="bg-blue"><a href="#"><span class="mif-user-plus"></span></a></li>
+                            <li class="bg-teal"><a href="#"><span class="mif-library"></span></a></li>
+                            <li class="bg-pink"><a href="#"><span class="mif-alarm"></span></a></li>
+                            <li class="bg-orange"><a href="#"><span class="mif-lock"></span></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <pre><code>
+                    &lt;div class="multi-action"&gt;
+                        &lt;button class="action-button rotate-minus bg-red fg-white"
+                                onclick="$(this).toggleClass('active')"&gt;
+                            &lt;span class="icon"&gt;&lt;span class="mif-plus"&gt;&lt;/span&gt;&lt;/span&gt;
+                        &lt;/button&gt;
+                        &lt;ul class="actions drop-right"&gt;
+                            &lt;li class="bg-blue"&gt;&lt;a href="#"&gt;&lt;span class="mif-user-plus"&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                            &lt;li class="bg-teal"&gt;&lt;a href="#"&gt;&lt;span class="mif-library"&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                            &lt;li class="bg-pink"&gt;&lt;a href="#"&gt;&lt;span class="mif-alarm"&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                            &lt;li class="bg-orange"&gt;&lt;a href="#"&gt;&lt;span class="mif-lock"&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                        &lt;/ul&gt;
+                    &lt;/div&gt;
+                </code></pre>
+
+                <h4>Action button rotating icon</h4>
+                <p>
+                    To enable rotating button <code>icon</code>, you must add one of two classes <code>rotate</code> or <code>rotate-minus</code> to action button element.
+                </p>
 
             </main>
         </div>

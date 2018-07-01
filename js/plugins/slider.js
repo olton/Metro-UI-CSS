@@ -116,7 +116,7 @@ var Slider = {
         if (o.hintAlways === true) {
             hint.css({
                 display: "block"
-            });
+            }).addClass("permanent-hint");
         }
 
         element.appendTo(slider);

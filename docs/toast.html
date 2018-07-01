@@ -50,6 +50,7 @@
                     <li class="toc-entry"><a href="#_toast_create">Create toast</a></li>
                     <li class="toc-entry"><a href="#_toast_callback">Callback</a></li>
                     <li class="toc-entry"><a href="#_toast_timeout">Timeout</a></li>
+                    <li class="toc-entry"><a href="#_toast_classes">Predefined classes</a></li>
                     <li class="toc-entry"><a href="#_toast_custom">Custom toast</a></li>
                 </ul>
 
@@ -127,6 +128,33 @@
                     Metro.toast.create("Toast message", null, 5000);
                 </code></pre>
 
+                <h3 id="_toast_classes">Predefined classes</h3>
+                <p class="text-small">New in 4.2.10</p>
+                <p>
+                    You can use predefined classes for your <code>toasts</code>. This list of classes include:
+                    <code>.primary</code>,
+                    <code>.secondary</code>,
+                    <code>.success</code>,
+                    <code>.alert</code>,
+                    <code>.warning</code>,
+                    <code>.yellow</code>,
+                    <code>.info</code> and
+                    <code>.light</code> classes.
+                </p>
+                <div class="example">
+                    <button class="button primary" onclick="toastClasses('primary')">Primary</button>
+                    <button class="button secondary" onclick="toastClasses('secondary')">Secondary</button>
+                    <button class="button success" onclick="toastClasses('success')">Success</button>
+                    <button class="button alert" onclick="toastClasses('alert')">Alert</button>
+                    <button class="button warning" onclick="toastClasses('warning')">Warning</button>
+                    <button class="button yellow" onclick="toastClasses('yellow')">Yellow</button>
+                    <button class="button info" onclick="toastClasses('info')">Info</button>
+                    <button class="button light" onclick="toastClasses('light')">Light</button>
+                </div>
+                <pre class=""><code>
+                    Metro.toast.create("Toast message", null, null, "info");
+                </code></pre>
+
                 <h3 id="_toast_custom">Custom toast</h3>
                 <p>
                     If you want to display a toast in your own style, add a <code>cls</code> parameter.
@@ -155,6 +183,11 @@
                 case 'class': toast("This is a toast with custom class", null, 5000, "bg-green fg-white"); break;
                 default: toast("This is default toast");
             }
+        }
+
+        function toastClasses(cls){
+            var toast = Metro.toast.create;
+            toast("This is a toast with a predefined class ." + cls, null, 5000, cls);
         }
     </script>
     <!-- ads-script -->

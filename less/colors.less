@@ -11,7 +11,9 @@ tbody tr, tbody td,
 .tally, code,
 .notify,
 .info-button,
-.input .button-group .button {
+.input .button-group .button,
+.toast
+{
     .generate-accent-colors(@buttonPredefinedTypesLength);
     .generate-accent-colors(@name, @i: 1) when (@i =< @buttonPredefinedTypesLength) {
         @name: extract(@buttonPredefinedTypes, @i);
@@ -58,6 +60,30 @@ tbody tr, tbody td,
             &:active, &.focus, &:focus {
                 .focus-show(@@color);
             }
+        }
+
+        .generate-accent-colors(@name, @i + 1);
+    }
+
+    &.yellow, &.light {
+        color: @dark;
+        &:hover, &.outline:hover {
+            color: @dark;
+        }
+    }
+}
+
+
+.action-button {
+    .generate-accent-colors(@buttonPredefinedTypesLength);
+    .generate-accent-colors(@name, @i: 1) when (@i =< @buttonPredefinedTypesLength) {
+        @name: extract(@buttonPredefinedTypes, @i);
+        @color: "@{name}Color";
+
+        &.@{name} {
+            outline-color: lighten(@@color, 30%);
+            background-color: @@color;
+            color: @white;
         }
 
         .generate-accent-colors(@name, @i + 1);
