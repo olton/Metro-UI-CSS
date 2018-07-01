@@ -70,7 +70,7 @@ var Hint = {
         this.hint = hint;
         this.hint_size = Utils.hiddenElementSize(hint);
 
-        $(".hint").remove();
+        $(".hint:not(.permanent-hint)").remove();
 
         if (elem.tagName === 'TD' || elem.tagName === 'TH') {
             var wrp = $("<div/>").css("display", "inline-block").html(element.html());

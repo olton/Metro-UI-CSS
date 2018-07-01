@@ -1,5 +1,5 @@
 /*
- * Metro 4 Components Library v4.2.9 build 685 (https://metroui.org.ua)
+ * Metro 4 Components Library v4.2.10 build @@build (https://metroui.org.ua)
  * Copyright 2018 Sergey Pimenov
  * Licensed under MIT
  */
@@ -80,7 +80,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.9.685 ",
+    version: "@@version.@@build @@status",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -3291,11 +3291,7 @@ var d = new Date().getTime();
     },
 
     inViewport: function(el){
-        if (typeof jQuery === "function" && el instanceof jQuery) {
-            el = el[0];
-        }
-
-        var rect = el.getBoundingClientRect();
+        var rect = this.rect(el);
 
         return (
             rect.top >= 0 &&
@@ -3303,6 +3299,16 @@ var d = new Date().getTime();
             rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
             rect.right <= (window.innerWidth || document.documentElement.clientWidth)
         );
+    },
+
+    rect: function(el){
+        if (typeof jQuery === "function" && el instanceof jQuery) {
+            el = el[0];
+        }
+
+        var rect = el.getBoundingClientRect();
+
+        return rect;
     },
 
     objectLength: function(obj){
@@ -8272,9 +8278,23 @@ var DatePicker = {
         var picker = this.picker;
         var m = this.value.getMonth(), d = this.value.getDate() - 1, y = this.value.getFullYear();
         var m_list, d_list, y_list;
+        var select_wrapper = picker.find(".select-wrapper");
+        var select_wrapper_in_viewport, select_wrapper_rect;
 
-        picker.find(".select-wrapper").show();
+        select_wrapper.parent().removeClass("for-top for-bottom");
+        select_wrapper.show();
         picker.find("li").removeClass("active");
+
+        select_wrapper_in_viewport = Utils.inViewport(select_wrapper);
+        select_wrapper_rect = Utils.rect(select_wrapper);
+
+        if (!select_wrapper_in_viewport && select_wrapper_rect.top > 0) {
+            select_wrapper.parent().addClass("for-bottom");
+        }
+
+        if (!select_wrapper_in_viewport && select_wrapper_rect.top < 0) {
+            select_wrapper.parent().addClass("for-top");
+        }
 
         if (o.month === true) {
             m_list = picker.find(".sel-month");
@@ -9504,7 +9524,7 @@ var Hint = {
         this.hint = hint;
         this.hint_size = Utils.hiddenElementSize(hint);
 
-        $(".hint").remove();
+        $(".hint:not(.permanent-hint)").remove();
 
         if (elem.tagName === 'TD' || elem.tagName === 'TH') {
             var wrp = $("<div/>").css("display", "inline-block").html(element.html());
@@ -14284,7 +14304,7 @@ var Slider = {
         if (o.hintAlways === true) {
             hint.css({
                 display: "block"
-            });
+            }).addClass("permanent-hint");
         }
 
         element.appendTo(slider);
@@ -15602,7 +15622,7 @@ var Streamer = {
 
         o.data = new_data;
 
-        this.data = new_data;
+        this.data = JSON.parse(o.data);
         this.build();
 
         element.trigger("datachanged");

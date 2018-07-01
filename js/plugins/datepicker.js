@@ -296,9 +296,23 @@ var DatePicker = {
         var picker = this.picker;
         var m = this.value.getMonth(), d = this.value.getDate() - 1, y = this.value.getFullYear();
         var m_list, d_list, y_list;
+        var select_wrapper = picker.find(".select-wrapper");
+        var select_wrapper_in_viewport, select_wrapper_rect;
 
-        picker.find(".select-wrapper").show();
+        select_wrapper.parent().removeClass("for-top for-bottom");
+        select_wrapper.show();
         picker.find("li").removeClass("active");
+
+        select_wrapper_in_viewport = Utils.inViewport(select_wrapper);
+        select_wrapper_rect = Utils.rect(select_wrapper);
+
+        if (!select_wrapper_in_viewport && select_wrapper_rect.top > 0) {
+            select_wrapper.parent().addClass("for-bottom");
+        }
+
+        if (!select_wrapper_in_viewport && select_wrapper_rect.top < 0) {
+            select_wrapper.parent().addClass("for-top");
+        }
 
         if (o.month === true) {
             m_list = picker.find(".sel-month");
