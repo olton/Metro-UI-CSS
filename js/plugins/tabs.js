@@ -94,6 +94,7 @@ var Tabs = {
 
         element.on(Metro.events.click, "a", function(e){
             var link = $(this);
+            var href = link.attr("href");
             var tab = link.parent("li");
 
             if (element.data('expanded') === true) {
@@ -101,8 +102,15 @@ var Tabs = {
                 element.data('expanded', false);
                 container.find(".hamburger").removeClass("active");
             }
-            if (Utils.exec(o.onBeforeTab, [tab, element], tab[0]) === true) that._open(tab);
-            e.preventDefault();
+
+            if (Utils.exec(o.onBeforeTab, [tab, element], tab[0]) !== true) {
+                return false;
+            }
+
+            if (!Utils.isUrl(href)) {
+                that._open(tab);
+                e.preventDefault();
+            }
         });
     },
 
@@ -111,8 +119,8 @@ var Tabs = {
         var tabs = element.find("li");
 
         $.each(tabs, function(){
-            var target = $(this).find("a").attr("href");
-            if (target && target !== "#") {
+            var target = $(this).find("a").attr("href").trim();
+            if (target.length > 1 && target[0] === "#") {
                 that._targets.push(target);
             }
         });
@@ -148,7 +156,8 @@ var Tabs = {
         }
 
         $.each(this._targets, function(){
-            $(this).hide();
+            var t = $(this);
+            if (t.length > 0) t.hide();
         });
 
         if (target !== "#") {

@@ -385,6 +385,10 @@
                 </ul>
             </div>
 
+            <div class="text-center m-10">
+                <span class="h2"><span class="fg-cyan">Made in </span><span class="fg-yellow">Ukraine</span></span>
+            </div>
+
             <div class="text-center mt-10 reduce-1">
                 Metro 4 (Metro UI CSS) &copy; 2012-2018 by <a href="mailto:sergey@pimenov.com.ua" class="no-wrap">Sergey Pimenov</a>.
                 <br />
@@ -395,7 +399,7 @@
                 <br/>
                 <span class="no-wrap">IDE PhpStorm by <a href="https://www.jetbrains.com/">JetBrains</a>.</span>
                 <br />
-                Currently <span class="version-number"></span>. Code licensed <a href="https://github.com/olton/Metro-UI-CSS/blob/master/LICENSE">MIT</a>, docs <a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.
+                Currently <span class="version-number-full"></span>. Code licensed <a href="https://github.com/olton/Metro-UI-CSS/blob/master/LICENSE">MIT</a>, docs <a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.
             </div>
         </div>
     </footer>
@@ -404,6 +408,7 @@
     <script src="metro/js/metro.js?ver=@@b-version"></script>
     <script>
         $(".version-number").html(Metro.ver());
+        $(".version-number-full").html(Metro.ver(true));
         Metro.utils.github("olton/Metro-UI-CSS", function(data){
             $("#github-forks").attr("data-value", data.forks).data("counter").start();
             $("#github-stars").attr("data-value", data.stargazers_count).data("counter").start();

@@ -1,5 +1,5 @@
 /*
- * Metro 4 Components Library v4.2.10 build 686 (https://metroui.org.ua)
+ * Metro 4 Components Library v4.2.11 build @@build (https://metroui.org.ua)
  * Copyright 2018 Sergey Pimenov
  * Licensed under MIT
  */
@@ -80,7 +80,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.10.686 ",
+    version: "@@version",
+    versionFull: "@@version.@@build @@status",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -202,12 +203,16 @@ var Metro = {
 
     hotkeys: [],
 
-    about: function(){
-        console.log("Metro 4 Components Library - v"+this.version);
+    about: function(f){
+        console.log("Metro 4 Components Library - v" + (f === true ? this.versionFull : this.version));
     },
 
-    ver: function(){
-        return this.version;
+    aboutDlg: function(f){
+        alert("Metro 4 Components Library - v" + (f === true ? this.versionFull : this.version));
+    },
+
+    ver: function(f){
+        return (f === true ? this.versionFull : this.version);
     },
 
     observe: function(){
@@ -289,7 +294,7 @@ var Metro = {
             }
         });
 
-        this.about();
+        this.about(true);
 
         return this;
     },
@@ -3753,6 +3758,10 @@ var d = new Date().getTime();
         }
 
         return this.getStyleOne(el, "display") !== "none" && this.getStyleOne(el, "visibility") !== "hidden" && el.offsetParent !== null;
+    },
+
+    parseNumber: function(val, thousand, decimal){
+        return val.replace(new RegExp('\\'+thousand, "g"), "").replace(new RegExp('\\'+decimal, 'g'), ".");
     }
 };
 
@@ -10508,6 +10517,10 @@ var List = {
     },
 
     options: {
+
+        thousandSeparator: ",",
+        decimalSeparator: ",",
+
         sortTarget: "li",
         sortClass: null,
         sortDir: "asc",
@@ -11061,6 +11074,11 @@ var List = {
         data = (""+data).toLowerCase().replace(/[\n\r]+|[\s]{2,}/g, ' ').trim();
 
         if (Utils.isValue(format)) {
+
+            if (['number', 'int', 'float', 'money'].indexOf(format) !== -1 && (o.thousandSeparator !== "," || o.decimalSeparator !== "." )) {
+                data = Utils.parseNumber(data, o.thousandSeparator, o.decimalSeparator);
+            }
+
             switch (format) {
                 case "date": data = Utils.isDate(data) ? new Date(data) : ""; break;
                 case "number": data = Number(data); break;
@@ -14673,6 +14691,8 @@ var Sorter = {
     },
 
     options: {
+        thousandSeparator: ",",
+        decimalSeparator: ",",
         sortTarget: null,
         sortSource: null,
         sortDir: "asc",
@@ -14740,6 +14760,11 @@ var Sorter = {
         data = (""+data).toLowerCase().replace(/[\n\r]+|[\s]{2,}/g, ' ').trim();
 
         if (Utils.isValue(format)) {
+
+            if (['number', 'int', 'float', 'money'].indexOf(format) !== -1 && (o.thousandSeparator !== "," || o.decimalSeparator !== "." )) {
+                data = Utils.parseNumber(data, o.thousandSeparator, o.decimalSeparator);
+            }
+
             switch (format) {
                 case "date": data = Utils.isDate(data) ? new Date(data) : ""; break;
                 case "number": data = Number(data); break;
@@ -15801,6 +15826,8 @@ var Table = {
         rowsSteps: "10,25,50,100",
 
         sortDir: "asc",
+        decimalSeparator: ".",
+        thousandSeparator: ",",
 
         tableRowsCountTitle: "Show entries:",
         tableSearchTitle: "Search:",
@@ -15945,7 +15972,8 @@ var Table = {
                 sortable: item.hasClass("sortable-column"),
                 sortDir: dir,
                 clsColumn: Utils.isValue(item.data("cls-column")) ? item.data("cls-column") : "",
-                cls: item_class
+                cls: item_class,
+                colspan: item.attr("colspan")
             };
             that.heads.push(head_item);
         });
@@ -15957,7 +15985,8 @@ var Table = {
             foot_item = {
                 title: item.html(),
                 name: Utils.isValue(item.data("name")) ? item.data("name") : false,
-                cls: item[0].className
+                cls: item[0].className,
+                colspan: item.attr("colspan")
             };
 
             that.foots.push(foot_item);
@@ -16031,9 +16060,11 @@ var Table = {
             if (item.cls !== undefined) {
                 th.addClass(item.cls);
             }
-            if (item.clsColumn !== undefined) {
-                th.addClass(item.clsColumn);
+
+            if (Utils.isValue(item.colspan)) {
+                th.attr("colspan", item.colspan);
             }
+
             th.addClass(o.clsHeadCell);
         });
 
@@ -16070,8 +16101,8 @@ var Table = {
                 th.addClass(item.cls);
             }
 
-            if (Utils.isValue(that.heads[i].clsColumn)) {
-                th.addClass(that.heads[i].clsColumn);
+            if (Utils.isValue(item.colspan)) {
+                th.attr("colspan", item.colspan);
             }
 
             th.appendTo(tr);
@@ -16511,10 +16542,16 @@ var Table = {
     _getItemContent: function(row){
         var result, col = row[this.sort.colIndex];
         var format = this.heads[this.sort.colIndex].format;
+        var o = this.options;
 
         result = (""+col).toLowerCase().replace(/[\n\r]+|[\s]{2,}/g, ' ').trim();
 
-        if (format !== undefined) {
+        if (Utils.isValue(format)) {
+
+            if (['number', 'int', 'float', 'money'].indexOf(format) !== -1 && (o.thousandSeparator !== "," || o.decimalSeparator !== "." )) {
+                result = Utils.parseNumber(result, o.thousandSeparator, o.decimalSeparator);
+            }
+
             switch (format) {
                 case "date": result = Utils.isDate(result) ? new Date(result) : ""; break;
                 case "number": result = Number(result); break;
@@ -16533,7 +16570,6 @@ var Table = {
 
     sorting: function(dir){
         var that = this, element = this.element, o = this.options;
-        var items;
 
         if (dir !== undefined && dir !== null) {
             this.sort.dir = dir;
@@ -16813,6 +16849,7 @@ var Tabs = {
 
         element.on(Metro.events.click, "a", function(e){
             var link = $(this);
+            var href = link.attr("href");
             var tab = link.parent("li");
 
             if (element.data('expanded') === true) {
@@ -16820,8 +16857,15 @@ var Tabs = {
                 element.data('expanded', false);
                 container.find(".hamburger").removeClass("active");
             }
-            if (Utils.exec(o.onBeforeTab, [tab, element], tab[0]) === true) that._open(tab);
-            e.preventDefault();
+
+            if (Utils.exec(o.onBeforeTab, [tab, element], tab[0]) !== true) {
+                return false;
+            }
+
+            if (!Utils.isUrl(href)) {
+                that._open(tab);
+                e.preventDefault();
+            }
         });
     },
 
@@ -16830,8 +16874,8 @@ var Tabs = {
         var tabs = element.find("li");
 
         $.each(tabs, function(){
-            var target = $(this).find("a").attr("href");
-            if (target && target !== "#") {
+            var target = $(this).find("a").attr("href").trim();
+            if (target.length > 1 && target[0] === "#") {
                 that._targets.push(target);
             }
         });
@@ -16867,7 +16911,8 @@ var Tabs = {
         }
 
         $.each(this._targets, function(){
-            $(this).hide();
+            var t = $(this);
+            if (t.length > 0) t.hide();
         });
 
         if (target !== "#") {
