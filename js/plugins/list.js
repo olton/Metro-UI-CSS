@@ -32,6 +32,10 @@ var List = {
     },
 
     options: {
+
+        thousandSeparator: ",",
+        decimalSeparator: ",",
+
         sortTarget: "li",
         sortClass: null,
         sortDir: "asc",
@@ -585,6 +589,11 @@ var List = {
         data = (""+data).toLowerCase().replace(/[\n\r]+|[\s]{2,}/g, ' ').trim();
 
         if (Utils.isValue(format)) {
+
+            if (['number', 'int', 'float', 'money'].indexOf(format) !== -1 && (o.thousandSeparator !== "," || o.decimalSeparator !== "." )) {
+                data = Utils.parseNumber(data, o.thousandSeparator, o.decimalSeparator);
+            }
+
             switch (format) {
                 case "date": data = Utils.isDate(data) ? new Date(data) : ""; break;
                 case "number": data = Number(data); break;

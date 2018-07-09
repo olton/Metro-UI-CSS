@@ -1,3 +1,11 @@
+### 4.2.11
++ [x] Table: add setup for the number formatting. Add attributes `data-thousand-separator`, `data-decimal-separator` issue #1129
++ [x] Sorter: add setup for the number formatting. Add attributes `data-thousand-separator`, `data-decimal-separator` issue #1129
++ [x] List: add setup for the number formatting. Add attributes `data-thousand-separator`, `data-decimal-separator` issue #1129
++ [x] Table: fix for the `colspan` option issue #1129
++ [x] Table: fix behavior of attribute `data-cls-column`
++ [x] Tabs: fix error if tag `a` in tab have a `valid formed url` in href attribute
+
 ### 4.2.10
 + [x] Hint: fix hiding slider hint with `data-hint-always=true` when showing others hits issue #1126
 + [x] Streamer: change streamer data with attribute `data-data`

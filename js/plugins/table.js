@@ -51,6 +51,8 @@ var Table = {
         rowsSteps: "10,25,50,100",
 
         sortDir: "asc",
+        decimalSeparator: ".",
+        thousandSeparator: ",",
 
         tableRowsCountTitle: "Show entries:",
         tableSearchTitle: "Search:",
@@ -195,7 +197,8 @@ var Table = {
                 sortable: item.hasClass("sortable-column"),
                 sortDir: dir,
                 clsColumn: Utils.isValue(item.data("cls-column")) ? item.data("cls-column") : "",
-                cls: item_class
+                cls: item_class,
+                colspan: item.attr("colspan")
             };
             that.heads.push(head_item);
         });
@@ -207,7 +210,8 @@ var Table = {
             foot_item = {
                 title: item.html(),
                 name: Utils.isValue(item.data("name")) ? item.data("name") : false,
-                cls: item[0].className
+                cls: item[0].className,
+                colspan: item.attr("colspan")
             };
 
             that.foots.push(foot_item);
@@ -281,9 +285,11 @@ var Table = {
             if (item.cls !== undefined) {
                 th.addClass(item.cls);
             }
-            if (item.clsColumn !== undefined) {
-                th.addClass(item.clsColumn);
+
+            if (Utils.isValue(item.colspan)) {
+                th.attr("colspan", item.colspan);
             }
+
             th.addClass(o.clsHeadCell);
         });
 
@@ -320,8 +326,8 @@ var Table = {
                 th.addClass(item.cls);
             }
 
-            if (Utils.isValue(that.heads[i].clsColumn)) {
-                th.addClass(that.heads[i].clsColumn);
+            if (Utils.isValue(item.colspan)) {
+                th.attr("colspan", item.colspan);
             }
 
             th.appendTo(tr);
@@ -761,10 +767,16 @@ var Table = {
     _getItemContent: function(row){
         var result, col = row[this.sort.colIndex];
         var format = this.heads[this.sort.colIndex].format;
+        var o = this.options;
 
         result = (""+col).toLowerCase().replace(/[\n\r]+|[\s]{2,}/g, ' ').trim();
 
-        if (format !== undefined) {
+        if (Utils.isValue(format)) {
+
+            if (['number', 'int', 'float', 'money'].indexOf(format) !== -1 && (o.thousandSeparator !== "," || o.decimalSeparator !== "." )) {
+                result = Utils.parseNumber(result, o.thousandSeparator, o.decimalSeparator);
+            }
+
             switch (format) {
                 case "date": result = Utils.isDate(result) ? new Date(result) : ""; break;
                 case "number": result = Number(result); break;
@@ -783,7 +795,6 @@ var Table = {
 
     sorting: function(dir){
         var that = this, element = this.element, o = this.options;
-        var items;
 
         if (dir !== undefined && dir !== null) {
             this.sort.dir = dir;
