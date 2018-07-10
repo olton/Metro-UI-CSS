@@ -242,12 +242,46 @@
 
 .tiles-grid {
     .create-tiles-cells(@i: 1, @k: 1) when (@k <= @i) {
-        .col-@{k} {
-            grid-column: @k;
+
+        .tile-small.col-@{k} {
+            grid-column: @k / span 1;
         }
-        .row-@{k} {
-            grid-row: @k;
+
+        .tile-medium.col-@{k} {
+            grid-column: @k / span 2;
         }
+
+        .tile-wide.col-@{k} {
+            grid-column: @k / span 4;
+        }
+
+        .tile-large.col-@{k} {
+            grid-column: @k / span 4;
+        }
+
+        .tile-small.row-@{k} {
+            grid-row: @k / span 1;
+        }
+
+        .tile-medium.row-@{k} {
+            grid-row: @k / span 2;
+        }
+
+        .tile-wide.row-@{k} {
+            grid-row: @k / span 4;
+        }
+
+        .tile-large.row-@{k} {
+            grid-row: @k / span 4;
+        }
+
+
+        //.col-@{k} {
+        //    grid-column: @k;
+        //}
+        //.row-@{k} {
+        //    grid-row: @k;
+        //}
         .create-tiles-cells(@i; @k + 1);
     }
     .create-tiles-cells(12);

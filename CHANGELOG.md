@@ -1,3 +1,10 @@
+### 4.2.12
++ [x] Sidebar: remove text decoration underline for menu item
++ [x] Sidebar: add menu item hover
++ [x] Tiles: fix `col-*` and `row-*` classes for tiles grid issue #1133
++ [x] Table: add all rows behavior with `-1` value for `data-rows` and `data-rows-steps`
++ [x] Table: add `data-all-records-title` attribute
+
 ### 4.2.11
 + [x] Table: add setup for the number formatting. Add attributes `data-thousand-separator`, `data-decimal-separator` issue #1129
 + [x] Sorter: add setup for the number formatting. Add attributes `data-thousand-separator`, `data-decimal-separator` issue #1129

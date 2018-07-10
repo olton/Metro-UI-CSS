@@ -11,14 +11,16 @@
       "name": "company",
       "title": "Company",
       "sortable": true,
-      "clsColumn": "d-none"
+      "clsColumn": "d-none",
+      "cls": "d-none"
     },
     {
       "name": "office",
       "title": "Office",
       "sortable": true,
       "size": 250,
-      "clsColumn": "d-none"
+      "clsColumn": "d-none",
+      "cls": "d-none"
     },
     {
       "name": "age",
@@ -33,7 +35,8 @@
       "sortable": true,
       "format": "date",
       "size": 100,
-      "clsColumn": "d-none d-table-cell-md"
+      "clsColumn": "d-none d-table-cell-md",
+      "cls": "d-none d-table-cell-md"
     },
     {
       "name": "salary",
