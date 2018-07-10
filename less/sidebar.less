@@ -100,6 +100,7 @@
             height: 100%;
             line-height: 48px;
             padding-left: 56px;
+            text-decoration: none;
         }
 
         a {
@@ -153,11 +154,15 @@
         line-height: 1;
         height: auto;
         margin: 16px 16px 8px;
-        color: @darkGray;
-        font-weight: bold;
+        color: @dark;
+        font-weight: 700;
         font-size: .9em;
+        cursor: default;
     }
 
+    li:not(.group-title):hover {
+        background-color: @hoverBackground;
+    }
 }
 
 .sidebar-header ~ .sidebar-menu {

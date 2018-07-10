@@ -1,5 +1,5 @@
 /*
- * Metro 4 Components Library v4.2.11 build 687 (https://metroui.org.ua)
+ * Metro 4 Components Library v4.2.11 build @@build (https://metroui.org.ua)
  * Copyright 2018 Sergey Pimenov
  * Licensed under MIT
  */
@@ -80,8 +80,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.11",
-    versionFull: "4.2.11.687 ",
+    version: "@@version",
+    versionFull: "@@version.@@build @@status",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -15834,6 +15834,7 @@ var Table = {
         tableInfoTitle: "Showing $1 to $2 of $3 entries",
         paginationPrevTitle: "Prev",
         paginationNextTitle: "Next",
+        allRecordsTitle: "All",
 
         activityType: "cycle",
         activityStyle: "color",
@@ -16131,8 +16132,9 @@ var Table = {
 
         rows_select = $("<select>").appendTo(rows_block);
         $.each(Utils.strToArray(o.rowsSteps), function () {
-            var option = $("<option>").attr("value", this).text(this).appendTo(rows_select);
-            if (parseInt(this) === parseInt(o.rows)) {
+            var val = parseInt(this);
+            var option = $("<option>").attr("value", val).text(val === -1 ? o.allRecordsTitle : val).appendTo(rows_select);
+            if (val === parseInt(o.rows)) {
                 option.attr("selected", "selected");
             }
         });
@@ -16469,8 +16471,8 @@ var Table = {
         var that = this, element = this.element, o = this.options;
         var body = element.find("tbody");
         var i;
-        var start = o.rows === -1 ? 0 : o.rows * (this.currentPage - 1),
-            stop = o.rows === -1 ? this.items.length - 1 : start + o.rows - 1;
+        var start = parseInt(o.rows) === -1 ? 0 : o.rows * (this.currentPage - 1),
+            stop = parseInt(o.rows) === -1 ? this.items.length - 1 : start + o.rows - 1;
         var items;
         var flt, idx = -1;
 
