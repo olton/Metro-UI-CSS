@@ -404,7 +404,7 @@ var Table = {
 
     _createStructure: function(){
         var that = this, element = this.element, o = this.options;
-        var table_component, sortable_columns;
+        var table_component, columns;
         var w_search = $(o.searchWrapper), w_info = $(o.infoWrapper), w_rows = $(o.rowsWrapper), w_paging = $(o.paginationWrapper);
 
         if (w_search.length > 0) {this.wrapperSearch = w_search;}
@@ -453,9 +453,9 @@ var Table = {
         });
 
         if (need_sort) {
-            sortable_columns = element.find(".sortable-column");
-            this._resetSortClass(sortable_columns);
-            $(sortable_columns.get(this.sort.colIndex)).addClass("sort-"+this.sort.dir);
+            columns = element.find("thead th");
+            this._resetSortClass(columns);
+            $(columns.get(this.sort.colIndex)).addClass("sort-"+this.sort.dir);
             this.sorting();
         }
 
@@ -741,17 +741,20 @@ var Table = {
         }
 
         for (i = start; i <= stop; i++) {
-            var tr = $("<tr>").addClass(o.clsBodyRow);
-            if (items[i] !== undefined) $.each(items[i], function(cell_i){
-                var td = $("<td>").html(this);
-                td.addClass(o.clsBodyCell);
-                if (that.heads[cell_i].clsColumn !== undefined) {
-                    td.addClass(that.heads[cell_i].clsColumn);
-                }
-                td.appendTo(tr);
-            });
-            tr.appendTo(body);
-            Utils.exec(o.onDrawRow, [tr], element[0]);
+            var tr;
+            if (Utils.isValue(items[i])) {
+                tr = $("<tr>").addClass(o.clsBodyRow);
+                $.each(items[i], function(cell_i){
+                    var td = $("<td>").html(this);
+                    td.addClass(o.clsBodyCell);
+                    if (that.heads[cell_i].clsColumn !== undefined) {
+                        td.addClass(that.heads[cell_i].clsColumn);
+                    }
+                    td.appendTo(tr);
+                });
+                tr.appendTo(body);
+                Utils.exec(o.onDrawRow, [tr], element[0]);
+            }
         }
 
         this._info(start + 1, stop + 1, items.length);

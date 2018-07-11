@@ -1,5 +1,5 @@
 /*
- * Metro 4 Components Library v4.2.11 build @@build (https://metroui.org.ua)
+ * Metro 4 Components Library v4.2.12 build @@build (https://metroui.org.ua)
  * Copyright 2018 Sergey Pimenov
  * Licensed under MIT
  */
@@ -37350,9 +37350,7 @@ video:-webkit-full-screen {
   text-align: center;
   position: absolute;
   left: .625rem;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
+  bottom: 12px;
 }
 .sidenav-m3 .title {
   padding: 20px 20px 10px 20px;

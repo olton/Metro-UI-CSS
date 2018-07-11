@@ -4,6 +4,9 @@
 + [x] Tiles: fix `col-*` and `row-*` classes for tiles grid issue #1133
 + [x] Table: add all rows behavior with `-1` value for `data-rows` and `data-rows-steps`
 + [x] Table: add `data-all-records-title` attribute
++ [x] Sidenav-m3: fix icon position when dropdown issue #1134
++ [x] Table: fix init sortable column
++ [x] Table: remove generating ghost `tr` 
 
 ### 4.2.11
 + [x] Table: add setup for the number formatting. Add attributes `data-thousand-separator`, `data-decimal-separator` issue #1129

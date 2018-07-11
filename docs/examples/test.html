@@ -40,11 +40,19 @@
 </head>
 <body>
 
-<div class="tiles-grid" style="height: 500px">
-    <div data-role="tile" data-size="medium" class="col-1 row-1"></div>
-    <div data-role="tile" data-size="medium" class="col-3 row-1"></div>
-    <div data-role="tile" data-size="medium" class="col-1 row-3"></div>
-</div>
+<table class="table table-border striped mt-4"
+       data-role="table"
+       data-source="table_data_test.json"
+       data-cls-table-top="row flex-nowrap"
+       data-cls-search="cell-md-8"
+       data-cls-rows-count="cell-md-4"
+       data-table-search-title="Быстрый поиск:"
+       data-table-rows-count-title="Показывать:"
+       data-table-info-title="Показано с $1 по $2 из $3"
+       data-all-records-title="Все записи"
+       data-rows="20"
+       data-rows-steps="-1, 10, 20, 50, 100"
+></table>
 
 <script src="../js/jquery-3.3.1.min.js"></script>
 <script src="../metro/js/metro.js"></script>
