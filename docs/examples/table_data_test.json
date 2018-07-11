@@ -1,0 +1,57 @@
+{
+  "header": [
+    {
+      "name": "user_checkbox",
+      "title": "&nbsp;",
+      "sortable": false,
+      "size": "48"
+    },
+    {
+      "name": "user_name",
+      "title": "\u0424\u0418\u041e",
+      "sortable": true,
+      "sortDir": "asc"
+    },
+    {
+      "name": "user_email",
+      "title": "Email",
+      "sortable": true,
+      "size": 240
+    },
+    {
+      "name": "user_tel",
+      "title": "\u0422\u0435\u043b\u0435\u0444\u043e\u043d",
+      "sortable": true,
+      "size": 160
+    },
+    {
+      "name": "user_is_editor",
+      "title": "<span class='mif-user-secret'><\/span>",
+      "sortable": true,
+      "size": 50
+    },
+    {
+      "name": "user_is_scanner",
+      "title": "<span class='mif-qrcode'><\/span>",
+      "sortable": true,
+      "size": 50
+    },
+    {
+      "name": "user_is_active",
+      "title": "<span class='mif-cancel'><\/span>",
+      "sortable": true,
+      "size": 50
+    }
+  ],
+  "data": [
+    [
+      "<input type=checkbox data-role='checkbox' name='user_[1]'>",
+      "\u041f\u0438\u043c\u0435\u043d\u043e\u0432 \u0421\u0435\u0440\u0433\u0435\u0439 \u0421\u0435\u0440\u0433\u0435\u0435\u0432\u0438\u0447",
+      "sergey@pimenov.com.ua",
+      "+380939590564",
+      "<span class='mif-checkmark fg-green'><\/span>",
+      "<span class='mif-checkmark fg-green'><\/span>",
+      "<span class='mif-checkmark fg-green'><\/span>"
+    ]
+  ]
+}
