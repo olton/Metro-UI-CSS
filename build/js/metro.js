@@ -1,5 +1,5 @@
 /*
- * Metro 4 Components Library v4.2.13 build @@build (https://metroui.org.ua)
+ * Metro 4 Components Library v4.2.13 build 689 (https://metroui.org.ua)
  * Copyright 2018 Sergey Pimenov
  * Licensed under MIT
  */
@@ -80,8 +80,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "@@version",
-    versionFull: "@@version.@@build @@status",
+    version: "4.2.13",
+    versionFull: "4.2.13.689 ",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
