@@ -220,3 +220,27 @@
         margin: 0 auto;
     }
 }
+
+.generate-table-media-options(@mediaBreakpointListMobileLength);
+.generate-table-media-options(@name, @i: 1) when (@i <= @mediaBreakpointListMobileLength) {
+    @m: extract(@mediaBreakpointListMobile, @i);
+
+    @media screen and (min-width: @@m) {
+        .table {
+            &.compact-@{m} {
+                th, td {
+                    padding: .3rem;
+                    font-size: .9em;
+                }
+            }
+            &.normal-@{m} {
+                th, td {
+                    padding: 0.625rem;
+                    font-size: 1em;
+                }
+            }
+        }
+    }
+
+    .generate-table-media-options(@name, @i + 1);
+}

@@ -1,5 +1,5 @@
 /*
- * Metro 4 Components Library v4.2.12 build 688 (https://metroui.org.ua)
+ * Metro 4 Components Library v4.2.13 build @@build (https://metroui.org.ua)
  * Copyright 2018 Sergey Pimenov
  * Licensed under MIT
  */
@@ -18636,6 +18636,78 @@ aside::after {
 }
 .table-progress [class*=activity-] {
   margin: 0 auto;
+}
+@media screen and (min-width: 0) {
+  .table.compact-fs th,
+  .table.compact-fs td {
+    padding: .3rem;
+    font-size: .9em;
+  }
+  .table.normal-fs th,
+  .table.normal-fs td {
+    padding: 0.625rem;
+    font-size: 1em;
+  }
+}
+@media screen and (min-width: 576px) {
+  .table.compact-sm th,
+  .table.compact-sm td {
+    padding: .3rem;
+    font-size: .9em;
+  }
+  .table.normal-sm th,
+  .table.normal-sm td {
+    padding: 0.625rem;
+    font-size: 1em;
+  }
+}
+@media screen and (min-width: 768px) {
+  .table.compact-md th,
+  .table.compact-md td {
+    padding: .3rem;
+    font-size: .9em;
+  }
+  .table.normal-md th,
+  .table.normal-md td {
+    padding: 0.625rem;
+    font-size: 1em;
+  }
+}
+@media screen and (min-width: 992px) {
+  .table.compact-lg th,
+  .table.compact-lg td {
+    padding: .3rem;
+    font-size: .9em;
+  }
+  .table.normal-lg th,
+  .table.normal-lg td {
+    padding: 0.625rem;
+    font-size: 1em;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .table.compact-xl th,
+  .table.compact-xl td {
+    padding: .3rem;
+    font-size: .9em;
+  }
+  .table.normal-xl th,
+  .table.normal-xl td {
+    padding: 0.625rem;
+    font-size: 1em;
+  }
+}
+@media screen and (min-width: 1452px) {
+  .table.compact-xxl th,
+  .table.compact-xxl td {
+    padding: .3rem;
+    font-size: .9em;
+  }
+  .table.normal-xxl th,
+  .table.normal-xxl td {
+    padding: 0.625rem;
+    font-size: 1em;
+  }
 }
 .step-list {
   margin: 0 0 0 2rem;

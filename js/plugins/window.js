@@ -294,7 +294,7 @@ var Window = {
             if (o.modal === true) {
                 win.siblings(".overlay").remove();
             }
-            Utils.exec(o.onCloseClick(), [win], element[0]);
+            Utils.exec(o.onCloseClick, [win], element[0]);
             Utils.exec(o.onWindowDestroy, [win], element[0]);
             if (o.closeAction === Metro.actions.REMOVE) {
                 win.remove();

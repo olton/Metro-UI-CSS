@@ -1,3 +1,7 @@
+### 4.2.13
++ [x] Windows: fix execute method onCloseClick
++ [x] Table: add classes `compact-{media}` and `normal-{media}` where `{media}` is one of `sm`, `md`, `lg`, `xl`, `xxl`
+
 ### 4.2.12
 + [x] Sidebar: remove text decoration underline for menu item
 + [x] Sidebar: add menu item hover

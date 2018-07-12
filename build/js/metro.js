@@ -1,5 +1,5 @@
 /*
- * Metro 4 Components Library v4.2.12 build 688 (https://metroui.org.ua)
+ * Metro 4 Components Library v4.2.13 build @@build (https://metroui.org.ua)
  * Copyright 2018 Sergey Pimenov
  * Licensed under MIT
  */
@@ -80,8 +80,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.12",
-    versionFull: "4.2.12.688 ",
+    version: "@@version",
+    versionFull: "@@version.@@build @@status",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -19317,7 +19317,7 @@ var Window = {
             if (o.modal === true) {
                 win.siblings(".overlay").remove();
             }
-            Utils.exec(o.onCloseClick(), [win], element[0]);
+            Utils.exec(o.onCloseClick, [win], element[0]);
             Utils.exec(o.onWindowDestroy, [win], element[0]);
             if (o.closeAction === Metro.actions.REMOVE) {
                 win.remove();
