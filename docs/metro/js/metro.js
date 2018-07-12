@@ -1,5 +1,5 @@
 /*
- * Metro 4 Components Library v4.2.13 build 689 (https://metroui.org.ua)
+ * Metro 4 Components Library v4.2.14 build @@build (https://metroui.org.ua)
  * Copyright 2018 Sergey Pimenov
  * Licensed under MIT
  */
@@ -80,8 +80,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.13",
-    versionFull: "4.2.13.689 ",
+    version: "@@version",
+    versionFull: "@@version.@@build @@status",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -15817,7 +15817,7 @@ var Table = {
         showSearch: true,
         showTableInfo: true,
         showPagination: true,
-        showAllPages: false,
+        paginationShortMode: true,
         showActivity: true,
 
         muteTable: true,
@@ -15917,6 +15917,8 @@ var Table = {
 
     _build: function(data){
         var element = this.element, o = this.options;
+
+        o.rows = parseInt(o.rows);
 
         if (Utils.isValue(data)) {
             this._createItemsFromJSON(data);
@@ -16142,7 +16144,8 @@ var Table = {
             filter: false,
             prepend: o.tableRowsCountTitle,
             onChange: function (val) {
-                if (parseInt(val) === parseInt(o.rows)) {
+                val = parseInt(val);
+                if (val === parseInt(o.rows)) {
                     return;
                 }
                 o.rows = val;
@@ -16403,6 +16406,10 @@ var Table = {
             return ;
         }
 
+        if (o.rows === -1) {
+            return ;
+        }
+
         this.pagesCount = Math.ceil(length / o.rows);
 
         var add_item = function(item_title, item_type, data){
@@ -16421,7 +16428,7 @@ var Table = {
 
         pagination.append(add_item(1, that.currentPage === 1 ? "active" : "", 1));
 
-        if (o.showAllPages === true || this.pagesCount <= 7) {
+        if (o.paginationShortMode !== true || this.pagesCount <= 7) {
             for (i = 2; i < this.pagesCount; i++) {
                 pagination.append(add_item(i, i === that.currentPage ? "active" : "", i));
             }
@@ -16475,6 +16482,8 @@ var Table = {
             stop = parseInt(o.rows) === -1 ? this.items.length - 1 : start + o.rows - 1;
         var items;
         var flt, idx = -1;
+
+        console.log(start, stop, this.currentPage, o.rows, this.items.length);
 
         body.html("");
 
