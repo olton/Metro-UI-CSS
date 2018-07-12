@@ -1,3 +1,8 @@
+### 4.2.14
++ [x] Table: fix pagination calculator when rows count changed
++ [x] Table: pagination not displayed when rows count is `-1` (show all rows)
++ [x] Table: rename attribute `data-show-all-pages` to `data-pagination-short-mode`
+
 ### 4.2.13
 + [x] Windows: fix execute method onCloseClick
 + [x] Table: add classes `compact-{media}` and `normal-{media}` where `{media}` is one of `sm`, `md`, `lg`, `xl`, `xxl`
