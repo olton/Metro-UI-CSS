@@ -1,3 +1,27 @@
+### 4.2.15
++ [x] Input, Select, Textarea, File: add `data-append` attribute 
++ [x] TreeView: fix node toggle marker position
++ [x] TreeView: fix checks nodes for tree options when inputs checked by default
++ [x] String: add extension `toDate(mask)`
++ [x] Media players: fix info box position
++ [x] Utils: add function `nearest(val, prec, down)` for search for the nearest integer, a multiple of required
++ [x] Select: fix trigger error for empty value. issue #1138 
++ [x] Time picker: add `steps` attributes `data-hours-step`, `data-minutes-step`, `data-seconds-step`. issue #1122  
++ [x] Time picker: fix sliders position when picker placed top or bottom of parent
++ [x] Input file: fix only shows the first file name for multiple option. issue #1140
++ [x] Calendar picker: add observing attributes `data-min-date`, `data-max-date`
++ [x] Input: remove webkit default clear button for `type=time`
++ [x] Table: attribute `data-filter-min-length` for number of symbols inputs and start searching
++ [x] Table: add column rownum. This column shows when attribute `data-rownum="true"`
++ [x] Table: add column row check. This column shows when attribute `data-check="true"`
++ [x] Table: fix create internal heads when header defining in html and data loaded from json 
++ [x] Table: fix create internal foots when header defining in html and data loaded from json
++ [x] Table: add `data-locale` attribute
++ [x] Table: add table inspector to configure columns view
++ [x] Table: add methods `openInspector(true|false)`, `toggleInspector()` to show/hide table inspector
++ [x] Table: add attribute `data-inpector-save-mode="client|server"`
++ [x] Table: add attribute `data-inpector-save-path="storage key|url"`
+
 ### 4.2.14
 + [x] Table: fix pagination calculator when rows count changed
 + [x] Table: pagination not displayed when rows count is `-1` (show all rows)

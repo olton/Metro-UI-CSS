@@ -1,27 +1,27 @@
 var ValidatorFuncs = {
     required: function(val){
-        return val.trim() !== "";
+        return Utils.isValue(val.trim());
     },
     length: function(val, len){
-        if (len === undefined || isNaN(len) || len <= 0) {
+        if (!Utils.isValue(len) || isNaN(len) || len <= 0) {
             return false;
         }
         return val.trim().length === parseInt(len);
     },
     minlength: function(val, len){
-        if (len === undefined || isNaN(len) || len <= 0) {
+        if (!Utils.isValue(len) || isNaN(len) || len <= 0) {
             return false;
         }
         return val.trim().length >= parseInt(len);
     },
     maxlength: function(val, len){
-        if (len === undefined || isNaN(len) || len <= 0) {
+        if (!Utils.isValue(len) || isNaN(len) || len <= 0) {
             return false;
         }
         return val.trim().length <= parseInt(len);
     },
     min: function(val, min_value){
-        if (min_value === undefined || isNaN(min_value)) {
+        if (!Utils.isValue(min_value) || isNaN(min_value)) {
             return false;
         }
         if (!this.number(val)) {
@@ -33,7 +33,7 @@ var ValidatorFuncs = {
         return Number(val) >= Number(min_value);
     },
     max: function(val, max_value){
-        if (max_value === undefined || isNaN(max_value)) {
+        if (!Utils.isValue(max_value) || isNaN(max_value)) {
             return false;
         }
         if (!this.number(val)) {
@@ -75,7 +75,7 @@ var ValidatorFuncs = {
         return Colors.color(val, Colors.PALETTES.STANDARD) !== false;
     },
     pattern: function(val, pat){
-        if (pat === undefined) {
+        if (!Utils.isValue(pat)) {
             return false;
         }
         var reg = new RegExp(pat);

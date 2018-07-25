@@ -45,6 +45,11 @@ var Treeview = {
         this._createTree();
         this._createEvents();
 
+        $.each(element.find("input"), function(){
+            if (!$(this).is(":checked")) return;
+            that._recheck(this);
+        });
+
         Utils.exec(o.onTreeviewCreate, [element]);
     },
 
@@ -87,7 +92,6 @@ var Treeview = {
 
         return node;
     },
-
 
     _createTree: function(){
         var that = this, element = this.element, o = this.options;
@@ -169,46 +173,57 @@ var Treeview = {
             var check = $(this);
             var checked = check.is(":checked");
             var node = check.closest("li");
-            var checks;
 
-            that.current(node);
-
-            // down
-            checks = check.closest("li").find("ul input[type=checkbox]");
-            checks.attr("data-indeterminate", false);
-            checks.prop("checked", checked);
-
-            checks = [];
-
-            $.each(element.find("input[type=checkbox]"), function(){
-                checks.push(this);
-            });
-
-            $.each(checks.reverse(), function(){
-                var ch = $(this);
-                var children = ch.closest("li").children("ul").find("input[type=checkbox]").length;
-                var children_checked = ch.closest("li").children("ul").find("input[type=checkbox]:checked").length;
-
-                if (children > 0 && children_checked === 0) {
-                    ch.attr("data-indeterminate", false);
-                    ch.prop("checked", false);
-                }
-
-                if (children_checked === 0) {
-                    ch.attr("data-indeterminate", false);
-                } else {
-                    if (children_checked > 0 && children > children_checked) {
-                        ch.attr("data-indeterminate", true);
-                    } else if (children === children_checked) {
-                        ch.attr("data-indeterminate", false);
-                        ch.prop("checked", true);
-                    }
-                }
-            });
-
+            that._recheck(check);
 
             Utils.exec(o.onCheckClick, [checked, check, node, element], this);
+        });
+    },
 
+    _recheck: function(check){
+        var element = this.element;
+        var checked, node, checks;
+
+        if (!Utils.isJQueryObject(check)) {
+            check = $(check);
+        }
+
+        checked = check.is(":checked");
+        node = check.closest("li");
+
+        this.current(node);
+
+        // down
+        checks = check.closest("li").find("ul input[type=checkbox]");
+        checks.attr("data-indeterminate", false);
+        checks.prop("checked", checked);
+
+        checks = [];
+
+        $.each(element.find(":checkbox"), function(){
+            checks.push(this);
+        });
+
+        $.each(checks.reverse(), function(){
+            var ch = $(this);
+            var children = ch.closest("li").children("ul").find(":checkbox").length;
+            var children_checked = ch.closest("li").children("ul").find(":checkbox:checked").length;
+
+            if (children > 0 && children_checked === 0) {
+                ch.attr("data-indeterminate", false);
+                ch.prop("checked", false);
+            }
+
+            if (children_checked === 0) {
+                ch.attr("data-indeterminate", false);
+            } else {
+                if (children_checked > 0 && children > children_checked) {
+                    ch.attr("data-indeterminate", true);
+                } else if (children === children_checked) {
+                    ch.attr("data-indeterminate", false);
+                    ch.prop("checked", true);
+                }
+            }
         });
     },
 

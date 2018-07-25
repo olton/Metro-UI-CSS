@@ -11,6 +11,7 @@
       "name": "company",
       "title": "Company",
       "sortable": true,
+      "cls": "d-none d-table-cell-md",
       "clsColumn": "d-none d-table-cell-md"
     },
     {
@@ -18,6 +19,7 @@
       "title": "Office",
       "sortable": true,
       "size": 250,
+      "cls": "d-none d-table-cell-md",
       "clsColumn": "d-none d-table-cell-md"
     },
     {
@@ -33,6 +35,7 @@
       "sortable": true,
       "format": "date",
       "size": 100,
+      "cls": "d-none d-table-cell-md",
       "clsColumn": "d-none d-table-cell-md"
     },
     {

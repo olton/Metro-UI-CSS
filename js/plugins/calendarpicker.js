@@ -306,6 +306,18 @@ var CalendarPicker = {
         cal.setExclude(element.attr("data-exclude"));
     },
 
+    changeAttrMinDate: function(){
+        var that = this, element = this.element, o = this.options;
+        var cal = this.calendar.data("calendar");
+        cal.setMinDate(element.attr("data-min-date"));
+    },
+
+    changeAttrMaxDate: function(){
+        var that = this, element = this.element, o = this.options;
+        var cal = this.calendar.data("calendar");
+        cal.setMaxDate(element.attr("data-max-date"));
+    },
+
     changeAttribute: function(attributeName){
         switch (attributeName) {
             case "value": this.changeValue(); break;
@@ -313,6 +325,8 @@ var CalendarPicker = {
             case 'data-locale': this.changeAttrLocale(); break;
             case 'data-special': this.changeAttrSpecial(); break;
             case 'data-exclude': this.changeAttrExclude(); break;
+            case 'data-min-date': this.changeAttrMinDate(); break;
+            case 'data-max-date': this.changeAttrMaxDate(); break;
         }
     }
 };

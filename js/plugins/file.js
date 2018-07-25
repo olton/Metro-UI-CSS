@@ -91,13 +91,23 @@ var File = {
             element.trigger("click");
         });
         element.on(Metro.events.change, function(){
-            var val = $(this).val();
-            if (val !== '') {
-                val = val.replace(/.+[\\\/]/, "");
-                caption.html(val);
-                caption.attr('title', val);
-                Utils.exec(o.onSelect, [val, element], element[0]);
+            var fi = this;
+            var file_names = [];
+            var entry = "";
+            if (fi.files.length === 0) {
+                return ;
             }
+
+            Array.from(fi.files).forEach(function(file){
+                file_names.push(file.name);
+            });
+
+            entry = file_names.join(", ");
+
+            caption.html(entry);
+            caption.attr('title', entry);
+
+            Utils.exec(o.onSelect, [fi.files, element], element[0]);
         });
     },
 

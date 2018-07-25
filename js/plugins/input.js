@@ -15,10 +15,12 @@ var Input = {
         clsElement: "",
         clsInput: "",
         clsPrepend: "",
+        clsAppend: "",
         clsClearButton: "",
         clsRevealButton: "",
         size: "default",
         prepend: "",
+        append: "",
         copyInlineStyles: true,
         clearButton: true,
         revealButton: true,
@@ -97,6 +99,11 @@ var Input = {
                 });
                 customButton.appendTo(buttons);
             });
+        }
+
+        if (o.append !== "") {
+            var append = Utils.isTag(o.append) ? $(o.append) : $("<span>"+o.append+"</span>");
+            append.addClass("append").addClass(o.clsAppend).appendTo(container);
         }
 
         if (element.attr('dir') === 'rtl' ) {

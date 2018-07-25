@@ -321,9 +321,10 @@ var Metro = {
             var roles = $this.data('role').split(/\s*,\s*/);
             roles.map(function (func) {
                 try {
-                    if ($.fn[func] !== undefined && $this.data(func) === undefined) {
+                    // if ($.fn[func] !== undefined && $this.data(func) === undefined) {
+                    if ($.fn[func] !== undefined && $this.attr("data-role-"+func) === undefined) {
                         $.fn[func].call($this);
-                        $this.data(func + '-initiated', true);
+                        $this.attr("data-role-"+func, true);
 
                         var mc = $this.data('metroComponent');
 
@@ -350,15 +351,24 @@ var Metro = {
     },
 
     destroyPlugin: function(element, name){
+        var p, mc;
         element = Utils.isJQueryObject(element) ? element[0] : element;
-        var p = $(element).data(name);
-        if (Utils.isFunc(p['destroy'])) {
-            p['destroy']();
+        p = $(element).data(name);
+
+        if (!Utils.isValue(p)) {
+            throw new Error("Component can not be destroyed: the element is not a Ьуекщ 4 component.");
         }
-        var mc = $(element).data("metroComponent");
+
+        if (!Utils.isFunc(p['destroy'])) {
+            throw new Error("Component can not be destroyed: method destroy not found.");
+        }
+
+        p['destroy']();
+        mc = $(element).data("metroComponent");
         Utils.arrayDelete(mc, name);
         $(element).data("metroComponent", mc);
         $.removeData(element, name);
+        $(element).removeAttr("data-role-"+name);
     },
 
     destroyPluginAll: function(element){
@@ -373,9 +383,9 @@ var Metro = {
     initPlugin: function(element, name){
         element = $(element);
         try {
-            if ($.fn[name] !== undefined) {
+            if ($.fn[name] !== undefined && element.attr("data-role-"+name) === undefined) {
                 $.fn[name].call(element);
-                element.data(name + '-initiated', true);
+                element.attr("data-role-"+name, true);
 
                 var mc = element.data('metroComponent');
 

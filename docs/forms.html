@@ -181,11 +181,20 @@
                     <form class="mb-2">
                         <label>Input</label>
                         <input type="text" data-role="input"  class="mb-1" title="">
+
                         <label>Password</label>
                         <input type="password" data-role="input" class="mb-1" title="">
-                        <label>Prepend input</label>
+
+                        <label>Input with prepend</label>
                         <input type="text" data-role="input"  class="mb-1" data-prepend="<span class='mif-user'></span>" title="">
                         <input type="text" data-role="input"  class="mb-1" data-prepend="Email" title="">
+
+                        <label>Input with append</label>
+                        <input type="text" data-role="input"  class="mb-1" data-append="<span class='mif-user'></span>" title="">
+                        <input type="text" data-role="input"  class="mb-1" data-append="Email" title="">
+
+                        <label>Input with append &amp; prepend</label>
+                        <input type="text" data-role="input"  class="mb-1" data-prepend="<span class='mif-dollar2'></span>" data-append="<span>0.00</span>" title="">
 
                         <script>
                             var customButtons = [
@@ -210,6 +219,12 @@
                         data-prepend="&lt;span class='mif-user'&gt;&lt;/span&gt;"&gt;
 
                     &lt;input type="text" data-role="input" data-prepend="Email"&gt;
+                    &lt;input type="text" data-role="input" data-append="Email"&gt;
+
+                    &lt;input type="text" data-role="input"
+                        class="mb-1"
+                        data-prepend="&lt;span class='mif-dollar2'&gt;&lt;/span&gt;"
+                        data-append="&lt;span&gt;0.00&lt;/span&gt;" title=""&gt;
 
                     &lt;script&gt;
                         var customButtons = [
@@ -710,7 +725,8 @@
                 <h4 id="_file">File browser</h4>
                 <div class="example">
                     <form class="">
-                        <input type="file" data-role="file" class="mb-1">
+                        <input type="file" data-role="file" class="mb-1" multiple data-caption="Choose files">
+                        <input type="file" data-role="file" class="mb-1" data-prepend="Select your photo: " data-caption="Choose photo">
                         <input type="file" data-role="file" data-caption="<span class='mif-folder'></span>">
                     </form>
                 </div>
@@ -739,9 +755,19 @@
                         <td>Caption for element button</td>
                     </tr>
                     <tr>
+                        <td>data-prepend</td>
+                        <td></td>
+                        <td>Caption for element prepend</td>
+                    </tr>
+                    <tr>
+                        <td>data-on-select</td>
+                        <td>$.noop()</td>
+                        <td>Callback triggered when file(s) selected. First argument is a files list.</td>
+                    </tr>
+                    <tr>
                         <td>data-on-file-create</td>
                         <td>$.noop()</td>
-                        <td>Callback triggered when control created</td>
+                        <td>Callback triggered when control created.</td>
                     </tr>
                     </tbody>
                 </table>
