@@ -15,6 +15,9 @@ var TimePicker = {
     },
 
     options: {
+        hoursStep: 1,
+        minutesStep: 1,
+        secondsStep: 1,
         value: null,
         locale: METRO_LOCALE,
         distance: 3,
@@ -61,7 +64,16 @@ var TimePicker = {
             o.distance = 1;
         }
 
-        if (element.val() === "" && (o.value === null || String(o.value).trim() === "")) {
+        if (o.hoursStep < 1) {o.hoursStep = 1;}
+        if (o.hoursStep > 23) {o.hoursStep = 23;}
+
+        if (o.minutesStep < 1) {o.minutesStep = 1;}
+        if (o.minutesStep > 59) {o.minutesStep = 59;}
+
+        if (o.secondsStep < 1) {o.secondsStep = 1;}
+        if (o.secondsStep > 59) {o.secondsStep = 59;}
+
+        if (element.val() === "" && (!Utils.isValue(o.value))) {
             o.value = (new Date()).format("%H:%M:%S");
         }
 
@@ -75,6 +87,8 @@ var TimePicker = {
             }
         }
 
+        this._normalizeValue();
+
         if (Metro.locales[o.locale] === undefined) {
             o.locale = METRO_LOCALE;
         }
@@ -86,6 +100,20 @@ var TimePicker = {
         this._set();
 
         Utils.exec(o.onTimePickerCreate, [element, picker]);
+    },
+
+    _normalizeValue: function(){
+        var o = this.options;
+
+        if (o.hoursStep > 1) {
+            this.value[0] = Utils.nearest(this.value[0], o.hoursStep, true);
+        }
+        if (o.minutesStep > 1) {
+            this.value[1] = Utils.nearest(this.value[1], o.minutesStep, true);
+        }
+        if (o.minutesStep > 1) {
+            this.value[2] = Utils.nearest(this.value[2], o.secondsStep, true);
+        }
     },
 
     _createStructure: function(){
@@ -126,7 +154,7 @@ var TimePicker = {
         if (o.hours === true) {
             hours = $("<ul>").addClass("sel-hours").appendTo(selectBlock);
             for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(hours);
-            for (i = 0; i < 24; i++) {
+            for (i = 0; i < 24; i = i + o.hoursStep) {
                 $("<li>").addClass("js-hours-"+i).html(i < 10 ? "0"+i : i).data("value", i).appendTo(hours);
             }
             for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(hours);
@@ -134,7 +162,7 @@ var TimePicker = {
         if (o.minutes === true) {
             minutes = $("<ul>").addClass("sel-minutes").appendTo(selectBlock);
             for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(minutes);
-            for (i = 0; i < 60; i++) {
+            for (i = 0; i < 60; i = i + o.minutesStep) {
                 $("<li>").addClass("js-minutes-"+i).html(i < 10 ? "0"+i : i).data("value", i).appendTo(minutes);
             }
             for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(minutes);
@@ -142,7 +170,7 @@ var TimePicker = {
         if (o.seconds === true) {
             seconds = $("<ul>").addClass("sel-seconds").appendTo(selectBlock);
             for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(seconds);
-            for (i = 0; i < 60; i++) {
+            for (i = 0; i < 60; i = i + o.secondsStep) {
                 $("<li>").addClass("js-seconds-"+i).html(i < 10 ? "0"+i : i).data("value", i).appendTo(seconds);
             }
             for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(seconds);
@@ -211,6 +239,7 @@ var TimePicker = {
             s = ss.length === 0 ? 0 : ss.data("value");
 
             that.value = [h, m, s];
+            that._normalizeValue();
             that._set();
 
             that.close();
@@ -240,8 +269,8 @@ var TimePicker = {
             });
 
             list.on(Metro.events.scrollStop, {latency: 50}, function(){
-                var target = Math.round((Math.ceil(list.scrollTop() + 40) / 40)) - 1;
-                var target_element = list.find(".js-"+list_name+"-"+target);
+                var target = Math.round((Math.ceil(list.scrollTop() + 40) / 40)) ;
+                var target_element = list.find("li").eq(target + o.distance - 1);
                 var scroll_to = target_element.position().top - (o.distance * 40) + list.scrollTop();
 
                 list.animate({
@@ -299,32 +328,49 @@ var TimePicker = {
         var picker = this.picker;
         var h, m, s;
         var h_list, m_list, s_list;
-        var select_wrapper = picker.find(".select-wrapper");
         var items = picker.find("li");
+        var select_wrapper = picker.find(".select-wrapper");
+        var select_wrapper_in_viewport, select_wrapper_rect;
+        var h_item, m_item, s_item;
 
+        select_wrapper.parent().removeClass("for-top for-bottom");
         select_wrapper.show();
         items.removeClass("active");
 
-        if (o.hours === true) {
-            h = this.value[0];
-            h_list = picker.find(".sel-hours");
-            h_list.scrollTop(0).animate({
-                scrollTop: h_list.find("li").eq(h).addClass("active").position().top
+        select_wrapper_in_viewport = Utils.inViewport(select_wrapper);
+        select_wrapper_rect = Utils.rect(select_wrapper);
+
+        if (!select_wrapper_in_viewport && select_wrapper_rect.top > 0) {
+            select_wrapper.parent().addClass("for-bottom");
+        }
+
+        if (!select_wrapper_in_viewport && select_wrapper_rect.top < 0) {
+            select_wrapper.parent().addClass("for-top");
+        }
+
+        var animateList = function(list, item){
+            list.scrollTop(0).animate({
+                scrollTop: item.position().top - (o.distance * 40) + list.scrollTop()
             }, 100);
+        };
+
+        if (o.hours === true) {
+            h = parseInt(this.value[0]);
+            h_list = picker.find(".sel-hours");
+            h_item = h_list.find("li.js-hours-" + h).addClass("active");
+            animateList(h_list, h_item);
         }
         if (o.minutes === true) {
-            m = this.value[1];
+            m = parseInt(this.value[1]);
             m_list = picker.find(".sel-minutes");
-            m_list.scrollTop(0).animate({
-                scrollTop: m_list.find("li").eq(m).addClass("active").position().top
-            }, 100);
+            m_item = m_list.find("li.js-minutes-" + m).addClass("active");
+            animateList(m_list, m_item);
         }
         if (o.seconds === true) {
-            s = this.value[2];
+            s = parseInt(this.value[2]);
             s_list = picker.find(".sel-seconds");
-            s_list.scrollTop(0).animate({
-                scrollTop: s_list.find("li").eq(s).addClass("active").position().top
-            }, 100);
+            s_item = s_list.find("li.js-seconds-" + s).addClass("active");
+            animateList(s_list, s_item);
         }
 
         this.isOpen = true;
@@ -357,9 +403,10 @@ var TimePicker = {
 
     val: function(t){
         if (t === undefined) {
-            return element.val();
+            return this.element.val();
         }
         this.value = this._convert(t);
+        this._normalizeValue();
         this._set();
     },
 
@@ -373,6 +420,7 @@ var TimePicker = {
         }
 
         this.value = this._convert(t);
+        this._normalizeValue();
         this._set();
     },
 
@@ -387,16 +435,19 @@ var TimePicker = {
         }
 
         this.value = this._convert(t);
+        this._normalizeValue();
         this._set();
     },
 
-    changeValueAttribute: function(){
-        this.val(this.element.attr("data-value"));
-    },
-
     changeAttribute: function(attributeName){
+        var that = this, element = this.element;
+
+        var changeValueAttribute = function(){
+            that.val(element.attr("data-value"));
+        };
+
         switch (attributeName) {
-            case "data-value": this.changeValueAttribute(); break;
+            case "data-value": changeValueAttribute(); break;
         }
     }
 };

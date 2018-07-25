@@ -57,7 +57,7 @@ var Select = {
         var element = this.element, o = this.options;
         var input = element.siblings("input");
 
-        l = $("<li>").addClass(o.clsOption).data("text", item.text).data('value', item.value ? item.value : item.text).appendTo(parent);
+        l = $("<li>").addClass(o.clsOption).data("text", item.text).data('value', Utils.isValue(item.value) ? item.value : "").appendTo(parent);
         a = $("<a>").html(item.text).appendTo(l).addClass(item.className);
 
         if (option.is(":selected")) {

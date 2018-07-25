@@ -30,7 +30,8 @@ var Locales = {
             "help": "Help",
             "yes": "Yes",
             "no": "No",
-            "random": "Random"
+            "random": "Random",
+            "save": "Save"
         }
     },
     
@@ -65,7 +66,8 @@ var Locales = {
             "help": "帮助",
             "yes": "是",
             "no": "否",
-            "random": "随机"
+            "random": "随机",
+            "save": "保存"
         }
     },
     
@@ -98,7 +100,8 @@ var Locales = {
             "help": "Hilfe",
             "yes": "Ja",
             "no": "Nein",
-            "random": "Zufällig"
+            "random": "Zufällig",
+            "save": "Sparen"
         }
     },
 
@@ -130,7 +133,8 @@ var Locales = {
             "help": "Segítség",
             "yes": "Igen",
             "no": "Nem",
-            "random": "Véletlen"
+            "random": "Véletlen",
+            "save": "Mentés"
         }
     },
 
@@ -162,7 +166,8 @@ var Locales = {
             "help": "Помощь",
             "yes": "Да",
             "no": "Нет",
-            "random": "Случайно"
+            "random": "Случайно",
+            "save": "Сохранить"
         }
     },
 
@@ -194,7 +199,8 @@ var Locales = {
             "help": "Допомога",
             "yes": "Так",
             "no": "Ні",
-            "random": "Випадково"
+            "random": "Випадково",
+            "save": "Зберегти"
         }
     },
 
@@ -229,7 +235,8 @@ var Locales = {
             "help": "Ayuda",
             "yes": "Si",
             "no": "No",
-            "random": "Aleatorio"
+            "random": "Aleatorio",
+            "save": "Salvar"
         }
     },
 
@@ -264,7 +271,8 @@ var Locales = {
             "help": "Aide",
             "yes": "Oui",
             "no": "Non",
-            "random": "Aléatoire"
+            "random": "Aléatoire",
+            "save": "Sauvegarder"
         }
     },
 
@@ -299,7 +307,8 @@ var Locales = {
             "help": "Aiuto",
             "yes": "Sì",
             "no": "No",
-            "random": "Random"
+            "random": "Random",
+            "save": "Salvare"
         }
     }
 };

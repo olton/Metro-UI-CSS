@@ -38,8 +38,21 @@ select, textarea, .file, .input, .textarea, .select {
         border-color: darken(@inputBorder, 10%);
     }
 
+    .input-clear-button, .input-reveal-button {
+        visibility: hidden;
+        &:active, &:focus {
+            visibility: visible;
+        }
+    }
+
     &:focus, &.focused {
         box-shadow: 0 0 0 3px rgba(red(@lightGray), green(@lightGray), blue(@lightGray), 0.45);
+    }
+
+    &:focus, &.focused {
+        .input-clear-button, .input-reveal-button {
+            visibility: visible;
+        }
     }
 
     &:disabled, &.disabled {
@@ -105,6 +118,7 @@ label {
     }
 
     .prepend {order: 1}
+    .append {order: 4}
     .caption {order: 2;}
     button {
         order: 3;
@@ -147,6 +161,9 @@ label {
         &::-ms-reveal {
             display: none;
         }
+        &::-webkit-clear-button {
+            display: none;
+        }
     }
 
     .button-group {
@@ -176,6 +193,7 @@ label {
     }
 
     .prepend {order: 1}
+    .append {order: 4}
     input {order: 2;}
     .button-group {order: 3;}
 }
@@ -216,6 +234,7 @@ label {
     }
 
     .prepend {order: 1}
+    .append {order: 3}
     textarea {order: 2;}
 
     .input-clear-button ~ textarea {
@@ -321,6 +340,7 @@ label {
     }
 
     .prepend {order: 1}
+    .append {order: 3}
     input {order: 2;}
 
     .group-title {
@@ -349,7 +369,7 @@ label {
 }
 
 .file, .input, .select, .textarea {
-    .prepend {
+    .prepend, .append {
         padding: .5rem .75rem;
         background-color: @light;
         color: @dark;
@@ -470,4 +490,17 @@ form, fieldset, .form-group {
 .invalid + .invalid_feedback,
 .invalid > .invalid_feedback {
     display: block !important;
+}
+
+
+::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+}
+
+::-webkit-search-results-button {
+    -webkit-appearance: none;
+}
+
+input[type=search] {
+    -webkit-appearance: none;
 }

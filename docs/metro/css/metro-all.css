@@ -1,5 +1,5 @@
 /*
- * Metro 4 Components Library v4.2.14 build @@build (https://metroui.org.ua)
+ * Metro 4 Components Library v4.2.15 build @@build (https://metroui.org.ua)
  * Copyright 2018 Sergey Pimenov
  * Licensed under MIT
  */
@@ -18610,6 +18610,18 @@ aside::after {
   padding: .3rem;
   font-size: .9em;
 }
+.table .check-cell {
+  width: 36px!important;
+}
+.table .rownum-cell {
+  width: 36px!important;
+}
+.table thead td.hidden,
+.table tbody td.hidden,
+.table thead th.hidden,
+.table tbody th.hidden {
+  display: none!important;
+}
 .table-component {
   display: block;
   position: relative;
@@ -18636,6 +18648,38 @@ aside::after {
 }
 .table-progress [class*=activity-] {
   margin: 0 auto;
+}
+.table-inspector {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  background-color: #ffffff;
+  color: #1d1d1d;
+  z-index: 500;
+  border: 1px double #dfdfdf;
+  width: auto;
+  padding: 10px;
+  -webkit-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3);
+          box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3);
+}
+.table-inspector table {
+  margin-bottom: 0;
+}
+.table-inspector table td {
+  vertical-align: middle;
+}
+.table-inspector input {
+  height: 24px!important;
+  line-height: 24px!important;
+  width: 64px!important;
+  font-size: 14px!important;
+  padding: .15rem!important;
+}
+.table-inspector.open {
+  display: block;
 }
 @media screen and (min-width: 0) {
   .table.compact-fs th,
@@ -19812,6 +19856,124 @@ textarea:hover,
 .select:hover {
   border-color: #c0c0c0;
 }
+input[type=text] .input-clear-button,
+input[type=password] .input-clear-button,
+input[type=tel] .input-clear-button,
+input[type=datetime-local] .input-clear-button,
+input[type=email] .input-clear-button,
+input[type=file] .input-clear-button,
+input[type=month] .input-clear-button,
+input[type=number] .input-clear-button,
+input[type=search] .input-clear-button,
+input[type=time] .input-clear-button,
+input[type=url] .input-clear-button,
+input[type=week] .input-clear-button,
+input[type=file] .input-clear-button,
+select .input-clear-button,
+textarea .input-clear-button,
+.file .input-clear-button,
+.input .input-clear-button,
+.textarea .input-clear-button,
+.select .input-clear-button,
+input[type=text] .input-reveal-button,
+input[type=password] .input-reveal-button,
+input[type=tel] .input-reveal-button,
+input[type=datetime-local] .input-reveal-button,
+input[type=email] .input-reveal-button,
+input[type=file] .input-reveal-button,
+input[type=month] .input-reveal-button,
+input[type=number] .input-reveal-button,
+input[type=search] .input-reveal-button,
+input[type=time] .input-reveal-button,
+input[type=url] .input-reveal-button,
+input[type=week] .input-reveal-button,
+input[type=file] .input-reveal-button,
+select .input-reveal-button,
+textarea .input-reveal-button,
+.file .input-reveal-button,
+.input .input-reveal-button,
+.textarea .input-reveal-button,
+.select .input-reveal-button {
+  visibility: hidden;
+}
+input[type=text] .input-clear-button:active,
+input[type=password] .input-clear-button:active,
+input[type=tel] .input-clear-button:active,
+input[type=datetime-local] .input-clear-button:active,
+input[type=email] .input-clear-button:active,
+input[type=file] .input-clear-button:active,
+input[type=month] .input-clear-button:active,
+input[type=number] .input-clear-button:active,
+input[type=search] .input-clear-button:active,
+input[type=time] .input-clear-button:active,
+input[type=url] .input-clear-button:active,
+input[type=week] .input-clear-button:active,
+input[type=file] .input-clear-button:active,
+select .input-clear-button:active,
+textarea .input-clear-button:active,
+.file .input-clear-button:active,
+.input .input-clear-button:active,
+.textarea .input-clear-button:active,
+.select .input-clear-button:active,
+input[type=text] .input-reveal-button:active,
+input[type=password] .input-reveal-button:active,
+input[type=tel] .input-reveal-button:active,
+input[type=datetime-local] .input-reveal-button:active,
+input[type=email] .input-reveal-button:active,
+input[type=file] .input-reveal-button:active,
+input[type=month] .input-reveal-button:active,
+input[type=number] .input-reveal-button:active,
+input[type=search] .input-reveal-button:active,
+input[type=time] .input-reveal-button:active,
+input[type=url] .input-reveal-button:active,
+input[type=week] .input-reveal-button:active,
+input[type=file] .input-reveal-button:active,
+select .input-reveal-button:active,
+textarea .input-reveal-button:active,
+.file .input-reveal-button:active,
+.input .input-reveal-button:active,
+.textarea .input-reveal-button:active,
+.select .input-reveal-button:active,
+input[type=text] .input-clear-button:focus,
+input[type=password] .input-clear-button:focus,
+input[type=tel] .input-clear-button:focus,
+input[type=datetime-local] .input-clear-button:focus,
+input[type=email] .input-clear-button:focus,
+input[type=file] .input-clear-button:focus,
+input[type=month] .input-clear-button:focus,
+input[type=number] .input-clear-button:focus,
+input[type=search] .input-clear-button:focus,
+input[type=time] .input-clear-button:focus,
+input[type=url] .input-clear-button:focus,
+input[type=week] .input-clear-button:focus,
+input[type=file] .input-clear-button:focus,
+select .input-clear-button:focus,
+textarea .input-clear-button:focus,
+.file .input-clear-button:focus,
+.input .input-clear-button:focus,
+.textarea .input-clear-button:focus,
+.select .input-clear-button:focus,
+input[type=text] .input-reveal-button:focus,
+input[type=password] .input-reveal-button:focus,
+input[type=tel] .input-reveal-button:focus,
+input[type=datetime-local] .input-reveal-button:focus,
+input[type=email] .input-reveal-button:focus,
+input[type=file] .input-reveal-button:focus,
+input[type=month] .input-reveal-button:focus,
+input[type=number] .input-reveal-button:focus,
+input[type=search] .input-reveal-button:focus,
+input[type=time] .input-reveal-button:focus,
+input[type=url] .input-reveal-button:focus,
+input[type=week] .input-reveal-button:focus,
+input[type=file] .input-reveal-button:focus,
+select .input-reveal-button:focus,
+textarea .input-reveal-button:focus,
+.file .input-reveal-button:focus,
+.input .input-reveal-button:focus,
+.textarea .input-reveal-button:focus,
+.select .input-reveal-button:focus {
+  visibility: visible;
+}
 input[type=text]:focus,
 input[type=password]:focus,
 input[type=tel]:focus,
@@ -19852,6 +20014,84 @@ textarea.focused,
 .select.focused {
   -webkit-box-shadow: 0 0 0 3px rgba(228, 228, 228, 0.45);
           box-shadow: 0 0 0 3px rgba(228, 228, 228, 0.45);
+}
+input[type=text]:focus .input-clear-button,
+input[type=password]:focus .input-clear-button,
+input[type=tel]:focus .input-clear-button,
+input[type=datetime-local]:focus .input-clear-button,
+input[type=email]:focus .input-clear-button,
+input[type=file]:focus .input-clear-button,
+input[type=month]:focus .input-clear-button,
+input[type=number]:focus .input-clear-button,
+input[type=search]:focus .input-clear-button,
+input[type=time]:focus .input-clear-button,
+input[type=url]:focus .input-clear-button,
+input[type=week]:focus .input-clear-button,
+input[type=file]:focus .input-clear-button,
+select:focus .input-clear-button,
+textarea:focus .input-clear-button,
+.file:focus .input-clear-button,
+.input:focus .input-clear-button,
+.textarea:focus .input-clear-button,
+.select:focus .input-clear-button,
+input[type=text].focused .input-clear-button,
+input[type=password].focused .input-clear-button,
+input[type=tel].focused .input-clear-button,
+input[type=datetime-local].focused .input-clear-button,
+input[type=email].focused .input-clear-button,
+input[type=file].focused .input-clear-button,
+input[type=month].focused .input-clear-button,
+input[type=number].focused .input-clear-button,
+input[type=search].focused .input-clear-button,
+input[type=time].focused .input-clear-button,
+input[type=url].focused .input-clear-button,
+input[type=week].focused .input-clear-button,
+input[type=file].focused .input-clear-button,
+select.focused .input-clear-button,
+textarea.focused .input-clear-button,
+.file.focused .input-clear-button,
+.input.focused .input-clear-button,
+.textarea.focused .input-clear-button,
+.select.focused .input-clear-button,
+input[type=text]:focus .input-reveal-button,
+input[type=password]:focus .input-reveal-button,
+input[type=tel]:focus .input-reveal-button,
+input[type=datetime-local]:focus .input-reveal-button,
+input[type=email]:focus .input-reveal-button,
+input[type=file]:focus .input-reveal-button,
+input[type=month]:focus .input-reveal-button,
+input[type=number]:focus .input-reveal-button,
+input[type=search]:focus .input-reveal-button,
+input[type=time]:focus .input-reveal-button,
+input[type=url]:focus .input-reveal-button,
+input[type=week]:focus .input-reveal-button,
+input[type=file]:focus .input-reveal-button,
+select:focus .input-reveal-button,
+textarea:focus .input-reveal-button,
+.file:focus .input-reveal-button,
+.input:focus .input-reveal-button,
+.textarea:focus .input-reveal-button,
+.select:focus .input-reveal-button,
+input[type=text].focused .input-reveal-button,
+input[type=password].focused .input-reveal-button,
+input[type=tel].focused .input-reveal-button,
+input[type=datetime-local].focused .input-reveal-button,
+input[type=email].focused .input-reveal-button,
+input[type=file].focused .input-reveal-button,
+input[type=month].focused .input-reveal-button,
+input[type=number].focused .input-reveal-button,
+input[type=search].focused .input-reveal-button,
+input[type=time].focused .input-reveal-button,
+input[type=url].focused .input-reveal-button,
+input[type=week].focused .input-reveal-button,
+input[type=file].focused .input-reveal-button,
+select.focused .input-reveal-button,
+textarea.focused .input-reveal-button,
+.file.focused .input-reveal-button,
+.input.focused .input-reveal-button,
+.textarea.focused .input-reveal-button,
+.select.focused .input-reveal-button {
+  visibility: visible;
 }
 input[type=text]:disabled,
 input[type=password]:disabled,
@@ -19952,6 +20192,11 @@ label {
       -ms-flex-order: 1;
           order: 1;
 }
+.file .append {
+  -webkit-box-ordinal-group: 5;
+      -ms-flex-order: 4;
+          order: 4;
+}
 .file .caption {
   -webkit-box-ordinal-group: 3;
       -ms-flex-order: 2;
@@ -20009,6 +20254,9 @@ label {
 .input input::-ms-reveal {
   display: none;
 }
+.input input::-webkit-clear-button {
+  display: none;
+}
 .input .button-group {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -20040,6 +20288,11 @@ label {
   -webkit-box-ordinal-group: 2;
       -ms-flex-order: 1;
           order: 1;
+}
+.input .append {
+  -webkit-box-ordinal-group: 5;
+      -ms-flex-order: 4;
+          order: 4;
 }
 .input input {
   -webkit-box-ordinal-group: 3;
@@ -20093,6 +20346,11 @@ label {
   -webkit-box-ordinal-group: 2;
       -ms-flex-order: 1;
           order: 1;
+}
+.textarea .append {
+  -webkit-box-ordinal-group: 4;
+      -ms-flex-order: 3;
+          order: 3;
 }
 .textarea textarea {
   -webkit-box-ordinal-group: 3;
@@ -20194,6 +20452,11 @@ label {
       -ms-flex-order: 1;
           order: 1;
 }
+.select .append {
+  -webkit-box-ordinal-group: 4;
+      -ms-flex-order: 3;
+          order: 3;
+}
 .select input {
   -webkit-box-ordinal-group: 3;
       -ms-flex-order: 2;
@@ -20220,7 +20483,11 @@ label {
 .file .prepend,
 .input .prepend,
 .select .prepend,
-.textarea .prepend {
+.textarea .prepend,
+.file .append,
+.input .append,
+.select .append,
+.textarea .append {
   padding: .5rem .75rem;
   background-color: #f8f8f8;
   color: #1d1d1d;
@@ -20375,6 +20642,15 @@ fieldset.disabled,
 .invalid + .invalid_feedback,
 .invalid > .invalid_feedback {
   display: block !important;
+}
+::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+}
+::-webkit-search-results-button {
+  -webkit-appearance: none;
+}
+input[type=search] {
+  -webkit-appearance: none;
 }
 .checkbox {
   display: -webkit-inline-box;
@@ -28424,6 +28700,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   display: none;
 }
 .media-player .info-box {
+  position: relative;
   width: auto;
   display: block;
   -webkit-box-ordinal-group: 5;
@@ -28438,6 +28715,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   -ms-flex-negative: 1;
       flex-shrink: 1;
   white-space: nowrap;
+  border: none;
 }
 .media-player .mute {
   -webkit-box-ordinal-group: 7;
@@ -30364,6 +30642,11 @@ video:-webkit-full-screen {
 .treeview li .switch .caption {
   line-height: 1;
 }
+.treeview li .checkbox,
+.treeview li .radio,
+.treeview li .switch {
+  height: 24px;
+}
 .listview {
   position: relative;
   margin: 0;
@@ -31933,11 +32216,13 @@ video:-webkit-full-screen {
   -webkit-transform: translate3d(0, -50%, 0);
           transform: translate3d(0, -50%, 0);
 }
-.wheel-picker.for-top .select-wrapper {
+.wheel-picker.for-top .select-wrapper,
+.wheel-picker.for-top-a .select-wrapper {
   -webkit-transform: translate3d(0, 0, 0);
           transform: translate3d(0, 0, 0);
 }
-.wheel-picker.for-bottom .select-wrapper {
+.wheel-picker.for-bottom .select-wrapper,
+.wheel-picker.for-bottom-a .select-wrapper {
   -webkit-transform: translate3d(0, -100%, 0);
           transform: translate3d(0, -100%, 0);
 }
@@ -44582,41 +44867,53 @@ input[dir=rtl] {
 }
 .input[dir=rtl] input,
 .input.rtl input {
-  -webkit-box-ordinal-group: 3;
-      -ms-flex-order: 2;
-          order: 2;
+  -webkit-box-ordinal-group: 4;
+      -ms-flex-order: 3;
+          order: 3;
   direction: rtl;
 }
 .input[dir=rtl] .button-group,
 .input.rtl .button-group {
+  -webkit-box-ordinal-group: 3;
+      -ms-flex-order: 2;
+          order: 2;
+}
+.input[dir=rtl] .prepend,
+.input.rtl .prepend {
+  -webkit-box-ordinal-group: 5;
+      -ms-flex-order: 4;
+          order: 4;
+}
+.input[dir=rtl] .append,
+.input.rtl .append {
   -webkit-box-ordinal-group: 2;
       -ms-flex-order: 1;
           order: 1;
 }
-.input[dir=rtl] .prepend,
-.input.rtl .prepend {
-  -webkit-box-ordinal-group: 4;
-      -ms-flex-order: 3;
-          order: 3;
+.file[dir=rtl] .append,
+.file.rtl .append {
+  -webkit-box-ordinal-group: 2;
+      -ms-flex-order: 1;
+          order: 1;
 }
 .file[dir=rtl] .prepend,
 .file.rtl .prepend {
-  -webkit-box-ordinal-group: 4;
-      -ms-flex-order: 3;
-          order: 3;
+  -webkit-box-ordinal-group: 5;
+      -ms-flex-order: 4;
+          order: 4;
 }
 .file[dir=rtl] .caption,
 .file.rtl .caption {
-  -webkit-box-ordinal-group: 3;
-      -ms-flex-order: 2;
-          order: 2;
+  -webkit-box-ordinal-group: 4;
+      -ms-flex-order: 3;
+          order: 3;
   text-align: right;
 }
 .file[dir=rtl] button,
 .file.rtl button {
-  -webkit-box-ordinal-group: 2;
-      -ms-flex-order: 1;
-          order: 1;
+  -webkit-box-ordinal-group: 3;
+      -ms-flex-order: 2;
+          order: 2;
   margin-left: 0;
   margin-right: auto;
 }
@@ -44629,15 +44926,21 @@ input[dir=rtl] {
 }
 .textarea[dir=rtl] .prepend,
 .textarea.rtl .prepend {
-  -webkit-box-ordinal-group: 3;
-      -ms-flex-order: 2;
-          order: 2;
+  -webkit-box-ordinal-group: 4;
+      -ms-flex-order: 3;
+          order: 3;
 }
-.textarea[dir=rtl] textarea,
-.textarea.rtl textarea {
+.textarea[dir=rtl] .append,
+.textarea.rtl .append {
   -webkit-box-ordinal-group: 2;
       -ms-flex-order: 1;
           order: 1;
+}
+.textarea[dir=rtl] textarea,
+.textarea.rtl textarea {
+  -webkit-box-ordinal-group: 3;
+      -ms-flex-order: 2;
+          order: 2;
 }
 .textarea[dir=rtl] .input-clear-button,
 .textarea.rtl .input-clear-button {
@@ -44658,15 +44961,21 @@ input[dir=rtl] {
 }
 .select[dir=rtl] input,
 .select.rtl input {
-  -webkit-box-ordinal-group: 2;
-      -ms-flex-order: 1;
-          order: 1;
-}
-.select[dir=rtl] .prepend,
-.select.rtl .prepend {
   -webkit-box-ordinal-group: 3;
       -ms-flex-order: 2;
           order: 2;
+}
+.select[dir=rtl] .prepend,
+.select.rtl .prepend {
+  -webkit-box-ordinal-group: 4;
+      -ms-flex-order: 3;
+          order: 3;
+}
+.select[dir=rtl] .append,
+.select.rtl .append {
+  -webkit-box-ordinal-group: 2;
+      -ms-flex-order: 1;
+          order: 1;
 }
 .select[dir=rtl].dropdown-toggle,
 .select.rtl.dropdown-toggle {

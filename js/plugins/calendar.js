@@ -41,6 +41,7 @@ var Calendar = {
         headerFormat: "%A, %b %e",
         showHeader: true,
         showFooter: true,
+        showTimeField: true,
         clsCalendar: "",
         clsCalendarHeader: "",
         clsCalendarContent: "",
@@ -658,13 +659,6 @@ var Calendar = {
                 }
             }
         }
-
-        //var day_height = Utils.getStyleOne(element.parent().find(".calendar .days"), 'width');
-
-        // element.find(".days-row .day").css({
-        //     height: day_height,
-        //     lineHeight: day_height + 'px'
-        // });
     },
 
     _drawCalendar: function(){

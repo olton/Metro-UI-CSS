@@ -6,16 +6,20 @@ input.rtl, input[dir=rtl] {
 
     &[dir=rtl], &.rtl {
         input {
-            order: 2;
+            order: 3;
             direction: rtl;
         }
 
         .button-group {
-            order: 1;
+            order: 2;
         }
 
         .prepend {
-            order: 3;
+            order: 4;
+        }
+
+        .append {
+            order: 1;
         }
 
         flex-flow: row-reverse nowrap;
@@ -24,14 +28,15 @@ input.rtl, input[dir=rtl] {
 
 .file {
     &[dir=rtl], &.rtl {
-        .prepend {order: 3}
+        .append {order: 1}
+        .prepend {order: 4}
         .caption {
-            order: 2;
+            order: 3;
             text-align: right;
         }
 
         button {
-            order: 1;
+            order: 2;
             margin-left: 0;
             margin-right: auto;
         }
@@ -43,13 +48,9 @@ input.rtl, input[dir=rtl] {
 
         flex-direction: row-reverse;
 
-        .prepend {
-            order: 2;
-        }
-
-        textarea {
-            order: 1;
-        }
+        .prepend {order: 3;}
+        .append {order: 1;}
+        textarea {order: 2;}
 
         .input-clear-button {
             right: auto;
@@ -66,8 +67,9 @@ input.rtl, input[dir=rtl] {
 .select {
     &[dir=rtl], &.rtl {
         flex-direction: row-reverse;
-        input {order: 1;}
-        .prepend {order: 2;}
+        input {order: 2;}
+        .prepend {order: 3;}
+        .append {order: 1;}
 
         &.dropdown-toggle {
             padding-right: 0!important;
