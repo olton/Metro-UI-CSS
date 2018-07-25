@@ -1,4 +1,5 @@
 ### 4.2.15
++ [x] Switch: fix works with collapse. issue #1148 
 + [x] Input, Select, Textarea, File: add `data-append` attribute 
 + [x] TreeView: fix node toggle marker position
 + [x] TreeView: fix checks nodes for tree options when inputs checked by default
