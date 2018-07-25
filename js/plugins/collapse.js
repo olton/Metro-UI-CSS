@@ -52,7 +52,12 @@ var Collapse = {
             } else {
                 that._open(element);
             }
-            e.preventDefault();
+
+            console.log(e.target.tagName);
+
+            if (["INPUT"].indexOf(e.target.tagName) === -1) {
+                e.preventDefault();
+            }
             e.stopPropagation();
         });
 
