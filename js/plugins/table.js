@@ -31,6 +31,8 @@ var Table = {
         this.items = [];
         this.foots = [];
 
+        this.filteredItems = [];
+
         this._setOptionsFromDOM();
         this._create();
 
@@ -51,7 +53,7 @@ var Table = {
         filters: null,
         source: null,
 
-        filterMinLength: 3,
+        filterMinLength: 1,
 
         showRowsSteps: true,
         showSearch: true,
@@ -131,8 +133,8 @@ var Table = {
         onCheckClick: Metro.noop,
         onCheckClickAll: Metro.noop,
         onCheckDraw: Metro.noop,
-        onInspectorSave: Metro.noop,
-        onInspectorGet: Metro.noop,
+        onViewSave: Metro.noop,
+        onViewGet: Metro.noop,
         onTableCreate: Metro.noop
     },
 
@@ -206,6 +208,7 @@ var Table = {
             view = Metro.storage.getItem(o.viewSavePath.replace("$1", id));
             if (Utils.isValue(view) && Utils.objectLength(view) === Utils.objectLength(this.view)) {
                 this.view = view;
+                Utils.exec(o.onViewGet, [view], element[0]);
             }
             this._final();
         } else {
@@ -217,6 +220,7 @@ var Table = {
                 function(view){
                     if (Utils.isValue(view) && Utils.objectLength(view) === Utils.objectLength(that.view)) {
                         that.view = view;
+                        Utils.exec(o.onViewGet, [view], element[0]);
                     }
                     that._final();
                 }
@@ -812,7 +816,7 @@ var Table = {
             var data = [];
 
             if (status) {
-                $.each(that.items, function(){
+                $.each(that.filteredItems, function(){
                     if (data.indexOf(this[o.checkColIndex]) !== -1) return ;
                     data.push(""+this[o.checkColIndex]);
                 });
@@ -987,7 +991,7 @@ var Table = {
 
         if (o.viewSaveMode.toLowerCase() === "client") {
             Metro.storage.setItem(o.viewSavePath.replace("$1", id), this.view);
-            Utils.exec(o.onInspectorSave, [o.viewSavePath, that.view], element[0]);
+            Utils.exec(o.onViewSave, [o.viewSavePath, that.view], element[0]);
         } else {
             $.post(
                 o.viewSavePath,
@@ -995,7 +999,7 @@ var Table = {
                     id : that.view
                 },
                 function(data, status, xhr){
-                    Utils.exec(o.onInspectorSave, [o.viewSavePath, that.view, data, status, xhr], element[0]);
+                    Utils.exec(o.onViewSave, [o.viewSavePath, that.view, data, status, xhr], element[0]);
                 }
             );
         }
@@ -1149,6 +1153,8 @@ var Table = {
         } else {
             items = this.items;
         }
+
+        this.filteredItems = items;
 
         return items;
     },
@@ -1444,6 +1450,27 @@ var Table = {
 
     getItems: function(){
         return this.items;
+    },
+
+    getFilteredItems: function(){
+        return this.filteredItems;
+    },
+
+    getSelectedItems: function(){
+        var that = this, element = this.element, o = this.options;
+        var stored_keys = Metro.storage.getItem(o.checkStoreKey.replace("$1", element.attr("id")), []);
+        var selected = [];
+        $.each(this.items, function(){
+            if (stored_keys.indexOf(this[o.checkColIndex]) !== -1) {
+                selected.push(this);
+            }
+        });
+        return selected;
+    },
+
+    getStoredKeys: function(){
+        var element = this.element, o = this.options;
+        return Metro.storage.getItem(o.checkStoreKey.replace("$1", element.attr("id")), []);
     },
 
     getFilters: function(){
