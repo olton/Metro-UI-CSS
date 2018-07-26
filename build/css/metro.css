@@ -18652,10 +18652,10 @@ aside::after {
 .table-inspector {
   display: none;
   position: absolute;
-  top: 50%;
+  top: 0;
   left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
   background-color: #ffffff;
   color: #1d1d1d;
   z-index: 500;
