@@ -20295,6 +20295,9 @@ label {
 .input input::-webkit-clear-button {
   display: none;
 }
+.input input::-webkit-inner-spin-button {
+  height: 100%;
+}
 .input .button-group {
   display: -webkit-box;
   display: -ms-flexbox;

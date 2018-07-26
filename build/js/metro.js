@@ -16139,10 +16139,10 @@ var Table = {
         var component = this.component;
         var inspector, table = $("<table>").addClass("table compact"), row, actions, tds = [], cells, j;
 
-        inspector = $("<div data-role='draggable' data-drag-element='h3'>").addClass("table-inspector");
+        inspector = $("<div data-role='draggable' data-drag-element='h3' data-drag-area='body'>").addClass("table-inspector");
 
         $("<h3 class='text-light'>"+o.inspectorTitle+"</h3>").appendTo(inspector);
-        $("<hr class='thin'>").appendTo(inspector);
+        $("<hr class='thin bg-lightGray'>").appendTo(inspector);
 
         table.appendTo(inspector);
 
@@ -16171,7 +16171,7 @@ var Table = {
             tds[j].appendTo(table);
         }
 
-        $("<hr class='thin'>").appendTo(inspector);
+        $("<hr class='thin bg-lightGray'>").appendTo(inspector);
         actions = $("<div class='inspector-actions'>").appendTo(inspector);
         $("<button class='button primary js-table-inspector-save' type='button'>").html(this.locale.buttons.save).appendTo(actions);
         $("<button class='button link js-table-inspector-cancel place-right' type='button'>").html(this.locale.buttons.cancel).appendTo(actions);
