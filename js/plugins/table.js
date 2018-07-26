@@ -1495,9 +1495,7 @@ var Table = {
 
     changeAttribute: function(attributeName){
 
-    },
-
-    destroy: function(){}
+    }
 };
 
 Metro.plugin('table', Table);
