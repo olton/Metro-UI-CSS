@@ -15,12 +15,14 @@
 + [x] Table: attribute `data-filter-min-length` for number of symbols inputs and start searching
 + [x] Table: add column rownum. This column shows when attribute `data-rownum="true"`
 + [x] Table: add column row check. This column shows when attribute `data-check="true"`
++ [x] Table: add column row radio. This column shows when attribute `data-check-type="radio"`
++ [x] Table: add attribute `data-check-store-key="..."` used for store selected rows in the storage
++ [x] Table: add attribute `data-view-save-mode="client|server"` used for store table view
++ [x] Table: add attribute `data-view-save-path="storage_key|url"` used for store table view
 + [x] Table: fix create internal heads when header defining in html and data loaded from json 
 + [x] Table: add `data-locale` attribute
 + [x] Table: add table inspector to configure columns view
 + [x] Table: add methods `openInspector(true|false)`, `toggleInspector()` to show/hide table inspector
-+ [x] Table: add attribute `data-inpector-save-mode="client|server"`
-+ [x] Table: add attribute `data-inpector-save-path="storage key|url"`
 + [x] Table: add methods `getFilteredItems()`, `getSelectedItems()`, `getStoredKeys()`
 + [x] Table: add events `onDrawCell`, `onAppendCell`, `onAppendRow`, `onViewSave`, `onViewGet`, `onCheckDraw`
 
