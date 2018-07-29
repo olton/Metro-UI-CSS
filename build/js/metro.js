@@ -2129,7 +2129,8 @@ var Locales = {
             "yes": "Yes",
             "no": "No",
             "random": "Random",
-            "save": "Save"
+            "save": "Save",
+            "reset": "Reset"
         }
     },
     
@@ -2165,7 +2166,8 @@ var Locales = {
             "yes": "是",
             "no": "否",
             "random": "随机",
-            "save": "保存"
+            "save": "保存",
+            "reset": "重啟"
         }
     },
     
@@ -2199,7 +2201,8 @@ var Locales = {
             "yes": "Ja",
             "no": "Nein",
             "random": "Zufällig",
-            "save": "Sparen"
+            "save": "Sparen",
+            "reset": "Zurücksetzen"
         }
     },
 
@@ -2232,7 +2235,8 @@ var Locales = {
             "yes": "Igen",
             "no": "Nem",
             "random": "Véletlen",
-            "save": "Mentés"
+            "save": "Mentés",
+            "reset": "Visszaállítás"
         }
     },
 
@@ -2265,7 +2269,8 @@ var Locales = {
             "yes": "Да",
             "no": "Нет",
             "random": "Случайно",
-            "save": "Сохранить"
+            "save": "Сохранить",
+            "reset": "Сброс"
         }
     },
 
@@ -2298,7 +2303,8 @@ var Locales = {
             "yes": "Так",
             "no": "Ні",
             "random": "Випадково",
-            "save": "Зберегти"
+            "save": "Зберегти",
+            "reset": "Скинути"
         }
     },
 
@@ -2334,7 +2340,8 @@ var Locales = {
             "yes": "Si",
             "no": "No",
             "random": "Aleatorio",
-            "save": "Salvar"
+            "save": "Salvar",
+            "reset": "Reiniciar"
         }
     },
 
@@ -2370,7 +2377,8 @@ var Locales = {
             "yes": "Oui",
             "no": "Non",
             "random": "Aléatoire",
-            "save": "Sauvegarder"
+            "save": "Sauvegarder",
+            "reset": "Réinitialiser"
         }
     },
 
@@ -2406,7 +2414,8 @@ var Locales = {
             "yes": "Sì",
             "no": "No",
             "random": "Random",
-            "save": "Salvare"
+            "save": "Salvare",
+            "reset": "Reset"
         }
     }
 };
@@ -16041,6 +16050,7 @@ var Table = {
         this.component = null;
         this.inspector = null;
         this.view = {};
+        this.viewDefault = {};
         this.locale = Metro.locales["en-US"];
 
         this.sort = {
@@ -16226,6 +16236,8 @@ var Table = {
             }
         });
 
+        this.viewDefault = this.view;
+
         if (o.viewSaveMode.toLowerCase() === "client") {
             view = Metro.storage.getItem(o.viewSavePath.replace("$1", id));
             if (Utils.isValue(view) && Utils.objectLength(view) === Utils.objectLength(this.view)) {
@@ -16342,6 +16354,7 @@ var Table = {
         $("<hr class='thin bg-lightGray'>").appendTo(inspector);
         actions = $("<div class='inspector-actions'>").appendTo(inspector);
         $("<button class='button primary js-table-inspector-save' type='button'>").html(this.locale.buttons.save).appendTo(actions);
+        $("<button class='button secondary js-table-inspector-reset ml-2 mr-2' type='button'>").html(this.locale.buttons.reset).appendTo(actions);
         $("<button class='button link js-table-inspector-cancel place-right' type='button'>").html(this.locale.buttons.cancel).appendTo(actions);
 
         this.inspector = inspector;
@@ -16910,7 +16923,7 @@ var Table = {
         }
 
         // Inspector event
-        inspector.on(Metro.events.click, ".js-table-inspector-field-up", function(){
+        component.on(Metro.events.click, ".js-table-inspector-field-up", function(){
             var button = $(this), tr = button.closest("tr");
             var tr_prev = tr.prev("tr");
             var index = tr.data("index");
@@ -16935,7 +16948,7 @@ var Table = {
             that._draw();
         });
 
-        inspector.on(Metro.events.click, ".js-table-inspector-field-down", function(){
+        component.on(Metro.events.click, ".js-table-inspector-field-down", function(){
             var button = $(this), tr = button.closest("tr");
             var tr_next = tr.next("tr");
             var index = tr.data("index");
@@ -16960,7 +16973,7 @@ var Table = {
             that._draw();
         });
 
-        inspector.on(Metro.events.click, "input[type=checkbox]", function(){
+        component.on(Metro.events.click, ".table-inspector input[type=checkbox]", function(){
             var check = $(this);
             var status = check.is(":checked");
             var index = check.val();
@@ -16988,7 +17001,7 @@ var Table = {
             that._draw();
         });
 
-        inspector.find("input[type=number]").on(Metro.events.inputchange, function(){
+        component.find(".table-inspector input[type=number]").on(Metro.events.inputchange, function(){
             var input = $(this);
             var index = input.attr("data-index");
             var val = parseInt(input.val());
@@ -16998,13 +17011,17 @@ var Table = {
             that._createTableHeader();
         });
 
-        inspector.on(Metro.events.click, ".js-table-inspector-save", function(){
+        component.on(Metro.events.click, ".js-table-inspector-save", function(){
             that._saveTableView();
             that.openInspector(false);
         });
 
-        inspector.on(Metro.events.click, ".js-table-inspector-cancel", function(){
+        component.on(Metro.events.click, ".js-table-inspector-cancel", function(){
             that.openInspector(false);
+        });
+
+        component.on(Metro.events.click, ".js-table-inspector-reset", function(){
+            that.resetView(true);
         });
     },
 
@@ -17523,6 +17540,18 @@ var Table = {
         this.inspector.toggleClass("open");
     },
 
+    resetView: function(save){
+        this.view = this.viewDefault;
+        this.inspector.remove();
+        this._createTableHeader();
+        this._createTableBody();
+        this._createTableFooter();
+        this._draw();
+        this._createInspector();
+        if (save === true) {
+            this._saveTableView();
+        }
+    },
 
     export: function(to, mode, filename, options){
         var that = this, element = this.element, o = this.options;
