@@ -9,7 +9,7 @@
 
     <link href="../metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
 
-    <title>Table test page - Metro 4 :: Popular HTML, CSS and JS library</title>
+    <title>Table export test - Metro 4 :: Popular HTML, CSS and JS library</title>
 </head>
 <body>
 <div class="container">
@@ -22,6 +22,9 @@
 
     <div>
         <button class="button alert" onclick="$('#t2').data('table').openInspector(true)">Inspector</button>
+        <button class="button secondary" onclick="$('#t2').data('table').export('CSV', 'all', 'test-all.csv', {includeHeader: true})">Export All</button>
+        <button class="button secondary" onclick="$('#t2').data('table').export('CSV', 'checked', 'test-checked.csv', {includeHeader: true})">Export Checked</button>
+        <button class="button secondary" onclick="$('#t2').data('table').export('CSV', 'view', 'test-view.csv', {includeHeader: true})">Export View</button>
     </div>
 
     <table class="table compact striped table-border mt-4" id="t2"
