@@ -20,7 +20,12 @@
         <div data-role="activity" data-type="cycle" data-style="color"></div>
     </div>
 
-    <div><button class="button alert" onclick="$('#t2').data('table').openInspector(true)">Inspector</button></div>
+    <div>
+        <button class="button alert" onclick="$('#t2').data('table').openInspector(true)">Inspector</button>
+        <button class="button secondary" onclick="$('#t2').data('table').export('CSV', 'all', 'test-all.csv', {includeHeader: true})">Export All</button>
+        <button class="button secondary" onclick="$('#t2').data('table').export('CSV', 'checked', 'test-checked.csv', {includeHeader: true})">Export Checked</button>
+        <button class="button secondary" onclick="$('#t2').data('table').export('CSV', 'view', 'test-view.csv', {includeHeader: true})">Export View</button>
+    </div>
 
     <table class="table compact striped table-border mt-4" id="t2"
            data-role="table"

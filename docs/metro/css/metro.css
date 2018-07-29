@@ -1,5 +1,5 @@
 /*
- * Metro 4 Components Library v4.2.15 build @@build (https://metroui.org.ua)
+ * Metro 4 Components Library v4.2.16 build @@build (https://metroui.org.ua)
  * Copyright 2018 Sergey Pimenov
  * Licensed under MIT
  */
@@ -18607,8 +18607,12 @@ aside::after {
 }
 .table.compact th,
 .table.compact td {
-  padding: .3rem;
-  font-size: .9em;
+  padding: 3px 8px;
+  font-size: 80%;
+}
+.table.compact th .checkbox,
+.table.compact td .checkbox {
+  height: auto;
 }
 .table .check-cell {
   width: 36px!important;

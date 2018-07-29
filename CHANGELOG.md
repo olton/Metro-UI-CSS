@@ -1,3 +1,13 @@
+### 4.2.16
++ [x] Export: add object `Metro.export`. Now you can export any HTML `tables` to `CSV` with method `Metro.export.tableToCSV(table, filename)`
++ [x] Utils: add function `copy(el)` for copying element to clipboard
++ [x] Utils: add function `bool(val)`. This func return true if value one of: `true`, `'true'`, `1`, `'1'`, `'on'`, `'yes'`
++ [x] Table: fix show cell if stored value `show` for view have string type `'true'` or `'false'` 
++ [x] Table: add second parameter `heads` for custom filter function
++ [x] Table: change padding and font-size for `compact` class
++ [x] Table: fix post method for save table view. Inspector post `{id: table_id, view: table_view}` 
++ [x] Table: add method `export(to, mode, filename, export_options)`. Argument `to` currently must value `CSV`. Argument mode: `all`, `checked`, `view`, `all-filtered`
+
 ### 4.2.15
 + [x] Switch: fix works with collapse. issue #1148 
 + [x] Input, Select, Textarea, File: add `data-append` attribute 
