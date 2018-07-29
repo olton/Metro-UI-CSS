@@ -31,7 +31,8 @@ var Locales = {
             "yes": "Yes",
             "no": "No",
             "random": "Random",
-            "save": "Save"
+            "save": "Save",
+            "reset": "Reset"
         }
     },
     
@@ -67,7 +68,8 @@ var Locales = {
             "yes": "是",
             "no": "否",
             "random": "随机",
-            "save": "保存"
+            "save": "保存",
+            "reset": "重啟"
         }
     },
     
@@ -101,7 +103,8 @@ var Locales = {
             "yes": "Ja",
             "no": "Nein",
             "random": "Zufällig",
-            "save": "Sparen"
+            "save": "Sparen",
+            "reset": "Zurücksetzen"
         }
     },
 
@@ -134,7 +137,8 @@ var Locales = {
             "yes": "Igen",
             "no": "Nem",
             "random": "Véletlen",
-            "save": "Mentés"
+            "save": "Mentés",
+            "reset": "Visszaállítás"
         }
     },
 
@@ -167,7 +171,8 @@ var Locales = {
             "yes": "Да",
             "no": "Нет",
             "random": "Случайно",
-            "save": "Сохранить"
+            "save": "Сохранить",
+            "reset": "Сброс"
         }
     },
 
@@ -200,7 +205,8 @@ var Locales = {
             "yes": "Так",
             "no": "Ні",
             "random": "Випадково",
-            "save": "Зберегти"
+            "save": "Зберегти",
+            "reset": "Скинути"
         }
     },
 
@@ -236,7 +242,8 @@ var Locales = {
             "yes": "Si",
             "no": "No",
             "random": "Aleatorio",
-            "save": "Salvar"
+            "save": "Salvar",
+            "reset": "Reiniciar"
         }
     },
 
@@ -272,7 +279,8 @@ var Locales = {
             "yes": "Oui",
             "no": "Non",
             "random": "Aléatoire",
-            "save": "Sauvegarder"
+            "save": "Sauvegarder",
+            "reset": "Réinitialiser"
         }
     },
 
@@ -308,7 +316,8 @@ var Locales = {
             "yes": "Sì",
             "no": "No",
             "random": "Random",
-            "save": "Salvare"
+            "save": "Salvare",
+            "reset": "Reset"
         }
     }
 };
