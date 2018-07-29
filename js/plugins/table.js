@@ -1531,7 +1531,7 @@ var Table = {
         });
 
         for (j = 0; j < cells.length; j++){
-            tds[j].appendTo(tr);
+            if (Utils.isValue(tds[j])) tds[j].appendTo(tr);
         }
         tr.appendTo(head);
 
@@ -1562,11 +1562,7 @@ var Table = {
                 }
 
                 $.each(cells, function(cell_index){
-                    if (
-                        (Utils.isValue(that.heads[cell_index].cls)
-                            && that.heads[cell_index].cls.contains("hidden"))
-                        || Utils.bool(that.view[cell_index].show) === false
-                    ) {
+                    if (Utils.bool(that.view[cell_index].show) === false) {
                         return ;
                     }
                     td = $("<td>").html(this);
@@ -1574,7 +1570,7 @@ var Table = {
                 });
 
                 for (j = 0; j < cells.length; j++){
-                    tds[j].appendTo(tr);
+                    if (Utils.isValue(tds[j])) tds[j].appendTo(tr);
                 }
 
                 tr.appendTo(body);
