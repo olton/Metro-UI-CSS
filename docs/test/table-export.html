@@ -21,8 +21,9 @@
     </div>
 
     <div>
-        <button class="button alert" onclick="$('#t2').data('table').openInspector(true)">Inspector</button>
+        <button class="button alert place-right" onclick="$('#t2').data('table').openInspector(true)">Inspector</button>
         <button class="button secondary" onclick="$('#t2').data('table').export('CSV', 'all', 'test-all.csv', {includeHeader: true})">Export All</button>
+        <button class="button secondary" onclick="$('#t2').data('table').export('CSV', 'all-filtered', 'test-all-filtered.csv', {includeHeader: true})">Export All Filtered</button>
         <button class="button secondary" onclick="$('#t2').data('table').export('CSV', 'checked', 'test-checked.csv', {includeHeader: true})">Export Checked</button>
         <button class="button secondary" onclick="$('#t2').data('table').export('CSV', 'view', 'test-view.csv', {includeHeader: true})">Export View</button>
     </div>
