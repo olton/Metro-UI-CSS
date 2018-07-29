@@ -23,7 +23,7 @@ It's an independent project with its ongoing development made possible entirely 
 <br>
 <hr>
  
-## Current Version 4.2.15
+## Current Version 4.2.16
 
 ### Status
 [![Build Status](https://travis-ci.org/olton/Metro-UI-CSS.svg?branch=master)](https://travis-ci.org/olton/Metro-UI-CSS)
@@ -58,6 +58,7 @@ It's an independent project with its ongoing development made possible entirely 
 - strftime by Tom Doan [strftime](https://github.com/thdoan/strftime)
 - jQuery Core [jquery](https://jquery.com/)
 - scrolStop by Ross Allen [ssorallen](https://github.com/ssorallen)
+- function b64toBlob by [Jeremy Banks](http://stackoverflow.com/users/1114/jeremy-banks)
 - All who brought something good 
 
 ### Browser Compatibility

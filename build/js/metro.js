@@ -1,5 +1,5 @@
 /*
- * Metro 4 Components Library v4.2.15 build 692 (https://metroui.org.ua)
+ * Metro 4 Components Library v4.2.16 build @@build (https://metroui.org.ua)
  * Copyright 2018 Sergey Pimenov
  * Licensed under MIT
  */
@@ -80,8 +80,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.15",
-    versionFull: "4.2.15.692 ",
+    version: "@@version",
+    versionFull: "@@version.@@build @@status",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -1599,6 +1599,120 @@ $.extend($.easing, {
         return $.easing.easeOutBounce(x, t * 2 - d, 0, c, d) * .5 + c * .5 + b;
     }
 });
+
+
+// Source: js/utils/export.js
+var Export = {
+
+    init: function(){
+        return this;
+    },
+
+    options: {
+        csvDelimiter: "\t",
+        csvNewLine: "\r\n",
+        includeHeader: true
+    },
+
+    setup: function(options){
+        this.options = $.extend({}, this.options, options);
+        return this;
+    },
+
+    base64: function(data){
+        return window.btoa(unescape(encodeURIComponent(data)));
+    },
+
+    b64toBlob: function (b64Data, contentType, sliceSize) {
+        contentType = contentType || '';
+        sliceSize = sliceSize || 512;
+
+        var byteCharacters = window.atob(b64Data);
+        var byteArrays = [];
+
+        var offset;
+        for (offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+            var slice = byteCharacters.slice(offset, offset + sliceSize);
+
+            var byteNumbers = new Array(slice.length);
+            var i;
+            for (i = 0; i < slice.length; i = i + 1) {
+                byteNumbers[i] = slice.charCodeAt(i);
+            }
+
+            var byteArray = new window.Uint8Array(byteNumbers);
+
+            byteArrays.push(byteArray);
+        }
+
+        return new Blob(byteArrays, {
+            type: contentType
+        });
+    },
+
+    tableToCSV: function(table, filename, options){
+        var that = this, o = this.options;
+        var body, head, data = "";
+        var i, j, row, cell;
+
+        o = $.extend({}, o, options);
+
+        if (Utils.isJQueryObject(table)) {
+            table = table[0];
+        }
+
+        if (o.includeHeader) {
+
+            head = table.querySelectorAll("thead")[0];
+
+            for(i = 0; i < head.rows.length; i++) {
+                row = head.rows[i];
+                for(j = 0; j < row.cells.length; j++){
+                    cell = row.cells[j];
+                    data += (j ? o.csvDelimiter : '') + cell.textContent.trim();
+                }
+                data += o.csvNewLine;
+            }
+        }
+
+        body = table.querySelectorAll("tbody")[0];
+
+        for(i = 0; i < body.rows.length; i++) {
+            row = body.rows[i];
+            for(j = 0; j < row.cells.length; j++){
+                cell = row.cells[j];
+                data += (j ? o.csvDelimiter : '') + cell.textContent.trim();
+            }
+            data += o.csvNewLine;
+        }
+
+        if (Utils.isValue(filename)) {
+            return this.createDownload(this.base64("\uFEFF" + data), 'application/csv', filename);
+        }
+
+        return data;
+    },
+
+    createDownload: function (data, contentType, filename) {
+        var blob, anchor, url;
+
+        anchor = document.createElement('a');
+        anchor.style.display = "none";
+        document.body.appendChild(anchor);
+
+        blob = this.b64toBlob(data, contentType);
+
+        url = window.URL.createObjectURL(blob);
+        anchor.href = url;
+        anchor.download = filename || Utils.elementId("download");
+        anchor.click();
+        window.URL.revokeObjectURL(url);
+        document.body.removeChild(anchor);
+        return true;
+    }
+};
+
+Metro['export'] = Export.init();
 
 
 // Source: js/utils/extensions.js
@@ -3814,6 +3928,57 @@ var d = new Date().getTime();
         val /= precision;
         val = Math[down === true ? 'floor' : 'ceil'](val) * precision;
         return val;
+    },
+
+    bool: function(value){
+        switch(value){
+            case true:
+            case "true":
+            case 1:
+            case "1":
+            case "on":
+            case "yes":
+                return true;
+            default:
+                return false;
+        }
+    },
+
+    copy: function(el){
+        var body = document.body, range, sel;
+
+        if (this.isJQueryObject(el)) {
+            el = el[0];
+        }
+
+        if (document.createRange && window.getSelection) {
+            range = document.createRange();
+            sel = window.getSelection();
+            sel.removeAllRanges();
+            try {
+                range.selectNodeContents(el);
+                sel.addRange(range);
+            } catch (e) {
+                range.selectNode(el);
+                sel.addRange(range);
+            }
+        } else if (body.createTextRange) {
+            range = body.createTextRange();
+            range.moveToElementText(el);
+            range.select();
+        }
+
+        document.execCommand("Copy");
+
+        if (window.getSelection) {
+            if (window.getSelection().empty) {  // Chrome
+                window.getSelection().empty();
+            } else if (window.getSelection().removeAllRanges) {  // Firefox
+                window.getSelection().removeAllRanges();
+            }
+        } else if (document.selection) {  // IE?
+            document.selection.empty();
+        }
     }
 };
 
@@ -16056,7 +16221,7 @@ var Table = {
             that.view[i] = {
                 "index": i,
                 "index-view": i,
-                "show": !Utils.isValue(this.cls) || (Utils.isValue(this.cls) && !this.cls.contains("hidden")),
+                "show": !Utils.isValue(this.cls) || (Utils.isValue(this.cls) && !this.cls.contains("hidden")), //TODO need review
                 "size": Utils.isValue(this.size) ? this.size : "auto"
             }
         });
@@ -16081,7 +16246,10 @@ var Table = {
                     }
                     that._final();
                 }
-            );
+            ).fail(function(jqXHR, textStatus, errorThrown) {
+                that._final();
+                console.log("Warning! View " + textStatus + " for table " + element.attr('id') + " ");
+            });
         }
     },
 
@@ -16156,7 +16324,7 @@ var Table = {
             row = $("<tr>");
             row.data('index', i);
             row.data('index-view', i);
-            $("<td>").html("<input type='checkbox' data-role='checkbox' name='column_show_check[]' value='"+i+"' "+(that.view[i]['show'] ? "checked" : "")+">").appendTo(row);
+            $("<td>").html("<input type='checkbox' data-role='checkbox' name='column_show_check[]' value='"+i+"' "+(Utils.bool(that.view[i]['show']) ? "checked" : "")+">").appendTo(row);
             $("<td>").html(this.title).appendTo(row);
             $("<td>").html("<input type='number' name='column_size' value='"+that.view[i]['size']+"' data-index='"+i+"'>").appendTo(row);
             $("<td>").html("" +
@@ -16371,7 +16539,7 @@ var Table = {
 
             classes.push(o.clsHeadCell);
 
-            if (that.view[cell_index]['show'] === false) {
+            if (Utils.bool(that.view[cell_index]['show']) === false) {
                 classes.push("hidden");
             }
 
@@ -16396,18 +16564,16 @@ var Table = {
     },
 
     _createTableBody: function(){
-        var element = this.element;
-        var body, head = element.find("thead");
+        var body, head, element = this.element;
 
+        head  = element.find("thead");
         element.find("tbody").remove();
-
         body = $("<tbody>").addClass(this.options.clsBody);
         body.insertAfter(head);
     },
 
     _createTableFooter: function(){
-        var element = this.element;
-        var o = this.options;
+        var element = this.element, o = this.options;
         var foot = $("<tfoot>").addClass(o.clsFooter);
         var tr, th;
 
@@ -16853,7 +17019,8 @@ var Table = {
             $.post(
                 o.viewSavePath,
                 {
-                    id : that.view
+                    id : element.attr("id"),
+                    view : that.view
                 },
                 function(data, status, xhr){
                     Utils.exec(o.onViewSave, [o.viewSavePath, that.view, data, status, xhr], element[0]);
@@ -16990,7 +17157,8 @@ var Table = {
 
                 if (result === true && that.filters.length > 0) {
                     for (i = 0; i < that.filters.length; i++) {
-                        if (Utils.exec(that.filters[i], [row]) !== true) {
+                        if (!Utils.isValue(that.filters[i])) continue;
+                        if (Utils.exec(that.filters[i], [row, that.heads]) !== true) {
                             result = false;
                             break;
                         }
@@ -17076,7 +17244,7 @@ var Table = {
                     if (
                         (Utils.isValue(that.heads[cell_index].cls)
                         && that.heads[cell_index].cls.contains("hidden"))
-                        || that.view[cell_index].show === false
+                        || Utils.bool(that.view[cell_index].show) === false
                     ) {
                         td.addClass("hidden");
                     }
@@ -17089,7 +17257,7 @@ var Table = {
                     Utils.exec(o.onAppendCell, [tds[j], tr, j, element], tds[j][0])
                 }
 
-                Utils.exec(o.onDrawRow, [tr, element], tr[0]);
+                Utils.exec(o.onDrawRow, [tr, that.view, that.heads, element], tr[0]);
 
                 tr.appendTo(body);
 
@@ -17100,7 +17268,7 @@ var Table = {
         this._info(start + 1, stop + 1, items.length);
         this._paging(items.length);
 
-        this.activity.hide();
+        if (this.activity) this.activity.hide();
 
         Utils.exec(o.onDraw, [element], element[0]);
 
@@ -17289,7 +17457,7 @@ var Table = {
     },
 
     removeFilter: function(key, redraw){
-        Utils.arrayDeleteByKey(this.filters, key);
+        this.filters[key] = null;
         if (redraw === true) {
             this.currentPage = 1;
             this.draw();
@@ -17315,10 +17483,15 @@ var Table = {
 
     getSelectedItems: function(){
         var that = this, element = this.element, o = this.options;
-        var stored_keys = Metro.storage.getItem(o.checkStoreKey.replace("$1", element.attr("id")), []);
+        var stored_keys = Metro.storage.getItem(o.checkStoreKey.replace("$1", element.attr("id")));
         var selected = [];
+
+        if (!Utils.isValue(stored_keys)) {
+            return [];
+        }
+
         $.each(this.items, function(){
-            if (stored_keys.indexOf(this[o.checkColIndex]) !== -1) {
+            if (stored_keys.indexOf(""+this[o.checkColIndex]) !== -1) {
                 selected.push(this);
             }
         });
@@ -17348,6 +17521,93 @@ var Table = {
 
     toggleInspector: function(){
         this.inspector.toggleClass("open");
+    },
+
+
+    export: function(to, mode, filename, options){
+        var that = this, element = this.element, o = this.options;
+        var table = document.createElement("table");
+        var head = $("<thead>").appendTo(table);
+        var body = $("<tbody>").appendTo(table);
+        var i, j, cells, tds = [], items, tr, td;
+        var start, stop;
+
+        // Create table header
+        tr = $("<tr>");
+        cells = this.heads;
+
+        for (j = 0; j < cells.length; j++){
+            tds[j] = null;
+        }
+
+        $.each(cells, function(cell_index){
+            var item = this;
+            if (Utils.bool(that.view[cell_index]['show']) === false) {
+                return ;
+            }
+            td = $("<th>");
+            if (Utils.isValue(item.title)) {
+                td.html(item.title);
+            }
+            tds[that.view[cell_index]['index-view']] = td;
+        });
+
+        for (j = 0; j < cells.length; j++){
+            tds[j].appendTo(tr);
+        }
+        tr.appendTo(head);
+
+        // Create table data
+        if (mode === "checked") {
+            items = this.getSelectedItems();
+            start = 0; stop = items.length - 1;
+        } else if (mode === "view") {
+            items = this._filter();
+            start = parseInt(o.rows) === -1 ? 0 : o.rows * (this.currentPage - 1);
+            stop = parseInt(o.rows) === -1 ? items.length - 1 : start + o.rows - 1;
+        } else if (mode === "all") {
+            items = this.items;
+            start = 0; stop = items.length - 1;
+        } else {
+            items = this._filter();
+            start = 0; stop = items.length - 1;
+        }
+
+        for (i = start; i <= stop; i++) {
+            if (Utils.isValue(items[i])) {
+                tr = $("<tr>");
+
+                cells = items[i];
+
+                for (j = 0; j < cells.length; j++){
+                    tds[j] = null;
+                }
+
+                $.each(cells, function(cell_index){
+                    if (
+                        (Utils.isValue(that.heads[cell_index].cls)
+                            && that.heads[cell_index].cls.contains("hidden"))
+                        || Utils.bool(that.view[cell_index].show) === false
+                    ) {
+                        return ;
+                    }
+                    td = $("<td>").html(this);
+                    tds[that.view[cell_index]['index-view']] = td;
+                });
+
+                for (j = 0; j < cells.length; j++){
+                    tds[j].appendTo(tr);
+                }
+
+                tr.appendTo(body);
+            }
+        }
+
+
+        switch (to) {
+            default: Export.tableToCSV(table, filename, options);
+        }
+        table.remove();
     },
 
     changeAttribute: function(attributeName){
