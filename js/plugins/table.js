@@ -227,7 +227,7 @@ var Table = {
                     }
                     that._final();
                 }
-            ).fail(function(jqXHR, textStatus, errorThrown) {
+            ).fail(function(jqXHR, textStatus) {
                 that._final();
                 console.log("Warning! View " + textStatus + " for table " + element.attr('id') + " ");
             });
@@ -750,7 +750,6 @@ var Table = {
         var component = element.parent();
         var search = component.find(".table-search-block input");
         var customSearch;
-        var inspector = this.inspector;
         var id = element.attr("id");
 
         element.on(Metro.events.click, ".sortable-column", function(){
@@ -1468,7 +1467,7 @@ var Table = {
     },
 
     getSelectedItems: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var stored_keys = Metro.storage.getItem(o.checkStoreKey.replace("$1", element.attr("id")));
         var selected = [];
 
@@ -1523,12 +1522,15 @@ var Table = {
     },
 
     export: function(to, mode, filename, options){
-        var that = this, element = this.element, o = this.options;
+        var that = this, o = this.options;
         var table = document.createElement("table");
         var head = $("<thead>").appendTo(table);
         var body = $("<tbody>").appendTo(table);
         var i, j, cells, tds = [], items, tr, td;
         var start, stop;
+
+        mode = Utils.isValue(mode) ? mode.toLowerCase() : "all-filtered";
+        filename = Utils.isValue(filename) ? filename : Utils.elementId("table")+"-export.csv";
 
         // Create table header
         tr = $("<tr>");
