@@ -17599,7 +17599,6 @@ var Table = {
             }
         }
 
-
         switch (to) {
             default: Export.tableToCSV(table, filename, options);
         }
