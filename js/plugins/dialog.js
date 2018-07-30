@@ -13,6 +13,8 @@ var Dialog = {
     },
 
     options: {
+        toTop: false,
+        toBottom: false,
         locale: METRO_LOCALE,
         title: "",
         content: "",
@@ -190,9 +192,24 @@ var Dialog = {
     },
 
     setPosition: function(){
-        var element = this.element;
+        var element = this.element, o = this.options;
+        var top, left, bottom;
+        if (o.toTop !== true && o.toBottom !== true) {
+            top = ( $(window).height() - element.outerHeight() ) / 2;
+            bottom = "auto";
+        } else {
+            if (o.toTop === true) {
+                top = 0;
+                bottom = "auto";
+            }
+            if (o.toTop !== true && o.toBottom === true) {
+                bottom = 0;
+                top = "auto";
+            }
+        }
         element.css({
-            top: ( $(window).height() - element.outerHeight() ) / 2,
+            top: top,
+            bottom: bottom,
             left: ( $(window).width() - element.outerWidth() ) / 2
         });
     },

@@ -8650,6 +8650,8 @@ var Dialog = {
     },
 
     options: {
+        toTop: false,
+        toBottom: false,
         locale: METRO_LOCALE,
         title: "",
         content: "",
@@ -8827,9 +8829,24 @@ var Dialog = {
     },
 
     setPosition: function(){
-        var element = this.element;
+        var element = this.element, o = this.options;
+        var top, left, bottom;
+        if (o.toTop !== true && o.toBottom !== true) {
+            top = ( $(window).height() - element.outerHeight() ) / 2;
+            bottom = "auto";
+        } else {
+            if (o.toTop === true) {
+                top = 0;
+                bottom = "auto";
+            }
+            if (o.toTop !== true && o.toBottom === true) {
+                bottom = 0;
+                top = "auto";
+            }
+        }
         element.css({
-            top: ( $(window).height() - element.outerHeight() ) / 2,
+            top: top,
+            bottom: bottom,
             left: ( $(window).width() - element.outerWidth() ) / 2
         });
     },
@@ -17378,6 +17395,7 @@ var Table = {
             var need_sort = false;
             var sortable_columns;
 
+            that.items = [];
             that._createItemsFromJSON(data);
 
             element.html("");
@@ -17410,6 +17428,10 @@ var Table = {
         }).fail(function( jqXHR, textStatus, errorThrown) {
             console.log(textStatus); console.log(jqXHR); console.log(errorThrown);
         });
+    },
+
+    reload: function(){
+        this.loadData(this.options.source);
     },
 
     next: function(){
@@ -17525,6 +17547,13 @@ var Table = {
     getStoredKeys: function(){
         var element = this.element, o = this.options;
         return Metro.storage.getItem(o.checkStoreKey.replace("$1", element.attr("id")), []);
+    },
+
+    clearSelected: function(resraw){
+        var element = this.element, o = this.options;
+        Metro.storage.setItem(o.checkStoreKey.replace("$1", element.attr("id")), []);
+        element.find("table-service-check-all input").prop("checked", false);
+        if (resraw === true) this._draw();
     },
 
     getFilters: function(){

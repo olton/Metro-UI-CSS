@@ -10,6 +10,7 @@
 + [x] Table: add method `resetView(save)` reset table view to default
 + [x] Table: add method `getView()` return current view object
 + [x] Table: add method `getHeads()` return table internal heads
++ [x] Table: add method `clearSelected(redraw)`. This method uncheck rows and redraw table if your need
 
 ### 4.2.15
 + [x] Switch: fix works with collapse. issue #1148 
