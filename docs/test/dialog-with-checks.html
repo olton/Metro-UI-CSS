@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <link href="../metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
+
+    <title>Table test page - Metro 4 :: Popular HTML, CSS and JS library</title>
+</head>
+<body>
+
+<button class="button" onclick="Metro.dialog.open('#gearGenModal')">Open Dialog</button>
+<div class="dialog" data-overlay-click-close="true" data-to-bottom="true" data-role="dialog" id="gearGenModal" data-width="600">
+    <div class="dialog-title">Gear Generator</div>
+    <div class="dialog-content" style="max-height: calc(100vh - 200px);overflow-y: auto; overflow-x: hidden;">
+        <div id="viewer" style="display: none;"></div>
+        <form data-role="validator" id="gearGen">
+            <div class="row border-bottom bd-gray">
+                <label class="cell-sm-2">Gear Type:</label>
+                <div class="cell-sm-10">
+                    <input name="geartype" type="radio" data-role="radio" data-caption="Gearset: External" value="external" checked onchange="gearType($(this).val())">
+                    <input name="geartype" type="radio" data-role="radio" data-caption="Gearset: Rack and Pinion" value="rack" onchange="gearType($(this).val())">
+                    <input name="geartype" type="radio" data-role="radio" data-caption="Gearset: Internal" value="internal" onchange="gearType($(this).val())">
+                    <input name="geartype" type="radio" data-role="radio" data-caption="Single Gear" value="single" onchange="gearType($(this).val())">
+                </div>
+            </div>
+            <div>
+                <input type="checkbox" data-role="switch" data-caption="Advanced Settings" id="advancedGear">
+            </div>
+            <div data-role="collapse" data-collapsed="true" data-toggle-element="#advancedGear">
+                <h6>Collapsed content</h6>
+            </div>
+        </form>
+        <br>
+    </div>
+    <div class="dialog-actions">
+        <button class="button js-dialog-close">Close</button>
+        <button class="button success js-dialog-close" onclick="">Create Gears</button>
+    </div>
+</div>
+
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script src="../metro/js/metro.js?ver=@@b-version"></script>
+</body>
+</html>

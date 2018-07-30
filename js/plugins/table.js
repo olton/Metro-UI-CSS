@@ -1347,6 +1347,7 @@ var Table = {
             var need_sort = false;
             var sortable_columns;
 
+            that.items = [];
             that._createItemsFromJSON(data);
 
             element.html("");
@@ -1379,6 +1380,10 @@ var Table = {
         }).fail(function( jqXHR, textStatus, errorThrown) {
             console.log(textStatus); console.log(jqXHR); console.log(errorThrown);
         });
+    },
+
+    reload: function(){
+        this.loadData(this.options.source);
     },
 
     next: function(){
@@ -1494,6 +1499,13 @@ var Table = {
     getStoredKeys: function(){
         var element = this.element, o = this.options;
         return Metro.storage.getItem(o.checkStoreKey.replace("$1", element.attr("id")), []);
+    },
+
+    clearSelected: function(resraw){
+        var element = this.element, o = this.options;
+        Metro.storage.setItem(o.checkStoreKey.replace("$1", element.attr("id")), []);
+        element.find("table-service-check-all input").prop("checked", false);
+        if (resraw === true) this._draw();
     },
 
     getFilters: function(){
