@@ -7,7 +7,9 @@
 + [x] Table: change padding and font-size for `compact` class
 + [x] Table: fix post method for save table view. Inspector post `{id: table_id, view: table_view}` 
 + [x] Table: add method `export(to, mode, filename, export_options)`. Argument `to` currently must value `CSV`. Argument mode: `all`, `checked`, `view`, `all-filtered`
-+ [x] Table: add method `resetView(save)`
++ [x] Table: add method `resetView(save)` reset table view to default
++ [x] Table: add method `getView()` return current view object
++ [x] Table: add method `getHeads()` return table internal heads
 
 ### 4.2.15
 + [x] Switch: fix works with collapse. issue #1148 

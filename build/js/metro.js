@@ -17493,8 +17493,16 @@ var Table = {
         return this.items;
     },
 
+    getHeads: function(){
+        return this.heads;
+    },
+
+    getView: function(){
+        return this.view;
+    },
+
     getFilteredItems: function(){
-        return this.filteredItems;
+        return this.filteredItems.length > 0 ? this.filteredItems : this.items;
     },
 
     getSelectedItems: function(){
