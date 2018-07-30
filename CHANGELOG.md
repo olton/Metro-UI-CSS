@@ -11,6 +11,7 @@
 + [x] Table: add method `getView()` return current view object
 + [x] Table: add method `getHeads()` return table internal heads
 + [x] Table: add method `clearSelected(redraw)`. This method uncheck rows and redraw table if your need
++ [x] Dialog: add attributes `data-to-top='true|false'`, `data-to-bottom='true|false'` for sticky dialog to top or bottom side. 
 
 ### 4.2.15
 + [x] Switch: fix works with collapse. issue #1148 
