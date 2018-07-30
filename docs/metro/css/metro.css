@@ -18675,6 +18675,12 @@ aside::after {
 .table-inspector table td {
   vertical-align: middle;
 }
+.table-inspector table tr.flash {
+  -webkit-animation: flash-bg 1s ease-out;
+          animation: flash-bg 1s ease-out;
+  -webkit-animation-iteration-count: 1;
+          animation-iteration-count: 1;
+}
 .table-inspector input {
   height: 24px!important;
   line-height: 24px!important;
@@ -18684,6 +18690,28 @@ aside::after {
 }
 .table-inspector.open {
   display: block;
+}
+@-webkit-keyframes flash-bg {
+  0% {
+    background-color: #ffffff;
+  }
+  30% {
+    background-color: #bebebe;
+  }
+  100% {
+    background-color: #ffffff;
+  }
+}
+@keyframes flash-bg {
+  0% {
+    background-color: #ffffff;
+  }
+  30% {
+    background-color: #bebebe;
+  }
+  100% {
+    background-color: #ffffff;
+  }
 }
 @media screen and (min-width: 0) {
   .table.compact-fs th,
