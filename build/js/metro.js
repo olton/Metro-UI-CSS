@@ -11036,7 +11036,8 @@ var List = {
             })
         }
 
-        element.html("").addClass(o.clsList);
+        // element.html("").addClass(o.clsList);
+        element.addClass(o.clsList);
 
         this._createTopBlock();
         this._createBottomBlock();
@@ -11297,14 +11298,13 @@ var List = {
             stop = o.items === -1 ? this.items.length - 1 : start + o.items - 1;
         var items;
 
-        element.html("");
-
         items = this._filter();
+
+        element.children(o.sortTarget).remove();
 
         for (i = start; i <= stop; i++) {
             if (Utils.isValue(items[i])) {
-                items[i].className += " "+o.clsListItem;
-                element[0].appendChild(items[i]);
+                $(items[i]).addClass(o.clsListItem).appendTo(element);
             }
             Utils.exec(o.onDrawItem, [items[i]], element[0]);
         }
@@ -11328,12 +11328,12 @@ var List = {
 
         if (Utils.isValue(o.sortClass)) {
             data = "";
-            inset = item.getElementsByClassName(o.sortClass);
+            inset = $(item).find("."+o.sortClass);
 
             if (inset.length > 0) for (i = 0; i < inset.length; i++) {
                 data += inset[i].textContent;
             }
-            format = inset[0].getAttribute("data-format");
+            format = inset.length > 0 ? inset[0].getAttribute("data-format") : "";
         } else {
             data = item.textContent;
             format = item.getAttribute("data-format");
