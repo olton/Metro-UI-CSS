@@ -1392,9 +1392,9 @@ var Table = {
             var need_sort = false;
             var sortable_columns;
 
-            this.items = [];
-            this.heads = [];
-            this.foots = [];
+            that.items = [];
+            that.heads = [];
+            that.foots = [];
 
             that._createItemsFromJSON(data);
 

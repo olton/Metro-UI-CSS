@@ -580,10 +580,10 @@ var List = {
             if (inset.length > 0) for (i = 0; i < inset.length; i++) {
                 data += inset[i].textContent;
             }
-            format = inset[0].dataset.format;
+            format = inset[0].getAttribute("data-format");
         } else {
             data = item.textContent;
-            format = item.dataset.format;
+            format = item.getAttribute("data-format");
         }
 
         data = (""+data).toLowerCase().replace(/[\n\r]+|[\s]{2,}/g, ' ').trim();
