@@ -320,23 +320,18 @@ var Metro = {
             var $this = $(this), w = this;
             var roles = $this.data('role').split(/\s*,\s*/);
             roles.map(function (func) {
-                try {
-                    // if ($.fn[func] !== undefined && $this.data(func) === undefined) {
-                    if ($.fn[func] !== undefined && $this.attr("data-role-"+func) === undefined) {
-                        $.fn[func].call($this);
-                        $this.attr("data-role-"+func, true);
+                if ($.fn[func] !== undefined && $this.attr("data-role-"+func) === undefined) {
+                    $.fn[func].call($this);
+                    $this.attr("data-role-"+func, true);
 
-                        var mc = $this.data('metroComponent');
+                    var mc = $this.data('metroComponent');
 
-                        if (mc === undefined) {
-                            mc = [func];
-                        } else {
-                            mc.push(func);
-                        }
-                        $this.data('metroComponent', mc);
+                    if (mc === undefined) {
+                        mc = [func];
+                    } else {
+                        mc.push(func);
                     }
-                } catch (e) {
-                    console.log(e.message, e.stack);
+                    $this.data('metroComponent', mc);
                 }
             });
         });

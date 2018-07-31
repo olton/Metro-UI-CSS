@@ -339,23 +339,18 @@ var Metro = {
             var $this = $(this), w = this;
             var roles = $this.data('role').split(/\s*,\s*/);
             roles.map(function (func) {
-                try {
-                    // if ($.fn[func] !== undefined && $this.data(func) === undefined) {
-                    if ($.fn[func] !== undefined && $this.attr("data-role-"+func) === undefined) {
-                        $.fn[func].call($this);
-                        $this.attr("data-role-"+func, true);
+                if ($.fn[func] !== undefined && $this.attr("data-role-"+func) === undefined) {
+                    $.fn[func].call($this);
+                    $this.attr("data-role-"+func, true);
 
-                        var mc = $this.data('metroComponent');
+                    var mc = $this.data('metroComponent');
 
-                        if (mc === undefined) {
-                            mc = [func];
-                        } else {
-                            mc.push(func);
-                        }
-                        $this.data('metroComponent', mc);
+                    if (mc === undefined) {
+                        mc = [func];
+                    } else {
+                        mc.push(func);
                     }
-                } catch (e) {
-                    console.log(e.message, e.stack);
+                    $this.data('metroComponent', mc);
                 }
             });
         });
@@ -11338,10 +11333,10 @@ var List = {
             if (inset.length > 0) for (i = 0; i < inset.length; i++) {
                 data += inset[i].textContent;
             }
-            format = inset[0].dataset.format;
+            format = inset[0].getAttribute("data-format");
         } else {
             data = item.textContent;
-            format = item.dataset.format;
+            format = item.getAttribute("data-format");
         }
 
         data = (""+data).toLowerCase().replace(/[\n\r]+|[\s]{2,}/g, ' ').trim();
@@ -17440,9 +17435,9 @@ var Table = {
             var need_sort = false;
             var sortable_columns;
 
-            this.items = [];
-            this.heads = [];
-            this.foots = [];
+            that.items = [];
+            that.heads = [];
+            that.foots = [];
 
             that._createItemsFromJSON(data);
 
