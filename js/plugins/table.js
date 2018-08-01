@@ -1379,26 +1379,12 @@ var Table = {
 
     loadData: function(source){
         var that = this, element = this.element, o = this.options;
+        var need_sort = false;
+        var sortable_columns;
 
-        if (Utils.isValue(source) !== true) {
-            return ;
-        }
+        function redraw(){
 
-        o.source = source;
-
-        Utils.exec(o.onDataLoad, [o.source], element[0]);
-
-        $.get(o.source, function(data){
-            var need_sort = false;
-            var sortable_columns;
-
-            that.items = [];
-            that.heads = [];
-            that.foots = [];
-
-            that._createItemsFromJSON(data);
-
-            element.html("");
+            that.view = that._createView();
 
             that._createTableHeader();
             that._createTableBody();
@@ -1423,11 +1409,35 @@ var Table = {
             that.currentPage = 1;
 
             that._draw();
+        }
 
-            Utils.exec(o.onDataLoaded, [o.source, data], element[0]);
-        }).fail(function( jqXHR, textStatus, errorThrown) {
-            console.log(textStatus); console.log(jqXHR); console.log(errorThrown);
-        });
+        element.html("");
+
+        if (!Utils.isValue(source)) {
+
+            // this._createItemsFromHTML();
+            redraw();
+
+        } else {
+            o.source = source;
+
+            Utils.exec(o.onDataLoad, [o.source], element[0]);
+
+            $.get(o.source, function(data){
+
+                that.items = [];
+                that.heads = [];
+                that.foots = [];
+
+                that._createItemsFromJSON(data);
+
+                redraw();
+
+                Utils.exec(o.onDataLoaded, [o.source, data], element[0]);
+            }).fail(function( jqXHR, textStatus, errorThrown) {
+                console.log(textStatus); console.log(jqXHR); console.log(errorThrown);
+            });
+        }
     },
 
     reload: function(){
