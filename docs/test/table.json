@@ -4,7 +4,7 @@
       "name": "id",
       "title": "ID",
       "size": 50,
-      "cls": ""
+      "show": false
     },
     {
       "name": "name",

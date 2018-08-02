@@ -12,6 +12,7 @@ var Input = {
         return this;
     },
     options: {
+        defaultValue: "",
         clsElement: "",
         clsInput: "",
         clsPrepend: "",
@@ -66,10 +67,14 @@ var Input = {
         element.appendTo(container);
         buttons.appendTo(container);
 
+        if (!Utils.isValue(element.val().trim())) {
+            element.val(o.defaultValue);
+        }
+
         if (o.clearButton !== false) {
             clearButton = $("<button>").addClass("button input-clear-button").addClass(o.clsClearButton).attr("tabindex", -1).attr("type", "button").html(o.clearButtonIcon);
             clearButton.on(Metro.events.click, function(){
-                element.val("").trigger('change').trigger('keyup').focus();
+                element.val(Utils.isValue(o.defaultValue) ? o.defaultValue : "").trigger('change').trigger('keyup').focus();
             });
             clearButton.appendTo(buttons);
         }
