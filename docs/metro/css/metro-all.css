@@ -1,5 +1,5 @@
 /*
- * Metro 4 Components Library v4.2.16 build @@build (https://metroui.org.ua)
+ * Metro 4 Components Library v4.2.17 build @@build (https://metroui.org.ua)
  * Copyright 2018 Sergey Pimenov
  * Licensed under MIT
  */
@@ -26171,7 +26171,6 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
 }
 .tabs {
   position: relative;
-  min-height: 3rem;
   border: 1px solid #dfdfdf;
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
@@ -26195,7 +26194,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   color: inherit;
   text-decoration: none;
 }
-.tabs > ul {
+.tabs > ul.tabs-list {
   list-style: none inside;
   margin: 0;
   padding: 0;
@@ -26218,17 +26217,17 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   -webkit-transition: max-height 0.3s ease;
   transition: max-height 0.3s ease;
 }
-.tabs > ul > li,
-.tabs > ul a {
+.tabs > ul.tabs-list > li,
+.tabs > ul.tabs-list a {
   position: relative;
 }
-.tabs > ul > li {
+.tabs > ul.tabs-list > li {
   display: block;
   background-color: #ffffff;
   color: #1d1d1d;
   margin: 0 0 -1px 0;
 }
-.tabs > ul > li > a {
+.tabs > ul.tabs-list > li > a {
   padding: .5rem 1rem;
   background-color: inherit;
   color: inherit;
@@ -26243,28 +26242,28 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
       -ms-flex-pack: center;
           justify-content: center;
 }
-.tabs > ul > li > a > [class*=mif-] {
+.tabs > ul.tabs-list > li > a > [class*=mif-] {
   margin: 0 4px;
 }
-.tabs > ul > li:hover {
+.tabs > ul.tabs-list > li:hover {
   background-color: #f8f8f8;
 }
-.tabs > ul > li.active {
+.tabs > ul.tabs-list > li.active {
   background-color: #dfdfdf;
 }
-.tabs > ul .d-menu {
+.tabs > ul.tabs-list .d-menu {
   position: relative;
   width: 100%;
   -webkit-box-shadow: none;
           box-shadow: none;
 }
-.tabs.bottom > ul {
+.tabs.bottom > ul.tabs-list {
   border: none;
 }
-.tabs.bottom > ul > li {
+.tabs.bottom > ul.tabs-list > li {
   margin: -1px 0 0 0;
 }
-.tabs.vertical > ul {
+.tabs.vertical > ul.tabs-list {
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -26277,31 +26276,31 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
       -ms-flex-pack: inherit;
           justify-content: inherit;
 }
-.tabs.vertical > ul > li {
+.tabs.vertical > ul.tabs-list > li {
   border: none;
   border-right: 1px solid #dfdfdf;
   margin: 0 -1px 0 0;
 }
-.tabs.vertical > ul > li > a {
+.tabs.vertical > ul.tabs-list > li > a {
   text-align: right;
 }
-.tabs.vertical > ul > li.active {
+.tabs.vertical > ul.tabs-list > li.active {
   border: 1px solid #dfdfdf;
   border-right: none;
 }
-.tabs.vertical.right > ul {
+.tabs.vertical.right > ul.tabs-list {
   border: none;
   border-left: 1px solid #dfdfdf;
 }
-.tabs.vertical.right > ul > li {
+.tabs.vertical.right > ul.tabs-list > li {
   border: none;
   border-left: 1px solid #dfdfdf;
   margin: 0 0 0 -1px;
 }
-.tabs.vertical.right > ul > li > a {
+.tabs.vertical.right > ul.tabs-list > li > a {
   text-align: left;
 }
-.tabs.vertical.right > ul > li.active {
+.tabs.vertical.right > ul.tabs-list > li.active {
   border: 1px solid #dfdfdf;
   border-left: none;
 }
@@ -26315,7 +26314,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   .tabs-expand-fs {
     border: none;
   }
-  .tabs-expand-fs > ul {
+  .tabs-expand-fs > ul.tabs-list {
     border: 0;
     border-bottom: 1px solid #dfdfdf;
     -webkit-box-orient: horizontal;
@@ -26330,29 +26329,29 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
     max-height: none;
     overflow: visible;
   }
-  .tabs-expand-fs > ul > li {
+  .tabs-expand-fs > ul.tabs-list > li {
     border-bottom: 1px solid #dfdfdf;
   }
-  .tabs-expand-fs > ul > li.active {
+  .tabs-expand-fs > ul.tabs-list > li.active {
     border: 1px solid #dfdfdf;
     border-bottom: none;
     background-color: #ffffff;
   }
-  .tabs-expand-fs > ul .d-menu {
+  .tabs-expand-fs > ul.tabs-list .d-menu {
     position: absolute;
     width: auto;
     -webkit-box-shadow: 2px 2px 2px 0 rgba(227, 228, 229, 0.7), -0.5px 0 1px 0 rgba(227, 228, 229, 0.7);
             box-shadow: 2px 2px 2px 0 rgba(227, 228, 229, 0.7), -0.5px 0 1px 0 rgba(227, 228, 229, 0.7);
   }
-  .tabs-expand-fs.bottom > ul {
+  .tabs-expand-fs.bottom > ul.tabs-list {
     border: none;
     border-top: 1px solid #dfdfdf;
   }
-  .tabs-expand-fs.bottom > ul > li {
+  .tabs-expand-fs.bottom > ul.tabs-list > li {
     border: none;
     border-top: 1px solid #dfdfdf;
   }
-  .tabs-expand-fs.bottom > ul > li.active {
+  .tabs-expand-fs.bottom > ul.tabs-list > li.active {
     border: 1px solid #dfdfdf;
     border-top: none;
   }
@@ -26371,7 +26370,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   .tabs-expand-sm {
     border: none;
   }
-  .tabs-expand-sm > ul {
+  .tabs-expand-sm > ul.tabs-list {
     border: 0;
     border-bottom: 1px solid #dfdfdf;
     -webkit-box-orient: horizontal;
@@ -26386,29 +26385,29 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
     max-height: none;
     overflow: visible;
   }
-  .tabs-expand-sm > ul > li {
+  .tabs-expand-sm > ul.tabs-list > li {
     border-bottom: 1px solid #dfdfdf;
   }
-  .tabs-expand-sm > ul > li.active {
+  .tabs-expand-sm > ul.tabs-list > li.active {
     border: 1px solid #dfdfdf;
     border-bottom: none;
     background-color: #ffffff;
   }
-  .tabs-expand-sm > ul .d-menu {
+  .tabs-expand-sm > ul.tabs-list .d-menu {
     position: absolute;
     width: auto;
     -webkit-box-shadow: 2px 2px 2px 0 rgba(227, 228, 229, 0.7), -0.5px 0 1px 0 rgba(227, 228, 229, 0.7);
             box-shadow: 2px 2px 2px 0 rgba(227, 228, 229, 0.7), -0.5px 0 1px 0 rgba(227, 228, 229, 0.7);
   }
-  .tabs-expand-sm.bottom > ul {
+  .tabs-expand-sm.bottom > ul.tabs-list {
     border: none;
     border-top: 1px solid #dfdfdf;
   }
-  .tabs-expand-sm.bottom > ul > li {
+  .tabs-expand-sm.bottom > ul.tabs-list > li {
     border: none;
     border-top: 1px solid #dfdfdf;
   }
-  .tabs-expand-sm.bottom > ul > li.active {
+  .tabs-expand-sm.bottom > ul.tabs-list > li.active {
     border: 1px solid #dfdfdf;
     border-top: none;
   }
@@ -26427,7 +26426,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   .tabs-expand-md {
     border: none;
   }
-  .tabs-expand-md > ul {
+  .tabs-expand-md > ul.tabs-list {
     border: 0;
     border-bottom: 1px solid #dfdfdf;
     -webkit-box-orient: horizontal;
@@ -26442,29 +26441,29 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
     max-height: none;
     overflow: visible;
   }
-  .tabs-expand-md > ul > li {
+  .tabs-expand-md > ul.tabs-list > li {
     border-bottom: 1px solid #dfdfdf;
   }
-  .tabs-expand-md > ul > li.active {
+  .tabs-expand-md > ul.tabs-list > li.active {
     border: 1px solid #dfdfdf;
     border-bottom: none;
     background-color: #ffffff;
   }
-  .tabs-expand-md > ul .d-menu {
+  .tabs-expand-md > ul.tabs-list .d-menu {
     position: absolute;
     width: auto;
     -webkit-box-shadow: 2px 2px 2px 0 rgba(227, 228, 229, 0.7), -0.5px 0 1px 0 rgba(227, 228, 229, 0.7);
             box-shadow: 2px 2px 2px 0 rgba(227, 228, 229, 0.7), -0.5px 0 1px 0 rgba(227, 228, 229, 0.7);
   }
-  .tabs-expand-md.bottom > ul {
+  .tabs-expand-md.bottom > ul.tabs-list {
     border: none;
     border-top: 1px solid #dfdfdf;
   }
-  .tabs-expand-md.bottom > ul > li {
+  .tabs-expand-md.bottom > ul.tabs-list > li {
     border: none;
     border-top: 1px solid #dfdfdf;
   }
-  .tabs-expand-md.bottom > ul > li.active {
+  .tabs-expand-md.bottom > ul.tabs-list > li.active {
     border: 1px solid #dfdfdf;
     border-top: none;
   }
@@ -26483,7 +26482,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   .tabs-expand-lg {
     border: none;
   }
-  .tabs-expand-lg > ul {
+  .tabs-expand-lg > ul.tabs-list {
     border: 0;
     border-bottom: 1px solid #dfdfdf;
     -webkit-box-orient: horizontal;
@@ -26498,29 +26497,29 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
     max-height: none;
     overflow: visible;
   }
-  .tabs-expand-lg > ul > li {
+  .tabs-expand-lg > ul.tabs-list > li {
     border-bottom: 1px solid #dfdfdf;
   }
-  .tabs-expand-lg > ul > li.active {
+  .tabs-expand-lg > ul.tabs-list > li.active {
     border: 1px solid #dfdfdf;
     border-bottom: none;
     background-color: #ffffff;
   }
-  .tabs-expand-lg > ul .d-menu {
+  .tabs-expand-lg > ul.tabs-list .d-menu {
     position: absolute;
     width: auto;
     -webkit-box-shadow: 2px 2px 2px 0 rgba(227, 228, 229, 0.7), -0.5px 0 1px 0 rgba(227, 228, 229, 0.7);
             box-shadow: 2px 2px 2px 0 rgba(227, 228, 229, 0.7), -0.5px 0 1px 0 rgba(227, 228, 229, 0.7);
   }
-  .tabs-expand-lg.bottom > ul {
+  .tabs-expand-lg.bottom > ul.tabs-list {
     border: none;
     border-top: 1px solid #dfdfdf;
   }
-  .tabs-expand-lg.bottom > ul > li {
+  .tabs-expand-lg.bottom > ul.tabs-list > li {
     border: none;
     border-top: 1px solid #dfdfdf;
   }
-  .tabs-expand-lg.bottom > ul > li.active {
+  .tabs-expand-lg.bottom > ul.tabs-list > li.active {
     border: 1px solid #dfdfdf;
     border-top: none;
   }
@@ -26539,7 +26538,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   .tabs-expand-xl {
     border: none;
   }
-  .tabs-expand-xl > ul {
+  .tabs-expand-xl > ul.tabs-list {
     border: 0;
     border-bottom: 1px solid #dfdfdf;
     -webkit-box-orient: horizontal;
@@ -26554,29 +26553,29 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
     max-height: none;
     overflow: visible;
   }
-  .tabs-expand-xl > ul > li {
+  .tabs-expand-xl > ul.tabs-list > li {
     border-bottom: 1px solid #dfdfdf;
   }
-  .tabs-expand-xl > ul > li.active {
+  .tabs-expand-xl > ul.tabs-list > li.active {
     border: 1px solid #dfdfdf;
     border-bottom: none;
     background-color: #ffffff;
   }
-  .tabs-expand-xl > ul .d-menu {
+  .tabs-expand-xl > ul.tabs-list .d-menu {
     position: absolute;
     width: auto;
     -webkit-box-shadow: 2px 2px 2px 0 rgba(227, 228, 229, 0.7), -0.5px 0 1px 0 rgba(227, 228, 229, 0.7);
             box-shadow: 2px 2px 2px 0 rgba(227, 228, 229, 0.7), -0.5px 0 1px 0 rgba(227, 228, 229, 0.7);
   }
-  .tabs-expand-xl.bottom > ul {
+  .tabs-expand-xl.bottom > ul.tabs-list {
     border: none;
     border-top: 1px solid #dfdfdf;
   }
-  .tabs-expand-xl.bottom > ul > li {
+  .tabs-expand-xl.bottom > ul.tabs-list > li {
     border: none;
     border-top: 1px solid #dfdfdf;
   }
-  .tabs-expand-xl.bottom > ul > li.active {
+  .tabs-expand-xl.bottom > ul.tabs-list > li.active {
     border: 1px solid #dfdfdf;
     border-top: none;
   }
@@ -26595,7 +26594,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   .tabs-expand-xxl {
     border: none;
   }
-  .tabs-expand-xxl > ul {
+  .tabs-expand-xxl > ul.tabs-list {
     border: 0;
     border-bottom: 1px solid #dfdfdf;
     -webkit-box-orient: horizontal;
@@ -26610,29 +26609,29 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
     max-height: none;
     overflow: visible;
   }
-  .tabs-expand-xxl > ul > li {
+  .tabs-expand-xxl > ul.tabs-list > li {
     border-bottom: 1px solid #dfdfdf;
   }
-  .tabs-expand-xxl > ul > li.active {
+  .tabs-expand-xxl > ul.tabs-list > li.active {
     border: 1px solid #dfdfdf;
     border-bottom: none;
     background-color: #ffffff;
   }
-  .tabs-expand-xxl > ul .d-menu {
+  .tabs-expand-xxl > ul.tabs-list .d-menu {
     position: absolute;
     width: auto;
     -webkit-box-shadow: 2px 2px 2px 0 rgba(227, 228, 229, 0.7), -0.5px 0 1px 0 rgba(227, 228, 229, 0.7);
             box-shadow: 2px 2px 2px 0 rgba(227, 228, 229, 0.7), -0.5px 0 1px 0 rgba(227, 228, 229, 0.7);
   }
-  .tabs-expand-xxl.bottom > ul {
+  .tabs-expand-xxl.bottom > ul.tabs-list {
     border: none;
     border-top: 1px solid #dfdfdf;
   }
-  .tabs-expand-xxl.bottom > ul > li {
+  .tabs-expand-xxl.bottom > ul.tabs-list > li {
     border: none;
     border-top: 1px solid #dfdfdf;
   }
-  .tabs-expand-xxl.bottom > ul > li.active {
+  .tabs-expand-xxl.bottom > ul.tabs-list > li.active {
     border: 1px solid #dfdfdf;
     border-top: none;
   }

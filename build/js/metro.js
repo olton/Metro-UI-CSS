@@ -1,5 +1,5 @@
 /*
- * Metro 4 Components Library v4.2.16 build 693 (https://metroui.org.ua)
+ * Metro 4 Components Library v4.2.17 build @@build (https://metroui.org.ua)
  * Copyright 2018 Sergey Pimenov
  * Licensed under MIT
  */
@@ -80,8 +80,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.16",
-    versionFull: "4.2.16.693 ",
+    version: "@@version",
+    versionFull: "@@version.@@build @@status",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -17749,6 +17749,13 @@ var Tabs = {
     },
 
     options: {
+        expand: null,
+        tabsPosition: "top",
+
+        clsTabs: "",
+        clsTabsList: "",
+        clsTabsListItem: "",
+
         onTab: Metro.noop,
         onBeforeTab: Metro.noop_true,
         onTabsCreate: Metro.noop
@@ -17781,18 +17788,24 @@ var Tabs = {
         var that = this, element = this.element, o = this.options;
         var prev = element.prev();
         var parent = element.parent();
-        var container = $("<div>").addClass("tabs tabs-wrapper " + element[0].className);
+        var right_parent = parent.hasClass("tabs");
+        var container = right_parent ? parent : $("<div>").addClass("tabs tabs-wrapper");
         var expandTitle, hamburger;
 
-        element[0].className = "";
-
-        if (prev.length === 0) {
-            parent.prepend(container);
-        } else {
-            container.insertAfter(prev);
+        if (Utils.isValue(o.expand)) {
+            container.addClass("tabs-expand-"+o.expand);
         }
 
-        element.appendTo(container);
+        container.addClass(o.tabsPosition.replace(["-", "_", "+"], " "));
+        if (o.tabsPosition.contains("vertical")) {
+            container.addClass("tabs-expand-fs"); // TODO need redesign this behavior
+        }
+
+        element.addClass("tabs-list");
+        if (!right_parent) {
+            container.insertBefore(element);
+            element.appendTo(container);
+        }
 
         element.data('expanded', false);
 
@@ -17809,6 +17822,9 @@ var Tabs = {
             }
         }
 
+        container.addClass(o.clsTabs);
+        element.addClass(o.clsTabsList);
+        element.children("li").addClass(o.clsTabsListItem);
     },
 
     _createEvents: function(){

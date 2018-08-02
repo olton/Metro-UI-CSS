@@ -1,3 +1,6 @@
+### 4.2.17
++ [x] Tabs: change behavior and attribute. For details, read the docs
+
 ### 4.2.16
 + [x] Export: add object `Metro.export`. Now you can export any HTML `tables` to `CSV` with method `Metro.export.tableToCSV(table, filename)`
 + [x] Utils: add function `copy(el)` for copying element to clipboard
