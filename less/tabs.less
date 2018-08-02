@@ -3,7 +3,6 @@
 
 .tabs {
     position: relative;
-    min-height: 3rem;
     border: 1px solid @borderColor;
     transition: @transition-base;
     background-color: @white;
@@ -29,7 +28,7 @@
     }
 }
 
-.tabs > ul {
+.tabs > ul.tabs-list {
     .reset-list();
     display: flex;
     flex-direction: column;
@@ -42,7 +41,7 @@
     .collapse();
 }
 
-.tabs > ul {
+.tabs > ul.tabs-list {
     & > li, a {
         position: relative;
     }
@@ -84,7 +83,7 @@
 }
 
 .tabs {
-    &.bottom > ul {
+    &.bottom > ul.tabs-list {
         border: none;
 
         & > li {
@@ -96,7 +95,7 @@
 }
 
 .tabs {
-    &.vertical  > ul {
+    &.vertical  > ul.tabs-list {
         flex-direction: column;
         border: none;
         border-right: 1px solid @borderColor;
@@ -121,7 +120,7 @@
     }
 
     &.vertical {
-        &.right  > ul {
+        &.right  > ul.tabs-list {
             //float: right;
             border: none;
             border-left: 1px solid @borderColor;
@@ -157,7 +156,7 @@
 .tabs-expand() {
     border: none;
 
-    & > ul {
+    & > ul.tabs-list {
         border: 0;
         border-bottom: 1px solid @borderColor;
         flex-direction: row;
@@ -185,7 +184,7 @@
     }
 
     &.bottom {
-        & > ul {
+        & > ul.tabs-list {
             border: none;
             border-top: 1px solid @borderColor;
 
