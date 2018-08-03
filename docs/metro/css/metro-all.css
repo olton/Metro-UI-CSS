@@ -18605,9 +18605,18 @@ aside::after {
 .table.row-border tr + tr {
   border-top: 1px #dfdfdf solid;
 }
+.table.subcompact th,
+.table.subcompact td {
+  padding: 3px 8px;
+  font-size: 80%;
+}
+.table.subcompact th .checkbox,
+.table.subcompact td .checkbox {
+  height: auto;
+}
 .table.compact th,
 .table.compact td {
-  padding: 3px 8px;
+  padding: 7px 8px;
   font-size: 80%;
 }
 .table.compact th .checkbox,
@@ -18625,6 +18634,10 @@ aside::after {
 .table thead th.hidden,
 .table tbody th.hidden {
   display: none!important;
+}
+.table .cell-wrapper {
+  white-space: nowrap;
+  overflow: hidden;
 }
 .table-component {
   display: block;

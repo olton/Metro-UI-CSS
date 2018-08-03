@@ -57,7 +57,7 @@ var Export = {
             table = table[0];
         }
 
-        if (o.includeHeader) {
+        if (Utils.bool(o.includeHeader)) {
 
             head = table.querySelectorAll("thead")[0];
 
