@@ -184,9 +184,20 @@
         }
     }
 
-    &.compact {
+    &.subcompact {
         th, td {
             padding: 3px 8px;
+            font-size: 80%;
+
+            .checkbox {
+                height: auto;
+            }
+        }
+    }
+
+    &.compact {
+        th, td {
+            padding: 7px 8px;
             font-size: 80%;
 
             .checkbox {
@@ -209,6 +220,11 @@
                 display: none!important;
             }
         }
+    }
+
+    .cell-wrapper {
+        white-space: nowrap;
+        overflow: hidden;
     }
 }
 

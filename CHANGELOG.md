@@ -3,6 +3,8 @@
 + [x] Table: add second parameter `review` to methods `reload` and `loadData`. If `true`, table view will be recreated from init values.
 + [x] Table: add head parameter `show`
 + [x] Input: add attribute `data-default-value="..."` for set default if val is empty and set to this when click clear button
++ [x] Table: add class `subcompact` to pair to `compact`
++ [x] Table: add attribute `data-cell-wrapper`. This class add wrapper to cell data with `no wrap` and `no overflow` props.
 
 ### 4.2.16
 + [x] Export: add object `Metro.export`. Now you can export any HTML `tables` to `CSV` with method `Metro.export.tableToCSV(table, filename)`

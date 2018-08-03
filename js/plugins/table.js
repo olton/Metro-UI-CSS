@@ -92,6 +92,9 @@ var Table = {
         infoWrapper: null,
         paginationWrapper: null,
 
+        cellWrapper: true,
+        cellWrap: false,
+
         clsComponent: "",
         clsTable: "",
 
@@ -549,8 +552,6 @@ var Table = {
             if (item.type === 'rownum') {classes.push("rownum-cell");}
 
             classes.push(o.clsHeadCell);
-
-            console.log(Utils.bool(view[cell_index]['show']));
 
             if (Utils.bool(view[cell_index]['show'])) {
                 Utils.arrayDelete(classes, "hidden");
@@ -1276,7 +1277,13 @@ var Table = {
                 }
 
                 $.each(cells, function(cell_index){
-                    td = $("<td>").html(this);
+                    var cell_wrapper;
+                    if (o.cellWrapper === true) {
+                        td = $("<td>");
+                        cell_wrapper = $("<div>").addClass("cell-wrapper").html(this).appendTo(td);
+                    } else {
+                        td = $("<td>").html(this);
+                    }
                     td.addClass(o.clsBodyCell);
                     if (Utils.isValue(that.heads[cell_index].clsColumn)) {
                         td.addClass(that.heads[cell_index].clsColumn);
