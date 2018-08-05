@@ -39173,6 +39173,27 @@ video:-webkit-full-screen {
 .sidebar-header ~ .sidebar-menu {
   height: calc(100% - 180px);
 }
+.sidebar.compact .sidebar-menu li,
+.subcompact .sidebar-menu li {
+  height: auto;
+}
+.sidebar.compact .sidebar-menu li a,
+.subcompact .sidebar-menu li a {
+  padding-top: 7px;
+  padding-bottom: 7px;
+  line-height: 1.2;
+  font-size: 14px;
+  padding-left: 40px;
+}
+.sidebar.compact .sidebar-menu li a .icon,
+.subcompact .sidebar-menu li a .icon {
+  font-size: 14px;
+  margin-top: -7px;
+}
+.sidebar.subcompact .sidebar-menu li a {
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
 .ripple {
   display: block;
   width: 0;

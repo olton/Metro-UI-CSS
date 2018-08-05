@@ -16141,7 +16141,6 @@ var Table = {
         paginationWrapper: null,
 
         cellWrapper: true,
-        cellWrap: false,
 
         clsComponent: "",
         clsTable: "",
