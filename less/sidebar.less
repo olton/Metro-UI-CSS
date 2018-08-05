@@ -168,3 +168,32 @@
 .sidebar-header ~ .sidebar-menu {
     height: ~"calc(100% - 180px)";
 }
+
+.sidebar.compact, .subcompact {
+    .sidebar-menu {
+        li {
+            height: auto;
+            a {
+                padding-top: 7px;
+                padding-bottom: 7px;
+                line-height: 1.2;
+                font-size: 14px;
+                padding-left: 40px;
+                .icon {
+                    font-size: 14px;
+                    margin-top: -7px;
+                }
+            }
+        }
+    }
+}
+.sidebar.subcompact {
+    .sidebar-menu {
+        li {
+            a {
+                padding-top: 3px;
+                padding-bottom: 3px;
+            }
+        }
+    }
+}
