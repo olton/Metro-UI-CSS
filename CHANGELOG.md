@@ -1,3 +1,8 @@
+### 4.2.18
++ [x] Table: fix work attributes `showTableInfo`, `showPagination` when wrappers defined
++ [x] Table: fix pagination behavior when no items for table
++ [x] Table: add observing attributes `data-check` and `data-rownnum`
+
 ### 4.2.17
 + [x] Tabs: change behavior and attribute. For details, read the docs
 + [x] Table: add second parameter `review` to methods `reload` and `loadData`. If `true`, table view will be recreated from init values.

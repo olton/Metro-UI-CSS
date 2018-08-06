@@ -38,7 +38,12 @@
     <h1 class="text-center">Metro 4 Table component</h1>
     <h3 class="text-center">Inspector, export, custom filter</h3>
 
-    <div class="row flex-justify-between flex-nowrap ml-0 mr-0 mt-10">
+    <div>
+        <input type="checkbox" data-role="checkbox" data-caption="Rownum" onclick="$('#demo-table').attr('data-rownum', $(this).is(':checked'))">
+        <input type="checkbox" data-role="checkbox" data-caption="Checks" checked onclick="$('#demo-table').attr('data-check', $(this).is(':checked'))">
+    </div>
+
+    <div class="row flex-justify-between flex-nowrap ml-0 mr-0 mt-2">
         <div class="w-100">
             <div id="table-search"></div>
         </div>
@@ -66,26 +71,29 @@
 
     <table id="demo-table"
            class="table table-border striped row-hover mt-4 entities-table" style="min-width: 300px!important;"
-    data-role="table"
-    data-source="table-insp.json"
-    data-cls-table-top="row"
-    data-cls-search="cell-md-8"
-    data-cls-rows-count="cell-md-4"
-    data-table-search-title="Quick search:"
-    data-table-rows-count-title="Show:"
-    data-table-info-title="Showed с $1 по $2 из $3"
-    data-all-records-title="All records"
-    data-rows="10"
-    data-rows-steps="-1, 10, 20, 50, 100"
-    data-info-wrapper="#table-info"
-    data-pagination-wrapper="#pagination"
-    data-rows-wrapper="#rows-count"
-    data-search-wrapper="#table-search"
-    data-check="<?php echo $check_column ? 'true' : 'false'?>"
-    data-inspector-title="Setup view"
-    data-on-draw-cell="tableFuncs.onDrawCell"
-    data-on-draw-row="tableFuncs.onDrawRow"
-    data-view-save-mode="client"
+           data-role="table"
+           data-source="table-insp.json"
+           data-cls-table-top="row"
+           data-cls-search="cell-md-8"
+           data-cls-rows-count="cell-md-4"
+           data-table-search-title="Quick search:"
+           data-table-rows-count-title="Show:"
+           data-table-info-title="Showed с $1 по $2 из $3"
+           data-all-records-title="All records"
+           data-rows="10"
+           data-rows-steps="-1, 10, 20, 50, 100"
+           data-info-wrapper="#table-info"
+           data-pagination-wrapper="#pagination"
+           data-rows-wrapper="#rows-count"
+           data-search-wrapper="#table-search"
+           data-inspector-title="Setup view"
+           data-on-draw-cell="tableFuncs.onDrawCell"
+           data-on-draw-row="tableFuncs.onDrawRow"
+           data-view-save-mode="client"
+           data-check="true"
+           data-check-col-index="0"
+           data-check-store-key="MY_STORE_FOR_TABLE:$1"
+
     ></table>
 
     <div class="row">

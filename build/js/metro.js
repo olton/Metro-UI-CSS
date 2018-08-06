@@ -1,5 +1,5 @@
 /*
- * Metro 4 Components Library v4.2.17 build 694 (https://metroui.org.ua)
+ * Metro 4 Components Library v4.2.18 build @@build (https://metroui.org.ua)
  * Copyright 2018 Sergey Pimenov
  * Licensed under MIT
  */
@@ -80,8 +80,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.17",
-    versionFull: "4.2.17.694 ",
+    version: "@@version",
+    versionFull: "@@version.@@build @@status",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -16295,6 +16295,8 @@ var Table = {
         var item_check, item_rownum;
         var service = [];
 
+        this.service = {};
+
         item_rownum = {
             title: "#",
             format: undefined,
@@ -16717,12 +16719,12 @@ var Table = {
         var bottom_block = $("<div>").addClass("table-bottom").addClass(o.clsTableBottom).insertAfter(element);
         var info, pagination;
 
-        info = $("<div>").addClass("table-info").addClass(o.clsTableInfo).appendTo(bottom_block);
+        info = Utils.isValue(this.wrapperInfo) ? this.wrapperInfo : $("<div>").addClass("table-info").addClass(o.clsTableInfo).appendTo(bottom_block);
         if (o.showTableInfo !== true) {
             info.hide();
         }
 
-        pagination = $("<div>").addClass("table-pagination").addClass(o.clsTablePagination).appendTo(bottom_block);
+        pagination = Utils.isValue(this.wrapperPagination) ? this.wrapperPagination : $("<div>").addClass("table-pagination").addClass(o.clsTablePagination).appendTo(bottom_block);
         if (o.showPagination !== true) {
             pagination.hide();
         }
@@ -16927,6 +16929,9 @@ var Table = {
         function pageLinkClick(l){
             var link = $(l);
             var item = link.parent();
+            if (that.filteredItems.length === 0) {
+                return ;
+            }
 
             if (item.hasClass("active")) {
                 return ;
@@ -17222,6 +17227,11 @@ var Table = {
 
         if (this.currentPage === this.pagesCount) {
             next.addClass("disabled");
+        }
+
+        if (this.filteredItems.length === 0) {
+            pagination.addClass("disabled");
+            pagination.children().addClass("disabled");
         }
     },
 
@@ -17751,7 +17761,26 @@ var Table = {
     },
 
     changeAttribute: function(attributeName){
+        var that = this, element = this.element, o = this.options;
 
+        function dataCheck(){
+            o.check = Utils.bool(element.attr("data-check"));
+            that._service();
+            that._createTableHeader();
+            that._draw();
+        }
+
+        function dataRownum(){
+            o.rownum = Utils.bool(element.attr("data-rownum"));
+            that._service();
+            that._createTableHeader();
+            that._draw();
+        }
+
+        switch (attributeName) {
+            case "data-check": dataCheck(); break;
+            case "data-rownum": dataRownum(); break;
+        }
     }
 };
 
