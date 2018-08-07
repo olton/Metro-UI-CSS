@@ -2,6 +2,7 @@
 + [x] Table: fix work attributes `showTableInfo`, `showPagination` when wrappers defined
 + [x] Table: fix pagination behavior when no items for table
 + [x] Table: add observing attributes `data-check` and `data-rownnum`
++ [x] Tabs: fix tab click behavior when `<a>` have a link in `href` attribute 
 
 ### 4.2.17
 + [x] Tabs: change behavior and attribute. For details, read the docs

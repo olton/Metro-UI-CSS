@@ -110,8 +110,12 @@ var Tabs = {
 
         element.on(Metro.events.click, "a", function(e){
             var link = $(this);
-            var href = link.attr("href");
+            var href = link.attr("href").trim();
             var tab = link.parent("li");
+
+            if (tab.hasClass("active")) {
+                e.preventDefault();
+            }
 
             if (element.data('expanded') === true) {
                 element.removeClass("expand");
@@ -123,7 +127,7 @@ var Tabs = {
                 return false;
             }
 
-            if (!Utils.isUrl(href)) {
+            if (Utils.isValue(href) && href[0] === "#") {
                 that._open(tab);
                 e.preventDefault();
             }
@@ -176,7 +180,7 @@ var Tabs = {
             if (t.length > 0) t.hide();
         });
 
-        if (target !== "#") {
+        if (target !== "#" && target[0] === "#") {
             $(target).show();
         }
 
