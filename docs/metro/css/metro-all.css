@@ -18459,21 +18459,68 @@ aside::after {
   }
 }
 .table {
+  display: table;
+}
+.thead {
+  display: table-header-group;
+}
+.tfoot {
+  display: table-footer-group;
+}
+.tbody {
+  display: table-row-group;
+}
+.tr {
+  display: table-row;
+}
+.th,
+.td {
+  display: table-cell;
+}
+.table {
   width: 100%;
   margin-bottom: 1rem;
 }
 .table th,
-.table td {
+.table .th,
+.table td,
+.table .td {
   padding: 0.625rem;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.table.fixed-layout {
+  table-layout: fixed;
+}
+.table.fixed-layout th,
+.table.fixed-layout .th,
+.table.fixed-layout td,
+.table.fixed-layout .td {
+  white-space: nowrap;
+  overflow: hidden;
 }
 .table thead,
-.table tfoot {
+.table tfoot,
+.table .thead,
+.table .tfoot {
   border-bottom: 4px solid #e4e4e4;
 }
 .table thead th,
 .table tfoot th,
+.table .thead th,
+.table .tfoot th,
 .table thead td,
-.table tfoot td {
+.table tfoot td,
+.table .thead td,
+.table .tfoot td,
+.table thead .th,
+.table tfoot .th,
+.table .thead .th,
+.table .tfoot .th,
+.table thead .td,
+.table tfoot .td,
+.table .thead .td,
+.table .tfoot .td {
   cursor: default;
   color: #1d1d1d;
   border-color: transparent;
@@ -18481,10 +18528,14 @@ aside::after {
   font-weight: bold;
   line-height: 1.2;
 }
-.table tfoot {
+.table tfoot,
+.table .tfoot {
   border-top: 4px solid #e4e4e4;
 }
-.table tbody td {
+.table tbody td,
+.table .tbody td,
+.table tbody .td,
+.table .tbody .td {
   padding: 0.625rem 0.85rem;
   vertical-align: middle;
 }
@@ -18556,71 +18607,163 @@ aside::after {
   left: 0;
   margin-left: 0.625rem;
 }
-.table tr.selected td {
+.table tr.selected td,
+.table .tr.selected td,
+.table tr.selected .td,
+.table .tr.selected .td {
   background-color: rgba(28, 183, 236, 0.1);
 }
-.table td.selected {
+.table td.selected,
+.table .td.selected {
   background-color: rgba(28, 183, 236, 0.3);
 }
-.table.striped tbody tr:nth-child(odd) {
+.table.striped tbody tr:nth-child(odd),
+.table.striped .tbody .tr:nth-child(odd) {
   background: #f8f8f8;
 }
-.table.row-hover tbody tr:hover {
+.table.row-hover tbody tr:hover,
+.table.row-hover .tbody tr:hover,
+.table.row-hover tbody .tr:hover,
+.table.row-hover .tbody .tr:hover {
   background-color: rgba(28, 183, 236, 0.1);
 }
-.table.cell-hover tbody td:hover {
+.table.cell-hover tbody td:hover,
+.table.cell-hover .tbody td:hover,
+.table.cell-hover tbody .td:hover,
+.table.cell-hover .tbody .td:hover {
   background-color: rgba(28, 183, 236, 0.3);
 }
 .table.table-border {
   border: 1px #dfdfdf solid;
 }
 .table.cell-border th,
-.table.cell-border td {
+.table.cell-border td,
+.table.cell-border .th,
+.table.cell-border .td {
   border: 1px #dfdfdf solid;
 }
 .table.cell-border thead tr:first-child th,
-.table.cell-border thead tr:first-child td {
+.table.cell-border .thead tr:first-child th,
+.table.cell-border thead .tr:first-child th,
+.table.cell-border .thead .tr:first-child th,
+.table.cell-border thead tr:first-child td,
+.table.cell-border .thead tr:first-child td,
+.table.cell-border thead .tr:first-child td,
+.table.cell-border .thead .tr:first-child td,
+.table.cell-border thead tr:first-child .th,
+.table.cell-border .thead tr:first-child .th,
+.table.cell-border thead .tr:first-child .th,
+.table.cell-border .thead .tr:first-child .th,
+.table.cell-border thead tr:first-child .td,
+.table.cell-border .thead tr:first-child .td,
+.table.cell-border thead .tr:first-child .td,
+.table.cell-border .thead .tr:first-child .td {
   border-top: none;
 }
 .table.cell-border thead tr:first-child th:first-child,
-.table.cell-border thead tr:first-child td:first-child {
+.table.cell-border .thead tr:first-child th:first-child,
+.table.cell-border thead .tr:first-child th:first-child,
+.table.cell-border .thead .tr:first-child th:first-child,
+.table.cell-border thead tr:first-child td:first-child,
+.table.cell-border .thead tr:first-child td:first-child,
+.table.cell-border thead .tr:first-child td:first-child,
+.table.cell-border .thead .tr:first-child td:first-child,
+.table.cell-border thead tr:first-child .th:first-child,
+.table.cell-border .thead tr:first-child .th:first-child,
+.table.cell-border thead .tr:first-child .th:first-child,
+.table.cell-border .thead .tr:first-child .th:first-child,
+.table.cell-border thead tr:first-child .td:first-child,
+.table.cell-border .thead tr:first-child .td:first-child,
+.table.cell-border thead .tr:first-child .td:first-child,
+.table.cell-border .thead .tr:first-child .td:first-child {
   border-left: none;
 }
 .table.cell-border thead tr:first-child th:last-child,
-.table.cell-border thead tr:first-child td:last-child {
+.table.cell-border .thead tr:first-child th:last-child,
+.table.cell-border thead .tr:first-child th:last-child,
+.table.cell-border .thead .tr:first-child th:last-child,
+.table.cell-border thead tr:first-child td:last-child,
+.table.cell-border .thead tr:first-child td:last-child,
+.table.cell-border thead .tr:first-child td:last-child,
+.table.cell-border .thead .tr:first-child td:last-child,
+.table.cell-border thead tr:first-child .th:last-child,
+.table.cell-border .thead tr:first-child .th:last-child,
+.table.cell-border thead .tr:first-child .th:last-child,
+.table.cell-border .thead .tr:first-child .th:last-child,
+.table.cell-border thead tr:first-child .td:last-child,
+.table.cell-border .thead tr:first-child .td:last-child,
+.table.cell-border thead .tr:first-child .td:last-child,
+.table.cell-border .thead .tr:first-child .td:last-child {
   border-right: none;
 }
-.table.cell-border tbody tr:first-child td {
+.table.cell-border tbody tr:first-child td,
+.table.cell-border .tbody tr:first-child td,
+.table.cell-border tbody .tr:first-child td,
+.table.cell-border .tbody .tr:first-child td,
+.table.cell-border tbody tr:first-child .td,
+.table.cell-border .tbody tr:first-child .td,
+.table.cell-border tbody .tr:first-child .td,
+.table.cell-border .tbody .tr:first-child .td {
   border-top: none;
 }
-.table.cell-border tbody tr td:first-child {
+.table.cell-border tbody tr td:first-child,
+.table.cell-border .tbody tr td:first-child,
+.table.cell-border tbody .tr td:first-child,
+.table.cell-border .tbody .tr td:first-child,
+.table.cell-border tbody tr .td:first-child,
+.table.cell-border .tbody tr .td:first-child,
+.table.cell-border tbody .tr .td:first-child,
+.table.cell-border .tbody .tr .td:first-child {
   border-left: none;
 }
-.table.cell-border tbody tr td:last-child {
+.table.cell-border tbody tr td:last-child,
+.table.cell-border .tbody tr td:last-child,
+.table.cell-border tbody .tr td:last-child,
+.table.cell-border .tbody .tr td:last-child,
+.table.cell-border tbody tr .td:last-child,
+.table.cell-border .tbody tr .td:last-child,
+.table.cell-border tbody .tr .td:last-child,
+.table.cell-border .tbody .tr .td:last-child {
   border-right: none;
 }
-.table.cell-border tbody tr:last-child td {
+.table.cell-border tbody tr:last-child td,
+.table.cell-border .tbody tr:last-child td,
+.table.cell-border tbody .tr:last-child td,
+.table.cell-border .tbody .tr:last-child td,
+.table.cell-border tbody tr:last-child .td,
+.table.cell-border .tbody tr:last-child .td,
+.table.cell-border tbody .tr:last-child .td,
+.table.cell-border .tbody .tr:last-child .td {
   border-bottom: none;
 }
-.table.row-border tr + tr {
+.table.row-border tr + tr,
+.table.row-border .tr + .tr {
   border-top: 1px #dfdfdf solid;
 }
 .table.subcompact th,
-.table.subcompact td {
+.table.subcompact td,
+.table.subcompact .th,
+.table.subcompact .td {
   padding: 3px 8px;
   font-size: 80%;
 }
 .table.subcompact th .checkbox,
-.table.subcompact td .checkbox {
+.table.subcompact td .checkbox,
+.table.subcompact .th .checkbox,
+.table.subcompact .td .checkbox {
   height: auto;
 }
 .table.compact th,
-.table.compact td {
+.table.compact td,
+.table.compact .th,
+.table.compact .td {
   padding: 7px 8px;
   font-size: 80%;
 }
 .table.compact th .checkbox,
-.table.compact td .checkbox {
+.table.compact td .checkbox,
+.table.compact .th .checkbox,
+.table.compact .td .checkbox {
   height: auto;
 }
 .table .check-cell {
@@ -18631,8 +18774,20 @@ aside::after {
 }
 .table thead td.hidden,
 .table tbody td.hidden,
+.table .thead td.hidden,
+.table .tbody td.hidden,
 .table thead th.hidden,
-.table tbody th.hidden {
+.table tbody th.hidden,
+.table .thead th.hidden,
+.table .tbody th.hidden,
+.table thead .th.hidden,
+.table tbody .th.hidden,
+.table .thead .th.hidden,
+.table .tbody .th.hidden,
+.table thead .td.hidden,
+.table tbody .td.hidden,
+.table .thead .td.hidden,
+.table .tbody .td.hidden {
   display: none!important;
 }
 .table .cell-wrapper {
@@ -18687,13 +18842,20 @@ aside::after {
   -webkit-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3);
           box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3);
 }
-.table-inspector table {
+.table-inspector table,
+.table-inspector .table {
   margin-bottom: 0;
 }
-.table-inspector table td {
+.table-inspector table td,
+.table-inspector .table td,
+.table-inspector table .td,
+.table-inspector .table .td {
   vertical-align: middle;
 }
-.table-inspector table tr.flash {
+.table-inspector table tr.flash,
+.table-inspector .table tr.flash,
+.table-inspector table .tr.flash,
+.table-inspector .table .tr.flash {
   -webkit-animation: flash-bg 1s ease-out;
           animation: flash-bg 1s ease-out;
   -webkit-animation-iteration-count: 1;
@@ -18733,72 +18895,96 @@ aside::after {
 }
 @media screen and (min-width: 0) {
   .table.compact-fs th,
-  .table.compact-fs td {
+  .table.compact-fs td,
+  .table.compact-fs .th,
+  .table.compact-fs .td {
     padding: .3rem;
     font-size: .9em;
   }
   .table.normal-fs th,
-  .table.normal-fs td {
+  .table.normal-fs td,
+  .table.normal-fs .th,
+  .table.normal-fs .td {
     padding: 0.625rem;
     font-size: 1em;
   }
 }
 @media screen and (min-width: 576px) {
   .table.compact-sm th,
-  .table.compact-sm td {
+  .table.compact-sm td,
+  .table.compact-sm .th,
+  .table.compact-sm .td {
     padding: .3rem;
     font-size: .9em;
   }
   .table.normal-sm th,
-  .table.normal-sm td {
+  .table.normal-sm td,
+  .table.normal-sm .th,
+  .table.normal-sm .td {
     padding: 0.625rem;
     font-size: 1em;
   }
 }
 @media screen and (min-width: 768px) {
   .table.compact-md th,
-  .table.compact-md td {
+  .table.compact-md td,
+  .table.compact-md .th,
+  .table.compact-md .td {
     padding: .3rem;
     font-size: .9em;
   }
   .table.normal-md th,
-  .table.normal-md td {
+  .table.normal-md td,
+  .table.normal-md .th,
+  .table.normal-md .td {
     padding: 0.625rem;
     font-size: 1em;
   }
 }
 @media screen and (min-width: 992px) {
   .table.compact-lg th,
-  .table.compact-lg td {
+  .table.compact-lg td,
+  .table.compact-lg .th,
+  .table.compact-lg .td {
     padding: .3rem;
     font-size: .9em;
   }
   .table.normal-lg th,
-  .table.normal-lg td {
+  .table.normal-lg td,
+  .table.normal-lg .th,
+  .table.normal-lg .td {
     padding: 0.625rem;
     font-size: 1em;
   }
 }
 @media screen and (min-width: 1200px) {
   .table.compact-xl th,
-  .table.compact-xl td {
+  .table.compact-xl td,
+  .table.compact-xl .th,
+  .table.compact-xl .td {
     padding: .3rem;
     font-size: .9em;
   }
   .table.normal-xl th,
-  .table.normal-xl td {
+  .table.normal-xl td,
+  .table.normal-xl .th,
+  .table.normal-xl .td {
     padding: 0.625rem;
     font-size: 1em;
   }
 }
 @media screen and (min-width: 1452px) {
   .table.compact-xxl th,
-  .table.compact-xxl td {
+  .table.compact-xxl td,
+  .table.compact-xxl .th,
+  .table.compact-xxl .td {
     padding: .3rem;
     font-size: .9em;
   }
   .table.normal-xxl th,
-  .table.normal-xxl td {
+  .table.normal-xxl td,
+  .table.normal-xxl .th,
+  .table.normal-xxl .td {
     padding: 0.625rem;
     font-size: 1em;
   }

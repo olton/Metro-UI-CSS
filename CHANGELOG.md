@@ -3,6 +3,11 @@
 + [x] Table: fix pagination behavior when no items for table
 + [x] Table: add observing attributes `data-check` and `data-rownnum`
 + [x] Tabs: fix tab click behavior when `<a>` have a link in `href` attribute 
++ [x] Calendar: add method `clearSelected()`
++ [x] Calendar: add method `toDay()`
++ [x] Table: add exception when data for table is not a object
++ [x] Table: add class `fixed-layout`
++ [x] Table: add `data-filter-threshold` attribute, this is a timeout before searching start 
 
 ### 4.2.17
 + [x] Tabs: change behavior and attribute. For details, read the docs

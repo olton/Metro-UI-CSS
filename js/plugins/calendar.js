@@ -238,14 +238,15 @@ var Calendar = {
         });
 
         element.on(Metro.events.click, ".button.today", function(e){
-            that.today = new Date();
-            that.current = {
-                year: that.today.getFullYear(),
-                month: that.today.getMonth(),
-                day: that.today.getDate()
-            };
-            that._drawHeader();
-            that._drawContent();
+            // that.today = new Date();
+            // that.current = {
+            //     year: that.today.getFullYear(),
+            //     month: that.today.getMonth(),
+            //     day: that.today.getDate()
+            // };
+            // that._drawHeader();
+            // that._drawContent();
+            that.toDay();
             Utils.exec(o.onToday, [that.today, element]);
 
             e.preventDefault();
@@ -688,6 +689,22 @@ var Calendar = {
 
     getCurrent: function(){
         return this.current;
+    },
+
+    clearSelected: function(){
+        this.selected = [];
+        this._drawContent();
+    },
+
+    toDay: function(){
+        this.today = new Date();
+        this.current = {
+            year: this.today.getFullYear(),
+            month: this.today.getMonth(),
+            day: this.today.getDate()
+        };
+        this._drawHeader();
+        this._drawContent();
     },
 
     setExclude: function(exclude){

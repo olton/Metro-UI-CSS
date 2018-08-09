@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <link href="../metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
+
+    <title>Collapse test page - Metro 4 :: Popular HTML, CSS and JS library</title>
+</head>
+<body>
+<div class="m-20">
+    <button class="button" id="clearCalendar">Clear</button>
+    <button class="button" id="today" onclick="$('#calendar').data('calendar').toDay()">Today</button>
+    <div data-role="calendar" id="calendar" data-picker-mode="true"></div>
+</div>
+
+<div class="d-flex m-20">
+    <input type="text" data-role="calendarpicker" id="picker">
+    <button class="button" id="clearPicker">Clear</button>
+</div>
+
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script src="../metro/js/metro.js?ver=@@b-version"></script>
+<script>
+    $("#clearPicker").click(function(){
+        var picker_element = $("#picker");
+        var picker = picker_element.data("calendarpicker");
+        picker_element.val("");
+        picker.clearSelected();
+    });
+
+    $("#clearCalendar").click(function(){
+        var cal = $("#calendar").data("calendar");
+        cal.clearSelected();
+    })
+</script>
+</body>
+</html>

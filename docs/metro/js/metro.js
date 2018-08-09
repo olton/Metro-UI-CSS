@@ -156,6 +156,7 @@ var Metro = {
         resize: 'resize.metro',
         keyup: 'keyup.metro',
         keydown: 'keydown.metro',
+        keypress: 'keypredd.metro',
         dblclick: 'dblclick.metro',
         input: 'input.metro',
         change: 'change.metro',
@@ -5235,14 +5236,15 @@ var Calendar = {
         });
 
         element.on(Metro.events.click, ".button.today", function(e){
-            that.today = new Date();
-            that.current = {
-                year: that.today.getFullYear(),
-                month: that.today.getMonth(),
-                day: that.today.getDate()
-            };
-            that._drawHeader();
-            that._drawContent();
+            // that.today = new Date();
+            // that.current = {
+            //     year: that.today.getFullYear(),
+            //     month: that.today.getMonth(),
+            //     day: that.today.getDate()
+            // };
+            // that._drawHeader();
+            // that._drawContent();
+            that.toDay();
             Utils.exec(o.onToday, [that.today, element]);
 
             e.preventDefault();
@@ -5685,6 +5687,22 @@ var Calendar = {
 
     getCurrent: function(){
         return this.current;
+    },
+
+    clearSelected: function(){
+        this.selected = [];
+        this._drawContent();
+    },
+
+    toDay: function(){
+        this.today = new Date();
+        this.current = {
+            year: this.today.getFullYear(),
+            month: this.today.getMonth(),
+            day: this.today.getDate()
+        };
+        this._drawHeader();
+        this._drawContent();
     },
 
     setExclude: function(exclude){
@@ -16103,6 +16121,7 @@ var Table = {
         source: null,
 
         filterMinLength: 1,
+        filterThreshold: 500,
 
         showRowsSteps: true,
         showSearch: true,
@@ -16220,6 +16239,9 @@ var Table = {
             Utils.exec(o.onDataLoad, [o.source], element[0]);
 
             $.get(o.source, function(data){
+                if (typeof data !== "object") {
+                    throw new Error("Data for table is not a object");
+                }
                 that._build(data);
                 Utils.exec(o.onDataLoaded, [o.source, data], element[0]);
             }).fail(function( jqXHR, textStatus, errorThrown) {
@@ -16349,19 +16371,12 @@ var Table = {
         return view;
     },
 
-    _createInspector: function(){
-        var that = this, o = this.options;
-        var component = this.component;
-        var inspector, table = $("<table>").addClass("table compact"), row, actions, tds = [], cells, j;
+    _createInspectorItems: function(table){
+        var that = this;
+        var j, tds = [], row;
+        var cells = this.heads;
 
-        inspector = $("<div data-role='draggable' data-drag-element='h3' data-drag-area='body'>").addClass("table-inspector");
-
-        $("<h3 class='text-light'>"+o.inspectorTitle+"</h3>").appendTo(inspector);
-        $("<hr class='thin bg-lightGray'>").appendTo(inspector);
-
-        table.appendTo(inspector);
-
-        cells = this.heads;
+        table.html("");
 
         for (j = 0; j < cells.length; j++){
             tds[j] = null;
@@ -16385,6 +16400,24 @@ var Table = {
         for (j = 0; j < cells.length; j++){
             tds[j].appendTo(table);
         }
+    },
+
+    _createInspector: function(){
+        var o = this.options;
+        var component = this.component;
+        var inspector, table, tbody, actions;
+
+        inspector = $("<div data-role='draggable' data-drag-element='h3' data-drag-area='body'>").addClass("table-inspector");
+
+        $("<h3 class='text-light'>"+o.inspectorTitle+"</h3>").appendTo(inspector);
+        $("<hr class='thin bg-lightGray'>").appendTo(inspector);
+
+        table = $("<table>").addClass("table subcompact");
+        tbody = $("<tbody>").appendTo(table);
+
+        table.appendTo(inspector);
+
+        this._createInspectorItems(tbody);
 
         $("<hr class='thin bg-lightGray'>").appendTo(inspector);
         actions = $("<div class='inspector-actions'>").appendTo(inspector);
@@ -16400,38 +16433,9 @@ var Table = {
     },
 
     _resetInspector: function(){
-        var that = this;
         var inspector = this.inspector;
-        var table = inspector.find("table");
-        var tds = [], cells, j, row;
-        var view = this.view;
-
-        table.html("");
-        cells = this.heads;
-
-        for (j = 0; j < cells.length; j++){
-            tds[j] = null;
-        }
-
-        $.each(cells, function(i){
-            row = $("<tr>");
-            row.data('index', i);
-            row.data('index-view', i);
-            $("<td>").html("<input type='checkbox' data-role='checkbox' name='column_show_check[]' value='"+i+"' "+(Utils.bool(view[i]['show']) ? "checked" : "")+">").appendTo(row);
-            $("<td>").html(this.title).appendTo(row);
-            $("<td>").html("<input type='number' name='column_size' value='"+view[i]['size']+"' data-index='"+i+"'>").appendTo(row);
-            $("<td>").html("" +
-                "<button class='button mini js-table-inspector-field-up' type='button'><span class='mif-arrow-up'></span></button>" +
-                "<button class='button mini js-table-inspector-field-down' type='button'><span class='mif-arrow-down'></span></button>" +
-                "").appendTo(row);
-            tds[view[i]['index-view']] = row;
-        });
-
-        //
-        for (j = 0; j < cells.length; j++){
-            tds[j].appendTo(table);
-        }
-
+        var table = inspector.find("table tbody");
+        this._createInspectorItems(table);
         this._createInspectorEvents();
     },
 
@@ -16581,10 +16585,7 @@ var Table = {
             if (Utils.isValue(item.format)) {th.attr("data-format", item.format);}
             if (Utils.isValue(item.name)) {th.attr("data-name", item.name);}
             if (Utils.isValue(item.colspan)) {th.attr("colspan", item.colspan);}
-            if (Utils.isValue(view[cell_index]['size'])) {th.css({
-                    width: view[cell_index]['size']
-                })
-            }
+            if (Utils.isValue(view[cell_index]['size'])) {th.css({width: view[cell_index]['size']});}
             if (item.sortable === true) {
                 classes.push("sortable-column");
 
@@ -16908,13 +16909,20 @@ var Table = {
             Utils.exec(o.onCheckClickAll, [status], this);
         });
 
-        var _search = function(){
+        var input_interval;
+
+        var _search = function(e){
             that.filterString = this.value.trim().toLowerCase();
+
             if (that.filterString[that.filterString.length - 1] === ":") {
                 return ;
             }
-            that.currentPage = 1;
-            that._draw();
+
+            clearInterval(input_interval);
+            setTimeout(function(){
+                that.currentPage = 1;
+                that._draw();
+            }, o.filterThreshold);
         };
 
         search.on(Metro.events.inputchange, _search);
@@ -17334,10 +17342,9 @@ var Table = {
                 }
 
                 $.each(cells, function(cell_index){
-                    var cell_wrapper;
                     if (o.cellWrapper === true) {
                         td = $("<td>");
-                        cell_wrapper = $("<div>").addClass("cell-wrapper").html(this).appendTo(td);
+                        $("<div>").addClass("cell-wrapper").html(this).appendTo(td);
                     } else {
                         td = $("<td>").html(this);
                     }
