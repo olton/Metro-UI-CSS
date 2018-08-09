@@ -1,21 +1,36 @@
 @import (once) "include/vars";
 @import (once) "include/mixins";
 
+.table {display: table;}
+.thead {display: table-header-group}
+.tfoot {display: table-footer-group}
+.tbody {display: table-row-group}
+.tr {display: table-row}
+.th, .td {display: table-cell}
+
 .table {
     width: 100%;
     margin-bottom: 1rem;
 
-    th, td {
+    th, .th, td, .td {
         padding: 0.625rem;
+        white-space: nowrap;
+        overflow: hidden;
     }
 
-    thead, tfoot {
+    &.fixed-layout {
+        table-layout: fixed;
+
+        th, .th, td, .td {
+            white-space: nowrap;
+            overflow: hidden;
+        }
+    }
+
+    thead, tfoot, .thead, .tfoot {
         border-bottom: 4px solid @lightGray;
 
-        tr:last-child {
-        }
-
-        th, td {
+        th, td, .th, .td {
             cursor: default;
             color: @dark;
             border-color: transparent;
@@ -25,12 +40,12 @@
         }
     }
 
-    tfoot {
+    tfoot, .tfoot {
         border-top: 4px solid @lightGray;
     }
 
-    tbody {
-        td {
+    tbody, .tbody {
+        td, .td {
             padding: 0.625rem 0.85rem;
             vertical-align: middle;
         }
@@ -89,23 +104,24 @@
         }
     }
 
-    tr.selected {
-        td {background-color: rgba(28, 183, 236, 0.10);}
+    tr.selected, .tr.selected {
+        td, .td {background-color: rgba(28, 183, 236, 0.10);}
     }
 
-    td.selected {
+    td.selected, .td.selected {
         background-color: rgba(28, 183, 236, 0.30);
     }
 
     &.striped {
-        tbody tr:nth-child(odd) {
+        tbody tr:nth-child(odd),
+        .tbody .tr:nth-child(odd) {
             background: @light;
         }
     }
 
     &.row-hover {
-        tbody {
-            tr {
+        tbody, .tbody {
+            tr, .tr {
                 &:hover {
                     background-color: rgba(28, 183, 236, 0.10);
                 }
@@ -114,8 +130,8 @@
     }
 
     &.cell-hover {
-        tbody {
-            td {
+        tbody, .tbody {
+            td, .td {
                 &:hover {
                     background-color: rgba(28, 183, 236, 0.30);
                 }
@@ -132,13 +148,13 @@
     }
 
     &.cell-border {
-        th, td {
+        th, td, .th, .td {
             border: 1px @borderColor solid;
         }
 
-        thead {
-            tr:first-child {
-                th, td {
+        thead, .thead {
+            tr:first-child, .tr:first-child {
+                th, td, .th, .td {
                     border-top: none;
 
                     &:first-child {
@@ -151,16 +167,15 @@
             }
         }
 
-        tbody {
-            tr {
-
+        tbody, .tbody {
+            tr, .tr {
                 &:first-child {
-                    td {
+                    td, .td {
                         border-top: none;
                     }
                 }
 
-                td {
+                td, .td {
                     &:first-child {
                         border-left: none;
                     }
@@ -170,7 +185,7 @@
                 }
 
                 &:last-child {
-                    td {
+                    td, .td {
                         border-bottom: none;
                     }
                 }
@@ -179,13 +194,13 @@
     }
 
     &.row-border {
-        tr + tr {
+        tr + tr, .tr + .tr  {
             border-top: 1px @borderColor solid;
         }
     }
 
     &.subcompact {
-        th, td {
+        th, td, .th, .td {
             padding: 3px 8px;
             font-size: 80%;
 
@@ -196,7 +211,7 @@
     }
 
     &.compact {
-        th, td {
+        th, td, .th, .td {
             padding: 7px 8px;
             font-size: 80%;
 
@@ -214,8 +229,8 @@
         width: 36px!important;
     }
 
-    thead, tbody {
-        td, th {
+    thead, tbody, .thead, .tbody {
+        td, th, .th, .td {
             &.hidden {
                 display: none!important;
             }
@@ -276,14 +291,14 @@
     .win-shadow();
 
 
-    table {
+    table, .table {
         margin-bottom: 0;
 
-        td {
+        td, .td {
             vertical-align: middle;
         }
 
-        tr.flash {
+        tr.flash, .tr.flash {
             animation: flash-bg 1s ease-out;
             animation-iteration-count: 1;
         }
@@ -321,13 +336,13 @@
     @media screen and (min-width: @@m) {
         .table {
             &.compact-@{m} {
-                th, td {
+                th, td, .th, .td {
                     padding: .3rem;
                     font-size: .9em;
                 }
             }
             &.normal-@{m} {
-                th, td {
+                th, td, .th, .td {
                     padding: 0.625rem;
                     font-size: 1em;
                 }
