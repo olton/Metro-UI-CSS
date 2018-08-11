@@ -58,17 +58,26 @@ var Select = {
         var option = $(item);
         var l, a;
         var element = this.element, o = this.options;
+        var multiple = element[0].multiple;
         var input = element.siblings(".select-input");
         var html = Utils.isValue(option.data('template'))?option.data('template').replace("$1", item.text):item.text;
+        var selected_item;
 
         l = $("<li>").addClass(o.clsOption).data("option", item).data("text", item.text).data('value', Utils.isValue(item.value) ? item.value : "").appendTo(parent);
         a = $("<a>").html(html).appendTo(l).addClass(item.className);
 
         if (item.getAttribute("selected") !== null) {
-            element.val(item.value);
-            input.html(html);
-            element.trigger("change");
-            l.addClass("active");
+            if (multiple) {
+                l.addClass("d-none");
+                selected_item = $("<div>").addClass("selected-item").html("<span class='title'>"+html+"</span>").appendTo(input);
+                selected_item.data("option", l);
+                $("<span>").addClass("remover").html("&times;").appendTo(selected_item);
+            } else {
+                element.val(item.value);
+                input.html(html);
+                element.trigger("change");
+                l.addClass("active");
+            }
         }
 
         a.appendTo(l);
