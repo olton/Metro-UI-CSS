@@ -7,7 +7,11 @@
 + [x] Calendar: add method `toDay()`
 + [x] Table: add exception when data for table is not a object
 + [x] Table: add class `fixed-layout`
-+ [x] Table: add `data-filter-threshold` attribute, this is a timeout before searching start 
++ [x] Table: add `data-filter-threshold` attribute, this is a timeout before searching start
++ [x] Select: add attribute `data-template` for `option`. You can use this attribute to define html wrapper for option text in format `...any...$1`. Where `$1` used for replace by option text.
++ [x] Select: add attribute `data-cls-drop-list` to add additional class to drop down list.   
++ [x] Select: add attribute `data-append` and minor css fixes
++ [x] Select: add multiple functionality
 
 ### 4.2.17
 + [x] Tabs: change behavior and attribute. For details, read the docs
