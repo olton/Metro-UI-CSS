@@ -108,17 +108,17 @@ input[dir=rtl] {
       -ms-flex-direction: row-reverse;
           flex-direction: row-reverse;
 }
-.select[dir=rtl] input,
-.select.rtl input {
-  -webkit-box-ordinal-group: 3;
-      -ms-flex-order: 2;
-          order: 2;
-}
-.select[dir=rtl] .prepend,
-.select.rtl .prepend {
+.select[dir=rtl] .select-input,
+.select.rtl .select-input {
   -webkit-box-ordinal-group: 4;
       -ms-flex-order: 3;
           order: 3;
+}
+.select[dir=rtl] .prepend,
+.select.rtl .prepend {
+  -webkit-box-ordinal-group: 5;
+      -ms-flex-order: 4;
+          order: 4;
 }
 .select[dir=rtl] .append,
 .select.rtl .append {
@@ -126,13 +126,19 @@ input[dir=rtl] {
       -ms-flex-order: 1;
           order: 1;
 }
+.select[dir=rtl] .button-group,
+.select.rtl .button-group {
+  -webkit-box-ordinal-group: 3;
+      -ms-flex-order: 2;
+          order: 2;
+}
 .select[dir=rtl].dropdown-toggle,
 .select.rtl.dropdown-toggle {
   padding-right: 0!important;
-  padding-left: 1.5rem;
+  padding-left: .9rem;
 }
 .select[dir=rtl].dropdown-toggle::before,
 .select.rtl.dropdown-toggle::before {
-  margin-left: 1.25rem;
+  margin-left: .9rem;
   left: 0;
 }

@@ -169,32 +169,6 @@ label {
         }
     }
 
-    .button-group {
-        display: flex;
-        flex-wrap: nowrap;
-        order: 2;
-    }
-
-    .button {
-        background-color: transparent;
-        color: @dark;
-        height: 34px;
-        &:focus {
-            box-shadow: none;
-        }
-        &:hover {
-            background-color: @light;
-            text-shadow: rgba(0,0,0,.25) 0.1em 0.1em 0.2em;
-        }
-    }
-
-    &.disabled .button-group {
-        button {
-            background-color: @light;
-            color: darken(@light, 10%);
-        }
-    }
-
     .prepend {order: 1}
     .append {order: 4}
     input {order: 2;}
@@ -266,14 +240,19 @@ label {
         display: none;
     }
 
-    input {
+    .select-input {
         cursor: pointer;
         width: ~"calc(100% - .75rem)";
         border: none!important;
         height: 34px;
+        padding-left: 10px;
         &:focus {
             box-shadow: none;
         }
+    }
+
+    select[multiple] ~ .select-input {
+        padding-left: 4px;
     }
 
     &:hover {
@@ -288,8 +267,7 @@ label {
         left: 0;
         width: ~"calc(100% + 2px)";
         height: auto;
-        border-left: 1px solid @borderColor;
-        border-right: 1px solid @borderColor;
+        border: 1px solid @borderColor;
         padding: 2px;
         margin-left: -1px;
         z-index: @zindex-dropdown;
@@ -306,11 +284,16 @@ label {
         overflow-y: auto;
         position: relative;
         display: block;
+        box-shadow: none;
 
         li a {
-            padding: 0 1rem;
+            //padding: 0 1rem;
             height: 32px;
             line-height: 32px;
+
+            .icon {
+                top: .3rem;
+            }
         }
 
         .active {
@@ -328,23 +311,20 @@ label {
 
     &.dropdown-toggle {
         &:before {
-            margin-left: -1.25rem;
+            margin-left: -.9rem;
             left: 100%;
+            top: 14px;
+            margin-top: 0;
         }
     }
 
     &.disabled {
         &.dropdown-toggle {
             &:before {
-                margin-left: -1.25rem;
                 border-color: @white;
             }
         }
     }
-
-    .prepend {order: 1}
-    .append {order: 3}
-    input {order: 2;}
 
     .group-title {
         background-color: #f6f7f8;
@@ -366,8 +346,82 @@ label {
         left: 0;
     }
 
-    .active {
+    @selected-item-size: 26px;
 
+    .selected-item {
+        display: inline-flex;
+        justify-content: space-between;
+        align-items: start;
+        position: relative;
+        margin: 4px 2px;
+        padding: 0 0 0 4px;
+        height: @selected-item-size;
+        line-height: @selected-item-size;
+        background-color: @light;
+        cursor: default;
+
+        .title {
+            display: block;
+            position: relative;
+            max-width: 120px;
+            font-size: 14px;
+            .text-ellipsis();
+            margin-right: 4px;
+        }
+
+        .remover {
+            display: block;
+            position: relative;
+            width: @selected-item-size - 2;
+            height: @selected-item-size - 2;
+            line-height: @selected-item-size - 2;
+            text-align: center;
+            cursor: pointer;
+            background-color: @lightGray;
+        }
+    }
+
+    &.multiple {
+        flex-wrap: wrap;
+        height: auto;
+        min-height: 36px;
+
+        .select-input {
+            height: auto;
+            min-height: 36px;
+        }
+    }
+
+    .prepend {order: 1}
+    .append {order: 3}
+    .select-input {order: 2;}
+    .button-group {order: 3;}
+}
+
+.input, .select {
+    .button-group {
+        display: flex;
+        flex-wrap: nowrap;
+    }
+
+    .button {
+        background-color: transparent;
+        color: @dark;
+        height: 34px;
+        &:focus {
+            box-shadow: none;
+        }
+        &:hover {
+            background-color: @light;
+            text-shadow: rgba(0,0,0,.25) 0.1em 0.1em 0.2em;
+        }
+    }
+
+    &.disabled .button-group {
+        button {
+            background-color: @light;
+            color: darken(@light, 10%);
+        }
     }
 }
 

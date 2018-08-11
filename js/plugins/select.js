@@ -17,9 +17,12 @@ var Select = {
         clsElement: "",
         clsSelect: "",
         clsPrepend: "",
+        clsAppend: "",
         clsOption: "",
         clsOptionGroup: "",
+        clsDropList: "",
         prepend: "",
+        append: "",
         placeholder: "",
         filterPlaceholder: "",
         filter: true,
@@ -55,14 +58,15 @@ var Select = {
         var option = $(item);
         var l, a;
         var element = this.element, o = this.options;
-        var input = element.siblings("input");
+        var input = element.siblings(".select-input");
+        var html = Utils.isValue(option.data('template'))?option.data('template').replace("$1", item.text):item.text;
 
-        l = $("<li>").addClass(o.clsOption).data("text", item.text).data('value', Utils.isValue(item.value) ? item.value : "").appendTo(parent);
-        a = $("<a>").html(item.text).appendTo(l).addClass(item.className);
+        l = $("<li>").addClass(o.clsOption).data("option", item).data("text", item.text).data('value', Utils.isValue(item.value) ? item.value : "").appendTo(parent);
+        a = $("<a>").html(html).appendTo(l).addClass(item.className);
 
-        if (option.is(":selected")) {
+        if (item.getAttribute("selected") !== null) {
             element.val(item.value);
-            input.val(item.text).trigger("change");
+            input.html(html);
             element.trigger("change");
             l.addClass("active");
         }
@@ -88,10 +92,16 @@ var Select = {
         var prev = element.prev();
         var parent = element.parent();
         var container = $("<div>").addClass("select " + element[0].className).addClass(o.clsElement);
-        var multiple = element.prop("multiple");
+        var multiple = element[0].multiple;
         var select_id = Utils.elementId("select");
+        var buttons = $("<div>").addClass("button-group");
+        var input, drop_container, list, filter_input;
 
         container.attr("id", select_id).addClass("dropdown-toggle");
+
+        if (multiple) {
+            container.addClass("multiple");
+        }
 
         if (prev.length === 0) {
             parent.prepend(container);
@@ -101,75 +111,78 @@ var Select = {
 
         element.appendTo(container);
         element.addClass(o.clsSelect);
+        buttons.appendTo(container);
 
-        if (multiple === false) {
+        input = $("<div>").addClass("select-input").attr("name", "__" + select_id + "__");
+        drop_container = $("<div>").addClass("drop-container");
+        list = $("<ul>").addClass("d-menu").addClass(o.clsDropList).css({
+            "max-height": o.dropHeight
+        });
+        filter_input = $("<input type='text' data-role='input'>").attr("placeholder", o.filterPlaceholder);
 
-            var input = $("<input>").attr("placeholder", o.placeholder).attr("type", "text").attr("name", "__" + select_id + "__").prop("readonly", true);
-            var drop_container = $("<div>").addClass("drop-container");
-            var list = $("<ul>").addClass("d-menu").css({
-                "max-height": o.dropHeight
-            });
-            var filter_input = $("<input type='text' data-role='input'>").attr("placeholder", o.filterPlaceholder);
+        container.append(input);
+        container.append(drop_container);
 
-            container.append(input);
-            container.append(drop_container);
+        drop_container.append(filter_input);
 
-            drop_container.append(filter_input);
-
-            if (o.filter !== true) {
-                filter_input.hide();
-            }
-
-            drop_container.append(list);
-
-            $.each(element.children(), function(){
-                if (this.tagName === "OPTION") {
-                    that._addOption(this, list);
-                } else if (this.tagName === "OPTGROUP") {
-                    that._addOptionGroup(this, list);
-                }
-            });
-
-            drop_container.dropdown({
-                duration: o.duration,
-                toggleElement: "#"+select_id,
-                onDrop: function(){
-                    var dropped, target;
-
-                    dropped = $(".select .drop-container");
-                    $.each(dropped, function(){
-                        var drop = $(this);
-                        if (drop.is(drop_container)) {
-                            return ;
-                        }
-                        drop.data('dropdown').close();
-                    });
-
-                    filter_input.val("").trigger(Metro.events.keyup).focus();
-
-                    target = list.find("li.active").length > 0 ? $(list.find("li.active")[0]) : undefined;
-                    if (target !== undefined) {
-                        list.scrollTop(0);
-                        setTimeout(function(){
-                            list.animate({
-                                scrollTop: target.position().top - ( (list.height() - target.height() )/ 2)
-                            }, 100);
-                        }, 200);
-                    }
-
-                    Utils.exec(o.onDrop, [list, element], list[0]);
-                },
-                onUp: function(){
-                    Utils.exec(o.onUp, [list, element], list[0]);
-                }
-            });
-
-            this.list = list;
+        if (o.filter !== true) {
+            filter_input.hide();
         }
+
+        drop_container.append(list);
+
+        $.each(element.children(), function(){
+            if (this.tagName === "OPTION") {
+                that._addOption(this, list);
+            } else if (this.tagName === "OPTGROUP") {
+                that._addOptionGroup(this, list);
+            }
+        });
+
+        drop_container.dropdown({
+            duration: o.duration,
+            toggleElement: "#"+select_id,
+            onDrop: function(){
+                var dropped, target;
+
+                dropped = $(".select .drop-container");
+                $.each(dropped, function(){
+                    var drop = $(this);
+                    if (drop.is(drop_container)) {
+                        return ;
+                    }
+                    drop.data('dropdown').close();
+                });
+
+                filter_input.val("").trigger(Metro.events.keyup).focus();
+
+                target = list.find("li.active").length > 0 ? $(list.find("li.active")[0]) : undefined;
+                if (target !== undefined) {
+                    list.scrollTop(0);
+                    setTimeout(function(){
+                        list.animate({
+                            scrollTop: target.position().top - ( (list.height() - target.height() )/ 2)
+                        }, 100);
+                    }, 200);
+                }
+
+                Utils.exec(o.onDrop, [list, element], list[0]);
+            },
+            onUp: function(){
+                Utils.exec(o.onUp, [list, element], list[0]);
+            }
+        });
+
+        this.list = list;
 
         if (o.prepend !== "") {
             var prepend = Utils.isTag(o.prepend) ? $(o.prepend) : $("<span>"+o.prepend+"</span>");
             prepend.addClass("prepend").addClass(o.clsPrepend).appendTo(container);
+        }
+
+        if (o.append !== "") {
+            var append = Utils.isTag(o.append) ? $(o.append) : $("<span>"+o.append+"</span>");
+            append.addClass("append").addClass(o.clsAppend).appendTo(container);
         }
 
         if (o.copyInlineStyles === true) {
@@ -191,10 +204,10 @@ var Select = {
     },
 
     _createEvents: function(){
-        var element = this.element, o = this.options;
+        var that = this, element = this.element, o = this.options;
         var container = element.closest(".select");
         var drop_container = container.find(".drop-container");
-        var input = element.siblings("input");
+        var input = element.siblings(".select-input");
         var filter_input = drop_container.find("input");
         var list = drop_container.find("ul");
 
@@ -203,8 +216,7 @@ var Select = {
             e.stopPropagation();
         });
 
-        input.on(Metro.events.blur, function(){container.removeClass("focused");});
-        input.on(Metro.events.focus, function(){container.addClass("focused");});
+        input.on(Metro.events.click, function(){container.toggleClass("focused");});
         filter_input.on(Metro.events.blur, function(){container.removeClass("focused");});
         filter_input.on(Metro.events.focus, function(){container.addClass("focused");});
 
@@ -217,14 +229,43 @@ var Select = {
             var leaf = $(this);
             var val = leaf.data('value');
             var txt = leaf.data('text');
+            var html = leaf.children('a').html();
+            var selected_item;
 
-            list.find("li.active").removeClass("active");
-            leaf.addClass("active");
-            input.val(txt).trigger("change");
-            element.val(val);
-            element.trigger("change");
-            drop_container.data("dropdown").close();
+            if (element[0].multiple) {
+                leaf.addClass("d-none");
+                selected_item = $("<div>").addClass("selected-item").html("<span class='title'>"+html+"</span>").appendTo(input);
+                selected_item.data("option", leaf);
+                $("<span>").addClass("remover").html("&times;").appendTo(selected_item);
+                $.each(element.find("option"), function(){
+                    if (this === leaf.data("option")) {
+                        this.selected = true;
+                    }
+                });
+            } else {
+                list.find("li.active").removeClass("active");
+                leaf.addClass("active");
+                input.html(html);
+                element.val(val);
+                element.trigger("change");
+                drop_container.data("dropdown").close();
+            }
+
             Utils.exec(o.onChange, [val], element[0]);
+        });
+
+        input.on("click", ".selected-item .remover", function(e){
+            var item = $(this).closest(".selected-item");
+            var leaf = item.data("option");
+            leaf.removeClass("d-none");
+            $.each(element.find("option"), function(){
+                if (this === leaf.data("option")) {
+                    this.selected = false;
+                }
+            });
+            item.remove();
+            e.preventDefault();
+            e.stopPropagation();
         });
 
         filter_input.on(Metro.events.keyup, function(){
@@ -248,14 +289,19 @@ var Select = {
         });
     },
 
+    reset: function(){
+        var that = this, element = this.element, o = this.options;
+        //TODO
+    },
+
     disable: function(){
         this.element.data("disabled", true);
-        this.element.parent().addClass("disabled");
+        this.element.closest(".select").addClass("disabled");
     },
 
     enable: function(){
         this.element.data("disabled", false);
-        this.element.parent().removeClass("disabled");
+        this.element.closest(".select").removeClass("disabled");
     },
 
     val: function(v){
@@ -334,13 +380,13 @@ var Select = {
         var element = this.element;
         var container = element.closest(".select");
         var drop_container = container.find(".drop-container");
-        var input = element.siblings("input");
+        var input = element.siblings(".select-input");
         var filter_input = drop_container.find("input");
         var list = drop_container.find("ul");
 
         container.off(Metro.events.click);
-        input.off(Metro.events.blur);
-        input.off(Metro.events.focus);
+        container.off(Metro.events.click, ".input-clear-button");
+        input.off(Metro.events.click);
         filter_input.off(Metro.events.blur);
         filter_input.off(Metro.events.focus);
         list.off(Metro.events.click, "li");

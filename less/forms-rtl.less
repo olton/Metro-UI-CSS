@@ -67,15 +67,16 @@ input.rtl, input[dir=rtl] {
 .select {
     &[dir=rtl], &.rtl {
         flex-direction: row-reverse;
-        input {order: 2;}
-        .prepend {order: 3;}
+        .select-input {order: 3;}
+        .prepend {order: 4;}
         .append {order: 1;}
+        .button-group {order: 2}
 
         &.dropdown-toggle {
             padding-right: 0!important;
-            padding-left: 1.5rem;
+            padding-left: .9rem;
             &::before {
-                margin-left: 1.25rem;
+                margin-left: .9rem;
                 left: 0;
             }
         }

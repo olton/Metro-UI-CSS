@@ -20534,33 +20534,6 @@ label {
 .input input::-webkit-inner-spin-button {
   height: 100%;
 }
-.input .button-group {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: nowrap;
-      flex-wrap: nowrap;
-  -webkit-box-ordinal-group: 3;
-      -ms-flex-order: 2;
-          order: 2;
-}
-.input .button {
-  background-color: transparent;
-  color: #1d1d1d;
-  height: 34px;
-}
-.input .button:focus {
-  -webkit-box-shadow: none;
-          box-shadow: none;
-}
-.input .button:hover {
-  background-color: #f8f8f8;
-  text-shadow: rgba(0, 0, 0, 0.25) 0.1em 0.1em 0.2em;
-}
-.input.disabled .button-group button {
-  background-color: #f8f8f8;
-  color: #dfdfdf;
-}
 .input .prepend {
   -webkit-box-ordinal-group: 2;
       -ms-flex-order: 1;
@@ -20664,15 +20637,19 @@ label {
   height: 0.0625rem;
   display: none;
 }
-.select input {
+.select .select-input {
   cursor: pointer;
   width: calc(100% - .75rem);
   border: none!important;
   height: 34px;
+  padding-left: 10px;
 }
-.select input:focus {
+.select .select-input:focus {
   -webkit-box-shadow: none;
           box-shadow: none;
+}
+.select select[multiple] ~ .select-input {
+  padding-left: 4px;
 }
 .select:hover input {
   border-color: transparent;
@@ -20683,8 +20660,7 @@ label {
   left: 0;
   width: calc(100% + 2px);
   height: auto;
-  border-left: 1px solid #dfdfdf;
-  border-right: 1px solid #dfdfdf;
+  border: 1px solid #dfdfdf;
   padding: 2px;
   margin-left: -1px;
   z-index: 1000;
@@ -20699,11 +20675,15 @@ label {
   overflow-y: auto;
   position: relative;
   display: block;
+  -webkit-box-shadow: none;
+          box-shadow: none;
 }
 .select .d-menu li a {
-  padding: 0 1rem;
   height: 32px;
   line-height: 32px;
+}
+.select .d-menu li a .icon {
+  top: .3rem;
 }
 .select .d-menu .active {
   border: none;
@@ -20717,27 +20697,13 @@ label {
           box-shadow: 0 0 0 3px rgba(228, 228, 228, 0.45);
 }
 .select.dropdown-toggle:before {
-  margin-left: -1.25rem;
+  margin-left: -0.9rem;
   left: 100%;
+  top: 14px;
+  margin-top: 0;
 }
 .select.disabled.dropdown-toggle:before {
-  margin-left: -1.25rem;
   border-color: #ffffff;
-}
-.select .prepend {
-  -webkit-box-ordinal-group: 2;
-      -ms-flex-order: 1;
-          order: 1;
-}
-.select .append {
-  -webkit-box-ordinal-group: 4;
-      -ms-flex-order: 3;
-          order: 3;
-}
-.select input {
-  -webkit-box-ordinal-group: 3;
-      -ms-flex-order: 2;
-          order: 2;
 }
 .select .group-title {
   background-color: #f6f7f8;
@@ -20756,6 +20722,103 @@ label {
 .select ul {
   right: 0;
   left: 0;
+}
+.select .selected-item {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: start;
+  position: relative;
+  margin: 4px 2px;
+  padding: 0 0 0 4px;
+  height: 26px;
+  line-height: 26px;
+  background-color: #f8f8f8;
+  cursor: default;
+}
+.select .selected-item .title {
+  display: block;
+  position: relative;
+  max-width: 120px;
+  font-size: 14px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin-right: 4px;
+}
+.select .selected-item .remover {
+  display: block;
+  position: relative;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+  cursor: pointer;
+  background-color: #e4e4e4;
+}
+.select.multiple {
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  height: auto;
+  min-height: 36px;
+}
+.select.multiple .select-input {
+  height: auto;
+  min-height: 36px;
+}
+.select .prepend {
+  -webkit-box-ordinal-group: 2;
+      -ms-flex-order: 1;
+          order: 1;
+}
+.select .append {
+  -webkit-box-ordinal-group: 4;
+      -ms-flex-order: 3;
+          order: 3;
+}
+.select .select-input {
+  -webkit-box-ordinal-group: 3;
+      -ms-flex-order: 2;
+          order: 2;
+}
+.select .button-group {
+  -webkit-box-ordinal-group: 4;
+      -ms-flex-order: 3;
+          order: 3;
+}
+.input .button-group,
+.select .button-group {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+}
+.input .button,
+.select .button {
+  background-color: transparent;
+  color: #1d1d1d;
+  height: 34px;
+}
+.input .button:focus,
+.select .button:focus {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+.input .button:hover,
+.select .button:hover {
+  background-color: #f8f8f8;
+  text-shadow: rgba(0, 0, 0, 0.25) 0.1em 0.1em 0.2em;
+}
+.input.disabled .button-group button,
+.select.disabled .button-group button {
+  background-color: #f8f8f8;
+  color: #dfdfdf;
 }
 .file .prepend,
 .input .prepend,
