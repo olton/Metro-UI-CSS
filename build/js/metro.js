@@ -18183,23 +18183,23 @@ var TagInput = {
         this.values.push(val);
         element.val(this.values.join(o.tagSeparator));
 
-        Utils.exec(o.onTagAdd, [val, this.values], element[0]);
-        Utils.exec(o.onTag, [val, this.values], element[0]);
+        Utils.exec(o.onTagAdd, [tag, val, this.values], element[0]);
+        Utils.exec(o.onTag, [tag, val, this.values], element[0]);
     },
 
     _delTag: function(tag) {
         var that = this, element = this.element, o = this.options;
         var val = tag.data("value");
 
-        if (!Utils.exec(o.onBeforeTagAdd, [val, this.values, tag], element[0])) {
+        if (!Utils.exec(o.onBeforeTagAdd, [tag, val, this.values, tag], element[0])) {
             return ;
         }
 
         Utils.arrayDelete(this.values, val);
         element.val(this.values.join(o.tagSeparator));
 
-        Utils.exec(o.onTagRemove, [val, this.values], element[0]);
-        Utils.exec(o.onTag, [val, this.values], element[0]);
+        Utils.exec(o.onTagRemove, [tag, val, this.values], element[0]);
+        Utils.exec(o.onTag, [tag, val, this.values], element[0]);
         tag.remove();
     },
 
