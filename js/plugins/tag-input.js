@@ -12,6 +12,7 @@ var TagInput = {
     },
 
     options: {
+        randomColor: false,
         maxTags: 0,
         tagSeparator: ",",
         clsTag: "",
@@ -26,7 +27,7 @@ var TagInput = {
     },
 
     _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         $.each(element.data(), function(key, value){
             if (key in o) {
@@ -40,7 +41,7 @@ var TagInput = {
     },
 
     _create: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         this._createStructure();
         this._createEvents();
@@ -70,7 +71,7 @@ var TagInput = {
     },
 
     _createEvents: function(){
-        var that = this, element = this.element, o = this.options;
+        var that = this, element = this.element;
         var container = element.closest(".tag-input");
         var input = container.find(".input-wrapper");
 
@@ -83,7 +84,7 @@ var TagInput = {
         });
 
         input.on(Metro.events.keyup, function(e){
-            var tag, val = input.val().trim();
+            var val = input.val().trim();
 
             if (val === "") {return ;}
 
@@ -106,7 +107,7 @@ var TagInput = {
     },
 
     _addTag: function(val){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var container = element.closest(".tag-input");
         var input = container.find(".input-wrapper");
         var tag, title, remover;
@@ -119,6 +120,7 @@ var TagInput = {
             return ;
         }
 
+
         tag = $("<span>").addClass("tag").addClass(o.clsTag).insertBefore(input);
         tag.data("value", val);
 
@@ -128,6 +130,25 @@ var TagInput = {
         title.appendTo(tag);
         remover.appendTo(tag);
 
+        if (o.randomColor === true) {
+            var colors = Colors.colors(Colors.PALETTES.METRO), bg, fg, bg_r;
+
+            bg = colors[Utils.random(0, colors.length - 1)];
+            bg_r = Colors.darken(bg, 15);
+            fg = Colors.isDark(bg) ? "#ffffff" : "#000000";
+
+            console.log(bg, bg_r, fg);
+
+            tag.css({
+                backgroundColor: bg,
+                color: fg
+            });
+            remover.css({
+                backgroundColor: bg_r,
+                color: fg
+            });
+        }
+
         this.values.push(val);
         element.val(this.values.join(o.tagSeparator));
 
@@ -136,7 +157,7 @@ var TagInput = {
     },
 
     _delTag: function(tag) {
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var val = tag.data("value");
 
         if (!Utils.exec(o.onBeforeTagAdd, [tag, val, this.values, tag], element[0])) {
@@ -155,8 +176,24 @@ var TagInput = {
         return this.values;
     },
 
+    val: function(v){
+        var that = this, o = this.options;
+
+        if (!Utils.isValue(v)) {
+            return this.tags();
+        }
+
+        this.values = [];
+
+        if (Utils.isValue(values)) {
+            $.each(Utils.strToArray(values, o.tagSeparator), function(){
+                that._addTag(this);
+            })
+        }
+    },
+
     clear: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element;
         var container = element.closest(".tag-input");
 
         this.values = [];
@@ -170,7 +207,7 @@ var TagInput = {
     },
 
     destroy: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element;
         var container = element.closest(".tag-input");
         var input = container.find(".input-wrapper");
 

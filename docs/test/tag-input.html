@@ -15,8 +15,17 @@
 
 <div class="container mt-20">
     <h1>TagInput</h1>
-    <input class="mt-10" type="text" data-role="taginput" value="css, javascript, html, metro 4, metro ui, metro ui css, less, framework">
+
+    <p>Init values</p>
+    <input type="text" data-role="taginput" class="mt-4" value="css, javascript, html, metro 4, metro ui, metro ui css, less, framework">
+
+    <p>Specific tags colors</p>
     <input type="text" data-role="taginput" class="mt-4" data-cls-tag="bg-cyan fg-white" data-cls-tag-remover="bg-darkCyan fg-white">
+
+    <p>Random tag colors</p>
+    <input type="text" data-role="taginput" class="mt-4" data-random-color="true">
+
+    <p>Events</p>
     <input type="text" data-role="taginput" class="mt-4" data-on-tag="$('#output').text(this.value)">
     <div class="debug p-10 mt-4 text-center" id="output"></div>
 </div>

@@ -256,6 +256,15 @@ var Colors = {
         return Object.keys(this[palette]);
     },
 
+    colors: function(palette){
+        var c = [];
+        palette = palette || this.PALETTES.ALL;
+        $.each(this[palette], function(){
+            c.push(this);
+        });
+        return c;
+    },
+
     hex2rgb: function(hex){
         var regex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
         hex = hex.replace( regex, function( m, r, g, b ) {
@@ -564,7 +573,7 @@ var Colors = {
     },
 
     lighten: function(color, amount){
-        var col, type, res, alpha = 1;
+        var col, type, res, alpha = 1, i;
 
         if (amount === undefined) {
             amount = 10;
@@ -596,6 +605,10 @@ var Colors = {
         else if (g < 0) g = 0;
 
         res = "#" + (g | (b << 8) | (r << 16)).toString(16);
+
+        for (i = res.length; i < 7; i++) {
+            res += "0";
+        }
 
         switch (type) {
             case "rgb": return this.toRGB(res);
