@@ -1153,14 +1153,34 @@ var Colors = {
     },
 
     lighten: function(color, amount){
-        var col, type, res, alpha = 1, i;
+        var type, res, alpha = 1, ring = amount > 0;
+
+        var calc = function(_color, _amount){
+            var col = _color.slice(1);
+
+            var num = parseInt(col, 16);
+            var r = (num >> 16) + _amount;
+
+            if (r > 255) r = 255;
+            else if  (r < 0) r = 0;
+
+            var b = ((num >> 8) & 0x00FF) + _amount;
+
+            if (b > 255) b = 255;
+            else if  (b < 0) b = 0;
+
+            var g = (num & 0x0000FF) + _amount;
+
+            if (g > 255) g = 255;
+            else if (g < 0) g = 0;
+
+            res = "#" + (g | (b << 8) | (r << 16)).toString(16);
+            return res;
+        };
 
         if (amount === undefined) {
             amount = 10;
         }
-
-        col = this.toHEX(color);
-        col = col.slice(1);
 
         type = this.is(color);
 
@@ -1168,27 +1188,10 @@ var Colors = {
             alpha = color.a;
         }
 
-        var num = parseInt(col, 16);
-        var r = (num >> 16) + amount;
-
-        if (r > 255) r = 255;
-        else if  (r < 0) r = 0;
-
-        var b = ((num >> 8) & 0x00FF) + amount;
-
-        if (b > 255) b = 255;
-        else if  (b < 0) b = 0;
-
-        var g = (num & 0x0000FF) + amount;
-
-        if (g > 255) g = 255;
-        else if (g < 0) g = 0;
-
-        res = "#" + (g | (b << 8) | (r << 16)).toString(16);
-
-        for (i = res.length; i < 7; i++) {
-            res += "0";
-        }
+        do {
+            res = calc(this.toHEX(color), amount);
+            ring ? amount-- : amount++;
+        } while (res.length < 7);
 
         switch (type) {
             case "rgb": return this.toRGB(res);
@@ -18196,13 +18199,11 @@ var TagInput = {
         remover.appendTo(tag);
 
         if (o.randomColor === true) {
-            var colors = Colors.colors(Colors.PALETTES.METRO), bg, fg, bg_r;
+            var colors = Colors.colors(Colors.PALETTES.ALL), bg, fg, bg_r;
 
             bg = colors[Utils.random(0, colors.length - 1)];
             bg_r = Colors.darken(bg, 15);
             fg = Colors.isDark(bg) ? "#ffffff" : "#000000";
-
-            console.log(bg, bg_r, fg);
 
             tag.css({
                 backgroundColor: bg,

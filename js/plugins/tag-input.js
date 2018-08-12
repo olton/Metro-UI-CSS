@@ -131,13 +131,11 @@ var TagInput = {
         remover.appendTo(tag);
 
         if (o.randomColor === true) {
-            var colors = Colors.colors(Colors.PALETTES.METRO), bg, fg, bg_r;
+            var colors = Colors.colors(Colors.PALETTES.ALL), bg, fg, bg_r;
 
             bg = colors[Utils.random(0, colors.length - 1)];
             bg_r = Colors.darken(bg, 15);
             fg = Colors.isDark(bg) ? "#ffffff" : "#000000";
-
-            console.log(bg, bg_r, fg);
 
             tag.css({
                 backgroundColor: bg,
