@@ -241,11 +241,18 @@ label {
     }
 
     .select-input {
-        display: block;
+        display: flex;
+        flex-flow: row wrap;
+        align-items: center;
         cursor: pointer;
         width: ~"calc(100% - .1rem)";
         height: 34px;
         padding-left: 10px;
+
+        .icon {
+            margin: 0 4px
+        }
+
         &:focus {
             box-shadow: none;
         }
@@ -389,9 +396,6 @@ label {
         .select-input {
             height: auto;
             min-height: 36px;
-            display: flex;
-            flex-flow: row wrap;
-            align-items: center;
         }
     }
 
