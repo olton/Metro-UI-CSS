@@ -1,6 +1,8 @@
 @import (once) "include/vars";
 @import (once) "include/mixins";
 
+@taginput-item-size: 26px;
+
 .tag-input {
     display: flex;
     flex-flow: row wrap;
@@ -25,12 +27,14 @@
     .input-wrapper {
         width: auto;
         border: none!important;
+        height: @taginput-item-size;
+        line-height: @taginput-item-size;
+        font-size: 14px;
+        padding: 0 4px;
         &:focus {
             box-shadow: none!important;
         }
     }
-
-    @selected-item-size: 26px;
 
     .tag {
         display: inline-flex;
@@ -39,8 +43,8 @@
         position: relative;
         margin: 2px;
         padding: 0 0 0 4px;
-        height: @selected-item-size;
-        line-height: @selected-item-size;
+        height: @taginput-item-size;
+        line-height: @taginput-item-size;
         background-color: @light;
         cursor: default;
 
@@ -56,9 +60,9 @@
         .remover {
             display: block;
             position: relative;
-            width: @selected-item-size;
+            width: @taginput-item-size;
             height: 100%;
-            line-height: @selected-item-size - 2;
+            line-height: @taginput-item-size - 2;
             text-align: center;
             cursor: pointer;
             background-color: @lightGray;
