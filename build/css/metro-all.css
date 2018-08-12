@@ -21050,6 +21050,10 @@ textarea {
 .tag-input .input-wrapper {
   width: auto;
   border: none!important;
+  height: 26px;
+  line-height: 26px;
+  font-size: 14px;
+  padding: 0 4px;
 }
 .tag-input .input-wrapper:focus {
   -webkit-box-shadow: none!important;
