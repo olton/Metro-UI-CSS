@@ -12,6 +12,9 @@
 + [x] Select: add attribute `data-cls-drop-list` to add additional class to drop down list.   
 + [x] Select: add attribute `data-append` and minor css fixes
 + [x] Select: add multiple functionality
++ [x] Inputs: refactor inputs.less to specific files `select.less`, `input.less`, `textarea.less`, `input-file.less`
++ [x] Radio: add additional style for radio component. To use it, add attribute `data-style="2"` to your radio component.
++ [x] Checkbox: add additional style for checkbox component. To use it, add attribute `data-style="2"` to your checkbox component.
 
 ### 4.2.17
 + [x] Tabs: change behavior and attribute. For details, read the docs

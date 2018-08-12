@@ -1,0 +1,75 @@
+@import (once) "include/vars";
+@import (once) "include/mixins";
+
+.input {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0;
+
+    &:hover {
+        input {
+            border-color: transparent;
+        }
+    }
+
+    &.focused {
+        box-shadow: 0 0 0 3px rgba(red(@lightGray), green(@lightGray), blue(@lightGray), 0.45);
+    }
+
+    input {
+        border: none!important;
+        order: 1;
+        flex-grow: 1;
+        flex-shrink: 0;
+        flex-basis: 0;
+        height: 34px;
+
+        &:focus {
+            box-shadow: none;
+        }
+        &::-ms-clear {
+            display: none;
+        }
+        &::-ms-reveal {
+            display: none;
+        }
+        &::-webkit-clear-button {
+            display: none;
+        }
+        &::-webkit-inner-spin-button {
+            height: 100%;
+        }
+    }
+
+    .button-group {
+        display: flex;
+        flex-wrap: nowrap;
+    }
+
+    .button {
+        background-color: transparent;
+        color: @dark;
+        height: 34px;
+        &:focus {
+            box-shadow: none;
+        }
+        &:hover {
+            background-color: @light;
+            text-shadow: rgba(0,0,0,.25) 0.1em 0.1em 0.2em;
+        }
+    }
+
+    &.disabled .button-group {
+        button {
+            background-color: @light;
+            color: darken(@light, 10%);
+        }
+    }
+
+    .prepend {order: 1}
+    .append {order: 4}
+    input {order: 2;}
+    .button-group {order: 3;}
+}

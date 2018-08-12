@@ -1,0 +1,40 @@
+@import (once) "include/vars";
+@import (once) "include/mixins";
+
+.file {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0;
+    padding: 0;
+
+    input[type=file] {
+        position: absolute;
+        opacity: 0;
+        width: 0.0625rem;
+        height: 0.0625rem;
+    }
+
+    .caption {
+        .px2rem(line-height, 35px);
+        display: block;
+        padding: 0 .5rem;
+        width: 100%;
+        .text-ellipsis();
+    }
+
+    &.disabled {
+        button {
+            background-color: @light;
+            color: darken(@light, 10%);
+        }
+    }
+
+    .prepend {order: 1}
+    .append {order: 4}
+    .caption {order: 2;}
+    button {
+        order: 3;
+        margin-left: auto;
+        height: 34px;
+    }
+}
