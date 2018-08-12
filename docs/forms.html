@@ -51,7 +51,8 @@
                     <li class="toc-entry">
                         <a href="#_form_controls">Form controls</a>
                         <ul>
-                            <li class="toc-entry"><a href="#_inputs">Inputs</a></li>
+                            <li class="toc-entry"><a href="#_inputs">Input</a></li>
+                            <li class="toc-entry"><a href="#_tag-input">Tag input</a></li>
                             <li class="toc-entry"><a href="#_search">Search</a></li>
                             <li class="toc-entry"><a href="#_select">Select</a></li>
                             <li class="toc-entry"><a href="#_textarea">Textarea</a></li>
@@ -280,6 +281,126 @@
                     </tr>
                     </tbody>
                 </table>
+
+                <h4 id="_tag-input">Tag input</h4>
+                <p class="text-small">New in 4.2.18</p>
+                <p>
+                    To create tag input, add attribute <code>data-role="taginput"</code> to input field.
+                    Enter tag name and press <kbd>Enter</kbd> or <kbd>,</kbd>
+                </p>
+                <div class="example">
+                    <form class="mb-2">
+                        <input type="text" data-role="taginput"  class="mb-1" title="">
+                    </form>
+                </div>
+                <pre><code class="html">
+                    &lt;form&gt;
+                        &lt;input type="text" data-role="taginput"&gt;
+                    &lt;/form&gt;
+                </code></pre>
+
+                <div class="example">
+                    <p>Init values</p>
+                    <input type="text" data-role="taginput" class="mt-4" value="css, javascript, html, metro 4">
+
+                    <p>Specific tags colors</p>
+                    <input type="text" data-role="taginput" class="mt-4" data-cls-tag="bg-cyan fg-white" data-cls-tag-remover="bg-darkCyan fg-white">
+
+                    <p>Random tag colors</p>
+                    <input type="text" data-role="taginput" class="mt-4" data-random-color="true">
+
+                    <p>Events</p>
+                    <input type="text" data-role="taginput" class="mt-4" data-on-tag="$('#output').text(this.value)">
+                    <div class="debug p-10 mt-4 text-center" id="output"></div>
+                </div>
+                <pre><code>
+                    &lt;p&gt;Init values&lt;/p&gt;
+                    &lt;input type="text" data-role="taginput" class="mt-4" value="css, javascript, html, metro 4"&gt;
+
+                    &lt;p&gt;Specific tags colors&lt;/p&gt;
+                    &lt;input type="text" data-role="taginput" class="mt-4" data-cls-tag="bg-cyan fg-white" data-cls-tag-remover="bg-darkCyan fg-white"&gt;
+
+                    &lt;p&gt;Random tag colors&lt;/p&gt;
+                    &lt;input type="text" data-role="taginput" class="mt-4" data-random-color="true"&gt;
+
+                    &lt;p&gt;Events&lt;/p&gt;
+                    &lt;input type="text" data-role="taginput" class="mt-4" data-on-tag="$('#output').text(this.value)"&gt;
+                    &lt;div class="debug p-10 mt-4 text-center" id="output"&gt;&lt;/div&gt;
+                </code></pre>
+
+                <p class="text-bold">Tag input options</p>
+                <table class="table table-border cell-border compact mb-4">
+                    <thead>
+                    <tr>
+                        <td>data-*</td>
+                        <td>default</td>
+                        <td>description</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><code>data-random-color</code></td>
+                        <td>false</td>
+                        <td>Use random colors for tags</td>
+                    </tr>
+                    <tr>
+                        <td><code>data-max-tags</code></td>
+                        <td>0</td>
+                        <td>How many tags can be created. 0 - unlimited</td>
+                    </tr>
+                    <tr>
+                        <td><code>data-tag-separator</code></td>
+                        <td><code>,</code></td>
+                        <td>Tags separator for result and preset</td>
+                    </tr>
+                    <tr>
+                        <td><code>data-cls-tag</code></td>
+                        <td></td>
+                        <td>Additional class for tag</td>
+                    </tr>
+                    <tr>
+                        <td><code>data-cls-tag-title</code></td>
+                        <td></td>
+                        <td>Additional class for tag title</td>
+                    </tr>
+                    <tr>
+                        <td><code>data-cls-tag-remover</code></td>
+                        <td></td>
+                        <td>Additional class for tag remover</td>
+                    </tr>
+                    <tr>
+                        <td><code>data-on-before-tag-add</code></td>
+                        <td></td>
+                        <td>Event</td>
+                    </tr>
+                    <tr>
+                        <td><code>data-on-tag-add</code></td>
+                        <td></td>
+                        <td>Event</td>
+                    </tr>
+                    <tr>
+                        <td><code>data-on-before-tag-remove</code></td>
+                        <td></td>
+                        <td>Event</td>
+                    </tr>
+                    <tr>
+                        <td><code>data-on-tag-remove</code></td>
+                        <td></td>
+                        <td>Event</td>
+                    </tr>
+                    <tr>
+                        <td><code>data-on-tag</code></td>
+                        <td></td>
+                        <td>Event</td>
+                    </tr>
+                    <tr>
+                        <td><code>data-on-tag-input-create</code></td>
+                        <td>Metro.noop</td>
+                        <td>Event triggered when control created</td>
+                    </tr>
+                    </tbody>
+                </table>
+
 
                 <h4 id="_search">Search</h4>
                 <p>
