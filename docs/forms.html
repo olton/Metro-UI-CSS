@@ -306,6 +306,7 @@
                     Metro 4 uses a special wrapper to display the drop-down select. When you use Metro 4 select wrapper, you can styling every option with css classes.
                     Use attribute <code>data-role="select"</code> to activate wrapper.
                 </p>
+                <h6 class="mt-4">Single</h6>
                 <div class="example pb-0">
                     <form  class="mb-2">
                         <div class="row">
@@ -360,10 +361,152 @@
                 <pre class=""><code>
                     &lt;select data-role="select"&gt;
                         &lt;option class="fg-cyan"&gt;One&lt;/option&gt;
-                        &lt;option class="text-bold fg-red"&gt;Two&lt;/option&gt;
-                        &lt;option selected class="fg-green"&gt;Three&lt;/option&gt;
+                        &lt;option selected class="text-bold fg-red"&gt;Two&lt;/option&gt;
+                        &lt;option class="fg-green"&gt;Three&lt;/option&gt;
+                    &lt;/select&gt;
+
+                    &lt;select data-role="select"&gt;
+                        &lt;optgroup label="Virtual hosting"&gt;
+                            &lt;option value="mini"&gt;Mini&lt;/option&gt;
+                            &lt;option value="site"&gt;Site&lt;/option&gt;
+                            &lt;option value="portal"&gt;Portal&lt;/option&gt;
+                        &lt;/optgroup&gt;
+                        &lt;optgroup label="Virtual servers"&gt;
+                            &lt;option value="evps0"&gt;eVPS-TEST (30 дней)&lt;/option&gt;
+                            &lt;option value="evps1" selected="selected"&gt;eVPS-1&lt;/option&gt;
+                            &lt;option value="evps2"&gt;eVPS-2&lt;/option&gt;
+                            &lt;option value="evps4"&gt;eVPS-4&lt;/option&gt;
+                            &lt;option value="evps8"&gt;eVPS-8&lt;/option&gt;
+                            &lt;option value="evps16"&gt;eVPS-16&lt;/option&gt;
+                            &lt;option value="evps32"&gt;eVPS-32&lt;/option&gt;
+                            &lt;option value="evps64"&gt;eVPS-64&lt;/option&gt;
+                            &lt;option value="evps128"&gt;eVPS-128&lt;/option&gt;
+                        &lt;/optgroup&gt;
                     &lt;/select&gt;
                 </code></pre>
+
+                <h6 class="mt-4">Multiple</h6>
+                <p class="text-small">New in 4.2.18</p>
+                <p>
+                    Metro 4 also support select with <code>multiple</code> option. Each selected option in multiple displayed as tag.
+                </p>
+                <div class="example">
+                    <select data-role="select" title="" multiple>
+                        <optgroup label="Physical servers">
+                            <option value="dedicated_corei3_hp">Core i3 (hp)</option>
+                            <option value="dedicated_pentium_hp">Pentium (hp)</option>
+                            <option value="dedicated_smart_corei3_hp">Smart Core i3 (hp)</option>
+                            <option value="dedicated_smart_pentium_hp">Smart Pentium (hp)</option>
+                            <option value="dedicated_smart_xeon_hp">Smart Xeon (hp)</option>
+                            <option value="dedicated_xeon_hp">Xeon (hp)</option>
+                            <option value="dedicated_xeon">Xeon</option>
+                            <option value="dedicated_xeon_sata">Xeon SATA</option>
+                            <option value="dedicated_dual_xeon">Dual Xeon</option>
+                            <option value="dedicated_dual_xeon_sata">Dual Xeon SATA</option>
+                            <option value="dedicated_smart_xeon">Smart Xeon</option>
+                            <option value="dedicated_smart_xeon_sata">Smart Xeon SATA</option>
+                            <option value="dedicated_smart_dual_xeon">Smart Dual Xeon</option>
+                            <option value="dedicated_smart_dual_xeon_sata">Smart Dual Xeon SATA</option>
+                            <option value="colo_new_2u">Colocation 2U</option>
+                            <option value="colo_new_4u">Colocation 4U</option>
+                        </optgroup>
+                        <optgroup label="Virtual hosting">
+                            <option value="mini">Mini</option>
+                            <option value="site">Site</option>
+                            <option value="portal">Portal</option>
+                        </optgroup>
+                        <optgroup label="Virtual servers">
+                            <option value="evps0">eVPS-TEST (30 дней)</option>
+                            <option value="evps1" selected="selected">eVPS-1</option>
+                            <option value="evps2">eVPS-2</option>
+                            <option value="evps4">eVPS-4</option>
+                            <option value="evps8">eVPS-8</option>
+                            <option value="evps16">eVPS-16</option>
+                            <option value="evps32">eVPS-32</option>
+                            <option value="evps64">eVPS-64</option>
+                            <option value="evps128">eVPS-128</option>
+                        </optgroup>
+                    </select>
+                </div>
+                <pre><code>
+                    &lt;select data-role="select" title="" multiple&gt;
+                        &lt;optgroup label="Physical servers"&gt;
+                            &lt;option value="dedicated_corei3_hp"&gt;Core i3 (hp)&lt;/option&gt;
+                            &lt;option value="dedicated_pentium_hp"&gt;Pentium (hp)&lt;/option&gt;
+                            &lt;option value="dedicated_smart_corei3_hp"&gt;Smart Core i3 (hp)&lt;/option&gt;
+                            &lt;option value="dedicated_smart_pentium_hp"&gt;Smart Pentium (hp)&lt;/option&gt;
+                            &lt;option value="dedicated_smart_xeon_hp"&gt;Smart Xeon (hp)&lt;/option&gt;
+                            &lt;option value="dedicated_xeon_hp"&gt;Xeon (hp)&lt;/option&gt;
+                            &lt;option value="dedicated_xeon"&gt;Xeon&lt;/option&gt;
+                            &lt;option value="dedicated_xeon_sata"&gt;Xeon SATA&lt;/option&gt;
+                            &lt;option value="dedicated_dual_xeon"&gt;Dual Xeon&lt;/option&gt;
+                            &lt;option value="dedicated_dual_xeon_sata"&gt;Dual Xeon SATA&lt;/option&gt;
+                            &lt;option value="dedicated_smart_xeon"&gt;Smart Xeon&lt;/option&gt;
+                            &lt;option value="dedicated_smart_xeon_sata"&gt;Smart Xeon SATA&lt;/option&gt;
+                            &lt;option value="dedicated_smart_dual_xeon"&gt;Smart Dual Xeon&lt;/option&gt;
+                            &lt;option value="dedicated_smart_dual_xeon_sata"&gt;Smart Dual Xeon SATA&lt;/option&gt;
+                            &lt;option value="colo_new_2u"&gt;Colocation 2U&lt;/option&gt;
+                            &lt;option value="colo_new_4u"&gt;Colocation 4U&lt;/option&gt;
+                        &lt;/optgroup&gt;
+                        &lt;optgroup label="Virtual hosting"&gt;
+                            &lt;option value="mini"&gt;Mini&lt;/option&gt;
+                            &lt;option value="site"&gt;Site&lt;/option&gt;
+                            &lt;option value="portal"&gt;Portal&lt;/option&gt;
+                        &lt;/optgroup&gt;
+                        &lt;optgroup label="Virtual servers"&gt;
+                            &lt;option value="evps0"&gt;eVPS-TEST (30 дней)&lt;/option&gt;
+                            &lt;option value="evps1" selected="selected"&gt;eVPS-1&lt;/option&gt;
+                            &lt;option value="evps2"&gt;eVPS-2&lt;/option&gt;
+                            &lt;option value="evps4"&gt;eVPS-4&lt;/option&gt;
+                            &lt;option value="evps8"&gt;eVPS-8&lt;/option&gt;
+                            &lt;option value="evps16"&gt;eVPS-16&lt;/option&gt;
+                            &lt;option value="evps32"&gt;eVPS-32&lt;/option&gt;
+                            &lt;option value="evps64"&gt;eVPS-64&lt;/option&gt;
+                            &lt;option value="evps128"&gt;eVPS-128&lt;/option&gt;
+                        &lt;/optgroup&gt;
+                    &lt;/select&gt;
+                </code></pre>
+
+                <h6 class="mt-4">Option templates</h6>
+                <p class="text-small">New in 4.2.18</p>
+                <p>
+                    You can use attribute <code>data-template</code> for option for define html option display.
+                    Example: you need to add <code>icon</code> to option.
+                    <code>$1</code> in template, used for replace by option text.
+                </p>
+                <div class="example">
+                    <select data-role="select" title="">
+                        <optgroup label="Physical servers">
+                            <option value="dedicated_corei3_hp" data-template="<span class='mif-server icon'></span> $1">Core i3 (hp)</option>
+                            <option value="dedicated_pentium_hp" data-template="<span class='mif-server icon'></span> $1">Pentium (hp)</option>
+                            <option value="dedicated_smart_corei3_hp" data-template="<span class='mif-server icon'></span> $1">Smart Core i3 (hp)</option>
+                            <option value="dedicated_smart_pentium_hp" data-template="<span class='mif-server icon'></span> $1">Smart Pentium (hp)</option>
+                        </optgroup>
+                        <optgroup label="Virtual servers">
+                            <option value="evps0" data-template="<span class='mif-insert-template icon'></span> $1">eVPS-TEST (30 дней)</option>
+                            <option value="evps1" selected="selected" data-template="<span class='mif-insert-template icon'></span> $1">eVPS-1</option>
+                            <option value="evps2" data-template="<span class='mif-insert-template icon'></span> $1">eVPS-2</option>
+                            <option value="evps4" data-template="<span class='mif-insert-template icon'></span> $1">eVPS-4</option>
+                        </optgroup>
+                    </select>
+                </div>
+                <pre><code>
+                    &lt;select data-role="select" title=""&gt;
+                        &lt;optgroup label="Physical servers"&gt;
+                            &lt;option value="11" data-template="&lt;span class='mif-server icon'&gt;&lt;/span&gt; $1"&gt;Core i3 (hp)&lt;/option&gt;
+                            &lt;option value="12" data-template="&lt;span class='mif-server icon'&gt;&lt;/span&gt; $1"&gt;Pentium (hp)&lt;/option&gt;
+                            &lt;option value="13" data-template="&lt;span class='mif-server icon'&gt;&lt;/span&gt; $1"&gt;Smart Core i3 (hp)&lt;/option&gt;
+                            &lt;option value="14" data-template="&lt;span class='mif-server icon'&gt;&lt;/span&gt; $1"&gt;Smart Pentium (hp)&lt;/option&gt;
+                        &lt;/optgroup&gt;
+                        &lt;optgroup label="Virtual servers"&gt;
+                            &lt;option value="21" data-template="&lt;span class='mif-insert-template icon'&gt;&lt;/span&gt; $1"&gt;eVPS-TEST (30 дней)&lt;/option&gt;
+                            &lt;option value="22" selected="selected" data-template="&lt;span class='mif-insert-template icon'&gt;&lt;/span&gt; $1"&gt;eVPS-1&lt;/option&gt;
+                            &lt;option value="23" data-template="&lt;span class='mif-insert-template icon'&gt;&lt;/span&gt; $1"&gt;eVPS-2&lt;/option&gt;
+                            &lt;option value="24" data-template="&lt;span class='mif-insert-template icon'&gt;&lt;/span&gt; $1"&gt;eVPS-4&lt;/option&gt;
+                        &lt;/optgroup&gt;
+                    &lt;/select&gt;
+                </code></pre>
+
                 <p>
                     Additional functionality for select is implemented through the plugin <code>select</code>.
                     To activate plugin and additional options add the attribute <code>data-role="select"</code> to element.

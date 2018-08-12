@@ -20638,11 +20638,23 @@ label {
   display: none;
 }
 .select .select-input {
-  display: block;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   cursor: pointer;
   width: calc(100% - .1rem);
   height: 34px;
   padding-left: 10px;
+}
+.select .select-input .icon {
+  margin: 0 4px;
 }
 .select .select-input:focus {
   -webkit-box-shadow: none;
@@ -20770,16 +20782,6 @@ label {
 .select.multiple .select-input {
   height: auto;
   min-height: 36px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-flow: row wrap;
-          flex-flow: row wrap;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
 }
 .select .prepend {
   -webkit-box-ordinal-group: 2;
