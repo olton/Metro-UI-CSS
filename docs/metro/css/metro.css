@@ -16162,7 +16162,7 @@ pre code {
 }
 a {
   position: relative;
-  color: #007bff;
+  color: #0366d6;
   text-decoration: none;
   background-color: transparent;
   -webkit-text-decoration-skip: objects;
@@ -19064,7 +19064,7 @@ aside::after {
 }
 .button.link {
   background-color: transparent;
-  color: #007bff;
+  color: #0366d6;
 }
 .button.link:hover {
   background-color: transparent;
@@ -20032,7 +20032,8 @@ textarea,
 .file,
 .input,
 .textarea,
-.select {
+.select,
+.tag-input {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
@@ -20068,7 +20069,8 @@ textarea:focus,
 .file:focus,
 .input:focus,
 .textarea:focus,
-.select:focus {
+.select:focus,
+.tag-input:focus {
   outline: none;
 }
 input[type=text]:hover,
@@ -20089,7 +20091,8 @@ textarea:hover,
 .file:hover,
 .input:hover,
 .textarea:hover,
-.select:hover {
+.select:hover,
+.tag-input:hover {
   border-color: #c0c0c0;
 }
 input[type=text] .input-clear-button,
@@ -20111,6 +20114,7 @@ textarea .input-clear-button,
 .input .input-clear-button,
 .textarea .input-clear-button,
 .select .input-clear-button,
+.tag-input .input-clear-button,
 input[type=text] .input-reveal-button,
 input[type=password] .input-reveal-button,
 input[type=tel] .input-reveal-button,
@@ -20129,7 +20133,8 @@ textarea .input-reveal-button,
 .file .input-reveal-button,
 .input .input-reveal-button,
 .textarea .input-reveal-button,
-.select .input-reveal-button {
+.select .input-reveal-button,
+.tag-input .input-reveal-button {
   visibility: hidden;
 }
 input[type=text] .input-clear-button:active,
@@ -20151,6 +20156,7 @@ textarea .input-clear-button:active,
 .input .input-clear-button:active,
 .textarea .input-clear-button:active,
 .select .input-clear-button:active,
+.tag-input .input-clear-button:active,
 input[type=text] .input-reveal-button:active,
 input[type=password] .input-reveal-button:active,
 input[type=tel] .input-reveal-button:active,
@@ -20170,6 +20176,7 @@ textarea .input-reveal-button:active,
 .input .input-reveal-button:active,
 .textarea .input-reveal-button:active,
 .select .input-reveal-button:active,
+.tag-input .input-reveal-button:active,
 input[type=text] .input-clear-button:focus,
 input[type=password] .input-clear-button:focus,
 input[type=tel] .input-clear-button:focus,
@@ -20189,6 +20196,7 @@ textarea .input-clear-button:focus,
 .input .input-clear-button:focus,
 .textarea .input-clear-button:focus,
 .select .input-clear-button:focus,
+.tag-input .input-clear-button:focus,
 input[type=text] .input-reveal-button:focus,
 input[type=password] .input-reveal-button:focus,
 input[type=tel] .input-reveal-button:focus,
@@ -20207,7 +20215,8 @@ textarea .input-reveal-button:focus,
 .file .input-reveal-button:focus,
 .input .input-reveal-button:focus,
 .textarea .input-reveal-button:focus,
-.select .input-reveal-button:focus {
+.select .input-reveal-button:focus,
+.tag-input .input-reveal-button:focus {
   visibility: visible;
 }
 input[type=text]:focus,
@@ -20229,6 +20238,7 @@ textarea:focus,
 .input:focus,
 .textarea:focus,
 .select:focus,
+.tag-input:focus,
 input[type=text].focused,
 input[type=password].focused,
 input[type=tel].focused,
@@ -20247,7 +20257,8 @@ textarea.focused,
 .file.focused,
 .input.focused,
 .textarea.focused,
-.select.focused {
+.select.focused,
+.tag-input.focused {
   -webkit-box-shadow: 0 0 0 3px rgba(228, 228, 228, 0.45);
           box-shadow: 0 0 0 3px rgba(228, 228, 228, 0.45);
 }
@@ -20270,6 +20281,7 @@ textarea:focus .input-clear-button,
 .input:focus .input-clear-button,
 .textarea:focus .input-clear-button,
 .select:focus .input-clear-button,
+.tag-input:focus .input-clear-button,
 input[type=text].focused .input-clear-button,
 input[type=password].focused .input-clear-button,
 input[type=tel].focused .input-clear-button,
@@ -20289,6 +20301,7 @@ textarea.focused .input-clear-button,
 .input.focused .input-clear-button,
 .textarea.focused .input-clear-button,
 .select.focused .input-clear-button,
+.tag-input.focused .input-clear-button,
 input[type=text]:hover .input-clear-button,
 input[type=password]:hover .input-clear-button,
 input[type=tel]:hover .input-clear-button,
@@ -20308,6 +20321,7 @@ textarea:hover .input-clear-button,
 .input:hover .input-clear-button,
 .textarea:hover .input-clear-button,
 .select:hover .input-clear-button,
+.tag-input:hover .input-clear-button,
 input[type=text]:focus .input-reveal-button,
 input[type=password]:focus .input-reveal-button,
 input[type=tel]:focus .input-reveal-button,
@@ -20327,6 +20341,7 @@ textarea:focus .input-reveal-button,
 .input:focus .input-reveal-button,
 .textarea:focus .input-reveal-button,
 .select:focus .input-reveal-button,
+.tag-input:focus .input-reveal-button,
 input[type=text].focused .input-reveal-button,
 input[type=password].focused .input-reveal-button,
 input[type=tel].focused .input-reveal-button,
@@ -20346,6 +20361,7 @@ textarea.focused .input-reveal-button,
 .input.focused .input-reveal-button,
 .textarea.focused .input-reveal-button,
 .select.focused .input-reveal-button,
+.tag-input.focused .input-reveal-button,
 input[type=text]:hover .input-reveal-button,
 input[type=password]:hover .input-reveal-button,
 input[type=tel]:hover .input-reveal-button,
@@ -20364,7 +20380,8 @@ textarea:hover .input-reveal-button,
 .file:hover .input-reveal-button,
 .input:hover .input-reveal-button,
 .textarea:hover .input-reveal-button,
-.select:hover .input-reveal-button {
+.select:hover .input-reveal-button,
+.tag-input:hover .input-reveal-button {
   visibility: visible;
 }
 input[type=text]:disabled,
@@ -20386,6 +20403,7 @@ textarea:disabled,
 .input:disabled,
 .textarea:disabled,
 .select:disabled,
+.tag-input:disabled,
 input[type=text].disabled,
 input[type=password].disabled,
 input[type=tel].disabled,
@@ -20404,7 +20422,8 @@ textarea.disabled,
 .file.disabled,
 .input.disabled,
 .textarea.disabled,
-.select.disabled {
+.select.disabled,
+.tag-input.disabled {
   pointer-events: none;
   border-color: #ebebeb;
   background-color: #e9e9e9;
@@ -20998,6 +21017,81 @@ textarea {
   -webkit-box-ordinal-group: 4;
       -ms-flex-order: 3;
           order: 3;
+}
+.tag-input {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  padding: 0 2px;
+  cursor: text;
+  position: relative;
+  height: auto;
+  min-height: 36px;
+}
+.tag-input .original-input {
+  width: 1px;
+  height: 1px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+.tag-input .input-wrapper {
+  width: auto;
+  border: none!important;
+}
+.tag-input .input-wrapper:focus {
+  -webkit-box-shadow: none!important;
+          box-shadow: none!important;
+}
+.tag-input .tag {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: start;
+  position: relative;
+  margin: 2px;
+  padding: 0 0 0 4px;
+  height: 26px;
+  line-height: 26px;
+  background-color: #f8f8f8;
+  cursor: default;
+}
+.tag-input .tag .title {
+  display: block;
+  position: relative;
+  max-width: 120px;
+  font-size: 14px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin-right: 4px;
+}
+.tag-input .tag .remover {
+  display: block;
+  position: relative;
+  width: 26px;
+  height: 100%;
+  line-height: 24px;
+  text-align: center;
+  cursor: pointer;
+  background-color: #e4e4e4;
 }
 .checkbox {
   display: -webkit-inline-box;
