@@ -20638,9 +20638,9 @@ label {
   display: none;
 }
 .select .select-input {
+  display: block;
   cursor: pointer;
-  width: calc(100% - .75rem);
-  border: none!important;
+  width: calc(100% - .1rem);
   height: 34px;
   padding-left: 10px;
 }
@@ -20734,7 +20734,7 @@ label {
       -ms-flex-align: start;
           align-items: start;
   position: relative;
-  margin: 4px 2px;
+  margin: 2px;
   padding: 0 0 0 4px;
   height: 26px;
   line-height: 26px;
@@ -20754,8 +20754,8 @@ label {
 .select .selected-item .remover {
   display: block;
   position: relative;
-  width: 24px;
-  height: 24px;
+  width: 25px;
+  height: 25px;
   line-height: 24px;
   text-align: center;
   cursor: pointer;
@@ -20770,6 +20770,13 @@ label {
 .select.multiple .select-input {
   height: auto;
   min-height: 36px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
 }
 .select .prepend {
   -webkit-box-ordinal-group: 2;

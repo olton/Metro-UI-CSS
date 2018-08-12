@@ -241,9 +241,9 @@ label {
     }
 
     .select-input {
+        display: block;
         cursor: pointer;
-        width: ~"calc(100% - .75rem)";
-        border: none!important;
+        width: ~"calc(100% - .1rem)";
         height: 34px;
         padding-left: 10px;
         &:focus {
@@ -353,7 +353,7 @@ label {
         justify-content: space-between;
         align-items: start;
         position: relative;
-        margin: 4px 2px;
+        margin: 2px;
         padding: 0 0 0 4px;
         height: @selected-item-size;
         line-height: @selected-item-size;
@@ -372,8 +372,8 @@ label {
         .remover {
             display: block;
             position: relative;
-            width: @selected-item-size - 2;
-            height: @selected-item-size - 2;
+            width: @selected-item-size - 1;
+            height: @selected-item-size - 1;
             line-height: @selected-item-size - 2;
             text-align: center;
             cursor: pointer;
@@ -389,6 +389,8 @@ label {
         .select-input {
             height: auto;
             min-height: 36px;
+            display: flex;
+            flex-flow: row wrap;
         }
     }
 
