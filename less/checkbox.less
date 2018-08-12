@@ -108,5 +108,41 @@
             }
         }
     }
+
+    &.style2 {
+        input[type=checkbox]:checked ~ .check {
+            border-color: @dark;
+            background-color: @white;
+        }
+
+        .check {
+            border-color: @darkGray;
+            &::before {
+                border-color: @dark;
+            }
+        }
+
+        input[type=checkbox]:disabled ~ .check {
+            border-color: @disabledBorder;
+            background-color: @white;
+            &::before {
+                border-color: @disabledBorder;
+            }
+        }
+
+        input[data-indeterminate=true] ~ .check {
+            border-color: @dark;
+            background-color: @white;
+
+            &::before {
+                background-color: @dark;
+                border: 2px solid @dark;
+                width: 8px;
+                height: 8px;
+                margin-left: -4px;
+                margin-top: -4px;
+            }
+        }
+    }
 }
 

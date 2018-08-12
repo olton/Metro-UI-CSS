@@ -89,5 +89,33 @@
             }
         }
     }
+
+    &.style2 {
+        input[type=radio]:checked ~ .check {
+            border-color: @dark;
+            background-color: @white;
+        }
+
+        .check {
+            border-color: @darkGray;
+            &::before {
+                background-color: @dark;
+                border: 2px solid @dark;
+                width: 8px;
+                height: 8px;
+                margin-left: -4px;
+                margin-top: -4px;
+            }
+        }
+
+        input[type=radio]:disabled ~ .check {
+            border-color: @disabledBorder;
+            background-color: @white;
+            &::before {
+                background-color: @disabledBorder;
+                border-color: @disabledBorder;
+            }
+        }
+    }
 }
 

@@ -680,12 +680,21 @@
                 </div>
                 <h6 class="mt-2">Metro 4 checkboxes</h6>
                 <div class="example mb-2">
+                    <p class="text-bold">Style 1</p>
                     <form>
                         <input type="checkbox" data-role="checkbox" data-caption="Unchecked" title="">
                         <input type="checkbox" data-role="checkbox" data-caption="Checked" checked title="">
                         <input type="checkbox" data-role="checkbox" data-caption="Indeterminate" data-indeterminate="true" title="">
                         <input type="checkbox" data-role="checkbox" data-caption="Disabled" disabled title="">
                         <input type="checkbox" data-role="checkbox" data-caption="Disabled checked" disabled checked title="">
+                    </form>
+                    <p class="text-bold">Style 2 <span class="text-small">New in 4.2.18</span></p>
+                    <form>
+                        <input type="checkbox" data-role="checkbox" data-caption="Unchecked" title="" data-style="2">
+                        <input type="checkbox" data-role="checkbox" data-caption="Checked" checked title="" data-style="2">
+                        <input type="checkbox" data-role="checkbox" data-caption="Indeterminate" data-indeterminate="true" title="" data-style="2">
+                        <input type="checkbox" data-role="checkbox" data-caption="Disabled" disabled title="" data-style="2">
+                        <input type="checkbox" data-role="checkbox" data-caption="Disabled checked" disabled checked title="" data-style="2">
                     </form>
                 </div>
                 <pre class=""><code>
@@ -761,20 +770,30 @@
                 <p>
                     Default radio is not styled, but you can add attribute <code>data-role="radio"</code> to element to styling.
                 </p>
-                <h6>Default radio</h6>
+                <h6 class="mt-4">Default radio</h6>
                 <div class="example">
-                    <input type="radio" title="">
-                    <input type="radio" checked title="">
-                    <input type="radio" disabled title="">
-                    <input type="radio" disabled checked title="">
+                    <form>
+                        <input type="radio" name="r1" title="">
+                        <input type="radio" name="r1" checked title="">
+                        <input type="radio" name="r2" disabled title="">
+                        <input type="radio" name="r2" disabled checked title="">
+                    </form>
                 </div>
                 <h6 class="mt-2">Styled radio</h6>
                 <div class="example mb-2">
+                    <p class="text-bold">Style 1</p>
                     <form>
                         <input type="radio" data-role="radio" data-caption="Check" name="r1" title="">
                         <input type="radio" data-role="radio" data-caption="Check" name="r1" checked title="">
                         <input type="radio" data-role="radio" data-caption="Check" name="r2" disabled title="">
                         <input type="radio" data-role="radio" data-caption="Check" name="r2" checked disabled title="">
+                    </form>
+                    <p class="text-bold">Style 2 <span class="text-small">New in 4.2.18</span></p>
+                    <form>
+                        <input type="radio" data-role="radio" data-caption="Check" name="r1" title="" data-style="2">
+                        <input type="radio" data-role="radio" data-caption="Check" name="r1" checked title="" data-style="2">
+                        <input type="radio" data-role="radio" data-caption="Check" name="r2" disabled title="" data-style="2">
+                        <input type="radio" data-role="radio" data-caption="Check" name="r2" checked disabled title="" data-style="2">
                     </form>
                 </div>
                 <pre class=""><code>
@@ -782,6 +801,8 @@
                     &lt;input type="radio" data-role="radio" data-caption="Check" name="r1" checked&gt;
                     &lt;input type="radio" data-role="radio" data-caption="Check" name="r2" disabled&gt;
                     &lt;input type="radio" data-role="radio" data-caption="Check" name="r2" checked disabled&gt;
+
+                    &lt;input type="radio" data-role="radio" data-caption="Check" name="r1" data-style="2"&gt;
                 </code></pre>
                 <p>
                     Additional functionality for input is implemented through the plugin <code>radio</code>.

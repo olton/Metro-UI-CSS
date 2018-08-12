@@ -6938,6 +6938,7 @@ var Checkbox = {
         return this;
     },
     options: {
+        style: 1,
         caption: "",
         indeterminate: false,
         captionPosition: "right",
@@ -6966,7 +6967,7 @@ var Checkbox = {
         var that = this, element = this.element, o = this.options;
         var prev = element.prev();
         var parent = element.parent();
-        var checkbox = $("<label>").addClass("checkbox " + element[0].className);
+        var checkbox = $("<label>").addClass("checkbox " + element[0].className).addClass(o.style === 2 ? "style2" : "");
         var check = $("<span>").addClass("check");
         var caption = $("<span>").addClass("caption").html(o.caption);
 
@@ -13099,6 +13100,7 @@ var Radio = {
         return this;
     },
     options: {
+        style: 1,
         caption: "",
         captionPosition: "right",
         disabled: false,
@@ -13126,7 +13128,7 @@ var Radio = {
         var that = this, element = this.element, o = this.options;
         var prev = element.prev();
         var parent = element.parent();
-        var radio = $("<label>").addClass("radio " + element[0].className);
+        var radio = $("<label>").addClass("radio " + element[0].className).addClass(o.style === 2 ? "style2" : "");
         var check = $("<span>").addClass("check");
         var caption = $("<span>").addClass("caption").html(o.caption);
 
