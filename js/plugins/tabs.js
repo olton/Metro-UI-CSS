@@ -189,6 +189,41 @@ var Tabs = {
         Utils.exec(o.onTab, [tab, element]);
     },
 
+    next: function(){
+        var that = this, element = this.element, o = this.options;
+        var next, active_tab = element.find("li.active");
+
+        next = active_tab.next("li");
+        if (next.length > 0) {
+            this._open(next);
+        }
+    },
+
+    prev: function(){
+        var that = this, element = this.element, o = this.options;
+        var next, active_tab = element.find("li.active");
+
+        next = active_tab.prev("li");
+        if (next.length > 0) {
+            this._open(next);
+        }
+    },
+
+    open: function(tab){
+        var that = this, element = this.element, o = this.options;
+        var tabs = element.find("li");
+
+        if (!Utils.isValue(tab)) {
+            tab = 1;
+        }
+
+        if (Utils.isInt(tab)) {
+            if (Utils.isValue(tabs[tab-1])) this._open($(tabs[tab-1]));
+        } else {
+            this._open($(tab));
+        }
+    },
+
     changeAttribute: function(attributeName){
 
     }
