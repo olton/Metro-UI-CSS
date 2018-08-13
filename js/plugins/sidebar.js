@@ -204,5 +204,12 @@ Metro['sidebar'] = {
             return ;
         }
         $(el).data("sidebar").toggle();
+    },
+
+    isOpen: function(el){
+        if (!this.isSidebar(el)) {
+            return ;
+        }
+        return $(el).data("sidebar").isOpen();
     }
 };

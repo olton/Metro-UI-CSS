@@ -1,6 +1,8 @@
 ### 4.2.19
 + [x] Tabs: add method `open(tab_num | tab_el)`. Tab number counting from 1. Tab element - `li` HTML element or `$("li")` jquery wrapper
 + [x] Tabs: add methods `next()`, `prev()`
++ [x] Popover: add attribute `data-popover-timeout`. Timeout before popover show.
++ [x] Sidebar: add method `isOpen` to object `Metro.sidebar`
 
 ### 4.2.18
 + [x] Table: fix work attributes `showTableInfo`, `showPagination` when wrappers defined

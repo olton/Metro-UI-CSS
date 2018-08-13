@@ -346,10 +346,18 @@ body {
 .neb-commercial {
   z-index: 2;
 }
-.neb::before {
+.neb-hero.neb::before,
+.neb-white.neb::before,
+.neb-light.neb::before,
+.neb-feature.neb::before,
+.neb-commercial.neb::before {
   display: none!important;
 }
-.neb::after {
+.neb-hero.neb::after,
+.neb-white.neb::after,
+.neb-light.neb::after,
+.neb-feature.neb::after,
+.neb-commercial.neb::after {
   display: block;
   content: "";
   width: 0;
