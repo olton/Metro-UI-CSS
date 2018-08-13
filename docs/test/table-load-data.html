@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <link href="../metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
+
+    <title>Table test page - Metro 4 :: Popular HTML, CSS and JS library</title>
+</head>
+<body>
+<div class="container">
+    <h1 class="text-center">Metro 4 Table component</h1>
+    <h3 class="text-center">Table load data</h3>
+
+    <div class="text-center">
+        <button class="button alert">Load</button>
+    </div>
+
+    <table class="table subcompact fixed-layout striped table-border mt-4" id="t2"
+           data-role="table"
+           data-cls-component="mt-4"
+           data-rows="10"
+           data-pagination="true"
+           data-show-all-pages="false"
+           data-rownum="false"
+           data-check="true"
+           data-check-col-index="0"
+           data-check-type="checkbox"
+    ></table>
+</div>
+
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script src="../metro/js/metro.js?ver=@@b-version"></script>
+<script>
+    (function(){
+        $(".button").on(Metro.events.click, function(){
+            var dataSource = "https://raw.githubusercontent.com/olton/Metro-UI-CSS/master/docs/test/table.json";
+            var table = $("#t2").data("table");
+
+            table.loadData(dataSource, true);
+        });
+    })()
+</script>
+</body>
+</html>
