@@ -19,6 +19,7 @@ var Popover = {
     options: {
         popoverText: "",
         popoverHide: 3000,
+        popoverTimeout: 100,
         popoverOffset: 10,
         popoverTrigger: Metro.popoverEvents.HOVER,
         popoverPosition: Metro.position.TOP,
@@ -63,12 +64,14 @@ var Popover = {
             if (that.popover !== null || that.popovered === true) {
                 return ;
             }
-            that.createPopover();
-            if (o.popoverHide > 0) {
-                setTimeout(function(){
-                    that.removePopover();
-                }, o.popoverHide);
-            }
+            setTimeout(function(){
+                that.createPopover();
+                if (o.popoverHide > 0) {
+                    setTimeout(function(){
+                        that.removePopover();
+                    }, o.popoverHide);
+                }
+            }, o.popoverTimeout);
         });
 
         if (o.hideOnLeave === true && !Utils.isTouchDevice()) {
@@ -173,12 +176,14 @@ var Popover = {
             return ;
         }
 
-        this.createPopover();
-        if (o.popoverHide > 0) {
-            setTimeout(function(){
-                that.removePopover();
-            }, o.popoverHide);
-        }
+        setTimeout(function(){
+            that.createPopover();
+            if (o.popoverHide > 0) {
+                setTimeout(function(){
+                    that.removePopover();
+                }, o.popoverHide);
+            }
+        }, o.popoverTimeout);
     },
 
     hide: function(){
