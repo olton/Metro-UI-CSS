@@ -1,3 +1,7 @@
+### 4.2.19
++ [x] Tabs: add method `open(tab_num | tab_el)`. Tab number counting from 1. Tab element - `li` HTML element or `$("li")` jquery wrapper
++ [x] Tabs: add methods `next()`, `prev()`
+
 ### 4.2.18
 + [x] Table: fix work attributes `showTableInfo`, `showPagination` when wrappers defined
 + [x] Table: fix pagination behavior when no items for table

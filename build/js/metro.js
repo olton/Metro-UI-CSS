@@ -1,5 +1,5 @@
 /*
- * Metro 4 Components Library v4.2.18 build 695 (https://metroui.org.ua)
+ * Metro 4 Components Library v4.2.19 build @@build (https://metroui.org.ua)
  * Copyright 2018 Sergey Pimenov
  * Licensed under MIT
  */
@@ -80,8 +80,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.18",
-    versionFull: "4.2.18.695 ",
+    version: "@@version",
+    versionFull: "@@version.@@build @@status",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -18056,6 +18056,41 @@ var Tabs = {
         expandTitle.html(tab.find("a").html());
 
         Utils.exec(o.onTab, [tab, element]);
+    },
+
+    next: function(){
+        var that = this, element = this.element, o = this.options;
+        var next, active_tab = element.find("li.active");
+
+        next = active_tab.next("li");
+        if (next.length > 0) {
+            this._open(next);
+        }
+    },
+
+    prev: function(){
+        var that = this, element = this.element, o = this.options;
+        var next, active_tab = element.find("li.active");
+
+        next = active_tab.prev("li");
+        if (next.length > 0) {
+            this._open(next);
+        }
+    },
+
+    open: function(tab){
+        var that = this, element = this.element, o = this.options;
+        var tabs = element.find("li");
+
+        if (!Utils.isValue(tab)) {
+            tab = 1;
+        }
+
+        if (Utils.isInt(tab)) {
+            if (Utils.isValue(tabs[tab-1])) this._open($(tabs[tab-1]));
+        } else {
+            this._open($(tab));
+        }
     },
 
     changeAttribute: function(attributeName){
