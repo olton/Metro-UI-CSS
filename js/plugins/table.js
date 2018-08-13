@@ -449,6 +449,10 @@ var Table = {
     _createItemsFromJSON: function(source){
         var that = this;
 
+        if (typeof source === "string") {
+            source = JSON.parse(source);
+        }
+
         if (source.header !== undefined) {
             that.heads = source.header;
         } else {
@@ -1398,6 +1402,10 @@ var Table = {
         var that = this, element = this.element, o = this.options;
         var need_sort = false;
         var sortable_columns;
+
+        if (!Utils.isValue(review)) {
+            review = true;
+        }
 
         function redraw(){
 
