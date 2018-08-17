@@ -4,6 +4,7 @@
 + [x] Popover: add attribute `data-popover-timeout`. Timeout before popover show.
 + [x] Sidebar: add method `isOpen` to object `Metro.sidebar`
 + [x] Table: fix method `loadData` for string value from server
++ [x] Select: for multiple add attributes `data-cls-selected-item`, `data-cls-selected-item-remover`
 
 ### 4.2.18
 + [x] Table: fix work attributes `showTableInfo`, `showPagination` when wrappers defined
