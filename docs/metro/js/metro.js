@@ -13971,6 +13971,8 @@ var Select = {
         clsOption: "",
         clsOptionGroup: "",
         clsDropList: "",
+        clsSelectedItem: "",
+        clsSelectedItemRemover: "",
         prepend: "",
         append: "",
         placeholder: "",
@@ -14019,9 +14021,9 @@ var Select = {
         if (item.getAttribute("selected") !== null) {
             if (multiple) {
                 l.addClass("d-none");
-                selected_item = $("<div>").addClass("selected-item").html("<span class='title'>"+html+"</span>").appendTo(input);
+                selected_item = $("<div>").addClass("selected-item").addClass(o.clsSelectedItem).html("<span class='title'>"+html+"</span>").appendTo(input);
                 selected_item.data("option", l);
-                $("<span>").addClass("remover").html("&times;").appendTo(selected_item);
+                $("<span>").addClass("remover").addClass(o.clsSelectedItemRemover).html("&times;").appendTo(selected_item);
             } else {
                 element.val(item.value);
                 input.html(html);
