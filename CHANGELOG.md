@@ -5,7 +5,7 @@
 + [x] Sidebar: add method `isOpen` to object `Metro.sidebar`
 + [x] Table: fix method `loadData` for string value from server
 + [x] Select: for multiple add attributes `data-cls-selected-item`, `data-cls-selected-item-remover`
-+ [x] TagInput: add attribute `data-tag-trigger`. Integer value for `keyCode` for triggering tag creating event. Default: "13,188" - Enter and comma.
++ [x] TagInput: add attribute `data-tag-trigger`. The attribute must contain integer values for `keyCode` for triggering tag creating event. Default: "13,188" - Enter and comma.
 
 ### 4.2.18
 + [x] Table: fix work attributes `showTableInfo`, `showPagination` when wrappers defined
