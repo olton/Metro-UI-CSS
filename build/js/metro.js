@@ -170,6 +170,28 @@ var Metro = {
         inputchange: "change.metro input.metro propertychange.metro cut.metro paste.metro copy.metro"
     },
 
+    keyCode: {
+        BACKSPACE: 8,
+        TAB: 9,
+        ENTER: 13,
+        SHIFT: 16,
+        CTRL: 17,
+        ALT: 18,
+        BREAK: 19,
+        CAPS: 20,
+        ESCAPE: 27,
+        SPACE: 32,
+        PAGEUP: 33,
+        PAGEDOWN: 34,
+        END: 35,
+        HOME: 36,
+        LEFT_ARROW: 37,
+        UP_ARROW: 38,
+        RIGHT_ARROW: 39,
+        DOWN_ARROW: 40,
+        COMMA: 188
+    },
+
     media_queries: {
         FS: "(min-width: 0px)",
         SM: "(min-width: 576px)",
@@ -3840,17 +3862,30 @@ var d = new Date().getTime();
         Metro.locales = $.extend( {}, Metro.locales, locale );
     },
 
-    strToArray: function(str, delimiter){
+    strToArray: function(str, delimiter, type, format){
         var a;
 
         if (!this.isValue(delimiter)) {
             delimiter = ",";
         }
 
+        if (!this.isValue(type)) {
+            type = "string";
+        }
+
         a = (""+str).split(delimiter);
 
         return a.map(function(s){
-            return s.trim();
+            var result;
+
+            switch (type) {
+                case "integer": result = parseInt(s); break;
+                case "float": result = parseFloat(s); break;
+                case "date": result = !Utils.isValue(format) ? new Date(s) : s.toDate(format); break;
+                default: result = s.trim();
+            }
+
+            return result;
         })
     },
 
@@ -18148,6 +18183,7 @@ var TagInput = {
         randomColor: false,
         maxTags: 0,
         tagSeparator: ",",
+        tagTrigger: "13,188",
         clsTag: "",
         clsTagTitle: "",
         clsTagRemover: "",
@@ -18204,7 +18240,7 @@ var TagInput = {
     },
 
     _createEvents: function(){
-        var that = this, element = this.element;
+        var that = this, element = this.element, o = this.options;
         var container = element.closest(".tag-input");
         var input = container.find(".input-wrapper");
 
@@ -18221,7 +18257,7 @@ var TagInput = {
 
             if (val === "") {return ;}
 
-            if ([13, 188].indexOf(e.keyCode) === -1) {
+            if (Utils.strToArray(o.tagTrigger, ",", "integer").indexOf(e.keyCode) === -1) {
                 return ;
             }
 

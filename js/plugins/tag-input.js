@@ -15,6 +15,7 @@ var TagInput = {
         randomColor: false,
         maxTags: 0,
         tagSeparator: ",",
+        tagTrigger: "13,188",
         clsTag: "",
         clsTagTitle: "",
         clsTagRemover: "",
@@ -71,7 +72,7 @@ var TagInput = {
     },
 
     _createEvents: function(){
-        var that = this, element = this.element;
+        var that = this, element = this.element, o = this.options;
         var container = element.closest(".tag-input");
         var input = container.find(".input-wrapper");
 
@@ -88,7 +89,7 @@ var TagInput = {
 
             if (val === "") {return ;}
 
-            if ([13, 188].indexOf(e.keyCode) === -1) {
+            if (Utils.strToArray(o.tagTrigger, ",", "integer").indexOf(e.keyCode) === -1) {
                 return ;
             }
 
