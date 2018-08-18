@@ -151,6 +151,28 @@ var Metro = {
         inputchange: "change.metro input.metro propertychange.metro cut.metro paste.metro copy.metro"
     },
 
+    keyCode: {
+        BACKSPACE: 8,
+        TAB: 9,
+        ENTER: 13,
+        SHIFT: 16,
+        CTRL: 17,
+        ALT: 18,
+        BREAK: 19,
+        CAPS: 20,
+        ESCAPE: 27,
+        SPACE: 32,
+        PAGEUP: 33,
+        PAGEDOWN: 34,
+        END: 35,
+        HOME: 36,
+        LEFT_ARROW: 37,
+        UP_ARROW: 38,
+        RIGHT_ARROW: 39,
+        DOWN_ARROW: 40,
+        COMMA: 188
+    },
+
     media_queries: {
         FS: "(min-width: 0px)",
         SM: "(min-width: 576px)",

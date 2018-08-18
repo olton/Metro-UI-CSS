@@ -599,17 +599,30 @@ var Utils = {
         Metro.locales = $.extend( {}, Metro.locales, locale );
     },
 
-    strToArray: function(str, delimiter){
+    strToArray: function(str, delimiter, type, format){
         var a;
 
         if (!this.isValue(delimiter)) {
             delimiter = ",";
         }
 
+        if (!this.isValue(type)) {
+            type = "string";
+        }
+
         a = (""+str).split(delimiter);
 
         return a.map(function(s){
-            return s.trim();
+            var result;
+
+            switch (type) {
+                case "integer": result = parseInt(s); break;
+                case "float": result = parseFloat(s); break;
+                case "date": result = !Utils.isValue(format) ? new Date(s) : s.toDate(format); break;
+                default: result = s.trim();
+            }
+
+            return result;
         })
     },
 
