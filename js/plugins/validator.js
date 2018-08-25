@@ -84,6 +84,9 @@ var ValidatorFuncs = {
     compare: function(val, val2){
         return val === val2;
     },
+    notequals: function(val, val2){
+        return val.trim() !== val2.trim();
+    },
     not: function(val, not_this){
         return val !== not_this;
     },
