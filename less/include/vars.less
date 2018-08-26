@@ -196,17 +196,30 @@
 
 // Media breakpoints
 @fs: 0;
+@sx: 320px;
 @sm: 576px;
+@ld: 640px;
 @md: 768px;
 @lg: 992px;
 @xl: 1200px;
 @xxl: 1452px;
 
 @mediaBreakpointListMobile: fs, sm, md, lg, xl, xxl;
+@mediaBreakpointListMobile2: sm, md, lg, xl, xxl;
+@mediaBreakpointListMobile3: sx, sm, ld, md, lg, xl, xxl;
 @mediaBreakpointListDesktop: xxl, xl, lg, md, sm, fs;
+@mediaBreakpointListDesktop2: xxl, xl, lg, md, sm;
+@mediaBreakpointListDesktop3: xxl, xl, lg, md, ld, sm, sx;
 
 @mediaBreakpointListMobileLength: length(@mediaBreakpointListMobile);
+@mediaBreakpointListMobile2Length: length(@mediaBreakpointListMobile2);
+@mediaBreakpointListMobile3Length: length(@mediaBreakpointListMobile3);
 @mediaBreakpointListDesktopLength: length(@mediaBreakpointListDesktop);
+@mediaBreakpointListDesktop2Length: length(@mediaBreakpointListDesktop2);
+@mediaBreakpointListDesktop3Length: length(@mediaBreakpointListDesktop3);
+
+@percents: 25, 33, 50, 75, 100;
+@percentsLength: length(@percents);
 
 // Transition
 @transition-short:       all .15s ease-in-out;

@@ -12,6 +12,7 @@ var Listview = {
 
     options: {
         selectable: false,
+        checkStyle: 1,
         effect: "slide",
         duration: 100,
         view: Metro.listView.LIST,
@@ -129,7 +130,7 @@ var Listview = {
             }
 
             if (node.hasClass("node")) {
-                var cb = $("<input data-role='checkbox'>");
+                var cb = $("<input type='checkbox' data-role='checkbox' data-style='"+o.checkStyle+"'>");
                 cb.data("node", node);
                 node.prepend(cb);
             }

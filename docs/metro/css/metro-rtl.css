@@ -94,12 +94,12 @@ input[dir=rtl] {
 .textarea[dir=rtl] .input-clear-button,
 .textarea.rtl .input-clear-button {
   right: auto;
-  left: .25rem;
+  left: 0.25rem;
 }
 .textarea[dir=rtl] .input-clear-button ~ textarea,
 .textarea.rtl .input-clear-button ~ textarea {
   padding-left: 48px;
-  padding-right: .75rem;
+  padding-right: 0.75rem;
 }
 .select[dir=rtl],
 .select.rtl {
@@ -135,10 +135,10 @@ input[dir=rtl] {
 .select[dir=rtl].dropdown-toggle,
 .select.rtl.dropdown-toggle {
   padding-right: 0!important;
-  padding-left: .9rem;
+  padding-left: 0.9rem;
 }
 .select[dir=rtl].dropdown-toggle::before,
 .select.rtl.dropdown-toggle::before {
-  margin-left: .9rem;
+  margin-left: 0.9rem;
   left: 0;
 }

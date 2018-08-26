@@ -87,7 +87,9 @@ var ValidatorFuncs = {
     not: function(val, not_this){
         return val !== not_this;
     },
-
+    notequals: function(val, val2){
+        return val.trim() !== val2.trim();
+    },
     custom: function(val, func){
         if (Utils.isFunc(func) === false) {
             return false;
@@ -200,6 +202,10 @@ var ValidatorFuncs = {
                 a = rule.join("=");
 
                 if (f === 'compare') {
+                    a = input[0].form.elements[a].value;
+                }
+
+                if (f === 'notequals') {
                     a = input[0].form.elements[a].value;
                 }
 

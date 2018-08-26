@@ -71,6 +71,7 @@
                             <li class="toc-entry"><a href="#_validator_func_pattern">Pattern</a></li>
                             <li class="toc-entry"><a href="#_validator_func_compare">Compare</a></li>
                             <li class="toc-entry"><a href="#_validator_func_not">Not</a></li>
+                            <li class="toc-entry"><a href="#_validator_func_notequals">NotEquals</a></li>
                             <li class="toc-entry"><a href="#_validator_func_custom">Custom</a></li>
                         </ul>
                     </li>
@@ -356,7 +357,8 @@
                         <code>color</code>,
                         <code>pattern</code>,
                         <code>compare</code>.
-                        <code>not</code> and
+                        <code>not</code>,
+                        <code>notequals</code> and
                         <code>custom</code>.
                 </p>
 
@@ -497,6 +499,14 @@
                                 &lt;option value="2"&gt;Value 2&lt;/option&gt;
                                 &lt;option value="3"&gt;Value 3&lt;/option&gt;
                             &lt;/select&gt;
+                        </code></pre>
+                    </li>
+
+                    <li id="_validator_func_notequals">
+                        <strong>notequals</strong> - value must not be equal to compared input
+                        <pre><code>
+                            &lt;input type="text" data-validate="required" name="ip_1"&gt;
+                            &lt;input type="text" data-validate="required notequals=ip_1" name="ip_2"&gt;
                         </code></pre>
                     </li>
 
