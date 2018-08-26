@@ -5,15 +5,17 @@
 + [x] Popover: add attribute `data-popover-timeout`. Timeout before popover show.
 + [x] Sidebar: add method `isOpen` to object `Metro.sidebar`
 + [x] Table: fix method `loadData` for string value from server
++ [x] Table: fix minor bugs
 + [x] Select: for multiple add attributes `data-cls-selected-item`, `data-cls-selected-item-remover`
 + [x] TagInput: add attribute `data-tag-trigger`. The attribute must contain integer values for `keyCode` for triggering tag creating event. Default: "13,188" - Enter and comma.
 + [x] ListView: fix `checkbox` position for `selectable` mode
 + [x] ListView: add attribute `data-check-style`. Value must be `1` or `2`
++ [x] ListView: add methods `getSelected()`, `selectAll()` or `selectAll(false)` (for clear), `clearSelected()`
 + [x] Checkbox: add observing checkbox style attribute
 + [x] Radio: add observing checkbox style attribute
 + [x] Validator: add function `notequals`. Input value can't be equal to other input
++ [x] Validator: add function `equals`. Input value can be equal to other input. Different from `compare` - it use `trim()` for value
 + [x] Sizing: fix width classes `w-` for all media breakpoints
-+ [x] ListView: add methods `getSelected()`, `selectAll()` or `selectAll(false)` (for clear), `clearSelected()`
 
 ### 4.2.18
 + [x] Table: fix work attributes `showTableInfo`, `showPagination` when wrappers defined

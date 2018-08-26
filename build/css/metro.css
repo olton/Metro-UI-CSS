@@ -18655,8 +18655,6 @@ aside::after {
 .table td,
 .table .td {
   padding: 0.625rem;
-  white-space: nowrap;
-  overflow: hidden;
 }
 .table.fixed-layout {
   table-layout: fixed;
@@ -18909,6 +18907,12 @@ aside::after {
 .table.row-border .tr + .tr {
   border-top: 1px #dfdfdf solid;
 }
+.table th .checkbox,
+.table td .checkbox,
+.table .th .checkbox,
+.table .td .checkbox {
+  height: auto;
+}
 .table.subcompact th,
 .table.subcompact td,
 .table.subcompact .th,
@@ -18916,24 +18920,12 @@ aside::after {
   padding: 3px 8px;
   font-size: 80%;
 }
-.table.subcompact th .checkbox,
-.table.subcompact td .checkbox,
-.table.subcompact .th .checkbox,
-.table.subcompact .td .checkbox {
-  height: auto;
-}
 .table.compact th,
 .table.compact td,
 .table.compact .th,
 .table.compact .td {
   padding: 7px 8px;
   font-size: 80%;
-}
-.table.compact th .checkbox,
-.table.compact td .checkbox,
-.table.compact .th .checkbox,
-.table.compact .td .checkbox {
-  height: auto;
 }
 .table .check-cell {
   width: 36px!important;
@@ -18962,6 +18954,7 @@ aside::after {
 .table .cell-wrapper {
   white-space: nowrap;
   overflow: hidden;
+  text-overflow: ellipsis;
 }
 .table .checkbox,
 .table .radio,
@@ -19063,13 +19056,6 @@ aside::after {
   }
 }
 @media screen and (min-width: 0) {
-  .table.compact-fs th,
-  .table.compact-fs td,
-  .table.compact-fs .th,
-  .table.compact-fs .td {
-    padding: 0.3rem;
-    font-size: 0.9em;
-  }
   .table.normal-fs th,
   .table.normal-fs td,
   .table.normal-fs .th,
@@ -19077,15 +19063,22 @@ aside::after {
     padding: 0.625rem;
     font-size: 1em;
   }
+  .table.compact-fs th,
+  .table.compact-fs td,
+  .table.compact-fs .th,
+  .table.compact-fs .td {
+    padding: 7px 8px;
+    font-size: 80%;
+  }
+  .table.subcompact-fs th,
+  .table.subcompact-fs td,
+  .table.subcompact-fs .th,
+  .table.subcompact-fs .td {
+    padding: 3px 8px;
+    font-size: 80%;
+  }
 }
 @media screen and (min-width: 576px) {
-  .table.compact-sm th,
-  .table.compact-sm td,
-  .table.compact-sm .th,
-  .table.compact-sm .td {
-    padding: 0.3rem;
-    font-size: 0.9em;
-  }
   .table.normal-sm th,
   .table.normal-sm td,
   .table.normal-sm .th,
@@ -19093,15 +19086,22 @@ aside::after {
     padding: 0.625rem;
     font-size: 1em;
   }
+  .table.compact-sm th,
+  .table.compact-sm td,
+  .table.compact-sm .th,
+  .table.compact-sm .td {
+    padding: 7px 8px;
+    font-size: 80%;
+  }
+  .table.subcompact-sm th,
+  .table.subcompact-sm td,
+  .table.subcompact-sm .th,
+  .table.subcompact-sm .td {
+    padding: 3px 8px;
+    font-size: 80%;
+  }
 }
 @media screen and (min-width: 768px) {
-  .table.compact-md th,
-  .table.compact-md td,
-  .table.compact-md .th,
-  .table.compact-md .td {
-    padding: 0.3rem;
-    font-size: 0.9em;
-  }
   .table.normal-md th,
   .table.normal-md td,
   .table.normal-md .th,
@@ -19109,15 +19109,22 @@ aside::after {
     padding: 0.625rem;
     font-size: 1em;
   }
+  .table.compact-md th,
+  .table.compact-md td,
+  .table.compact-md .th,
+  .table.compact-md .td {
+    padding: 7px 8px;
+    font-size: 80%;
+  }
+  .table.subcompact-md th,
+  .table.subcompact-md td,
+  .table.subcompact-md .th,
+  .table.subcompact-md .td {
+    padding: 3px 8px;
+    font-size: 80%;
+  }
 }
 @media screen and (min-width: 992px) {
-  .table.compact-lg th,
-  .table.compact-lg td,
-  .table.compact-lg .th,
-  .table.compact-lg .td {
-    padding: 0.3rem;
-    font-size: 0.9em;
-  }
   .table.normal-lg th,
   .table.normal-lg td,
   .table.normal-lg .th,
@@ -19125,15 +19132,22 @@ aside::after {
     padding: 0.625rem;
     font-size: 1em;
   }
+  .table.compact-lg th,
+  .table.compact-lg td,
+  .table.compact-lg .th,
+  .table.compact-lg .td {
+    padding: 7px 8px;
+    font-size: 80%;
+  }
+  .table.subcompact-lg th,
+  .table.subcompact-lg td,
+  .table.subcompact-lg .th,
+  .table.subcompact-lg .td {
+    padding: 3px 8px;
+    font-size: 80%;
+  }
 }
 @media screen and (min-width: 1200px) {
-  .table.compact-xl th,
-  .table.compact-xl td,
-  .table.compact-xl .th,
-  .table.compact-xl .td {
-    padding: 0.3rem;
-    font-size: 0.9em;
-  }
   .table.normal-xl th,
   .table.normal-xl td,
   .table.normal-xl .th,
@@ -19141,21 +19155,42 @@ aside::after {
     padding: 0.625rem;
     font-size: 1em;
   }
+  .table.compact-xl th,
+  .table.compact-xl td,
+  .table.compact-xl .th,
+  .table.compact-xl .td {
+    padding: 7px 8px;
+    font-size: 80%;
+  }
+  .table.subcompact-xl th,
+  .table.subcompact-xl td,
+  .table.subcompact-xl .th,
+  .table.subcompact-xl .td {
+    padding: 3px 8px;
+    font-size: 80%;
+  }
 }
 @media screen and (min-width: 1452px) {
-  .table.compact-xxl th,
-  .table.compact-xxl td,
-  .table.compact-xxl .th,
-  .table.compact-xxl .td {
-    padding: 0.3rem;
-    font-size: 0.9em;
-  }
   .table.normal-xxl th,
   .table.normal-xxl td,
   .table.normal-xxl .th,
   .table.normal-xxl .td {
     padding: 0.625rem;
     font-size: 1em;
+  }
+  .table.compact-xxl th,
+  .table.compact-xxl td,
+  .table.compact-xxl .th,
+  .table.compact-xxl .td {
+    padding: 7px 8px;
+    font-size: 80%;
+  }
+  .table.subcompact-xxl th,
+  .table.subcompact-xxl td,
+  .table.subcompact-xxl .th,
+  .table.subcompact-xxl .td {
+    padding: 3px 8px;
+    font-size: 80%;
   }
 }
 .step-list {

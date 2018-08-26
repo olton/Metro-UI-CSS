@@ -72,6 +72,7 @@
                             <li class="toc-entry"><a href="#_validator_func_compare">Compare</a></li>
                             <li class="toc-entry"><a href="#_validator_func_not">Not</a></li>
                             <li class="toc-entry"><a href="#_validator_func_notequals">NotEquals</a></li>
+                            <li class="toc-entry"><a href="#_validator_func_equals">Equals</a></li>
                             <li class="toc-entry"><a href="#_validator_func_custom">Custom</a></li>
                         </ul>
                     </li>
@@ -507,6 +508,14 @@
                         <pre><code>
                             &lt;input type="text" data-validate="required" name="ip_1"&gt;
                             &lt;input type="text" data-validate="required notequals=ip_1" name="ip_2"&gt;
+                        </code></pre>
+                    </li>
+
+                    <li id="_validator_func_equals">
+                        <strong>equals</strong> - value must be equal to compared input
+                        <pre><code>
+                            &lt;input type="text" data-validate="required" name="ip_1"&gt;
+                            &lt;input type="text" data-validate="required equals=ip_1" name="ip_2"&gt;
                         </code></pre>
                     </li>
 

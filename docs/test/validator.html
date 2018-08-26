@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <link href="../metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
+
+    <title>Validator test - Metro 4 :: Popular HTML, CSS and JS library</title>
+</head>
+<body>
+<div class="container">
+    <form data-role="validator">
+        <label>Input 1</label>
+        <input type="text" data-validate="required" name="inp1">
+
+        <label>Input 2</label>
+        <input type="text" data-validate="required equals=inp1" name="inp2">
+
+        <label>Input 3</label>
+        <input type="text" data-validate="required notequals=inp1" name="inp3">
+
+        <div class="form-actions">
+            <button class="button">Submit</button>
+        </div>
+    </form>
+</div>
+
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script src="../metro/js/metro.js?ver=@@b-version"></script>
+</body>
+</html>

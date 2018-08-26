@@ -14,8 +14,6 @@
 
     th, .th, td, .td {
         padding: 0.625rem;
-        white-space: nowrap;
-        overflow: hidden;
     }
 
     &.fixed-layout {
@@ -199,14 +197,16 @@
         }
     }
 
+    th, td, .th, .td {
+        .checkbox {
+            height: auto;
+        }
+    }
+
     &.subcompact {
         th, td, .th, .td {
             padding: 3px 8px;
             font-size: 80%;
-
-            .checkbox {
-                height: auto;
-            }
         }
     }
 
@@ -214,10 +214,6 @@
         th, td, .th, .td {
             padding: 7px 8px;
             font-size: 80%;
-
-            .checkbox {
-                height: auto;
-            }
         }
     }
 
@@ -240,6 +236,7 @@
     .cell-wrapper {
         white-space: nowrap;
         overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     .checkbox, .radio, .switch {
@@ -335,16 +332,22 @@
 
     @media screen and (min-width: @@m) {
         .table {
-            &.compact-@{m} {
-                th, td, .th, .td {
-                    padding: .3rem;
-                    font-size: .9em;
-                }
-            }
             &.normal-@{m} {
                 th, td, .th, .td {
                     padding: 0.625rem;
                     font-size: 1em;
+                }
+            }
+            &.compact-@{m} {
+                th, td, .th, .td {
+                    padding: 7px 8px;
+                    font-size: 80%;
+                }
+            }
+            &.subcompact-@{m} {
+                th, td, .th, .td {
+                    padding: 3px 8px;
+                    font-size: 80%;
                 }
             }
         }
