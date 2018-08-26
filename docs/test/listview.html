@@ -14,6 +14,9 @@
 <body>
 <div class="">
     <button class="button" onclick="console.log($('#lw').data('listview').getSelected())">Get selected</button>
+    <button class="button" onclick="$('#lw').data('listview').clearSelected()">Clear selected</button>
+    <button class="button" onclick="$('#lw').data('listview').selectAll()">Select all</button>
+    <button class="button" onclick="$('#lw').data('listview').selectAll(false)">UnSelect all</button>
 </div>
 <ul data-role="listview" id="lw" data-view="list" data-select-node="true" data-selectable="true" data-check-style="2" data-select-current="false">
     <li data-icon="<span class='mif-folder fg-orange'>" data-caption="Video"></li>
