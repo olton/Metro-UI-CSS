@@ -13,7 +13,7 @@
 + [x] Radio: add observing checkbox style attribute
 + [x] Validator: add function `notequals`. Input value can't be equal to other input
 + [x] Sizing: fix width classes `w-` for all media breakpoints
-+ [x] ListView: add method `getSelected()`
++ [x] ListView: add methods `getSelected()`, `selectAll()` or `selectAll(false)` (for clear), `clearSelected()`
 
 ### 4.2.18
 + [x] Table: fix work attributes `showTableInfo`, `showPagination` when wrappers defined

@@ -11941,7 +11941,7 @@ var Listview = {
 
         new_node.addClass("node").appendTo(target);
 
-        var cb = $("<input>");
+        var cb = $("<input type='checkbox'>");
         cb.data("node", new_node);
         new_node.prepend(cb);
         cb.checkbox();
@@ -12015,6 +12015,14 @@ var Listview = {
         });
 
         return nodes;
+    },
+
+    clearSelected: function(){
+        this.element.find(":checked").prop("checked", false);
+    },
+
+    selectAll: function(mode){
+        this.element.find(".node > .checkbox input").prop("checked", mode !== false);
     },
 
     changeAttribute: function(attributeName){
