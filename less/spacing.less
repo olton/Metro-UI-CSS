@@ -5,6 +5,10 @@
     margin-left: auto!important;
     margin-right: auto!important;
 }
+.my-auto {
+    margin-top: auto!important;
+    margin-left: auto!important;
+}
 
 .ml-auto {margin-left: auto!important;}
 .mr-auto {margin-right: auto!important;}
@@ -56,10 +60,7 @@
 }
 .generate-padding-and-margin(20);
 
-.generate-spacing-media-options(@mediaBreakpointListMobileLength);
-.generate-spacing-media-options(@name, @i: 1) when (@i <= @mediaBreakpointListMobileLength) {
-    @m: extract(@mediaBreakpointListMobile, @i);
-
+each(@mediaBreakpointListMobile, .(@m){
     @media screen and (min-width: @@m) {
 
         .mx-auto-@{m} {
@@ -114,7 +115,6 @@
             .generate-indents(@j, (@k + 1));
         }
         .generate-indents(20);
-    }
 
-    .generate-spacing-media-options(@name, @i + 1);
-}
+    }
+})

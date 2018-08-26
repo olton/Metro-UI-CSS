@@ -24,7 +24,7 @@
   text-align: center;
 }
 .demo-cell {
-  padding: .75rem;
+  padding: 0.75rem;
 }
 .gaps-demo [class^=cell] {
   border: none !important;
@@ -40,7 +40,7 @@ pre {
   margin: 24px 0;
 }
 .cell-media-table tbody td {
-  font-size: .8em;
+  font-size: 0.8em;
   white-space: nowrap;
 }
 .toc-wrapper,
@@ -50,7 +50,7 @@ pre {
   max-height: calc(100vh - 64px);
   overflow-y: auto;
   display: block;
-  padding-top: .5rem;
+  padding-top: 0.5rem;
 }
 #sidenav {
   overflow-y: hidden;
@@ -98,7 +98,7 @@ pre {
 }
 .toc-wrapper .toc-nav-title,
 #sidenav .toc-nav-title {
-  font-size: .9em;
+  font-size: 0.9em;
   color: #bebebe;
   position: relative;
   margin: 0.5rem 1rem 0.2rem -0.5rem;
@@ -113,7 +113,7 @@ pre {
 }
 .example {
   position: relative;
-  padding: .125rem;
+  padding: 0.125rem;
   border: 2px solid #eee;
   margin-bottom: 1rem;
 }
@@ -241,9 +241,9 @@ footer p a {
 }
 .icon-list li {
   width: 100%;
-  font-size: .8em;
+  font-size: 0.8em;
   color: #bebebe;
-  padding: .5rem 1rem;
+  padding: 0.5rem 1rem;
   cursor: pointer;
 }
 .icon-list li:hover {
@@ -282,8 +282,8 @@ pre {
 pre .copy-button {
   position: absolute;
   z-index: 2;
-  top: .5rem;
-  right: .5rem;
+  top: 0.5rem;
+  right: 0.5rem;
 }
 .hljs {
   padding: 1rem;

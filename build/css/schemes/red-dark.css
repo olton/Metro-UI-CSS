@@ -206,7 +206,7 @@ textarea.focused,
   background-color: rgba(115, 0, 20, 0.25);
 }
 .switch input[type="checkbox"]:disabled:not(:checked) ~ .check::after {
-  opacity: .5;
+  opacity: 0.5;
 }
 .button,
 .command-button,

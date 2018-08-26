@@ -90,14 +90,14 @@
   cursor: pointer;
   display: block;
   position: relative;
-  padding: .5rem .75rem;
+  padding: 0.5rem 0.75rem;
   line-height: 1;
   font-size: 1rem;
   text-decoration: none;
   background-color: #ffffff;
   color: #1d1d1d;
   border: 1px solid #dfdfdf;
-  margin: .25rem;
+  margin: 0.25rem;
 }
 .dataTables_paginate .previous:hover,
 .dataTables_paginate .next:hover,

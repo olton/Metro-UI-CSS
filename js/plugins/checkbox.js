@@ -115,9 +115,22 @@ var Checkbox = {
     },
 
     changeAttribute: function(attributeName){
+        var that = this, element = this.element, o = this.options;
+        var parent = element.parent();
+
+        var changeStyle = function(){
+            var new_style = parseInt(element.attr("data-style"));
+
+            if (!Utils.isInt(new_style)) return;
+
+            o.style = new_style;
+            parent.removeClass("style1 style2").addClass("style"+new_style);
+        };
+
         switch (attributeName) {
             case 'disabled': this.toggleState(); break;
             case 'data-indeterminate': this.toggleIndeterminate(); break;
+            case 'data-style': changeStyle(); break;
         }
     },
 
