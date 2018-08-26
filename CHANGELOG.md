@@ -1,3 +1,5 @@
+### 4.2.20
+
 ### 4.2.19
 + [x] Change contributing rules 
 + [x] Tabs: add method `open(tab_num | tab_el)`. Tab number counting from 1. Tab element - `li` HTML element or `$("li")` jquery wrapper
