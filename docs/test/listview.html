@@ -12,8 +12,10 @@
     <title>ListView test page - Metro 4 :: Popular HTML, CSS and JS library</title>
 </head>
 <body>
-
-<ul data-role="listview" id="listview-3" data-view="list" data-select-node="true" data-selectable="true" data-check-style="2" data-select-current="false">
+<div class="">
+    <button class="button" onclick="console.log($('#lw').data('listview').getSelected())">Get selected</button>
+</div>
+<ul data-role="listview" id="lw" data-view="list" data-select-node="true" data-selectable="true" data-check-style="2" data-select-current="false">
     <li data-icon="<span class='mif-folder fg-orange'>" data-caption="Video"></li>
     <li data-icon="<span class='mif-folder fg-cyan'>" data-caption="Images"></li>
     <li data-icon="<span class='mif-folder fg-green'>" data-caption="Documents"></li>
@@ -21,11 +23,11 @@
     <li data-icon="<span class='mif-folder'>" data-caption="Desktop"></li>
     <li data-caption="Devices and disks">
         <ul>
-            <li data-icon="images/disk-os.png" data-caption="System (C:)"></li>
-            <li data-icon="images/disk.png" data-caption="DS1 (D:)"></li>
-            <li data-icon="images/disk.png" data-caption="DS2 (E:)"></li>
-            <li data-icon="images/disk.png" data-caption="FreeAgent (G:)"></li>
-            <li data-icon="images/disk-network.png" data-caption="Network"></li>
+            <li data-icon="../images/disk-os.png" data-caption="System (C:)"></li>
+            <li data-icon="../images/disk.png" data-caption="DS1 (D:)"></li>
+            <li data-icon="../images/disk.png" data-caption="DS2 (E:)"></li>
+            <li data-icon="../images/disk.png" data-caption="FreeAgent (G:)"></li>
+            <li data-icon="../images/disk-network.png" data-caption="Network"></li>
         </ul>
     </li>
 </ul>
