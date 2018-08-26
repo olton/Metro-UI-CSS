@@ -316,22 +316,34 @@ var Listview = {
         Utils.exec(o.onNodeClean, [node, element]);
     },
 
-    changeView: function(){
-        var element = this.element, o = this.options;
-        var new_view = "view-"+element.attr("data-view");
-        this.view(new_view);
-    },
+    getSelected: function(){
+        var that = this, element = this.element, o = this.options;
+        var nodes = [];
 
-    changeSelectable: function(){
-        var element = this.element, o = this.options;
-        o.selectable = JSON.parse(element.attr("data-selectable")) === true;
-        this.toggleSelectable();
+        $.each(element.find(":checked"), function(){
+            var check = $(this);
+            nodes.push(check.closest(".node")[0])
+        });
+
+        return nodes;
     },
 
     changeAttribute: function(attributeName){
+        var that = this, element = this.element, o = this.options;
+
+        var changeView = function(){
+            var new_view = "view-"+element.attr("data-view");
+            this.view(new_view);
+        };
+
+        var changeSelectable = function(){
+            o.selectable = JSON.parse(element.attr("data-selectable")) === true;
+            this.toggleSelectable();
+        };
+
         switch (attributeName) {
-            case "data-view": this.changeView(); break;
-            case "data-selectable": this.changeSelectable(); break;
+            case "data-view": changeView(); break;
+            case "data-selectable": changeSelectable(); break;
         }
     }
 };
