@@ -510,11 +510,13 @@ var Utils = {
 
     computedRgbToHex: function(rgb){
         var a = rgb.replace(/[^\d,]/g, '').split(',');
-        var result = "#";
-        $.each(a, function(){
-            var h = parseInt(this).toString(16);
+        var result = "#", i;
+
+        for(i = 0; i < 3; i++) {
+            var h = parseInt(a[i]).toString(16);
             result += h.length === 1 ? "0" + h : h;
-        });
+        }
+
         return result;
     },
 
