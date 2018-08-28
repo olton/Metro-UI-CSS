@@ -13098,7 +13098,10 @@ tbody td.primary,
 code.primary,
 .notify.primary,
 .info-button.primary,
-.input .button-group .button.primary,
+.input .button.primary,
+.select .button.primary,
+.tag-input .button.primary,
+.spinner .button.primary,
 .toast.primary {
   outline-color: #89b0ff;
   background-color: #0050ef;
@@ -13116,7 +13119,10 @@ tbody td.primary.outline,
 code.primary.outline,
 .notify.primary.outline,
 .info-button.primary.outline,
-.input .button-group .button.primary.outline,
+.input .button.primary.outline,
+.select .button.primary.outline,
+.tag-input .button.primary.outline,
+.spinner .button.primary.outline,
 .toast.primary.outline {
   color: #0050ef;
   border-color: #0050ef;
@@ -13133,7 +13139,10 @@ tbody td.primary.outline.dropdown-toggle::before,
 code.primary.outline.dropdown-toggle::before,
 .notify.primary.outline.dropdown-toggle::before,
 .info-button.primary.outline.dropdown-toggle::before,
-.input .button-group .button.primary.outline.dropdown-toggle::before,
+.input .button.primary.outline.dropdown-toggle::before,
+.select .button.primary.outline.dropdown-toggle::before,
+.tag-input .button.primary.outline.dropdown-toggle::before,
+.spinner .button.primary.outline.dropdown-toggle::before,
 .toast.primary.outline.dropdown-toggle::before {
   border-color: #0050ef;
 }
@@ -13149,7 +13158,10 @@ tbody td.primary.outline:hover,
 code.primary.outline:hover,
 .notify.primary.outline:hover,
 .info-button.primary.outline:hover,
-.input .button-group .button.primary.outline:hover,
+.input .button.primary.outline:hover,
+.select .button.primary.outline:hover,
+.tag-input .button.primary.outline:hover,
+.spinner .button.primary.outline:hover,
 .toast.primary.outline:hover {
   color: #ffffff;
 }
@@ -13165,7 +13177,10 @@ tbody td.primary.dropdown-toggle::before,
 code.primary.dropdown-toggle::before,
 .notify.primary.dropdown-toggle::before,
 .info-button.primary.dropdown-toggle::before,
-.input .button-group .button.primary.dropdown-toggle::before,
+.input .button.primary.dropdown-toggle::before,
+.select .button.primary.dropdown-toggle::before,
+.tag-input .button.primary.dropdown-toggle::before,
+.spinner .button.primary.dropdown-toggle::before,
 .toast.primary.dropdown-toggle::before {
   border-color: #ffffff;
 }
@@ -13181,7 +13196,10 @@ tbody td.primary:hover,
 code.primary:hover,
 .notify.primary:hover,
 .info-button.primary:hover,
-.input .button-group .button.primary:hover,
+.input .button.primary:hover,
+.select .button.primary:hover,
+.tag-input .button.primary:hover,
+.spinner .button.primary:hover,
 .toast.primary:hover {
   color: #ffffff;
   background-color: #003fbc;
@@ -13199,7 +13217,10 @@ tbody td.primary:hover.dropdown-toggle::before,
 code.primary:hover.dropdown-toggle::before,
 .notify.primary:hover.dropdown-toggle::before,
 .info-button.primary:hover.dropdown-toggle::before,
-.input .button-group .button.primary:hover.dropdown-toggle::before,
+.input .button.primary:hover.dropdown-toggle::before,
+.select .button.primary:hover.dropdown-toggle::before,
+.tag-input .button.primary:hover.dropdown-toggle::before,
+.spinner .button.primary:hover.dropdown-toggle::before,
 .toast.primary:hover.dropdown-toggle::before {
   border-color: #ffffff;
 }
@@ -13215,7 +13236,10 @@ tbody td.primary.same-color:hover,
 code.primary.same-color:hover,
 .notify.primary.same-color:hover,
 .info-button.primary.same-color:hover,
-.input .button-group .button.primary.same-color:hover,
+.input .button.primary.same-color:hover,
+.select .button.primary.same-color:hover,
+.tag-input .button.primary.same-color:hover,
+.spinner .button.primary.same-color:hover,
 .toast.primary.same-color:hover {
   background-color: #0050ef;
   border-color: #0050ef;
@@ -13232,7 +13256,10 @@ tbody td.primary:active,
 code.primary:active,
 .notify.primary:active,
 .info-button.primary:active,
-.input .button-group .button.primary:active,
+.input .button.primary:active,
+.select .button.primary:active,
+.tag-input .button.primary:active,
+.spinner .button.primary:active,
 .toast.primary:active,
 .button.primary.focus,
 .command-button.primary.focus,
@@ -13246,7 +13273,10 @@ tbody td.primary.focus,
 code.primary.focus,
 .notify.primary.focus,
 .info-button.primary.focus,
-.input .button-group .button.primary.focus,
+.input .button.primary.focus,
+.select .button.primary.focus,
+.tag-input .button.primary.focus,
+.spinner .button.primary.focus,
 .toast.primary.focus,
 .button.primary:focus,
 .command-button.primary:focus,
@@ -13260,7 +13290,10 @@ tbody td.primary:focus,
 code.primary:focus,
 .notify.primary:focus,
 .info-button.primary:focus,
-.input .button-group .button.primary:focus,
+.input .button.primary:focus,
+.select .button.primary:focus,
+.tag-input .button.primary:focus,
+.spinner .button.primary:focus,
 .toast.primary:focus {
   -webkit-box-shadow: 0 0 0 3px rgba(0, 80, 239, 0.45);
           box-shadow: 0 0 0 3px rgba(0, 80, 239, 0.45);
@@ -13277,7 +13310,10 @@ tbody td.secondary,
 code.secondary,
 .notify.secondary,
 .info-button.secondary,
-.input .button-group .button.secondary,
+.input .button.secondary,
+.select .button.secondary,
+.tag-input .button.secondary,
+.spinner .button.secondary,
 .toast.secondary {
   outline-color: #b7c6cd;
   background-color: #607d8b;
@@ -13295,7 +13331,10 @@ tbody td.secondary.outline,
 code.secondary.outline,
 .notify.secondary.outline,
 .info-button.secondary.outline,
-.input .button-group .button.secondary.outline,
+.input .button.secondary.outline,
+.select .button.secondary.outline,
+.tag-input .button.secondary.outline,
+.spinner .button.secondary.outline,
 .toast.secondary.outline {
   color: #607d8b;
   border-color: #607d8b;
@@ -13312,7 +13351,10 @@ tbody td.secondary.outline.dropdown-toggle::before,
 code.secondary.outline.dropdown-toggle::before,
 .notify.secondary.outline.dropdown-toggle::before,
 .info-button.secondary.outline.dropdown-toggle::before,
-.input .button-group .button.secondary.outline.dropdown-toggle::before,
+.input .button.secondary.outline.dropdown-toggle::before,
+.select .button.secondary.outline.dropdown-toggle::before,
+.tag-input .button.secondary.outline.dropdown-toggle::before,
+.spinner .button.secondary.outline.dropdown-toggle::before,
 .toast.secondary.outline.dropdown-toggle::before {
   border-color: #607d8b;
 }
@@ -13328,7 +13370,10 @@ tbody td.secondary.outline:hover,
 code.secondary.outline:hover,
 .notify.secondary.outline:hover,
 .info-button.secondary.outline:hover,
-.input .button-group .button.secondary.outline:hover,
+.input .button.secondary.outline:hover,
+.select .button.secondary.outline:hover,
+.tag-input .button.secondary.outline:hover,
+.spinner .button.secondary.outline:hover,
 .toast.secondary.outline:hover {
   color: #ffffff;
 }
@@ -13344,7 +13389,10 @@ tbody td.secondary.dropdown-toggle::before,
 code.secondary.dropdown-toggle::before,
 .notify.secondary.dropdown-toggle::before,
 .info-button.secondary.dropdown-toggle::before,
-.input .button-group .button.secondary.dropdown-toggle::before,
+.input .button.secondary.dropdown-toggle::before,
+.select .button.secondary.dropdown-toggle::before,
+.tag-input .button.secondary.dropdown-toggle::before,
+.spinner .button.secondary.dropdown-toggle::before,
 .toast.secondary.dropdown-toggle::before {
   border-color: #ffffff;
 }
@@ -13360,7 +13408,10 @@ tbody td.secondary:hover,
 code.secondary:hover,
 .notify.secondary:hover,
 .info-button.secondary:hover,
-.input .button-group .button.secondary:hover,
+.input .button.secondary:hover,
+.select .button.secondary:hover,
+.tag-input .button.secondary:hover,
+.spinner .button.secondary:hover,
 .toast.secondary:hover {
   color: #ffffff;
   background-color: #4b626d;
@@ -13378,7 +13429,10 @@ tbody td.secondary:hover.dropdown-toggle::before,
 code.secondary:hover.dropdown-toggle::before,
 .notify.secondary:hover.dropdown-toggle::before,
 .info-button.secondary:hover.dropdown-toggle::before,
-.input .button-group .button.secondary:hover.dropdown-toggle::before,
+.input .button.secondary:hover.dropdown-toggle::before,
+.select .button.secondary:hover.dropdown-toggle::before,
+.tag-input .button.secondary:hover.dropdown-toggle::before,
+.spinner .button.secondary:hover.dropdown-toggle::before,
 .toast.secondary:hover.dropdown-toggle::before {
   border-color: #ffffff;
 }
@@ -13394,7 +13448,10 @@ tbody td.secondary.same-color:hover,
 code.secondary.same-color:hover,
 .notify.secondary.same-color:hover,
 .info-button.secondary.same-color:hover,
-.input .button-group .button.secondary.same-color:hover,
+.input .button.secondary.same-color:hover,
+.select .button.secondary.same-color:hover,
+.tag-input .button.secondary.same-color:hover,
+.spinner .button.secondary.same-color:hover,
 .toast.secondary.same-color:hover {
   background-color: #607d8b;
   border-color: #607d8b;
@@ -13411,7 +13468,10 @@ tbody td.secondary:active,
 code.secondary:active,
 .notify.secondary:active,
 .info-button.secondary:active,
-.input .button-group .button.secondary:active,
+.input .button.secondary:active,
+.select .button.secondary:active,
+.tag-input .button.secondary:active,
+.spinner .button.secondary:active,
 .toast.secondary:active,
 .button.secondary.focus,
 .command-button.secondary.focus,
@@ -13425,7 +13485,10 @@ tbody td.secondary.focus,
 code.secondary.focus,
 .notify.secondary.focus,
 .info-button.secondary.focus,
-.input .button-group .button.secondary.focus,
+.input .button.secondary.focus,
+.select .button.secondary.focus,
+.tag-input .button.secondary.focus,
+.spinner .button.secondary.focus,
 .toast.secondary.focus,
 .button.secondary:focus,
 .command-button.secondary:focus,
@@ -13439,7 +13502,10 @@ tbody td.secondary:focus,
 code.secondary:focus,
 .notify.secondary:focus,
 .info-button.secondary:focus,
-.input .button-group .button.secondary:focus,
+.input .button.secondary:focus,
+.select .button.secondary:focus,
+.tag-input .button.secondary:focus,
+.spinner .button.secondary:focus,
 .toast.secondary:focus {
   -webkit-box-shadow: 0 0 0 3px rgba(96, 125, 139, 0.45);
           box-shadow: 0 0 0 3px rgba(96, 125, 139, 0.45);
@@ -13456,7 +13522,10 @@ tbody td.success,
 code.success,
 .notify.success,
 .info-button.success,
-.input .button-group .button.success,
+.input .button.success,
+.select .button.success,
+.tag-input .button.success,
+.spinner .button.success,
 .toast.success {
   outline-color: #adeb6e;
   background-color: #60a917;
@@ -13474,7 +13543,10 @@ tbody td.success.outline,
 code.success.outline,
 .notify.success.outline,
 .info-button.success.outline,
-.input .button-group .button.success.outline,
+.input .button.success.outline,
+.select .button.success.outline,
+.tag-input .button.success.outline,
+.spinner .button.success.outline,
 .toast.success.outline {
   color: #60a917;
   border-color: #60a917;
@@ -13491,7 +13563,10 @@ tbody td.success.outline.dropdown-toggle::before,
 code.success.outline.dropdown-toggle::before,
 .notify.success.outline.dropdown-toggle::before,
 .info-button.success.outline.dropdown-toggle::before,
-.input .button-group .button.success.outline.dropdown-toggle::before,
+.input .button.success.outline.dropdown-toggle::before,
+.select .button.success.outline.dropdown-toggle::before,
+.tag-input .button.success.outline.dropdown-toggle::before,
+.spinner .button.success.outline.dropdown-toggle::before,
 .toast.success.outline.dropdown-toggle::before {
   border-color: #60a917;
 }
@@ -13507,7 +13582,10 @@ tbody td.success.outline:hover,
 code.success.outline:hover,
 .notify.success.outline:hover,
 .info-button.success.outline:hover,
-.input .button-group .button.success.outline:hover,
+.input .button.success.outline:hover,
+.select .button.success.outline:hover,
+.tag-input .button.success.outline:hover,
+.spinner .button.success.outline:hover,
 .toast.success.outline:hover {
   color: #ffffff;
 }
@@ -13523,7 +13601,10 @@ tbody td.success.dropdown-toggle::before,
 code.success.dropdown-toggle::before,
 .notify.success.dropdown-toggle::before,
 .info-button.success.dropdown-toggle::before,
-.input .button-group .button.success.dropdown-toggle::before,
+.input .button.success.dropdown-toggle::before,
+.select .button.success.dropdown-toggle::before,
+.tag-input .button.success.dropdown-toggle::before,
+.spinner .button.success.dropdown-toggle::before,
 .toast.success.dropdown-toggle::before {
   border-color: #ffffff;
 }
@@ -13539,7 +13620,10 @@ tbody td.success:hover,
 code.success:hover,
 .notify.success:hover,
 .info-button.success:hover,
-.input .button-group .button.success:hover,
+.input .button.success:hover,
+.select .button.success:hover,
+.tag-input .button.success:hover,
+.spinner .button.success:hover,
 .toast.success:hover {
   color: #ffffff;
   background-color: #477c11;
@@ -13557,7 +13641,10 @@ tbody td.success:hover.dropdown-toggle::before,
 code.success:hover.dropdown-toggle::before,
 .notify.success:hover.dropdown-toggle::before,
 .info-button.success:hover.dropdown-toggle::before,
-.input .button-group .button.success:hover.dropdown-toggle::before,
+.input .button.success:hover.dropdown-toggle::before,
+.select .button.success:hover.dropdown-toggle::before,
+.tag-input .button.success:hover.dropdown-toggle::before,
+.spinner .button.success:hover.dropdown-toggle::before,
 .toast.success:hover.dropdown-toggle::before {
   border-color: #ffffff;
 }
@@ -13573,7 +13660,10 @@ tbody td.success.same-color:hover,
 code.success.same-color:hover,
 .notify.success.same-color:hover,
 .info-button.success.same-color:hover,
-.input .button-group .button.success.same-color:hover,
+.input .button.success.same-color:hover,
+.select .button.success.same-color:hover,
+.tag-input .button.success.same-color:hover,
+.spinner .button.success.same-color:hover,
 .toast.success.same-color:hover {
   background-color: #60a917;
   border-color: #60a917;
@@ -13590,7 +13680,10 @@ tbody td.success:active,
 code.success:active,
 .notify.success:active,
 .info-button.success:active,
-.input .button-group .button.success:active,
+.input .button.success:active,
+.select .button.success:active,
+.tag-input .button.success:active,
+.spinner .button.success:active,
 .toast.success:active,
 .button.success.focus,
 .command-button.success.focus,
@@ -13604,7 +13697,10 @@ tbody td.success.focus,
 code.success.focus,
 .notify.success.focus,
 .info-button.success.focus,
-.input .button-group .button.success.focus,
+.input .button.success.focus,
+.select .button.success.focus,
+.tag-input .button.success.focus,
+.spinner .button.success.focus,
 .toast.success.focus,
 .button.success:focus,
 .command-button.success:focus,
@@ -13618,7 +13714,10 @@ tbody td.success:focus,
 code.success:focus,
 .notify.success:focus,
 .info-button.success:focus,
-.input .button-group .button.success:focus,
+.input .button.success:focus,
+.select .button.success:focus,
+.tag-input .button.success:focus,
+.spinner .button.success:focus,
 .toast.success:focus {
   -webkit-box-shadow: 0 0 0 3px rgba(96, 169, 23, 0.45);
           box-shadow: 0 0 0 3px rgba(96, 169, 23, 0.45);
@@ -13635,7 +13734,10 @@ tbody td.alert,
 code.alert,
 .notify.alert,
 .info-button.alert,
-.input .button-group .button.alert,
+.input .button.alert,
+.select .button.alert,
+.tag-input .button.alert,
+.spinner .button.alert,
 .toast.alert {
   outline-color: #ecaba7;
   background-color: #CE352C;
@@ -13653,7 +13755,10 @@ tbody td.alert.outline,
 code.alert.outline,
 .notify.alert.outline,
 .info-button.alert.outline,
-.input .button-group .button.alert.outline,
+.input .button.alert.outline,
+.select .button.alert.outline,
+.tag-input .button.alert.outline,
+.spinner .button.alert.outline,
 .toast.alert.outline {
   color: #CE352C;
   border-color: #CE352C;
@@ -13670,7 +13775,10 @@ tbody td.alert.outline.dropdown-toggle::before,
 code.alert.outline.dropdown-toggle::before,
 .notify.alert.outline.dropdown-toggle::before,
 .info-button.alert.outline.dropdown-toggle::before,
-.input .button-group .button.alert.outline.dropdown-toggle::before,
+.input .button.alert.outline.dropdown-toggle::before,
+.select .button.alert.outline.dropdown-toggle::before,
+.tag-input .button.alert.outline.dropdown-toggle::before,
+.spinner .button.alert.outline.dropdown-toggle::before,
 .toast.alert.outline.dropdown-toggle::before {
   border-color: #CE352C;
 }
@@ -13686,7 +13794,10 @@ tbody td.alert.outline:hover,
 code.alert.outline:hover,
 .notify.alert.outline:hover,
 .info-button.alert.outline:hover,
-.input .button-group .button.alert.outline:hover,
+.input .button.alert.outline:hover,
+.select .button.alert.outline:hover,
+.tag-input .button.alert.outline:hover,
+.spinner .button.alert.outline:hover,
 .toast.alert.outline:hover {
   color: #ffffff;
 }
@@ -13702,7 +13813,10 @@ tbody td.alert.dropdown-toggle::before,
 code.alert.dropdown-toggle::before,
 .notify.alert.dropdown-toggle::before,
 .info-button.alert.dropdown-toggle::before,
-.input .button-group .button.alert.dropdown-toggle::before,
+.input .button.alert.dropdown-toggle::before,
+.select .button.alert.dropdown-toggle::before,
+.tag-input .button.alert.dropdown-toggle::before,
+.spinner .button.alert.dropdown-toggle::before,
 .toast.alert.dropdown-toggle::before {
   border-color: #ffffff;
 }
@@ -13718,7 +13832,10 @@ tbody td.alert:hover,
 code.alert:hover,
 .notify.alert:hover,
 .info-button.alert:hover,
-.input .button-group .button.alert:hover,
+.input .button.alert:hover,
+.select .button.alert:hover,
+.tag-input .button.alert:hover,
+.spinner .button.alert:hover,
 .toast.alert:hover {
   color: #ffffff;
   background-color: #a42a23;
@@ -13736,7 +13853,10 @@ tbody td.alert:hover.dropdown-toggle::before,
 code.alert:hover.dropdown-toggle::before,
 .notify.alert:hover.dropdown-toggle::before,
 .info-button.alert:hover.dropdown-toggle::before,
-.input .button-group .button.alert:hover.dropdown-toggle::before,
+.input .button.alert:hover.dropdown-toggle::before,
+.select .button.alert:hover.dropdown-toggle::before,
+.tag-input .button.alert:hover.dropdown-toggle::before,
+.spinner .button.alert:hover.dropdown-toggle::before,
 .toast.alert:hover.dropdown-toggle::before {
   border-color: #ffffff;
 }
@@ -13752,7 +13872,10 @@ tbody td.alert.same-color:hover,
 code.alert.same-color:hover,
 .notify.alert.same-color:hover,
 .info-button.alert.same-color:hover,
-.input .button-group .button.alert.same-color:hover,
+.input .button.alert.same-color:hover,
+.select .button.alert.same-color:hover,
+.tag-input .button.alert.same-color:hover,
+.spinner .button.alert.same-color:hover,
 .toast.alert.same-color:hover {
   background-color: #CE352C;
   border-color: #CE352C;
@@ -13769,7 +13892,10 @@ tbody td.alert:active,
 code.alert:active,
 .notify.alert:active,
 .info-button.alert:active,
-.input .button-group .button.alert:active,
+.input .button.alert:active,
+.select .button.alert:active,
+.tag-input .button.alert:active,
+.spinner .button.alert:active,
 .toast.alert:active,
 .button.alert.focus,
 .command-button.alert.focus,
@@ -13783,7 +13909,10 @@ tbody td.alert.focus,
 code.alert.focus,
 .notify.alert.focus,
 .info-button.alert.focus,
-.input .button-group .button.alert.focus,
+.input .button.alert.focus,
+.select .button.alert.focus,
+.tag-input .button.alert.focus,
+.spinner .button.alert.focus,
 .toast.alert.focus,
 .button.alert:focus,
 .command-button.alert:focus,
@@ -13797,7 +13926,10 @@ tbody td.alert:focus,
 code.alert:focus,
 .notify.alert:focus,
 .info-button.alert:focus,
-.input .button-group .button.alert:focus,
+.input .button.alert:focus,
+.select .button.alert:focus,
+.tag-input .button.alert:focus,
+.spinner .button.alert:focus,
 .toast.alert:focus {
   -webkit-box-shadow: 0 0 0 3px rgba(206, 53, 44, 0.45);
           box-shadow: 0 0 0 3px rgba(206, 53, 44, 0.45);
@@ -13814,7 +13946,10 @@ tbody td.warning,
 code.warning,
 .notify.warning,
 .info-button.warning,
-.input .button-group .button.warning,
+.input .button.warning,
+.select .button.warning,
+.tag-input .button.warning,
+.spinner .button.warning,
 .toast.warning {
   outline-color: #ffede1;
   background-color: #ff9447;
@@ -13832,7 +13967,10 @@ tbody td.warning.outline,
 code.warning.outline,
 .notify.warning.outline,
 .info-button.warning.outline,
-.input .button-group .button.warning.outline,
+.input .button.warning.outline,
+.select .button.warning.outline,
+.tag-input .button.warning.outline,
+.spinner .button.warning.outline,
 .toast.warning.outline {
   color: #ff9447;
   border-color: #ff9447;
@@ -13849,7 +13987,10 @@ tbody td.warning.outline.dropdown-toggle::before,
 code.warning.outline.dropdown-toggle::before,
 .notify.warning.outline.dropdown-toggle::before,
 .info-button.warning.outline.dropdown-toggle::before,
-.input .button-group .button.warning.outline.dropdown-toggle::before,
+.input .button.warning.outline.dropdown-toggle::before,
+.select .button.warning.outline.dropdown-toggle::before,
+.tag-input .button.warning.outline.dropdown-toggle::before,
+.spinner .button.warning.outline.dropdown-toggle::before,
 .toast.warning.outline.dropdown-toggle::before {
   border-color: #ff9447;
 }
@@ -13865,7 +14006,10 @@ tbody td.warning.outline:hover,
 code.warning.outline:hover,
 .notify.warning.outline:hover,
 .info-button.warning.outline:hover,
-.input .button-group .button.warning.outline:hover,
+.input .button.warning.outline:hover,
+.select .button.warning.outline:hover,
+.tag-input .button.warning.outline:hover,
+.spinner .button.warning.outline:hover,
 .toast.warning.outline:hover {
   color: #ffffff;
 }
@@ -13881,7 +14025,10 @@ tbody td.warning.dropdown-toggle::before,
 code.warning.dropdown-toggle::before,
 .notify.warning.dropdown-toggle::before,
 .info-button.warning.dropdown-toggle::before,
-.input .button-group .button.warning.dropdown-toggle::before,
+.input .button.warning.dropdown-toggle::before,
+.select .button.warning.dropdown-toggle::before,
+.tag-input .button.warning.dropdown-toggle::before,
+.spinner .button.warning.dropdown-toggle::before,
 .toast.warning.dropdown-toggle::before {
   border-color: #ffffff;
 }
@@ -13897,7 +14044,10 @@ tbody td.warning:hover,
 code.warning:hover,
 .notify.warning:hover,
 .info-button.warning:hover,
-.input .button-group .button.warning:hover,
+.input .button.warning:hover,
+.select .button.warning:hover,
+.tag-input .button.warning:hover,
+.spinner .button.warning:hover,
 .toast.warning:hover {
   color: #ffffff;
   background-color: #ff7615;
@@ -13915,7 +14065,10 @@ tbody td.warning:hover.dropdown-toggle::before,
 code.warning:hover.dropdown-toggle::before,
 .notify.warning:hover.dropdown-toggle::before,
 .info-button.warning:hover.dropdown-toggle::before,
-.input .button-group .button.warning:hover.dropdown-toggle::before,
+.input .button.warning:hover.dropdown-toggle::before,
+.select .button.warning:hover.dropdown-toggle::before,
+.tag-input .button.warning:hover.dropdown-toggle::before,
+.spinner .button.warning:hover.dropdown-toggle::before,
 .toast.warning:hover.dropdown-toggle::before {
   border-color: #ffffff;
 }
@@ -13931,7 +14084,10 @@ tbody td.warning.same-color:hover,
 code.warning.same-color:hover,
 .notify.warning.same-color:hover,
 .info-button.warning.same-color:hover,
-.input .button-group .button.warning.same-color:hover,
+.input .button.warning.same-color:hover,
+.select .button.warning.same-color:hover,
+.tag-input .button.warning.same-color:hover,
+.spinner .button.warning.same-color:hover,
 .toast.warning.same-color:hover {
   background-color: #ff9447;
   border-color: #ff9447;
@@ -13948,7 +14104,10 @@ tbody td.warning:active,
 code.warning:active,
 .notify.warning:active,
 .info-button.warning:active,
-.input .button-group .button.warning:active,
+.input .button.warning:active,
+.select .button.warning:active,
+.tag-input .button.warning:active,
+.spinner .button.warning:active,
 .toast.warning:active,
 .button.warning.focus,
 .command-button.warning.focus,
@@ -13962,7 +14121,10 @@ tbody td.warning.focus,
 code.warning.focus,
 .notify.warning.focus,
 .info-button.warning.focus,
-.input .button-group .button.warning.focus,
+.input .button.warning.focus,
+.select .button.warning.focus,
+.tag-input .button.warning.focus,
+.spinner .button.warning.focus,
 .toast.warning.focus,
 .button.warning:focus,
 .command-button.warning:focus,
@@ -13976,7 +14138,10 @@ tbody td.warning:focus,
 code.warning:focus,
 .notify.warning:focus,
 .info-button.warning:focus,
-.input .button-group .button.warning:focus,
+.input .button.warning:focus,
+.select .button.warning:focus,
+.tag-input .button.warning:focus,
+.spinner .button.warning:focus,
 .toast.warning:focus {
   -webkit-box-shadow: 0 0 0 3px rgba(255, 148, 71, 0.45);
           box-shadow: 0 0 0 3px rgba(255, 148, 71, 0.45);
@@ -13993,7 +14158,10 @@ tbody td.yellow,
 code.yellow,
 .notify.yellow,
 .info-button.yellow,
-.input .button-group .button.yellow,
+.input .button.yellow,
+.select .button.yellow,
+.tag-input .button.yellow,
+.spinner .button.yellow,
 .toast.yellow {
   outline-color: #ffffff;
   background-color: #ffe484;
@@ -14011,7 +14179,10 @@ tbody td.yellow.outline,
 code.yellow.outline,
 .notify.yellow.outline,
 .info-button.yellow.outline,
-.input .button-group .button.yellow.outline,
+.input .button.yellow.outline,
+.select .button.yellow.outline,
+.tag-input .button.yellow.outline,
+.spinner .button.yellow.outline,
 .toast.yellow.outline {
   color: #ffe484;
   border-color: #ffe484;
@@ -14028,7 +14199,10 @@ tbody td.yellow.outline.dropdown-toggle::before,
 code.yellow.outline.dropdown-toggle::before,
 .notify.yellow.outline.dropdown-toggle::before,
 .info-button.yellow.outline.dropdown-toggle::before,
-.input .button-group .button.yellow.outline.dropdown-toggle::before,
+.input .button.yellow.outline.dropdown-toggle::before,
+.select .button.yellow.outline.dropdown-toggle::before,
+.tag-input .button.yellow.outline.dropdown-toggle::before,
+.spinner .button.yellow.outline.dropdown-toggle::before,
 .toast.yellow.outline.dropdown-toggle::before {
   border-color: #ffe484;
 }
@@ -14044,7 +14218,10 @@ tbody td.yellow.outline:hover,
 code.yellow.outline:hover,
 .notify.yellow.outline:hover,
 .info-button.yellow.outline:hover,
-.input .button-group .button.yellow.outline:hover,
+.input .button.yellow.outline:hover,
+.select .button.yellow.outline:hover,
+.tag-input .button.yellow.outline:hover,
+.spinner .button.yellow.outline:hover,
 .toast.yellow.outline:hover {
   color: #ffffff;
 }
@@ -14060,7 +14237,10 @@ tbody td.yellow.dropdown-toggle::before,
 code.yellow.dropdown-toggle::before,
 .notify.yellow.dropdown-toggle::before,
 .info-button.yellow.dropdown-toggle::before,
-.input .button-group .button.yellow.dropdown-toggle::before,
+.input .button.yellow.dropdown-toggle::before,
+.select .button.yellow.dropdown-toggle::before,
+.tag-input .button.yellow.dropdown-toggle::before,
+.spinner .button.yellow.dropdown-toggle::before,
 .toast.yellow.dropdown-toggle::before {
   border-color: #ffffff;
 }
@@ -14076,7 +14256,10 @@ tbody td.yellow:hover,
 code.yellow:hover,
 .notify.yellow:hover,
 .info-button.yellow:hover,
-.input .button-group .button.yellow:hover,
+.input .button.yellow:hover,
+.select .button.yellow:hover,
+.tag-input .button.yellow:hover,
+.spinner .button.yellow:hover,
 .toast.yellow:hover {
   color: #ffffff;
   background-color: #ffd951;
@@ -14094,7 +14277,10 @@ tbody td.yellow:hover.dropdown-toggle::before,
 code.yellow:hover.dropdown-toggle::before,
 .notify.yellow:hover.dropdown-toggle::before,
 .info-button.yellow:hover.dropdown-toggle::before,
-.input .button-group .button.yellow:hover.dropdown-toggle::before,
+.input .button.yellow:hover.dropdown-toggle::before,
+.select .button.yellow:hover.dropdown-toggle::before,
+.tag-input .button.yellow:hover.dropdown-toggle::before,
+.spinner .button.yellow:hover.dropdown-toggle::before,
 .toast.yellow:hover.dropdown-toggle::before {
   border-color: #ffffff;
 }
@@ -14110,7 +14296,10 @@ tbody td.yellow.same-color:hover,
 code.yellow.same-color:hover,
 .notify.yellow.same-color:hover,
 .info-button.yellow.same-color:hover,
-.input .button-group .button.yellow.same-color:hover,
+.input .button.yellow.same-color:hover,
+.select .button.yellow.same-color:hover,
+.tag-input .button.yellow.same-color:hover,
+.spinner .button.yellow.same-color:hover,
 .toast.yellow.same-color:hover {
   background-color: #ffe484;
   border-color: #ffe484;
@@ -14127,7 +14316,10 @@ tbody td.yellow:active,
 code.yellow:active,
 .notify.yellow:active,
 .info-button.yellow:active,
-.input .button-group .button.yellow:active,
+.input .button.yellow:active,
+.select .button.yellow:active,
+.tag-input .button.yellow:active,
+.spinner .button.yellow:active,
 .toast.yellow:active,
 .button.yellow.focus,
 .command-button.yellow.focus,
@@ -14141,7 +14333,10 @@ tbody td.yellow.focus,
 code.yellow.focus,
 .notify.yellow.focus,
 .info-button.yellow.focus,
-.input .button-group .button.yellow.focus,
+.input .button.yellow.focus,
+.select .button.yellow.focus,
+.tag-input .button.yellow.focus,
+.spinner .button.yellow.focus,
 .toast.yellow.focus,
 .button.yellow:focus,
 .command-button.yellow:focus,
@@ -14155,7 +14350,10 @@ tbody td.yellow:focus,
 code.yellow:focus,
 .notify.yellow:focus,
 .info-button.yellow:focus,
-.input .button-group .button.yellow:focus,
+.input .button.yellow:focus,
+.select .button.yellow:focus,
+.tag-input .button.yellow:focus,
+.spinner .button.yellow:focus,
 .toast.yellow:focus {
   -webkit-box-shadow: 0 0 0 3px rgba(255, 228, 132, 0.45);
           box-shadow: 0 0 0 3px rgba(255, 228, 132, 0.45);
@@ -14172,7 +14370,10 @@ tbody td.info,
 code.info,
 .notify.info,
 .info-button.info,
-.input .button-group .button.info,
+.input .button.info,
+.select .button.info,
+.tag-input .button.info,
+.spinner .button.info,
 .toast.info {
   outline-color: #e6f5fc;
   background-color: #5ebdec;
@@ -14190,7 +14391,10 @@ tbody td.info.outline,
 code.info.outline,
 .notify.info.outline,
 .info-button.info.outline,
-.input .button-group .button.info.outline,
+.input .button.info.outline,
+.select .button.info.outline,
+.tag-input .button.info.outline,
+.spinner .button.info.outline,
 .toast.info.outline {
   color: #5ebdec;
   border-color: #5ebdec;
@@ -14207,7 +14411,10 @@ tbody td.info.outline.dropdown-toggle::before,
 code.info.outline.dropdown-toggle::before,
 .notify.info.outline.dropdown-toggle::before,
 .info-button.info.outline.dropdown-toggle::before,
-.input .button-group .button.info.outline.dropdown-toggle::before,
+.input .button.info.outline.dropdown-toggle::before,
+.select .button.info.outline.dropdown-toggle::before,
+.tag-input .button.info.outline.dropdown-toggle::before,
+.spinner .button.info.outline.dropdown-toggle::before,
 .toast.info.outline.dropdown-toggle::before {
   border-color: #5ebdec;
 }
@@ -14223,7 +14430,10 @@ tbody td.info.outline:hover,
 code.info.outline:hover,
 .notify.info.outline:hover,
 .info-button.info.outline:hover,
-.input .button-group .button.info.outline:hover,
+.input .button.info.outline:hover,
+.select .button.info.outline:hover,
+.tag-input .button.info.outline:hover,
+.spinner .button.info.outline:hover,
 .toast.info.outline:hover {
   color: #ffffff;
 }
@@ -14239,7 +14449,10 @@ tbody td.info.dropdown-toggle::before,
 code.info.dropdown-toggle::before,
 .notify.info.dropdown-toggle::before,
 .info-button.info.dropdown-toggle::before,
-.input .button-group .button.info.dropdown-toggle::before,
+.input .button.info.dropdown-toggle::before,
+.select .button.info.dropdown-toggle::before,
+.tag-input .button.info.dropdown-toggle::before,
+.spinner .button.info.dropdown-toggle::before,
 .toast.info.dropdown-toggle::before {
   border-color: #ffffff;
 }
@@ -14255,7 +14468,10 @@ tbody td.info:hover,
 code.info:hover,
 .notify.info:hover,
 .info-button.info:hover,
-.input .button-group .button.info:hover,
+.input .button.info:hover,
+.select .button.info:hover,
+.tag-input .button.info:hover,
+.spinner .button.info:hover,
 .toast.info:hover {
   color: #ffffff;
   background-color: #30abe6;
@@ -14273,7 +14489,10 @@ tbody td.info:hover.dropdown-toggle::before,
 code.info:hover.dropdown-toggle::before,
 .notify.info:hover.dropdown-toggle::before,
 .info-button.info:hover.dropdown-toggle::before,
-.input .button-group .button.info:hover.dropdown-toggle::before,
+.input .button.info:hover.dropdown-toggle::before,
+.select .button.info:hover.dropdown-toggle::before,
+.tag-input .button.info:hover.dropdown-toggle::before,
+.spinner .button.info:hover.dropdown-toggle::before,
 .toast.info:hover.dropdown-toggle::before {
   border-color: #ffffff;
 }
@@ -14289,7 +14508,10 @@ tbody td.info.same-color:hover,
 code.info.same-color:hover,
 .notify.info.same-color:hover,
 .info-button.info.same-color:hover,
-.input .button-group .button.info.same-color:hover,
+.input .button.info.same-color:hover,
+.select .button.info.same-color:hover,
+.tag-input .button.info.same-color:hover,
+.spinner .button.info.same-color:hover,
 .toast.info.same-color:hover {
   background-color: #5ebdec;
   border-color: #5ebdec;
@@ -14306,7 +14528,10 @@ tbody td.info:active,
 code.info:active,
 .notify.info:active,
 .info-button.info:active,
-.input .button-group .button.info:active,
+.input .button.info:active,
+.select .button.info:active,
+.tag-input .button.info:active,
+.spinner .button.info:active,
 .toast.info:active,
 .button.info.focus,
 .command-button.info.focus,
@@ -14320,7 +14545,10 @@ tbody td.info.focus,
 code.info.focus,
 .notify.info.focus,
 .info-button.info.focus,
-.input .button-group .button.info.focus,
+.input .button.info.focus,
+.select .button.info.focus,
+.tag-input .button.info.focus,
+.spinner .button.info.focus,
 .toast.info.focus,
 .button.info:focus,
 .command-button.info:focus,
@@ -14334,7 +14562,10 @@ tbody td.info:focus,
 code.info:focus,
 .notify.info:focus,
 .info-button.info:focus,
-.input .button-group .button.info:focus,
+.input .button.info:focus,
+.select .button.info:focus,
+.tag-input .button.info:focus,
+.spinner .button.info:focus,
 .toast.info:focus {
   -webkit-box-shadow: 0 0 0 3px rgba(94, 189, 236, 0.45);
           box-shadow: 0 0 0 3px rgba(94, 189, 236, 0.45);
@@ -14351,7 +14582,10 @@ tbody td.dark,
 code.dark,
 .notify.dark,
 .info-button.dark,
-.input .button-group .button.dark,
+.input .button.dark,
+.select .button.dark,
+.tag-input .button.dark,
+.spinner .button.dark,
 .toast.dark {
   outline-color: #9d9d9d;
   background-color: #505050;
@@ -14369,7 +14603,10 @@ tbody td.dark.outline,
 code.dark.outline,
 .notify.dark.outline,
 .info-button.dark.outline,
-.input .button-group .button.dark.outline,
+.input .button.dark.outline,
+.select .button.dark.outline,
+.tag-input .button.dark.outline,
+.spinner .button.dark.outline,
 .toast.dark.outline {
   color: #505050;
   border-color: #505050;
@@ -14386,7 +14623,10 @@ tbody td.dark.outline.dropdown-toggle::before,
 code.dark.outline.dropdown-toggle::before,
 .notify.dark.outline.dropdown-toggle::before,
 .info-button.dark.outline.dropdown-toggle::before,
-.input .button-group .button.dark.outline.dropdown-toggle::before,
+.input .button.dark.outline.dropdown-toggle::before,
+.select .button.dark.outline.dropdown-toggle::before,
+.tag-input .button.dark.outline.dropdown-toggle::before,
+.spinner .button.dark.outline.dropdown-toggle::before,
 .toast.dark.outline.dropdown-toggle::before {
   border-color: #505050;
 }
@@ -14402,7 +14642,10 @@ tbody td.dark.outline:hover,
 code.dark.outline:hover,
 .notify.dark.outline:hover,
 .info-button.dark.outline:hover,
-.input .button-group .button.dark.outline:hover,
+.input .button.dark.outline:hover,
+.select .button.dark.outline:hover,
+.tag-input .button.dark.outline:hover,
+.spinner .button.dark.outline:hover,
 .toast.dark.outline:hover {
   color: #ffffff;
 }
@@ -14418,7 +14661,10 @@ tbody td.dark.dropdown-toggle::before,
 code.dark.dropdown-toggle::before,
 .notify.dark.dropdown-toggle::before,
 .info-button.dark.dropdown-toggle::before,
-.input .button-group .button.dark.dropdown-toggle::before,
+.input .button.dark.dropdown-toggle::before,
+.select .button.dark.dropdown-toggle::before,
+.tag-input .button.dark.dropdown-toggle::before,
+.spinner .button.dark.dropdown-toggle::before,
 .toast.dark.dropdown-toggle::before {
   border-color: #ffffff;
 }
@@ -14434,7 +14680,10 @@ tbody td.dark:hover,
 code.dark:hover,
 .notify.dark:hover,
 .info-button.dark:hover,
-.input .button-group .button.dark:hover,
+.input .button.dark:hover,
+.select .button.dark:hover,
+.tag-input .button.dark:hover,
+.spinner .button.dark:hover,
 .toast.dark:hover {
   color: #ffffff;
   background-color: #373737;
@@ -14452,7 +14701,10 @@ tbody td.dark:hover.dropdown-toggle::before,
 code.dark:hover.dropdown-toggle::before,
 .notify.dark:hover.dropdown-toggle::before,
 .info-button.dark:hover.dropdown-toggle::before,
-.input .button-group .button.dark:hover.dropdown-toggle::before,
+.input .button.dark:hover.dropdown-toggle::before,
+.select .button.dark:hover.dropdown-toggle::before,
+.tag-input .button.dark:hover.dropdown-toggle::before,
+.spinner .button.dark:hover.dropdown-toggle::before,
 .toast.dark:hover.dropdown-toggle::before {
   border-color: #ffffff;
 }
@@ -14468,7 +14720,10 @@ tbody td.dark.same-color:hover,
 code.dark.same-color:hover,
 .notify.dark.same-color:hover,
 .info-button.dark.same-color:hover,
-.input .button-group .button.dark.same-color:hover,
+.input .button.dark.same-color:hover,
+.select .button.dark.same-color:hover,
+.tag-input .button.dark.same-color:hover,
+.spinner .button.dark.same-color:hover,
 .toast.dark.same-color:hover {
   background-color: #505050;
   border-color: #505050;
@@ -14485,7 +14740,10 @@ tbody td.dark:active,
 code.dark:active,
 .notify.dark:active,
 .info-button.dark:active,
-.input .button-group .button.dark:active,
+.input .button.dark:active,
+.select .button.dark:active,
+.tag-input .button.dark:active,
+.spinner .button.dark:active,
 .toast.dark:active,
 .button.dark.focus,
 .command-button.dark.focus,
@@ -14499,7 +14757,10 @@ tbody td.dark.focus,
 code.dark.focus,
 .notify.dark.focus,
 .info-button.dark.focus,
-.input .button-group .button.dark.focus,
+.input .button.dark.focus,
+.select .button.dark.focus,
+.tag-input .button.dark.focus,
+.spinner .button.dark.focus,
 .toast.dark.focus,
 .button.dark:focus,
 .command-button.dark:focus,
@@ -14513,7 +14774,10 @@ tbody td.dark:focus,
 code.dark:focus,
 .notify.dark:focus,
 .info-button.dark:focus,
-.input .button-group .button.dark:focus,
+.input .button.dark:focus,
+.select .button.dark:focus,
+.tag-input .button.dark:focus,
+.spinner .button.dark:focus,
 .toast.dark:focus {
   -webkit-box-shadow: 0 0 0 3px rgba(80, 80, 80, 0.45);
           box-shadow: 0 0 0 3px rgba(80, 80, 80, 0.45);
@@ -14530,7 +14794,10 @@ tbody td.light,
 code.light,
 .notify.light,
 .info-button.light,
-.input .button-group .button.light,
+.input .button.light,
+.select .button.light,
+.tag-input .button.light,
+.spinner .button.light,
 .toast.light {
   outline-color: #ffffff;
   background-color: #f8f8f8;
@@ -14548,7 +14815,10 @@ tbody td.light.outline,
 code.light.outline,
 .notify.light.outline,
 .info-button.light.outline,
-.input .button-group .button.light.outline,
+.input .button.light.outline,
+.select .button.light.outline,
+.tag-input .button.light.outline,
+.spinner .button.light.outline,
 .toast.light.outline {
   color: #f8f8f8;
   border-color: #f8f8f8;
@@ -14565,7 +14835,10 @@ tbody td.light.outline.dropdown-toggle::before,
 code.light.outline.dropdown-toggle::before,
 .notify.light.outline.dropdown-toggle::before,
 .info-button.light.outline.dropdown-toggle::before,
-.input .button-group .button.light.outline.dropdown-toggle::before,
+.input .button.light.outline.dropdown-toggle::before,
+.select .button.light.outline.dropdown-toggle::before,
+.tag-input .button.light.outline.dropdown-toggle::before,
+.spinner .button.light.outline.dropdown-toggle::before,
 .toast.light.outline.dropdown-toggle::before {
   border-color: #f8f8f8;
 }
@@ -14581,7 +14854,10 @@ tbody td.light.outline:hover,
 code.light.outline:hover,
 .notify.light.outline:hover,
 .info-button.light.outline:hover,
-.input .button-group .button.light.outline:hover,
+.input .button.light.outline:hover,
+.select .button.light.outline:hover,
+.tag-input .button.light.outline:hover,
+.spinner .button.light.outline:hover,
 .toast.light.outline:hover {
   color: #ffffff;
 }
@@ -14597,7 +14873,10 @@ tbody td.light.dropdown-toggle::before,
 code.light.dropdown-toggle::before,
 .notify.light.dropdown-toggle::before,
 .info-button.light.dropdown-toggle::before,
-.input .button-group .button.light.dropdown-toggle::before,
+.input .button.light.dropdown-toggle::before,
+.select .button.light.dropdown-toggle::before,
+.tag-input .button.light.dropdown-toggle::before,
+.spinner .button.light.dropdown-toggle::before,
 .toast.light.dropdown-toggle::before {
   border-color: #ffffff;
 }
@@ -14613,7 +14892,10 @@ tbody td.light:hover,
 code.light:hover,
 .notify.light:hover,
 .info-button.light:hover,
-.input .button-group .button.light:hover,
+.input .button.light:hover,
+.select .button.light:hover,
+.tag-input .button.light:hover,
+.spinner .button.light:hover,
 .toast.light:hover {
   color: #ffffff;
   background-color: #dfdfdf;
@@ -14631,7 +14913,10 @@ tbody td.light:hover.dropdown-toggle::before,
 code.light:hover.dropdown-toggle::before,
 .notify.light:hover.dropdown-toggle::before,
 .info-button.light:hover.dropdown-toggle::before,
-.input .button-group .button.light:hover.dropdown-toggle::before,
+.input .button.light:hover.dropdown-toggle::before,
+.select .button.light:hover.dropdown-toggle::before,
+.tag-input .button.light:hover.dropdown-toggle::before,
+.spinner .button.light:hover.dropdown-toggle::before,
 .toast.light:hover.dropdown-toggle::before {
   border-color: #ffffff;
 }
@@ -14647,7 +14932,10 @@ tbody td.light.same-color:hover,
 code.light.same-color:hover,
 .notify.light.same-color:hover,
 .info-button.light.same-color:hover,
-.input .button-group .button.light.same-color:hover,
+.input .button.light.same-color:hover,
+.select .button.light.same-color:hover,
+.tag-input .button.light.same-color:hover,
+.spinner .button.light.same-color:hover,
 .toast.light.same-color:hover {
   background-color: #f8f8f8;
   border-color: #f8f8f8;
@@ -14664,7 +14952,10 @@ tbody td.light:active,
 code.light:active,
 .notify.light:active,
 .info-button.light:active,
-.input .button-group .button.light:active,
+.input .button.light:active,
+.select .button.light:active,
+.tag-input .button.light:active,
+.spinner .button.light:active,
 .toast.light:active,
 .button.light.focus,
 .command-button.light.focus,
@@ -14678,7 +14969,10 @@ tbody td.light.focus,
 code.light.focus,
 .notify.light.focus,
 .info-button.light.focus,
-.input .button-group .button.light.focus,
+.input .button.light.focus,
+.select .button.light.focus,
+.tag-input .button.light.focus,
+.spinner .button.light.focus,
 .toast.light.focus,
 .button.light:focus,
 .command-button.light:focus,
@@ -14692,7 +14986,10 @@ tbody td.light:focus,
 code.light:focus,
 .notify.light:focus,
 .info-button.light:focus,
-.input .button-group .button.light:focus,
+.input .button.light:focus,
+.select .button.light:focus,
+.tag-input .button.light:focus,
+.spinner .button.light:focus,
 .toast.light:focus {
   -webkit-box-shadow: 0 0 0 3px rgba(248, 248, 248, 0.45);
           box-shadow: 0 0 0 3px rgba(248, 248, 248, 0.45);
@@ -14709,7 +15006,10 @@ tbody td.brand1,
 code.brand1,
 .notify.brand1,
 .info-button.brand1,
-.input .button-group .button.brand1,
+.input .button.brand1,
+.select .button.brand1,
+.tag-input .button.brand1,
+.spinner .button.brand1,
 .toast.brand1 {
   outline-color: #bbecfc;
   background-color: #2ac4f4;
@@ -14727,7 +15027,10 @@ tbody td.brand1.outline,
 code.brand1.outline,
 .notify.brand1.outline,
 .info-button.brand1.outline,
-.input .button-group .button.brand1.outline,
+.input .button.brand1.outline,
+.select .button.brand1.outline,
+.tag-input .button.brand1.outline,
+.spinner .button.brand1.outline,
 .toast.brand1.outline {
   color: #2ac4f4;
   border-color: #2ac4f4;
@@ -14744,7 +15047,10 @@ tbody td.brand1.outline.dropdown-toggle::before,
 code.brand1.outline.dropdown-toggle::before,
 .notify.brand1.outline.dropdown-toggle::before,
 .info-button.brand1.outline.dropdown-toggle::before,
-.input .button-group .button.brand1.outline.dropdown-toggle::before,
+.input .button.brand1.outline.dropdown-toggle::before,
+.select .button.brand1.outline.dropdown-toggle::before,
+.tag-input .button.brand1.outline.dropdown-toggle::before,
+.spinner .button.brand1.outline.dropdown-toggle::before,
 .toast.brand1.outline.dropdown-toggle::before {
   border-color: #2ac4f4;
 }
@@ -14760,7 +15066,10 @@ tbody td.brand1.outline:hover,
 code.brand1.outline:hover,
 .notify.brand1.outline:hover,
 .info-button.brand1.outline:hover,
-.input .button-group .button.brand1.outline:hover,
+.input .button.brand1.outline:hover,
+.select .button.brand1.outline:hover,
+.tag-input .button.brand1.outline:hover,
+.spinner .button.brand1.outline:hover,
 .toast.brand1.outline:hover {
   color: #ffffff;
 }
@@ -14776,7 +15085,10 @@ tbody td.brand1.dropdown-toggle::before,
 code.brand1.dropdown-toggle::before,
 .notify.brand1.dropdown-toggle::before,
 .info-button.brand1.dropdown-toggle::before,
-.input .button-group .button.brand1.dropdown-toggle::before,
+.input .button.brand1.dropdown-toggle::before,
+.select .button.brand1.dropdown-toggle::before,
+.tag-input .button.brand1.dropdown-toggle::before,
+.spinner .button.brand1.dropdown-toggle::before,
 .toast.brand1.dropdown-toggle::before {
   border-color: #ffffff;
 }
@@ -14792,7 +15104,10 @@ tbody td.brand1:hover,
 code.brand1:hover,
 .notify.brand1:hover,
 .info-button.brand1:hover,
-.input .button-group .button.brand1:hover,
+.input .button.brand1:hover,
+.select .button.brand1:hover,
+.tag-input .button.brand1:hover,
+.spinner .button.brand1:hover,
 .toast.brand1:hover {
   color: #ffffff;
   background-color: #0caddf;
@@ -14810,7 +15125,10 @@ tbody td.brand1:hover.dropdown-toggle::before,
 code.brand1:hover.dropdown-toggle::before,
 .notify.brand1:hover.dropdown-toggle::before,
 .info-button.brand1:hover.dropdown-toggle::before,
-.input .button-group .button.brand1:hover.dropdown-toggle::before,
+.input .button.brand1:hover.dropdown-toggle::before,
+.select .button.brand1:hover.dropdown-toggle::before,
+.tag-input .button.brand1:hover.dropdown-toggle::before,
+.spinner .button.brand1:hover.dropdown-toggle::before,
 .toast.brand1:hover.dropdown-toggle::before {
   border-color: #ffffff;
 }
@@ -14826,7 +15144,10 @@ tbody td.brand1.same-color:hover,
 code.brand1.same-color:hover,
 .notify.brand1.same-color:hover,
 .info-button.brand1.same-color:hover,
-.input .button-group .button.brand1.same-color:hover,
+.input .button.brand1.same-color:hover,
+.select .button.brand1.same-color:hover,
+.tag-input .button.brand1.same-color:hover,
+.spinner .button.brand1.same-color:hover,
 .toast.brand1.same-color:hover {
   background-color: #2ac4f4;
   border-color: #2ac4f4;
@@ -14843,7 +15164,10 @@ tbody td.brand1:active,
 code.brand1:active,
 .notify.brand1:active,
 .info-button.brand1:active,
-.input .button-group .button.brand1:active,
+.input .button.brand1:active,
+.select .button.brand1:active,
+.tag-input .button.brand1:active,
+.spinner .button.brand1:active,
 .toast.brand1:active,
 .button.brand1.focus,
 .command-button.brand1.focus,
@@ -14857,7 +15181,10 @@ tbody td.brand1.focus,
 code.brand1.focus,
 .notify.brand1.focus,
 .info-button.brand1.focus,
-.input .button-group .button.brand1.focus,
+.input .button.brand1.focus,
+.select .button.brand1.focus,
+.tag-input .button.brand1.focus,
+.spinner .button.brand1.focus,
 .toast.brand1.focus,
 .button.brand1:focus,
 .command-button.brand1:focus,
@@ -14871,7 +15198,10 @@ tbody td.brand1:focus,
 code.brand1:focus,
 .notify.brand1:focus,
 .info-button.brand1:focus,
-.input .button-group .button.brand1:focus,
+.input .button.brand1:focus,
+.select .button.brand1:focus,
+.tag-input .button.brand1:focus,
+.spinner .button.brand1:focus,
 .toast.brand1:focus {
   -webkit-box-shadow: 0 0 0 3px rgba(42, 196, 244, 0.45);
           box-shadow: 0 0 0 3px rgba(42, 196, 244, 0.45);
@@ -14888,7 +15218,10 @@ tbody td.brand2,
 code.brand2,
 .notify.brand2,
 .info-button.brand2,
-.input .button-group .button.brand2,
+.input .button.brand2,
+.select .button.brand2,
+.tag-input .button.brand2,
+.spinner .button.brand2,
 .toast.brand2 {
   outline-color: #09b4ff;
   background-color: #004d6f;
@@ -14906,7 +15239,10 @@ tbody td.brand2.outline,
 code.brand2.outline,
 .notify.brand2.outline,
 .info-button.brand2.outline,
-.input .button-group .button.brand2.outline,
+.input .button.brand2.outline,
+.select .button.brand2.outline,
+.tag-input .button.brand2.outline,
+.spinner .button.brand2.outline,
 .toast.brand2.outline {
   color: #004d6f;
   border-color: #004d6f;
@@ -14923,7 +15259,10 @@ tbody td.brand2.outline.dropdown-toggle::before,
 code.brand2.outline.dropdown-toggle::before,
 .notify.brand2.outline.dropdown-toggle::before,
 .info-button.brand2.outline.dropdown-toggle::before,
-.input .button-group .button.brand2.outline.dropdown-toggle::before,
+.input .button.brand2.outline.dropdown-toggle::before,
+.select .button.brand2.outline.dropdown-toggle::before,
+.tag-input .button.brand2.outline.dropdown-toggle::before,
+.spinner .button.brand2.outline.dropdown-toggle::before,
 .toast.brand2.outline.dropdown-toggle::before {
   border-color: #004d6f;
 }
@@ -14939,7 +15278,10 @@ tbody td.brand2.outline:hover,
 code.brand2.outline:hover,
 .notify.brand2.outline:hover,
 .info-button.brand2.outline:hover,
-.input .button-group .button.brand2.outline:hover,
+.input .button.brand2.outline:hover,
+.select .button.brand2.outline:hover,
+.tag-input .button.brand2.outline:hover,
+.spinner .button.brand2.outline:hover,
 .toast.brand2.outline:hover {
   color: #ffffff;
 }
@@ -14955,7 +15297,10 @@ tbody td.brand2.dropdown-toggle::before,
 code.brand2.dropdown-toggle::before,
 .notify.brand2.dropdown-toggle::before,
 .info-button.brand2.dropdown-toggle::before,
-.input .button-group .button.brand2.dropdown-toggle::before,
+.input .button.brand2.dropdown-toggle::before,
+.select .button.brand2.dropdown-toggle::before,
+.tag-input .button.brand2.dropdown-toggle::before,
+.spinner .button.brand2.dropdown-toggle::before,
 .toast.brand2.dropdown-toggle::before {
   border-color: #ffffff;
 }
@@ -14971,7 +15316,10 @@ tbody td.brand2:hover,
 code.brand2:hover,
 .notify.brand2:hover,
 .info-button.brand2:hover,
-.input .button-group .button.brand2:hover,
+.input .button.brand2:hover,
+.select .button.brand2:hover,
+.tag-input .button.brand2:hover,
+.spinner .button.brand2:hover,
 .toast.brand2:hover {
   color: #ffffff;
   background-color: #002a3c;
@@ -14989,7 +15337,10 @@ tbody td.brand2:hover.dropdown-toggle::before,
 code.brand2:hover.dropdown-toggle::before,
 .notify.brand2:hover.dropdown-toggle::before,
 .info-button.brand2:hover.dropdown-toggle::before,
-.input .button-group .button.brand2:hover.dropdown-toggle::before,
+.input .button.brand2:hover.dropdown-toggle::before,
+.select .button.brand2:hover.dropdown-toggle::before,
+.tag-input .button.brand2:hover.dropdown-toggle::before,
+.spinner .button.brand2:hover.dropdown-toggle::before,
 .toast.brand2:hover.dropdown-toggle::before {
   border-color: #ffffff;
 }
@@ -15005,7 +15356,10 @@ tbody td.brand2.same-color:hover,
 code.brand2.same-color:hover,
 .notify.brand2.same-color:hover,
 .info-button.brand2.same-color:hover,
-.input .button-group .button.brand2.same-color:hover,
+.input .button.brand2.same-color:hover,
+.select .button.brand2.same-color:hover,
+.tag-input .button.brand2.same-color:hover,
+.spinner .button.brand2.same-color:hover,
 .toast.brand2.same-color:hover {
   background-color: #004d6f;
   border-color: #004d6f;
@@ -15022,7 +15376,10 @@ tbody td.brand2:active,
 code.brand2:active,
 .notify.brand2:active,
 .info-button.brand2:active,
-.input .button-group .button.brand2:active,
+.input .button.brand2:active,
+.select .button.brand2:active,
+.tag-input .button.brand2:active,
+.spinner .button.brand2:active,
 .toast.brand2:active,
 .button.brand2.focus,
 .command-button.brand2.focus,
@@ -15036,7 +15393,10 @@ tbody td.brand2.focus,
 code.brand2.focus,
 .notify.brand2.focus,
 .info-button.brand2.focus,
-.input .button-group .button.brand2.focus,
+.input .button.brand2.focus,
+.select .button.brand2.focus,
+.tag-input .button.brand2.focus,
+.spinner .button.brand2.focus,
 .toast.brand2.focus,
 .button.brand2:focus,
 .command-button.brand2:focus,
@@ -15050,7 +15410,10 @@ tbody td.brand2:focus,
 code.brand2:focus,
 .notify.brand2:focus,
 .info-button.brand2:focus,
-.input .button-group .button.brand2:focus,
+.input .button.brand2:focus,
+.select .button.brand2:focus,
+.tag-input .button.brand2:focus,
+.spinner .button.brand2:focus,
 .toast.brand2:focus {
   -webkit-box-shadow: 0 0 0 3px rgba(0, 77, 111, 0.45);
           box-shadow: 0 0 0 3px rgba(0, 77, 111, 0.45);
@@ -15067,7 +15430,10 @@ tbody td.yellow,
 code.yellow,
 .notify.yellow,
 .info-button.yellow,
-.input .button-group .button.yellow,
+.input .button.yellow,
+.select .button.yellow,
+.tag-input .button.yellow,
+.spinner .button.yellow,
 .toast.yellow,
 .button.light,
 .command-button.light,
@@ -15081,7 +15447,10 @@ tbody td.light,
 code.light,
 .notify.light,
 .info-button.light,
-.input .button-group .button.light,
+.input .button.light,
+.select .button.light,
+.tag-input .button.light,
+.spinner .button.light,
 .toast.light {
   color: #1d1d1d;
 }
@@ -15097,7 +15466,10 @@ tbody td.yellow:hover,
 code.yellow:hover,
 .notify.yellow:hover,
 .info-button.yellow:hover,
-.input .button-group .button.yellow:hover,
+.input .button.yellow:hover,
+.select .button.yellow:hover,
+.tag-input .button.yellow:hover,
+.spinner .button.yellow:hover,
 .toast.yellow:hover,
 .button.light:hover,
 .command-button.light:hover,
@@ -15111,7 +15483,10 @@ tbody td.light:hover,
 code.light:hover,
 .notify.light:hover,
 .info-button.light:hover,
-.input .button-group .button.light:hover,
+.input .button.light:hover,
+.select .button.light:hover,
+.tag-input .button.light:hover,
+.spinner .button.light:hover,
 .toast.light:hover,
 .button.yellow.outline:hover,
 .command-button.yellow.outline:hover,
@@ -15125,7 +15500,10 @@ tbody td.yellow.outline:hover,
 code.yellow.outline:hover,
 .notify.yellow.outline:hover,
 .info-button.yellow.outline:hover,
-.input .button-group .button.yellow.outline:hover,
+.input .button.yellow.outline:hover,
+.select .button.yellow.outline:hover,
+.tag-input .button.yellow.outline:hover,
+.spinner .button.yellow.outline:hover,
 .toast.yellow.outline:hover,
 .button.light.outline:hover,
 .command-button.light.outline:hover,
@@ -15139,7 +15517,10 @@ tbody td.light.outline:hover,
 code.light.outline:hover,
 .notify.light.outline:hover,
 .info-button.light.outline:hover,
-.input .button-group .button.light.outline:hover,
+.input .button.light.outline:hover,
+.select .button.light.outline:hover,
+.tag-input .button.light.outline:hover,
+.spinner .button.light.outline:hover,
 .toast.light.outline:hover {
   color: #1d1d1d;
 }
@@ -15399,7 +15780,9 @@ textarea.primary,
 .input.primary,
 .select.primary,
 .textarea.primary,
-.keypad.primary {
+.keypad.primary,
+.tag-input.primary,
+.spinner.primary {
   border-color: #0050ef;
 }
 input[type=text].primary:focus,
@@ -15421,6 +15804,8 @@ textarea.primary:focus,
 .select.primary:focus,
 .textarea.primary:focus,
 .keypad.primary:focus,
+.tag-input.primary:focus,
+.spinner.primary:focus,
 input[type=text].primary.focused,
 input[type=password].primary.focused,
 input[type=tel].primary.focused,
@@ -15439,7 +15824,9 @@ textarea.primary.focused,
 .input.primary.focused,
 .select.primary.focused,
 .textarea.primary.focused,
-.keypad.primary.focused {
+.keypad.primary.focused,
+.tag-input.primary.focused,
+.spinner.primary.focused {
   -webkit-box-shadow: 0 0 0 3px rgba(0, 80, 239, 0.45);
           box-shadow: 0 0 0 3px rgba(0, 80, 239, 0.45);
 }
@@ -15461,7 +15848,9 @@ textarea.secondary,
 .input.secondary,
 .select.secondary,
 .textarea.secondary,
-.keypad.secondary {
+.keypad.secondary,
+.tag-input.secondary,
+.spinner.secondary {
   border-color: #607d8b;
 }
 input[type=text].secondary:focus,
@@ -15483,6 +15872,8 @@ textarea.secondary:focus,
 .select.secondary:focus,
 .textarea.secondary:focus,
 .keypad.secondary:focus,
+.tag-input.secondary:focus,
+.spinner.secondary:focus,
 input[type=text].secondary.focused,
 input[type=password].secondary.focused,
 input[type=tel].secondary.focused,
@@ -15501,7 +15892,9 @@ textarea.secondary.focused,
 .input.secondary.focused,
 .select.secondary.focused,
 .textarea.secondary.focused,
-.keypad.secondary.focused {
+.keypad.secondary.focused,
+.tag-input.secondary.focused,
+.spinner.secondary.focused {
   -webkit-box-shadow: 0 0 0 3px rgba(96, 125, 139, 0.45);
           box-shadow: 0 0 0 3px rgba(96, 125, 139, 0.45);
 }
@@ -15523,7 +15916,9 @@ textarea.success,
 .input.success,
 .select.success,
 .textarea.success,
-.keypad.success {
+.keypad.success,
+.tag-input.success,
+.spinner.success {
   border-color: #60a917;
 }
 input[type=text].success:focus,
@@ -15545,6 +15940,8 @@ textarea.success:focus,
 .select.success:focus,
 .textarea.success:focus,
 .keypad.success:focus,
+.tag-input.success:focus,
+.spinner.success:focus,
 input[type=text].success.focused,
 input[type=password].success.focused,
 input[type=tel].success.focused,
@@ -15563,7 +15960,9 @@ textarea.success.focused,
 .input.success.focused,
 .select.success.focused,
 .textarea.success.focused,
-.keypad.success.focused {
+.keypad.success.focused,
+.tag-input.success.focused,
+.spinner.success.focused {
   -webkit-box-shadow: 0 0 0 3px rgba(96, 169, 23, 0.45);
           box-shadow: 0 0 0 3px rgba(96, 169, 23, 0.45);
 }
@@ -15585,7 +15984,9 @@ textarea.alert,
 .input.alert,
 .select.alert,
 .textarea.alert,
-.keypad.alert {
+.keypad.alert,
+.tag-input.alert,
+.spinner.alert {
   border-color: #CE352C;
 }
 input[type=text].alert:focus,
@@ -15607,6 +16008,8 @@ textarea.alert:focus,
 .select.alert:focus,
 .textarea.alert:focus,
 .keypad.alert:focus,
+.tag-input.alert:focus,
+.spinner.alert:focus,
 input[type=text].alert.focused,
 input[type=password].alert.focused,
 input[type=tel].alert.focused,
@@ -15625,7 +16028,9 @@ textarea.alert.focused,
 .input.alert.focused,
 .select.alert.focused,
 .textarea.alert.focused,
-.keypad.alert.focused {
+.keypad.alert.focused,
+.tag-input.alert.focused,
+.spinner.alert.focused {
   -webkit-box-shadow: 0 0 0 3px rgba(206, 53, 44, 0.45);
           box-shadow: 0 0 0 3px rgba(206, 53, 44, 0.45);
 }
@@ -15647,7 +16052,9 @@ textarea.warning,
 .input.warning,
 .select.warning,
 .textarea.warning,
-.keypad.warning {
+.keypad.warning,
+.tag-input.warning,
+.spinner.warning {
   border-color: #ff9447;
 }
 input[type=text].warning:focus,
@@ -15669,6 +16076,8 @@ textarea.warning:focus,
 .select.warning:focus,
 .textarea.warning:focus,
 .keypad.warning:focus,
+.tag-input.warning:focus,
+.spinner.warning:focus,
 input[type=text].warning.focused,
 input[type=password].warning.focused,
 input[type=tel].warning.focused,
@@ -15687,7 +16096,9 @@ textarea.warning.focused,
 .input.warning.focused,
 .select.warning.focused,
 .textarea.warning.focused,
-.keypad.warning.focused {
+.keypad.warning.focused,
+.tag-input.warning.focused,
+.spinner.warning.focused {
   -webkit-box-shadow: 0 0 0 3px rgba(255, 148, 71, 0.45);
           box-shadow: 0 0 0 3px rgba(255, 148, 71, 0.45);
 }
@@ -15709,7 +16120,9 @@ textarea.yellow,
 .input.yellow,
 .select.yellow,
 .textarea.yellow,
-.keypad.yellow {
+.keypad.yellow,
+.tag-input.yellow,
+.spinner.yellow {
   border-color: #ffe484;
 }
 input[type=text].yellow:focus,
@@ -15731,6 +16144,8 @@ textarea.yellow:focus,
 .select.yellow:focus,
 .textarea.yellow:focus,
 .keypad.yellow:focus,
+.tag-input.yellow:focus,
+.spinner.yellow:focus,
 input[type=text].yellow.focused,
 input[type=password].yellow.focused,
 input[type=tel].yellow.focused,
@@ -15749,7 +16164,9 @@ textarea.yellow.focused,
 .input.yellow.focused,
 .select.yellow.focused,
 .textarea.yellow.focused,
-.keypad.yellow.focused {
+.keypad.yellow.focused,
+.tag-input.yellow.focused,
+.spinner.yellow.focused {
   -webkit-box-shadow: 0 0 0 3px rgba(255, 228, 132, 0.45);
           box-shadow: 0 0 0 3px rgba(255, 228, 132, 0.45);
 }
@@ -15771,7 +16188,9 @@ textarea.info,
 .input.info,
 .select.info,
 .textarea.info,
-.keypad.info {
+.keypad.info,
+.tag-input.info,
+.spinner.info {
   border-color: #5ebdec;
 }
 input[type=text].info:focus,
@@ -15793,6 +16212,8 @@ textarea.info:focus,
 .select.info:focus,
 .textarea.info:focus,
 .keypad.info:focus,
+.tag-input.info:focus,
+.spinner.info:focus,
 input[type=text].info.focused,
 input[type=password].info.focused,
 input[type=tel].info.focused,
@@ -15811,7 +16232,9 @@ textarea.info.focused,
 .input.info.focused,
 .select.info.focused,
 .textarea.info.focused,
-.keypad.info.focused {
+.keypad.info.focused,
+.tag-input.info.focused,
+.spinner.info.focused {
   -webkit-box-shadow: 0 0 0 3px rgba(94, 189, 236, 0.45);
           box-shadow: 0 0 0 3px rgba(94, 189, 236, 0.45);
 }
@@ -15833,7 +16256,9 @@ textarea.dark,
 .input.dark,
 .select.dark,
 .textarea.dark,
-.keypad.dark {
+.keypad.dark,
+.tag-input.dark,
+.spinner.dark {
   border-color: #505050;
 }
 input[type=text].dark:focus,
@@ -15855,6 +16280,8 @@ textarea.dark:focus,
 .select.dark:focus,
 .textarea.dark:focus,
 .keypad.dark:focus,
+.tag-input.dark:focus,
+.spinner.dark:focus,
 input[type=text].dark.focused,
 input[type=password].dark.focused,
 input[type=tel].dark.focused,
@@ -15873,7 +16300,9 @@ textarea.dark.focused,
 .input.dark.focused,
 .select.dark.focused,
 .textarea.dark.focused,
-.keypad.dark.focused {
+.keypad.dark.focused,
+.tag-input.dark.focused,
+.spinner.dark.focused {
   -webkit-box-shadow: 0 0 0 3px rgba(80, 80, 80, 0.45);
           box-shadow: 0 0 0 3px rgba(80, 80, 80, 0.45);
 }
@@ -15895,7 +16324,9 @@ textarea.light,
 .input.light,
 .select.light,
 .textarea.light,
-.keypad.light {
+.keypad.light,
+.tag-input.light,
+.spinner.light {
   border-color: #f8f8f8;
 }
 input[type=text].light:focus,
@@ -15917,6 +16348,8 @@ textarea.light:focus,
 .select.light:focus,
 .textarea.light:focus,
 .keypad.light:focus,
+.tag-input.light:focus,
+.spinner.light:focus,
 input[type=text].light.focused,
 input[type=password].light.focused,
 input[type=tel].light.focused,
@@ -15935,7 +16368,9 @@ textarea.light.focused,
 .input.light.focused,
 .select.light.focused,
 .textarea.light.focused,
-.keypad.light.focused {
+.keypad.light.focused,
+.tag-input.light.focused,
+.spinner.light.focused {
   -webkit-box-shadow: 0 0 0 3px rgba(248, 248, 248, 0.45);
           box-shadow: 0 0 0 3px rgba(248, 248, 248, 0.45);
 }
@@ -15957,7 +16392,9 @@ textarea.brand1,
 .input.brand1,
 .select.brand1,
 .textarea.brand1,
-.keypad.brand1 {
+.keypad.brand1,
+.tag-input.brand1,
+.spinner.brand1 {
   border-color: #2ac4f4;
 }
 input[type=text].brand1:focus,
@@ -15979,6 +16416,8 @@ textarea.brand1:focus,
 .select.brand1:focus,
 .textarea.brand1:focus,
 .keypad.brand1:focus,
+.tag-input.brand1:focus,
+.spinner.brand1:focus,
 input[type=text].brand1.focused,
 input[type=password].brand1.focused,
 input[type=tel].brand1.focused,
@@ -15997,7 +16436,9 @@ textarea.brand1.focused,
 .input.brand1.focused,
 .select.brand1.focused,
 .textarea.brand1.focused,
-.keypad.brand1.focused {
+.keypad.brand1.focused,
+.tag-input.brand1.focused,
+.spinner.brand1.focused {
   -webkit-box-shadow: 0 0 0 3px rgba(42, 196, 244, 0.45);
           box-shadow: 0 0 0 3px rgba(42, 196, 244, 0.45);
 }
@@ -16019,7 +16460,9 @@ textarea.brand2,
 .input.brand2,
 .select.brand2,
 .textarea.brand2,
-.keypad.brand2 {
+.keypad.brand2,
+.tag-input.brand2,
+.spinner.brand2 {
   border-color: #004d6f;
 }
 input[type=text].brand2:focus,
@@ -16041,6 +16484,8 @@ textarea.brand2:focus,
 .select.brand2:focus,
 .textarea.brand2:focus,
 .keypad.brand2:focus,
+.tag-input.brand2:focus,
+.spinner.brand2:focus,
 input[type=text].brand2.focused,
 input[type=password].brand2.focused,
 input[type=tel].brand2.focused,
@@ -16059,7 +16504,9 @@ textarea.brand2.focused,
 .input.brand2.focused,
 .select.brand2.focused,
 .textarea.brand2.focused,
-.keypad.brand2.focused {
+.keypad.brand2.focused,
+.tag-input.brand2.focused,
+.spinner.brand2.focused {
   -webkit-box-shadow: 0 0 0 3px rgba(0, 77, 111, 0.45);
           box-shadow: 0 0 0 3px rgba(0, 77, 111, 0.45);
 }
@@ -20242,7 +20689,8 @@ textarea,
 .input,
 .textarea,
 .select,
-.tag-input {
+.tag-input,
+.spinner {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
@@ -20279,7 +20727,8 @@ textarea:focus,
 .input:focus,
 .textarea:focus,
 .select:focus,
-.tag-input:focus {
+.tag-input:focus,
+.spinner:focus {
   outline: none;
 }
 input[type=text]:hover,
@@ -20301,7 +20750,8 @@ textarea:hover,
 .input:hover,
 .textarea:hover,
 .select:hover,
-.tag-input:hover {
+.tag-input:hover,
+.spinner:hover {
   border-color: #c0c0c0;
 }
 input[type=text] .input-clear-button,
@@ -20324,6 +20774,7 @@ textarea .input-clear-button,
 .textarea .input-clear-button,
 .select .input-clear-button,
 .tag-input .input-clear-button,
+.spinner .input-clear-button,
 input[type=text] .input-reveal-button,
 input[type=password] .input-reveal-button,
 input[type=tel] .input-reveal-button,
@@ -20343,7 +20794,8 @@ textarea .input-reveal-button,
 .input .input-reveal-button,
 .textarea .input-reveal-button,
 .select .input-reveal-button,
-.tag-input .input-reveal-button {
+.tag-input .input-reveal-button,
+.spinner .input-reveal-button {
   visibility: hidden;
 }
 input[type=text] .input-clear-button:active,
@@ -20366,6 +20818,7 @@ textarea .input-clear-button:active,
 .textarea .input-clear-button:active,
 .select .input-clear-button:active,
 .tag-input .input-clear-button:active,
+.spinner .input-clear-button:active,
 input[type=text] .input-reveal-button:active,
 input[type=password] .input-reveal-button:active,
 input[type=tel] .input-reveal-button:active,
@@ -20386,6 +20839,7 @@ textarea .input-reveal-button:active,
 .textarea .input-reveal-button:active,
 .select .input-reveal-button:active,
 .tag-input .input-reveal-button:active,
+.spinner .input-reveal-button:active,
 input[type=text] .input-clear-button:focus,
 input[type=password] .input-clear-button:focus,
 input[type=tel] .input-clear-button:focus,
@@ -20406,6 +20860,7 @@ textarea .input-clear-button:focus,
 .textarea .input-clear-button:focus,
 .select .input-clear-button:focus,
 .tag-input .input-clear-button:focus,
+.spinner .input-clear-button:focus,
 input[type=text] .input-reveal-button:focus,
 input[type=password] .input-reveal-button:focus,
 input[type=tel] .input-reveal-button:focus,
@@ -20425,7 +20880,8 @@ textarea .input-reveal-button:focus,
 .input .input-reveal-button:focus,
 .textarea .input-reveal-button:focus,
 .select .input-reveal-button:focus,
-.tag-input .input-reveal-button:focus {
+.tag-input .input-reveal-button:focus,
+.spinner .input-reveal-button:focus {
   visibility: visible;
 }
 input[type=text]:focus,
@@ -20448,6 +20904,7 @@ textarea:focus,
 .textarea:focus,
 .select:focus,
 .tag-input:focus,
+.spinner:focus,
 input[type=text].focused,
 input[type=password].focused,
 input[type=tel].focused,
@@ -20467,7 +20924,8 @@ textarea.focused,
 .input.focused,
 .textarea.focused,
 .select.focused,
-.tag-input.focused {
+.tag-input.focused,
+.spinner.focused {
   -webkit-box-shadow: 0 0 0 3px rgba(228, 228, 228, 0.45);
           box-shadow: 0 0 0 3px rgba(228, 228, 228, 0.45);
 }
@@ -20491,6 +20949,7 @@ textarea:focus .input-clear-button,
 .textarea:focus .input-clear-button,
 .select:focus .input-clear-button,
 .tag-input:focus .input-clear-button,
+.spinner:focus .input-clear-button,
 input[type=text].focused .input-clear-button,
 input[type=password].focused .input-clear-button,
 input[type=tel].focused .input-clear-button,
@@ -20511,6 +20970,7 @@ textarea.focused .input-clear-button,
 .textarea.focused .input-clear-button,
 .select.focused .input-clear-button,
 .tag-input.focused .input-clear-button,
+.spinner.focused .input-clear-button,
 input[type=text]:hover .input-clear-button,
 input[type=password]:hover .input-clear-button,
 input[type=tel]:hover .input-clear-button,
@@ -20531,6 +20991,7 @@ textarea:hover .input-clear-button,
 .textarea:hover .input-clear-button,
 .select:hover .input-clear-button,
 .tag-input:hover .input-clear-button,
+.spinner:hover .input-clear-button,
 input[type=text]:focus .input-reveal-button,
 input[type=password]:focus .input-reveal-button,
 input[type=tel]:focus .input-reveal-button,
@@ -20551,6 +21012,7 @@ textarea:focus .input-reveal-button,
 .textarea:focus .input-reveal-button,
 .select:focus .input-reveal-button,
 .tag-input:focus .input-reveal-button,
+.spinner:focus .input-reveal-button,
 input[type=text].focused .input-reveal-button,
 input[type=password].focused .input-reveal-button,
 input[type=tel].focused .input-reveal-button,
@@ -20571,6 +21033,7 @@ textarea.focused .input-reveal-button,
 .textarea.focused .input-reveal-button,
 .select.focused .input-reveal-button,
 .tag-input.focused .input-reveal-button,
+.spinner.focused .input-reveal-button,
 input[type=text]:hover .input-reveal-button,
 input[type=password]:hover .input-reveal-button,
 input[type=tel]:hover .input-reveal-button,
@@ -20590,7 +21053,8 @@ textarea:hover .input-reveal-button,
 .input:hover .input-reveal-button,
 .textarea:hover .input-reveal-button,
 .select:hover .input-reveal-button,
-.tag-input:hover .input-reveal-button {
+.tag-input:hover .input-reveal-button,
+.spinner:hover .input-reveal-button {
   visibility: visible;
 }
 input[type=text]:disabled,
@@ -20613,6 +21077,7 @@ textarea:disabled,
 .textarea:disabled,
 .select:disabled,
 .tag-input:disabled,
+.spinner:disabled,
 input[type=text].disabled,
 input[type=password].disabled,
 input[type=tel].disabled,
@@ -20632,7 +21097,8 @@ textarea.disabled,
 .input.disabled,
 .textarea.disabled,
 .select.disabled,
-.tag-input.disabled {
+.tag-input.disabled,
+.spinner.disabled {
   pointer-events: none;
   border-color: #ebebeb;
   background-color: #e9e9e9;
@@ -20718,26 +21184,38 @@ fieldset.disabled,
 .input:disabled input,
 .textarea:disabled input,
 .select:disabled input,
+.tag-input:disabled input,
+.spinner:disabled input,
 .file.disabled input,
 .input.disabled input,
 .textarea.disabled input,
 .select.disabled input,
+.tag-input.disabled input,
+.spinner.disabled input,
 .file:disabled textarea,
 .input:disabled textarea,
 .textarea:disabled textarea,
 .select:disabled textarea,
+.tag-input:disabled textarea,
+.spinner:disabled textarea,
 .file.disabled textarea,
 .input.disabled textarea,
 .textarea.disabled textarea,
 .select.disabled textarea,
+.tag-input.disabled textarea,
+.spinner.disabled textarea,
 .file:disabled select,
 .input:disabled select,
 .textarea:disabled select,
 .select:disabled select,
+.tag-input:disabled select,
+.spinner:disabled select,
 .file.disabled select,
 .input.disabled select,
 .textarea.disabled select,
-.select.disabled select {
+.select.disabled select,
+.tag-input.disabled select,
+.spinner.disabled select {
   background: transparent;
   color: #ffffff;
 }
@@ -20745,10 +21223,14 @@ fieldset.disabled,
 .input:disabled .button-group,
 .textarea:disabled .button-group,
 .select:disabled .button-group,
+.tag-input:disabled .button-group,
+.spinner:disabled .button-group,
 .file.disabled .button-group,
 .input.disabled .button-group,
 .textarea.disabled .button-group,
-.select.disabled .button-group {
+.select.disabled .button-group,
+.tag-input.disabled .button-group,
+.spinner.disabled .button-group {
   display: none;
 }
 .invalid_feedback {
@@ -21305,6 +21787,104 @@ textarea {
   text-align: center;
   cursor: pointer;
   background-color: #e4e4e4;
+}
+.spinner {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  padding: 0;
+  cursor: text;
+  position: relative;
+  height: 36px;
+  line-height: 36px;
+}
+.spinner .original-input {
+  width: 1px;
+  height: 1px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+.spinner .input-wrapper {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  line-height: 36px;
+  font-size: 14px;
+  padding: 0 4px;
+  text-align: center;
+}
+.spinner .input-wrapper:focus {
+  -webkit-box-shadow: none!important;
+          box-shadow: none!important;
+}
+.spinner .button {
+  width: 34px;
+  min-width: 34px;
+  height: 34px;
+  line-height: 34px;
+  text-align: center;
+  font-weight: bold;
+  background-color: #f8f8f8;
+  padding: 0;
+}
+.spinner .spinner-button-plus {
+  -webkit-box-ordinal-group: 4;
+      -ms-flex-order: 3;
+          order: 3;
+}
+.spinner .spinner-button-minus {
+  -webkit-box-ordinal-group: 2;
+      -ms-flex-order: 1;
+          order: 1;
+}
+.spinner .input-wrapper {
+  -webkit-box-ordinal-group: 3;
+      -ms-flex-order: 2;
+          order: 2;
+}
+.spinner.buttons-left .spinner-button-plus {
+  -webkit-box-ordinal-group: 3;
+      -ms-flex-order: 2;
+          order: 2;
+}
+.spinner.buttons-left .spinner-button-minus {
+  -webkit-box-ordinal-group: 2;
+      -ms-flex-order: 1;
+          order: 1;
+}
+.spinner.buttons-left .input-wrapper {
+  -webkit-box-ordinal-group: 4;
+      -ms-flex-order: 3;
+          order: 3;
+}
+.spinner.buttons-right .spinner-button-plus {
+  -webkit-box-ordinal-group: 4;
+      -ms-flex-order: 3;
+          order: 3;
+}
+.spinner.buttons-right .spinner-button-minus {
+  -webkit-box-ordinal-group: 3;
+      -ms-flex-order: 2;
+          order: 2;
+}
+.spinner.buttons-right .input-wrapper {
+  -webkit-box-ordinal-group: 2;
+      -ms-flex-order: 1;
+          order: 1;
 }
 .checkbox {
   display: -webkit-inline-box;
@@ -39937,6 +40517,12 @@ video:-webkit-full-screen {
 }
 .default-icon-menu {
   background-image: url("data:image/svg+xml;charset=UTF-8,%3C!--%20Generated%20by%20IcoMoon.io%20--%3E%0A%3Csvg%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2232%22%20height%3D%2232%22%20viewBox%3D%220%200%2032%2032%22%3E%0A%3Ctitle%3Emenu%3C%2Ftitle%3E%0A%3Cpath%20d%3D%22M2%206h28v6h-28zM2%2014h28v6h-28zM2%2022h28v6h-28z%22%3E%3C%2Fpath%3E%0A%3C%2Fsvg%3E%0A");
+}
+.default-icon-plus {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3C!--%20Generated%20by%20IcoMoon.io%20--%3E%0A%3Csvg%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22512%22%20height%3D%22512%22%20viewBox%3D%220%200%20512%20512%22%3E%0A%3Ctitle%3E%3C%2Ftitle%3E%0A%3Cg%20id%3D%22icomoon-ignore%22%3E%0A%3C%2Fg%3E%0A%3Cpath%20d%3D%22M496%20192h-176v-176c0-8.836-7.164-16-16-16h-96c-8.836%200-16%207.164-16%2016v176h-176c-8.836%200-16%207.164-16%2016v96c0%208.836%207.164%2016%2016%2016h176v176c0%208.836%207.164%2016%2016%2016h96c8.836%200%2016-7.164%2016-16v-176h176c8.836%200%2016-7.164%2016-16v-96c0-8.836-7.164-16-16-16z%22%3E%3C%2Fpath%3E%0A%3C%2Fsvg%3E%0A");
+}
+.default-icon-minus {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3C!--%20Generated%20by%20IcoMoon.io%20--%3E%0A%3Csvg%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22512%22%20height%3D%22512%22%20viewBox%3D%220%200%20512%20512%22%3E%0A%3Ctitle%3E%3C%2Ftitle%3E%0A%3Cg%20id%3D%22icomoon-ignore%22%3E%0A%3C%2Fg%3E%0A%3Cpath%20d%3D%22M0%20208v96c0%208.836%207.164%2016%2016%2016h480c8.836%200%2016-7.164%2016-16v-96c0-8.836-7.164-16-16-16h-480c-8.836%200-16%207.164-16%2016z%22%3E%3C%2Fpath%3E%0A%3C%2Fsvg%3E%0A");
 }
 .c-auto {
   cursor: auto;

@@ -20,7 +20,9 @@ textarea,
 .input,
 .textarea,
 .select,
-.tag-input {
+.tag-input,
+.spinner
+{
     appearance: none;
     position: relative;
     border: 1px @inputBorder solid;
@@ -129,7 +131,7 @@ form, fieldset, .form-group {
     }
 }
 
-.file, .input, .textarea, .select {
+.file, .input, .textarea, .select, .tag-input, .spinner {
     &:disabled, &.disabled {
         input, textarea, select {
             background: transparent;
