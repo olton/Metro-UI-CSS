@@ -60,12 +60,19 @@ var Input = {
     },
 
     _createStructure: function(){
-        var element = this.element, o = this.options;
+        var that = this, element = this.element, o = this.options;
         var prev = element.prev();
         var parent = element.parent();
         var container = $("<div>").addClass("input " + element[0].className);
         var buttons = $("<div>").addClass("button-group");
         var clearButton, revealButton;
+
+        if (Utils.isValue(o.historyPreset)) {
+            $.each(Utils.strToArray(o.historyPreset, ","), function(){
+                that.history.push(this);
+            });
+            that.historyIndex = that.history.length - 1;
+        }
 
         if (element.attr("type") === undefined) {
             element.attr("type", "text");
