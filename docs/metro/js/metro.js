@@ -1,5 +1,5 @@
 /*
- * Metro 4 Components Library v4.2.19 build 696 (https://metroui.org.ua)
+ * Metro 4 Components Library v4.2.20 build @@build (https://metroui.org.ua)
  * Copyright 2018 Sergey Pimenov
  * Licensed under MIT
  */
@@ -80,8 +80,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.19",
-    versionFull: "4.2.19.696 ",
+    version: "@@version",
+    versionFull: "@@version.@@build @@status",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -14277,9 +14277,9 @@ var Select = {
 
             if (element[0].multiple) {
                 leaf.addClass("d-none");
-                selected_item = $("<div>").addClass("selected-item").html("<span class='title'>"+html+"</span>").appendTo(input);
+                selected_item = $("<div>").addClass("selected-item").addClass(o.clsSelectedItem).html("<span class='title'>"+html+"</span>").appendTo(input);
                 selected_item.data("option", leaf);
-                $("<span>").addClass("remover").html("&times;").appendTo(selected_item);
+                $("<span>").addClass("remover").addClass(o.clsSelectedItemRemover).html("&times;").appendTo(selected_item);
                 $.each(element.find("option"), function(){
                     if (this === leaf.data("option")) {
                         this.selected = true;

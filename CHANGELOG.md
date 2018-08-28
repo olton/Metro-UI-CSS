@@ -1,4 +1,6 @@
 ### 4.2.20
++ [x] Table: fix default padding for `th` and `td`
++ [x] Select: fix custom classes apply for selected options for select with `multiple` option, issue #1184
 
 ### 4.2.19
 + [x] Change contributing rules 
