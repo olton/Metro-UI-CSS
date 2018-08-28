@@ -16543,6 +16543,11 @@ kbd {
   background-color: #004d6f;
   color: #ffffff;
   padding: 0.125rem 0.1875rem;
+  line-height: 16px;
+}
+.tally {
+  line-height: 16px;
+  background-color: #e9ecef;
 }
 pre code {
   background-color: inherit;
