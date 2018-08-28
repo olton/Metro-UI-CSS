@@ -10274,6 +10274,8 @@ var Input = {
         this.options = $.extend( {}, this.options, options );
         this.elem  = elem;
         this.element = $(elem);
+        this.history = [];
+        this.historyIndex = -1;
 
         this._setOptionsFromDOM();
         this._create();
@@ -10283,6 +10285,9 @@ var Input = {
         return this;
     },
     options: {
+        history: false,
+        historyPreset: "",
+        preventSubmit: "",
         defaultValue: "",
         clsElement: "",
         clsInput: "",
@@ -10300,11 +10305,14 @@ var Input = {
         revealButtonIcon: "<span class='default-icon-eye'></span>",
         customButtons: [],
         disabled: false,
+        onHistoryChange: Metro.noop,
+        onHistoryUp: Metro.noop,
+        onHistoryDown: Metro.noop,
         onInputCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         $.each(element.data(), function(key, value){
             if (key in o) {
@@ -10318,7 +10326,12 @@ var Input = {
     },
 
     _create: function(){
-        var that = this, element = this.element, o = this.options;
+        this._createStructure();
+        this._createEvents();
+    },
+
+    _createStructure: function(){
+        var element = this.element, o = this.options;
         var prev = element.prev();
         var parent = element.parent();
         var container = $("<div>").addClass("input " + element[0].className);
@@ -10344,16 +10357,10 @@ var Input = {
 
         if (o.clearButton !== false) {
             clearButton = $("<button>").addClass("button input-clear-button").addClass(o.clsClearButton).attr("tabindex", -1).attr("type", "button").html(o.clearButtonIcon);
-            clearButton.on(Metro.events.click, function(){
-                element.val(Utils.isValue(o.defaultValue) ? o.defaultValue : "").trigger('change').trigger('keyup').focus();
-            });
             clearButton.appendTo(buttons);
         }
         if (element.attr('type') === 'password' && o.revealButton !== false) {
             revealButton = $("<button>").addClass("button input-reveal-button").addClass(o.clsRevealButton).attr("tabindex", -1).attr("type", "button").html(o.revealButtonIcon);
-            revealButton
-                .on(Metro.events.start, function(){element.attr('type', 'text');})
-                .on(Metro.events.stop, function(){element.attr('type', 'password').focus();});
             revealButton.appendTo(buttons);
         }
 
@@ -10370,9 +10377,10 @@ var Input = {
             $.each(o.customButtons, function(){
                 var item = this;
                 var customButton = $("<button>").addClass("button input-custom-button").addClass(item.cls).attr("tabindex", -1).attr("type", "button").html(item.html);
-                customButton.on(Metro.events.click, function(){
-                    Utils.exec(item.onclick, [element.val(), customButton], element[0]);
-                });
+                customButton.data("action", item.onclick);
+                // customButton.on(Metro.events.click, function(){
+                //     Utils.exec(item.onclick, [element.val(), customButton], element[0]);
+                // });
                 customButton.appendTo(buttons);
             });
         }
@@ -10402,9 +10410,6 @@ var Input = {
             });
         }
 
-        element.on(Metro.events.blur, function(){container.removeClass("focused");});
-        element.on(Metro.events.focus, function(){container.addClass("focused");});
-
         if (o.disabled === true || element.is(":disabled")) {
             this.disable();
         } else {
@@ -10412,14 +10417,76 @@ var Input = {
         }
     },
 
+    _createEvents: function(){
+        var that = this, element = this.element, o = this.options;
+        var container = element.closest(".input");
+
+        container.on(Metro.events.click, ".input-clear-button", function(){
+            element.val(Utils.isValue(o.defaultValue) ? o.defaultValue : "").trigger('change').trigger('keyup').focus();
+        });
+
+        container.on(Metro.events.start, ".input-reveal-button", function(){
+            element.attr('type', 'text');
+        });
+
+        container.on(Metro.events.stop, ".input-reveal-button", function(){
+            element.attr('type', 'password').focus();
+        });
+
+        container.on(Metro.events.stop, ".input-custom-button", function(){
+            var button = $(this);
+            var action = button.data("action");
+            Utils.exec(action, [element.val(), button], this);
+        });
+
+        element.on(Metro.events.keyup, function(e){
+            var val = element.val().trim();
+
+            if (o.history && e.keyCode === Metro.keyCode.ENTER && val !== "") {
+                element.val("");
+                that.history.push(val);
+                that.historyIndex = that.history.length - 1;
+                Utils.exec(o.onHistoryChange, [val, that.history, that.historyIndex], element[0]);
+                if (o.preventSubmit === true) {
+                    e.preventDefault();
+                }
+            }
+
+            if (o.history && e.keyCode === Metro.keyCode.UP_ARROW) {
+                that.historyIndex--;
+                if (that.historyIndex >= 0) {
+                    element.val("");
+                    element.val(that.history[that.historyIndex]);
+                    Utils.exec(o.onHistoryDown, [element.val(), that.history, that.historyIndex], element[0]);
+                } else {
+                    that.historyIndex = 0;
+                }
+                e.preventDefault();
+            }
+
+            if (o.history && e.keyCode === Metro.keyCode.DOWN_ARROW) {
+                that.historyIndex++;
+                if (that.historyIndex < that.history.length) {
+                    element.val("");
+                    element.val(that.history[that.historyIndex]);
+                    Utils.exec(o.onHistoryDown, [element.val(), that.history, that.historyIndex], element[0]);
+                } else {
+                    that.historyIndex = that.history.length - 1;
+                }
+                e.preventDefault();
+            }
+        });
+
+        element.on(Metro.events.blur, function(){container.removeClass("focused");});
+        element.on(Metro.events.focus, function(){container.addClass("focused");});
+    },
+
     disable: function(){
-        //this.element.attr("disabled", true);
         this.element.data("disabled", true);
         this.element.parent().addClass("disabled");
     },
 
     enable: function(){
-        //this.element.attr("disabled", false);
         this.element.data("disabled", false);
         this.element.parent().removeClass("disabled");
     },
@@ -10439,7 +10506,7 @@ var Input = {
     },
 
     destroy: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element;
         var parent = element.parent();
         var clearBtn = parent.find(".input-clear-button");
         var revealBtn = parent.find(".input-reveal-button");
