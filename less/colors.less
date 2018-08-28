@@ -11,7 +11,10 @@ tbody tr, tbody td,
 .tally, code,
 .notify,
 .info-button,
-.input .button-group .button,
+.input .button,
+.select .button,
+.tag-input .button,
+.spinner .button,
 .toast
 {
     .generate-accent-colors(@buttonPredefinedTypesLength);
@@ -154,7 +157,16 @@ input[type=search],
 input[type=time],
 input[type=url],
 input[type=week],
-select, textarea, .file, .input, .select, .textarea, .keypad {
+select,
+textarea,
+.file,
+.input,
+.select,
+.textarea,
+.keypad,
+.tag-input,
+.spinner
+{
     .generate-accent-colors(@buttonPredefinedTypesLength);
     .generate-accent-colors(@name, @i: 1) when (@i =< @buttonPredefinedTypesLength) {
         @name: extract(@buttonPredefinedTypes, @i);

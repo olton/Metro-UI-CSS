@@ -1,6 +1,8 @@
 ### 4.2.20
 + [x] Table: fix default padding for `th` and `td`
 + [x] Select: fix custom classes apply for selected options for select with `multiple` option, issue #1184
++ [x] Input: add `history` option, issue #1162
++ [x] Spinner: new component, issue #1180
 
 ### 4.2.19
 + [x] Change contributing rules 

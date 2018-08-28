@@ -114,9 +114,6 @@ var Input = {
                 var item = this;
                 var customButton = $("<button>").addClass("button input-custom-button").addClass(item.cls).attr("tabindex", -1).attr("type", "button").html(item.html);
                 customButton.data("action", item.onclick);
-                // customButton.on(Metro.events.click, function(){
-                //     Utils.exec(item.onclick, [element.val(), customButton], element[0]);
-                // });
                 customButton.appendTo(buttons);
             });
         }
