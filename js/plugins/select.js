@@ -245,9 +245,9 @@ var Select = {
 
             if (element[0].multiple) {
                 leaf.addClass("d-none");
-                selected_item = $("<div>").addClass("selected-item").html("<span class='title'>"+html+"</span>").appendTo(input);
+                selected_item = $("<div>").addClass("selected-item").addClass(o.clsSelectedItem).html("<span class='title'>"+html+"</span>").appendTo(input);
                 selected_item.data("option", leaf);
-                $("<span>").addClass("remover").html("&times;").appendTo(selected_item);
+                $("<span>").addClass("remover").addClass(o.clsSelectedItemRemover).html("&times;").appendTo(selected_item);
                 $.each(element.find("option"), function(){
                     if (this === leaf.data("option")) {
                         this.selected = true;
