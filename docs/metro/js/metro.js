@@ -3773,11 +3773,13 @@ var d = new Date().getTime();
 
     computedRgbToHex: function(rgb){
         var a = rgb.replace(/[^\d,]/g, '').split(',');
-        var result = "#";
-        $.each(a, function(){
-            var h = parseInt(this).toString(16);
+        var result = "#", i;
+
+        for(i = 0; i < 3; i++) {
+            var h = parseInt(a[i]).toString(16);
             result += h.length === 1 ? "0" + h : h;
-        });
+        }
+
         return result;
     },
 
@@ -15482,7 +15484,7 @@ var Spinner = {
     },
 
     _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         $.each(element.data(), function(key, value){
             if (key in o) {
@@ -15496,7 +15498,7 @@ var Spinner = {
     },
 
     _create: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         this._createStructure();
         this._createEvents();
@@ -15505,11 +15507,11 @@ var Spinner = {
     },
 
     _createStructure: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var spinner = $("<div>").addClass("spinner").addClass("buttons-"+o.buttonsPosition).addClass(element[0].className);
         var wrapper = $("<div>").addClass("input-wrapper");
-        var button_plus = $("<button>").addClass("button spinner-button spinner-button-plus").html(o.plusIcon);
-        var button_minus = $("<button>").addClass("button spinner-button spinner-button-minus").html(o.minusIcon);
+        var button_plus = $("<button>").attr("type", "button").addClass("button spinner-button spinner-button-plus").html(o.plusIcon);
+        var button_minus = $("<button>").attr("type", "button").addClass("button spinner-button spinner-button-minus").html(o.minusIcon);
 
         element[0].className = '';
 
@@ -15534,9 +15536,8 @@ var Spinner = {
     _createEvents: function(){
         var that = this, element = this.element, o = this.options;
         var spinner = element.closest(".spinner");
-        var wrapper = spinner.find(".input-wrapper");
 
-        spinner.on(Metro.events.click, ".spinner-button", function(e){
+        spinner.on(Metro.events.click, ".spinner-button", function(){
             var button = $(this);
             var plus = button.hasClass("spinner-button-plus");
             var val = Number(element.val());
@@ -15555,7 +15556,7 @@ var Spinner = {
     },
 
     _setValue: function(val){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var spinner = element.closest(".spinner");
         var wrapper = spinner.find(".input-wrapper");
 
@@ -15607,7 +15608,12 @@ var Spinner = {
     },
 
     destroy: function(){
+        var element = this.element;
+        var spinner = element.closest(".spinner");
 
+        spinner.off(Metro.events.click, ".spinner-button");
+        element.insertBefore(spinner);
+        spinner.remove();
     }
 };
 

@@ -3,6 +3,7 @@
 + [x] Select: fix custom classes apply for selected options for select with `multiple` option, issue #1184
 + [x] Input: add `history` option, issue #1162
 + [x] Spinner: new component, issue #1180
++ [x] Appbar: fix error creating `hamburger` when background-color is `rgba` or `transparent`
 
 ### 4.2.19
 + [x] Change contributing rules 
