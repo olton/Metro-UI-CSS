@@ -95,6 +95,10 @@ var TagInput = {
 
             input.val("");
             that._addTag(val.replace(",", ""));
+
+            if (e.keyCode === Metro.keyCode.ENTER) {
+                e.preventDefault();
+            }
         });
 
         container.on(Metro.events.click, ".tag .remover", function(){
