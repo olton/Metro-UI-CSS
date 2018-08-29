@@ -3,6 +3,7 @@ var Spinner = {
         this.options = $.extend( {}, this.options, options );
         this.elem  = elem;
         this.element = $(elem);
+        this.repeat_timer = false;
 
         this._setOptionsFromDOM();
         this._create();
@@ -19,6 +20,7 @@ var Spinner = {
         minValue: null,
         maxValue: null,
         fixed: 0,
+        repeatThreshold: 500,
         clsSpinner: "",
         clsSpinnerValue: "",
         clsSpinnerButton: "",
@@ -83,9 +85,10 @@ var Spinner = {
         var that = this, element = this.element, o = this.options;
         var spinner = element.closest(".spinner");
 
-        spinner.on(Metro.events.click, ".spinner-button", function(){
-            var button = $(this);
+        var click = function(context, threshold){
+            var button = $(context);
             var plus = button.hasClass("spinner-button-plus");
+
             var val = Number(element.val());
             var step = Number(o.step);
 
@@ -95,13 +98,26 @@ var Spinner = {
                 val -= step;
             }
 
-            that._setValue(val.toFixed(o.fixed));
+            that._setValue(val.toFixed(o.fixed), true);
 
-            Utils.exec(o.onChange, [val], element[0]);
+            setTimeout(function(){
+                if (that.repeat_timer) {
+                    click(context, 100);
+                }
+            }, threshold);
+        };
+
+        spinner.on(Metro.events.start, ".spinner-button", function(){
+            that.repeat_timer = true;
+            click(this, o.repeatThreshold);
+        });
+
+        spinner.on(Metro.events.stop, ".spinner-button", function(){
+            that.repeat_timer = false;
         });
     },
 
-    _setValue: function(val){
+    _setValue: function(val, change){
         var element = this.element, o = this.options;
         var spinner = element.closest(".spinner");
         var wrapper = spinner.find(".input-wrapper");
@@ -116,6 +132,12 @@ var Spinner = {
 
         element.val(val);
         wrapper.text(val);
+
+        Utils.exec(o.onChange, [val], element[0]);
+
+        if (change === true) {
+            element.trigger("change");
+        }
     },
 
     val: function(val){
@@ -124,15 +146,13 @@ var Spinner = {
             return element.val();
         }
 
-        that._setValue(val.toFixed(o.fixed));
-
-        Utils.exec(o.onChange, [val], element[0]);
+        that._setValue(val.toFixed(o.fixed), true);
     },
 
     toDefault: function(){
         var element = this.element, o = this.options;
         var val = Utils.isValue(o.defaultValue) ? Number(o.defaultValue) : 0;
-        this._setValue(val.toFixed(o.fixed));
+        this._setValue(val.toFixed(o.fixed), true);
         Utils.exec(o.onChange, [val], element[0]);
     },
 
@@ -154,9 +174,20 @@ var Spinner = {
         }
     },
 
+
     changeAttribute: function(attributeName){
+        var that = this, element = this.element;
+
+        var changeValue = function(){
+            var val = element.attr('value').trim();
+            if (Utils.isValue(val)) {
+                that._setValue(Number(val), false);
+            }
+        };
+
         switch (attributeName) {
             case 'disabled': this.toggleState(); break;
+            case 'value': changeValue(); break;
         }
     },
 

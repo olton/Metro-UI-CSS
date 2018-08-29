@@ -32,6 +32,11 @@
     <p>Buttons right</p>
     <input type="text" data-role="spinner" data-buttons-position="right" class="mt-4">
 
+    <p>on change</p>
+    <input type="text" data-role="spinner" data-buttons-position="right" id="spinner1">
+    <input type="text" data-role="slider" data-on-change="$('#spinner1').attr('value', this.value)">
+
+
 </div>
 
 <script src="../js/jquery-3.3.1.min.js"></script>

@@ -47,6 +47,7 @@ var Slider = {
         onStop: Metro.noop,
         onMove: Metro.noop,
         onClick: Metro.noop,
+        onChange: Metro.noop,
         onChangeValue: Metro.noop,
         onChangeBuffer: Metro.noop,
         onFocus: Metro.noop,
@@ -333,7 +334,8 @@ var Slider = {
             }
         }
 
-        Utils.exec(o.onChangeValue, [value, this.percent, slider]);
+        Utils.exec(o.onChangeValue, [value, this.percent, slider], element[0]);
+        Utils.exec(o.onChange, [value, this.percent, this.buffer], element[0]);
     },
 
     _marker: function(){
@@ -376,7 +378,7 @@ var Slider = {
     },
 
     _buffer: function(){
-        var o = this.options;
+        var element = this.element, o = this.options;
         var buffer = this.slider.find(".buffer");
 
         if (o.vertical === true) {
@@ -385,7 +387,8 @@ var Slider = {
             buffer.css("width", this.buffer + "%");
         }
 
-        Utils.exec(o.onChangeBuffer, [this.buffer, this.slider]);
+        Utils.exec(o.onChangeBuffer, [this.buffer, this.slider], element[0]);
+        Utils.exec(o.onChange, [element.val(), this.percent, this.buffer], element[0]);
     },
 
     val: function(v){
