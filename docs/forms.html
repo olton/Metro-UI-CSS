@@ -53,6 +53,7 @@
                         <ul>
                             <li class="toc-entry"><a href="#_inputs">Input</a></li>
                             <li class="toc-entry"><a href="#_tag-input">Tag input</a></li>
+                            <li class="toc-entry"><a href="#_spinner">Spinner</a></li>
                             <li class="toc-entry"><a href="#_search">Search</a></li>
                             <li class="toc-entry"><a href="#_select">Select</a></li>
                             <li class="toc-entry"><a href="#_textarea">Textarea</a></li>
@@ -401,6 +402,149 @@
                     </tbody>
                 </table>
 
+
+                <h4 id="_spinner">Spinner</h4>
+                <p class="text-small">New in 4.2.20</p>
+                <p>
+                    To create <code>spinner</code>, add attribute <code>data-role="spinner"</code> to input field.
+                </p>
+                <div class="example">
+                    <input type="text" data-role="spinner"  class="mb-1" title="">
+                </div>
+                <pre><code class="html">
+                    &lt;input type="text" data-role="spinner"&gt;
+                </code></pre>
+
+                <div class="example">
+                    <p>Min - 0, max - 5</p>
+                    <input type="text" data-role="spinner" data-min-value="0" data-max-value="5">
+
+                    <p>Step - 0.52, fixed - 2</p>
+                    <input type="text" data-role="spinner" data-step=".52" data-fixed="2">
+
+                    <p>Buttons left</p>
+                    <input type="text" data-role="spinner" data-buttons-position="left">
+
+                    <p>Buttons right</p>
+                    <input type="text" data-role="spinner" data-buttons-position="right">
+
+                    <p>Additional classes</p>
+                    <input type="text" data-role="spinner"
+                           data-cls-spinner-value="text-bold bg-cyan fg-white"
+                           data-cls-spinner-button="info"
+                           data-plus-icon="<span class='mif-plus fg-white'></span>"
+                           data-minus-icon="<span class='mif-minus fg-white'></span>">
+                </div>
+                <pre><code>
+                    &lt;p&gt;Min - 0, max - 5&lt;/p&gt;
+                    &lt;input type="text" data-role="spinner" data-min-value="0" data-max-value="5"&gt;
+
+                    &lt;p&gt;Step - 0.52, fixed - 2&lt;/p&gt;
+                    &lt;input type="text" data-role="spinner" data-step=".52" data-fixed="2"&gt;
+
+                    &lt;p&gt;Buttons left&lt;/p&gt;
+                    &lt;input type="text" data-role="spinner" data-buttons-position="left"&gt;
+
+                    &lt;p&gt;Buttons right&lt;/p&gt;
+                    &lt;input type="text" data-role="spinner" data-buttons-position="right"&gt;
+
+                    &lt;p&gt;Additional classes&lt;/p&gt;
+                    &lt;input type="text" data-role="spinner"
+                           data-cls-spinner-value="text-bold bg-cyan fg-white"
+                           data-cls-spinner-button="info"
+                           data-plus-icon="&lt;span class='mif-plus fg-white'&gt;&lt;/span&gt;"
+                           data-minus-icon="&lt;span class='mif-minus fg-white'&gt;&lt;/span&gt;"&gt;
+                </code></pre>
+
+                <p class="text-bold">Spinner options</p>
+                <table class="table table-border cell-border compact mb-4">
+                    <thead>
+                    <tr>
+                        <td>data-*</td>
+                        <td>default</td>
+                        <td>description</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><code>data-step</code></td>
+                        <td>1</td>
+                        <td>Spinner step</td>
+                    </tr>
+                    <tr>
+                        <td><code>data-plus-icon</code></td>
+                        <td>&lt;span class='default-icon-plus'&gt;</td>
+                        <td>Spinner plus button icon</td>
+                    </tr>
+                    <tr>
+                        <td><code>data-minus-icon</code></td>
+                        <td>&lt;span class='default-icon-minus'&gt;</td>
+                        <td>Spinner minus button icon</td>
+                    </tr>
+                    <tr>
+                        <td><code>data-buttons-position</code></td>
+                        <td>default</td>
+                        <td>Spinner buttons position, must be left, right or default</td>
+                    </tr>
+                    <tr>
+                        <td><code>data-default-value</code></td>
+                        <td>0</td>
+                        <td>Used to revert input value to default</td>
+                    </tr>
+                    <tr>
+                        <td><code>data-min-value</code></td>
+                        <td>null</td>
+                        <td>Used to set min value for input</td>
+                    </tr>
+                    <tr>
+                        <td><code>data-max-value</code></td>
+                        <td>null</td>
+                        <td>Used to set max value for input</td>
+                    </tr>
+                    <tr>
+                        <td><code>data-fixed</code></td>
+                        <td>0</td>
+                        <td>Used to set number of digits after dot</td>
+                    </tr>
+                    <tr>
+                        <td><code>data-cls-spinner</code></td>
+                        <td></td>
+                        <td>Additional class for spinner element</td>
+                    </tr>
+                    <tr>
+                        <td><code>data-cls-spinner-value</code></td>
+                        <td></td>
+                        <td>Additional class for spinner value wrapper</td>
+                    </tr>
+                    <tr>
+                        <td><code>data-cls-spinner-button</code></td>
+                        <td></td>
+                        <td>Additional class for spinner buttons</td>
+                    </tr>
+                    <tr>
+                        <td><code>data-cls-spinner-button-plus</code></td>
+                        <td></td>
+                        <td>Additional class for spinner button plus</td>
+                    </tr>
+                    <tr>
+                        <td><code>data-cls-spinner-button-minus</code></td>
+                        <td></td>
+                        <td>Additional class for spinner button minus</td>
+                    </tr>
+                    <tr>
+                        <td><code>data-on-change</code></td>
+                        <td></td>
+                        <td>Event fired when value changed</td>
+                    </tr>
+                    <tr>
+                        <td><code>data-on-spinner-create</code></td>
+                        <td>Metro.noop</td>
+                        <td>Event triggered when control created</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <p>You can set or get <code>spinner</code> value with method <code>val()</code></p>.
 
                 <h4 id="_search">Search</h4>
                 <p>

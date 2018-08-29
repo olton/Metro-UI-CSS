@@ -107,6 +107,7 @@ var ValidatorFuncs = {
             || el.parent().hasClass("checkbox")
             || el.parent().hasClass("switch")
             || el.parent().hasClass("radio")
+            || el.parent().hasClass("spinner")
             ;
     },
 

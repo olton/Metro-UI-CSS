@@ -15,10 +15,15 @@ var Spinner = {
         plusIcon: "<span class='default-icon-plus'></span>",
         minusIcon: "<span class='default-icon-minus'></span>",
         buttonsPosition: "default",
-        value: 0,
+        defaultValue: 0,
         minValue: null,
         maxValue: null,
         fixed: 0,
+        clsSpinner: "",
+        clsSpinnerValue: "",
+        clsSpinnerButton: "",
+        clsSpinnerButtonPlus: "",
+        clsSpinnerButtonMinus: "",
         onChange: Metro.noop,
         onSpinnerCreate: Metro.noop
     },
@@ -48,10 +53,11 @@ var Spinner = {
 
     _createStructure: function(){
         var element = this.element, o = this.options;
-        var spinner = $("<div>").addClass("spinner").addClass("buttons-"+o.buttonsPosition).addClass(element[0].className);
-        var wrapper = $("<div>").addClass("input-wrapper");
-        var button_plus = $("<button>").attr("type", "button").addClass("button spinner-button spinner-button-plus").html(o.plusIcon);
-        var button_minus = $("<button>").attr("type", "button").addClass("button spinner-button spinner-button-minus").html(o.minusIcon);
+        var spinner = $("<div>").addClass("spinner").addClass("buttons-"+o.buttonsPosition).addClass(element[0].className).addClass(o.clsSpinner);
+        var wrapper = $("<div>").addClass("input-wrapper").addClass(o.clsSpinnerValue);
+        var button_plus = $("<button>").attr("type", "button").addClass("button spinner-button spinner-button-plus").addClass(o.clsSpinnerButton + " " + o.clsSpinnerButtonPlus).html(o.plusIcon);
+        var button_minus = $("<button>").attr("type", "button").addClass("button spinner-button spinner-button-minus").addClass(o.clsSpinnerButton + " " + o.clsSpinnerButtonMinus).html(o.minusIcon);
+        var init_value = element.val().trim();
 
         element[0].className = '';
 
@@ -64,7 +70,7 @@ var Spinner = {
         button_plus.appendTo(spinner);
         button_minus.appendTo(spinner);
 
-        wrapper.text(Number(o.value));
+        wrapper.text(Number(Utils.isValue(init_value) ? init_value : 0));
 
         if (o.disabled === true || element.is(":disabled")) {
             this.disable();
@@ -120,6 +126,13 @@ var Spinner = {
 
         that._setValue(val.toFixed(o.fixed));
 
+        Utils.exec(o.onChange, [val], element[0]);
+    },
+
+    toDefault: function(){
+        var element = this.element, o = this.options;
+        var val = Utils.isValue(o.defaultValue) ? Number(o.defaultValue) : 0;
+        this._setValue(val.toFixed(o.fixed));
         Utils.exec(o.onChange, [val], element[0]);
     },
 
