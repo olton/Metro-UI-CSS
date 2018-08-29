@@ -4,6 +4,7 @@
 + [x] Input: add `history` option, issue #1162
 + [x] Spinner: new component, issue #1180
 + [x] Appbar: fix error creating `hamburger` when background-color is `rgba` or `transparent`
++ [x] Slider: add event `onChange`
 
 ### 4.2.19
 + [x] Change contributing rules 

@@ -276,8 +276,38 @@
                         <td>Icon for reveal button</td>
                     </tr>
                     <tr>
+                        <td>data-history</td>
+                        <td>false</td>
+                        <td>Enable history for input values. When press enter, value stored to history and can be receiver on press up or down arrow. This new in 4.2.20</td>
+                    </tr>
+                    <tr>
+                        <td>data-history-preset</td>
+                        <td></td>
+                        <td>Preset values for input history. This must be a comma separated string. This new in 4.2.20</td>
+                    </tr>
+                    <tr>
+                        <td>data-prevent-submit</td>
+                        <td></td>
+                        <td>Prevent submitting form when history enabled history. This new in 4.2.20</td>
+                    </tr>
+                    <tr>
+                        <td>data-on-history-change</td>
+                        <td>Metro.noop</td>
+                        <td>Fired when history changed</td>
+                    </tr>
+                    <tr>
+                        <td>data-on-history-up</td>
+                        <td>Metro.noop</td>
+                        <td>Fired when press up arrow</td>
+                    </tr>
+                    <tr>
+                        <td>data-on-history-down</td>
+                        <td>Metro.noop</td>
+                        <td>Fired when press down arrow</td>
+                    </tr>
+                    <tr>
                         <td>data-on-input-create</td>
-                        <td>$.noop()</td>
+                        <td>Metro.noop</td>
                         <td>Callback triggered when control created</td>
                     </tr>
                     </tbody>
@@ -353,6 +383,11 @@
                         <td><code>data-tag-separator</code></td>
                         <td><code>,</code></td>
                         <td>Tags separator for result and preset</td>
+                    </tr>
+                    <tr>
+                        <td><code>data-tag-trigger</code></td>
+                        <td>13,188</td>
+                        <td>Key codes for triggering tag creating</td>
                     </tr>
                     <tr>
                         <td><code>data-cls-tag</code></td>
@@ -507,6 +542,11 @@
                         <td>Used to set number of digits after dot</td>
                     </tr>
                     <tr>
+                        <td><code>data-repeat-threshold</code></td>
+                        <td>500</td>
+                        <td>Threshold in ms for repeat click when user long press button</td>
+                    </tr>
+                    <tr>
                         <td><code>data-cls-spinner</code></td>
                         <td></td>
                         <td>Additional class for spinner element</td>
@@ -544,7 +584,11 @@
                     </tbody>
                 </table>
 
-                <p>You can set or get <code>spinner</code> value with method <code>val()</code></p>.
+                <p>
+                    You can set or get <code>spinner</code> value with method <code>val()</code>.
+                    Also you can set or get value with input attribute <code>value</code>.
+                    To set to default value, you can use attribute <code>data-default-value</code> and method <code>toDefault()</code>.
+                </p>.
 
                 <h4 id="_search">Search</h4>
                 <p>

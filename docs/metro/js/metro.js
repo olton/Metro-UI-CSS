@@ -10289,7 +10289,7 @@ var Input = {
     options: {
         history: false,
         historyPreset: "",
-        preventSubmit: "",
+        preventSubmit: false,
         defaultValue: "",
         clsElement: "",
         clsInput: "",
@@ -10475,7 +10475,7 @@ var Input = {
                 if (that.historyIndex < that.history.length) {
                     element.val("");
                     element.val(that.history[that.historyIndex]);
-                    Utils.exec(o.onHistoryDown, [element.val(), that.history, that.historyIndex], element[0]);
+                    Utils.exec(o.onHistoryUp, [element.val(), that.history, that.historyIndex], element[0]);
                 } else {
                     that.historyIndex = that.history.length - 1;
                 }
@@ -14794,6 +14794,7 @@ var Slider = {
         onStop: Metro.noop,
         onMove: Metro.noop,
         onClick: Metro.noop,
+        onChange: Metro.noop,
         onChangeValue: Metro.noop,
         onChangeBuffer: Metro.noop,
         onFocus: Metro.noop,
@@ -15080,7 +15081,8 @@ var Slider = {
             }
         }
 
-        Utils.exec(o.onChangeValue, [value, this.percent, slider]);
+        Utils.exec(o.onChangeValue, [value, this.percent, slider], element[0]);
+        Utils.exec(o.onChange, [value, this.percent, this.buffer], element[0]);
     },
 
     _marker: function(){
@@ -15123,7 +15125,7 @@ var Slider = {
     },
 
     _buffer: function(){
-        var o = this.options;
+        var element = this.element, o = this.options;
         var buffer = this.slider.find(".buffer");
 
         if (o.vertical === true) {
@@ -15132,7 +15134,8 @@ var Slider = {
             buffer.css("width", this.buffer + "%");
         }
 
-        Utils.exec(o.onChangeBuffer, [this.buffer, this.slider]);
+        Utils.exec(o.onChangeBuffer, [this.buffer, this.slider], element[0]);
+        Utils.exec(o.onChange, [element.val(), this.percent, this.buffer], element[0]);
     },
 
     val: function(v){
@@ -15463,6 +15466,7 @@ var Spinner = {
         this.options = $.extend( {}, this.options, options );
         this.elem  = elem;
         this.element = $(elem);
+        this.repeat_timer = false;
 
         this._setOptionsFromDOM();
         this._create();
@@ -15479,6 +15483,7 @@ var Spinner = {
         minValue: null,
         maxValue: null,
         fixed: 0,
+        repeatThreshold: 500,
         clsSpinner: "",
         clsSpinnerValue: "",
         clsSpinnerButton: "",
@@ -15543,9 +15548,10 @@ var Spinner = {
         var that = this, element = this.element, o = this.options;
         var spinner = element.closest(".spinner");
 
-        spinner.on(Metro.events.click, ".spinner-button", function(){
-            var button = $(this);
+        var click = function(context, threshold){
+            var button = $(context);
             var plus = button.hasClass("spinner-button-plus");
+
             var val = Number(element.val());
             var step = Number(o.step);
 
@@ -15555,13 +15561,26 @@ var Spinner = {
                 val -= step;
             }
 
-            that._setValue(val.toFixed(o.fixed));
+            that._setValue(val.toFixed(o.fixed), true);
 
-            Utils.exec(o.onChange, [val], element[0]);
+            setTimeout(function(){
+                if (that.repeat_timer) {
+                    click(context, 100);
+                }
+            }, threshold);
+        };
+
+        spinner.on(Metro.events.start, ".spinner-button", function(){
+            that.repeat_timer = true;
+            click(this, o.repeatThreshold);
+        });
+
+        spinner.on(Metro.events.stop, ".spinner-button", function(){
+            that.repeat_timer = false;
         });
     },
 
-    _setValue: function(val){
+    _setValue: function(val, change){
         var element = this.element, o = this.options;
         var spinner = element.closest(".spinner");
         var wrapper = spinner.find(".input-wrapper");
@@ -15576,6 +15595,12 @@ var Spinner = {
 
         element.val(val);
         wrapper.text(val);
+
+        Utils.exec(o.onChange, [val], element[0]);
+
+        if (change === true) {
+            element.trigger("change");
+        }
     },
 
     val: function(val){
@@ -15584,15 +15609,13 @@ var Spinner = {
             return element.val();
         }
 
-        that._setValue(val.toFixed(o.fixed));
-
-        Utils.exec(o.onChange, [val], element[0]);
+        that._setValue(val.toFixed(o.fixed), true);
     },
 
     toDefault: function(){
         var element = this.element, o = this.options;
         var val = Utils.isValue(o.defaultValue) ? Number(o.defaultValue) : 0;
-        this._setValue(val.toFixed(o.fixed));
+        this._setValue(val.toFixed(o.fixed), true);
         Utils.exec(o.onChange, [val], element[0]);
     },
 
@@ -15614,9 +15637,20 @@ var Spinner = {
         }
     },
 
+
     changeAttribute: function(attributeName){
+        var that = this, element = this.element;
+
+        var changeValue = function(){
+            var val = element.attr('value').trim();
+            if (Utils.isValue(val)) {
+                that._setValue(Number(val), false);
+            }
+        };
+
         switch (attributeName) {
             case 'disabled': this.toggleState(); break;
+            case 'value': changeValue(); break;
         }
     },
 
@@ -16512,6 +16546,7 @@ var Table = {
         this.view = {};
         this.viewDefault = {};
         this.locale = Metro.locales["en-US"];
+        this.input_interval = null;
 
         this.sort = {
             dir: "asc",
@@ -17338,8 +17373,6 @@ var Table = {
             Utils.exec(o.onCheckClickAll, [status], this);
         });
 
-        var input_interval;
-
         var _search = function(e){
             that.filterString = this.value.trim().toLowerCase();
 
@@ -17347,8 +17380,8 @@ var Table = {
                 return ;
             }
 
-            clearInterval(input_interval);
-            setTimeout(function(){
+            clearInterval(that.input_interval);
+            that.input_interval = setTimeout(function(){
                 that.currentPage = 1;
                 that._draw();
             }, o.filterThreshold);

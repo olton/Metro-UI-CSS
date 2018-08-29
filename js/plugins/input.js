@@ -16,7 +16,7 @@ var Input = {
     options: {
         history: false,
         historyPreset: "",
-        preventSubmit: "",
+        preventSubmit: false,
         defaultValue: "",
         clsElement: "",
         clsInput: "",
@@ -202,7 +202,7 @@ var Input = {
                 if (that.historyIndex < that.history.length) {
                     element.val("");
                     element.val(that.history[that.historyIndex]);
-                    Utils.exec(o.onHistoryDown, [element.val(), that.history, that.historyIndex], element[0]);
+                    Utils.exec(o.onHistoryUp, [element.val(), that.history, that.historyIndex], element[0]);
                 } else {
                     that.historyIndex = that.history.length - 1;
                 }

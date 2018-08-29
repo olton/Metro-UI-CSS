@@ -21,6 +21,7 @@ var Table = {
         this.view = {};
         this.viewDefault = {};
         this.locale = Metro.locales["en-US"];
+        this.input_interval = null;
 
         this.sort = {
             dir: "asc",
@@ -847,8 +848,6 @@ var Table = {
             Utils.exec(o.onCheckClickAll, [status], this);
         });
 
-        var input_interval;
-
         var _search = function(e){
             that.filterString = this.value.trim().toLowerCase();
 
@@ -856,8 +855,8 @@ var Table = {
                 return ;
             }
 
-            clearInterval(input_interval);
-            setTimeout(function(){
+            clearInterval(that.input_interval);
+            that.input_interval = setTimeout(function(){
                 that.currentPage = 1;
                 that._draw();
             }, o.filterThreshold);
