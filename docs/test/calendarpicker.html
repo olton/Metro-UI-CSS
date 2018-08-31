@@ -9,34 +9,16 @@
 
     <link href="../metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
 
-    <title>Collapse test page - Metro 4 :: Popular HTML, CSS and JS library</title>
+    <title>Calendar picker test page - Metro 4 :: Popular HTML, CSS and JS library</title>
 </head>
 <body>
 <div class="m-20">
-    <button class="button" id="clearCalendar">Clear</button>
-    <button class="button" id="today" onclick="$('#calendar').data('calendar').toDay()">Today</button>
-    <div data-role="calendar" id="calendar" data-picker-mode="true"></div>
-</div>
-
-<div class="d-flex m-20">
-    <input type="text" data-role="calendarpicker" id="picker">
-    <button class="button" id="clearPicker">Clear</button>
+    <input class="mt-10" type="text" data-role="calendarpicker" data-on-day-click="console.log(this.value)">
+    <input class="mt-10" type="text" data-role="calendarpicker" data-format="%d/%m/%Y" data-input-format="%d/%m/%Y" value="21/12/1972" data-on-day-click="console.log(this.value)">
 </div>
 
 <script src="../js/jquery-3.3.1.min.js"></script>
 <script src="../metro/js/metro.js?ver=@@b-version"></script>
-<script>
-    $("#clearPicker").click(function(){
-        var picker_element = $("#picker");
-        var picker = picker_element.data("calendarpicker");
-        picker_element.val("");
-        picker.clearSelected();
-    });
 
-    $("#clearCalendar").click(function(){
-        var cal = $("#calendar").data("calendar");
-        cal.clearSelected();
-    })
-</script>
 </body>
 </html>

@@ -1829,29 +1829,40 @@ String.prototype.contains = function() {
 
 String.prototype.toDate = function(format)
 {
-    var normalized      = this.replace(/[^a-zA-Z0-9]/g, '-');
-    var normalizedFormat= format.toLowerCase().replace(/[^a-zA-Z0-9]/g, '-');
+    var normalized      = this.replace(/[^a-zA-Z0-9%]/g, '-');
+    var normalizedFormat= format.toLowerCase().replace(/[^a-zA-Z0-9%]/g, '-');
     var formatItems     = normalizedFormat.split('-');
     var dateItems       = normalized.split('-');
 
     var monthIndex  = formatItems.indexOf("mm");
     var dayIndex    = formatItems.indexOf("dd");
-    var yearIndex   = formatItems.indexOf("yyyy");
+    var yearIndex   = formatItems.indexOf("yyyy") > -1 ? formatItems.indexOf("yyyy") : formatItems.indexOf("yy");
     var hourIndex     = formatItems.indexOf("hh");
     var minutesIndex  = formatItems.indexOf("ii");
     var secondsIndex  = formatItems.indexOf("ss");
 
+    var monthIndexP  = formatItems.indexOf("%m");
+    var dayIndexP    = formatItems.indexOf("%d");
+    var yearIndexP   = formatItems.indexOf("%y") > -1 ? formatItems.indexOf("%y") : formatItems.indexOf("%Y");
+    var hourIndexP     = formatItems.indexOf("%h");
+    var minutesIndexP  = formatItems.indexOf("%i");
+    var secondsIndexP  = formatItems.indexOf("%s");
+
     var today = new Date();
 
-    var year  = yearIndex>-1  ? dateItems[yearIndex]    : today.getFullYear();
-    var month = monthIndex>-1 ? dateItems[monthIndex]-1 : today.getMonth()-1;
-    var day   = dayIndex>-1   ? dateItems[dayIndex]     : today.getDate();
+    var year  = yearIndex >-1 ? dateItems[yearIndex] : yearIndexP > -1 ? dateItems[yearIndexP] : today.getFullYear();
+    var month = monthIndex >-1 ? dateItems[monthIndex]-1 : monthIndexP ? dateItems[monthIndexP] - 1 : today.getMonth()-1;
+    var day   = dayIndex >-1 ? dateItems[dayIndex] : dayIndexP > -1 ? dateItems[dayIndexP] : today.getDate();
 
-    var hour    = hourIndex>-1      ? dateItems[hourIndex]    : today.getHours();
-    var minute  = minutesIndex>-1   ? dateItems[minutesIndex] : today.getMinutes();
-    var second  = secondsIndex>-1   ? dateItems[secondsIndex] : today.getSeconds();
+    var hour    = hourIndex >-1 ? dateItems[hourIndex] : hourIndexP > -1 ? dateItems[hourIndexP] : today.getHours();
+    var minute  = minutesIndex>-1 ? dateItems[minutesIndex] : minutesIndexP > -1 ? dateItems[minutesIndexP] : today.getMinutes();
+    var second  = secondsIndex>-1 ? dateItems[secondsIndex] : secondsIndexP > -1 ? dateItems[secondsIndexP] : today.getSeconds();
 
     return new Date(year,month,day,hour,minute,second);
+};
+
+Date.prototype.getYear = function(){
+    return this.getFullYear().toString().substr(-2);
 };
 
 Date.prototype.format = function(format, locale){
@@ -3290,8 +3301,20 @@ var Utils = {
         return /youtu\.be|youtube|vimeo/gi.test(val);
     },
 
-    isDate: function(val){
-        return (String(new Date(val)) !== "Invalid Date");
+    isDate: function(val, format){
+        var result;
+
+        if (typeof val === "object" && Utils.isFunc(val['getMonth'])) {
+            return true;
+        }
+
+        if (Utils.isValue(format)) {
+            result = String(val).toDate(format);
+        } else {
+            result = String(new Date(val));
+        }
+
+        return result !== "Invalid Date";
     },
 
     isInt: function(n){
@@ -3309,11 +3332,11 @@ var Utils = {
     },
 
     isFunc: function(f){
-        return this.isType(f, 'function');
+        return Utils.isType(f, 'function');
     },
 
     isObject: function(o){
-        return this.isType(o, 'object')
+        return Utils.isType(o, 'object')
     },
 
     isArray: function(a){
@@ -3329,7 +3352,7 @@ var Utils = {
             return o;
         }
 
-        if (this.isTag(o) || this.isUrl(o)) {
+        if (Utils.isTag(o) || Utils.isUrl(o)) {
             return false;
         }
 
@@ -3384,7 +3407,7 @@ var Utils = {
 
     embedObject: function(val){
         if (typeof  val !== "string" ) {
-            val = this.isJQueryObject(val) ? val.html() : val.innerHTML;
+            val = Utils.isJQueryObject(val) ? val.html() : val.innerHTML;
         }
         return "<div class='embed-container'>" + val + "</div>";
     },
@@ -3457,7 +3480,7 @@ var d = new Date().getTime();
     },
 
     callback: function(f, args, context){
-        return this.exec(f, args, context);
+        return Utils.exec(f, args, context);
     },
 
     func: function(f){
@@ -3467,9 +3490,9 @@ var d = new Date().getTime();
     exec: function(f, args, context){
         var result;
         if (f === undefined || f === null) {return false;}
-        var func = this.isFunc(f);
+        var func = Utils.isFunc(f);
         if (func === false) {
-            func = this.func(f);
+            func = Utils.func(f);
         }
 
         try {
@@ -3484,7 +3507,7 @@ var d = new Date().getTime();
     },
 
     isOutsider: function(el) {
-        el = this.isJQueryObject(el) ? el : $(el);
+        el = Utils.isJQueryObject(el) ? el : $(el);
         var rect;
         var clone = el.clone();
 
@@ -3507,7 +3530,7 @@ var d = new Date().getTime();
     },
 
     inViewport: function(el){
-        var rect = this.rect(el);
+        var rect = Utils.rect(el);
 
         return (
             rect.top >= 0 &&
@@ -3522,9 +3545,7 @@ var d = new Date().getTime();
             el = el[0];
         }
 
-        var rect = el.getBoundingClientRect();
-
-        return rect;
+        return el.getBoundingClientRect();
     },
 
     objectLength: function(obj){
@@ -3676,7 +3697,7 @@ var d = new Date().getTime();
     },
 
     coords: function(el){
-        if (this.isJQueryObject(el)) {
+        if (Utils.isJQueryObject(el)) {
             el = el[0];
         }
 
@@ -3690,9 +3711,9 @@ var d = new Date().getTime();
 
     positionXY: function(e, t){
         switch (t) {
-            case 'client': return this.clientXY(e);
-            case 'screen': return this.screenXY(e);
-            case 'page': return this.pageXY(e);
+            case 'client': return Utils.clientXY(e);
+            case 'screen': return Utils.screenXY(e);
+            case 'page': return Utils.pageXY(e);
             default: return {x: 0, y: 0}
         }
     },
@@ -3752,11 +3773,11 @@ var d = new Date().getTime();
     },
 
     getStyleOne: function(el, property){
-        return this.getStyle(el).getPropertyValue(property);
+        return Utils.getStyle(el).getPropertyValue(property);
     },
 
     getTransformMatrix: function(el, returnArray){
-        var computedMatrix = this.getStyleOne(el, "transform");
+        var computedMatrix = Utils.getStyleOne(el, "transform");
         var a = computedMatrix
             .replace("matrix(", '')
             .slice(0, -1)
@@ -3824,7 +3845,7 @@ var d = new Date().getTime();
 
     getInlineStyles: function(el){
         var styles = {};
-        if (this.isJQueryObject(el)) {
+        if (Utils.isJQueryObject(el)) {
             el = el[0];
         }
         for (var i = 0, l = el.style.length; i < l; i++) {
@@ -3867,11 +3888,11 @@ var d = new Date().getTime();
     strToArray: function(str, delimiter, type, format){
         var a;
 
-        if (!this.isValue(delimiter)) {
+        if (!Utils.isValue(delimiter)) {
             delimiter = ",";
         }
 
-        if (!this.isValue(type)) {
+        if (!Utils.isValue(type)) {
             type = "string";
         }
 
@@ -3979,11 +4000,11 @@ var d = new Date().getTime();
     },
 
     isVisible: function(el){
-        if (this.isJQueryObject(el)) {
+        if (Utils.isJQueryObject(el)) {
             el = el[0];
         }
 
-        return this.getStyleOne(el, "display") !== "none" && this.getStyleOne(el, "visibility") !== "hidden" && el.offsetParent !== null;
+        return Utils.getStyleOne(el, "display") !== "none" && Utils.getStyleOne(el, "visibility") !== "hidden" && el.offsetParent !== null;
     },
 
     parseNumber: function(val, thousand, decimal){
@@ -4013,7 +4034,7 @@ var d = new Date().getTime();
     copy: function(el){
         var body = document.body, range, sel;
 
-        if (this.isJQueryObject(el)) {
+        if (Utils.isJQueryObject(el)) {
             el = el[0];
         }
 
@@ -5961,7 +5982,7 @@ var CalendarPicker = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCalendarPickerCreate, [this.element]);
+        Utils.exec(this.options.onCalendarPickerCreate, [this.element], this.elem);
 
         return this;
     },
@@ -5972,6 +5993,7 @@ var CalendarPicker = {
         locale: METRO_LOCALE,
         size: "100%",
         format: "%Y/%m/%d",
+        inputFormat: null,
         headerFormat: "%A, %b %e",
         clearButton: false,
         calendarButtonIcon: "<span class='default-icon-calendar'></span>",
@@ -6038,7 +6060,8 @@ var CalendarPicker = {
             element.attr("type", "text");
         }
 
-        this.value = element.val();
+        this.value = Utils.isValue(o.inputFormat) === false ? element.val() : (element.val().toDate(o.inputFormat)).format("%Y/%m/%d");
+
         if (Utils.isDate(this.value)) {
             this.value_date = new Date(this.value);
             this.value_date.setHours(0,0,0,0);
@@ -6084,14 +6107,14 @@ var CalendarPicker = {
             showFooter: o.showFooter,
             onDayClick: function(sel, day, el){
                 var date = new Date(sel[0]);
-                that.value = date.format("%Y/%m/%d");
+                that.value = date.format(Metro.utils.isValue(o.inputFormat) ? o.inputFormat : "%Y/%m/%d");
                 that.value_date = date;
                 element.val(date.format(o.format, o.locale));
                 element.trigger("change");
                 cal.removeClass("open open-up");
                 cal.hide();
-                Utils.exec(o.onChange, [that.value, that.value_date, element]);
-                Utils.exec(o.onDayClick, [sel, day, el]);
+                Utils.exec(o.onChange, [that.value, that.value_date, element], element[0]);
+                Utils.exec(o.onDayClick, [sel, day, el], element[0]);
             },
             onMonthChange: o.onMonthChange,
             onYearChange: o.onYearChange
@@ -6104,7 +6127,7 @@ var CalendarPicker = {
         calendarButton = $("<button>").addClass("button").attr("tabindex", -1).attr("type", "button").html(o.calendarButtonIcon);
         calendarButton.appendTo(buttons);
         container.on(Metro.events.click, "button, input", function(e){
-            if (Utils.isDate(that.value) && (cal.hasClass("open") === false && cal.hasClass("open-up") === false)) {
+            if (Utils.isDate(that.value, o.inputFormat) && (cal.hasClass("open") === false && cal.hasClass("open-up") === false)) {
                 cal.css({
                     visibility: "hidden",
                     display: "block"
@@ -6171,7 +6194,7 @@ var CalendarPicker = {
         element.on(Metro.events.blur, function(){container.removeClass("focused");});
         element.on(Metro.events.focus, function(){container.addClass("focused");});
         element.on(Metro.events.change, function(){
-            Utils.exec(o.onChange, [that.value_date, that.value, element]);
+            Utils.exec(o.onChange, [that.value_date, that.value, element], element[0]);
         });
     },
 
@@ -13644,6 +13667,11 @@ var Resizable = {
     },
     options: {
         resizeElement: ".resize-element",
+        resizeMinWidth: 0,
+        resizeMinHeight: 0,
+        resizeMaxWidth: 0,
+        resizeMaxHeight: 0,
+        resizePreserveRatio: false,
         onResizeStart: Metro.noop,
         onResizeStop: Metro.noop,
         onResize: Metro.noop,
@@ -13682,6 +13710,8 @@ var Resizable = {
             var startHeight = parseInt(element.outerHeight());
             var size = {width: startWidth, height: startHeight};
 
+            console.log(element.offset());
+
             Utils.exec(o.onResizeStart, [element, size]);
 
             $(document).on(Metro.events.move, function(e){
@@ -13690,6 +13720,12 @@ var Resizable = {
                     width: startWidth + moveXY.x - startXY.x,
                     height: startHeight + moveXY.y - startXY.y
                 };
+
+                if (o.resizeMinWidth > 0 && size.width < o.resizeMinWidth) {return ;}
+                if (o.resizeMaxWidth > 0 && size.width > o.resizeMaxWidth) {return ;}
+                if (o.resizeMinHeight > 0 && size.height < o.resizeMinHeight) {return ;}
+                if (o.resizeMaxHeight > 0 && size.height > o.resizeMaxHeight) {return ;}
+
                 element.css(size);
                 Utils.exec(o.onResize, [element, size]);
             });
@@ -17380,10 +17416,11 @@ var Table = {
                 return ;
             }
 
-            clearInterval(that.input_interval);
-            that.input_interval = setTimeout(function(){
+            clearInterval(that.input_interval); that.input_interval = false;
+            if (!that.input_interval) that.input_interval = setTimeout(function(){
                 that.currentPage = 1;
                 that._draw();
+                clearInterval(that.input_interval); that.input_interval = false;
             }, o.filterThreshold);
         };
 
@@ -19724,7 +19761,7 @@ var Treeview = {
 
             that.current(node);
 
-            Utils.exec(o.onNodeClick, [node, element]);
+            Utils.exec(o.onNodeClick, [node, element], node[0]);
 
             e.preventDefault();
         });
@@ -19738,7 +19775,7 @@ var Treeview = {
                 that.toggleNode(node);
             }
 
-            Utils.exec(o.onNodeDblClick, [node, element]);
+            Utils.exec(o.onNodeDblClick, [node, element], node[0]);
 
             e.preventDefault();
         });
@@ -19750,7 +19787,7 @@ var Treeview = {
 
             that.current(node);
 
-            Utils.exec(o.onRadioClick, [checked, check, node, element]);
+            Utils.exec(o.onRadioClick, [checked, check, node, element], this);
         });
 
         element.on(Metro.events.click, "input[type=checkbox]", function(e){
@@ -19861,7 +19898,7 @@ var Treeview = {
 
         new_node.appendTo(target);
 
-        Utils.exec(o.onNodeInsert, [new_node, element]);
+        Utils.exec(o.onNodeInsert, [new_node, element], new_node[0]);
 
         return new_node;
     },
@@ -19870,7 +19907,7 @@ var Treeview = {
         var element = this.element, o = this.options;
         var new_node = this._createNode(data);
         new_node.insertBefore(node);
-        Utils.exec(o.onNodeInsert, [new_node, element]);
+        Utils.exec(o.onNodeInsert, [new_node, element], new_node[0]);
         return new_node;
     },
 
@@ -19878,7 +19915,7 @@ var Treeview = {
         var element = this.element, o = this.options;
         var new_node = this._createNode(data);
         new_node.insertAfter(node);
-        Utils.exec(o.onNodeInsert, [new_node, element]);
+        Utils.exec(o.onNodeInsert, [new_node, element], new_node[0]);
         return new_node;
     },
 
@@ -19892,7 +19929,7 @@ var Treeview = {
             parent_node.removeClass("expanded");
             parent_node.children(".node-toggle").remove();
         }
-        Utils.exec(o.onNodeDelete, [node, element]);
+        Utils.exec(o.onNodeDelete, [element], element[0]);
     },
 
     clean: function(node){
@@ -19900,7 +19937,7 @@ var Treeview = {
         node.children("ul").remove();
         node.removeClass("expanded");
         node.children(".node-toggle").remove();
-        Utils.exec(o.onNodeClean, [node, element]);
+        Utils.exec(o.onNodeClean, [node, element], node[0]);
     },
 
     changeAttribute: function(attributeName){

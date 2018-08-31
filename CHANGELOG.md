@@ -5,6 +5,9 @@
 + [x] Spinner: new component, issue #1180
 + [x] Appbar: fix error creating `hamburger` when background-color is `rgba` or `transparent`
 + [x] Slider: add event `onChange`
++ [x] Treeview: change context for events
++ [ ] Resizable: refactoring
++ [x] Calendar picker: any input format with `String.toDate` function 
 
 ### 4.2.19
 + [x] Change contributing rules 

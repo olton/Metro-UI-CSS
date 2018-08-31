@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <link href="../metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
+
+    <title>Resize test page - Metro 4 :: Popular HTML, CSS and JS library</title>
+</head>
+<body class="h-vh-100">
+
+<div data-role="panel"
+     data-title-caption="Panel title"
+     data-title-icon="<span class='mif-apps'></span>"
+     data-drag-element=".panel-title"
+     data-width="300"
+     data-draggable="true"
+     data-resizable="true"
+>
+    ...
+</div>
+
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script src="../metro/js/metro.js?ver=@@b-version"></script>
+<script>
+
+    var isDate = Metro.utils.isDate;
+
+    console.log(Metro.utils.isFunc(isDate));
+
+    console.log(isDate(new Date()));
+    console.log(isDate("12/21/1972"));
+    console.log(isDate("21/12/1972", "%d/%m/%y"));
+    console.log(isDate("32/32/1972"));
+</script>
+</body>
+</html>

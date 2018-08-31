@@ -26,8 +26,20 @@ var Utils = {
         return /youtu\.be|youtube|vimeo/gi.test(val);
     },
 
-    isDate: function(val){
-        return (String(new Date(val)) !== "Invalid Date");
+    isDate: function(val, format){
+        var result;
+
+        if (typeof val === "object" && Utils.isFunc(val['getMonth'])) {
+            return true;
+        }
+
+        if (Utils.isValue(format)) {
+            result = String(val).toDate(format);
+        } else {
+            result = String(new Date(val));
+        }
+
+        return result !== "Invalid Date";
     },
 
     isInt: function(n){
@@ -45,11 +57,11 @@ var Utils = {
     },
 
     isFunc: function(f){
-        return this.isType(f, 'function');
+        return Utils.isType(f, 'function');
     },
 
     isObject: function(o){
-        return this.isType(o, 'object')
+        return Utils.isType(o, 'object')
     },
 
     isArray: function(a){
@@ -65,7 +77,7 @@ var Utils = {
             return o;
         }
 
-        if (this.isTag(o) || this.isUrl(o)) {
+        if (Utils.isTag(o) || Utils.isUrl(o)) {
             return false;
         }
 
@@ -120,7 +132,7 @@ var Utils = {
 
     embedObject: function(val){
         if (typeof  val !== "string" ) {
-            val = this.isJQueryObject(val) ? val.html() : val.innerHTML;
+            val = Utils.isJQueryObject(val) ? val.html() : val.innerHTML;
         }
         return "<div class='embed-container'>" + val + "</div>";
     },
@@ -194,7 +206,7 @@ var Utils = {
     },
 
     callback: function(f, args, context){
-        return this.exec(f, args, context);
+        return Utils.exec(f, args, context);
     },
 
     func: function(f){
@@ -204,9 +216,9 @@ var Utils = {
     exec: function(f, args, context){
         var result;
         if (f === undefined || f === null) {return false;}
-        var func = this.isFunc(f);
+        var func = Utils.isFunc(f);
         if (func === false) {
-            func = this.func(f);
+            func = Utils.func(f);
         }
 
         try {
@@ -221,7 +233,7 @@ var Utils = {
     },
 
     isOutsider: function(el) {
-        el = this.isJQueryObject(el) ? el : $(el);
+        el = Utils.isJQueryObject(el) ? el : $(el);
         var rect;
         var clone = el.clone();
 
@@ -244,7 +256,7 @@ var Utils = {
     },
 
     inViewport: function(el){
-        var rect = this.rect(el);
+        var rect = Utils.rect(el);
 
         return (
             rect.top >= 0 &&
@@ -259,9 +271,7 @@ var Utils = {
             el = el[0];
         }
 
-        var rect = el.getBoundingClientRect();
-
-        return rect;
+        return el.getBoundingClientRect();
     },
 
     objectLength: function(obj){
@@ -413,7 +423,7 @@ var Utils = {
     },
 
     coords: function(el){
-        if (this.isJQueryObject(el)) {
+        if (Utils.isJQueryObject(el)) {
             el = el[0];
         }
 
@@ -427,9 +437,9 @@ var Utils = {
 
     positionXY: function(e, t){
         switch (t) {
-            case 'client': return this.clientXY(e);
-            case 'screen': return this.screenXY(e);
-            case 'page': return this.pageXY(e);
+            case 'client': return Utils.clientXY(e);
+            case 'screen': return Utils.screenXY(e);
+            case 'page': return Utils.pageXY(e);
             default: return {x: 0, y: 0}
         }
     },
@@ -489,11 +499,11 @@ var Utils = {
     },
 
     getStyleOne: function(el, property){
-        return this.getStyle(el).getPropertyValue(property);
+        return Utils.getStyle(el).getPropertyValue(property);
     },
 
     getTransformMatrix: function(el, returnArray){
-        var computedMatrix = this.getStyleOne(el, "transform");
+        var computedMatrix = Utils.getStyleOne(el, "transform");
         var a = computedMatrix
             .replace("matrix(", '')
             .slice(0, -1)
@@ -561,7 +571,7 @@ var Utils = {
 
     getInlineStyles: function(el){
         var styles = {};
-        if (this.isJQueryObject(el)) {
+        if (Utils.isJQueryObject(el)) {
             el = el[0];
         }
         for (var i = 0, l = el.style.length; i < l; i++) {
@@ -604,11 +614,11 @@ var Utils = {
     strToArray: function(str, delimiter, type, format){
         var a;
 
-        if (!this.isValue(delimiter)) {
+        if (!Utils.isValue(delimiter)) {
             delimiter = ",";
         }
 
-        if (!this.isValue(type)) {
+        if (!Utils.isValue(type)) {
             type = "string";
         }
 
@@ -716,11 +726,11 @@ var Utils = {
     },
 
     isVisible: function(el){
-        if (this.isJQueryObject(el)) {
+        if (Utils.isJQueryObject(el)) {
             el = el[0];
         }
 
-        return this.getStyleOne(el, "display") !== "none" && this.getStyleOne(el, "visibility") !== "hidden" && el.offsetParent !== null;
+        return Utils.getStyleOne(el, "display") !== "none" && Utils.getStyleOne(el, "visibility") !== "hidden" && el.offsetParent !== null;
     },
 
     parseNumber: function(val, thousand, decimal){
@@ -750,7 +760,7 @@ var Utils = {
     copy: function(el){
         var body = document.body, range, sel;
 
-        if (this.isJQueryObject(el)) {
+        if (Utils.isJQueryObject(el)) {
             el = el[0];
         }
 
