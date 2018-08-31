@@ -77,29 +77,40 @@ String.prototype.contains = function() {
 
 String.prototype.toDate = function(format)
 {
-    var normalized      = this.replace(/[^a-zA-Z0-9]/g, '-');
-    var normalizedFormat= format.toLowerCase().replace(/[^a-zA-Z0-9]/g, '-');
+    var normalized      = this.replace(/[^a-zA-Z0-9%]/g, '-');
+    var normalizedFormat= format.toLowerCase().replace(/[^a-zA-Z0-9%]/g, '-');
     var formatItems     = normalizedFormat.split('-');
     var dateItems       = normalized.split('-');
 
     var monthIndex  = formatItems.indexOf("mm");
     var dayIndex    = formatItems.indexOf("dd");
-    var yearIndex   = formatItems.indexOf("yyyy");
+    var yearIndex   = formatItems.indexOf("yyyy") > -1 ? formatItems.indexOf("yyyy") : formatItems.indexOf("yy");
     var hourIndex     = formatItems.indexOf("hh");
     var minutesIndex  = formatItems.indexOf("ii");
     var secondsIndex  = formatItems.indexOf("ss");
 
+    var monthIndexP  = formatItems.indexOf("%m");
+    var dayIndexP    = formatItems.indexOf("%d");
+    var yearIndexP   = formatItems.indexOf("%y") > -1 ? formatItems.indexOf("%y") : formatItems.indexOf("%Y");
+    var hourIndexP     = formatItems.indexOf("%h");
+    var minutesIndexP  = formatItems.indexOf("%i");
+    var secondsIndexP  = formatItems.indexOf("%s");
+
     var today = new Date();
 
-    var year  = yearIndex>-1  ? dateItems[yearIndex]    : today.getFullYear();
-    var month = monthIndex>-1 ? dateItems[monthIndex]-1 : today.getMonth()-1;
-    var day   = dayIndex>-1   ? dateItems[dayIndex]     : today.getDate();
+    var year  = yearIndex >-1 ? dateItems[yearIndex] : yearIndexP > -1 ? dateItems[yearIndexP] : today.getFullYear();
+    var month = monthIndex >-1 ? dateItems[monthIndex]-1 : monthIndexP ? dateItems[monthIndexP] - 1 : today.getMonth()-1;
+    var day   = dayIndex >-1 ? dateItems[dayIndex] : dayIndexP > -1 ? dateItems[dayIndexP] : today.getDate();
 
-    var hour    = hourIndex>-1      ? dateItems[hourIndex]    : today.getHours();
-    var minute  = minutesIndex>-1   ? dateItems[minutesIndex] : today.getMinutes();
-    var second  = secondsIndex>-1   ? dateItems[secondsIndex] : today.getSeconds();
+    var hour    = hourIndex >-1 ? dateItems[hourIndex] : hourIndexP > -1 ? dateItems[hourIndexP] : today.getHours();
+    var minute  = minutesIndex>-1 ? dateItems[minutesIndex] : minutesIndexP > -1 ? dateItems[minutesIndexP] : today.getMinutes();
+    var second  = secondsIndex>-1 ? dateItems[secondsIndex] : secondsIndexP > -1 ? dateItems[secondsIndexP] : today.getSeconds();
 
     return new Date(year,month,day,hour,minute,second);
+};
+
+Date.prototype.getYear = function(){
+    return this.getFullYear().toString().substr(-2);
 };
 
 Date.prototype.format = function(format, locale){

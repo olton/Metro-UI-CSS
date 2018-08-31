@@ -140,7 +140,7 @@ var Treeview = {
 
             that.current(node);
 
-            Utils.exec(o.onNodeClick, [node, element]);
+            Utils.exec(o.onNodeClick, [node, element], node[0]);
 
             e.preventDefault();
         });
@@ -154,7 +154,7 @@ var Treeview = {
                 that.toggleNode(node);
             }
 
-            Utils.exec(o.onNodeDblClick, [node, element]);
+            Utils.exec(o.onNodeDblClick, [node, element], node[0]);
 
             e.preventDefault();
         });
@@ -166,7 +166,7 @@ var Treeview = {
 
             that.current(node);
 
-            Utils.exec(o.onRadioClick, [checked, check, node, element]);
+            Utils.exec(o.onRadioClick, [checked, check, node, element], this);
         });
 
         element.on(Metro.events.click, "input[type=checkbox]", function(e){
@@ -277,7 +277,7 @@ var Treeview = {
 
         new_node.appendTo(target);
 
-        Utils.exec(o.onNodeInsert, [new_node, element]);
+        Utils.exec(o.onNodeInsert, [new_node, element], new_node[0]);
 
         return new_node;
     },
@@ -286,7 +286,7 @@ var Treeview = {
         var element = this.element, o = this.options;
         var new_node = this._createNode(data);
         new_node.insertBefore(node);
-        Utils.exec(o.onNodeInsert, [new_node, element]);
+        Utils.exec(o.onNodeInsert, [new_node, element], new_node[0]);
         return new_node;
     },
 
@@ -294,7 +294,7 @@ var Treeview = {
         var element = this.element, o = this.options;
         var new_node = this._createNode(data);
         new_node.insertAfter(node);
-        Utils.exec(o.onNodeInsert, [new_node, element]);
+        Utils.exec(o.onNodeInsert, [new_node, element], new_node[0]);
         return new_node;
     },
 
@@ -308,7 +308,7 @@ var Treeview = {
             parent_node.removeClass("expanded");
             parent_node.children(".node-toggle").remove();
         }
-        Utils.exec(o.onNodeDelete, [node, element]);
+        Utils.exec(o.onNodeDelete, [element], element[0]);
     },
 
     clean: function(node){
@@ -316,7 +316,7 @@ var Treeview = {
         node.children("ul").remove();
         node.removeClass("expanded");
         node.children(".node-toggle").remove();
-        Utils.exec(o.onNodeClean, [node, element]);
+        Utils.exec(o.onNodeClean, [node, element], node[0]);
     },
 
     changeAttribute: function(attributeName){

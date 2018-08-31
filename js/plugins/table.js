@@ -855,10 +855,11 @@ var Table = {
                 return ;
             }
 
-            clearInterval(that.input_interval);
-            that.input_interval = setTimeout(function(){
+            clearInterval(that.input_interval); that.input_interval = false;
+            if (!that.input_interval) that.input_interval = setTimeout(function(){
                 that.currentPage = 1;
                 that._draw();
+                clearInterval(that.input_interval); that.input_interval = false;
             }, o.filterThreshold);
         };
 

@@ -10,7 +10,7 @@ var CalendarPicker = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCalendarPickerCreate, [this.element]);
+        Utils.exec(this.options.onCalendarPickerCreate, [this.element], this.elem);
 
         return this;
     },
@@ -21,6 +21,7 @@ var CalendarPicker = {
         locale: METRO_LOCALE,
         size: "100%",
         format: "%Y/%m/%d",
+        inputFormat: null,
         headerFormat: "%A, %b %e",
         clearButton: false,
         calendarButtonIcon: "<span class='default-icon-calendar'></span>",
@@ -87,7 +88,8 @@ var CalendarPicker = {
             element.attr("type", "text");
         }
 
-        this.value = element.val();
+        this.value = Utils.isValue(o.inputFormat) === false ? element.val() : (element.val().toDate(o.inputFormat)).format("%Y/%m/%d");
+
         if (Utils.isDate(this.value)) {
             this.value_date = new Date(this.value);
             this.value_date.setHours(0,0,0,0);
@@ -133,14 +135,14 @@ var CalendarPicker = {
             showFooter: o.showFooter,
             onDayClick: function(sel, day, el){
                 var date = new Date(sel[0]);
-                that.value = date.format("%Y/%m/%d");
+                that.value = date.format(Metro.utils.isValue(o.inputFormat) ? o.inputFormat : "%Y/%m/%d");
                 that.value_date = date;
                 element.val(date.format(o.format, o.locale));
                 element.trigger("change");
                 cal.removeClass("open open-up");
                 cal.hide();
-                Utils.exec(o.onChange, [that.value, that.value_date, element]);
-                Utils.exec(o.onDayClick, [sel, day, el]);
+                Utils.exec(o.onChange, [that.value, that.value_date, element], element[0]);
+                Utils.exec(o.onDayClick, [sel, day, el], element[0]);
             },
             onMonthChange: o.onMonthChange,
             onYearChange: o.onYearChange
@@ -153,7 +155,7 @@ var CalendarPicker = {
         calendarButton = $("<button>").addClass("button").attr("tabindex", -1).attr("type", "button").html(o.calendarButtonIcon);
         calendarButton.appendTo(buttons);
         container.on(Metro.events.click, "button, input", function(e){
-            if (Utils.isDate(that.value) && (cal.hasClass("open") === false && cal.hasClass("open-up") === false)) {
+            if (Utils.isDate(that.value, o.inputFormat) && (cal.hasClass("open") === false && cal.hasClass("open-up") === false)) {
                 cal.css({
                     visibility: "hidden",
                     display: "block"
@@ -220,7 +222,7 @@ var CalendarPicker = {
         element.on(Metro.events.blur, function(){container.removeClass("focused");});
         element.on(Metro.events.focus, function(){container.addClass("focused");});
         element.on(Metro.events.change, function(){
-            Utils.exec(o.onChange, [that.value_date, that.value, element]);
+            Utils.exec(o.onChange, [that.value_date, that.value, element], element[0]);
         });
     },
 

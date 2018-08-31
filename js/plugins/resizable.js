@@ -13,6 +13,11 @@ var Resizable = {
     },
     options: {
         resizeElement: ".resize-element",
+        resizeMinWidth: 0,
+        resizeMinHeight: 0,
+        resizeMaxWidth: 0,
+        resizeMaxHeight: 0,
+        resizePreserveRatio: false,
         onResizeStart: Metro.noop,
         onResizeStop: Metro.noop,
         onResize: Metro.noop,
@@ -51,6 +56,8 @@ var Resizable = {
             var startHeight = parseInt(element.outerHeight());
             var size = {width: startWidth, height: startHeight};
 
+            console.log(element.offset());
+
             Utils.exec(o.onResizeStart, [element, size]);
 
             $(document).on(Metro.events.move, function(e){
@@ -59,6 +66,12 @@ var Resizable = {
                     width: startWidth + moveXY.x - startXY.x,
                     height: startHeight + moveXY.y - startXY.y
                 };
+
+                if (o.resizeMinWidth > 0 && size.width < o.resizeMinWidth) {return ;}
+                if (o.resizeMaxWidth > 0 && size.width > o.resizeMaxWidth) {return ;}
+                if (o.resizeMinHeight > 0 && size.height < o.resizeMinHeight) {return ;}
+                if (o.resizeMaxHeight > 0 && size.height > o.resizeMaxHeight) {return ;}
+
                 element.css(size);
                 Utils.exec(o.onResize, [element, size]);
             });
