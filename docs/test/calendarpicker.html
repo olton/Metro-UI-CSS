@@ -13,8 +13,14 @@
 </head>
 <body>
 <div class="m-20">
-    <input class="mt-10" type="text" data-role="calendarpicker" data-on-day-click="console.log(this.value)">
-    <input class="mt-10" type="text" data-role="calendarpicker" data-format="%d/%m/%Y" data-input-format="%d/%m/%Y" value="21/12/1972" data-on-day-click="console.log(this.value)">
+    <p>data-format="%d/%m/%Y" data-input-format="%d/%m/%Y" value="02/05/2018"</p>
+    <input id="DATA1" name="data1" data-role="calendarpicker" data-format="%d/%m/%Y" data-input-format="%d/%m/%Y" value="02/05/2018">
+
+    <p>data-format="%Y/%m/%d" data-input-format="%d/%m/%Y" value="02/05/2018"</p>
+    <input id="DATA2" name="data2" data-role="calendarpicker" data-format="%Y/%m/%d" data-input-format="%d/%m/%Y" value="02/05/2018">
+
+    <p>data-format="%d%m%Y" data-input-format="%d/%m/%Y" value="02/05/2018"</p>
+    <input id="DATA3" name="data3" data-role="calendarpicker" data-format="%d%m%Y" data-input-format="%d/%m/%Y" value="02/05/2018">
 </div>
 
 <script src="../js/jquery-3.3.1.min.js"></script>
