@@ -20,7 +20,7 @@ var CalendarPicker = {
     options: {
         locale: METRO_LOCALE,
         size: "100%",
-        format: "%Y/%m/%d",
+        format: METRO_DATE_FORMAT,
         inputFormat: null,
         headerFormat: "%A, %b %e",
         clearButton: false,
@@ -46,7 +46,6 @@ var CalendarPicker = {
         ripple: false,
         rippleColor: "#cccccc",
         exclude: null,
-        preset: null,
         minDate: null,
         maxDate: null,
         special: null,
@@ -107,6 +106,8 @@ var CalendarPicker = {
         cal.appendTo(container);
 
         cal.calendar({
+            format: o.format,
+            inputFormat: o.inputFormat,
             pickerMode: true,
             show: o.value,
             locale: o.locale,

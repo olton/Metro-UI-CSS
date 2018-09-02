@@ -19455,6 +19455,32 @@ aside::after {
   padding: 10px;
   -webkit-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3);
           box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3);
+  max-height: calc(100vh - 100px);
+}
+.table-inspector .table-inspector-header {
+  display: block;
+  position: relative;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 0.5rem 0.5rem;
+  border-bottom: 1px solid #dfdfdf;
+  font-size: 24px;
+  font-weight: 100;
+  margin-bottom: 0.5rem;
+}
+.table-inspector .table-wrap {
+  display: block;
+  height: calc(100% - 110px);
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.table-inspector .table-inspector-actions {
+  display: block;
+  position: relative;
+  border-top: 1px solid #dfdfdf;
+  padding: 0.5rem 0.5rem 0;
+  margin-top: 0.5rem;
 }
 .table-inspector table,
 .table-inspector .table {
@@ -28581,6 +28607,9 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
 .calendar-content .day.selected::before {
   right: 1px!important;
   top: 1px!important;
+}
+.calendar-content .day.showed {
+  font-weight: bold;
 }
 .calendar-content .outside {
   color: #bebebe;
