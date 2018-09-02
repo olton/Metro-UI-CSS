@@ -48,6 +48,7 @@ var Table = {
         checkColIndex: 0,
         checkName: null,
         checkType: "checkbox",
+        checkStyle: 1,
         checkStoreKey: "TABLE:$1:KEYS",
         rownum: false,
 
@@ -267,7 +268,7 @@ var Table = {
         };
 
         item_check = {
-            title: o.checkType === "checkbox" ? "<input type='checkbox' data-role='checkbox' class='table-service-check-all'>" : "",
+            title: o.checkType === "checkbox" ? "<input type='checkbox' data-role='checkbox' class='table-service-check-all' data-style='"+o.checkStyle+"'>" : "",
             format: undefined,
             name: undefined,
             sortable: false,
@@ -307,7 +308,7 @@ var Table = {
     },
 
     _createInspectorItems: function(table){
-        var that = this;
+        var that = this, o = this.options;
         var j, tds = [], row;
         var cells = this.heads;
 
@@ -321,7 +322,7 @@ var Table = {
             row = $("<tr>");
             row.data('index', i);
             row.data('index-view', i);
-            $("<td>").html("<input type='checkbox' data-role='checkbox' name='column_show_check[]' value='"+i+"' "+(Utils.bool(that.view[i]['show']) ? "checked" : "")+">").appendTo(row);
+            $("<td>").html("<input type='checkbox' data-style='"+o.checkStyle+"' data-role='checkbox' name='column_show_check[]' value='"+i+"' "+(Utils.bool(that.view[i]['show']) ? "checked" : "")+">").appendTo(row);
             $("<td>").html(this.title).appendTo(row);
             $("<td>").html("<input type='number' name='column_size' value='"+that.view[i]['size']+"' data-index='"+i+"'>").appendTo(row);
             $("<td>").html("" +
@@ -340,22 +341,22 @@ var Table = {
     _createInspector: function(){
         var o = this.options;
         var component = this.component;
-        var inspector, table, tbody, actions;
+        var inspector, table_wrap, table, tbody, actions;
 
-        inspector = $("<div data-role='draggable' data-drag-element='h3' data-drag-area='body'>").addClass("table-inspector");
+        inspector = $("<div data-role='draggable' data-drag-element='.table-inspector-header' data-drag-area='body'>").addClass("table-inspector");
 
-        $("<h3 class='text-light'>"+o.inspectorTitle+"</h3>").appendTo(inspector);
-        $("<hr class='thin bg-lightGray'>").appendTo(inspector);
+        $("<div class='table-inspector-header'>"+o.inspectorTitle+"</div>").appendTo(inspector);
+
+        table_wrap = $("<div>").addClass("table-wrap").appendTo(inspector);
 
         table = $("<table>").addClass("table subcompact");
         tbody = $("<tbody>").appendTo(table);
 
-        table.appendTo(inspector);
+        table.appendTo(table_wrap);
 
         this._createInspectorItems(tbody);
 
-        $("<hr class='thin bg-lightGray'>").appendTo(inspector);
-        actions = $("<div class='inspector-actions'>").appendTo(inspector);
+        actions = $("<div class='table-inspector-actions'>").appendTo(inspector);
         $("<button class='button primary js-table-inspector-save' type='button'>").html(this.locale.buttons.save).appendTo(actions);
         $("<button class='button secondary js-table-inspector-reset ml-2 mr-2' type='button'>").html(this.locale.buttons.reset).appendTo(actions);
         $("<button class='button link js-table-inspector-cancel place-right' type='button'>").html(this.locale.buttons.cancel).appendTo(actions);
@@ -1256,9 +1257,9 @@ var Table = {
                 // Checkbox
                 td = $("<td>");
                 if (o.checkType === "checkbox") {
-                    check = $("<input type='checkbox' data-role='checkbox' name='" + (Utils.isValue(o.checkName) ? o.checkName : 'table_row_check') + "[]' value='" + items[i][o.checkColIndex] + "'>");
+                    check = $("<input type='checkbox' data-style='"+o.checkStyle+"' data-role='checkbox' name='" + (Utils.isValue(o.checkName) ? o.checkName : 'table_row_check') + "[]' value='" + items[i][o.checkColIndex] + "'>");
                 } else {
-                    check = $("<input type='radio' data-role='radio' name='" + (Utils.isValue(o.checkName) ? o.checkName : 'table_row_check') + "' value='" + items[i][o.checkColIndex] + "'>");
+                    check = $("<input type='radio' data-style='"+o.checkStyle+"' data-role='radio' name='" + (Utils.isValue(o.checkName) ? o.checkName : 'table_row_check') + "' value='" + items[i][o.checkColIndex] + "'>");
                 }
 
                 if (Utils.isValue(stored_keys) && Array.isArray(stored_keys) && stored_keys.indexOf(""+items[i][o.checkColIndex]) > -1) {

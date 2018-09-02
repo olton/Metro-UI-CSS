@@ -3,11 +3,11 @@
 + [x] Select: fix custom classes apply for selected options for select with `multiple` option, issue #1184
 + [x] Input: add `history` option, issue #1162
 + [x] Spinner: new component, issue #1180
-+ [x] Appbar: fix error creating `hamburger` when background-color is `rgba` or `transparent`
++ [x] AppBar: fix error creating `hamburger` when background-color is `rgba` or `transparent`
 + [x] Slider: add event `onChange`
-+ [x] Treeview: change context for events
-+ [ ] Resizable: refactoring
-+ [x] Calendar picker: any input format with `String.toDate` function 
++ [x] TreeView: change context for events
++ [x] Calendar: any input format with attribute `data-input-format` 
++ [x] Calendar picker: any input format with attribute `data-input-format`
 
 ### 4.2.19
 + [x] Change contributing rules 

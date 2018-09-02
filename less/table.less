@@ -286,7 +286,35 @@
     width: auto;
     padding: 10px;
     .win-shadow();
+    max-height: ~"calc(100vh - 100px)";
 
+    .table-inspector-header {
+        display: block;
+        position: relative;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding: 0 .5rem .5rem;
+        border-bottom: 1px solid @borderColor;
+        font-size: 24px;
+        font-weight: 100;
+        margin-bottom: .5rem;
+    }
+
+    .table-wrap {
+        display: block;
+        height: ~"calc(100% - 110px)";
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    .table-inspector-actions {
+        display: block;
+        position: relative;
+        border-top: 1px solid @borderColor;
+        padding: .5rem .5rem 0;
+        margin-top: .5rem;
+    }
 
     table, .table {
         margin-bottom: 0;

@@ -9,6 +9,8 @@ if ('MutationObserver' in window === false) {
 var meta_init = $("meta[name='metro4:init']").attr("content");
 var meta_locale = $("meta[name='metro4:locale']").attr("content");
 var meta_week_start = $("meta[name='metro4:week_start']").attr("content");
+var meta_date_format = $("meta[name='metro4:date_format']").attr("content");
+var meta_date_format_input = $("meta[name='metro4:date_format_input']").attr("content");
 var meta_animation_duration = $("meta[name='metro4:animation_duration']").attr("content");
 var meta_callback_timeout = $("meta[name='metro4:callback_timeout']").attr("content");
 var meta_timeout = $("meta[name='metro4:timeout']").attr("content");
@@ -20,6 +22,12 @@ if (window.METRO_DEBUG === undefined) {window.METRO_DEBUG = true;}
 
 if (window.METRO_WEEK_START === undefined) {
     window.METRO_WEEK_START = meta_week_start !== undefined ? parseInt(meta_week_start) : 1;
+}
+if (window.METRO_DATE_FORMAT === undefined) {
+    window.METRO_DATE_FORMAT = meta_date_format !== undefined ? meta_date_format : "%Y-%m-%d";
+}
+if (window.METRO_DATE_FORMAT_INPUT === undefined) {
+    window.METRO_DATE_FORMAT_INPUT = meta_date_format_input !== undefined ? meta_date_format_input : "%Y-%m-%d";
 }
 if (window.METRO_LOCALE === undefined) {
     window.METRO_LOCALE = meta_locale !== undefined ? meta_locale : 'en-US';

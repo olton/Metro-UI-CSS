@@ -58,12 +58,14 @@
                     <li class="toc-entry"><a href="#_calendar_selection">Selection</a></li>
                     <li class="toc-entry"><a href="#_calendar_picker">Picker mode</a></li>
                     <li class="toc-entry"><a href="#_calendar_buttons">Buttons</a></li>
+                    <li class="toc-entry"><a href="#_calendar_input_date_format">Input dates format</a></li>
                     <li class="toc-entry"><a href="#_calendar_exclude">Exclude</a></li>
                     <li class="toc-entry"><a href="#_calendar_preset">Preset</a></li>
                     <li class="toc-entry"><a href="#_calendar_special">Special</a></li>
                     <li class="toc-entry"><a href="#_calendar_min_max">Min &amp; Max dates</a></li>
                     <li class="toc-entry"><a href="#_calendar_show">Show specific date</a></li>
                     <li class="toc-entry"><a href="#_calendar_select_month_year">Select month, year</a></li>
+                    <li class="toc-entry"><a href="#_calendar_multiselect">Multi select</a></li>
                     <li class="toc-entry"><a href="#_calendar_i18n">i18n</a></li>
                     <li class="toc-entry"><a href="#_calendar_options">Options</a></li>
                     <li class="toc-entry"><a href="#_calendar_events">Events</a></li>
@@ -241,43 +243,86 @@
                     Callbacks for this buttons <strong>executed after predefined functions</strong>.
                 </p>
 
+                <h3 id="_calendar_input_date_format">Input dates format</h3>
+                <p class="text-small">New in 4.2.20</p>
+                <p>
+                    You can define your input format for dates with attribute <code>data-input-format</code>.
+                    To define date parts use next identifiers:
+                </p>
+                <table class="table cell-border table-border options-table mt-4">
+                    <tbody>
+                    <tr>
+                        <td>day</td>
+                        <td><code>dd</code>, <code>%d</code></td>
+                    </tr>
+                    <tr>
+                        <td>month</td>
+                        <td><code>mm</code>, <code>%m</code></td>
+                    </tr>
+                    <tr>
+                        <td>year</td>
+                        <td><code>yyyy</code>, <code>yy</code>, <code>%Y</code></td>
+                    </tr>
+                    <tr>
+                        <td>hours</td>
+                        <td><code>hh</code>, <code>%h</code></td>
+                    </tr>
+                    <tr>
+                        <td>minutes</td>
+                        <td><code>ii</code>, <code>%i</code></td>
+                    </tr>
+                    <tr>
+                        <td>seconds</td>
+                        <td><code>ss</code>, <code>%s</code></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <p>
+                    Example: if you input date is <code>21/12/1972</code>, you must define format as <code>%d/%m/%Y</code> or <code>dd/mm/yyyy</code> for valid convert string value to date.
+                </p>
+                <p class="remark alert">
+                    If your input date format different from ECMAScript date format, you must define input format for these dates with attribute <code>data-input-format="..."</code>.
+                </p>
+
                 <h3 id="_calendar_exclude">Exclude dates</h3>
                 <p>
-                    You can exclude any dates from user selection. To exclude dates add <code>data-exclude="..."</code> attribute and specify dates who can be excluded.
-                    Values for this attributes can be <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15">valid string date:</a> <code>YYYY-MM-DDTHH:mm:ss.sssZ</code>.
+                    You can exclude any dates from user selection.
+                    To exclude dates add <code>data-exclude="..."</code> attribute and specify comma separated dates who can be excluded.
                 </p>
                 <div class="example">
                     <div id="calendar_exclude" class="mx-auto"
                          data-role="calendar"
-                         data-show="2017/10/15"
+                         data-input-format="dd-mm-yyyy"
+                         data-show="15-10-2017"
                          data-exclude="
-                            2017/10/10,
-                            2017/10/11,
-                            2017/10/12,
-                            2017/10/13,
-                            2017/10/14,
-                            2017/10/15,
-                            2017/10/16"
+                            10-10-2017,
+                            11-10-2017,
+                            12-10-2017,
+                            13-10-2017,
+                            14-10-2017,
+                            15-10-2017
+                         "
                     ></div>
                 </div>
                 <pre><code class="html">
                     &lt;div
-                        data-role="calendar"
-                        data-exclude="
-                            2017/10/10,
-                            2017/10/11,
-                            2017/10/12,
-                            2017/10/13,
-                            2017/10/14,
-                            2017/10/15,
-                            2017/10/16"
+                         data-role="calendar"
+                         data-input-format="dd-mm-yyyy"
+                         data-show="15-10-2017"
+                         data-exclude="
+                            10-10-2017,
+                            11-10-2017,
+                            12-10-2017,
+                            13-10-2017,
+                            14-10-2017,
+                            15-10-2017
+                         "
                     &gt;&lt;/div&gt;
                 </code></pre>
 
                 <h3 id="_calendar_preset">Preset dates</h3>
                 <p>
                     You can preselect dates. To preselect dates use <code>data-preset="..."</code> attribute and specify dates who can be preselect.
-                    Values for this attributes can be <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15">valid string date:</a> <code>YYYY-MM-DDTHH:mm:ss.sssZ</code>.
                 </p>
                 <div class="example">
                     <div id="calendar_preset"  class="mx-auto"
@@ -313,7 +358,6 @@
                     You can set a <code>special</code> dates.
                     If you set a special dates, others dates marked as disabled.
                     To set special dates use <code>data-special="..."</code> attribute and specify dates who can be sets.
-                    Values for this attributes can be <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15">valid string date:</a> <code>YYYY-MM-DDTHH:mm:ss.sssZ</code>.
                 </p>
                 <div class="example">
                     <div id="calendar_special"  class="mx-auto"
@@ -347,7 +391,6 @@
                 <h3 id="_calendar_min_max">Min &amp; max dates</h3>
                 <p>
                     You can limit the set of dates for user selection. To set limit use <code>data-min-date="..."</code> and <code>data-max-date="..."</code> attributes.
-                    Values for this attributes can be <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15">valid string date:</a> <code>YYYY-MM-DDTHH:mm:ss.sssZ</code>.
                 </p>
                 <div class="example">
                     <div id="calendar_min_max" class="mx-auto"
@@ -368,8 +411,7 @@
 
                 <h3 id="_calendar_show">Show specific date</h3>
                 <p>
-                    You can switch calndar to specific date. To switch calendar use attribute <code>data-show="..."</code>.
-                    Values for this attribute can be <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15">valid string date:</a> <code>YYYY-MM-DDTHH:mm:ss.sssZ</code>.
+                    You can switch calendar to specific date. To switch calendar use attribute <code>data-show="..."</code>.
                 </p>
                 <div class="example">
                     <div id="calendar_show" class="mx-auto"
@@ -393,6 +435,25 @@
                 <div class="example">
                     <div data-role="calendar" id="calendarShowMonthYear" class="mx-auto"></div>
                 </div>
+
+                <h3 id="_calendar_multiselect">Multi select</h3>
+                <p>
+                    You can enable multi select feature with attribute <code>data-multi-select</code> and <code>data-week-day-click</code>.
+                </p>
+                <div class="example">
+                    <div id="calendar_multiselect" class="mx-auto"
+                         data-role="calendar"
+                         data-week-day-click="true"
+                         data-multi-select="true"
+                    ></div>
+                </div>
+                <pre><code>
+                    &lt;div id="calendar_multiselect" class="mx-auto"
+                         data-role="calendar"
+                         data-week-day-click="true"
+                         data-multi-select="true"
+                    &gt;&lt;/div&gt;
+                </code></pre>
 
                 <h3 id="_calendar_i18n">Internationalisation</h3>
                 <p>

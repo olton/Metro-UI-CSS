@@ -28,6 +28,8 @@ if ('MutationObserver' in window === false) {
 var meta_init = $("meta[name='metro4:init']").attr("content");
 var meta_locale = $("meta[name='metro4:locale']").attr("content");
 var meta_week_start = $("meta[name='metro4:week_start']").attr("content");
+var meta_date_format = $("meta[name='metro4:date_format']").attr("content");
+var meta_date_format_input = $("meta[name='metro4:date_format_input']").attr("content");
 var meta_animation_duration = $("meta[name='metro4:animation_duration']").attr("content");
 var meta_callback_timeout = $("meta[name='metro4:callback_timeout']").attr("content");
 var meta_timeout = $("meta[name='metro4:timeout']").attr("content");
@@ -39,6 +41,12 @@ if (window.METRO_DEBUG === undefined) {window.METRO_DEBUG = true;}
 
 if (window.METRO_WEEK_START === undefined) {
     window.METRO_WEEK_START = meta_week_start !== undefined ? parseInt(meta_week_start) : 1;
+}
+if (window.METRO_DATE_FORMAT === undefined) {
+    window.METRO_DATE_FORMAT = meta_date_format !== undefined ? meta_date_format : "%Y-%m-%d";
+}
+if (window.METRO_DATE_FORMAT_INPUT === undefined) {
+    window.METRO_DATE_FORMAT_INPUT = meta_date_format_input !== undefined ? meta_date_format_input : "%Y-%m-%d";
 }
 if (window.METRO_LOCALE === undefined) {
     window.METRO_LOCALE = meta_locale !== undefined ? meta_locale : 'en-US';
@@ -5145,6 +5153,8 @@ var Calendar = {
         weekDayClick: false,
         multiSelect: false,
         special: null,
+        format: METRO_DATE_FORMAT,
+        inputFormat: null,
         onCancel: Metro.noop,
         onToday: Metro.noop,
         onClear: Metro.noop,
@@ -5175,49 +5185,16 @@ var Calendar = {
 
         element.html("").addClass("calendar").addClass(o.clsCalendar);
 
-        if (o.preset !== null) {
-            if (Array.isArray(o.preset) === false) {
-                o.preset = o.preset.split(",").map(function(item){
-                    return item.trim();
-                });
-            }
-
-            $.each(o.preset, function(){
-                if (Utils.isDate(this) === false) {
-                    return ;
-                }
-                that.selected.push((new Date(this)).getTime());
-            });
+        if (Utils.isValue(o.preset)) {
+            this._dates2array(o.preset, 'selected');
         }
 
-        if (o.exclude !== null) {
-            if (Array.isArray(o.exclude) === false) {
-                o.exclude = o.exclude.split(",").map(function(item){
-                    return item.trim();
-                });
-            }
-
-            $.each(o.exclude, function(){
-                if (Utils.isDate(this) === false) {
-                    return ;
-                }
-                that.exclude.push((new Date(this)).getTime());
-            });
+        if (Utils.isValue(o.exclude)) {
+            this._dates2array(o.exclude, 'exclude');
         }
 
-        if (o.special !== null) {
-            if (Array.isArray(o.special) === false) {
-                o.special = o.special.split(",").map(function(item){
-                    return item.trim();
-                });
-            }
-
-            $.each(o.special, function(){
-                if (Utils.isDate(this) === false) {
-                    return ;
-                }
-                that.special.push((new Date(this)).getTime());
-            });
+        if (Utils.isValue(o.special)) {
+            this._dates2array(o.special, 'special');
         }
 
         if (o.buttons !== false) {
@@ -5228,16 +5205,17 @@ var Calendar = {
             }
         }
 
-        if (o.minDate !== null && Utils.isDate(o.minDate)) {
-            this.min = (new Date(o.minDate)).addHours(this.offset);
+        if (o.minDate !== null && Utils.isDate(o.minDate, o.inputFormat)) {
+            this.min = Utils.isValue(o.inputFormat) ? o.minDate.toDate(o.inputFormat) : (new Date(o.minDate));
         }
 
-        if (o.maxDate !== null && Utils.isDate(o.maxDate)) {
-            this.max = (new Date(o.maxDate)).addHours(this.offset);
+        if (o.maxDate !== null && Utils.isDate(o.maxDate, o.inputFormat)) {
+            this.max = Utils.isValue(o.inputFormat) ? o.maxDate.toDate(o.inputFormat) : (new Date(o.maxDate));
         }
 
-        if (o.show !== null && Utils.isDate(o.show)) {
-            this.show = (new Date(o.show)).addHours(this.offset);
+        if (o.show !== null && Utils.isDate(o.show, o.inputFormat)) {
+            this.show = Utils.isValue(o.inputFormat) ? o.show.toDate(o.inputFormat) : (new Date(o.show));
+
             this.current = {
                 year: this.show.getFullYear(),
                 month: this.show.getMonth(),
@@ -5248,6 +5226,19 @@ var Calendar = {
         this.locale = Metro.locales[o.locale] !== undefined ? Metro.locales[o.locale] : Metro.locales["en-US"];
 
         this._build();
+    },
+
+    _dates2array: function(val, category){
+        var that = this, o = this.options;
+
+        $.each(Utils.strToArray(val), function(){
+            var _d = Utils.isValue(o.inputFormat) ? this.toDate(o.inputFormat) : new Date(this);
+            if (Utils.isDate(_d) === false) {
+                return ;
+            }
+            _d.setHours(0,0,0,0);
+            that[category].push(_d.getTime());
+        });
     },
 
     _build: function(){
@@ -5262,7 +5253,6 @@ var Calendar = {
                 rippleColor: this.options.rippleColor
             });
         }
-
 
         Utils.exec(this.options.onCalendarCreate, [this.element]);
     },
@@ -5318,14 +5308,6 @@ var Calendar = {
         });
 
         element.on(Metro.events.click, ".button.today", function(e){
-            // that.today = new Date();
-            // that.current = {
-            //     year: that.today.getFullYear(),
-            //     month: that.today.getMonth(),
-            //     day: that.today.getDate()
-            // };
-            // that._drawHeader();
-            // that._drawContent();
             that.toDay();
             Utils.exec(o.onToday, [that.today, element]);
 
@@ -5661,6 +5643,10 @@ var Calendar = {
 
             d.data('day', first.getTime());
 
+            if (this.show.format("%d-%m-%Y") === first.format("%d-%m-%Y")) {
+                d.addClass("showed");
+            }
+
             if (
                 this.today.getFullYear() === first.getFullYear() &&
                 this.today.getMonth() === first.getMonth() &&
@@ -5992,7 +5978,7 @@ var CalendarPicker = {
     options: {
         locale: METRO_LOCALE,
         size: "100%",
-        format: "%Y/%m/%d",
+        format: METRO_DATE_FORMAT,
         inputFormat: null,
         headerFormat: "%A, %b %e",
         clearButton: false,
@@ -6018,7 +6004,6 @@ var CalendarPicker = {
         ripple: false,
         rippleColor: "#cccccc",
         exclude: null,
-        preset: null,
         minDate: null,
         maxDate: null,
         special: null,
@@ -6079,6 +6064,8 @@ var CalendarPicker = {
         cal.appendTo(container);
 
         cal.calendar({
+            format: o.format,
+            inputFormat: o.inputFormat,
             pickerMode: true,
             show: o.value,
             locale: o.locale,
@@ -16609,6 +16596,7 @@ var Table = {
         checkColIndex: 0,
         checkName: null,
         checkType: "checkbox",
+        checkStyle: 1,
         checkStoreKey: "TABLE:$1:KEYS",
         rownum: false,
 
@@ -16828,7 +16816,7 @@ var Table = {
         };
 
         item_check = {
-            title: o.checkType === "checkbox" ? "<input type='checkbox' data-role='checkbox' class='table-service-check-all'>" : "",
+            title: o.checkType === "checkbox" ? "<input type='checkbox' data-role='checkbox' class='table-service-check-all' data-style='"+o.checkStyle+"'>" : "",
             format: undefined,
             name: undefined,
             sortable: false,
@@ -16868,7 +16856,7 @@ var Table = {
     },
 
     _createInspectorItems: function(table){
-        var that = this;
+        var that = this, o = this.options;
         var j, tds = [], row;
         var cells = this.heads;
 
@@ -16882,7 +16870,7 @@ var Table = {
             row = $("<tr>");
             row.data('index', i);
             row.data('index-view', i);
-            $("<td>").html("<input type='checkbox' data-role='checkbox' name='column_show_check[]' value='"+i+"' "+(Utils.bool(that.view[i]['show']) ? "checked" : "")+">").appendTo(row);
+            $("<td>").html("<input type='checkbox' data-style='"+o.checkStyle+"' data-role='checkbox' name='column_show_check[]' value='"+i+"' "+(Utils.bool(that.view[i]['show']) ? "checked" : "")+">").appendTo(row);
             $("<td>").html(this.title).appendTo(row);
             $("<td>").html("<input type='number' name='column_size' value='"+that.view[i]['size']+"' data-index='"+i+"'>").appendTo(row);
             $("<td>").html("" +
@@ -16901,22 +16889,22 @@ var Table = {
     _createInspector: function(){
         var o = this.options;
         var component = this.component;
-        var inspector, table, tbody, actions;
+        var inspector, table_wrap, table, tbody, actions;
 
-        inspector = $("<div data-role='draggable' data-drag-element='h3' data-drag-area='body'>").addClass("table-inspector");
+        inspector = $("<div data-role='draggable' data-drag-element='.table-inspector-header' data-drag-area='body'>").addClass("table-inspector");
 
-        $("<h3 class='text-light'>"+o.inspectorTitle+"</h3>").appendTo(inspector);
-        $("<hr class='thin bg-lightGray'>").appendTo(inspector);
+        $("<div class='table-inspector-header'>"+o.inspectorTitle+"</div>").appendTo(inspector);
+
+        table_wrap = $("<div>").addClass("table-wrap").appendTo(inspector);
 
         table = $("<table>").addClass("table subcompact");
         tbody = $("<tbody>").appendTo(table);
 
-        table.appendTo(inspector);
+        table.appendTo(table_wrap);
 
         this._createInspectorItems(tbody);
 
-        $("<hr class='thin bg-lightGray'>").appendTo(inspector);
-        actions = $("<div class='inspector-actions'>").appendTo(inspector);
+        actions = $("<div class='table-inspector-actions'>").appendTo(inspector);
         $("<button class='button primary js-table-inspector-save' type='button'>").html(this.locale.buttons.save).appendTo(actions);
         $("<button class='button secondary js-table-inspector-reset ml-2 mr-2' type='button'>").html(this.locale.buttons.reset).appendTo(actions);
         $("<button class='button link js-table-inspector-cancel place-right' type='button'>").html(this.locale.buttons.cancel).appendTo(actions);
@@ -17817,9 +17805,9 @@ var Table = {
                 // Checkbox
                 td = $("<td>");
                 if (o.checkType === "checkbox") {
-                    check = $("<input type='checkbox' data-role='checkbox' name='" + (Utils.isValue(o.checkName) ? o.checkName : 'table_row_check') + "[]' value='" + items[i][o.checkColIndex] + "'>");
+                    check = $("<input type='checkbox' data-style='"+o.checkStyle+"' data-role='checkbox' name='" + (Utils.isValue(o.checkName) ? o.checkName : 'table_row_check') + "[]' value='" + items[i][o.checkColIndex] + "'>");
                 } else {
-                    check = $("<input type='radio' data-role='radio' name='" + (Utils.isValue(o.checkName) ? o.checkName : 'table_row_check') + "' value='" + items[i][o.checkColIndex] + "'>");
+                    check = $("<input type='radio' data-style='"+o.checkStyle+"' data-role='radio' name='" + (Utils.isValue(o.checkName) ? o.checkName : 'table_row_check') + "' value='" + items[i][o.checkColIndex] + "'>");
                 }
 
                 if (Utils.isValue(stored_keys) && Array.isArray(stored_keys) && stored_keys.indexOf(""+items[i][o.checkColIndex]) > -1) {
