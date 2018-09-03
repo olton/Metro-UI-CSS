@@ -120,7 +120,13 @@
                         <td><code>String</code></td>
                         <td><code>toDate(mask)</code></td>
                         <td>
-                            Convert string to date by mask.
+                            Convert string to date by mask. You can use next identifiers:
+                            <code>dd</code>, <code>%d</code> - for day,
+                            <code>mm</code>, <code>%m</code> - for month,
+                            <code>yy</code>, <code>yyyy</code>, <code>%y</code>, <code>%Y</code> - for year,
+                            <code>hh</code>, <code>%h</code> - for hours,
+                            <code>ii</code>, <code>%i</code> - for minutes,
+                            <code>ss</code>, <code>%s</code> - for seconds.
                             Example:
                             <code>"1972-12-21 04:30:00".toDate("yyyy-mm-dd hh:ii:ss");</code>
                             <code>"21-12-1972".toDate("dd-mm-yyyy");</code>
