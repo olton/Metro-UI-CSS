@@ -1,3 +1,7 @@
+### 4.2.21
++ [x] Resizable: add attributes `data-min-width`, `data-max-width`, `data-min-height`, `data-max-height`, `data-can-resize`
++ [x] Spinner: add events `onPlusClick`, `onMinusClick`, `onButtonClick` 
+
 ### 4.2.20
 + [x] Table: fix default padding for `th` and `td`
 + [x] Select: fix custom classes apply for selected options for select with `multiple` option, issue #1184

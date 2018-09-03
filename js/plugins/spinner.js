@@ -27,6 +27,9 @@ var Spinner = {
         clsSpinnerButtonPlus: "",
         clsSpinnerButtonMinus: "",
         onChange: Metro.noop,
+        onPlusClick: Metro.noop,
+        onMinusClick: Metro.noop,
+        onButtonClick: Metro.noop,
         onSpinnerCreate: Metro.noop
     },
 
@@ -61,6 +64,11 @@ var Spinner = {
         var button_minus = $("<button>").attr("type", "button").addClass("button spinner-button spinner-button-minus").addClass(o.clsSpinnerButton + " " + o.clsSpinnerButtonMinus).html(o.minusIcon);
         var init_value = element.val().trim();
 
+        if (!Utils.isValue(init_value)) {
+            init_value = 0;
+            element.val(0);
+        }
+
         element[0].className = '';
 
         spinner.insertBefore(element);
@@ -72,7 +80,7 @@ var Spinner = {
         button_plus.appendTo(spinner);
         button_minus.appendTo(spinner);
 
-        wrapper.text(Number(Utils.isValue(init_value) ? init_value : 0));
+        wrapper.text(Number(init_value));
 
         if (o.disabled === true || element.is(":disabled")) {
             this.disable();
@@ -85,9 +93,10 @@ var Spinner = {
         var that = this, element = this.element, o = this.options;
         var spinner = element.closest(".spinner");
 
-        var click = function(context, threshold){
+        var spinnerButtonClick = function(context, threshold){
             var button = $(context);
             var plus = button.hasClass("spinner-button-plus");
+            var curr = element.val();
 
             var val = Number(element.val());
             var step = Number(o.step);
@@ -100,16 +109,19 @@ var Spinner = {
 
             that._setValue(val.toFixed(o.fixed), true);
 
+            Utils.exec(plus ? o.onPlusClick : o.onMinusClick, [curr, val, element.val()], element[0]);
+            Utils.exec(o.onButtonClick, [curr, val, element.val(), plus ? 'plus' : 'minus'], element[0]);
+
             setTimeout(function(){
                 if (that.repeat_timer) {
-                    click(context, 100);
+                    spinnerButtonClick(context, 100);
                 }
             }, threshold);
         };
 
         spinner.on(Metro.events.start, ".spinner-button", function(){
             that.repeat_timer = true;
-            click(this, o.repeatThreshold);
+            spinnerButtonClick(this, o.repeatThreshold);
         });
 
         spinner.on(Metro.events.stop, ".spinner-button", function(){
@@ -117,7 +129,7 @@ var Spinner = {
         });
     },
 
-    _setValue: function(val, change){
+    _setValue: function(val, trigger_change){
         var element = this.element, o = this.options;
         var spinner = element.closest(".spinner");
         var wrapper = spinner.find(".input-wrapper");
@@ -135,7 +147,7 @@ var Spinner = {
 
         Utils.exec(o.onChange, [val], element[0]);
 
-        if (change === true) {
+        if (trigger_change === true) {
             element.trigger("change");
         }
     },
