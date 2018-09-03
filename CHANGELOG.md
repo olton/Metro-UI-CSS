@@ -8,6 +8,7 @@
 + [x] TreeView: change context for events
 + [x] Calendar: any input format with attribute `data-input-format` 
 + [x] Calendar picker: any input format with attribute `data-input-format`
++ [x] Date: add extension function `getWeek()` - return week number 
 
 ### 4.2.19
 + [x] Change contributing rules 

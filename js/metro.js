@@ -21,7 +21,7 @@ if (window.METRO_INIT === undefined) {
 if (window.METRO_DEBUG === undefined) {window.METRO_DEBUG = true;}
 
 if (window.METRO_WEEK_START === undefined) {
-    window.METRO_WEEK_START = meta_week_start !== undefined ? parseInt(meta_week_start) : 1;
+    window.METRO_WEEK_START = meta_week_start !== undefined ? parseInt(meta_week_start) : 0;
 }
 if (window.METRO_DATE_FORMAT === undefined) {
     window.METRO_DATE_FORMAT = meta_date_format !== undefined ? meta_date_format : "%Y-%m-%d";
