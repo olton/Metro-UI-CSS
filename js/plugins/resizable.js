@@ -3,6 +3,7 @@ var Resizable = {
         this.options = $.extend( {}, this.options, options );
         this.elem  = elem;
         this.element = $(elem);
+        this.resizer = null;
 
         this._setOptionsFromDOM();
         this._create();
@@ -12,12 +13,13 @@ var Resizable = {
         return this;
     },
     options: {
+        canResize: true,
         resizeElement: ".resize-element",
-        resizeMinWidth: 0,
-        resizeMinHeight: 0,
-        resizeMaxWidth: 0,
-        resizeMaxHeight: 0,
-        resizePreserveRatio: false,
+        minWidth: 0,
+        minHeight: 0,
+        maxWidth: 0,
+        maxHeight: 0,
+        preserveRatio: false,
         onResizeStart: Metro.noop,
         onResizeStop: Metro.noop,
         onResize: Metro.noop,
@@ -25,7 +27,7 @@ var Resizable = {
     },
 
     _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         $.each(element.data(), function(key, value){
             if (key in o) {
@@ -39,53 +41,70 @@ var Resizable = {
     },
 
     _create: function(){
-        var that = this, element = this.element, o = this.options;
+        this._createStructure();
+        this._createEvents();
+    },
 
-        if (o.resizeElement !== "" && $(o.resizeElement).length === 0) {
-            $("<span>").addClass("resize-element").appendTo(element);
+    _createStructure: function(){
+        var element = this.element, o = this.options;
+
+        if (Utils.isValue(o.resizeElement) && $(o.resizeElement).length > 0) {
+            this.resizer = $(o.resizeElement);
+        } else {
+            this.resizer = $("<span>").addClass("resize-element").appendTo(element);
         }
+    },
 
-        element.on(Metro.events.start, o.resizeElement, function(e){
+    _createEvents: function(){
+        var element = this.element, o = this.options;
 
-            if (element.data("canResize") === false) {
+        this.resizer.on(Metro.events.start + "-resize-element", function(e){
+
+            if (o.canResize === false) {
                 return ;
             }
 
-            var startXY = Utils.clientXY(e);
+            var startXY = Utils.pageXY(e);
             var startWidth = parseInt(element.outerWidth());
             var startHeight = parseInt(element.outerHeight());
             var size = {width: startWidth, height: startHeight};
 
-            console.log(element.offset());
-
             Utils.exec(o.onResizeStart, [element, size]);
 
-            $(document).on(Metro.events.move, function(e){
-                var moveXY = Utils.clientXY(e);
+            $(document).on(Metro.events.move + "-resize-element", function(e){
+                var moveXY = Utils.pageXY(e);
                 var size = {
                     width: startWidth + moveXY.x - startXY.x,
                     height: startHeight + moveXY.y - startXY.y
                 };
 
-                if (o.resizeMinWidth > 0 && size.width < o.resizeMinWidth) {return ;}
-                if (o.resizeMaxWidth > 0 && size.width > o.resizeMaxWidth) {return ;}
-                if (o.resizeMinHeight > 0 && size.height < o.resizeMinHeight) {return ;}
-                if (o.resizeMaxHeight > 0 && size.height > o.resizeMaxHeight) {return ;}
+                if (o.maxWidth > 0 && size.width > o.maxWidth) {return true;}
+                if (o.minWidth > 0 && size.width < o.minWidth) {return true;}
+
+                if (o.maxHeight > 0 && size.height > o.maxHeight) {return true;}
+                if (o.minHeight > 0 && size.height < o.minHeight) {return true;}
 
                 element.css(size);
+
                 Utils.exec(o.onResize, [element, size]);
             });
+
+            $(document).on(Metro.events.stop + "-resize-element", function(){
+                $(document).off(Metro.events.move + "-resize-element");
+                $(document).off(Metro.events.stop + "-resize-element");
+
+                var size = {
+                    width: parseInt(element.outerWidth()),
+                    height: parseInt(element.outerHeight())
+                };
+
+                Utils.exec(o.onResizeStop, [element, size]);
+            });
+
+            e.preventDefault();
+            e.stopPropagation();
         });
 
-        element.on(Metro.events.stop, o.resizeElement, function(){
-            $(document).off(Metro.events.move);
-
-            var size = {
-                width: parseInt(element.outerWidth()),
-                height: parseInt(element.outerHeight())
-            };
-            Utils.exec(o.onResizeStop, [element, size]);
-        });
     },
 
     off: function(){
@@ -97,6 +116,15 @@ var Resizable = {
     },
 
     changeAttribute: function(attributeName){
+        var that = this, element = this.element, o = this.options;
+
+        var canResize = function(){
+            o.canResize = JSON.parse(element.attr('data-can-resize')) === true;
+        };
+
+        switch (attributeName) {
+            case "data-can-resize": canResize(); break;
+        }
     }
 };
 
