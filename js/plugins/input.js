@@ -37,6 +37,8 @@ var Input = {
         onHistoryChange: Metro.noop,
         onHistoryUp: Metro.noop,
         onHistoryDown: Metro.noop,
+        onClearClick: Metro.noop,
+        onRevealClick: Metro.noop,
         onInputCreate: Metro.noop
     },
 
@@ -155,11 +157,14 @@ var Input = {
         var container = element.closest(".input");
 
         container.on(Metro.events.click, ".input-clear-button", function(){
+            var curr = element.val();
             element.val(Utils.isValue(o.defaultValue) ? o.defaultValue : "").trigger('change').trigger('keyup').focus();
+            Utils.exec(o.onClearClick, [curr, element.val()], element[0]);
         });
 
         container.on(Metro.events.start, ".input-reveal-button", function(){
             element.attr('type', 'text');
+            Utils.exec(o.onRevealClick, null, element[0]);
         });
 
         container.on(Metro.events.stop, ".input-reveal-button", function(){
@@ -212,6 +217,14 @@ var Input = {
 
         element.on(Metro.events.blur, function(){container.removeClass("focused");});
         element.on(Metro.events.focus, function(){container.addClass("focused");});
+    },
+
+    clear: function(){
+        this.element.val('');
+    },
+
+    toDefault: function(){
+        this.element.val(Utils.isValue(this.options.defaultValue) ? this.options.defaultValue : "");
     },
 
     disable: function(){

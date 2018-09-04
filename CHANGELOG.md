@@ -1,6 +1,9 @@
 ### 4.2.21
++ [x] Docs: refactoring docs for form components
 + [x] Resizable: add attributes `data-min-width`, `data-max-width`, `data-min-height`, `data-max-height`, `data-can-resize`
-+ [x] Spinner: add events `onPlusClick`, `onMinusClick`, `onButtonClick` 
++ [x] Spinner: add events `onPlusClick`, `onMinusClick`, `onButtonClick`
++ [x] Input: add events `onClearClick`, `onRevealClick`
++ [x] Input: add methods `clear()`, `toDefault()` 
 
 ### 4.2.20
 + [x] Table: fix default padding for `th` and `td`
