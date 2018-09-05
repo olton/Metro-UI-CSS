@@ -28,12 +28,13 @@ var Input = {
         revealButtonIcon: "<span class='default-icon-eye'></span>",
         customButtons: [],
 
-        clsElement: "",
+        clsComponent: "",
         clsInput: "",
         clsPrepend: "",
         clsAppend: "",
         clsClearButton: "",
         clsRevealButton: "",
+        clsCustomButton: "",
 
         onHistoryChange: Metro.noop,
         onHistoryUp: Metro.noop,
@@ -115,8 +116,18 @@ var Input = {
         if (typeof o.customButtons === "object" && Utils.objectLength(o.customButtons) > 0) {
             $.each(o.customButtons, function(){
                 var item = this;
-                var customButton = $("<button>").addClass("button input-custom-button").addClass(item.cls).attr("tabindex", -1).attr("type", "button").html(item.html);
+                var customButton = $("<button>");
+
+                customButton
+                    .addClass("button input-custom-button")
+                    .addClass(o.clsCustomButton)
+                    .addClass(item.cls)
+                    .attr("tabindex", -1)
+                    .attr("type", "button")
+                    .html(item.html);
+
                 customButton.data("action", item.onclick);
+
                 customButton.appendTo(buttons);
             });
         }
@@ -137,7 +148,7 @@ var Input = {
             }
         }
 
-        container.addClass(o.clsElement);
+        container.addClass(o.clsComponent);
         element.addClass(o.clsInput);
 
         if (o.size !== "default") {
