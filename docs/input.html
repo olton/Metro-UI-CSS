@@ -54,6 +54,7 @@
                     <li class="toc-entry"><a href="#_input_reveal">Reveal button</a></li>
                     <li class="toc-entry"><a href="#_input_history">History inputs</a></li>
                     <li class="toc-entry"><a href="#_input_custom_buttons">Custom buttons</a></li>
+                    <li class="toc-entry"><a href="#_input_options">Options</a></li>
                     <li class="toc-entry"><a href="#_input_events">Events</a></li>
                     <li class="toc-entry"><a href="#_input_methods">Methods</a></li>
                     <li class="toc-entry"><a href="#_input_customize">Customize</a></li>
@@ -235,7 +236,134 @@
                     &lt;input type="text" data-role="input" data-custom-buttons="customButtons"&gt;
                 </code></pre>
 
+                <h3 id="_input_options">Options</h3>
+                <table class="table cell-border table-border options-table mt-4">
+                    <thead>
+                    <tr>
+                        <th>Option</th>
+                        <th>Data-*</th>
+                        <th>Default</th>
+                        <th>Desc</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><code>history</code></td>
+                        <td><code>data-history</code></td>
+                        <td>false</td>
+                        <td>Enable history feature</td>
+                    </tr>
+                    <tr>
+                        <td><code>historyPreset</code></td>
+                        <td><code>data-history-preset</code></td>
+                        <td></td>
+                        <td>Preset values for history</td>
+                    </tr>
+                    <tr>
+                        <td><code>preventSubmit</code></td>
+                        <td><code>data-prevent-submit</code></td>
+                        <td>false</td>
+                        <td>Prevent submitting form when enabled history and user press <kbd>Enter</kbd> in input</td>
+                    </tr>
+                    <tr>
+                        <td><code>defaultValue</code></td>
+                        <td><code>data-default-value</code></td>
+                        <td></td>
+                        <td>Default value for input. Used when user click clear button or init input value</td>
+                    </tr>
+                    <tr>
+                        <td><code>size</code></td>
+                        <td><code>data-size</code></td>
+                        <td></td>
+                        <td>Set specific size for input</td>
+                    </tr>
+                    <tr>
+                        <td><code>prepend</code></td>
+                        <td><code>data-prepend</code></td>
+                        <td></td>
+                        <td>Add prepend label</td>
+                    </tr>
+                    <tr>
+                        <td><code>append</code></td>
+                        <td><code>data-append</code></td>
+                        <td></td>
+                        <td>Add append label</td>
+                    </tr>
+                    <tr>
+                        <td><code>clearButton</code></td>
+                        <td><code>data-clear-button</code></td>
+                        <td>true</td>
+                        <td>Add clear button to input</td>
+                    </tr>
+                    <tr>
+                        <td><code>clearButtonIcon</code></td>
+                        <td><code>data-clear-button-icon</code></td>
+                        <td>&lt;span class='default-icon-cross'&gt;</td>
+                        <td>Icon for clear button</td>
+                    </tr>
+                    <tr>
+                        <td><code>revealButton</code></td>
+                        <td><code>data-reveal-button</code></td>
+                        <td>true</td>
+                        <td>Add reveal button to input</td>
+                    </tr>
+                    <tr>
+                        <td><code>revealButtonIcon</code></td>
+                        <td><code>data-reveal-button-icon</code></td>
+                        <td>&lt;span class='default-icon-eye'&gt;</td>
+                        <td>Icon for reveal button</td>
+                    </tr>
+                    <tr>
+                        <td><code>customButtons</code></td>
+                        <td><code>data-custom-buttons</code></td>
+                        <td></td>
+                        <td>Array name with custom buttons</td>
+                    </tr>
+                    </tbody>
+                </table>
+
                 <h3 id="_input_events">Events</h3>
+                <table class="table cell-border table-border options-table mt-4">
+                    <thead>
+                    <tr>
+                        <th>Event</th>
+                        <th>Data-*</th>
+                        <th>Context</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><code>onHistoryChange(val, history, index)</code></td>
+                        <td><code>data-on-history-change</code></td>
+                        <td>input</td>
+                    </tr>
+                    <tr>
+                        <td><code>onHistoryUp(val, history, index)</code></td>
+                        <td><code>data-on-history-up</code></td>
+                        <td>input</td>
+                    </tr>
+                    <tr>
+                        <td><code>onHistoryDown(val, history, index)</code></td>
+                        <td><code>data-on-history-down</code></td>
+                        <td>input</td>
+                    </tr>
+                    <tr>
+                        <td><code>onClearClick(curr, new)</code></td>
+                        <td><code>data-on-clear-click</code></td>
+                        <td>input</td>
+                    </tr>
+                    <tr>
+                        <td><code>onRevealClick(curr)</code></td>
+                        <td><code>data-on-reveal-click</code></td>
+                        <td>input</td>
+                    </tr>
+                    <tr>
+                        <td><code>onInputCreate(el)</code></td>
+                        <td><code>data-on-input-create</code></td>
+                        <td>input</td>
+                    </tr>
+                    </tbody>
+                </table>
 
                 <h3 id="_input_methods">Methods</h3>
 
