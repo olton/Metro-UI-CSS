@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <meta name="twitter:site" content="@metroui">
+    <meta name="twitter:creator" content="@pimenov_sergey">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Metro 4 Components Library">
+    <meta name="twitter:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.">
+    <meta name="twitter:image" content="https://metroui.org.ua/images/m4-logo-social.png">
+
+    <meta property="og:url" content="https://metroui.org.ua/v4/index.html">
+    <meta property="og:title" content="Metro 4 Components Library">
+    <meta property="og:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:secure_url" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="968">
+    <meta property="og:image:height" content="504">
+
+    <meta name="author" content="Sergey Pimenov">
+    <meta name="description" content="Create a customizable select box with support for searching, tagging and many other highly used options. Excellent to create the element for pin enter. The most popular HTML, CSS, and JS library in Metro style.">
+    <meta name="keywords" content="HTML, CSS, JS, Metro, CSS3, Javascript, HTML5, UI, Library, Web, Development, Framework">
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <link href="metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
+    <link href="highlight/styles/github.css" rel="stylesheet">
+    <link href="docsearch/docsearch.min.css" rel="stylesheet">
+    <link href="css/site.css" rel="stylesheet">
+
+    <title>Select - Metro 4 :: Popular HTML, CSS and JS library</title>
+</head>
+<body>
+    <div class="container-fluid">
+
+        <div class="row flex-xl-nowrap">
+            <div class="cell-md-3 cell-xl-2 pr-0 border-right bd-light" id="sidenav">
+            </div>
+
+            <div class="d-none d-block-xl cell-xl-2 order-2 border-left bd-light toc-wrapper">
+                <h5>Table of contents</h5>
+                <hr/>
+                <ul class="toc-nav">
+                    <li class="toc-entry"><a href="#">Select</a></li>
+                    <li class="toc-entry"><a href="#_select_about">About</a></li>
+                    <li class="toc-entry"><a href="#_select_single">Single select</a></li>
+                    <li class="toc-entry"><a href="#_select_multiple">Multiple select</a></li>
+                    <li class="toc-entry"><a href="#_select_template">Option template</a></li>
+                    <li class="toc-entry"><a href="#_select_options">Options</a></li>
+                    <li class="toc-entry"><a href="#_select_events">Events</a></li>
+                    <li class="toc-entry"><a href="#_select_methods">Methods</a></li>
+                    <li class="toc-entry"><a href="#_select_customize">Customize</a></li>
+                </ul>
+
+            </div>
+
+            <main class="cell-md-9 cell-xl-8 order-1 pr-1-sx pl-1-sx pr-5-md pl-5-md">
+                <div class="place-right d-none d-block-lg" style="width: 200px;">
+                    <img src="images/logo.png" class="w-100">
+                </div>
+
+                <h1>Spinner</h1>
+                <p class="text-leader">
+                    Create a customizable select box with support for searching, tagging and many other highly used options.
+                </p>
+
+                <!-- ads-html -->
+
+                <h3 id="_select_about">About</h3>
+                <p>
+                    Metro 4 <code>select</code> was designed to be a replacement for the standard select box that is displayed by the browser.
+                    Select component supports all options and operations that are available in a standard select box, but with added any usefulness features.
+                    To create <code>select</code> component, add attribute <code>data-role="select"</code> to your select HTML element.
+                </p>
+                <pre><code>
+                    &lt;select data-role="select"&gt;
+                    ...
+                    &lt;/select&gt;
+                </code></pre>
+                <p>
+                    Metro 4 <code>select</code> supports <code>singe</code> and <code>multiple</code> modes.
+                </p>
+
+                <h3 id="_select_single">Single select box</h3>
+                <p>
+                    To create <code>single</code> select box, add attribute <code>data-role="select"</code> to element.
+                </p>
+
+                <div class="example">
+                    <select data-role="select">
+                        <optgroup label="Physical servers">
+                            <option value="dedicated_corei3_hp">Core i3 (hp)</option>
+                            <option value="dedicated_pentium_hp">Pentium (hp)</option>
+                            <option value="dedicated_smart_corei3_hp">Smart Core i3 (hp)</option>
+                        </optgroup>
+                        <optgroup label="Virtual hosting">
+                            <option value="mini">Mini</option>
+                            <option value="site">Site</option>
+                            <option value="portal">Portal</option>
+                        </optgroup>
+                        <optgroup label="Virtual servers">
+                            <option value="evps0">eVPS-TEST (30 дней)</option>
+                            <option value="evps1" selected="selected">eVPS-1</option>
+                            <option value="evps2">eVPS-2</option>
+                        </optgroup>
+                    </select>
+                </div>
+                <pre><code>
+                    &lt;select data-role="select"&gt;
+                        &lt;optgroup label="Physical servers"&gt;
+                            &lt;option value="dedicated_corei3_hp"&gt;Core i3 (hp)&lt;/option&gt;
+                            &lt;option value="dedicated_pentium_hp"&gt;Pentium (hp)&lt;/option&gt;
+                            &lt;option value="dedicated_smart_corei3_hp"&gt;Smart Core i3 (hp)&lt;/option&gt;
+                        &lt;/optgroup&gt;
+                        &lt;optgroup label="Virtual hosting"&gt;
+                            &lt;option value="mini"&gt;Mini&lt;/option&gt;
+                            &lt;option value="site"&gt;Site&lt;/option&gt;
+                            &lt;option value="portal"&gt;Portal&lt;/option&gt;
+                        &lt;/optgroup&gt;
+                        &lt;optgroup label="Virtual servers"&gt;
+                            &lt;option value="evps0"&gt;eVPS-TEST (30 дней)&lt;/option&gt;
+                            &lt;option value="evps1" selected="selected"&gt;eVPS-1&lt;/option&gt;
+                            &lt;option value="evps2"&gt;eVPS-2&lt;/option&gt;
+                        &lt;/optgroup&gt;
+                    &lt;/select&gt;
+                </code></pre>
+
+                <h3 id="_select_multiple">Multi-select box</h3>
+                <p>
+                    Select also supports multi-value select boxes. The select below is declared with the <code>multiple</code> attribute.
+                </p>
+                <div class="example">
+                    <select data-role="select" multiple>
+                        <optgroup label="Physical servers">
+                            <option value="dedicated_corei3_hp">Core i3 (hp)</option>
+                            <option value="dedicated_pentium_hp">Pentium (hp)</option>
+                            <option value="dedicated_smart_corei3_hp">Smart Core i3 (hp)</option>
+                        </optgroup>
+                        <optgroup label="Virtual hosting">
+                            <option value="mini">Mini</option>
+                            <option value="site">Site</option>
+                            <option value="portal">Portal</option>
+                        </optgroup>
+                        <optgroup label="Virtual servers">
+                            <option value="evps0">eVPS-TEST (30 дней)</option>
+                            <option value="evps1" selected="selected">eVPS-1</option>
+                            <option value="evps2">eVPS-2</option>
+                        </optgroup>
+                    </select>
+                </div>
+                <pre><code>
+                    &lt;select data-role="select" multiple&gt;
+                        &lt;optgroup label="Physical servers"&gt;
+                            &lt;option value="dedicated_corei3_hp"&gt;Core i3 (hp)&lt;/option&gt;
+                            &lt;option value="dedicated_pentium_hp"&gt;Pentium (hp)&lt;/option&gt;
+                            &lt;option value="dedicated_smart_corei3_hp"&gt;Smart Core i3 (hp)&lt;/option&gt;
+                        &lt;/optgroup&gt;
+                        &lt;optgroup label="Virtual hosting"&gt;
+                            &lt;option value="mini"&gt;Mini&lt;/option&gt;
+                            &lt;option value="site"&gt;Site&lt;/option&gt;
+                            &lt;option value="portal"&gt;Portal&lt;/option&gt;
+                        &lt;/optgroup&gt;
+                        &lt;optgroup label="Virtual servers"&gt;
+                            &lt;option value="evps0"&gt;eVPS-TEST (30 дней)&lt;/option&gt;
+                            &lt;option value="evps1" selected="selected"&gt;eVPS-1&lt;/option&gt;
+                            &lt;option value="evps2"&gt;eVPS-2&lt;/option&gt;
+                        &lt;/optgroup&gt;
+                    &lt;/select&gt;
+                </code></pre>
+
+                <h3 id="_select_template">Option template</h3>
+                <p>
+                    You can use attribute <code>data-template</code> for option for define html option display.
+                    Example: you need to add <code>icon</code> to option. <code>$1</code> in template, used for replace by <code>option text</code>.
+                </p>
+                <div class="example">
+                    <p>Single</p>
+                    <select data-role="select">
+                        <option value="1" data-template="<span class='mif-amazon icon'></span> $1">Amazon</option>
+                        <option value="2" data-template="<span class='mif-apple icon'></span> $1">Apple</option>
+                        <option value="3" data-template="<span class='mif-blogger icon'></span> $1">Blogger</option>
+                        <option value="4" data-template="<span class='mif-evernote icon'></span> $1">Evernote</option>
+                        <option value="5" data-template="<span class='mif-github icon'></span> $1">GitHub</option>
+                    </select>
+                </div>
+                <pre><code>
+                    &lt;select data-role="select"&gt;
+                        &lt;option value="1" data-template="&lt;span class='mif-amazon icon'>&lt;/span&gt; $1"&gt;Amazon&lt;/option&gt;
+                        &lt;option value="2" data-template="&lt;span class='mif-apple icon'&gt;&lt;/span&gt; $1"&gt;Apple&lt;/option&gt;
+                        &lt;option value="3" data-template="&lt;span class='mif-blogger icon'&gt;&lt;/span&gt; $1"&gt;Blogger&lt;/option&gt;
+                        &lt;option value="4" data-template="&lt;span class='mif-evernote icon'&gt;&lt;/span&gt; $1"&gt;Evernote&lt;/option&gt;
+                        &lt;option value="5" data-template="&lt;span class='mif-github icon'&gt;&lt;/span&gt; $1"&gt;GitHub&lt;/option&gt;
+                    &lt;/select&gt;
+                </code></pre>
+
+                <div class="example">
+                    <p>Multiple</p>
+                    <select data-role="select" multiple>
+                        <option value="1" data-template="<span class='mif-amazon icon'></span> $1">Amazon</option>
+                        <option value="2" data-template="<span class='mif-apple icon'></span> $1">Apple</option>
+                        <option value="3" data-template="<span class='mif-blogger icon'></span> $1">Blogger</option>
+                        <option value="4" data-template="<span class='mif-evernote icon'></span> $1">Evernote</option>
+                        <option value="5" data-template="<span class='mif-github icon'></span> $1">GitHub</option>
+                    </select>
+                </div>
+                <pre><code>
+                    &lt;select data-role="select" multiple&gt;
+                        &lt;option value="1" data-template="&lt;span class='mif-amazon icon'>&lt;/span&gt; $1"&gt;Amazon&lt;/option&gt;
+                        &lt;option value="2" data-template="&lt;span class='mif-apple icon'&gt;&lt;/span&gt; $1"&gt;Apple&lt;/option&gt;
+                        &lt;option value="3" data-template="&lt;span class='mif-blogger icon'&gt;&lt;/span&gt; $1"&gt;Blogger&lt;/option&gt;
+                        &lt;option value="4" data-template="&lt;span class='mif-evernote icon'&gt;&lt;/span&gt; $1"&gt;Evernote&lt;/option&gt;
+                        &lt;option value="5" data-template="&lt;span class='mif-github icon'&gt;&lt;/span&gt; $1"&gt;GitHub&lt;/option&gt;
+                    &lt;/select&gt;
+                </code></pre>
+
+
+                <h3 id="_select_options">Options</h3>
+                <table class="table cell-border table-border options-table mt-4">
+                    <thead>
+                    <tr>
+                        <th>Option</th>
+                        <th>Data-*</th>
+                        <th>Default</th>
+                        <th>Desc</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><code>duration</code></td>
+                        <td><code>data-duration</code></td>
+                        <td>100</td>
+                        <td>Options list drop-down speed</td>
+                    </tr>
+                    <tr>
+                        <td><code>prepend</code></td>
+                        <td><code>data-prepend</code></td>
+                        <td></td>
+                        <td>Prepend data fo select</td>
+                    </tr>
+                    <tr>
+                        <td><code>append</code></td>
+                        <td><code>data-append</code></td>
+                        <td></td>
+                        <td>Append data fo select</td>
+                    </tr>
+                    <tr>
+                        <td><code>dropHeight</code></td>
+                        <td><code>data-drop-height</code></td>
+                        <td>200</td>
+                        <td>Dropdown height in px</td>
+                    </tr>
+                    <tr>
+                        <td><code>filter</code></td>
+                        <td><code>data-filter</code></td>
+                        <td>true</td>
+                        <td>Dropdown search filter</td>
+                    </tr>
+                    <tr>
+                        <td><code>filterPlaceholder</code></td>
+                        <td><code>data-filter-placeholder</code></td>
+                        <td></td>
+                        <td>Placeholder for search input</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <h3 id="_select_events">Events</h3>
+                <table class="table cell-border table-border options-table mt-4">
+                    <thead>
+                    <tr>
+                        <th>Event</th>
+                        <th>Data-*</th>
+                        <th>Context</th>
+                        <th>Desc</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><code>onChange(val)</code></td>
+                        <td><code>data-on-change</code></td>
+                        <td>select</td>
+                        <td>For single select box function receive one arguments - value.</td>
+                    </tr>
+                    <tr>
+                        <td><code>onChange(val, selected)</code></td>
+                        <td><code>data-on-change</code></td>
+                        <td>select</td>
+                        <td>For multiple select box function receive two arguments - value and array of selected options.</td>
+                    </tr>
+                    <tr>
+                        <td><code>onUp(list, select)</code></td>
+                        <td><code>data-on-up</code></td>
+                        <td>list</td>
+                        <td>Fired when dropdown list close</td>
+                    </tr>
+                    <tr>
+                        <td><code>onDown(list, select)</code></td>
+                        <td><code>data-on-down</code></td>
+                        <td>list</td>
+                        <td>Fired when dropdown list open</td>
+                    </tr>
+                    <tr>
+                        <td><code>onItemSelect(val, option, item)</code></td>
+                        <td><code>data-on-item-select</code></td>
+                        <td>select</td>
+                        <td>Fired when option selected</td>
+                    </tr>
+                    <tr>
+                        <td><code>onItemDeselect(option)</code></td>
+                        <td><code>data-on-item-deselect</code></td>
+                        <td>select</td>
+                        <td>Fired when option deselected</td>
+                    </tr>
+                    <tr>
+                        <td><code>onSelectCreate(select)</code></td>
+                        <td><code>data-on-select-create</code></td>
+                        <td>select</td>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <h3 id="_select_methods">Methods</h3>
+                <p>
+                    You can use methods to interact with input component:
+                        <code>disable()</code>,
+                        <code>enabled()</code>,
+                        <code>toggleState()</code>,
+                        <code>val()</code>,
+                        <code>val(values)</code>,
+                        <code>data(options)</code>.
+                </p>
+                <pre><code>
+                    var select = $(el).data('select');
+                    select.clearSelected();
+                </code></pre>
+
+                <h3 id="_select_customize">Customize</h3>
+                <p>
+                    You can customize your select with special attributes:
+                </p>
+                <table class="table cell-border table-border options-table mt-4">
+                    <thead>
+                    <tr>
+                        <th>Option</th>
+                        <th>Data-*</th>
+                        <th>Desc</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><code>clsSelect</code></td>
+                        <td><code>data-cls-select</code></td>
+                        <td>Additional classes for select component.</td>
+                    </tr>
+                    <tr>
+                        <td><code>clsPrepend</code></td>
+                        <td><code>data-cls-prepend</code></td>
+                        <td>Additional classes for prepend data.</td>
+                    </tr>
+                    <tr>
+                        <td><code>clsAppend</code></td>
+                        <td><code>data-cls-append</code></td>
+                        <td>Additional classes for append data.</td>
+                    </tr>
+                    <tr>
+                        <td><code>clsOption</code></td>
+                        <td><code>data-cls-option</code></td>
+                        <td>Additional classes for option item.</td>
+                    </tr>
+                    <tr>
+                        <td><code>clsOptionGroup</code></td>
+                        <td><code>data-cls-option-group</code></td>
+                        <td>Additional classes for option group.</td>
+                    </tr>
+                    <tr>
+                        <td><code>clsDropList</code></td>
+                        <td><code>data-cls-drop-list</code></td>
+                        <td>Additional classes for drop options list.</td>
+                    </tr>
+                    <tr>
+                        <td><code>clsSelectedItem</code></td>
+                        <td><code>data-cls-selected-item</code></td>
+                        <td>Additional classes for selected item for multiple.</td>
+                    </tr>
+                    <tr>
+                        <td><code>clsSelectedItemRemover</code></td>
+                        <td><code>data-cls-selected-item-remover</code></td>
+                        <td>Additional classes for selected item remove button for multiple.</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="example">
+                    <select data-role="select" multiple data-cls-option="fg-cyan" data-cls-selected-item="bg-teal fg-white" data-cls-selected-item-remover="bg-darkTeal fg-white">
+                        <option value="1" data-template="<span class='mif-amazon icon'></span> $1">Amazon</option>
+                        <option value="2" data-template="<span class='mif-apple icon'></span> $1">Apple</option>
+                        <option value="3" data-template="<span class='mif-blogger icon'></span> $1">Blogger</option>
+                        <option value="4" data-template="<span class='mif-evernote icon'></span> $1">Evernote</option>
+                        <option value="5" data-template="<span class='mif-github icon'></span> $1">GitHub</option>
+                    </select>
+                </div>
+                <pre><code>
+                    &lt;select data-role="select" multiple
+                            data-cls-option="fg-cyan"
+                            data-cls-selected-item="bg-teal fg-white"
+                            data-cls-selected-item-remover="bg-darkTeal fg-white"&gt;
+                        &lt;option value="1" data-template="&lt;span class='mif-amazon icon'&gt;&lt;/span&gt; $1"&gt;Amazon&lt;/option&gt;
+                        &lt;option value="2" data-template="&lt;span class='mif-apple icon'&gt;&lt;/span&gt; $1"&gt;Apple&lt;/option&gt;
+                        &lt;option value="3" data-template="&lt;span class='mif-blogger icon'&gt;&lt;/span&gt; $1"&gt;Blogger&lt;/option&gt;
+                        &lt;option value="4" data-template="&lt;span class='mif-evernote icon'&gt;&lt;/span&gt; $1"&gt;Evernote&lt;/option&gt;
+                        &lt;option value="5" data-template="&lt;span class='mif-github icon'&gt;&lt;/span&gt; $1"&gt;GitHub&lt;/option&gt;
+                    &lt;/select&gt;
+                </code></pre>
+
+            </main>
+        </div>
+    </div>
+
+    <script src="docsearch/docsearch.min.js"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="metro/js/metro.js?ver=@@b-version"></script>
+    <script src="highlight/highlight.pack.js"></script>
+    <script src="js/clipboard.min.js"></script>
+    <script src="js/site.js"></script>
+    <!-- ads-script -->
+    <!-- ga-script -->
+    <!-- hit-ua -->
+</body>
+</html>

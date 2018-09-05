@@ -9,6 +9,8 @@
 + [x] Tag input: add observing attribute `value`
 + [x] Tag input: fix method `val()`
 + [x] Spinner: add events `onArrowUp`, `onArrowDown`, `onArrowClick`
++ [x] Select: add event `onItemSelect`
++ [x] Select: add method `clearSelected()`
 
 ### 4.2.20
 + [x] Table: fix default padding for `th` and `td`
