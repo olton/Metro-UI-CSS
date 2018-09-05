@@ -18775,7 +18775,7 @@ var TagInput = {
         var element = this.element, o = this.options;
         var val = tag.data("value");
 
-        if (!Utils.exec(o.onBeforeTagAdd, [tag, val, this.values, tag], element[0])) {
+        if (!Utils.exec(o.onBeforeTagRemove, [tag, val, this.values], element[0])) {
             return ;
         }
 
@@ -18800,8 +18800,8 @@ var TagInput = {
 
         this.values = [];
 
-        if (Utils.isValue(values)) {
-            $.each(Utils.strToArray(values, o.tagSeparator), function(){
+        if (Utils.isValue(v)) {
+            $.each(Utils.strToArray(v, o.tagSeparator), function(){
                 that._addTag(this);
             })
         }
@@ -18818,7 +18818,20 @@ var TagInput = {
     },
 
     changeAttribute: function(attributeName){
+        var that = this, element = this.element, o = this.options;
 
+        var changeValue = function(){
+            var val = element.attr("value").trim();
+            that.clear();
+            if (!Utils.isValue(val)) {
+                return ;
+            }
+            that.val(Utils.strToArray(val, ","));
+        };
+
+        switch (attributeName) {
+            case "value": changeValue(); break;
+        }
     },
 
     destroy: function(){

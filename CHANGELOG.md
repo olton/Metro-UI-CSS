@@ -6,6 +6,8 @@
 + [x] Input: add methods `clear()`, `toDefault()` 
 + [x] Input: rename `data-cls-element` to `data-cls-component`
 + [x] Input: add attribute `data-cls-custom-button`
++ [x] Tag input: add observing attribute `value`
++ [x] Tag input: fix method `val()`
 
 ### 4.2.20
 + [x] Table: fix default padding for `th` and `td`

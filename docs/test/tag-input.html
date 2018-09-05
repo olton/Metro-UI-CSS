@@ -31,6 +31,12 @@
     <p>Events</p>
     <input type="text" data-role="taginput" class="mt-4" data-on-tag="$('#output').text(this.value)">
     <div class="debug p-10 mt-4 text-center" id="output"></div>
+
+    <p>Observing</p>
+    <div class="debug p-10 mt-4 text-center">
+        <button class="button" onclick="$('#inp-obs').attr('value', '1, 2, 3, 4, 5')">Change value</button>
+    </div>
+    <input type="text" data-role="taginput" class="mt-4" id="inp-obs">
 </div>
 
 <script src="../js/jquery-3.3.1.min.js"></script>
