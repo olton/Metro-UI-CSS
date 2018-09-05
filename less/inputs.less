@@ -68,6 +68,27 @@ textarea,
         border-color: darken(@light, 5%);
         background-color: @disabledBackground;
     }
+
+    &.hide-cursor {
+        input {
+            color: transparent;
+            text-shadow: 0 0 0 @dark;
+        }
+    }
+
+    &::-ms-clear {
+        display: none;
+    }
+    &::-ms-reveal {
+        display: none;
+    }
+    &::-webkit-clear-button {
+        display: none;
+    }
+    &::-webkit-inner-spin-button {
+        height: 100%;
+    }
+
 }
 
 input[type=button], input[type=submit], input[type=reset] {
