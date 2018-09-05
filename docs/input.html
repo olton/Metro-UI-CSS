@@ -366,8 +366,79 @@
                 </table>
 
                 <h3 id="_input_methods">Methods</h3>
+                <p>
+                    You can use methods to interact with input component:
+                        <code>clear()</code>,
+                        <code>toDefault()</code>,
+                        <code>enable()</code>,
+                        <code>disable()</code>,
+                        <code>toggleState()</code>.
+                </p>
+                <pre><code>
+                    var input = $(el).data('input');
+                    input.clear();
+                    input.toDefault();
+                    input.toggleState();
+                </code></pre>
 
                 <h3 id="_input_customize">Customize</h3>
+                <p>
+                    You can customize your input with special attributes:
+                </p>
+                <table class="table cell-border table-border options-table mt-4">
+                    <thead>
+                    <tr>
+                        <th>Option</th>
+                        <th>Data-*</th>
+                        <th>Desc</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><code>clsComponent</code></td>
+                        <td><code>data-cls-component</code></td>
+                        <td>Additional classes for input control.</td>
+                    </tr>
+                    <tr>
+                        <td><code>clsInput</code></td>
+                        <td><code>data-cls-input</code></td>
+                        <td>Additional classes for input element.</td>
+                    </tr>
+                    <tr>
+                        <td><code>clsPrepend</code></td>
+                        <td><code>data-cls-prepend</code></td>
+                        <td>Additional classes for input prepend data.</td>
+                    </tr>
+                    <tr>
+                        <td><code>clsAppend</code></td>
+                        <td><code>data-cls-append</code></td>
+                        <td>Additional classes for input append data.</td>
+                    </tr>
+                    <tr>
+                        <td><code>clsClearButton</code></td>
+                        <td><code>data-cls-clear-button</code></td>
+                        <td>Additional classes for input clear button.</td>
+                    </tr>
+                    <tr>
+                        <td><code>clsRevealButton</code></td>
+                        <td><code>data-cls-reveal-button</code></td>
+                        <td>Additional classes for input reveal button.</td>
+                    </tr>
+                    <tr>
+                        <td><code>clsCustomButton</code></td>
+                        <td><code>data-cls-custom-button</code></td>
+                        <td>Additional classes for input custom button.</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="example">
+                    <input type="text" data-role="input" data-cls-input="text-bold bg-dark fg-white text-center" data-clear-button="false" value="Test value">
+                </div>
+                <pre><code>
+                    &lt;input type="text" data-role="input"
+                        data-cls-input="text-bold bg-dark fg-white text-center"
+                        data-clear-button="false"&gt;
+                </code></pre>
 
             </main>
         </div>
