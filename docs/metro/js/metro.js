@@ -10318,7 +10318,7 @@ var Input = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onInputCreate, [this.element]);
+        Utils.exec(this.options.onInputCreate, [this.element], this.elem);
 
         return this;
     },
@@ -10327,12 +10327,6 @@ var Input = {
         historyPreset: "",
         preventSubmit: false,
         defaultValue: "",
-        clsElement: "",
-        clsInput: "",
-        clsPrepend: "",
-        clsAppend: "",
-        clsClearButton: "",
-        clsRevealButton: "",
         size: "default",
         prepend: "",
         append: "",
@@ -10342,7 +10336,15 @@ var Input = {
         clearButtonIcon: "<span class='default-icon-cross'></span>",
         revealButtonIcon: "<span class='default-icon-eye'></span>",
         customButtons: [],
-        disabled: false,
+
+        clsComponent: "",
+        clsInput: "",
+        clsPrepend: "",
+        clsAppend: "",
+        clsClearButton: "",
+        clsRevealButton: "",
+        clsCustomButton: "",
+
         onHistoryChange: Metro.noop,
         onHistoryUp: Metro.noop,
         onHistoryDown: Metro.noop,
@@ -10423,8 +10425,18 @@ var Input = {
         if (typeof o.customButtons === "object" && Utils.objectLength(o.customButtons) > 0) {
             $.each(o.customButtons, function(){
                 var item = this;
-                var customButton = $("<button>").addClass("button input-custom-button").addClass(item.cls).attr("tabindex", -1).attr("type", "button").html(item.html);
+                var customButton = $("<button>");
+
+                customButton
+                    .addClass("button input-custom-button")
+                    .addClass(o.clsCustomButton)
+                    .addClass(item.cls)
+                    .attr("tabindex", -1)
+                    .attr("type", "button")
+                    .html(item.html);
+
                 customButton.data("action", item.onclick);
+
                 customButton.appendTo(buttons);
             });
         }
@@ -10445,7 +10457,7 @@ var Input = {
             }
         }
 
-        container.addClass(o.clsElement);
+        container.addClass(o.clsComponent);
         element.addClass(o.clsInput);
 
         if (o.size !== "default") {
@@ -10454,7 +10466,7 @@ var Input = {
             });
         }
 
-        if (o.disabled === true || element.is(":disabled")) {
+        if (element.is(":disabled")) {
             this.disable();
         } else {
             this.enable();
@@ -10473,7 +10485,7 @@ var Input = {
 
         container.on(Metro.events.start, ".input-reveal-button", function(){
             element.attr('type', 'text');
-            Utils.exec(o.onRevealClick, null, element[0]);
+            Utils.exec(o.onRevealClick, [element.val()], element[0]);
         });
 
         container.on(Metro.events.stop, ".input-reveal-button", function(){
