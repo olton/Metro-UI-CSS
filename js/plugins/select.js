@@ -64,18 +64,18 @@ var Select = {
         var element = this.element, o = this.options;
         var multiple = element[0].multiple;
         var input = element.siblings(".select-input");
-        var html = Utils.isValue(option.data('template'))?option.data('template').replace("$1", item.text):item.text;
-        var selected_item;
+        var html = Utils.isValue(option.attr('data-template')) ? option.attr('data-template').replace("$1", item.text):item.text;
+        var tag;
 
-        l = $("<li>").addClass(o.clsOption).data("option", item).data("text", item.text).data('value', Utils.isValue(item.value) ? item.value : "").appendTo(parent);
+        l = $("<li>").addClass(o.clsOption).data("option", item).attr("data-text", item.text).attr('data-value', Utils.isValue(item.value) ? item.value : "").appendTo(parent);
         a = $("<a>").html(html).appendTo(l).addClass(item.className);
 
-        if (item.selected) {
+        if (option.is(":selected")) {
             if (multiple) {
                 l.addClass("d-none");
-                selected_item = $("<div>").addClass("selected-item").addClass(o.clsSelectedItem).html("<span class='title'>"+html+"</span>").appendTo(input);
-                selected_item.data("option", l);
-                $("<span>").addClass("remover").addClass(o.clsSelectedItemRemover).html("&times;").appendTo(selected_item);
+                tag = $("<div>").addClass("selected-item").addClass(o.clsSelectedItem).html("<span class='title'>"+html+"</span>").appendTo(input);
+                tag.data("option", l);
+                $("<span>").addClass("remover").addClass(o.clsSelectedItemRemover).html("&times;").appendTo(tag);
             } else {
                 element.val(item.value);
                 input.html(html);
@@ -97,6 +97,19 @@ var Select = {
         $.each(group.children(), function(){
             that._addOption(this, parent);
         })
+    },
+
+    _createOptions: function(){
+        var that = this, element = this.element, select = element.parent();
+        var list = select.find("ul").html("");
+
+        $.each(element.children(), function(){
+            if (this.tagName === "OPTION") {
+                that._addOption(this, list);
+            } else if (this.tagName === "OPTGROUP") {
+                that._addOptionGroup(this, list);
+            }
+        });
     },
 
     _createSelect: function(){
@@ -143,13 +156,7 @@ var Select = {
 
         drop_container.append(list);
 
-        $.each(element.children(), function(){
-            if (this.tagName === "OPTION") {
-                that._addOption(this, list);
-            } else if (this.tagName === "OPTGROUP") {
-                that._addOptionGroup(this, list);
-            }
-        });
+        this._createOptions();
 
         drop_container.dropdown({
             duration: o.duration,
@@ -251,27 +258,23 @@ var Select = {
                 selected_item = $("<div>").addClass("selected-item").addClass(o.clsSelectedItem).html("<span class='title'>"+html+"</span>").appendTo(input);
                 selected_item.data("option", leaf);
                 $("<span>").addClass("remover").addClass(o.clsSelectedItemRemover).html("&times;").appendTo(selected_item);
-                $.each(options, function(){
-                    if (this === option) {
-                        this.selected = true;
-                    }
-                });
-                Utils.exec(o.onChange, [val, element.find("option:selected")], element[0]);
             } else {
                 list.find("li.active").removeClass("active");
                 leaf.addClass("active");
                 input.html(html);
-                $.each(options, function(){
-                    if (this === option) {
-                        this.selected = true;
-                    }
-                });
-                element.trigger("change");
                 drop_container.data("dropdown").close();
-                Utils.exec(o.onChange, [val], element[0]);
             }
 
+            $.each(options, function(){
+                if (this === option) {
+                    this.selected = true;
+                }
+            });
+
+            element.trigger("change");
+
             Utils.exec(o.onItemSelect, [val, option, leaf], element[0]);
+            Utils.exec(o.onChange, [that.getSelected()], element[0]);
         });
 
         input.on("click", ".selected-item .remover", function(e){
@@ -286,6 +289,7 @@ var Select = {
             });
             item.remove();
             Utils.exec(o.onItemDeselect, [option], element[0]);
+            Utils.exec(o.onChange, [that.getSelected()], element[0]);
             e.preventDefault();
             e.stopPropagation();
         });
@@ -311,11 +315,6 @@ var Select = {
         });
     },
 
-    reset: function(){
-        var that = this, element = this.element, o = this.options;
-        //TODO
-    },
-
     disable: function(){
         this.element.data("disabled", true);
         this.element.closest(".select").addClass("disabled");
@@ -334,19 +333,22 @@ var Select = {
         }
     },
 
-    clearSelected: function(){
-        var element = this.element;
+    reset: function(to_default){
+        var element = this.element, o = this.options;
         var options = element.find("option:selected");
-        var items = this.list.find("li");
-        var input = element.siblings(".select-input");
-        var tags = input.find(".selected-item");
+        var select = element.closest('.select');
 
         $.each(options, function(){
-            this.selected = false;
+            this.selected = !Utils.isNull(to_default) ? this.defaultSelected : false;
         });
-        items.removeClass("d-none active");
-        tags.remove();
-        input.html('');
+
+        this.list.find("li").remove();
+        select.find(".select-input").html('');
+
+        this._createOptions();
+
+        element.trigger('change');
+        Utils.exec(o.onChange, [this.getSelected()], element[0]);
     },
 
     getSelected: function(){
@@ -355,51 +357,32 @@ var Select = {
         var result = [];
 
         $.each(options, function(){
-            if (this.selected === true) result.push(this);
+            if (this.selected) result.push(this);
         });
 
         return result;
     },
 
     val: function(val){
-        var element = this.element, o = this.options;
+        var that = this, element = this.element, o = this.options;
         var input = element.siblings(".select-input");
         var options = element.find("option");
         var list_items = this.list.find("li");
         var result = [];
         var multiple = element.attr("multiple") !== undefined;
 
-        if (!Utils.isValue(val)) {
-            $.each(element.find("option:selected"), function(){
-                result.push(this.value);
+        if (Utils.isNull(val)) {
+            $.each(options, function(){
+                if (this.selected) result.push(this.value);
             });
             return result;
         }
 
-        this.clearSelected();
+        this.reset();
 
         if (!multiple) {
             val = Array.isArray(val) ? val[0] : val;
-            $.each(options, function(){
-                var item = this, option = $(this);
-                var html = Utils.isValue(option.attr('data-template')) ? option.attr('data-template').replace("$1", item.text):item.text;
 
-                if (""+item.value === ""+val) {
-                    item.selected = true;
-                    input.html(html);
-                    element.trigger("change");
-
-                    $.each(list_items, function(){
-                        var list_item = $(this);
-                        if (list_item.hasClass("group-title")) return ;
-                        if (""+list_item.data("value") === ""+val) {
-                            list_item.addClass("active");
-                        }
-                    });
-
-                    Utils.exec(o.onChange, [val], element[0]);
-                }
-            });
         } else {
             val = !Array.isArray(val) ? [val] : val;
             $.each(val, function(){
@@ -409,13 +392,10 @@ var Select = {
     },
 
     data: function(op){
-        var that = this, element = this.element;
-        var select = element.parent();
-        var list = select.find("ul");
+        var element = this.element;
         var option_group;
 
         element.html("");
-        list.html("");
 
         if (typeof op === 'string') {
             element.html(op);
@@ -432,13 +412,7 @@ var Select = {
             });
         }
 
-        $.each(element.children(), function(){
-            if (this.tagName === "OPTION") {
-                that._addOption(this, list);
-            } else if (this.tagName === "OPTGROUP") {
-                that._addOptionGroup(this, list);
-            }
-        });
+        this._createOptions();
     },
 
     changeAttribute: function(attributeName){
