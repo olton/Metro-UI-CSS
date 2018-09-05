@@ -705,6 +705,10 @@ var Utils = {
         return val !== undefined && val !== null && val !== "";
     },
 
+    isNull: function(val){
+        return val === undefined || val === null;
+    },
+
     isNegative: function(val){
         return parseFloat(val) < 0;
     },
