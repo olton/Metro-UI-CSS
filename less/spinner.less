@@ -13,16 +13,8 @@
     height: @inputHeight;
     line-height: @inputHeight;
 
-    .original-input {
-        width: 1px;
-        height: 1px;
-        position: absolute;
-        top: 0;
-        left: 0;
-        opacity: 0;
-    }
-
-    .input-wrapper {
+    input {
+        border: none!important;
         display: block;
         position: relative;
         width: 100%;
@@ -49,16 +41,16 @@
 
     .spinner-button-plus {order: 3}
     .spinner-button-minus {order: 1}
-    .input-wrapper {order: 2}
+    input {order: 2}
 
     &.buttons-left {
         .spinner-button-plus {order: 2}
         .spinner-button-minus {order: 1}
-        .input-wrapper {order: 3}
+        input {order: 3}
     }
     &.buttons-right {
         .spinner-button-plus {order: 3}
         .spinner-button-minus {order: 2}
-        .input-wrapper {order: 1}
+        input {order: 1}
     }
 }
