@@ -245,73 +245,6 @@
                 <p>
                     Additional functionality for input is implemented through the plugin <code>input</code>. To activate plugin and additional options add the attribute <code>data-role="input"</code> to element.
                 </p>
-                <p class="text-bold">Additional options for extended input:</p>
-                <table class="table table-border cell-border compact mb-4">
-                    <thead>
-                    <tr>
-                        <td>data-*</td>
-                        <td>default</td>
-                        <td>description</td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>data-clear-button</td>
-                        <td>true</td>
-                        <td>Enable or disable clear button</td>
-                    </tr>
-                    <tr>
-                        <td>data-clear-button-icon</td>
-                        <td>&lt;span class='mif-cross'&gt;&lt;/span&gt;</td>
-                        <td>Icon for clear button</td>
-                    </tr>
-                    <tr>
-                        <td>data-reveal-button</td>
-                        <td>true</td>
-                        <td>Enable or disable reveal button for password inputs</td>
-                    </tr>
-                    <tr>
-                        <td>data-reveal-button-icon</td>
-                        <td>&lt;span class='mif-eye'&gt;&lt;/span&gt;</td>
-                        <td>Icon for reveal button</td>
-                    </tr>
-                    <tr>
-                        <td>data-history</td>
-                        <td>false</td>
-                        <td>Enable history for input values. When press enter, value stored to history and can be receiver on press up or down arrow. This new in 4.2.20</td>
-                    </tr>
-                    <tr>
-                        <td>data-history-preset</td>
-                        <td></td>
-                        <td>Preset values for input history. This must be a comma separated string. This new in 4.2.20</td>
-                    </tr>
-                    <tr>
-                        <td>data-prevent-submit</td>
-                        <td></td>
-                        <td>Prevent submitting form when history enabled history. This new in 4.2.20</td>
-                    </tr>
-                    <tr>
-                        <td>data-on-history-change</td>
-                        <td>Metro.noop</td>
-                        <td>Fired when history changed</td>
-                    </tr>
-                    <tr>
-                        <td>data-on-history-up</td>
-                        <td>Metro.noop</td>
-                        <td>Fired when press up arrow</td>
-                    </tr>
-                    <tr>
-                        <td>data-on-history-down</td>
-                        <td>Metro.noop</td>
-                        <td>Fired when press down arrow</td>
-                    </tr>
-                    <tr>
-                        <td>data-on-input-create</td>
-                        <td>Metro.noop</td>
-                        <td>Callback triggered when control created</td>
-                    </tr>
-                    </tbody>
-                </table>
 
                 <h4 id="_tag-input">Tag input</h4>
                 <p class="text-small">New in 4.2.18</p>
@@ -358,85 +291,6 @@
                     &lt;input type="text" data-role="taginput" class="mt-4" data-on-tag="$('#output').text(this.value)"&gt;
                     &lt;div class="debug p-10 mt-4 text-center" id="output"&gt;&lt;/div&gt;
                 </code></pre>
-
-                <p class="text-bold">Tag input options</p>
-                <table class="table table-border cell-border compact mb-4">
-                    <thead>
-                    <tr>
-                        <td>data-*</td>
-                        <td>default</td>
-                        <td>description</td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td><code>data-random-color</code></td>
-                        <td>false</td>
-                        <td>Use random colors for tags</td>
-                    </tr>
-                    <tr>
-                        <td><code>data-max-tags</code></td>
-                        <td>0</td>
-                        <td>How many tags can be created. 0 - unlimited</td>
-                    </tr>
-                    <tr>
-                        <td><code>data-tag-separator</code></td>
-                        <td><code>,</code></td>
-                        <td>Tags separator for result and preset</td>
-                    </tr>
-                    <tr>
-                        <td><code>data-tag-trigger</code></td>
-                        <td>13,188</td>
-                        <td>Key codes for triggering tag creating</td>
-                    </tr>
-                    <tr>
-                        <td><code>data-cls-tag</code></td>
-                        <td></td>
-                        <td>Additional class for tag</td>
-                    </tr>
-                    <tr>
-                        <td><code>data-cls-tag-title</code></td>
-                        <td></td>
-                        <td>Additional class for tag title</td>
-                    </tr>
-                    <tr>
-                        <td><code>data-cls-tag-remover</code></td>
-                        <td></td>
-                        <td>Additional class for tag remover</td>
-                    </tr>
-                    <tr>
-                        <td><code>data-on-before-tag-add</code></td>
-                        <td></td>
-                        <td>Event</td>
-                    </tr>
-                    <tr>
-                        <td><code>data-on-tag-add</code></td>
-                        <td></td>
-                        <td>Event</td>
-                    </tr>
-                    <tr>
-                        <td><code>data-on-before-tag-remove</code></td>
-                        <td></td>
-                        <td>Event</td>
-                    </tr>
-                    <tr>
-                        <td><code>data-on-tag-remove</code></td>
-                        <td></td>
-                        <td>Event</td>
-                    </tr>
-                    <tr>
-                        <td><code>data-on-tag</code></td>
-                        <td></td>
-                        <td>Event</td>
-                    </tr>
-                    <tr>
-                        <td><code>data-on-tag-input-create</code></td>
-                        <td>Metro.noop</td>
-                        <td>Event triggered when control created</td>
-                    </tr>
-                    </tbody>
-                </table>
-
 
                 <h4 id="_spinner">Spinner</h4>
                 <p class="text-small">New in 4.2.20</p>
@@ -490,114 +344,6 @@
                            data-plus-icon="&lt;span class='mif-plus fg-white'&gt;&lt;/span&gt;"
                            data-minus-icon="&lt;span class='mif-minus fg-white'&gt;&lt;/span&gt;"&gt;
                 </code></pre>
-
-                <p class="text-bold">Spinner options</p>
-                <table class="table table-border cell-border compact mb-4">
-                    <thead>
-                    <tr>
-                        <td>data-*</td>
-                        <td>default</td>
-                        <td>description</td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td><code>data-step</code></td>
-                        <td>1</td>
-                        <td>Spinner step</td>
-                    </tr>
-                    <tr>
-                        <td><code>data-plus-icon</code></td>
-                        <td>&lt;span class='default-icon-plus'&gt;</td>
-                        <td>Spinner plus button icon</td>
-                    </tr>
-                    <tr>
-                        <td><code>data-minus-icon</code></td>
-                        <td>&lt;span class='default-icon-minus'&gt;</td>
-                        <td>Spinner minus button icon</td>
-                    </tr>
-                    <tr>
-                        <td><code>data-buttons-position</code></td>
-                        <td>default</td>
-                        <td>Spinner buttons position, must be left, right or default</td>
-                    </tr>
-                    <tr>
-                        <td><code>data-default-value</code></td>
-                        <td>0</td>
-                        <td>Used to revert input value to default</td>
-                    </tr>
-                    <tr>
-                        <td><code>data-min-value</code></td>
-                        <td>null</td>
-                        <td>Used to set min value for input</td>
-                    </tr>
-                    <tr>
-                        <td><code>data-max-value</code></td>
-                        <td>null</td>
-                        <td>Used to set max value for input</td>
-                    </tr>
-                    <tr>
-                        <td><code>data-fixed</code></td>
-                        <td>0</td>
-                        <td>Used to set number of digits after dot</td>
-                    </tr>
-                    <tr>
-                        <td><code>data-repeat-threshold</code></td>
-                        <td>500</td>
-                        <td>Threshold in ms for repeat click when user long press button</td>
-                    </tr>
-                    <tr>
-                        <td><code>data-cls-spinner</code></td>
-                        <td></td>
-                        <td>Additional class for spinner element</td>
-                    </tr>
-                    <tr>
-                        <td><code>data-cls-spinner-value</code></td>
-                        <td></td>
-                        <td>Additional class for spinner value wrapper</td>
-                    </tr>
-                    <tr>
-                        <td><code>data-cls-spinner-button</code></td>
-                        <td></td>
-                        <td>Additional class for spinner buttons</td>
-                    </tr>
-                    <tr>
-                        <td><code>data-cls-spinner-button-plus</code></td>
-                        <td></td>
-                        <td>Additional class for spinner button plus</td>
-                    </tr>
-                    <tr>
-                        <td><code>data-cls-spinner-button-minus</code></td>
-                        <td></td>
-                        <td>Additional class for spinner button minus</td>
-                    </tr>
-                    <tr>
-                        <td><code>data-on-change</code></td>
-                        <td>Metro.noop</td>
-                        <td>Event fired when value changed</td>
-                    </tr>
-                    <tr>
-                        <td><code>data-on-plus-click</code></td>
-                        <td>Metro.noop</td>
-                        <td>Event fired when user click plus button. This functions receive next arguments: current value, new value, new input value</td>
-                    </tr>
-                    <tr>
-                        <td><code>data-on-minus-click</code></td>
-                        <td>Metro.noop</td>
-                        <td>Event fired when user click plus button. This functions receive next arguments: current value, new value, new input value</td>
-                    </tr>
-                    <tr>
-                        <td><code>data-on-button-click</code></td>
-                        <td>Metro.noop</td>
-                        <td>Event fired when user click plus or minus button. This functions receive next arguments: current value, new value, new input value, button</td>
-                    </tr>
-                    <tr>
-                        <td><code>data-on-spinner-create</code></td>
-                        <td>Metro.noop</td>
-                        <td>Event triggered when control created</td>
-                    </tr>
-                    </tbody>
-                </table>
 
                 <p>
                     You can set or get <code>spinner</code> value with method <code>val()</code>.
@@ -838,43 +584,7 @@
                 <p>
                     In version <code>4.2.0</code>, component receive new feature: <code>filtering</code>.
                 </p>
-                <p class="text-bold">Additional options:</p>
-                <table class="table table-border cell-border compact mb-4">
-                    <thead>
-                    <tr>
-                        <td>data-*</td>
-                        <td>default</td>
-                        <td>description</td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>data-drop-height</td>
-                        <td>200px</td>
-                        <td>Max height for drops</td>
-                    </tr>
-                    <tr>
-                        <td>data-on-select-create</td>
-                        <td>$.noop()</td>
-                        <td>Callback triggered when control created</td>
-                    </tr>
-                    <tr>
-                        <td>data-on-change</td>
-                        <td>$.noop()</td>
-                        <td>Callback triggered when value changed</td>
-                    </tr>
-                    <tr>
-                        <td>data-filter</td>
-                        <td>true</td>
-                        <td>Enable/disable list filtering. Default is true</td>
-                    </tr>
-                    <tr>
-                        <td>data-filter-placeholder</td>
-                        <td></td>
-                        <td>Placeholder for filter input</td>
-                    </tr>
-                    </tbody>
-                </table>
+
                 <h4>Select in runtime</h4>
                 <p>
                     To set or get <code>select</code> value at runtime, use method <code>val()</code>.
@@ -968,28 +678,6 @@
                 <p>
                     Additional functionality for textarea is implemented through the plugin <code>textarea</code>. To activate plugin and additional options add the attribute <code>data-role="textarea"</code> to element.
                 </p>
-                <p class="text-bold">Additional options:</p>
-                <table class="table table-border cell-border compact mb-4">
-                    <thead>
-                    <tr>
-                        <td>data-*</td>
-                        <td>default</td>
-                        <td>description</td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>data-auto-size</td>
-                        <td>false</td>
-                        <td>Enabling autosize feature</td>
-                    </tr>
-                    <tr>
-                        <td>data-on-textarea-create</td>
-                        <td>$.noop()</td>
-                        <td>Callback triggered when control created</td>
-                    </tr>
-                    </tbody>
-                </table>
 
                 <h4 id="_checkbox">Checkbox</h4>
                 <p>
@@ -1034,33 +722,6 @@
                     Additional functionality for input is implemented through the plugin <code>checkbox</code>.
                     To activate plugin and additional options add the attribute <code>data-role="checkbox"</code> to element.
                 </p>
-                <p class="text-bold">Additional options:</p>
-                <table class="table table-border cell-border compact mb-4">
-                    <thead>
-                    <tr>
-                        <td>data-*</td>
-                        <td>default</td>
-                        <td>description</td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>data-caption</td>
-                        <td>empty</td>
-                        <td>Caption for checkbox</td>
-                    </tr>
-                    <tr>
-                        <td>data-caption-position</td>
-                        <td>right</td>
-                        <td>Caption position: right or left</td>
-                    </tr>
-                    <tr>
-                        <td>data-on-checkbox-create</td>
-                        <td>$.noop()</td>
-                        <td>Callback triggered when control created</td>
-                    </tr>
-                    </tbody>
-                </table>
 
                 <h4>Indeterminate state</h4>
                 <p>
@@ -1134,33 +795,6 @@
                     Additional functionality for input is implemented through the plugin <code>radio</code>.
                     To activate plugin and additional options add the attribute <code>data-role="radio"</code> to element.
                 </p>
-                <p class="text-bold">Additional options:</p>
-                <table class="table table-border cell-border compact mb-4">
-                    <thead>
-                    <tr>
-                        <td>data-*</td>
-                        <td>default</td>
-                        <td>description</td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>data-caption</td>
-                        <td>empty</td>
-                        <td>Caption for radio</td>
-                    </tr>
-                    <tr>
-                        <td>data-caption-position</td>
-                        <td>right</td>
-                        <td>Caption position: right or left</td>
-                    </tr>
-                    <tr>
-                        <td>data-on-radio-create</td>
-                        <td>$.noop()</td>
-                        <td>Callback triggered when control created</td>
-                    </tr>
-                    </tbody>
-                </table>
 
                 <h4 id="_switch">Switch</h4>
                 <p>
@@ -1184,33 +818,6 @@
                     Additional functionality for input is implemented through the plugin <code>switch</code>.
                     To activate plugin and additional options add the attribute <code>data-role="switch"</code> to element.
                 </p>
-                <p class="text-bold">Additional options:</p>
-                <table class="table table-border cell-border compact mb-4">
-                    <thead>
-                    <tr>
-                        <td>data-*</td>
-                        <td>default</td>
-                        <td>description</td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>data-caption</td>
-                        <td>empty</td>
-                        <td>Caption for switch</td>
-                    </tr>
-                    <tr>
-                        <td>data-caption-position</td>
-                        <td>right</td>
-                        <td>Caption position: right or left</td>
-                    </tr>
-                    <tr>
-                        <td>data-on-switch-create</td>
-                        <td>$.noop()</td>
-                        <td>Callback triggered when control created</td>
-                    </tr>
-                    </tbody>
-                </table>
 
                 <h4 id="_file">File browser</h4>
                 <div class="example">
@@ -1229,38 +836,6 @@
                     Additional functionality for input is implemented through the plugin <code>file</code>.
                     To activate plugin and additional options add the attribute <code>data-role="file"</code> to element.
                 </p>
-                <p class="text-bold">Additional options:</p>
-                <table class="table table-border cell-border compact mb-4">
-                    <thead>
-                    <tr>
-                        <td>data-*</td>
-                        <td>default</td>
-                        <td>description</td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>data-caption</td>
-                        <td>Choose file</td>
-                        <td>Caption for element button</td>
-                    </tr>
-                    <tr>
-                        <td>data-prepend</td>
-                        <td></td>
-                        <td>Caption for element prepend</td>
-                    </tr>
-                    <tr>
-                        <td>data-on-select</td>
-                        <td>$.noop()</td>
-                        <td>Callback triggered when file(s) selected. First argument is a files list.</td>
-                    </tr>
-                    <tr>
-                        <td>data-on-file-create</td>
-                        <td>$.noop()</td>
-                        <td>Callback triggered when control created.</td>
-                    </tr>
-                    </tbody>
-                </table>
 
                 <h4 id="_form_buttons">Form buttons</h4>
                 <div class="example">
