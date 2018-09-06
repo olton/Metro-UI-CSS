@@ -195,12 +195,12 @@ var Select = {
         this.list = list;
 
         if (o.prepend !== "") {
-            var prepend = Utils.isTag(o.prepend) ? $(o.prepend) : $("<span>"+o.prepend+"</span>");
+            var prepend = $("<div>").html(o.prepend);
             prepend.addClass("prepend").addClass(o.clsPrepend).appendTo(container);
         }
 
         if (o.append !== "") {
-            var append = Utils.isTag(o.append) ? $(o.append) : $("<span>"+o.append+"</span>");
+            var append = $("<div>").html(o.append);
             append.addClass("append").addClass(o.clsAppend).appendTo(container);
         }
 

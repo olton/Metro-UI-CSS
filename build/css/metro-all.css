@@ -21262,10 +21262,14 @@ label {
 .input .prepend,
 .select .prepend,
 .textarea .prepend,
+.tag-input .prepend,
+.spinner .prepend,
 .file .append,
 .input .append,
 .select .append,
-.textarea .append {
+.textarea .append,
+.tag-input .append,
+.spinner .append {
   padding: 0.5rem 0.75rem;
   background-color: #f8f8f8;
   color: #1d1d1d;

@@ -9630,10 +9630,12 @@ var File = {
         return this;
     },
     options: {
-        copyInlineStyles: true,
         prepend: "",
+        append: "",
+        clsPrepend: "",
+        clsAppend: "",
         caption: "Choose file",
-        disabled: false,
+        copyInlineStyles: true,
         onSelect: Metro.noop,
         onFileCreate: Metro.noop
     },
@@ -9684,8 +9686,13 @@ var File = {
         element[0].className = '';
 
         if (o.prepend !== "") {
-            var prepend = Utils.isTag(o.prepend) ? $(o.prepend) : $("<span>"+o.prepend+"</span>");
+            var prepend = $("<div>").html(o.prepend);
             prepend.addClass("prepend").addClass(o.clsPrepend).appendTo(container);
+        }
+
+        if (o.append !== "") {
+            var append = $("<div>").html(o.append);
+            append.addClass("append").addClass(o.clsAppend).appendTo(container);
         }
 
         if (o.copyInlineStyles === true) {
@@ -9694,7 +9701,7 @@ var File = {
             }
         }
 
-        if (o.disabled === true || element.is(":disabled")) {
+        if (element.is(":disabled")) {
             this.disable();
         } else {
             this.enable();
@@ -10431,8 +10438,13 @@ var Input = {
         }
 
         if (o.prepend !== "") {
-            var prepend = Utils.isTag(o.prepend) ? $(o.prepend) : $("<span>"+o.prepend+"</span>");
+            var prepend = $("<div>").html(o.prepend);
             prepend.addClass("prepend").addClass(o.clsPrepend).appendTo(container);
+        }
+
+        if (o.append !== "") {
+            var append = $("<div>").html(o.append);
+            append.addClass("append").addClass(o.clsAppend).appendTo(container);
         }
 
         if (typeof o.customButtons === "string") {
@@ -10456,11 +10468,6 @@ var Input = {
 
                 customButton.appendTo(buttons);
             });
-        }
-
-        if (o.append !== "") {
-            var append = Utils.isTag(o.append) ? $(o.append) : $("<span>"+o.append+"</span>");
-            append.addClass("append").addClass(o.clsAppend).appendTo(container);
         }
 
         if (element.attr('dir') === 'rtl' ) {
@@ -14419,12 +14426,12 @@ var Select = {
         this.list = list;
 
         if (o.prepend !== "") {
-            var prepend = Utils.isTag(o.prepend) ? $(o.prepend) : $("<span>"+o.prepend+"</span>");
+            var prepend = $("<div>").html(o.prepend);
             prepend.addClass("prepend").addClass(o.clsPrepend).appendTo(container);
         }
 
         if (o.append !== "") {
-            var append = Utils.isTag(o.append) ? $(o.append) : $("<span>"+o.append+"</span>");
+            var append = $("<div>").html(o.append);
             append.addClass("append").addClass(o.clsAppend).appendTo(container);
         }
 
@@ -18963,15 +18970,20 @@ var Textarea = {
         return this;
     },
     options: {
+        charsCounter: null,
+        charsCounterTemplate: "$1",
         defaultValue: "",
         prepend: "",
         append: "",
-        clsPrepend: "",
-        clsAppend: "",
         copyInlineStyles: true,
         clearButton: true,
         clearButtonIcon: "<span class='default-icon-cross'></span>",
         autoSize: true,
+        clsPrepend: "",
+        clsAppend: "",
+        clsComponent: "",
+        clsTextarea: "",
+        onChange: Metro.noop,
         onTextareaCreate: Metro.noop
     },
 
@@ -19032,13 +19044,11 @@ var Textarea = {
         if (o.prepend !== "") {
             var prepend = $("<div>").html(o.prepend);
             prepend.addClass("prepend").addClass(o.clsPrepend).appendTo(container);
-            container.addClass("with-prepend");
         }
 
         if (o.append !== "") {
             var append = $("<div>").html(o.append);
             append.addClass("append").addClass(o.clsAppend).appendTo(container);
-            container.addClass("with-append");
             clearButton.css({
                 right: append.outerWidth() + 4
             });
@@ -19055,6 +19065,9 @@ var Textarea = {
             element.val(o.defaultValue);
         }
 
+        container.addClass(o.clsComponent);
+        element.addClass(o.clsTextarea);
+
         if (element.is(':disabled')) {
             this.disable();
         } else {
@@ -19065,6 +19078,7 @@ var Textarea = {
     _createEvents: function(){
         var that = this, element = this.element, o = this.options;
         var textarea = element.closest(".textarea");
+        var chars_counter = $(o.charsCounter);
 
         textarea.on(Metro.events.click, ".input-clear-button", function(){
             element.val(Utils.isValue(o.defaultValue) ? o.defaultValue : "").trigger('change').trigger('keyup').focus();
@@ -19082,6 +19096,17 @@ var Textarea = {
 
         element.on(Metro.events.blur, function(){textarea.removeClass("focused");});
         element.on(Metro.events.focus, function(){textarea.addClass("focused");});
+
+        element.on(Metro.events.keyup, function(){
+            if (Utils.isValue(o.charsCounter) && chars_counter.length > 0) {
+                if (chars_counter[0].tagName === "INPUT") {
+                    chars_counter.val(that.length());
+                } else {
+                    chars_counter.html(o.charsCounterTemplate.replace("$1", that.length()));
+                }
+            }
+            Utils.exec(o.onChange, [element.val(), that.length()], element[0]);
+        })
     },
 
     resize: function(){
@@ -19097,6 +19122,11 @@ var Textarea = {
 
     toDefault: function(){
         this.element.val(Utils.isValue(this.options.defaultValue) ? this.options.defaultValue : "").trigger('change').trigger('keyup').focus();
+    },
+
+    length: function(){
+        var characters = this.elem.value.split('');
+        return characters.length;
     },
 
     disable: function(){
