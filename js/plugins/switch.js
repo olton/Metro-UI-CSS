@@ -14,8 +14,7 @@ var Switch = {
     options: {
         caption: "",
         captionPosition: "right",
-        disabled: false,
-        clsElement: "",
+        clsSwitch: "",
         clsCheck: "",
         clsCaption: "",
         onSwitchCreate: Metro.noop
@@ -61,11 +60,11 @@ var Switch = {
 
         element[0].className = '';
 
-        container.addClass(o.clsElement);
+        container.addClass(o.clsSwitch);
         caption.addClass(o.clsCaption);
         check.addClass(o.clsCheck);
 
-        if (o.disabled === true && element.is(':disabled')) {
+        if (element.is(':disabled')) {
             this.disable();
         } else {
             this.enable();

@@ -22,7 +22,7 @@
     <meta property="og:image:height" content="504">
 
     <meta name="author" content="Sergey Pimenov">
-    <meta name="description" content="Enhancement for standard HTML checkbox control. Excellent to create the element for pin enter. The most popular HTML, CSS, and JS library in Metro style.">
+    <meta name="description" content="Switch - enhancement for standard HTML checkbox control. Excellent to create the element for pin enter. The most popular HTML, CSS, and JS library in Metro style.">
     <meta name="keywords" content="HTML, CSS, JS, Metro, CSS3, Javascript, HTML5, UI, Library, Web, Development, Framework">
 
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
@@ -33,7 +33,7 @@
     <link href="docsearch/docsearch.min.css" rel="stylesheet">
     <link href="css/site.css" rel="stylesheet">
 
-    <title>Checkbox - Metro 4 :: Popular HTML, CSS and JS library</title>
+    <title>Switch - Metro 4 :: Popular HTML, CSS and JS library</title>
 </head>
 <body>
     <div class="container-fluid">
@@ -46,9 +46,8 @@
                 <h5>Table of contents</h5>
                 <hr/>
                 <ul class="toc-nav">
-                    <li class="toc-entry"><a href="#">Checkbox</a></li>
+                    <li class="toc-entry"><a href="#">Switch</a></li>
                     <li class="toc-entry"><a href="#_checkbox_about">About</a></li>
-                    <li class="toc-entry"><a href="#_checkbox_style">Checkbox style</a></li>
                     <li class="toc-entry"><a href="#_checkbox_caption">Caption</a></li>
                     <li class="toc-entry"><a href="#_checkbox_events">Events</a></li>
                     <li class="toc-entry"><a href="#_checkbox_methods">Methods</a></li>
@@ -62,76 +61,45 @@
                     <img src="images/logo.png" class="w-100">
                 </div>
 
-                <h1>Checkbox</h1>
+                <h1>Switch</h1>
                 <p class="text-leader">
-                    Create a customizable checkbox with support for highly used options.
+                    Create a switch styled checkbox with support for highly used options.
                 </p>
 
                 <!-- ads-html -->
 
                 <h3 id="_checkbox_about">About</h3>
                 <p>
-                    In Metro 4, you can create styled <code>checkbox</code>.
-                    To define it, add attribute <code>data-role="checkbox"</code> to HTML checkbox element.
+                    In Metro 4, you can create switch styled <code>checkbox</code>.
+                    To define it, add attribute <code>data-role="switch"</code> to HTML checkbox element.
                 </p>
 
                 <div class="example">
-                    <input type="checkbox" data-role="checkbox" >
-                    <input type="checkbox" data-role="checkbox" checked>
-                    <input type="checkbox" data-role="checkbox" disabled>
-                    <input type="checkbox" data-role="checkbox" disabled checked>
+                    <input type="checkbox" data-role="switch">
+                    <input type="checkbox" data-role="switch" checked>
+                    <input type="checkbox" data-role="switch" disabled>
+                    <input type="checkbox" data-role="switch" disabled checked>
                 </div>
                 <pre><code>
-                    &lt;input type="checkbox" data-role="checkbox" &gt;
-                    &lt;input type="checkbox" data-role="checkbox" checked&gt;
-                    &lt;input type="checkbox" data-role="checkbox" disabled&gt;
-                    &lt;input type="checkbox" data-role="checkbox" disabled checked&gt;
+                    &lt;input type="checkbox" data-role="switch"&gt;
+                    &lt;input type="checkbox" data-role="switch" checked&gt;
+                    &lt;input type="checkbox" data-role="switch" disabled&gt;
+                    &lt;input type="checkbox" data-role="switch" disabled checked&gt;
                 </code></pre>
 
-                <h3 id="_checkbox_style">Checkbox style</h3>
-                <p>
-                    You can use two styles for checkbox. To define style, add attribute <code>data-style="1|2"</code>.
-                </p>
-
-                <div class="example">
-                    <input type="checkbox" data-role="checkbox" checked data-caption="Style 1">
-                    <input type="checkbox" data-role="checkbox" data-style="2" checked data-caption="Style 2">
-                </div>
-                <pre><code>
-                    &lt;input type="checkbox" data-role="checkbox"&gt;
-                    &lt;input type="checkbox" data-role="checkbox" data-style="2"&gt;
-                </code></pre>
-
-                <h3 id="_checkbox_caption">Checkbox caption</h3>
+                <h3 id="_checkbox_caption">Switch caption</h3>
                 <p>
                     You can set your one value for button with attribute <code>data-caption="..."</code>.
                     By default caption placed on the right o checkbox. To place on the left, use attribute <code>data-caption-position="left"</code>
                 </p>
 
                 <div class="example">
-                    <input type="checkbox" data-role="checkbox" data-caption="Checkbox">
-                    <input type="checkbox" data-role="checkbox" data-caption="Checkbox" data-caption-position="left">
+                    <input type="checkbox" data-role="switch" data-caption="Switch">
+                    <input type="checkbox" data-role="switch" data-caption="Switch" data-caption-position="left">
                 </div>
                 <pre><code>
-                    &lt;input type="checkbox" data-role="checkbox" data-caption="Checkbox"&gt;
-                    &lt;input type="checkbox" data-role="checkbox" data-caption="Checkbox" data-caption-position="left"&gt;
-                </code></pre>
-
-                <h3 id="_checkbox_indeterminate">Indeterminate state</h3>
-                <p>
-                    You can set <code>checkbox</code> to <code>indeterminate state</code> with attribute <code>data-indeterminate="true"</code>.
-                </p>
-
-                <div class="example">
-                    <input type="checkbox" data-role="checkbox" data-caption="Indeterminate" data-indeterminate="true">
-                    <input type="checkbox" data-role="checkbox" data-caption="Indeterminate" data-indeterminate="true" data-style="2">
-                </div>
-                <pre><code>
-                    &lt;input type="checkbox" data-role="checkbox"
-                        data-caption="Indeterminate" data-indeterminate="true"&gt;
-
-                    &lt;input type="checkbox" data-role="checkbox"
-                        data-caption="Indeterminate" data-indeterminate="true" data-style="2"&gt;
+                    &lt;input type="checkbox" data-role="switch" data-caption="Switch"&gt;
+                    &lt;input type="checkbox" data-role="switch" data-caption="Switch" data-caption-position="left"&gt;
                 </code></pre>
 
                 <h3 id="_checkbox_options">Options</h3>
@@ -146,12 +114,6 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <td><code>style</code></td>
-                        <td><code>data-style</code></td>
-                        <td>1</td>
-                        <td>Checkbox style. Must be 1 or 2</td>
-                    </tr>
-                    <tr>
                         <td><code>caption</code></td>
                         <td><code>data-caption</code></td>
                         <td></td>
@@ -162,12 +124,6 @@
                         <td><code>data-caption-position</code></td>
                         <td>right</td>
                         <td>Checkbox caption position: left or right (default)</td>
-                    </tr>
-                    <tr>
-                        <td><code>indeterminate</code></td>
-                        <td><code>data-indeterminate</code></td>
-                        <td>false</td>
-                        <td>Set checkbox to indeterminate state</td>
                     </tr>
                     </tbody>
                 </table>
@@ -183,8 +139,8 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <td><code>onCheckboxCreate(el)</code></td>
-                        <td><code>data-on-checkbox-create</code></td>
+                        <td><code>onSwitchCreate(el)</code></td>
+                        <td><code>data-on-switch-create</code></td>
                         <td>checkbox</td>
                     </tr>
                     </tbody>
@@ -193,14 +149,13 @@
                 <h3 id="_checkbox_methods">Methods</h3>
                 <p>
                     You can use methods to interact with input component:
-                        <code>indeterminate()</code>,
                         <code>disable()</code>,
                         <code>enable()</code>,
                         <code>toggleState()</code>.
                 </p>
                 <pre><code>
                     var checkbox = $(el).data('checkbox');
-                    checkbox.toggleState();
+                    checkbox.disable();
                 </code></pre>
 
                 <h3 id="_checkbox_customize">Customize</h3>
@@ -217,7 +172,7 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <td><code>clsCheckbox</code></td>
+                        <td><code>clsSwitch</code></td>
                         <td><code>data-cls-checkbox</code></td>
                         <td>Additional classes for control.</td>
                     </tr>
@@ -235,29 +190,45 @@
                 </table>
                 <div class="example">
                     <style>
-                        .myCheck::before{
-                            border-color: #0b98da!important;
+                        .mySwitch .check::after {
+                            background: #0a87c1!important;
+                            border-color: #0a87c1!important;
+                        }
+                        .mySwitch input[type="checkbox"]:checked ~ .check {
+                            background: #0a87c1!important;
+                        }
+                        .mySwitch input[type="checkbox"]:checked ~ .check::after {
+                            border-color: #ffffff!important;
+                            background: #ffffff!important;
                         }
                     </style>
 
                     <input type="checkbox" checked
-                           data-role="checkbox"
-                           data-style="2"
-                           data-caption="Checkbox"
+                           data-role="switch"
+                           data-caption="Switch"
+                           data-cls-switch="mySwitch"
                            data-cls-caption="fg-cyan text-bold"
                            data-cls-check="bd-cyan myCheck">
                 </div>
                 <pre><code>
                     &lt;style&gt;
-                        .myCheck::before{
-                            border-color: #0b98da!important;
+                        .mySwitch .check::after {
+                            background: #0a87c1!important;
+                            border-color: #0a87c1!important;
+                        }
+                        .mySwitch input[type="checkbox"]:checked ~ .check {
+                            background: #0a87c1!important;
+                        }
+                        .mySwitch input[type="checkbox"]:checked ~ .check::after {
+                            border-color: #ffffff!important;
+                            background: #ffffff!important;
                         }
                     &lt;/style&gt;
 
                     &lt;input type="checkbox" checked
-                           data-role="checkbox"
-                           data-style="2"
-                           data-caption="Checkbox"
+                           data-role="switch"
+                           data-caption="Switch"
+                           data-cls-switch="mySwitch"
                            data-cls-caption="fg-cyan text-bold"
                            data-cls-check="bd-cyan myCheck"&gt;
                 </code></pre>
