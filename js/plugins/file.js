@@ -12,10 +12,12 @@ var File = {
         return this;
     },
     options: {
-        copyInlineStyles: true,
         prepend: "",
+        append: "",
+        clsPrepend: "",
+        clsAppend: "",
         caption: "Choose file",
-        disabled: false,
+        copyInlineStyles: true,
         onSelect: Metro.noop,
         onFileCreate: Metro.noop
     },
@@ -66,8 +68,13 @@ var File = {
         element[0].className = '';
 
         if (o.prepend !== "") {
-            var prepend = Utils.isTag(o.prepend) ? $(o.prepend) : $("<span>"+o.prepend+"</span>");
+            var prepend = $("<div>").html(o.prepend);
             prepend.addClass("prepend").addClass(o.clsPrepend).appendTo(container);
+        }
+
+        if (o.append !== "") {
+            var append = $("<div>").html(o.append);
+            append.addClass("append").addClass(o.clsAppend).appendTo(container);
         }
 
         if (o.copyInlineStyles === true) {
@@ -76,7 +83,7 @@ var File = {
             }
         }
 
-        if (o.disabled === true || element.is(":disabled")) {
+        if (element.is(":disabled")) {
             this.disable();
         } else {
             this.enable();

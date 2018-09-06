@@ -51,6 +51,7 @@
                     <li class="toc-entry"><a href="#_textarea_prepend">Prepend data</a></li>
                     <li class="toc-entry"><a href="#_textarea_append">Append data</a></li>
                     <li class="toc-entry"><a href="#_textarea_clear">Clear button</a></li>
+                    <li class="toc-entry"><a href="#_textarea_length">Chars count</a></li>
                     <li class="toc-entry"><a href="#_textarea_options">Options</a></li>
                     <li class="toc-entry"><a href="#_textarea_events">Events</a></li>
                     <li class="toc-entry"><a href="#_textarea_methods">Methods</a></li>
@@ -148,6 +149,17 @@
                     &lt;textarea data-role="textarea" data-clear-button-icon="&lt;span class='mif-cancel'&gt;&lt;/span&gt;"&gt;&lt;/textarea&gt;
                 </code></pre>
 
+                <h3 id="_textarea_length">Chars count</h3>
+                <p>
+                    You can get chars count into your own element. To create link, add attribute <code>data-chars-counter="..."</code> to textarea.
+                    Value for this attribute must be a valid element selector: <code>id</code> or <code>class</code>.
+                    Also you can set output template with attribute <code>data-chars-counter-template</code>. Value for <code>template</code> must contains <code>$1</code> identifier.
+                </p>
+                <div class="example">
+                    <p id="chars-counter">You enter 0 char(s)</p>
+                    <textarea data-role="textarea" data-chars-counter="#chars-counter" data-chars-counter-template="You enter $1 char(s)"></textarea>
+                </div>
+
                 <h3 id="_textarea_options">Options</h3>
                 <table class="table cell-border table-border options-table mt-4">
                     <thead>
@@ -160,10 +172,52 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <td><code>history</code></td>
-                        <td><code>data-history</code></td>
-                        <td>false</td>
-                        <td>Enable history feature</td>
+                        <td><code>charsCounter</code></td>
+                        <td><code>data-chars-counter</code></td>
+                        <td>null</td>
+                        <td>Element for output text length info</td>
+                    </tr>
+                    <tr>
+                        <td><code>charsCounterTemplate</code></td>
+                        <td><code>data-chars-counter-template</code></td>
+                        <td>$1</td>
+                        <td>Template for output text length info</td>
+                    </tr>
+                    <tr>
+                        <td><code>defaultValue</code></td>
+                        <td><code>data-default-value</code></td>
+                        <td></td>
+                        <td>Default value for textarea</td>
+                    </tr>
+                    <tr>
+                        <td><code>prepend</code></td>
+                        <td><code>data-prepend</code></td>
+                        <td></td>
+                        <td>Prepend data</td>
+                    </tr>
+                    <tr>
+                        <td><code>append</code></td>
+                        <td><code>data-append</code></td>
+                        <td></td>
+                        <td>Append data</td>
+                    </tr>
+                    <tr>
+                        <td><code>clearButton</code></td>
+                        <td><code>data-clear-button</code></td>
+                        <td>true</td>
+                        <td>Show/hide clear button</td>
+                    </tr>
+                    <tr>
+                        <td><code>clearButtonIcon</code></td>
+                        <td><code>data-clear-button-icon</code></td>
+                        <td>&lt;span class='default-icon-cross'&gt;</td>
+                        <td>Icon for clear button</td>
+                    </tr>
+                    <tr>
+                        <td><code>autoSize</code></td>
+                        <td><code>data-auto-size</code></td>
+                        <td>true</td>
+                        <td>Auto resize height of textarea when user enter text</td>
                     </tr>
                     </tbody>
                 </table>
@@ -179,9 +233,14 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <td><code>onInputCreate(el)</code></td>
-                        <td><code>data-on-input-create</code></td>
-                        <td>input</td>
+                        <td><code>onChange(val, length)</code></td>
+                        <td><code>data-on-change</code></td>
+                        <td>textarea</td>
+                    </tr>
+                    <tr>
+                        <td><code>onTextareaCreate(el)</code></td>
+                        <td><code>data-on-textarea-create</code></td>
+                        <td>textarea</td>
                     </tr>
                     </tbody>
                 </table>
@@ -190,6 +249,10 @@
                 <p>
                     You can use methods to interact with input component:
                         <code>clear()</code>,
+                        <code>toDefault()</code>,
+                        <code>disable()</code>,
+                        <code>enable()</code>,
+                        <code>length()</code>.
                 </p>
                 <pre><code>
                     var textarea = $(el).data('textarea');
@@ -214,13 +277,40 @@
                     <tr>
                         <td><code>clsComponent</code></td>
                         <td><code>data-cls-component</code></td>
-                        <td>Additional classes for input control.</td>
+                        <td>Additional classes for control.</td>
+                    </tr>
+                    <tr>
+                        <td><code>clsTextarea</code></td>
+                        <td><code>data-cls-component</code></td>
+                        <td>Additional classes for textarea.</td>
+                    </tr>
+                    <tr>
+                        <td><code>clsPrepend</code></td>
+                        <td><code>data-cls-prepend</code></td>
+                        <td>Additional classes for prepend.</td>
+                    </tr>
+                    <tr>
+                        <td><code>clsAppend</code></td>
+                        <td><code>data-cls-append</code></td>
+                        <td>Additional classes for append.</td>
                     </tr>
                     </tbody>
                 </table>
                 <div class="example">
+                    <textarea data-role="textarea"
+                              data-default-value="Enter you text"
+                              data-cls-textarea="bg-darkCyan fg-white"
+                              data-prepend="<span class='mif-leanpub'></span>"
+                              data-cls-prepend="bg-light"
+                              data-clear-button-icon="<span class='mif-cross fg-white'></span>"></textarea>
                 </div>
                 <pre><code>
+                    &lt;textarea data-role="textarea"
+                              data-default-value="Enter you text"
+                              data-cls-textarea="bg-darkCyan fg-white"
+                              data-prepend="&lt;span class='mif-leanpub'&gt;&lt;/span&gt;"
+                              data-cls-prepend="bg-light"
+                              data-clear-button-icon="&lt;span class='mif-cross fg-white'&gt;&lt;/span&gt;"&gt;&lt;/textarea&gt;
                 </code></pre>
 
             </main>

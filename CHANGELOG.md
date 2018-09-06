@@ -12,6 +12,8 @@
 + [x] Select: add event `onItemSelect`
 + [x] Select: add method `reset()`, `getSelected()`
 + [x] Select: fix method `val(...)`
++ [x] Textarea: add methods `clear()`, `toDefault()`
++ [x] Textarea: fix `data-append` attribute
 
 ### 4.2.20
 + [x] Table: fix default padding for `th` and `td`
