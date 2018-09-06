@@ -10,7 +10,8 @@
 + [x] Tag input: fix method `val()`
 + [x] Spinner: add events `onArrowUp`, `onArrowDown`, `onArrowClick`
 + [x] Select: add event `onItemSelect`
-+ [x] Select: add method `reset()`
++ [x] Select: add method `reset()`, `getSelected()`
++ [x] Select: fix method `val(...)`
 
 ### 4.2.20
 + [x] Table: fix default padding for `th` and `td`

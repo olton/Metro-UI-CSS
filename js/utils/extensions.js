@@ -52,6 +52,19 @@ Array.prototype.unique = function () {
     return a;
 };
 
+if (typeof Array.from !== "function") {
+    Array.prototype.from = function() {
+        var i, a = [];
+        if (Utils.isNull(this.length)) {
+            throw new Error("Value is not iterable");
+        }
+        for(i = 0; i < this.length; i++) {
+            a.push(this[i]);
+        }
+        return a;
+    }
+}
+
 /**
  * Number.prototype.format(n, x, s, c)
  *
