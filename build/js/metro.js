@@ -13360,8 +13360,7 @@ var Radio = {
         style: 1,
         caption: "",
         captionPosition: "right",
-        disabled: false,
-        clsElement: "",
+        clsRadio: "",
         clsCheck: "",
         clsCaption: "",
         onRadioCreate: Metro.noop
@@ -13408,11 +13407,11 @@ var Radio = {
         this.origin.className = element[0].className;
         element[0].className = '';
 
-        radio.addClass(o.clsElement);
+        radio.addClass(o.clsRadio);
         caption.addClass(o.clsCaption);
         check.addClass(o.clsCheck);
 
-        if (o.disabled === true && element.is(':disabled')) {
+        if (element.is(':disabled')) {
             this.disable();
         } else {
             this.enable();
