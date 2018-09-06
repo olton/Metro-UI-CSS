@@ -21723,6 +21723,10 @@ textarea {
   width: 0.0625rem;
   height: 0.0625rem;
 }
+.file button > * {
+  height: 24px;
+  max-width: 24px;
+}
 .file .caption {
   line-height: 2.1875rem;
   display: block;

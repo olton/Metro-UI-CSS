@@ -82,12 +82,17 @@ var CalendarPicker = {
         var container = $("<div>").addClass("input " + element[0].className + " calendar-picker");
         var buttons = $("<div>").addClass("button-group");
         var calendarButton, clearButton, cal = $("<div>").addClass("drop-shadow");
+        var curr = element.val().trim();
 
         if (element.attr("type") === undefined) {
             element.attr("type", "text");
         }
 
-        this.value = Utils.isValue(o.inputFormat) === false ? element.val() : (element.val().toDate(o.inputFormat)).format("%Y/%m/%d");
+        if (!Utils.isValue(curr)) {
+            this.value = (new Date()).format("%Y/%m/%d");
+        } else {
+            this.value = Utils.isValue(o.inputFormat) === false ? curr : (curr.toDate(o.inputFormat)).format("%Y/%m/%d");
+        }
 
         if (Utils.isDate(this.value)) {
             this.value_date = new Date(this.value);

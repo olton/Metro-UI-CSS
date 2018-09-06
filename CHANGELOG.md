@@ -14,6 +14,7 @@
 + [x] Select: fix method `val(...)`
 + [x] Textarea: add methods `clear()`, `toDefault()`
 + [x] Textarea: fix `data-append` attribute
++ [x] Calendar picker: fix error when value attribute is empty, issue #1191
 
 ### 4.2.20
 + [x] Table: fix default padding for `th` and `td`
