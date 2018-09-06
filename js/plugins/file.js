@@ -7,16 +7,17 @@ var File = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onFileCreate, [this.element]);
+        Utils.exec(this.options.onFileCreate, [this.element], elem);
 
         return this;
     },
     options: {
+        buttonTitle: "Choose file(s)",
         prepend: "",
-        append: "",
+        clsComponent: "",
         clsPrepend: "",
-        clsAppend: "",
-        caption: "Choose file",
+        clsButton: "",
+        clsCaption: "",
         copyInlineStyles: true,
         onSelect: Metro.noop,
         onFileCreate: Metro.noop
@@ -45,8 +46,8 @@ var File = {
         var that = this, element = this.element, o = this.options;
         var prev = element.prev();
         var parent = element.parent();
-        var container = $("<div>").addClass("file " + element[0].className);
-        var caption = $("<span>").addClass("caption");
+        var container = $("<div>").addClass("file " + element[0].className).addClass(o.clsComponent);
+        var caption = $("<span>").addClass("caption").addClass(o.clsCaption);
         var button;
 
         if (prev.length === 0) {
@@ -58,8 +59,9 @@ var File = {
         element.appendTo(container);
         caption.insertBefore(element);
 
-        button = $("<button>").addClass("button").attr("tabindex", -1).attr("type", "button").html(o.caption);
+        button = $("<button>").addClass("button").attr("tabindex", -1).attr("type", "button").html(o.buttonTitle);
         button.appendTo(container);
+        button.addClass(o.clsButton);
 
         if (element.attr('dir') === 'rtl' ) {
             container.addClass("rtl");
@@ -70,11 +72,6 @@ var File = {
         if (o.prepend !== "") {
             var prepend = $("<div>").html(o.prepend);
             prepend.addClass("prepend").addClass(o.clsPrepend).appendTo(container);
-        }
-
-        if (o.append !== "") {
-            var append = $("<div>").html(o.append);
-            append.addClass("append").addClass(o.clsAppend).appendTo(container);
         }
 
         if (o.copyInlineStyles === true) {
@@ -100,7 +97,7 @@ var File = {
         element.on(Metro.events.change, function(){
             var fi = this;
             var file_names = [];
-            var entry = "";
+            var entry;
             if (fi.files.length === 0) {
                 return ;
             }
