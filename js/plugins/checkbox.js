@@ -17,10 +17,9 @@ var Checkbox = {
     options: {
         style: 1,
         caption: "",
-        indeterminate: false,
         captionPosition: "right",
-        disabled: false,
-        clsElement: "",
+        indeterminate: false,
+        clsCheckbox: "",
         clsCheck: "",
         clsCaption: "",
         onCheckboxCreate: Metro.noop
@@ -73,7 +72,7 @@ var Checkbox = {
         this.origin.className = element[0].className;
         element[0].className = '';
 
-        checkbox.addClass(o.clsElement);
+        checkbox.addClass(o.clsCheckbox);
         caption.addClass(o.clsCaption);
         check.addClass(o.clsCheck);
 
@@ -81,7 +80,7 @@ var Checkbox = {
             element[0].indeterminate = true;
         }
 
-        if (o.disabled === true && element.is(':disabled')) {
+        if (element.is(':disabled')) {
             this.disable();
         } else {
             this.enable();
@@ -110,10 +109,6 @@ var Checkbox = {
         }
     },
 
-    toggleIndeterminate: function(){
-        this.element[0].indeterminate = JSON.parse(this.element.attr("data-indeterminate")) === true;
-    },
-
     changeAttribute: function(attributeName){
         var that = this, element = this.element, o = this.options;
         var parent = element.parent();
@@ -127,9 +122,13 @@ var Checkbox = {
             parent.removeClass("style1 style2").addClass("style"+new_style);
         };
 
+        var indeterminateState = function(){
+            element[0].indeterminate = JSON.parse(element.attr("data-indeterminate")) === true;
+        };
+
         switch (attributeName) {
             case 'disabled': this.toggleState(); break;
-            case 'data-indeterminate': this.toggleIndeterminate(); break;
+            case 'data-indeterminate': indeterminateState(); break;
             case 'data-style': changeStyle(); break;
         }
     },
