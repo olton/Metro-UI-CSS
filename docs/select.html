@@ -64,7 +64,7 @@
                     <img src="images/logo.png" class="w-100">
                 </div>
 
-                <h1>Spinner</h1>
+                <h1>Select</h1>
                 <p class="text-leader">
                     Create a customizable select box with support for searching, tagging and many other highly used options.
                 </p>
@@ -202,8 +202,8 @@
                     <p>Multiple</p>
                     <select data-role="select" multiple>
                         <option value="1" data-template="<span class='mif-amazon icon'></span> $1">Amazon</option>
-                        <option value="2" data-template="<span class='mif-apple icon'></span> $1">Apple</option>
-                        <option value="3" data-template="<span class='mif-blogger icon'></span> $1">Blogger</option>
+                        <option value="2" selected data-template="<span class='mif-apple icon'></span> $1">Apple</option>
+                        <option value="3" selected data-template="<span class='mif-blogger icon'></span> $1">Blogger</option>
                         <option value="4" data-template="<span class='mif-evernote icon'></span> $1">Evernote</option>
                         <option value="5" data-template="<span class='mif-github icon'></span> $1">GitHub</option>
                     </select>
@@ -281,16 +281,10 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <td><code>onChange(val)</code></td>
+                        <td><code>onChange(selected)</code></td>
                         <td><code>data-on-change</code></td>
                         <td>select</td>
-                        <td>For single select box function receive one arguments - value.</td>
-                    </tr>
-                    <tr>
-                        <td><code>onChange(val, selected)</code></td>
-                        <td><code>data-on-change</code></td>
-                        <td>select</td>
-                        <td>For multiple select box function receive two arguments - value and array of selected options.</td>
+                        <td>Return selected values.</td>
                     </tr>
                     <tr>
                         <td><code>onUp(list, select)</code></td>
@@ -332,12 +326,15 @@
                         <code>enabled()</code>,
                         <code>toggleState()</code>,
                         <code>val()</code>,
-                        <code>val(values)</code>,
-                        <code>data(options)</code>.
+                        <code>val(array_of_values)</code>,
+                        <code>data(options)</code>,
+                        <code>reset()</code>,
+                        <code>reset(true)</code> - reset to default.
                 </p>
                 <pre><code>
                     var select = $(el).data('select');
-                    select.clearSelected();
+                    select.val([1, 2, 3]);
+                    console.log(select.val());
                 </code></pre>
 
                 <h3 id="_select_customize">Customize</h3>
