@@ -18963,12 +18963,15 @@ var Textarea = {
         return this;
     },
     options: {
+        defaultValue: "",
         prepend: "",
+        append: "",
+        clsPrepend: "",
+        clsAppend: "",
         copyInlineStyles: true,
         clearButton: true,
         clearButtonIcon: "<span class='default-icon-cross'></span>",
-        autoSize: false,
-        disabled: false,
+        autoSize: true,
         onTextareaCreate: Metro.noop
     },
 
@@ -18987,6 +18990,11 @@ var Textarea = {
     },
 
     _create: function(){
+        this._createStructure();
+        this._createEvents();
+    },
+
+    _createStructure: function(){
         var that = this, element = this.element, o = this.options;
         var prev = element.prev();
         var parent = element.parent();
@@ -19000,21 +19008,12 @@ var Textarea = {
             container.insertAfter(prev);
         }
 
-
         if (o.clearButton !== false) {
             clearButton = $("<button>").addClass("button input-clear-button").attr("tabindex", -1).attr("type", "button").html(o.clearButtonIcon);
-            clearButton.on(Metro.events.click, function(){
-                element.val("").trigger('change').trigger('keyup').focus();
-            });
             clearButton.appendTo(container);
         }
 
         element.appendTo(container);
-
-        var resize = function(){
-            element[0].style.cssText = 'height:auto;';
-            element[0].style.cssText = 'height:' + element[0].scrollHeight + 'px';
-        };
 
         if (o.autoSize) {
 
@@ -19022,16 +19021,8 @@ var Textarea = {
 
             timer = setTimeout(function(){
                 timer = null;
-                resize();
+                that.resize();
             }, 0);
-
-            element.on(Metro.events.keyup, resize);
-            element.on(Metro.events.keydown, resize);
-            element.on(Metro.events.change, resize);
-            element.on(Metro.events.focus, resize);
-            element.on(Metro.events.cut, resize);
-            element.on(Metro.events.paste, resize);
-            element.on(Metro.events.drop, resize);
         }
 
         if (element.attr('dir') === 'rtl' ) {
@@ -19039,8 +19030,18 @@ var Textarea = {
         }
 
         if (o.prepend !== "") {
-            var prepend = Utils.isTag(o.prepend) ? $(o.prepend) : $("<span>"+o.prepend+"</span>");
+            var prepend = $("<div>").html(o.prepend);
             prepend.addClass("prepend").addClass(o.clsPrepend).appendTo(container);
+            container.addClass("with-prepend");
+        }
+
+        if (o.append !== "") {
+            var append = $("<div>").html(o.append);
+            append.addClass("append").addClass(o.clsAppend).appendTo(container);
+            container.addClass("with-append");
+            clearButton.css({
+                right: append.outerWidth() + 4
+            });
         }
 
         element[0].className = '';
@@ -19050,14 +19051,52 @@ var Textarea = {
             }
         }
 
-        element.on(Metro.events.blur, function(){container.removeClass("focused");});
-        element.on(Metro.events.focus, function(){container.addClass("focused");});
+        if (Utils.isValue(o.defaultValue) && element.val().trim() === "") {
+            element.val(o.defaultValue);
+        }
 
-        if (o.disabled === true || element.is(':disabled')) {
+        if (element.is(':disabled')) {
             this.disable();
         } else {
             this.enable();
         }
+    },
+
+    _createEvents: function(){
+        var that = this, element = this.element, o = this.options;
+        var textarea = element.closest(".textarea");
+
+        textarea.on(Metro.events.click, ".input-clear-button", function(){
+            element.val(Utils.isValue(o.defaultValue) ? o.defaultValue : "").trigger('change').trigger('keyup').focus();
+        });
+
+        if (o.autoSize) {
+            element.on(Metro.events.keyup, $.proxy(this.resize, that));
+            element.on(Metro.events.keydown, $.proxy(this.resize, that));
+            element.on(Metro.events.change, $.proxy(this.resize, that));
+            element.on(Metro.events.focus, $.proxy(this.resize, that));
+            element.on(Metro.events.cut, $.proxy(this.resize, that));
+            element.on(Metro.events.paste, $.proxy(this.resize, that));
+            element.on(Metro.events.drop, $.proxy(this.resize, that));
+        }
+
+        element.on(Metro.events.blur, function(){textarea.removeClass("focused");});
+        element.on(Metro.events.focus, function(){textarea.addClass("focused");});
+    },
+
+    resize: function(){
+        var element = this.element;
+
+        element[0].style.cssText = 'height:auto;';
+        element[0].style.cssText = 'height:' + element[0].scrollHeight + 'px';
+    },
+
+    clear: function(){
+        this.element.val("").trigger('change').trigger('keyup').focus();
+    },
+
+    toDefault: function(){
+        this.element.val(Utils.isValue(this.options.defaultValue) ? this.options.defaultValue : "").trigger('change').trigger('keyup').focus();
     },
 
     disable: function(){
