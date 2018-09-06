@@ -22276,15 +22276,11 @@ textarea {
       -ms-flex-order: 2;
           order: 2;
 }
-.radio.caption-left .check {
-  -webkit-box-ordinal-group: 3;
-      -ms-flex-order: 2;
-          order: 2;
-}
-.radio.caption-left .caption {
-  -webkit-box-ordinal-group: 2;
-      -ms-flex-order: 1;
-          order: 1;
+.radio.caption-left {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-flow: row-reverse nowrap;
+          flex-flow: row-reverse nowrap;
 }
 .radio.required,
 .radio.invalid,
