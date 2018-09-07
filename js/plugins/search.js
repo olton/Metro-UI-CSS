@@ -12,23 +12,23 @@ var Search = {
         return this;
     },
     options: {
-        clsElement: "",
-        clsInput: "",
-        clsPrepend: "",
-        clsClearButton: "",
-        clsSearchButton: "",
-        size: "default",
         prepend: "",
-        copyInlineStyles: true,
         clearButton: true,
         searchButton: true,
         searchButtonClick: "submit",
         clearButtonIcon: "<span class='default-icon-cross'></span>",
         searchButtonIcon: "<span class='default-icon-search'></span>",
         customButtons: [],
-        disabled: false,
+        copyInlineStyles: true,
+        size: "default",
+        clsSearch: "",
+        clsInput: "",
+        clsPrepend: "",
+        clsClearButton: "",
+        clsSearchButton: "",
+        clsCustomButton: "",
         onSearchButtonClick: Metro.noop,
-        onInputCreate: Metro.noop
+        onSearchCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -76,7 +76,7 @@ var Search = {
         if (o.searchButton !== false) {
             searchButton = $("<button>").addClass("button input-search-button").addClass(o.clsSearchButton).attr("tabindex", -1).attr("type", o.searchButtonClick === 'submit' ? "submit" : "button").html(o.searchButtonIcon);
             searchButton.on(Metro.events.click, function(){
-                if (o.searchButtonClick === 'submit') {
+                if (o.searchButtonClick !== 'submit') {
                     Utils.exec(o.onSearchButtonClick, [element.val(), $(this)], element[0]);
                 } else {
                     this.form.submit();
@@ -97,7 +97,7 @@ var Search = {
         if (typeof o.customButtons === "object" && Utils.objectLength(o.customButtons) > 0) {
             $.each(o.customButtons, function(){
                 var item = this;
-                var customButton = $("<button>").addClass("button input-custom-button").addClass(item.cls).attr("tabindex", -1).attr("type", "button").html(item.html);
+                var customButton = $("<button>").addClass("button input-custom-button").addClass(o.clsCustomButton).addClass(item.cls).attr("tabindex", -1).attr("type", "button").html(item.html);
                 customButton.on(Metro.events.click, function(){
                     Utils.exec(item.onclick, [element.val(), customButton], element[0]);
                 });
@@ -116,7 +116,7 @@ var Search = {
             }
         }
 
-        container.addClass(o.clsElement);
+        container.addClass(o.clsSearch);
         element.addClass(o.clsInput);
 
         if (o.size !== "default") {
@@ -128,7 +128,7 @@ var Search = {
         element.on(Metro.events.blur, function(){container.removeClass("focused");});
         element.on(Metro.events.focus, function(){container.addClass("focused");});
 
-        if (o.disabled === true || element.is(":disabled")) {
+        if (element.is(":disabled")) {
             this.disable();
         } else {
             this.enable();
