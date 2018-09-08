@@ -46,12 +46,13 @@
                 <h5>Table of contents</h5>
                 <hr/>
                 <ul class="toc-nav">
-                    <li class="toc-entry"><a href="#">Input</a></li>
+                    <li class="toc-entry"><a href="#">Input control</a></li>
                     <li class="toc-entry"><a href="#_input_about">About</a></li>
                     <li class="toc-entry"><a href="#_input_prepend">Prepend data</a></li>
                     <li class="toc-entry"><a href="#_input_append">Append data</a></li>
                     <li class="toc-entry"><a href="#_input_clear">Clear button</a></li>
                     <li class="toc-entry"><a href="#_input_reveal">Reveal button</a></li>
+                    <li class="toc-entry"><a href="#_input_search">Search button</a></li>
                     <li class="toc-entry"><a href="#_input_history">History inputs</a></li>
                     <li class="toc-entry"><a href="#_input_custom_buttons">Custom buttons</a></li>
                     <li class="toc-entry"><a href="#_input_options">Options</a></li>
@@ -67,7 +68,7 @@
                     <img src="images/logo.png" class="w-100">
                 </div>
 
-                <h1>Input</h1>
+                <h1>Input control</h1>
                 <p class="text-leader">
                     Enhancement for standard HTML input control such as input[type=text], input[type=password], etc.
                 </p>
@@ -112,13 +113,11 @@
                     &lt;input type="text" data-role="input" data-append=".00%"&gt;
                 </code></pre>
 
-                <h3 id="_input_clear_reveal">Clear and reveal buttons</h3>
+                <h3 id="_input_clear">Clear button</h3>
                 <p>
                     When Metro 4 create input component, him add to element two special buttons: <code>clear-button</code> and <code>reveal-button</code>.
                     These buttons shown when input focused or user move mouse over input.
                 </p>
-
-                <h6 class="mt-4" id="_input_clear">Clear button</h6>
                 <p>
                     This button clear current value and flash it to default if default value is defined. You can set default value with attribute <code>data-default-value="..."</code>.
                     You can disable <code>clear-button</code> with attribute <code>data-clear-button="false"</code>.
@@ -151,7 +150,7 @@
                     &lt;input type="text" data-role="input" data-clear-button-icon="&lt;span class='mif-cancel'&gt;&lt;/span&gt;"&gt;
                 </code></pre>
 
-                <h6 class="mt-4" id="_input_reveal">Reveal button</h6>
+                <h3 id="_input_reveal">Reveal button</h3>
                 <p>
                     This button works with <code>input[type=password]</code> field.
                     When user press this button, him can see input value.
@@ -177,6 +176,63 @@
 
                     &lt;p&gt;Custom reveal button icon&lt;/p&gt;
                     &lt;input type="password" data-role="input" data-reveal-button-icon="&lt;span class='mif-lamp mif-2x'&gt;&lt;/span&gt;"&gt;
+                </code></pre>
+
+                <h3 id="_input_search">Search button</h3>
+                <p>
+                    You can enable <code>search-button</code> with attribute <code>data-search-button="true"</code>.
+                    You can change default icon for this button. To set your icon, use attribute <code>data-search-button-icon="..."</code>.
+                </p>
+                <p class="text-bold">
+                    When user press this button:
+                </p>
+                <ol class="decimal">
+                    <li>If You define attribute <code>data-search-button-click="custom"</code>, Metro 4 execute your function, defined with attribute <code>data-on-search-button-click="..."</code></li>
+                    <li>If you define attribute <code>data-search-button-click="submit"</code>, Metro 4 submit a form, where search input is defined</li>
+                </ol>
+                <div class="example">
+                    <p>Default search button icon</p>
+                    <input type="text" data-role="input" data-search-button="true">
+
+                    <p>Custom search button icon</p>
+                    <input type="text" data-role="input" data-search-button-icon="<span class='mif-rocket mif-2x'></span>">
+                </div>
+                <pre><code>
+                    &lt;p&gt;Input without search button&lt;/p&gt;
+                    &lt;input type="text" data-role="input" data-search-button="false"&gt;
+
+                    &lt;p&gt;Custom search button icon&lt;/p&gt;
+                    &lt;input type="text" data-role="input" data-search-button-icon="&lt;span class='mif-rocket mif-2x'&gt;&lt;/span&gt;"&gt;
+                </code></pre>
+
+                <p>Define search button click event</p>
+                <div class="example">
+                    <script>
+                        function mySubmitSearch(val){
+                            alert('Custom submit function');
+                        }
+                    </script>
+                    <form action="javascript:" onsubmit="alert('Form submit with self function');">
+                        <p>Custom func</p>
+                        <input type="text" data-role="input" data-search-button-click="custom" data-on-search-button-click="mySubmitSearch">
+
+                        <p>Form submit func</p>
+                        <input type="text" data-role="input">
+                    </form>
+                </div>
+                <pre><code>
+                    &lt;script&gt;
+                        function mySubmitSearch(val){
+                            alert('Custom submit function');
+                        }
+                    &lt;/script&gt;
+                    &lt;form action="javascript:" onsubmit="alert('Form submit with self function');"&gt;
+                        &lt;p&gt;Custom func&lt;/p&gt;
+                        &lt;input type="text" data-role="input" data-search-button-click="custom" data-on-search-button-click="mySubmitSearch"&gt;
+
+                        &lt;p&gt;Form submit func&lt;/p&gt;
+                        &lt;input type="text" data-role="input"&gt;
+                    &lt;/form&gt;
                 </code></pre>
 
                 <h3 id="_input_history">History</h3>

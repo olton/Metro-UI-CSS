@@ -353,17 +353,17 @@
 
                 <h4 id="_search">Search</h4>
                 <p>
-                    Metro 4 contains special plugin for creating search input with a built-in search button.
-                    To create search input, add attribute <code>data-role="search"</code> to input field.
+                    You can define <code>input</code> as <code>search-input</code>.
+                    To create search input, enable <code>search-button</code> with attribute <code>data-search-button="true"</code>.
                 </p>
                 <div class="example">
                     <form class="mb-2">
-                        <input type="text" data-role="search"  class="mb-1" title="">
+                        <input type="text" data-role="input" data-search-button="true"  class="mb-1" title="">
                     </form>
                 </div>
                 <pre><code class="html">
                     &lt;form&gt;
-                        &lt;input type="text" data-role="search"&gt;
+                        &lt;input type="text" data-role="input" data-search-button="true"&gt;
                     &lt;/form&gt;
                 </code></pre>
                 <p>

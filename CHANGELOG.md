@@ -15,7 +15,7 @@
 + [x] Textarea: add methods `clear()`, `toDefault()`
 + [x] Textarea: fix `data-append` attribute
 + [x] Calendar picker: fix error when value attribute is empty, issue #1191
-+ [x] Input: add attribute `data-history-divider` and methods `getHistory`, `setHistory`
++ [x] Input: add attribute `data-history-divider` and methods `getHistory`, `setHistory`, `getHistoryIndex`, `setHistoryIndex`
 
 ### 4.2.20
 + [x] Table: fix default padding for `th` and `td`

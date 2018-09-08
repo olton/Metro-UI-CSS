@@ -23,10 +23,12 @@ var Input = {
         prepend: "",
         append: "",
         copyInlineStyles: true,
+        searchButton: false,
         clearButton: true,
         revealButton: true,
         clearButtonIcon: "<span class='default-icon-cross'></span>",
         revealButtonIcon: "<span class='default-icon-eye'></span>",
+        searchButtonIcon: "<span class='default-icon-search'></span>",
         customButtons: [],
 
         clsComponent: "",
@@ -70,7 +72,7 @@ var Input = {
         var parent = element.parent();
         var container = $("<div>").addClass("input " + element[0].className);
         var buttons = $("<div>").addClass("button-group");
-        var clearButton, revealButton;
+        var clearButton, revealButton, searchButton;
 
         if (Utils.isValue(o.historyPreset)) {
             $.each(Utils.strToArray(o.historyPreset, o.historyDivider), function(){
@@ -96,13 +98,17 @@ var Input = {
             element.val(o.defaultValue);
         }
 
-        if (o.clearButton !== false) {
+        if (o.clearButton === true) {
             clearButton = $("<button>").addClass("button input-clear-button").addClass(o.clsClearButton).attr("tabindex", -1).attr("type", "button").html(o.clearButtonIcon);
             clearButton.appendTo(buttons);
         }
-        if (element.attr('type') === 'password' && o.revealButton !== false) {
+        if (element.attr('type') === 'password' && o.revealButton === true) {
             revealButton = $("<button>").addClass("button input-reveal-button").addClass(o.clsRevealButton).attr("tabindex", -1).attr("type", "button").html(o.revealButtonIcon);
             revealButton.appendTo(buttons);
+        }
+        if (o.searchButton === true) {
+            searchButton = $("<button>").addClass("button input-search-button").addClass(o.clsSearchButton).attr("tabindex", -1).attr("type", o.searchButtonClick === 'submit' ? "submit" : "button").html(o.searchButtonIcon);
+            searchButton.appendTo(buttons);
         }
 
         if (o.prepend !== "") {
@@ -180,6 +186,14 @@ var Input = {
             Utils.exec(o.onRevealClick, [element.val()], element[0]);
         });
 
+        container.on(Metro.events.start, ".input-search-button", function(){
+            if (o.searchButtonClick !== 'submit') {
+                Utils.exec(o.onSearchButtonClick, [element.val(), $(this)], element[0]);
+            } else {
+                this.form.submit();
+            }
+        });
+
         container.on(Metro.events.stop, ".input-reveal-button", function(){
             element.attr('type', 'password').focus();
         });
@@ -234,6 +248,14 @@ var Input = {
 
     getHistory: function(){
         return this.history;
+    },
+
+    getHistoryIndex: function(){
+        return this.historyIndex;
+    },
+
+    setHistoryIndex: function(val){
+        this.historyIndex = val >= this.history.length ? this.history.length - 1 : val;
     },
 
     setHistory: function(history, append) {
