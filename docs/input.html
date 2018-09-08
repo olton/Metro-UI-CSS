@@ -260,6 +260,12 @@
                         <td>Preset values for history</td>
                     </tr>
                     <tr>
+                        <td><code>historyDivider</code></td>
+                        <td><code>data-history-divider</code></td>
+                        <td>|</td>
+                        <td>Divider for Preset values for history</td>
+                    </tr>
+                    <tr>
                         <td><code>preventSubmit</code></td>
                         <td><code>data-prevent-submit</code></td>
                         <td>false</td>
@@ -368,6 +374,8 @@
                 <h3 id="_input_methods">Methods</h3>
                 <p>
                     You can use methods to interact with input component:
+                        <code>getHistory()</code>,
+                        <code>setHistory(history, append)</code> - history: array or string, append - bool,
                         <code>clear()</code>,
                         <code>toDefault()</code>,
                         <code>enable()</code>,

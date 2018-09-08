@@ -16,6 +16,7 @@ var Input = {
     options: {
         history: false,
         historyPreset: "",
+        historyDivider: "|",
         preventSubmit: false,
         defaultValue: "",
         size: "default",
@@ -72,7 +73,7 @@ var Input = {
         var clearButton, revealButton;
 
         if (Utils.isValue(o.historyPreset)) {
-            $.each(Utils.strToArray(o.historyPreset, ","), function(){
+            $.each(Utils.strToArray(o.historyPreset, o.historyDivider), function(){
                 that.history.push(this);
             });
             that.historyIndex = that.history.length - 1;
@@ -229,6 +230,26 @@ var Input = {
 
         element.on(Metro.events.blur, function(){container.removeClass("focused");});
         element.on(Metro.events.focus, function(){container.addClass("focused");});
+    },
+
+    getHistory: function(){
+        return this.history;
+    },
+
+    setHistory: function(history, append) {
+        var that = this, o = this.options;
+        if (Utils.isNull(history)) return;
+        if (!Array.isArray(history)) {
+            history = Utils.strToArray(history, o.historyDivider);
+        }
+        if (append === true) {
+            $.each(history, function () {
+                that.history.push(this);
+            })
+        } else{
+            this.history = history;
+        }
+        this.historyIndex = this.history.length - 1;
     },
 
     clear: function(){
