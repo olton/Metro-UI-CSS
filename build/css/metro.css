@@ -21311,7 +21311,9 @@ label {
 .inline-form .file,
 .inline-form .input,
 .inline-form .textarea,
-.inline-form .select {
+.inline-form .select,
+.inline-form .tag-input,
+.inline-form .spinner {
   width: auto;
   margin-left: 0.5rem;
   margin-right: 0.5rem;
