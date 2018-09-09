@@ -1,25 +1,27 @@
 ### 4.2.21
 + [x] Docs: refactoring docs for form components
 + [x] Resizable: add attributes `data-min-width`, `data-max-width`, `data-min-height`, `data-max-height`, `data-can-resize`, issue #1100
-+ [x] Spinner: add events `onPlusClick`, `onMinusClick`, `onButtonClick`
 + [x] Input: add events `onClearClick`, `onRevealClick`
 + [x] Input: add methods `clear()`, `toDefault()` 
 + [x] Input: rename `data-cls-element` to `data-cls-component`
 + [x] Input: add attribute `data-cls-custom-button`
++ [x] Input: add attribute `data-history-divider` and methods `getHistory`, `setHistory`, `getHistoryIndex`, `setHistoryIndex`
++ [x] Input: add `search input` functionality
++ [x] Search: remove `search` plugin
 + [x] Tag input: add observing attribute `value`
 + [x] Tag input: fix method `val()`
 + [x] Spinner: add events `onArrowUp`, `onArrowDown`, `onArrowClick`
++ [x] Spinner: add events `onPlusClick`, `onMinusClick`, `onButtonClick`
 + [x] Select: add event `onItemSelect`
 + [x] Select: add method `reset()`, `getSelected()`
 + [x] Select: fix method `val(...)`
 + [x] Textarea: add methods `clear()`, `toDefault()`
 + [x] Textarea: fix `data-append` attribute
 + [x] Calendar picker: fix error when value attribute is empty, issue #1191
-+ [x] Input: add attribute `data-history-divider` and methods `getHistory`, `setHistory`, `getHistoryIndex`, `setHistoryIndex`
-+ [x] Input: add `search input` functionality
-+ [x] Search: remove `search` plugin
-+ [x] Calendar picker: add attributes `data-dialog-with`, `data-dialog-overlay`, `data-overlay-color`, `data-overlay-alpha`
++ [x] Calendar picker: add attributes `data-dialog-mode`, `data-dialog-point`, `data-dialog-overlay`, `data-overlay-color`, `data-overlay-alpha`
 + [x] Calendar: add `compact` class
++ [x] Calendar: for wide mode now use attributes `data-wide` or `data-wide-point` 
++ [x] Extension: add method, if not exists, Array.from 
 
 ### 4.2.20
 + [x] Table: fix default padding for `th` and `td`

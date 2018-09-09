@@ -294,10 +294,6 @@ var Metro = {
 
         this.sheet = Utils.newCssSheet();
 
-        this.observe();
-
-        this.initHotkeys(hotkeys);
-        this.initWidgets(widgets);
 
         window.METRO_MEDIA = [];
         $.each(Metro.media_queries, function(key, query){
@@ -305,6 +301,11 @@ var Metro = {
                 METRO_MEDIA.push(Metro.media_mode[key]);
             }
         });
+
+        this.observe();
+
+        this.initHotkeys(hotkeys);
+        this.initWidgets(widgets);
 
         this.about(true);
 
