@@ -28591,6 +28591,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+  background-color: #ffffff;
 }
 .calendar-header,
 .calendar-content,
@@ -28863,6 +28864,10 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
 }
 .calendar.compact .calendar-header {
   padding: 0.5rem;
+  line-height: 1.2;
+}
+.calendar.compact .calendar-header .header-year {
+  font-size: 0.65rem;
 }
 .calendar.compact .calendar-header .header-day {
   font-size: 1rem;
@@ -28911,6 +28916,9 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   clear: both;
   content: "";
 }
+.calendar-wide.calendar-picker {
+  width: 460px;
+}
 .calendar-wide .calendar-header,
 .calendar-wide .calendar-footer {
   position: absolute;
@@ -28951,6 +28959,9 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
 }
 .calendar-wide.compact {
   width: 454px!important;
+}
+.calendar-wide.compact.calendar-picker {
+  width: 354px!important;
 }
 .calendar-wide.compact .calendar-header {
   width: 120px;

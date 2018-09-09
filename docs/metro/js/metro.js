@@ -5277,7 +5277,7 @@ var Calendar = {
         if (o.wide === true) {
             element.addClass("calendar-wide");
         } else {
-            if (Utils.mediaExist(o.widePoint)) {
+            if (!Utils.isNull(o.widePoint) && Utils.mediaExist(o.widePoint)) {
                 element.addClass("calendar-wide");
             }
         }
@@ -5311,7 +5311,7 @@ var Calendar = {
 
         $(window).on(Metro.events.resize, function(){
             if (o.wide !== true) {
-                if (Utils.mediaExist(o.widePoint)) {
+                if (!Utils.isNull(o.widePoint) && Utils.mediaExist(o.widePoint)) {
                     element.addClass("calendar-wide");
                 } else {
                     element.removeClass("calendar-wide");
@@ -6037,6 +6037,10 @@ var CalendarPicker = {
 
     options: {
 
+        calendarWide: false,
+        calendarWidePoint: null,
+
+
         dialogMode: false,
         dialogPoint: 360,
         dialogOverlay: true,
@@ -6059,15 +6063,6 @@ var CalendarPicker = {
         yearsAfter: 100,
         weekStart: METRO_WEEK_START,
         outside: true,
-        clsCalendar: "",
-        clsCalendarHeader: "",
-        clsCalendarContent: "",
-        clsCalendarFooter: "",
-        clsCalendarMonths: "",
-        clsCalendarYears: "",
-        clsToday: "",
-        clsSelected: "",
-        clsExcluded: "",
         ripple: false,
         rippleColor: "#cccccc",
         exclude: null,
@@ -6075,7 +6070,15 @@ var CalendarPicker = {
         maxDate: null,
         special: null,
         showHeader: true,
-        showFooter: true,
+
+        clsCalendar: "",
+        clsCalendarHeader: "",
+        clsCalendarContent: "",
+        clsCalendarMonths: "",
+        clsCalendarYears: "",
+        clsToday: "",
+        clsSelected: "",
+        clsExcluded: "",
 
         onDayClick: Metro.noop,
         onCalendarPickerCreate: Metro.noop,
@@ -6142,6 +6145,9 @@ var CalendarPicker = {
         cal.appendTo(container);
 
         cal.calendar({
+            wide: o.calendarWide,
+            widePoint: o.calendarWidePoint,
+
             format: o.format,
             inputFormat: o.inputFormat,
             pickerMode: true,
@@ -6152,10 +6158,10 @@ var CalendarPicker = {
             buttons: false,
             headerFormat: o.headerFormat,
 
-            clsCalendar: o.clsCalendar,
+            clsCalendar: o.clsCalendar + " calendar-picker",
             clsCalendarHeader: o.clsCalendarHeader,
             clsCalendarContent: o.clsCalendarContent,
-            clsCalendarFooter: o.clsCalendarFooter,
+            clsCalendarFooter: "d-none",
             clsCalendarMonths: o.clsCalendarMonths,
             clsCalendarYears: o.clsCalendarYears,
             clsToday: o.clsToday,
@@ -6171,7 +6177,7 @@ var CalendarPicker = {
             yearsAfter: o.yearsAfter,
             special: o.special,
             showHeader: o.showHeader,
-            showFooter: o.showFooter,
+            showFooter: false,
             onDayClick: function(sel, day, el){
                 var date = new Date(sel[0]);
 
