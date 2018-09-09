@@ -18,6 +18,8 @@
 + [x] Input: add attribute `data-history-divider` and methods `getHistory`, `setHistory`, `getHistoryIndex`, `setHistoryIndex`
 + [x] Input: add `search input` functionality
 + [x] Search: remove `search` plugin
++ [x] Calendar picker: add attributes `data-dialog-with`, `data-dialog-overlay`, `data-overlay-color`, `data-overlay-alpha`
++ [x] Calendar: add `compact` class
 
 ### 4.2.20
 + [x] Table: fix default padding for `th` and `td`

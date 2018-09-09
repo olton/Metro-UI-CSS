@@ -53,8 +53,6 @@ var Collapse = {
                 that._open(element);
             }
 
-            console.log(e.target.tagName);
-
             if (["INPUT"].indexOf(e.target.tagName) === -1) {
                 e.preventDefault();
             }
