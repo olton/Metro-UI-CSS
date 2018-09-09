@@ -8,6 +8,7 @@
     border: 1px solid @borderColor;
     overflow: hidden;
     user-select: none;
+    background-color: @white;
 }
 
 .calendar-header, .calendar-content, .calendar-footer {
@@ -251,6 +252,10 @@
 
         .calendar-header {
             padding: .5rem;
+            line-height: 1.2;
+            .header-year {
+                font-size: .65rem;
+            }
             .header-day {
                 font-size: 1rem;
             }
@@ -292,6 +297,10 @@
     width: 560px;
     .clear();
 
+    &.calendar-picker {
+        width: 460px;
+    }
+
     .calendar-header, .calendar-footer {
         position: absolute;
         top: 0;
@@ -331,6 +340,11 @@
 
     &.compact {
         width: 454px!important;
+
+        &.calendar-picker {
+            width: 354px!important;
+        }
+
         .calendar-header {
             width: 120px;
         }

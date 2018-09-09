@@ -145,7 +145,7 @@ var Calendar = {
         if (o.wide === true) {
             element.addClass("calendar-wide");
         } else {
-            if (Utils.mediaExist(o.widePoint)) {
+            if (!Utils.isNull(o.widePoint) && Utils.mediaExist(o.widePoint)) {
                 element.addClass("calendar-wide");
             }
         }
@@ -179,7 +179,7 @@ var Calendar = {
 
         $(window).on(Metro.events.resize, function(){
             if (o.wide !== true) {
-                if (Utils.mediaExist(o.widePoint)) {
+                if (!Utils.isNull(o.widePoint) && Utils.mediaExist(o.widePoint)) {
                     element.addClass("calendar-wide");
                 } else {
                     element.removeClass("calendar-wide");
