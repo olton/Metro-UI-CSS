@@ -258,7 +258,7 @@
         .calendar-toolbar {
             & > * {
                 padding: 0!important;
-                font-size: .85rem;
+                font-size: 14px;
             }
         }
         .calendar-footer {
@@ -276,6 +276,7 @@
             line-height: 30px;
             width: 30px;
             margin: 0;
+            font-size: 12px;
         }
         .day + .day {
             margin-left: 1px;
@@ -340,17 +341,6 @@
     }
 }
 
-.generate-calendar-media-options(@mediaBreakpointListMobileLength);
-.generate-calendar-media-options(@name, @i: 1) when (@i <= @mediaBreakpointListMobileLength) {
-    @m: extract(@mediaBreakpointListMobile, @i);
-
-    @media screen and (min-width: @@m) {
-        .calendar {
-            &.calendar-wide-@{m} {
-                .wide-calendar();
-            }
-        }
-    }
-
-    .generate-calendar-media-options(@name, @i + 1);
+.calendar-wide {
+    .wide-calendar();
 }

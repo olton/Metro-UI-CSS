@@ -47,7 +47,10 @@
                 <hr/>
                 <ul class="toc-nav">
                     <li class="toc-entry"><a href="#">Calendar picker</a></li>
-                    <li class="toc-entry"><a href="#_calendarpicker_create">Create</a></li>
+                    <li class="toc-entry"><a href="#_calendarpicker_about">About</a></li>
+                    <li class="toc-entry"><a href="#_calendarpicker_value">Picker value</a></li>
+                    <li class="toc-entry"><a href="#_calendarpicker_output">Output value</a></li>
+                    <li class="toc-entry"><a href="#_calendarpicker_dialog_mode">Dialog mode</a></li>
                     <li class="toc-entry"><a href="#_calendarpicker_options">Picker options</a></li>
                     <li class="toc-entry"><a href="#_calendarpicker_calendar">Calendar options</a></li>
                     <li class="toc-entry"><a href="#_calendarpicker_events">Events</a></li>
@@ -69,26 +72,59 @@
 
                 <!-- ads-html -->
 
-                <h3 id="_calendarpicker_create">Create calendar picker</h3>
+                <h3 id="_calendarpicker_about">About</h3>
                 <p>
-                    To create <code>calendarpicker</code> component add attribute <code>data-role="calendarpicker"</code> to form input element.
+                    You can organize date selection for the user with the calendar picker component.
+                    To create <code>calendar picker</code> component, add attribute <code>data-role="calendarpicker"</code> to form input element.
                 </p>
                 <div class="example">
-                    <input type="text" data-role="calendarpicker" data-size="280" class="mx-auto" data-dialog-mode="true" data-clear-button="true">
+                    <input type="text" data-role="calendarpicker" data-size="280" class="mx-auto" data-dialog-point="360">
                 </div>
                 <pre><code class="html">
                     &lt;input type="text" data-role="calendarpicker"&gt;
                 </code></pre>
+
+                <h3 id="_calendarpicker_value">Picker value</h3>
+                <p>
+                    You can setup value for picker with attribute <code>value</code>.
+                    If you value of date different from ECAMScript date value, you must define format with attribute <code>data-input-format</code>.
+                    Input format can contains next parts:
+                </p>
+                <ul class="unstyled-list">
+                    <li><code>dd</code>, <code>%d</code> - day</li>
+                    <li><code>mm</code>, <code>%m</code> - month</li>
+                    <li><code>yy</code>, <code>%y</code>, <code>yyyy</code> - year</li>
+                    <li><code>hh</code>, <code>%h</code> - hours</li>
+                    <li><code>ii</code>, <code>%i</code>, <code>mi</code> - minutes</li>
+                    <li><code>ss</code>, <code>%s</code> - seconds</li>
+                </ul>
+                <div class="example">
+                    <input type="text" data-role="calendarpicker" data-size="280" class="mx-auto" data-input-format="%d/%m/%y" value="21/12/1972" data-dialog-point="360">
+                </div>
+                <pre><code class="html">
+                    &lt;input type="text" data-role="calendarpicker"
+                        data-input-format="%d/%m/%y" value="21/12/1972"&gt;
+                </code></pre>
+
+                <h3 id="_calendarpicker_output">Output format</h3>
+                <p>
+                    By default, output format for picker value defined in <code>METRO_DATE_FORMAT</code> var in have default value is <code>%Y-%m-%d</code>.
+                    You can redefine this global or with attribute <code>data-format</code>. Detailed about formatting date value, you can read in <a href="dateformat.html">this article</a>.
+                </p>
+
                 <div class="example">
                     <div class="row">
                         <div class="cell-md-4">
-                            <input type="text" data-role="calendarpicker">
+                            <p>Default</p>
+                            <input type="text" data-role="calendarpicker"  data-dialog-point="360">
                         </div>
                         <div class="cell-md-4">
-                            <input type="text" data-role="calendarpicker" value="1972/12/21" data-format="%d %b %Y">
+                            <p>%d %b %Y</p>
+                            <input type="text" data-role="calendarpicker" value="1972/12/21" data-format="%d %b %Y" data-dialog-point="360">
                         </div>
                         <div class="cell-md-4">
-                            <input type="text" data-role="calendarpicker" data-format="%d %B %Y">
+                            <p>%d %B %Y</p>
+                            <input type="text" data-role="calendarpicker" data-format="%d %B %Y" data-dialog-point="360">
                         </div>
                     </div>
                 </div>
@@ -96,6 +132,29 @@
                     &lt;input type="text" data-role="calendarpicker"&gt;
                     &lt;input type="text" data-role="calendarpicker" value="1972/12/21" data-format="%d %b %Y"&gt;
                     &lt;input type="text" data-role="calendarpicker" data-format="%d %B %Y"&gt;
+                </code></pre>
+
+                <h3 id="_calendarpicker_dialog_mode">Dialog mode</h3>
+                <p>
+                    If you need, (example for small screen), you can set picker into dialog mode.
+                    To set it use attribute <code>data-dialog-mode="true"</code> - persistent or <code>data-dialog-point</code>.
+                    If you set <code>data-dialog-mode="true"</code>, picker always shown as dialog.
+                </p>
+                <div class="example">
+                    <input type="text" data-role="calendarpicker"  data-dialog-mode="true">
+                </div>
+                <pre><code>
+                    &lt;input type="text" data-role="calendarpicker"  data-dialog-mode="true"&gt;
+                </code></pre>
+                <p>
+                    You can set specific size, when picker shown in dialog mode. Use for it attribute <code>data-dialog-point</code>.
+                    Value for this attribute must be a integer value. Metro use this value to build rule: <code>max-width: Xpx</code>.
+                </p>
+                <div class="example">
+                    <input type="text" data-role="calendarpicker"  data-dialog-point="360">
+                </div>
+                <pre><code>
+                    &lt;input type="text" data-role="calendarpicker"  data-dialog-point="360"&gt;
                 </code></pre>
 
                 <h3 id="_calendarpicker_options">Picker options</h3>

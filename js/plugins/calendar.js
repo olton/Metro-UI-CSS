@@ -30,6 +30,8 @@ var Calendar = {
     },
 
     options: {
+        wide: false,
+        widePoint: null,
         pickerMode: false,
         show: null,
         locale: METRO_LOCALE,
@@ -137,7 +139,26 @@ var Calendar = {
 
         this.locale = Metro.locales[o.locale] !== undefined ? Metro.locales[o.locale] : Metro.locales["en-US"];
 
-        this._build();
+        this._drawCalendar();
+        this._bindEvents();
+
+        if (o.wide === true) {
+            element.addClass("calendar-wide");
+        } else {
+            if (Utils.mediaExist(o.widePoint)) {
+                element.addClass("calendar-wide");
+            }
+        }
+
+
+        if (this.options.ripple === true) {
+            element.ripple({
+                rippleTarget: ".button, .prev-month, .next-month, .prev-year, .next-year, .day",
+                rippleColor: this.options.rippleColor
+            });
+        }
+
+        Utils.exec(this.options.onCalendarCreate, [this.element]);
     },
 
     _dates2array: function(val, category){
@@ -153,24 +174,18 @@ var Calendar = {
         });
     },
 
-    _build: function(){
-        var element = this.element;
-
-        this._drawCalendar();
-        this._bindEvents();
-
-        if (this.options.ripple === true) {
-            element.ripple({
-                rippleTarget: ".button, .prev-month, .next-month, .prev-year, .next-year, .day",
-                rippleColor: this.options.rippleColor
-            });
-        }
-
-        Utils.exec(this.options.onCalendarCreate, [this.element]);
-    },
-
     _bindEvents: function(){
         var that = this, element = this.element, o = this.options;
+
+        $(window).on(Metro.events.resize, function(){
+            if (o.wide !== true) {
+                if (Utils.mediaExist(o.widePoint)) {
+                    element.addClass("calendar-wide");
+                } else {
+                    element.removeClass("calendar-wide");
+                }
+            }
+        });
 
         element.on(Metro.events.click, ".prev-month, .next-month, .prev-year, .next-year", function(e){
             var new_date, el = $(this);

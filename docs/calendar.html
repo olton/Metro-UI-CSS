@@ -92,25 +92,33 @@
                 <p>
                     The calendar component is designed to organize the user's choice of a date or a list of dates.
                     To create <code>calendar</code> add <code>data-role="calendar"</code> attribute to element.
+                    You can create compact calendar with class <code>compact</code>.
                 </p>
                 <div class="example">
-                    <div data-role="calendar" class="mx-auto"></div>
+                    <div class="row">
+                        <div class="cell-md-6">
+                            <div data-role="calendar" class="mx-auto"></div>
+                        </div>
+                        <div class="cell-md-6">
+                            <div data-role="calendar" class="mx-auto compact"></div>
+                        </div>
+                    </div>
+
                 </div>
                 <pre><code>
                     &lt;div data-role="calendar"&gt;&lt;/div&gt;
+                    &lt;div data-role="calendar" class="compact"&gt;&lt;/div&gt;
                 </code></pre>
                 <p>
-                    Also you can use <code>wide</code> calendar. To create <code>wide</code> calendar add class <code>.calendar-wide</code> to element or use media variants:
-                        <code>.calendar-wide-md</code>,
-                        <code>.calendar-wide-lg</code>,
-                        <code>.calendar-wide-xl</code>,
-                        <code>.calendar-wide-xxl</code>.
+                    Also you can use <code>wide</code> calendar. To create <code>wide</code> calendar, use attributes <code>data-wide="true"</code> - persistent
+                    or <code>data-wide-point="..."</code> where <code>point</code> is one of the <a href="media.html">Metro 4 media point</a> (fs, sm, md, lg, xl, xxl).
                 </p>
                 <div class="example">
-                    <div data-role="calendar" class="calendar-wide-sm mx-auto"></div>
+                    <div data-role="calendar" class="mx-auto" data-wide-point="sm"></div>
+                    <div data-role="calendar" class="mx-auto mt-4 compact" data-wide-point="sm"></div>
                 </div>
                 <pre><code>
-                    &lt;div class="calendar-wide-sm" data-role="calendar"&gt;&lt;/div&gt;
+                    &lt;div data-role="calendar" data-wide-point="sm"&gt;&lt;/div&gt;
                 </code></pre>
 
                 <h3 id="_calendar_week_start">Week start</h3>

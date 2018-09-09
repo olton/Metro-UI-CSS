@@ -21,7 +21,7 @@ var CalendarPicker = {
     options: {
 
         dialogMode: false,
-        dialogWidth: 360,
+        dialogPoint: 360,
         dialogOverlay: true,
         overlayColor: '#000000',
         overlayAlpha: .5,
@@ -219,7 +219,7 @@ var CalendarPicker = {
         if (o.dialogMode === true) {
             container.addClass("dialog-mode");
         } else {
-            if (Utils.media("(max-width: "+o.dialogWidth+"px)")) {
+            if (Utils.media("(max-width: "+o.dialogPoint+"px)")) {
                 container.addClass("dialog-mode");
             }
         }
@@ -233,7 +233,7 @@ var CalendarPicker = {
 
         $(window).on(Metro.events.resize, function(){
             if (o.dialogMode !== true) {
-                if (Utils.media("(max-width: " + o.dialogWidth + "px)")) {
+                if (Utils.media("(max-width: " + o.dialogPoint + "px)")) {
                     container.addClass("dialog-mode");
                 } else {
                     container.removeClass("dialog-mode");
@@ -242,7 +242,7 @@ var CalendarPicker = {
         });
 
         if (clear.length > 0) clear.on(Metro.events.click, function(e){
-            element.val("").trigger('change');
+            element.val("").trigger('change').blur();
             that.value = (new Date()).format("%Y/%m/%d");
             that.value_date = new Date(this.value);
             that.value_date.setHours(0,0,0,0);
