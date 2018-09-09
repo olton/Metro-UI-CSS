@@ -238,7 +238,51 @@
     & > * {
         margin: 0 2px;
         font-size: .75rem;
-        //width: 25%;
+    }
+}
+
+.calendar {
+    &.compact {
+        width: 240px;
+
+        .calendar-content {
+            width: 100%;
+        }
+
+        .calendar-header {
+            padding: .5rem;
+            .header-day {
+                font-size: 1rem;
+            }
+        }
+        .calendar-toolbar {
+            & > * {
+                padding: 0!important;
+                font-size: .85rem;
+            }
+        }
+        .calendar-footer {
+            .button {
+                height: 24px;
+                line-height: 24px;
+                padding: 0 .25rem;
+            }
+        }
+        .week-days, .days {
+            padding: 0!important;
+        }
+        .day {
+            height: 30px;
+            line-height: 30px;
+            width: 30px;
+            margin: 0;
+        }
+        .day + .day {
+            margin-left: 1px;
+        }
+        .months-list, .years-list {
+            font-size: .85rem;
+        }
     }
 }
 
@@ -282,6 +326,17 @@
 
     .calendar-content {
         margin: 0 96px 0 180px;
+    }
+
+    &.compact {
+        width: 454px!important;
+        .calendar-header {
+            width: 120px;
+        }
+        .calendar-content {
+            margin: 0 96px 0 120px;
+            width: 234px;
+        }
     }
 }
 

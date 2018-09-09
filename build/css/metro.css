@@ -20905,7 +20905,49 @@ textarea .input-reveal-button:focus,
 .textarea .input-reveal-button:focus,
 .select .input-reveal-button:focus,
 .tag-input .input-reveal-button:focus,
-.spinner .input-reveal-button:focus {
+.spinner .input-reveal-button:focus,
+input[type=text] .input-clear-button:hover,
+input[type=password] .input-clear-button:hover,
+input[type=tel] .input-clear-button:hover,
+input[type=datetime-local] .input-clear-button:hover,
+input[type=email] .input-clear-button:hover,
+input[type=file] .input-clear-button:hover,
+input[type=month] .input-clear-button:hover,
+input[type=number] .input-clear-button:hover,
+input[type=search] .input-clear-button:hover,
+input[type=time] .input-clear-button:hover,
+input[type=url] .input-clear-button:hover,
+input[type=week] .input-clear-button:hover,
+input[type=file] .input-clear-button:hover,
+select .input-clear-button:hover,
+textarea .input-clear-button:hover,
+.file .input-clear-button:hover,
+.input .input-clear-button:hover,
+.textarea .input-clear-button:hover,
+.select .input-clear-button:hover,
+.tag-input .input-clear-button:hover,
+.spinner .input-clear-button:hover,
+input[type=text] .input-reveal-button:hover,
+input[type=password] .input-reveal-button:hover,
+input[type=tel] .input-reveal-button:hover,
+input[type=datetime-local] .input-reveal-button:hover,
+input[type=email] .input-reveal-button:hover,
+input[type=file] .input-reveal-button:hover,
+input[type=month] .input-reveal-button:hover,
+input[type=number] .input-reveal-button:hover,
+input[type=search] .input-reveal-button:hover,
+input[type=time] .input-reveal-button:hover,
+input[type=url] .input-reveal-button:hover,
+input[type=week] .input-reveal-button:hover,
+input[type=file] .input-reveal-button:hover,
+select .input-reveal-button:hover,
+textarea .input-reveal-button:hover,
+.file .input-reveal-button:hover,
+.input .input-reveal-button:hover,
+.textarea .input-reveal-button:hover,
+.select .input-reveal-button:hover,
+.tag-input .input-reveal-button:hover,
+.spinner .input-reveal-button:hover {
   visibility: visible;
 }
 input[type=text]:focus,
@@ -28813,6 +28855,44 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   margin: 0 2px;
   font-size: 0.75rem;
 }
+.calendar.compact {
+  width: 240px;
+}
+.calendar.compact .calendar-content {
+  width: 100%;
+}
+.calendar.compact .calendar-header {
+  padding: 0.5rem;
+}
+.calendar.compact .calendar-header .header-day {
+  font-size: 1rem;
+}
+.calendar.compact .calendar-toolbar > * {
+  padding: 0!important;
+  font-size: 0.85rem;
+}
+.calendar.compact .calendar-footer .button {
+  height: 24px;
+  line-height: 24px;
+  padding: 0 0.25rem;
+}
+.calendar.compact .week-days,
+.calendar.compact .days {
+  padding: 0!important;
+}
+.calendar.compact .day {
+  height: 30px;
+  line-height: 30px;
+  width: 30px;
+  margin: 0;
+}
+.calendar.compact .day + .day {
+  margin-left: 1px;
+}
+.calendar.compact .months-list,
+.calendar.compact .years-list {
+  font-size: 0.85rem;
+}
 @media screen and (min-width: 0) {
   .calendar.calendar-wide-fs {
     -webkit-box-orient: horizontal;
@@ -28868,6 +28948,16 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   }
   .calendar.calendar-wide-fs .calendar-content {
     margin: 0 96px 0 180px;
+  }
+  .calendar.calendar-wide-fs.compact {
+    width: 454px!important;
+  }
+  .calendar.calendar-wide-fs.compact .calendar-header {
+    width: 120px;
+  }
+  .calendar.calendar-wide-fs.compact .calendar-content {
+    margin: 0 96px 0 120px;
+    width: 234px;
   }
 }
 @media screen and (min-width: 576px) {
@@ -28926,6 +29016,16 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   .calendar.calendar-wide-sm .calendar-content {
     margin: 0 96px 0 180px;
   }
+  .calendar.calendar-wide-sm.compact {
+    width: 454px!important;
+  }
+  .calendar.calendar-wide-sm.compact .calendar-header {
+    width: 120px;
+  }
+  .calendar.calendar-wide-sm.compact .calendar-content {
+    margin: 0 96px 0 120px;
+    width: 234px;
+  }
 }
 @media screen and (min-width: 768px) {
   .calendar.calendar-wide-md {
@@ -28982,6 +29082,16 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   }
   .calendar.calendar-wide-md .calendar-content {
     margin: 0 96px 0 180px;
+  }
+  .calendar.calendar-wide-md.compact {
+    width: 454px!important;
+  }
+  .calendar.calendar-wide-md.compact .calendar-header {
+    width: 120px;
+  }
+  .calendar.calendar-wide-md.compact .calendar-content {
+    margin: 0 96px 0 120px;
+    width: 234px;
   }
 }
 @media screen and (min-width: 992px) {
@@ -29040,6 +29150,16 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   .calendar.calendar-wide-lg .calendar-content {
     margin: 0 96px 0 180px;
   }
+  .calendar.calendar-wide-lg.compact {
+    width: 454px!important;
+  }
+  .calendar.calendar-wide-lg.compact .calendar-header {
+    width: 120px;
+  }
+  .calendar.calendar-wide-lg.compact .calendar-content {
+    margin: 0 96px 0 120px;
+    width: 234px;
+  }
 }
 @media screen and (min-width: 1200px) {
   .calendar.calendar-wide-xl {
@@ -29096,6 +29216,16 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   }
   .calendar.calendar-wide-xl .calendar-content {
     margin: 0 96px 0 180px;
+  }
+  .calendar.calendar-wide-xl.compact {
+    width: 454px!important;
+  }
+  .calendar.calendar-wide-xl.compact .calendar-header {
+    width: 120px;
+  }
+  .calendar.calendar-wide-xl.compact .calendar-content {
+    margin: 0 96px 0 120px;
+    width: 234px;
   }
 }
 @media screen and (min-width: 1452px) {
@@ -29154,6 +29284,16 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   .calendar.calendar-wide-xxl .calendar-content {
     margin: 0 96px 0 180px;
   }
+  .calendar.calendar-wide-xxl.compact {
+    width: 454px!important;
+  }
+  .calendar.calendar-wide-xxl.compact .calendar-header {
+    width: 120px;
+  }
+  .calendar.calendar-wide-xxl.compact .calendar-content {
+    margin: 0 96px 0 120px;
+    width: 234px;
+  }
 }
 .calendar-picker {
   position: relative;
@@ -29171,6 +29311,18 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
 .calendar-picker .calendar.open-up {
   top: auto;
   bottom: 100%;
+}
+.calendar-picker.dialog-mode .calendar {
+  position: fixed;
+  top: 50%!important;
+  left: 50%!important;
+  -webkit-transform: translate3d(-50%, -50%, 0);
+          transform: translate3d(-50%, -50%, 0);
+  z-index: 1050;
+}
+.calendar-picker.dialog-mode .calendar.open-up {
+  top: auto;
+  bottom: auto;
 }
 .donut {
   display: block;

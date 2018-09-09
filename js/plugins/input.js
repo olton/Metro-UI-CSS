@@ -30,6 +30,7 @@ var Input = {
         revealButtonIcon: "<span class='default-icon-eye'></span>",
         searchButtonIcon: "<span class='default-icon-search'></span>",
         customButtons: [],
+        searchButtonClick: 'submit',
 
         clsComponent: "",
         clsInput: "",
@@ -38,6 +39,7 @@ var Input = {
         clsClearButton: "",
         clsRevealButton: "",
         clsCustomButton: "",
+        clsSearchButton: "",
 
         onHistoryChange: Metro.noop,
         onHistoryUp: Metro.noop,
