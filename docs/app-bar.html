@@ -79,7 +79,7 @@
                 </p>
 
                 <div class="example">
-                    <div class="pos-relative app-bar-expand-md z-dropdown" data-role="appbar">
+                    <div class="pos-relative z-dropdown" data-role="appbar" data-expand-point="md">
                         <a href="#" class="brand no-hover">
                             <span style="width: 40px; height: 40px; line-height: 40px" class="text-center border bd-darkGray border-radius">m<sup>4</sup></span>
                         </a>
@@ -101,7 +101,7 @@
                     </div>
                 </div>
                 <pre><code class="html">
-                    &lt;div class="app-bar-expand-md" data-role="appbar"&gt;
+                    &lt;div data-role="appbar" data-expand-point="md"&gt;
                         &lt;a href="#" class="brand no-hover"&gt;
                             &lt;span style="width: 55px;" class="p-2 border bd-dark border-radius"&gt;
                                 m&lt;sup&gt;4&lt;/sup&gt;
@@ -126,15 +126,28 @@
                 </code></pre>
 
                 <p>
-                    By default <code>appbar</code> displayed in collapsed mode. To expand it you must use special media expand classes:
-                        <code>app-bar-expand-fs</code>,
-                        <code>app-bar-expand-sm</code>,
-                        <code>app-bar-expand-md</code>,
-                        <code>app-bar-expand-lg</code>,
-                        <code>app-bar-expand-xl</code> or
-                        <code>app-bar-expand-xxl</code>.
+                    By default <code>appbar</code> displayed in collapsed mode. To expand it you must use attribute <code>data-expand-point</code> and special media expand identifiers:
+                        <code>fs</code>,
+                        <code>sm</code>,
+                        <code>md</code>,
+                        <code>lg</code>,
+                        <code>xl</code> or
+                        <code>xxl</code>.
                     More information about media break points you can read in <a href="media.html">this article</a>.
                 </p>
+                <pre><code class="html">
+                    &lt;div data-role="appbar" data-expand-point="md"&gt;
+                    ...
+                    &lt;/div&gt;
+                </code></pre>
+                <p>
+                    If you need to persistent expanded appbar, use attribute <code>data-expand="true"</code>
+                </p>
+                <pre><code class="html">
+                    &lt;div data-role="appbar" data-expand="true"&gt;
+                    ...
+                    &lt;/div&gt;
+                </code></pre>
 
                 <h3 id="_appbar_brand">Brand</h3>
                 <p>

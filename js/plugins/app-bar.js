@@ -11,6 +11,8 @@ var AppBar = {
     },
 
     options: {
+        expand: false,
+        expandPoint: null,
         duration: 100,
         onAppBarCreate: Metro.noop
     },
@@ -76,6 +78,14 @@ var AppBar = {
         } else {
             hamburger.addClass("hidden");
         }
+
+        if (o.expand === true) {
+            element.addClass("app-bar-expand");
+        } else {
+            if (Utils.isValue(o.expandPoint) && Utils.mediaExist(o.expandPoint)) {
+                element.addClass("app-bar-expand");
+            }
+        }
     },
 
     _createEvents: function(){
@@ -94,6 +104,15 @@ var AppBar = {
         });
 
         $(window).on(Metro.events.resize+"-"+element.attr("id"), function(){
+
+            if (o.expand !== true) {
+                if (Utils.isValue(o.expandPoint) && Utils.mediaExist(o.expandPoint)) {
+                    element.addClass("app-bar-expand");
+                } else {
+                    element.removeClass("app-bar-expand");
+                }
+            }
+
             if (menu.length === 0) return ;
 
             if (hamburger.css('display') !== 'block') {
