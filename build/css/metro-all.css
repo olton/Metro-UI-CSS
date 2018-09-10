@@ -534,55 +534,6 @@ div {
   pointer-events: none!important;
   color: #e4e4e4 !important;
 }
-.resize-element {
-  display: block;
-  position: absolute;
-  right: -1px;
-  bottom: -1px;
-  z-index: 101;
-  cursor: nwse-resize;
-  width: 12px;
-  height: 12px;
-}
-.resize-element::after {
-  position: absolute;
-  display: block;
-  border-bottom: 12px solid #60a917;
-  border-left: 12px solid transparent;
-  content: "";
-  right: -2px;
-  bottom: -2px;
-}
-.resize-element.resize-element-disabled {
-  cursor: default;
-}
-.resize-element.resize-element-disabled::after {
-  border-bottom-color: #bebebe;
-}
-.resize-element:not(.resize-element-disabled):hover::after {
-  -webkit-animation: resize-element-animation 1s ease infinite;
-          animation: resize-element-animation 1s ease infinite;
-}
-@-webkit-keyframes resize-element-animation {
-  from {
-    right: 0;
-    bottom: 0;
-  }
-  to {
-    right: -2px;
-    bottom: -2px;
-  }
-}
-@keyframes resize-element-animation {
-  from {
-    right: 0;
-    bottom: 0;
-  }
-  to {
-    right: -2px;
-    bottom: -2px;
-  }
-}
 @media screen and (min-width: 0) {
   .overflow-fs {
     overflow: auto !important;
@@ -40044,6 +39995,55 @@ video:-webkit-full-screen {
 .sidebar.subcompact .sidebar-menu li a {
   padding-top: 3px;
   padding-bottom: 3px;
+}
+.resize-element {
+  display: block;
+  position: absolute;
+  right: -1px;
+  bottom: -1px;
+  z-index: 101;
+  cursor: nwse-resize;
+  width: 12px;
+  height: 12px;
+}
+.resize-element::after {
+  position: absolute;
+  display: block;
+  border-bottom: 12px solid #60a917;
+  border-left: 12px solid transparent;
+  content: "";
+  right: -2px;
+  bottom: -2px;
+}
+.resize-element.resize-element-disabled {
+  cursor: default;
+}
+.resize-element.resize-element-disabled::after {
+  border-bottom-color: #bebebe;
+}
+.resize-element:not(.resize-element-disabled):hover::after {
+  -webkit-animation: resize-element-animation 1s ease infinite;
+          animation: resize-element-animation 1s ease infinite;
+}
+@-webkit-keyframes resize-element-animation {
+  from {
+    right: 0;
+    bottom: 0;
+  }
+  to {
+    right: -2px;
+    bottom: -2px;
+  }
+}
+@keyframes resize-element-animation {
+  from {
+    right: 0;
+    bottom: 0;
+  }
+  to {
+    right: -2px;
+    bottom: -2px;
+  }
 }
 .ripple {
   display: block;

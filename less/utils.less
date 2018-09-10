@@ -162,52 +162,6 @@
     color: @lightGray!important;
 }
 
-.resize-element {
-    display: block;
-    position: absolute;
-    right: -1px;
-    bottom: -1px;
-    z-index: 101;
-    cursor: nwse-resize;
-    width: 12px;
-    height: 12px;
-
-    &::after {
-        position: absolute;
-        display: block;
-        border-bottom: 12px solid @green;
-        border-left: 12px solid transparent;
-        content:"";
-        right: -2px;
-        bottom: -2px;
-    }
-
-    &.resize-element-disabled {
-        cursor: default;
-        &::after {
-            border-bottom-color: @gray;
-        }
-    }
-
-    &:not(.resize-element-disabled):hover {
-        &::after {
-            animation: resize-element-animation 1s ease infinite;
-        }
-    }
-}
-
-@keyframes resize-element-animation {
-    from {
-        right: 0;
-        bottom: 0;
-    }
-
-    to {
-        right: -2px;
-        bottom: -2px;
-    }
-}
-
 .generate-utils-media-options(@mediaBreakpointListMobileLength);
 .generate-utils-media-options(@name, @i: 1) when (@i <= @mediaBreakpointListMobileLength) {
     @m: extract(@mediaBreakpointListMobile, @i);
