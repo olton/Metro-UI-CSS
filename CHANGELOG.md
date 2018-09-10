@@ -1,3 +1,6 @@
+### 4.2.22
++ [x] Appbar: remove classes `app-bar-expanded-*` and add attributes `data-expand`, `data-exapnd-point`
+
 ### 4.2.21
 + [x] Docs: refactoring docs for form components
 + [x] Resizable: add attributes `data-min-width`, `data-max-width`, `data-min-height`, `data-max-height`, `data-can-resize`, issue #1100

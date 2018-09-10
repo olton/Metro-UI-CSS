@@ -192,7 +192,9 @@ var Metro = {
 
     media_sizes: {
         FS: 0,
+        XS: 360,
         SM: 576,
+        LD: 640,
         MD: 768,
         LG: 992,
         XL: 1200,

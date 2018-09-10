@@ -4,14 +4,14 @@ $.StartScreen = function(){
 
     plugin.init = function(){
         setTilesAreaSize();
-        if (width >= 768) addMouseWheel();
+        if (width > Metro.media_sizes.LD) addMouseWheel();
     };
 
     var setTilesAreaSize = function(){
         var groups = $(".tiles-group");
         var tileAreaWidth = 80;
         $.each(groups, function(i, t){
-            if (width <= 768) {
+            if (width <= Metro.media_sizes.LD) {
                 tileAreaWidth = width;
             } else {
                 tileAreaWidth += $(t).outerWidth() + 80;

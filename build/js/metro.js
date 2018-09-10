@@ -1,5 +1,5 @@
 /*
- * Metro 4 Components Library v4.2.21 build 698 (https://metroui.org.ua)
+ * Metro 4 Components Library v4.2.21 build @@build (https://metroui.org.ua)
  * Copyright 2018 Sergey Pimenov
  * Licensed under MIT
  */
@@ -88,8 +88,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.21",
-    versionFull: "4.2.21.698 ",
+    version: "@@version",
+    versionFull: "@@version.@@build @@status",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -211,7 +211,9 @@ var Metro = {
 
     media_sizes: {
         FS: 0,
+        XS: 360,
         SM: 576,
+        LD: 640,
         MD: 768,
         LG: 992,
         XL: 1200,
@@ -4420,6 +4422,8 @@ var AppBar = {
     },
 
     options: {
+        expand: false,
+        expandPoint: null,
         duration: 100,
         onAppBarCreate: Metro.noop
     },
@@ -4485,6 +4489,14 @@ var AppBar = {
         } else {
             hamburger.addClass("hidden");
         }
+
+        if (o.expand === true) {
+            element.addClass("app-bar-expand");
+        } else {
+            if (Utils.isValue(o.expandPoint) && Utils.mediaExist(o.expandPoint)) {
+                element.addClass("app-bar-expand");
+            }
+        }
     },
 
     _createEvents: function(){
@@ -4503,6 +4515,15 @@ var AppBar = {
         });
 
         $(window).on(Metro.events.resize+"-"+element.attr("id"), function(){
+
+            if (o.expand !== true) {
+                if (Utils.isValue(o.expandPoint) && Utils.mediaExist(o.expandPoint)) {
+                    element.addClass("app-bar-expand");
+                } else {
+                    element.removeClass("app-bar-expand");
+                }
+            }
+
             if (menu.length === 0) return ;
 
             if (hamburger.css('display') !== 'block') {
