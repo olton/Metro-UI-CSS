@@ -1,0 +1,384 @@
+@import (once) "include/vars";
+@import (once) "include/mixins";
+
+.activity {
+    &-ring {
+        position: relative;
+
+        padding-top: .22rem;
+        width: @activityRingSize;
+        height: @activityRingSize;
+        margin: .625rem;
+
+        & > .wrap {
+            position: absolute;
+            width: @activityRingSize - 2;
+            height: @activityRingSize - 2;
+
+            & > .circle {
+                opacity: 0;
+                width: @activityRingSize - 2;
+                height: @activityRingSize - 2;
+                .rotate(225deg);
+                .animate(orbit @activityRingTime infinite);
+
+                &:after {
+                    position: absolute;
+                    content: '';
+                    width: @activityRingSize / 8;
+                    height: @activityRingSize / 8;
+                    border-radius: @activityRingSize / 8;
+                    background: @activityColor;
+                }
+            }
+
+            &:nth-child(2) {
+                .rotate(@activityRingRotate);
+                & > .circle {
+                    animation-delay: @activityRingTime / @activityRingTimeMute;
+                }
+            }
+
+            &:nth-child(3) {
+                .rotate(@activityRingRotate*2);
+                & > .circle {
+                    animation-delay: @activityRingTime / @activityRingTimeMute*2;
+                }
+            }
+
+            &:nth-child(4) {
+                .rotate(@activityRingRotate*3);
+                & > .circle {
+                    animation-delay: @activityRingTime / @activityRingTimeMute*3;
+                }
+            }
+
+            &:nth-child(5) {
+                .rotate(@activityRingRotate*4);
+                & > .circle {
+                    animation-delay: @activityRingTime / @activityRingTimeMute*4;
+                }
+            }
+        }
+
+        &.dark-style {
+            & > .wrap {
+                & > .circle {
+                    &:after {
+                        background-color: @activityColorDark;
+                    }
+                }
+            }
+        }
+
+        &.color-style {
+            & > .wrap {
+                & > .circle {
+                    &:after {
+                        background-color: @cyan;
+                    }
+                }
+            }
+            & > .wrap:nth-child(2) {
+                & > .circle {
+                    &:after {
+                        background-color: @orange;
+                    }
+                }
+            }
+            & > .wrap:nth-child(3) {
+                & > .circle {
+                    &:after {
+                        background-color: @green;
+                    }
+                }
+            }
+            & > .wrap:nth-child(4) {
+                & > .circle {
+                    &:after {
+                        background-color: @red;
+                    }
+                }
+            }
+            & > .wrap:nth-child(5) {
+                & > .circle {
+                    &:after {
+                        background-color: @yellow;
+                    }
+                }
+            }
+        }
+    }
+
+    &-metro {
+        overflow: hidden;
+        position: relative;
+
+        width: 100%;
+        height: 10px;
+        background-color: @transparent;
+
+        & > .circle {
+            display: inline-block;
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: @activityColor;
+            opacity: 0;
+            margin-left: 5px;
+            animation: metro-slide 3s cubic-bezier(.1,.85,.9,.15) infinite, metro-opacity 2s ease-in-out infinite alternate;
+
+            &:nth-child(2){
+                animation-delay: .8s;
+            }
+            &:nth-child(3){
+                animation-delay: .7s;
+            }
+            &:nth-child(4){
+                animation-delay: .6s;
+            }
+            &:nth-child(5){
+                animation-delay: .5s;
+            }
+        }
+
+        &.dark-style {
+            & > .circle {
+                background-color: @activityColorDark;
+            }
+        }
+
+        &.color-style {
+            & > .circle {
+                background-color: @cyan;
+            }
+            & > .circle:nth-child(2) {
+                background-color: @orange;
+            }
+            & > .circle:nth-child(3) {
+                background-color: @green;
+            }
+            & > .circle:nth-child(4) {
+                background-color: @red;
+            }
+            & > .circle:nth-child(5) {
+                background-color: @yellow;
+            }
+        }
+    }
+
+    &-square {
+        position: relative;
+        width: 40px;
+        height: 40px;
+        overflow: hidden;
+        transform-origin: bottom left;
+        animation: ani-shrink 1s linear infinite;
+
+        .square {
+            position: absolute;
+            width: 19px;
+            height: 19px;
+            background: @activityColor;
+
+            &:nth-child(1) {
+                left: 0;
+                top: 21px;
+            }
+
+            &:nth-child(2) {
+                left: 21px;
+                top: 21px;
+                animation: ani-drop 1s linear infinite;
+            }
+
+            &:nth-child(3) {
+                left: 0;
+                top: 0;
+                animation: ani-drop2 1s linear infinite;
+            }
+
+            &:nth-child(4) {
+                left: 21px;
+                top: 0;
+                animation: ani-drop3 1s linear infinite;
+            }
+        }
+
+        &.dark-style {
+            & > .square {
+                background-color: @activityColorDark;
+            }
+        }
+
+        &.color-style {
+
+            & > .square:nth-child(1) {
+                background-color: @orange;
+            }
+
+            & > .square:nth-child(2) {
+                background-color: @green;
+            }
+
+            & > .square:nth-child(3) {
+                background-color: @cyan;
+            }
+
+            & > .square:nth-child(4) {
+                background-color: @yellow;
+            }
+        }
+    }
+
+    &-cycle {
+        width: 64px;
+        height: 64px;
+        position: relative;
+        overflow: hidden;
+
+        .cycle {
+            display: block;
+            position: relative;
+            left: 50%;
+            top: 50%;
+            width: 64px;
+            height: 64px;
+            margin: -32px 0 0 -32px;
+            border-radius: 50%;
+            border: 3px solid transparent;
+            border-top-color: @white;
+            animation: ani-pre-spin 1s linear infinite;
+            z-index: 1001;
+
+            &::before, &::after {
+                content: "";
+                position: absolute;
+                border-radius: 50%;
+                border: 3px solid transparent;
+                border-top-color: @white;
+            }
+
+            &:before {
+                top: 5px;
+                left: 5px;
+                right: 5px;
+                bottom: 5px;
+                animation: ani-pre-spin 2s linear infinite;
+            }
+
+            &:after {
+                top: 15px;
+                left: 15px;
+                right: 15px;
+                bottom: 15px;
+                animation: spin 1.5s linear infinite;
+            }
+        }
+
+        &.dark-style {
+            .cycle {
+                border-top-color: @dark;
+
+                &:before {
+                    border-top-color: @dark;
+                }
+
+                &:after {
+                    border-top-color: @dark;
+                }
+            }
+        }
+
+        &.color-style {
+            .cycle {
+                border-top-color: @cyan;
+
+                &:before {
+                    border-top-color: @red;
+                }
+
+                &:after {
+                    border-top-color: @yellow;
+                }
+            }
+        }
+    }
+
+    &-simple {
+        @sizeA: 64;
+        @sizeB: 64;
+
+        .square(@sizeA, px);
+
+        .circular{
+            animation: rotate 2s linear infinite;
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .path {
+            stroke-dasharray: 1,200;
+            stroke-dashoffset: 0;
+            animation: dash 1.5s ease-in-out infinite;
+            stroke-linecap: round;
+            stroke: @white;
+        }
+
+        &.dark-style {
+            .path {
+                stroke: @dark;
+            }
+        }
+
+        &.color-style .path{
+            animation: dash 1.5s ease-in-out infinite, color 6s ease-in-out infinite;
+        }
+
+
+        &.small {
+            .square(@sizeA/2, px);
+            border-radius: 50%;
+            .circular {
+                .square(@sizeA/2, px);
+            }
+        }
+    }
+}
+
+@keyframes rotate{
+    100%{
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes dash{
+    0%{
+        stroke-dasharray: 1,200;
+        stroke-dashoffset: 0;
+    }
+    50%{
+        stroke-dasharray: 89,200;
+        stroke-dashoffset: -35;
+    }
+    100%{
+        stroke-dasharray: 89,200;
+        stroke-dashoffset: -124;
+    }
+}
+
+@keyframes color{
+    100%, 0%{
+        stroke: @red;
+    }
+    40%{
+        stroke: @blue;
+    }
+    66%{
+        stroke: @green;
+    }
+    80%, 90%{
+        stroke: @yellow;
+    }
+}

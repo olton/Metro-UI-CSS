@@ -1,0 +1,65 @@
+@import (once) "include/vars";
+
+@ribbedSize: 20px;
+@ribbedAlpha: .15;
+@ribbedAngle: -45deg;
+
+.op-default {
+    background-color: rgba(red(@cyan), green(@cyan), blue(@cyan), .7) !important;
+}
+
+.bg-transparent {
+    background-color: @transparent !important;
+}
+
+.bd-default {
+    border-color: @borderColor!important;
+}
+.bd-transparent {
+    border-color: @transparent!important;
+}
+
+.generate-colors(@colorListLength);
+.generate-colors(@name, @i: 1) when (@i =< @colorListLength) {
+    @name: extract(@colorList, @i);
+
+    .fg-@{name} {color: @@name !important;}
+    .bg-@{name} {background-color: @@name !important;}
+    .bd-@{name} {border-color: @@name !important;}
+    .ol-@{name} {outline-color: @@name !important;}
+
+
+    .fg-@{name}-active {&:active {color: @@name !important;}}
+    .fg-@{name}-hover {&:hover {color: @@name !important;}}
+    .fg-@{name}-focus {&:focus {color: @@name !important;}}
+
+    .bg-@{name}-active {&:active {background-color: @@name !important;}}
+    .bg-@{name}-hover {&:hover {background-color: @@name !important;}}
+    .bg-@{name}-focus {&:focus {background-color: @@name !important;}}
+
+    .bd-@{name}-active {&:active {border-color: @@name !important;}}
+    .bd-@{name}-hover {&:hover {border-color: @@name !important;}}
+    .bd-@{name}-focus {&:focus {border-color: @@name !important;}}
+
+    .ol-@{name}-active {&:active {outline-color: @@name !important;}}
+    .ol-@{name}-hover {&:hover {outline-color: @@name !important;}}
+    .ol-@{name}-focus {&:focus {outline-color: @@name !important;}}
+
+    .ribbed-@{name} {background: @@name linear-gradient(@ribbedAngle, rgba(255,255,255,@ribbedAlpha) 25%, transparent 25%, transparent 50%, rgba(255,255,255,@ribbedAlpha) 50%, rgba(255,255,255,@ribbedAlpha) 75%, transparent 75%, transparent) !important; background-size: @ribbedSize @ribbedSize !important;}
+
+    .before-bg-@{name} {&::before {background: @@name !important;}}
+    .before-fg-@{name} {&::before {color: @@name !important;}}
+    .after-bg-@{name} {&::after {background: @@name !important;}}
+    .after-fg-@{name} {&::after {color: @@name !important;}}
+
+    .op-@{name} {background-color: rgba(red(@@name), green(@@name), blue(@@name), .7) !important;}
+
+    .tg-@{name} {
+        &::before {
+            border-color: @@name;
+        }
+    }
+
+    .generate-colors(@name, @i + 1);
+}
+
