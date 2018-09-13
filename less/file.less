@@ -1,18 +1,15 @@
 @import (once) "include/vars";
 @import (once) "include/mixins";
 
+.file, .drop-zone {
+    .hideElement(input);
+}
+
 .file {
     display: flex;
     justify-content: space-between;
     margin-bottom: 0;
     padding: 0;
-
-    input[type=file] {
-        position: absolute;
-        opacity: 0;
-        width: 0.0625rem;
-        height: 0.0625rem;
-    }
 
     button {
         & > * {
@@ -22,7 +19,7 @@
     }
 
     .caption {
-        .px2rem(line-height, 35px);
+        line-height: 35px;
         display: block;
         padding: 0 .5rem;
         width: 100%;
@@ -43,5 +40,38 @@
         order: 3;
         margin-left: auto;
         height: 34px;
+    }
+}
+
+.drop-zone {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+    width: 100%;
+    height: auto;
+    padding: 40px 0;
+    outline: 4px dashed @darkGray;
+    outline-offset: -12px;
+    background-color: @light;
+
+    .icon {
+        display: block;
+        width: 64px;
+        height: 64px;
+    }
+
+    .caption {
+        margin-top: 10px;
+        font-size: 14px;
+        .text-ellipsis();
+    }
+
+    &.focused {
+        outline-color: @cyan;
+    }
+
+    &.drop-on {
+        outline-color: @green;
     }
 }

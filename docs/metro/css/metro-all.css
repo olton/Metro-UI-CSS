@@ -21702,6 +21702,15 @@ textarea {
 .textarea .input-clear-button ~ textarea {
   padding-right: 48px;
 }
+.file input,
+.drop-zone input {
+  width: 1px;
+  height: 1px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
 .file {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -21712,18 +21721,12 @@ textarea {
   margin-bottom: 0;
   padding: 0;
 }
-.file input[type=file] {
-  position: absolute;
-  opacity: 0;
-  width: 0.0625rem;
-  height: 0.0625rem;
-}
 .file button > * {
   height: 24px;
   max-width: 24px;
 }
 .file .caption {
-  line-height: 2.1875rem;
+  line-height: 35px;
   display: block;
   padding: 0 0.5rem;
   width: 100%;
@@ -21756,6 +21759,45 @@ textarea {
           order: 3;
   margin-left: auto;
   height: 34px;
+}
+.drop-zone {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
+  width: 100%;
+  height: auto;
+  padding: 40px 0;
+  outline: 4px dashed #989898;
+  outline-offset: -12px;
+  background-color: #f8f8f8;
+}
+.drop-zone .icon {
+  display: block;
+  width: 64px;
+  height: 64px;
+}
+.drop-zone .caption {
+  margin-top: 10px;
+  font-size: 14px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.drop-zone.focused {
+  outline-color: #1ba1e2;
+}
+.drop-zone.drop-on {
+  outline-color: #60a917;
 }
 .input {
   display: -webkit-box;
@@ -40176,6 +40218,9 @@ video:-webkit-full-screen {
 .default-icon-minus {
   background-image: url("data:image/svg+xml;charset=UTF-8,%3C!--%20Generated%20by%20IcoMoon.io%20--%3E%0A%3Csvg%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22512%22%20height%3D%22512%22%20viewBox%3D%220%200%20512%20512%22%3E%0A%3Ctitle%3E%3C%2Ftitle%3E%0A%3Cg%20id%3D%22icomoon-ignore%22%3E%0A%3C%2Fg%3E%0A%3Cpath%20d%3D%22M0%20208v96c0%208.836%207.164%2016%2016%2016h480c8.836%200%2016-7.164%2016-16v-96c0-8.836-7.164-16-16-16h-480c-8.836%200-16%207.164-16%2016z%22%3E%3C%2Fpath%3E%0A%3C%2Fsvg%3E%0A");
 }
+.default-icon-upload {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3C!--%20Generated%20by%20IcoMoon.io%20--%3E%0A%3Csvg%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22512%22%20height%3D%22512%22%20viewBox%3D%220%200%20512%20512%22%3E%0A%3Ctitle%3E%3C%2Ftitle%3E%0A%3Cg%20id%3D%22icomoon-ignore%22%3E%0A%3C%2Fg%3E%0A%3Cpath%20d%3D%22M224%20288h64v-128h96l-128-128-128%20128h96zM320%20216v49.356l146.533%2054.644-210.533%2078.509-210.533-78.509%20146.533-54.644v-49.356l-192%2072v128l256%2096%20256-96v-128z%22%3E%3C%2Fpath%3E%0A%3C%2Fsvg%3E%0A");
+}
 .c-auto {
   cursor: auto;
 }
@@ -45978,43 +46023,33 @@ input[dir=rtl] {
 }
 .mif-lg {
   font-size: 1.2em;
-  line-height: 1.2em;
 }
 .mif-2x {
   font-size: 1.5em;
-  line-height: 1.5em;
 }
 .mif-3x {
   font-size: 2em;
-  line-height: 2em;
 }
 .mif-4x {
   font-size: 2.5em;
-  line-height: 2.5em;
 }
 .mif-5x {
   font-size: 3em;
-  line-height: 3em;
 }
 .mif-6x {
   font-size: 3.5em;
-  line-height: 3.5em;
 }
 .mif-7x {
   font-size: 4em;
-  line-height: 4em;
 }
 .mif-8x {
   font-size: 4.5em;
-  line-height: 4.5em;
 }
 .mif-9x {
   font-size: 5em;
-  line-height: 5em;
 }
 .mif-10x {
   font-size: 5.5em;
-  line-height: 5.5em;
 }
 .mif-add-shopping-cart:before {
   content: "\e854";

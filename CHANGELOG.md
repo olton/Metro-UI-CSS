@@ -1,5 +1,9 @@
 ### 4.2.22
 + [x] Appbar: remove classes `app-bar-expanded-*` and add attributes `data-expand`, `data-exapnd-point`
++ [x] Table: fix `hidden` class applying. issue #1194
++ [x] Table: add attribute `data-cls-cell-wrapper`
++ [x] Mif: set `line-height: 1` for `mif-*x` classes
++ [x] File: add mode `drop`
 
 ### 4.2.21
 + [x] Docs: refactoring docs for form components

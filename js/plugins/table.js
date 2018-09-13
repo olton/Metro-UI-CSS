@@ -107,6 +107,7 @@ var Table = {
         clsBody: "",
         clsBodyRow: "",
         clsBodyCell: "",
+        clsCellWrapper: "",
 
         clsFooter: "",
         clsFooterRow: "",
@@ -405,7 +406,8 @@ var Table = {
                 cls: item_class,
                 colspan: item.attr("colspan"),
                 type: "data",
-                size: Utils.isValue(item.data("size")) ? item.data("size") : ""
+                size: Utils.isValue(item.data("size")) ? item.data("size") : "",
+                show: !item.hasClass("hidden") || (Utils.isValue(item.data("show")) && JSON.parse(item.data("show")) === false)
             };
             that.heads.push(head_item);
         });
@@ -1283,7 +1285,7 @@ var Table = {
                 $.each(cells, function(cell_index){
                     if (o.cellWrapper === true) {
                         td = $("<td>");
-                        $("<div>").addClass("cell-wrapper").html(this).appendTo(td);
+                        $("<div>").addClass("cell-wrapper").addClass(o.clsCellWrapper).html(this).appendTo(td);
                     } else {
                         td = $("<td>").html(this);
                     }
