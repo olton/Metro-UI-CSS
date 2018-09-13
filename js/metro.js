@@ -151,12 +151,18 @@ var Metro = {
         change: 'change.metro',
         cut: 'cut.metro',
         paste: 'paste.metro',
-        drop: 'drop.metro',
         scroll: 'scroll.metro',
         scrollStart: 'scrollstart.metro',
         scrollStop: 'scrollstop.metro',
         mousewheel: 'mousewheel.metro',
-        inputchange: "change.metro input.metro propertychange.metro cut.metro paste.metro copy.metro"
+        inputchange: "change.metro input.metro propertychange.metro cut.metro paste.metro copy.metro",
+        dragstart: "dragstart.metro",
+        dragend: "dragend.metro",
+        dragenter: "dragenter.metro",
+        dragover: "dragover.metro",
+        dragleave: "dragleave.metro",
+        drop: 'drop.metro',
+        drag: 'drag.metro'
     },
 
     keyCode: {

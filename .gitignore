@@ -60,6 +60,8 @@ node_modules
 adsense
 
 # Special files
+update_builder.bat
+Update_Builder.js
 deploy.bat
 commit.bat
 build.bat
