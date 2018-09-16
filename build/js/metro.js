@@ -1,5 +1,5 @@
 /*
- * Metro 4 Components Library v4.2.21 build @@build (https://metroui.org.ua)
+ * Metro 4 Components Library v4.2.22 build @@build (https://metroui.org.ua)
  * Copyright 2018 Sergey Pimenov
  * Licensed under MIT
  */
@@ -4681,7 +4681,7 @@ var Audio = {
             this.play();
         }
 
-        Utils.exec(o.onAudioCreate, [element, this.player]);
+        Utils.exec(o.onAudioCreate, [element, this.player], element[0]);
     },
 
     _createPlayer: function(){
@@ -4833,7 +4833,7 @@ var Audio = {
         element.on("loadedmetadata", function(){
             that.duration = audio.duration.toFixed(0);
             that._setInfo(0, that.duration);
-            Utils.exec(o.onMetadata, [audio, player]);
+            Utils.exec(o.onMetadata, [audio, player], element[0]);
         });
 
         element.on("canplay", function(){
@@ -4849,7 +4849,7 @@ var Audio = {
             var position = Math.round(audio.currentTime * 100 / that.duration);
             that._setInfo(audio.currentTime, that.duration);
             that.stream.data('slider').val(position);
-            Utils.exec(o.onTime, [audio.currentTime, that.duration, audio, player]);
+            Utils.exec(o.onTime, [audio.currentTime, that.duration, audio, player], element[0]);
         });
 
         element.on("waiting", function(){
@@ -4862,22 +4862,22 @@ var Audio = {
 
         element.on("play", function(){
             player.find(".play").html(o.pauseIcon);
-            Utils.exec(o.onPlay, [audio, player]);
+            Utils.exec(o.onPlay, [audio, player], element[0]);
         });
 
         element.on("pause", function(){
             player.find(".play").html(o.playIcon);
-            Utils.exec(o.onPause, [audio, player]);
+            Utils.exec(o.onPause, [audio, player], element[0]);
         });
 
         element.on("stop", function(){
             that.stream.data('slider').val(0);
-            Utils.exec(o.onStop, [audio, player]);
+            Utils.exec(o.onStop, [audio, player], element[0]);
         });
 
         element.on("ended", function(){
             that.stream.data('slider').val(0);
-            Utils.exec(o.onEnd, [audio, player]);
+            Utils.exec(o.onEnd, [audio, player], element[0]);
         });
 
         element.on("volumechange", function(){
@@ -5310,7 +5310,7 @@ var Calendar = {
         }
 
 
-        if (this.options.ripple === true) {
+        if (o.ripple === true && Utils.isFunc(element.ripple) !== false) {
             element.ripple({
                 rippleTarget: ".button, .prev-month, .next-month, .prev-year, .next-year, .day",
                 rippleColor: this.options.rippleColor
@@ -14303,6 +14303,7 @@ var Select = {
         dropHeight: 200,
 
         clsSelect: "",
+        clsSelectInput: "",
         clsPrepend: "",
         clsAppend: "",
         clsOption: "",
@@ -14397,7 +14398,7 @@ var Select = {
 
         var prev = element.prev();
         var parent = element.parent();
-        var container = $("<div>").addClass("select " + element[0].className).addClass(o.clsSelect);
+        var container = $("<label>").addClass("select " + element[0].className).addClass(o.clsSelect);
         var multiple = element[0].multiple;
         var select_id = Utils.elementId("select");
         var buttons = $("<div>").addClass("button-group");
@@ -14418,7 +14419,7 @@ var Select = {
         element.appendTo(container);
         buttons.appendTo(container);
 
-        input = $("<div>").addClass("select-input").attr("name", "__" + select_id + "__");
+        input = $("<div>").addClass("select-input").addClass(o.clsSelectInput).attr("name", "__" + select_id + "__");
         drop_container = $("<div>").addClass("drop-container");
         list = $("<ul>").addClass("d-menu").addClass(o.clsDropList).css({
             "max-height": o.dropHeight
@@ -14509,6 +14510,14 @@ var Select = {
         var input = element.siblings(".select-input");
         var filter_input = drop_container.find("input");
         var list = drop_container.find("ul");
+
+        element.on(Metro.events.focus, function(){
+            container.addClass("focused");
+        });
+
+        element.on(Metro.events.blur, function(){
+            container.removeClass("focused");
+        });
 
         container.on(Metro.events.click, function(e){
             e.preventDefault();
@@ -20770,7 +20779,7 @@ var Video = {
             this.play();
         }
 
-        Utils.exec(o.onVideoCreate, [element, this.player]);
+        Utils.exec(o.onVideoCreate, [element, this.player], element[0]);
     },
 
     _createPlayer: function(){
@@ -20936,7 +20945,7 @@ var Video = {
         element.on("loadedmetadata", function(){
             that.duration = video.duration.toFixed(0);
             that._setInfo(0, that.duration);
-            Utils.exec(o.onMetadata, [video, player]);
+            Utils.exec(o.onMetadata, [video, player], element[0]);
         });
 
         element.on("canplay", function(){
@@ -20952,7 +20961,7 @@ var Video = {
             var position = Math.round(video.currentTime * 100 / that.duration);
             that._setInfo(video.currentTime, that.duration);
             that.stream.data('slider').val(position);
-            Utils.exec(o.onTime, [video.currentTime, that.duration, video, player]);
+            Utils.exec(o.onTime, [video.currentTime, that.duration, video, player], element[0]);
         });
 
         element.on("waiting", function(){
@@ -20965,25 +20974,25 @@ var Video = {
 
         element.on("play", function(){
             player.find(".play").html(o.pauseIcon);
-            Utils.exec(o.onPlay, [video, player]);
+            Utils.exec(o.onPlay, [video, player], element[0]);
             that._onMouse();
         });
 
         element.on("pause", function(){
             player.find(".play").html(o.playIcon);
-            Utils.exec(o.onPause, [video, player]);
+            Utils.exec(o.onPause, [video, player], element[0]);
             that._offMouse();
         });
 
         element.on("stop", function(){
             that.stream.data('slider').val(0);
-            Utils.exec(o.onStop, [video, player]);
+            Utils.exec(o.onStop, [video, player], element[0]);
             that._offMouse();
         });
 
         element.on("ended", function(){
             that.stream.data('slider').val(0);
-            Utils.exec(o.onEnd, [video, player]);
+            Utils.exec(o.onEnd, [video, player], element[0]);
             that._offMouse();
         });
 

@@ -97,7 +97,7 @@ var Audio = {
             this.play();
         }
 
-        Utils.exec(o.onAudioCreate, [element, this.player]);
+        Utils.exec(o.onAudioCreate, [element, this.player], element[0]);
     },
 
     _createPlayer: function(){
@@ -249,7 +249,7 @@ var Audio = {
         element.on("loadedmetadata", function(){
             that.duration = audio.duration.toFixed(0);
             that._setInfo(0, that.duration);
-            Utils.exec(o.onMetadata, [audio, player]);
+            Utils.exec(o.onMetadata, [audio, player], element[0]);
         });
 
         element.on("canplay", function(){
@@ -265,7 +265,7 @@ var Audio = {
             var position = Math.round(audio.currentTime * 100 / that.duration);
             that._setInfo(audio.currentTime, that.duration);
             that.stream.data('slider').val(position);
-            Utils.exec(o.onTime, [audio.currentTime, that.duration, audio, player]);
+            Utils.exec(o.onTime, [audio.currentTime, that.duration, audio, player], element[0]);
         });
 
         element.on("waiting", function(){
@@ -278,22 +278,22 @@ var Audio = {
 
         element.on("play", function(){
             player.find(".play").html(o.pauseIcon);
-            Utils.exec(o.onPlay, [audio, player]);
+            Utils.exec(o.onPlay, [audio, player], element[0]);
         });
 
         element.on("pause", function(){
             player.find(".play").html(o.playIcon);
-            Utils.exec(o.onPause, [audio, player]);
+            Utils.exec(o.onPause, [audio, player], element[0]);
         });
 
         element.on("stop", function(){
             that.stream.data('slider').val(0);
-            Utils.exec(o.onStop, [audio, player]);
+            Utils.exec(o.onStop, [audio, player], element[0]);
         });
 
         element.on("ended", function(){
             that.stream.data('slider').val(0);
-            Utils.exec(o.onEnd, [audio, player]);
+            Utils.exec(o.onEnd, [audio, player], element[0]);
         });
 
         element.on("volumechange", function(){
