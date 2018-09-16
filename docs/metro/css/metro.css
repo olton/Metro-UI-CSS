@@ -1,5 +1,5 @@
 /*
- * Metro 4 Components Library v4.2.21 build @@build (https://metroui.org.ua)
+ * Metro 4 Components Library v4.2.22 build @@build (https://metroui.org.ua)
  * Copyright 2018 Sergey Pimenov
  * Licensed under MIT
  */
@@ -21487,6 +21487,9 @@ input[type=search] {
   width: calc(100% - .1rem);
   height: 34px;
   padding-left: 10px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .select .select-input .icon {
   margin: 0 4px;
@@ -21528,6 +21531,9 @@ input[type=search] {
 .select .d-menu li a {
   height: 32px;
   line-height: 32px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .select .d-menu li a .icon {
   top: 0.3rem;

@@ -23,6 +23,7 @@ var Select = {
         dropHeight: 200,
 
         clsSelect: "",
+        clsSelectInput: "",
         clsPrepend: "",
         clsAppend: "",
         clsOption: "",
@@ -117,7 +118,7 @@ var Select = {
 
         var prev = element.prev();
         var parent = element.parent();
-        var container = $("<div>").addClass("select " + element[0].className).addClass(o.clsSelect);
+        var container = $("<label>").addClass("select " + element[0].className).addClass(o.clsSelect);
         var multiple = element[0].multiple;
         var select_id = Utils.elementId("select");
         var buttons = $("<div>").addClass("button-group");
@@ -138,7 +139,7 @@ var Select = {
         element.appendTo(container);
         buttons.appendTo(container);
 
-        input = $("<div>").addClass("select-input").attr("name", "__" + select_id + "__");
+        input = $("<div>").addClass("select-input").addClass(o.clsSelectInput).attr("name", "__" + select_id + "__");
         drop_container = $("<div>").addClass("drop-container");
         list = $("<ul>").addClass("d-menu").addClass(o.clsDropList).css({
             "max-height": o.dropHeight
@@ -229,6 +230,14 @@ var Select = {
         var input = element.siblings(".select-input");
         var filter_input = drop_container.find("input");
         var list = drop_container.find("ul");
+
+        element.on(Metro.events.focus, function(){
+            container.addClass("focused");
+        });
+
+        element.on(Metro.events.blur, function(){
+            container.removeClass("focused");
+        });
 
         container.on(Metro.events.click, function(e){
             e.preventDefault();

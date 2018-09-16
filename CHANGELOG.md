@@ -4,6 +4,10 @@
 + [x] Table: add attribute `data-cls-cell-wrapper`
 + [x] Mif: set `line-height: 1` for `mif-*x` classes
 + [x] File: add mode `drop`
++ [x] Select: fix for the `long` captions
++ [x] Select: add attribute `data-cls-select-input`
++ [x] Media players: set context for events to `HTML element`
++ [x] Builder: add [Metro 4 Builder](https://builder.metroui.org.ua)
 
 ### 4.2.21
 + [x] Docs: refactoring docs for form components

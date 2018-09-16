@@ -96,7 +96,7 @@ var Video = {
             this.play();
         }
 
-        Utils.exec(o.onVideoCreate, [element, this.player]);
+        Utils.exec(o.onVideoCreate, [element, this.player], element[0]);
     },
 
     _createPlayer: function(){
@@ -262,7 +262,7 @@ var Video = {
         element.on("loadedmetadata", function(){
             that.duration = video.duration.toFixed(0);
             that._setInfo(0, that.duration);
-            Utils.exec(o.onMetadata, [video, player]);
+            Utils.exec(o.onMetadata, [video, player], element[0]);
         });
 
         element.on("canplay", function(){
@@ -278,7 +278,7 @@ var Video = {
             var position = Math.round(video.currentTime * 100 / that.duration);
             that._setInfo(video.currentTime, that.duration);
             that.stream.data('slider').val(position);
-            Utils.exec(o.onTime, [video.currentTime, that.duration, video, player]);
+            Utils.exec(o.onTime, [video.currentTime, that.duration, video, player], element[0]);
         });
 
         element.on("waiting", function(){
@@ -291,25 +291,25 @@ var Video = {
 
         element.on("play", function(){
             player.find(".play").html(o.pauseIcon);
-            Utils.exec(o.onPlay, [video, player]);
+            Utils.exec(o.onPlay, [video, player], element[0]);
             that._onMouse();
         });
 
         element.on("pause", function(){
             player.find(".play").html(o.playIcon);
-            Utils.exec(o.onPause, [video, player]);
+            Utils.exec(o.onPause, [video, player], element[0]);
             that._offMouse();
         });
 
         element.on("stop", function(){
             that.stream.data('slider').val(0);
-            Utils.exec(o.onStop, [video, player]);
+            Utils.exec(o.onStop, [video, player], element[0]);
             that._offMouse();
         });
 
         element.on("ended", function(){
             that.stream.data('slider').val(0);
-            Utils.exec(o.onEnd, [video, player]);
+            Utils.exec(o.onEnd, [video, player], element[0]);
             that._offMouse();
         });
 

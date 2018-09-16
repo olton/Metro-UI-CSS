@@ -151,7 +151,7 @@ var Calendar = {
         }
 
 
-        if (this.options.ripple === true) {
+        if (o.ripple === true && Utils.isFunc(element.ripple) !== false) {
             element.ripple({
                 rippleTarget: ".button, .prev-month, .next-month, .prev-year, .next-year, .day",
                 rippleColor: this.options.rippleColor
