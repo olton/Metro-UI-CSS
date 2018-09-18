@@ -5,7 +5,7 @@ var Table = {
         this.element = $(elem);
         this.currentPage = 1;
         this.pagesCount = 1;
-        this.filterString = "";
+        this.searchString = "";
         this.data = null;
         this.activity = null;
         this.busy = false;
@@ -22,6 +22,7 @@ var Table = {
         this.viewDefault = {};
         this.locale = Metro.locales["en-US"];
         this.input_interval = null;
+        this.searchFields = [];
 
         this.sort = {
             dir: "asc",
@@ -65,13 +66,14 @@ var Table = {
         rownum: false,
         rownumTitle: "#",
 
-        filter: null,
         filters: null,
         filtersOperator: "and",
+
         source: null,
 
-        filterMinLength: 1,
-        filterThreshold: 500,
+        searchMinLength: 1,
+        searchThreshold: 500,
+        searchFields: null,
 
         showRowsSteps: true,
         showSearch: true,
@@ -184,6 +186,10 @@ var Table = {
 
         if (Utils.isValue(Metro.locales[o.locale])) {
             this.locale = Metro.locales[o.locale];
+        }
+
+        if (Utils.isValue(o.searchFields)) {
+            this.searchFields = Utils.strToArray(o.searchFields);
         }
 
         if (o.source !== null) {
@@ -755,14 +761,6 @@ var Table = {
 
         var filter_func;
 
-        if (Utils.isValue(o.filter)) {
-            filter_func = Utils.isFunc(o.filter);
-            if (filter_func === false) {
-                filter_func = Utils.func(o.filter);
-            }
-            that.filterIndex = that.addFilter(filter_func);
-        }
-
         if (Utils.isValue(o.filters)) {
             $.each(Utils.strToArray(o.filters), function(){
                 filter_func = Utils.isFunc(this);
@@ -873,9 +871,9 @@ var Table = {
         });
 
         var _search = function(e){
-            that.filterString = this.value.trim().toLowerCase();
+            that.searchString = this.value.trim().toLowerCase();
 
-            if (that.filterString[that.filterString.length - 1] === ":") {
+            if (that.searchString[that.searchString.length - 1] === ":") {
                 return ;
             }
 
@@ -884,7 +882,7 @@ var Table = {
                 that.currentPage = 1;
                 that._draw();
                 clearInterval(that.input_interval); that.input_interval = false;
-            }, o.filterThreshold);
+            }, o.searchThreshold);
         };
 
         search.on(Metro.events.inputchange, _search);
@@ -1211,20 +1209,24 @@ var Table = {
 
     _filter: function(){
         var that = this, o = this.options, element = this.element;
-        var items, flt, idx = -1, i;
-        if ((Utils.isValue(this.filterString) && that.filterString.length >= o.filterMinLength) || this.filters.length > 0) {
-            flt = this.filterString.split(":");
-            if (flt.length > 1) {
-                $.each(that.heads, function (i, v) {
-                    if (flt[0] === v.title.toLowerCase()) {
-                        idx = i;
-                    }
-                })
-            }
+        var items, i;
+        if ((Utils.isValue(this.searchString) && that.searchString.length >= o.searchMinLength) || this.filters.length > 0) {
             items = this.items.filter(function(row){
-                var row_data = "" + (flt.length > 1 && idx > -1 ? row[idx] : row.join());
-                var c1 = row_data.replace(/[\n\r]+|[\s]{2,}/g, ' ').trim().toLowerCase();
-                var result = Utils.isValue(that.filterString) && that.filterString.length >= o.filterMinLength ? ~c1.indexOf(flt.length > 1 ? flt[1] : flt[0]) : true;
+
+                var row_data = "", c1, result;
+
+                if (that.searchFields.length > 0) {
+                    $.each(that.heads, function(i, v){
+                        if (that.searchFields.indexOf(v.name) > -1) {
+                            row_data += ""+row[i];
+                        }
+                    })
+                } else {
+                    row_data = row.join("");
+                }
+
+                c1 = row_data.replace(/[\n\r]+|[\s]{2,}/g, ' ').trim().toLowerCase();
+                result = Utils.isValue(that.searchString) && that.searchString.length >= o.searchMinLength ? ~c1.indexOf(that.searchString) : true;
 
                 if (result === true && that.filters.length > 0) {
                     if (o.filtersOperator.toLowerCase() === "and") {
@@ -1236,7 +1238,7 @@ var Table = {
                             }
                         }
                     } else {
-                        result = result && that.filterString.length >= o.filterMinLength;
+                        result = result && that.searchString.length >= o.searchMinLength;
                         console.log(result);
                         for (i = 0; i < that.filters.length; i++) {
                             if (!Utils.isValue(that.filters[i])) continue;
@@ -1254,7 +1256,7 @@ var Table = {
                 return result;
             });
 
-            Utils.exec(o.onSearch, [that.filterString, items], element[0])
+            Utils.exec(o.onSearch, [that.searchString, items], element[0])
         } else {
             items = this.items;
         }
@@ -1464,8 +1466,8 @@ var Table = {
         Utils.exec(o.onSortStop, [this.items], element[0]);
     },
 
-    filter: function(val){
-        this.filterString = val.trim().toLowerCase();
+    search: function(val){
+        this.searchString = val.trim().toLowerCase();
         this.currentPage = 1;
         this._draw();
     },
@@ -1667,10 +1669,6 @@ var Table = {
 
     getFilters: function(){
         return this.filters;
-    },
-
-    getFilterIndex: function(){
-        return this.filterIndex;
     },
 
     getFiltersIndexes: function(){

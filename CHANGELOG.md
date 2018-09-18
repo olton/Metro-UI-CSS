@@ -4,6 +4,9 @@
 + [x] Calendar: fix rendering for ie, issue #1202
 + [x] Table: add attribute `data-filters-operator="and|or"`
 + [x] Table: fix init filters, defined in attribute `data-filters`
++ [x] Table: rename `filterMinLength` to `searchMinLength`
++ [x] Table: rename `filterThreshold` to `searchThreshold`
++ [x] Table: add attribute `data-search-fields`
 + [ ] Table: add `CRUD` feature, see docs for details
 
 ### 4.2.22
