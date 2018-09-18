@@ -374,7 +374,8 @@
                           "size": ..., // int, column width
                           "cls": ..., // additional class for header cell
                           "clsColumn": ...,  // additional class for related cells in table body
-                          "format": ... // string define column format for right sorting
+                          "format": ..., // string define column format for right sorting
+                          "show": ... // bool show or hide column
                         },
                         ...
                     ]
@@ -626,7 +627,22 @@
                     <tr>
                         <td><code>onDrawRow</code></td>
                         <td><code>data-on-draw-row</code></td>
-                        <td>Event fired when row added to the table.</td>
+                        <td>Event fired when draw row.</td>
+                    </tr>
+                    <tr>
+                        <td><code>onDrawCell</code></td>
+                        <td><code>data-on-draw-cell</code></td>
+                        <td>Event fired when draw cell.</td>
+                    </tr>
+                    <tr>
+                        <td><code>onAppendRow</code></td>
+                        <td><code>data-on-append-row</code></td>
+                        <td>Event fired when row added to table.</td>
+                    </tr>
+                    <tr>
+                        <td><code>onAppendCell</code></td>
+                        <td><code>data-on-append-cell</code></td>
+                        <td>Event fired when cell added to row.</td>
                     </tr>
                     <tr>
                         <td><code>onSortStart</code></td>
@@ -664,6 +680,41 @@
                         <td>Event fired after data loaded.</td>
                     </tr>
                     <tr>
+                        <td><code>onFilterRowAccepted(row)</code></td>
+                        <td><code>data-on-filter-row-accepted</code></td>
+                        <td>Row accepted by filters.</td>
+                    </tr>
+                    <tr>
+                        <td><code>onFilterRowDeclined(row)</code></td>
+                        <td><code>data-on-filter-row-declined</code></td>
+                        <td>Row declined by filters.</td>
+                    </tr>
+                    <tr>
+                        <td><code>onCheckClick()</code></td>
+                        <td><code>data-on-check-click</code></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><code>onCheckClickAll()</code></td>
+                        <td><code>data-on-check-click-all</code></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><code>onCheckDraw()</code></td>
+                        <td><code>data-on-check-draw</code></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><code>onViewSave()</code></td>
+                        <td><code>data-on-view-save</code></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><code>onViewGet()</code></td>
+                        <td><code>data-on-view-get</code></td>
+                        <td></td>
+                    </tr>
+                    <tr>
                         <td><code>onTableCreate(el)</code></td>
                         <td><code>data-on-table-create</code></td>
                         <td>Event fired after the table created.</td>
@@ -676,28 +727,42 @@
                     You can use table methods to interact with it.
                 </p>
                 <ul>
+                    <li><strong>draw()</strong></li>
                     <li><strong>sorting(dir)</strong></li>
-                    <li><strong>filter(val)</strong></li>
-                    <li><strong>loadData(source)</strong></li>
+                    <li><strong>search(val)</strong></li>
+                    <li><strong>loadData(source, review)</strong></li>
+                    <li><strong>reload(review)</strong></li>
                     <li><strong>next()</strong></li>
                     <li><strong>prev()</strong></li>
                     <li><strong>first()</strong></li>
                     <li><strong>last()</strong></li>
                     <li><strong>page(num)</strong></li>
-                    <li><strong>draw()</strong></li>
-                    <li><strong>addFilter(func)</strong></li>
+                    <li><strong>addFilter(func, redraw)</strong></li>
                     <li><strong>removeFilter(func_index)</strong></li>
+                    <li><strong>removeFilters()</strong></li>
+                    <li><strong>getItems()</strong></li>
+                    <li><strong>getHeads()</strong></li>
+                    <li><strong>getFilteredItems()</strong></li>
+                    <li><strong>getSelectedItems()</strong></li>
+                    <li><strong>getStoredKeys()</strong></li>
+                    <li><strong>clearSelected()</strong></li>
+                    <li><strong>clearSelected(redraw)</strong></li>
                     <li><strong>getFilters()</strong></li>
+                    <li><strong>getFiltersIndexes()</strong></li>
+                    <li><strong>openInspector()</strong></li>
+                    <li><strong>toggleInspector()</strong></li>
+                    <li><strong>resetView()</strong></li>
+                    <li><strong>export(to, mode, filename, options)</strong></li>
                 </ul>
 
                 <h3 id="_table_filters">Filters</h3>
                 <p>
                     You can add <strong>custom filters</strong> to your table component with a special attributes and methods.
-                    To set custom filters, use attributes <code>data-filter</code> and <code>data-filters</code>.
+                    To set custom filters, use attribute <code>data-filters</code>.
                 </p>
                 <p>
-                    Attribute <code>data-filter</code> set one filter, attribute <code>data-filters</code> set the number of filters.
-                    Value for <code>data-filter</code> must be valid function name, and for <code>data-filters</code> - comma separated functions name list.
+                    Attribute <code>data-filters</code> set the number of filters.
+                    Value for <code>data-filters</code> - comma separated functions name list.
                 </p>
 
                 <pre><code>
