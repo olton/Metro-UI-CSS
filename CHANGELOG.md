@@ -3,6 +3,7 @@
 + [x] Calendar: add attributes `data-prev-month-icon`, `data-next-month-icon`, `data-prev-year-icon`, `data-next-year-icon`
 + [x] Calendar: fix rendering for ie, issue #1202
 + [x] Table: add attribute `data-filters-operator="and|or"`
++ [x] Table: fix init filters, defined in attribute `data-filters`
 + [ ] Table: add `CRUD` feature, see docs for details
 
 ### 4.2.22
