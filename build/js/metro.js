@@ -14600,7 +14600,7 @@ var Select = {
             $.each(options, function(){
                 if (this.selected) result.push(this.value);
             });
-            return result;
+            return multiple ? result : result[0];
         }
 
         $.each(options, function(){this.selected = false;});
