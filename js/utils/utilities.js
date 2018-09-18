@@ -42,6 +42,10 @@ var Utils = {
         return result !== "Invalid Date";
     },
 
+    isDateObject: function(v){
+        return typeof v === 'object' && v['getMonth'] !== undefined;
+    },
+
     isInt: function(n){
         return Number(n) === n && n % 1 === 0;
     },

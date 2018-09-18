@@ -1,5 +1,5 @@
 /*
- * Metro 4 Components Library v4.2.22 build 699 (https://metroui.org.ua)
+ * Metro 4 Components Library v4.2.23 build @@build (https://metroui.org.ua)
  * Copyright 2018 Sergey Pimenov
  * Licensed under MIT
  */
@@ -19328,11 +19328,47 @@ aside::after {
   padding: 7px 8px;
   font-size: 80%;
 }
-.table .check-cell {
-  width: 36px!important;
-}
+.table .check-cell,
 .table .rownum-cell {
-  width: 36px!important;
+  width: 36px;
+  text-align: center;
+}
+.table .check-cell .checkbox,
+.table .check-cell .radio {
+  height: 24px;
+  line-height: 24px;
+}
+.table .crud-cell {
+  width: 1px;
+  text-align: center;
+}
+.table .crud-cell .crud-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.table .crud-cell .button {
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  padding: 0;
+  font-size: 12px;
+}
+.table .crud-cell .button + .button {
+  margin-left: 1px;
+}
+.table.fixed-layout .crud-cell {
+  width: 90px;
 }
 .table thead td.hidden,
 .table tbody td.hidden,
@@ -19402,9 +19438,9 @@ aside::after {
   border: 1px double #dfdfdf;
   width: auto;
   padding: 10px;
+  max-height: calc(100vh - 40px);
   -webkit-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3);
           box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3);
-  max-height: calc(100vh - 100px);
 }
 .table-inspector .table-inspector-header {
   display: block;
@@ -19459,6 +19495,22 @@ aside::after {
 }
 .table-inspector.open {
   display: block;
+}
+.table-form {
+  display: block;
+  position: absolute;
+  z-index: 500;
+  height: auto;
+  max-height: calc(100vh - 40px);
+  width: auto;
+  max-width: calc(100vw - 40px);
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate3d(-50%, -50%, 0);
+          transform: translate3d(-50%, -50%, 0);
+  border: 1px solid #dfdfdf;
+  -webkit-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3);
+          box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3);
 }
 @-webkit-keyframes flash-bg {
   0% {
@@ -28611,6 +28663,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
 }
 .calendar-header .header-year {
   font-size: 0.75rem;
+  line-height: 1;
 }
 .calendar-header .header-day {
   font-size: 1.325rem;
@@ -28637,46 +28690,29 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 0.5rem 0;
+  padding: 0;
   width: 100%;
 }
 .calendar-content .calendar-toolbar .prev-month,
 .calendar-content .calendar-toolbar .prev-year,
 .calendar-content .calendar-toolbar .next-month,
 .calendar-content .calendar-toolbar .next-year {
-  padding: 0.5rem;
+  padding: 0.5rem 0;
   cursor: pointer;
   text-align: center;
-  -webkit-box-flex: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
-  width: 37px;
-}
-.calendar-content .calendar-toolbar .prev-month::after,
-.calendar-content .calendar-toolbar .prev-year::after,
-.calendar-content .calendar-toolbar .next-month::after,
-.calendar-content .calendar-toolbar .next-year::after {
-  font-size: 1.625rem;
-  line-height: 1rem;
+  width: 30px;
+  display: block;
   position: relative;
-}
-.calendar-content .calendar-toolbar .prev-month::after,
-.calendar-content .calendar-toolbar .prev-year::after {
-  content: "\2039";
-}
-.calendar-content .calendar-toolbar .next-month::after,
-.calendar-content .calendar-toolbar .next-year::after {
-  content: "\203A";
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
 }
 .calendar-content .calendar-toolbar .curr-month,
 .calendar-content .calendar-toolbar .curr-year {
-  -webkit-box-flex: 2;
-      -ms-flex-positive: 2;
-          flex-grow: 2;
-  padding: 0.5rem;
+  padding: 0.5rem 0;
   width: 100%;
   text-align: center;
   cursor: pointer;
+  font-size: 14px;
 }
 .calendar-content .week-days,
 .calendar-content .days {
@@ -28979,8 +29015,11 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   position: absolute;
   top: 100%;
   left: 0;
-  display: block;
+  display: none;
   z-index: 500;
+}
+.calendar-picker .calendar.open {
+  display: block!important;
 }
 .calendar-picker .calendar.open-up {
   top: auto;
@@ -40226,6 +40265,15 @@ video:-webkit-full-screen {
 }
 .default-icon-upload {
   background-image: url("data:image/svg+xml;charset=UTF-8,%3C!--%20Generated%20by%20IcoMoon.io%20--%3E%0A%3Csvg%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22512%22%20height%3D%22512%22%20viewBox%3D%220%200%20512%20512%22%3E%0A%3Ctitle%3E%3C%2Ftitle%3E%0A%3Cg%20id%3D%22icomoon-ignore%22%3E%0A%3C%2Fg%3E%0A%3Cpath%20d%3D%22M224%20288h64v-128h96l-128-128-128%20128h96zM320%20216v49.356l146.533%2054.644-210.533%2078.509-210.533-78.509%20146.533-54.644v-49.356l-192%2072v128l256%2096%20256-96v-128z%22%3E%3C%2Fpath%3E%0A%3C%2Fsvg%3E%0A");
+}
+.default-icon-pencil {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3C!--%20Generated%20by%20IcoMoon.io%20--%3E%0A%3Csvg%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22512%22%20height%3D%22512%22%20viewBox%3D%220%200%20512%20512%22%3E%0A%3Ctitle%3E%3C%2Ftitle%3E%0A%3Cg%20id%3D%22icomoon-ignore%22%3E%0A%3C%2Fg%3E%0A%3Cpath%20d%3D%22M432%200c44.182%200%2080%2035.817%2080%2080%200%2018.010-5.955%2034.629-16%2048l-32%2032-112-112%2032-32c13.371-10.045%2029.989-16%2048-16zM32%20368l-32%20144%20144-32%20296-296-112-112-296%20296zM357.789%20181.789l-224%20224-27.578-27.578%20224-224%2027.578%2027.578z%22%3E%3C%2Fpath%3E%0A%3C%2Fsvg%3E%0A");
+}
+.default-icon-chevron-left {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3C!--%20Generated%20by%20IcoMoon.io%20--%3E%0A%3Csvg%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22768%22%20height%3D%22768%22%20viewBox%3D%220%200%20768%20768%22%3E%0A%3Ctitle%3E%3C%2Ftitle%3E%0A%3Cg%20id%3D%22icomoon-ignore%22%3E%0A%3C%2Fg%3E%0A%3Cpath%20d%3D%22M493.28%20237.28l-45.28-45.28-192%20192%20192%20192%2045.28-45.28-146.72-146.72z%22%3E%3C%2Fpath%3E%0A%3C%2Fsvg%3E%0A");
+}
+.default-icon-chevron-right {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3C!--%20Generated%20by%20IcoMoon.io%20--%3E%0A%3Csvg%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22768%22%20height%3D%22768%22%20viewBox%3D%220%200%20768%20768%22%3E%0A%3Ctitle%3E%3C%2Ftitle%3E%0A%3Cg%20id%3D%22icomoon-ignore%22%3E%0A%3C%2Fg%3E%0A%3Cpath%20d%3D%22M320%20192l-45.28%2045.28%20146.72%20146.72-146.72%20146.72%2045.28%2045.28%20192-192z%22%3E%3C%2Fpath%3E%0A%3C%2Fsvg%3E%0A");
 }
 .c-auto {
   cursor: auto;
