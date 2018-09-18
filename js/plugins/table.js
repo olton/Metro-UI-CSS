@@ -44,6 +44,23 @@ var Table = {
     options: {
         locale: METRO_LOCALE,
 
+        crud: false,
+
+        crudTitle: "CRUD",
+        rownumTitle: "#",
+
+        editButton: true,
+        delButton: true,
+        addButton: true,
+
+        editButtonIcon: "<span class='default-icon-pencil'></span>",
+        delButtonIcon: "<span class='default-icon-minus'></span>",
+        addButtonIcon: "<span class='default-icon-plus'></span>",
+
+        clsEditButton: "",
+        clsDelButton: "",
+        clsAddButton: "",
+
         check: false,
         checkColIndex: 0,
         checkName: null,
@@ -251,39 +268,45 @@ var Table = {
 
     _service: function(){
         var o = this.options;
-        var item_check, item_rownum;
-        var service = [];
 
-        this.service = {};
-
-        item_rownum = {
-            title: "#",
-            format: undefined,
-            name: undefined,
-            sortable: false,
-            sortDir: undefined,
-            clsColumn: o.rownum !== true ? "d-none" : "",
-            cls: o.rownum !== true ? "d-none" : "",
-            colspan: undefined,
-            type: "rownum"
-        };
-
-        item_check = {
-            title: o.checkType === "checkbox" ? "<input type='checkbox' data-role='checkbox' class='table-service-check-all' data-style='"+o.checkStyle+"'>" : "",
-            format: undefined,
-            name: undefined,
-            sortable: false,
-            sortDir: undefined,
-            clsColumn: o.check !== true ? "d-none" : "",
-            cls: o.check !== true ? "d-none" : "",
-            colspan: undefined,
-            type: "rowcheck"
-        };
-
-        service.push(item_rownum);
-        service.push(item_check);
-
-        this.service = service;
+        this.service = [
+            {
+                // CRUD
+                title: o.crudTitle,
+                format: undefined,
+                name: undefined,
+                sortable: false,
+                sortDir: undefined,
+                clsColumn: "crud-cell" + (o.crud === true ? "" : " d-none "),
+                cls: "crud-cell" + (o.crud === true ? "" : " d-none "),
+                colspan: undefined,
+                type: "button"
+            },
+            {
+                // Rownum
+                title: o.rownumTitle,
+                format: undefined,
+                name: undefined,
+                sortable: false,
+                sortDir: undefined,
+                clsColumn: "rownum-cell " + (o.rownum !== true ? "d-none" : ""),
+                cls: "rownum-cell " + (o.rownum !== true ? "d-none" : ""),
+                colspan: undefined,
+                type: "rownum"
+            },
+            {
+                // Check
+                title: o.checkType === "checkbox" ? "<input type='checkbox' data-role='checkbox' class='table-service-check-all' data-style='"+o.checkStyle+"'>" : "",
+                format: undefined,
+                name: undefined,
+                sortable: false,
+                sortDir: undefined,
+                clsColumn: "check-cell " + (o.check !== true ? "d-none" : ""),
+                cls: "check-cell "+(o.check !== true ? "d-none" : ""),
+                colspan: undefined,
+                type: "rowcheck"
+            }
+        ];
     },
 
     _createView: function(){
@@ -407,7 +430,10 @@ var Table = {
                 colspan: item.attr("colspan"),
                 type: "data",
                 size: Utils.isValue(item.data("size")) ? item.data("size") : "",
-                show: !item.hasClass("hidden") || (Utils.isValue(item.data("show")) && JSON.parse(item.data("show")) === false)
+                show: !item.hasClass("hidden") || (Utils.isValue(item.data("show")) && JSON.parse(item.data("show")) === false),
+                required: Utils.isValue(item.data("required")) ? JSON.parse(item.data("required")) === true  : false,
+                field: Utils.isValue(item.data("field")) ? item.data("field") : "input",
+                fieldType: Utils.isValue(item.data("field-type")) ? item.data("field-type") : "text"
             };
             that.heads.push(head_item);
         });
@@ -504,8 +530,6 @@ var Table = {
             if (Utils.isValue(item.title)) {th.html(item.title);}
             if (Utils.isValue(item.size)) {th.css({width: item.size});}
             if (Utils.isValue(item.cls)) {classes.push(item.cls);}
-            if (item.type === 'rowcheck') {classes.push("check-cell");}
-            if (item.type === 'rownum') {classes.push("rownum-cell");}
             classes.push(o.clsHeadCell);
             th.addClass(classes.join(" "));
         });
@@ -916,6 +940,10 @@ var Table = {
         }
 
         this._createInspectorEvents();
+
+        element.on(Metro.events.click, ".js-table-crud-button", function(){
+
+        });
     },
 
     _createInspectorEvents: function(){
@@ -1245,14 +1273,49 @@ var Table = {
         items = this._filter();
 
         for (i = start; i <= stop; i++) {
-            var j, tr, td, check, cells = [], tds = [];
+            var j, tr, td, check, cells = [], tds = [], b;
             if (Utils.isValue(items[i])) {
                 tr = $("<tr>").addClass(o.clsBodyRow);
 
-                // Rownum
-                td = $("<td>").html(i + 1);
+                // CRUD buttons
+                td = $("<td>");
                 if (that.service[0].clsColumn !== undefined) {
                     td.addClass(that.service[0].clsColumn);
+                }
+                var crud_container = $("<div>").addClass("crud-container").appendTo(td);
+                if (o.editButton === true) {
+                    $("<button>")
+                        .addClass("button")
+                        .addClass("js-table-crud-button js-table-crud-button-edit")
+                        .addClass(o.clsEditButton)
+                        .html(o.editButtonIcon)
+                        .data("uid", items[i][o.checkColIndex])
+                        .appendTo(crud_container);
+                }
+                if (o.addButton === true) {
+                    $("<button>")
+                        .addClass("button")
+                        .addClass("js-table-crud-button js-table-crud-button-add")
+                        .addClass(o.clsAddButton)
+                        .html(o.addButtonIcon)
+                        .data("uid", null)
+                        .appendTo(crud_container);
+                }
+                if (o.delButton === true) {
+                    $("<button>")
+                        .addClass("button")
+                        .addClass("js-table-crud-button js-table-crud-button-del")
+                        .addClass(o.clsDelButton)
+                        .html(o.delButtonIcon)
+                        .data("uid", items[i][o.checkColIndex])
+                        .appendTo(crud_container);
+                }
+                td.appendTo(tr);
+
+                // Rownum
+                td = $("<td>").html(i + 1);
+                if (that.service[1].clsColumn !== undefined) {
+                    td.addClass(that.service[1].clsColumn);
                 }
                 td.appendTo(tr);
 
@@ -1271,8 +1334,8 @@ var Table = {
                 check.addClass("table-service-check");
                 Utils.exec(o.onCheckDraw, [check], check[0]);
                 check.appendTo(td);
-                if (that.service[1].clsColumn !== undefined) {
-                    td.addClass(that.service[1].clsColumn);
+                if (that.service[2].clsColumn !== undefined) {
+                    td.addClass(that.service[2].clsColumn);
                 }
                 td.appendTo(tr);
 

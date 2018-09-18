@@ -297,6 +297,9 @@ var Select = {
                 }
             });
             item.remove();
+
+            element.trigger("change");
+
             Utils.exec(o.onItemDeselect, [option], element[0]);
             Utils.exec(o.onChange, [that.getSelected()], element[0]);
             e.preventDefault();

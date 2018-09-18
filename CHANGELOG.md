@@ -1,3 +1,9 @@
+### 4.2.23
++ [x] Select: fix native `onchange` event triggering
++ [x] Calendar: add attributes `data-prev-month-icon`, `data-next-month-icon`, `data-prev-year-icon`, `data-next-year-icon`
++ [ ] Table: add attribute `data-edit`, `data-edit-url`
++ [ ] Table: add attributes for field defining: `required`, `field`, `fieldType` 
+
 ### 4.2.22
 + [x] Appbar: remove classes `app-bar-expanded-*` and add attributes `data-expand`, `data-exapnd-point`
 + [x] Table: fix `hidden` class applying. issue #1194
