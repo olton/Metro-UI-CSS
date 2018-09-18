@@ -2,6 +2,7 @@
 + [x] Select: fix native `onchange` event triggering
 + [x] Calendar: add attributes `data-prev-month-icon`, `data-next-month-icon`, `data-prev-year-icon`, `data-next-year-icon`
 + [x] Calendar: fix rendering for ie, issue #1202
++ [x] Calendar picker: add `data-prepend` attribute, issue #1201
 + [x] Table: add attribute `data-filters-operator="and|or"`
 + [x] Table: fix init filters, defined in attribute `data-filters`
 + [x] Table: rename `filterMinLength` to `searchMinLength`

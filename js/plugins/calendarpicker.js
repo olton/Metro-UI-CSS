@@ -20,6 +20,8 @@ var CalendarPicker = {
 
     options: {
 
+        prepend: "",
+
         calendarWide: false,
         calendarWidePoint: null,
 
@@ -186,6 +188,10 @@ var CalendarPicker = {
         calendarButton = $("<button>").addClass("button").attr("tabindex", -1).attr("type", "button").html(o.calendarButtonIcon);
         calendarButton.appendTo(buttons);
 
+        if (o.prepend !== "") {
+            var prepend = $("<div>").html(o.prepend);
+            prepend.addClass("prepend").addClass(o.clsPrepend).appendTo(container);
+        }
 
         if (element.attr('dir') === 'rtl' ) {
             container.addClass("rtl");
