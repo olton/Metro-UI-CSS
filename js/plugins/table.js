@@ -45,18 +45,13 @@ var Table = {
         locale: METRO_LOCALE,
 
         crud: false,
-
         crudTitle: "CRUD",
-        rownumTitle: "#",
-
         editButton: true,
         delButton: true,
         addButton: true,
-
         editButtonIcon: "<span class='default-icon-pencil'></span>",
         delButtonIcon: "<span class='default-icon-minus'></span>",
         addButtonIcon: "<span class='default-icon-plus'></span>",
-
         clsEditButton: "",
         clsDelButton: "",
         clsAddButton: "",
@@ -68,9 +63,11 @@ var Table = {
         checkStyle: 1,
         checkStoreKey: "TABLE:$1:KEYS",
         rownum: false,
+        rownumTitle: "#",
 
         filter: null,
         filters: null,
+        filtersOperator: "and",
         source: null,
 
         filterMinLength: 1,
@@ -1230,11 +1227,20 @@ var Table = {
                 var result = Utils.isValue(that.filterString) && that.filterString.length >= o.filterMinLength ? ~c1.indexOf(flt.length > 1 ? flt[1] : flt[0]) : true;
 
                 if (result === true && that.filters.length > 0) {
-                    for (i = 0; i < that.filters.length; i++) {
-                        if (!Utils.isValue(that.filters[i])) continue;
-                        if (Utils.exec(that.filters[i], [row, that.heads]) !== true) {
-                            result = false;
-                            break;
+                    if (o.filtersOperator.toLowerCase() === "and") {
+                        for (i = 0; i < that.filters.length; i++) {
+                            if (!Utils.isValue(that.filters[i])) continue;
+                            if (Utils.exec(that.filters[i], [row, that.heads]) !== true) {
+                                result = false;
+                                break;
+                            }
+                        }
+                    } else {
+                        result = result && that.filterString.length >= o.filterMinLength;
+                        console.log(result);
+                        for (i = 0; i < that.filters.length; i++) {
+                            if (!Utils.isValue(that.filters[i])) continue;
+                            result = result || Utils.exec(that.filters[i], [row, that.heads]);
                         }
                     }
                 }

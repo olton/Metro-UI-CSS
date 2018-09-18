@@ -28690,7 +28690,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 0;
+  padding: 0.5rem 0;
   width: 100%;
 }
 .calendar-content .calendar-toolbar .prev-month,
