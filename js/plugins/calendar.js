@@ -635,12 +635,15 @@ var Calendar = {
     },
 
     _drawCalendar: function(){
-        this.element.html("");
-        this._drawHeader();
-        this._drawContent();
-        this._drawFooter();
-        this._drawMonths();
-        this._drawYears();
+        var that = this;
+        setTimeout(function(){
+            that.element.html("");
+            that._drawHeader();
+            that._drawContent();
+            that._drawFooter();
+            that._drawMonths();
+            that._drawYears();
+        }, 1);
     },
 
     getPreset: function(){

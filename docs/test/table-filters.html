@@ -14,18 +14,13 @@
 <body>
 <div class="container">
     <h1 class="text-center">Metro 4 Table component</h1>
-    <h3 class="text-center">Table inspector and rows with check test</h3>
+    <h3 class="text-center">Table filters</h3>
 
     <div class="d-flex flex-justify-center" id="activity">
         <div data-role="activity" data-type="cycle" data-style="color"></div>
     </div>
 
-    <div>
-        <button class="button alert" onclick="$('#t2').data('table').openInspector(true)">Inspector</button>
-        <button class="button alert" onclick="$('#t2').data('table').reload()">Reload</button>
-    </div>
-
-    <table class="table 1subcompact striped table-border mt-4" id="t2"
+    <table class="table 1subcompact striped table-border mt-4" id="t"
            data-role="table"
            data-cls-component="mt-4"
            data-rows="10"
@@ -33,17 +28,36 @@
            data-pagination="true"
            data-show-all-pages="false"
            data-on-data-loaded="$('#activity').remove()"
-           data-rownum="false"
-           data-check="true"
-           data-check-col-index="0"
-           data-check-type="checkbox"
-           data-on-view-created="console.log(this)"
-           data-check-style="2"
-           data-crud="false"
+           data-filters-operator="or"
     ></table>
 </div>
 
 <script src="../js/jquery-3.3.1.min.js"></script>
 <script src="../metro/js/metro.js?ver=@@b-version"></script>
+<script>
+    var i1, i2;
+    var table = $('#t').data('table');
+
+    i1 = table.addFilter(function(row, heads){
+        var is_active_index = 0;
+        heads.forEach(function(el, i){
+            if (el.name === "name") {
+                is_active_index = i;
+            }
+        });
+        return row[is_active_index].contains("Jak");
+    });
+
+    i2 = table.addFilter(function(row, heads){
+        var is_active_index = 0;
+        heads.forEach(function(el, i){
+            if (el.name === "name") {
+                is_active_index = i;
+            }
+        });
+        return row[is_active_index].contains("Step");
+    });
+
+</script>
 </body>
 </html>
