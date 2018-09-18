@@ -28,6 +28,7 @@
            data-pagination="true"
            data-show-all-pages="false"
            data-on-data-loaded="$('#activity').remove()"
+           data-filters="f1, f2"
            data-filters-operator="or"
     ></table>
 </div>
@@ -38,7 +39,27 @@
     var i1, i2;
     var table = $('#t').data('table');
 
-    i1 = table.addFilter(function(row, heads){
+    // i1 = table.addFilter(function(row, heads){
+    //     var is_active_index = 0;
+    //     heads.forEach(function(el, i){
+    //         if (el.name === "name") {
+    //             is_active_index = i;
+    //         }
+    //     });
+    //     return row[is_active_index].contains("Jak");
+    // });
+    //
+    // i2 = table.addFilter(function(row, heads){
+    //     var is_active_index = 0;
+    //     heads.forEach(function(el, i){
+    //         if (el.name === "name") {
+    //             is_active_index = i;
+    //         }
+    //     });
+    //     return row[is_active_index].contains("Step");
+    // });
+
+    var f1 = function(row, heads){
         var is_active_index = 0;
         heads.forEach(function(el, i){
             if (el.name === "name") {
@@ -46,9 +67,9 @@
             }
         });
         return row[is_active_index].contains("Jak");
-    });
+    };
 
-    i2 = table.addFilter(function(row, heads){
+    var f2 = function(row, heads){
         var is_active_index = 0;
         heads.forEach(function(el, i){
             if (el.name === "name") {
@@ -56,7 +77,7 @@
             }
         });
         return row[is_active_index].contains("Step");
-    });
+    };
 
 </script>
 </body>
