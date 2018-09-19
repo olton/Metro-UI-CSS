@@ -9,7 +9,8 @@
     {
       "name": "name",
       "title": "Name",
-      "sortable": true
+      "sortable": true,
+      "sortDir": "asc"
     },
     {
       "name": "start",
