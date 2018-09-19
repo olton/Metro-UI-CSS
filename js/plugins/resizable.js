@@ -48,8 +48,8 @@ var Resizable = {
     _createStructure: function(){
         var element = this.element, o = this.options;
 
-        if (Utils.isValue(o.resizeElement) && $(o.resizeElement).length > 0) {
-            this.resizer = $(o.resizeElement);
+        if (Utils.isValue(o.resizeElement) && element.find(o.resizeElement).length > 0) {
+            this.resizer = element.find(o.resizeElement);
         } else {
             this.resizer = $("<span>").addClass("resize-element").appendTo(element);
         }

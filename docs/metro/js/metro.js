@@ -13917,8 +13917,8 @@ var Resizable = {
     _createStructure: function(){
         var element = this.element, o = this.options;
 
-        if (Utils.isValue(o.resizeElement) && $(o.resizeElement).length > 0) {
-            this.resizer = $(o.resizeElement);
+        if (Utils.isValue(o.resizeElement) && element.find(o.resizeElement).length > 0) {
+            this.resizer = element.find(o.resizeElement);
         } else {
             this.resizer = $("<span>").addClass("resize-element").appendTo(element);
         }
@@ -17165,7 +17165,7 @@ var Table = {
                 title: item.html(),
                 format: Utils.isValue(item.data("format")) ? item.data("format") : undefined,
                 name: Utils.isValue(item.data("name")) ? item.data("name") : undefined,
-                sortable: item.hasClass("sortable-column"),
+                sortable: item.hasClass("sortable-column") || (Utils.isValue(item.data('sortable')) && JSON.parse(item.data('sortable') === true)),
                 sortDir: dir,
                 clsColumn: Utils.isValue(item.data("cls-column")) ? item.data("cls-column") : "",
                 cls: item_class,
