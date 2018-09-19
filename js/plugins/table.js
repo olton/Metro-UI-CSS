@@ -410,33 +410,40 @@ var Table = {
             var item = $(this);
             var dir, head_item, item_class;
 
-            if (item.hasClass("sort-asc")) {
-                dir = "asc";
-            } else if (item.hasClass("sort-desc")) {
-                dir = "desc"
+            if (Utils.isValue(item.data('sort-dir'))) {
+                dir = item.data('sort-dir');
             } else {
-                dir = undefined;
+                if (item.hasClass("sort-asc")) {
+                    dir = "asc";
+                } else if (item.hasClass("sort-desc")) {
+                    dir = "desc"
+                } else {
+                    dir = undefined;
+                }
             }
 
             item_class = item[0].className.replace("sortable-column", "");
             item_class = item_class.replace("sort-asc", "");
             item_class = item_class.replace("sort-desc", "");
+            item_class = item_class.replace("hidden", "");
 
             head_item = {
+                type: "data",
                 title: item.html(),
-                format: Utils.isValue(item.data("format")) ? item.data("format") : undefined,
-                name: Utils.isValue(item.data("name")) ? item.data("name") : undefined,
+                format: Utils.isValue(item.data("format")) ? item.data("format") : "string",
+                name: Utils.isValue(item.data("name")) ? item.data("name") : item.text().replace(" ", "_"),
                 sortable: item.hasClass("sortable-column") || (Utils.isValue(item.data('sortable')) && JSON.parse(item.data('sortable') === true)),
                 sortDir: dir,
                 clsColumn: Utils.isValue(item.data("cls-column")) ? item.data("cls-column") : "",
                 cls: item_class,
                 colspan: item.attr("colspan"),
-                type: "data",
                 size: Utils.isValue(item.data("size")) ? item.data("size") : "",
-                show: !item.hasClass("hidden") || (Utils.isValue(item.data("show")) && JSON.parse(item.data("show")) === false),
+                show: !(item.hasClass("hidden") || (Utils.isValue(item.data('show')) && JSON.parse(item.data('show')) === false)),
+
                 required: Utils.isValue(item.data("required")) ? JSON.parse(item.data("required")) === true  : false,
                 field: Utils.isValue(item.data("field")) ? item.data("field") : "input",
-                fieldType: Utils.isValue(item.data("field-type")) ? item.data("field-type") : "text"
+                fieldType: Utils.isValue(item.data("field-type")) ? item.data("field-type") : "text",
+                validator: Utils.isValue(item.data("validator")) ? item.data("validator") : null
             };
             that.heads.push(head_item);
         });
