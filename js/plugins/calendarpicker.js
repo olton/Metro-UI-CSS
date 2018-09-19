@@ -115,7 +115,7 @@ var CalendarPicker = {
 
         this.value.setHours(0,0,0,0);
 
-        element.val(this.value.format(o.format));
+        element.val(!Utils.isValue(curr) ? "" : this.value.format(o.format));
 
         if (prev.length === 0) {
             parent.prepend(container);
