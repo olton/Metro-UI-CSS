@@ -17169,10 +17169,10 @@ var Table = {
             head_item = {
                 type: "data",
                 title: item.html(),
-                format: Utils.isValue(item.data("format")) ? item.data("format") : "string",
                 name: Utils.isValue(item.data("name")) ? item.data("name") : item.text().replace(" ", "_"),
                 sortable: item.hasClass("sortable-column") || (Utils.isValue(item.data('sortable')) && JSON.parse(item.data('sortable') === true)),
                 sortDir: dir,
+                format: Utils.isValue(item.data("format")) ? item.data("format") : "string",
                 clsColumn: Utils.isValue(item.data("cls-column")) ? item.data("cls-column") : "",
                 cls: item_class,
                 colspan: item.attr("colspan"),
@@ -18448,6 +18448,10 @@ var Table = {
         var body = $("<tbody>").appendTo(table);
         var i, j, cells, tds = [], items, tr, td;
         var start, stop;
+
+        if (typeof Export.tableToCSV !== 'function') {
+            return ;
+        }
 
         mode = Utils.isValue(mode) ? mode.toLowerCase() : "all-filtered";
         filename = Utils.isValue(filename) ? filename : Utils.elementId("table")+"-export.csv";

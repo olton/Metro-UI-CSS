@@ -47,27 +47,35 @@
                 <hr/>
                 <ul class="toc-nav">
                     <li class="toc-entry"><a href="#">Table</a></li>
-                    <li class="toc-entry"><a href="#_table_create">About</a></li>
-                    <li class="toc-entry"><a href="#_table_sorting">Sorting</a></li>
-                    <li class="toc-entry"><a href="#_table_search">Search</a></li>
-                    <li class="toc-entry"><a href="#_table_rows_counter">Rows counter</a></li>
-                    <li class="toc-entry"><a href="#_table_info">Table info</a></li>
-                    <li class="toc-entry"><a href="#_table_pagination">Pagination</a></li>
+                    <li class="toc-entry"><a href="#_table_create">Create table</a></li>
+                    <li class="toc-entry"><a href="#_table_columns">Columns</a></li>
+                    <li class="toc-entry"><a href="#_table_columns">Data</a></li>
+                    <li class="toc-entry">
+                        <a href="#_table_features">Features</a>
+                        <ul>
+                            <li class="toc-entry"><a href="#_table_sorting">Sorting</a></li>
+                            <li class="toc-entry"><a href="#_table_searching">Searching</a></li>
+                            <li class="toc-entry"><a href="#_table_filtering">Filtering</a></li>
+                            <li class="toc-entry"><a href="#_table_pagination">Pagination</a></li>
+                            <li class="toc-entry"><a href="#_table_rows_counter">Rows counter</a></li>
+                            <li class="toc-entry"><a href="#_table_info">Table info</a></li>
+                            <li class="toc-entry"><a href="#_table_inspector">Table inspector</a></li>
+                            <li class="toc-entry"><a href="#_table_export">Export data</a></li>
+                        </ul>
+                    </li>
                     <li class="toc-entry">
                         <a href="#_table_external_data">External data</a>
                         <ul>
-                            <li class="toc-entry"><a href="#_table_external_data_format">Data format</a></li>
-                            <li class="toc-entry"><a href="#_table_external_data_format_header">Header section</a></li>
-                            <li class="toc-entry"><a href="#_table_external_data_format_data">Data section</a></li>
-                            <li class="toc-entry"><a href="#_table_external_data_format_footer">Footer section</a></li>
+                            <li class="toc-entry"><a href="#_table_data_format">Data format</a></li>
+                            <li class="toc-entry"><a href="#_table_data_format_header">Header section</a></li>
+                            <li class="toc-entry"><a href="#_table_data_format_data">Data section</a></li>
+                            <li class="toc-entry"><a href="#_table_data_format_footer">Footer section</a></li>
                         </ul>
                     </li>
                     <li class="toc-entry"><a href="#_table_options">Options</a></li>
                     <li class="toc-entry"><a href="#_table_events">Events</a></li>
                     <li class="toc-entry"><a href="#_table_methods">Methods</a></li>
-                    <li class="toc-entry"><a href="#_table_filters">Custom Filters</a></li>
-                    <li class="toc-entry"><a href="#_table_customize">Customize visual</a></li>
-                    <li class="toc-entry"><a href="#_table_custom_wrappers">Wrappers</a></li>
+                    <li class="toc-entry"><a href="#_table_customize">Customize</a></li>
                 </ul>
 
             </div>
@@ -84,15 +92,15 @@
 
                 <!-- ads-html -->
 
-                <h3 id="_table_create">About</h3>
+                <h3 id="_table_create">Create table</h3>
                 <p class="text-small">New in 4.2.8, updated in 4.2.23</p>
                 <p>
-                    If you need to create interactive table with filtering, searching and pagination features, you can use Metro 4 <code>table</code> component.
+                    If you need to create interactive table with ordering, filtering, searching and pagination features, you can use Metro 4 <code>table</code> component.
                     To create <code>table</code>, add attribute <code>data-role="table"</code> to your HTML table element and setup, if need, additional options with special attributes.
                     You can create <code>table</code> and for your own HTML table with predefined data and for the table with remote data definition.
                 </p>
-                <p class="remark alert">
-                    An important condition is the creation of sections <code>thead</code> and <code>tbody</code>.
+                <p class="remark info">
+                    An important condition - is the creation of sections <code>thead</code> and <code>tbody</code>.
                 </p>
                 <div class="example">
                     <table class="table striped table-border mt-4"
@@ -112,6 +120,77 @@
                     ...
                     &lt;/table&gt;
                 </code></pre>
+
+                <h3 id="_table_columns">Columns definition</h3>
+                <p>
+                    For right works component, you must right define columns.
+                    Columns must be defined in <code>thead</code> section.
+                    You can use any attributes to define its:
+                </p>
+                <table class="table table-border cell-border options-table mt-4">
+                    <thead>
+                    <tr>
+                        <td>Attribute</td>
+                        <td>Desc</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><code>data-name</code></td>
+                        <td>Column name</td>
+                    </tr>
+                    <tr>
+                        <td><code>data-sortable</code></td>
+                        <td>Sortable column or not. Values: true, false</td>
+                    </tr>
+                    <tr>
+                        <td><code>data-sort-dir</code></td>
+                        <td>Initial sorting direction. Values: asc, desc </td>
+                    </tr>
+                    <tr>
+                        <td><code>data-format</code></td>
+                        <td>Data format helper for right sorting. Values: string (default), date, number, int, float, money</td>
+                    </tr>
+                    <tr>
+                        <td><code>data-format-mask</code></td>
+                        <td>If you data is date, and date not in ECMAScript date format, you must define data mask (see Extensions for string.toDate)</td>
+                    </tr>
+                    <tr>
+                        <td><code>data-size</code></td>
+                        <td>If can define size for column.</td>
+                    </tr>
+                    <tr>
+                        <td><code>data-show</code></td>
+                        <td>If can define show or hide column.</td>
+                    </tr>
+                    <tr>
+                        <td><code>data-cls</code></td>
+                        <td>If can define additional classes for column heading cell.</td>
+                    </tr>
+                    <tr>
+                        <td><code>data-cls-columns</code></td>
+                        <td>If can define additional classes for column heading cell.</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <pre><code class="html">
+                    &lt;table class="table" data-role="table"&gt;
+                    &lt;thead&gt;
+                    &lt;tr&gt;
+                        &lt;th data-sortable="true" data-sort-dir="sort-asc"&gt;Name&lt;/th&gt;
+                        &lt;th data-sortable="true"&gt;Office&lt;/th&gt;
+                        &lt;th data-sortable="true" data-format="number"&gt;Age&lt;/th&gt;
+                        &lt;th data-sortable="true" data-format="date"&gt;Start date&lt;/th&gt;
+                        &lt;th data-sortable="true" data-show="false" data-format="money"&gt;Salary&lt;/th&gt;
+                    &lt;/tr&gt;
+                    &lt;/thead&gt;
+                    ...
+                    &lt;/table&gt;
+                </code></pre>
+                <p class="remark info">
+                    Currently, you can define only one row in head section.
+                </p>
+
 
             </main>
         </div>
