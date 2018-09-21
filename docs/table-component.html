@@ -48,31 +48,18 @@
                 <ul class="toc-nav">
                     <li class="toc-entry"><a href="#">Table</a></li>
                     <li class="toc-entry"><a href="#_table_create">Create table</a></li>
+                    <li class="toc-entry"><a href="#_table_options">Table options</a></li>
                     <li class="toc-entry"><a href="#_table_columns">Columns</a></li>
-                    <li class="toc-entry"><a href="#_table_columns">Data</a></li>
-                    <li class="toc-entry">
-                        <a href="#_table_features">Features</a>
-                        <ul>
-                            <li class="toc-entry"><a href="#_table_sorting">Sorting</a></li>
-                            <li class="toc-entry"><a href="#_table_searching">Searching</a></li>
-                            <li class="toc-entry"><a href="#_table_filtering">Filtering</a></li>
-                            <li class="toc-entry"><a href="#_table_pagination">Pagination</a></li>
-                            <li class="toc-entry"><a href="#_table_rows_counter">Rows counter</a></li>
-                            <li class="toc-entry"><a href="#_table_info">Table info</a></li>
-                            <li class="toc-entry"><a href="#_table_inspector">Table inspector</a></li>
-                            <li class="toc-entry"><a href="#_table_export">Export data</a></li>
-                        </ul>
-                    </li>
-                    <li class="toc-entry">
-                        <a href="#_table_external_data">External data</a>
-                        <ul>
-                            <li class="toc-entry"><a href="#_table_data_format">Data format</a></li>
-                            <li class="toc-entry"><a href="#_table_data_format_header">Header section</a></li>
-                            <li class="toc-entry"><a href="#_table_data_format_data">Data section</a></li>
-                            <li class="toc-entry"><a href="#_table_data_format_footer">Footer section</a></li>
-                        </ul>
-                    </li>
-                    <li class="toc-entry"><a href="#_table_options">Options</a></li>
+                    <li class="toc-entry"><a href="#_table_columns">Data cells</a></li>
+                    <li class="toc-entry"><a href="#_table_sorting">Sorting</a></li>
+                    <li class="toc-entry"><a href="#_table_searching">Searching</a></li>
+                    <li class="toc-entry"><a href="#_table_filtering">Filtering</a></li>
+                    <li class="toc-entry"><a href="#_table_pagination">Pagination</a></li>
+                    <li class="toc-entry"><a href="#_table_rows_counter">Rows counter</a></li>
+                    <li class="toc-entry"><a href="#_table_info">Table info</a></li>
+                    <li class="toc-entry"><a href="#_table_inspector">Table inspector</a></li>
+                    <li class="toc-entry"><a href="#_table_export">Export data</a></li>
+                    <li class="toc-entry"><a href="#_table_external_data">External data</a></li>
                     <li class="toc-entry"><a href="#_table_events">Events</a></li>
                     <li class="toc-entry"><a href="#_table_methods">Methods</a></li>
                     <li class="toc-entry"><a href="#_table_customize">Customize</a></li>
@@ -121,6 +108,283 @@
                     &lt;/table&gt;
                 </code></pre>
 
+                <h3 id="_table_options">Table options</h3>
+                <p>
+                    You can use different options to define table behavior. This options you can use in <code>&lt;table&gt;</code> tag definition.
+                </p>
+                <table class="table table-border cell-border options-table mt-4">
+                    <thead>
+                    <tr>
+                        <td>Option</td>
+                        <td>Data-*</td>
+                        <td>Default</td>
+                        <td>Desc</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><code>check</code></td>
+                        <td><code>data-check</code></td>
+                        <td>false</td>
+                        <td>Enable checkbox or radio for each row</td>
+                    </tr>
+                    <tr>
+                        <td><code>checkType</code></td>
+                        <td><code>data-check-type</code></td>
+                        <td>checkbox</td>
+                        <td>Draw checkbox or radio for each row</td>
+                    </tr>
+                    <tr>
+                        <td><code>checkStyle</code></td>
+                        <td><code>data-check-style</code></td>
+                        <td>1</td>
+                        <td>Set style for checkbox or radio, 1 or 2</td>
+                    </tr>
+                    <tr>
+                        <td><code>checkName</code></td>
+                        <td><code>data-check-name</code></td>
+                        <td>null</td>
+                        <td>Set name for checkbox or radio</td>
+                    </tr>
+                    <tr>
+                        <td><code>checkColIndex</code></td>
+                        <td><code>data-check-col-index</code></td>
+                        <td>0</td>
+                        <td>Data column index from 0 for checkbox or radio value</td>
+                    </tr>
+                    <tr>
+                        <td><code>checkStoreKey</code></td>
+                        <td><code>data-store-key</code></td>
+                        <td>TABLE:$1:KEYS</td>
+                        <td>Key for storage (used window.storage), where check value are stored. $1 will be replaced with table id.</td>
+                    </tr>
+                    <tr>
+                        <td><code>rownum</code></td>
+                        <td><code>data-rownum</code></td>
+                        <td>false</td>
+                        <td>Show/hide rows numbers</td>
+                    </tr>
+                    <tr>
+                        <td><code>rownumTitle</code></td>
+                        <td><code>data-rownum-title</code></td>
+                        <td>#</td>
+                        <td>Title for rownum head cell</td>
+                    </tr>
+                    <tr>
+                        <td><code>filters</code></td>
+                        <td><code>data-filters</code></td>
+                        <td></td>
+                        <td>Table filters definition, comma separated value with functions names</td>
+                    </tr>
+                    <tr>
+                        <td><code>filtersOperator</code></td>
+                        <td><code>data-filters-operator</code></td>
+                        <td>and</td>
+                        <td>Defined how filters combined, value <code>and</code> or <code>or</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>source</code></td>
+                        <td><code>data-source</code></td>
+                        <td>null</td>
+                        <td>Link to external data</td>
+                    </tr>
+                    <tr>
+                        <td><code>searchMinLength</code></td>
+                        <td><code>data-search-min-length</code></td>
+                        <td>1</td>
+                        <td>Min length for begin searching</td>
+                    </tr>
+                    <tr>
+                        <td><code>searchThreshold</code></td>
+                        <td><code>data-search-threshold</code></td>
+                        <td>500</td>
+                        <td>The threshold in ms to begin searching, while user press keys for search phrase and the interval between key press less than this value, searching not started</td>
+                    </tr>
+                    <tr>
+                        <td><code>searchFields</code></td>
+                        <td><code>data-search-fields</code></td>
+                        <td></td>
+                        <td>Comma-separated value with column names, where will be search</td>
+                    </tr>
+                    <tr>
+                        <td><code>showRowsSteps</code></td>
+                        <td><code>data-show-rows-steps</code></td>
+                        <td>true</td>
+                        <td>Show/hide rows steps box</td>
+                    </tr>
+                    <tr>
+                        <td><code>showSearch</code></td>
+                        <td><code>data-show-search</code></td>
+                        <td>true</td>
+                        <td>Show/hide search field</td>
+                    </tr>
+                    <tr>
+                        <td><code>showTableInfo</code></td>
+                        <td><code>data-show-table-info</code></td>
+                        <td>true</td>
+                        <td>Show/hide table info block</td>
+                    </tr>
+                    <tr>
+                        <td><code>showPagination</code></td>
+                        <td><code>data-show-pagination</code></td>
+                        <td>true</td>
+                        <td>Show/hide table pagination</td>
+                    </tr>
+                    <tr>
+                        <td><code>pagination-short-mode</code></td>
+                        <td><code>data-pagination-short-mode</code></td>
+                        <td>true</td>
+                        <td>Show table pagination in short mode</td>
+                    </tr>
+                    <tr>
+                        <td><code>showActivity</code></td>
+                        <td><code>data-show-activity</code></td>
+                        <td>true</td>
+                        <td>Show activity for table operations</td>
+                    </tr>
+                    <tr>
+                        <td><code>muteTable</code></td>
+                        <td><code>data-mute-table</code></td>
+                        <td>true</td>
+                        <td>Mute table for table operations</td>
+                    </tr>
+                    <tr>
+                        <td><code>rows</code></td>
+                        <td><code>data-rows</code></td>
+                        <td>10</td>
+                        <td>How many rows will be displayed on page, if this value is -1, all rows will be displayed</td>
+                    </tr>
+                    <tr>
+                        <td><code>rowsSteps</code></td>
+                        <td><code>data-rows-steps</code></td>
+                        <td>10, 25, 50, 100</td>
+                        <td>Steps fo rows select box</td>
+                    </tr>
+                    <tr>
+                        <td><code>staticView</code></td>
+                        <td><code>data-static-view</code></td>
+                        <td>false</td>
+                        <td>If true, table always displayed as defined</td>
+                    </tr>
+                    <tr>
+                        <td><code>viewSaveMode</code></td>
+                        <td><code>data-view-save-mode</code></td>
+                        <td>client</td>
+                        <td>Where table view will be saved, values: client, server</td>
+                    </tr>
+                    <tr>
+                        <td><code>viewSavePath</code></td>
+                        <td><code>data-view-save-path</code></td>
+                        <td>TABLE:$1:OPTIONS</td>
+                        <td>Key for client-side, href for server-side. $1 will be replaced with table id</td>
+                    </tr>
+                    <tr>
+                        <td><code>decimalSeparator</code></td>
+                        <td><code>data-decimal-separator</code></td>
+                        <td>. (dot)</td>
+                        <td>Decimal separator for numeric values. Used for right sorting</td>
+                    </tr>
+                    <tr>
+                        <td><code>thousandSeparator</code></td>
+                        <td><code>data-thousand-separator</code></td>
+                        <td>, (comma)</td>
+                        <td>Thousand separator for numeric values. Used for right sorting</td>
+                    </tr>
+                    <tr>
+                        <td><code>tableRowsCountTitle</code></td>
+                        <td><code>data-rows-count-title</code></td>
+                        <td>Show entries:</td>
+                        <td>Title for rows steps box</td>
+                    </tr>
+                    <tr>
+                        <td><code>tableSearchTitle</code></td>
+                        <td><code>data-search-title</code></td>
+                        <td>Search:</td>
+                        <td>Title for search input</td>
+                    </tr>
+                    <tr>
+                        <td><code>tableInfoTitle</code></td>
+                        <td><code>data-info-title</code></td>
+                        <td>Showing $1 to $2 of $3 entries</td>
+                        <td>Title for table info block</td>
+                    </tr>
+                    <tr>
+                        <td><code>paginationPrevTitle</code></td>
+                        <td><code>data-pagination-prev-title</code></td>
+                        <td>Prev</td>
+                        <td>Title pagination prev button</td>
+                    </tr>
+                    <tr>
+                        <td><code>paginationNextTitle</code></td>
+                        <td><code>data-pagination-next-title</code></td>
+                        <td>Next</td>
+                        <td>Title pagination next button</td>
+                    </tr>
+                    <tr>
+                        <td><code>allRecordsTitle</code></td>
+                        <td><code>data-all-records-title</code></td>
+                        <td>All</td>
+                        <td>Title all records in rows steps block</td>
+                    </tr>
+                    <tr>
+                        <td><code>inspectorTitle</code></td>
+                        <td><code>data-inspector-title</code></td>
+                        <td>Inspector</td>
+                        <td>Title for table inspector window</td>
+                    </tr>
+                    <tr>
+                        <td><code>activityType</code></td>
+                        <td><code>data-activity-type</code></td>
+                        <td>cycle</td>
+                        <td>Activity type for long operations</td>
+                    </tr>
+                    <tr>
+                        <td><code>activityStyle</code></td>
+                        <td><code>data-activity-style</code></td>
+                        <td>color</td>
+                        <td>Activity style for long operations</td>
+                    </tr>
+                    <tr>
+                        <td><code>activityTimeout</code></td>
+                        <td><code>data-activity-timeout</code></td>
+                        <td>100</td>
+                        <td>Timeout between activity show and table operation start</td>
+                    </tr>
+                    <tr>
+                        <td><code>cellWrapper</code></td>
+                        <td><code>data-cell-wrapper</code></td>
+                        <td>true</td>
+                        <td>If true, cell data will be placed in div with class <code>cell-wrapper</code></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="example">
+                    <table class="table striped table-border mt-4"
+                           data-role="table"
+                           data-rows="5"
+                           data-rows-steps="5, 10"
+                           data-show-activity="false"
+                           data-source="data/table.json"
+                           data-rownum="true"
+                           data-check="true"
+                           data-check-style="2"
+                    >
+                    </table>
+                </div>
+                <pre><code class="html">
+                    &lt;table class="table striped table-border mt-4"
+                           data-role="table"
+                           data-rows="5"
+                           data-rows-steps="5, 10"
+                           data-show-activity="false"
+                           data-source="data/table.json"
+                           data-rownum="true"
+                           data-check="true"
+                           data-check-style="2"
+                    &gt;
+                    &lt;/table&gt;
+                </code></pre>
+
                 <h3 id="_table_columns">Columns definition</h3>
                 <p>
                     For right works component, you must right define columns.
@@ -141,19 +405,19 @@
                     </tr>
                     <tr>
                         <td><code>data-sortable</code></td>
-                        <td>Sortable column or not. Values: true, false</td>
+                        <td>Sortable column or not. Values: <code>true</code>, <code>false</code></td>
                     </tr>
                     <tr>
                         <td><code>data-sort-dir</code></td>
-                        <td>Initial sorting direction. Values: asc, desc </td>
+                        <td>Initial sorting direction. Values: <code>asc</code>, <code>desc</code></td>
                     </tr>
                     <tr>
                         <td><code>data-format</code></td>
-                        <td>Data format helper for right sorting. Values: string (default), date, number, int, float, money</td>
+                        <td>Data format helper for right sorting. Values: <code>string</code> (default), <code>date</code>, <code>number</code>, <code>int</code>, <code>float</code>, <code>money</code></td>
                     </tr>
                     <tr>
                         <td><code>data-format-mask</code></td>
-                        <td>If you data is date, and date not in ECMAScript date format, you must define data mask (see Extensions for string.toDate)</td>
+                        <td>If you data is date, and date not in ECMAScript date format, you must define data mask (see Extensions for string.toDate in <a href="dateformat.html">this article</a>)</td>
                     </tr>
                     <tr>
                         <td><code>data-size</code></td>
@@ -168,8 +432,8 @@
                         <td>If can define additional classes for column heading cell.</td>
                     </tr>
                     <tr>
-                        <td><code>data-cls-columns</code></td>
-                        <td>If can define additional classes for column heading cell.</td>
+                        <td><code>data-cls-column</code></td>
+                        <td>If can define additional classes for column data cells.</td>
                     </tr>
                     </tbody>
                 </table>
@@ -177,7 +441,7 @@
                     &lt;table class="table" data-role="table"&gt;
                     &lt;thead&gt;
                     &lt;tr&gt;
-                        &lt;th data-sortable="true" data-sort-dir="sort-asc"&gt;Name&lt;/th&gt;
+                        &lt;th data-sortable="true" data-sort-dir="asc"&gt;Name&lt;/th&gt;
                         &lt;th data-sortable="true"&gt;Office&lt;/th&gt;
                         &lt;th data-sortable="true" data-format="number"&gt;Age&lt;/th&gt;
                         &lt;th data-sortable="true" data-format="date"&gt;Start date&lt;/th&gt;
@@ -191,6 +455,173 @@
                     Currently, you can define only one row in head section.
                 </p>
 
+                <h3 id="_table_data">Data definition</h3>
+                <p>
+                    Data must be defined in <code>tbody</code> section.
+                    If you have add classes to data cell, use <code>head cell</code> attribute <code>data-cls-column</code>.
+                </p>
+                <div class="example">
+                    <table id="t1" class="table striped table-border mt-4"
+                           data-role="table" data-static-view="true"
+                           data-cls-table-top="row flex-nowrap"
+                           data-cls-search="cell-md-8"
+                           data-cls-rows-count="cell-md-4"
+                           data-rows="5"
+                           data-rows-steps="5, 10"
+                           data-show-activity="false">
+                        <thead>
+                        <tr>
+                            <th class="sort-asc" data-sortable="true">Name</th>
+                            <th data-sortable="true">Office</th>
+                            <th data-cls-column="bg-cyan fg-white text-center" data-sortable="true" data-format="number">Age</th>
+                            <th data-cls-column="bg-orange fg-white text-center" data-sortable="true" data-format="date">Start date</th>
+                            <th data-cls-column="bg-green fg-white text-right" data-sortable="true" data-format="money">Salary</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>Tiger Nixon</td>
+                            <td>Edinburgh</td>
+                            <td>61</td>
+                            <td>2011/04/25</td>
+                            <td>$320,800</td>
+                        </tr>
+                        <tr>
+                            <td>Garrett Winters</td>
+                            <td>Tokyo</td>
+                            <td>63</td>
+                            <td>2011/07/25</td>
+                            <td>$170,750</td>
+                        </tr>
+                        <tr>
+                            <td>Ashton Cox</td>
+                            <td>San Francisco</td>
+                            <td>66</td>
+                            <td>2009/01/12</td>
+                            <td>$86,000</td>
+                        </tr>
+                        <tr>
+                            <td>Cedric Kelly</td>
+                            <td>Edinburgh</td>
+                            <td>22</td>
+                            <td>2012/03/29</td>
+                            <td>$433,060</td>
+                        </tr>
+                        <tr>
+                            <td>Airi Satou</td>
+                            <td>Tokyo</td>
+                            <td>33</td>
+                            <td>2008/11/28</td>
+                            <td>$162,700</td>
+                        </tr>
+                        <tr>
+                            <td>Brielle Williamson</td>
+                            <td>New York</td>
+                            <td>61</td>
+                            <td>2012/12/02</td>
+                            <td>$372,000</td>
+                        </tr>
+                        <tr>
+                            <td>Herrod Chandler</td>
+                            <td>San Francisco</td>
+                            <td>59</td>
+                            <td>2012/08/06</td>
+                            <td>$137,500</td>
+                        </tr>
+                        <tr>
+                            <td>Rhona Davidson</td>
+                            <td>Tokyo</td>
+                            <td>55</td>
+                            <td>2010/10/14</td>
+                            <td>$327,900</td>
+                        </tr>
+                        <tr>
+                            <td>Colleen Hurst</td>
+                            <td>San Francisco</td>
+                            <td>39</td>
+                            <td>2009/09/15</td>
+                            <td>$205,500</td>
+                        </tr>
+                        <tr>
+                            <td>Sonya Frost</td>
+                            <td>Edinburgh</td>
+                            <td>23</td>
+                            <td>2008/12/13</td>
+                            <td>$103,600</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <pre><code class="html">
+                    &lt;table class="table" data-role="table"&gt;
+                        &lt;thead&gt;
+                        &lt;tr&gt;
+                            &lt;th &gt;Name&lt;/th&gt;
+                            &lt;th &gt;Office&lt;/th&gt;
+                            &lt;th data-cls-column="bg-cyan fg-white text-center"&gt;Age&lt;/th&gt;
+                            &lt;th data-cls-column="bg-orange fg-white text-center" &gt;Start date&lt;/th&gt;
+                            &lt;th data-cls-column="bg-green fg-white text-right" &gt;Salary&lt;/th&gt;
+                        &lt;/tr&gt;
+                        &lt;/thead&gt;
+                        &lt;tbody&gt;
+                        &lt;tr&gt;
+                            &lt;td&gt;Tiger Nixon&lt;/td&gt;
+                            &lt;td&gt;Edinburgh&lt;/td&gt;
+                            &lt;td&gt;61&lt;/td&gt;
+                            &lt;td&gt;2011/04/25&lt;/td&gt;
+                            &lt;td&gt;$320,800&lt;/td&gt;
+                        &lt;/tr&gt;
+                        ...
+                        &lt;/tbody&gt;
+                    &lt;/table&gt;
+                </code></pre>
+
+                <h3 id="_table_sorting">Table sorting</h3>
+                <p>
+                    To use <code>sorting</code>, you must define columns, who can be sorted.
+                    To create sortable column, add attribute <code>data-sortable="true"</code> to head cell.
+                    If you need to sort on this column after table init, add attribute <code>data-sort-dir="asc|desc"</code> for initializing sorting direction.
+                    If data for sortable column is a not string, you must use attribute <code>data-format</code>.
+                    If data is date and date not in ECMAScript format, you must add attribute <code>data-format-mask</code>.
+                    More about covert string to date you can read in <a href="dateformat.html">this article</a>
+                </p>
+                <div class="example">
+                    <table class="table striped table-border mt-4"
+                           data-role="table"
+                           data-cls-table-top="row flex-nowrap"
+                           data-cls-search="cell-md-8"
+                           data-cls-rows-count="cell-md-4"
+                           data-rows="5"
+                           data-rows-steps="5, 10"
+                           data-show-activity="false"
+                           data-source="data/table.json"
+                    >
+                    </table>
+                </div>
+                <pre><code class="html">
+                    &lt;table class="table" data-role="table"&gt;
+                        &lt;thead&gt;
+                        &lt;tr&gt;
+                            &lt;th data-sortable="true" data-sort-dir="asc"&gt;ID&lt;/th&gt;
+                            &lt;th data-sortable="true"&gt;Name&lt;/th&gt;
+                            &lt;th data-sortable="true" data-format="date" data-format-mask="%d-%m-%y" &gt;Start&lt;/th&gt;
+                            &lt;th data-sortable="true" data-format="int"&gt;Age&lt;/th&gt;
+                            &lt;th data-sortable="true" data-format="money"&gt;Salary&lt;/th&gt;
+                        &lt;/tr&gt;
+                        &lt;/thead&gt;
+                        &lt;tbody&gt;
+                        &lt;tr&gt;
+                            &lt;td&gt;1&lt;/td&gt;
+                            &lt;td&gt;Tiger Nixon&lt;/td&gt;
+                            &lt;td&gt;Edinburgh&lt;/td&gt;
+                            &lt;td&gt;25/04/2011&lt;/td&gt;
+                            &lt;td&gt;61&lt;/td&gt;
+                            &lt;td&gt;$320,800&lt;/td&gt;
+                        &lt;/tr&gt;
+                        ...
+                        &lt;/tbody&gt;
+                    &lt;/table&gt;
+                </code></pre>
 
             </main>
         </div>

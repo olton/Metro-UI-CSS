@@ -21408,7 +21408,7 @@ fieldset.disabled,
 .tag-input.disabled select,
 .spinner.disabled select {
   background: transparent;
-  color: #ffffff;
+  color: #989898;
 }
 .file:disabled .button-group,
 .input:disabled .button-group,
@@ -46069,7 +46069,6 @@ input[dir=rtl] {
   font-weight: normal;
   font-variant: normal;
   text-transform: none;
-  line-height: 1;
   display: inline-block;
   position: relative;
   -webkit-font-smoothing: antialiased;

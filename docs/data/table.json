@@ -32,7 +32,8 @@
       "title": "Salary",
       "sortable": true,
       "size": 150,
-      "format": "money"
+      "format": "money",
+      "show": true
     }
   ],
   "data": [

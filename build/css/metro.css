@@ -21408,7 +21408,7 @@ fieldset.disabled,
 .tag-input.disabled select,
 .spinner.disabled select {
   background: transparent;
-  color: #ffffff;
+  color: #989898;
 }
 .file:disabled .button-group,
 .input:disabled .button-group,
