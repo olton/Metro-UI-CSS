@@ -6220,6 +6220,13 @@ var CalendarPicker = {
                 container.addClass("dialog-mode");
             }
         }
+
+        if (element.is(":disabled")) {
+            this.disable();
+        } else {
+            this.enable();
+        }
+
     },
 
     _createEvents: function(){
@@ -16796,11 +16803,13 @@ var Table = {
         clsDelButton: "",
         clsAddButton: "",
 
+        staticView: false,
+
         check: false,
-        checkColIndex: 0,
-        checkName: null,
         checkType: "checkbox",
         checkStyle: 1,
+        checkColIndex: 0,
+        checkName: null,
         checkStoreKey: "TABLE:$1:KEYS",
         rownum: false,
         rownumTitle: "#",
@@ -16820,7 +16829,6 @@ var Table = {
         showPagination: true,
         paginationShortMode: true,
         showActivity: true,
-
         muteTable: true,
 
         rows: 10,
@@ -17261,7 +17269,7 @@ var Table = {
         var element = this.element, o = this.options;
         var head = $("<thead>").html('');
         var tr, th, tds = [], j, cells;
-        var view = this.view;
+        var view = o.staticView ? this._createView() : this.view;
 
         element.find("thead").remove();
 
@@ -18020,7 +18028,11 @@ var Table = {
             stop = parseInt(o.rows) === -1 ? this.items.length - 1 : start + o.rows - 1;
         var items;
         var stored_keys = Metro.storage.getItem(o.checkStoreKey.replace("$1", element.attr('id')));
-        var view = this.view;
+
+        var view = o.staticView ? this.viewDefault : this.view;
+        // var view = this.view;
+
+        console.log(this.viewDefault);
 
         body.html("");
 

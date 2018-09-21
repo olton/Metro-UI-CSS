@@ -230,6 +230,13 @@ var CalendarPicker = {
                 container.addClass("dialog-mode");
             }
         }
+
+        if (element.is(":disabled")) {
+            this.disable();
+        } else {
+            this.enable();
+        }
+
     },
 
     _createEvents: function(){
