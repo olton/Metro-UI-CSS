@@ -140,6 +140,10 @@ var Table = {
 
         clsPagination: "",
 
+        clsEvenRow: "",
+        clsOddRow: "",
+        clsRow: "",
+
         onDraw: Metro.noop,
         onDrawRow: Metro.noop,
         onDrawCell: Metro.noop,

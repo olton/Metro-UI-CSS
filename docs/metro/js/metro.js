@@ -9575,11 +9575,17 @@ var Dropdown = {
     _create: function(){
         var that = this, element = this.element, o = this.options;
         var toggle, parent = element.parent();
+        var element_roles = Utils.isValue(element.attr("data-role")) ? Utils.strToArray(element.attr("data-role")) : [];
 
         toggle = o.toggleElement !== null ? $(o.toggleElement) : element.siblings('.dropdown-toggle').length > 0 ? element.siblings('.dropdown-toggle') : element.prev();
 
         this.displayOrigin = element.css("display");
-        this.element.css("display", "none");
+        element.css("display", "none");
+
+        if (element_roles.length === 0 || element_roles.indexOf("dropdown") === -1) {
+            element_roles.push("dropdown");
+            element.attr("data-role", element_roles.join(", "));
+        }
 
         toggle.on(Metro.events.click, function(e){
             parent.siblings(parent[0].tagName).removeClass("active-container");
@@ -9607,8 +9613,7 @@ var Dropdown = {
                         'visibility': 'visible',
                         'display': 'none'
                     });
-                    var menu_width = children_width;
-                    element.css('width', menu_width);
+                    element.css('width', children_width);
                 }
                 that._open(element);
                 parent.addClass("active-container");
@@ -16886,6 +16891,10 @@ var Table = {
 
         clsPagination: "",
 
+        clsEvenRow: "",
+        clsOddRow: "",
+        clsRow: "",
+
         onDraw: Metro.noop,
         onDrawRow: Metro.noop,
         onDrawCell: Metro.noop,
@@ -20017,7 +20026,7 @@ var Treeview = {
             that._recheck(this);
         });
 
-        Utils.exec(o.onTreeviewCreate, [element]);
+        Utils.exec(o.onTreeviewCreate, [element], element[0]);
     },
 
     _createIcon: function(data){
@@ -20287,7 +20296,9 @@ var Treeview = {
     },
 
     changeAttribute: function(attributeName){
-
+        switch (attributeName) {
+            default: console.log(attributeName);
+        }
     }
 };
 
