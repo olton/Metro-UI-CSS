@@ -8,7 +8,6 @@
 + [x] Table: rename `filterMinLength` to `searchMinLength`
 + [x] Table: rename `filterThreshold` to `searchThreshold`
 + [x] Table: add attribute `data-search-fields`
-+ [ ] Table: add `CRUD` feature, see docs for details
 
 ### 4.2.22
 + [x] Appbar: remove classes `app-bar-expanded-*` and add attributes `data-expand`, `data-exapnd-point`
