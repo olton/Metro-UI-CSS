@@ -47,27 +47,23 @@
                 <hr/>
                 <ul class="toc-nav">
                     <li class="toc-entry"><a href="#">Table</a></li>
-                    <li class="toc-entry"><a href="#_table_create">About</a></li>
+                    <li class="toc-entry"><a href="#_table_create">Create table</a></li>
+                    <li class="toc-entry"><a href="#_table_options">Table options</a></li>
+                    <li class="toc-entry"><a href="#_table_columns">Columns</a></li>
+                    <li class="toc-entry"><a href="#_table_columns">Data cells</a></li>
                     <li class="toc-entry"><a href="#_table_sorting">Sorting</a></li>
-                    <li class="toc-entry"><a href="#_table_search">Search</a></li>
+                    <li class="toc-entry"><a href="#_table_search">Table search</a></li>
+                    <li class="toc-entry"><a href="#_table_filtering">Filtering</a></li>
+                    <li class="toc-entry"><a href="#_table_pagination">Pagination</a></li>
                     <li class="toc-entry"><a href="#_table_rows_counter">Rows counter</a></li>
                     <li class="toc-entry"><a href="#_table_info">Table info</a></li>
-                    <li class="toc-entry"><a href="#_table_pagination">Pagination</a></li>
-                    <li class="toc-entry">
-                        <a href="#_table_external_data">External data</a>
-                        <ul>
-                            <li class="toc-entry"><a href="#_table_external_data_format">Data format</a></li>
-                            <li class="toc-entry"><a href="#_table_external_data_format_header">Header section</a></li>
-                            <li class="toc-entry"><a href="#_table_external_data_format_data">Data section</a></li>
-                            <li class="toc-entry"><a href="#_table_external_data_format_footer">Footer section</a></li>
-                        </ul>
-                    </li>
-                    <li class="toc-entry"><a href="#_table_options">Options</a></li>
+                    <li class="toc-entry"><a href="#_table_inspector">Table inspector</a></li>
+                    <li class="toc-entry"><a href="#_table_export">Export data</a></li>
+                    <li class="toc-entry"><a href="#_table_external_data">External data</a></li>
                     <li class="toc-entry"><a href="#_table_events">Events</a></li>
                     <li class="toc-entry"><a href="#_table_methods">Methods</a></li>
-                    <li class="toc-entry"><a href="#_table_filters">Custom Filters</a></li>
-                    <li class="toc-entry"><a href="#_table_customize">Customize visual</a></li>
-                    <li class="toc-entry"><a href="#_table_custom_wrappers">Wrappers</a></li>
+                    <li class="toc-entry"><a href="#_table_customize">Customize</a></li>
+                    <li class="toc-entry"><a href="#_table_custom_wrappers">Custom wrappers</a></li>
                 </ul>
 
             </div>
@@ -84,12 +80,15 @@
 
                 <!-- ads-html -->
 
-                <h3 id="_table_create">About</h3>
-                <p class="text-small">New in 4.2.8</p>
+                <h3 id="_table_create">Create table</h3>
+                <p class="text-small">New in 4.2.8, updated in 4.2.23</p>
                 <p>
-                    If you need to create interactive table with filtering, searching and pagination features, you can use Metro 4 <code>table</code> component.
-                    To create its table, add attribute <code>data-role="table"</code> to your HTML table element and setup, if need, additional options with special attributes.
-                    An important condition is the creation of sections <code>thead</code> and <code>tbody</code>.
+                    If you need to create interactive table with ordering, filtering, searching and pagination features, you can use Metro 4 <code>table</code> component.
+                    To create <code>table</code>, add attribute <code>data-role="table"</code> to your HTML table element and setup, if need, additional options with special attributes.
+                    You can create <code>table</code> and for your own HTML table with predefined data and for the table with remote data definition.
+                </p>
+                <p class="remark info">
+                    An important condition - is the creation of sections <code>thead</code> and <code>tbody</code>.
                 </p>
                 <div class="example">
                     <table class="table striped table-border mt-4"
@@ -99,14 +98,385 @@
                            data-cls-rows-count="cell-md-4"
                            data-rows="5"
                            data-rows-steps="5, 10"
+                           data-show-activity="false"
+                           data-source="data/table.json"
+                    >
+                    </table>
+                </div>
+                <pre><code class="html">
+                    &lt;table class="table" data-role="table"&gt;
+                    ...
+                    &lt;/table&gt;
+                </code></pre>
+
+                <h3 id="_table_options">Table options</h3>
+                <p>
+                    You can use different options to define table behavior. This options you can use in <code>&lt;table&gt;</code> tag definition.
+                </p>
+                <table class="table table-border cell-border options-table mt-4">
+                    <thead>
+                    <tr>
+                        <td>Option</td>
+                        <td>Data-*</td>
+                        <td>Default</td>
+                        <td>Desc</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><code>check</code></td>
+                        <td><code>data-check</code></td>
+                        <td>false</td>
+                        <td>Enable checkbox or radio for each row</td>
+                    </tr>
+                    <tr>
+                        <td><code>checkType</code></td>
+                        <td><code>data-check-type</code></td>
+                        <td>checkbox</td>
+                        <td>Draw checkbox or radio for each row</td>
+                    </tr>
+                    <tr>
+                        <td><code>checkStyle</code></td>
+                        <td><code>data-check-style</code></td>
+                        <td>1</td>
+                        <td>Set style for checkbox or radio, 1 or 2</td>
+                    </tr>
+                    <tr>
+                        <td><code>checkName</code></td>
+                        <td><code>data-check-name</code></td>
+                        <td>null</td>
+                        <td>Set name for checkbox or radio</td>
+                    </tr>
+                    <tr>
+                        <td><code>checkColIndex</code></td>
+                        <td><code>data-check-col-index</code></td>
+                        <td>0</td>
+                        <td>Data column index from 0 for checkbox or radio value</td>
+                    </tr>
+                    <tr>
+                        <td><code>checkStoreKey</code></td>
+                        <td><code>data-store-key</code></td>
+                        <td>TABLE:$1:KEYS</td>
+                        <td>Key for storage (used window.storage), where check value are stored. $1 will be replaced with table id.</td>
+                    </tr>
+                    <tr>
+                        <td><code>rownum</code></td>
+                        <td><code>data-rownum</code></td>
+                        <td>false</td>
+                        <td>Show/hide rows numbers</td>
+                    </tr>
+                    <tr>
+                        <td><code>rownumTitle</code></td>
+                        <td><code>data-rownum-title</code></td>
+                        <td>#</td>
+                        <td>Title for rownum head cell</td>
+                    </tr>
+                    <tr>
+                        <td><code>filters</code></td>
+                        <td><code>data-filters</code></td>
+                        <td></td>
+                        <td>Table filters definition, comma separated value with functions names</td>
+                    </tr>
+                    <tr>
+                        <td><code>filtersOperator</code></td>
+                        <td><code>data-filters-operator</code></td>
+                        <td>and</td>
+                        <td>Defined how filters combined, value <code>and</code> or <code>or</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>source</code></td>
+                        <td><code>data-source</code></td>
+                        <td>null</td>
+                        <td>Link to external data</td>
+                    </tr>
+                    <tr>
+                        <td><code>searchMinLength</code></td>
+                        <td><code>data-search-min-length</code></td>
+                        <td>1</td>
+                        <td>Min length for begin searching</td>
+                    </tr>
+                    <tr>
+                        <td><code>searchThreshold</code></td>
+                        <td><code>data-search-threshold</code></td>
+                        <td>500</td>
+                        <td>The threshold in ms to begin searching, while user press keys for search phrase and the interval between key press less than this value, searching not started</td>
+                    </tr>
+                    <tr>
+                        <td><code>searchFields</code></td>
+                        <td><code>data-search-fields</code></td>
+                        <td></td>
+                        <td>Comma-separated value with column names, where will be search</td>
+                    </tr>
+                    <tr>
+                        <td><code>showRowsSteps</code></td>
+                        <td><code>data-show-rows-steps</code></td>
+                        <td>true</td>
+                        <td>Show/hide rows steps box</td>
+                    </tr>
+                    <tr>
+                        <td><code>showSearch</code></td>
+                        <td><code>data-show-search</code></td>
+                        <td>true</td>
+                        <td>Show/hide search field</td>
+                    </tr>
+                    <tr>
+                        <td><code>showTableInfo</code></td>
+                        <td><code>data-show-table-info</code></td>
+                        <td>true</td>
+                        <td>Show/hide table info block</td>
+                    </tr>
+                    <tr>
+                        <td><code>showPagination</code></td>
+                        <td><code>data-show-pagination</code></td>
+                        <td>true</td>
+                        <td>Show/hide table pagination</td>
+                    </tr>
+                    <tr>
+                        <td><code>pagination-short-mode</code></td>
+                        <td><code>data-pagination-short-mode</code></td>
+                        <td>true</td>
+                        <td>Show table pagination in short mode</td>
+                    </tr>
+                    <tr>
+                        <td><code>showActivity</code></td>
+                        <td><code>data-show-activity</code></td>
+                        <td>true</td>
+                        <td>Show activity for table operations</td>
+                    </tr>
+                    <tr>
+                        <td><code>muteTable</code></td>
+                        <td><code>data-mute-table</code></td>
+                        <td>true</td>
+                        <td>Mute table for table operations</td>
+                    </tr>
+                    <tr>
+                        <td><code>rows</code></td>
+                        <td><code>data-rows</code></td>
+                        <td>10</td>
+                        <td>How many rows will be displayed on page, if this value is -1, all rows will be displayed</td>
+                    </tr>
+                    <tr>
+                        <td><code>rowsSteps</code></td>
+                        <td><code>data-rows-steps</code></td>
+                        <td>10, 25, 50, 100</td>
+                        <td>Steps fo rows select box</td>
+                    </tr>
+                    <tr>
+                        <td><code>staticView</code></td>
+                        <td><code>data-static-view</code></td>
+                        <td>false</td>
+                        <td>If true, table always displayed as defined</td>
+                    </tr>
+                    <tr>
+                        <td><code>viewSaveMode</code></td>
+                        <td><code>data-view-save-mode</code></td>
+                        <td>client</td>
+                        <td>Where table view will be saved, values: client, server</td>
+                    </tr>
+                    <tr>
+                        <td><code>viewSavePath</code></td>
+                        <td><code>data-view-save-path</code></td>
+                        <td>TABLE:$1:OPTIONS</td>
+                        <td>Key for client-side, href for server-side. $1 will be replaced with table id</td>
+                    </tr>
+                    <tr>
+                        <td><code>decimalSeparator</code></td>
+                        <td><code>data-decimal-separator</code></td>
+                        <td>. (dot)</td>
+                        <td>Decimal separator for numeric values. Used for right sorting</td>
+                    </tr>
+                    <tr>
+                        <td><code>thousandSeparator</code></td>
+                        <td><code>data-thousand-separator</code></td>
+                        <td>, (comma)</td>
+                        <td>Thousand separator for numeric values. Used for right sorting</td>
+                    </tr>
+                    <tr>
+                        <td><code>tableRowsCountTitle</code></td>
+                        <td><code>data-rows-count-title</code></td>
+                        <td>Show entries:</td>
+                        <td>Title for rows steps box</td>
+                    </tr>
+                    <tr>
+                        <td><code>tableSearchTitle</code></td>
+                        <td><code>data-search-title</code></td>
+                        <td>Search:</td>
+                        <td>Title for search input</td>
+                    </tr>
+                    <tr>
+                        <td><code>tableInfoTitle</code></td>
+                        <td><code>data-info-title</code></td>
+                        <td>Showing $1 to $2 of $3 entries</td>
+                        <td>Title for table info block</td>
+                    </tr>
+                    <tr>
+                        <td><code>paginationPrevTitle</code></td>
+                        <td><code>data-pagination-prev-title</code></td>
+                        <td>Prev</td>
+                        <td>Title pagination prev button</td>
+                    </tr>
+                    <tr>
+                        <td><code>paginationNextTitle</code></td>
+                        <td><code>data-pagination-next-title</code></td>
+                        <td>Next</td>
+                        <td>Title pagination next button</td>
+                    </tr>
+                    <tr>
+                        <td><code>allRecordsTitle</code></td>
+                        <td><code>data-all-records-title</code></td>
+                        <td>All</td>
+                        <td>Title all records in rows steps block</td>
+                    </tr>
+                    <tr>
+                        <td><code>inspectorTitle</code></td>
+                        <td><code>data-inspector-title</code></td>
+                        <td>Inspector</td>
+                        <td>Title for table inspector window</td>
+                    </tr>
+                    <tr>
+                        <td><code>activityType</code></td>
+                        <td><code>data-activity-type</code></td>
+                        <td>cycle</td>
+                        <td>Activity type for long operations</td>
+                    </tr>
+                    <tr>
+                        <td><code>activityStyle</code></td>
+                        <td><code>data-activity-style</code></td>
+                        <td>color</td>
+                        <td>Activity style for long operations</td>
+                    </tr>
+                    <tr>
+                        <td><code>activityTimeout</code></td>
+                        <td><code>data-activity-timeout</code></td>
+                        <td>100</td>
+                        <td>Timeout between activity show and table operation start</td>
+                    </tr>
+                    <tr>
+                        <td><code>cellWrapper</code></td>
+                        <td><code>data-cell-wrapper</code></td>
+                        <td>true</td>
+                        <td>If true, cell data will be placed in div with class <code>cell-wrapper</code></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="example">
+                    <table class="table striped table-border mt-4"
+                           data-role="table"
+                           data-rows="5"
+                           data-rows-steps="5, 10"
+                           data-show-activity="false"
+                           data-source="data/table.json"
+                           data-rownum="true"
+                           data-check="true"
+                           data-check-style="2"
+                    >
+                    </table>
+                </div>
+                <pre><code class="html">
+                    &lt;table class="table striped table-border mt-4"
+                           data-role="table"
+                           data-rows="5"
+                           data-rows-steps="5, 10"
+                           data-show-activity="false"
+                           data-source="data/table.json"
+                           data-rownum="true"
+                           data-check="true"
+                           data-check-style="2"
+                    &gt;
+                    &lt;/table&gt;
+                </code></pre>
+
+                <h3 id="_table_columns">Columns definition</h3>
+                <p>
+                    For right works component, you must right define columns.
+                    Columns must be defined in <code>thead</code> section.
+                    You can use any attributes to define its:
+                </p>
+                <table class="table table-border cell-border options-table mt-4">
+                    <thead>
+                    <tr>
+                        <td>Attribute</td>
+                        <td>Desc</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><code>data-name</code></td>
+                        <td>Column name</td>
+                    </tr>
+                    <tr>
+                        <td><code>data-sortable</code></td>
+                        <td>Sortable column or not. Values: <code>true</code>, <code>false</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>data-sort-dir</code></td>
+                        <td>Initial sorting direction. Values: <code>asc</code>, <code>desc</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>data-format</code></td>
+                        <td>Data format helper for right sorting. Values: <code>string</code> (default), <code>date</code>, <code>number</code>, <code>int</code>, <code>float</code>, <code>money</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>data-format-mask</code></td>
+                        <td>If you data is date, and date not in ECMAScript date format, you must define data mask (see Extensions for string.toDate in <a href="dateformat.html">this article</a>)</td>
+                    </tr>
+                    <tr>
+                        <td><code>data-size</code></td>
+                        <td>If can define size for column.</td>
+                    </tr>
+                    <tr>
+                        <td><code>data-show</code></td>
+                        <td>If can define show or hide column.</td>
+                    </tr>
+                    <tr>
+                        <td><code>data-cls</code></td>
+                        <td>If can define additional classes for column heading cell.</td>
+                    </tr>
+                    <tr>
+                        <td><code>data-cls-column</code></td>
+                        <td>If can define additional classes for column data cells.</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <pre><code class="html">
+                    &lt;table class="table" data-role="table"&gt;
+                    &lt;thead&gt;
+                    &lt;tr&gt;
+                        &lt;th data-sortable="true" data-sort-dir="asc"&gt;Name&lt;/th&gt;
+                        &lt;th data-sortable="true"&gt;Office&lt;/th&gt;
+                        &lt;th data-sortable="true" data-format="number"&gt;Age&lt;/th&gt;
+                        &lt;th data-sortable="true" data-format="date"&gt;Start date&lt;/th&gt;
+                        &lt;th data-sortable="true" data-show="false" data-format="money"&gt;Salary&lt;/th&gt;
+                    &lt;/tr&gt;
+                    &lt;/thead&gt;
+                    ...
+                    &lt;/table&gt;
+                </code></pre>
+                <p class="remark info">
+                    Currently, you can define only one row in head section.
+                </p>
+
+                <h3 id="_table_data">Data definition</h3>
+                <p>
+                    Data must be defined in <code>tbody</code> section.
+                    If you have add classes to data cell, use <code>head cell</code> attribute <code>data-cls-column</code>.
+                </p>
+                <div class="example">
+                    <table id="t1" class="table striped table-border mt-4"
+                           data-role="table" data-static-view="true"
+                           data-cls-table-top="row flex-nowrap"
+                           data-cls-search="cell-md-8"
+                           data-cls-rows-count="cell-md-4"
+                           data-rows="5"
+                           data-rows-steps="5, 10"
                            data-show-activity="false">
                         <thead>
                         <tr>
-                            <th class="sortable-column sort-asc">Name</th>
-                            <th class="sortable-column">Office</th>
-                            <th class="sortable-column" data-format="number">Age</th>
-                            <th class="sortable-column" data-format="date">Start date</th>
-                            <th class="sortable-column" data-format="money">Salary</th>
+                            <th class="sort-asc" data-sortable="true">Name</th>
+                            <th data-sortable="true">Office</th>
+                            <th data-cls-column="bg-cyan fg-white text-center" data-sortable="true" data-format="number">Age</th>
+                            <th data-cls-column="bg-orange fg-white text-center" data-sortable="true" data-format="date">Start date</th>
+                            <th data-cls-column="bg-green fg-white text-right" data-sortable="true" data-format="money">Salary</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -181,32 +551,17 @@
                             <td>$103,600</td>
                         </tr>
                         </tbody>
-                        <tfoot>
-                        <tr>
-                            <th>Name</th>
-                            <th>Office</th>
-                            <th>Age</th>
-                            <th>Start date</th>
-                            <th>Salary</th>
-                        </tr>
-                        </tfoot>
                     </table>
                 </div>
-                <pre><code>
-                    &lt;table class="table striped table-border mt-4"
-                           data-role="table"
-                           data-cls-table-top="row flex-nowrap"
-                           data-cls-search="cell-md-8"
-                           data-cls-rows-count="cell-md-4"
-                           data-rows="5"
-                           data-rows-steps="5, 10"&gt;
+                <pre><code class="html">
+                    &lt;table class="table" data-role="table"&gt;
                         &lt;thead&gt;
                         &lt;tr&gt;
-                            &lt;th class="sortable-column sort-asc"&gt;Name&lt;/th&gt;
-                            &lt;th class="sortable-column"&gt;Office&lt;/th&gt;
-                            &lt;th class="sortable-column" data-format="number"&gt;Age&lt;/th&gt;
-                            &lt;th class="sortable-column" data-format="date"&gt;Start date&lt;/th&gt;
-                            &lt;th class="sortable-column" data-format="money"&gt;Salary&lt;/th&gt;
+                            &lt;th &gt;Name&lt;/th&gt;
+                            &lt;th &gt;Office&lt;/th&gt;
+                            &lt;th data-cls-column="bg-cyan fg-white text-center"&gt;Age&lt;/th&gt;
+                            &lt;th data-cls-column="bg-orange fg-white text-center" &gt;Start date&lt;/th&gt;
+                            &lt;th data-cls-column="bg-green fg-white text-right" &gt;Salary&lt;/th&gt;
                         &lt;/tr&gt;
                         &lt;/thead&gt;
                         &lt;tbody&gt;
@@ -219,73 +574,415 @@
                         &lt;/tr&gt;
                         ...
                         &lt;/tbody&gt;
-                        &lt;tfoot&gt;
-                        &lt;tr&gt;
-                            &lt;th&gt;Name&lt;/th&gt;
-                            &lt;th&gt;Office&lt;/th&gt;
-                            &lt;th&gt;Age&lt;/th&gt;
-                            &lt;th&gt;Start date&lt;/th&gt;
-                            &lt;th&gt;Salary&lt;/th&gt;
-                        &lt;/tr&gt;
-                        &lt;/tfoot&gt;
                     &lt;/table&gt;
                 </code></pre>
 
-                <h3 id="_table_sorting">Sorting</h3>
+                <h3 id="_table_sorting">Table sorting</h3>
                 <p>
-                    To be able to <code>sort</code> the table, you need to create the correct <code>header</code> for this table.
-                    To create <code>header</code> use tags <code>&lt;thead&gt;</code>, <code>&lt;tr&gt;</code> and <code>&lt;th&gt;</code>.
-                    To make the column sortable, you must add the <code>.sortable-column</code> class to the header cell.
-                    If you want to immediately sort the table by one of the fields, add the sorting direction to the desired cell using the <code>sort-asc</code> or <code>sort-desc</code> classes.
+                    To use <code>sorting</code>, you must define columns, who can be sorted.
+                    To create sortable column, add attribute <code>data-sortable="true"</code> to head cell.
+                    If you need to sort on this column after table init, add attribute <code>data-sort-dir="asc|desc"</code> for initializing sorting direction.
                 </p>
-                <pre><code>
-                    &lt;table ...&gt;
+                <p>
+                    If data for sortable column is a not string, you must use attribute <code>data-format</code>.
+                    If data is date and date not in ECMAScript format, you must add attribute <code>data-format-mask</code>.
+                    More about covert string to date you can read in <a href="dateformat.html">this article</a>
+                </p>
+                <div class="example">
+                    <table class="table striped table-border mt-4"
+                           data-role="table"
+                           data-cls-table-top="row flex-nowrap"
+                           data-cls-search="cell-md-8"
+                           data-cls-rows-count="cell-md-4"
+                           data-rows="5"
+                           data-rows-steps="5, 10"
+                           data-show-activity="false"
+                           data-source="data/table.json"
+                    >
+                    </table>
+                </div>
+                <pre><code class="html">
+                    &lt;table class="table" data-role="table"&gt;
                         &lt;thead&gt;
                         &lt;tr&gt;
-                            &lt;th class="sortable-column sort-asc"&gt;Name&lt;/th&gt;
-                            &lt;th&gt;Office&lt;/th&gt;
-                            &lt;th&gt;Age&lt;/th&gt;
-                            &lt;th&gt;Start date&lt;/th&gt;
-                            &lt;th&gt;Salary&lt;/th&gt;
+                            &lt;th data-sortable="true" data-sort-dir="asc"&gt;ID&lt;/th&gt;
+                            &lt;th data-sortable="true"&gt;Name&lt;/th&gt;
+                            &lt;th data-sortable="true" data-format="date" data-format-mask="%d-%m-%y" &gt;Start&lt;/th&gt;
+                            &lt;th data-sortable="true" data-format="int"&gt;Age&lt;/th&gt;
+                            &lt;th data-sortable="true" data-format="money"&gt;Salary&lt;/th&gt;
                         &lt;/tr&gt;
                         &lt;/thead&gt;
+                        &lt;tbody&gt;
+                        &lt;tr&gt;
+                            &lt;td&gt;1&lt;/td&gt;
+                            &lt;td&gt;Tiger Nixon&lt;/td&gt;
+                            &lt;td&gt;Edinburgh&lt;/td&gt;
+                            &lt;td&gt;25/04/2011&lt;/td&gt;
+                            &lt;td&gt;61&lt;/td&gt;
+                            &lt;td&gt;$320,800&lt;/td&gt;
+                        &lt;/tr&gt;
                         ...
+                        &lt;/tbody&gt;
+                    &lt;/table&gt;
+                </code></pre>
+
+                <h3 id="_table_search">Table search</h3>
+                <p>
+                    Table component support interactive search. To activate search function you must:
+                </p>
+                <ol class="decimal mt-4">
+                    <li>Enable search input field with attribute <code>data-show-search="true"</code> (enabled by default)</li>
+                    <li>Set min string length for search with attribute <code>data-search-min-length</code> (default: 1)</li>
+                    <li>Setup threshold for start search with attribute <code>data-search-threshold</code> (default: 500)</li>
+                </ol>
+                <div class="example">
+                    <table class="table striped table-border mt-4"
+                           data-role="table"
+                           data-rows="5"
+                           data-rows-steps="5, 10"
+                           data-source="data/table.json"
+                           data-show-rows-steps="false"
+                           data-show-search="true"
+                           data-search-min-length="3"
+                           data-search-threshold="300"
+                    >
+                    </table>
+                </div>
+                <pre><code class="html">
+                    &lt;table class="table"
+                           data-role="table"
+                           data-show-search="true"
+                           data-search-min-length="3"
+                           data-search-threshold="300"
+                    &gt;
                     &lt;/table&gt;
                 </code></pre>
                 <p>
-                    For right sorting specified fields (ex: formatted money, date), you can add attribute data-format to header cell.
-                    You can use next formats to a field: <code>number</code>, <code>int</code>, <code>float</code>, <code>date</code> and <code>money</code>.
+                    By default, all fields are searched. You can define the fields to be searched for.
+                    To define it use attribute <code>data-search-fields</code>.
+                    Fields list is must be a comma separated string with field names, defined in head cell attribute <code>data-name</code>.
                 </p>
-                <pre><code>
-                    &lt;table ...&gt;
+                <pre><code class="html">
+                    &lt;table class="table"
+                           data-role="table"
+                           data-show-search="true"
+                           data-search-min-length="3"
+                           data-search-threshold="300"
+                           data-search-fields="name, age"&gt;
                         &lt;thead&gt;
                         &lt;tr&gt;
-                            &lt;th class="sortable-column sort-asc"&gt;Name&lt;/th&gt;
-                            &lt;th class="sortable-column"&gt;Office&lt;/th&gt;
-                            &lt;th class="sortable-column" data-format="number"&gt;Age&lt;/th&gt;
-                            &lt;th class="sortable-column" data-format="date"&gt;Start date&lt;/th&gt;
-                            &lt;th class="sortable-column" data-format="money"&gt;Salary&lt;/th&gt;
+                            &lt;th data-name="id" &gt;ID&lt;/th&gt;
+                            &lt;th data-name="name" &gt;Name&lt;/th&gt;
+                            &lt;th data-name="start" &gt;Start&lt;/th&gt;
+                            &lt;th data-name="age" &gt;Age&lt;/th&gt;
+                            &lt;th data-name="salary" &gt;Salary&lt;/th&gt;
                         &lt;/tr&gt;
                         &lt;/thead&gt;
+                        &lt;tbody&gt;
+                        &lt;tr&gt;
+                            &lt;td&gt;1&lt;/td&gt;
+                            &lt;td&gt;Tiger Nixon&lt;/td&gt;
+                            &lt;td&gt;Edinburgh&lt;/td&gt;
+                            &lt;td&gt;25/04/2011&lt;/td&gt;
+                            &lt;td&gt;61&lt;/td&gt;
+                            &lt;td&gt;$320,800&lt;/td&gt;
+                        &lt;/tr&gt;
                         ...
+                        &lt;/tbody&gt;
                     &lt;/table&gt;
                 </code></pre>
 
-                <h3 id="_table_search">Search</h3>
+                <h3 id="_table_filtering">Filtering</h3>
                 <p>
-                    When component works, it creates special search block before a table.
-                    This block is created automatically, but you can control its visibility using special component attributes.
-                    To hide this block, set attribute <code>data-show-search</code> to <code>false</code> or define custom wrapper.
+                    Table components contains API to create custom filters for data.
+                    These <code>filters</code> works before <code>search</code> and is connected with it by the <code>and</code> operator if search is not empty.
+                    These filters are user-defined functions and can be applied in two ways: with attribute <code>data-filters</code> and with table api method <code>addFilter</code>.
+                    In both cases, the functions must be defined before they are used.
                 </p>
+                <h4 class="text-light">Use attribute</h4>
+                <div class="example">
+                    <script>
+                        function myFilter(row, heads){
+                            var is_active_index = 0;
+                            heads.forEach(function(el, i){
+                                if (el.name === "name") {
+                                    is_active_index = i;
+                                }
+                            });
+                            return row[is_active_index].contains("Jak");
+                        }
+                    </script>
+                    <table class="table striped table-border mt-4"
+                           data-role="table"
+                           data-rows="5"
+                           data-rows-steps="5, 10"
+                           data-source="data/table.json"
+                           data-show-rows-steps="false"
+                           data-show-search="true"
+                           data-search-min-length="3"
+                           data-search-threshold="300"
+                           data-filters="myFilter"
+                    >
+                    </table>
+                </div>
                 <pre><code>
-                    &lt;table data-role="table" data-show-search="false"&gt;
-                        ...
+                    &lt;script&gt;
+                        function myFilter(row, heads){
+                            var is_active_index = 0;
+                            heads.forEach(function(el, i){
+                                if (el.name === "name") {
+                                    is_active_index = i;
+                                }
+                            });
+                            return row[is_active_index].contains("Jak");
+                        }
+                    &lt;/script&gt;
+
+                    &lt;table class="table"
+                        data-role="table"
+                        data-filters="myFilter"
+                    &gt;
+                    ...
                     &lt;/table&gt;
                 </code></pre>
 
+                <h4 class="text-light">Use table API</h4>
+
+                <div class="example">
+                    <div>
+                        <input type="checkbox" data-role="switch" data-caption="Apply filter" onchange="toggleFilter(this.checked)">
+                    </div>
+                    <table class="table striped table-border mt-4" id="t-flt"
+                           data-role="table"
+                           data-rows="5"
+                           data-rows-steps="5, 10"
+                           data-source="data/table.json"
+                           data-show-rows-steps="false"
+                           data-show-search="false"
+                    >
+                    </table>
+                    <script>
+                        var filterIndex;
+                        function toggleFilter(checked){
+                            var table = $('#t-flt').data('table');
+                            if (checked) {
+                                filterIndex = table.addFilter(function(row, heads){
+                                    var is_active_index = 0;
+                                    heads.forEach(function(el, i){
+                                        if (el.name === "name") {
+                                            is_active_index = i;
+                                        }
+                                    });
+                                    return row[is_active_index].contains("Jak");
+                                }, true);
+                            } else {
+                                table.removeFilter(filterIndex, true);
+                            }
+                        }
+                    </script>
+                </div>
+                <pre><code>
+                    &lt;div&gt;
+                        &lt;input type="checkbox" data-role="switch"
+                            data-caption="Apply filter" onchange="toggleFilter(this.checked)"&gt;
+                    &lt;/div&gt;
+                    &lt;table class="table striped table-border mt-4" id="t-flt"
+                           data-role="table"
+                           data-rows="5"
+                           data-rows-steps="5, 10"
+                           data-source="data/table.json"
+                           data-show-rows-steps="false"
+                           data-show-search="false"
+                    &gt;
+                    &lt;/table&gt;
+                    &lt;script&gt;
+                        var filterIndex;
+                        function toggleFilter(checked){
+                            var table = $('#t-flt').data('table');
+                            if (checked) {
+                                filterIndex = table.addFilter(function(row, heads){
+                                    var is_active_index = 0;
+                                    heads.forEach(function(el, i){
+                                        if (el.name === "name") {
+                                            is_active_index = i;
+                                        }
+                                    });
+                                    return row[is_active_index].contains("Jak");
+                                }, true);
+                            } else {
+                                table.removeFilter(filterIndex, true);
+                            }
+                        }
+                    &lt;/script&gt;
+                </code></pre>
+
+                <h4 class="text-light">Filters operator</h4>
                 <p>
-                    You can specify your own search field with attribute <code>data-search-wrapper="..."</code>.
-                    Value for this attribute must be a valid element selector - className or ID.
+                    By default, all filters applied with operator <code>and</code>.
+                    You can set this to operator <code>or</code> with attribute <code>data-filters-operator="or"</code>.
+                </p>
+                <div class="example">
+                    <div>
+                        <input type="checkbox" data-role="switch"
+                               data-caption="Apply filter Jak"
+                               onchange="toggleFilter2(this.checked)">
+                        <input type="checkbox" data-role="switch"
+                               data-caption="Apply filter Simon"
+                               onchange="toggleFilter3(this.checked)">
+                    </div>
+                    <table class="table striped table-border mt-4" id="t-flt-2"
+                           data-role="table"
+                           data-rows="5"
+                           data-rows-steps="5, 10"
+                           data-source="data/table.json"
+                           data-show-rows-steps="false"
+                           data-show-search="false"
+                           data-filters-operator="or"
+                    >
+                    </table>
+                    <script>
+                        var filterIndex2, filterIndex3;
+
+                        function toggleFilter2(checked){
+                            var table = $('#t-flt-2').data('table');
+                            if (checked) {
+                                filterIndex2 = table.addFilter(function(row, heads){
+                                    var is_active_index = 0;
+                                    heads.forEach(function(el, i){
+                                        if (el.name === "name") {
+                                            is_active_index = i;
+                                        }
+                                    });
+                                    return row[is_active_index].contains("Jak");
+                                }, true);
+                            } else {
+                                table.removeFilter(filterIndex2, true);
+                            }
+                        }
+
+                        function toggleFilter3(checked){
+                            var table = $('#t-flt-2').data('table');
+                            if (checked) {
+                                filterIndex3 = table.addFilter(function(row, heads){
+                                    var is_active_index = 0;
+                                    heads.forEach(function(el, i){
+                                        if (el.name === "name") {
+                                            is_active_index = i;
+                                        }
+                                    });
+                                    return row[is_active_index].contains("Simon");
+                                }, true);
+                            } else {
+                                table.removeFilter(filterIndex3, true);
+                            }
+                        }
+                    </script>
+                </div>
+                <pre><code>
+                    &lt;div&gt;
+                        &lt;input type="checkbox" data-role="switch"
+                               data-caption="Apply filter Jak"
+                               onchange="toggleFilter2(this.checked)"&gt;
+                        &lt;input type="checkbox" data-role="switch"
+                               data-caption="Apply filter Simon"
+                               onchange="toggleFilter3(this.checked)"&gt;
+                    &lt;/div&gt;
+                    &lt;table class="table striped table-border mt-4" id="t-flt-2"
+                           data-role="table"
+                           data-rows="5"
+                           data-rows-steps="5, 10"
+                           data-source="data/table.json"
+                           data-show-rows-steps="false"
+                           data-show-search="false"
+                           data-filters-operator="or"
+                    &gt;
+                    &lt;/table&gt;
+                    &lt;script&gt;
+                        var filterIndex2, filterIndex3;
+
+                        function toggleFilter2(checked){
+                            var table = $('#t-flt-2').data('table');
+                            if (checked) {
+                                filterIndex2 = table.addFilter(function(row, heads){
+                                    var is_active_index = 0;
+                                    heads.forEach(function(el, i){
+                                        if (el.name === "name") {
+                                            is_active_index = i;
+                                        }
+                                    });
+                                    return row[is_active_index].contains("Jak");
+                                }, true);
+                            } else {
+                                table.removeFilter(filterIndex2, true);
+                            }
+                        }
+
+                        function toggleFilter3(checked){
+                            var table = $('#t-flt-2').data('table');
+                            if (checked) {
+                                filterIndex3 = table.addFilter(function(row, heads){
+                                    var is_active_index = 0;
+                                    heads.forEach(function(el, i){
+                                        if (el.name === "name") {
+                                            is_active_index = i;
+                                        }
+                                    });
+                                    return row[is_active_index].contains("Simon");
+                                }, true);
+                            } else {
+                                table.removeFilter(filterIndex3, true);
+                            }
+                        }
+                    &lt;/script&gt;
+                </code></pre>
+                <p class="remark warning">
+                    <code>Filters</code> works before <code>search</code> and is connected with it by the <code>and</code> operator if search is not empty.
+                </p>
+
+                <h3 id="_table_pagination">Pagination</h3>
+                <p>
+                    To use pagination option, this options must be anabled with attribute <code>data-show-pagination="true"</code> (enabled by default).
+                    By default, used pagination short mode. If you need show all pages links in pagination, you can set it with attribute <code>data-pagination-short-mode="false"</code>.
+                </p>
+
+                <h4>Pagination short mode</h4>
+                <div class="example">
+                    <table class="table striped table-border mt-4"
+                           data-role="table"
+                           data-rows="5"
+                           data-rows-steps="5, 10"
+                           data-source="data/table.json"
+                           data-pagination-short-mode="true"
+                    >
+                    </table>
+                </div>
+                <pre><code class="html">
+                    &lt;table class="table" data-role="table"
+                            data-pagination-short-mode="true"&gt;
+                    ...
+                    &lt;/table&gt;
+                </code></pre>
+
+                <h4>Pagination all mode</h4>
+                <div class="example">
+                    <table class="table striped table-border mt-4"
+                           data-role="table"
+                           data-rows="5"
+                           data-rows-steps="5, 10"
+                           data-source="data/table.json"
+                           data-pagination-short-mode="false"
+                    >
+                    </table>
+                </div>
+                <pre><code class="html">
+                    &lt;table class="table" data-role="table"
+                            data-pagination-short-mode="false"&gt;
+                    ...
+                    &lt;/table&gt;
+                </code></pre>
+                <p>
+                    To set <code>title</code> for <code>Previous</code> and <code>Next</code> buttons,
+                    use attributes <code>data-pagination-prev-title</code>, <code>data-pagination-next-title</code>.
                 </p>
 
                 <h3 id="_table_rows_counter">Rows counter</h3>
@@ -294,316 +991,274 @@
                     You can change default rows counter steps with attribute <code>data-rows-steps="..."</code>.
                     This is a comma delimiter value. To set a default rows count, use attribute <code>data-rows="..."</code>
                     To hide this block, set attribute <code>data-show-rows-steps</code> to <code>false</code> or define custom wrapper.
+                    To add all rows mode, you must add <code>-1</code> value to <code>data-rows-steps</code>.
                 </p>
+                <div class="example">
+                    <table class="table striped table-border mt-4"
+                           data-role="table"
+                           data-rows-steps="-1, 5, 10, 20, 30, 100"
+                           data-rows="5"
+                           data-source="data/table.json"
+                    >
+                    </table>
+                </div>
                 <pre><code>
                     &lt;table data-role="table"
-                        data-rows-steps="10, 20, 30, 100"
-                        data-rows="20"&gt;
+                        data-rows-steps="-1, 5, 10, 20, 30, 100"
+                        data-rows="5"
+                    &gt;
                         ...
                     &lt;/table&gt;
                 </code></pre>
-                <p>
-                    You can specify your own rows counter with attribute <code>data-rows-wrapper="..."</code>.
-                    Value for this attribute must be a valid element selector - className or ID.
-                </p>
 
                 <h3 id="_table_info">Table info</h3>
                 <p>
-                    When component works, it creates special block after a table to display table info.
-                    You can set custom text for this block with attribute <code>data-table-info-title="..."</code>.
-                    By default displayed <code>Showing $1 to $2 of $3 entries</code>.
-                    To hide this block, set attribute <code>data-show-table-info</code> to <code>false</code> or define custom wrapper.
+                    Table info block contains information about rows and current position in table.
+                    To enable this feature, use attribute <code>data-show-table-info="true"</code> (enabled by default).
                 </p>
-                <pre><code>
-                    &lt;table data-role="table"
-                        data-table-info-title="$1 to $2 from $3"&gt;
-                        ...
+                <p>
+                    You can change <code>template</code> for table info with attribute <code>data-table-info-title</code>.
+                    By default value for this attribute is <code>Showing $1 to $2 of $3 entries</code>.
+                    Where <code>$1</code> - from records, <code>$2</code> - to records, <code>$3</code> - total records.
+                </p>
+                <div class="example">
+                    <table class="table striped table-border mt-4"
+                           data-role="table"
+                           data-rows="5"
+                           data-rows-steps="5, 10"
+                           data-source="data/table.json"
+                           data-table-info-title="Display from $1 to $2 of $3 records"
+                    >
+                    </table>
+                </div>
+                <pre><code class="html">
+                    &lt;table class="table" data-role="table"
+                           data-table-info-title="Display from $1 to $2 of $3 records"
+                    &gt;
                     &lt;/table&gt;
                 </code></pre>
 
-                <h3 id="_table_pagination">Paging block</h3>
+                <h3 id="_table_inspector">Table inspector</h3>
                 <p>
-                    When component works, his create special paging block after a table.
-                    This block contains <code>pagination</code> section.
-                    This block is created automatically, but you can control its visibility using special component attributes.
-                    To hide this block, set attribute <code>data-show-pagination</code> to <code>false</code> or define custom wrapper.
+                    Component table contains inside a <code>table inspector</code> to manipulate columns in visual mode.
+                    To open <code>inspector</code>, you must call API method <code>openInspector()</code> or <code>toggleInspector()</code>, and to close it - <code>closeInspector();</code>.
                 </p>
-                <pre><code>
-                    &lt;table data-role="table" data-show-pagination="false"&gt;
-                        ...
+                <div class="example">
+                    <div class="text-center m-4">
+                        <button class="button alert" onclick="$('#t-inspector').data('table').toggleInspector()">Open Inspector</button>
+                    </div>
+                    <table class="table striped table-border mt-4" id="t-inspector"
+                           data-role="table"
+                           data-rows="5"
+                           data-rows-steps="5, 10"
+                           data-source="data/table.json"
+                    >
+                    </table>
+                </div>
+
+                <h4>Table view</h4>
+                <p>
+                    For each table, a <code>view</code> is created, which stores information about the current state of the table.
+                    All changes that the user makes in the table inspector are saved in this <code>view</code>.
+                </p>
+                <p>
+                    You can setup <code>view options</code> with special attributes:
+                </p>
+                <ul class="mt-4">
+                    <li><code>data-static-view="true|false"</code> - use static view or not</li>
+                    <li><code>data-view-save-mode="client|server"</code> - how view is stored</li>
+                    <li><code>data-view-save-path="storage_key|url"</code> - where view is stored</li>
+                </ul>
+
+                <p class="text-bold">Client</p>
+                <pre class="mt-0"><code class="html">
+                    &lt;!-- $1 in save path will be replaced with table id --&gt;
+                    &lt;table class="table" data-role="table"
+                           data-view-save-mode="client"
+                           data-view-save-path="TABLE:$1:KEYS"
+                    &gt;
                     &lt;/table&gt;
                 </code></pre>
+
+                <p class="text-bold">Server</p>
+                <pre class="mt-0"><code class="html">
+                    &lt;table class="table" data-role="table"
+                           data-view-save-mode="server"
+                           data-view-save-path="//server.com/save_view.php"
+                    &gt;
+                    &lt;/table&gt;
+                </code></pre>
+
+                <h4>View format</h4>
+                <p>
+                    Object view have next format:
+                </p>
+                <pre><code>
+                    {
+                        0: {index: 0, index-view: 0, show: true, size: 50}
+                        1: {index: 1, index-view: 1, show: true, size: ""}
+                        2: {index: 2, index-view: 2, show: true, size: 150}
+                        3: {index: 3, index-view: 3, show: true, size: 80}
+                        4: {index: 4, index-view: 4, show: true, size: 150}
+                        ...
+                    }
+                </code></pre>
+                <p>
+                    Where <code>index</code> - field index in original data,
+                    <code>index-view</code> - field index in displayed table,
+                    <code>show</code> - field displayed or not,
+                    <code>size</code> - field size.
+                </p>
+
+                <h3 id="_table_export">Export table data to CSV</h3>
+                <p>
+                    You can exporting table data into CSV file.
+                    To export data, you must use API method <code>export(to, mode, filename, options)</code>.
+                </p>
+                <pre><code>
+                    var table = $(el).data('table');
+                    table.export('CSV', 'all', 'table-export.csv', {
+                        csvDelimiter: "\t",
+                        csvNewLine: "\r\n",
+                        includeHeader: true
+                    });
+                </code></pre>
+
+                <h4>Export to...</h4>
+                <p>
+                    Currently supported only <code>CSV</code> target.
+                </p>
+
+                <h4>Export modes</h4>
+                <ul>
+                    <li><code>all</code> - all table data</li>
+                    <li><code>all-filtered</code> - all with applied filters and search</li>
+                    <li><code>checked</code> - checked rows</li>
+                    <li><code>view</code> - rows, displayed in current page</li>
+                </ul>
+
+                <h4>Export options</h4>
+                <ul>
+                    <li><code>csvDelimiter</code> - default <code>\t</code></li>
+                    <li><code>csvNewLine</code> - default <code>\r\n</code></li>
+                    <li><code>includeHeader</code> - default <code>true</code></li>
+                </ul>
 
                 <h3 id="_table_external_data">External data</h3>
                 <p>
-                    Metro 4 table component supports loading data from external resource.
-                    The external resource must return a valid <code>JSON</code> object in specific format.
-                    To load external table data, use attribute <code>data-source="..."</code>.
+                    You can create table from external JSON data.
+                    To create it, use attribute <code>data-source</code>.
                 </p>
+                <div class="example">
+                    <table class="table striped table-border mt-4"
+                           data-role="table"
+                           data-source="data/table.json"
+                    >
+                    </table>
+                </div>
                 <pre><code>
-                    &lt;table data-role="table"
-                        data-source="https://domain.com/data.json"&gt;
-                        ...
+                    &lt;table class="table striped table-border mt-4"
+                           data-role="table"
+                           data-source="data/table.json"
+                    &gt;
                     &lt;/table&gt;
                 </code></pre>
 
-                <h4 id="_table_external_data_format">Data format</h4>
+                <h4>External data format</h4>
                 <p>
-                    The external resource must return a valid <code>JSON</code> object in specific format:
+                    To use external source, you must create JSON data in specific format. Example of <a href="data/table.json">JSON file</a>.
                 </p>
                 <pre><code>
                     {
-                        "header": [...],
-                        "data": [...],
-                        "footer": [...]
+                        header: [...],
+                        data: [...]
                     }
                 </code></pre>
 
-                <h4 id="_table_external_data_format_header">Header section</h4>
+                <h5>Header</h5>
                 <p>
-                    The header section defines table head columns and additional classes for a related cells in table body.
-                    Header section has next format:
+                    In <code>header</code>, you must describe information about all table columns.
+                    Each item can contains the next data:
                 </p>
+                <ul class="mt-4">
+                    <li><code>name</code> - column name</li>
+                    <li><code>sortable</code> - sortable or not</li>
+                    <li><code>sortDir</code> - sort direction asc or desc</li>
+                    <li><code>format</code> - column format</li>
+                    <li><code>cls</code> - classes for head cell</li>
+                    <li><code>clsColumn</code> - classes for data cell</li>
+                    <li><code>size</code> - column size</li>
+                    <li><code>show</code> - show or hide column</li>
+                </ul>
                 <pre><code>
-                    "header": [
-                        {
-                          "name": ..., // string
-                          "title": ..., // string
-                          "sortable": ..., // true or false
-                          "sortDir": ..., // string - "asc" or "desc"
-                          "size": ..., // int, column width
-                          "cls": ..., // additional class for header cell
-                          "clsColumn": ...,  // additional class for related cells in table body
-                          "format": ... // string define column format for right sorting
-                        },
-                        ...
-                    ]
-                </code></pre>
-
-                <h6>Example</h6>
-                <pre><code>
+                  "header": [
                     {
-                      "header": [
-                        {
-                          "name": "name",
-                          "title": "Name",
-                          "sortable": true,
-                          "sortDir": "asc",
-                          "size": 200
-                        },
-                        {
-                          "name": "company",
-                          "title": "Company",
-                          "sortable": true,
-                          "clsColumn": "d-none d-table-cell-md"
-                        },
-                        ...
-                      ],
-                      ...
-                    }
-                </code></pre>
-
-                <h4 id="_table_external_data_format_data">Data section</h4>
-                <p>
-                    Data section defines a table rows. Each row represent as array of values.
-                </p>
-                <pre><code>
+                      "name": "id",
+                      "title": "ID",
+                      "size": 50,
+                      "sortable": true,
+                      "sortDir": "asc",
+                      "format": "number"
+                    },
                     {
-                      "header": [...],
-
-                      "data": [
-                        [
-                          "Merrill Hartman",
-                          "Placerat Cras Dictum Foundation",
-                          "Barasat",
-                          21,
-                          "2009/07/05",
-                          "$8,969"
-                        ],
-                        [
-                          "Hayes Christian",
-                          "Vehicula Et Rutrum Corp.",
-                          "Canela",
-                          24,
-                          "2006/08/27",
-                          "$9,726"
-                        ],
-                        ...
-                      ],
-
-                      "footer": [...]
+                      "name": "name",
+                      "title": "Name",
+                      "sortable": true
+                    },7
+                    {
+                      "name": "start",
+                      "title": "Start",
+                      "sortable": true,
+                      "size": 150,
+                      "format": "date",
+                      "formatMask": "dd-mm-yyyy"
+                    },
+                    {
+                      "name": "age",
+                      "title": "Age",
+                      "sortable": true,
+                      "size": 80
+                    },
+                    {
+                      "name": "salary",
+                      "title": "Salary",
+                      "sortable": true,
+                      "size": 150,
+                      "format": "money",
+                      "show": true
                     }
+                  ]
                 </code></pre>
 
-                <h4 id="_table_external_data_format_footer">Footer section</h4>
+                <h4>Data</h4>
                 <p>
-                    Footer section defines a table footer cells.
+                    In data section you must put simple text or html data.
                 </p>
                 <pre><code>
-                    "footer": [
-                        {
-                          "name": ..., // string
-                          "title": ..., // string
-                          "cls": ..., // additional class for header cell
-                        },
-                        ...
-                    ]
+                  "data": [
+                    [
+                      1,
+                      "Aidan",
+                      "31-12-2017",
+                      63,
+                      "$7,843"
+                    ],
+                    [
+                      2,
+                      "Ferris",
+                      "13-06-2018",
+                      28,
+                      "$8,877"
+                    ],
+                    [
+                      3,
+                      "Joseph",
+                      "06-02-2018",
+                      43,
+                      "$5,645"
+                    ],
+                  ]
                 </code></pre>
-
-                <h3 id="_table_options">Options</h3>
-                <p>
-                    You can change behavior of your table with any options. To these options you can use special attributes.
-                </p>
-                <table class="table cell-border table-border options-table mt-4">
-                    <thead>
-                    <tr>
-                        <td>Option</td>
-                        <td>Data-*</td>
-                        <td>Default</td>
-                        <td>Desc</td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td><code>source</code></td>
-                        <td><code>data-source</code></td>
-                        <td></td>
-                        <td>Define external data for table.</td>
-                    </tr>
-                    <tr>
-                        <td><code>searchInput</code></td>
-                        <td><code>data-search-input</code></td>
-                        <td></td>
-                        <td>Define a element selector for custom search input.</td>
-                    </tr>
-                    <tr>
-                        <td><code>search</code></td>
-                        <td><code>data-search</code></td>
-                        <td>true</td>
-                        <td>Show/hide table search block.</td>
-                    </tr>
-                    <tr>
-                        <td><code>pagination</code></td>
-                        <td><code>data-pagination</code></td>
-                        <td>true</td>
-                        <td>Show/hide table paging block.</td>
-                    </tr>
-                    <tr>
-                        <td><code>showRowsSteps</code></td>
-                        <td><code>data-show-rows-steps</code></td>
-                        <td>true</td>
-                        <td>Show/hide rows steps select.</td>
-                    </tr>
-                    <tr>
-                        <td><code>showSearch</code></td>
-                        <td><code>data-show-search</code></td>
-                        <td>true</td>
-                        <td>Show/hide search input.</td>
-                    </tr>
-                    <tr>
-                        <td><code>showTableInfo</code></td>
-                        <td><code>data-show-table-info</code></td>
-                        <td>true</td>
-                        <td>Show/hide table info.</td>
-                    </tr>
-                    <tr>
-                        <td><code>showPagination</code></td>
-                        <td><code>data-show-pagination</code></td>
-                        <td>true</td>
-                        <td>Show/hide table pagination.</td>
-                    </tr>
-                    <tr>
-                        <td><code>paginationShortMode</code></td>
-                        <td><code>data-pagination-short-mode</code></td>
-                        <td>true</td>
-                        <td>Pagination display mode. If false, then shows links to all pages in table pagination.</td>
-                    </tr>
-                    <tr>
-                        <td><code>showActivity</code></td>
-                        <td><code>data-show-activity</code></td>
-                        <td>true</td>
-                        <td>Show activity when table sorting.</td>
-                    </tr>
-                    <tr>
-                        <td><code>muteTable</code></td>
-                        <td><code>data-mute-table</code></td>
-                        <td>true</td>
-                        <td>Mute table body when table sorting.</td>
-                    </tr>
-                    <tr>
-                        <td><code>rows</code></td>
-                        <td><code>data-rows</code></td>
-                        <td>10</td>
-                        <td>Default value for rows counter.</td>
-                    </tr>
-                    <tr>
-                        <td><code>rowsSteps</code></td>
-                        <td><code>data-rows-steps</code></td>
-                        <td>10,25,50,100</td>
-                        <td>Values for rows counter.</td>
-                    </tr>
-                    <tr>
-                        <td><code>sortDir</code></td>
-                        <td><code>data-sort-dir</code></td>
-                        <td>asc</td>
-                        <td>Default sort direction.</td>
-                    </tr>
-                    <tr>
-                        <td><code>thousandSeparator</code></td>
-                        <td><code>data-thousand-separator</code></td>
-                        <td><code>,</code></td>
-                        <td>Thousand separator.</td>
-                    </tr>
-                    <tr>
-                        <td><code>decimalSeparator</code></td>
-                        <td><code>data-decimal-separator</code></td>
-                        <td><code>.</code></td>
-                        <td>Decimal separator.</td>
-                    </tr>
-                    <tr>
-                        <td><code>tableRowsCountTitle</code></td>
-                        <td><code>data-table-rows-count-title</code></td>
-                        <td>Show entries:</td>
-                        <td>Title for rows counter.</td>
-                    </tr>
-                    <tr>
-                        <td><code>tableSearchTitle</code></td>
-                        <td><code>data-table-search-title</code></td>
-                        <td>Search:</td>
-                        <td>Title for search input.</td>
-                    </tr>
-                    <tr>
-                        <td><code>tableInfoTitle</code></td>
-                        <td><code>data-table-info-title</code></td>
-                        <td>Showing $1 to $2 of $3 entries</td>
-                        <td>Title for table info block.</td>
-                    </tr>
-                    <tr>
-                        <td><code>paginationPrevTitle</code></td>
-                        <td><code>data-pagination-prev-title</code></td>
-                        <td>Prev</td>
-                        <td>Title for table pagination prev button.</td>
-                    </tr>
-                    <tr>
-                        <td><code>paginationNextTitle</code></td>
-                        <td><code>data-pagination-next-title</code></td>
-                        <td>Prev</td>
-                        <td>Title for table pagination next button.</td>
-                    </tr>
-                    <tr>
-                        <td><code>activityType</code></td>
-                        <td><code>data-activity-type</code></td>
-                        <td>cycle</td>
-                        <td>Set activity type.</td>
-                    </tr>
-                    <tr>
-                        <td><code>activityStyle</code></td>
-                        <td><code>data-activity-style</code></td>
-                        <td>color</td>
-                        <td>Set activity style.</td>
-                    </tr>
-                    </tbody>
-                </table>
 
                 <h3 id="_table_events">Events</h3>
                 <p>
@@ -626,7 +1281,22 @@
                     <tr>
                         <td><code>onDrawRow</code></td>
                         <td><code>data-on-draw-row</code></td>
-                        <td>Event fired when row added to the table.</td>
+                        <td>Event fired when draw row.</td>
+                    </tr>
+                    <tr>
+                        <td><code>onDrawCell</code></td>
+                        <td><code>data-on-draw-cell</code></td>
+                        <td>Event fired when draw cell.</td>
+                    </tr>
+                    <tr>
+                        <td><code>onAppendRow</code></td>
+                        <td><code>data-on-append-row</code></td>
+                        <td>Event fired when row added to table.</td>
+                    </tr>
+                    <tr>
+                        <td><code>onAppendCell</code></td>
+                        <td><code>data-on-append-cell</code></td>
+                        <td>Event fired when cell added to row.</td>
                     </tr>
                     <tr>
                         <td><code>onSortStart</code></td>
@@ -664,6 +1334,41 @@
                         <td>Event fired after data loaded.</td>
                     </tr>
                     <tr>
+                        <td><code>onFilterRowAccepted(row)</code></td>
+                        <td><code>data-on-filter-row-accepted</code></td>
+                        <td>Row accepted by filters.</td>
+                    </tr>
+                    <tr>
+                        <td><code>onFilterRowDeclined(row)</code></td>
+                        <td><code>data-on-filter-row-declined</code></td>
+                        <td>Row declined by filters.</td>
+                    </tr>
+                    <tr>
+                        <td><code>onCheckClick()</code></td>
+                        <td><code>data-on-check-click</code></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><code>onCheckClickAll()</code></td>
+                        <td><code>data-on-check-click-all</code></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><code>onCheckDraw()</code></td>
+                        <td><code>data-on-check-draw</code></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><code>onViewSave()</code></td>
+                        <td><code>data-on-view-save</code></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><code>onViewGet()</code></td>
+                        <td><code>data-on-view-get</code></td>
+                        <td></td>
+                    </tr>
+                    <tr>
                         <td><code>onTableCreate(el)</code></td>
                         <td><code>data-on-table-create</code></td>
                         <td>Event fired after the table created.</td>
@@ -673,100 +1378,36 @@
 
                 <h3 id="_table_methods">Methods</h3>
                 <p>
-                    You can use table methods to interact with it.
+                    You can use table API methods to interact with it.
                 </p>
-                <ul>
+                <ul class="mt-4">
+                    <li><strong>draw()</strong></li>
                     <li><strong>sorting(dir)</strong></li>
-                    <li><strong>filter(val)</strong></li>
-                    <li><strong>loadData(source)</strong></li>
+                    <li><strong>search(val)</strong></li>
+                    <li><strong>loadData(source, review)</strong></li>
+                    <li><strong>reload(review)</strong></li>
                     <li><strong>next()</strong></li>
                     <li><strong>prev()</strong></li>
                     <li><strong>first()</strong></li>
                     <li><strong>last()</strong></li>
                     <li><strong>page(num)</strong></li>
-                    <li><strong>draw()</strong></li>
-                    <li><strong>addFilter(func)</strong></li>
+                    <li><strong>addFilter(func, redraw)</strong></li>
                     <li><strong>removeFilter(func_index)</strong></li>
+                    <li><strong>removeFilters()</strong></li>
+                    <li><strong>getItems()</strong></li>
+                    <li><strong>getHeads()</strong></li>
+                    <li><strong>getFilteredItems()</strong></li>
+                    <li><strong>getSelectedItems()</strong></li>
+                    <li><strong>getStoredKeys()</strong></li>
+                    <li><strong>clearSelected()</strong></li>
+                    <li><strong>clearSelected(redraw)</strong></li>
                     <li><strong>getFilters()</strong></li>
-                </ul>
-
-                <h3 id="_table_filters">Filters</h3>
-                <p>
-                    You can add <strong>custom filters</strong> to your table component with a special attributes and methods.
-                    To set custom filters, use attributes <code>data-filter</code> and <code>data-filters</code>.
-                </p>
-                <p>
-                    Attribute <code>data-filter</code> set one filter, attribute <code>data-filters</code> set the number of filters.
-                    Value for <code>data-filter</code> must be valid function name, and for <code>data-filters</code> - comma separated functions name list.
-                </p>
-
-                <pre><code>
-                    &lt;table data-role="table" data-filter="myFilterFunc"&gt;...&lt;/table&gt;
-
-                    &lt;table data-role="table" data-filters="myFilters.Func1, myFilters.Func2"&gt;...&lt;/table&gt;
-
-                    ...javascript
-                    function myFilterFunc(row){...}
-
-                    var myFilters = {
-                        Func1: function(row){...},
-                        Func2: function(row){...}
-                    }
-
-                </code></pre>
-
-                <p>
-                    Component contains next methods to work with custom filters: <code>addFilter(func)</code>, <code>removeFilter(func)</code> and <code>getFilters()</code>.
-                </p>
-                <div class="example">
-                    <div class="mb-2">
-                        <button class="button" onclick="addFilter()">Add filter</button>
-                        <button class="button" onclick="removeFilter()">Remove filter</button>
-                    </div>
-                    <table id="filtersExample" class="table table-border mt-2"
-                           data-role="table" data-source="data/table.json"
-                           data-cls-table-top="row flex-nowrap"
-                           data-cls-search="cell-md-8"
-                           data-cls-rows-count="cell-md-4"
-                           data-rows="5" data-rows-steps="5">
-                    </table>
-                </div>
-                <p>...html</p>
-                <pre><code>
-                    &lt;div&gt;
-                        &lt;button class="button" onclick="addFilter()"&gt;Add filter&lt;/button&gt;
-                        &lt;button class="button" onclick="removeFilter()"&gt;Remove filter&lt;/button&gt;
-                    &lt;/div&gt;
-                    &lt;table id="filtersExample" class="table table-border mt-2"
-                           data-role="table" data-source="data/table.json"
-                           data-rows="5" data-rows-steps="5"&gt;
-                    &lt;/table&gt;
-                </code></pre>
-                <p>...JavaScript</p>
-                <pre><code>
-                    var customFilterTable = $('#filtersExample').data('table');
-                    var filterIndex;
-
-                    function addFilter(){
-                        filterIndex = customFilterTable.addFilter(function(row){
-                            return Metro.utils.between(row[3], 20, 30);
-                        });
-                        customFilterTable.draw();
-                    }
-                    function removeFilter(){
-                        customFilterTable.removeFilter(filterIndex);
-                        customFilterTable.draw();
-                    }
-                </code></pre>
-
-                <p>
-                    The methods have the following purpose:
-                </p>
-
-                <ul class="unstyled-list mt-2">
-                    <li><code>addFilter(func)</code> - add filter to table</li>
-                    <li><code>removeFilter(filter_index)</code> - remove filter from table</li>
-                    <li><code>getFilters()</code> - get filters as array</li>
+                    <li><strong>getFiltersIndexes()</strong></li>
+                    <li><strong>openInspector()</strong></li>
+                    <li><strong>closeInspector()</strong></li>
+                    <li><strong>toggleInspector()</strong></li>
+                    <li><strong>resetView()</strong></li>
+                    <li><strong>export(to, mode, filename, options)</strong></li>
                 </ul>
 
                 <h3 id="_table_customize">Customize</h3>
@@ -872,6 +1513,21 @@
                         <td><code>data-cls-search</code></td>
                         <td>Additional class for search block</td>
                     </tr>
+                    <tr>
+                        <td>clsRow</td>
+                        <td><code>data-cls-row</code></td>
+                        <td>Additional class for each data row</td>
+                    </tr>
+                    <tr>
+                        <td>clsRowEven</td>
+                        <td><code>data-cls-row-even</code></td>
+                        <td>Additional class for even data rows</td>
+                    </tr>
+                    <tr>
+                        <td>clsRowOdd</td>
+                        <td><code>data-cls-row-odd</code></td>
+                        <td>Additional class for odd data rows</td>
+                    </tr>
                     </tbody>
                 </table>
 
@@ -879,10 +1535,10 @@
                 <p>
                     You can set custom wrappers for <code>search</code>, <code>rows counter</code>, <code>table info</code> and <code>pagination</code> elements.
                     To set it, use special named attributes:
-                        <code>data-search-wrapper</code>,
-                        <code>data-rows-wrapper</code>,
-                        <code>data-info-wrapper</code>,
-                        <code>data-pagination-wrapper</code>.
+                    <code>data-search-wrapper</code>,
+                    <code>data-rows-wrapper</code>,
+                    <code>data-info-wrapper</code>,
+                    <code>data-pagination-wrapper</code>.
                 </p>
                 <div class="example">
                     <div class="row mb-2">
@@ -925,7 +1581,6 @@
 
             </main>
         </div>
-
     </div>
 
     <script src="docsearch/docsearch.min.js"></script>
@@ -934,26 +1589,6 @@
     <script src="highlight/highlight.pack.js"></script>
     <script src="js/clipboard.min.js"></script>
     <script src="js/site.js"></script>
-    <script>
-        var customFilterTable = $('#filtersExample').data('table');
-        var filterIndex;
-
-        function addFilter(){
-            filterIndex = customFilterTable.addFilter(function(row){
-                return Metro.utils.between(row[3], 20, 30);
-            });
-            customFilterTable.draw();
-        }
-        function removeFilter(){
-            customFilterTable.removeFilter(filterIndex);
-            customFilterTable.draw();
-        }
-        var myFilters = {
-            addAgeFilter: function(row){
-                return Metro.utils.between(row[3], 20, 30);
-            }
-        }
-    </script>
     <!-- ads-script -->
     <!-- ga-script -->
     <!-- hit-ua -->

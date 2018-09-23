@@ -217,12 +217,45 @@
         }
     }
 
-    .check-cell {
-        width: 36px!important;
+    .check-cell, .rownum-cell {
+        width: 36px;
+        text-align: center;
     }
 
-    .rownum-cell {
-        width: 36px!important;
+    .check-cell {
+        .checkbox, .radio {
+            height: 24px;
+            line-height: 24px;
+        }
+    }
+
+    .crud-cell {
+        width: 1px;
+        text-align: center;
+
+        .crud-container {
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .button {
+            width: 24px;
+            height: 24px;
+            line-height: 24px;
+            padding: 0;
+            font-size: 12px;
+        }
+        .button + .button {
+            margin-left: 1px;
+        }
+    }
+
+    &.fixed-layout {
+        .crud-cell {
+            width: 90px;
+        }
     }
 
     thead, tbody, .thead, .tbody {
@@ -285,8 +318,8 @@
     border: 1px double @borderColor;
     width: auto;
     padding: 10px;
+    max-height: ~"calc(100vh - 40px)";
     .win-shadow();
-    max-height: ~"calc(100vh - 100px)";
 
     .table-inspector-header {
         display: block;
@@ -329,17 +362,31 @@
         }
     }
 
-    input {
-        height: 24px!important;
-        line-height: 24px!important;
-        width: 64px!important;
-        font-size: 14px!important;
-        padding: .15rem!important;
+    .spinner {
+        width: 120px;
+        input {
+            font-size: 14px;
+        }
     }
 
     &.open {
         display: block;
     }
+}
+
+.table-form {
+    display: block;
+    position: absolute;
+    z-index: @zindex-absolute;
+    height: auto;
+    max-height: ~"calc(100vh - 40px)";
+    width: auto;
+    max-width: ~"calc(100vw - 40px)";
+    top: 50%;
+    left: 50%;
+    .translate3d(-50%, -50%);
+    border: 1px solid @borderColor;
+    .win-shadow();
 }
 
 @keyframes flash-bg {

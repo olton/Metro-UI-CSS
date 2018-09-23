@@ -26,6 +26,7 @@
 
     .header-year {
         font-size: .75rem;
+        line-height: 1;
     }
     .header-day {
         font-size: 1.325rem;
@@ -49,37 +50,21 @@
         width: 100%;
 
         .prev-month, .prev-year, .next-month, .next-year {
-            padding: .5rem;
+            padding: .5rem 0;
             cursor: pointer;
             text-align: center;
-            flex-grow: 1;
-            width: 37px;
-
-            &::after {
-                font-size: 1.625rem;
-                line-height: 1rem;
-                position: relative;
-            }
-        }
-
-        .prev-month, .prev-year {
-            &::after {
-                content: "\2039";
-            }
-        }
-
-        .next-month, .next-year {
-            &::after {
-                content: "\203A";
-            }
+            width: 30px;
+            display: block;
+            position: relative;
+            flex-shrink: 0;
         }
 
         .curr-month, .curr-year {
-            flex-grow: 2;
-            padding: .5rem;
+            padding: .5rem 0;
             width: 100%;
             text-align: center;
             cursor: pointer;
+            font-size: 14px;
         }
     }
 

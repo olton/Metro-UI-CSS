@@ -33,7 +33,7 @@
     <link href="docsearch/docsearch.min.css" rel="stylesheet">
     <link href="css/site.css" rel="stylesheet">
 
-    <title>Format date - Metro 4 :: Popular HTML, CSS and JS library</title>
+    <title>Date routines - Metro 4 :: Popular HTML, CSS and JS library</title>
 </head>
 <body>
     <div class="container-fluid">
@@ -46,9 +46,9 @@
                 <h5>Table of contents</h5>
                 <hr/>
                 <ul class="toc-nav">
-                    <li class="toc-entry"><a href="#">Format date</a></li>
-                    <li class="toc-entry"><a href="#_dateformat_function">Formatting function</a></li>
-                    <li class="toc-entry"><a href="#_dateformat_patterns">Patterns</a></li>
+                    <li class="toc-entry"><a href="#">Date routines</a></li>
+                    <li class="toc-entry"><a href="#_dateformat_format">Date to string</a></li>
+                    <li class="toc-entry"><a href="#_dateformat_to_date">String to date</a></li>
                 </ul>
 
             </div>
@@ -58,14 +58,14 @@
                     <img src="images/logo.png" class="w-100">
                 </div>
 
-                <h1>Format date</h1>
+                <h1>Date routines</h1>
                 <p class="text-leader">
-                    Metro 4 contains function to format date and time and output formatted string.
+                    Metro 4 contains function to format date and time and output formatted string and create date from string by mask.
                 </p>
 
                 <!-- ads-html -->
 
-                <h3 id="_dateformat_function">Formatting function</h3>
+                <h3 id="_dateformat_function">Date to string</h3>
                 <p>
                     You can format date and time value to formatted string with special function.
                     This function is implemented as an extension of the Date object with name <code>format</code>.
@@ -85,7 +85,7 @@
                     console.log(date.format("%d-%m-%Y"));
                 </code></pre>
 
-                <h3 id="_dateformat_patterns">Patterns</h3>
+                <h5 id="_dateformat_patterns">Patterns</h5>
                 <table class="table cell-border table-border options-table">
                     <thead>
                     <tr>
@@ -220,6 +220,54 @@
                     </tr>
                     </tbody>
                 </table>
+
+                <h3 id="_dateformat_to_date">String to date</h3>
+                <p>
+                    You can convert <code>string</code> to <code>date</code> by <code>mask</code> with special string extension function <code>toDate(mask)</code>.
+                </p>
+                <pre><code>
+                    String.prototype.toDate = function(mask){...}
+
+                    "1972-12-21 04:30:00".toDate("yyyy-mm-dd hh:ii:ss");
+                    "21-12-1972".toDate("dd-mm-yyyy");
+                    "21-12-1972".toDate("%d-%m-%y");
+                </code></pre>
+                <h5 id="_dateformat_patterns_2">Patterns</h5>
+                <table class="table cell-border table-border options-table">
+                    <thead>
+                    <tr>
+                        <th>Pattern</th>
+                        <th>Desc</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><code>%d, dd</code></td>
+                        <td>Day definition.</td>
+                    </tr>
+                    <tr>
+                        <td><code>%m, mm</code></td>
+                        <td>Month definition.</td>
+                    </tr>
+                    <tr>
+                        <td><code>%y, yy, yyyy</code></td>
+                        <td>Year definition.</td>
+                    </tr>
+                    <tr>
+                        <td><code>%h, hh</code></td>
+                        <td>Hours definition.</td>
+                    </tr>
+                    <tr>
+                        <td><code>%i, ii, mi</code></td>
+                        <td>Minutes definition.</td>
+                    </tr>
+                    <tr>
+                        <td><code>%s, ss</code></td>
+                        <td>Seconds definition.</td>
+                    </tr>
+                    </tbody>
+                </table>
+
             </main>
         </div>
 

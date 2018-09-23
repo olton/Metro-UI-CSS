@@ -5,7 +5,7 @@ var Table = {
         this.element = $(elem);
         this.currentPage = 1;
         this.pagesCount = 1;
-        this.filterString = "";
+        this.searchString = "";
         this.data = null;
         this.activity = null;
         this.busy = false;
@@ -15,13 +15,14 @@ var Table = {
         this.wrapperRows = null;
         this.wrapperPagination = null;
         this.filterIndex = null;
-        this.filtersIndexes = null;
+        this.filtersIndexes = [];
         this.component = null;
         this.inspector = null;
         this.view = {};
         this.viewDefault = {};
         this.locale = Metro.locales["en-US"];
         this.input_interval = null;
+        this.searchFields = [];
 
         this.sort = {
             dir: "asc",
@@ -44,20 +45,35 @@ var Table = {
     options: {
         locale: METRO_LOCALE,
 
+        crud: false,
+        crudTitle: "CRUD",
+        editButton: true,
+        delButton: true,
+        addButton: true,
+        editButtonIcon: "<span class='default-icon-pencil'></span>",
+        delButtonIcon: "<span class='default-icon-minus'></span>",
+        addButtonIcon: "<span class='default-icon-plus'></span>",
+        clsEditButton: "",
+        clsDelButton: "",
+        clsAddButton: "",
+
         check: false,
-        checkColIndex: 0,
-        checkName: null,
         checkType: "checkbox",
         checkStyle: 1,
+        checkColIndex: 0,
+        checkName: null,
         checkStoreKey: "TABLE:$1:KEYS",
         rownum: false,
+        rownumTitle: "#",
 
-        filter: null,
         filters: null,
+        filtersOperator: "and",
+
         source: null,
 
-        filterMinLength: 1,
-        filterThreshold: 500,
+        searchMinLength: 1,
+        searchThreshold: 500,
+        searchFields: null,
 
         showRowsSteps: true,
         showSearch: true,
@@ -65,12 +81,12 @@ var Table = {
         showPagination: true,
         paginationShortMode: true,
         showActivity: true,
-
         muteTable: true,
 
         rows: 10,
         rowsSteps: "10,25,50,100",
 
+        staticView: false,
         viewSaveMode: "client",
         viewSavePath: "TABLE:$1:OPTIONS",
 
@@ -123,6 +139,10 @@ var Table = {
 
         clsPagination: "",
 
+        clsEvenRow: "",
+        clsOddRow: "",
+        clsRow: "",
+
         onDraw: Metro.noop,
         onDrawRow: Metro.noop,
         onDrawCell: Metro.noop,
@@ -170,6 +190,10 @@ var Table = {
 
         if (Utils.isValue(Metro.locales[o.locale])) {
             this.locale = Metro.locales[o.locale];
+        }
+
+        if (Utils.isValue(o.searchFields)) {
+            this.searchFields = Utils.strToArray(o.searchFields);
         }
 
         if (o.source !== null) {
@@ -251,39 +275,45 @@ var Table = {
 
     _service: function(){
         var o = this.options;
-        var item_check, item_rownum;
-        var service = [];
 
-        this.service = {};
-
-        item_rownum = {
-            title: "#",
-            format: undefined,
-            name: undefined,
-            sortable: false,
-            sortDir: undefined,
-            clsColumn: o.rownum !== true ? "d-none" : "",
-            cls: o.rownum !== true ? "d-none" : "",
-            colspan: undefined,
-            type: "rownum"
-        };
-
-        item_check = {
-            title: o.checkType === "checkbox" ? "<input type='checkbox' data-role='checkbox' class='table-service-check-all' data-style='"+o.checkStyle+"'>" : "",
-            format: undefined,
-            name: undefined,
-            sortable: false,
-            sortDir: undefined,
-            clsColumn: o.check !== true ? "d-none" : "",
-            cls: o.check !== true ? "d-none" : "",
-            colspan: undefined,
-            type: "rowcheck"
-        };
-
-        service.push(item_rownum);
-        service.push(item_check);
-
-        this.service = service;
+        this.service = [
+            {
+                // CRUD
+                title: o.crudTitle,
+                format: undefined,
+                name: undefined,
+                sortable: false,
+                sortDir: undefined,
+                clsColumn: "crud-cell" + (o.crud === true ? "" : " d-none "),
+                cls: "crud-cell" + (o.crud === true ? "" : " d-none "),
+                colspan: undefined,
+                type: "button"
+            },
+            {
+                // Rownum
+                title: o.rownumTitle,
+                format: undefined,
+                name: undefined,
+                sortable: false,
+                sortDir: undefined,
+                clsColumn: "rownum-cell " + (o.rownum !== true ? "d-none" : ""),
+                cls: "rownum-cell " + (o.rownum !== true ? "d-none" : ""),
+                colspan: undefined,
+                type: "rownum"
+            },
+            {
+                // Check
+                title: o.checkType === "checkbox" ? "<input type='checkbox' data-role='checkbox' class='table-service-check-all' data-style='"+o.checkStyle+"'>" : "",
+                format: undefined,
+                name: undefined,
+                sortable: false,
+                sortDir: undefined,
+                clsColumn: "check-cell " + (o.check !== true ? "d-none" : ""),
+                cls: "check-cell "+(o.check !== true ? "d-none" : ""),
+                colspan: undefined,
+                type: "rowcheck"
+            }
+        ];
     },
 
     _createView: function(){
@@ -325,10 +355,10 @@ var Table = {
             row.data('index-view', i);
             $("<td>").html("<input type='checkbox' data-style='"+o.checkStyle+"' data-role='checkbox' name='column_show_check[]' value='"+i+"' "+(Utils.bool(that.view[i]['show']) ? "checked" : "")+">").appendTo(row);
             $("<td>").html(this.title).appendTo(row);
-            $("<td>").html("<input type='number' name='column_size' value='"+that.view[i]['size']+"' data-index='"+i+"'>").appendTo(row);
+            $("<td>").html("<input type='number' data-role='spinner' name='column_size' value='"+that.view[i]['size']+"' data-index='"+i+"'>").appendTo(row);
             $("<td>").html("" +
-                "<button class='button mini js-table-inspector-field-up' type='button'><span class='mif-arrow-up'></span></button>" +
-                "<button class='button mini js-table-inspector-field-down' type='button'><span class='mif-arrow-down'></span></button>" +
+                "<button class='button square js-table-inspector-field-up' type='button'><span class='mif-arrow-up'></span></button>" +
+                "<button class='button square js-table-inspector-field-down' type='button'><span class='mif-arrow-down'></span></button>" +
                 "").appendTo(row);
             tds[that.view[i]['index-view']] = row;
         });
@@ -384,30 +414,40 @@ var Table = {
             var item = $(this);
             var dir, head_item, item_class;
 
-            if (item.hasClass("sort-asc")) {
-                dir = "asc";
-            } else if (item.hasClass("sort-desc")) {
-                dir = "desc"
+            if (Utils.isValue(item.data('sort-dir'))) {
+                dir = item.data('sort-dir');
             } else {
-                dir = undefined;
+                if (item.hasClass("sort-asc")) {
+                    dir = "asc";
+                } else if (item.hasClass("sort-desc")) {
+                    dir = "desc"
+                } else {
+                    dir = undefined;
+                }
             }
 
             item_class = item[0].className.replace("sortable-column", "");
             item_class = item_class.replace("sort-asc", "");
             item_class = item_class.replace("sort-desc", "");
+            item_class = item_class.replace("hidden", "");
 
             head_item = {
+                type: "data",
                 title: item.html(),
-                format: Utils.isValue(item.data("format")) ? item.data("format") : undefined,
-                name: Utils.isValue(item.data("name")) ? item.data("name") : undefined,
-                sortable: item.hasClass("sortable-column"),
+                name: Utils.isValue(item.data("name")) ? item.data("name") : item.text().replace(" ", "_"),
+                sortable: item.hasClass("sortable-column") || (Utils.isValue(item.data('sortable')) && JSON.parse(item.data('sortable') === true)),
                 sortDir: dir,
+                format: Utils.isValue(item.data("format")) ? item.data("format") : "string",
                 clsColumn: Utils.isValue(item.data("cls-column")) ? item.data("cls-column") : "",
                 cls: item_class,
                 colspan: item.attr("colspan"),
-                type: "data",
                 size: Utils.isValue(item.data("size")) ? item.data("size") : "",
-                show: !item.hasClass("hidden") || (Utils.isValue(item.data("show")) && JSON.parse(item.data("show")) === false)
+                show: !(item.hasClass("hidden") || (Utils.isValue(item.data('show')) && JSON.parse(item.data('show')) === false)),
+
+                required: Utils.isValue(item.data("required")) ? JSON.parse(item.data("required")) === true  : false,
+                field: Utils.isValue(item.data("field")) ? item.data("field") : "input",
+                fieldType: Utils.isValue(item.data("field-type")) ? item.data("field-type") : "text",
+                validator: Utils.isValue(item.data("validator")) ? item.data("validator") : null
             };
             that.heads.push(head_item);
         });
@@ -486,7 +526,7 @@ var Table = {
         var element = this.element, o = this.options;
         var head = $("<thead>").html('');
         var tr, th, tds = [], j, cells;
-        var view = this.view;
+        var view = o.staticView ? this._createView() : this.view;
 
         element.find("thead").remove();
 
@@ -504,8 +544,6 @@ var Table = {
             if (Utils.isValue(item.title)) {th.html(item.title);}
             if (Utils.isValue(item.size)) {th.css({width: item.size});}
             if (Utils.isValue(item.cls)) {classes.push(item.cls);}
-            if (item.type === 'rowcheck') {classes.push("check-cell");}
-            if (item.type === 'rownum') {classes.push("rownum-cell");}
             classes.push(o.clsHeadCell);
             th.addClass(classes.join(" "));
         });
@@ -734,14 +772,6 @@ var Table = {
 
         var filter_func;
 
-        if (Utils.isValue(o.filter)) {
-            filter_func = Utils.isFunc(o.filter);
-            if (filter_func === false) {
-                filter_func = Utils.func(o.filter);
-            }
-            that.filterIndex = that.addFilter(filter_func);
-        }
-
         if (Utils.isValue(o.filters)) {
             $.each(Utils.strToArray(o.filters), function(){
                 filter_func = Utils.isFunc(this);
@@ -852,18 +882,14 @@ var Table = {
         });
 
         var _search = function(e){
-            that.filterString = this.value.trim().toLowerCase();
-
-            if (that.filterString[that.filterString.length - 1] === ":") {
-                return ;
-            }
+            that.searchString = this.value.trim().toLowerCase();
 
             clearInterval(that.input_interval); that.input_interval = false;
             if (!that.input_interval) that.input_interval = setTimeout(function(){
                 that.currentPage = 1;
                 that._draw();
                 clearInterval(that.input_interval); that.input_interval = false;
-            }, o.filterThreshold);
+            }, o.searchThreshold);
         };
 
         search.on(Metro.events.inputchange, _search);
@@ -916,6 +942,10 @@ var Table = {
         }
 
         this._createInspectorEvents();
+
+        element.on(Metro.events.click, ".js-table-crud-button", function(){
+
+        });
     },
 
     _createInspectorEvents: function(){
@@ -1186,30 +1216,43 @@ var Table = {
 
     _filter: function(){
         var that = this, o = this.options, element = this.element;
-        var items, flt, idx = -1, i;
-        if ((Utils.isValue(this.filterString) && that.filterString.length >= o.filterMinLength) || this.filters.length > 0) {
-            flt = this.filterString.split(":");
-            if (flt.length > 1) {
-                $.each(that.heads, function (i, v) {
-                    if (flt[0] === v.title.toLowerCase()) {
-                        idx = i;
-                    }
-                })
-            }
+        var items;
+        if ((Utils.isValue(this.searchString) && that.searchString.length >= o.searchMinLength) || this.filters.length > 0) {
             items = this.items.filter(function(row){
-                var row_data = "" + (flt.length > 1 && idx > -1 ? row[idx] : row.join());
-                var c1 = row_data.replace(/[\n\r]+|[\s]{2,}/g, ' ').trim().toLowerCase();
-                var result = Utils.isValue(that.filterString) && that.filterString.length >= o.filterMinLength ? ~c1.indexOf(flt.length > 1 ? flt[1] : flt[0]) : true;
 
-                if (result === true && that.filters.length > 0) {
+                var row_data = "", result, search_result, i, j = 0;
+
+                if (that.filters.length > 0) {
+
+                    result = o.filtersOperator.toLowerCase() === "and";
                     for (i = 0; i < that.filters.length; i++) {
-                        if (!Utils.isValue(that.filters[i])) continue;
-                        if (Utils.exec(that.filters[i], [row, that.heads]) !== true) {
-                            result = false;
-                            break;
-                        }
+                        if (Utils.isNull(that.filters[i])) continue;
+                        j++;
+                        result = o.filtersOperator.toLowerCase() === "and" ?
+                            result && Utils.exec(that.filters[i], [row, that.heads]) :
+                            result || Utils.exec(that.filters[i], [row, that.heads])
+                        ;
                     }
+
+                    if (j === 0) result = true;
+                } else {
+                    result = true;
                 }
+
+                if (that.searchFields.length > 0) {
+                    $.each(that.heads, function(i, v){
+                        if (that.searchFields.indexOf(v.name) > -1) {
+                            row_data += ""+row[i];
+                        }
+                    })
+                } else {
+                    row_data = row.join("");
+                }
+
+                row_data = row_data.replace(/[\n\r]+|[\s]{2,}/g, ' ').trim().toLowerCase();
+                search_result = Utils.isValue(that.searchString) && that.searchString.length >= o.searchMinLength ? ~row_data.indexOf(that.searchString) : true;
+
+                result = result && search_result;
 
                 if (result) {
                     Utils.exec(o.onFilterRowAccepted, [row], element[0]);
@@ -1220,7 +1263,7 @@ var Table = {
                 return result;
             });
 
-            Utils.exec(o.onSearch, [that.filterString, items], element[0])
+            Utils.exec(o.onSearch, [that.searchString, items], element[0])
         } else {
             items = this.items;
         }
@@ -1238,21 +1281,60 @@ var Table = {
             stop = parseInt(o.rows) === -1 ? this.items.length - 1 : start + o.rows - 1;
         var items;
         var stored_keys = Metro.storage.getItem(o.checkStoreKey.replace("$1", element.attr('id')));
-        var view = this.view;
+
+        var view = o.staticView ? this.viewDefault : this.view;
 
         body.html("");
 
         items = this._filter();
 
         for (i = start; i <= stop; i++) {
-            var j, tr, td, check, cells = [], tds = [];
+            var j, tr, td, check, cells = [], tds = [], is_even_row;
             if (Utils.isValue(items[i])) {
                 tr = $("<tr>").addClass(o.clsBodyRow);
 
-                // Rownum
-                td = $("<td>").html(i + 1);
+                // CRUD buttons
+                td = $("<td>");
                 if (that.service[0].clsColumn !== undefined) {
                     td.addClass(that.service[0].clsColumn);
+                }
+                var crud_container = $("<div>").addClass("crud-container").appendTo(td);
+                if (o.editButton === true) {
+                    $("<button>")
+                        .addClass("button")
+                        .addClass("js-table-crud-button js-table-crud-button-edit")
+                        .addClass(o.clsEditButton)
+                        .html(o.editButtonIcon)
+                        .data("uid", items[i][o.checkColIndex])
+                        .appendTo(crud_container);
+                }
+                if (o.addButton === true) {
+                    $("<button>")
+                        .addClass("button")
+                        .addClass("js-table-crud-button js-table-crud-button-add")
+                        .addClass(o.clsAddButton)
+                        .html(o.addButtonIcon)
+                        .data("uid", null)
+                        .appendTo(crud_container);
+                }
+                if (o.delButton === true) {
+                    $("<button>")
+                        .addClass("button")
+                        .addClass("js-table-crud-button js-table-crud-button-del")
+                        .addClass(o.clsDelButton)
+                        .html(o.delButtonIcon)
+                        .data("uid", items[i][o.checkColIndex])
+                        .appendTo(crud_container);
+                }
+                td.appendTo(tr);
+
+                // Rownum
+
+                is_even_row = i % 2 === 0;
+
+                td = $("<td>").html(i + 1);
+                if (that.service[1].clsColumn !== undefined) {
+                    td.addClass(that.service[1].clsColumn);
                 }
                 td.appendTo(tr);
 
@@ -1271,8 +1353,8 @@ var Table = {
                 check.addClass("table-service-check");
                 Utils.exec(o.onCheckDraw, [check], check[0]);
                 check.appendTo(td);
-                if (that.service[1].clsColumn !== undefined) {
-                    td.addClass(that.service[1].clsColumn);
+                if (that.service[2].clsColumn !== undefined) {
+                    td.addClass(that.service[2].clsColumn);
                 }
                 td.appendTo(tr);
 
@@ -1313,7 +1395,7 @@ var Table = {
 
                 Utils.exec(o.onDrawRow, [tr, that.view, that.heads, element], tr[0]);
 
-                tr.appendTo(body);
+                tr.addClass(o.clsRow).addClass(is_even_row ? o.clsEvenRow : o.clsOddRow).appendTo(body);
 
                 Utils.exec(o.onAppendRow, [tr, element], tr[0]);
             }
@@ -1395,8 +1477,8 @@ var Table = {
         Utils.exec(o.onSortStop, [this.items], element[0]);
     },
 
-    filter: function(val){
-        this.filterString = val.trim().toLowerCase();
+    search: function(val){
+        this.searchString = val.trim().toLowerCase();
         this.currentPage = 1;
         this._draw();
     },
@@ -1520,18 +1602,30 @@ var Table = {
     },
 
     addFilter: function(f, redraw){
-        var func = Utils.isFunc(f);
+        var filterIndex = null, i, func = Utils.isFunc(f);
         if (func === false) {
             return ;
         }
-        this.filters.push(func);
+
+        for(i = 0; i < this.filters.length; i++) {
+            if (Utils.isNull(this.filters[i])) {
+                filterIndex = i;
+                this.filters[i] = func;
+                break;
+            }
+        }
+
+        if (Utils.isNull(filterIndex)) {
+            this.filters.push(func);
+            filterIndex = this.filters.length - 1;
+        }
 
         if (redraw === true) {
             this.currentPage = 1;
             this.draw();
         }
 
-        return this.filters.length - 1;
+        return filterIndex
     },
 
     removeFilter: function(key, redraw){
@@ -1600,16 +1694,16 @@ var Table = {
         return this.filters;
     },
 
-    getFilterIndex: function(){
-        return this.filterIndex;
-    },
-
     getFiltersIndexes: function(){
         return this.filtersIndexes;
     },
 
     openInspector: function(mode){
         this.inspector[mode ? "addClass" : "removeClass"]("open");
+    },
+
+    closeInspector: function(){
+        this.openInspector(false);
     },
 
     toggleInspector: function(){
@@ -1635,6 +1729,10 @@ var Table = {
         var body = $("<tbody>").appendTo(table);
         var i, j, cells, tds = [], items, tr, td;
         var start, stop;
+
+        if (typeof Export.tableToCSV !== 'function') {
+            return ;
+        }
 
         mode = Utils.isValue(mode) ? mode.toLowerCase() : "all-filtered";
         filename = Utils.isValue(filename) ? filename : Utils.elementId("table")+"-export.csv";

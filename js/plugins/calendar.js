@@ -30,6 +30,10 @@ var Calendar = {
     },
 
     options: {
+        prevMonthIcon: "<span class='default-icon-chevron-left'></span>",
+        nextMonthIcon: "<span class='default-icon-chevron-right'></span>",
+        prevYearIcon: "<span class='default-icon-chevron-left'></span>",
+        nextYearIcon: "<span class='default-icon-chevron-right'></span>",
         wide: false,
         widePoint: null,
         pickerMode: false,
@@ -129,7 +133,7 @@ var Calendar = {
 
         if (o.show !== null && Utils.isDate(o.show, o.inputFormat)) {
             this.show = Utils.isValue(o.inputFormat) ? o.show.toDate(o.inputFormat) : (new Date(o.show));
-
+            this.show.setHours(0,0,0,0);
             this.current = {
                 year: this.show.getFullYear(),
                 month: this.show.getMonth(),
@@ -163,13 +167,27 @@ var Calendar = {
 
     _dates2array: function(val, category){
         var that = this, o = this.options;
+        var dates;
 
-        $.each(Utils.strToArray(val), function(){
-            var _d = Utils.isValue(o.inputFormat) ? this.toDate(o.inputFormat) : new Date(this);
-            if (Utils.isDate(_d) === false) {
-                return ;
+        if (Utils.isNull(val)) {
+            return ;
+        }
+
+        dates = typeof val === 'string' ? Utils.strToArray(val) : val;
+
+        $.each(dates, function(){
+            var _d;
+
+            if (!Utils.isDateObject(this)) {
+                _d = Utils.isValue(o.inputFormat) ? this.toDate(o.inputFormat) : new Date(this);
+                if (Utils.isDate(_d) === false) {
+                    return ;
+                }
+                _d.setHours(0,0,0,0);
+            } else {
+                _d = this;
             }
-            _d.setHours(0,0,0,0);
+
             that[category].push(_d.getTime());
         });
     },
@@ -228,7 +246,7 @@ var Calendar = {
                 if (el.hasClass("prev-year") || el.hasClass("next-year")) {
                     Utils.exec(o.onYearChange, [that.current, element], element[0]);
                 }
-            }, o.ripple ? 300 : 0);
+            }, o.ripple ? 300 : 1);
 
             e.preventDefault();
             e.stopPropagation();
@@ -484,6 +502,7 @@ var Calendar = {
         if (content.length === 0) {
             content = $("<div>").addClass("calendar-content").addClass(o.clsCalendarContent).appendTo(element);
         }
+
         content.html("");
 
         toolbar = $("<div>").addClass("calendar-toolbar").appendTo(content);
@@ -491,13 +510,13 @@ var Calendar = {
         /**
          * Calendar toolbar
          */
-        $("<span>").addClass("prev-month").appendTo(toolbar);
+        $("<span>").addClass("prev-month").html(o.prevMonthIcon).appendTo(toolbar);
         $("<span>").addClass("curr-month").html(calendar_locale['months'][this.current.month]).appendTo(toolbar);
-        $("<span>").addClass("next-month").appendTo(toolbar);
+        $("<span>").addClass("next-month").html(o.nextMonthIcon).appendTo(toolbar);
 
-        $("<span>").addClass("prev-year").appendTo(toolbar);
+        $("<span>").addClass("prev-year").html(o.prevYearIcon).appendTo(toolbar);
         $("<span>").addClass("curr-year").html(this.current.year).appendTo(toolbar);
-        $("<span>").addClass("next-year").appendTo(toolbar);
+        $("<span>").addClass("next-year").html(o.nextYearIcon).appendTo(toolbar);
 
         /**
          * Week days
@@ -540,25 +559,6 @@ var Calendar = {
 
             if (o.outside === true) {
                 d.html(v);
-
-                if (this.special.length === 0) {
-                    if (this.selected.indexOf(s.getTime()) !== -1) {
-                        d.addClass("selected").addClass(o.clsSelected);
-                    }
-                    if (this.exclude.indexOf(s.getTime()) !== -1) {
-                        d.addClass("disabled excluded").addClass(o.clsExcluded);
-                    }
-                    if (this.min !== null && s < this.min) {
-                        d.addClass("disabled excluded").addClass(o.clsExcluded);
-                    }
-                    if (this.max !== null && s > this.max) {
-                        d.addClass("disabled excluded").addClass(o.clsExcluded);
-                    }
-                } else {
-                    if (this.special.indexOf(s.getTime()) === -1) {
-                        d.addClass("disabled excluded").addClass(o.clsExcluded);
-                    }
-                }
             }
 
             counter++;
@@ -566,19 +566,18 @@ var Calendar = {
 
         first.setHours(0,0,0,0);
         while(first.getMonth() === this.current.month) {
+
             d = $("<div>").addClass("day").html(first.getDate()).appendTo(days_row);
 
             d.data('day', first.getTime());
 
-            if (this.show.format("%d-%m-%Y") === first.format("%d-%m-%Y")) {
+            // console.log(this.show.getTime() === first.getTime());
+            if (this.show.getTime() === first.getTime()) {
                 d.addClass("showed");
             }
 
-            if (
-                this.today.getFullYear() === first.getFullYear() &&
-                this.today.getMonth() === first.getMonth() &&
-                this.today.getDate() === first.getDate()
-            ) {
+            // console.log(this.today.getTime() === first.getTime());
+            if (this.today.getTime() === first.getTime()) {
                 d.addClass("today").addClass(o.clsToday);
             }
 
@@ -631,37 +630,20 @@ var Calendar = {
             d.data('day', s.getTime());
             if (o.outside === true) {
                 d.html(i + 1);
-
-                if (this.special.length === 0) {
-
-                    if (this.selected.indexOf(s.getTime()) !== -1) {
-                        d.addClass("selected").addClass(o.clsSelected);
-                    }
-                    if (this.exclude.indexOf(s.getTime()) !== -1) {
-                        d.addClass("disabled excluded").addClass(o.clsExcluded);
-                    }
-                    if (this.min !== null && s.getTime() < this.min.getTime()) {
-                        d.addClass("disabled excluded").addClass(o.clsExcluded);
-                    }
-                    if (this.max !== null && s.getTime() > this.max.getTime()) {
-                        d.addClass("disabled excluded").addClass(o.clsExcluded);
-                    }
-                } else {
-                    if (this.special.indexOf(s.getTime()) === -1) {
-                        d.addClass("disabled excluded").addClass(o.clsExcluded);
-                    }
-                }
             }
         }
     },
 
     _drawCalendar: function(){
-        this.element.html("");
-        this._drawHeader();
-        this._drawContent();
-        this._drawFooter();
-        this._drawMonths();
-        this._drawYears();
+        var that = this;
+        setTimeout(function(){
+            that.element.html("");
+            that._drawHeader();
+            that._drawContent();
+            that._drawFooter();
+            that._drawMonths();
+            that._drawYears();
+        }, 1);
     },
 
     getPreset: function(){
@@ -691,6 +673,7 @@ var Calendar = {
 
     toDay: function(){
         this.today = new Date();
+        this.today.setHours(0,0,0,0);
         this.current = {
             year: this.today.getFullYear(),
             month: this.today.getMonth(),
@@ -702,93 +685,50 @@ var Calendar = {
 
     setExclude: function(exclude){
         var that = this, element = this.element, o = this.options;
-
-        o.exclude = exclude !== undefined ? exclude : element.attr("data-exclude");
-
-        if (o.exclude !== null) {
-            if (Array.isArray(o.exclude) === false) {
-                o.exclude = o.exclude.split(",").map(function(item){
-                    return item.trim();
-                });
-            }
-
-            $.each(o.exclude, function(){
-                if (Utils.isDate(this) === false) {
-                    return ;
-                }
-                that.exclude.push((new Date(this)).getTime());
-            });
+        if (Utils.isNull(exclude) && Utils.isNull(element.attr("data-exclude"))) {
+            return ;
         }
-
+        o.exclude = !Utils.isNull(exclude) ? exclude : element.attr("data-exclude");
+        this._dates2array(o.exclude, 'exclude');
         this._drawContent();
     },
 
     setPreset: function(preset){
         var that = this, element = this.element, o = this.options;
-
-        o.preset = preset !== undefined ? preset : element.attr("data-preset");
-
-        if (o.preset !== null) {
-
-            that.selected = [];
-
-            if (Array.isArray(o.preset) === false) {
-                o.preset = o.preset.split(",").map(function(item){
-                    return item.trim();
-                });
-            }
-
-            $.each(o.preset, function(){
-                if (Utils.isDate(this) === false) {
-                    return ;
-                }
-                that.selected.push((new Date(this)).getTime());
-            });
+        if (Utils.isNull(preset) && Utils.isNull(element.attr("data-preset"))) {
+            return ;
         }
 
+        o.preset = !Utils.isNull(preset) ? preset : element.attr("data-preset");
+        this._dates2array(o.preset, 'selected');
         this._drawContent();
     },
 
     setSpecial: function(special){
         var that = this, element = this.element, o = this.options;
-
-        o.special = special !== undefined ? special : element.attr("data-special");
-
-        if (o.special !== null) {
-
-            that.special = [];
-
-            if (Array.isArray(o.special) === false) {
-                o.special = o.special.split(",").map(function(item){
-                    return item.trim();
-                });
-            }
-
-            $.each(o.special, function(){
-                if (Utils.isDate(this) === false) {
-                    return ;
-                }
-                that.special.push((new Date(this)).getTime());
-            });
+        if (Utils.isNull(special) && Utils.isNull(element.attr("data-special"))) {
+            return ;
         }
-
+        o.special = !Utils.isNull(special) ? special : element.attr("data-special");
+        this._dates2array(o.exclude, 'special');
         this._drawContent();
     },
 
     setShow: function(show){
         var that = this, element = this.element, o = this.options;
 
-        o.show = show !== null ? show : element.attr("data-show");
-
-        if (o.show !== null && Utils.isDate(o.show)) {
-            this.show = new Date(o.show);
-            this.show.setHours(0,0,0,0);
-            this.current = {
-                year: this.show.getFullYear(),
-                month: this.show.getMonth(),
-                day: this.show.getDate()
-            }
+        if (Utils.isNull(show) && Utils.isNull(element.attr("data-show"))) {
+            return ;
         }
+        o.show = !Utils.isNull(show) ? show : element.attr("data-show");
+
+        this.show = Utils.isDateObject(show) ? show : Utils.isValue(o.inputFormat) ? o.show.toDate(o.inputFormat) : new Date(o.show);
+        this.show.setHours(0,0,0,0);
+        this.current = {
+            year: this.show.getFullYear(),
+            month: this.show.getMonth(),
+            day: this.show.getDate()
+        };
 
         this._drawContent();
     },
@@ -810,10 +750,12 @@ var Calendar = {
     },
 
     setToday: function(val){
-        if (Utils.isDate(val) === false) {
-            return ;
+        var that = this, element = this.element, o = this.options;
+
+        if (Utils.isNull(val)) {
+            val = new Date();
         }
-        this.today = new Date(val);
+        this.today = Utils.isDateObject(val) ? val : Utils.isValue(o.inputFormat) ? val.toDate(o.inputFormat) : new Date(val);
         this.today.setHours(0,0,0,0);
         this._drawHeader();
         this._drawContent();
