@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <link href="../metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
+
+    <title>Table test page - Metro 4 :: Popular HTML, CSS and JS library</title>
+</head>
+<body>
+<div class="container mt-10">
+    <div>
+        <input type="checkbox" data-role="switch" data-caption="Apply filter Jak" onchange="toggleFilter2(this.checked)">
+        <input type="checkbox" data-role="switch" data-caption="Apply filter Simon" onchange="toggleFilter3(this.checked)">
+    </div>
+    <table class="table striped table-border mt-4" id="t-flt-2"
+           data-role="table"
+           data-rows="10"
+           data-source="../data/table.json"
+           data-show-rows-steps="false"
+           data-show-search="true"
+           data-filters-operator="and"
+    >
+    </table>
+    <script>
+        var filterIndex2, filterIndex3;
+
+        function toggleFilter2(checked){
+            var table = $('#t-flt-2').data('table');
+            if (checked) {
+                filterIndex2 = table.addFilter(function(row, heads){
+                    var is_active_index = 0;
+                    heads.forEach(function(el, i){
+                        if (el.name === "name") {
+                            is_active_index = i;
+                        }
+                    });
+                    return row[is_active_index].contains("ep");
+                }, true);
+            } else {
+                table.removeFilter(filterIndex2, true);
+            }
+            console.log(table.getFilters());
+        }
+
+        function toggleFilter3(checked){
+            var table = $('#t-flt-2').data('table');
+            if (checked) {
+                filterIndex3 = table.addFilter(function(row, heads){
+                    var is_active_index = 0;
+                    heads.forEach(function(el, i){
+                        if (el.name === "age") {
+                            is_active_index = i;
+                        }
+                    });
+                    return row[is_active_index] > 30;
+                }, true);
+            } else {
+                table.removeFilter(filterIndex3, true);
+            }
+            console.log(table.getFilters());
+        }
+    </script>
+</div>
+
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script src="../metro/js/metro.js?ver=@@b-version"></script>
+</body>
+</html>

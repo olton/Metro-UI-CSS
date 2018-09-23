@@ -16808,8 +16808,6 @@ var Table = {
         clsDelButton: "",
         clsAddButton: "",
 
-        staticView: false,
-
         check: false,
         checkType: "checkbox",
         checkStyle: 1,
@@ -16839,6 +16837,7 @@ var Table = {
         rows: 10,
         rowsSteps: "10,25,50,100",
 
+        staticView: false,
         viewSaveMode: "client",
         viewSavePath: "TABLE:$1:OPTIONS",
 
@@ -17107,10 +17106,10 @@ var Table = {
             row.data('index-view', i);
             $("<td>").html("<input type='checkbox' data-style='"+o.checkStyle+"' data-role='checkbox' name='column_show_check[]' value='"+i+"' "+(Utils.bool(that.view[i]['show']) ? "checked" : "")+">").appendTo(row);
             $("<td>").html(this.title).appendTo(row);
-            $("<td>").html("<input type='number' name='column_size' value='"+that.view[i]['size']+"' data-index='"+i+"'>").appendTo(row);
+            $("<td>").html("<input type='number' data-role='spinner' name='column_size' value='"+that.view[i]['size']+"' data-index='"+i+"'>").appendTo(row);
             $("<td>").html("" +
-                "<button class='button mini js-table-inspector-field-up' type='button'><span class='mif-arrow-up'></span></button>" +
-                "<button class='button mini js-table-inspector-field-down' type='button'><span class='mif-arrow-down'></span></button>" +
+                "<button class='button square js-table-inspector-field-up' type='button'><span class='mif-arrow-up'></span></button>" +
+                "<button class='button square js-table-inspector-field-down' type='button'><span class='mif-arrow-down'></span></button>" +
                 "").appendTo(row);
             tds[that.view[i]['index-view']] = row;
         });
@@ -17636,10 +17635,6 @@ var Table = {
         var _search = function(e){
             that.searchString = this.value.trim().toLowerCase();
 
-            if (that.searchString[that.searchString.length - 1] === ":") {
-                return ;
-            }
-
             clearInterval(that.input_interval); that.input_interval = false;
             if (!that.input_interval) that.input_interval = setTimeout(function(){
                 that.currentPage = 1;
@@ -17972,11 +17967,28 @@ var Table = {
 
     _filter: function(){
         var that = this, o = this.options, element = this.element;
-        var items, i;
+        var items;
         if ((Utils.isValue(this.searchString) && that.searchString.length >= o.searchMinLength) || this.filters.length > 0) {
             items = this.items.filter(function(row){
 
-                var row_data = "", c1, result;
+                var row_data = "", result, search_result, i, j = 0;
+
+                if (that.filters.length > 0) {
+
+                    result = o.filtersOperator.toLowerCase() === "and";
+                    for (i = 0; i < that.filters.length; i++) {
+                        if (Utils.isNull(that.filters[i])) continue;
+                        j++;
+                        result = o.filtersOperator.toLowerCase() === "and" ?
+                            result && Utils.exec(that.filters[i], [row, that.heads]) :
+                            result || Utils.exec(that.filters[i], [row, that.heads])
+                        ;
+                    }
+
+                    if (j === 0) result = true;
+                } else {
+                    result = true;
+                }
 
                 if (that.searchFields.length > 0) {
                     $.each(that.heads, function(i, v){
@@ -17988,27 +18000,10 @@ var Table = {
                     row_data = row.join("");
                 }
 
-                c1 = row_data.replace(/[\n\r]+|[\s]{2,}/g, ' ').trim().toLowerCase();
-                result = Utils.isValue(that.searchString) && that.searchString.length >= o.searchMinLength ? ~c1.indexOf(that.searchString) : true;
+                row_data = row_data.replace(/[\n\r]+|[\s]{2,}/g, ' ').trim().toLowerCase();
+                search_result = Utils.isValue(that.searchString) && that.searchString.length >= o.searchMinLength ? ~row_data.indexOf(that.searchString) : true;
 
-                if (result === true && that.filters.length > 0) {
-                    if (o.filtersOperator.toLowerCase() === "and") {
-                        for (i = 0; i < that.filters.length; i++) {
-                            if (!Utils.isValue(that.filters[i])) continue;
-                            if (Utils.exec(that.filters[i], [row, that.heads]) !== true) {
-                                result = false;
-                                break;
-                            }
-                        }
-                    } else {
-                        result = result && that.searchString.length >= o.searchMinLength;
-                        console.log(result);
-                        for (i = 0; i < that.filters.length; i++) {
-                            if (!Utils.isValue(that.filters[i])) continue;
-                            result = result || Utils.exec(that.filters[i], [row, that.heads]);
-                        }
-                    }
-                }
+                result = result && search_result;
 
                 if (result) {
                     Utils.exec(o.onFilterRowAccepted, [row], element[0]);
@@ -18039,16 +18034,13 @@ var Table = {
         var stored_keys = Metro.storage.getItem(o.checkStoreKey.replace("$1", element.attr('id')));
 
         var view = o.staticView ? this.viewDefault : this.view;
-        // var view = this.view;
-
-        console.log(this.viewDefault);
 
         body.html("");
 
         items = this._filter();
 
         for (i = start; i <= stop; i++) {
-            var j, tr, td, check, cells = [], tds = [], b;
+            var j, tr, td, check, cells = [], tds = [], is_even_row;
             if (Utils.isValue(items[i])) {
                 tr = $("<tr>").addClass(o.clsBodyRow);
 
@@ -18088,6 +18080,9 @@ var Table = {
                 td.appendTo(tr);
 
                 // Rownum
+
+                is_even_row = i % 2 === 0;
+
                 td = $("<td>").html(i + 1);
                 if (that.service[1].clsColumn !== undefined) {
                     td.addClass(that.service[1].clsColumn);
@@ -18151,7 +18146,7 @@ var Table = {
 
                 Utils.exec(o.onDrawRow, [tr, that.view, that.heads, element], tr[0]);
 
-                tr.appendTo(body);
+                tr.addClass(o.clsRow).addClass(is_even_row ? o.clsEvenRow : o.clsOddRow).appendTo(body);
 
                 Utils.exec(o.onAppendRow, [tr, element], tr[0]);
             }
@@ -18358,18 +18353,30 @@ var Table = {
     },
 
     addFilter: function(f, redraw){
-        var func = Utils.isFunc(f);
+        var filterIndex = null, i, func = Utils.isFunc(f);
         if (func === false) {
             return ;
         }
-        this.filters.push(func);
+
+        for(i = 0; i < this.filters.length; i++) {
+            if (Utils.isNull(this.filters[i])) {
+                filterIndex = i;
+                this.filters[i] = func;
+                break;
+            }
+        }
+
+        if (Utils.isNull(filterIndex)) {
+            this.filters.push(func);
+            filterIndex = this.filters.length - 1;
+        }
 
         if (redraw === true) {
             this.currentPage = 1;
             this.draw();
         }
 
-        return this.filters.length - 1;
+        return filterIndex
     },
 
     removeFilter: function(key, redraw){
