@@ -1,5 +1,5 @@
 /*
- * Metro 4 Components Library v4.2.23 build 701 (https://metroui.org.ua)
+ * Metro 4 Components Library v4.2.24 build @@build (https://metroui.org.ua)
  * Copyright 2018 Sergey Pimenov
  * Licensed under MIT
  */
@@ -88,8 +88,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.23",
-    versionFull: "4.2.23.701 ",
+    version: "@@version",
+    versionFull: "@@version.@@build @@status",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -14256,6 +14256,7 @@ var Select = {
         clsPrepend: "",
         clsAppend: "",
         clsOption: "",
+        clsOptionActive: "",
         clsOptionGroup: "",
         clsDropList: "",
         clsSelectedItem: "",
@@ -14497,8 +14498,8 @@ var Select = {
                 selected_item.data("option", leaf);
                 $("<span>").addClass("remover").addClass(o.clsSelectedItemRemover).html("&times;").appendTo(selected_item);
             } else {
-                list.find("li.active").removeClass("active");
-                leaf.addClass("active");
+                list.find("li.active").removeClass("active").removeClass(o.clsOptionActive);
+                leaf.addClass("active").addClass(o.clsOptionActive);
                 input.html(html);
                 drop_container.data("dropdown").close();
             }

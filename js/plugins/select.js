@@ -27,6 +27,7 @@ var Select = {
         clsPrepend: "",
         clsAppend: "",
         clsOption: "",
+        clsOptionActive: "",
         clsOptionGroup: "",
         clsDropList: "",
         clsSelectedItem: "",
@@ -268,8 +269,8 @@ var Select = {
                 selected_item.data("option", leaf);
                 $("<span>").addClass("remover").addClass(o.clsSelectedItemRemover).html("&times;").appendTo(selected_item);
             } else {
-                list.find("li.active").removeClass("active");
-                leaf.addClass("active");
+                list.find("li.active").removeClass("active").removeClass(o.clsOptionActive);
+                leaf.addClass("active").addClass(o.clsOptionActive);
                 input.html(html);
                 drop_container.data("dropdown").close();
             }
