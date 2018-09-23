@@ -1,3 +1,6 @@
+### 4.2.24
++ [x] Select: add attribute `data-cls-option-active`
+
 ### 4.2.23
 + [x] Select: fix native `onchange` event triggering, issue #1198
 + [x] Calendar: add attributes `data-prev-month-icon`, `data-next-month-icon`, `data-prev-year-icon`, `data-next-year-icon`
