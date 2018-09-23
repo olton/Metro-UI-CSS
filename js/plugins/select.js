@@ -297,6 +297,9 @@ var Select = {
                 }
             });
             item.remove();
+
+            element.trigger("change");
+
             Utils.exec(o.onItemDeselect, [option], element[0]);
             Utils.exec(o.onChange, [that.getSelected()], element[0]);
             e.preventDefault();
@@ -386,7 +389,7 @@ var Select = {
             $.each(options, function(){
                 if (this.selected) result.push(this.value);
             });
-            return result;
+            return multiple ? result : result[0];
         }
 
         $.each(options, function(){this.selected = false;});

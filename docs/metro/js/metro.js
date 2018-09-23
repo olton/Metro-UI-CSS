@@ -1,5 +1,5 @@
 /*
- * Metro 4 Components Library v4.2.22 build @@build (https://metroui.org.ua)
+ * Metro 4 Components Library v4.2.23 build 700 (https://metroui.org.ua)
  * Copyright 2018 Sergey Pimenov
  * Licensed under MIT
  */
@@ -88,8 +88,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "@@version",
-    versionFull: "@@version.@@build @@status",
+    version: "4.2.23",
+    versionFull: "4.2.23.700 ",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -3373,6 +3373,10 @@ var Utils = {
         return result !== "Invalid Date";
     },
 
+    isDateObject: function(v){
+        return typeof v === 'object' && v['getMonth'] !== undefined;
+    },
+
     isInt: function(n){
         return Number(n) === n && n % 1 === 0;
     },
@@ -5189,6 +5193,10 @@ var Calendar = {
     },
 
     options: {
+        prevMonthIcon: "<span class='default-icon-chevron-left'></span>",
+        nextMonthIcon: "<span class='default-icon-chevron-right'></span>",
+        prevYearIcon: "<span class='default-icon-chevron-left'></span>",
+        nextYearIcon: "<span class='default-icon-chevron-right'></span>",
         wide: false,
         widePoint: null,
         pickerMode: false,
@@ -5288,7 +5296,7 @@ var Calendar = {
 
         if (o.show !== null && Utils.isDate(o.show, o.inputFormat)) {
             this.show = Utils.isValue(o.inputFormat) ? o.show.toDate(o.inputFormat) : (new Date(o.show));
-
+            this.show.setHours(0,0,0,0);
             this.current = {
                 year: this.show.getFullYear(),
                 month: this.show.getMonth(),
@@ -5322,13 +5330,27 @@ var Calendar = {
 
     _dates2array: function(val, category){
         var that = this, o = this.options;
+        var dates;
 
-        $.each(Utils.strToArray(val), function(){
-            var _d = Utils.isValue(o.inputFormat) ? this.toDate(o.inputFormat) : new Date(this);
-            if (Utils.isDate(_d) === false) {
-                return ;
+        if (Utils.isNull(val)) {
+            return ;
+        }
+
+        dates = typeof val === 'string' ? Utils.strToArray(val) : val;
+
+        $.each(dates, function(){
+            var _d;
+
+            if (!Utils.isDateObject(this)) {
+                _d = Utils.isValue(o.inputFormat) ? this.toDate(o.inputFormat) : new Date(this);
+                if (Utils.isDate(_d) === false) {
+                    return ;
+                }
+                _d.setHours(0,0,0,0);
+            } else {
+                _d = this;
             }
-            _d.setHours(0,0,0,0);
+
             that[category].push(_d.getTime());
         });
     },
@@ -5387,7 +5409,7 @@ var Calendar = {
                 if (el.hasClass("prev-year") || el.hasClass("next-year")) {
                     Utils.exec(o.onYearChange, [that.current, element], element[0]);
                 }
-            }, o.ripple ? 300 : 0);
+            }, o.ripple ? 300 : 1);
 
             e.preventDefault();
             e.stopPropagation();
@@ -5643,6 +5665,7 @@ var Calendar = {
         if (content.length === 0) {
             content = $("<div>").addClass("calendar-content").addClass(o.clsCalendarContent).appendTo(element);
         }
+
         content.html("");
 
         toolbar = $("<div>").addClass("calendar-toolbar").appendTo(content);
@@ -5650,13 +5673,13 @@ var Calendar = {
         /**
          * Calendar toolbar
          */
-        $("<span>").addClass("prev-month").appendTo(toolbar);
+        $("<span>").addClass("prev-month").html(o.prevMonthIcon).appendTo(toolbar);
         $("<span>").addClass("curr-month").html(calendar_locale['months'][this.current.month]).appendTo(toolbar);
-        $("<span>").addClass("next-month").appendTo(toolbar);
+        $("<span>").addClass("next-month").html(o.nextMonthIcon).appendTo(toolbar);
 
-        $("<span>").addClass("prev-year").appendTo(toolbar);
+        $("<span>").addClass("prev-year").html(o.prevYearIcon).appendTo(toolbar);
         $("<span>").addClass("curr-year").html(this.current.year).appendTo(toolbar);
-        $("<span>").addClass("next-year").appendTo(toolbar);
+        $("<span>").addClass("next-year").html(o.nextYearIcon).appendTo(toolbar);
 
         /**
          * Week days
@@ -5699,25 +5722,6 @@ var Calendar = {
 
             if (o.outside === true) {
                 d.html(v);
-
-                if (this.special.length === 0) {
-                    if (this.selected.indexOf(s.getTime()) !== -1) {
-                        d.addClass("selected").addClass(o.clsSelected);
-                    }
-                    if (this.exclude.indexOf(s.getTime()) !== -1) {
-                        d.addClass("disabled excluded").addClass(o.clsExcluded);
-                    }
-                    if (this.min !== null && s < this.min) {
-                        d.addClass("disabled excluded").addClass(o.clsExcluded);
-                    }
-                    if (this.max !== null && s > this.max) {
-                        d.addClass("disabled excluded").addClass(o.clsExcluded);
-                    }
-                } else {
-                    if (this.special.indexOf(s.getTime()) === -1) {
-                        d.addClass("disabled excluded").addClass(o.clsExcluded);
-                    }
-                }
             }
 
             counter++;
@@ -5725,19 +5729,18 @@ var Calendar = {
 
         first.setHours(0,0,0,0);
         while(first.getMonth() === this.current.month) {
+
             d = $("<div>").addClass("day").html(first.getDate()).appendTo(days_row);
 
             d.data('day', first.getTime());
 
-            if (this.show.format("%d-%m-%Y") === first.format("%d-%m-%Y")) {
+            // console.log(this.show.getTime() === first.getTime());
+            if (this.show.getTime() === first.getTime()) {
                 d.addClass("showed");
             }
 
-            if (
-                this.today.getFullYear() === first.getFullYear() &&
-                this.today.getMonth() === first.getMonth() &&
-                this.today.getDate() === first.getDate()
-            ) {
+            // console.log(this.today.getTime() === first.getTime());
+            if (this.today.getTime() === first.getTime()) {
                 d.addClass("today").addClass(o.clsToday);
             }
 
@@ -5790,37 +5793,20 @@ var Calendar = {
             d.data('day', s.getTime());
             if (o.outside === true) {
                 d.html(i + 1);
-
-                if (this.special.length === 0) {
-
-                    if (this.selected.indexOf(s.getTime()) !== -1) {
-                        d.addClass("selected").addClass(o.clsSelected);
-                    }
-                    if (this.exclude.indexOf(s.getTime()) !== -1) {
-                        d.addClass("disabled excluded").addClass(o.clsExcluded);
-                    }
-                    if (this.min !== null && s.getTime() < this.min.getTime()) {
-                        d.addClass("disabled excluded").addClass(o.clsExcluded);
-                    }
-                    if (this.max !== null && s.getTime() > this.max.getTime()) {
-                        d.addClass("disabled excluded").addClass(o.clsExcluded);
-                    }
-                } else {
-                    if (this.special.indexOf(s.getTime()) === -1) {
-                        d.addClass("disabled excluded").addClass(o.clsExcluded);
-                    }
-                }
             }
         }
     },
 
     _drawCalendar: function(){
-        this.element.html("");
-        this._drawHeader();
-        this._drawContent();
-        this._drawFooter();
-        this._drawMonths();
-        this._drawYears();
+        var that = this;
+        setTimeout(function(){
+            that.element.html("");
+            that._drawHeader();
+            that._drawContent();
+            that._drawFooter();
+            that._drawMonths();
+            that._drawYears();
+        }, 1);
     },
 
     getPreset: function(){
@@ -5850,6 +5836,7 @@ var Calendar = {
 
     toDay: function(){
         this.today = new Date();
+        this.today.setHours(0,0,0,0);
         this.current = {
             year: this.today.getFullYear(),
             month: this.today.getMonth(),
@@ -5861,93 +5848,50 @@ var Calendar = {
 
     setExclude: function(exclude){
         var that = this, element = this.element, o = this.options;
-
-        o.exclude = exclude !== undefined ? exclude : element.attr("data-exclude");
-
-        if (o.exclude !== null) {
-            if (Array.isArray(o.exclude) === false) {
-                o.exclude = o.exclude.split(",").map(function(item){
-                    return item.trim();
-                });
-            }
-
-            $.each(o.exclude, function(){
-                if (Utils.isDate(this) === false) {
-                    return ;
-                }
-                that.exclude.push((new Date(this)).getTime());
-            });
+        if (Utils.isNull(exclude) && Utils.isNull(element.attr("data-exclude"))) {
+            return ;
         }
-
+        o.exclude = !Utils.isNull(exclude) ? exclude : element.attr("data-exclude");
+        this._dates2array(o.exclude, 'exclude');
         this._drawContent();
     },
 
     setPreset: function(preset){
         var that = this, element = this.element, o = this.options;
-
-        o.preset = preset !== undefined ? preset : element.attr("data-preset");
-
-        if (o.preset !== null) {
-
-            that.selected = [];
-
-            if (Array.isArray(o.preset) === false) {
-                o.preset = o.preset.split(",").map(function(item){
-                    return item.trim();
-                });
-            }
-
-            $.each(o.preset, function(){
-                if (Utils.isDate(this) === false) {
-                    return ;
-                }
-                that.selected.push((new Date(this)).getTime());
-            });
+        if (Utils.isNull(preset) && Utils.isNull(element.attr("data-preset"))) {
+            return ;
         }
 
+        o.preset = !Utils.isNull(preset) ? preset : element.attr("data-preset");
+        this._dates2array(o.preset, 'selected');
         this._drawContent();
     },
 
     setSpecial: function(special){
         var that = this, element = this.element, o = this.options;
-
-        o.special = special !== undefined ? special : element.attr("data-special");
-
-        if (o.special !== null) {
-
-            that.special = [];
-
-            if (Array.isArray(o.special) === false) {
-                o.special = o.special.split(",").map(function(item){
-                    return item.trim();
-                });
-            }
-
-            $.each(o.special, function(){
-                if (Utils.isDate(this) === false) {
-                    return ;
-                }
-                that.special.push((new Date(this)).getTime());
-            });
+        if (Utils.isNull(special) && Utils.isNull(element.attr("data-special"))) {
+            return ;
         }
-
+        o.special = !Utils.isNull(special) ? special : element.attr("data-special");
+        this._dates2array(o.exclude, 'special');
         this._drawContent();
     },
 
     setShow: function(show){
         var that = this, element = this.element, o = this.options;
 
-        o.show = show !== null ? show : element.attr("data-show");
-
-        if (o.show !== null && Utils.isDate(o.show)) {
-            this.show = new Date(o.show);
-            this.show.setHours(0,0,0,0);
-            this.current = {
-                year: this.show.getFullYear(),
-                month: this.show.getMonth(),
-                day: this.show.getDate()
-            }
+        if (Utils.isNull(show) && Utils.isNull(element.attr("data-show"))) {
+            return ;
         }
+        o.show = !Utils.isNull(show) ? show : element.attr("data-show");
+
+        this.show = Utils.isDateObject(show) ? show : Utils.isValue(o.inputFormat) ? o.show.toDate(o.inputFormat) : new Date(o.show);
+        this.show.setHours(0,0,0,0);
+        this.current = {
+            year: this.show.getFullYear(),
+            month: this.show.getMonth(),
+            day: this.show.getDate()
+        };
 
         this._drawContent();
     },
@@ -5969,10 +5913,12 @@ var Calendar = {
     },
 
     setToday: function(val){
-        if (Utils.isDate(val) === false) {
-            return ;
+        var that = this, element = this.element, o = this.options;
+
+        if (Utils.isNull(val)) {
+            val = new Date();
         }
-        this.today = new Date(val);
+        this.today = Utils.isDateObject(val) ? val : Utils.isValue(o.inputFormat) ? val.toDate(o.inputFormat) : new Date(val);
         this.today.setHours(0,0,0,0);
         this._drawHeader();
         this._drawContent();
@@ -6064,6 +6010,8 @@ var CalendarPicker = {
 
     options: {
 
+        prepend: "",
+
         calendarWide: false,
         calendarWidePoint: null,
 
@@ -6150,16 +6098,14 @@ var CalendarPicker = {
         }
 
         if (!Utils.isValue(curr)) {
-            this.value = (new Date()).format("%Y/%m/%d");
+            this.value = new Date();
         } else {
-            this.value = Utils.isValue(o.inputFormat) === false ? curr : (curr.toDate(o.inputFormat)).format("%Y/%m/%d");
+            this.value = Utils.isValue(o.inputFormat) === false ? new Date(curr) : curr.toDate(o.inputFormat);
         }
 
-        if (Utils.isDate(this.value)) {
-            this.value_date = new Date(this.value);
-            this.value_date.setHours(0,0,0,0);
-            element.val(this.value_date.format(o.format));
-        }
+        this.value.setHours(0,0,0,0);
+
+        element.val(!Utils.isValue(curr) ? "" : this.value.format(o.format));
 
         if (prev.length === 0) {
             parent.prepend(container);
@@ -6185,7 +6131,7 @@ var CalendarPicker = {
             buttons: false,
             headerFormat: o.headerFormat,
 
-            clsCalendar: o.clsCalendar + " calendar-picker",
+            clsCalendar: o.clsCalendar,
             clsCalendarHeader: o.clsCalendarHeader,
             clsCalendarContent: o.clsCalendarContent,
             clsCalendarFooter: "d-none",
@@ -6210,20 +6156,17 @@ var CalendarPicker = {
 
                 that._removeOverlay();
 
-                that.value = date.format(Metro.utils.isValue(o.inputFormat) ? o.inputFormat : "%Y/%m/%d");
-                that.value_date = date;
+                that.value = date;
                 element.val(date.format(o.format, o.locale));
                 element.trigger("change");
                 cal.removeClass("open open-up");
                 cal.hide();
-                Utils.exec(o.onChange, [that.value, that.value_date, element], element[0]);
+                Utils.exec(o.onChange, [that.value], element[0]);
                 Utils.exec(o.onDayClick, [sel, day, el], element[0]);
             },
             onMonthChange: o.onMonthChange,
             onYearChange: o.onYearChange
         });
-
-        cal.hide();
 
         this.calendar = cal;
 
@@ -6235,6 +6178,10 @@ var CalendarPicker = {
         calendarButton = $("<button>").addClass("button").attr("tabindex", -1).attr("type", "button").html(o.calendarButtonIcon);
         calendarButton.appendTo(buttons);
 
+        if (o.prepend !== "") {
+            var prepend = $("<div>").html(o.prepend);
+            prepend.addClass("prepend").addClass(o.clsPrepend).appendTo(container);
+        }
 
         if (element.attr('dir') === 'rtl' ) {
             container.addClass("rtl");
@@ -6273,6 +6220,13 @@ var CalendarPicker = {
                 container.addClass("dialog-mode");
             }
         }
+
+        if (element.is(":disabled")) {
+            this.disable();
+        } else {
+            this.enable();
+        }
+
     },
 
     _createEvents: function(){
@@ -6280,6 +6234,7 @@ var CalendarPicker = {
         var container = element.parent();
         var clear = container.find(".input-clear-button");
         var cal = this.calendar;
+        var cal_plugin = cal.data('calendar');
 
         $(window).on(Metro.events.resize, function(){
             if (o.dialogMode !== true) {
@@ -6293,45 +6248,35 @@ var CalendarPicker = {
 
         if (clear.length > 0) clear.on(Metro.events.click, function(e){
             element.val("").trigger('change').blur();
-            that.value = (new Date()).format("%Y/%m/%d");
-            that.value_date = new Date(this.value);
-            that.value_date.setHours(0,0,0,0);
+            that.value = new Date().setHours(0,0,0,0);
             e.preventDefault();
             e.stopPropagation();
         });
 
         container.on(Metro.events.click, "button, input", function(e){
-            if (Utils.isDate(that.value, o.inputFormat) && (cal.hasClass("open") === false && cal.hasClass("open-up") === false)) {
-                cal.css({
-                    visibility: "hidden",
-                    display: "block"
-                });
-                cal.data('calendar').setPreset(that.value);
-                cal.data('calendar').setShow(that.value);
-                cal.data('calendar').setToday(that.value);
-                cal.css({
-                    visibility: "visible",
-                    display: "none"
-                });
-            }
             if (cal.hasClass("open") === false && cal.hasClass("open-up") === false) {
+
+                $(".calendar-picker .calendar").removeClass("open open-up").hide();
+
+                cal_plugin.setPreset([that.value]);
+                cal_plugin.setShow(that.value);
+                cal_plugin.setToday(that.value);
+
                 if (container.hasClass("dialog-mode")) {
                     that.overlay.appendTo($('body'));
                 }
-                $(".calendar-picker .calendar").removeClass("open open-up").hide();
                 cal.addClass("open");
                 if (Utils.isOutsider(cal) === false) {
                     cal.addClass("open-up");
                 }
-                cal.show();
                 Utils.exec(o.onCalendarShow, [element, cal]);
+
             } else {
 
                 that._removeOverlay();
-
                 cal.removeClass("open open-up");
-                cal.hide();
                 Utils.exec(o.onCalendarHide, [element, cal]);
+
             }
             e.preventDefault();
             e.stopPropagation();
@@ -6340,7 +6285,7 @@ var CalendarPicker = {
         element.on(Metro.events.blur, function(){container.removeClass("focused");});
         element.on(Metro.events.focus, function(){container.addClass("focused");});
         element.on(Metro.events.change, function(){
-            Utils.exec(o.onChange, [that.value_date, that.value, element], element[0]);
+            Utils.exec(o.onChange, [that.value], element[0]);
         });
     },
 
@@ -6368,14 +6313,13 @@ var CalendarPicker = {
     val: function(v){
         var element = this.element, o = this.options;
 
-        if (v === undefined) {
-            return this.value_date;
+        if (Utils.isNull(v)) {
+            return this.value;
         }
 
-        if (Utils.isDate(v) === true) {
-            this.value_date = new Date(v);
-            this.value = this.value_date.format(o.format);
-            element.val(this.value_date.format(o.format));
+        if (Utils.isDate(v, o.inputFormat) === true) {
+            this.value = typeof v === 'string' ? v.toDate(o.inputFormat) : v;
+            element.val(this.value.format(o.format));
             element.trigger("change");
         }
     },
@@ -6479,7 +6423,7 @@ $(document).on(Metro.events.click, ".overlay.for-calendar-picker",function(){
 });
 
 $(document).on(Metro.events.click, function(){
-    $(".calendar-picker .calendar").removeClass("open open-up").hide();
+    $(".calendar-picker .calendar").removeClass("open open-up");
 });
 
 
@@ -9631,11 +9575,17 @@ var Dropdown = {
     _create: function(){
         var that = this, element = this.element, o = this.options;
         var toggle, parent = element.parent();
+        var element_roles = Utils.isValue(element.attr("data-role")) ? Utils.strToArray(element.attr("data-role")) : [];
 
         toggle = o.toggleElement !== null ? $(o.toggleElement) : element.siblings('.dropdown-toggle').length > 0 ? element.siblings('.dropdown-toggle') : element.prev();
 
         this.displayOrigin = element.css("display");
-        this.element.css("display", "none");
+        element.css("display", "none");
+
+        if (element_roles.length === 0 || element_roles.indexOf("dropdown") === -1) {
+            element_roles.push("dropdown");
+            element.attr("data-role", element_roles.join(", "));
+        }
 
         toggle.on(Metro.events.click, function(e){
             parent.siblings(parent[0].tagName).removeClass("active-container");
@@ -9663,8 +9613,7 @@ var Dropdown = {
                         'visibility': 'visible',
                         'display': 'none'
                     });
-                    var menu_width = children_width;
-                    element.css('width', menu_width);
+                    element.css('width', children_width);
                 }
                 that._open(element);
                 parent.addClass("active-container");
@@ -13980,8 +13929,8 @@ var Resizable = {
     _createStructure: function(){
         var element = this.element, o = this.options;
 
-        if (Utils.isValue(o.resizeElement) && $(o.resizeElement).length > 0) {
-            this.resizer = $(o.resizeElement);
+        if (Utils.isValue(o.resizeElement) && element.find(o.resizeElement).length > 0) {
+            this.resizer = element.find(o.resizeElement);
         } else {
             this.resizer = $("<span>").addClass("resize-element").appendTo(element);
         }
@@ -14577,6 +14526,9 @@ var Select = {
                 }
             });
             item.remove();
+
+            element.trigger("change");
+
             Utils.exec(o.onItemDeselect, [option], element[0]);
             Utils.exec(o.onChange, [that.getSelected()], element[0]);
             e.preventDefault();
@@ -14666,7 +14618,7 @@ var Select = {
             $.each(options, function(){
                 if (this.selected) result.push(this.value);
             });
-            return result;
+            return multiple ? result : result[0];
         }
 
         $.each(options, function(){this.selected = false;});
@@ -16804,7 +16756,7 @@ var Table = {
         this.element = $(elem);
         this.currentPage = 1;
         this.pagesCount = 1;
-        this.filterString = "";
+        this.searchString = "";
         this.data = null;
         this.activity = null;
         this.busy = false;
@@ -16814,13 +16766,14 @@ var Table = {
         this.wrapperRows = null;
         this.wrapperPagination = null;
         this.filterIndex = null;
-        this.filtersIndexes = null;
+        this.filtersIndexes = [];
         this.component = null;
         this.inspector = null;
         this.view = {};
         this.viewDefault = {};
         this.locale = Metro.locales["en-US"];
         this.input_interval = null;
+        this.searchFields = [];
 
         this.sort = {
             dir: "asc",
@@ -16843,20 +16796,35 @@ var Table = {
     options: {
         locale: METRO_LOCALE,
 
+        crud: false,
+        crudTitle: "CRUD",
+        editButton: true,
+        delButton: true,
+        addButton: true,
+        editButtonIcon: "<span class='default-icon-pencil'></span>",
+        delButtonIcon: "<span class='default-icon-minus'></span>",
+        addButtonIcon: "<span class='default-icon-plus'></span>",
+        clsEditButton: "",
+        clsDelButton: "",
+        clsAddButton: "",
+
         check: false,
-        checkColIndex: 0,
-        checkName: null,
         checkType: "checkbox",
         checkStyle: 1,
+        checkColIndex: 0,
+        checkName: null,
         checkStoreKey: "TABLE:$1:KEYS",
         rownum: false,
+        rownumTitle: "#",
 
-        filter: null,
         filters: null,
+        filtersOperator: "and",
+
         source: null,
 
-        filterMinLength: 1,
-        filterThreshold: 500,
+        searchMinLength: 1,
+        searchThreshold: 500,
+        searchFields: null,
 
         showRowsSteps: true,
         showSearch: true,
@@ -16864,12 +16832,12 @@ var Table = {
         showPagination: true,
         paginationShortMode: true,
         showActivity: true,
-
         muteTable: true,
 
         rows: 10,
         rowsSteps: "10,25,50,100",
 
+        staticView: false,
         viewSaveMode: "client",
         viewSavePath: "TABLE:$1:OPTIONS",
 
@@ -16922,6 +16890,10 @@ var Table = {
 
         clsPagination: "",
 
+        clsEvenRow: "",
+        clsOddRow: "",
+        clsRow: "",
+
         onDraw: Metro.noop,
         onDrawRow: Metro.noop,
         onDrawCell: Metro.noop,
@@ -16969,6 +16941,10 @@ var Table = {
 
         if (Utils.isValue(Metro.locales[o.locale])) {
             this.locale = Metro.locales[o.locale];
+        }
+
+        if (Utils.isValue(o.searchFields)) {
+            this.searchFields = Utils.strToArray(o.searchFields);
         }
 
         if (o.source !== null) {
@@ -17050,39 +17026,45 @@ var Table = {
 
     _service: function(){
         var o = this.options;
-        var item_check, item_rownum;
-        var service = [];
 
-        this.service = {};
-
-        item_rownum = {
-            title: "#",
-            format: undefined,
-            name: undefined,
-            sortable: false,
-            sortDir: undefined,
-            clsColumn: o.rownum !== true ? "d-none" : "",
-            cls: o.rownum !== true ? "d-none" : "",
-            colspan: undefined,
-            type: "rownum"
-        };
-
-        item_check = {
-            title: o.checkType === "checkbox" ? "<input type='checkbox' data-role='checkbox' class='table-service-check-all' data-style='"+o.checkStyle+"'>" : "",
-            format: undefined,
-            name: undefined,
-            sortable: false,
-            sortDir: undefined,
-            clsColumn: o.check !== true ? "d-none" : "",
-            cls: o.check !== true ? "d-none" : "",
-            colspan: undefined,
-            type: "rowcheck"
-        };
-
-        service.push(item_rownum);
-        service.push(item_check);
-
-        this.service = service;
+        this.service = [
+            {
+                // CRUD
+                title: o.crudTitle,
+                format: undefined,
+                name: undefined,
+                sortable: false,
+                sortDir: undefined,
+                clsColumn: "crud-cell" + (o.crud === true ? "" : " d-none "),
+                cls: "crud-cell" + (o.crud === true ? "" : " d-none "),
+                colspan: undefined,
+                type: "button"
+            },
+            {
+                // Rownum
+                title: o.rownumTitle,
+                format: undefined,
+                name: undefined,
+                sortable: false,
+                sortDir: undefined,
+                clsColumn: "rownum-cell " + (o.rownum !== true ? "d-none" : ""),
+                cls: "rownum-cell " + (o.rownum !== true ? "d-none" : ""),
+                colspan: undefined,
+                type: "rownum"
+            },
+            {
+                // Check
+                title: o.checkType === "checkbox" ? "<input type='checkbox' data-role='checkbox' class='table-service-check-all' data-style='"+o.checkStyle+"'>" : "",
+                format: undefined,
+                name: undefined,
+                sortable: false,
+                sortDir: undefined,
+                clsColumn: "check-cell " + (o.check !== true ? "d-none" : ""),
+                cls: "check-cell "+(o.check !== true ? "d-none" : ""),
+                colspan: undefined,
+                type: "rowcheck"
+            }
+        ];
     },
 
     _createView: function(){
@@ -17124,10 +17106,10 @@ var Table = {
             row.data('index-view', i);
             $("<td>").html("<input type='checkbox' data-style='"+o.checkStyle+"' data-role='checkbox' name='column_show_check[]' value='"+i+"' "+(Utils.bool(that.view[i]['show']) ? "checked" : "")+">").appendTo(row);
             $("<td>").html(this.title).appendTo(row);
-            $("<td>").html("<input type='number' name='column_size' value='"+that.view[i]['size']+"' data-index='"+i+"'>").appendTo(row);
+            $("<td>").html("<input type='number' data-role='spinner' name='column_size' value='"+that.view[i]['size']+"' data-index='"+i+"'>").appendTo(row);
             $("<td>").html("" +
-                "<button class='button mini js-table-inspector-field-up' type='button'><span class='mif-arrow-up'></span></button>" +
-                "<button class='button mini js-table-inspector-field-down' type='button'><span class='mif-arrow-down'></span></button>" +
+                "<button class='button square js-table-inspector-field-up' type='button'><span class='mif-arrow-up'></span></button>" +
+                "<button class='button square js-table-inspector-field-down' type='button'><span class='mif-arrow-down'></span></button>" +
                 "").appendTo(row);
             tds[that.view[i]['index-view']] = row;
         });
@@ -17183,30 +17165,40 @@ var Table = {
             var item = $(this);
             var dir, head_item, item_class;
 
-            if (item.hasClass("sort-asc")) {
-                dir = "asc";
-            } else if (item.hasClass("sort-desc")) {
-                dir = "desc"
+            if (Utils.isValue(item.data('sort-dir'))) {
+                dir = item.data('sort-dir');
             } else {
-                dir = undefined;
+                if (item.hasClass("sort-asc")) {
+                    dir = "asc";
+                } else if (item.hasClass("sort-desc")) {
+                    dir = "desc"
+                } else {
+                    dir = undefined;
+                }
             }
 
             item_class = item[0].className.replace("sortable-column", "");
             item_class = item_class.replace("sort-asc", "");
             item_class = item_class.replace("sort-desc", "");
+            item_class = item_class.replace("hidden", "");
 
             head_item = {
+                type: "data",
                 title: item.html(),
-                format: Utils.isValue(item.data("format")) ? item.data("format") : undefined,
-                name: Utils.isValue(item.data("name")) ? item.data("name") : undefined,
-                sortable: item.hasClass("sortable-column"),
+                name: Utils.isValue(item.data("name")) ? item.data("name") : item.text().replace(" ", "_"),
+                sortable: item.hasClass("sortable-column") || (Utils.isValue(item.data('sortable')) && JSON.parse(item.data('sortable') === true)),
                 sortDir: dir,
+                format: Utils.isValue(item.data("format")) ? item.data("format") : "string",
                 clsColumn: Utils.isValue(item.data("cls-column")) ? item.data("cls-column") : "",
                 cls: item_class,
                 colspan: item.attr("colspan"),
-                type: "data",
                 size: Utils.isValue(item.data("size")) ? item.data("size") : "",
-                show: !item.hasClass("hidden") || (Utils.isValue(item.data("show")) && JSON.parse(item.data("show")) === false)
+                show: !(item.hasClass("hidden") || (Utils.isValue(item.data('show')) && JSON.parse(item.data('show')) === false)),
+
+                required: Utils.isValue(item.data("required")) ? JSON.parse(item.data("required")) === true  : false,
+                field: Utils.isValue(item.data("field")) ? item.data("field") : "input",
+                fieldType: Utils.isValue(item.data("field-type")) ? item.data("field-type") : "text",
+                validator: Utils.isValue(item.data("validator")) ? item.data("validator") : null
             };
             that.heads.push(head_item);
         });
@@ -17285,7 +17277,7 @@ var Table = {
         var element = this.element, o = this.options;
         var head = $("<thead>").html('');
         var tr, th, tds = [], j, cells;
-        var view = this.view;
+        var view = o.staticView ? this._createView() : this.view;
 
         element.find("thead").remove();
 
@@ -17303,8 +17295,6 @@ var Table = {
             if (Utils.isValue(item.title)) {th.html(item.title);}
             if (Utils.isValue(item.size)) {th.css({width: item.size});}
             if (Utils.isValue(item.cls)) {classes.push(item.cls);}
-            if (item.type === 'rowcheck') {classes.push("check-cell");}
-            if (item.type === 'rownum') {classes.push("rownum-cell");}
             classes.push(o.clsHeadCell);
             th.addClass(classes.join(" "));
         });
@@ -17533,14 +17523,6 @@ var Table = {
 
         var filter_func;
 
-        if (Utils.isValue(o.filter)) {
-            filter_func = Utils.isFunc(o.filter);
-            if (filter_func === false) {
-                filter_func = Utils.func(o.filter);
-            }
-            that.filterIndex = that.addFilter(filter_func);
-        }
-
         if (Utils.isValue(o.filters)) {
             $.each(Utils.strToArray(o.filters), function(){
                 filter_func = Utils.isFunc(this);
@@ -17651,18 +17633,14 @@ var Table = {
         });
 
         var _search = function(e){
-            that.filterString = this.value.trim().toLowerCase();
-
-            if (that.filterString[that.filterString.length - 1] === ":") {
-                return ;
-            }
+            that.searchString = this.value.trim().toLowerCase();
 
             clearInterval(that.input_interval); that.input_interval = false;
             if (!that.input_interval) that.input_interval = setTimeout(function(){
                 that.currentPage = 1;
                 that._draw();
                 clearInterval(that.input_interval); that.input_interval = false;
-            }, o.filterThreshold);
+            }, o.searchThreshold);
         };
 
         search.on(Metro.events.inputchange, _search);
@@ -17715,6 +17693,10 @@ var Table = {
         }
 
         this._createInspectorEvents();
+
+        element.on(Metro.events.click, ".js-table-crud-button", function(){
+
+        });
     },
 
     _createInspectorEvents: function(){
@@ -17985,30 +17967,43 @@ var Table = {
 
     _filter: function(){
         var that = this, o = this.options, element = this.element;
-        var items, flt, idx = -1, i;
-        if ((Utils.isValue(this.filterString) && that.filterString.length >= o.filterMinLength) || this.filters.length > 0) {
-            flt = this.filterString.split(":");
-            if (flt.length > 1) {
-                $.each(that.heads, function (i, v) {
-                    if (flt[0] === v.title.toLowerCase()) {
-                        idx = i;
-                    }
-                })
-            }
+        var items;
+        if ((Utils.isValue(this.searchString) && that.searchString.length >= o.searchMinLength) || this.filters.length > 0) {
             items = this.items.filter(function(row){
-                var row_data = "" + (flt.length > 1 && idx > -1 ? row[idx] : row.join());
-                var c1 = row_data.replace(/[\n\r]+|[\s]{2,}/g, ' ').trim().toLowerCase();
-                var result = Utils.isValue(that.filterString) && that.filterString.length >= o.filterMinLength ? ~c1.indexOf(flt.length > 1 ? flt[1] : flt[0]) : true;
 
-                if (result === true && that.filters.length > 0) {
+                var row_data = "", result, search_result, i, j = 0;
+
+                if (that.filters.length > 0) {
+
+                    result = o.filtersOperator.toLowerCase() === "and";
                     for (i = 0; i < that.filters.length; i++) {
-                        if (!Utils.isValue(that.filters[i])) continue;
-                        if (Utils.exec(that.filters[i], [row, that.heads]) !== true) {
-                            result = false;
-                            break;
-                        }
+                        if (Utils.isNull(that.filters[i])) continue;
+                        j++;
+                        result = o.filtersOperator.toLowerCase() === "and" ?
+                            result && Utils.exec(that.filters[i], [row, that.heads]) :
+                            result || Utils.exec(that.filters[i], [row, that.heads])
+                        ;
                     }
+
+                    if (j === 0) result = true;
+                } else {
+                    result = true;
                 }
+
+                if (that.searchFields.length > 0) {
+                    $.each(that.heads, function(i, v){
+                        if (that.searchFields.indexOf(v.name) > -1) {
+                            row_data += ""+row[i];
+                        }
+                    })
+                } else {
+                    row_data = row.join("");
+                }
+
+                row_data = row_data.replace(/[\n\r]+|[\s]{2,}/g, ' ').trim().toLowerCase();
+                search_result = Utils.isValue(that.searchString) && that.searchString.length >= o.searchMinLength ? ~row_data.indexOf(that.searchString) : true;
+
+                result = result && search_result;
 
                 if (result) {
                     Utils.exec(o.onFilterRowAccepted, [row], element[0]);
@@ -18019,7 +18014,7 @@ var Table = {
                 return result;
             });
 
-            Utils.exec(o.onSearch, [that.filterString, items], element[0])
+            Utils.exec(o.onSearch, [that.searchString, items], element[0])
         } else {
             items = this.items;
         }
@@ -18037,21 +18032,60 @@ var Table = {
             stop = parseInt(o.rows) === -1 ? this.items.length - 1 : start + o.rows - 1;
         var items;
         var stored_keys = Metro.storage.getItem(o.checkStoreKey.replace("$1", element.attr('id')));
-        var view = this.view;
+
+        var view = o.staticView ? this.viewDefault : this.view;
 
         body.html("");
 
         items = this._filter();
 
         for (i = start; i <= stop; i++) {
-            var j, tr, td, check, cells = [], tds = [];
+            var j, tr, td, check, cells = [], tds = [], is_even_row;
             if (Utils.isValue(items[i])) {
                 tr = $("<tr>").addClass(o.clsBodyRow);
 
-                // Rownum
-                td = $("<td>").html(i + 1);
+                // CRUD buttons
+                td = $("<td>");
                 if (that.service[0].clsColumn !== undefined) {
                     td.addClass(that.service[0].clsColumn);
+                }
+                var crud_container = $("<div>").addClass("crud-container").appendTo(td);
+                if (o.editButton === true) {
+                    $("<button>")
+                        .addClass("button")
+                        .addClass("js-table-crud-button js-table-crud-button-edit")
+                        .addClass(o.clsEditButton)
+                        .html(o.editButtonIcon)
+                        .data("uid", items[i][o.checkColIndex])
+                        .appendTo(crud_container);
+                }
+                if (o.addButton === true) {
+                    $("<button>")
+                        .addClass("button")
+                        .addClass("js-table-crud-button js-table-crud-button-add")
+                        .addClass(o.clsAddButton)
+                        .html(o.addButtonIcon)
+                        .data("uid", null)
+                        .appendTo(crud_container);
+                }
+                if (o.delButton === true) {
+                    $("<button>")
+                        .addClass("button")
+                        .addClass("js-table-crud-button js-table-crud-button-del")
+                        .addClass(o.clsDelButton)
+                        .html(o.delButtonIcon)
+                        .data("uid", items[i][o.checkColIndex])
+                        .appendTo(crud_container);
+                }
+                td.appendTo(tr);
+
+                // Rownum
+
+                is_even_row = i % 2 === 0;
+
+                td = $("<td>").html(i + 1);
+                if (that.service[1].clsColumn !== undefined) {
+                    td.addClass(that.service[1].clsColumn);
                 }
                 td.appendTo(tr);
 
@@ -18070,8 +18104,8 @@ var Table = {
                 check.addClass("table-service-check");
                 Utils.exec(o.onCheckDraw, [check], check[0]);
                 check.appendTo(td);
-                if (that.service[1].clsColumn !== undefined) {
-                    td.addClass(that.service[1].clsColumn);
+                if (that.service[2].clsColumn !== undefined) {
+                    td.addClass(that.service[2].clsColumn);
                 }
                 td.appendTo(tr);
 
@@ -18112,7 +18146,7 @@ var Table = {
 
                 Utils.exec(o.onDrawRow, [tr, that.view, that.heads, element], tr[0]);
 
-                tr.appendTo(body);
+                tr.addClass(o.clsRow).addClass(is_even_row ? o.clsEvenRow : o.clsOddRow).appendTo(body);
 
                 Utils.exec(o.onAppendRow, [tr, element], tr[0]);
             }
@@ -18194,8 +18228,8 @@ var Table = {
         Utils.exec(o.onSortStop, [this.items], element[0]);
     },
 
-    filter: function(val){
-        this.filterString = val.trim().toLowerCase();
+    search: function(val){
+        this.searchString = val.trim().toLowerCase();
         this.currentPage = 1;
         this._draw();
     },
@@ -18319,18 +18353,30 @@ var Table = {
     },
 
     addFilter: function(f, redraw){
-        var func = Utils.isFunc(f);
+        var filterIndex = null, i, func = Utils.isFunc(f);
         if (func === false) {
             return ;
         }
-        this.filters.push(func);
+
+        for(i = 0; i < this.filters.length; i++) {
+            if (Utils.isNull(this.filters[i])) {
+                filterIndex = i;
+                this.filters[i] = func;
+                break;
+            }
+        }
+
+        if (Utils.isNull(filterIndex)) {
+            this.filters.push(func);
+            filterIndex = this.filters.length - 1;
+        }
 
         if (redraw === true) {
             this.currentPage = 1;
             this.draw();
         }
 
-        return this.filters.length - 1;
+        return filterIndex
     },
 
     removeFilter: function(key, redraw){
@@ -18399,16 +18445,16 @@ var Table = {
         return this.filters;
     },
 
-    getFilterIndex: function(){
-        return this.filterIndex;
-    },
-
     getFiltersIndexes: function(){
         return this.filtersIndexes;
     },
 
     openInspector: function(mode){
         this.inspector[mode ? "addClass" : "removeClass"]("open");
+    },
+
+    closeInspector: function(){
+        this.openInspector(false);
     },
 
     toggleInspector: function(){
@@ -18434,6 +18480,10 @@ var Table = {
         var body = $("<tbody>").appendTo(table);
         var i, j, cells, tds = [], items, tr, td;
         var start, stop;
+
+        if (typeof Export.tableToCSV !== 'function') {
+            return ;
+        }
 
         mode = Utils.isValue(mode) ? mode.toLowerCase() : "all-filtered";
         filename = Utils.isValue(filename) ? filename : Utils.elementId("table")+"-export.csv";
@@ -19987,7 +20037,7 @@ var Treeview = {
             that._recheck(this);
         });
 
-        Utils.exec(o.onTreeviewCreate, [element]);
+        Utils.exec(o.onTreeviewCreate, [element], element[0]);
     },
 
     _createIcon: function(data){
@@ -20257,7 +20307,9 @@ var Treeview = {
     },
 
     changeAttribute: function(attributeName){
-
+        switch (attributeName) {
+            default: console.log(attributeName);
+        }
     }
 };
 

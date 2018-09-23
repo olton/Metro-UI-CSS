@@ -25,11 +25,11 @@
         <button class="button alert" onclick="$('#t2').data('table').reload()">Reload</button>
     </div>
 
-    <table class="table subcompact fixed-layout striped table-border mt-4" id="t2"
+    <table class="table 1subcompact striped table-border mt-4" id="t2"
            data-role="table"
            data-cls-component="mt-4"
            data-rows="10"
-           data-source="table.json"
+           data-source="../data/table.json"
            data-pagination="true"
            data-show-all-pages="false"
            data-on-data-loaded="$('#activity').remove()"
@@ -37,8 +37,9 @@
            data-check="true"
            data-check-col-index="0"
            data-check-type="checkbox"
-           data-on-view-created="console.log(this)"
            data-check-style="2"
+           data-crud="false"
+           data-search-fields="name, age"
     ></table>
 </div>
 

@@ -50,7 +50,7 @@ var Treeview = {
             that._recheck(this);
         });
 
-        Utils.exec(o.onTreeviewCreate, [element]);
+        Utils.exec(o.onTreeviewCreate, [element], element[0]);
     },
 
     _createIcon: function(data){
@@ -320,7 +320,9 @@ var Treeview = {
     },
 
     changeAttribute: function(attributeName){
-
+        switch (attributeName) {
+            default: console.log(attributeName);
+        }
     }
 };
 

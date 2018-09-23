@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="metro4:locale" content="it-IT">
+    <META NAME="VIEWPORT" CONTENT="WIDTH=DEVICE-WIDTH, INITIAL-SCALE=1.0, MAXIMUM-SCALE=1.0, USER-SCALABLE=NO">
+    <!--<meta name="metro4:locale" content="it-IT">-->
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 
@@ -14,36 +14,37 @@
 <body>
 <div class="m-20">
 
-    <DIV class="row mb-2">
+    <div class="row mb-2">
 
-        <!--<DIV class="cell-2 offset-1">-->
-            <!--<LABEL class="text-bold fg-olive" for="DATA1">Data 1</LABEL>-->
-            <!--<INPUT id="DATA1" name="data1"-->
-                   <!--data-role="calendarpicker"-->
-                   <!--data-format="%d/%m/%Y"-->
-                   <!--data-input-format="%d/%m/%Y"-->
-                   <!--value="06/09/2018"/>-->
-        <!--</DIV>-->
-
-        <DIV class="cell-2">
-            <LABEL class="text-bold fg-olive" for="DATA2">Data 2</LABEL>
-            <INPUT id="DATA2" name="data2"
+        <div class="cell-4 offset-1">
+            <label class="text-bold fg-olive" for="data1">data 1</label>
+            <input id="data1" name="data1"
                    data-role="calendarpicker"
-                   data-format="%d/%m/%Y"
-                   data-input-format="%d/%m/%Y"
-                   value=""/>
-        </DIV>
+                   data-format="%d/%m/%y"
+                   data-input-format="%d/%m/%y"
+                   value="" disabled/>
+        </div>
 
-        <!--<DIV class="cell-2">-->
-            <!--<LABEL class="text-bold fg-olive" for="DATA3">Data 3</LABEL>-->
-            <!--<INPUT id="DATA3" name="data3"-->
+        <div class="cell-4">
+            <label class="text-bold fg-olive" for="data2">data 2</label>
+            <input id="data2" name="data2"
+                   data-role="calendarpicker"
+                   data-format="%d/%m/%y"
+                   data-input-format="%d/%m/%y"
+                   data-prepend="select date"
+                   value="21/12/1972" />
+        </div>
+
+        <!--<div class="cell-2">-->
+            <!--<label class="text-bold fg-olive" for="data3">data 3</label>-->
+            <!--<input id="data3" name="data3"-->
                    <!--data-role="calendarpicker"-->
-                   <!--data-format="%d/%m/%Y"-->
-                   <!--data-input-format="%d/%m/%Y"-->
+                   <!--data-format="%d/%m/%y"-->
+                   <!--data-input-format="%d/%m/%y"-->
                    <!--value="06/09/2018"/>-->
-        <!--</DIV>-->
+        <!--</div>-->
 
-    </DIV>
+    </div>
 
     <!--<p>data-format="%d/%m/%Y" data-input-format="%d/%m/%Y" value="02/05/2018"</p>-->
     <!--<input name="data1" data-role="calendarpicker" data-format="%d/%m/%Y" data-input-format="%d/%m/%Y"-->
