@@ -1702,6 +1702,10 @@ var Table = {
         this.inspector[mode ? "addClass" : "removeClass"]("open");
     },
 
+    closeInspector: function(){
+        this.openInspector(false);
+    },
+
     toggleInspector: function(){
         this.inspector.toggleClass("open");
     },
