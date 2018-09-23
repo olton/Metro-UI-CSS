@@ -1,14 +1,19 @@
 ### 4.2.23
-+ [x] Select: fix native `onchange` event triggering
++ [x] Select: fix native `onchange` event triggering, issue #1198
 + [x] Calendar: add attributes `data-prev-month-icon`, `data-next-month-icon`, `data-prev-year-icon`, `data-next-year-icon`
 + [x] Calendar: fix rendering for ie, issue #1202
 + [x] Calendar picker: add `data-prepend` attribute, issue #1201
++ [x] Calendar picker: fix close when clicked dropdown button issue #1210
++ [x] Calendar picker: fix disabled white text is unreadable, issue #1208
++ [x] Calendar picker: fix init null value, issue #1206
++ [x] Resizeable: fix resize, issue #1205
 + [x] Table: add attribute `data-filters-operator="and|or"`
 + [x] Table: fix init filters, defined in attribute `data-filters`
 + [x] Table: rename `filterMinLength` to `searchMinLength`
 + [x] Table: rename `filterThreshold` to `searchThreshold`
-+ [x] Table: add attribute `data-search-fields`
++ [x] Table: add attribute `data-search-fields`, issue #1195
 + [x] Table: add attributes `data-cls-row`, `data-cls-even-row`, `data-cls-odd-row`
++ [x] Table component: full rewrite docs 
 
 ### 4.2.22
 + [x] Appbar: remove classes `app-bar-expanded-*` and add attributes `data-expand`, `data-exapnd-point`
