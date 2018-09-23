@@ -627,7 +627,444 @@
 
                 <h3 id="_table_search">Table search</h3>
                 <p>
+                    Table component support interactive search. To activate search function you must:
+                </p>
+                <ol class="decimal mt-4">
+                    <li>Enable search input field with attribute <code>data-show-search="true"</code> (enabled by default)</li>
+                    <li>Set min string length for search with attribute <code>data-search-min-length</code> (default: 1)</li>
+                    <li>Setup threshold for start search with attribute <code>data-search-threshold</code> (default: 500)</li>
+                </ol>
+                <div class="example">
+                    <table class="table striped table-border mt-4"
+                           data-role="table"
+                           data-rows="5"
+                           data-rows-steps="5, 10"
+                           data-source="data/table.json"
+                           data-show-rows-steps="false"
+                           data-show-search="true"
+                           data-search-min-length="3"
+                           data-search-threshold="300"
+                    >
+                    </table>
+                </div>
+                <pre><code class="html">
+                    &lt;table class="table"
+                           data-role="table"
+                           data-show-search="true"
+                           data-search-min-length="3"
+                           data-search-threshold="300"
+                    &gt;
+                    &lt;/table&gt;
+                </code></pre>
+                <p>
+                    By default, all fields are searched. You can define the fields to be searched for.
+                    To define it use attribute <code>data-search-fields</code>.
+                    Fields list is must be a comma separated string with field names, defined in head cell attribute <code>data-name</code>.
+                </p>
+                <pre><code class="html">
+                    &lt;table class="table"
+                           data-role="table"
+                           data-show-search="true"
+                           data-search-min-length="3"
+                           data-search-threshold="300"
+                           data-search-fields="name, age"&gt;
+                        &lt;thead&gt;
+                        &lt;tr&gt;
+                            &lt;th data-name="id" &gt;ID&lt;/th&gt;
+                            &lt;th data-name="name" &gt;Name&lt;/th&gt;
+                            &lt;th data-name="start" &gt;Start&lt;/th&gt;
+                            &lt;th data-name="age" &gt;Age&lt;/th&gt;
+                            &lt;th data-name="salary" &gt;Salary&lt;/th&gt;
+                        &lt;/tr&gt;
+                        &lt;/thead&gt;
+                        &lt;tbody&gt;
+                        &lt;tr&gt;
+                            &lt;td&gt;1&lt;/td&gt;
+                            &lt;td&gt;Tiger Nixon&lt;/td&gt;
+                            &lt;td&gt;Edinburgh&lt;/td&gt;
+                            &lt;td&gt;25/04/2011&lt;/td&gt;
+                            &lt;td&gt;61&lt;/td&gt;
+                            &lt;td&gt;$320,800&lt;/td&gt;
+                        &lt;/tr&gt;
+                        ...
+                        &lt;/tbody&gt;
+                    &lt;/table&gt;
+                </code></pre>
 
+                <h3 id="_table_filtering">Filtering</h3>
+                <p>
+                    Table components contains API to create custom filters for data.
+                    These <code>filters</code> works before <code>search</code> and is connected with it by the <code>and</code> operator if search is not empty.
+                    These filters are user-defined functions and can be applied in two ways: with attribute <code>data-filters</code> and with table api method <code>addFilter</code>.
+                    In both cases, the functions must be defined before they are used.
+                </p>
+                <h4 class="text-light">Use attribute</h4>
+                <div class="example">
+                    <script>
+                        function myFilter(row, heads){
+                            var is_active_index = 0;
+                            heads.forEach(function(el, i){
+                                if (el.name === "name") {
+                                    is_active_index = i;
+                                }
+                            });
+                            return row[is_active_index].contains("Jak");
+                        }
+                    </script>
+                    <table class="table striped table-border mt-4"
+                           data-role="table"
+                           data-rows="5"
+                           data-rows-steps="5, 10"
+                           data-source="data/table.json"
+                           data-show-rows-steps="false"
+                           data-show-search="true"
+                           data-search-min-length="3"
+                           data-search-threshold="300"
+                           data-filters="myFilter"
+                    >
+                    </table>
+                </div>
+                <pre><code>
+                    &lt;script&gt;
+                        function myFilter(row, heads){
+                            var is_active_index = 0;
+                            heads.forEach(function(el, i){
+                                if (el.name === "name") {
+                                    is_active_index = i;
+                                }
+                            });
+                            return row[is_active_index].contains("Jak");
+                        }
+                    &lt;/script&gt;
+
+                    &lt;table class="table"
+                        data-role="table"
+                        data-filters="myFilter"
+                    &gt;
+                    ...
+                    &lt;/table&gt;
+                </code></pre>
+
+                <h4 class="text-light">Use table API</h4>
+
+                <div class="example">
+                    <div>
+                        <input type="checkbox" data-role="switch" data-caption="Apply filter" onchange="toggleFilter(this.checked)">
+                    </div>
+                    <table class="table striped table-border mt-4" id="t-flt"
+                           data-role="table"
+                           data-rows="5"
+                           data-rows-steps="5, 10"
+                           data-source="data/table.json"
+                           data-show-rows-steps="false"
+                           data-show-search="false"
+                    >
+                    </table>
+                    <script>
+                        var filterIndex;
+                        function toggleFilter(checked){
+                            var table = $('#t-flt').data('table');
+                            if (checked) {
+                                filterIndex = table.addFilter(function(row, heads){
+                                    var is_active_index = 0;
+                                    heads.forEach(function(el, i){
+                                        if (el.name === "name") {
+                                            is_active_index = i;
+                                        }
+                                    });
+                                    return row[is_active_index].contains("Jak");
+                                }, true);
+                            } else {
+                                table.removeFilter(filterIndex, true);
+                            }
+                        }
+                    </script>
+                </div>
+                <pre><code>
+                    &lt;div&gt;
+                        &lt;input type="checkbox" data-role="switch"
+                            data-caption="Apply filter" onchange="toggleFilter(this.checked)"&gt;
+                    &lt;/div&gt;
+                    &lt;table class="table striped table-border mt-4" id="t-flt"
+                           data-role="table"
+                           data-rows="5"
+                           data-rows-steps="5, 10"
+                           data-source="data/table.json"
+                           data-show-rows-steps="false"
+                           data-show-search="false"
+                    &gt;
+                    &lt;/table&gt;
+                    &lt;script&gt;
+                        var filterIndex;
+                        function toggleFilter(checked){
+                            var table = $('#t-flt').data('table');
+                            if (checked) {
+                                filterIndex = table.addFilter(function(row, heads){
+                                    var is_active_index = 0;
+                                    heads.forEach(function(el, i){
+                                        if (el.name === "name") {
+                                            is_active_index = i;
+                                        }
+                                    });
+                                    return row[is_active_index].contains("Jak");
+                                }, true);
+                            } else {
+                                table.removeFilter(filterIndex, true);
+                            }
+                        }
+                    &lt;/script&gt;
+                </code></pre>
+
+                <h4 class="text-light">Filters operator</h4>
+                <p>
+                    By default, all filters applied with operator <code>and</code>.
+                    You can set this to operator <code>or</code> with attribute <code>data-filters-operator="or"</code>.
+                </p>
+                <div class="example">
+                    <div>
+                        <input type="checkbox" data-role="switch"
+                               data-caption="Apply filter Jak"
+                               onchange="toggleFilter2(this.checked)">
+                        <input type="checkbox" data-role="switch"
+                               data-caption="Apply filter Simon"
+                               onchange="toggleFilter3(this.checked)">
+                    </div>
+                    <table class="table striped table-border mt-4" id="t-flt-2"
+                           data-role="table"
+                           data-rows="5"
+                           data-rows-steps="5, 10"
+                           data-source="data/table.json"
+                           data-show-rows-steps="false"
+                           data-show-search="false"
+                           data-filters-operator="or"
+                    >
+                    </table>
+                    <script>
+                        var filterIndex2, filterIndex3;
+
+                        function toggleFilter2(checked){
+                            var table = $('#t-flt-2').data('table');
+                            if (checked) {
+                                filterIndex2 = table.addFilter(function(row, heads){
+                                    var is_active_index = 0;
+                                    heads.forEach(function(el, i){
+                                        if (el.name === "name") {
+                                            is_active_index = i;
+                                        }
+                                    });
+                                    return row[is_active_index].contains("Jak");
+                                }, true);
+                            } else {
+                                table.removeFilter(filterIndex2, true);
+                            }
+                        }
+
+                        function toggleFilter3(checked){
+                            var table = $('#t-flt-2').data('table');
+                            if (checked) {
+                                filterIndex3 = table.addFilter(function(row, heads){
+                                    var is_active_index = 0;
+                                    heads.forEach(function(el, i){
+                                        if (el.name === "name") {
+                                            is_active_index = i;
+                                        }
+                                    });
+                                    return row[is_active_index].contains("Simon");
+                                }, true);
+                            } else {
+                                table.removeFilter(filterIndex3, true);
+                            }
+                        }
+                    </script>
+                </div>
+                <pre><code>
+                    &lt;div&gt;
+                        &lt;input type="checkbox" data-role="switch"
+                               data-caption="Apply filter Jak"
+                               onchange="toggleFilter2(this.checked)"&gt;
+                        &lt;input type="checkbox" data-role="switch"
+                               data-caption="Apply filter Simon"
+                               onchange="toggleFilter3(this.checked)"&gt;
+                    &lt;/div&gt;
+                    &lt;table class="table striped table-border mt-4" id="t-flt-2"
+                           data-role="table"
+                           data-rows="5"
+                           data-rows-steps="5, 10"
+                           data-source="data/table.json"
+                           data-show-rows-steps="false"
+                           data-show-search="false"
+                           data-filters-operator="or"
+                    &gt;
+                    &lt;/table&gt;
+                    &lt;script&gt;
+                        var filterIndex2, filterIndex3;
+
+                        function toggleFilter2(checked){
+                            var table = $('#t-flt-2').data('table');
+                            if (checked) {
+                                filterIndex2 = table.addFilter(function(row, heads){
+                                    var is_active_index = 0;
+                                    heads.forEach(function(el, i){
+                                        if (el.name === "name") {
+                                            is_active_index = i;
+                                        }
+                                    });
+                                    return row[is_active_index].contains("Jak");
+                                }, true);
+                            } else {
+                                table.removeFilter(filterIndex2, true);
+                            }
+                        }
+
+                        function toggleFilter3(checked){
+                            var table = $('#t-flt-2').data('table');
+                            if (checked) {
+                                filterIndex3 = table.addFilter(function(row, heads){
+                                    var is_active_index = 0;
+                                    heads.forEach(function(el, i){
+                                        if (el.name === "name") {
+                                            is_active_index = i;
+                                        }
+                                    });
+                                    return row[is_active_index].contains("Simon");
+                                }, true);
+                            } else {
+                                table.removeFilter(filterIndex3, true);
+                            }
+                        }
+                    &lt;/script&gt;
+                </code></pre>
+                <p class="remark warning">
+                    <code>Filters</code> works before <code>search</code> and is connected with it by the <code>and</code> operator if search is not empty.
+                </p>
+
+                <h3 id="_table_pagination">Pagination</h3>
+                <p>
+                    To use pagination option, this options must be anabled with attribute <code>data-show-pagination="true"</code> (enabled by default).
+                    By default, used pagination short mode. If you need show all pages links in pagination, you can set it with attribute <code>data-pagination-short-mode="false"</code>.
+                </p>
+
+                <h4>Pagination short mode</h4>
+                <div class="example">
+                    <table class="table striped table-border mt-4"
+                           data-role="table"
+                           data-rows="5"
+                           data-rows-steps="5, 10"
+                           data-source="data/table.json"
+                           data-pagination-short-mode="true"
+                    >
+                    </table>
+                </div>
+                <pre><code class="html">
+                    &lt;table class="table" data-role="table"
+                            data-pagination-short-mode="true"&gt;
+                    ...
+                    &lt;/table&gt;
+                </code></pre>
+
+                <h4>Pagination all mode</h4>
+                <div class="example">
+                    <table class="table striped table-border mt-4"
+                           data-role="table"
+                           data-rows="5"
+                           data-rows-steps="5, 10"
+                           data-source="data/table.json"
+                           data-pagination-short-mode="false"
+                    >
+                    </table>
+                </div>
+                <pre><code class="html">
+                    &lt;table class="table" data-role="table"
+                            data-pagination-short-mode="false"&gt;
+                    ...
+                    &lt;/table&gt;
+                </code></pre>
+                <p>
+                    To set <code>title</code> for <code>Previous</code> and <code>Next</code> buttons,
+                    use attributes <code>data-pagination-prev-title</code>, <code>data-pagination-next-title</code>.
+                </p>
+
+                <h3 id="_table_info">Table info</h3>
+                <p>
+                    Table info block contains information about rows and current position in table.
+                    To enable this feature, use attribute <code>data-show-table-info="true"</code> (enabled by default).
+                </p>
+                <p>
+                    You can change <code>template</code> for table info with attribute <code>data-table-info-title</code>.
+                    By default value for this attribute is <code>Showing $1 to $2 of $3 entries</code>.
+                    Where <code>$1</code> - from records, <code>$2</code> - to records, <code>$3</code> - total records.
+                </p>
+                <div class="example">
+                    <table class="table striped table-border mt-4"
+                           data-role="table"
+                           data-rows="5"
+                           data-rows-steps="5, 10"
+                           data-source="data/table.json"
+                           data-table-info-title="Display from $1 to $2 of $3 records"
+                    >
+                    </table>
+                </div>
+                <pre><code class="html">
+                    &lt;table class="table" data-role="table"
+                           data-table-info-title="Display from $1 to $2 of $3 records"
+                    &gt;
+                    &lt;/table&gt;
+                </code></pre>
+
+                <h3 id="_table_inspector">Table inspector</h3>
+                <p>
+                    Component table contains inside a <code>table inspector</code> to manipulate columns in visual mode.
+                    To open <code>inspector</code>, you must call API method <code>openInspector()</code> or <code>toggleInspector()</code>, and to close it - <code>closeInspector();</code>.
+                </p>
+                <div class="example">
+                    <div class="text-center m-4">
+                        <button class="button alert" onclick="$('#t-inspector').data('table').toggleInspector()">Open Inspector</button>
+                    </div>
+                    <table class="table striped table-border mt-4" id="t-inspector"
+                           data-role="table"
+                           data-rows="5"
+                           data-rows-steps="5, 10"
+                           data-source="data/table.json"
+                    >
+                    </table>
+                </div>
+
+                <h4>Table view</h4>
+                <p>
+                    For each table, a <code>view</code> is created, which stores information about the current state of the table.
+                    All changes that the user makes in the table inspector are saved in this <code>view</code>.
+                </p>
+                <p>
+                    You can setup <code>view options</code> with special attributes:
+                </p>
+                <ul class="mt-4">
+                    <li><code>data-static-view="true|false"</code> - use static view or not</li>
+                    <li><code>data-view-save-mode="client|server"</code> - how view is stored</li>
+                    <li><code>data-view-save-path="storage_key|url"</code> - where view is stored</li>
+                </ul>
+
+                <p class="text-bold">Client</p>
+                <pre><code class="html">
+                    &lt;!-- $1 in save path will be replaced with table id --&gt;
+                    &lt;table class="table" data-role="table"
+                           data-view-save-mode="client"
+                           data-view-save-path="TABLE:$1:KEYS"
+                    &gt;
+                    &lt;/table&gt;
+                </code></pre>
+
+                <p class="text-bold">Server</p>
+                <pre><code class="html">
+                    &lt;table class="table" data-role="table"
+                           data-view-save-mode="server"
+                           data-view-save-path="//server.com/save_view.php"
+                    &gt;
+                    &lt;/table&gt;
+                </code></pre>
+
+                <h3 id="_table_export">Export table data to CSV</h3>
+                <p>
+                    
                 </p>
 
             </main>
