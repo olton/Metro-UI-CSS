@@ -71,7 +71,7 @@ var Notify = {
         }
 
         notify.on(Metro.events.click, function(){
-            that.kill($(this));
+            that.kill($(this), options.onClose);
         });
 
         // Show

@@ -249,10 +249,9 @@ var Countdown = {
 
         if (value.length === 1) {
             value = '0'+value;
-            len = 2;
-        } else {
-            len = value.length;
         }
+
+        len = value.length;
 
         digits = element.find("."+part+" .digit");
         digits_length = digits.length;
