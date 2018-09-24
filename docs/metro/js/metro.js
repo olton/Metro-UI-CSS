@@ -7532,8 +7532,7 @@ var Countdown = {
         this.options = $.extend( {}, this.options, options );
         this.elem  = elem;
         this.element = $(elem);
-        this.timepoint = (new Date()).getTime();
-        this.breakpoint = null;
+        this.breakpoint = (new Date()).getTime();
         this.blinkInterval = null;
         this.tickInterval = null;
 
@@ -7541,6 +7540,10 @@ var Countdown = {
         this.zeroHoursFired = false;
         this.zeroMinutesFired = false;
         this.zeroSecondsFired = false;
+
+        this.current = {
+            d: 0, h: 0, m: 0, s: 0
+        };
 
         this.locale = null;
 
@@ -7551,6 +7554,7 @@ var Countdown = {
     },
 
     options: {
+        inputFormat: null,
         locale: METRO_LOCALE,
         days: 0,
         hours: 0,
@@ -7565,10 +7569,11 @@ var Countdown = {
         clsHours: "",
         clsMinutes: "",
         clsSeconds: "",
-        onCountdownCreate: Metro.noop,
         onAlarm: Metro.noop,
         onTick: Metro.noop,
-        onZero: Metro.noop
+        onZero: Metro.noop,
+        onBlink: Metro.noop,
+        onCountdownCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -7596,14 +7601,13 @@ var Countdown = {
         var parts = ["days", "hours", "minutes", "seconds"];
         var dm = 24*60*60*1000, hm = 60*60*1000, mm = 60*1000, sm = 1000;
         var delta_days, delta_hours, delta_minutes;
+        var now = (new Date()).getTime();
 
         element.addClass("countdown").addClass(o.clsCountdown);
 
-        if (o.date !== null && Utils.isDate(o.date) !== false) {
-            this.timepoint = (new Date(o.date)).getTime();
+        if (Utils.isValue(o.date) && Utils.isDate(o.date, o.inputFormat)) {
+            this.breakpoint = Utils.isValue(o.inputFormat) ? (o.date.toDate(o.inputFormat)).getTime() : (new Date(o.date)).getTime();
         }
-
-        this.breakpoint = this.timepoint;
 
         if (parseInt(o.days) > 0) {
             this.breakpoint += parseInt(o.days) * dm;
@@ -7618,9 +7622,9 @@ var Countdown = {
             this.breakpoint += parseInt(o.seconds) * sm;
         }
 
-        delta_days = Math.round((that.breakpoint - that.timepoint) / dm);
-        delta_hours = Math.round((that.breakpoint - that.timepoint) / hm);
-        delta_minutes = Math.round((that.breakpoint - that.timepoint) / mm);
+        delta_days = Math.round((that.breakpoint - now) / dm);
+        delta_hours = Math.round((that.breakpoint - now) / hm);
+        delta_minutes = Math.round((that.breakpoint - now) / mm);
 
         $.each(parts, function(){
             if (this === "days" && delta_days === 0) {
@@ -7650,7 +7654,7 @@ var Countdown = {
 
             if (this === "days" && delta_days >= 100) {
 
-                for(var i = 0; i < String(delta_days/100).length; i++) {
+                for(var i = 0; i < String(Math.round(delta_days/100)).length; i++) {
                     $("<div>").addClass("digit").appendTo(part);
                 }
 
@@ -7659,7 +7663,7 @@ var Countdown = {
 
         element.find(".digit").html("0");
 
-        Utils.exec(this.options.onCountdownCreate, [this.element]);
+        Utils.exec(o.onCountdownCreate, [element], element[0]);
 
         if (this.options.start === true) {
             this.start();
@@ -7667,7 +7671,9 @@ var Countdown = {
     },
 
     blink: function(){
-        this.element.toggleClass("blink");
+        var that = this, element = this.element, o = this.options;
+        element.toggleClass("blink");
+        Utils.exec(o.onBlink, [this.current], element[0]);
     },
 
     tick: function(){
@@ -7684,13 +7690,16 @@ var Countdown = {
                 element.find(".part").removeClass(o.clsZero);
             }
             element.addClass(o.clsAlarm);
-            Utils.exec(o.onAlarm, [now, element]);
+            Utils.exec(o.onAlarm, [now], element[0]);
             return ;
         }
 
         d = Math.floor(left / dm);
         left -= d * dm;
-        this.draw("days", d);
+        if (this.current.d !== d) {
+            this.current.d = d;
+            this.draw("days", d);
+        }
 
         if (d === 0) {
             if (o.clsDays !== "") {
@@ -7699,13 +7708,16 @@ var Countdown = {
             if (this.zeroDaysFired === false) {
                 this.zeroDaysFired = true;
                 element.find(".days").addClass(o.clsZero);
-                Utils.exec(o.onZero, ["days", element]);
+                Utils.exec(o.onZero, ["days"], element[0]);
             }
         }
 
         h = Math.floor(left / hm);
         left -= h*hm;
-        this.draw("hours", h);
+        if (this.current.h !== h) {
+            this.current.h = h;
+            this.draw("hours", h);
+        }
 
         if (d === 0 && h === 0) {
             if (o.clsHours !== "") {
@@ -7714,13 +7726,16 @@ var Countdown = {
             if (this.zeroHoursFired === false) {
                 this.zeroHoursFired = true;
                 element.find(".hours").addClass(o.clsZero);
-                Utils.exec(o.onZero, ["hours", element]);
+                Utils.exec(o.onZero, ["hours"], element[0]);
             }
         }
 
         m = Math.floor(left / mm);
         left -= m*mm;
-        this.draw("minutes", m);
+        if (this.current.m !== m) {
+            this.current.m = m;
+            this.draw("minutes", m);
+        }
 
         if (d === 0 && h === 0 && m === 0) {
             if (o.clsMinutes !== "") {
@@ -7729,12 +7744,15 @@ var Countdown = {
             if (this.zeroMinutesFired === false) {
                 this.zeroMinutesFired = true;
                 element.find(".minutes").addClass(o.clsZero);
-                Utils.exec(o.onZero, ["minutes", element]);
+                Utils.exec(o.onZero, ["minutes"], element[0]);
             }
         }
 
         s = Math.floor(left / sm);
-        this.draw("seconds", s);
+        if (this.current.s !== s) {
+            this.current.s = s;
+            this.draw("seconds", s);
+        }
 
         if (d === 0 && h === 0 && m === 0 && s === 0) {
             if (o.clsSeconds !== "") {
@@ -7743,24 +7761,37 @@ var Countdown = {
             if (this.zeroSecondsFired === false) {
                 this.zeroSecondsFired = true;
                 element.find(".seconds").addClass(o.clsZero);
-                Utils.exec(o.onZero, ["seconds", element]);
+                Utils.exec(o.onZero, ["seconds"], element[0]);
             }
         }
 
-        Utils.exec(o.onTick, [{days:d, hours:h, minutes:m, seconds:s}, element]);
+        Utils.exec(o.onTick, [{days:d, hours:h, minutes:m, seconds:s}], element[0]);
     },
 
     draw: function(part, value){
         var that = this, element = this.element, o = this.options;
-        var digit_value;
-        var len = String(value).length;
+        var digits, digits_length, digit_value, digit_current, digit, digit_copy;
+        var len;
 
-        var digits = element.find("."+part+" .digit").html("0");
-        var digits_length = digits.length;
+        value = String(value);
+
+        if (value.length === 1) {
+            value = '0'+value;
+            len = 2;
+        } else {
+            len = value.length;
+        }
+
+        digits = element.find("."+part+" .digit");
+        digits_length = digits.length;
 
         for(var i = 0; i < len; i++){
+            digit = element.find("." + part + " .digit:eq("+ (digits_length - 1) +")");
             digit_value = Math.floor( value / Math.pow(10, i) ) % 10;
-            element.find("." + part + " .digit:eq("+ (digits_length - 1) +")").html(digit_value);
+            digit_current = parseInt(digit.text());
+
+            digit.html(digit_value);
+
             digits_length--;
         }
     },
@@ -7807,10 +7838,6 @@ var Countdown = {
 
     isPaused: function(){
         return this.element.data("paused");
-    },
-
-    getTimepoint: function(asDate){
-        return asDate === true ? new Date(this.timepoint) : this.timepoint;
     },
 
     getBreakpoint: function(asDate){

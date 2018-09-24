@@ -28574,7 +28574,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
 }
 .countdown .part::before {
   content: ":";
-  left: -0.25em;
+  left: -0.35em;
   position: absolute;
   color: #bebebe;
 }
@@ -28619,7 +28619,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
           order: 4;
 }
 .countdown.blink .part::before {
-  display: none;
+  visibility: hidden;
 }
 .hint {
   display: block;

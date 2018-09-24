@@ -27,7 +27,7 @@
     .part {
         &::before {
             content: ":";
-            left: -.25em;
+            left: -.35em;
             position: absolute;
             color: @gray;
         }
@@ -68,7 +68,7 @@
     &.blink {
         .part {
             &::before {
-                display: none;
+                visibility: hidden;
             }
         }
     }
