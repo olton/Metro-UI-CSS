@@ -7777,10 +7777,9 @@ var Countdown = {
 
         if (value.length === 1) {
             value = '0'+value;
-            len = 2;
-        } else {
-            len = value.length;
         }
+
+        len = value.length;
 
         digits = element.find("."+part+" .digit");
         digits_length = digits.length;
@@ -12967,7 +12966,7 @@ var Notify = {
         }
 
         notify.on(Metro.events.click, function(){
-            that.kill($(this));
+            that.kill($(this), options.onClose);
         });
 
         // Show
