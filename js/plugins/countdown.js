@@ -315,6 +315,32 @@ var Countdown = {
         this.element.data("paused", true);
     },
 
+    resume: function(){
+        var that = this;
+
+        this.element.data("paused", false);
+        this.blinkInterval = setInterval(function(){that.blink();}, 500);
+        this.tickInterval = setInterval(function(){that.tick();}, 1000);
+    },
+
+    reset: function(){
+        var that = this, element = this.element, o = this.options;
+
+        clearInterval(this.blinkInterval);
+        clearInterval(this.tickInterval);
+
+        element.find(".digit").html("0");
+
+        this._setBreakpoint();
+
+        element.data("paused", false);
+
+        this.tick();
+
+        this.blinkInterval = setInterval(function(){that.blink();}, 500);
+        this.tickInterval = setInterval(function(){that.tick();}, 1000);
+    },
+
     togglePlay: function(){
         if (this.element.attr("data-pause") === true) {
             this.pause();
