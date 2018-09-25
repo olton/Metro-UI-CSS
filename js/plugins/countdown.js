@@ -284,8 +284,8 @@ var Countdown = {
 
         this.tick();
 
-        // this.blinkInterval = setInterval(function(){that.blink();}, 500);
-        // this.tickInterval = setInterval(function(){that.tick();}, 1000);
+        this.blinkInterval = setInterval(function(){that.blink();}, 500);
+        this.tickInterval = setInterval(function(){that.tick();}, 1000);
     },
 
     stop: function(){

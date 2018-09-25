@@ -2,7 +2,8 @@
 + [x] Select: add attribute `data-cls-option-active`
 + [x] Countdown: fix performance and minor bugs
 + [x] Notify: fix firing method `onClose`  
-+ [x] Notify: add methods `onNotifyCreate`, `onAppend`  
++ [x] Notify: add methods `onNotifyCreate`, `onAppend`
++ [x] Input: fix custom search button click  
 
 ### 4.2.23
 + [x] Select: fix native `onchange` event triggering, issue #1198
