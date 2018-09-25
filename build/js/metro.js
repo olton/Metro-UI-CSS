@@ -7596,14 +7596,11 @@ var Countdown = {
         this._build();
     },
 
-    _build: function(){
+    _setBreakpoint: function(){
         var that = this, element = this.element, o = this.options;
-        var parts = ["days", "hours", "minutes", "seconds"];
-        var dm = 24*60*60*1000, hm = 60*60*1000, mm = 60*1000, sm = 1000;
-        var delta_days, delta_hours, delta_minutes;
-        var now = (new Date()).getTime();
+        var dm = 86400000, hm = 3600000, mm = 60000, sm = 1000;
 
-        element.addClass("countdown").addClass(o.clsCountdown);
+        this.breakpoint = (new Date()).getTime();
 
         if (Utils.isValue(o.date) && Utils.isDate(o.date, o.inputFormat)) {
             this.breakpoint = Utils.isValue(o.inputFormat) ? (o.date.toDate(o.inputFormat)).getTime() : (new Date(o.date)).getTime();
@@ -7621,10 +7618,23 @@ var Countdown = {
         if (parseInt(o.seconds) > 0) {
             this.breakpoint += parseInt(o.seconds) * sm;
         }
+    },
+
+    _build: function(){
+        var that = this, element = this.element, o = this.options;
+        var parts = ["days", "hours", "minutes", "seconds"];
+        var dm = 86400000, hm = 3600000, mm = 60000, sm = 1000;
+        var delta_days, delta_hours, delta_minutes, delta_seconds;
+        var now = (new Date()).getTime();
+
+        element.addClass("countdown").addClass(o.clsCountdown);
+
+        this._setBreakpoint();
 
         delta_days = Math.round((that.breakpoint - now) / dm);
         delta_hours = Math.round((that.breakpoint - now) / hm);
         delta_minutes = Math.round((that.breakpoint - now) / mm);
+        delta_seconds = Math.round((that.breakpoint - now) / sm);
 
         $.each(parts, function(){
             if (this === "days" && delta_days === 0) {
@@ -7639,7 +7649,8 @@ var Countdown = {
                 return ;
             }
 
-            if (this === "seconds") {
+            if (this === "seconds" && delta_days === 0 && delta_hours === 0 && delta_minutes === 0 && delta_seconds === 0) {
+                return ;
             }
 
             var part = $("<div>").addClass("part " + this).attr("data-label", that.locale["calendar"]["time"][this]).appendTo(element);
@@ -7683,9 +7694,6 @@ var Countdown = {
         var d, h, m, s;
 
         left = Math.floor((this.breakpoint - now)/1000);
-
-        console.log(this.breakpoint);
-        console.log(left);
 
         if (left <= 0) {
             this.stop();
@@ -7799,11 +7807,13 @@ var Countdown = {
     },
 
     start: function(){
-        var that = this, element = this.element;
+        var that = this, element = this.element, o =this.options;
 
         if (element.data("paused") === false) {
             return;
         }
+
+        this._setBreakpoint();
 
         clearInterval(this.blinkInterval);
         clearInterval(this.tickInterval);
