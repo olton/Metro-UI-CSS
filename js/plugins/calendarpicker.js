@@ -20,6 +20,8 @@ var CalendarPicker = {
 
     options: {
 
+        nullValue: true,
+
         prepend: "",
 
         calendarWide: false,
@@ -115,7 +117,7 @@ var CalendarPicker = {
 
         this.value.setHours(0,0,0,0);
 
-        element.val(!Utils.isValue(curr) ? "" : this.value.format(o.format));
+        element.val(!Utils.isValue(curr) && o.nullValue === true ? "" : this.value.format(o.format));
 
         if (prev.length === 0) {
             parent.prepend(container);
