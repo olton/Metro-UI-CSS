@@ -6,7 +6,12 @@ var Notify = {
         timeout: METRO_TIMEOUT,
         duration: METRO_ANIMATION_DURATION,
         distance: "100vh",
-        animation: "swing"
+        animation: "swing",
+        onClick: Metro.noop,
+        onClose: Metro.noop,
+        onShow: Metro.noop,
+        onAppend: Metro.noop,
+        onNotifyCreate: Metro.noop
     },
 
     notifies: [],
@@ -39,7 +44,7 @@ var Notify = {
         var notify, that = this, o = this.options;
         var m, t;
 
-        if (message === undefined || message.trim() === '') {
+        if (!Utils.isValue(message)) {
             return false;
         }
 
@@ -71,12 +76,14 @@ var Notify = {
         }
 
         notify.on(Metro.events.click, function(){
-            that.kill($(this), options.onClose);
+            Utils.exec(Utils.isValue(options.onClick) ? options.onClick : o.onClick, null, this);
+            that.kill($(this), Utils.isValue(options.onClose) ? options.onClose : o.onClose);
         });
 
         // Show
         notify.hide(function(){
             notify.appendTo(o.container);
+            Utils.exec(Utils.isValue(options.onAppend) ? options.onAppend : o.onAppend, null, notify[0]);
 
             notify.css({
                 marginTop: o.distance
@@ -84,22 +91,28 @@ var Notify = {
                 notify.animate({
                     marginTop: ".25rem"
                 }, o.duration, o.animation, function(){
+
+                    Utils.exec(o.onNotifyCreate, null, this);
+
                     if (options !== undefined && options.keepOpen === true) {
                     } else {
                         setTimeout(function(){
-                            that.kill(notify, (options !== undefined && options.onClose !== undefined ? options.onClose : undefined));
+                            that.kill(notify, Utils.isValue(options.onClose) ? options.onClose : o.onClose);
                         }, o.timeout);
                     }
-                    if (options !== undefined && options.onShow !== undefined) Utils.callback(options.onShow);
+
+                    Utils.exec(Utils.isValue(options.onShow) ? options.onShow : o.onShow, null, notify[0]);
+
                 });
             });
         });
     },
 
     kill: function(notify, callback){
+        notify.off(Metro.events.click);
         notify.fadeOut('slow', function(){
+            Utils.exec(Utils.isValue(callback) ? callback : this.options.onClose, null, notify[0]);
             notify.remove();
-            Utils.callback(callback);
         });
     },
 

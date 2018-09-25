@@ -137,7 +137,7 @@ var Countdown = {
 
         Utils.exec(o.onCountdownCreate, [element], element[0]);
 
-        if (this.options.start === true) {
+        if (o.start === true) {
             this.start();
         }
     },
@@ -155,6 +155,9 @@ var Countdown = {
         var d, h, m, s;
 
         left = Math.floor((this.breakpoint - now)/1000);
+
+        console.log(this.breakpoint);
+        console.log(left);
 
         if (left <= 0) {
             this.stop();
@@ -268,35 +271,38 @@ var Countdown = {
     },
 
     start: function(){
-        var that = this;
+        var that = this, element = this.element;
 
-        if (this.element.data("paused") === false) {
+        if (element.data("paused") === false) {
             return;
         }
 
         clearInterval(this.blinkInterval);
         clearInterval(this.tickInterval);
 
-        this.element.data("paused", false);
+        element.data("paused", false);
 
         this.tick();
 
-        this.blinkInterval = setInterval(function(){that.blink();}, 500);
-        this.tickInterval = setInterval(function(){that.tick();}, 1000);
+        // this.blinkInterval = setInterval(function(){that.blink();}, 500);
+        // this.tickInterval = setInterval(function(){that.tick();}, 1000);
     },
 
     stop: function(){
         var that = this, element = this.element, o = this.options;
-        element.data("paused", true);
-        element.find(".digit").html("0");
         clearInterval(this.blinkInterval);
         clearInterval(this.tickInterval);
+        element.data("paused", true);
+        element.find(".digit").html("0");
+        this.current = {
+            d: 0, h:0, m: 0, s:0
+        };
     },
 
     pause: function(){
-        this.element.data("paused", true);
         clearInterval(this.blinkInterval);
         clearInterval(this.tickInterval);
+        this.element.data("paused", true);
     },
 
     togglePlay: function(){
