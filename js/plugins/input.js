@@ -46,6 +46,7 @@ var Input = {
         onHistoryDown: Metro.noop,
         onClearClick: Metro.noop,
         onRevealClick: Metro.noop,
+        onSearchButtonClick: Metro.noop,
         onInputCreate: Metro.noop
     },
 
