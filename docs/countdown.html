@@ -255,8 +255,8 @@
                     With this attributes you can define classes to customize visual style for <code>countdown</code>.
                 </p>
                 <div class="example text-center">
-                    <div id="countdown_paused" data-role="countdown" data-start="false" data-days="1" data-seconds="10" data-cls-days="bg-orange fg-white" data-cls-hours="bg-red fg-white" data-cls-minutes="bg-green fg-white" data-cls-seconds="bg-blue fg-white" data-cls-zero="bg-light fg-lightGray"></div>
-                    <button class="button mt-2" onclick="$('#countdown_paused').data('countdown').start()">Start</button>
+                    <div id="countdown_customize" data-role="countdown" data-start="false" data-days="1" data-seconds="10" data-cls-days="bg-orange fg-white" data-cls-hours="bg-red fg-white" data-cls-minutes="bg-green fg-white" data-cls-seconds="bg-blue fg-white" data-cls-zero="bg-light fg-lightGray"></div>
+                    <button class="button mt-2" onclick="$('#countdown_customize').data('countdown').start()">Start</button>
                 </div>
                 <pre><code class="html">
                     &lt;div data-role="countdown"
@@ -324,7 +324,6 @@
                     <button class="button mt-2" onclick="$('#countdown_methods').data('countdown').start()">Start</button>
                     <button class="button mt-2" onclick="$('#countdown_methods').data('countdown').stop()">Stop</button>
                     <button class="button mt-2" onclick="$('#countdown_methods').data('countdown').pause()">Pause</button>
-                    <button class="button mt-2" onclick="alert($('#countdown_methods').data('countdown').getTimepoint(true))">Timepoint</button>
                     <button class="button mt-2" onclick="alert($('#countdown_methods').data('countdown').getBreakpoint(true))">Breakpoint</button>
                     <button class="button mt-2" onclick="alert('Minutes left: ' + $('#countdown_methods').data('countdown').getLeft().minutes)">Minutes left</button>
                 </div>
@@ -343,9 +342,6 @@
 
                     &lt;button class="button mt-2"
                         onclick="$('#countdown_methods').data('countdown').pause()"&gt;Pause&lt;/button&gt;
-
-                    &lt;button class="button mt-2"
-                        onclick="alert($('#countdown_methods').data('countdown').getTimepoint(true))"&gt;Timepoint&lt;/button&gt;
 
                     &lt;button class="button mt-2"
                         onclick="alert($('#countdown_methods').data('countdown').getBreakpoint(true))"&gt;Breakpoint&lt;/button&gt;

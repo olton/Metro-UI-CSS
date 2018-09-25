@@ -1,6 +1,8 @@
 ### 4.2.24
 + [x] Select: add attribute `data-cls-option-active`
 + [x] Countdown: fix performance and minor bugs
++ [x] Notify: fix firing method `onClose`  
++ [x] Notify: add methods `onNotifyCreate`, `onAppend`  
 
 ### 4.2.23
 + [x] Select: fix native `onchange` event triggering, issue #1198
