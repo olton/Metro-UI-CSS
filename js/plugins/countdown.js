@@ -191,7 +191,6 @@ var Countdown = {
                 days.addClass(o.clsZero);
                 Utils.exec(o.onZero, ["days", days], element[0]);
             }
-            hours.addClass("no-divider");
         }
 
         h = Math.floor(left / hm);
@@ -207,7 +206,6 @@ var Countdown = {
                 hours.addClass(o.clsZero);
                 Utils.exec(o.onZero, ["hours", hours], element[0]);
             }
-            minutes.addClass("no-divider");
         }
 
         m = Math.floor(left / mm);
@@ -223,7 +221,6 @@ var Countdown = {
                 minutes.addClass(o.clsZero);
                 Utils.exec(o.onZero, ["minutes", minutes], element[0]);
             }
-            seconds.addClass("no-divider");
         }
 
         s = Math.floor(left / sm);
@@ -248,6 +245,10 @@ var Countdown = {
         var digits, digits_length, digit_value, digit_current, digit, digit_copy;
         var len;
 
+        var delDigit = function(d){
+            $(d).remove();
+        };
+
         value = String(value);
 
         if (value.length === 1) {
@@ -264,7 +265,9 @@ var Countdown = {
             digit_value = Math.floor( value / Math.pow(10, i) ) % 10;
             digit_current = parseInt(digit.text());
 
-            console.log(digit_current, digit_value);
+            if (digit_current === digit_value) {
+                continue;
+            }
 
             digit.html(digit_value);
 

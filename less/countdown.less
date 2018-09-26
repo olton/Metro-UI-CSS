@@ -30,10 +30,10 @@
             left: -.30em;
             position: absolute;
             color: @gray;
-            z-index: 2;
+            z-index: 1;
         }
 
-        &:nth-child(1), &.no-divider {
+        &:nth-child(1), &.no-divider, &.nd + .part {
             &::before {
                 display: none;
             }
@@ -51,6 +51,7 @@
                 width: 100%;
                 font-size: .3em;
                 color: inherit;
+                background-color: inherit;
                 z-index: 1;
             }
         }

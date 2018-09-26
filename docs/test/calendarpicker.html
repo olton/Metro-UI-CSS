@@ -22,7 +22,10 @@
                    data-role="calendarpicker"
                    data-format="%d/%m/%y"
                    data-input-format="%d/%m/%y"
-                   value="" data-null-value="true"/>
+                   value="" data-null-value="true" data-clear-button="true"/>
+            <div>
+                <button class="button" onclick="console.log($('#data1').data('calendarpicker').val())">value</button>
+            </div>
         </div>
 
         <div class="cell-4">
