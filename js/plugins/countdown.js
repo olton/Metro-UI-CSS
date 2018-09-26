@@ -164,14 +164,15 @@ var Countdown = {
         var dm = 24*60*60, hm = 60*60, mm = 60, sm = 1;
         var left, now = (new Date()).getTime();
         var d, h, m, s;
+        var days = element.find(".days"),
+            hours = element.find(".hours"),
+            minutes = element.find(".minutes"),
+            seconds = element.find(".seconds");
 
         left = Math.floor((this.breakpoint - now)/1000);
 
-        if (left <= 0) {
+        if (left <= -1) {
             this.stop();
-            if (o.clsZero !== "") {
-                element.find(".part").removeClass(o.clsZero);
-            }
             element.addClass(o.clsAlarm);
             Utils.exec(o.onAlarm, [now], element[0]);
             return ;
@@ -185,14 +186,12 @@ var Countdown = {
         }
 
         if (d === 0) {
-            if (o.clsDays !== "") {
-                element.find(".days").removeClass(o.clsDays);
-            }
             if (this.zeroDaysFired === false) {
                 this.zeroDaysFired = true;
-                element.find(".days").addClass(o.clsZero);
-                Utils.exec(o.onZero, ["days"], element[0]);
+                days.addClass(o.clsZero);
+                Utils.exec(o.onZero, ["days", days], element[0]);
             }
+            hours.addClass("no-divider");
         }
 
         h = Math.floor(left / hm);
@@ -203,14 +202,12 @@ var Countdown = {
         }
 
         if (d === 0 && h === 0) {
-            if (o.clsHours !== "") {
-                element.find(".hours").removeClass(o.clsHours);
-            }
             if (this.zeroHoursFired === false) {
                 this.zeroHoursFired = true;
-                element.find(".hours").addClass(o.clsZero);
-                Utils.exec(o.onZero, ["hours"], element[0]);
+                hours.addClass(o.clsZero);
+                Utils.exec(o.onZero, ["hours", hours], element[0]);
             }
+            minutes.addClass("no-divider");
         }
 
         m = Math.floor(left / mm);
@@ -221,14 +218,12 @@ var Countdown = {
         }
 
         if (d === 0 && h === 0 && m === 0) {
-            if (o.clsMinutes !== "") {
-                element.find(".minutes").removeClass(o.clsMinutes);
-            }
             if (this.zeroMinutesFired === false) {
                 this.zeroMinutesFired = true;
-                element.find(".minutes").addClass(o.clsZero);
-                Utils.exec(o.onZero, ["minutes"], element[0]);
+                minutes.addClass(o.clsZero);
+                Utils.exec(o.onZero, ["minutes", minutes], element[0]);
             }
+            seconds.addClass("no-divider");
         }
 
         s = Math.floor(left / sm);
@@ -238,13 +233,10 @@ var Countdown = {
         }
 
         if (d === 0 && h === 0 && m === 0 && s === 0) {
-            if (o.clsSeconds !== "") {
-                element.find(".seconds").removeClass(o.clsSeconds);
-            }
             if (this.zeroSecondsFired === false) {
                 this.zeroSecondsFired = true;
-                element.find(".seconds").addClass(o.clsZero);
-                Utils.exec(o.onZero, ["seconds"], element[0]);
+                seconds.addClass(o.clsZero);
+                Utils.exec(o.onZero, ["seconds", seconds], element[0]);
             }
         }
 
@@ -271,6 +263,8 @@ var Countdown = {
             digit = element.find("." + part + " .digit:eq("+ (digits_length - 1) +")");
             digit_value = Math.floor( value / Math.pow(10, i) ) % 10;
             digit_current = parseInt(digit.text());
+
+            console.log(digit_current, digit_value);
 
             digit.html(digit_value);
 
@@ -329,6 +323,7 @@ var Countdown = {
         clearInterval(this.blinkInterval);
         clearInterval(this.tickInterval);
 
+        element.find(".part").removeClass(o.clsZero);
         element.find(".digit").html("0");
 
         this._setBreakpoint();

@@ -26,10 +26,11 @@
 
     .part {
         &::before {
-            content: ":";
-            left: -.35em;
+            content: "\205A";
+            left: -.30em;
             position: absolute;
             color: @gray;
+            z-index: 2;
         }
 
         &:nth-child(1), &.no-divider {
@@ -50,6 +51,7 @@
                 width: 100%;
                 font-size: .3em;
                 color: inherit;
+                z-index: 1;
             }
         }
     }
