@@ -28573,10 +28573,11 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   padding-right: 0.5em;
 }
 .countdown .part::before {
-  content: ":";
-  left: -0.35em;
+  content: "\205A";
+  left: -0.3em;
   position: absolute;
   color: #bebebe;
+  z-index: 2;
 }
 .countdown .part:nth-child(1)::before,
 .countdown .part.no-divider::before {
@@ -28594,6 +28595,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   width: 100%;
   font-size: 0.3em;
   color: inherit;
+  z-index: 1;
 }
 .countdown .part + .part {
   margin-left: 0.625rem;
