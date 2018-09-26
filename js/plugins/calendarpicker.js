@@ -110,12 +110,12 @@ var CalendarPicker = {
         }
 
         if (!Utils.isValue(curr)) {
-            this.value = new Date();
+            //this.value = new Date();
         } else {
             this.value = Utils.isValue(o.inputFormat) === false ? new Date(curr) : curr.toDate(o.inputFormat);
         }
 
-        this.value.setHours(0,0,0,0);
+        if (Utils.isValue(this.value)) this.value.setHours(0,0,0,0);
 
         element.val(!Utils.isValue(curr) && o.nullValue === true ? "" : this.value.format(o.format));
 
@@ -165,6 +165,7 @@ var CalendarPicker = {
             showFooter: false,
             onDayClick: function(sel, day, el){
                 var date = new Date(sel[0]);
+                date.setHours(0,0,0,0);
 
                 that._removeOverlay();
 
@@ -260,19 +261,24 @@ var CalendarPicker = {
 
         if (clear.length > 0) clear.on(Metro.events.click, function(e){
             element.val("").trigger('change').blur();
-            that.value = new Date().setHours(0,0,0,0);
+            that.value = null;
             e.preventDefault();
             e.stopPropagation();
         });
 
         container.on(Metro.events.click, "button, input", function(e){
+
+            var value = Utils.isValue(that.value) ? that.value : new Date();
+
+            value.setHours(0,0,0,0);
+
             if (cal.hasClass("open") === false && cal.hasClass("open-up") === false) {
 
                 $(".calendar-picker .calendar").removeClass("open open-up").hide();
 
-                cal_plugin.setPreset([that.value]);
-                cal_plugin.setShow(that.value);
-                cal_plugin.setToday(that.value);
+                cal_plugin.setPreset([value]);
+                cal_plugin.setShow(value);
+                cal_plugin.setToday(value);
 
                 if (container.hasClass("dialog-mode")) {
                     that.overlay.appendTo($('body'));
@@ -281,13 +287,13 @@ var CalendarPicker = {
                 if (Utils.isOutsider(cal) === false) {
                     cal.addClass("open-up");
                 }
-                Utils.exec(o.onCalendarShow, [element, cal]);
+                Utils.exec(o.onCalendarShow, [element, cal], cal);
 
             } else {
 
                 that._removeOverlay();
                 cal.removeClass("open open-up");
-                Utils.exec(o.onCalendarHide, [element, cal]);
+                Utils.exec(o.onCalendarHide, [element, cal], cal);
 
             }
             e.preventDefault();
@@ -336,11 +342,6 @@ var CalendarPicker = {
         }
     },
 
-    changeValue: function(){
-        var element = this.element;
-        this.val(element.attr("value"));
-    },
-
     disable: function(){
         this.element.data("disabled", true);
         this.element.parent().addClass("disabled");
@@ -386,44 +387,42 @@ var CalendarPicker = {
         }
     },
 
-    changeAttrLocale: function(){
-        var element = this.element;
-        this.i18n(element.attr("data-locale"));
-    },
-
-    changeAttrSpecial: function(){
-        var element = this.element;
-        var cal = this.calendar.data("calendar");
-        cal.setSpecial(element.attr("data-special"));
-    },
-
-    changeAttrExclude: function(){
-        var element = this.element;
-        var cal = this.calendar.data("calendar");
-        cal.setExclude(element.attr("data-exclude"));
-    },
-
-    changeAttrMinDate: function(){
-        var element = this.element;
-        var cal = this.calendar.data("calendar");
-        cal.setMinDate(element.attr("data-min-date"));
-    },
-
-    changeAttrMaxDate: function(){
-        var element = this.element;
-        var cal = this.calendar.data("calendar");
-        cal.setMaxDate(element.attr("data-max-date"));
-    },
-
     changeAttribute: function(attributeName){
+        var that = this, element = this.element, o = this.options;
+        var cal = this.calendar.data("calendar");
+
+        var changeAttrLocale = function(){
+            that.i18n(element.attr("data-locale"));
+        };
+
+        var changeAttrSpecial = function(){
+            cal.setSpecial(element.attr("data-special"));
+        };
+
+        var changeAttrExclude = function(){
+            cal.setExclude(element.attr("data-exclude"));
+        };
+
+        var changeAttrMinDate = function(){
+            cal.setMinDate(element.attr("data-min-date"));
+        };
+
+        var changeAttrMaxDate = function(){
+            cal.setMaxDate(element.attr("data-max-date"));
+        };
+
+        var changeAttrValue = function(){
+            that.val(element.attr("value"));
+        };
+
         switch (attributeName) {
-            case "value": this.changeValue(); break;
+            case "value": changeAttrValue(); break;
             case 'disabled': this.toggleState(); break;
-            case 'data-locale': this.changeAttrLocale(); break;
-            case 'data-special': this.changeAttrSpecial(); break;
-            case 'data-exclude': this.changeAttrExclude(); break;
-            case 'data-min-date': this.changeAttrMinDate(); break;
-            case 'data-max-date': this.changeAttrMaxDate(); break;
+            case 'data-locale': changeAttrLocale(); break;
+            case 'data-special': changeAttrSpecial(); break;
+            case 'data-exclude': changeAttrExclude(); break;
+            case 'data-min-date': changeAttrMinDate(); break;
+            case 'data-max-date': changeAttrMaxDate(); break;
         }
     }
 };

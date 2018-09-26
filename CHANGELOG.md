@@ -6,7 +6,8 @@
 + [x] Notify: fix firing method `onClose`  
 + [x] Notify: add methods `onNotifyCreate`, `onAppend`
 + [x] Input: fix custom search button click
-+ [x] Calendar picker: add attribute `data-null-value`. If this attribute false and value empty, used current date  
++ [x] Calendar picker: add attribute `data-null-value`. If this attribute false and value empty, used current date
++ [x] Calendar picker: fix for null value, issue #1217  
 
 ### 4.2.23
 + [x] Select: fix native `onchange` event triggering, issue #1198
