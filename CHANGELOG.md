@@ -1,4 +1,5 @@
 ### 4.2.24
++ [x] Tabs: change `expand` behavior
 + [x] Select: add attribute `data-cls-option-active`
 + [x] Countdown: fix performance and minor bugs
 + [x] Countdown: fix deferred start setup

@@ -153,7 +153,7 @@
     }
 }
 
-.tabs-expand() {
+.tabs-expand {
     border: none;
 
     & > ul.tabs-list {
@@ -209,15 +209,3 @@
     }
 }
 
-.generate-tabs-media-options(@mediaBreakpointListMobileLength);
-.generate-tabs-media-options(@name, @i: 1) when (@i <= @mediaBreakpointListMobileLength) {
-    @m: extract(@mediaBreakpointListMobile, @i);
-
-    @media screen and (min-width: @@m) {
-        .tabs-expand-@{m} {
-            .tabs-expand();
-        }
-    }
-
-    .generate-tabs-media-options(@name, @i + 1);
-}

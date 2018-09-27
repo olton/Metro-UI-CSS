@@ -18803,7 +18803,8 @@ var Tabs = {
     },
 
     options: {
-        expand: null,
+        expand: false,
+        expandPoint: null,
         tabsPosition: "top",
 
         clsTabs: "",
@@ -18846,14 +18847,18 @@ var Tabs = {
         var container = right_parent ? parent : $("<div>").addClass("tabs tabs-wrapper");
         var expandTitle, hamburger;
 
-        if (Utils.isValue(o.expand)) {
-            container.addClass("tabs-expand-"+o.expand);
+        if (!Utils.isValue(element.attr("id"))) {
+            element.attr("id", Utils.elementId("tabs"));
         }
 
+        // if (Utils.isValue(o.expand)) {
+        //     container.addClass("tabs-expand-"+o.expand);
+        // }
+
         container.addClass(o.tabsPosition.replace(["-", "_", "+"], " "));
-        if (o.tabsPosition.contains("vertical")) {
-            container.addClass("tabs-expand-fs"); // TODO need redesign this behavior
-        }
+        // if (o.tabsPosition.contains("vertical")) {
+        //     container.addClass("tabs-expand-fs"); // TODO need redesign this behavior
+        // }
 
         element.addClass("tabs-list");
         if (!right_parent) {
@@ -18879,11 +18884,39 @@ var Tabs = {
         container.addClass(o.clsTabs);
         element.addClass(o.clsTabsList);
         element.children("li").addClass(o.clsTabsListItem);
+
+        if (o.expand === true && !o.tabsPosition.contains("vertical")) {
+            container.addClass("tabs-expand");
+        } else {
+            if (Utils.isValue(o.expandPoint) && Utils.mediaExist(o.expandPoint) && !o.tabsPosition.contains("vertical")) {
+                container.addClass("tabs-expand");
+            }
+        }
+
+        if (o.tabsPosition.contains("vertical")) {
+            container.addClass("tabs-expand");
+        }
+
     },
 
     _createEvents: function(){
         var that = this, element = this.element, o = this.options;
         var container = element.parent();
+
+        $(window).on(Metro.events.resize+"-"+element.attr("id"), function(){
+
+            if (o.tabsPosition.contains("vertical")) {
+                return ;
+            }
+
+            if (o.expand === true && !o.tabsPosition.contains("vertical")) {
+                container.addClass("tabs-expand");
+            } else {
+                if (Utils.isValue(o.expandPoint) && Utils.mediaExist(o.expandPoint) && !o.tabsPosition.contains("vertical")) {
+                    container.addClass("tabs-expand");
+                }
+            }
+        });
 
         container.on(Metro.events.click, ".hamburger, .expand-title", function(){
             if (element.data('expanded') === false) {
