@@ -13,6 +13,7 @@ var Dialog = {
     },
 
     options: {
+        leaveOverlayOnClose: false,
         toTop: false,
         toBottom: false,
         locale: METRO_LOCALE,
@@ -246,7 +247,10 @@ var Dialog = {
     close: function(){
         var that = this, element = this.element, o = this.options;
 
-        $('body').find('.overlay').remove();
+        if (!Utils.bool(o.leaveOverlayOnClose)) {
+            console.log("ku");
+            $('body').find('.overlay').remove();
+        }
 
         this.hide(function(){
             element.data("open", false);
@@ -260,7 +264,7 @@ var Dialog = {
     open: function(){
         var that = this, element = this.element, o = this.options;
 
-        if (o.overlay === true) {
+        if (o.overlay === true && $(".overlay").length === 0) {
             this.overlay.appendTo($("body"));
             if (o.overlayClickClose === true) {
                 this.overlay.on(Metro.events.click, function(){
