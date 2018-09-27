@@ -22,10 +22,55 @@
             background-color: @light;
             cursor: pointer;
             white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         & > .content {
             display: block;
+        }
+    }
+}
+
+.accordion {
+    &.material {
+
+        & > .frame > .heading {
+            padding: 16px 42px 16px 16px;
+            font-size: 16px;
+            background-color: @white;
+
+            &::after {
+                display: block;
+                content: "\203A";
+                position: absolute;
+                right: 16px;
+                top: 0;
+                font-size: 32px;
+                transform: rotate(0);
+                transition: transform @transition-speed;
+                transform-origin: 50% 50%;
+            }
+        }
+
+        .frame + .frame {
+            border-top: 1px @borderColor solid;
+        }
+
+        & > .frame > .content {
+            padding: 16px;
+            font-size: 14px;
+        }
+
+        & > .frame {
+            &.active {
+                .heading {
+                    &::after {
+                        transform: rotate(90deg);
+                        transition: transform @transition-speed;
+                    }
+                }
+            }
         }
     }
 }

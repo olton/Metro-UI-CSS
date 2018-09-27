@@ -73,7 +73,12 @@
                 </p>
 
                 <div class="example">
-                    <div data-role="accordion">
+
+                    <div>
+                        <input type="checkbox" data-role="switch" data-caption="data-mode='material'" onclick="$('#a1').toggleClass('material')">
+                    </div>
+
+                    <div data-role="accordion" id="a1">
                         <div class="frame">
                             <div class="heading">Header 1</div>
                             <div class="content">
