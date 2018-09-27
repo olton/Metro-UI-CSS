@@ -40266,6 +40266,161 @@ video:-webkit-full-screen {
 .head-bar .header-container .input input::-webkit-input-placeholder {
   color: white;
 }
+.tabs-material {
+  margin: 0;
+  padding: 0;
+  position: fixed;
+  height: auto;
+  display: block;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  overflow: auto;
+  overflow-y: hidden;
+  width: 100%;
+  z-index: 1030;
+  background-color: #ffffff;
+  color: #1d1d1d;
+  white-space: nowrap;
+  list-style: none inside;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+  overflow: -moz-scrollbars-none;
+}
+.tabs-material::-webkit-scrollbar {
+  display: none!important;
+}
+.tabs-material li {
+  position: relative;
+  display: inline-block;
+  height: 48px;
+  padding: 16px 16px;
+  cursor: pointer;
+  opacity: 0.6;
+  text-align: center;
+  text-transform: uppercase;
+  margin: 0;
+  overflow: hidden;
+  max-width: 360px;
+  background-color: inherit;
+  color: inherit;
+}
+.tabs-material li a {
+  background-color: inherit;
+  color: inherit;
+  text-decoration: none;
+}
+.tabs-material li .icon {
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  font-size: 22px;
+  display: block;
+}
+.tabs-material.with-icons li {
+  height: 72px;
+}
+.tabs-material li.active,
+.tabs-material li:hover {
+  opacity: 1;
+  -webkit-transition: 0.3s linear;
+  transition: 0.3s linear;
+}
+.tabs-material li:not(.active),
+.tabs-material li:not(:hover) {
+  border-bottom-color: transparent;
+}
+.tabs-material.equal-tabs li {
+  -ms-flex-preferred-size: 0;
+      flex-basis: 0;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+.tabs-material.compact {
+  height: auto;
+}
+.tabs-material.compact li {
+  display: block;
+  border-bottom: 0 #ccc solid;
+}
+.tabs-material.compact li:active {
+  border-bottom: inherit;
+}
+.tabs-material .tabs-container {
+  margin: 0 auto;
+}
+.tabs-material .tab-marker {
+  position: absolute;
+  height: 2px;
+  background: #CE352C;
+  margin-top: -4px;
+  top: 100%;
+  left: 0;
+  color: transparent;
+  opacity: 1;
+}
+.tabs-material.overflow {
+  padding: 0 32px;
+  overflow: hidden;
+}
+.tabs-material.overflow .scroll-control-left,
+.tabs-material.overflow .scroll-control-right {
+  display: block;
+  position: absolute;
+  left: 0;
+  width: 32px;
+  color: inherit;
+  height: 48px;
+  cursor: pointer;
+  z-index: 2;
+  background-color: inherit;
+  text-align: center;
+}
+.tabs-material.overflow .scroll-control-left:before,
+.tabs-material.overflow .scroll-control-right:before {
+  display: block;
+  width: 100%;
+  content: "\2039";
+  font-size: 1.6em;
+  height: 48px;
+  line-height: 48px;
+}
+.tabs-material.overflow .scroll-control-right {
+  left: auto;
+  right: 0;
+}
+.tabs-material.overflow .scroll-control-right:before {
+  content: "\203A";
+}
+.tabs-material.deep {
+  z-index: 1029;
+}
+.tabs-material.icons {
+  height: 64px;
+}
+.tabs-material.icons li {
+  height: 64px;
+  font-size: 11px;
+}
+.tabs-material.icons li [class*=i-] {
+  display: block;
+  font-size: 28px;
+}
+.tabs-material .tab-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 4px;
+}
+.head-bar ~ .fixed-tabs,
+.tabs-material.app-bar-present {
+  top: 56px;
+}
+.head-bar.more ~ .fixed-tabs,
+.tabs-material.app-bar-present-more {
+  top: 112px;
+}
 .ripple {
   display: block;
   width: 0;
