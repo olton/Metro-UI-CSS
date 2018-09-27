@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <link href="../metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
+    <link href="../css/site.css?ver=@@b-version" rel="stylesheet">
+
+    <title>Head bar test page - Metro 4 :: Popular HTML, CSS and JS library</title>
+</head>
+<body>
+
+<div class="container mt-4 d-flex flex-justify-center">
+    <div class="emulator galaxy-s5">
+        <div class="head-bar pos-absolute bg-cyan fg-white d-none">
+            <button class="expand-button light" onclick="$(this).toggleClass('transform')"><span></span></button>
+            <span class="app-title">Metro 4</span>
+
+            <div class="header-container ml-auto">
+                <button class="tool-button" data-role="ripple"><span class="mif-comment icon"></span></button>
+                <button class="tool-button" data-role="ripple"><span class="mif-share icon"></span></button>
+
+                <span class="pos-relative">
+                    <button class="tool-button" id="optionMenu"><span class="mif-more-vert icon"></span></button>
+                    <ul class="d-menu place-right" data-role="dropdown" data-toggle-element="#optionMenu">
+                        <li><a>Menu Item 1</a></li>
+                        <li><a>Menu Item 2</a></li>
+                        <li class="divider"></li>
+                        <li><a>Menu Item 3</a></li>
+                    </ul>
+                </span>
+            </div>
+        </div>
+
+        <div class="head-bar pos-absolute more bg-cyan fg-white d-none">
+            <button class="expand-button light ml-2" onclick="$(this).toggleClass('transform')"><span></span></button>
+            <span class="app-title">Metro 4</span>
+            <button class="action-button second floating-action-top bg-red fg-white pos-absolute shadow-2"><span class="mif-add mif-2x"></span></button>
+        </div>
+
+
+        <div class="head-bar bg-red fg-white pos-absolute">
+            <div class="header-container w-100" id="header-main-group">
+                <button class="expand-button light"><span></span></button>
+                <span class="app-title">Metro 4</span>
+                <button class="tool-button ml-auto" id="searchButton"><span class="mif-search icon"></span></button>
+            </div>
+            <div class="header-container w-100" id="header-search-group" style="display: none">
+                <button class="tool-button" id="closeSearchButton"><span class="mif-arrow-left icon"></span></button>
+                <input type="text" name="search" class="search-in-list mr-2" placeholder="Search...">
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script src="../metro/js/metro.js?ver=@@b-version"></script>
+<script>
+    $('#searchButton, #closeSearchButton').off('click').on('click', function(){
+        var b = $(this);
+
+        if (b.attr('id') === 'searchButton') {
+            $("#header-main-group").hide();
+            $("#header-search-group").show();
+            $(".search-in-list").focus();
+        } else {
+            $("#header-main-group").show();
+            $("#header-search-group").hide();
+        }
+    });
+</script>
+</body>
+</html>

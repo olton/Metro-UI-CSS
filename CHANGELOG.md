@@ -9,10 +9,13 @@
 + [x] Calendar picker: add attribute `data-null-value`. If this attribute false and value empty, used current date
 + [x] Calendar picker: fix for null value, issue #1217
 + [x] Accordion: add attribute `data-mode='material'`
-+ [x] Mif: add new icons
-+ [x] Bottom navigation: add new component  
++ [x] Mif: add new icons 50+
++ [x] Bottom navigation: add new CSS component  
 + [x] Bottom sheet: add new component
-+ [x] Items list: add new component  
++ [x] Items list: add new CSS component  
++ [x] Feed list: add new CSS component  
++ [x] Group list: add new CSS component  
++ [x] Head bar: add new CSS component  
 
 ### 4.2.23
 + [x] Select: fix native `onchange` event triggering, issue #1198

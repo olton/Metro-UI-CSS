@@ -42,7 +42,8 @@
     }
 }
 
-.items-list {
+.items-list, .feed-list {
+    margin: 0;
     padding: 4px;
     position: relative;
     display: block;
@@ -83,7 +84,10 @@
 
         .label, .second-label {
             display: block;
-            line-height: normal;
+        }
+
+        .label {
+            line-height: 1;
         }
 
         .second-label {
@@ -95,6 +99,7 @@
         .avatar ~ .label, .avatar ~ .second-label {
             padding-left: 56px;
         }
+
     }
 
     .item + .item {
@@ -104,4 +109,67 @@
 
 .feed-list {
 
+    .title {
+        padding: 4px 16px;
+        font-size: 18px;
+        border-bottom: 1px solid @borderColor;
+        font-weight: 500;
+    }
+
+    .item {
+        height: 104px;
+        padding: 16px 0;
+        justify-content: space-around;
+
+        .avatar {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            width: 96px;
+            height: 72px;
+            border-radius: 0;
+            margin-top: 0;
+        }
+
+        .second-label {
+            font-size: 10px;
+        }
+
+        .avatar ~ .label, .avatar ~ .second-label  {
+            margin-left: 128px;
+            margin-right: 16px;
+            padding-left: 0;
+        }
+
+        .avatar {
+            &.on-right {
+                float: none;
+                left: auto;
+                right: 16px;
+            }
+        }
+
+        .avatar.on-right ~ .label,.avatar.on-right ~ .second-label {
+            margin-left: 16px;
+            margin-right: 128px;
+        }
+    }
+}
+
+.group-list {
+    margin: 0;
+    position: relative;
+    display: block;
+    list-style: none inside;
+    border: 1px solid @borderColor;
+
+    .item {
+        display: block;
+        position: relative;
+        padding: 4px 8px;
+    }
+
+    .item + .item {
+        border-top: 1px solid @borderColor;
+    }
 }

@@ -471,3 +471,6 @@ h1 + .text-leader {
   height: 768px;
   width: 1024px;
 }
+.algolia-autocomplete {
+  width: 100%;
+}
