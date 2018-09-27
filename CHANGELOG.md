@@ -11,7 +11,8 @@
 + [x] Accordion: add attribute `data-mode='material'`
 + [x] Mif: add new icons
 + [x] Bottom navigation: add new component  
-+ [x] Bottom sheet: add new component  
++ [x] Bottom sheet: add new component
++ [x] Items list: add new component  
 
 ### 4.2.23
 + [x] Select: fix native `onchange` event triggering, issue #1198
