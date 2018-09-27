@@ -450,8 +450,8 @@ a.button, a.command-button, a.image-button, a.shortcut, a.tool-button, a.split-b
 }
 
 .expand-button {
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 36px;
+    height: 36px;
     background-size: 1rem 1rem;
     background: center center no-repeat;
     text-indent: -9999px;
@@ -461,18 +461,10 @@ a.button, a.command-button, a.image-button, a.shortcut, a.tool-button, a.split-b
     z-index: 2;
     position: relative;
     float: left;
-
-    &:active, &:focus {
-        //outline: 1px @grayLighter solid;
-    }
-
-    &:hover {
-        //background: rgba(255,255,255, .1);
-    }
+    outline: none;
 
     span {
         position: absolute;
-        top: 1.2rem;
         left: .5rem;
         width: 1.2rem;
         height: 2px;
@@ -558,7 +550,7 @@ a.button, a.command-button, a.image-button, a.shortcut, a.tool-button, a.split-b
         width: 40px;
         height: 40px;
         line-height: 40px;
-        box-shadow: none;
+        box-shadow: 0 2px 10px 0 rgba(0,0,0,.16), 0 2px 5px 0 rgba(0,0,0,.26);
 
         .icon {
             width: 16px;
