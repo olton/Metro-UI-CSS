@@ -1,0 +1,180 @@
+@import (once) "include/vars";
+@import (once) "include/mixins";
+
+.tabs-material {
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    height: auto;
+    display: block;
+    flex-flow: row nowrap;
+    overflow: auto;
+    overflow-y: hidden;
+    width: 100%;
+    z-index: @zindex-fixed;
+    background-color: @white;
+    color: @dark;
+    white-space: nowrap;
+    list-style: none inside;
+
+    .hideScrollBars();
+
+    li {
+        position: relative;
+        display: inline-block;
+        height: 48px;
+        padding: 16px 16px;
+        cursor: pointer;
+        opacity: .6;
+        text-align: center;
+        text-transform: uppercase;
+        margin: 0;
+        overflow: hidden;
+        max-width: 360px;
+        background-color: inherit;
+        color: inherit;
+
+        a {
+            background-color: inherit;
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .icon {
+            width: 24px;
+            height: 24px;
+            line-height: 24px;
+            font-size: 22px;
+            display: block;
+        }
+    }
+
+    &.with-icons {
+        li {
+            height: 72px;
+        }
+    }
+
+    li {
+        &.active, &:hover {
+            opacity: 1;
+            transition: .3s linear;
+        }
+
+        &:not(.active), &:not(:hover) {
+            border-bottom-color: transparent;
+        }
+    }
+
+    &.equal-tabs {
+        li {
+            flex-basis: 0;
+            flex-grow: 1;
+        }
+    }
+
+    &.compact {
+        height: auto;
+        li {
+            display: block;
+            border-bottom: 0 #ccc solid;
+
+            &:active {
+                border-bottom: inherit;
+            }
+        }
+    }
+
+    .tabs-container {
+        margin: 0 auto;
+    }
+
+    .tab-marker {
+        position: absolute;
+        height: 2px;
+        background: @red;
+        margin-top: -4px;
+        top: 100%;
+        left: 0;
+        color: transparent;
+        opacity: 1;
+    }
+}
+
+.tabs-material {
+    &.overflow {
+        padding: 0 32px;
+        overflow: hidden;
+
+        .scroll-control-left, .scroll-control-right {
+            display: block;
+            position: absolute;
+            left: 0;
+            width: 32px;
+            color: inherit;
+            height: 48px;
+            cursor: pointer;
+            z-index: 2;
+            background-color: inherit;
+            text-align: center;
+
+            &:before {
+                //padding-top: 6px;
+                display: block;
+                width: 100%;
+                content: "\2039";
+                font-size: 1.6em;
+                height: 48px;
+                line-height: 48px;
+            }
+        }
+
+        .scroll-control-right {
+            left: auto;
+            right: 0;
+
+            &:before {
+                content: "\203A";
+            }
+        }
+    }
+}
+
+.tabs-material {
+    &.deep {
+        z-index: @zindex-fixed - 1;
+    }
+}
+
+.tabs-material {
+    &.icons {
+        height: 64px;
+
+        li {
+            height: 64px;
+            font-size: 11px;
+
+            [class*=i-] {
+                display: block;
+                font-size: 28px;
+            }
+        }
+    }
+}
+
+.tabs-material {
+    .tab-badge {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        padding: 4px;
+    }
+}
+
+.head-bar ~ .fixed-tabs, .tabs-material.app-bar-present {
+    top: 56px;
+}
+
+.head-bar.more ~ .fixed-tabs, .tabs-material.app-bar-present-more {
+    top: 112px;
+}
