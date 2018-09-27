@@ -3,6 +3,23 @@
  * Copyright 2018 Sergey Pimenov
  * Licensed under MIT
  */
+.accordion.rtl.material > .frame > .heading,
+.accordion[dir=rtl].material > .frame > .heading {
+  padding: 16px 16px 16px 42px;
+}
+.accordion.rtl.material > .frame > .heading::after,
+.accordion[dir=rtl].material > .frame > .heading::after {
+  left: 16px;
+  right: auto;
+  top: 8px;
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+.accordion.rtl.material > .frame.active .heading::after,
+.accordion[dir=rtl].material > .frame.active .heading::after {
+  -webkit-transform: rotate(270deg);
+          transform: rotate(270deg);
+}
 input.rtl,
 input[dir=rtl] {
   direction: rtl;

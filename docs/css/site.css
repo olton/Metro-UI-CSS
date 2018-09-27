@@ -448,3 +448,26 @@ footer a:hover {
 h1 + .text-leader {
   margin-bottom: 20px;
 }
+.emulator {
+  padding: 0;
+  background: #fff;
+  overflow: hidden;
+  border: 1px solid #eee;
+  position: relative;
+}
+.emulator.galaxy-s5 {
+  height: 640px;
+  width: 360px;
+}
+.emulator.galaxy-s5.landscape {
+  height: 360px;
+  width: 640px;
+}
+.emulator.ipad {
+  height: 1024px;
+  width: 768px;
+}
+.emulator.ipad.landscape {
+  height: 768px;
+  width: 1024px;
+}
