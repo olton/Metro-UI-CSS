@@ -86,19 +86,18 @@
                 </div>
 
                 <p>
-                    To expand add one of media point to attribute <code>data-expand="..."</code>:
-                    <code>fs</code>, <code>sm</code>, <code>md</code>, <code>lg</code>, <code>xl</code>, <code>xxl</code>.
+                    To expand add one of media point to attribute <code>data-expand="true"</code> or <code>data-expand-point="fs|sm|md|lg|xl|xxl"</code>.
                 </p>
 
                 <div class="example">
-                    <ul data-role="tabs" data-expand="fs">
+                    <ul data-role="tabs" data-expand="true">
                         <li><a href="#">Home</a></li>
                         <li><a href="#">Profile</a></li>
                         <li><a href="#">Links</a></li>
                     </ul>
                 </div>
                 <pre class=""><code>
-                    &lt;ul data-role="tabs" data-expand="fs"&gt;
+                    &lt;ul data-role="tabs" data-expand="true"&gt;
                         &lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
                         &lt;li&gt;&lt;a href="#"&gt;Profile&lt;/a&gt;&lt;/li&gt;
                         &lt;li&gt;&lt;a href="#"&gt;Links&lt;/a&gt;&lt;/li&gt;
@@ -110,7 +109,7 @@
                 </p>
 
                 <div class="example">
-                    <ul data-role="tabs" data-expand="fs" data-tabs-position="bottom">
+                    <ul data-role="tabs" data-expand="true" data-tabs-position="bottom">
                         <li><a href="#">Home</a></li>
                         <li><a href="#">Profile</a></li>
                         <li><a href="#">Links</a></li>
@@ -167,34 +166,34 @@
                 </p>
                 <h4>Horizontal tabs alignment</h4>
                 <div class="example">
-                    <ul data-cls-tabs="flex-justify-start" data-role="tabs" data-expand="fs">
+                    <ul data-cls-tabs="flex-justify-start" data-role="tabs" data-expand="true">
                         <li><a href="#">Home</a></li>
                         <li><a href="#">Profile</a></li>
                         <li><a href="#">Links</a></li>
                     </ul>
-                    <ul data-cls-tabs="flex-justify-center mt-2" data-role="tabs" data-expand="fs">
+                    <ul data-cls-tabs="flex-justify-center mt-2" data-role="tabs" data-expand="true">
                         <li><a href="#">Home</a></li>
                         <li><a href="#">Profile</a></li>
                         <li><a href="#">Links</a></li>
                     </ul>
-                    <ul data-cls-tabs="flex-justify-end mt-2" data-role="tabs" data-expand="fs">
+                    <ul data-cls-tabs="flex-justify-end mt-2" data-role="tabs" data-expand="true">
                         <li><a href="#">Home</a></li>
                         <li><a href="#">Profile</a></li>
                         <li><a href="#">Links</a></li>
                     </ul>
                 </div>
                 <pre class=""><code>
-                    &lt;ul data-cls-tabs="flex-justify-start" data-role="tabs" data-expand="fs"&gt;
+                    &lt;ul data-cls-tabs="flex-justify-start" data-role="tabs" data-expand="true"&gt;
                         &lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
                         &lt;li&gt;&lt;a href="#"&gt;Profile&lt;/a&gt;&lt;/li&gt;
                         &lt;li&gt;&lt;a href="#"&gt;Links&lt;/a&gt;&lt;/li&gt;
                     &lt;/ul&gt;
-                    &lt;ul data-cls-tabs="flex-justify-center mt-2" data-role="tabs" data-expand="fs"&gt;
+                    &lt;ul data-cls-tabs="flex-justify-center mt-2" data-role="tabs" data-expand="true"&gt;
                         &lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
                         &lt;li&gt;&lt;a href="#"&gt;Profile&lt;/a&gt;&lt;/li&gt;
                         &lt;li&gt;&lt;a href="#"&gt;Links&lt;/a&gt;&lt;/li&gt;
                     &lt;/ul&gt;
-                    &lt;ul data-cls-tabs="flex-justify-end mt-2" data-role="tabs" data-expand="fs"&gt;
+                    &lt;ul data-cls-tabs="flex-justify-end mt-2" data-role="tabs" data-expand="true"&gt;
                         &lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
                         &lt;li&gt;&lt;a href="#"&gt;Profile&lt;/a&gt;&lt;/li&gt;
                         &lt;li&gt;&lt;a href="#"&gt;Links&lt;/a&gt;&lt;/li&gt;
@@ -259,7 +258,7 @@
                     If attribute <code>href</code> have a valid formed url address, then tab works as <code>anchor</code>.
                 </p>
                 <div class="example">
-                    <ul data-expand="sm" data-role="tabs">
+                    <ul data-expand-point="sm" data-role="tabs">
                         <li><a href="#_target_1">Home</a></li>
                         <li><a href="#_target_2">Profile</a></li>
                         <li><a href="#_target_3">Links</a></li>
