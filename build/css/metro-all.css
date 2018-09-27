@@ -19706,6 +19706,69 @@ aside::after {
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
 }
+.items-list {
+  padding: 4px;
+  position: relative;
+  display: block;
+  list-style: none inside;
+}
+.items-list .item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: relative;
+  height: 56px;
+  padding: 8px 16px;
+  vertical-align: middle;
+  overflow: hidden;
+  cursor: default;
+}
+.items-list .item .avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  margin-top: -21px;
+  font-size: 32px;
+  line-height: 42px;
+}
+.items-list .item .second-action {
+  position: absolute;
+  right: 16px;
+  width: 24px;
+  height: 24px;
+  font-size: 24px;
+  line-height: 24px;
+  top: 50%;
+  margin-top: -12px;
+  cursor: pointer;
+}
+.items-list .item .label,
+.items-list .item .second-label {
+  display: block;
+  line-height: normal;
+}
+.items-list .item .second-label {
+  font-size: 0.9em;
+  color: #989898;
+  line-height: 1;
+}
+.items-list .item .avatar ~ .label,
+.items-list .item .avatar ~ .second-label {
+  padding-left: 56px;
+}
+.items-list .item + .item {
+  border-top: 1px #dfdfdf solid;
+}
 .button,
 .flat-button,
 .action-button {
@@ -32845,6 +32908,7 @@ video:-webkit-full-screen {
   overflow: hidden;
   overflow-y: auto;
   -ms-overflow-style: -ms-autohiding-scrollbar;
+  overflow: -moz-scrollbars-none;
 }
 .navview .navview-menu::-webkit-scrollbar {
   display: none!important;
@@ -33491,6 +33555,7 @@ video:-webkit-full-screen {
   border: 1px solid #dfdfdf;
   overflow-y: auto;
   -ms-overflow-style: -ms-autohiding-scrollbar;
+  overflow: -moz-scrollbars-none;
 }
 .wheel-picker .select-block ul::-webkit-scrollbar {
   display: none!important;
@@ -33656,6 +33721,7 @@ video:-webkit-full-screen {
   transition: all 0.3s ease-in-out;
   background-color: #f8f8f8;
   -ms-overflow-style: -ms-autohiding-scrollbar;
+  overflow: -moz-scrollbars-none;
 }
 .sidenav-simple::-webkit-scrollbar {
   display: none!important;
@@ -36306,6 +36372,7 @@ video:-webkit-full-screen {
   transition: all 0.3s ease-in-out;
   background-color: #f8f8f8;
   -ms-overflow-style: -ms-autohiding-scrollbar;
+  overflow: -moz-scrollbars-none;
 }
 .sidenav-counter::-webkit-scrollbar {
   display: none!important;
@@ -38969,6 +39036,7 @@ video:-webkit-full-screen {
   transition: all 0.3s ease-in-out;
   background-color: #f8f8f8;
   -ms-overflow-style: -ms-autohiding-scrollbar;
+  overflow: -moz-scrollbars-none;
 }
 .sidenav-m3::-webkit-scrollbar {
   display: none!important;

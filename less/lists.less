@@ -41,3 +41,67 @@
         }
     }
 }
+
+.items-list {
+    padding: 4px;
+    position: relative;
+    display: block;
+    list-style: none inside;
+
+    .item {
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+        position: relative;
+        height: 56px;
+        padding: 8px 16px;
+        vertical-align: middle;
+        overflow: hidden;
+        cursor: default;
+
+        .avatar {
+            .square(42, px);
+            border-radius: 50%;
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            margin-top: -21px;
+            font-size: 32px;
+            line-height: 42px;
+        }
+
+        .second-action {
+            position: absolute;
+            right: 16px;
+            .square(24, px);
+            font-size: 24px;
+            line-height: 24px;
+            top: 50%;
+            margin-top: -12px;
+            cursor: pointer;
+        }
+
+        .label, .second-label {
+            display: block;
+            line-height: normal;
+        }
+
+        .second-label {
+            font-size: .9em;
+            color: @darkGray;
+            line-height: 1;
+        }
+
+        .avatar ~ .label, .avatar ~ .second-label {
+            padding-left: 56px;
+        }
+    }
+
+    .item + .item {
+        border-top: 1px @borderColor solid;
+    }
+}
+
+.feed-list {
+
+}
