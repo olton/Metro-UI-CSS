@@ -1,5 +1,8 @@
 ### 4.2.24
++ [x] ListView: fix method `_createNode` for `structure` option, issue #1220 
++ [x] ListView: fix methods `insertBefore`, `insertAfter`
 + [x] Tabs: change `expand` behavior
++ [x] Tabs: fix expand/collapse behavior
 + [x] Select: add attribute `data-cls-option-active`
 + [x] Countdown: fix performance and minor bugs
 + [x] Countdown: fix deferred start setup

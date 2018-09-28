@@ -21,6 +21,7 @@ var Tabs = {
         clsTabs: "",
         clsTabsList: "",
         clsTabsListItem: "",
+        clsTabsListItemActive: "",
 
         onTab: Metro.noop,
         onBeforeTab: Metro.noop_true,
@@ -62,14 +63,7 @@ var Tabs = {
             element.attr("id", Utils.elementId("tabs"));
         }
 
-        // if (Utils.isValue(o.expand)) {
-        //     container.addClass("tabs-expand-"+o.expand);
-        // }
-
         container.addClass(o.tabsPosition.replace(["-", "_", "+"], " "));
-        // if (o.tabsPosition.contains("vertical")) {
-        //     container.addClass("tabs-expand-fs"); // TODO need redesign this behavior
-        // }
 
         element.addClass("tabs-list");
         if (!right_parent) {
@@ -124,7 +118,9 @@ var Tabs = {
                 container.addClass("tabs-expand");
             } else {
                 if (Utils.isValue(o.expandPoint) && Utils.mediaExist(o.expandPoint) && !o.tabsPosition.contains("vertical")) {
-                    container.addClass("tabs-expand");
+                    if (!container.hasClass("tabs-expand")) container.addClass("tabs-expand");
+                } else {
+                    if (container.hasClass("tabs-expand")) container.removeClass("tabs-expand");
                 }
             }
         });
@@ -218,6 +214,8 @@ var Tabs = {
         }
 
         expandTitle.html(tab.find("a").html());
+
+        tab.addClass(o.clsTabsListItemActive);
 
         Utils.exec(o.onTab, [tab, element]);
     },

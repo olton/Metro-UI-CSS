@@ -23,7 +23,6 @@
         position: relative;
         display: inline-block;
         height: 48px;
-        padding: 16px 16px;
         cursor: pointer;
         opacity: .6;
         text-align: center;
@@ -31,13 +30,19 @@
         margin: 0;
         overflow: hidden;
         max-width: 360px;
+        min-width: 98px;
         background-color: inherit;
         color: inherit;
 
         a {
+            display: block;
+            position: relative;
+            padding: 16px 16px;
             background-color: inherit;
             color: inherit;
             text-decoration: none;
+            font-weight: 500;
+            white-space: nowrap;
         }
 
         .icon {
@@ -46,6 +51,13 @@
             line-height: 24px;
             font-size: 22px;
             display: block;
+        }
+
+        &:nth-child(1) {
+            margin-left: 8px;
+        }
+        &:last-of-type {
+            margin-right: 8px;
         }
     }
 
@@ -66,30 +78,8 @@
         }
     }
 
-    &.equal-tabs {
-        li {
-            flex-basis: 0;
-            flex-grow: 1;
-        }
-    }
-
-    &.compact {
-        height: auto;
-        li {
-            display: block;
-            border-bottom: 0 #ccc solid;
-
-            &:active {
-                border-bottom: inherit;
-            }
-        }
-    }
-
-    .tabs-container {
-        margin: 0 auto;
-    }
-
     .tab-marker {
+        display: block;
         position: absolute;
         height: 2px;
         background: @red;
@@ -98,45 +88,14 @@
         left: 0;
         color: transparent;
         opacity: 1;
+        min-width: 98px;
     }
-}
 
-.tabs-material {
-    &.overflow {
-        padding: 0 32px;
-        overflow: hidden;
-
-        .scroll-control-left, .scroll-control-right {
-            display: block;
-            position: absolute;
-            left: 0;
-            width: 32px;
-            color: inherit;
-            height: 48px;
-            cursor: pointer;
-            z-index: 2;
-            background-color: inherit;
-            text-align: center;
-
-            &:before {
-                //padding-top: 6px;
-                display: block;
-                width: 100%;
-                content: "\2039";
-                font-size: 1.6em;
-                height: 48px;
-                line-height: 48px;
-            }
-        }
-
-        .scroll-control-right {
-            left: auto;
-            right: 0;
-
-            &:before {
-                content: "\203A";
-            }
-        }
+    .tab-badge {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        padding: 4px;
     }
 }
 
@@ -144,30 +103,21 @@
     &.deep {
         z-index: @zindex-fixed - 1;
     }
-}
 
-.tabs-material {
-    &.icons {
-        height: 64px;
+    &.fixed-tabs {
+        overflow-x: hidden;
 
         li {
-            height: 64px;
-            font-size: 11px;
+            flex-basis: 0;
+            flex-grow: 1;
 
-            [class*=i-] {
-                display: block;
-                font-size: 28px;
+            &:nth-child(1) {
+                margin-left: 0;
+            }
+            &:last-child {
+                margin-right: 0;
             }
         }
-    }
-}
-
-.tabs-material {
-    .tab-badge {
-        position: absolute;
-        top: 8px;
-        right: 8px;
-        padding: 4px;
     }
 }
 

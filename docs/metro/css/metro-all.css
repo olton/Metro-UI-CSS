@@ -40294,7 +40294,6 @@ video:-webkit-full-screen {
   position: relative;
   display: inline-block;
   height: 48px;
-  padding: 16px 16px;
   cursor: pointer;
   opacity: 0.6;
   text-align: center;
@@ -40302,13 +40301,19 @@ video:-webkit-full-screen {
   margin: 0;
   overflow: hidden;
   max-width: 360px;
+  min-width: 98px;
   background-color: inherit;
   color: inherit;
 }
 .tabs-material li a {
+  display: block;
+  position: relative;
+  padding: 16px 16px;
   background-color: inherit;
   color: inherit;
   text-decoration: none;
+  font-weight: 500;
+  white-space: nowrap;
 }
 .tabs-material li .icon {
   width: 24px;
@@ -40316,6 +40321,12 @@ video:-webkit-full-screen {
   line-height: 24px;
   font-size: 22px;
   display: block;
+}
+.tabs-material li:nth-child(1) {
+  margin-left: 8px;
+}
+.tabs-material li:last-of-type {
+  margin-right: 8px;
 }
 .tabs-material.with-icons li {
   height: 72px;
@@ -40330,27 +40341,8 @@ video:-webkit-full-screen {
 .tabs-material li:not(:hover) {
   border-bottom-color: transparent;
 }
-.tabs-material.equal-tabs li {
-  -ms-flex-preferred-size: 0;
-      flex-basis: 0;
-  -webkit-box-flex: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
-}
-.tabs-material.compact {
-  height: auto;
-}
-.tabs-material.compact li {
-  display: block;
-  border-bottom: 0 #ccc solid;
-}
-.tabs-material.compact li:active {
-  border-bottom: inherit;
-}
-.tabs-material .tabs-container {
-  margin: 0 auto;
-}
 .tabs-material .tab-marker {
+  display: block;
   position: absolute;
   height: 2px;
   background: #CE352C;
@@ -40359,59 +40351,32 @@ video:-webkit-full-screen {
   left: 0;
   color: transparent;
   opacity: 1;
-}
-.tabs-material.overflow {
-  padding: 0 32px;
-  overflow: hidden;
-}
-.tabs-material.overflow .scroll-control-left,
-.tabs-material.overflow .scroll-control-right {
-  display: block;
-  position: absolute;
-  left: 0;
-  width: 32px;
-  color: inherit;
-  height: 48px;
-  cursor: pointer;
-  z-index: 2;
-  background-color: inherit;
-  text-align: center;
-}
-.tabs-material.overflow .scroll-control-left:before,
-.tabs-material.overflow .scroll-control-right:before {
-  display: block;
-  width: 100%;
-  content: "\2039";
-  font-size: 1.6em;
-  height: 48px;
-  line-height: 48px;
-}
-.tabs-material.overflow .scroll-control-right {
-  left: auto;
-  right: 0;
-}
-.tabs-material.overflow .scroll-control-right:before {
-  content: "\203A";
-}
-.tabs-material.deep {
-  z-index: 1029;
-}
-.tabs-material.icons {
-  height: 64px;
-}
-.tabs-material.icons li {
-  height: 64px;
-  font-size: 11px;
-}
-.tabs-material.icons li [class*=i-] {
-  display: block;
-  font-size: 28px;
+  min-width: 98px;
 }
 .tabs-material .tab-badge {
   position: absolute;
   top: 8px;
   right: 8px;
   padding: 4px;
+}
+.tabs-material.deep {
+  z-index: 1029;
+}
+.tabs-material.fixed-tabs {
+  overflow-x: hidden;
+}
+.tabs-material.fixed-tabs li {
+  -ms-flex-preferred-size: 0;
+      flex-basis: 0;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+.tabs-material.fixed-tabs li:nth-child(1) {
+  margin-left: 0;
+}
+.tabs-material.fixed-tabs li:last-child {
+  margin-right: 0;
 }
 .head-bar ~ .fixed-tabs,
 .tabs-material.app-bar-present {
