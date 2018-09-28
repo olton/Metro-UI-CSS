@@ -92,3 +92,81 @@
         }
     }
 }
+
+.switch-material {
+    display: inline-block;
+    position: relative;
+    user-select: none;
+    transition: @transition-base;
+
+    input {
+        position: absolute;
+        opacity: 0;
+        width: 0.0625rem;
+        height: 0.0625rem;
+    }
+
+    .check, .caption, .title {
+        display: inline-block;
+        vertical-align: middle;
+        line-height: 18px;
+        font-size: 14px;
+    }
+
+    .check {
+        width: 36px;
+        height: 16px;
+        background-color: #929292;
+        border-radius: 8px;
+        overflow: visible;
+        position: relative;
+        margin: 0 4px;
+    }
+
+    .check {
+        &:before {
+            position: absolute;
+            display: block;
+            content: "";
+            width: 22px;
+            height: 22px;
+            z-index: 2;
+            margin-top: -3px;
+            margin-left: -3px;
+            border-radius: 50%;
+            background-color: @teal;
+            box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16), 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+        }
+    }
+
+    input:checked ~ .check {
+        background-color: rgba(0, 150, 136, 0.5);
+    }
+
+    input:not(:checked) ~ .check {
+        &:before {
+            background-color: @white;
+            .transition(all, .2s, linear);
+        }
+    }
+
+    input:checked ~ .check {
+        background-color: rgba(0, 150, 136, 0.5);
+        &:before {
+            .translateX(22px);
+            .transition(all, .2s, linear);
+        }
+    }
+
+    input:disabled ~ .check {
+        background-color: #D5D5D5;
+        &:before {
+            background-color: #BDBDBD;
+        }
+    }
+
+    .check + .title, .title + .check {
+        margin-left: 5px;
+        margin-right: 0;
+    }
+}

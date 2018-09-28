@@ -12,7 +12,8 @@
 + [x] Input: fix custom search button click
 + [x] Calendar picker: add attribute `data-null-value`. If this attribute false and value empty, used current date
 + [x] Calendar picker: fix for null value, issue #1217
-+ [x] Accordion: add attribute `data-mode='material'`
++ [x] Accordion: add attribute `data-material='true'`
++ [x] Switch: add attribute `data-material='true'`
 + [x] Mif: add new icons 50+
 + [x] Bottom navigation: add new CSS component  
 + [x] Bottom sheet: add new component

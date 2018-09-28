@@ -12,7 +12,7 @@ var Accordion = {
         return this;
     },
     options: {
-        mode: "default",
+        material: false,
         duration: METRO_ANIMATION_DURATION,
         oneFrame: true,
         showActive: true,
@@ -48,8 +48,8 @@ var Accordion = {
 
         element.addClass("accordion");
 
-        if (o.mode.toLowerCase() !== "default") {
-            element.addClass(o.mode);
+        if (o.material === true) {
+            element.addClass("material");
         }
 
         if (active.length === 0) {

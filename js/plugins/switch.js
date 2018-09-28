@@ -12,6 +12,7 @@ var Switch = {
         return this;
     },
     options: {
+        material: false,
         caption: "",
         captionPosition: "right",
         clsSwitch: "",
@@ -38,7 +39,7 @@ var Switch = {
         var that = this, element = this.element, o = this.options;
         var prev = element.prev();
         var parent = element.parent();
-        var container = $("<label>").addClass("switch " + element[0].className);
+        var container = $("<label>").addClass((o.material === true ? " switch-material " : " switch ") + element[0].className);
         var check = $("<span>").addClass("check");
         var caption = $("<span>").addClass("caption").html(o.caption);
 
