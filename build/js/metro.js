@@ -33,6 +33,7 @@ var meta_date_format_input = $("meta[name='metro4:date_format_input']").attr("co
 var meta_animation_duration = $("meta[name='metro4:animation_duration']").attr("content");
 var meta_callback_timeout = $("meta[name='metro4:callback_timeout']").attr("content");
 var meta_timeout = $("meta[name='metro4:timeout']").attr("content");
+var meta_scroll_multiple = $("meta[name='metro4:scroll_multiple']").attr("content");
 
 if (window.METRO_INIT === undefined) {
     window.METRO_INIT = meta_init !== undefined ? JSON.parse(meta_init) : true;
@@ -59,6 +60,9 @@ if (window.METRO_CALLBACK_TIMEOUT === undefined) {
 }
 if (window.METRO_TIMEOUT === undefined) {
     window.METRO_TIMEOUT = meta_timeout !== undefined ? parseInt(meta_timeout) : 2000;
+}
+if (window.METRO_SCROLL_MULTIPLE === undefined) {
+    window.METRO_SCROLL_MULTIPLE = meta_scroll_multiple !== undefined ? parseInt(meta_scroll_multiple) : 20;
 }
 if (window.METRO_HOTKEYS_FILTER_CONTENT_EDITABLE === undefined) {window.METRO_HOTKEYS_FILTER_CONTENT_EDITABLE = true;}
 if (window.METRO_HOTKEYS_FILTER_INPUT_ACCEPTING_ELEMENTS === undefined) {window.METRO_HOTKEYS_FILTER_INPUT_ACCEPTING_ELEMENTS = true;}
@@ -10635,6 +10639,148 @@ Metro['infobox'] = {
     }
 };
 
+// Source: js/plugins/input-material.js
+var MaterialInput = {
+    init: function( options, elem ) {
+        this.options = $.extend( {}, this.options, options );
+        this.elem  = elem;
+        this.element = $(elem);
+        this.history = [];
+        this.historyIndex = -1;
+
+        this._setOptionsFromDOM();
+        this._create();
+
+        Utils.exec(this.options.onInputCreate, [this.element], this.elem);
+
+        return this;
+    },
+
+    options: {
+
+        label: "",
+        informer: "",
+        icon: "",
+
+        permanentLabel: false,
+
+        clsComponent: "",
+        clsInput: "",
+
+        onInputCreate: Metro.noop
+    },
+
+    _setOptionsFromDOM: function(){
+        var element = this.element, o = this.options;
+
+        $.each(element.data(), function(key, value){
+            if (key in o) {
+                try {
+                    o[key] = JSON.parse(value);
+                } catch (e) {
+                    o[key] = value;
+                }
+            }
+        });
+    },
+
+    _create: function(){
+        this._createStructure();
+        this._createEvents();
+    },
+
+    _createStructure: function(){
+        var that = this, element = this.element, o = this.options;
+        var prev = element.prev();
+        var parent = element.parent();
+        var container = $("<div>").addClass("input-material " + element[0].className);
+
+        element[0].className = "";
+
+        if (element.attr("type") === undefined) {
+            element.attr("type", "text");
+        }
+
+        if (prev.length === 0) {
+            parent.prepend(container);
+        } else {
+            container.insertAfter(prev);
+        }
+
+        element.appendTo(container);
+
+        if (Utils.isValue(o.label)) {
+            $("<span>").html(o.label).addClass("label").insertAfter(element);
+        }
+        if (Utils.isValue(o.informer)) {
+            $("<span>").html(o.informer).addClass("informer").insertAfter(element);
+        }
+        if (Utils.isValue(o.icon)) {
+            container.addClass("with-icon");
+            $("<span>").html(o.icon).addClass("icon").insertAfter(element);
+        }
+
+        container.append($("<hr>"));
+
+        if (o.permanentLabel === true) {
+            container.addClass("permanent-label");
+        }
+
+        container.addClass(o.clsComponent);
+        element.addClass(o.clsInput);
+
+        if (element.is(":disabled")) {
+            this.disable();
+        } else {
+            this.enable();
+        }
+    },
+
+    _createEvents: function(){
+        var that = this, element = this.element, o = this.options;
+        var container = element.closest(".input");
+
+    },
+
+    clear: function(){
+        this.element.val('');
+    },
+
+    disable: function(){
+        this.element.data("disabled", true);
+        this.element.parent().addClass("disabled");
+    },
+
+    enable: function(){
+        this.element.data("disabled", false);
+        this.element.parent().removeClass("disabled");
+    },
+
+    toggleState: function(){
+        if (this.element.data("disabled") === false) {
+            this.disable();
+        } else {
+            this.enable();
+        }
+    },
+
+    changeAttribute: function(attributeName){
+        switch (attributeName) {
+            case 'disabled': this.toggleState(); break;
+        }
+    },
+
+    destroy: function(){
+        var element = this.element;
+        var parent = element.parent();
+
+        element.insertBefore(parent);
+        parent.remove();
+    }
+};
+
+Metro.plugin('materialinput', MaterialInput);
+
 // Source: js/plugins/input.js
 var Input = {
     init: function( options, elem ) {
@@ -18787,7 +18933,7 @@ var Table = {
 Metro.plugin('table', Table);
 
 // Source: js/plugins/tabs-material.js
-var TabsMaterial = {
+var MaterialTabs = {
     init: function( options, elem ) {
         this.options = $.extend( {}, this.options, options );
         this.elem  = elem;
@@ -18802,7 +18948,13 @@ var TabsMaterial = {
 
     options: {
         deep: false,
-        markerColor: "#1d1d1d",
+        fixedTabs: false,
+
+        clsComponent: "",
+        clsTab: "",
+        clsTabActive: "",
+        clsMarker: "",
+
         onBeforeTabOpen: Metro.noop_true,
         onTabOpen: Metro.noop,
         onTabsCreate: Metro.noop
@@ -18831,37 +18983,122 @@ var TabsMaterial = {
         Utils.exec(o.onTabsCreate, [element]);
     },
 
+    _applyColor: function(to, color, option){
+
+        if (!Utils.isJQueryObject(to)) {
+            to = $(to);
+        }
+
+        if (Utils.isValue(color)) {
+            if (Utils.isColor(color)) {
+                to.css(option, color);
+            } else {
+                to.addClass(color);
+            }
+        }
+    },
+
     _createStructure: function(){
         var that = this, element = this.element, o = this.options;
+        var tabs = element.find("li"), active_tab = element.find("li.active");
 
-        element.addClass("tabs-material");
+        element.addClass("tabs-material").addClass(o.clsComponent);
+        tabs.addClass(o.clsTab);
 
         if (o.deep === true) {
             element.addClass("deep");
         }
 
+        if (o.fixedTabs === true) {
+            element.addClass("fixed-tabs");
+        }
+
         this.marker = element.find(".tab-marker");
 
         if (this.marker.length === 0) {
-
-            this.marker = $("<span>").addClass("tab-marker").appendTo(element);
-
-            if (Utils.isValue(o.markerColor)) {
-                if (Utils.isColor(o.markerColor)) {
-                    this.marker.css({
-                        backgroundColor: o.markerColor
-                    });
-                } else {
-                    this.marker.addClass(o.markerColor);
-                }
-            }
-
+            this.marker = $("<span>").addClass("tab-marker").addClass(o.clsMarker).appendTo(element);
         }
+
+        this.openTab(active_tab.length === 0 ? tabs[0] : active_tab[0]);
     },
 
     _createEvents: function(){
         var that = this, element = this.element, o = this.options;
+        var tabs = element.find("li");
 
+        element.on(Metro.events.click, "li", function(e){
+            var tab = $(this);
+            var active_tab = element.find("li.active");
+            var tab_next = tabs.index(tab) > tabs.index(active_tab);
+            var target = tab.children("a")[0].href;
+
+            if (tab.hasClass("active")) return;
+            if (tab.hasClass("disabled")) return;
+            if (Utils.exec(o.onBeforeTabOpen, null, this) === false) return;
+            if (!Utils.isValue(target)) return;
+
+            that.openTab(tab, tab_next);
+            e.preventDefault();
+        });
+
+        var addMouseWheel = function (){
+            $("body").mousewheel(function(event, delta, deltaX, deltaY){
+                var scroll_value = delta * METRO_SCROLL_MULTIPLE;
+                element.scrollLeft(element.scrollLeft() - scroll_value);
+                return false;
+            });
+        };
+
+        if (!$('html').hasClass("metro-touch-device")) {
+            addMouseWheel();
+        }
+    },
+
+    openTab: function(tab, next){
+        var that = this, element = this.element, o = this.options;
+        var tabs = element.find("li"), element_sroll = element.scrollLeft();
+        var magic = 32, shift, width = element.width(), tab_width, target, tab_left;
+
+        if (!Utils.isJQueryObject(tab)) {
+            tab = $(tab);
+        }
+
+        $.each(tabs, function(){
+            var target = $(this).find("a").attr("href");
+            if (!Utils.isValue(target)) return;
+            $(target).hide();
+        });
+
+        tab_left = tab.position().left;
+        tab_width = tab.width();
+        shift = tab.position().left + tab.width();
+
+        tabs.removeClass("active").removeClass(o.clsTabActive);
+        tab.addClass("active").addClass(o.clsTabActive);
+
+        if (shift + magic > width) {
+            element.animate({
+                scrollLeft: element_sroll + (shift - width) + (tab_width / 2)
+            });
+        }
+
+        if (tab_left - magic < 0) {
+            element.animate({
+                scrollLeft: tab_left + element_sroll - (tab_width / 2)
+            });
+        }
+
+        this.marker.animate({
+            left: tab_left + element_sroll,
+            width: tab.width()
+        });
+
+        target = tab.find("a").attr("href");
+        if (Utils.isValue(target)) {
+            $(target).show();
+        }
+
+        Utils.exec(o.onTabOpen, [target, $(target)], tab[0]);
     },
 
     changeAttribute: function(attributeName){
@@ -18871,7 +19108,7 @@ var TabsMaterial = {
     destroy: function(){}
 };
 
-Metro.plugin('tabsmaterial', TabsMaterial);
+Metro.plugin('materialtabs', MaterialTabs);
 
 // Source: js/plugins/tabs.js
 var Tabs = {

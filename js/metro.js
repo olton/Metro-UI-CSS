@@ -14,6 +14,7 @@ var meta_date_format_input = $("meta[name='metro4:date_format_input']").attr("co
 var meta_animation_duration = $("meta[name='metro4:animation_duration']").attr("content");
 var meta_callback_timeout = $("meta[name='metro4:callback_timeout']").attr("content");
 var meta_timeout = $("meta[name='metro4:timeout']").attr("content");
+var meta_scroll_multiple = $("meta[name='metro4:scroll_multiple']").attr("content");
 
 if (window.METRO_INIT === undefined) {
     window.METRO_INIT = meta_init !== undefined ? JSON.parse(meta_init) : true;
@@ -40,6 +41,9 @@ if (window.METRO_CALLBACK_TIMEOUT === undefined) {
 }
 if (window.METRO_TIMEOUT === undefined) {
     window.METRO_TIMEOUT = meta_timeout !== undefined ? parseInt(meta_timeout) : 2000;
+}
+if (window.METRO_SCROLL_MULTIPLE === undefined) {
+    window.METRO_SCROLL_MULTIPLE = meta_scroll_multiple !== undefined ? parseInt(meta_scroll_multiple) : 20;
 }
 if (window.METRO_HOTKEYS_FILTER_CONTENT_EDITABLE === undefined) {window.METRO_HOTKEYS_FILTER_CONTENT_EDITABLE = true;}
 if (window.METRO_HOTKEYS_FILTER_INPUT_ACCEPTING_ELEMENTS === undefined) {window.METRO_HOTKEYS_FILTER_INPUT_ACCEPTING_ELEMENTS = true;}

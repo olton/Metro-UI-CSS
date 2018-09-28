@@ -20,6 +20,8 @@
 + [x] Feed list: add new CSS component  
 + [x] Group list: add new CSS component  
 + [x] Head bar: add new CSS component  
++ [x] Material tabs: add new component
++ [x] Material input: add new component
 
 ### 4.2.23
 + [x] Select: fix native `onchange` event triggering, issue #1198

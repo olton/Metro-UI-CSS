@@ -40268,10 +40268,12 @@ video:-webkit-full-screen {
 }
 .tabs-material {
   margin: 0;
-  padding: 0;
+  padding: 0 52px;
   position: fixed;
   height: auto;
-  display: block;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
       -ms-flex-flow: row nowrap;
@@ -40284,6 +40286,7 @@ video:-webkit-full-screen {
   color: #1d1d1d;
   white-space: nowrap;
   list-style: none inside;
+  line-height: 1;
   -ms-overflow-style: -ms-autohiding-scrollbar;
   overflow: -moz-scrollbars-none;
 }
@@ -40291,17 +40294,18 @@ video:-webkit-full-screen {
   display: none!important;
 }
 .tabs-material li {
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
   position: relative;
-  display: inline-block;
+  display: block;
   height: 48px;
   cursor: pointer;
   opacity: 0.6;
   text-align: center;
-  text-transform: uppercase;
   margin: 0;
   overflow: hidden;
   max-width: 360px;
-  min-width: 98px;
+  min-width: 90px;
   background-color: inherit;
   color: inherit;
 }
@@ -40314,6 +40318,10 @@ video:-webkit-full-screen {
   text-decoration: none;
   font-weight: 500;
   white-space: nowrap;
+  font-size: 14px;
+  text-transform: uppercase;
+  line-height: 20px;
+  width: 100%;
 }
 .tabs-material li .icon {
   width: 24px;
@@ -40322,11 +40330,9 @@ video:-webkit-full-screen {
   font-size: 22px;
   display: block;
 }
-.tabs-material li:nth-child(1) {
-  margin-left: 8px;
-}
-.tabs-material li:last-of-type {
-  margin-right: 8px;
+.tabs-material::after {
+  content: " ";
+  min-width: 52px;
 }
 .tabs-material.with-icons li {
   height: 72px;
@@ -40337,21 +40343,16 @@ video:-webkit-full-screen {
   -webkit-transition: 0.3s linear;
   transition: 0.3s linear;
 }
-.tabs-material li:not(.active),
-.tabs-material li:not(:hover) {
-  border-bottom-color: transparent;
-}
 .tabs-material .tab-marker {
   display: block;
   position: absolute;
   height: 2px;
-  background: #CE352C;
-  margin-top: -4px;
-  top: 100%;
+  bottom: 0;
   left: 0;
   color: transparent;
   opacity: 1;
-  min-width: 98px;
+  z-index: 1;
+  background-color: #1d1d1d;
 }
 .tabs-material .tab-badge {
   position: absolute;
@@ -40364,6 +40365,7 @@ video:-webkit-full-screen {
 }
 .tabs-material.fixed-tabs {
   overflow-x: hidden;
+  padding: 0;
 }
 .tabs-material.fixed-tabs li {
   -ms-flex-preferred-size: 0;
@@ -40372,11 +40374,9 @@ video:-webkit-full-screen {
       -ms-flex-positive: 1;
           flex-grow: 1;
 }
-.tabs-material.fixed-tabs li:nth-child(1) {
-  margin-left: 0;
-}
-.tabs-material.fixed-tabs li:last-child {
-  margin-right: 0;
+.tabs-material.fixed-tabs::after {
+  content: "";
+  min-width: 0;
 }
 .head-bar ~ .fixed-tabs,
 .tabs-material.app-bar-present {
@@ -40385,6 +40385,156 @@ video:-webkit-full-screen {
 .head-bar.more ~ .fixed-tabs,
 .tabs-material.app-bar-present-more {
   top: 112px;
+}
+.input-material {
+  position: relative;
+  min-width: 196px;
+  height: 48px;
+  display: inline-block;
+  margin: 0;
+  width: 100%;
+}
+.input-material input {
+  position: absolute;
+  top: 16px;
+  left: 0;
+  right: 0;
+  bottom: 8px;
+  border: 0;
+  border-bottom: 2px #dfdfdf solid;
+  background-color: transparent;
+  outline: none;
+  font-size: 16px;
+  padding-bottom: 8px;
+  padding-left: 0;
+  width: 100%;
+  z-index: 2;
+  height: 28px;
+  -webkit-box-shadow: none!important;
+          box-shadow: none!important;
+}
+.input-material hr {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 0;
+  opacity: 0;
+  height: 3px;
+  background-color: #bebebe;
+  bottom: -4px;
+  z-index: 2;
+  -webkit-transition: linear all 0.3s;
+  transition: linear all 0.3s;
+}
+.input-material .label,
+.input-material .informer {
+  position: absolute;
+  display: block;
+  z-index: 1;
+  color: inherit;
+  font-size: 12px;
+}
+.input-material .label {
+  opacity: 0;
+  top: 16px;
+  left: 0;
+  -webkit-transition: linear all 0.3s;
+  transition: linear all 0.3s;
+}
+.input-material .informer {
+  opacity: 0;
+  bottom: 12px;
+  font-size: 12px;
+  -webkit-transition: linear all 0.3s;
+  transition: linear all 0.3s;
+}
+.input-material input::-webkit-input-placeholder {
+  font-size: 1rem;
+  position: absolute;
+  left: 0;
+  z-index: 1;
+  opacity: 1;
+  color: #bebebe;
+  -webkit-transition: linear all 0.3s;
+  transition: linear all 0.3s;
+}
+.input-material .helper-button {
+  top: 8px;
+}
+.input-material.full-size {
+  width: 100%;
+}
+.input-material.with-icon {
+  margin-left: 32px;
+  width: calc(100% - 32px);
+}
+.input-material.with-icon .icon {
+  width: 24px;
+  height: 24px;
+  font-size: 24px;
+  line-height: 1;
+  position: absolute;
+  left: -32px;
+  top: 50%;
+  margin-top: -8px;
+  display: block;
+  opacity: 0.2;
+  -webkit-transition: linear all 0.3s;
+  transition: linear all 0.3s;
+}
+.input-material.with-icon .icon img {
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  max-height: 100%;
+}
+.input-material.with-icon.full-size {
+  width: calc(100% - 32px) !important;
+}
+.input-material hr ~ input:focus {
+  border-bottom: 0;
+}
+.input-material input:focus ~ hr {
+  opacity: 1;
+  width: 100%;
+  -webkit-transition: linear all 0.3s;
+  transition: linear all 0.3s;
+}
+.input-material input:focus ~ .label {
+  opacity: 1;
+  top: 0;
+  -webkit-transition: linear all 0.3s;
+  transition: linear all 0.3s;
+}
+.input-material input:focus::-webkit-input-placeholder {
+  opacity: 0;
+  -webkit-transform: translateX(100%);
+          transform: translateX(100%);
+  -webkit-transition: linear all 0.2s;
+  transition: linear all 0.2s;
+}
+.input-material input:focus ~ .informer {
+  opacity: 1;
+  bottom: -0.75rem;
+  -webkit-transition: linear all 0.3s;
+  transition: linear all 0.3s;
+}
+.input-material input:focus ~ .icon {
+  opacity: 1;
+  -webkit-transition: linear all 0.3s;
+  transition: linear all 0.3s;
+}
+.input-material.permanent-label input:not(:placeholder-shown) ~ .label {
+  top: 0;
+  opacity: 1;
+}
+.input-material input:-webkit-autofill,
+.input-material input:-webkit-autofill:hover,
+.input-material input:-webkit-autofill:focus,
+.input-material input:-webkit-autofill:active {
+  -webkit-transition: background-color 5000s ease-in-out 0s;
+  transition: background-color 5000s ease-in-out 0s;
+  -webkit-text-fill-color: #fff !important;
 }
 .ripple {
   display: block;

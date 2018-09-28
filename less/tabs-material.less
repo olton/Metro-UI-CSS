@@ -3,10 +3,10 @@
 
 .tabs-material {
     margin: 0;
-    padding: 0;
+    padding: 0 52px;
     position: fixed;
     height: auto;
-    display: block;
+    display: flex;
     flex-flow: row nowrap;
     overflow: auto;
     overflow-y: hidden;
@@ -16,21 +16,22 @@
     color: @dark;
     white-space: nowrap;
     list-style: none inside;
+    line-height: 1;
 
     .hideScrollBars();
 
     li {
+        flex-shrink: 0;
         position: relative;
-        display: inline-block;
+        display: block;
         height: 48px;
         cursor: pointer;
         opacity: .6;
         text-align: center;
-        text-transform: uppercase;
         margin: 0;
         overflow: hidden;
         max-width: 360px;
-        min-width: 98px;
+        min-width: 90px;
         background-color: inherit;
         color: inherit;
 
@@ -43,6 +44,10 @@
             text-decoration: none;
             font-weight: 500;
             white-space: nowrap;
+            font-size: 14px;
+            text-transform: uppercase;
+            line-height: 20px;
+            width: 100%;
         }
 
         .icon {
@@ -52,13 +57,11 @@
             font-size: 22px;
             display: block;
         }
+    }
 
-        &:nth-child(1) {
-            margin-left: 8px;
-        }
-        &:last-of-type {
-            margin-right: 8px;
-        }
+    &::after {
+        content: " ";
+        min-width: 52px;
     }
 
     &.with-icons {
@@ -72,23 +75,18 @@
             opacity: 1;
             transition: .3s linear;
         }
-
-        &:not(.active), &:not(:hover) {
-            border-bottom-color: transparent;
-        }
     }
 
     .tab-marker {
         display: block;
         position: absolute;
         height: 2px;
-        background: @red;
-        margin-top: -4px;
-        top: 100%;
+        bottom: 0;
         left: 0;
         color: transparent;
         opacity: 1;
-        min-width: 98px;
+        z-index: 1;
+        background-color: @dark;
     }
 
     .tab-badge {
@@ -106,17 +104,16 @@
 
     &.fixed-tabs {
         overflow-x: hidden;
+        padding: 0;
 
         li {
             flex-basis: 0;
             flex-grow: 1;
+        }
 
-            &:nth-child(1) {
-                margin-left: 0;
-            }
-            &:last-child {
-                margin-right: 0;
-            }
+        &::after {
+            content: "";
+            min-width: 0;
         }
     }
 }
