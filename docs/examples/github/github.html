@@ -87,11 +87,18 @@
                 top: 2px;
             }
         }
+
+        .tabs li {
+            background-color: #f8f8f8!important; ;
+        }
+        .tabs li.active {
+            background-color: #ffffff!important; ;
+        }
     </style>
 </head>
 <body class="h-vh-100">
     <div class="pos-fixed fixed-top app-bar-wrapper z-top">
-        <header class="container pos-relative app-bar-expand-md" data-role="appbar">
+        <header class="container pos-relative" data-role="appbar" data-expand-point="md">
             <a href="#" class="brand no-hover fg-white-hover order-1"><span class="mif-github mif-2x"></span></a>
             <div class="app-bar-item d-none d-flex-md order-2">
                 <input type="text" placeholder="Search" class="app-bar-input app-bar-search">
@@ -169,7 +176,8 @@
         </div>
 
         <div class="container-fluid pt-4 pl-0 pr-0 pl-3-md pr-3-md">
-            <ul data-role="tabs" class="container bg-light tabs-expand-md w-100 pl-0 pr-0">
+            <div class="container">
+            <ul data-role="tabs" class="bg-light w-100 pl-0 pr-0" data-expand-point="md">
                 <li><a href="#"><span class="mif-embed"></span> Code</a></li>
                 <li><a href="#"><span class="mif-info"></span> Issues</a></li>
                 <li><a href="#"><span class="mif-flow-branch"></span> Pull requests</a></li>
@@ -178,6 +186,7 @@
                 <li><a href="#"><span class="mif-chart-bars"></span> Insights</a></li>
                 <li><a href="#"><span class="mif-cog"></span> Settings</a></li>
             </ul>
+            </div>
         </div>
     </div>
 

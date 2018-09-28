@@ -55,7 +55,7 @@ var TabsMaterial = {
 
         if (this.marker.length === 0) {
 
-            this.marker = $("<li>").addClass("tab-marker").appendTo(element);
+            this.marker = $("<span>").addClass("tab-marker").appendTo(element);
 
             if (Utils.isValue(o.markerColor)) {
                 if (Utils.isColor(o.markerColor)) {

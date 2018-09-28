@@ -12288,7 +12288,7 @@ var Listview = {
             node.prepend(this._createIcon(data.icon));
         }
 
-        if (Utils.objectLength(o.structure > 0)) $.each(o.structure, function(key, val){
+        if (Utils.objectLength(o.structure) > 0) $.each(o.structure, function(key, val){
             if (data[key] !== undefined) {
                 $("<div>").addClass("node-data item-data-"+key).addClass(data[val]).html(data[key]).appendTo(node);
             }
@@ -12480,7 +12480,7 @@ var Listview = {
     insertBefore: function(node, data){
         var element = this.element, o = this.options;
         var new_node = this._createNode(data);
-        new_node.insertBefore(node);
+        new_node.addClass("node").insertBefore(node);
         Utils.exec(o.onNodeInsert, [new_node, element]);
         return new_node;
     },
@@ -12488,7 +12488,7 @@ var Listview = {
     insertAfter: function(node, data){
         var element = this.element, o = this.options;
         var new_node = this._createNode(data);
-        new_node.insertAfter(node);
+        new_node.addClass("node").insertAfter(node);
         Utils.exec(o.onNodeInsert, [new_node, element]);
         return new_node;
     },
@@ -18844,7 +18844,7 @@ var TabsMaterial = {
 
         if (this.marker.length === 0) {
 
-            this.marker = $("<li>").addClass("tab-marker").appendTo(element);
+            this.marker = $("<span>").addClass("tab-marker").appendTo(element);
 
             if (Utils.isValue(o.markerColor)) {
                 if (Utils.isColor(o.markerColor)) {
@@ -18897,6 +18897,7 @@ var Tabs = {
         clsTabs: "",
         clsTabsList: "",
         clsTabsListItem: "",
+        clsTabsListItemActive: "",
 
         onTab: Metro.noop,
         onBeforeTab: Metro.noop_true,
@@ -18938,14 +18939,7 @@ var Tabs = {
             element.attr("id", Utils.elementId("tabs"));
         }
 
-        // if (Utils.isValue(o.expand)) {
-        //     container.addClass("tabs-expand-"+o.expand);
-        // }
-
         container.addClass(o.tabsPosition.replace(["-", "_", "+"], " "));
-        // if (o.tabsPosition.contains("vertical")) {
-        //     container.addClass("tabs-expand-fs"); // TODO need redesign this behavior
-        // }
 
         element.addClass("tabs-list");
         if (!right_parent) {
@@ -19000,7 +18994,9 @@ var Tabs = {
                 container.addClass("tabs-expand");
             } else {
                 if (Utils.isValue(o.expandPoint) && Utils.mediaExist(o.expandPoint) && !o.tabsPosition.contains("vertical")) {
-                    container.addClass("tabs-expand");
+                    if (!container.hasClass("tabs-expand")) container.addClass("tabs-expand");
+                } else {
+                    if (container.hasClass("tabs-expand")) container.removeClass("tabs-expand");
                 }
             }
         });
@@ -19094,6 +19090,8 @@ var Tabs = {
         }
 
         expandTitle.html(tab.find("a").html());
+
+        tab.addClass(o.clsTabsListItemActive);
 
         Utils.exec(o.onTab, [tab, element]);
     },

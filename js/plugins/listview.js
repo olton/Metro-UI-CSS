@@ -90,7 +90,7 @@ var Listview = {
             node.prepend(this._createIcon(data.icon));
         }
 
-        if (Utils.objectLength(o.structure > 0)) $.each(o.structure, function(key, val){
+        if (Utils.objectLength(o.structure) > 0) $.each(o.structure, function(key, val){
             if (data[key] !== undefined) {
                 $("<div>").addClass("node-data item-data-"+key).addClass(data[val]).html(data[key]).appendTo(node);
             }
@@ -282,7 +282,7 @@ var Listview = {
     insertBefore: function(node, data){
         var element = this.element, o = this.options;
         var new_node = this._createNode(data);
-        new_node.insertBefore(node);
+        new_node.addClass("node").insertBefore(node);
         Utils.exec(o.onNodeInsert, [new_node, element]);
         return new_node;
     },
@@ -290,7 +290,7 @@ var Listview = {
     insertAfter: function(node, data){
         var element = this.element, o = this.options;
         var new_node = this._createNode(data);
-        new_node.insertAfter(node);
+        new_node.addClass("node").insertAfter(node);
         Utils.exec(o.onNodeInsert, [new_node, element]);
         return new_node;
     },
