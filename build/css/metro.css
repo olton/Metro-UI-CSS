@@ -22671,6 +22671,81 @@ textarea {
 .switch.invalid::after {
   display: none;
 }
+.switch-material {
+  display: inline-block;
+  position: relative;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+.switch-material input {
+  position: absolute;
+  opacity: 0;
+  width: 0.0625rem;
+  height: 0.0625rem;
+}
+.switch-material .check,
+.switch-material .caption,
+.switch-material .title {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 18px;
+  font-size: 14px;
+}
+.switch-material .check {
+  width: 36px;
+  height: 16px;
+  background-color: #929292;
+  border-radius: 8px;
+  overflow: visible;
+  position: relative;
+  margin: 0 4px;
+}
+.switch-material .check:before {
+  position: absolute;
+  display: block;
+  content: "";
+  width: 22px;
+  height: 22px;
+  z-index: 2;
+  margin-top: -3px;
+  margin-left: -3px;
+  border-radius: 50%;
+  background-color: #00aba9;
+  -webkit-box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16), 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+          box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16), 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+}
+.switch-material input:checked ~ .check {
+  background-color: rgba(0, 150, 136, 0.5);
+}
+.switch-material input:not(:checked) ~ .check:before {
+  background-color: #ffffff;
+  -webkit-transition: linear all 0.2s;
+  transition: linear all 0.2s;
+}
+.switch-material input:checked ~ .check {
+  background-color: rgba(0, 150, 136, 0.5);
+}
+.switch-material input:checked ~ .check:before {
+  -webkit-transform: translateX(22px);
+          transform: translateX(22px);
+  -webkit-transition: linear all 0.2s;
+  transition: linear all 0.2s;
+}
+.switch-material input:disabled ~ .check {
+  background-color: #D5D5D5;
+}
+.switch-material input:disabled ~ .check:before {
+  background-color: #BDBDBD;
+}
+.switch-material .check + .title,
+.switch-material .title + .check {
+  margin-left: 5px;
+  margin-right: 0;
+}
 .h-menu {
   list-style: none inside;
   display: block;
