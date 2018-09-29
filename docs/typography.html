@@ -71,7 +71,6 @@
                             <li class="toc-entry"><a href="#_lists_unordered">Unordered</a></li>
                             <li class="toc-entry"><a href="#_lists_ordered">Ordered</a></li>
                             <li class="toc-entry"><a href="#_lists_inline">Inline</a></li>
-                            <li class="toc-entry"><a href="#_lists_custom_marker">Custom marker</a></li>
                             <li class="toc-entry"><a href="#_lists_desc">Description list</a></li>
                         </ul>
                     </li>
@@ -682,6 +681,31 @@
                         &lt;/li&gt;
                     &lt;/ol&gt;
                 </code></pre>
+                <p>
+                    You can specified first level number type with classes:
+                        <code>decimal</code>,
+                        <code>roman-upper</code>,
+                        <code>roman-lower</code>,
+                        <code>alpha-upper</code>,
+                        <code>alpha-lower</code>,
+                        <code>latin-upper</code>,
+                        <code>latin-lower</code>.
+                </p>
+                <div class="example">
+                    <ol class="decimal">
+                        <li>Sunt tataes consumere talis, emeritis orgiaes.</li>
+                        <li>Nunquam transferre plasmator.</li>
+                        <li>Heu, germanus calcaria!</li>
+                        <li>Est peritus devatio, cesaris.
+                    </ol>
+                </div>
+                <pre class=""><code>
+                    &lt;ol class="decimal"&gt;
+                        &lt;li&gt;...&lt;/li&gt;
+                        &lt;li&gt;...&lt;/li&gt;
+                        &lt;li&gt;...&lt;/li&gt;
+                    &lt;/ol&gt;
+                </code></pre>
 
                 <h4 id="_lists_inline">Inline list</h4>
                 <div class="example">
@@ -698,98 +722,6 @@
                         &lt;li&gt;Base&lt;/li&gt;
                         &lt;li&gt;Widgets&lt;/li&gt;
                         &lt;li&gt;Contacts&lt;/li&gt;
-                    &lt;/ul&gt;
-                </code></pre>
-
-                <h4 id="_lists_custom_marker">List with custom marker</h4>
-                <div class="example">
-                    <ul class="unstyled-list custom-list-marker">
-                        <li data-marker="+">Home</li>
-                        <li data-marker="-">Base</li>
-                        <li data-marker="&#x2713;">Widgets</li>
-                        <li data-marker="&#x2764;">Contacts</li>
-                    </ul>
-                </div>
-                <pre class=""><code>
-                    &lt;ul class="unstyled-list custom-list-marker"&gt;
-                        &lt;li data-marker="+"&gt;Home&lt;/li&gt;
-                        &lt;li data-marker="-"&gt;Base&lt;/li&gt;
-                        &lt;li data-marker="&#x2713;"&gt;Widgets&lt;/li&gt;
-                        &lt;li data-marker="&#x2764;"&gt;Contacts&lt;/li&gt;
-                    &lt;/ul&gt;
-                </code></pre>
-
-                <h4 id="_lists_step">Step List</h4>
-                <div class="example">
-                    <ul class="step-list">
-                        <li>
-                            <h2 class="fg-red">Improve user sign-in experience</h2>
-                            <hr class="bg-red">
-                            <div>
-                                Add a custom domain so that your users can sign in with familiar user names.
-                                For example, if your organization owns ‘contoso.com’, users can sign in Azure AD with user names such as ‘joe@contoso.com’.
-                                <br><br>
-                                <button class="button alert">Add domain</button>
-                            </div>
-                        </li>
-                        <li>
-                            <h2 class="fg-green">Integrate with your local directory</h2>
-                            <hr class="bg-green">
-                            <div>
-                                Use the same user accounts and groups in the cloud that you already use on premises.
-                                <br>
-                                <a href="">Set up directory integration</a>. <a href="">Download the preview of Azure AD Content</a>.
-                                <br><br>
-                                <button class="button success">Add domain</button>
-                            </div>
-                        </li>
-                        <li>
-                            <h2 class="fg-cyan">Get Azure AD Premium</h2>
-                            <hr class="bg-cyan">
-                            <div>
-                                Improve access management experiences for end users and administrators, including self service password reset, group management, sign in customization, and reporting.
-                                <br><br>
-                                <button class="button info">Add domain</button>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <pre class="html"><code>
-                    &lt;ul class="step-list"&gt;
-                        &lt;li&gt;
-                            &lt;h2 class="fg-red"&gt;Improve user sign-in experience&lt;/h2&gt;
-                            &lt;hr class="bg-red"&gt;
-                            &lt;div&gt;
-                                Add a custom domain so that your users can sign in with familiar user names.
-                                For example, if your organization owns ‘contoso.com’,
-                                users can sign in Azure AD with user names such as ‘joe@contoso.com’.
-                                &lt;br&gt;&lt;br&gt;
-                                &lt;button class="button alert"&gt;Add domain&lt;/button&gt;
-                            &lt;/div&gt;
-                        &lt;/li&gt;
-                        &lt;li&gt;
-                            &lt;h2 class="fg-green"&gt;Integrate with your local directory&lt;/h2&gt;
-                            &lt;hr class="bg-green"&gt;
-                            &lt;div&gt;
-                                Use the same user accounts and groups in the cloud that you already use on premises.
-                                &lt;br&gt;
-                                &lt;a href=""&gt;Set up directory integration&lt;/a&gt;.
-                                &lt;a href=""&gt;Download the preview of Azure AD Content&lt;/a&gt;.
-                                &lt;br&gt;&lt;br&gt;
-                                &lt;button class="button success"&gt;Add domain&lt;/button&gt;
-                            &lt;/div&gt;
-                        &lt;/li&gt;
-                        &lt;li&gt;
-                            &lt;h2 class="fg-cyan"&gt;Get Azure AD Premium&lt;/h2&gt;
-                            &lt;hr class="bg-cyan"&gt;
-                            &lt;div&gt;
-                                Improve access management experiences for end users and administrators,
-                                including self service password reset, group management,
-                                sign in customization, and reporting.
-                                &lt;br&gt;&lt;br&gt;
-                                &lt;button class="button info"&gt;Add domain&lt;/button&gt;
-                            &lt;/div&gt;
-                        &lt;/li&gt;
                     &lt;/ul&gt;
                 </code></pre>
 
