@@ -1,4 +1,6 @@
 ### 4.2.24
++ [x] Time picker: fix method `val` for issue #1221
++ [x] Calendar: fix method `setToday` for issue #1215
 + [x] ListView: fix method `_createNode` for `structure` option, issue #1220 
 + [x] ListView: fix methods `insertBefore`, `insertAfter`
 + [x] Tabs: change `expand` behavior
