@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <link href="../metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
+    <link href="../css/site.css?ver=@@b-version" rel="stylesheet">
+
+    <title>Swipe test page - Metro 4 :: Popular HTML, CSS and JS library</title>
+
+</head>
+<body>
+
+<div class="container mt-4">
+    <div class="emulator galaxy-s5 bg-light">
+    </div>
+</div>
+
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script src="../metro/js/metro.js?ver=@@b-version"></script>
+<script>
+    $(function() {
+        $(".emulator").swipe( {
+            swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
+                $(this).text("You swiped " + direction );
+            }
+        });
+    });
+</script>
+</body>
+</html>
