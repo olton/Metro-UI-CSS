@@ -20350,21 +20350,21 @@ var TimePicker = {
         var h = "00", m = "00", s = "00";
 
         if (o.hours === true) {
-            h = this.value[0];
+            h = parseInt(this.value[0]);
             if (h < 10) {
                 h = "0"+h;
             }
             picker.find(".hours").html(h);
         }
         if (o.minutes === true) {
-            m = this.value[1];
+            m = parseInt(this.value[1]);
             if (m < 10) {
                 m = "0"+m;
             }
             picker.find(".minutes").html(m);
         }
         if (o.seconds === true) {
-            s = this.value[2];
+            s = parseInt(this.value[2]);
             if (s < 10) {
                 s = "0"+s;
             }
