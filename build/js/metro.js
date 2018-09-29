@@ -6032,7 +6032,7 @@ var Calendar = {
     setToday: function(val){
         var that = this, element = this.element, o = this.options;
 
-        if (Utils.isNull(val)) {
+        if (!Utils.isValue(val)) {
             val = new Date();
         }
         this.today = Utils.isDateObject(val) ? val : Utils.isValue(o.inputFormat) ? val.toDate(o.inputFormat) : new Date(val);
