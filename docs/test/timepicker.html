@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <META NAME="VIEWPORT" CONTENT="WIDTH=DEVICE-WIDTH, INITIAL-SCALE=1.0, MAXIMUM-SCALE=1.0, USER-SCALABLE=NO">
+    <!--<meta name="metro4:locale" content="it-IT">-->
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <link href="../metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
+
+    <title>Time picker test page - Metro 4 :: Popular HTML, CSS and JS library</title>
+</head>
+<body>
+<div class="m-20">
+
+    <div class="row mb-2">
+
+        <div class="cell-md-4">
+        </div>
+
+        <div class="cell-md-4">
+            <div class="mb-4">
+                <button class="button" onclick="$('#tp').data('timepicker').val('02:00:00')">Set</button>
+            </div>
+            <input id="tp" type="text" data-role="timepicker" value="0">
+        </div>
+
+        <div class="cell-md-4">
+        </div>
+    </div>
+
+</div>
+
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script src="../metro/js/metro.js?ver=@@b-version"></script>
+
+</body>
+</html>

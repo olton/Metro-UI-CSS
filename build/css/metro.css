@@ -40611,6 +40611,72 @@ video:-webkit-full-screen {
   transition: background-color 5000s ease-in-out 0s;
   -webkit-text-fill-color: #fff !important;
 }
+.chip {
+  display: inline-block;
+  float: left;
+  height: 32px;
+  font-size: 14px;
+  padding: 0 12px;
+  line-height: 32px;
+  background: #bebebe;
+  cursor: default;
+}
+.chip .label {
+  white-space: nowrap;
+}
+.chip .icon {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 32px;
+  height: 32px;
+  text-align: center;
+  line-height: 32px;
+  vertical-align: middle;
+  font-size: 24px;
+  overflow: hidden;
+}
+.chip .icon img {
+  width: 100%;
+  max-height: 100%;
+  vertical-align: initial;
+}
+.chip .icon + .label {
+  margin-left: 30px;
+}
+.chip .action {
+  display: block;
+  float: right;
+  margin-left: 10px;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  margin-right: -8px;
+  margin-top: 4px;
+  background-color: #ccc;
+  overflow: hidden;
+}
+.chip .action:before {
+  content: "\2716";
+  line-height: 24px;
+  text-align: center;
+  display: block;
+}
+.chip:hover {
+  background-color: rgba(29, 29, 29, 0.1);
+}
+.chip.material {
+  border-radius: 16px;
+}
+.chip.material .icon {
+  border-radius: 32px;
+}
+.chip.material .action {
+  border-radius: 24px;
+}
+.chip + .chip {
+  margin-left: 8px;
+}
 .ripple {
   display: block;
   width: 0;
