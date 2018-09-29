@@ -73,11 +73,6 @@
                 </p>
 
                 <div class="example">
-
-                    <div>
-                        <input type="checkbox" data-role="switch" data-caption="data-mode='material'" onclick="$('#a1').toggleClass('material')">
-                    </div>
-
                     <div data-role="accordion" id="a1">
                         <div class="frame">
                             <div class="heading">Header 1</div>
@@ -101,6 +96,55 @@
                 </div>
                 <pre><code class="html">
                     &lt;div data-role="accordion" data-one-frame="true" data-show-active="true"&gt;
+                        &lt;div class="frame"&gt;
+                            &lt;div class="heading"&gt;Header 1&lt;/div&gt;
+                            &lt;div class="content"&gt;
+                                &lt;div class="p-2"&gt;Cur luba manducare? Pol, a bene ionicis tormento...&lt;/div&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                        &lt;div class="frame active"&gt;
+                            &lt;div class="heading"&gt;Header 2&lt;/div&gt;
+                            &lt;div class="content"&gt;
+                                &lt;div class="p-2"&gt;Wildly open a starship. Belay, ye small wench- set...&lt;/div&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                        &lt;div class="frame"&gt;
+                            &lt;div class="heading"&gt;Header 3&lt;/div&gt;
+                            &lt;div class="content"&gt;
+                                &lt;div class="p-2"&gt;Bitter turkey can be made tasty by brushing with...&lt;/div&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
+
+                <h4>Material design</h4>
+                <p>
+                    You can enable material design style for accordion with attribute <code>data-material="true"</code>
+                </p>
+                <div class="example">
+                    <div data-role="accordion" id="a2" data-material="true">
+                        <div class="frame">
+                            <div class="heading">Header 1</div>
+                            <div class="content">
+                                <div class="p-2">Cur luba manducare? Pol, a bene ionicis tormento. Warm, sichuan-style pudding is best garnished with aged BBQ sauce.</div>
+                            </div>
+                        </div>
+                        <div class="frame active">
+                            <div class="heading">Header 2</div>
+                            <div class="content">
+                                <div class="p-2">Wildly open a starship. Belay, ye small wench- set sails for hunger! Springy, juicy pudding is best blended with whole ice water.</div>
+                            </div>
+                        </div>
+                        <div class="frame">
+                            <div class="heading">Header 3</div>
+                            <div class="content">
+                                <div class="p-2">Bitter turkey can be made tasty by brushing with sweet chili sauce. Popcorn combines greatly with grey peanut butter.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <pre><code class="html">
+                    &lt;div data-role="accordion" data-material="true"&gt;
                         &lt;div class="frame"&gt;
                             &lt;div class="heading"&gt;Header 1&lt;/div&gt;
                             &lt;div class="content"&gt;

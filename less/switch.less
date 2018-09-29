@@ -94,23 +94,23 @@
 }
 
 .switch-material {
-    display: inline-block;
+    display: inline-flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
     position: relative;
     user-select: none;
     transition: @transition-base;
+    cursor: pointer;
 
-    input {
-        position: absolute;
-        opacity: 0;
-        width: 0.0625rem;
-        height: 0.0625rem;
-    }
+    .hideElement(input);
 
-    .check, .caption, .title {
+    .check, .caption {
         display: inline-block;
         vertical-align: middle;
         line-height: 18px;
         font-size: 14px;
+        margin: 0 4px;
     }
 
     .check {
@@ -165,8 +165,10 @@
         }
     }
 
-    .check + .title, .title + .check {
-        margin-left: 5px;
-        margin-right: 0;
+    .check {order: 1;}
+    .caption {order: 2;}
+
+    &.caption-left {
+        flex-flow: row-reverse nowrap;
     }
 }

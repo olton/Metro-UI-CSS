@@ -19694,6 +19694,9 @@ aside::after {
   top: 0.3125rem;
   margin-left: -1.5rem;
 }
+.custom-list-marker {
+  list-style: none inside;
+}
 .custom-list-marker li {
   position: relative;
   padding-left: 1.2em;
@@ -22672,7 +22675,19 @@ textarea {
   display: none;
 }
 .switch-material {
-  display: inline-block;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   position: relative;
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -22680,20 +22695,23 @@ textarea {
           user-select: none;
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
+  cursor: pointer;
 }
 .switch-material input {
+  width: 1px;
+  height: 1px;
   position: absolute;
+  top: 0;
+  left: 0;
   opacity: 0;
-  width: 0.0625rem;
-  height: 0.0625rem;
 }
 .switch-material .check,
-.switch-material .caption,
-.switch-material .title {
+.switch-material .caption {
   display: inline-block;
   vertical-align: middle;
   line-height: 18px;
   font-size: 14px;
+  margin: 0 4px;
 }
 .switch-material .check {
   width: 36px;
@@ -22741,10 +22759,21 @@ textarea {
 .switch-material input:disabled ~ .check:before {
   background-color: #BDBDBD;
 }
-.switch-material .check + .title,
-.switch-material .title + .check {
-  margin-left: 5px;
-  margin-right: 0;
+.switch-material .check {
+  -webkit-box-ordinal-group: 2;
+      -ms-flex-order: 1;
+          order: 1;
+}
+.switch-material .caption {
+  -webkit-box-ordinal-group: 3;
+      -ms-flex-order: 2;
+          order: 2;
+}
+.switch-material.caption-left {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-flow: row-reverse nowrap;
+          flex-flow: row-reverse nowrap;
 }
 .h-menu {
   list-style: none inside;
