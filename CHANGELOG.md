@@ -26,6 +26,7 @@
 + [x] Material tabs: add new component
 + [x] Material input: add new component
 + [x] Chips: add new CSS component
++ [x] Swipe: add new JS component
 
 ### 4.2.23
 + [x] Select: fix native `onchange` event triggering, issue #1198
