@@ -95,19 +95,20 @@ var MaterialTabs = {
             var tab = $(this);
             var active_tab = element.find("li.active");
             var tab_next = tabs.index(tab) > tabs.index(active_tab);
-            var target = tab.children("a")[0].href;
+            var target = tab.children("a").attr("href");
 
-            if (tab.hasClass("active")) return;
-            if (tab.hasClass("disabled")) return;
-            if (Utils.exec(o.onBeforeTabOpen, null, this) === false) return;
-            if (!Utils.isValue(target)) return;
-
-            that.openTab(tab, tab_next);
-            e.preventDefault();
+            if (Utils.isValue(target) && target[0] === "#") {
+                if (tab.hasClass("active")) return;
+                if (tab.hasClass("disabled")) return;
+                if (Utils.exec(o.onBeforeTabOpen, [tab, target, tab_next], this) === false) return;
+                if (!Utils.isValue(target)) return;
+                that.openTab(tab, tab_next);
+                e.preventDefault();
+            }
         });
 
         var addMouseWheel = function (){
-            $("body").mousewheel(function(event, delta, deltaX, deltaY){
+            $(element).mousewheel(function(event, delta, deltaX, deltaY){
                 var scroll_value = delta * METRO_SCROLL_MULTIPLE;
                 element.scrollLeft(element.scrollLeft() - scroll_value);
                 return false;
@@ -119,9 +120,9 @@ var MaterialTabs = {
         }
     },
 
-    openTab: function(tab, next){
+    openTab: function(tab, tab_next){
         var that = this, element = this.element, o = this.options;
-        var tabs = element.find("li"), element_sroll = element.scrollLeft();
+        var tabs = element.find("li"), element_scroll = element.scrollLeft();
         var magic = 32, shift, width = element.width(), tab_width, target, tab_left;
 
         if (!Utils.isJQueryObject(tab)) {
@@ -131,7 +132,7 @@ var MaterialTabs = {
         $.each(tabs, function(){
             var target = $(this).find("a").attr("href");
             if (!Utils.isValue(target)) return;
-            $(target).hide();
+            if (target.trim() !== "#" && $(target).length > 0) $(target).hide();
         });
 
         tab_left = tab.position().left;
@@ -143,27 +144,27 @@ var MaterialTabs = {
 
         if (shift + magic > width) {
             element.animate({
-                scrollLeft: element_sroll + (shift - width) + (tab_width / 2)
+                scrollLeft: element_scroll + (shift - width) + (tab_width / 2)
             });
         }
 
         if (tab_left - magic < 0) {
             element.animate({
-                scrollLeft: tab_left + element_sroll - (tab_width / 2)
+                scrollLeft: tab_left + element_scroll - (tab_width / 2)
             });
         }
 
         this.marker.animate({
-            left: tab_left + element_sroll,
+            left: tab_left + element_scroll,
             width: tab.width()
         });
 
         target = tab.find("a").attr("href");
         if (Utils.isValue(target)) {
-            $(target).show();
+            if (target.trim() !== "#" && $(target).length > 0) $(target).show();
         }
 
-        Utils.exec(o.onTabOpen, [target, $(target)], tab[0]);
+        Utils.exec(o.onTabOpen, [tab, target, tab_next], tab[0]);
     },
 
     changeAttribute: function(attributeName){
