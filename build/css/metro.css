@@ -40190,10 +40190,10 @@ video:-webkit-full-screen {
   width: 100%;
   top: 100%;
   position: fixed;
-  -webkit-box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19), 0 8px 17px 0 rgba(0, 0, 0, 0.2);
-          box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19), 0 8px 17px 0 rgba(0, 0, 0, 0.2);
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
+  -webkit-box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19), 0 8px 17px 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19), 0 8px 17px 0 rgba(0, 0, 0, 0.2);
 }
 .bottom-sheet::after {
   display: block;
@@ -40204,6 +40204,21 @@ video:-webkit-full-screen {
   display: block;
   clear: both;
   content: "";
+}
+.bottom-sheet.wide-sm {
+  max-width: 576px;
+}
+.bottom-sheet.wide-ld {
+  max-width: 640px;
+}
+.bottom-sheet.wide-md {
+  max-width: 768px;
+}
+.bottom-sheet.wide-lg {
+  max-width: 992px;
+}
+.bottom-sheet.wide {
+  max-width: 100%;
 }
 .bottom-sheet > .title {
   height: 56px;
