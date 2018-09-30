@@ -1,5 +1,3 @@
-//This widget based on <a href="https://github.com/mattbryson/TouchSwipe-Jquery-Plugin">TouchSwipe</a> from <a href="https://github.com/mattbryson">Matt Bryson</a>.
-
 var SwipeConst = {
     LEFT : "left",
     RIGHT : "right",
