@@ -14,8 +14,24 @@
     width: 100%;
     top: 100%;
     position: fixed;
-    .shadow(2);
     transition: @transition-base;
+    .shadow(2);
+
+    &.wide-sm {
+        max-width: 576px;
+    }
+    &.wide-ld {
+        max-width: 640px;
+    }
+    &.wide-md {
+        max-width: 768px;
+    }
+    &.wide-lg {
+        max-width: 992px;
+    }
+    &.wide {
+        max-width: 100%;
+    }
 }
 
 .bottom-sheet {

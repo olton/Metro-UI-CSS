@@ -45,7 +45,9 @@ var BottomSheet = {
     _createStructure: function(){
         var that = this, element = this.element, o = this.options;
 
-        element.addClass(o.mode+"-list");
+        element
+            .addClass("bottom-sheet")
+            .addClass(o.mode+"-list");
 
         if (Utils.isValue(o.toggle) && $(o.toggle).length > 0) {
             this.toggle = $(o.toggle);
@@ -88,11 +90,11 @@ var BottomSheet = {
         Utils.exec(o.onClose, [element], element[0]);
     },
 
-    toggleView: function(){
+    toggle: function(mode){
         if (this.isOpen()) {
             this.close();
         } else {
-            this.open();
+            this.open(mode);
         }
     },
 
@@ -104,3 +106,44 @@ var BottomSheet = {
 };
 
 Metro.plugin('bottomsheet', BottomSheet);
+
+Metro['bottomsheet'] = {
+    isBottomSheet: function(el){
+        return Utils.isMetroObject(el, "bottomsheet");
+    },
+
+    open: function(el, as){
+        if (!this.isBottomSheet(el)) {
+            return false;
+        }
+        var sheet = $(el).data("bottomsheet");
+        sheet.open(as);
+    },
+
+    close: function(el){
+        if (!this.isBottomSheet(el)) {
+            return false;
+        }
+        var sheet = $(el).data("bottomsheet");
+        sheet.close();
+    },
+
+    toggle: function(el, as){
+        if (!this.isBottomSheet(el)) {
+            return false;
+        }
+        if (this.isOpen(el)) {
+            this.close(el);
+        } else {
+            this.open(el, as);
+        }
+    },
+
+    isOpen: function(el){
+        if (!this.isBottomSheet(el)) {
+            return false;
+        }
+        var sheet = $(el).data("bottomsheet");
+        return sheet.isOpen();
+    }
+};

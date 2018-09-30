@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <meta name="twitter:site" content="@metroui">
+    <meta name="twitter:creator" content="@pimenov_sergey">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Metro 4 Components Library">
+    <meta name="twitter:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.">
+    <meta name="twitter:image" content="https://metroui.org.ua/images/m4-logo-social.png">
+
+    <meta property="og:url" content="https://metroui.org.ua/v4/index.html">
+    <meta property="og:title" content="Metro 4 Components Library">
+    <meta property="og:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:secure_url" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="968">
+    <meta property="og:image:height" content="504">
+
+    <meta name="author" content="Sergey Pimenov">
+    <meta name="description" content="Bottom navigation. The most popular HTML, CSS, and JS library in Metro style.">
+    <meta name="keywords" content="HTML, CSS, JS, Metro, CSS3, Javascript, HTML5, UI, Library, Web, Development, Framework">
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <link href="metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
+    <link href="highlight/styles/github.css" rel="stylesheet">
+    <link href="docsearch/docsearch.min.css" rel="stylesheet">
+    <link href="css/site.css" rel="stylesheet">
+
+    <title>Bottom navigation - Metro 4 :: Popular HTML, CSS and JS library</title>
+</head>
+<body>
+    <div class="container-fluid">
+
+        <div class="row flex-xl-nowrap">
+            <div class="cell-md-3 cell-xl-2 pr-0 border-right bd-light" id="sidenav">
+            </div>
+
+            <div class="d-none d-block-xl cell-xl-2 order-2 border-left bd-light toc-wrapper">
+                <h5>Table of contents</h5>
+                <hr/>
+                <ul class="toc-nav">
+                    <li class="toc-entry"><a href="#_bn_about">Bottom navigation</a></li>
+                    <li class="toc-entry"><a href="#_bn_buttons">Buttons</a></li>
+                </ul>
+
+            </div>
+
+            <main class="cell-md-9 cell-xl-8 order-1 pr-1-sx pl-1-sx pr-5-md pl-5-md">
+                <div class="place-right d-none d-block-lg" style="width: 200px;">
+                    <img src="images/logo.png" class="w-100">
+                </div>
+
+                <h1>Bottom navigation</h1>
+                <p class="text-leader">
+                    Metro 4 has at its contains classes for creating an bottom navigation element in material design style.
+                </p>
+
+                <!-- ads-html -->
+
+                <h3 id="_bn_about">About</h3>
+                <p class="text-small">Designed for using with <a href="https://phonegap.com/">PhoneGap</a></p>
+                <p>
+                    To create <code>bottom navigation</code> element, you can create container with class <code>.bottom-nav</code> and add <code>buttons</code> inside a container.
+                    By default, a container positioned in bottom <code>fixed</code> position on page.
+                </p>
+                <div class="example d-flex flex-justify-center">
+                    <div class="emulator galaxy-s5 bg-light" style="height: 300px;">
+                        <div class="bottom-nav pos-absolute">
+                            <button class="button">
+                                <span class="icon mif-plus"></span>
+                                <span class="label">Add</span>
+                            </button>
+                            <button class="button">
+                                <span class="icon mif-favorite"></span>
+                                <span class="label">Favorites</span>
+                            </button>
+                            <button class="button">
+                                <span class="icon mif-search"></span>
+                                <span class="label">Search</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <pre><code>
+                    &lt;div class="bottom-nav pos-absolute"&gt;
+                        &lt;button class="button"&gt;
+                            &lt;span class="icon mif-plus"&gt;&lt;/span&gt;
+                            &lt;span class="label"&gt;Add&lt;/span&gt;
+                        &lt;/button&gt;
+                        &lt;button class="button"&gt;
+                            &lt;span class="icon mif-favorite"&gt;&lt;/span&gt;
+                            &lt;span class="label"&gt;Favorites&lt;/span&gt;
+                        &lt;/button&gt;
+                        &lt;button class="button"&gt;
+                            &lt;span class="icon mif-search"&gt;&lt;/span&gt;
+                            &lt;span class="label"&gt;Search&lt;/span&gt;
+                        &lt;/button&gt;
+                    &lt;/div&gt;
+                </code></pre>
+
+                <h3 id="_bn_buttons">Buttons</h3>
+                <p>
+                    Each button in bottom navigation element must have: <code>icon</code> and <code>label</code>.
+                </p>
+                <pre><code>
+                    &lt;button class="button"&gt;
+                        &lt;span class="icon mif-plus"&gt;&lt;/span&gt;
+                        &lt;span class="label"&gt;Add&lt;/span&gt;
+                    &lt;/button&gt;
+                </code></pre>
+
+            </main>
+        </div>
+
+    </div>
+
+    <script src="docsearch/docsearch.min.js"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="metro/js/metro.js?ver=@@b-version"></script>
+    <script src="highlight/highlight.pack.js"></script>
+    <script src="js/clipboard.min.js"></script>
+    <script src="js/site.js"></script>
+    <!-- ads-script -->
+    <!-- ga-script -->
+    <!-- hit-ua -->
+</body>
+</html>
