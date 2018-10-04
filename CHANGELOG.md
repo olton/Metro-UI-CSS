@@ -1,3 +1,6 @@
+### 4.2.25
++ [x] Sidebar: remove scroll-y from sidebar, add scroll-y to sidebar-menu
+
 ### 4.2.24
 + [x] Time picker: fix method `val` for issue #1221
 + [x] Calendar: fix method `setToday` for issue #1215
