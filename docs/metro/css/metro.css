@@ -28554,26 +28554,44 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  min-width: 2rem;
-  padding-bottom: 0.5rem;
+  padding: 0.5rem 0.5rem 0.5em;
   -ms-flex-negative: 0;
       flex-shrink: 0;
   -webkit-box-flex: 0;
       -ms-flex-positive: 0;
           flex-grow: 0;
-  padding-left: 0.5em;
-  padding-right: 0.5em;
 }
-.countdown .part::before {
-  content: "\205A";
-  left: -0.3em;
+.countdown .digit {
+  display: block;
+  position: relative;
+  padding: 0;
+  line-height: 1;
+  overflow: hidden;
+}
+.countdown .digit .digit-placeholder {
+  visibility: hidden;
+}
+.countdown .digit .digit-value {
+  display: block;
   position: absolute;
-  color: #bebebe;
-  z-index: 1;
+  top: 0;
+  left: 0;
+  font: inherit;
 }
-.countdown .part:nth-child(1)::before,
-.countdown .part.no-divider::before,
-.countdown .part.nd + .part::before {
+.countdown .part + .part::before {
+  top: 10px;
+  left: 0;
+  content: "";
+  display: block;
+  position: absolute;
+  height: calc(100% - 8px);
+  width: 1px;
+  background: radial-gradient(at left, #dfdfdf, transparent);
+}
+.countdown .part.d-none + .part::before {
+  display: none;
+}
+.countdown .part.no-divider::before {
   display: none;
 }
 .countdown .part.days::after,
@@ -28583,16 +28601,13 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   position: absolute;
   content: attr(data-label);
   text-align: center;
-  bottom: 0.25rem;
+  bottom: 0;
   left: 0;
   width: 100%;
   font-size: 0.3em;
   color: inherit;
   background-color: inherit;
   z-index: 1;
-}
-.countdown .part + .part {
-  margin-left: 0.625rem;
 }
 .countdown .days {
   -webkit-box-ordinal-group: 2;
@@ -28613,9 +28628,6 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   -webkit-box-ordinal-group: 5;
       -ms-flex-order: 4;
           order: 4;
-}
-.countdown.blink .part::before {
-  visibility: hidden;
 }
 .hint {
   display: block;
@@ -39861,6 +39873,10 @@ video:-webkit-full-screen {
 }
 .hero {
   padding: 40px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
 }
 @media all and (min-width: 768px) {
   .hero {
