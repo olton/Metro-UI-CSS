@@ -7689,7 +7689,6 @@ Metro.plugin('collapse', Collapse);
 // Source: js/plugins/countdown.js
 var Countdown = {
     init: function( options, elem ) {
-        var that = this;
         this.options = $.extend( {}, this.options, options );
         this.elem  = elem;
         this.element = $(elem);
@@ -7708,6 +7707,8 @@ var Countdown = {
 
         this.locale = null;
 
+        this.inactiveTab = false;
+
         this._setOptionsFromDOM();
         this._create();
 
@@ -7715,6 +7716,9 @@ var Countdown = {
     },
 
     options: {
+        stopOnBlur: true,
+        animate: "none",
+        animationFunc: "swing",
         inputFormat: null,
         locale: METRO_LOCALE,
         days: 0,
@@ -7724,6 +7728,7 @@ var Countdown = {
         date: null,
         start: true,
         clsCountdown: "",
+        clsPart: "",
         clsZero: "",
         clsAlarm: "",
         clsDays: "",
@@ -7755,10 +7760,11 @@ var Countdown = {
         var o = this.options;
         this.locale = Metro.locales[o.locale] !== undefined ? Metro.locales[o.locale] : Metro.locales["en-US"];
         this._build();
+        this._createEvents();
     },
 
     _setBreakpoint: function(){
-        var that = this, element = this.element, o = this.options;
+        var o = this.options;
         var dm = 86400000, hm = 3600000, mm = 60000, sm = 1000;
 
         this.breakpoint = (new Date()).getTime();
@@ -7784,37 +7790,23 @@ var Countdown = {
     _build: function(){
         var that = this, element = this.element, o = this.options;
         var parts = ["days", "hours", "minutes", "seconds"];
-        var dm = 86400000, hm = 3600000, mm = 60000, sm = 1000;
-        var delta_days, delta_hours, delta_minutes, delta_seconds;
+        var dm = 24*60*60*1000;
+        var delta_days;
         var now = (new Date()).getTime();
+        var digit;
+
+        if (!Utils.isValue(element.attr("id"))) {
+            element.attr("id", Utils.elementId("countdown"));
+        }
 
         element.addClass("countdown").addClass(o.clsCountdown);
 
         this._setBreakpoint();
 
         delta_days = Math.round((that.breakpoint - now) / dm);
-        delta_hours = Math.round((that.breakpoint - now) / hm);
-        delta_minutes = Math.round((that.breakpoint - now) / mm);
-        delta_seconds = Math.round((that.breakpoint - now) / sm);
 
         $.each(parts, function(){
-            if (this === "days" && delta_days === 0) {
-                return ;
-            }
-
-            if (this === "hours" && delta_days === 0 && delta_hours === 0) {
-                return ;
-            }
-
-            if (this === "minutes" && delta_days === 0 && delta_hours === 0 && delta_minutes === 0) {
-                return ;
-            }
-
-            if (this === "seconds" && delta_days === 0 && delta_hours === 0 && delta_minutes === 0 && delta_seconds === 0) {
-                return ;
-            }
-
-            var part = $("<div>").addClass("part " + this).attr("data-label", that.locale["calendar"]["time"][this]).appendTo(element);
+            var part = $("<div>").addClass("part " + this).addClass(o.clsPart).attr("data-label", that.locale["calendar"]["time"][this]).appendTo(element);
 
             if (this === "days") {part.addClass(o.clsDays);}
             if (this === "hours") {part.addClass(o.clsHours);}
@@ -7829,27 +7821,46 @@ var Countdown = {
                 for(var i = 0; i < String(Math.round(delta_days/100)).length; i++) {
                     $("<div>").addClass("digit").appendTo(part);
                 }
-
             }
+
         });
 
-        element.find(".digit").html("0");
+        digit = element.find(".digit");
+        digit.append($("<span class='digit-placeholder'>").html("0"));
+        digit.append($("<span class='digit-value'>").html("0"));
+
 
         Utils.exec(o.onCountdownCreate, [element], element[0]);
 
         if (o.start === true) {
             this.start();
+        } else {
+            this.tick();
         }
     },
 
-    blink: function(){
+    _createEvents: function(){
         var that = this, element = this.element, o = this.options;
+        // if (o.stopOnBlur === true) {
+            $(window).on(Metro.events.blur+"-"+element.attr("id"), function(){
+                // that.pause();
+                that.inactiveTab = true;
+            });
+            $(window).on(Metro.events.focus+"-"+element.attr("id"), function(){
+                // that.resume();
+                that.inactiveTab = false;
+            });
+        // }
+    },
+
+    blink: function(){
+        var element = this.element, o = this.options;
         element.toggleClass("blink");
         Utils.exec(o.onBlink, [this.current], element[0]);
     },
 
     tick: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var dm = 24*60*60, hm = 60*60, mm = 60, sm = 1;
         var left, now = (new Date()).getTime();
         var d, h, m, s;
@@ -7932,10 +7943,79 @@ var Countdown = {
     draw: function(part, value){
         var that = this, element = this.element, o = this.options;
         var digits, digits_length, digit_value, digit_current, digit, digit_copy;
-        var len;
+        var len, i, duration = 900, height;
 
-        var delDigit = function(d){
-            $(d).remove();
+        var removeOldDigit = function(_digit){
+            if (!document.hidden) {
+                setTimeout(function(){
+                    _digit.remove();
+                }, 500);
+            } else {
+                _digit.remove();
+            }
+        };
+
+        var slideDigit = function(digit){
+            var digit_copy, height = digit.height();
+            digit_copy = digit.clone().appendTo(digit.parent());
+            digit_copy.css({
+                top: -1 * height,
+                opacity: .5
+            });
+
+            digit.addClass("-old-digit").animate({
+                top: height,
+                opacity: 0
+            }, duration, o.animationFunc, removeOldDigit(digit));
+
+            digit_copy.html(digit_value).animate({
+                top: 0,
+                opacity: 1
+            }, duration, o.animationFunc);
+        };
+
+        var fadeDigit = function(digit){
+            var digit_copy;
+            digit_copy = digit.clone().appendTo(digit.parent());
+            digit_copy.css({
+                opacity: 0
+            });
+
+            digit.addClass("-old-digit").animate({
+                opacity: 0
+            }, duration, o.animationFunc, removeOldDigit(digit));
+
+            digit_copy.html(digit_value).animate({
+                opacity: 1
+            }, duration, o.animationFunc);
+        };
+
+        var zoomDigit = function(digit){
+            var digit_copy,
+                height = digit.height(),
+                width = digit.width(),
+                fs = parseInt(Utils.getStyleOne(digit, "font-size"));
+            digit_copy = digit.clone().appendTo(digit.parent());
+            digit_copy.css({
+                opacity: 0,
+                fontSize: 0,
+                top: height/2,
+                left: width/2
+            });
+
+            digit.addClass("-old-digit").animate({
+                opacity: 0,
+                fontSize: 0,
+                top: height,
+                left: width/2
+            }, duration, o.animationFunc, removeOldDigit(digit));
+
+            digit_copy.html(digit_value).animate({
+                opacity: 1,
+                fontSize: fs,
+                top: 0,
+                left: 0
+            }, duration, o.animationFunc);
         };
 
         value = String(value);
@@ -7949,8 +8029,8 @@ var Countdown = {
         digits = element.find("."+part+" .digit");
         digits_length = digits.length;
 
-        for(var i = 0; i < len; i++){
-            digit = element.find("." + part + " .digit:eq("+ (digits_length - 1) +")");
+        for(i = 0; i < len; i++){
+            digit = element.find("." + part + " .digit:eq("+ (digits_length - 1) +") .digit-value");
             digit_value = Math.floor( value / Math.pow(10, i) ) % 10;
             digit_current = parseInt(digit.text());
 
@@ -7958,26 +8038,31 @@ var Countdown = {
                 continue;
             }
 
-            digit.html(digit_value);
+            switch (String(o.animate).toLowerCase()) {
+                case "slide": slideDigit(digit); break;
+                case "fade": fadeDigit(digit); break;
+                case "zoom": zoomDigit(digit); break;
+                default: digit.html(digit_value);
+            }
 
             digits_length--;
         }
     },
 
     start: function(){
-        var that = this, element = this.element, o =this.options;
+        var that = this, element = this.element;
 
         if (element.data("paused") === false) {
             return;
         }
 
-        this._setBreakpoint();
 
         clearInterval(this.blinkInterval);
         clearInterval(this.tickInterval);
 
         element.data("paused", false);
 
+        this._setBreakpoint();
         this.tick();
 
         this.blinkInterval = setInterval(function(){that.blink();}, 500);
@@ -7985,7 +8070,7 @@ var Countdown = {
     },
 
     stop: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element;
         clearInterval(this.blinkInterval);
         clearInterval(this.tickInterval);
         element.data("paused", true);

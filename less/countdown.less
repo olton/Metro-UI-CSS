@@ -16,27 +16,49 @@
         display: flex;
         flex-flow: row nowrap;
         justify-content: center;
-        min-width: 2rem;
-        padding-bottom: .5rem;
+        padding: .5rem .5rem .5em;
         flex-shrink: 0;
         flex-grow: 0;
-        padding-left: .5em;
-        padding-right: .5em;
     }
 
-    .part {
-        &::before {
-            content: "\205A";
-            left: -.30em;
-            position: absolute;
-            color: @gray;
-            z-index: 1;
+    .digit {
+        display: block;
+        position: relative;
+        padding: 0;
+        line-height: 1;
+        overflow: hidden;
+
+        .digit-placeholder {
+            visibility: hidden;
         }
 
-        &:nth-child(1), &.no-divider, &.nd + .part {
-            &::before {
-                display: none;
-            }
+        .digit-value {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            font: inherit;
+        }
+    }
+
+    .part + .part::before {
+        top: 10px;
+        left: 0;
+        content: "";
+        display: block;
+        position: absolute;
+        height: ~"calc(100% - 8px)";
+        width: 1px;
+        background: radial-gradient(at left, @borderColor, transparent);
+    }
+
+    .part.d-none + .part::before {
+        display: none;
+    }
+
+    .part.no-divider {
+        &::before {
+            display: none;
         }
     }
 
@@ -46,7 +68,7 @@
                 position: absolute;
                 content: attr(data-label);
                 text-align: center;
-                bottom: .25rem;
+                bottom: 0;
                 left: 0;
                 width: 100%;
                 font-size: .3em;
@@ -57,10 +79,6 @@
         }
     }
 
-    .part + .part {
-        margin-left: .625rem;
-    }
-
     .days {order: 1;}
     .hours {order: 2;}
     .minutes {order: 3;}
@@ -69,10 +87,5 @@
 
 .countdown {
     &.blink {
-        .part {
-            &::before {
-                visibility: hidden;
-            }
-        }
     }
 }
