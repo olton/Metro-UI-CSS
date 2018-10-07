@@ -800,6 +800,10 @@ var Utils = {
         } else if (document.selection) {  // IE?
             document.selection.empty();
         }
+    },
+
+    isLocalhost: function(){
+        return (location.hostname === "localhost" || location.hostname === "127.0.0.1" || location.hostname === "")
     }
 };
 
