@@ -4,7 +4,8 @@
 + [x] Hero: minor upd styles for background image
 + [x] Html container: new component, include HTML snippets in HTML element
 + [x] Utils: add function `isLocalhost()`
-+ [x] Docs: upd for using `htmlcontainer` component 
++ [x] Docs: upd for using `htmlcontainer` component
++ [x] Window: fix gradually disappear for children when window is hiding, issue #1222
 
 ### 4.2.24
 + [x] Time picker: fix method `val` for issue #1221

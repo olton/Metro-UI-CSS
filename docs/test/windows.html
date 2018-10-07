@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <link href="../metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
+
+    <title>Window test - Metro 4 :: Popular HTML, CSS and JS library</title>
+</head>
+<body class="h-vh-100">
+    <button class="button" onclick="toggleWindowVisibility('upload-window');">open window</button>
+    <div id="upload-window" data-role="window" class="p-2"  data-close-action="hide"
+         data-width="400" data-icon="<span class='mif-upload'></span>"
+         data-title="업로드" data-place="center"
+         data-hidden="true"
+    >
+        <form class="upload-form">
+            <div class="form-group">
+                <input id="fileupload" type="file" data-role="file" data-mode="drop">
+            </div>
+            <div class="form-group">
+                <button class="button" onclick="return false;">업로드</button>
+            </div>
+        </form>
+    </div>
+
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script src="../metro/js/metro.js?ver=@@b-version"></script>
+<script>
+    function toggleWindowVisibility(windowname){
+        var win = $('#' + windowname).data('window');
+        win.toggle();
+    }
+</script>
+</body>
+</html>
