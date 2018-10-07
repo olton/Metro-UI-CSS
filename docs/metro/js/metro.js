@@ -4134,6 +4134,10 @@ var d = new Date().getTime();
         } else if (document.selection) {  // IE?
             document.selection.empty();
         }
+    },
+
+    isLocalhost: function(){
+        return (location.hostname === "localhost" || location.hostname === "127.0.0.1" || location.hostname === "")
     }
 };
 
@@ -10466,6 +10470,240 @@ var Hint = {
 };
 
 Metro.plugin('hint', Hint);
+
+// Source: js/plugins/html-container.js
+// TODO source as array, mode as array
+
+var HtmlContainer = {
+    init: function( options, elem ) {
+        this.options = $.extend( {}, this.options, options );
+        this.elem  = elem;
+        this.element = $(elem);
+
+        this._setOptionsFromDOM();
+        this._create();
+
+        return this;
+    },
+
+    options: {
+        htmlSource: null,
+        insertMode: "replace", // replace, append, prepend
+        onLoad: Metro.noop,
+        onFail: Metro.noop,
+        onDone: Metro.noop,
+        onHtmlContainerCreate: Metro.noop
+    },
+
+    _setOptionsFromDOM: function(){
+        var that = this, element = this.element, o = this.options;
+
+        $.each(element.data(), function(key, value){
+            if (key in o) {
+                try {
+                    o[key] = JSON.parse(value);
+                } catch (e) {
+                    o[key] = value;
+                }
+            }
+        });
+    },
+
+    _create: function(){
+        var that = this, element = this.element, o = this.options;
+
+        if (Utils.isValue(o.htmlSource)) {
+            this._load();
+        }
+
+        Utils.exec(o.onHtmlContainerCreate, [element], element[0]);
+    },
+
+    _load: function(){
+        var that = this, element = this.element, elem = this.elem, o = this.options;
+        var xhttp, html;
+
+        html = o.htmlSource;
+
+        xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState === 4) {
+                if (this.status === 404) {
+                    elem.innerHTML = "Page not found.";
+                    Utils.exec(o.onFail, [this], elem);
+                }
+                if (this.status === 200) {
+                    switch (o.insertMode.toLowerCase()) {
+                        case "prepend": element.prepend(this.responseText); break;
+                        case "append": element.append(this.responseText); break;
+                        default: {
+                            element.html(this.responseText);
+                        }
+                    }
+                    Utils.exec(o.onLoad, [this.responseText], elem);
+                }
+
+                Utils.exec(o.onDone, [this], elem);
+            }
+        };
+        xhttp.open("GET", html, true);
+        xhttp.send();
+    },
+
+    changeAttribute: function(attributeName){
+        var that = this, element = this.element, elem = this.elem, o = this.options;
+
+        var changeHTMLSource = function(){
+            var html = element.attr("data-html-source");
+            if (Utils.isNull(html)) {
+                return ;
+            }
+            if (html.trim() === "") {
+                element.html("");
+            }
+            o.htmlSource = html;
+            this._load();
+        };
+
+        var changeInsertMode = function(){
+            var attr = element.attr("data-insert-mode");
+            if (Utils.isValue(attr)) {
+                o.insertMode = attr;
+            }
+        };
+
+        switch (attributeName) {
+            case "data-html-source": changeHTMLSource(); break;
+            case "data-insert-mode": changeInsertMode(); break;
+        }
+    },
+
+    destroy: function(){}
+};
+
+Metro.plugin('htmlcontainer', HtmlContainer);
+
+// Source: js/plugins/image-comparer.js
+var ImageComparer = {
+    init: function( options, elem ) {
+        this.options = $.extend( {}, this.options, options );
+        this.elem  = elem;
+        this.element = $(elem);
+
+        this._setOptionsFromDOM();
+        this._create();
+
+        return this;
+    },
+
+    options: {
+        width: 300,
+        height: 200,
+        onImageComparerCreate: Metro.noop
+    },
+
+    _setOptionsFromDOM: function(){
+        var that = this, element = this.element, o = this.options;
+
+        $.each(element.data(), function(key, value){
+            if (key in o) {
+                try {
+                    o[key] = JSON.parse(value);
+                } catch (e) {
+                    o[key] = value;
+                }
+            }
+        });
+    },
+
+    _create: function(){
+        var that = this, element = this.element, o = this.options;
+
+        this._createStructure();
+        this._createEvents();
+
+        Utils.exec(o.onImageComparerCreate, [element], element[0]);
+    },
+
+    _createStructure: function(){
+        var that = this, element = this.element, o = this.options;
+        var container, container_overlay, slider;
+        var images;
+
+        if (!Utils.isValue(element.attr("id"))) {
+            element.attr("id", Utils.elementId("image-comparer"));
+        }
+
+        element.addClass("image-comparer").css({
+            width: o.width,
+            height: o.height
+        });
+
+        container = $("<div>").addClass("image-container").appendTo(element);
+        container_overlay = $("<div>").addClass("image-container-overlay").appendTo(element).css({
+            width: o.width / 2
+        });
+
+        slider = $("<div>").addClass("image-slider").appendTo(element);
+        slider.css({
+            top: element.height() / 2 - slider.height() / 2,
+            left: element.width() / 2 - slider.width() / 2
+        });
+
+        images = $("img");
+
+        $.each(images, function(i, v){
+            var img = $("<div>").addClass("image-wrapper");
+            img.css({
+                width: o.width,
+                height: o.height,
+                backgroundImage: "url("+this.src+")"
+            });
+            img.appendTo(i === 0 ? container : container_overlay);
+            $(this).hide();
+        });
+    },
+
+    _createEvents: function(){
+        var that = this, element = this.element, o = this.options;
+        var w = element.width();
+        var overlay = element.find(".image-container-overlay");
+        var slider = element.find(".image-slider");
+        var slider_width = slider.width();
+
+        var getCursorPosition = function(e){
+            var a = Utils.rect(element);
+            return e.pageX - a.left - window.pageXOffset;
+        };
+
+        element.on(Metro.events.start, ".image-slider", function(e){
+            e.preventDefault();
+            $(window).on(Metro.events.move + "-" + element.attr("id"), function(e){
+                var x = getCursorPosition(e);
+                if (x < 0) x = 0;
+                if (x > w) x = w;
+                overlay.css({
+                    width: x
+                });
+                slider.css({
+                    left: x - slider_width / 2
+                });
+            });
+            $(window).on(Metro.events.stop + "-" + element.attr("id"), function(){
+                $(window).off(Metro.events.move + "-" + element.attr("id"));
+                $(window).off(Metro.events.stop + "-" + element.attr("id"));
+            })
+        });
+    },
+
+    changeAttribute: function(attributeName){
+
+    },
+
+    destroy: function(){}
+};
+
+Metro.plugin('imagecomparer', ImageComparer);
 
 // Source: js/plugins/info-box.js
 var InfoBox = {

@@ -2,6 +2,9 @@
 + [x] Sidebar: remove scroll-y from sidebar, add scroll-y to sidebar-menu
 + [x] Countdown: refactoring structure, add animation effects: slide, fade, zoom
 + [x] Hero: minor upd styles for background image
++ [x] Html container: new component, include HTML snippets in HTML element
++ [x] Utils: add function `isLocalhost()`
++ [x] Docs: upd for using `htmlcontainer` component 
 
 ### 4.2.24
 + [x] Time picker: fix method `val` for issue #1221

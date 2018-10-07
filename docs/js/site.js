@@ -1,35 +1,6 @@
 (function() {
     "use strict";
 
-    var body = $("body");
-    var sidenav = $("#sidenav");
-    var search;
-
-    try {
-        $.get('header.html', function (data) {
-            body.prepend(data);
-        });
-    } catch (e) {}
-
-    try {
-        $.get('footer.html', function (data) {
-            // body.append(data);
-        });
-    } catch (e) {}
-
-    if (sidenav.length > 0) $.get('sidenav.html', function(data){
-        sidenav.html(data);
-
-        setTimeout(function(){
-            search = docsearch({
-                apiKey: window.location.hostname === 'getmetroui.com' ? '4209c8f6f5de768837f024b387b77ff6' : '00a53b92ba6ed063bec0a9320e60d4e6',
-                indexName: window.location.hostname === 'getmetroui.com' ? 'getmetroui' : 'metroui',
-                inputSelector: '#search_input',
-                debug: false // Set debug to true if you want to inspect the dropdown
-            });
-        }, 500);
-    });
-
     var form = $(".need-validation");
     form.on("submit", function(event) {
         event.preventDefault();
@@ -51,16 +22,37 @@
 
     Metro.utils.cleanPreCode("pre code, textarea");
 
-    // setTimeout(function(){
-    //     var b = $(".adsbygoogle");
-    //     var h = 0;
-    //     $.each(b, function(){
-    //         var bl = $(this);
-    //         if (bl.height() < 50 || Metro.utils.getStyleOne(bl, 'display') === 'none') {
-    //             bl.parent().html("<div class='bg-red fg-white p-4 text-center h3 text-light'>With your help, I can make Metro 4 even better! Please, disable AdBlock or AdGuard. Thank you for support!</div>");
-    //         }
-    //     });
-    // }, 1000)
+    setTimeout(function(){
+        var b = $(".adsbygoogle");
+        var target = $("main > h1 + .text-leader");
+        var div = $("<div>").addClass("example no-border p-0");
+
+        if (Metro.utils.isLocalhost()) {
+            return ;
+        }
+
+        if (b.length === 0) {
+            div.html("<div class='bg-red fg-white p-4 text-center h3 text-light'>With your help, I can make Metro 4 even better! Please, disable AdBlock or AdGuard.<br>Thank you for your support!</div>");
+            div.insertAfter(target);
+        } else {
+            $.each(b, function(){
+                var bl = $(this);
+                if (bl.height() < 50 || Metro.utils.getStyleOne(bl, 'display') === 'none') {
+                    div.html("<div class='bg-red fg-white p-4 text-center h3 text-light'>With your help, I can make Metro 4 even better! Please, disable AdBlock or AdGuard.<br>Thank you for your support!</div>");
+                    div.insertAfter(target);
+                }
+            });
+        }
+    }, 1000)
 }());
 
-
+var initDocSearchEngine = function(){
+    setTimeout(function(){
+        var search = docsearch({
+            apiKey: '00a53b92ba6ed063bec0a9320e60d4e6',
+            indexName: 'metroui',
+            inputSelector: '#search_input',
+            debug: false // Set debug to true if you want to inspect the dropdown
+        });
+    }, 500);
+};
