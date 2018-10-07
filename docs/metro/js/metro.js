@@ -23307,6 +23307,11 @@ var Window = {
         this.element = $(elem);
         this.win = null;
         this.overlay = null;
+        this.position = {
+            top: 0,
+            left: 0
+        };
+        this.hidden = false;
 
         this._setOptionsFromDOM();
         this._create();
@@ -23319,6 +23324,7 @@ var Window = {
     dependencies: ['draggable', 'resizeable'],
 
     options: {
+        hidden: false,
         width: "auto",
         height: "auto",
         btnClose: true,
@@ -23380,7 +23386,7 @@ var Window = {
         var that = this, element = this.element, o = this.options;
         var win, overlay;
         var prev = element.prev();
-        var parent = element.parent();
+        var parent = o.dragArea === "parent" ? element.parent() : $(o.dragArea);
 
         if (o.modal === true) {
             o.btnMax = false;
@@ -23393,21 +23399,67 @@ var Window = {
         }
 
         win = this._window(o);
+        win.addClass("no-visible");
 
-        if (prev.length === 0) {
-            parent.prepend(win);
-        } else {
-            win.insertAfter(prev);
-        }
+        // if (prev.length === 0) {
+        //     parent.prepend(win);
+        // } else {
+        //     win.insertAfter(prev);
+        // }
+
+        parent.append(win);
+
         if (o.overlay === true) {
             overlay = this._overlay();
             overlay.appendTo(win.parent());
             this.overlay = overlay;
         }
 
-        Utils.exec(o.onShow, [win]);
-
         this.win = win;
+
+        setTimeout(function(){
+            that._setPosition();
+
+            if (o.hidden !== true) {
+                that.win.removeClass("no-visible");
+            }
+            Utils.exec(o.onShow, [win], win[0]);
+        }, 100);
+    },
+
+    _setPosition: function(){
+        var that = this, element = this.element, o = this.options;
+        var win = element.closest(".window");
+        var parent = o.dragArea === "parent" ? win.parent() : $(o.dragArea);
+        var top_center = parent.height() / 2 - win[0].offsetHeight / 2;
+        var left_center = parent.width() / 2 - win[0].offsetWidth / 2;
+        var top, left, right, bottom;
+
+        if (o.place !== 'auto') {
+
+            console.log(o.place);
+            console.log(top_center);
+            console.log(left_center);
+
+            switch (o.place.toLowerCase()) {
+                case "top-left": top = 0; left = 0; right = "auto"; bottom = "auto"; break;
+                case "top-center": top = 0; left = left_center; right = "auto"; bottom = "auto"; break;
+                case "top-right": top = 0; right = 0; left = "auto"; bottom = "auto"; break;
+                case "right-center": top = top_center; right = 0; left = "auto"; bottom = "auto"; break;
+                case "bottom-right": bottom = 0; right = 0; left = "auto"; top = "auto"; break;
+                case "bottom-center": bottom = 0; left = left_center; right = "auto"; top = "auto"; break;
+                case "bottom-left": bottom = 0; left = 0; right = "auto"; top = "auto"; break;
+                case "left-center": top = top_center; left = 0; right = "auto"; bottom = "auto"; break;
+                default: top = top_center; left = left_center; bottom = "auto"; right = "auto";
+            }
+
+            win.css({
+                top: top,
+                left: left,
+                bottom: bottom,
+                right: right
+            });
+        }
     },
 
     _window: function(o){
@@ -23529,11 +23581,6 @@ var Window = {
             })
         }
 
-
-        if (o.place !== 'auto') {
-            win.addClass("pos-" + o.place);
-        }
-
         win.addClass(o.clsWindow);
         caption.addClass(o.clsCaption);
         content.addClass(o.clsContent);
@@ -23608,13 +23655,18 @@ var Window = {
     },
 
     hide: function(){
-        this.win.addClass("no-visible");
+        this.win.css({
+            display: "none"
+        });
     },
     show: function(){
         this.win.removeClass("no-visible");
+        this.win.css({
+            display: "flex"
+        });
     },
     toggle: function(){
-        if (this.win.hasClass("no-visible")) {
+        if (this.win.css("display") === "none" || this.win.hasClass("no-visible")) {
             this.show();
         } else {
             this.hide();
