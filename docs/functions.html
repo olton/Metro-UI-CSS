@@ -35,12 +35,11 @@
 
     <title>Functions - Metro 4 :: Popular HTML, CSS and JS library</title>
 </head>
-<body>
-    <div class="container-fluid">
+<body data-role="htmlcontainer" data-html-source="header.html" data-insert-mode="prepend">
+<div class="container-fluid">
 
-        <div class="row flex-xl-nowrap">
-            <div class="cell-md-3 cell-xl-2 pr-0 border-right bd-light" id="sidenav">
-            </div>
+    <div class="row flex-xl-nowrap">
+        <div class="cell-md-3 cell-xl-2 pr-0 border-right bd-light" id="sidenav" data-role="htmlcontainer" data-html-source="sidenav.html" data-insert-mode="replace" data-on-done="console.log(arguments[0])" data-on-load="initDocSearchEngine()"></div>
 
             <div class="d-none d-block-xl cell-xl-2 order-2 border-left bd-light toc-wrapper">
                 <h5>Table of contents</h5>
@@ -407,6 +406,14 @@
                     <tr>
                         <td><code>nearest(val, precision, down)</code></td>
                         <td>search for the nearest integer, a multiple of required. Ex: Metro.utils.nearest(37, 5, false) -> 40, Metro.utils.nearest(37, 5, true) -> 35</td>
+                    </tr>
+                    <tr>
+                        <td><code>copy(el)</code></td>
+                        <td>Copy element to clipboard</td>
+                    </tr>
+                    <tr>
+                        <td><code>isLocalhost()</code></td>
+                        <td>Check if current location is localhost</td>
                     </tr>
                     </tbody>
                 </table>

@@ -40741,6 +40741,44 @@ video:-webkit-full-screen {
 .chip + .chip {
   margin-left: 8px;
 }
+.image-comparer {
+  position: relative;
+  display: block;
+}
+.image-comparer .image-container,
+.image-comparer .image-container-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+}
+.image-comparer .image-container.image-container-overlay,
+.image-comparer .image-container-overlay.image-container-overlay {
+  z-index: 2;
+}
+.image-comparer .image-container .image-wrapper,
+.image-comparer .image-container-overlay .image-wrapper {
+  background-size: cover;
+}
+.image-comparer .image-container img,
+.image-comparer .image-container-overlay img {
+  display: none;
+}
+.image-comparer .image-slider {
+  z-index: 3;
+  position: absolute;
+  cursor: ew-resize;
+  width: 40px;
+  height: 40px;
+  background-color: #fa6800;
+  opacity: 0.7;
+  border-radius: 0.25rem;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
 .ripple {
   display: block;
   width: 0;
