@@ -6,6 +6,7 @@
 + [x] Utils: add function `isLocalhost()`
 + [x] Docs: upd for using `htmlcontainer` component
 + [x] Window: fix gradually disappear for children when window is hiding, issue #1222
++ [x] Utils: add methods `getCorsorPosition(...)`, `getCorsorPositionX(...)`, `getCorsorPositionY(...)` 
 
 ### 4.2.24
 + [x] Time picker: fix method `val` for issue #1221

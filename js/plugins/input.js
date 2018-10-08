@@ -14,6 +14,7 @@ var Input = {
         return this;
     },
     options: {
+        autocomplete: null,
         history: false,
         historyPreset: "",
         historyDivider: "|",

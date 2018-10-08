@@ -89,7 +89,6 @@ var ImageComparer = {
                 backgroundImage: "url("+this.src+")"
             });
             img.appendTo(i === 0 ? container : container_overlay);
-            $(this).hide();
         });
     },
 
@@ -99,16 +98,11 @@ var ImageComparer = {
         var overlay = element.find(".image-container-overlay");
         var slider = element.find(".image-slider");
 
-        var getCursorPosition = function(e){
-            var a = Utils.rect(element);
-            return e.pageX - a.left - window.pageXOffset;
-        };
-
         element.on(Metro.events.start, ".image-slider", function(e){
             var w = element.width();
             e.preventDefault();
             $(window).on(Metro.events.move + "-" + element.attr("id"), function(e){
-                var x = getCursorPosition(e), left_pos;
+                var x = Utils.getCursorPositionX(element, e), left_pos;
                 if (x < 0) x = 0;
                 if (x > w) x = w;
                 overlay.css({
