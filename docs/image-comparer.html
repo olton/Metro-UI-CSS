@@ -39,7 +39,7 @@
 <div class="container-fluid">
 
     <div class="row flex-xl-nowrap">
-        <div class="cell-md-3 cell-xl-2 pr-0 border-right bd-light" id="sidenav" data-role="htmlcontainer" data-html-source="sidenav.html" data-insert-mode="replace" data-on-done="console.log(arguments[0])" data-on-load="initDocSearchEngine()"></div>
+        <div class="cell-md-3 cell-xl-2 pr-0 border-right bd-light" id="sidenav" data-role="htmlcontainer" data-html-source="sidenav.html" data-insert-mode="replace"  data-on-load="initDocSearchEngine()"></div>
 
             <div class="d-none d-block-xl cell-xl-2 order-2 border-left bd-light toc-wrapper">
                 <h5>Table of contents</h5>
@@ -48,6 +48,7 @@
                     <li class="toc-entry"><a href="#">Image comparer</a></li>
                     <li class="toc-entry"><a href="#_ic_about">About</a></li>
                     <li class="toc-entry"><a href="#_ic_size">Set size</a></li>
+                    <li class="toc-entry"><a href="#_ic_events">Events</a></li>
                 </ul>
 
             </div>
@@ -134,6 +135,11 @@
                     &lt;/div&gt;
                 </code></pre>
 
+                <h3 id="_ic_events">Events</h3>
+                <p>
+                    You can create callback for component events:
+                    <code>data-on-resize</code>, <code>data-on-slider-move</code> and <code>data-on-image-comparer-create</code>.
+                </p>
 
             </main>
         </div>

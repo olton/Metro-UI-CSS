@@ -10599,6 +10599,8 @@ var ImageComparer = {
     options: {
         width: "100%",
         height: "auto",
+        onResize: Metro.noop,
+        onSliderMove: Metro.noop,
         onImageComparerCreate: Metro.noop
     },
 
@@ -10692,15 +10694,17 @@ var ImageComparer = {
             var w = element.width();
             e.preventDefault();
             $(window).on(Metro.events.move + "-" + element.attr("id"), function(e){
-                var x = getCursorPosition(e);
+                var x = getCursorPosition(e), left_pos;
                 if (x < 0) x = 0;
                 if (x > w) x = w;
                 overlay.css({
                     width: x
                 });
+                left_pos = x - slider.width() / 2;
                 slider.css({
-                    left: x - slider.width() / 2
+                    left: left_pos
                 });
+                Utils.exec(o.onSliderMove, [x, left_pos, slider[0]], element[0]);
             });
             $(window).on(Metro.events.stop + "-" + element.attr("id"), function(){
                 $(window).off(Metro.events.move + "-" + element.attr("id"));
@@ -10742,6 +10746,8 @@ var ImageComparer = {
                 top: element_height / 2 - slider.height() / 2,
                 left: element_width / 2 - slider.width() / 2
             });
+
+            Utils.exec(o.onResize, [element_width, element_height], element[0]);
         });
     },
 
