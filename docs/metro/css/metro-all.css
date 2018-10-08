@@ -40771,8 +40771,8 @@ video:-webkit-full-screen {
   z-index: 3;
   position: absolute;
   cursor: ew-resize;
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
   background-color: #fa6800;
   opacity: 0.7;
   border-radius: 0.25rem;

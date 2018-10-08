@@ -11,8 +11,8 @@ var ImageComparer = {
     },
 
     options: {
-        width: 300,
-        height: 200,
+        width: "100%",
+        height: "auto",
         onImageComparerCreate: Metro.noop
     },
 
@@ -42,35 +42,48 @@ var ImageComparer = {
     _createStructure: function(){
         var that = this, element = this.element, o = this.options;
         var container, container_overlay, slider;
-        var images;
+        var images, element_width, element_height;
 
         if (!Utils.isValue(element.attr("id"))) {
             element.attr("id", Utils.elementId("image-comparer"));
         }
 
         element.addClass("image-comparer").css({
-            width: o.width,
-            height: o.height
+            width: o.width
+        });
+
+        element_width = element.width();
+
+        switch (o.height) {
+            case "16/9": element_height = Utils.aspectRatioH(element_width, o.height); break;
+            case "21/9": element_height = Utils.aspectRatioH(element_width, o.height); break;
+            case "4/3": element_height = Utils.aspectRatioH(element_width, o.height); break;
+            case "auto": element_height = Utils.aspectRatioH(element_width, "16/9"); break;
+            default: element_height = o.height;
+        }
+
+        element.css({
+            height: element_height
         });
 
         container = $("<div>").addClass("image-container").appendTo(element);
         container_overlay = $("<div>").addClass("image-container-overlay").appendTo(element).css({
-            width: o.width / 2
+            width: element_width / 2
         });
 
         slider = $("<div>").addClass("image-slider").appendTo(element);
         slider.css({
-            top: element.height() / 2 - slider.height() / 2,
-            left: element.width() / 2 - slider.width() / 2
+            top: element_height / 2 - slider.height() / 2,
+            left: element_width / 2 - slider.width() / 2
         });
 
-        images = $("img");
+        images = element.find("img");
 
         $.each(images, function(i, v){
             var img = $("<div>").addClass("image-wrapper");
             img.css({
-                width: o.width,
-                height: o.height,
+                width: element_width,
+                height: element_height,
                 backgroundImage: "url("+this.src+")"
             });
             img.appendTo(i === 0 ? container : container_overlay);
@@ -80,10 +93,9 @@ var ImageComparer = {
 
     _createEvents: function(){
         var that = this, element = this.element, o = this.options;
-        var w = element.width();
+
         var overlay = element.find(".image-container-overlay");
         var slider = element.find(".image-slider");
-        var slider_width = slider.width();
 
         var getCursorPosition = function(e){
             var a = Utils.rect(element);
@@ -91,6 +103,7 @@ var ImageComparer = {
         };
 
         element.on(Metro.events.start, ".image-slider", function(e){
+            var w = element.width();
             e.preventDefault();
             $(window).on(Metro.events.move + "-" + element.attr("id"), function(e){
                 var x = getCursorPosition(e);
@@ -100,7 +113,7 @@ var ImageComparer = {
                     width: x
                 });
                 slider.css({
-                    left: x - slider_width / 2
+                    left: x - slider.width() / 2
                 });
             });
             $(window).on(Metro.events.stop + "-" + element.attr("id"), function(){
@@ -108,13 +121,54 @@ var ImageComparer = {
                 $(window).off(Metro.events.stop + "-" + element.attr("id"));
             })
         });
+
+        $(window).on(Metro.events.resize+"-"+element.attr("id"), function(){
+            var element_width = element.width(), element_height;
+
+            if (o.width !== "100%") {
+                return ;
+            }
+
+            switch (o.height) {
+                case "16/9": element_height = Utils.aspectRatioH(element_width, o.height); break;
+                case "21/9": element_height = Utils.aspectRatioH(element_width, o.height); break;
+                case "4/3": element_height = Utils.aspectRatioH(element_width, o.height); break;
+                case "auto": element_height = Utils.aspectRatioH(element_width, "16/9"); break;
+                default: element_height = o.height;
+            }
+
+            element.css({
+                height: element_height
+            });
+
+            $.each(element.find(".image-wrapper"), function(){
+                $(this).css({
+                    width: element_width,
+                    height: element_height
+                })
+            });
+
+            element.find(".image-container-overlay").css({
+                width: element_width / 2
+            });
+
+            slider.css({
+                top: element_height / 2 - slider.height() / 2,
+                left: element_width / 2 - slider.width() / 2
+            });
+        });
     },
 
     changeAttribute: function(attributeName){
 
     },
 
-    destroy: function(){}
+    destroy: function(){
+        var element = this.element;
+
+        element.off(Metro.events.start);
+        $(window).off(Metro.events.resize+"-"+element.attr("id"));
+    }
 };
 
 Metro.plugin('imagecomparer', ImageComparer);
