@@ -278,6 +278,22 @@ var Utils = {
         return el.getBoundingClientRect();
     },
 
+    getCursorPosition: function(el, e){
+        var a = Utils.rect(el);
+        return {
+            x: e.pageX - a.left - window.pageXOffset,
+            y: e.pageY - a.top - window.pageYOffset
+        };
+    },
+
+    getCursorPositionX: function(el, e){
+        return Utils.getCursorPosition(el, e).x;
+    },
+
+    getCursorPositionY: function(el, e){
+        return Utils.getCursorPosition(el, e).y;
+    },
+
     objectLength: function(obj){
         return Object.keys(obj).length;
     },
