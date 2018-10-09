@@ -11439,6 +11439,7 @@ var Input = {
         this.element = $(elem);
         this.history = [];
         this.historyIndex = -1;
+        this.autocomplete = [];
 
         this._setOptionsFromDOM();
         this._create();
@@ -11449,6 +11450,8 @@ var Input = {
     },
     options: {
         autocomplete: null,
+        autocompleteListHeight: 200,
+
         history: false,
         historyPreset: "",
         historyDivider: "|",
@@ -11602,6 +11605,21 @@ var Input = {
             });
         }
 
+        if (!Utils.isNull(o.autocomplete)) {
+
+            var autocomplete_obj = Utils.isObject(o.autocomplete);
+
+            if (autocomplete_obj !== false) {
+                that.autocomplete = autocomplete_obj;
+            } else {
+                this.autocomplete = Utils.strToArray(o.autocomplete);
+            }
+            $("<div>").addClass("autocomplete-list").css({
+                maxHeight: o.autocompleteListHeight,
+                display: "none"
+            }).appendTo(container);
+        }
+
         if (element.is(":disabled")) {
             this.disable();
         } else {
@@ -11612,10 +11630,16 @@ var Input = {
     _createEvents: function(){
         var that = this, element = this.element, o = this.options;
         var container = element.closest(".input");
+        var autocompleteList = container.find(".autocomplete-list");
 
         container.on(Metro.events.click, ".input-clear-button", function(){
             var curr = element.val();
             element.val(Utils.isValue(o.defaultValue) ? o.defaultValue : "").trigger('change').trigger('keyup').focus();
+            if (autocompleteList.length > 0) {
+                autocompleteList.css({
+                    display: "none"
+                })
+            }
             Utils.exec(o.onClearClick, [curr, element.val()], element[0]);
         });
 
@@ -11680,8 +11704,52 @@ var Input = {
             }
         });
 
-        element.on(Metro.events.blur, function(){container.removeClass("focused");});
-        element.on(Metro.events.focus, function(){container.addClass("focused");});
+        element.on(Metro.events.blur, function(){
+            container.removeClass("focused");
+        });
+
+        element.on(Metro.events.focus, function(){
+            container.addClass("focused");
+        });
+
+        element.on(Metro.events.input, function(){
+            var val = this.value.toLowerCase();
+            var items;
+
+            if (autocompleteList.length === 0) {
+                return;
+            }
+
+            autocompleteList.html("");
+
+            items = that.autocomplete.filter(function(item){
+                return item.toLowerCase().indexOf(val) > -1;
+            });
+
+            autocompleteList.css({
+                display: items.length > 0 ? "block" : "none"
+            });
+
+            $.each(items, function(){
+                var index = this.toLowerCase().indexOf(val);
+                var item = $("<div>").addClass("item").attr("data-autocomplete-value", this);
+                var html;
+
+                if (index === 0) {
+                    html = "<strong>"+this.substr(0, val.length)+"</strong>"+this.substr(val.length);
+                } else {
+                    html = this.substr(0, index) + "<strong>"+this.substr(index, val.length)+"</strong>"+this.substr(index + val.length);
+                }
+                item.html(html).appendTo(autocompleteList);
+            })
+        });
+
+        container.on(Metro.events.click, ".autocomplete-list .item", function(){
+            element.val($(this).attr("data-autocomplete-value"));
+            autocompleteList.css({
+                display: "none"
+            });
+        });
     },
 
     getHistory: function(){
@@ -11771,6 +11839,11 @@ var Input = {
 };
 
 Metro.plugin('input', Input);
+
+$(document).on(Metro.events.click, function(e){
+    $('.input .autocomplete-list').hide();
+});
+
 
 // Source: js/plugins/keypad.js
 var Keypad = {
