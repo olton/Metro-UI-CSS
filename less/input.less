@@ -61,3 +61,35 @@
     input {order: 2;}
     .button-group {order: 3;}
 }
+
+.input {
+    .autocomplete-list {
+        margin: 0;
+        padding: 0;
+        list-style: none inside;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        overflow: hidden;
+        overflow-y: auto;
+        background-color: @white;
+        height: auto;
+        border: 1px solid @borderColor;
+
+        .item {
+            display: block;
+            position: relative;
+            padding: 4px 8px;
+            cursor: pointer;
+
+            &:hover {
+                background-color: @hoverBackground;
+            }
+        }
+
+        .item + .item {
+            border-top: 1px solid @borderColor;
+        }
+    }
+}
