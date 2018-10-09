@@ -40788,8 +40788,9 @@ video:-webkit-full-screen {
   vertical-align: middle;
   width: 100%;
   height: auto;
+  max-height: 100%;
 }
-.image-magnifier .image-magnifier {
+.image-magnifier .image-magnifier-glass {
   position: absolute;
   border-radius: 0;
   cursor: none;
