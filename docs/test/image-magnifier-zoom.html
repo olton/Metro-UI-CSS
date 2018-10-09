@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <link href="../metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
+
+    <title>Image magnifier test page - Metro 4 :: Popular HTML, CSS and JS library</title>
+</head>
+<body>
+
+<div class="container mt-4">
+    <h1>Metro 4</h1>
+    <h3>Image magnifier, zoom mode</h3>
+    <div class="row">
+        <div class="cell-md-8">
+            <div class="image-magnifier border bd-default"
+                 data-role="imagemagnifier"
+                 data-width="100%"
+                 data-magnifier-zoom="4"
+                 data-magnifier-size="64"
+                 data-magnifier-mode="zoom"
+                 data-magnifier-zoom-element="#zoom">
+                <img src="../images/krossovki-2018-sand.jpg">
+            </div>
+        </div>
+        <div class="cell-md-4">
+            <div id="zoom" class="border bd-default"></div>
+        </div>
+    </div>
+    <br>
+    <pre><code>
+        &lt;div class="cell-md-8"&gt;
+            &lt;div class="image-magnifier border bd-default"
+                 data-role="imagemagnifier"
+                 data-width="100%"
+                 data-magnifier-zoom="4"
+                 data-magnifier-size="64"
+                 data-magnifier-mode="zoom"
+                 data-magnifier-zoom-element="#zoom"&gt;
+                &lt;img src="../images/krossovki-2018-sand.jpg"&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="cell-md-4"&gt;
+            &lt;div id="zoom" class="border bd-default"&gt;&lt;/div&gt;
+        &lt;/div&gt;
+    </code></pre>
+</div>
+
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script src="../metro/js/metro.js?ver=@@b-version"></script>
+<script>
+    Metro.utils.cleanPreCode("pre code");
+</script>
+</body>
+</html>
