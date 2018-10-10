@@ -7,7 +7,7 @@
 + [x] Docs: upd for using `htmlcontainer` component
 + [x] Window: fix gradually disappear for children when window is hiding, issue #1222
 + [x] Utils: add methods `getCorsorPosition(...)`, `getCorsorPositionX(...)`, `getCorsorPositionY(...)` 
-+ [x] Image comparer: new component
++ [x] Image compare: new component
 + [x] Image magnifier: new component
 
 ### 4.2.24

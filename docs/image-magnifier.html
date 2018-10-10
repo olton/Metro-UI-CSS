@@ -22,7 +22,7 @@
     <meta property="og:image:height" content="504">
 
     <meta name="author" content="Sergey Pimenov">
-    <meta name="description" content="The most popular HTML, CSS, and JS library in Metro style.">
+    <meta name="description" content="Discover image with image magnifier component. The most popular HTML, CSS, and JS library in Metro style.">
     <meta name="keywords" content="HTML, CSS, JS, Metro, CSS3, Javascript, HTML5, UI, Library, Web, Development, Framework">
 
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
@@ -33,7 +33,7 @@
     <link href="docsearch/docsearch.min.css" rel="stylesheet">
     <link href="css/site.css" rel="stylesheet">
 
-    <title>Image comparer - Metro 4 :: Popular HTML, CSS and JS library</title>
+    <title>Image magnifier - Metro 4 :: Popular HTML, CSS and JS library</title>
 </head>
 <body data-role="htmlcontainer" data-html-source="header.html" data-insert-mode="prepend">
 <div class="container-fluid">
@@ -45,10 +45,12 @@
                 <h5>Table of contents</h5>
                 <hr/>
                 <ul class="toc-nav">
-                    <li class="toc-entry"><a href="#">Image comparer</a></li>
-                    <li class="toc-entry"><a href="#_ic_about">About</a></li>
-                    <li class="toc-entry"><a href="#_ic_size">Set size</a></li>
-                    <li class="toc-entry"><a href="#_ic_events">Events</a></li>
+                    <li class="toc-entry"><a href="#">Image magnifier</a></li>
+                    <li class="toc-entry"><a href="#_im_about">About</a></li>
+                    <li class="toc-entry"><a href="#_im_glass">Magnifier glass</a></li>
+                    <li class="toc-entry"><a href="#_im_zoom">Magnifier zoom</a></li>
+                    <li class="toc-entry"><a href="#_im_zooming">Zooming</a></li>
+                    <li class="toc-entry"><a href="#_im_customize">Customize</a></li>
                 </ul>
 
             </div>
@@ -58,87 +60,85 @@
                     <img src="images/logo.png" class="w-100">
                 </div>
 
-                <h1>Image comparer</h1>
+                <h1>Image magnifier</h1>
                 <p class="text-leader">
-                    Create interactive image comparer with Metro 4 component.
+                    Discover image with image magnifier component.
                 </p>
 
                 <!-- ads-html -->
 
-                <h3 id="_ic_about">About</h3>
+                <h3 id="_im_about">About</h3>
                 <p>
-                    To create <code>image-comparer</code>, add attribute <code>data-role="imagecomparer"</code> to your container and put into container two images.
+                    You can discover image with <code>image-magnifier</code> component.
+                    To create image magnifier, add role <code>data-role="imagemagnifier"</code> to container and put image in the container.
+                    You can create two type of image magnifier: <code>glass</code> and <code>zoom</code>.
                 </p>
-                <div class="example d-flex flex-justify-center">
-                    <div class="image-comparer" data-role="imagecomparer">
-                        <img src="images/ic-1.jpg">
-                        <img src="images/ic-2.jpg">
+
+                <h4 id="_im_glass">Image magnifier glass</h4>
+                <p>
+                    To create image magnifier <code>glass</code>, you must add attribute <code>data-magnifier-mode="glass"</code>.
+                </p>
+                <div class="example">
+                    <div data-role="imagemagnifier" data-magnifier-mode="glass">
+                        <img src="images/hopetoun_falls.jpg">
                     </div>
                 </div>
-                <pre><code>
-                    &lt;div class="image-comparer" data-role="imagecomparer"&gt;
-                        &lt;img src="images/ic-1.jpg"&gt;
-                        &lt;img src="images/ic-2.jpg"&gt;
+                <pre><code class="html">
+                    &lt;div data-role="imagemagnifier" data-magnifier-mode="glass"&gt;
+                        &lt;img src="images/hopetoun_falls.jpg"&gt;
                     &lt;/div&gt;
                 </code></pre>
 
-                <h3 id="_ic_size">Set size</h3>
                 <p>
-                    You can change size of <code>image-comparer</code> with attributes <code>data-width</code> and <code>data-height</code>.
-                    By default, these attributes have next values: <code>data-width="100%"</code>, <code>data-height="auto"</code>.
-                    You can use <code>integer</code>, <code>percent</code> or <code>aspect-ratio</code> values.
+                    You can use attribute <code>data-lens-type</code> to set type of magnifier <code>lens</code>.
+                    To set circle magnifier lens, use value <code>circle</code>.
+                    To change size of the lens, use attribute <code>data-lens-size</code>.
                 </p>
-
-                <h4>Aspect-ratio value</h4>
-                <p>
-                    To set component height, you can use special <code>aspect-ratio</code> values:
-                    <code>16/9</code>,
-                    <code>21/9</code>,
-                    <code>4/3</code>.
-                </p>
-
-                <h4>Fixed size</h4>
-                <p>
-                    To set fixed size, use integer values for attributes <code>data-width</code> and <code>data-height</code>.
-                </p>
-                <div class="example d-flex flex-justify-center">
-                    <div class="image-comparer" data-role="imagecomparer" data-width="300" data-height="200">
-                        <img src="images/ic-1.jpg">
-                        <img src="images/ic-2.jpg">
+                <div class="example">
+                    <div data-role="imagemagnifier" data-magnifier-mode="glass" data-lens-type="circle" data-lens-size="200">
+                        <img src="images/hopetoun_falls.jpg">
                     </div>
                 </div>
-                <pre><code>
-                    &lt;div class="image-comparer" data-role="imagecomparer" data-width="300" data-height="200"&gt;
-                        &lt;img src="images/ic-1.jpg"&gt;
-                        &lt;img src="images/ic-2.jpg"&gt;
+                <pre><code class="html">
+                    &lt;div data-role="imagemagnifier"
+                        data-magnifier-mode="glass"
+                        data-lens-type="circle"
+                        data-lens-size="200"
+                    &gt;
+                        &lt;img src="images/hopetoun_falls.jpg"&gt;
                     &lt;/div&gt;
                 </code></pre>
 
-                <h4>Responsive container</h4>
+                <h4 id="_im_zoom">Image magnifier zoom</h4>
                 <p>
-                    If you need a response <code>image-comparer</code>, set <code>data-width="100%"</code> and use special values for <code>data-height</code> attribute:
-                        <code>16/9</code>,
-                        <code>21/9</code>,
-                        <code>4/3</code>,
-                        <code>auto</code> (for auto used <code>16/9</code> value).
+                    To create image magnifier <code>zoom</code>, you must add attribute <code>data-magnifier-mode="zoom"</code>.
                 </p>
-                <div class="example d-flex flex-justify-center">
-                    <div class="image-comparer" data-role="imagecomparer" data-height="16/9">
-                        <img src="images/ic-1.jpg">
-                        <img src="images/ic-2.jpg">
+                <div class="example">
+                    <div data-role="imagemagnifier" data-magnifier-mode="zoom" data-cls-zoom="mx-auto mt-4">
+                        <img src="images/hopetoun_falls.jpg">
                     </div>
                 </div>
-                <pre><code>
-                    &lt;div class="image-comparer" data-role="imagecomparer" data-height="16/9"&gt;
-                        &lt;img src="images/ic-1.jpg"&gt;
-                        &lt;img src="images/ic-2.jpg"&gt;
+                <pre><code class="html">
+                    &lt;div data-role="imagemagnifier" data-magnifier-mode="zoom"&gt;
+                        &lt;img src="images/hopetoun_falls.jpg"&gt;
                     &lt;/div&gt;
                 </code></pre>
 
-                <h3 id="_ic_events">Events</h3>
                 <p>
-                    You can create callback for component events:
-                    <code>data-on-resize</code>, <code>data-on-slider-move</code> and <code>data-on-image-comparer-create</code>.
+                    You can define your one zoom element with attribute <code>data-zoom-element</code>.
+                    To set, use right element selector.
+                </p>
+
+                <h3 id="_im_zooming">Zooming</h3>
+                <p>
+                    To change zooming of the lens, use attribute <code>data-magnifier-zoom</code>.
+                    By default this attribute have a value <code>2</code>.
+                    This attribute used for set zoom element size for image magnifier zoom.
+                </p>
+
+                <h3 id="_im_customize">Customize</h3>
+                <p>
+                    You can use attributes <code>data-cls-magnifier</code>, <code>data-cls-lens</code>, <code>data-cls-zoom</code> to customize magnifier  elements.
                 </p>
 
             </main>

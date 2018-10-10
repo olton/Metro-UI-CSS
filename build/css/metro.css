@@ -40767,15 +40767,15 @@ video:-webkit-full-screen {
 .chip + .chip {
   margin-left: 8px;
 }
-.image-comparer {
+.image-compare {
   position: relative;
   display: block;
 }
-.image-comparer img {
+.image-compare img {
   display: none;
 }
-.image-comparer .image-container,
-.image-comparer .image-container-overlay {
+.image-compare .image-container,
+.image-compare .image-container-overlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -40784,15 +40784,15 @@ video:-webkit-full-screen {
   overflow: hidden;
   z-index: 1;
 }
-.image-comparer .image-container.image-container-overlay,
-.image-comparer .image-container-overlay.image-container-overlay {
+.image-compare .image-container.image-container-overlay,
+.image-compare .image-container-overlay.image-container-overlay {
   z-index: 2;
 }
-.image-comparer .image-container .image-wrapper,
-.image-comparer .image-container-overlay .image-wrapper {
+.image-compare .image-container .image-wrapper,
+.image-compare .image-container-overlay .image-wrapper {
   background-size: cover;
 }
-.image-comparer .image-slider {
+.image-compare .image-slider {
   z-index: 3;
   position: absolute;
   cursor: ew-resize;

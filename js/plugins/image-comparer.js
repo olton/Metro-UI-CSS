@@ -1,4 +1,4 @@
-var ImageComparer = {
+var ImageCompare = {
     init: function( options, elem ) {
         this.options = $.extend( {}, this.options, options );
         this.elem  = elem;
@@ -15,7 +15,7 @@ var ImageComparer = {
         height: "auto",
         onResize: Metro.noop,
         onSliderMove: Metro.noop,
-        onImageComparerCreate: Metro.noop
+        onImageCompareCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -38,7 +38,7 @@ var ImageComparer = {
         this._createStructure();
         this._createEvents();
 
-        Utils.exec(o.onImageComparerCreate, [element], element[0]);
+        Utils.exec(o.onImageCompareCreate, [element], element[0]);
     },
 
     _createStructure: function(){
@@ -47,10 +47,10 @@ var ImageComparer = {
         var images, element_width, element_height;
 
         if (!Utils.isValue(element.attr("id"))) {
-            element.attr("id", Utils.elementId("image-comparer"));
+            element.attr("id", Utils.elementId("image-compare"));
         }
 
-        element.addClass("image-comparer").css({
+        element.addClass("image-compare").css({
             width: o.width
         });
 
@@ -171,4 +171,4 @@ var ImageComparer = {
     }
 };
 
-Metro.plugin('imagecomparer', ImageComparer);
+Metro.plugin('imagecompare', ImageCompare);
