@@ -85,6 +85,7 @@
     <url><loc>https://metroui.org.ua/tables.html</loc></url>
     <url><loc>https://metroui.org.ua/table-component.html</loc></url>
     <url><loc>https://metroui.org.ua/tabs.html</loc></url>
+    <url><loc>https://metroui.org.ua/tabs-material.html</loc></url>
     <url><loc>https://metroui.org.ua/tiles.html</loc></url>
     <url><loc>https://metroui.org.ua/timepicker.html</loc></url>
     <url><loc>https://metroui.org.ua/toast.html</loc></url>
@@ -104,4 +105,12 @@
     <url><loc>https://metroui.org.ua/radio.html</loc></url>
     <url><loc>https://metroui.org.ua/switch.html</loc></url>
     <url><loc>https://metroui.org.ua/file.html</loc></url>
+
+    <url><loc>https://metroui.org.ua/image-compare.html</loc></url>
+    <url><loc>https://metroui.org.ua/image-magnifier.html</loc></url>
+    <url><loc>https://metroui.org.ua/input-material.html</loc></url>
+    <url><loc>https://metroui.org.ua/bottom-nav.html</loc></url>
+    <url><loc>https://metroui.org.ua/bottom-sheet.html</loc></url>
+    <url><loc>https://metroui.org.ua/chips.html</loc></url>
+    <url><loc>https://metroui.org.ua/swipe.html</loc></url>
 </urlset>

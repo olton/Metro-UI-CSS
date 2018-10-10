@@ -143,7 +143,7 @@ var Metro = {
         stop: 'touchend.metro mouseup.metro',
         move: 'touchmove.metro mousemove.metro',
         enter: 'touchstart.metro mouseenter.metro',
-        leave: 'touchend.metro mouseleave.metro',
+        leave: 'mouseleave.metro',
         focus: 'focus.metro',
         blur: 'blur.metro',
         resize: 'resize.metro',
