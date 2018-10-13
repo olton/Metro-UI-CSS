@@ -395,7 +395,7 @@ var Metro = {
         p = $(element).data(name);
 
         if (!Utils.isValue(p)) {
-            throw new Error("Component can not be destroyed: the element is not a Ьуекщ 4 component.");
+            throw new Error("Component can not be destroyed: the element is not a Metro 4 component.");
         }
 
         if (!Utils.isFunc(p['destroy'])) {

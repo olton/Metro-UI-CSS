@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <meta name="twitter:site" content="@metroui">
+    <meta name="twitter:creator" content="@pimenov_sergey">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Metro 4 Components Library">
+    <meta name="twitter:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.">
+    <meta name="twitter:image" content="https://metroui.org.ua/images/m4-logo-social.png">
+
+    <meta property="og:url" content="https://metroui.org.ua/v4/index.html">
+    <meta property="og:title" content="Metro 4 Components Library">
+    <meta property="og:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:secure_url" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="968">
+    <meta property="og:image:height" content="504">
+
+    <meta name="author" content="Sergey Pimenov">
+    <meta name="description" content="The most popular HTML, CSS, and JS library in Metro style.">
+    <meta name="keywords" content="HTML, CSS, JS, Metro, CSS3, Javascript, HTML5, UI, Library, Web, Development, Framework">
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <link href="metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
+    <link href="highlight/styles/github.css" rel="stylesheet">
+    <link href="docsearch/docsearch.min.css" rel="stylesheet">
+    <link href="css/site.css" rel="stylesheet">
+
+    <title>Touch and swipe - Metro 4 :: Popular HTML, CSS and JS library</title>
+</head>
+<body data-role="htmlcontainer" data-html-source="header.html" data-insert-mode="prepend">
+<div class="container-fluid">
+
+    <div class="row flex-xl-nowrap">
+        <div class="cell-md-3 cell-xl-2 pr-0 border-right bd-light" id="sidenav" data-role="htmlcontainer" data-html-source="sidenav.html" data-insert-mode="replace"  data-on-load="initDocSearchEngine()"></div>
+
+            <div class="d-none d-block-xl cell-xl-2 order-2 border-left bd-light toc-wrapper">
+                <h5>Table of contents</h5>
+                <hr/>
+                <ul class="toc-nav">
+                    <li class="toc-entry"><a href="#">Touch and swipe</a></li>
+                    <li class="toc-entry"><a href="#_swipe_about">About</a></li>
+                    <li class="toc-entry"><a href="#_swipe_features">Main features</a></li>
+                    <li class="toc-entry"><a href="#_swipe_options">Options</a></li>
+                    <li class="toc-entry"><a href="#_swipe_events">Component events</a></li>
+                    <li class="toc-entry">
+                        <a href="#_swipe_swipes">Swipe events</a>
+                        <ul>
+                            <li class="toc-entry"><a href="#_swipe_event_swipe">Swipe</a></li>
+                            <li class="toc-entry"><a href="#_swipe_event_swipe_left">Swipe left</a></li>
+                            <li class="toc-entry"><a href="#_swipe_event_swipe_right">Swipe right</a></li>
+                            <li class="toc-entry"><a href="#_swipe_event_swipe_up">Swipe up</a></li>
+                            <li class="toc-entry"><a href="#_swipe_event_swipe_down">Swipe down</a></li>
+                            <li class="toc-entry"><a href="#_swipe_event_swipe_status">Swipe status</a></li>
+                        </ul>
+                    </li>
+                    <li class="toc-entry">
+                        <a href="#_swipe_pinches">Pinch events</a>
+                        <ul>
+                            <li class="toc-entry"><a href="#_swipe_event_pinch_in">Pinch in</a></li>
+                            <li class="toc-entry"><a href="#_swipe_event_pinch_out">Pinch out</a></li>
+                            <li class="toc-entry"><a href="#_swipe_event_pinch_status">Pinch status</a></li>
+                        </ul>
+                    </li>
+                    <li class="toc-entry">
+                        <a href="#_swipe_taps">Taps events</a>
+                        <ul>
+                            <li class="toc-entry"><a href="#_swipe_event_tap">Tap</a></li>
+                            <li class="toc-entry"><a href="#_swipe_event_tap_double">Double tap</a></li>
+                            <li class="toc-entry"><a href="#_swipe_event_tap_long">Long tap</a></li>
+                            <li class="toc-entry"><a href="#_swipe_event_hold">Hold</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
+
+            <main class="cell-md-9 cell-xl-8 order-1 pr-1-sx pl-1-sx pr-5-md pl-5-md">
+                <div class="place-right d-none d-block-lg" style="width: 200px;">
+                    <img src="images/logo.png" class="w-100">
+                </div>
+
+                <h1>Touch and swipe</h1>
+                <p class="text-leader">
+                    This component designed and to be used on touch devices such us iPad, iPhone, Android Phone, etc.
+                </p>
+
+                <!-- ads-html -->
+
+                <h3 id="_swipe_about">About</h3>
+                <p class="text-small">Based on <strong class="fg-green">Matt Bryson</strong> <a href="https://github.com/mattbryson/TouchSwipe-Jquery-Plugin">TouchSwipe plugin</a></p>
+                <p>
+                    The <code>swipe</code> component designed and to be used on touch devices such us iPad, iPhone, Android Phone, etc.
+                    Component can detects single and multiple finger swipes, pinches and falls back to mouse 'drags' on the desktop.
+                    You can set time and distance thresholds to distinguish between swipe gesture and slow drag.
+                    The component allows exclusion of child elements (interactive elements) as well allowing page scrolling or page zooming depending on configuration.
+                </p>
+                <p>
+                    To activate component, you must add attribute <code>data-role="swipe"</code> to your touch area, or use function init method:
+                </p>
+                <pre><code>
+                    &lt;body data-role="swipe"&gt;
+                    ...
+                    &lt;/body&gt;
+                </code></pre>
+
+                <p>or</p>
+
+                <pre><code>
+                    $("body").swipe({...});
+                </code></pre>
+
+                <h3 id="_swipe_features">Main features</h3>
+                <p>
+                    The main features of the <code>swipe</code> component:
+                </p>
+                <ul>
+                    <li>Detects swipes in 4 directions, "up", "down", "left" and "right"</li>
+                    <li>Detects pinches "in" and "out"</li>
+                    <li>Supports single finger or double finger touch events</li>
+                    <li>Supports click events both on the touchSwipe object and its child objects</li>
+                    <li>Definable threshold / maxTimeThreshold to determin when a gesture is actually a swipe</li>
+                    <li>Events triggered for swipe "start","move","end" and "cancel"</li>
+                    <li>End event can be triggered either on touch release, or as soon as threshold is met</li>
+                    <li>Allows swiping and page scrolling</li>
+                    <li>Disables user input elements (Button, form, text etc) from triggering swipes</li>
+                </ul>
+
+                <h3 id="_swipe_options">Options</h3>
+                <p>
+                    You can set any options to change reaction component to your touches.
+                </p>
+                <table class="table cell-border table-border options-table">
+                    <thead>
+                    <tr>
+                        <th>Option</th>
+                        <th>Data-*</th>
+                        <th>Default</th>
+                        <th>Desc</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><code>fingers</code></td>
+                        <td><code>data-fingers</code></td>
+                        <td>1</td>
+                        <td>Constants representing the number of fingers used in a swipe. Use integer value or 'ALL'. Any swipes that do not meet this requirement will NOT trigger swipe handlers.</td>
+                    </tr>
+                    <tr>
+                        <td><code>threshold</code></td>
+                        <td><code>data-threshold</code></td>
+                        <td>75</td>
+                        <td>The number of pixels that the user must move their finger by before it is considered a swipe.</td>
+                    </tr>
+                    <tr>
+                        <td><code>cancelThreshold</code></td>
+                        <td><code>data-cancel-threshold</code></td>
+                        <td>null</td>
+                        <td>The number of pixels that the user must move their finger back from the original swipe direction to cancel the gesture.</td>
+                    </tr>
+                    <tr>
+                        <td><code>pinchThreshold</code></td>
+                        <td><code>data-pinch-threshold</code></td>
+                        <td>20</td>
+                        <td>The number of pixels that the user must pinch their finger by before it is considered a pinch.</td>
+                    </tr>
+                    <tr>
+                        <td><code>pinchThreshold</code></td>
+                        <td><code>data-pinch-threshold</code></td>
+                        <td>20</td>
+                        <td>The number of pixels that the user must pinch their finger by before it is considered a pinch.</td>
+                    </tr>
+                    <tr>
+                        <td><code>maxTimeThreshold</code></td>
+                        <td><code>data-max-time-threshold</code></td>
+                        <td>null</td>
+                        <td>Time, in milliseconds, between touchStart and touchEnd must NOT exceed in order to be considered a swipe.</td>
+                    </tr>
+                    <tr>
+                        <td><code>fingerReleaseThreshold</code></td>
+                        <td><code>data-finger-release-threshold</code></td>
+                        <td>250</td>
+                        <td>Time in milliseconds between releasing multiple fingers. If 2 fingers are down, and are released one after the other, if they are within this threshold, it counts as a simultaneous release.</td>
+                    </tr>
+                    <tr>
+                        <td><code>longTapThreshold</code></td>
+                        <td><code>data-long-tap-threshold</code></td>
+                        <td>500</td>
+                        <td>Time in milliseconds between tap and release for a long tap.</td>
+                    </tr>
+                    <tr>
+                        <td><code>doubleTapThreshold</code></td>
+                        <td><code>data-double-tap-threshold</code></td>
+                        <td>200</td>
+                        <td>Time in milliseconds between 2 taps to count as a double tap.</td>
+                    </tr>
+                    <tr>
+                        <td><code>triggerOnTouchEnd</code></td>
+                        <td><code>data-trigger-on-touch-end</code></td>
+                        <td>true</td>
+                        <td>If true, the swipe events are triggered when the touch end event is received (user releases finger). If false, it will be triggered on reaching the threshold, and then cancel the touch event automatically.</td>
+                    </tr>
+                    <tr>
+                        <td><code>triggerOnTouchLeave</code></td>
+                        <td><code>data-trigger-on-touch-leave</code></td>
+                        <td>false</td>
+                        <td>If true, then when the user leaves the swipe object, the swipe will end and trigger appropriate handlers.</td>
+                    </tr>
+                    <tr>
+                        <td><code>allowPageScroll</code></td>
+                        <td><code>data-allow-page-scroll</code></td>
+                        <td>auto</td>
+                        <td>
+                            How the browser handles page scrolls when the user is swiping on a swipe object.
+                            <br><code>auto</code> : all undefined swipes will cause the page to scroll in that direction.
+                            <br><code>none</code> : the page will not scroll when user swipes.
+                            <br><code>horizontal</code> : will force page to scroll on horizontal swipes.
+                            <br><code>vertical</code> : will force page to scroll on vertical swipes.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><code>fallbackToMouseEvents</code></td>
+                        <td><code>data-fallback-to-mouse-events</code></td>
+                        <td>true</td>
+                        <td>If true mouse events are used when run on a non touch device, false will stop swipes being triggered by mouse events on non touch devices.</td>
+                    </tr>
+                    <tr>
+                        <td><code>excludedElements</code></td>
+                        <td><code>data-excluded-elements</code></td>
+                        <td>.no-swipe</td>
+                        <td>A jquery selector that specifies child elements that do NOT trigger swipes. By default this excludes elements with the class <code>.no-swipe</code>.</td>
+                    </tr>
+                    <tr>
+                        <td><code>preventDefaultEvents</code></td>
+                        <td><code>data-prevent-default-events</code></td>
+                        <td>true</td>
+                        <td>By default default events are cancelled, so the page doesn't move. You can disable this so both native events fire as well as your handlers.</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+
+                <h3 id="_swipe_events">Events</h3>
+                <p>
+                    You can handle various events to respond to user actions:
+                        <code>swipe</code>,
+                        <code>swipe left</code>,
+                        <code>swipe right</code>,
+                        <code>swipe up</code>,
+                        <code>swipe down</code>,
+                        <code>pinch in</code>,
+                        <code>pinch out</code>,
+                        <code>tap</code>,
+                        <code>double tap</code>,
+                        <code>long tap</code>,
+                        <code>hold</code>.
+                </p>
+
+                <h3 id="_swipe_swipes">Swipe events</h3>
+
+                <p>Swipe events receive next arguments:</p>
+                <table class="table cell-border table-border options-table mt-4">
+                    <thead>
+                    <tr>
+                        <th>Argument</th>
+                        <th>Type</th>
+                        <th>Desc</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><code>event</code></td>
+                        <td><code>eventObject</code></td>
+                        <td>The original event object</td>
+                    </tr>
+                    <tr>
+                        <td><code>direction</code></td>
+                        <td><code>string</code></td>
+                        <td>The direction the user action in: left, right, up, down, in, out</td>
+                    </tr>
+                    <tr>
+                        <td><code>distance</code></td>
+                        <td><code>int</code></td>
+                        <td>The distance the user action.</td>
+                    </tr>
+                    <tr>
+                        <td><code>duration</code></td>
+                        <td><code>int</code></td>
+                        <td>The duration of the action in milliseconds.</td>
+                    </tr>
+                    <tr>
+                        <td><code>fingerCount</code></td>
+                        <td><code>int</code></td>
+                        <td>The number of fingers used.</td>
+                    </tr>
+                    <tr>
+                        <td><code>fingerData</code></td>
+                        <td><code>object</code></td>
+                        <td>The coordinates of fingers in event.</td>
+                    </tr>
+                    <tr>
+                        <td><code>currentDirection</code></td>
+                        <td><code>string</code></td>
+                        <td>The current direction the user is swiping.</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <h4 id="_swipe_event_swipe">Swipe</h4>
+                <p>
+                    To handle <code>swipe</code> event, you must use attribute <code>data-swipe</code> or, if your use functionality init method, define method <code>swipe</code> in options.
+                </p>
+                <pre><code>
+                    &lt;body data-role="swipe" data-swipe="mySwipeFunction"&gt;
+                    ...
+                    &lt;/body&gt;
+
+                    &lt;script&gt;
+                        function mySwipeFunction(...){
+                            ...
+                        }
+                    &lt;/script&gt;
+                </code></pre>
+
+                <p>or</p>
+
+                <pre><code>
+                    $("body").swipe({
+                        swipe: function(...){...}
+                    });
+                </code></pre>
+
+                <h4 id="_swipe_event_swipe_left">Swipe left</h4>
+                <p>
+                    To handle <code>swipe left</code> event, you must use attribute <code>data-swipe-left</code> or, if your use functionality init method, define method <code>swipeLeft</code> in options.
+                </p>
+                <pre><code>
+                    &lt;body data-role="swipe" data-swipe-left="mySwipeFunction"&gt;
+                    ...
+                    &lt;/body&gt;
+
+                    &lt;script&gt;
+                        function mySwipeFunction(...){
+                            ...
+                        }
+                    &lt;/script&gt;
+                </code></pre>
+
+                <p>or</p>
+
+                <pre><code>
+                    $("body").swipe({
+                        swipeLeft: function(...){...}
+                    });
+                </code></pre>
+
+                <h4 id="_swipe_event_swipe_right">Swipe right</h4>
+                <p>
+                    To handle <code>swipe right</code> event, you must use attribute <code>data-swipe-right</code> or, if your use functionality init method, define method <code>swipeRight</code> in options.
+                </p>
+                <pre><code>
+                    &lt;body data-role="swipe" data-swipe-right="mySwipeFunction"&gt;
+                    ...
+                    &lt;/body&gt;
+
+                    &lt;script&gt;
+                        function mySwipeFunction(...){
+                            ...
+                        }
+                    &lt;/script&gt;
+                </code></pre>
+
+                <p>or</p>
+
+                <pre><code>
+                    $("body").swipeRight({
+                        swipe: function(...){...}
+                    });
+                </code></pre>
+
+                <h4 id="_swipe_event_swipe_up">Swipe up</h4>
+                <p>
+                    To handle <code>swipe up</code> event, you must use attribute <code>data-swipe-up</code> or, if your use functionality init method, define method <code>swipeUp</code> in options.
+                </p>
+                <pre><code>
+                    &lt;body data-role="swipe" data-swipe-up="mySwipeFunction"&gt;
+                    ...
+                    &lt;/body&gt;
+
+                    &lt;script&gt;
+                        function mySwipeFunction(...){
+                            ...
+                        }
+                    &lt;/script&gt;
+                </code></pre>
+
+                <p>or</p>
+
+                <pre><code>
+                    $("body").swipe({
+                        swipeUp: function(...){...}
+                    });
+                </code></pre>
+
+                <h4 id="_swipe_event_swipe_down">Swipe down</h4>
+                <p>
+                    To handle <code>swipe down</code> event, you must use attribute <code>data-swipe-down</code> or, if your use functionality init method, define method <code>swipeDown</code> in options.
+                </p>
+                <pre><code>
+                    &lt;body data-role="swipe" data-swipe-down="mySwipeFunction"&gt;
+                    ...
+                    &lt;/body&gt;
+
+                    &lt;script&gt;
+                        function mySwipeFunction(...){
+                            ...
+                        }
+                    &lt;/script&gt;
+                </code></pre>
+
+                <p>or</p>
+
+                <pre><code>
+                    $("body").swipe({
+                        swipeDown: function(...){...}
+                    });
+                </code></pre>
+
+                <h4 id="_swipe_event_swipe_status">Swipe status</h4>
+                <p>
+                    You can observe <code>swipe</code> status with attribute <code>data-swipe-status</code> or method <code>swipeStatus</code>.
+                </p>
+                <pre><code>
+                    &lt;body data-role="swipe" data-swipe-status="mySwipeFunction"&gt;
+                    ...
+                    &lt;/body&gt;
+
+                    &lt;script&gt;
+                        function mySwipeFunction(...){
+                            ...
+                        }
+                    &lt;/script&gt;
+                </code></pre>
+
+                <p>or</p>
+
+                <pre><code>
+                    $("body").swipe({
+                        swipeStatus: function(...){...}
+                    });
+                </code></pre>
+
+                <h3>Pinch events</h3>
+                <p>Pinch events receive next arguments:</p>
+                <table class="table cell-border table-border options-table mt-4">
+                    <thead>
+                    <tr>
+                        <th>Argument</th>
+                        <th>Type</th>
+                        <th>Desc</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><code>event</code></td>
+                        <td><code>eventObject</code></td>
+                        <td>The original event object</td>
+                    </tr>
+                    <tr>
+                        <td><code>direction</code></td>
+                        <td><code>string</code></td>
+                        <td>The direction the user action in: left, right, up, down, in, out</td>
+                    </tr>
+                    <tr>
+                        <td><code>distance</code></td>
+                        <td><code>int</code></td>
+                        <td>The distance the user action.</td>
+                    </tr>
+                    <tr>
+                        <td><code>duration</code></td>
+                        <td><code>int</code></td>
+                        <td>The duration of the action in milliseconds.</td>
+                    </tr>
+                    <tr>
+                        <td><code>fingerCount</code></td>
+                        <td><code>int</code></td>
+                        <td>The number of fingers used.</td>
+                    </tr>
+                    <tr>
+                        <td><code>fingerData</code></td>
+                        <td><code>object</code></td>
+                        <td>The coordinates of fingers in event.</td>
+                    </tr>
+                    <tr>
+                        <td><code>zoom</code></td>
+                        <td><code>int</code></td>
+                        <td>The zoom/scale level the user pinched too, 0-1.</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <h4 id="_swipe_event_pinch_in">Pinch in</h4>
+                <p>
+                    To handle <code>pinch in</code> event, you must use attribute <code>data-pinch-in</code> or, if your use functionality init method, define method <code>pinchIn</code> in options.
+                </p>
+                <pre><code>
+                    &lt;body data-role="swipe" data-pinch-in="myPinchFunction"&gt;
+                    ...
+                    &lt;/body&gt;
+
+                    &lt;script&gt;
+                        function myPinchFunction(...){
+                            ...
+                        }
+                    &lt;/script&gt;
+                </code></pre>
+
+                <p>or</p>
+
+                <pre><code>
+                    $("body").swipe({
+                        pinchIn: function(...){...}
+                    });
+                </code></pre>
+
+                <h4 id="_swipe_event_pinch_out">Pinch out</h4>
+                <p>
+                    To handle <code>pinch out</code> event, you must use attribute <code>data-pinch-out</code> or, if your use functionality init method, define method <code>pinchOut</code> in options.
+                </p>
+                <pre><code>
+                    &lt;body data-role="swipe" data-pinch-out="myPinchFunction"&gt;
+                    ...
+                    &lt;/body&gt;
+
+                    &lt;script&gt;
+                        function myPinchFunction(...){
+                            ...
+                        }
+                    &lt;/script&gt;
+                </code></pre>
+
+                <p>or</p>
+
+                <pre><code>
+                    $("body").swipe({
+                        pinchOut: function(...){...}
+                    });
+                </code></pre>
+
+                <h4 id="_swipe_event_pinch_status">Pinch status</h4>
+                <p>
+                    You can observe <code>pinch</code> status with attribute <code>data-pinch-status</code> or method <code>pinchStatus</code>.
+                </p>
+                <pre><code>
+                    &lt;body data-role="swipe" data-pinch-status="myPinchFunction"&gt;
+                    ...
+                    &lt;/body&gt;
+
+                    &lt;script&gt;
+                        function myPinchFunction(...){
+                            ...
+                        }
+                    &lt;/script&gt;
+                </code></pre>
+
+                <p>or</p>
+
+                <pre><code>
+                    $("body").swipe({
+                        pinchStatus: function(...){...}
+                    });
+                </code></pre>
+
+                <h3>Tap events</h3>
+                <p>Tap events receive next arguments:</p>
+                <table class="table cell-border table-border options-table mt-4">
+                    <thead>
+                    <tr>
+                        <th>Argument</th>
+                        <th>Type</th>
+                        <th>Desc</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><code>event</code></td>
+                        <td><code>eventObject</code></td>
+                        <td>The original event object</td>
+                    </tr>
+                    <tr>
+                        <td><code>target</code></td>
+                        <td><code>DOMObject</code></td>
+                        <td>The element clicked on</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <h4 id="_swipe_event_tap">Tap</h4>
+                <p>
+                    To handle <code>tap</code> event, you must use attribute <code>data-tap</code> or, if your use functionality init method, define method <code>tap</code> in options.
+                </p>
+                <pre><code>
+                    &lt;body data-role="swipe" data-tap="myTapFunction"&gt;
+                    ...
+                    &lt;/body&gt;
+
+                    &lt;script&gt;
+                        function myTapFunction(...){
+                            ...
+                        }
+                    &lt;/script&gt;
+                </code></pre>
+
+                <p>or</p>
+
+                <pre><code>
+                    $("body").swipe({
+                        tap: function(...){...}
+                    });
+                </code></pre>
+
+                <h4 id="_swipe_event_tap_double">Double tap</h4>
+                <p>
+                    To handle <code>double tap</code> event, you must use attribute <code>data-double-tap</code> or, if your use functionality init method, define method <code>doubleTap</code> in options.
+                </p>
+                <pre><code>
+                    &lt;body data-role="swipe" data-double-tap="myTapFunction"&gt;
+                    ...
+                    &lt;/body&gt;
+
+                    &lt;script&gt;
+                        function myTapFunction(...){
+                            ...
+                        }
+                    &lt;/script&gt;
+                </code></pre>
+
+                <p>or</p>
+
+                <pre><code>
+                    $("body").swipe({
+                        doubleTap: function(...){...}
+                    });
+                </code></pre>
+
+                <h4 id="_swipe_event_tap_long">Long tap</h4>
+                <p>
+                    To handle <code>long tap</code> event, you must use attribute <code>data-long-tap</code> or, if your use functionality init method, define method <code>longTap</code> in options.
+                </p>
+                <pre><code>
+                    &lt;body data-role="swipe" data-long-tap="myTapFunction"&gt;
+                    ...
+                    &lt;/body&gt;
+
+                    &lt;script&gt;
+                        function myTapFunction(...){
+                            ...
+                        }
+                    &lt;/script&gt;
+                </code></pre>
+
+                <p>or</p>
+
+                <pre><code>
+                    $("body").swipe({
+                        longTap: function(...){...}
+                    });
+                </code></pre>
+
+                <h4 id="_swipe_event_hold">Hold</h4>
+                <p>
+                    To handle <code>hold</code> event, you must use attribute <code>data-hold</code> or, if your use functionality init method, define method <code>hold</code> in options.
+                </p>
+                <pre><code>
+                    &lt;body data-role="swipe" data-hold="myTapFunction"&gt;
+                    ...
+                    &lt;/body&gt;
+
+                    &lt;script&gt;
+                        function myTapFunction(...){
+                            ...
+                        }
+                    &lt;/script&gt;
+                </code></pre>
+
+                <p>or</p>
+
+                <pre><code>
+                    $("body").swipe({
+                        hold: function(...){...}
+                    });
+                </code></pre>
+
+
+            </main>
+        </div>
+
+    </div>
+
+    <script src="docsearch/docsearch.min.js"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="metro/js/metro.js?ver=@@b-version"></script>
+    <script src="highlight/highlight.pack.js"></script>
+    <script src="js/clipboard.min.js"></script>
+    <script src="js/site.js"></script>
+    <!-- ads-script -->
+    <!-- ga-script -->
+    <!-- hit-ua -->
+</body>
+</html>
