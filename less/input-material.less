@@ -8,6 +8,7 @@
     display: inline-block;
     margin: 0;
     width: 100%;
+    border: none;
 
     input {
         position: absolute;
@@ -79,6 +80,10 @@
 
     &.full-size {
         width: 100%;
+    }
+
+    input:hover {
+        border-color: @borderColor;
     }
 }
 
