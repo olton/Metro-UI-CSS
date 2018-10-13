@@ -87,6 +87,13 @@ var Swipe = {
         fingerReleaseThreshold: 250,
         longTapThreshold: 500,
         doubleTapThreshold: 200,
+        triggerOnTouchEnd: true,
+        triggerOnTouchLeave: false,
+        allowPageScroll: "auto",
+        fallbackToMouseEvents: true,
+        excludedElements: ".no-swipe",
+        preventDefaultEvents: true,
+
         swipe: null,
         swipeLeft: null,
         swipeRight: null,
@@ -100,12 +107,7 @@ var Swipe = {
         doubleTap: null,
         longTap: null,
         hold: null,
-        triggerOnTouchEnd: true,
-        triggerOnTouchLeave: false,
-        allowPageScroll: "auto",
-        fallbackToMouseEvents: true,
-        excludedElements: ".no-swipe",
-        preventDefaultEvents: true,
+
         onSwipeCreate: Metro.noop
     },
 
@@ -568,10 +570,10 @@ var Swipe = {
 
         //PINCHES....
         if (gesture === SwipeConst.PINCH) {
-            element.trigger('pinchStatus', [phase, this.pinchDirection || null, this.pinchDistance || 0, this.duration || 0, this.fingerCount, this.pinchZoom, this.fingerData]);
+            element.trigger('pinchStatus', [phase, this.pinchDirection || null, this.pinchDistance || 0, this.duration || 0, this.fingerCount, this.fingerData, this.pinchZoom]);
 
             if (options.pinchStatus) {
-                ret = options.pinchStatus.call(element, event, phase, this.pinchDirection || null, this.pinchDistance || 0, this.duration || 0, this.fingerCount, this.pinchZoom, this.fingerData);
+                ret = options.pinchStatus.call(element, event, phase, this.pinchDirection || null, this.pinchDistance || 0, this.duration || 0, this.fingerCount, this.fingerData, this.pinchZoom);
                 //If the status cancels, then dont run the subsequent event handlers..
                 if (ret === false) return false;
             }
@@ -580,18 +582,18 @@ var Swipe = {
 
                 switch (this.pinchDirection) {
                     case SwipeConst.IN:
-                        element.trigger('pinchIn', [this.pinchDirection || null, this.pinchDistance || 0, this.duration || 0, this.fingerCount, this.pinchZoom, this.fingerData]);
+                        element.trigger('pinchIn', [this.pinchDirection || null, this.pinchDistance || 0, this.duration || 0, this.fingerCount, this.fingerData, this.pinchZoom]);
 
                         if (options.pinchIn) {
-                            ret = options.pinchIn.call(element, event, this.pinchDirection || null, this.pinchDistance || 0, this.duration || 0, this.fingerCount, this.pinchZoom, this.fingerData);
+                            ret = options.pinchIn.call(element, event, this.pinchDirection || null, this.pinchDistance || 0, this.duration || 0, this.fingerCount, this.fingerData, this.pinchZoom);
                         }
                         break;
 
                     case SwipeConst.OUT:
-                        element.trigger('pinchOut', [this.pinchDirection || null, this.pinchDistance || 0, this.duration || 0, this.fingerCount, this.pinchZoom, this.fingerData]);
+                        element.trigger('pinchOut', [this.pinchDirection || null, this.pinchDistance || 0, this.duration || 0, this.fingerCount, this.fingerData, this.pinchZoom]);
 
                         if (options.pinchOut) {
-                            ret = options.pinchOut.call(element, event, this.pinchDirection || null, this.pinchDistance || 0, this.duration || 0, this.fingerCount, this.pinchZoom, this.fingerData);
+                            ret = options.pinchOut.call(element, event, this.pinchDirection || null, this.pinchDistance || 0, this.duration || 0, this.fingerCount, this.fingerData, this.pinchZoom);
                         }
                         break;
                 }
