@@ -11339,6 +11339,10 @@ var MaterialInput = {
 
         clsComponent: "",
         clsInput: "",
+        clsLabel: "",
+        clsInformer: "",
+        clsIcon: "",
+        clsLine: "",
 
         onInputCreate: Metro.noop
     },
@@ -11383,17 +11387,17 @@ var MaterialInput = {
         element.appendTo(container);
 
         if (Utils.isValue(o.label)) {
-            $("<span>").html(o.label).addClass("label").insertAfter(element);
+            $("<span>").html(o.label).addClass("label").addClass(o.clsLabel).insertAfter(element);
         }
         if (Utils.isValue(o.informer)) {
-            $("<span>").html(o.informer).addClass("informer").insertAfter(element);
+            $("<span>").html(o.informer).addClass("informer").addClass(o.clsInformer).insertAfter(element);
         }
         if (Utils.isValue(o.icon)) {
             container.addClass("with-icon");
-            $("<span>").html(o.icon).addClass("icon").insertAfter(element);
+            $("<span>").html(o.icon).addClass("icon").addClass(o.clsIcon).insertAfter(element);
         }
 
-        container.append($("<hr>"));
+        container.append($("<hr>").addClass(o.clsLine));
 
         if (o.permanentLabel === true) {
             container.addClass("permanent-label");

@@ -40558,6 +40558,7 @@ video:-webkit-full-screen {
   display: inline-block;
   margin: 0;
   width: 100%;
+  border: none;
 }
 .input-material input {
   position: absolute;
@@ -40628,6 +40629,9 @@ video:-webkit-full-screen {
 }
 .input-material.full-size {
   width: 100%;
+}
+.input-material input:hover {
+  border-color: #dfdfdf;
 }
 .input-material.with-icon {
   margin-left: 32px;
