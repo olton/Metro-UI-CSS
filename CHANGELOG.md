@@ -1,3 +1,5 @@
+### 4.2.26
+
 ### 4.2.25
 + [x] Sidebar: remove scroll-y from sidebar, add scroll-y to sidebar-menu
 + [x] Countdown: refactoring structure, add animation effects: slide, fade, zoom
