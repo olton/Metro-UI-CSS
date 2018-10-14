@@ -1,4 +1,4 @@
-var SwipeConst = {
+var TouchConst = {
     LEFT : "left",
     RIGHT : "right",
     UP : "up",
@@ -27,18 +27,18 @@ var SwipeConst = {
     IN_TOUCH: "intouch"
 };
 
-var Swipe = {
+var Touch = {
     init: function( options, elem ) {
         this.options = $.extend( {}, this.options, options );
         this.elem  = elem;
         this.element = $(elem);
 
-        this.useTouchEvents = (SwipeConst.SUPPORTS_TOUCH || SwipeConst.SUPPORTS_POINTER || !this.options.fallbackToMouseEvents);
-        this.START_EV = this.useTouchEvents ? (SwipeConst.SUPPORTS_POINTER ? (SwipeConst.SUPPORTS_POINTER_IE10 ? 'MSPointerDown' : 'pointerdown') : 'touchstart') : 'mousedown';
-        this.MOVE_EV = this.useTouchEvents ? (SwipeConst.SUPPORTS_POINTER ? (SwipeConst.SUPPORTS_POINTER_IE10 ? 'MSPointerMove' : 'pointermove') : 'touchmove') : 'mousemove';
-        this.END_EV = this.useTouchEvents ? (SwipeConst.SUPPORTS_POINTER ? (SwipeConst.SUPPORTS_POINTER_IE10 ? 'MSPointerUp' : 'pointerup') : 'touchend') : 'mouseup';
-        this.LEAVE_EV = this.useTouchEvents ? (SwipeConst.SUPPORTS_POINTER ? 'mouseleave' : null) : 'mouseleave'; //we manually detect leave on touch devices, so null event here
-        this.CANCEL_EV = (SwipeConst.SUPPORTS_POINTER ? (SwipeConst.SUPPORTS_POINTER_IE10 ? 'MSPointerCancel' : 'pointercancel') : 'touchcancel');
+        this.useTouchEvents = (TouchConst.SUPPORTS_TOUCH || TouchConst.SUPPORTS_POINTER || !this.options.fallbackToMouseEvents);
+        this.START_EV = this.useTouchEvents ? (TouchConst.SUPPORTS_POINTER ? (TouchConst.SUPPORTS_POINTER_IE10 ? 'MSPointerDown' : 'pointerdown') : 'touchstart') : 'mousedown';
+        this.MOVE_EV = this.useTouchEvents ? (TouchConst.SUPPORTS_POINTER ? (TouchConst.SUPPORTS_POINTER_IE10 ? 'MSPointerMove' : 'pointermove') : 'touchmove') : 'mousemove';
+        this.END_EV = this.useTouchEvents ? (TouchConst.SUPPORTS_POINTER ? (TouchConst.SUPPORTS_POINTER_IE10 ? 'MSPointerUp' : 'pointerup') : 'touchend') : 'mouseup';
+        this.LEAVE_EV = this.useTouchEvents ? (TouchConst.SUPPORTS_POINTER ? 'mouseleave' : null) : 'mouseleave'; //we manually detect leave on touch devices, so null event here
+        this.CANCEL_EV = (TouchConst.SUPPORTS_POINTER ? (TouchConst.SUPPORTS_POINTER_IE10 ? 'MSPointerCancel' : 'pointercancel') : 'touchcancel');
 
         //touch properties
         this.distance = 0;
@@ -94,19 +94,19 @@ var Swipe = {
         excludedElements: ".no-swipe",
         preventDefaultEvents: true,
 
-        swipe: null,
-        swipeLeft: null,
-        swipeRight: null,
-        swipeUp: null,
-        swipeDown: null,
-        swipeStatus: null, // params: phase, direction, distance, duration, fingerCount, fingerData, currentDirection
-        pinchIn: null,
-        pinchOut: null,
-        pinchStatus: null,
-        tap: null,
-        doubleTap: null,
-        longTap: null,
-        hold: null,
+        onSwipe: Metro.noop,
+        onSwipeLeft: Metro.noop,
+        onSwipeRight: Metro.noop,
+        onSwipeUp: Metro.noop,
+        onSwipeDown: Metro.noop,
+        onSwipeStatus: Metro.noop_true, // params: phase, direction, distance, duration, fingerCount, fingerData, currentDirection
+        onPinchIn: Metro.noop,
+        onPinchOut: Metro.noop,
+        onPinchStatus: Metro.noop_true,
+        onTap: Metro.noop,
+        onDoubleTap: Metro.noop,
+        onLongTap: Metro.noop,
+        onHold: Metro.noop,
 
         onSwipeCreate: Metro.noop
     },
@@ -128,8 +128,8 @@ var Swipe = {
     _create: function(){
         var that = this, element = this.element, o = this.options;
 
-        if (o.allowPageScroll === undefined && (o.swipe !== undefined || o.swipeStatus !== undefined)) {
-            o.allowPageScroll = SwipeConst.NONE;
+        if (o.allowPageScroll === undefined && (o.onSwipe !== Metro.noop || o.onSwipeStatus !== Metro.noop)) {
+            o.allowPageScroll = TouchConst.NONE;
         }
 
         try {
@@ -163,7 +163,7 @@ var Swipe = {
             touches = event.touches,
             evt = touches ? touches[0] : event;
 
-        this.phase = SwipeConst.PHASE_START;
+        this.phase = TouchConst.PHASE_START;
 
         //If we support touches, get the finger count
         if (touches) {
@@ -192,7 +192,7 @@ var Swipe = {
         this.createFingerData(0, evt);
 
         // check the number of fingers is what we are looking for, or we are capturing pinches
-        if (!touches || (this.fingerCount === options.fingers || options.fingers === SwipeConst.ALL_FINGERS) || this.hasPinches()) {
+        if (!touches || (this.fingerCount === options.fingers || options.fingers === TouchConst.ALL_FINGERS) || this.hasPinches()) {
             // get the coordinates of the touch
             this.startTime = this.getTimeStamp();
 
@@ -203,7 +203,7 @@ var Swipe = {
                 this.startTouchesDistance = this.endTouchesDistance = this.calculateTouchesDistance(this.fingerData[0].start, this.fingerData[1].start);
             }
 
-            if (options.swipeStatus || options.pinchStatus) {
+            if (options.onSwipeStatus !== Metro.noop || options.onPinchStatus !== Metro.noop) {
                 ret = this.triggerHandler(event, this.phase);
             }
         } else {
@@ -213,17 +213,17 @@ var Swipe = {
 
         //If we have a return value from the users handler, then return and cancel
         if (ret === false) {
-            this.phase = SwipeConst.PHASE_CANCEL;
+            this.phase = TouchConst.PHASE_CANCEL;
             this.triggerHandler(event, this.phase);
             return ret;
         } else {
-            if (options.hold) {
+            if (options.onHold !== Metro.noop) {
                 this.holdTimeout = setTimeout($.proxy(function() {
                     //Trigger the event
                     element.trigger('hold', [event.target]);
                     //Fire the callback
-                    if (options.hold) {
-                        ret = options.hold.call(element, event, event.target);
+                    if (options.onHold !== Metro.noop) { // TODO Remove this if
+                        ret = Utils.exec(options.onHold, [event, event.target], element[0]);
                     }
                 }, this), options.longTapThreshold);
             }
@@ -240,7 +240,7 @@ var Swipe = {
         var event = e.originalEvent ? e.originalEvent : e;
 
         //If we are ending, cancelling, or within the threshold of 2 fingers being released, don't track anything..
-        if (this.phase === SwipeConst.PHASE_END || this.phase === SwipeConst.PHASE_CANCEL || this.inMultiFingerRelease())
+        if (this.phase === TouchConst.PHASE_END || this.phase === TouchConst.PHASE_CANCEL || this.inMultiFingerRelease())
             return;
 
         var ret,
@@ -255,11 +255,11 @@ var Swipe = {
             this.fingerCount = touches.length;
         }
 
-        if (this.options.hold) {
+        if (this.options.onHold !== Metro.noop) {
             clearTimeout(this.holdTimeout);
         }
 
-        this.phase = SwipeConst.PHASE_MOVE;
+        this.phase = TouchConst.PHASE_MOVE;
 
         //If we have 2 fingers get Touches distance as well
         if (this.fingerCount === 2) {
@@ -283,7 +283,7 @@ var Swipe = {
             this.pinchDistance = Math.abs(this.startTouchesDistance - this.endTouchesDistance);
         }
 
-        if ((this.fingerCount === this.options.fingers || this.options.fingers === SwipeConst.ALL_FINGERS) || !touches || this.hasPinches()) {
+        if ((this.fingerCount === this.options.fingers || this.options.fingers === TouchConst.ALL_FINGERS) || !touches || this.hasPinches()) {
 
             //The overall direction of the swipe. From start to now.
             this.direction = this.calculateDirection(currentFinger.start, currentFinger.end);
@@ -318,24 +318,24 @@ var Swipe = {
 
                 //Trigger end handles as we swipe if thresholds met or if we have left the element if the user has asked to check these..
                 if (!this.options.triggerOnTouchEnd && inBounds) {
-                    this.phase = this.getNextPhase(SwipeConst.PHASE_MOVE);
+                    this.phase = this.getNextPhase(TouchConst.PHASE_MOVE);
                 }
                 //We end if out of bounds here, so set current phase to END, and check if its modified
                 else if (this.options.triggerOnTouchLeave && !inBounds) {
-                    this.phase = this.getNextPhase(SwipeConst.PHASE_END);
+                    this.phase = this.getNextPhase(TouchConst.PHASE_END);
                 }
 
-                if (this.phase === SwipeConst.PHASE_CANCEL || this.phase === SwipeConst.PHASE_END) {
+                if (this.phase === TouchConst.PHASE_CANCEL || this.phase === TouchConst.PHASE_END) {
                     this.triggerHandler(event, this.phase);
                 }
             }
         } else {
-            this.phase = SwipeConst.PHASE_CANCEL;
+            this.phase = TouchConst.PHASE_CANCEL;
             this.triggerHandler(event, this.phase);
         }
 
         if (ret === false) {
-            this.phase = SwipeConst.PHASE_CANCEL;
+            this.phase = TouchConst.PHASE_CANCEL;
             this.triggerHandler(event, this.phase);
         }
     },
@@ -371,14 +371,14 @@ var Swipe = {
 
         //If we trigger handlers at end of swipe OR, we trigger during, but they didnt trigger and we are still in the move phase
         if (this.didSwipeBackToCancel() || !this.validateSwipeDistance()) {
-            this.phase = SwipeConst.PHASE_CANCEL;
+            this.phase = TouchConst.PHASE_CANCEL;
             this.triggerHandler(event, this.phase);
-        } else if (this.options.triggerOnTouchEnd || (this.options.triggerOnTouchEnd === false && this.phase === SwipeConst.PHASE_MOVE)) {
+        } else if (this.options.triggerOnTouchEnd || (this.options.triggerOnTouchEnd === false && this.phase === TouchConst.PHASE_MOVE)) {
             //call this on jq event so we are cross browser
             if (this.options.preventDefaultEvents !== false) {
                 e.preventDefault();
             }
-            this.phase = SwipeConst.PHASE_END;
+            this.phase = TouchConst.PHASE_END;
             this.triggerHandler(event, this.phase);
         }
         //Special cases - A tap should always fire on touch end regardless,
@@ -386,10 +386,10 @@ var Swipe = {
         //We dont run trigger handler as it will re-trigger events that may have fired already
         else if (!this.options.triggerOnTouchEnd && this.hasTap()) {
             //Trigger the pinch events...
-            this.phase = SwipeConst.PHASE_END;
-            this.triggerHandlerForGesture(event, this.phase, SwipeConst.TAP);
-        } else if (this.phase === SwipeConst.PHASE_MOVE) {
-            this.phase = SwipeConst.PHASE_CANCEL;
+            this.phase = TouchConst.PHASE_END;
+            this.triggerHandlerForGesture(event, this.phase, TouchConst.TAP);
+        } else if (this.phase === TouchConst.PHASE_MOVE) {
+            this.phase = TouchConst.PHASE_CANCEL;
             this.triggerHandler(event, this.phase);
         }
 
@@ -419,7 +419,7 @@ var Swipe = {
 
         //If we have the trigger on leave property set....
         if (this.options.triggerOnTouchLeave) {
-            this.phase = this.getNextPhase(SwipeConst.PHASE_END);
+            this.phase = this.getNextPhase(TouchConst.PHASE_END);
             this.triggerHandler(event, this.phase);
         }
     },
@@ -435,15 +435,15 @@ var Swipe = {
 
         //If we have exceeded our time, then cancel
         if (!validTime || didCancel) {
-            nextPhase = SwipeConst.PHASE_CANCEL;
+            nextPhase = TouchConst.PHASE_CANCEL;
         }
         //Else if we are moving, and have reached distance then end
-        else if (validDistance && currentPhase === SwipeConst.PHASE_MOVE && (!options.triggerOnTouchEnd || options.triggerOnTouchLeave)) {
-            nextPhase = SwipeConst.PHASE_END;
+        else if (validDistance && currentPhase === TouchConst.PHASE_MOVE && (!options.triggerOnTouchEnd || options.triggerOnTouchLeave)) {
+            nextPhase = TouchConst.PHASE_END;
         }
         //Else if we have ended by leaving and didn't reach distance, then cancel
-        else if (!validDistance && currentPhase === SwipeConst.PHASE_END && options.triggerOnTouchLeave) {
-            nextPhase = SwipeConst.PHASE_CANCEL;
+        else if (!validDistance && currentPhase === TouchConst.PHASE_END && options.triggerOnTouchLeave) {
+            nextPhase = TouchConst.PHASE_CANCEL;
         }
 
         return nextPhase;
@@ -455,39 +455,39 @@ var Swipe = {
 
         // SWIPE GESTURES
         if (this.didSwipe() || this.hasSwipes()) {
-            ret = this.triggerHandlerForGesture(event, phase, SwipeConst.SWIPE);
+            ret = this.triggerHandlerForGesture(event, phase, TouchConst.SWIPE);
         }
 
         // PINCH GESTURES (if the above didn't cancel)
         if ((this.didPinch() || this.hasPinches()) && ret !== false) {
-            ret = this.triggerHandlerForGesture(event, phase, SwipeConst.PINCH);
+            ret = this.triggerHandlerForGesture(event, phase, TouchConst.PINCH);
         }
 
         // CLICK / TAP (if the above didn't cancel)
         if (this.didDoubleTap() && ret !== false) {
             //Trigger the tap events...
-            ret = this.triggerHandlerForGesture(event, phase, SwipeConst.DOUBLE_TAP);
+            ret = this.triggerHandlerForGesture(event, phase, TouchConst.DOUBLE_TAP);
         }
 
         // CLICK / TAP (if the above didn't cancel)
         else if (this.didLongTap() && ret !== false) {
             //Trigger the tap events...
-            ret = this.triggerHandlerForGesture(event, phase, SwipeConst.LONG_TAP);
+            ret = this.triggerHandlerForGesture(event, phase, TouchConst.LONG_TAP);
         }
 
         // CLICK / TAP (if the above didn't cancel)
         else if (this.didTap() && ret !== false) {
             //Trigger the tap event..
-            ret = this.triggerHandlerForGesture(event, phase, SwipeConst.TAP);
+            ret = this.triggerHandlerForGesture(event, phase, TouchConst.TAP);
         }
 
         // If we are cancelling the gesture, then manually trigger the reset handler
-        if (phase === SwipeConst.PHASE_CANCEL) {
+        if (phase === TouchConst.PHASE_CANCEL) {
             this.touchCancel(event);
         }
 
         // If we are ending the gesture, then manually trigger the reset handler IF all fingers are off
-        if (phase === SwipeConst.PHASE_END) {
+        if (phase === TouchConst.PHASE_END) {
             //If we support touch, then check that all fingers are off before we cancel
             if (touches) {
                 if (!touches.length) {
@@ -506,17 +506,14 @@ var Swipe = {
         var ret, element = this.element, options = this.options;
 
         //SWIPES....
-        if (gesture === SwipeConst.SWIPE) {
+        if (gesture === TouchConst.SWIPE) {
             //Trigger status every time..
             element.trigger('swipeStatus', [phase, this.direction || null, this.distance || 0, this.duration || 0, this.fingerCount, this.fingerData, this.currentDirection]);
 
-            if (options.swipeStatus) {
-                ret = options.swipeStatus.call(element, event, phase, this.direction || null, this.distance || 0, this.duration || 0, this.fingerCount, this.fingerData, this.currentDirection);
-                //If the status cancels, then dont run the subsequent event handlers..
-                if (ret === false) return false;
-            }
+            ret = Utils.exec(options.onSwipeStatus, [event, phase, this.direction || null, this.distance || 0, this.duration || 0, this.fingerCount, this.fingerData, this.currentDirection], element[0]);
+            if (ret === false) return false;
 
-            if (phase === SwipeConst.PHASE_END && this.validateSwipe()) {
+            if (phase === TouchConst.PHASE_END && this.validateSwipe()) {
 
                 //Cancel any taps that were in progress...
                 clearTimeout(this.singleTapTimeout);
@@ -524,44 +521,29 @@ var Swipe = {
 
                 element.trigger('swipe', [this.direction, this.distance, this.duration, this.fingerCount, this.fingerData, this.currentDirection]);
 
-                if (options.swipe) {
-                    ret = options.swipe.call(element, event, this.direction, this.distance, this.duration, this.fingerCount, this.fingerData, this.currentDirection);
-                    //If the status cancels, then dont run the subsequent event handlers..
-                    if (ret === false) return false;
-                }
+                ret = Utils.exec(options.onSwipe, [event, this.direction, this.distance, this.duration, this.fingerCount, this.fingerData, this.currentDirection], element[0]);
+                if (ret === false) return false;
 
                 //trigger direction specific event handlers
                 switch (this.direction) {
-                    case SwipeConst.LEFT:
+                    case TouchConst.LEFT:
                         element.trigger('swipeLeft', [this.direction, this.distance, this.duration, this.fingerCount, this.fingerData, this.currentDirection]);
-
-                        if (options.swipeLeft) {
-                            ret = options.swipeLeft.call(element, event, this.direction, this.distance, this.duration, this.fingerCount, this.fingerData, this.currentDirection);
-                        }
+                        ret = Utils.exec(options.onSwipeLeft, [event, this.direction, this.distance, this.duration, this.fingerCount, this.fingerData, this.currentDirection], element[0]);
                         break;
 
-                    case SwipeConst.RIGHT:
+                    case TouchConst.RIGHT:
                         element.trigger('swipeRight', [this.direction, this.distance, this.duration, this.fingerCount, this.fingerData, this.currentDirection]);
-
-                        if (options.swipeRight) {
-                            ret = options.swipeRight.call(element, event, this.direction, this.distance, this.duration, this.fingerCount, this.fingerData, this.currentDirection);
-                        }
+                        ret = Utils.exec(options.onSwipeRight, [event, this.direction, this.distance, this.duration, this.fingerCount, this.fingerData, this.currentDirection], element[0]);
                         break;
 
-                    case SwipeConst.UP:
+                    case TouchConst.UP:
                         element.trigger('swipeUp', [this.direction, this.distance, this.duration, this.fingerCount, this.fingerData, this.currentDirection]);
-
-                        if (options.swipeUp) {
-                            ret = options.swipeUp.call(element, event, this.direction, this.distance, this.duration, this.fingerCount, this.fingerData, this.currentDirection);
-                        }
+                        ret = Utils.exec(options.onSwipeUp, [event, this.direction, this.distance, this.duration, this.fingerCount, this.fingerData, this.currentDirection], element[0]);
                         break;
 
-                    case SwipeConst.DOWN:
+                    case TouchConst.DOWN:
                         element.trigger('swipeDown', [this.direction, this.distance, this.duration, this.fingerCount, this.fingerData, this.currentDirection]);
-
-                        if (options.swipeDown) {
-                            ret = options.swipeDown.call(element, event, this.direction, this.distance, this.duration, this.fingerCount, this.fingerData, this.currentDirection);
-                        }
+                        ret = Utils.exec(options.onSwipeDown, [event, this.direction, this.distance, this.duration, this.fingerCount, this.fingerData, this.currentDirection], element[0]);
                         break;
                 }
             }
@@ -569,39 +551,30 @@ var Swipe = {
 
 
         //PINCHES....
-        if (gesture === SwipeConst.PINCH) {
+        if (gesture === TouchConst.PINCH) {
             element.trigger('pinchStatus', [phase, this.pinchDirection || null, this.pinchDistance || 0, this.duration || 0, this.fingerCount, this.fingerData, this.pinchZoom]);
 
-            if (options.pinchStatus) {
-                ret = options.pinchStatus.call(element, event, phase, this.pinchDirection || null, this.pinchDistance || 0, this.duration || 0, this.fingerCount, this.fingerData, this.pinchZoom);
-                //If the status cancels, then dont run the subsequent event handlers..
-                if (ret === false) return false;
-            }
+            ret = Utils.exec(options.onPinchStatus, [event, phase, this.pinchDirection || null, this.pinchDistance || 0, this.duration || 0, this.fingerCount, this.fingerData, this.pinchZoom], element[0]);
+            if (ret === false) return false;
 
-            if (phase === SwipeConst.PHASE_END && this.validatePinch()) {
+            if (phase === TouchConst.PHASE_END && this.validatePinch()) {
 
                 switch (this.pinchDirection) {
-                    case SwipeConst.IN:
+                    case TouchConst.IN:
                         element.trigger('pinchIn', [this.pinchDirection || null, this.pinchDistance || 0, this.duration || 0, this.fingerCount, this.fingerData, this.pinchZoom]);
-
-                        if (options.pinchIn) {
-                            ret = options.pinchIn.call(element, event, this.pinchDirection || null, this.pinchDistance || 0, this.duration || 0, this.fingerCount, this.fingerData, this.pinchZoom);
-                        }
+                        ret = Utils.exec(options.onPinchIn, [event, this.pinchDirection || null, this.pinchDistance || 0, this.duration || 0, this.fingerCount, this.fingerData, this.pinchZoom], element[0]);
                         break;
 
-                    case SwipeConst.OUT:
+                    case TouchConst.OUT:
                         element.trigger('pinchOut', [this.pinchDirection || null, this.pinchDistance || 0, this.duration || 0, this.fingerCount, this.fingerData, this.pinchZoom]);
-
-                        if (options.pinchOut) {
-                            ret = options.pinchOut.call(element, event, this.pinchDirection || null, this.pinchDistance || 0, this.duration || 0, this.fingerCount, this.fingerData, this.pinchZoom);
-                        }
+                        ret = Utils.exec(options.onPinchOut, [event, this.pinchDirection || null, this.pinchDistance || 0, this.duration || 0, this.fingerCount, this.fingerData, this.pinchZoom], element[0]);
                         break;
                 }
             }
         }
 
-        if (gesture === SwipeConst.TAP) {
-            if (phase === SwipeConst.PHASE_CANCEL || phase === SwipeConst.PHASE_END) {
+        if (gesture === TouchConst.TAP) {
+            if (phase === TouchConst.PHASE_CANCEL || phase === TouchConst.PHASE_END) {
 
                 clearTimeout(this.singleTapTimeout);
                 clearTimeout(this.holdTimeout);
@@ -616,39 +589,29 @@ var Swipe = {
                         this.doubleTapStartTime = null;
                         element.trigger('tap', [event.target]);
 
-                        if (options.tap) {
-                            ret = options.tap.call(element, event, event.target);
-                        }
+                        ret = Utils.exec(options.onTap, [event, event.target], element[0]);
                     }, this), options.doubleTapThreshold);
 
                 } else {
                     this.doubleTapStartTime = null;
                     element.trigger('tap', [event.target]);
-                    if (options.tap) {
-                        ret = options.tap.call(element, event, event.target);
-                    }
+                    ret = Utils.exec(options.onTap, [event, event.target], element[0]);
                 }
             }
-        } else if (gesture === SwipeConst.DOUBLE_TAP) {
-            if (phase === SwipeConst.PHASE_CANCEL || phase === SwipeConst.PHASE_END) {
+        } else if (gesture === TouchConst.DOUBLE_TAP) {
+            if (phase === TouchConst.PHASE_CANCEL || phase === TouchConst.PHASE_END) {
                 clearTimeout(this.singleTapTimeout);
                 clearTimeout(this.holdTimeout);
                 this.doubleTapStartTime = null;
                 element.trigger('doubletap', [event.target]);
-
-                if (options.doubleTap) {
-                    ret = options.doubleTap.call(element, event, event.target);
-                }
+                ret = Utils.exec(options.onDoubleTap, [event, event.target], element[0]);
             }
-        } else if (gesture === SwipeConst.LONG_TAP) {
-            if (phase === SwipeConst.PHASE_CANCEL || phase === SwipeConst.PHASE_END) {
+        } else if (gesture === TouchConst.LONG_TAP) {
+            if (phase === TouchConst.PHASE_CANCEL || phase === TouchConst.PHASE_END) {
                 clearTimeout(this.singleTapTimeout);
                 this.doubleTapStartTime = null;
-
                 element.trigger('longtap', [event.target]);
-                if (options.longTap) {
-                    ret = options.longTap.call(element, event, event.target);
-                }
+                ret = Utils.exec(options.onLongTap, [event, event.target], element[0]);
             }
         }
 
@@ -702,37 +665,37 @@ var Swipe = {
             return;
         }
 
-        if (options.allowPageScroll === SwipeConst.NONE) {
+        if (options.allowPageScroll === TouchConst.NONE) {
             e.preventDefault();
         } else {
-            var auto = options.allowPageScroll === SwipeConst.AUTO;
+            var auto = options.allowPageScroll === TouchConst.AUTO;
 
             switch (direction) {
-                case SwipeConst.LEFT:
-                    if ((options.swipeLeft && auto) || (!auto && options.allowPageScroll.toLowerCase() !== SwipeConst.HORIZONTAL)) {
+                case TouchConst.LEFT:
+                    if ((options.onSwipeLeft !== Metro.noop && auto) || (!auto && options.allowPageScroll.toLowerCase() !== TouchConst.HORIZONTAL)) {
                         e.preventDefault();
                     }
                     break;
 
-                case SwipeConst.RIGHT:
-                    if ((options.swipeRight && auto) || (!auto && options.allowPageScroll.toLowerCase() !== SwipeConst.HORIZONTAL)) {
+                case TouchConst.RIGHT:
+                    if ((options.onSwipeRight !== Metro.noop && auto) || (!auto && options.allowPageScroll.toLowerCase() !== TouchConst.HORIZONTAL)) {
                         e.preventDefault();
                     }
                     break;
 
-                case SwipeConst.UP:
-                    if ((options.swipeUp && auto) || (!auto && options.allowPageScroll.toLowerCase() !== SwipeConst.VERTICAL)) {
+                case TouchConst.UP:
+                    if ((options.onSwipeUp !== Metro.noop && auto) || (!auto && options.allowPageScroll.toLowerCase() !== TouchConst.VERTICAL)) {
                         e.preventDefault();
                     }
                     break;
 
-                case SwipeConst.DOWN:
-                    if ((options.swipeDown && auto) || (!auto && options.allowPageScroll.toLowerCase() !== SwipeConst.VERTICAL)) {
+                case TouchConst.DOWN:
+                    if ((options.onSwipeDown !== Metro.noop && auto) || (!auto && options.allowPageScroll.toLowerCase() !== TouchConst.VERTICAL)) {
                         e.preventDefault();
                     }
                     break;
 
-                case SwipeConst.NONE:
+                case TouchConst.NONE:
 
                     break;
             }
@@ -748,7 +711,7 @@ var Swipe = {
 
     hasPinches: function() {
         //Enure we dont return 0 or null for false values
-        return !!(this.options.pinchStatus || this.options.pinchIn || this.options.pinchOut);
+        return !!(this.options.onPinchStatus || this.options.onPinchIn || this.options.onPinchOut);
     },
 
     didPinch: function() {
@@ -771,7 +734,14 @@ var Swipe = {
 
     hasSwipes: function() {
         //Enure we dont return 0 or null for false values
-        return !!(this.options.swipe || this.options.swipeStatus || this.options.swipeLeft || this.options.swipeRight || this.options.swipeUp || this.options.swipeDown);
+        return !!(
+            this.options.onSwipe !== Metro.noop
+            || this.options.onSwipeStatus  !== Metro.noop
+            || this.options.onSwipeLeft  !== Metro.noop
+            || this.options.onSwipeRight  !== Metro.noop
+            || this.options.onSwipeUp  !== Metro.noop
+            || this.options.onSwipeDown !== Metro.noop
+        );
     },
 
     didSwipe: function() {
@@ -781,7 +751,7 @@ var Swipe = {
 
     validateFingers: function() {
         //The number of fingers we want were matched, or on desktop we ignore
-        return ((this.fingerCount === this.options.fingers || this.options.fingers === SwipeConst.ALL_FINGERS) || !SwipeConst.SUPPORTS_TOUCH);
+        return ((this.fingerCount === this.options.fingers || this.options.fingers === TouchConst.ALL_FINGERS) || !TouchConst.SUPPORTS_TOUCH);
     },
 
     validateEndPoint: function() {
@@ -791,17 +761,17 @@ var Swipe = {
 
     hasTap: function() {
         //Enure we dont return 0 or null for false values
-        return !!(this.options.tap);
+        return this.options.onTap !== Metro.noop;
     },
 
     hasDoubleTap: function() {
         //Enure we dont return 0 or null for false values
-        return !!(this.options.doubleTap);
+        return this.options.onDoubleTap !== Metro.noop;
     },
 
     hasLongTap: function() {
         //Enure we dont return 0 or null for false values
-        return !!(this.options.longTap);
+        return this.options.onLongTap !== Metro.noop;
     },
 
     validateDoubleTap: function() {
@@ -817,13 +787,13 @@ var Swipe = {
     },
 
     validateTap: function() {
-        return ((this.fingerCount === 1 || !SwipeConst.SUPPORTS_TOUCH) && (isNaN(this.distance) || this.distance < this.options.threshold));
+        return ((this.fingerCount === 1 || !TouchConst.SUPPORTS_TOUCH) && (isNaN(this.distance) || this.distance < this.options.threshold));
     },
 
     validateLongTap: function() {
         var options = this.options;
         //slight threshold on moving finger
-        return ((this.duration > options.longTapThreshold) && (this.distance < SwipeConst.DOUBLE_TAP_THRESHOLD)); // check double_tab_threshold where from
+        return ((this.duration > options.longTapThreshold) && (this.distance < TouchConst.DOUBLE_TAP_THRESHOLD)); // check double_tab_threshold where from
     },
 
     didTap: function() {
@@ -943,7 +913,7 @@ var Swipe = {
     },
 
     setMaxDistance: function(direction, distance) {
-        if (direction === SwipeConst.NONE) return;
+        if (direction === TouchConst.NONE) return;
         distance = Math.max(distance, this.getMaxDistance(direction));
         this.maximumsMap[direction].distance = distance;
     },
@@ -954,10 +924,10 @@ var Swipe = {
 
     createMaximumsData: function() {
         var maxData = {};
-        maxData[SwipeConst.LEFT] = this.createMaximumVO(SwipeConst.LEFT);
-        maxData[SwipeConst.RIGHT] = this.createMaximumVO(SwipeConst.RIGHT);
-        maxData[SwipeConst.UP] = this.createMaximumVO(SwipeConst.UP);
-        maxData[SwipeConst.DOWN] = this.createMaximumVO(SwipeConst.DOWN);
+        maxData[TouchConst.LEFT] = this.createMaximumVO(TouchConst.LEFT);
+        maxData[TouchConst.RIGHT] = this.createMaximumVO(TouchConst.RIGHT);
+        maxData[TouchConst.UP] = this.createMaximumVO(TouchConst.UP);
+        maxData[TouchConst.DOWN] = this.createMaximumVO(TouchConst.DOWN);
 
         return maxData;
     },
@@ -987,9 +957,9 @@ var Swipe = {
 
     calculatePinchDirection: function(){
         if (this.pinchZoom < 1) {
-            return SwipeConst.OUT;
+            return TouchConst.OUT;
         } else {
-            return SwipeConst.IN;
+            return TouchConst.IN;
         }
     },
 
@@ -1013,21 +983,21 @@ var Swipe = {
 
     calculateDirection: function(startPoint, endPoint){
         if( this.comparePoints(startPoint, endPoint) ) {
-            return SwipeConst.NONE;
+            return TouchConst.NONE;
         }
 
         var angle = this.calculateAngle(startPoint, endPoint);
 
         if ((angle <= 45) && (angle >= 0)) {
-            return SwipeConst.LEFT;
+            return TouchConst.LEFT;
         } else if ((angle <= 360) && (angle >= 315)) {
-            return SwipeConst.LEFT;
+            return TouchConst.LEFT;
         } else if ((angle >= 135) && (angle <= 225)) {
-            return SwipeConst.RIGHT;
+            return TouchConst.RIGHT;
         } else if ((angle > 45) && (angle < 135)) {
-            return SwipeConst.DOWN;
+            return TouchConst.DOWN;
         } else {
-            return SwipeConst.UP;
+            return TouchConst.UP;
         }
     },
 
@@ -1092,5 +1062,5 @@ var Swipe = {
     }
 };
 
-Metro['swipe'] = SwipeConst;
-Metro.plugin('swipe', Swipe);
+Metro['touch'] = TouchConst;
+Metro.plugin('touch', Touch);
