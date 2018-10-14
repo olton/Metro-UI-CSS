@@ -1,4 +1,6 @@
 ### 4.2.26
++ [x] Image compare: fix for touch devices
++ [x] Image magnifier: fix for touch devices
 
 ### 4.2.25
 + [x] Sidebar: remove scroll-y from sidebar, add scroll-y to sidebar-menu

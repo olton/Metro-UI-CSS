@@ -281,8 +281,8 @@ var Utils = {
     getCursorPosition: function(el, e){
         var a = Utils.rect(el);
         return {
-            x: e.pageX - a.left - window.pageXOffset,
-            y: e.pageY - a.top - window.pageYOffset
+            x: Utils.pageXY(e).x - a.left - window.pageXOffset,
+            y: Utils.pageXY(e).y - a.top - window.pageYOffset
         };
     },
 
