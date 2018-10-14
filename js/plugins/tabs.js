@@ -217,7 +217,7 @@ var Tabs = {
 
         tab.addClass(o.clsTabsListItemActive);
 
-        Utils.exec(o.onTab, [tab, element]);
+        Utils.exec(o.onTab, [tab, element], tab[0]);
     },
 
     next: function(){
