@@ -98,10 +98,9 @@ var ImageCompare = {
         var overlay = element.find(".image-container-overlay");
         var slider = element.find(".image-slider");
 
-        element.on(Metro.events.start, ".image-slider", function(e){
+        slider.on(Metro.events.start, function(e){
             var w = element.width();
-            e.preventDefault();
-            $(window).on(Metro.events.move + "-" + element.attr("id"), function(e){
+            $(document).on(Metro.events.move + "-" + element.attr("id"), function(e){
                 var x = Utils.getCursorPositionX(element, e), left_pos;
                 if (x < 0) x = 0;
                 if (x > w) x = w;
@@ -114,9 +113,9 @@ var ImageCompare = {
                 });
                 Utils.exec(o.onSliderMove, [x, left_pos, slider[0]], element[0]);
             });
-            $(window).on(Metro.events.stop + "-" + element.attr("id"), function(){
-                $(window).off(Metro.events.move + "-" + element.attr("id"));
-                $(window).off(Metro.events.stop + "-" + element.attr("id"));
+            $(document).on(Metro.events.stop + "-" + element.attr("id"), function(){
+                $(document).off(Metro.events.move + "-" + element.attr("id"));
+                $(document).off(Metro.events.stop + "-" + element.attr("id"));
             })
         });
 

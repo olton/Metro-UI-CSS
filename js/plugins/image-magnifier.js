@@ -146,8 +146,6 @@ var ImageMagnifier = {
             cx = zoomElement[0].offsetWidth / glass_size / 2;
             cy = zoomElement[0].offsetHeight / glass_size / 2;
 
-            console.log(cx, cy);
-
             zoomElement.css({
                 backgroundSize: (image.width * cx) + "px " + (image.height * cy) + "px"
             });
