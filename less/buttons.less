@@ -290,6 +290,7 @@
     position: relative;
     padding: 0 0 0 .5725rem;
     top: 2px;
+    flex-flow: row;
 
     &.no-divider {
         &:before {
@@ -305,6 +306,10 @@
         left: 0;
         background-color: rgba(red(@grayMouse), green(@grayMouse), blue(@grayMouse), .20);
         cursor: move;
+    }
+
+    &.vertical {
+        flex-flow: column;
     }
 }
 
