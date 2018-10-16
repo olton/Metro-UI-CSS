@@ -51,11 +51,11 @@ var Desktop = {
                 win.css("z-index", 2);
         };
         o.onWindowDestroy = function(win){
-            console.log(win);
             that.removeFromTaskBar(win);
         };
         var w = $("<div>").appendTo($(this.options.windowArea));
         var wnd = w.window(o).data("window");
+
         var win = wnd.win;
         var shift = Metro.utils.objectLength(this.wins) * 16;
 
