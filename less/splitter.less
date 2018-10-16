@@ -23,11 +23,33 @@
         &.active {
             background-color: @gray;
         }
+
+        &::before {
+            content: "";
+            z-index: 1;
+            display: block;
+            position: absolute;
+            left: 0;
+            width: 100%;
+            top: 50%;
+            height: 24px;
+            margin-top: -12px;
+            background-color: @gray;
+        }
     }
 
     &.vertical {
         .gutter {
             cursor: ns-resize;
+
+            &::before {
+                height: 100%;
+                width: 24px;
+                top: 0;
+                left: 50%;
+                margin-left: -12px;
+                margin-top: 0;
+            }
         }
     }
 }

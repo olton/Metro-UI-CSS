@@ -11,10 +11,12 @@ var Splitter = {
     },
 
     options: {
-        splitMode: "horizontal",
+        splitMode: "horizontal", // horizontal or vertical
         splitSizes: null,
         gutterSize: 4,
+        minSizes: null,
         children: "*",
+        gutterClick: "expand", // expand or collapse
         onResizeStart: Metro.noop,
         onResizeStop: Metro.noop,
         onResizeSplit: Metro.noop,
@@ -48,8 +50,7 @@ var Splitter = {
         var that = this, element = this.element, o = this.options;
         var children = element.children(o.children).addClass("split-block");
         var i, children_sizes = [];
-        var w = o.splitMode === "horizontal" ? element.width() : element.height();
-        var size_without_gutters;
+        var gutters;
 
         if (!Utils.isValue(element.attr("id"))) {
             element.attr("id", Utils.elementId("splitter"));
@@ -66,15 +67,30 @@ var Splitter = {
             }).insertAfter($(children[i]));
         }
 
-        if (Utils.isNull(o.splitSizes)) {
+        gutters = element.children(".gutter");
+
+        if (!Utils.isValue(o.splitSizes)) {
             children.css({
-                flexBasis: (100/children.length)+"%"
+                flexBasis: "calc("+(100/children.length)+"% - "+(gutters.length * o.gutterSize)+"px)"
             })
         } else {
             children_sizes = Utils.strToArray(o.splitSizes);
             for(i = 0; i < children_sizes.length; i++) {
                 $(children[i]).css({
-                    flexBasis: children_sizes[i]+"%"
+                    flexBasis: "calc("+children_sizes[i]+"% - "+(gutters.length * o.gutterSize)+"px)"
+                });
+            }
+        }
+
+        if (Utils.isValue(o.minSizes)) {
+            if (String(o.minSizes).contains(",")) {
+                children_sizes = Utils.strToArray(o.minSizes);
+                for (i = 0; i < children_sizes.length; i++) {
+                    $(children[i]).data("min-size", children_sizes[i]);
+                }
+            } else {
+                $.each(children, function(){
+                    this.style.setProperty('min-height', String(o.minSizes).contains("%") ? o.minSizes : String(o.minSizes).replace("px", "")+"px", 'important');
                 });
             }
         }
@@ -85,12 +101,12 @@ var Splitter = {
         var gutters = element.children(".gutter");
 
         gutters.on(Metro.events.start, function(e){
+            var w = o.splitMode === "horizontal" ? element.width() : element.height();
             var gutter = $(this);
             var prev_block = gutter.prev(".split-block");
             var next_block = gutter.next(".split-block");
-            var prev_block_size = parseInt(prev_block.css("flexBasis"));
-            var next_block_size = parseInt(next_block.css("flexBasis"));
-            var w = o.splitMode === "horizontal" ? element.width() : element.height();
+            var prev_block_size = 100 * (o.splitMode === "horizontal" ? prev_block.outerWidth(true) : prev_block.outerHeight(true)) / w;
+            var next_block_size = 100 * (o.splitMode === "horizontal" ? next_block.outerWidth(true) : next_block.outerHeight(true)) / w;
             var start_pos = Utils.getCursorPosition(element, e);
 
             gutter.addClass("active");
@@ -99,7 +115,7 @@ var Splitter = {
 
             $(window).on(Metro.events.move + "-" + element.attr("id"), function(e){
                 var pos = Utils.getCursorPosition(element, e);
-                var new_pos;
+                var new_pos, func = o.splitMode === "horizontal" ? 'outerWidth' : 'outerHeight';
 
                 if (o.splitMode === "horizontal") {
                     new_pos = (pos.x * 100 / w) - (start_pos.x * 100 / w);
@@ -108,8 +124,8 @@ var Splitter = {
                     new_pos = (pos.y * 100 / w) - (start_pos.y * 100 / w);
                 }
 
-                prev_block.css("flex-basis", (prev_block_size + new_pos) + "%");
-                next_block.css("flex-basis", (next_block_size - new_pos) + "%");
+                prev_block.css("flex-basis", "calc(" + (prev_block_size + new_pos) + "% - "+(gutters.length * o.gutterSize)+"px)");
+                next_block.css("flex-basis", "calc(" + (next_block_size - new_pos) + "% - "+(gutters.length * o.gutterSize)+"px)");
 
                 Utils.exec(o.onResizeSplit, [pos, gutter, prev_block, next_block], element);
             });
