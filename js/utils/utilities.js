@@ -648,7 +648,9 @@ var Utils = {
             var result;
 
             switch (type) {
+                case "int":
                 case "integer": result = parseInt(s); break;
+                case "number":
                 case "float": result = parseFloat(s); break;
                 case "date": result = !Utils.isValue(format) ? new Date(s) : s.toDate(format); break;
                 default: result = s.trim();

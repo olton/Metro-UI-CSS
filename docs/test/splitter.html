@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link href="../metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
+
+    <title>Splitter test page - Metro 4 :: Popular HTML, CSS and JS library</title>
+
+    <style>
+        textarea {
+            height: 100%;
+        }
+    </style>
+
+</head>
+<body class="h-vh-100">
+
+<div class="h-100">
+
+    <div data-role="splitter" data-split-sizes="70, 30" class="h-100">
+        <div class="d-flex flex-align-center flex-justify-center">
+            <pre><code>
+                &lt;div data-role="splitter" data-split-sizes="70, 30"&gt;
+                    &lt;div&gt;&lt;/div&gt;
+                    &lt;div data-role="splitter" data-split-mode="vertical"&gt;
+                        &lt;div&gt;&lt;/div&gt;
+                        &lt;div&gt;&lt;/div&gt;
+                        &lt;div&gt;&lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            </code></pre>
+        </div>
+        <div data-role="splitter" data-split-mode="vertical" class="h-100">
+            <div class=""></div>
+            <div class=""></div>
+            <div class=""></div>
+        </div>
+    </div>
+
+</div>
+
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script src="../metro/js/metro.js?ver=@@b-version"></script>
+<script>
+    Metro.utils.cleanPreCode("pre code");
+</script>
+</body>
+</html>
