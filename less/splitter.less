@@ -1,0 +1,41 @@
+@import (once) "include/vars";
+@import (once) "include/mixins";
+
+.splitter {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: space-between;
+
+    &.vertical {
+        flex-direction: column;
+    }
+}
+
+.splitter {
+    .gutter {
+        flex-shrink: 0;
+        flex-grow: 0;
+        border: 1px solid @light;
+        background-color: @light;
+        cursor: ew-resize;
+
+        &.active {
+            background-color: @gray;
+        }
+    }
+
+    &.vertical {
+        .gutter {
+            cursor: ns-resize;
+        }
+    }
+}
+
+.splitter {
+    & > .split-block {
+        flex-grow: 1;
+        flex-basis: 0;
+        height: 100%;
+    }
+}
