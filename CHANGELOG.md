@@ -2,6 +2,10 @@
 + [x] Image compare: fix for touch devices
 + [x] Image magnifier: fix for touch devices
 + [x] Window: fix _setPosition method
++ [x] Buttons: fix size for dropdown-button, split-button and info-button
++ [x] Utils: add function `iframeBubbleMouseMove(iframe)`
++ [x] Input: add class `.input-large`
++ [x] Splitter: new component
 
 ### 4.2.25
 + [x] Sidebar: remove scroll-y from sidebar, add scroll-y to sidebar-menu

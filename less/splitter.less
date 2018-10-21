@@ -18,7 +18,8 @@
         flex-grow: 0;
         border: 1px solid @light;
         background-color: @light;
-        cursor: ew-resize;
+        cursor: col-resize;
+        z-index: 1;
 
         &.active {
             background-color: @gray;
@@ -40,7 +41,7 @@
 
     &.vertical {
         .gutter {
-            cursor: ns-resize;
+            cursor: row-resize;
 
             &::before {
                 height: 100%;
@@ -56,8 +57,9 @@
 
 .splitter {
     & > .split-block {
+        position: relative;
         flex-grow: 1;
         flex-basis: 0;
-        height: 100%;
+        overflow: hidden;
     }
 }
