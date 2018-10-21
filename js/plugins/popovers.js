@@ -118,9 +118,15 @@ var Popover = {
 
     createPopover: function(){
         var that = this, elem = this.elem, element = this.element, o = this.options;
-        var popover = $("<div>").addClass("popover neb").addClass(o.clsPopover).html(o.popoverText);
+        var popover;
         var neb_pos;
         var id = Utils.elementId("popover");
+
+        if (this.popovered) {
+            return ;
+        }
+
+        popover = $("<div>").addClass("popover neb").addClass(o.clsPopover).html(o.popoverText);
 
         popover.attr("id", id);
 
