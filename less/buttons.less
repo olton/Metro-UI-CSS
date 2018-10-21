@@ -95,8 +95,8 @@
 
 .button {
     &.square, &.cycle {
-        .px2rem(width, 35px);
-        .px2rem(height, 35px);
+        .px2rem(width, 36px);
+        .px2rem(height, 36px);
         padding-left: 0 !important;
         padding-right: 0 !important;
 
@@ -347,6 +347,8 @@
     display: inline-block;
     position: relative;
     width: auto;
+    height: 36px;
+    line-height: 1;
 }
 
 .split-button {
@@ -381,14 +383,15 @@
     border: 1px solid @borderColor;
     background-color: darken(@light, 5%);
     overflow: hidden;
-    top: 2px;
     position: relative;
+    align-items: center;
 
     .button, .info {
         border-right: none;
         height: 100%;
-        line-height: 34px;
+        line-height: 32px;
         position: relative;
+
         &:active, &:focus {
             box-shadow: none!important;
         }
@@ -408,6 +411,8 @@
         padding: 0 .625rem;
         text-decoration: none;
         font-weight: 600;
+        line-height: 34px;
+
         &:hover {
             color: @linkColorHover;
         }

@@ -4156,6 +4156,37 @@ var d = new Date().getTime();
 
     isLocalhost: function(){
         return (location.hostname === "localhost" || location.hostname === "127.0.0.1" || location.hostname === "")
+    },
+
+    iframeBubbleMouseMove: function(iframe){
+        if (Utils.isJQueryObject(iframe)) {
+            iframe = iframe[0];
+        }
+        var existingOnMouseMove = iframe.contentWindow.onmousemove;
+        iframe.contentWindow.onmousemove = function(e){
+            if(existingOnMouseMove) existingOnMouseMove(e);
+            var evt = document.createEvent("MouseEvents");
+            var boundingClientRect = iframe.getBoundingClientRect();
+            evt.initMouseEvent(
+                "mousemove",
+                true,
+                false,
+                window,
+                e.detail,
+                e.screenX,
+                e.screenY,
+                e.clientX + boundingClientRect.left,
+                e.clientY + boundingClientRect.top,
+                e.ctrlKey,
+                e.altKey,
+                e.shiftKey,
+                e.metaKey,
+                e.button,
+                null
+            );
+
+            iframe.dispatchEvent(evt);
+        };
     }
 };
 
@@ -17041,7 +17072,7 @@ var Splitter = {
         var that = this, element = this.element, o = this.options;
         var children = element.children(o.children).addClass("split-block");
         var i, children_sizes = [];
-        var gutters;
+        var gutters, resizeProp = o.splitMode === "horizontal" ? "width" : "height";
 
         if (!Utils.isValue(element.attr("id"))) {
             element.attr("id", Utils.elementId("splitter"));
@@ -17053,9 +17084,7 @@ var Splitter = {
         }
 
         for (i = 0; i < children.length - 1; i++) {
-            $("<div>").addClass("gutter").css({
-                flexBasis: o.gutterSize
-            }).insertAfter($(children[i]));
+            $("<div>").addClass("gutter").css(resizeProp, o.gutterSize).insertAfter($(children[i]));
         }
 
         gutters = element.children(".gutter");
@@ -17081,7 +17110,7 @@ var Splitter = {
                 }
             } else {
                 $.each(children, function(){
-                    this.style.setProperty('min-height', String(o.minSizes).contains("%") ? o.minSizes : String(o.minSizes).replace("px", "")+"px", 'important');
+                    this.style.setProperty('min-'+resizeProp, String(o.minSizes).contains("%") ? o.minSizes : String(o.minSizes).replace("px", "")+"px", 'important');
                 });
             }
         }
@@ -17106,7 +17135,7 @@ var Splitter = {
 
             $(window).on(Metro.events.move + "-" + element.attr("id"), function(e){
                 var pos = Utils.getCursorPosition(element, e);
-                var new_pos, func = o.splitMode === "horizontal" ? 'outerWidth' : 'outerHeight';
+                var new_pos;
 
                 if (o.splitMode === "horizontal") {
                     new_pos = (pos.x * 100 / w) - (start_pos.x * 100 / w);

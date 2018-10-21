@@ -40,6 +40,7 @@
         background-color: transparent;
         color: @dark;
         height: 34px;
+        min-width: 34px;
         &:focus {
             box-shadow: none;
         }
@@ -90,6 +91,24 @@
 
         .item + .item {
             border-top: 1px solid @borderColor;
+        }
+    }
+}
+
+.input {
+    &.input-large {
+        height: 50px;
+
+        input {
+            height: 48px;
+            font-size: 1.3rem;
+            padding: 0 10px;
+            line-height: 48px;
+        }
+
+        .button {
+            height: 48px;
+            min-width: 48px;
         }
     }
 }
