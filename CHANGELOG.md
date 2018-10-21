@@ -6,6 +6,7 @@
 + [x] Utils: add function `iframeBubbleMouseMove(iframe)`
 + [x] Input: add class `.input-large`
 + [x] Splitter: new component
++ [x] Popovers: fix minor bugs (forum issue)
 
 ### 4.2.25
 + [x] Sidebar: remove scroll-y from sidebar, add scroll-y to sidebar-menu
