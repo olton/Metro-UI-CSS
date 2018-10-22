@@ -9951,6 +9951,11 @@ var Dropdown = {
         toggle = o.toggleElement !== null ? $(o.toggleElement) : element.siblings('.dropdown-toggle').length > 0 ? element.siblings('.dropdown-toggle') : element.prev();
 
         this.displayOrigin = element.css("display");
+
+        if (element.hasClass("v-menu")) {
+            element.addClass("for-dropdown");
+        }
+
         element.css("display", "none");
 
         if (element_roles.length === 0 || element_roles.indexOf("dropdown") === -1) {

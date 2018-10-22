@@ -1,6 +1,7 @@
 ### 4.2.27
 + [x] Input: remove -webkit-autofill background color
 + [x] App bar: fixed class `ml-auto`
++ [x] V-Menu: add service class `for-dropdown`, added automatically, when add role `dropdown` 
 
 ### 4.2.26
 + [x] Image compare: fix for touch devices
