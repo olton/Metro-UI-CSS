@@ -1,5 +1,5 @@
 /*
- * Metro 4 Components Library v4.2.26 build 704 (https://metroui.org.ua)
+ * Metro 4 Components Library v4.2.27 build @@build (https://metroui.org.ua)
  * Copyright 2018 Sergey Pimenov
  * Licensed under MIT
  */
@@ -92,8 +92,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.26",
-    versionFull: "4.2.26.704 ",
+    version: "@@version",
+    versionFull: "@@version.@@build @@status",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -4546,7 +4546,7 @@ var AppBar = {
         menu = element.find(".app-bar-menu");
 
         if (menu.length === 0) {
-            hamburger.hide();
+            hamburger.css("display", "none");
         } else {
             Utils.addCssRule(Metro.sheet, ".app-bar-menu li", "list-style: none!important;"); // This special for IE11 and Edge
         }
@@ -4564,9 +4564,11 @@ var AppBar = {
 
         if (o.expand === true) {
             element.addClass("app-bar-expand");
+            hamburger.addClass("hidden");
         } else {
             if (Utils.isValue(o.expandPoint) && Utils.mediaExist(o.expandPoint)) {
                 element.addClass("app-bar-expand");
+                hamburger.addClass("hidden");
             }
         }
     },

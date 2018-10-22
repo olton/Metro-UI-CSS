@@ -1,4 +1,6 @@
 ### 4.2.27
++ [x] Input: remove -webkit-autofill background color
++ [x] App bar: fixed class `ml-auto`
 
 ### 4.2.26
 + [x] Image compare: fix for touch devices

@@ -1,5 +1,5 @@
 /*
- * Metro 4 Components Library v4.2.26 build @@build (https://metroui.org.ua)
+ * Metro 4 Components Library v4.2.27 build @@build (https://metroui.org.ua)
  * Copyright 2018 Sergey Pimenov
  * Licensed under MIT
  */
@@ -22099,6 +22099,13 @@ textarea {
   -webkit-box-ordinal-group: 4;
       -ms-flex-order: 3;
           order: 3;
+}
+.input input:-webkit-autofill,
+.input input:-webkit-autofill:hover,
+.input input:-webkit-autofill:focus,
+.input input:-webkit-autofill:active {
+  -webkit-transition: background-color 5000s ease-in-out 0s;
+  transition: background-color 5000s ease-in-out 0s;
 }
 .input .autocomplete-list {
   margin: 0;
