@@ -23114,6 +23114,11 @@ textarea {
   width: 100%;
   float: none;
 }
+.v-menu.for-dropdown {
+  width: auto;
+  float: left;
+  display: none;
+}
 .v-menu .v-menu {
   display: none;
   min-width: 0;
