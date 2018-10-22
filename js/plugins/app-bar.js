@@ -63,7 +63,7 @@ var AppBar = {
         menu = element.find(".app-bar-menu");
 
         if (menu.length === 0) {
-            hamburger.hide();
+            hamburger.css("display", "none");
         } else {
             Utils.addCssRule(Metro.sheet, ".app-bar-menu li", "list-style: none!important;"); // This special for IE11 and Edge
         }
@@ -81,9 +81,11 @@ var AppBar = {
 
         if (o.expand === true) {
             element.addClass("app-bar-expand");
+            hamburger.addClass("hidden");
         } else {
             if (Utils.isValue(o.expandPoint) && Utils.mediaExist(o.expandPoint)) {
                 element.addClass("app-bar-expand");
+                hamburger.addClass("hidden");
             }
         }
     },

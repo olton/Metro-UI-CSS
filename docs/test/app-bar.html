@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <link href="../metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
+
+    <title>App-bar test page - Metro 4 :: Popular HTML, CSS and JS library</title>
+</head>
+<body>
+
+<div class="container-fluid bg-darkViolet fg-white pos-fixed fixed-top z-top">
+    <header class="app-bar container bg-darkViolet fg-white pos-relative" data-role="appbar" data-expand-point="md">
+        <a class="app-bar-item no-hover" href="/"><img src="../images/desktop.png" style="height: 40px"></a>
+        <span class="app-bar-item no-hover"><span class="enlarge-4">Metro 4 Sandbox</span></span>
+        <ul class="app-bar-menu ml-auto">
+            <li>
+                <a href="#" class="dropdown-toggle marker-light">New</a>
+                <ul data-role="dropdown" class="d-menu">
+                    <li><a href="">Default</a></li>
+                    <li><a href="">VueJS</a></li>
+                    <li class="disabled"><a href="">Angular</a></li>
+                    <li class="disabled"><a href="">React</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Sign up</a></li>
+        </ul>
+    </header>
+</div>
+
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script src="../metro/js/metro.js?ver=@@b-version"></script>
+</body>
+</html>
