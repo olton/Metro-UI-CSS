@@ -22997,7 +22997,6 @@ textarea {
   text-decoration: none;
   vertical-align: middle;
   white-space: nowrap;
-  min-width: 12.5rem;
   border: none;
 }
 .d-menu li a img,
@@ -23011,7 +23010,8 @@ textarea {
   text-decoration: none;
   font-size: 1.2rem;
   left: 0.5rem;
-  top: 0.8rem;
+  top: 50%;
+  margin-top: -0.6rem;
   width: 1.2rem;
   height: 1.2rem;
   color: inherit;
@@ -23049,7 +23049,7 @@ textarea {
 }
 .d-menu li a[data-hotkey],
 .v-menu li a[data-hotkey] {
-  padding-right: 3.2rem;
+  padding-right: 4rem;
 }
 .d-menu li a[data-hotkey]::after,
 .v-menu li a[data-hotkey]::after {
@@ -23106,7 +23106,6 @@ textarea {
   width: 0.92rem;
   height: 0.92rem;
   font-size: 0.92rem;
-  margin-top: -0.3rem;
 }
 .v-menu {
   display: block;
