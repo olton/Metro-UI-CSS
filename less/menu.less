@@ -160,7 +160,6 @@
             text-decoration: none;
             vertical-align: middle;
             white-space: nowrap;
-            min-width: 12.5rem;
             border: none;
 
             img, .icon {
@@ -171,7 +170,8 @@
                 text-decoration: none;
                 font-size: 1.2rem;
                 left: .5rem;
-                top: .8rem;
+                top: 50%;
+                margin-top: -.6rem;
                 width: 1.2rem;
                 height: 1.2rem;
                 color: inherit;
@@ -207,7 +207,7 @@
         }
 
         a[data-hotkey] {
-            padding-right: 3.2rem;
+            padding-right: 4rem;
             &::after {
                 content: attr(data-hotkey);
                 position: absolute;
@@ -272,7 +272,6 @@
                     width: .92rem;
                     height: .92rem;
                     font-size: .92rem;
-                    margin-top: -.3rem;
                 }
             }
         }
