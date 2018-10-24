@@ -4,6 +4,9 @@
 + [x] v-menu: add service class `for-dropdown`, added automatically, when add role `dropdown
 + [x] d-menu, v-menu: remove `min-width` for item 
 + [x] d-menu: fix icon position in item
++ [x] Cloak: add class `.m4-cloak` for `body` to remove blinking initiated components
++ [x] Cloak: add meta tag `metro4:cloak` can receive values: `show`, `fade` (default)  
++ [x] Cloak: add meta tag `metro4:cloak_duration` can receive integer values, default `500`. User for `fade`  
 
 ### 4.2.26
 + [x] Image compare: fix for touch devices

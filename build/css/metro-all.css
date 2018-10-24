@@ -215,6 +215,9 @@ img {
 div {
   position: relative;
 }
+.m4-cloak {
+  display: none;
+}
 .transition {
   -webkit-transition: all 0.3s linear;
   transition: all 0.3s linear;
