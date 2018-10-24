@@ -34,6 +34,8 @@ var meta_animation_duration = $("meta[name='metro4:animation_duration']").attr("
 var meta_callback_timeout = $("meta[name='metro4:callback_timeout']").attr("content");
 var meta_timeout = $("meta[name='metro4:timeout']").attr("content");
 var meta_scroll_multiple = $("meta[name='metro4:scroll_multiple']").attr("content");
+var meta_cloak = $("meta[name='metro4:cloak']").attr("content"); //default or fade
+var meta_cloak_duration = $("meta[name='metro4:cloak_duration']").attr("content"); //100
 
 if (window.METRO_INIT === undefined) {
     window.METRO_INIT = meta_init !== undefined ? JSON.parse(meta_init) : true;
@@ -63,6 +65,12 @@ if (window.METRO_TIMEOUT === undefined) {
 }
 if (window.METRO_SCROLL_MULTIPLE === undefined) {
     window.METRO_SCROLL_MULTIPLE = meta_scroll_multiple !== undefined ? parseInt(meta_scroll_multiple) : 20;
+}
+if (window.METRO_CLOAK_REMOVE === undefined) {
+    window.METRO_CLOAK_REMOVE = meta_cloak !== undefined ? (""+meta_cloak).toLowerCase() : "fade";
+}
+if (window.METRO_CLOAK_DURATION === undefined) {
+    window.METRO_CLOAK_DURATION = meta_cloak_duration !== undefined ? parseInt(meta_cloak_duration) : 500;
 }
 if (window.METRO_HOTKEYS_FILTER_CONTENT_EDITABLE === undefined) {window.METRO_HOTKEYS_FILTER_CONTENT_EDITABLE = true;}
 if (window.METRO_HOTKEYS_FILTER_INPUT_ACCEPTING_ELEMENTS === undefined) {window.METRO_HOTKEYS_FILTER_INPUT_ACCEPTING_ELEMENTS = true;}
@@ -339,6 +347,14 @@ var Metro = {
         this.initWidgets(widgets);
 
         this.about(true);
+
+        if (METRO_CLOAK_REMOVE !== "fade") {
+            $(".m4-cloak").removeClass("m4-cloak");
+        } else {
+            $(".m4-cloak").fadeIn(METRO_CLOAK_DURATION, function(){
+                $(".m4-cloak").removeClass("m4-cloak");
+            });
+        }
 
         return this;
     },
