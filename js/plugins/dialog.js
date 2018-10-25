@@ -197,6 +197,9 @@ var Dialog = {
         var top, left, bottom;
         if (o.toTop !== true && o.toBottom !== true) {
             top = ( $(window).height() - element.outerHeight() ) / 2;
+            if (top < 0) {
+                top = 0;
+            }
             bottom = "auto";
         } else {
             if (o.toTop === true) {
