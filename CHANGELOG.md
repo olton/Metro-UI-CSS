@@ -7,6 +7,12 @@
 + [x] Cloak: add class `.m4-cloak` for `body` to remove blinking initiated components
 + [x] Cloak: add meta tag `metro4:cloak` can receive values: `show`, `fade` (default)  
 + [x] Cloak: add meta tag `metro4:cloak_duration` can receive integer values, default `500`. User for `fade`  
++ [x] Dialog: add element as context to events
++ [x] Popovers: fix minor bugs
++ [x] Popovers: add attribute `data-close-button="true|false""`
++ [x] Popovers: now you can change popover content and position at runtime with attributes `data-popover-text`, `data-popover-position`
++ [x] Popovers: add attribute `data-cls-popover-content`
++ [x] Popovers: change context for events to `element` for which popover is created
 
 ### 4.2.26
 + [x] Image compare: fix for touch devices

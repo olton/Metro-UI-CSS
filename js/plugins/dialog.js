@@ -171,7 +171,7 @@ var Dialog = {
         var timeout = 0;
         if (o.onHide !== Metro.noop) {
             timeout = 300;
-            Utils.exec(o.onHide, [element]);
+            Utils.exec(o.onHide, [element], element[0]);
         }
         setTimeout(function(){
             element.css({
@@ -189,7 +189,7 @@ var Dialog = {
             visibility: "visible"
         });
         Utils.callback(callback);
-        Utils.exec(o.onShow, [element]);
+        Utils.exec(o.onShow, [element], element[0]);
     },
 
     setPosition: function(){
@@ -248,13 +248,12 @@ var Dialog = {
         var that = this, element = this.element, o = this.options;
 
         if (!Utils.bool(o.leaveOverlayOnClose)) {
-            console.log("ku");
             $('body').find('.overlay').remove();
         }
 
         this.hide(function(){
             element.data("open", false);
-            Utils.exec(o.onClose, [element]);
+            Utils.exec(o.onClose, [element], element[0]);
             if (o.removeOnClose === true) {
                 element.remove();
             }
@@ -274,7 +273,7 @@ var Dialog = {
         }
 
         this.show(function(){
-            Utils.exec(o.onOpen, [element]);
+            Utils.exec(o.onOpen, [element], element[0]);
             element.data("open", true);
             if (parseInt(o.autoHide) > 0) {
                 setTimeout(function(){

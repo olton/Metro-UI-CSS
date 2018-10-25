@@ -23635,7 +23635,7 @@ figure img {
   right: 0;
   bottom: 0;
   background-color: rgba(255, 255, 255, 0.5);
-  z-index: 1049;
+  z-index: 1040;
 }
 .overlay.transparent {
   background-color: rgba(255, 255, 255, 0);
@@ -29933,6 +29933,18 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
 }
 .popover > * {
   max-width: 100%;
+}
+.popover .popover-content {
+  display: block;
+  position: relative;
+  z-index: 50;
+}
+.popover .popover-close-button {
+  z-index: 100;
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 24px;
 }
 .media-player {
   display: block;
@@ -39589,7 +39601,7 @@ video:-webkit-full-screen {
   width: 100%;
   height: auto;
   min-height: 52px;
-  z-index: 1080;
+  z-index: 1030;
   background-color: #f8f8f8;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
