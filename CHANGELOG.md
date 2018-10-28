@@ -6,7 +6,7 @@
 + [x] d-menu: fix icon position in item
 + [x] Cloak: add class `.m4-cloak` for `body` to remove blinking initiated components
 + [x] Cloak: add meta tag `metro4:cloak` can receive values: `show`, `fade` (default)  
-+ [x] Cloak: add meta tag `metro4:cloak_duration` can receive integer values, default `500`. User for `fade`  
++ [x] Cloak: add meta tag `metro4:cloak_duration` can receive integer values, default `500`. Use for `fade`  
 + [x] Dialog: add element as context to events
 + [x] Popovers: fix minor bugs, issue #1179, issue #1238
 + [x] Popovers: add attribute `data-close-button="true|false""`

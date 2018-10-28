@@ -39695,16 +39695,16 @@ video:-webkit-full-screen {
   position: relative;
 }
 .app-bar .brand:not(.no-hover):hover,
-.app-bar .app-bar-menu li:hover,
-.app-bar .hamburger:hover,
+.app-bar .app-bar-menu li:not(.no-hover):hover,
+.app-bar .hamburger:not(.no-hover):hover,
 .app-bar .app-bar-item:not(.no-hover):hover,
 .app-bar .brand:not(.no-hover):active,
-.app-bar .app-bar-menu li:active,
-.app-bar .hamburger:active,
+.app-bar .app-bar-menu li:not(.no-hover):active,
+.app-bar .hamburger:not(.no-hover):active,
 .app-bar .app-bar-item:not(.no-hover):active,
 .app-bar .brand:not(.no-hover) .active,
-.app-bar .app-bar-menu li .active,
-.app-bar .hamburger .active,
+.app-bar .app-bar-menu li:not(.no-hover) .active,
+.app-bar .hamburger:not(.no-hover) .active,
 .app-bar .app-bar-item:not(.no-hover) .active {
   background: rgba(29, 29, 29, 0.1);
 }

@@ -51,6 +51,7 @@ var Input = {
         onClearClick: Metro.noop,
         onRevealClick: Metro.noop,
         onSearchButtonClick: Metro.noop,
+        onEnterClick: Metro.noop,
         onInputCreate: Metro.noop
     },
 
@@ -267,6 +268,12 @@ var Input = {
                     that.historyIndex = that.history.length - 1;
                 }
                 e.preventDefault();
+            }
+        });
+
+        element.on(Metro.events.keydown, function(e){
+            if (e.keyCode === Metro.keyCode.ENTER) {
+                Utils.exec(o.onEnterClick, [element.val()], element[0]);
             }
         });
 

@@ -33,8 +33,11 @@ It's an independent project with its ongoing development made possible entirely 
 [![JS gzip size](http://img.badgesize.io/olton/Metro-UI-CSS/master/build/js/metro.min.js?compression=gzip&label=JS+gzip)](https://github.com/olton/Metro-UI-CSS/blob/master/build/js/metro.min.js)
 [![Icons gzip size](http://img.badgesize.io/olton/Metro-UI-CSS/master/build/mif/metro.woff?compression=gzip&label=Icons+gzip)](https://github.com/olton/Metro-UI-CSS/tree/master/build/mif)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat)](https://github.com/olton/Metro-UI-CSS/blob/master/LICENSE)
+[![npm version](https://badge.fury.io/js/metro4.svg)](https://badge.fury.io/js/metro4)
+[![HitCount](http://hits.dwyl.io/olton/Metro-UI-CSS.svg)](http://hits.dwyl.io/olton/Metro-UI-CSS)
 
 ### Community
+[![Join the chat at https://discord.gg/NydRab3](https://img.shields.io/badge/chat-on%20discord-brightgreen.svg?style=flat)](https://discord.gg/NydRab3)
 [![Join the chat at https://gitter.im/metro4/Lobby](https://badges.gitter.im/metro4/Lobby.svg)](https://gitter.im/metro4/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Join the forum at https://forum.metroui.org.ua](https://img.shields.io/badge/metro-forum-orange.svg)](https://forum.metroui.org.ua)
 

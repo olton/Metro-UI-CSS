@@ -28,13 +28,22 @@
   background-color: rgba(255, 255, 255, 0.3) !important;
 }
 .bg-facebook {
-  background-color: #60b5f0;
+  background-color: #4267b2;
 }
 .bg-twitter {
-  background-color: #4464a2;
+  background-color: #1DA1F2;
 }
 .bg-github {
   background-color: #7B7E8C;
+}
+.bg-bootstrap {
+  background-color: #563d7c;
+}
+.bg-gitlab {
+  background-color: #e65328;
+}
+.bg-amazon {
+  background-color: #232f3e;
 }
 .bd-default {
   border-color: #dfdfdf !important;
