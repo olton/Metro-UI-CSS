@@ -881,7 +881,7 @@ var Table = {
             Utils.exec(o.onCheckClickAll, [status], this);
         });
 
-        var _search = function(e){
+        var _search = function(){
             that.searchString = this.value.trim().toLowerCase();
 
             clearInterval(that.input_interval); that.input_interval = false;
@@ -1062,7 +1062,7 @@ var Table = {
             that.openInspector(false);
         });
 
-        inspector.on(Metro.events.click, ".js-table-inspector-reset", function(e){
+        inspector.on(Metro.events.click, ".js-table-inspector-reset", function(){
             that.resetView();
         });
     },
@@ -1442,8 +1442,55 @@ var Table = {
         return result;
     },
 
+    deleteItem: function(fieldIndex, value){
+        var i, deleteIndexes = [];
+        for(i = 0; i < this.items.length; i++) {
+            if (Utils.isFunc(value)) {
+                if (Utils.exec(value, [this.items[i][fieldIndex]])) {
+                    deleteIndexes.push(i);
+                }
+            } else {
+                if (this.items[i][fieldIndex] === value) {
+                    deleteIndexes.push(i);
+                }
+            }
+        }
+
+        Utils.arrayDeleteByMultipleKeys(this.items, deleteIndexes);
+
+        return this;
+    },
+
+    deleteItemByName: function(fieldName, value){
+        var i, fieldIndex, deleteIndexes = [];
+
+        for(i = 0; i < this.heads.length; i++) {
+            if (this.heads[i]['name'] === fieldName) {
+                fieldIndex = i;
+                break;
+            }
+        }
+
+        for(i = 0; i < this.items.length; i++) {
+            if (Utils.isFunc(value)) {
+                if (Utils.exec(value, [this.items[i][fieldIndex]])) {
+                    deleteIndexes.push(i);
+                }
+            } else {
+                if (this.items[i][fieldIndex] === value) {
+                    deleteIndexes.push(i);
+                }
+            }
+        }
+
+        Utils.arrayDeleteByMultipleKeys(this.items, deleteIndexes);
+
+        return this;
+    },
+
     draw: function(){
-        return this._draw();
+        this._draw();
+        return this;
     },
 
     sorting: function(dir){
@@ -1475,12 +1522,15 @@ var Table = {
         });
 
         Utils.exec(o.onSortStop, [this.items], element[0]);
+
+        return this;
     },
 
     search: function(val){
         this.searchString = val.trim().toLowerCase();
         this.currentPage = 1;
         this._draw();
+        return this;
     },
 
     loadData: function(source, review){
@@ -1564,6 +1614,7 @@ var Table = {
             return ;
         }
         this._draw();
+        return this;
     },
 
     prev: function(){
@@ -1574,18 +1625,21 @@ var Table = {
             return ;
         }
         this._draw();
+        return this;
     },
 
     first: function(){
         if (this.items.length === 0) return ;
         this.currentPage = 1;
         this._draw();
+        return this;
     },
 
     last: function(){
         if (this.items.length === 0) return ;
         this.currentPage = this.pagesCount;
         this._draw();
+        return this;
     },
 
     page: function(num){
@@ -1599,6 +1653,7 @@ var Table = {
 
         this.currentPage = num;
         this._draw();
+        return this;
     },
 
     addFilter: function(f, redraw){
@@ -1643,6 +1698,7 @@ var Table = {
             this.currentPage = 1;
             this.draw();
         }
+        return this;
     },
 
     getItems: function(){

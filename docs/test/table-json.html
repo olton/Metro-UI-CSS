@@ -21,8 +21,12 @@
     </div>
 
     <div>
-        <button class="button alert" onclick="$('#t2').data('table').openInspector(true)">Inspector</button>
-        <button class="button alert" onclick="$('#t2').data('table').reload()">Reload</button>
+        <button class="button" onclick="$('#t2').data('table').openInspector(true)">Inspector</button>
+        <button class="button" onclick="$('#t2').data('table').reload()">Reload</button>
+        <button class="button warning" onclick="$('#t2').data('table').deleteItem(3, 60).draw()">Delete</button>
+        <button class="button warning" onclick="$('#t2').data('table').deleteItemByName('age', 60).draw()">Delete</button>
+        <button class="button alert" onclick="$('#t2').data('table').deleteItem(3, function(v){return v >= 60}).draw()">Delete</button>
+        <button class="button alert" onclick="$('#t2').data('table').deleteItemByName('age', function(v){return v >= 60}).draw()">Delete</button>
     </div>
 
     <table class="table 1subcompact striped table-border mt-4" id="t2"

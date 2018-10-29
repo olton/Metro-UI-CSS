@@ -22150,6 +22150,7 @@ textarea {
 .input input:-webkit-autofill:hover,
 .input input:-webkit-autofill:focus,
 .input input:-webkit-autofill:active {
+  background-color: #ffffff;
   -webkit-transition: background-color 5000s ease-in-out 0s;
   transition: background-color 5000s ease-in-out 0s;
 }

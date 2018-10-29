@@ -606,6 +606,24 @@ var List = {
         return data;
     },
 
+    deleteItem: function(selector, value){
+        var that = this, element = this.element, o = this.options;
+        var i;
+        for (i = 0; i < this.items.length; i++) {
+            if (selector === o.sortTarget) {
+                if (this.items[i].textContent.contains(value)) {
+                    Utils.arrayDeleteByKey(this.items, i);
+                }
+            } else {
+                $.each($(this).find(selector), function(){
+                    if (this.textContent.contains(value)) {
+                        Utils.arrayDeleteByKey(that.items, i);
+                    }
+                })
+            }
+        }
+    },
+
     draw: function(){
         return this._draw();
     },
