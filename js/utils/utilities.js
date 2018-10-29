@@ -105,6 +105,10 @@ var Utils = {
             return false;
         }
 
+        if (typeof o === "number" && t.toLowerCase() !== "number") {
+            return false;
+        }
+
         var ns = o.split(".");
         var i, context = window;
 
@@ -332,6 +336,17 @@ var Utils = {
 
     objectDelete: function(obj, key){
         if (obj[key] !== undefined) delete obj[key];
+    },
+
+    arrayDeleteByMultipleKeys: function(arr, keys){
+        var args = Array.apply(null, keys);
+        args.sort(function(a, b){
+            return a - b;
+        });
+        for(var i = 0; i < args.length; i++){
+            var index = args[i] - i;
+            arr.splice(index, 1);
+        }
     },
 
     arrayDelete: function(arr, val){
