@@ -232,22 +232,22 @@ var Select = {
         var filter_input = drop_container.find("input");
         var list = drop_container.find("ul");
 
-        element.on(Metro.events.focus, function(){
-            container.addClass("focused");
-        });
-
-        element.on(Metro.events.blur, function(){
-            container.removeClass("focused");
-        });
-
         container.on(Metro.events.click, function(e){
+            $(".select").removeClass("focused");
+            container.addClass("focused");
             e.preventDefault();
             e.stopPropagation();
         });
 
-        input.on(Metro.events.click, function(){container.toggleClass("focused");});
-        filter_input.on(Metro.events.blur, function(){container.removeClass("focused");});
-        filter_input.on(Metro.events.focus, function(){container.addClass("focused");});
+        input.on(Metro.events.click, function(e){
+            $(".select").removeClass("focused");
+            container.addClass("focused");
+            e.preventDefault();
+            e.stopPropagation();
+        });
+
+        // filter_input.on(Metro.events.blur, function(){container.removeClass("focused");});
+        // filter_input.on(Metro.events.focus, function(){container.addClass("focused");});
 
         list.on(Metro.events.click, "li", function(e){
             if ($(this).hasClass("group-title")) {
@@ -492,6 +492,7 @@ $(document).on(Metro.events.click, function(){
     $.each(selects, function(){
         $(this).data('dropdown').close();
     });
+    $(".select").removeClass("focused");
 });
 
 Metro.plugin('select', Select);

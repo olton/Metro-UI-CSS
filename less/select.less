@@ -100,7 +100,7 @@
     }
 
     &.dropdown-toggle {
-        &:before {
+        &::before {
             margin-left: -.9rem;
             left: 100%;
             top: 14px;
@@ -186,4 +186,46 @@
     .append {order: 3}
     .select-input {order: 2;}
     .button-group {order: 3;}
+}
+
+.select {
+    &.input-large {
+        height: 50px;
+
+        .select-input {
+            height: 48px;
+            font-size: 1.3rem;
+            padding: 2px 10px;
+            line-height: 48px;
+        }
+
+        &.multiple {
+            min-height: 50px;
+            height: auto;
+            .select-input {
+                height: auto;
+                min-height: 48px;
+            }
+        }
+
+        &.dropdown-toggle::before {
+            top: 22px;
+        }
+
+        .selected-item {
+            margin: 2px 4px;
+            padding: 0 0 0 8px;
+            height: 36px;
+            line-height: 36px;
+            .title {
+                font-size: 1.3rem;
+                line-height: 36px;
+            }
+            .remover {
+                width: 35px;
+                height: 35px;
+                line-height: 35px;
+            }
+        }
+    }
 }

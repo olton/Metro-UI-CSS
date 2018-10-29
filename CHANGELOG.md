@@ -13,6 +13,9 @@
 + [x] Popovers: now you can change popover content and position at runtime with attributes `data-popover-text`, `data-popover-position`
 + [x] Popovers: add attribute `data-cls-popover-content`
 + [x] Popovers: change context for events to `element` for which popover is created
++ [x] Colors: add branding color classes `bg-*` for facebook, twitter, github, gitlab, amazon, bootstrap
++ [x] Select: fix add, remove `focused` class
++ [x] Select: add class `input-large`
 
 ### 4.2.26
 + [x] Image compare: fix for touch devices

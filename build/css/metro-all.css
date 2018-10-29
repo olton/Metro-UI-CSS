@@ -21483,6 +21483,14 @@ label {
   line-height: 1.25rem;
   white-space: nowrap;
 }
+.hidden-input {
+  width: 1px;
+  height: 1px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
 .inline-form {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -21763,7 +21771,7 @@ input[type=search] {
   -webkit-box-shadow: 0 0 0 3px rgba(228, 228, 228, 0.45);
           box-shadow: 0 0 0 3px rgba(228, 228, 228, 0.45);
 }
-.select.dropdown-toggle:before {
+.select.dropdown-toggle::before {
   margin-left: -0.9rem;
   left: 100%;
   top: 14px;
@@ -21857,6 +21865,41 @@ input[type=search] {
   -webkit-box-ordinal-group: 4;
       -ms-flex-order: 3;
           order: 3;
+}
+.select.input-large {
+  height: 50px;
+}
+.select.input-large .select-input {
+  height: 48px;
+  font-size: 1.3rem;
+  padding: 2px 10px;
+  line-height: 48px;
+}
+.select.input-large.multiple {
+  min-height: 50px;
+  height: auto;
+}
+.select.input-large.multiple .select-input {
+  height: auto;
+  min-height: 48px;
+}
+.select.input-large.dropdown-toggle::before {
+  top: 22px;
+}
+.select.input-large .selected-item {
+  margin: 2px 4px;
+  padding: 0 0 0 8px;
+  height: 36px;
+  line-height: 36px;
+}
+.select.input-large .selected-item .title {
+  font-size: 1.3rem;
+  line-height: 36px;
+}
+.select.input-large .selected-item .remover {
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
 }
 .textarea,
 textarea {
