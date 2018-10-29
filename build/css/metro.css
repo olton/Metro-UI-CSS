@@ -21887,7 +21887,7 @@ input[type=search] {
   top: 22px;
 }
 .select.input-large .selected-item {
-  margin: 2px 4px;
+  margin: 2px 2px;
   padding: 0 0 0 8px;
   height: 36px;
   line-height: 36px;
@@ -22271,6 +22271,31 @@ textarea {
   cursor: pointer;
   background-color: #e4e4e4;
 }
+.tag-input.input-large {
+  min-height: 50px;
+}
+.tag-input.input-large .tag {
+  margin: 2px 2px;
+  padding: 0 0 0 8px;
+  height: 36px;
+  line-height: 36px;
+}
+.tag-input.input-large .tag .title {
+  font-size: 1.3rem;
+  line-height: 36px;
+}
+.tag-input.input-large .tag .remover {
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+}
+.tag-input.input-large input {
+  height: 48px;
+  font-size: 1.3rem;
+  padding: 0 10px;
+  line-height: 48px;
+  min-width: 5em;
+}
 .spinner {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -22361,6 +22386,19 @@ textarea {
   -webkit-box-ordinal-group: 2;
       -ms-flex-order: 1;
           order: 1;
+}
+.spinner.input-large {
+  height: 50px;
+  line-height: 50px;
+}
+.spinner.input-large input {
+  font-size: 1.3rem;
+}
+.spinner.input-large .spinner-button {
+  height: 48px;
+  width: 48px;
+  min-width: 48px;
+  line-height: 48px;
 }
 .checkbox {
   display: -webkit-inline-box;

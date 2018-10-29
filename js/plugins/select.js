@@ -233,14 +233,14 @@ var Select = {
         var list = drop_container.find("ul");
 
         container.on(Metro.events.click, function(e){
-            $(".select").removeClass("focused");
+            $(".focused").removeClass("focused");
             container.addClass("focused");
             e.preventDefault();
             e.stopPropagation();
         });
 
         input.on(Metro.events.click, function(e){
-            $(".select").removeClass("focused");
+            $(".focused").removeClass("focused");
             container.addClass("focused");
             e.preventDefault();
             e.stopPropagation();
