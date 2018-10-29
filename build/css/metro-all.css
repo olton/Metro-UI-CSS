@@ -20157,39 +20157,10 @@ aside::after {
   font-size: 2rem;
   margin-top: 1.5rem;
 }
-.toolbar {
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  position: relative;
-  padding: 0 0 0 0.5725rem;
-  top: 2px;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-flow: row;
-          flex-flow: row;
-}
-.toolbar.no-divider:before {
-  display: none;
-}
-.toolbar:before {
-  position: absolute;
-  content: "";
-  width: 0.325rem;
-  height: 100%;
-  left: 0;
-  background-color: rgba(69, 90, 100, 0.2);
-  cursor: move;
-}
-.toolbar.vertical {
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-flow: column;
-          flex-flow: column;
-}
 .tool-button {
   width: 2rem;
   height: 2rem;
+  line-height: 2rem;
   vertical-align: middle;
   display: inline-block;
   text-align: center;
@@ -20219,6 +20190,46 @@ aside::after {
   width: auto;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
+}
+.toolbar {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  position: relative;
+  padding: 0 0 0 0.5725rem;
+  top: 2px;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+}
+.toolbar.no-divider::before {
+  display: none;
+}
+.toolbar::before {
+  position: absolute;
+  content: "";
+  width: 0.325rem;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(69, 90, 100, 0.2);
+  cursor: move;
+}
+.toolbar.vertical {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+  padding: 0.5725rem 0 0 0;
+  width: 32px;
+}
+.toolbar.vertical::before {
+  width: 32px;
+  height: 0.325rem;
+}
+.toolbar.vertical .tool-button {
+  margin: 2px 0;
 }
 .dropdown-button,
 .split-button,

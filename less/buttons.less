@@ -285,37 +285,10 @@
     }
 }
 
-.toolbar {
-    display: inline-flex;
-    position: relative;
-    padding: 0 0 0 .5725rem;
-    top: 2px;
-    flex-flow: row;
-
-    &.no-divider {
-        &:before {
-            display: none;
-        }
-    }
-
-    &:before {
-        position: absolute;
-        content: "";
-        width: .325rem;
-        height: 100%;
-        left: 0;
-        background-color: rgba(red(@grayMouse), green(@grayMouse), blue(@grayMouse), .20);
-        cursor: move;
-    }
-
-    &.vertical {
-        flex-flow: column;
-    }
-}
-
 .tool-button {
     width: 2rem;
     height: 2rem;
+    line-height: 2rem;
     vertical-align: middle;
     display: inline-block;
     text-align: center;
@@ -340,6 +313,46 @@
         width: auto;
         padding-left: .5rem;
         padding-right: .5rem;
+    }
+}
+
+.toolbar {
+    display: inline-flex;
+    position: relative;
+    padding: 0 0 0 .5725rem;
+    top: 2px;
+    flex-flow: row nowrap;
+
+    &.no-divider {
+        &::before {
+            display: none;
+        }
+    }
+
+    &::before {
+        position: absolute;
+        content: "";
+        width: .325rem;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background-color: rgba(red(@grayMouse), green(@grayMouse), blue(@grayMouse), .20);
+        cursor: move;
+    }
+
+    &.vertical {
+        flex-flow: column nowrap;
+        padding: .5725rem 0 0 0;
+        width: 32px;
+
+        &::before {
+            width: 32px;
+            height: .325rem;
+        }
+
+        .tool-button {
+            margin: 2px 0;
+        }
     }
 }
 
