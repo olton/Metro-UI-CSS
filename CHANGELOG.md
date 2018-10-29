@@ -19,7 +19,8 @@
 + [x] Spinner: add class `input-large`
 + [x] Tag input: add class `input-large`
 + [x] Tag input: add auto resize to input
-+ [x] Table: add methods `deleteItem(field_index, val)`, `deleteItemByName(field_name, val)`. `Val` can be function or primitive value. 
++ [x] Table: add methods `deleteItem(field_index, val)`, `deleteItemByName(field_name, val)`. `Val` can be function or primitive value.
++ [x] Utils: add function `arrayDeleteByMultipleKeys(arr, /*array*/ indexes)` 
 
 ### 4.2.26
 + [x] Image compare: fix for touch devices
