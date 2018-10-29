@@ -123,6 +123,13 @@ var Spinner = {
             }, threshold);
         };
 
+        spinner.on(Metro.events.click, function(e){
+            $(".focused").removeClass("focused");
+            spinner.addClass("focused");
+            e.preventDefault();
+            e.stopPropagation();
+        });
+
         spinner.on(Metro.events.start, ".spinner-button", function(){
             that.repeat_timer = true;
             spinnerButtonClick($(this).hasClass("spinner-button-plus"), o.repeatThreshold);
@@ -230,3 +237,8 @@ var Spinner = {
 };
 
 Metro.plugin('spinner', Spinner);
+
+$(document).on(Metro.events.click, function(){
+    $(".spinner").removeClass("focused");
+});
+

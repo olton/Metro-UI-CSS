@@ -15646,14 +15646,14 @@ var Select = {
         var list = drop_container.find("ul");
 
         container.on(Metro.events.click, function(e){
-            $(".select").removeClass("focused");
+            $(".focused").removeClass("focused");
             container.addClass("focused");
             e.preventDefault();
             e.stopPropagation();
         });
 
         input.on(Metro.events.click, function(e){
-            $(".select").removeClass("focused");
+            $(".focused").removeClass("focused");
             container.addClass("focused");
             e.preventDefault();
             e.stopPropagation();
@@ -16971,6 +16971,13 @@ var Spinner = {
             }, threshold);
         };
 
+        spinner.on(Metro.events.click, function(e){
+            $(".focused").removeClass("focused");
+            spinner.addClass("focused");
+            e.preventDefault();
+            e.stopPropagation();
+        });
+
         spinner.on(Metro.events.start, ".spinner-button", function(){
             that.repeat_timer = true;
             spinnerButtonClick($(this).hasClass("spinner-button-plus"), o.repeatThreshold);
@@ -17078,6 +17085,12 @@ var Spinner = {
 };
 
 Metro.plugin('spinner', Spinner);
+
+$(document).on(Metro.events.click, function(){
+    $(".spinner").removeClass("focused");
+});
+
+
 
 // Source: js/plugins/splitter.js
 var Splitter = {
@@ -20434,7 +20447,7 @@ var TagInput = {
         element[0].className = "";
 
         element.addClass("original-input");
-        input = $("<input type='text'>").addClass("input-wrapper");
+        input = $("<input type='text'>").addClass("input-wrapper").attr("size", 1);
         input.appendTo(container);
 
         if (Utils.isValue(values)) {
@@ -20457,6 +20470,10 @@ var TagInput = {
             container.removeClass("focused");
         });
 
+        input.on(Metro.events.inputchange, function(){
+            input.attr("size", Math.ceil(input.val().length / 2) + 2);
+        });
+
         input.on(Metro.events.keyup, function(e){
             var val = input.val().trim();
 
@@ -20468,6 +20485,7 @@ var TagInput = {
 
             input.val("");
             that._addTag(val.replace(",", ""));
+            input.attr("size", 1);
 
             if (e.keyCode === Metro.keyCode.ENTER) {
                 e.preventDefault();

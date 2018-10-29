@@ -16,6 +16,9 @@
 + [x] Colors: add branding color classes `bg-*` for facebook, twitter, github, gitlab, amazon, bootstrap
 + [x] Select: fix add, remove `focused` class
 + [x] Select: add class `input-large`
++ [x] Spinner: add class `input-large`
++ [x] Tag input: add class `input-large`
++ [x] Tag input: add auto resize to input
 
 ### 4.2.26
 + [x] Image compare: fix for touch devices
