@@ -8,37 +8,13 @@
 
     <title>Splitter test page - Metro 4 :: Popular HTML, CSS and JS library</title>
 
-    <style>
-        textarea {
-            height: 100%;
-        }
-
-        #iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            padding: 0;
-            margin: 0;
-            background: red;
-        }
-    </style>
-
 </head>
 <body class="h-vh-100">
 
 <div class="h-100">
 
-    <div data-role="splitter" data-split-sizes="70, 30" class="h-100">
+    <div data-role="splitter" data-split-sizes="70, 30" class="h-100" data-save-state="true" id="splitter1">
         <div class="bg-red">
-            <iframe id="iframe"
-                    allowfullscreen
-                    allowtransparency
-                    sandbox="allow-forms allow-modals allow-pointer-lock allow-popups allow-same-origin allow-scripts"
-                    scrolling="no"
-                    frameborder="0"
-            ></iframe>
         </div>
         <div data-role="splitter" data-split-mode="vertical" class="h-100" data-min-sizes="100">
             <div class="bg-green"></div>
@@ -51,52 +27,5 @@
 
 <script src="../js/jquery-3.3.1.min.js"></script>
 <script src="../metro/js/metro.js?ver=@@b-version"></script>
-<script>
-    function bubbleIframeMouseMove(iframe){
-        // Save any previous onmousemove handler
-        var existingOnMouseMove = iframe.contentWindow.onmousemove;
-
-        // Attach a new onmousemove listener
-        iframe.contentWindow.onmousemove = function(e){
-            // Fire any existing onmousemove listener
-            if(existingOnMouseMove) existingOnMouseMove(e);
-
-            // Create a new event for the this window
-            var evt = document.createEvent("MouseEvents");
-
-            // We'll need this to offset the mouse move appropriately
-            var boundingClientRect = iframe.getBoundingClientRect();
-
-            // Initialize the event, copying exiting event values
-            // for the most part
-            evt.initMouseEvent(
-                "mousemove",
-                true, // bubbles
-                false, // not cancelable
-                window,
-                e.detail,
-                e.screenX,
-                e.screenY,
-                e.clientX + boundingClientRect.left,
-                e.clientY + boundingClientRect.top,
-                e.ctrlKey,
-                e.altKey,
-                e.shiftKey,
-                e.metaKey,
-                e.button,
-                null // no related element
-            );
-
-            // Dispatch the mousemove event on the iframe element
-            iframe.dispatchEvent(evt);
-        };
-    }
-
-    // Get the iframe element we want to track mouse movements on
-    var myIframe = document.getElementById("iframe");
-
-    // Run it through the function to setup bubbling
-    bubbleIframeMouseMove(myIframe);
-</script>
 </body>
 </html>

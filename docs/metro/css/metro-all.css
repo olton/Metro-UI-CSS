@@ -21678,6 +21678,15 @@ fieldset.disabled,
 input[type=search] {
   -webkit-appearance: none;
 }
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px white inset;
+  background-color: #ffffff !important;
+  -webkit-transition: background-color 5000s ease-in-out 0s;
+  transition: background-color 5000s ease-in-out 0s;
+}
 .select {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -22156,14 +22165,6 @@ textarea {
   -webkit-box-ordinal-group: 4;
       -ms-flex-order: 3;
           order: 3;
-}
-.input input:-webkit-autofill,
-.input input:-webkit-autofill:hover,
-.input input:-webkit-autofill:focus,
-.input input:-webkit-autofill:active {
-  background-color: #ffffff;
-  -webkit-transition: background-color 5000s ease-in-out 0s;
-  transition: background-color 5000s ease-in-out 0s;
 }
 .input .autocomplete-list {
   margin: 0;
@@ -41470,7 +41471,7 @@ video:-webkit-full-screen {
   background-color: #1DA1F2;
 }
 .bg-github {
-  background-color: #7B7E8C;
+  background-color: #24292e;
 }
 .bg-bootstrap {
   background-color: #563d7c;
