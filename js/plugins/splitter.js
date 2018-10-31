@@ -3,6 +3,8 @@ var Splitter = {
         this.options = $.extend( {}, this.options, options );
         this.elem  = elem;
         this.element = $(elem);
+        this.storage = Utils.isValue(Metro.storage) ? Metro.storage : null;
+        this.storageKey = "SPLITTER:";
 
         this._setOptionsFromDOM();
         this._create();
@@ -16,7 +18,8 @@ var Splitter = {
         gutterSize: 4,
         minSizes: null,
         children: "*",
-        gutterClick: "expand", // expand or collapse
+        gutterClick: "expand", // TODO expand or collapse
+        saveState: false,
         onResizeStart: Metro.noop,
         onResizeStop: Metro.noop,
         onResizeSplit: Metro.noop,
@@ -92,6 +95,10 @@ var Splitter = {
                 });
             }
         }
+
+        if (o.saveState && this.storage !== null) {
+            this._getSize();
+        }
     },
 
     _createEvents: function(){
@@ -130,6 +137,8 @@ var Splitter = {
 
             $(window).on(Metro.events.stop + "-" + element.attr("id"), function(e){
 
+                that._saveSize();
+
                 gutter.removeClass("active");
 
                 $(window).off(Metro.events.move + "-" + element.attr("id"));
@@ -138,6 +147,40 @@ var Splitter = {
                 Utils.exec(o.onResizeStop, [Utils.getCursorPosition(element, e), gutter, prev_block, next_block], element);
             })
         });
+    },
+
+    _saveSize: function(){
+        var that = this, element = this.element, o = this.options;
+        var storage = this.storage, itemsSize = [];
+
+        if (o.saveState === true && storage !== null) {
+
+            $.each(element.children(".split-block"), function(){
+                var item = $(this);
+                itemsSize.push(item.css("flex-basis"));
+            });
+
+            storage.setItem(this.storageKey + element.attr("id"), itemsSize);
+        }
+
+    },
+
+    _getSize: function(){
+        var that = this, element = this.element, o = this.options;
+        var storage = this.storage, itemsSize = [];
+
+        if (o.saveState === true && storage !== null) {
+
+            itemsSize = storage.getItem(this.storageKey + element.attr("id"));
+
+            console.log(this.storageKey + element.attr("id"));
+            console.log(itemsSize);
+
+            $.each(element.children(".split-block"), function(i, v){
+                var item = $(v);
+                if (Utils.isValue(itemsSize) && Utils.isValue(itemsSize[i])) item.css("flex-basis", itemsSize[i]);
+            });
+        }
     },
 
     changeAttribute: function(attributeName){

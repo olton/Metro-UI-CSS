@@ -21,7 +21,8 @@
 + [x] Tag input: add auto resize to input
 + [x] Table: add methods `deleteItem(field_index, val)`, `deleteItemByName(field_name, val)`. `Val` can be function or primitive value.
 + [x] Utils: add function `arrayDeleteByMultipleKeys(arr, /*array*/ indexes)`
-+ [x] Toolbar: fix for vertical layout 
++ [x] Toolbar: fix for vertical layout
++ [x] Splitter: add attribute `data-save-state`, required element `ID`. If `true`, panes sizes stored into `Storage` 
 
 ### 4.2.26
 + [x] Image compare: fix for touch devices
