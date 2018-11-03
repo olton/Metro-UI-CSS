@@ -37,6 +37,8 @@ It's an independent project with its ongoing development made possible entirely 
 ### Community
 [![Join the chat at https://gitter.im/metro4/Lobby](https://badges.gitter.im/metro4/Lobby.svg)](https://gitter.im/metro4/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Join the forum at https://forum.metroui.org.ua](https://img.shields.io/badge/metro-forum-orange.svg)](https://forum.metroui.org.ua)
+[![Backers on Open Collective](https://opencollective.com/metro4/backers/badge.svg)](#backers) 
+[![Sponsors on Open Collective](https://opencollective.com/metro4/sponsors/badge.svg)](#sponsors) 
 
 
 ### Whats new
@@ -65,6 +67,35 @@ It's an independent project with its ongoing development made possible entirely 
 
 ### Browser Compatibility
 IE11+, Chrome, Firefox, Opera, Safari, Android, IOS
+
+## Contributors
+
+This project exists thanks to all the people who contribute. <img src="https://opencollective.com/metro4/contributors.svg?width=890&button=false" />
+
+
+## Backers
+
+Thank you to all our backers! 🙏 [[Become a backer](https://opencollective.com/metro4#backer)]
+
+<a href="https://opencollective.com/metro4#backers" target="_blank"><img src="https://opencollective.com/metro4/backers.svg?width=890"></a>
+
+
+## Sponsors
+
+Support this project by becoming a sponsor. Your logo will show up here with a link to your website. [[Become a sponsor](https://opencollective.com/metro4#sponsor)]
+
+<a href="https://opencollective.com/metro4/sponsor/0/website" target="_blank"><img src="https://opencollective.com/metro4/sponsor/0/avatar.svg"></a>
+<a href="https://opencollective.com/metro4/sponsor/1/website" target="_blank"><img src="https://opencollective.com/metro4/sponsor/1/avatar.svg"></a>
+<a href="https://opencollective.com/metro4/sponsor/2/website" target="_blank"><img src="https://opencollective.com/metro4/sponsor/2/avatar.svg"></a>
+<a href="https://opencollective.com/metro4/sponsor/3/website" target="_blank"><img src="https://opencollective.com/metro4/sponsor/3/avatar.svg"></a>
+<a href="https://opencollective.com/metro4/sponsor/4/website" target="_blank"><img src="https://opencollective.com/metro4/sponsor/4/avatar.svg"></a>
+<a href="https://opencollective.com/metro4/sponsor/5/website" target="_blank"><img src="https://opencollective.com/metro4/sponsor/5/avatar.svg"></a>
+<a href="https://opencollective.com/metro4/sponsor/6/website" target="_blank"><img src="https://opencollective.com/metro4/sponsor/6/avatar.svg"></a>
+<a href="https://opencollective.com/metro4/sponsor/7/website" target="_blank"><img src="https://opencollective.com/metro4/sponsor/7/avatar.svg"></a>
+<a href="https://opencollective.com/metro4/sponsor/8/website" target="_blank"><img src="https://opencollective.com/metro4/sponsor/8/avatar.svg"></a>
+<a href="https://opencollective.com/metro4/sponsor/9/website" target="_blank"><img src="https://opencollective.com/metro4/sponsor/9/avatar.svg"></a>
+
+
 
 # License
 Metro 4 has [MIT License](http://metroui.org.ua/license.html)
