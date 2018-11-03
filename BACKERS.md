@@ -32,6 +32,7 @@ If you'd like to join them, please consider:
  - [Jonathan](https://www.patreon.com/user/creators?u=10019621) 
  - [Mike](https://www.patreon.com/user/creators?u=2603858) 
  - [Hebert Alves](https://www.patreon.com/user/creators?u=10134199)
+ - [Arnaud Dagnelies](https://www.patreon.com/user/creators?u=13947239)
 
 <h2 align="center">Project donors (one pay or former patron)</h2>
 

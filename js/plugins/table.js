@@ -1414,12 +1414,9 @@ var Table = {
     },
 
     _getItemContent: function(row){
-
-        // console.log(this.sort);
-
         var result, col = row[this.sort.colIndex];
         var format = this.heads[this.sort.colIndex].format;
-        var formatMask = this.heads[this.sort.colIndex].formatMask;
+        var formatMask = Utils.isValue(this.heads[this.sort.colIndex].formatMask) ? this.heads[this.sort.colIndex].formatMask : "%Y-%m-%d";
         var o = this.options;
 
         result = (""+col).toLowerCase().replace(/[\n\r]+|[\s]{2,}/g, ' ').trim();
@@ -1533,52 +1530,85 @@ var Table = {
         return this;
     },
 
+    _rebuild: function(review){
+        var that = this, element = this.element;
+        var need_sort = false, sortable_columns;
+
+        if (review === true) {
+            this.view = this._createView();
+        }
+
+        this._createTableHeader();
+        this._createTableBody();
+        this._createTableFooter();
+
+        if (this.heads.length > 0) $.each(this.heads, function(i){
+            var item = this;
+            if (!need_sort && ["asc", "desc"].indexOf(item.sortDir) > -1) {
+                need_sort = true;
+                that.sort.colIndex = i;
+                that.sort.dir = item.sortDir;
+            }
+        });
+
+        if (need_sort) {
+            sortable_columns = element.find(".sortable-column");
+            this._resetSortClass(sortable_columns);
+            $(sortable_columns.get(that.sort.colIndex)).addClass("sort-"+that.sort.dir);
+            this.sorting();
+        }
+
+        that.currentPage = 1;
+
+        that._draw();
+    },
+
+    setHeads: function(data){
+        this.heads = data;
+        return this;
+    },
+
+    setHeadItem: function(name, data){
+        var i, index;
+        for(i = 0; i < this.heads.length; i++) {
+            if (item.name === name) {
+                index = i;
+                break;
+            }
+        }
+        this.heads[index] = data;
+        return this;
+    },
+
+    setItems: function(data){
+        this.items = data;
+        return this;
+    },
+
+    setData: function(/*obj*/ data){
+        this.items = [];
+        this.heads = [];
+        this.foots = [];
+
+        this._createItemsFromJSON(data);
+
+        this._rebuild(true);
+
+        return this;
+    },
+
     loadData: function(source, review){
         var that = this, element = this.element, o = this.options;
-        var need_sort = false;
-        var sortable_columns;
 
         if (!Utils.isValue(review)) {
             review = true;
-        }
-
-        function redraw(){
-
-            if (review === true) {
-                that.view = that._createView();
-            }
-
-            that._createTableHeader();
-            that._createTableBody();
-            that._createTableFooter();
-
-            if (that.heads.length > 0) $.each(that.heads, function(i){
-                var item = this;
-                if (!need_sort && ["asc", "desc"].indexOf(item.sortDir) > -1) {
-                    need_sort = true;
-                    that.sort.colIndex = i;
-                    that.sort.dir = item.sortDir;
-                }
-            });
-
-            if (need_sort) {
-                sortable_columns = element.find(".sortable-column");
-                that._resetSortClass(sortable_columns);
-                $(sortable_columns.get(that.sort.colIndex)).addClass("sort-"+that.sort.dir);
-                that.sorting();
-            }
-
-            that.currentPage = 1;
-
-            that._draw();
         }
 
         element.html("");
 
         if (!Utils.isValue(source)) {
 
-            // this._createItemsFromHTML();
-            redraw();
+            this._rebuild(review);
 
         } else {
             o.source = source;
@@ -1593,7 +1623,7 @@ var Table = {
 
                 that._createItemsFromJSON(data);
 
-                redraw();
+                that._rebuild(review);
 
                 Utils.exec(o.onDataLoaded, [o.source, data], element[0]);
             }).fail(function( jqXHR, textStatus, errorThrown) {

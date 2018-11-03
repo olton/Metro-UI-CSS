@@ -590,14 +590,15 @@ var List = {
 
         if (Utils.isValue(format)) {
 
-            if (['number', 'int', 'float', 'money'].indexOf(format) !== -1 && (o.thousandSeparator !== "," || o.decimalSeparator !== "." )) {
+            if (['number', 'int', 'integer', 'float', 'money'].indexOf(format) !== -1 && (o.thousandSeparator !== "," || o.decimalSeparator !== "." )) {
                 data = Utils.parseNumber(data, o.thousandSeparator, o.decimalSeparator);
             }
 
             switch (format) {
                 case "date": data = Utils.isDate(data) ? new Date(data) : ""; break;
                 case "number": data = Number(data); break;
-                case "int": data = parseInt(data); break;
+                case "int":
+                case "integer": data = parseInt(data); break;
                 case "float": data = parseFloat(data); break;
                 case "money": data = Utils.parseMoney(data); break;
             }
