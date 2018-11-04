@@ -45,15 +45,6 @@
     "load-grunt-tasks": "^4.0.0"
   },
   "dependencies": {
-    "jquery": ">=3.0.0",
-    "opencollective-postinstall": "^2.0.1",
-    "opencollective": "^1.0.3"
-  },
-  "collective": {
-    "type": "opencollective",
-    "url": "https://opencollective.com/metro4"
-  },
-  "scripts": {
-    "postinstall": "opencollective-postinstall"
+    "jquery": ">=3.0.0"
   }
 }
