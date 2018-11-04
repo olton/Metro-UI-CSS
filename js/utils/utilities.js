@@ -339,14 +339,12 @@ var Utils = {
     },
 
     arrayDeleteByMultipleKeys: function(arr, keys){
-        var args = Array.apply(null, keys);
-        args.sort(function(a, b){
-            return a - b;
+        keys.forEach(function(ind){
+            delete arr[ind];
         });
-        for(var i = 0; i < args.length; i++){
-            var index = args[i] - i;
-            arr.splice(index, 1);
-        }
+        return arr.filter(function(item){
+            return item !== undefined;
+        })
     },
 
     arrayDelete: function(arr, val){

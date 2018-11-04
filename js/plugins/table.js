@@ -1453,7 +1453,7 @@ var Table = {
             }
         }
 
-        Utils.arrayDeleteByMultipleKeys(this.items, deleteIndexes);
+        this.items = Utils.arrayDeleteByMultipleKeys(this.items, deleteIndexes);
 
         return this;
     },
@@ -1480,7 +1480,7 @@ var Table = {
             }
         }
 
-        Utils.arrayDeleteByMultipleKeys(this.items, deleteIndexes);
+        this.items = Utils.arrayDeleteByMultipleKeys(this.items, deleteIndexes);
 
         return this;
     },

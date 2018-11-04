@@ -19,13 +19,14 @@
 + [x] Spinner: add class `input-large`
 + [x] Tag input: add class `input-large`
 + [x] Tag input: add auto resize to input
-+ [x] Table: add methods `deleteItem(field_index, val)`, `deleteItemByName(field_name, val)`. `Val` can be function or primitive value.
-+ [x] Utils: add function `arrayDeleteByMultipleKeys(arr, /*array*/ indexes)`
++ [x] Table: add methods `deleteItem(field_index, val)`, `deleteItemByName(field_name, val)`. Function return list instance. `Val` can be function or primitive value. Method can not redraw list, to redraw call method `draw()`.
++ [x] Utils: add function `arrayDeleteByMultipleKeys(arr, /*array*/ indexes)`. Function return new Array.
 + [x] Toolbar: fix for vertical layout
 + [x] Splitter: add attribute `data-save-state`, required element `ID`. If `true`, panes sizes stored into `Storage`
 + [x] Table: add method `setData(obj)` 
 + [x] Table: add method `setHeads(obj)`, `setHeadItem(obj)`  
 + [x] Table: add method `setItems(obj)` 
++ [x] List: add method `deleteItem(val)`. Function return list instance. `Val` can be function or primitive value. Method can not redraw list, to redraw call method `draw()`.
 
 ### 4.2.26
 + [x] Image compare: fix for touch devices

@@ -3689,14 +3689,12 @@ var d = new Date().getTime();
     },
 
     arrayDeleteByMultipleKeys: function(arr, keys){
-        var args = Array.apply(null, keys);
-        args.sort(function(a, b){
-            return a - b;
+        keys.forEach(function(ind){
+            delete arr[ind];
         });
-        for(var i = 0; i < args.length; i++){
-            var index = args[i] - i;
-            arr.splice(index, 1);
-        }
+        return arr.filter(function(item){
+            return item !== undefined;
+        })
     },
 
     arrayDelete: function(arr, val){
@@ -12901,9 +12899,9 @@ var List = {
     },
 
     _getItemContent: function(item){
-        var o = this.options;
+        var o = this.options, $item = $(item);
         var i, inset, data;
-        var format;
+        var format, formatMask = Utils.isValue($item.data("formatMask")) ? $item.data("formatMask") : null;
 
         if (Utils.isValue(o.sortClass)) {
             data = "";
@@ -12927,7 +12925,7 @@ var List = {
             }
 
             switch (format) {
-                case "date": data = Utils.isDate(data) ? new Date(data) : ""; break;
+                case "date": data = Utils.isValue(formatMask) ? data.toDate(formatMask) : new Date(data); break;
                 case "number": data = Number(data); break;
                 case "int":
                 case "integer": data = parseInt(data); break;
@@ -12939,22 +12937,26 @@ var List = {
         return data;
     },
 
-    deleteItem: function(selector, value){
-        var that = this, element = this.element, o = this.options;
-        var i;
+    deleteItem: function(value){
+        var i, deleteIndexes = [], item;
+
         for (i = 0; i < this.items.length; i++) {
-            if (selector === o.sortTarget) {
-                if (this.items[i].textContent.contains(value)) {
-                    Utils.arrayDeleteByKey(this.items, i);
+            item = this.items[i];
+
+            if (Utils.isFunc(value)) {
+                if (Utils.exec(value, [item])) {
+                    deleteIndexes.push(i);
                 }
             } else {
-                $.each($(this).find(selector), function(){
-                    if (this.textContent.contains(value)) {
-                        Utils.arrayDeleteByKey(that.items, i);
-                    }
-                })
+                if (item.textContent.contains(value)) {
+                    deleteIndexes.push(i);
+                }
             }
         }
+
+        this.items = Utils.arrayDeleteByMultipleKeys(this.items, deleteIndexes);
+
+        return this;
     },
 
     draw: function(){
@@ -19633,7 +19635,7 @@ var Table = {
             }
         }
 
-        Utils.arrayDeleteByMultipleKeys(this.items, deleteIndexes);
+        this.items = Utils.arrayDeleteByMultipleKeys(this.items, deleteIndexes);
 
         return this;
     },
@@ -19660,7 +19662,7 @@ var Table = {
             }
         }
 
-        Utils.arrayDeleteByMultipleKeys(this.items, deleteIndexes);
+        this.items = Utils.arrayDeleteByMultipleKeys(this.items, deleteIndexes);
 
         return this;
     },

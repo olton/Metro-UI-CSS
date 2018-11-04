@@ -75,3 +75,4 @@ Docs.js
 *.ftpauth
 *.nupkg
 /package-lock.json
+docs/test
