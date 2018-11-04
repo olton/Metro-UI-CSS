@@ -4,7 +4,8 @@ Metro 4 is an MIT-licensed open source project.
 It's an independent project with its ongoing development made possible entirely thanks to the support by these awesome Backers. 
 If you'd like to join them, please consider:
 
-- [Become a backer or sponsor on Patreon](https://www.patreon.com/metroui).
+- [Become a backer or sponsor on Patreon](https://www.patreon.com/metroui)
+- [Become a backer or sponsor on Open Collective](https://opencollective.com/metro4#backer)
 
 <!--
 <h2 align="center">Platinum via Patreon</h2>
