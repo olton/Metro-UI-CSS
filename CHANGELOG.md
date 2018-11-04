@@ -1,3 +1,5 @@
+### 4.2.28
+
 ### 4.2.27
 + [x] Input: remove -webkit-autofill background color
 + [x] App bar: fixed class `ml-auto`
