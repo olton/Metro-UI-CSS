@@ -1,4 +1,5 @@
 ### 4.2.28
++ [x] Docs: fix mistakes in table options
 
 ### 4.2.27
 + [x] Input: remove -webkit-autofill background color
