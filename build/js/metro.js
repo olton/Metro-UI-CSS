@@ -1,5 +1,5 @@
 /*
- * Metro 4 Components Library v4.2.27 build 705 (https://metroui.org.ua)
+ * Metro 4 Components Library v4.2.28 build @@build (https://metroui.org.ua)
  * Copyright 2018 Sergey Pimenov
  * Licensed under MIT
  */
@@ -100,8 +100,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.27",
-    versionFull: "4.2.27.705 ",
+    version: "@@version",
+    versionFull: "@@version.@@build @@status",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -351,9 +351,11 @@ var Metro = {
         if (METRO_CLOAK_REMOVE !== "fade") {
             $(".m4-cloak").removeClass("m4-cloak");
         } else {
-            $(".m4-cloak").fadeIn(METRO_CLOAK_DURATION, function(){
+            $(".m4-cloak").animate({
+                opacity: 1
+            }, METRO_CLOAK_REMOVE, function(){
                 $(".m4-cloak").removeClass("m4-cloak");
-            });
+            })
         }
 
         return this;

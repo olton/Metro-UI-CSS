@@ -332,9 +332,11 @@ var Metro = {
         if (METRO_CLOAK_REMOVE !== "fade") {
             $(".m4-cloak").removeClass("m4-cloak");
         } else {
-            $(".m4-cloak").fadeIn(METRO_CLOAK_DURATION, function(){
+            $(".m4-cloak").animate({
+                opacity: 1
+            }, METRO_CLOAK_REMOVE, function(){
                 $(".m4-cloak").removeClass("m4-cloak");
-            });
+            })
         }
 
         return this;
