@@ -1,5 +1,5 @@
 /*
- * Metro 4 Components Library v4.2.27 build 705 (https://metroui.org.ua)
+ * Metro 4 Components Library v4.2.28 build @@build (https://metroui.org.ua)
  * Copyright 2018 Sergey Pimenov
  * Licensed under MIT
  */
@@ -216,7 +216,7 @@ div {
   position: relative;
 }
 .m4-cloak {
-  display: none;
+  opacity: 0;
 }
 .transition {
   -webkit-transition: all 0.3s linear;

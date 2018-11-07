@@ -1,5 +1,6 @@
 ### 4.2.28
 + [x] Docs: fix mistakes in table options
++ [x] Utils css: fix class `m4-cloak` 
 
 ### 4.2.27
 + [x] Input: remove -webkit-autofill background color
