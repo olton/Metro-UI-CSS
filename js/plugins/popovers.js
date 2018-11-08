@@ -33,7 +33,7 @@ var Popover = {
     },
 
     _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         $.each(element.data(), function(key, value){
             if (key in o) {
@@ -47,7 +47,6 @@ var Popover = {
     },
 
     _create: function(){
-        var that = this, element = this.element, o = this.options;
 
         this._createEvents();
 
@@ -124,6 +123,7 @@ var Popover = {
         var popover;
         var neb_pos;
         var id = Utils.elementId("popover");
+        var closeButton;
 
         if (this.popovered) {
             return ;
@@ -135,7 +135,10 @@ var Popover = {
         $("<div>").addClass("popover-content").addClass(o.clsPopoverContent).html(o.popoverText).appendTo(popover);
 
         if (o.popoverHide === 0 && o.closeButton === true) {
-            $("<button>").addClass("button square small popover-close-button bg-white").html("&times;").appendTo(popover);
+            closeButton = $("<button>").addClass("button square small popover-close-button bg-white").html("&times;").appendTo(popover);
+            closeButton.on(Metro.events.click, function(){
+                that.removePopover();
+            });
         }
 
         switch (o.popoverPosition) {
@@ -146,9 +149,12 @@ var Popover = {
         }
 
         popover.addClass(neb_pos);
-        popover.on(Metro.events.click, function(){
-            that.removePopover();
-        });
+
+        if (o.closeButton !== true) {
+            popover.on(Metro.events.click, function(){
+                that.removePopover();
+            });
+        }
 
         this.popover = popover;
         this.size = Utils.hiddenElementSize(popover);

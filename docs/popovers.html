@@ -178,7 +178,8 @@
                 </p>
                 <div class="example d-flex flex-justify-center">
                     <button class="button m-1" data-role="popover" data-popover-text="This popover closed after 5 secs!" data-popover-position="top" data-popover-hide="5000">Hover me</button>
-                    <button class="button m-1" data-role="popover" data-popover-text="Click Me to close!" data-popover-position="top" data-popover-hide="0">Hover me</button>
+                    <button class="button m-1" data-role="popover" data-popover-text="Click Me to close!" data-popover-position="top" data-close-button="false" data-popover-hide="0">Hover me</button>
+                    <button class="button m-1" data-role="popover" data-popover-text="Click close button to close!" data-popover-position="top" data-popover-hide="0">Hover me</button>
                 </div>
                 <pre><code class="html">
                     &lt;button class="button m-1" data-role="popover"
@@ -189,6 +190,15 @@
 
                     &lt;button class="button m-1" data-role="popover"
                         data-popover-text="Click Me to close!"
+                        data-popover-position="top"
+                        data-popover-hide="0"
+                        data-close-button="false"
+                    &gt;
+                        Hover me
+                    &lt;/button&gt;
+
+                    &lt;button class="button m-1" data-role="popover"
+                        data-popover-text="Click close button to close!"
                         data-popover-position="top" data-popover-hide="0"&gt;
                         Hover me
                     &lt;/button&gt;
