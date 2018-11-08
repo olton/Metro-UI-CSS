@@ -14571,7 +14571,7 @@ var Popover = {
         var timeout = this.options.onPopoverHide === Metro.noop ? 0 : 300;
         var popover = this.popover;
 
-        if (!popovered) {
+        if (!this.popovered) {
             return ;
         }
 
