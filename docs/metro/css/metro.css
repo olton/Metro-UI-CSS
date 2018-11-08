@@ -23225,6 +23225,7 @@ textarea {
   top: 100%;
   -webkit-box-shadow: none;
           box-shadow: none;
+  float: none;
 }
 .v-menu .menu-title {
   background-color: #f6f7f8;
@@ -30038,7 +30039,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   position: absolute;
   top: 0;
   right: 0;
-  font-size: 24px;
+  font-size: 26px;
 }
 .media-player {
   display: block;
