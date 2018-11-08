@@ -23490,8 +23490,10 @@ var Validator = {
             val: 0,
             log: []
         };
+        var data = {};
 
         $.each(inputs, function(){
+            if (Utils.isValue(this.name)) data[this.name] = this.value;
             ValidatorFuncs.validate(this, result, o.onValidate, o.onError, o.requiredMode);
         });
 
@@ -23502,13 +23504,13 @@ var Validator = {
         result.val += Utils.exec(o.onBeforeSubmit, [element], this.elem) === false ? 1 : 0;
 
         if (result.val === 0) {
-            Utils.exec(o.onValidateForm, [element], form);
+            Utils.exec(o.onValidateForm, [element, data], form);
             setTimeout(function(){
                 Utils.exec(o.onSubmit, [element], form);
                 if (that._onsubmit !==  null) Utils.exec(that._onsubmit, null, form);
             }, o.submitTimeout);
         } else {
-            Utils.exec(o.onErrorForm, [result.log, element], form);
+            Utils.exec(o.onErrorForm, [result.log, element, data], form);
             if (o.clearInvalid > 0) {
                 setTimeout(function(){
                     $.each(inputs, function(){
