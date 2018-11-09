@@ -20,7 +20,6 @@ It's an independent project with its ongoing development made possible entirely 
 <a href="https://github.com/olton/Metro-UI-CSS/blob/master/BACKERS.md"><strong>awesome Backers</strong></a>.
 </p>
 
-<br>
 <hr>
  
 ## Current Version 4.2.28

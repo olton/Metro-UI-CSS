@@ -4,6 +4,7 @@
 + [x] Validator: add argument `data` to events `data-on-validate-form`, `data-on-error-form`, `data-on-submit`. Data is a `object` and contains pairs: `input-name: input-value` for form elements.
 + [x] Popover: fix close popover
 + [x] v-menu: fix drop down for `v-menu` -> `v-menu` 
++ [x] Validator: fix for issue #1254
 
 ### 4.2.27
 + [x] Input: remove -webkit-autofill background color
