@@ -265,7 +265,6 @@ var Validator = {
         this.element = $(elem);
         this._onsubmit = null;
         this._onreset = null;
-        this._action = null;
         this.result = [];
 
         this._setOptionsFromDOM();
@@ -307,8 +306,6 @@ var Validator = {
     _create: function(){
         var that = this, element = this.element, o = this.options;
         var inputs = element.find("[data-validate]");
-
-        this._action = element[0].action;
 
         element
             .attr("novalidate", 'novalidate')
@@ -377,8 +374,6 @@ var Validator = {
         });
 
         submit.removeAttr("disabled").removeClass("disabled");
-
-        element[0].action = this._action;
 
         result.val += Utils.exec(o.onBeforeSubmit, [element, formData], this.elem) === false ? 1 : 0;
 
