@@ -1,4 +1,5 @@
 ### 4.2.28
++ [x] Sidebar: fix z-index
 + [x] Docs: fix mistakes in table options
 + [x] Utils css: fix class `m4-cloak` 
 + [x] Validator: add argument `data` to events `data-on-validate-form`, `data-on-error-form`, `data-on-submit`. Data is a `object` and contains pairs: `input-name: input-value` for form elements.
