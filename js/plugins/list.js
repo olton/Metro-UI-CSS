@@ -601,6 +601,8 @@ var List = {
                 case "integer": data = parseInt(data); break;
                 case "float": data = parseFloat(data); break;
                 case "money": data = Utils.parseMoney(data); break;
+                case "card": data = Utils.parseCard(data); break;
+                case "phone": data = Utils.parsePhone(data); break;
             }
         }
 

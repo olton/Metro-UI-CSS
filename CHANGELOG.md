@@ -5,6 +5,10 @@
 + [x] Popover: fix close popover
 + [x] v-menu: fix drop down for `v-menu` -> `v-menu` 
 + [x] Validator: fix for issue #1254
++ [x] Utils: add functions `parseCard(val)`, `parsePhone(val)`. Functions remove all not numeric chars from value
++ [x] Table: add data formats `card`, `phone`
++ [x] List: add data formats `card`, `phone`
++ [x] Sorter: add data formats `card`, `phone`
 
 ### 4.2.27
 + [x] Input: remove -webkit-autofill background color
