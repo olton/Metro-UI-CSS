@@ -40131,7 +40131,7 @@ video:-webkit-full-screen {
   width: 280px;
   background-color: #fefefe;
   padding: 0;
-  z-index: 1081;
+  z-index: 1031;
   left: -290px;
   -webkit-transition: left 0.3s ease;
   transition: left 0.3s ease;
