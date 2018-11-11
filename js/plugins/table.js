@@ -1433,6 +1433,8 @@ var Table = {
                 case "int": result = parseInt(result); break;
                 case "float": result = parseFloat(result); break;
                 case "money": result = Utils.parseMoney(result); break;
+                case "card": result = Utils.parseCard(result); break;
+                case "phone": result = Utils.parsePhone(result); break;
             }
         }
 

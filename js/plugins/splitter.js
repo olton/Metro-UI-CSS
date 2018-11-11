@@ -173,9 +173,6 @@ var Splitter = {
 
             itemsSize = storage.getItem(this.storageKey + element.attr("id"));
 
-            console.log(this.storageKey + element.attr("id"));
-            console.log(itemsSize);
-
             $.each(element.children(".split-block"), function(i, v){
                 var item = $(v);
                 if (Utils.isValue(itemsSize) && Utils.isValue(itemsSize[i])) item.css("flex-basis", itemsSize[i]);

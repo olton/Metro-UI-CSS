@@ -4116,6 +4116,14 @@ var d = new Date().getTime();
         return Number(parseFloat(val.replace(/[^0-9-.]/g, '')));
     },
 
+    parseCard: function(val){
+        return val.replace(/[^0-9]/g, '');
+    },
+
+    parsePhone: function(val){
+        return Utils.parseCard(val);
+    },
+
     isVisible: function(el){
         if (Utils.isJQueryObject(el)) {
             el = el[0];
@@ -13001,6 +13009,8 @@ var List = {
                 case "integer": data = parseInt(data); break;
                 case "float": data = parseFloat(data); break;
                 case "money": data = Utils.parseMoney(data); break;
+                case "card": data = Utils.parseCard(data); break;
+                case "phone": data = Utils.parsePhone(data); break;
             }
         }
 
@@ -16811,7 +16821,9 @@ var Sorter = {
                 case "number": data = Number(data); break;
                 case "int": data = parseInt(data); break;
                 case "float": data = parseFloat(data); break;
-                case "money": data = Number(parseFloat(data.replace(/[^0-9-.]/g, ''))); break;
+                case "money": data = Utils.parseMoney(data); break;
+                case "card": data = Utils.parseCard(data); break;
+                case "phone": data = Utils.parsePhone(data); break;
             }
         }
 
@@ -17379,9 +17391,6 @@ var Splitter = {
         if (o.saveState === true && storage !== null) {
 
             itemsSize = storage.getItem(this.storageKey + element.attr("id"));
-
-            console.log(this.storageKey + element.attr("id"));
-            console.log(itemsSize);
 
             $.each(element.children(".split-block"), function(i, v){
                 var item = $(v);
@@ -19691,6 +19700,8 @@ var Table = {
                 case "int": result = parseInt(result); break;
                 case "float": result = parseFloat(result); break;
                 case "money": result = Utils.parseMoney(result); break;
+                case "card": result = Utils.parseCard(result); break;
+                case "phone": result = Utils.parsePhone(result); break;
             }
         }
 

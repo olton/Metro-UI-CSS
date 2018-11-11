@@ -91,7 +91,9 @@ var Sorter = {
                 case "number": data = Number(data); break;
                 case "int": data = parseInt(data); break;
                 case "float": data = parseFloat(data); break;
-                case "money": data = Number(parseFloat(data.replace(/[^0-9-.]/g, ''))); break;
+                case "money": data = Utils.parseMoney(data); break;
+                case "card": data = Utils.parseCard(data); break;
+                case "phone": data = Utils.parsePhone(data); break;
             }
         }
 

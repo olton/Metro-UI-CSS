@@ -764,6 +764,14 @@ var Utils = {
         return Number(parseFloat(val.replace(/[^0-9-.]/g, '')));
     },
 
+    parseCard: function(val){
+        return val.replace(/[^0-9]/g, '');
+    },
+
+    parsePhone: function(val){
+        return Utils.parseCard(val);
+    },
+
     isVisible: function(el){
         if (Utils.isJQueryObject(el)) {
             el = el[0];
