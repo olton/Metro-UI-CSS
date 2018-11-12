@@ -1,5 +1,5 @@
 /*
- * Metro 4 Components Library v4.2.28 build 706 (https://metroui.org.ua)
+ * Metro 4 Components Library v4.2.28 build @@build (https://metroui.org.ua)
  * Copyright 2018 Sergey Pimenov
  * Licensed under MIT
  */
@@ -100,8 +100,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.28",
-    versionFull: "4.2.28.706 ",
+    version: "@@version",
+    versionFull: "@@version.@@build @@status",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -23513,8 +23513,8 @@ var Validator = {
         var inputs = element.find("[data-validate]");
 
         element
-            .attr("novalidate", 'novalidate')
-            .attr("action", "javascript:");
+            .attr("novalidate", 'novalidate');
+            //.attr("action", "javascript:");
 
         $.each(inputs, function(){
             var input = $(this);

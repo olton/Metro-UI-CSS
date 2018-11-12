@@ -308,8 +308,8 @@ var Validator = {
         var inputs = element.find("[data-validate]");
 
         element
-            .attr("novalidate", 'novalidate')
-            .attr("action", "javascript:");
+            .attr("novalidate", 'novalidate');
+            //.attr("action", "javascript:");
 
         $.each(inputs, function(){
             var input = $(this);
