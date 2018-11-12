@@ -1,3 +1,6 @@
+### 4.2.29
++ [x] Validator: fix for issue #1254
+
 ### 4.2.28
 + [x] Sidebar: fix z-index
 + [x] Docs: fix mistakes in table options
