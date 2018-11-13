@@ -1,5 +1,5 @@
 /*
- * Metro 4 Components Library v4.2.28 build @@build (https://metroui.org.ua)
+ * Metro 4 Components Library v4.2.29 build @@build (https://metroui.org.ua)
  * Copyright 2018 Sergey Pimenov
  * Licensed under MIT
  */
@@ -23485,6 +23485,7 @@ var Validator = {
         interactiveCheck: false,
         clearInvalid: 0,
         requiredMode: true,
+        useRequiredClass: true,
         onBeforeSubmit: Metro.noop_true,
         onSubmit: Metro.noop,
         onError: Metro.noop,
@@ -23520,7 +23521,7 @@ var Validator = {
             var input = $(this);
             var funcs = input.data("validate");
             var required = funcs.indexOf("required") > -1;
-            if (required) {
+            if (required && o.useRequiredClass === true) {
                 if (ValidatorFuncs.is_control(input)) {
                     input.parent().addClass("required");
                 } else {

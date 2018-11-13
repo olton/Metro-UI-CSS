@@ -1,5 +1,7 @@
 ### 4.2.29
 + [x] Validator: fix for issue #1254
++ [x] Inputs: `required`, `invalid`, `valid` classes now works only for inputs.
++ [x] Validator: use attribute `data-use-required-class` to disable or enable class `required` for inputs with `data-validate=required`
 
 ### 4.2.28
 + [x] Sidebar: fix z-index

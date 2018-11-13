@@ -280,6 +280,7 @@ var Validator = {
         interactiveCheck: false,
         clearInvalid: 0,
         requiredMode: true,
+        useRequiredClass: true,
         onBeforeSubmit: Metro.noop_true,
         onSubmit: Metro.noop,
         onError: Metro.noop,
@@ -315,7 +316,7 @@ var Validator = {
             var input = $(this);
             var funcs = input.data("validate");
             var required = funcs.indexOf("required") > -1;
-            if (required) {
+            if (required && o.useRequiredClass === true) {
                 if (ValidatorFuncs.is_control(input)) {
                     input.parent().addClass("required");
                 } else {

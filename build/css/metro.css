@@ -1,5 +1,5 @@
 /*
- * Metro 4 Components Library v4.2.28 build @@build (https://metroui.org.ua)
+ * Metro 4 Components Library v4.2.29 build @@build (https://metroui.org.ua)
  * Copyright 2018 Sergey Pimenov
  * Licensed under MIT
  */
@@ -21461,6 +21461,239 @@ textarea::-webkit-inner-spin-button,
 .spinner::-webkit-inner-spin-button {
   height: 100%;
 }
+input[type=text].required,
+input[type=password].required,
+input[type=tel].required,
+input[type=datetime-local].required,
+input[type=email].required,
+input[type=file].required,
+input[type=month].required,
+input[type=number].required,
+input[type=search].required,
+input[type=time].required,
+input[type=url].required,
+input[type=week].required,
+input[type=file].required,
+select.required,
+textarea.required,
+.file.required,
+.input.required,
+.textarea.required,
+.select.required,
+.tag-input.required,
+.spinner.required {
+  border: 1px #1ba1e2 dashed !important;
+}
+input[type=text].required:focus,
+input[type=password].required:focus,
+input[type=tel].required:focus,
+input[type=datetime-local].required:focus,
+input[type=email].required:focus,
+input[type=file].required:focus,
+input[type=month].required:focus,
+input[type=number].required:focus,
+input[type=search].required:focus,
+input[type=time].required:focus,
+input[type=url].required:focus,
+input[type=week].required:focus,
+input[type=file].required:focus,
+select.required:focus,
+textarea.required:focus,
+.file.required:focus,
+.input.required:focus,
+.textarea.required:focus,
+.select.required:focus,
+.tag-input.required:focus,
+.spinner.required:focus,
+input[type=text].required.focused,
+input[type=password].required.focused,
+input[type=tel].required.focused,
+input[type=datetime-local].required.focused,
+input[type=email].required.focused,
+input[type=file].required.focused,
+input[type=month].required.focused,
+input[type=number].required.focused,
+input[type=search].required.focused,
+input[type=time].required.focused,
+input[type=url].required.focused,
+input[type=week].required.focused,
+input[type=file].required.focused,
+select.required.focused,
+textarea.required.focused,
+.file.required.focused,
+.input.required.focused,
+.textarea.required.focused,
+.select.required.focused,
+.tag-input.required.focused,
+.spinner.required.focused {
+  -webkit-box-shadow: 0 0 0 3px rgba(27, 161, 226, 0.45) !important;
+          box-shadow: 0 0 0 3px rgba(27, 161, 226, 0.45) !important;
+}
+input[type=text].invalid,
+input[type=password].invalid,
+input[type=tel].invalid,
+input[type=datetime-local].invalid,
+input[type=email].invalid,
+input[type=file].invalid,
+input[type=month].invalid,
+input[type=number].invalid,
+input[type=search].invalid,
+input[type=time].invalid,
+input[type=url].invalid,
+input[type=week].invalid,
+input[type=file].invalid,
+select.invalid,
+textarea.invalid,
+.file.invalid,
+.input.invalid,
+.textarea.invalid,
+.select.invalid,
+.tag-input.invalid,
+.spinner.invalid {
+  border: 1px #CE352C solid !important;
+}
+input[type=text].invalid:focus,
+input[type=password].invalid:focus,
+input[type=tel].invalid:focus,
+input[type=datetime-local].invalid:focus,
+input[type=email].invalid:focus,
+input[type=file].invalid:focus,
+input[type=month].invalid:focus,
+input[type=number].invalid:focus,
+input[type=search].invalid:focus,
+input[type=time].invalid:focus,
+input[type=url].invalid:focus,
+input[type=week].invalid:focus,
+input[type=file].invalid:focus,
+select.invalid:focus,
+textarea.invalid:focus,
+.file.invalid:focus,
+.input.invalid:focus,
+.textarea.invalid:focus,
+.select.invalid:focus,
+.tag-input.invalid:focus,
+.spinner.invalid:focus,
+input[type=text].invalid.focused,
+input[type=password].invalid.focused,
+input[type=tel].invalid.focused,
+input[type=datetime-local].invalid.focused,
+input[type=email].invalid.focused,
+input[type=file].invalid.focused,
+input[type=month].invalid.focused,
+input[type=number].invalid.focused,
+input[type=search].invalid.focused,
+input[type=time].invalid.focused,
+input[type=url].invalid.focused,
+input[type=week].invalid.focused,
+input[type=file].invalid.focused,
+select.invalid.focused,
+textarea.invalid.focused,
+.file.invalid.focused,
+.input.invalid.focused,
+.textarea.invalid.focused,
+.select.invalid.focused,
+.tag-input.invalid.focused,
+.spinner.invalid.focused {
+  -webkit-box-shadow: 0 0 0 3px rgba(206, 53, 44, 0.45) !important;
+          box-shadow: 0 0 0 3px rgba(206, 53, 44, 0.45) !important;
+}
+input[type=text].invalid::after,
+input[type=password].invalid::after,
+input[type=tel].invalid::after,
+input[type=datetime-local].invalid::after,
+input[type=email].invalid::after,
+input[type=file].invalid::after,
+input[type=month].invalid::after,
+input[type=number].invalid::after,
+input[type=search].invalid::after,
+input[type=time].invalid::after,
+input[type=url].invalid::after,
+input[type=week].invalid::after,
+input[type=file].invalid::after,
+select.invalid::after,
+textarea.invalid::after,
+.file.invalid::after,
+.input.invalid::after,
+.textarea.invalid::after,
+.select.invalid::after,
+.tag-input.invalid::after,
+.spinner.invalid::after {
+  position: absolute;
+  content: "!";
+  color: #CE352C;
+  left: -16px;
+  top: 0;
+  font-size: 1.625rem;
+  font-weight: bold;
+}
+input[type=text].valid,
+input[type=password].valid,
+input[type=tel].valid,
+input[type=datetime-local].valid,
+input[type=email].valid,
+input[type=file].valid,
+input[type=month].valid,
+input[type=number].valid,
+input[type=search].valid,
+input[type=time].valid,
+input[type=url].valid,
+input[type=week].valid,
+input[type=file].valid,
+select.valid,
+textarea.valid,
+.file.valid,
+.input.valid,
+.textarea.valid,
+.select.valid,
+.tag-input.valid,
+.spinner.valid {
+  border: 1px #60a917 solid !important;
+}
+input[type=text].valid:focus,
+input[type=password].valid:focus,
+input[type=tel].valid:focus,
+input[type=datetime-local].valid:focus,
+input[type=email].valid:focus,
+input[type=file].valid:focus,
+input[type=month].valid:focus,
+input[type=number].valid:focus,
+input[type=search].valid:focus,
+input[type=time].valid:focus,
+input[type=url].valid:focus,
+input[type=week].valid:focus,
+input[type=file].valid:focus,
+select.valid:focus,
+textarea.valid:focus,
+.file.valid:focus,
+.input.valid:focus,
+.textarea.valid:focus,
+.select.valid:focus,
+.tag-input.valid:focus,
+.spinner.valid:focus,
+input[type=text].valid.focused,
+input[type=password].valid.focused,
+input[type=tel].valid.focused,
+input[type=datetime-local].valid.focused,
+input[type=email].valid.focused,
+input[type=file].valid.focused,
+input[type=month].valid.focused,
+input[type=number].valid.focused,
+input[type=search].valid.focused,
+input[type=time].valid.focused,
+input[type=url].valid.focused,
+input[type=week].valid.focused,
+input[type=file].valid.focused,
+select.valid.focused,
+textarea.valid.focused,
+.file.valid.focused,
+.input.valid.focused,
+.textarea.valid.focused,
+.select.valid.focused,
+.tag-input.valid.focused,
+.spinner.valid.focused {
+  -webkit-box-shadow: 0 0 0 3px rgba(96, 169, 23, 0.45) !important;
+          box-shadow: 0 0 0 3px rgba(96, 169, 23, 0.45) !important;
+}
 input[type=button],
 input[type=submit],
 input[type=reset] {
@@ -21628,39 +21861,6 @@ fieldset.disabled,
 .custom-validation select[required]:invalid + .invalid_feedback,
 .custom-validation textarea[required]:invalid + .invalid_feedback {
   display: block;
-}
-.required {
-  border: 1px #1ba1e2 dashed !important;
-}
-.required:focus,
-.required.focused {
-  -webkit-box-shadow: 0 0 0 3px rgba(27, 161, 226, 0.45) !important;
-          box-shadow: 0 0 0 3px rgba(27, 161, 226, 0.45) !important;
-}
-.invalid {
-  border: 1px #CE352C solid !important;
-}
-.invalid:focus,
-.invalid.focused {
-  -webkit-box-shadow: 0 0 0 3px rgba(206, 53, 44, 0.45) !important;
-          box-shadow: 0 0 0 3px rgba(206, 53, 44, 0.45) !important;
-}
-.invalid::after {
-  position: absolute;
-  content: "!";
-  color: #CE352C;
-  left: -16px;
-  top: 0;
-  font-size: 1.625rem;
-  font-weight: bold;
-}
-.valid {
-  border: 1px #60a917 solid !important;
-}
-.valid:focus,
-.valid.focused {
-  -webkit-box-shadow: 0 0 0 3px rgba(96, 169, 23, 0.45) !important;
-          box-shadow: 0 0 0 3px rgba(96, 169, 23, 0.45) !important;
 }
 .invalid_feedback {
   display: none;
