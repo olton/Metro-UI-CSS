@@ -4,6 +4,7 @@
 + [x] Validator: use attribute `data-use-required-class` to disable or enable class `required` for inputs with `data-validate=required`
 + [x] Popover: fix firing event `onPopoverShow`, issue #1258
 + [x] Notify: fix default options from new notify
++ [x] Inputs: fix toggle attribute `disabled` for inputs with `role`
 
 ### 4.2.28
 + [x] Sidebar: fix z-index

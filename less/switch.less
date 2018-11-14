@@ -32,7 +32,6 @@
         display: inline-block;
         vertical-align: middle;
         border-radius: 1.125rem / 2;
-        transition: @transition-base;
         flex-shrink: 0;
     }
 
@@ -49,7 +48,6 @@
         cursor: pointer;
         background: #333;
         z-index: 2;
-        transition: @transition-base;
         border-radius: 50%;
     }
 
@@ -62,14 +60,13 @@
             left: auto;
             .translateX(1.625rem);
             .translateY(-50%);
-            transition: @transition-base;
         }
     }
 
     input[type="checkbox"]:disabled ~ .check {
         background-color: @disabledBackground;
         border-color: @disabledBackground;
-        &:after {
+        &::after {
             background-color: darken(@disabledBackground, 10%);
             border-color: darken(@disabledBackground, 10%);
         }
@@ -91,6 +88,20 @@
             display: none;
         }
     }
+
+    &.transition-on {
+        .check {
+            transition: @transition-base;
+            &::after {
+                transition: @transition-base;
+            }
+        }
+        input[type="checkbox"]:checked ~ .check {
+            &::after {
+                transition: @transition-base;
+            }
+        }
+    }
 }
 
 .switch-material {
@@ -100,7 +111,6 @@
     align-items: center;
     position: relative;
     user-select: none;
-    transition: @transition-base;
     cursor: pointer;
 
     .hideElement(input);
@@ -124,7 +134,7 @@
     }
 
     .check {
-        &:before {
+        &::before {
             position: absolute;
             display: block;
             content: "";
@@ -144,17 +154,17 @@
     }
 
     input:not(:checked) ~ .check {
-        &:before {
+        &::before {
             background-color: @white;
-            .transition(all, .2s, linear);
+            //.transition(all, .2s, linear);
         }
     }
 
     input:checked ~ .check {
         background-color: rgba(0, 150, 136, 0.5);
-        &:before {
+        &::before {
             .translateX(22px);
-            .transition(all, .2s, linear);
+            //.transition(all, .2s, linear);
         }
     }
 
@@ -170,5 +180,21 @@
 
     &.caption-left {
         flex-flow: row-reverse nowrap;
+    }
+
+    &.transition-on {
+        transition: @transition-base;
+
+        input:not(:checked) ~ .check {
+            &::before {
+                .transition(all, .2s, linear);
+            }
+        }
+
+        input:checked ~ .check {
+            &::before {
+                .transition(all, .2s, linear);
+            }
+        }
     }
 }

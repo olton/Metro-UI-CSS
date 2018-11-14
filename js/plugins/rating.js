@@ -141,6 +141,12 @@ var Rating = {
             }
         }
 
+        if (element.is(":disabled")) {
+            this.disable();
+        } else {
+            this.enable();
+        }
+
         this.rating = rating;
     },
 
@@ -232,10 +238,29 @@ var Rating = {
         this.static(isStatic);
     },
 
+    disable: function(){
+        this.element.data("disabled", true);
+        this.element.parent().addClass("disabled");
+    },
+
+    enable: function(){
+        this.element.data("disabled", false);
+        this.element.parent().removeClass("disabled");
+    },
+
+    toggleState: function(){
+        if (this.elem.disabled) {
+            this.disable();
+        } else {
+            this.enable();
+        }
+    },
+
     changeAttribute: function(attributeName){
         switch (attributeName) {
             case "value":
             case "data-value": this.changeAttributeValue(attributeName); break;
+            case "disabled": this.toggleState(); break;
             case "data-message": this.changeAttributeMessage(); break;
             case "data-static": this.changeAttributeStatic(); break;
         }

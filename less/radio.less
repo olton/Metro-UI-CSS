@@ -26,7 +26,6 @@
         border: 2px @inputBorder solid;
         .square(20, px);
         border-radius: 50%;
-        transition: @transition-base;
         flex-shrink: 0;
         line-height: @inputHeight;
 
@@ -52,7 +51,6 @@
     input[type=radio]:checked ~ .check {
         border-color: @dark;
         background-color: @dark;
-        transition: @transition-base;
 
         &::before {
             display: block;
@@ -114,6 +112,16 @@
                 background-color: @disabledBorder;
                 border-color: @disabledBorder;
             }
+        }
+    }
+
+    &.transition-on {
+        .check {
+            transition: @transition-base;
+        }
+
+        input[type=radio]:checked ~ .check {
+            transition: @transition-base;
         }
     }
 }
