@@ -1220,7 +1220,7 @@ var Table = {
         if ((Utils.isValue(this.searchString) && that.searchString.length >= o.searchMinLength) || this.filters.length > 0) {
             items = this.items.filter(function(row){
 
-                var row_data = "", result, search_result, i, j = 0;
+                var row_data = [], result, search_result, i, j = 0;
 
                 if (that.filters.length > 0) {
 
@@ -1242,14 +1242,20 @@ var Table = {
                 if (that.searchFields.length > 0) {
                     $.each(that.heads, function(i, v){
                         if (that.searchFields.indexOf(v.name) > -1) {
-                            row_data += ""+row[i];
+                            row_data.push(""+row[i]);
                         }
                     })
                 } else {
-                    row_data = row.join("");
+                    row_data = row.map(function (value) {
+                        return ""+value;
+                    });
                 }
 
-                row_data = row_data.replace(/[\n\r]+|[\s]{2,}/g, ' ').trim().toLowerCase();
+                row_data = row_data.map(function (value) {
+                    return value.toString().replace(/[\n\r]+|[\s]{2,}/g, ' ').trim().toLowerCase();
+                });
+                row_data = row_data.join("\n");
+
                 search_result = Utils.isValue(that.searchString) && that.searchString.length >= o.searchMinLength ? ~row_data.indexOf(that.searchString) : true;
 
                 result = result && search_result;

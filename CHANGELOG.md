@@ -5,6 +5,7 @@
 + [x] Popover: fix firing event `onPopoverShow`, issue #1258
 + [x] Notify: fix default options from new notify
 + [x] Inputs: fix toggle attribute `disabled` for inputs with `role`
++ [x] Table: fix for issue #1262
 
 ### 4.2.28
 + [x] Sidebar: fix z-index
