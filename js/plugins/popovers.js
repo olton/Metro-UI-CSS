@@ -68,6 +68,9 @@ var Popover = {
             }
             setTimeout(function(){
                 that.createPopover();
+
+                Utils.exec(o.onPopoverShow, [that.popover], element[0]);
+
                 if (o.popoverHide > 0) {
                     setTimeout(function(){
                         that.removePopover();
@@ -196,6 +199,7 @@ var Popover = {
 
     show: function(){
         var that = this, element = this.element, o = this.options;
+
         if (this.popovered === true) {
             return ;
         }
@@ -203,7 +207,7 @@ var Popover = {
         setTimeout(function(){
             that.createPopover();
 
-            Utils.exec(o.onPopoverShow, [popover], element[0]);
+            Utils.exec(o.onPopoverShow, [that.popover], element[0]);
 
             if (o.popoverHide > 0) {
                 setTimeout(function(){
