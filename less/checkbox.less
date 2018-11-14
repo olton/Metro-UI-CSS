@@ -25,7 +25,6 @@
     .check {
         border: 2px @inputBorder solid;
         .square(20, px);
-        transition: @transition-base;
         flex-shrink: 0;
         line-height: @inputHeight;
 
@@ -53,7 +52,6 @@
     input[type=checkbox]:checked ~ .check {
         border-color: @dark;
         background-color: @dark;
-        transition: @transition-base;
 
         &::before {
             display: block;
@@ -68,7 +66,6 @@
     input[data-indeterminate=true] ~ .check {
         border-color: @dark;
         background-color: @dark;
-        transition: @transition-base;
 
         &::before {
             display: block!important;
@@ -141,6 +138,20 @@
                 margin-left: -4px;
                 margin-top: -4px;
             }
+        }
+    }
+
+    &.transition-on {
+        .check {
+            transition: @transition-base;
+        }
+
+        input[type=checkbox]:checked ~ .check {
+            transition: @transition-base;
+        }
+
+        input[data-indeterminate=true] ~ .check {
+            transition: @transition-base;
         }
     }
 }

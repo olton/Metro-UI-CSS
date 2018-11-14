@@ -21791,36 +21791,96 @@ fieldset.disabled,
 .select:disabled input,
 .tag-input:disabled input,
 .spinner:disabled input,
+.tag-input:disabled input,
+.rating:disabled input,
 .file.disabled input,
 .input.disabled input,
 .textarea.disabled input,
 .select.disabled input,
 .tag-input.disabled input,
 .spinner.disabled input,
+.tag-input.disabled input,
+.rating.disabled input,
 .file:disabled textarea,
 .input:disabled textarea,
 .textarea:disabled textarea,
 .select:disabled textarea,
 .tag-input:disabled textarea,
 .spinner:disabled textarea,
+.tag-input:disabled textarea,
+.rating:disabled textarea,
 .file.disabled textarea,
 .input.disabled textarea,
 .textarea.disabled textarea,
 .select.disabled textarea,
 .tag-input.disabled textarea,
 .spinner.disabled textarea,
+.tag-input.disabled textarea,
+.rating.disabled textarea,
 .file:disabled select,
 .input:disabled select,
 .textarea:disabled select,
 .select:disabled select,
 .tag-input:disabled select,
 .spinner:disabled select,
+.tag-input:disabled select,
+.rating:disabled select,
 .file.disabled select,
 .input.disabled select,
 .textarea.disabled select,
 .select.disabled select,
 .tag-input.disabled select,
-.spinner.disabled select {
+.spinner.disabled select,
+.tag-input.disabled select,
+.rating.disabled select,
+.file:disabled .select-input,
+.input:disabled .select-input,
+.textarea:disabled .select-input,
+.select:disabled .select-input,
+.tag-input:disabled .select-input,
+.spinner:disabled .select-input,
+.tag-input:disabled .select-input,
+.rating:disabled .select-input,
+.file.disabled .select-input,
+.input.disabled .select-input,
+.textarea.disabled .select-input,
+.select.disabled .select-input,
+.tag-input.disabled .select-input,
+.spinner.disabled .select-input,
+.tag-input.disabled .select-input,
+.rating.disabled .select-input,
+.file:disabled .caption,
+.input:disabled .caption,
+.textarea:disabled .caption,
+.select:disabled .caption,
+.tag-input:disabled .caption,
+.spinner:disabled .caption,
+.tag-input:disabled .caption,
+.rating:disabled .caption,
+.file.disabled .caption,
+.input.disabled .caption,
+.textarea.disabled .caption,
+.select.disabled .caption,
+.tag-input.disabled .caption,
+.spinner.disabled .caption,
+.tag-input.disabled .caption,
+.rating.disabled .caption,
+.file:disabled .stars li,
+.input:disabled .stars li,
+.textarea:disabled .stars li,
+.select:disabled .stars li,
+.tag-input:disabled .stars li,
+.spinner:disabled .stars li,
+.tag-input:disabled .stars li,
+.rating:disabled .stars li,
+.file.disabled .stars li,
+.input.disabled .stars li,
+.textarea.disabled .stars li,
+.select.disabled .stars li,
+.tag-input.disabled .stars li,
+.spinner.disabled .stars li,
+.tag-input.disabled .stars li,
+.rating.disabled .stars li {
   background: transparent;
   color: #989898;
 }
@@ -21830,12 +21890,16 @@ fieldset.disabled,
 .select:disabled .button-group,
 .tag-input:disabled .button-group,
 .spinner:disabled .button-group,
+.tag-input:disabled .button-group,
+.rating:disabled .button-group,
 .file.disabled .button-group,
 .input.disabled .button-group,
 .textarea.disabled .button-group,
 .select.disabled .button-group,
 .tag-input.disabled .button-group,
-.spinner.disabled .button-group {
+.spinner.disabled .button-group,
+.tag-input.disabled .button-group,
+.rating.disabled .button-group {
   display: none;
 }
 .invalid_feedback {
@@ -22656,8 +22720,6 @@ textarea {
   border: 2px #d9d9d9 solid;
   width: 20px;
   height: 20px;
-  -webkit-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
   -ms-flex-negative: 0;
       flex-shrink: 0;
   line-height: 36px;
@@ -22685,8 +22747,6 @@ textarea {
 .checkbox input[type=checkbox]:checked ~ .check {
   border-color: #1d1d1d;
   background-color: #1d1d1d;
-  -webkit-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
 }
 .checkbox input[type=checkbox]:checked ~ .check::before {
   display: block;
@@ -22698,8 +22758,6 @@ textarea {
 .checkbox input[data-indeterminate=true] ~ .check {
   border-color: #1d1d1d;
   background-color: #1d1d1d;
-  -webkit-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
 }
 .checkbox input[data-indeterminate=true] ~ .check::before {
   display: block!important;
@@ -22782,6 +22840,18 @@ textarea {
   margin-left: -4px;
   margin-top: -4px;
 }
+.checkbox.transition-on .check {
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+.checkbox.transition-on input[type=checkbox]:checked ~ .check {
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+.checkbox.transition-on input[data-indeterminate=true] ~ .check {
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
 .radio {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
@@ -22826,8 +22896,6 @@ textarea {
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  -webkit-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
   -ms-flex-negative: 0;
       flex-shrink: 0;
   line-height: 36px;
@@ -22854,8 +22922,6 @@ textarea {
 .radio input[type=radio]:checked ~ .check {
   border-color: #1d1d1d;
   background-color: #1d1d1d;
-  -webkit-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
 }
 .radio input[type=radio]:checked ~ .check::before {
   display: block;
@@ -22926,6 +22992,14 @@ textarea {
   background-color: #e9e9e9;
   border-color: #e9e9e9;
 }
+.radio.transition-on .check {
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+.radio.transition-on input[type=radio]:checked ~ .check {
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
 .switch {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
@@ -22975,8 +23049,6 @@ textarea {
   display: inline-block;
   vertical-align: middle;
   border-radius: 0.5625rem;
-  -webkit-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
   -ms-flex-negative: 0;
       flex-shrink: 0;
 }
@@ -22994,8 +23066,6 @@ textarea {
   cursor: pointer;
   background: #333;
   z-index: 2;
-  -webkit-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
   border-radius: 50%;
 }
 .switch input[type="checkbox"]:checked ~ .check {
@@ -23008,14 +23078,12 @@ textarea {
   left: auto;
   -webkit-transform: translateX(1.625rem) translateY(-50%);
           transform: translateX(1.625rem) translateY(-50%);
-  -webkit-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
 }
 .switch input[type="checkbox"]:disabled ~ .check {
   background-color: #e9e9e9;
   border-color: #e9e9e9;
 }
-.switch input[type="checkbox"]:disabled ~ .check:after {
+.switch input[type="checkbox"]:disabled ~ .check::after {
   background-color: #d0d0d0;
   border-color: #d0d0d0;
 }
@@ -23043,6 +23111,18 @@ textarea {
 .switch.invalid::after {
   display: none;
 }
+.switch.transition-on .check {
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+.switch.transition-on .check::after {
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+.switch.transition-on input[type="checkbox"]:checked ~ .check::after {
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
 .switch-material {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
@@ -23062,8 +23142,6 @@ textarea {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
-  -webkit-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
   cursor: pointer;
 }
 .switch-material input {
@@ -23091,7 +23169,7 @@ textarea {
   position: relative;
   margin: 0 4px;
 }
-.switch-material .check:before {
+.switch-material .check::before {
   position: absolute;
   display: block;
   content: "";
@@ -23108,19 +23186,15 @@ textarea {
 .switch-material input:checked ~ .check {
   background-color: rgba(0, 150, 136, 0.5);
 }
-.switch-material input:not(:checked) ~ .check:before {
+.switch-material input:not(:checked) ~ .check::before {
   background-color: #ffffff;
-  -webkit-transition: linear all 0.2s;
-  transition: linear all 0.2s;
 }
 .switch-material input:checked ~ .check {
   background-color: rgba(0, 150, 136, 0.5);
 }
-.switch-material input:checked ~ .check:before {
+.switch-material input:checked ~ .check::before {
   -webkit-transform: translateX(22px);
           transform: translateX(22px);
-  -webkit-transition: linear all 0.2s;
-  transition: linear all 0.2s;
 }
 .switch-material input:disabled ~ .check {
   background-color: #D5D5D5;
@@ -23143,6 +23217,18 @@ textarea {
   -webkit-box-direction: reverse;
       -ms-flex-flow: row-reverse nowrap;
           flex-flow: row-reverse nowrap;
+}
+.switch-material.transition-on {
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+.switch-material.transition-on input:not(:checked) ~ .check::before {
+  -webkit-transition: linear all 0.2s;
+  transition: linear all 0.2s;
+}
+.switch-material.transition-on input:checked ~ .check::before {
+  -webkit-transition: linear all 0.2s;
+  transition: linear all 0.2s;
 }
 .h-menu {
   list-style: none inside;
@@ -30133,6 +30219,9 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
 .slider.rounded .buffer,
 .slider.rounded .marker {
   border-radius: 0.25rem;
+}
+.slider.disabled .marker {
+  display: none;
 }
 .panel {
   display: -webkit-box;
