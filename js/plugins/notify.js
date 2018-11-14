@@ -44,6 +44,10 @@ var Notify = {
         var notify, that = this, o = this.options;
         var m, t;
 
+        if (Utils.isNull(options)) {
+            options = {};
+        }
+
         if (!Utils.isValue(message)) {
             return false;
         }
