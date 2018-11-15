@@ -116,6 +116,9 @@ var Splitter = {
 
             gutter.addClass("active");
 
+            prev_block.addClass("stop-select stop-pointer");
+            next_block.addClass("stop-select stop-pointer");
+
             Utils.exec(o.onResizeStart, [start_pos, gutter, prev_block, next_block], element);
 
             $(window).on(Metro.events.move + "-" + element.attr("id"), function(e){
@@ -136,6 +139,9 @@ var Splitter = {
             });
 
             $(window).on(Metro.events.stop + "-" + element.attr("id"), function(e){
+
+                prev_block.removeClass("stop-select stop-pointer");
+                next_block.removeClass("stop-select stop-pointer");
 
                 that._saveSize();
 

@@ -41349,6 +41349,15 @@ video:-webkit-full-screen {
       flex-basis: 0;
   overflow: hidden;
 }
+.splitter > .split-block.stop-select {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.splitter > .split-block.stop-pointer {
+  pointer-events: none;
+}
 .ripple {
   display: block;
   width: 0;
