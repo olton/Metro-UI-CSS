@@ -6,6 +6,7 @@
 + [x] Notify: fix default options from new notify
 + [x] Inputs: fix toggle attribute `disabled` for inputs with `role`
 + [x] Splitter: add service classes `.stop-select`, `.stop-pointer`
++ [x] Table: fix issue #1262
 
 ### 4.2.28
 + [x] Sidebar: fix z-index
