@@ -76,6 +76,7 @@ Build_replace.js
 Build_dev.js
 CDN_dev.js
 Docs.js
+Update_Builder.js
 *.ftpauth
 *.nupkg
 /package-lock.json
