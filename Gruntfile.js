@@ -60,26 +60,6 @@ module.exports = function(grunt) {
             }
         },
 
-        "string-replace": {
-            version: {
-                files: {
-                    'build/': 'build/js/*.js'
-                },
-                options: {
-                    replacements: [
-                        {
-                            pattern: "@@version.@@build @@status",
-                            replacement: "<%= pkg.version %>-dev"
-                        },
-                        {
-                            pattern: "@@version",
-                            replacement: "<%= pkg.version %>-dev"
-                        }
-                    ]
-                }
-            }
-        },
-
         uglify: {
             options: {
                 banner: '<%= banner %>',
@@ -192,12 +172,12 @@ module.exports = function(grunt) {
         watch: {
             scripts: {
                 files: ['js/i18n/*.json', 'js/*.js', 'js/utils/*.js', 'js/plugins/*js', 'less/*.less', 'less/include/*.less', 'less/third-party/*.less', 'less/schemes/*.less', 'less/schemes/builder/*.less', 'Gruntfile.js'],
-                tasks: ['clean',  'less', 'postcss', 'concat', "string-replace", 'uglify', 'cssmin', 'copy']
+                tasks: ['clean',  'less', 'postcss', 'concat', 'uglify', 'cssmin', 'copy']
             }
         }
     });
 
-    tasks = ['clean', 'less', 'postcss', 'concat', "string-replace",  'uglify', 'cssmin', 'copy'];
+    tasks = ['clean', 'less', 'postcss', 'concat', 'uglify', 'cssmin', 'copy'];
 
     if (watching) {
         tasks.push('watch');

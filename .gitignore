@@ -66,11 +66,15 @@ deploy.bat
 commit.bat
 build.bat
 final.bat
+dev.bat
+cdn-dev.bat
 tag.bat
 delete-tag.bat
 Postprocess.js
 Build.js
 Build_replace.js
+Build_dev.js
+CDN_dev.js
 Docs.js
 *.ftpauth
 *.nupkg
