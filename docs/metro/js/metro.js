@@ -12988,11 +12988,12 @@ var List = {
 
     deleteItem: function(value){
         var i, deleteIndexes = [], item;
+        var is_func = Utils.isFunc(value);
 
         for (i = 0; i < this.items.length; i++) {
             item = this.items[i];
 
-            if (Utils.isFunc(value)) {
+            if (is_func) {
                 if (Utils.exec(value, [item])) {
                     deleteIndexes.push(i);
                 }
@@ -18880,9 +18881,6 @@ var Table = {
                 classes.push("hidden");
             }
 
-            if (item.type === 'rowcheck') {classes.push("check-cell");}
-            if (item.type === 'rownum') {classes.push("rownum-cell");}
-
             classes.push(o.clsHeadCell);
 
             if (Utils.bool(view[cell_index]['show'])) {
@@ -19745,8 +19743,9 @@ var Table = {
 
     deleteItem: function(fieldIndex, value){
         var i, deleteIndexes = [];
+        var is_func = Utils.isFunc(value);
         for(i = 0; i < this.items.length; i++) {
-            if (Utils.isFunc(value)) {
+            if (is_func) {
                 if (Utils.exec(value, [this.items[i][fieldIndex]])) {
                     deleteIndexes.push(i);
                 }
@@ -19764,6 +19763,7 @@ var Table = {
 
     deleteItemByName: function(fieldName, value){
         var i, fieldIndex, deleteIndexes = [];
+        var is_func = Utils.isFunc(value);
 
         for(i = 0; i < this.heads.length; i++) {
             if (this.heads[i]['name'] === fieldName) {
@@ -19773,7 +19773,7 @@ var Table = {
         }
 
         for(i = 0; i < this.items.length; i++) {
-            if (Utils.isFunc(value)) {
+            if (is_func) {
                 if (Utils.exec(value, [this.items[i][fieldIndex]])) {
                     deleteIndexes.push(i);
                 }

@@ -7,6 +7,8 @@
 + [x] Inputs: fix toggle attribute `disabled` for inputs with `role`
 + [x] Splitter: add service classes `.stop-select`, `.stop-pointer`
 + [x] Table: fix issue #1262
++ [x] Table: optimize functions `deleteItem`, `deleteItemByName`
++ [x] List: optimize functions `deleteItem`
 
 ### 4.2.28
 + [x] Sidebar: fix z-index
