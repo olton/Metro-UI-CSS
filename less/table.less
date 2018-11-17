@@ -1,6 +1,20 @@
 @import (once) "include/vars";
 @import (once) "include/mixins";
 
+.table-container {
+    display: block;
+    position: relative;
+
+    &.horizontal-scroll {
+        overflow: hidden;
+        overflow-x: auto;
+        .table {
+            width: auto;
+            min-width: 100%;
+        }
+    }
+}
+
 .table {display: table;}
 .thead {display: table-header-group}
 .tfoot {display: table-footer-group}
