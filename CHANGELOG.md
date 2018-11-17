@@ -9,6 +9,7 @@
 + [x] Table: fix issue #1262
 + [x] Table: optimize functions `deleteItem`, `deleteItemByName`
 + [x] List: optimize functions `deleteItem`
++ [x] Table: add attribute `data-horizontal-scroll` to enable horizontal scrolling for wide table 
 
 ### 4.2.28
 + [x] Sidebar: fix z-index

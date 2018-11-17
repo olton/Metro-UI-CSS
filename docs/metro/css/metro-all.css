@@ -19041,6 +19041,18 @@ aside::after {
     margin-top: 0;
   }
 }
+.table-container {
+  display: block;
+  position: relative;
+}
+.table-container.horizontal-scroll {
+  overflow: hidden;
+  overflow-x: auto;
+}
+.table-container.horizontal-scroll .table {
+  width: auto;
+  min-width: 100%;
+}
 .table {
   display: table;
 }
