@@ -115,6 +115,7 @@ var Table = {
         cellWrapper: true,
 
         clsComponent: "",
+        clsTableContainer: "",
         clsTable: "",
 
         clsHead: "",
@@ -724,7 +725,7 @@ var Table = {
         table_component = $("<div>").addClass("table-component");
         table_component.insertBefore(element);
 
-        table_container = $("<div>").addClass("table-container").appendTo(table_component);
+        table_container = $("<div>").addClass("table-container").addClass(o.clsTableContainer).appendTo(table_component);
         element.appendTo(table_container);
 
         if (o.horizontalScroll === true) {

@@ -10,6 +10,7 @@
 + [x] Table: optimize functions `deleteItem`, `deleteItemByName`
 + [x] List: optimize functions `deleteItem`
 + [x] Table: add attribute `data-horizontal-scroll` to enable horizontal scrolling for wide table 
++ [x] Table: add attribute `data-cls-table-container`
 
 ### 4.2.28
 + [x] Sidebar: fix z-index
