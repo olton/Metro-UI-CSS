@@ -34,6 +34,13 @@ It's an independent project with its ongoing development made possible entirely 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat)](https://github.com/olton/Metro-UI-CSS/blob/master/LICENSE)
 [![npm version](https://badge.fury.io/js/metro4.svg)](https://badge.fury.io/js/metro4)
 
+### Cross-browser Testing
+Cross-browser Testing Platform and Open Source Provided by [Sauce Labs](https://saucelabs.com).
+Sauce Labs ensures your favorite mobile apps and websites work flawlessly on every browser, operating system, and device.
+<p>
+<a href="https://saucelabs.com"><img src="https://metroui.org.ua/images/Sauce-Labs_Horiz_Red-Grey_RGB_200x28.png" style="width: 100px;"></a>
+</p>
+
 ### Opencollective 
 [![Backers on Open Collective](https://opencollective.com/metro4/backers/badge.svg)](#backers) 
 [![Sponsors on Open Collective](https://opencollective.com/metro4/sponsors/badge.svg)](#sponsors)
