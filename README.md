@@ -34,13 +34,6 @@ It's an independent project with its ongoing development made possible entirely 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat)](https://github.com/olton/Metro-UI-CSS/blob/master/LICENSE)
 [![npm version](https://badge.fury.io/js/metro4.svg)](https://badge.fury.io/js/metro4)
 
-### Cross-browser Testing
-Cross-browser Testing Platform and Open Source Provided by [Sauce Labs](https://saucelabs.com).
-Sauce Labs ensures your favorite mobile apps and websites work flawlessly on every browser, operating system, and device.
-<p>
-<a href="https://saucelabs.com"><img src="https://metroui.org.ua/images/Sauce-Labs_Horiz_Red-Grey_RGB_200x28.png" style="width: 100px;"></a>
-</p>
-
 ### Opencollective 
 [![Backers on Open Collective](https://opencollective.com/metro4/backers/badge.svg)](#backers) 
 [![Sponsors on Open Collective](https://opencollective.com/metro4/sponsors/badge.svg)](#sponsors)
@@ -62,6 +55,16 @@ Sauce Labs ensures your favorite mobile apps and websites work flawlessly on eve
 
  Documentation and Demo for v4: [metroui.org.ua](https://metroui.org.ua/) or short [m4.org.ua](https://m4.org.ua).   
 
+### Releases
+
+Metro 4 releases frequently. I Am create release when there are significant bug fixes, new APIs or components.
+The usual frequency of release of the new version is one week on Sundays.
+
+### LTS
+**Long term support** of older versions of Metro 4 does not currently exist. 
+If your current version of Metro 4 works for you, you can stay on it for as long as you'd like. 
+If you want to make use of new features as they come in you should upgrade to a newer version.
+
 ### Credits
 - Styles created using the [less](http://lesscss.org) preprocessor by  [Alexis Sellier](https://github.com/cloudhead)
 - preCode by Leon Sorokin [preCode](https://github.com/leeoniya/preCode.js)
@@ -78,10 +81,17 @@ Sauce Labs ensures your favorite mobile apps and websites work flawlessly on eve
 ### Browser Compatibility
 IE11+, Chrome, Firefox, Opera, Safari, Android, IOS
 
-# License
+### Cross-browser Testing
+Cross-browser Testing Platform and Open Source Provided by [Sauce Labs](https://saucelabs.com).
+Sauce Labs ensures your favorite mobile apps and websites work flawlessly on every browser, operating system, and device.
+<p>
+<a href="https://saucelabs.com"><img src="https://metroui.org.ua/images/Sauce-Labs_Horiz_Red-Grey_RGB_200x28.png" style="width: 100px;"></a>
+</p>
+
+### License
 Metro 4 has [MIT License](http://metroui.org.ua/license.html)
 
-## Old version
+### Old version
 Metro UI CSS 3.x you can find in a repo [Metro-UI-CSS-3](https://github.com/olton/Metro-UI-CSS-3)     
 Metro UI CSS 2.x you can find in a repo [Metro-UI-CSS-2](https://github.com/olton/Metro-UI-CSS-2)     
 Metro UI CSS 0.x you can find in a repo [Metro-UI-CSS-095](https://github.com/olton/Metro-UI-CSS-095) 
