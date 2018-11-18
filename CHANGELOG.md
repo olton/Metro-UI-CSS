@@ -1,3 +1,5 @@
+### 4.2.30
+
 ### 4.2.29
 + [x] Validator: fix for issue #1254
 + [x] Inputs: `required`, `invalid`, `valid` classes now works only for inputs.
