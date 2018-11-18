@@ -207,5 +207,68 @@
     .hamburger, .expand-title {
         display: none;
     }
+
+    &:not(.vertical):not(.bottom) {
+
+        ul {
+            &.tabs-text, &.tabs-pills, &.tabs-group {
+                border-bottom: none;
+            }
+        }
+
+        ul.tabs-text {
+            & > li {
+                display: flex;
+                align-items: flex-end;
+                border: none;
+                &:hover {
+                    background: @transparent;
+                }
+
+                &.active {
+                    font-size: 3rem;
+                }
+
+                & > a {
+                    height: 100%;
+                    padding: 0.5rem .5rem 0;
+                    align-items: flex-end;
+                }
+
+                &:not(.active) {
+                    a {
+                        padding-bottom: 10px;
+                    }
+                }
+            }
+        }
+
+        ul.tabs-group {
+            justify-content: space-between;
+            & > li {
+                border: 1px solid @borderColor;
+                width: 100%;
+                &.active {
+                    background: @lightGray;
+                    font-weight: 500;
+                }
+            }
+        }
+
+        ul.tabs-pills {
+            & > li {
+                border: 1px solid @transparent;
+                overflow: hidden;
+                border-radius: 10px;
+
+                &.active {
+                    font-weight: 500;
+                    border-color: @borderColor;
+                    background: @lightGray;
+                }
+            }
+        }
+    }
+
 }
 
