@@ -52,6 +52,7 @@
                     <li class="toc-entry"><a href="#_tabs_target">Target content</a></li>
                     <li class="toc-entry"><a href="#_tabs_js">Events</a></li>
                     <li class="toc-entry"><a href="#_tabs_classes">Custom classes</a></li>
+                    <li class="toc-entry"><a href="#_tabs_types">Additional tab types</a></li>
                 </ul>
 
             </div>
@@ -344,6 +345,62 @@
                         <code>data-cls-tabs-list</code>,
                         <code>data-cls-tabs-list-item</code>
                 </p>
+
+                <h3 id="_tabs_types">Additional tab types</h3>
+                <p>
+                    From Metro 4 ver 4.2.29 you can set additional tab types for horizontal expanded tabs.
+                    To set it, use attribute <code>data-tabs-type="..."</code>.
+                    You can use next values for this attributes: <code>text</code>, <code>group</code>, <code>pills</code>.
+                </p>
+
+                <h4>Text</h4>
+                <div class="example">
+                    <ul data-role="tabs" data-tabs-type="text" data-expand="true">
+                        <li><a href="#">Profile</a></li>
+                        <li><a href="#">Editor</a></li>
+                        <li><a href="#">Billing</a></li>
+                    </ul>
+                </div>
+                <pre><code>
+                    &lt;ul data-role="tabs" data-tabs-type="text" data-expand="true"&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Profile&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Editor&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Billing&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                </code></pre>
+
+                <h4>Group</h4>
+                <div class="example">
+                    <ul data-role="tabs" data-tabs-type="group" data-expand="true">
+                        <li><a href="#">Profile</a></li>
+                        <li><a href="#">Editor</a></li>
+                        <li><a href="#">Billing</a></li>
+                    </ul>
+                </div>
+                <pre><code>
+                    &lt;ul data-role="tabs" data-tabs-type="group" data-expand="true"&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Profile&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Editor&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Billing&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                </code></pre>
+
+                <h4>Pills</h4>
+                <div class="example">
+                    <ul data-role="tabs" data-tabs-type="pills" data-expand="true">
+                        <li><a href="#">Profile</a></li>
+                        <li><a href="#">Editor</a></li>
+                        <li><a href="#">Billing</a></li>
+                    </ul>
+                </div>
+                <pre><code>
+                    &lt;ul data-role="tabs" data-tabs-type="pills" data-expand="true"&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Profile&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Editor&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Billing&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                </code></pre>
+
             </main>
         </div>
 

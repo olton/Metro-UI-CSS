@@ -11,6 +11,7 @@
 + [x] List: optimize functions `deleteItem`
 + [x] Table: add attribute `data-horizontal-scroll` to enable horizontal scrolling for wide table 
 + [x] Table: add attribute `data-cls-table-container`
++ [x] Tabs: add attribute `data-tabs-type`. This attribute sets new tab types for expanded horizontal tabs. Values: `text`, `group`, `pills`  
 
 ### 4.2.28
 + [x] Sidebar: fix z-index

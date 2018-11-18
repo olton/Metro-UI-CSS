@@ -28534,6 +28534,59 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
 .tabs-expand .expand-title {
   display: none;
 }
+.tabs-expand:not(.vertical):not(.bottom) ul.tabs-text,
+.tabs-expand:not(.vertical):not(.bottom) ul.tabs-pills,
+.tabs-expand:not(.vertical):not(.bottom) ul.tabs-group {
+  border-bottom: none;
+}
+.tabs-expand:not(.vertical):not(.bottom) ul.tabs-text > li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  border: none;
+}
+.tabs-expand:not(.vertical):not(.bottom) ul.tabs-text > li:hover {
+  background: transparent;
+}
+.tabs-expand:not(.vertical):not(.bottom) ul.tabs-text > li.active {
+  font-size: 3rem;
+}
+.tabs-expand:not(.vertical):not(.bottom) ul.tabs-text > li > a {
+  height: 100%;
+  padding: 0.5rem 0.5rem 0;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+.tabs-expand:not(.vertical):not(.bottom) ul.tabs-text > li:not(.active) a {
+  padding-bottom: 10px;
+}
+.tabs-expand:not(.vertical):not(.bottom) ul.tabs-group {
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.tabs-expand:not(.vertical):not(.bottom) ul.tabs-group > li {
+  border: 1px solid #dfdfdf;
+  width: 100%;
+}
+.tabs-expand:not(.vertical):not(.bottom) ul.tabs-group > li.active {
+  background: #e4e4e4;
+  font-weight: 500;
+}
+.tabs-expand:not(.vertical):not(.bottom) ul.tabs-pills > li {
+  border: 1px solid transparent;
+  overflow: hidden;
+  border-radius: 10px;
+}
+.tabs-expand:not(.vertical):not(.bottom) ul.tabs-pills > li.active {
+  font-weight: 500;
+  border-color: #dfdfdf;
+  background: #e4e4e4;
+}
 .activity-ring {
   position: relative;
   padding-top: 0.22rem;
