@@ -4,6 +4,7 @@
 + [x] h-menu: less code moved to separate file
 + [x] drop-utils: now contains classes for drop-down: `dropdown-toggle`, `drop-up`, `drop-left`, `drop-right`
 + [x] sidenav-m3: fix icon position for submenu, issue #1266
++ [x] Splitter: fix gutter for nested splitters
 
 ### 4.2.29
 + [x] Validator: fix for issue #1254
