@@ -41066,7 +41066,7 @@ video:-webkit-full-screen {
       -ms-flex-direction: column;
           flex-direction: column;
 }
-.splitter .gutter {
+.splitter > .gutter {
   -ms-flex-negative: 0;
       flex-shrink: 0;
   -webkit-box-flex: 0;
@@ -41077,10 +41077,10 @@ video:-webkit-full-screen {
   cursor: col-resize;
   z-index: 1;
 }
-.splitter .gutter.active {
+.splitter > .gutter.active {
   background-color: #bebebe;
 }
-.splitter .gutter::before {
+.splitter > .gutter::before {
   content: "";
   z-index: 1;
   display: block;
@@ -41092,10 +41092,10 @@ video:-webkit-full-screen {
   margin-top: -12px;
   background-color: #bebebe;
 }
-.splitter.vertical .gutter {
+.splitter.vertical > .gutter {
   cursor: row-resize;
 }
-.splitter.vertical .gutter::before {
+.splitter.vertical > .gutter::before {
   height: 100%;
   width: 24px;
   top: 0;
