@@ -1,6 +1,8 @@
 ### 4.2.30
 + [x] Toast: add function `init(options)`, now you can set toast `top` position and `distance`. See docs for details.
-
++ [x] t-menu: less code moved to separate file
++ [x] h-menu: less code moved to separate file
++ [x] drop-utils: now contains classes for drop-down: `dropdown-toggle`, `drop-up`, `drop-left`, `drop-right`
 
 ### 4.2.29
 + [x] Validator: fix for issue #1254

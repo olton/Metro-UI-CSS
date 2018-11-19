@@ -1,0 +1,65 @@
+@import (once) "include/vars";
+@import (once) "include/mixins";
+
+[data-role*=dropdown] {
+    //display: block;
+}
+
+.dropdown-toggle {
+
+    .toggle();
+
+    &.drop-marker-light, &.marker-light  {
+        &::before {
+            border-color: @white;
+        }
+    }
+
+    &.no-marker {
+        &::before {
+            display: none;
+        }
+    }
+
+    &.active-toggle {
+        &::before {
+            .rotate(135deg);
+            transition: @transition-short;
+        }
+    }
+
+    &.marker-center {
+        &::before {
+            left: 50%;
+            top: 50%;
+            margin-left: 0;
+            margin-top: 0;
+            .translateX(-50%);
+            .translateY(-50%);
+            .rotate(-45deg);
+        }
+        &.active-toggle {
+            &::before {
+                .translateX(-50%);
+                .translateY(-50%);
+                .rotate(135deg);
+                transition: @transition-short;
+            }
+        }
+    }
+}
+
+.drop-left {
+    right: 100%;
+    top: 0;
+}
+
+.drop-right {
+    left: 100%;
+    top: 0;
+}
+
+.drop-up {
+    top: auto;
+    bottom: 100%;
+}
