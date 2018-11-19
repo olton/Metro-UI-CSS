@@ -39261,8 +39261,6 @@ video:-webkit-full-screen {
   position: absolute;
   left: 0.625rem;
   top: 50%;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
 }
 .sidenav-m3[dir=rtl] a {
   padding-right: 3rem;
