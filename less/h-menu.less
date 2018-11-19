@@ -1,0 +1,116 @@
+@import (once) "include/vars";
+@import (once) "include/mixins";
+
+.h-menu {
+    list-style: none inside;
+    display: block;
+    margin: 0;
+    padding: 0;
+    background-color: @white;
+    color: @dark;
+    .clear();
+
+    & > li, & > li > a {
+        display: block;
+        position: relative;
+    }
+
+    & > li {
+        background-color: inherit;
+        color: inherit;
+        float: left;
+
+        &:hover {
+            background-color: @hoverBackground;
+            & > a, .icon {
+                color: inherit;
+            }
+        }
+    }
+
+    & > li > a {
+        font-weight: normal;
+        color: inherit;
+        font-size: 1rem;
+        outline: none;
+        text-decoration: none;
+        padding: .5rem 1rem;
+        border: none;
+        background-color: inherit;
+        white-space: nowrap;
+
+        &.dropdown-toggle {
+            padding-right: 2rem!important;
+            &::before {
+                margin-left: -1.25rem;
+            }
+        }
+    }
+
+    &.no-hover {
+        & > li > a {
+            padding-left: .5rem;
+            padding-right: .5rem;
+            color: lighten(@dark, 30%);
+        }
+
+        & > li:hover, & > li > a:hover {
+            background-color: transparent;
+            color: @dark;
+        }
+    }
+
+    &.large > li > a {
+        padding: 1.125rem 1.625rem;
+        font-size: 2rem;
+
+        &.dropdown-toggle {
+            padding-right: 2.5rem!important;
+            &::before {
+                .px2rem(height, 10px);
+                .px2rem(width, 10px);
+                margin-left: -1.75rem;
+            }
+        }
+    }
+
+    & > .divider {
+        display: none;
+    }
+}
+
+// Mega menu
+.h-menu {
+    &.mega {
+        position: relative;
+
+        & > li {
+            position: static;
+
+            &.active-container {
+                background-color: inherit;
+
+                a {
+                    background-color: inherit;
+                }
+            }
+        }
+
+        .mega-container {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            padding: 0;
+            background-color: inherit;
+            display: none;
+            color: inherit;
+            z-index: @zindex-dropdown;
+            .shadow(2px, 2px, 2px, 0, @dark);
+
+            * {
+                color: inherit;
+            }
+        }
+    }
+}

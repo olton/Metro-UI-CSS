@@ -1,0 +1,168 @@
+@import (once) "include/vars";
+@import (once) "include/mixins";
+
+.t-menu {
+    .reset-list();
+    width: auto;
+    float: left;
+    background-color: @white;
+    color: @dark;
+    border-collapse: separate;
+    display: none;
+
+    &.open {
+        display: block;
+    }
+
+    & > li {
+        position: relative;
+        background-color: inherit;
+        color: inherit;
+        display: block;
+
+        & > a {
+            display: block;
+            padding: 0 1rem;
+            border-bottom: 1px @borderColor solid;
+            position: relative;
+            color: inherit;
+            background-color: inherit;
+            height: 60px;
+            width: 60px;
+            line-height: 60px;
+
+            .icon {
+                width: 1.5rem;
+                height: 1.5rem;
+                font-size: 1.5rem;
+                line-height: 60px;
+            }
+        }
+
+        &:hover {
+            background-color: @hoverBackground;
+        }
+
+        &:last-child {
+            a {border-bottom: 0;}
+        }
+    }
+
+    a {
+        text-decoration: none!important;
+    }
+
+    .default-shadow();
+}
+
+.t-menu {
+    &.horizontal {
+        & > li {
+            float: left;
+        }
+    }
+}
+
+.t-menu {
+    .t-menu {
+        position: absolute;
+        left: 100%;
+        margin-left: .3125rem ;
+        top: 0;
+        float: none;
+    }
+}
+
+.t-menu.horizontal {
+    .t-menu {
+        left: 0 ;
+        top: 100% ;
+        margin-top: .3125rem ;
+        margin-left: 0 ;
+    }
+}
+
+.t-menu {
+    .dropdown-toggle {
+        padding-right: 1rem!important;
+        &:after {
+            content: "";
+            background-color: @transparent;
+            position: absolute;
+            left: auto;
+            top: auto;
+            bottom: 0;
+            right: 0;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 0 8px 8px;
+            border-color: transparent transparent @hoverBackground2 transparent;
+            .rotate(0);
+        }
+
+        &:before {
+            display: none;
+        }
+    }
+}
+
+.t-menu.horizontal {
+    & > li {
+
+        & > a {
+            border-right: 1px @borderColor solid;
+            border-bottom: 0;
+        }
+
+        &:last-child {
+            & > a {
+                border-right: 0;
+            }
+        }
+    }
+}
+
+.t-menu.horizontal {
+    .t-menu:not(.horizontal) {
+        left: 0;
+        top: 100% ;
+        margin-top: .3125rem ;
+        margin-left: 0 ;
+
+        .t-menu.horizontal {
+            left: 100% ;
+            margin-left: .3125rem ;
+            top: -.3rem ;
+            float: left;
+        }
+    }
+}
+
+.t-menu {
+    &.compact {
+        li {
+            a {
+                padding: 0 .7rem;
+                width: 40px;
+                height: 40px;
+                line-height: 40px;
+
+                .icon {
+                    width: 1rem;
+                    height: 1rem;
+                    font-size: 1rem;
+                    line-height: 40px;
+                }
+            }
+        }
+
+        .dropdown-toggle {
+            padding-right: .7rem!important;
+        }
+    }
+}
+
+.t-menu {
+    z-index: @zindex-dropdown;
+}
