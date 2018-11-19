@@ -46,6 +46,7 @@
                 <hr/>
                 <ul class="toc-nav">
                     <li class="toc-entry"><a href="#">Toast</a></li>
+                    <li class="toc-entry"><a href="#_toast_init">Setup toast</a></li>
                     <li class="toc-entry"><a href="#_toast_create">Create toast</a></li>
                     <li class="toc-entry"><a href="#_toast_callback">Callback</a></li>
                     <li class="toc-entry"><a href="#_toast_timeout">Timeout</a></li>
@@ -66,6 +67,53 @@
                 </p>
 
                 <!-- ads-html -->
+
+                <h3 id="_toast_init">Setup toast</h3>
+                <p>
+                    You can setup options for toasts with function <code>init</code>. The following options are available:
+                </p>
+                <table class="table cell-border table-border options-table">
+                    <thead>
+                    <tr>
+                        <th>Option</th>
+                        <th>Default</th>
+                        <th>Desc</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><code>callback</code></td>
+                        <td>Metro.noop</td>
+                        <td>Callback for execute code after toast showing</td>
+                    </tr>
+                    <tr>
+                        <td><code>timeout</code></td>
+                        <td>METRO_TIMEOUT</td>
+                        <td>Time for toast shown, by default 2000</td>
+                    </tr>
+                    <tr>
+                        <td><code>distance</code></td>
+                        <td>20</td>
+                        <td>Distance from window side (top or bottom) in pixels, by default 20px</td>
+                    </tr>
+                    <tr>
+                        <td><code>showTop</code></td>
+                        <td>false</td>
+                        <td>When true, toast show on top of window</td>
+                    </tr>
+                    <tr>
+                        <td><code>clsToast</code></td>
+                        <td></td>
+                        <td>Additional classes for toast</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <pre><code>
+                    Metro.toast.init({
+                        showTop: true,
+                        distance: 60
+                    }).create("This is a toast");
+                </code></pre>
 
                 <h3 id="_toast_create">Create toast</h3>
                 <p>

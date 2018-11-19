@@ -3,7 +3,7 @@
 
 .toast {
     position: fixed;
-    bottom: 1.25rem;
+    bottom: 20px;
     width: auto;
     max-width: 35.5rem;
     padding: .5rem 1.5rem;
@@ -13,8 +13,10 @@
     background-color: #323232;
     color: @white;
     border-radius: @borderRadius;
-}
-
-.toast {
     z-index: @zindex-top;
+
+    &.show-top {
+        bottom: auto;
+        top: 20px;
+    }
 }

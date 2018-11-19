@@ -1,4 +1,6 @@
 ### 4.2.30
++ [x] Toast: add function `init(options)`, now you can set toast `top` position and `distance`. See docs for details.
+
 
 ### 4.2.29
 + [x] Validator: fix for issue #1254

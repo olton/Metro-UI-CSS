@@ -1,5 +1,5 @@
 /*
- * Metro 4 Components Library v4.2.29 build 708 (https://metroui.org.ua)
+ * Metro 4 Components Library v4.2.30 build @@build (https://metroui.org.ua)
  * Copyright 2018 Sergey Pimenov
  * Licensed under MIT
  */
@@ -28325,7 +28325,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
 }
 .toast {
   position: fixed;
-  bottom: 1.25rem;
+  bottom: 20px;
   width: auto;
   max-width: 35.5rem;
   padding: 0.5rem 1.5rem;
@@ -28335,9 +28335,11 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   background-color: #323232;
   color: #ffffff;
   border-radius: 0.25rem;
-}
-.toast {
   z-index: 1080;
+}
+.toast.show-top {
+  bottom: auto;
+  top: 20px;
 }
 .tabs {
   position: relative;
