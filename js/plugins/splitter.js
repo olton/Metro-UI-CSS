@@ -88,6 +88,7 @@ var Splitter = {
                 children_sizes = Utils.strToArray(o.minSizes);
                 for (i = 0; i < children_sizes.length; i++) {
                     $(children[i]).data("min-size", children_sizes[i]);
+                    children[i].style.setProperty('min-'+resizeProp, String(children_sizes[i]).contains("%") ? children_sizes[i] : String(children_sizes[i]).replace("px", "")+"px", 'important');
                 }
             } else {
                 $.each(children, function(){
