@@ -5,6 +5,7 @@
 + [x] drop-utils: now contains classes for drop-down: `dropdown-toggle`, `drop-up`, `drop-left`, `drop-right`
 + [x] sidenav-m3: fix icon position for submenu, issue #1266
 + [x] Splitter: fix gutter for nested splitters
++ [x] Splitter: fix calc min size if value for attribute `data-min-sizes` comma separated value
 
 ### 4.2.29
 + [x] Validator: fix for issue #1254
