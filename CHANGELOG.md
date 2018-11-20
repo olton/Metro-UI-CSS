@@ -6,6 +6,7 @@
 + [x] sidenav-m3: fix icon position for submenu, issue #1266
 + [x] Splitter: fix gutter for nested splitters
 + [x] Splitter: fix calc min size if value for attribute `data-min-sizes` comma separated value
++ [x] Docs: fix mistake in docs for `sidenav-counter-expand-*`, issue #1269
 
 ### 4.2.29
 + [x] Validator: fix for issue #1254
