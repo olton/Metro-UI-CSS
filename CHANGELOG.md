@@ -8,6 +8,7 @@
 + [x] Splitter: fix calc min size if value for attribute `data-min-sizes` comma separated value
 + [x] Docs: fix mistake in docs for `sidenav-counter-expand-*`, issue #1269
 + [x] Docs: fix mistake in docs for `spacing`
++ [x] Command button: set font weight to override it when use in wordpress
 
 ### 4.2.29
 + [x] Validator: fix for issue #1254
