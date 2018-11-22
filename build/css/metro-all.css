@@ -19974,6 +19974,7 @@ aside::after {
       -ms-flex-order: 2;
           order: 2;
   font-weight: 400;
+  line-height: 1.2;
 }
 .command-button .caption small,
 .image-button .caption small {
