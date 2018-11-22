@@ -19943,6 +19943,7 @@ aside::after {
   border: 1px solid transparent;
   outline: none;
   position: relative;
+  font-weight: 500;
 }
 .command-button:active,
 .image-button:active,
@@ -19972,6 +19973,7 @@ aside::after {
   -webkit-box-ordinal-group: 3;
       -ms-flex-order: 2;
           order: 2;
+  font-weight: 400;
 }
 .command-button .caption small,
 .image-button .caption small {
@@ -20000,6 +20002,7 @@ aside::after {
           align-items: center;
   height: 36px;
   line-height: 30px;
+  font-weight: 400;
 }
 .image-button .icon {
   width: 34px;
