@@ -10,6 +10,7 @@
 + [x] Docs: fix mistake in docs for `spacing`
 + [x] Command button: set `font-weight` to override it when use in wordpress
 + [x] Command button: set `line-height` to override it when use in wordpress
++ [x] Inline-form: change behavior for `.form-group`
 
 ### 4.2.29
 + [x] Validator: fix for issue #1254

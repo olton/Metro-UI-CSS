@@ -160,8 +160,7 @@ label {
 
 .inline-form {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-flow: row wrap;
     align-items: center;
     justify-content: flex-start;
 
@@ -182,6 +181,13 @@ label {
         width: auto;
         margin-left: .5rem;
         margin-right: .5rem;
+    }
+
+    .form-group {
+        display: flex;
+        flex-flow: row wrap;
+        align-items: center;
+        justify-content: flex-start;
     }
 }
 
