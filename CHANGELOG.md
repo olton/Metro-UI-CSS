@@ -11,6 +11,7 @@
 + [x] Command button: set `font-weight` to override it when use in wordpress
 + [x] Command button: set `line-height` to override it when use in wordpress
 + [x] Inline-form: change behavior for `.form-group`
++ [x] Carousel: add events `onSlideShow(HTMLElement slide)`, `onSlideHide(HTMLElement slide)` 
 
 ### 4.2.29
 + [x] Validator: fix for issue #1254
