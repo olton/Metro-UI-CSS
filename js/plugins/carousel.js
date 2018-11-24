@@ -59,6 +59,8 @@ var Carousel = {
         onMouseLeave: Metro.noop,
         onNextClick: Metro.noop,
         onPrevClick: Metro.noop,
+        onSlideShow: Metro.noop,
+        onSlideHide: Metro.noop,
         onCarouselCreate: Metro.noop
     },
 
@@ -425,6 +427,14 @@ var Carousel = {
             case 'fade': Animation['fade'](current, next, duration, effectFunc); break;
             default: Animation['switch'](current, next);
         }
+
+        setTimeout(function(){
+            Utils.exec(o.onSlideShow, [next[0]], element[0]);
+        }, duration);
+
+        setTimeout(function(){
+            Utils.exec(o.onSlideHide, [current[0]], element[0]);
+        }, duration);
 
         if (interval === true) {
 
