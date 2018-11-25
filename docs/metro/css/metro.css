@@ -16675,6 +16675,8 @@ a {
   text-decoration: none;
   background-color: transparent;
   -webkit-text-decoration-skip: objects;
+  -webkit-box-shadow: none;
+          box-shadow: none;
 }
 a:hover {
   color: #0056b3;
@@ -20262,14 +20264,6 @@ aside::after {
 .info-button .info:hover {
   color: #0056b3;
 }
-a.button,
-a.command-button,
-a.image-button,
-a.shortcut,
-a.tool-button,
-a.split-button a.split {
-  color: #1d1d1d;
-}
 .button:focus,
 .command-button:focus,
 .image-button:focus,
@@ -20662,6 +20656,50 @@ a.split-button a.split {
   bottom: 20px;
   right: 20px;
   position: fixed;
+}
+a.button,
+a.flat-button,
+a.action-button,
+a.command-button,
+a.image-button,
+a.shortcut,
+a.tool-button,
+a.split-button,
+a.split {
+  color: #1d1d1d;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  text-decoration: none;
+}
+a.button:active,
+a.flat-button:active,
+a.action-button:active,
+a.command-button:active,
+a.image-button:active,
+a.shortcut:active,
+a.tool-button:active,
+a.split-button:active,
+a.split:active,
+a.button.focus,
+a.flat-button.focus,
+a.action-button.focus,
+a.command-button.focus,
+a.image-button.focus,
+a.shortcut.focus,
+a.tool-button.focus,
+a.split-button.focus,
+a.split.focus,
+a.button:focus,
+a.flat-button:focus,
+a.action-button:focus,
+a.command-button:focus,
+a.image-button:focus,
+a.shortcut:focus,
+a.tool-button:focus,
+a.split-button:focus,
+a.split:focus {
+  -webkit-box-shadow: 0 0 0 3px rgba(228, 228, 228, 0.45);
+          box-shadow: 0 0 0 3px rgba(228, 228, 228, 0.45);
 }
 .breadcrumbs {
   margin-bottom: 1rem;
