@@ -20671,6 +20671,18 @@ a.split {
           box-shadow: none;
   text-decoration: none;
 }
+a.button:hover,
+a.flat-button:hover,
+a.action-button:hover,
+a.command-button:hover,
+a.image-button:hover,
+a.shortcut:hover,
+a.tool-button:hover,
+a.split-button:hover,
+a.split:hover {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
 a.button:active,
 a.flat-button:active,
 a.action-button:active,
