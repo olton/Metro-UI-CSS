@@ -436,10 +436,6 @@
     }
 }
 
-a.button, a.command-button, a.image-button, a.shortcut, a.tool-button, a.split-button a.split {
-    color: @dark;
-}
-
 .button, .command-button, .image-button, .shortcut, .tool-button, .split-button .split {
     &:focus, &:hover {
         text-decoration: none;
@@ -744,5 +740,26 @@ a.button, a.command-button, a.image-button, a.shortcut, a.tool-button, a.split-b
     }
     &.floating-action-bottom {
         z-index: @zindex-top; bottom: 20px; right: 20px; position: fixed;
+    }
+}
+
+
+a {
+    &.button,
+    &.flat-button,
+    &.action-button,
+    &.command-button,
+    &.image-button,
+    &.shortcut,
+    &.tool-button,
+    &.split-button,
+    &.split {
+        color: @dark;
+        box-shadow: none;
+        text-decoration: none;
+
+        &:active, &.focus, &:focus {
+            .focus-show(@lightGray);
+        }
     }
 }
