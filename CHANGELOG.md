@@ -1,3 +1,5 @@
+### 4.2.31
+
 ### 4.2.30
 + [x] Toast: add function `init(options)`, now you can set toast `top` position and `distance`. See docs for details.
 + [x] t-menu: less code moved to separate file
