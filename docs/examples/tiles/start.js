@@ -4,7 +4,12 @@ $.StartScreen = function(){
 
     plugin.init = function(){
         setTilesAreaSize();
-        if (width > Metro.media_sizes.LD) addMouseWheel();
+        if (width > Metro.media_sizes.LD) {
+            addMouseWheel();
+            $(".start-screen").css({
+                overflow: "auto"
+            })
+        }
     };
 
     var setTilesAreaSize = function(){
@@ -26,6 +31,7 @@ $.StartScreen = function(){
         $("body").mousewheel(function(event, delta, deltaX, deltaY){
             var page = $(".start-screen");
             var scroll_value = delta * 50;
+            console.log(scroll_value);
             page.scrollLeft(page.scrollLeft() - scroll_value);
             return false;
         });

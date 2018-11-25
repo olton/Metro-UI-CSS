@@ -12,6 +12,7 @@
 + [x] Command button: set `line-height` to override it when use in wordpress
 + [x] Inline-form: change behavior for `.form-group`
 + [x] Carousel: add events `onSlideShow(HTMLElement slide)`, `onSlideHide(HTMLElement slide)` 
++ [x] Examples: fix `start-screen` for scroll on mobile devices 
 
 ### 4.2.29
 + [x] Validator: fix for issue #1254
