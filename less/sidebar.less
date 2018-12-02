@@ -19,11 +19,22 @@
         transition: @transition-left;
         left: 0;
     }
+
+    &.on-right {
+        transition: @transition-right;
+        left: auto;
+        right: -290px;
+        &.open, &.static {
+            transition: @transition-right;
+            right: 0;
+        }
+    }
 }
 
-.sidebar-header, .sidebar-menu {
+.sidebar-header, .sidebar-menu, .sidebar-content {
     display: block;
     position: relative;
+    width: 100%;
 }
 
 .sidebar-header {
@@ -82,7 +93,6 @@
 
 .sidebar-menu {
     color: @dark;
-    width: 100%;
     height: 100%;
     margin: 0;
     padding: 0;
@@ -95,7 +105,7 @@
     li {
         color: inherit;
         display: block;
-        height: 48px;
+        height: auto;
         position: relative;
         cursor: pointer;
 
@@ -169,6 +179,11 @@
 
     li:not(.group-title):hover {
         background-color: @hoverBackground;
+    }
+
+    .d-menu, .v-menu {
+        position: relative;
+        float: none;
     }
 }
 

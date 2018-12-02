@@ -1,4 +1,6 @@
 ### 4.2.31
++ [x] Sidebar: add submenu support
++ [x] Sidebar: add class `.on-right`. You can put `sidebar` to `right` side
 
 ### 4.2.30
 + [x] Toast: add function `init(options)`, now you can set toast `top` position and `distance`. See docs for details.
