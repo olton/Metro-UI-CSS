@@ -1,6 +1,8 @@
 ### 4.2.31
 + [x] Sidebar: add submenu support
-+ [x] Sidebar: add class `.on-right`. You can put `sidebar` to `right` side
++ [x] Sidebar: add any content support with li class `.content-container`
++ [x] Sidebar: add attribute `data-size` to set sidebar width
++ [x] Sidebar: add attribute `data-position` to set sidebar `right` or `left` (default)
 
 ### 4.2.30
 + [x] Toast: add function `init(options)`, now you can set toast `top` position and `distance`. See docs for details.
