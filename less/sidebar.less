@@ -7,11 +7,11 @@
     top: 0;
     bottom: 0;
     overflow: hidden;
-    width: 280px;
+    width: 290px;
     background-color: darken(@white, .5%);
     padding: 0;
     z-index: @zindex-fixed + 1;
-    left: -290px;
+    //left: -290px;
     transition: @transition-left;
     .shadow(1);
 
@@ -22,8 +22,8 @@
 
     &.on-right {
         transition: @transition-right;
-        left: auto;
-        right: -290px;
+        left: auto!important;
+        //right: -290px;
         &.open, &.static {
             transition: @transition-right;
             right: 0;
@@ -114,10 +114,12 @@
             display: block;
             color: inherit;
             text-transform: capitalize;
-            height: 100%;
+            height: 48px;
             line-height: 48px;
             padding-left: 56px;
             text-decoration: none;
+            white-space: nowrap;
+            text-overflow: ellipsis;
         }
 
         a {
@@ -177,8 +179,25 @@
         cursor: default;
     }
 
-    li:not(.group-title):hover {
-        background-color: @hoverBackground;
+    li {
+        &.content-container {
+            cursor: initial;
+            padding: 0 10px;
+        }
+    }
+
+    li {
+        &:hover {
+            background-color: @hoverBackground;
+        }
+    }
+
+    li.group-title:hover {
+        background-color: initial;
+    }
+
+    li.content-container:hover {
+        background-color: initial;
     }
 
     .d-menu, .v-menu {

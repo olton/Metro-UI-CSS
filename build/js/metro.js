@@ -16065,6 +16065,8 @@ var Sidebar = {
     },
 
     options: {
+        position: "left",
+        size: 290,
         shift: null,
         staticShift: null,
         toggle: null,
@@ -16109,11 +16111,23 @@ var Sidebar = {
         var header = element.find(".sidebar-header");
         var sheet = Metro.sheet;
 
+        element.addClass("sidebar").addClass("on-"+o.position).css({
+            width: o.size
+        });
+
+        if (o.position === 'left') {
+            element.css({
+                left: -o.size
+            })
+        } else {
+            element.css({
+                right: -o.size
+            })
+        }
+
         if (element.attr("id") === undefined) {
             element.attr("id", Utils.elementId("sidebar"));
         }
-
-        element.addClass("sidebar");
 
         if (o.toggle !== null && $(o.toggle).length > 0) {
             this.toggle_element = $(o.toggle);
@@ -16129,7 +16143,11 @@ var Sidebar = {
 
         if (o.static !== null) {
             if (o.staticShift !== null) {
-                Utils.addCssRule(sheet, "@media screen and " + Metro.media_queries[o.static.toUpperCase()], o.staticShift + "{margin-left: 280px; width: calc(100% - 280px);}");
+                if (o.position === 'left') {
+                    Utils.addCssRule(sheet, "@media screen and " + Metro.media_queries[o.static.toUpperCase()], o.staticShift + "{margin-left: " + o.size + "px; width: calc(100% - " + o.size + "px);}");
+                } else {
+                    Utils.addCssRule(sheet, "@media screen and " + Metro.media_queries[o.static.toUpperCase()], o.staticShift + "{margin-right: " + o.size + "px; width: calc(100% - " + o.size + "px);}");
+                }
             }
         }
     },
@@ -16188,6 +16206,16 @@ var Sidebar = {
 
         element.data("opened", true).addClass('open');
 
+        if (o.position === 'left') {
+            element.css({
+                left: 0
+            });
+        } else {
+            element.css({
+                right: 0
+            });
+        }
+
         if (o.shift !== null) {
             $.each(o.shift.split(","), function(){
                 $(this).animate({left: element.outerWidth()}, o.duration);
@@ -16205,6 +16233,16 @@ var Sidebar = {
         }
 
         element.data("opened", false).removeClass('open');
+
+        if (o.position === 'left') {
+            element.css({
+                left: -o.size
+            });
+        } else {
+            element.css({
+                right: -o.size
+            });
+        }
 
         if (o.shift !== null) {
             $.each(o.shift.split(","), function(){
