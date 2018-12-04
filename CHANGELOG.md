@@ -3,6 +3,8 @@
 + [x] Sidebar: add any content support with li class `.content-container`
 + [x] Sidebar: add attribute `data-size` to set sidebar width
 + [x] Sidebar: add attribute `data-position` to set sidebar `right` or `left` (default)
++ [x] Array: add function (if not exists) `contains(val, idx)`
++ [x] String: add function `toArray(delim, type, format)` this function is equal to `Utils.strToArray`
 
 ### 4.2.30
 + [x] Toast: add function `init(options)`, now you can set toast `top` position and `distance`. See docs for details.
