@@ -29052,7 +29052,8 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
       -ms-flex-align: center;
           align-items: center;
 }
-.calendar-content .day {
+.calendar-content .day,
+.calendar-content .week-number {
   width: calc(100%/7);
   text-align: center;
   cursor: pointer;
@@ -29065,6 +29066,10 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   margin: 1px;
   height: 36px;
   line-height: 36px;
+}
+.calendar-content .day.and-week-number,
+.calendar-content .week-number.and-week-number {
+  width: calc(100%/8);
 }
 .calendar-content .day.selected {
   -webkit-box-shadow: 0 0 0 1px #5ebdec !important;
@@ -29080,6 +29085,10 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
 }
 .calendar-content .day.showed {
   font-weight: bold;
+}
+.calendar-content .week-number {
+  width: calc(100%/8);
+  background-color: #bebebe;
 }
 .calendar-content .outside {
   color: #bebebe;

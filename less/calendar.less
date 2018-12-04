@@ -90,7 +90,7 @@
         align-items: center;
     }
 
-    .day {
+    .day, .week-number {
         width: ~"calc(100%/7)";
         text-align: center;
         cursor: pointer;
@@ -100,6 +100,13 @@
         margin: 1px;
         height: 36px;
         line-height: 36px;
+
+        &.and-week-number {
+            width: ~"calc(100%/8)";
+        }
+    }
+
+    .day {
 
         &.selected {
             box-shadow: 0 0 0 1px rgba(red(@lightCyan), green(@lightCyan), blue(@lightCyan), 1)!important;
@@ -118,6 +125,11 @@
         &.showed {
             font-weight: bold;
         }
+    }
+
+    .week-number {
+        width: ~"calc(100%/8)";
+        background-color: @gray;
     }
 
     .outside {
