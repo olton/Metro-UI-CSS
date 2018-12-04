@@ -5534,6 +5534,7 @@ var Calendar = {
         showHeader: true,
         showFooter: true,
         showTimeField: true,
+        showWeekNumber: false,
         clsCalendar: "",
         clsCalendarHeader: "",
         clsCalendarContent: "",
@@ -5555,6 +5556,7 @@ var Calendar = {
         minDate: null,
         maxDate: null,
         weekDayClick: false,
+        weekNumberClick: false,
         multiSelect: false,
         special: null,
         format: METRO_DATE_FORMAT,
@@ -5565,6 +5567,7 @@ var Calendar = {
         onDone: Metro.noop,
         onDayClick: Metro.noop,
         onWeekDayClick: Metro.noop,
+        onWeekNumberClick: Metro.noop,
         onMonthChange: Metro.noop,
         onYearChange: Metro.noop,
         onCalendarCreate: Metro.noop
@@ -5630,7 +5633,7 @@ var Calendar = {
         this.locale = Metro.locales[o.locale] !== undefined ? Metro.locales[o.locale] : Metro.locales["en-US"];
 
         this._drawCalendar();
-        this._bindEvents();
+        this._createEvents();
 
         if (o.wide === true) {
             element.addClass("calendar-wide");
@@ -5678,7 +5681,7 @@ var Calendar = {
         });
     },
 
-    _bindEvents: function(){
+    _createEvents: function(){
         var that = this, element = this.element, o = this.options;
 
         $(window).on(Metro.events.resize, function(){
@@ -5781,11 +5784,34 @@ var Calendar = {
             $.each(days, function(){
                 var d = $(this);
                 var dd = d.data('day');
-                Utils.arrayDelete(that.selected, dd);
-                that.selected.push(dd);
+                // Utils.arrayDelete(that.selected, dd);
+                if (!that.selected.contains(dd))
+                    that.selected.push(dd);
                 d.addClass("selected").addClass(o.clsSelected);
             });
-            Utils.exec(o.onWeekDayClick, [that.selected, day, element]);
+            Utils.exec(o.onWeekDayClick, [that.selected, day], element[0]);
+
+            e.preventDefault();
+            e.stopPropagation();
+        });
+
+        element.on(Metro.events.click, ".days-row .week-number", function(e){
+            if (o.weekNumberClick === false || o.multiSelect === false) {
+                return ;
+            }
+
+            var weekNumElement = $(this);
+            var weekNumber = weekNumElement.text();
+            var days = $(this).siblings(".day");
+            $.each(days, function(){
+                var d = $(this);
+                var dd = d.data('day');
+                if (!that.selected.contains(dd))
+                    that.selected.push(dd);
+                d.addClass("selected").addClass(o.clsSelected);
+            });
+
+            Utils.exec(o.onWeekNumberClick, [that.selected, weekNumber, weekNumElement], element[0]);
 
             e.preventDefault();
             e.stopPropagation();
@@ -6008,6 +6034,13 @@ var Calendar = {
          * Week days
          */
         var week_days = $("<div>").addClass("week-days").appendTo(content);
+        var day_class = "day";
+
+        if (o.showWeekNumber === true) {
+            $("<span>").addClass("week-number").html("#").appendTo(week_days);
+            day_class += " and-week-number";
+        }
+
         for (i = 0; i < 7; i++) {
             if (o.weekStart === 0) {
                 j = i;
@@ -6015,7 +6048,7 @@ var Calendar = {
                 j = i + 1;
                 if (j === 7) j = 0;
             }
-            $("<span>").addClass("day").html(calendar_locale["days"][j + 7]).appendTo(week_days);
+            $("<span>").addClass(day_class).html(calendar_locale["days"][j + 7]).appendTo(week_days);
         }
 
         /**
@@ -6034,9 +6067,13 @@ var Calendar = {
             year = this.current.year;
         }
 
+        if (o.showWeekNumber === true) {
+            $("<div>").addClass("week-number").html((new Date(year, month, prev_month_days - first_day + 1)).getWeek(o.weekStart)).appendTo(days_row);
+        }
+
         for(i = 0; i < first_day; i++) {
             var v = prev_month_days - first_day + i + 1;
-            d = $("<div>").addClass("day outside").appendTo(days_row);
+            d = $("<div>").addClass(day_class+" outside").appendTo(days_row);
 
             s = new Date(year, month, v);
             s.setHours(0,0,0,0);
@@ -6053,7 +6090,7 @@ var Calendar = {
         first.setHours(0,0,0,0);
         while(first.getMonth() === this.current.month) {
 
-            d = $("<div>").addClass("day").html(first.getDate()).appendTo(days_row);
+            d = $("<div>").addClass(day_class).html(first.getDate()).appendTo(days_row);
 
             d.data('day', first.getTime());
 
@@ -6094,6 +6131,9 @@ var Calendar = {
             counter++;
             if (counter % 7 === 0) {
                 days_row = $("<div>").addClass("days-row").appendTo(days);
+                if (o.showWeekNumber === true) {
+                    $("<div>").addClass("week-number").html((new Date(first.getFullYear(), first.getMonth(), first.getDate() + 1)).getWeek(o.weekStart)).appendTo(days_row);
+                }
             }
             first.setDate(first.getDate() + 1);
             first.setHours(0,0,0,0);
@@ -6110,7 +6150,7 @@ var Calendar = {
         }
 
         if (first_day > 0) for(i = 0; i < 7 - first_day; i++) {
-            d = $("<div>").addClass("day outside").appendTo(days_row);
+            d = $("<div>").addClass(day_class+" outside").appendTo(days_row);
             s = new Date(year, month, i + 1);
             s.setHours(0,0,0,0);
             d.data('day', s.getTime());
