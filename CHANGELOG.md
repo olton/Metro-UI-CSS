@@ -8,6 +8,7 @@
 + [x] Calendar: add attribute `data-show-week-number="true|false"` 
 + [x] Calendar: add attribute `data-week-number-click="true|false"` 
 + [x] Calendar: add event `data-on-week-number-click="..."` 
++ [x] Calendar: add event `data-on-day-draw="..."`
 
 ### 4.2.30
 + [x] Toast: add function `init(options)`, now you can set toast `top` position and `distance`. See docs for details.
