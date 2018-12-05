@@ -288,48 +288,55 @@ var Calendar = {
             e.stopPropagation();
         });
 
-        element.on(Metro.events.click, ".week-days .day", function(e){
-            if (o.weekDayClick === false || o.multiSelect === false) {
-                return ;
-            }
-            var day = $(this);
-            var index = day.index();
-            var days = o.outside === true ? element.find(".days-row .day:nth-child("+(index + 1)+")") : element.find(".days-row .day:not(.outside):nth-child("+(index + 1)+")");
-            $.each(days, function(){
-                var d = $(this);
-                var dd = d.data('day');
-                // Utils.arrayDelete(that.selected, dd);
-                if (!that.selected.contains(dd))
-                    that.selected.push(dd);
-                d.addClass("selected").addClass(o.clsSelected);
+        if (o.weekDayClick === true) {
+            element.on(Metro.events.click, ".week-days .day", function (e) {
+                var day, index, days;
+
+                day = $(this);
+                index = day.index();
+
+                if (o.multiSelect === true) {
+                    days = o.outside === true ? element.find(".days-row .day:nth-child(" + (index + 1) + ")") : element.find(".days-row .day:not(.outside):nth-child(" + (index + 1) + ")");
+                    $.each(days, function () {
+                        var d = $(this);
+                        var dd = d.data('day');
+                        if (!that.selected.contains(dd))
+                            that.selected.push(dd);
+                        d.addClass("selected").addClass(o.clsSelected);
+                    });
+                }
+
+                Utils.exec(o.onWeekDayClick, [that.selected, day], element[0]);
+
+                e.preventDefault();
+                e.stopPropagation();
             });
-            Utils.exec(o.onWeekDayClick, [that.selected, day], element[0]);
+        }
 
-            e.preventDefault();
-            e.stopPropagation();
-        });
+        if (o.weekNumberClick) {
+            element.on(Metro.events.click, ".days-row .week-number", function (e) {
+                var weekNumElement, weekNumber, days;
 
-        element.on(Metro.events.click, ".days-row .week-number", function(e){
-            if (o.weekNumberClick === false || o.multiSelect === false) {
-                return ;
-            }
+                weekNumElement = $(this);
+                weekNumber = weekNumElement.text();
 
-            var weekNumElement = $(this);
-            var weekNumber = weekNumElement.text();
-            var days = $(this).siblings(".day");
-            $.each(days, function(){
-                var d = $(this);
-                var dd = d.data('day');
-                if (!that.selected.contains(dd))
-                    that.selected.push(dd);
-                d.addClass("selected").addClass(o.clsSelected);
+                if (o.multiSelect === true) {
+                    days = $(this).siblings(".day");
+                    $.each(days, function () {
+                        var d = $(this);
+                        var dd = d.data('day');
+                        if (!that.selected.contains(dd))
+                            that.selected.push(dd);
+                        d.addClass("selected").addClass(o.clsSelected);
+                    });
+                }
+
+                Utils.exec(o.onWeekNumberClick, [that.selected, weekNumber, weekNumElement], element[0]);
+
+                e.preventDefault();
+                e.stopPropagation();
             });
-
-            Utils.exec(o.onWeekNumberClick, [that.selected, weekNumber, weekNumElement], element[0]);
-
-            e.preventDefault();
-            e.stopPropagation();
-        });
+        }
 
         element.on(Metro.events.click, ".days-row .day", function(e){
             var day = $(this);

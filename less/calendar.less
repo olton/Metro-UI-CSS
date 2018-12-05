@@ -34,7 +34,7 @@
 }
 
 .calendar-content {
-    padding: 0 .5rem;
+    padding: 1px;
     width: 278px;
 
     .calendar-toolbar, .days-wrapper {
@@ -74,7 +74,7 @@
         border-top: 1px solid @borderColor;
         border-bottom: 1px solid @borderColor;
         justify-content: space-between;
-        padding: .5rem 0;
+        padding: 0;
         font-size: .75rem;
     }
 
@@ -97,16 +97,15 @@
         font-size: .85rem;
         position: relative;
         user-select: none;
-        margin: 1px;
+        margin: 0;
         height: 36px;
         line-height: 36px;
-
-        &.and-week-number {
-            width: ~"calc(100%/8)";
-        }
     }
 
     .day {
+        &.and-week-number {
+            width: ~"calc(100% / 8)";
+        }
 
         &.selected {
             box-shadow: 0 0 0 1px rgba(red(@lightCyan), green(@lightCyan), blue(@lightCyan), 1)!important;
@@ -128,8 +127,11 @@
     }
 
     .week-number {
-        width: ~"calc(100%/8)";
-        background-color: @gray;
+        width: ~"calc(100% / 8)";
+        background-color: @white;
+        font-weight: 500;
+        font-size: 12px;
+        border-right: 1px solid @borderColor;
     }
 
     .outside {
@@ -270,10 +272,7 @@
                 padding: 0 .25rem;
             }
         }
-        .week-days, .days {
-            padding: 0!important;
-        }
-        .day {
+        .day, .week-number {
             height: 30px;
             line-height: 30px;
             width: 30px;
