@@ -5566,6 +5566,7 @@ var Calendar = {
         onClear: Metro.noop,
         onDone: Metro.noop,
         onDayClick: Metro.noop,
+        onDayDraw: Metro.noop,
         onWeekDayClick: Metro.noop,
         onWeekNumberClick: Metro.noop,
         onMonthChange: Metro.noop,
@@ -6089,6 +6090,8 @@ var Calendar = {
 
             if (o.outside === true) {
                 d.html(v);
+
+                Utils.exec(o.onDayDraw, [v, d[0]], element[0]);
             }
 
             counter++;
@@ -6135,6 +6138,8 @@ var Calendar = {
 
             }
 
+            Utils.exec(o.onDayDraw, [first.getDate(), d[0]], element[0]);
+
             counter++;
             if (counter % 7 === 0) {
                 days_row = $("<div>").addClass("days-row").appendTo(days);
@@ -6163,6 +6168,7 @@ var Calendar = {
             d.data('day', s.getTime());
             if (o.outside === true) {
                 d.html(i + 1);
+                Utils.exec(o.onDayDraw, [i + 1, d[0]], element[0]);
             }
         }
     },
