@@ -28968,7 +28968,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   font-size: 1.325rem;
 }
 .calendar-content {
-  padding: 0 0.5rem;
+  padding: 1px;
   width: 278px;
 }
 .calendar-content .calendar-toolbar,
@@ -29027,7 +29027,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  padding: 0.5rem 0;
+  padding: 0;
   font-size: 0.75rem;
 }
 .calendar-content .days {
@@ -29063,13 +29063,12 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
-  margin: 1px;
+  margin: 0;
   height: 36px;
   line-height: 36px;
 }
-.calendar-content .day.and-week-number,
-.calendar-content .week-number.and-week-number {
-  width: calc(100%/8);
+.calendar-content .day.and-week-number {
+  width: calc(100% / 8);
 }
 .calendar-content .day.selected {
   -webkit-box-shadow: 0 0 0 1px #5ebdec !important;
@@ -29087,8 +29086,11 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   font-weight: bold;
 }
 .calendar-content .week-number {
-  width: calc(100%/8);
-  background-color: #bebebe;
+  width: calc(100% / 8);
+  background-color: #ffffff;
+  font-weight: 500;
+  font-size: 12px;
+  border-right: 1px solid #dfdfdf;
 }
 .calendar-content .outside {
   color: #bebebe;
@@ -29224,11 +29226,8 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   line-height: 24px;
   padding: 0 0.25rem;
 }
-.calendar.compact .week-days,
-.calendar.compact .days {
-  padding: 0!important;
-}
-.calendar.compact .day {
+.calendar.compact .day,
+.calendar.compact .week-number {
   height: 30px;
   line-height: 30px;
   width: 30px;
