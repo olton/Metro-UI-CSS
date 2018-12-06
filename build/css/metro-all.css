@@ -40519,7 +40519,7 @@ video:-webkit-full-screen {
   right: 0;
   -webkit-box-shadow: 0 -2px 10px 0 rgba(0, 0, 0, 0.16), 0 -1px 5px 0 rgba(0, 0, 0, 0.26);
           box-shadow: 0 -2px 10px 0 rgba(0, 0, 0, 0.16), 0 -1px 5px 0 rgba(0, 0, 0, 0.26);
-  z-index: 1050;
+  z-index: 1030;
 }
 .bottom-nav .button {
   width: auto;
@@ -40546,7 +40546,7 @@ video:-webkit-full-screen {
 .bottom-sheet {
   background-color: #ffffff;
   display: block;
-  z-index: 1040;
+  z-index: 1030;
   max-width: 360px;
   left: 50%;
   list-style: none inside;

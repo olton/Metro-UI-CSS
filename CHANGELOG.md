@@ -9,6 +9,11 @@
 + [x] Calendar: add attribute `data-week-number-click="true|false"` 
 + [x] Calendar: add event `data-on-week-number-click="..."` 
 + [x] Calendar: add event `data-on-day-draw="..."`
++ [x] Calendar: fix day selection for disabled 
++ [ ] Calendar: add class `day-border`
++ [x] Validator: fix error if value is undefined  
++ [x] Validator: function `date` now support additional input attribute `data-value-format` for non ECMAScript dates
++ [x] Z-index: set equal z-index for `appbar`, `bottomnav`, `bottomsheet`, `tabsmaterial`
 
 ### 4.2.30
 + [x] Toast: add function `init(options)`, now you can set toast `top` position and `distance`. See docs for details.

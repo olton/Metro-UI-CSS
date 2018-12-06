@@ -1892,7 +1892,8 @@ String.prototype.toDate = function(format)
     var today, year, month, day, hour, minute, second;
 
     if (!Utils.isValue(format)) {
-        format = "yyyy-mm-dd";
+        // format = "yyyy-mm-dd";
+        return new Date(this);
     }
 
     normalized      = this.replace(/[^a-zA-Z0-9%]/g, '-');
@@ -5520,6 +5521,7 @@ var Calendar = {
         nextMonthIcon: "<span class='default-icon-chevron-right'></span>",
         prevYearIcon: "<span class='default-icon-chevron-left'></span>",
         nextYearIcon: "<span class='default-icon-chevron-right'></span>",
+        compact: false,
         wide: false,
         widePoint: null,
         pickerMode: false,
@@ -5591,7 +5593,7 @@ var Calendar = {
     _create: function(){
         var that = this, element = this.element, o = this.options;
 
-        element.html("").addClass("calendar").addClass(o.clsCalendar);
+        element.html("").addClass("calendar " + (o.compact === true ? "compact" : "")).addClass(o.clsCalendar);
 
         if (Utils.isValue(o.preset)) {
             this._dates2array(o.preset, 'selected');
@@ -5787,6 +5789,9 @@ var Calendar = {
                     $.each(days, function () {
                         var d = $(this);
                         var dd = d.data('day');
+
+                        if (d.hasClass("disabled")) return;
+
                         if (!that.selected.contains(dd))
                             that.selected.push(dd);
                         d.addClass("selected").addClass(o.clsSelected);
@@ -5812,6 +5817,9 @@ var Calendar = {
                     $.each(days, function () {
                         var d = $(this);
                         var dd = d.data('day');
+
+                        if (d.hasClass("disabled")) return;
+
                         if (!that.selected.contains(dd))
                             that.selected.push(dd);
                         d.addClass("selected").addClass(o.clsSelected);
@@ -5843,26 +5851,30 @@ var Calendar = {
                 return ;
             }
 
-            if (o.pickerMode === true) {
-                that.selected = [date];
-                that.today = new Date(date);
-                that.current.year = that.today.getFullYear();
-                that.current.month = that.today.getMonth();
-                that.current.day = that.today.getDate();
-                that._drawHeader();
-                that._drawContent();
-            } else {
-                if (index === -1) {
-                    if (o.multiSelect === false) {
-                        element.find(".days-row .day").removeClass("selected").removeClass(o.clsSelected);
-                        that.selected = [];
-                    }
-                    that.selected.push(date);
-                    day.addClass("selected").addClass(o.clsSelected);
+            if (!day.hasClass("disabled")) {
+
+                if (o.pickerMode === true) {
+                    that.selected = [date];
+                    that.today = new Date(date);
+                    that.current.year = that.today.getFullYear();
+                    that.current.month = that.today.getMonth();
+                    that.current.day = that.today.getDate();
+                    that._drawHeader();
+                    that._drawContent();
                 } else {
-                    day.removeClass("selected").removeClass(o.clsSelected);
-                    Utils.arrayDelete(that.selected, date);
+                    if (index === -1) {
+                        if (o.multiSelect === false) {
+                            element.find(".days-row .day").removeClass("selected").removeClass(o.clsSelected);
+                            that.selected = [];
+                        }
+                        that.selected.push(date);
+                        day.addClass("selected").addClass(o.clsSelected);
+                    } else {
+                        day.removeClass("selected").removeClass(o.clsSelected);
+                        Utils.arrayDelete(that.selected, date);
+                    }
                 }
+
             }
 
             Utils.exec(o.onDayClick, [that.selected, day, element]);
@@ -6182,7 +6194,7 @@ var Calendar = {
             that._drawFooter();
             that._drawMonths();
             that._drawYears();
-        }, 1);
+        }, 0);
     },
 
     getPreset: function(){
@@ -23437,7 +23449,7 @@ Metro.plugin('treeview', Treeview);
 // Source: js/plugins/validator.js
 var ValidatorFuncs = {
     required: function(val){
-        return Utils.isValue(val.trim());
+        return Utils.isValue(val) ? val.trim() : false;
     },
     length: function(val, len){
         if (!Utils.isValue(len) || isNaN(len) || len <= 0) {
@@ -23490,8 +23502,12 @@ var ValidatorFuncs = {
     url: function(val){
         return /^(?:(?:https?|ftp):\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,}))\.?)(?::\d{2,5})?(?:[/?#]\S*)?$/i.test(val);
     },
-    date: function(val){
-        return (new Date(val) !== "Invalid Date" && !isNaN(new Date(val)));
+    date: function(val, format){
+        if (Utils.isNull(format)) {
+            return new Date(val) !== "Invalid Date";
+        } else {
+            return val.toDate(format) !== "Invalid Date";
+        }
     },
     number: function(val){
         return !isNaN(val);
@@ -23509,12 +23525,12 @@ var ValidatorFuncs = {
         return /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(val);
     },
     color: function(val){
+        if (!Utils.isValue(val)) return false;
         return Colors.color(val, Colors.PALETTES.STANDARD) !== false;
     },
     pattern: function(val, pat){
-        if (!Utils.isValue(pat)) {
-            return false;
-        }
+        if (!Utils.isValue(val)) return false;
+        if (!Utils.isValue(pat)) return false;
         var reg = new RegExp(pat);
         return reg.test(val);
     },
@@ -23525,9 +23541,13 @@ var ValidatorFuncs = {
         return val !== not_this;
     },
     notequals: function(val, val2){
+        if (Utils.isNull(val)) return false;
+        if (Utils.isNull(val2)) return false;
         return val.trim() !== val2.trim();
     },
     equals: function(val, val2){
+        if (Utils.isNull(val)) return false;
+        if (Utils.isNull(val2)) return false;
         return val.trim() === val2.trim();
     },
     custom: function(val, func){
@@ -23642,6 +23662,10 @@ var ValidatorFuncs = {
 
                 if (['compare', 'equals', 'notequals'].indexOf(f) > -1) {
                     a = input[0].form.elements[a].value;
+                }
+
+                if (f === 'date') {
+                    a = input.attr("data-value-format");
                 }
 
                 if (Utils.isFunc(ValidatorFuncs[f]) === false)  {

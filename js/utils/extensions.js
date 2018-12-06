@@ -101,7 +101,8 @@ String.prototype.toDate = function(format)
     var today, year, month, day, hour, minute, second;
 
     if (!Utils.isValue(format)) {
-        format = "yyyy-mm-dd";
+        // format = "yyyy-mm-dd";
+        return new Date(this);
     }
 
     normalized      = this.replace(/[^a-zA-Z0-9%]/g, '-');
