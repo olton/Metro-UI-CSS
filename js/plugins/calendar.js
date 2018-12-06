@@ -34,6 +34,7 @@ var Calendar = {
         nextMonthIcon: "<span class='default-icon-chevron-right'></span>",
         prevYearIcon: "<span class='default-icon-chevron-left'></span>",
         nextYearIcon: "<span class='default-icon-chevron-right'></span>",
+        compact: false,
         wide: false,
         widePoint: null,
         pickerMode: false,
@@ -105,7 +106,7 @@ var Calendar = {
     _create: function(){
         var that = this, element = this.element, o = this.options;
 
-        element.html("").addClass("calendar").addClass(o.clsCalendar);
+        element.html("").addClass("calendar " + (o.compact === true ? "compact" : "")).addClass(o.clsCalendar);
 
         if (Utils.isValue(o.preset)) {
             this._dates2array(o.preset, 'selected');
@@ -301,6 +302,9 @@ var Calendar = {
                     $.each(days, function () {
                         var d = $(this);
                         var dd = d.data('day');
+
+                        if (d.hasClass("disabled")) return;
+
                         if (!that.selected.contains(dd))
                             that.selected.push(dd);
                         d.addClass("selected").addClass(o.clsSelected);
@@ -326,6 +330,9 @@ var Calendar = {
                     $.each(days, function () {
                         var d = $(this);
                         var dd = d.data('day');
+
+                        if (d.hasClass("disabled")) return;
+
                         if (!that.selected.contains(dd))
                             that.selected.push(dd);
                         d.addClass("selected").addClass(o.clsSelected);
@@ -357,26 +364,30 @@ var Calendar = {
                 return ;
             }
 
-            if (o.pickerMode === true) {
-                that.selected = [date];
-                that.today = new Date(date);
-                that.current.year = that.today.getFullYear();
-                that.current.month = that.today.getMonth();
-                that.current.day = that.today.getDate();
-                that._drawHeader();
-                that._drawContent();
-            } else {
-                if (index === -1) {
-                    if (o.multiSelect === false) {
-                        element.find(".days-row .day").removeClass("selected").removeClass(o.clsSelected);
-                        that.selected = [];
-                    }
-                    that.selected.push(date);
-                    day.addClass("selected").addClass(o.clsSelected);
+            if (!day.hasClass("disabled")) {
+
+                if (o.pickerMode === true) {
+                    that.selected = [date];
+                    that.today = new Date(date);
+                    that.current.year = that.today.getFullYear();
+                    that.current.month = that.today.getMonth();
+                    that.current.day = that.today.getDate();
+                    that._drawHeader();
+                    that._drawContent();
                 } else {
-                    day.removeClass("selected").removeClass(o.clsSelected);
-                    Utils.arrayDelete(that.selected, date);
+                    if (index === -1) {
+                        if (o.multiSelect === false) {
+                            element.find(".days-row .day").removeClass("selected").removeClass(o.clsSelected);
+                            that.selected = [];
+                        }
+                        that.selected.push(date);
+                        day.addClass("selected").addClass(o.clsSelected);
+                    } else {
+                        day.removeClass("selected").removeClass(o.clsSelected);
+                        Utils.arrayDelete(that.selected, date);
+                    }
                 }
+
             }
 
             Utils.exec(o.onDayClick, [that.selected, day, element]);
@@ -696,7 +707,7 @@ var Calendar = {
             that._drawFooter();
             that._drawMonths();
             that._drawYears();
-        }, 1);
+        }, 0);
     },
 
     getPreset: function(){
