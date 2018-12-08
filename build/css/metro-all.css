@@ -29474,18 +29474,51 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
 .carousel .carousel-bullets .carousel-bullet.bullet-on {
   background-color: #5ebdec;
 }
+.carousel .carousel-bullets.default-size .carousel-bullet {
+  width: 22px;
+  height: 22px;
+}
+.carousel .carousel-bullets.mini-size .carousel-bullet {
+  width: 10px;
+  height: 10px;
+}
+.carousel .carousel-bullets.small-size .carousel-bullet {
+  width: 16px;
+  height: 16px;
+}
+.carousel .carousel-bullets.large-size .carousel-bullet {
+  width: 32px;
+  height: 32px;
+}
 .carousel .carousel-bullets.bullet-style-square .carousel-bullet {
   border-radius: 0;
 }
-.carousel .carousel-bullets.bullet-style-rect .carousel-bullet {
-  border-radius: 0;
-  height: 0.4rem;
-  width: 1rem;
+.carousel .carousel-bullets.bullet-style-cycle .carousel-bullet {
+  border-radius: 50%;
 }
 .carousel .carousel-bullets.bullet-style-diamond .carousel-bullet {
   border-radius: 0;
   -webkit-transform: rotate(45deg);
           transform: rotate(45deg);
+}
+.carousel .carousel-bullets.bullet-style-rect .carousel-bullet {
+  border-radius: 0;
+}
+.carousel .carousel-bullets.bullet-style-rect.default-size .carousel-bullet {
+  width: 44px;
+  height: 14px;
+}
+.carousel .carousel-bullets.bullet-style-rect.mini-size .carousel-bullet {
+  width: 20px;
+  height: 6px;
+}
+.carousel .carousel-bullets.bullet-style-rect.small-size .carousel-bullet {
+  width: 32px;
+  height: 10px;
+}
+.carousel .carousel-bullets.bullet-style-rect.large-size .carousel-bullet {
+  width: 64px;
+  height: 24px;
 }
 .carousel.controls-outside {
   padding: 0 4rem 1.375rem 4rem;

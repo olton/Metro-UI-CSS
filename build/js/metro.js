@@ -560,7 +560,8 @@ var Animation = {
         if (duration === undefined) {duration = this.duration;}
         if (func === undefined) {func = this.func;}
         current.css("z-index", 1).animate({
-            top: -h
+            top: -h,
+            opacity: 0
         }, duration, func);
 
         next.css({
@@ -568,7 +569,8 @@ var Animation = {
             left: 0,
             zIndex: 2
         }).animate({
-            top: 0
+            top: 0,
+            opacity: 1
         }, duration, func);
     },
 
@@ -577,7 +579,8 @@ var Animation = {
         if (duration === undefined) {duration = this.duration;}
         if (func === undefined) {func = this.func;}
         current.css("z-index", 1).animate({
-            top: h
+            top: h,
+            opacity: 0
         }, duration, func);
 
         next.css({
@@ -585,7 +588,8 @@ var Animation = {
             top: -h,
             zIndex: 2
         }).animate({
-            top: 0
+            top: 0,
+            opacity: 1
         }, duration, func);
     },
 
@@ -594,14 +598,16 @@ var Animation = {
         if (duration === undefined) {duration = this.duration;}
         if (func === undefined) {func = this.func;}
         current.css("z-index", 1).animate({
-            left: -w
+            left: -w,
+            opacity: 0
         }, duration, func);
 
         next.css({
             left: w,
             zIndex: 2
         }).animate({
-            left: 0
+            left: 0,
+            opacity: 1
         }, duration, func);
     },
 
@@ -610,14 +616,16 @@ var Animation = {
         if (duration === undefined) {duration = this.duration;}
         if (func === undefined) {func = this.func;}
         current.css("z-index", 1).animate({
-            left: w
+            left: w,
+            opacity: 0
         }, duration, func);
 
         next.css({
             left: -w,
             zIndex: 2
         }).animate({
-            left: 0
+            left: 0,
+            opacity: 1
         }, duration, func);
     },
 
@@ -6850,7 +6858,9 @@ var Carousel = {
 
         controls: true,
         bullets: true,
-        bulletStyle: "square", // square, circle, rect, diamond
+        bulletsStyle: "square", // square, circle, rect, diamond
+        bulletsSize: "default", // default, mini, small, large
+
         controlsOnMouse: false,
         controlsOutside: false,
         bulletsPosition: "default", // default, left, right
@@ -6938,6 +6948,8 @@ var Carousel = {
 
         if (o.autoStart === true) {
             this._start();
+        } else {
+            this._slideToSlide(0)
         }
 
         Utils.exec(this.options.onCarouselCreate, [this.element]);
@@ -6960,7 +6972,7 @@ var Carousel = {
             var t = o.direction === 'left' ? 'next' : 'prior';
             that._slideTo(t, true);
         }, period);
-        Utils.exec(o.onStart, [element]);
+        Utils.exec(o.onStart, [element], element[0]);
     },
 
     _stop: function(){
@@ -7068,7 +7080,7 @@ var Carousel = {
             return ;
         }
 
-        bullets = $('<div>').addClass("carousel-bullets").addClass("bullet-style-"+o.bulletStyle).addClass(o.clsBullets);
+        bullets = $('<div>').addClass("carousel-bullets").addClass(o.bulletsSize+"-size").addClass("bullet-style-"+o.bulletsStyle).addClass(o.clsBullets);
         if (o.bulletsPosition === 'default' || o.bulletsPosition === 'center') {
             bullets.addClass("flex-justify-center");
         } else if (o.bulletsPosition === 'left') {
@@ -7162,6 +7174,8 @@ var Carousel = {
         }
 
         if (this.currentIndex === index) {
+            console.log("ku");
+            Utils.exec(o.onSlideShow, [this.slides[this.currentIndex][0], undefined], this.slides[this.currentIndex][0]);
             return ;
         }
 
@@ -7248,11 +7262,11 @@ var Carousel = {
         }
 
         setTimeout(function(){
-            Utils.exec(o.onSlideShow, [next[0]], element[0]);
+            Utils.exec(o.onSlideShow, [next[0], current[0]], next[0]);
         }, duration);
 
         setTimeout(function(){
-            Utils.exec(o.onSlideHide, [current[0]], element[0]);
+            Utils.exec(o.onSlideHide, [current[0], next[0]], current[0]);
         }, duration);
 
         if (interval === true) {
