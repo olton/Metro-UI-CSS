@@ -122,7 +122,7 @@ var Carousel = {
         if (o.autoStart === true) {
             this._start();
         } else {
-            this._slideToSlide(0)
+            Utils.exec(o.onSlideShow, [this.slides[this.currentIndex][0], undefined], this.slides[this.currentIndex][0]);
         }
 
         Utils.exec(this.options.onCarouselCreate, [this.element]);
@@ -347,8 +347,6 @@ var Carousel = {
         }
 
         if (this.currentIndex === index) {
-            console.log("ku");
-            Utils.exec(o.onSlideShow, [this.slides[this.currentIndex][0], undefined], this.slides[this.currentIndex][0]);
             return ;
         }
 

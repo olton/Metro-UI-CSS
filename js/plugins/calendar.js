@@ -616,7 +616,7 @@ var Calendar = {
             if (o.outside === true) {
                 d.html(v);
 
-                Utils.exec(o.onDayDraw, [v, d[0]], element[0]);
+                Utils.exec(o.onDayDraw, [v], d[0]);
             }
 
             counter++;
@@ -663,7 +663,7 @@ var Calendar = {
 
             }
 
-            Utils.exec(o.onDayDraw, [first.getDate(), d[0]], element[0]);
+            Utils.exec(o.onDayDraw, [first.getDate()], d[0]);
 
             counter++;
             if (counter % 7 === 0) {
@@ -693,7 +693,7 @@ var Calendar = {
             d.data('day', s.getTime());
             if (o.outside === true) {
                 d.html(i + 1);
-                Utils.exec(o.onDayDraw, [i + 1, d[0]], element[0]);
+                Utils.exec(o.onDayDraw, [i + 1], d[0]);
             }
         }
     },
