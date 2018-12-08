@@ -6117,6 +6117,12 @@ var Calendar = {
             if (o.outside === true) {
                 d.html(v);
 
+                if (this.excludeDay.length > 0) {
+                    if (this.excludeDay.indexOf(s.getDay()) > -1) {
+                        d.addClass("disabled excluded").addClass(o.clsExcluded);
+                    }
+                }
+
                 Utils.exec(o.onDayDraw, [v], d[0]);
             }
 
@@ -6155,8 +6161,6 @@ var Calendar = {
                 if (this.max !== null && first.getTime() > this.max.getTime()) {
                     d.addClass("disabled excluded").addClass(o.clsExcluded);
                 }
-
-                console.log(this.excludeDay);
 
                 if (this.excludeDay.length > 0) {
                     if (this.excludeDay.indexOf(first.getDay()) > -1) {
@@ -6201,6 +6205,13 @@ var Calendar = {
             d.data('day', s.getTime());
             if (o.outside === true) {
                 d.html(i + 1);
+
+                if (this.excludeDay.length > 0) {
+                    if (this.excludeDay.indexOf(s.getDay()) > -1) {
+                        d.addClass("disabled excluded").addClass(o.clsExcluded);
+                    }
+                }
+
                 Utils.exec(o.onDayDraw, [i + 1], d[0]);
             }
         }
