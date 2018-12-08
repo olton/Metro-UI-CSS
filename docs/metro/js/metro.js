@@ -6111,7 +6111,7 @@ var Calendar = {
             if (o.outside === true) {
                 d.html(v);
 
-                Utils.exec(o.onDayDraw, [v, d[0]], element[0]);
+                Utils.exec(o.onDayDraw, [v], d[0]);
             }
 
             counter++;
@@ -6158,7 +6158,7 @@ var Calendar = {
 
             }
 
-            Utils.exec(o.onDayDraw, [first.getDate(), d[0]], element[0]);
+            Utils.exec(o.onDayDraw, [first.getDate()], d[0]);
 
             counter++;
             if (counter % 7 === 0) {
@@ -6188,7 +6188,7 @@ var Calendar = {
             d.data('day', s.getTime());
             if (o.outside === true) {
                 d.html(i + 1);
-                Utils.exec(o.onDayDraw, [i + 1, d[0]], element[0]);
+                Utils.exec(o.onDayDraw, [i + 1], d[0]);
             }
         }
     },
@@ -6949,7 +6949,7 @@ var Carousel = {
         if (o.autoStart === true) {
             this._start();
         } else {
-            this._slideToSlide(0)
+            Utils.exec(o.onSlideShow, [this.slides[this.currentIndex][0], undefined], this.slides[this.currentIndex][0]);
         }
 
         Utils.exec(this.options.onCarouselCreate, [this.element]);
@@ -7174,8 +7174,6 @@ var Carousel = {
         }
 
         if (this.currentIndex === index) {
-            console.log("ku");
-            Utils.exec(o.onSlideShow, [this.slides[this.currentIndex][0], undefined], this.slides[this.currentIndex][0]);
             return ;
         }
 
