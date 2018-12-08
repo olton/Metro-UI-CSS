@@ -16,6 +16,7 @@ var Calendar = {
         this.selected = [];
         this.exclude = [];
         this.special = [];
+        this.excludeDay = [];
         this.min = null;
         this.max = null;
         this.locale = null;
@@ -30,6 +31,7 @@ var Calendar = {
     },
 
     options: {
+        excludeDay: null,
         prevMonthIcon: "<span class='default-icon-chevron-left'></span>",
         nextMonthIcon: "<span class='default-icon-chevron-right'></span>",
         prevYearIcon: "<span class='default-icon-chevron-left'></span>",
@@ -107,6 +109,10 @@ var Calendar = {
         var that = this, element = this.element, o = this.options;
 
         element.html("").addClass("calendar " + (o.compact === true ? "compact" : "")).addClass(o.clsCalendar);
+
+        if (Utils.isValue(o.excludeDay)) {
+            this.excludeDay = o.excludeDay.toArray(",", "int");
+        }
 
         if (Utils.isValue(o.preset)) {
             this._dates2array(o.preset, 'selected');
@@ -303,7 +309,7 @@ var Calendar = {
                         var d = $(this);
                         var dd = d.data('day');
 
-                        if (d.hasClass("disabled")) return;
+                        if (d.hasClass("disabled") || d.hasClass("excluded")) return;
 
                         if (!that.selected.contains(dd))
                             that.selected.push(dd);
@@ -331,7 +337,7 @@ var Calendar = {
                         var d = $(this);
                         var dd = d.data('day');
 
-                        if (d.hasClass("disabled")) return;
+                        if (d.hasClass("disabled") || d.hasClass("excluded")) return;
 
                         if (!that.selected.contains(dd))
                             that.selected.push(dd);
@@ -655,6 +661,13 @@ var Calendar = {
                     d.addClass("disabled excluded").addClass(o.clsExcluded);
                 }
 
+                console.log(this.excludeDay);
+
+                if (this.excludeDay.length > 0) {
+                    if (this.excludeDay.indexOf(first.getDay()) > -1) {
+                        d.addClass("disabled excluded").addClass(o.clsExcluded);
+                    }
+                }
             } else {
 
                 if (this.special.indexOf(first.getTime()) === -1) {
