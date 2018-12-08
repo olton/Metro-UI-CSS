@@ -13,7 +13,8 @@ var Animation = {
         if (duration === undefined) {duration = this.duration;}
         if (func === undefined) {func = this.func;}
         current.css("z-index", 1).animate({
-            top: -h
+            top: -h,
+            opacity: 0
         }, duration, func);
 
         next.css({
@@ -21,7 +22,8 @@ var Animation = {
             left: 0,
             zIndex: 2
         }).animate({
-            top: 0
+            top: 0,
+            opacity: 1
         }, duration, func);
     },
 
@@ -30,7 +32,8 @@ var Animation = {
         if (duration === undefined) {duration = this.duration;}
         if (func === undefined) {func = this.func;}
         current.css("z-index", 1).animate({
-            top: h
+            top: h,
+            opacity: 0
         }, duration, func);
 
         next.css({
@@ -38,7 +41,8 @@ var Animation = {
             top: -h,
             zIndex: 2
         }).animate({
-            top: 0
+            top: 0,
+            opacity: 1
         }, duration, func);
     },
 
@@ -47,14 +51,16 @@ var Animation = {
         if (duration === undefined) {duration = this.duration;}
         if (func === undefined) {func = this.func;}
         current.css("z-index", 1).animate({
-            left: -w
+            left: -w,
+            opacity: 0
         }, duration, func);
 
         next.css({
             left: w,
             zIndex: 2
         }).animate({
-            left: 0
+            left: 0,
+            opacity: 1
         }, duration, func);
     },
 
@@ -63,14 +69,16 @@ var Animation = {
         if (duration === undefined) {duration = this.duration;}
         if (func === undefined) {func = this.func;}
         current.css("z-index", 1).animate({
-            left: w
+            left: w,
+            opacity: 0
         }, duration, func);
 
         next.css({
             left: -w,
             zIndex: 2
         }).animate({
-            left: 0
+            left: 0,
+            opacity: 1
         }, duration, func);
     },
 

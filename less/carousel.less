@@ -111,6 +111,23 @@
             &:hover {
             }
         }
+
+        &.default-size .carousel-bullet{
+            width: 22px;
+            height: 22px;
+        }
+        &.mini-size .carousel-bullet{
+            width: 10px;
+            height: 10px;
+        }
+        &.small-size .carousel-bullet{
+            width: 16px;
+            height: 16px;
+        }
+        &.large-size .carousel-bullet{
+            width: 32px;
+            height: 32px;
+        }
     }
 
     .carousel-bullets {
@@ -120,17 +137,37 @@
                     border-radius: 0;
                 }
             }
-            &-rect {
+            &-cycle {
                 .carousel-bullet {
-                    border-radius: 0;
-                    height: .4rem;
-                    width: 1rem;
+                    border-radius: 50%;
                 }
             }
             &-diamond {
                 .carousel-bullet {
                     border-radius: 0;
                     transform: rotate(45deg);
+                }
+            }
+            &-rect {
+                .carousel-bullet {
+                    border-radius: 0;
+                }
+
+                &.default-size .carousel-bullet{
+                    width: 44px;
+                    height: 14px;
+                }
+                &.mini-size .carousel-bullet{
+                    width: 20px;
+                    height: 6px;
+                }
+                &.small-size .carousel-bullet{
+                    width: 32px;
+                    height: 10px;
+                }
+                &.large-size .carousel-bullet{
+                    width: 64px;
+                    height: 24px;
                 }
             }
         }
