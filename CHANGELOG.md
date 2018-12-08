@@ -18,6 +18,7 @@
 + [x] Carousel: rename attribute `data-bullet-style` to `data-bullets-style`
 + [x] Carousel: add attribute `data-bullet-size` with values `default`, `mini`, `small`, `large`
 + [x] Carousel: add style `cycle`
++ [x] Popover: set default value for `data-popover-timeout` to `10`, issue #1277
 
 ### 4.2.30
 + [x] Toast: add function `init(options)`, now you can set toast `top` position and `distance`. See docs for details.
