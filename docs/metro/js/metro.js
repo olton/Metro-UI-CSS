@@ -14547,7 +14547,7 @@ var Popover = {
     options: {
         popoverText: "",
         popoverHide: 3000,
-        popoverTimeout: 100,
+        popoverTimeout: 10,
         popoverOffset: 10,
         popoverTrigger: Metro.popoverEvents.HOVER,
         popoverPosition: Metro.position.TOP,
