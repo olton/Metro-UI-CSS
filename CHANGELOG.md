@@ -5,6 +5,7 @@
 + [x] Sidebar: add attribute `data-position` to set sidebar `right` or `left` (default)
 + [x] Array: add function (if not exists) `contains(val, idx)`
 + [x] String: add function `toArray(delim, type, format)` this function is equal to `Utils.strToArray`
++ [x] Calendar: add attribute `data-exclude-day`. Comma separated string with day number from 0 (Sunday) to 6 (Saturday) 
 + [x] Calendar: add attribute `data-show-week-number="true|false"` 
 + [x] Calendar: add attribute `data-week-number-click="true|false"` 
 + [x] Calendar: add event `data-on-week-number-click="..."` 
