@@ -100,8 +100,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.31-dev [13:51 9-11-2018]",
-    versionFull: "4.2.31-dev [13:51 9-11-2018]",
+    version: "4.2.31-dev [13:53 9-11-2018]",
+    versionFull: "4.2.31-dev [13:53 9-11-2018]",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -255,11 +255,11 @@ var Metro = {
     hotkeys: [],
 
     about: function(f){
-        console.log("Metro 4 Components Library - v" + (f === true ? this.versionFull : this.version));
+        console.log("Metro 4 - v" + (f === true ? this.versionFull : this.version));
     },
 
     aboutDlg: function(f){
-        alert("Metro 4 Components Library - v" + (f === true ? this.versionFull : this.version));
+        alert("Metro 4 - v" + (f === true ? this.versionFull : this.version));
     },
 
     ver: function(f){

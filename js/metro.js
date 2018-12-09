@@ -236,11 +236,11 @@ var Metro = {
     hotkeys: [],
 
     about: function(f){
-        console.log("Metro 4 Components Library - v" + (f === true ? this.versionFull : this.version));
+        console.log("Metro 4 - v" + (f === true ? this.versionFull : this.version));
     },
 
     aboutDlg: function(f){
-        alert("Metro 4 Components Library - v" + (f === true ? this.versionFull : this.version));
+        alert("Metro 4 - v" + (f === true ? this.versionFull : this.version));
     },
 
     ver: function(f){
