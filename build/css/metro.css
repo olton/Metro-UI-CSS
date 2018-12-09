@@ -40305,30 +40305,43 @@ video:-webkit-full-screen {
   bottom: 0;
   overflow: hidden;
   width: 290px;
-  background-color: #fefefe;
+  background-color: #ffffff;
   padding: 0;
   z-index: 1031;
+}
+.sidebar.on-left {
+  right: auto!important;
+  left: -290px;
   -webkit-transition: left 0.3s ease;
   transition: left 0.3s ease;
-  -webkit-box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16), 0 2px 5px 0 rgba(0, 0, 0, 0.26);
-          box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16), 0 2px 5px 0 rgba(0, 0, 0, 0.26);
 }
-.sidebar.open,
-.sidebar.static {
+.sidebar.on-left.open,
+.sidebar.on-left.static {
   -webkit-transition: left 0.3s ease;
   transition: left 0.3s ease;
   left: 0;
+}
+.sidebar.on-left.open.sidebar-shadow,
+.sidebar.on-left.static.sidebar-shadow {
+  -webkit-box-shadow: 2px 0 0 0 rgba(0, 0, 0, 0.15);
+          box-shadow: 2px 0 0 0 rgba(0, 0, 0, 0.15);
 }
 .sidebar.on-right {
   -webkit-transition: right 0.3s ease;
   transition: right 0.3s ease;
   left: auto!important;
+  right: -290px;
 }
 .sidebar.on-right.open,
 .sidebar.on-right.static {
   -webkit-transition: right 0.3s ease;
   transition: right 0.3s ease;
   right: 0;
+}
+.sidebar.on-right.open.sidebar-shadow,
+.sidebar.on-right.static.sidebar-shadow {
+  -webkit-box-shadow: -2px 0 0 0 rgba(0, 0, 0, 0.15);
+          box-shadow: -2px 0 0 0 rgba(0, 0, 0, 0.15);
 }
 .sidebar-header,
 .sidebar-menu,

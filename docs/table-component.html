@@ -63,6 +63,7 @@
                     <li class="toc-entry"><a href="#_table_methods">Methods</a></li>
                     <li class="toc-entry"><a href="#_table_customize">Customize</a></li>
                     <li class="toc-entry"><a href="#_table_custom_wrappers">Custom wrappers</a></li>
+                    <li class="toc-entry"><a href="#_table_horizontal_scroll">Horizontal scroll</a></li>
                 </ul>
 
             </div>
@@ -1591,6 +1592,29 @@
                            data-source="data/table.json"&gt;
                     &lt;/table&gt;
                     &lt;div class="d-flex flex-justify-center my-pagination-wrapper"&gt;&lt;/div&gt;
+                </code></pre>
+
+                <h3 id="_table_horizontal_scroll">Horizontal scroll</h3>
+                <p>
+                    You can enable horizontal scrolling for wide table. To enable it, use attribute <code>data-horizontal-scroll="true"</code>.
+                </p>
+                <div class="example">
+                    <table class="table table-border striped"
+                           data-role="table"
+                           data-rows-steps="-1, 5, 10"
+                           data-rows="5"
+                           data-horizontal-scroll="true"
+                           data-source="data/table-wide.json">
+                    </table>
+                </div>
+                <pre><code>
+                    &lt;table class="table table-border striped"
+                           data-role="table"
+                           data-rows-steps="-1, 5, 10"
+                           data-rows="5"
+                           data-horizontal-scroll="true"
+                           data-source="data/table-wide.json"&gt;
+                    &lt;/table&gt;
                 </code></pre>
 
             </main>

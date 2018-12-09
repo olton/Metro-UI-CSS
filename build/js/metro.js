@@ -100,8 +100,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.31-dev [13:53 9-11-2018]",
-    versionFull: "4.2.31-dev [13:53 9-11-2018]",
+    version: "4.2.31-dev [18:14 9-11-2018]",
+    versionFull: "4.2.31-dev [18:14 9-11-2018]",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -16198,6 +16198,7 @@ var Sidebar = {
     },
 
     options: {
+        shadow: true,
         position: "left",
         size: 290,
         shift: null,
@@ -16244,18 +16245,20 @@ var Sidebar = {
         var header = element.find(".sidebar-header");
         var sheet = Metro.sheet;
 
-        element.addClass("sidebar").addClass("on-"+o.position).css({
-            width: o.size
-        });
+        element.addClass("sidebar").addClass("on-"+o.position);
 
-        if (o.position === 'left') {
-            element.css({
-                left: -o.size
-            })
-        } else {
-            element.css({
-                right: -o.size
-            })
+        if (o.size !== 290) {
+            Utils.addCssRule(sheet, ".sidebar", "width: " + o.size + "px;");
+
+            if (o.position === "left") {
+                Utils.addCssRule(sheet, ".sidebar.on-left", "left: " + -o.size + "px;");
+            } else {
+                Utils.addCssRule(sheet, ".sidebar.on-right", "right: " + -o.size + "px;");
+            }
+        }
+
+        if (o.shadow === true) {
+            element.addClass("sidebar-shadow");
         }
 
         if (element.attr("id") === undefined) {
