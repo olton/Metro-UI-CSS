@@ -112,7 +112,7 @@ var Sidebar = {
             });
         }
 
-        if (o.static !== null && ["fs", "sm", "md", "lg", "xl", "xxl"].indexOf(o.static)) {
+        if (o.static !== null && ["fs", "sm", "md", "lg", "xl", "xxl"].indexOf(o.static) > -1) {
             $(window).on(Metro.events.resize + "_" + element.attr("id"), function(){
                 that._checkStatic();
             });
@@ -123,6 +123,10 @@ var Sidebar = {
                 that.close();
             });
         }
+
+        element.on(Metro.events.click, ".sidebar-menu .js-sidebar-close", function(){
+            that.close();
+        });
     },
 
     _checkStatic: function(){
@@ -156,16 +160,6 @@ var Sidebar = {
 
         element.data("opened", true).addClass('open');
 
-        if (o.position === 'left') {
-            element.css({
-                left: 0
-            });
-        } else {
-            element.css({
-                right: 0
-            });
-        }
-
         if (o.shift !== null) {
             $.each(o.shift.split(","), function(){
                 $(this).animate({left: element.outerWidth()}, o.duration);
@@ -183,16 +177,6 @@ var Sidebar = {
         }
 
         element.data("opened", false).removeClass('open');
-
-        if (o.position === 'left') {
-            element.css({
-                left: -o.size
-            });
-        } else {
-            element.css({
-                right: -o.size
-            });
-        }
 
         if (o.shift !== null) {
             $.each(o.shift.split(","), function(){
