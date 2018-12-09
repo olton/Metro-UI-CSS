@@ -628,7 +628,7 @@ var Calendar = {
                     }
                 }
 
-                Utils.exec(o.onDayDraw, [v], d[0]);
+                Utils.exec(o.onDayDraw, [s], d[0]);
             }
 
             counter++;
@@ -680,7 +680,7 @@ var Calendar = {
 
             }
 
-            Utils.exec(o.onDayDraw, [first.getDate()], d[0]);
+            Utils.exec(o.onDayDraw, [first], d[0]);
 
             counter++;
             if (counter % 7 === 0) {
@@ -717,7 +717,7 @@ var Calendar = {
                     }
                 }
 
-                Utils.exec(o.onDayDraw, [i + 1], d[0]);
+                Utils.exec(o.onDayDraw, [s], d[0]);
             }
         }
     },
