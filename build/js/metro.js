@@ -100,8 +100,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.31-dev [12:24 10-11-2018]",
-    versionFull: "4.2.31-dev [12:24 10-11-2018]",
+    version: "4.2.31-dev [13:33 10-11-2018]",
+    versionFull: "4.2.31-dev [13:33 10-11-2018]",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -3214,93 +3214,19 @@ special.scrollstop = {
 };
 
 
-// Source: js/utils/session-storage.js
-var SessionStorage = {
-    key: "METRO:APP",
-
-    init: function( options ) {
-        this.options = $.extend( {}, this.options, options );
-
-        return this;
-    },
-
-    nvl: function(data, other){
-        return data === undefined || data === null ? other : data;
-    },
-
-    setKey: function(key){
-        this.key = key;
-    },
-
-    getKey: function(){
-        return this.key;
-    },
-
-    setItem: function(key, value){
-        window.sessionStorage.setItem(this.key + ":" + key, JSON.stringify(value));
-    },
-
-    getItem: function(key, default_value, reviver){
-        var result, value;
-
-        value = this.nvl(window.sessionStorage.getItem(this.key + ":" + key), default_value);
-
-        try {
-            result = JSON.parse(value, reviver);
-        } catch (e) {
-            result = null;
-        }
-        return result;
-    },
-
-    getItemPart: function(key, sub_key, default_value, reviver){
-        var i;
-        var val = this.getItem(key, default_value, reviver);
-
-        sub_key = sub_key.split("->");
-        for(i = 0; i < sub_key.length; i++) {
-            val = val[sub_key[i]];
-        }
-        return val;
-    },
-
-    delItem: function(key){
-        window.sessionStorage.removeItem(this.key + ":" + key)
-    },
-
-    size: function(unit){
-        var divider;
-        switch (unit) {
-            case 'm':
-            case 'M': {
-                divider = 1024 * 1024;
-                break;
-            }
-            case 'k':
-            case 'K': {
-                divider = 1024;
-                break;
-            }
-            default: divider = 1;
-        }
-        return JSON.stringify(window.sessionStorage).length / divider;
-    }
-};
-
-Metro['session'] = SessionStorage.init();
-
 // Source: js/utils/storage.js
 var Storage = {
-    key: "METRO:APP",
+    options: {
+        key: "METRO:APP",
+        storage: window.localStorage
+    },
 
     init: function( options, elem ) {
         this.options = $.extend( {}, this.options, options );
+        this.storage = this.options.storage;
+        this.key = this.options.key;
 
         return this;
-    },
-
-    nvl: function(data, other){
-        return data === undefined || data === null ? other : data;
     },
 
     setKey: function(key){
@@ -3312,20 +3238,20 @@ var Storage = {
     },
 
     setItem: function(key, value){
-        window.localStorage.setItem(this.key + ":" + key, JSON.stringify(value));
+        this.storage.setItem(this.key + ":" + key, JSON.stringify(value));
     },
 
     getItem: function(key, default_value, reviver){
         var result, value;
 
-        value = this.nvl(window.localStorage.getItem(this.key + ":" + key), default_value);
+        value = this.storage.getItem(this.key + ":" + key);
 
         try {
             result = JSON.parse(value, reviver);
         } catch (e) {
             result = null;
         }
-        return result;
+        return Utils.nvl(result, default_value);
     },
 
     getItemPart: function(key, sub_key, default_value, reviver){
@@ -3340,7 +3266,7 @@ var Storage = {
     },
 
     delItem: function(key){
-        window.localStorage.removeItem(this.key + ":" + key)
+        this.storage.removeItem(this.key + ":" + key)
     },
 
     size: function(unit){
@@ -3358,11 +3284,17 @@ var Storage = {
             }
             default: divider = 1;
         }
-        return JSON.stringify(window.localStorage).length / divider;
+        return JSON.stringify(this.storage).length / divider;
     }
 };
 
-Metro['storage'] = Storage.init();
+Metro['storage'] = Object.create(Storage).init({
+    storage: window.localStorage
+});
+Metro['session'] = Object.create(Storage).init({
+    storage: window.sessionStorage
+});
+
 
 // Source: js/utils/tpl.js
 var TemplateEngine = function(html, options) {
