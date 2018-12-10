@@ -31,6 +31,7 @@ var Calendar = {
     },
 
     options: {
+        dayBorder: false,
         excludeDay: null,
         prevMonthIcon: "<span class='default-icon-chevron-left'></span>",
         nextMonthIcon: "<span class='default-icon-chevron-right'></span>",
@@ -109,6 +110,10 @@ var Calendar = {
         var that = this, element = this.element, o = this.options;
 
         element.html("").addClass("calendar " + (o.compact === true ? "compact" : "")).addClass(o.clsCalendar);
+
+        if (o.dayBorder === true) {
+            element.addClass("day-border");
+        }
 
         if (Utils.isValue(o.excludeDay)) {
             this.excludeDay = o.excludeDay.toArray(",", "int");

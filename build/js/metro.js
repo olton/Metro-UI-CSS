@@ -100,8 +100,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.31-dev [20:41 9-11-2018]",
-    versionFull: "4.2.31-dev [20:41 9-11-2018]",
+    version: "4.2.31-dev [12:24 10-11-2018]",
+    versionFull: "4.2.31-dev [12:24 10-11-2018]",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -5526,6 +5526,7 @@ var Calendar = {
     },
 
     options: {
+        dayBorder: false,
         excludeDay: null,
         prevMonthIcon: "<span class='default-icon-chevron-left'></span>",
         nextMonthIcon: "<span class='default-icon-chevron-right'></span>",
@@ -5604,6 +5605,10 @@ var Calendar = {
         var that = this, element = this.element, o = this.options;
 
         element.html("").addClass("calendar " + (o.compact === true ? "compact" : "")).addClass(o.clsCalendar);
+
+        if (o.dayBorder === true) {
+            element.addClass("day-border");
+        }
 
         if (Utils.isValue(o.excludeDay)) {
             this.excludeDay = o.excludeDay.toArray(",", "int");
