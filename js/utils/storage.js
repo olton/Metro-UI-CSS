@@ -1,14 +1,15 @@
 var Storage = {
-    key: "METRO:APP",
+    options: {
+        key: "METRO:APP",
+        storage: window.localStorage
+    },
 
     init: function( options, elem ) {
         this.options = $.extend( {}, this.options, options );
+        this.storage = this.options.storage;
+        this.key = this.options.key;
 
         return this;
-    },
-
-    nvl: function(data, other){
-        return data === undefined || data === null ? other : data;
     },
 
     setKey: function(key){
@@ -20,20 +21,20 @@ var Storage = {
     },
 
     setItem: function(key, value){
-        window.localStorage.setItem(this.key + ":" + key, JSON.stringify(value));
+        this.storage.setItem(this.key + ":" + key, JSON.stringify(value));
     },
 
     getItem: function(key, default_value, reviver){
         var result, value;
 
-        value = this.nvl(window.localStorage.getItem(this.key + ":" + key), default_value);
+        value = this.storage.getItem(this.key + ":" + key);
 
         try {
             result = JSON.parse(value, reviver);
         } catch (e) {
             result = null;
         }
-        return result;
+        return Utils.nvl(result, default_value);
     },
 
     getItemPart: function(key, sub_key, default_value, reviver){
@@ -48,7 +49,7 @@ var Storage = {
     },
 
     delItem: function(key){
-        window.localStorage.removeItem(this.key + ":" + key)
+        this.storage.removeItem(this.key + ":" + key)
     },
 
     size: function(unit){
@@ -66,8 +67,13 @@ var Storage = {
             }
             default: divider = 1;
         }
-        return JSON.stringify(window.localStorage).length / divider;
+        return JSON.stringify(this.storage).length / divider;
     }
 };
 
-Metro['storage'] = Storage.init();
+Metro['storage'] = Object.create(Storage).init({
+    storage: window.localStorage
+});
+Metro['session'] = Object.create(Storage).init({
+    storage: window.sessionStorage
+});
