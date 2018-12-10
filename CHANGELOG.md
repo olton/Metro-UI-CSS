@@ -11,7 +11,7 @@
 + [x] Calendar: add event `data-on-week-number-click="..."` 
 + [x] Calendar: add event `data-on-day-draw="..."`
 + [x] Calendar: fix day selection for disabled 
-+ [x] Calendar: add class `day-border`
++ [x] Calendar: add class `day-border` and attribute `data-day-border="true|false"`
 + [x] Validator: fix error if value is undefined  
 + [x] Validator: function `date` now support additional input attribute `data-value-format` for non ECMAScript dates
 + [x] Z-index: set equal z-index for `appbar`, `bottomnav`, `bottomsheet`, `tabsmaterial`
