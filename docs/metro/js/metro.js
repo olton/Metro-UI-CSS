@@ -100,8 +100,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.31-dev [13:33 10-11-2018]",
-    versionFull: "4.2.31-dev [13:33 10-11-2018]",
+    version: "4.2.31-dev [18:21 12-11-2018]",
+    versionFull: "4.2.31-dev [18:21 12-11-2018]",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -1893,14 +1893,13 @@ String.prototype.contains = function() {
     return !!~String.prototype.indexOf.apply(this, arguments);
 };
 
-String.prototype.toDate = function(format)
-{
-    var normalized, normalizedFormat, formatItems, dateItems;
+String.prototype.toDate = function(format) {
+    var result;
+    var normalized, normalizedFormat, formatItems, dateItems, checkValue;
     var monthIndex, dayIndex, yearIndex, hourIndex, minutesIndex, secondsIndex;
-    var today, year, month, day, hour, minute, second;
+    var year, month, day, hour, minute, second;
 
     if (!Utils.isValue(format)) {
-        // format = "yyyy-mm-dd";
         return new Date(this);
     }
 
@@ -1908,6 +1907,11 @@ String.prototype.toDate = function(format)
     normalizedFormat= format.toLowerCase().replace(/[^a-zA-Z0-9%]/g, '-');
     formatItems     = normalizedFormat.split('-');
     dateItems       = normalized.split('-');
+    checkValue      = normalized.replace(/\-/g,"");
+
+    if (checkValue.trim() === "") {
+        return "Invalid Date";
+    }
 
     monthIndex  = formatItems.indexOf("mm") > -1 ? formatItems.indexOf("mm") : formatItems.indexOf("%m");
     dayIndex    = formatItems.indexOf("dd") > -1 ? formatItems.indexOf("dd") : formatItems.indexOf("%d");
@@ -1916,17 +1920,30 @@ String.prototype.toDate = function(format)
     minutesIndex  = formatItems.indexOf("ii") > -1 ? formatItems.indexOf("ii") : formatItems.indexOf("mi") > -1 ? formatItems.indexOf("mi") : formatItems.indexOf("%i");
     secondsIndex  = formatItems.indexOf("ss") > -1 ? formatItems.indexOf("ss") : formatItems.indexOf("%s");
 
-    today = new Date();
+    if (monthIndex > -1 && Utils.isValue(dateItems[monthIndex])) {
+        if (!Utils.isInt(dateItems[monthIndex])) {
+            dateItems[monthIndex] = Utils.monthNameToNumber(dateItems[monthIndex]);
+            if (dateItems[monthIndex] === -1) {
+                return "Invalid Date";
+            }
+        } else if (!Utils.between(dateItems[monthIndex]-1, 0, 11)) {
+            return "Invalid Date";
+        }
+    } else {
+        return "Invalid Date";
+    }
 
-    year  = yearIndex >-1 ? dateItems[yearIndex] : today.getFullYear();
-    month = monthIndex >-1 ? dateItems[monthIndex]-1 : today.getMonth()-1;
-    day   = dayIndex >-1 ? dateItems[dayIndex] : today.getDate();
+    year  = yearIndex >-1 ? dateItems[yearIndex] : null;
+    month = monthIndex >-1 ? dateItems[monthIndex] - 1 : null;
+    day   = dayIndex >-1 ? dateItems[dayIndex] : null;
 
-    hour    = hourIndex >-1 ? dateItems[hourIndex] : today.getHours();
-    minute  = minutesIndex>-1 ? dateItems[minutesIndex] : today.getMinutes();
-    second  = secondsIndex>-1 ? dateItems[secondsIndex] : today.getSeconds();
+    hour    = hourIndex >-1 ? dateItems[hourIndex] : null;
+    minute  = minutesIndex>-1 ? dateItems[minutesIndex] : null;
+    second  = secondsIndex>-1 ? dateItems[secondsIndex] : null;
 
-    return new Date(year,month,day,hour,minute,second);
+    result = new Date(year,month,day,hour,minute,second);
+
+    return result;
 };
 
 String.prototype.toArray = function(delimiter, type, format){
@@ -4236,6 +4253,14 @@ var d = new Date().getTime();
             }
         }
         return q;
+    },
+
+    monthNameToNumber: function(month){
+        var d = Date.parse(month + " 1, 1972");
+        if(!isNaN(d)){
+            return new Date(d).getMonth() + 1;
+        }
+        return -1;
     }
 };
 
@@ -23464,9 +23489,9 @@ var ValidatorFuncs = {
     },
     date: function(val, format){
         if (Utils.isNull(format)) {
-            return new Date(val) !== "Invalid Date";
+            return String(new Date(val)).toLowerCase() !== "invalid date";
         } else {
-            return val.toDate(format) !== "Invalid Date";
+            return String(val.toDate(format)).toLowerCase() !== "invalid date";
         }
     },
     number: function(val){
