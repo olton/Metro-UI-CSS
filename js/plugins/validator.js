@@ -55,9 +55,9 @@ var ValidatorFuncs = {
     },
     date: function(val, format){
         if (Utils.isNull(format)) {
-            return new Date(val) !== "Invalid Date";
+            return String(new Date(val)).toLowerCase() !== "invalid date";
         } else {
-            return val.toDate(format) !== "Invalid Date";
+            return String(val.toDate(format)).toLowerCase() !== "invalid date";
         }
     },
     number: function(val){

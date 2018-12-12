@@ -911,6 +911,14 @@ var Utils = {
             }
         }
         return q;
+    },
+
+    monthNameToNumber: function(month){
+        var d = Date.parse(month + " 1, 1972");
+        if(!isNaN(d)){
+            return new Date(d).getMonth() + 1;
+        }
+        return -1;
     }
 };
 
