@@ -53,11 +53,11 @@ var ValidatorFuncs = {
     url: function(val){
         return /^(?:(?:https?|ftp):\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,}))\.?)(?::\d{2,5})?(?:[/?#]\S*)?$/i.test(val);
     },
-    date: function(val, format){
+    date: function(val, format, locale){
         if (Utils.isNull(format)) {
             return String(new Date(val)).toLowerCase() !== "invalid date";
         } else {
-            return String(val.toDate(format)).toLowerCase() !== "invalid date";
+            return String(val.toDate(format, locale)).toLowerCase() !== "invalid date";
         }
     },
     number: function(val){
@@ -206,7 +206,7 @@ var ValidatorFuncs = {
             $.each(funcs, function(){
                 if (this_result === false) return;
                 var rule = this.split("=");
-                var f, a;
+                var f, a, b;
 
                 f = rule[0]; rule.shift();
                 a = rule.join("=");
@@ -217,16 +217,17 @@ var ValidatorFuncs = {
 
                 if (f === 'date') {
                     a = input.attr("data-value-format");
+                    b = input.attr("data-value-locale");
                 }
 
                 if (Utils.isFunc(ValidatorFuncs[f]) === false)  {
                     this_result = true;
                 } else {
                     if (required_mode === true || f === "required") {
-                        this_result = ValidatorFuncs[f](input.val(), a);
+                        this_result = ValidatorFuncs[f](input.val(), a, b);
                     } else {
                         if (input.val().trim() !== "") {
-                            this_result = ValidatorFuncs[f](input.val(), a);
+                            this_result = ValidatorFuncs[f](input.val(), a, b);
                         } else {
                             this_result = true;
                         }
