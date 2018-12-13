@@ -117,7 +117,7 @@
                     </tr>
                     <tr>
                         <td><code>String</code></td>
-                        <td><code>toDate(mask)</code></td>
+                        <td><code>toDate(mask[, locale])</code></td>
                         <td>
                             Convert string to date by mask. You can use next identifiers:
                             <code>dd</code>, <code>%d</code> - for day,
@@ -129,6 +129,7 @@
                             Example:
                             <code>"1972-12-21 04:30:00".toDate("yyyy-mm-dd hh:ii:ss");</code>
                             <code>"21-12-1972".toDate("dd-mm-yyyy");</code>
+                            <code>"21 грудня 1972".toDate("dd mm yyyy", "uk-UA");</code>
                         </td>
                     </tr>
                     <tr>

@@ -100,8 +100,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.31-dev [13:51 13-11-2018]",
-    versionFull: "4.2.31-dev [13:51 13-11-2018]",
+    version: "4.2.31-dev [14:19 13-11-2018]",
+    versionFull: "4.2.31-dev [14:19 13-11-2018]",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -1851,17 +1851,23 @@ Array.prototype.unique = function () {
     return a;
 };
 
-if (typeof Array.from !== "function") {
-    Array.prototype.from = function() {
+if (!Array.from) {
+    Array.from = function(val) {
         var i, a = [];
-        if (this.length === undefined) {
-            throw new Error("Value is not iterable");
+
+        if (val.length === undefined && typeof val === "object") {
+            return Object.values(val);
         }
-        for(i = 0; i < this.length; i++) {
-            a.push(this[i]);
+
+        if (val.length !== undefined) {
+            for(i = 0; i < val.length; i++) {
+                a.push(val[i]);
+            }
+            return a;
         }
-        return a;
-    }
+
+        throw new Error("Value can not be converted to array");
+    };
 }
 
 if (typeof Array.contains !== "function") {
