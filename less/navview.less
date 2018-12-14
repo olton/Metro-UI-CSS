@@ -228,7 +228,7 @@
             }
 
             .suggest-box {
-                .input, .select, .textarea {
+                > *:not(.holder) {
                     display: flex!important;
                 }
             }
@@ -244,8 +244,15 @@
             width: @navviewPaneWidthCompact!important;
             .translate3d(0);
 
-            .navview-menu .caption, .suggest-box .input, .suggest-box .select, .suggest-box .textarea, .item-header {
+            .navview-menu .caption,
+            .item-header {
                 display: none!important;
+            }
+
+            .suggest-box {
+                > *:not(.holder) {
+                    display: none!important;
+                }
             }
 
             .holder {
@@ -268,7 +275,7 @@
         }
 
         .suggest-box {
-            .input, .select, .textarea {
+            > *:not(.holder) {
                 display: none;
             }
         }
@@ -292,7 +299,7 @@
         }
 
         .suggest-box {
-            .input, .select, .textarea {
+            > *:not(.holder) {
                 display: flex;
             }
         }

@@ -22,6 +22,7 @@
 + [x] Popover: set default value for `data-popover-timeout` to `10`, issue #1277
 + [x] Storage: Objects `storage` and `session storage` combined into one object. Access to objects remained unchanged: `Metro.storage`, `Metro.session`
 + [x] String: `String.toDate` now support `locale` as second parameter: `"21 грудня 1972".toDate('%d %m %y', 'uk-UA')`
++ [x] Navview: upd docs and less
 
 ### 4.2.30
 + [x] Toast: add function `init(options)`, now you can set toast `top` position and `distance`. See docs for details.
