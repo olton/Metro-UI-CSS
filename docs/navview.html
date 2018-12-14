@@ -94,7 +94,7 @@
                             </button>
 
                             <div class="suggest-box">
-                                <input data-role="search" data-clear-button="false">
+                                <input type="text" data-role="input" data-clear-button="false" data-search-button="true">
                                 <button class="holder">
                                     <span class="mif-search"></span>
                                 </button>
@@ -248,7 +248,7 @@
                             </button>
 
                             <div class="suggest-box">
-                                <input data-role="search" data-clear-button="false">
+                                <input type="text" data-role="input" data-clear-button="false" data-search-button="true">
                                 <button class="holder">
                                     <span class="mif-search"></span>
                                 </button>
@@ -259,7 +259,7 @@
                 <pre><code class="html">
                     &lt;div class="navview-pane"&gt;
                         &lt;div class="suggest-box"&gt;
-                            &lt;input data-role="search" data-clear-button="false"&gt;
+                            &lt;input type="text" data-role="input" data-clear-button="false" data-search-button="true"&gt;
                             &lt;button class="holder"&gt;
                                 &lt;span class="mif-search"&gt;&lt;/span&gt;
                             &lt;/button&gt;
@@ -441,7 +441,7 @@
 
                 <h3 id="_navview_methods">Methods</h3>
                 <p>
-                    To interact with component you can use picker methods.
+                    To interact with component you can use navview methods.
                 </p>
                 <table class="table cell-border table-border options-table">
                     <thead>
@@ -461,6 +461,11 @@
                     </tr>
                     </tbody>
                 </table>
+                <pre><code>
+                    var nv = $("#navview1").data("navview");
+                    nv.open();
+                    nv.close();
+                </code></pre>
             </main>
         </div>
 
