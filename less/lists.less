@@ -52,7 +52,7 @@
     display: block;
     list-style: none inside;
 
-    .item {
+    .item, & > li {
         display: flex;
         flex-flow: column;
         justify-content: center;
@@ -108,18 +108,33 @@
     .item + .item {
         border-top: 1px @borderColor solid;
     }
+
+    & > li + li {
+        border-top: 1px @borderColor solid;
+    }
 }
 
 .feed-list {
 
     .title {
-        padding: 4px 16px;
+        padding: 0 16px;
         font-size: 18px;
-        border-bottom: 1px solid @borderColor;
         font-weight: 500;
+        height: 36px;
+        line-height: 36px;
+        display: block;
     }
 
-    .item {
+    .item + .title,
+    li + .title {
+        margin-top: 32px;
+    }
+
+    .title + .item, .title + li, li + .title {
+        border-top: 1px @transparent solid;
+    }
+
+    .item, & > li {
         height: 104px;
         padding: 16px 0;
         justify-content: space-around;
@@ -166,13 +181,17 @@
     list-style: none inside;
     border: 1px solid @borderColor;
 
-    .item {
+    .item, & > li {
         display: block;
         position: relative;
         padding: 4px 8px;
     }
 
     .item + .item {
+        border-top: 1px solid @borderColor;
+    }
+
+    & > li + li {
         border-top: 1px solid @borderColor;
     }
 }

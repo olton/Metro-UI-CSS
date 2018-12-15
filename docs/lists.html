@@ -134,142 +134,248 @@
                 <p>
                     To create <code>items-list</code>, use class <code>.items-list</code> for your list and special items inside a list item.
                 </p>
-                <div class="example emulator galaxy-s5 h-auto">
-                    <ul class="items-list">
-                        <li class="item with-second-label">
-                            <img class="avatar" src="images/me.jpg">
-                            <span class="label">List item</span>
-                            <span class="second-label">second label</span>
-                            <span class="second-action mif-alarm fg-red"></span>
-                        </li>
-                        <li class="item ">
-                            <img class="avatar" src="images/me.jpg">
-                            <span class="label">List item</span>
-                        </li>
-                        <li class="item ">
-                            <img class="avatar" src="images/me.jpg">
-                            <span class="label">List item</span>
-                            <span class="second-action mif-alarm"></span>
-                        </li>
-                        <li class="item ">
-                            <img class="avatar" src="images/me.jpg">
-                            <span class="label">List item</span>
-                        </li>
-                        <li class="item ">
-                            <img class="avatar" src="images/me.jpg">
-                            <span class="label">List item</span>
-                        </li>
-                    </ul>
+                <div class="example">
+                    <div class="row">
+                        <div class="cell-md-6">
+                            <ul class="items-list">
+                                <li>
+                                    <img class="avatar" src="images/me.jpg">
+                                    <span class="label">List item</span>
+                                    <span class="second-label">second label</span>
+                                    <span class="second-action mif-alarm fg-red"></span>
+                                </li>
+                                <li>
+                                    <img class="avatar" src="images/me.jpg">
+                                    <span class="label">List item</span>
+                                </li>
+                                <li>
+                                    <img class="avatar" src="images/me.jpg">
+                                    <span class="label">List item</span>
+                                    <span class="second-action mif-alarm"></span>
+                                </li>
+                                <li>
+                                    <img class="avatar" src="images/me.jpg">
+                                    <span class="label">List item</span>
+                                </li>
+                                <li>
+                                    <img class="avatar" src="images/me.jpg">
+                                    <span class="label">List item</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="cell-md-6">
+                            <div class="items-list">
+                                <div class="item">
+                                    <img class="avatar" src="images/me.jpg">
+                                    <span class="label">List item</span>
+                                    <span class="second-label">second label</span>
+                                    <span class="second-action mif-alarm fg-red"></span>
+                                </div>
+                                <div class="item">
+                                    <img class="avatar" src="images/me.jpg">
+                                    <span class="label">List item</span>
+                                </div>
+                                <div class="item">
+                                    <img class="avatar" src="images/me.jpg">
+                                    <span class="label">List item</span>
+                                    <span class="second-action mif-alarm"></span>
+                                </div>
+                                <div class="item">
+                                    <img class="avatar" src="images/me.jpg">
+                                    <span class="label">List item</span>
+                                </div>
+                                <div class="item">
+                                    <img class="avatar" src="images/me.jpg">
+                                    <span class="label">List item</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <pre><code>
                     &lt;ul class="items-list"&gt;
-                        &lt;li class="item with-second-label"&gt;
+                        &lt;li&gt;
                             &lt;img class="avatar" src="images/me.jpg"&gt;
                             &lt;span class="label"&gt;List item&lt;/span&gt;
                             &lt;span class="second-label"&gt;second label&lt;/span&gt;
                             &lt;span class="second-action mif-alarm fg-red"&gt;&lt;/span&gt;
                         &lt;/li&gt;
-                        &lt;li class="item "&gt;
-                            &lt;img class="avatar" src="images/me.jpg"&gt;
-                            &lt;span class="label"&gt;List item&lt;/span&gt;
-                        &lt;/li&gt;
-                        &lt;li class="item "&gt;
-                            &lt;img class="avatar" src="images/me.jpg"&gt;
-                            &lt;span class="label"&gt;List item&lt;/span&gt;
-                            &lt;span class="second-action mif-alarm"&gt;&lt;/span&gt;
-                        &lt;/li&gt;
-                        &lt;li class="item "&gt;
-                            &lt;img class="avatar" src="images/me.jpg"&gt;
-                            &lt;span class="label"&gt;List item&lt;/span&gt;
-                        &lt;/li&gt;
+                        ...
                         &lt;li class="item "&gt;
                             &lt;img class="avatar" src="images/me.jpg"&gt;
                             &lt;span class="label"&gt;List item&lt;/span&gt;
                         &lt;/li&gt;
                     &lt;/ul&gt;
+
+                    or
+
+                    &lt;div class="items-list"&gt;
+                        &lt;div class="item"&gt;
+                            &lt;img class="avatar" src="images/me.jpg"&gt;
+                            &lt;span class="label"&gt;List item&lt;/span&gt;
+                            &lt;span class="second-label"&gt;second label&lt;/span&gt;
+                            &lt;span class="second-action mif-alarm fg-red"&gt;&lt;/span&gt;
+                        &lt;/div&gt;
+                        ...
+                        &lt;div class="item"&gt;
+                            &lt;img class="avatar" src="images/me.jpg"&gt;
+                            &lt;span class="label"&gt;List item&lt;/span&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+
                 </code></pre>
 
                 <h3 id="_list_feed">Feed list</h3>
                 <p>
                     To create <code>feed-list</code>, use class <code>.feed-list</code> for your list and special items inside a list item.
                 </p>
-                <div class="example emulator galaxy-s5 h-auto">
-                    <ul class="feed-list">
-                        <li class="title">This is a title</li>
-                        <li class="item">
-                            <img class="avatar" src="https://picsum.photos/96/72/?random">
-                            <span class="label">There were some sings of a calm at noon</span>
-                            <span class="second-label">10 min</span>
-                        </li>
-                        <li class="item">
-                            <img class="avatar" src="https://picsum.photos/96/72/?random">
-                            <span class="label">There were some sings of a calm at noon</span>
-                            <span class="second-label">10 min</span>
-                        </li>
-                        <li class="item">
-                            <img class="avatar" src="https://picsum.photos/96/72/?random">
-                            <span class="label">There were some sings of a calm at noon</span>
-                            <span class="second-label">10 min</span>
-                        </li>
-                        <li class="title">This is a title</li>
-                        <li class="item">
-                            <img class="avatar on-right" src="https://picsum.photos/96/72/?random">
-                            <span class="label">There were some sings of a calm at noon</span>
-                            <span class="second-label">10 min</span>
-                        </li>
-                        <li class="item">
-                            <img class="avatar on-right" src="https://picsum.photos/96/72/?random">
-                            <span class="label">There were some sings of a calm at noon</span>
-                            <span class="second-label">10 min</span>
-                        </li>
-                    </ul>
+                <div class="example">
+                    <div class="row">
+                        <div class="cell-md-6">
+                            <ul class="feed-list">
+                                <li class="title">This is a title</li>
+                                <li>
+                                    <img class="avatar" src="https://picsum.photos/96/72/?random">
+                                    <span class="label">There were some sings of a calm at noon</span>
+                                    <span class="second-label">10 min</span>
+                                </li>
+                                <li>
+                                    <img class="avatar" src="https://picsum.photos/96/72/?random">
+                                    <span class="label">There were some sings of a calm at noon</span>
+                                    <span class="second-label">10 min</span>
+                                </li>
+                                <li>
+                                    <img class="avatar" src="https://picsum.photos/96/72/?random">
+                                    <span class="label">There were some sings of a calm at noon</span>
+                                    <span class="second-label">10 min</span>
+                                </li>
+                                <li class="title">This is a title</li>
+                                <li>
+                                    <img class="avatar on-right" src="https://picsum.photos/96/72/?random">
+                                    <span class="label">There were some sings of a calm at noon</span>
+                                    <span class="second-label">10 min</span>
+                                </li>
+                                <li>
+                                    <img class="avatar on-right" src="https://picsum.photos/96/72/?random">
+                                    <span class="label">There were some sings of a calm at noon</span>
+                                    <span class="second-label">10 min</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="cell-md-6">
+                            <div class="feed-list">
+                                <div class="title">This is a title</div>
+                                <div class="item">
+                                    <img class="avatar" src="https://picsum.photos/96/72/?random">
+                                    <span class="label">There were some sings of a calm at noon</span>
+                                    <span class="second-label">10 min</span>
+                                </div>
+                                <div class="item">
+                                    <img class="avatar" src="https://picsum.photos/96/72/?random">
+                                    <span class="label">There were some sings of a calm at noon</span>
+                                    <span class="second-label">10 min</span>
+                                </div>
+                                <div class="item">
+                                    <img class="avatar" src="https://picsum.photos/96/72/?random">
+                                    <span class="label">There were some sings of a calm at noon</span>
+                                    <span class="second-label">10 min</span>
+                                </div>
+                                <div class="title">This is a title</div>
+                                <div class="item">
+                                    <img class="avatar on-right" src="https://picsum.photos/96/72/?random">
+                                    <span class="label">There were some sings of a calm at noon</span>
+                                    <span class="second-label">10 min</span>
+                                </div>
+                                <div class="item">
+                                    <img class="avatar on-right" src="https://picsum.photos/96/72/?random">
+                                    <span class="label">There were some sings of a calm at noon</span>
+                                    <span class="second-label">10 min</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <pre><code>
                     &lt;ul class="feed-list"&gt;
                         &lt;li class="title"&gt;This is a title&lt;/li&gt;
-                        &lt;li class="item"&gt;
+                        &lt;li&gt;
                             &lt;img class="avatar" src="https://picsum.photos/96/72/?random"&gt;
                             &lt;span class="label"&gt;There were some sings of a calm at noon&lt;/span&gt;
                             &lt;span class="second-label"&gt;10 min&lt;/span&gt;
                         &lt;/li&gt;
-                        &lt;li class="item"&gt;
+                        ...
+                        &lt;li&gt;
                             &lt;img class="avatar" src="https://picsum.photos/96/72/?random"&gt;
                             &lt;span class="label"&gt;There were some sings of a calm at noon&lt;/span&gt;
                             &lt;span class="second-label"&gt;10 min&lt;/span&gt;
                         &lt;/li&gt;
-                        &lt;li class="item"&gt;
-                            &lt;img class="avatar" src="https://picsum.photos/96/72/?random"&gt;
-                            &lt;span class="label"&gt;There were some sings of a calm at noon&lt;/span&gt;
-                            &lt;span class="second-label"&gt;10 min&lt;/span&gt;
-                        &lt;/li&gt;
+                        ...
                         &lt;li class="title"&gt;This is a title&lt;/li&gt;
-                        &lt;li class="item"&gt;
-                            &lt;img class="avatar on-right" src="https://picsum.photos/96/72/?random"&gt;
-                            &lt;span class="label"&gt;There were some sings of a calm at noon&lt;/span&gt;
-                            &lt;span class="second-label"&gt;10 min&lt;/span&gt;
-                        &lt;/li&gt;
-                        &lt;li class="item"&gt;
+                        &lt;li&gt;
                             &lt;img class="avatar on-right" src="https://picsum.photos/96/72/?random"&gt;
                             &lt;span class="label"&gt;There were some sings of a calm at noon&lt;/span&gt;
                             &lt;span class="second-label"&gt;10 min&lt;/span&gt;
                         &lt;/li&gt;
                     &lt;/ul&gt;
+
+                    or
+
+                    &lt;div class="feed-list"&gt;
+                        &lt;div class="title"&gt;This is a title&lt;/div&gt;
+                        &lt;div&gt;
+                            &lt;img class="avatar" src="https://picsum.photos/96/72/?random"&gt;
+                            &lt;span class="label"&gt;There were some sings of a calm at noon&lt;/span&gt;
+                            &lt;span class="second-label"&gt;10 min&lt;/span&gt;
+                        &lt;/div&gt;
+                        ...
+                        &lt;div class="item"&gt;
+                            &lt;img class="avatar" src="https://picsum.photos/96/72/?random"&gt;
+                            &lt;span class="label"&gt;There were some sings of a calm at noon&lt;/span&gt;
+                            &lt;span class="second-label"&gt;10 min&lt;/span&gt;
+                        &lt;/div&gt;
+                        ...
+                        &lt;div class="title"&gt;This is a title&lt;/div&gt;
+                        &lt;div class="item"&gt;
+                            &lt;img class="avatar on-right" src="https://picsum.photos/96/72/?random"&gt;
+                            &lt;span class="label"&gt;There were some sings of a calm at noon&lt;/span&gt;
+                            &lt;span class="second-label"&gt;10 min&lt;/span&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
                 </code></pre>
 
                 <h3 id="_list_group">Group list</h3>
                 <div class="example">
-                    <ul class="group-list">
-                        <li class="item">First item</li>
-                        <li class="item">Second item</li>
-                        <li class="item">Third item</li>
-                    </ul>
+                    <div class="row">
+                        <div class="cell-md-6">
+                            <ul class="group-list">
+                                <li>First item</li>
+                                <li>Second item</li>
+                                <li>Third item</li>
+                            </ul>
+                        </div>
+                        <div class="cell-md-6">
+                            <div class="group-list">
+                                <div class="item">First item</div>
+                                <div class="item">Second item</div>
+                                <div class="item">Third item</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <pre><code>
                     &lt;ul class="group-list"&gt;
-                        &lt;li class="item"&gt;First item&lt;/li&gt;
-                        &lt;li class="item"&gt;Second item&lt;/li&gt;
-                        &lt;li class="item"&gt;Third item&lt;/li&gt;
+                        &lt;li&gt;First item&lt;/li&gt;
+                        &lt;li&gt;Second item&lt;/li&gt;
+                        &lt;li&gt;Third item&lt;/li&gt;
                     &lt;/ul&gt;
+
+                    or
+
+                    &lt;div class="group-list"&gt;
+                        &lt;div class="item"&gt;First item&lt;/div&gt;
+                        &lt;div class="item"&gt;Second item&lt;/div&gt;
+                        &lt;div class="item"&gt;Third item&lt;/div&gt;
+                    &lt;/div&gt;
                 </code></pre>
 
             </main>
