@@ -116,7 +116,7 @@ var Calendar = {
         }
 
         if (Utils.isValue(o.excludeDay)) {
-            this.excludeDay = o.excludeDay.toArray(",", "int");
+            this.excludeDay = (""+o.excludeDay).toArray(",", "int");
         }
 
         if (Utils.isValue(o.preset)) {
