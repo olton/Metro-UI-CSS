@@ -33724,6 +33724,9 @@ video:-webkit-full-screen {
           transform: translateX(-50%) translateY(-50%);
   top: 50%;
 }
+.rating .stars li.half::before {
+  content: '\2BEA';
+}
 .rating .result {
   font-size: 0.8em;
   margin-left: 10px;
