@@ -17,7 +17,7 @@
 + [x] Validator: function `date` now support additional input attribute `data-value-locale` for non ECMAScript dates
 + [x] Z-index: set equal z-index for `appbar`, `bottomnav`, `bottomsheet`, `tabsmaterial`
 + [x] Carousel: rename attribute `data-bullet-style` to `data-bullets-style`
-+ [x] Carousel: add attribute `data-bullet-size` with values `default`, `mini`, `small`, `large`
++ [x] Carousel: add attribute `data-bullets-size` with values `default`, `mini`, `small`, `large`
 + [x] Carousel: add style `cycle`
 + [x] Popover: set default value for `data-popover-timeout` to `10`, issue #1277
 + [x] Storage: Objects `storage` and `session storage` combined into one object. Access to objects remained unchanged: `Metro.storage`, `Metro.session`
