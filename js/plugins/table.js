@@ -45,19 +45,8 @@ var Table = {
     options: {
         locale: METRO_LOCALE,
 
-        crud: false,
-        crudTitle: "CRUD",
-        editButton: true,
-        delButton: true,
-        addButton: true,
-        editButtonIcon: "<span class='default-icon-pencil'></span>",
-        delButtonIcon: "<span class='default-icon-minus'></span>",
-        addButtonIcon: "<span class='default-icon-plus'></span>",
-        clsEditButton: "",
-        clsDelButton: "",
-        clsAddButton: "",
-
         horizontalScroll: false,
+        horizontalScrollStop: null,
         check: false,
         checkType: "checkbox",
         checkStyle: 1,
@@ -279,18 +268,6 @@ var Table = {
         var o = this.options;
 
         this.service = [
-            {
-                // CRUD
-                title: o.crudTitle,
-                format: undefined,
-                name: undefined,
-                sortable: false,
-                sortDir: undefined,
-                clsColumn: "crud-cell" + (o.crud === true ? "" : " d-none "),
-                cls: "crud-cell" + (o.crud === true ? "" : " d-none "),
-                colspan: undefined,
-                type: "button"
-            },
             {
                 // Rownum
                 title: o.rownumTitle,
@@ -731,6 +708,9 @@ var Table = {
         if (o.horizontalScroll === true) {
             table_container.addClass("horizontal-scroll");
         }
+        if (!Utils.isNull(o.horizontalScrollStop) && Utils.mediaExist(o.horizontalScrollStop)) {
+            table_container.removeClass("horizontal-scroll");
+        }
 
         table_component.addClass(o.clsComponent);
 
@@ -796,9 +776,20 @@ var Table = {
     _createEvents: function(){
         var that = this, element = this.element, o = this.options;
         var component = element.closest(".table-component");
+        var table_container = component.find(".table-container");
         var search = component.find(".table-search-block input");
         var customSearch;
         var id = element.attr("id");
+
+        $(window).on(Metro.events.resize+"-"+id, function(){
+            if (o.horizontalScroll === true) {
+                if (!Utils.isNull(o.horizontalScrollStop) && Utils.mediaExist(o.horizontalScrollStop)) {
+                    table_container.removeClass("horizontal-scroll");
+                } else {
+                    table_container.addClass("horizontal-scroll");
+                }
+            }
+        });
 
         element.on(Metro.events.click, ".sortable-column", function(){
 
@@ -1295,48 +1286,13 @@ var Table = {
             if (Utils.isValue(items[i])) {
                 tr = $("<tr>").addClass(o.clsBodyRow);
 
-                // CRUD buttons
-                td = $("<td>");
-                if (that.service[0].clsColumn !== undefined) {
-                    td.addClass(that.service[0].clsColumn);
-                }
-                var crud_container = $("<div>").addClass("crud-container").appendTo(td);
-                if (o.editButton === true) {
-                    $("<button>")
-                        .addClass("button")
-                        .addClass("js-table-crud-button js-table-crud-button-edit")
-                        .addClass(o.clsEditButton)
-                        .html(o.editButtonIcon)
-                        .data("uid", items[i][o.checkColIndex])
-                        .appendTo(crud_container);
-                }
-                if (o.addButton === true) {
-                    $("<button>")
-                        .addClass("button")
-                        .addClass("js-table-crud-button js-table-crud-button-add")
-                        .addClass(o.clsAddButton)
-                        .html(o.addButtonIcon)
-                        .data("uid", null)
-                        .appendTo(crud_container);
-                }
-                if (o.delButton === true) {
-                    $("<button>")
-                        .addClass("button")
-                        .addClass("js-table-crud-button js-table-crud-button-del")
-                        .addClass(o.clsDelButton)
-                        .html(o.delButtonIcon)
-                        .data("uid", items[i][o.checkColIndex])
-                        .appendTo(crud_container);
-                }
-                td.appendTo(tr);
-
                 // Rownum
 
                 is_even_row = i % 2 === 0;
 
                 td = $("<td>").html(i + 1);
-                if (that.service[1].clsColumn !== undefined) {
-                    td.addClass(that.service[1].clsColumn);
+                if (that.service[0].clsColumn !== undefined) {
+                    td.addClass(that.service[0].clsColumn);
                 }
                 td.appendTo(tr);
 
@@ -1355,8 +1311,8 @@ var Table = {
                 check.addClass("table-service-check");
                 Utils.exec(o.onCheckDraw, [check], check[0]);
                 check.appendTo(td);
-                if (that.service[2].clsColumn !== undefined) {
-                    td.addClass(that.service[2].clsColumn);
+                if (that.service[1].clsColumn !== undefined) {
+                    td.addClass(that.service[1].clsColumn);
                 }
                 td.appendTo(tr);
 
@@ -1418,7 +1374,7 @@ var Table = {
     _getItemContent: function(row){
         var result, col = row[this.sort.colIndex];
         var format = this.heads[this.sort.colIndex].format;
-        var formatMask = Utils.isValue(this.heads[this.sort.colIndex].formatMask) ? this.heads[this.sort.colIndex].formatMask : "%Y-%m-%d";
+        var formatMask = !Utils.isNull(this.heads) && !Utils.isNull(this.heads[this.sort.colIndex]) && Utils.isValue(this.heads[this.sort.colIndex]['formatMask']) ? this.heads[this.sort.colIndex]['formatMask'] : "%Y-%m-%d";
         var o = this.options;
 
         result = (""+col).toLowerCase().replace(/[\n\r]+|[\s]{2,}/g, ' ').trim();

@@ -19274,12 +19274,6 @@ aside::after {
 .table.row-border .tr + .tr {
   border-top: 1px #dfdfdf solid;
 }
-.table th .checkbox,
-.table td .checkbox,
-.table .th .checkbox,
-.table .td .checkbox {
-  height: auto;
-}
 .table.subcompact th,
 .table.subcompact td,
 .table.subcompact .th,
@@ -19298,43 +19292,6 @@ aside::after {
 .table .rownum-cell {
   width: 36px;
   text-align: center;
-}
-.table .check-cell .checkbox,
-.table .check-cell .radio {
-  height: 24px;
-  line-height: 24px;
-}
-.table .crud-cell {
-  width: 1px;
-  text-align: center;
-}
-.table .crud-cell .crud-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-flow: row nowrap;
-          flex-flow: row nowrap;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-.table .crud-cell .button {
-  width: 24px;
-  height: 24px;
-  line-height: 24px;
-  padding: 0;
-  font-size: 12px;
-}
-.table .crud-cell .button + .button {
-  margin-left: 1px;
-}
-.table.fixed-layout .crud-cell {
-  width: 90px;
 }
 .table thead td.hidden,
 .table tbody td.hidden,
