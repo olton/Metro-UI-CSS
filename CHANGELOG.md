@@ -1,3 +1,5 @@
+### 4.2.32
+
 ### 4.2.31
 + [x] Sidebar: add submenu support
 + [x] Sidebar: add any content support with li class `.content-container`
