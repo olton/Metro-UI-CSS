@@ -24,6 +24,8 @@
 + [x] String: `String.toDate` now support `locale` as second parameter: `"21 грудня 1972".toDate('%d %m %y', 'uk-UA')`
 + [x] Navview: upd docs and less
 + [x] Lists: upd `items-list`, `feed-list`, `group-list` to use with not a list element.
++ [x] Table: minor improve update
++ [x] Table: add attribute `data-horizontal-scroll-stop`. You can use this attribute to define media to stop scrolling.
 
 ### 4.2.30
 + [x] Toast: add function `init(options)`, now you can set toast `top` position and `distance`. See docs for details.

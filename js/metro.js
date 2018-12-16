@@ -201,6 +201,7 @@ var Metro = {
 
     media_queries: {
         FS: "(min-width: 0px)",
+        XS: "(min-width: 360px)",
         SM: "(min-width: 576px)",
         MD: "(min-width: 768px)",
         LG: "(min-width: 992px)",
@@ -221,12 +222,15 @@ var Metro = {
 
     media_mode: {
         FS: "fs",
+        XS: "xs",
         SM: "sm",
         MD: "md",
         LG: "lg",
         XL: "xl",
         XXL: "xxl"
     },
+
+    media_modes: ["fs","xs","sm","md","lg","xl","xxl"],
 
     actions: {
         REMOVE: 1,
