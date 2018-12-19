@@ -10451,6 +10451,8 @@ var File = {
             container.on('drop', function(e){
                 element[0].files = e.originalEvent.dataTransfer.files;
                 container.removeClass("drop-on");
+
+                if (!Utils.detectChrome()) Utils.exec(o.onSelect, [element[0].files, element], element[0]);
             });
         }
     },
