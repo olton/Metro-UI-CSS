@@ -1,3 +1,7 @@
+//'use strict';
+
+var $ = jQuery;
+
 if (typeof jQuery === 'undefined') {
     throw new Error('Metro 4 requires jQuery!');
 }
@@ -252,6 +256,7 @@ var Metro = {
     },
 
     observe: function(){
+        'use strict';
         var observer, observerCallback;
         var observerConfig = {
             childList: true,
@@ -267,6 +272,7 @@ var Metro = {
                     if (mc !== undefined) {
                         $.each(mc, function(){
                             var plug = element.data(this);
+                            console.log(plug);
                             if (plug) plug.changeAttribute(mutation.attributeName);
                         });
                     }
@@ -404,6 +410,7 @@ var Metro = {
     },
 
     plugin: function(name, object){
+        'use strict';
         $.fn[name] = function( options ) {
             return this.each(function() {
                 $.data( this, name, Object.create(object).init(options, this ));

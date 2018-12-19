@@ -21,7 +21,7 @@ module.exports = function(grunt) {
         "    } else {\n" +
         "        factory( jQuery );\n"+
         "    }\n"+
-        "}(function( jQuery ) { \n'use strict';\n\nvar $ = jQuery;\n\n",
+        "}(function( jQuery ) { ",
 
         clean: {
             build: ['build/js', 'build/css', 'build/mif']
@@ -34,8 +34,9 @@ module.exports = function(grunt) {
                     footer: "\n\nreturn METRO_INIT === true ? Metro.init() : Metro;\n\n}));",
                     stripBanners: true,
                     process: function(src, filepath) {
-                        return '\n// Source: ' + filepath + '\n' +
-                            src.replace(/(^|\n)[ \t]*('use strict'|"use strict");?\s*/g, '$1');
+                        return '\n// Source: ' + filepath + '\n\n' + src;
+                        // return '\n// Source: ' + filepath + '\n' + src.replace(/(^|\n)[ \t]*('use strict'|"use strict");?\s*/g, '$1');
+                        // return '\n// Source: ' + filepath + '\n' + src.replace(/(^|\n)[ \t]*();?\s*/g, '$1');
                     }
                 },
                 src: [
