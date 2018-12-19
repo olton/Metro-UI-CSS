@@ -3,6 +3,7 @@
 + [x] File: fix event trigger `on-select` for IE when user drops files
 + [ ] File: fix event trigger `on-select` for Edge when user drops files
 + [ ] Storage: fix for IE/Edge for offline mode
++ [ ] Session Storage: fix for IE/Edge
  
 
 ### 4.2.31
