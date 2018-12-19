@@ -134,7 +134,6 @@ var File = {
         if (o.mode !== "input") {
             container.on('drag dragstart dragend dragover dragenter dragleave drop', function(e){
                 e.preventDefault();
-                e.stopPropagation();
             });
 
             container.on('dragenter dragover', function(){
