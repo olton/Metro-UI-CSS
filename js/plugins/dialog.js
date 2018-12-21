@@ -171,13 +171,13 @@ var Dialog = {
         var timeout = 0;
         if (o.onHide !== Metro.noop) {
             timeout = 300;
-            Utils.exec(o.onHide, [element], element[0]);
         }
         setTimeout(function(){
             element.css({
                 visibility: "hidden",
                 top: "100%"
             });
+            Utils.exec(o.onHide, [element], element[0]);
             Utils.callback(callback);
         }, timeout);
     },
@@ -188,8 +188,8 @@ var Dialog = {
         element.css({
             visibility: "visible"
         });
-        Utils.callback(callback);
         Utils.exec(o.onShow, [element], element[0]);
+        Utils.callback(callback);
     },
 
     setPosition: function(){

@@ -72,8 +72,8 @@ var Storage = {
 };
 
 Metro['storage'] = Object.create(Storage).init({
-    storage: window.localStorage
+    storage: localStorage
 });
 Metro['session'] = Object.create(Storage).init({
-    storage: window.sessionStorage
+    storage: sessionStorage
 });
