@@ -1,10 +1,7 @@
 ### 4.2.32
 + [x] File: fix event trigger `on-select` for FF when user drops files 
-+ [x] File: fix event trigger `on-select` for IE when user drops files
-+ [ ] File: fix event trigger `on-select` for Edge when user drops files
-+ [ ] Storage: fix for IE/Edge for offline mode
-+ [ ] Session Storage: fix for IE/Edge
- 
++ [x] File: fix event trigger `on-select` for IE11 when user drops files
++ [x] Dialog: fix `onChange` event
 
 ### 4.2.31
 + [x] Sidebar: add submenu support

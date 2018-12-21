@@ -100,8 +100,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.32-dev [17:44 19-11-2018]",
-    versionFull: "4.2.32-dev [17:44 19-11-2018]",
+    version: "4.2.32-dev [16:41 21-11-2018]",
+    versionFull: "4.2.32-dev [16:41 21-11-2018]",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -3367,10 +3367,10 @@ var Storage = {
 };
 
 Metro['storage'] = Object.create(Storage).init({
-    storage: window.localStorage
+    storage: localStorage
 });
 Metro['session'] = Object.create(Storage).init({
-    storage: window.sessionStorage
+    storage: sessionStorage
 });
 
 
@@ -9653,13 +9653,13 @@ var Dialog = {
         var timeout = 0;
         if (o.onHide !== Metro.noop) {
             timeout = 300;
-            Utils.exec(o.onHide, [element], element[0]);
         }
         setTimeout(function(){
             element.css({
                 visibility: "hidden",
                 top: "100%"
             });
+            Utils.exec(o.onHide, [element], element[0]);
             Utils.callback(callback);
         }, timeout);
     },
@@ -9670,8 +9670,8 @@ var Dialog = {
         element.css({
             visibility: "visible"
         });
-        Utils.callback(callback);
         Utils.exec(o.onShow, [element], element[0]);
+        Utils.callback(callback);
     },
 
     setPosition: function(){
