@@ -100,8 +100,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.32-dev [16:41 21-11-2018]",
-    versionFull: "4.2.32-dev [16:41 21-11-2018]",
+    version: "4.2.32-dev [18:46 21-11-2018]",
+    versionFull: "4.2.32-dev [18:46 21-11-2018]",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -9481,6 +9481,8 @@ $(document).on(Metro.events.click, function(){
 // Source: js/plugins/dialog.js
 
 var Dialog = {
+    _counter: 0,
+
     init: function( options, elem ) {
         this.options = $.extend( {}, this.options, options );
         this.elem  = elem;
@@ -9649,7 +9651,7 @@ var Dialog = {
     },
 
     hide: function(callback){
-        var element = this.element, o = this.options;
+        var that = this, element = this.element, o = this.options;
         var timeout = 0;
         if (o.onHide !== Metro.noop) {
             timeout = 300;
@@ -9659,18 +9661,18 @@ var Dialog = {
                 visibility: "hidden",
                 top: "100%"
             });
-            Utils.exec(o.onHide, [element], element[0]);
+            Utils.exec(o.onHide, [that], element[0]);
             Utils.callback(callback);
         }, timeout);
     },
 
     show: function(callback){
-        var element = this.element, o = this.options;
+        var that = this, element = this.element, o = this.options;
         this.setPosition();
         element.css({
             visibility: "visible"
         });
-        Utils.exec(o.onShow, [element], element[0]);
+        Utils.exec(o.onShow, [that], element[0]);
         Utils.callback(callback);
     },
 
