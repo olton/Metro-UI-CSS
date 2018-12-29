@@ -100,8 +100,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.32-dev [15:25 29-11-2018]",
-    versionFull: "4.2.32-dev [15:25 29-11-2018]",
+    version: "4.2.32-dev [15:30 29-11-2018]",
+    versionFull: "4.2.32-dev [15:30 29-11-2018]",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -20141,6 +20141,7 @@ var Table = {
 
                 Utils.exec(o.onDataLoaded, [o.source, data], element[0]);
             }).fail(function( jqXHR, textStatus, errorThrown) {
+                Utils.exec(o.onDataLoadError, [o.source, jqXHR, textStatus, errorThrown], element[0]);
                 console.log(textStatus); console.log(jqXHR); console.log(errorThrown);
             });
         }
