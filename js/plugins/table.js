@@ -1591,6 +1591,7 @@ var Table = {
 
                 Utils.exec(o.onDataLoaded, [o.source, data], element[0]);
             }).fail(function( jqXHR, textStatus, errorThrown) {
+                Utils.exec(o.onDataLoadError, [o.source, jqXHR, textStatus, errorThrown], element[0]);
                 console.log(textStatus); console.log(jqXHR); console.log(errorThrown);
             });
         }
