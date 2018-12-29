@@ -100,8 +100,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.32-dev [15:20 29-11-2018]",
-    versionFull: "4.2.32-dev [15:20 29-11-2018]",
+    version: "4.2.32-dev [15:25 29-11-2018]",
+    versionFull: "4.2.32-dev [15:25 29-11-2018]",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -287,7 +287,6 @@ var Metro = {
                     if (mc !== undefined) {
                         $.each(mc, function(){
                             var plug = element.data(this);
-                            console.log(plug);
                             if (plug) plug.changeAttribute(mutation.attributeName);
                         });
                     }
@@ -301,8 +300,12 @@ var Metro = {
 
                         var node = mutation.addedNodes[i];
 
+                        if (node.nodeType !== 1) {
+                            return ;
+                        }
+
                         if (node.tagName === 'SCRIPT' || node.tagName === 'STYLE') {
-                            return;
+                            return ;
                         }
                         obj = $(mutation.addedNodes[i]);
 

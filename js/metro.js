@@ -272,7 +272,6 @@ var Metro = {
                     if (mc !== undefined) {
                         $.each(mc, function(){
                             var plug = element.data(this);
-                            console.log(plug);
                             if (plug) plug.changeAttribute(mutation.attributeName);
                         });
                     }
@@ -286,8 +285,12 @@ var Metro = {
 
                         var node = mutation.addedNodes[i];
 
+                        if (node.nodeType !== 1) {
+                            return ;
+                        }
+
                         if (node.tagName === 'SCRIPT' || node.tagName === 'STYLE') {
-                            return;
+                            return ;
                         }
                         obj = $(mutation.addedNodes[i]);
 
