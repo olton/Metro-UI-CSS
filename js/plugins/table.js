@@ -145,6 +145,7 @@ var Table = {
         onSearch: Metro.noop,
         onRowsCountChange: Metro.noop,
         onDataLoad: Metro.noop,
+        onDataLoadError: Metro.noop,
         onDataLoaded: Metro.noop,
         onFilterRowAccepted: Metro.noop,
         onFilterRowDeclined: Metro.noop,
@@ -197,6 +198,7 @@ var Table = {
                 that._build(data);
                 Utils.exec(o.onDataLoaded, [o.source, data], element[0]);
             }).fail(function( jqXHR, textStatus, errorThrown) {
+                Utils.exec(o.onDataLoadError, [o.source, jqXHR, textStatus, errorThrown], element[0]);
                 console.log(textStatus); console.log(jqXHR); console.log(errorThrown);
             });
         } else {

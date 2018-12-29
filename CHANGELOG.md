@@ -2,6 +2,7 @@
 + [x] File: fix event trigger `on-select` for FF when user drops files 
 + [x] File: fix event trigger `on-select` for IE11 when user drops files
 + [x] Dialog: fix `onChange` event
++ [x] Table: add event `data-on-data-load-error`
 
 ### 4.2.31
 + [x] Sidebar: add submenu support
