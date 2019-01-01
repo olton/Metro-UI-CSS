@@ -1,3 +1,6 @@
+### 4.2.33
++ [x] Init: fixed initialization process for widgets, loaded over Ajax
+
 ### 4.2.32
 + [x] File: fix event trigger `on-select` for FF when user drops files 
 + [x] File: fix event trigger `on-select` for IE11 when user drops files

@@ -1,5 +1,5 @@
 /*
- * Metro 4 Components Library v4.2.32 build 711 (https://metroui.org.ua)
+ * Metro 4 Components Library v4.2.32 build @@build (https://metroui.org.ua)
  * Copyright 2019 Sergey Pimenov
  * Licensed under MIT
  */
@@ -100,8 +100,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.32",
-    versionFull: "4.2.32.711 ",
+    version: "4.2.32-dev [19:22 1-0-2019]",
+    versionFull: "4.2.32-dev [19:22 1-0-2019]",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -299,10 +299,6 @@ var Metro = {
                     for(i = 0; i < nodes.length; i++) {
 
                         var node = mutation.addedNodes[i];
-
-                        if (node.nodeType !== 1) {
-                            return ;
-                        }
 
                         if (node.tagName === 'SCRIPT' || node.tagName === 'STYLE') {
                             return ;
@@ -7905,7 +7901,10 @@ var Collapse = {
             element.hide(0);
         }
 
+        console.log(toggle);
+
         toggle.on(Metro.events.click, function(e){
+            console.log("ku");
             if (element.css('display') === 'block' && !element.hasClass('keep-open')) {
                 that._close(element);
             } else {
