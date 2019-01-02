@@ -1,5 +1,5 @@
 /*
- * Metro 4 Components Library v4.2.33 build 712 (https://metroui.org.ua)
+ * Metro 4 Components Library v4.2.33 build @@build (https://metroui.org.ua)
  * Copyright 2019 Sergey Pimenov
  * Licensed under MIT
  */
@@ -100,8 +100,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.33",
-    versionFull: "4.2.33.712 ",
+    version: "@@version",
+    versionFull: "@@version.@@build @@status",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -301,7 +301,7 @@ var Metro = {
                         var node = mutation.addedNodes[i];
 
                         if (node.tagName === 'SCRIPT' || node.tagName === 'STYLE') {
-                            return ;
+                            continue ;
                         }
                         obj = $(mutation.addedNodes[i]);
 
@@ -16416,9 +16416,9 @@ var Sidebar = {
         element.data("opened", true).addClass('open');
 
         if (o.shift !== null) {
-            $.each(o.shift.split(","), function(){
-                $(this).animate({left: element.outerWidth()}, o.duration);
-            });
+            $(o.shift).animate({
+                left: element.outerWidth()
+            }, o.duration);
         }
 
         Utils.exec(o.onOpen, [element], element[0]);
@@ -16434,9 +16434,9 @@ var Sidebar = {
         element.data("opened", false).removeClass('open');
 
         if (o.shift !== null) {
-            $.each(o.shift.split(","), function(){
-                $(this).animate({left: 0}, o.duration);
-            });
+            $(o.shift).animate({
+                left: 0
+            }, o.duration);
         }
 
         Utils.exec(o.onClose, [element], element[0]);

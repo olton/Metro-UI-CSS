@@ -286,7 +286,7 @@ var Metro = {
                         var node = mutation.addedNodes[i];
 
                         if (node.tagName === 'SCRIPT' || node.tagName === 'STYLE') {
-                            return ;
+                            continue ;
                         }
                         obj = $(mutation.addedNodes[i]);
 
