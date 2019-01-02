@@ -37,6 +37,7 @@ If you'd like to join them, please consider:
 
 <h2 align="center">Project donors (one pay or former patron)</h2>
 
+ - [Infinity Technology Systems](https://itshost4u.com/)
  - [Triplebeta](https://www.triplebeta.nl/)
  - [Chaoswriter96](https://github.com/Chaoswriter96)
  - [chongzia](https://www.patreon.com/user/creators?u=10094916)
