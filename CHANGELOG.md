@@ -1,5 +1,8 @@
 ### 4.2.34
-+ [ ] Sidebar: issue #
++ [x] Sidebar: fix error for shifting content issue #1294
++ [x] Checkbox: fix create rule
++ [x] Radio: fix create rule
++ [x] Switch: fix create rule
 
 ### 4.2.33
 + [x] Init: fixed initialization process for widgets, loaded over Ajax
