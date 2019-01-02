@@ -1,3 +1,6 @@
+### 4.2.34
++ [ ] Sidebar: issue #
+
 ### 4.2.33
 + [x] Init: fixed initialization process for widgets, loaded over Ajax
 
