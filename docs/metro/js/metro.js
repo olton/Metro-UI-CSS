@@ -100,8 +100,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.33-dev [14:12 2-0-2019]",
-    versionFull: "4.2.33-dev [14:12 2-0-2019]",
+    version: "4.2.33-dev [14:18 2-0-2019]",
+    versionFull: "4.2.33-dev [14:18 2-0-2019]",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -7611,7 +7611,7 @@ var Checkbox = {
     },
 
     _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         $.each(element.data(), function(key, value){
             if (key in o) {
@@ -7625,9 +7625,7 @@ var Checkbox = {
     },
 
     _create: function(){
-        var that = this, element = this.element, o = this.options;
-        var prev = element.prev();
-        var parent = element.parent();
+        var element = this.element, o = this.options;
         var checkbox = $("<label>").addClass("checkbox " + element[0].className).addClass(o.style === 2 ? "style2" : "");
         var check = $("<span>").addClass("check");
         var caption = $("<span>").addClass("caption").html(o.caption);
@@ -7639,14 +7637,10 @@ var Checkbox = {
         checkbox.attr('for', element.attr('id'));
 
         element.attr("type", "checkbox");
+
+        checkbox.insertBefore(element);
+
         element.appendTo(checkbox);
-
-        if (prev.length === 0) {
-            parent.prepend(checkbox);
-        } else {
-            checkbox.insertAfter(prev);
-        }
-
         check.appendTo(checkbox);
         caption.appendTo(checkbox);
 
@@ -7695,7 +7689,7 @@ var Checkbox = {
     },
 
     changeAttribute: function(attributeName){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var parent = element.parent();
 
         var changeStyle = function(){
@@ -7719,7 +7713,7 @@ var Checkbox = {
     },
 
     destroy: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element;
         var parent = element.parent();
 
         element[0].className = this.origin.className;
@@ -7900,8 +7894,6 @@ var Collapse = {
         if (o.collapsed === true || element.attr("collapsed") === true) {
             element.hide(0);
         }
-
-        console.log(toggle);
 
         toggle.on(Metro.events.click, function(e){
             console.log("ku");
@@ -15025,7 +15017,7 @@ var Radio = {
     },
 
     _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         $.each(element.data(), function(key, value){
             if (key in o) {
@@ -15039,21 +15031,14 @@ var Radio = {
     },
 
     _create: function(){
-        var that = this, element = this.element, o = this.options;
-        var prev = element.prev();
-        var parent = element.parent();
+        var element = this.element, o = this.options;
         var radio = $("<label>").addClass("radio " + element[0].className).addClass(o.style === 2 ? "style2" : "");
         var check = $("<span>").addClass("check");
         var caption = $("<span>").addClass("caption").html(o.caption);
 
         element.attr("type", "radio");
 
-        if (prev.length === 0) {
-            parent.prepend(radio);
-        } else {
-            radio.insertAfter(prev);
-        }
-
+        radio.insertBefore(element);
         element.appendTo(radio);
         check.appendTo(radio);
         caption.appendTo(radio);
@@ -15095,7 +15080,7 @@ var Radio = {
     },
 
     changeAttribute: function(attributeName){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var parent = element.parent();
 
         var changeStyle = function(){
@@ -18468,7 +18453,7 @@ var Switch = {
     },
 
     _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         $.each(element.data(), function(key, value){
             if (key in o) {
@@ -18482,21 +18467,14 @@ var Switch = {
     },
 
     _create: function(){
-        var that = this, element = this.element, o = this.options;
-        var prev = element.prev();
-        var parent = element.parent();
+        var element = this.element, o = this.options;
         var container = $("<label>").addClass((o.material === true ? " switch-material " : " switch ") + element[0].className);
         var check = $("<span>").addClass("check");
         var caption = $("<span>").addClass("caption").html(o.caption);
 
         element.attr("type", "checkbox");
 
-        if (prev.length === 0) {
-            parent.prepend(container);
-        } else {
-            container.insertAfter(prev);
-        }
-
+        container.insertBefore(element);
         element.appendTo(container);
         check.appendTo(container);
         caption.appendTo(container);

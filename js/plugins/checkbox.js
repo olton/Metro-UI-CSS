@@ -26,7 +26,7 @@ var Checkbox = {
     },
 
     _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         $.each(element.data(), function(key, value){
             if (key in o) {
@@ -40,9 +40,7 @@ var Checkbox = {
     },
 
     _create: function(){
-        var that = this, element = this.element, o = this.options;
-        var prev = element.prev();
-        var parent = element.parent();
+        var element = this.element, o = this.options;
         var checkbox = $("<label>").addClass("checkbox " + element[0].className).addClass(o.style === 2 ? "style2" : "");
         var check = $("<span>").addClass("check");
         var caption = $("<span>").addClass("caption").html(o.caption);
@@ -54,14 +52,10 @@ var Checkbox = {
         checkbox.attr('for', element.attr('id'));
 
         element.attr("type", "checkbox");
+
+        checkbox.insertBefore(element);
+
         element.appendTo(checkbox);
-
-        if (prev.length === 0) {
-            parent.prepend(checkbox);
-        } else {
-            checkbox.insertAfter(prev);
-        }
-
         check.appendTo(checkbox);
         caption.appendTo(checkbox);
 
@@ -110,7 +104,7 @@ var Checkbox = {
     },
 
     changeAttribute: function(attributeName){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var parent = element.parent();
 
         var changeStyle = function(){
@@ -134,7 +128,7 @@ var Checkbox = {
     },
 
     destroy: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element;
         var parent = element.parent();
 
         element[0].className = this.origin.className;
