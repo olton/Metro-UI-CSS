@@ -3,6 +3,7 @@
 + [x] Checkbox: fix create rule
 + [x] Radio: fix create rule
 + [x] Switch: fix create rule
++ [x] Select: fix rotating drop down toggle 
 
 ### 4.2.33
 + [x] Init: fixed initialization process for widgets, loaded over Ajax

@@ -41535,7 +41535,8 @@ video:-webkit-full-screen {
 .dropdown-toggle.no-marker::before {
   display: none;
 }
-.dropdown-toggle.active-toggle::before {
+.dropdown-toggle.active-toggle::before,
+.dropdown-toggle.active-container::before {
   -webkit-transform: rotate(135deg);
           transform: rotate(135deg);
   -webkit-transition: all 0.15s ease-in-out;
@@ -41549,7 +41550,8 @@ video:-webkit-full-screen {
   -webkit-transform: translateX(-50%) translateY(-50%) rotate(-45deg);
           transform: translateX(-50%) translateY(-50%) rotate(-45deg);
 }
-.dropdown-toggle.marker-center.active-toggle::before {
+.dropdown-toggle.marker-center.active-toggle::before,
+.dropdown-toggle.marker-center.active-container::before {
   -webkit-transform: translateX(-50%) translateY(-50%) rotate(135deg);
           transform: translateX(-50%) translateY(-50%) rotate(135deg);
   -webkit-transition: all 0.15s ease-in-out;
