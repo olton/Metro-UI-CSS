@@ -1,4 +1,4 @@
-//'use strict';
+'use strict';
 
 var $ = jQuery;
 
@@ -271,6 +271,7 @@ var Metro = {
                     var mc = element.data('metroComponent');
                     if (mc !== undefined) {
                         $.each(mc, function(){
+                            'use strict';
                             var plug = element.data(this);
                             if (plug) plug.changeAttribute(mutation.attributeName);
                         });
@@ -353,6 +354,7 @@ var Metro = {
 
     initHotkeys: function(hotkeys){
         $.each(hotkeys, function(){
+            'use strict';
             var element = $(this);
             var hotkey = element.data('hotkey') ? element.data('hotkey').toLowerCase() : false;
 
@@ -388,6 +390,7 @@ var Metro = {
         var that = this;
 
         $.each(widgets, function () {
+            'use strict';
             var $this = $(this), w = this;
             var roles = $this.data('role').split(/\s*,\s*/);
             roles.map(function (func) {
@@ -443,6 +446,7 @@ var Metro = {
         var mc = $(element).data("metroComponent");
 
         if (mc !== undefined && mc.length > 0) $.each(mc, function(){
+            'use strict';
             Metro.destroyPlugin(element, this);
         });
     },
@@ -477,6 +481,7 @@ var Metro = {
         var mc = $(element).data("metroComponent");
 
         if (mc !== undefined && mc.length > 0) $.each(mc, function(){
+            'use strict';
             Metro.reinitPlugin(element, this);
         });
     },

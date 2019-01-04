@@ -15,6 +15,7 @@ var Utils = {
         var embed = ["iframe", "object", "embed", "video"];
         var result = false;
         $.each(embed, function(i, v){
+            'use strict';
             if (typeof val === "string" && val.toLowerCase() === v) {
                 result = true;
             } else if (val.nodeType !== undefined && val.tagName.toLowerCase() === v) {

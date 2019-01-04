@@ -352,7 +352,6 @@ var Select = {
         var select = element.closest('.select');
 
         $.each(options, function(){
-            console.log(this.defaultSelected);
             this.selected = !Utils.isNull(to_default) ? this.defaultSelected : false;
         });
 
@@ -393,7 +392,9 @@ var Select = {
             return multiple ? result : result[0];
         }
 
-        $.each(options, function(){this.selected = false;});
+        $.each(options, function(){
+            this.selected = false;
+        });
         list_items.removeClass("active");
         input.html('');
 
