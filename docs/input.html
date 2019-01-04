@@ -54,6 +54,7 @@
                     <li class="toc-entry"><a href="#_input_search">Search button</a></li>
                     <li class="toc-entry"><a href="#_input_history">History inputs</a></li>
                     <li class="toc-entry"><a href="#_input_custom_buttons">Custom buttons</a></li>
+                    <li class="toc-entry"><a href="#_input_autocomplete">Autocomplete</a></li>
                     <li class="toc-entry"><a href="#_input_options">Options</a></li>
                     <li class="toc-entry"><a href="#_input_events">Events</a></li>
                     <li class="toc-entry"><a href="#_input_methods">Methods</a></li>
@@ -237,6 +238,20 @@
                     &lt;/form&gt;
                 </code></pre>
 
+                <h3 id="_input_history">History</h3>
+                <p>
+                    Metro 4 input support <code>history</code> feature. To enable it feature, add attribute <code>data-history="true"</code> to input.
+                    This enhance the input field that shows you the last input values that has been recently entered.
+                    Use the up and down key's to scroll through previously typed input values. Use attribute <code>data-prevent-submit="true"</code> to cancel submitting form when user press <code>Enter</code>.
+                </p>
+                <div class="example">
+                    <input type="text" data-role="input" data-history="true">
+                    <p class="text-small">Enter value and press <kbd>Enter</kbd>, repeat, then press <kbd>Up</kbd> or <kbd>Down</kbd> arrows to access entered values.</p>
+                </div>
+                <pre><code>
+                    &lt;input type="text" data-role="input" data-history="true"&gt;
+                </code></pre>
+
                 <h3 id="_input_custom_buttons">Custom buttons</h3>
                 <p>
                     You can create custom button for input control with attribute <code>data-custom-buttons="..."</code>.
@@ -286,18 +301,16 @@
                         <code>onclick</code> - event for button when user clicked on it.
                 </p>
 
-                <h3 id="_input_history">History</h3>
+                <h3 id="_input_autocomplete">Autocomplete</h3>
                 <p>
-                    Metro 4 input support <code>history</code> feature. To enable it feature, add attribute <code>data-history="true"</code> to input.
-                    This enhance the input field that shows you the last input values that has been recently entered.
-                    Use the up and down key's to scroll through previously typed input values. Use attribute <code>data-prevent-submit="true"</code> to cancel submitting form when user press <code>Enter</code>.
+                    You can create input with <code>autocomplete</code> feature. To create it, use attributes: <code>data-autocomplete</code>, <code>data-autocomplete-divider</code>, <code>data-autocomplete-list-height</code>.
                 </p>
                 <div class="example">
-                    <input type="text" data-role="input" data-history="true">
-                    <p class="text-small">Enter value and press <kbd>Enter</kbd>, repeat, then press <kbd>Up</kbd> or <kbd>Down</kbd> arrows to access entered values.</p>
+                    <input type="text" data-role="input" data-autocomplete="Ukraine, USA, Canada, Marokko, Singapur">
+                    <p class="text-small">Begin type one of Ukraine, USA, Canada, Marokko, Singapur</p>
                 </div>
                 <pre><code>
-                    &lt;input type="text" data-role="input" data-history="true"&gt;
+                    &lt;input type="text" data-role="input" data-autocomplete="Ukraine, USA, Canada, Marokko, Singapur"&gt;
                 </code></pre>
 
                 <h3 id="_input_options">Options</h3>
