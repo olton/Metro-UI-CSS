@@ -100,8 +100,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.34-dev [19:21 4-0-2019]",
-    versionFull: "4.2.34-dev [19:21 4-0-2019]",
+    version: "4.2.34-dev [19:33 4-0-2019]",
+    versionFull: "4.2.34-dev [19:33 4-0-2019]",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -18188,6 +18188,8 @@ var Streamer = {
                 return;
             }
 
+            console.log(index, element.data("stream"));
+
             if (element.data("stream") === index) {
                 element.find(".stream-event").removeClass("disabled");
                 element.data("stream", -1);
@@ -18251,14 +18253,14 @@ var Streamer = {
 
     enableStream: function(stream){
         var that = this, element = this.element, o = this.options, data = this.data;
-        var index = stream.index();
+        var index = stream.index()-1;
         stream.removeClass("disabled").data("streamDisabled", false);
         element.find(".stream-events").eq(index).find(".stream-event").removeClass("disabled");
     },
 
     disableStream: function(stream){
         var that = this, element = this.element, o = this.options, data = this.data;
-        var index = stream.index();
+        var index = stream.index()-1;
         stream.addClass("disabled").data("streamDisabled", true);
         element.find(".stream-events").eq(index).find(".stream-event").addClass("disabled");
     },

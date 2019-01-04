@@ -7,7 +7,8 @@
 + [x] Tabs: fix switching content, issue #1297 
 + [x] Input: fix autocomplete list, issue #1298
 + [x] Metro: return to strict mode
-+ [x] Toast: fix creating error 
++ [x] Toast: fix creating error
++ [x] Streamer: fix select stream 
 
 ### 4.2.33
 + [x] Init: fixed initialization process for widgets, loaded over Ajax
