@@ -16,6 +16,7 @@ var Input = {
     },
     options: {
         autocomplete: null,
+        autocompleteDivider: ",",
         autocompleteListHeight: 200,
 
         history: false,
@@ -179,7 +180,7 @@ var Input = {
             if (autocomplete_obj !== false) {
                 that.autocomplete = autocomplete_obj;
             } else {
-                this.autocomplete = Utils.strToArray(o.autocomplete);
+                this.autocomplete = Utils.strToArray(o.autocomplete, o.autocompleteDivider);
             }
             $("<div>").addClass("autocomplete-list").css({
                 maxHeight: o.autocompleteListHeight,
@@ -303,15 +304,15 @@ var Input = {
                 display: items.length > 0 ? "block" : "none"
             });
 
-            $.each(items, function(){
-                var index = this.toLowerCase().indexOf(val);
-                var item = $("<div>").addClass("item").attr("data-autocomplete-value", this);
+            $.each(items, function(i, v){
+                var index = v.toLowerCase().indexOf(val);
+                var item = $("<div>").addClass("item").attr("data-autocomplete-value", v);
                 var html;
 
                 if (index === 0) {
-                    html = "<strong>"+this.substr(0, val.length)+"</strong>"+this.substr(val.length);
+                    html = "<strong>"+v.substr(0, val.length)+"</strong>"+v.substr(val.length);
                 } else {
-                    html = this.substr(0, index) + "<strong>"+this.substr(index, val.length)+"</strong>"+this.substr(index + val.length);
+                    html = v.substr(0, index) + "<strong>"+v.substr(index, val.length)+"</strong>"+v.substr(index + val.length);
                 }
                 item.html(html).appendTo(autocompleteList);
             })

@@ -14,8 +14,10 @@ var Utils = {
     isEmbedObject: function(val){
         var embed = ["iframe", "object", "embed", "video"];
         var result = false;
-        $.each(embed, function(){
-            if (val.indexOf(this) !== -1) {
+        $.each(embed, function(i, v){
+            if (typeof val === "string" && val.toLowerCase() === v) {
+                result = true;
+            } else if (val.nodeType !== undefined && val.tagName.toLowerCase() === v) {
                 result = true;
             }
         });
