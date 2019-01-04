@@ -208,8 +208,8 @@ var Tabs = {
             tab.addClass("active");
         }
 
-        $.each(this._targets, function(){
-            var t = $(this);
+        $.each(this._targets, function(i, el){
+            var t = $(el);
             if (t.length > 0) t.hide();
         });
 
