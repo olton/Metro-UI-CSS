@@ -8,16 +8,16 @@ If you'd like to join them, please consider:
 - [Become a backer or sponsor on Open Collective](https://opencollective.com/metro4#backer)
 
 <!--
-<h2 align="center">Platinum via Patreon</h2>
+<h2 align="center">Platinum sponsors</h2>
 -->
 
 <!--
-<h2 align="center">Gold via Patreon</h2>
+<h2 align="center">Gold sponsors</h2>
 -->
 
-<!--
-<h2 align="center">Silver via Patreon</h2>
--->
+<h2 align="center">Silver sponsors</h2>
+ - [Infinity Technology Systems](http://www.infinitytechsystems.com/)
+ - [Triplebeta](https://www.triplebeta.nl/)
 
 <!--
 <h2 align="center">Bronze via Patreon</h2>
@@ -37,8 +37,6 @@ If you'd like to join them, please consider:
 
 <h2 align="center">Project donors (one pay or former patron)</h2>
 
- - [Infinity Technology Systems](https://itshost4u.com/)
- - [Triplebeta](https://www.triplebeta.nl/)
  - [Chaoswriter96](https://github.com/Chaoswriter96)
  - [chongzia](https://www.patreon.com/user/creators?u=10094916)
  - [TorakikiSan](https://github.com/TorakikiSan)
