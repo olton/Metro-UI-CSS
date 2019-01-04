@@ -5,7 +5,8 @@
 + [x] Switch: fix create rule
 + [x] Select: fix rotating drop down toggle 
 + [x] Tabs: fix switching content, issue #1297 
-+ [x] Input: fix autocomplete list, issue #1298 
++ [x] Input: fix autocomplete list, issue #1298
++ [x] Metro: return to strict mode 
 
 ### 4.2.33
 + [x] Init: fixed initialization process for widgets, loaded over Ajax
