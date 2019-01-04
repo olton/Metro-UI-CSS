@@ -52,6 +52,7 @@
                     <li class="toc-entry"><a href="#_toast_timeout">Timeout</a></li>
                     <li class="toc-entry"><a href="#_toast_classes">Predefined classes</a></li>
                     <li class="toc-entry"><a href="#_toast_custom">Custom toast</a></li>
+                    <li class="toc-entry"><a href="#_toast_options">Additional options</a></li>
                 </ul>
 
             </div>
@@ -209,6 +210,31 @@
                 <pre class=""><code>
                     Metro.toast.create("Toast message", null, null, cls);
                 </code></pre>
+
+                <h3 id="_toast_options">Additional options</h3>
+                <p>
+                    You can sets additional options. Options is a object with next properties:
+                </p>
+                <pre><code>
+                        options: {
+                            callback: Metro.noop,
+                            timeout: METRO_TIMEOUT,
+                            distance: 20,
+                            showTop: false,
+                            clsToast: ""
+                        }
+                </code></pre>
+                <div class="example">
+                    <button class="button primary" onclick="toastOptions()">Show on top</button>
+                </div>
+                <pre class=""><code>
+                    var options = {
+                        showTop: true,
+                        timeout: 3000
+                    }
+                    Metro.toast.create("Toast message", null, null, null, options);
+                </code></pre>
+
             </main>
         </div>
 
@@ -235,6 +261,14 @@
         function toastClasses(cls){
             var toast = Metro.toast.create;
             toast("This is a toast with a predefined class ." + cls, null, 5000, cls);
+        }
+
+        function toastOptions(){
+            var options = {
+                showTop: true,
+                timeout: 3000
+            };
+            Metro.toast.create("Toast message", null, null, null, options);
         }
     </script>
     <!-- ads-script -->

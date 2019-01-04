@@ -8,14 +8,8 @@ var Toast = {
         clsToast: ""
     },
 
-    init: function(options){
-        this.options = $.extend({}, this.options, options);
-
-        return this;
-    },
-
-    create: function(message, callback, timeout, cls){
-        var o = this.options;
+    create: function(message, callback, timeout, cls, options){
+        var o = options || Toast.options;
         var toast = $("<div>").addClass("toast").html(message).appendTo($("body")).hide();
         var width = toast.outerWidth();
         var timer = null;
@@ -49,4 +43,4 @@ var Toast = {
     }
 };
 
-Metro['toast'] = Toast.init();
+Metro['toast'] = Toast;

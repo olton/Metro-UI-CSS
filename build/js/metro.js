@@ -100,8 +100,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.34-dev [19:5 4-0-2019]",
-    versionFull: "4.2.34-dev [19:5 4-0-2019]",
+    version: "4.2.34-dev [19:21 4-0-2019]",
+    versionFull: "4.2.34-dev [19:21 4-0-2019]",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -22058,14 +22058,8 @@ var Toast = {
         clsToast: ""
     },
 
-    init: function(options){
-        this.options = $.extend({}, this.options, options);
-
-        return this;
-    },
-
-    create: function(message, callback, timeout, cls){
-        var o = this.options;
+    create: function(message, callback, timeout, cls, options){
+        var o = options || Toast.options;
         var toast = $("<div>").addClass("toast").html(message).appendTo($("body")).hide();
         var width = toast.outerWidth();
         var timer = null;
@@ -22099,7 +22093,7 @@ var Toast = {
     }
 };
 
-Metro['toast'] = Toast.init();
+Metro['toast'] = Toast;
 
 // Source: js/plugins/touch.js
 
