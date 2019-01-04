@@ -13,7 +13,7 @@
 }(function( jQuery ) { 
 // Source: js/metro.js
 
-//'use strict';
+'use strict';
 
 var $ = jQuery;
 
@@ -100,8 +100,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.34-dev [17:39 4-0-2019]",
-    versionFull: "4.2.34-dev [17:39 4-0-2019]",
+    version: "4.2.34-dev [18:56 4-0-2019]",
+    versionFull: "4.2.34-dev [18:56 4-0-2019]",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -286,6 +286,7 @@ var Metro = {
                     var mc = element.data('metroComponent');
                     if (mc !== undefined) {
                         $.each(mc, function(){
+                            'use strict';
                             var plug = element.data(this);
                             if (plug) plug.changeAttribute(mutation.attributeName);
                         });
@@ -368,6 +369,7 @@ var Metro = {
 
     initHotkeys: function(hotkeys){
         $.each(hotkeys, function(){
+            'use strict';
             var element = $(this);
             var hotkey = element.data('hotkey') ? element.data('hotkey').toLowerCase() : false;
 
@@ -403,6 +405,7 @@ var Metro = {
         var that = this;
 
         $.each(widgets, function () {
+            'use strict';
             var $this = $(this), w = this;
             var roles = $this.data('role').split(/\s*,\s*/);
             roles.map(function (func) {
@@ -458,6 +461,7 @@ var Metro = {
         var mc = $(element).data("metroComponent");
 
         if (mc !== undefined && mc.length > 0) $.each(mc, function(){
+            'use strict';
             Metro.destroyPlugin(element, this);
         });
     },
@@ -492,6 +496,7 @@ var Metro = {
         var mc = $(element).data("metroComponent");
 
         if (mc !== undefined && mc.length > 0) $.each(mc, function(){
+            'use strict';
             Metro.reinitPlugin(element, this);
         });
     },
@@ -3420,6 +3425,7 @@ var Utils = {
         var embed = ["iframe", "object", "embed", "video"];
         var result = false;
         $.each(embed, function(i, v){
+            'use strict';
             if (typeof val === "string" && val.toLowerCase() === v) {
                 result = true;
             } else if (val.nodeType !== undefined && val.tagName.toLowerCase() === v) {
@@ -16092,7 +16098,6 @@ var Select = {
         var select = element.closest('.select');
 
         $.each(options, function(){
-            console.log(this.defaultSelected);
             this.selected = !Utils.isNull(to_default) ? this.defaultSelected : false;
         });
 
@@ -16133,7 +16138,9 @@ var Select = {
             return multiple ? result : result[0];
         }
 
-        $.each(options, function(){this.selected = false;});
+        $.each(options, function(){
+            this.selected = false;
+        });
         list_items.removeClass("active");
         input.html('');
 
@@ -20809,8 +20816,8 @@ var Tabs = {
             tab.addClass("active");
         }
 
-        $.each(this._targets, function(i, el){
-            var t = $(el);
+        $.each(this._targets, function(){
+            var t = $(this);
             if (t.length > 0) t.hide();
         });
 
