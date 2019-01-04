@@ -4,6 +4,7 @@
 + [x] Radio: fix create rule
 + [x] Switch: fix create rule
 + [x] Select: fix rotating drop down toggle 
++ [x] Tabs: fix switching content, issue #1297 
 
 ### 4.2.33
 + [x] Init: fixed initialization process for widgets, loaded over Ajax
