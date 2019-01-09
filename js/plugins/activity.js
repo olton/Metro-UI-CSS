@@ -21,7 +21,7 @@ var Activity = {
     },
 
     _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         $.each(element.data(), function(key, value){
             if (key in o) {
@@ -35,7 +35,7 @@ var Activity = {
     },
 
     _create: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var i, wrap;
 
         element
@@ -84,7 +84,7 @@ var Activity = {
     },
 
     destroy: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         element.html('')
             .removeClass(o.style + "-style")

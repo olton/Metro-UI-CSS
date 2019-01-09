@@ -321,7 +321,7 @@ var Treeview = {
 
     changeAttribute: function(attributeName){
         switch (attributeName) {
-            default: console.log(attributeName);
+            default: ;
         }
     }
 };
