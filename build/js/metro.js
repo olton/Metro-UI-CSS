@@ -1,5 +1,5 @@
 /*
- * Metro 4 Components Library v4.2.34 build 715 (https://metroui.org.ua)
+ * Metro 4 Components Library v4.2.34 build @@build (https://metroui.org.ua)
  * Copyright 2019 Sergey Pimenov
  * Licensed under MIT
  */
@@ -100,8 +100,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.34",
-    versionFull: "4.2.34.715 ",
+    version: "@@version",
+    versionFull: "@@version.@@build @@status",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -4522,7 +4522,7 @@ var Activity = {
     },
 
     _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         $.each(element.data(), function(key, value){
             if (key in o) {
@@ -4536,7 +4536,7 @@ var Activity = {
     },
 
     _create: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var i, wrap;
 
         element
@@ -4585,7 +4585,7 @@ var Activity = {
     },
 
     destroy: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         element.html('')
             .removeClass(o.style + "-style")
@@ -23491,7 +23491,7 @@ var Treeview = {
 
     changeAttribute: function(attributeName){
         switch (attributeName) {
-            default: console.log(attributeName);
+            default: ;
         }
     }
 };

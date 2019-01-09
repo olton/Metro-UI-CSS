@@ -1,3 +1,5 @@
+### 4.2.35
+
 ### 4.2.34
 + [x] Sidebar: fix error for shifting content issue #1294
 + [x] Checkbox: fix create rule
