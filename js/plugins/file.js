@@ -14,6 +14,7 @@ var File = {
     options: {
         mode: "input",
         buttonTitle: "Choose file(s)",
+        filesTitle: "file(s) selected",
         dropTitle: "<strong>Choose a file</strong> or drop it here",
         dropIcon: "<span class='default-icon-upload'></span>",
         prepend: "",
@@ -27,7 +28,7 @@ var File = {
     },
 
     _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         $.each(element.data(), function(key, value){
             if (key in o) {
@@ -46,19 +47,14 @@ var File = {
     },
 
     _createStructure: function(){
-        var that = this, element = this.element, o = this.options;
-        var prev = element.prev();
-        var parent = element.parent();
+        var element = this.element, o = this.options;
         var container = $("<label>").addClass((o.mode === "input" ? " file " : " drop-zone ") + element[0].className).addClass(o.clsComponent);
         var caption = $("<span>").addClass("caption").addClass(o.clsCaption);
+        var files = $("<span>").addClass("files").addClass(o.clsCaption);
         var icon, button;
 
-        if (prev.length === 0) {
-            parent.prepend(container);
-        } else {
-            container.insertAfter(prev);
-        }
 
+        container.insertBefore(element);
         element.appendTo(container);
 
         if (o.mode === "input") {
@@ -79,6 +75,7 @@ var File = {
         } else {
             icon = $(o.dropIcon).addClass("icon").appendTo(container);
             caption.html(o.dropTitle).insertAfter(icon);
+            files.html("0" + " " + o.filesTitle).insertAfter(caption);
         }
 
         element[0].className = '';
@@ -100,6 +97,7 @@ var File = {
         var element = this.element, o = this.options;
         var container = element.closest("label");
         var caption = container.find(".caption");
+        var files = container.find(".files");
 
         container.on(Metro.events.click, "button", function(){
             element.trigger("click");
@@ -123,6 +121,8 @@ var File = {
 
                 caption.html(entry);
                 caption.attr('title', entry);
+            } else {
+                files.html(element[0].files.length + " " +o.filesTitle);
             }
 
             Utils.exec(o.onSelect, [fi.files, element], element[0]);
@@ -146,6 +146,7 @@ var File = {
 
             container.on('drop', function(e){
                 element[0].files = e.originalEvent.dataTransfer.files;
+                files.html(element[0].files.length + " " +o.filesTitle);
                 container.removeClass("drop-on");
 
                 if (!Utils.detectChrome()) Utils.exec(o.onSelect, [element[0].files, element], element[0]);
@@ -190,7 +191,7 @@ var File = {
         var element = this.element;
         var parent = element.parent();
         element.off(Metro.events.change);
-        parent.off(Metro.events.click, "button, .caption");
+        parent.off(Metro.events.click, "button");
         element.insertBefore(parent);
         parent.remove();
     }
