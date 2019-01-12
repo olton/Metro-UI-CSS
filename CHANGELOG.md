@@ -1,4 +1,6 @@
 ### 4.2.35
++ [x] Draggable: refactoring
++ [x] File: add label for counting selected files for dropdown area
 
 ### 4.2.34
 + [x] Sidebar: fix error for shifting content issue #1294
