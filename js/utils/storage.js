@@ -1,19 +1,10 @@
-var Storage = {
-    options: {
-        key: "METRO:APP",
-        storage: window.localStorage
-    },
+var Storage = function(type){
+    return new Storage.init(type);
+};
 
-    init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
-        this.storage = this.options.storage;
-        this.key = this.options.key;
-
-        return this;
-    },
-
+Storage.prototype = {
     setKey: function(key){
-        this.key = key;
+        this.key = key
     },
 
     getKey: function(){
@@ -71,9 +62,15 @@ var Storage = {
     }
 };
 
-Metro['storage'] = Object.create(Storage).init({
-    storage: localStorage
-});
-Metro['session'] = Object.create(Storage).init({
-    storage: sessionStorage
-});
+Storage.init = function(type){
+
+    this.key = "";
+    this.storage = type ? type : window.localStorage;
+
+    return this;
+};
+
+Storage.init.prototype = Storage.prototype;
+
+Metro['storage'] = Storage(window.localStorage);
+Metro['session'] = Storage(window.sessionStorage);
