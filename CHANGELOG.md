@@ -4,6 +4,7 @@
 + [x] Storage: refactoring and fix session storage
 + [x] Input material: set autocomplete off
 + [x] Tabs: fix clear targets before recollect, issue #1303
++ [x] ListView: fix attributes observing
 
 ### 4.2.34
 + [x] Sidebar: fix error for shifting content issue #1294

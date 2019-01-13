@@ -29,7 +29,7 @@ var Listview = {
     },
 
     _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         $.each(element.data(), function(key, value){
             if (key in o) {
@@ -43,7 +43,7 @@ var Listview = {
     },
 
     _create: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         this._createView();
         this._createEvents();
@@ -74,7 +74,7 @@ var Listview = {
     },
 
     _createNode: function(data){
-        var that = this, element = this.element, o = this.options;
+        var that = this, o = this.options;
         var node;
 
         node = $("<li>");
@@ -135,7 +135,7 @@ var Listview = {
                 node.prepend(cb);
             }
 
-            if (struct_length > 0) $.each(o.structure, function(key, val){
+            if (struct_length > 0) $.each(o.structure, function(key){
                 if (node.data(key) !== undefined) {
                     $("<div>").addClass("node-data item-data-"+key).addClass(node.data(key)).html(node.data(key)).appendTo(node);
                 }
@@ -219,14 +219,14 @@ var Listview = {
     },
 
     toggleSelectable: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var func = o.selectable === true ? "addClass" : "removeClass";
         element[func]("selectable");
         element.find("ul")[func]("selectable");
     },
 
     add: function(node, data){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var target;
         var new_node;
         var toggle;
@@ -263,7 +263,7 @@ var Listview = {
     },
 
     addGroup: function(data){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var node;
 
         delete data['icon'];
@@ -281,6 +281,9 @@ var Listview = {
 
     insertBefore: function(node, data){
         var element = this.element, o = this.options;
+
+        if (!node.length) {return;}
+
         var new_node = this._createNode(data);
         new_node.addClass("node").insertBefore(node);
         Utils.exec(o.onNodeInsert, [new_node, element]);
@@ -289,6 +292,9 @@ var Listview = {
 
     insertAfter: function(node, data){
         var element = this.element, o = this.options;
+
+        if (!node.length) {return;}
+
         var new_node = this._createNode(data);
         new_node.addClass("node").insertAfter(node);
         Utils.exec(o.onNodeInsert, [new_node, element]);
@@ -297,6 +303,9 @@ var Listview = {
 
     del: function(node){
         var element = this.element, o = this.options;
+
+        if (!node.length) {return;}
+
         var parent_list = node.closest("ul");
         var parent_node = parent_list.closest("li");
         node.remove();
@@ -310,6 +319,9 @@ var Listview = {
 
     clean: function(node){
         var element = this.element, o = this.options;
+
+        if (!node.length) {return;}
+
         node.children("ul").remove();
         node.removeClass("expanded");
         node.children(".node-toggle").remove();
@@ -317,7 +329,7 @@ var Listview = {
     },
 
     getSelected: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element;
         var nodes = [];
 
         $.each(element.find(":checked"), function(){
@@ -341,12 +353,12 @@ var Listview = {
 
         var changeView = function(){
             var new_view = "view-"+element.attr("data-view");
-            this.view(new_view);
+            that.view(new_view);
         };
 
         var changeSelectable = function(){
             o.selectable = JSON.parse(element.attr("data-selectable")) === true;
-            this.toggleSelectable();
+            that.toggleSelectable();
         };
 
         switch (attributeName) {
