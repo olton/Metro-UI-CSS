@@ -2,6 +2,8 @@
 + [x] Draggable: refactoring
 + [x] File: add label for counting selected files for dropdown area
 + [x] Storage: refactoring and fix session storage
++ [x] Input material: set autocomplete off
++ [x] Tabs: fix clear targets before recollect, issue #1303
 
 ### 4.2.34
 + [x] Sidebar: fix error for shifting content issue #1294

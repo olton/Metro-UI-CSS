@@ -100,8 +100,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.34-dev [17:41 12-0-2019]",
-    versionFull: "4.2.34-dev [17:41 12-0-2019]",
+    version: "4.2.34-dev [13:21 13-0-2019]",
+    versionFull: "4.2.34-dev [13:21 13-0-2019]",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -11672,12 +11672,13 @@ var MaterialInput = {
     },
 
     _createStructure: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var prev = element.prev();
         var parent = element.parent();
         var container = $("<div>").addClass("input-material " + element[0].className);
 
         element[0].className = "";
+        element.attr("autocomplete", "nope");
 
         if (element.attr("type") === undefined) {
             element.attr("type", "text");
@@ -11716,12 +11717,6 @@ var MaterialInput = {
         } else {
             this.enable();
         }
-    },
-
-    _createEvents: function(){
-        var that = this, element = this.element, o = this.options;
-        var container = element.closest(".input");
-
     },
 
     clear: function(){
@@ -20635,7 +20630,7 @@ var Tabs = {
     },
 
     _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         $.each(element.data(), function(key, value){
             if (key in o) {
@@ -20649,7 +20644,7 @@ var Tabs = {
     },
 
     _create: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element;
         var tab = element.find(".active").length > 0 ? $(element.find(".active")[0]) : undefined;
 
         this._createStructure();
@@ -20658,8 +20653,7 @@ var Tabs = {
     },
 
     _createStructure: function(){
-        var that = this, element = this.element, o = this.options;
-        var prev = element.prev();
+        var element = this.element, o = this.options;
         var parent = element.parent();
         var right_parent = parent.hasClass("tabs");
         var container = right_parent ? parent : $("<div>").addClass("tabs tabs-wrapper");
@@ -20776,6 +20770,8 @@ var Tabs = {
         var that = this, element = this.element;
         var tabs = element.find("li");
 
+        this._targets = [];
+
         $.each(tabs, function(){
             var target = $(this).find("a").attr("href").trim();
             if (target.length > 1 && target[0] === "#") {
@@ -20785,7 +20781,7 @@ var Tabs = {
     },
 
     _open: function(tab){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var tabs = element.find("li");
         var expandTitle = element.siblings(".expand-title");
 
@@ -20830,7 +20826,7 @@ var Tabs = {
     },
 
     next: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element;
         var next, active_tab = element.find("li.active");
 
         next = active_tab.next("li");
@@ -20840,7 +20836,7 @@ var Tabs = {
     },
 
     prev: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element;
         var next, active_tab = element.find("li.active");
 
         next = active_tab.prev("li");
@@ -20850,7 +20846,7 @@ var Tabs = {
     },
 
     open: function(tab){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element;
         var tabs = element.find("li");
 
         if (!Utils.isValue(tab)) {

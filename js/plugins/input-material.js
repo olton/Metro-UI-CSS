@@ -52,12 +52,13 @@ var MaterialInput = {
     },
 
     _createStructure: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var prev = element.prev();
         var parent = element.parent();
         var container = $("<div>").addClass("input-material " + element[0].className);
 
         element[0].className = "";
+        element.attr("autocomplete", "nope");
 
         if (element.attr("type") === undefined) {
             element.attr("type", "text");
@@ -96,12 +97,6 @@ var MaterialInput = {
         } else {
             this.enable();
         }
-    },
-
-    _createEvents: function(){
-        var that = this, element = this.element, o = this.options;
-        var container = element.closest(".input");
-
     },
 
     clear: function(){
