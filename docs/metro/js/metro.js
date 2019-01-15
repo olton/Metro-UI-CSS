@@ -100,8 +100,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.34-dev [19:32 13-0-2019]",
-    versionFull: "4.2.34-dev [19:32 13-0-2019]",
+    version: "4.2.34-dev [21:0 15-0-2019]",
+    versionFull: "4.2.34-dev [21:0 15-0-2019]",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -14394,7 +14394,7 @@ var Notify = {
             Utils.exec(Utils.isValue(options.onAppend) ? options.onAppend : o.onAppend, null, notify[0]);
 
             notify.css({
-                marginTop: Utils.isValue(options.onAppend) ? options.distance : o.distance
+                marginTop: Utils.isValue(options.distance) ? options.distance : o.distance
             }).fadeIn(100, function(){
                 var duration = Utils.isValue(options.duration) ? options.duration : o.duration;
                 var animation = Utils.isValue(options.animation) ? options.animation : o.animation;

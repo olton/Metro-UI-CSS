@@ -90,7 +90,7 @@ var Notify = {
             Utils.exec(Utils.isValue(options.onAppend) ? options.onAppend : o.onAppend, null, notify[0]);
 
             notify.css({
-                marginTop: Utils.isValue(options.onAppend) ? options.distance : o.distance
+                marginTop: Utils.isValue(options.distance) ? options.distance : o.distance
             }).fadeIn(100, function(){
                 var duration = Utils.isValue(options.duration) ? options.duration : o.duration;
                 var animation = Utils.isValue(options.animation) ? options.animation : o.animation;
