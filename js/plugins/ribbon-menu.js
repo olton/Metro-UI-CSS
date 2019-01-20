@@ -20,7 +20,7 @@ var RibbonMenu = {
     },
 
     _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         $.each(element.data(), function(key, value){
             if (key in o) {
@@ -34,7 +34,7 @@ var RibbonMenu = {
     },
 
     _create: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         this._createStructure();
         this._createEvents();
@@ -43,7 +43,7 @@ var RibbonMenu = {
     },
 
     _createStructure: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element;
 
         element.addClass("ribbon-menu");
 
@@ -72,7 +72,7 @@ var RibbonMenu = {
                 if (w > gw) gw = w;
             });
 
-            g.css("width", Math.ceil(gw * btns.length / 3) + 4);
+            g.css("width", gw * Math.ceil(btns.length / 3) + 4);
         });
     },
 
@@ -99,7 +99,7 @@ var RibbonMenu = {
     },
 
     open: function(tab){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var tabs = element.find(".tabs-holder li");
         var sections = element.find(".content-holder .section");
         var target = tab.children("a").attr("href");

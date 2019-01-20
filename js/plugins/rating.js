@@ -85,8 +85,6 @@ var Rating = {
     _createRating: function(){
         var element = this.element, o = this.options;
 
-        var prev = element.prev();
-        var parent = element.parent();
         var id = Utils.elementId("rating");
         var rating = $("<div>").addClass("rating " + String(element[0].className).replace("d-block", "d-flex")).addClass(o.clsRating);
         var i, stars, result, li;
@@ -96,12 +94,7 @@ var Rating = {
 
         rating.attr("id", id);
 
-        if (prev.length === 0) {
-            parent.prepend(rating);
-        } else {
-            rating.insertAfter(prev);
-        }
-
+        rating.insertBefore(element);
         element.appendTo(rating);
 
         stars = $("<ul>").addClass("stars").addClass(o.clsStars).appendTo(rating);

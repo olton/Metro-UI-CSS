@@ -45,14 +45,3 @@
         }
     }, 1000)
 }());
-
-var initDocSearchEngine = function(){
-    setTimeout(function(){
-        var search = docsearch({
-            apiKey: '00a53b92ba6ed063bec0a9320e60d4e6',
-            indexName: 'metroui',
-            inputSelector: '#search_input',
-            debug: false // Set debug to true if you want to inspect the dropdown
-        });
-    }, 500);
-};

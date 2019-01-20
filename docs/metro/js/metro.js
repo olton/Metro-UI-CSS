@@ -100,8 +100,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.34-dev [21:0 15-0-2019]",
-    versionFull: "4.2.34-dev [21:0 15-0-2019]",
+    version: "4.2.34-dev 20/01/2019 12:49",
+    versionFull: "4.2.34-dev 20/01/2019 12:49",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -10816,7 +10816,7 @@ var HtmlContainer = {
     },
 
     _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         $.each(element.data(), function(key, value){
             if (key in o) {
@@ -10830,7 +10830,7 @@ var HtmlContainer = {
     },
 
     _create: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         if (Utils.isValue(o.htmlSource)) {
             this._load();
@@ -10840,7 +10840,7 @@ var HtmlContainer = {
     },
 
     _load: function(){
-        var that = this, element = this.element, elem = this.elem, o = this.options;
+        var element = this.element, elem = this.elem, o = this.options;
         var xhttp, html;
 
         html = o.htmlSource;
@@ -10871,7 +10871,7 @@ var HtmlContainer = {
     },
 
     changeAttribute: function(attributeName){
-        var that = this, element = this.element, elem = this.elem, o = this.options;
+        var element = this.element, o = this.options;
 
         var changeHTMLSource = function(){
             var html = element.attr("data-html-source");
@@ -15209,8 +15209,6 @@ var Rating = {
     _createRating: function(){
         var element = this.element, o = this.options;
 
-        var prev = element.prev();
-        var parent = element.parent();
         var id = Utils.elementId("rating");
         var rating = $("<div>").addClass("rating " + String(element[0].className).replace("d-block", "d-flex")).addClass(o.clsRating);
         var i, stars, result, li;
@@ -15220,12 +15218,7 @@ var Rating = {
 
         rating.attr("id", id);
 
-        if (prev.length === 0) {
-            parent.prepend(rating);
-        } else {
-            rating.insertAfter(prev);
-        }
-
+        rating.insertBefore(element);
         element.appendTo(rating);
 
         stars = $("<ul>").addClass("stars").addClass(o.clsStars).appendTo(rating);
@@ -15551,7 +15544,7 @@ var RibbonMenu = {
     },
 
     _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         $.each(element.data(), function(key, value){
             if (key in o) {
@@ -15565,7 +15558,7 @@ var RibbonMenu = {
     },
 
     _create: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         this._createStructure();
         this._createEvents();
@@ -15574,7 +15567,7 @@ var RibbonMenu = {
     },
 
     _createStructure: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element;
 
         element.addClass("ribbon-menu");
 
@@ -15603,7 +15596,7 @@ var RibbonMenu = {
                 if (w > gw) gw = w;
             });
 
-            g.css("width", Math.ceil(gw * btns.length / 3) + 4);
+            g.css("width", gw * Math.ceil(btns.length / 3) + 4);
         });
     },
 
@@ -15630,7 +15623,7 @@ var RibbonMenu = {
     },
 
     open: function(tab){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var tabs = element.find(".tabs-holder li");
         var sections = element.find(".content-holder .section");
         var target = tab.children("a").attr("href");
