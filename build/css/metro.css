@@ -22111,7 +22111,7 @@ input:-webkit-autofill:active {
           justify-content: space-between;
   -webkit-box-align: start;
       -ms-flex-align: start;
-          align-items: start;
+          align-items: flex-start;
   position: relative;
   margin: 2px;
   padding: 0 0 0 4px;
@@ -22500,7 +22500,7 @@ textarea {
           flex-flow: row wrap;
   -webkit-box-pack: start;
       -ms-flex-pack: start;
-          justify-content: start;
+          justify-content: flex-start;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -22540,7 +22540,7 @@ textarea {
           justify-content: space-between;
   -webkit-box-align: start;
       -ms-flex-align: start;
-          align-items: start;
+          align-items: flex-start;
   position: relative;
   margin: 2px;
   padding: 0 0 0 4px;

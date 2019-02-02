@@ -8,6 +8,9 @@
 + [x] Notify: fix using custom distance option
 + [x] Rating: minor improve code
 + [x] Ribbon menu: fix button group width calc, issue #1296
++ [x] CSS: fix `align-items` property for `selected` and `tag-input`, pull-request #1306, issue #1305
++ [x] Spinner: fix twice click effect on Android devices, issue #1307
++ [x] Input: fix triggering `change` for `autocomplete` feature, issue #1310
 
 ### 4.2.34
 + [x] Sidebar: fix error for shifting content issue #1294

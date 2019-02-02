@@ -323,6 +323,7 @@ var Input = {
             autocompleteList.css({
                 display: "none"
             });
+            element.trigger("change");
         });
     },
 
