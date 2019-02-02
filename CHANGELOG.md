@@ -11,6 +11,7 @@
 + [x] CSS: fix `align-items` property for `selected` and `tag-input`, pull-request #1306, issue #1305
 + [x] Spinner: fix twice click effect on Android devices, issue #1307
 + [x] Input: fix triggering `change` for `autocomplete` feature, issue #1310
++ [x] CalendarPicker: fix selection when using `val(...)`, issue #1308
 
 ### 4.2.34
 + [x] Sidebar: fix error for shifting content issue #1294
