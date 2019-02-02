@@ -96,6 +96,7 @@ var Spinner = {
     _createEvents: function(){
         var that = this, element = this.element, o = this.options;
         var spinner = element.closest(".spinner");
+        var spinner_buttons = spinner.find(".spinner-button");
 
         var spinnerButtonClick = function(plus, threshold){
             var curr = element.val();
@@ -130,12 +131,13 @@ var Spinner = {
             e.stopPropagation();
         });
 
-        spinner.on(Metro.events.start, ".spinner-button", function(){
+        spinner_buttons.on(Metro.events.start, function(e){
+            e.preventDefault();
             that.repeat_timer = true;
             spinnerButtonClick($(this).hasClass("spinner-button-plus"), o.repeatThreshold);
         });
 
-        spinner.on(Metro.events.stop, ".spinner-button", function(){
+        spinner_buttons.on(Metro.events.stop, function(){
             that.repeat_timer = false;
         });
 

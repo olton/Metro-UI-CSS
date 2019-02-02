@@ -100,8 +100,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.34-dev 20/01/2019 12:49",
-    versionFull: "4.2.34-dev 20/01/2019 12:49",
+    version: "@@version",
+    versionFull: "@@version.@@build @@status",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -166,10 +166,10 @@ var Metro = {
 
     events: {
         click: 'click.metro',
-        start: 'touchstart.metro mousedown.metro',
-        stop: 'touchend.metro mouseup.metro',
-        move: 'touchmove.metro mousemove.metro',
-        enter: 'touchstart.metro mouseenter.metro',
+        start: isTouch ? 'touchstart.metro' : 'mousedown.metro',
+        stop: isTouch ? 'touchend.metro' : 'mouseup.metro',
+        move: isTouch ? 'touchmove.metro' : 'mousemove.metro',
+        enter: isTouch ? 'touchstart.metro' : 'mouseenter.metro',
         leave: 'mouseleave.metro',
         focus: 'focus.metro',
         blur: 'blur.metro',
@@ -12085,6 +12085,7 @@ var Input = {
             autocompleteList.css({
                 display: "none"
             });
+            element.trigger("change");
         });
     },
 
@@ -17329,6 +17330,7 @@ var Spinner = {
     _createEvents: function(){
         var that = this, element = this.element, o = this.options;
         var spinner = element.closest(".spinner");
+        var spinner_buttons = spinner.find(".spinner-button");
 
         var spinnerButtonClick = function(plus, threshold){
             var curr = element.val();
@@ -17363,12 +17365,13 @@ var Spinner = {
             e.stopPropagation();
         });
 
-        spinner.on(Metro.events.start, ".spinner-button", function(){
+        spinner_buttons.on(Metro.events.start, function(e){
+            e.preventDefault();
             that.repeat_timer = true;
             spinnerButtonClick($(this).hasClass("spinner-button-plus"), o.repeatThreshold);
         });
 
-        spinner.on(Metro.events.stop, ".spinner-button", function(){
+        spinner_buttons.on(Metro.events.stop, function(){
             that.repeat_timer = false;
         });
 
