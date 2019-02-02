@@ -14820,8 +14820,10 @@ var Popover = {
 
         var changeText = function(){
             o.popoverText = element.attr("data-popover-text");
-            this.popover.find(".popover-content").html(o.popoverText);
-            that.setPosition();
+            if (that.popover) {
+                that.popover.find(".popover-content").html(o.popoverText);
+                that.setPosition();
+            }
         };
 
         var changePosition = function(){
