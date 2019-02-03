@@ -1,3 +1,5 @@
+### 4.2.36
+
 ### 4.2.35
 + [x] Draggable: refactoring
 + [x] File: add label for counting selected files for dropdown area

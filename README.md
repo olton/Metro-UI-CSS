@@ -22,7 +22,7 @@ It's an independent project with its ongoing development made possible entirely 
 
 <hr>
  
-## Current Version 4.2.35
+## Current Version 4.2.36
 
 ### Status
 [![Build Status](https://travis-ci.org/olton/Metro-UI-CSS.svg?branch=master)](https://travis-ci.org/olton/Metro-UI-CSS)
