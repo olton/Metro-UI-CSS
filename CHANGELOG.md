@@ -13,6 +13,7 @@
 + [x] Input: fix triggering `change` for `autocomplete` feature, issue #1310
 + [x] CalendarPicker: fix selection when using `val(...)`, issue #1308
 + [x] Popovers: fix change value for attribute `data-popover-text`, issue #1309
++ [x] Charms: add charm `tiles` and `notifies` with classes `.charm-tile` and `.charm-notify`
 
 ### 4.2.34
 + [x] Sidebar: fix error for shifting content issue #1294
