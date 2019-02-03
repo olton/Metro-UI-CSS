@@ -16,8 +16,7 @@ If you'd like to join them, please consider:
 
 <h4 align="center">Silver sponsors</h4>
 <a href="http://www.infinitytechsystems.com/"><img src="https://metroui.org.ua/images/ITSLogoSmall.png"></a>
-
-<a href="https://www.triplebeta.nl/"><img src="https://metroui.org.ua/images/TripleBetaLogo_100x100.jpg"></a>
+<a href="https://www.triplebeta.nl/"><img src="https://metroui.org.ua/images/triplebeta.png"></a>
 
 <!--
 <h2 align="center">Bronze via Patreon</h2>
