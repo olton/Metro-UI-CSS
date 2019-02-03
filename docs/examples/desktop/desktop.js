@@ -72,3 +72,65 @@ var Desktop = {
 };
 
 Desktop.setup();
+
+var w_icons = [
+    'rocket', 'apps', 'cog', 'anchor'
+];
+var w_titles = [
+    'rocket', 'apps', 'cog', 'anchor'
+];
+
+function createWindow(){
+    var index = Metro.utils.random(0, 3);
+    Desktop.createWindow({
+        width: 300,
+        icon: "<span class='mif-"+w_icons[index]+"'></span>",
+        title: w_titles[index],
+        content: "<div class='p-2'>This is desktop demo created with Metro 4 Components Library</div>"
+    });
+}
+
+function createWindowModal(){
+    Desktop.createWindow({
+        width: 300,
+        icon: "<span class='mif-cogs'></span>",
+        title: "Modal window",
+        content: "<div class='p-2'>This is desktop demo created with Metro 4 Components Library</div>",
+        overlay: true,
+        //overlayColor: "transparent",
+        modal: true,
+        place: "center",
+        onShow: function(win){
+            win.addClass("ani-swoopInTop");
+            setTimeout(function(){
+                win.removeClass("ani-swoopInTop");
+            }, 1000);
+        },
+        onClose: function(win){
+            win.addClass("ani-swoopOutTop");
+        }
+    });
+}
+
+function createWindowYoutube(){
+    Desktop.createWindow({
+        width: 500,
+        icon: "<span class='mif-youtube'></span>",
+        title: "Youtube video",
+        content: "https://youtu.be/S9MeTn1i72g",
+        clsContent: "bg-dark"
+    });
+}
+
+function openCharm() {
+    var charm = $("#charm").data("charms");
+    charm.toggle();
+}
+
+$(".window-area").on("click", function(){
+    Metro.charms.close("#charm");
+});
+
+$(".charm-tile").on("click", function(){
+    $(this).toggleClass("active");
+});

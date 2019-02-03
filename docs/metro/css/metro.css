@@ -29871,6 +29871,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   transition: -webkit-transform 0.3s ease;
   transition: transform 0.3s ease;
   transition: transform 0.3s ease, -webkit-transform 0.3s ease;
+  padding: 16px;
 }
 .charms.top-side {
   bottom: 100%;
@@ -29909,6 +29910,78 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
 .charms.right-side.open {
   -webkit-transform: translateX(-100%);
           transform: translateX(-100%);
+}
+.charm-tile,
+.charm-notify {
+  display: block;
+  position: relative;
+  cursor: pointer;
+}
+.charm-tile {
+  width: 90px;
+  height: 66px;
+  padding: 4px;
+  background-color: #50727C;
+  color: #ffffff;
+  margin: 2px;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  -webkit-box-flex: 0;
+      -ms-flex-positive: 0;
+          flex-grow: 0;
+}
+.charm-tile .icon {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 16px;
+  height: 16px;
+  font-size: 16px;
+}
+.charm-tile .caption {
+  margin-top: 30px;
+  font-size: 10px;
+  display: block;
+}
+.charm-tile.active {
+  background-color: #126278;
+}
+.charm-notify {
+  height: auto;
+  background-color: #2D6070;
+  color: #ffffff;
+  padding: 24px;
+}
+.charm-notify .icon {
+  position: absolute;
+  left: 16px;
+  top: 24px;
+  width: 48px;
+  height: 48px;
+  font-size: 40px;
+}
+.charm-notify .title,
+.charm-notify .content,
+.charm-notify .secondary {
+  display: block;
+  position: relative;
+  margin-left: 52px;
+  line-height: 1;
+}
+.charm-notify .title {
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+.charm-notify .content {
+  font-size: 14px;
+  line-height: 1.2;
+}
+.charm-notify .secondary {
+  font-size: 10px;
+  margin-top: 8px;
+}
+* + .charm-notify {
+  margin-top: 4px;
 }
 .slider {
   display: block;
