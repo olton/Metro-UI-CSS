@@ -100,8 +100,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.36-dev 03/02/2019 20:02",
-    versionFull: "4.2.36-dev 03/02/2019 20:02",
+    version: "4.2.36-dev 05/02/2019 03:37",
+    versionFull: "4.2.36-dev 05/02/2019 03:37",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -10041,7 +10041,7 @@ var Draggable = {
     },
 
     _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         $.each(element.data(), function(key, value){
             if (key in o) {
@@ -10066,6 +10066,8 @@ var Draggable = {
         dragElement[0].ondragstart = function(){return false;};
 
         dragElement.on(Metro.events.start, function(e){
+
+            console.log(e);
 
             if (o.dragArea === 'document' || o.dragArea === 'window') {
                 o.dragArea = "body";
@@ -24514,7 +24516,7 @@ var Window = {
         clsContent: "",
         clsWindow: "",
         draggable: true,
-        dragElement: ".window-caption",
+        dragElement: ".window-caption .icon, .window-caption .title",
         dragArea: "parent",
         shadow: false,
         icon: "",
@@ -24663,12 +24665,12 @@ var Window = {
             win.addClass("win-shadow");
         }
 
-        if (o.icon !== undefined) {
+        if (Utils.isValue(o.icon)) {
             icon = $("<span>").addClass("icon").html(o.icon);
             icon.appendTo(caption);
         }
 
-        if (o.title !== undefined) {
+        if (Utils.isValue(o.title)) {
             title = $("<span>").addClass("title").html(o.title);
             title.appendTo(caption);
         }

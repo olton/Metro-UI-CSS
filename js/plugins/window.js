@@ -32,7 +32,7 @@ var Window = {
         clsContent: "",
         clsWindow: "",
         draggable: true,
-        dragElement: ".window-caption",
+        dragElement: ".window-caption .icon, .window-caption .title",
         dragArea: "parent",
         shadow: false,
         icon: "",
@@ -181,12 +181,12 @@ var Window = {
             win.addClass("win-shadow");
         }
 
-        if (o.icon !== undefined) {
+        if (Utils.isValue(o.icon)) {
             icon = $("<span>").addClass("icon").html(o.icon);
             icon.appendTo(caption);
         }
 
-        if (o.title !== undefined) {
+        if (Utils.isValue(o.title)) {
             title = $("<span>").addClass("title").html(o.title);
             title.appendTo(caption);
         }

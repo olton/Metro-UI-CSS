@@ -29,7 +29,7 @@ var Draggable = {
     },
 
     _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         $.each(element.data(), function(key, value){
             if (key in o) {
@@ -54,6 +54,8 @@ var Draggable = {
         dragElement[0].ondragstart = function(){return false;};
 
         dragElement.on(Metro.events.start, function(e){
+
+            console.log(e);
 
             if (o.dragArea === 'document' || o.dragArea === 'window') {
                 o.dragArea = "body";

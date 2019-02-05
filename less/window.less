@@ -36,16 +36,19 @@
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
+        width: 100%;
     }
 
     .icon {
-        margin-left: .3125rem;
+        width: 36px;
+        height: 36px;
+        text-align: center;
+        flex-shrink: 0;
 
         * {
             width: 1rem;
             font-size: 1rem;
-            max-height: 1rem;
-            line-height: 1rem;
+            line-height: 36px;
             text-align: center;
         }
     }
