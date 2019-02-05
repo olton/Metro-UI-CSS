@@ -100,8 +100,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.36-dev 05/02/2019 03:37",
-    versionFull: "4.2.36-dev 05/02/2019 03:37",
+    version: "4.2.36-dev 05/02/2019 09:40",
+    versionFull: "4.2.36-dev 05/02/2019 09:40",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -10066,8 +10066,6 @@ var Draggable = {
         dragElement[0].ondragstart = function(){return false;};
 
         dragElement.on(Metro.events.start, function(e){
-
-            console.log(e);
 
             if (o.dragArea === 'document' || o.dragArea === 'window') {
                 o.dragArea = "body";
@@ -24723,13 +24721,13 @@ var Window = {
         win.on(Metro.events.dblclick, ".window-caption", function(e){
             that.maximized(e);
         });
-        win.on(Metro.events.click, ".btn-max", function(e){
+        btnMax.on(Metro.events.start, function(e){
             that.maximized(e);
         });
-        win.on(Metro.events.click, ".btn-min", function(e){
+        btnMin.on(Metro.events.start, function(e){
             that.minimized(e);
         });
-        win.on(Metro.events.click, ".btn-close", function(e){
+        btnClose.on(Metro.events.start, function(e){
             that.close(e);
         });
 

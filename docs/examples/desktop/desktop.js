@@ -94,6 +94,8 @@ function createWindow(){
 
 function createWindowModal(){
     Desktop.createWindow({
+        resizeable: false,
+        draggable: true,
         width: 300,
         icon: "<span class='mif-cogs'></span>",
         title: "Modal window",
@@ -116,6 +118,8 @@ function createWindowModal(){
 
 function createWindowYoutube(){
     Desktop.createWindow({
+        resizeable: true,
+        draggable: true,
         width: 500,
         icon: "<span class='mif-youtube'></span>",
         title: "Youtube video",
