@@ -23856,15 +23856,19 @@ figure img {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  width: 100%;
 }
 .window-caption .icon {
-  margin-left: 0.3125rem;
+  width: 36px;
+  height: 36px;
+  text-align: center;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
 }
 .window-caption .icon * {
   width: 1rem;
   font-size: 1rem;
-  max-height: 1rem;
-  line-height: 1rem;
+  line-height: 36px;
   text-align: center;
 }
 .window-caption * + .title {

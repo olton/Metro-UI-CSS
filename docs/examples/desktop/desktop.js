@@ -83,6 +83,8 @@ var w_titles = [
 function createWindow(){
     var index = Metro.utils.random(0, 3);
     Desktop.createWindow({
+        resizeable: true,
+        draggable: true,
         width: 300,
         icon: "<span class='mif-"+w_icons[index]+"'></span>",
         title: w_titles[index],
