@@ -55,8 +55,6 @@ var Draggable = {
 
         dragElement.on(Metro.events.start, function(e){
 
-            console.log(e);
-
             if (o.dragArea === 'document' || o.dragArea === 'window') {
                 o.dragArea = "body";
             }

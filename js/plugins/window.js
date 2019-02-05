@@ -239,13 +239,13 @@ var Window = {
         win.on(Metro.events.dblclick, ".window-caption", function(e){
             that.maximized(e);
         });
-        win.on(Metro.events.click, ".btn-max", function(e){
+        btnMax.on(Metro.events.start, function(e){
             that.maximized(e);
         });
-        win.on(Metro.events.click, ".btn-min", function(e){
+        btnMin.on(Metro.events.start, function(e){
             that.minimized(e);
         });
-        win.on(Metro.events.click, ".btn-close", function(e){
+        btnClose.on(Metro.events.start, function(e){
             that.close(e);
         });
 
