@@ -100,8 +100,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.36-dev 05/02/2019 09:40",
-    versionFull: "4.2.36-dev 05/02/2019 09:40",
+    version: "4.2.36-dev 06/02/2019 13:38",
+    versionFull: "4.2.36-dev 06/02/2019 13:38",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -13777,10 +13777,12 @@ var Listview = {
 
     clearSelected: function(){
         this.element.find(":checked").prop("checked", false);
+        this.element.trigger('change');
     },
 
     selectAll: function(mode){
         this.element.find(".node > .checkbox input").prop("checked", mode !== false);
+        this.element.trigger('change');
     },
 
     changeAttribute: function(attributeName){
