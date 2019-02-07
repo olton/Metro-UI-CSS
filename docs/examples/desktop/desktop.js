@@ -92,6 +92,31 @@ function createWindow(){
     });
 }
 
+function createWindowWithCustomButtons(){
+    var index = Metro.utils.random(0, 3);
+    var customButtons = [
+        {
+            html: "<span class='mif-user'></span>",
+            cls: "alert",
+            onclick: "alert('You press user button')"
+        },
+        {
+            html: "<span class='mif-cog'></span>",
+            cls: "warning",
+            onclick: "alert('You press cog button')"
+        }
+    ];
+    Desktop.createWindow({
+        resizeable: true,
+        draggable: true,
+        customButtons: customButtons,
+        width: 300,
+        icon: "<span class='mif-"+w_icons[index]+"'></span>",
+        title: w_titles[index],
+        content: "<div class='p-2'>This is desktop demo created with Metro 4 Components Library.<br><br>This window has a custom buttons in caption.</div>"
+    });
+}
+
 function createWindowModal(){
     Desktop.createWindow({
         resizeable: false,

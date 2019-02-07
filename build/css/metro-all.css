@@ -23889,10 +23889,11 @@ figure img {
 }
 .window-caption .buttons .btn-min,
 .window-caption .buttons .btn-max,
-.window-caption .buttons .btn-close {
+.window-caption .buttons .btn-close,
+.window-caption .buttons .btn-custom {
   position: relative;
   height: 100%;
-  width: 2rem;
+  width: 35px;
   text-align: center;
   vertical-align: middle;
   font-size: 1rem;
@@ -23904,22 +23905,25 @@ figure img {
   border: 1px solid transparent;
   margin: 0 0.5px;
   background-color: transparent;
-  color: #777777;
+  color: #ffffff;
 }
 .window-caption .buttons .btn-min:hover,
 .window-caption .buttons .btn-max:hover,
-.window-caption .buttons .btn-close:hover {
+.window-caption .buttons .btn-close:hover,
+.window-caption .buttons .btn-custom:hover {
   background-color: rgba(255, 255, 255, 0.1);
 }
 .window-caption .buttons .btn-min:hover::before,
 .window-caption .buttons .btn-max:hover::before,
-.window-caption .buttons .btn-close:hover::before {
+.window-caption .buttons .btn-close:hover::before,
+.window-caption .buttons .btn-custom:hover::before {
   border-color: #ffffff;
   color: #ffffff;
 }
 .window-caption .buttons .btn-min:active,
 .window-caption .buttons .btn-max:active,
-.window-caption .buttons .btn-close:active {
+.window-caption .buttons .btn-close:active,
+.window-caption .buttons .btn-custom:active {
   background-color: rgba(255, 255, 255, 0.3);
   color: #ffffff;
 }
@@ -23965,20 +23969,31 @@ figure img {
   border: 1px #fff solid;
   border-top-width: 2px;
 }
-.window-caption .buttons .btn-min {
+.window-caption .buttons .btn-custom {
+  min-width: 35px;
+  width: auto;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+}
+.window-caption .buttons .btn-custom {
   -webkit-box-ordinal-group: 2;
       -ms-flex-order: 1;
           order: 1;
 }
-.window-caption .buttons .btn-max {
+.window-caption .buttons .btn-min {
   -webkit-box-ordinal-group: 3;
       -ms-flex-order: 2;
           order: 2;
 }
-.window-caption .buttons .btn-close {
+.window-caption .buttons .btn-max {
   -webkit-box-ordinal-group: 4;
       -ms-flex-order: 3;
           order: 3;
+}
+.window-caption .buttons .btn-close {
+  -webkit-box-ordinal-group: 5;
+      -ms-flex-order: 4;
+          order: 4;
 }
 .window-content {
   overflow: auto;
