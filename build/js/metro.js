@@ -100,8 +100,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.36-dev 07/02/2019 14:22",
-    versionFull: "4.2.36-dev 07/02/2019 14:22",
+    version: "4.2.36-dev 07/02/2019 14:30",
+    versionFull: "4.2.36-dev 07/02/2019 14:30",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -24722,8 +24722,6 @@ var Window = {
                 o.customButtons = Utils.isObject(o.customButtons);
             }
 
-            console.log(o.customButtons);
-
             if (typeof o.customButtons === "string" && o.customButtons.indexOf("{") > -1) {
                 customButtons = JSON.parse(o.customButtons);
             } else if (typeof o.customButtons === "object" && Utils.objectLength(o.customButtons) > 0) {
@@ -24731,8 +24729,6 @@ var Window = {
             } else {
                 console.log("Unknown format for custom buttons");
             }
-
-            console.log(customButtons);
 
             $.each(customButtons, function(){
                 var item = this;

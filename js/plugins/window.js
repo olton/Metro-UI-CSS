@@ -238,8 +238,6 @@ var Window = {
                 o.customButtons = Utils.isObject(o.customButtons);
             }
 
-            console.log(o.customButtons);
-
             if (typeof o.customButtons === "string" && o.customButtons.indexOf("{") > -1) {
                 customButtons = JSON.parse(o.customButtons);
             } else if (typeof o.customButtons === "object" && Utils.objectLength(o.customButtons) > 0) {
@@ -247,8 +245,6 @@ var Window = {
             } else {
                 console.log("Unknown format for custom buttons");
             }
-
-            console.log(customButtons);
 
             $.each(customButtons, function(){
                 var item = this;
