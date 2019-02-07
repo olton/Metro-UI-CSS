@@ -100,8 +100,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.36-dev 06/02/2019 13:38",
-    versionFull: "4.2.36-dev 06/02/2019 13:38",
+    version: "4.2.36-dev 07/02/2019 14:22",
+    versionFull: "4.2.36-dev 07/02/2019 14:22",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -24533,6 +24533,8 @@ var Window = {
         left: "auto",
         place: "auto",
         closeAction: Metro.actions.REMOVE,
+        customButtons: null,
+        clsCustomButton: "",
         onDragStart: Metro.noop,
         onDragStop: Metro.noop,
         onDragMove: Metro.noop,
@@ -24692,9 +24694,10 @@ var Window = {
             }
         }
 
+        buttons = $("<div>").addClass("buttons");
+        buttons.appendTo(caption);
+
         if (o.btnClose === true || o.btnMin === true || o.btnMax === true) {
-            buttons = $("<div>").addClass("buttons");
-            buttons.appendTo(caption);
 
             if (o.btnMax === true) {
                 btnMax = $("<span>").addClass("btn-max");
@@ -24712,6 +24715,48 @@ var Window = {
             }
         }
 
+        if (Utils.isValue(o.customButtons)) {
+            var customButtons = [];
+
+            if (Utils.isObject(o.customButtons) !== false) {
+                o.customButtons = Utils.isObject(o.customButtons);
+            }
+
+            console.log(o.customButtons);
+
+            if (typeof o.customButtons === "string" && o.customButtons.indexOf("{") > -1) {
+                customButtons = JSON.parse(o.customButtons);
+            } else if (typeof o.customButtons === "object" && Utils.objectLength(o.customButtons) > 0) {
+                customButtons = o.customButtons;
+            } else {
+                console.log("Unknown format for custom buttons");
+            }
+
+            console.log(customButtons);
+
+            $.each(customButtons, function(){
+                var item = this;
+                var customButton = $("<span>");
+
+                customButton
+                    .addClass("btn-custom")
+                    .addClass(o.clsCustomButton)
+                    .addClass(item.cls)
+                    .attr("tabindex", -1)
+                    .html(item.html);
+
+                customButton.data("action", item.onclick);
+
+                buttons.prepend(customButton);
+            });
+        }
+
+        caption.on(Metro.events.stop, ".btn-custom", function(){
+            var button = $(this);
+            var action = button.data("action");
+            Utils.exec(action, [button], this);
+        });
+
         win.attr("id", o.id === undefined ? Utils.elementId("window") : o.id);
 
         if (o.resizable === true) {
@@ -24724,12 +24769,15 @@ var Window = {
             that.maximized(e);
         });
         btnMax.on(Metro.events.start, function(e){
+            if (Utils.isRightMouse(e)) return;
             that.maximized(e);
         });
         btnMin.on(Metro.events.start, function(e){
+            if (Utils.isRightMouse(e)) return;
             that.minimized(e);
         });
         btnClose.on(Metro.events.start, function(e){
+            if (Utils.isRightMouse(e)) return;
             that.close(e);
         });
 

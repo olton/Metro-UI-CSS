@@ -55,6 +55,7 @@
                             <li class="toc-entry"><a href="#_window_caption_title">Title</a></li>
                             <li class="toc-entry"><a href="#_window_caption_buttons">Buttons</a></li>
                             <li class="toc-entry"><a href="#_window_buttons_events">Buttons events</a></li>
+                            <li class="toc-entry"><a href="#_window_custom_buttons">Custom buttons</a></li>
                         </ul>
                     </li>
                     <li class="toc-entry"><a href="#_window_shadow">Shadow</a></li>
@@ -258,6 +259,38 @@
                             data-btn-min="true"
                             data-btn-max="true"
                             data-width="300" data-height="160">
+                        Click to buttons to view default buttons events.
+                    </div>
+                </div>
+
+                <h4 id="_window_custom_buttons">Custom buttons</h4>
+                <p>
+                    You can add a custom buttons to window caption. To add custom buttons, use attribute <code>data-custom-buttons</code>
+                </p>
+                <div class="example pos-relative" style="height: 300px;">
+                    <script>
+                        var customButtons = [
+                            {
+                                html: "<span class='mif-user'></span>",
+                                cls: "alert",
+                                onclick: "alert('You press user button')"
+                            },
+                            {
+                                html: "<span class='mif-cog'></span>",
+                                cls: "warning",
+                                onclick: "alert('You press cog button')"
+                            }
+                        ];
+                    </script>
+                    <div class="p-2"
+                         data-role="window"
+                         data-draggable="true"
+                         data-title="Window"
+                         data-btn-close="true"
+                         data-btn-min="true"
+                         data-btn-max="true"
+                         data-custom-buttons="customButtons"
+                         data-width="300" data-height="160">
                         Click to buttons to view default buttons events.
                     </div>
                 </div>

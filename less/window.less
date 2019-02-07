@@ -68,10 +68,10 @@
 
 .window-caption {
     .buttons {
-        .btn-min, .btn-max, .btn-close {
+        .btn-min, .btn-max, .btn-close, .btn-custom {
             position: relative;
             height: 100%;
-            width: 2rem;
+            width: 35px;
             text-align: center;
             vertical-align: middle;
             font-size: 1rem;
@@ -84,7 +84,7 @@
             margin: 0 .5px;
 
             background-color: @transparent;
-            color: @winFlatSystemButtonRestColor;
+            color: @white;
 
             &:hover {
                 background-color: @hoverBackgroundLight1;
@@ -150,9 +150,16 @@
             }
         }
 
-        .btn-min {order: 1;}
-        .btn-max {order: 2;}
-        .btn-close {order: 3;}
+        .btn-custom {
+            min-width: 35px;
+            width: auto;
+            flex-shrink: 0;
+        }
+
+        .btn-custom {order: 1;}
+        .btn-min {order: 2;}
+        .btn-max {order: 3;}
+        .btn-close {order: 4;}
     }
 }
 
