@@ -100,8 +100,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.36-dev 07/02/2019 14:30",
-    versionFull: "4.2.36-dev 07/02/2019 14:30",
+    version: "4.2.36-dev 07/02/2019 15:42",
+    versionFull: "4.2.36-dev 07/02/2019 15:42",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
