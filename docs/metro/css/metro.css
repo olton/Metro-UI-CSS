@@ -24048,6 +24048,9 @@ figure img {
 .window.minimized .window-content {
   display: none!important;
 }
+.window.minimized .window-caption .btn-custom {
+  display: none;
+}
 .window.maximized {
   top: 0!important;
   left: 0!important;
