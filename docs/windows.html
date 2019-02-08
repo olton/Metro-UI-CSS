@@ -250,7 +250,7 @@
                 <p>
                     The default events are shown in the example below:
                 </p>
-                <div class="example pos-relative" style="height: 300px;">
+                <div class="example pos-relative p-0" style="height: 300px;">
                     <div class="p-2"
                             data-role="window"
                             data-draggable="true"
@@ -267,9 +267,13 @@
                 <p>
                     You can add a custom buttons to window caption. To add custom buttons, use attribute <code>data-custom-buttons</code>
                 </p>
-                <div class="example pos-relative" style="height: 300px;">
+                <div class="example pos-relative p-0" style="height: 300px;">
                     <script>
                         var customButtons = [
+                            {
+                                html: "<span class='mif-rocket'></span>",
+                                onclick: "alert('You press rocket button')"
+                            },
                             {
                                 html: "<span class='mif-user'></span>",
                                 cls: "alert",
@@ -290,10 +294,37 @@
                          data-btn-min="true"
                          data-btn-max="true"
                          data-custom-buttons="customButtons"
-                         data-width="300" data-height="160">
+                         data-width="340" data-height="160">
                         Click to buttons to view default buttons events.
                     </div>
                 </div>
+                <pre><code>
+                    &lt;script&gt;
+                        var customButtons = [
+                            {
+                                html: "&lt;span class='mif-user'&gt;&lt;/span&gt;",
+                                cls: "alert",
+                                onclick: "alert('You press user button')"
+                            },
+                            {
+                                html: "&lt;span class='mif-cog'&gt;&lt;/span&gt;",
+                                cls: "warning",
+                                onclick: "alert('You press cog button')"
+                            }
+                        ];
+                    &lt;/script&gt;
+                    &lt;div class="p-2"
+                         data-role="window"
+                         data-draggable="true"
+                         data-title="Window"
+                         data-btn-close="true"
+                         data-btn-min="true"
+                         data-btn-max="true"
+                         data-custom-buttons="customButtons"
+                         data-width="300" data-height="160"&gt;
+                        Click to buttons to view default buttons events.
+                    &lt;/div&gt;
+                </code></pre>
 
                 <h3 id="_window_shadow">Add shadow to window</h3>
                 <p>

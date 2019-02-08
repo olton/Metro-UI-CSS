@@ -23892,8 +23892,8 @@ figure img {
 .window-caption .buttons .btn-close,
 .window-caption .buttons .btn-custom {
   position: relative;
-  height: 100%;
-  width: 35px;
+  height: 34px;
+  width: 34px;
   text-align: center;
   vertical-align: middle;
   font-size: 1rem;
@@ -23902,28 +23902,29 @@ figure img {
   outline: none;
   cursor: pointer;
   display: block;
-  border: 1px solid transparent;
-  margin: 0 0.5px;
+  border: 1 solid transparent;
+  margin: 1px 0;
+}
+.window-caption .buttons .btn-min,
+.window-caption .buttons .btn-max,
+.window-caption .buttons .btn-close {
   background-color: transparent;
   color: #ffffff;
 }
 .window-caption .buttons .btn-min:hover,
 .window-caption .buttons .btn-max:hover,
-.window-caption .buttons .btn-close:hover,
-.window-caption .buttons .btn-custom:hover {
+.window-caption .buttons .btn-close:hover {
   background-color: rgba(255, 255, 255, 0.1);
 }
 .window-caption .buttons .btn-min:hover::before,
 .window-caption .buttons .btn-max:hover::before,
-.window-caption .buttons .btn-close:hover::before,
-.window-caption .buttons .btn-custom:hover::before {
+.window-caption .buttons .btn-close:hover::before {
   border-color: #ffffff;
   color: #ffffff;
 }
 .window-caption .buttons .btn-min:active,
 .window-caption .buttons .btn-max:active,
-.window-caption .buttons .btn-close:active,
-.window-caption .buttons .btn-custom:active {
+.window-caption .buttons .btn-close:active {
   background-color: rgba(255, 255, 255, 0.3);
   color: #ffffff;
 }

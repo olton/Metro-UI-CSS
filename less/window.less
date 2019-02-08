@@ -70,8 +70,8 @@
     .buttons {
         .btn-min, .btn-max, .btn-close, .btn-custom {
             position: relative;
-            height: 100%;
-            width: 35px;
+            height: 34px;
+            width: 34px;
             text-align: center;
             vertical-align: middle;
             font-size: 1rem;
@@ -80,12 +80,13 @@
             outline: none;
             cursor: pointer;
             display: block;
-            border: 1px solid @transparent;
-            margin: 0 .5px;
+            border: 1 solid @transparent;
+            margin: 1px 0;
+        }
 
+        .btn-min, .btn-max, .btn-close {
             background-color: @transparent;
             color: @white;
-
             &:hover {
                 background-color: @hoverBackgroundLight1;
 
