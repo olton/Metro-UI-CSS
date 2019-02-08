@@ -100,8 +100,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.36-dev 07/02/2019 15:42",
-    versionFull: "4.2.36-dev 07/02/2019 15:42",
+    version: "4.2.36-dev 08/02/2019 10:45",
+    versionFull: "4.2.36-dev 08/02/2019 10:45",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -24735,7 +24735,7 @@ var Window = {
                 var customButton = $("<span>");
 
                 customButton
-                    .addClass("btn-custom")
+                    .addClass("button btn-custom")
                     .addClass(o.clsCustomButton)
                     .addClass(item.cls)
                     .attr("tabindex", -1)
@@ -24747,7 +24747,8 @@ var Window = {
             });
         }
 
-        caption.on(Metro.events.stop, ".btn-custom", function(){
+        caption.on(Metro.events.stop, ".btn-custom", function(e){
+            if (Utils.isRightMouse(e)) return;
             var button = $(this);
             var action = button.data("action");
             Utils.exec(action, [button], this);
