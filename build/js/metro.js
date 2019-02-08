@@ -100,8 +100,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.36-dev 08/02/2019 10:51",
-    versionFull: "4.2.36-dev 08/02/2019 10:51",
+    version: "4.2.36-dev 08/02/2019 12:58",
+    versionFull: "4.2.36-dev 08/02/2019 12:58",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -24535,6 +24535,10 @@ var Window = {
         closeAction: Metro.actions.REMOVE,
         customButtons: null,
         clsCustomButton: "",
+        minWidth: 0,
+        minHeight: 0,
+        maxWidth: 0,
+        maxHeight: 0,
         onDragStart: Metro.noop,
         onDragStop: Metro.noop,
         onDragMove: Metro.noop,
@@ -24638,15 +24642,9 @@ var Window = {
     _window: function(o){
         var that = this;
         var win, caption, content, icon, title, buttons, btnClose, btnMin, btnMax, resizer, status;
+        var width = o.width, height = o.height;
 
         win = $("<div>").addClass("window");
-        win.css({
-            width: o.width,
-            height: o.height,
-            position: o.position,
-            top: o.top,
-            left: o.left
-        });
 
         if (o.modal === true) {
             win.addClass("modal");
@@ -24697,22 +24695,19 @@ var Window = {
         buttons = $("<div>").addClass("buttons");
         buttons.appendTo(caption);
 
-        if (o.btnClose === true || o.btnMin === true || o.btnMax === true) {
+        if (o.btnMax === true) {
+            btnMax = $("<span>").addClass("button btn-max sys-button");
+            btnMax.appendTo(buttons);
+        }
 
-            if (o.btnMax === true) {
-                btnMax = $("<span>").addClass("btn-max sys-button");
-                btnMax.appendTo(buttons);
-            }
+        if (o.btnMin === true) {
+            btnMin = $("<span>").addClass("button btn-min sys-button");
+            btnMin.appendTo(buttons);
+        }
 
-            if (o.btnMin === true) {
-                btnMin = $("<span>").addClass("btn-min sys-button");
-                btnMin.appendTo(buttons);
-            }
-
-            if (o.btnClose === true) {
-                btnClose = $("<span>").addClass("btn-close sys-button");
-                btnClose.appendTo(buttons);
-            }
+        if (o.btnClose === true) {
+            btnClose = $("<span>").addClass("button btn-close sys-button");
+            btnClose.appendTo(buttons);
         }
 
         if (Utils.isValue(o.customButtons)) {
@@ -24756,12 +24751,6 @@ var Window = {
 
         win.attr("id", o.id === undefined ? Utils.elementId("window") : o.id);
 
-        if (o.resizable === true) {
-            resizer = $("<span>").addClass("resize-element");
-            resizer.appendTo(win);
-            win.addClass("resizable");
-        }
-
         win.on(Metro.events.dblclick, ".window-caption", function(e){
             that.maximized(e);
         });
@@ -24778,15 +24767,6 @@ var Window = {
             that.close(e);
         });
 
-        if (o.resizable === true) {
-            win.resizable({
-                resizeElement: ".resize-element",
-                onResizeStart: o.onResizeStart,
-                onResizeStop: o.onResizeStop,
-                onResize: o.onResize
-            });
-        }
-
         if (o.draggable === true) {
             win.draggable({
                 dragElement: o.dragElement,
@@ -24800,6 +24780,51 @@ var Window = {
         win.addClass(o.clsWindow);
         caption.addClass(o.clsCaption);
         content.addClass(o.clsContent);
+
+        if (o.minWidth === 0) {
+            o.minWidth = 34;
+            $.each(buttons.children(".btn-custom"), function(){
+                o.minWidth += Utils.hiddenElementSize(this).width;
+            });
+            if (o.btnMax) o.minWidth += 34;
+            if (o.btnMin) o.minWidth += 34;
+            if (o.btnClose) o.minWidth += 34;
+            console.log(o.minWidth);
+        }
+
+        if (o.minWidth > 0 && !isNaN(o.width) && o.width < o.minWidth) {
+            width = o.minWidth;
+        }
+        if (o.minHeight > 0 && !isNaN(o.height) && o.height > o.minHeight) {
+            height = o.minHeight;
+        }
+
+        if (o.resizable === true) {
+            resizer = $("<span>").addClass("resize-element");
+            resizer.appendTo(win);
+            win.addClass("resizable");
+
+            win.resizable({
+                minWidth: o.minWidth,
+                minHeight: o.minHeight,
+                maxWidth: o.maxWidth,
+                maxHeight: o.maxHeight,
+                resizeElement: ".resize-element",
+                onResizeStart: o.onResizeStart,
+                onResizeStop: o.onResizeStop,
+                onResize: o.onResize
+            });
+        }
+
+        console.log(win.attr("id"), width);
+
+        win.css({
+            width: width,
+            height: height,
+            position: o.position,
+            top: o.top,
+            left: o.left
+        });
 
         return win;
     },
