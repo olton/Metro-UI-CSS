@@ -216,17 +216,17 @@ var Window = {
         if (o.btnClose === true || o.btnMin === true || o.btnMax === true) {
 
             if (o.btnMax === true) {
-                btnMax = $("<span>").addClass("btn-max");
+                btnMax = $("<span>").addClass("btn-max sys-button");
                 btnMax.appendTo(buttons);
             }
 
             if (o.btnMin === true) {
-                btnMin = $("<span>").addClass("btn-min");
+                btnMin = $("<span>").addClass("btn-min sys-button");
                 btnMin.appendTo(buttons);
             }
 
             if (o.btnClose === true) {
-                btnClose = $("<span>").addClass("btn-close");
+                btnClose = $("<span>").addClass("btn-close sys-button");
                 btnClose.appendTo(buttons);
             }
         }

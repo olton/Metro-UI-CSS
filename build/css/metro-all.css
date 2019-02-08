@@ -23905,26 +23905,18 @@ figure img {
   border: 1 solid transparent;
   margin: 1px 0;
 }
-.window-caption .buttons .btn-min,
-.window-caption .buttons .btn-max,
-.window-caption .buttons .btn-close {
+.window-caption .buttons .sys-button {
   background-color: transparent;
   color: #ffffff;
 }
-.window-caption .buttons .btn-min:hover,
-.window-caption .buttons .btn-max:hover,
-.window-caption .buttons .btn-close:hover {
+.window-caption .buttons .sys-button:hover {
   background-color: rgba(255, 255, 255, 0.1);
 }
-.window-caption .buttons .btn-min:hover::before,
-.window-caption .buttons .btn-max:hover::before,
-.window-caption .buttons .btn-close:hover::before {
+.window-caption .buttons .sys-button:hover::before {
   border-color: #ffffff;
   color: #ffffff;
 }
-.window-caption .buttons .btn-min:active,
-.window-caption .buttons .btn-max:active,
-.window-caption .buttons .btn-close:active {
+.window-caption .buttons .sys-button:active {
   background-color: rgba(255, 255, 255, 0.3);
   color: #ffffff;
 }
