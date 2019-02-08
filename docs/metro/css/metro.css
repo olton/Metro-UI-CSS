@@ -23859,16 +23859,19 @@ figure img {
   width: 100%;
 }
 .window-caption .icon {
-  width: 36px;
-  height: 36px;
+  width: 34px;
+  height: 34px;
   text-align: center;
   -ms-flex-negative: 0;
       flex-shrink: 0;
+  display: block;
+  position: relative;
+  border: 1px solid transparent;
 }
 .window-caption .icon * {
   width: 1rem;
   font-size: 1rem;
-  line-height: 36px;
+  line-height: 34px;
   text-align: center;
 }
 .window-caption * + .title {
@@ -23902,7 +23905,7 @@ figure img {
   outline: none;
   cursor: pointer;
   display: block;
-  border: 1 solid transparent;
+  border: 1px solid transparent;
   margin: 1px 0;
 }
 .window-caption .buttons .sys-button {
@@ -23935,7 +23938,7 @@ figure img {
   border-color: #777777;
   content: '\D7';
   position: absolute;
-  line-height: 35px;
+  line-height: 34px;
   vertical-align: middle;
   left: 50%;
   top: -4px;
@@ -23963,7 +23966,7 @@ figure img {
   border-top-width: 2px;
 }
 .window-caption .buttons .btn-custom {
-  min-width: 35px;
+  min-width: 34px;
   width: auto;
   -ms-flex-negative: 0;
       flex-shrink: 0;

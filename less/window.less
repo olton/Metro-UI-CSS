@@ -40,15 +40,18 @@
     }
 
     .icon {
-        width: 36px;
-        height: 36px;
+        width: 34px;
+        height: 34px;
         text-align: center;
         flex-shrink: 0;
+        display: block;
+        position: relative;
+        border: 1px solid transparent;
 
         * {
             width: 1rem;
             font-size: 1rem;
-            line-height: 36px;
+            line-height: 34px;
             text-align: center;
         }
     }
@@ -80,7 +83,7 @@
             outline: none;
             cursor: pointer;
             display: block;
-            border: 1 solid @transparent;
+            border: 1px solid @transparent;
             margin: 1px 0;
         }
 
@@ -117,7 +120,7 @@
                 border-color: @winFlatSystemButtonRestColor;
                 content: '\D7';
                 position: absolute;
-                line-height: 35px;
+                line-height: 34px;
                 vertical-align: middle;
                 left: 50%;
                 top: -4px;
@@ -152,7 +155,7 @@
         }
 
         .btn-custom {
-            min-width: 35px;
+            min-width: 34px;
             width: auto;
             flex-shrink: 0;
         }
