@@ -305,7 +305,6 @@ var Window = {
             if (o.btnMax) o.minWidth += 34;
             if (o.btnMin) o.minWidth += 34;
             if (o.btnClose) o.minWidth += 34;
-            console.log(o.minWidth);
         }
 
         if (o.minWidth > 0 && !isNaN(o.width) && o.width < o.minWidth) {
@@ -331,8 +330,6 @@ var Window = {
                 onResize: o.onResize
             });
         }
-
-        console.log(win.attr("id"), width);
 
         win.css({
             width: width,

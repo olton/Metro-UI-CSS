@@ -100,8 +100,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.36-dev 08/02/2019 12:58",
-    versionFull: "4.2.36-dev 08/02/2019 12:58",
+    version: "4.2.36-dev 08/02/2019 13:00",
+    versionFull: "4.2.36-dev 08/02/2019 13:00",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -24789,7 +24789,6 @@ var Window = {
             if (o.btnMax) o.minWidth += 34;
             if (o.btnMin) o.minWidth += 34;
             if (o.btnClose) o.minWidth += 34;
-            console.log(o.minWidth);
         }
 
         if (o.minWidth > 0 && !isNaN(o.width) && o.width < o.minWidth) {
@@ -24815,8 +24814,6 @@ var Window = {
                 onResize: o.onResize
             });
         }
-
-        console.log(win.attr("id"), width);
 
         win.css({
             width: width,
