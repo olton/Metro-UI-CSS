@@ -100,8 +100,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.36-dev 08/02/2019 13:00",
-    versionFull: "4.2.36-dev 08/02/2019 13:00",
+    version: "4.2.36-dev 08/02/2019 13:09",
+    versionFull: "4.2.36-dev 08/02/2019 13:09",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -24754,15 +24754,16 @@ var Window = {
         win.on(Metro.events.dblclick, ".window-caption", function(e){
             that.maximized(e);
         });
-        btnMax.on(Metro.events.start, function(e){
+
+        if (o.btnMax === true) btnMax.on(Metro.events.start, function(e){
             if (Utils.isRightMouse(e)) return;
             that.maximized(e);
         });
-        btnMin.on(Metro.events.start, function(e){
+        if (o.btnMin === true) btnMin.on(Metro.events.start, function(e){
             if (Utils.isRightMouse(e)) return;
             that.minimized(e);
         });
-        btnClose.on(Metro.events.start, function(e){
+        if (o.btnClose === true) btnClose.on(Metro.events.start, function(e){
             if (Utils.isRightMouse(e)) return;
             that.close(e);
         });
