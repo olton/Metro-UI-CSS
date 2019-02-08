@@ -100,8 +100,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.36-dev 08/02/2019 10:45",
-    versionFull: "4.2.36-dev 08/02/2019 10:45",
+    version: "4.2.36-dev 08/02/2019 10:51",
+    versionFull: "4.2.36-dev 08/02/2019 10:51",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -24700,17 +24700,17 @@ var Window = {
         if (o.btnClose === true || o.btnMin === true || o.btnMax === true) {
 
             if (o.btnMax === true) {
-                btnMax = $("<span>").addClass("btn-max");
+                btnMax = $("<span>").addClass("btn-max sys-button");
                 btnMax.appendTo(buttons);
             }
 
             if (o.btnMin === true) {
-                btnMin = $("<span>").addClass("btn-min");
+                btnMin = $("<span>").addClass("btn-min sys-button");
                 btnMin.appendTo(buttons);
             }
 
             if (o.btnClose === true) {
-                btnClose = $("<span>").addClass("btn-close");
+                btnClose = $("<span>").addClass("btn-close sys-button");
                 btnClose.appendTo(buttons);
             }
         }
