@@ -100,8 +100,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.36-dev 08/02/2019 13:09",
-    versionFull: "4.2.36-dev 08/02/2019 13:09",
+    version: "@@version",
+    versionFull: "@@version.@@build @@status",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -24755,17 +24755,12 @@ var Window = {
             that.maximized(e);
         });
 
-        if (o.btnMax === true) btnMax.on(Metro.events.start, function(e){
+        caption.on(Metro.events.click, ".btn-max, .btn-min, .btn-close", function(e){
             if (Utils.isRightMouse(e)) return;
-            that.maximized(e);
-        });
-        if (o.btnMin === true) btnMin.on(Metro.events.start, function(e){
-            if (Utils.isRightMouse(e)) return;
-            that.minimized(e);
-        });
-        if (o.btnClose === true) btnClose.on(Metro.events.start, function(e){
-            if (Utils.isRightMouse(e)) return;
-            that.close(e);
+            var target = $(e.target);
+            if (target.hasClass("btn-max")) that.maximized(e);
+            if (target.hasClass("btn-min")) that.minimized(e);
+            if (target.hasClass("btn-close")) that.close(e);
         });
 
         if (o.draggable === true) {
