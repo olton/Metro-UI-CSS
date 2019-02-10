@@ -1,3 +1,5 @@
+### 4.2.37
+
 ### 4.2.36
 + [x] Window: fix system button click behavior when draggable enabled
 + [x] Window: fix creating `icon` and `title` if these not defined
