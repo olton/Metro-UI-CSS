@@ -1,3 +1,9 @@
+### 4.2.36
++ [x] Window: fix system button click behavior when draggable enabled
++ [x] Window: fix creating `icon` and `title` if these not defined
++ [x] ListView: add trigger `change` when nodes selected/deselected, issue #1313
++ [x] Window: add custom buttons to caption
+
 ### 4.2.35
 + [x] Draggable: refactoring
 + [x] File: add label for counting selected files for dropdown area

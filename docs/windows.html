@@ -55,6 +55,7 @@
                             <li class="toc-entry"><a href="#_window_caption_title">Title</a></li>
                             <li class="toc-entry"><a href="#_window_caption_buttons">Buttons</a></li>
                             <li class="toc-entry"><a href="#_window_buttons_events">Buttons events</a></li>
+                            <li class="toc-entry"><a href="#_window_custom_buttons">Custom buttons</a></li>
                         </ul>
                     </li>
                     <li class="toc-entry"><a href="#_window_shadow">Shadow</a></li>
@@ -249,7 +250,7 @@
                 <p>
                     The default events are shown in the example below:
                 </p>
-                <div class="example pos-relative" style="height: 300px;">
+                <div class="example pos-relative p-0" style="height: 300px;">
                     <div class="p-2"
                             data-role="window"
                             data-draggable="true"
@@ -261,6 +262,75 @@
                         Click to buttons to view default buttons events.
                     </div>
                 </div>
+
+                <h4 id="_window_custom_buttons">Custom buttons</h4>
+                <p>
+                    You can add a custom buttons to window caption. To add custom buttons, use attribute <code>data-custom-buttons</code>
+                </p>
+                <div class="example pos-relative p-0" style="height: 300px;">
+                    <script>
+                        var customButtons = [
+                            {
+                                html: "<span class='mif-rocket'></span>",
+                                cls: " sys-button",
+                                onclick: "alert('You press rocket button')"
+                            },
+                            {
+                                html: "<span class='mif-user'></span>",
+                                cls: "alert",
+                                onclick: "alert('You press user button')"
+                            },
+                            {
+                                html: "<span class='mif-cog'></span>",
+                                cls: "warning",
+                                onclick: "alert('You press cog button')"
+                            }
+                        ];
+                    </script>
+                    <div class="p-2"
+                         data-role="window"
+                         data-draggable="true"
+                         data-title="Window"
+                         data-btn-close="true"
+                         data-btn-min="true"
+                         data-btn-max="true"
+                         data-custom-buttons="customButtons"
+                         data-width="340" data-height="160">
+                        Click to buttons to view default buttons events.
+                    </div>
+                </div>
+                <pre><code>
+                    &lt;script&gt;
+                        var customButtons = [
+                            {
+                                html: "&lt;span class='mif-rocket'&gt;&lt;/span&gt;",
+                                cls: "sys-button",
+                                onclick: "alert('You press rocket button')"
+                            },
+                            {
+                                html: "&lt;span class='mif-user'&gt;&lt;/span&gt;",
+                                cls: "alert",
+                                onclick: "alert('You press user button')"
+                            },
+                            {
+                                html: "&lt;span class='mif-cog'&gt;&lt;/span&gt;",
+                                cls: "warning",
+                                onclick: "alert('You press cog button')"
+                            }
+                        ];
+                    &lt;/script&gt;
+                    &lt;div class="p-2"
+                         data-role="window"
+                         data-draggable="true"
+                         data-title="Window"
+                         data-btn-close="true"
+                         data-btn-min="true"
+                         data-btn-max="true"
+                         data-custom-buttons="customButtons"
+                         data-width="300" data-height="160"&gt;
+                        Click to buttons to view default buttons events.
+                    &lt;/div&gt;
+                </code></pre>
 
                 <h3 id="_window_shadow">Add shadow to window</h3>
                 <p>
@@ -331,7 +401,7 @@
                 <p>
                     To make window as <code>resizable</code> add attribute <code>data-resizable="true"</code> to your window.
                 </p>
-                <div class="example pos-relative" style="height: 300px;">
+                <div class="example pos-relative p-0" style="height: 300px;">
                     <div class="p-2" data-role="window" data-resizable="true" data-draggable="true" data-width="300" data-height="160" id="-window-resizable">
                         Resize the window on hold and move bottom right corner of the window.
                     </div>

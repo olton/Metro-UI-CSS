@@ -1,5 +1,5 @@
 /*
- * Metro 4 Components Library v4.2.35 build @@build (https://metroui.org.ua)
+ * Metro 4 Components Library v4.2.36 build @@build (https://metroui.org.ua)
  * Copyright 2019 Sergey Pimenov
  * Licensed under MIT
  */
@@ -23840,7 +23840,7 @@ figure img {
           align-items: center;
   height: 2.25rem;
   line-height: 2.25rem;
-  padding: 0 0 0 0.3125rem;
+  padding: 0;
   border-bottom: 1px transparent solid;
   cursor: default;
   vertical-align: middle;
@@ -23856,19 +23856,26 @@ figure img {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  width: 100%;
+  padding-left: 4px;
 }
 .window-caption .icon {
-  margin-left: 0.3125rem;
+  width: 34px;
+  height: 34px;
+  text-align: center;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  display: block;
+  position: relative;
 }
 .window-caption .icon * {
   width: 1rem;
   font-size: 1rem;
-  max-height: 1rem;
-  line-height: 1rem;
+  line-height: 34px;
   text-align: center;
 }
 .window-caption * + .title {
-  margin-left: 0.3125rem;
+  padding-left: 0;
 }
 .window-caption .buttons {
   height: 100%;
@@ -23885,10 +23892,11 @@ figure img {
 }
 .window-caption .buttons .btn-min,
 .window-caption .buttons .btn-max,
-.window-caption .buttons .btn-close {
+.window-caption .buttons .btn-close,
+.window-caption .buttons .btn-custom {
   position: relative;
-  height: 100%;
-  width: 2rem;
+  height: 34px;
+  width: 34px;
   text-align: center;
   vertical-align: middle;
   font-size: 1rem;
@@ -23898,24 +23906,20 @@ figure img {
   cursor: pointer;
   display: block;
   border: 1px solid transparent;
-  margin: 0 0.5px;
-  background-color: transparent;
-  color: #777777;
+  margin: 1px 0;
 }
-.window-caption .buttons .btn-min:hover,
-.window-caption .buttons .btn-max:hover,
-.window-caption .buttons .btn-close:hover {
+.window-caption .buttons .sys-button {
+  background-color: transparent;
+  color: #ffffff;
+}
+.window-caption .buttons .sys-button:hover {
   background-color: rgba(255, 255, 255, 0.1);
 }
-.window-caption .buttons .btn-min:hover::before,
-.window-caption .buttons .btn-max:hover::before,
-.window-caption .buttons .btn-close:hover::before {
+.window-caption .buttons .sys-button:hover::before {
   border-color: #ffffff;
   color: #ffffff;
 }
-.window-caption .buttons .btn-min:active,
-.window-caption .buttons .btn-max:active,
-.window-caption .buttons .btn-close:active {
+.window-caption .buttons .sys-button:active {
   background-color: rgba(255, 255, 255, 0.3);
   color: #ffffff;
 }
@@ -23934,7 +23938,7 @@ figure img {
   border-color: #777777;
   content: '\D7';
   position: absolute;
-  line-height: 35px;
+  line-height: 34px;
   vertical-align: middle;
   left: 50%;
   top: -4px;
@@ -23961,20 +23965,31 @@ figure img {
   border: 1px #fff solid;
   border-top-width: 2px;
 }
-.window-caption .buttons .btn-min {
+.window-caption .buttons .btn-custom {
+  min-width: 34px;
+  width: auto;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+}
+.window-caption .buttons .btn-custom {
   -webkit-box-ordinal-group: 2;
       -ms-flex-order: 1;
           order: 1;
 }
-.window-caption .buttons .btn-max {
+.window-caption .buttons .btn-min {
   -webkit-box-ordinal-group: 3;
       -ms-flex-order: 2;
           order: 2;
 }
-.window-caption .buttons .btn-close {
+.window-caption .buttons .btn-max {
   -webkit-box-ordinal-group: 4;
       -ms-flex-order: 3;
           order: 3;
+}
+.window-caption .buttons .btn-close {
+  -webkit-box-ordinal-group: 5;
+      -ms-flex-order: 4;
+          order: 4;
 }
 .window-content {
   overflow: auto;
@@ -24028,6 +24043,9 @@ figure img {
 }
 .window.minimized .window-content {
   display: none!important;
+}
+.window.minimized .window-caption .btn-custom {
+  display: none;
 }
 .window.maximized {
   top: 0!important;

@@ -32,7 +32,7 @@ var Window = {
         clsContent: "",
         clsWindow: "",
         draggable: true,
-        dragElement: ".window-caption",
+        dragElement: ".window-caption .icon, .window-caption .title",
         dragArea: "parent",
         shadow: false,
         icon: "",
@@ -49,6 +49,12 @@ var Window = {
         left: "auto",
         place: "auto",
         closeAction: Metro.actions.REMOVE,
+        customButtons: null,
+        clsCustomButton: "",
+        minWidth: 0,
+        minHeight: 0,
+        maxWidth: 0,
+        maxHeight: 0,
         onDragStart: Metro.noop,
         onDragStop: Metro.noop,
         onDragMove: Metro.noop,
@@ -152,15 +158,9 @@ var Window = {
     _window: function(o){
         var that = this;
         var win, caption, content, icon, title, buttons, btnClose, btnMin, btnMax, resizer, status;
+        var width = o.width, height = o.height;
 
         win = $("<div>").addClass("window");
-        win.css({
-            width: o.width,
-            height: o.height,
-            position: o.position,
-            top: o.top,
-            left: o.left
-        });
 
         if (o.modal === true) {
             win.addClass("modal");
@@ -181,12 +181,12 @@ var Window = {
             win.addClass("win-shadow");
         }
 
-        if (o.icon !== undefined) {
+        if (Utils.isValue(o.icon)) {
             icon = $("<span>").addClass("icon").html(o.icon);
             icon.appendTo(caption);
         }
 
-        if (o.title !== undefined) {
+        if (Utils.isValue(o.title)) {
             title = $("<span>").addClass("title").html(o.title);
             title.appendTo(caption);
         }
@@ -208,55 +208,76 @@ var Window = {
             }
         }
 
-        if (o.btnClose === true || o.btnMin === true || o.btnMax === true) {
-            buttons = $("<div>").addClass("buttons");
-            buttons.appendTo(caption);
+        buttons = $("<div>").addClass("buttons");
+        buttons.appendTo(caption);
 
-            if (o.btnMax === true) {
-                btnMax = $("<span>").addClass("btn-max");
-                btnMax.appendTo(buttons);
-            }
-
-            if (o.btnMin === true) {
-                btnMin = $("<span>").addClass("btn-min");
-                btnMin.appendTo(buttons);
-            }
-
-            if (o.btnClose === true) {
-                btnClose = $("<span>").addClass("btn-close");
-                btnClose.appendTo(buttons);
-            }
+        if (o.btnMax === true) {
+            btnMax = $("<span>").addClass("button btn-max sys-button");
+            btnMax.appendTo(buttons);
         }
+
+        if (o.btnMin === true) {
+            btnMin = $("<span>").addClass("button btn-min sys-button");
+            btnMin.appendTo(buttons);
+        }
+
+        if (o.btnClose === true) {
+            btnClose = $("<span>").addClass("button btn-close sys-button");
+            btnClose.appendTo(buttons);
+        }
+
+        if (Utils.isValue(o.customButtons)) {
+            var customButtons = [];
+
+            if (Utils.isObject(o.customButtons) !== false) {
+                o.customButtons = Utils.isObject(o.customButtons);
+            }
+
+            if (typeof o.customButtons === "string" && o.customButtons.indexOf("{") > -1) {
+                customButtons = JSON.parse(o.customButtons);
+            } else if (typeof o.customButtons === "object" && Utils.objectLength(o.customButtons) > 0) {
+                customButtons = o.customButtons;
+            } else {
+                console.log("Unknown format for custom buttons");
+            }
+
+            $.each(customButtons, function(){
+                var item = this;
+                var customButton = $("<span>");
+
+                customButton
+                    .addClass("button btn-custom")
+                    .addClass(o.clsCustomButton)
+                    .addClass(item.cls)
+                    .attr("tabindex", -1)
+                    .html(item.html);
+
+                customButton.data("action", item.onclick);
+
+                buttons.prepend(customButton);
+            });
+        }
+
+        caption.on(Metro.events.stop, ".btn-custom", function(e){
+            if (Utils.isRightMouse(e)) return;
+            var button = $(this);
+            var action = button.data("action");
+            Utils.exec(action, [button], this);
+        });
 
         win.attr("id", o.id === undefined ? Utils.elementId("window") : o.id);
-
-        if (o.resizable === true) {
-            resizer = $("<span>").addClass("resize-element");
-            resizer.appendTo(win);
-            win.addClass("resizable");
-        }
 
         win.on(Metro.events.dblclick, ".window-caption", function(e){
             that.maximized(e);
         });
-        win.on(Metro.events.click, ".btn-max", function(e){
-            that.maximized(e);
-        });
-        win.on(Metro.events.click, ".btn-min", function(e){
-            that.minimized(e);
-        });
-        win.on(Metro.events.click, ".btn-close", function(e){
-            that.close(e);
-        });
 
-        if (o.resizable === true) {
-            win.resizable({
-                resizeElement: ".resize-element",
-                onResizeStart: o.onResizeStart,
-                onResizeStop: o.onResizeStop,
-                onResize: o.onResize
-            });
-        }
+        caption.on(Metro.events.click, ".btn-max, .btn-min, .btn-close", function(e){
+            if (Utils.isRightMouse(e)) return;
+            var target = $(e.target);
+            if (target.hasClass("btn-max")) that.maximized(e);
+            if (target.hasClass("btn-min")) that.minimized(e);
+            if (target.hasClass("btn-close")) that.close(e);
+        });
 
         if (o.draggable === true) {
             win.draggable({
@@ -271,6 +292,48 @@ var Window = {
         win.addClass(o.clsWindow);
         caption.addClass(o.clsCaption);
         content.addClass(o.clsContent);
+
+        if (o.minWidth === 0) {
+            o.minWidth = 34;
+            $.each(buttons.children(".btn-custom"), function(){
+                o.minWidth += Utils.hiddenElementSize(this).width;
+            });
+            if (o.btnMax) o.minWidth += 34;
+            if (o.btnMin) o.minWidth += 34;
+            if (o.btnClose) o.minWidth += 34;
+        }
+
+        if (o.minWidth > 0 && !isNaN(o.width) && o.width < o.minWidth) {
+            width = o.minWidth;
+        }
+        if (o.minHeight > 0 && !isNaN(o.height) && o.height > o.minHeight) {
+            height = o.minHeight;
+        }
+
+        if (o.resizable === true) {
+            resizer = $("<span>").addClass("resize-element");
+            resizer.appendTo(win);
+            win.addClass("resizable");
+
+            win.resizable({
+                minWidth: o.minWidth,
+                minHeight: o.minHeight,
+                maxWidth: o.maxWidth,
+                maxHeight: o.maxHeight,
+                resizeElement: ".resize-element",
+                onResizeStart: o.onResizeStart,
+                onResizeStop: o.onResizeStop,
+                onResize: o.onResize
+            });
+        }
+
+        win.css({
+            width: width,
+            height: height,
+            position: o.position,
+            top: o.top,
+            left: o.left
+        });
 
         return win;
     },

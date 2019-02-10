@@ -10,7 +10,6 @@
     color: @dark;
     border: 1px @winFlatBorderColor solid;
     z-index: 1;
-    //transition: @transition-base;
 }
 
 .window-caption {
@@ -21,7 +20,7 @@
     align-items: center;
     height: 2.25rem;
     line-height: 2.25rem;
-    padding: 0 0 0 .3125rem;
+    padding: 0;
     border-bottom: 1px @transparent solid;
     cursor: default;
     vertical-align: middle;
@@ -36,22 +35,28 @@
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
+        width: 100%;
+        padding-left: 4px;
     }
 
     .icon {
-        margin-left: .3125rem;
+        width: 34px;
+        height: 34px;
+        text-align: center;
+        flex-shrink: 0;
+        display: block;
+        position: relative;
 
         * {
             width: 1rem;
             font-size: 1rem;
-            max-height: 1rem;
-            line-height: 1rem;
+            line-height: 34px;
             text-align: center;
         }
     }
 
     * + .title {
-        margin-left: .3125rem;
+        padding-left: 0;
     }
 
     .buttons {
@@ -65,10 +70,10 @@
 
 .window-caption {
     .buttons {
-        .btn-min, .btn-max, .btn-close {
+        .btn-min, .btn-max, .btn-close, .btn-custom {
             position: relative;
-            height: 100%;
-            width: 2rem;
+            height: 34px;
+            width: 34px;
             text-align: center;
             vertical-align: middle;
             font-size: 1rem;
@@ -78,11 +83,12 @@
             cursor: pointer;
             display: block;
             border: 1px solid @transparent;
-            margin: 0 .5px;
+            margin: 1px 0;
+        }
 
+        .sys-button {
             background-color: @transparent;
-            color: @winFlatSystemButtonRestColor;
-
+            color: @white;
             &:hover {
                 background-color: @hoverBackgroundLight1;
 
@@ -113,7 +119,7 @@
                 border-color: @winFlatSystemButtonRestColor;
                 content: '\D7';
                 position: absolute;
-                line-height: 35px;
+                line-height: 34px;
                 vertical-align: middle;
                 left: 50%;
                 top: -4px;
@@ -147,9 +153,16 @@
             }
         }
 
-        .btn-min {order: 1;}
-        .btn-max {order: 2;}
-        .btn-close {order: 3;}
+        .btn-custom {
+            min-width: 34px;
+            width: auto;
+            flex-shrink: 0;
+        }
+
+        .btn-custom {order: 1;}
+        .btn-min {order: 2;}
+        .btn-max {order: 3;}
+        .btn-close {order: 4;}
     }
 }
 
@@ -219,6 +232,10 @@
 
         .window-content {
             display: none!important;
+        }
+
+        .window-caption .btn-custom {
+            display: none;
         }
     }
 
