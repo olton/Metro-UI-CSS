@@ -23840,7 +23840,7 @@ figure img {
           align-items: center;
   height: 2.25rem;
   line-height: 2.25rem;
-  padding: 0 0 0 0.3125rem;
+  padding: 0;
   border-bottom: 1px transparent solid;
   cursor: default;
   vertical-align: middle;
@@ -23857,6 +23857,7 @@ figure img {
   white-space: nowrap;
   text-overflow: ellipsis;
   width: 100%;
+  padding-left: 4px;
 }
 .window-caption .icon {
   width: 34px;
@@ -23866,7 +23867,6 @@ figure img {
       flex-shrink: 0;
   display: block;
   position: relative;
-  border: 1px solid transparent;
 }
 .window-caption .icon * {
   width: 1rem;
@@ -23875,7 +23875,7 @@ figure img {
   text-align: center;
 }
 .window-caption * + .title {
-  margin-left: 0.3125rem;
+  padding-left: 0;
 }
 .window-caption .buttons {
   height: 100%;

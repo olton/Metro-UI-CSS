@@ -21,7 +21,7 @@
     align-items: center;
     height: 2.25rem;
     line-height: 2.25rem;
-    padding: 0 0 0 .3125rem;
+    padding: 0;
     border-bottom: 1px @transparent solid;
     cursor: default;
     vertical-align: middle;
@@ -37,6 +37,7 @@
         white-space: nowrap;
         text-overflow: ellipsis;
         width: 100%;
+        padding-left: 4px;
     }
 
     .icon {
@@ -46,7 +47,6 @@
         flex-shrink: 0;
         display: block;
         position: relative;
-        border: 1px solid transparent;
 
         * {
             width: 1rem;
@@ -57,7 +57,7 @@
     }
 
     * + .title {
-        margin-left: .3125rem;
+        padding-left: 0;
     }
 
     .buttons {
