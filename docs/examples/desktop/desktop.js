@@ -97,6 +97,7 @@ function createWindowWithCustomButtons(){
     var customButtons = [
         {
             html: "<span class='mif-rocket'></span>",
+            cls: "sys-button",
             onclick: "alert('You press user button')"
         },
         {
