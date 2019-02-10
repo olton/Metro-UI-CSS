@@ -342,10 +342,12 @@ var Listview = {
 
     clearSelected: function(){
         this.element.find(":checked").prop("checked", false);
+        this.element.trigger('change');
     },
 
     selectAll: function(mode){
         this.element.find(".node > .checkbox input").prop("checked", mode !== false);
+        this.element.trigger('change');
     },
 
     changeAttribute: function(attributeName){
