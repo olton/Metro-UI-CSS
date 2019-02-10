@@ -100,8 +100,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.37-dev 10/02/2019 22:10",
-    versionFull: "4.2.37-dev 10/02/2019 22:10",
+    version: "4.2.37-dev 10/02/2019 22:55",
+    versionFull: "4.2.37-dev 10/02/2019 22:55",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -11674,8 +11674,6 @@ var MaterialInput = {
 
     _createStructure: function(){
         var element = this.element, o = this.options;
-        var prev = element.prev();
-        var parent = element.parent();
         var container = $("<div>").addClass("input-material " + element[0].className);
 
         element[0].className = "";
@@ -11685,12 +11683,7 @@ var MaterialInput = {
             element.attr("type", "text");
         }
 
-        if (prev.length === 0) {
-            parent.prepend(container);
-        } else {
-            container.insertAfter(prev);
-        }
-
+        container.insertBefore(element);
         element.appendTo(container);
 
         if (Utils.isValue(o.label)) {
@@ -11718,6 +11711,10 @@ var MaterialInput = {
         } else {
             this.enable();
         }
+    },
+
+    _createEvents: function(){
+
     },
 
     clear: function(){
