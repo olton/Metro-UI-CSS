@@ -1,5 +1,6 @@
 ### 4.2.37
 + [x] Input material: fix error when creating element, issue #1318
++ [x] Calendar: fix `justify-content` for `days-row`
 
 ### 4.2.36
 + [x] Window: fix system button click behavior when draggable enabled
