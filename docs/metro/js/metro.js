@@ -100,8 +100,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.37-dev 11/02/2019 13:22",
-    versionFull: "4.2.37-dev 11/02/2019 13:22",
+    version: "4.2.37-dev 12/02/2019 22:00",
+    versionFull: "4.2.37-dev 12/02/2019 22:00",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -10139,8 +10139,8 @@ var Draggable = {
                 that.move = false;
 
                 Utils.exec(o.onDragStop, [position], elem);
-                e.preventDefault();
-                e.stopPropagation();
+                // e.preventDefault();
+                // e.stopPropagation();
             });
         });
     },
@@ -19346,7 +19346,7 @@ var Table = {
             that.activity.show(o.activityTimeout, function(){
                 that.currentPage = 1;
                 that.sort.colIndex = col.data("index");
-                if (!col.has("sort-asc") && !col.hasClass("sort-desc")) {
+                if (!col.hasClass("sort-asc") && !col.hasClass("sort-desc")) {
                     that.sort.dir = o.sortDir;
                 } else {
                     if (col.hasClass("sort-asc")) {
@@ -24667,10 +24667,8 @@ var Window = {
             icon.appendTo(caption);
         }
 
-        if (Utils.isValue(o.title)) {
-            title = $("<span>").addClass("title").html(o.title);
-            title.appendTo(caption);
-        }
+        title = $("<span>").addClass("title").html(Utils.isValue(o.title) ? o.title : "&nbsp;");
+        title.appendTo(caption);
 
         if (o.content !== undefined && o.content !== 'original') {
 

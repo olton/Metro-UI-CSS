@@ -807,7 +807,7 @@ var Table = {
             that.activity.show(o.activityTimeout, function(){
                 that.currentPage = 1;
                 that.sort.colIndex = col.data("index");
-                if (!col.has("sort-asc") && !col.hasClass("sort-desc")) {
+                if (!col.hasClass("sort-asc") && !col.hasClass("sort-desc")) {
                     that.sort.dir = o.sortDir;
                 } else {
                     if (col.hasClass("sort-asc")) {
