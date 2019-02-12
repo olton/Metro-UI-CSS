@@ -100,8 +100,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.37-dev 12/02/2019 22:00",
-    versionFull: "4.2.37-dev 12/02/2019 22:00",
+    version: "4.2.37-dev 12/02/2019 22:01",
+    versionFull: "4.2.37-dev 12/02/2019 22:01",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -10139,8 +10139,6 @@ var Draggable = {
                 that.move = false;
 
                 Utils.exec(o.onDragStop, [position], elem);
-                // e.preventDefault();
-                // e.stopPropagation();
             });
         });
     },
