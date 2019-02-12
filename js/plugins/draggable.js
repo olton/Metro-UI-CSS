@@ -127,8 +127,8 @@ var Draggable = {
                 that.move = false;
 
                 Utils.exec(o.onDragStop, [position], elem);
-                e.preventDefault();
-                e.stopPropagation();
+                // e.preventDefault();
+                // e.stopPropagation();
             });
         });
     },

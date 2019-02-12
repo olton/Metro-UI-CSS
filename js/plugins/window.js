@@ -186,10 +186,8 @@ var Window = {
             icon.appendTo(caption);
         }
 
-        if (Utils.isValue(o.title)) {
-            title = $("<span>").addClass("title").html(o.title);
-            title.appendTo(caption);
-        }
+        title = $("<span>").addClass("title").html(Utils.isValue(o.title) ? o.title : "&nbsp;");
+        title.appendTo(caption);
 
         if (o.content !== undefined && o.content !== 'original') {
 
