@@ -2,6 +2,7 @@
 + [x] Input material: fix error when creating element, issue #1318
 + [x] Calendar: fix `justify-content` for `days-row`
 + [x] Table: fix minor bug for sortable column click event
++ [x] Table: fix minor bug when inspector dragged
 + [x] Window: fix creating window with empty title
 
 ### 4.2.36
