@@ -100,8 +100,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.37-dev 12/02/2019 22:01",
-    versionFull: "4.2.37-dev 12/02/2019 22:01",
+    version: "4.2.37-dev 13/02/2019 10:12",
+    versionFull: "4.2.37-dev 13/02/2019 10:12",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -18889,10 +18889,10 @@ var Table = {
 
     _createInspector: function(){
         var o = this.options;
-        var component = this.component;
         var inspector, table_wrap, table, tbody, actions;
 
         inspector = $("<div data-role='draggable' data-drag-element='.table-inspector-header' data-drag-area='body'>").addClass("table-inspector");
+        inspector.attr("for", this.element.attr("id"));
 
         $("<div class='table-inspector-header'>"+o.inspectorTitle+"</div>").appendTo(inspector);
 
@@ -18910,9 +18910,10 @@ var Table = {
         $("<button class='button secondary js-table-inspector-reset ml-2 mr-2' type='button'>").html(this.locale.buttons.reset).appendTo(actions);
         $("<button class='button link js-table-inspector-cancel place-right' type='button'>").html(this.locale.buttons.cancel).appendTo(actions);
 
+        inspector.data("open", false);
         this.inspector = inspector;
 
-        component.append(inspector);
+        $("body").append(inspector);
 
         this._createInspectorEvents();
     },
@@ -20287,7 +20288,17 @@ var Table = {
     },
 
     openInspector: function(mode){
-        this.inspector[mode ? "addClass" : "removeClass"]("open");
+        var ins = this.inspector;
+        if (mode) {
+            ins.show(0, function(){
+                ins.css({
+                    top: ($(window).height()  - ins.outerHeight(true)) / 2 + pageYOffset,
+                    left: ($(window).width() - ins.outerWidth(true)) / 2 + pageXOffset
+                }).data("open", true);
+            });
+        } else {
+            ins.hide().data("open", false);
+        }
     },
 
     closeInspector: function(){
@@ -20295,7 +20306,7 @@ var Table = {
     },
 
     toggleInspector: function(){
-        this.inspector.toggleClass("open");
+        this.openInspector(!this.inspector.data("open"));
     },
 
     resetView: function(){
