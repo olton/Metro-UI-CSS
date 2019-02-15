@@ -4,6 +4,9 @@
 + [x] Table: fix minor bug for sortable column click event
 + [x] Table: fix minor bug when inspector dragged
 + [x] Window: fix creating window with empty title
++ [x] Utils: fix method `keyInObject`
++ [x] Utils: fix constant for `keypress
++ [x] Table: fix firing `onSearch` for clearing search field
 
 ### 4.2.36
 + [x] Window: fix system button click behavior when draggable enabled
