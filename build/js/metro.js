@@ -100,8 +100,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.37-dev 13/02/2019 10:12",
-    versionFull: "4.2.37-dev 13/02/2019 10:12",
+    version: "4.2.37-dev 15/02/2019 14:46",
+    versionFull: "4.2.37-dev 15/02/2019 14:46",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -176,7 +176,7 @@ var Metro = {
         resize: 'resize.metro',
         keyup: 'keyup.metro',
         keydown: 'keydown.metro',
-        keypress: 'keypredd.metro',
+        keypress: 'keypress.metro',
         dblclick: 'dblclick.metro',
         input: 'input.metro',
         change: 'change.metro',
@@ -4099,8 +4099,8 @@ var Utils = {
         return Object.values(obj).indexOf(value) > -1;
     },
 
-    keyInObject: function(){
-        return Object.keys(obj).indexOf(value) > -1;
+    keyInObject: function(obj, key){
+        return Object.keys(obj).indexOf(key) > -1;
     },
 
     inObject: function(obj, key, val){
@@ -19796,10 +19796,11 @@ var Table = {
                 return result;
             });
 
-            Utils.exec(o.onSearch, [that.searchString, items], element[0])
         } else {
             items = this.items;
         }
+
+        Utils.exec(o.onSearch, [that.searchString, items], element[0]);
 
         this.filteredItems = items;
 
