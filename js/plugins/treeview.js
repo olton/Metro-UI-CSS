@@ -241,15 +241,19 @@ var Treeview = {
     toggleNode: function(node){
         var element = this.element, o = this.options;
         var func;
+        var toBeExpanded = !node.hasClass("expanded");
 
         node.toggleClass("expanded");
 
         if (o.effect === "slide") {
-            func = node.hasClass("expanded") !== true ? "slideUp" : "slideDown";
-            Utils.exec(o.onCollapseNode, [node, element]);
+            func = toBeExpanded === true ? "slideUp" : "slideDown";
         } else {
-            func = node.hasClass("expanded") !== true ? "fadeOut" : "fadeIn";
+            func = toBeExpanded === true ? "fadeOut" : "fadeIn";
+        }
+        if (toBeExpanded) {
             Utils.exec(o.onExpandNode, [node, element]);
+        } else {
+            Utils.exec(o.onCollapseNode, [node, element]);
         }
 
         node.children("ul")[func](o.duration);
