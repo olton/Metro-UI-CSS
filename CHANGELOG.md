@@ -7,6 +7,7 @@
 + [x] Utils: fix method `keyInObject`
 + [x] Utils: fix constant for `keypress
 + [x] Table: fix firing `onSearch` for clearing search field
++ [x] TreeView: fix method `toggleNode`, pr #1326
 
 ### 4.2.36
 + [x] Window: fix system button click behavior when draggable enabled

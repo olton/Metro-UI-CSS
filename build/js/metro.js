@@ -100,8 +100,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.37-dev 15/02/2019 14:46",
-    versionFull: "4.2.37-dev 15/02/2019 14:46",
+    version: "4.2.37-dev 16/02/2019 10:01",
+    versionFull: "4.2.37-dev 16/02/2019 10:01",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -23422,15 +23422,19 @@ var Treeview = {
     toggleNode: function(node){
         var element = this.element, o = this.options;
         var func;
+        var toBeExpanded = !node.hasClass("expanded");
 
         node.toggleClass("expanded");
 
         if (o.effect === "slide") {
-            func = node.hasClass("expanded") !== true ? "slideUp" : "slideDown";
-            Utils.exec(o.onCollapseNode, [node, element]);
+            func = toBeExpanded === true ? "slideUp" : "slideDown";
         } else {
-            func = node.hasClass("expanded") !== true ? "fadeOut" : "fadeIn";
+            func = toBeExpanded === true ? "fadeOut" : "fadeIn";
+        }
+        if (toBeExpanded) {
             Utils.exec(o.onExpandNode, [node, element]);
+        } else {
+            Utils.exec(o.onCollapseNode, [node, element]);
         }
 
         node.children("ul")[func](o.duration);
