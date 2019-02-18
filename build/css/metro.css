@@ -19593,7 +19593,7 @@ aside::after {
   }
 }
 .step-list {
-  margin: 0 0 0 2rem;
+  margin: 0 0 0 3em;
   padding: 0;
   list-style-type: none;
   counter-reset: li;
@@ -19605,7 +19605,7 @@ aside::after {
   margin: 0.625rem;
   vertical-align: top;
 }
-.step-list > li:before {
+.step-list > li::before {
   position: absolute;
   content: counter(li);
   counter-increment: li;
@@ -19613,7 +19613,9 @@ aside::after {
   color: #e4e4e4;
   left: 0;
   top: 0.3125rem;
-  margin-left: -1.5rem;
+  margin-left: -2em;
+  width: 1.8em;
+  text-align: right;
 }
 .custom-list-marker {
   list-style: none inside;

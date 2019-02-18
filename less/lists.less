@@ -2,7 +2,7 @@
 @import (once) "include/mixins";
 
 .step-list {
-    margin: 0 0 0 2rem;
+    margin: 0 0 0 3em;
     padding: 0;
     list-style-type: none;
     counter-reset:li;
@@ -15,7 +15,7 @@
         vertical-align: top;
     }
 
-    & > li:before {
+    & > li::before {
         position: absolute;
         content:counter(li);
         counter-increment:li;
@@ -23,7 +23,9 @@
         color: @lightGray;
         left: 0;
         top: .3125rem;
-        margin-left: -1.5rem;
+        margin-left: -2em;
+        width: 1.8em;
+        text-align: right;
     }
 }
 

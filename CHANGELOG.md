@@ -8,6 +8,7 @@
 + [x] Utils: fix constant for `keypress
 + [x] Table: fix firing `onSearch` for clearing search field
 + [x] TreeView: fix method `toggleNode`, pr #1326
++ [x] Step list: fix index position when `index > 9`, issue #1328
 
 ### 4.2.36
 + [x] Window: fix system button click behavior when draggable enabled
