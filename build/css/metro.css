@@ -19803,11 +19803,30 @@ aside::after {
   position: relative;
   padding: 4px 8px;
 }
-.group-list .item + .item {
-  border-top: 1px solid #dfdfdf;
-}
+.group-list .item + .item,
 .group-list > li + li {
   border-top: 1px solid #dfdfdf;
+}
+.group-list.horizontal {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.group-list.horizontal .item,
+.group-list.horizontal > li {
+  -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
+}
+.group-list.horizontal .item + .item,
+.group-list.horizontal > li + li {
+  border-top: none;
+  border-left: 1px solid #dfdfdf;
 }
 .button,
 .flat-button,
