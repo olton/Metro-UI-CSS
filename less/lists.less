@@ -189,11 +189,23 @@
         padding: 4px 8px;
     }
 
-    .item + .item {
+    .item + .item,  & > li + li {
         border-top: 1px solid @borderColor;
     }
 
-    & > li + li {
-        border-top: 1px solid @borderColor;
+    &.horizontal {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .item, & > li {
+            flex-basis: 100%;
+        }
+
+        .item + .item,  & > li + li {
+            border-top: none;
+            border-left: 1px solid @borderColor;
+        }
+
     }
 }
