@@ -23,8 +23,13 @@
         flex-flow: row wrap;
     }
 
+    &.view-icons-medium, &.view-icons-large, &.view-icons {
+        &.vertical-layout {
+            flex-flow: column wrap;
+        }
+    }
+
     &.view-table {
-        //flex-flow: column nowrap;
         display: table;
     }
 }
