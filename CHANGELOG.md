@@ -1,4 +1,5 @@
 ### 4.2.38
++ [x] ListView: add class `.vertical-layout` for `icons-*` view mode
 
 ### 4.2.37
 + [x] Input material: fix error when creating element, issue #1318

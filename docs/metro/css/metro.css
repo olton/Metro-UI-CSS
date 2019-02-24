@@ -32431,6 +32431,14 @@ video:-webkit-full-screen {
       -ms-flex-flow: row wrap;
           flex-flow: row wrap;
 }
+.listview.view-icons-medium.vertical-layout,
+.listview.view-icons-large.vertical-layout,
+.listview.view-icons.vertical-layout {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column wrap;
+          flex-flow: column wrap;
+}
 .listview.view-table {
   display: table;
 }
