@@ -20,7 +20,6 @@ If you'd like to join them, please consider:
 <h4 align="center">Silver sponsors</h4>
 <div align="center">
 <a href="http://www.infinitytechsystems.com/"><img src="https://metroui.org.ua/images/ITSLogoSmall.png"></a>
-<a href="https://www.triplebeta.nl/"><img src="https://metroui.org.ua/images/triplebeta.png"></a>
 </div>
 
 <!--
@@ -44,3 +43,4 @@ If you'd like to join them, please consider:
  - [Chaoswriter96](https://github.com/Chaoswriter96)
  - [chongzia](https://www.patreon.com/user/creators?u=10094916)
  - [TorakikiSan](https://github.com/TorakikiSan)
+ - [TripleBeta](https://www.triplebeta.nl/)

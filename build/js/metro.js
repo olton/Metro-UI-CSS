@@ -100,8 +100,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.38-dev 24/02/2019 21:53",
-    versionFull: "4.2.38-dev 24/02/2019 21:53",
+    version: "4.2.38-dev 25/02/2019 21:36",
+    versionFull: "4.2.38-dev 25/02/2019 21:36",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -24851,6 +24851,7 @@ var Window = {
     maximized: function(e){
         var win = this.win,  o = this.options;
         var target = $(e.currentTarget);
+        win.removeClass("minimized");
         win.toggleClass("maximized");
         if (target.hasClass("window-caption")) {
             Utils.exec(o.onCaptionDblClick, [win]);
@@ -24861,6 +24862,7 @@ var Window = {
 
     minimized: function(){
         var win = this.win,  element = this.element, o = this.options;
+        win.removeClass("maximized");
         win.toggleClass("minimized");
         Utils.exec(o.onMinClick, [win], element[0]);
     },
