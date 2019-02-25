@@ -356,6 +356,7 @@ var Window = {
     maximized: function(e){
         var win = this.win,  o = this.options;
         var target = $(e.currentTarget);
+        win.removeClass("minimized");
         win.toggleClass("maximized");
         if (target.hasClass("window-caption")) {
             Utils.exec(o.onCaptionDblClick, [win]);
@@ -366,6 +367,7 @@ var Window = {
 
     minimized: function(){
         var win = this.win,  element = this.element, o = this.options;
+        win.removeClass("maximized");
         win.toggleClass("minimized");
         Utils.exec(o.onMinClick, [win], element[0]);
     },
