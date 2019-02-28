@@ -3,9 +3,33 @@ module.exports = function(grunt) {
     "use strict";
 
     var watching = grunt.option('watching');
-    var tasks = [];
+    var develop = grunt.option('develop');
+    var tasks = ['clean', 'less', 'postcss', 'concat'];
+    var watch_files = [
+        'js/i18n/*.json',
+        'js/*.js',
+        'js/utils/*.js',
+        'js/plugins/*js',
+        'less/*.less',
+        'less/include/*.less',
+        'less/third-party/*.less',
+        'less/schemes/*.less',
+        'less/schemes/builder/*.less',
+        'Gruntfile.js'
+    ];
 
     require('load-grunt-tasks')(grunt);
+
+    if (!develop) {
+        tasks.push('uglify');
+        tasks.push('cssmin');
+    }
+
+    tasks.push('copy');
+
+    if (watching) {
+        tasks.push('watch');
+    }
 
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
@@ -172,17 +196,11 @@ module.exports = function(grunt) {
 
         watch: {
             scripts: {
-                files: ['js/i18n/*.json', 'js/*.js', 'js/utils/*.js', 'js/plugins/*js', 'less/*.less', 'less/include/*.less', 'less/third-party/*.less', 'less/schemes/*.less', 'less/schemes/builder/*.less', 'Gruntfile.js'],
-                tasks: ['clean',  'less', 'postcss', 'concat', 'uglify', 'cssmin', 'copy']
+                files: watch_files,
+                tasks: tasks
             }
         }
     });
-
-    tasks = ['clean', 'less', 'postcss', 'concat', 'uglify', 'cssmin', 'copy'];
-
-    if (watching) {
-        tasks.push('watch');
-    }
 
     grunt.registerTask('default', tasks);
 

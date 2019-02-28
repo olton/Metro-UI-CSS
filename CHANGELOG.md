@@ -1,6 +1,8 @@
 ### 4.2.38
++ [ ] Events: add functionality to subscribe on components events `data-on-*` via `$(...).on(...)`
 + [x] ListView: add class `.vertical-layout` for `icons-*` view mode
 + [x] Windows: partial fixed behavior window when user click on min, max button in min, max state, issue #1331 
++ [x] TreeView: fix wrong works node collapse, expand, issue #1332
 
 ### 4.2.37
 + [x] Input material: fix error when creating element, issue #1318

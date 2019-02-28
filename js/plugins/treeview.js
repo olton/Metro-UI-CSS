@@ -241,9 +241,12 @@ var Treeview = {
     toggleNode: function(node){
         var element = this.element, o = this.options;
         var func;
-        var toBeExpanded = !node.hasClass("expanded");
+        var toBeExpanded = !node.data("collapsed");//!node.hasClass("expanded");
+
+        console.log(toBeExpanded);
 
         node.toggleClass("expanded");
+        node.data("collapsed", toBeExpanded);
 
         if (o.effect === "slide") {
             func = toBeExpanded === true ? "slideUp" : "slideDown";
