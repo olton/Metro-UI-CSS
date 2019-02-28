@@ -17,10 +17,11 @@ If you'd like to join them, please consider:
 <a href="https://openbuilds.com/"><img src="https://metroui.org.ua/images/OpenBuilds_logo.png"></a>
 </div>
 
+<!--
 <h4 align="center">Silver sponsors</h4>
 <div align="center">
-<a href="http://www.infinitytechsystems.com/"><img src="https://metroui.org.ua/images/ITSLogoSmall.png"></a>
 </div>
+-->
 
 <!--
 <h2 align="center">Bronze via Patreon</h2>
@@ -32,15 +33,9 @@ If you'd like to join them, please consider:
 
 <h2 align="center">Backers via Patreon</h2>
 
- - [Riku](https://www.patreon.com/user/creators?u=8976699) <small>(The first backer for Metro 4!)</small>
  - [Jonathan](https://www.patreon.com/user/creators?u=10019621) 
- - [Mike](https://www.patreon.com/user/creators?u=2603858) 
- - [Hebert Alves](https://www.patreon.com/user/creators?u=10134199)
  - [Arnaud Dagnelies](https://www.patreon.com/user/creators?u=13947239)
 
-<h2 align="center">Project donors (one pay or former patron)</h2>
 
- - [Chaoswriter96](https://github.com/Chaoswriter96)
- - [chongzia](https://www.patreon.com/user/creators?u=10094916)
- - [TorakikiSan](https://github.com/TorakikiSan)
- - [TripleBeta](https://www.triplebeta.nl/)
+<h5 align="center">Project donors fr all time</h5>
+Thanks to all who [support project](ALL_WHO_SUPPORTED_THE_PROJECT.md)

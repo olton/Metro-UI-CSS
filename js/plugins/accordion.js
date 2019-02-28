@@ -7,8 +7,6 @@ var Accordion = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onAccordionCreate, [this.element]);
-
         return this;
     },
     options: {
@@ -41,6 +39,19 @@ var Accordion = {
     },
 
     _create: function(){
+        var element = this.element, o = this.options;
+
+        this._createStructure();
+        this._createEvents();
+
+        Utils.exec(o.onAccordionCreate, [element]);
+
+        setImmediate(function(){
+            element.fire("accordioncreate");
+        });
+    },
+
+    _createStructure: function(){
         var that = this, element = this.element, o = this.options;
         var frames = element.children(".frame");
         var active = element.children(".frame.active");
@@ -63,8 +74,6 @@ var Accordion = {
         if (o.showActive === true || o.oneFrame === true) {
             this._openFrame(frame_to_open);
         }
-
-        this._createEvents();
     },
 
     _createEvents: function(){
@@ -87,14 +96,11 @@ var Accordion = {
             } else {
                 that._openFrame(frame);
             }
-
-            element.trigger("open", {frame: frame});
         });
     },
 
     _openFrame: function(f){
-        var that = this, element = this.element, o = this.options;
-        var frames = element.children(".frame");
+        var element = this.element, o = this.options;
         var frame = $(f);
 
         if (Utils.exec(o.onFrameBeforeOpen, [frame], element[0]) === false) {
@@ -110,11 +116,17 @@ var Accordion = {
         frame.children(".content").addClass(o.activeContentClass).slideDown(o.duration);
 
         Utils.exec(o.onFrameOpen, [frame], element[0]);
+
+        element.fire("frameopen", frame);
     },
 
     _closeFrame: function(f){
         var that = this, element = this.element, o = this.options;
         var frame = $(f);
+
+        if (!frame.hasClass("active")) {
+            return ;
+        }
 
         if (Utils.exec(o.onFrameBeforeClose, [frame], element[0]) === false) {
             return ;
@@ -125,6 +137,8 @@ var Accordion = {
         frame.children(".content").removeClass(o.activeContentClass).slideUp(o.duration);
 
         Utils.callback(o.onFrameClose, [frame], element[0]);
+
+        element.fire("frameclose", frame);
     },
 
     _closeAll: function(){

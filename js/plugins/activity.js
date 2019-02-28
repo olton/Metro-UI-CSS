@@ -7,8 +7,6 @@ var Activity = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onActivityCreate, [this.element]);
-
         return this;
     },
 
@@ -77,6 +75,12 @@ var Activity = {
             case 'simple': _simple(); break;
             default: _ring();
         }
+
+        Utils.exec(this.options.onActivityCreate, [this.element]);
+
+        setImmediate(function(){
+            element.fire("activitycreate")
+        });
     },
 
     changeAttribute: function(attributeName){

@@ -17,6 +17,13 @@ $.fn.extend({
         return this.each(function(){
             this.className = "";
         });
+    },
+    fire: function(eventName, data){
+        return this.each(function(){
+            var e = jQuery.Event(eventName);
+            e.detail = data;
+            $(this).trigger(e);
+        });
     }
 });
 

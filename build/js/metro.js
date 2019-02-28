@@ -96,12 +96,18 @@ if (typeof Object.values !== 'function') {
     }
 }
 
+if (typeof window.setImmediate !== 'function') {
+    window.setImmediate = function(fn){
+        return setTimeout(fn, 0);
+    }
+}
+
 var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0));
 
 var Metro = {
 
-    version: "4.2.38-dev 25/02/2019 21:36",
-    versionFull: "4.2.38-dev 25/02/2019 21:36",
+    version: "4.2.38-dev 28/02/2019 23:18",
+    versionFull: "4.2.38-dev 28/02/2019 23:18",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -1831,6 +1837,13 @@ $.fn.extend({
     clearClasses: function(){
         return this.each(function(){
             this.className = "";
+        });
+    },
+    fire: function(eventName, data){
+        return this.each(function(){
+            var e = jQuery.Event(eventName);
+            e.detail = data;
+            $(this).trigger(e);
         });
     }
 });
@@ -4337,8 +4350,6 @@ var Accordion = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onAccordionCreate, [this.element]);
-
         return this;
     },
     options: {
@@ -4371,6 +4382,19 @@ var Accordion = {
     },
 
     _create: function(){
+        var element = this.element, o = this.options;
+
+        this._createStructure();
+        this._createEvents();
+
+        Utils.exec(o.onAccordionCreate, [element]);
+
+        setImmediate(function(){
+            element.fire("accordioncreate");
+        });
+    },
+
+    _createStructure: function(){
         var that = this, element = this.element, o = this.options;
         var frames = element.children(".frame");
         var active = element.children(".frame.active");
@@ -4393,8 +4417,6 @@ var Accordion = {
         if (o.showActive === true || o.oneFrame === true) {
             this._openFrame(frame_to_open);
         }
-
-        this._createEvents();
     },
 
     _createEvents: function(){
@@ -4417,14 +4439,11 @@ var Accordion = {
             } else {
                 that._openFrame(frame);
             }
-
-            element.trigger("open", {frame: frame});
         });
     },
 
     _openFrame: function(f){
-        var that = this, element = this.element, o = this.options;
-        var frames = element.children(".frame");
+        var element = this.element, o = this.options;
         var frame = $(f);
 
         if (Utils.exec(o.onFrameBeforeOpen, [frame], element[0]) === false) {
@@ -4440,11 +4459,17 @@ var Accordion = {
         frame.children(".content").addClass(o.activeContentClass).slideDown(o.duration);
 
         Utils.exec(o.onFrameOpen, [frame], element[0]);
+
+        element.fire("frameopen", frame);
     },
 
     _closeFrame: function(f){
         var that = this, element = this.element, o = this.options;
         var frame = $(f);
+
+        if (!frame.hasClass("active")) {
+            return ;
+        }
 
         if (Utils.exec(o.onFrameBeforeClose, [frame], element[0]) === false) {
             return ;
@@ -4455,6 +4480,8 @@ var Accordion = {
         frame.children(".content").removeClass(o.activeContentClass).slideUp(o.duration);
 
         Utils.callback(o.onFrameClose, [frame], element[0]);
+
+        element.fire("frameclose", frame);
     },
 
     _closeAll: function(){
@@ -4504,8 +4531,6 @@ var Activity = {
 
         this._setOptionsFromDOM();
         this._create();
-
-        Utils.exec(this.options.onActivityCreate, [this.element]);
 
         return this;
     },
@@ -4575,6 +4600,12 @@ var Activity = {
             case 'simple': _simple(); break;
             default: _ring();
         }
+
+        Utils.exec(this.options.onActivityCreate, [this.element]);
+
+        setImmediate(function(){
+            element.fire("activitycreate")
+        });
     },
 
     changeAttribute: function(attributeName){
@@ -4658,6 +4689,10 @@ var AppBar = {
         this._createEvents();
 
         Utils.exec(o.onAppBarCreate, [element]);
+
+        setImmediate(function(){
+            element.fire("appbarcreate");
+        });
     },
 
     _createStructure: function(){
@@ -23422,9 +23457,12 @@ var Treeview = {
     toggleNode: function(node){
         var element = this.element, o = this.options;
         var func;
-        var toBeExpanded = !node.hasClass("expanded");
+        var toBeExpanded = !node.data("collapsed");//!node.hasClass("expanded");
+
+        console.log(toBeExpanded);
 
         node.toggleClass("expanded");
+        node.data("collapsed", toBeExpanded);
 
         if (o.effect === "slide") {
             func = toBeExpanded === true ? "slideUp" : "slideDown";
