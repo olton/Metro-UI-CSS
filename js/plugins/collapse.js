@@ -47,7 +47,6 @@ var Collapse = {
         }
 
         toggle.on(Metro.events.click, function(e){
-            console.log("ku");
             if (element.css('display') === 'block' && !element.hasClass('keep-open')) {
                 that._close(element);
             } else {

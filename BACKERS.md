@@ -37,5 +37,6 @@ If you'd like to join them, please consider:
  - [Arnaud Dagnelies](https://www.patreon.com/user/creators?u=13947239)
 
 
-<h5 align="center">Project donors fr all time</h5>
-Thanks to all who [support project](ALL_WHO_SUPPORTED_THE_PROJECT.md)
+<hr>
+ 
+Thanks to all who [supported a project](DONORS.md)

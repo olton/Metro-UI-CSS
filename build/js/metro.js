@@ -106,8 +106,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.38-dev 28/02/2019 23:18",
-    versionFull: "4.2.38-dev 28/02/2019 23:18",
+    version: "4.2.38-dev 03/03/2019 19:44",
+    versionFull: "4.2.38-dev 03/03/2019 19:44",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -7937,7 +7937,6 @@ var Collapse = {
         }
 
         toggle.on(Metro.events.click, function(e){
-            console.log("ku");
             if (element.css('display') === 'block' && !element.hasClass('keep-open')) {
                 that._close(element);
             } else {
@@ -14235,6 +14234,32 @@ var NavigationView = {
         Utils.exec(o.onNavigationViewCreate, [element]);
     },
 
+    _calcMenuHeight: function(){
+        var element = this.element, pane, menu;
+        var elements_height = 0;
+
+        pane = element.children(".navview-pane");
+        if (pane.length === 0) {
+            return;
+        }
+
+        menu = pane.children(".navview-menu");
+
+        if (menu.length === 0) {
+            return ;
+        }
+
+        $.each(menu.prevAll(), function(){
+            elements_height += $(this).outerHeight(true);
+        });
+        $.each(menu.nextAll(), function(){
+            elements_height += $(this).outerHeight(true);
+        });
+        menu.css({
+            height: "calc(100% - "+(elements_height + 20)+"px)"
+        });
+    },
+
     _createView: function(){
         var that = this, element = this.element, o = this.options;
         var pane, content, toggle, menu;
@@ -14248,19 +14273,7 @@ var NavigationView = {
         content = element.children(".navview-content");
         toggle = $(o.toggle);
 
-        menu = pane.find(".navview-menu");
-        if (menu.length > 0) {
-            var elements_height = 0;
-            $.each(menu.prevAll(), function(){
-                elements_height += $(this).outerHeight(true);
-            });
-            $.each(menu.nextAll(), function(){
-                elements_height += $(this).outerHeight(true);
-            });
-            menu.css({
-                height: "calc(100% - "+(elements_height + 20)+"px)"
-            });
-        }
+        this._calcMenuHeight();
 
         this.pane = pane.length > 0 ? pane : null;
         this.content = content.length > 0 ? content : null;
@@ -14307,7 +14320,7 @@ var NavigationView = {
             })
         }
 
-        $(window).on(Metro.events.resize, function(){
+        $(window).on(Metro.events.resize+ "-navview", function(){
 
             element.removeClass("expand");
             that.pane.removeClass("open");
@@ -14316,6 +14329,7 @@ var NavigationView = {
                 element.removeClass("compacted");
             }
 
+            that._calcMenuHeight();
         })
     },
 
