@@ -1,3 +1,5 @@
+### 4.2.39 
+
 ### 4.2.38
 + [x] ListView: add class `.vertical-layout` for `icons-*` view mode
 + [x] Windows: partial fixed behavior window when user click on min, max button in min, max state, issue #1331 
