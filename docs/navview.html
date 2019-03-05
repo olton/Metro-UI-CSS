@@ -87,7 +87,7 @@
                 </p>
 
                 <div class="example p-0" style="height: 500px;">
-                    <div data-role="navview" data-compact="md" data-expanded="lg" data-toggle="#pane-toggle">
+                    <div data-role="navview" data-compact="md" data-expanded="lg" data-toggle="#pane-toggle" data-active-state="true">
                         <nav class="navview-pane">
                             <button class="pull-button">
                                 <span class="mif-menu"></span>
@@ -122,6 +122,16 @@
                                     <a href="#">
                                         <span class="icon"><span class="mif-gamepad"></span></span>
                                         <span class="caption">Games</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="icon"><span class="mif-envelop"></span></span>
+                                        <span class="caption">Email</span>
+                                        <div class="badges">
+                                            <span class="badge inline">10</span>
+                                            <span class="badge inline">5</span>
+                                        </div>
                                     </a>
                                 </li>
                                 <li>
@@ -319,6 +329,9 @@
                         &lt;a href="#"&gt;
                             &lt;span class="icon"&gt;&lt;span class="mif-apps"&gt;&lt;/span&gt;&lt;/span&gt;
                             &lt;span class="caption"&gt;Apps&lt;/span&gt;
+                            &lt;span class="badges"&gt;
+                                &lt;span class="badge inline"&gt;11&lt;/span&gt;
+                            &lt;/span&gt;
                         &lt;/a&gt;
                     &lt;/li&gt;
                 </code></pre>
@@ -434,8 +447,13 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <td><code>onNavigationViewCreate(elem)</code></td>
-                        <td><code>data-on-navigation-view-create</code></td>
+                        <td><code>onMenuItemClick(elem)</code></td>
+                        <td><code>data-on-menu-item-click</code></td>
+                        <td>Fired when user click on navviwe menu item</td>
+                    </tr>
+                    <tr>
+                        <td><code>onNavViewCreate(elem)</code></td>
+                        <td><code>data-on-nav-view-create</code></td>
                         <td>Fired when navigation view was created</td>
                     </tr>
                     </tbody>
@@ -460,6 +478,10 @@
                     <tr>
                         <td><code>close()</code></td>
                         <td>Use this method to close navigation view pane</td>
+                    </tr>
+                    <tr>
+                        <td><code>toggle()</code></td>
+                        <td>Use this method to toggle open/close navigation view pane</td>
                     </tr>
                     </tbody>
                 </table>
