@@ -98,7 +98,7 @@ function createWindowWithCustomButtons(){
         {
             html: "<span class='mif-rocket'></span>",
             cls: "sys-button",
-            onclick: "alert('You press user button')"
+            onclick: "alert('You press rocket button')"
         },
         {
             html: "<span class='mif-user'></span>",

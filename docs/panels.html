@@ -50,6 +50,7 @@
                     <li class="toc-entry"><a href="#_panel_size">Panel size</a></li>
                     <li class="toc-entry"><a href="#_panel_title">Panel title</a></li>
                     <li class="toc-entry"><a href="#_panel_collapsible">Collapsible panel</a></li>
+                    <li class="toc-entry"><a href="#_panel_custom_buttons">Custom buttons</a></li>
                     <li class="toc-entry"><a href="#_panel_draggable">Draggable</a></li>
                     <li class="toc-entry"><a href="#_panel_events">Events</a></li>
                     <li class="toc-entry"><a href="#_panel_methods">Methods</a></li>
@@ -158,6 +159,61 @@
                     &lt;/div&gt;
                 </code></pre>
 
+                <h3 id="_panel_custom_buttons">Custom buttons</h3>
+                <p>
+                    You can add a custom buttons to panel title. To add custom buttons use attribute <code>data-custom-buttons</code>. Value for this attribute must be a predefined object.
+                </p>
+                <div class="example">
+                    <script>
+                        var customButtons = [
+                            {
+                                html: "<span class='mif-rocket'></span>",
+                                cls: "sys-button",
+                                onclick: "alert('You press rocket button')"
+                            },
+                            {
+                                html: "<span class='mif-user'></span>",
+                                cls: "alert",
+                                onclick: "alert('You press user button')"
+                            },
+                            {
+                                html: "<span class='mif-cog'></span>",
+                                cls: "warning",
+                                onclick: "alert('You press cog button')"
+                            }
+                        ];
+                    </script>
+                    <div data-role="panel" data-title-caption="Panel title" data-collapsible="true" data-custom-buttons="customButtons">
+                        Raptus capios ducunt ad genetrix. Joy doesn’t beautifully respect any believer — but the power is what flies.
+                    </div>
+                </div>
+                <pre><code>
+                    &lt;script&gt;
+                        var customButtons = [
+                            {
+                                html: "&lt;span class='mif-rocket'&gt;&lt;/span&gt;",
+                                cls: "sys-button",
+                                onclick: "alert('You press rocket button')"
+                            },
+                            {
+                                html: "&lt;span class='mif-user'&gt;&lt;/span&gt;",
+                                cls: "alert",
+                                onclick: "alert('You press user button')"
+                            },
+                            {
+                                html: "&lt;span class='mif-cog'&gt;&lt;/span&gt;",
+                                cls: "warning",
+                                onclick: "alert('You press cog button')"
+                            }
+                        ];
+                    &lt;/script&gt;
+
+                    &lt;div data-role="panel"
+                         data-title-caption="Panel title"
+                         data-collapsible="true"
+                         data-custom-buttons="customButtons"&gt;...&lt;/div&gt;
+                </code></pre>
+
                 <!-- ads-html -->
 
                 <h3 id="_panel_draggable">Draggable</h3>
@@ -168,7 +224,7 @@
                     <div data-role="panel"
                          data-title-caption="Panel title"
                          data-title-icon="<span class='mif-apps'></span>"
-                         data-width="240"
+                         data-width="320"
                          data-collapsible="true"
                          data-draggable="true">
                         Raptus capios ducunt ad genetrix. Joy doesn’t beautifully respect any believer — but the power is what flies.

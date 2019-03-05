@@ -30287,14 +30287,46 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   color: inherit;
 }
 .panel .panel-title .dropdown-toggle {
-  -webkit-box-ordinal-group: 4;
-      -ms-flex-order: 3;
-          order: 3;
+  -webkit-box-ordinal-group: 5;
+      -ms-flex-order: 4;
+          order: 4;
   height: 100%;
   width: 2.625rem;
   border-left: 1px solid #dfdfdf;
   -ms-flex-negative: 0;
       flex-shrink: 0;
+}
+.panel .panel-title .custom-buttons {
+  -webkit-box-ordinal-group: 4;
+      -ms-flex-order: 3;
+          order: 3;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+}
+.panel .panel-title .btn-custom {
+  width: 42px;
+  height: 42px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.panel .panel-title .btn-custom > * {
+  line-height: 1;
+  width: 16px;
+  height: 16px;
+  font-size: 16px;
 }
 .panel .panel-content {
   display: block;
