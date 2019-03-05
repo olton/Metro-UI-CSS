@@ -1,4 +1,11 @@
-### 4.2.39 
+### 4.2.39
++ [x] NavView: minor improve styling 
++ [x] NavView: add method `pullClick()` for emulate pull button click at runtime 
++ [x] NavView: add class `.focusableItems` to add focus state for items
++ [x] NavView: add attribute `data-active-state="true|false"` to add active state for menu items
++ [x] NavView: add `.badges` container for menu item for collect menu item badges
++ [x] NavView: add `.data-box` container for navigation view pane
++ [x] IconBox: new css component
 
 ### 4.2.38
 + [x] ListView: add class `.vertical-layout` for `icons-*` view mode

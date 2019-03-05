@@ -106,8 +106,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.39-dev 04/03/2019 15:36",
-    versionFull: "4.2.39-dev 04/03/2019 15:36",
+    version: "4.2.39-dev 05/03/2019 19:43",
+    versionFull: "4.2.39-dev 05/03/2019 19:43",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -14208,11 +14208,13 @@ var NavigationView = {
         compact: "md",
         expanded: "lg",
         toggle: null,
-        onNavigationViewCreate: Metro.noop
+        activeState: false,
+        onMenuItemClick: Metro.noop,
+        onNavViewCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         $.each(element.data(), function(key, value){
             if (key in o) {
@@ -14226,12 +14228,12 @@ var NavigationView = {
     },
 
     _create: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         this._createView();
         this._createEvents();
 
-        Utils.exec(o.onNavigationViewCreate, [element]);
+        Utils.exec(o.onNavViewCreate, [element]);
     },
 
     _calcMenuHeight: function(){
@@ -14261,8 +14263,8 @@ var NavigationView = {
     },
 
     _createView: function(){
-        var that = this, element = this.element, o = this.options;
-        var pane, content, toggle, menu;
+        var element = this.element, o = this.options;
+        var pane, content, toggle;
 
         element
             .addClass("navview")
@@ -14282,36 +14284,20 @@ var NavigationView = {
 
     _createEvents: function(){
         var that = this, element = this.element, o = this.options;
-        var pane = this.pane, content = this.content;
 
-        element.on(Metro.events.click, ".pull-button, .holder", function(e){
-            var pane_compact = pane.width() < 280;
-            var target = $(this);
-            var input;
+        element.on(Metro.events.click, ".pull-button, .holder", function(){
+            that.pullClick(this);
+        });
 
-            if (target.hasClass("holder")) {
-                input = target.parent().find("input");
-                setTimeout(function(){
-                    input.focus();
-                }, 200);
+        element.on(Metro.events.click, ".navview-menu li", function(){
+            if (o.activeState === true) {
+                element.find(".navview-menu li").removeClass("active");
+                $(this).toggleClass("active");
             }
+        });
 
-            if (that.pane.hasClass("open")) {
-                that.close();
-                return ;
-            }
-
-            if ((pane_compact || element.hasClass("expand")) && !element.hasClass("compacted")) {
-                element.toggleClass("expand");
-                return ;
-            }
-
-            if (element.hasClass("compacted") || !pane_compact) {
-                element.toggleClass("compacted");
-                return ;
-            }
-
-            return true;
+        element.on(Metro.events.click, ".navview-menu li > a", function(e){
+            Utils.exec(o.onMenuItemClick, null, this);
         });
 
         if (this.paneToggle !== null) {
@@ -14333,12 +14319,55 @@ var NavigationView = {
         })
     },
 
+    pullClick: function(el){
+        var that = this, element = this.element;
+        var pane = this.pane;
+        var pane_compact = pane.width() < 280;
+        var input;
+
+        var target = $(el);
+
+        if (target && target.hasClass("holder")) {
+            input = target.parent().find("input");
+            setTimeout(function(){
+                input.focus();
+            }, 200);
+        }
+
+        if (that.pane.hasClass("open")) {
+            that.close();
+            console.log("1");
+            return ;
+        }
+
+        if ((pane_compact || element.hasClass("expand")) && !element.hasClass("compacted")) {
+            element.toggleClass("expand");
+            console.log("2");
+            return ;
+        }
+
+        if (element.hasClass("compacted") || !pane_compact) {
+            element.toggleClass("compacted");
+            console.log("3");
+            return ;
+        }
+
+        console.log("0");
+
+        return true;
+    },
+
     open: function(){
         this.pane.addClass("open");
     },
 
     close: function(){
         this.pane.removeClass("open");
+    },
+
+    toggle: function(){
+        var pane = this.pane;
+        pane.hasClass("open") ? pane.removeClass("open") : pane.addClass("open");
     },
 
     changeAttribute: function(attributeName){
