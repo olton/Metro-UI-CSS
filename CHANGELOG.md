@@ -6,6 +6,8 @@
 + [x] NavView: add `.badges` container for menu item for collect menu item badges
 + [x] NavView: add `.data-box` container for navigation view pane
 + [x] IconBox: new css component
++ [x] Panel: fix draggable
++ [x] Panel: add custom buttons to panel title
 
 ### 4.2.38
 + [x] ListView: add class `.vertical-layout` for `icons-*` view mode

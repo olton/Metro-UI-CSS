@@ -49,11 +49,33 @@
         }
 
         .dropdown-toggle {
-            order: 3;
+            order: 4;
             height: 100%;
             width: 2.625rem;
             border-left: 1px solid @borderColor;
             flex-shrink: 0;
+        }
+
+        .custom-buttons {
+            order: 3;
+            display: flex;
+            flex-flow: row nowrap;
+        }
+
+        .btn-custom {
+            width: 42px;
+            height: 42px;
+            display: flex;
+            position: relative;
+            justify-content: center;
+            align-items: center;
+
+            & > * {
+                line-height: 1;
+                width: 16px;
+                height: 16px;
+                font-size: 16px;
+            }
         }
     }
 
