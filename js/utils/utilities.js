@@ -351,7 +351,7 @@ var Utils = {
     },
 
     arrayDelete: function(arr, val){
-        arr.splice(arr.indexOf(val), 1);
+        if (arr.indexOf(val) > -1) arr.splice(arr.indexOf(val), 1);
     },
 
     arrayDeleteByKey: function(arr, key){

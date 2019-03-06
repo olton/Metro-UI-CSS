@@ -106,8 +106,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.39-dev 05/03/2019 22:07",
-    versionFull: "4.2.39-dev 05/03/2019 22:07",
+    version: "4.2.39-dev 06/03/2019 18:28",
+    versionFull: "4.2.39-dev 06/03/2019 18:28",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -3771,7 +3771,7 @@ var Utils = {
     },
 
     arrayDelete: function(arr, val){
-        arr.splice(arr.indexOf(val), 1);
+        if (arr.indexOf(val) > -1) arr.splice(arr.indexOf(val), 1);
     },
 
     arrayDeleteByKey: function(arr, key){
