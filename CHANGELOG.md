@@ -9,6 +9,7 @@
 + [x] Panel: fix draggable
 + [x] Panel: add custom buttons to panel title
 + [x] Table: fix assign classes from attribute `data-cls-head-cell`
++ [x] Breadcrumbs: add `.breadcrumb-item` class
 
 ### 4.2.38
 + [x] ListView: add class `.vertical-layout` for `icons-*` view mode

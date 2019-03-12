@@ -20790,7 +20790,9 @@ a.split:focus {
           transform: rotate(-45deg);
   margin-top: 0.125rem;
 }
-.breadcrumbs .page-link {
+.breadcrumbs .page-link,
+.breadcrumbs .page-item a,
+.breadcrumbs .breadcrumb-item a {
   display: block;
   position: relative;
   padding: 0.5rem 0.75rem;
@@ -20800,7 +20802,9 @@ a.split:focus {
   color: inherit;
   background-color: transparent;
 }
-.breadcrumbs .page-link:hover {
+.breadcrumbs .page-link:hover,
+.breadcrumbs .page-item a:hover,
+.breadcrumbs .breadcrumb-item a:hover {
   color: #1d1d1d;
 }
 .breadcrumbs .page-item:last-child,
