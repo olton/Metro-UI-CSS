@@ -20750,7 +20750,8 @@ a.split:focus {
   background-color: #ffffff;
   color: #6a6a6a;
 }
-.breadcrumbs .page-item {
+.breadcrumbs .page-item,
+.breadcrumbs .breadcrumb-item {
   position: relative;
   cursor: pointer;
   display: list-item;
@@ -20761,7 +20762,9 @@ a.split:focus {
   margin: 4px;
 }
 .breadcrumbs .page-item + .page-item::before,
-.breadcrumbs .page-item + .page-item::after {
+.breadcrumbs .breadcrumb-item + .breadcrumb-item::before,
+.breadcrumbs .page-item + .page-item::after,
+.breadcrumbs .breadcrumb-item + .breadcrumb-item::after {
   display: block;
   position: absolute;
   vertical-align: middle;
@@ -20775,12 +20778,14 @@ a.split:focus {
   left: 0;
   margin-left: -0.5rem;
 }
-.breadcrumbs .page-item + .page-item::before {
+.breadcrumbs .page-item + .page-item::before,
+.breadcrumbs .breadcrumb-item + .breadcrumb-item::before {
   -webkit-transform: rotate(45deg);
           transform: rotate(45deg);
   margin-top: -0.125rem;
 }
-.breadcrumbs .page-item + .page-item::after {
+.breadcrumbs .page-item + .page-item::after,
+.breadcrumbs .breadcrumb-item + .breadcrumb-item::after {
   -webkit-transform: rotate(-45deg);
           transform: rotate(-45deg);
   margin-top: 0.125rem;
@@ -20798,7 +20803,8 @@ a.split:focus {
 .breadcrumbs .page-link:hover {
   color: #1d1d1d;
 }
-.breadcrumbs .page-item:last-child {
+.breadcrumbs .page-item:last-child,
+.breadcrumbs .breadcrumb-item:last-child {
   font-weight: bold;
 }
 .pagination {
