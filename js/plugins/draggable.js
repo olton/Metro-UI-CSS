@@ -9,6 +9,7 @@ var Draggable = {
             cursor: 'default',
             zIndex: '0'
         };
+        this.dragArea = null;
 
         this._setOptionsFromDOM();
         this._create();
@@ -44,7 +45,7 @@ var Draggable = {
 
     _create: function(){
         var that = this, element = this.element, elem = this.elem, o = this.options;
-        var dragArea;
+        var offset = element.offset();
         var position = {
             x: 0,
             y: 0
@@ -53,15 +54,25 @@ var Draggable = {
 
         dragElement[0].ondragstart = function(){return false;};
 
+        element.css("position", "absolute");
+
+        if (o.dragArea === 'document' || o.dragArea === 'window') {
+            o.dragArea = "body";
+        }
+
+        this.dragArea = o.dragArea === 'parent' ? element.parent() : $(o.dragArea);
+
+        if (o.dragArea !== 'parent') {
+            element.appendTo(this.dragArea);
+            element.css({
+                top: offset.top,
+                left: offset.left
+            });
+        }
+
         dragElement.on(Metro.events.start, function(e){
 
-            if (o.dragArea === 'document' || o.dragArea === 'window') {
-                o.dragArea = "body";
-            }
-
-            dragArea = o.dragArea === 'parent' ? element.parent() : $(o.dragArea);
-
-            var coord = o.dragArea === "body" ? element.offset() : element.position(),
+            var coord = o.dragArea !== "parent" ? element.offset() : element.position(),
                 shiftX = Utils.pageXY(e).x - coord.left,
                 shiftY = Utils.pageXY(e).y - coord.top;
 
@@ -72,8 +83,8 @@ var Draggable = {
                 if (top < 0) top = 0;
                 if (left < 0) left = 0;
 
-                if (top > dragArea.outerHeight() - element.outerHeight()) top = dragArea.outerHeight() - element.outerHeight();
-                if (left > dragArea.outerWidth() - element.outerWidth()) left = dragArea.outerWidth() - element.outerWidth();
+                if (top > that.dragArea.outerHeight() - element.outerHeight()) top = that.dragArea.outerHeight() - element.outerHeight();
+                if (left > that.dragArea.outerWidth() - element.outerWidth()) left = that.dragArea.outerWidth() - element.outerWidth();
 
                 position.y = top;
                 position.x = left;
@@ -98,9 +109,7 @@ var Draggable = {
             that.backup.cursor = element.css("cursor");
             that.backup.zIndex = element.css("z-index");
 
-            element.css("position", "absolute").addClass("draggable");
-
-            element.appendTo(dragArea);
+            element.addClass("draggable");
 
             moveElement(e);
 

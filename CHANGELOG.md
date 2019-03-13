@@ -10,6 +10,7 @@
 + [x] Panel: add custom buttons to panel title
 + [x] Table: fix assign classes from attribute `data-cls-head-cell`
 + [x] Breadcrumbs: add `.breadcrumb-item` class
++ [x] Draggable: fix recreate element content when drag started
 
 ### 4.2.38
 + [x] ListView: add class `.vertical-layout` for `icons-*` view mode
