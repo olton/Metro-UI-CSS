@@ -237,7 +237,11 @@
 
                 <h4>Validating select</h4>
                 <p>
-                    To validate <code>select</code> component you must add specific first option and use validate functions <code>required</code> and <code>not</code>.
+                    To validate <code>select</code> component you must add specific first option and use validate functions:
+                        <code>required</code>, <code>length</code>, <code>minlength</code>, <code>maxlength</code> and <code>not</code>.
+                </p>
+                <p>
+                    <code>length</code>, <code>minlength</code>, <code>maxlength</code> - for use with select with <code>multiple</code> option.
                 </p>
                 <pre><code class="html">
                     &lt;select data-role="select" data-validate="required not=-1"&gt;

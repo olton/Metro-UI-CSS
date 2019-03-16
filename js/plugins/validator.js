@@ -1,20 +1,27 @@
 var ValidatorFuncs = {
     required: function(val){
-        return Utils.isValue(val) ? val.trim() : false;
+        if (Array.isArray(val)) {
+            return val.length > 0 ? val : false;
+        } else {
+            return Utils.isValue(val) ? val.trim() : false;
+        }
     },
     length: function(val, len){
+        if (Array.isArray(val)) {return val.length === parseInt(len);}
         if (!Utils.isValue(len) || isNaN(len) || len <= 0) {
             return false;
         }
         return val.trim().length === parseInt(len);
     },
     minlength: function(val, len){
+        if (Array.isArray(val)) {return val.length >= parseInt(len);}
         if (!Utils.isValue(len) || isNaN(len) || len <= 0) {
             return false;
         }
         return val.trim().length >= parseInt(len);
     },
     maxlength: function(val, len){
+        if (Array.isArray(val)) {return val.length <= parseInt(len);}
         if (!Utils.isValue(len) || isNaN(len) || len <= 0) {
             return false;
         }
