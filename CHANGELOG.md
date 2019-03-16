@@ -12,6 +12,7 @@
 + [x] Breadcrumbs: add `.breadcrumb-item` class
 + [x] Draggable: fix recreate element content when drag started
 + [x] Table: fix implements custom class to custom wrappers (search, pagination, ...), issue #1335
++ [x] Select: fix error for validating required func for select with multiple option, issue #1338
 
 ### 4.2.38
 + [x] ListView: add class `.vertical-layout` for `icons-*` view mode
