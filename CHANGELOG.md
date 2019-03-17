@@ -1,3 +1,5 @@
+### 4.2.40
+
 ### 4.2.39
 + [x] NavView: minor improve styling 
 + [x] NavView: add method `pullClick()` for emulate pull button click at runtime 
