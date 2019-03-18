@@ -1,4 +1,5 @@
 ### 4.2.40
++ [x] Chat: new component
 
 ### 4.2.39
 + [x] NavView: minor improve styling 
