@@ -41894,6 +41894,8 @@ video:-webkit-full-screen {
   padding: 8px;
   border-bottom: 1px solid #dfdfdf;
   height: 100%;
+  overflow: hidden;
+  overflow-y: auto;
 }
 .chat .message {
   display: -webkit-box;

@@ -5,6 +5,7 @@ var Chat = {
         this.element = $(elem);
         this.input = null;
         this.classes = "primary secondary success alert warning yellow info dark light".split(" ");
+        this.lastMessage = null;
 
         this._setOptionsFromDOM();
         this._create();
@@ -88,30 +89,47 @@ var Chat = {
 
         if (typeof o.messages === "object" && Utils.objectLength(o.messages) > 0) {
             $.each(o.messages, function(){
-                var msg = this, index;
-                var message, sender, time, item, avatar, text;
-
-                message = $("<div>").addClass("message").addClass(msg.position).appendTo(messages);
-                sender = $("<div>").addClass("message-sender").html(msg.name).appendTo(message);
-                time = $("<div>").addClass("message-time").html(msg.time).appendTo(message);
-                item = $("<div>").addClass("message-item").appendTo(message);
-                avatar = $("<img>").attr("src", msg.avatar).addClass("message-avatar").appendTo(item);
-                text = $("<div>").addClass("message-text").html(msg.text).appendTo(item);
-
-                if (o.randomColor === true) {
-                    index = Utils.random(0, that.classes.length - 1);
-                    text.addClass(that.classes[index]);
-                } else {
-                    if (msg.position === 'left' && Utils.isValue(o.messageLeftColor)) {
-                        text.addClass(o.messageLeftColor);
-                    }
-                    if (msg.position === 'right' && Utils.isValue(o.messageRightColor)) {
-                        text.addClass(o.messageRightColor);
-                    }
-                }
-
+                that.add(this);
             });
         }
+    },
+
+    add: function(msg){
+        var that = this, element = this.element, o = this.options;
+        var index, message, sender, time, item, avatar, text;
+        var messages = element.find(".messages");
+
+        message = $("<div>").addClass("message").addClass(msg.position).appendTo(messages);
+        sender = $("<div>").addClass("message-sender").html(msg.name).appendTo(message);
+        time = $("<div>").addClass("message-time").html(msg.time).appendTo(message);
+        item = $("<div>").addClass("message-item").appendTo(message);
+        avatar = $("<img>").attr("src", msg.avatar).addClass("message-avatar").appendTo(item);
+        text = $("<div>").addClass("message-text").html(msg.text).appendTo(item);
+
+        if (o.randomColor === true) {
+            index = Utils.random(0, that.classes.length - 1);
+            text.addClass(that.classes[index]);
+        } else {
+            if (msg.position === 'left' && Utils.isValue(o.messageLeftColor)) {
+                text.addClass(o.messageLeftColor);
+            }
+            if (msg.position === 'right' && Utils.isValue(o.messageRightColor)) {
+                text.addClass(o.messageRightColor);
+            }
+        }
+
+        Utils.exec(o.onMessage, [msg], message[0]);
+
+        setImmediate(function(){
+            element.fire("onmessage", {
+                message: msg,
+                element: message[0]
+            });
+        });
+
+        messages[0].scrollTop = messages[0].scrollHeight;
+
+        this.lastMessage = msg;
     },
 
     _createEvents: function(){
