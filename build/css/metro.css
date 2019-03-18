@@ -41877,6 +41877,7 @@ video:-webkit-full-screen {
   -webkit-box-direction: normal;
       -ms-flex-flow: column;
           flex-flow: column;
+  border: 1px solid #dfdfdf;
 }
 .chat .title,
 .chat .messages,
