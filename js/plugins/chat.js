@@ -18,15 +18,13 @@ var Chat = {
         width: "100%",
         height: "auto",
         randomColor: false,
-        messageLeftColor: "default",
-        messageRightColor: "default",
+        clsMessageLeft: "default",
+        clsMessageRight: "default",
         messages: null,
         sendButtonTitle: "Send",
         clsSendButton: "",
         onMessage: Metro.noop,
         onSendButtonClick: Metro.noop,
-        onSendMessage: Metro.noop,
-        onReceiveMessage: Metro.noop,
         onChatCreate: Metro.noop
     },
 
@@ -59,7 +57,7 @@ var Chat = {
         var customButtons = [
             {
                 html: o.sendButtonTitle,
-                cls: o.clsSendButton,
+                cls: o.clsSendButton+" js-chat-send-button",
                 onclick: o.onSendButtonClick
             }
         ];
@@ -94,6 +92,19 @@ var Chat = {
         }
     },
 
+    _createEvents: function(){
+        var that = this, element = this.element, o = this.options;
+        var sendButton = element.find(".js-chat-send-button");
+        var input = element.find("input[type=text]");
+
+        sendButton.on(Metro.events.click, function () {
+            var msg = ""+input.val();
+            if (msg.trim() === "") {return false;}
+            Utils.exec(o.onSendButtonClick, [msg, $.proxy(that.add, that)], element[0]);
+            input.val("");
+        });
+    },
+
     add: function(msg){
         var that = this, element = this.element, o = this.options;
         var index, message, sender, time, item, avatar, text;
@@ -106,15 +117,19 @@ var Chat = {
         avatar = $("<img>").attr("src", msg.avatar).addClass("message-avatar").appendTo(item);
         text = $("<div>").addClass("message-text").html(msg.text).appendTo(item);
 
+        if (Utils.isValue(msg.id)) {
+            message.attr("id", msg.id);
+        }
+
         if (o.randomColor === true) {
             index = Utils.random(0, that.classes.length - 1);
             text.addClass(that.classes[index]);
         } else {
-            if (msg.position === 'left' && Utils.isValue(o.messageLeftColor)) {
-                text.addClass(o.messageLeftColor);
+            if (msg.position === 'left' && Utils.isValue(o.clsMessageLeft)) {
+                text.addClass(o.clsMessageLeft);
             }
-            if (msg.position === 'right' && Utils.isValue(o.messageRightColor)) {
-                text.addClass(o.messageRightColor);
+            if (msg.position === 'right' && Utils.isValue(o.clsMessageRight)) {
+                text.addClass(o.clsMessageRight);
             }
         }
 
@@ -127,14 +142,49 @@ var Chat = {
             });
         });
 
-        messages[0].scrollTop = messages[0].scrollHeight;
+        messages.animate({
+            scrollTop: messages[0].scrollHeight
+        }, 1000);
 
         this.lastMessage = msg;
+
+        return this;
     },
 
-    _createEvents: function(){
+    addMessages: function(messages){
         var that = this, element = this.element, o = this.options;
 
+        if (Utils.isValue(messages) && typeof messages === "string") {
+            messages = Utils.isObject(messages);
+        }
+
+        if (typeof messages === "object" && Utils.objectLength(messages) > 0) {
+            $.each(messages, function(){
+                that.add(this);
+            });
+        }
+
+        return this;
+    },
+
+    delMessage: function(id){
+        var element = this.element;
+
+        element.find(".messages").find("#"+id).remove();
+
+        return this;
+    },
+
+    updMessage: function(msg){
+        var element = this.element;
+        var message = element.find(".messages").find("#"+msg.id);
+
+        if (message.length === 0) return this;
+
+        message.find(".message-text").html(msg.text);
+        message.find(".message-time").html(msg.time);
+
+        return this;
     },
 
     changeAttribute: function(attributeName){
