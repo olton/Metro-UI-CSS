@@ -41857,6 +41857,7 @@ video:-webkit-full-screen {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  background: rgba(0, 0, 0, 0.1);
 }
 .icon-box .icon > * {
   font-size: 45px;
@@ -41868,6 +41869,7 @@ video:-webkit-full-screen {
   line-height: 1.2;
   display: block;
   width: 100%;
+  background-color: inherit;
 }
 .chat {
   display: -webkit-box;
@@ -42288,6 +42290,93 @@ video:-webkit-full-screen {
 }
 .social-box .skills li + li {
   border-left: 1px solid #dfdfdf;
+}
+.more-info-box {
+  height: 128px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  background-color: #ffffff;
+}
+.more-info-box .icon,
+.more-info-box .content {
+  position: relative;
+}
+.more-info-box .icon {
+  height: 64px;
+  width: 64px;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-ordinal-group: 3;
+      -ms-flex-order: 2;
+          order: 2;
+  margin-left: auto;
+  margin-right: 16px;
+  margin-top: 16px;
+  -webkit-transition: -webkit-transform 0.3s ease;
+  transition: -webkit-transform 0.3s ease;
+  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, -webkit-transform 0.3s ease;
+}
+.more-info-box .icon > * {
+  font-size: 64px;
+  width: 64px;
+  height: 64px;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.15);
+}
+.more-info-box .content {
+  line-height: 1.2;
+  display: block;
+  -webkit-box-ordinal-group: 2;
+      -ms-flex-order: 1;
+          order: 1;
+  padding: 8px;
+  max-width: calc(100% - 106px);
+}
+.more-info-box .more {
+  width: 100%;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+  position: relative;
+  display: block;
+  padding: 8px 0 0;
+  margin: 0;
+  -webkit-box-ordinal-group: 4;
+      -ms-flex-order: 3;
+          order: 3;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 12px;
+  line-height: 1;
+}
+.more-info-box .more:hover {
+  color: #fff;
+  background: rgba(0, 0, 0, 0.15);
+}
+.more-info-box:hover .icon {
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+  -webkit-transition: -webkit-transform 0.3s ease;
+  transition: -webkit-transform 0.3s ease;
+  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, -webkit-transform 0.3s ease;
 }
 .ripple {
   display: block;
