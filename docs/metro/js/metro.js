@@ -106,8 +106,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.40-dev 19/03/2019 15:25",
-    versionFull: "4.2.40-dev 19/03/2019 15:25",
+    version: "4.2.40-dev 19/03/2019 15:29",
+    versionFull: "4.2.40-dev 19/03/2019 15:29",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -7642,6 +7642,7 @@ var Chat = {
     },
 
     options: {
+        timeFormat: "%d %b %l:%M %p",
         name: "John Doe",
         avatar: defaultAvatar,
         welcome: null,
@@ -7715,7 +7716,7 @@ var Chat = {
         if (o.welcome) {
             this.add({
                 text: o.welcome,
-                time: (new Date()).format("%d %b %H:%M %p"),
+                time: (new Date()).format(o.timeFormat),
                 position: "left",
                 name: "Welcome",
                 avatar: defaultAvatar
@@ -7747,7 +7748,7 @@ var Chat = {
                 avatar: o.avatar,
                 text: msg,
                 position: "right",
-                time: (new Date()).format("%d %b %H:%M %p")
+                time: (new Date()).format(o.timeFormat)
             };
             that.add(m);
             Utils.exec(o.onSend, [m], element[0]);

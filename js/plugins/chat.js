@@ -16,6 +16,7 @@ var Chat = {
     },
 
     options: {
+        timeFormat: "%d %b %l:%M %p",
         name: "John Doe",
         avatar: defaultAvatar,
         welcome: null,
@@ -89,7 +90,7 @@ var Chat = {
         if (o.welcome) {
             this.add({
                 text: o.welcome,
-                time: (new Date()).format("%d %b %H:%M %p"),
+                time: (new Date()).format(o.timeFormat),
                 position: "left",
                 name: "Welcome",
                 avatar: defaultAvatar
@@ -121,7 +122,7 @@ var Chat = {
                 avatar: o.avatar,
                 text: msg,
                 position: "right",
-                time: (new Date()).format("%d %b %H:%M %p")
+                time: (new Date()).format(o.timeFormat)
             };
             that.add(m);
             Utils.exec(o.onSend, [m], element[0]);
