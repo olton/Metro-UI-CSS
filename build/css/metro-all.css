@@ -42153,6 +42153,142 @@ video:-webkit-full-screen {
   border-right-color: transparent;
   border-left-color: #004d6f;
 }
+.skill-box {
+  display: block;
+  position: relative;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  color: #1d1d1d;
+}
+.skill-box .header {
+  display: block;
+  position: relative;
+  padding: 20px;
+}
+.skill-box .header::after {
+  display: block;
+  clear: both;
+  content: "";
+}
+.skill-box .header::after {
+  display: block;
+  clear: both;
+  content: "";
+}
+.skill-box .header .avatar {
+  float: left;
+  width: 64px;
+  height: auto;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.skill-box .header .title {
+  font-size: 25px;
+  line-height: 1.1;
+  font-weight: 300;
+  margin: 5px 5px 5px 75px;
+}
+.skill-box .header .subtitle {
+  font-size: 14px;
+  line-height: 1.1;
+  font-weight: 500;
+  margin: 0 5px 5px 75px;
+}
+.skill-box .skills {
+  margin: 0;
+  padding: 0;
+  list-style: none inside;
+}
+.skill-box .skills li {
+  padding: 8px 16px;
+  font-size: 14px;
+}
+.skill-box .skills li a {
+  text-decoration: none;
+  color: inherit;
+}
+.skill-box .skills li + li {
+  border-top: 1px solid #dfdfdf;
+}
+.skill-box .skills .badge {
+  position: relative;
+  display: inline-block;
+  right: auto;
+  top: 4px;
+  -webkit-transform: translateY(0) translateX(0);
+          transform: translateY(0) translateX(0);
+  float: right;
+}
+.social-box {
+  display: block;
+  position: relative;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  color: #1d1d1d;
+}
+.social-box .header {
+  display: block;
+  position: relative;
+  padding: 20px 20px 40px 20px;
+}
+.social-box .header .avatar {
+  position: absolute;
+  width: 90px;
+  height: auto;
+  border-radius: 50%;
+  overflow: hidden;
+  top: 100%;
+  left: 50%;
+  margin-top: -45px;
+  margin-left: -45px;
+  z-index: 2;
+  border: 2px solid #ffffff;
+}
+.social-box .header .title {
+  font-size: 25px;
+  line-height: 1.1;
+  font-weight: 300;
+  margin-bottom: 5px;
+  z-index: 1;
+}
+.social-box .header .subtitle {
+  font-size: 14px;
+  line-height: 1.1;
+  font-weight: 500;
+  margin: 0;
+  z-index: 1;
+}
+.social-box .skills {
+  margin: 0;
+  padding: 50px 0 0 0;
+  list-style: none inside;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+}
+.social-box .skills li {
+  padding: 8px 16px;
+  font-size: 14px;
+  text-align: center;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -ms-flex-preferred-size: 0;
+      flex-basis: 0;
+}
+.social-box .skills li a {
+  text-decoration: none;
+  color: inherit;
+}
+.social-box .skills li + li {
+  border-left: 1px solid #dfdfdf;
+}
 .ripple {
   display: block;
   width: 0;
