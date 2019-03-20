@@ -24,11 +24,17 @@ var Chat = {
         width: "100%",
         height: "auto",
         randomColor: false,
-        clsMessageLeft: "default",
-        clsMessageRight: "default",
         messages: null,
         sendButtonTitle: "Send",
+
+        clsChat: "",
+        clsName: "",
+        clsTime: "",
+        clsInput: "",
         clsSendButton: "",
+        clsMessageLeft: "default",
+        clsMessageRight: "default",
+
         onMessage: Metro.noop,
         onSend: Metro.noop,
         onChatCreate: Metro.noop
@@ -68,7 +74,7 @@ var Chat = {
             }
         ];
 
-        element.addClass("chat");
+        element.addClass("chat").addClass(o.clsChat);
 
         element.css({
             width: o.width,
@@ -84,7 +90,8 @@ var Chat = {
         input = $("<input type='text'>");
         input.appendTo(messageInput);
         input.input({
-            customButtons: customButtons
+            customButtons: customButtons,
+            clsInput: o.clsInput
         });
 
         if (o.welcome) {
@@ -146,8 +153,8 @@ var Chat = {
         var messages = element.find(".messages");
 
         message = $("<div>").addClass("message").addClass(msg.position).appendTo(messages);
-        sender = $("<div>").addClass("message-sender").html(msg.name).appendTo(message);
-        time = $("<div>").addClass("message-time").html(msg.time).appendTo(message);
+        sender = $("<div>").addClass("message-sender").addClass(o.clsName).html(msg.name).appendTo(message);
+        time = $("<div>").addClass("message-time").addClass(o.clsTime).html(msg.time).appendTo(message);
         item = $("<div>").addClass("message-item").appendTo(message);
         avatar = $("<img>").attr("src", msg.avatar).addClass("message-avatar").appendTo(item);
         text = $("<div>").addClass("message-text").html(msg.text).appendTo(item);
@@ -220,6 +227,13 @@ var Chat = {
         message.find(".message-time").html(msg.time);
 
         return this;
+    },
+
+    clear: function(){
+        var element = this.element;
+        var messages = element.find(".messages");
+        messages.html("");
+        this.lastMessage = null;
     },
 
     changeAttribute: function(attributeName){

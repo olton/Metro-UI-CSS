@@ -72,7 +72,7 @@ var NavigationView = {
     },
 
     _createView: function(){
-        var element = this.element, o = this.options;
+        var that = this, element = this.element, o = this.options;
         var pane, content, toggle;
 
         element
@@ -89,6 +89,14 @@ var NavigationView = {
         this.pane = pane.length > 0 ? pane : null;
         this.content = content.length > 0 ? content : null;
         this.paneToggle = toggle.length > 0 ? toggle : null;
+
+        setTimeout(function(){
+            if (that.pane.width() === 48) {
+                element.addClass("js-compact");
+            } else {
+                element.removeClass("js-compact");
+            }
+        }, 200);
     },
 
     _createEvents: function(){
@@ -125,6 +133,15 @@ var NavigationView = {
             }
 
             that._calcMenuHeight();
+
+            element.removeClass("js-compact");
+
+            setTimeout(function(){
+                if (that.pane.width() === 48) {
+                    element.addClass("js-compact");
+                }
+            }, 200);
+
         })
     },
 
@@ -145,23 +162,23 @@ var NavigationView = {
 
         if (that.pane.hasClass("open")) {
             that.close();
-            console.log("1");
-            return ;
-        }
+        } else
 
         if ((pane_compact || element.hasClass("expand")) && !element.hasClass("compacted")) {
             element.toggleClass("expand");
-            console.log("2");
-            return ;
-        }
+        } else
 
         if (element.hasClass("compacted") || !pane_compact) {
             element.toggleClass("compacted");
-            console.log("3");
-            return ;
         }
 
-        console.log("0");
+        setTimeout(function(){
+            if (that.pane.width() === 48) {
+                element.addClass("js-compact");
+            } else {
+                element.removeClass("js-compact");
+            }
+        }, 200);
 
         return true;
     },
