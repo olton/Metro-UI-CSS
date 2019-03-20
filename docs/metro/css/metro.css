@@ -30728,6 +30728,7 @@ video:-webkit-full-screen {
   margin: 8px auto;
   border-radius: 2px;
   border: 1px solid #dfdfdf;
+  background-color: #ffffff;
 }
 .card-header {
   border-bottom: 1px #eee solid;
@@ -30779,12 +30780,23 @@ video:-webkit-full-screen {
   vertical-align: bottom;
   background-size: cover;
   background-position: center;
-  -webkit-box-align: end;
-      -ms-flex-align: end;
-          align-items: flex-end;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+.card.image-header .card-header .avatar {
+  border-radius: 50%;
+  border: 2px solid #ffffff;
 }
 * + .card {
   margin-top: 1rem;
@@ -33295,7 +33307,7 @@ video:-webkit-full-screen {
   height: 100%;
   -webkit-transform: translate3d(-100%, 0, 0);
           transform: translate3d(-100%, 0, 0);
-  z-index: 1;
+  z-index: 2;
 }
 .navview .navview-pane.open {
   -webkit-transform: translate3d(0, 0, 0);
@@ -33303,6 +33315,7 @@ video:-webkit-full-screen {
 }
 .navview .navview-content {
   position: relative;
+  z-index: 1;
 }
 .navview .pull-button,
 .navview .holder {
@@ -33334,7 +33347,7 @@ video:-webkit-full-screen {
   margin: 0;
   padding: 0;
   width: 100%;
-  overflow: hidden;
+  background-color: #e5e5e5;
   overflow-y: auto;
   -ms-overflow-style: -ms-autohiding-scrollbar;
   overflow: -moz-scrollbars-none;
@@ -33478,6 +33491,9 @@ video:-webkit-full-screen {
 .navview .data-box {
   display: block;
 }
+.navview .navview-menu .navview-menu .item-header {
+  display: none!important;
+}
 .navview.expand .navview-pane {
   width: 280px !important;
 }
@@ -33494,12 +33510,12 @@ video:-webkit-full-screen {
   display: none!important;
 }
 .navview.expand .badges {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  display: -webkit-box!important;
+  display: -ms-flexbox!important;
+  display: flex!important;
 }
 .navview.expand .data-box {
-  display: block;
+  display: block!important;
 }
 .navview.compacted .navview-pane {
   width: 48px !important;
@@ -33870,6 +33886,26 @@ video:-webkit-full-screen {
   .navview.expanded-xxl .data-box {
     display: block;
   }
+}
+.navview.compacted .navview-pane > .navview-menu,
+.navview.js-compact:not(.expand) .navview-pane > .navview-menu {
+  overflow: visible;
+}
+.navview.compacted .navview-menu .navview-menu,
+.navview.js-compact:not(.expand) .navview-menu .navview-menu {
+  position: absolute;
+  left: 100%;
+  top: 0;
+  width: 220px;
+  max-width: 280px;
+}
+.navview.compacted .navview-menu .navview-menu .caption,
+.navview.js-compact:not(.expand) .navview-menu .navview-menu .caption {
+  display: block!important;
+}
+.navview.compacted .navview-menu .navview-menu .item-header,
+.navview.js-compact:not(.expand) .navview-menu .navview-menu .item-header {
+  display: block!important;
 }
 .rating {
   display: -webkit-inline-box;
@@ -41880,6 +41916,7 @@ video:-webkit-full-screen {
       -ms-flex-flow: column;
           flex-flow: column;
   border: 1px solid #dfdfdf;
+  background-color: #ffffff;
 }
 .chat .title,
 .chat .messages,
@@ -41911,7 +41948,6 @@ video:-webkit-full-screen {
 .chat .message .message-sender {
   width: 50%;
   font-weight: 600;
-  color: #1d1d1d;
   font-size: 12px;
   -webkit-box-ordinal-group: 2;
       -ms-flex-order: 1;
@@ -41919,12 +41955,12 @@ video:-webkit-full-screen {
 }
 .chat .message .message-time {
   width: 50%;
-  color: #999999;
   font-size: 12px;
   text-align: right;
   -webkit-box-ordinal-group: 3;
       -ms-flex-order: 2;
           order: 2;
+  opacity: 0.5;
 }
 .chat .message .message-item {
   width: 100%;

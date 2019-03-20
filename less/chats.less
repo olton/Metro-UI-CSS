@@ -5,6 +5,7 @@
     display: flex;
     flex-flow: column;
     border: 1px solid @borderColor;
+    background-color: @white;
 }
 
 .chat {
@@ -36,17 +37,16 @@
         .message-sender {
             width: 50%;
             font-weight: 600;
-            color: @dark;
             font-size: 12px;
             order: 1;
         }
 
         .message-time {
             width: 50%;
-            color: #999999;
             font-size: 12px;
             text-align: right;
             order: 2;
+            opacity: .5;
         }
 
         .message-item {

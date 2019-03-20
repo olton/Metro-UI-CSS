@@ -1,5 +1,10 @@
 ### 4.2.40
 + [x] Chat: new component
++ [x] Boxes: add new boxes `skill-box`, `social-box`, `more-info-box`
++ [x] NavView: add behavior for show submenu on left from main menu for compacted mode
++ [x] Cards: add default background color `white`
++ [x] Cards: fix flex model for image header
++ [x] Colors: change `op-*` for alpha value from `0.7` to `0.1`
 
 ### 4.2.39
 + [x] NavView: minor improve styling 

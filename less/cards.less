@@ -9,6 +9,7 @@
     margin: 8px auto;
     border-radius: 2px;
     border: 1px solid @borderColor;
+    background-color: @white;
 }
 
 .card-header {
@@ -62,8 +63,15 @@
             vertical-align: bottom;
             background-size: cover;
             background-position: center;
-            align-items: flex-end;
             display: flex;
+            flex-flow: column;
+            align-items: flex-start;
+            justify-content: flex-end;
+
+            .avatar {
+                border-radius: 50%;
+                border: 2px solid @white;
+            }
         }
     }
 }

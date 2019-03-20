@@ -3,9 +3,10 @@
 @ribbedSize: 20px;
 @ribbedAlpha: .15;
 @ribbedAngle: -45deg;
+@alpha: .1;
 
 .op-default {
-    background-color: rgba(red(@cyan), green(@cyan), blue(@cyan), .7) !important;
+    background-color: rgba(red(@cyan), green(@cyan), blue(@cyan), @alpha) !important;
 }
 
 .bg-transparent {
@@ -66,7 +67,7 @@
     .after-bg-@{name} {&::after {background: @@name !important;}}
     .after-fg-@{name} {&::after {color: @@name !important;}}
 
-    .op-@{name} {background-color: rgba(red(@@name), green(@@name), blue(@@name), .7) !important;}
+    .op-@{name} {background-color: rgba(red(@@name), green(@@name), blue(@@name), @alpha) !important;}
 
     .tg-@{name} {
         &::before {
