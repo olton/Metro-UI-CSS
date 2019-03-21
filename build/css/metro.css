@@ -42388,19 +42388,18 @@ video:-webkit-full-screen {
   width: 100%;
   -ms-flex-negative: 0;
       flex-shrink: 0;
-  text-align: center;
+  text-align: right;
   background: rgba(0, 0, 0, 0.1);
   text-decoration: none;
   position: relative;
   display: block;
-  padding: 8px 0 0;
+  padding: 8px 8px 0;
   margin: 0;
   -webkit-box-ordinal-group: 4;
       -ms-flex-order: 3;
           order: 3;
   color: rgba(255, 255, 255, 0.8);
   font-size: 12px;
-  line-height: 1;
 }
 .more-info-box .more:hover {
   color: #fff;
