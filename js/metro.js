@@ -11,6 +11,7 @@ if ('MutationObserver' in window === false) {
 }
 
 var meta_init = $("meta[name='metro4:init']").attr("content");
+var meta_show_about = $("meta[name='metro4:show_about']").attr("content");
 var meta_locale = $("meta[name='metro4:locale']").attr("content");
 var meta_week_start = $("meta[name='metro4:week_start']").attr("content");
 var meta_date_format = $("meta[name='metro4:date_format']").attr("content");
@@ -25,8 +26,12 @@ var meta_cloak_duration = $("meta[name='metro4:cloak_duration']").attr("content"
 if (window.METRO_INIT === undefined) {
     window.METRO_INIT = meta_init !== undefined ? JSON.parse(meta_init) : true;
 }
-if (window.METRO_DEBUG === undefined) {window.METRO_DEBUG = true;}
-
+if (window.METRO_SHOW_ABOUT === undefined) {
+    window.METRO_SHOW_ABOUT = meta_show_about !== undefined ? JSON.parse(meta_show_about) : true;
+}
+if (window.METRO_DEBUG === undefined) {
+    window.METRO_DEBUG = true;
+}
 if (window.METRO_WEEK_START === undefined) {
     window.METRO_WEEK_START = meta_week_start !== undefined ? parseInt(meta_week_start) : 0;
 }
@@ -343,7 +348,7 @@ var Metro = {
         this.initHotkeys(hotkeys);
         this.initWidgets(widgets);
 
-        this.about(true);
+        if (METRO_SHOW_ABOUT) this.about(true);
 
         if (METRO_CLOAK_REMOVE !== "fade") {
             $(".m4-cloak").removeClass("m4-cloak");
