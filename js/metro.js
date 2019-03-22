@@ -162,10 +162,10 @@ var Metro = {
 
     events: {
         click: 'click.metro',
-        start: isTouch ? 'touchstart.metro' : 'mousedown.metro',
-        stop: isTouch ? 'touchend.metro' : 'mouseup.metro',
-        move: isTouch ? 'touchmove.metro' : 'mousemove.metro',
-        enter: isTouch ? 'touchstart.metro' : 'mouseenter.metro',
+        start: 'touchstart.metro mousedown.metro',
+        stop: 'touchend.metro mouseup.metro',
+        move: 'touchmove.metro mousemove.metro',
+        enter: 'touchstart.metro mouseenter.metro',
         leave: 'mouseleave.metro',
         focus: 'focus.metro',
         blur: 'blur.metro',
@@ -549,3 +549,8 @@ $(window).on(Metro.events.resize, function(){
     });
 });
 
+document.addEventListener("touchstart", function touchStartHandler(e) {
+    e.currentTarget.removeEventListener(e.type, touchStartHandler);
+    isTouch = true;
+    Metro.isTouchable = isTouch;
+});
