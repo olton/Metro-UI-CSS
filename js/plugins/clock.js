@@ -18,6 +18,9 @@ var Clock = {
         timeFormat: '24',
         dateFormat: 'american',
         divider: "&nbsp;&nbsp;",
+        leadingZero: true,
+        dateDivider: '-',
+        timeDivider: ":",
         onClockCreate: Metro.noop
     },
 
@@ -62,31 +65,34 @@ var Clock = {
             y = timestamp.getFullYear(),
             a = '';
 
-        if (o.timeFormat === '12') {
+        if (o.timeFormat === 12) {
             a = " AM";
             if (h > 11) { a = " PM"; }
             if (h > 12) { h = h - 12; }
             if (h === 0) { h = 12; }
         }
 
-        h = this._addLeadingZero(h);
         i = this._addLeadingZero(i);
         s = this._addLeadingZero(s);
-        m = this._addLeadingZero(m);
-        d = this._addLeadingZero(d);
+
+        if (o.leadingZero) {
+            h = this._addLeadingZero(h);
+            m = this._addLeadingZero(m);
+            d = this._addLeadingZero(d);
+        }
 
         if (o.showDate) {
             if (o.dateFormat === 'american') {
                 result += "<span class='date-month'>" + m + "</span>";
-                result += "<span class='date-divider'>-</span>";
+                result += "<span class='date-divider'>" + o.dateDivider + "</span>";
                 result += "<span class='date-day'>" + d + "</span>";
-                result += "<span class='date-divider'>-</span>";
+                result += "<span class='date-divider'>" + o.dateDivider + "</span>";
                 result += "<span class='date-year'>" + y + "</span>";
             } else {
                 result += "<span class='date-day'>" + d + "</span>";
-                result += "<span class='date-divider'>-</span>";
+                result += "<span class='date-divider'>" + o.dateDivider + "</span>";
                 result += "<span class='date-month'>" + m + "</span>";
-                result += "<span class='date-divider'>-</span>";
+                result += "<span class='date-divider'>" + o.dateDivider + "</span>";
                 result += "<span class='date-year'>" + y + "</span>";
             }
             result += o.divider;
@@ -94,10 +100,11 @@ var Clock = {
 
         if (o.showTime) {
             result += "<span class='clock-hour'>" + h + "</span>";
-            result += "<span class='clock-divider'>:</span>";
+            result += "<span class='clock-divider'>" + o.timeDivider + "</span>";
             result += "<span class='clock-minute'>" + i + "</span>";
-            result += "<span class='clock-divider'>:</span>";
+            result += "<span class='clock-divider'>" + o.timeDivider + "</span>";
             result += "<span class='clock-second'>" + s + "</span>";
+            result += "<span class='clock-suffix'>" + a + "</span>";
         }
 
         element.html(result);
