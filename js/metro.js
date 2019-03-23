@@ -25,7 +25,6 @@ var meta_cloak_duration = $("meta[name='metro4:cloak_duration']").attr("content"
 /* Added by Ken Kitay https://github.com/kens-code*/
 var meta_about = $("meta[name='metro4:about']").attr("content");
 if (window.METRO_SHOW_ABOUT === undefined) {
-
     window.METRO_SHOW_ABOUT = meta_about !== undefined ? JSON.parse(meta_about) : true;
 }
 /* --- end ---*/
