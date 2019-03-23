@@ -113,8 +113,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.40-dev 23/03/2019 09:39",
-    versionFull: "4.2.40-dev 23/03/2019 09:39",
+    version: "4.2.40-dev 23/03/2019 10:36",
+    versionFull: "4.2.40-dev 23/03/2019 10:36",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -183,6 +183,11 @@ var Metro = {
         stop: isTouch ? 'touchend.metro' : 'mouseup.metro',
         move: isTouch ? 'touchmove.metro' : 'mousemove.metro',
         enter: isTouch ? 'touchstart.metro' : 'mouseenter.metro',
+
+        startAll: 'mousedown.metro touchstart.metro',
+        stopAll: 'mouseup.metro touchend.metro',
+        moveAll: 'mousemove.metro touchmove.metro',
+
         leave: 'mouseleave.metro',
         focus: 'focus.metro',
         blur: 'blur.metro',
@@ -10372,7 +10377,7 @@ var Draggable = {
             });
         }
 
-        dragElement.on(Metro.events.start, function(e){
+        dragElement.on(Metro.events.startAll, function(e){
 
             var coord = o.dragArea !== "parent" ? element.offset() : element.position(),
                 shiftX = Utils.pageXY(e).x - coord.left,
@@ -10417,21 +10422,21 @@ var Draggable = {
 
             Utils.exec(o.onDragStart, [position, element]);
 
-            $(document).on(Metro.events.move+".draggable", function(e){
+            $(document).on(Metro.events.moveAll, function(e){
                 moveElement(e);
                 Utils.exec(o.onDragMove, [position], elem);
-                e.preventDefault();
+                //e.preventDefault();
             });
 
-            $(document).on(Metro.events.stop+".draggable", function(e){
+            $(document).on(Metro.events.stopAll, function(e){
                 element.css({
                     cursor: that.backup.cursor,
                     zIndex: that.backup.zIndex
                 }).removeClass("draggable");
 
                 if (that.drag) {
-                    $(document).off(Metro.events.move+".draggable");
-                    $(document).off(Metro.events.stop+".draggable");
+                    $(document).off(Metro.events.moveAll);
+                    $(document).off(Metro.events.stopAll);
                 }
 
                 that.drag = false;
@@ -17675,7 +17680,7 @@ var Spinner = {
         minValue: null,
         maxValue: null,
         fixed: 0,
-        repeatThreshold: 500,
+        repeatThreshold: 1000,
         hideCursor: false,
         clsSpinner: "",
         clsSpinnerInput: "",

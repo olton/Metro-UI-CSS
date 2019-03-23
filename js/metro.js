@@ -168,6 +168,11 @@ var Metro = {
         stop: isTouch ? 'touchend.metro' : 'mouseup.metro',
         move: isTouch ? 'touchmove.metro' : 'mousemove.metro',
         enter: isTouch ? 'touchstart.metro' : 'mouseenter.metro',
+
+        startAll: 'mousedown.metro touchstart.metro',
+        stopAll: 'mouseup.metro touchend.metro',
+        moveAll: 'mousemove.metro touchmove.metro',
+
         leave: 'mouseleave.metro',
         focus: 'focus.metro',
         blur: 'blur.metro',
