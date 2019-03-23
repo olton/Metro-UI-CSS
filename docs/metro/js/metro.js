@@ -40,7 +40,6 @@ var meta_cloak_duration = $("meta[name='metro4:cloak_duration']").attr("content"
 /* Added by Ken Kitay https://github.com/kens-code*/
 var meta_about = $("meta[name='metro4:about']").attr("content");
 if (window.METRO_SHOW_ABOUT === undefined) {
-
     window.METRO_SHOW_ABOUT = meta_about !== undefined ? JSON.parse(meta_about) : true;
 }
 /* --- end ---*/
@@ -114,8 +113,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.40-dev 23/03/2019 09:37",
-    versionFull: "4.2.40-dev 23/03/2019 09:37",
+    version: "4.2.40-dev 23/03/2019 09:39",
+    versionFull: "4.2.40-dev 23/03/2019 09:39",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
