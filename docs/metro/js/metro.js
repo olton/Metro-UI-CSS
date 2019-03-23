@@ -106,8 +106,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.40-dev 21/03/2019 21:12",
-    versionFull: "4.2.40-dev 21/03/2019 21:12",
+    version: "4.2.40-dev 23/03/2019 09:18",
+    versionFull: "4.2.40-dev 23/03/2019 09:18",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -10463,8 +10463,6 @@ var Dropdown = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onDropdownCreate, [this.element]);
-
         return this;
     },
 
@@ -10493,10 +10491,20 @@ var Dropdown = {
     },
 
     _create: function(){
-        var that = this, element = this.element, o = this.options;
-        var toggle, parent = element.parent();
-        var element_roles = Utils.isValue(element.attr("data-role")) ? Utils.strToArray(element.attr("data-role")) : [];
+        var that = this;
+        this._createStructure();
+        this._createEvents();
+        Utils.exec(this.options.onDropdownCreate, [this.element]);
+        if (this.element.hasClass("open")) {
+            setTimeout(function(){
+                that.open();
+            }, 500)
+        }
+    },
 
+    _createStructure: function(){
+        var that = this, element = this.element, o = this.options;
+        var toggle;
         toggle = o.toggleElement !== null ? $(o.toggleElement) : element.siblings('.dropdown-toggle').length > 0 ? element.siblings('.dropdown-toggle') : element.prev();
 
         this.displayOrigin = element.css("display");
@@ -10507,10 +10515,12 @@ var Dropdown = {
 
         element.css("display", "none");
 
-        if (element_roles.length === 0 || element_roles.indexOf("dropdown") === -1) {
-            element_roles.push("dropdown");
-            element.attr("data-role", element_roles.join(", "));
-        }
+        this._toggle = toggle;
+    },
+
+    _createEvents: function(){
+        var that = this, element = this.element, o = this.options;
+        var toggle = this._toggle, parent = element.parent();
 
         toggle.on(Metro.events.click, function(e){
             parent.siblings(parent[0].tagName).removeClass("active-container");
@@ -10546,8 +10556,6 @@ var Dropdown = {
             e.preventDefault();
             e.stopPropagation();
         });
-
-        this._toggle = toggle;
 
         if (o.noClose === true) {
             element.addClass("keep-open").on(Metro.events.click, function (e) {

@@ -5,6 +5,7 @@
 + [x] Cards: add default background color `white`
 + [x] Cards: fix flex model for image header
 + [x] Colors: change `op-*` for alpha value from `0.7` to `0.1`
++ [x] Dropdown: if element has class `open`, it will be open after initialization
 
 ### 4.2.39
 + [x] NavView: minor improve styling 
