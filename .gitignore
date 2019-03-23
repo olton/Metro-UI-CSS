@@ -81,3 +81,4 @@ Update_Builder.js
 *.nupkg
 /package-lock.json
 docs/test
+/.vs
