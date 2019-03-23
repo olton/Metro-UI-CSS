@@ -113,8 +113,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.40-dev 23/03/2019 10:43",
-    versionFull: "4.2.40-dev 23/03/2019 10:43",
+    version: "4.2.40-dev 23/03/2019 21:11",
+    versionFull: "4.2.40-dev 23/03/2019 21:11",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -10806,8 +10806,7 @@ var File = {
                 element[0].files = e.originalEvent.dataTransfer.files;
                 files.html(element[0].files.length + " " +o.filesTitle);
                 container.removeClass("drop-on");
-
-                if (!Utils.detectChrome()) Utils.exec(o.onSelect, [element[0].files, element], element[0]);
+                element.trigger("change");
             });
         }
     },

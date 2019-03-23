@@ -7,7 +7,11 @@
 + [x] Colors: change `op-*` for alpha value from `0.7` to `0.1`
 + [x] Dropdown: if element has class `open`, it will be open after initialization
 + [x] Show metro4 about in console: added meta parameter `metro4:about`. Thanks to [Ken Kitay](https://github.com/kens-code)
-+ [x] Metro4 Events: added constants `Metro.events.startAll`, `Metro.events.stopAll`, `Metro.events.moveAll`. Constants contains both mouse and touch.  
++ [x] Metro4 Events: added constants `Metro.events.startAll`, `Metro.events.stopAll`, `Metro.events.moveAll`. Constants contains both mouse and touch.
++ [x] Clock: upd component, PR #1341, Thanks to [Ken Kitay](https://github.com/kens-code)
++ [x] Sidenav simple: optimize css
++ [x] Sidenav counter: optimize css
++ [x] File: call trigger `change` when user drop files into drop area
 
 ### 4.2.39
 + [x] NavView: minor improve styling 
