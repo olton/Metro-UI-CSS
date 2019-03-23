@@ -37,6 +37,14 @@ var meta_scroll_multiple = $("meta[name='metro4:scroll_multiple']").attr("conten
 var meta_cloak = $("meta[name='metro4:cloak']").attr("content"); //default or fade
 var meta_cloak_duration = $("meta[name='metro4:cloak_duration']").attr("content"); //100
 
+/* Added by Ken Kitay https://github.com/kens-code*/
+var meta_about = $("meta[name='metro4:about']").attr("content");
+if (window.METRO_SHOW_ABOUT === undefined) {
+
+    window.METRO_SHOW_ABOUT = meta_about !== undefined ? JSON.parse(meta_about) : true;
+}
+/* --- end ---*/
+
 if (window.METRO_INIT === undefined) {
     window.METRO_INIT = meta_init !== undefined ? JSON.parse(meta_init) : true;
 }
@@ -106,8 +114,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.40-dev 23/03/2019 09:18",
-    versionFull: "4.2.40-dev 23/03/2019 09:18",
+    version: "4.2.40-dev 23/03/2019 09:37",
+    versionFull: "4.2.40-dev 23/03/2019 09:37",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -358,7 +366,7 @@ var Metro = {
         this.initHotkeys(hotkeys);
         this.initWidgets(widgets);
 
-        this.about(true);
+        if (METRO_SHOW_ABOUT) this.about(true);
 
         if (METRO_CLOAK_REMOVE !== "fade") {
             $(".m4-cloak").removeClass("m4-cloak");
