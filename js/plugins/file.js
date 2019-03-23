@@ -148,8 +148,7 @@ var File = {
                 element[0].files = e.originalEvent.dataTransfer.files;
                 files.html(element[0].files.length + " " +o.filesTitle);
                 container.removeClass("drop-on");
-
-                if (!Utils.detectChrome()) Utils.exec(o.onSelect, [element[0].files, element], element[0]);
+                element.trigger("change");
             });
         }
     },
