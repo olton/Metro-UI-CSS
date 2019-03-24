@@ -43674,6 +43674,9 @@ input[dir=rtl] {
 .mif-replay:before {
   content: "\e042";
 }
+.mif-reply:before {
+  content: "\e15e";
+}
 .mif-reply_all:before {
   content: "\e15f";
 }
