@@ -124,7 +124,7 @@ var Chat = {
             var msg = ""+input.val(), m;
             if (msg.trim() === "") {return false;}
             m = {
-                id: Utils.elementId("message"),
+                id: Utils.elementId(""),
                 name: o.name,
                 avatar: o.avatar,
                 text: msg,
@@ -154,7 +154,7 @@ var Chat = {
 
         message = $("<div>").addClass("message").addClass(msg.position).appendTo(messages);
         sender = $("<div>").addClass("message-sender").addClass(o.clsName).html(msg.name).appendTo(message);
-        time = $("<div>").addClass("message-time").addClass(o.clsTime).html(msg.time).appendTo(message);
+        time = $("<div>").addClass("message-time").addClass(o.clsTime).html((new Date(msg.time)).format(o.timeFormat)).appendTo(message);
         item = $("<div>").addClass("message-item").appendTo(message);
         avatar = $("<img>").attr("src", msg.avatar).addClass("message-avatar").appendTo(item);
         text = $("<div>").addClass("message-text").html(msg.text).appendTo(item);
