@@ -4,7 +4,7 @@
 + [x] NavView: add behavior for show submenu on left from main menu for compacted mode
 + [x] Cards: add default background color `white`
 + [x] Cards: fix flex model for image header
-+ [x] Colors: change `op-*` for alpha value from `0.7` to `0.1`
++ [x] Colors: change `op-*` alpha value from `0.7` to `0.1`
 + [x] Dropdown: if element has class `open`, it will be open after initialization
 + [x] Show metro4 about in console: added meta parameter `metro4:about`. Thanks to [Ken Kitay](https://github.com/kens-code)
 + [x] Metro4 Events: added constants `Metro.events.startAll`, `Metro.events.stopAll`, `Metro.events.moveAll`. Constants contains both mouse and touch.
@@ -12,6 +12,9 @@
 + [x] Sidenav simple: optimize css
 + [x] Sidenav counter: optimize css
 + [x] File: call trigger `change` when user drop files into drop area
++ [x] Form: Add default styling for `input[type=submit]`, `input[type=reset]`, `input[type=button]`.   
++ [x] Checkbox: set default height to `auto`
++ [x] Radio: set default height to `auto`
 
 ### 4.2.39
 + [x] NavView: minor improve styling 

@@ -62,18 +62,16 @@ var Collapse = {
         this.toggle = toggle;
     },
 
-    _close: function(el){
-
-        if (Utils.isJQueryObject(el) === false) {
-            el = $(el);
-        }
-
-        var dropdown  = el.data("collapse");
+    _close: function(el, immediate){
+        var elem = $(el);
+        var dropdown  = elem.data("collapse");
         var options = dropdown.options;
+        var func = immediate ? 'show' : 'slideUp';
+        var dur = immediate ? 0 : options.duration;
 
         this.toggle.removeClass("active-toggle");
 
-        el.slideUp(options.duration, function(){
+        elem[func](dur, function(){
             el.trigger("onCollapse", null, el);
             el.data("collapsed", true);
             el.addClass("collapsed");
@@ -81,17 +79,16 @@ var Collapse = {
         });
     },
 
-    _open: function(el){
-        if (Utils.isJQueryObject(el) === false) {
-            el = $(el);
-        }
-
-        var dropdown  = el.data("collapse");
+    _open: function(el, immediate){
+        var elem = $(el);
+        var dropdown  = elem.data("collapse");
         var options = dropdown.options;
+        var func = immediate ? 'show' : 'slideDown';
+        var dur = immediate ? 0 : options.duration;
 
         this.toggle.addClass("active-toggle");
 
-        el.slideDown(options.duration, function(){
+        elem[func](dur, function(){
             el.trigger("onExpand", null, el);
             el.data("collapsed", false);
             el.removeClass("collapsed");
@@ -99,12 +96,20 @@ var Collapse = {
         });
     },
 
-    collapse: function(){
-        this._close(this.element);
+    collapse: function(immediate){
+        this._close(this.element, immediate);
     },
 
-    expand: function(){
-        this._open(this.element);
+    expand: function(immediate){
+        this._open(this.element, immediate);
+    },
+
+    close: function(immediate){
+        this._close(this.element, immediate);
+    },
+
+    open: function(immediate){
+        this._open(this.element, immediate);
     },
 
     isCollapsed: function(){
