@@ -113,8 +113,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.40-dev 24/03/2019 21:57",
-    versionFull: "4.2.40-dev 24/03/2019 21:57",
+    version: "@@version",
+    versionFull: "@@version.@@build @@status",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -8220,18 +8220,16 @@ var Collapse = {
         this.toggle = toggle;
     },
 
-    _close: function(el){
-
-        if (Utils.isJQueryObject(el) === false) {
-            el = $(el);
-        }
-
-        var dropdown  = el.data("collapse");
+    _close: function(el, immediate){
+        var elem = $(el);
+        var dropdown  = elem.data("collapse");
         var options = dropdown.options;
+        var func = immediate ? 'show' : 'slideUp';
+        var dur = immediate ? 0 : options.duration;
 
         this.toggle.removeClass("active-toggle");
 
-        el.slideUp(options.duration, function(){
+        elem[func](dur, function(){
             el.trigger("onCollapse", null, el);
             el.data("collapsed", true);
             el.addClass("collapsed");
@@ -8239,17 +8237,16 @@ var Collapse = {
         });
     },
 
-    _open: function(el){
-        if (Utils.isJQueryObject(el) === false) {
-            el = $(el);
-        }
-
-        var dropdown  = el.data("collapse");
+    _open: function(el, immediate){
+        var elem = $(el);
+        var dropdown  = elem.data("collapse");
         var options = dropdown.options;
+        var func = immediate ? 'show' : 'slideDown';
+        var dur = immediate ? 0 : options.duration;
 
         this.toggle.addClass("active-toggle");
 
-        el.slideDown(options.duration, function(){
+        elem[func](dur, function(){
             el.trigger("onExpand", null, el);
             el.data("collapsed", false);
             el.removeClass("collapsed");
@@ -8257,12 +8254,20 @@ var Collapse = {
         });
     },
 
-    collapse: function(){
-        this._close(this.element);
+    collapse: function(immediate){
+        this._close(this.element, immediate);
     },
 
-    expand: function(){
-        this._open(this.element);
+    expand: function(immediate){
+        this._open(this.element, immediate);
+    },
+
+    close: function(immediate){
+        this._close(this.element, immediate);
+    },
+
+    open: function(immediate){
+        this._open(this.element, immediate);
     },
 
     isCollapsed: function(){
@@ -10516,7 +10521,7 @@ var Dropdown = {
         Utils.exec(this.options.onDropdownCreate, [this.element]);
         if (this.element.hasClass("open")) {
             setTimeout(function(){
-                that.open();
+                that.open(true);
             }, 500)
         }
     },
@@ -10588,7 +10593,7 @@ var Dropdown = {
         });
     },
 
-    _close: function(el){
+    _close: function(el, immediate){
 
         if (Utils.isJQueryObject(el) === false) {
             el = $(el);
@@ -10601,13 +10606,19 @@ var Dropdown = {
 
         toggle.removeClass('active-toggle').removeClass("active-control");
         dropdown.element.parent().removeClass("active-container");
-        el[func](options.duration, function(){
+
+        if (immediate) {
+            func = 'hide'
+        }
+
+        el[func](immediate ? 0 : options.duration, function(){
             el.trigger("onClose", null, el);
         });
+
         Utils.exec(options.onUp, [el]);
     },
 
-    _open: function(el){
+    _open: function(el, immediate){
         if (Utils.isJQueryObject(el) === false) {
             el = $(el);
         }
@@ -10618,18 +10629,24 @@ var Dropdown = {
         var func = options.effect === "slide" ? "slideDown" : "fadeIn";
 
         toggle.addClass('active-toggle').addClass("active-control");
-        el[func](options.duration, function(){
+
+        if (immediate) {
+            func = 'show'
+        }
+
+        el[func](immediate ? 0 : options.duration, function(){
             el.trigger("onOpen", null, el);
         });
+
         Utils.exec(options.onDrop, [el]);
     },
 
-    close: function(){
-        this._close(this.element);
+    close: function(immediate){
+        this._close(this.element, immediate);
     },
 
-    open: function(){
-        this._open(this.element);
+    open: function(immediate){
+        this._open(this.element, immediate);
     },
 
     changeAttribute: function(attributeName){

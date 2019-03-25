@@ -20734,6 +20734,871 @@ a.split:focus {
   -webkit-box-shadow: 0 0 0 3px rgba(228, 228, 228, 0.45);
           box-shadow: 0 0 0 3px rgba(228, 228, 228, 0.45);
 }
+input[type=button],
+input[type=submit],
+input[type=reset] {
+  display: inline-block;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  border: 1px solid transparent;
+  padding: 0 0.75rem;
+  font-size: 0.875rem;
+  line-height: 34px;
+  height: 36px;
+  -webkit-transition: all 0.15s ease-in-out;
+  transition: all 0.15s ease-in-out;
+  background-color: #ebebeb;
+  color: #1d1d1d;
+  cursor: pointer;
+  outline: none;
+  position: relative;
+}
+input[type=button].primary,
+input[type=submit].primary,
+input[type=reset].primary {
+  outline-color: #89b0ff;
+  background-color: #0050ef;
+  color: #ffffff;
+}
+input[type=button].primary.outline,
+input[type=submit].primary.outline,
+input[type=reset].primary.outline {
+  color: #0050ef;
+  border-color: #0050ef;
+}
+input[type=button].primary.outline.dropdown-toggle::before,
+input[type=submit].primary.outline.dropdown-toggle::before,
+input[type=reset].primary.outline.dropdown-toggle::before {
+  border-color: #0050ef;
+}
+input[type=button].primary.outline:hover,
+input[type=submit].primary.outline:hover,
+input[type=reset].primary.outline:hover {
+  color: #ffffff;
+}
+input[type=button].primary.dropdown-toggle::before,
+input[type=submit].primary.dropdown-toggle::before,
+input[type=reset].primary.dropdown-toggle::before {
+  border-color: #ffffff;
+}
+input[type=button].primary:hover,
+input[type=submit].primary:hover,
+input[type=reset].primary:hover {
+  color: #ffffff;
+  background-color: #003fbc;
+  border-color: #002e89;
+}
+input[type=button].primary:hover.dropdown-toggle::before,
+input[type=submit].primary:hover.dropdown-toggle::before,
+input[type=reset].primary:hover.dropdown-toggle::before {
+  border-color: #ffffff;
+}
+input[type=button].primary.same-color:hover,
+input[type=submit].primary.same-color:hover,
+input[type=reset].primary.same-color:hover {
+  background-color: #0050ef;
+  border-color: #0050ef;
+}
+input[type=button].primary:active,
+input[type=submit].primary:active,
+input[type=reset].primary:active,
+input[type=button].primary.focus,
+input[type=submit].primary.focus,
+input[type=reset].primary.focus,
+input[type=button].primary:focus,
+input[type=submit].primary:focus,
+input[type=reset].primary:focus {
+  -webkit-box-shadow: 0 0 0 3px rgba(0, 80, 239, 0.45);
+          box-shadow: 0 0 0 3px rgba(0, 80, 239, 0.45);
+}
+input[type=button].secondary,
+input[type=submit].secondary,
+input[type=reset].secondary {
+  outline-color: #b7c6cd;
+  background-color: #607d8b;
+  color: #ffffff;
+}
+input[type=button].secondary.outline,
+input[type=submit].secondary.outline,
+input[type=reset].secondary.outline {
+  color: #607d8b;
+  border-color: #607d8b;
+}
+input[type=button].secondary.outline.dropdown-toggle::before,
+input[type=submit].secondary.outline.dropdown-toggle::before,
+input[type=reset].secondary.outline.dropdown-toggle::before {
+  border-color: #607d8b;
+}
+input[type=button].secondary.outline:hover,
+input[type=submit].secondary.outline:hover,
+input[type=reset].secondary.outline:hover {
+  color: #ffffff;
+}
+input[type=button].secondary.dropdown-toggle::before,
+input[type=submit].secondary.dropdown-toggle::before,
+input[type=reset].secondary.dropdown-toggle::before {
+  border-color: #ffffff;
+}
+input[type=button].secondary:hover,
+input[type=submit].secondary:hover,
+input[type=reset].secondary:hover {
+  color: #ffffff;
+  background-color: #4b626d;
+  border-color: #36474f;
+}
+input[type=button].secondary:hover.dropdown-toggle::before,
+input[type=submit].secondary:hover.dropdown-toggle::before,
+input[type=reset].secondary:hover.dropdown-toggle::before {
+  border-color: #ffffff;
+}
+input[type=button].secondary.same-color:hover,
+input[type=submit].secondary.same-color:hover,
+input[type=reset].secondary.same-color:hover {
+  background-color: #607d8b;
+  border-color: #607d8b;
+}
+input[type=button].secondary:active,
+input[type=submit].secondary:active,
+input[type=reset].secondary:active,
+input[type=button].secondary.focus,
+input[type=submit].secondary.focus,
+input[type=reset].secondary.focus,
+input[type=button].secondary:focus,
+input[type=submit].secondary:focus,
+input[type=reset].secondary:focus {
+  -webkit-box-shadow: 0 0 0 3px rgba(96, 125, 139, 0.45);
+          box-shadow: 0 0 0 3px rgba(96, 125, 139, 0.45);
+}
+input[type=button].success,
+input[type=submit].success,
+input[type=reset].success {
+  outline-color: #adeb6e;
+  background-color: #60a917;
+  color: #ffffff;
+}
+input[type=button].success.outline,
+input[type=submit].success.outline,
+input[type=reset].success.outline {
+  color: #60a917;
+  border-color: #60a917;
+}
+input[type=button].success.outline.dropdown-toggle::before,
+input[type=submit].success.outline.dropdown-toggle::before,
+input[type=reset].success.outline.dropdown-toggle::before {
+  border-color: #60a917;
+}
+input[type=button].success.outline:hover,
+input[type=submit].success.outline:hover,
+input[type=reset].success.outline:hover {
+  color: #ffffff;
+}
+input[type=button].success.dropdown-toggle::before,
+input[type=submit].success.dropdown-toggle::before,
+input[type=reset].success.dropdown-toggle::before {
+  border-color: #ffffff;
+}
+input[type=button].success:hover,
+input[type=submit].success:hover,
+input[type=reset].success:hover {
+  color: #ffffff;
+  background-color: #477c11;
+  border-color: #2d4f0b;
+}
+input[type=button].success:hover.dropdown-toggle::before,
+input[type=submit].success:hover.dropdown-toggle::before,
+input[type=reset].success:hover.dropdown-toggle::before {
+  border-color: #ffffff;
+}
+input[type=button].success.same-color:hover,
+input[type=submit].success.same-color:hover,
+input[type=reset].success.same-color:hover {
+  background-color: #60a917;
+  border-color: #60a917;
+}
+input[type=button].success:active,
+input[type=submit].success:active,
+input[type=reset].success:active,
+input[type=button].success.focus,
+input[type=submit].success.focus,
+input[type=reset].success.focus,
+input[type=button].success:focus,
+input[type=submit].success:focus,
+input[type=reset].success:focus {
+  -webkit-box-shadow: 0 0 0 3px rgba(96, 169, 23, 0.45);
+          box-shadow: 0 0 0 3px rgba(96, 169, 23, 0.45);
+}
+input[type=button].alert,
+input[type=submit].alert,
+input[type=reset].alert {
+  outline-color: #ecaba7;
+  background-color: #CE352C;
+  color: #ffffff;
+}
+input[type=button].alert.outline,
+input[type=submit].alert.outline,
+input[type=reset].alert.outline {
+  color: #CE352C;
+  border-color: #CE352C;
+}
+input[type=button].alert.outline.dropdown-toggle::before,
+input[type=submit].alert.outline.dropdown-toggle::before,
+input[type=reset].alert.outline.dropdown-toggle::before {
+  border-color: #CE352C;
+}
+input[type=button].alert.outline:hover,
+input[type=submit].alert.outline:hover,
+input[type=reset].alert.outline:hover {
+  color: #ffffff;
+}
+input[type=button].alert.dropdown-toggle::before,
+input[type=submit].alert.dropdown-toggle::before,
+input[type=reset].alert.dropdown-toggle::before {
+  border-color: #ffffff;
+}
+input[type=button].alert:hover,
+input[type=submit].alert:hover,
+input[type=reset].alert:hover {
+  color: #ffffff;
+  background-color: #a42a23;
+  border-color: #7a1f1a;
+}
+input[type=button].alert:hover.dropdown-toggle::before,
+input[type=submit].alert:hover.dropdown-toggle::before,
+input[type=reset].alert:hover.dropdown-toggle::before {
+  border-color: #ffffff;
+}
+input[type=button].alert.same-color:hover,
+input[type=submit].alert.same-color:hover,
+input[type=reset].alert.same-color:hover {
+  background-color: #CE352C;
+  border-color: #CE352C;
+}
+input[type=button].alert:active,
+input[type=submit].alert:active,
+input[type=reset].alert:active,
+input[type=button].alert.focus,
+input[type=submit].alert.focus,
+input[type=reset].alert.focus,
+input[type=button].alert:focus,
+input[type=submit].alert:focus,
+input[type=reset].alert:focus {
+  -webkit-box-shadow: 0 0 0 3px rgba(206, 53, 44, 0.45);
+          box-shadow: 0 0 0 3px rgba(206, 53, 44, 0.45);
+}
+input[type=button].warning,
+input[type=submit].warning,
+input[type=reset].warning {
+  outline-color: #ffede1;
+  background-color: #ff9447;
+  color: #ffffff;
+}
+input[type=button].warning.outline,
+input[type=submit].warning.outline,
+input[type=reset].warning.outline {
+  color: #ff9447;
+  border-color: #ff9447;
+}
+input[type=button].warning.outline.dropdown-toggle::before,
+input[type=submit].warning.outline.dropdown-toggle::before,
+input[type=reset].warning.outline.dropdown-toggle::before {
+  border-color: #ff9447;
+}
+input[type=button].warning.outline:hover,
+input[type=submit].warning.outline:hover,
+input[type=reset].warning.outline:hover {
+  color: #ffffff;
+}
+input[type=button].warning.dropdown-toggle::before,
+input[type=submit].warning.dropdown-toggle::before,
+input[type=reset].warning.dropdown-toggle::before {
+  border-color: #ffffff;
+}
+input[type=button].warning:hover,
+input[type=submit].warning:hover,
+input[type=reset].warning:hover {
+  color: #ffffff;
+  background-color: #ff7615;
+  border-color: #e05d00;
+}
+input[type=button].warning:hover.dropdown-toggle::before,
+input[type=submit].warning:hover.dropdown-toggle::before,
+input[type=reset].warning:hover.dropdown-toggle::before {
+  border-color: #ffffff;
+}
+input[type=button].warning.same-color:hover,
+input[type=submit].warning.same-color:hover,
+input[type=reset].warning.same-color:hover {
+  background-color: #ff9447;
+  border-color: #ff9447;
+}
+input[type=button].warning:active,
+input[type=submit].warning:active,
+input[type=reset].warning:active,
+input[type=button].warning.focus,
+input[type=submit].warning.focus,
+input[type=reset].warning.focus,
+input[type=button].warning:focus,
+input[type=submit].warning:focus,
+input[type=reset].warning:focus {
+  -webkit-box-shadow: 0 0 0 3px rgba(255, 148, 71, 0.45);
+          box-shadow: 0 0 0 3px rgba(255, 148, 71, 0.45);
+}
+input[type=button].yellow,
+input[type=submit].yellow,
+input[type=reset].yellow {
+  outline-color: #ffffff;
+  background-color: #ffe484;
+  color: #ffffff;
+}
+input[type=button].yellow.outline,
+input[type=submit].yellow.outline,
+input[type=reset].yellow.outline {
+  color: #ffe484;
+  border-color: #ffe484;
+}
+input[type=button].yellow.outline.dropdown-toggle::before,
+input[type=submit].yellow.outline.dropdown-toggle::before,
+input[type=reset].yellow.outline.dropdown-toggle::before {
+  border-color: #ffe484;
+}
+input[type=button].yellow.outline:hover,
+input[type=submit].yellow.outline:hover,
+input[type=reset].yellow.outline:hover {
+  color: #ffffff;
+}
+input[type=button].yellow.dropdown-toggle::before,
+input[type=submit].yellow.dropdown-toggle::before,
+input[type=reset].yellow.dropdown-toggle::before {
+  border-color: #ffffff;
+}
+input[type=button].yellow:hover,
+input[type=submit].yellow:hover,
+input[type=reset].yellow:hover {
+  color: #ffffff;
+  background-color: #ffd951;
+  border-color: #ffce1e;
+}
+input[type=button].yellow:hover.dropdown-toggle::before,
+input[type=submit].yellow:hover.dropdown-toggle::before,
+input[type=reset].yellow:hover.dropdown-toggle::before {
+  border-color: #ffffff;
+}
+input[type=button].yellow.same-color:hover,
+input[type=submit].yellow.same-color:hover,
+input[type=reset].yellow.same-color:hover {
+  background-color: #ffe484;
+  border-color: #ffe484;
+}
+input[type=button].yellow:active,
+input[type=submit].yellow:active,
+input[type=reset].yellow:active,
+input[type=button].yellow.focus,
+input[type=submit].yellow.focus,
+input[type=reset].yellow.focus,
+input[type=button].yellow:focus,
+input[type=submit].yellow:focus,
+input[type=reset].yellow:focus {
+  -webkit-box-shadow: 0 0 0 3px rgba(255, 228, 132, 0.45);
+          box-shadow: 0 0 0 3px rgba(255, 228, 132, 0.45);
+}
+input[type=button].info,
+input[type=submit].info,
+input[type=reset].info {
+  outline-color: #e6f5fc;
+  background-color: #5ebdec;
+  color: #ffffff;
+}
+input[type=button].info.outline,
+input[type=submit].info.outline,
+input[type=reset].info.outline {
+  color: #5ebdec;
+  border-color: #5ebdec;
+}
+input[type=button].info.outline.dropdown-toggle::before,
+input[type=submit].info.outline.dropdown-toggle::before,
+input[type=reset].info.outline.dropdown-toggle::before {
+  border-color: #5ebdec;
+}
+input[type=button].info.outline:hover,
+input[type=submit].info.outline:hover,
+input[type=reset].info.outline:hover {
+  color: #ffffff;
+}
+input[type=button].info.dropdown-toggle::before,
+input[type=submit].info.dropdown-toggle::before,
+input[type=reset].info.dropdown-toggle::before {
+  border-color: #ffffff;
+}
+input[type=button].info:hover,
+input[type=submit].info:hover,
+input[type=reset].info:hover {
+  color: #ffffff;
+  background-color: #30abe6;
+  border-color: #1891cb;
+}
+input[type=button].info:hover.dropdown-toggle::before,
+input[type=submit].info:hover.dropdown-toggle::before,
+input[type=reset].info:hover.dropdown-toggle::before {
+  border-color: #ffffff;
+}
+input[type=button].info.same-color:hover,
+input[type=submit].info.same-color:hover,
+input[type=reset].info.same-color:hover {
+  background-color: #5ebdec;
+  border-color: #5ebdec;
+}
+input[type=button].info:active,
+input[type=submit].info:active,
+input[type=reset].info:active,
+input[type=button].info.focus,
+input[type=submit].info.focus,
+input[type=reset].info.focus,
+input[type=button].info:focus,
+input[type=submit].info:focus,
+input[type=reset].info:focus {
+  -webkit-box-shadow: 0 0 0 3px rgba(94, 189, 236, 0.45);
+          box-shadow: 0 0 0 3px rgba(94, 189, 236, 0.45);
+}
+input[type=button].dark,
+input[type=submit].dark,
+input[type=reset].dark {
+  outline-color: #9d9d9d;
+  background-color: #505050;
+  color: #ffffff;
+}
+input[type=button].dark.outline,
+input[type=submit].dark.outline,
+input[type=reset].dark.outline {
+  color: #505050;
+  border-color: #505050;
+}
+input[type=button].dark.outline.dropdown-toggle::before,
+input[type=submit].dark.outline.dropdown-toggle::before,
+input[type=reset].dark.outline.dropdown-toggle::before {
+  border-color: #505050;
+}
+input[type=button].dark.outline:hover,
+input[type=submit].dark.outline:hover,
+input[type=reset].dark.outline:hover {
+  color: #ffffff;
+}
+input[type=button].dark.dropdown-toggle::before,
+input[type=submit].dark.dropdown-toggle::before,
+input[type=reset].dark.dropdown-toggle::before {
+  border-color: #ffffff;
+}
+input[type=button].dark:hover,
+input[type=submit].dark:hover,
+input[type=reset].dark:hover {
+  color: #ffffff;
+  background-color: #373737;
+  border-color: #1d1d1d;
+}
+input[type=button].dark:hover.dropdown-toggle::before,
+input[type=submit].dark:hover.dropdown-toggle::before,
+input[type=reset].dark:hover.dropdown-toggle::before {
+  border-color: #ffffff;
+}
+input[type=button].dark.same-color:hover,
+input[type=submit].dark.same-color:hover,
+input[type=reset].dark.same-color:hover {
+  background-color: #505050;
+  border-color: #505050;
+}
+input[type=button].dark:active,
+input[type=submit].dark:active,
+input[type=reset].dark:active,
+input[type=button].dark.focus,
+input[type=submit].dark.focus,
+input[type=reset].dark.focus,
+input[type=button].dark:focus,
+input[type=submit].dark:focus,
+input[type=reset].dark:focus {
+  -webkit-box-shadow: 0 0 0 3px rgba(80, 80, 80, 0.45);
+          box-shadow: 0 0 0 3px rgba(80, 80, 80, 0.45);
+}
+input[type=button].light,
+input[type=submit].light,
+input[type=reset].light {
+  outline-color: #ffffff;
+  background-color: #f8f8f8;
+  color: #ffffff;
+}
+input[type=button].light.outline,
+input[type=submit].light.outline,
+input[type=reset].light.outline {
+  color: #f8f8f8;
+  border-color: #f8f8f8;
+}
+input[type=button].light.outline.dropdown-toggle::before,
+input[type=submit].light.outline.dropdown-toggle::before,
+input[type=reset].light.outline.dropdown-toggle::before {
+  border-color: #f8f8f8;
+}
+input[type=button].light.outline:hover,
+input[type=submit].light.outline:hover,
+input[type=reset].light.outline:hover {
+  color: #ffffff;
+}
+input[type=button].light.dropdown-toggle::before,
+input[type=submit].light.dropdown-toggle::before,
+input[type=reset].light.dropdown-toggle::before {
+  border-color: #ffffff;
+}
+input[type=button].light:hover,
+input[type=submit].light:hover,
+input[type=reset].light:hover {
+  color: #ffffff;
+  background-color: #dfdfdf;
+  border-color: #c5c5c5;
+}
+input[type=button].light:hover.dropdown-toggle::before,
+input[type=submit].light:hover.dropdown-toggle::before,
+input[type=reset].light:hover.dropdown-toggle::before {
+  border-color: #ffffff;
+}
+input[type=button].light.same-color:hover,
+input[type=submit].light.same-color:hover,
+input[type=reset].light.same-color:hover {
+  background-color: #f8f8f8;
+  border-color: #f8f8f8;
+}
+input[type=button].light:active,
+input[type=submit].light:active,
+input[type=reset].light:active,
+input[type=button].light.focus,
+input[type=submit].light.focus,
+input[type=reset].light.focus,
+input[type=button].light:focus,
+input[type=submit].light:focus,
+input[type=reset].light:focus {
+  -webkit-box-shadow: 0 0 0 3px rgba(248, 248, 248, 0.45);
+          box-shadow: 0 0 0 3px rgba(248, 248, 248, 0.45);
+}
+input[type=button].brand1,
+input[type=submit].brand1,
+input[type=reset].brand1 {
+  outline-color: #bbecfc;
+  background-color: #2ac4f4;
+  color: #ffffff;
+}
+input[type=button].brand1.outline,
+input[type=submit].brand1.outline,
+input[type=reset].brand1.outline {
+  color: #2ac4f4;
+  border-color: #2ac4f4;
+}
+input[type=button].brand1.outline.dropdown-toggle::before,
+input[type=submit].brand1.outline.dropdown-toggle::before,
+input[type=reset].brand1.outline.dropdown-toggle::before {
+  border-color: #2ac4f4;
+}
+input[type=button].brand1.outline:hover,
+input[type=submit].brand1.outline:hover,
+input[type=reset].brand1.outline:hover {
+  color: #ffffff;
+}
+input[type=button].brand1.dropdown-toggle::before,
+input[type=submit].brand1.dropdown-toggle::before,
+input[type=reset].brand1.dropdown-toggle::before {
+  border-color: #ffffff;
+}
+input[type=button].brand1:hover,
+input[type=submit].brand1:hover,
+input[type=reset].brand1:hover {
+  color: #ffffff;
+  background-color: #0caddf;
+  border-color: #0988af;
+}
+input[type=button].brand1:hover.dropdown-toggle::before,
+input[type=submit].brand1:hover.dropdown-toggle::before,
+input[type=reset].brand1:hover.dropdown-toggle::before {
+  border-color: #ffffff;
+}
+input[type=button].brand1.same-color:hover,
+input[type=submit].brand1.same-color:hover,
+input[type=reset].brand1.same-color:hover {
+  background-color: #2ac4f4;
+  border-color: #2ac4f4;
+}
+input[type=button].brand1:active,
+input[type=submit].brand1:active,
+input[type=reset].brand1:active,
+input[type=button].brand1.focus,
+input[type=submit].brand1.focus,
+input[type=reset].brand1.focus,
+input[type=button].brand1:focus,
+input[type=submit].brand1:focus,
+input[type=reset].brand1:focus {
+  -webkit-box-shadow: 0 0 0 3px rgba(42, 196, 244, 0.45);
+          box-shadow: 0 0 0 3px rgba(42, 196, 244, 0.45);
+}
+input[type=button].brand2,
+input[type=submit].brand2,
+input[type=reset].brand2 {
+  outline-color: #09b4ff;
+  background-color: #004d6f;
+  color: #ffffff;
+}
+input[type=button].brand2.outline,
+input[type=submit].brand2.outline,
+input[type=reset].brand2.outline {
+  color: #004d6f;
+  border-color: #004d6f;
+}
+input[type=button].brand2.outline.dropdown-toggle::before,
+input[type=submit].brand2.outline.dropdown-toggle::before,
+input[type=reset].brand2.outline.dropdown-toggle::before {
+  border-color: #004d6f;
+}
+input[type=button].brand2.outline:hover,
+input[type=submit].brand2.outline:hover,
+input[type=reset].brand2.outline:hover {
+  color: #ffffff;
+}
+input[type=button].brand2.dropdown-toggle::before,
+input[type=submit].brand2.dropdown-toggle::before,
+input[type=reset].brand2.dropdown-toggle::before {
+  border-color: #ffffff;
+}
+input[type=button].brand2:hover,
+input[type=submit].brand2:hover,
+input[type=reset].brand2:hover {
+  color: #ffffff;
+  background-color: #002a3c;
+  border-color: #000609;
+}
+input[type=button].brand2:hover.dropdown-toggle::before,
+input[type=submit].brand2:hover.dropdown-toggle::before,
+input[type=reset].brand2:hover.dropdown-toggle::before {
+  border-color: #ffffff;
+}
+input[type=button].brand2.same-color:hover,
+input[type=submit].brand2.same-color:hover,
+input[type=reset].brand2.same-color:hover {
+  background-color: #004d6f;
+  border-color: #004d6f;
+}
+input[type=button].brand2:active,
+input[type=submit].brand2:active,
+input[type=reset].brand2:active,
+input[type=button].brand2.focus,
+input[type=submit].brand2.focus,
+input[type=reset].brand2.focus,
+input[type=button].brand2:focus,
+input[type=submit].brand2:focus,
+input[type=reset].brand2:focus {
+  -webkit-box-shadow: 0 0 0 3px rgba(0, 77, 111, 0.45);
+          box-shadow: 0 0 0 3px rgba(0, 77, 111, 0.45);
+}
+input[type=button].yellow,
+input[type=submit].yellow,
+input[type=reset].yellow,
+input[type=button].light,
+input[type=submit].light,
+input[type=reset].light {
+  color: #1d1d1d;
+}
+input[type=button].yellow:hover,
+input[type=submit].yellow:hover,
+input[type=reset].yellow:hover,
+input[type=button].light:hover,
+input[type=submit].light:hover,
+input[type=reset].light:hover,
+input[type=button].yellow.outline:hover,
+input[type=submit].yellow.outline:hover,
+input[type=reset].yellow.outline:hover,
+input[type=button].light.outline:hover,
+input[type=submit].light.outline:hover,
+input[type=reset].light.outline:hover {
+  color: #1d1d1d;
+}
+input[type=button]:active,
+input[type=submit]:active,
+input[type=reset]:active,
+input[type=button].focus,
+input[type=submit].focus,
+input[type=reset].focus,
+input[type=button]:focus,
+input[type=submit]:focus,
+input[type=reset]:focus {
+  -webkit-box-shadow: 0 0 0 3px rgba(228, 228, 228, 0.45);
+          box-shadow: 0 0 0 3px rgba(228, 228, 228, 0.45);
+}
+input[type=button]:hover,
+input[type=submit]:hover,
+input[type=reset]:hover {
+  background-color: rgba(29, 29, 29, 0.1);
+}
+input[type=button].link,
+input[type=submit].link,
+input[type=reset].link {
+  background-color: transparent;
+  color: #0366d6;
+}
+input[type=button].link:hover,
+input[type=submit].link:hover,
+input[type=reset].link:hover {
+  background-color: transparent;
+  color: #0056b3;
+  text-decoration: underline;
+}
+input[type=button].link.focus,
+input[type=submit].link.focus,
+input[type=reset].link.focus,
+input[type=button].link:focus,
+input[type=submit].link:focus,
+input[type=reset].link:focus {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+input[type=button].hovered:hover,
+input[type=submit].hovered:hover,
+input[type=reset].hovered:hover {
+  background-color: rgba(29, 29, 29, 0.2);
+}
+input[type=button] img,
+input[type=submit] img,
+input[type=reset] img {
+  height: 1rem;
+}
+input[type=button].mini,
+input[type=submit].mini,
+input[type=reset].mini {
+  font-size: 0.625rem;
+  padding: 0 0.5rem;
+  height: 20px;
+  line-height: 20px;
+}
+input[type=button].mini img,
+input[type=submit].mini img,
+input[type=reset].mini img {
+  height: 0.625rem;
+}
+input[type=button].small,
+input[type=submit].small,
+input[type=reset].small {
+  font-size: 0.75rem;
+  padding: 0 0.6rem;
+  height: 26px;
+  line-height: 26px;
+}
+input[type=button].small img,
+input[type=submit].small img,
+input[type=reset].small img {
+  height: 0.75rem;
+}
+input[type=button].large,
+input[type=submit].large,
+input[type=reset].large {
+  font-size: 1.375rem;
+  padding: 0 1rem;
+  height: 53px;
+  line-height: 53px;
+}
+input[type=button].large img,
+input[type=submit].large img,
+input[type=reset].large img {
+  height: 1.375rem;
+}
+input[type=button].square,
+input[type=submit].square,
+input[type=reset].square,
+input[type=button].cycle,
+input[type=submit].cycle,
+input[type=reset].cycle {
+  width: 2.25rem;
+  height: 2.25rem;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+input[type=button].square.mini,
+input[type=submit].square.mini,
+input[type=reset].square.mini,
+input[type=button].cycle.mini,
+input[type=submit].cycle.mini,
+input[type=reset].cycle.mini {
+  width: 1.39875rem;
+  height: 1.39875rem;
+}
+input[type=button].square.small,
+input[type=submit].square.small,
+input[type=reset].square.small,
+input[type=button].cycle.small,
+input[type=submit].cycle.small,
+input[type=reset].cycle.small {
+  width: 1.724375rem;
+  height: 1.724375rem;
+}
+input[type=button].square.large,
+input[type=submit].square.large,
+input[type=reset].square.large,
+input[type=button].cycle.large,
+input[type=submit].cycle.large,
+input[type=reset].cycle.large {
+  width: 3.3125rem;
+  height: 3.3125rem;
+}
+input[type=button].cycle,
+input[type=submit].cycle,
+input[type=reset].cycle {
+  border-radius: 50%;
+}
+input[type=button].square.dropdown-toggle::before,
+input[type=submit].square.dropdown-toggle::before,
+input[type=reset].square.dropdown-toggle::before,
+input[type=button].cycle.dropdown-toggle::before,
+input[type=submit].cycle.dropdown-toggle::before,
+input[type=reset].cycle.dropdown-toggle::before {
+  display: none;
+}
+input[type=button].dropdown-toggle.no-marker,
+input[type=submit].dropdown-toggle.no-marker,
+input[type=reset].dropdown-toggle.no-marker {
+  padding-right: 0.75rem !important;
+}
+input[type=button]:focus,
+input[type=submit]:focus,
+input[type=reset]:focus,
+input[type=button]:hover,
+input[type=submit]:hover,
+input[type=reset]:hover {
+  text-decoration: none;
+}
+input[type=button]:active,
+input[type=submit]:active,
+input[type=reset]:active {
+  outline: 0;
+  -webkit-box-shadow: 0 0 0 3px rgba(190, 190, 190, 0.45);
+          box-shadow: 0 0 0 3px rgba(190, 190, 190, 0.45);
+}
+input[type=button].disabled,
+input[type=submit].disabled,
+input[type=reset].disabled,
+input[type=button]:disabled,
+input[type=submit]:disabled,
+input[type=reset]:disabled {
+  opacity: 0.65;
+}
+input[type=button].outline,
+input[type=submit].outline,
+input[type=reset].outline {
+  background: transparent none;
+  border-width: 1px;
+  border-color: #dfdfdf;
+}
+input[type=button]:active,
+input[type=submit]:active,
+input[type=reset]:active {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
 .breadcrumbs {
   margin-bottom: 1rem;
   margin-left: 0;
@@ -22748,7 +23613,7 @@ textarea {
       -ms-user-select: none;
           user-select: none;
   cursor: pointer;
-  height: 36px;
+  height: auto;
 }
 .checkbox input {
   width: 1px;
@@ -22923,7 +23788,7 @@ textarea {
       -ms-user-select: none;
           user-select: none;
   cursor: pointer;
-  height: 36px;
+  height: auto;
 }
 .radio input {
   width: 1px;

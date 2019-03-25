@@ -43,7 +43,7 @@ var Dropdown = {
         Utils.exec(this.options.onDropdownCreate, [this.element]);
         if (this.element.hasClass("open")) {
             setTimeout(function(){
-                that.open();
+                that.open(true);
             }, 500)
         }
     },
@@ -115,7 +115,7 @@ var Dropdown = {
         });
     },
 
-    _close: function(el){
+    _close: function(el, immediate){
 
         if (Utils.isJQueryObject(el) === false) {
             el = $(el);
@@ -128,13 +128,19 @@ var Dropdown = {
 
         toggle.removeClass('active-toggle').removeClass("active-control");
         dropdown.element.parent().removeClass("active-container");
-        el[func](options.duration, function(){
+
+        if (immediate) {
+            func = 'hide'
+        }
+
+        el[func](immediate ? 0 : options.duration, function(){
             el.trigger("onClose", null, el);
         });
+
         Utils.exec(options.onUp, [el]);
     },
 
-    _open: function(el){
+    _open: function(el, immediate){
         if (Utils.isJQueryObject(el) === false) {
             el = $(el);
         }
@@ -145,18 +151,24 @@ var Dropdown = {
         var func = options.effect === "slide" ? "slideDown" : "fadeIn";
 
         toggle.addClass('active-toggle').addClass("active-control");
-        el[func](options.duration, function(){
+
+        if (immediate) {
+            func = 'show'
+        }
+
+        el[func](immediate ? 0 : options.duration, function(){
             el.trigger("onOpen", null, el);
         });
+
         Utils.exec(options.onDrop, [el]);
     },
 
-    close: function(){
-        this._close(this.element);
+    close: function(immediate){
+        this._close(this.element, immediate);
     },
 
-    open: function(){
-        this._open(this.element);
+    open: function(immediate){
+        this._open(this.element, immediate);
     },
 
     changeAttribute: function(attributeName){
