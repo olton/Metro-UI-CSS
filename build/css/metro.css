@@ -34835,13 +34835,44 @@ video:-webkit-full-screen {
   position: absolute;
   content: '\2605';
   display: block;
-  left: 50%;
-  -webkit-transform: translateX(-50%) translateY(-50%);
-          transform: translateX(-50%) translateY(-50%);
-  top: 50%;
+  z-index: 1;
+  left: 0;
 }
-.rating .stars li.half::before {
-  content: '\2BEA';
+.rating .stars li.half::after {
+  left: 0;
+  display: block;
+  position: absolute;
+  content: '\2605';
+  width: 0.42em;
+  z-index: 2;
+  overflow: hidden;
+}
+.rating .stars li.half.half-10::after {
+  width: 0.1em;
+}
+.rating .stars li.half.half-20::after {
+  width: 0.2em;
+}
+.rating .stars li.half.half-30::after {
+  width: 0.3em;
+}
+.rating .stars li.half.half-40::after {
+  width: 0.4em;
+}
+.rating .stars li.half.half-50::after {
+  width: 0.42em;
+}
+.rating .stars li.half.half-60::after {
+  width: 0.49em;
+}
+.rating .stars li.half.half-70::after {
+  width: 0.6em;
+}
+.rating .stars li.half.half-80::after {
+  width: 0.7em;
+}
+.rating .stars li.half.half-90::after {
+  width: 0.8em;
 }
 .rating .result {
   font-size: 0.8em;
@@ -34853,7 +34884,8 @@ video:-webkit-full-screen {
 .rating .stars {
   cursor: default;
 }
-.rating .stars li.on {
+.rating .stars li.on,
+.rating .stars li.half::after {
   color: #1d1d1d;
 }
 .rating:not(.static) .stars {
