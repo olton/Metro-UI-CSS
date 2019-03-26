@@ -113,8 +113,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.40-dev 25/03/2019 23:31",
-    versionFull: "4.2.40-dev 25/03/2019 23:31",
+    version: "4.2.40-dev 26/03/2019 10:36",
+    versionFull: "4.2.40-dev 26/03/2019 10:36",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -15578,6 +15578,7 @@ var Rating = {
         this.elem  = elem;
         this.element = $(elem);
         this.value = 0;
+        this.originValue = 0;
         this.values = [];
         this.rate = 0;
         this.rating = null;
@@ -15598,6 +15599,7 @@ var Rating = {
         starColor: null,
         staredColor: null,
         roundFunc: "round", // ceil, floor, round
+        half: true,
         clsRating: "",
         clsTitle: "",
         clsStars: "",
@@ -15624,6 +15626,12 @@ var Rating = {
         var element = this.element, o = this.options;
         var i;
 
+        if (isNaN(o.value)) {
+            o.value = 0;
+        } else {
+            o.value = parseFloat(o.value).toFixed(1);
+        }
+
         if (o.values !== null) {
             if (Array.isArray(o.values)) {
                 this.values = o.values;
@@ -15636,6 +15644,7 @@ var Rating = {
             }
         }
 
+        this.originValue = o.value;
         this.value = o.value > 0 ? Math[o.roundFunc](o.value) : 0;
 
         if (o.starColor !== null) {
@@ -15663,6 +15672,7 @@ var Rating = {
         var rating = $("<div>").addClass("rating " + String(element[0].className).replace("d-block", "d-flex")).addClass(o.clsRating);
         var i, stars, result, li;
         var sheet = Metro.sheet;
+        var value = o.static ? Math.floor(this.originValue) : this.value;
 
         element.val(this.value);
 
@@ -15675,7 +15685,7 @@ var Rating = {
 
         for(i = 1; i <= o.stars; i++) {
             li = $("<li>").data("value", this.values[i-1]).appendTo(stars);
-            if (i <= this.value) {
+            if (i <= value) {
                 li.addClass("on");
             }
         }
@@ -15689,6 +15699,7 @@ var Rating = {
         }
         if (o.staredColor !== null) {
             Utils.addCssRule(sheet, "#"+id+" .stars li.on", "color: "+o.staredColor+";");
+            Utils.addCssRule(sheet, "#"+id+" .stars li.half::after", "color: "+o.staredColor+";");
         }
 
         if (o.title !== null) {
@@ -15698,8 +15709,13 @@ var Rating = {
 
         if (o.static === true) {
             rating.addClass("static");
+            if (o.half === true){
+                var dec = Math.round((this.originValue % 1) * 10);
+                if (dec > 0 && dec <= 9) {
+                    rating.find('.stars li.on').last().next("li").addClass("half half-" + ( dec * 10));
+                }
+            }
         }
-
 
         element[0].className = '';
         if (o.copyInlineStyles === true) {

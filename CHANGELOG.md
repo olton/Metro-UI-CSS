@@ -15,6 +15,7 @@
 + [x] Form: Add default styling for `input[type=submit]`, `input[type=reset]`, `input[type=button]`.   
 + [x] Checkbox: set default height to `auto`
 + [x] Radio: set default height to `auto`
++ [x] Rating: add half value for static with attribute `data-half="true"`
 
 ### 4.2.39
 + [x] NavView: minor improve styling 
