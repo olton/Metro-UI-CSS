@@ -242,8 +242,8 @@ var Select = {
         input.on(Metro.events.click, function(e){
             $(".focused").removeClass("focused");
             container.addClass("focused");
-            e.preventDefault();
-            e.stopPropagation();
+            //e.preventDefault();
+            //e.stopPropagation();
         });
 
         // filter_input.on(Metro.events.blur, function(){container.removeClass("focused");});

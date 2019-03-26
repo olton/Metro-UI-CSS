@@ -113,8 +113,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.40-dev 26/03/2019 10:36",
-    versionFull: "4.2.40-dev 26/03/2019 10:36",
+    version: "4.2.40-dev 26/03/2019 12:22",
+    versionFull: "4.2.40-dev 26/03/2019 12:22",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -16449,8 +16449,8 @@ var Select = {
         input.on(Metro.events.click, function(e){
             $(".focused").removeClass("focused");
             container.addClass("focused");
-            e.preventDefault();
-            e.stopPropagation();
+            //e.preventDefault();
+            //e.stopPropagation();
         });
 
         // filter_input.on(Metro.events.blur, function(){container.removeClass("focused");});
