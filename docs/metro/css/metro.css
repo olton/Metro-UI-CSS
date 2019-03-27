@@ -23614,7 +23614,7 @@ textarea {
       -ms-user-select: none;
           user-select: none;
   cursor: pointer;
-  height: auto;
+  height: 36px;
 }
 .checkbox input {
   width: 1px;
@@ -23789,7 +23789,7 @@ textarea {
       -ms-user-select: none;
           user-select: none;
   cursor: pointer;
-  height: auto;
+  height: 36px;
 }
 .radio input {
   width: 1px;
@@ -23870,8 +23870,8 @@ textarea {
 .radio.invalid::after {
   display: none;
 }
-.radio:focus input[type=checkbox]:not(:disabled) ~ .check::after,
-.radio:active input[type=checkbox]:not(:disabled) ~ .check::after {
+.radio:focus input[type=radio]:not(:disabled) ~ .check::after,
+.radio:active input[type=radio]:not(:disabled) ~ .check::after {
   display: block;
   content: "";
   position: absolute;
@@ -23937,6 +23937,7 @@ textarea {
       -ms-user-select: none;
           user-select: none;
   cursor: pointer;
+  height: 36px;
 }
 .switch input {
   width: 1px;
@@ -24059,6 +24060,8 @@ textarea {
       -ms-user-select: none;
           user-select: none;
   cursor: pointer;
+  height: 36px;
+  margin: 0;
 }
 .switch-material input {
   width: 1px;
