@@ -16450,6 +16450,7 @@ body {
 .display2,
 .display3,
 .display4 {
+  margin-top: 1.25rem;
   margin-bottom: 1.25rem;
   line-height: 1.2;
 }
@@ -16533,7 +16534,7 @@ h5,
 .h6,
 h6 {
   color: inherit;
-  margin-bottom: 0.5rem;
+  margin: 1rem 0;
   line-height: 1.1;
 }
 .leader > small,
