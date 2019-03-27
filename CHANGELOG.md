@@ -16,6 +16,8 @@
 + [x] Checkbox: set default height to `auto`
 + [x] Radio: set default height to `auto`
 + [x] Rating: add half value for static with attribute `data-half="true"`
++ [x] Headers: add `margin-top` to `display*`, `h1-h5` and `.h1-.h5`
++ [x] Panel: add `text-ellipsis` to `caption`
 
 ### 4.2.39
 + [x] NavView: minor improve styling 
