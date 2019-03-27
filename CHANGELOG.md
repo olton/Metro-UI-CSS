@@ -13,8 +13,6 @@
 + [x] Sidenav counter: optimize css
 + [x] File: call trigger `change` when user drop files into drop area
 + [x] Form: Add default styling for `input[type=submit]`, `input[type=reset]`, `input[type=button]`.   
-+ [x] Checkbox: set default height to `auto`
-+ [x] Radio: set default height to `auto`
 + [x] Rating: add half value for static with attribute `data-half="true"`
 + [x] Headers: add `margin-top` to `display*`, `h1-h5` and `.h1-.h5`
 + [x] Panel: add `text-ellipsis` to `caption`
