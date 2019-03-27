@@ -31161,6 +31161,9 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   width: 100%;
   padding: 0 0.8125rem;
   color: inherit;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .panel .panel-title .dropdown-toggle {
   -webkit-box-ordinal-group: 5;
