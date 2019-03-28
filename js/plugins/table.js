@@ -36,6 +36,8 @@ var Table = {
 
         this.filteredItems = [];
 
+        this.index = {};
+
         this._setOptionsFromDOM();
         this._create();
 
@@ -199,11 +201,19 @@ var Table = {
                 Utils.exec(o.onDataLoaded, [o.source, data], element[0]);
             }).fail(function( jqXHR, textStatus, errorThrown) {
                 Utils.exec(o.onDataLoadError, [o.source, jqXHR, textStatus, errorThrown], element[0]);
-                console.log(textStatus); console.log(jqXHR); console.log(errorThrown);
             });
         } else {
             that._build();
         }
+    },
+
+    _createIndex: function(){
+        var that = this, colIndex = this.options.checkColIndex;
+        setImmediate(function(){
+            that.items.forEach(function(v, i){
+                that.index[v[colIndex]] = i;
+            });
+        });
     },
 
     _build: function(data){
@@ -221,6 +231,9 @@ var Table = {
         } else {
             this._createItemsFromHTML()
         }
+
+        // Create index
+        this._createIndex();
 
         this.view = this._createView();
         this.viewDefault = Utils.objectClone(this.view);
@@ -1351,7 +1364,7 @@ var Table = {
                     }
 
                     tds[view[cell_index]['index-view']] = td;
-                    Utils.exec(o.onDrawCell, [td, this, cell_index, that.heads[cell_index]], td[0]);
+                    Utils.exec(o.onDrawCell, [td, this, cell_index, that.heads[cell_index], cells], td[0]);
                 });
 
                 for (j = 0; j < cells.length; j++){
@@ -1405,6 +1418,30 @@ var Table = {
         }
 
         return result;
+    },
+
+    updateItem: function(key, field, value){
+        var item = this.items[this.index[key]];
+        var fieldIndex = null;
+        if (Utils.isNull(item)) {
+            console.log('Item is undefined for update');
+            return this;
+        }
+        if (isNaN(field)) {
+            this.heads.forEach(function(v, i){
+                if (v['name'] === field) {
+                    fieldIndex = i;
+                }
+            });
+        }
+        if (Utils.isNull(fieldIndex)) {
+            console.log('Item is undefined for update. Field ' + field + ' not found in data structure');
+            return this;
+        }
+
+        item[fieldIndex] = value;
+        this.items[this.index[key]] = item;
+        return this;
     },
 
     deleteItem: function(fieldIndex, value){
@@ -1503,6 +1540,8 @@ var Table = {
     _rebuild: function(review){
         var that = this, element = this.element;
         var need_sort = false, sortable_columns;
+
+        this._createIndex();
 
         if (review === true) {
             this.view = this._createView();
@@ -1787,6 +1826,14 @@ var Table = {
 
         this._resetInspector();
         this._saveTableView();
+    },
+
+    rebuildIndex: function(){
+        this._createIndex();
+    },
+
+    getIndex: function(){
+        return this.index;
     },
 
     export: function(to, mode, filename, options){
