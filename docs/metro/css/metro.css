@@ -22881,6 +22881,7 @@ input:-webkit-autofill:active {
   padding: 0;
   cursor: pointer;
   position: relative;
+  margin: 0;
 }
 .select .d-menu li a,
 .select .v-menu li a {
