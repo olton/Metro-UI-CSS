@@ -1303,81 +1303,81 @@ var Table = {
         items = this._filter();
 
         for (i = start; i <= stop; i++) {
-            var j, tr, td, check, cells = [], tds = [], is_even_row;
-            if (Utils.isValue(items[i])) {
-                tr = $("<tr>").addClass(o.clsBodyRow);
+            var j, tr, td, check, cells = items[i], tds = [], is_even_row;
+            if (!Utils.isValue(cells)) {continue;}
+            tr = $("<tr>").addClass(o.clsBodyRow);
+            tr.data('original', cells);
 
-                // Rownum
+            // Rownum
 
-                is_even_row = i % 2 === 0;
+            is_even_row = i % 2 === 0;
 
-                td = $("<td>").html(i + 1);
-                if (that.service[0].clsColumn !== undefined) {
-                    td.addClass(that.service[0].clsColumn);
-                }
-                td.appendTo(tr);
-
-                // Checkbox
-                td = $("<td>");
-                if (o.checkType === "checkbox") {
-                    check = $("<input type='checkbox' data-style='"+o.checkStyle+"' data-role='checkbox' name='" + (Utils.isValue(o.checkName) ? o.checkName : 'table_row_check') + "[]' value='" + items[i][o.checkColIndex] + "'>");
-                } else {
-                    check = $("<input type='radio' data-style='"+o.checkStyle+"' data-role='radio' name='" + (Utils.isValue(o.checkName) ? o.checkName : 'table_row_check') + "' value='" + items[i][o.checkColIndex] + "'>");
-                }
-
-                if (Utils.isValue(stored_keys) && Array.isArray(stored_keys) && stored_keys.indexOf(""+items[i][o.checkColIndex]) > -1) {
-                    check.prop("checked", true);
-                }
-
-                check.addClass("table-service-check");
-                Utils.exec(o.onCheckDraw, [check], check[0]);
-                check.appendTo(td);
-                if (that.service[1].clsColumn !== undefined) {
-                    td.addClass(that.service[1].clsColumn);
-                }
-                td.appendTo(tr);
-
-                cells = items[i];
-
-                for (j = 0; j < cells.length; j++){
-                    tds[j] = null;
-                }
-
-                $.each(cells, function(cell_index){
-                    if (o.cellWrapper === true) {
-                        td = $("<td>");
-                        $("<div>").addClass("cell-wrapper").addClass(o.clsCellWrapper).html(this).appendTo(td);
-                    } else {
-                        td = $("<td>").html(this);
-                    }
-                    td.addClass(o.clsBodyCell);
-                    if (Utils.isValue(that.heads[cell_index].clsColumn)) {
-                        td.addClass(that.heads[cell_index].clsColumn);
-                    }
-
-                    if (Utils.bool(view[cell_index].show) === false) {
-                        td.addClass("hidden");
-                    }
-
-                    if (Utils.bool(view[cell_index].show)) {
-                        td.removeClass("hidden");
-                    }
-
-                    tds[view[cell_index]['index-view']] = td;
-                    Utils.exec(o.onDrawCell, [td, this, cell_index, that.heads[cell_index], cells], td[0]);
-                });
-
-                for (j = 0; j < cells.length; j++){
-                    tds[j].appendTo(tr);
-                    Utils.exec(o.onAppendCell, [tds[j], tr, j, element], tds[j][0])
-                }
-
-                Utils.exec(o.onDrawRow, [tr, that.view, that.heads, element], tr[0]);
-
-                tr.addClass(o.clsRow).addClass(is_even_row ? o.clsEvenRow : o.clsOddRow).appendTo(body);
-
-                Utils.exec(o.onAppendRow, [tr, element], tr[0]);
+            td = $("<td>").html(i + 1);
+            if (that.service[0].clsColumn !== undefined) {
+                td.addClass(that.service[0].clsColumn);
             }
+            td.appendTo(tr);
+
+            // Checkbox
+            td = $("<td>");
+            if (o.checkType === "checkbox") {
+                check = $("<input type='checkbox' data-style='"+o.checkStyle+"' data-role='checkbox' name='" + (Utils.isValue(o.checkName) ? o.checkName : 'table_row_check') + "[]' value='" + items[i][o.checkColIndex] + "'>");
+            } else {
+                check = $("<input type='radio' data-style='"+o.checkStyle+"' data-role='radio' name='" + (Utils.isValue(o.checkName) ? o.checkName : 'table_row_check') + "' value='" + items[i][o.checkColIndex] + "'>");
+            }
+
+            if (Utils.isValue(stored_keys) && Array.isArray(stored_keys) && stored_keys.indexOf(""+items[i][o.checkColIndex]) > -1) {
+                check.prop("checked", true);
+            }
+
+            check.addClass("table-service-check");
+            Utils.exec(o.onCheckDraw, [check], check[0]);
+            check.appendTo(td);
+            if (that.service[1].clsColumn !== undefined) {
+                td.addClass(that.service[1].clsColumn);
+            }
+            td.appendTo(tr);
+
+            for (j = 0; j < cells.length; j++){
+                tds[j] = null;
+            }
+
+            $.each(cells, function(cell_index){
+                if (o.cellWrapper === true) {
+                    td = $("<td>");
+                    $("<div>").addClass("cell-wrapper").addClass(o.clsCellWrapper).html(this).appendTo(td);
+                } else {
+                    td = $("<td>").html(this);
+                }
+                td.addClass(o.clsBodyCell);
+                if (Utils.isValue(that.heads[cell_index].clsColumn)) {
+                    td.addClass(that.heads[cell_index].clsColumn);
+                }
+
+                if (Utils.bool(view[cell_index].show) === false) {
+                    td.addClass("hidden");
+                }
+
+                if (Utils.bool(view[cell_index].show)) {
+                    td.removeClass("hidden");
+                }
+
+                td.data('original',this);
+
+                tds[view[cell_index]['index-view']] = td;
+                Utils.exec(o.onDrawCell, [td, this, cell_index, that.heads[cell_index], cells], td[0]);
+            });
+
+            for (j = 0; j < cells.length; j++){
+                tds[j].appendTo(tr);
+                Utils.exec(o.onAppendCell, [tds[j], tr, j, element], tds[j][0])
+            }
+
+            Utils.exec(o.onDrawRow, [tr, that.view, that.heads, cells], tr[0]);
+
+            tr.addClass(o.clsRow).addClass(is_even_row ? o.clsEvenRow : o.clsOddRow).appendTo(body);
+
+            Utils.exec(o.onAppendRow, [tr, element], tr[0]);
         }
 
         this._info(start + 1, stop + 1, items.length);
