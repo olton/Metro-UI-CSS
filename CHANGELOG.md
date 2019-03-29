@@ -22,6 +22,7 @@
 + [x] Table: fix incorrect work service radio buttons
 + [x] Select: remove `margin-bottom`
 + [x] Blockquote: rename class `place-right` to `right-side` for right side quote
++ [x] Lists: fix list style position for ordered list
 
 ### 4.2.39
 + [x] NavView: minor improve styling 
