@@ -1444,6 +1444,10 @@ var Table = {
         return this;
     },
 
+    getItem: function(key){
+        return this.items[this.index[key]];
+    },
+
     deleteItem: function(fieldIndex, value){
         var i, deleteIndexes = [];
         var is_func = Utils.isFunc(value);

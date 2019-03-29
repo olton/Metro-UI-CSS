@@ -16,7 +16,7 @@
 + [x] Rating: add half value for static with attribute `data-half="true"`
 + [x] Headers: add `margin-top` to `display*`, `h1-h5` and `.h1-.h5`
 + [x] Panel: add `text-ellipsis` to `caption`
-+ [x] Table: add methods: `updateItem(key, field, value)`, `getIndex()`, `rebuildIndex()`
++ [x] Table: add methods: `updateItem(key, field, value)`, `getIndex()`, `rebuildIndex()`, `getItem(key)`
 + [x] Select: remove `margin-bottom`
 
 ### 4.2.39

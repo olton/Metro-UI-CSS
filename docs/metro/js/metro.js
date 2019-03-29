@@ -113,8 +113,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.40-dev 28/03/2019 19:45",
-    versionFull: "4.2.40-dev 28/03/2019 19:45",
+    version: "4.2.40-dev 29/03/2019 09:01",
+    versionFull: "4.2.40-dev 29/03/2019 09:01",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -20444,6 +20444,10 @@ var Table = {
         item[fieldIndex] = value;
         this.items[this.index[key]] = item;
         return this;
+    },
+
+    getItem: function(key){
+        return this.items[this.index[key]];
     },
 
     deleteItem: function(fieldIndex, value){
