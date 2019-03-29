@@ -16840,16 +16840,16 @@ blockquote small {
 blockquote small:before {
   content: "\2014 \00A0";
 }
-blockquote.place-right {
+blockquote.right-side {
   border: 0;
   border-right: 4px #f8f8f8 solid;
   padding-right: 0.625rem;
   text-align: right;
 }
-blockquote.place-right small:before {
+blockquote.right-side small:before {
   content: "";
 }
-blockquote.place-right small:after {
+blockquote.right-side small:after {
   content: " \00A0 \2014";
 }
 hr {

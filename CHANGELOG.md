@@ -14,12 +14,14 @@
 + [x] File: call trigger `change` when user drop files into drop area
 + [x] Form: Add default styling for `input[type=submit]`, `input[type=reset]`, `input[type=button]`.   
 + [x] Rating: add half value for static with attribute `data-half="true"`
-+ [x] Headers: add `margin-top` to `display*`, `h1-h5` and `.h1-.h5`
++ [x] Headlines: add `margin-top` to `display*`, `h1-h5` and `.h1-.h5`
 + [x] Panel: add `text-ellipsis` to `caption`
 + [x] Table: add methods: `updateItem(key, field, value)`, `getIndex()`, `rebuildIndex()`, `getItem(key)`
-+ [x] Table: store item data in row data field `original`. Now you can use `tr.data('original')` to get table row original data
-+ [x] Table: store cell data in cell data field `original`. Now you can use `td.data('original')` to get cell original data
++ [x] Table: store item data in row. Now you can use `tr.data('original')` to get table row original data
++ [x] Table: store cell data in cell. Now you can use `td.data('original')` to get cell original data
++ [x] Table: fix incorrect work service radio buttons
 + [x] Select: remove `margin-bottom`
++ [x] Blockquote: rename class `place-right` to `right-side` for right side quote
 
 ### 4.2.39
 + [x] NavView: minor improve styling 
