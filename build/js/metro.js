@@ -113,8 +113,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.40-dev 29/03/2019 09:18",
-    versionFull: "4.2.40-dev 29/03/2019 09:18",
+    version: "4.2.40-dev 29/03/2019 11:31",
+    versionFull: "4.2.40-dev 29/03/2019 11:31",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -19853,6 +19853,11 @@ var Table = {
             var store_key = o.checkStoreKey.replace("$1", id);
             var storage = Metro.storage;
             var data = storage.getItem(store_key);
+            var is_radio = check.attr('type') === 'radio';
+
+            if (is_radio) {
+                data = [];
+            }
 
             if (status) {
                 if (!Utils.isValue(data)) {

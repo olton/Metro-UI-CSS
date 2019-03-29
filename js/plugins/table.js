@@ -851,6 +851,11 @@ var Table = {
             var store_key = o.checkStoreKey.replace("$1", id);
             var storage = Metro.storage;
             var data = storage.getItem(store_key);
+            var is_radio = check.attr('type') === 'radio';
+
+            if (is_radio) {
+                data = [];
+            }
 
             if (status) {
                 if (!Utils.isValue(data)) {
