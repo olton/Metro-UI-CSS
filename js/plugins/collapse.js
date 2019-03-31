@@ -16,7 +16,7 @@ var Collapse = {
     options: {
         collapsed: false,
         toggleElement: false,
-        duration: METRO_ANIMATION_DURATION,
+        duration: 100,
         onExpand: Metro.noop,
         onCollapse: Metro.noop,
         onCollapseCreate: Metro.noop

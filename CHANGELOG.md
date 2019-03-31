@@ -23,6 +23,8 @@
 + [x] Select: remove `margin-bottom`
 + [x] Blockquote: rename class `place-right` to `right-side` for right side quote
 + [x] Lists: fix list style position for ordered list
++ [x] Dropdown: add service class `stay-open`. When an element has this class, an element can't be closed when the user clicks on the document.
++ [x] Collapse: change default animation duration to `100ms`
 
 ### 4.2.39
 + [x] NavView: minor improve styling 

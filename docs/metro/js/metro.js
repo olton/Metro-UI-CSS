@@ -113,8 +113,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.40-dev 29/03/2019 18:47",
-    versionFull: "4.2.40-dev 29/03/2019 18:47",
+    version: "4.2.40-dev 31/03/2019 11:46",
+    versionFull: "4.2.40-dev 31/03/2019 11:46",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -8174,7 +8174,7 @@ var Collapse = {
     options: {
         collapsed: false,
         toggleElement: false,
-        duration: METRO_ANIMATION_DURATION,
+        duration: 100,
         onExpand: Metro.noop,
         onCollapse: Metro.noop,
         onCollapseCreate: Metro.noop
@@ -10662,7 +10662,7 @@ $(document).on(Metro.events.click, function(e){
     $('[data-role*=dropdown]').each(function(){
         var el = $(this);
 
-        if (el.css('display')==='block' && el.hasClass('keep-open') === false) {
+        if (el.css('display')==='block' && !el.hasClass('keep-open') && !el.hasClass('stay-open')) {
             var dropdown = el.data('dropdown');
             dropdown.close();
         }

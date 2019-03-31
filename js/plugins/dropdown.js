@@ -184,7 +184,7 @@ $(document).on(Metro.events.click, function(e){
     $('[data-role*=dropdown]').each(function(){
         var el = $(this);
 
-        if (el.css('display')==='block' && el.hasClass('keep-open') === false) {
+        if (el.css('display')==='block' && !el.hasClass('keep-open') && !el.hasClass('stay-open')) {
             var dropdown = el.data('dropdown');
             dropdown.close();
         }
