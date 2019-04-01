@@ -12995,7 +12995,8 @@ code.primary,
 .select .button.primary,
 .tag-input .button.primary,
 .spinner .button.primary,
-.toast.primary {
+.toast.primary,
+div.primary {
   outline-color: #89b0ff;
   background-color: #0050ef;
   color: #ffffff;
@@ -13016,7 +13017,8 @@ code.primary.outline,
 .select .button.primary.outline,
 .tag-input .button.primary.outline,
 .spinner .button.primary.outline,
-.toast.primary.outline {
+.toast.primary.outline,
+div.primary.outline {
   color: #0050ef;
   border-color: #0050ef;
 }
@@ -13036,7 +13038,8 @@ code.primary.outline.dropdown-toggle::before,
 .select .button.primary.outline.dropdown-toggle::before,
 .tag-input .button.primary.outline.dropdown-toggle::before,
 .spinner .button.primary.outline.dropdown-toggle::before,
-.toast.primary.outline.dropdown-toggle::before {
+.toast.primary.outline.dropdown-toggle::before,
+div.primary.outline.dropdown-toggle::before {
   border-color: #0050ef;
 }
 .button.primary.outline:hover,
@@ -13055,7 +13058,8 @@ code.primary.outline:hover,
 .select .button.primary.outline:hover,
 .tag-input .button.primary.outline:hover,
 .spinner .button.primary.outline:hover,
-.toast.primary.outline:hover {
+.toast.primary.outline:hover,
+div.primary.outline:hover {
   color: #ffffff;
 }
 .button.primary.dropdown-toggle::before,
@@ -13074,7 +13078,8 @@ code.primary.dropdown-toggle::before,
 .select .button.primary.dropdown-toggle::before,
 .tag-input .button.primary.dropdown-toggle::before,
 .spinner .button.primary.dropdown-toggle::before,
-.toast.primary.dropdown-toggle::before {
+.toast.primary.dropdown-toggle::before,
+div.primary.dropdown-toggle::before {
   border-color: #ffffff;
 }
 .button.primary:hover,
@@ -13093,7 +13098,8 @@ code.primary:hover,
 .select .button.primary:hover,
 .tag-input .button.primary:hover,
 .spinner .button.primary:hover,
-.toast.primary:hover {
+.toast.primary:hover,
+div.primary:hover {
   color: #ffffff;
   background-color: #003fbc;
   border-color: #002e89;
@@ -13114,7 +13120,8 @@ code.primary:hover.dropdown-toggle::before,
 .select .button.primary:hover.dropdown-toggle::before,
 .tag-input .button.primary:hover.dropdown-toggle::before,
 .spinner .button.primary:hover.dropdown-toggle::before,
-.toast.primary:hover.dropdown-toggle::before {
+.toast.primary:hover.dropdown-toggle::before,
+div.primary:hover.dropdown-toggle::before {
   border-color: #ffffff;
 }
 .button.primary.same-color:hover,
@@ -13133,7 +13140,8 @@ code.primary.same-color:hover,
 .select .button.primary.same-color:hover,
 .tag-input .button.primary.same-color:hover,
 .spinner .button.primary.same-color:hover,
-.toast.primary.same-color:hover {
+.toast.primary.same-color:hover,
+div.primary.same-color:hover {
   background-color: #0050ef;
   border-color: #0050ef;
 }
@@ -13154,6 +13162,7 @@ code.primary:active,
 .tag-input .button.primary:active,
 .spinner .button.primary:active,
 .toast.primary:active,
+div.primary:active,
 .button.primary.focus,
 .command-button.primary.focus,
 .image-button.primary.focus,
@@ -13171,6 +13180,7 @@ code.primary.focus,
 .tag-input .button.primary.focus,
 .spinner .button.primary.focus,
 .toast.primary.focus,
+div.primary.focus,
 .button.primary:focus,
 .command-button.primary:focus,
 .image-button.primary:focus,
@@ -13187,7 +13197,8 @@ code.primary:focus,
 .select .button.primary:focus,
 .tag-input .button.primary:focus,
 .spinner .button.primary:focus,
-.toast.primary:focus {
+.toast.primary:focus,
+div.primary:focus {
   -webkit-box-shadow: 0 0 0 3px rgba(0, 80, 239, 0.45);
           box-shadow: 0 0 0 3px rgba(0, 80, 239, 0.45);
 }
@@ -13207,7 +13218,8 @@ code.secondary,
 .select .button.secondary,
 .tag-input .button.secondary,
 .spinner .button.secondary,
-.toast.secondary {
+.toast.secondary,
+div.secondary {
   outline-color: #b7c6cd;
   background-color: #607d8b;
   color: #ffffff;
@@ -13228,7 +13240,8 @@ code.secondary.outline,
 .select .button.secondary.outline,
 .tag-input .button.secondary.outline,
 .spinner .button.secondary.outline,
-.toast.secondary.outline {
+.toast.secondary.outline,
+div.secondary.outline {
   color: #607d8b;
   border-color: #607d8b;
 }
@@ -13248,7 +13261,8 @@ code.secondary.outline.dropdown-toggle::before,
 .select .button.secondary.outline.dropdown-toggle::before,
 .tag-input .button.secondary.outline.dropdown-toggle::before,
 .spinner .button.secondary.outline.dropdown-toggle::before,
-.toast.secondary.outline.dropdown-toggle::before {
+.toast.secondary.outline.dropdown-toggle::before,
+div.secondary.outline.dropdown-toggle::before {
   border-color: #607d8b;
 }
 .button.secondary.outline:hover,
@@ -13267,7 +13281,8 @@ code.secondary.outline:hover,
 .select .button.secondary.outline:hover,
 .tag-input .button.secondary.outline:hover,
 .spinner .button.secondary.outline:hover,
-.toast.secondary.outline:hover {
+.toast.secondary.outline:hover,
+div.secondary.outline:hover {
   color: #ffffff;
 }
 .button.secondary.dropdown-toggle::before,
@@ -13286,7 +13301,8 @@ code.secondary.dropdown-toggle::before,
 .select .button.secondary.dropdown-toggle::before,
 .tag-input .button.secondary.dropdown-toggle::before,
 .spinner .button.secondary.dropdown-toggle::before,
-.toast.secondary.dropdown-toggle::before {
+.toast.secondary.dropdown-toggle::before,
+div.secondary.dropdown-toggle::before {
   border-color: #ffffff;
 }
 .button.secondary:hover,
@@ -13305,7 +13321,8 @@ code.secondary:hover,
 .select .button.secondary:hover,
 .tag-input .button.secondary:hover,
 .spinner .button.secondary:hover,
-.toast.secondary:hover {
+.toast.secondary:hover,
+div.secondary:hover {
   color: #ffffff;
   background-color: #4b626d;
   border-color: #36474f;
@@ -13326,7 +13343,8 @@ code.secondary:hover.dropdown-toggle::before,
 .select .button.secondary:hover.dropdown-toggle::before,
 .tag-input .button.secondary:hover.dropdown-toggle::before,
 .spinner .button.secondary:hover.dropdown-toggle::before,
-.toast.secondary:hover.dropdown-toggle::before {
+.toast.secondary:hover.dropdown-toggle::before,
+div.secondary:hover.dropdown-toggle::before {
   border-color: #ffffff;
 }
 .button.secondary.same-color:hover,
@@ -13345,7 +13363,8 @@ code.secondary.same-color:hover,
 .select .button.secondary.same-color:hover,
 .tag-input .button.secondary.same-color:hover,
 .spinner .button.secondary.same-color:hover,
-.toast.secondary.same-color:hover {
+.toast.secondary.same-color:hover,
+div.secondary.same-color:hover {
   background-color: #607d8b;
   border-color: #607d8b;
 }
@@ -13366,6 +13385,7 @@ code.secondary:active,
 .tag-input .button.secondary:active,
 .spinner .button.secondary:active,
 .toast.secondary:active,
+div.secondary:active,
 .button.secondary.focus,
 .command-button.secondary.focus,
 .image-button.secondary.focus,
@@ -13383,6 +13403,7 @@ code.secondary.focus,
 .tag-input .button.secondary.focus,
 .spinner .button.secondary.focus,
 .toast.secondary.focus,
+div.secondary.focus,
 .button.secondary:focus,
 .command-button.secondary:focus,
 .image-button.secondary:focus,
@@ -13399,7 +13420,8 @@ code.secondary:focus,
 .select .button.secondary:focus,
 .tag-input .button.secondary:focus,
 .spinner .button.secondary:focus,
-.toast.secondary:focus {
+.toast.secondary:focus,
+div.secondary:focus {
   -webkit-box-shadow: 0 0 0 3px rgba(96, 125, 139, 0.45);
           box-shadow: 0 0 0 3px rgba(96, 125, 139, 0.45);
 }
@@ -13419,7 +13441,8 @@ code.success,
 .select .button.success,
 .tag-input .button.success,
 .spinner .button.success,
-.toast.success {
+.toast.success,
+div.success {
   outline-color: #adeb6e;
   background-color: #60a917;
   color: #ffffff;
@@ -13440,7 +13463,8 @@ code.success.outline,
 .select .button.success.outline,
 .tag-input .button.success.outline,
 .spinner .button.success.outline,
-.toast.success.outline {
+.toast.success.outline,
+div.success.outline {
   color: #60a917;
   border-color: #60a917;
 }
@@ -13460,7 +13484,8 @@ code.success.outline.dropdown-toggle::before,
 .select .button.success.outline.dropdown-toggle::before,
 .tag-input .button.success.outline.dropdown-toggle::before,
 .spinner .button.success.outline.dropdown-toggle::before,
-.toast.success.outline.dropdown-toggle::before {
+.toast.success.outline.dropdown-toggle::before,
+div.success.outline.dropdown-toggle::before {
   border-color: #60a917;
 }
 .button.success.outline:hover,
@@ -13479,7 +13504,8 @@ code.success.outline:hover,
 .select .button.success.outline:hover,
 .tag-input .button.success.outline:hover,
 .spinner .button.success.outline:hover,
-.toast.success.outline:hover {
+.toast.success.outline:hover,
+div.success.outline:hover {
   color: #ffffff;
 }
 .button.success.dropdown-toggle::before,
@@ -13498,7 +13524,8 @@ code.success.dropdown-toggle::before,
 .select .button.success.dropdown-toggle::before,
 .tag-input .button.success.dropdown-toggle::before,
 .spinner .button.success.dropdown-toggle::before,
-.toast.success.dropdown-toggle::before {
+.toast.success.dropdown-toggle::before,
+div.success.dropdown-toggle::before {
   border-color: #ffffff;
 }
 .button.success:hover,
@@ -13517,7 +13544,8 @@ code.success:hover,
 .select .button.success:hover,
 .tag-input .button.success:hover,
 .spinner .button.success:hover,
-.toast.success:hover {
+.toast.success:hover,
+div.success:hover {
   color: #ffffff;
   background-color: #477c11;
   border-color: #2d4f0b;
@@ -13538,7 +13566,8 @@ code.success:hover.dropdown-toggle::before,
 .select .button.success:hover.dropdown-toggle::before,
 .tag-input .button.success:hover.dropdown-toggle::before,
 .spinner .button.success:hover.dropdown-toggle::before,
-.toast.success:hover.dropdown-toggle::before {
+.toast.success:hover.dropdown-toggle::before,
+div.success:hover.dropdown-toggle::before {
   border-color: #ffffff;
 }
 .button.success.same-color:hover,
@@ -13557,7 +13586,8 @@ code.success.same-color:hover,
 .select .button.success.same-color:hover,
 .tag-input .button.success.same-color:hover,
 .spinner .button.success.same-color:hover,
-.toast.success.same-color:hover {
+.toast.success.same-color:hover,
+div.success.same-color:hover {
   background-color: #60a917;
   border-color: #60a917;
 }
@@ -13578,6 +13608,7 @@ code.success:active,
 .tag-input .button.success:active,
 .spinner .button.success:active,
 .toast.success:active,
+div.success:active,
 .button.success.focus,
 .command-button.success.focus,
 .image-button.success.focus,
@@ -13595,6 +13626,7 @@ code.success.focus,
 .tag-input .button.success.focus,
 .spinner .button.success.focus,
 .toast.success.focus,
+div.success.focus,
 .button.success:focus,
 .command-button.success:focus,
 .image-button.success:focus,
@@ -13611,7 +13643,8 @@ code.success:focus,
 .select .button.success:focus,
 .tag-input .button.success:focus,
 .spinner .button.success:focus,
-.toast.success:focus {
+.toast.success:focus,
+div.success:focus {
   -webkit-box-shadow: 0 0 0 3px rgba(96, 169, 23, 0.45);
           box-shadow: 0 0 0 3px rgba(96, 169, 23, 0.45);
 }
@@ -13631,7 +13664,8 @@ code.alert,
 .select .button.alert,
 .tag-input .button.alert,
 .spinner .button.alert,
-.toast.alert {
+.toast.alert,
+div.alert {
   outline-color: #ecaba7;
   background-color: #CE352C;
   color: #ffffff;
@@ -13652,7 +13686,8 @@ code.alert.outline,
 .select .button.alert.outline,
 .tag-input .button.alert.outline,
 .spinner .button.alert.outline,
-.toast.alert.outline {
+.toast.alert.outline,
+div.alert.outline {
   color: #CE352C;
   border-color: #CE352C;
 }
@@ -13672,7 +13707,8 @@ code.alert.outline.dropdown-toggle::before,
 .select .button.alert.outline.dropdown-toggle::before,
 .tag-input .button.alert.outline.dropdown-toggle::before,
 .spinner .button.alert.outline.dropdown-toggle::before,
-.toast.alert.outline.dropdown-toggle::before {
+.toast.alert.outline.dropdown-toggle::before,
+div.alert.outline.dropdown-toggle::before {
   border-color: #CE352C;
 }
 .button.alert.outline:hover,
@@ -13691,7 +13727,8 @@ code.alert.outline:hover,
 .select .button.alert.outline:hover,
 .tag-input .button.alert.outline:hover,
 .spinner .button.alert.outline:hover,
-.toast.alert.outline:hover {
+.toast.alert.outline:hover,
+div.alert.outline:hover {
   color: #ffffff;
 }
 .button.alert.dropdown-toggle::before,
@@ -13710,7 +13747,8 @@ code.alert.dropdown-toggle::before,
 .select .button.alert.dropdown-toggle::before,
 .tag-input .button.alert.dropdown-toggle::before,
 .spinner .button.alert.dropdown-toggle::before,
-.toast.alert.dropdown-toggle::before {
+.toast.alert.dropdown-toggle::before,
+div.alert.dropdown-toggle::before {
   border-color: #ffffff;
 }
 .button.alert:hover,
@@ -13729,7 +13767,8 @@ code.alert:hover,
 .select .button.alert:hover,
 .tag-input .button.alert:hover,
 .spinner .button.alert:hover,
-.toast.alert:hover {
+.toast.alert:hover,
+div.alert:hover {
   color: #ffffff;
   background-color: #a42a23;
   border-color: #7a1f1a;
@@ -13750,7 +13789,8 @@ code.alert:hover.dropdown-toggle::before,
 .select .button.alert:hover.dropdown-toggle::before,
 .tag-input .button.alert:hover.dropdown-toggle::before,
 .spinner .button.alert:hover.dropdown-toggle::before,
-.toast.alert:hover.dropdown-toggle::before {
+.toast.alert:hover.dropdown-toggle::before,
+div.alert:hover.dropdown-toggle::before {
   border-color: #ffffff;
 }
 .button.alert.same-color:hover,
@@ -13769,7 +13809,8 @@ code.alert.same-color:hover,
 .select .button.alert.same-color:hover,
 .tag-input .button.alert.same-color:hover,
 .spinner .button.alert.same-color:hover,
-.toast.alert.same-color:hover {
+.toast.alert.same-color:hover,
+div.alert.same-color:hover {
   background-color: #CE352C;
   border-color: #CE352C;
 }
@@ -13790,6 +13831,7 @@ code.alert:active,
 .tag-input .button.alert:active,
 .spinner .button.alert:active,
 .toast.alert:active,
+div.alert:active,
 .button.alert.focus,
 .command-button.alert.focus,
 .image-button.alert.focus,
@@ -13807,6 +13849,7 @@ code.alert.focus,
 .tag-input .button.alert.focus,
 .spinner .button.alert.focus,
 .toast.alert.focus,
+div.alert.focus,
 .button.alert:focus,
 .command-button.alert:focus,
 .image-button.alert:focus,
@@ -13823,7 +13866,8 @@ code.alert:focus,
 .select .button.alert:focus,
 .tag-input .button.alert:focus,
 .spinner .button.alert:focus,
-.toast.alert:focus {
+.toast.alert:focus,
+div.alert:focus {
   -webkit-box-shadow: 0 0 0 3px rgba(206, 53, 44, 0.45);
           box-shadow: 0 0 0 3px rgba(206, 53, 44, 0.45);
 }
@@ -13843,7 +13887,8 @@ code.warning,
 .select .button.warning,
 .tag-input .button.warning,
 .spinner .button.warning,
-.toast.warning {
+.toast.warning,
+div.warning {
   outline-color: #ffede1;
   background-color: #ff9447;
   color: #ffffff;
@@ -13864,7 +13909,8 @@ code.warning.outline,
 .select .button.warning.outline,
 .tag-input .button.warning.outline,
 .spinner .button.warning.outline,
-.toast.warning.outline {
+.toast.warning.outline,
+div.warning.outline {
   color: #ff9447;
   border-color: #ff9447;
 }
@@ -13884,7 +13930,8 @@ code.warning.outline.dropdown-toggle::before,
 .select .button.warning.outline.dropdown-toggle::before,
 .tag-input .button.warning.outline.dropdown-toggle::before,
 .spinner .button.warning.outline.dropdown-toggle::before,
-.toast.warning.outline.dropdown-toggle::before {
+.toast.warning.outline.dropdown-toggle::before,
+div.warning.outline.dropdown-toggle::before {
   border-color: #ff9447;
 }
 .button.warning.outline:hover,
@@ -13903,7 +13950,8 @@ code.warning.outline:hover,
 .select .button.warning.outline:hover,
 .tag-input .button.warning.outline:hover,
 .spinner .button.warning.outline:hover,
-.toast.warning.outline:hover {
+.toast.warning.outline:hover,
+div.warning.outline:hover {
   color: #ffffff;
 }
 .button.warning.dropdown-toggle::before,
@@ -13922,7 +13970,8 @@ code.warning.dropdown-toggle::before,
 .select .button.warning.dropdown-toggle::before,
 .tag-input .button.warning.dropdown-toggle::before,
 .spinner .button.warning.dropdown-toggle::before,
-.toast.warning.dropdown-toggle::before {
+.toast.warning.dropdown-toggle::before,
+div.warning.dropdown-toggle::before {
   border-color: #ffffff;
 }
 .button.warning:hover,
@@ -13941,7 +13990,8 @@ code.warning:hover,
 .select .button.warning:hover,
 .tag-input .button.warning:hover,
 .spinner .button.warning:hover,
-.toast.warning:hover {
+.toast.warning:hover,
+div.warning:hover {
   color: #ffffff;
   background-color: #ff7615;
   border-color: #e05d00;
@@ -13962,7 +14012,8 @@ code.warning:hover.dropdown-toggle::before,
 .select .button.warning:hover.dropdown-toggle::before,
 .tag-input .button.warning:hover.dropdown-toggle::before,
 .spinner .button.warning:hover.dropdown-toggle::before,
-.toast.warning:hover.dropdown-toggle::before {
+.toast.warning:hover.dropdown-toggle::before,
+div.warning:hover.dropdown-toggle::before {
   border-color: #ffffff;
 }
 .button.warning.same-color:hover,
@@ -13981,7 +14032,8 @@ code.warning.same-color:hover,
 .select .button.warning.same-color:hover,
 .tag-input .button.warning.same-color:hover,
 .spinner .button.warning.same-color:hover,
-.toast.warning.same-color:hover {
+.toast.warning.same-color:hover,
+div.warning.same-color:hover {
   background-color: #ff9447;
   border-color: #ff9447;
 }
@@ -14002,6 +14054,7 @@ code.warning:active,
 .tag-input .button.warning:active,
 .spinner .button.warning:active,
 .toast.warning:active,
+div.warning:active,
 .button.warning.focus,
 .command-button.warning.focus,
 .image-button.warning.focus,
@@ -14019,6 +14072,7 @@ code.warning.focus,
 .tag-input .button.warning.focus,
 .spinner .button.warning.focus,
 .toast.warning.focus,
+div.warning.focus,
 .button.warning:focus,
 .command-button.warning:focus,
 .image-button.warning:focus,
@@ -14035,7 +14089,8 @@ code.warning:focus,
 .select .button.warning:focus,
 .tag-input .button.warning:focus,
 .spinner .button.warning:focus,
-.toast.warning:focus {
+.toast.warning:focus,
+div.warning:focus {
   -webkit-box-shadow: 0 0 0 3px rgba(255, 148, 71, 0.45);
           box-shadow: 0 0 0 3px rgba(255, 148, 71, 0.45);
 }
@@ -14055,7 +14110,8 @@ code.yellow,
 .select .button.yellow,
 .tag-input .button.yellow,
 .spinner .button.yellow,
-.toast.yellow {
+.toast.yellow,
+div.yellow {
   outline-color: #ffffff;
   background-color: #ffe484;
   color: #ffffff;
@@ -14076,7 +14132,8 @@ code.yellow.outline,
 .select .button.yellow.outline,
 .tag-input .button.yellow.outline,
 .spinner .button.yellow.outline,
-.toast.yellow.outline {
+.toast.yellow.outline,
+div.yellow.outline {
   color: #ffe484;
   border-color: #ffe484;
 }
@@ -14096,7 +14153,8 @@ code.yellow.outline.dropdown-toggle::before,
 .select .button.yellow.outline.dropdown-toggle::before,
 .tag-input .button.yellow.outline.dropdown-toggle::before,
 .spinner .button.yellow.outline.dropdown-toggle::before,
-.toast.yellow.outline.dropdown-toggle::before {
+.toast.yellow.outline.dropdown-toggle::before,
+div.yellow.outline.dropdown-toggle::before {
   border-color: #ffe484;
 }
 .button.yellow.outline:hover,
@@ -14115,7 +14173,8 @@ code.yellow.outline:hover,
 .select .button.yellow.outline:hover,
 .tag-input .button.yellow.outline:hover,
 .spinner .button.yellow.outline:hover,
-.toast.yellow.outline:hover {
+.toast.yellow.outline:hover,
+div.yellow.outline:hover {
   color: #ffffff;
 }
 .button.yellow.dropdown-toggle::before,
@@ -14134,7 +14193,8 @@ code.yellow.dropdown-toggle::before,
 .select .button.yellow.dropdown-toggle::before,
 .tag-input .button.yellow.dropdown-toggle::before,
 .spinner .button.yellow.dropdown-toggle::before,
-.toast.yellow.dropdown-toggle::before {
+.toast.yellow.dropdown-toggle::before,
+div.yellow.dropdown-toggle::before {
   border-color: #ffffff;
 }
 .button.yellow:hover,
@@ -14153,7 +14213,8 @@ code.yellow:hover,
 .select .button.yellow:hover,
 .tag-input .button.yellow:hover,
 .spinner .button.yellow:hover,
-.toast.yellow:hover {
+.toast.yellow:hover,
+div.yellow:hover {
   color: #ffffff;
   background-color: #ffd951;
   border-color: #ffce1e;
@@ -14174,7 +14235,8 @@ code.yellow:hover.dropdown-toggle::before,
 .select .button.yellow:hover.dropdown-toggle::before,
 .tag-input .button.yellow:hover.dropdown-toggle::before,
 .spinner .button.yellow:hover.dropdown-toggle::before,
-.toast.yellow:hover.dropdown-toggle::before {
+.toast.yellow:hover.dropdown-toggle::before,
+div.yellow:hover.dropdown-toggle::before {
   border-color: #ffffff;
 }
 .button.yellow.same-color:hover,
@@ -14193,7 +14255,8 @@ code.yellow.same-color:hover,
 .select .button.yellow.same-color:hover,
 .tag-input .button.yellow.same-color:hover,
 .spinner .button.yellow.same-color:hover,
-.toast.yellow.same-color:hover {
+.toast.yellow.same-color:hover,
+div.yellow.same-color:hover {
   background-color: #ffe484;
   border-color: #ffe484;
 }
@@ -14214,6 +14277,7 @@ code.yellow:active,
 .tag-input .button.yellow:active,
 .spinner .button.yellow:active,
 .toast.yellow:active,
+div.yellow:active,
 .button.yellow.focus,
 .command-button.yellow.focus,
 .image-button.yellow.focus,
@@ -14231,6 +14295,7 @@ code.yellow.focus,
 .tag-input .button.yellow.focus,
 .spinner .button.yellow.focus,
 .toast.yellow.focus,
+div.yellow.focus,
 .button.yellow:focus,
 .command-button.yellow:focus,
 .image-button.yellow:focus,
@@ -14247,7 +14312,8 @@ code.yellow:focus,
 .select .button.yellow:focus,
 .tag-input .button.yellow:focus,
 .spinner .button.yellow:focus,
-.toast.yellow:focus {
+.toast.yellow:focus,
+div.yellow:focus {
   -webkit-box-shadow: 0 0 0 3px rgba(255, 228, 132, 0.45);
           box-shadow: 0 0 0 3px rgba(255, 228, 132, 0.45);
 }
@@ -14267,7 +14333,8 @@ code.info,
 .select .button.info,
 .tag-input .button.info,
 .spinner .button.info,
-.toast.info {
+.toast.info,
+div.info {
   outline-color: #e6f5fc;
   background-color: #5ebdec;
   color: #ffffff;
@@ -14288,7 +14355,8 @@ code.info.outline,
 .select .button.info.outline,
 .tag-input .button.info.outline,
 .spinner .button.info.outline,
-.toast.info.outline {
+.toast.info.outline,
+div.info.outline {
   color: #5ebdec;
   border-color: #5ebdec;
 }
@@ -14308,7 +14376,8 @@ code.info.outline.dropdown-toggle::before,
 .select .button.info.outline.dropdown-toggle::before,
 .tag-input .button.info.outline.dropdown-toggle::before,
 .spinner .button.info.outline.dropdown-toggle::before,
-.toast.info.outline.dropdown-toggle::before {
+.toast.info.outline.dropdown-toggle::before,
+div.info.outline.dropdown-toggle::before {
   border-color: #5ebdec;
 }
 .button.info.outline:hover,
@@ -14327,7 +14396,8 @@ code.info.outline:hover,
 .select .button.info.outline:hover,
 .tag-input .button.info.outline:hover,
 .spinner .button.info.outline:hover,
-.toast.info.outline:hover {
+.toast.info.outline:hover,
+div.info.outline:hover {
   color: #ffffff;
 }
 .button.info.dropdown-toggle::before,
@@ -14346,7 +14416,8 @@ code.info.dropdown-toggle::before,
 .select .button.info.dropdown-toggle::before,
 .tag-input .button.info.dropdown-toggle::before,
 .spinner .button.info.dropdown-toggle::before,
-.toast.info.dropdown-toggle::before {
+.toast.info.dropdown-toggle::before,
+div.info.dropdown-toggle::before {
   border-color: #ffffff;
 }
 .button.info:hover,
@@ -14365,7 +14436,8 @@ code.info:hover,
 .select .button.info:hover,
 .tag-input .button.info:hover,
 .spinner .button.info:hover,
-.toast.info:hover {
+.toast.info:hover,
+div.info:hover {
   color: #ffffff;
   background-color: #30abe6;
   border-color: #1891cb;
@@ -14386,7 +14458,8 @@ code.info:hover.dropdown-toggle::before,
 .select .button.info:hover.dropdown-toggle::before,
 .tag-input .button.info:hover.dropdown-toggle::before,
 .spinner .button.info:hover.dropdown-toggle::before,
-.toast.info:hover.dropdown-toggle::before {
+.toast.info:hover.dropdown-toggle::before,
+div.info:hover.dropdown-toggle::before {
   border-color: #ffffff;
 }
 .button.info.same-color:hover,
@@ -14405,7 +14478,8 @@ code.info.same-color:hover,
 .select .button.info.same-color:hover,
 .tag-input .button.info.same-color:hover,
 .spinner .button.info.same-color:hover,
-.toast.info.same-color:hover {
+.toast.info.same-color:hover,
+div.info.same-color:hover {
   background-color: #5ebdec;
   border-color: #5ebdec;
 }
@@ -14426,6 +14500,7 @@ code.info:active,
 .tag-input .button.info:active,
 .spinner .button.info:active,
 .toast.info:active,
+div.info:active,
 .button.info.focus,
 .command-button.info.focus,
 .image-button.info.focus,
@@ -14443,6 +14518,7 @@ code.info.focus,
 .tag-input .button.info.focus,
 .spinner .button.info.focus,
 .toast.info.focus,
+div.info.focus,
 .button.info:focus,
 .command-button.info:focus,
 .image-button.info:focus,
@@ -14459,7 +14535,8 @@ code.info:focus,
 .select .button.info:focus,
 .tag-input .button.info:focus,
 .spinner .button.info:focus,
-.toast.info:focus {
+.toast.info:focus,
+div.info:focus {
   -webkit-box-shadow: 0 0 0 3px rgba(94, 189, 236, 0.45);
           box-shadow: 0 0 0 3px rgba(94, 189, 236, 0.45);
 }
@@ -14479,7 +14556,8 @@ code.dark,
 .select .button.dark,
 .tag-input .button.dark,
 .spinner .button.dark,
-.toast.dark {
+.toast.dark,
+div.dark {
   outline-color: #9d9d9d;
   background-color: #505050;
   color: #ffffff;
@@ -14500,7 +14578,8 @@ code.dark.outline,
 .select .button.dark.outline,
 .tag-input .button.dark.outline,
 .spinner .button.dark.outline,
-.toast.dark.outline {
+.toast.dark.outline,
+div.dark.outline {
   color: #505050;
   border-color: #505050;
 }
@@ -14520,7 +14599,8 @@ code.dark.outline.dropdown-toggle::before,
 .select .button.dark.outline.dropdown-toggle::before,
 .tag-input .button.dark.outline.dropdown-toggle::before,
 .spinner .button.dark.outline.dropdown-toggle::before,
-.toast.dark.outline.dropdown-toggle::before {
+.toast.dark.outline.dropdown-toggle::before,
+div.dark.outline.dropdown-toggle::before {
   border-color: #505050;
 }
 .button.dark.outline:hover,
@@ -14539,7 +14619,8 @@ code.dark.outline:hover,
 .select .button.dark.outline:hover,
 .tag-input .button.dark.outline:hover,
 .spinner .button.dark.outline:hover,
-.toast.dark.outline:hover {
+.toast.dark.outline:hover,
+div.dark.outline:hover {
   color: #ffffff;
 }
 .button.dark.dropdown-toggle::before,
@@ -14558,7 +14639,8 @@ code.dark.dropdown-toggle::before,
 .select .button.dark.dropdown-toggle::before,
 .tag-input .button.dark.dropdown-toggle::before,
 .spinner .button.dark.dropdown-toggle::before,
-.toast.dark.dropdown-toggle::before {
+.toast.dark.dropdown-toggle::before,
+div.dark.dropdown-toggle::before {
   border-color: #ffffff;
 }
 .button.dark:hover,
@@ -14577,7 +14659,8 @@ code.dark:hover,
 .select .button.dark:hover,
 .tag-input .button.dark:hover,
 .spinner .button.dark:hover,
-.toast.dark:hover {
+.toast.dark:hover,
+div.dark:hover {
   color: #ffffff;
   background-color: #373737;
   border-color: #1d1d1d;
@@ -14598,7 +14681,8 @@ code.dark:hover.dropdown-toggle::before,
 .select .button.dark:hover.dropdown-toggle::before,
 .tag-input .button.dark:hover.dropdown-toggle::before,
 .spinner .button.dark:hover.dropdown-toggle::before,
-.toast.dark:hover.dropdown-toggle::before {
+.toast.dark:hover.dropdown-toggle::before,
+div.dark:hover.dropdown-toggle::before {
   border-color: #ffffff;
 }
 .button.dark.same-color:hover,
@@ -14617,7 +14701,8 @@ code.dark.same-color:hover,
 .select .button.dark.same-color:hover,
 .tag-input .button.dark.same-color:hover,
 .spinner .button.dark.same-color:hover,
-.toast.dark.same-color:hover {
+.toast.dark.same-color:hover,
+div.dark.same-color:hover {
   background-color: #505050;
   border-color: #505050;
 }
@@ -14638,6 +14723,7 @@ code.dark:active,
 .tag-input .button.dark:active,
 .spinner .button.dark:active,
 .toast.dark:active,
+div.dark:active,
 .button.dark.focus,
 .command-button.dark.focus,
 .image-button.dark.focus,
@@ -14655,6 +14741,7 @@ code.dark.focus,
 .tag-input .button.dark.focus,
 .spinner .button.dark.focus,
 .toast.dark.focus,
+div.dark.focus,
 .button.dark:focus,
 .command-button.dark:focus,
 .image-button.dark:focus,
@@ -14671,7 +14758,8 @@ code.dark:focus,
 .select .button.dark:focus,
 .tag-input .button.dark:focus,
 .spinner .button.dark:focus,
-.toast.dark:focus {
+.toast.dark:focus,
+div.dark:focus {
   -webkit-box-shadow: 0 0 0 3px rgba(80, 80, 80, 0.45);
           box-shadow: 0 0 0 3px rgba(80, 80, 80, 0.45);
 }
@@ -14691,7 +14779,8 @@ code.light,
 .select .button.light,
 .tag-input .button.light,
 .spinner .button.light,
-.toast.light {
+.toast.light,
+div.light {
   outline-color: #ffffff;
   background-color: #f8f8f8;
   color: #ffffff;
@@ -14712,7 +14801,8 @@ code.light.outline,
 .select .button.light.outline,
 .tag-input .button.light.outline,
 .spinner .button.light.outline,
-.toast.light.outline {
+.toast.light.outline,
+div.light.outline {
   color: #f8f8f8;
   border-color: #f8f8f8;
 }
@@ -14732,7 +14822,8 @@ code.light.outline.dropdown-toggle::before,
 .select .button.light.outline.dropdown-toggle::before,
 .tag-input .button.light.outline.dropdown-toggle::before,
 .spinner .button.light.outline.dropdown-toggle::before,
-.toast.light.outline.dropdown-toggle::before {
+.toast.light.outline.dropdown-toggle::before,
+div.light.outline.dropdown-toggle::before {
   border-color: #f8f8f8;
 }
 .button.light.outline:hover,
@@ -14751,7 +14842,8 @@ code.light.outline:hover,
 .select .button.light.outline:hover,
 .tag-input .button.light.outline:hover,
 .spinner .button.light.outline:hover,
-.toast.light.outline:hover {
+.toast.light.outline:hover,
+div.light.outline:hover {
   color: #ffffff;
 }
 .button.light.dropdown-toggle::before,
@@ -14770,7 +14862,8 @@ code.light.dropdown-toggle::before,
 .select .button.light.dropdown-toggle::before,
 .tag-input .button.light.dropdown-toggle::before,
 .spinner .button.light.dropdown-toggle::before,
-.toast.light.dropdown-toggle::before {
+.toast.light.dropdown-toggle::before,
+div.light.dropdown-toggle::before {
   border-color: #ffffff;
 }
 .button.light:hover,
@@ -14789,7 +14882,8 @@ code.light:hover,
 .select .button.light:hover,
 .tag-input .button.light:hover,
 .spinner .button.light:hover,
-.toast.light:hover {
+.toast.light:hover,
+div.light:hover {
   color: #ffffff;
   background-color: #dfdfdf;
   border-color: #c5c5c5;
@@ -14810,7 +14904,8 @@ code.light:hover.dropdown-toggle::before,
 .select .button.light:hover.dropdown-toggle::before,
 .tag-input .button.light:hover.dropdown-toggle::before,
 .spinner .button.light:hover.dropdown-toggle::before,
-.toast.light:hover.dropdown-toggle::before {
+.toast.light:hover.dropdown-toggle::before,
+div.light:hover.dropdown-toggle::before {
   border-color: #ffffff;
 }
 .button.light.same-color:hover,
@@ -14829,7 +14924,8 @@ code.light.same-color:hover,
 .select .button.light.same-color:hover,
 .tag-input .button.light.same-color:hover,
 .spinner .button.light.same-color:hover,
-.toast.light.same-color:hover {
+.toast.light.same-color:hover,
+div.light.same-color:hover {
   background-color: #f8f8f8;
   border-color: #f8f8f8;
 }
@@ -14850,6 +14946,7 @@ code.light:active,
 .tag-input .button.light:active,
 .spinner .button.light:active,
 .toast.light:active,
+div.light:active,
 .button.light.focus,
 .command-button.light.focus,
 .image-button.light.focus,
@@ -14867,6 +14964,7 @@ code.light.focus,
 .tag-input .button.light.focus,
 .spinner .button.light.focus,
 .toast.light.focus,
+div.light.focus,
 .button.light:focus,
 .command-button.light:focus,
 .image-button.light:focus,
@@ -14883,7 +14981,8 @@ code.light:focus,
 .select .button.light:focus,
 .tag-input .button.light:focus,
 .spinner .button.light:focus,
-.toast.light:focus {
+.toast.light:focus,
+div.light:focus {
   -webkit-box-shadow: 0 0 0 3px rgba(248, 248, 248, 0.45);
           box-shadow: 0 0 0 3px rgba(248, 248, 248, 0.45);
 }
@@ -14903,7 +15002,8 @@ code.brand1,
 .select .button.brand1,
 .tag-input .button.brand1,
 .spinner .button.brand1,
-.toast.brand1 {
+.toast.brand1,
+div.brand1 {
   outline-color: #bbecfc;
   background-color: #2ac4f4;
   color: #ffffff;
@@ -14924,7 +15024,8 @@ code.brand1.outline,
 .select .button.brand1.outline,
 .tag-input .button.brand1.outline,
 .spinner .button.brand1.outline,
-.toast.brand1.outline {
+.toast.brand1.outline,
+div.brand1.outline {
   color: #2ac4f4;
   border-color: #2ac4f4;
 }
@@ -14944,7 +15045,8 @@ code.brand1.outline.dropdown-toggle::before,
 .select .button.brand1.outline.dropdown-toggle::before,
 .tag-input .button.brand1.outline.dropdown-toggle::before,
 .spinner .button.brand1.outline.dropdown-toggle::before,
-.toast.brand1.outline.dropdown-toggle::before {
+.toast.brand1.outline.dropdown-toggle::before,
+div.brand1.outline.dropdown-toggle::before {
   border-color: #2ac4f4;
 }
 .button.brand1.outline:hover,
@@ -14963,7 +15065,8 @@ code.brand1.outline:hover,
 .select .button.brand1.outline:hover,
 .tag-input .button.brand1.outline:hover,
 .spinner .button.brand1.outline:hover,
-.toast.brand1.outline:hover {
+.toast.brand1.outline:hover,
+div.brand1.outline:hover {
   color: #ffffff;
 }
 .button.brand1.dropdown-toggle::before,
@@ -14982,7 +15085,8 @@ code.brand1.dropdown-toggle::before,
 .select .button.brand1.dropdown-toggle::before,
 .tag-input .button.brand1.dropdown-toggle::before,
 .spinner .button.brand1.dropdown-toggle::before,
-.toast.brand1.dropdown-toggle::before {
+.toast.brand1.dropdown-toggle::before,
+div.brand1.dropdown-toggle::before {
   border-color: #ffffff;
 }
 .button.brand1:hover,
@@ -15001,7 +15105,8 @@ code.brand1:hover,
 .select .button.brand1:hover,
 .tag-input .button.brand1:hover,
 .spinner .button.brand1:hover,
-.toast.brand1:hover {
+.toast.brand1:hover,
+div.brand1:hover {
   color: #ffffff;
   background-color: #0caddf;
   border-color: #0988af;
@@ -15022,7 +15127,8 @@ code.brand1:hover.dropdown-toggle::before,
 .select .button.brand1:hover.dropdown-toggle::before,
 .tag-input .button.brand1:hover.dropdown-toggle::before,
 .spinner .button.brand1:hover.dropdown-toggle::before,
-.toast.brand1:hover.dropdown-toggle::before {
+.toast.brand1:hover.dropdown-toggle::before,
+div.brand1:hover.dropdown-toggle::before {
   border-color: #ffffff;
 }
 .button.brand1.same-color:hover,
@@ -15041,7 +15147,8 @@ code.brand1.same-color:hover,
 .select .button.brand1.same-color:hover,
 .tag-input .button.brand1.same-color:hover,
 .spinner .button.brand1.same-color:hover,
-.toast.brand1.same-color:hover {
+.toast.brand1.same-color:hover,
+div.brand1.same-color:hover {
   background-color: #2ac4f4;
   border-color: #2ac4f4;
 }
@@ -15062,6 +15169,7 @@ code.brand1:active,
 .tag-input .button.brand1:active,
 .spinner .button.brand1:active,
 .toast.brand1:active,
+div.brand1:active,
 .button.brand1.focus,
 .command-button.brand1.focus,
 .image-button.brand1.focus,
@@ -15079,6 +15187,7 @@ code.brand1.focus,
 .tag-input .button.brand1.focus,
 .spinner .button.brand1.focus,
 .toast.brand1.focus,
+div.brand1.focus,
 .button.brand1:focus,
 .command-button.brand1:focus,
 .image-button.brand1:focus,
@@ -15095,7 +15204,8 @@ code.brand1:focus,
 .select .button.brand1:focus,
 .tag-input .button.brand1:focus,
 .spinner .button.brand1:focus,
-.toast.brand1:focus {
+.toast.brand1:focus,
+div.brand1:focus {
   -webkit-box-shadow: 0 0 0 3px rgba(42, 196, 244, 0.45);
           box-shadow: 0 0 0 3px rgba(42, 196, 244, 0.45);
 }
@@ -15115,7 +15225,8 @@ code.brand2,
 .select .button.brand2,
 .tag-input .button.brand2,
 .spinner .button.brand2,
-.toast.brand2 {
+.toast.brand2,
+div.brand2 {
   outline-color: #09b4ff;
   background-color: #004d6f;
   color: #ffffff;
@@ -15136,7 +15247,8 @@ code.brand2.outline,
 .select .button.brand2.outline,
 .tag-input .button.brand2.outline,
 .spinner .button.brand2.outline,
-.toast.brand2.outline {
+.toast.brand2.outline,
+div.brand2.outline {
   color: #004d6f;
   border-color: #004d6f;
 }
@@ -15156,7 +15268,8 @@ code.brand2.outline.dropdown-toggle::before,
 .select .button.brand2.outline.dropdown-toggle::before,
 .tag-input .button.brand2.outline.dropdown-toggle::before,
 .spinner .button.brand2.outline.dropdown-toggle::before,
-.toast.brand2.outline.dropdown-toggle::before {
+.toast.brand2.outline.dropdown-toggle::before,
+div.brand2.outline.dropdown-toggle::before {
   border-color: #004d6f;
 }
 .button.brand2.outline:hover,
@@ -15175,7 +15288,8 @@ code.brand2.outline:hover,
 .select .button.brand2.outline:hover,
 .tag-input .button.brand2.outline:hover,
 .spinner .button.brand2.outline:hover,
-.toast.brand2.outline:hover {
+.toast.brand2.outline:hover,
+div.brand2.outline:hover {
   color: #ffffff;
 }
 .button.brand2.dropdown-toggle::before,
@@ -15194,7 +15308,8 @@ code.brand2.dropdown-toggle::before,
 .select .button.brand2.dropdown-toggle::before,
 .tag-input .button.brand2.dropdown-toggle::before,
 .spinner .button.brand2.dropdown-toggle::before,
-.toast.brand2.dropdown-toggle::before {
+.toast.brand2.dropdown-toggle::before,
+div.brand2.dropdown-toggle::before {
   border-color: #ffffff;
 }
 .button.brand2:hover,
@@ -15213,7 +15328,8 @@ code.brand2:hover,
 .select .button.brand2:hover,
 .tag-input .button.brand2:hover,
 .spinner .button.brand2:hover,
-.toast.brand2:hover {
+.toast.brand2:hover,
+div.brand2:hover {
   color: #ffffff;
   background-color: #002a3c;
   border-color: #000609;
@@ -15234,7 +15350,8 @@ code.brand2:hover.dropdown-toggle::before,
 .select .button.brand2:hover.dropdown-toggle::before,
 .tag-input .button.brand2:hover.dropdown-toggle::before,
 .spinner .button.brand2:hover.dropdown-toggle::before,
-.toast.brand2:hover.dropdown-toggle::before {
+.toast.brand2:hover.dropdown-toggle::before,
+div.brand2:hover.dropdown-toggle::before {
   border-color: #ffffff;
 }
 .button.brand2.same-color:hover,
@@ -15253,7 +15370,8 @@ code.brand2.same-color:hover,
 .select .button.brand2.same-color:hover,
 .tag-input .button.brand2.same-color:hover,
 .spinner .button.brand2.same-color:hover,
-.toast.brand2.same-color:hover {
+.toast.brand2.same-color:hover,
+div.brand2.same-color:hover {
   background-color: #004d6f;
   border-color: #004d6f;
 }
@@ -15274,6 +15392,7 @@ code.brand2:active,
 .tag-input .button.brand2:active,
 .spinner .button.brand2:active,
 .toast.brand2:active,
+div.brand2:active,
 .button.brand2.focus,
 .command-button.brand2.focus,
 .image-button.brand2.focus,
@@ -15291,6 +15410,7 @@ code.brand2.focus,
 .tag-input .button.brand2.focus,
 .spinner .button.brand2.focus,
 .toast.brand2.focus,
+div.brand2.focus,
 .button.brand2:focus,
 .command-button.brand2:focus,
 .image-button.brand2:focus,
@@ -15307,7 +15427,8 @@ code.brand2:focus,
 .select .button.brand2:focus,
 .tag-input .button.brand2:focus,
 .spinner .button.brand2:focus,
-.toast.brand2:focus {
+.toast.brand2:focus,
+div.brand2:focus {
   -webkit-box-shadow: 0 0 0 3px rgba(0, 77, 111, 0.45);
           box-shadow: 0 0 0 3px rgba(0, 77, 111, 0.45);
 }
@@ -15328,6 +15449,7 @@ code.yellow,
 .tag-input .button.yellow,
 .spinner .button.yellow,
 .toast.yellow,
+div.yellow,
 .button.light,
 .command-button.light,
 .image-button.light,
@@ -15344,7 +15466,8 @@ code.light,
 .select .button.light,
 .tag-input .button.light,
 .spinner .button.light,
-.toast.light {
+.toast.light,
+div.light {
   color: #1d1d1d;
 }
 .button.yellow:hover,
@@ -15364,6 +15487,7 @@ code.yellow:hover,
 .tag-input .button.yellow:hover,
 .spinner .button.yellow:hover,
 .toast.yellow:hover,
+div.yellow:hover,
 .button.light:hover,
 .command-button.light:hover,
 .image-button.light:hover,
@@ -15381,6 +15505,7 @@ code.light:hover,
 .tag-input .button.light:hover,
 .spinner .button.light:hover,
 .toast.light:hover,
+div.light:hover,
 .button.yellow.outline:hover,
 .command-button.yellow.outline:hover,
 .image-button.yellow.outline:hover,
@@ -15398,6 +15523,7 @@ code.yellow.outline:hover,
 .tag-input .button.yellow.outline:hover,
 .spinner .button.yellow.outline:hover,
 .toast.yellow.outline:hover,
+div.yellow.outline:hover,
 .button.light.outline:hover,
 .command-button.light.outline:hover,
 .image-button.light.outline:hover,
@@ -15414,7 +15540,8 @@ code.light.outline:hover,
 .select .button.light.outline:hover,
 .tag-input .button.light.outline:hover,
 .spinner .button.light.outline:hover,
-.toast.light.outline:hover {
+.toast.light.outline:hover,
+div.light.outline:hover {
   color: #1d1d1d;
 }
 .action-button.primary {
