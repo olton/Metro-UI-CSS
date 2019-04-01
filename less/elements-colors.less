@@ -15,8 +15,7 @@ tbody tr, tbody td,
 .select .button,
 .tag-input .button,
 .spinner .button,
-.toast,
-div
+.toast
 {
     .generate-accent-colors(@buttonPredefinedTypesLength);
     .generate-accent-colors(@name, @i: 1) when (@i =< @buttonPredefinedTypesLength) {
@@ -78,7 +77,7 @@ div
 }
 
 
-.action-button {
+.action-button, div {
     .generate-accent-colors(@buttonPredefinedTypesLength);
     .generate-accent-colors(@name, @i: 1) when (@i =< @buttonPredefinedTypesLength) {
         @name: extract(@buttonPredefinedTypes, @i);
