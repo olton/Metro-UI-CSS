@@ -92,7 +92,7 @@ Sauce Labs ensures your favorite mobile apps and websites work flawlessly on eve
 </p>
 
 ### License
-Metro 4 has [MIT License](http://metroui.org.ua/license.html)
+Metro 4 has [MIT License](https://github.com/olton/Metro-UI-CSS/blob/master/LICENSE)
 
 ### Old version
 Metro UI CSS 3.x you can find in a repo [Metro-UI-CSS-3](https://github.com/olton/Metro-UI-CSS-3)     
@@ -107,5 +107,5 @@ Metro UI CSS 0.x you can find in a repo [Metro-UI-CSS-095](https://github.com/ol
 Thanks to all. Special thanks to all those who financially supported the project.    
 
 ### Testers
-Thanks to all who a [testing](https://github.com/Pro-Club/MetroCL/blob/master/TESTERS.md) a project. 
+Thanks to all who a [testing](https://github.com/olton/Metro-UI-CSS/blob/master/TESTERS.md) a project. 
 
