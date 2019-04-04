@@ -18,6 +18,7 @@ var Tile = {
     options: {
         size: "medium",
         cover: "",
+        coverPosition: "center",
         effect: "",
         effectInterval: 3000,
         effectDuration: 500,
@@ -72,7 +73,7 @@ var Tile = {
                 var slide = $(this);
 
                 if (slide.data("cover") !== undefined) {
-                    that._setCover(slide, slide.data("cover"));
+                    that._setCover(slide, slide.data("cover"), slide.data("cover-position"));
                 }
             })
         }
@@ -84,7 +85,7 @@ var Tile = {
                 that.slides.push(this);
 
                 if (slide.data("cover") !== undefined) {
-                    that._setCover(slide, slide.data("cover"));
+                    that._setCover(slide, slide.data("cover"), slide.data("cover-position"));
                 }
 
                 if (i > 0) {
@@ -162,11 +163,15 @@ var Tile = {
         this.effectInterval = false;
     },
 
-    _setCover: function(to, src){
+    _setCover: function(to, src, pos){
+        if (!Utils.isValue(pos)) {
+            pos = this.options.coverPosition;
+        }
         to.css({
             backgroundImage: "url("+src+")",
             backgroundSize: "cover",
-            backgroundRepeat: "no-repeat"
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: pos
         });
     },
 
