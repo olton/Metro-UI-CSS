@@ -82,7 +82,7 @@ var Locales = {
             ],
             "days": [
                 "Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag",
-                "Sn", "Mn", "Di", "Mi", "Do", "Fr", "Sa",
+                "So", "Mo", "Di", "Mi", "Do", "Fr", "Sa",
                 "Son", "Mon", "Die", "Mit", "Don", "Fre", "Sam"
             ],
             "time": {
