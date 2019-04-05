@@ -87,7 +87,7 @@ var Locales = {
             ],
             "time": {
                 "days": "TAGE",
-                "hours": "UHR",
+                "hours": "STD",
                 "minutes": "MIN",
                 "seconds": "SEK"
             }
@@ -103,7 +103,7 @@ var Locales = {
             "yes": "Ja",
             "no": "Nein",
             "random": "Zufällig",
-            "save": "Sparen",
+            "save": "Speichern",
             "reset": "Zurücksetzen"
         }
     },
