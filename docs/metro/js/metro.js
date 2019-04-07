@@ -113,8 +113,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.40-dev 07/04/2019 13:35",
-    versionFull: "4.2.40-dev 07/04/2019 13:35",
+    version: "4.2.40-dev 07/04/2019 14:11",
+    versionFull: "4.2.40-dev 07/04/2019 14:11",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -8314,6 +8314,8 @@ var Countdown = {
         this.zeroMinutesFired = false;
         this.zeroSecondsFired = false;
 
+        this.fontSize = parseInt(Utils.getStyleOne(elem, "font-size"));
+
         this.current = {
             d: 0, h: 0, m: 0, s: 0
         };
@@ -8608,6 +8610,14 @@ var Countdown = {
                 height = digit.height(),
                 width = digit.width(),
                 fs = parseInt(Utils.getStyleOne(digit, "font-size"));
+
+            if (fs === 0 && fs < that.fontSize) {
+                fs = that.fontSize;
+                digit.css({
+                    fontSize: that.fontSize
+                });
+            }
+
             digit_copy = digit.clone().appendTo(digit.parent());
             digit_copy.css({
                 opacity: 0,
