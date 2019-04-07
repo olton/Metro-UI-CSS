@@ -113,8 +113,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.40-dev 04/04/2019 21:00",
-    versionFull: "4.2.40-dev 04/04/2019 21:00",
+    version: "4.2.40-dev 07/04/2019 13:35",
+    versionFull: "4.2.40-dev 07/04/2019 13:35",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -9407,7 +9407,7 @@ var DatePicker = {
         year: true,
         minYear: null,
         maxYear: null,
-        scrollSpeed: 5,
+        scrollSpeed: 1,
         copyInlineStyles: true,
         clsPicker: "",
         clsPart: "",
@@ -22153,7 +22153,7 @@ var TimePicker = {
         minutes: true,
         seconds: true,
         showLabels: true,
-        scrollSpeed: 5,
+        scrollSpeed: 1,
         copyInlineStyles: true,
         clsPicker: "",
         clsPart: "",
