@@ -31,6 +31,8 @@
 + [x] Timepicker: set default value for `data-scroll-speed` to `1`
 + [x] Datepicker: set default value for `data-scroll-speed` to `1`
 + [x] Countdown: fix zoom effect
++ [x] Dialog: change padding for dialog title to `12px 24px`
++ [x] Dialog: add predefined accent classes `primary`, `alert`, `info`, `warning`, ...
 
 ### 4.2.39
 + [x] NavView: minor improve styling 

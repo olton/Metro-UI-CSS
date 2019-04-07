@@ -27,8 +27,9 @@
 
 .dialog-title {
     font-size: 1.325rem;
-    padding: 24px 24px 0;
+    padding: 12px 24px;
     order: 1;
+    border-bottom: 1px solid @borderColor;
 }
 
 .dialog-content {
@@ -56,3 +57,28 @@
     }
 }
 
+.dialog {
+    each(@buttonPredefinedTypes, {
+        @color: "@{value}Color";
+
+        &.@{value} {
+            border: 2px solid @@color;
+
+            .dialog-title {
+                background-color: @@color;
+                border-bottom-color: @@color;
+                color: @white;
+            }
+
+            .dialog-actions {
+                border-top-color: @@color;
+            }
+        }
+    })
+
+    &.light, &.yellow {
+        .dialog-title {
+            color: @dark;
+        }
+    }
+}

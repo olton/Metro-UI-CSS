@@ -77,7 +77,7 @@ tbody tr, tbody td,
 }
 
 
-.action-button, div {
+.action-button {
     .generate-accent-colors(@buttonPredefinedTypesLength);
     .generate-accent-colors(@name, @i: 1) when (@i =< @buttonPredefinedTypesLength) {
         @name: extract(@buttonPredefinedTypes, @i);
@@ -183,5 +183,19 @@ textarea,
         .generate-accent-colors(@name, @i + 1);
     }
 }
+
+each(@buttonPredefinedTypes, {
+    @color: "@{value}Color";
+
+    .@{value} {
+        background-color: @@color;
+        color: @white;
+    }
+})
+
+.light, .yellow {
+    color: @dark;
+}
+
 
 
