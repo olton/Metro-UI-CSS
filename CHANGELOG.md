@@ -28,6 +28,8 @@
 + [x] Colors: add accent colors to `div`
 + [x] Tiles: set cover default position to `center center`
 + [x] Tiles: add attribute for image slide `data-cover-position`
++ [x] Timepicker: set default value for `data-scroll-speed` to `1`
++ [x] Datepicker: set default value for `data-scroll-speed` to `1`
 
 ### 4.2.39
 + [x] NavView: minor improve styling 

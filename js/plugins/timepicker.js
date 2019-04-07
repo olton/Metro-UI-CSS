@@ -25,7 +25,7 @@ var TimePicker = {
         minutes: true,
         seconds: true,
         showLabels: true,
-        scrollSpeed: 5,
+        scrollSpeed: 1,
         copyInlineStyles: true,
         clsPicker: "",
         clsPart: "",
