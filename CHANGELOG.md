@@ -33,6 +33,7 @@
 + [x] Countdown: fix zoom effect
 + [x] Dialog: change padding for dialog title to `12px 24px`
 + [x] Dialog: add predefined accent classes `primary`, `alert`, `info`, `warning`, ...
++ [x] InfoBox: add predefined accent classes `primary`, `alert`, `info`, `warning`, ...
 
 ### 4.2.39
 + [x] NavView: minor improve styling 
