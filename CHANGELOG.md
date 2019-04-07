@@ -30,6 +30,7 @@
 + [x] Tiles: add attribute for image slide `data-cover-position`
 + [x] Timepicker: set default value for `data-scroll-speed` to `1`
 + [x] Datepicker: set default value for `data-scroll-speed` to `1`
++ [x] Countdown: fix zoom effect
 
 ### 4.2.39
 + [x] NavView: minor improve styling 
