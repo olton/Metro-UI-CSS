@@ -113,8 +113,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.40-dev 08/04/2019 09:08",
-    versionFull: "4.2.40-dev 08/04/2019 09:08",
+    version: "4.2.40-dev 08/04/2019 09:16",
+    versionFull: "4.2.40-dev 08/04/2019 09:16",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -8456,16 +8456,13 @@ var Countdown = {
 
     _createEvents: function(){
         var that = this, element = this.element, o = this.options;
-        // if (o.stopOnBlur === true) {
-            $(window).on(Metro.events.blur+"-"+element.attr("id"), function(){
-                // that.pause();
-                that.inactiveTab = true;
-            });
-            $(window).on(Metro.events.focus+"-"+element.attr("id"), function(){
-                // that.resume();
-                that.inactiveTab = false;
-            });
-        // }
+        document.addEventListener("visibilitychange", function() {
+            if (document.hidden) {
+                that.pause();
+            } else {
+                that.resume();
+            }
+        });
     },
 
     blink: function(){
