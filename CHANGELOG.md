@@ -25,7 +25,6 @@
 + [x] Lists: fix list style position for ordered list
 + [x] Dropdown: add service class `stay-open`. When an element has this class, an element can't be closed when the user clicks on the document.
 + [x] Collapse: change default animation duration to `100ms`
-+ [x] Colors: add accent colors to `div`
 + [x] Tiles: set cover default position to `center center`
 + [x] Tiles: add attribute for image slide `data-cover-position`
 + [x] Timepicker: set default value for `data-scroll-speed` to `1`
@@ -34,6 +33,7 @@
 + [x] Dialog: change padding for dialog title to `12px 24px`
 + [x] Dialog: add predefined accent classes `primary`, `alert`, `info`, `warning`, ...
 + [x] InfoBox: add predefined accent classes `primary`, `alert`, `info`, `warning`, ...
++ [x] Elements colors: optimize less for using `each` function
 
 ### 4.2.39
 + [x] NavView: minor improve styling 

@@ -14887,430 +14887,6 @@ code.light:focus,
   -webkit-box-shadow: 0 0 0 3px rgba(248, 248, 248, 0.45);
           box-shadow: 0 0 0 3px rgba(248, 248, 248, 0.45);
 }
-.button.brand1,
-.command-button.brand1,
-.image-button.brand1,
-.shortcut.brand1,
-.tool-button.brand1,
-.split-button .split.brand1,
-tbody tr.brand1,
-tbody td.brand1,
-.tally.brand1,
-code.brand1,
-.notify.brand1,
-.info-button.brand1,
-.input .button.brand1,
-.select .button.brand1,
-.tag-input .button.brand1,
-.spinner .button.brand1,
-.toast.brand1 {
-  outline-color: #bbecfc;
-  background-color: #2ac4f4;
-  color: #ffffff;
-}
-.button.brand1.outline,
-.command-button.brand1.outline,
-.image-button.brand1.outline,
-.shortcut.brand1.outline,
-.tool-button.brand1.outline,
-.split-button .split.brand1.outline,
-tbody tr.brand1.outline,
-tbody td.brand1.outline,
-.tally.brand1.outline,
-code.brand1.outline,
-.notify.brand1.outline,
-.info-button.brand1.outline,
-.input .button.brand1.outline,
-.select .button.brand1.outline,
-.tag-input .button.brand1.outline,
-.spinner .button.brand1.outline,
-.toast.brand1.outline {
-  color: #2ac4f4;
-  border-color: #2ac4f4;
-}
-.button.brand1.outline.dropdown-toggle::before,
-.command-button.brand1.outline.dropdown-toggle::before,
-.image-button.brand1.outline.dropdown-toggle::before,
-.shortcut.brand1.outline.dropdown-toggle::before,
-.tool-button.brand1.outline.dropdown-toggle::before,
-.split-button .split.brand1.outline.dropdown-toggle::before,
-tbody tr.brand1.outline.dropdown-toggle::before,
-tbody td.brand1.outline.dropdown-toggle::before,
-.tally.brand1.outline.dropdown-toggle::before,
-code.brand1.outline.dropdown-toggle::before,
-.notify.brand1.outline.dropdown-toggle::before,
-.info-button.brand1.outline.dropdown-toggle::before,
-.input .button.brand1.outline.dropdown-toggle::before,
-.select .button.brand1.outline.dropdown-toggle::before,
-.tag-input .button.brand1.outline.dropdown-toggle::before,
-.spinner .button.brand1.outline.dropdown-toggle::before,
-.toast.brand1.outline.dropdown-toggle::before {
-  border-color: #2ac4f4;
-}
-.button.brand1.outline:hover,
-.command-button.brand1.outline:hover,
-.image-button.brand1.outline:hover,
-.shortcut.brand1.outline:hover,
-.tool-button.brand1.outline:hover,
-.split-button .split.brand1.outline:hover,
-tbody tr.brand1.outline:hover,
-tbody td.brand1.outline:hover,
-.tally.brand1.outline:hover,
-code.brand1.outline:hover,
-.notify.brand1.outline:hover,
-.info-button.brand1.outline:hover,
-.input .button.brand1.outline:hover,
-.select .button.brand1.outline:hover,
-.tag-input .button.brand1.outline:hover,
-.spinner .button.brand1.outline:hover,
-.toast.brand1.outline:hover {
-  color: #ffffff;
-}
-.button.brand1.dropdown-toggle::before,
-.command-button.brand1.dropdown-toggle::before,
-.image-button.brand1.dropdown-toggle::before,
-.shortcut.brand1.dropdown-toggle::before,
-.tool-button.brand1.dropdown-toggle::before,
-.split-button .split.brand1.dropdown-toggle::before,
-tbody tr.brand1.dropdown-toggle::before,
-tbody td.brand1.dropdown-toggle::before,
-.tally.brand1.dropdown-toggle::before,
-code.brand1.dropdown-toggle::before,
-.notify.brand1.dropdown-toggle::before,
-.info-button.brand1.dropdown-toggle::before,
-.input .button.brand1.dropdown-toggle::before,
-.select .button.brand1.dropdown-toggle::before,
-.tag-input .button.brand1.dropdown-toggle::before,
-.spinner .button.brand1.dropdown-toggle::before,
-.toast.brand1.dropdown-toggle::before {
-  border-color: #ffffff;
-}
-.button.brand1:hover,
-.command-button.brand1:hover,
-.image-button.brand1:hover,
-.shortcut.brand1:hover,
-.tool-button.brand1:hover,
-.split-button .split.brand1:hover,
-tbody tr.brand1:hover,
-tbody td.brand1:hover,
-.tally.brand1:hover,
-code.brand1:hover,
-.notify.brand1:hover,
-.info-button.brand1:hover,
-.input .button.brand1:hover,
-.select .button.brand1:hover,
-.tag-input .button.brand1:hover,
-.spinner .button.brand1:hover,
-.toast.brand1:hover {
-  color: #ffffff;
-  background-color: #0caddf;
-  border-color: #0988af;
-}
-.button.brand1:hover.dropdown-toggle::before,
-.command-button.brand1:hover.dropdown-toggle::before,
-.image-button.brand1:hover.dropdown-toggle::before,
-.shortcut.brand1:hover.dropdown-toggle::before,
-.tool-button.brand1:hover.dropdown-toggle::before,
-.split-button .split.brand1:hover.dropdown-toggle::before,
-tbody tr.brand1:hover.dropdown-toggle::before,
-tbody td.brand1:hover.dropdown-toggle::before,
-.tally.brand1:hover.dropdown-toggle::before,
-code.brand1:hover.dropdown-toggle::before,
-.notify.brand1:hover.dropdown-toggle::before,
-.info-button.brand1:hover.dropdown-toggle::before,
-.input .button.brand1:hover.dropdown-toggle::before,
-.select .button.brand1:hover.dropdown-toggle::before,
-.tag-input .button.brand1:hover.dropdown-toggle::before,
-.spinner .button.brand1:hover.dropdown-toggle::before,
-.toast.brand1:hover.dropdown-toggle::before {
-  border-color: #ffffff;
-}
-.button.brand1.same-color:hover,
-.command-button.brand1.same-color:hover,
-.image-button.brand1.same-color:hover,
-.shortcut.brand1.same-color:hover,
-.tool-button.brand1.same-color:hover,
-.split-button .split.brand1.same-color:hover,
-tbody tr.brand1.same-color:hover,
-tbody td.brand1.same-color:hover,
-.tally.brand1.same-color:hover,
-code.brand1.same-color:hover,
-.notify.brand1.same-color:hover,
-.info-button.brand1.same-color:hover,
-.input .button.brand1.same-color:hover,
-.select .button.brand1.same-color:hover,
-.tag-input .button.brand1.same-color:hover,
-.spinner .button.brand1.same-color:hover,
-.toast.brand1.same-color:hover {
-  background-color: #2ac4f4;
-  border-color: #2ac4f4;
-}
-.button.brand1:active,
-.command-button.brand1:active,
-.image-button.brand1:active,
-.shortcut.brand1:active,
-.tool-button.brand1:active,
-.split-button .split.brand1:active,
-tbody tr.brand1:active,
-tbody td.brand1:active,
-.tally.brand1:active,
-code.brand1:active,
-.notify.brand1:active,
-.info-button.brand1:active,
-.input .button.brand1:active,
-.select .button.brand1:active,
-.tag-input .button.brand1:active,
-.spinner .button.brand1:active,
-.toast.brand1:active,
-.button.brand1.focus,
-.command-button.brand1.focus,
-.image-button.brand1.focus,
-.shortcut.brand1.focus,
-.tool-button.brand1.focus,
-.split-button .split.brand1.focus,
-tbody tr.brand1.focus,
-tbody td.brand1.focus,
-.tally.brand1.focus,
-code.brand1.focus,
-.notify.brand1.focus,
-.info-button.brand1.focus,
-.input .button.brand1.focus,
-.select .button.brand1.focus,
-.tag-input .button.brand1.focus,
-.spinner .button.brand1.focus,
-.toast.brand1.focus,
-.button.brand1:focus,
-.command-button.brand1:focus,
-.image-button.brand1:focus,
-.shortcut.brand1:focus,
-.tool-button.brand1:focus,
-.split-button .split.brand1:focus,
-tbody tr.brand1:focus,
-tbody td.brand1:focus,
-.tally.brand1:focus,
-code.brand1:focus,
-.notify.brand1:focus,
-.info-button.brand1:focus,
-.input .button.brand1:focus,
-.select .button.brand1:focus,
-.tag-input .button.brand1:focus,
-.spinner .button.brand1:focus,
-.toast.brand1:focus {
-  -webkit-box-shadow: 0 0 0 3px rgba(42, 196, 244, 0.45);
-          box-shadow: 0 0 0 3px rgba(42, 196, 244, 0.45);
-}
-.button.brand2,
-.command-button.brand2,
-.image-button.brand2,
-.shortcut.brand2,
-.tool-button.brand2,
-.split-button .split.brand2,
-tbody tr.brand2,
-tbody td.brand2,
-.tally.brand2,
-code.brand2,
-.notify.brand2,
-.info-button.brand2,
-.input .button.brand2,
-.select .button.brand2,
-.tag-input .button.brand2,
-.spinner .button.brand2,
-.toast.brand2 {
-  outline-color: #09b4ff;
-  background-color: #004d6f;
-  color: #ffffff;
-}
-.button.brand2.outline,
-.command-button.brand2.outline,
-.image-button.brand2.outline,
-.shortcut.brand2.outline,
-.tool-button.brand2.outline,
-.split-button .split.brand2.outline,
-tbody tr.brand2.outline,
-tbody td.brand2.outline,
-.tally.brand2.outline,
-code.brand2.outline,
-.notify.brand2.outline,
-.info-button.brand2.outline,
-.input .button.brand2.outline,
-.select .button.brand2.outline,
-.tag-input .button.brand2.outline,
-.spinner .button.brand2.outline,
-.toast.brand2.outline {
-  color: #004d6f;
-  border-color: #004d6f;
-}
-.button.brand2.outline.dropdown-toggle::before,
-.command-button.brand2.outline.dropdown-toggle::before,
-.image-button.brand2.outline.dropdown-toggle::before,
-.shortcut.brand2.outline.dropdown-toggle::before,
-.tool-button.brand2.outline.dropdown-toggle::before,
-.split-button .split.brand2.outline.dropdown-toggle::before,
-tbody tr.brand2.outline.dropdown-toggle::before,
-tbody td.brand2.outline.dropdown-toggle::before,
-.tally.brand2.outline.dropdown-toggle::before,
-code.brand2.outline.dropdown-toggle::before,
-.notify.brand2.outline.dropdown-toggle::before,
-.info-button.brand2.outline.dropdown-toggle::before,
-.input .button.brand2.outline.dropdown-toggle::before,
-.select .button.brand2.outline.dropdown-toggle::before,
-.tag-input .button.brand2.outline.dropdown-toggle::before,
-.spinner .button.brand2.outline.dropdown-toggle::before,
-.toast.brand2.outline.dropdown-toggle::before {
-  border-color: #004d6f;
-}
-.button.brand2.outline:hover,
-.command-button.brand2.outline:hover,
-.image-button.brand2.outline:hover,
-.shortcut.brand2.outline:hover,
-.tool-button.brand2.outline:hover,
-.split-button .split.brand2.outline:hover,
-tbody tr.brand2.outline:hover,
-tbody td.brand2.outline:hover,
-.tally.brand2.outline:hover,
-code.brand2.outline:hover,
-.notify.brand2.outline:hover,
-.info-button.brand2.outline:hover,
-.input .button.brand2.outline:hover,
-.select .button.brand2.outline:hover,
-.tag-input .button.brand2.outline:hover,
-.spinner .button.brand2.outline:hover,
-.toast.brand2.outline:hover {
-  color: #ffffff;
-}
-.button.brand2.dropdown-toggle::before,
-.command-button.brand2.dropdown-toggle::before,
-.image-button.brand2.dropdown-toggle::before,
-.shortcut.brand2.dropdown-toggle::before,
-.tool-button.brand2.dropdown-toggle::before,
-.split-button .split.brand2.dropdown-toggle::before,
-tbody tr.brand2.dropdown-toggle::before,
-tbody td.brand2.dropdown-toggle::before,
-.tally.brand2.dropdown-toggle::before,
-code.brand2.dropdown-toggle::before,
-.notify.brand2.dropdown-toggle::before,
-.info-button.brand2.dropdown-toggle::before,
-.input .button.brand2.dropdown-toggle::before,
-.select .button.brand2.dropdown-toggle::before,
-.tag-input .button.brand2.dropdown-toggle::before,
-.spinner .button.brand2.dropdown-toggle::before,
-.toast.brand2.dropdown-toggle::before {
-  border-color: #ffffff;
-}
-.button.brand2:hover,
-.command-button.brand2:hover,
-.image-button.brand2:hover,
-.shortcut.brand2:hover,
-.tool-button.brand2:hover,
-.split-button .split.brand2:hover,
-tbody tr.brand2:hover,
-tbody td.brand2:hover,
-.tally.brand2:hover,
-code.brand2:hover,
-.notify.brand2:hover,
-.info-button.brand2:hover,
-.input .button.brand2:hover,
-.select .button.brand2:hover,
-.tag-input .button.brand2:hover,
-.spinner .button.brand2:hover,
-.toast.brand2:hover {
-  color: #ffffff;
-  background-color: #002a3c;
-  border-color: #000609;
-}
-.button.brand2:hover.dropdown-toggle::before,
-.command-button.brand2:hover.dropdown-toggle::before,
-.image-button.brand2:hover.dropdown-toggle::before,
-.shortcut.brand2:hover.dropdown-toggle::before,
-.tool-button.brand2:hover.dropdown-toggle::before,
-.split-button .split.brand2:hover.dropdown-toggle::before,
-tbody tr.brand2:hover.dropdown-toggle::before,
-tbody td.brand2:hover.dropdown-toggle::before,
-.tally.brand2:hover.dropdown-toggle::before,
-code.brand2:hover.dropdown-toggle::before,
-.notify.brand2:hover.dropdown-toggle::before,
-.info-button.brand2:hover.dropdown-toggle::before,
-.input .button.brand2:hover.dropdown-toggle::before,
-.select .button.brand2:hover.dropdown-toggle::before,
-.tag-input .button.brand2:hover.dropdown-toggle::before,
-.spinner .button.brand2:hover.dropdown-toggle::before,
-.toast.brand2:hover.dropdown-toggle::before {
-  border-color: #ffffff;
-}
-.button.brand2.same-color:hover,
-.command-button.brand2.same-color:hover,
-.image-button.brand2.same-color:hover,
-.shortcut.brand2.same-color:hover,
-.tool-button.brand2.same-color:hover,
-.split-button .split.brand2.same-color:hover,
-tbody tr.brand2.same-color:hover,
-tbody td.brand2.same-color:hover,
-.tally.brand2.same-color:hover,
-code.brand2.same-color:hover,
-.notify.brand2.same-color:hover,
-.info-button.brand2.same-color:hover,
-.input .button.brand2.same-color:hover,
-.select .button.brand2.same-color:hover,
-.tag-input .button.brand2.same-color:hover,
-.spinner .button.brand2.same-color:hover,
-.toast.brand2.same-color:hover {
-  background-color: #004d6f;
-  border-color: #004d6f;
-}
-.button.brand2:active,
-.command-button.brand2:active,
-.image-button.brand2:active,
-.shortcut.brand2:active,
-.tool-button.brand2:active,
-.split-button .split.brand2:active,
-tbody tr.brand2:active,
-tbody td.brand2:active,
-.tally.brand2:active,
-code.brand2:active,
-.notify.brand2:active,
-.info-button.brand2:active,
-.input .button.brand2:active,
-.select .button.brand2:active,
-.tag-input .button.brand2:active,
-.spinner .button.brand2:active,
-.toast.brand2:active,
-.button.brand2.focus,
-.command-button.brand2.focus,
-.image-button.brand2.focus,
-.shortcut.brand2.focus,
-.tool-button.brand2.focus,
-.split-button .split.brand2.focus,
-tbody tr.brand2.focus,
-tbody td.brand2.focus,
-.tally.brand2.focus,
-code.brand2.focus,
-.notify.brand2.focus,
-.info-button.brand2.focus,
-.input .button.brand2.focus,
-.select .button.brand2.focus,
-.tag-input .button.brand2.focus,
-.spinner .button.brand2.focus,
-.toast.brand2.focus,
-.button.brand2:focus,
-.command-button.brand2:focus,
-.image-button.brand2:focus,
-.shortcut.brand2:focus,
-.tool-button.brand2:focus,
-.split-button .split.brand2:focus,
-tbody tr.brand2:focus,
-tbody td.brand2:focus,
-.tally.brand2:focus,
-code.brand2:focus,
-.notify.brand2:focus,
-.info-button.brand2:focus,
-.input .button.brand2:focus,
-.select .button.brand2:focus,
-.tag-input .button.brand2:focus,
-.spinner .button.brand2:focus,
-.toast.brand2:focus {
-  -webkit-box-shadow: 0 0 0 3px rgba(0, 77, 111, 0.45);
-          box-shadow: 0 0 0 3px rgba(0, 77, 111, 0.45);
-}
 .button.yellow,
 .command-button.yellow,
 .image-button.yellow,
@@ -15462,16 +15038,6 @@ code.light.outline:hover,
   background-color: #f8f8f8;
   color: #ffffff;
 }
-.action-button.brand1 {
-  outline-color: #bbecfc;
-  background-color: #2ac4f4;
-  color: #ffffff;
-}
-.action-button.brand2 {
-  outline-color: #09b4ff;
-  background-color: #004d6f;
-  color: #ffffff;
-}
 .action-button.yellow,
 .action-button.light {
   color: #1d1d1d;
@@ -15590,30 +15156,6 @@ code.light.outline:hover,
 .pagination.light .page-item:hover:hover {
   background-color: #dfdfdf;
 }
-.pagination.brand1 .page-item.active,
-.pagination.brand1 .page-item.service,
-.pagination.brand1 .page-item:hover {
-  background-color: #2ac4f4;
-  border-color: #2ac4f4;
-  color: #ffffff;
-}
-.pagination.brand1 .page-item.active:hover,
-.pagination.brand1 .page-item.service:hover,
-.pagination.brand1 .page-item:hover:hover {
-  background-color: #0caddf;
-}
-.pagination.brand2 .page-item.active,
-.pagination.brand2 .page-item.service,
-.pagination.brand2 .page-item:hover {
-  background-color: #004d6f;
-  border-color: #004d6f;
-  color: #ffffff;
-}
-.pagination.brand2 .page-item.active:hover,
-.pagination.brand2 .page-item.service:hover,
-.pagination.brand2 .page-item:hover:hover {
-  background-color: #002a3c;
-}
 .pagination.light .page-item.active,
 .pagination.yellow .page-item.active,
 .pagination.light .page-item.service,
@@ -15648,12 +15190,6 @@ code.light.outline:hover,
 }
 .remark.light {
   border-left: 4px solid #f8f8f8;
-}
-.remark.brand1 {
-  border-left: 4px solid #2ac4f4;
-}
-.remark.brand2 {
-  border-left: 4px solid #004d6f;
 }
 input[type=text].primary,
 input[type=password].primary,
@@ -16266,190 +15802,6 @@ textarea.light.focused,
 .spinner.light.focused {
   -webkit-box-shadow: 0 0 0 3px rgba(248, 248, 248, 0.45);
           box-shadow: 0 0 0 3px rgba(248, 248, 248, 0.45);
-}
-input[type=text].brand1,
-input[type=password].brand1,
-input[type=tel].brand1,
-input[type=datetime-local].brand1,
-input[type=email].brand1,
-input[type=file].brand1,
-input[type=month].brand1,
-input[type=number].brand1,
-input[type=search].brand1,
-input[type=time].brand1,
-input[type=url].brand1,
-input[type=week].brand1,
-select.brand1,
-textarea.brand1,
-.file.brand1,
-.input.brand1,
-.select.brand1,
-.textarea.brand1,
-.keypad.brand1,
-.tag-input.brand1,
-.spinner.brand1 {
-  border-color: #2ac4f4;
-}
-input[type=text].brand1:focus,
-input[type=password].brand1:focus,
-input[type=tel].brand1:focus,
-input[type=datetime-local].brand1:focus,
-input[type=email].brand1:focus,
-input[type=file].brand1:focus,
-input[type=month].brand1:focus,
-input[type=number].brand1:focus,
-input[type=search].brand1:focus,
-input[type=time].brand1:focus,
-input[type=url].brand1:focus,
-input[type=week].brand1:focus,
-select.brand1:focus,
-textarea.brand1:focus,
-.file.brand1:focus,
-.input.brand1:focus,
-.select.brand1:focus,
-.textarea.brand1:focus,
-.keypad.brand1:focus,
-.tag-input.brand1:focus,
-.spinner.brand1:focus,
-input[type=text].brand1.focused,
-input[type=password].brand1.focused,
-input[type=tel].brand1.focused,
-input[type=datetime-local].brand1.focused,
-input[type=email].brand1.focused,
-input[type=file].brand1.focused,
-input[type=month].brand1.focused,
-input[type=number].brand1.focused,
-input[type=search].brand1.focused,
-input[type=time].brand1.focused,
-input[type=url].brand1.focused,
-input[type=week].brand1.focused,
-select.brand1.focused,
-textarea.brand1.focused,
-.file.brand1.focused,
-.input.brand1.focused,
-.select.brand1.focused,
-.textarea.brand1.focused,
-.keypad.brand1.focused,
-.tag-input.brand1.focused,
-.spinner.brand1.focused {
-  -webkit-box-shadow: 0 0 0 3px rgba(42, 196, 244, 0.45);
-          box-shadow: 0 0 0 3px rgba(42, 196, 244, 0.45);
-}
-input[type=text].brand2,
-input[type=password].brand2,
-input[type=tel].brand2,
-input[type=datetime-local].brand2,
-input[type=email].brand2,
-input[type=file].brand2,
-input[type=month].brand2,
-input[type=number].brand2,
-input[type=search].brand2,
-input[type=time].brand2,
-input[type=url].brand2,
-input[type=week].brand2,
-select.brand2,
-textarea.brand2,
-.file.brand2,
-.input.brand2,
-.select.brand2,
-.textarea.brand2,
-.keypad.brand2,
-.tag-input.brand2,
-.spinner.brand2 {
-  border-color: #004d6f;
-}
-input[type=text].brand2:focus,
-input[type=password].brand2:focus,
-input[type=tel].brand2:focus,
-input[type=datetime-local].brand2:focus,
-input[type=email].brand2:focus,
-input[type=file].brand2:focus,
-input[type=month].brand2:focus,
-input[type=number].brand2:focus,
-input[type=search].brand2:focus,
-input[type=time].brand2:focus,
-input[type=url].brand2:focus,
-input[type=week].brand2:focus,
-select.brand2:focus,
-textarea.brand2:focus,
-.file.brand2:focus,
-.input.brand2:focus,
-.select.brand2:focus,
-.textarea.brand2:focus,
-.keypad.brand2:focus,
-.tag-input.brand2:focus,
-.spinner.brand2:focus,
-input[type=text].brand2.focused,
-input[type=password].brand2.focused,
-input[type=tel].brand2.focused,
-input[type=datetime-local].brand2.focused,
-input[type=email].brand2.focused,
-input[type=file].brand2.focused,
-input[type=month].brand2.focused,
-input[type=number].brand2.focused,
-input[type=search].brand2.focused,
-input[type=time].brand2.focused,
-input[type=url].brand2.focused,
-input[type=week].brand2.focused,
-select.brand2.focused,
-textarea.brand2.focused,
-.file.brand2.focused,
-.input.brand2.focused,
-.select.brand2.focused,
-.textarea.brand2.focused,
-.keypad.brand2.focused,
-.tag-input.brand2.focused,
-.spinner.brand2.focused {
-  -webkit-box-shadow: 0 0 0 3px rgba(0, 77, 111, 0.45);
-          box-shadow: 0 0 0 3px rgba(0, 77, 111, 0.45);
-}
-.primary {
-  background-color: #0366d6;
-  color: #ffffff;
-}
-.secondary {
-  background-color: #607d8b;
-  color: #ffffff;
-}
-.success {
-  background-color: #60a917;
-  color: #ffffff;
-}
-.alert {
-  background-color: #CE352C;
-  color: #ffffff;
-}
-.warning {
-  background-color: #ff9447;
-  color: #ffffff;
-}
-.yellow {
-  background-color: #ffe484;
-  color: #ffffff;
-}
-.info {
-  background-color: #5ebdec;
-  color: #ffffff;
-}
-.dark {
-  background-color: #505050;
-  color: #ffffff;
-}
-.light {
-  background-color: #f8f8f8;
-  color: #ffffff;
-}
-.brand1 {
-  background-color: #2ac4f4;
-  color: #ffffff;
-}
-.brand2 {
-  background-color: #004d6f;
-  color: #ffffff;
-}
-.light,
-.yellow {
-  color: #1d1d1d;
 }
 html {
   font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Ubuntu", "Helvetica Neue", sans-serif;
@@ -21330,122 +20682,6 @@ input[type=reset].light:focus {
   -webkit-box-shadow: 0 0 0 3px rgba(248, 248, 248, 0.45);
           box-shadow: 0 0 0 3px rgba(248, 248, 248, 0.45);
 }
-input[type=button].brand1,
-input[type=submit].brand1,
-input[type=reset].brand1 {
-  outline-color: #bbecfc;
-  background-color: #2ac4f4;
-  color: #ffffff;
-}
-input[type=button].brand1.outline,
-input[type=submit].brand1.outline,
-input[type=reset].brand1.outline {
-  color: #2ac4f4;
-  border-color: #2ac4f4;
-}
-input[type=button].brand1.outline.dropdown-toggle::before,
-input[type=submit].brand1.outline.dropdown-toggle::before,
-input[type=reset].brand1.outline.dropdown-toggle::before {
-  border-color: #2ac4f4;
-}
-input[type=button].brand1.outline:hover,
-input[type=submit].brand1.outline:hover,
-input[type=reset].brand1.outline:hover {
-  color: #ffffff;
-}
-input[type=button].brand1.dropdown-toggle::before,
-input[type=submit].brand1.dropdown-toggle::before,
-input[type=reset].brand1.dropdown-toggle::before {
-  border-color: #ffffff;
-}
-input[type=button].brand1:hover,
-input[type=submit].brand1:hover,
-input[type=reset].brand1:hover {
-  color: #ffffff;
-  background-color: #0caddf;
-  border-color: #0988af;
-}
-input[type=button].brand1:hover.dropdown-toggle::before,
-input[type=submit].brand1:hover.dropdown-toggle::before,
-input[type=reset].brand1:hover.dropdown-toggle::before {
-  border-color: #ffffff;
-}
-input[type=button].brand1.same-color:hover,
-input[type=submit].brand1.same-color:hover,
-input[type=reset].brand1.same-color:hover {
-  background-color: #2ac4f4;
-  border-color: #2ac4f4;
-}
-input[type=button].brand1:active,
-input[type=submit].brand1:active,
-input[type=reset].brand1:active,
-input[type=button].brand1.focus,
-input[type=submit].brand1.focus,
-input[type=reset].brand1.focus,
-input[type=button].brand1:focus,
-input[type=submit].brand1:focus,
-input[type=reset].brand1:focus {
-  -webkit-box-shadow: 0 0 0 3px rgba(42, 196, 244, 0.45);
-          box-shadow: 0 0 0 3px rgba(42, 196, 244, 0.45);
-}
-input[type=button].brand2,
-input[type=submit].brand2,
-input[type=reset].brand2 {
-  outline-color: #09b4ff;
-  background-color: #004d6f;
-  color: #ffffff;
-}
-input[type=button].brand2.outline,
-input[type=submit].brand2.outline,
-input[type=reset].brand2.outline {
-  color: #004d6f;
-  border-color: #004d6f;
-}
-input[type=button].brand2.outline.dropdown-toggle::before,
-input[type=submit].brand2.outline.dropdown-toggle::before,
-input[type=reset].brand2.outline.dropdown-toggle::before {
-  border-color: #004d6f;
-}
-input[type=button].brand2.outline:hover,
-input[type=submit].brand2.outline:hover,
-input[type=reset].brand2.outline:hover {
-  color: #ffffff;
-}
-input[type=button].brand2.dropdown-toggle::before,
-input[type=submit].brand2.dropdown-toggle::before,
-input[type=reset].brand2.dropdown-toggle::before {
-  border-color: #ffffff;
-}
-input[type=button].brand2:hover,
-input[type=submit].brand2:hover,
-input[type=reset].brand2:hover {
-  color: #ffffff;
-  background-color: #002a3c;
-  border-color: #000609;
-}
-input[type=button].brand2:hover.dropdown-toggle::before,
-input[type=submit].brand2:hover.dropdown-toggle::before,
-input[type=reset].brand2:hover.dropdown-toggle::before {
-  border-color: #ffffff;
-}
-input[type=button].brand2.same-color:hover,
-input[type=submit].brand2.same-color:hover,
-input[type=reset].brand2.same-color:hover {
-  background-color: #004d6f;
-  border-color: #004d6f;
-}
-input[type=button].brand2:active,
-input[type=submit].brand2:active,
-input[type=reset].brand2:active,
-input[type=button].brand2.focus,
-input[type=submit].brand2.focus,
-input[type=reset].brand2.focus,
-input[type=button].brand2:focus,
-input[type=submit].brand2:focus,
-input[type=reset].brand2:focus {
-  -webkit-box-shadow: 0 0 0 3px rgba(0, 77, 111, 0.45);
-          box-shadow: 0 0 0 3px rgba(0, 77, 111, 0.45);
-}
 input[type=button].yellow,
 input[type=submit].yellow,
 input[type=reset].yellow,
@@ -25082,7 +24318,7 @@ figure img {
   margin-top: 8px;
 }
 .dialog.primary {
-  border: 2px solid #0366d6;
+  border: 1px solid #0366d6;
 }
 .dialog.primary .dialog-title {
   background-color: #0366d6;
@@ -25093,7 +24329,7 @@ figure img {
   border-top-color: #0366d6;
 }
 .dialog.secondary {
-  border: 2px solid #607d8b;
+  border: 1px solid #607d8b;
 }
 .dialog.secondary .dialog-title {
   background-color: #607d8b;
@@ -25104,7 +24340,7 @@ figure img {
   border-top-color: #607d8b;
 }
 .dialog.success {
-  border: 2px solid #60a917;
+  border: 1px solid #60a917;
 }
 .dialog.success .dialog-title {
   background-color: #60a917;
@@ -25115,7 +24351,7 @@ figure img {
   border-top-color: #60a917;
 }
 .dialog.alert {
-  border: 2px solid #CE352C;
+  border: 1px solid #CE352C;
 }
 .dialog.alert .dialog-title {
   background-color: #CE352C;
@@ -25126,7 +24362,7 @@ figure img {
   border-top-color: #CE352C;
 }
 .dialog.warning {
-  border: 2px solid #ff9447;
+  border: 1px solid #ff9447;
 }
 .dialog.warning .dialog-title {
   background-color: #ff9447;
@@ -25137,7 +24373,7 @@ figure img {
   border-top-color: #ff9447;
 }
 .dialog.yellow {
-  border: 2px solid #ffe484;
+  border: 1px solid #ffe484;
 }
 .dialog.yellow .dialog-title {
   background-color: #ffe484;
@@ -25148,7 +24384,7 @@ figure img {
   border-top-color: #ffe484;
 }
 .dialog.info {
-  border: 2px solid #5ebdec;
+  border: 1px solid #5ebdec;
 }
 .dialog.info .dialog-title {
   background-color: #5ebdec;
@@ -25159,7 +24395,7 @@ figure img {
   border-top-color: #5ebdec;
 }
 .dialog.dark {
-  border: 2px solid #505050;
+  border: 1px solid #505050;
 }
 .dialog.dark .dialog-title {
   background-color: #505050;
@@ -25170,7 +24406,7 @@ figure img {
   border-top-color: #505050;
 }
 .dialog.light {
-  border: 2px solid #f8f8f8;
+  border: 1px solid #f8f8f8;
 }
 .dialog.light .dialog-title {
   background-color: #f8f8f8;
@@ -25181,7 +24417,7 @@ figure img {
   border-top-color: #f8f8f8;
 }
 .dialog.brand1 {
-  border: 2px solid #2ac4f4;
+  border: 1px solid #2ac4f4;
 }
 .dialog.brand1 .dialog-title {
   background-color: #2ac4f4;
@@ -25192,7 +24428,7 @@ figure img {
   border-top-color: #2ac4f4;
 }
 .dialog.brand2 {
-  border: 2px solid #004d6f;
+  border: 1px solid #004d6f;
 }
 .dialog.brand2 .dialog-title {
   background-color: #004d6f;
