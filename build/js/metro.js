@@ -113,8 +113,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.40-dev 08/04/2019 09:36",
-    versionFull: "4.2.40-dev 08/04/2019 09:36",
+    version: "4.2.40-dev 08/04/2019 09:38",
+    versionFull: "4.2.40-dev 08/04/2019 09:38",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -8653,11 +8653,6 @@ var Countdown = {
             digit = element.find("." + part + " .digit:eq("+ (digits_length - 1) +") .digit-value");
             digit_value = Math.floor( parseInt(value) / Math.pow(10, i) ) % 10;
             digit_current = parseInt(digit.text());
-
-            if (part === "days") {
-                console.log(digit_current);
-                console.log(digit_value);
-            }
 
             if (parseInt(digit_current) !== 0 && digit_current === digit_value) {
                 continue;
