@@ -31,6 +31,7 @@
 + [x] Datepicker: set default value for `data-scroll-speed` to `1`
 + [x] Countdown: change behavior when browser tab lost focus or invisible
 + [x] Countdown: fix zoom effect
++ [x] Countdown: fix minor bug when first tick (not critical)
 + [x] Dialog: change padding for dialog title to `12px 24px`
 + [x] Dialog: add predefined accent classes `primary`, `alert`, `info`, `warning`, ...
 + [x] InfoBox: add predefined accent classes `primary`, `alert`, `info`, `warning`, ...
