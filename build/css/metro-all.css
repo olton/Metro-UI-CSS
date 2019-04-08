@@ -15803,6 +15803,46 @@ textarea.light.focused,
   -webkit-box-shadow: 0 0 0 3px rgba(248, 248, 248, 0.45);
           box-shadow: 0 0 0 3px rgba(248, 248, 248, 0.45);
 }
+.accent-block.primary {
+  background-color: #0366d6;
+  color: #ffffff;
+}
+.accent-block.secondary {
+  background-color: #607d8b;
+  color: #ffffff;
+}
+.accent-block.success {
+  background-color: #60a917;
+  color: #ffffff;
+}
+.accent-block.alert {
+  background-color: #CE352C;
+  color: #ffffff;
+}
+.accent-block.warning {
+  background-color: #ff9447;
+  color: #ffffff;
+}
+.accent-block.yellow {
+  background-color: #ffe484;
+  color: #ffffff;
+}
+.accent-block.info {
+  background-color: #5ebdec;
+  color: #ffffff;
+}
+.accent-block.dark {
+  background-color: #505050;
+  color: #ffffff;
+}
+.accent-block.light {
+  background-color: #f8f8f8;
+  color: #ffffff;
+}
+.accent-block.light,
+.accent-block.yellow {
+  color: #1d1d1d;
+}
 html {
   font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Ubuntu", "Helvetica Neue", sans-serif;
   font-size: 100%;

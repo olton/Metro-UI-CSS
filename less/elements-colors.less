@@ -164,6 +164,17 @@ textarea,
     })
 }
 
+.accent-block {
+    each(@accentColors, {
+        @color: "@{value}Color";
 
+        &.@{value} {
+            background-color: @@color;
+            color: @white;
+        }
+    })
 
-
+    &.light, &.yellow {
+        color: @dark;
+    }
+}
