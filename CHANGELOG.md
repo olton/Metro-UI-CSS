@@ -40,6 +40,7 @@
 + [x] Element: add class `.accent-block` for using with accent colors classes `primary`, `alert`, `info`, `warning`, ...
 + [x] Dialog: add close button to top left corner with attribute `data-close-button`
 + [x] Video: fix show/hide controls when mouse enter leave
++ [x] Draggable: fix minor bug for draggable windows
 
 ### 4.2.39
 + [x] NavView: minor improve styling 
