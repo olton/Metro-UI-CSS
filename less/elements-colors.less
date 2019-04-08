@@ -17,12 +17,10 @@ tbody tr, tbody td,
 .spinner .button,
 .toast
 {
-    .generate-accent-colors(@buttonPredefinedTypesLength);
-    .generate-accent-colors(@name, @i: 1) when (@i =< @buttonPredefinedTypesLength) {
-        @name: extract(@buttonPredefinedTypes, @i);
-        @color: "@{name}Color";
+    each(@accentColors, {
+        @color: "@{value}Color";
 
-        &.@{name} {
+        &.@{value} {
             outline-color: lighten(@@color, 30%);
             background-color: @@color;
             color: @white;
@@ -64,9 +62,7 @@ tbody tr, tbody td,
                 .focus-show(@@color);
             }
         }
-
-        .generate-accent-colors(@name, @i + 1);
-    }
+    })
 
     &.yellow, &.light {
         color: @dark;
@@ -78,19 +74,15 @@ tbody tr, tbody td,
 
 
 .action-button {
-    .generate-accent-colors(@buttonPredefinedTypesLength);
-    .generate-accent-colors(@name, @i: 1) when (@i =< @buttonPredefinedTypesLength) {
-        @name: extract(@buttonPredefinedTypes, @i);
-        @color: "@{name}Color";
+    each(@accentColors, {
+        @color: "@{value}Color";
 
-        &.@{name} {
+        &.@{value} {
             outline-color: lighten(@@color, 30%);
             background-color: @@color;
             color: @white;
         }
-
-        .generate-accent-colors(@name, @i + 1);
-    }
+    })
 
     &.yellow, &.light {
         color: @dark;
@@ -101,12 +93,10 @@ tbody tr, tbody td,
 }
 
 .pagination {
-    .generate-accent-colors(@buttonPredefinedTypesLength);
-    .generate-accent-colors(@name, @i: 1) when (@i =< @buttonPredefinedTypesLength) {
-        @name: extract(@buttonPredefinedTypes, @i);
-        @color: "@{name}Color";
+    each(@accentColors, {
+        @color: "@{value}Color";
 
-        &.@{name} {
+        &.@{value} {
             .page-item {
                 &.active, &.service, &:hover {
                     background-color: @@color;
@@ -118,9 +108,7 @@ tbody tr, tbody td,
                 }
             }
         }
-
-        .generate-accent-colors(@name, @i + 1);
-    }
+    })
 
     &.light, &.yellow {
         .page-item {
@@ -132,17 +120,13 @@ tbody tr, tbody td,
 }
 
 .remark {
-    .generate-accent-colors(@buttonPredefinedTypesLength);
-    .generate-accent-colors(@name, @i: 1) when (@i =< @buttonPredefinedTypesLength) {
-        @name: extract(@buttonPredefinedTypes, @i);
-        @color: "@{name}Color";
+    each(@accentColors, {
+        @color: "@{value}Color";
 
-        &.@{name} {
+        &.@{value} {
             border-left: 4px solid @@color;
         }
-
-        .generate-accent-colors(@name, @i + 1);
-    }
+    })
 }
 
 input[type=text],
@@ -167,35 +151,19 @@ textarea,
 .tag-input,
 .spinner
 {
-    .generate-accent-colors(@buttonPredefinedTypesLength);
-    .generate-accent-colors(@name, @i: 1) when (@i =< @buttonPredefinedTypesLength) {
-        @name: extract(@buttonPredefinedTypes, @i);
-        @color: "@{name}Color";
+    each(@accentColors, {
+        @color: "@{value}Color";
 
-        &.@{name} {
+        &.@{value} {
             border-color: @@color;
 
             &:focus, &.focused {
                 .focus-show(@@color);
             }
         }
-
-        .generate-accent-colors(@name, @i + 1);
-    }
+    })
 }
 
-each(@buttonPredefinedTypes, {
-    @color: "@{value}Color";
-
-    .@{value} {
-        background-color: @@color;
-        color: @white;
-    }
-})
-
-.light, .yellow {
-    color: @dark;
-}
 
 
 
