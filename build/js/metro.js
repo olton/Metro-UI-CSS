@@ -113,8 +113,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.40-dev 08/04/2019 21:07",
-    versionFull: "4.2.40-dev 08/04/2019 21:07",
+    version: "4.2.40-dev 08/04/2019 21:31",
+    versionFull: "4.2.40-dev 08/04/2019 21:31",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -10396,15 +10396,17 @@ var Draggable = {
             o.dragArea = "body";
         }
 
-        this.dragArea = o.dragArea === 'parent' ? element.parent() : $(o.dragArea);
+        setImmediate(function(){
+            that.dragArea = o.dragArea === 'parent' ? element.parent() : $(o.dragArea);
+            if (o.dragArea !== 'parent') {
+                element.appendTo(that.dragArea);
+                element.css({
+                    top: offset.top,
+                    left: offset.left
+                });
+            }
+        });
 
-        if (o.dragArea !== 'parent') {
-            element.appendTo(this.dragArea);
-            element.css({
-                top: offset.top,
-                left: offset.left
-            });
-        }
 
         dragElement.on(Metro.events.startAll, function(e){
 

@@ -60,15 +60,17 @@ var Draggable = {
             o.dragArea = "body";
         }
 
-        this.dragArea = o.dragArea === 'parent' ? element.parent() : $(o.dragArea);
+        setImmediate(function(){
+            that.dragArea = o.dragArea === 'parent' ? element.parent() : $(o.dragArea);
+            if (o.dragArea !== 'parent') {
+                element.appendTo(that.dragArea);
+                element.css({
+                    top: offset.top,
+                    left: offset.left
+                });
+            }
+        });
 
-        if (o.dragArea !== 'parent') {
-            element.appendTo(this.dragArea);
-            element.css({
-                top: offset.top,
-                left: offset.left
-            });
-        }
 
         dragElement.on(Metro.events.startAll, function(e){
 
