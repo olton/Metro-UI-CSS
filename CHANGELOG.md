@@ -29,6 +29,7 @@
 + [x] Tiles: add attribute for image slide `data-cover-position`
 + [x] Timepicker: set default value for `data-scroll-speed` to `1`
 + [x] Datepicker: set default value for `data-scroll-speed` to `1`
++ [x] Countdown: change behavior when browser tab lost focus or invisible
 + [x] Countdown: fix zoom effect
 + [x] Dialog: change padding for dialog title to `12px 24px`
 + [x] Dialog: add predefined accent classes `primary`, `alert`, `info`, `warning`, ...
