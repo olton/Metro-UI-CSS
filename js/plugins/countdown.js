@@ -352,11 +352,6 @@ var Countdown = {
             digit_value = Math.floor( parseInt(value) / Math.pow(10, i) ) % 10;
             digit_current = parseInt(digit.text());
 
-            if (part === "days") {
-                console.log(digit_current);
-                console.log(digit_value);
-            }
-
             if (parseInt(digit_current) !== 0 && digit_current === digit_value) {
                 continue;
             }
