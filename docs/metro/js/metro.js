@@ -113,8 +113,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.40-dev 08/04/2019 09:16",
-    versionFull: "4.2.40-dev 08/04/2019 09:16",
+    version: "4.2.40-dev 08/04/2019 09:36",
+    versionFull: "4.2.40-dev 08/04/2019 09:36",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -8638,7 +8638,7 @@ var Countdown = {
             }, duration, o.animationFunc);
         };
 
-        value = String(value);
+        value = ""+value;
 
         if (value.length === 1) {
             value = '0'+value;
@@ -8651,10 +8651,15 @@ var Countdown = {
 
         for(i = 0; i < len; i++){
             digit = element.find("." + part + " .digit:eq("+ (digits_length - 1) +") .digit-value");
-            digit_value = Math.floor( value / Math.pow(10, i) ) % 10;
+            digit_value = Math.floor( parseInt(value) / Math.pow(10, i) ) % 10;
             digit_current = parseInt(digit.text());
 
-            if (digit_current === digit_value) {
+            if (part === "days") {
+                console.log(digit_current);
+                console.log(digit_value);
+            }
+
+            if (parseInt(digit_current) !== 0 && digit_current === digit_value) {
                 continue;
             }
 
