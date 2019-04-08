@@ -113,8 +113,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.40-dev 08/04/2019 09:38",
-    versionFull: "4.2.40-dev 08/04/2019 09:38",
+    version: "4.2.40-dev 08/04/2019 16:39",
+    versionFull: "4.2.40-dev 08/04/2019 16:39",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -9811,6 +9811,7 @@ var Dialog = {
     },
 
     options: {
+        closeButton: false,
         leaveOverlayOnClose: false,
         toTop: false,
         toBottom: false,
@@ -9919,6 +9920,15 @@ var Dialog = {
             element.on(Metro.events.click, ".js-dialog-close", function(){
                 that.close();
             });
+        }
+
+        var closer = element.find("closer");
+        if (closer.length === 0) {
+            closer = $("<span>").addClass("button square closer js-dialog-close");
+            closer.appendTo(element);
+        }
+        if (o.closeButton !== true) {
+            closer.hide();
         }
 
         element.css({

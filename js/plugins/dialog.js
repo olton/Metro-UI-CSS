@@ -15,6 +15,7 @@ var Dialog = {
     },
 
     options: {
+        closeButton: false,
         leaveOverlayOnClose: false,
         toTop: false,
         toBottom: false,
@@ -123,6 +124,15 @@ var Dialog = {
             element.on(Metro.events.click, ".js-dialog-close", function(){
                 that.close();
             });
+        }
+
+        var closer = element.find("closer");
+        if (closer.length === 0) {
+            closer = $("<span>").addClass("button square closer js-dialog-close");
+            closer.appendTo(element);
+        }
+        if (o.closeButton !== true) {
+            closer.hide();
         }
 
         element.css({
