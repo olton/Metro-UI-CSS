@@ -158,7 +158,8 @@
                 <pre><code>
                     Metro.dialog.create({
                         title: "Use Windows location service?",
-                        content: "&lt;div&gt;Bassus abactors ducunt ad triticum...&lt;/div&gt;"
+                        content: "&lt;div&gt;Bassus abactors ducunt ad triticum...&lt;/div&gt;",
+                        closeButton: true
                     });
                 </code></pre>
                 <div class="example">
@@ -167,7 +168,8 @@
                         function openDemoDialog(){
                             Metro.dialog.create({
                                 title: "Use Windows location service?",
-                                content: "<div>Bassus abactors ducunt ad triticum. A fraternal form of manifestation is the bliss.</div>"
+                                content: "<div>Bassus abactors ducunt ad triticum. A fraternal form of manifestation is the bliss.</div>",
+                                closeButton: true
                             });
                         }
                     </script>
@@ -194,6 +196,12 @@
                         <td><code>data-title</code></td>
                         <td></td>
                         <td>Set dialog title</td>
+                    </tr>
+                    <tr>
+                        <td>closeButton</td>
+                        <td><code>data-close-button</code></td>
+                        <td>false</td>
+                        <td>If true, close button will be added to dialog to top left corner</td>
                     </tr>
                     <tr>
                         <td>content</td>
