@@ -39,6 +39,7 @@
 + [x] Additional colors: optimize less for using `each` function
 + [x] Element: add class `.accent-block` for using with accent colors classes `primary`, `alert`, `info`, `warning`, ...
 + [x] Dialog: add close button to top left corner with attribute `data-close-button`
++ [x] Video: fix show/hide controls when mouse enter leave
 
 ### 4.2.39
 + [x] NavView: minor improve styling 

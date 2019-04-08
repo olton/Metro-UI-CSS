@@ -113,8 +113,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.40-dev 08/04/2019 16:39",
-    versionFull: "4.2.40-dev 08/04/2019 16:39",
+    version: "4.2.40-dev 08/04/2019 21:07",
+    versionFull: "4.2.40-dev 08/04/2019 21:07",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -24514,6 +24514,7 @@ var Video = {
         this.volumeBackup = 0;
         this.muted = false;
         this.fullScreenInterval = false;
+        this.isPlaying = false;
 
         this._setOptionsFromDOM();
         this._create();
@@ -24884,7 +24885,7 @@ var Video = {
     },
 
     _onMouse: function(){
-        var player = this.player, o = this.options;
+        var that = this, player = this.player, o = this.options;
 
         if (o.controlsHide > 0) {
             player.on(Metro.events.enter, function(){
@@ -24893,7 +24894,7 @@ var Video = {
 
             player.on(Metro.events.leave, function(){
                 setTimeout(function(){
-                    player.find(".controls").fadeOut();
+                    if (that.isPlaying) player.find(".controls").fadeOut();
                 }, o.controlsHide);
             });
         }
@@ -24981,10 +24982,13 @@ var Video = {
             return ;
         }
 
+        this.isPlaying = true;
+
         this.video.play();
     },
 
     pause: function(){
+        this.isPlaying = false;
         this.video.pause();
     },
 
@@ -24995,6 +24999,7 @@ var Video = {
     },
 
     stop: function(){
+        this.isPlaying = false;
         this.video.pause();
         this.video.currentTime = 0;
         this.stream.data('slider').val(0);
