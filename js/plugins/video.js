@@ -341,6 +341,7 @@ var Video = {
         player.on(Metro.events.click, ".full", function(e){
             that.fullscreen = !that.fullscreen;
             player.find(".full").html(that.fullscreen === true ? o.screenLessIcon : o.screenMoreIcon);
+
             if (o.fullScreenMode === Metro.fullScreenMode.WINDOW) {
                 if (that.fullscreen === true) {
                     player.addClass("full-screen");
@@ -366,14 +367,22 @@ var Video = {
                 }
             }
 
-            if (that.fullscreen === true) {
-                $(document).on(Metro.events.keyup + "_video", function(e){
-                    if (e.keyCode === 27) {
-                        player.find(".full").click();
-                    }
-                });
-            } else {
-                $(document).off(Metro.events.keyup + "_video");
+            // if (that.fullscreen === true) {
+            //     $(document).on(Metro.events.keyup + "_video", function(e){
+            //         if (e.keyCode === 27) {
+            //             player.find(".full").click();
+            //             console.log('esc');
+            //         }
+            //     });
+            // } else {
+            //     $(document).off(Metro.events.keyup + "_video");
+            // }
+        });
+
+        $(window).on(Metro.events.keyup + "_video", function(e){
+            if (that.fullscreen && e.keyCode === 27) {
+                player.find(".full").click();
+                console.log('esc');
             }
         });
 

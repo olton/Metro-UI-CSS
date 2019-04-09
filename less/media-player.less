@@ -157,15 +157,16 @@
 }
 
 video::-webkit-media-controls {
-    display:none !important;
+//    display:none !important;
 }
 video::-webkit-media-controls-enclosure {
-    display:none !important;
+//    display:none !important;
 }
 
-video:-webkit-full-screen {
+:-webkit-full-screen {
     width: 100%;
     height: 100%;
+    z-index: @zindex-fullscreen;
 }
 
 :-ms-fullscreen {
