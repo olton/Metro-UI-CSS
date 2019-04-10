@@ -43,6 +43,7 @@
 + [x] Video: fix show controls in full screen mode with attribute `data-full-screen-mode="desktop"`
 + [x] Draggable: fix minor bug for draggable windows
 + [x] Sidenav M3: fix item height with text overflow
++ [x] Sidenav M3: remove floating for `d-menu`
 
 ### 4.2.39
 + [x] NavView: minor improve styling 
