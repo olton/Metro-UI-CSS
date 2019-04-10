@@ -35059,6 +35059,9 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   padding: 0.625rem 1rem 0.625rem 3rem;
   text-decoration: none;
   background-color: #f8f8f8;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .sidenav-m3 li + li {
   border-top: 1px solid #dfdfdf;
