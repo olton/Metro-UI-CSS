@@ -113,8 +113,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.40-dev 10/04/2019 16:36",
-    versionFull: "4.2.40-dev 10/04/2019 16:36",
+    version: "4.2.40-dev 10/04/2019 21:21",
+    versionFull: "4.2.40-dev 10/04/2019 21:21",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -10510,6 +10510,7 @@ var Dropdown = {
     },
 
     options: {
+        dropFilter: null,
         effect: 'slide',
         toggleElement: null,
         noClose: false,
@@ -10550,7 +10551,7 @@ var Dropdown = {
         var toggle;
         toggle = o.toggleElement !== null ? $(o.toggleElement) : element.siblings('.dropdown-toggle').length > 0 ? element.siblings('.dropdown-toggle') : element.prev();
 
-        this.displayOrigin = element.css("display");
+        this.displayOrigin = Utils.getStyleOne(element, "display");
 
         if (element.hasClass("v-menu")) {
             element.addClass("for-dropdown");
@@ -10574,7 +10575,13 @@ var Dropdown = {
             } else {
                 $('[data-role=dropdown]').each(function(i, el){
                     if (!element.parents('[data-role=dropdown]').is(el) && !$(el).hasClass('keep-open') && $(el).css('display') !== 'none') {
-                        that._close(el);
+                        if (!Utils.isValue(o.dropFilter)) {
+                            that._close(el);
+                        } else {
+                            if ($(el).closest(o.dropFilter).length > 0) {
+                                that._close(el);
+                            }
+                        }
                     }
                 });
                 if (element.hasClass('horizontal')) {
@@ -16387,6 +16394,7 @@ var Select = {
         this._createOptions();
 
         drop_container.dropdown({
+            dropFilter: ".select",
             duration: o.duration,
             toggleElement: "#"+select_id,
             onDrop: function(){
@@ -16468,12 +16476,7 @@ var Select = {
         input.on(Metro.events.click, function(e){
             $(".focused").removeClass("focused");
             container.addClass("focused");
-            //e.preventDefault();
-            //e.stopPropagation();
         });
-
-        // filter_input.on(Metro.events.blur, function(){container.removeClass("focused");});
-        // filter_input.on(Metro.events.focus, function(){container.addClass("focused");});
 
         list.on(Metro.events.click, "li", function(e){
             if ($(this).hasClass("group-title")) {

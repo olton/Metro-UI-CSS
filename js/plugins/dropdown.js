@@ -13,6 +13,7 @@ var Dropdown = {
     },
 
     options: {
+        dropFilter: null,
         effect: 'slide',
         toggleElement: null,
         noClose: false,
@@ -53,7 +54,7 @@ var Dropdown = {
         var toggle;
         toggle = o.toggleElement !== null ? $(o.toggleElement) : element.siblings('.dropdown-toggle').length > 0 ? element.siblings('.dropdown-toggle') : element.prev();
 
-        this.displayOrigin = element.css("display");
+        this.displayOrigin = Utils.getStyleOne(element, "display");
 
         if (element.hasClass("v-menu")) {
             element.addClass("for-dropdown");
@@ -77,7 +78,13 @@ var Dropdown = {
             } else {
                 $('[data-role=dropdown]').each(function(i, el){
                     if (!element.parents('[data-role=dropdown]').is(el) && !$(el).hasClass('keep-open') && $(el).css('display') !== 'none') {
-                        that._close(el);
+                        if (!Utils.isValue(o.dropFilter)) {
+                            that._close(el);
+                        } else {
+                            if ($(el).closest(o.dropFilter).length > 0) {
+                                that._close(el);
+                            }
+                        }
                     }
                 });
                 if (element.hasClass('horizontal')) {
