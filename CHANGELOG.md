@@ -44,6 +44,8 @@
 + [x] Draggable: fix minor bug for draggable windows
 + [x] Sidenav M3: fix item height with text overflow
 + [x] Sidenav M3: remove floating for `d-menu`
++ [x] Dropdown: add attribute `data-drop-filter`. Filtering elements on closing.
++ [x] Select: Opening a select now closes only other selects.
 
 ### 4.2.39
 + [x] NavView: minor improve styling 
