@@ -35088,6 +35088,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
           box-shadow: none;
   background-color: inherit;
   width: 100%;
+  float: none;
 }
 .sidenav-m3 .d-menu a {
   padding: 0 1rem 0 3rem;
