@@ -113,8 +113,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.40-dev 11/04/2019 12:42",
-    versionFull: "4.2.40-dev 11/04/2019 12:42",
+    version: "4.2.40-dev 12/04/2019 09:07",
+    versionFull: "4.2.40-dev 12/04/2019 09:07",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -4365,6 +4365,7 @@ var Accordion = {
         return this;
     },
     options: {
+        showMarker: true,
         material: false,
         duration: METRO_ANIMATION_DURATION,
         oneFrame: true,
@@ -4413,6 +4414,10 @@ var Accordion = {
         var frame_to_open;
 
         element.addClass("accordion");
+
+        if (o.showMarker === true) {
+            element.addClass("marker-on");
+        }
 
         if (o.material === true) {
             element.addClass("material");

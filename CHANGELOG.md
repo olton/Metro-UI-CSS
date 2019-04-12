@@ -46,6 +46,7 @@
 + [x] Sidenav M3: remove floating for `d-menu`
 + [x] Dropdown: add attribute `data-drop-filter`. Filtering elements on closing.
 + [x] Select: Opening a select now closes only other selects.
++ [x] Accordion: add drop marker. Marker can disabled with attribute `data-show-marker="false"`
 
 ### 4.2.39
 + [x] NavView: minor improve styling 
