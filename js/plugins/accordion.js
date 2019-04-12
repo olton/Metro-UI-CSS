@@ -76,8 +76,14 @@ var Accordion = {
 
         this._hideAll();
 
-        if (o.showActive === true || o.oneFrame === true) {
-            this._openFrame(frame_to_open);
+        if (o.showActive === true) {
+            if (o.oneFrame === true) {
+                this._openFrame(frame_to_open);
+            } else {
+                $.each(active, function(){
+                    that._openFrame(this);
+                })
+            }
         }
     },
 

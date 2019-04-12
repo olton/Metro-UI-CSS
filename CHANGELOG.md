@@ -47,6 +47,7 @@
 + [x] Dropdown: add attribute `data-drop-filter`. Filtering elements on closing.
 + [x] Select: Opening a select now closes only other selects.
 + [x] Accordion: add drop marker. Marker can disabled with attribute `data-show-marker="false"`
++ [x] Accordion: fix frames open on accordion init
 
 ### 4.2.39
 + [x] NavView: minor improve styling 

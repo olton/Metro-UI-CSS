@@ -113,8 +113,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.40-dev 12/04/2019 09:07",
-    versionFull: "4.2.40-dev 12/04/2019 09:07",
+    version: "4.2.40-dev 12/04/2019 13:05",
+    versionFull: "4.2.40-dev 12/04/2019 13:05",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -4431,8 +4431,14 @@ var Accordion = {
 
         this._hideAll();
 
-        if (o.showActive === true || o.oneFrame === true) {
-            this._openFrame(frame_to_open);
+        if (o.showActive === true) {
+            if (o.oneFrame === true) {
+                this._openFrame(frame_to_open);
+            } else {
+                $.each(active, function(){
+                    that._openFrame(this);
+                })
+            }
         }
     },
 
