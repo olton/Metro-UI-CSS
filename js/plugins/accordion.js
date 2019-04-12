@@ -10,6 +10,7 @@ var Accordion = {
         return this;
     },
     options: {
+        showMarker: true,
         material: false,
         duration: METRO_ANIMATION_DURATION,
         oneFrame: true,
@@ -58,6 +59,10 @@ var Accordion = {
         var frame_to_open;
 
         element.addClass("accordion");
+
+        if (o.showMarker === true) {
+            element.addClass("marker-on");
+        }
 
         if (o.material === true) {
             element.addClass("material");
