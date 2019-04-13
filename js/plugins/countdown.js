@@ -12,6 +12,8 @@ var Countdown = {
         this.zeroMinutesFired = false;
         this.zeroSecondsFired = false;
 
+        this.fontSize = parseInt(Utils.getStyleOne(elem, "font-size"));
+
         this.current = {
             d: 0, h: 0, m: 0, s: 0
         };
@@ -152,16 +154,13 @@ var Countdown = {
 
     _createEvents: function(){
         var that = this, element = this.element, o = this.options;
-        // if (o.stopOnBlur === true) {
-            $(window).on(Metro.events.blur+"-"+element.attr("id"), function(){
-                // that.pause();
-                that.inactiveTab = true;
-            });
-            $(window).on(Metro.events.focus+"-"+element.attr("id"), function(){
-                // that.resume();
-                that.inactiveTab = false;
-            });
-        // }
+        document.addEventListener("visibilitychange", function() {
+            if (document.hidden) {
+                that.pause();
+            } else {
+                that.resume();
+            }
+        });
     },
 
     blink: function(){
@@ -306,6 +305,14 @@ var Countdown = {
                 height = digit.height(),
                 width = digit.width(),
                 fs = parseInt(Utils.getStyleOne(digit, "font-size"));
+
+            if (fs === 0 && fs < that.fontSize) {
+                fs = that.fontSize;
+                digit.css({
+                    fontSize: that.fontSize
+                });
+            }
+
             digit_copy = digit.clone().appendTo(digit.parent());
             digit_copy.css({
                 opacity: 0,
@@ -329,7 +336,7 @@ var Countdown = {
             }, duration, o.animationFunc);
         };
 
-        value = String(value);
+        value = ""+value;
 
         if (value.length === 1) {
             value = '0'+value;
@@ -342,10 +349,10 @@ var Countdown = {
 
         for(i = 0; i < len; i++){
             digit = element.find("." + part + " .digit:eq("+ (digits_length - 1) +") .digit-value");
-            digit_value = Math.floor( value / Math.pow(10, i) ) % 10;
+            digit_value = Math.floor( parseInt(value) / Math.pow(10, i) ) % 10;
             digit_current = parseInt(digit.text());
 
-            if (digit_current === digit_value) {
+            if (parseInt(digit_current) !== 0 && digit_current === digit_value) {
                 continue;
             }
 

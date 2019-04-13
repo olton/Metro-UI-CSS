@@ -1,0 +1,179 @@
+@import (once) "include/vars";
+@import (once) "include/mixins";
+
+.chat {
+    display: flex;
+    flex-flow: column;
+    border: 1px solid @borderColor;
+    background-color: @white;
+}
+
+.chat {
+
+    .title, .messages, .message-input {
+        display: block;
+    }
+
+    .title {
+        font-size: 18px;
+        line-height: 1.2;
+        padding: 8px;
+        border-bottom: 1px solid @borderColor;
+    }
+
+    .messages {
+        padding: 8px;
+        border-bottom: 1px solid @borderColor;
+        height: 100%;
+        overflow: hidden;
+        overflow-y: auto;
+    }
+
+    .message {
+
+        display: flex;
+        flex-flow: row wrap;
+
+        .message-sender {
+            width: 50%;
+            font-weight: 600;
+            font-size: 12px;
+            order: 1;
+        }
+
+        .message-time {
+            width: 50%;
+            font-size: 12px;
+            text-align: right;
+            order: 2;
+            opacity: .5;
+        }
+
+        .message-item {
+            width: 100%;
+            flex-shrink: 0;
+            display: flex;
+            flex-flow: row nowrap;
+            margin: 8px 0;
+            order: 3;
+        }
+
+        .message-item {
+            .message-avatar {
+                overflow: hidden;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                flex-shrink: 0;
+                display: block;
+                order: 1;
+            }
+            .message-text {
+                display: flex;
+                align-items: center;
+                border: 1px solid @lightGray;
+                margin-left: 8px;
+                order: 2;
+                font-size: 14px;
+                line-height: 1.2;
+                padding: 5px 10px;
+                width: 100%;
+                background-color: @lightGray;
+            }
+
+            .message-text {
+                &::before {
+                    position: absolute;
+                    right: 100%;
+                    top: 14px;
+                    border: 6px solid transparent;
+                    border-right-color: @lightGray;
+                    content: ' ';
+                    height: 0;
+                    width: 0;
+                    pointer-events: none;
+                }
+            }
+        }
+
+        &.right {
+            .message-time {
+                order: 1;
+                text-align: left;
+            }
+
+            .message-sender {
+                order: 2;
+                text-align: right;
+            }
+
+            .message-avatar {
+                order: 2;
+            }
+
+            .message-text {
+                order: 1;
+                margin-left: 0;
+                margin-right: 8px;
+                &::before {
+                    right: auto;
+                    left: 100%;
+                    border-right-color: transparent;
+                    border-left-color: @lightGray;
+                }
+            }
+        }
+    }
+}
+
+.chat {
+    .message-input {
+        flex-shrink: 0;
+        margin-top: auto;
+        padding: 8px;
+    }
+}
+
+.chat .message {
+    .message-item .message-text {
+        .generate-accent-colors(@buttonPredefinedTypesLength);
+        .generate-accent-colors(@name, @i: 1) when (@i =< @buttonPredefinedTypesLength) {
+            @name: extract(@buttonPredefinedTypes, @i);
+            @color: "@{name}Color";
+
+            &.@{name} {
+                border-color: @@color;
+                background-color: @@color;
+                color: @white;
+                &::before {
+                    border-right-color: @@color;
+                }
+            }
+
+            .generate-accent-colors(@name, @i + 1);
+        }
+
+        &.light, &.yellow {
+            color: @dark;
+        }
+    }
+
+    &.right {
+        .message-item .message-text {
+            .generate-accent-colors(@buttonPredefinedTypesLength);
+            .generate-accent-colors(@name, @i: 1) when (@i =< @buttonPredefinedTypesLength) {
+                @name: extract(@buttonPredefinedTypes, @i);
+                @color: "@{name}Color";
+
+                &.@{name} {
+                    &::before {
+                        border-right-color: transparent;
+                        border-left-color: @@color;
+                    }
+                }
+
+                .generate-accent-colors(@name, @i + 1);
+            }
+        }
+    }
+}

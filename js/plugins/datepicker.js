@@ -26,7 +26,7 @@ var DatePicker = {
         year: true,
         minYear: null,
         maxYear: null,
-        scrollSpeed: 5,
+        scrollSpeed: 1,
         copyInlineStyles: true,
         clsPicker: "",
         clsPart: "",

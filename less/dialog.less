@@ -27,8 +27,9 @@
 
 .dialog-title {
     font-size: 1.325rem;
-    padding: 24px 24px 0;
+    padding: 12px 24px;
     order: 1;
+    border-bottom: 1px solid @borderColor;
 }
 
 .dialog-content {
@@ -56,3 +57,46 @@
     }
 }
 
+.dialog {
+    .closer {
+        display: block;
+        position: absolute;
+        top: 4px;
+        right: 4px;
+        background-color: inherit;
+        color: inherit;
+        z-index: 100;
+        &::before {
+            display: block;
+            content: "\00d7";
+            font-size: 24px;
+            margin-top: -4px;
+        }
+    }
+}
+
+.dialog {
+    each(@buttonPredefinedTypes, {
+        @color: "@{value}Color";
+
+        &.@{value} {
+            border: 1px solid @@color;
+
+            .dialog-title {
+                background-color: @@color;
+                border-bottom-color: @@color;
+                color: @white;
+            }
+
+            .dialog-actions {
+                border-top-color: @@color;
+            }
+        }
+    })
+
+    &.light, &.yellow {
+        .dialog-title {
+            color: @dark;
+        }
+    }
+}

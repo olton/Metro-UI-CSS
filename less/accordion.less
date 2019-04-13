@@ -18,6 +18,7 @@
 
         & > .heading {
             display: block;
+            position: relative;
             padding: .5rem 1rem;
             background-color: @light;
             cursor: pointer;
@@ -32,8 +33,67 @@
     }
 }
 
+.accordion.marker-on {
+    .heading {
+        padding-left: 32px;
+        &::before {
+            line-height: 1;
+            display: block;
+            content: "\203A";
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 32px;
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            transform: rotate(0);
+            transition: transform @transition-speed;
+            transform-origin: 50% 50%;
+        }
+    }
+
+    .frame {
+        &.active {
+            & > .heading {
+                &::before {
+                    transform: rotate(90deg);
+                    transition: transform @transition-speed;
+                }
+            }
+        }
+    }
+
+    &[dir=rtl] {
+        .heading {
+            padding-left: 1rem;
+            padding-right: 32px;
+            &::before {
+                left: auto;
+                right: 0;
+            }
+        }
+        .frame {
+            &.active {
+                & > .heading {
+                    &::before {
+                        transform: rotate(-90deg);
+                        transition: transform @transition-speed;
+                    }
+                }
+            }
+        }
+    }
+}
+
 .accordion {
     &.material {
+
+        .heading {
+            &::before {
+                display: none;
+            }
+        }
 
         & > .frame > .heading {
             padding: 16px 42px 16px 16px;
@@ -45,8 +105,12 @@
                 content: "\203A";
                 position: absolute;
                 right: 16px;
-                top: 0;
+                top: 8px;
                 font-size: 32px;
+                width: 40px;
+                height: 40px;
+                text-align: center;
+                line-height: 1;
                 transform: rotate(0);
                 transition: transform @transition-speed;
                 transform-origin: 50% 50%;

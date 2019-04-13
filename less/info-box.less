@@ -20,7 +20,7 @@
         right: 4px;
         background-color: inherit;
         color: inherit;
-        z-index: 1;
+        z-index: 100;
         &::before {
             display: block;
             content: "\00d7";
@@ -36,24 +36,17 @@
 }
 
 .info-box {
-    &.success {
-        background-color: @green;
-        color: @white;
-        border-color: @lightGreen;
-    }
-    &.info {
-        background-color: @cyan;
-        color: @white;
-        border-color: @lightCyan;
-    }
-    &.warning {
-        background-color: @orange;
-        color: @white;
-        border-color: @lightOrange;
-    }
-    &.alert {
-        background-color: @red;
-        color: @white;
-        border-color: @lightRed;
+    each(@buttonPredefinedTypes, {
+        @color: "@{value}Color";
+
+        &.@{value} {
+            border-color: @@color;
+            background-color: @@color;
+            color: @white;
+        }
+    })
+
+    &.light, &.yellow {
+        color: @dark;
     }
 }

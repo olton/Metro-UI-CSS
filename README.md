@@ -25,7 +25,7 @@ It's an independent project with its ongoing development made possible entirely 
 <br>
 <hr>
  
-## Current Version 4.2.39
+## Current Version 4.2.40
 
 ### Status
 [![Build Status](https://travis-ci.org/olton/Metro-UI-CSS.svg?branch=master)](https://travis-ci.org/olton/Metro-UI-CSS)
@@ -34,12 +34,26 @@ It's an independent project with its ongoing development made possible entirely 
 [![CSS gzip size](http://img.badgesize.io/olton/Metro-UI-CSS/master/build/css/metro-all.min.css?compression=gzip&label=CSS+gzip)](https://github.com/olton/Metro-UI-CSS/blob/master/build/css/metro-all.min.css)
 [![JS gzip size](http://img.badgesize.io/olton/Metro-UI-CSS/master/build/js/metro.min.js?compression=gzip&label=JS+gzip)](https://github.com/olton/Metro-UI-CSS/blob/master/build/js/metro.min.js)
 [![Icons gzip size](http://img.badgesize.io/olton/Metro-UI-CSS/master/build/mif/metro.woff?compression=gzip&label=Icons+gzip)](https://github.com/olton/Metro-UI-CSS/tree/master/build/mif)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat)](https://github.com/olton/Metro-UI-CSS/blob/master/LICENSE)
+![GitHub release](https://img.shields.io/github/release/olton/Metro-UI-CSS.svg?color=darklime)
 [![npm version](https://badge.fury.io/js/metro4.svg)](https://badge.fury.io/js/metro4)
+![Nuget](https://img.shields.io/nuget/v/Metro4.svg?color=darklime)
+![Website](https://img.shields.io/website/https/metroui.org.ua.svg)
+
+###  Info
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat)](https://github.com/olton/Metro-UI-CSS/blob/master/LICENSE)
+![GitHub issues](https://img.shields.io/github/issues-raw/olton/Metro-UI-CSS.svg)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/olton/Metro-UI-CSS.svg)
+
+
+### Patreon
+![Sponsors on Patreon](https://img.shields.io/badge/backers-2-red.svg)
+![Sponsors on Patreon](https://img.shields.io/badge/sponsors-0-red.svg)
+![Sponsors on Patreon](https://img.shields.io/badge/donation-$28-red.svg)
 
 ### Opencollective 
 [![Backers on Open Collective](https://opencollective.com/metro4/backers/badge.svg)](#backers) 
 [![Sponsors on Open Collective](https://opencollective.com/metro4/sponsors/badge.svg)](#sponsors)
+![Sponsors on Patreon](https://img.shields.io/badge/donation-$0-darklime.svg)
  
 ### Community
 [![Join the chat at https://discord.gg/NydRab3](https://img.shields.io/badge/chat-on%20discord-brightgreen.svg?style=flat)](https://discord.gg/NydRab3)

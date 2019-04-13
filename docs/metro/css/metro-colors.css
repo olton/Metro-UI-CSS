@@ -1,10 +1,10 @@
 /*
- * Metro 4 Components Library v4.2.39  (https://metroui.org.ua)
+ * Metro 4 Components Library v4.2.40  (https://metroui.org.ua)
  * Copyright 2019 Sergey Pimenov
  * Licensed under MIT
  */
 .op-default {
-  background-color: rgba(27, 161, 226, 0.7) !important;
+  background-color: rgba(27, 161, 226, 0.1) !important;
 }
 .bg-transparent {
   background-color: transparent !important;
@@ -116,7 +116,7 @@
   color: #000000 !important;
 }
 .op-black {
-  background-color: rgba(0, 0, 0, 0.7) !important;
+  background-color: rgba(0, 0, 0, 0.1) !important;
 }
 .tg-black::before {
   border-color: #000000;
@@ -186,7 +186,7 @@
   color: #ffffff !important;
 }
 .op-white {
-  background-color: rgba(255, 255, 255, 0.7) !important;
+  background-color: rgba(255, 255, 255, 0.1) !important;
 }
 .tg-white::before {
   border-color: #ffffff;
@@ -256,7 +256,7 @@
   color: #1d1d1d !important;
 }
 .op-dark {
-  background-color: rgba(29, 29, 29, 0.7) !important;
+  background-color: rgba(29, 29, 29, 0.1) !important;
 }
 .tg-dark::before {
   border-color: #1d1d1d;
@@ -326,7 +326,7 @@
   color: #f8f8f8 !important;
 }
 .op-light {
-  background-color: rgba(248, 248, 248, 0.7) !important;
+  background-color: rgba(248, 248, 248, 0.1) !important;
 }
 .tg-light::before {
   border-color: #f8f8f8;
@@ -396,7 +396,7 @@
   color: #607d8b !important;
 }
 .op-grayBlue {
-  background-color: rgba(96, 125, 139, 0.7) !important;
+  background-color: rgba(96, 125, 139, 0.1) !important;
 }
 .tg-grayBlue::before {
   border-color: #607d8b;
@@ -466,7 +466,7 @@
   color: #f5f5f5 !important;
 }
 .op-grayWhite {
-  background-color: rgba(245, 245, 245, 0.7) !important;
+  background-color: rgba(245, 245, 245, 0.1) !important;
 }
 .tg-grayWhite::before {
   border-color: #f5f5f5;
@@ -536,7 +536,7 @@
   color: #455a64 !important;
 }
 .op-grayMouse {
-  background-color: rgba(69, 90, 100, 0.7) !important;
+  background-color: rgba(69, 90, 100, 0.1) !important;
 }
 .tg-grayMouse::before {
   border-color: #455a64;
@@ -606,7 +606,7 @@
   color: #2ac4f4 !important;
 }
 .op-brandColor1 {
-  background-color: rgba(42, 196, 244, 0.7) !important;
+  background-color: rgba(42, 196, 244, 0.1) !important;
 }
 .tg-brandColor1::before {
   border-color: #2ac4f4;
@@ -676,7 +676,7 @@
   color: #004d6f !important;
 }
 .op-brandColor2 {
-  background-color: rgba(0, 77, 111, 0.7) !important;
+  background-color: rgba(0, 77, 111, 0.1) !important;
 }
 .tg-brandColor2::before {
   border-color: #004d6f;
@@ -746,7 +746,7 @@
   color: #a4c400 !important;
 }
 .op-lime {
-  background-color: rgba(164, 196, 0, 0.7) !important;
+  background-color: rgba(164, 196, 0, 0.1) !important;
 }
 .tg-lime::before {
   border-color: #a4c400;
@@ -816,7 +816,7 @@
   color: #60a917 !important;
 }
 .op-green {
-  background-color: rgba(96, 169, 23, 0.7) !important;
+  background-color: rgba(96, 169, 23, 0.1) !important;
 }
 .tg-green::before {
   border-color: #60a917;
@@ -886,7 +886,7 @@
   color: #008a00 !important;
 }
 .op-emerald {
-  background-color: rgba(0, 138, 0, 0.7) !important;
+  background-color: rgba(0, 138, 0, 0.1) !important;
 }
 .tg-emerald::before {
   border-color: #008a00;
@@ -956,7 +956,7 @@
   color: #00AFF0 !important;
 }
 .op-blue {
-  background-color: rgba(0, 175, 240, 0.7) !important;
+  background-color: rgba(0, 175, 240, 0.1) !important;
 }
 .tg-blue::before {
   border-color: #00AFF0;
@@ -1026,7 +1026,7 @@
   color: #00aba9 !important;
 }
 .op-teal {
-  background-color: rgba(0, 171, 169, 0.7) !important;
+  background-color: rgba(0, 171, 169, 0.1) !important;
 }
 .tg-teal::before {
   border-color: #00aba9;
@@ -1096,7 +1096,7 @@
   color: #1ba1e2 !important;
 }
 .op-cyan {
-  background-color: rgba(27, 161, 226, 0.7) !important;
+  background-color: rgba(27, 161, 226, 0.1) !important;
 }
 .tg-cyan::before {
   border-color: #1ba1e2;
@@ -1166,7 +1166,7 @@
   color: #0050ef !important;
 }
 .op-cobalt {
-  background-color: rgba(0, 80, 239, 0.7) !important;
+  background-color: rgba(0, 80, 239, 0.1) !important;
 }
 .tg-cobalt::before {
   border-color: #0050ef;
@@ -1236,7 +1236,7 @@
   color: #6a00ff !important;
 }
 .op-indigo {
-  background-color: rgba(106, 0, 255, 0.7) !important;
+  background-color: rgba(106, 0, 255, 0.1) !important;
 }
 .tg-indigo::before {
   border-color: #6a00ff;
@@ -1306,7 +1306,7 @@
   color: #aa00ff !important;
 }
 .op-violet {
-  background-color: rgba(170, 0, 255, 0.7) !important;
+  background-color: rgba(170, 0, 255, 0.1) !important;
 }
 .tg-violet::before {
   border-color: #aa00ff;
@@ -1376,7 +1376,7 @@
   color: #dc4fad !important;
 }
 .op-pink {
-  background-color: rgba(220, 79, 173, 0.7) !important;
+  background-color: rgba(220, 79, 173, 0.1) !important;
 }
 .tg-pink::before {
   border-color: #dc4fad;
@@ -1446,7 +1446,7 @@
   color: #d80073 !important;
 }
 .op-magenta {
-  background-color: rgba(216, 0, 115, 0.7) !important;
+  background-color: rgba(216, 0, 115, 0.1) !important;
 }
 .tg-magenta::before {
   border-color: #d80073;
@@ -1516,7 +1516,7 @@
   color: #a20025 !important;
 }
 .op-crimson {
-  background-color: rgba(162, 0, 37, 0.7) !important;
+  background-color: rgba(162, 0, 37, 0.1) !important;
 }
 .tg-crimson::before {
   border-color: #a20025;
@@ -1586,7 +1586,7 @@
   color: #CE352C !important;
 }
 .op-red {
-  background-color: rgba(206, 53, 44, 0.7) !important;
+  background-color: rgba(206, 53, 44, 0.1) !important;
 }
 .tg-red::before {
   border-color: #CE352C;
@@ -1656,7 +1656,7 @@
   color: #fa6800 !important;
 }
 .op-orange {
-  background-color: rgba(250, 104, 0, 0.7) !important;
+  background-color: rgba(250, 104, 0, 0.1) !important;
 }
 .tg-orange::before {
   border-color: #fa6800;
@@ -1726,7 +1726,7 @@
   color: #f0a30a !important;
 }
 .op-amber {
-  background-color: rgba(240, 163, 10, 0.7) !important;
+  background-color: rgba(240, 163, 10, 0.1) !important;
 }
 .tg-amber::before {
   border-color: #f0a30a;
@@ -1796,7 +1796,7 @@
   color: #fff000 !important;
 }
 .op-yellow {
-  background-color: rgba(255, 240, 0, 0.7) !important;
+  background-color: rgba(255, 240, 0, 0.1) !important;
 }
 .tg-yellow::before {
   border-color: #fff000;
@@ -1866,7 +1866,7 @@
   color: #825a2c !important;
 }
 .op-brown {
-  background-color: rgba(130, 90, 44, 0.7) !important;
+  background-color: rgba(130, 90, 44, 0.1) !important;
 }
 .tg-brown::before {
   border-color: #825a2c;
@@ -1936,7 +1936,7 @@
   color: #6d8764 !important;
 }
 .op-olive {
-  background-color: rgba(109, 135, 100, 0.7) !important;
+  background-color: rgba(109, 135, 100, 0.1) !important;
 }
 .tg-olive::before {
   border-color: #6d8764;
@@ -2006,7 +2006,7 @@
   color: #647687 !important;
 }
 .op-steel {
-  background-color: rgba(100, 118, 135, 0.7) !important;
+  background-color: rgba(100, 118, 135, 0.1) !important;
 }
 .tg-steel::before {
   border-color: #647687;
@@ -2076,7 +2076,7 @@
   color: #76608a !important;
 }
 .op-mauve {
-  background-color: rgba(118, 96, 138, 0.7) !important;
+  background-color: rgba(118, 96, 138, 0.1) !important;
 }
 .tg-mauve::before {
   border-color: #76608a;
@@ -2146,7 +2146,7 @@
   color: #87794e !important;
 }
 .op-taupe {
-  background-color: rgba(135, 121, 78, 0.7) !important;
+  background-color: rgba(135, 121, 78, 0.1) !important;
 }
 .tg-taupe::before {
   border-color: #87794e;
@@ -2216,7 +2216,7 @@
   color: #bebebe !important;
 }
 .op-gray {
-  background-color: rgba(190, 190, 190, 0.7) !important;
+  background-color: rgba(190, 190, 190, 0.1) !important;
 }
 .tg-gray::before {
   border-color: #bebebe;
@@ -2286,7 +2286,7 @@
   color: #d8ff12 !important;
 }
 .op-lightLime {
-  background-color: rgba(216, 255, 18, 0.7) !important;
+  background-color: rgba(216, 255, 18, 0.1) !important;
 }
 .tg-lightLime::before {
   border-color: #d8ff12;
@@ -2356,7 +2356,7 @@
   color: #86e22a !important;
 }
 .op-lightGreen {
-  background-color: rgba(134, 226, 42, 0.7) !important;
+  background-color: rgba(134, 226, 42, 0.1) !important;
 }
 .tg-lightGreen::before {
   border-color: #86e22a;
@@ -2426,7 +2426,7 @@
   color: #00d600 !important;
 }
 .op-lightEmerald {
-  background-color: rgba(0, 214, 0, 0.7) !important;
+  background-color: rgba(0, 214, 0, 0.1) !important;
 }
 .tg-lightEmerald::before {
   border-color: #00d600;
@@ -2496,7 +2496,7 @@
   color: #3ecbff !important;
 }
 .op-lightBlue {
-  background-color: rgba(62, 203, 255, 0.7) !important;
+  background-color: rgba(62, 203, 255, 0.1) !important;
 }
 .tg-lightBlue::before {
   border-color: #3ecbff;
@@ -2566,7 +2566,7 @@
   color: #00f7f5 !important;
 }
 .op-lightTeal {
-  background-color: rgba(0, 247, 245, 0.7) !important;
+  background-color: rgba(0, 247, 245, 0.1) !important;
 }
 .tg-lightTeal::before {
   border-color: #00f7f5;
@@ -2636,7 +2636,7 @@
   color: #5ebdec !important;
 }
 .op-lightCyan {
-  background-color: rgba(94, 189, 236, 0.7) !important;
+  background-color: rgba(94, 189, 236, 0.1) !important;
 }
 .tg-lightCyan::before {
   border-color: #5ebdec;
@@ -2706,7 +2706,7 @@
   color: #3d7eff !important;
 }
 .op-lightCobalt {
-  background-color: rgba(61, 126, 255, 0.7) !important;
+  background-color: rgba(61, 126, 255, 0.1) !important;
 }
 .tg-lightCobalt::before {
   border-color: #3d7eff;
@@ -2776,7 +2776,7 @@
   color: #974dff !important;
 }
 .op-lightIndigo {
-  background-color: rgba(151, 77, 255, 0.7) !important;
+  background-color: rgba(151, 77, 255, 0.1) !important;
 }
 .tg-lightIndigo::before {
   border-color: #974dff;
@@ -2846,7 +2846,7 @@
   color: #c44dff !important;
 }
 .op-lightViolet {
-  background-color: rgba(196, 77, 255, 0.7) !important;
+  background-color: rgba(196, 77, 255, 0.1) !important;
 }
 .tg-lightViolet::before {
   border-color: #c44dff;
@@ -2916,7 +2916,7 @@
   color: #e98fcb !important;
 }
 .op-lightPink {
-  background-color: rgba(233, 143, 203, 0.7) !important;
+  background-color: rgba(233, 143, 203, 0.1) !important;
 }
 .tg-lightPink::before {
   border-color: #e98fcb;
@@ -2986,7 +2986,7 @@
   color: #ff2599 !important;
 }
 .op-lightMagenta {
-  background-color: rgba(255, 37, 153, 0.7) !important;
+  background-color: rgba(255, 37, 153, 0.1) !important;
 }
 .tg-lightMagenta::before {
   border-color: #ff2599;
@@ -3056,7 +3056,7 @@
   color: #ef0036 !important;
 }
 .op-lightCrimson {
-  background-color: rgba(239, 0, 54, 0.7) !important;
+  background-color: rgba(239, 0, 54, 0.1) !important;
 }
 .tg-lightCrimson::before {
   border-color: #ef0036;
@@ -3126,7 +3126,7 @@
   color: #df6e68 !important;
 }
 .op-lightRed {
-  background-color: rgba(223, 110, 104, 0.7) !important;
+  background-color: rgba(223, 110, 104, 0.1) !important;
 }
 .tg-lightRed::before {
   border-color: #df6e68;
@@ -3196,7 +3196,7 @@
   color: #ff9447 !important;
 }
 .op-lightOrange {
-  background-color: rgba(255, 148, 71, 0.7) !important;
+  background-color: rgba(255, 148, 71, 0.1) !important;
 }
 .tg-lightOrange::before {
   border-color: #ff9447;
@@ -3266,7 +3266,7 @@
   color: #f8bf4f !important;
 }
 .op-lightAmber {
-  background-color: rgba(248, 191, 79, 0.7) !important;
+  background-color: rgba(248, 191, 79, 0.1) !important;
 }
 .tg-lightAmber::before {
   border-color: #f8bf4f;
@@ -3336,7 +3336,7 @@
   color: #fff44d !important;
 }
 .op-lightYellow {
-  background-color: rgba(255, 244, 77, 0.7) !important;
+  background-color: rgba(255, 244, 77, 0.1) !important;
 }
 .tg-lightYellow::before {
   border-color: #fff44d;
@@ -3406,7 +3406,7 @@
   color: #bb823f !important;
 }
 .op-lightBrown {
-  background-color: rgba(187, 130, 63, 0.7) !important;
+  background-color: rgba(187, 130, 63, 0.1) !important;
 }
 .tg-lightBrown::before {
   border-color: #bb823f;
@@ -3476,7 +3476,7 @@
   color: #95ab8d !important;
 }
 .op-lightOlive {
-  background-color: rgba(149, 171, 141, 0.7) !important;
+  background-color: rgba(149, 171, 141, 0.1) !important;
 }
 .tg-lightOlive::before {
   border-color: #95ab8d;
@@ -3546,7 +3546,7 @@
   color: #8d9cab !important;
 }
 .op-lightSteel {
-  background-color: rgba(141, 156, 171, 0.7) !important;
+  background-color: rgba(141, 156, 171, 0.1) !important;
 }
 .tg-lightSteel::before {
   border-color: #8d9cab;
@@ -3616,7 +3616,7 @@
   color: #9c89ad !important;
 }
 .op-lightMauve {
-  background-color: rgba(156, 137, 173, 0.7) !important;
+  background-color: rgba(156, 137, 173, 0.1) !important;
 }
 .tg-lightMauve::before {
   border-color: #9c89ad;
@@ -3686,7 +3686,7 @@
   color: #aea073 !important;
 }
 .op-lightTaupe {
-  background-color: rgba(174, 160, 115, 0.7) !important;
+  background-color: rgba(174, 160, 115, 0.1) !important;
 }
 .tg-lightTaupe::before {
   border-color: #aea073;
@@ -3756,7 +3756,7 @@
   color: #e4e4e4 !important;
 }
 .op-lightGray {
-  background-color: rgba(228, 228, 228, 0.7) !important;
+  background-color: rgba(228, 228, 228, 0.1) !important;
 }
 .tg-lightGray::before {
   border-color: #e4e4e4;
@@ -3826,7 +3826,7 @@
   color: #8aa2ae !important;
 }
 .op-lightGrayBlue {
-  background-color: rgba(138, 162, 174, 0.7) !important;
+  background-color: rgba(138, 162, 174, 0.1) !important;
 }
 .tg-lightGrayBlue::before {
   border-color: #8aa2ae;
@@ -3896,7 +3896,7 @@
   color: #647800 !important;
 }
 .op-darkLime {
-  background-color: rgba(100, 120, 0, 0.7) !important;
+  background-color: rgba(100, 120, 0, 0.1) !important;
 }
 .tg-darkLime::before {
   border-color: #647800;
@@ -3966,7 +3966,7 @@
   color: #3a660e !important;
 }
 .op-darkGreen {
-  background-color: rgba(58, 102, 14, 0.7) !important;
+  background-color: rgba(58, 102, 14, 0.1) !important;
 }
 .tg-darkGreen::before {
   border-color: #3a660e;
@@ -4036,7 +4036,7 @@
   color: #003d00 !important;
 }
 .op-darkEmerald {
-  background-color: rgba(0, 61, 0, 0.7) !important;
+  background-color: rgba(0, 61, 0, 0.1) !important;
 }
 .tg-darkEmerald::before {
   border-color: #003d00;
@@ -4106,7 +4106,7 @@
   color: #0077a3 !important;
 }
 .op-darkBlue {
-  background-color: rgba(0, 119, 163, 0.7) !important;
+  background-color: rgba(0, 119, 163, 0.1) !important;
 }
 .tg-darkBlue::before {
   border-color: #0077a3;
@@ -4176,7 +4176,7 @@
   color: #005e5d !important;
 }
 .op-darkTeal {
-  background-color: rgba(0, 94, 93, 0.7) !important;
+  background-color: rgba(0, 94, 93, 0.1) !important;
 }
 .tg-darkTeal::before {
   border-color: #005e5d;
@@ -4246,7 +4246,7 @@
   color: #13709e !important;
 }
 .op-darkCyan {
-  background-color: rgba(19, 112, 158, 0.7) !important;
+  background-color: rgba(19, 112, 158, 0.1) !important;
 }
 .tg-darkCyan::before {
   border-color: #13709e;
@@ -4316,7 +4316,7 @@
   color: #0036a3 !important;
 }
 .op-darkCobalt {
-  background-color: rgba(0, 54, 163, 0.7) !important;
+  background-color: rgba(0, 54, 163, 0.1) !important;
 }
 .tg-darkCobalt::before {
   border-color: #0036a3;
@@ -4386,7 +4386,7 @@
   color: #4a00b3 !important;
 }
 .op-darkIndigo {
-  background-color: rgba(74, 0, 179, 0.7) !important;
+  background-color: rgba(74, 0, 179, 0.1) !important;
 }
 .tg-darkIndigo::before {
   border-color: #4a00b3;
@@ -4456,7 +4456,7 @@
   color: #7700b3 !important;
 }
 .op-darkViolet {
-  background-color: rgba(119, 0, 179, 0.7) !important;
+  background-color: rgba(119, 0, 179, 0.1) !important;
 }
 .tg-darkViolet::before {
   border-color: #7700b3;
@@ -4526,7 +4526,7 @@
   color: #ba2588 !important;
 }
 .op-darkPink {
-  background-color: rgba(186, 37, 136, 0.7) !important;
+  background-color: rgba(186, 37, 136, 0.1) !important;
 }
 .tg-darkPink::before {
   border-color: #ba2588;
@@ -4596,7 +4596,7 @@
   color: #8c004a !important;
 }
 .op-darkMagenta {
-  background-color: rgba(140, 0, 74, 0.7) !important;
+  background-color: rgba(140, 0, 74, 0.1) !important;
 }
 .tg-darkMagenta::before {
   border-color: #8c004a;
@@ -4666,7 +4666,7 @@
   color: #560014 !important;
 }
 .op-darkCrimson {
-  background-color: rgba(86, 0, 20, 0.7) !important;
+  background-color: rgba(86, 0, 20, 0.1) !important;
 }
 .tg-darkCrimson::before {
   border-color: #560014;
@@ -4736,7 +4736,7 @@
   color: #8f251f !important;
 }
 .op-darkRed {
-  background-color: rgba(143, 37, 31, 0.7) !important;
+  background-color: rgba(143, 37, 31, 0.1) !important;
 }
 .tg-darkRed::before {
   border-color: #8f251f;
@@ -4806,7 +4806,7 @@
   color: #ae4800 !important;
 }
 .op-darkOrange {
-  background-color: rgba(174, 72, 0, 0.7) !important;
+  background-color: rgba(174, 72, 0, 0.1) !important;
 }
 .tg-darkOrange::before {
   border-color: #ae4800;
@@ -4876,7 +4876,7 @@
   color: #a77107 !important;
 }
 .op-darkAmber {
-  background-color: rgba(167, 113, 7, 0.7) !important;
+  background-color: rgba(167, 113, 7, 0.1) !important;
 }
 .tg-darkAmber::before {
   border-color: #a77107;
@@ -4946,7 +4946,7 @@
   color: #b3a800 !important;
 }
 .op-darkYellow {
-  background-color: rgba(179, 168, 0, 0.7) !important;
+  background-color: rgba(179, 168, 0, 0.1) !important;
 }
 .tg-darkYellow::before {
   border-color: #b3a800;
@@ -5016,7 +5016,7 @@
   color: #493219 !important;
 }
 .op-darkBrown {
-  background-color: rgba(73, 50, 25, 0.7) !important;
+  background-color: rgba(73, 50, 25, 0.1) !important;
 }
 .tg-darkBrown::before {
   border-color: #493219;
@@ -5086,7 +5086,7 @@
   color: #4a5b43 !important;
 }
 .op-darkOlive {
-  background-color: rgba(74, 91, 67, 0.7) !important;
+  background-color: rgba(74, 91, 67, 0.1) !important;
 }
 .tg-darkOlive::before {
   border-color: #4a5b43;
@@ -5156,7 +5156,7 @@
   color: #43505b !important;
 }
 .op-darkSteel {
-  background-color: rgba(67, 80, 91, 0.7) !important;
+  background-color: rgba(67, 80, 91, 0.1) !important;
 }
 .tg-darkSteel::before {
   border-color: #43505b;
@@ -5226,7 +5226,7 @@
   color: #4f415d !important;
 }
 .op-darkMauve {
-  background-color: rgba(79, 65, 93, 0.7) !important;
+  background-color: rgba(79, 65, 93, 0.1) !important;
 }
 .tg-darkMauve::before {
   border-color: #4f415d;
@@ -5296,7 +5296,7 @@
   color: #574e32 !important;
 }
 .op-darkTaupe {
-  background-color: rgba(87, 78, 50, 0.7) !important;
+  background-color: rgba(87, 78, 50, 0.1) !important;
 }
 .tg-darkTaupe::before {
   border-color: #574e32;
@@ -5366,7 +5366,7 @@
   color: #989898 !important;
 }
 .op-darkGray {
-  background-color: rgba(152, 152, 152, 0.7) !important;
+  background-color: rgba(152, 152, 152, 0.1) !important;
 }
 .tg-darkGray::before {
   border-color: #989898;
@@ -5436,7 +5436,7 @@
   color: #41545e !important;
 }
 .op-darkGrayBlue {
-  background-color: rgba(65, 84, 94, 0.7) !important;
+  background-color: rgba(65, 84, 94, 0.1) !important;
 }
 .tg-darkGrayBlue::before {
   border-color: #41545e;

@@ -54,6 +54,7 @@ body {
 }
 
 .display1, .display2, .display3, .display4 {
+    .px2rem(margin-top, 20px);
     .px2rem(margin-bottom, 20px);
     line-height: 1.2;
 }
@@ -116,7 +117,7 @@ body {
 .alt-header, .h5, h5,
 .sub-alt-header, .h6, h6 {
     color: inherit;
-    margin-bottom: .5rem;
+    margin: 1rem 0;
     line-height: 1.1;
 
     & > small, & > .small {
@@ -265,7 +266,7 @@ ul, menu, dir {
 }
 
 ol {
-    list-style: decimal;
+    list-style-type: decimal;
 }
 
 li.no-style {
@@ -282,24 +283,24 @@ ul {
 }
 
 ol {
-    list-style: upper-roman;
+    list-style-type: upper-roman;
 
     ol {
-        list-style: decimal;
+        list-style-type: decimal;
         ol {
-            list-style: lower-alpha;
+            list-style-type: lower-alpha;
         }
     }
 }
 
 ol {
-    &.decimal {list-style: decimal;}
-    &.roman-upper {list-style: upper-roman;}
-    &.roman-lower {list-style: lower-roman;}
-    &.alpha-upper {list-style: upper-alpha;}
-    &.alpha-lower {list-style: lower-alpha;}
-    &.latin-upper {list-style: upper-latin;}
-    &.latin-lower {list-style: lower-latin;}
+    &.decimal {list-style-type: decimal;}
+    &.roman-upper {list-style-type: upper-roman;}
+    &.roman-lower {list-style-type: lower-roman;}
+    &.alpha-upper {list-style-type: upper-alpha;}
+    &.alpha-lower {list-style-type: lower-alpha;}
+    &.latin-upper {list-style-type: upper-latin;}
+    &.latin-lower {list-style-type: lower-latin;}
 }
 
 ul, ol {
@@ -385,7 +386,7 @@ blockquote {
         }
     }
 
-    &.place-right {
+    &.right-side {
         border: 0;
         border-right: 4px @light solid;
         padding-right: .625rem;
