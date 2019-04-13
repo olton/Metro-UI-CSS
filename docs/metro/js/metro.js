@@ -1,5 +1,5 @@
 /*
- * Metro 4 Components Library v4.2.39  (https://metroui.org.ua)
+ * Metro 4 Components Library v4.2.40  (https://metroui.org.ua)
  * Copyright 2019 Sergey Pimenov
  * Licensed under MIT
  */
@@ -36,6 +36,13 @@ var meta_timeout = $("meta[name='metro4:timeout']").attr("content");
 var meta_scroll_multiple = $("meta[name='metro4:scroll_multiple']").attr("content");
 var meta_cloak = $("meta[name='metro4:cloak']").attr("content"); //default or fade
 var meta_cloak_duration = $("meta[name='metro4:cloak_duration']").attr("content"); //100
+
+/* Added by Ken Kitay https://github.com/kens-code*/
+var meta_about = $("meta[name='metro4:about']").attr("content");
+if (window.METRO_SHOW_ABOUT === undefined) {
+    window.METRO_SHOW_ABOUT = meta_about !== undefined ? JSON.parse(meta_about) : true;
+}
+/* --- end ---*/
 
 if (window.METRO_INIT === undefined) {
     window.METRO_INIT = meta_init !== undefined ? JSON.parse(meta_init) : true;
@@ -106,8 +113,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.39",
-    versionFull: "4.2.39.721 ",
+    version: "4.2.40-dev 13/04/2019 20:06",
+    versionFull: "4.2.40-dev 13/04/2019 20:06",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -176,6 +183,11 @@ var Metro = {
         stop: isTouch ? 'touchend.metro' : 'mouseup.metro',
         move: isTouch ? 'touchmove.metro' : 'mousemove.metro',
         enter: isTouch ? 'touchstart.metro' : 'mouseenter.metro',
+
+        startAll: 'mousedown.metro touchstart.metro',
+        stopAll: 'mouseup.metro touchend.metro',
+        moveAll: 'mousemove.metro touchmove.metro',
+
         leave: 'mouseleave.metro',
         focus: 'focus.metro',
         blur: 'blur.metro',
@@ -358,7 +370,7 @@ var Metro = {
         this.initHotkeys(hotkeys);
         this.initWidgets(widgets);
 
-        this.about(true);
+        if (METRO_SHOW_ABOUT) this.about(true);
 
         if (METRO_CLOAK_REMOVE !== "fade") {
             $(".m4-cloak").removeClass("m4-cloak");
@@ -4353,6 +4365,7 @@ var Accordion = {
         return this;
     },
     options: {
+        showMarker: true,
         material: false,
         duration: METRO_ANIMATION_DURATION,
         oneFrame: true,
@@ -4402,6 +4415,10 @@ var Accordion = {
 
         element.addClass("accordion");
 
+        if (o.showMarker === true) {
+            element.addClass("marker-on");
+        }
+
         if (o.material === true) {
             element.addClass("material");
         }
@@ -4414,8 +4431,14 @@ var Accordion = {
 
         this._hideAll();
 
-        if (o.showActive === true || o.oneFrame === true) {
-            this._openFrame(frame_to_open);
+        if (o.showActive === true) {
+            if (o.oneFrame === true) {
+                this._openFrame(frame_to_open);
+            } else {
+                $.each(active, function(){
+                    that._openFrame(this);
+                })
+            }
         }
     },
 
@@ -7622,6 +7645,255 @@ Metro['charms'] = {
     }
 };
 
+// Source: js/plugins/chat.js
+
+var defaultAvatar = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD//gA7Q1JFQVRPUjogZ2QtanBlZyB2MS4wICh1c2luZyBJSkcgSlBFRyB2NjIpLCBxdWFsaXR5ID0gOTAK/9sAQwADAgIDAgIDAwMDBAMDBAUIBQUEBAUKBwcGCAwKDAwLCgsLDQ4SEA0OEQ4LCxAWEBETFBUVFQwPFxgWFBgSFBUU/9sAQwEDBAQFBAUJBQUJFA0LDRQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQU/8AAEQgAUABQAwEiAAIRAQMRAf/EAB8AAAEFAQEBAQEBAAAAAAAAAAABAgMEBQYHCAkKC//EALUQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5+v/EAB8BAAMBAQEBAQEBAQEAAAAAAAABAgMEBQYHCAkKC//EALURAAIBAgQEAwQHBQQEAAECdwABAgMRBAUhMQYSQVEHYXETIjKBCBRCkaGxwQkjM1LwFWJy0QoWJDThJfEXGBkaJicoKSo1Njc4OTpDREVGR0hJSlNUVVZXWFlaY2RlZmdoaWpzdHV2d3h5eoKDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uLj5OXm5+jp6vLz9PX29/j5+v/aAAwDAQACEQMRAD8A+t+KKPxo/GgA70Yo/Gj8aADFH4VesdC1HUl3WtjcXCf344yV/PGKW+0HUtNXddWNzbp/fkjIX88YoAofhR+FH40fjQAfhR+FH40fjQAUUUUAFepeAPh5D9li1LVYhK8g3Q27j5VXszDuT6f5HA+FtOXVvEWn2rjMcko3j1UckfkDX0MBgYHAoARVCKFUBVHAA6ClZQwKkZBGCDS0UAec+Pvh3BJay6lpUQimjBeW3QYVx3Kjsfbv/PyqvpuvnvxfpqaT4l1C1QbY0lJUDsrfMB+RoAyKKKKACiiigDa8GXq6f4p02eQgIJQpJ7Bvlz+tfQP4V8yDg17P4A8cw65ZxWV5IE1KMbfmP+uA7j39R+NAHaUfhSUUAL+FeA+OL1NQ8WalNGQU83YCO+0Bf6V6b498cQ6BZyWlrIJNSkXaApz5QP8AEff0FeKk5OTyTQAUUUUAH40fjRU1naTX93DbQIXmlYIijuTQBc0Dw/eeI74W1mm49XkbhUHqTXsHhz4eaXoCpI8YvbscmaYZAP8Asr0H8/etHwv4cg8M6XHaxANIfmllxy7dz9PStigA/Gk/GlooA5bxJ8PdL19XkWMWd43PnwjGT/tL0P8AP3rx/X/D954cvjbXibT1SReVceoNfRFZHijw5B4m0uS1lAWQfNFLjlG7H6etAHz5+NH41NeWk1hdzW06FJonKMp7EGoaACvQfhBowudTudRkXK2y7I8j+Nup/Afzrz6vafhRaCDwmkgHM8zufwO3/wBloA7Kiij8KACkpaSgBaSj8KKAPJvi/owttTttRjXC3K7JMf3l6H8R/KvPq9p+K1qJ/CbyEcwTI4P1O3/2avFqAP/Z";
+
+var Chat = {
+    init: function( options, elem ) {
+        this.options = $.extend( {}, this.options, options );
+        this.elem  = elem;
+        this.element = $(elem);
+        this.input = null;
+        this.classes = "primary secondary success alert warning yellow info dark light".split(" ");
+        this.lastMessage = null;
+
+        this._setOptionsFromDOM();
+        this._create();
+
+        return this;
+    },
+
+    options: {
+        timeFormat: "%d %b %l:%M %p",
+        name: "John Doe",
+        avatar: defaultAvatar,
+        welcome: null,
+        title: null,
+        width: "100%",
+        height: "auto",
+        randomColor: false,
+        messages: null,
+        sendButtonTitle: "Send",
+
+        clsChat: "",
+        clsName: "",
+        clsTime: "",
+        clsInput: "",
+        clsSendButton: "",
+        clsMessageLeft: "default",
+        clsMessageRight: "default",
+
+        onMessage: Metro.noop,
+        onSend: Metro.noop,
+        onChatCreate: Metro.noop
+    },
+
+    _setOptionsFromDOM: function(){
+        var that = this, element = this.element, o = this.options;
+
+        $.each(element.data(), function(key, value){
+            if (key in o) {
+                try {
+                    o[key] = JSON.parse(value);
+                } catch (e) {
+                    o[key] = value;
+                }
+            }
+        });
+    },
+
+    _create: function(){
+        var that = this, element = this.element, o = this.options;
+
+        this._createStructure();
+        this._createEvents();
+
+        Utils.exec(o.onChatCreate, [element]);
+    },
+
+    _createStructure: function(){
+        var that = this, element = this.element, o = this.options;
+        var messages, messageInput, input;
+        var customButtons = [
+            {
+                html: o.sendButtonTitle,
+                cls: o.clsSendButton+" js-chat-send-button",
+                onclick: o.onSendButtonClick
+            }
+        ];
+
+        element.addClass("chat").addClass(o.clsChat);
+
+        element.css({
+            width: o.width,
+            height: o.height
+        });
+
+        if (Utils.isValue(o.title)) {
+            $("<div>").addClass("title").html(o.title).appendTo(element);
+        }
+
+        messages = $("<div>").addClass("messages").appendTo(element);
+        messageInput = $("<div>").addClass("message-input").appendTo(element);
+        input = $("<input type='text'>");
+        input.appendTo(messageInput);
+        input.input({
+            customButtons: customButtons,
+            clsInput: o.clsInput
+        });
+
+        if (o.welcome) {
+            this.add({
+                text: o.welcome,
+                time: (new Date()).format(o.timeFormat),
+                position: "left",
+                name: "Welcome",
+                avatar: defaultAvatar
+            })
+        }
+
+        if (Utils.isValue(o.messages) && typeof o.messages === "string") {
+            o.messages = Utils.isObject(o.messages);
+        }
+
+        if (!Utils.isNull(o.messages) && typeof o.messages === "object" && Utils.objectLength(o.messages) > 0) {
+            $.each(o.messages, function(){
+                that.add(this);
+            });
+        }
+    },
+
+    _createEvents: function(){
+        var that = this, element = this.element, o = this.options;
+        var sendButton = element.find(".js-chat-send-button");
+        var input = element.find("input[type=text]");
+
+        var send = function(){
+            var msg = ""+input.val(), m;
+            if (msg.trim() === "") {return false;}
+            m = {
+                id: Utils.elementId(""),
+                name: o.name,
+                avatar: o.avatar,
+                text: msg,
+                position: "right",
+                time: (new Date()).format(o.timeFormat)
+            };
+            that.add(m);
+            Utils.exec(o.onSend, [m], element[0]);
+            input.val("");
+        };
+
+        sendButton.on(Metro.events.click, function () {
+            send();
+        });
+
+        input.on(Metro.events.keyup, function(e){
+            if (e.keyCode === Metro.keyCode.ENTER) {
+                send();
+            }
+        })
+    },
+
+    add: function(msg){
+        var that = this, element = this.element, o = this.options;
+        var index, message, sender, time, item, avatar, text;
+        var messages = element.find(".messages");
+
+        message = $("<div>").addClass("message").addClass(msg.position).appendTo(messages);
+        sender = $("<div>").addClass("message-sender").addClass(o.clsName).html(msg.name).appendTo(message);
+        time = $("<div>").addClass("message-time").addClass(o.clsTime).html((new Date(msg.time)).format(o.timeFormat)).appendTo(message);
+        item = $("<div>").addClass("message-item").appendTo(message);
+        avatar = $("<img>").attr("src", msg.avatar).addClass("message-avatar").appendTo(item);
+        text = $("<div>").addClass("message-text").html(msg.text).appendTo(item);
+
+        if (Utils.isValue(msg.id)) {
+            message.attr("id", msg.id);
+        }
+
+        if (o.randomColor === true) {
+            index = Utils.random(0, that.classes.length - 1);
+            text.addClass(that.classes[index]);
+        } else {
+            if (msg.position === 'left' && Utils.isValue(o.clsMessageLeft)) {
+                text.addClass(o.clsMessageLeft);
+            }
+            if (msg.position === 'right' && Utils.isValue(o.clsMessageRight)) {
+                text.addClass(o.clsMessageRight);
+            }
+        }
+
+        Utils.exec(o.onMessage, [msg], message[0]);
+
+        setImmediate(function(){
+            element.fire("onmessage", {
+                message: msg,
+                element: message[0]
+            });
+        });
+
+        messages.animate({
+            scrollTop: messages[0].scrollHeight
+        }, 1000);
+
+        this.lastMessage = msg;
+
+        return this;
+    },
+
+    addMessages: function(messages){
+        var that = this, element = this.element, o = this.options;
+
+        if (Utils.isValue(messages) && typeof messages === "string") {
+            messages = Utils.isObject(messages);
+        }
+
+        if (typeof messages === "object" && Utils.objectLength(messages) > 0) {
+            $.each(messages, function(){
+                that.add(this);
+            });
+        }
+
+        return this;
+    },
+
+    delMessage: function(id){
+        var element = this.element;
+
+        element.find(".messages").find("#"+id).remove();
+
+        return this;
+    },
+
+    updMessage: function(msg){
+        var element = this.element;
+        var message = element.find(".messages").find("#"+msg.id);
+
+        if (message.length === 0) return this;
+
+        message.find(".message-text").html(msg.text);
+        message.find(".message-time").html(msg.time);
+
+        return this;
+    },
+
+    clear: function(){
+        var element = this.element;
+        var messages = element.find(".messages");
+        messages.html("");
+        this.lastMessage = null;
+    },
+
+    changeAttribute: function(attributeName){
+
+    },
+
+    destroy: function(){}
+};
+
+Metro.plugin('chat', Chat);
+
 // Source: js/plugins/checkbox.js
 
 var Checkbox = {
@@ -7788,6 +8060,9 @@ var Clock = {
         timeFormat: '24',
         dateFormat: 'american',
         divider: "&nbsp;&nbsp;",
+        leadingZero: true,
+        dateDivider: '-',
+        timeDivider: ":",
         onClockCreate: Metro.noop
     },
 
@@ -7832,31 +8107,34 @@ var Clock = {
             y = timestamp.getFullYear(),
             a = '';
 
-        if (o.timeFormat === '12') {
+        if (parseInt(o.timeFormat) === 12) {
             a = " AM";
             if (h > 11) { a = " PM"; }
             if (h > 12) { h = h - 12; }
             if (h === 0) { h = 12; }
         }
 
-        h = this._addLeadingZero(h);
         i = this._addLeadingZero(i);
         s = this._addLeadingZero(s);
-        m = this._addLeadingZero(m);
-        d = this._addLeadingZero(d);
+
+        if (o.leadingZero) {
+            h = this._addLeadingZero(h);
+            m = this._addLeadingZero(m);
+            d = this._addLeadingZero(d);
+        }
 
         if (o.showDate) {
             if (o.dateFormat === 'american') {
                 result += "<span class='date-month'>" + m + "</span>";
-                result += "<span class='date-divider'>-</span>";
+                result += "<span class='date-divider'>" + o.dateDivider + "</span>";
                 result += "<span class='date-day'>" + d + "</span>";
-                result += "<span class='date-divider'>-</span>";
+                result += "<span class='date-divider'>" + o.dateDivider + "</span>";
                 result += "<span class='date-year'>" + y + "</span>";
             } else {
                 result += "<span class='date-day'>" + d + "</span>";
-                result += "<span class='date-divider'>-</span>";
+                result += "<span class='date-divider'>" + o.dateDivider + "</span>";
                 result += "<span class='date-month'>" + m + "</span>";
-                result += "<span class='date-divider'>-</span>";
+                result += "<span class='date-divider'>" + o.dateDivider + "</span>";
                 result += "<span class='date-year'>" + y + "</span>";
             }
             result += o.divider;
@@ -7864,10 +8142,11 @@ var Clock = {
 
         if (o.showTime) {
             result += "<span class='clock-hour'>" + h + "</span>";
-            result += "<span class='clock-divider'>:</span>";
+            result += "<span class='clock-divider'>" + o.timeDivider + "</span>";
             result += "<span class='clock-minute'>" + i + "</span>";
-            result += "<span class='clock-divider'>:</span>";
+            result += "<span class='clock-divider'>" + o.timeDivider + "</span>";
             result += "<span class='clock-second'>" + s + "</span>";
+            result += "<span class='clock-suffix'>" + a + "</span>";
         }
 
         element.html(result);
@@ -7906,7 +8185,7 @@ var Collapse = {
     options: {
         collapsed: false,
         toggleElement: false,
-        duration: METRO_ANIMATION_DURATION,
+        duration: 100,
         onExpand: Metro.noop,
         onCollapse: Metro.noop,
         onCollapseCreate: Metro.noop
@@ -7952,18 +8231,16 @@ var Collapse = {
         this.toggle = toggle;
     },
 
-    _close: function(el){
-
-        if (Utils.isJQueryObject(el) === false) {
-            el = $(el);
-        }
-
-        var dropdown  = el.data("collapse");
+    _close: function(el, immediate){
+        var elem = $(el);
+        var dropdown  = elem.data("collapse");
         var options = dropdown.options;
+        var func = immediate ? 'show' : 'slideUp';
+        var dur = immediate ? 0 : options.duration;
 
         this.toggle.removeClass("active-toggle");
 
-        el.slideUp(options.duration, function(){
+        elem[func](dur, function(){
             el.trigger("onCollapse", null, el);
             el.data("collapsed", true);
             el.addClass("collapsed");
@@ -7971,17 +8248,16 @@ var Collapse = {
         });
     },
 
-    _open: function(el){
-        if (Utils.isJQueryObject(el) === false) {
-            el = $(el);
-        }
-
-        var dropdown  = el.data("collapse");
+    _open: function(el, immediate){
+        var elem = $(el);
+        var dropdown  = elem.data("collapse");
         var options = dropdown.options;
+        var func = immediate ? 'show' : 'slideDown';
+        var dur = immediate ? 0 : options.duration;
 
         this.toggle.addClass("active-toggle");
 
-        el.slideDown(options.duration, function(){
+        elem[func](dur, function(){
             el.trigger("onExpand", null, el);
             el.data("collapsed", false);
             el.removeClass("collapsed");
@@ -7989,12 +8265,20 @@ var Collapse = {
         });
     },
 
-    collapse: function(){
-        this._close(this.element);
+    collapse: function(immediate){
+        this._close(this.element, immediate);
     },
 
-    expand: function(){
-        this._open(this.element);
+    expand: function(immediate){
+        this._open(this.element, immediate);
+    },
+
+    close: function(immediate){
+        this._close(this.element, immediate);
+    },
+
+    open: function(immediate){
+        this._open(this.element, immediate);
     },
 
     isCollapsed: function(){
@@ -8040,6 +8324,8 @@ var Countdown = {
         this.zeroHoursFired = false;
         this.zeroMinutesFired = false;
         this.zeroSecondsFired = false;
+
+        this.fontSize = parseInt(Utils.getStyleOne(elem, "font-size"));
 
         this.current = {
             d: 0, h: 0, m: 0, s: 0
@@ -8181,16 +8467,13 @@ var Countdown = {
 
     _createEvents: function(){
         var that = this, element = this.element, o = this.options;
-        // if (o.stopOnBlur === true) {
-            $(window).on(Metro.events.blur+"-"+element.attr("id"), function(){
-                // that.pause();
-                that.inactiveTab = true;
-            });
-            $(window).on(Metro.events.focus+"-"+element.attr("id"), function(){
-                // that.resume();
-                that.inactiveTab = false;
-            });
-        // }
+        document.addEventListener("visibilitychange", function() {
+            if (document.hidden) {
+                that.pause();
+            } else {
+                that.resume();
+            }
+        });
     },
 
     blink: function(){
@@ -8335,6 +8618,14 @@ var Countdown = {
                 height = digit.height(),
                 width = digit.width(),
                 fs = parseInt(Utils.getStyleOne(digit, "font-size"));
+
+            if (fs === 0 && fs < that.fontSize) {
+                fs = that.fontSize;
+                digit.css({
+                    fontSize: that.fontSize
+                });
+            }
+
             digit_copy = digit.clone().appendTo(digit.parent());
             digit_copy.css({
                 opacity: 0,
@@ -8358,7 +8649,7 @@ var Countdown = {
             }, duration, o.animationFunc);
         };
 
-        value = String(value);
+        value = ""+value;
 
         if (value.length === 1) {
             value = '0'+value;
@@ -8371,10 +8662,10 @@ var Countdown = {
 
         for(i = 0; i < len; i++){
             digit = element.find("." + part + " .digit:eq("+ (digits_length - 1) +") .digit-value");
-            digit_value = Math.floor( value / Math.pow(10, i) ) % 10;
+            digit_value = Math.floor( parseInt(value) / Math.pow(10, i) ) % 10;
             digit_current = parseInt(digit.text());
 
-            if (digit_current === digit_value) {
+            if (parseInt(digit_current) !== 0 && digit_current === digit_value) {
                 continue;
             }
 
@@ -9134,7 +9425,7 @@ var DatePicker = {
         year: true,
         minYear: null,
         maxYear: null,
-        scrollSpeed: 5,
+        scrollSpeed: 1,
         copyInlineStyles: true,
         clsPicker: "",
         clsPart: "",
@@ -9531,6 +9822,7 @@ var Dialog = {
     },
 
     options: {
+        closeButton: false,
         leaveOverlayOnClose: false,
         toTop: false,
         toBottom: false,
@@ -9639,6 +9931,15 @@ var Dialog = {
             element.on(Metro.events.click, ".js-dialog-close", function(){
                 that.close();
             });
+        }
+
+        var closer = element.find("closer");
+        if (closer.length === 0) {
+            closer = $("<span>").addClass("button square closer js-dialog-close");
+            closer.appendTo(element);
+        }
+        if (o.closeButton !== true) {
+            closer.hide();
         }
 
         element.css({
@@ -10106,17 +10407,19 @@ var Draggable = {
             o.dragArea = "body";
         }
 
-        this.dragArea = o.dragArea === 'parent' ? element.parent() : $(o.dragArea);
+        setImmediate(function(){
+            that.dragArea = o.dragArea === 'parent' ? element.parent() : $(o.dragArea);
+            if (o.dragArea !== 'parent') {
+                element.appendTo(that.dragArea);
+                element.css({
+                    top: offset.top,
+                    left: offset.left
+                });
+            }
+        });
 
-        if (o.dragArea !== 'parent') {
-            element.appendTo(this.dragArea);
-            element.css({
-                top: offset.top,
-                left: offset.left
-            });
-        }
 
-        dragElement.on(Metro.events.start, function(e){
+        dragElement.on(Metro.events.startAll, function(e){
 
             var coord = o.dragArea !== "parent" ? element.offset() : element.position(),
                 shiftX = Utils.pageXY(e).x - coord.left,
@@ -10161,21 +10464,21 @@ var Draggable = {
 
             Utils.exec(o.onDragStart, [position, element]);
 
-            $(document).on(Metro.events.move+".draggable", function(e){
+            $(document).on(Metro.events.moveAll, function(e){
                 moveElement(e);
                 Utils.exec(o.onDragMove, [position], elem);
-                e.preventDefault();
+                //e.preventDefault();
             });
 
-            $(document).on(Metro.events.stop+".draggable", function(e){
+            $(document).on(Metro.events.stopAll, function(e){
                 element.css({
                     cursor: that.backup.cursor,
                     zIndex: that.backup.zIndex
                 }).removeClass("draggable");
 
                 if (that.drag) {
-                    $(document).off(Metro.events.move+".draggable");
-                    $(document).off(Metro.events.stop+".draggable");
+                    $(document).off(Metro.events.moveAll);
+                    $(document).off(Metro.events.stopAll);
                 }
 
                 that.drag = false;
@@ -10214,12 +10517,11 @@ var Dropdown = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onDropdownCreate, [this.element]);
-
         return this;
     },
 
     options: {
+        dropFilter: null,
         effect: 'slide',
         toggleElement: null,
         noClose: false,
@@ -10244,13 +10546,23 @@ var Dropdown = {
     },
 
     _create: function(){
-        var that = this, element = this.element, o = this.options;
-        var toggle, parent = element.parent();
-        var element_roles = Utils.isValue(element.attr("data-role")) ? Utils.strToArray(element.attr("data-role")) : [];
+        var that = this;
+        this._createStructure();
+        this._createEvents();
+        Utils.exec(this.options.onDropdownCreate, [this.element]);
+        if (this.element.hasClass("open")) {
+            setTimeout(function(){
+                that.open(true);
+            }, 500)
+        }
+    },
 
+    _createStructure: function(){
+        var that = this, element = this.element, o = this.options;
+        var toggle;
         toggle = o.toggleElement !== null ? $(o.toggleElement) : element.siblings('.dropdown-toggle').length > 0 ? element.siblings('.dropdown-toggle') : element.prev();
 
-        this.displayOrigin = element.css("display");
+        this.displayOrigin = Utils.getStyleOne(element, "display");
 
         if (element.hasClass("v-menu")) {
             element.addClass("for-dropdown");
@@ -10258,10 +10570,12 @@ var Dropdown = {
 
         element.css("display", "none");
 
-        if (element_roles.length === 0 || element_roles.indexOf("dropdown") === -1) {
-            element_roles.push("dropdown");
-            element.attr("data-role", element_roles.join(", "));
-        }
+        this._toggle = toggle;
+    },
+
+    _createEvents: function(){
+        var that = this, element = this.element, o = this.options;
+        var toggle = this._toggle, parent = element.parent();
 
         toggle.on(Metro.events.click, function(e){
             parent.siblings(parent[0].tagName).removeClass("active-container");
@@ -10272,7 +10586,13 @@ var Dropdown = {
             } else {
                 $('[data-role=dropdown]').each(function(i, el){
                     if (!element.parents('[data-role=dropdown]').is(el) && !$(el).hasClass('keep-open') && $(el).css('display') !== 'none') {
-                        that._close(el);
+                        if (!Utils.isValue(o.dropFilter)) {
+                            that._close(el);
+                        } else {
+                            if ($(el).closest(o.dropFilter).length > 0) {
+                                that._close(el);
+                            }
+                        }
                     }
                 });
                 if (element.hasClass('horizontal')) {
@@ -10298,8 +10618,6 @@ var Dropdown = {
             e.stopPropagation();
         });
 
-        this._toggle = toggle;
-
         if (o.noClose === true) {
             element.addClass("keep-open").on(Metro.events.click, function (e) {
                 //e.preventDefault();
@@ -10312,7 +10630,7 @@ var Dropdown = {
         });
     },
 
-    _close: function(el){
+    _close: function(el, immediate){
 
         if (Utils.isJQueryObject(el) === false) {
             el = $(el);
@@ -10325,13 +10643,19 @@ var Dropdown = {
 
         toggle.removeClass('active-toggle').removeClass("active-control");
         dropdown.element.parent().removeClass("active-container");
-        el[func](options.duration, function(){
+
+        if (immediate) {
+            func = 'hide'
+        }
+
+        el[func](immediate ? 0 : options.duration, function(){
             el.trigger("onClose", null, el);
         });
+
         Utils.exec(options.onUp, [el]);
     },
 
-    _open: function(el){
+    _open: function(el, immediate){
         if (Utils.isJQueryObject(el) === false) {
             el = $(el);
         }
@@ -10342,18 +10666,24 @@ var Dropdown = {
         var func = options.effect === "slide" ? "slideDown" : "fadeIn";
 
         toggle.addClass('active-toggle').addClass("active-control");
-        el[func](options.duration, function(){
+
+        if (immediate) {
+            func = 'show'
+        }
+
+        el[func](immediate ? 0 : options.duration, function(){
             el.trigger("onOpen", null, el);
         });
+
         Utils.exec(options.onDrop, [el]);
     },
 
-    close: function(){
-        this._close(this.element);
+    close: function(immediate){
+        this._close(this.element, immediate);
     },
 
-    open: function(){
-        this._open(this.element);
+    open: function(immediate){
+        this._open(this.element, immediate);
     },
 
     changeAttribute: function(attributeName){
@@ -10369,7 +10699,7 @@ $(document).on(Metro.events.click, function(e){
     $('[data-role*=dropdown]').each(function(){
         var el = $(this);
 
-        if (el.css('display')==='block' && el.hasClass('keep-open') === false) {
+        if (el.css('display')==='block' && !el.hasClass('keep-open') && !el.hasClass('stay-open')) {
             var dropdown = el.data('dropdown');
             dropdown.close();
         }
@@ -10530,8 +10860,7 @@ var File = {
                 element[0].files = e.originalEvent.dataTransfer.files;
                 files.html(element[0].files.length + " " +o.filesTitle);
                 container.removeClass("drop-on");
-
-                if (!Utils.detectChrome()) Utils.exec(o.onSelect, [element[0].files, element], element[0]);
+                element.trigger("change");
             });
         }
     },
@@ -14272,7 +14601,7 @@ var NavigationView = {
     },
 
     _createView: function(){
-        var element = this.element, o = this.options;
+        var that = this, element = this.element, o = this.options;
         var pane, content, toggle;
 
         element
@@ -14289,6 +14618,14 @@ var NavigationView = {
         this.pane = pane.length > 0 ? pane : null;
         this.content = content.length > 0 ? content : null;
         this.paneToggle = toggle.length > 0 ? toggle : null;
+
+        setTimeout(function(){
+            if (that.pane.width() === 48) {
+                element.addClass("js-compact");
+            } else {
+                element.removeClass("js-compact");
+            }
+        }, 200);
     },
 
     _createEvents: function(){
@@ -14325,6 +14662,15 @@ var NavigationView = {
             }
 
             that._calcMenuHeight();
+
+            element.removeClass("js-compact");
+
+            setTimeout(function(){
+                if (that.pane.width() === 48) {
+                    element.addClass("js-compact");
+                }
+            }, 200);
+
         })
     },
 
@@ -14345,23 +14691,23 @@ var NavigationView = {
 
         if (that.pane.hasClass("open")) {
             that.close();
-            console.log("1");
-            return ;
-        }
+        } else
 
         if ((pane_compact || element.hasClass("expand")) && !element.hasClass("compacted")) {
             element.toggleClass("expand");
-            console.log("2");
-            return ;
-        }
+        } else
 
         if (element.hasClass("compacted") || !pane_compact) {
             element.toggleClass("compacted");
-            console.log("3");
-            return ;
         }
 
-        console.log("0");
+        setTimeout(function(){
+            if (that.pane.width() === 48) {
+                element.addClass("js-compact");
+            } else {
+                element.removeClass("js-compact");
+            }
+        }, 200);
 
         return true;
     },
@@ -15269,6 +15615,7 @@ var Rating = {
         this.elem  = elem;
         this.element = $(elem);
         this.value = 0;
+        this.originValue = 0;
         this.values = [];
         this.rate = 0;
         this.rating = null;
@@ -15289,6 +15636,7 @@ var Rating = {
         starColor: null,
         staredColor: null,
         roundFunc: "round", // ceil, floor, round
+        half: true,
         clsRating: "",
         clsTitle: "",
         clsStars: "",
@@ -15315,6 +15663,12 @@ var Rating = {
         var element = this.element, o = this.options;
         var i;
 
+        if (isNaN(o.value)) {
+            o.value = 0;
+        } else {
+            o.value = parseFloat(o.value).toFixed(1);
+        }
+
         if (o.values !== null) {
             if (Array.isArray(o.values)) {
                 this.values = o.values;
@@ -15327,6 +15681,7 @@ var Rating = {
             }
         }
 
+        this.originValue = o.value;
         this.value = o.value > 0 ? Math[o.roundFunc](o.value) : 0;
 
         if (o.starColor !== null) {
@@ -15354,6 +15709,7 @@ var Rating = {
         var rating = $("<div>").addClass("rating " + String(element[0].className).replace("d-block", "d-flex")).addClass(o.clsRating);
         var i, stars, result, li;
         var sheet = Metro.sheet;
+        var value = o.static ? Math.floor(this.originValue) : this.value;
 
         element.val(this.value);
 
@@ -15366,7 +15722,7 @@ var Rating = {
 
         for(i = 1; i <= o.stars; i++) {
             li = $("<li>").data("value", this.values[i-1]).appendTo(stars);
-            if (i <= this.value) {
+            if (i <= value) {
                 li.addClass("on");
             }
         }
@@ -15380,6 +15736,7 @@ var Rating = {
         }
         if (o.staredColor !== null) {
             Utils.addCssRule(sheet, "#"+id+" .stars li.on", "color: "+o.staredColor+";");
+            Utils.addCssRule(sheet, "#"+id+" .stars li.half::after", "color: "+o.staredColor+";");
         }
 
         if (o.title !== null) {
@@ -15389,8 +15746,13 @@ var Rating = {
 
         if (o.static === true) {
             rating.addClass("static");
+            if (o.half === true){
+                var dec = Math.round((this.originValue % 1) * 10);
+                if (dec > 0 && dec <= 9) {
+                    rating.find('.stars li.on').last().next("li").addClass("half half-" + ( dec * 10));
+                }
+            }
         }
-
 
         element[0].className = '';
         if (o.copyInlineStyles === true) {
@@ -16043,6 +16405,7 @@ var Select = {
         this._createOptions();
 
         drop_container.dropdown({
+            dropFilter: ".select",
             duration: o.duration,
             toggleElement: "#"+select_id,
             onDrop: function(){
@@ -16124,12 +16487,7 @@ var Select = {
         input.on(Metro.events.click, function(e){
             $(".focused").removeClass("focused");
             container.addClass("focused");
-            e.preventDefault();
-            e.stopPropagation();
         });
-
-        // filter_input.on(Metro.events.blur, function(){container.removeClass("focused");});
-        // filter_input.on(Metro.events.focus, function(){container.addClass("focused");});
 
         list.on(Metro.events.click, "li", function(e){
             if ($(this).hasClass("group-title")) {
@@ -17394,7 +17752,7 @@ var Spinner = {
         minValue: null,
         maxValue: null,
         fixed: 0,
-        repeatThreshold: 500,
+        repeatThreshold: 1000,
         hideCursor: false,
         clsSpinner: "",
         clsSpinnerInput: "",
@@ -18713,6 +19071,8 @@ var Table = {
 
         this.filteredItems = [];
 
+        this.index = {};
+
         this._setOptionsFromDOM();
         this._create();
 
@@ -18876,11 +19236,19 @@ var Table = {
                 Utils.exec(o.onDataLoaded, [o.source, data], element[0]);
             }).fail(function( jqXHR, textStatus, errorThrown) {
                 Utils.exec(o.onDataLoadError, [o.source, jqXHR, textStatus, errorThrown], element[0]);
-                console.log(textStatus); console.log(jqXHR); console.log(errorThrown);
             });
         } else {
             that._build();
         }
+    },
+
+    _createIndex: function(){
+        var that = this, colIndex = this.options.checkColIndex;
+        setImmediate(function(){
+            that.items.forEach(function(v, i){
+                that.index[v[colIndex]] = i;
+            });
+        });
     },
 
     _build: function(data){
@@ -18898,6 +19266,9 @@ var Table = {
         } else {
             this._createItemsFromHTML()
         }
+
+        // Create index
+        this._createIndex();
 
         this.view = this._createView();
         this.viewDefault = Utils.objectClone(this.view);
@@ -19515,6 +19886,11 @@ var Table = {
             var store_key = o.checkStoreKey.replace("$1", id);
             var storage = Metro.storage;
             var data = storage.getItem(store_key);
+            var is_radio = check.attr('type') === 'radio';
+
+            if (is_radio) {
+                data = [];
+            }
 
             if (status) {
                 if (!Utils.isValue(data)) {
@@ -19967,81 +20343,81 @@ var Table = {
         items = this._filter();
 
         for (i = start; i <= stop; i++) {
-            var j, tr, td, check, cells = [], tds = [], is_even_row;
-            if (Utils.isValue(items[i])) {
-                tr = $("<tr>").addClass(o.clsBodyRow);
+            var j, tr, td, check, cells = items[i], tds = [], is_even_row;
+            if (!Utils.isValue(cells)) {continue;}
+            tr = $("<tr>").addClass(o.clsBodyRow);
+            tr.data('original', cells);
 
-                // Rownum
+            // Rownum
 
-                is_even_row = i % 2 === 0;
+            is_even_row = i % 2 === 0;
 
-                td = $("<td>").html(i + 1);
-                if (that.service[0].clsColumn !== undefined) {
-                    td.addClass(that.service[0].clsColumn);
-                }
-                td.appendTo(tr);
-
-                // Checkbox
-                td = $("<td>");
-                if (o.checkType === "checkbox") {
-                    check = $("<input type='checkbox' data-style='"+o.checkStyle+"' data-role='checkbox' name='" + (Utils.isValue(o.checkName) ? o.checkName : 'table_row_check') + "[]' value='" + items[i][o.checkColIndex] + "'>");
-                } else {
-                    check = $("<input type='radio' data-style='"+o.checkStyle+"' data-role='radio' name='" + (Utils.isValue(o.checkName) ? o.checkName : 'table_row_check') + "' value='" + items[i][o.checkColIndex] + "'>");
-                }
-
-                if (Utils.isValue(stored_keys) && Array.isArray(stored_keys) && stored_keys.indexOf(""+items[i][o.checkColIndex]) > -1) {
-                    check.prop("checked", true);
-                }
-
-                check.addClass("table-service-check");
-                Utils.exec(o.onCheckDraw, [check], check[0]);
-                check.appendTo(td);
-                if (that.service[1].clsColumn !== undefined) {
-                    td.addClass(that.service[1].clsColumn);
-                }
-                td.appendTo(tr);
-
-                cells = items[i];
-
-                for (j = 0; j < cells.length; j++){
-                    tds[j] = null;
-                }
-
-                $.each(cells, function(cell_index){
-                    if (o.cellWrapper === true) {
-                        td = $("<td>");
-                        $("<div>").addClass("cell-wrapper").addClass(o.clsCellWrapper).html(this).appendTo(td);
-                    } else {
-                        td = $("<td>").html(this);
-                    }
-                    td.addClass(o.clsBodyCell);
-                    if (Utils.isValue(that.heads[cell_index].clsColumn)) {
-                        td.addClass(that.heads[cell_index].clsColumn);
-                    }
-
-                    if (Utils.bool(view[cell_index].show) === false) {
-                        td.addClass("hidden");
-                    }
-
-                    if (Utils.bool(view[cell_index].show)) {
-                        td.removeClass("hidden");
-                    }
-
-                    tds[view[cell_index]['index-view']] = td;
-                    Utils.exec(o.onDrawCell, [td, this, cell_index, that.heads[cell_index]], td[0]);
-                });
-
-                for (j = 0; j < cells.length; j++){
-                    tds[j].appendTo(tr);
-                    Utils.exec(o.onAppendCell, [tds[j], tr, j, element], tds[j][0])
-                }
-
-                Utils.exec(o.onDrawRow, [tr, that.view, that.heads, element], tr[0]);
-
-                tr.addClass(o.clsRow).addClass(is_even_row ? o.clsEvenRow : o.clsOddRow).appendTo(body);
-
-                Utils.exec(o.onAppendRow, [tr, element], tr[0]);
+            td = $("<td>").html(i + 1);
+            if (that.service[0].clsColumn !== undefined) {
+                td.addClass(that.service[0].clsColumn);
             }
+            td.appendTo(tr);
+
+            // Checkbox
+            td = $("<td>");
+            if (o.checkType === "checkbox") {
+                check = $("<input type='checkbox' data-style='"+o.checkStyle+"' data-role='checkbox' name='" + (Utils.isValue(o.checkName) ? o.checkName : 'table_row_check') + "[]' value='" + items[i][o.checkColIndex] + "'>");
+            } else {
+                check = $("<input type='radio' data-style='"+o.checkStyle+"' data-role='radio' name='" + (Utils.isValue(o.checkName) ? o.checkName : 'table_row_check') + "' value='" + items[i][o.checkColIndex] + "'>");
+            }
+
+            if (Utils.isValue(stored_keys) && Array.isArray(stored_keys) && stored_keys.indexOf(""+items[i][o.checkColIndex]) > -1) {
+                check.prop("checked", true);
+            }
+
+            check.addClass("table-service-check");
+            Utils.exec(o.onCheckDraw, [check], check[0]);
+            check.appendTo(td);
+            if (that.service[1].clsColumn !== undefined) {
+                td.addClass(that.service[1].clsColumn);
+            }
+            td.appendTo(tr);
+
+            for (j = 0; j < cells.length; j++){
+                tds[j] = null;
+            }
+
+            $.each(cells, function(cell_index){
+                if (o.cellWrapper === true) {
+                    td = $("<td>");
+                    $("<div>").addClass("cell-wrapper").addClass(o.clsCellWrapper).html(this).appendTo(td);
+                } else {
+                    td = $("<td>").html(this);
+                }
+                td.addClass(o.clsBodyCell);
+                if (Utils.isValue(that.heads[cell_index].clsColumn)) {
+                    td.addClass(that.heads[cell_index].clsColumn);
+                }
+
+                if (Utils.bool(view[cell_index].show) === false) {
+                    td.addClass("hidden");
+                }
+
+                if (Utils.bool(view[cell_index].show)) {
+                    td.removeClass("hidden");
+                }
+
+                td.data('original',this);
+
+                tds[view[cell_index]['index-view']] = td;
+                Utils.exec(o.onDrawCell, [td, this, cell_index, that.heads[cell_index], cells], td[0]);
+            });
+
+            for (j = 0; j < cells.length; j++){
+                tds[j].appendTo(tr);
+                Utils.exec(o.onAppendCell, [tds[j], tr, j, element], tds[j][0])
+            }
+
+            Utils.exec(o.onDrawRow, [tr, that.view, that.heads, cells], tr[0]);
+
+            tr.addClass(o.clsRow).addClass(is_even_row ? o.clsEvenRow : o.clsOddRow).appendTo(body);
+
+            Utils.exec(o.onAppendRow, [tr, element], tr[0]);
         }
 
         this._info(start + 1, stop + 1, items.length);
@@ -20082,6 +20458,34 @@ var Table = {
         }
 
         return result;
+    },
+
+    updateItem: function(key, field, value){
+        var item = this.items[this.index[key]];
+        var fieldIndex = null;
+        if (Utils.isNull(item)) {
+            console.log('Item is undefined for update');
+            return this;
+        }
+        if (isNaN(field)) {
+            this.heads.forEach(function(v, i){
+                if (v['name'] === field) {
+                    fieldIndex = i;
+                }
+            });
+        }
+        if (Utils.isNull(fieldIndex)) {
+            console.log('Item is undefined for update. Field ' + field + ' not found in data structure');
+            return this;
+        }
+
+        item[fieldIndex] = value;
+        this.items[this.index[key]] = item;
+        return this;
+    },
+
+    getItem: function(key){
+        return this.items[this.index[key]];
     },
 
     deleteItem: function(fieldIndex, value){
@@ -20180,6 +20584,8 @@ var Table = {
     _rebuild: function(review){
         var that = this, element = this.element;
         var need_sort = false, sortable_columns;
+
+        this._createIndex();
 
         if (review === true) {
             this.view = this._createView();
@@ -20464,6 +20870,14 @@ var Table = {
 
         this._resetInspector();
         this._saveTableView();
+    },
+
+    rebuildIndex: function(){
+        this._createIndex();
+    },
+
+    getIndex: function(){
+        return this.index;
     },
 
     export: function(to, mode, filename, options){
@@ -21529,6 +21943,7 @@ var Tile = {
     options: {
         size: "medium",
         cover: "",
+        coverPosition: "center",
         effect: "",
         effectInterval: 3000,
         effectDuration: 500,
@@ -21583,7 +21998,7 @@ var Tile = {
                 var slide = $(this);
 
                 if (slide.data("cover") !== undefined) {
-                    that._setCover(slide, slide.data("cover"));
+                    that._setCover(slide, slide.data("cover"), slide.data("cover-position"));
                 }
             })
         }
@@ -21595,7 +22010,7 @@ var Tile = {
                 that.slides.push(this);
 
                 if (slide.data("cover") !== undefined) {
-                    that._setCover(slide, slide.data("cover"));
+                    that._setCover(slide, slide.data("cover"), slide.data("cover-position"));
                 }
 
                 if (i > 0) {
@@ -21673,11 +22088,15 @@ var Tile = {
         this.effectInterval = false;
     },
 
-    _setCover: function(to, src){
+    _setCover: function(to, src, pos){
+        if (!Utils.isValue(pos)) {
+            pos = this.options.coverPosition;
+        }
         to.css({
             backgroundImage: "url("+src+")",
             backgroundSize: "cover",
-            backgroundRepeat: "no-repeat"
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: pos
         });
     },
 
@@ -21767,7 +22186,7 @@ var TimePicker = {
         minutes: true,
         seconds: true,
         showLabels: true,
-        scrollSpeed: 5,
+        scrollSpeed: 1,
         copyInlineStyles: true,
         clsPicker: "",
         clsPart: "",
@@ -24111,6 +24530,7 @@ var Video = {
         this.volumeBackup = 0;
         this.muted = false;
         this.fullScreenInterval = false;
+        this.isPlaying = false;
 
         this._setOptionsFromDOM();
         this._create();
@@ -24439,6 +24859,7 @@ var Video = {
         player.on(Metro.events.click, ".full", function(e){
             that.fullscreen = !that.fullscreen;
             player.find(".full").html(that.fullscreen === true ? o.screenLessIcon : o.screenMoreIcon);
+
             if (o.fullScreenMode === Metro.fullScreenMode.WINDOW) {
                 if (that.fullscreen === true) {
                     player.addClass("full-screen");
@@ -24464,14 +24885,22 @@ var Video = {
                 }
             }
 
-            if (that.fullscreen === true) {
-                $(document).on(Metro.events.keyup + "_video", function(e){
-                    if (e.keyCode === 27) {
-                        player.find(".full").click();
-                    }
-                });
-            } else {
-                $(document).off(Metro.events.keyup + "_video");
+            // if (that.fullscreen === true) {
+            //     $(document).on(Metro.events.keyup + "_video", function(e){
+            //         if (e.keyCode === 27) {
+            //             player.find(".full").click();
+            //             console.log('esc');
+            //         }
+            //     });
+            // } else {
+            //     $(document).off(Metro.events.keyup + "_video");
+            // }
+        });
+
+        $(window).on(Metro.events.keyup + "_video", function(e){
+            if (that.fullscreen && e.keyCode === 27) {
+                player.find(".full").click();
+                console.log('esc');
             }
         });
 
@@ -24481,7 +24910,7 @@ var Video = {
     },
 
     _onMouse: function(){
-        var player = this.player, o = this.options;
+        var that = this, player = this.player, o = this.options;
 
         if (o.controlsHide > 0) {
             player.on(Metro.events.enter, function(){
@@ -24490,7 +24919,7 @@ var Video = {
 
             player.on(Metro.events.leave, function(){
                 setTimeout(function(){
-                    player.find(".controls").fadeOut();
+                    if (that.isPlaying) player.find(".controls").fadeOut();
                 }, o.controlsHide);
             });
         }
@@ -24578,10 +25007,13 @@ var Video = {
             return ;
         }
 
+        this.isPlaying = true;
+
         this.video.play();
     },
 
     pause: function(){
+        this.isPlaying = false;
         this.video.pause();
     },
 
@@ -24592,6 +25024,7 @@ var Video = {
     },
 
     stop: function(){
+        this.isPlaying = false;
         this.video.pause();
         this.video.currentTime = 0;
         this.stream.data('slider').val(0);

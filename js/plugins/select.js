@@ -161,6 +161,7 @@ var Select = {
         this._createOptions();
 
         drop_container.dropdown({
+            dropFilter: ".select",
             duration: o.duration,
             toggleElement: "#"+select_id,
             onDrop: function(){
@@ -242,12 +243,7 @@ var Select = {
         input.on(Metro.events.click, function(e){
             $(".focused").removeClass("focused");
             container.addClass("focused");
-            e.preventDefault();
-            e.stopPropagation();
         });
-
-        // filter_input.on(Metro.events.blur, function(){container.removeClass("focused");});
-        // filter_input.on(Metro.events.focus, function(){container.addClass("focused");});
 
         list.on(Metro.events.click, "li", function(e){
             if ($(this).hasClass("group-title")) {

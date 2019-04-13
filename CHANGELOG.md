@@ -1,3 +1,54 @@
+### 4.2.40
++ [x] Chat: new component
++ [x] Boxes: add new boxes `skill-box`, `social-box`, `more-info-box`
++ [x] NavView: add behavior for show submenu on left from main menu for compacted mode
++ [x] Cards: add default background color `white`
++ [x] Cards: fix flex model for image header
++ [x] Colors: change `op-*` alpha value from `0.7` to `0.1`
++ [x] Dropdown: if element has class `open`, it will be open after initialization
++ [x] Show metro4 about in console: added meta parameter `metro4:about`. Thanks to [Ken Kitay](https://github.com/kens-code)
++ [x] Metro4 Events: added constants `Metro.events.startAll`, `Metro.events.stopAll`, `Metro.events.moveAll`. Constants contains both mouse and touch.
++ [x] Clock: upd component, PR #1341, Thanks to [Ken Kitay](https://github.com/kens-code)
++ [x] Sidenav simple: optimize css
++ [x] Sidenav counter: optimize css
++ [x] File: call trigger `change` when user drop files into drop area
++ [x] Form: Add default styling for `input[type=submit]`, `input[type=reset]`, `input[type=button]`.   
++ [x] Rating: add half value for static with attribute `data-half="true"`
++ [x] Headlines: add `margin-top` to `display*`, `h1-h5` and `.h1-.h5`
++ [x] Panel: add `text-ellipsis` to `caption`
++ [x] Table: add methods: `updateItem(key, field, value)`, `getIndex()`, `rebuildIndex()`, `getItem(key)`
++ [x] Table: store item data in row. Now you can use `tr.data('original')` to get table row original data
++ [x] Table: store cell data in cell. Now you can use `td.data('original')` to get cell original data
++ [x] Table: fix incorrect work service radio buttons
++ [x] Select: remove `margin-bottom`
++ [x] Blockquote: rename class `place-right` to `right-side` for right side quote
++ [x] Lists: fix list style position for ordered list
++ [x] Dropdown: add service class `stay-open`. When an element has this class, an element can't be closed when the user clicks on the document.
++ [x] Collapse: change default animation duration to `100ms`
++ [x] Tiles: set cover default position to `center center`
++ [x] Tiles: add attribute for image slide `data-cover-position`
++ [x] Timepicker: set default value for `data-scroll-speed` to `1`
++ [x] Datepicker: set default value for `data-scroll-speed` to `1`
++ [x] Countdown: change behavior when browser tab lost focus or invisible
++ [x] Countdown: fix zoom effect
++ [x] Countdown: fix minor bug when first tick (not critical)
++ [x] Dialog: change padding for dialog title to `12px 24px`
++ [x] Dialog: add predefined accent classes `primary`, `alert`, `info`, `warning`, ...
++ [x] InfoBox: add predefined accent classes `primary`, `alert`, `info`, `warning`, ...
++ [x] Elements colors: optimize less for using `each` function
++ [x] Additional colors: optimize less for using `each` function
++ [x] Element: add class `.accent-block` for using with accent colors classes `primary`, `alert`, `info`, `warning`, ...
++ [x] Dialog: add close button to top left corner with attribute `data-close-button`
++ [x] Video: fix show/hide controls when mouse enter leave
++ [x] Video: fix show controls in full screen mode with attribute `data-full-screen-mode="desktop"`
++ [x] Draggable: fix minor bug for draggable windows
++ [x] Sidenav M3: fix item height with text overflow
++ [x] Sidenav M3: remove floating for `d-menu`
++ [x] Dropdown: add attribute `data-drop-filter`. Filtering elements on closing.
++ [x] Select: Opening a select now closes only other selects.
++ [x] Accordion: add drop marker. Marker can disabled with attribute `data-show-marker="false"`
++ [x] Accordion: fix frames open on accordion init
+
 ### 4.2.39
 + [x] NavView: minor improve styling 
 + [x] NavView: add method `pullClick()` for emulate pull button click at runtime 

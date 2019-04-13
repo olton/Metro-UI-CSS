@@ -10,7 +10,7 @@
     margin: 0;
     user-select: none;
     cursor: pointer;
-    height: @inputHeight;
+    height: 36px;
 
     .hideElement(input);
 
@@ -80,7 +80,7 @@
     }
 
     &:focus, &:active {
-        input[type=checkbox]:not(:disabled) {
+        input[type=radio]:not(:disabled) {
             & ~ .check {
                 .halo();
             }

@@ -60,17 +60,19 @@ var Draggable = {
             o.dragArea = "body";
         }
 
-        this.dragArea = o.dragArea === 'parent' ? element.parent() : $(o.dragArea);
+        setImmediate(function(){
+            that.dragArea = o.dragArea === 'parent' ? element.parent() : $(o.dragArea);
+            if (o.dragArea !== 'parent') {
+                element.appendTo(that.dragArea);
+                element.css({
+                    top: offset.top,
+                    left: offset.left
+                });
+            }
+        });
 
-        if (o.dragArea !== 'parent') {
-            element.appendTo(this.dragArea);
-            element.css({
-                top: offset.top,
-                left: offset.left
-            });
-        }
 
-        dragElement.on(Metro.events.start, function(e){
+        dragElement.on(Metro.events.startAll, function(e){
 
             var coord = o.dragArea !== "parent" ? element.offset() : element.position(),
                 shiftX = Utils.pageXY(e).x - coord.left,
@@ -115,21 +117,21 @@ var Draggable = {
 
             Utils.exec(o.onDragStart, [position, element]);
 
-            $(document).on(Metro.events.move+".draggable", function(e){
+            $(document).on(Metro.events.moveAll, function(e){
                 moveElement(e);
                 Utils.exec(o.onDragMove, [position], elem);
-                e.preventDefault();
+                //e.preventDefault();
             });
 
-            $(document).on(Metro.events.stop+".draggable", function(e){
+            $(document).on(Metro.events.stopAll, function(e){
                 element.css({
                     cursor: that.backup.cursor,
                     zIndex: that.backup.zIndex
                 }).removeClass("draggable");
 
                 if (that.drag) {
-                    $(document).off(Metro.events.move+".draggable");
-                    $(document).off(Metro.events.stop+".draggable");
+                    $(document).off(Metro.events.moveAll);
+                    $(document).off(Metro.events.stopAll);
                 }
 
                 that.drag = false;

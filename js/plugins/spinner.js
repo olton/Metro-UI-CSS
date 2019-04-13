@@ -20,7 +20,7 @@ var Spinner = {
         minValue: null,
         maxValue: null,
         fixed: 0,
-        repeatThreshold: 500,
+        repeatThreshold: 1000,
         hideCursor: false,
         clsSpinner: "",
         clsSpinnerInput: "",

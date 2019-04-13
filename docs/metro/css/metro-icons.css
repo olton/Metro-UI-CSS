@@ -1,5 +1,5 @@
 /*
- * Metro 4 Components Library v4.2.39  (https://metroui.org.ua)
+ * Metro 4 Components Library v4.2.40  (https://metroui.org.ua)
  * Copyright 2019 Sergey Pimenov
  * Licensed under MIT
  */
@@ -51,6 +51,9 @@
 .mif-10x {
   font-size: 5.5em;
 }
+.mif-ac_unit:before {
+  content: "\eb3b";
+}
 .mif-accessible:before {
   content: "\e916";
 }
@@ -68,6 +71,18 @@
 }
 .mif-arrow-drop-up:before {
   content: "\e5c7";
+}
+.mif-assignment:before {
+  content: "\e85d";
+}
+.mif-backspace1:before {
+  content: "\e14a";
+}
+.mif-beenhere:before {
+  content: "\e52d";
+}
+.mif-cake:before {
+  content: "\e7e9";
 }
 .mif-photo-camera:before {
   content: "\e412";
@@ -93,8 +108,17 @@
 .mif-comment:before {
   content: "\e0b9";
 }
+.mif-developer_board:before {
+  content: "\e30d";
+}
 .mif-devices:before {
   content: "\e337";
+}
+.mif-done:before {
+  content: "\e876";
+}
+.mif-done_all:before {
+  content: "\e877";
 }
 .mif-flash-auto:before {
   content: "\e3e5";
@@ -120,6 +144,9 @@
 .mif-import-export:before {
   content: "\e0c3";
 }
+.mif-inbox:before {
+  content: "\e156";
+}
 .mif-backspace:before {
   content: "\e317";
 }
@@ -134,6 +161,9 @@
 }
 .mif-room:before {
   content: "\e8b4";
+}
+.mif-move_to_inbox:before {
+  content: "\e168";
 }
 .mif-navigation:before {
   content: "\e55d";
@@ -168,11 +198,29 @@
 .mif-present-all:before {
   content: "\e0df";
 }
+.mif-record_voice_over:before {
+  content: "\e91f";
+}
+.mif-refresh:before {
+  content: "\e5d5";
+}
+.mif-replay:before {
+  content: "\e042";
+}
+.mif-reply:before {
+  content: "\e15e";
+}
+.mif-reply_all:before {
+  content: "\e15f";
+}
 .mif-lock-rotation:before {
   content: "\e1c0";
 }
 .mif-rotation:before {
   content: "\e1c1";
+}
+.mif-cell-on:before {
+  content: "\e1c8";
 }
 .mif-cell-no-internet:before {
   content: "\e1cd";
@@ -191,6 +239,9 @@
 }
 .mif-verified:before {
   content: "\e8e8";
+}
+.mif-watch:before {
+  content: "\e334";
 }
 .mif-add-shopping-cart:before {
   content: "\e854";

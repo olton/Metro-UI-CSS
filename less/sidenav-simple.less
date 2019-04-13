@@ -88,28 +88,20 @@
     }
 }
 
-.generate-sidenav-media-options(@mediaBreakpointListMobileLength);
-.generate-sidenav-media-options(@name, @i: 1) when (@i <= @mediaBreakpointListMobileLength) {
-    @m: extract(@mediaBreakpointListMobile, @i);
-
-    @media screen and (min-width: @@m) {
-
-        .sidenav-simple {
-            &.sidenav-simple-expand-@{m} {
-                .sidenav-simple-expand();
+each(@mediaBreakpointListMobile, {
+    @media screen and (min-width: @@value) {
+        .sidenav-simple-expand-@{value} {
+            .sidenav-simple-expand();
+        }
+        &.sidenav-simple-expand-@{value}[dir=rtl] {
+            a {
+                padding: .625rem 3.75rem .625rem 1rem;
             }
-            &.sidenav-simple-expand-@{m}[dir=rtl] {
-                a {
-                    padding: .625rem 3.75rem .625rem 1rem;
-                }
 
-                .icon {
-                    left: auto;
-                    right: .625rem;
-                }
+            .icon {
+                left: auto;
+                right: .625rem;
             }
         }
     }
-
-    .generate-sidenav-media-options(@name, @i + 1);
-}
+})

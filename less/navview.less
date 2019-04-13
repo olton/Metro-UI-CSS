@@ -38,7 +38,7 @@
         top: 0;
         height: 100%;
         .translate3d(-100%);
-        z-index: 1;
+        z-index: 2;
 
         &.open {
             .translate3d(0);
@@ -47,6 +47,7 @@
 
     .navview-content {
         position: relative;
+        z-index: 1;
     }
 }
 
@@ -76,7 +77,8 @@
         margin: 0;
         padding: 0;
         width: 100%;
-        overflow: hidden;
+        background-color: @navviewPaneBackground;
+        //overflow: hidden;
         overflow-y: auto;
 
         .hideScrollBars();
@@ -233,6 +235,10 @@
     .data-box {
         display: block;
     }
+
+    .navview-menu .navview-menu .item-header {
+        display: none!important;
+    }
 }
 
 .navview {
@@ -255,10 +261,10 @@
             }
         }
         .badges {
-            display: flex;
+            display: flex!important;
         }
         .data-box {
-            display: block;
+            display: block!important;
         }
     }
 
@@ -368,4 +374,29 @@
     }
 
     .generate-navview-media-options(@name, @i + 1);
+}
+
+.navview {
+    &.compacted, &.js-compact:not(.expand) {
+
+        .navview-pane > .navview-menu {
+            overflow: visible;
+        }
+
+        .navview-menu .navview-menu {
+            position: absolute;
+            left: 100%;
+            top: 0;
+            width: 220px;
+            max-width: @navviewPaneWidth;
+
+            .caption {
+                display: block!important;
+            }
+
+            .item-header {
+                display: block!important;
+            }
+        }
+    }
 }
