@@ -113,8 +113,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.41-dev 15/04/2019 11:22",
-    versionFull: "4.2.41-dev 15/04/2019 11:22",
+    version: "4.2.41-dev 15/04/2019 12:42",
+    versionFull: "4.2.41-dev 15/04/2019 12:42",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -19107,6 +19107,10 @@ var Table = {
     },
 
     options: {
+
+        templateBeginToken: "<%",
+        templateEndToken: "%>",
+
         locale: METRO_LOCALE,
 
         horizontalScroll: false,
@@ -19504,7 +19508,9 @@ var Table = {
                 required: Utils.isValue(item.data("required")) ? JSON.parse(item.data("required")) === true  : false,
                 field: Utils.isValue(item.data("field")) ? item.data("field") : "input",
                 fieldType: Utils.isValue(item.data("field-type")) ? item.data("field-type") : "text",
-                validator: Utils.isValue(item.data("validator")) ? item.data("validator") : null
+                validator: Utils.isValue(item.data("validator")) ? item.data("validator") : null,
+
+                template: Utils.isValue(item.data("template")) ? item.data("template") : null
             };
             that.heads.push(head_item);
         });
@@ -20410,11 +20416,20 @@ var Table = {
             }
 
             $.each(cells, function(cell_index){
+                var val = this;
+
+                if (Utils.isValue(that.heads[cell_index].template)) {
+                    val = TemplateEngine(that.heads[cell_index].template, {cellValue: val}, {
+                        beginToken: o.templateBeginToken,
+                        endToken: o.templateEndToken
+                    })
+                }
+
                 if (o.cellWrapper === true) {
                     td = $("<td>");
-                    $("<div>").addClass("cell-wrapper").addClass(o.clsCellWrapper).html(this).appendTo(td);
+                    $("<div>").addClass("cell-wrapper").addClass(o.clsCellWrapper).html(val).appendTo(td);
                 } else {
-                    td = $("<td>").html(this);
+                    td = $("<td>").html(val);
                 }
                 td.addClass(o.clsBodyCell);
                 if (Utils.isValue(that.heads[cell_index].clsColumn)) {
@@ -20432,7 +20447,7 @@ var Table = {
                 td.data('original',this);
 
                 tds[view[cell_index]['index-view']] = td;
-                Utils.exec(o.onDrawCell, [td, this, cell_index, that.heads[cell_index], cells], td[0]);
+                Utils.exec(o.onDrawCell, [td, val, cell_index, that.heads[cell_index], cells], td[0]);
             });
 
             for (j = 0; j < cells.length; j++){
@@ -20708,7 +20723,6 @@ var Table = {
                 Utils.exec(o.onDataLoaded, [o.source, data], element[0]);
             }).fail(function( jqXHR, textStatus, errorThrown) {
                 Utils.exec(o.onDataLoadError, [o.source, jqXHR, textStatus, errorThrown], element[0]);
-                console.log(textStatus); console.log(jqXHR); console.log(errorThrown);
             });
         }
     },

@@ -1,6 +1,7 @@
 ### 4.2.41
 + [x] List: add event `data-on-data-load-error`
 + [x] List: add item template with property `template`
++ [x] Table: add item template with property `template` and value wrapper `this.cellValue`
 
 ### 4.2.40
 + [x] Chat: new component
