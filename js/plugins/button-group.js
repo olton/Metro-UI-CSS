@@ -41,6 +41,9 @@ var ButtonGroup = {
         this._createEvents();
 
         Utils.exec(o.onButtonsGroupCreate, [element]);
+        setImmediate(function(){
+            element.fire("buttongroupcreate");
+        });
     },
 
     _createGroup: function(){
@@ -75,6 +78,9 @@ var ButtonGroup = {
             var el = $(this);
 
             Utils.exec(o.onButtonClick, [el], this);
+            element.fire("buttonclick", {
+                button: this
+            });
 
             if (o.mode === Metro.groupMode.ONE && el.hasClass(o.clsActive)) {
                 return ;

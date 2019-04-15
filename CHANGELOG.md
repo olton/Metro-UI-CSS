@@ -9,6 +9,9 @@
 + [x] Activity: add firing events. 
 + [x] App bar: add firing events. 
 + [x] Bottom sheet: add firing events. 
++ [x] Button group: add firing events. 
++ [x] Audio: add firing events. 
++ [x] Calendar: add firing events. 
 
 ### 4.2.40
 + [x] Chat: new component
