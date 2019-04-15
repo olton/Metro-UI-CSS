@@ -40,6 +40,9 @@ var BottomSheet = {
         this._createEvents();
 
         Utils.exec(o.onBottomSheetCreate, [element], element[0]);
+        setImmediate(function(){
+            element.fire("bottomsheetcreate");
+        })
     },
 
     _createStructure: function(){
@@ -59,7 +62,7 @@ var BottomSheet = {
 
         if (Utils.isValue(this.toggle)) {
             this.toggle.on(Metro.events.click, function(){
-                that.toggleView();
+                that.toggle();
             });
         }
 
@@ -81,6 +84,7 @@ var BottomSheet = {
 
         this.element.addClass("opened");
         Utils.exec(o.onOpen, [element], element[0]);
+        element.fire("open");
     },
 
     close: function(){
@@ -88,6 +92,7 @@ var BottomSheet = {
 
         element.removeClass("opened");
         Utils.exec(o.onClose, [element], element[0]);
+        element.fire("close");
     },
 
     toggle: function(mode){
