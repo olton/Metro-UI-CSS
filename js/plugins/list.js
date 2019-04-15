@@ -34,8 +34,10 @@ var List = {
 
     options: {
 
-        templateBeginToken: '<%',
-        templateEndToken: '%>',
+        templateBeginToken: "<%",
+        templateEndToken: "%>",
+        paginationDistance: 5,
+        paginationShortMode: true,
 
         thousandSeparator: ",",
         decimalSeparator: ",",
@@ -55,7 +57,6 @@ var List = {
         showSearch: false,
         showListInfo: false,
         showPagination: false,
-        showAllPages: false,
         showActivity: true,
 
         muteList: true,
@@ -423,83 +424,19 @@ var List = {
     },
 
     _paging: function(length){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var component = element.parent();
-        var pagination_wrapper = Utils.isValue(this.wrapperPagination) ? this.wrapperPagination : component.find(".list-pagination");
-        var i, prev, next;
-        var shortDistance = 5;
-        var pagination;
-
-        pagination_wrapper.html("");
-
-        pagination = $("<ul>").addClass("pagination").addClass(o.clsPagination).appendTo(pagination_wrapper);
-
-        if (this.items.length === 0) {
-            return ;
-        }
-
-        this.pagesCount = Math.ceil(length / o.items);
-
-        var add_item = function(item_title, item_type, data){
-            var li, a;
-
-            li = $("<li>").addClass("page-item").addClass(item_type);
-            a  = $("<a>").addClass("page-link").html(item_title);
-            a.data("page", data);
-            a.appendTo(li);
-
-            return li;
-        };
-
-        prev = add_item(o.paginationPrevTitle, "service prev-page", "prev");
-        pagination.append(prev);
-
-        pagination.append(add_item(1, that.currentPage === 1 ? "active" : "", 1));
-
-        if (o.showAllPages === true || this.pagesCount <= 7) {
-            for (i = 2; i < this.pagesCount; i++) {
-                pagination.append(add_item(i, i === that.currentPage ? "active" : "", i));
-            }
-        } else {
-            if (that.currentPage < shortDistance) {
-                for (i = 2; i <= shortDistance; i++) {
-                    pagination.append(add_item(i, i === that.currentPage ? "active" : "", i));
-                }
-
-                if (this.pagesCount > shortDistance) {
-                    pagination.append(add_item("...", "no-link", null));
-                }
-            } else if (that.currentPage <= that.pagesCount && that.currentPage > that.pagesCount - shortDistance + 1) {
-                if (this.pagesCount > shortDistance) {
-                    pagination.append(add_item("...", "no-link", null));
-                }
-
-                for (i = that.pagesCount - shortDistance + 1; i < that.pagesCount; i++) {
-                    pagination.append(add_item(i, i === that.currentPage ? "active" : "", i));
-                }
-            } else {
-                pagination.append(add_item("...", "no-link", null));
-
-                pagination.append(add_item(that.currentPage - 1, "", that.currentPage - 1));
-                pagination.append(add_item(that.currentPage, "active", that.currentPage));
-                pagination.append(add_item(that.currentPage + 1, "", that.currentPage + 1));
-
-                pagination.append(add_item("...", "no-link", null));
-            }
-        }
-
-        if (that.pagesCount > 1 || that.currentPage < that.pagesCount) pagination.append(add_item(that.pagesCount, that.currentPage === that.pagesCount ? "active" : "", that.pagesCount));
-
-        next = add_item(o.paginationNextTitle, "service next-page", "next");
-        pagination.append(next);
-
-        if (this.currentPage === 1) {
-            prev.addClass("disabled");
-        }
-
-        if (this.currentPage === this.pagesCount) {
-            next.addClass("disabled");
-        }
+        this.pagesCount = Math.ceil(length / o.items); // Костыль
+        createPagination({
+            length: length,
+            rows: o.items,
+            current: this.currentPage,
+            target: Utils.isValue(this.wrapperPagination) ? this.wrapperPagination : component.find(".list-pagination"),
+            claPagination: o.clsPagination,
+            prevTitle: o.paginationPrevTitle,
+            nextTitle: o.paginationNextTitle,
+            distance: o.paginationShortMode === true ? o.paginationDistance : 0
+        });
     },
 
     _filter: function(){

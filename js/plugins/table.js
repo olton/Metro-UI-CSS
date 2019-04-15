@@ -48,6 +48,7 @@ var Table = {
 
         templateBeginToken: "<%",
         templateEndToken: "%>",
+        paginationDistance: 5,
 
         locale: METRO_LOCALE,
 
@@ -1150,92 +1151,19 @@ var Table = {
     },
 
     _paging: function(length){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var component = element.closest(".table-component");
-        var pagination_wrapper = Utils.isValue(this.wrapperPagination) ? this.wrapperPagination : component.find(".table-pagination");
-        var i, prev, next;
-        var shortDistance = 5;
-        var pagination;
-
-        pagination_wrapper.html("");
-
-        pagination = $("<ul>").addClass("pagination").addClass(o.clsPagination).appendTo(pagination_wrapper);
-
-        if (this.items.length === 0) {
-            return ;
-        }
-
-        if (o.rows === -1) {
-            return ;
-        }
-
-        this.pagesCount = Math.ceil(length / o.rows);
-
-        var add_item = function(item_title, item_type, data){
-            var li, a;
-
-            li = $("<li>").addClass("page-item").addClass(item_type);
-            a  = $("<a>").addClass("page-link").html(item_title);
-            a.data("page", data);
-            a.appendTo(li);
-
-            return li;
-        };
-
-        prev = add_item(o.paginationPrevTitle, "service prev-page", "prev");
-        pagination.append(prev);
-
-        pagination.append(add_item(1, that.currentPage === 1 ? "active" : "", 1));
-
-        if (o.paginationShortMode !== true || this.pagesCount <= 7) {
-            for (i = 2; i < this.pagesCount; i++) {
-                pagination.append(add_item(i, i === that.currentPage ? "active" : "", i));
-            }
-        } else {
-            if (that.currentPage < shortDistance) {
-                for (i = 2; i <= shortDistance; i++) {
-                    pagination.append(add_item(i, i === that.currentPage ? "active" : "", i));
-                }
-
-                if (this.pagesCount > shortDistance) {
-                    pagination.append(add_item("...", "no-link", null));
-                }
-            } else if (that.currentPage <= that.pagesCount && that.currentPage > that.pagesCount - shortDistance + 1) {
-                if (this.pagesCount > shortDistance) {
-                    pagination.append(add_item("...", "no-link", null));
-                }
-
-                for (i = that.pagesCount - shortDistance + 1; i < that.pagesCount; i++) {
-                    pagination.append(add_item(i, i === that.currentPage ? "active" : "", i));
-                }
-            } else {
-                pagination.append(add_item("...", "no-link", null));
-
-                pagination.append(add_item(that.currentPage - 1, "", that.currentPage - 1));
-                pagination.append(add_item(that.currentPage, "active", that.currentPage));
-                pagination.append(add_item(that.currentPage + 1, "", that.currentPage + 1));
-
-                pagination.append(add_item("...", "no-link", null));
-            }
-        }
-
-        if (that.pagesCount > 1 || that.currentPage < that.pagesCount) pagination.append(add_item(that.pagesCount, that.currentPage === that.pagesCount ? "active" : "", that.pagesCount));
-
-        next = add_item(o.paginationNextTitle, "service next-page", "next");
-        pagination.append(next);
-
-        if (this.currentPage === 1) {
-            prev.addClass("disabled");
-        }
-
-        if (this.currentPage === this.pagesCount) {
-            next.addClass("disabled");
-        }
-
-        if (this.filteredItems.length === 0) {
-            pagination.addClass("disabled");
-            pagination.children().addClass("disabled");
-        }
+        this.pagesCount = Math.ceil(length / o.rows); // Костыль
+        createPagination({
+            length: length,
+            rows: o.rows,
+            current: this.currentPage,
+            target: Utils.isValue(this.wrapperPagination) ? this.wrapperPagination : component.find(".table-pagination"),
+            claPagination: o.clsPagination,
+            prevTitle: o.paginationPrevTitle,
+            nextTitle: o.paginationNextTitle,
+            distance: o.paginationShortMode === true ? o.paginationDistance : 0
+        });
     },
 
     _filter: function(){
@@ -1941,9 +1869,10 @@ var Table = {
             }
         }
 
-        switch (to) {
-            default: Export.tableToCSV(table, filename, options);
-        }
+        // switch (to) {
+        //     default: Export.tableToCSV(table, filename, options);
+        // }
+        Export.tableToCSV(table, filename, options);
         table.remove();
     },
 
