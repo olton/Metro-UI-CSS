@@ -294,6 +294,11 @@
                 "less": ["charms"],
                 "js": ["plugins/charms"]
             },
+            "chat_comp":{
+                "name": "Chat",
+                "less": ["chats"],
+                "js": ["plugins/chat"]
+            },
             "checkbox_comp":{
                 "name": "Checkbox",
                 "less": ["checkbox"],

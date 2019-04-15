@@ -16,6 +16,7 @@ var List = {
         this.wrapperPagination = null;
         this.filterIndex = null;
         this.filtersIndexes = [];
+        this.itemTemplate = null;
 
         this.sort = {
             dir: "asc",
@@ -32,6 +33,9 @@ var List = {
     },
 
     options: {
+
+        templateBeginToken: '<%',
+        templateEndToken: '%>',
 
         thousandSeparator: ",",
         decimalSeparator: ",",
@@ -98,6 +102,7 @@ var List = {
         onRowsCountChange: Metro.noop,
         onDataLoad: Metro.noop,
         onDataLoaded: Metro.noop,
+        onDataLoadError: Metro.noop,
         onFilterItemAccepted: Metro.noop,
         onFilterItemDeclined: Metro.noop,
 
@@ -128,7 +133,7 @@ var List = {
                 that._build(data);
                 Utils.exec(o.onDataLoaded, [o.source, data], element[0]);
             }).fail(function( jqXHR, textStatus, errorThrown) {
-                console.log(textStatus); console.log(jqXHR); console.log(errorThrown);
+                Utils.exec(o.onDataLoadError, [o.source, jqXHR, textStatus, errorThrown], element[0]);
             });
         } else {
             that._build();
@@ -161,25 +166,33 @@ var List = {
     },
 
     _createItemsFromJSON: function(source){
-        var that = this;
+        var that = this, o = this.options;
 
         this.items = [];
 
+        if (Utils.isValue(source.template)) {
+            this.itemTemplate = source.template;
+        }
+
         if (Utils.isValue(source.header)) {
-            that.header = source.header;
+            this.header = source.header;
         }
 
         if (Utils.isValue(source.data)) {
             $.each(source.data, function(){
-                var row = this;
+                var item, row = this;
                 var li = document.createElement("li");
-                var inner = Utils.isValue(that.header.template) ? that.header.template : "";
 
-                $.each(row, function(k, v){
-                    inner = inner.replace("$"+k, v);
+                if (!Utils.isValue(that.itemTemplate)) {
+                    return ;
+                }
+
+                item = Metro.template(that.itemTemplate, row, {
+                    beginToken: o.templateBeginToken,
+                    endToken: o.templateEndToken
                 });
 
-                li.innerHTML = inner;
+                li.innerHTML = item;
                 that.items.push(li);
             });
         }
@@ -728,7 +741,7 @@ var List = {
             that.sorting(o.sortClass, o.sortDir, true);
 
         }).fail(function( jqXHR, textStatus, errorThrown) {
-            console.log(textStatus); console.log(jqXHR); console.log(errorThrown);
+            Utils.exec(o.onDataLoadError, [o.source, jqXHR, textStatus, errorThrown], element[0]);
         });
     },
 

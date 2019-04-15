@@ -1,3 +1,7 @@
+### 4.2.41
++ [x] List: add event `data-on-data-load-error`
++ [x] List: add item template with property `template`
+
 ### 4.2.40
 + [x] Chat: new component
 + [x] Boxes: add new boxes `skill-box`, `social-box`, `more-info-box`
