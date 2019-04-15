@@ -25,7 +25,8 @@
       "name": "age",
       "title": "Age",
       "sortable": true,
-      "size": 80
+      "size": 80,
+      "template": "<code class='alert'><%this.cellValue%></code>"
     },
     {
       "name": "salary",
