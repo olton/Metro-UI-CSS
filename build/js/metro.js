@@ -113,8 +113,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.41-dev 15/04/2019 15:41",
-    versionFull: "4.2.41-dev 15/04/2019 15:41",
+    version: "4.2.41-dev 15/04/2019 18:24",
+    versionFull: "4.2.41-dev 15/04/2019 18:24",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -5070,6 +5070,9 @@ var Audio = {
         }
 
         Utils.exec(o.onAudioCreate, [element, this.player], element[0]);
+        setImmediate(function(){
+            element.fire("audiocreate");
+        });
     },
 
     _createPlayer: function(){
@@ -5639,6 +5642,9 @@ var ButtonGroup = {
         this._createEvents();
 
         Utils.exec(o.onButtonsGroupCreate, [element]);
+        setImmediate(function(){
+            element.fire("buttongroupcreate");
+        });
     },
 
     _createGroup: function(){
@@ -5673,6 +5679,9 @@ var ButtonGroup = {
             var el = $(this);
 
             Utils.exec(o.onButtonClick, [el], this);
+            element.fire("buttonclick", {
+                button: this
+            });
 
             if (o.mode === Metro.groupMode.ONE && el.hasClass(o.clsActive)) {
                 return ;
@@ -5885,6 +5894,9 @@ var Calendar = {
         }
 
         Utils.exec(this.options.onCalendarCreate, [this.element]);
+        setImmediate(function(){
+            element.fire("calendarcreate");
+        });
     },
 
     _dates2array: function(val, category){
@@ -5964,9 +5976,15 @@ var Calendar = {
                 that._drawContent();
                 if (el.hasClass("prev-month") || el.hasClass("next-month")) {
                     Utils.exec(o.onMonthChange, [that.current, element], element[0]);
+                    element.fire("monthchange", {
+                        current: that.current
+                    });
                 }
                 if (el.hasClass("prev-year") || el.hasClass("next-year")) {
                     Utils.exec(o.onYearChange, [that.current, element], element[0]);
+                    element.fire("yearchange", {
+                        current: that.current
+                    });
                 }
             }, o.ripple ? 300 : 1);
 
@@ -5977,6 +5995,9 @@ var Calendar = {
         element.on(Metro.events.click, ".button.today", function(e){
             that.toDay();
             Utils.exec(o.onToday, [that.today, element]);
+            element.fire("today", {
+                today: that.today
+            });
 
             e.preventDefault();
             e.stopPropagation();
@@ -5986,6 +6007,7 @@ var Calendar = {
             that.selected = [];
             that._drawContent();
             Utils.exec(o.onClear, [element]);
+            element.fire("clear");
 
             e.preventDefault();
             e.stopPropagation();
@@ -5994,6 +6016,7 @@ var Calendar = {
         element.on(Metro.events.click, ".button.cancel", function(e){
             that._drawContent();
             Utils.exec(o.onCancel, [element]);
+            element.fire("cancel");
 
             e.preventDefault();
             e.stopPropagation();
@@ -6002,6 +6025,7 @@ var Calendar = {
         element.on(Metro.events.click, ".button.done", function(e){
             that._drawContent();
             Utils.exec(o.onDone, [that.selected, element]);
+            element.fire("done");
 
             e.preventDefault();
             e.stopPropagation();
@@ -6029,6 +6053,10 @@ var Calendar = {
                 }
 
                 Utils.exec(o.onWeekDayClick, [that.selected, day], element[0]);
+                element.fire("weekdayclick", {
+                    day: day,
+                    selected: that.selected
+                });
 
                 e.preventDefault();
                 e.stopPropagation();
@@ -6057,6 +6085,11 @@ var Calendar = {
                 }
 
                 Utils.exec(o.onWeekNumberClick, [that.selected, weekNumber, weekNumElement], element[0]);
+                element.fire("weeknumberclick", {
+                    el: this,
+                    num: weekNumber,
+                    selected: that.selected
+                });
 
                 e.preventDefault();
                 e.stopPropagation();
@@ -6108,6 +6141,10 @@ var Calendar = {
             }
 
             Utils.exec(o.onDayClick, [that.selected, day, element]);
+            element.fire("dayclick", {
+                day: day,
+                selected: that.selected
+            });
 
             e.preventDefault();
             e.stopPropagation();
@@ -6137,6 +6174,9 @@ var Calendar = {
             that.current.month = $(this).index();
             that._drawContent();
             Utils.exec(o.onMonthChange, [that.current, element], element[0]);
+            element.fire("monthchange", {
+                current: that.current
+            });
             element.find(".calendar-months").removeClass("open");
             e.preventDefault();
             e.stopPropagation();
@@ -6166,6 +6206,9 @@ var Calendar = {
             that.current.year = $(this).text();
             that._drawContent();
             Utils.exec(o.onYearChange, [that.current, element], element[0]);
+            element.fire("yearchange", {
+                current: that.current
+            });
             element.find(".calendar-years").removeClass("open");
             e.preventDefault();
             e.stopPropagation();
@@ -6340,6 +6383,10 @@ var Calendar = {
                 }
 
                 Utils.exec(o.onDayDraw, [s], d[0]);
+                element.fire("daydraw", {
+                    cell: d[0],
+                    date: s
+                });
             }
 
             counter++;
@@ -6392,6 +6439,10 @@ var Calendar = {
             }
 
             Utils.exec(o.onDayDraw, [first], d[0]);
+            element.fire("daydraw", {
+                cell: d[0],
+                date: first
+            });
 
             counter++;
             if (counter % 7 === 0) {
@@ -6429,6 +6480,11 @@ var Calendar = {
                 }
 
                 Utils.exec(o.onDayDraw, [s], d[0]);
+                element.fire("daydraw", {
+                    cell: d[0],
+                    date: s
+                });
+
             }
         }
     },

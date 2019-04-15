@@ -98,6 +98,9 @@ var Audio = {
         }
 
         Utils.exec(o.onAudioCreate, [element, this.player], element[0]);
+        setImmediate(function(){
+            element.fire("audiocreate");
+        });
     },
 
     _createPlayer: function(){
