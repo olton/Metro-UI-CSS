@@ -2,6 +2,7 @@
 + [x] List: add event `data-on-data-load-error`
 + [x] List: add item template with property `template`
 + [x] Table: add item template with property `template` and value wrapper `this.cellValue`
++ [x] Pagination: add function `Metro.pagination`
 
 ### 4.2.40
 + [x] Chat: new component

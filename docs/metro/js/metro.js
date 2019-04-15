@@ -113,8 +113,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.41-dev 15/04/2019 12:42",
-    versionFull: "4.2.41-dev 15/04/2019 12:42",
+    version: "4.2.41-dev 15/04/2019 14:48",
+    versionFull: "4.2.41-dev 15/04/2019 14:48",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -3250,6 +3250,112 @@ function shouldAdjustOldDeltas(orgEvent, absDelta) {
     // Turn this off by setting $.event.special.mousewheel.settings.adjustOldDeltas to false.
     return $.event.special.mousewheel.settings.adjustOldDeltas && orgEvent.type === 'mousewheel' && absDelta % 120 === 0;
 }
+
+// Source: js/utils/pagination.js
+
+var createPagination = function(c){
+    var defConf = {
+        length: 0,
+        rows: 0,
+        current: 0,
+        target: "body",
+        clsPagination: "",
+        prevTitle: "Prev",
+        nextTitle: "Next",
+        distance: 5
+    }, conf;
+    var pagination;
+    var pagination_wrapper;
+    var i, prev, next;
+    var shortDistance;
+
+    conf = $.extend( {}, defConf, c);
+
+    shortDistance = parseInt(conf.distance);
+    pagination_wrapper = $(conf.target);
+    pagination_wrapper.html("");
+    pagination = $("<ul>").addClass("pagination").addClass(conf.clsPagination).appendTo(pagination_wrapper);
+
+    if (conf.length === 0) {
+        return ;
+    }
+
+    if (conf.rows === -1) {
+        return ;
+    }
+
+    conf.pages = Math.ceil(conf.length / conf.rows);
+
+    var add_item = function(item_title, item_type, data){
+        var li, a;
+
+        li = $("<li>").addClass("page-item").addClass(item_type);
+        a  = $("<a>").addClass("page-link").html(item_title);
+        a.data("page", data);
+        a.appendTo(li);
+
+        return li;
+    };
+
+    prev = add_item(conf.prevTitle, "service prev-page", "prev");
+    pagination.append(prev);
+
+    pagination.append(add_item(1, conf.current === 1 ? "active" : "", 1));
+
+    if (shortDistance === 0 || conf.pages <= 7) {
+        for (i = 2; i < conf.pages; i++) {
+            pagination.append(add_item(i, i === conf.current ? "active" : "", i));
+        }
+    } else {
+        if (conf.current < shortDistance) {
+            for (i = 2; i <= shortDistance; i++) {
+                pagination.append(add_item(i, i === conf.current ? "active" : "", i));
+            }
+
+            if (conf.pages > shortDistance) {
+                pagination.append(add_item("...", "no-link", null));
+            }
+        } else if (conf.current <= conf.pages && conf.current > conf.pages - shortDistance + 1) {
+            if (conf.pages > shortDistance) {
+                pagination.append(add_item("...", "no-link", null));
+            }
+
+            for (i = conf.pages - shortDistance + 1; i < conf.pages; i++) {
+                pagination.append(add_item(i, i === conf.current ? "active" : "", i));
+            }
+        } else {
+            pagination.append(add_item("...", "no-link", null));
+
+            pagination.append(add_item(conf.current - 1, "", conf.current - 1));
+            pagination.append(add_item(conf.current, "active", conf.current));
+            pagination.append(add_item(conf.current + 1, "", conf.current + 1));
+
+            pagination.append(add_item("...", "no-link", null));
+        }
+    }
+
+    if (conf.pages > 1 || conf.current < conf.pages) pagination.append(add_item(conf.pages, conf.current === conf.pages ? "active" : "", conf.pages));
+
+    next = add_item(conf.nextTitle, "service next-page", "next");
+    pagination.append(next);
+
+    if (conf.current === 1) {
+        prev.addClass("disabled");
+    }
+
+    if (conf.current === conf.pages) {
+        next.addClass("disabled");
+    }
+
+    if (conf.length === 0) {
+        pagination.addClass("disabled");
+        pagination.children().addClass("disabled");
+    }
+
+    return pagination;
+};
+
+Metro['pagination'] = createPagination;
 
 // Source: js/utils/scroll-events.js
 
@@ -12983,8 +13089,10 @@ var List = {
 
     options: {
 
-        templateBeginToken: '<%',
-        templateEndToken: '%>',
+        templateBeginToken: "<%",
+        templateEndToken: "%>",
+        paginationDistance: 5,
+        paginationShortMode: true,
 
         thousandSeparator: ",",
         decimalSeparator: ",",
@@ -13004,7 +13112,6 @@ var List = {
         showSearch: false,
         showListInfo: false,
         showPagination: false,
-        showAllPages: false,
         showActivity: true,
 
         muteList: true,
@@ -13372,83 +13479,19 @@ var List = {
     },
 
     _paging: function(length){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var component = element.parent();
-        var pagination_wrapper = Utils.isValue(this.wrapperPagination) ? this.wrapperPagination : component.find(".list-pagination");
-        var i, prev, next;
-        var shortDistance = 5;
-        var pagination;
-
-        pagination_wrapper.html("");
-
-        pagination = $("<ul>").addClass("pagination").addClass(o.clsPagination).appendTo(pagination_wrapper);
-
-        if (this.items.length === 0) {
-            return ;
-        }
-
-        this.pagesCount = Math.ceil(length / o.items);
-
-        var add_item = function(item_title, item_type, data){
-            var li, a;
-
-            li = $("<li>").addClass("page-item").addClass(item_type);
-            a  = $("<a>").addClass("page-link").html(item_title);
-            a.data("page", data);
-            a.appendTo(li);
-
-            return li;
-        };
-
-        prev = add_item(o.paginationPrevTitle, "service prev-page", "prev");
-        pagination.append(prev);
-
-        pagination.append(add_item(1, that.currentPage === 1 ? "active" : "", 1));
-
-        if (o.showAllPages === true || this.pagesCount <= 7) {
-            for (i = 2; i < this.pagesCount; i++) {
-                pagination.append(add_item(i, i === that.currentPage ? "active" : "", i));
-            }
-        } else {
-            if (that.currentPage < shortDistance) {
-                for (i = 2; i <= shortDistance; i++) {
-                    pagination.append(add_item(i, i === that.currentPage ? "active" : "", i));
-                }
-
-                if (this.pagesCount > shortDistance) {
-                    pagination.append(add_item("...", "no-link", null));
-                }
-            } else if (that.currentPage <= that.pagesCount && that.currentPage > that.pagesCount - shortDistance + 1) {
-                if (this.pagesCount > shortDistance) {
-                    pagination.append(add_item("...", "no-link", null));
-                }
-
-                for (i = that.pagesCount - shortDistance + 1; i < that.pagesCount; i++) {
-                    pagination.append(add_item(i, i === that.currentPage ? "active" : "", i));
-                }
-            } else {
-                pagination.append(add_item("...", "no-link", null));
-
-                pagination.append(add_item(that.currentPage - 1, "", that.currentPage - 1));
-                pagination.append(add_item(that.currentPage, "active", that.currentPage));
-                pagination.append(add_item(that.currentPage + 1, "", that.currentPage + 1));
-
-                pagination.append(add_item("...", "no-link", null));
-            }
-        }
-
-        if (that.pagesCount > 1 || that.currentPage < that.pagesCount) pagination.append(add_item(that.pagesCount, that.currentPage === that.pagesCount ? "active" : "", that.pagesCount));
-
-        next = add_item(o.paginationNextTitle, "service next-page", "next");
-        pagination.append(next);
-
-        if (this.currentPage === 1) {
-            prev.addClass("disabled");
-        }
-
-        if (this.currentPage === this.pagesCount) {
-            next.addClass("disabled");
-        }
+        this.pagesCount = Math.ceil(length / o.items); // Костыль
+        createPagination({
+            length: length,
+            rows: o.items,
+            current: this.currentPage,
+            target: Utils.isValue(this.wrapperPagination) ? this.wrapperPagination : component.find(".list-pagination"),
+            claPagination: o.clsPagination,
+            prevTitle: o.paginationPrevTitle,
+            nextTitle: o.paginationNextTitle,
+            distance: o.paginationShortMode === true ? o.paginationDistance : 0
+        });
     },
 
     _filter: function(){
@@ -19110,6 +19153,7 @@ var Table = {
 
         templateBeginToken: "<%",
         templateEndToken: "%>",
+        paginationDistance: 5,
 
         locale: METRO_LOCALE,
 
@@ -20212,92 +20256,19 @@ var Table = {
     },
 
     _paging: function(length){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var component = element.closest(".table-component");
-        var pagination_wrapper = Utils.isValue(this.wrapperPagination) ? this.wrapperPagination : component.find(".table-pagination");
-        var i, prev, next;
-        var shortDistance = 5;
-        var pagination;
-
-        pagination_wrapper.html("");
-
-        pagination = $("<ul>").addClass("pagination").addClass(o.clsPagination).appendTo(pagination_wrapper);
-
-        if (this.items.length === 0) {
-            return ;
-        }
-
-        if (o.rows === -1) {
-            return ;
-        }
-
-        this.pagesCount = Math.ceil(length / o.rows);
-
-        var add_item = function(item_title, item_type, data){
-            var li, a;
-
-            li = $("<li>").addClass("page-item").addClass(item_type);
-            a  = $("<a>").addClass("page-link").html(item_title);
-            a.data("page", data);
-            a.appendTo(li);
-
-            return li;
-        };
-
-        prev = add_item(o.paginationPrevTitle, "service prev-page", "prev");
-        pagination.append(prev);
-
-        pagination.append(add_item(1, that.currentPage === 1 ? "active" : "", 1));
-
-        if (o.paginationShortMode !== true || this.pagesCount <= 7) {
-            for (i = 2; i < this.pagesCount; i++) {
-                pagination.append(add_item(i, i === that.currentPage ? "active" : "", i));
-            }
-        } else {
-            if (that.currentPage < shortDistance) {
-                for (i = 2; i <= shortDistance; i++) {
-                    pagination.append(add_item(i, i === that.currentPage ? "active" : "", i));
-                }
-
-                if (this.pagesCount > shortDistance) {
-                    pagination.append(add_item("...", "no-link", null));
-                }
-            } else if (that.currentPage <= that.pagesCount && that.currentPage > that.pagesCount - shortDistance + 1) {
-                if (this.pagesCount > shortDistance) {
-                    pagination.append(add_item("...", "no-link", null));
-                }
-
-                for (i = that.pagesCount - shortDistance + 1; i < that.pagesCount; i++) {
-                    pagination.append(add_item(i, i === that.currentPage ? "active" : "", i));
-                }
-            } else {
-                pagination.append(add_item("...", "no-link", null));
-
-                pagination.append(add_item(that.currentPage - 1, "", that.currentPage - 1));
-                pagination.append(add_item(that.currentPage, "active", that.currentPage));
-                pagination.append(add_item(that.currentPage + 1, "", that.currentPage + 1));
-
-                pagination.append(add_item("...", "no-link", null));
-            }
-        }
-
-        if (that.pagesCount > 1 || that.currentPage < that.pagesCount) pagination.append(add_item(that.pagesCount, that.currentPage === that.pagesCount ? "active" : "", that.pagesCount));
-
-        next = add_item(o.paginationNextTitle, "service next-page", "next");
-        pagination.append(next);
-
-        if (this.currentPage === 1) {
-            prev.addClass("disabled");
-        }
-
-        if (this.currentPage === this.pagesCount) {
-            next.addClass("disabled");
-        }
-
-        if (this.filteredItems.length === 0) {
-            pagination.addClass("disabled");
-            pagination.children().addClass("disabled");
-        }
+        this.pagesCount = Math.ceil(length / o.rows); // Костыль
+        createPagination({
+            length: length,
+            rows: o.rows,
+            current: this.currentPage,
+            target: Utils.isValue(this.wrapperPagination) ? this.wrapperPagination : component.find(".table-pagination"),
+            claPagination: o.clsPagination,
+            prevTitle: o.paginationPrevTitle,
+            nextTitle: o.paginationNextTitle,
+            distance: o.paginationShortMode === true ? o.paginationDistance : 0
+        });
     },
 
     _filter: function(){
@@ -21003,9 +20974,10 @@ var Table = {
             }
         }
 
-        switch (to) {
-            default: Export.tableToCSV(table, filename, options);
-        }
+        // switch (to) {
+        //     default: Export.tableToCSV(table, filename, options);
+        // }
+        Export.tableToCSV(table, filename, options);
         table.remove();
     },
 
