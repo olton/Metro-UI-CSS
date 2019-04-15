@@ -5,6 +5,10 @@
 + [x] Pagination: add function `Metro.pagination`
 + [x] Templates: now you can change `begin` and `end` template symbols with third argument `{beginToken, endToken}`
 + [x] Table: add firing events. Now you can subscribe to all table events with `$.on()` or `element.addEventListener()`
++ [x] Accordion: add firing events. 
++ [x] Activity: add firing events. 
++ [x] App bar: add firing events. 
++ [x] Bottom sheet: add firing events. 
 
 ### 4.2.40
 + [x] Chat: new component

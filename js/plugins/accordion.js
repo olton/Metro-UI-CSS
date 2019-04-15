@@ -128,7 +128,9 @@ var Accordion = {
 
         Utils.exec(o.onFrameOpen, [frame], element[0]);
 
-        element.fire("frameopen", frame);
+        element.fire("frameopen", {
+            frame: frame
+        });
     },
 
     _closeFrame: function(f){
@@ -149,7 +151,9 @@ var Accordion = {
 
         Utils.callback(o.onFrameClose, [frame], element[0]);
 
-        element.fire("frameclose", frame);
+        element.fire("frameclose", {
+            frame: frame
+        });
     },
 
     _closeAll: function(){

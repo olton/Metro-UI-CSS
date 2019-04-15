@@ -113,8 +113,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.41-dev 15/04/2019 15:35",
-    versionFull: "4.2.41-dev 15/04/2019 15:35",
+    version: "4.2.41-dev 15/04/2019 15:41",
+    versionFull: "4.2.41-dev 15/04/2019 15:41",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -4603,7 +4603,9 @@ var Accordion = {
 
         Utils.exec(o.onFrameOpen, [frame], element[0]);
 
-        element.fire("frameopen", frame);
+        element.fire("frameopen", {
+            frame: frame
+        });
     },
 
     _closeFrame: function(f){
@@ -4624,7 +4626,9 @@ var Accordion = {
 
         Utils.callback(o.onFrameClose, [frame], element[0]);
 
-        element.fire("frameclose", frame);
+        element.fire("frameclose", {
+            frame: frame
+        });
     },
 
     _closeAll: function(){
@@ -5477,6 +5481,9 @@ var BottomSheet = {
         this._createEvents();
 
         Utils.exec(o.onBottomSheetCreate, [element], element[0]);
+        setImmediate(function(){
+            element.fire("bottomsheetcreate");
+        })
     },
 
     _createStructure: function(){
@@ -5496,7 +5503,7 @@ var BottomSheet = {
 
         if (Utils.isValue(this.toggle)) {
             this.toggle.on(Metro.events.click, function(){
-                that.toggleView();
+                that.toggle();
             });
         }
 
@@ -5518,6 +5525,7 @@ var BottomSheet = {
 
         this.element.addClass("opened");
         Utils.exec(o.onOpen, [element], element[0]);
+        element.fire("open");
     },
 
     close: function(){
@@ -5525,6 +5533,7 @@ var BottomSheet = {
 
         element.removeClass("opened");
         Utils.exec(o.onClose, [element], element[0]);
+        element.fire("close");
     },
 
     toggle: function(mode){
