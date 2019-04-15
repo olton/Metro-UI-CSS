@@ -197,6 +197,9 @@ var Table = {
 
         if (o.source !== null) {
             Utils.exec(o.onDataLoad, [o.source], element[0]);
+            element.fire("dataload", {
+                source: o.source
+            });
 
             $.get(o.source, function(data){
                 if (typeof data !== "object") {
@@ -204,8 +207,16 @@ var Table = {
                 }
                 that._build(data);
                 Utils.exec(o.onDataLoaded, [o.source, data], element[0]);
+                element.fire("dataloaded", {
+                    source: o.source,
+                    data: data
+                })
             }).fail(function( jqXHR, textStatus, errorThrown) {
                 Utils.exec(o.onDataLoadError, [o.source, jqXHR, textStatus, errorThrown], element[0]);
+                element.fire("dataloaderror", {
+                    source: o.source,
+                    xhr: jqXHR
+                })
             });
         } else {
             that._build();
@@ -248,6 +259,10 @@ var Table = {
             if (Utils.isValue(view) && Utils.objectLength(view) === Utils.objectLength(this.view)) {
                 this.view = view;
                 Utils.exec(o.onViewGet, [view], element[0]);
+                element.fire("viewget", {
+                    source: "client",
+                    view: view
+                });
             }
             this._final();
         } else {
@@ -260,6 +275,10 @@ var Table = {
                     if (Utils.isValue(view) && Utils.objectLength(view) === Utils.objectLength(that.view)) {
                         that.view = view;
                         Utils.exec(o.onViewGet, [view], element[0]);
+                        element.fire("viewget", {
+                            source: "server",
+                            view: view
+                        });
                     }
                     that._final();
                 }
@@ -282,6 +301,10 @@ var Table = {
         this._createEvents();
 
         Utils.exec(o.onTableCreate, [element], element[0]);
+
+        setImmediate(function(){
+            element.fire("tablecreate");
+        })
     },
 
     _service: function(){
@@ -316,7 +339,7 @@ var Table = {
     },
 
     _createView: function(){
-        var view, o = this.options;
+        var view, element = this.element, o = this.options;
 
         view = {};
 
@@ -334,6 +357,9 @@ var Table = {
         });
 
         Utils.exec(o.onViewCreated, [view], view);
+        element.fire("viewcreated", {
+            view: view
+        });
         return view;
     },
 
@@ -685,7 +711,10 @@ var Table = {
                 o.rows = val;
                 that.currentPage = 1;
                 that._draw();
-                Utils.exec(o.onRowsCountChange, [val], element[0])
+                Utils.exec(o.onRowsCountChange, [val], element[0]);
+                element.fire("rowscountchange", {
+                    val: val
+                });
             }
         });
 
@@ -883,6 +912,10 @@ var Table = {
             storage.setItem(store_key, data);
 
             Utils.exec(o.onCheckClick, [status], this);
+            element.fire("checkclick", {
+                check: this,
+                status: status
+            });
         });
 
         element.on(Metro.events.click, ".table-service-check-all input", function(){
@@ -904,6 +937,10 @@ var Table = {
             that._draw();
 
             Utils.exec(o.onCheckClickAll, [status], this);
+            element.fire("checkclickall", {
+                check: this,
+                status: status
+            });
         });
 
         var _search = function(){
@@ -1111,6 +1148,11 @@ var Table = {
         if (o.viewSaveMode.toLowerCase() === "client") {
             Metro.storage.setItem(o.viewSavePath.replace("$1", id), view);
             Utils.exec(o.onViewSave, [o.viewSavePath, view], element[0]);
+            element.fire("viewsave", {
+                target: "client",
+                path: o.viewSavePath,
+                view: view
+            });
         } else {
             $.post(
                 o.viewSavePath,
@@ -1120,6 +1162,11 @@ var Table = {
                 },
                 function(data, status, xhr){
                     Utils.exec(o.onViewSave, [o.viewSavePath, view, data, status, xhr], element[0]);
+                    element.fire("viewsave", {
+                        target: "server",
+                        path: o.viewSavePath,
+                        view: view
+                    });
                 }
             );
         }
@@ -1208,8 +1255,14 @@ var Table = {
 
                 if (result) {
                     Utils.exec(o.onFilterRowAccepted, [row], element[0]);
+                    element.fire("filterrowaccepted", {
+                        row: row
+                    });
                 } else {
                     Utils.exec(o.onFilterRowDeclined, [row], element[0]);
+                    element.fire("filterrowdeclined", {
+                        row: row
+                    });
                 }
 
                 return result;
@@ -1220,6 +1273,10 @@ var Table = {
         }
 
         Utils.exec(o.onSearch, [that.searchString, items], element[0]);
+        element.fire("search", {
+            search: that.searchString,
+            items: items
+        });
 
         this.filteredItems = items;
 
@@ -1271,6 +1328,9 @@ var Table = {
 
             check.addClass("table-service-check");
             Utils.exec(o.onCheckDraw, [check], check[0]);
+            element.fire("checkdraw", {
+                check: check
+            });
             check.appendTo(td);
             if (that.service[1].clsColumn !== undefined) {
                 td.addClass(that.service[1].clsColumn);
@@ -1314,18 +1374,39 @@ var Table = {
 
                 tds[view[cell_index]['index-view']] = td;
                 Utils.exec(o.onDrawCell, [td, val, cell_index, that.heads[cell_index], cells], td[0]);
+                element.fire("drawcell", {
+                    td: td,
+                    val: val,
+                    cellIndex: cell_index,
+                    head: that.heads[cell_index],
+                    items: cells
+                });
             });
 
             for (j = 0; j < cells.length; j++){
                 tds[j].appendTo(tr);
-                Utils.exec(o.onAppendCell, [tds[j], tr, j, element], tds[j][0])
+                Utils.exec(o.onAppendCell, [tds[j], tr, j, element], tds[j][0]);
+                element.fire("appendcell", {
+                    td: tds[j],
+                    tr: tr,
+                    index: j
+                })
             }
 
             Utils.exec(o.onDrawRow, [tr, that.view, that.heads, cells], tr[0]);
+            element.fire("drawrow", {
+                tr: tr,
+                view: that.view,
+                heads: that.heads,
+                items: cells
+            });
 
             tr.addClass(o.clsRow).addClass(is_even_row ? o.clsEvenRow : o.clsOddRow).appendTo(body);
 
             Utils.exec(o.onAppendRow, [tr, element], tr[0]);
+            element.fire("appendrow", {
+                tr: tr
+            });
         }
 
         this._info(start + 1, stop + 1, items.length);
@@ -1334,6 +1415,8 @@ var Table = {
         if (this.activity) this.activity.hide();
 
         Utils.exec(o.onDraw, [element], element[0]);
+
+        element.fire("draw", element[0]);
 
         if (cb !== undefined) {
             Utils.exec(cb, [element], element[0])
@@ -1457,6 +1540,7 @@ var Table = {
         }
 
         Utils.exec(o.onSortStart, [this.items], element[0]);
+        element.fire("sortstart", this.items);
 
         this.items.sort(function(a, b){
             var c1 = that._getItemContent(a);
@@ -1472,12 +1556,18 @@ var Table = {
 
             if (result !== 0) {
                 Utils.exec(o.onSortItemSwitch, [a, b, result], element[0]);
+                element.fire("sortitemswitch", {
+                    a: a,
+                    b: b,
+                    result: result
+                })
             }
 
             return result;
         });
 
         Utils.exec(o.onSortStop, [this.items], element[0]);
+        element.fire("sortstop", this.items);
 
         return this;
     },
@@ -1575,6 +1665,9 @@ var Table = {
             o.source = source;
 
             Utils.exec(o.onDataLoad, [o.source], element[0]);
+            element.fire("dataload", {
+                source: o.source
+            });
 
             $.get(o.source, function(data){
 
@@ -1587,8 +1680,16 @@ var Table = {
                 that._rebuild(review);
 
                 Utils.exec(o.onDataLoaded, [o.source, data], element[0]);
+                element.fire("dataloaded", {
+                    source: o.source,
+                    data: data
+                })
             }).fail(function( jqXHR, textStatus, errorThrown) {
                 Utils.exec(o.onDataLoadError, [o.source, jqXHR, textStatus, errorThrown], element[0]);
+                element.fire("dataloaderror", {
+                    source: o.source,
+                    xhr: jqXHR
+                })
             });
         }
     },

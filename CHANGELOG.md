@@ -3,6 +3,8 @@
 + [x] List: add item template with property `template`
 + [x] Table: add item template with property `template` and value wrapper `this.cellValue`
 + [x] Pagination: add function `Metro.pagination`
++ [x] Templates: now you can change `begin` and `end` template symbols with third argument `{beginToken, endToken}`
++ [x] Table: add firing events. Now you can subscribe to all table events with `$.on()` or `element.addEventListener()`
 
 ### 4.2.40
 + [x] Chat: new component
