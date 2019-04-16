@@ -121,6 +121,12 @@
                         <td>Message time format. More about <a href="dateformat.html">date-time formats</a></td>
                     </tr>
                     <tr>
+                        <td><code>inputTimeFormat</code></td>
+                        <td><code>data-input-time-format</code></td>
+                        <td>%m-%d-%y</td>
+                        <td>Message input time format. More about <a href="dateformat.html">date-time formats</a></td>
+                    </tr>
+                    <tr>
                         <td><code>name</code></td>
                         <td><code>data-name</code></td>
                         <td>John Doe</td>
@@ -379,7 +385,7 @@
         setTimeout(function(){
             var _m = {
                 name: opponent.name,
-                time: (new Date()).format("%d %b %l:%M %p"), //"23 Jan 2:00 pm",
+                time: (new Date()),
                 avatar: opponent.avatar,
                 text: messages[Metro.utils.random(0, messages.length - 1)],
                 position: "left"

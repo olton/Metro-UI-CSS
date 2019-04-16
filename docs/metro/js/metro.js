@@ -113,8 +113,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.41-dev 15/04/2019 18:24",
-    versionFull: "4.2.41-dev 15/04/2019 18:24",
+    version: "4.2.41-dev 16/04/2019 11:04",
+    versionFull: "4.2.41-dev 16/04/2019 11:04",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -7850,6 +7850,7 @@ var Chat = {
     },
 
     options: {
+        inputTimeFormat: "%m-%d-%y",
         timeFormat: "%d %b %l:%M %p",
         name: "John Doe",
         avatar: defaultAvatar,
@@ -7871,11 +7872,12 @@ var Chat = {
 
         onMessage: Metro.noop,
         onSend: Metro.noop,
+        onSendButtonClick: Metro.noop,
         onChatCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         $.each(element.data(), function(key, value){
             if (key in o) {
@@ -7889,12 +7891,15 @@ var Chat = {
     },
 
     _create: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         this._createStructure();
         this._createEvents();
 
         Utils.exec(o.onChatCreate, [element]);
+        setImmediate(function(){
+            element.fire("chatcreate");
+        });
     },
 
     _createStructure: function(){
@@ -7919,7 +7924,8 @@ var Chat = {
             $("<div>").addClass("title").html(o.title).appendTo(element);
         }
 
-        messages = $("<div>").addClass("messages").appendTo(element);
+        messages = $("<div>").addClass("messages");
+        messages.appendTo(element);
         messageInput = $("<div>").addClass("message-input").appendTo(element);
         input = $("<input type='text'>");
         input.appendTo(messageInput);
@@ -7931,7 +7937,7 @@ var Chat = {
         if (o.welcome) {
             this.add({
                 text: o.welcome,
-                time: (new Date()).format(o.timeFormat),
+                time: (new Date()),
                 position: "left",
                 name: "Welcome",
                 avatar: defaultAvatar
@@ -7963,10 +7969,13 @@ var Chat = {
                 avatar: o.avatar,
                 text: msg,
                 position: "right",
-                time: (new Date()).format(o.timeFormat)
+                time: (new Date())
             };
             that.add(m);
             Utils.exec(o.onSend, [m], element[0]);
+            element.fire("send", {
+                msg: m
+            });
             input.val("");
         };
 
@@ -7985,10 +7994,13 @@ var Chat = {
         var that = this, element = this.element, o = this.options;
         var index, message, sender, time, item, avatar, text;
         var messages = element.find(".messages");
+        var messageDate;
+
+        messageDate = typeof msg.time === 'string' ? msg.time.toDate(o.inputTimeFormat) : msg.time;
 
         message = $("<div>").addClass("message").addClass(msg.position).appendTo(messages);
         sender = $("<div>").addClass("message-sender").addClass(o.clsName).html(msg.name).appendTo(message);
-        time = $("<div>").addClass("message-time").addClass(o.clsTime).html((new Date(msg.time)).format(o.timeFormat)).appendTo(message);
+        time = $("<div>").addClass("message-time").addClass(o.clsTime).html(messageDate.format(o.timeFormat)).appendTo(message);
         item = $("<div>").addClass("message-item").appendTo(message);
         avatar = $("<img>").attr("src", msg.avatar).addClass("message-avatar").appendTo(item);
         text = $("<div>").addClass("message-text").html(msg.text).appendTo(item);
@@ -8009,7 +8021,26 @@ var Chat = {
             }
         }
 
-        Utils.exec(o.onMessage, [msg], message[0]);
+        Utils.exec(o.onMessage, [msg, {
+            message: message,
+            sender: sender,
+            time: time,
+            item: item,
+            avatar: avatar,
+            text: text
+        }], message[0]);
+
+        element.fire("message", {
+            msg: msg,
+            el: {
+                message: message,
+                sender: sender,
+                time: time,
+                item: item,
+                avatar: avatar,
+                text: text
+            }
+        });
 
         setImmediate(function(){
             element.fire("onmessage", {
@@ -8028,7 +8059,7 @@ var Chat = {
     },
 
     addMessages: function(messages){
-        var that = this, element = this.element, o = this.options;
+        var that = this;
 
         if (Utils.isValue(messages) && typeof messages === "string") {
             messages = Utils.isObject(messages);
