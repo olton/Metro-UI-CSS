@@ -44,16 +44,20 @@ It's an independent project with its ongoing development made possible entirely 
 ![GitHub issues](https://img.shields.io/github/issues-raw/olton/Metro-UI-CSS.svg)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/olton/Metro-UI-CSS.svg)
 
+<hr>
 
-### Patreon
+### Donation
+##### Patreon
 ![Sponsors on Patreon](https://img.shields.io/badge/backers-2-red.svg)
 ![Sponsors on Patreon](https://img.shields.io/badge/sponsors-0-red.svg)
 ![Sponsors on Patreon](https://img.shields.io/badge/donation-$28-red.svg)
 
-### Opencollective 
+##### Opencollective 
 [![Backers on Open Collective](https://opencollective.com/metro4/backers/badge.svg)](#backers) 
 [![Sponsors on Open Collective](https://opencollective.com/metro4/sponsors/badge.svg)](#sponsors)
 ![Sponsors on Patreon](https://img.shields.io/badge/donation-$0-darklime.svg)
+
+<hr>
  
 ### Community
 [![Join the chat at https://discord.gg/NydRab3](https://img.shields.io/badge/chat-on%20discord-brightgreen.svg?style=flat)](https://discord.gg/NydRab3)
@@ -96,7 +100,9 @@ If you want to make use of new features as they come in you should upgrade to a 
 - All who brought something good 
 
 ### Browser Compatibility
-IE11+, Chrome, Firefox, Opera, Safari, Android, IOS
+![Chrome](https://raw.github.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png) | ![Firefox](https://raw.github.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png) | ![Edge](https://raw.github.com/alrra/browser-logos/master/src/edge/edge_48x48.png) | ![IE](https://raw.github.com/alrra/browser-logos/master/src/archive/internet-explorer_9-11/internet-explorer_9-11_48x48.png) | ![Safari](https://raw.github.com/alrra/browser-logos/master/src/safari/safari_48x48.png) | ![Opera](https://raw.github.com/alrra/browser-logos/master/src/opera/opera_48x48.png)
+--- | --- | --- | --- | --- | --- |
+Latest ✔ | Latest ✔ | Latest ✔ | 11+ ✔ | 9.1+ ✔ | Latest ✔ |
 
 ### Cross-browser Testing
 Cross-browser Testing Platform and Open Source Provided by [Sauce Labs](https://saucelabs.com).

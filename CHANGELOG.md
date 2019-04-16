@@ -12,6 +12,7 @@
 + [x] Button group: add firing events. 
 + [x] Audio: add firing events. 
 + [x] Calendar: add firing events. 
++ [x] Chat: fix error for time manipulation, issue #1355
 
 ### 4.2.40
 + [x] Chat: new component
