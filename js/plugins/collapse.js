@@ -8,8 +8,6 @@ var Collapse = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCollapseCreate, [this.element]);
-
         return this;
     },
 
@@ -60,6 +58,11 @@ var Collapse = {
         });
 
         this.toggle = toggle;
+
+        Utils.exec(this.options.onCollapseCreate, [this.element]);
+        setImmediate(function(){
+            element.fire("collapsecreate");
+        });
     },
 
     _close: function(el, immediate){
@@ -75,7 +78,8 @@ var Collapse = {
             el.trigger("onCollapse", null, el);
             el.data("collapsed", true);
             el.addClass("collapsed");
-            Utils.exec(options.onCollapse, [el]);
+            Utils.exec(options.onCollapse, null, elem[0]);
+            elem.fire("collapse");
         });
     },
 
@@ -92,7 +96,8 @@ var Collapse = {
             el.trigger("onExpand", null, el);
             el.data("collapsed", false);
             el.removeClass("collapsed");
-            Utils.exec(options.onExpand, [el]);
+            Utils.exec(options.onExpand, null, elem[0]);
+            elem.fire("expand");
         });
     },
 

@@ -44,22 +44,13 @@ It's an independent project with its ongoing development made possible entirely 
 ![GitHub issues](https://img.shields.io/github/issues-raw/olton/Metro-UI-CSS.svg)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/olton/Metro-UI-CSS.svg)
 
-<hr>
-
 ### Donation
-##### Patreon
-![Sponsors on Patreon](https://img.shields.io/badge/backers-2-red.svg)
-![Sponsors on Patreon](https://img.shields.io/badge/sponsors-0-red.svg)
-![Sponsors on Patreon](https://img.shields.io/badge/donation-$28-red.svg)
 
-##### Opencollective 
-[![Backers on Open Collective](https://opencollective.com/metro4/backers/badge.svg)](#backers) 
-[![Sponsors on Open Collective](https://opencollective.com/metro4/sponsors/badge.svg)](#sponsors)
-![Sponsors on Patreon](https://img.shields.io/badge/donation-$0-darklime.svg)
+![Donations on Patreon](https://img.shields.io/badge/Patreon-$28-red.svg)
+![Donations on Open Collective](https://img.shields.io/badge/OpenCollective-$0-darklime.svg)
 
-<hr>
- 
 ### Community
+
 [![Join the chat at https://discord.gg/NydRab3](https://img.shields.io/badge/chat-on%20discord-brightgreen.svg?style=flat)](https://discord.gg/NydRab3)
 [![Join the chat at https://gitter.im/metro4/Lobby](https://badges.gitter.im/metro4/Lobby.svg)](https://gitter.im/metro4/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Join the forum at https://forum.metroui.org.ua](https://img.shields.io/badge/metro-forum-orange.svg)](https://forum.metroui.org.ua)

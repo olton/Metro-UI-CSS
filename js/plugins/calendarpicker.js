@@ -12,6 +12,9 @@ var CalendarPicker = {
         this._create();
 
         Utils.exec(this.options.onCalendarPickerCreate, [this.element], this.elem);
+        setImmediate(function(){
+                $(elem).fire("calendarpickercreate");
+        });
 
         return this;
     },
@@ -174,8 +177,18 @@ var CalendarPicker = {
                 element.trigger("change");
                 cal.removeClass("open open-up");
                 cal.hide();
+
                 Utils.exec(o.onChange, [that.value], element[0]);
+                element.fire("change", {
+                    val: that.value
+                });
+
                 Utils.exec(o.onDayClick, [sel, day, el], element[0]);
+                element.fire("dayclick", {
+                    sel: sel,
+                    day: day,
+                    el: el
+                })
             },
             onMonthChange: o.onMonthChange,
             onYearChange: o.onYearChange
@@ -288,12 +301,18 @@ var CalendarPicker = {
                     cal.addClass("open-up");
                 }
                 Utils.exec(o.onCalendarShow, [element, cal], cal);
+                element.fire("calendarshow", {
+                    calendar: cal
+                });
 
             } else {
 
                 that._removeOverlay();
                 cal.removeClass("open open-up");
                 Utils.exec(o.onCalendarHide, [element, cal], cal);
+                element.fire("calendarhide", {
+                    calendar: cal
+                });
 
             }
             e.preventDefault();

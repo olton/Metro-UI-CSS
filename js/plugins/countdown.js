@@ -144,6 +144,9 @@ var Countdown = {
 
 
         Utils.exec(o.onCountdownCreate, [element], element[0]);
+        setImmediate(function(){
+            element.fire("countdowncreate");
+        });
 
         if (o.start === true) {
             this.start();
@@ -167,6 +170,9 @@ var Countdown = {
         var element = this.element, o = this.options;
         element.toggleClass("blink");
         Utils.exec(o.onBlink, [this.current], element[0]);
+        element.fire("blink", {
+            time: this.current
+        })
     },
 
     tick: function(){
@@ -185,6 +191,9 @@ var Countdown = {
             this.stop();
             element.addClass(o.clsAlarm);
             Utils.exec(o.onAlarm, [now], element[0]);
+            element.fire("alarm", {
+                time: now
+            });
             return ;
         }
 
@@ -200,6 +209,9 @@ var Countdown = {
                 this.zeroDaysFired = true;
                 days.addClass(o.clsZero);
                 Utils.exec(o.onZero, ["days", days], element[0]);
+                element.fire("zero", {
+                    parts: ["days", days]
+                });
             }
         }
 
@@ -215,6 +227,9 @@ var Countdown = {
                 this.zeroHoursFired = true;
                 hours.addClass(o.clsZero);
                 Utils.exec(o.onZero, ["hours", hours], element[0]);
+                element.fire("zero", {
+                    parts: ["hours", hours]
+                });
             }
         }
 
@@ -230,6 +245,10 @@ var Countdown = {
                 this.zeroMinutesFired = true;
                 minutes.addClass(o.clsZero);
                 Utils.exec(o.onZero, ["minutes", minutes], element[0]);
+                element.fire("zero", {
+                    parts: ["minutes", minutes]
+                });
+
             }
         }
 
@@ -244,10 +263,17 @@ var Countdown = {
                 this.zeroSecondsFired = true;
                 seconds.addClass(o.clsZero);
                 Utils.exec(o.onZero, ["seconds", seconds], element[0]);
+                element.fire("zero", {
+                    parts: ["seconds", seconds]
+                });
+
             }
         }
 
         Utils.exec(o.onTick, [{days:d, hours:h, minutes:m, seconds:s}], element[0]);
+        element.fire("tick", {
+            days:d, hours:h, minutes:m, seconds:s
+        });
     },
 
     draw: function(part, value){

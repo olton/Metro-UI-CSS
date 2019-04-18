@@ -10,8 +10,6 @@ var Checkbox = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCheckboxCreate, [this.element]);
-
         return this;
     },
     options: {
@@ -79,6 +77,11 @@ var Checkbox = {
         } else {
             this.enable();
         }
+
+        Utils.exec(o.onCheckboxCreate, [element]);
+        setImmediate(function(){
+            element.fire("checkboxcreate");
+        });
     },
 
     indeterminate: function(){
