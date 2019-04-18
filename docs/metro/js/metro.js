@@ -113,8 +113,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.41-dev 16/04/2019 11:04",
-    versionFull: "4.2.41-dev 16/04/2019 11:04",
+    version: "4.2.41-dev 18/04/2019 08:55",
+    versionFull: "4.2.41-dev 18/04/2019 08:55",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -6695,6 +6695,9 @@ var CalendarPicker = {
         this._create();
 
         Utils.exec(this.options.onCalendarPickerCreate, [this.element], this.elem);
+        setImmediate(function(){
+                $(elem).fire("calendarpickercreate");
+        });
 
         return this;
     },
@@ -6857,8 +6860,18 @@ var CalendarPicker = {
                 element.trigger("change");
                 cal.removeClass("open open-up");
                 cal.hide();
+
                 Utils.exec(o.onChange, [that.value], element[0]);
+                element.fire("change", {
+                    val: that.value
+                });
+
                 Utils.exec(o.onDayClick, [sel, day, el], element[0]);
+                element.fire("dayclick", {
+                    sel: sel,
+                    day: day,
+                    el: el
+                })
             },
             onMonthChange: o.onMonthChange,
             onYearChange: o.onYearChange
@@ -6971,12 +6984,18 @@ var CalendarPicker = {
                     cal.addClass("open-up");
                 }
                 Utils.exec(o.onCalendarShow, [element, cal], cal);
+                element.fire("calendarshow", {
+                    calendar: cal
+                });
 
             } else {
 
                 that._removeOverlay();
                 cal.removeClass("open open-up");
                 Utils.exec(o.onCalendarHide, [element, cal], cal);
+                element.fire("calendarhide", {
+                    calendar: cal
+                });
 
             }
             e.preventDefault();
@@ -7230,28 +7249,35 @@ var Carousel = {
         slides.addClass(o.clsSlides);
 
         if (slides.length === 0) {
-            Utils.exec(this.options.onCarouselCreate, [this.element]);
-            return ;
-        }
-
-        this._createSlides();
-        this._createControls();
-        this._createBullets();
-        this._createEvents();
-        this._resize();
-
-        if (o.controlsOnMouse === true) {
-            element.find("[class*=carousel-switch]").hide();
-            element.find(".carousel-bullets").hide();
-        }
-
-        if (o.autoStart === true) {
-            this._start();
         } else {
-            Utils.exec(o.onSlideShow, [this.slides[this.currentIndex][0], undefined], this.slides[this.currentIndex][0]);
+
+            this._createSlides();
+            this._createControls();
+            this._createBullets();
+            this._createEvents();
+            this._resize();
+
+            if (o.controlsOnMouse === true) {
+                element.find("[class*=carousel-switch]").hide();
+                element.find(".carousel-bullets").hide();
+            }
+
+            if (o.autoStart === true) {
+                this._start();
+            } else {
+                Utils.exec(o.onSlideShow, [this.slides[this.currentIndex][0], undefined], this.slides[this.currentIndex][0]);
+                element.fire("slideshow", {
+                    current: this.slides[this.currentIndex][0],
+                    prev: undefined
+                });
+            }
+
         }
 
-        Utils.exec(this.options.onCarouselCreate, [this.element]);
+        Utils.exec(o.onCarouselCreate, [element]);
+        setImmediate(function(){
+            element.fire("carouselcreate");
+        })
     },
 
     _start: function(){
@@ -7272,6 +7298,7 @@ var Carousel = {
             that._slideTo(t, true);
         }, period);
         Utils.exec(o.onStart, [element], element[0]);
+        element.fire("start");
     },
 
     _stop: function(){
@@ -7406,21 +7433,30 @@ var Carousel = {
             var bullet = $(this);
             if (that.isAnimate === false) {
                 that._slideToSlide(bullet.data('slide'));
-                Utils.exec(o.onBulletClick, [bullet,  element, e])
+                Utils.exec(o.onBulletClick, [bullet,  element, e]);
+                element.fire("bulletclick", {
+                    bullet: bullet
+                });
             }
         });
 
         element.on(Metro.events.click, ".carousel-switch-next", function(e){
             if (that.isAnimate === false) {
                 that._slideTo("next", false);
-                Utils.exec(o.onNextClick, [element, e])
+                Utils.exec(o.onNextClick, [element, e]);
+                element.fire("nextclick", {
+                    button: this
+                });
             }
         });
 
         element.on(Metro.events.click, ".carousel-switch-prev", function(e){
             if (that.isAnimate === false) {
                 that._slideTo("prev", false);
-                Utils.exec(o.onPrevClick, [element, e])
+                Utils.exec(o.onPrevClick, [element, e]);
+                element.fire("prevclick", {
+                    button: this
+                });
             }
         });
 
@@ -7431,7 +7467,7 @@ var Carousel = {
                     element.find(".carousel-bullets").fadeIn();
                 }
                 that._stop();
-                Utils.exec(o.onMouseEnter, [element, e])
+                Utils.exec(o.onMouseEnter, [element, e]);
             });
             element.on(Metro.events.leave, function (e) {
                 if (o.controlsOnMouse === true) {
@@ -7456,7 +7492,10 @@ var Carousel = {
 
         element.on(Metro.events.click, ".slide", function(e){
             var slide = $(this);
-            Utils.exec(o.onSlideClick, [slide, element, e])
+            Utils.exec(o.onSlideClick, [slide, element, e]);
+            element.fire("slideclick", {
+                slide: slide
+            });
         });
 
         $(window).on(Metro.events.resize + "-" + element.attr("id"), function(){
@@ -7560,10 +7599,18 @@ var Carousel = {
 
         setTimeout(function(){
             Utils.exec(o.onSlideShow, [next[0], current[0]], next[0]);
+            element.fire("slideshow", {
+                current: next[0],
+                prev: current[0]
+            });
         }, duration);
 
         setTimeout(function(){
             Utils.exec(o.onSlideHide, [current[0], next[0]], current[0]);
+            element.fire("slidehide", {
+                current: current[0],
+                next: next[0]
+            });
         }, duration);
 
         if (interval === true) {
@@ -7593,12 +7640,14 @@ var Carousel = {
 
     stop: function () {
         clearInterval(this.interval);
-        Utils.exec(this.options.onStop, [this.element])
+        Utils.exec(this.options.onStop, [this.element]);
+        this.element.fire("stop");
     },
 
     play: function(){
         this._start();
-        Utils.exec(this.options.onPlay, [this.element])
+        Utils.exec(this.options.onPlay, [this.element]);
+        this.element.fire("play");
     },
 
     changeAttribute: function(attributeName){
@@ -7657,7 +7706,8 @@ var Charms = {
         clsCharms: "",
         onCharmCreate: Metro.noop,
         onOpen: Metro.noop,
-        onClose: Metro.noop
+        onClose: Metro.noop,
+        onToggle: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -7681,6 +7731,9 @@ var Charms = {
         this._createEvents();
 
         Utils.exec(o.onCharmCreate, [element]);
+        setImmediate(function(){
+            element.fire("charmcreate");
+        });
     },
 
     _createStructure: function(){
@@ -7710,7 +7763,8 @@ var Charms = {
 
         element.addClass("open");
 
-        Utils.exec(o.onOpen, [element]);
+        Utils.exec(o.onOpen, null, element[0]);
+        element.fire("open");
     },
 
     close: function(){
@@ -7718,19 +7772,21 @@ var Charms = {
 
         element.removeClass("open");
 
-        Utils.exec(o.onClose, [element]);
+        Utils.exec(o.onClose, null, element[0]);
+        element.fire("close");
     },
 
     toggle: function(){
         var element = this.element, o = this.options;
 
-        element.toggleClass("open");
-
         if (element.hasClass("open") === true) {
-            Utils.exec(o.onOpen, [element]);
+            this.close();
         } else {
-            Utils.exec(o.onClose, [element]);
+            this.open();
         }
+
+        Utils.exec(o.onToggle, null, element[0]);
+        element.fire("toggle");
     },
 
     opacity: function(v){
@@ -8124,8 +8180,6 @@ var Checkbox = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCheckboxCreate, [this.element]);
-
         return this;
     },
     options: {
@@ -8193,6 +8247,11 @@ var Checkbox = {
         } else {
             this.enable();
         }
+
+        Utils.exec(o.onCheckboxCreate, [element]);
+        setImmediate(function(){
+            element.fire("checkboxcreate");
+        });
     },
 
     indeterminate: function(){
@@ -8265,8 +8324,6 @@ var Clock = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onClockCreate, [this.element]);
-
         return this;
     },
 
@@ -8297,9 +8354,15 @@ var Clock = {
     },
 
     _create: function(){
-        var that = this;
+        var that = this, element = this.element;
 
         this._tick();
+
+        Utils.exec(this.options.onClockCreate, [this.element]);
+        setImmediate(function(){
+            element.fire("clockcreate");
+        });
+
         this._clockInterval = setInterval(function(){
             that._tick();
         }, 500);
@@ -8393,8 +8456,6 @@ var Collapse = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCollapseCreate, [this.element]);
-
         return this;
     },
 
@@ -8445,6 +8506,11 @@ var Collapse = {
         });
 
         this.toggle = toggle;
+
+        Utils.exec(this.options.onCollapseCreate, [this.element]);
+        setImmediate(function(){
+            element.fire("collapsecreate");
+        });
     },
 
     _close: function(el, immediate){
@@ -8460,7 +8526,8 @@ var Collapse = {
             el.trigger("onCollapse", null, el);
             el.data("collapsed", true);
             el.addClass("collapsed");
-            Utils.exec(options.onCollapse, [el]);
+            Utils.exec(options.onCollapse, null, elem[0]);
+            elem.fire("collapse");
         });
     },
 
@@ -8477,7 +8544,8 @@ var Collapse = {
             el.trigger("onExpand", null, el);
             el.data("collapsed", false);
             el.removeClass("collapsed");
-            Utils.exec(options.onExpand, [el]);
+            Utils.exec(options.onExpand, null, elem[0]);
+            elem.fire("expand");
         });
     },
 
@@ -8673,6 +8741,9 @@ var Countdown = {
 
 
         Utils.exec(o.onCountdownCreate, [element], element[0]);
+        setImmediate(function(){
+            element.fire("countdowncreate");
+        });
 
         if (o.start === true) {
             this.start();
@@ -8696,6 +8767,9 @@ var Countdown = {
         var element = this.element, o = this.options;
         element.toggleClass("blink");
         Utils.exec(o.onBlink, [this.current], element[0]);
+        element.fire("blink", {
+            time: this.current
+        })
     },
 
     tick: function(){
@@ -8714,6 +8788,9 @@ var Countdown = {
             this.stop();
             element.addClass(o.clsAlarm);
             Utils.exec(o.onAlarm, [now], element[0]);
+            element.fire("alarm", {
+                time: now
+            });
             return ;
         }
 
@@ -8729,6 +8806,9 @@ var Countdown = {
                 this.zeroDaysFired = true;
                 days.addClass(o.clsZero);
                 Utils.exec(o.onZero, ["days", days], element[0]);
+                element.fire("zero", {
+                    parts: ["days", days]
+                });
             }
         }
 
@@ -8744,6 +8824,9 @@ var Countdown = {
                 this.zeroHoursFired = true;
                 hours.addClass(o.clsZero);
                 Utils.exec(o.onZero, ["hours", hours], element[0]);
+                element.fire("zero", {
+                    parts: ["hours", hours]
+                });
             }
         }
 
@@ -8759,6 +8842,10 @@ var Countdown = {
                 this.zeroMinutesFired = true;
                 minutes.addClass(o.clsZero);
                 Utils.exec(o.onZero, ["minutes", minutes], element[0]);
+                element.fire("zero", {
+                    parts: ["minutes", minutes]
+                });
+
             }
         }
 
@@ -8773,10 +8860,17 @@ var Countdown = {
                 this.zeroSecondsFired = true;
                 seconds.addClass(o.clsZero);
                 Utils.exec(o.onZero, ["seconds", seconds], element[0]);
+                element.fire("zero", {
+                    parts: ["seconds", seconds]
+                });
+
             }
         }
 
         Utils.exec(o.onTick, [{days:d, hours:h, minutes:m, seconds:s}], element[0]);
+        element.fire("tick", {
+            days:d, hours:h, minutes:m, seconds:s
+        });
     },
 
     draw: function(part, value){

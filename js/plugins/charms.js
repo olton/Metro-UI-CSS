@@ -19,7 +19,8 @@ var Charms = {
         clsCharms: "",
         onCharmCreate: Metro.noop,
         onOpen: Metro.noop,
-        onClose: Metro.noop
+        onClose: Metro.noop,
+        onToggle: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -43,6 +44,9 @@ var Charms = {
         this._createEvents();
 
         Utils.exec(o.onCharmCreate, [element]);
+        setImmediate(function(){
+            element.fire("charmcreate");
+        });
     },
 
     _createStructure: function(){
@@ -72,7 +76,8 @@ var Charms = {
 
         element.addClass("open");
 
-        Utils.exec(o.onOpen, [element]);
+        Utils.exec(o.onOpen, null, element[0]);
+        element.fire("open");
     },
 
     close: function(){
@@ -80,19 +85,21 @@ var Charms = {
 
         element.removeClass("open");
 
-        Utils.exec(o.onClose, [element]);
+        Utils.exec(o.onClose, null, element[0]);
+        element.fire("close");
     },
 
     toggle: function(){
         var element = this.element, o = this.options;
 
-        element.toggleClass("open");
-
         if (element.hasClass("open") === true) {
-            Utils.exec(o.onOpen, [element]);
+            this.close();
         } else {
-            Utils.exec(o.onClose, [element]);
+            this.open();
         }
+
+        Utils.exec(o.onToggle, null, element[0]);
+        element.fire("toggle");
     },
 
     opacity: function(v){

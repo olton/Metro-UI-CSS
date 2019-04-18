@@ -12,7 +12,15 @@
 + [x] Button group: add firing events. 
 + [x] Audio: add firing events. 
 + [x] Calendar: add firing events. 
++ [x] Calendar picker: add firing events. 
++ [x] Chat: add firing events. 
 + [x] Chat: fix error for time manipulation, issue #1355
++ [x] Carousel: add firing events. 
++ [x] Charm: add event `data-on-toggle`, add firing events.
++ [x] Checkbox: add firing events. 
++ [x] Clock: add firing events. 
++ [x] Collapse: add firing events. 
++ [x] Countdown: add firing events. 
 
 ### 4.2.40
 + [x] Chat: new component

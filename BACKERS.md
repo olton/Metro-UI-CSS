@@ -7,6 +7,22 @@ If you'd like to join them, please consider:
 - [Become a backer or sponsor on Patreon](https://www.patreon.com/metroui)
 - [Become a backer or sponsor on Open Collective](https://opencollective.com/metro4#backer)
 
+<hr>
+
+##### Patreon
+
+![Sponsors on Patreon](https://img.shields.io/badge/backers-2-red.svg)
+![Sponsors on Patreon](https://img.shields.io/badge/sponsors-0-red.svg)
+![Sponsors on Patreon](https://img.shields.io/badge/donation-$28-red.svg)
+
+##### Opencollective 
+
+[![Backers on Open Collective](https://opencollective.com/metro4/backers/badge.svg)](#backers) 
+[![Sponsors on Open Collective](https://opencollective.com/metro4/sponsors/badge.svg)](#sponsors)
+![Sponsors on Patreon](https://img.shields.io/badge/donation-$0-darklime.svg)
+
+<hr>
+
 <!--
 <h2 align="center">Platinum sponsors</h2>
 -->
