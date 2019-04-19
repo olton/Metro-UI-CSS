@@ -48,7 +48,10 @@ var ImageMagnifier = {
         this._createStructure();
         this._createEvents();
 
-        Utils.exec(o.onCreate, [element]);
+        Utils.exec(o.onImageMagnifierCreate, null, element[0]);
+        setImmediate(function(){
+            element.fire("imagemagnifiercreate");
+        });
     },
 
     _createStructure: function(){
@@ -204,7 +207,12 @@ var ImageMagnifier = {
 
             lens_move(pos);
 
-            Utils.exec(o.onMagnifierMove, [pos, glass, zoomElement], element[0]);
+            Utils.exec(o.onMagnifierMove, [pos, glass[0], zoomElement[0]], element[0]);
+            element.fire("magnifiermove", {
+                pos: pos,
+                glass: glass[0],
+                zoomElement: zoomElement[0]
+            });
 
             e.preventDefault();
         });

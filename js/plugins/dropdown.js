@@ -38,11 +38,17 @@ var Dropdown = {
     },
 
     _create: function(){
-        var that = this;
+        var that = this, element = this.element, o = this.options;
         this._createStructure();
         this._createEvents();
-        Utils.exec(this.options.onDropdownCreate, [this.element]);
-        if (this.element.hasClass("open")) {
+
+        Utils.exec(o.onDropdownCreate, null, element);
+
+        setImmediate(function(){
+            element.fire("dropdowncreate");
+        });
+
+        if (element.hasClass("open")) {
             setTimeout(function(){
                 that.open(true);
             }, 500)
@@ -144,7 +150,8 @@ var Dropdown = {
             el.trigger("onClose", null, el);
         });
 
-        Utils.exec(options.onUp, [el]);
+        Utils.exec(options.onUp, null, el[0]);
+        el.fire("up");
     },
 
     _open: function(el, immediate){
@@ -167,7 +174,8 @@ var Dropdown = {
             el.trigger("onOpen", null, el);
         });
 
-        Utils.exec(options.onDrop, [el]);
+        Utils.exec(options.onDrop, null, el[0]);
+        el.fire("drop");
     },
 
     close: function(immediate){

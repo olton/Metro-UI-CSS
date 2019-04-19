@@ -38,7 +38,10 @@ var ImageCompare = {
         this._createStructure();
         this._createEvents();
 
-        Utils.exec(o.onImageCompareCreate, [element], element[0]);
+        Utils.exec(o.onImageCompareCreate, null, element[0]);
+        setImmediate(function(){
+            element.fire("imagecomparecreate");
+        })
     },
 
     _createStructure: function(){
@@ -111,7 +114,11 @@ var ImageCompare = {
                 slider.css({
                     left: left_pos
                 });
-                Utils.exec(o.onSliderMove, [x, left_pos, slider[0]], element[0]);
+                Utils.exec(o.onSliderMove, [x, left_pos], slider[0]);
+                element.fire("slidermove", {
+                    x: x,
+                    l: left_pos
+                });
             });
             $(document).on(Metro.events.stop + "-" + element.attr("id"), function(){
                 $(document).off(Metro.events.move + "-" + element.attr("id"));
@@ -155,6 +162,10 @@ var ImageCompare = {
             });
 
             Utils.exec(o.onResize, [element_width, element_height], element[0]);
+            element.fire("resize", {
+                width: element_width,
+                height: element_height
+            });
         });
     },
 
