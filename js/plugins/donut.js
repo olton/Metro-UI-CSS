@@ -9,8 +9,6 @@ var Donut = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onDonutCreate, [this.element]);
-
         return this;
     },
 
@@ -74,6 +72,11 @@ var Donut = {
         element.html(html);
 
         this.val(o.value);
+
+        Utils.exec(o.onDonutCreate, null, element[0]);
+        setImmediate(function(){
+            element.fire("donutcreate");
+        });
     },
 
     _setValue: function(v){
@@ -127,7 +130,10 @@ var Donut = {
 
         this.value = v;
         //element.attr("data-value", v);
-        Utils.exec(o.onChange, [this.value, element]);
+        Utils.exec(o.onChange, [this.value], element[0]);
+        element.fire("change", {
+            value: this.value
+        });
     },
 
     changeValue: function(){

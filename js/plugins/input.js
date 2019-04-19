@@ -10,8 +10,6 @@ var Input = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onInputCreate, [this.element], this.elem);
-
         return this;
     },
     options: {
@@ -71,8 +69,16 @@ var Input = {
     },
 
     _create: function(){
+        var that = this, element = this.element, o = this.options;
+
         this._createStructure();
         this._createEvents();
+
+        Utils.exec(o.onInputCreate, null, element[0]);
+
+        setImmediate(function(){
+            element.fire("inputcreate");
+        });
     },
 
     _createStructure: function(){
@@ -209,16 +215,27 @@ var Input = {
                 })
             }
             Utils.exec(o.onClearClick, [curr, element.val()], element[0]);
+            element.fire("clearclick", {
+                prev: curr,
+                val: element.val()
+            });
         });
 
         container.on(Metro.events.start, ".input-reveal-button", function(){
             element.attr('type', 'text');
             Utils.exec(o.onRevealClick, [element.val()], element[0]);
+            element.fire("revealclick", {
+                val: element.val()
+            });
         });
 
         container.on(Metro.events.start, ".input-search-button", function(){
             if (o.searchButtonClick !== 'submit') {
-                Utils.exec(o.onSearchButtonClick, [element.val(), $(this)], element[0]);
+                Utils.exec(o.onSearchButtonClick, [element.val()], this);
+                element.fire("searchbuttonclick", {
+                    val: element.val(),
+                    button: this
+                });
             } else {
                 this.form.submit();
             }
@@ -242,6 +259,11 @@ var Input = {
                 that.history.push(val);
                 that.historyIndex = that.history.length - 1;
                 Utils.exec(o.onHistoryChange, [val, that.history, that.historyIndex], element[0]);
+                element.fire("historychange", {
+                    val: val,
+                    history: that.history,
+                    historyIndex: that.historyIndex
+                });
                 if (o.preventSubmit === true) {
                     e.preventDefault();
                 }
@@ -253,6 +275,11 @@ var Input = {
                     element.val("");
                     element.val(that.history[that.historyIndex]);
                     Utils.exec(o.onHistoryDown, [element.val(), that.history, that.historyIndex], element[0]);
+                    element.fire("historydown", {
+                        val: element.val(),
+                        history: that.history,
+                        historyIndex: that.historyIndex
+                    });
                 } else {
                     that.historyIndex = 0;
                 }
@@ -265,6 +292,11 @@ var Input = {
                     element.val("");
                     element.val(that.history[that.historyIndex]);
                     Utils.exec(o.onHistoryUp, [element.val(), that.history, that.historyIndex], element[0]);
+                    element.fire("historyup", {
+                        val: element.val(),
+                        history: that.history,
+                        historyIndex: that.historyIndex
+                    });
                 } else {
                     that.historyIndex = that.history.length - 1;
                 }
@@ -275,6 +307,9 @@ var Input = {
         element.on(Metro.events.keydown, function(e){
             if (e.keyCode === Metro.keyCode.ENTER) {
                 Utils.exec(o.onEnterClick, [element.val()], element[0]);
+                element.fire("enterclick", {
+                    val: element.val()
+                });
             }
         });
 

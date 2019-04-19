@@ -113,8 +113,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.41-dev 18/04/2019 08:55",
-    versionFull: "4.2.41-dev 18/04/2019 08:55",
+    version: "4.2.41-dev 19/04/2019 15:57",
+    versionFull: "4.2.41-dev 19/04/2019 15:57",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -9175,6 +9175,9 @@ var Counter = {
         this._calcArray();
 
         Utils.exec(o.onCounterCreate, [element], this.elem);
+        setImmediate(function(){
+            element.fire("countercreate");
+        });
 
         if (o.timeout !== null && Utils.isInt(o.timeout)) {
             setTimeout(function () {
@@ -9202,19 +9205,23 @@ var Counter = {
         var tick = function(){
             if (that.numbers.length === 0) {
                 Utils.exec(o.onStop, [element], element[0]);
+                element.fire("stop");
                 return ;
             }
             var n = that.numbers.shift();
             Utils.exec(o.onTick, [n, element], element[0]);
+            element.fire("tick");
             element.html(Number(n).format(0, 0, o.delimiter));
             if (that.numbers.length > 0) {
                 setTimeout(tick, o.delay);
             } else {
                 Utils.exec(o.onStop, [element], element[0]);
+                element.fire("stop");
             }
         };
 
         Utils.exec(o.onStart, [element], element[0]);
+        element.fire("start");
 
         setTimeout(tick, o.delay);
     },
@@ -9357,6 +9364,9 @@ var Cube = {
         this._createEvents();
 
         Utils.exec(o.onCubeCreate, [element]);
+        setImmediate(function(){
+            element.fire("cubecreate");
+        });
     },
 
     _parseRules: function(rules){
@@ -9559,6 +9569,9 @@ var Cube = {
 
         var interval = setTimeout(function(){
             Utils.exec(o.onTick, [index], element[0]);
+            element.fire("tick", {
+                index: index
+            });
             clearInterval(interval);
             Utils.arrayDelete(that.intervals, interval);
         }, speed);
@@ -9795,6 +9808,9 @@ var DatePicker = {
         this._set();
 
         Utils.exec(o.onDatePickerCreate, [element]);
+        setImmediate(function(){
+            element.fire("datepickercreate");
+        });
     },
 
     _createStructure: function(){
@@ -9935,7 +9951,7 @@ var DatePicker = {
     },
 
     _addScrollEvents: function(){
-        var picker = this.picker, o = this.options;
+        var picker = this.picker, o = this.options, element = this.element;
         var lists = ['month', 'day', 'year'];
         $.each(lists, function(){
             var list_name = this;
@@ -9956,6 +9972,10 @@ var DatePicker = {
                 }, 100, function(){
                     target_element.addClass("active");
                     Utils.exec(o.onScroll, [target_element, list, picker], list[0]);
+                    element.fire("scroll", {
+                        target: target_element,
+                        list: list
+                    });
                 });
             });
         });
@@ -9997,7 +10017,9 @@ var DatePicker = {
         element.val(this.value.format(o.format, o.locale)).trigger("change");
 
         Utils.exec(o.onSet, [this.value, element.val(), element, picker], element[0]);
-
+        element.fire("set", {
+            value: this.value
+        });
     },
 
     open: function(){
@@ -10045,6 +10067,9 @@ var DatePicker = {
         this.isOpen = true;
 
         Utils.exec(o.onOpen, [this.value, element, picker], element[0]);
+        element.fire("open", {
+            value: this.value
+        });
     },
 
     close: function(){
@@ -10052,6 +10077,9 @@ var DatePicker = {
         picker.find(".select-wrapper").hide();
         this.isOpen = false;
         Utils.exec(o.onClose, [this.value, element, picker], element[0]);
+        element.fire("close", {
+            value: this.value
+        });
     },
 
     val: function(t){
@@ -10276,6 +10304,9 @@ var Dialog = {
         });
 
         Utils.exec(this.options.onDialogCreate, [this.element]);
+        setImmediate(function(){
+            element.fire("dialogcreate");
+        });
     },
 
     _overlay: function(){
@@ -10307,6 +10338,7 @@ var Dialog = {
                 top: "100%"
             });
             Utils.exec(o.onHide, [that], element[0]);
+            element.fire("hide");
             Utils.callback(callback);
         }, timeout);
     },
@@ -10318,6 +10350,7 @@ var Dialog = {
             visibility: "visible"
         });
         Utils.exec(o.onShow, [that], element[0]);
+        element.fire("show");
         Utils.callback(callback);
     },
 
@@ -10386,6 +10419,7 @@ var Dialog = {
         this.hide(function(){
             element.data("open", false);
             Utils.exec(o.onClose, [element], element[0]);
+            element.fire("close");
             if (o.removeOnClose === true) {
                 element.remove();
             }
@@ -10406,6 +10440,7 @@ var Dialog = {
 
         this.show(function(){
             Utils.exec(o.onOpen, [element], element[0]);
+            element.fire("open");
             element.data("open", true);
             if (parseInt(o.autoHide) > 0) {
                 setTimeout(function(){
@@ -10515,8 +10550,6 @@ var Donut = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onDonutCreate, [this.element]);
-
         return this;
     },
 
@@ -10580,6 +10613,11 @@ var Donut = {
         element.html(html);
 
         this.val(o.value);
+
+        Utils.exec(o.onDonutCreate, null, element[0]);
+        setImmediate(function(){
+            element.fire("donutcreate");
+        });
     },
 
     _setValue: function(v){
@@ -10633,7 +10671,10 @@ var Donut = {
 
         this.value = v;
         //element.attr("data-value", v);
-        Utils.exec(o.onChange, [this.value, element]);
+        Utils.exec(o.onChange, [this.value], element[0]);
+        element.fire("change", {
+            value: this.value
+        });
     },
 
     changeValue: function(){
@@ -10772,15 +10813,21 @@ var Draggable = {
 
             moveElement(e);
 
-            Utils.exec(o.onDragStart, [position, element]);
+            Utils.exec(o.onDragStart, [position], element[0]);
+            element.fire("dragstart", {
+                position: position
+            });
 
             $(document).on(Metro.events.moveAll, function(e){
                 moveElement(e);
                 Utils.exec(o.onDragMove, [position], elem);
+                element.fire("dragmove", {
+                    position: position
+                });
                 //e.preventDefault();
             });
 
-            $(document).on(Metro.events.stopAll, function(e){
+            $(document).on(Metro.events.stopAll, function(){
                 element.css({
                     cursor: that.backup.cursor,
                     zIndex: that.backup.zIndex
@@ -10795,6 +10842,9 @@ var Draggable = {
                 that.move = false;
 
                 Utils.exec(o.onDragStop, [position], elem);
+                element.fire("dragstop", {
+                    position: position
+                });
             });
         });
     },
@@ -10856,11 +10906,17 @@ var Dropdown = {
     },
 
     _create: function(){
-        var that = this;
+        var that = this, element = this.element, o = this.options;
         this._createStructure();
         this._createEvents();
-        Utils.exec(this.options.onDropdownCreate, [this.element]);
-        if (this.element.hasClass("open")) {
+
+        Utils.exec(o.onDropdownCreate, null, element);
+
+        setImmediate(function(){
+            element.fire("dropdowncreate");
+        });
+
+        if (element.hasClass("open")) {
             setTimeout(function(){
                 that.open(true);
             }, 500)
@@ -10962,7 +11018,8 @@ var Dropdown = {
             el.trigger("onClose", null, el);
         });
 
-        Utils.exec(options.onUp, [el]);
+        Utils.exec(options.onUp, null, el[0]);
+        el.fire("up");
     },
 
     _open: function(el, immediate){
@@ -10985,7 +11042,8 @@ var Dropdown = {
             el.trigger("onOpen", null, el);
         });
 
-        Utils.exec(options.onDrop, [el]);
+        Utils.exec(options.onDrop, null, el[0]);
+        el.fire("drop");
     },
 
     close: function(immediate){
@@ -11028,8 +11086,6 @@ var File = {
 
         this._setOptionsFromDOM();
         this._create();
-
-        Utils.exec(this.options.onFileCreate, [this.element], elem);
 
         return this;
     },
@@ -11113,6 +11169,11 @@ var File = {
         } else {
             this.enable();
         }
+
+        Utils.exec(o.onFileCreate, null, element[0]);
+        setImmediate(function(){
+            element.fire("filecreate");
+        });
     },
 
     _createEvents: function(){
@@ -11147,7 +11208,10 @@ var File = {
                 files.html(element[0].files.length + " " +o.filesTitle);
             }
 
-            Utils.exec(o.onSelect, [fi.files, element], element[0]);
+            Utils.exec(o.onSelect, [fi.files], element[0]);
+            element.fire("select", {
+                files: fi.files
+            });
         });
 
         element.on(Metro.events.focus, function(){container.addClass("focused");});
@@ -11231,8 +11295,6 @@ var Gravatar = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onGravatarCreate, [this.element]);
-
         return this;
     },
     options: {
@@ -11284,6 +11346,12 @@ var Gravatar = {
             return;
         }
         img.attr("src", this.getImageSrc(o.email, o.size, o.default));
+
+        Utils.exec(o.onGravatarCreate, null, element[0]);
+        setImmediate(function(){
+            element.fire("gravatarcreate");
+        });
+
         return this;
     },
 
@@ -11330,8 +11398,6 @@ var Hint = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onHintCreate, [this.element]);
-
         return this;
     },
 
@@ -11341,9 +11407,9 @@ var Hint = {
         hintText: "",
         hintPosition: Metro.position.TOP,
         hintOffset: 4,
-        onHintCreate: Metro.noop,
         onHintShow: Metro.noop,
-        onHintHide: Metro.noop
+        onHintHide: Metro.noop,
+        onHintCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -11379,6 +11445,11 @@ var Hint = {
         $(window).on(Metro.events.scroll + "-hint", function(){
             if (that.hint !== null) that.setPosition();
         });
+
+        Utils.exec(o.onHintCreate, null, element[0]);
+        setImmediate(function(){
+            element.fire("hintcreate");
+        });
     },
 
     createHint: function(){
@@ -11399,7 +11470,10 @@ var Hint = {
         this.setPosition();
 
         hint.appendTo($('body'));
-        Utils.exec(o.onHintShow, [hint, element]);
+        Utils.exec(o.onHintShow, [element[0]], hint[0]);
+        element.fire("hintshow", {
+            element: element[0]
+        });
     },
 
     setPosition: function(){
@@ -11440,7 +11514,12 @@ var Hint = {
         var timeout = options.onHintHide === Metro.noop ? 0 : 300;
 
         if (hint !== null) {
-            Utils.exec(options.onHintHide, [hint, element]);
+
+            Utils.exec(options.onHintHide, [element[0]], hint[0]);
+            element.fire("hinthide", {
+                element: element[0]
+            });
+
             setTimeout(function(){
                 hint.hide(0, function(){
                     hint.remove();
@@ -11488,11 +11567,13 @@ var HtmlContainer = {
     },
 
     options: {
+        method: "get",
         htmlSource: null,
+        requestData: null,
         insertMode: "replace", // replace, append, prepend
-        onLoad: Metro.noop,
-        onFail: Metro.noop,
-        onDone: Metro.noop,
+        onHtmlLoad: Metro.noop,
+        onHtmlLoadFail: Metro.noop,
+        onHtmlLoadDone: Metro.noop,
         onHtmlContainerCreate: Metro.noop
     },
 
@@ -11517,42 +11598,68 @@ var HtmlContainer = {
             this._load();
         }
 
-        Utils.exec(o.onHtmlContainerCreate, [element], element[0]);
+        o.method = o.method.toLowerCase();
+
+        Utils.exec(o.onHtmlContainerCreate, null, element[0]);
+        setImmediate(function(){
+            element.fire("htmlcontainercreate");
+        });
     },
 
     _load: function(){
-        var element = this.element, elem = this.elem, o = this.options;
-        var xhttp, html;
+        var element = this.element, o = this.options;
+        var data = element.attr("data-request-data");
 
-        html = o.htmlSource;
+        if (!Utils.isValue(o.requestData)) {
+            data = {};
+        }
 
-        xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (this.readyState === 4) {
-                if (this.status === 404) {
-                    elem.innerHTML = "Page not found.";
-                    Utils.exec(o.onFail, [this], elem);
+        $[o.method](o.htmlSource, data, function(data){
+            switch (o.insertMode.toLowerCase()) {
+                case "prepend": element.prepend(data); break;
+                case "append": element.append(data); break;
+                default: {
+                    element.html(data);
                 }
-                if (this.status === 200) {
-                    switch (o.insertMode.toLowerCase()) {
-                        case "prepend": element.prepend(this.responseText); break;
-                        case "append": element.append(this.responseText); break;
-                        default: {
-                            element.html(this.responseText);
-                        }
-                    }
-                    Utils.exec(o.onLoad, [this.responseText], elem);
-                }
-
-                Utils.exec(o.onDone, [this], elem);
             }
-        };
-        xhttp.open("GET", html, true);
-        xhttp.send();
+            Utils.exec(o.onHtmlLoad, [data, o.htmlSource], element[0]);
+            console.log();
+            element.fire("htmlload", {
+                data: data,
+                source: o.htmlSource
+            });
+        })
+        .fail(function(xhr){
+            Utils.exec(o.onHtmlLoadFail, [xhr], element[0]);
+            element.fire("htmlloadfail", {
+                xhr: xhr
+            });
+        })
+        .always(function(xhr){
+            Utils.exec(o.onHtmlLoadDone, [xhr], element[0]);
+            element.fire("htmlloaddone", {
+                xhr: xhr
+            });
+        });
+    },
+
+    load: function(source, data){
+        var o = this.options;
+        if (source) {
+            o.htmlSource = source;
+        }
+        if (data) {
+            if (typeof data === 'string') {
+                o.requestData = JSON.parse(data);
+            } else {
+                o.requestData = data;
+            }
+        }
+        this._load();
     },
 
     changeAttribute: function(attributeName){
-        var element = this.element, o = this.options;
+        var that = this, element = this.element, o = this.options;
 
         var changeHTMLSource = function(){
             var html = element.attr("data-html-source");
@@ -11563,7 +11670,7 @@ var HtmlContainer = {
                 element.html("");
             }
             o.htmlSource = html;
-            this._load();
+            that._load();
         };
 
         var changeInsertMode = function(){
@@ -11573,9 +11680,15 @@ var HtmlContainer = {
             }
         };
 
+        var changeRequestData = function(){
+            var data = element.attr("data-request-data");
+            that.load(o.htmlSource, data);
+        };
+
         switch (attributeName) {
             case "data-html-source": changeHTMLSource(); break;
             case "data-insert-mode": changeInsertMode(); break;
+            case "data-request-data": changeRequestData(); break;
         }
     },
 
@@ -11626,7 +11739,10 @@ var ImageCompare = {
         this._createStructure();
         this._createEvents();
 
-        Utils.exec(o.onImageCompareCreate, [element], element[0]);
+        Utils.exec(o.onImageCompareCreate, null, element[0]);
+        setImmediate(function(){
+            element.fire("imagecomparecreate");
+        })
     },
 
     _createStructure: function(){
@@ -11699,7 +11815,11 @@ var ImageCompare = {
                 slider.css({
                     left: left_pos
                 });
-                Utils.exec(o.onSliderMove, [x, left_pos, slider[0]], element[0]);
+                Utils.exec(o.onSliderMove, [x, left_pos], slider[0]);
+                element.fire("slidermove", {
+                    x: x,
+                    l: left_pos
+                });
             });
             $(document).on(Metro.events.stop + "-" + element.attr("id"), function(){
                 $(document).off(Metro.events.move + "-" + element.attr("id"));
@@ -11743,6 +11863,10 @@ var ImageCompare = {
             });
 
             Utils.exec(o.onResize, [element_width, element_height], element[0]);
+            element.fire("resize", {
+                width: element_width,
+                height: element_height
+            });
         });
     },
 
@@ -11812,7 +11936,10 @@ var ImageMagnifier = {
         this._createStructure();
         this._createEvents();
 
-        Utils.exec(o.onCreate, [element]);
+        Utils.exec(o.onImageMagnifierCreate, null, element[0]);
+        setImmediate(function(){
+            element.fire("imagemagnifiercreate");
+        });
     },
 
     _createStructure: function(){
@@ -11968,7 +12095,12 @@ var ImageMagnifier = {
 
             lens_move(pos);
 
-            Utils.exec(o.onMagnifierMove, [pos, glass, zoomElement], element[0]);
+            Utils.exec(o.onMagnifierMove, [pos, glass[0], zoomElement[0]], element[0]);
+            element.fire("magnifiermove", {
+                pos: pos,
+                glass: glass[0],
+                zoomElement: zoomElement[0]
+            });
 
             e.preventDefault();
         });
@@ -12049,7 +12181,10 @@ var InfoBox = {
         this._createStructure();
         this._createEvents();
 
-        Utils.exec(o.onInfoBoxCreate, [element], element[0]);
+        Utils.exec(o.onInfoBoxCreate, null, element[0]);
+        setImmediate(function(){
+            element.fire("infoboxcreate");
+        })
     },
 
     _overlay: function(){
@@ -12165,7 +12300,9 @@ var InfoBox = {
             visibility: "visible"
         });
 
-        Utils.exec(o.onOpen, [element], element[0]);
+        Utils.exec(o.onOpen, null, element[0]);
+        element.fire("open");
+
         element.data("open", true);
         if (parseInt(o.autoHide) > 0) {
             setTimeout(function(){
@@ -12186,7 +12323,9 @@ var InfoBox = {
             top: "100%"
         });
 
-        Utils.exec(o.onClose, [element], element[0]);
+        Utils.exec(o.onClose, null, element[0]);
+        element.fire("close");
+
         element.data("open", false);
 
         if (o.removeOnClose === true) {
@@ -12450,8 +12589,6 @@ var Input = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onInputCreate, [this.element], this.elem);
-
         return this;
     },
     options: {
@@ -12511,8 +12648,16 @@ var Input = {
     },
 
     _create: function(){
+        var that = this, element = this.element, o = this.options;
+
         this._createStructure();
         this._createEvents();
+
+        Utils.exec(o.onInputCreate, null, element[0]);
+
+        setImmediate(function(){
+            element.fire("inputcreate");
+        });
     },
 
     _createStructure: function(){
@@ -12649,16 +12794,27 @@ var Input = {
                 })
             }
             Utils.exec(o.onClearClick, [curr, element.val()], element[0]);
+            element.fire("clearclick", {
+                prev: curr,
+                val: element.val()
+            });
         });
 
         container.on(Metro.events.start, ".input-reveal-button", function(){
             element.attr('type', 'text');
             Utils.exec(o.onRevealClick, [element.val()], element[0]);
+            element.fire("revealclick", {
+                val: element.val()
+            });
         });
 
         container.on(Metro.events.start, ".input-search-button", function(){
             if (o.searchButtonClick !== 'submit') {
-                Utils.exec(o.onSearchButtonClick, [element.val(), $(this)], element[0]);
+                Utils.exec(o.onSearchButtonClick, [element.val()], this);
+                element.fire("searchbuttonclick", {
+                    val: element.val(),
+                    button: this
+                });
             } else {
                 this.form.submit();
             }
@@ -12682,6 +12838,11 @@ var Input = {
                 that.history.push(val);
                 that.historyIndex = that.history.length - 1;
                 Utils.exec(o.onHistoryChange, [val, that.history, that.historyIndex], element[0]);
+                element.fire("historychange", {
+                    val: val,
+                    history: that.history,
+                    historyIndex: that.historyIndex
+                });
                 if (o.preventSubmit === true) {
                     e.preventDefault();
                 }
@@ -12693,6 +12854,11 @@ var Input = {
                     element.val("");
                     element.val(that.history[that.historyIndex]);
                     Utils.exec(o.onHistoryDown, [element.val(), that.history, that.historyIndex], element[0]);
+                    element.fire("historydown", {
+                        val: element.val(),
+                        history: that.history,
+                        historyIndex: that.historyIndex
+                    });
                 } else {
                     that.historyIndex = 0;
                 }
@@ -12705,6 +12871,11 @@ var Input = {
                     element.val("");
                     element.val(that.history[that.historyIndex]);
                     Utils.exec(o.onHistoryUp, [element.val(), that.history, that.historyIndex], element[0]);
+                    element.fire("historyup", {
+                        val: element.val(),
+                        history: that.history,
+                        historyIndex: that.historyIndex
+                    });
                 } else {
                     that.historyIndex = that.history.length - 1;
                 }
@@ -12715,6 +12886,9 @@ var Input = {
         element.on(Metro.events.keydown, function(e){
             if (e.keyCode === Metro.keyCode.ENTER) {
                 Utils.exec(o.onEnterClick, [element.val()], element[0]);
+                element.fire("enterclick", {
+                    val: element.val()
+                });
             }
         });
 

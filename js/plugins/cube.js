@@ -113,6 +113,9 @@ var Cube = {
         this._createEvents();
 
         Utils.exec(o.onCubeCreate, [element]);
+        setImmediate(function(){
+            element.fire("cubecreate");
+        });
     },
 
     _parseRules: function(rules){
@@ -315,6 +318,9 @@ var Cube = {
 
         var interval = setTimeout(function(){
             Utils.exec(o.onTick, [index], element[0]);
+            element.fire("tick", {
+                index: index
+            });
             clearInterval(interval);
             Utils.arrayDelete(that.intervals, interval);
         }, speed);

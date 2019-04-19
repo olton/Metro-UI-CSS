@@ -15947,10 +15947,12 @@ h6 {
 .text-leader {
   font-size: 1.5rem;
   font-weight: 300;
+  line-height: 1.2;
 }
 .text-leader2 {
   font-size: 1.25rem;
   font-weight: 300;
+  line-height: 1.2;
 }
 .text-muted {
   color: #bebebe;
@@ -16145,6 +16147,9 @@ mark {
 }
 del {
   color: #bebebe;
+}
+p {
+  line-height: 1.2;
 }
 * + p {
   margin-top: 1rem;

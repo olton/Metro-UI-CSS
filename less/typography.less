@@ -100,10 +100,12 @@ body {
 .text-leader {
     .px2rem(font-size, 24px);
     font-weight: 300;
+    line-height: 1.2;
 }
 .text-leader2 {
     .px2rem(font-size, 20px);
     font-weight: 300;
+    line-height: 1.2;
 }
 
 .text-muted {
@@ -244,8 +246,12 @@ del {
     color: @gray;
 }
 
+p {
+    line-height: 1.2;
+}
+
 * + p {
-    .px2rem(margin-top, 16px);
+    margin-top: 1rem;
 }
 
 dl, ul, ol {

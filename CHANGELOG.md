@@ -4,23 +4,41 @@
 + [x] Table: add item template with property `template` and value wrapper `this.cellValue`
 + [x] Pagination: add function `Metro.pagination`
 + [x] Templates: now you can change `begin` and `end` template symbols with third argument `{beginToken, endToken}`
-+ [x] Table: add firing events. Now you can subscribe to all table events with `$.on()` or `element.addEventListener()`
-+ [x] Accordion: add firing events. 
-+ [x] Activity: add firing events. 
-+ [x] App bar: add firing events. 
-+ [x] Bottom sheet: add firing events. 
-+ [x] Button group: add firing events. 
-+ [x] Audio: add firing events. 
-+ [x] Calendar: add firing events. 
-+ [x] Calendar picker: add firing events. 
-+ [x] Chat: add firing events. 
++ [x] Html container: add attributes `data-method`, `data-request-data`
++ [x] Html container: change name of events to `data-on-html-load`, `data-on-html-load-fail`, `data-on-html-load-done`
++ [x] Typography: change `line-height` for `p`, `.text-leader`, `.text-leader2` to `1.2` 
++ [x] Table: events extensions. Now you can subscribe to all table events with `$.on()`
++ [x] Accordion: events extensions. 
++ [x] Activity: events extensions. 
++ [x] App bar: events extensions. 
++ [x] Bottom sheet: events extensions. 
++ [x] Button group: events extensions. 
++ [x] Audio: events extensions. 
++ [x] Calendar: events extensions. 
++ [x] Calendar picker: events extensions. 
++ [x] Chat: events extensions. 
 + [x] Chat: fix error for time manipulation, issue #1355
-+ [x] Carousel: add firing events. 
-+ [x] Charm: add event `data-on-toggle`, add firing events.
-+ [x] Checkbox: add firing events. 
-+ [x] Clock: add firing events. 
-+ [x] Collapse: add firing events. 
-+ [x] Countdown: add firing events. 
++ [x] Carousel: events extensions. 
++ [x] Charm: add event `data-on-toggle`, events extensions.
++ [x] Checkbox: events extensions. 
++ [x] Clock: events extensions. 
++ [x] Collapse: events extensions. 
++ [x] Countdown: events extensions. 
++ [x] Counter: events extensions. 
++ [x] Cube: events extensions. 
++ [x] Date picker: events extensions. 
++ [x] Dialog: events extensions. 
++ [x] Donut: events extensions. 
++ [x] Draggable: events extensions. 
++ [x] Dropdown: events extensions. 
++ [x] File: events extensions. 
++ [x] Gravatar: events extensions. 
++ [x] Hint: events extensions. 
++ [x] Html container: events extensions.
++ [x] Image compare: events extensions.
++ [x] Image magnifier: events extensions.
++ [x] Info box: events extensions.
++ [x] Input: events extensions.
 
 ### 4.2.40
 + [x] Chat: new component

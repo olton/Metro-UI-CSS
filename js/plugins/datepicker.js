@@ -86,6 +86,9 @@ var DatePicker = {
         this._set();
 
         Utils.exec(o.onDatePickerCreate, [element]);
+        setImmediate(function(){
+            element.fire("datepickercreate");
+        });
     },
 
     _createStructure: function(){
@@ -226,7 +229,7 @@ var DatePicker = {
     },
 
     _addScrollEvents: function(){
-        var picker = this.picker, o = this.options;
+        var picker = this.picker, o = this.options, element = this.element;
         var lists = ['month', 'day', 'year'];
         $.each(lists, function(){
             var list_name = this;
@@ -247,6 +250,10 @@ var DatePicker = {
                 }, 100, function(){
                     target_element.addClass("active");
                     Utils.exec(o.onScroll, [target_element, list, picker], list[0]);
+                    element.fire("scroll", {
+                        target: target_element,
+                        list: list
+                    });
                 });
             });
         });
@@ -288,7 +295,9 @@ var DatePicker = {
         element.val(this.value.format(o.format, o.locale)).trigger("change");
 
         Utils.exec(o.onSet, [this.value, element.val(), element, picker], element[0]);
-
+        element.fire("set", {
+            value: this.value
+        });
     },
 
     open: function(){
@@ -336,6 +345,9 @@ var DatePicker = {
         this.isOpen = true;
 
         Utils.exec(o.onOpen, [this.value, element, picker], element[0]);
+        element.fire("open", {
+            value: this.value
+        });
     },
 
     close: function(){
@@ -343,6 +355,9 @@ var DatePicker = {
         picker.find(".select-wrapper").hide();
         this.isOpen = false;
         Utils.exec(o.onClose, [this.value, element, picker], element[0]);
+        element.fire("close", {
+            value: this.value
+        });
     },
 
     val: function(t){

@@ -115,15 +115,21 @@ var Draggable = {
 
             moveElement(e);
 
-            Utils.exec(o.onDragStart, [position, element]);
+            Utils.exec(o.onDragStart, [position], element[0]);
+            element.fire("dragstart", {
+                position: position
+            });
 
             $(document).on(Metro.events.moveAll, function(e){
                 moveElement(e);
                 Utils.exec(o.onDragMove, [position], elem);
+                element.fire("dragmove", {
+                    position: position
+                });
                 //e.preventDefault();
             });
 
-            $(document).on(Metro.events.stopAll, function(e){
+            $(document).on(Metro.events.stopAll, function(){
                 element.css({
                     cursor: that.backup.cursor,
                     zIndex: that.backup.zIndex
@@ -138,6 +144,9 @@ var Draggable = {
                 that.move = false;
 
                 Utils.exec(o.onDragStop, [position], elem);
+                element.fire("dragstop", {
+                    position: position
+                });
             });
         });
     },

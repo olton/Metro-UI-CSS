@@ -12,8 +12,6 @@ var Hint = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onHintCreate, [this.element]);
-
         return this;
     },
 
@@ -23,9 +21,9 @@ var Hint = {
         hintText: "",
         hintPosition: Metro.position.TOP,
         hintOffset: 4,
-        onHintCreate: Metro.noop,
         onHintShow: Metro.noop,
-        onHintHide: Metro.noop
+        onHintHide: Metro.noop,
+        onHintCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -61,6 +59,11 @@ var Hint = {
         $(window).on(Metro.events.scroll + "-hint", function(){
             if (that.hint !== null) that.setPosition();
         });
+
+        Utils.exec(o.onHintCreate, null, element[0]);
+        setImmediate(function(){
+            element.fire("hintcreate");
+        });
     },
 
     createHint: function(){
@@ -81,7 +84,10 @@ var Hint = {
         this.setPosition();
 
         hint.appendTo($('body'));
-        Utils.exec(o.onHintShow, [hint, element]);
+        Utils.exec(o.onHintShow, [element[0]], hint[0]);
+        element.fire("hintshow", {
+            element: element[0]
+        });
     },
 
     setPosition: function(){
@@ -122,7 +128,12 @@ var Hint = {
         var timeout = options.onHintHide === Metro.noop ? 0 : 300;
 
         if (hint !== null) {
-            Utils.exec(options.onHintHide, [hint, element]);
+
+            Utils.exec(options.onHintHide, [element[0]], hint[0]);
+            element.fire("hinthide", {
+                element: element[0]
+            });
+
             setTimeout(function(){
                 hint.hide(0, function(){
                     hint.remove();

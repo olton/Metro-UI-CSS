@@ -7,8 +7,6 @@ var File = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onFileCreate, [this.element], elem);
-
         return this;
     },
     options: {
@@ -91,6 +89,11 @@ var File = {
         } else {
             this.enable();
         }
+
+        Utils.exec(o.onFileCreate, null, element[0]);
+        setImmediate(function(){
+            element.fire("filecreate");
+        });
     },
 
     _createEvents: function(){
@@ -125,7 +128,10 @@ var File = {
                 files.html(element[0].files.length + " " +o.filesTitle);
             }
 
-            Utils.exec(o.onSelect, [fi.files, element], element[0]);
+            Utils.exec(o.onSelect, [fi.files], element[0]);
+            element.fire("select", {
+                files: fi.files
+            });
         });
 
         element.on(Metro.events.focus, function(){container.addClass("focused");});

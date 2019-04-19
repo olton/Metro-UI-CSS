@@ -159,6 +159,9 @@ var Dialog = {
         });
 
         Utils.exec(this.options.onDialogCreate, [this.element]);
+        setImmediate(function(){
+            element.fire("dialogcreate");
+        });
     },
 
     _overlay: function(){
@@ -190,6 +193,7 @@ var Dialog = {
                 top: "100%"
             });
             Utils.exec(o.onHide, [that], element[0]);
+            element.fire("hide");
             Utils.callback(callback);
         }, timeout);
     },
@@ -201,6 +205,7 @@ var Dialog = {
             visibility: "visible"
         });
         Utils.exec(o.onShow, [that], element[0]);
+        element.fire("show");
         Utils.callback(callback);
     },
 
@@ -269,6 +274,7 @@ var Dialog = {
         this.hide(function(){
             element.data("open", false);
             Utils.exec(o.onClose, [element], element[0]);
+            element.fire("close");
             if (o.removeOnClose === true) {
                 element.remove();
             }
@@ -289,6 +295,7 @@ var Dialog = {
 
         this.show(function(){
             Utils.exec(o.onOpen, [element], element[0]);
+            element.fire("open");
             element.data("open", true);
             if (parseInt(o.autoHide) > 0) {
                 setTimeout(function(){

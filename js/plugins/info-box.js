@@ -49,7 +49,10 @@ var InfoBox = {
         this._createStructure();
         this._createEvents();
 
-        Utils.exec(o.onInfoBoxCreate, [element], element[0]);
+        Utils.exec(o.onInfoBoxCreate, null, element[0]);
+        setImmediate(function(){
+            element.fire("infoboxcreate");
+        })
     },
 
     _overlay: function(){
@@ -165,7 +168,9 @@ var InfoBox = {
             visibility: "visible"
         });
 
-        Utils.exec(o.onOpen, [element], element[0]);
+        Utils.exec(o.onOpen, null, element[0]);
+        element.fire("open");
+
         element.data("open", true);
         if (parseInt(o.autoHide) > 0) {
             setTimeout(function(){
@@ -186,7 +191,9 @@ var InfoBox = {
             top: "100%"
         });
 
-        Utils.exec(o.onClose, [element], element[0]);
+        Utils.exec(o.onClose, null, element[0]);
+        element.fire("close");
+
         element.data("open", false);
 
         if (o.removeOnClose === true) {

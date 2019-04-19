@@ -44,6 +44,9 @@ var Counter = {
         this._calcArray();
 
         Utils.exec(o.onCounterCreate, [element], this.elem);
+        setImmediate(function(){
+            element.fire("countercreate");
+        });
 
         if (o.timeout !== null && Utils.isInt(o.timeout)) {
             setTimeout(function () {
@@ -71,19 +74,23 @@ var Counter = {
         var tick = function(){
             if (that.numbers.length === 0) {
                 Utils.exec(o.onStop, [element], element[0]);
+                element.fire("stop");
                 return ;
             }
             var n = that.numbers.shift();
             Utils.exec(o.onTick, [n, element], element[0]);
+            element.fire("tick");
             element.html(Number(n).format(0, 0, o.delimiter));
             if (that.numbers.length > 0) {
                 setTimeout(tick, o.delay);
             } else {
                 Utils.exec(o.onStop, [element], element[0]);
+                element.fire("stop");
             }
         };
 
         Utils.exec(o.onStart, [element], element[0]);
+        element.fire("start");
 
         setTimeout(tick, o.delay);
     },
