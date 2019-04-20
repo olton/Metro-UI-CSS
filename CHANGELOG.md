@@ -7,7 +7,11 @@
 + [x] Html container: add attributes `data-method`, `data-request-data`
 + [x] Html container: change name of events to `data-on-html-load`, `data-on-html-load-fail`, `data-on-html-load-done`
 + [x] Typography: change `line-height` for `p`, `.text-leader`, `.text-leader2` to `1.2` 
-+ [x] Table: events extensions. Now you can subscribe to all table events with `$.on()`
++ [x] Charm: add event `data-on-toggle`.
++ [x] Chat: fix error for time manipulation, issue #1355
++ [x] Master: add events `data-on-next-page`, `data-on-prev-page`
++ [x] Events extensions: Now you can subscribe to all table events with `$.on()` or `addEventListener()`
++ [x] Table: events extensions.
 + [x] Accordion: events extensions. 
 + [x] Activity: events extensions. 
 + [x] App bar: events extensions. 
@@ -17,9 +21,8 @@
 + [x] Calendar: events extensions. 
 + [x] Calendar picker: events extensions. 
 + [x] Chat: events extensions. 
-+ [x] Chat: fix error for time manipulation, issue #1355
 + [x] Carousel: events extensions. 
-+ [x] Charm: add event `data-on-toggle`, events extensions.
++ [x] Charm: events extensions.
 + [x] Checkbox: events extensions. 
 + [x] Clock: events extensions. 
 + [x] Collapse: events extensions. 
@@ -39,6 +42,21 @@
 + [x] Image magnifier: events extensions.
 + [x] Info box: events extensions.
 + [x] Input: events extensions.
++ [x] Input  material: events extensions.
++ [x] Keypad: events extensions.
++ [x] List: events extensions.
++ [x] ListView: events extensions.
++ [x] Master: events extensions.
++ [x] NavView: events extensions.
++ [x] Panel: **partial** events extensions.
++ [x] Popovers: events extensions.
++ [x] Progress: events extensions.
++ [x] Radio: events extensions.
++ [x] Rating: events extensions.
++ [x] Resizeable: events extensions.
++ [x] Ribbon Menu: events extensions.
++ [x] Ripple: events extensions.
++ [x] Select: events extensions.
 
 ### 4.2.40
 + [x] Chat: new component

@@ -44,9 +44,7 @@ var Charms = {
         this._createEvents();
 
         Utils.exec(o.onCharmCreate, [element]);
-        setImmediate(function(){
-            element.fire("charmcreate");
-        });
+        element.fire("charmcreate");
     },
 
     _createStructure: function(){

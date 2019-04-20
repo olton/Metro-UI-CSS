@@ -8,8 +8,6 @@ var Resizable = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onResizableCreate, [this.element]);
-
         return this;
     },
     options: {
@@ -41,8 +39,13 @@ var Resizable = {
     },
 
     _create: function(){
+        var element = this.element, o = this.options;
+
         this._createStructure();
         this._createEvents();
+
+        Utils.exec(o.onResizableCreate, null, element[0]);
+        element.fire("resizeablecreate");
     },
 
     _createStructure: function(){
@@ -69,7 +72,10 @@ var Resizable = {
             var startHeight = parseInt(element.outerHeight());
             var size = {width: startWidth, height: startHeight};
 
-            Utils.exec(o.onResizeStart, [element, size]);
+            Utils.exec(o.onResizeStart, [size], element[0]);
+            element.fire("resizestart", {
+                size: size
+            });
 
             $(document).on(Metro.events.move + "-resize-element", function(e){
                 var moveXY = Utils.pageXY(e);
@@ -86,7 +92,10 @@ var Resizable = {
 
                 element.css(size);
 
-                Utils.exec(o.onResize, [element, size]);
+                Utils.exec(o.onResize, [size], element[0]);
+                element.fire("resize", {
+                    size: size
+                });
             });
 
             $(document).on(Metro.events.stop + "-resize-element", function(){
@@ -98,7 +107,10 @@ var Resizable = {
                     height: parseInt(element.outerHeight())
                 };
 
-                Utils.exec(o.onResizeStop, [element, size]);
+                Utils.exec(o.onResizeStop, [size], element[0]);
+                element.fire("resizestop", {
+                    size: size
+                });
             });
 
             e.preventDefault();

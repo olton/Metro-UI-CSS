@@ -63,14 +63,17 @@ var Keypad = {
     },
 
     _create: function(){
+        var element = this.element, o = this.options;
+
         this._createKeypad();
-        if (this.options.shuffle === true) {
+        if (o.shuffle === true) {
             this.shuffle();
         }
         this._createKeys();
         this._createEvents();
 
-        Utils.exec(this.options.onKeypadCreate, [this.element]);
+        Utils.exec(o.onKeypadCreate, null,element[0]);
+        element.fire("keypadcreate");
     },
 
     _createKeypad: function(){
@@ -234,15 +237,21 @@ var Keypad = {
                     that._setKeysPosition();
                 }
 
-                Utils.exec(o.onKey, [key.data('key'), that.value, element]);
+                Utils.exec(o.onKey, [key.data('key'), that.value], element[0]);
+                element.fire("key", {
+                    key: key.data("key"),
+                    val: that.value
+                });
             } else {
                 if (key.data('key') === '&times;') {
                     that.value = "";
-                    Utils.exec(o.onClear, [element]);
+                    Utils.exec(o.onClear, null, element[0]);
+                    element.fire("clear");
                 }
                 if (key.data('key') === '&larr;') {
                     that.value = (that.value.substring(0, that.value.length - 1));
-                    Utils.exec(o.onBackspace, [that.value, element]);
+                    Utils.exec(o.onBackspace, [that.value], element[0]);
+                    element.fire("backspace");
                 }
             }
 
@@ -255,7 +264,7 @@ var Keypad = {
             }
 
             element.trigger('change');
-            Utils.exec(o.onChange, [that.value, element]);
+            Utils.exec(o.onChange, [that.value], element[0]);
 
             e.preventDefault();
             e.stopPropagation();
@@ -277,10 +286,15 @@ var Keypad = {
     },
 
     shuffle: function(){
-        for (var i = 0; i < this.options.shuffleCount; i++) {
+        var element = this.element, o = this.options;
+        for (var i = 0; i < o.shuffleCount; i++) {
             this.keys_to_work = this.keys_to_work.shuffle();
         }
-        Utils.exec(this.options.onShuffle, [this.keys_to_work, this.keys, this.element]);
+        Utils.exec(o.onShuffle, [this.keys_to_work, this.keys], element[0]);
+        element.fire("shuffle", {
+            keys: this.keys,
+            keysToWork: this.keys_to_work
+        });
     },
 
     shuffleKeys: function(count){

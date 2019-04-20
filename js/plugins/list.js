@@ -129,12 +129,23 @@ var List = {
 
         if (o.source !== null) {
             Utils.exec(o.onDataLoad, [o.source], element[0]);
+            element.fire("dataload", {
+                source: o.source
+            });
 
             $.get(o.source, function(data){
                 that._build(data);
                 Utils.exec(o.onDataLoaded, [o.source, data], element[0]);
+                element.fire("dataloaded", {
+                    source: o.source,
+                    data: data
+                });
             }).fail(function( jqXHR, textStatus, errorThrown) {
                 Utils.exec(o.onDataLoadError, [o.source, jqXHR, textStatus, errorThrown], element[0]);
+                element.fire("dataloaderror", {
+                    source: source,
+                    xhr: jqXHR
+                });
             });
         } else {
             that._build();
@@ -153,7 +164,8 @@ var List = {
         this._createStructure();
         this._createEvents();
 
-        Utils.exec(o.onListCreate, [element], element[0]);
+        Utils.exec(o.onListCreate, null, element[0]);
+        element.fire("listcreate");
     },
 
     _createItemsFromHTML: function(){
@@ -234,7 +246,10 @@ var List = {
                 o.items = parseInt(val);
                 that.currentPage = 1;
                 that._draw();
-                Utils.exec(o.onRowsCountChange, [val], element[0])
+                Utils.exec(o.onRowsCountChange, [val], element[0]);
+                element.fire("rowscountchange", {
+                    val: val
+                });
             }
         });
 
@@ -473,14 +488,24 @@ var List = {
 
                 if (result) {
                     Utils.exec(o.onFilterItemAccepted, [item], element[0]);
+                    element.fire("filteritemaccepted", {
+                        item: item
+                    });
                 } else {
                     Utils.exec(o.onFilterItemDeclined, [item], element[0]);
+                    element.fire("filteritemdeclined", {
+                        item: item
+                    });
                 }
 
                 return result;
             });
 
-            Utils.exec(o.onSearch, [that.filterString, items], element[0])
+            Utils.exec(o.onSearch, [that.filterString, items], element[0]);
+            element.fire("search", {
+                search: that.filterString,
+                items: items
+            });
         } else {
             items = this.items;
         }
@@ -504,6 +529,9 @@ var List = {
                 $(items[i]).addClass(o.clsListItem).appendTo(element);
             }
             Utils.exec(o.onDrawItem, [items[i]], element[0]);
+            element.fire("drawitem", {
+                item: items[i]
+            });
         }
 
         this._info(start + 1, stop + 1, items.length);
@@ -511,7 +539,8 @@ var List = {
 
         this.activity.hide();
 
-        Utils.exec(o.onDraw, [element], element[0]);
+        Utils.exec(o.onDraw, null, element[0]);
+        element.fire("draw");
 
         if (cb !== undefined) {
             Utils.exec(cb, [element], element[0])
@@ -597,6 +626,9 @@ var List = {
         }
 
         Utils.exec(o.onSortStart, [this.items], element[0]);
+        element.fire("sortstart", {
+            items: this.items
+        });
 
         this.items.sort(function(a, b){
             var c1 = that._getItemContent(a);
@@ -612,12 +644,20 @@ var List = {
 
             if (result !== 0) {
                 Utils.exec(o.onSortItemSwitch, [a, b, result], element[0]);
+                element.fire("sortitemswitch", {
+                    a: a,
+                    b: b,
+                    result: result
+                });
             }
 
             return result;
         });
 
         Utils.exec(o.onSortStop, [this.items], element[0]);
+        element.fire("sortstop", {
+            items: this.items
+        });
 
         if (redraw === true) {
             this._draw();
@@ -642,9 +682,16 @@ var List = {
         o.source = source;
 
         Utils.exec(o.onDataLoad, [o.source], element[0]);
+        element.fire("dataload", {
+            source: o.source
+        });
 
         $.get(o.source, function(data){
             Utils.exec(o.onDataLoaded, [o.source, data], element[0]);
+            element.fire("dataloaded", {
+                source: o.source,
+                data: data
+            });
 
             that._createItemsFromJSON(data);
 
@@ -679,6 +726,10 @@ var List = {
 
         }).fail(function( jqXHR, textStatus, errorThrown) {
             Utils.exec(o.onDataLoadError, [o.source, jqXHR, textStatus, errorThrown], element[0]);
+            element.fire("dataloaderror", {
+                source: o.source,
+                xhr: jqXHR
+            });
         });
     },
 

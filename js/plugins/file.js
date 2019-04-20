@@ -91,9 +91,7 @@ var File = {
         }
 
         Utils.exec(o.onFileCreate, null, element[0]);
-        setImmediate(function(){
-            element.fire("filecreate");
-        });
+        element.fire("filecreate");
     },
 
     _createEvents: function(){

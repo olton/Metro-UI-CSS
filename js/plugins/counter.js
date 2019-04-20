@@ -44,9 +44,7 @@ var Counter = {
         this._calcArray();
 
         Utils.exec(o.onCounterCreate, [element], this.elem);
-        setImmediate(function(){
-            element.fire("countercreate");
-        });
+        element.fire("countercreate");
 
         if (o.timeout !== null && Utils.isInt(o.timeout)) {
             setTimeout(function () {

@@ -60,9 +60,7 @@ var Gravatar = {
         img.attr("src", this.getImageSrc(o.email, o.size, o.default));
 
         Utils.exec(o.onGravatarCreate, null, element[0]);
-        setImmediate(function(){
-            element.fire("gravatarcreate");
-        });
+        element.fire("gravatarcreate");
 
         return this;
     },

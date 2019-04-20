@@ -179,9 +179,7 @@ var Calendar = {
         }
 
         Utils.exec(this.options.onCalendarCreate, [this.element]);
-        setImmediate(function(){
-            element.fire("calendarcreate");
-        });
+        element.fire("calendarcreate");
     },
 
     _dates2array: function(val, category){

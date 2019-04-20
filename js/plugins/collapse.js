@@ -60,9 +60,7 @@ var Collapse = {
         this.toggle = toggle;
 
         Utils.exec(this.options.onCollapseCreate, [this.element]);
-        setImmediate(function(){
-            element.fire("collapsecreate");
-        });
+        element.fire("collapsecreate");
     },
 
     _close: function(el, immediate){

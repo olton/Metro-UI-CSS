@@ -39,7 +39,8 @@ var RibbonMenu = {
         this._createStructure();
         this._createEvents();
 
-        Utils.exec(o.onRibbonMenuCreate, [element]);
+        Utils.exec(o.onRibbonMenuCreate, null, element[0]);
+        element.fire("ribbonmenucreate");
     },
 
     _createStructure: function(){
@@ -87,11 +88,14 @@ var RibbonMenu = {
                 if (o.onStatic === Metro.noop && link.attr("href") !== undefined) {
                     document.location.href = link.attr("href");
                 } else {
-                    Utils.exec(o.onStatic, [tab, element]);
+                    Utils.exec(o.onStatic, [tab[0]], element[0]);
+                    element.fire("static", {
+                        tab: tab[0]
+                    });
                 }
             } else {
-                if (Utils.exec(o.onBeforeTab, [tab, element]) === true) {
-                    that.open(tab);
+                if (Utils.exec(o.onBeforeTab, [tab[0]], element[0]) === true) {
+                    that.open(tab[0]);
                 }
             }
             e.preventDefault();
@@ -100,18 +104,22 @@ var RibbonMenu = {
 
     open: function(tab){
         var element = this.element, o = this.options;
+        var $tab = $(tab);
         var tabs = element.find(".tabs-holder li");
         var sections = element.find(".content-holder .section");
-        var target = tab.children("a").attr("href");
+        var target = $tab.children("a").attr("href");
         var target_section = target !== "#" ? element.find(target) : null;
 
         tabs.removeClass("active");
-        tab.addClass("active");
+        $tab.addClass("active");
 
         sections.removeClass("active");
         if (target_section) target_section.addClass("active");
 
-        Utils.exec(o.onTab, [tab, element]);
+        Utils.exec(o.onTab, [$tab[0]], element[0]);
+        element.fire("tab", {
+            tab: $tab[0]
+        });
     },
 
     changeAttribute: function(attributeName){

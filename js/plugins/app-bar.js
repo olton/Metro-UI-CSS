@@ -38,10 +38,7 @@ var AppBar = {
         this._createEvents();
 
         Utils.exec(o.onAppBarCreate, [element]);
-
-        setImmediate(function(){
-            element.fire("appbarcreate");
-        });
+        element.fire("appbarcreate");
     },
 
     _createStructure: function(){

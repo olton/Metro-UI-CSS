@@ -47,9 +47,7 @@ var HtmlContainer = {
         o.method = o.method.toLowerCase();
 
         Utils.exec(o.onHtmlContainerCreate, null, element[0]);
-        setImmediate(function(){
-            element.fire("htmlcontainercreate");
-        });
+        element.fire("htmlcontainercreate");
     },
 
     _load: function(){

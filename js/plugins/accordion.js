@@ -46,10 +46,7 @@ var Accordion = {
         this._createEvents();
 
         Utils.exec(o.onAccordionCreate, [element]);
-
-        setImmediate(function(){
-            element.fire("accordioncreate");
-        });
+        element.fire("accordioncreate");
     },
 
     _createStructure: function(){
@@ -114,7 +111,7 @@ var Accordion = {
         var element = this.element, o = this.options;
         var frame = $(f);
 
-        if (Utils.exec(o.onFrameBeforeOpen, [frame], element[0]) === false) {
+        if (Utils.exec(o.onFrameBeforeOpen, [frame[0]], element[0]) === false) {
             return false;
         }
 
@@ -126,10 +123,10 @@ var Accordion = {
         frame.children(".heading").addClass(o.activeHeadingClass);
         frame.children(".content").addClass(o.activeContentClass).slideDown(o.duration);
 
-        Utils.exec(o.onFrameOpen, [frame], element[0]);
+        Utils.exec(o.onFrameOpen, [frame[0]], element[0]);
 
         element.fire("frameopen", {
-            frame: frame
+            frame: frame[0]
         });
     },
 
@@ -141,7 +138,7 @@ var Accordion = {
             return ;
         }
 
-        if (Utils.exec(o.onFrameBeforeClose, [frame], element[0]) === false) {
+        if (Utils.exec(o.onFrameBeforeClose, [frame[0]], element[0]) === false) {
             return ;
         }
 
@@ -149,10 +146,10 @@ var Accordion = {
         frame.children(".heading").removeClass(o.activeHeadingClass);
         frame.children(".content").removeClass(o.activeContentClass).slideUp(o.duration);
 
-        Utils.callback(o.onFrameClose, [frame], element[0]);
+        Utils.callback(o.onFrameClose, [frame[0]], element[0]);
 
         element.fire("frameclose", {
-            frame: frame
+            frame: frame[0]
         });
     },
 

@@ -34,6 +34,8 @@ var Master = {
         onBeforePage: Metro.noop_true,
         onBeforeNext: Metro.noop_true,
         onBeforePrev: Metro.noop_true,
+        onNextPage: Metro.noop,
+        onPrevPage: Metro.noop,
         onMasterCreate: Metro.noop
     },
 
@@ -63,7 +65,8 @@ var Master = {
         this._createPages();
         this._createEvents();
 
-        Utils.exec(this.options.onMasterCreate, [this.element]);
+        Utils.exec(o.onMasterCreate, null, element[0]);
+        element.fire("mastercreate");
     },
 
     _createControls: function(){
@@ -205,15 +208,12 @@ var Master = {
     },
 
     _slideTo: function(to){
-        var current, next;
-
-        if (to === undefined) {
-            return ;
-        }
+        var element = this.element, o = this.options;
+        var current, next, forward = to.toLowerCase() === 'next';
 
         current = this.pages[this.currentIndex];
 
-        if (to === "next") {
+        if (forward ) {
             if (this.currentIndex + 1 >= this.pages.length) {
                 return ;
             }
@@ -226,6 +226,13 @@ var Master = {
         }
 
         next = this.pages[this.currentIndex];
+
+        Utils.exec(forward ? o.onNextPage : o.onPrevPage, [current, next], element[0]);
+        element.fire(forward ? "nextpage" : "prevpage", {
+            current: current,
+            next: next,
+            forward: forward
+        });
 
         this._effect(current, next, to);
     },

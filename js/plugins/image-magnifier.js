@@ -49,9 +49,7 @@ var ImageMagnifier = {
         this._createEvents();
 
         Utils.exec(o.onImageMagnifierCreate, null, element[0]);
-        setImmediate(function(){
-            element.fire("imagemagnifiercreate");
-        });
+        element.fire("imagemagnifiercreate");
     },
 
     _createStructure: function(){

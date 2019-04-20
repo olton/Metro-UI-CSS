@@ -113,8 +113,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.41-dev 19/04/2019 15:57",
-    versionFull: "4.2.41-dev 19/04/2019 15:57",
+    version: "4.2.41-dev 20/04/2019 18:33",
+    versionFull: "4.2.41-dev 20/04/2019 18:33",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -1846,16 +1846,20 @@ $.fn.extend({
             }
         });
     },
+
     clearClasses: function(){
         return this.each(function(){
             this.className = "";
         });
     },
+
     fire: function(eventName, data){
         return this.each(function(){
-            var e = jQuery.Event(eventName);
+            var el = this;
+            var e = document.createEvent('Events');
             e.detail = data;
-            $(this).trigger(e);
+            e.initEvent(eventName, true, false);
+            el.dispatchEvent(e);
         });
     }
 });
@@ -4521,10 +4525,7 @@ var Accordion = {
         this._createEvents();
 
         Utils.exec(o.onAccordionCreate, [element]);
-
-        setImmediate(function(){
-            element.fire("accordioncreate");
-        });
+        element.fire("accordioncreate");
     },
 
     _createStructure: function(){
@@ -4589,7 +4590,7 @@ var Accordion = {
         var element = this.element, o = this.options;
         var frame = $(f);
 
-        if (Utils.exec(o.onFrameBeforeOpen, [frame], element[0]) === false) {
+        if (Utils.exec(o.onFrameBeforeOpen, [frame[0]], element[0]) === false) {
             return false;
         }
 
@@ -4601,10 +4602,10 @@ var Accordion = {
         frame.children(".heading").addClass(o.activeHeadingClass);
         frame.children(".content").addClass(o.activeContentClass).slideDown(o.duration);
 
-        Utils.exec(o.onFrameOpen, [frame], element[0]);
+        Utils.exec(o.onFrameOpen, [frame[0]], element[0]);
 
         element.fire("frameopen", {
-            frame: frame
+            frame: frame[0]
         });
     },
 
@@ -4616,7 +4617,7 @@ var Accordion = {
             return ;
         }
 
-        if (Utils.exec(o.onFrameBeforeClose, [frame], element[0]) === false) {
+        if (Utils.exec(o.onFrameBeforeClose, [frame[0]], element[0]) === false) {
             return ;
         }
 
@@ -4624,10 +4625,10 @@ var Accordion = {
         frame.children(".heading").removeClass(o.activeHeadingClass);
         frame.children(".content").removeClass(o.activeContentClass).slideUp(o.duration);
 
-        Utils.callback(o.onFrameClose, [frame], element[0]);
+        Utils.callback(o.onFrameClose, [frame[0]], element[0]);
 
         element.fire("frameclose", {
-            frame: frame
+            frame: frame[0]
         });
     },
 
@@ -4749,10 +4750,7 @@ var Activity = {
         }
 
         Utils.exec(this.options.onActivityCreate, [this.element]);
-
-        setImmediate(function(){
-            element.fire("activitycreate")
-        });
+        element.fire("activitycreate")
     },
 
     changeAttribute: function(attributeName){
@@ -4836,10 +4834,7 @@ var AppBar = {
         this._createEvents();
 
         Utils.exec(o.onAppBarCreate, [element]);
-
-        setImmediate(function(){
-            element.fire("appbarcreate");
-        });
+        element.fire("appbarcreate");
     },
 
     _createStructure: function(){
@@ -5070,9 +5065,7 @@ var Audio = {
         }
 
         Utils.exec(o.onAudioCreate, [element, this.player], element[0]);
-        setImmediate(function(){
-            element.fire("audiocreate");
-        });
+        element.fire("audiocreate");
     },
 
     _createPlayer: function(){
@@ -5484,9 +5477,7 @@ var BottomSheet = {
         this._createEvents();
 
         Utils.exec(o.onBottomSheetCreate, [element], element[0]);
-        setImmediate(function(){
-            element.fire("bottomsheetcreate");
-        })
+        element.fire("bottomsheetcreate");
     },
 
     _createStructure: function(){
@@ -5642,9 +5633,7 @@ var ButtonGroup = {
         this._createEvents();
 
         Utils.exec(o.onButtonsGroupCreate, [element]);
-        setImmediate(function(){
-            element.fire("buttongroupcreate");
-        });
+        element.fire("buttongroupcreate");
     },
 
     _createGroup: function(){
@@ -5894,9 +5883,7 @@ var Calendar = {
         }
 
         Utils.exec(this.options.onCalendarCreate, [this.element]);
-        setImmediate(function(){
-            element.fire("calendarcreate");
-        });
+        element.fire("calendarcreate");
     },
 
     _dates2array: function(val, category){
@@ -6695,9 +6682,7 @@ var CalendarPicker = {
         this._create();
 
         Utils.exec(this.options.onCalendarPickerCreate, [this.element], this.elem);
-        setImmediate(function(){
-                $(elem).fire("calendarpickercreate");
-        });
+        $(elem).fire("calendarpickercreate");
 
         return this;
     },
@@ -7275,9 +7260,7 @@ var Carousel = {
         }
 
         Utils.exec(o.onCarouselCreate, [element]);
-        setImmediate(function(){
-            element.fire("carouselcreate");
-        })
+        element.fire("carouselcreate");
     },
 
     _start: function(){
@@ -7731,9 +7714,7 @@ var Charms = {
         this._createEvents();
 
         Utils.exec(o.onCharmCreate, [element]);
-        setImmediate(function(){
-            element.fire("charmcreate");
-        });
+        element.fire("charmcreate");
     },
 
     _createStructure: function(){
@@ -7953,9 +7934,7 @@ var Chat = {
         this._createEvents();
 
         Utils.exec(o.onChatCreate, [element]);
-        setImmediate(function(){
-            element.fire("chatcreate");
-        });
+        element.fire("chatcreate");
     },
 
     _createStructure: function(){
@@ -8249,9 +8228,7 @@ var Checkbox = {
         }
 
         Utils.exec(o.onCheckboxCreate, [element]);
-        setImmediate(function(){
-            element.fire("checkboxcreate");
-        });
+        element.fire("checkboxcreate");
     },
 
     indeterminate: function(){
@@ -8359,9 +8336,7 @@ var Clock = {
         this._tick();
 
         Utils.exec(this.options.onClockCreate, [this.element]);
-        setImmediate(function(){
-            element.fire("clockcreate");
-        });
+        element.fire("clockcreate");
 
         this._clockInterval = setInterval(function(){
             that._tick();
@@ -8508,9 +8483,7 @@ var Collapse = {
         this.toggle = toggle;
 
         Utils.exec(this.options.onCollapseCreate, [this.element]);
-        setImmediate(function(){
-            element.fire("collapsecreate");
-        });
+        element.fire("collapsecreate");
     },
 
     _close: function(el, immediate){
@@ -8741,9 +8714,7 @@ var Countdown = {
 
 
         Utils.exec(o.onCountdownCreate, [element], element[0]);
-        setImmediate(function(){
-            element.fire("countdowncreate");
-        });
+        element.fire("countdowncreate");
 
         if (o.start === true) {
             this.start();
@@ -9175,9 +9146,7 @@ var Counter = {
         this._calcArray();
 
         Utils.exec(o.onCounterCreate, [element], this.elem);
-        setImmediate(function(){
-            element.fire("countercreate");
-        });
+        element.fire("countercreate");
 
         if (o.timeout !== null && Utils.isInt(o.timeout)) {
             setTimeout(function () {
@@ -9364,9 +9333,7 @@ var Cube = {
         this._createEvents();
 
         Utils.exec(o.onCubeCreate, [element]);
-        setImmediate(function(){
-            element.fire("cubecreate");
-        });
+        element.fire("cubecreate");
     },
 
     _parseRules: function(rules){
@@ -9808,9 +9775,7 @@ var DatePicker = {
         this._set();
 
         Utils.exec(o.onDatePickerCreate, [element]);
-        setImmediate(function(){
-            element.fire("datepickercreate");
-        });
+        element.fire("datepickercreate");
     },
 
     _createStructure: function(){
@@ -10304,9 +10269,7 @@ var Dialog = {
         });
 
         Utils.exec(this.options.onDialogCreate, [this.element]);
-        setImmediate(function(){
-            element.fire("dialogcreate");
-        });
+        element.fire("dialogcreate");
     },
 
     _overlay: function(){
@@ -10615,9 +10578,7 @@ var Donut = {
         this.val(o.value);
 
         Utils.exec(o.onDonutCreate, null, element[0]);
-        setImmediate(function(){
-            element.fire("donutcreate");
-        });
+        element.fire("donutcreate");
     },
 
     _setValue: function(v){
@@ -10713,6 +10674,7 @@ var Draggable = {
         this._create();
 
         Utils.exec(this.options.onDraggableCreate, [this.element]);
+        this.element.fire("draggablecreate");
 
         return this;
     },
@@ -10911,10 +10873,7 @@ var Dropdown = {
         this._createEvents();
 
         Utils.exec(o.onDropdownCreate, null, element);
-
-        setImmediate(function(){
-            element.fire("dropdowncreate");
-        });
+        element.fire("dropdowncreate");
 
         if (element.hasClass("open")) {
             setTimeout(function(){
@@ -11171,9 +11130,7 @@ var File = {
         }
 
         Utils.exec(o.onFileCreate, null, element[0]);
-        setImmediate(function(){
-            element.fire("filecreate");
-        });
+        element.fire("filecreate");
     },
 
     _createEvents: function(){
@@ -11348,9 +11305,7 @@ var Gravatar = {
         img.attr("src", this.getImageSrc(o.email, o.size, o.default));
 
         Utils.exec(o.onGravatarCreate, null, element[0]);
-        setImmediate(function(){
-            element.fire("gravatarcreate");
-        });
+        element.fire("gravatarcreate");
 
         return this;
     },
@@ -11447,9 +11402,7 @@ var Hint = {
         });
 
         Utils.exec(o.onHintCreate, null, element[0]);
-        setImmediate(function(){
-            element.fire("hintcreate");
-        });
+        element.fire("hintcreate");
     },
 
     createHint: function(){
@@ -11601,9 +11554,7 @@ var HtmlContainer = {
         o.method = o.method.toLowerCase();
 
         Utils.exec(o.onHtmlContainerCreate, null, element[0]);
-        setImmediate(function(){
-            element.fire("htmlcontainercreate");
-        });
+        element.fire("htmlcontainercreate");
     },
 
     _load: function(){
@@ -11740,9 +11691,7 @@ var ImageCompare = {
         this._createEvents();
 
         Utils.exec(o.onImageCompareCreate, null, element[0]);
-        setImmediate(function(){
-            element.fire("imagecomparecreate");
-        })
+        element.fire("imagecomparecreate");
     },
 
     _createStructure: function(){
@@ -11937,9 +11886,7 @@ var ImageMagnifier = {
         this._createEvents();
 
         Utils.exec(o.onImageMagnifierCreate, null, element[0]);
-        setImmediate(function(){
-            element.fire("imagemagnifiercreate");
-        });
+        element.fire("imagemagnifiercreate");
     },
 
     _createStructure: function(){
@@ -12182,9 +12129,7 @@ var InfoBox = {
         this._createEvents();
 
         Utils.exec(o.onInfoBoxCreate, null, element[0]);
-        setImmediate(function(){
-            element.fire("infoboxcreate");
-        })
+        element.fire("infoboxcreate");
     },
 
     _overlay: function(){
@@ -12449,8 +12394,6 @@ var MaterialInput = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onInputCreate, [this.element], this.elem);
-
         return this;
     },
 
@@ -12487,8 +12430,13 @@ var MaterialInput = {
     },
 
     _create: function(){
+        var element = this.element, o = this.options;
+
         this._createStructure();
         this._createEvents();
+
+        Utils.exec(o.onInputCreate, null, element[0]);
+        element.fire("inputcreate");
     },
 
     _createStructure: function(){
@@ -12655,9 +12603,7 @@ var Input = {
 
         Utils.exec(o.onInputCreate, null, element[0]);
 
-        setImmediate(function(){
-            element.fire("inputcreate");
-        });
+        element.fire("inputcreate");
     },
 
     _createStructure: function(){
@@ -13101,14 +13047,17 @@ var Keypad = {
     },
 
     _create: function(){
+        var element = this.element, o = this.options;
+
         this._createKeypad();
-        if (this.options.shuffle === true) {
+        if (o.shuffle === true) {
             this.shuffle();
         }
         this._createKeys();
         this._createEvents();
 
-        Utils.exec(this.options.onKeypadCreate, [this.element]);
+        Utils.exec(o.onKeypadCreate, null,element[0]);
+        element.fire("keypadcreate");
     },
 
     _createKeypad: function(){
@@ -13272,15 +13221,21 @@ var Keypad = {
                     that._setKeysPosition();
                 }
 
-                Utils.exec(o.onKey, [key.data('key'), that.value, element]);
+                Utils.exec(o.onKey, [key.data('key'), that.value], element[0]);
+                element.fire("key", {
+                    key: key.data("key"),
+                    val: that.value
+                });
             } else {
                 if (key.data('key') === '&times;') {
                     that.value = "";
-                    Utils.exec(o.onClear, [element]);
+                    Utils.exec(o.onClear, null, element[0]);
+                    element.fire("clear");
                 }
                 if (key.data('key') === '&larr;') {
                     that.value = (that.value.substring(0, that.value.length - 1));
-                    Utils.exec(o.onBackspace, [that.value, element]);
+                    Utils.exec(o.onBackspace, [that.value], element[0]);
+                    element.fire("backspace");
                 }
             }
 
@@ -13293,7 +13248,7 @@ var Keypad = {
             }
 
             element.trigger('change');
-            Utils.exec(o.onChange, [that.value, element]);
+            Utils.exec(o.onChange, [that.value], element[0]);
 
             e.preventDefault();
             e.stopPropagation();
@@ -13315,10 +13270,15 @@ var Keypad = {
     },
 
     shuffle: function(){
-        for (var i = 0; i < this.options.shuffleCount; i++) {
+        var element = this.element, o = this.options;
+        for (var i = 0; i < o.shuffleCount; i++) {
             this.keys_to_work = this.keys_to_work.shuffle();
         }
-        Utils.exec(this.options.onShuffle, [this.keys_to_work, this.keys, this.element]);
+        Utils.exec(o.onShuffle, [this.keys_to_work, this.keys], element[0]);
+        element.fire("shuffle", {
+            keys: this.keys,
+            keysToWork: this.keys_to_work
+        });
     },
 
     shuffleKeys: function(count){
@@ -13548,12 +13508,23 @@ var List = {
 
         if (o.source !== null) {
             Utils.exec(o.onDataLoad, [o.source], element[0]);
+            element.fire("dataload", {
+                source: o.source
+            });
 
             $.get(o.source, function(data){
                 that._build(data);
                 Utils.exec(o.onDataLoaded, [o.source, data], element[0]);
+                element.fire("dataloaded", {
+                    source: o.source,
+                    data: data
+                });
             }).fail(function( jqXHR, textStatus, errorThrown) {
                 Utils.exec(o.onDataLoadError, [o.source, jqXHR, textStatus, errorThrown], element[0]);
+                element.fire("dataloaderror", {
+                    source: source,
+                    xhr: jqXHR
+                });
             });
         } else {
             that._build();
@@ -13572,7 +13543,8 @@ var List = {
         this._createStructure();
         this._createEvents();
 
-        Utils.exec(o.onListCreate, [element], element[0]);
+        Utils.exec(o.onListCreate, null, element[0]);
+        element.fire("listcreate");
     },
 
     _createItemsFromHTML: function(){
@@ -13653,7 +13625,10 @@ var List = {
                 o.items = parseInt(val);
                 that.currentPage = 1;
                 that._draw();
-                Utils.exec(o.onRowsCountChange, [val], element[0])
+                Utils.exec(o.onRowsCountChange, [val], element[0]);
+                element.fire("rowscountchange", {
+                    val: val
+                });
             }
         });
 
@@ -13892,14 +13867,24 @@ var List = {
 
                 if (result) {
                     Utils.exec(o.onFilterItemAccepted, [item], element[0]);
+                    element.fire("filteritemaccepted", {
+                        item: item
+                    });
                 } else {
                     Utils.exec(o.onFilterItemDeclined, [item], element[0]);
+                    element.fire("filteritemdeclined", {
+                        item: item
+                    });
                 }
 
                 return result;
             });
 
-            Utils.exec(o.onSearch, [that.filterString, items], element[0])
+            Utils.exec(o.onSearch, [that.filterString, items], element[0]);
+            element.fire("search", {
+                search: that.filterString,
+                items: items
+            });
         } else {
             items = this.items;
         }
@@ -13923,6 +13908,9 @@ var List = {
                 $(items[i]).addClass(o.clsListItem).appendTo(element);
             }
             Utils.exec(o.onDrawItem, [items[i]], element[0]);
+            element.fire("drawitem", {
+                item: items[i]
+            });
         }
 
         this._info(start + 1, stop + 1, items.length);
@@ -13930,7 +13918,8 @@ var List = {
 
         this.activity.hide();
 
-        Utils.exec(o.onDraw, [element], element[0]);
+        Utils.exec(o.onDraw, null, element[0]);
+        element.fire("draw");
 
         if (cb !== undefined) {
             Utils.exec(cb, [element], element[0])
@@ -14016,6 +14005,9 @@ var List = {
         }
 
         Utils.exec(o.onSortStart, [this.items], element[0]);
+        element.fire("sortstart", {
+            items: this.items
+        });
 
         this.items.sort(function(a, b){
             var c1 = that._getItemContent(a);
@@ -14031,12 +14023,20 @@ var List = {
 
             if (result !== 0) {
                 Utils.exec(o.onSortItemSwitch, [a, b, result], element[0]);
+                element.fire("sortitemswitch", {
+                    a: a,
+                    b: b,
+                    result: result
+                });
             }
 
             return result;
         });
 
         Utils.exec(o.onSortStop, [this.items], element[0]);
+        element.fire("sortstop", {
+            items: this.items
+        });
 
         if (redraw === true) {
             this._draw();
@@ -14061,9 +14061,16 @@ var List = {
         o.source = source;
 
         Utils.exec(o.onDataLoad, [o.source], element[0]);
+        element.fire("dataload", {
+            source: o.source
+        });
 
         $.get(o.source, function(data){
             Utils.exec(o.onDataLoaded, [o.source, data], element[0]);
+            element.fire("dataloaded", {
+                source: o.source,
+                data: data
+            });
 
             that._createItemsFromJSON(data);
 
@@ -14098,6 +14105,10 @@ var List = {
 
         }).fail(function( jqXHR, textStatus, errorThrown) {
             Utils.exec(o.onDataLoadError, [o.source, jqXHR, textStatus, errorThrown], element[0]);
+            element.fire("dataloaderror", {
+                source: o.source,
+                xhr: jqXHR
+            });
         });
     },
 
@@ -14234,7 +14245,7 @@ Metro.plugin('list', List);
 
 // Source: js/plugins/listview.js
 
-var Listview = {
+var ListView = {
     init: function( options, elem ) {
         this.options = $.extend( {}, this.options, options );
         this.elem  = elem;
@@ -14261,7 +14272,7 @@ var Listview = {
         onExpandNode: Metro.noop,
         onGroupNodeClick: Metro.noop,
         onNodeClick: Metro.noop,
-        onListviewCreate: Metro.noop
+        onListViewCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -14284,7 +14295,8 @@ var Listview = {
         this._createView();
         this._createEvents();
 
-        Utils.exec(o.onListviewCreate, [element]);
+        Utils.exec(o.onListViewCreate, null, element[0]);
+        element.fire("listviewcreate");
     },
 
     _createIcon: function(data){
@@ -14394,7 +14406,10 @@ var Listview = {
                 element.find(".node").removeClass("current-select");
                 node.toggleClass("current-select");
             }
-            Utils.exec(o.onNodeClick, [node, element])
+            Utils.exec(o.onNodeClick, [node], element[0]);
+            element.fire("nodeclick", {
+                node: node
+            });
         });
 
         element.on(Metro.events.click, ".node-toggle", function(){
@@ -14406,7 +14421,10 @@ var Listview = {
             var node = $(this).closest("li");
             element.find(".node-group").removeClass("current-group");
             node.addClass("current-group");
-            Utils.exec(o.onGroupNodeClick, [node, element])
+            Utils.exec(o.onGroupNodeClick, [node], element[0]);
+            element.fire("groupnodeclick", {
+                node: node
+            });
         });
 
         element.on(Metro.events.dblclick, ".node-group > .data > .caption", function(){
@@ -14445,10 +14463,16 @@ var Listview = {
 
         if (o.effect === "slide") {
             func = node.hasClass("expanded") !== true ? "slideUp" : "slideDown";
-            Utils.exec(o.onCollapseNode, [node, element]);
+            Utils.exec(o.onCollapseNode, [node], element[0]);
+            element.fire("collapsenode", {
+                node: node
+            });
         } else {
             func = node.hasClass("expanded") !== true ? "fadeOut" : "fadeIn";
-            Utils.exec(o.onExpandNode, [node, element]);
+            Utils.exec(o.onExpandNode, [node], element[0]);
+            element.fire("expandnode", {
+                node: node
+            });
         }
 
         node.children("ul")[func](o.duration);
@@ -14493,7 +14517,12 @@ var Listview = {
         new_node.prepend(cb);
         cb.checkbox();
 
-        Utils.exec(o.onNodeInsert, [new_node, element]);
+        Utils.exec(o.onNodeInsert, [new_node, node, target], element[0]);
+        element.fire("nodeinsert", {
+            newNode: new_node,
+            parentNode: node,
+            list: target
+        });
 
         return new_node;
     },
@@ -14510,30 +14539,55 @@ var Listview = {
         node.addClass("expanded");
         node.append($("<ul>").addClass("listview").addClass("view-"+o.view));
 
-        Utils.exec(o.onNodeInsert, [node, element]);
+        Utils.exec(o.onNodeInsert, [node, null, element], element[0]);
+        element.fire("nodeinsert", {
+            newNode: node,
+            parentNode: null,
+            list: element
+        });
 
         return node;
     },
 
     insertBefore: function(node, data){
         var element = this.element, o = this.options;
+        var new_node, parent_node, list;
 
         if (!node.length) {return;}
 
-        var new_node = this._createNode(data);
+        new_node = this._createNode(data);
         new_node.addClass("node").insertBefore(node);
-        Utils.exec(o.onNodeInsert, [new_node, element]);
+        parent_node = new_node.closest(".node");
+        list = new_node.closest("ul");
+
+        Utils.exec(o.onNodeInsert, [new_node, parent_node, list], element[0]);
+        element.fire("nodeinsert", {
+            newNode: new_node,
+            parentNode: parent_node,
+            list: list
+        });
+
         return new_node;
     },
 
     insertAfter: function(node, data){
         var element = this.element, o = this.options;
+        var new_node, parent_node, list;
 
         if (!node.length) {return;}
 
-        var new_node = this._createNode(data);
+        new_node = this._createNode(data);
         new_node.addClass("node").insertAfter(node);
-        Utils.exec(o.onNodeInsert, [new_node, element]);
+        parent_node = new_node.closest(".node");
+        list = new_node.closest("ul");
+
+        Utils.exec(o.onNodeInsert, [new_node, parent_node, list], element[0]);
+        element.fire("nodeinsert", {
+            newNode: new_node,
+            parentNode: parent_node,
+            list: list
+        });
+
         return new_node;
     },
 
@@ -14550,7 +14604,10 @@ var Listview = {
             parent_node.removeClass("expanded");
             parent_node.children(".node-toggle").remove();
         }
-        Utils.exec(o.onNodeDelete, [node, element]);
+        Utils.exec(o.onNodeDelete, [node], element[0]);
+        element.fire("nodedelete", {
+            node: node
+        });
     },
 
     clean: function(node){
@@ -14561,7 +14618,10 @@ var Listview = {
         node.children("ul").remove();
         node.removeClass("expanded");
         node.children(".node-toggle").remove();
-        Utils.exec(o.onNodeClean, [node, element]);
+        Utils.exec(o.onNodeClean, [node], element[0]);
+        element.fire("nodeclean", {
+            node: node
+        });
     },
 
     getSelected: function(){
@@ -14606,7 +14666,7 @@ var Listview = {
     }
 };
 
-Metro.plugin('listview', Listview);
+Metro.plugin('listview', ListView);
 
 // Source: js/plugins/master.js
 
@@ -14646,6 +14706,8 @@ var Master = {
         onBeforePage: Metro.noop_true,
         onBeforeNext: Metro.noop_true,
         onBeforePrev: Metro.noop_true,
+        onNextPage: Metro.noop,
+        onPrevPage: Metro.noop,
         onMasterCreate: Metro.noop
     },
 
@@ -14675,7 +14737,8 @@ var Master = {
         this._createPages();
         this._createEvents();
 
-        Utils.exec(this.options.onMasterCreate, [this.element]);
+        Utils.exec(o.onMasterCreate, null, element[0]);
+        element.fire("mastercreate");
     },
 
     _createControls: function(){
@@ -14817,15 +14880,12 @@ var Master = {
     },
 
     _slideTo: function(to){
-        var current, next;
-
-        if (to === undefined) {
-            return ;
-        }
+        var element = this.element, o = this.options;
+        var current, next, forward = to.toLowerCase() === 'next';
 
         current = this.pages[this.currentIndex];
 
-        if (to === "next") {
+        if (forward ) {
             if (this.currentIndex + 1 >= this.pages.length) {
                 return ;
             }
@@ -14838,6 +14898,13 @@ var Master = {
         }
 
         next = this.pages[this.currentIndex];
+
+        Utils.exec(forward ? o.onNextPage : o.onPrevPage, [current, next], element[0]);
+        element.fire(forward ? "nextpage" : "prevpage", {
+            current: current,
+            next: next,
+            forward: forward
+        });
 
         this._effect(current, next, to);
     },
@@ -15005,7 +15072,8 @@ var NavigationView = {
         this._createView();
         this._createEvents();
 
-        Utils.exec(o.onNavViewCreate, [element]);
+        Utils.exec(o.onNavViewCreate, null, element[0]);
+        element.fire("navviewcreate");
     },
 
     _calcMenuHeight: function(){
@@ -15076,8 +15144,11 @@ var NavigationView = {
             }
         });
 
-        element.on(Metro.events.click, ".navview-menu li > a", function(e){
+        element.on(Metro.events.click, ".navview-menu li > a", function(){
             Utils.exec(o.onMenuItemClick, null, this);
+            element.fire("menuitemclick", {
+                item: this
+            });
         });
 
         if (this.paneToggle !== null) {
@@ -15480,7 +15551,8 @@ var Panel = {
 
         this.panel = panel;
 
-        Utils.exec(o.onPanelCreate, [this.element]);
+        Utils.exec(o.onPanelCreate, null,element[0]);
+        element.fire("panelcreate");
     },
 
     collapse: function(){
@@ -15500,8 +15572,6 @@ var Panel = {
     },
 
     changeAttribute: function(attributeName){
-        switch (attributeName) {
-        }
     }
 };
 
@@ -15581,6 +15651,9 @@ var Popover = {
                 that.createPopover();
 
                 Utils.exec(o.onPopoverShow, [that.popover], element[0]);
+                element.fire("popovershow", {
+                    popover: that.popover
+                });
 
                 if (o.popoverHide > 0) {
                     setTimeout(function(){
@@ -15686,10 +15759,13 @@ var Popover = {
         this.popovered = true;
 
         Utils.exec(o.onPopoverCreate, [popover], element[0]);
+        element.fire("popovercreate", {
+            popover: popover
+        });
     },
 
     removePopover: function(){
-        var that = this;
+        var that = this, element = this.element;
         var timeout = this.options.onPopoverHide === Metro.noop ? 0 : 300;
         var popover = this.popover;
 
@@ -15698,6 +15774,9 @@ var Popover = {
         }
 
         Utils.exec(this.options.onPopoverHide, [popover], this.elem);
+        element.fire("popoverhide", {
+            popover: popover
+        });
 
         setTimeout(function(){
             popover.hide(0, function(){
@@ -15719,6 +15798,9 @@ var Popover = {
             that.createPopover();
 
             Utils.exec(o.onPopoverShow, [that.popover], element[0]);
+            element.fire("popovershow", {
+                popover: that.popover
+            });
 
             if (o.popoverHide > 0) {
                 setTimeout(function(){
@@ -15769,8 +15851,6 @@ var Progress = {
 
         this._setOptionsFromDOM();
         this._create();
-
-        Utils.exec(this.options.onProgressCreate, [this.element]);
 
         return this;
     },
@@ -15848,6 +15928,9 @@ var Progress = {
 
         this.val(o.value);
         this.buff(o.buffer);
+
+        Utils.exec(o.onProgressCreate, null, element[0]);
+        element.fire("progresscreate");
     },
 
     val: function(v){
@@ -15867,12 +15950,16 @@ var Progress = {
 
         bar.css("width", this.value + "%");
 
-        element.trigger("valuechange", [this.value]);
-
-        Utils.exec(o.onValueChange, [this.value, element]);
+        Utils.exec(o.onValueChange, [this.value], element[0]);
+        element.fire("valuechange", {
+            vsl: this.value
+        });
 
         if (this.value === 100) {
-            Utils.exec(o.onComplete, [this.value, element]);
+            Utils.exec(o.onComplete, [this.value], element[0]);
+            element.fire("complete", {
+                val: this.value
+            });
         }
     },
 
@@ -15893,12 +15980,16 @@ var Progress = {
 
         bar.css("width", this.buffer + "%");
 
-        element.trigger("bufferchange", [this.buffer]);
-
-        Utils.exec(o.onBufferChange, [this.buffer, element]);
+        Utils.exec(o.onBufferChange, [this.buffer], element[0]);
+        element.fire("bufferchange", {
+            val: this.buffer
+        });
 
         if (this.buffer === 100) {
-            Utils.exec(o.onBuffered, [this.buffer, element]);
+            Utils.exec(o.onBuffered, [this.buffer], element[0]);
+            element.fire("buffered", {
+                val: this.buffer
+            });
         }
     },
 
@@ -15933,8 +16024,6 @@ var Radio = {
 
         this._setOptionsFromDOM();
         this._create();
-
-        Utils.exec(this.options.onRadioCreate, [this.element]);
 
         return this;
     },
@@ -15991,6 +16080,9 @@ var Radio = {
         } else {
             this.enable();
         }
+
+        Utils.exec(o.onRadioCreate, null, element[0]);
+        element.fire("radiocreate");
     },
 
     disable: function(){
@@ -16133,7 +16225,8 @@ var Rating = {
         this._createRating();
         this._createEvents();
 
-        Utils.exec(o.onRatingCreate, [element]);
+        Utils.exec(o.onRatingCreate, null, element[0]);
+        element.fire("ratingcreate");
     },
 
     _createRating: function(){
@@ -16225,7 +16318,11 @@ var Rating = {
             star.prevAll().addClass("on");
             star.nextAll().removeClass("on");
 
-            Utils.exec(o.onStarClick, [value, star, element]);
+            Utils.exec(o.onStarClick, [value, star[0]], element[0]);
+            element.fire("starclick", {
+                value: value,
+                star: star[0]
+            });
         });
     },
 
@@ -16335,8 +16432,6 @@ var Resizable = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onResizableCreate, [this.element]);
-
         return this;
     },
     options: {
@@ -16368,8 +16463,13 @@ var Resizable = {
     },
 
     _create: function(){
+        var element = this.element, o = this.options;
+
         this._createStructure();
         this._createEvents();
+
+        Utils.exec(o.onResizableCreate, null, element[0]);
+        element.fire("resizeablecreate");
     },
 
     _createStructure: function(){
@@ -16396,7 +16496,10 @@ var Resizable = {
             var startHeight = parseInt(element.outerHeight());
             var size = {width: startWidth, height: startHeight};
 
-            Utils.exec(o.onResizeStart, [element, size]);
+            Utils.exec(o.onResizeStart, [size], element[0]);
+            element.fire("resizestart", {
+                size: size
+            });
 
             $(document).on(Metro.events.move + "-resize-element", function(e){
                 var moveXY = Utils.pageXY(e);
@@ -16413,7 +16516,10 @@ var Resizable = {
 
                 element.css(size);
 
-                Utils.exec(o.onResize, [element, size]);
+                Utils.exec(o.onResize, [size], element[0]);
+                element.fire("resize", {
+                    size: size
+                });
             });
 
             $(document).on(Metro.events.stop + "-resize-element", function(){
@@ -16425,7 +16531,10 @@ var Resizable = {
                     height: parseInt(element.outerHeight())
                 };
 
-                Utils.exec(o.onResizeStop, [element, size]);
+                Utils.exec(o.onResizeStop, [size], element[0]);
+                element.fire("resizestop", {
+                    size: size
+                });
             });
 
             e.preventDefault();
@@ -16500,7 +16609,8 @@ var RibbonMenu = {
         this._createStructure();
         this._createEvents();
 
-        Utils.exec(o.onRibbonMenuCreate, [element]);
+        Utils.exec(o.onRibbonMenuCreate, null, element[0]);
+        element.fire("ribbonmenucreate");
     },
 
     _createStructure: function(){
@@ -16548,11 +16658,14 @@ var RibbonMenu = {
                 if (o.onStatic === Metro.noop && link.attr("href") !== undefined) {
                     document.location.href = link.attr("href");
                 } else {
-                    Utils.exec(o.onStatic, [tab, element]);
+                    Utils.exec(o.onStatic, [tab[0]], element[0]);
+                    element.fire("static", {
+                        tab: tab[0]
+                    });
                 }
             } else {
-                if (Utils.exec(o.onBeforeTab, [tab, element]) === true) {
-                    that.open(tab);
+                if (Utils.exec(o.onBeforeTab, [tab[0]], element[0]) === true) {
+                    that.open(tab[0]);
                 }
             }
             e.preventDefault();
@@ -16561,18 +16674,22 @@ var RibbonMenu = {
 
     open: function(tab){
         var element = this.element, o = this.options;
+        var $tab = $(tab);
         var tabs = element.find(".tabs-holder li");
         var sections = element.find(".content-holder .section");
-        var target = tab.children("a").attr("href");
+        var target = $tab.children("a").attr("href");
         var target_section = target !== "#" ? element.find(target) : null;
 
         tabs.removeClass("active");
-        tab.addClass("active");
+        $tab.addClass("active");
 
         sections.removeClass("active");
         if (target_section) target_section.addClass("active");
 
-        Utils.exec(o.onTab, [tab, element]);
+        Utils.exec(o.onTab, [$tab[0]], element[0]);
+        element.fire("tab", {
+            tab: $tab[0]
+        });
     },
 
     changeAttribute: function(attributeName){
@@ -16592,8 +16709,6 @@ var Ripple = {
 
         this._setOptionsFromDOM();
         this._create();
-
-        Utils.exec(this.options.onRippleCreate, [this.element]);
 
         return this;
     },
@@ -16665,6 +16780,9 @@ var Ripple = {
                 $(".ripple").remove();
             }, 400);
         });
+
+        Utils.exec(o.onRippleCreate, null, element[0]);
+        element.fire("ripplecreate");
     },
 
     changeAttribute: function(attributeName){
@@ -16685,8 +16803,6 @@ var Select = {
 
         this._setOptionsFromDOM();
         this._create();
-
-        Utils.exec(this.options.onSelectCreate, [this.element]);
 
         return this;
     },
@@ -16734,8 +16850,13 @@ var Select = {
     },
 
     _create: function(){
+        var element = this.element, o = this.options;
+
         this._createSelect();
         this._createEvents();
+
+        Utils.exec(o.onSelectCreate, null, element[0]);
+        element.fire("selectcreate");
     },
 
     _addOption: function(item, parent){
@@ -16866,10 +16987,16 @@ var Select = {
                     }, 200);
                 }
 
-                Utils.exec(o.onDrop, [list, element], list[0]);
+                Utils.exec(o.onDrop, [list[0]], element[0]);
+                element.fire("drop", {
+                    list: list[0]
+                });
             },
             onUp: function(){
-                Utils.exec(o.onUp, [list, element], list[0]);
+                Utils.exec(o.onUp, [list[0]], element[0]);
+                element.fire("up", {
+                    list: list[0]
+                });
             }
         });
 
@@ -16933,7 +17060,7 @@ var Select = {
             var val = leaf.data('value');
             var txt = leaf.data('text');
             var html = leaf.children('a').html();
-            var selected_item;
+            var selected_item, selected;
             var option = leaf.data("option");
             var options = element.find("option");
 
@@ -16955,16 +17082,27 @@ var Select = {
                 }
             });
 
-            element.trigger("change");
+            Utils.exec(o.onItemSelect, [val, option, leaf[0]], element[0]);
+            element.fire("itemselect", {
+                val: val,
+                option: option,
+                leaf: leaf[0]
+            });
 
-            Utils.exec(o.onItemSelect, [val, option, leaf], element[0]);
-            Utils.exec(o.onChange, [that.getSelected()], element[0]);
+            selected = that.getSelected();
+
+            Utils.exec(o.onChange, [selected], element[0]);
+            element.fire("change", {
+                selected: selected
+            });
         });
 
         input.on("click", ".selected-item .remover", function(e){
             var item = $(this).closest(".selected-item");
             var leaf = item.data("option");
             var option = leaf.data('option');
+            var selected;
+
             leaf.removeClass("d-none");
             $.each(element.find("option"), function(){
                 if (this === option) {
@@ -16973,10 +17111,17 @@ var Select = {
             });
             item.remove();
 
-            element.trigger("change");
-
             Utils.exec(o.onItemDeselect, [option], element[0]);
-            Utils.exec(o.onChange, [that.getSelected()], element[0]);
+            element.fire("itemdeselect", {
+                option: option
+            });
+
+            selected = that.getSelected();
+            Utils.exec(o.onChange, [selected], element[0]);
+            element.fire("change", {
+                selected: selected
+            });
+
             e.preventDefault();
             e.stopPropagation();
         });
@@ -17024,6 +17169,7 @@ var Select = {
         var element = this.element, o = this.options;
         var options = element.find("option");
         var select = element.closest('.select');
+        var selected;
 
         $.each(options, function(){
             this.selected = !Utils.isNull(to_default) ? this.defaultSelected : false;
@@ -17034,8 +17180,11 @@ var Select = {
 
         this._createOptions();
 
-        element.trigger('change');
-        Utils.exec(o.onChange, [this.getSelected()], element[0]);
+        selected = this.getSelected();
+        Utils.exec(o.onChange, [selected], element[0]);
+        element.fire("change", {
+            selected: selected
+        });
     },
 
     getSelected: function(){
@@ -17057,7 +17206,7 @@ var Select = {
         var result = [];
         var multiple = element.attr("multiple") !== undefined;
         var option;
-        var i, html, list_item, option_value, tag;
+        var i, html, list_item, option_value, tag, selected;
 
         if (Utils.isNull(val)) {
             $.each(options, function(){
@@ -17104,8 +17253,11 @@ var Select = {
             }
         });
 
-        element.trigger('change');
-        Utils.exec(o.onChange, [this.getSelected()], element[0]);
+        selected = this.getSelected();
+        Utils.exec(o.onChange, [selected], element[0]);
+        element.fire("change", {
+            selected: selected
+        });
     },
 
     data: function(op){
@@ -24220,7 +24372,7 @@ Metro.plugin('touch', Touch);
 
 // Source: js/plugins/treeview.js
 
-var Treeview = {
+var TreeView = {
     init: function( options, elem ) {
         this.options = $.extend( {}, this.options, options );
         this.elem  = elem;
@@ -24555,7 +24707,7 @@ var Treeview = {
     }
 };
 
-Metro.plugin('treeview', Treeview);
+Metro.plugin('treeview', TreeView);
 
 // Source: js/plugins/validator.js
 

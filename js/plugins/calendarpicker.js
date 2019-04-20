@@ -12,9 +12,7 @@ var CalendarPicker = {
         this._create();
 
         Utils.exec(this.options.onCalendarPickerCreate, [this.element], this.elem);
-        setImmediate(function(){
-                $(elem).fire("calendarpickercreate");
-        });
+        $(elem).fire("calendarpickercreate");
 
         return this;
     },

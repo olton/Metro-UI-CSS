@@ -13,16 +13,20 @@ $.fn.extend({
             }
         });
     },
+
     clearClasses: function(){
         return this.each(function(){
             this.className = "";
         });
     },
+
     fire: function(eventName, data){
         return this.each(function(){
-            var e = jQuery.Event(eventName);
+            var el = this;
+            var e = document.createEvent('Events');
             e.detail = data;
-            $(this).trigger(e);
+            e.initEvent(eventName, true, false);
+            el.dispatchEvent(e);
         });
     }
 });

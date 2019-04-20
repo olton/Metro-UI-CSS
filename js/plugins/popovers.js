@@ -70,6 +70,9 @@ var Popover = {
                 that.createPopover();
 
                 Utils.exec(o.onPopoverShow, [that.popover], element[0]);
+                element.fire("popovershow", {
+                    popover: that.popover
+                });
 
                 if (o.popoverHide > 0) {
                     setTimeout(function(){
@@ -175,10 +178,13 @@ var Popover = {
         this.popovered = true;
 
         Utils.exec(o.onPopoverCreate, [popover], element[0]);
+        element.fire("popovercreate", {
+            popover: popover
+        });
     },
 
     removePopover: function(){
-        var that = this;
+        var that = this, element = this.element;
         var timeout = this.options.onPopoverHide === Metro.noop ? 0 : 300;
         var popover = this.popover;
 
@@ -187,6 +193,9 @@ var Popover = {
         }
 
         Utils.exec(this.options.onPopoverHide, [popover], this.elem);
+        element.fire("popoverhide", {
+            popover: popover
+        });
 
         setTimeout(function(){
             popover.hide(0, function(){
@@ -208,6 +217,9 @@ var Popover = {
             that.createPopover();
 
             Utils.exec(o.onPopoverShow, [that.popover], element[0]);
+            element.fire("popovershow", {
+                popover: that.popover
+            });
 
             if (o.popoverHide > 0) {
                 setTimeout(function(){

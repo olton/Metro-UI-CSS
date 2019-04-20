@@ -144,9 +144,7 @@ var Countdown = {
 
 
         Utils.exec(o.onCountdownCreate, [element], element[0]);
-        setImmediate(function(){
-            element.fire("countdowncreate");
-        });
+        element.fire("countdowncreate");
 
         if (o.start === true) {
             this.start();

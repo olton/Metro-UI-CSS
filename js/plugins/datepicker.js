@@ -86,9 +86,7 @@ var DatePicker = {
         this._set();
 
         Utils.exec(o.onDatePickerCreate, [element]);
-        setImmediate(function(){
-            element.fire("datepickercreate");
-        });
+        element.fire("datepickercreate");
     },
 
     _createStructure: function(){

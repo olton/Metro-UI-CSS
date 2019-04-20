@@ -61,9 +61,7 @@ var Hint = {
         });
 
         Utils.exec(o.onHintCreate, null, element[0]);
-        setImmediate(function(){
-            element.fire("hintcreate");
-        });
+        element.fire("hintcreate");
     },
 
     createHint: function(){
