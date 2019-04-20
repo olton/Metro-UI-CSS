@@ -113,8 +113,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.41-dev 21/04/2019 00:09",
-    versionFull: "4.2.41-dev 21/04/2019 00:09",
+    version: "4.2.41-dev 21/04/2019 00:51",
+    versionFull: "4.2.41-dev 21/04/2019 00:51",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -19763,8 +19763,137 @@ Metro.plugin('switch', Switch);
 
 // Source: js/plugins/table.js
 
+var TableConfig = {
+    templateBeginToken: "<%",
+    templateEndToken: "%>",
+    paginationDistance: 5,
+
+    locale: METRO_LOCALE,
+
+    horizontalScroll: false,
+    horizontalScrollStop: null,
+    check: false,
+    checkType: "checkbox",
+    checkStyle: 1,
+    checkColIndex: 0,
+    checkName: null,
+    checkStoreKey: "TABLE:$1:KEYS",
+    rownum: false,
+    rownumTitle: "#",
+
+    filters: null,
+    filtersOperator: "and",
+
+    source: null,
+
+    searchMinLength: 1,
+    searchThreshold: 500,
+    searchFields: null,
+
+    showRowsSteps: true,
+    showSearch: true,
+    showTableInfo: true,
+    showPagination: true,
+    paginationShortMode: true,
+    showActivity: true,
+    muteTable: true,
+
+    rows: 10,
+    rowsSteps: "10,25,50,100",
+
+    staticView: false,
+    viewSaveMode: "client",
+    viewSavePath: "TABLE:$1:OPTIONS",
+
+    sortDir: "asc",
+    decimalSeparator: ".",
+    thousandSeparator: ",",
+
+    tableRowsCountTitle: "Show entries:",
+    tableSearchTitle: "Search:",
+    tableInfoTitle: "Showing $1 to $2 of $3 entries",
+    paginationPrevTitle: "Prev",
+    paginationNextTitle: "Next",
+    allRecordsTitle: "All",
+    inspectorTitle: "Inspector",
+
+    activityType: "cycle",
+    activityStyle: "color",
+    activityTimeout: 100,
+
+    searchWrapper: null,
+    rowsWrapper: null,
+    infoWrapper: null,
+    paginationWrapper: null,
+
+    cellWrapper: true,
+
+    clsComponent: "",
+    clsTableContainer: "",
+    clsTable: "",
+
+    clsHead: "",
+    clsHeadRow: "",
+    clsHeadCell: "",
+
+    clsBody: "",
+    clsBodyRow: "",
+    clsBodyCell: "",
+    clsCellWrapper: "",
+
+    clsFooter: "",
+    clsFooterRow: "",
+    clsFooterCell: "",
+
+    clsTableTop: "",
+    clsRowsCount: "",
+    clsSearch: "",
+
+    clsTableBottom: "",
+    clsTableInfo: "",
+    clsTablePagination: "",
+
+    clsPagination: "",
+
+    clsEvenRow: "",
+    clsOddRow: "",
+    clsRow: "",
+
+    onDraw: Metro.noop,
+    onDrawRow: Metro.noop,
+    onDrawCell: Metro.noop,
+    onAppendRow: Metro.noop,
+    onAppendCell: Metro.noop,
+    onSortStart: Metro.noop,
+    onSortStop: Metro.noop,
+    onSortItemSwitch: Metro.noop,
+    onSearch: Metro.noop,
+    onRowsCountChange: Metro.noop,
+    onDataLoad: Metro.noop,
+    onDataLoadError: Metro.noop,
+    onDataLoaded: Metro.noop,
+    onFilterRowAccepted: Metro.noop,
+    onFilterRowDeclined: Metro.noop,
+    onCheckClick: Metro.noop,
+    onCheckClickAll: Metro.noop,
+    onCheckDraw: Metro.noop,
+    onViewSave: Metro.noop,
+    onViewGet: Metro.noop,
+    onViewCreated: Metro.noop,
+    onTableCreate: Metro.noop
+};
+
+Metro.tableSetup = function(options){
+    TableConfig = $.extend({}, TableConfig, options);
+};
+
+if (typeof window.metroTableSetup !== undefined) {
+    Metro.tableSetup(window.metroTableSetup);
+}
+
 var Table = {
     init: function( options, elem ) {
+        this.options = TableConfig;
         this.options = $.extend( {}, this.options, options );
         this.elem  = elem;
         this.element = $(elem);
@@ -19809,126 +19938,126 @@ var Table = {
         return this;
     },
 
-    options: {
+    //options: {
 
-        templateBeginToken: "<%",
-        templateEndToken: "%>",
-        paginationDistance: 5,
-
-        locale: METRO_LOCALE,
-
-        horizontalScroll: false,
-        horizontalScrollStop: null,
-        check: false,
-        checkType: "checkbox",
-        checkStyle: 1,
-        checkColIndex: 0,
-        checkName: null,
-        checkStoreKey: "TABLE:$1:KEYS",
-        rownum: false,
-        rownumTitle: "#",
-
-        filters: null,
-        filtersOperator: "and",
-
-        source: null,
-
-        searchMinLength: 1,
-        searchThreshold: 500,
-        searchFields: null,
-
-        showRowsSteps: true,
-        showSearch: true,
-        showTableInfo: true,
-        showPagination: true,
-        paginationShortMode: true,
-        showActivity: true,
-        muteTable: true,
-
-        rows: 10,
-        rowsSteps: "10,25,50,100",
-
-        staticView: false,
-        viewSaveMode: "client",
-        viewSavePath: "TABLE:$1:OPTIONS",
-
-        sortDir: "asc",
-        decimalSeparator: ".",
-        thousandSeparator: ",",
-
-        tableRowsCountTitle: "Show entries:",
-        tableSearchTitle: "Search:",
-        tableInfoTitle: "Showing $1 to $2 of $3 entries",
-        paginationPrevTitle: "Prev",
-        paginationNextTitle: "Next",
-        allRecordsTitle: "All",
-        inspectorTitle: "Inspector",
-
-        activityType: "cycle",
-        activityStyle: "color",
-        activityTimeout: 100,
-
-        searchWrapper: null,
-        rowsWrapper: null,
-        infoWrapper: null,
-        paginationWrapper: null,
-
-        cellWrapper: true,
-
-        clsComponent: "",
-        clsTableContainer: "",
-        clsTable: "",
-
-        clsHead: "",
-        clsHeadRow: "",
-        clsHeadCell: "",
-
-        clsBody: "",
-        clsBodyRow: "",
-        clsBodyCell: "",
-        clsCellWrapper: "",
-
-        clsFooter: "",
-        clsFooterRow: "",
-        clsFooterCell: "",
-
-        clsTableTop: "",
-        clsRowsCount: "",
-        clsSearch: "",
-
-        clsTableBottom: "",
-        clsTableInfo: "",
-        clsTablePagination: "",
-
-        clsPagination: "",
-
-        clsEvenRow: "",
-        clsOddRow: "",
-        clsRow: "",
-
-        onDraw: Metro.noop,
-        onDrawRow: Metro.noop,
-        onDrawCell: Metro.noop,
-        onAppendRow: Metro.noop,
-        onAppendCell: Metro.noop,
-        onSortStart: Metro.noop,
-        onSortStop: Metro.noop,
-        onSortItemSwitch: Metro.noop,
-        onSearch: Metro.noop,
-        onRowsCountChange: Metro.noop,
-        onDataLoad: Metro.noop,
-        onDataLoadError: Metro.noop,
-        onDataLoaded: Metro.noop,
-        onFilterRowAccepted: Metro.noop,
-        onFilterRowDeclined: Metro.noop,
-        onCheckClick: Metro.noop,
-        onCheckClickAll: Metro.noop,
-        onCheckDraw: Metro.noop,
-        onViewSave: Metro.noop,
-        onViewGet: Metro.noop,
-        onViewCreated: Metro.noop,
-        onTableCreate: Metro.noop
-    },
+        // templateBeginToken: "<%",
+        // templateEndToken: "%>",
+        // paginationDistance: 5,
+        //
+        // locale: METRO_LOCALE,
+        //
+        // horizontalScroll: false,
+        // horizontalScrollStop: null,
+        // check: false,
+        // checkType: "checkbox",
+        // checkStyle: 1,
+        // checkColIndex: 0,
+        // checkName: null,
+        // checkStoreKey: "TABLE:$1:KEYS",
+        // rownum: false,
+        // rownumTitle: "#",
+        //
+        // filters: null,
+        // filtersOperator: "and",
+        //
+        // source: null,
+        //
+        // searchMinLength: 1,
+        // searchThreshold: 500,
+        // searchFields: null,
+        //
+        // showRowsSteps: true,
+        // showSearch: true,
+        // showTableInfo: true,
+        // showPagination: true,
+        // paginationShortMode: true,
+        // showActivity: true,
+        // muteTable: true,
+        //
+        // rows: 10,
+        // rowsSteps: "10,25,50,100",
+        //
+        // staticView: false,
+        // viewSaveMode: "client",
+        // viewSavePath: "TABLE:$1:OPTIONS",
+        //
+        // sortDir: "asc",
+        // decimalSeparator: ".",
+        // thousandSeparator: ",",
+        //
+        // tableRowsCountTitle: "Show entries:",
+        // tableSearchTitle: "Search:",
+        // tableInfoTitle: "Showing $1 to $2 of $3 entries",
+        // paginationPrevTitle: "Prev",
+        // paginationNextTitle: "Next",
+        // allRecordsTitle: "All",
+        // inspectorTitle: "Inspector",
+        //
+        // activityType: "cycle",
+        // activityStyle: "color",
+        // activityTimeout: 100,
+        //
+        // searchWrapper: null,
+        // rowsWrapper: null,
+        // infoWrapper: null,
+        // paginationWrapper: null,
+        //
+        // cellWrapper: true,
+        //
+        // clsComponent: "",
+        // clsTableContainer: "",
+        // clsTable: "",
+        //
+        // clsHead: "",
+        // clsHeadRow: "",
+        // clsHeadCell: "",
+        //
+        // clsBody: "",
+        // clsBodyRow: "",
+        // clsBodyCell: "",
+        // clsCellWrapper: "",
+        //
+        // clsFooter: "",
+        // clsFooterRow: "",
+        // clsFooterCell: "",
+        //
+        // clsTableTop: "",
+        // clsRowsCount: "",
+        // clsSearch: "",
+        //
+        // clsTableBottom: "",
+        // clsTableInfo: "",
+        // clsTablePagination: "",
+        //
+        // clsPagination: "",
+        //
+        // clsEvenRow: "",
+        // clsOddRow: "",
+        // clsRow: "",
+        //
+        // onDraw: Metro.noop,
+        // onDrawRow: Metro.noop,
+        // onDrawCell: Metro.noop,
+        // onAppendRow: Metro.noop,
+        // onAppendCell: Metro.noop,
+        // onSortStart: Metro.noop,
+        // onSortStop: Metro.noop,
+        // onSortItemSwitch: Metro.noop,
+        // onSearch: Metro.noop,
+        // onRowsCountChange: Metro.noop,
+        // onDataLoad: Metro.noop,
+        // onDataLoadError: Metro.noop,
+        // onDataLoaded: Metro.noop,
+        // onFilterRowAccepted: Metro.noop,
+        // onFilterRowDeclined: Metro.noop,
+        // onCheckClick: Metro.noop,
+        // onCheckClickAll: Metro.noop,
+        // onCheckDraw: Metro.noop,
+        // onViewSave: Metro.noop,
+        // onViewGet: Metro.noop,
+        // onViewCreated: Metro.noop,
+        // onTableCreate: Metro.noop
+    //},
 
     _setOptionsFromDOM: function(){
         var element = this.element, o = this.options;
