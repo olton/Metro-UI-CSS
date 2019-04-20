@@ -130,9 +130,7 @@ var Carousel = {
         }
 
         Utils.exec(o.onCarouselCreate, [element]);
-        setImmediate(function(){
-            element.fire("carouselcreate");
-        })
+        element.fire("carouselcreate");
     },
 
     _start: function(){

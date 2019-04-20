@@ -39,9 +39,7 @@ var ImageCompare = {
         this._createEvents();
 
         Utils.exec(o.onImageCompareCreate, null, element[0]);
-        setImmediate(function(){
-            element.fire("imagecomparecreate");
-        })
+        element.fire("imagecomparecreate");
     },
 
     _createStructure: function(){

@@ -40,9 +40,7 @@ var BottomSheet = {
         this._createEvents();
 
         Utils.exec(o.onBottomSheetCreate, [element], element[0]);
-        setImmediate(function(){
-            element.fire("bottomsheetcreate");
-        })
+        element.fire("bottomsheetcreate");
     },
 
     _createStructure: function(){

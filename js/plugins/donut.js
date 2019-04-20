@@ -74,9 +74,7 @@ var Donut = {
         this.val(o.value);
 
         Utils.exec(o.onDonutCreate, null, element[0]);
-        setImmediate(function(){
-            element.fire("donutcreate");
-        });
+        element.fire("donutcreate");
     },
 
     _setValue: function(v){

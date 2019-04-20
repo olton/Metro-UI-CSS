@@ -77,10 +77,7 @@ var Activity = {
         }
 
         Utils.exec(this.options.onActivityCreate, [this.element]);
-
-        setImmediate(function(){
-            element.fire("activitycreate")
-        });
+        element.fire("activitycreate")
     },
 
     changeAttribute: function(attributeName){

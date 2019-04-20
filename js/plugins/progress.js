@@ -9,8 +9,6 @@ var Progress = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onProgressCreate, [this.element]);
-
         return this;
     },
 
@@ -87,6 +85,9 @@ var Progress = {
 
         this.val(o.value);
         this.buff(o.buffer);
+
+        Utils.exec(o.onProgressCreate, null, element[0]);
+        element.fire("progresscreate");
     },
 
     val: function(v){
@@ -106,12 +107,16 @@ var Progress = {
 
         bar.css("width", this.value + "%");
 
-        element.trigger("valuechange", [this.value]);
-
-        Utils.exec(o.onValueChange, [this.value, element]);
+        Utils.exec(o.onValueChange, [this.value], element[0]);
+        element.fire("valuechange", {
+            vsl: this.value
+        });
 
         if (this.value === 100) {
-            Utils.exec(o.onComplete, [this.value, element]);
+            Utils.exec(o.onComplete, [this.value], element[0]);
+            element.fire("complete", {
+                val: this.value
+            });
         }
     },
 
@@ -132,12 +137,16 @@ var Progress = {
 
         bar.css("width", this.buffer + "%");
 
-        element.trigger("bufferchange", [this.buffer]);
-
-        Utils.exec(o.onBufferChange, [this.buffer, element]);
+        Utils.exec(o.onBufferChange, [this.buffer], element[0]);
+        element.fire("bufferchange", {
+            val: this.buffer
+        });
 
         if (this.buffer === 100) {
-            Utils.exec(o.onBuffered, [this.buffer, element]);
+            Utils.exec(o.onBuffered, [this.buffer], element[0]);
+            element.fire("buffered", {
+                val: this.buffer
+            });
         }
     },
 

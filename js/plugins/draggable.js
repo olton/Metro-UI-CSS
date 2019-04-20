@@ -15,6 +15,7 @@ var Draggable = {
         this._create();
 
         Utils.exec(this.options.onDraggableCreate, [this.element]);
+        this.element.fire("draggablecreate");
 
         return this;
     },

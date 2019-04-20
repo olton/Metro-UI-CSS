@@ -7,8 +7,6 @@ var Ripple = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onRippleCreate, [this.element]);
-
         return this;
     },
 
@@ -79,6 +77,9 @@ var Ripple = {
                 $(".ripple").remove();
             }, 400);
         });
+
+        Utils.exec(o.onRippleCreate, null, element[0]);
+        element.fire("ripplecreate");
     },
 
     changeAttribute: function(attributeName){

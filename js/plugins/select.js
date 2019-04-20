@@ -8,8 +8,6 @@ var Select = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onSelectCreate, [this.element]);
-
         return this;
     },
     options: {
@@ -56,8 +54,13 @@ var Select = {
     },
 
     _create: function(){
+        var element = this.element, o = this.options;
+
         this._createSelect();
         this._createEvents();
+
+        Utils.exec(o.onSelectCreate, null, element[0]);
+        element.fire("selectcreate");
     },
 
     _addOption: function(item, parent){
@@ -188,10 +191,16 @@ var Select = {
                     }, 200);
                 }
 
-                Utils.exec(o.onDrop, [list, element], list[0]);
+                Utils.exec(o.onDrop, [list[0]], element[0]);
+                element.fire("drop", {
+                    list: list[0]
+                });
             },
             onUp: function(){
-                Utils.exec(o.onUp, [list, element], list[0]);
+                Utils.exec(o.onUp, [list[0]], element[0]);
+                element.fire("up", {
+                    list: list[0]
+                });
             }
         });
 
@@ -255,7 +264,7 @@ var Select = {
             var val = leaf.data('value');
             var txt = leaf.data('text');
             var html = leaf.children('a').html();
-            var selected_item;
+            var selected_item, selected;
             var option = leaf.data("option");
             var options = element.find("option");
 
@@ -277,16 +286,27 @@ var Select = {
                 }
             });
 
-            element.trigger("change");
+            Utils.exec(o.onItemSelect, [val, option, leaf[0]], element[0]);
+            element.fire("itemselect", {
+                val: val,
+                option: option,
+                leaf: leaf[0]
+            });
 
-            Utils.exec(o.onItemSelect, [val, option, leaf], element[0]);
-            Utils.exec(o.onChange, [that.getSelected()], element[0]);
+            selected = that.getSelected();
+
+            Utils.exec(o.onChange, [selected], element[0]);
+            element.fire("change", {
+                selected: selected
+            });
         });
 
         input.on("click", ".selected-item .remover", function(e){
             var item = $(this).closest(".selected-item");
             var leaf = item.data("option");
             var option = leaf.data('option');
+            var selected;
+
             leaf.removeClass("d-none");
             $.each(element.find("option"), function(){
                 if (this === option) {
@@ -295,10 +315,17 @@ var Select = {
             });
             item.remove();
 
-            element.trigger("change");
-
             Utils.exec(o.onItemDeselect, [option], element[0]);
-            Utils.exec(o.onChange, [that.getSelected()], element[0]);
+            element.fire("itemdeselect", {
+                option: option
+            });
+
+            selected = that.getSelected();
+            Utils.exec(o.onChange, [selected], element[0]);
+            element.fire("change", {
+                selected: selected
+            });
+
             e.preventDefault();
             e.stopPropagation();
         });
@@ -346,6 +373,7 @@ var Select = {
         var element = this.element, o = this.options;
         var options = element.find("option");
         var select = element.closest('.select');
+        var selected;
 
         $.each(options, function(){
             this.selected = !Utils.isNull(to_default) ? this.defaultSelected : false;
@@ -356,8 +384,11 @@ var Select = {
 
         this._createOptions();
 
-        element.trigger('change');
-        Utils.exec(o.onChange, [this.getSelected()], element[0]);
+        selected = this.getSelected();
+        Utils.exec(o.onChange, [selected], element[0]);
+        element.fire("change", {
+            selected: selected
+        });
     },
 
     getSelected: function(){
@@ -379,7 +410,7 @@ var Select = {
         var result = [];
         var multiple = element.attr("multiple") !== undefined;
         var option;
-        var i, html, list_item, option_value, tag;
+        var i, html, list_item, option_value, tag, selected;
 
         if (Utils.isNull(val)) {
             $.each(options, function(){
@@ -426,8 +457,11 @@ var Select = {
             }
         });
 
-        element.trigger('change');
-        Utils.exec(o.onChange, [this.getSelected()], element[0]);
+        selected = this.getSelected();
+        Utils.exec(o.onChange, [selected], element[0]);
+        element.fire("change", {
+            selected: selected
+        });
     },
 
     data: function(op){

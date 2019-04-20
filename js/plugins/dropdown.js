@@ -43,10 +43,7 @@ var Dropdown = {
         this._createEvents();
 
         Utils.exec(o.onDropdownCreate, null, element);
-
-        setImmediate(function(){
-            element.fire("dropdowncreate");
-        });
+        element.fire("dropdowncreate");
 
         if (element.hasClass("open")) {
             setTimeout(function(){

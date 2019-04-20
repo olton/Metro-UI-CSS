@@ -88,7 +88,8 @@ var Rating = {
         this._createRating();
         this._createEvents();
 
-        Utils.exec(o.onRatingCreate, [element]);
+        Utils.exec(o.onRatingCreate, null, element[0]);
+        element.fire("ratingcreate");
     },
 
     _createRating: function(){
@@ -180,7 +181,11 @@ var Rating = {
             star.prevAll().addClass("on");
             star.nextAll().removeClass("on");
 
-            Utils.exec(o.onStarClick, [value, star, element]);
+            Utils.exec(o.onStarClick, [value, star[0]], element[0]);
+            element.fire("starclick", {
+                value: value,
+                star: star[0]
+            });
         });
     },
 

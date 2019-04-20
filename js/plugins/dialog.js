@@ -159,9 +159,7 @@ var Dialog = {
         });
 
         Utils.exec(this.options.onDialogCreate, [this.element]);
-        setImmediate(function(){
-            element.fire("dialogcreate");
-        });
+        element.fire("dialogcreate");
     },
 
     _overlay: function(){

@@ -63,9 +63,7 @@ var Chat = {
         this._createEvents();
 
         Utils.exec(o.onChatCreate, [element]);
-        setImmediate(function(){
-            element.fire("chatcreate");
-        });
+        element.fire("chatcreate");
     },
 
     _createStructure: function(){

@@ -41,9 +41,7 @@ var ButtonGroup = {
         this._createEvents();
 
         Utils.exec(o.onButtonsGroupCreate, [element]);
-        setImmediate(function(){
-            element.fire("buttongroupcreate");
-        });
+        element.fire("buttongroupcreate");
     },
 
     _createGroup: function(){

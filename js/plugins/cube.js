@@ -113,9 +113,7 @@ var Cube = {
         this._createEvents();
 
         Utils.exec(o.onCubeCreate, [element]);
-        setImmediate(function(){
-            element.fire("cubecreate");
-        });
+        element.fire("cubecreate");
     },
 
     _parseRules: function(rules){

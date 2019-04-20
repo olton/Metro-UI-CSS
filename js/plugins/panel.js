@@ -172,7 +172,8 @@ var Panel = {
 
         this.panel = panel;
 
-        Utils.exec(o.onPanelCreate, [this.element]);
+        Utils.exec(o.onPanelCreate, null,element[0]);
+        element.fire("panelcreate");
     },
 
     collapse: function(){
@@ -192,8 +193,6 @@ var Panel = {
     },
 
     changeAttribute: function(attributeName){
-        switch (attributeName) {
-        }
     }
 };
 

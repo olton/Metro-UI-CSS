@@ -79,9 +79,7 @@ var Checkbox = {
         }
 
         Utils.exec(o.onCheckboxCreate, [element]);
-        setImmediate(function(){
-            element.fire("checkboxcreate");
-        });
+        element.fire("checkboxcreate");
     },
 
     indeterminate: function(){

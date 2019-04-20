@@ -1,4 +1,4 @@
-var Treeview = {
+var TreeView = {
     init: function( options, elem ) {
         this.options = $.extend( {}, this.options, options );
         this.elem  = elem;
@@ -333,4 +333,4 @@ var Treeview = {
     }
 };
 
-Metro.plugin('treeview', Treeview);
+Metro.plugin('treeview', TreeView);

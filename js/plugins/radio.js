@@ -10,8 +10,6 @@ var Radio = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onRadioCreate, [this.element]);
-
         return this;
     },
     options: {
@@ -67,6 +65,9 @@ var Radio = {
         } else {
             this.enable();
         }
+
+        Utils.exec(o.onRadioCreate, null, element[0]);
+        element.fire("radiocreate");
     },
 
     disable: function(){

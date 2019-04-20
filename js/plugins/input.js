@@ -76,9 +76,7 @@ var Input = {
 
         Utils.exec(o.onInputCreate, null, element[0]);
 
-        setImmediate(function(){
-            element.fire("inputcreate");
-        });
+        element.fire("inputcreate");
     },
 
     _createStructure: function(){

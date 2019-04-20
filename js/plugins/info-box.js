@@ -50,9 +50,7 @@ var InfoBox = {
         this._createEvents();
 
         Utils.exec(o.onInfoBoxCreate, null, element[0]);
-        setImmediate(function(){
-            element.fire("infoboxcreate");
-        })
+        element.fire("infoboxcreate");
     },
 
     _overlay: function(){

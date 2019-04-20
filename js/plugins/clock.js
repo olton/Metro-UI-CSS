@@ -42,9 +42,7 @@ var Clock = {
         this._tick();
 
         Utils.exec(this.options.onClockCreate, [this.element]);
-        setImmediate(function(){
-            element.fire("clockcreate");
-        });
+        element.fire("clockcreate");
 
         this._clockInterval = setInterval(function(){
             that._tick();
