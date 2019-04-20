@@ -48,7 +48,8 @@ var Tile = {
         this._createTile();
         this._createEvents();
 
-        Utils.exec(o.onTileCreate, [element]);
+        Utils.exec(o.onTileCreate, null, element[0]);
+        element.fire("tilecreate");
     },
 
     _createTile: function(){
@@ -205,7 +206,10 @@ var Tile = {
                     }, 100);
                 }
 
-                Utils.exec(o.onClick, [tile]);
+                Utils.exec(o.onClick, [side], element[0]);
+                element.fire("click", {
+                    side: side
+                });
             }
         });
 

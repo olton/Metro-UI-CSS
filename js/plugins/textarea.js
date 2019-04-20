@@ -7,8 +7,6 @@ var Textarea = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onTextareaCreate, [this.element]);
-
         return this;
     },
     options: {
@@ -30,7 +28,7 @@ var Textarea = {
     },
 
     _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         $.each(element.data(), function(key, value){
             if (key in o) {
@@ -44,8 +42,13 @@ var Textarea = {
     },
 
     _create: function(){
+        var element = this.element, o = this.options;
+
         this._createStructure();
         this._createEvents();
+
+        Utils.exec(o.onTextareaCreate, null, element[0]);
+        element.fire("textareacreate");
     },
 
     _createStructure: function(){
@@ -148,6 +151,10 @@ var Textarea = {
                 }
             }
             Utils.exec(o.onChange, [element.val(), that.length()], element[0]);
+            element.fire("change", {
+                val: element.val(),
+                length: that.length()
+            });
         })
     },
 

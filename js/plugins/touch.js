@@ -139,7 +139,8 @@ var Touch = {
             $.error('Events not supported ' + this.START_EV + ',' + this.CANCEL_EV + ' on Swipe');
         }
 
-        Utils.exec(o.onSwipeCreate, [element]);
+        Utils.exec(o.onSwipeCreate, null, element[0]);
+        element.fire("swipecreate");
     },
 
     touchStart: function(e) {
@@ -224,6 +225,10 @@ var Touch = {
                     //Fire the callback
                     if (options.onHold !== Metro.noop) { // TODO Remove this if
                         ret = Utils.exec(options.onHold, [event, event.target], element[0]);
+                        element.fire("hold", {
+                            event: event,
+                            target: event.target
+                        });
                     }
                 }, this), options.longTapThreshold);
             }
@@ -511,6 +516,16 @@ var Touch = {
             element.trigger('swipeStatus', [phase, this.direction || null, this.distance || 0, this.duration || 0, this.fingerCount, this.fingerData, this.currentDirection]);
 
             ret = Utils.exec(options.onSwipeStatus, [event, phase, this.direction || null, this.distance || 0, this.duration || 0, this.fingerCount, this.fingerData, this.currentDirection], element[0]);
+            element.fire("swipestatus", {
+                event: event,
+                phase: phase,
+                direction: this.direction,
+                distance: this.distance,
+                duration: this.duration,
+                fingerCount: this.fingerCount,
+                fingerData: this.fingerData,
+                currentDirection: this.currentDirection
+            });
             if (ret === false) return false;
 
             if (phase === TouchConst.PHASE_END && this.validateSwipe()) {
@@ -522,6 +537,16 @@ var Touch = {
                 element.trigger('swipe', [this.direction, this.distance, this.duration, this.fingerCount, this.fingerData, this.currentDirection]);
 
                 ret = Utils.exec(options.onSwipe, [event, this.direction, this.distance, this.duration, this.fingerCount, this.fingerData, this.currentDirection], element[0]);
+                element.fire("swipe", {
+                    event: event,
+                    direction: this.direction,
+                    distance: this.distance,
+                    duration: this.duration,
+                    fingerCount: this.fingerCount,
+                    fingerData: this.fingerData,
+                    currentDirection: this.currentDirection
+                });
+
                 if (ret === false) return false;
 
                 //trigger direction specific event handlers
@@ -529,21 +554,57 @@ var Touch = {
                     case TouchConst.LEFT:
                         element.trigger('swipeLeft', [this.direction, this.distance, this.duration, this.fingerCount, this.fingerData, this.currentDirection]);
                         ret = Utils.exec(options.onSwipeLeft, [event, this.direction, this.distance, this.duration, this.fingerCount, this.fingerData, this.currentDirection], element[0]);
+                        element.fire("swipeleft", {
+                            event: event,
+                            direction: this.direction,
+                            distance: this.distance,
+                            duration: this.duration,
+                            fingerCount: this.fingerCount,
+                            fingerData: this.fingerData,
+                            currentDirection: this.currentDirection
+                        });
                         break;
 
                     case TouchConst.RIGHT:
                         element.trigger('swipeRight', [this.direction, this.distance, this.duration, this.fingerCount, this.fingerData, this.currentDirection]);
                         ret = Utils.exec(options.onSwipeRight, [event, this.direction, this.distance, this.duration, this.fingerCount, this.fingerData, this.currentDirection], element[0]);
+                        element.fire("swiperight", {
+                            event: event,
+                            direction: this.direction,
+                            distance: this.distance,
+                            duration: this.duration,
+                            fingerCount: this.fingerCount,
+                            fingerData: this.fingerData,
+                            currentDirection: this.currentDirection
+                        });
                         break;
 
                     case TouchConst.UP:
                         element.trigger('swipeUp', [this.direction, this.distance, this.duration, this.fingerCount, this.fingerData, this.currentDirection]);
                         ret = Utils.exec(options.onSwipeUp, [event, this.direction, this.distance, this.duration, this.fingerCount, this.fingerData, this.currentDirection], element[0]);
+                        element.fire("swipeup", {
+                            event: event,
+                            direction: this.direction,
+                            distance: this.distance,
+                            duration: this.duration,
+                            fingerCount: this.fingerCount,
+                            fingerData: this.fingerData,
+                            currentDirection: this.currentDirection
+                        });
                         break;
 
                     case TouchConst.DOWN:
                         element.trigger('swipeDown', [this.direction, this.distance, this.duration, this.fingerCount, this.fingerData, this.currentDirection]);
                         ret = Utils.exec(options.onSwipeDown, [event, this.direction, this.distance, this.duration, this.fingerCount, this.fingerData, this.currentDirection], element[0]);
+                        element.fire("swipedown", {
+                            event: event,
+                            direction: this.direction,
+                            distance: this.distance,
+                            duration: this.duration,
+                            fingerCount: this.fingerCount,
+                            fingerData: this.fingerData,
+                            currentDirection: this.currentDirection
+                        });
                         break;
                 }
             }
@@ -555,6 +616,16 @@ var Touch = {
             element.trigger('pinchStatus', [phase, this.pinchDirection || null, this.pinchDistance || 0, this.duration || 0, this.fingerCount, this.fingerData, this.pinchZoom]);
 
             ret = Utils.exec(options.onPinchStatus, [event, phase, this.pinchDirection || null, this.pinchDistance || 0, this.duration || 0, this.fingerCount, this.fingerData, this.pinchZoom], element[0]);
+            element.fire("pinchstatus", {
+                event: event,
+                phase: phase,
+                direction: this.pinchDirection,
+                distance: this.pinchDistance,
+                duration: this.duration,
+                fingerCount: this.fingerCount,
+                fingerData: this.fingerData,
+                zoom: this.pinchZoom
+            });
             if (ret === false) return false;
 
             if (phase === TouchConst.PHASE_END && this.validatePinch()) {
@@ -563,11 +634,29 @@ var Touch = {
                     case TouchConst.IN:
                         element.trigger('pinchIn', [this.pinchDirection || null, this.pinchDistance || 0, this.duration || 0, this.fingerCount, this.fingerData, this.pinchZoom]);
                         ret = Utils.exec(options.onPinchIn, [event, this.pinchDirection || null, this.pinchDistance || 0, this.duration || 0, this.fingerCount, this.fingerData, this.pinchZoom], element[0]);
+                        element.fire("pinchin", {
+                            event: event,
+                            direction: this.pinchDirection,
+                            distance: this.pinchDistance,
+                            duration: this.duration,
+                            fingerCount: this.fingerCount,
+                            fingerData: this.fingerData,
+                            zoom: this.pinchZoom
+                        });
                         break;
 
                     case TouchConst.OUT:
                         element.trigger('pinchOut', [this.pinchDirection || null, this.pinchDistance || 0, this.duration || 0, this.fingerCount, this.fingerData, this.pinchZoom]);
                         ret = Utils.exec(options.onPinchOut, [event, this.pinchDirection || null, this.pinchDistance || 0, this.duration || 0, this.fingerCount, this.fingerData, this.pinchZoom], element[0]);
+                        element.fire("pinchout", {
+                            event: event,
+                            direction: this.pinchDirection,
+                            distance: this.pinchDistance,
+                            duration: this.duration,
+                            fingerCount: this.fingerCount,
+                            fingerData: this.fingerData,
+                            zoom: this.pinchZoom
+                        });
                         break;
                 }
             }
@@ -587,15 +676,20 @@ var Touch = {
                     //if its not cancelled by a double tap
                     this.singleTapTimeout = setTimeout($.proxy(function() {
                         this.doubleTapStartTime = null;
-                        element.trigger('tap', [event.target]);
-
                         ret = Utils.exec(options.onTap, [event, event.target], element[0]);
+                        element.fire("tap", {
+                            event: event,
+                            target: event.target
+                        });
                     }, this), options.doubleTapThreshold);
 
                 } else {
                     this.doubleTapStartTime = null;
-                    element.trigger('tap', [event.target]);
                     ret = Utils.exec(options.onTap, [event, event.target], element[0]);
+                    element.fire("tap", {
+                        event: event,
+                        target: event.target
+                    });
                 }
             }
         } else if (gesture === TouchConst.DOUBLE_TAP) {
@@ -603,15 +697,23 @@ var Touch = {
                 clearTimeout(this.singleTapTimeout);
                 clearTimeout(this.holdTimeout);
                 this.doubleTapStartTime = null;
-                element.trigger('doubletap', [event.target]);
+
                 ret = Utils.exec(options.onDoubleTap, [event, event.target], element[0]);
+                element.fire("doubletap", {
+                    event: event,
+                    target: event.target
+                });
             }
         } else if (gesture === TouchConst.LONG_TAP) {
             if (phase === TouchConst.PHASE_CANCEL || phase === TouchConst.PHASE_END) {
                 clearTimeout(this.singleTapTimeout);
                 this.doubleTapStartTime = null;
-                element.trigger('longtap', [event.target]);
+
                 ret = Utils.exec(options.onLongTap, [event, event.target], element[0]);
+                element.fire("longtap", {
+                    event: event,
+                    target: event.target
+                });
             }
         }
 
@@ -733,14 +835,15 @@ var Touch = {
     },
 
     hasSwipes: function() {
+        var o = this.options;
         //Enure we dont return 0 or null for false values
         return !!(
-            this.options.onSwipe !== Metro.noop
-            || this.options.onSwipeStatus  !== Metro.noop
-            || this.options.onSwipeLeft  !== Metro.noop
-            || this.options.onSwipeRight  !== Metro.noop
-            || this.options.onSwipeUp  !== Metro.noop
-            || this.options.onSwipeDown !== Metro.noop
+            o.onSwipe !== Metro.noop
+            || o.onSwipeStatus  !== Metro.noop
+            || o.onSwipeLeft  !== Metro.noop
+            || o.onSwipeRight  !== Metro.noop
+            || o.onSwipeUp  !== Metro.noop
+            || o.onSwipeDown !== Metro.noop
         );
     },
 

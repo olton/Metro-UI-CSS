@@ -58,7 +58,8 @@ var Spinner = {
         this._createStructure();
         this._createEvents();
 
-        Utils.exec(o.onCreate, [element]);
+        Utils.exec(o.onSpinnerCreate, null, element[0]);
+        element.fire("spinnercreate");
     },
 
     _createStructure: function(){
@@ -113,9 +114,34 @@ var Spinner = {
             that._setValue(val.toFixed(o.fixed), true);
 
             Utils.exec(plus ? o.onPlusClick : o.onMinusClick, [curr, val, element.val()], element[0]);
+            element.fire(plus ? "plusclick" : "minusclick", {
+                curr: curr,
+                val: val,
+                elementVal: element.val()
+            });
+
             Utils.exec(plus ? o.onArrowUp : o.onArrowDown, [curr, val, element.val()], element[0]);
+            element.fire(plus ? "arrowup" : "arrowdown", {
+                curr: curr,
+                val: val,
+                elementVal: element.val()
+            });
+
             Utils.exec(o.onButtonClick, [curr, val, element.val(), plus ? 'plus' : 'minus'], element[0]);
+            element.fire("buttonclick", {
+                button: plus ? "plus" : "minus",
+                curr: curr,
+                val: val,
+                elementVal: element.val()
+            });
+
             Utils.exec(o.onArrowClick, [curr, val, element.val(), plus ? 'plus' : 'minus'], element[0]);
+            element.fire("arrowclick", {
+                button: plus ? "plus" : "minus",
+                curr: curr,
+                val: val,
+                elementVal: element.val()
+            });
 
             setTimeout(function(){
                 if (that.repeat_timer) {
@@ -173,7 +199,9 @@ var Spinner = {
         Utils.exec(o.onChange, [val], element[0]);
 
         if (trigger_change === true) {
-            element.trigger("change");
+            element.fire("change", {
+                val: val
+            });
         }
     },
 
@@ -191,6 +219,9 @@ var Spinner = {
         var val = Utils.isValue(o.defaultValue) ? Number(o.defaultValue) : 0;
         this._setValue(val.toFixed(o.fixed), true);
         Utils.exec(o.onChange, [val], element[0]);
+        element.fire("change", {
+            val: val
+        });
     },
 
     disable: function(){

@@ -7,8 +7,6 @@ var Switch = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onSwitchCreate, [this.element]);
-
         return this;
     },
     options: {
@@ -63,6 +61,9 @@ var Switch = {
         } else {
             this.enable();
         }
+
+        Utils.exec(o.onSwitchCreate, null, element[0]);
+        element.fire("switchcreate");
     },
 
     disable: function(){

@@ -45,7 +45,8 @@ var MaterialTabs = {
         this._createStructure();
         this._createEvents();
 
-        Utils.exec(o.onTabsCreate, [element]);
+        Utils.exec(o.onTabsCreate, null, element[0]);
+        element.fire("tabscreate");
     },
 
     _applyColor: function(to, color, option){
@@ -164,7 +165,12 @@ var MaterialTabs = {
             if (target.trim() !== "#" && $(target).length > 0) $(target).show();
         }
 
-        Utils.exec(o.onTabOpen, [tab, target, tab_next], tab[0]);
+        Utils.exec(o.onTabOpen, [tab[0], target, tab_next], element[0]);
+        element.fire("tabopen", {
+            tab: tab[0],
+            target: target,
+            tab_next: tab_next
+        });
     },
 
     changeAttribute: function(attributeName){

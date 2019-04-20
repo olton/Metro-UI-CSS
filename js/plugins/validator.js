@@ -371,7 +371,8 @@ var Validator = {
             return that._reset();
         };
 
-        Utils.exec(this.options.onValidatorCreate, [element], this.elem);
+        Utils.exec(o.onValidatorCreate, null, element[0]);
+        element.fire("validatorcreate");
     },
 
     _reset: function(){
@@ -396,16 +397,28 @@ var Validator = {
 
         submit.removeAttr("disabled").removeClass("disabled");
 
-        result.val += Utils.exec(o.onBeforeSubmit, [element, formData], this.elem) === false ? 1 : 0;
+        result.val += Utils.exec(o.onBeforeSubmit, [formData], this.elem) === false ? 1 : 0;
 
         if (result.val === 0) {
-            Utils.exec(o.onValidateForm, [element, formData], form);
+            Utils.exec(o.onValidateForm, [formData], form);
+            element.fire("validateform", {
+                data: formData
+            });
+
             setTimeout(function(){
-                Utils.exec(o.onSubmit, [element, formData], form);
+                Utils.exec(o.onSubmit, [formData], form);
+                element.fire("formsubmit", {
+                    data: formData
+                });
                 if (that._onsubmit !==  null) Utils.exec(that._onsubmit, null, form);
             }, o.submitTimeout);
         } else {
-            Utils.exec(o.onErrorForm, [result.log, element, formData], form);
+            Utils.exec(o.onErrorForm, [result.log, formData], form);
+            element.fire("errorform", {
+                log: result.log,
+                data: formData
+            });
+
             if (o.clearInvalid > 0) {
                 setTimeout(function(){
                     $.each(inputs, function(){
@@ -424,8 +437,6 @@ var Validator = {
     },
 
     changeAttribute: function(attributeName){
-        switch (attributeName) {
-        }
     }
 };
 

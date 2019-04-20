@@ -289,7 +289,8 @@ var Streamer = {
             }, o.startSlideSleep);
         }
 
-        Utils.exec(o.onStreamerCreate, [element]);
+        Utils.exec(o.onStreamerCreate, null, element[0]);
+        element.fire("streamercreate");
     },
 
     _createEvents: function(){
@@ -324,7 +325,11 @@ var Streamer = {
                         if (o.changeUri === true) {
                             that._changeURI();
                         }
-                        Utils.exec(o.onEventSelect, [event, event.hasClass("selected")]);
+                        Utils.exec(o.onEventSelect, [event[0], event.hasClass("selected")], element[0]);
+                        element.fire("eventselect", {
+                            event: event[0],
+                            selected: event.hasClass("selected")
+                        });
                     }
                 }
             } else {
@@ -336,7 +341,10 @@ var Streamer = {
 
                     } else {
 
-                        Utils.exec(o.onEventClick, [event]);
+                        Utils.exec(o.onEventClick, [event[0]], element[0]);
+                        element.fire("eventclick", {
+                            event: event[0]
+                        });
 
                         if (o.closed === true || event.data("closed") === true) {
                             var target = event.data("target");
@@ -367,10 +375,16 @@ var Streamer = {
                 element.data("stream", index);
                 element.find(".stream-event").addClass("disabled");
                 that.enableStream(stream);
-                Utils.exec(o.onStreamSelect, [stream]);
+                Utils.exec(o.onStreamSelect, [stream], element[0]);
+                element.fire("streamselect", {
+                    stream: stream
+                });
             }
 
-            Utils.exec(o.onStreamClick, [stream]);
+            Utils.exec(o.onStreamClick, [stream], element[0]);
+            element.fire("streamclick", {
+                stream: stream
+            });
         });
 
         if (Utils.isTouchDevice() !== true) {
@@ -555,7 +569,11 @@ var Streamer = {
         if (o.changeUri === true) {
             that._changeURI();
         }
-        Utils.exec(o.onEventSelect, [event, state]);
+        Utils.exec(o.onEventSelect, [event[0], state], element[0]);
+        element.fire("eventselect", {
+            event: event[0],
+            selected: state
+        });
     },
 
     changeSource: function(){

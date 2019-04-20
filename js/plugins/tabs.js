@@ -8,8 +8,6 @@ var Tabs = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onTabsCreate, [this.element], this.elem);
-
         return this;
     },
 
@@ -44,12 +42,15 @@ var Tabs = {
     },
 
     _create: function(){
-        var element = this.element;
+        var element = this.element, o = this.options;
         var tab = element.find(".active").length > 0 ? $(element.find(".active")[0]) : undefined;
 
         this._createStructure();
         this._createEvents();
         this._open(tab);
+
+        Utils.exec(o.onTabsCreate, null, element[0]);
+        element.fire("tabscreate");
     },
 
     _createStructure: function(){
@@ -222,7 +223,10 @@ var Tabs = {
 
         tab.addClass(o.clsTabsListItemActive);
 
-        Utils.exec(o.onTab, [tab, element], tab[0]);
+        Utils.exec(o.onTab, [tab[0]], element[0]);
+        element.fire("tab", {
+            tab: tab[0]
+        })
     },
 
     next: function(){

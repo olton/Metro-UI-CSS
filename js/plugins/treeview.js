@@ -22,7 +22,7 @@ var TreeView = {
         onRadioClick: Metro.noop,
         onExpandNode: Metro.noop,
         onCollapseNode: Metro.noop,
-        onTreeviewCreate: Metro.noop
+        onTreeViewCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -50,7 +50,8 @@ var TreeView = {
             that._recheck(this);
         });
 
-        Utils.exec(o.onTreeviewCreate, [element], element[0]);
+        Utils.exec(o.onTreeViewCreate, null, element[0]);
+        element.fire("treeviewcreate");
     },
 
     _createIcon: function(data){
@@ -140,7 +141,10 @@ var TreeView = {
 
             that.current(node);
 
-            Utils.exec(o.onNodeClick, [node, element], node[0]);
+            Utils.exec(o.onNodeClick, [node[0]], element[0]);
+            element.fire("nodeclick", {
+                node: node[0]
+            });
 
             e.preventDefault();
         });
@@ -154,7 +158,10 @@ var TreeView = {
                 that.toggleNode(node);
             }
 
-            Utils.exec(o.onNodeDblClick, [node, element], node[0]);
+            Utils.exec(o.onNodeDblClick, [node[0]], element[0]);
+            element.fire("nodedblclick", {
+                node: node[0]
+            });
 
             e.preventDefault();
         });
@@ -166,7 +173,12 @@ var TreeView = {
 
             that.current(node);
 
-            Utils.exec(o.onRadioClick, [checked, check, node, element], this);
+            Utils.exec(o.onRadioClick, [checked, check[0], node[0]], element[0]);
+            element.fire("radioclick", {
+                checked: checked,
+                check: check[0],
+                node: node[0]
+            });
         });
 
         element.on(Metro.events.click, "input[type=checkbox]", function(e){
@@ -176,7 +188,12 @@ var TreeView = {
 
             that._recheck(check);
 
-            Utils.exec(o.onCheckClick, [checked, check, node, element], this);
+            Utils.exec(o.onCheckClick, [checked, check[0], node[0]], element[0]);
+            element.fire("checkclick", {
+                checked: checked,
+                check: check[0],
+                node: node[0]
+            });
         });
     },
 
@@ -254,15 +271,22 @@ var TreeView = {
             func = toBeExpanded === true ? "fadeOut" : "fadeIn";
         }
         if (toBeExpanded) {
-            Utils.exec(o.onExpandNode, [node, element]);
+            Utils.exec(o.onExpandNode, [node[0]], element[0]);
+            element.fire("expandnode", {
+                node: node[0]
+            });
         } else {
-            Utils.exec(o.onCollapseNode, [node, element]);
+            Utils.exec(o.onCollapseNode, [node[0]], element[0]);
+            element.fire("collapsenode", {
+                node: node[0]
+            });
         }
 
         node.children("ul")[func](o.duration);
     },
 
     addTo: function(node, data){
+        node = $(node);
         var that = this, element = this.element, o = this.options;
         var target;
         var new_node;
@@ -284,46 +308,71 @@ var TreeView = {
 
         new_node.appendTo(target);
 
-        Utils.exec(o.onNodeInsert, [new_node, element], new_node[0]);
+        Utils.exec(o.onNodeInsert, [new_node[0], node[0]], element[0]);
+        element.fire("nodeinsert", {
+            node: new_node[0],
+            parent: node[0]
+        });
 
         return new_node;
     },
 
     insertBefore: function(node, data){
+        node = $(node);
         var element = this.element, o = this.options;
         var new_node = this._createNode(data);
         new_node.insertBefore(node);
-        Utils.exec(o.onNodeInsert, [new_node, element], new_node[0]);
+        Utils.exec(o.onNodeInsert, [new_node[0], node[0]], element[0]);
+        element.fire("nodeinsert", {
+            node: new_node[0],
+            parent: node[0]
+        });
         return new_node;
     },
 
     insertAfter: function(node, data){
+        node = $(node);
         var element = this.element, o = this.options;
         var new_node = this._createNode(data);
         new_node.insertAfter(node);
-        Utils.exec(o.onNodeInsert, [new_node, element], new_node[0]);
+        Utils.exec(o.onNodeInsert, [new_node[0], node[0]], element[0]);
+        element.fire("nodeinsert", {
+            node: new_node[0],
+            parent: node[0]
+        });
         return new_node;
     },
 
     del: function(node){
         var element = this.element, o = this.options;
+        node = $(node);
         var parent_list = node.closest("ul");
         var parent_node = parent_list.closest("li");
+
+        Utils.exec(o.onNodeDelete, [node[0]], element[0]);
+        element.fire("nodedelete", {
+            node: node[0]
+        });
+
         node.remove();
+
         if (parent_list.children().length === 0 && !parent_list.is(element)) {
             parent_list.remove();
             parent_node.removeClass("expanded");
             parent_node.children(".node-toggle").remove();
         }
-        Utils.exec(o.onNodeDelete, [element], element[0]);
     },
 
     clean: function(node){
         var element = this.element, o = this.options;
+        node = $(node);
         node.children("ul").remove();
         node.removeClass("expanded");
         node.children(".node-toggle").remove();
-        Utils.exec(o.onNodeClean, [node, element], node[0]);
+        Utils.exec(o.onNodeClean, [node[0]], element[0]);
+        element.fire("nodeclean", {
+            node: node[0]
+        });
     },
 
     changeAttribute: function(attributeName){

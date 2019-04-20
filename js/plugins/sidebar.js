@@ -51,7 +51,8 @@ var Sidebar = {
         $(window).resize();
         this._checkStatic();
 
-        Utils.exec(o.onSidebarCreate, [element], element[0]);
+        Utils.exec(o.onSidebarCreate, null, element[0]);
+        element.fire("sidebarcreate");
     },
 
     _createStructure: function(){
@@ -139,11 +140,13 @@ var Sidebar = {
                     $(this).css({left: 0}, o.duration);
                 });
             }
-            Utils.exec(o.onStaticSet, [element], element[0]);
+            Utils.exec(o.onStaticSet, null, element[0]);
+            element.fire("staticset");
         }
         if (!Utils.mediaExist(o.static)) {
             element.removeClass("static");
-            Utils.exec(o.onStaticLoss, [element], element[0]);
+            Utils.exec(o.onStaticLoss, null, element[0]);
+            element.fire("staticloss");
         }
     },
 
@@ -166,7 +169,8 @@ var Sidebar = {
             }, o.duration);
         }
 
-        Utils.exec(o.onOpen, [element], element[0]);
+        Utils.exec(o.onOpen, null, element[0]);
+        element.fire("open");
     },
 
     close: function(){
@@ -184,7 +188,8 @@ var Sidebar = {
             }, o.duration);
         }
 
-        Utils.exec(o.onClose, [element], element[0]);
+        Utils.exec(o.onClose, null, element[0]);
+        element.fire("close");
     },
 
     toggle: function(){
@@ -193,7 +198,8 @@ var Sidebar = {
         } else {
             this.open();
         }
-        Utils.exec(this.options.onToggle, [this.element], this.element[0]);
+        Utils.exec(this.options.onToggle, null, this.element[0]);
+        this.element.fire("toggle");
     },
 
     changeAttribute: function(attributeName){

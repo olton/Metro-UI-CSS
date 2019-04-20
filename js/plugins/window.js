@@ -14,8 +14,6 @@ var Window = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onWindowCreate, [this.win, this.element]);
-
         return this;
     },
 
@@ -114,13 +112,21 @@ var Window = {
 
         this.win = win;
 
+        Utils.exec(o.onWindowCreate, [this.win[0]], element[0]);
+        element.fire("windowcreate", {
+            win: win[0]
+        });
+
         setTimeout(function(){
             that._setPosition();
 
             if (o.hidden !== true) {
                 that.win.removeClass("no-visible");
             }
-            Utils.exec(o.onShow, [win], win[0]);
+            Utils.exec(o.onShow, [win[0]], element[0]);
+            element.fire("show", {
+                win: win[0]
+            });
         }, 100);
     },
 
@@ -354,14 +360,20 @@ var Window = {
     },
 
     maximized: function(e){
-        var win = this.win,  o = this.options;
+        var win = this.win,  element = this.element, o = this.options;
         var target = $(e.currentTarget);
         win.removeClass("minimized");
         win.toggleClass("maximized");
         if (target.hasClass("window-caption")) {
-            Utils.exec(o.onCaptionDblClick, [win]);
+            Utils.exec(o.onCaptionDblClick, [win[0]], element[0]);
+            element.fire("captiondblclick", {
+                win: win[0]
+            });
         } else {
-            Utils.exec(o.onMaxClick, [win]);
+            Utils.exec(o.onMaxClick, [win[0]], element[0]);
+            element.fire("maxclick", {
+                win: win[0]
+            });
         }
     },
 
@@ -369,7 +381,10 @@ var Window = {
         var win = this.win,  element = this.element, o = this.options;
         win.removeClass("maximized");
         win.toggleClass("minimized");
-        Utils.exec(o.onMinClick, [win], element[0]);
+        Utils.exec(o.onMinClick, [win[0]], element[0]);
+        element.fire("minclick", {
+            win: win[0]
+        });
     },
 
     close: function(){
@@ -386,15 +401,26 @@ var Window = {
             timeout = 500;
         }
 
-        Utils.exec(o.onClose, [win], element[0]);
+        Utils.exec(o.onClose, [win[0]], element[0]);
+        element.fire("close", {
+            win: win[0]
+        });
 
         timer = setTimeout(function(){
             timer = null;
             if (o.modal === true) {
                 win.siblings(".overlay").remove();
             }
-            Utils.exec(o.onCloseClick, [win], element[0]);
-            Utils.exec(o.onWindowDestroy, [win], element[0]);
+            Utils.exec(o.onCloseClick, [win[0]], element[0]);
+            element.fire("closeclick", {
+                win: win[0]
+            });
+
+            Utils.exec(o.onWindowDestroy, [win[0]], element[0]);
+            element.fire("windowdestroy", {
+                win: win[0]
+            });
+
             if (o.closeAction === Metro.actions.REMOVE) {
                 win.remove();
             } else {

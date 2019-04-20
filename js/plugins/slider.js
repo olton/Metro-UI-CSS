@@ -70,14 +70,15 @@ var Slider = {
     },
 
     _create: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         this._createSlider();
         this._createEvents();
         this.buff(o.buffer);
         this.val(o.value);
 
-        Utils.exec(o.onSliderCreate, [element]);
+        Utils.exec(o.onSliderCreate, null, element[0]);
+        element.fire("slidercreate");
     },
 
     _createSlider: function(){
@@ -155,7 +156,7 @@ var Slider = {
     },
 
     _createEvents: function(){
-        var that = this, slider = this.slider, o = this.options;
+        var that = this, element = this.element, slider = this.slider, o = this.options;
         var marker = slider.find(".marker");
         var hint = slider.find(".hint");
 
@@ -165,7 +166,11 @@ var Slider = {
                     hint.fadeIn();
                 }
                 that._move(e);
-                Utils.exec(o.onMove, [that.value, that.percent, slider]);
+                Utils.exec(o.onMove, [that.value, that.percent], element[0]);
+                element.fire("move", {
+                    val: that.value,
+                    percent: that.percent
+                });
             });
 
             $(document).on(Metro.events.stop, function(){
@@ -176,18 +181,34 @@ var Slider = {
                     hint.fadeOut();
                 }
 
-                Utils.exec(o.onStop, [that.value, that.percent, slider]);
+                Utils.exec(o.onStop, [that.value, that.percent], element[0]);
+                element.fire("stop", {
+                    val: that.value,
+                    percent: that.percent
+                });
             });
 
-            Utils.exec(o.onStart, [that.value, that.percent, slider]);
+            Utils.exec(o.onStart, [that.value, that.percent], element[0]);
+            element.fire("start", {
+                val: that.value,
+                percent: that.percent
+            });
         });
 
         marker.on(Metro.events.focus, function(){
-            Utils.exec(o.onFocus, [that.value, that.percent, slider]);
+            Utils.exec(o.onFocus, [that.value, that.percent], element[0]);
+            element.fire("focus", {
+                val: that.value,
+                percent: that.percent
+            });
         });
 
         marker.on(Metro.events.blur, function(){
-            Utils.exec(o.onBlur, [that.value, that.percent, slider]);
+            Utils.exec(o.onBlur, [that.value, that.percent], element[0]);
+            element.fire("blur", {
+                val: that.value,
+                percent: that.percent
+            });
         });
 
         marker.on(Metro.events.keydown, function(e){
@@ -240,8 +261,17 @@ var Slider = {
 
         slider.on(Metro.events.click, function(e){
             that._move(e);
-            Utils.exec(o.onClick, [that.value, that.percent, slider]);
-            Utils.exec(o.onStop, [that.value, that.percent, slider]);
+            Utils.exec(o.onClick, [that.value, that.percent], element[0]);
+            element.fire("click", {
+                val: that.value,
+                percent: that.percent
+            });
+
+            Utils.exec(o.onStop, [that.value, that.percent], element[0]);
+            element.fire("stop", {
+                val: that.value,
+                percent: that.percent
+            });
         });
 
         $(window).resize(function(){
@@ -340,8 +370,18 @@ var Slider = {
             }
         }
 
-        Utils.exec(o.onChangeValue, [value, this.percent, slider], element[0]);
+        Utils.exec(o.onChangeValue, [value, this.percent], element[0]);
+        element.fire("changevalue", {
+            val: value,
+            percent: this.percent
+        });
+
         Utils.exec(o.onChange, [value, this.percent, this.buffer], element[0]);
+        element.fire("change", {
+            val: value,
+            percent: this.percent,
+            buffer: this.buffer
+        });
     },
 
     _marker: function(){
@@ -393,8 +433,17 @@ var Slider = {
             buffer.css("width", this.buffer + "%");
         }
 
-        Utils.exec(o.onChangeBuffer, [this.buffer, this.slider], element[0]);
+        Utils.exec(o.onChangeBuffer, [this.buffer], element[0]);
+        element.fire("changebuffer", {
+            val: this.buffer
+        });
+
         Utils.exec(o.onChange, [element.val(), this.percent, this.buffer], element[0]);
+        element.fire("change", {
+            val: element.val(),
+            percent: this.percent,
+            buffer: this.buffer
+        });
     },
 
     val: function(v){
