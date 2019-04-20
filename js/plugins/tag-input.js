@@ -47,7 +47,8 @@ var TagInput = {
         this._createStructure();
         this._createEvents();
 
-        Utils.exec(o.onTagInputCreate, [element], element[0]);
+        Utils.exec(o.onTagInputCreate, null, element[0]);
+        element.fire("taginputcreate");
     },
 
     _createStructure: function(){
@@ -166,8 +167,19 @@ var TagInput = {
         this.values.push(val);
         element.val(this.values.join(o.tagSeparator));
 
-        Utils.exec(o.onTagAdd, [tag, val, this.values], element[0]);
-        Utils.exec(o.onTag, [tag, val, this.values], element[0]);
+        Utils.exec(o.onTagAdd, [tag[0], val, this.values], element[0]);
+        element.fire("tagadd", {
+            tag: tag[0],
+            val: val,
+            values: values
+        });
+
+        Utils.exec(o.onTag, [tag[0], val, this.values], element[0]);
+        element.fire("tag", {
+            tag: tag[0],
+            val: val,
+            values: values
+        });
     },
 
     _delTag: function(tag) {
@@ -181,8 +193,20 @@ var TagInput = {
         Utils.arrayDelete(this.values, val);
         element.val(this.values.join(o.tagSeparator));
 
-        Utils.exec(o.onTagRemove, [tag, val, this.values], element[0]);
-        Utils.exec(o.onTag, [tag, val, this.values], element[0]);
+        Utils.exec(o.onTagRemove, [tag[0], val, this.values], element[0]);
+        element.fire("tagremove", {
+            tag: tag[0],
+            val: val,
+            values: values
+        });
+
+        Utils.exec(o.onTag, [tag[0], val, this.values], element[0]);
+        element.fire("tag", {
+            tag: tag[0],
+            val: val,
+            values: values
+        });
+
         tag.remove();
     },
 

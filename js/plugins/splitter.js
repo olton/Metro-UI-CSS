@@ -46,7 +46,8 @@ var Splitter = {
         this._createStructure();
         this._createEvents();
 
-        Utils.exec(o.onCreate, [element]);
+        Utils.exec(o.onSplitterCreate, null, element[0]);
+        element.fire("splittercreate");
     },
 
     _createStructure: function(){
@@ -120,7 +121,13 @@ var Splitter = {
             prev_block.addClass("stop-select stop-pointer");
             next_block.addClass("stop-select stop-pointer");
 
-            Utils.exec(o.onResizeStart, [start_pos, gutter, prev_block, next_block], element);
+            Utils.exec(o.onResizeStart, [start_pos, gutter[0], prev_block[0], next_block[0]], element[0]);
+            element.fire("resizestart", {
+                pos: start_pos,
+                gutter: gutter[0],
+                prevBlock: prev_block[0],
+                nextBlock: next_block[0]
+            });
 
             $(window).on(Metro.events.move + "-" + element.attr("id"), function(e){
                 var pos = Utils.getCursorPosition(element, e);
@@ -136,10 +143,17 @@ var Splitter = {
                 prev_block.css("flex-basis", "calc(" + (prev_block_size + new_pos) + "% - "+(gutters.length * o.gutterSize)+"px)");
                 next_block.css("flex-basis", "calc(" + (next_block_size - new_pos) + "% - "+(gutters.length * o.gutterSize)+"px)");
 
-                Utils.exec(o.onResizeSplit, [pos, gutter, prev_block, next_block], element);
+                Utils.exec(o.onResizeSplit, [pos, gutter[0], prev_block[0], next_block[0]], element[0]);
+                element.fire("resizesplit", {
+                    pos: pos,
+                    gutter: gutter[0],
+                    prevBlock: prev_block[0],
+                    nextBlock: next_block[0]
+                });
             });
 
             $(window).on(Metro.events.stop + "-" + element.attr("id"), function(e){
+                var cur_pos;
 
                 prev_block.removeClass("stop-select stop-pointer");
                 next_block.removeClass("stop-select stop-pointer");
@@ -151,7 +165,15 @@ var Splitter = {
                 $(window).off(Metro.events.move + "-" + element.attr("id"));
                 $(window).off(Metro.events.stop + "-" + element.attr("id"));
 
-                Utils.exec(o.onResizeStop, [Utils.getCursorPosition(element, e), gutter, prev_block, next_block], element);
+                cur_pos = Utils.getCursorPosition(element, e);
+
+                Utils.exec(o.onResizeStop, [cur_pos, gutter[0], prev_block[0], next_block[0]], element[0]);
+                element.fire("resizestop", {
+                    pos: cur_pos,
+                    gutter: gutter[0],
+                    prevBlock: prev_block[0],
+                    nextBlock: next_block[0]
+                });
             })
         });
     },

@@ -99,7 +99,8 @@ var TimePicker = {
         this._createEvents();
         this._set();
 
-        Utils.exec(o.onTimePickerCreate, [element, picker]);
+        Utils.exec(o.onTimePickerCreate, null, element[0]);
+        element.fire("timepickercreate");
     },
 
     _normalizeValue: function(){
@@ -255,7 +256,7 @@ var TimePicker = {
     },
 
     _addScrollEvents: function(){
-        var picker = this.picker, o = this.options;
+        var element = this.element, picker = this.picker, o = this.options;
         var lists = ['hours', 'minutes', 'seconds'];
 
         $.each(lists, function(){
@@ -277,7 +278,11 @@ var TimePicker = {
                     scrollTop: scroll_to
                 }, 100, function(){
                     target_element.addClass("active");
-                    Utils.exec(o.onScroll, [target_element, list, picker]);
+                    Utils.exec(o.onScroll, [target_element[0], list[0]], element[0]);
+                    element.fire("scroll", {
+                        target: target_element[0],
+                        list: list[0]
+                    });
                 });
             });
         });
@@ -320,7 +325,11 @@ var TimePicker = {
 
         element.val([h, m, s].join(":")).trigger("change");
 
-        Utils.exec(o.onSet, [this.value, element.val(), element, picker]);
+        Utils.exec(o.onSet, [this.value, element.val()], element[0]);
+        element.fire("set", {
+            val: this.value,
+            elementVal: element.val()
+        });
     },
 
     open: function(){
@@ -375,14 +384,20 @@ var TimePicker = {
 
         this.isOpen = true;
 
-        Utils.exec(o.onOpen, [this.value, element, picker]);
+        Utils.exec(o.onOpen, [this.value], element[0]);
+        element.fire("open", {
+            val: this.value
+        });
     },
 
     close: function(){
         var picker = this.picker, o = this.options, element = this.element;
         picker.find(".select-wrapper").hide();
         this.isOpen = false;
-        Utils.exec(o.onClose, [this.value, element, picker]);
+        Utils.exec(o.onClose, [this.value], element[0]);
+        element.fire("close", {
+            val: this.value
+        });
     },
 
     _convert: function(t){

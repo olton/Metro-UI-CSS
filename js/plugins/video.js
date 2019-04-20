@@ -98,6 +98,7 @@ var Video = {
         }
 
         Utils.exec(o.onVideoCreate, [element, this.player], element[0]);
+        element.fire("videocreate");
     },
 
     _createPlayer: function(){

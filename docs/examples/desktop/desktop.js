@@ -39,19 +39,19 @@ var Desktop = {
 
     createWindow: function(o){
         var that = this;
-        o.onDragStart = function(pos, el){
-            win = $(el);
+        o.onDragStart = function(pos){
+            win = $(this);
             $(".window").css("z-index", 1);
             if (!win.hasClass("modal"))
                 win.css("z-index", 3);
         };
-        o.onDragStop = function(pos, el){
-            win = $(el);
+        o.onDragStop = function(pos){
+            win = $(this);
             if (!win.hasClass("modal"))
                 win.css("z-index", 2);
         };
         o.onWindowDestroy = function(win){
-            that.removeFromTaskBar(win);
+            that.removeFromTaskBar($(win));
         };
         var w = $("<div>").appendTo($(this.options.windowArea));
         var wnd = w.window(o).data("window");

@@ -113,8 +113,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.41-dev 20/04/2019 18:33",
-    versionFull: "4.2.41-dev 20/04/2019 18:33",
+    version: "4.2.41-dev 21/04/2019 00:09",
+    versionFull: "4.2.41-dev 21/04/2019 00:09",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -17381,7 +17381,8 @@ var Sidebar = {
         $(window).resize();
         this._checkStatic();
 
-        Utils.exec(o.onSidebarCreate, [element], element[0]);
+        Utils.exec(o.onSidebarCreate, null, element[0]);
+        element.fire("sidebarcreate");
     },
 
     _createStructure: function(){
@@ -17469,11 +17470,13 @@ var Sidebar = {
                     $(this).css({left: 0}, o.duration);
                 });
             }
-            Utils.exec(o.onStaticSet, [element], element[0]);
+            Utils.exec(o.onStaticSet, null, element[0]);
+            element.fire("staticset");
         }
         if (!Utils.mediaExist(o.static)) {
             element.removeClass("static");
-            Utils.exec(o.onStaticLoss, [element], element[0]);
+            Utils.exec(o.onStaticLoss, null, element[0]);
+            element.fire("staticloss");
         }
     },
 
@@ -17496,7 +17499,8 @@ var Sidebar = {
             }, o.duration);
         }
 
-        Utils.exec(o.onOpen, [element], element[0]);
+        Utils.exec(o.onOpen, null, element[0]);
+        element.fire("open");
     },
 
     close: function(){
@@ -17514,7 +17518,8 @@ var Sidebar = {
             }, o.duration);
         }
 
-        Utils.exec(o.onClose, [element], element[0]);
+        Utils.exec(o.onClose, null, element[0]);
+        element.fire("close");
     },
 
     toggle: function(){
@@ -17523,7 +17528,8 @@ var Sidebar = {
         } else {
             this.open();
         }
-        Utils.exec(this.options.onToggle, [this.element], this.element[0]);
+        Utils.exec(this.options.onToggle, null, this.element[0]);
+        this.element.fire("toggle");
     },
 
     changeAttribute: function(attributeName){
@@ -17643,14 +17649,15 @@ var Slider = {
     },
 
     _create: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         this._createSlider();
         this._createEvents();
         this.buff(o.buffer);
         this.val(o.value);
 
-        Utils.exec(o.onSliderCreate, [element]);
+        Utils.exec(o.onSliderCreate, null, element[0]);
+        element.fire("slidercreate");
     },
 
     _createSlider: function(){
@@ -17728,7 +17735,7 @@ var Slider = {
     },
 
     _createEvents: function(){
-        var that = this, slider = this.slider, o = this.options;
+        var that = this, element = this.element, slider = this.slider, o = this.options;
         var marker = slider.find(".marker");
         var hint = slider.find(".hint");
 
@@ -17738,7 +17745,11 @@ var Slider = {
                     hint.fadeIn();
                 }
                 that._move(e);
-                Utils.exec(o.onMove, [that.value, that.percent, slider]);
+                Utils.exec(o.onMove, [that.value, that.percent], element[0]);
+                element.fire("move", {
+                    val: that.value,
+                    percent: that.percent
+                });
             });
 
             $(document).on(Metro.events.stop, function(){
@@ -17749,18 +17760,34 @@ var Slider = {
                     hint.fadeOut();
                 }
 
-                Utils.exec(o.onStop, [that.value, that.percent, slider]);
+                Utils.exec(o.onStop, [that.value, that.percent], element[0]);
+                element.fire("stop", {
+                    val: that.value,
+                    percent: that.percent
+                });
             });
 
-            Utils.exec(o.onStart, [that.value, that.percent, slider]);
+            Utils.exec(o.onStart, [that.value, that.percent], element[0]);
+            element.fire("start", {
+                val: that.value,
+                percent: that.percent
+            });
         });
 
         marker.on(Metro.events.focus, function(){
-            Utils.exec(o.onFocus, [that.value, that.percent, slider]);
+            Utils.exec(o.onFocus, [that.value, that.percent], element[0]);
+            element.fire("focus", {
+                val: that.value,
+                percent: that.percent
+            });
         });
 
         marker.on(Metro.events.blur, function(){
-            Utils.exec(o.onBlur, [that.value, that.percent, slider]);
+            Utils.exec(o.onBlur, [that.value, that.percent], element[0]);
+            element.fire("blur", {
+                val: that.value,
+                percent: that.percent
+            });
         });
 
         marker.on(Metro.events.keydown, function(e){
@@ -17813,8 +17840,17 @@ var Slider = {
 
         slider.on(Metro.events.click, function(e){
             that._move(e);
-            Utils.exec(o.onClick, [that.value, that.percent, slider]);
-            Utils.exec(o.onStop, [that.value, that.percent, slider]);
+            Utils.exec(o.onClick, [that.value, that.percent], element[0]);
+            element.fire("click", {
+                val: that.value,
+                percent: that.percent
+            });
+
+            Utils.exec(o.onStop, [that.value, that.percent], element[0]);
+            element.fire("stop", {
+                val: that.value,
+                percent: that.percent
+            });
         });
 
         $(window).resize(function(){
@@ -17913,8 +17949,18 @@ var Slider = {
             }
         }
 
-        Utils.exec(o.onChangeValue, [value, this.percent, slider], element[0]);
+        Utils.exec(o.onChangeValue, [value, this.percent], element[0]);
+        element.fire("changevalue", {
+            val: value,
+            percent: this.percent
+        });
+
         Utils.exec(o.onChange, [value, this.percent, this.buffer], element[0]);
+        element.fire("change", {
+            val: value,
+            percent: this.percent,
+            buffer: this.buffer
+        });
     },
 
     _marker: function(){
@@ -17966,8 +18012,17 @@ var Slider = {
             buffer.css("width", this.buffer + "%");
         }
 
-        Utils.exec(o.onChangeBuffer, [this.buffer, this.slider], element[0]);
+        Utils.exec(o.onChangeBuffer, [this.buffer], element[0]);
+        element.fire("changebuffer", {
+            val: this.buffer
+        });
+
         Utils.exec(o.onChange, [element.val(), this.percent, this.buffer], element[0]);
+        element.fire("change", {
+            val: element.val(),
+            percent: this.percent,
+            buffer: this.buffer
+        });
     },
 
     val: function(v){
@@ -18119,7 +18174,8 @@ var Sorter = {
 
         this._createStructure();
 
-        Utils.exec(o.onSorterCreate, [element]);
+        Utils.exec(o.onSorterCreate, null, element[0]);
+        element.fire("sortercreate");
     },
 
     _createStructure: function(){
@@ -18193,7 +18249,10 @@ var Sorter = {
 
         prev = $("<div>").attr("id", id).insertBefore($(element.find(o.sortTarget)[0]));
 
-        Utils.exec(o.onSortStart, [element], element[0]);
+        Utils.exec(o.onSortStart, [items], element[0]);
+        element.fire("sortstart", {
+            items: items
+        });
 
         items.sort(function(a, b){
             var c1 = that._getItemContent(a);
@@ -18209,7 +18268,12 @@ var Sorter = {
             }
 
             if (result !== 0) {
-                Utils.exec(o.onSortItemSwitch, [a, b], element[0]);
+                Utils.exec(o.onSortItemSwitch, [a, b, result], element[0]);
+                element.fire("sortitemswitch", {
+                    a: a,
+                    b: b,
+                    result: result
+                });
             }
 
             return result;
@@ -18229,7 +18293,8 @@ var Sorter = {
 
         $("#"+id).remove();
 
-        Utils.exec(o.onSortStop, [element], element[0]);
+        Utils.exec(o.onSortStop, [items], element[0]);
+        element.fire("sortstop");
     },
 
     reset: function(){
@@ -18376,7 +18441,8 @@ var Spinner = {
         this._createStructure();
         this._createEvents();
 
-        Utils.exec(o.onCreate, [element]);
+        Utils.exec(o.onSpinnerCreate, null, element[0]);
+        element.fire("spinnercreate");
     },
 
     _createStructure: function(){
@@ -18431,9 +18497,34 @@ var Spinner = {
             that._setValue(val.toFixed(o.fixed), true);
 
             Utils.exec(plus ? o.onPlusClick : o.onMinusClick, [curr, val, element.val()], element[0]);
+            element.fire(plus ? "plusclick" : "minusclick", {
+                curr: curr,
+                val: val,
+                elementVal: element.val()
+            });
+
             Utils.exec(plus ? o.onArrowUp : o.onArrowDown, [curr, val, element.val()], element[0]);
+            element.fire(plus ? "arrowup" : "arrowdown", {
+                curr: curr,
+                val: val,
+                elementVal: element.val()
+            });
+
             Utils.exec(o.onButtonClick, [curr, val, element.val(), plus ? 'plus' : 'minus'], element[0]);
+            element.fire("buttonclick", {
+                button: plus ? "plus" : "minus",
+                curr: curr,
+                val: val,
+                elementVal: element.val()
+            });
+
             Utils.exec(o.onArrowClick, [curr, val, element.val(), plus ? 'plus' : 'minus'], element[0]);
+            element.fire("arrowclick", {
+                button: plus ? "plus" : "minus",
+                curr: curr,
+                val: val,
+                elementVal: element.val()
+            });
 
             setTimeout(function(){
                 if (that.repeat_timer) {
@@ -18491,7 +18582,9 @@ var Spinner = {
         Utils.exec(o.onChange, [val], element[0]);
 
         if (trigger_change === true) {
-            element.trigger("change");
+            element.fire("change", {
+                val: val
+            });
         }
     },
 
@@ -18509,6 +18602,9 @@ var Spinner = {
         var val = Utils.isValue(o.defaultValue) ? Number(o.defaultValue) : 0;
         this._setValue(val.toFixed(o.fixed), true);
         Utils.exec(o.onChange, [val], element[0]);
+        element.fire("change", {
+            val: val
+        });
     },
 
     disable: function(){
@@ -18613,7 +18709,8 @@ var Splitter = {
         this._createStructure();
         this._createEvents();
 
-        Utils.exec(o.onCreate, [element]);
+        Utils.exec(o.onSplitterCreate, null, element[0]);
+        element.fire("splittercreate");
     },
 
     _createStructure: function(){
@@ -18687,7 +18784,13 @@ var Splitter = {
             prev_block.addClass("stop-select stop-pointer");
             next_block.addClass("stop-select stop-pointer");
 
-            Utils.exec(o.onResizeStart, [start_pos, gutter, prev_block, next_block], element);
+            Utils.exec(o.onResizeStart, [start_pos, gutter[0], prev_block[0], next_block[0]], element[0]);
+            element.fire("resizestart", {
+                pos: start_pos,
+                gutter: gutter[0],
+                prevBlock: prev_block[0],
+                nextBlock: next_block[0]
+            });
 
             $(window).on(Metro.events.move + "-" + element.attr("id"), function(e){
                 var pos = Utils.getCursorPosition(element, e);
@@ -18703,10 +18806,17 @@ var Splitter = {
                 prev_block.css("flex-basis", "calc(" + (prev_block_size + new_pos) + "% - "+(gutters.length * o.gutterSize)+"px)");
                 next_block.css("flex-basis", "calc(" + (next_block_size - new_pos) + "% - "+(gutters.length * o.gutterSize)+"px)");
 
-                Utils.exec(o.onResizeSplit, [pos, gutter, prev_block, next_block], element);
+                Utils.exec(o.onResizeSplit, [pos, gutter[0], prev_block[0], next_block[0]], element[0]);
+                element.fire("resizesplit", {
+                    pos: pos,
+                    gutter: gutter[0],
+                    prevBlock: prev_block[0],
+                    nextBlock: next_block[0]
+                });
             });
 
             $(window).on(Metro.events.stop + "-" + element.attr("id"), function(e){
+                var cur_pos;
 
                 prev_block.removeClass("stop-select stop-pointer");
                 next_block.removeClass("stop-select stop-pointer");
@@ -18718,7 +18828,15 @@ var Splitter = {
                 $(window).off(Metro.events.move + "-" + element.attr("id"));
                 $(window).off(Metro.events.stop + "-" + element.attr("id"));
 
-                Utils.exec(o.onResizeStop, [Utils.getCursorPosition(element, e), gutter, prev_block, next_block], element);
+                cur_pos = Utils.getCursorPosition(element, e);
+
+                Utils.exec(o.onResizeStop, [cur_pos, gutter[0], prev_block[0], next_block[0]], element[0]);
+                element.fire("resizestop", {
+                    pos: cur_pos,
+                    gutter: gutter[0],
+                    prevBlock: prev_block[0],
+                    nextBlock: next_block[0]
+                });
             })
         });
     },
@@ -18816,7 +18934,8 @@ var Stepper = {
         this._createStepper();
         this._createEvents();
 
-        Utils.exec(o.onStepperCreate, [element]);
+        Utils.exec(o.onStepperCreate, null, element[0]);
+        element.fire("steppercreate");
     },
 
     _createStepper: function(){
@@ -18840,7 +18959,10 @@ var Stepper = {
             var step = $(this).data("step");
             if (o.stepClick === true) {
                 that.toStep(step);
-                Utils.exec(o.onStepClick, [step, element]);
+                Utils.exec(o.onStepClick, [step], element[0]);
+                element.fire("stepclick", {
+                    step: step
+                });
             }
         });
     },
@@ -18898,7 +19020,10 @@ var Stepper = {
         target.addClass("current").addClass(o.clsCurrent);
         target.prevAll().addClass("complete").addClass(o.clsComplete);
 
-        Utils.exec(o.onStep, [this.current, element]);
+        Utils.exec(o.onStep, [this.current], element[0]);
+        element.fire("step", {
+            step: this.current
+        });
     },
 
     changeAttribute: function(attributeName){
@@ -19201,7 +19326,8 @@ var Streamer = {
             }, o.startSlideSleep);
         }
 
-        Utils.exec(o.onStreamerCreate, [element]);
+        Utils.exec(o.onStreamerCreate, null, element[0]);
+        element.fire("streamercreate");
     },
 
     _createEvents: function(){
@@ -19236,7 +19362,11 @@ var Streamer = {
                         if (o.changeUri === true) {
                             that._changeURI();
                         }
-                        Utils.exec(o.onEventSelect, [event, event.hasClass("selected")]);
+                        Utils.exec(o.onEventSelect, [event[0], event.hasClass("selected")], element[0]);
+                        element.fire("eventselect", {
+                            event: event[0],
+                            selected: event.hasClass("selected")
+                        });
                     }
                 }
             } else {
@@ -19248,7 +19378,10 @@ var Streamer = {
 
                     } else {
 
-                        Utils.exec(o.onEventClick, [event]);
+                        Utils.exec(o.onEventClick, [event[0]], element[0]);
+                        element.fire("eventclick", {
+                            event: event[0]
+                        });
 
                         if (o.closed === true || event.data("closed") === true) {
                             var target = event.data("target");
@@ -19279,10 +19412,16 @@ var Streamer = {
                 element.data("stream", index);
                 element.find(".stream-event").addClass("disabled");
                 that.enableStream(stream);
-                Utils.exec(o.onStreamSelect, [stream]);
+                Utils.exec(o.onStreamSelect, [stream], element[0]);
+                element.fire("streamselect", {
+                    stream: stream
+                });
             }
 
-            Utils.exec(o.onStreamClick, [stream]);
+            Utils.exec(o.onStreamClick, [stream], element[0]);
+            element.fire("streamclick", {
+                stream: stream
+            });
         });
 
         if (Utils.isTouchDevice() !== true) {
@@ -19467,7 +19606,11 @@ var Streamer = {
         if (o.changeUri === true) {
             that._changeURI();
         }
-        Utils.exec(o.onEventSelect, [event, state]);
+        Utils.exec(o.onEventSelect, [event[0], state], element[0]);
+        element.fire("eventselect", {
+            event: event[0],
+            selected: state
+        });
     },
 
     changeSource: function(){
@@ -19532,8 +19675,6 @@ var Switch = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onSwitchCreate, [this.element]);
-
         return this;
     },
     options: {
@@ -19588,6 +19729,9 @@ var Switch = {
         } else {
             this.enable();
         }
+
+        Utils.exec(o.onSwitchCreate, null, element[0]);
+        element.fire("switchcreate");
     },
 
     disable: function(){
@@ -21673,7 +21817,8 @@ var MaterialTabs = {
         this._createStructure();
         this._createEvents();
 
-        Utils.exec(o.onTabsCreate, [element]);
+        Utils.exec(o.onTabsCreate, null, element[0]);
+        element.fire("tabscreate");
     },
 
     _applyColor: function(to, color, option){
@@ -21792,7 +21937,12 @@ var MaterialTabs = {
             if (target.trim() !== "#" && $(target).length > 0) $(target).show();
         }
 
-        Utils.exec(o.onTabOpen, [tab, target, tab_next], tab[0]);
+        Utils.exec(o.onTabOpen, [tab[0], target, tab_next], element[0]);
+        element.fire("tabopen", {
+            tab: tab[0],
+            target: target,
+            tab_next: tab_next
+        });
     },
 
     changeAttribute: function(attributeName){
@@ -21815,8 +21965,6 @@ var Tabs = {
 
         this._setOptionsFromDOM();
         this._create();
-
-        Utils.exec(this.options.onTabsCreate, [this.element], this.elem);
 
         return this;
     },
@@ -21852,12 +22000,15 @@ var Tabs = {
     },
 
     _create: function(){
-        var element = this.element;
+        var element = this.element, o = this.options;
         var tab = element.find(".active").length > 0 ? $(element.find(".active")[0]) : undefined;
 
         this._createStructure();
         this._createEvents();
         this._open(tab);
+
+        Utils.exec(o.onTabsCreate, null, element[0]);
+        element.fire("tabscreate");
     },
 
     _createStructure: function(){
@@ -22030,7 +22181,10 @@ var Tabs = {
 
         tab.addClass(o.clsTabsListItemActive);
 
-        Utils.exec(o.onTab, [tab, element], tab[0]);
+        Utils.exec(o.onTab, [tab[0]], element[0]);
+        element.fire("tab", {
+            tab: tab[0]
+        })
     },
 
     next: function(){
@@ -22126,7 +22280,8 @@ var TagInput = {
         this._createStructure();
         this._createEvents();
 
-        Utils.exec(o.onTagInputCreate, [element], element[0]);
+        Utils.exec(o.onTagInputCreate, null, element[0]);
+        element.fire("taginputcreate");
     },
 
     _createStructure: function(){
@@ -22245,8 +22400,19 @@ var TagInput = {
         this.values.push(val);
         element.val(this.values.join(o.tagSeparator));
 
-        Utils.exec(o.onTagAdd, [tag, val, this.values], element[0]);
-        Utils.exec(o.onTag, [tag, val, this.values], element[0]);
+        Utils.exec(o.onTagAdd, [tag[0], val, this.values], element[0]);
+        element.fire("tagadd", {
+            tag: tag[0],
+            val: val,
+            values: values
+        });
+
+        Utils.exec(o.onTag, [tag[0], val, this.values], element[0]);
+        element.fire("tag", {
+            tag: tag[0],
+            val: val,
+            values: values
+        });
     },
 
     _delTag: function(tag) {
@@ -22260,8 +22426,20 @@ var TagInput = {
         Utils.arrayDelete(this.values, val);
         element.val(this.values.join(o.tagSeparator));
 
-        Utils.exec(o.onTagRemove, [tag, val, this.values], element[0]);
-        Utils.exec(o.onTag, [tag, val, this.values], element[0]);
+        Utils.exec(o.onTagRemove, [tag[0], val, this.values], element[0]);
+        element.fire("tagremove", {
+            tag: tag[0],
+            val: val,
+            values: values
+        });
+
+        Utils.exec(o.onTag, [tag[0], val, this.values], element[0]);
+        element.fire("tag", {
+            tag: tag[0],
+            val: val,
+            values: values
+        });
+
         tag.remove();
     },
 
@@ -22360,8 +22538,6 @@ var Textarea = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onTextareaCreate, [this.element]);
-
         return this;
     },
     options: {
@@ -22383,7 +22559,7 @@ var Textarea = {
     },
 
     _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         $.each(element.data(), function(key, value){
             if (key in o) {
@@ -22397,8 +22573,13 @@ var Textarea = {
     },
 
     _create: function(){
+        var element = this.element, o = this.options;
+
         this._createStructure();
         this._createEvents();
+
+        Utils.exec(o.onTextareaCreate, null, element[0]);
+        element.fire("textareacreate");
     },
 
     _createStructure: function(){
@@ -22501,6 +22682,10 @@ var Textarea = {
                 }
             }
             Utils.exec(o.onChange, [element.val(), that.length()], element[0]);
+            element.fire("change", {
+                val: element.val(),
+                length: that.length()
+            });
         })
     },
 
@@ -22603,7 +22788,8 @@ var Tile = {
         this._createTile();
         this._createEvents();
 
-        Utils.exec(o.onTileCreate, [element]);
+        Utils.exec(o.onTileCreate, null, element[0]);
+        element.fire("tilecreate");
     },
 
     _createTile: function(){
@@ -22760,7 +22946,10 @@ var Tile = {
                     }, 100);
                 }
 
-                Utils.exec(o.onClick, [tile]);
+                Utils.exec(o.onClick, [side], element[0]);
+                element.fire("click", {
+                    side: side
+                });
             }
         });
 
@@ -22890,7 +23079,8 @@ var TimePicker = {
         this._createEvents();
         this._set();
 
-        Utils.exec(o.onTimePickerCreate, [element, picker]);
+        Utils.exec(o.onTimePickerCreate, null, element[0]);
+        element.fire("timepickercreate");
     },
 
     _normalizeValue: function(){
@@ -23046,7 +23236,7 @@ var TimePicker = {
     },
 
     _addScrollEvents: function(){
-        var picker = this.picker, o = this.options;
+        var element = this.element, picker = this.picker, o = this.options;
         var lists = ['hours', 'minutes', 'seconds'];
 
         $.each(lists, function(){
@@ -23068,7 +23258,11 @@ var TimePicker = {
                     scrollTop: scroll_to
                 }, 100, function(){
                     target_element.addClass("active");
-                    Utils.exec(o.onScroll, [target_element, list, picker]);
+                    Utils.exec(o.onScroll, [target_element[0], list[0]], element[0]);
+                    element.fire("scroll", {
+                        target: target_element[0],
+                        list: list[0]
+                    });
                 });
             });
         });
@@ -23111,7 +23305,11 @@ var TimePicker = {
 
         element.val([h, m, s].join(":")).trigger("change");
 
-        Utils.exec(o.onSet, [this.value, element.val(), element, picker]);
+        Utils.exec(o.onSet, [this.value, element.val()], element[0]);
+        element.fire("set", {
+            val: this.value,
+            elementVal: element.val()
+        });
     },
 
     open: function(){
@@ -23166,14 +23364,20 @@ var TimePicker = {
 
         this.isOpen = true;
 
-        Utils.exec(o.onOpen, [this.value, element, picker]);
+        Utils.exec(o.onOpen, [this.value], element[0]);
+        element.fire("open", {
+            val: this.value
+        });
     },
 
     close: function(){
         var picker = this.picker, o = this.options, element = this.element;
         picker.find(".select-wrapper").hide();
         this.isOpen = false;
-        Utils.exec(o.onClose, [this.value, element, picker]);
+        Utils.exec(o.onClose, [this.value], element[0]);
+        element.fire("close", {
+            val: this.value
+        });
     },
 
     _convert: function(t){
@@ -23444,7 +23648,8 @@ var Touch = {
             $.error('Events not supported ' + this.START_EV + ',' + this.CANCEL_EV + ' on Swipe');
         }
 
-        Utils.exec(o.onSwipeCreate, [element]);
+        Utils.exec(o.onSwipeCreate, null, element[0]);
+        element.fire("swipecreate");
     },
 
     touchStart: function(e) {
@@ -23529,6 +23734,10 @@ var Touch = {
                     //Fire the callback
                     if (options.onHold !== Metro.noop) { // TODO Remove this if
                         ret = Utils.exec(options.onHold, [event, event.target], element[0]);
+                        element.fire("hold", {
+                            event: event,
+                            target: event.target
+                        });
                     }
                 }, this), options.longTapThreshold);
             }
@@ -23816,6 +24025,16 @@ var Touch = {
             element.trigger('swipeStatus', [phase, this.direction || null, this.distance || 0, this.duration || 0, this.fingerCount, this.fingerData, this.currentDirection]);
 
             ret = Utils.exec(options.onSwipeStatus, [event, phase, this.direction || null, this.distance || 0, this.duration || 0, this.fingerCount, this.fingerData, this.currentDirection], element[0]);
+            element.fire("swipestatus", {
+                event: event,
+                phase: phase,
+                direction: this.direction,
+                distance: this.distance,
+                duration: this.duration,
+                fingerCount: this.fingerCount,
+                fingerData: this.fingerData,
+                currentDirection: this.currentDirection
+            });
             if (ret === false) return false;
 
             if (phase === TouchConst.PHASE_END && this.validateSwipe()) {
@@ -23827,6 +24046,16 @@ var Touch = {
                 element.trigger('swipe', [this.direction, this.distance, this.duration, this.fingerCount, this.fingerData, this.currentDirection]);
 
                 ret = Utils.exec(options.onSwipe, [event, this.direction, this.distance, this.duration, this.fingerCount, this.fingerData, this.currentDirection], element[0]);
+                element.fire("swipe", {
+                    event: event,
+                    direction: this.direction,
+                    distance: this.distance,
+                    duration: this.duration,
+                    fingerCount: this.fingerCount,
+                    fingerData: this.fingerData,
+                    currentDirection: this.currentDirection
+                });
+
                 if (ret === false) return false;
 
                 //trigger direction specific event handlers
@@ -23834,21 +24063,57 @@ var Touch = {
                     case TouchConst.LEFT:
                         element.trigger('swipeLeft', [this.direction, this.distance, this.duration, this.fingerCount, this.fingerData, this.currentDirection]);
                         ret = Utils.exec(options.onSwipeLeft, [event, this.direction, this.distance, this.duration, this.fingerCount, this.fingerData, this.currentDirection], element[0]);
+                        element.fire("swipeleft", {
+                            event: event,
+                            direction: this.direction,
+                            distance: this.distance,
+                            duration: this.duration,
+                            fingerCount: this.fingerCount,
+                            fingerData: this.fingerData,
+                            currentDirection: this.currentDirection
+                        });
                         break;
 
                     case TouchConst.RIGHT:
                         element.trigger('swipeRight', [this.direction, this.distance, this.duration, this.fingerCount, this.fingerData, this.currentDirection]);
                         ret = Utils.exec(options.onSwipeRight, [event, this.direction, this.distance, this.duration, this.fingerCount, this.fingerData, this.currentDirection], element[0]);
+                        element.fire("swiperight", {
+                            event: event,
+                            direction: this.direction,
+                            distance: this.distance,
+                            duration: this.duration,
+                            fingerCount: this.fingerCount,
+                            fingerData: this.fingerData,
+                            currentDirection: this.currentDirection
+                        });
                         break;
 
                     case TouchConst.UP:
                         element.trigger('swipeUp', [this.direction, this.distance, this.duration, this.fingerCount, this.fingerData, this.currentDirection]);
                         ret = Utils.exec(options.onSwipeUp, [event, this.direction, this.distance, this.duration, this.fingerCount, this.fingerData, this.currentDirection], element[0]);
+                        element.fire("swipeup", {
+                            event: event,
+                            direction: this.direction,
+                            distance: this.distance,
+                            duration: this.duration,
+                            fingerCount: this.fingerCount,
+                            fingerData: this.fingerData,
+                            currentDirection: this.currentDirection
+                        });
                         break;
 
                     case TouchConst.DOWN:
                         element.trigger('swipeDown', [this.direction, this.distance, this.duration, this.fingerCount, this.fingerData, this.currentDirection]);
                         ret = Utils.exec(options.onSwipeDown, [event, this.direction, this.distance, this.duration, this.fingerCount, this.fingerData, this.currentDirection], element[0]);
+                        element.fire("swipedown", {
+                            event: event,
+                            direction: this.direction,
+                            distance: this.distance,
+                            duration: this.duration,
+                            fingerCount: this.fingerCount,
+                            fingerData: this.fingerData,
+                            currentDirection: this.currentDirection
+                        });
                         break;
                 }
             }
@@ -23860,6 +24125,16 @@ var Touch = {
             element.trigger('pinchStatus', [phase, this.pinchDirection || null, this.pinchDistance || 0, this.duration || 0, this.fingerCount, this.fingerData, this.pinchZoom]);
 
             ret = Utils.exec(options.onPinchStatus, [event, phase, this.pinchDirection || null, this.pinchDistance || 0, this.duration || 0, this.fingerCount, this.fingerData, this.pinchZoom], element[0]);
+            element.fire("pinchstatus", {
+                event: event,
+                phase: phase,
+                direction: this.pinchDirection,
+                distance: this.pinchDistance,
+                duration: this.duration,
+                fingerCount: this.fingerCount,
+                fingerData: this.fingerData,
+                zoom: this.pinchZoom
+            });
             if (ret === false) return false;
 
             if (phase === TouchConst.PHASE_END && this.validatePinch()) {
@@ -23868,11 +24143,29 @@ var Touch = {
                     case TouchConst.IN:
                         element.trigger('pinchIn', [this.pinchDirection || null, this.pinchDistance || 0, this.duration || 0, this.fingerCount, this.fingerData, this.pinchZoom]);
                         ret = Utils.exec(options.onPinchIn, [event, this.pinchDirection || null, this.pinchDistance || 0, this.duration || 0, this.fingerCount, this.fingerData, this.pinchZoom], element[0]);
+                        element.fire("pinchin", {
+                            event: event,
+                            direction: this.pinchDirection,
+                            distance: this.pinchDistance,
+                            duration: this.duration,
+                            fingerCount: this.fingerCount,
+                            fingerData: this.fingerData,
+                            zoom: this.pinchZoom
+                        });
                         break;
 
                     case TouchConst.OUT:
                         element.trigger('pinchOut', [this.pinchDirection || null, this.pinchDistance || 0, this.duration || 0, this.fingerCount, this.fingerData, this.pinchZoom]);
                         ret = Utils.exec(options.onPinchOut, [event, this.pinchDirection || null, this.pinchDistance || 0, this.duration || 0, this.fingerCount, this.fingerData, this.pinchZoom], element[0]);
+                        element.fire("pinchout", {
+                            event: event,
+                            direction: this.pinchDirection,
+                            distance: this.pinchDistance,
+                            duration: this.duration,
+                            fingerCount: this.fingerCount,
+                            fingerData: this.fingerData,
+                            zoom: this.pinchZoom
+                        });
                         break;
                 }
             }
@@ -23892,15 +24185,20 @@ var Touch = {
                     //if its not cancelled by a double tap
                     this.singleTapTimeout = setTimeout($.proxy(function() {
                         this.doubleTapStartTime = null;
-                        element.trigger('tap', [event.target]);
-
                         ret = Utils.exec(options.onTap, [event, event.target], element[0]);
+                        element.fire("tap", {
+                            event: event,
+                            target: event.target
+                        });
                     }, this), options.doubleTapThreshold);
 
                 } else {
                     this.doubleTapStartTime = null;
-                    element.trigger('tap', [event.target]);
                     ret = Utils.exec(options.onTap, [event, event.target], element[0]);
+                    element.fire("tap", {
+                        event: event,
+                        target: event.target
+                    });
                 }
             }
         } else if (gesture === TouchConst.DOUBLE_TAP) {
@@ -23908,15 +24206,23 @@ var Touch = {
                 clearTimeout(this.singleTapTimeout);
                 clearTimeout(this.holdTimeout);
                 this.doubleTapStartTime = null;
-                element.trigger('doubletap', [event.target]);
+
                 ret = Utils.exec(options.onDoubleTap, [event, event.target], element[0]);
+                element.fire("doubletap", {
+                    event: event,
+                    target: event.target
+                });
             }
         } else if (gesture === TouchConst.LONG_TAP) {
             if (phase === TouchConst.PHASE_CANCEL || phase === TouchConst.PHASE_END) {
                 clearTimeout(this.singleTapTimeout);
                 this.doubleTapStartTime = null;
-                element.trigger('longtap', [event.target]);
+
                 ret = Utils.exec(options.onLongTap, [event, event.target], element[0]);
+                element.fire("longtap", {
+                    event: event,
+                    target: event.target
+                });
             }
         }
 
@@ -24038,14 +24344,15 @@ var Touch = {
     },
 
     hasSwipes: function() {
+        var o = this.options;
         //Enure we dont return 0 or null for false values
         return !!(
-            this.options.onSwipe !== Metro.noop
-            || this.options.onSwipeStatus  !== Metro.noop
-            || this.options.onSwipeLeft  !== Metro.noop
-            || this.options.onSwipeRight  !== Metro.noop
-            || this.options.onSwipeUp  !== Metro.noop
-            || this.options.onSwipeDown !== Metro.noop
+            o.onSwipe !== Metro.noop
+            || o.onSwipeStatus  !== Metro.noop
+            || o.onSwipeLeft  !== Metro.noop
+            || o.onSwipeRight  !== Metro.noop
+            || o.onSwipeUp  !== Metro.noop
+            || o.onSwipeDown !== Metro.noop
         );
     },
 
@@ -24396,7 +24703,7 @@ var TreeView = {
         onRadioClick: Metro.noop,
         onExpandNode: Metro.noop,
         onCollapseNode: Metro.noop,
-        onTreeviewCreate: Metro.noop
+        onTreeViewCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -24424,7 +24731,8 @@ var TreeView = {
             that._recheck(this);
         });
 
-        Utils.exec(o.onTreeviewCreate, [element], element[0]);
+        Utils.exec(o.onTreeViewCreate, null, element[0]);
+        element.fire("treeviewcreate");
     },
 
     _createIcon: function(data){
@@ -24514,7 +24822,10 @@ var TreeView = {
 
             that.current(node);
 
-            Utils.exec(o.onNodeClick, [node, element], node[0]);
+            Utils.exec(o.onNodeClick, [node[0]], element[0]);
+            element.fire("nodeclick", {
+                node: node[0]
+            });
 
             e.preventDefault();
         });
@@ -24528,7 +24839,10 @@ var TreeView = {
                 that.toggleNode(node);
             }
 
-            Utils.exec(o.onNodeDblClick, [node, element], node[0]);
+            Utils.exec(o.onNodeDblClick, [node[0]], element[0]);
+            element.fire("nodedblclick", {
+                node: node[0]
+            });
 
             e.preventDefault();
         });
@@ -24540,7 +24854,12 @@ var TreeView = {
 
             that.current(node);
 
-            Utils.exec(o.onRadioClick, [checked, check, node, element], this);
+            Utils.exec(o.onRadioClick, [checked, check[0], node[0]], element[0]);
+            element.fire("radioclick", {
+                checked: checked,
+                check: check[0],
+                node: node[0]
+            });
         });
 
         element.on(Metro.events.click, "input[type=checkbox]", function(e){
@@ -24550,7 +24869,12 @@ var TreeView = {
 
             that._recheck(check);
 
-            Utils.exec(o.onCheckClick, [checked, check, node, element], this);
+            Utils.exec(o.onCheckClick, [checked, check[0], node[0]], element[0]);
+            element.fire("checkclick", {
+                checked: checked,
+                check: check[0],
+                node: node[0]
+            });
         });
     },
 
@@ -24628,15 +24952,22 @@ var TreeView = {
             func = toBeExpanded === true ? "fadeOut" : "fadeIn";
         }
         if (toBeExpanded) {
-            Utils.exec(o.onExpandNode, [node, element]);
+            Utils.exec(o.onExpandNode, [node[0]], element[0]);
+            element.fire("expandnode", {
+                node: node[0]
+            });
         } else {
-            Utils.exec(o.onCollapseNode, [node, element]);
+            Utils.exec(o.onCollapseNode, [node[0]], element[0]);
+            element.fire("collapsenode", {
+                node: node[0]
+            });
         }
 
         node.children("ul")[func](o.duration);
     },
 
     addTo: function(node, data){
+        node = $(node);
         var that = this, element = this.element, o = this.options;
         var target;
         var new_node;
@@ -24658,46 +24989,71 @@ var TreeView = {
 
         new_node.appendTo(target);
 
-        Utils.exec(o.onNodeInsert, [new_node, element], new_node[0]);
+        Utils.exec(o.onNodeInsert, [new_node[0], node[0]], element[0]);
+        element.fire("nodeinsert", {
+            node: new_node[0],
+            parent: node[0]
+        });
 
         return new_node;
     },
 
     insertBefore: function(node, data){
+        node = $(node);
         var element = this.element, o = this.options;
         var new_node = this._createNode(data);
         new_node.insertBefore(node);
-        Utils.exec(o.onNodeInsert, [new_node, element], new_node[0]);
+        Utils.exec(o.onNodeInsert, [new_node[0], node[0]], element[0]);
+        element.fire("nodeinsert", {
+            node: new_node[0],
+            parent: node[0]
+        });
         return new_node;
     },
 
     insertAfter: function(node, data){
+        node = $(node);
         var element = this.element, o = this.options;
         var new_node = this._createNode(data);
         new_node.insertAfter(node);
-        Utils.exec(o.onNodeInsert, [new_node, element], new_node[0]);
+        Utils.exec(o.onNodeInsert, [new_node[0], node[0]], element[0]);
+        element.fire("nodeinsert", {
+            node: new_node[0],
+            parent: node[0]
+        });
         return new_node;
     },
 
     del: function(node){
         var element = this.element, o = this.options;
+        node = $(node);
         var parent_list = node.closest("ul");
         var parent_node = parent_list.closest("li");
+
+        Utils.exec(o.onNodeDelete, [node[0]], element[0]);
+        element.fire("nodedelete", {
+            node: node[0]
+        });
+
         node.remove();
+
         if (parent_list.children().length === 0 && !parent_list.is(element)) {
             parent_list.remove();
             parent_node.removeClass("expanded");
             parent_node.children(".node-toggle").remove();
         }
-        Utils.exec(o.onNodeDelete, [element], element[0]);
     },
 
     clean: function(node){
         var element = this.element, o = this.options;
+        node = $(node);
         node.children("ul").remove();
         node.removeClass("expanded");
         node.children(".node-toggle").remove();
-        Utils.exec(o.onNodeClean, [node, element], node[0]);
+        Utils.exec(o.onNodeClean, [node[0]], element[0]);
+        element.fire("nodeclean", {
+            node: node[0]
+        });
     },
 
     changeAttribute: function(attributeName){
@@ -25084,7 +25440,8 @@ var Validator = {
             return that._reset();
         };
 
-        Utils.exec(this.options.onValidatorCreate, [element], this.elem);
+        Utils.exec(o.onValidatorCreate, null, element[0]);
+        element.fire("validatorcreate");
     },
 
     _reset: function(){
@@ -25109,16 +25466,28 @@ var Validator = {
 
         submit.removeAttr("disabled").removeClass("disabled");
 
-        result.val += Utils.exec(o.onBeforeSubmit, [element, formData], this.elem) === false ? 1 : 0;
+        result.val += Utils.exec(o.onBeforeSubmit, [formData], this.elem) === false ? 1 : 0;
 
         if (result.val === 0) {
-            Utils.exec(o.onValidateForm, [element, formData], form);
+            Utils.exec(o.onValidateForm, [formData], form);
+            element.fire("validateform", {
+                data: formData
+            });
+
             setTimeout(function(){
-                Utils.exec(o.onSubmit, [element, formData], form);
+                Utils.exec(o.onSubmit, [formData], form);
+                element.fire("formsubmit", {
+                    data: formData
+                });
                 if (that._onsubmit !==  null) Utils.exec(that._onsubmit, null, form);
             }, o.submitTimeout);
         } else {
-            Utils.exec(o.onErrorForm, [result.log, element, formData], form);
+            Utils.exec(o.onErrorForm, [result.log, formData], form);
+            element.fire("errorform", {
+                log: result.log,
+                data: formData
+            });
+
             if (o.clearInvalid > 0) {
                 setTimeout(function(){
                     $.each(inputs, function(){
@@ -25137,8 +25506,6 @@ var Validator = {
     },
 
     changeAttribute: function(attributeName){
-        switch (attributeName) {
-        }
     }
 };
 
@@ -25246,6 +25613,7 @@ var Video = {
         }
 
         Utils.exec(o.onVideoCreate, [element, this.player], element[0]);
+        element.fire("videocreate");
     },
 
     _createPlayer: function(){
@@ -25726,8 +26094,6 @@ var Window = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onWindowCreate, [this.win, this.element]);
-
         return this;
     },
 
@@ -25826,13 +26192,21 @@ var Window = {
 
         this.win = win;
 
+        Utils.exec(o.onWindowCreate, [this.win[0]], element[0]);
+        element.fire("windowcreate", {
+            win: win[0]
+        });
+
         setTimeout(function(){
             that._setPosition();
 
             if (o.hidden !== true) {
                 that.win.removeClass("no-visible");
             }
-            Utils.exec(o.onShow, [win], win[0]);
+            Utils.exec(o.onShow, [win[0]], element[0]);
+            element.fire("show", {
+                win: win[0]
+            });
         }, 100);
     },
 
@@ -26066,14 +26440,20 @@ var Window = {
     },
 
     maximized: function(e){
-        var win = this.win,  o = this.options;
+        var win = this.win,  element = this.element, o = this.options;
         var target = $(e.currentTarget);
         win.removeClass("minimized");
         win.toggleClass("maximized");
         if (target.hasClass("window-caption")) {
-            Utils.exec(o.onCaptionDblClick, [win]);
+            Utils.exec(o.onCaptionDblClick, [win[0]], element[0]);
+            element.fire("captiondblclick", {
+                win: win[0]
+            });
         } else {
-            Utils.exec(o.onMaxClick, [win]);
+            Utils.exec(o.onMaxClick, [win[0]], element[0]);
+            element.fire("maxclick", {
+                win: win[0]
+            });
         }
     },
 
@@ -26081,7 +26461,10 @@ var Window = {
         var win = this.win,  element = this.element, o = this.options;
         win.removeClass("maximized");
         win.toggleClass("minimized");
-        Utils.exec(o.onMinClick, [win], element[0]);
+        Utils.exec(o.onMinClick, [win[0]], element[0]);
+        element.fire("minclick", {
+            win: win[0]
+        });
     },
 
     close: function(){
@@ -26098,15 +26481,26 @@ var Window = {
             timeout = 500;
         }
 
-        Utils.exec(o.onClose, [win], element[0]);
+        Utils.exec(o.onClose, [win[0]], element[0]);
+        element.fire("close", {
+            win: win[0]
+        });
 
         timer = setTimeout(function(){
             timer = null;
             if (o.modal === true) {
                 win.siblings(".overlay").remove();
             }
-            Utils.exec(o.onCloseClick, [win], element[0]);
-            Utils.exec(o.onWindowDestroy, [win], element[0]);
+            Utils.exec(o.onCloseClick, [win[0]], element[0]);
+            element.fire("closeclick", {
+                win: win[0]
+            });
+
+            Utils.exec(o.onWindowDestroy, [win[0]], element[0]);
+            element.fire("windowdestroy", {
+                win: win[0]
+            });
+
             if (o.closeAction === Metro.actions.REMOVE) {
                 win.remove();
             } else {
@@ -26411,6 +26805,11 @@ var Wizard = {
         clsFinish: "",
 
         onPage: Metro.noop,
+        onNextPage: Metro.noop,
+        onPrevPage: Metro.noop,
+        onFirstPage: Metro.noop,
+        onLastPage: Metro.noop,
+        onFinishPage: Metro.noop,
         onHelpClick: Metro.noop,
         onPrevClick: Metro.noop,
         onNextClick: Metro.noop,
@@ -26440,7 +26839,8 @@ var Wizard = {
         this._createWizard();
         this._createEvents();
 
-        Utils.exec(o.onWizardCreate, [element]);
+        Utils.exec(o.onWizardCreate, null, element[0]);
+        element.fire("wizardcreate");
     },
 
     _createWizard: function(){
@@ -26489,21 +26889,43 @@ var Wizard = {
         element.on(Metro.events.click, ".wizard-btn-help", function(){
             var pages = element.children("section");
             var page = pages.get(that.current - 1);
-            Utils.exec(o.onHelpClick, [that.current, page, element])
+            Utils.exec(o.onHelpClick, [that.current, page[0], element[0]]);
+            element.fire("helpclick", {
+                index: that.current,
+                page: page[0]
+            });
         });
 
         element.on(Metro.events.click, ".wizard-btn-prev", function(){
             that.prev();
-            Utils.exec(o.onPrevClick, [that.current, element])
+            var pages = element.children("section");
+            var page = pages.get(that.current - 1);
+            Utils.exec(o.onPrevClick, [that.current, page[0]], element[0]);
+            element.fire("prevclick", {
+                index: that.current,
+                page: page[0]
+            });
         });
 
         element.on(Metro.events.click, ".wizard-btn-next", function(){
             that.next();
-            Utils.exec(o.onNextClick, [that.current, element])
+            var pages = element.children("section");
+            var page = pages.get(that.current - 1);
+            Utils.exec(o.onNextClick, [that.current, page[0]], element[0]);
+            element.fire("nextclick", {
+                index: that.current,
+                page: page[0]
+            });
         });
 
         element.on(Metro.events.click, ".wizard-btn-finish", function(){
-            Utils.exec(o.onFinishClick, [that.current, element])
+            var pages = element.children("section");
+            var page = pages.get(that.current - 1);
+            Utils.exec(o.onFinishClick, [that.current, page[0]], element[0]);
+            element.fire("finishclick", {
+                index: that.current,
+                page: page[0]
+            });
         });
 
         element.on(Metro.events.click, ".complete", function(){
@@ -26528,6 +26950,13 @@ var Wizard = {
         this.current++;
 
         this.toPage(this.current);
+
+        page = $(element.children("section").get(this.current - 1));
+        Utils.exec(o.onNextPage, [this.current, page[0]], element[0]);
+        element.fire("nextpage", {
+            index: that.current,
+            page: page[0]
+        });
     },
 
     prev: function(){
@@ -26541,16 +26970,42 @@ var Wizard = {
         this.current--;
 
         this.toPage(this.current);
+
+        page = $(element.children("section").get(this.current - 1));
+        Utils.exec(o.onPrevPage, [this.current, page[0]], element[0]);
+        element.fire("prevpage", {
+            index: that.current,
+            page: page[0]
+        });
     },
 
     last: function(){
         var that = this, element = this.element, o = this.options;
+        var page;
 
         this.toPage(element.children("section").length);
+
+        page = $(element.children("section").get(this.current - 1));
+        Utils.exec(o.onLastPage, [this.current, page[0]], element[0]);
+        element.fire("lastpage", {
+            index: that.current,
+            page: page[0]
+        });
+
     },
 
     first: function(){
+        var that = this, element = this.element, o = this.options;
+        var page;
+
         this.toPage(1);
+
+        page = $(element.children("section").get(0));
+        Utils.exec(o.onFirstPage, [this.current, page[0]], element[0]);
+        element.fire("firstpage", {
+            index: that.current,
+            page: page[0]
+        });
     },
 
     toPage: function(page){
@@ -26589,6 +27044,14 @@ var Wizard = {
             finish.removeClass("disabled");
         }
 
+        if (parseInt(o.finish) > 0 && this.current === parseInt(o.finish)) {
+            Utils.exec(o.onFinishPage, [this.current, target[0]], element[0]);
+            element.fire("finishpage", {
+                index: this.current,
+                page: target[0]
+            });
+        }
+
         if (this.current < sections.length) {
             next.removeClass("disabled");
         }
@@ -26597,8 +27060,11 @@ var Wizard = {
             prev.removeClass("disabled");
         }
 
-        element.trigger("onpage", [this.current, target, element]);
-        Utils.exec(o.onPage, [this.current, target, element]);
+        Utils.exec(o.onPage, [this.current, target[0]], element[0]);
+        element.fire("page", {
+            index: this.current,
+            page: target[0]
+        });
     },
 
     changeAttribute: function(attributeName){

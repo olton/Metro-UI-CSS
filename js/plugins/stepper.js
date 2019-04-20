@@ -49,7 +49,8 @@ var Stepper = {
         this._createStepper();
         this._createEvents();
 
-        Utils.exec(o.onStepperCreate, [element]);
+        Utils.exec(o.onStepperCreate, null, element[0]);
+        element.fire("steppercreate");
     },
 
     _createStepper: function(){
@@ -73,7 +74,10 @@ var Stepper = {
             var step = $(this).data("step");
             if (o.stepClick === true) {
                 that.toStep(step);
-                Utils.exec(o.onStepClick, [step, element]);
+                Utils.exec(o.onStepClick, [step], element[0]);
+                element.fire("stepclick", {
+                    step: step
+                });
             }
         });
     },
@@ -131,7 +135,10 @@ var Stepper = {
         target.addClass("current").addClass(o.clsCurrent);
         target.prevAll().addClass("complete").addClass(o.clsComplete);
 
-        Utils.exec(o.onStep, [this.current, element]);
+        Utils.exec(o.onStep, [this.current], element[0]);
+        element.fire("step", {
+            step: this.current
+        });
     },
 
     changeAttribute: function(attributeName){

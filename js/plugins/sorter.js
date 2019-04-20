@@ -44,7 +44,8 @@ var Sorter = {
 
         this._createStructure();
 
-        Utils.exec(o.onSorterCreate, [element]);
+        Utils.exec(o.onSorterCreate, null, element[0]);
+        element.fire("sortercreate");
     },
 
     _createStructure: function(){
@@ -118,7 +119,10 @@ var Sorter = {
 
         prev = $("<div>").attr("id", id).insertBefore($(element.find(o.sortTarget)[0]));
 
-        Utils.exec(o.onSortStart, [element], element[0]);
+        Utils.exec(o.onSortStart, [items], element[0]);
+        element.fire("sortstart", {
+            items: items
+        });
 
         items.sort(function(a, b){
             var c1 = that._getItemContent(a);
@@ -134,7 +138,12 @@ var Sorter = {
             }
 
             if (result !== 0) {
-                Utils.exec(o.onSortItemSwitch, [a, b], element[0]);
+                Utils.exec(o.onSortItemSwitch, [a, b, result], element[0]);
+                element.fire("sortitemswitch", {
+                    a: a,
+                    b: b,
+                    result: result
+                });
             }
 
             return result;
@@ -154,7 +163,8 @@ var Sorter = {
 
         $("#"+id).remove();
 
-        Utils.exec(o.onSortStop, [element], element[0]);
+        Utils.exec(o.onSortStop, [items], element[0]);
+        element.fire("sortstop");
     },
 
     reset: function(){
