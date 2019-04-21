@@ -13,6 +13,7 @@
 + [x] Events extensions: Now you can subscribe to all table events with `$.on()` or `addEventListener()`
 + [x] Wizard: add events `data-on-next-page`, `data-on-prev-page`, `data-on-first-page`, `data-on-last-page`, `data-on-finish-page`
 + [x] Table: add using global object `metroTableSetup` to set up all tables on page with own global options set.   
++ [x] Accordion: add using global object `metroAccordionSetup` to set up all accordions on page with own global options set.   
 
 ### 4.2.40
 + [x] Chat: new component

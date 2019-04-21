@@ -29,6 +29,11 @@ if (window.METRO_SHOW_ABOUT === undefined) {
 }
 /* --- end ---*/
 
+var meta_compile = $("meta[name='metro4:compile']").attr("content");
+if (window.METRO_SHOW_COMPILE_TIME === undefined) {
+    window.METRO_SHOW_COMPILE_TIME = meta_compile !== undefined ? JSON.parse(meta_compile) : true;
+}
+
 if (window.METRO_INIT === undefined) {
     window.METRO_INIT = meta_init !== undefined ? JSON.parse(meta_init) : true;
 }
@@ -99,7 +104,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "@@version",
-    versionFull: "@@version.@@build @@status",
+    versionFull: "@@version.@@build",
+    compileTime: "@@compile",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -261,12 +267,16 @@ var Metro = {
 
     hotkeys: [],
 
-    about: function(f){
-        console.log("Metro 4 - v" + (f === true ? this.versionFull : this.version));
+    about: function(){
+        console.log("Metro 4 - v" + this.version +". "+ this.showCompileTime());
     },
 
-    aboutDlg: function(f){
-        alert("Metro 4 - v" + (f === true ? this.versionFull : this.version));
+    showCompileTime: function(){
+        return "Built at: " + this.compileTime;
+    },
+
+    aboutDlg: function(){
+        alert("Metro 4 - v" + this.version +". "+ this.showCompileTime());
     },
 
     ver: function(f){
@@ -356,6 +366,7 @@ var Metro = {
         this.initWidgets(widgets);
 
         if (METRO_SHOW_ABOUT) this.about(true);
+        // if (METRO_SHOW_COMPILE_TIME) this.showCompileTime();
 
         if (METRO_CLOAK_REMOVE !== "fade") {
             $(".m4-cloak").removeClass("m4-cloak");

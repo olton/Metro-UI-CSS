@@ -44,6 +44,11 @@ if (window.METRO_SHOW_ABOUT === undefined) {
 }
 /* --- end ---*/
 
+var meta_compile = $("meta[name='metro4:compile']").attr("content");
+if (window.METRO_SHOW_COMPILE_TIME === undefined) {
+    window.METRO_SHOW_COMPILE_TIME = meta_compile !== undefined ? JSON.parse(meta_compile) : true;
+}
+
 if (window.METRO_INIT === undefined) {
     window.METRO_INIT = meta_init !== undefined ? JSON.parse(meta_init) : true;
 }
@@ -113,8 +118,9 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.41-dev 21/04/2019 00:51",
-    versionFull: "4.2.41-dev 21/04/2019 00:51",
+    version: "4.2.41",
+    versionFull: "4.2.41.722",
+    compileTime: "21/04/2019 09:52:50",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -276,12 +282,16 @@ var Metro = {
 
     hotkeys: [],
 
-    about: function(f){
-        console.log("Metro 4 - v" + (f === true ? this.versionFull : this.version));
+    about: function(){
+        console.log("Metro 4 - v" + this.version +". "+ this.showCompileTime());
     },
 
-    aboutDlg: function(f){
-        alert("Metro 4 - v" + (f === true ? this.versionFull : this.version));
+    showCompileTime: function(){
+        return "Built at: " + this.compileTime;
+    },
+
+    aboutDlg: function(){
+        alert("Metro 4 - v" + this.version +". "+ this.showCompileTime());
     },
 
     ver: function(f){
@@ -371,6 +381,7 @@ var Metro = {
         this.initWidgets(widgets);
 
         if (METRO_SHOW_ABOUT) this.about(true);
+        // if (METRO_SHOW_COMPILE_TIME) this.showCompileTime();
 
         if (METRO_CLOAK_REMOVE !== "fade") {
             $(".m4-cloak").removeClass("m4-cloak");
@@ -4477,9 +4488,33 @@ Metro['utils'] = Utils;
 
 // Source: js/plugins/accordion.js
 
+var AccordionDefaultConfig = {
+    showMarker: true,
+    material: false,
+    duration: METRO_ANIMATION_DURATION,
+    oneFrame: true,
+    showActive: true,
+    activeFrameClass: "",
+    activeHeadingClass: "",
+    activeContentClass: "",
+    onFrameOpen: Metro.noop,
+    onFrameBeforeOpen: Metro.noop_true,
+    onFrameClose: Metro.noop,
+    onFrameBeforeClose: Metro.noop_true,
+    onAccordionCreate: Metro.noop
+};
+
+Metro.accordionSetup = function(options){
+    AccordionDefaultConfig = $.extend({}, AccordionDefaultConfig, options);
+};
+
+if (typeof window.metroAccordionSetup !== undefined) {
+    Metro.accordionSetup(window.metroAccordionSetup);
+}
+
 var Accordion = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, AccordionDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
 
@@ -4487,21 +4522,6 @@ var Accordion = {
         this._create();
 
         return this;
-    },
-    options: {
-        showMarker: true,
-        material: false,
-        duration: METRO_ANIMATION_DURATION,
-        oneFrame: true,
-        showActive: true,
-        activeFrameClass: "",
-        activeHeadingClass: "",
-        activeContentClass: "",
-        onFrameOpen: Metro.noop,
-        onFrameBeforeOpen: Metro.noop_true,
-        onFrameClose: Metro.noop,
-        onFrameBeforeClose: Metro.noop_true,
-        onAccordionCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -19763,7 +19783,7 @@ Metro.plugin('switch', Switch);
 
 // Source: js/plugins/table.js
 
-var TableConfig = {
+var TableDefaultConfig = {
     templateBeginToken: "<%",
     templateEndToken: "%>",
     paginationDistance: 5,
@@ -19884,7 +19904,7 @@ var TableConfig = {
 };
 
 Metro.tableSetup = function(options){
-    TableConfig = $.extend({}, TableConfig, options);
+    TableDefaultConfig = $.extend({}, TableDefaultConfig, options);
 };
 
 if (typeof window.metroTableSetup !== undefined) {
@@ -19893,8 +19913,7 @@ if (typeof window.metroTableSetup !== undefined) {
 
 var Table = {
     init: function( options, elem ) {
-        this.options = TableConfig;
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, TableDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.currentPage = 1;
@@ -19937,127 +19956,6 @@ var Table = {
 
         return this;
     },
-
-    //options: {
-
-        // templateBeginToken: "<%",
-        // templateEndToken: "%>",
-        // paginationDistance: 5,
-        //
-        // locale: METRO_LOCALE,
-        //
-        // horizontalScroll: false,
-        // horizontalScrollStop: null,
-        // check: false,
-        // checkType: "checkbox",
-        // checkStyle: 1,
-        // checkColIndex: 0,
-        // checkName: null,
-        // checkStoreKey: "TABLE:$1:KEYS",
-        // rownum: false,
-        // rownumTitle: "#",
-        //
-        // filters: null,
-        // filtersOperator: "and",
-        //
-        // source: null,
-        //
-        // searchMinLength: 1,
-        // searchThreshold: 500,
-        // searchFields: null,
-        //
-        // showRowsSteps: true,
-        // showSearch: true,
-        // showTableInfo: true,
-        // showPagination: true,
-        // paginationShortMode: true,
-        // showActivity: true,
-        // muteTable: true,
-        //
-        // rows: 10,
-        // rowsSteps: "10,25,50,100",
-        //
-        // staticView: false,
-        // viewSaveMode: "client",
-        // viewSavePath: "TABLE:$1:OPTIONS",
-        //
-        // sortDir: "asc",
-        // decimalSeparator: ".",
-        // thousandSeparator: ",",
-        //
-        // tableRowsCountTitle: "Show entries:",
-        // tableSearchTitle: "Search:",
-        // tableInfoTitle: "Showing $1 to $2 of $3 entries",
-        // paginationPrevTitle: "Prev",
-        // paginationNextTitle: "Next",
-        // allRecordsTitle: "All",
-        // inspectorTitle: "Inspector",
-        //
-        // activityType: "cycle",
-        // activityStyle: "color",
-        // activityTimeout: 100,
-        //
-        // searchWrapper: null,
-        // rowsWrapper: null,
-        // infoWrapper: null,
-        // paginationWrapper: null,
-        //
-        // cellWrapper: true,
-        //
-        // clsComponent: "",
-        // clsTableContainer: "",
-        // clsTable: "",
-        //
-        // clsHead: "",
-        // clsHeadRow: "",
-        // clsHeadCell: "",
-        //
-        // clsBody: "",
-        // clsBodyRow: "",
-        // clsBodyCell: "",
-        // clsCellWrapper: "",
-        //
-        // clsFooter: "",
-        // clsFooterRow: "",
-        // clsFooterCell: "",
-        //
-        // clsTableTop: "",
-        // clsRowsCount: "",
-        // clsSearch: "",
-        //
-        // clsTableBottom: "",
-        // clsTableInfo: "",
-        // clsTablePagination: "",
-        //
-        // clsPagination: "",
-        //
-        // clsEvenRow: "",
-        // clsOddRow: "",
-        // clsRow: "",
-        //
-        // onDraw: Metro.noop,
-        // onDrawRow: Metro.noop,
-        // onDrawCell: Metro.noop,
-        // onAppendRow: Metro.noop,
-        // onAppendCell: Metro.noop,
-        // onSortStart: Metro.noop,
-        // onSortStop: Metro.noop,
-        // onSortItemSwitch: Metro.noop,
-        // onSearch: Metro.noop,
-        // onRowsCountChange: Metro.noop,
-        // onDataLoad: Metro.noop,
-        // onDataLoadError: Metro.noop,
-        // onDataLoaded: Metro.noop,
-        // onFilterRowAccepted: Metro.noop,
-        // onFilterRowDeclined: Metro.noop,
-        // onCheckClick: Metro.noop,
-        // onCheckClickAll: Metro.noop,
-        // onCheckDraw: Metro.noop,
-        // onViewSave: Metro.noop,
-        // onViewGet: Metro.noop,
-        // onViewCreated: Metro.noop,
-        // onTableCreate: Metro.noop
-    //},
 
     _setOptionsFromDOM: function(){
         var element = this.element, o = this.options;

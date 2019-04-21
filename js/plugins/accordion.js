@@ -1,6 +1,30 @@
+var AccordionDefaultConfig = {
+    showMarker: true,
+    material: false,
+    duration: METRO_ANIMATION_DURATION,
+    oneFrame: true,
+    showActive: true,
+    activeFrameClass: "",
+    activeHeadingClass: "",
+    activeContentClass: "",
+    onFrameOpen: Metro.noop,
+    onFrameBeforeOpen: Metro.noop_true,
+    onFrameClose: Metro.noop,
+    onFrameBeforeClose: Metro.noop_true,
+    onAccordionCreate: Metro.noop
+};
+
+Metro.accordionSetup = function(options){
+    AccordionDefaultConfig = $.extend({}, AccordionDefaultConfig, options);
+};
+
+if (typeof window.metroAccordionSetup !== undefined) {
+    Metro.accordionSetup(window.metroAccordionSetup);
+}
+
 var Accordion = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, AccordionDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
 
@@ -8,21 +32,6 @@ var Accordion = {
         this._create();
 
         return this;
-    },
-    options: {
-        showMarker: true,
-        material: false,
-        duration: METRO_ANIMATION_DURATION,
-        oneFrame: true,
-        showActive: true,
-        activeFrameClass: "",
-        activeHeadingClass: "",
-        activeContentClass: "",
-        onFrameOpen: Metro.noop,
-        onFrameBeforeOpen: Metro.noop_true,
-        onFrameClose: Metro.noop,
-        onFrameBeforeClose: Metro.noop_true,
-        onAccordionCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
