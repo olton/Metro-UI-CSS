@@ -1,6 +1,21 @@
+var AppBarDefaultConfig = {
+    expand: false,
+    expandPoint: null,
+    duration: 100,
+    onAppBarCreate: Metro.noop
+};
+
+Metro.appBarSetup = function(options){
+    AppBarDefaultConfig = $.extend({}, AppBarDefaultConfig, options);
+};
+
+if (typeof window.metroAppBarSetup !== undefined) {
+    Metro.appBarSetup(window.metroAppBarSetup);
+}
+
 var AppBar = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, AppBarDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
 
@@ -8,13 +23,6 @@ var AppBar = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        expand: false,
-        expandPoint: null,
-        duration: 100,
-        onAppBarCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){

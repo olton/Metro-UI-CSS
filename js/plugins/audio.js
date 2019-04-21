@@ -1,6 +1,69 @@
+var AudioDefaultConfig = {
+    playlist: null,
+    src: null,
+
+    volume: .5,
+    loop: false,
+    autoplay: false,
+
+    showLoop: true,
+    showPlay: true,
+    showStop: true,
+    showMute: true,
+    showFull: true,
+    showStream: true,
+    showVolume: true,
+    showInfo: true,
+
+    showPlaylist: true,
+    showNext: true,
+    showPrev: true,
+    showFirst: true,
+    showLast: true,
+    showForward: true,
+    showBackward: true,
+    showShuffle: true,
+    showRandom: true,
+
+    loopIcon: "<span class='default-icon-loop'></span>",
+    stopIcon: "<span class='default-icon-stop'></span>",
+    playIcon: "<span class='default-icon-play'></span>",
+    pauseIcon: "<span class='default-icon-pause'></span>",
+    muteIcon: "<span class='default-icon-mute'></span>",
+    volumeLowIcon: "<span class='default-icon-low-volume'></span>",
+    volumeMediumIcon: "<span class='default-icon-medium-volume'></span>",
+    volumeHighIcon: "<span class='default-icon-high-volume'></span>",
+
+    playlistIcon: "<span class='default-icon-playlist'></span>",
+    nextIcon: "<span class='default-icon-next'></span>",
+    prevIcon: "<span class='default-icon-prev'></span>",
+    firstIcon: "<span class='default-icon-first'></span>",
+    lastIcon: "<span class='default-icon-last'></span>",
+    forwardIcon: "<span class='default-icon-forward'></span>",
+    backwardIcon: "<span class='default-icon-backward'></span>",
+    shuffleIcon: "<span class='default-icon-shuffle'></span>",
+    randomIcon: "<span class='default-icon-random'></span>",
+
+    onPlay: Metro.noop,
+    onPause: Metro.noop,
+    onStop: Metro.noop,
+    onEnd: Metro.noop,
+    onMetadata: Metro.noop,
+    onTime: Metro.noop,
+    onAudioCreate: Metro.noop
+};
+
+Metro.audioSetup = function(options){
+    AudioDefaultConfig = $.extend({}, AudioDefaultConfig, options);
+};
+
+if (typeof window.metroAudioSetup !== undefined) {
+    Metro.audioSetup(window.metroAudioSetup);
+}
+
 var Audio = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, AudioDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.preloader = null;
@@ -15,61 +78,6 @@ var Audio = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        playlist: null,
-        src: null,
-
-        volume: .5,
-        loop: false,
-        autoplay: false,
-
-        showLoop: true,
-        showPlay: true,
-        showStop: true,
-        showMute: true,
-        showFull: true,
-        showStream: true,
-        showVolume: true,
-        showInfo: true,
-
-        showPlaylist: true,
-        showNext: true,
-        showPrev: true,
-        showFirst: true,
-        showLast: true,
-        showForward: true,
-        showBackward: true,
-        showShuffle: true,
-        showRandom: true,
-
-        loopIcon: "<span class='default-icon-loop'></span>",
-        stopIcon: "<span class='default-icon-stop'></span>",
-        playIcon: "<span class='default-icon-play'></span>",
-        pauseIcon: "<span class='default-icon-pause'></span>",
-        muteIcon: "<span class='default-icon-mute'></span>",
-        volumeLowIcon: "<span class='default-icon-low-volume'></span>",
-        volumeMediumIcon: "<span class='default-icon-medium-volume'></span>",
-        volumeHighIcon: "<span class='default-icon-high-volume'></span>",
-
-        playlistIcon: "<span class='default-icon-playlist'></span>",
-        nextIcon: "<span class='default-icon-next'></span>",
-        prevIcon: "<span class='default-icon-prev'></span>",
-        firstIcon: "<span class='default-icon-first'></span>",
-        lastIcon: "<span class='default-icon-last'></span>",
-        forwardIcon: "<span class='default-icon-forward'></span>",
-        backwardIcon: "<span class='default-icon-backward'></span>",
-        shuffleIcon: "<span class='default-icon-shuffle'></span>",
-        randomIcon: "<span class='default-icon-random'></span>",
-
-        onPlay: Metro.noop,
-        onPause: Metro.noop,
-        onStop: Metro.noop,
-        onEnd: Metro.noop,
-        onMetadata: Metro.noop,
-        onTime: Metro.noop,
-        onAudioCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
