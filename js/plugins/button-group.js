@@ -1,6 +1,23 @@
+var ButtonGroupDefaultConfig = {
+    targets: "button",
+    clsActive: "active",
+    requiredButton: false,
+    mode: Metro.groupMode.ONE,
+    onButtonClick: Metro.noop,
+    onButtonsGroupCreate: Metro.noop
+};
+
+Metro.buttonGroupSetup = function(options){
+    ButtonGroupDefaultConfig = $.extend({}, ButtonGroupDefaultConfig, options);
+};
+
+if (typeof window.metroButtonGroupSetup !== undefined) {
+    Metro.buttonGroupSetup(window.metroButtonGroupSetup);
+}
+
 var ButtonGroup = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, ButtonGroupDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.active = null;
@@ -9,15 +26,6 @@ var ButtonGroup = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        targets: "button",
-        clsActive: "active",
-        requiredButton: false,
-        mode: Metro.groupMode.ONE,
-        onButtonClick: Metro.noop,
-        onButtonsGroupCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){

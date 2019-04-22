@@ -1,6 +1,76 @@
+var CalendarDefaultConfig = {
+    dayBorder: false,
+    excludeDay: null,
+    prevMonthIcon: "<span class='default-icon-chevron-left'></span>",
+    nextMonthIcon: "<span class='default-icon-chevron-right'></span>",
+    prevYearIcon: "<span class='default-icon-chevron-left'></span>",
+    nextYearIcon: "<span class='default-icon-chevron-right'></span>",
+    compact: false,
+    wide: false,
+    widePoint: null,
+    pickerMode: false,
+    show: null,
+    locale: METRO_LOCALE,
+    weekStart: METRO_WEEK_START,
+    outside: true,
+    buttons: 'cancel, today, clear, done',
+    yearsBefore: 100,
+    yearsAfter: 100,
+    headerFormat: "%A, %b %e",
+    showHeader: true,
+    showFooter: true,
+    showTimeField: true,
+    showWeekNumber: false,
+    clsCalendar: "",
+    clsCalendarHeader: "",
+    clsCalendarContent: "",
+    clsCalendarFooter: "",
+    clsCalendarMonths: "",
+    clsCalendarYears: "",
+    clsToday: "",
+    clsSelected: "",
+    clsExcluded: "",
+    clsCancelButton: "",
+    clsTodayButton: "",
+    clsClearButton: "",
+    clsDoneButton: "",
+    isDialog: false,
+    ripple: false,
+    rippleColor: "#cccccc",
+    exclude: null,
+    preset: null,
+    minDate: null,
+    maxDate: null,
+    weekDayClick: false,
+    weekNumberClick: false,
+    multiSelect: false,
+    special: null,
+    format: METRO_DATE_FORMAT,
+    inputFormat: null,
+    onCancel: Metro.noop,
+    onToday: Metro.noop,
+    onClear: Metro.noop,
+    onDone: Metro.noop,
+    onDayClick: Metro.noop,
+    onDayDraw: Metro.noop,
+    onWeekDayClick: Metro.noop,
+    onWeekNumberClick: Metro.noop,
+    onMonthChange: Metro.noop,
+    onYearChange: Metro.noop,
+    onCalendarCreate: Metro.noop
+};
+
+Metro.calendarSetup = function (options) {
+    CalendarDefaultConfig = $.extend({}, CalendarDefaultConfig, options);
+};
+
+if (typeof window.metroCalendarSetup !== undefined) {
+    Metro.calendarSetup(window.metroCalendarSetup);
+}
+
 var Calendar = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, CalendarDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.today = new Date();
@@ -28,68 +98,6 @@ var Calendar = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        dayBorder: false,
-        excludeDay: null,
-        prevMonthIcon: "<span class='default-icon-chevron-left'></span>",
-        nextMonthIcon: "<span class='default-icon-chevron-right'></span>",
-        prevYearIcon: "<span class='default-icon-chevron-left'></span>",
-        nextYearIcon: "<span class='default-icon-chevron-right'></span>",
-        compact: false,
-        wide: false,
-        widePoint: null,
-        pickerMode: false,
-        show: null,
-        locale: METRO_LOCALE,
-        weekStart: METRO_WEEK_START,
-        outside: true,
-        buttons: 'cancel, today, clear, done',
-        yearsBefore: 100,
-        yearsAfter: 100,
-        headerFormat: "%A, %b %e",
-        showHeader: true,
-        showFooter: true,
-        showTimeField: true,
-        showWeekNumber: false,
-        clsCalendar: "",
-        clsCalendarHeader: "",
-        clsCalendarContent: "",
-        clsCalendarFooter: "",
-        clsCalendarMonths: "",
-        clsCalendarYears: "",
-        clsToday: "",
-        clsSelected: "",
-        clsExcluded: "",
-        clsCancelButton: "",
-        clsTodayButton: "",
-        clsClearButton: "",
-        clsDoneButton: "",
-        isDialog: false,
-        ripple: false,
-        rippleColor: "#cccccc",
-        exclude: null,
-        preset: null,
-        minDate: null,
-        maxDate: null,
-        weekDayClick: false,
-        weekNumberClick: false,
-        multiSelect: false,
-        special: null,
-        format: METRO_DATE_FORMAT,
-        inputFormat: null,
-        onCancel: Metro.noop,
-        onToday: Metro.noop,
-        onClear: Metro.noop,
-        onDone: Metro.noop,
-        onDayClick: Metro.noop,
-        onDayDraw: Metro.noop,
-        onWeekDayClick: Metro.noop,
-        onWeekNumberClick: Metro.noop,
-        onMonthChange: Metro.noop,
-        onYearChange: Metro.noop,
-        onCalendarCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
