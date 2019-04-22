@@ -1,6 +1,41 @@
+var DatePickerDefaultConfig = {
+    gmt: 0,
+    format: "%Y-%m-%d",
+    locale: METRO_LOCALE,
+    value: null,
+    distance: 3,
+    month: true,
+    day: true,
+    year: true,
+    minYear: null,
+    maxYear: null,
+    scrollSpeed: 1,
+    copyInlineStyles: true,
+    clsPicker: "",
+    clsPart: "",
+    clsMonth: "",
+    clsDay: "",
+    clsYear: "",
+    okButtonIcon: "<span class='default-icon-check'></span>",
+    cancelButtonIcon: "<span class='default-icon-cross'></span>",
+    onSet: Metro.noop,
+    onOpen: Metro.noop,
+    onClose: Metro.noop,
+    onScroll: Metro.noop,
+    onDatePickerCreate: Metro.noop
+};
+
+Metro.datePickerSetup = function (options) {
+    DatePickerDefaultConfig = $.extend({}, DatePickerDefaultConfig, options);
+};
+
+if (typeof window.metroDatePickerSetup !== undefined) {
+    Metro.datePickerSetup(window.metroDatePickerSetup);
+}
+
 var DatePicker = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, DatePickerDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.picker = null;
@@ -13,33 +48,6 @@ var DatePicker = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        gmt: 0,
-        format: "%Y-%m-%d",
-        locale: METRO_LOCALE,
-        value: null,
-        distance: 3,
-        month: true,
-        day: true,
-        year: true,
-        minYear: null,
-        maxYear: null,
-        scrollSpeed: 1,
-        copyInlineStyles: true,
-        clsPicker: "",
-        clsPart: "",
-        clsMonth: "",
-        clsDay: "",
-        clsYear: "",
-        okButtonIcon: "<span class='default-icon-check'></span>",
-        cancelButtonIcon: "<span class='default-icon-cross'></span>",
-        onSet: Metro.noop,
-        onOpen: Metro.noop,
-        onClose: Metro.noop,
-        onScroll: Metro.noop,
-        onDatePickerCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
