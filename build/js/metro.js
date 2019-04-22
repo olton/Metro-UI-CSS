@@ -120,7 +120,7 @@ var Metro = {
 
     version: "4.2.41",
     versionFull: "4.2.41.722",
-    compileTime: "22/04/2019 11:00:57",
+    compileTime: "22/04/2019 11:07:11",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -11008,9 +11008,28 @@ Metro.plugin('draggable', Draggable);
 
 // Source: js/plugins/dropdown.js
 
+var DropdownDefaultConfig = {
+    dropFilter: null,
+    effect: 'slide',
+    toggleElement: null,
+    noClose: false,
+    duration: 100,
+    onDrop: Metro.noop,
+    onUp: Metro.noop,
+    onDropdownCreate: Metro.noop
+};
+
+Metro.dropdownSetup = function (options) {
+    DropdownDefaultConfig = $.extend({}, DropdownDefaultConfig, options);
+};
+
+if (typeof window.metroDropdownSetup !== undefined) {
+    Metro.dropdownSetup(window.metroDropdownSetup);
+}
+
 var Dropdown = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, DropdownDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this._toggle = null;
@@ -11020,17 +11039,6 @@ var Dropdown = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        dropFilter: null,
-        effect: 'slide',
-        toggleElement: null,
-        noClose: false,
-        duration: 100,
-        onDrop: Metro.noop,
-        onUp: Metro.noop,
-        onDropdownCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -11206,9 +11214,8 @@ $(document).on(Metro.events.click, function(e){
     $('[data-role*=dropdown]').each(function(){
         var el = $(this);
 
-        if (el.css('display')==='block' && !el.hasClass('keep-open') && !el.hasClass('stay-open')) {
-            var dropdown = el.data('dropdown');
-            dropdown.close();
+        if (el.css('display')!=='none' && !el.hasClass('keep-open') && !el.hasClass('stay-open') && !el.hasClass('ignore-document-click')) {
+            el.data('dropdown').close();
         }
     });
 });
