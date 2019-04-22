@@ -278,9 +278,32 @@ var ValidatorFuncs = {
 
 Metro['validator'] = ValidatorFuncs;
 
+var ValidatorDefaultConfig = {
+    submitTimeout: 200,
+    interactiveCheck: false,
+    clearInvalid: 0,
+    requiredMode: true,
+    useRequiredClass: true,
+    onBeforeSubmit: Metro.noop_true,
+    onSubmit: Metro.noop,
+    onError: Metro.noop,
+    onValidate: Metro.noop,
+    onErrorForm: Metro.noop,
+    onValidateForm: Metro.noop,
+    onValidatorCreate: Metro.noop
+};
+
+Metro.validatorSetup = function (options) {
+    ValidatorDefaultConfig = $.extend({}, ValidatorDefaultConfig, options);
+};
+
+if (typeof window.metroValidatorSetup !== undefined) {
+    Metro.validatorSetup(window.metroValidatorSetup);
+}
+
 var Validator = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, ValidatorDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this._onsubmit = null;
@@ -294,21 +317,6 @@ var Validator = {
     },
 
     dependencies: ['utils', 'colors'],
-
-    options: {
-        submitTimeout: 200,
-        interactiveCheck: false,
-        clearInvalid: 0,
-        requiredMode: true,
-        useRequiredClass: true,
-        onBeforeSubmit: Metro.noop_true,
-        onSubmit: Metro.noop,
-        onError: Metro.noop,
-        onValidate: Metro.noop,
-        onErrorForm: Metro.noop,
-        onValidateForm: Metro.noop,
-        onValidatorCreate: Metro.noop
-    },
 
     _setOptionsFromDOM: function(){
         var element = this.element, o = this.options;

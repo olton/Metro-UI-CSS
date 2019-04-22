@@ -119,7 +119,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.2.41",
-    compileTime: "22/04/2019 21:16:15",
+    compileTime: "22/04/2019 21:58:38",
     buildNumber: "722",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -8255,6 +8255,7 @@ Metro.plugin('chat', Chat);
 // Source: js/plugins/checkbox.js
 
 var CheckboxDefaultConfig = {
+    transition: true,
     style: 1,
     caption: "",
     captionPosition: "right",
@@ -8321,6 +8322,10 @@ var Checkbox = {
         element.appendTo(checkbox);
         check.appendTo(checkbox);
         caption.appendTo(checkbox);
+
+        if (o.transition === true) {
+            checkbox.addClass("transition-on");
+        }
 
         if (o.captionPosition === 'left') {
             checkbox.addClass("caption-left");
@@ -16334,6 +16339,7 @@ Metro.plugin('progress', Progress);
 // Source: js/plugins/radio.js
 
 var RadioDefaultConfig = {
+    transition: true,
     style: 1,
     caption: "",
     captionPosition: "right",
@@ -16392,6 +16398,10 @@ var Radio = {
         element.appendTo(radio);
         check.appendTo(radio);
         caption.appendTo(radio);
+
+        if (o.transition === true) {
+            radio.addClass("transition-on");
+        }
 
         if (o.captionPosition === 'left') {
             radio.addClass("caption-left");
@@ -20093,9 +20103,28 @@ Metro.plugin('streamer', Streamer);
 
 // Source: js/plugins/switch.js
 
+var SwitchDefaultConfig = {
+    material: false,
+    transition: true,
+    caption: "",
+    captionPosition: "right",
+    clsSwitch: "",
+    clsCheck: "",
+    clsCaption: "",
+    onSwitchCreate: Metro.noop
+};
+
+Metro.switchSetup = function (options) {
+    SwitchDefaultConfig = $.extend({}, SwitchDefaultConfig, options);
+};
+
+if (typeof window.metroSwitchSetup !== undefined) {
+    Metro.switchSetup(window.metroSwitchSetup);
+}
+
 var Switch = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, SwitchDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
 
@@ -20103,15 +20132,6 @@ var Switch = {
         this._create();
 
         return this;
-    },
-    options: {
-        material: false,
-        caption: "",
-        captionPosition: "right",
-        clsSwitch: "",
-        clsCheck: "",
-        clsCaption: "",
-        onSwitchCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -20140,6 +20160,10 @@ var Switch = {
         element.appendTo(container);
         check.appendTo(container);
         caption.appendTo(container);
+
+        if (o.transition === true) {
+            container.addClass("transition-on");
+        }
 
         if (o.captionPosition === 'left') {
             container.addClass("caption-left");
@@ -22204,9 +22228,31 @@ Metro.plugin('table', Table);
 
 // Source: js/plugins/tabs-material.js
 
+var MaterialTabsDefaultConfig = {
+    deep: false,
+    fixedTabs: false,
+
+    clsComponent: "",
+    clsTab: "",
+    clsTabActive: "",
+    clsMarker: "",
+
+    onBeforeTabOpen: Metro.noop_true,
+    onTabOpen: Metro.noop,
+    onTabsCreate: Metro.noop
+};
+
+Metro.materialTabsSetup = function (options) {
+    MaterialTabsDefaultConfig = $.extend({}, MaterialTabsDefaultConfig, options);
+};
+
+if (typeof window.metroMaterialTabsSetup !== undefined) {
+    Metro.materialTabsSetup(window.metroMaterialTabsSetup);
+}
+
 var MaterialTabs = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, MaterialTabsDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.marker = null;
@@ -22215,20 +22261,6 @@ var MaterialTabs = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        deep: false,
-        fixedTabs: false,
-
-        clsComponent: "",
-        clsTab: "",
-        clsTabActive: "",
-        clsMarker: "",
-
-        onBeforeTabOpen: Metro.noop_true,
-        onTabOpen: Metro.noop,
-        onTabsCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -22390,9 +22422,33 @@ Metro.plugin('materialtabs', MaterialTabs);
 
 // Source: js/plugins/tabs.js
 
+var TabsDefaultConfig = {
+    expand: false,
+    expandPoint: null,
+    tabsPosition: "top",
+    tabsType: "default",
+
+    clsTabs: "",
+    clsTabsList: "",
+    clsTabsListItem: "",
+    clsTabsListItemActive: "",
+
+    onTab: Metro.noop,
+    onBeforeTab: Metro.noop_true,
+    onTabsCreate: Metro.noop
+};
+
+Metro.tabsSetup = function (options) {
+    TabsDefaultConfig = $.extend({}, TabsDefaultConfig, options);
+};
+
+if (typeof window.metroTabsSetup !== undefined) {
+    Metro.tabsSetup(window.metroTabsSetup);
+}
+
 var Tabs = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, TabsDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this._targets = [];
@@ -22401,22 +22457,6 @@ var Tabs = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        expand: false,
-        expandPoint: null,
-        tabsPosition: "top",
-        tabsType: "default",
-
-        clsTabs: "",
-        clsTabsList: "",
-        clsTabsListItem: "",
-        clsTabsListItemActive: "",
-
-        onTab: Metro.noop,
-        onBeforeTab: Metro.noop_true,
-        onTabsCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -22665,9 +22705,33 @@ Metro.plugin('tabs', Tabs);
 
 // Source: js/plugins/tag-input.js
 
+var TagInputDefaultConfig = {
+    randomColor: false,
+    maxTags: 0,
+    tagSeparator: ",",
+    tagTrigger: "13,188",
+    clsTag: "",
+    clsTagTitle: "",
+    clsTagRemover: "",
+    onBeforeTagAdd: Metro.noop_true,
+    onTagAdd: Metro.noop,
+    onBeforeTagRemove: Metro.noop_true,
+    onTagRemove: Metro.noop,
+    onTag: Metro.noop,
+    onTagInputCreate: Metro.noop
+};
+
+Metro.tagInputSetup = function (options) {
+    TagInputDefaultConfig = $.extend({}, TagInputDefaultConfig, options);
+};
+
+if (typeof window.metroTagInputSetup !== undefined) {
+    Metro.tagInputSetup(window.metroTagInputSetup);
+}
+
 var TagInput = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, TagInputDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.values = [];
@@ -22676,22 +22740,6 @@ var TagInput = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        randomColor: false,
-        maxTags: 0,
-        tagSeparator: ",",
-        tagTrigger: "13,188",
-        clsTag: "",
-        clsTagTitle: "",
-        clsTagRemover: "",
-        onBeforeTagAdd: Metro.noop_true,
-        onTagAdd: Metro.noop,
-        onBeforeTagRemove: Metro.noop_true,
-        onTagRemove: Metro.noop,
-        onTag: Metro.noop,
-        onTagInputCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -22800,6 +22848,10 @@ var TagInput = {
             return ;
         }
 
+        if ((""+val).trim() === "") {
+            return ;
+        }
+
         if (!Utils.exec(o.onBeforeTagAdd, [val, this.values], element[0])) {
             return ;
         }
@@ -22838,14 +22890,14 @@ var TagInput = {
         element.fire("tagadd", {
             tag: tag[0],
             val: val,
-            values: values
+            values: this.values
         });
 
         Utils.exec(o.onTag, [tag[0], val, this.values], element[0]);
         element.fire("tag", {
             tag: tag[0],
             val: val,
-            values: values
+            values: this.values
         });
     },
 
@@ -22864,14 +22916,14 @@ var TagInput = {
         element.fire("tagremove", {
             tag: tag[0],
             val: val,
-            values: values
+            values: this.values
         });
 
         Utils.exec(o.onTag, [tag[0], val, this.values], element[0]);
         element.fire("tag", {
             tag: tag[0],
             val: val,
-            values: values
+            values: this.values
         });
 
         tag.remove();
@@ -22963,9 +23015,35 @@ Metro.plugin('taginput', TagInput);
 
 // Source: js/plugins/textarea.js
 
+var TextareaDefaultConfig = {
+    charsCounter: null,
+    charsCounterTemplate: "$1",
+    defaultValue: "",
+    prepend: "",
+    append: "",
+    copyInlineStyles: true,
+    clearButton: true,
+    clearButtonIcon: "<span class='default-icon-cross'></span>",
+    autoSize: true,
+    clsPrepend: "",
+    clsAppend: "",
+    clsComponent: "",
+    clsTextarea: "",
+    onChange: Metro.noop,
+    onTextareaCreate: Metro.noop
+};
+
+Metro.textareaSetup = function (options) {
+    TextareaDefaultConfig = $.extend({}, TextareaDefaultConfig, options);
+};
+
+if (typeof window.metroTextareaSetup !== undefined) {
+    Metro.textareaSetup(window.metroTextareaSetup);
+}
+
 var Textarea = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, TextareaDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
 
@@ -22973,23 +23051,6 @@ var Textarea = {
         this._create();
 
         return this;
-    },
-    options: {
-        charsCounter: null,
-        charsCounterTemplate: "$1",
-        defaultValue: "",
-        prepend: "",
-        append: "",
-        copyInlineStyles: true,
-        clearButton: true,
-        clearButtonIcon: "<span class='default-icon-cross'></span>",
-        autoSize: true,
-        clsPrepend: "",
-        clsAppend: "",
-        clsComponent: "",
-        clsTextarea: "",
-        onChange: Metro.noop,
-        onTextareaCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -23172,9 +23233,30 @@ Metro.plugin('textarea', Textarea);
 
 // Source: js/plugins/tiles.js
 
+var TileDefaultConfig = {
+    size: "medium",
+    cover: "",
+    coverPosition: "center",
+    effect: "",
+    effectInterval: 3000,
+    effectDuration: 500,
+    target: null,
+    canTransform: true,
+    onClick: Metro.noop,
+    onTileCreate: Metro.noop
+};
+
+Metro.tileSetup = function (options) {
+    TileDefaultConfig = $.extend({}, TileDefaultConfig, options);
+};
+
+if (typeof window.metroTileSetup !== undefined) {
+    Metro.tileSetup(window.metroTileSetup);
+}
+
 var Tile = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, TileDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.effectInterval = false;
@@ -23187,19 +23269,6 @@ var Tile = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        size: "medium",
-        cover: "",
-        coverPosition: "center",
-        effect: "",
-        effectInterval: 3000,
-        effectDuration: 500,
-        target: null,
-        canTransform: true,
-        onClick: Metro.noop,
-        onTileCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -23412,9 +23481,44 @@ Metro.plugin('tile', Tile);
 
 // Source: js/plugins/timepicker.js
 
+var TimePickerDefaultConfig = {
+    hoursStep: 1,
+    minutesStep: 1,
+    secondsStep: 1,
+    value: null,
+    locale: METRO_LOCALE,
+    distance: 3,
+    hours: true,
+    minutes: true,
+    seconds: true,
+    showLabels: true,
+    scrollSpeed: 1,
+    copyInlineStyles: true,
+    clsPicker: "",
+    clsPart: "",
+    clsHours: "",
+    clsMinutes: "",
+    clsSeconds: "",
+    okButtonIcon: "<span class='default-icon-check'></span>",
+    cancelButtonIcon: "<span class='default-icon-cross'></span>",
+    onSet: Metro.noop,
+    onOpen: Metro.noop,
+    onClose: Metro.noop,
+    onScroll: Metro.noop,
+    onTimePickerCreate: Metro.noop
+};
+
+Metro.timePickerSetup = function (options) {
+    TimePickerDefaultConfig = $.extend({}, TimePickerDefaultConfig, options);
+};
+
+if (typeof window.metroTimePickerSetup !== undefined) {
+    Metro.timePickerSetup(window.metroTimePickerSetup);
+}
+
 var TimePicker = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, TimePickerDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.picker = null;
@@ -23426,33 +23530,6 @@ var TimePicker = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        hoursStep: 1,
-        minutesStep: 1,
-        secondsStep: 1,
-        value: null,
-        locale: METRO_LOCALE,
-        distance: 3,
-        hours: true,
-        minutes: true,
-        seconds: true,
-        showLabels: true,
-        scrollSpeed: 1,
-        copyInlineStyles: true,
-        clsPicker: "",
-        clsPart: "",
-        clsHours: "",
-        clsMinutes: "",
-        clsSeconds: "",
-        okButtonIcon: "<span class='default-icon-check'></span>",
-        cancelButtonIcon: "<span class='default-icon-cross'></span>",
-        onSet: Metro.noop,
-        onOpen: Metro.noop,
-        onClose: Metro.noop,
-        onScroll: Metro.noop,
-        onTimePickerCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -25113,9 +25190,32 @@ Metro.plugin('touch', Touch);
 
 // Source: js/plugins/treeview.js
 
+var TreeViewDefaultConfig = {
+    effect: "slide",
+    duration: 100,
+    onNodeClick: Metro.noop,
+    onNodeDblClick: Metro.noop,
+    onNodeDelete: Metro.noop,
+    onNodeInsert: Metro.noop,
+    onNodeClean: Metro.noop,
+    onCheckClick: Metro.noop,
+    onRadioClick: Metro.noop,
+    onExpandNode: Metro.noop,
+    onCollapseNode: Metro.noop,
+    onTreeViewCreate: Metro.noop
+};
+
+Metro.treeViewSetup = function (options) {
+    TreeViewDefaultConfig = $.extend({}, TreeViewDefaultConfig, options);
+};
+
+if (typeof window.metroTreeViewSetup !== undefined) {
+    Metro.treeViewSetup(window.metroTreeViewSetup);
+}
+
 var TreeView = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, TreeViewDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
 
@@ -25123,21 +25223,6 @@ var TreeView = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        effect: "slide",
-        duration: 100,
-        onNodeClick: Metro.noop,
-        onNodeDblClick: Metro.noop,
-        onNodeDelete: Metro.noop,
-        onNodeInsert: Metro.noop,
-        onNodeClean: Metro.noop,
-        onCheckClick: Metro.noop,
-        onRadioClick: Metro.noop,
-        onExpandNode: Metro.noop,
-        onCollapseNode: Metro.noop,
-        onTreeViewCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -25781,9 +25866,32 @@ var ValidatorFuncs = {
 
 Metro['validator'] = ValidatorFuncs;
 
+var ValidatorDefaultConfig = {
+    submitTimeout: 200,
+    interactiveCheck: false,
+    clearInvalid: 0,
+    requiredMode: true,
+    useRequiredClass: true,
+    onBeforeSubmit: Metro.noop_true,
+    onSubmit: Metro.noop,
+    onError: Metro.noop,
+    onValidate: Metro.noop,
+    onErrorForm: Metro.noop,
+    onValidateForm: Metro.noop,
+    onValidatorCreate: Metro.noop
+};
+
+Metro.validatorSetup = function (options) {
+    ValidatorDefaultConfig = $.extend({}, ValidatorDefaultConfig, options);
+};
+
+if (typeof window.metroValidatorSetup !== undefined) {
+    Metro.validatorSetup(window.metroValidatorSetup);
+}
+
 var Validator = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, ValidatorDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this._onsubmit = null;
@@ -25797,21 +25905,6 @@ var Validator = {
     },
 
     dependencies: ['utils', 'colors'],
-
-    options: {
-        submitTimeout: 200,
-        interactiveCheck: false,
-        clearInvalid: 0,
-        requiredMode: true,
-        useRequiredClass: true,
-        onBeforeSubmit: Metro.noop_true,
-        onSubmit: Metro.noop,
-        onError: Metro.noop,
-        onValidate: Metro.noop,
-        onErrorForm: Metro.noop,
-        onValidateForm: Metro.noop,
-        onValidatorCreate: Metro.noop
-    },
 
     _setOptionsFromDOM: function(){
         var element = this.element, o = this.options;
@@ -25947,9 +26040,64 @@ Metro.plugin('validator', Validator);
 
 // Source: js/plugins/video.js
 
+var VideoDefaultConfig = {
+    src: null,
+
+    poster: "",
+    logo: "",
+    logoHeight: 32,
+    logoWidth: "auto",
+    logoTarget: "",
+
+    volume: .5,
+    loop: false,
+    autoplay: false,
+
+    fullScreenMode: Metro.fullScreenMode.DESKTOP,
+    aspectRatio: Metro.aspectRatio.HD,
+
+    controlsHide: 3000,
+
+    showLoop: true,
+    showPlay: true,
+    showStop: true,
+    showMute: true,
+    showFull: true,
+    showStream: true,
+    showVolume: true,
+    showInfo: true,
+
+    loopIcon: "<span class='default-icon-loop'></span>",
+    stopIcon: "<span class='default-icon-stop'></span>",
+    playIcon: "<span class='default-icon-play'></span>",
+    pauseIcon: "<span class='default-icon-pause'></span>",
+    muteIcon: "<span class='default-icon-mute'></span>",
+    volumeLowIcon: "<span class='default-icon-low-volume'></span>",
+    volumeMediumIcon: "<span class='default-icon-medium-volume'></span>",
+    volumeHighIcon: "<span class='default-icon-high-volume'></span>",
+    screenMoreIcon: "<span class='default-icon-enlarge'></span>",
+    screenLessIcon: "<span class='default-icon-shrink'></span>",
+
+    onPlay: Metro.noop,
+    onPause: Metro.noop,
+    onStop: Metro.noop,
+    onEnd: Metro.noop,
+    onMetadata: Metro.noop,
+    onTime: Metro.noop,
+    onVideoCreate: Metro.noop
+};
+
+Metro.videoSetup = function (options) {
+    VideoDefaultConfig = $.extend({}, VideoDefaultConfig, options);
+};
+
+if (typeof window.metroVideoSetup !== undefined) {
+    Metro.videoSetup(window.metroVideoSetup);
+}
+
 var Video = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, VideoDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.fullscreen = false;
@@ -25967,53 +26115,6 @@ var Video = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        src: null,
-
-        poster: "",
-        logo: "",
-        logoHeight: 32,
-        logoWidth: "auto",
-        logoTarget: "",
-
-        volume: .5,
-        loop: false,
-        autoplay: false,
-
-        fullScreenMode: Metro.fullScreenMode.DESKTOP,
-        aspectRatio: Metro.aspectRatio.HD,
-
-        controlsHide: 3000,
-
-        showLoop: true,
-        showPlay: true,
-        showStop: true,
-        showMute: true,
-        showFull: true,
-        showStream: true,
-        showVolume: true,
-        showInfo: true,
-
-        loopIcon: "<span class='default-icon-loop'></span>",
-        stopIcon: "<span class='default-icon-stop'></span>",
-        playIcon: "<span class='default-icon-play'></span>",
-        pauseIcon: "<span class='default-icon-pause'></span>",
-        muteIcon: "<span class='default-icon-mute'></span>",
-        volumeLowIcon: "<span class='default-icon-low-volume'></span>",
-        volumeMediumIcon: "<span class='default-icon-medium-volume'></span>",
-        volumeHighIcon: "<span class='default-icon-high-volume'></span>",
-        screenMoreIcon: "<span class='default-icon-enlarge'></span>",
-        screenLessIcon: "<span class='default-icon-shrink'></span>",
-
-        onPlay: Metro.noop,
-        onPause: Metro.noop,
-        onStop: Metro.noop,
-        onEnd: Metro.noop,
-        onMetadata: Metro.noop,
-        onTime: Metro.noop,
-        onVideoCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -26512,9 +26613,68 @@ Metro.plugin('video', Video);
 
 // Source: js/plugins/window.js
 
+var WindowDefaultConfig = {
+    hidden: false,
+    width: "auto",
+    height: "auto",
+    btnClose: true,
+    btnMin: true,
+    btnMax: true,
+    clsCaption: "",
+    clsContent: "",
+    clsWindow: "",
+    draggable: true,
+    dragElement: ".window-caption .icon, .window-caption .title",
+    dragArea: "parent",
+    shadow: false,
+    icon: "",
+    title: "Window",
+    content: "default",
+    resizable: true,
+    overlay: false,
+    overlayColor: 'transparent',
+    overlayAlpha: .5,
+    modal: false,
+    position: "absolute",
+    checkEmbed: true,
+    top: "auto",
+    left: "auto",
+    place: "auto",
+    closeAction: Metro.actions.REMOVE,
+    customButtons: null,
+    clsCustomButton: "",
+    minWidth: 0,
+    minHeight: 0,
+    maxWidth: 0,
+    maxHeight: 0,
+    onDragStart: Metro.noop,
+    onDragStop: Metro.noop,
+    onDragMove: Metro.noop,
+    onCaptionDblClick: Metro.noop,
+    onCloseClick: Metro.noop,
+    onMaxClick: Metro.noop,
+    onMinClick: Metro.noop,
+    onResizeStart: Metro.noop,
+    onResizeStop: Metro.noop,
+    onResize: Metro.noop,
+    onWindowCreate: Metro.noop,
+    onShow: Metro.noop,
+    onWindowDestroy: Metro.noop,
+    onCanClose: Metro.noop_true,
+    onClose: Metro.noop
+};
+
+Metro.windowSetup = function (options) {
+    WindowDefaultConfig = $.extend({}, WindowDefaultConfig, options);
+};
+
+if (typeof window.metroWindowSetup !== undefined) {
+    Metro.windowSetup(window.metroWindowSetup);
+}
+
 var Window = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, WindowDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.win = null;
@@ -26532,57 +26692,6 @@ var Window = {
     },
 
     dependencies: ['draggable', 'resizeable'],
-
-    options: {
-        hidden: false,
-        width: "auto",
-        height: "auto",
-        btnClose: true,
-        btnMin: true,
-        btnMax: true,
-        clsCaption: "",
-        clsContent: "",
-        clsWindow: "",
-        draggable: true,
-        dragElement: ".window-caption .icon, .window-caption .title",
-        dragArea: "parent",
-        shadow: false,
-        icon: "",
-        title: "Window",
-        content: "default",
-        resizable: true,
-        overlay: false,
-        overlayColor: 'transparent',
-        overlayAlpha: .5,
-        modal: false,
-        position: "absolute",
-        checkEmbed: true,
-        top: "auto",
-        left: "auto",
-        place: "auto",
-        closeAction: Metro.actions.REMOVE,
-        customButtons: null,
-        clsCustomButton: "",
-        minWidth: 0,
-        minHeight: 0,
-        maxWidth: 0,
-        maxHeight: 0,
-        onDragStart: Metro.noop,
-        onDragStop: Metro.noop,
-        onDragMove: Metro.noop,
-        onCaptionDblClick: Metro.noop,
-        onCloseClick: Metro.noop,
-        onMaxClick: Metro.noop,
-        onMinClick: Metro.noop,
-        onResizeStart: Metro.noop,
-        onResizeStop: Metro.noop,
-        onResize: Metro.noop,
-        onWindowCreate: Metro.noop,
-        onShow: Metro.noop,
-        onWindowDestroy: Metro.noop,
-        onCanClose: Metro.noop_true,
-        onClose: Metro.noop
-    },
 
     _setOptionsFromDOM: function(){
         var element = this.element, o = this.options;
@@ -27208,9 +27317,50 @@ Metro['window'] = {
 
 // Source: js/plugins/wizard.js
 
+var WizardDefaultConfig = {
+    start: 1,
+    finish: 0,
+    iconHelp: "<span class='default-icon-help'></span>",
+    iconPrev: "<span class='default-icon-left-arrow'></span>",
+    iconNext: "<span class='default-icon-right-arrow'></span>",
+    iconFinish: "<span class='default-icon-check'></span>",
+
+    buttonMode: "cycle", // default, cycle, square
+    buttonOutline: true,
+
+    clsWizard: "",
+    clsActions: "",
+    clsHelp: "",
+    clsPrev: "",
+    clsNext: "",
+    clsFinish: "",
+
+    onPage: Metro.noop,
+    onNextPage: Metro.noop,
+    onPrevPage: Metro.noop,
+    onFirstPage: Metro.noop,
+    onLastPage: Metro.noop,
+    onFinishPage: Metro.noop,
+    onHelpClick: Metro.noop,
+    onPrevClick: Metro.noop,
+    onNextClick: Metro.noop,
+    onFinishClick: Metro.noop,
+    onBeforePrev: Metro.noop_true,
+    onBeforeNext: Metro.noop_true,
+    onWizardCreate: Metro.noop
+};
+
+Metro.wizardSetup = function (options) {
+    WizardDefaultConfig = $.extend({}, WizardDefaultConfig, options);
+};
+
+if (typeof window.metroWizardSetup !== undefined) {
+    Metro.wizardSetup(window.metroWizardSetup);
+}
+
 var Wizard = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, WizardDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
 
@@ -27218,39 +27368,6 @@ var Wizard = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        start: 1,
-        finish: 0,
-        iconHelp: "<span class='default-icon-help'></span>",
-        iconPrev: "<span class='default-icon-left-arrow'></span>",
-        iconNext: "<span class='default-icon-right-arrow'></span>",
-        iconFinish: "<span class='default-icon-check'></span>",
-
-        buttonMode: "cycle", // default, cycle, square
-        buttonOutline: true,
-
-        clsWizard: "",
-        clsActions: "",
-        clsHelp: "",
-        clsPrev: "",
-        clsNext: "",
-        clsFinish: "",
-
-        onPage: Metro.noop,
-        onNextPage: Metro.noop,
-        onPrevPage: Metro.noop,
-        onFirstPage: Metro.noop,
-        onLastPage: Metro.noop,
-        onFinishPage: Metro.noop,
-        onHelpClick: Metro.noop,
-        onPrevClick: Metro.noop,
-        onNextClick: Metro.noop,
-        onFinishClick: Metro.noop,
-        onBeforePrev: Metro.noop_true,
-        onBeforeNext: Metro.noop_true,
-        onWizardCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){

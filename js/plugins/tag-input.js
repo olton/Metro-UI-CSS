@@ -1,6 +1,30 @@
+var TagInputDefaultConfig = {
+    randomColor: false,
+    maxTags: 0,
+    tagSeparator: ",",
+    tagTrigger: "13,188",
+    clsTag: "",
+    clsTagTitle: "",
+    clsTagRemover: "",
+    onBeforeTagAdd: Metro.noop_true,
+    onTagAdd: Metro.noop,
+    onBeforeTagRemove: Metro.noop_true,
+    onTagRemove: Metro.noop,
+    onTag: Metro.noop,
+    onTagInputCreate: Metro.noop
+};
+
+Metro.tagInputSetup = function (options) {
+    TagInputDefaultConfig = $.extend({}, TagInputDefaultConfig, options);
+};
+
+if (typeof window.metroTagInputSetup !== undefined) {
+    Metro.tagInputSetup(window.metroTagInputSetup);
+}
+
 var TagInput = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, TagInputDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.values = [];
@@ -9,22 +33,6 @@ var TagInput = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        randomColor: false,
-        maxTags: 0,
-        tagSeparator: ",",
-        tagTrigger: "13,188",
-        clsTag: "",
-        clsTagTitle: "",
-        clsTagRemover: "",
-        onBeforeTagAdd: Metro.noop_true,
-        onTagAdd: Metro.noop,
-        onBeforeTagRemove: Metro.noop_true,
-        onTagRemove: Metro.noop,
-        onTag: Metro.noop,
-        onTagInputCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -133,6 +141,10 @@ var TagInput = {
             return ;
         }
 
+        if ((""+val).trim() === "") {
+            return ;
+        }
+
         if (!Utils.exec(o.onBeforeTagAdd, [val, this.values], element[0])) {
             return ;
         }
@@ -171,14 +183,14 @@ var TagInput = {
         element.fire("tagadd", {
             tag: tag[0],
             val: val,
-            values: values
+            values: this.values
         });
 
         Utils.exec(o.onTag, [tag[0], val, this.values], element[0]);
         element.fire("tag", {
             tag: tag[0],
             val: val,
-            values: values
+            values: this.values
         });
     },
 
@@ -197,14 +209,14 @@ var TagInput = {
         element.fire("tagremove", {
             tag: tag[0],
             val: val,
-            values: values
+            values: this.values
         });
 
         Utils.exec(o.onTag, [tag[0], val, this.values], element[0]);
         element.fire("tag", {
             tag: tag[0],
             val: val,
-            values: values
+            values: this.values
         });
 
         tag.remove();

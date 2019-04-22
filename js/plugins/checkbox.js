@@ -1,4 +1,5 @@
 var CheckboxDefaultConfig = {
+    transition: true,
     style: 1,
     caption: "",
     captionPosition: "right",
@@ -65,6 +66,10 @@ var Checkbox = {
         element.appendTo(checkbox);
         check.appendTo(checkbox);
         caption.appendTo(checkbox);
+
+        if (o.transition === true) {
+            checkbox.addClass("transition-on");
+        }
 
         if (o.captionPosition === 'left') {
             checkbox.addClass("caption-left");

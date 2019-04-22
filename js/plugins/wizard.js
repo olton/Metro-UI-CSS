@@ -1,6 +1,47 @@
+var WizardDefaultConfig = {
+    start: 1,
+    finish: 0,
+    iconHelp: "<span class='default-icon-help'></span>",
+    iconPrev: "<span class='default-icon-left-arrow'></span>",
+    iconNext: "<span class='default-icon-right-arrow'></span>",
+    iconFinish: "<span class='default-icon-check'></span>",
+
+    buttonMode: "cycle", // default, cycle, square
+    buttonOutline: true,
+
+    clsWizard: "",
+    clsActions: "",
+    clsHelp: "",
+    clsPrev: "",
+    clsNext: "",
+    clsFinish: "",
+
+    onPage: Metro.noop,
+    onNextPage: Metro.noop,
+    onPrevPage: Metro.noop,
+    onFirstPage: Metro.noop,
+    onLastPage: Metro.noop,
+    onFinishPage: Metro.noop,
+    onHelpClick: Metro.noop,
+    onPrevClick: Metro.noop,
+    onNextClick: Metro.noop,
+    onFinishClick: Metro.noop,
+    onBeforePrev: Metro.noop_true,
+    onBeforeNext: Metro.noop_true,
+    onWizardCreate: Metro.noop
+};
+
+Metro.wizardSetup = function (options) {
+    WizardDefaultConfig = $.extend({}, WizardDefaultConfig, options);
+};
+
+if (typeof window.metroWizardSetup !== undefined) {
+    Metro.wizardSetup(window.metroWizardSetup);
+}
+
 var Wizard = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, WizardDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
 
@@ -8,39 +49,6 @@ var Wizard = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        start: 1,
-        finish: 0,
-        iconHelp: "<span class='default-icon-help'></span>",
-        iconPrev: "<span class='default-icon-left-arrow'></span>",
-        iconNext: "<span class='default-icon-right-arrow'></span>",
-        iconFinish: "<span class='default-icon-check'></span>",
-
-        buttonMode: "cycle", // default, cycle, square
-        buttonOutline: true,
-
-        clsWizard: "",
-        clsActions: "",
-        clsHelp: "",
-        clsPrev: "",
-        clsNext: "",
-        clsFinish: "",
-
-        onPage: Metro.noop,
-        onNextPage: Metro.noop,
-        onPrevPage: Metro.noop,
-        onFirstPage: Metro.noop,
-        onLastPage: Metro.noop,
-        onFinishPage: Metro.noop,
-        onHelpClick: Metro.noop,
-        onPrevClick: Metro.noop,
-        onNextClick: Metro.noop,
-        onFinishClick: Metro.noop,
-        onBeforePrev: Metro.noop_true,
-        onBeforeNext: Metro.noop_true,
-        onWizardCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){

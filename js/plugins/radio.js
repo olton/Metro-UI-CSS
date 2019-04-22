@@ -1,4 +1,5 @@
 var RadioDefaultConfig = {
+    transition: true,
     style: 1,
     caption: "",
     captionPosition: "right",
@@ -57,6 +58,10 @@ var Radio = {
         element.appendTo(radio);
         check.appendTo(radio);
         caption.appendTo(radio);
+
+        if (o.transition === true) {
+            radio.addClass("transition-on");
+        }
 
         if (o.captionPosition === 'left') {
             radio.addClass("caption-left");

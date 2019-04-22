@@ -1,6 +1,41 @@
+var TimePickerDefaultConfig = {
+    hoursStep: 1,
+    minutesStep: 1,
+    secondsStep: 1,
+    value: null,
+    locale: METRO_LOCALE,
+    distance: 3,
+    hours: true,
+    minutes: true,
+    seconds: true,
+    showLabels: true,
+    scrollSpeed: 1,
+    copyInlineStyles: true,
+    clsPicker: "",
+    clsPart: "",
+    clsHours: "",
+    clsMinutes: "",
+    clsSeconds: "",
+    okButtonIcon: "<span class='default-icon-check'></span>",
+    cancelButtonIcon: "<span class='default-icon-cross'></span>",
+    onSet: Metro.noop,
+    onOpen: Metro.noop,
+    onClose: Metro.noop,
+    onScroll: Metro.noop,
+    onTimePickerCreate: Metro.noop
+};
+
+Metro.timePickerSetup = function (options) {
+    TimePickerDefaultConfig = $.extend({}, TimePickerDefaultConfig, options);
+};
+
+if (typeof window.metroTimePickerSetup !== undefined) {
+    Metro.timePickerSetup(window.metroTimePickerSetup);
+}
+
 var TimePicker = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, TimePickerDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.picker = null;
@@ -12,33 +47,6 @@ var TimePicker = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        hoursStep: 1,
-        minutesStep: 1,
-        secondsStep: 1,
-        value: null,
-        locale: METRO_LOCALE,
-        distance: 3,
-        hours: true,
-        minutes: true,
-        seconds: true,
-        showLabels: true,
-        scrollSpeed: 1,
-        copyInlineStyles: true,
-        clsPicker: "",
-        clsPart: "",
-        clsHours: "",
-        clsMinutes: "",
-        clsSeconds: "",
-        okButtonIcon: "<span class='default-icon-check'></span>",
-        cancelButtonIcon: "<span class='default-icon-cross'></span>",
-        onSet: Metro.noop,
-        onOpen: Metro.noop,
-        onClose: Metro.noop,
-        onScroll: Metro.noop,
-        onTimePickerCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
