@@ -120,7 +120,7 @@ var Metro = {
 
     version: "4.2.41",
     versionFull: "4.2.41.722",
-    compileTime: "22/04/2019 10:10:02",
+    compileTime: "22/04/2019 11:00:57",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -10666,9 +10666,36 @@ Metro['dialog'] = {
 
 // Source: js/plugins/donut.js
 
+var DonutDefaultConfig = {
+    size: 100,
+    radius: 50,
+    hole: .8,
+    value: 0,
+    background: "#ffffff",
+    color: "",
+    stroke: "#d1d8e7",
+    fill: "#49649f",
+    fontSize: 24,
+    total: 100,
+    cap: "%",
+    showText: true,
+    showValue: false,
+    animate: 0,
+    onChange: Metro.noop,
+    onDonutCreate: Metro.noop
+};
+
+Metro.donutSetup = function (options) {
+    DonutDefaultConfig = $.extend({}, DonutDefaultConfig, options);
+};
+
+if (typeof window.metroDonutSetup !== undefined) {
+    Metro.donutSetup(window.metroDonutSetup);
+}
+
 var Donut = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, DonutDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.value = 0;
@@ -10678,25 +10705,6 @@ var Donut = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        size: 100,
-        radius: 50,
-        hole: .8,
-        value: 0,
-        background: "#ffffff",
-        color: "",
-        stroke: "#d1d8e7",
-        fill: "#49649f",
-        fontSize: 24,
-        total: 100,
-        cap: "%",
-        showText: true,
-        showValue: false,
-        animate: 0,
-        onChange: Metro.noop,
-        onDonutCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -10821,9 +10829,27 @@ Metro.plugin('donut', Donut);
 
 // Source: js/plugins/draggable.js
 
+var DraggableDefaultConfig = {
+    dragElement: 'self',
+    dragArea: "parent",
+    onCanDrag: Metro.noop_true,
+    onDragStart: Metro.noop,
+    onDragStop: Metro.noop,
+    onDragMove: Metro.noop,
+    onDraggableCreate: Metro.noop
+};
+
+Metro.draggableSetup = function (options) {
+    DraggableDefaultConfig = $.extend({}, DraggableDefaultConfig, options);
+};
+
+if (typeof window.metroDraggableSetup !== undefined) {
+    Metro.draggableSetup(window.metroDraggableSetup);
+}
+
 var Draggable = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, DraggableDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.drag = false;
@@ -10841,16 +10867,6 @@ var Draggable = {
         this.element.fire("draggablecreate");
 
         return this;
-    },
-
-    options: {
-        dragElement: 'self',
-        dragArea: "parent",
-        onCanDrag: Metro.noop_true,
-        onDragStart: Metro.noop,
-        onDragStop: Metro.noop,
-        onDragMove: Metro.noop,
-        onDraggableCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){

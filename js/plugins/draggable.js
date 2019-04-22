@@ -1,6 +1,24 @@
+var DraggableDefaultConfig = {
+    dragElement: 'self',
+    dragArea: "parent",
+    onCanDrag: Metro.noop_true,
+    onDragStart: Metro.noop,
+    onDragStop: Metro.noop,
+    onDragMove: Metro.noop,
+    onDraggableCreate: Metro.noop
+};
+
+Metro.draggableSetup = function (options) {
+    DraggableDefaultConfig = $.extend({}, DraggableDefaultConfig, options);
+};
+
+if (typeof window.metroDraggableSetup !== undefined) {
+    Metro.draggableSetup(window.metroDraggableSetup);
+}
+
 var Draggable = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, DraggableDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.drag = false;
@@ -18,16 +36,6 @@ var Draggable = {
         this.element.fire("draggablecreate");
 
         return this;
-    },
-
-    options: {
-        dragElement: 'self',
-        dragArea: "parent",
-        onCanDrag: Metro.noop_true,
-        onDragStart: Metro.noop,
-        onDragStop: Metro.noop,
-        onDragMove: Metro.noop,
-        onDraggableCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
