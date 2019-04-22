@@ -1,6 +1,28 @@
+var SplitterDefaultConfig = {
+    splitMode: "horizontal", // horizontal or vertical
+    splitSizes: null,
+    gutterSize: 4,
+    minSizes: null,
+    children: "*",
+    gutterClick: "expand", // TODO expand or collapse
+    saveState: false,
+    onResizeStart: Metro.noop,
+    onResizeStop: Metro.noop,
+    onResizeSplit: Metro.noop,
+    onSplitterCreate: Metro.noop
+};
+
+Metro.splitterSetup = function (options) {
+    SplitterDefaultConfig = $.extend({}, SplitterDefaultConfig, options);
+};
+
+if (typeof window.metroSplitterSetup !== undefined) {
+    Metro.splitterSetup(window.metroSplitterSetup);
+}
+
 var Splitter = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, SplitterDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.storage = Utils.isValue(Metro.storage) ? Metro.storage : null;
@@ -10,20 +32,6 @@ var Splitter = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        splitMode: "horizontal", // horizontal or vertical
-        splitSizes: null,
-        gutterSize: 4,
-        minSizes: null,
-        children: "*",
-        gutterClick: "expand", // TODO expand or collapse
-        saveState: false,
-        onResizeStart: Metro.noop,
-        onResizeStop: Metro.noop,
-        onResizeSplit: Metro.noop,
-        onSplitterCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){

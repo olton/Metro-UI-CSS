@@ -1,6 +1,43 @@
+var StreamerDefaultConfig = {
+    duration: METRO_ANIMATION_DURATION,
+    defaultClosedIcon: "",
+    defaultOpenIcon: "",
+    changeUri: true,
+    encodeLink: true,
+    closed: false,
+    chromeNotice: false,
+    startFrom: null,
+    slideToStart: true,
+    startSlideSleep: 1000,
+    source: null,
+    data: null,
+    eventClick: "select",
+    selectGlobal: true,
+    streamSelect: false,
+    excludeSelectElement: null,
+    excludeClickElement: null,
+    excludeElement: null,
+    excludeSelectClass: "",
+    excludeClickClass: "",
+    excludeClass: "",
+    onStreamClick: Metro.noop,
+    onStreamSelect: Metro.noop,
+    onEventClick: Metro.noop,
+    onEventSelect: Metro.noop,
+    onStreamerCreate: Metro.noop
+};
+
+Metro.streamerSetup = function (options) {
+    StreamerDefaultConfig = $.extend({}, StreamerDefaultConfig, options);
+};
+
+if (typeof window.metroStreamerSetup !== undefined) {
+    Metro.streamerSetup(window.metroStreamerSetup);
+}
+
 var Streamer = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, StreamerDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.data = null;
@@ -9,35 +46,6 @@ var Streamer = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        duration: METRO_ANIMATION_DURATION,
-        defaultClosedIcon: "",
-        defaultOpenIcon: "",
-        changeUri: true,
-        encodeLink: true,
-        closed: false,
-        chromeNotice: false,
-        startFrom: null,
-        slideToStart: true,
-        startSlideSleep: 1000,
-        source: null,
-        data: null,
-        eventClick: "select",
-        selectGlobal: true,
-        streamSelect: false,
-        excludeSelectElement: null,
-        excludeClickElement: null,
-        excludeElement: null,
-        excludeSelectClass: "",
-        excludeClickClass: "",
-        excludeClass: "",
-        onStreamClick: Metro.noop,
-        onStreamSelect: Metro.noop,
-        onEventClick: Metro.noop,
-        onEventSelect: Metro.noop,
-        onStreamerCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){

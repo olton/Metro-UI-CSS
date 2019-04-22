@@ -119,7 +119,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.2.41",
-    compileTime: "22/04/2019 19:23:43",
+    compileTime: "22/04/2019 21:16:15",
     buildNumber: "722",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -18515,9 +18515,31 @@ Metro.plugin('slider', Slider);
 
 // Source: js/plugins/sorter.js
 
+var SorterDefaultConfig = {
+    thousandSeparator: ",",
+    decimalSeparator: ",",
+    sortTarget: null,
+    sortSource: null,
+    sortDir: "asc",
+    sortStart: true,
+    saveInitial: true,
+    onSortStart: Metro.noop,
+    onSortStop: Metro.noop,
+    onSortItemSwitch: Metro.noop,
+    onSorterCreate: Metro.noop
+};
+
+Metro.sorterSetup = function (options) {
+    SorterDefaultConfig = $.extend({}, SorterDefaultConfig, options);
+};
+
+if (typeof window.metroSorterSetup !== undefined) {
+    Metro.sorterSetup(window.metroSorterSetup);
+}
+
 var Sorter = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, SorterDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.initial = [];
@@ -18526,20 +18548,6 @@ var Sorter = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        thousandSeparator: ",",
-        decimalSeparator: ",",
-        sortTarget: null,
-        sortSource: null,
-        sortDir: "asc",
-        sortStart: true,
-        saveInitial: true,
-        onSortStart: Metro.noop,
-        onSortStop: Metro.noop,
-        onSortItemSwitch: Metro.noop,
-        onSorterCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -18768,9 +18776,44 @@ Metro['sorter'] = {
 
 // Source: js/plugins/spinner.js
 
+var SpinnerDefaultConfig = {
+    step: 1,
+    plusIcon: "<span class='default-icon-plus'></span>",
+    minusIcon: "<span class='default-icon-minus'></span>",
+    buttonsPosition: "default",
+    defaultValue: 0,
+    minValue: null,
+    maxValue: null,
+    fixed: 0,
+    repeatThreshold: 1000,
+    hideCursor: false,
+    clsSpinner: "",
+    clsSpinnerInput: "",
+    clsSpinnerButton: "",
+    clsSpinnerButtonPlus: "",
+    clsSpinnerButtonMinus: "",
+    onBeforeChange: Metro.noop_true,
+    onChange: Metro.noop,
+    onPlusClick: Metro.noop,
+    onMinusClick: Metro.noop,
+    onArrowUp: Metro.noop,
+    onArrowDown: Metro.noop,
+    onButtonClick: Metro.noop,
+    onArrowClick: Metro.noop,
+    onSpinnerCreate: Metro.noop
+};
+
+Metro.spinnerSetup = function (options) {
+    SpinnerDefaultConfig = $.extend({}, SpinnerDefaultConfig, options);
+};
+
+if (typeof window.metroSpinnerSetup !== undefined) {
+    Metro.spinnerSetup(window.metroSpinnerSetup);
+}
+
 var Spinner = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, SpinnerDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.repeat_timer = false;
@@ -18779,33 +18822,6 @@ var Spinner = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        step: 1,
-        plusIcon: "<span class='default-icon-plus'></span>",
-        minusIcon: "<span class='default-icon-minus'></span>",
-        buttonsPosition: "default",
-        defaultValue: 0,
-        minValue: null,
-        maxValue: null,
-        fixed: 0,
-        repeatThreshold: 1000,
-        hideCursor: false,
-        clsSpinner: "",
-        clsSpinnerInput: "",
-        clsSpinnerButton: "",
-        clsSpinnerButtonPlus: "",
-        clsSpinnerButtonMinus: "",
-        onBeforeChange: Metro.noop_true,
-        onChange: Metro.noop,
-        onPlusClick: Metro.noop,
-        onMinusClick: Metro.noop,
-        onArrowUp: Metro.noop,
-        onArrowDown: Metro.noop,
-        onButtonClick: Metro.noop,
-        onArrowClick: Metro.noop,
-        onSpinnerCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -19048,9 +19064,31 @@ $(document).on(Metro.events.click, function(){
 
 // Source: js/plugins/splitter.js
 
+var SplitterDefaultConfig = {
+    splitMode: "horizontal", // horizontal or vertical
+    splitSizes: null,
+    gutterSize: 4,
+    minSizes: null,
+    children: "*",
+    gutterClick: "expand", // TODO expand or collapse
+    saveState: false,
+    onResizeStart: Metro.noop,
+    onResizeStop: Metro.noop,
+    onResizeSplit: Metro.noop,
+    onSplitterCreate: Metro.noop
+};
+
+Metro.splitterSetup = function (options) {
+    SplitterDefaultConfig = $.extend({}, SplitterDefaultConfig, options);
+};
+
+if (typeof window.metroSplitterSetup !== undefined) {
+    Metro.splitterSetup(window.metroSplitterSetup);
+}
+
 var Splitter = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, SplitterDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.storage = Utils.isValue(Metro.storage) ? Metro.storage : null;
@@ -19060,20 +19098,6 @@ var Splitter = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        splitMode: "horizontal", // horizontal or vertical
-        splitSizes: null,
-        gutterSize: 4,
-        minSizes: null,
-        children: "*",
-        gutterClick: "expand", // TODO expand or collapse
-        saveState: false,
-        onResizeStart: Metro.noop,
-        onResizeStop: Metro.noop,
-        onResizeSplit: Metro.noop,
-        onSplitterCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -19270,9 +19294,31 @@ Metro.plugin('splitter', Splitter);
 
 // Source: js/plugins/stepper.js
 
+var StepperDefaultConfig = {
+    view: Metro.stepperView.SQUARE, // square, cycle, diamond
+    steps: 3,
+    step: 1,
+    stepClick: false,
+    clsStepper: "",
+    clsStep: "",
+    clsComplete: "",
+    clsCurrent: "",
+    onStep: Metro.noop,
+    onStepClick: Metro.noop,
+    onStepperCreate: Metro.noop
+};
+
+Metro.stepperSetup = function (options) {
+    StepperDefaultConfig = $.extend({}, StepperDefaultConfig, options);
+};
+
+if (typeof window.metroStepperSetup !== undefined) {
+    Metro.stepperSetup(window.metroStepperSetup);
+}
+
 var Stepper = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, StepperDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.current = 0;
@@ -19281,20 +19327,6 @@ var Stepper = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        view: Metro.stepperView.SQUARE, // square, cycle, diamond
-        steps: 3,
-        step: 1,
-        stepClick: false,
-        clsStepper: "",
-        clsStep: "",
-        clsComplete: "",
-        clsCurrent: "",
-        onStep: Metro.noop,
-        onStepClick: Metro.noop,
-        onStepperCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -19422,9 +19454,46 @@ Metro.plugin('stepper', Stepper);
 
 // Source: js/plugins/streamer.js
 
+var StreamerDefaultConfig = {
+    duration: METRO_ANIMATION_DURATION,
+    defaultClosedIcon: "",
+    defaultOpenIcon: "",
+    changeUri: true,
+    encodeLink: true,
+    closed: false,
+    chromeNotice: false,
+    startFrom: null,
+    slideToStart: true,
+    startSlideSleep: 1000,
+    source: null,
+    data: null,
+    eventClick: "select",
+    selectGlobal: true,
+    streamSelect: false,
+    excludeSelectElement: null,
+    excludeClickElement: null,
+    excludeElement: null,
+    excludeSelectClass: "",
+    excludeClickClass: "",
+    excludeClass: "",
+    onStreamClick: Metro.noop,
+    onStreamSelect: Metro.noop,
+    onEventClick: Metro.noop,
+    onEventSelect: Metro.noop,
+    onStreamerCreate: Metro.noop
+};
+
+Metro.streamerSetup = function (options) {
+    StreamerDefaultConfig = $.extend({}, StreamerDefaultConfig, options);
+};
+
+if (typeof window.metroStreamerSetup !== undefined) {
+    Metro.streamerSetup(window.metroStreamerSetup);
+}
+
 var Streamer = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, StreamerDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.data = null;
@@ -19433,35 +19502,6 @@ var Streamer = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        duration: METRO_ANIMATION_DURATION,
-        defaultClosedIcon: "",
-        defaultOpenIcon: "",
-        changeUri: true,
-        encodeLink: true,
-        closed: false,
-        chromeNotice: false,
-        startFrom: null,
-        slideToStart: true,
-        startSlideSleep: 1000,
-        source: null,
-        data: null,
-        eventClick: "select",
-        selectGlobal: true,
-        streamSelect: false,
-        excludeSelectElement: null,
-        excludeClickElement: null,
-        excludeElement: null,
-        excludeSelectClass: "",
-        excludeClickClass: "",
-        excludeClass: "",
-        onStreamClick: Metro.noop,
-        onStreamSelect: Metro.noop,
-        onEventClick: Metro.noop,
-        onEventSelect: Metro.noop,
-        onStreamerCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
