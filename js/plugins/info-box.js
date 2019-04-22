@@ -1,6 +1,32 @@
+var InfoBoxDefaultConfig = {
+    type: "",
+    width: 480,
+    height: "auto",
+    overlay: true,
+    overlayColor: '#000000',
+    overlayAlpha: .5,
+    autoHide: 0,
+    removeOnClose: false,
+    closeButton: true,
+    clsBox: "",
+    clsBoxContent: "",
+    clsOverlay: "",
+    onOpen: Metro.noop,
+    onClose: Metro.noop,
+    onInfoBoxCreate: Metro.noop
+};
+
+Metro.infoBoxSetup = function (options) {
+    InfoBoxDefaultConfig = $.extend({}, InfoBoxDefaultConfig, options);
+};
+
+if (typeof window.metroInfoBoxSetup !== undefined) {
+    Metro.infoBoxSetup(window.metroInfoBoxSetup);
+}
+
 var InfoBox = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, InfoBoxDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.overlay = null;
@@ -9,24 +35,6 @@ var InfoBox = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        type: "",
-        width: 480,
-        height: "auto",
-        overlay: true,
-        overlayColor: '#000000',
-        overlayAlpha: .5,
-        autoHide: 0,
-        removeOnClose: false,
-        closeButton: true,
-        clsBox: "",
-        clsBoxContent: "",
-        clsOverlay: "",
-        onOpen: Metro.noop,
-        onClose: Metro.noop,
-        onInfoBoxCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){

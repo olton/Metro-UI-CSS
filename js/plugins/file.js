@@ -1,6 +1,30 @@
+var FileDefaultConfig = {
+    mode: "input",
+    buttonTitle: "Choose file(s)",
+    filesTitle: "file(s) selected",
+    dropTitle: "<strong>Choose a file(s)</strong> or drop it here",
+    dropIcon: "<span class='default-icon-upload'></span>",
+    prepend: "",
+    clsComponent: "",
+    clsPrepend: "",
+    clsButton: "",
+    clsCaption: "",
+    copyInlineStyles: true,
+    onSelect: Metro.noop,
+    onFileCreate: Metro.noop
+};
+
+Metro.fileSetup = function (options) {
+    FileDefaultConfig = $.extend({}, FileDefaultConfig, options);
+};
+
+if (typeof window.metroFileSetup !== undefined) {
+    Metro.fileSetup(window.metroFileSetup);
+}
+
 var File = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, FileDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
 
@@ -8,21 +32,6 @@ var File = {
         this._create();
 
         return this;
-    },
-    options: {
-        mode: "input",
-        buttonTitle: "Choose file(s)",
-        filesTitle: "file(s) selected",
-        dropTitle: "<strong>Choose a file</strong> or drop it here",
-        dropIcon: "<span class='default-icon-upload'></span>",
-        prepend: "",
-        clsComponent: "",
-        clsPrepend: "",
-        clsButton: "",
-        clsCaption: "",
-        copyInlineStyles: true,
-        onSelect: Metro.noop,
-        onFileCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){

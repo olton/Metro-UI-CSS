@@ -1,6 +1,21 @@
+var GravatarDefaultConfig = {
+    email: "",
+    size: 80,
+    default: "mp",
+    onGravatarCreate: Metro.noop
+};
+
+Metro.gravatarSetup = function (options) {
+    GravatarDefaultConfig = $.extend({}, GravatarDefaultConfig, options);
+};
+
+if (typeof window.metroGravatarSetup !== undefined) {
+    Metro.bottomSheetSetup(window.metroGravatarSetup);
+}
+
 var Gravatar = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, GravatarDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
 
@@ -8,12 +23,6 @@ var Gravatar = {
         this._create();
 
         return this;
-    },
-    options: {
-        email: "",
-        size: 80,
-        default: "404",
-        onGravatarCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){

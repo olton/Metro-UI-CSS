@@ -1,6 +1,31 @@
+var ImageMagnifierDefaultConfig = {
+    width: "100%",
+    height: "auto",
+    lensSize: 100,
+    lensType: "square", // square, circle
+    magnifierZoom: 2,
+    magnifierMode: "glass", // glass, zoom
+    magnifierZoomElement: null,
+
+    clsMagnifier: "",
+    clsLens: "",
+    clsZoom: "",
+
+    onMagnifierMove: Metro.noop,
+    onImageMagnifierCreate: Metro.noop
+};
+
+Metro.imageMagnifierSetup = function (options) {
+    ImageMagnifierDefaultConfig = $.extend({}, ImageMagnifierDefaultConfig, options);
+};
+
+if (typeof window.metroImageMagnifierSetup !== undefined) {
+    Metro.imageMagnifierSetup(window.metroImageMagnifierSetup);
+}
+
 var ImageMagnifier = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, ImageMagnifierDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.zoomElement = null;
@@ -9,23 +34,6 @@ var ImageMagnifier = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        width: "100%",
-        height: "auto",
-        lensSize: 100,
-        lensType: "square", // square, circle
-        magnifierZoom: 2,
-        magnifierMode: "glass", // glass, zoom
-        magnifierZoomElement: null,
-
-        clsMagnifier: "",
-        clsLens: "",
-        clsZoom: "",
-
-        onMagnifierMove: Metro.noop,
-        onImageMagnifierCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -205,11 +213,11 @@ var ImageMagnifier = {
 
             lens_move(pos);
 
-            Utils.exec(o.onMagnifierMove, [pos, glass[0], zoomElement[0]], element[0]);
+            Utils.exec(o.onMagnifierMove, [pos, glass[0], zoomElement ? zoomElement[0] : undefined], element[0]);
             element.fire("magnifiermove", {
                 pos: pos,
                 glass: glass[0],
-                zoomElement: zoomElement[0]
+                zoomElement: zoomElement ? zoomElement[0] : undefined
             });
 
             e.preventDefault();

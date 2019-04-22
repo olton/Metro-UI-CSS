@@ -1,6 +1,45 @@
+var KeypadDefaultConfig = {
+    keySize: 32,
+    keys: "1, 2, 3, 4, 5, 6, 7, 8, 9, 0",
+    copyInlineStyles: false,
+    target: null,
+    length: 0,
+    shuffle: false,
+    shuffleCount: 3,
+    position: Metro.position.BOTTOM_LEFT, //top-left, top, top-right, right, bottom-right, bottom, bottom-left, left
+    dynamicPosition: false,
+    serviceButtons: true,
+    showValue: true,
+    open: false,
+    sizeAsKeys: false,
+
+    clsKeypad: "",
+    clsInput: "",
+    clsKeys: "",
+    clsKey: "",
+    clsServiceKey: "",
+    clsBackspace: "",
+    clsClear: "",
+
+    onChange: Metro.noop,
+    onClear: Metro.noop,
+    onBackspace: Metro.noop,
+    onShuffle: Metro.noop,
+    onKey: Metro.noop,
+    onKeypadCreate: Metro.noop
+};
+
+Metro.keypadSetup = function (options) {
+    KeypadDefaultConfig = $.extend({}, KeypadDefaultConfig, options);
+};
+
+if (typeof window.metroKeypadSetup !== undefined) {
+    Metro.keypadSetup(window.metroKeypadSetup);
+}
+
 var Keypad = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, KeypadDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.value = "";
@@ -15,37 +54,6 @@ var Keypad = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        keySize: 32,
-        keys: "1, 2, 3, 4, 5, 6, 7, 8, 9, 0",
-        copyInlineStyles: false,
-        target: null,
-        length: 0,
-        shuffle: false,
-        shuffleCount: 3,
-        position: Metro.position.BOTTOM_LEFT, //top-left, top, top-right, right, bottom-right, bottom, bottom-left, left
-        dynamicPosition: false,
-        serviceButtons: true,
-        showValue: true,
-        open: false,
-        sizeAsKeys: false,
-
-        clsKeypad: "",
-        clsInput: "",
-        clsKeys: "",
-        clsKey: "",
-        clsServiceKey: "",
-        clsBackspace: "",
-        clsClear: "",
-
-        onChange: Metro.noop,
-        onClear: Metro.noop,
-        onBackspace: Metro.noop,
-        onShuffle: Metro.noop,
-        onKey: Metro.noop,
-        onKeypadCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){

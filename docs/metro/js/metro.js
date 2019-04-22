@@ -120,7 +120,7 @@ var Metro = {
 
     version: "4.2.41",
     versionFull: "4.2.41.722",
-    compileTime: "22/04/2019 11:07:11",
+    compileTime: "22/04/2019 15:27:46",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -11224,9 +11224,33 @@ Metro.plugin('dropdown', Dropdown);
 
 // Source: js/plugins/file.js
 
+var FileDefaultConfig = {
+    mode: "input",
+    buttonTitle: "Choose file(s)",
+    filesTitle: "file(s) selected",
+    dropTitle: "<strong>Choose a file(s)</strong> or drop it here",
+    dropIcon: "<span class='default-icon-upload'></span>",
+    prepend: "",
+    clsComponent: "",
+    clsPrepend: "",
+    clsButton: "",
+    clsCaption: "",
+    copyInlineStyles: true,
+    onSelect: Metro.noop,
+    onFileCreate: Metro.noop
+};
+
+Metro.fileSetup = function (options) {
+    FileDefaultConfig = $.extend({}, FileDefaultConfig, options);
+};
+
+if (typeof window.metroFileSetup !== undefined) {
+    Metro.fileSetup(window.metroFileSetup);
+}
+
 var File = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, FileDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
 
@@ -11234,21 +11258,6 @@ var File = {
         this._create();
 
         return this;
-    },
-    options: {
-        mode: "input",
-        buttonTitle: "Choose file(s)",
-        filesTitle: "file(s) selected",
-        dropTitle: "<strong>Choose a file</strong> or drop it here",
-        dropIcon: "<span class='default-icon-upload'></span>",
-        prepend: "",
-        clsComponent: "",
-        clsPrepend: "",
-        clsButton: "",
-        clsCaption: "",
-        copyInlineStyles: true,
-        onSelect: Metro.noop,
-        onFileCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -11430,9 +11439,24 @@ Metro.plugin('file', File);
 
 // Source: js/plugins/gravatar.js
 
+var GravatarDefaultConfig = {
+    email: "",
+    size: 80,
+    default: "mp",
+    onGravatarCreate: Metro.noop
+};
+
+Metro.gravatarSetup = function (options) {
+    GravatarDefaultConfig = $.extend({}, GravatarDefaultConfig, options);
+};
+
+if (typeof window.metroGravatarSetup !== undefined) {
+    Metro.bottomSheetSetup(window.metroGravatarSetup);
+}
+
 var Gravatar = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, GravatarDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
 
@@ -11440,12 +11464,6 @@ var Gravatar = {
         this._create();
 
         return this;
-    },
-    options: {
-        email: "",
-        size: 80,
-        default: "404",
-        onGravatarCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -11526,9 +11544,28 @@ Metro.plugin('gravatar', Gravatar);
 
 // Source: js/plugins/hint.js
 
+var HintDefaultConfig = {
+    hintHide: 5000,
+    clsHint: "",
+    hintText: "",
+    hintPosition: Metro.position.TOP,
+    hintOffset: 4,
+    onHintShow: Metro.noop,
+    onHintHide: Metro.noop,
+    onHintCreate: Metro.noop
+};
+
+Metro.hintSetup = function (options) {
+    HintDefaultConfig = $.extend({}, HintDefaultConfig, options);
+};
+
+if (typeof window.metroHintSetup !== undefined) {
+    Metro.hintSetup(window.metroHintSetup);
+}
+
 var Hint = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, HintDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.hint = null;
@@ -11541,17 +11578,6 @@ var Hint = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        hintHide: 5000,
-        clsHint: "",
-        hintText: "",
-        hintPosition: Metro.position.TOP,
-        hintOffset: 4,
-        onHintShow: Metro.noop,
-        onHintHide: Metro.noop,
-        onHintCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -11694,9 +11720,28 @@ Metro.plugin('hint', Hint);
 
 // TODO source as array, mode as array
 
+var HtmlContainerDefaultConfig = {
+    method: "get",
+    htmlSource: null,
+    requestData: null,
+    insertMode: "replace", // replace, append, prepend
+    onHtmlLoad: Metro.noop,
+    onHtmlLoadFail: Metro.noop,
+    onHtmlLoadDone: Metro.noop,
+    onHtmlContainerCreate: Metro.noop
+};
+
+Metro.htmlContainerSetup = function (options) {
+    HtmlContainerDefaultConfig = $.extend({}, HtmlContainerDefaultConfig, options);
+};
+
+if (typeof window.metroHtmlContainerSetup !== undefined) {
+    Metro.htmlContainerSetup(window.metroHtmlContainerSetup);
+}
+
 var HtmlContainer = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, HtmlContainerDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
 
@@ -11704,17 +11749,6 @@ var HtmlContainer = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        method: "get",
-        htmlSource: null,
-        requestData: null,
-        insertMode: "replace", // replace, append, prepend
-        onHtmlLoad: Metro.noop,
-        onHtmlLoadFail: Metro.noop,
-        onHtmlLoadDone: Metro.noop,
-        onHtmlContainerCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -11836,9 +11870,25 @@ Metro.plugin('htmlcontainer', HtmlContainer);
 
 // Source: js/plugins/image-comparer.js
 
+var ImageCompareDefaultConfig = {
+    width: "100%",
+    height: "auto",
+    onResize: Metro.noop,
+    onSliderMove: Metro.noop,
+    onImageCompareCreate: Metro.noop
+};
+
+Metro.imageCompareSetup = function (options) {
+    ImageCompareDefaultConfig = $.extend({}, ImageCompareDefaultConfig, options);
+};
+
+if (typeof window.metroImageCompareSetup !== undefined) {
+    Metro.imageCompareSetup(window.metroImageCompareSetup);
+}
+
 var ImageCompare = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, ImageCompareDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
 
@@ -11846,14 +11896,6 @@ var ImageCompare = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        width: "100%",
-        height: "auto",
-        onResize: Metro.noop,
-        onSliderMove: Metro.noop,
-        onImageCompareCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -12021,9 +12063,34 @@ Metro.plugin('imagecompare', ImageCompare);
 
 // Source: js/plugins/image-magnifier.js
 
+var ImageMagnifierDefaultConfig = {
+    width: "100%",
+    height: "auto",
+    lensSize: 100,
+    lensType: "square", // square, circle
+    magnifierZoom: 2,
+    magnifierMode: "glass", // glass, zoom
+    magnifierZoomElement: null,
+
+    clsMagnifier: "",
+    clsLens: "",
+    clsZoom: "",
+
+    onMagnifierMove: Metro.noop,
+    onImageMagnifierCreate: Metro.noop
+};
+
+Metro.imageMagnifierSetup = function (options) {
+    ImageMagnifierDefaultConfig = $.extend({}, ImageMagnifierDefaultConfig, options);
+};
+
+if (typeof window.metroImageMagnifierSetup !== undefined) {
+    Metro.imageMagnifierSetup(window.metroImageMagnifierSetup);
+}
+
 var ImageMagnifier = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, ImageMagnifierDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.zoomElement = null;
@@ -12032,23 +12099,6 @@ var ImageMagnifier = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        width: "100%",
-        height: "auto",
-        lensSize: 100,
-        lensType: "square", // square, circle
-        magnifierZoom: 2,
-        magnifierMode: "glass", // glass, zoom
-        magnifierZoomElement: null,
-
-        clsMagnifier: "",
-        clsLens: "",
-        clsZoom: "",
-
-        onMagnifierMove: Metro.noop,
-        onImageMagnifierCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -12228,11 +12278,11 @@ var ImageMagnifier = {
 
             lens_move(pos);
 
-            Utils.exec(o.onMagnifierMove, [pos, glass[0], zoomElement[0]], element[0]);
+            Utils.exec(o.onMagnifierMove, [pos, glass[0], zoomElement ? zoomElement[0] : undefined], element[0]);
             element.fire("magnifiermove", {
                 pos: pos,
                 glass: glass[0],
-                zoomElement: zoomElement[0]
+                zoomElement: zoomElement ? zoomElement[0] : undefined
             });
 
             e.preventDefault();
@@ -12263,9 +12313,35 @@ Metro.plugin('imagemagnifier', ImageMagnifier);
 
 // Source: js/plugins/info-box.js
 
+var InfoBoxDefaultConfig = {
+    type: "",
+    width: 480,
+    height: "auto",
+    overlay: true,
+    overlayColor: '#000000',
+    overlayAlpha: .5,
+    autoHide: 0,
+    removeOnClose: false,
+    closeButton: true,
+    clsBox: "",
+    clsBoxContent: "",
+    clsOverlay: "",
+    onOpen: Metro.noop,
+    onClose: Metro.noop,
+    onInfoBoxCreate: Metro.noop
+};
+
+Metro.infoBoxSetup = function (options) {
+    InfoBoxDefaultConfig = $.extend({}, InfoBoxDefaultConfig, options);
+};
+
+if (typeof window.metroInfoBoxSetup !== undefined) {
+    Metro.infoBoxSetup(window.metroInfoBoxSetup);
+}
+
 var InfoBox = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, InfoBoxDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.overlay = null;
@@ -12274,24 +12350,6 @@ var InfoBox = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        type: "",
-        width: 480,
-        height: "auto",
-        overlay: true,
-        overlayColor: '#000000',
-        overlayAlpha: .5,
-        autoHide: 0,
-        removeOnClose: false,
-        closeButton: true,
-        clsBox: "",
-        clsBoxContent: "",
-        clsOverlay: "",
-        onOpen: Metro.noop,
-        onClose: Metro.noop,
-        onInfoBoxCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -12569,9 +12627,34 @@ Metro['infobox'] = {
 
 // Source: js/plugins/input-material.js
 
+var MaterialInputDefaultConfig = {
+    label: "",
+    informer: "",
+    icon: "",
+
+    permanentLabel: false,
+
+    clsComponent: "",
+    clsInput: "",
+    clsLabel: "",
+    clsInformer: "",
+    clsIcon: "",
+    clsLine: "",
+
+    onInputCreate: Metro.noop
+};
+
+Metro.materialInputSetup = function (options) {
+    MaterialInputDefaultConfig = $.extend({}, MaterialInputDefaultConfig, options);
+};
+
+if (typeof window.metroMaterialInputSetup !== undefined) {
+    Metro.materialInputSetup(window.metroMaterialInputSetup);
+}
+
 var MaterialInput = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, MaterialInputDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.history = [];
@@ -12581,24 +12664,6 @@ var MaterialInput = {
         this._create();
 
         return this;
-    },
-
-    options: {
-
-        label: "",
-        informer: "",
-        icon: "",
-
-        permanentLabel: false,
-
-        clsComponent: "",
-        clsInput: "",
-        clsLabel: "",
-        clsInformer: "",
-        clsIcon: "",
-        clsLine: "",
-
-        onInputCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -12711,9 +12776,59 @@ Metro.plugin('materialinput', MaterialInput);
 
 // Source: js/plugins/input.js
 
+var InputDefaultConfig = {
+    autocomplete: null,
+    autocompleteDivider: ",",
+    autocompleteListHeight: 200,
+
+    history: false,
+    historyPreset: "",
+    historyDivider: "|",
+    preventSubmit: false,
+    defaultValue: "",
+    size: "default",
+    prepend: "",
+    append: "",
+    copyInlineStyles: true,
+    searchButton: false,
+    clearButton: true,
+    revealButton: true,
+    clearButtonIcon: "<span class='default-icon-cross'></span>",
+    revealButtonIcon: "<span class='default-icon-eye'></span>",
+    searchButtonIcon: "<span class='default-icon-search'></span>",
+    customButtons: [],
+    searchButtonClick: 'submit',
+
+    clsComponent: "",
+    clsInput: "",
+    clsPrepend: "",
+    clsAppend: "",
+    clsClearButton: "",
+    clsRevealButton: "",
+    clsCustomButton: "",
+    clsSearchButton: "",
+
+    onHistoryChange: Metro.noop,
+    onHistoryUp: Metro.noop,
+    onHistoryDown: Metro.noop,
+    onClearClick: Metro.noop,
+    onRevealClick: Metro.noop,
+    onSearchButtonClick: Metro.noop,
+    onEnterClick: Metro.noop,
+    onInputCreate: Metro.noop
+};
+
+Metro.inputSetup = function (options) {
+    InputDefaultConfig = $.extend({}, InputDefaultConfig, options);
+};
+
+if (typeof window.metroInputSetup !== undefined) {
+    Metro.inputSetup(window.metroInputSetup);
+}
+
 var Input = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, InputDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.history = [];
@@ -12724,47 +12839,6 @@ var Input = {
         this._create();
 
         return this;
-    },
-    options: {
-        autocomplete: null,
-        autocompleteDivider: ",",
-        autocompleteListHeight: 200,
-
-        history: false,
-        historyPreset: "",
-        historyDivider: "|",
-        preventSubmit: false,
-        defaultValue: "",
-        size: "default",
-        prepend: "",
-        append: "",
-        copyInlineStyles: true,
-        searchButton: false,
-        clearButton: true,
-        revealButton: true,
-        clearButtonIcon: "<span class='default-icon-cross'></span>",
-        revealButtonIcon: "<span class='default-icon-eye'></span>",
-        searchButtonIcon: "<span class='default-icon-search'></span>",
-        customButtons: [],
-        searchButtonClick: 'submit',
-
-        clsComponent: "",
-        clsInput: "",
-        clsPrepend: "",
-        clsAppend: "",
-        clsClearButton: "",
-        clsRevealButton: "",
-        clsCustomButton: "",
-        clsSearchButton: "",
-
-        onHistoryChange: Metro.noop,
-        onHistoryUp: Metro.noop,
-        onHistoryDown: Metro.noop,
-        onClearClick: Metro.noop,
-        onRevealClick: Metro.noop,
-        onSearchButtonClick: Metro.noop,
-        onEnterClick: Metro.noop,
-        onInputCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -13168,9 +13242,48 @@ $(document).on(Metro.events.click, function(e){
 
 // Source: js/plugins/keypad.js
 
+var KeypadDefaultConfig = {
+    keySize: 32,
+    keys: "1, 2, 3, 4, 5, 6, 7, 8, 9, 0",
+    copyInlineStyles: false,
+    target: null,
+    length: 0,
+    shuffle: false,
+    shuffleCount: 3,
+    position: Metro.position.BOTTOM_LEFT, //top-left, top, top-right, right, bottom-right, bottom, bottom-left, left
+    dynamicPosition: false,
+    serviceButtons: true,
+    showValue: true,
+    open: false,
+    sizeAsKeys: false,
+
+    clsKeypad: "",
+    clsInput: "",
+    clsKeys: "",
+    clsKey: "",
+    clsServiceKey: "",
+    clsBackspace: "",
+    clsClear: "",
+
+    onChange: Metro.noop,
+    onClear: Metro.noop,
+    onBackspace: Metro.noop,
+    onShuffle: Metro.noop,
+    onKey: Metro.noop,
+    onKeypadCreate: Metro.noop
+};
+
+Metro.keypadSetup = function (options) {
+    KeypadDefaultConfig = $.extend({}, KeypadDefaultConfig, options);
+};
+
+if (typeof window.metroKeypadSetup !== undefined) {
+    Metro.keypadSetup(window.metroKeypadSetup);
+}
+
 var Keypad = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, KeypadDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.value = "";
@@ -13185,37 +13298,6 @@ var Keypad = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        keySize: 32,
-        keys: "1, 2, 3, 4, 5, 6, 7, 8, 9, 0",
-        copyInlineStyles: false,
-        target: null,
-        length: 0,
-        shuffle: false,
-        shuffleCount: 3,
-        position: Metro.position.BOTTOM_LEFT, //top-left, top, top-right, right, bottom-right, bottom, bottom-left, left
-        dynamicPosition: false,
-        serviceButtons: true,
-        showValue: true,
-        open: false,
-        sizeAsKeys: false,
-
-        clsKeypad: "",
-        clsInput: "",
-        clsKeys: "",
-        clsKey: "",
-        clsServiceKey: "",
-        clsBackspace: "",
-        clsClear: "",
-
-        onChange: Metro.noop,
-        onClear: Metro.noop,
-        onBackspace: Metro.noop,
-        onShuffle: Metro.noop,
-        onKey: Metro.noop,
-        onKeypadCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){

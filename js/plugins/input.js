@@ -1,6 +1,56 @@
+var InputDefaultConfig = {
+    autocomplete: null,
+    autocompleteDivider: ",",
+    autocompleteListHeight: 200,
+
+    history: false,
+    historyPreset: "",
+    historyDivider: "|",
+    preventSubmit: false,
+    defaultValue: "",
+    size: "default",
+    prepend: "",
+    append: "",
+    copyInlineStyles: true,
+    searchButton: false,
+    clearButton: true,
+    revealButton: true,
+    clearButtonIcon: "<span class='default-icon-cross'></span>",
+    revealButtonIcon: "<span class='default-icon-eye'></span>",
+    searchButtonIcon: "<span class='default-icon-search'></span>",
+    customButtons: [],
+    searchButtonClick: 'submit',
+
+    clsComponent: "",
+    clsInput: "",
+    clsPrepend: "",
+    clsAppend: "",
+    clsClearButton: "",
+    clsRevealButton: "",
+    clsCustomButton: "",
+    clsSearchButton: "",
+
+    onHistoryChange: Metro.noop,
+    onHistoryUp: Metro.noop,
+    onHistoryDown: Metro.noop,
+    onClearClick: Metro.noop,
+    onRevealClick: Metro.noop,
+    onSearchButtonClick: Metro.noop,
+    onEnterClick: Metro.noop,
+    onInputCreate: Metro.noop
+};
+
+Metro.inputSetup = function (options) {
+    InputDefaultConfig = $.extend({}, InputDefaultConfig, options);
+};
+
+if (typeof window.metroInputSetup !== undefined) {
+    Metro.inputSetup(window.metroInputSetup);
+}
+
 var Input = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, InputDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.history = [];
@@ -11,47 +61,6 @@ var Input = {
         this._create();
 
         return this;
-    },
-    options: {
-        autocomplete: null,
-        autocompleteDivider: ",",
-        autocompleteListHeight: 200,
-
-        history: false,
-        historyPreset: "",
-        historyDivider: "|",
-        preventSubmit: false,
-        defaultValue: "",
-        size: "default",
-        prepend: "",
-        append: "",
-        copyInlineStyles: true,
-        searchButton: false,
-        clearButton: true,
-        revealButton: true,
-        clearButtonIcon: "<span class='default-icon-cross'></span>",
-        revealButtonIcon: "<span class='default-icon-eye'></span>",
-        searchButtonIcon: "<span class='default-icon-search'></span>",
-        customButtons: [],
-        searchButtonClick: 'submit',
-
-        clsComponent: "",
-        clsInput: "",
-        clsPrepend: "",
-        clsAppend: "",
-        clsClearButton: "",
-        clsRevealButton: "",
-        clsCustomButton: "",
-        clsSearchButton: "",
-
-        onHistoryChange: Metro.noop,
-        onHistoryUp: Metro.noop,
-        onHistoryDown: Metro.noop,
-        onClearClick: Metro.noop,
-        onRevealClick: Metro.noop,
-        onSearchButtonClick: Metro.noop,
-        onEnterClick: Metro.noop,
-        onInputCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){

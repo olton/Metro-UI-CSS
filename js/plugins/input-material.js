@@ -1,6 +1,31 @@
+var MaterialInputDefaultConfig = {
+    label: "",
+    informer: "",
+    icon: "",
+
+    permanentLabel: false,
+
+    clsComponent: "",
+    clsInput: "",
+    clsLabel: "",
+    clsInformer: "",
+    clsIcon: "",
+    clsLine: "",
+
+    onInputCreate: Metro.noop
+};
+
+Metro.materialInputSetup = function (options) {
+    MaterialInputDefaultConfig = $.extend({}, MaterialInputDefaultConfig, options);
+};
+
+if (typeof window.metroMaterialInputSetup !== undefined) {
+    Metro.materialInputSetup(window.metroMaterialInputSetup);
+}
+
 var MaterialInput = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, MaterialInputDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.history = [];
@@ -10,24 +35,6 @@ var MaterialInput = {
         this._create();
 
         return this;
-    },
-
-    options: {
-
-        label: "",
-        informer: "",
-        icon: "",
-
-        permanentLabel: false,
-
-        clsComponent: "",
-        clsInput: "",
-        clsLabel: "",
-        clsInformer: "",
-        clsIcon: "",
-        clsLine: "",
-
-        onInputCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){

@@ -1,8 +1,27 @@
 // TODO source as array, mode as array
 
+var HtmlContainerDefaultConfig = {
+    method: "get",
+    htmlSource: null,
+    requestData: null,
+    insertMode: "replace", // replace, append, prepend
+    onHtmlLoad: Metro.noop,
+    onHtmlLoadFail: Metro.noop,
+    onHtmlLoadDone: Metro.noop,
+    onHtmlContainerCreate: Metro.noop
+};
+
+Metro.htmlContainerSetup = function (options) {
+    HtmlContainerDefaultConfig = $.extend({}, HtmlContainerDefaultConfig, options);
+};
+
+if (typeof window.metroHtmlContainerSetup !== undefined) {
+    Metro.htmlContainerSetup(window.metroHtmlContainerSetup);
+}
+
 var HtmlContainer = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, HtmlContainerDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
 
@@ -10,17 +29,6 @@ var HtmlContainer = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        method: "get",
-        htmlSource: null,
-        requestData: null,
-        insertMode: "replace", // replace, append, prepend
-        onHtmlLoad: Metro.noop,
-        onHtmlLoadFail: Metro.noop,
-        onHtmlLoadDone: Metro.noop,
-        onHtmlContainerCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
