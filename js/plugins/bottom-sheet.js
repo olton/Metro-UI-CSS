@@ -1,6 +1,22 @@
+var BottomSheetDefaultConfig = {
+    mode: "list",
+    toggle: null,
+    onOpen: Metro.noop,
+    onClose: Metro.noop,
+    onBottomSheetCreate: Metro.noop
+};
+
+Metro.bottomSheetSetup = function(options){
+    BottomSheetDefaultConfig = $.extend({}, BottomSheetDefaultConfig, options);
+};
+
+if (typeof window.metroBottomSheetSetup !== undefined) {
+    Metro.bottomSheetSetup(window.metroBottomSheetSetup);
+}
+
 var BottomSheet = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, BottomSheetDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.toggle = null;
@@ -9,14 +25,6 @@ var BottomSheet = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        mode: "list",
-        toggle: null,
-        onOpen: Metro.noop,
-        onClose: Metro.noop,
-        onBottomSheetCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){

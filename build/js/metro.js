@@ -120,7 +120,7 @@ var Metro = {
 
     version: "4.2.41",
     versionFull: "4.2.41.722",
-    compileTime: "21/04/2019 20:39:37",
+    compileTime: "22/04/2019 09:24:50",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -5479,9 +5479,25 @@ Metro.plugin('audio', Audio);
 
 // Source: js/plugins/bottom-sheet.js
 
+var BottomSheetDefaultConfig = {
+    mode: "list",
+    toggle: null,
+    onOpen: Metro.noop,
+    onClose: Metro.noop,
+    onBottomSheetCreate: Metro.noop
+};
+
+Metro.bottomSheetSetup = function(options){
+    BottomSheetDefaultConfig = $.extend({}, BottomSheetDefaultConfig, options);
+};
+
+if (typeof window.metroBottomSheetSetup !== undefined) {
+    Metro.bottomSheetSetup(window.metroBottomSheetSetup);
+}
+
 var BottomSheet = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, BottomSheetDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.toggle = null;
@@ -5490,14 +5506,6 @@ var BottomSheet = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        mode: "list",
-        toggle: null,
-        onOpen: Metro.noop,
-        onClose: Metro.noop,
-        onBottomSheetCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -5634,9 +5642,26 @@ Metro['bottomsheet'] = {
 
 // Source: js/plugins/button-group.js
 
+var ButtonGroupDefaultConfig = {
+    targets: "button",
+    clsActive: "active",
+    requiredButton: false,
+    mode: Metro.groupMode.ONE,
+    onButtonClick: Metro.noop,
+    onButtonsGroupCreate: Metro.noop
+};
+
+Metro.buttonGroupSetup = function(options){
+    ButtonGroupDefaultConfig = $.extend({}, ButtonGroupDefaultConfig, options);
+};
+
+if (typeof window.metroButtonGroupSetup !== undefined) {
+    Metro.buttonGroupSetup(window.metroButtonGroupSetup);
+}
+
 var ButtonGroup = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, ButtonGroupDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.active = null;
@@ -5645,15 +5670,6 @@ var ButtonGroup = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        targets: "button",
-        clsActive: "active",
-        requiredButton: false,
-        mode: Metro.groupMode.ONE,
-        onButtonClick: Metro.noop,
-        onButtonsGroupCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -5746,9 +5762,79 @@ Metro.plugin('buttongroup', ButtonGroup);
 
 // Source: js/plugins/calendar.js
 
+var CalendarDefaultConfig = {
+    dayBorder: false,
+    excludeDay: null,
+    prevMonthIcon: "<span class='default-icon-chevron-left'></span>",
+    nextMonthIcon: "<span class='default-icon-chevron-right'></span>",
+    prevYearIcon: "<span class='default-icon-chevron-left'></span>",
+    nextYearIcon: "<span class='default-icon-chevron-right'></span>",
+    compact: false,
+    wide: false,
+    widePoint: null,
+    pickerMode: false,
+    show: null,
+    locale: METRO_LOCALE,
+    weekStart: METRO_WEEK_START,
+    outside: true,
+    buttons: 'cancel, today, clear, done',
+    yearsBefore: 100,
+    yearsAfter: 100,
+    headerFormat: "%A, %b %e",
+    showHeader: true,
+    showFooter: true,
+    showTimeField: true,
+    showWeekNumber: false,
+    clsCalendar: "",
+    clsCalendarHeader: "",
+    clsCalendarContent: "",
+    clsCalendarFooter: "",
+    clsCalendarMonths: "",
+    clsCalendarYears: "",
+    clsToday: "",
+    clsSelected: "",
+    clsExcluded: "",
+    clsCancelButton: "",
+    clsTodayButton: "",
+    clsClearButton: "",
+    clsDoneButton: "",
+    isDialog: false,
+    ripple: false,
+    rippleColor: "#cccccc",
+    exclude: null,
+    preset: null,
+    minDate: null,
+    maxDate: null,
+    weekDayClick: false,
+    weekNumberClick: false,
+    multiSelect: false,
+    special: null,
+    format: METRO_DATE_FORMAT,
+    inputFormat: null,
+    onCancel: Metro.noop,
+    onToday: Metro.noop,
+    onClear: Metro.noop,
+    onDone: Metro.noop,
+    onDayClick: Metro.noop,
+    onDayDraw: Metro.noop,
+    onWeekDayClick: Metro.noop,
+    onWeekNumberClick: Metro.noop,
+    onMonthChange: Metro.noop,
+    onYearChange: Metro.noop,
+    onCalendarCreate: Metro.noop
+};
+
+Metro.calendarSetup = function (options) {
+    CalendarDefaultConfig = $.extend({}, CalendarDefaultConfig, options);
+};
+
+if (typeof window.metroCalendarSetup !== undefined) {
+    Metro.calendarSetup(window.metroCalendarSetup);
+}
+
 var Calendar = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, CalendarDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.today = new Date();
@@ -5776,68 +5862,6 @@ var Calendar = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        dayBorder: false,
-        excludeDay: null,
-        prevMonthIcon: "<span class='default-icon-chevron-left'></span>",
-        nextMonthIcon: "<span class='default-icon-chevron-right'></span>",
-        prevYearIcon: "<span class='default-icon-chevron-left'></span>",
-        nextYearIcon: "<span class='default-icon-chevron-right'></span>",
-        compact: false,
-        wide: false,
-        widePoint: null,
-        pickerMode: false,
-        show: null,
-        locale: METRO_LOCALE,
-        weekStart: METRO_WEEK_START,
-        outside: true,
-        buttons: 'cancel, today, clear, done',
-        yearsBefore: 100,
-        yearsAfter: 100,
-        headerFormat: "%A, %b %e",
-        showHeader: true,
-        showFooter: true,
-        showTimeField: true,
-        showWeekNumber: false,
-        clsCalendar: "",
-        clsCalendarHeader: "",
-        clsCalendarContent: "",
-        clsCalendarFooter: "",
-        clsCalendarMonths: "",
-        clsCalendarYears: "",
-        clsToday: "",
-        clsSelected: "",
-        clsExcluded: "",
-        clsCancelButton: "",
-        clsTodayButton: "",
-        clsClearButton: "",
-        clsDoneButton: "",
-        isDialog: false,
-        ripple: false,
-        rippleColor: "#cccccc",
-        exclude: null,
-        preset: null,
-        minDate: null,
-        maxDate: null,
-        weekDayClick: false,
-        weekNumberClick: false,
-        multiSelect: false,
-        special: null,
-        format: METRO_DATE_FORMAT,
-        inputFormat: null,
-        onCancel: Metro.noop,
-        onToday: Metro.noop,
-        onClear: Metro.noop,
-        onDone: Metro.noop,
-        onDayClick: Metro.noop,
-        onDayDraw: Metro.noop,
-        onWeekDayClick: Metro.noop,
-        onWeekNumberClick: Metro.noop,
-        onMonthChange: Metro.noop,
-        onYearChange: Metro.noop,
-        onCalendarCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
