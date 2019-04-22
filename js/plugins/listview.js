@@ -1,6 +1,32 @@
+var ListViewDefaultConfig = {
+    selectable: false,
+    checkStyle: 1,
+    effect: "slide",
+    duration: 100,
+    view: Metro.listView.LIST,
+    selectCurrent: true,
+    structure: {},
+    onNodeInsert: Metro.noop,
+    onNodeDelete: Metro.noop,
+    onNodeClean: Metro.noop,
+    onCollapseNode: Metro.noop,
+    onExpandNode: Metro.noop,
+    onGroupNodeClick: Metro.noop,
+    onNodeClick: Metro.noop,
+    onListViewCreate: Metro.noop
+};
+
+Metro.listViewSetup = function (options) {
+    ListViewDefaultConfig = $.extend({}, ListViewDefaultConfig, options);
+};
+
+if (typeof window.metroListViewSetup !== undefined) {
+    Metro.listViewSetup(window.metroListViewSetup);
+}
+
 var ListView = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, ListViewDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
 
@@ -8,24 +34,6 @@ var ListView = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        selectable: false,
-        checkStyle: 1,
-        effect: "slide",
-        duration: 100,
-        view: Metro.listView.LIST,
-        selectCurrent: true,
-        structure: {},
-        onNodeInsert: Metro.noop,
-        onNodeDelete: Metro.noop,
-        onNodeClean: Metro.noop,
-        onCollapseNode: Metro.noop,
-        onExpandNode: Metro.noop,
-        onGroupNodeClick: Metro.noop,
-        onNodeClick: Metro.noop,
-        onListViewCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){

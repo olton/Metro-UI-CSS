@@ -1,6 +1,76 @@
+var ListDefaultConfig = {
+    templateBeginToken: "<%",
+    templateEndToken: "%>",
+    paginationDistance: 5,
+    paginationShortMode: true,
+    thousandSeparator: ",",
+    decimalSeparator: ",",
+    sortTarget: "li",
+    sortClass: null,
+    sortDir: "asc",
+    sortInitial: false,
+    filterClass: null,
+    filter: null,
+    filterString: "",
+    filters: null,
+    source: null,
+    showItemsSteps: false,
+    showSearch: false,
+    showListInfo: false,
+    showPagination: false,
+    showActivity: true,
+    muteList: true,
+    items: -1,
+    itemsSteps: "all, 10,25,50,100",
+    itemsAllTitle: "Show all",
+    listItemsCountTitle: "Show entries:",
+    listSearchTitle: "Search:",
+    listInfoTitle: "Showing $1 to $2 of $3 entries",
+    paginationPrevTitle: "Prev",
+    paginationNextTitle: "Next",
+    activityType: "cycle",
+    activityStyle: "color",
+    activityTimeout: 100,
+    searchWrapper: null,
+    rowsWrapper: null,
+    infoWrapper: null,
+    paginationWrapper: null,
+    clsComponent: "",
+    clsList: "",
+    clsListItem: "",
+    clsListTop: "",
+    clsItemsCount: "",
+    clsSearch: "",
+    clsListBottom: "",
+    clsListInfo: "",
+    clsListPagination: "",
+    clsPagination: "",
+    onDraw: Metro.noop,
+    onDrawItem: Metro.noop,
+    onSortStart: Metro.noop,
+    onSortStop: Metro.noop,
+    onSortItemSwitch: Metro.noop,
+    onSearch: Metro.noop,
+    onRowsCountChange: Metro.noop,
+    onDataLoad: Metro.noop,
+    onDataLoaded: Metro.noop,
+    onDataLoadError: Metro.noop,
+    onFilterItemAccepted: Metro.noop,
+    onFilterItemDeclined: Metro.noop,
+    onListCreate: Metro.noop
+};
+
+Metro.listSetup = function (options) {
+    ListDefaultConfig = $.extend({}, ListDefaultConfig, options);
+};
+
+if (typeof window.metroListSetup !== undefined) {
+    Metro.listSetup(window.metroListSetup);
+}
+
 var List = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, ListDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.currentPage = 1;
@@ -30,84 +100,6 @@ var List = {
         this._create();
 
         return this;
-    },
-
-    options: {
-
-        templateBeginToken: "<%",
-        templateEndToken: "%>",
-        paginationDistance: 5,
-        paginationShortMode: true,
-
-        thousandSeparator: ",",
-        decimalSeparator: ",",
-
-        sortTarget: "li",
-        sortClass: null,
-        sortDir: "asc",
-        sortInitial: false,
-
-        filterClass: null,
-        filter: null,
-        filterString: "",
-        filters: null,
-        source: null,
-
-        showItemsSteps: false,
-        showSearch: false,
-        showListInfo: false,
-        showPagination: false,
-        showActivity: true,
-
-        muteList: true,
-
-        items: -1,
-        itemsSteps: "all, 10,25,50,100",
-
-        itemsAllTitle: "Show all",
-        listItemsCountTitle: "Show entries:",
-        listSearchTitle: "Search:",
-        listInfoTitle: "Showing $1 to $2 of $3 entries",
-        paginationPrevTitle: "Prev",
-        paginationNextTitle: "Next",
-
-        activityType: "cycle",
-        activityStyle: "color",
-        activityTimeout: 100,
-
-        searchWrapper: null,
-        rowsWrapper: null,
-        infoWrapper: null,
-        paginationWrapper: null,
-
-        clsComponent: "",
-        clsList: "",
-        clsListItem: "",
-
-        clsListTop: "",
-        clsItemsCount: "",
-        clsSearch: "",
-
-        clsListBottom: "",
-        clsListInfo: "",
-        clsListPagination: "",
-
-        clsPagination: "",
-
-        onDraw: Metro.noop,
-        onDrawItem: Metro.noop,
-        onSortStart: Metro.noop,
-        onSortStop: Metro.noop,
-        onSortItemSwitch: Metro.noop,
-        onSearch: Metro.noop,
-        onRowsCountChange: Metro.noop,
-        onDataLoad: Metro.noop,
-        onDataLoaded: Metro.noop,
-        onDataLoadError: Metro.noop,
-        onFilterItemAccepted: Metro.noop,
-        onFilterItemDeclined: Metro.noop,
-
-        onListCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){

@@ -104,8 +104,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "@@version",
-    versionFull: "@@version.@@build",
     compileTime: "@@compile",
+    buildNumber: "@@build",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -279,8 +279,16 @@ var Metro = {
         alert("Metro 4 - v" + this.version +". "+ this.showCompileTime());
     },
 
-    ver: function(f){
-        return (f === true ? this.versionFull : this.version);
+    ver: function(){
+        return this.version;
+    },
+
+    build: function(){
+        return this.build;
+    },
+
+    compile: function(){
+        return this.compileTime;
     },
 
     observe: function(){
