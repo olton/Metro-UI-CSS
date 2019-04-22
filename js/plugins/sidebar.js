@@ -1,6 +1,32 @@
+var SidebarDefaultConfig = {
+    shadow: true,
+    position: "left",
+    size: 290,
+    shift: null,
+    staticShift: null,
+    toggle: null,
+    duration: METRO_ANIMATION_DURATION,
+    static: null,
+    menuItemClick: true,
+    onOpen: Metro.noop,
+    onClose: Metro.noop,
+    onToggle: Metro.noop,
+    onStaticSet: Metro.noop,
+    onStaticLoss: Metro.noop,
+    onSidebarCreate: Metro.noop
+};
+
+Metro.sidebarSetup = function (options) {
+    SidebarDefaultConfig = $.extend({}, SidebarDefaultConfig, options);
+};
+
+if (typeof window.metroSidebarSetup !== undefined) {
+    Metro.selectSetup(window.metroSidebarSetup);
+}
+
 var Sidebar = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, SidebarDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.toggle_element = null;
@@ -9,24 +35,6 @@ var Sidebar = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        shadow: true,
-        position: "left",
-        size: 290,
-        shift: null,
-        staticShift: null,
-        toggle: null,
-        duration: METRO_ANIMATION_DURATION,
-        static: null,
-        menuItemClick: true,
-        onOpen: Metro.noop,
-        onClose: Metro.noop,
-        onToggle: Metro.noop,
-        onStaticSet: Metro.noop,
-        onStaticLoss: Metro.noop,
-        onSidebarCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){

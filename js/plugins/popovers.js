@@ -1,6 +1,30 @@
+var PopoverDefaultConfig = {
+    popoverText: "",
+    popoverHide: 3000,
+    popoverTimeout: 10,
+    popoverOffset: 10,
+    popoverTrigger: Metro.popoverEvents.HOVER,
+    popoverPosition: Metro.position.TOP,
+    hideOnLeave: false,
+    closeButton: true,
+    clsPopover: "",
+    clsPopoverContent: "",
+    onPopoverShow: Metro.noop,
+    onPopoverHide: Metro.noop,
+    onPopoverCreate: Metro.noop
+};
+
+Metro.popoverSetup = function (options) {
+    PopoverDefaultConfig = $.extend({}, PopoverDefaultConfig, options);
+};
+
+if (typeof window.metroPopoverSetup !== undefined) {
+    Metro.popoverSetup(window.metroPopoverSetup);
+}
+
 var Popover = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, PopoverDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.popover = null;
@@ -14,22 +38,6 @@ var Popover = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        popoverText: "",
-        popoverHide: 3000,
-        popoverTimeout: 10,
-        popoverOffset: 10,
-        popoverTrigger: Metro.popoverEvents.HOVER,
-        popoverPosition: Metro.position.TOP,
-        hideOnLeave: false,
-        closeButton: true,
-        clsPopover: "",
-        clsPopoverContent: "",
-        onPopoverShow: Metro.noop,
-        onPopoverHide: Metro.noop,
-        onPopoverCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){

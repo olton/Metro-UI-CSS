@@ -1,6 +1,53 @@
+var SliderDefaultConfig = {
+    min: 0,
+    max: 100,
+    accuracy: 0,
+    showMinMax: false,
+    minMaxPosition: Metro.position.TOP,
+    value: 0,
+    buffer: 0,
+    hint: false,
+    hintAlways: false,
+    hintPosition: Metro.position.TOP,
+    hintMask: "$1",
+    vertical: false,
+    target: null,
+    returnType: "value", // value or percent
+    size: 0,
+
+    clsSlider: "",
+    clsBackside: "",
+    clsComplete: "",
+    clsBuffer: "",
+    clsMarker: "",
+    clsHint: "",
+    clsMinMax: "",
+    clsMin: "",
+    clsMax: "",
+
+    onStart: Metro.noop,
+    onStop: Metro.noop,
+    onMove: Metro.noop,
+    onSliderClick: Metro.noop,
+    onChange: Metro.noop,
+    onChangeValue: Metro.noop,
+    onChangeBuffer: Metro.noop,
+    onFocus: Metro.noop,
+    onBlur: Metro.noop,
+    onSliderCreate: Metro.noop
+};
+
+Metro.sliderSetup = function (options) {
+    SliderDefaultConfig = $.extend({}, SliderDefaultConfig, options);
+};
+
+if (typeof window.metroSliderSetup !== undefined) {
+    Metro.sliderSetup(window.metroSliderSetup);
+}
+
 var Slider = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, SliderDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.slider = null;
@@ -14,45 +61,6 @@ var Slider = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        min: 0,
-        max: 100,
-        accuracy: 0,
-        showMinMax: false,
-        minMaxPosition: Metro.position.TOP,
-        value: 0,
-        buffer: 0,
-        hint: false,
-        hintAlways: false,
-        hintPosition: Metro.position.TOP,
-        hintMask: "$1",
-        vertical: false,
-        target: null,
-        returnType: "value", // value or percent
-        size: 0,
-
-        clsSlider: "",
-        clsBackside: "",
-        clsComplete: "",
-        clsBuffer: "",
-        clsMarker: "",
-        clsHint: "",
-        clsMinMax: "",
-        clsMin: "",
-        clsMax: "",
-
-        onStart: Metro.noop,
-        onStop: Metro.noop,
-        onMove: Metro.noop,
-        onClick: Metro.noop,
-        onChange: Metro.noop,
-        onChangeValue: Metro.noop,
-        onChangeBuffer: Metro.noop,
-        onFocus: Metro.noop,
-        onBlur: Metro.noop,
-        onSliderCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -261,8 +269,8 @@ var Slider = {
 
         slider.on(Metro.events.click, function(e){
             that._move(e);
-            Utils.exec(o.onClick, [that.value, that.percent], element[0]);
-            element.fire("click", {
+            Utils.exec(o.onSliderClick, [that.value, that.percent], element[0]);
+            element.fire("sliderclick", {
                 val: that.value,
                 percent: that.percent
             });
@@ -353,7 +361,7 @@ var Slider = {
             element.val(value);
         }
 
-        element.trigger("change");
+        // element.trigger("change");
 
         if (o.target !== null) {
             var target = $(o.target);

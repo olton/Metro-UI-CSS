@@ -1,6 +1,28 @@
+var ResizableDefaultConfig = {
+    canResize: true,
+    resizeElement: ".resize-element",
+    minWidth: 0,
+    minHeight: 0,
+    maxWidth: 0,
+    maxHeight: 0,
+    preserveRatio: false,
+    onResizeStart: Metro.noop,
+    onResizeStop: Metro.noop,
+    onResize: Metro.noop,
+    onResizableCreate: Metro.noop
+};
+
+Metro.resizeableSetup = function (options) {
+    ResizableDefaultConfig = $.extend({}, ResizableDefaultConfig, options);
+};
+
+if (typeof window.metroResizeableSetup !== undefined) {
+    Metro.resizeableSetup(window.metroResizeableSetup);
+}
+
 var Resizable = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, ResizableDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.resizer = null;
@@ -9,19 +31,6 @@ var Resizable = {
         this._create();
 
         return this;
-    },
-    options: {
-        canResize: true,
-        resizeElement: ".resize-element",
-        minWidth: 0,
-        minHeight: 0,
-        maxWidth: 0,
-        maxHeight: 0,
-        preserveRatio: false,
-        onResizeStart: Metro.noop,
-        onResizeStop: Metro.noop,
-        onResize: Metro.noop,
-        onResizableCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){

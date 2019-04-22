@@ -1,24 +1,28 @@
+var NotifyDefaultConfig = {
+    container: null,
+    width: 220,
+    timeout: METRO_TIMEOUT,
+    duration: METRO_ANIMATION_DURATION,
+    distance: "100vh",
+    animation: "swing",
+    onClick: Metro.noop,
+    onClose: Metro.noop,
+    onShow: Metro.noop,
+    onAppend: Metro.noop,
+    onNotifyCreate: Metro.noop
+
+};
+
 var Notify = {
 
     options: {
-        container: null,
-        width: 220,
-        timeout: METRO_TIMEOUT,
-        duration: METRO_ANIMATION_DURATION,
-        distance: "100vh",
-        animation: "swing",
-        onClick: Metro.noop,
-        onClose: Metro.noop,
-        onShow: Metro.noop,
-        onAppend: Metro.noop,
-        onNotifyCreate: Metro.noop
     },
 
     notifies: [],
 
     setup: function(options){
         var body = $("body"), container;
-        this.options = $.extend({}, this.options, options);
+        this.options = $.extend({}, NotifyDefaultConfig, options);
 
         if (this.options.container === null) {
             container = $("<div>").addClass("notify-container");
@@ -37,7 +41,7 @@ var Notify = {
             distance: "100vh",
             animation: "swing"
         };
-        this.options = $.extend({}, this.options, reset_options);
+        this.options = $.extend({}, NotifyDefaultConfig, reset_options);
     },
 
     create: function(message, title, options){
