@@ -1,6 +1,26 @@
+var CounterDefaultConfig = {
+    delay: 10,
+    step: 1,
+    value: 0,
+    timeout: null,
+    delimiter: ",",
+    onStart: Metro.noop,
+    onStop: Metro.noop,
+    onTick: Metro.noop,
+    onCounterCreate: Metro.noop
+};
+
+Metro.counterSetup = function (options) {
+    CounterDefaultConfig = $.extend({}, CounterDefaultConfig, options);
+};
+
+if (typeof window.metroCounterSetup !== undefined) {
+    Metro.counterSetup(window.metroCounterSetup);
+}
+
 var Counter = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, CounterDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.numbers = [];
@@ -10,18 +30,6 @@ var Counter = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        delay: 10,
-        step: 1,
-        value: 0,
-        timeout: null,
-        delimiter: ",",
-        onStart: Metro.noop,
-        onStop: Metro.noop,
-        onTick: Metro.noop,
-        onCounterCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
