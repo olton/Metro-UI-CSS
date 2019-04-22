@@ -1,6 +1,71 @@
+var CalendarPickerDefaultConfig = {
+    nullValue: true,
+
+    prepend: "",
+
+    calendarWide: false,
+    calendarWidePoint: null,
+
+
+    dialogMode: false,
+    dialogPoint: 360,
+    dialogOverlay: true,
+    overlayColor: '#000000',
+    overlayAlpha: .5,
+
+    locale: METRO_LOCALE,
+    size: "100%",
+    format: METRO_DATE_FORMAT,
+    inputFormat: null,
+    headerFormat: "%A, %b %e",
+    clearButton: false,
+    calendarButtonIcon: "<span class='default-icon-calendar'></span>",
+    clearButtonIcon: "<span class='default-icon-cross'></span>",
+    copyInlineStyles: false,
+    clsPicker: "",
+    clsInput: "",
+
+    yearsBefore: 100,
+    yearsAfter: 100,
+    weekStart: METRO_WEEK_START,
+    outside: true,
+    ripple: false,
+    rippleColor: "#cccccc",
+    exclude: null,
+    minDate: null,
+    maxDate: null,
+    special: null,
+    showHeader: true,
+
+    clsCalendar: "",
+    clsCalendarHeader: "",
+    clsCalendarContent: "",
+    clsCalendarMonths: "",
+    clsCalendarYears: "",
+    clsToday: "",
+    clsSelected: "",
+    clsExcluded: "",
+
+    onDayClick: Metro.noop,
+    onCalendarPickerCreate: Metro.noop,
+    onCalendarShow: Metro.noop,
+    onCalendarHide: Metro.noop,
+    onChange: Metro.noop,
+    onMonthChange: Metro.noop,
+    onYearChange: Metro.noop
+};
+
+Metro.calendarPickerSetup = function (options) {
+    CalendarPickerDefaultConfig = $.extend({}, CalendarPickerDefaultConfig, options);
+};
+
+if (typeof window.metroCalendarPickerSetup !== undefined) {
+    Metro.calendarPickerSetup(window.metroCalendarPickerSetup);
+}
+
 var CalendarPicker = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, CalendarPickerDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.value = null;
@@ -18,64 +83,6 @@ var CalendarPicker = {
     },
 
     dependencies: ['calendar'],
-
-    options: {
-
-        nullValue: true,
-
-        prepend: "",
-
-        calendarWide: false,
-        calendarWidePoint: null,
-
-
-        dialogMode: false,
-        dialogPoint: 360,
-        dialogOverlay: true,
-        overlayColor: '#000000',
-        overlayAlpha: .5,
-
-        locale: METRO_LOCALE,
-        size: "100%",
-        format: METRO_DATE_FORMAT,
-        inputFormat: null,
-        headerFormat: "%A, %b %e",
-        clearButton: false,
-        calendarButtonIcon: "<span class='default-icon-calendar'></span>",
-        clearButtonIcon: "<span class='default-icon-cross'></span>",
-        copyInlineStyles: false,
-        clsPicker: "",
-        clsInput: "",
-
-        yearsBefore: 100,
-        yearsAfter: 100,
-        weekStart: METRO_WEEK_START,
-        outside: true,
-        ripple: false,
-        rippleColor: "#cccccc",
-        exclude: null,
-        minDate: null,
-        maxDate: null,
-        special: null,
-        showHeader: true,
-
-        clsCalendar: "",
-        clsCalendarHeader: "",
-        clsCalendarContent: "",
-        clsCalendarMonths: "",
-        clsCalendarYears: "",
-        clsToday: "",
-        clsSelected: "",
-        clsExcluded: "",
-
-        onDayClick: Metro.noop,
-        onCalendarPickerCreate: Metro.noop,
-        onCalendarShow: Metro.noop,
-        onCalendarHide: Metro.noop,
-        onChange: Metro.noop,
-        onMonthChange: Metro.noop,
-        onYearChange: Metro.noop
-    },
 
     _setOptionsFromDOM: function(){
         var element = this.element, o = this.options;

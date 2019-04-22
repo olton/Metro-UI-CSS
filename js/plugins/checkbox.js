@@ -1,6 +1,25 @@
+var CheckboxDefaultConfig = {
+    style: 1,
+    caption: "",
+    captionPosition: "right",
+    indeterminate: false,
+    clsCheckbox: "",
+    clsCheck: "",
+    clsCaption: "",
+    onCheckboxCreate: Metro.noop
+};
+
+Metro.checkboxSetup = function (options) {
+    CheckboxDefaultConfig = $.extend({}, CheckboxDefaultConfig, options);
+};
+
+if (typeof window.metroCheckboxSetup !== undefined) {
+    Metro.checkboxSetup(window.metroCheckboxSetup);
+}
+
 var Checkbox = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, CheckboxDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.origin = {
@@ -11,16 +30,6 @@ var Checkbox = {
         this._create();
 
         return this;
-    },
-    options: {
-        style: 1,
-        caption: "",
-        captionPosition: "right",
-        indeterminate: false,
-        clsCheckbox: "",
-        clsCheck: "",
-        clsCaption: "",
-        onCheckboxCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){

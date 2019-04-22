@@ -67,7 +67,6 @@ var HtmlContainer = {
                 }
             }
             Utils.exec(o.onHtmlLoad, [data, o.htmlSource], element[0]);
-            console.log();
             element.fire("htmlload", {
                 data: data,
                 source: o.htmlSource

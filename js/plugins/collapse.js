@@ -1,6 +1,23 @@
+var CollapseDefaultConfig = {
+    collapsed: false,
+    toggleElement: false,
+    duration: 100,
+    onExpand: Metro.noop,
+    onCollapse: Metro.noop,
+    onCollapseCreate: Metro.noop
+};
+
+Metro.collapseSetup = function (options) {
+    CollapseDefaultConfig = $.extend({}, CollapseDefaultConfig, options);
+};
+
+if (typeof window.metroCollapseSetup !== undefined) {
+    Metro.collapseSetup(window.metroCollapseSetup);
+}
+
 var Collapse = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, CollapseDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.toggle = null;
@@ -9,15 +26,6 @@ var Collapse = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        collapsed: false,
-        toggleElement: false,
-        duration: 100,
-        onExpand: Metro.noop,
-        onCollapse: Metro.noop,
-        onCollapseCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){

@@ -1,6 +1,26 @@
+var ClockDefaultConfig = {
+    showTime: true,
+    showDate: true,
+    timeFormat: '24',
+    dateFormat: 'american',
+    divider: "&nbsp;&nbsp;",
+    leadingZero: true,
+    dateDivider: '-',
+    timeDivider: ":",
+    onClockCreate: Metro.noop
+};
+
+Metro.clockSetup = function (options) {
+    ClockDefaultConfig = $.extend({}, ClockDefaultConfig, options);
+};
+
+if (typeof window.metroClockSetup !== undefined) {
+    Metro.clockSetup(window.metroClockSetup);
+}
+
 var Clock = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, ClockDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this._clockInterval = null;
@@ -8,18 +28,6 @@ var Clock = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        showTime: true,
-        showDate: true,
-        timeFormat: '24',
-        dateFormat: 'american',
-        divider: "&nbsp;&nbsp;",
-        leadingZero: true,
-        dateDivider: '-',
-        timeDivider: ":",
-        onClockCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){

@@ -1,6 +1,41 @@
+var CountdownDefaultConfig = {
+    stopOnBlur: true,
+    animate: "none",
+    animationFunc: "swing",
+    inputFormat: null,
+    locale: METRO_LOCALE,
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+    date: null,
+    start: true,
+    clsCountdown: "",
+    clsPart: "",
+    clsZero: "",
+    clsAlarm: "",
+    clsDays: "",
+    clsHours: "",
+    clsMinutes: "",
+    clsSeconds: "",
+    onAlarm: Metro.noop,
+    onTick: Metro.noop,
+    onZero: Metro.noop,
+    onBlink: Metro.noop,
+    onCountdownCreate: Metro.noop
+};
+
+Metro.countdownSetup = function (options) {
+    CountdownDefaultConfig = $.extend({}, CountdownDefaultConfig, options);
+};
+
+if (typeof window.metroCountdownSetup !== undefined) {
+    Metro.countdownSetup(window.metroCountdownSetup);
+}
+
 var Countdown = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, CountdownDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.breakpoint = (new Date()).getTime();
@@ -26,33 +61,6 @@ var Countdown = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        stopOnBlur: true,
-        animate: "none",
-        animationFunc: "swing",
-        inputFormat: null,
-        locale: METRO_LOCALE,
-        days: 0,
-        hours: 0,
-        minutes: 0,
-        seconds: 0,
-        date: null,
-        start: true,
-        clsCountdown: "",
-        clsPart: "",
-        clsZero: "",
-        clsAlarm: "",
-        clsDays: "",
-        clsHours: "",
-        clsMinutes: "",
-        clsSeconds: "",
-        onAlarm: Metro.noop,
-        onTick: Metro.noop,
-        onZero: Metro.noop,
-        onBlink: Metro.noop,
-        onCountdownCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){

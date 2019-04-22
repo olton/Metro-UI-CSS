@@ -1,6 +1,62 @@
+var CarouselDefaultConfig = {
+    autoStart: false,
+    width: "100%",
+    height: "16/9", // 3/4, 21/9
+    effect: "slide", // slide, fade, switch, slowdown, custom
+    effectFunc: "linear",
+    direction: "left", //left, right
+    duration: METRO_ANIMATION_DURATION,
+    period: 5000,
+    stopOnMouse: true,
+
+    controls: true,
+    bullets: true,
+    bulletsStyle: "square", // square, circle, rect, diamond
+    bulletsSize: "default", // default, mini, small, large
+
+    controlsOnMouse: false,
+    controlsOutside: false,
+    bulletsPosition: "default", // default, left, right
+
+    controlPrev: '&#x23F4',
+    controlNext: '&#x23F5',
+    clsCarousel: "",
+    clsSlides: "",
+    clsSlide: "",
+    clsControls: "",
+    clsControlNext: "",
+    clsControlPrev: "",
+    clsBullets: "",
+    clsBullet: "",
+    clsBulletOn: "",
+    clsThumbOn: "",
+
+    onStop: Metro.noop,
+    onStart: Metro.noop,
+    onPlay: Metro.noop,
+    onSlideClick: Metro.noop,
+    onBulletClick: Metro.noop,
+    onThumbClick: Metro.noop,
+    onMouseEnter: Metro.noop,
+    onMouseLeave: Metro.noop,
+    onNextClick: Metro.noop,
+    onPrevClick: Metro.noop,
+    onSlideShow: Metro.noop,
+    onSlideHide: Metro.noop,
+    onCarouselCreate: Metro.noop
+};
+
+Metro.carouselSetup = function (options) {
+    CarouselDefaultConfig = $.extend({}, CarouselDefaultConfig, options);
+};
+
+if (typeof window.metroCarouselSetup !== undefined) {
+    Metro.carouselSetup(window.metroCarouselSetup);
+}
+
 var Carousel = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, CarouselDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.height = 0;
@@ -16,54 +72,6 @@ var Carousel = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        autoStart: false,
-        width: "100%",
-        height: "16/9", // 3/4, 21/9
-        effect: "slide", // slide, fade, switch, slowdown, custom
-        effectFunc: "linear",
-        direction: "left", //left, right
-        duration: METRO_ANIMATION_DURATION,
-        period: 5000,
-        stopOnMouse: true,
-
-        controls: true,
-        bullets: true,
-        bulletsStyle: "square", // square, circle, rect, diamond
-        bulletsSize: "default", // default, mini, small, large
-
-        controlsOnMouse: false,
-        controlsOutside: false,
-        bulletsPosition: "default", // default, left, right
-
-        controlPrev: '&#x23F4',
-        controlNext: '&#x23F5',
-        clsCarousel: "",
-        clsSlides: "",
-        clsSlide: "",
-        clsControls: "",
-        clsControlNext: "",
-        clsControlPrev: "",
-        clsBullets: "",
-        clsBullet: "",
-        clsBulletOn: "",
-        clsThumbOn: "",
-
-        onStop: Metro.noop,
-        onStart: Metro.noop,
-        onPlay: Metro.noop,
-        onSlideClick: Metro.noop,
-        onBulletClick: Metro.noop,
-        onThumbClick: Metro.noop,
-        onMouseEnter: Metro.noop,
-        onMouseLeave: Metro.noop,
-        onNextClick: Metro.noop,
-        onPrevClick: Metro.noop,
-        onSlideShow: Metro.noop,
-        onSlideHide: Metro.noop,
-        onCarouselCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){

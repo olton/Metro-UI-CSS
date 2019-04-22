@@ -120,7 +120,7 @@ var Metro = {
 
     version: "4.2.41",
     versionFull: "4.2.41.722",
-    compileTime: "22/04/2019 09:24:50",
+    compileTime: "22/04/2019 09:57:25",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -6736,9 +6736,74 @@ Metro.plugin('calendar', Calendar);
 
 // Source: js/plugins/calendarpicker.js
 
+var CalendarPickerDefaultConfig = {
+    nullValue: true,
+
+    prepend: "",
+
+    calendarWide: false,
+    calendarWidePoint: null,
+
+
+    dialogMode: false,
+    dialogPoint: 360,
+    dialogOverlay: true,
+    overlayColor: '#000000',
+    overlayAlpha: .5,
+
+    locale: METRO_LOCALE,
+    size: "100%",
+    format: METRO_DATE_FORMAT,
+    inputFormat: null,
+    headerFormat: "%A, %b %e",
+    clearButton: false,
+    calendarButtonIcon: "<span class='default-icon-calendar'></span>",
+    clearButtonIcon: "<span class='default-icon-cross'></span>",
+    copyInlineStyles: false,
+    clsPicker: "",
+    clsInput: "",
+
+    yearsBefore: 100,
+    yearsAfter: 100,
+    weekStart: METRO_WEEK_START,
+    outside: true,
+    ripple: false,
+    rippleColor: "#cccccc",
+    exclude: null,
+    minDate: null,
+    maxDate: null,
+    special: null,
+    showHeader: true,
+
+    clsCalendar: "",
+    clsCalendarHeader: "",
+    clsCalendarContent: "",
+    clsCalendarMonths: "",
+    clsCalendarYears: "",
+    clsToday: "",
+    clsSelected: "",
+    clsExcluded: "",
+
+    onDayClick: Metro.noop,
+    onCalendarPickerCreate: Metro.noop,
+    onCalendarShow: Metro.noop,
+    onCalendarHide: Metro.noop,
+    onChange: Metro.noop,
+    onMonthChange: Metro.noop,
+    onYearChange: Metro.noop
+};
+
+Metro.calendarPickerSetup = function (options) {
+    CalendarPickerDefaultConfig = $.extend({}, CalendarPickerDefaultConfig, options);
+};
+
+if (typeof window.metroCalendarPickerSetup !== undefined) {
+    Metro.calendarPickerSetup(window.metroCalendarPickerSetup);
+}
+
 var CalendarPicker = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, CalendarPickerDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.value = null;
@@ -6756,64 +6821,6 @@ var CalendarPicker = {
     },
 
     dependencies: ['calendar'],
-
-    options: {
-
-        nullValue: true,
-
-        prepend: "",
-
-        calendarWide: false,
-        calendarWidePoint: null,
-
-
-        dialogMode: false,
-        dialogPoint: 360,
-        dialogOverlay: true,
-        overlayColor: '#000000',
-        overlayAlpha: .5,
-
-        locale: METRO_LOCALE,
-        size: "100%",
-        format: METRO_DATE_FORMAT,
-        inputFormat: null,
-        headerFormat: "%A, %b %e",
-        clearButton: false,
-        calendarButtonIcon: "<span class='default-icon-calendar'></span>",
-        clearButtonIcon: "<span class='default-icon-cross'></span>",
-        copyInlineStyles: false,
-        clsPicker: "",
-        clsInput: "",
-
-        yearsBefore: 100,
-        yearsAfter: 100,
-        weekStart: METRO_WEEK_START,
-        outside: true,
-        ripple: false,
-        rippleColor: "#cccccc",
-        exclude: null,
-        minDate: null,
-        maxDate: null,
-        special: null,
-        showHeader: true,
-
-        clsCalendar: "",
-        clsCalendarHeader: "",
-        clsCalendarContent: "",
-        clsCalendarMonths: "",
-        clsCalendarYears: "",
-        clsToday: "",
-        clsSelected: "",
-        clsExcluded: "",
-
-        onDayClick: Metro.noop,
-        onCalendarPickerCreate: Metro.noop,
-        onCalendarShow: Metro.noop,
-        onCalendarHide: Metro.noop,
-        onChange: Metro.noop,
-        onMonthChange: Metro.noop,
-        onYearChange: Metro.noop
-    },
 
     _setOptionsFromDOM: function(){
         var element = this.element, o = this.options;
@@ -7196,9 +7203,65 @@ $(document).on(Metro.events.click, function(){
 
 // Source: js/plugins/carousel.js
 
+var CarouselDefaultConfig = {
+    autoStart: false,
+    width: "100%",
+    height: "16/9", // 3/4, 21/9
+    effect: "slide", // slide, fade, switch, slowdown, custom
+    effectFunc: "linear",
+    direction: "left", //left, right
+    duration: METRO_ANIMATION_DURATION,
+    period: 5000,
+    stopOnMouse: true,
+
+    controls: true,
+    bullets: true,
+    bulletsStyle: "square", // square, circle, rect, diamond
+    bulletsSize: "default", // default, mini, small, large
+
+    controlsOnMouse: false,
+    controlsOutside: false,
+    bulletsPosition: "default", // default, left, right
+
+    controlPrev: '&#x23F4',
+    controlNext: '&#x23F5',
+    clsCarousel: "",
+    clsSlides: "",
+    clsSlide: "",
+    clsControls: "",
+    clsControlNext: "",
+    clsControlPrev: "",
+    clsBullets: "",
+    clsBullet: "",
+    clsBulletOn: "",
+    clsThumbOn: "",
+
+    onStop: Metro.noop,
+    onStart: Metro.noop,
+    onPlay: Metro.noop,
+    onSlideClick: Metro.noop,
+    onBulletClick: Metro.noop,
+    onThumbClick: Metro.noop,
+    onMouseEnter: Metro.noop,
+    onMouseLeave: Metro.noop,
+    onNextClick: Metro.noop,
+    onPrevClick: Metro.noop,
+    onSlideShow: Metro.noop,
+    onSlideHide: Metro.noop,
+    onCarouselCreate: Metro.noop
+};
+
+Metro.carouselSetup = function (options) {
+    CarouselDefaultConfig = $.extend({}, CarouselDefaultConfig, options);
+};
+
+if (typeof window.metroCarouselSetup !== undefined) {
+    Metro.carouselSetup(window.metroCarouselSetup);
+}
+
 var Carousel = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, CarouselDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.height = 0;
@@ -7214,54 +7277,6 @@ var Carousel = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        autoStart: false,
-        width: "100%",
-        height: "16/9", // 3/4, 21/9
-        effect: "slide", // slide, fade, switch, slowdown, custom
-        effectFunc: "linear",
-        direction: "left", //left, right
-        duration: METRO_ANIMATION_DURATION,
-        period: 5000,
-        stopOnMouse: true,
-
-        controls: true,
-        bullets: true,
-        bulletsStyle: "square", // square, circle, rect, diamond
-        bulletsSize: "default", // default, mini, small, large
-
-        controlsOnMouse: false,
-        controlsOutside: false,
-        bulletsPosition: "default", // default, left, right
-
-        controlPrev: '&#x23F4',
-        controlNext: '&#x23F5',
-        clsCarousel: "",
-        clsSlides: "",
-        clsSlide: "",
-        clsControls: "",
-        clsControlNext: "",
-        clsControlPrev: "",
-        clsBullets: "",
-        clsBullet: "",
-        clsBulletOn: "",
-        clsThumbOn: "",
-
-        onStop: Metro.noop,
-        onStart: Metro.noop,
-        onPlay: Metro.noop,
-        onSlideClick: Metro.noop,
-        onBulletClick: Metro.noop,
-        onThumbClick: Metro.noop,
-        onMouseEnter: Metro.noop,
-        onMouseLeave: Metro.noop,
-        onNextClick: Metro.noop,
-        onPrevClick: Metro.noop,
-        onSlideShow: Metro.noop,
-        onSlideHide: Metro.noop,
-        onCarouselCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -7736,9 +7751,27 @@ Metro.plugin('carousel', Carousel);
 
 // Source: js/plugins/charms.js
 
+var CharmsDefaultConfig = {
+    position: "right",
+    opacity: 1,
+    clsCharms: "",
+    onCharmCreate: Metro.noop,
+    onOpen: Metro.noop,
+    onClose: Metro.noop,
+    onToggle: Metro.noop
+};
+
+Metro.charmsSetup = function (options) {
+    CharmsDefaultConfig = $.extend({}, CharmsDefaultConfig, options);
+};
+
+if (typeof window.metroCharmsSetup !== undefined) {
+    Metro.charmsSetup(window.metroCharmsSetup);
+}
+
 var Charms = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, CharmsDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.origin = {
@@ -7749,16 +7782,6 @@ var Charms = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        position: "right",
-        opacity: 1,
-        clsCharms: "",
-        onCharmCreate: Metro.noop,
-        onOpen: Metro.noop,
-        onClose: Metro.noop,
-        onToggle: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -7939,9 +7962,44 @@ Metro['charms'] = {
 
 var defaultAvatar = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD//gA7Q1JFQVRPUjogZ2QtanBlZyB2MS4wICh1c2luZyBJSkcgSlBFRyB2NjIpLCBxdWFsaXR5ID0gOTAK/9sAQwADAgIDAgIDAwMDBAMDBAUIBQUEBAUKBwcGCAwKDAwLCgsLDQ4SEA0OEQ4LCxAWEBETFBUVFQwPFxgWFBgSFBUU/9sAQwEDBAQFBAUJBQUJFA0LDRQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQU/8AAEQgAUABQAwEiAAIRAQMRAf/EAB8AAAEFAQEBAQEBAAAAAAAAAAABAgMEBQYHCAkKC//EALUQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5+v/EAB8BAAMBAQEBAQEBAQEAAAAAAAABAgMEBQYHCAkKC//EALURAAIBAgQEAwQHBQQEAAECdwABAgMRBAUhMQYSQVEHYXETIjKBCBRCkaGxwQkjM1LwFWJy0QoWJDThJfEXGBkaJicoKSo1Njc4OTpDREVGR0hJSlNUVVZXWFlaY2RlZmdoaWpzdHV2d3h5eoKDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uLj5OXm5+jp6vLz9PX29/j5+v/aAAwDAQACEQMRAD8A+t+KKPxo/GgA70Yo/Gj8aADFH4VesdC1HUl3WtjcXCf344yV/PGKW+0HUtNXddWNzbp/fkjIX88YoAofhR+FH40fjQAfhR+FH40fjQAUUUUAFepeAPh5D9li1LVYhK8g3Q27j5VXszDuT6f5HA+FtOXVvEWn2rjMcko3j1UckfkDX0MBgYHAoARVCKFUBVHAA6ClZQwKkZBGCDS0UAec+Pvh3BJay6lpUQimjBeW3QYVx3Kjsfbv/PyqvpuvnvxfpqaT4l1C1QbY0lJUDsrfMB+RoAyKKKKACiiigDa8GXq6f4p02eQgIJQpJ7Bvlz+tfQP4V8yDg17P4A8cw65ZxWV5IE1KMbfmP+uA7j39R+NAHaUfhSUUAL+FeA+OL1NQ8WalNGQU83YCO+0Bf6V6b498cQ6BZyWlrIJNSkXaApz5QP8AEff0FeKk5OTyTQAUUUUAH40fjRU1naTX93DbQIXmlYIijuTQBc0Dw/eeI74W1mm49XkbhUHqTXsHhz4eaXoCpI8YvbscmaYZAP8Asr0H8/etHwv4cg8M6XHaxANIfmllxy7dz9PStigA/Gk/GlooA5bxJ8PdL19XkWMWd43PnwjGT/tL0P8AP3rx/X/D954cvjbXibT1SReVceoNfRFZHijw5B4m0uS1lAWQfNFLjlG7H6etAHz5+NH41NeWk1hdzW06FJonKMp7EGoaACvQfhBowudTudRkXK2y7I8j+Nup/Afzrz6vafhRaCDwmkgHM8zufwO3/wBloA7Kiij8KACkpaSgBaSj8KKAPJvi/owttTttRjXC3K7JMf3l6H8R/KvPq9p+K1qJ/CbyEcwTI4P1O3/2avFqAP/Z";
 
+var ChatDefaultConfig = {
+    inputTimeFormat: "%m-%d-%y",
+    timeFormat: "%d %b %l:%M %p",
+    name: "John Doe",
+    avatar: defaultAvatar,
+    welcome: null,
+    title: null,
+    width: "100%",
+    height: "auto",
+    randomColor: false,
+    messages: null,
+    sendButtonTitle: "Send",
+
+    clsChat: "",
+    clsName: "",
+    clsTime: "",
+    clsInput: "",
+    clsSendButton: "",
+    clsMessageLeft: "default",
+    clsMessageRight: "default",
+
+    onMessage: Metro.noop,
+    onSend: Metro.noop,
+    onSendButtonClick: Metro.noop,
+    onChatCreate: Metro.noop
+};
+
+Metro.chatSetup = function (options) {
+    ChatDefaultConfig = $.extend({}, ChatDefaultConfig, options);
+};
+
+if (typeof window.metroChatSetup !== undefined) {
+    Metro.chatSetup(window.metroChatSetup);
+}
+
 var Chat = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, ChatDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.input = null;
@@ -7952,33 +8010,6 @@ var Chat = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        inputTimeFormat: "%m-%d-%y",
-        timeFormat: "%d %b %l:%M %p",
-        name: "John Doe",
-        avatar: defaultAvatar,
-        welcome: null,
-        title: null,
-        width: "100%",
-        height: "auto",
-        randomColor: false,
-        messages: null,
-        sendButtonTitle: "Send",
-
-        clsChat: "",
-        clsName: "",
-        clsTime: "",
-        clsInput: "",
-        clsSendButton: "",
-        clsMessageLeft: "default",
-        clsMessageRight: "default",
-
-        onMessage: Metro.noop,
-        onSend: Metro.noop,
-        onSendButtonClick: Metro.noop,
-        onChatCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -8215,9 +8246,28 @@ Metro.plugin('chat', Chat);
 
 // Source: js/plugins/checkbox.js
 
+var CheckboxDefaultConfig = {
+    style: 1,
+    caption: "",
+    captionPosition: "right",
+    indeterminate: false,
+    clsCheckbox: "",
+    clsCheck: "",
+    clsCaption: "",
+    onCheckboxCreate: Metro.noop
+};
+
+Metro.checkboxSetup = function (options) {
+    CheckboxDefaultConfig = $.extend({}, CheckboxDefaultConfig, options);
+};
+
+if (typeof window.metroCheckboxSetup !== undefined) {
+    Metro.checkboxSetup(window.metroCheckboxSetup);
+}
+
 var Checkbox = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, CheckboxDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.origin = {
@@ -8228,16 +8278,6 @@ var Checkbox = {
         this._create();
 
         return this;
-    },
-    options: {
-        style: 1,
-        caption: "",
-        captionPosition: "right",
-        indeterminate: false,
-        clsCheckbox: "",
-        clsCheck: "",
-        clsCaption: "",
-        onCheckboxCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -8360,9 +8400,29 @@ Metro.plugin('checkbox', Checkbox);
 
 // Source: js/plugins/clock.js
 
+var ClockDefaultConfig = {
+    showTime: true,
+    showDate: true,
+    timeFormat: '24',
+    dateFormat: 'american',
+    divider: "&nbsp;&nbsp;",
+    leadingZero: true,
+    dateDivider: '-',
+    timeDivider: ":",
+    onClockCreate: Metro.noop
+};
+
+Metro.clockSetup = function (options) {
+    ClockDefaultConfig = $.extend({}, ClockDefaultConfig, options);
+};
+
+if (typeof window.metroClockSetup !== undefined) {
+    Metro.clockSetup(window.metroClockSetup);
+}
+
 var Clock = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, ClockDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this._clockInterval = null;
@@ -8370,18 +8430,6 @@ var Clock = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        showTime: true,
-        showDate: true,
-        timeFormat: '24',
-        dateFormat: 'american',
-        divider: "&nbsp;&nbsp;",
-        leadingZero: true,
-        dateDivider: '-',
-        timeDivider: ":",
-        onClockCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -8489,9 +8537,26 @@ Metro.plugin('clock', Clock);
 
 // Source: js/plugins/collapse.js
 
+var CollapseDefaultConfig = {
+    collapsed: false,
+    toggleElement: false,
+    duration: 100,
+    onExpand: Metro.noop,
+    onCollapse: Metro.noop,
+    onCollapseCreate: Metro.noop
+};
+
+Metro.collapseSetup = function (options) {
+    CollapseDefaultConfig = $.extend({}, CollapseDefaultConfig, options);
+};
+
+if (typeof window.metroCollapseSetup !== undefined) {
+    Metro.collapseSetup(window.metroCollapseSetup);
+}
+
 var Collapse = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, CollapseDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.toggle = null;
@@ -8500,15 +8565,6 @@ var Collapse = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        collapsed: false,
-        toggleElement: false,
-        duration: 100,
-        onExpand: Metro.noop,
-        onCollapse: Metro.noop,
-        onCollapseCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -8636,9 +8692,44 @@ Metro.plugin('collapse', Collapse);
 
 // Source: js/plugins/countdown.js
 
+var CountdownDefaultConfig = {
+    stopOnBlur: true,
+    animate: "none",
+    animationFunc: "swing",
+    inputFormat: null,
+    locale: METRO_LOCALE,
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+    date: null,
+    start: true,
+    clsCountdown: "",
+    clsPart: "",
+    clsZero: "",
+    clsAlarm: "",
+    clsDays: "",
+    clsHours: "",
+    clsMinutes: "",
+    clsSeconds: "",
+    onAlarm: Metro.noop,
+    onTick: Metro.noop,
+    onZero: Metro.noop,
+    onBlink: Metro.noop,
+    onCountdownCreate: Metro.noop
+};
+
+Metro.countdownSetup = function (options) {
+    CountdownDefaultConfig = $.extend({}, CountdownDefaultConfig, options);
+};
+
+if (typeof window.metroCountdownSetup !== undefined) {
+    Metro.countdownSetup(window.metroCountdownSetup);
+}
+
 var Countdown = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, CountdownDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.breakpoint = (new Date()).getTime();
@@ -8664,33 +8755,6 @@ var Countdown = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        stopOnBlur: true,
-        animate: "none",
-        animationFunc: "swing",
-        inputFormat: null,
-        locale: METRO_LOCALE,
-        days: 0,
-        hours: 0,
-        minutes: 0,
-        seconds: 0,
-        date: null,
-        start: true,
-        clsCountdown: "",
-        clsPart: "",
-        clsZero: "",
-        clsAlarm: "",
-        clsDays: "",
-        clsHours: "",
-        clsMinutes: "",
-        clsSeconds: "",
-        onAlarm: Metro.noop,
-        onTick: Metro.noop,
-        onZero: Metro.noop,
-        onBlink: Metro.noop,
-        onCountdownCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -9168,9 +9232,29 @@ Metro.plugin('countdown', Countdown);
 
 // Source: js/plugins/counter.js
 
+var CounterDefaultConfig = {
+    delay: 10,
+    step: 1,
+    value: 0,
+    timeout: null,
+    delimiter: ",",
+    onStart: Metro.noop,
+    onStop: Metro.noop,
+    onTick: Metro.noop,
+    onCounterCreate: Metro.noop
+};
+
+Metro.counterSetup = function (options) {
+    CounterDefaultConfig = $.extend({}, CounterDefaultConfig, options);
+};
+
+if (typeof window.metroCounterSetup !== undefined) {
+    Metro.counterSetup(window.metroCounterSetup);
+}
+
 var Counter = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, CounterDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.numbers = [];
@@ -9180,18 +9264,6 @@ var Counter = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        delay: 10,
-        step: 1,
-        value: 0,
-        timeout: null,
-        delimiter: ",",
-        onStart: Metro.noop,
-        onStop: Metro.noop,
-        onTick: Metro.noop,
-        onCounterCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -9286,9 +9358,52 @@ Metro.plugin('counter', Counter);
 
 // Source: js/plugins/cube.js
 
+var CubeDefaultConfig = {
+    rules: null,
+    color: null,
+    flashColor: null,
+    flashInterval: 1000,
+    numbers: false,
+    offBefore: true,
+    attenuation: .3,
+    stopOnBlur: false,
+    cells: 4,
+    margin: 8,
+    showAxis: false,
+    axisStyle: "arrow", //line
+    cellClick: false,
+    autoRestart: 5000,
+
+    clsCube: "",
+    clsCell: "",
+    clsSide: "",
+    clsSideLeft: "",
+    clsSideRight: "",
+    clsSideTop: "",
+    clsSideLeftCell: "",
+    clsSideRightCell: "",
+    clsSideTopCell: "",
+    clsAxis: "",
+    clsAxisX: "",
+    clsAxisY: "",
+    clsAxisZ: "",
+
+    custom: Metro.noop,
+    onTick: Metro.noop,
+    onCubeCreate: Metro.noop
+};
+
+Metro.cubeSetup = function (options) {
+    CubeDefaultConfig = $.extend({}, CubeDefaultConfig, options);
+};
+
+if (typeof window.metroCubeSetup !== undefined) {
+    Metro.cubeSetup(window.metroCubeSetup);
+}
+
 var Cube = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, CubeDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.id = null;
@@ -9338,41 +9453,6 @@ var Cube = {
             off: {'top': [10, 7],   'left': [6, 11],     'right': [10, 7]}
         }
     ],
-
-    options: {
-        rules: null,
-        color: null,
-        flashColor: null,
-        flashInterval: 1000,
-        numbers: false,
-        offBefore: true,
-        attenuation: .3,
-        stopOnBlur: false,
-        cells: 4,
-        margin: 8,
-        showAxis: false,
-        axisStyle: "arrow", //line
-        cellClick: false,
-        autoRestart: 5000,
-
-        clsCube: "",
-        clsCell: "",
-        clsSide: "",
-        clsSideLeft: "",
-        clsSideRight: "",
-        clsSideTop: "",
-        clsSideLeftCell: "",
-        clsSideRightCell: "",
-        clsSideTopCell: "",
-        clsAxis: "",
-        clsAxisX: "",
-        clsAxisY: "",
-        clsAxisZ: "",
-
-        custom: Metro.noop,
-        onTick: Metro.noop,
-        onCubeCreate: Metro.noop
-    },
 
     _setOptionsFromDOM: function(){
         var that = this, element = this.element, o = this.options;
@@ -11642,7 +11722,6 @@ var HtmlContainer = {
                 }
             }
             Utils.exec(o.onHtmlLoad, [data, o.htmlSource], element[0]);
-            console.log();
             element.fire("htmlload", {
                 data: data,
                 source: o.htmlSource
