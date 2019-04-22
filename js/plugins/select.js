@@ -1,6 +1,43 @@
+var SelectDefaultConfig = {
+    duration: 100,
+    prepend: "",
+    append: "",
+    placeholder: "",
+    filterPlaceholder: "",
+    filter: true,
+    copyInlineStyles: true,
+    dropHeight: 200,
+
+    clsSelect: "",
+    clsSelectInput: "",
+    clsPrepend: "",
+    clsAppend: "",
+    clsOption: "",
+    clsOptionActive: "",
+    clsOptionGroup: "",
+    clsDropList: "",
+    clsSelectedItem: "",
+    clsSelectedItemRemover: "",
+
+    onChange: Metro.noop,
+    onUp: Metro.noop,
+    onDrop: Metro.noop,
+    onItemSelect: Metro.noop,
+    onItemDeselect: Metro.noop,
+    onSelectCreate: Metro.noop
+};
+
+Metro.selectSetup = function (options) {
+    SelectDefaultConfig = $.extend({}, SelectDefaultConfig, options);
+};
+
+if (typeof window.metroSelectSetup !== undefined) {
+    Metro.selectSetup(window.metroSelectSetup);
+}
+
 var Select = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, SelectDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.list = null;
@@ -9,34 +46,6 @@ var Select = {
         this._create();
 
         return this;
-    },
-    options: {
-        duration: 100,
-        prepend: "",
-        append: "",
-        placeholder: "",
-        filterPlaceholder: "",
-        filter: true,
-        copyInlineStyles: true,
-        dropHeight: 200,
-
-        clsSelect: "",
-        clsSelectInput: "",
-        clsPrepend: "",
-        clsAppend: "",
-        clsOption: "",
-        clsOptionActive: "",
-        clsOptionGroup: "",
-        clsDropList: "",
-        clsSelectedItem: "",
-        clsSelectedItemRemover: "",
-
-        onChange: Metro.noop,
-        onUp: Metro.noop,
-        onDrop: Metro.noop,
-        onItemSelect: Metro.noop,
-        onItemDeselect: Metro.noop,
-        onSelectCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){

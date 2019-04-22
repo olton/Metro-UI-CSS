@@ -119,7 +119,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.2.41",
-    compileTime: "22/04/2019 15:38:43",
+    compileTime: "22/04/2019 19:23:43",
     buildNumber: "722",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -15531,27 +15531,31 @@ Metro.plugin('navview', NavigationView);
 
 // Source: js/plugins/notify.js
 
+var NotifyDefaultConfig = {
+    container: null,
+    width: 220,
+    timeout: METRO_TIMEOUT,
+    duration: METRO_ANIMATION_DURATION,
+    distance: "100vh",
+    animation: "swing",
+    onClick: Metro.noop,
+    onClose: Metro.noop,
+    onShow: Metro.noop,
+    onAppend: Metro.noop,
+    onNotifyCreate: Metro.noop
+
+};
+
 var Notify = {
 
     options: {
-        container: null,
-        width: 220,
-        timeout: METRO_TIMEOUT,
-        duration: METRO_ANIMATION_DURATION,
-        distance: "100vh",
-        animation: "swing",
-        onClick: Metro.noop,
-        onClose: Metro.noop,
-        onShow: Metro.noop,
-        onAppend: Metro.noop,
-        onNotifyCreate: Metro.noop
     },
 
     notifies: [],
 
     setup: function(options){
         var body = $("body"), container;
-        this.options = $.extend({}, this.options, options);
+        this.options = $.extend({}, NotifyDefaultConfig, options);
 
         if (this.options.container === null) {
             container = $("<div>").addClass("notify-container");
@@ -15570,7 +15574,7 @@ var Notify = {
             distance: "100vh",
             animation: "swing"
         };
-        this.options = $.extend({}, this.options, reset_options);
+        this.options = $.extend({}, NotifyDefaultConfig, reset_options);
     },
 
     create: function(message, title, options){
@@ -15669,9 +15673,45 @@ Metro['notify'] = Notify.setup();
 
 // Source: js/plugins/panel.js
 
+var PanelDefaultConfig = {
+    titleCaption: "",
+    titleIcon: "",
+    collapsible: false,
+    collapsed: false,
+    collapseDuration: METRO_ANIMATION_DURATION,
+    width: "auto",
+    height: "auto",
+    draggable: false,
+
+    customButtons: null,
+    clsCustomButton: "",
+
+    clsPanel: "",
+    clsTitle: "",
+    clsTitleCaption: "",
+    clsTitleIcon: "",
+    clsContent: "",
+    clsCollapseToggle: "",
+
+    onCollapse: Metro.noop,
+    onExpand: Metro.noop,
+    onDragStart: Metro.noop,
+    onDragStop: Metro.noop,
+    onDragMove: Metro.noop,
+    onPanelCreate: Metro.noop
+};
+
+Metro.panelSetup = function (options) {
+    PanelDefaultConfig = $.extend({}, PanelDefaultConfig, options);
+};
+
+if (typeof window.metroPanelSetup !== undefined) {
+    Metro.panelSetup(window.metroPanelSetup);
+}
+
 var Panel = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, PanelDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
 
@@ -15682,34 +15722,6 @@ var Panel = {
     },
 
     dependencies: ['draggable', 'collapse'],
-
-    options: {
-        titleCaption: "",
-        titleIcon: "",
-        collapsible: false,
-        collapsed: false,
-        collapseDuration: METRO_ANIMATION_DURATION,
-        width: "auto",
-        height: "auto",
-        draggable: false,
-
-        customButtons: null,
-        clsCustomButton: "",
-
-        clsPanel: "",
-        clsTitle: "",
-        clsTitleCaption: "",
-        clsTitleIcon: "",
-        clsContent: "",
-        clsCollapseToggle: "",
-
-        onCollapse: Metro.noop,
-        onExpand: Metro.noop,
-        onDragStart: Metro.noop,
-        onDragStop: Metro.noop,
-        onDragMove: Metro.noop,
-        onPanelCreate: Metro.noop
-    },
 
     _setOptionsFromDOM: function(){
         var element = this.element, o = this.options;
@@ -15871,9 +15883,33 @@ Metro.plugin('panel', Panel);
 
 // Source: js/plugins/popovers.js
 
+var PopoverDefaultConfig = {
+    popoverText: "",
+    popoverHide: 3000,
+    popoverTimeout: 10,
+    popoverOffset: 10,
+    popoverTrigger: Metro.popoverEvents.HOVER,
+    popoverPosition: Metro.position.TOP,
+    hideOnLeave: false,
+    closeButton: true,
+    clsPopover: "",
+    clsPopoverContent: "",
+    onPopoverShow: Metro.noop,
+    onPopoverHide: Metro.noop,
+    onPopoverCreate: Metro.noop
+};
+
+Metro.popoverSetup = function (options) {
+    PopoverDefaultConfig = $.extend({}, PopoverDefaultConfig, options);
+};
+
+if (typeof window.metroPopoverSetup !== undefined) {
+    Metro.popoverSetup(window.metroPopoverSetup);
+}
+
 var Popover = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, PopoverDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.popover = null;
@@ -15887,22 +15923,6 @@ var Popover = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        popoverText: "",
-        popoverHide: 3000,
-        popoverTimeout: 10,
-        popoverOffset: 10,
-        popoverTrigger: Metro.popoverEvents.HOVER,
-        popoverPosition: Metro.position.TOP,
-        hideOnLeave: false,
-        closeButton: true,
-        clsPopover: "",
-        clsPopoverContent: "",
-        onPopoverShow: Metro.noop,
-        onPopoverHide: Metro.noop,
-        onPopoverCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -16133,9 +16153,32 @@ Metro.plugin('popover', Popover);
 
 // Source: js/plugins/progress.js
 
+var ProgressDefaultConfig = {
+    value: 0,
+    buffer: 0,
+    type: "bar",
+    small: false,
+    clsBack: "",
+    clsBar: "",
+    clsBuffer: "",
+    onValueChange: Metro.noop,
+    onBufferChange: Metro.noop,
+    onComplete: Metro.noop,
+    onBuffered: Metro.noop,
+    onProgressCreate: Metro.noop
+};
+
+Metro.progressSetup = function (options) {
+    ProgressDefaultConfig = $.extend({}, ProgressDefaultConfig, options);
+};
+
+if (typeof window.metroProgressSetup !== undefined) {
+    Metro.bottomSheetSetup(window.metroProgressSetup);
+}
+
 var Progress = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, ProgressDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.value = 0;
@@ -16145,21 +16188,6 @@ var Progress = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        value: 0,
-        buffer: 0,
-        type: "bar",
-        small: false,
-        clsBack: "",
-        clsBar: "",
-        clsBuffer: "",
-        onValueChange: Metro.noop,
-        onBufferChange: Metro.noop,
-        onComplete: Metro.noop,
-        onBuffered: Metro.noop,
-        onProgressCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -16305,9 +16333,27 @@ Metro.plugin('progress', Progress);
 
 // Source: js/plugins/radio.js
 
+var RadioDefaultConfig = {
+    style: 1,
+    caption: "",
+    captionPosition: "right",
+    clsRadio: "",
+    clsCheck: "",
+    clsCaption: "",
+    onRadioCreate: Metro.noop
+};
+
+Metro.radioSetup = function (options) {
+    RadioDefaultConfig = $.extend({}, RadioDefaultConfig, options);
+};
+
+if (typeof window.metroRadioSetup !== undefined) {
+    Metro.radioSetup(window.metroRadioSetup);
+}
+
 var Radio = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, RadioDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.origin = {
@@ -16318,15 +16364,6 @@ var Radio = {
         this._create();
 
         return this;
-    },
-    options: {
-        style: 1,
-        caption: "",
-        captionPosition: "right",
-        clsRadio: "",
-        clsCheck: "",
-        clsCaption: "",
-        onRadioCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -16427,9 +16464,36 @@ Metro.plugin('radio', Radio);
 
 // Source: js/plugins/rating.js
 
+var RatingDefaultConfig = {
+    static: false,
+    title: null,
+    value: 0,
+    values: null,
+    message: "",
+    stars: 5,
+    starColor: null,
+    staredColor: null,
+    roundFunc: "round", // ceil, floor, round
+    half: true,
+    clsRating: "",
+    clsTitle: "",
+    clsStars: "",
+    clsResult: "",
+    onStarClick: Metro.noop,
+    onRatingCreate: Metro.noop
+};
+
+Metro.ratingSetup = function (options) {
+    RatingDefaultConfig = $.extend({}, RatingDefaultConfig, options);
+};
+
+if (typeof window.metroRatingSetup !== undefined) {
+    Metro.ratingSetup(window.metroRatingSetup);
+}
+
 var Rating = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, RatingDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.value = 0;
@@ -16442,25 +16506,6 @@ var Rating = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        static: false,
-        title: null,
-        value: 0,
-        values: null,
-        message: "",
-        stars: 5,
-        starColor: null,
-        staredColor: null,
-        roundFunc: "round", // ceil, floor, round
-        half: true,
-        clsRating: "",
-        clsTitle: "",
-        clsStars: "",
-        clsResult: "",
-        onStarClick: Metro.noop,
-        onRatingCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -16714,9 +16759,31 @@ Metro.plugin('rating', Rating);
 
 // Source: js/plugins/resizable.js
 
+var ResizableDefaultConfig = {
+    canResize: true,
+    resizeElement: ".resize-element",
+    minWidth: 0,
+    minHeight: 0,
+    maxWidth: 0,
+    maxHeight: 0,
+    preserveRatio: false,
+    onResizeStart: Metro.noop,
+    onResizeStop: Metro.noop,
+    onResize: Metro.noop,
+    onResizableCreate: Metro.noop
+};
+
+Metro.resizeableSetup = function (options) {
+    ResizableDefaultConfig = $.extend({}, ResizableDefaultConfig, options);
+};
+
+if (typeof window.metroResizeableSetup !== undefined) {
+    Metro.resizeableSetup(window.metroResizeableSetup);
+}
+
 var Resizable = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, ResizableDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.resizer = null;
@@ -16725,19 +16792,6 @@ var Resizable = {
         this._create();
 
         return this;
-    },
-    options: {
-        canResize: true,
-        resizeElement: ".resize-element",
-        minWidth: 0,
-        minHeight: 0,
-        maxWidth: 0,
-        maxHeight: 0,
-        preserveRatio: false,
-        onResizeStart: Metro.noop,
-        onResizeStop: Metro.noop,
-        onResize: Metro.noop,
-        onResizableCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -16860,9 +16914,24 @@ Metro.plugin('resizable', Resizable);
 
 // Source: js/plugins/ribbon-menu.js
 
+var RibbonMenuDefaultConfig = {
+    onStatic: Metro.noop,
+    onBeforeTab: Metro.noop_true,
+    onTab: Metro.noop,
+    onRibbonMenuCreate: Metro.noop
+};
+
+Metro.ribbonMenuSetup = function (options) {
+    RibbonMenuDefaultConfig = $.extend({}, RibbonMenuDefaultConfig, options);
+};
+
+if (typeof window.metroRibbonMenuSetup !== undefined) {
+    Metro.ribbonMenuSetup(window.metroRibbonMenuSetup);
+}
+
 var RibbonMenu = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, RibbonMenuDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
 
@@ -16873,13 +16942,6 @@ var RibbonMenu = {
     },
 
     dependencies: ['buttongroup'],
-
-    options: {
-        onStatic: Metro.noop,
-        onBeforeTab: Metro.noop_true,
-        onTab: Metro.noop,
-        onRibbonMenuCreate: Metro.noop
-    },
 
     _setOptionsFromDOM: function(){
         var element = this.element, o = this.options;
@@ -16993,9 +17055,24 @@ Metro.plugin('ribbonmenu', RibbonMenu);
 
 // Source: js/plugins/ripple.js
 
+var RippleDefaultConfig = {
+    rippleColor: "#fff",
+    rippleAlpha: .4,
+    rippleTarget: "default",
+    onRippleCreate: Metro.noop
+};
+
+Metro.rippleSetup = function (options) {
+    RippleDefaultConfig = $.extend({}, RippleDefaultConfig, options);
+};
+
+if (typeof window.metroRippleSetup !== undefined) {
+    Metro.rippleSetup(window.metroRippleSetup);
+}
+
 var Ripple = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, RippleDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
 
@@ -17003,13 +17080,6 @@ var Ripple = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        rippleColor: "#fff",
-        rippleAlpha: .4,
-        rippleTarget: "default",
-        onRippleCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -17086,9 +17156,46 @@ Metro.plugin('ripple', Ripple);
 
 // Source: js/plugins/select.js
 
+var SelectDefaultConfig = {
+    duration: 100,
+    prepend: "",
+    append: "",
+    placeholder: "",
+    filterPlaceholder: "",
+    filter: true,
+    copyInlineStyles: true,
+    dropHeight: 200,
+
+    clsSelect: "",
+    clsSelectInput: "",
+    clsPrepend: "",
+    clsAppend: "",
+    clsOption: "",
+    clsOptionActive: "",
+    clsOptionGroup: "",
+    clsDropList: "",
+    clsSelectedItem: "",
+    clsSelectedItemRemover: "",
+
+    onChange: Metro.noop,
+    onUp: Metro.noop,
+    onDrop: Metro.noop,
+    onItemSelect: Metro.noop,
+    onItemDeselect: Metro.noop,
+    onSelectCreate: Metro.noop
+};
+
+Metro.selectSetup = function (options) {
+    SelectDefaultConfig = $.extend({}, SelectDefaultConfig, options);
+};
+
+if (typeof window.metroSelectSetup !== undefined) {
+    Metro.selectSetup(window.metroSelectSetup);
+}
+
 var Select = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, SelectDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.list = null;
@@ -17097,34 +17204,6 @@ var Select = {
         this._create();
 
         return this;
-    },
-    options: {
-        duration: 100,
-        prepend: "",
-        append: "",
-        placeholder: "",
-        filterPlaceholder: "",
-        filter: true,
-        copyInlineStyles: true,
-        dropHeight: 200,
-
-        clsSelect: "",
-        clsSelectInput: "",
-        clsPrepend: "",
-        clsAppend: "",
-        clsOption: "",
-        clsOptionActive: "",
-        clsOptionGroup: "",
-        clsDropList: "",
-        clsSelectedItem: "",
-        clsSelectedItemRemover: "",
-
-        onChange: Metro.noop,
-        onUp: Metro.noop,
-        onDrop: Metro.noop,
-        onItemSelect: Metro.noop,
-        onItemDeselect: Metro.noop,
-        onSelectCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -17620,9 +17699,35 @@ Metro.plugin('select', Select);
 
 // Source: js/plugins/sidebar.js
 
+var SidebarDefaultConfig = {
+    shadow: true,
+    position: "left",
+    size: 290,
+    shift: null,
+    staticShift: null,
+    toggle: null,
+    duration: METRO_ANIMATION_DURATION,
+    static: null,
+    menuItemClick: true,
+    onOpen: Metro.noop,
+    onClose: Metro.noop,
+    onToggle: Metro.noop,
+    onStaticSet: Metro.noop,
+    onStaticLoss: Metro.noop,
+    onSidebarCreate: Metro.noop
+};
+
+Metro.sidebarSetup = function (options) {
+    SidebarDefaultConfig = $.extend({}, SidebarDefaultConfig, options);
+};
+
+if (typeof window.metroSidebarSetup !== undefined) {
+    Metro.selectSetup(window.metroSidebarSetup);
+}
+
 var Sidebar = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, SidebarDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.toggle_element = null;
@@ -17631,24 +17736,6 @@ var Sidebar = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        shadow: true,
-        position: "left",
-        size: 290,
-        shift: null,
-        staticShift: null,
-        toggle: null,
-        duration: METRO_ANIMATION_DURATION,
-        static: null,
-        menuItemClick: true,
-        onOpen: Metro.noop,
-        onClose: Metro.noop,
-        onToggle: Metro.noop,
-        onStaticSet: Metro.noop,
-        onStaticLoss: Metro.noop,
-        onSidebarCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -17869,9 +17956,56 @@ Metro['sidebar'] = {
 
 // Source: js/plugins/slider.js
 
+var SliderDefaultConfig = {
+    min: 0,
+    max: 100,
+    accuracy: 0,
+    showMinMax: false,
+    minMaxPosition: Metro.position.TOP,
+    value: 0,
+    buffer: 0,
+    hint: false,
+    hintAlways: false,
+    hintPosition: Metro.position.TOP,
+    hintMask: "$1",
+    vertical: false,
+    target: null,
+    returnType: "value", // value or percent
+    size: 0,
+
+    clsSlider: "",
+    clsBackside: "",
+    clsComplete: "",
+    clsBuffer: "",
+    clsMarker: "",
+    clsHint: "",
+    clsMinMax: "",
+    clsMin: "",
+    clsMax: "",
+
+    onStart: Metro.noop,
+    onStop: Metro.noop,
+    onMove: Metro.noop,
+    onSliderClick: Metro.noop,
+    onChange: Metro.noop,
+    onChangeValue: Metro.noop,
+    onChangeBuffer: Metro.noop,
+    onFocus: Metro.noop,
+    onBlur: Metro.noop,
+    onSliderCreate: Metro.noop
+};
+
+Metro.sliderSetup = function (options) {
+    SliderDefaultConfig = $.extend({}, SliderDefaultConfig, options);
+};
+
+if (typeof window.metroSliderSetup !== undefined) {
+    Metro.sliderSetup(window.metroSliderSetup);
+}
+
 var Slider = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, SliderDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.slider = null;
@@ -17885,45 +18019,6 @@ var Slider = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        min: 0,
-        max: 100,
-        accuracy: 0,
-        showMinMax: false,
-        minMaxPosition: Metro.position.TOP,
-        value: 0,
-        buffer: 0,
-        hint: false,
-        hintAlways: false,
-        hintPosition: Metro.position.TOP,
-        hintMask: "$1",
-        vertical: false,
-        target: null,
-        returnType: "value", // value or percent
-        size: 0,
-
-        clsSlider: "",
-        clsBackside: "",
-        clsComplete: "",
-        clsBuffer: "",
-        clsMarker: "",
-        clsHint: "",
-        clsMinMax: "",
-        clsMin: "",
-        clsMax: "",
-
-        onStart: Metro.noop,
-        onStop: Metro.noop,
-        onMove: Metro.noop,
-        onClick: Metro.noop,
-        onChange: Metro.noop,
-        onChangeValue: Metro.noop,
-        onChangeBuffer: Metro.noop,
-        onFocus: Metro.noop,
-        onBlur: Metro.noop,
-        onSliderCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -18132,8 +18227,8 @@ var Slider = {
 
         slider.on(Metro.events.click, function(e){
             that._move(e);
-            Utils.exec(o.onClick, [that.value, that.percent], element[0]);
-            element.fire("click", {
+            Utils.exec(o.onSliderClick, [that.value, that.percent], element[0]);
+            element.fire("sliderclick", {
                 val: that.value,
                 percent: that.percent
             });
@@ -18224,7 +18319,7 @@ var Slider = {
             element.val(value);
         }
 
-        element.trigger("change");
+        // element.trigger("change");
 
         if (o.target !== null) {
             var target = $(o.target);

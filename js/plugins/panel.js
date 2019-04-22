@@ -1,6 +1,42 @@
+var PanelDefaultConfig = {
+    titleCaption: "",
+    titleIcon: "",
+    collapsible: false,
+    collapsed: false,
+    collapseDuration: METRO_ANIMATION_DURATION,
+    width: "auto",
+    height: "auto",
+    draggable: false,
+
+    customButtons: null,
+    clsCustomButton: "",
+
+    clsPanel: "",
+    clsTitle: "",
+    clsTitleCaption: "",
+    clsTitleIcon: "",
+    clsContent: "",
+    clsCollapseToggle: "",
+
+    onCollapse: Metro.noop,
+    onExpand: Metro.noop,
+    onDragStart: Metro.noop,
+    onDragStop: Metro.noop,
+    onDragMove: Metro.noop,
+    onPanelCreate: Metro.noop
+};
+
+Metro.panelSetup = function (options) {
+    PanelDefaultConfig = $.extend({}, PanelDefaultConfig, options);
+};
+
+if (typeof window.metroPanelSetup !== undefined) {
+    Metro.panelSetup(window.metroPanelSetup);
+}
+
 var Panel = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, PanelDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
 
@@ -11,34 +47,6 @@ var Panel = {
     },
 
     dependencies: ['draggable', 'collapse'],
-
-    options: {
-        titleCaption: "",
-        titleIcon: "",
-        collapsible: false,
-        collapsed: false,
-        collapseDuration: METRO_ANIMATION_DURATION,
-        width: "auto",
-        height: "auto",
-        draggable: false,
-
-        customButtons: null,
-        clsCustomButton: "",
-
-        clsPanel: "",
-        clsTitle: "",
-        clsTitleCaption: "",
-        clsTitleIcon: "",
-        clsContent: "",
-        clsCollapseToggle: "",
-
-        onCollapse: Metro.noop,
-        onExpand: Metro.noop,
-        onDragStart: Metro.noop,
-        onDragStop: Metro.noop,
-        onDragMove: Metro.noop,
-        onPanelCreate: Metro.noop
-    },
 
     _setOptionsFromDOM: function(){
         var element = this.element, o = this.options;

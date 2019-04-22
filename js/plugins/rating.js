@@ -1,6 +1,33 @@
+var RatingDefaultConfig = {
+    static: false,
+    title: null,
+    value: 0,
+    values: null,
+    message: "",
+    stars: 5,
+    starColor: null,
+    staredColor: null,
+    roundFunc: "round", // ceil, floor, round
+    half: true,
+    clsRating: "",
+    clsTitle: "",
+    clsStars: "",
+    clsResult: "",
+    onStarClick: Metro.noop,
+    onRatingCreate: Metro.noop
+};
+
+Metro.ratingSetup = function (options) {
+    RatingDefaultConfig = $.extend({}, RatingDefaultConfig, options);
+};
+
+if (typeof window.metroRatingSetup !== undefined) {
+    Metro.ratingSetup(window.metroRatingSetup);
+}
+
 var Rating = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, RatingDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.value = 0;
@@ -13,25 +40,6 @@ var Rating = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        static: false,
-        title: null,
-        value: 0,
-        values: null,
-        message: "",
-        stars: 5,
-        starColor: null,
-        staredColor: null,
-        roundFunc: "round", // ceil, floor, round
-        half: true,
-        clsRating: "",
-        clsTitle: "",
-        clsStars: "",
-        clsResult: "",
-        onStarClick: Metro.noop,
-        onRatingCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){

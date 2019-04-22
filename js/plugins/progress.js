@@ -1,6 +1,29 @@
+var ProgressDefaultConfig = {
+    value: 0,
+    buffer: 0,
+    type: "bar",
+    small: false,
+    clsBack: "",
+    clsBar: "",
+    clsBuffer: "",
+    onValueChange: Metro.noop,
+    onBufferChange: Metro.noop,
+    onComplete: Metro.noop,
+    onBuffered: Metro.noop,
+    onProgressCreate: Metro.noop
+};
+
+Metro.progressSetup = function (options) {
+    ProgressDefaultConfig = $.extend({}, ProgressDefaultConfig, options);
+};
+
+if (typeof window.metroProgressSetup !== undefined) {
+    Metro.bottomSheetSetup(window.metroProgressSetup);
+}
+
 var Progress = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, ProgressDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.value = 0;
@@ -10,21 +33,6 @@ var Progress = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        value: 0,
-        buffer: 0,
-        type: "bar",
-        small: false,
-        clsBack: "",
-        clsBar: "",
-        clsBuffer: "",
-        onValueChange: Metro.noop,
-        onBufferChange: Metro.noop,
-        onComplete: Metro.noop,
-        onBuffered: Metro.noop,
-        onProgressCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){

@@ -1,6 +1,21 @@
+var RibbonMenuDefaultConfig = {
+    onStatic: Metro.noop,
+    onBeforeTab: Metro.noop_true,
+    onTab: Metro.noop,
+    onRibbonMenuCreate: Metro.noop
+};
+
+Metro.ribbonMenuSetup = function (options) {
+    RibbonMenuDefaultConfig = $.extend({}, RibbonMenuDefaultConfig, options);
+};
+
+if (typeof window.metroRibbonMenuSetup !== undefined) {
+    Metro.ribbonMenuSetup(window.metroRibbonMenuSetup);
+}
+
 var RibbonMenu = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, RibbonMenuDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
 
@@ -11,13 +26,6 @@ var RibbonMenu = {
     },
 
     dependencies: ['buttongroup'],
-
-    options: {
-        onStatic: Metro.noop,
-        onBeforeTab: Metro.noop_true,
-        onTab: Metro.noop,
-        onRibbonMenuCreate: Metro.noop
-    },
 
     _setOptionsFromDOM: function(){
         var element = this.element, o = this.options;
