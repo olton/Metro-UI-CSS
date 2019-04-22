@@ -120,7 +120,7 @@ var Metro = {
 
     version: "4.2.41",
     versionFull: "4.2.41.722",
-    compileTime: "22/04/2019 10:04:32",
+    compileTime: "22/04/2019 10:10:02",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -10264,11 +10264,54 @@ $(document).on(Metro.events.click, function(){
 
 // Source: js/plugins/dialog.js
 
+var DialogDefaultConfig = {
+    closeButton: false,
+    leaveOverlayOnClose: false,
+    toTop: false,
+    toBottom: false,
+    locale: METRO_LOCALE,
+    title: "",
+    content: "",
+    actions: {},
+    actionsAlign: "right",
+    defaultAction: true,
+    overlay: true,
+    overlayColor: '#000000',
+    overlayAlpha: .5,
+    overlayClickClose: false,
+    width: '480',
+    height: 'auto',
+    shadow: true,
+    closeAction: true,
+    clsDialog: "",
+    clsTitle: "",
+    clsContent: "",
+    clsAction: "",
+    clsDefaultAction: "",
+    clsOverlay: "",
+    autoHide: 0,
+    removeOnClose: false,
+    show: false,
+    onShow: Metro.noop,
+    onHide: Metro.noop,
+    onOpen: Metro.noop,
+    onClose: Metro.noop,
+    onDialogCreate: Metro.noop
+};
+
+Metro.dialogSetup = function (options) {
+    DialogDefaultConfig = $.extend({}, DialogDefaultConfig, options);
+};
+
+if (typeof window.metroDialogSetup !== undefined) {
+    Metro.dialogSetup(window.metroDialogSetup);
+}
+
 var Dialog = {
     _counter: 0,
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, DialogDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.interval = null;
@@ -10278,41 +10321,6 @@ var Dialog = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        closeButton: false,
-        leaveOverlayOnClose: false,
-        toTop: false,
-        toBottom: false,
-        locale: METRO_LOCALE,
-        title: "",
-        content: "",
-        actions: {},
-        actionsAlign: "right",
-        defaultAction: true,
-        overlay: true,
-        overlayColor: '#000000',
-        overlayAlpha: .5,
-        overlayClickClose: false,
-        width: '480',
-        height: 'auto',
-        shadow: true,
-        closeAction: true,
-        clsDialog: "",
-        clsTitle: "",
-        clsContent: "",
-        clsAction: "",
-        clsDefaultAction: "",
-        clsOverlay: "",
-        autoHide: 0,
-        removeOnClose: false,
-        show: false,
-        onShow: Metro.noop,
-        onHide: Metro.noop,
-        onOpen: Metro.noop,
-        onClose: Metro.noop,
-        onDialogCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
