@@ -1,6 +1,30 @@
+var TabsDefaultConfig = {
+    expand: false,
+    expandPoint: null,
+    tabsPosition: "top",
+    tabsType: "default",
+
+    clsTabs: "",
+    clsTabsList: "",
+    clsTabsListItem: "",
+    clsTabsListItemActive: "",
+
+    onTab: Metro.noop,
+    onBeforeTab: Metro.noop_true,
+    onTabsCreate: Metro.noop
+};
+
+Metro.tabsSetup = function (options) {
+    TabsDefaultConfig = $.extend({}, TabsDefaultConfig, options);
+};
+
+if (typeof window.metroTabsSetup !== undefined) {
+    Metro.tabsSetup(window.metroTabsSetup);
+}
+
 var Tabs = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, TabsDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this._targets = [];
@@ -9,22 +33,6 @@ var Tabs = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        expand: false,
-        expandPoint: null,
-        tabsPosition: "top",
-        tabsType: "default",
-
-        clsTabs: "",
-        clsTabsList: "",
-        clsTabsListItem: "",
-        clsTabsListItemActive: "",
-
-        onTab: Metro.noop,
-        onBeforeTab: Metro.noop_true,
-        onTabsCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){

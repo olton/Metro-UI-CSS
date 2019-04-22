@@ -1,6 +1,32 @@
+var TextareaDefaultConfig = {
+    charsCounter: null,
+    charsCounterTemplate: "$1",
+    defaultValue: "",
+    prepend: "",
+    append: "",
+    copyInlineStyles: true,
+    clearButton: true,
+    clearButtonIcon: "<span class='default-icon-cross'></span>",
+    autoSize: true,
+    clsPrepend: "",
+    clsAppend: "",
+    clsComponent: "",
+    clsTextarea: "",
+    onChange: Metro.noop,
+    onTextareaCreate: Metro.noop
+};
+
+Metro.textareaSetup = function (options) {
+    TextareaDefaultConfig = $.extend({}, TextareaDefaultConfig, options);
+};
+
+if (typeof window.metroTextareaSetup !== undefined) {
+    Metro.textareaSetup(window.metroTextareaSetup);
+}
+
 var Textarea = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, TextareaDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
 
@@ -8,23 +34,6 @@ var Textarea = {
         this._create();
 
         return this;
-    },
-    options: {
-        charsCounter: null,
-        charsCounterTemplate: "$1",
-        defaultValue: "",
-        prepend: "",
-        append: "",
-        copyInlineStyles: true,
-        clearButton: true,
-        clearButtonIcon: "<span class='default-icon-cross'></span>",
-        autoSize: true,
-        clsPrepend: "",
-        clsAppend: "",
-        clsComponent: "",
-        clsTextarea: "",
-        onChange: Metro.noop,
-        onTextareaCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){

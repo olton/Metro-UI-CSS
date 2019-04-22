@@ -1,6 +1,28 @@
+var MaterialTabsDefaultConfig = {
+    deep: false,
+    fixedTabs: false,
+
+    clsComponent: "",
+    clsTab: "",
+    clsTabActive: "",
+    clsMarker: "",
+
+    onBeforeTabOpen: Metro.noop_true,
+    onTabOpen: Metro.noop,
+    onTabsCreate: Metro.noop
+};
+
+Metro.materialTabsSetup = function (options) {
+    MaterialTabsDefaultConfig = $.extend({}, MaterialTabsDefaultConfig, options);
+};
+
+if (typeof window.metroMaterialTabsSetup !== undefined) {
+    Metro.materialTabsSetup(window.metroMaterialTabsSetup);
+}
+
 var MaterialTabs = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, MaterialTabsDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.marker = null;
@@ -9,20 +31,6 @@ var MaterialTabs = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        deep: false,
-        fixedTabs: false,
-
-        clsComponent: "",
-        clsTab: "",
-        clsTabActive: "",
-        clsMarker: "",
-
-        onBeforeTabOpen: Metro.noop_true,
-        onTabOpen: Metro.noop,
-        onTabsCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){

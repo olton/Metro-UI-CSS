@@ -1,6 +1,65 @@
+var WindowDefaultConfig = {
+    hidden: false,
+    width: "auto",
+    height: "auto",
+    btnClose: true,
+    btnMin: true,
+    btnMax: true,
+    clsCaption: "",
+    clsContent: "",
+    clsWindow: "",
+    draggable: true,
+    dragElement: ".window-caption .icon, .window-caption .title",
+    dragArea: "parent",
+    shadow: false,
+    icon: "",
+    title: "Window",
+    content: "default",
+    resizable: true,
+    overlay: false,
+    overlayColor: 'transparent',
+    overlayAlpha: .5,
+    modal: false,
+    position: "absolute",
+    checkEmbed: true,
+    top: "auto",
+    left: "auto",
+    place: "auto",
+    closeAction: Metro.actions.REMOVE,
+    customButtons: null,
+    clsCustomButton: "",
+    minWidth: 0,
+    minHeight: 0,
+    maxWidth: 0,
+    maxHeight: 0,
+    onDragStart: Metro.noop,
+    onDragStop: Metro.noop,
+    onDragMove: Metro.noop,
+    onCaptionDblClick: Metro.noop,
+    onCloseClick: Metro.noop,
+    onMaxClick: Metro.noop,
+    onMinClick: Metro.noop,
+    onResizeStart: Metro.noop,
+    onResizeStop: Metro.noop,
+    onResize: Metro.noop,
+    onWindowCreate: Metro.noop,
+    onShow: Metro.noop,
+    onWindowDestroy: Metro.noop,
+    onCanClose: Metro.noop_true,
+    onClose: Metro.noop
+};
+
+Metro.windowSetup = function (options) {
+    WindowDefaultConfig = $.extend({}, WindowDefaultConfig, options);
+};
+
+if (typeof window.metroWindowSetup !== undefined) {
+    Metro.windowSetup(window.metroWindowSetup);
+}
+
 var Window = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, WindowDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.win = null;
@@ -18,57 +77,6 @@ var Window = {
     },
 
     dependencies: ['draggable', 'resizeable'],
-
-    options: {
-        hidden: false,
-        width: "auto",
-        height: "auto",
-        btnClose: true,
-        btnMin: true,
-        btnMax: true,
-        clsCaption: "",
-        clsContent: "",
-        clsWindow: "",
-        draggable: true,
-        dragElement: ".window-caption .icon, .window-caption .title",
-        dragArea: "parent",
-        shadow: false,
-        icon: "",
-        title: "Window",
-        content: "default",
-        resizable: true,
-        overlay: false,
-        overlayColor: 'transparent',
-        overlayAlpha: .5,
-        modal: false,
-        position: "absolute",
-        checkEmbed: true,
-        top: "auto",
-        left: "auto",
-        place: "auto",
-        closeAction: Metro.actions.REMOVE,
-        customButtons: null,
-        clsCustomButton: "",
-        minWidth: 0,
-        minHeight: 0,
-        maxWidth: 0,
-        maxHeight: 0,
-        onDragStart: Metro.noop,
-        onDragStop: Metro.noop,
-        onDragMove: Metro.noop,
-        onCaptionDblClick: Metro.noop,
-        onCloseClick: Metro.noop,
-        onMaxClick: Metro.noop,
-        onMinClick: Metro.noop,
-        onResizeStart: Metro.noop,
-        onResizeStop: Metro.noop,
-        onResize: Metro.noop,
-        onWindowCreate: Metro.noop,
-        onShow: Metro.noop,
-        onWindowDestroy: Metro.noop,
-        onCanClose: Metro.noop_true,
-        onClose: Metro.noop
-    },
 
     _setOptionsFromDOM: function(){
         var element = this.element, o = this.options;

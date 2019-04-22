@@ -1,6 +1,29 @@
+var TreeViewDefaultConfig = {
+    effect: "slide",
+    duration: 100,
+    onNodeClick: Metro.noop,
+    onNodeDblClick: Metro.noop,
+    onNodeDelete: Metro.noop,
+    onNodeInsert: Metro.noop,
+    onNodeClean: Metro.noop,
+    onCheckClick: Metro.noop,
+    onRadioClick: Metro.noop,
+    onExpandNode: Metro.noop,
+    onCollapseNode: Metro.noop,
+    onTreeViewCreate: Metro.noop
+};
+
+Metro.treeViewSetup = function (options) {
+    TreeViewDefaultConfig = $.extend({}, TreeViewDefaultConfig, options);
+};
+
+if (typeof window.metroTreeViewSetup !== undefined) {
+    Metro.treeViewSetup(window.metroTreeViewSetup);
+}
+
 var TreeView = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, TreeViewDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
 
@@ -8,21 +31,6 @@ var TreeView = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        effect: "slide",
-        duration: 100,
-        onNodeClick: Metro.noop,
-        onNodeDblClick: Metro.noop,
-        onNodeDelete: Metro.noop,
-        onNodeInsert: Metro.noop,
-        onNodeClean: Metro.noop,
-        onCheckClick: Metro.noop,
-        onRadioClick: Metro.noop,
-        onExpandNode: Metro.noop,
-        onCollapseNode: Metro.noop,
-        onTreeViewCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){

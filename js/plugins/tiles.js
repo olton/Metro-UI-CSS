@@ -1,6 +1,27 @@
+var TileDefaultConfig = {
+    size: "medium",
+    cover: "",
+    coverPosition: "center",
+    effect: "",
+    effectInterval: 3000,
+    effectDuration: 500,
+    target: null,
+    canTransform: true,
+    onClick: Metro.noop,
+    onTileCreate: Metro.noop
+};
+
+Metro.tileSetup = function (options) {
+    TileDefaultConfig = $.extend({}, TileDefaultConfig, options);
+};
+
+if (typeof window.metroTileSetup !== undefined) {
+    Metro.tileSetup(window.metroTileSetup);
+}
+
 var Tile = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, TileDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.effectInterval = false;
@@ -13,19 +34,6 @@ var Tile = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        size: "medium",
-        cover: "",
-        coverPosition: "center",
-        effect: "",
-        effectInterval: 3000,
-        effectDuration: 500,
-        target: null,
-        canTransform: true,
-        onClick: Metro.noop,
-        onTileCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
