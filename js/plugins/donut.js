@@ -1,6 +1,33 @@
+var DonutDefaultConfig = {
+    size: 100,
+    radius: 50,
+    hole: .8,
+    value: 0,
+    background: "#ffffff",
+    color: "",
+    stroke: "#d1d8e7",
+    fill: "#49649f",
+    fontSize: 24,
+    total: 100,
+    cap: "%",
+    showText: true,
+    showValue: false,
+    animate: 0,
+    onChange: Metro.noop,
+    onDonutCreate: Metro.noop
+};
+
+Metro.donutSetup = function (options) {
+    DonutDefaultConfig = $.extend({}, DonutDefaultConfig, options);
+};
+
+if (typeof window.metroDonutSetup !== undefined) {
+    Metro.donutSetup(window.metroDonutSetup);
+}
+
 var Donut = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, DonutDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.value = 0;
@@ -10,25 +37,6 @@ var Donut = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        size: 100,
-        radius: 50,
-        hole: .8,
-        value: 0,
-        background: "#ffffff",
-        color: "",
-        stroke: "#d1d8e7",
-        fill: "#49649f",
-        fontSize: 24,
-        total: 100,
-        cap: "%",
-        showText: true,
-        showValue: false,
-        animate: 0,
-        onChange: Metro.noop,
-        onDonutCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
