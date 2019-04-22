@@ -119,8 +119,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.2.41",
-    versionFull: "4.2.41.722",
-    compileTime: "22/04/2019 15:27:46",
+    compileTime: "22/04/2019 15:38:43",
+    buildNumber: "722",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -294,8 +294,16 @@ var Metro = {
         alert("Metro 4 - v" + this.version +". "+ this.showCompileTime());
     },
 
-    ver: function(f){
-        return (f === true ? this.versionFull : this.version);
+    ver: function(){
+        return this.version;
+    },
+
+    build: function(){
+        return this.build;
+    },
+
+    compile: function(){
+        return this.compileTime;
     },
 
     observe: function(){
@@ -13645,9 +13653,79 @@ $(document).on(Metro.events.click, function(){
 
 // Source: js/plugins/list.js
 
+var ListDefaultConfig = {
+    templateBeginToken: "<%",
+    templateEndToken: "%>",
+    paginationDistance: 5,
+    paginationShortMode: true,
+    thousandSeparator: ",",
+    decimalSeparator: ",",
+    sortTarget: "li",
+    sortClass: null,
+    sortDir: "asc",
+    sortInitial: false,
+    filterClass: null,
+    filter: null,
+    filterString: "",
+    filters: null,
+    source: null,
+    showItemsSteps: false,
+    showSearch: false,
+    showListInfo: false,
+    showPagination: false,
+    showActivity: true,
+    muteList: true,
+    items: -1,
+    itemsSteps: "all, 10,25,50,100",
+    itemsAllTitle: "Show all",
+    listItemsCountTitle: "Show entries:",
+    listSearchTitle: "Search:",
+    listInfoTitle: "Showing $1 to $2 of $3 entries",
+    paginationPrevTitle: "Prev",
+    paginationNextTitle: "Next",
+    activityType: "cycle",
+    activityStyle: "color",
+    activityTimeout: 100,
+    searchWrapper: null,
+    rowsWrapper: null,
+    infoWrapper: null,
+    paginationWrapper: null,
+    clsComponent: "",
+    clsList: "",
+    clsListItem: "",
+    clsListTop: "",
+    clsItemsCount: "",
+    clsSearch: "",
+    clsListBottom: "",
+    clsListInfo: "",
+    clsListPagination: "",
+    clsPagination: "",
+    onDraw: Metro.noop,
+    onDrawItem: Metro.noop,
+    onSortStart: Metro.noop,
+    onSortStop: Metro.noop,
+    onSortItemSwitch: Metro.noop,
+    onSearch: Metro.noop,
+    onRowsCountChange: Metro.noop,
+    onDataLoad: Metro.noop,
+    onDataLoaded: Metro.noop,
+    onDataLoadError: Metro.noop,
+    onFilterItemAccepted: Metro.noop,
+    onFilterItemDeclined: Metro.noop,
+    onListCreate: Metro.noop
+};
+
+Metro.listSetup = function (options) {
+    ListDefaultConfig = $.extend({}, ListDefaultConfig, options);
+};
+
+if (typeof window.metroListSetup !== undefined) {
+    Metro.listSetup(window.metroListSetup);
+}
+
 var List = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, ListDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.currentPage = 1;
@@ -13677,84 +13755,6 @@ var List = {
         this._create();
 
         return this;
-    },
-
-    options: {
-
-        templateBeginToken: "<%",
-        templateEndToken: "%>",
-        paginationDistance: 5,
-        paginationShortMode: true,
-
-        thousandSeparator: ",",
-        decimalSeparator: ",",
-
-        sortTarget: "li",
-        sortClass: null,
-        sortDir: "asc",
-        sortInitial: false,
-
-        filterClass: null,
-        filter: null,
-        filterString: "",
-        filters: null,
-        source: null,
-
-        showItemsSteps: false,
-        showSearch: false,
-        showListInfo: false,
-        showPagination: false,
-        showActivity: true,
-
-        muteList: true,
-
-        items: -1,
-        itemsSteps: "all, 10,25,50,100",
-
-        itemsAllTitle: "Show all",
-        listItemsCountTitle: "Show entries:",
-        listSearchTitle: "Search:",
-        listInfoTitle: "Showing $1 to $2 of $3 entries",
-        paginationPrevTitle: "Prev",
-        paginationNextTitle: "Next",
-
-        activityType: "cycle",
-        activityStyle: "color",
-        activityTimeout: 100,
-
-        searchWrapper: null,
-        rowsWrapper: null,
-        infoWrapper: null,
-        paginationWrapper: null,
-
-        clsComponent: "",
-        clsList: "",
-        clsListItem: "",
-
-        clsListTop: "",
-        clsItemsCount: "",
-        clsSearch: "",
-
-        clsListBottom: "",
-        clsListInfo: "",
-        clsListPagination: "",
-
-        clsPagination: "",
-
-        onDraw: Metro.noop,
-        onDrawItem: Metro.noop,
-        onSortStart: Metro.noop,
-        onSortStop: Metro.noop,
-        onSortItemSwitch: Metro.noop,
-        onSearch: Metro.noop,
-        onRowsCountChange: Metro.noop,
-        onDataLoad: Metro.noop,
-        onDataLoaded: Metro.noop,
-        onDataLoadError: Metro.noop,
-        onFilterItemAccepted: Metro.noop,
-        onFilterItemDeclined: Metro.noop,
-
-        onListCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -14513,9 +14513,35 @@ Metro.plugin('list', List);
 
 // Source: js/plugins/listview.js
 
+var ListViewDefaultConfig = {
+    selectable: false,
+    checkStyle: 1,
+    effect: "slide",
+    duration: 100,
+    view: Metro.listView.LIST,
+    selectCurrent: true,
+    structure: {},
+    onNodeInsert: Metro.noop,
+    onNodeDelete: Metro.noop,
+    onNodeClean: Metro.noop,
+    onCollapseNode: Metro.noop,
+    onExpandNode: Metro.noop,
+    onGroupNodeClick: Metro.noop,
+    onNodeClick: Metro.noop,
+    onListViewCreate: Metro.noop
+};
+
+Metro.listViewSetup = function (options) {
+    ListViewDefaultConfig = $.extend({}, ListViewDefaultConfig, options);
+};
+
+if (typeof window.metroListViewSetup !== undefined) {
+    Metro.listViewSetup(window.metroListViewSetup);
+}
+
 var ListView = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, ListViewDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
 
@@ -14523,24 +14549,6 @@ var ListView = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        selectable: false,
-        checkStyle: 1,
-        effect: "slide",
-        duration: 100,
-        view: Metro.listView.LIST,
-        selectCurrent: true,
-        structure: {},
-        onNodeInsert: Metro.noop,
-        onNodeDelete: Metro.noop,
-        onNodeClean: Metro.noop,
-        onCollapseNode: Metro.noop,
-        onExpandNode: Metro.noop,
-        onGroupNodeClick: Metro.noop,
-        onNodeClick: Metro.noop,
-        onListViewCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -14938,9 +14946,43 @@ Metro.plugin('listview', ListView);
 
 // Source: js/plugins/master.js
 
+var MasterDefaultConfig = {
+    effect: "slide", // slide, fade, switch, slowdown, custom
+    effectFunc: "linear",
+    duration: METRO_ANIMATION_DURATION,
+
+    controlPrev: "<span class='default-icon-left-arrow'></span>",
+    controlNext: "<span class='default-icon-right-arrow'></span>",
+    controlTitle: "Master, page $1 of $2",
+    backgroundImage: "",
+
+    clsMaster: "",
+    clsControls: "",
+    clsControlPrev: "",
+    clsControlNext: "",
+    clsControlTitle: "",
+    clsPages: "",
+    clsPage: "",
+
+    onBeforePage: Metro.noop_true,
+    onBeforeNext: Metro.noop_true,
+    onBeforePrev: Metro.noop_true,
+    onNextPage: Metro.noop,
+    onPrevPage: Metro.noop,
+    onMasterCreate: Metro.noop
+};
+
+Metro.masterSetup = function (options) {
+    MasterDefaultConfig = $.extend({}, MasterDefaultConfig, options);
+};
+
+if (typeof window.metroMasterSetup !== undefined) {
+    Metro.masterSetup(window.metroMasterSetup);
+}
+
 var Master = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, MasterDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.pages = [];
@@ -14951,32 +14993,6 @@ var Master = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        effect: "slide", // slide, fade, switch, slowdown, custom
-        effectFunc: "linear",
-        duration: METRO_ANIMATION_DURATION,
-
-        controlPrev: "<span class='default-icon-left-arrow'></span>",
-        controlNext: "<span class='default-icon-right-arrow'></span>",
-        controlTitle: "Master, page $1 of $2",
-        backgroundImage: "",
-
-        clsMaster: "",
-        clsControls: "",
-        clsControlPrev: "",
-        clsControlNext: "",
-        clsControlTitle: "",
-        clsPages: "",
-        clsPage: "",
-
-        onBeforePage: Metro.noop_true,
-        onBeforeNext: Metro.noop_true,
-        onBeforePrev: Metro.noop_true,
-        onNextPage: Metro.noop,
-        onPrevPage: Metro.noop,
-        onMasterCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -15296,9 +15312,26 @@ Metro.plugin('master', Master);
 
 // Source: js/plugins/navview.js
 
+var NavigationViewDefaultConfig = {
+    compact: "md",
+    expanded: "lg",
+    toggle: null,
+    activeState: false,
+    onMenuItemClick: Metro.noop,
+    onNavViewCreate: Metro.noop
+};
+
+Metro.navigationViewSetup = function (options) {
+    NavigationViewDefaultConfig = $.extend({}, NavigationViewDefaultConfig, options);
+};
+
+if (typeof window.metroNavigationViewSetup !== undefined) {
+    Metro.navigationViewSetup(window.metroNavigationSetup);
+}
+
 var NavigationView = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, NavigationViewDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.pane = null;
@@ -15309,15 +15342,6 @@ var NavigationView = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        compact: "md",
-        expanded: "lg",
-        toggle: null,
-        activeState: false,
-        onMenuItemClick: Metro.noop,
-        onNavViewCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){

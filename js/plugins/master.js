@@ -1,6 +1,40 @@
+var MasterDefaultConfig = {
+    effect: "slide", // slide, fade, switch, slowdown, custom
+    effectFunc: "linear",
+    duration: METRO_ANIMATION_DURATION,
+
+    controlPrev: "<span class='default-icon-left-arrow'></span>",
+    controlNext: "<span class='default-icon-right-arrow'></span>",
+    controlTitle: "Master, page $1 of $2",
+    backgroundImage: "",
+
+    clsMaster: "",
+    clsControls: "",
+    clsControlPrev: "",
+    clsControlNext: "",
+    clsControlTitle: "",
+    clsPages: "",
+    clsPage: "",
+
+    onBeforePage: Metro.noop_true,
+    onBeforeNext: Metro.noop_true,
+    onBeforePrev: Metro.noop_true,
+    onNextPage: Metro.noop,
+    onPrevPage: Metro.noop,
+    onMasterCreate: Metro.noop
+};
+
+Metro.masterSetup = function (options) {
+    MasterDefaultConfig = $.extend({}, MasterDefaultConfig, options);
+};
+
+if (typeof window.metroMasterSetup !== undefined) {
+    Metro.masterSetup(window.metroMasterSetup);
+}
+
 var Master = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, MasterDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.pages = [];
@@ -11,32 +45,6 @@ var Master = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        effect: "slide", // slide, fade, switch, slowdown, custom
-        effectFunc: "linear",
-        duration: METRO_ANIMATION_DURATION,
-
-        controlPrev: "<span class='default-icon-left-arrow'></span>",
-        controlNext: "<span class='default-icon-right-arrow'></span>",
-        controlTitle: "Master, page $1 of $2",
-        backgroundImage: "",
-
-        clsMaster: "",
-        clsControls: "",
-        clsControlPrev: "",
-        clsControlNext: "",
-        clsControlTitle: "",
-        clsPages: "",
-        clsPage: "",
-
-        onBeforePage: Metro.noop_true,
-        onBeforeNext: Metro.noop_true,
-        onBeforePrev: Metro.noop_true,
-        onNextPage: Metro.noop,
-        onPrevPage: Metro.noop,
-        onMasterCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
