@@ -1,6 +1,22 @@
+var ImageCompareDefaultConfig = {
+    width: "100%",
+    height: "auto",
+    onResize: Metro.noop,
+    onSliderMove: Metro.noop,
+    onImageCompareCreate: Metro.noop
+};
+
+Metro.imageCompareSetup = function (options) {
+    ImageCompareDefaultConfig = $.extend({}, ImageCompareDefaultConfig, options);
+};
+
+if (typeof window.metroImageCompareSetup !== undefined) {
+    Metro.imageCompareSetup(window.metroImageCompareSetup);
+}
+
 var ImageCompare = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, ImageCompareDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
 
@@ -8,14 +24,6 @@ var ImageCompare = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        width: "100%",
-        height: "auto",
-        onResize: Metro.noop,
-        onSliderMove: Metro.noop,
-        onImageCompareCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){

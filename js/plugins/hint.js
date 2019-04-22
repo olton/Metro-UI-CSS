@@ -1,6 +1,25 @@
+var HintDefaultConfig = {
+    hintHide: 5000,
+    clsHint: "",
+    hintText: "",
+    hintPosition: Metro.position.TOP,
+    hintOffset: 4,
+    onHintShow: Metro.noop,
+    onHintHide: Metro.noop,
+    onHintCreate: Metro.noop
+};
+
+Metro.hintSetup = function (options) {
+    HintDefaultConfig = $.extend({}, HintDefaultConfig, options);
+};
+
+if (typeof window.metroHintSetup !== undefined) {
+    Metro.hintSetup(window.metroHintSetup);
+}
+
 var Hint = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, HintDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.hint = null;
@@ -13,17 +32,6 @@ var Hint = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        hintHide: 5000,
-        clsHint: "",
-        hintText: "",
-        hintPosition: Metro.position.TOP,
-        hintOffset: 4,
-        onHintShow: Metro.noop,
-        onHintHide: Metro.noop,
-        onHintCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
