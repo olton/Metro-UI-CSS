@@ -1,6 +1,28 @@
+var SorterDefaultConfig = {
+    thousandSeparator: ",",
+    decimalSeparator: ",",
+    sortTarget: null,
+    sortSource: null,
+    sortDir: "asc",
+    sortStart: true,
+    saveInitial: true,
+    onSortStart: Metro.noop,
+    onSortStop: Metro.noop,
+    onSortItemSwitch: Metro.noop,
+    onSorterCreate: Metro.noop
+};
+
+Metro.sorterSetup = function (options) {
+    SorterDefaultConfig = $.extend({}, SorterDefaultConfig, options);
+};
+
+if (typeof window.metroSorterSetup !== undefined) {
+    Metro.sorterSetup(window.metroSorterSetup);
+}
+
 var Sorter = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, SorterDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.initial = [];
@@ -9,20 +31,6 @@ var Sorter = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        thousandSeparator: ",",
-        decimalSeparator: ",",
-        sortTarget: null,
-        sortSource: null,
-        sortDir: "asc",
-        sortStart: true,
-        saveInitial: true,
-        onSortStart: Metro.noop,
-        onSortStop: Metro.noop,
-        onSortItemSwitch: Metro.noop,
-        onSorterCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){

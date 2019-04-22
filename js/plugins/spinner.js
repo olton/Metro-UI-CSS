@@ -1,6 +1,41 @@
+var SpinnerDefaultConfig = {
+    step: 1,
+    plusIcon: "<span class='default-icon-plus'></span>",
+    minusIcon: "<span class='default-icon-minus'></span>",
+    buttonsPosition: "default",
+    defaultValue: 0,
+    minValue: null,
+    maxValue: null,
+    fixed: 0,
+    repeatThreshold: 1000,
+    hideCursor: false,
+    clsSpinner: "",
+    clsSpinnerInput: "",
+    clsSpinnerButton: "",
+    clsSpinnerButtonPlus: "",
+    clsSpinnerButtonMinus: "",
+    onBeforeChange: Metro.noop_true,
+    onChange: Metro.noop,
+    onPlusClick: Metro.noop,
+    onMinusClick: Metro.noop,
+    onArrowUp: Metro.noop,
+    onArrowDown: Metro.noop,
+    onButtonClick: Metro.noop,
+    onArrowClick: Metro.noop,
+    onSpinnerCreate: Metro.noop
+};
+
+Metro.spinnerSetup = function (options) {
+    SpinnerDefaultConfig = $.extend({}, SpinnerDefaultConfig, options);
+};
+
+if (typeof window.metroSpinnerSetup !== undefined) {
+    Metro.spinnerSetup(window.metroSpinnerSetup);
+}
+
 var Spinner = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, SpinnerDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.repeat_timer = false;
@@ -9,33 +44,6 @@ var Spinner = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        step: 1,
-        plusIcon: "<span class='default-icon-plus'></span>",
-        minusIcon: "<span class='default-icon-minus'></span>",
-        buttonsPosition: "default",
-        defaultValue: 0,
-        minValue: null,
-        maxValue: null,
-        fixed: 0,
-        repeatThreshold: 1000,
-        hideCursor: false,
-        clsSpinner: "",
-        clsSpinnerInput: "",
-        clsSpinnerButton: "",
-        clsSpinnerButtonPlus: "",
-        clsSpinnerButtonMinus: "",
-        onBeforeChange: Metro.noop_true,
-        onChange: Metro.noop,
-        onPlusClick: Metro.noop,
-        onMinusClick: Metro.noop,
-        onArrowUp: Metro.noop,
-        onArrowDown: Metro.noop,
-        onButtonClick: Metro.noop,
-        onArrowClick: Metro.noop,
-        onSpinnerCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
