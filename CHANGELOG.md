@@ -12,7 +12,7 @@
 + [x] Master: add events `data-on-next-page`, `data-on-prev-page`
 + [x] Events extensions: Now you can subscribe to all table events with `$.on()` or `addEventListener()`
 + [x] Wizard: add events `data-on-next-page`, `data-on-prev-page`, `data-on-first-page`, `data-on-last-page`, `data-on-finish-page`
-+ [ ] Global setup: add using global object `metro{ComponentName}Setup` to set up all components on the page with own global options set.   
++ [x] Global setup: add using global object `metro{ComponentName}Setup` to set up all components on the page with own global options set.   
 
 ### 4.2.40
 + [x] Chat: new component
