@@ -65,6 +65,8 @@ var Resizable = {
         } else {
             this.resizer = $("<span>").addClass("resize-element").appendTo(element);
         }
+
+        element.data("canResize", o.canResize);
     },
 
     _createEvents: function(){
@@ -72,7 +74,7 @@ var Resizable = {
 
         this.resizer.on(Metro.events.start + "-resize-element", function(e){
 
-            if (o.canResize === false) {
+            if (element.data('canResize') === false) {
                 return ;
             }
 
