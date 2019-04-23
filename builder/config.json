@@ -572,6 +572,14 @@
                 "name": "Sidenav simple",
                 "less": ["sidenav-simple"]
             },
+            "skill_box_comp":{
+                "name": "Skill Box",
+                "less": ["skill-box"]
+            },
+            "social_box_comp":{
+                "name": "Social Box",
+                "less": ["social-box"]
+            },
             "slider_comp":{
                 "name": "Slider",
                 "less": ["slider"],
