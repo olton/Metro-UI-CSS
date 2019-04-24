@@ -22288,6 +22288,7 @@ input:-webkit-autofill:active {
 }
 .select .d-menu li a .icon {
   top: 0.3rem;
+  margin-top: 0;
 }
 .select .d-menu .active {
   border: none;
@@ -29804,6 +29805,12 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
 .calendar-picker.dialog-mode .calendar.open-up {
   top: auto;
   bottom: auto;
+}
+.calendar-picker .calendar-wide {
+  width: 464px;
+}
+.calendar-picker .calendar-wide.compact {
+  width: 364px;
 }
 .donut {
   display: block;
